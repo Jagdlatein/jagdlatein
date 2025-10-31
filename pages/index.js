@@ -9,6 +9,11 @@ export default function Home() {
           </div>
           <nav className="menu">
   <a href="/">Start</a>
+  <a href="/kurse">Kurse</a>
+  <a href="/quiz">Quiz</a>
+  <a href="/preise">Preise</a>
+  <a href="/login">Login</a>
+  <a href="/">Start</a>
   <a href="#kurse">Kurse</a>
   <a href="/preise">Preise</a>
   <a href="/login">Login</a>
