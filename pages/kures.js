@@ -20,8 +20,6 @@ export default function Kurse() {
             <a href="/login">Login</a>
           </nav>
         </div>
-      </header>
-
       <section className="section">
         <div className="container">
           <h1>Kurse</h1>
