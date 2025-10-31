@@ -11,11 +11,27 @@ export default function Home() {
 
       <section id="kurse" className="section">
         <div className="container">
-          {/* ... restlicher Content */}
+          <div className="grid">
+            <div className="card">
+              <h3>Glossar</h3>
+              <p>Die wichtigsten Begriffe aus dem Jagdlatein – klar erklärt.</p>
+              <a className="btn" href="#">Öffnen</a>
+            </div>
+            <div className="card">
+              <h3>Karteikarten</h3>
+              <p>Wissen festigen mit smarten Lernkarten – mobilfreundlich.</p>
+              <a className="btn" href="#">Öffnen</a>
+            </div>
+            <div className="card">
+              <h3>Quiz</h3>
+              <p>Prüfungsnahes Training – bereite dich realistisch vor.</p>
+              <a className="btn" href="#">Öffnen</a>
+            </div>
+          </div>
         </div>
       </section>
     </>
-  );
+  )
 }
           <nav className="menu">
   <a href="/">Start</a>
