@@ -17,7 +17,7 @@ export default function Impressum() {
       <section className="section">
         <div className="container">
           <h1>Impressum</h1>
-          <p><b>Verantwortlich:</b><br/>Hannes Ziegler</p>
+          <p><b>Verantwortlich:</b><br/>jagdlatein</p>
           <p>
             Kirchweg 3<br/>
             7317 Valens<br/>
