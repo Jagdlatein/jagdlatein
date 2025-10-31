@@ -160,3 +160,9 @@ a:focus, button:focus{ outline:2px solid #D4AF37; outline-offset:2px; }
   .hamburger{ display:flex; }
   .mobile-menu.open{ display:block; }
 }
+/* Mobile Fixes */
+html, body { width: 100%; overflow-x: hidden; }
+.container { width: 100%; }
+img, svg { max-width: 100%; height: auto; }
+/* Header etwas sticky, ohne Versatz */
+.header { position: sticky; top: 0; z-index: 40; }
