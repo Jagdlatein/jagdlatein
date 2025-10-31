@@ -19,7 +19,7 @@ export default function Datenschutz() {
           <h1>Datenschutzerklärung</h1>
           <p>Wir verarbeiten personenbezogene Daten entsprechend den geltenden Vorschriften (DSG/DSGVO). Bei Fragen wenden Sie sich an info@jagdlatein.de.</p>
           <h3>1. Verantwortlicher</h3>
-          <p>Hannes Ziegler, Kirchweg 3, 7317 Valens, St. Gallen (Schweiz)</p>
+          <p>jagdlatein</p>
           <h3>2. Zwecke</h3>
           <p>Betrieb der Lernplattform (Konto, Bezahlung, Support), Sicherheit, Statistik.</p>
           <h3>3. Rechtsgrundlagen</h3>
