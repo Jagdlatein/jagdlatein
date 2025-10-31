@@ -1,0 +1,6 @@
+{/* Platzhalter – später echte Checkout-Links einfügen */}
+<div className="small" style={{marginTop:8}}>
+  PayPal: <a href="#" className="btn">Jetzt per PayPal</a> •
+  Kreditkarte: <a href="#" className="btn">Stripe Checkout</a> •
+  TWINT: <a href="#" className="btn">TWINT Link</a>
+</div>
