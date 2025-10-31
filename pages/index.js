@@ -1,12 +1,22 @@
 export default function Home() {
   return (
     <>
-      <header className="header">
-        <div className="container header-inner">
-          <div className="brand">
-            <img src="/logo.png" width="28" height="28" alt="Jagdlatein Logo" />
-            <div>Jagdlatein <span>• Lernplattform</span></div>
-          </div>
+      <section className="hero">
+        <div className="container hero-content">
+          <h1>Jagdlatein</h1>
+          <p>Lernplattform für die Jagdprüfung in DE · AT · CH</p>
+          <a className="cta" href="/preise">Jetzt 7 Tage kostenlos testen</a>
+        </div>
+      </section>
+
+      <section id="kurse" className="section">
+        <div className="container">
+          {/* ... restlicher Content */}
+        </div>
+      </section>
+    </>
+  );
+}
           <nav className="menu">
   <a href="/">Start</a>
   <a href="/kurse">Kurse</a>
