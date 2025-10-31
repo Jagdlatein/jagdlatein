@@ -12,8 +12,6 @@ export default function Login() {
             <a href="/preise">Preise</a>
           </nav>
         </div>
-      </header>
-
       <section className="section">
         <div className="container">
           <h1>Login</h1>
