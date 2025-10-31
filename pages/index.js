@@ -31,8 +31,6 @@ export default function Home() {
   <a href="/datenschutz">Datenschutz</a>
 </nav>
         </div>
-      </header>
-
       <section className="hero">
         <div className="container hero-content">
           <h1>Jagdlatein</h1>
