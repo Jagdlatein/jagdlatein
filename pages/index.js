@@ -8,11 +8,13 @@ export default function Home() {
             <div>Jagdlatein <span>• Lernplattform</span></div>
           </div>
           <nav className="menu">
-            <a href="/">Start</a>
-            <a href="#kurse">Kurse</a>
-            <a href="#login">Login</a>
-            <a href="#kontakt">Kontakt</a>
-          </nav>
+  <a href="/">Start</a>
+  <a href="#kurse">Kurse</a>
+  <a href="/preise">Preise</a>
+  <a href="/login">Login</a>
+  <a href="/impressum">Impressum</a>
+  <a href="/datenschutz">Datenschutz</a>
+</nav>
         </div>
       </header>
 
