@@ -4,7 +4,7 @@ export default function Layout({ children }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 768) setOpen(false) }
+    const onResize = () => { if (window.innerWidth >= 780) setOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -14,8 +14,13 @@ export default function Layout({ children }) {
       <header className="header">
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="Startseite">
-            <span className="brand-dot" />
-            <div>Jagdlatein <span style={{color:'var(--brand)'}}>• Lernplattform</span></div>
+            {/* Logo: falls Datei fehlt, bleibt nur Titel sichtbar */}
+            <img src="/logo.png" alt="Jagdlatein" className="logo"
+                 onError={(e)=>{ e.currentTarget.style.display='none' }} />
+            <div className="brand-title">
+              <span>Jagdlatein</span>
+              <small>• Lernplattform</small>
+            </div>
           </a>
 
           <button
@@ -23,9 +28,7 @@ export default function Layout({ children }) {
             aria-label="Menü"
             aria-expanded={open}
             onClick={() => setOpen(v => !v)}
-          >
-            <span/><span/><span/>
-          </button>
+          ><span/><span/><span/></button>
 
           <nav className="menu" aria-label="Hauptnavigation">
             <a href="/">Start</a>
@@ -37,13 +40,13 @@ export default function Layout({ children }) {
         </div>
 
         <nav className={`mobile-menu ${open ? 'open' : ''}`}>
-          <a href="/" onClick={() => setOpen(false)}>Start</a>
-          <a href="/kurse" onClick={() => setOpen(false)}>Kurse</a>
-          <a href="/quiz" onClick={() => setOpen(false)}>Quiz</a>
-          <a href="/preise" onClick={() => setOpen(false)}>Preise</a>
-          <a href="/login" onClick={() => setOpen(false)}>Login</a>
+          <a href="/" onClick={()=>setOpen(false)}>Start</a>
+          <a href="/kurse" onClick={()=>setOpen(false)}>Kurse</a>
+          <a href="/quiz" onClick={()=>setOpen(false)}>Quiz</a>
+          <a href="/preise" onClick={()=>setOpen(false)}>Preise</a>
+          <a href="/login" onClick={()=>setOpen(false)}>Login</a>
           <div className="mobile-meta">
-            <a href="/impressum" onClick={() => setOpen(false)}>Impressum</a> · <a href="/datenschutz" onClick={() => setOpen(false)}>Datenschutz</a>
+            <a href="/impressum" onClick={()=>setOpen(false)}>Impressum</a> · <a href="/datenschutz" onClick={()=>setOpen(false)}>Datenschutz</a>
           </div>
         </nav>
       </header>
