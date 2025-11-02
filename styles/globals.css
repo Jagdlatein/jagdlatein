@@ -172,4 +172,28 @@ html,body{margin:0}
   background: var(--forest);
   color: #fff;
   border-color: rgba(31, 43, 35, .6);
-  box-shadow: 0 0 0 2px var(--gold), 0 4px 8px rgba
+  box-shadow: 0 0 0 2px var(--gold), 0 4px 8px rgba(0,0,0,.15);
+}
+
+/* Mobile Menü Boost */
+.mobile-menu a {
+  font-weight: 700;
+  padding: 16px 14px;
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  color: var(--ink);
+}
+
+/* Mobile Aktiv */
+.mobile-menu a.active {
+  background: var(--forest);
+  border-left-color: var(--gold);
+  color: #fff;
+}
+
+/* Mobile Hover */
+.mobile-menu a:hover {
+  background: rgba(31,43,35,.12);
+  color: var(--forest);
+  border-left-color: rgba(31,43,35,.3);
+}
