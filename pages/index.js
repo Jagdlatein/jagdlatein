@@ -2,100 +2,40 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="container hero-content">
+        <div className="container">
+          <img
+            src="/logo.png"
+            alt="Jagdlatein"
+            className="hero-logo"
+            onError={(e)=>{ e.currentTarget.style.display='none' }}
+          />
           <h1>Jagdlatein</h1>
           <p>Lernplattform für die Jagdprüfung in DE · AT · CH</p>
           <a className="cta" href="/preise">Jetzt 7 Tage kostenlos testen</a>
         </div>
       </section>
 
-      <section id="kurse" className="section">
+      <section className="section">
         <div className="container">
           <div className="grid">
             <div className="card">
               <h3>Glossar</h3>
               <p>Die wichtigsten Begriffe aus dem Jagdlatein – klar erklärt.</p>
-              <a className="btn" href="#">Öffnen</a>
+              <a className="btn" href="/login">Öffnen</a>
             </div>
             <div className="card">
               <h3>Karteikarten</h3>
               <p>Wissen festigen mit smarten Lernkarten – mobilfreundlich.</p>
-              <a className="btn" href="#">Öffnen</a>
+              <a className="btn" href="/login">Öffnen</a>
             </div>
             <div className="card">
               <h3>Quiz</h3>
               <p>Prüfungsnahes Training – bereite dich realistisch vor.</p>
-              <a className="btn" href="#">Öffnen</a>
+              <a className="btn" href="/quiz">Öffnen</a>
             </div>
           </div>
         </div>
       </section>
-    </>
-  )
-}
-          <nav className="menu">
-  <a href="/">Start</a>
-  <a href="/kurse">Kurse</a>
-  <a href="/quiz">Quiz</a>
-  <a href="/preise">Preise</a>
-  <a href="/login">Login</a>
-  <a href="/">Start</a>
-  <a href="#kurse">Kurse</a>
-  <a href="/preise">Preise</a>
-  <a href="/login">Login</a>
-  <a href="/impressum">Impressum</a>
-  <a href="/datenschutz">Datenschutz</a>
-</nav>
-        </div>
-      <section className="hero">
-        <div className="container hero-content">
-          <h1>Jagdlatein</h1>
-          <p>Lernplattform für die Jagdprüfung in DE · AT · CH</p>
-          <a className="cta" href="#kurse">Jetzt 7 Tage kostenlos testen</a>
-        </div>
-      </section>
-
-      <section id="kurse" className="section">
-        <div className="container">
-          <div className="grid">
-            <div className="card">
-              <h3>Glossar</h3>
-              <p>Die wichtigsten Begriffe aus dem Jagdlatein – klar erklärt.</p>
-              <a className="btn" href="#">Öffnen</a>
-            </div>
-            <div className="card">
-              <h3>Karteikarten</h3>
-              <p>Wissen festigen mit smarten Lernkarten – mobilfreundlich.</p>
-              <a className="btn" href="#">Öffnen</a>
-            </div>
-            <div className="card">
-              <h3>Quiz</h3>
-              <p>Prüfungsnahes Training – bereite dich realistisch vor.</p>
-              <a className="btn" href="#">Öffnen</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="login" className="section">
-        <div className="container">
-          <h3>Login</h3>
-          <p className="small">Login/Paywall folgen nach Zahlungs-Setup.</p>
-        </div>
-      </section>
-
-      <section id="kontakt" className="section">
-        <div className="container">
-          <h3>Kontakt</h3>
-          <p>E-Mail: info@jagdlatein.de</p>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <div className="container small">
-          © 2025 Jagdlatein – Von Jägern. Für Jäger. • Impressum • Datenschutz
-        </div>
-      </footer>
     </>
   )
 }
