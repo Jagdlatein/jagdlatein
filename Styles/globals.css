@@ -91,3 +91,5 @@ html,body{width:100%;overflow-x:hidden}
 .footer{border-top:1px solid rgba(42,35,25,.12); background:linear-gradient(0deg, rgba(241,231,211,.9), rgba(241,231,211,.7))}
 .footer .container{padding:20px 18px; color:var(--muted)}
 .small{font-size:12px;opacity:.9}
+/* placeholder */
+html,body{margin:0}
