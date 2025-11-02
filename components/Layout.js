@@ -42,7 +42,6 @@ export default function Layout({ children }) {
 
           <nav className="menu" aria-label="Hauptnavigation">
             <a className={`nav-link ${isActive('/') ? 'active' : ''}`} href="/">Start</a>
-            <a className={`nav-link ${isActive('/kurse') ? 'active' : ''}`} href="/kurse">Kurse</a>
             <a className={`nav-link ${router.pathname.startsWith('/quiz') ? 'active' : ''}`} href="/quiz">Quiz</a>
             <a className={`nav-link ${isActive('/preise') ? 'active' : ''}`} href="/preise">Preise</a>
             <a className={`nav-link ${isActive('/login') ? 'active' : ''}`} href="/login">Login</a>
