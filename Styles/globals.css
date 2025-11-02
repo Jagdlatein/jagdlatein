@@ -1,12 +1,7 @@
 /* ===== Farbwelt nach Logo ===== */
 :root{
-  --parchment:#f1e7d3;     /* Papier/Creme */
-  --ink:#2a2319;           /* Dunkelbraun/Schrift */
-  --forest:#1f2b23;        /* Jagdgrün dunkel */
-  --gold:#d4af37;          /* Akzent Gold */
-  --sepia:#8a6a3e;         /* Warmbraun */
-  --muted:#6c6458;         /* Sekundärtext */
-  --radius:14px;
+  --parchment:#f1e7d3; --ink:#2a2319; --forest:#1f2b23; --gold:#d4af37;
+  --sepia:#8a6a3e; --muted:#6c6458; --radius:14px;
   --shadow:0 10px 25px rgba(0,0,0,.18), 0 2px 6px rgba(0,0,0,.15);
 }
 
@@ -59,7 +54,7 @@ html,body{width:100%;overflow-x:hidden}
   .logo{height:34px}
 }
 
-/* ===== Hero (Logo groß + Papierstruktur) ===== */
+/* ===== Hero ===== */
 .hero{
   position:relative; padding:72px 0 48px;
   background:
