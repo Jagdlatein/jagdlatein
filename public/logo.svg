@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220">
+  <defs>
+    <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e8c865"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </linearGradient>
+  </defs>
+  <!-- Wappen-Kreis -->
+  <circle cx="90" cy="110" r="64" fill="none" stroke="url(#gold)" stroke-width="10"/>
+  <!-- Einfacher „Geweih“-Akzent -->
+  <path d="M55 70 c10 -12 18 -16 35 -16 c17 0 25 4 35 16" fill="none" stroke="#6c6458" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 85 c8 -8 16 -12 25 -12 c9 0 17 4 25 12" fill="none" stroke="#6c6458" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Schriftzug -->
+  <g font-family="Georgia, 'Times New Roman', Times, serif" font-weight="700">
+    <text x="170" y="106" font-size="62" fill="url(#gold)" stroke="#2a2319" stroke-width="1.5" paint-order="stroke">
+      Jagd-Latein
+    </text>
+    <text x="170" y="150" font-size="24" fill="#8a6a3e">Lernplattform • DE · AT · CH</text>
+  </g>
+</svg>
