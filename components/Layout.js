@@ -50,7 +50,6 @@ export default function Layout({ children }) {
 
         <nav className={`mobile-menu ${open ? 'open' : ''}`} aria-label="Mobile Navigation">
           <a className={isActive('/') ? 'active' : ''} href="/" onClick={() => setOpen(false)}>Start</a>
-          <a className={isActive('/kurse') ? 'active' : ''} href="/kurse" onClick={() => setOpen(false)}>Kurse</a>
           <a className={router.pathname.startsWith('/quiz') ? 'active' : ''} href="/quiz" onClick={() => setOpen(false)}>Quiz</a>
           <a className={isActive('/preise') ? 'active' : ''} href="/preise" onClick={() => setOpen(false)}>Preise</a>
           <a className={isActive('/login') ? 'active' : ''} href="/login" onClick={() => setOpen(false)}>Login</a>
