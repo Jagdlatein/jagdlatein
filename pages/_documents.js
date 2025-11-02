@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="de">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#111915" />
+        <meta name="theme-color" content="#f1e7d3" />
       </Head>
       <body>
         <Main />
