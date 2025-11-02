@@ -139,3 +139,37 @@ html,body{margin:0}
 .header {
   background: linear-gradient(180deg, rgba(241,231,211,.96), rgba(241,231,211,.86));
 }
+/* ===== NAVIGATION STYLE UPGRADE ===== */
+
+/* Desktop-Menü rechtsbündig */
+.menu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-left: auto; /* Schiebt das Menü nach rechts */
+}
+
+/* Standard-Links */
+.menu .nav-link {
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  color: var(--forest);
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, .4);
+  transition: all .15s ease;
+}
+
+/* Hover */
+.menu .nav-link:hover {
+  background: var(--forest);
+  color: #f1e7d3; /* Hellbeige Schrift */
+  border-color: rgba(31, 43, 35, .6);
+}
+
+/* Aktiver Menüpunkt */
+.menu .nav-link.active {
+  background: var(--forest);
+  color: #fff;
+  border-color: rgba(31, 43, 35, .6);
+  box-shadow: 0 0 0 2px var(--gold), 0 4px 8px rgba
