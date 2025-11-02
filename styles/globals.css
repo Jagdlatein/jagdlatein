@@ -93,3 +93,49 @@ html,body{width:100%;overflow-x:hidden}
 .small{font-size:12px;opacity:.9}
 /* placeholder */
 html,body{margin:0}
+/* ==== Nav Sichtbarkeit & Active-State ==== */
+.nav-link,
+.menu a {
+  color: var(--forest);
+  font-weight: 700;
+  letter-spacing: .2px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.menu .nav-link:hover {
+  background: rgba(31,43,35,.08);
+  border-color: rgba(31,43,35,.18);
+}
+
+.menu .nav-link.active {
+  background: rgba(31,43,35,.14);
+  color: var(--ink);
+  border-color: rgba(31,43,35,.28);
+  box-shadow: inset 0 -2px 0 var(--gold);
+}
+
+/* Mobile-Menü Kontrast */
+.mobile-menu a {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 16px;
+  border: 1px solid transparent;
+}
+
+.mobile-menu a:hover {
+  background: rgba(31,43,35,.08);
+  border-color: rgba(31,43,35,.14);
+}
+
+.mobile-menu a.active {
+  background: rgba(31,43,35,.12);
+  border-left: 3px solid var(--gold);
+}
+
+/* Optional: Header minimal dunkler für mehr Kontrast */
+.header {
+  background: linear-gradient(180deg, rgba(241,231,211,.96), rgba(241,231,211,.86));
+}
