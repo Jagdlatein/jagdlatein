@@ -14,9 +14,13 @@ export default function Layout({ children }) {
       <header className="header">
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="Startseite">
-            {/* Logo: falls Datei fehlt, bleibt nur Titel sichtbar */}
-            <img src="/logo.png" alt="Jagdlatein" className="logo"
-                 onError={(e)=>{ e.currentTarget.style.display='none' }} />
+            {/* Logo PNG, fällt auf SVG zurück, ansonsten nur Text */}
+            <img
+              src="/logo.png"
+              alt="Jagdlatein"
+              className="logo"
+              onError={(e)=>{ e.currentTarget.src = '/logo.svg' }}
+            />
             <div className="brand-title">
               <span>Jagdlatein</span>
               <small>• Lernplattform</small>
