@@ -1,38 +1,21 @@
-export default function Login() {
+export default function Login(){
+  const enter = () => {
+    if (typeof window !== 'undefined') {
+      const ok = localStorage.getItem('jagdlatein_access') === 'true';
+      if (ok) window.location.href='/kurse';
+      else alert('Noch kein aktives Abo. Bitte unter Preise buchen.');
+    }
+  };
   return (
-    <>
-      <header className="header">
-        <div className="container header-inner">
-          <div className="brand">
-            <div style={{ width: 28, height: 28, background: '#D4AF37', borderRadius: '50%' }} />
-            <div>Jagdlatein <span>• Lernplattform</span></div>
-          </div>
-          <nav className="menu">
-            <a href="/">Start</a>
-            <a href="/preise">Preise</a>
-          </nav>
+    <section className="section">
+      <div className="container" style={{maxWidth:520}}>
+        <h1>Login</h1>
+        <p className="small">Vorübergehender Zugang bis Checkout live ist.</p>
+        <div className="card">
+          <button className="cta" onClick={enter}>Zugang prüfen</button>
+          <a className="btn" href="/preise" style={{marginLeft:10}}>Abo kaufen</a>
         </div>
-      <section className="section">
-        <div className="container">
-          <h1>Login</h1>
-          <p className="small">Hier kommt der Zugang nach dem Kauf (PayPal / Kreditkarte / TWINT).</p>
-
-          <div className="card" style={{maxWidth:480}}>
-            <label style={{display:'block', marginBottom:8}}>E-Mail</label>
-            <input style={{width:'100%', padding:10, border:'1px solid #ddd'}} placeholder="dein@email"/>
-            <label style={{display:'block', margin:'12px 0 8px'}}>Passwort</label>
-            <input type="password" style={{width:'100%', padding:10, border:'1px solid #ddd'}} placeholder="********"/>
-            <div style={{marginTop:12, display:'flex', gap:12}}>
-              <button className="cta">Einloggen</button>
-              <a className="btn" href="/preise">Zugang kaufen</a>
-            </div>
-          </div>
-
-          <p className="small" style={{marginTop:16}}>
-            Hinweis: Bezahl- und Abo-System wird als Nächstes aktiviert.
-          </p>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
