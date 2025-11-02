@@ -39,3 +39,6 @@ export default function Home() {
     </>
   )
 }
+export default function Home() {
+  return <div style={{padding:20, fontFamily:'system-ui'}}>Hallo Jagdlatein 👋 – Build-Test OK</div>;
+}
