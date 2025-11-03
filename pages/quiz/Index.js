@@ -1,3 +1,4 @@
+import RequireAccess from '../../components/RequireAccess';
 import Seo from '../../components/Seo';
 
 const blocks = [
@@ -28,5 +29,15 @@ export default function QuizHome(){
         </div>
       </section>
     </>
+  );
+}
+export default function QuizHome(){
+  return (
+    <RequireAccess>
+      <>
+        <Seo title="Quiz – Jagdlatein" description="Prüfungsnah trainieren – wähle dein Themengebiet." />
+        {/* ... Rest wie bisher ... */}
+      </>
+    </RequireAccess>
   );
 }
