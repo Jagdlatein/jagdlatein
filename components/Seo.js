@@ -3,8 +3,8 @@ import Head from 'next/head';
 export default function Seo({ title, description, image="/og.png", url="" }) {
   const site = "https://jagdlatein.de";
   const metaTitle = title || "Jagdlatein – Lernplattform";
-  const metaDesc  = description || "Lernen für die Jagdprüfung (DE · AT · CH).";
-  const metaUrl   = url || site;
+  const metaDesc  = description || "Lernen für die Jagdprüfung (DE·AT·CH).";
+  const metaUrl   = url || site + (typeof window !== 'undefined' ? window.location.pathname : "");
   const metaImg   = image.startsWith('http') ? image : `${site}${image}`;
 
   return (
