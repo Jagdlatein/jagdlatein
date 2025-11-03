@@ -17,6 +17,10 @@ export default function Home() {
             onError={(e)=>{ e.currentTarget.style.display='none'; }}
           />
           <h1>Bestehen mit System.</h1>
+              {typeof window !== 'undefined' && localStorage.getItem('jagdlatein_access') === 'true' ? (
+  <p className="small" style={{margin:'6px 0 0', color:'var(--forest)'}}>Zugang aktiv ✅</p>
+) : null}
+
           <p className="lead">
             Jagdprüfung in <b>Deutschland · Österreich · Schweiz</b> — klar strukturiert,
             mobilfreundlich und prüfungsnah.
