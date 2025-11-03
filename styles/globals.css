@@ -242,3 +242,9 @@ html,body{margin:0}
 .header {
   background: linear-gradient(180deg, rgba(241,231,211,.96), rgba(241,231,211,.86));
 }
+.lead{font-size:18px; color:var(--sepia)}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.section-alt{background:linear-gradient(0deg, rgba(241,231,211,.7), rgba(241,231,211,.5))}
+.trust{display:flex;gap:10px;flex-wrap:wrap}
+.trust-item{padding:8px 12px;border:1px solid rgba(42,35,25,.14);border-radius:12px;background:rgba(255,255,255,.55)}
+.hero-xl .container{padding-top:8px}
