@@ -26,6 +26,8 @@ export default function Layout({ children }) {
         <div className="container small">
           © 2025 Jagdlatein – Von Jägern. Für Jäger. • <a href="/impressum">Impressum</a> • <a href="/datenschutz">Datenschutz</a>
         </div>
+        <img src="/logo.svg" alt="Jagdlatein" className="logo" />
+
       </footer>
     </>
   );
