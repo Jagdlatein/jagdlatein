@@ -1,28 +1,15 @@
 export default function NotFound() {
   return (
-    <>
-      <header className="header">
-        <div className="container header-inner">
-          <div className="brand">
-            <div style={{ width: 28, height: 28, background: '#D4AF37', borderRadius: '50%' }} />
-            <div>Jagdlatein <span>• Lernplattform</span></div>
-          </div>
-          <nav className="menu">
-            <a href="/">Start</a>
-            <a href="/kurse">Kurse</a>
-            <a href="/preise">Preise</a>
-            <a href="/login">Login</a>
-          </nav>
-        </div>
-      </header>
-
-      <section className="section">
-        <div className="container">
-          <h1>Seite nicht gefunden</h1>
-          <p>Die aufgerufene Seite existiert nicht.</p>
-          <a className="btn" href="/">Zur Startseite</a>
-        </div>
-      </section>
-    </>
+    <section className="section">
+      <div className="container" style={{textAlign:'center', maxWidth:640}}>
+        <h1>Seite nicht gefunden</h1>
+        <p>Die angeforderte Seite existiert nicht oder wurde verschoben.</p>
+        <p className="small" style={{marginTop:8}}>
+          <a className="btn" href="/" style={{marginRight:10}}>Start</a>
+          <a className="btn" href="/quiz" style={{marginRight:10}}>Zum Quiz</a>
+          <a className="btn" href="/preise">Preise</a>
+        </p>
+      </div>
+    </section>
   );
 }
