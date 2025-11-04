@@ -107,18 +107,3 @@ export default function QuizRun(){
     </RequireAccess>
   );
 }
-// Beispiel: dynamisch importieren
-import { useEffect, useState } from 'react';
-
-export default function QuizRun(){
-  const [api, setApi] = useState(null);
-
-  useEffect(()=> {
-    import('../../data/questions-full').then(mod => setApi(mod));
-  }, []);
-
-  if (!api) return null; // oder Loader
-
-  const items = api.filterQuestions({ country, topic, count: 20 });
-  // ...
-}
