@@ -2,15 +2,30 @@
 import { useEffect, useState } from 'react';
 
 export default function RequireAccess({ children }) {
-  const [ok, setOk] = useState(null);
+  const [state, setState] = useState({ loading: true, ok: false });
 
   useEffect(() => {
-    const allowed = typeof window !== 'undefined' && localStorage.getItem('jagdlatein_access') === 'true';
-    setOk(allowed);
+    const fn = async () => {
+      try {
+        const email = (typeof window !== 'undefined' && localStorage.getItem('jagdlatein_email')) || '';
+        if (!email) return setState({ loading: false, ok: false });
+        const res = await fetch('/api/auth/check', { method: 'POST', body: JSON.stringify({ email }) });
+        const data = await res.json();
+        setState({ loading: false, ok: !!data.active });
+        if (!data.active) {
+          localStorage.removeItem('jagdlatein_access');
+        } else {
+          localStorage.setItem('jagdlatein_access', 'true');
+        }
+      } catch {
+        setState({ loading: false, ok: false });
+      }
+    };
+    fn();
   }, []);
 
-  if (ok === null) return null; // optional: Loader einblenden
-  if (!ok) {
+  if (state.loading) return null;
+  if (!state.ok) {
     return (
       <section className="section">
         <div className="container" style={{maxWidth:560}}>
