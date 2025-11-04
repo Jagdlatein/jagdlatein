@@ -248,3 +248,7 @@ html,body{margin:0}
 .trust{display:flex;gap:10px;flex-wrap:wrap}
 .trust-item{padding:8px 12px;border:1px solid rgba(42,35,25,.14);border-radius:12px;background:rgba(255,255,255,.55)}
 .hero-xl .container{padding-top:8px}
+.lead{font-size:18px; color:var(--sepia)}
+.small{font-size:12px; opacity:.9}
+.cta-group{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.hero .status{font-weight:700; color:var(--forest); margin:6px 0 0}
