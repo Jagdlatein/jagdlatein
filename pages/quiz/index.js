@@ -1,5 +1,4 @@
 // pages/quiz/index.js
-<p className="small"><a href="/quiz/run">Direkt starten</a></p>
 import RequireAccess from '../../components/RequireAccess';
 import Seo from '../../components/Seo';
 
