@@ -1,63 +1,22 @@
 import RequireAccess from '../../components/RequireAccess';
 import Seo from '../../components/Seo';
 import { useMemo, useState } from 'react';
-
-const QUESTIONS = [
-  {
-    id: 'w1',
-    country: ['DE','AT','CH'],
-    topic: 'Wildkunde',
-    q: 'Woran erkennst du typischerweise Rehwild-Losung?',
-    answers: [
-      { id: 'a', text: 'Birnenförmig, oft in Ketten' },
-      { id: 'b', text: 'Kugelig, groß wie Murmeln' },
-      { id: 'c', text: 'Länglich, spiralig gedreht' },
-      { id: 'd', text: 'Flach, scheibenförmig' },
-    ],
-    correct: ['a'],
-    explain: 'Rehwild-Losung ist meist birnenförmig und kettenartig aneinandergereiht.'
-  },
-  {
-    id: 'w2',
-    country: ['DE','AT','CH'],
-    topic: 'Waffen & Schuss',
-    q: 'Welche Sicherheitsregel ist IMMER einzuhalten?',
-    answers: [
-      { id: 'a', text: 'Waffe ist sicher, wenn der Sicherungsschieber auf „S“ steht.' },
-      { id: 'b', text: 'Waffe nie auf etwas richten, das nicht beschossen werden soll.' },
-      { id: 'c', text: 'Im Revier kann die Mündung beliebig zeigen.' },
-      { id: 'd', text: 'Abzugsdisziplin ist optional.' },
-    ],
-    correct: ['b'],
-    explain: 'Mündungsdisziplin ist zentral: niemals auf etwas zielen, das nicht beschossen werden soll.'
-  },
-  {
-    id: 'r1',
-    country: ['DE'],
-    topic: 'Recht (DE)',
-    q: 'Wer ist in Deutschland Träger des Jagdrechts?',
-    answers: [
-      { id: 'a', text: 'Der jeweilige Jagdpächter' },
-      { id: 'b', text: 'Der Grundstückseigentümer' },
-      { id: 'c', text: 'Die Jagdgenossenschaft' },
-      { id: 'd', text: 'Der Forstbetrieb' },
-    ],
-    correct: ['b'],
-    explain: 'Jagdausübungsrecht kann verpachtet sein, Träger des Jagdrechts ist der Eigentümer.'
-  },
-];
-
-function shuffle(arr){ return [...arr].sort(()=>Math.random()-.5); }
+import { useRouter } from 'next/router';
+import { filterQuestions } from '../../data/questions';
 
 export default function QuizRun(){
+  const router = useRouter();
+  const country = (router.query.country || 'DE').toString().toUpperCase();
+  const topic = (router.query.topic || 'Alle').toString();
+
+  const items = useMemo(() => filterQuestions({ country, topic, count: 10 }), [country, topic]);
   const [step, setStep] = useState(0);
   const [given, setGiven] = useState({});
   const [done, setDone] = useState(false);
 
-  const items = useMemo(()=>shuffle(QUESTIONS).slice(0, 10) /* später mehr */, []);
   const current = items[step];
 
-  const select = (qid, aid) => {
+  const toggle = (qid, aid) => {
     setGiven(prev => {
       const set = new Set(prev[qid] || []);
       set.has(aid) ? set.delete(aid) : set.add(aid);
@@ -73,11 +32,8 @@ export default function QuizRun(){
     return true;
   };
 
-  const next = () => {
-    if (step < items.length - 1) setStep(step+1);
-    else setDone(true);
-  };
-
+  const next = () => step < items.length - 1 ? setStep(step+1) : setDone(true);
+  const back = () => setStep(Math.max(0, step-1));
   const score = items.reduce((acc,q)=>acc + (isCorrect(q)?1:0), 0);
 
   return (
@@ -87,44 +43,41 @@ export default function QuizRun(){
         <section className="section">
           <div className="container" style={{maxWidth:820}}>
             <h1>Quiz</h1>
+            <p className="small">Land: <b>{country}</b> · Thema: <b>{topic}</b> · Fragenpool: {items.length}</p>
 
-            {!done ? (
-              <>
-                <div className="card">
-                  <p className="small" style={{margin:'0 0 8px'}}>
-                    Frage {step+1} / {items.length} • Thema: <b>{current.topic}</b>
-                  </p>
-                  <h3 style={{margin:'4px 0 12px'}}>{current.q}</h3>
+            {!items.length ? (
+              <div className="card">
+                <p>Für diese Auswahl sind noch keine Fragen vorhanden.</p>
+                <a className="btn" href="/quiz">Zurück</a>
+              </div>
+            ) : !done ? (
+              <div className="card">
+                <p className="small" style={{margin:'0 0 8px'}}>Frage {step+1} / {items.length} · Thema: <b>{current.topic}</b></p>
+                <h3 style={{margin:'4px 0 12px'}}>{current.q}</h3>
 
-                  <div style={{display:'grid', gap:8}}>
-                    {current.answers.map(a=>(
-                      <label key={a.id} style={{
-                        display:'flex', alignItems:'center', gap:10,
-                        border:'1px solid rgba(42,35,25,.2)', borderRadius:12, padding:'10px 12px',
-                        background: (given[current.id]?.includes(a.id) ? 'rgba(212,175,55,.12)' : 'rgba(255,255,255,.6)')
-                      }}>
-                        <input
-                          type="checkbox"
-                          checked={!!(given[current.id]?.includes(a.id))}
-                          onChange={()=>select(current.id, a.id)}
-                        />
-                        <span>{a.text}</span>
-                      </label>
-                    ))}
-                  </div>
-
-                  <div style={{display:'flex', gap:10, marginTop:14}}>
-                    <button className="btn" onClick={()=>setStep(Math.max(0, step-1))} disabled={step===0}>Zurück</button>
-                    <button className="cta" onClick={next}>{step < items.length - 1 ? 'Weiter' : 'Auswertung ansehen'}</button>
-                  </div>
+                <div style={{display:'grid', gap:8}}>
+                  {current.answers.map(a=>(
+                    <label key={a.id} style={{
+                      display:'flex', alignItems:'center', gap:10,
+                      border:'1px solid rgba(42,35,25,.2)', borderRadius:12, padding:'10px 12px',
+                      background: (given[current.id]?.includes(a.id) ? 'rgba(212,175,55,.12)' : 'rgba(255,255,255,.6)')
+                    }}>
+                      <input type="checkbox" checked={!!(given[current.id]?.includes(a.id))} onChange={()=>toggle(current.id, a.id)} />
+                      <span>{a.text}</span>
+                    </label>
+                  ))}
                 </div>
 
-                {/* Optional: Sofort-Feedback */}
+                <div style={{display:'flex', gap:10, marginTop:14}}>
+                  <button className="btn" onClick={back} disabled={step===0}>Zurück</button>
+                  <button className="cta" onClick={next}>{step < items.length - 1 ? 'Weiter' : 'Auswertung ansehen'}</button>
+                </div>
+
                 <details style={{marginTop:10}}>
                   <summary>Hinweis anzeigen</summary>
                   <p className="small" style={{marginTop:6}}>{current.explain}</p>
                 </details>
-              </>
+              </div>
             ) : (
               <div className="card">
                 <h3>Auswertung</h3>
@@ -133,20 +86,18 @@ export default function QuizRun(){
                   {items.map(q=>(
                     <div key={q.id} style={{border:'1px solid rgba(42,35,25,.2)', borderRadius:12, padding:'8px 10px', background:'rgba(255,255,255,.6)'}}>
                       <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', gap:10}}>
-                        <strong style={{marginRight:6}}>{q.q}</strong>
+                        <strong>{q.q}</strong>
                         <span style={{fontWeight:700, color: isCorrect(q) ? 'green' : '#8a2a2a'}}>
                           {isCorrect(q) ? '✔' : '✘'}
                         </span>
                       </div>
-                      {!isCorrect(q) && (
-                        <p className="small" style={{margin:'6px 0 0'}}>{q.explain}</p>
-                      )}
+                      {!isCorrect(q) && <p className="small" style={{margin:'6px 0 0'}}>{q.explain}</p>}
                     </div>
                   ))}
                 </div>
                 <div style={{display:'flex', gap:10, marginTop:14}}>
                   <a className="btn" href="/quiz">Zur Übersicht</a>
-                  <button className="cta" onClick={()=>{ setStep(0); setGiven({}); setDone(false); }}>Nochmals</button>
+                  <button className="cta" onClick={()=>{ location.replace(`/quiz/run?country=${country}&topic=${encodeURIComponent(topic)}`); }}>Nochmal mit neuer Reihenfolge</button>
                 </div>
               </div>
             )}
