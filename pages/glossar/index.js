@@ -28,3 +28,7 @@ export default function GlossarIndex(){
     </>
   );
 }
+<p className="small" style={{marginTop:16}}>
+  <a href="/quiz" style={{marginRight:10}}>Zum Quiz</a> ·
+  <a href="/glossar" style={{marginLeft:10}}>Zum Glossar</a>
+</p>
