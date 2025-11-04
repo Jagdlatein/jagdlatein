@@ -2,7 +2,7 @@ import RequireAccess from '../../components/RequireAccess';
 import Seo from '../../components/Seo';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { filterQuestions } from '../../data/questions';
+import { filterQuestions } from '../../data/questions-full';
 
 export default function QuizRun(){
   const router = useRouter();
