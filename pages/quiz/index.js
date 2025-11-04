@@ -31,6 +31,12 @@ export default function QuizHome(){
                   <option>Waffen & Schuss</option>
                   <option>Recht</option>
                 </select>
+  <option>Fangjagd</option>
+<option>Seuchen</option>
+<option>Erste Hilfe</option>
+<option>Ökologie</option>
+<option>Wald & Forst</option>
+
               </div>
               <div>
                 <a className="cta" href={startUrl}>Quiz starten</a>
