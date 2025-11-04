@@ -13,6 +13,7 @@ export default function GlossarIndex(){
       <section className="section">
         <div className="container" style={{maxWidth:820}}>
           <h1>Glossar</h1>
+
           <ul style={{listStyle:'none', padding:0, margin:0}}>
             {TERMS.map(x=>(
               <li key={x.slug} style={{margin:'10px 0'}}>
@@ -23,12 +24,14 @@ export default function GlossarIndex(){
               </li>
             ))}
           </ul>
+
+          {/* Kleine Rücknavigation */}
+          <p className="small" style={{marginTop:16}}>
+            <a href="/" style={{marginRight:10}}>Startseite</a> ·
+            <a href="/quiz" style={{marginLeft:10}}>Zum Quiz</a>
+          </p>
         </div>
       </section>
     </>
   );
 }
-<p className="small" style={{marginTop:16}}>
-  <a href="/quiz" style={{marginRight:10}}>Zum Quiz</a> ·
-  <a href="/glossar" style={{marginLeft:10}}>Zum Glossar</a>
-</p>
