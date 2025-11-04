@@ -13,11 +13,7 @@ export default function Home() {
 
       <section className="hero">
         <div className="container">
-          <img
-            src="/logo.png"
-            alt="Jagdlatein Logo"
-            className="hero-logo"
-          />
+          <img src="/logo.png" alt="Jagdlatein Logo" className="hero-logo" />
           <h1>Jagdlatein</h1>
 
           {hasAccess && (
@@ -25,7 +21,7 @@ export default function Home() {
           )}
 
           <p className="tagline">
-            Lernen für Jagdschein und Praxis in Deutschland, Österreich & Schweiz
+            Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
           <div className="cta-group">
@@ -38,6 +34,12 @@ export default function Home() {
               </>
             )}
           </div>
+
+          {/* Kleine Kontext-Navigation — HIER innerhalb des JSX */}
+          <p className="small" style={{marginTop:16}}>
+            <a href="/quiz" style={{marginRight:10}}>Zum Quiz</a> ·
+            <a href="/glossar" style={{marginLeft:10}}>Zum Glossar</a>
+          </p>
         </div>
       </section>
     </>
