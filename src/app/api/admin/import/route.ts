@@ -1,15 +1,12 @@
-// Temporäre Platzhalter-Route, damit der Build nicht fehlschlägt.
-// TODO: Eigene Import-Logik + echte Auth/Prisma einbauen.
-
-import { NextResponse } from "next/server";
-
-export async function POST() {
-  return NextResponse.json(
-    { ok: false, error: "Admin-Import ist noch nicht konfiguriert." },
-    { status: 501 }
-  );
+/* /styles/Home.module.css */
+:global(:root){
+  --forest:#1d4d2b;
 }
 
-export async function GET() {
-  return NextResponse.json({ ok: true, status: "import-endpoint-ready" });
+.main{ background: linear-gradient(180deg,#fff,#f7faf7); min-height:60vh; }
+.cta{
+  display:inline-block; text-decoration:none; font-weight:600;
+  padding:12px 16px; border-radius:14px; border:1px solid #e2e8e2;
 }
+.ctaPrimary{ background:var(--forest); color:#fff; border-color:transparent }
+.ctaPrimary:hover{ opacity:.95 }
