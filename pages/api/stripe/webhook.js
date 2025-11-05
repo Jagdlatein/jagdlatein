@@ -50,3 +50,9 @@ export default async function handler(req, res) {
     res.status(500).send('Webhook handler failed');
   }
 }
+// ersetze die Hilfsfunktion in /api/stripe/webhook/route.ts
+import { randomBytes } from "crypto";
+
+function cryptoRandom() {
+  return randomBytes(16).toString("hex");
+}
