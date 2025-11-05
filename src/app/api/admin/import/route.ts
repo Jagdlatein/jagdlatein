@@ -1,12 +1,16 @@
-/* /styles/Home.module.css */
-:global(:root){
-  --forest:#1d4d2b;
+// /src/app/api/admin/import/route.ts
+import { NextResponse } from "next/server";
+
+// Platzhalter-Endpoint, damit der Build nicht an fehlenden Imports scheitert.
+// (Später hier echte Admin-Import-Logik + Auth/DB einsetzen.)
+
+export async function GET() {
+  return NextResponse.json({ ok: true, status: "import-endpoint-ready" });
 }
 
-.main{ background: linear-gradient(180deg,#fff,#f7faf7); min-height:60vh; }
-.cta{
-  display:inline-block; text-decoration:none; font-weight:600;
-  padding:12px 16px; border-radius:14px; border:1px solid #e2e8e2;
+export async function POST() {
+  return NextResponse.json(
+    { ok: false, error: "Admin-Import ist noch nicht konfiguriert." },
+    { status: 501 }
+  );
 }
-.ctaPrimary{ background:var(--forest); color:#fff; border-color:transparent }
-.ctaPrimary:hover{ opacity:.95 }
