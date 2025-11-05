@@ -1,3 +1,31 @@
+import { useEffect } from "react";
+
+export default function Preise() {
+  useEffect(() => {
+    // PayPal SDK dynamisch laden
+    const script = document.createElement("script");
+    script.src = "https://www.paypal.com/sdk/js?client-id=sb&components=hosted-buttons";
+    script.async = true;
+    script.onload = () => {
+      if (window.paypal) {
+        window.paypal.HostedButtons({
+          hostedButtonId: "FFAVT6VNJM5AE",
+        }).render("#paypal-container-FFAVT6VNJM5AE");
+      }
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <main style={{ padding: "20px", fontFamily: "system-ui" }}>
+      <h1>Mit PayPal bezahlen</h1>
+
+      <div id="paypal-container-FFAVT6VNJM5AE" style={{ marginTop: "20px" }}>
+        {/* PayPal Button wird hier geladen */}
+      </div>
+    </main>
+  );
+}
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
