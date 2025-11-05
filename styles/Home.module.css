@@ -1,11 +1,21 @@
-:global(:root){
-  --forest:#1d4d2b;
+/* /styles/Home.module.css */
+.main {
+  background: linear-gradient(180deg, #fff, #f7faf7);
+  min-height: 60vh;
 }
 
-.main{ background: linear-gradient(180deg,#fff,#f7faf7); min-height:60vh; }
-.cta{
-  display:inline-block; text-decoration:none; font-weight:600;
-  padding:12px 16px; border-radius:14px; border:1px solid #e2e8e2;
+.cta {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid #e2e8e2;
 }
-.ctaPrimary{ background:var(--forest); color:#fff; border-color:transparent }
-.ctaPrimary:hover{ opacity:.95 }
+
+.ctaPrimary {
+  background: var(--forest);
+  color: #fff;
+  border-color: transparent;
+}
+.ctaPrimary:hover { opacity: .95; }
