@@ -15,6 +15,8 @@ model User {
   emailVerified   DateTime?
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
+  // Diese beiden Modelle brauchst du nur, wenn du den Prisma-Adapter für NextAuth nutzt.
+  // Bei JWT-Strategy (wie in unserer v4-Konfig) bleiben sie ungenutzt — können aber drin bleiben.
   sessions        Session[]
   accounts        Account[]
   purchases       Purchase[]
@@ -60,13 +62,13 @@ model PasswordResetToken {
   userId    String
   expiresAt DateTime
   usedAt    DateTime?
-  user      User     @relation(fields: [userId], references: [id], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Purchase {
   id            String   @id @default(cuid())
   userId        String
-  stripeId      String   @unique        // checkout.session/payment_intent
+  stripeId      String   @unique        // checkout.session.id o. payment_intent
   status        String
   amountTotal   Int
   currency      String
@@ -76,12 +78,12 @@ model Purchase {
 }
 
 model Question {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   text      String
   answers   Answer[]
-  correctIx Int       // 0..3
-  topic     String?   // optional: Kategorie
-  createdAt DateTime @default(now())
+  correctIx Int
+  topic     String?
+  createdAt DateTime  @default(now())
 }
 
 model Answer {
@@ -99,4 +101,6 @@ model QuizProgress {
   lastQIds   String[] @default([])
   updatedAt  DateTime @updatedAt
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId]) // <<< wichtig für upsert({ where: { userId } })
 }
