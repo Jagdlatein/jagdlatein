@@ -10,3 +10,9 @@ export default function MyApp({ Component, pageProps }) {
     </Layout>
   );
 }
+// pages/_app.js
+import "../styles/globals.css"; // <-- globales CSS hier laden
+
+export default function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
