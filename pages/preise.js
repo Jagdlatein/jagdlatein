@@ -7,7 +7,7 @@ export default function Preise() {
     maxWidth: 960,
     margin: "0 auto",
     padding: "24px 16px",
-    fontFamily: "system-ui,Segoe UI,Roboto,Arial",
+    fontFamily: "system-ui, Segoe UI, Roboto, Arial",
   };
   const grid = {
     display: "grid",
@@ -27,14 +27,14 @@ export default function Preise() {
     <>
       <Head>
         <title>Preise – Jagdlatein</title>
-        <meta name="robots" content="index,follow" />
+        <meta name="robots" content="index, follow" />
       </Head>
 
-      <main style={{ background: "linear-gradient(180deg,#fff,#f7faf7)" }}>
+      <main style={{ background: "linear-gradient(180deg, #fff, #f7faf7)" }}>
         <div style={page}>
           <h1 style={{ margin: "0 0 6px" }}>Preise</h1>
           <p style={{ color: "#374151", margin: "0 0 20px" }}>
-            Wähle dein Modell. Zugang wird nach erfolgreicher Bezahlung freigeschaltet.
+            Wähle dein Modell. Zugang wird nach erfolgreicher Bezahlung automatisch freigeschaltet.
           </p>
 
           <div style={grid}>
@@ -71,7 +71,7 @@ export default function Preise() {
                   />
                 </section>
 
-                {/* PayPal-Button Styling */}
+                {/* PayPal Button Styling */}
                 <style jsx>{`
                   .pp-WBPRVVCEQ8HU8 {
                     text-align: center;
@@ -92,18 +92,18 @@ export default function Preise() {
               </form>
             </div>
 
-            {/* Jahreszugang – Platzhalter für PayPal */}
+            {/* Jahreszugang */}
             <div style={card}>
               <h3 style={{ margin: "0 0 6px" }}>Jahreszugang</h3>
               <p style={{ margin: "0 0 12px", color: "#4b5563" }}>
-                80 € / Jahr &middot; entspricht 6,67 € / Monat
+                100 € / Jahr &middot; entspricht 8,33 € / Monat
               </p>
 
-              {/* Füge deinen PayPal-Jahreslink ein, wenn du ihn hast */}
               <div style={{ fontSize: "0.9rem", color: "#9ca3af" }}>
-                PayPal-Button für Jahresabo ist bald verfügbar.
+                PayPal-Jahreslink wird bald freigeschaltet.
                 <br />
-                Jetzt <Link href="/kontakt">Kontakt aufnehmen</Link>.
+                Du möchtest das Jahresabo jetzt aktivieren?{" "}
+                <Link href="/kontakt">Kontakt aufnehmen</Link>.
               </div>
             </div>
           </div>
