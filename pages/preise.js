@@ -1,49 +1,41 @@
+// pages/preise.js
 import { useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
 
 export default function Preise() {
+  // PayPal Hosted Button SDK clientseitig laden und Button rendern
   useEffect(() => {
-    // PayPal SDK dynamisch laden
+    // Doppeltes Einfügen vermeiden
+    if (document.getElementById("pp-sdk-hosted")) return;
+
     const script = document.createElement("script");
+    // HINWEIS: Für LIVE deine Live-Client-ID statt "sb" einsetzen
     script.src = "https://www.paypal.com/sdk/js?client-id=sb&components=hosted-buttons";
     script.async = true;
+    script.id = "pp-sdk-hosted";
     script.onload = () => {
-      if (window.paypal) {
-        window.paypal.HostedButtons({
-          hostedButtonId: "FFAVT6VNJM5AE",
-        }).render("#paypal-container-FFAVT6VNJM5AE");
+      if (window.paypal?.HostedButtons) {
+        window.paypal
+          .HostedButtons({ hostedButtonId: "FFAVT6VNJM5AE" })
+          .render("#paypal-container-FFAVT6VNJM5AE");
+      } else {
+        console.error("PayPal HostedButtons nicht verfügbar.");
       }
     };
+    script.onerror = () => console.error("PayPal SDK konnte nicht geladen werden.");
     document.body.appendChild(script);
   }, []);
 
-  return (
-    <main style={{ padding: "20px", fontFamily: "system-ui" }}>
-      <h1>Mit PayPal bezahlen</h1>
+  const cardStyle = {
+    background: "#fff",
+    border: "1px solid #e6eee6",
+    borderRadius: 16,
+    padding: 16,
+    boxShadow: "0 6px 16px rgba(17,41,25,0.06)",
+  };
 
-      <div id="paypal-container-FFAVT6VNJM5AE" style={{ marginTop: "20px" }}>
-        {/* PayPal Button wird hier geladen */}
-      </div>
-    </main>
-  );
-}
-// pages/preise.js
-import Head from "next/head";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import styles from "../styles/Home.module.css";
-
-// Wichtig: PayPal-Buttons nicht server-rendern
-const PayPalButtons = dynamic(() => import("../components/PayPalButtons"), { ssr: false });
-
-const cardStyle = {
-  background: "#fff",
-  border: "1px solid #e6eee6",
-  borderRadius: 16,
-  padding: 16,
-  boxShadow: "0 6px 16px rgba(17,41,25,0.06)",
-};
-
-export default function Preise() {
   return (
     <>
       <Head>
@@ -59,11 +51,14 @@ export default function Preise() {
           </p>
 
           <div style={{ display: "grid", gap: 16, gridTemplateColumns: "1fr 1fr" }}>
-            {/* MONAT */}
+            {/* Monat */}
             <div className="plan" style={cardStyle}>
               <h3 style={{ margin: "0 0 6px" }}>Monatszugang</h3>
-              <p style={{ margin: "0 0 10px", color: "#4b5563" }}>10 € / Monat · jederzeit kündbar</p>
+              <p style={{ margin: "0 0 10px", color: "#4b5563" }}>
+                10 € / Monat · jederzeit kündbar
+              </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                {/* Stripe (Payment Link) */}
                 <a
                   className={`${styles?.cta || ""} ${styles?.ctaPrimary || ""}`}
                   href="https://buy.stripe.com/6oUcN61GxaRcbahgu94Vy00"
@@ -72,17 +67,22 @@ export default function Preise() {
                 >
                   Stripe • 10 €
                 </a>
+
+                {/* PayPal Hosted Button (ID von dir) */}
                 <div style={{ minWidth: 260 }}>
-                  <PayPalButtons tier="monthly" />
+                  <div id="paypal-container-FFAVT6VNJM5AE" />
                 </div>
               </div>
             </div>
 
-            {/* JAHR */}
+            {/* Jahr */}
             <div className="plan" style={cardStyle}>
               <h3 style={{ margin: "0 0 6px" }}>Jahreszugang</h3>
-              <p style={{ margin: "0 0 10px", color: "#4b5563" }}>80 € / Jahr · entspricht 6,67 € / Monat</p>
+              <p style={{ margin: "0 0 10px", color: "#4b5563" }}>
+                80 € / Jahr · entspricht 6,67 € / Monat
+              </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                {/* Stripe (Payment Link) */}
                 <a
                   className={`${styles?.cta || ""} ${styles?.ctaPrimary || ""}`}
                   href="https://buy.stripe.com/fZucN698Z7F07Y53Hn4Vy01"
@@ -91,9 +91,14 @@ export default function Preise() {
                 >
                   Stripe • 80 €
                 </a>
-                <div style={{ minWidth: 260 }}>
-                  <PayPalButtons tier="yearly" />
-                </div>
+
+                {/* Optional: Zweiten PayPal Hosted Button nutzen
+                    -> Du brauchst dafür eine ZWEITE hostedButtonId aus PayPal.
+                    <div style={{ minWidth: 260 }}>
+                      <div id="paypal-container-SECOND_ID" />
+                    </div>
+                    und im onload oben zusätzlich rendern.
+                */}
               </div>
             </div>
           </div>
