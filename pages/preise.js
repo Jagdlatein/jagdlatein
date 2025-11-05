@@ -1,8 +1,11 @@
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import styles from "../styles/Home.module.css";
-import PayPalButtons from "../components/PayPalButtons";
+
+// Wichtig: PayPal-Buttons nicht server-rendern
+const PayPalButtons = dynamic(() => import("../components/PayPalButtons"), { ssr: false });
 
 const cardStyle = {
   background: "#fff",
