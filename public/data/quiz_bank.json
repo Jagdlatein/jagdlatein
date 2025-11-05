@@ -1,0 +1,16 @@
+// Beispiel: pages/quiz/index.js (Ausschnitt)
+import { useEffect, useState } from "react";
+
+export default function QuizPage() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("/data/quiz_bank.json")
+      .then(r => r.json())
+      .then(setItems)
+      .catch(err => console.error("Quiz-Daten konnten nicht geladen werden:", err));
+  }, []);
+
+  // ... dein Rendering/Logik
+  return <div>{items.length} Fragen geladen</div>;
+}
