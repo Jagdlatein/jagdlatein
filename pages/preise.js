@@ -100,3 +100,19 @@ export default function Preise() {
               </p>
 
               {/* Füge deinen PayPal-Jahreslink ein, wenn du ihn hast */}
+              <div style={{ fontSize: "0.9rem", color: "#9ca3af" }}>
+                PayPal-Button für Jahresabo ist bald verfügbar.
+                <br />
+                Jetzt <Link href="/kontakt">Kontakt aufnehmen</Link>.
+              </div>
+            </div>
+          </div>
+
+          <p style={{ marginTop: 18, color: "#6b7280" }}>
+            Fragen zur Zahlung? <Link href="/kontakt">Kontakt</Link>
+          </p>
+        </div>
+      </main>
+    </>
+  );
+}
