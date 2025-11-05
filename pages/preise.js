@@ -1,85 +1,63 @@
-// oben in pages/preise.js
-import { useEffect } from "react";
-import Head from "next/head";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
+{/* MONAT – Stripe + PayPal (Payment-Link) */}
+<div className="plan" style={{
+  background:"#fff", border:"1px solid #e6eee6", borderRadius:16, padding:16
+}}>
+  <h3 style={{margin:"0 0 6px"}}>Monatszugang</h3>
+  <p style={{margin:"0 0 10px", color:"#4b5563"}}>10 € / Monat · jederzeit kündbar</p>
 
-export default function Preise() {
-  useEffect(() => {
-    // schon geladen?
-    if (document.getElementById("pp-sdk-hosted")) {
-      if (window.paypal?.HostedButtons) {
-        window.paypal.HostedButtons({ hostedButtonId: "FFAVT6VNJM5AE" })
-          .render("#paypal-container-FFAVT6VNJM5AE");
-      }
-      return;
-    }
+  <div style={{display:"flex", gap:12, flexWrap:"wrap", alignItems:"center"}}>
+    {/* Stripe Payment Link */}
+    <a
+      href="https://buy.stripe.com/6oUcN61GxaRcbahgu94Vy00"
+      target="_blank" rel="noopener noreferrer"
+      style={{
+        display:"inline-block", padding:"12px 16px", borderRadius:12,
+        background:"#1d4d2b", color:"#fff", textDecoration:"none", fontWeight:600
+      }}
+    >
+      Stripe • 10 €
+    </a>
 
-    // LIVE-Client-ID aus ENV (Vercel -> NEXT_PUBLIC_PAYPAL_CLIENT_ID)
-    const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "sb"; // "sb" nur Sandbox-Test
-    const sdk = document.createElement("script");
-    sdk.id = "pp-sdk-hosted";
-    sdk.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(clientId)}&components=hosted-buttons&intent=capture`;
-    sdk.async = true;
-    sdk.onload = () => {
-      if (window.paypal?.HostedButtons) {
-        window.paypal.HostedButtons({ hostedButtonId: "FFAVT6VNJM5AE" })
-          .render("#paypal-container-FFAVT6VNJM5AE");
-      } else {
-        console.error("PayPal HostedButtons API nicht verfügbar – prüfe components=hosted-buttons.");
-      }
-    };
-    sdk.onerror = () => console.error("PayPal SDK konnte nicht geladen werden.");
-    document.body.appendChild(sdk);
-  }, []);
-  
-  // ... dein restlicher Code (Stripe usw.)
-  return (
-    <>
-      <Head><title>Preise – Jagdlatein</title></Head>
-      <main className={styles?.main || ""} style={{ padding: "24px 16px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          {/* ... Headline/Text ... */}
+    {/* PayPal Payment-Link (dein Code, in gültiges JSX konvertiert) */}
+    <form
+      action="https://www.paypal.com/ncp/payment/WBPRVVCEQ8HU8"
+      method="post"
+      target="_blank"
+      style={{display:"inline-grid", justifyItems:"center", alignContent:"start", gap:"0.5rem"}}
+    >
+      <input className="pp-WBPRVVCEQ8HU8" type="submit" value="Jetzt kaufen" />
+      <img
+        src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
+        alt="Karten"
+        style={{height:"20px"}}
+      />
+      <section style={{fontSize:"0.75rem"}}>
+        Abgewickelt durch{" "}
+        <img
+          src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
+          alt="PayPal"
+          style={{height:"0.875rem", verticalAlign:"middle"}}
+        />
+      </section>
 
-          <div style={{ display: "grid", gap: 16, gridTemplateColumns: "1fr 1fr" }}>
-            {/* Monatsplan */}
-            <div style={{ background:"#fff", border:"1px solid #e6eee6", borderRadius:16, padding:16 }}>
-              <h3>Monatszugang</h3>
-              <p style={{ color:"#4b5563" }}>10 € / Monat · jederzeit kündbar</p>
-              <div style={{ display:"flex", gap:10, flexWrap:"wrap", alignItems:"center" }}>
-                <a className={`${styles?.cta || ""} ${styles?.ctaPrimary || ""}`}
-                   href="https://buy.stripe.com/6oUcN61GxaRcbahgu94Vy00" target="_blank" rel="noreferrer">
-                  Stripe • 10 €
-                </a>
-                <div style={{ minWidth:260 }}>
-                  <div id="paypal-container-FFAVT6VNJM5AE" />
-                </div>
-              </div>
-            </div>
-
-            {/* Jahresplan */}
-            <div style={{ background:"#fff", border:"1px solid #e6eee6", borderRadius:16, padding:16 }}>
-              <h3>Jahreszugang</h3>
-              <p style={{ color:"#4b5563" }}>80 € / Jahr · entspricht 6,67 € / Monat</p>
-              <div style={{ display:"flex", gap:10, flexWrap:"wrap", alignItems:"center" }}>
-                <a className={`${styles?.cta || ""} ${styles?.ctaPrimary || ""}`}
-                   href="https://buy.stripe.com/fZucN698Z7F07Y53Hn4Vy01" target="_blank" rel="noreferrer">
-                  Stripe • 80 €
-                </a>
-                {/* Optional: zweiter Hosted Button (eigene ID in PayPal erstellen)
-                <div style={{ minWidth:260 }}>
-                  <div id="paypal-container-SECOND_ID" />
-                </div>
-                */}
-              </div>
-            </div>
-          </div>
-
-          <p style={{ marginTop:18, color:"#6b7280" }}>
-            Fragen zur Zahlung? <Link href="/kontakt">Kontakt</Link>
-          </p>
-        </div>
-      </main>
-    </>
-  );
-}
+      {/* Button-Styles (nur für diesen Button) */}
+      <style jsx>{`
+        .pp-WBPRVVCEQ8HU8 {
+          text-align: center;
+          border: none;
+          border-radius: 0.25rem;
+          min-width: 11.625rem;
+          padding: 0 2rem;
+          height: 2.625rem;
+          font-weight: bold;
+          background-color: #FFD140;
+          color: #000000;
+          font-family: "Helvetica Neue", Arial, sans-serif;
+          font-size: 1rem;
+          line-height: 1.25rem;
+          cursor: pointer;
+        }
+      `}</style>
+    </form>
+  </div>
+</div>
