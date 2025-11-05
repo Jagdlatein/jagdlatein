@@ -1,47 +1,87 @@
-import Seo from '../components/Seo';
+// pages/index.js
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
-  const hasAccess = typeof window !== 'undefined' && localStorage.getItem('jagdlatein_access') === 'true';
-
   return (
     <>
-      <Seo
-        title="Jagdlatein – Online lernen für die Jagdprüfung"
-        description="Lernprogramm für Deutschland, Österreich und Schweiz. Quiz, Definitionen und Prüfungswissen online."
-        image="/og.png"
-      />
+      <Head>
+        <title>Jagdlatein – Lernplattform für Jäger</title>
+      </Head>
 
-      <section className="hero">
-        <div className="container">
-          <img src="/logo.png" alt="Jagdlatein Logo" className="hero-logo" />
-          <h1>Jagdlatein</h1>
+      <main style={styles.main}>
+        <div style={styles.wrap}>
 
-          {hasAccess && (
-            <p className="status">✅ Zugang aktiv – Willkommen zurück!</p>
-          )}
+          <h1 style={styles.title}>Jagdlatein</h1>
 
-          <p className="tagline">
-            Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
+          <p style={styles.sub}>
+            Lernen für Jagdschein und Praxis in Deutschland, Österreich & Schweiz
           </p>
 
-          <div className="cta-group">
-            {hasAccess ? (
-              <a href="/quiz" className="cta">Weiter zum Quiz</a>
-            ) : (
-              <>
-                <a href="/preise" className="cta">Jetzt freischalten</a>
-                <a href="/login" className="btn">Login</a>
-              </>
-            )}
+          <div style={styles.btnRow}>
+            <Link href="/preise" style={styles.btnPrimary}>
+              Jetzt freischalten
+            </Link>
+
+            <Link href="/login" style={styles.btnGhost}>
+              Login
+            </Link>
           </div>
 
-          {/* Kleine Kontext-Navigation — HIER innerhalb des JSX */}
-          <p className="small" style={{marginTop:16}}>
-            <a href="/quiz" style={{marginRight:10}}>Zum Quiz</a> ·
-            <a href="/glossar" style={{marginLeft:10}}>Zum Glossar</a>
-          </p>
+          <div style={styles.links}>
+            <Link href="/quiz">Zum Quiz</Link> ·{" "}
+            <Link href="/glossar">Zum Glossar</Link>
+          </div>
+
         </div>
-      </section>
+      </main>
     </>
   );
 }
+
+const styles = {
+  main: {
+    background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
+    padding: "45px 16px 80px",
+    minHeight: "100vh",
+  },
+  wrap: { maxWidth: 860, margin: "0 auto" },
+  title: {
+    fontSize: 44,
+    fontWeight: 800,
+    margin: "0 0 14px",
+    lineHeight: 1.1,
+    color: "#1a1a1a",
+  },
+  sub: {
+    fontSize: 19,
+    color: "#4b4b4b",
+    maxWidth: 600,
+    margin: "0 0 26px",
+  },
+  btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
+  btnPrimary: {
+    background: "#caa53b",
+    color: "#111",
+    padding: "14px 26px",
+    borderRadius: 14,
+    fontWeight: 700,
+    textDecoration: "none",
+    fontSize: 17,
+  },
+  btnGhost: {
+    background: "#fff",
+    border: "2px solid #ddd",
+    color: "#111",
+    padding: "14px 26px",
+    borderRadius: 14,
+    fontWeight: 700,
+    textDecoration: "none",
+    fontSize: 17,
+  },
+  links: {
+    marginTop: 26,
+    fontSize: 16,
+    color: "#555",
+  },
+};
