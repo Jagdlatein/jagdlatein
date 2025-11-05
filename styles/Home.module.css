@@ -1,6 +1,7 @@
-:root{
+:global(:root){
   --forest:#1d4d2b;
 }
+
 .main{ background: linear-gradient(180deg,#fff,#f7faf7); min-height:60vh; }
 .cta{
   display:inline-block; text-decoration:none; font-weight:600;
