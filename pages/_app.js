@@ -3,7 +3,8 @@ import Layout from '../components/Layout';
 import CookieBanner from '../components/CookieBanner';
 
 export default function MyApp({ Component, pageProps }) {
-  return (
+  return <Component {...pageProps} />;
+    }
     <Layout>
       <Component {...pageProps} />
       <CookieBanner />
