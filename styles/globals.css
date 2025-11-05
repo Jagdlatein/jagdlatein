@@ -252,10 +252,12 @@ html,body{margin:0}
 .small{font-size:12px; opacity:.9}
 .cta-group{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 .hero .status{font-weight:700; color:var(--forest); margin:6px 0 0}
-/* Globales CSS (kein CSS-Module) */
+/* /styles/globals.css */
 :root {
   --forest: #1d4d2b;
 }
+
+html, body { margin: 0; padding: 0; }
 
 /* optional, aber praktisch */
 html, body {
