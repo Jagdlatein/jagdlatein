@@ -38,23 +38,16 @@ export default function Preise() {
           </p>
 
           <div style={grid}>
-            {/* Monatszugang – nur PayPal */}
+            {/* Monatszugang */}
             <div style={card}>
               <h3 style={{ margin: "0 0 6px" }}>Monatszugang</h3>
-              <p style={{ margin: "0 0 12px", color: "#4b5563" }}>
-                10 € / Monat &middot; jederzeit kündbar
-              </p>
+              <p style={{ margin: "0 0 12px", color: "#4b5563" }}>10 € / Monat · jederzeit kündbar</p>
 
               <form
                 action="https://www.paypal.com/ncp/payment/WBPRVVCEQ8HU8"
                 method="post"
                 target="_blank"
-                style={{
-                  display: "inline-grid",
-                  justifyItems: "center",
-                  alignContent: "start",
-                  gap: "0.5rem",
-                }}
+                style={{ display: "inline-grid", justifyItems: "center", alignContent: "start", gap: "0.5rem" }}
               >
                 <input className="pp-WBPRVVCEQ8HU8" type="submit" value="Jetzt kaufen" />
                 <img
@@ -70,8 +63,6 @@ export default function Preise() {
                     style={{ height: "0.875rem", verticalAlign: "middle" }}
                   />
                 </section>
-
-                {/* PayPal Button Styling */}
                 <style jsx>{`
                   .pp-WBPRVVCEQ8HU8 {
                     text-align: center;
@@ -95,16 +86,46 @@ export default function Preise() {
             {/* Jahreszugang */}
             <div style={card}>
               <h3 style={{ margin: "0 0 6px" }}>Jahreszugang</h3>
-              <p style={{ margin: "0 0 12px", color: "#4b5563" }}>
-                100 € / Jahr &middot; entspricht 8,33 € / Monat
-              </p>
+              <p style={{ margin: "0 0 12px", color: "#4b5563" }}>100 € / Jahr · entspricht 8,33 € / Monat</p>
 
-              <div style={{ fontSize: "0.9rem", color: "#9ca3af" }}>
-                PayPal-Jahreslink wird bald freigeschaltet.
-                <br />
-                Du möchtest das Jahresabo jetzt aktivieren?{" "}
-                <Link href="/kontakt">Kontakt aufnehmen</Link>.
-              </div>
+              <form
+                action="https://www.paypal.com/ncp/payment/UAGCGVBMKL6VJ"
+                method="post"
+                target="_blank"
+                style={{ display: "inline-grid", justifyItems: "center", alignContent: "start", gap: "0.5rem" }}
+              >
+                <input className="pp-UAGCGVBMKL6VJ" type="submit" value="Jetzt kaufen" />
+                <img
+                  src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
+                  alt="Karten"
+                  style={{ height: "20px" }}
+                />
+                <section style={{ fontSize: "0.75rem" }}>
+                  Abgewickelt durch{" "}
+                  <img
+                    src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
+                    alt="PayPal"
+                    style={{ height: "0.875rem", verticalAlign: "middle" }}
+                  />
+                </section>
+                <style jsx>{`
+                  .pp-UAGCGVBMKL6VJ {
+                    text-align: center;
+                    border: none;
+                    border-radius: 0.25rem;
+                    min-width: 11.625rem;
+                    padding: 0 2rem;
+                    height: 2.625rem;
+                    font-weight: bold;
+                    background-color: #ffd140;
+                    color: #000000;
+                    font-family: "Helvetica Neue", Arial, sans-serif;
+                    font-size: 1rem;
+                    line-height: 1.25rem;
+                    cursor: pointer;
+                  }
+                `}</style>
+              </form>
             </div>
           </div>
 
