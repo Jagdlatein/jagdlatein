@@ -55,5 +55,5 @@ export default function QuizAdmin() {
   }}
   style={{padding:"10px 14px", marginTop:12}}
 >
-  DB → GitHub synchronisieren
+  DB -> GitHub synchronisieren
 </button>
