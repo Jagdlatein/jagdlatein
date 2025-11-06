@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "postinstall": "prisma generate"
-  },
+    npm install @octokit/rest
+ },
   "dependencies": {
     "@prisma/client": "^5.20.0",
     "formidable": "^3.5.1",
