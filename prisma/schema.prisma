@@ -1,9 +1,11 @@
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql" // oder "mysql"
+  // Falls du MySQL nutzt: provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -27,7 +29,7 @@ model QuizQuestion {
   option_b  String
   option_c  String
   option_d  String
-  correct   String
+  correct   String   // "A" | "B" | "C" | "D"
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 
