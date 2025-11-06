@@ -20,5 +20,10 @@
   },
   "devDependencies": {
     "prisma": "^5.20.0"
+    npm i formidable xlsx @prisma/client
+npm i -D prisma
+git add package.json package-lock.json
+git commit -m "deps for quiz upload"
+git push
   }
 }
