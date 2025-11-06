@@ -3,104 +3,35 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" // oder "mysql"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id              String     @id @default(cuid())
-  email           String     @unique
-  name            String?
-  passwordHash    String
-  emailVerified   DateTime?
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-  // Diese beiden Modelle brauchst du nur, wenn du den Prisma-Adapter für NextAuth nutzt.
-  // Bei JWT-Strategy (wie in unserer v4-Konfig) bleiben sie ungenutzt — können aber drin bleiben.
-  sessions        Session[]
-  accounts        Account[]
-  purchases       Purchase[]
-  quizProgress    QuizProgress[]
-  passwordResets  PasswordResetToken[]
-  role            Role       @default(USER)
-}
-
-enum Role {
-  USER
-  ADMIN
-}
-
-model Account {
-  id                String   @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model PasswordResetToken {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  userId    String
-  expiresAt DateTime
-  usedAt    DateTime?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Purchase {
-  id            String   @id @default(cuid())
-  userId        String
-  stripeId      String   @unique        // checkout.session.id o. payment_intent
-  status        String
-  amountTotal   Int
-  currency      String
-  accessGranted Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Question {
-  id        String    @id @default(cuid())
-  text      String
-  answers   Answer[]
-  correctIx Int
-  topic     String?
-  createdAt DateTime  @default(now())
-}
-
-model Answer {
-  id         String   @id @default(cuid())
-  questionId String
-  text       String
-  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-}
-
-model QuizProgress {
-  id         String   @id @default(cuid())
-  userId     String
-  completed  Int      @default(0)
-  total      Int      @default(0)
-  lastQIds   String[] @default([])
+model Glossary {
+  id         Int      @id
+  term       String
+  definition String
+  category   String
+  country    String
   updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
 
-  @@unique([userId]) // <<< wichtig für upsert({ where: { userId } })
+model QuizQuestion {
+  id        Int     @id
+  country   String
+  category  String
+  topic     String
+  question  String
+  option_a  String
+  option_b  String
+  option_c  String
+  option_d  String
+  correct   String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@index([country])
+  @@index([category])
+  @@index([topic])
 }
