@@ -41,24 +41,3 @@ export default function QuizAdmin() {
     </main>
   );
 }
-<button
-  type="button"
-  onClick={async () => {
-    const pass =
-      process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if (!pass) return;
-    const res = await fetch("/api/admin/quiz-sync-github", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${pass}` },
-    });
-    const j = await res.json();
-    alert(
-      res.ok
-        ? `✅ Sync ok: ${j.committed}`
-        : `❌ ${j.error || res.statusText}\n${j.detail || ""}`
-    );
-  }}
-  style={{ padding: "10px 14px", marginTop: 12 }}
->
-  DB -&gt; GitHub synchronisieren
-</button>
