@@ -27,10 +27,9 @@ export default function QuizPage({ count, items }) {
               <li>B) {q.option_b}</li>
               <li>C) {q.option_c}</li>
               <li>D) {q.option_d}</li>
-            </ul>
+          </ul>
           </li>
-        ))}
-      </ol>
+          </ol>
 
   // Hilfsfunktionen
   const uniq = (arr) => [...new Set(arr.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));
