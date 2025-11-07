@@ -122,4 +122,14 @@ export default async function handler(req, res) {
   } catch (e) {
     return bad(res, 500, String(e?.message || e));
   }
+const ghRes = await fetch(putUrl, { /* ... */ });
+const ghText = await ghRes.text();
+if (!ghRes.ok) {
+  return res.status(ghRes.status).json({
+    error: "GitHub PUT failed",
+    status: ghRes.status,
+    detail: ghText,
+    hint: "Token/Repo/Branch/Branch-Protection prüfen"
+  });
 }
+
