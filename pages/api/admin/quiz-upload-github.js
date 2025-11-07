@@ -1,186 +1,121 @@
-// pages/api/admin/quiz-upload-github.js
-export const config = { api: { bodyParser: false }, runtime: "nodejs" };
+// pages/admin/quiz.js
+import { useState } from "react";
 
-import formidable from "formidable";
-import * as XLSX from "xlsx";
-import prisma from "../../../lib/prisma";
+export default function AdminQuiz() {
+  const [excelFile, setExcelFile] = useState(null);
+  const [jsonText, setJsonText] = useState("");
+  const [log, setLog] = useState("");
 
-function bad(res, code, msg) {
-  return res.status(code).json({ error: msg });
-}
-
-async function getFileSha({ owner, repo, branch, path, token }) {
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(
-    path
-  )}?ref=${branch}`;
-  const r = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "User-Agent": "jagdlatein-app",
-    },
-  });
-  if (r.status === 404) return undefined; // Datei existiert noch nicht
-  if (!r.ok) throw new Error(`getContent ${r.status} ${await r.text()}`);
-  const j = await r.json();
-  return j.sha; // existierende Datei -> sha für Update
-}
-
-export default async function handler(req, res) {
-  try {
-    if (req.method !== "POST") return bad(res, 405, "Method not allowed");
-
-    // --- Admin-Auth ---
-    const auth = req.headers.authorization || "";
-    const tokenHeader = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-    if (!process.env.ADMIN_PASS || tokenHeader !== process.env.ADMIN_PASS) {
-      return bad(res, 401, "Unauthorized");
-    }
-
-    // --- Env-Variablen ---
-    const GH_PAT = process.env.GITHUB_TOKEN;
-    const OWNER = process.env.GITHUB_OWNER;
-    const REPO = process.env.GITHUB_REPO;
-    const BRANCH = process.env.GITHUB_BRANCH || "main";
-    if (!GH_PAT || !OWNER || !REPO) {
-      return bad(res, 400, "Missing GITHUB_* env vars");
-    }
-
-    // --- Multipart einlesen ---
-    const form = formidable({ multiples: false, maxFileSize: 50 * 1024 * 1024 });
-    const { files } = await new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => (err ? reject(err) : resolve({ files })));
-    });
-
-    const f = files?.file;
-    const filepath = Array.isArray(f) ? f[0]?.filepath : f?.filepath;
-    const originalName = Array.isArray(f) ? f[0]?.originalFilename : f?.originalFilename;
-    if (!filepath) return bad(res, 400, "Missing file (expected field 'file')");
-
-    // --- Datei lesen ---
-    const fs = await import("node:fs/promises");
-    const buf = await fs.readFile(filepath);
-
-    // --- GitHub Commit vorbereiten ---
-    const contentB64 = Buffer.from(buf).toString("base64");
-    const safeName = (originalName || "quiz.xlsx").replace(/[^A-Za-z0-9._-]/g, "_");
-    const ghPath = `data/quiz/${safeName}`;
-
-    // sha für Update (falls Datei schon vorhanden)
-    const sha = await getFileSha({
-      owner: OWNER,
-      repo: REPO,
-      branch: BRANCH,
-      path: ghPath,
-      token: GH_PAT,
-    });
-
-    // --- Commit an GitHub ---
-    const putUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(
-      ghPath
-    )}`;
-    const body = {
-      message: `upload quiz excel (${new Date().toISOString()})`,
-      content: contentB64,
-      branch: BRANCH,
-      ...(sha ? { sha } : {}),
-      committer: { name: "Jagdlatein Bot", email: "info@jagdlatein.de" },
-      author: { name: "Jagdlatein Bot", email: "info@jagdlatein.de" },
-    };
-
-    const ghRes = await fetch(putUrl, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${GH_PAT}`,
-        "Content-Type": "application/json",
-        "User-Agent": "jagdlatein-app",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const ghText = await ghRes.text();
-    if (!ghRes.ok) {
-      return res.status(ghRes.status).json({
-        error: "GitHub PUT failed",
-        status: ghRes.status,
-        detail: ghText,
-        hint:
-          "Prüfe GITHUB_TOKEN (classic oder fine-grained mit Contents:read/write), OWNER/REPO/BRANCH und Branch-Protection.",
-      });
-    }
-
-    // --- Optional: direkt in DB importieren (best effort) ---
-    let imported = 0;
-    try {
-      const wb = XLSX.read(buf);
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
-
-      const required = [
-        "id",
-        "country",
-        "category",
-        "topic",
-        "question",
-        "option_a",
-        "option_b",
-        "option_c",
-        "option_d",
-        "correct",
-      ];
-      const headerOk =
-        rows.length &&
-        required.every((k) => Object.prototype.hasOwnProperty.call(rows[0], k));
-      if (!headerOk) throw new Error(`Fehlende Spalten: ${required.join(", ")}`);
-
-      const cleaned = rows.map((r) => ({
-        id: Number(r.id),
-        country: String(r.country || "").trim(),
-        category: String(r.category || "").trim(),
-        topic: String(r.topic || "").trim(),
-        question: String(r.question || "").trim(),
-        option_a: String(r.option_a || "").trim(),
-        option_b: String(r.option_b || "").trim(),
-        option_c: String(r.option_c || "").trim(),
-        option_d: String(r.option_d || "").trim(),
-        correct: String(r.correct || "").trim().toUpperCase(),
-      }));
-
-      await prisma.$transaction(
-        cleaned.map((q) =>
-          prisma.quizQuestion.upsert({
-            where: { id: q.id },
-            update: {
-              country: q.country,
-              category: q.category,
-              topic: q.topic,
-              question: q.question,
-              option_a: q.option_a,
-              option_b: q.option_b,
-              option_c: q.option_c,
-              option_d: q.option_d,
-              correct: q.correct,
-            },
-            create: q,
-          })
-        ),
-        { timeout: 60_000 }
-      );
-
-      imported = cleaned.length;
-    } catch {
-      // Import-Fehler sind nicht fatal für den Commit – wir geben nur 0 zurück.
-      imported = 0;
-    }
-
-    // --- Erfolg ---
-    return res.status(200).json({
-      ok: true,
-      committed: ghPath,
-      github_status: ghRes.status,
-      imported,
-    });
-  } catch (e) {
-    return bad(res, 500, String(e?.message || e));
+  // Hilfsfunktion für das Admin-Passwort
+  function getAdminPass() {
+    return process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
   }
-}
 
+  // 🟢 Excel-Upload (mit optionalem GitHub-Commit)
+  async function handleExcelUpload(commit = false) {
+    if (!excelFile) {
+      alert("❌ Bitte eine Excel-Datei auswählen.");
+      return;
+    }
+
+    const pass = getAdminPass();
+    if (!pass) return;
+
+    const fd = new FormData();
+    fd.append("file", excelFile);
+
+    const res = await fetch(`/api/admin/quiz-upload-github${commit ? "?commit=1" : ""}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${pass.trim()}`
+      },
+      body: fd,
+    });
+
+    const data = await res.json().catch(() => ({}));
+    setLog(JSON.stringify(data, null, 2));
+    alert(res.ok ? "✅ Import erfolgreich!" : `❌ Fehler: ${data.error}`);
+  }
+
+  // 🟢 JSON-Upload (mit optionalem GitHub-Commit)
+  async function handleJsonUpload(commit = false) {
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText);
+    } catch {
+      alert("❌ Ungültiges JSON");
+      return;
+    }
+
+    const pass = getAdminPass();
+    if (!pass) return;
+
+    const payload = Array.isArray(parsed)
+      ? { items: parsed, commit, filename: "questions.json" }
+      : { ...parsed, commit };
+
+    const res = await fetch("/api/admin/quiz-upload-json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${pass.trim()}`
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    setLog(JSON.stringify(data, null, 2));
+    alert(res.ok ? "✅ JSON importiert!" : `❌ Fehler: ${data.error}`);
+  }
+
+  // 🧠 UI
+  return (
+    <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", fontFamily: "sans-serif" }}>
+      <h1>🧠 Quiz-Administration</h1>
+
+      {/* EXCEL UPLOAD */}
+      <section style={{ marginTop: 32 }}>
+        <h2>📄 Excel-Import</h2>
+        <input type="file" accept=".xlsx" onChange={(e) => setExcelFile(e.target.files?.[0] || null)} />
+        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+          <button onClick={() => handleExcelUpload(false)}>Nur DB importieren</button>
+          <button onClick={() => handleExcelUpload(true)}>DB + GitHub Commit</button>
+        </div>
+      </section>
+
+      {/* JSON UPLOAD */}
+      <section style={{ marginTop: 32 }}>
+        <h2>💾 JSON-Import</h2>
+        <textarea
+          rows={10}
+          placeholder='[{"id":1,"country":"DE","category":"Wild","topic":"Reh", ...}]'
+          style={{ width: "100%", fontFamily: "monospace" }}
+          value={jsonText}
+          onChange={(e) => setJsonText(e.target.value)}
+        />
+        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+          <button onClick={() => handleJsonUpload(false)}>Nur DB importieren</button>
+          <button onClick={() => handleJsonUpload(true)}>DB + GitHub Commit</button>
+        </div>
+      </section>
+
+      {/* LOG-FEEDBACK */}
+      {log && (
+        <section style={{ marginTop: 32 }}>
+          <h3>🪵 Ergebnis & Log</h3>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              background: "#f5f5f5",
+              padding: 12,
+              borderRadius: 6,
+              fontSize: 14,
+            }}
+          >
+            {log}
+          </pre>
+        </section>
+      )}
+    </main>
+  );
+}
