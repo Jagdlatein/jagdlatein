@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     if (!GH_PAT || !OWNER || !REPO) return bad(res, 400, "Missing GITHUB_* env vars");
 
     // Datei einlesen
-    const form = formidable({ multiples: false, maxFileSize: 20 * 1024 * 1024 });
+    const form = formidable({ multiples: false, maxFileSize: 50 * 1024 * 1024 });
     const { files } = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => (err ? reject(err) : resolve({ fields, files })));
     });
