@@ -2,7 +2,7 @@
 import prisma from "../../lib/prisma";
 import Link from "next/link";
 
-// --- Hilfen ---
+// --- Helpers ---
 function toArray(x) {
   if (!x) return [];
   if (Array.isArray(x)) return x.filter(Boolean);
@@ -23,7 +23,6 @@ export async function getServerSideProps({ query }) {
   const category = toArray(query.category);
   const topic = toArray(query.topic);
 
-  // WHERE bauen
   const where = {};
   if (country.length) where.country = { in: country };
   if (category.length) where.category = { in: category };
@@ -40,39 +39,72 @@ export async function getServerSideProps({ query }) {
     ];
   }
 
-  const total = await prisma.quizQuestion.count({ where });
+  let total = 0;
+  let items = [];
+  let filters = { country: [], category: [], topic: [] };
+  let error = null;
 
-  let skip = (page - 1) * pageSize;
-  if (random && total > pageSize) {
-    skip = Math.max(0, Math.floor(Math.random() * Math.max(1, total - pageSize)));
+  try {
+    // Anzahl
+    total = await prisma.quizQuestion.count({ where });
+
+    // Pagination
+    let skip = (page - 1) * pageSize;
+    if (random && total > pageSize) {
+      skip = Math.max(0, Math.floor(Math.random() * Math.max(1, total - pageSize)));
+    }
+
+    // Datensätze
+    items = await prisma.quizQuestion.findMany({
+      where,
+      orderBy: random ? undefined : [{ id: "asc" }],
+      skip,
+      take: pageSize,
+      select: {
+        id: true,
+        country: true,
+        category: true,
+        topic: true,
+        question: true,
+        option_a: true,
+        option_b: true,
+        option_c: true,
+        option_d: true,
+        correct: true,
+      },
+    });
+
+    // Filterlisten stabil laden
+    try {
+      // bevorzugt groupBy (performant und sauber)
+      const [countries, categories, topics] = await Promise.all([
+        prisma.quizQuestion.groupBy({ by: ["country"], _count: { _all: true }, orderBy: { country: "asc" } }),
+        prisma.quizQuestion.groupBy({ by: ["category"], _count: { _all: true }, orderBy: { category: "asc" } }),
+        prisma.quizQuestion.groupBy({ by: ["topic"], _count: { _all: true }, orderBy: { topic: "asc" } }),
+      ]);
+      filters = {
+        country: countries.map((x) => x.country).filter(Boolean),
+        category: categories.map((x) => x.category).filter(Boolean),
+        topic: topics.map((x) => x.topic).filter(Boolean),
+      };
+    } catch {
+      // Fallback falls groupBy in deiner Umgebung zickt
+      const [cAll, catAll, tAll] = await Promise.all([
+        prisma.quizQuestion.findMany({ select: { country: true } }),
+        prisma.quizQuestion.findMany({ select: { category: true } }),
+        prisma.quizQuestion.findMany({ select: { topic: true } }),
+      ]);
+      const uniq = (arr) => Array.from(new Set(arr)).filter(Boolean).sort((a, b) => a.localeCompare(b));
+      filters = {
+        country: uniq(cAll.map((x) => x.country)),
+        category: uniq(catAll.map((x) => x.category)),
+        topic: uniq(tAll.map((x) => x.topic)),
+      };
+    }
+  } catch (e) {
+    // Fehler an UI weiterreichen (aber Seite rendert weiter)
+    error = String(e?.message || e);
   }
-
-  const items = await prisma.quizQuestion.findMany({
-    where,
-    orderBy: random ? undefined : [{ id: "asc" }],
-    skip,
-    take: pageSize,
-    select: {
-      id: true,
-      country: true,
-      category: true,
-      topic: true,
-      question: true,
-      option_a: true,
-      option_b: true,
-      option_c: true,
-      option_d: true,
-      correct: true,
-    },
-  });
-
-  // Filterlisten (Distinct)
-  // Prisma distinct: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#distinct
-  const [countries, categories, topics] = await Promise.all([
-    prisma.quizQuestion.findMany({ distinct: ["country"], select: { country: true }, orderBy: { country: "asc" } }),
-    prisma.quizQuestion.findMany({ distinct: ["category"], select: { category: true }, orderBy: { category: "asc" } }),
-    prisma.quizQuestion.findMany({ distinct: ["topic"], select: { topic: true }, orderBy: { topic: "asc" } }),
-  ]);
 
   return {
     props: {
@@ -82,12 +114,9 @@ export async function getServerSideProps({ query }) {
       q,
       random,
       selected: { country, category, topic },
-      filters: {
-        country: countries.map((x) => x.country).filter(Boolean),
-        category: categories.map((x) => x.category).filter(Boolean),
-        topic: topics.map((x) => x.topic).filter(Boolean),
-      },
+      filters,
       items,
+      error,
     },
   };
 }
@@ -101,10 +130,10 @@ export default function QuizIndex({
   selected,
   filters,
   items,
+  error,
 }) {
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
-  // Helper zum Bauen von Query-Strings
   function qs(next = {}) {
     const p = new URLSearchParams();
     if (q) p.set("q", q);
@@ -125,22 +154,30 @@ export default function QuizIndex({
     <main style={{ fontFamily: "system-ui, sans-serif", padding: "16px", maxWidth: 1100, margin: "0 auto" }}>
       <header style={{ display: "grid", gap: 8, marginBottom: 16 }}>
         <h1 style={{ margin: 0 }}>🧠 Jagdlatein – Quiz</h1>
-        <p style={{ margin: 0, color: "#6b7280" }}>
-          {total} Frage(n){q ? ` · Suche: "${q}"` : ""}{random ? " · Zufallsmodus" : ""}
-        </p>
+
+        {error ? (
+          <div style={errorBox}>
+            <b>Fehler beim Laden:</b>
+            <div style={{ marginTop: 6, fontFamily: "monospace" }}>{error}</div>
+            <div style={{ marginTop: 8, color: "#6b7280", fontSize: 14 }}>
+              Tipp: <code>DATABASE_URL</code> korrekt? Tabelle <code>QuizQuestion</code> vorhanden?
+              Einmal <code>npx prisma db push</code> gegen die Produktions-DB ausführen und erneut laden.
+            </div>
+          </div>
+        ) : (
+          <p style={{ margin: 0, color: "#6b7280" }}>
+            {total} Frage(n){q ? ` · Suche: "${q}"` : ""}{random ? " · Zufallsmodus" : ""}
+          </p>
+        )}
 
         {/* Such- & Filterleiste */}
-        <form method="GET" style={{
-          display: "grid",
-          gap: 8,
-          gridTemplateColumns: "1fr",
-        }}>
+        <form method="GET" style={{ display: "grid", gap: 8 }}>
           <input
             type="text"
             name="q"
             defaultValue={q}
             placeholder="Suche in Frage/Antwort/Kategorie/Thema…"
-            style={{ padding: "10px 12px", border: "1px solid #d1d5db", borderRadius: 8 }}
+            style={input}
           />
 
           <div style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr", alignItems: "center" }}>
@@ -181,9 +218,11 @@ export default function QuizIndex({
       </header>
 
       {/* Liste */}
-      {items.length === 0 ? (
+      {(!error && items.length === 0) ? (
         <div style={emptyBox}>Keine Einträge gefunden. Filter anpassen oder Import ausführen.</div>
-      ) : (
+      ) : null}
+
+      {(!error && items.length > 0) ? (
         <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 12 }}>
           {items.map((q) => (
             <li key={q.id} style={card}>
@@ -204,24 +243,26 @@ export default function QuizIndex({
             </li>
           ))}
         </ol>
-      )}
+      ) : null}
 
       {/* Pagination */}
-      <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16, gap: 8, flexWrap: "wrap" }}>
-        <span style={{ color: "#6b7280", fontSize: 14 }}>
-          Seite {page} / {totalPages}
-        </span>
-        <div style={{ display: "flex", gap: 8 }}>
-          <Link href={page > 1 ? qs({ page: page - 1 }) : "#"} aria-disabled={page <= 1} style={btnGhost}>
-            ← Zurück
-          </Link>
-          <Link href={page < totalPages ? qs({ page: page + 1 }) : "#"} aria-disabled={page >= totalPages} style={btnGhost}>
-            Weiter →
-          </Link>
-        </div>
-      </nav>
+      {!error && total > 0 && (
+        <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16, gap: 8, flexWrap: "wrap" }}>
+          <span style={{ color: "#6b7280", fontSize: 14 }}>
+            Seite {page} / {Math.max(1, Math.ceil(total / pageSize))}
+          </span>
+          <div style={{ display: "flex", gap: 8 }}>
+            <Link href={page > 1 ? qs({ page: page - 1 }) : "#"} aria-disabled={page <= 1} style={btnGhost}>
+              ← Zurück
+            </Link>
+            <Link href={page < Math.ceil(total / pageSize) ? qs({ page: page + 1 }) : "#"} aria-disabled={page >= Math.ceil(total / pageSize)} style={btnGhost}>
+              Weiter →
+            </Link>
+          </div>
+        </nav>
+      )}
 
-      {/* Kleines Fuß-Menü */}
+      {/* Fuß-Menü */}
       <footer style={{ marginTop: 24, display: "flex", gap: 12, flexWrap: "wrap" }}>
         <Link href="/" style={linkMuted}>Start</Link>
         <Link href="/preise" style={linkMuted}>Preise</Link>
@@ -232,13 +273,13 @@ export default function QuizIndex({
 }
 
 // --- Inline Styles ---
-const selectStyle = {
-  width: "100%",
+const input = {
   padding: "10px 12px",
   border: "1px solid #d1d5db",
   borderRadius: 8,
   background: "#fff",
 };
+const selectStyle = { ...input };
 const btnPrimary = {
   padding: "10px 14px",
   borderRadius: 8,
@@ -282,6 +323,13 @@ const emptyBox = {
 const linkMuted = {
   color: "#6b7280",
   textDecoration: "none",
+};
+const errorBox = {
+  border: "1px solid #fecaca",
+  background: "#fff1f2",
+  color: "#7f1d1d",
+  padding: 12,
+  borderRadius: 8,
 };
 
 // Ende der Datei
