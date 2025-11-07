@@ -1,128 +1,115 @@
 // pages/admin/quiz.js
 import { useState } from "react";
 
-export default function QuizAdmin() {
-  const [file, setFile] = useState(null);
-  const [msg, setMsg] = useState("");
-  const [imported, setImported] = useState(null);
+export default function AdminQuiz() {
+  const [excelFile, setExcelFile] = useState(null);
+  const [jsonText, setJsonText] = useState("");
+  const [log, setLog] = useState("");
 
-  async function onSubmit(e) {
-    e.preventDefault();
-    if (!file) return setMsg("Bitte Excel (.xlsx) wählen.");
-
+  async function handleExcelUpload(commit = false) {
+    if (!excelFile) {
+      alert("Bitte eine Excel-Datei auswählen.");
+      return;
+    }
     const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if (!pass) return setMsg("Abgebrochen.");
+    if (!pass) return;
 
-    const form = new FormData();
-    form.append("file", file); // Feldname MUSS 'file' sein
+    const fd = new FormData();
+    fd.append("file", excelFile);
 
-    setMsg("Import läuft …");
-    const res = await fetch("/api/quiz/upload", {
+    const res = await fetch(`/api/admin/quiz-upload-github${commit ? "?commit=1" : ""}`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${pass}` },
-      body: form,
+      headers: { Authorization: `Bearer ${pass.trim()}` },
+      body: fd,
     });
-    const j = await res.json().catch(()=>({}));
-    if (!res.ok) return setMsg(`❌ ${j.error || res.statusText}${j.detail ? " – "+j.detail : ""}`);
-    setImported(j.imported);
-    setMsg("✅ Import erfolgreich");
+
+    const data = await res.json().catch(() => ({}));
+    setLog(JSON.stringify(data, null, 2));
+    alert(res.ok ? "✅ Erfolgreich hochgeladen/importiert" : `❌ ${data.error}`);
+  }
+
+  async function handleJsonUpload(commit = false) {
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText);
+    } catch {
+      alert("❌ Ungültiges JSON");
+      return;
+    }
+    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+    if (!pass) return;
+
+    if (!Array.isArray(parsed)) {
+      parsed = { ...(parsed || {}), commit };
+    } else {
+      parsed = { items: parsed, commit, filename: "questions.json" };
+    }
+
+    const res = await fetch("/api/admin/quiz-upload-json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${pass.trim()}`,
+      },
+      body: JSON.stringify(parsed),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    setLog(JSON.stringify(data, null, 2));
+    alert(res.ok ? "✅ Erfolgreich importiert" : `❌ ${data.error}`);
   }
 
   return (
-    <main style={{maxWidth:720,margin:"40px auto",padding:"0 16px"}}>
-      <h1>Quiz Import (Admin)</h1>
-      <p>Erwarte Spalten: <code>id, country, category, topic, question, option_a, option_b, option_c, option_d, correct</code></p>
-      <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
-        <input type="file" name="file" accept=".xlsx" onChange={e=>setFile(e.target.files?.[0]||null)} />
-        <button type="submit" style={{padding:"10px 14px"}}>Import starten</button>
-      </form>
-      {msg && <p style={{marginTop:12}}>{msg}</p>}
-      {imported!=null && <p><strong>Importierte Zeilen:</strong> {imported}</p>}
+    <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", fontFamily: "sans-serif" }}>
+      <h1>🧠 Quiz-Admin</h1>
+
+      {/* Excel Upload */}
+      <section style={{ marginTop: 32 }}>
+        <h2>📄 Excel-Import</h2>
+        <input
+          type="file"
+          accept=".xlsx"
+          onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
+        />
+        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+          <button onClick={() => handleExcelUpload(false)}>Nur DB importieren</button>
+          <button onClick={() => handleExcelUpload(true)}>DB + GitHub committen</button>
+        </div>
+      </section>
+
+      {/* JSON Upload */}
+      <section style={{ marginTop: 32 }}>
+        <h2>💾 JSON-Import</h2>
+        <textarea
+          rows={10}
+          placeholder='[{"id":1,"country":"DE","category":"Wild","topic":"Reh","question":"...","option_a":"...","option_b":"...","option_c":"...","option_d":"...","correct":"A"}]'
+          style={{ width: "100%", fontFamily: "monospace" }}
+          value={jsonText}
+          onChange={(e) => setJsonText(e.target.value)}
+        />
+        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+          <button onClick={() => handleJsonUpload(false)}>Nur DB importieren</button>
+          <button onClick={() => handleJsonUpload(true)}>DB + GitHub committen</button>
+        </div>
+      </section>
+
+      {/* Logs / Results */}
+      {log && (
+        <section style={{ marginTop: 32 }}>
+          <h3>🪵 Ergebnis / Log:</h3>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              background: "#f5f5f5",
+              padding: 12,
+              borderRadius: 6,
+              fontSize: 14,
+            }}
+          >
+            {log}
+          </pre>
+        </section>
+      )}
     </main>
   );
 }
-<hr style={{margin:"24px 0"}} />
-
-<h2>Excel ↔ GitHub</h2>
-
-{/* A) Excel → GitHub committen */}
-<form
-  onSubmit={async (e) => {
-    e.preventDefault();
-    const file = e.currentTarget.elements.namedItem("ghfile")?.files?.[0];
-    if (!file) { alert("Bitte Excel wählen"); return; }
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if (!pass) return;
-    const form = new FormData();
-    form.append("file", file);
-    const res = await fetch("/api/admin/quiz-upload-github", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${pass}` },
-      body: form,
-    });
-    const j = await res.json().catch(()=>({}));
-    alert(res.ok ? `✅ Commit: ${j.committed}\nImportiert: ${j.imported}` : `❌ ${j.error}`);
-  }}
-  style={{display:"grid", gap:12, marginTop:12}}
->
-  <label>Excel nach GitHub committen (.xlsx)</label>
-  <input name="ghfile" type="file" accept=".xlsx" />
-  <button type="submit" style={{padding:"10px 14px"}}>Upload & Commit</button>
-</form>
-
-{/* B) GitHub → DB importieren */}
-<form
-  onSubmit={async (e) => {
-    e.preventDefault();
-    const path = e.currentTarget.elements.namedItem("ghpath")?.value?.trim() || "data/quiz/latest.xlsx";
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if (!pass) return;
-    const res = await fetch("/api/admin/quiz-import-github", {
-      method: "POST",
-      headers: { "Content-Type":"application/json", Authorization: `Bearer ${pass}` },
-      body: JSON.stringify({ path }),
-    });
-    const j = await res.json().catch(()=>({}));
-    alert(res.ok ? `✅ Importiert: ${j.imported}\nDatei: ${j.path}` : `❌ ${j.error}`);
-  }}
-  style={{display:"grid", gap:12, marginTop:16}}
->
-  <label>GitHub-Pfad (z. B. data/quiz/latest.xlsx)</label>
-  <input name="ghpath" type="text" defaultValue="data/quiz/latest.xlsx" />
-  <button type="submit" style={{padding:"10px 14px"}}>Aus GitHub importieren</button>
-</form>
-<h3 style={{marginTop:24}}>JSON-Import</h3>
-<textarea id="jsonInput" rows={10} style={{width:"100%", fontFamily:"monospace"}} placeholder='[ { "id":1, "country":"DE", ... } ]'></textarea>
-<div style={{display:"flex", gap:12, marginTop:8}}>
-  <button onClick={async()=>{
-    const txt = document.getElementById("jsonInput").value;
-    if(!txt.trim()) { alert("JSON einfügen"); return; }
-    let data; try { data = JSON.parse(txt); } catch(e){ alert("Ungültiges JSON"); return; }
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if(!pass) return;
-    const res = await fetch("/api/admin/quiz-upload-json", {
-      method: "POST",
-      headers: { "Content-Type":"application/json", Authorization: `Bearer ${pass.trim()}` },
-      body: JSON.stringify(data)
-    });
-    const j = await res.json().catch(()=>({}));
-    alert(res.ok ? `✅ Importiert: ${j.imported}` : `❌ ${j.error} ${j.detail?'\n'+j.detail:''}`);
-  }}>Nur DB importieren</button>
-
-  <button onClick={async()=>{
-    const txt = document.getElementById("jsonInput").value;
-    if(!txt.trim()) { alert("JSON einfügen"); return; }
-    let data; try { data = JSON.parse(txt); } catch(e){ alert("Ungültiges JSON"); return; }
-    if(!Array.isArray(data)) data = { ...(data||{}), commit:true };
-    else data = { items: data, commit: true, filename: "questions.json" };
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
-    if(!pass) return;
-    const res = await fetch("/api/admin/quiz-upload-json", {
-      method: "POST",
-      headers: { "Content-Type":"application/json", Authorization: `Bearer ${pass.trim()}` },
-      body: JSON.stringify(data)
-    });
-    const j = await res.json().catch(()=>({}));
-    alert(res.ok ? `✅ Importiert: ${j.imported}\n📦 Commit: ${j.committed}` : `❌ ${j.error} ${j.detail?'\n'+j.detail:''}`);
-  }}>DB importieren + GitHub committen</button>
-</div>
