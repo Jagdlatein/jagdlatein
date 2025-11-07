@@ -10,6 +10,11 @@ function isAuthorized(req) {
 }
 
 // pages/admin/quiz.js
+<button onClick={async()=>{
+  await fetch("/api/admin/logout",{method:"POST"});
+  window.location.href="/admin/login";
+}} style={{marginLeft:"auto"}}>Logout</button>
+
 import { useState } from "react";
 
 export default function AdminQuiz() {
@@ -106,7 +111,3 @@ export default function AdminQuiz() {
     </main>
   );
 }
-<button onClick={async()=>{
-  await fetch("/api/admin/logout",{method:"POST"});
-  window.location.href="/admin/login";
-}} style={{marginLeft:"auto"}}>Logout</button>
