@@ -1,24 +1,39 @@
 // pages/quiz/index.js
-import { useEffect, useMemo, useState } from "react";
+import prisma from "../../lib/prisma";
 
-const DIFF = ["leicht", "mittel", "schwer"];
+export async function getServerSideProps() {
+  const count = await prisma.quizQuestion.count();
+  const items = await prisma.quizQuestion.findMany({
+    take: 10,
+    orderBy: { id: "asc" },
+    select: { id:true, country:true, category:true, topic:true, question:true, option_a:true, option_b:true, option_c:true, option_d:true, correct:true }
+  });
+  return { props: { count, items } };
+}
 
-export default function QuizPage() {
-  const [all, setAll] = useState([]);
-  const [country, setCountry] = useState("");     // DE/AT/CH
-  const [category, setCategory] = useState("");   // z.B. Wildkunde
-  const [difficulty, setDifficulty] = useState(""); // leicht/mittel/schwer
-  const [q, setQ] = useState("");                 // textsuche
-  const [idx, setIdx] = useState(0);              // aktuelle Frage
-  const [shuffled, setShuffled] = useState(false);
-
-  // Daten laden
-  useEffect(() => {
-    fetch("/data/quiz_bank.json")
-      .then(r => r.json())
-      .then((data) => setAll(Array.isArray(data) ? data : []))
-      .catch((e) => console.error("Quiz-Daten konnten nicht geladen werden:", e));
-  }, []);
+export default function QuizPage({ count, items }) {
+  return (
+    <main style={{maxWidth:900, margin:"40px auto", padding:"0 16px", fontFamily:"system-ui,sans-serif"}}>
+      <h1>🧠 Quiz</h1>
+      <p style={{color:"#6b7280"}}>Fragen in DB: <b>{count}</b></p>
+      {items.length === 0 && <p>Keine Fragen vorhanden. Bitte Import ausführen.</p>}
+      <ol>
+        {items.map(q => (
+          <li key={q.id} style={{margin:"16px 0"}}>
+            <div style={{fontSize:14, color:"#6b7280"}}>#{q.id} · {q.country} · {q.category} · {q.topic}</div>
+            <div style={{fontWeight:600, margin:"6px 0"}}>{q.question}</div>
+            <ul style={{margin:"6px 0 0 18px"}}>
+              <li>A) {q.option_a}</li>
+              <li>B) {q.option_b}</li>
+              <li>C) {q.option_c}</li>
+              <li>D) {q.option_d}</li>
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </main>
+  );
+}
 
   // Hilfsfunktionen
   const uniq = (arr) => [...new Set(arr.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));
