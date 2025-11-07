@@ -15,15 +15,12 @@ export default async function handler(req, res) {
         GITHUB_BRANCH: process.env.GITHUB_BRANCH || "main",
       },
     };
-
-    // GitHub-Check (Token/Repo/Branch)
-    if (has("GITHUB_TOKEN") && process.env.GITHUB_OWNER && process.env.GITHUB_REPO) {
+    if (out.env.has_GITHUB_TOKEN && out.env.GITHUB_OWNER && out.env.GITHUB_REPO) {
       const url = `https://api.github.com/repos/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}/git/ref/heads/${process.env.GITHUB_BRANCH || "main"}`;
       const r = await fetch(url, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, "User-Agent":"jagdlatein-debug" } });
       out.github = { status: r.status, ok: r.ok };
       if (!r.ok) out.github_detail = await r.text();
     }
-
     return res.status(200).json(out);
   } catch (e) {
     return res.status(500).json({ ok:false, error:String(e?.message||e) });
