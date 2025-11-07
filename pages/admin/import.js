@@ -1,3 +1,14 @@
+// 🔒 helpers
+function getBearer(req) {
+  const h = req.headers.authorization || "";
+  return h.startsWith("Bearer ") ? h.slice(7) : "";
+}
+function isAuthorized(req) {
+  const sent = getBearer(req).trim();
+  const want = (process.env.ADMIN_PASS || "").trim();
+  return Boolean(sent && want && sent === want);
+}
+
 // pages/admin/import.js
 import { useEffect, useRef, useState } from "react";
 
