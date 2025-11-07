@@ -91,3 +91,38 @@ export default function QuizAdmin() {
   <input name="ghpath" type="text" defaultValue="data/quiz/latest.xlsx" />
   <button type="submit" style={{padding:"10px 14px"}}>Aus GitHub importieren</button>
 </form>
+<h3 style={{marginTop:24}}>JSON-Import</h3>
+<textarea id="jsonInput" rows={10} style={{width:"100%", fontFamily:"monospace"}} placeholder='[ { "id":1, "country":"DE", ... } ]'></textarea>
+<div style={{display:"flex", gap:12, marginTop:8}}>
+  <button onClick={async()=>{
+    const txt = document.getElementById("jsonInput").value;
+    if(!txt.trim()) { alert("JSON einfügen"); return; }
+    let data; try { data = JSON.parse(txt); } catch(e){ alert("Ungültiges JSON"); return; }
+    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+    if(!pass) return;
+    const res = await fetch("/api/admin/quiz-upload-json", {
+      method: "POST",
+      headers: { "Content-Type":"application/json", Authorization: `Bearer ${pass.trim()}` },
+      body: JSON.stringify(data)
+    });
+    const j = await res.json().catch(()=>({}));
+    alert(res.ok ? `✅ Importiert: ${j.imported}` : `❌ ${j.error} ${j.detail?'\n'+j.detail:''}`);
+  }}>Nur DB importieren</button>
+
+  <button onClick={async()=>{
+    const txt = document.getElementById("jsonInput").value;
+    if(!txt.trim()) { alert("JSON einfügen"); return; }
+    let data; try { data = JSON.parse(txt); } catch(e){ alert("Ungültiges JSON"); return; }
+    if(!Array.isArray(data)) data = { ...(data||{}), commit:true };
+    else data = { items: data, commit: true, filename: "questions.json" };
+    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+    if(!pass) return;
+    const res = await fetch("/api/admin/quiz-upload-json", {
+      method: "POST",
+      headers: { "Content-Type":"application/json", Authorization: `Bearer ${pass.trim()}` },
+      body: JSON.stringify(data)
+    });
+    const j = await res.json().catch(()=>({}));
+    alert(res.ok ? `✅ Importiert: ${j.imported}\n📦 Commit: ${j.committed}` : `❌ ${j.error} ${j.detail?'\n'+j.detail:''}`);
+  }}>DB importieren + GitHub committen</button>
+</div>
