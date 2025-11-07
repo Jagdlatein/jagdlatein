@@ -5,6 +5,17 @@ import formidable from "formidable";
 import * as XLSX from "xlsx";
 import prisma from "../../../lib/prisma";
 
+// 🔒 helpers
+function getBearer(req) {
+  const h = req.headers.authorization || "";
+  return h.startsWith("Bearer ") ? h.slice(7) : "";
+}
+function isAuthorized(req) {
+  const sent = getBearer(req).trim();
+  const want = (process.env.ADMIN_PASS || "").trim();
+  return Boolean(sent && want && sent === want);
+}
+
 function bad(res, code, msg) { return res.status(code).json({ error: msg }); }
 
 async function getFileSha({ owner, repo, branch, path, token }) {
@@ -18,12 +29,7 @@ async function getFileSha({ owner, repo, branch, path, token }) {
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") return bad(res, 405, "Method not allowed");
-
-    const auth = req.headers.authorization || "";
-    const tokenHeader = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-    if (!process.env.ADMIN_PASS || tokenHeader !== process.env.ADMIN_PASS) {
-      return bad(res, 401, "Unauthorized");
-    }
+    if (!isAuthorized(req)) return res.status(401).json({ error: "Unauthorized", hint: "Authorization: Bearer <ADMIN_PASS>" });
 
     const GH_PAT = process.env.GITHUB_TOKEN;
     const OWNER  = process.env.GITHUB_OWNER;
