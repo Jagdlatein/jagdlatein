@@ -32,9 +32,7 @@ export default function QuizPage({ count, items }) {
         ))}
       </ol>
     </main>
-  );
-}
-
+  
   // Hilfsfunktionen
   const uniq = (arr) => [...new Set(arr.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));
   const categories = useMemo(() => uniq(all.map(x => x.category)), [all]);
