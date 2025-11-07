@@ -4,15 +4,23 @@ export const config = { api: { bodyParser: true }, runtime: "nodejs" };
 import * as XLSX from "xlsx";
 import prisma from "../../../lib/prisma";
 
+// 🔒 helpers
+function getBearer(req) {
+  const h = req.headers.authorization || "";
+  return h.startsWith("Bearer ") ? h.slice(7) : "";
+}
+function isAuthorized(req) {
+  const sent = getBearer(req).trim();
+  const want = (process.env.ADMIN_PASS || "").trim();
+  return Boolean(sent && want && sent === want);
+}
+
 function bad(res, c, m){ return res.status(c).json({ error:m }); }
 
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") return bad(res, 405, "Method not allowed");
-
-    const auth = req.headers.authorization || "";
-    const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-    if (!process.env.ADMIN_PASS || token !== process.env.ADMIN_PASS) return bad(res, 401, "Unauthorized");
+    if (!isAuthorized(req)) return bad(res, 401, "Unauthorized");
 
     const GH=process.env.GITHUB_TOKEN, OWNER=process.env.GITHUB_OWNER, REPO=process.env.GITHUB_REPO, BR=process.env.GITHUB_BRANCH||"main";
     const { path="data/quiz/latest.xlsx" } = req.body || {};
