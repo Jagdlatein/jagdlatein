@@ -3,6 +3,17 @@ export const config = { api: { bodyParser: { sizeLimit: "10mb" } }, runtime: "no
 
 import prisma from "../../../lib/prisma";
 
+// 🔒 helpers
+function getBearer(req) {
+  const h = req.headers.authorization || "";
+  return h.startsWith("Bearer ") ? h.slice(7) : "";
+}
+function isAuthorized(req) {
+  const sent = getBearer(req).trim();
+  const want = (process.env.ADMIN_PASS || "").trim();
+  return Boolean(sent && want && sent === want);
+}
+
 function bad(res, code, msg, extra = {}) { return res.status(code).json({ error: msg, ...extra }); }
 
 async function getFileSha({ owner, repo, branch, path, token }) {
@@ -16,12 +27,7 @@ async function getFileSha({ owner, repo, branch, path, token }) {
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") return bad(res, 405, "Method not allowed", { expect:"POST application/json" });
-
-    const auth = req.headers.authorization || "";
-    const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-    if (!process.env.ADMIN_PASS || token !== process.env.ADMIN_PASS) {
-      return bad(res, 401, "Unauthorized", { hint: "Authorization: Bearer <ADMIN_PASS>" });
-    }
+    if (!isAuthorized(req)) return bad(res, 401, "Unauthorized", { hint: "Authorization: Bearer <ADMIN_PASS>" });
 
     const body = req.body;
     if (!body || typeof body !== "object") return bad(res, 400, "Invalid JSON body");
