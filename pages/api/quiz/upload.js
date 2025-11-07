@@ -5,6 +5,17 @@ import formidable from "formidable";
 import * as XLSX from "xlsx";
 import prisma from "../../../lib/prisma";
 
+// 🔒 helpers
+function getBearer(req) {
+  const h = req.headers.authorization || "";
+  return h.startsWith("Bearer ") ? h.slice(7) : "";
+}
+function isAuthorized(req) {
+  const sent = getBearer(req).trim();
+  const want = (process.env.ADMIN_PASS || "").trim();
+  return Boolean(sent && want && sent === want);
+}
+
 function bad(res, c, m) { return res.status(c).json({ error: m }); }
 
 export default async function handler(req, res) {
@@ -17,10 +28,7 @@ export default async function handler(req, res) {
       });
     }
     if (req.method !== "POST") return bad(res, 405, "Method not allowed");
-
-    const auth = req.headers.authorization || "";
-    const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-    if (!process.env.ADMIN_PASS || token !== process.env.ADMIN_PASS) return bad(res, 401, "Unauthorized");
+    if (!isAuthorized(req)) return bad(res, 401, "Unauthorized");
 
     const form = formidable({ multiples: false, maxFileSize: 50 * 1024 * 1024 });
     const { files } = await new Promise((resolve, reject) => {
