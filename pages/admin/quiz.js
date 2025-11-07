@@ -6,12 +6,19 @@ export default function AdminQuiz() {
   const [jsonText, setJsonText] = useState("");
   const [log, setLog] = useState("");
 
+  // Hilfsfunktion für das Admin-Passwort
+  function getAdminPass() {
+    return process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+  }
+
+  // 🟢 Excel-Upload (mit optionalem GitHub-Commit)
   async function handleExcelUpload(commit = false) {
     if (!excelFile) {
-      alert("Bitte eine Excel-Datei auswählen.");
+      alert("❌ Bitte eine Excel-Datei auswählen.");
       return;
     }
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+
+    const pass = getAdminPass();
     if (!pass) return;
 
     const fd = new FormData();
@@ -19,15 +26,18 @@ export default function AdminQuiz() {
 
     const res = await fetch(`/api/admin/quiz-upload-github${commit ? "?commit=1" : ""}`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${pass.trim()}` },
+      headers: {
+        Authorization: `Bearer ${pass.trim()}`
+      },
       body: fd,
     });
 
     const data = await res.json().catch(() => ({}));
     setLog(JSON.stringify(data, null, 2));
-    alert(res.ok ? "✅ Erfolgreich hochgeladen/importiert" : `❌ ${data.error}`);
+    alert(res.ok ? "✅ Import erfolgreich!" : `❌ Fehler: ${data.error}`);
   }
 
+  // 🟢 JSON-Upload (mit optionalem GitHub-Commit)
   async function handleJsonUpload(commit = false) {
     let parsed;
     try {
@@ -36,67 +46,63 @@ export default function AdminQuiz() {
       alert("❌ Ungültiges JSON");
       return;
     }
-    const pass = process.env.NEXT_PUBLIC_ADMIN_HINT || prompt("Admin-Passwort:");
+
+    const pass = getAdminPass();
     if (!pass) return;
 
-    if (!Array.isArray(parsed)) {
-      parsed = { ...(parsed || {}), commit };
-    } else {
-      parsed = { items: parsed, commit, filename: "questions.json" };
-    }
+    const payload = Array.isArray(parsed)
+      ? { items: parsed, commit, filename: "questions.json" }
+      : { ...parsed, commit };
 
     const res = await fetch("/api/admin/quiz-upload-json", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${pass.trim()}`,
+        Authorization: `Bearer ${pass.trim()}`
       },
-      body: JSON.stringify(parsed),
+      body: JSON.stringify(payload),
     });
 
     const data = await res.json().catch(() => ({}));
     setLog(JSON.stringify(data, null, 2));
-    alert(res.ok ? "✅ Erfolgreich importiert" : `❌ ${data.error}`);
+    alert(res.ok ? "✅ JSON importiert!" : `❌ Fehler: ${data.error}`);
   }
 
+  // 🧠 UI
   return (
     <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", fontFamily: "sans-serif" }}>
-      <h1>🧠 Quiz-Admin</h1>
+      <h1>🧠 Quiz-Administration</h1>
 
-      {/* Excel Upload */}
+      {/* EXCEL UPLOAD */}
       <section style={{ marginTop: 32 }}>
         <h2>📄 Excel-Import</h2>
-        <input
-          type="file"
-          accept=".xlsx"
-          onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
-        />
+        <input type="file" accept=".xlsx" onChange={(e) => setExcelFile(e.target.files?.[0] || null)} />
         <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
           <button onClick={() => handleExcelUpload(false)}>Nur DB importieren</button>
-          <button onClick={() => handleExcelUpload(true)}>DB + GitHub committen</button>
+          <button onClick={() => handleExcelUpload(true)}>DB + GitHub Commit</button>
         </div>
       </section>
 
-      {/* JSON Upload */}
+      {/* JSON UPLOAD */}
       <section style={{ marginTop: 32 }}>
         <h2>💾 JSON-Import</h2>
         <textarea
           rows={10}
-          placeholder='[{"id":1,"country":"DE","category":"Wild","topic":"Reh","question":"...","option_a":"...","option_b":"...","option_c":"...","option_d":"...","correct":"A"}]'
+          placeholder='[{"id":1,"country":"DE","category":"Wild","topic":"Reh", ...}]'
           style={{ width: "100%", fontFamily: "monospace" }}
           value={jsonText}
           onChange={(e) => setJsonText(e.target.value)}
         />
         <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
           <button onClick={() => handleJsonUpload(false)}>Nur DB importieren</button>
-          <button onClick={() => handleJsonUpload(true)}>DB + GitHub committen</button>
+          <button onClick={() => handleJsonUpload(true)}>DB + GitHub Commit</button>
         </div>
       </section>
 
-      {/* Logs / Results */}
+      {/* LOG-FEEDBACK */}
       {log && (
         <section style={{ marginTop: 32 }}>
-          <h3>🪵 Ergebnis / Log:</h3>
+          <h3>🪵 Ergebnis & Log</h3>
           <pre
             style={{
               whiteSpace: "pre-wrap",
