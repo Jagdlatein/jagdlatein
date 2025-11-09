@@ -1,48 +1,24 @@
-// middleware.js
 import { NextResponse } from "next/server";
 
-// WebCrypto-basierte Prüfung (Edge-kompatibel)
-async function verify(token, secret) {
-  if (!token || !secret) return false;
-  const [data, sig] = token.split(".");
-  if (!data || !sig) return false;
+export function middleware(req) {
+  const { pathname } = req.nextUrl;
+  const protectedPaths = ["/quiz", "/glossar"];
+  const needGuard = protectedPaths.some(p => pathname === p || pathname.startsWith(p + "/"));
+  if (!needGuard) return NextResponse.next();
 
-  const enc = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    "raw",
-    enc.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign", "verify"]
-  );
-  const sigBuf = Uint8Array.from(atob(sig.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
-  const ok = await crypto.subtle.verify("HMAC", key, sigBuf, enc.encode(data));
-  if (!ok) return false;
+  // Minimal: Cookie-Check (wir setzen später via Login/Login-Code ein Session-Cookie 'jl_session'
+  const email = req.cookies.get("jl_session")?.value;
+  const paid = req.cookies.get("jl_paid")?.value; // optionales Shortcut-Cookie
 
-  // exp prüfen
-  const payload = JSON.parse(Buffer.from(data, "base64url").toString("utf8"));
-  if (!payload?.exp || Date.now() / 1000 > payload.exp) return false;
-  return true;
-}
+  if (paid === "1" && email) return NextResponse.next();
 
-export async function middleware(req) {
-  const url = new URL(req.url);
-  // Login-Seite selbst nicht schützen
-  if (url.pathname.startsWith("/admin/login")) return NextResponse.next();
-
-  // Nur /admin/* schützen
-  if (url.pathname.startsWith("/admin")) {
-    const cookie = req.cookies.get("admin_session")?.value;
-    const secret = process.env.APP_SECRET || "";
-    const ok = await verify(cookie, secret);
-    if (!ok) {
-      const login = new URL("/admin/login", req.url);
-      return NextResponse.redirect(login);
-    }
-  }
-  return NextResponse.next();
+  // Wenn kein Cookie, auf Preise schicken
+  const url = req.nextUrl.clone();
+  url.pathname = "/preise";
+  url.searchParams.set("lock", "1");
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/quiz/:path*", "/glossar/:path*"],
 };
