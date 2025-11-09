@@ -1,100 +1,88 @@
 // pages/api/admin/quiz-import-run.js
-import * as XLSX from "xlsx";
-import prisma from "../../../lib/prisma";
-
-const REQUIRED_COLS = [
-  "id",
-  "country",
-  "category",
-  "topic",
-  "question",
-  "option_a",
-  "option_b",
-  "option_c",
-  "option_d",
-  "correct",
-];
-
-function authOk(req) {
-  const qKey = req.query.key;
-  const h = req.headers.authorization || "";
-  const token = h.startsWith("Bearer ") ? h.slice(7) : null;
-  const pass = process.env.ADMIN_PASS || "Jagdlatein2025";
-  return qKey === pass || token === pass;
-}
-
-async function fetchExcel(owner, repo, branch, path) {
-  const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
-  const res = await fetch(raw);
-  if (!res.ok) throw new Error(`Excel nicht gefunden (${res.status}) -> ${raw}`);
-  const ab = await res.arrayBuffer();
-  return Buffer.from(ab);
-}
-
-function parseWorkbook(buf) {
-  const wb = XLSX.read(buf, { type: "buffer" });
-  const ws = wb.Sheets[wb.SheetNames[0]];
-  const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
-  return rows;
-}
-
-function normalize(r) {
-  return {
-    id: Number(r.id),
-    country: String(r.country || "").trim(),
-    category: String(r.category || "").trim(),
-    topic: String(r.topic || "").trim(),
-    question: String(r.question || "").trim(),
-    option_a: String(r.option_a || "").trim(),
-    option_b: String(r.option_b || "").trim(),
-    option_c: String(r.option_c || "").trim(),
-    option_d: String(r.option_d || "").trim(),
-    correct: String(r.correct || "").trim().toUpperCase(),
-  };
-}
+import fs from "fs";
+import path from "path";
+import xlsx from "xlsx";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   try {
-    if (!authOk(req)) {
-      return res.status(401).json({ ok: false, error: "Unauthorized" });
+    const { key } = req.query;
+    if (key !== process.env.ADMIN_PASS) {
+      return res.status(401).json({ ok: false, error: "Unauthorized", hint: "key=? fehlt/ falsch" });
     }
 
-    const owner = process.env.GITHUB_OWNER || "Jagdlatein";
-    const repo = process.env.GITHUB_REPO || "jagdlatein";
-    const branch = process.env.GITHUB_BRANCH || "main";
-
-    let buf;
-    try {
-      buf = await fetchExcel(owner, repo, branch, "data/quiz/quiz_import.xlsx");
-    } catch {
-      buf = await fetchExcel(owner, repo, branch, "data/quiz/Mappe1.xlsx");
+    const filePath = path.join(process.cwd(), "data", "quiz", "quiz_import.xlsx");
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ ok: false, error: "Keine Datei gefunden", path: filePath });
     }
 
-    const rows = parseWorkbook(buf);
-    if (!rows.length) return res.json({ ok: true, imported: 0, hint: "Keine Zeilen gefunden" });
+    const wb = xlsx.readFile(filePath);
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    const rows = xlsx.utils.sheet_to_json(sheet, { defval: "" });
 
-    // Header prüfen
-    const cols = Object.keys(rows[0] || {});
-    const missing = REQUIRED_COLS.filter((c) => !cols.includes(c));
-    if (missing.length) {
-      return res.status(400).json({ ok: false, error: "Fehlende Spalten", missing });
+    const required = ["id", "country", "category", "topic", "question", "option_a", "option_b", "option_c", "option_d", "correct"];
+    const valid = [];
+    const rejected = [];
+
+    for (let idx = 0; idx < rows.length; idx++) {
+      const r = rows[idx];
+      const rowNum = idx + 2;
+      const missing = required.filter(k => !(k in r));
+      if (missing.length) {
+        rejected.push({ row: rowNum, reason: `Fehlende Spalten: ${missing.join(", ")}` });
+        continue;
+      }
+
+      const record = {
+        id: Number(String(r.id).trim()),
+        country: String(r.country).trim(),
+        category: String(r.category).trim(),
+        topic: String(r.topic).trim(),
+        question: String(r.question).trim(),
+        option_a: String(r.option_a).trim(),
+        option_b: String(r.option_b).trim(),
+        option_c: String(r.option_c).trim(),
+        option_d: String(r.option_d).trim(),
+        correct: String(r.correct).trim().toUpperCase(),
+      };
+
+      if (!record.id || Number.isNaN(record.id)) { rejected.push({ row: rowNum, reason:"id ungültig"}); continue; }
+      if (!record.question) { rejected.push({ row: rowNum, reason:"question fehlt"}); continue; }
+      if (!["A","B","C","D"].includes(record.correct)) { rejected.push({ row: rowNum, reason:"correct nicht A/B/C/D"}); continue; }
+      if (!["DE","AT","CH"].includes(record.country)) { rejected.push({ row: rowNum, reason:"country nicht DE/AT/CH"}); continue; }
+
+      valid.push(record);
     }
 
     let imported = 0;
-    for (const raw of rows) {
-      const r = normalize(raw);
-      if (!r.id || !r.question || !"ABCD".includes(r.correct)) continue;
-
+    for (const q of valid) {
       await prisma.quizQuestion.upsert({
-        where: { id: r.id },
-        create: r,
-        update: r,
+        where: { id: q.id },
+        update: {
+          country: q.country, category: q.category, topic: q.topic, question: q.question,
+          option_a: q.option_a, option_b: q.option_b, option_c: q.option_c, option_d: q.option_d,
+          correct: q.correct
+        },
+        create: {
+          id: q.id, country: q.country, category: q.category, topic: q.topic, question: q.question,
+          option_a: q.option_a, option_b: q.option_b, option_c: q.option_c, option_d: q.option_d,
+          correct: q.correct
+        }
       });
       imported++;
     }
 
-    res.json({ ok: true, imported });
+    return res.json({
+      ok: true,
+      file: "data/quiz/quiz_import.xlsx",
+      rows_total: rows.length,
+      valid: valid.length,
+      imported,
+      rejected: rejected.slice(0, 50),
+      hint: rejected.length ? "Erste 50 Fehler gezeigt – Excel anpassen und erneut hochladen." : "Alles gut."
+    });
   } catch (e) {
-    res.status(500).json({ ok: false, error: String(e.message || e) });
+    return res.status(500).json({ ok: false, error: String(e) });
   }
 }
