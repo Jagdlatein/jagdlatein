@@ -109,3 +109,14 @@ model QuizFeedback {
   message     String
   createdAt   DateTime @default(now())
 }
+
+model MailLog {
+  id        Int      @id @default(autoincrement())
+  to        String
+  subject   String
+  status    String   // "sent" | "error"
+  error     String?  // Fehlermeldung
+  ip        String? 
+  userAgent String?
+  createdAt DateTime @default(now())
+}
