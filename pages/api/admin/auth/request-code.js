@@ -1,5 +1,5 @@
 import prisma from "../../../lib/prisma";
-import { sendLoginCode } from "../../../lib/mail";
+import { sendLoginCode } from "../../../lib/email";
 
 export default async function handler(req, res) {
   try {
