@@ -45,9 +45,19 @@ export default function LoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email || undefined, adminToken }),
       });
-      const data = await r.json();
-      if (!r.ok) throw new Error(data?.error || "Admin-Login fehlgeschlagen");
-
+      let data = null;
+let text = "";
+try {
+  text = await r.text();
+  data = JSON.parse(text);
+} catch {
+  // keine JSON-Antwort → wahrscheinlich Fehler-HTML oder leer
+}
+if (!r.ok) {
+  const msg = (data && data.error) || text || "Serverfehler / Login fehlgeschlagen";
+  throw new Error(msg);
+}
+      
       setMsg("Admin-Vorschau aktiv. Weiter zum Quiz …");
       router.replace("/quiz");
       router.reload();
