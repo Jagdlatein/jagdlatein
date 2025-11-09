@@ -1,25 +1,21 @@
+// middleware.ts
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export function middleware(req) {
-  const { pathname } = req.nextUrl;
+const PROTECTED = ["/quiz", "/glossar"];
 
-  // Nur Quiz & Glossar schützen
-  const protectedPaths = ["/quiz", "/glossar"];
-  const needGuard = protectedPaths.some(p => pathname === p || pathname.startsWith(p + "/"));
-  if (!needGuard) return NextResponse.next();
-
-  // Cookies: normale zahlende User oder Admin-Preview
-  const hasSession = !!req.cookies.get("jl_session")?.value;
-  const isPaid    = req.cookies.get("jl_paid")?.value === "1";
-  const isAdmin   = req.cookies.get("jl_admin")?.value === "1";
-
-  if ((hasSession && isPaid) || isAdmin) return NextResponse.next();
-
-  // Redirect zu /preise, wenn kein Zugriff
-  const url = req.nextUrl.clone();
-  url.pathname = "/preise";
-  url.searchParams.set("lock", "1");
-  return NextResponse.redirect(url);
+export function middleware(req: NextRequest) {
+  const token = req.cookies.get("jl_session")?.value;
+  const { pathname, search } = req.nextUrl;
+  const needsAuth = PROTECTED.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  if (needsAuth && !token) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    url.search = "";
+    url.searchParams.set("next", pathname + (search || ""));
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
 }
 
 export const config = {
