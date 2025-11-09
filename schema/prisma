@@ -1,1 +1,14 @@
-datasource db { provider = "mysql"; url = env("DATABASE_URL") }
+model QuizQuestion {
+  id         Int      @id @default(autoincrement())
+  country    String
+  category   String
+  topic      String
+  question   String
+  option_a   String
+  option_b   String
+  option_c   String
+  option_d   String
+  correct    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
