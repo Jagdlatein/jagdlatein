@@ -1,14 +1,19 @@
 // pages/api/auth/check.js
-import prisma from "../../../lib/prisma";
+import { PrismaClient } from "@prisma/client";
+
+let prisma;
+function getPrisma() {
+  if (!prisma) prisma = new PrismaClient();
+  return prisma;
+}
 
 export default async function handler(req, res) {
   try {
-    const emailRaw = req.body?.email || req.query?.email || "";
-    const email = emailRaw.trim().toLowerCase();
+    const prisma = getPrisma();
 
-    if (!email) {
-      return res.status(400).json({ ok: false, error: "missing-email" });
-    }
+    const emailRaw = (req.body && req.body.email) || req.query.email || "";
+    const email = String(emailRaw).trim().toLowerCase();
+    if (!email) return res.status(400).json({ ok: false, error: "missing-email" });
 
     const pass = await prisma.accessPass.findFirst({
       where: {
@@ -17,15 +22,16 @@ export default async function handler(req, res) {
         startsAt: { lte: new Date() },
         expiresAt: { gt: new Date() },
       },
-      select: { id: true, expiresAt: true },
+      select: { id: true, plan: true, expiresAt: true, status: true },
     });
 
     return res.json({
       ok: true,
       hasAccess: !!pass,
+      status: pass?.status ?? null,
+      plan: pass?.plan ?? null,
       expiresAt: pass?.expiresAt ?? null,
     });
-
   } catch (e) {
     return res.status(500).json({ ok: false, error: String(e) });
   }
