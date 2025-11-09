@@ -7,7 +7,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
+// prisma/schema.prisma
 model QuizQuestion {
   id         Int      @id @default(autoincrement())
   country    String
