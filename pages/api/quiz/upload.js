@@ -17,7 +17,11 @@ function isAuthorized(req) {
 }
 
 function bad(res, c, m) { return res.status(c).json({ error: m }); }
-
+console.log("auth", req.headers.authorization ? "present" : "missing");
+console.log("content-type", req.headers["content-type"]);
+console.log("parsed.rows", rows.length);
+console.log("header", Object.keys(rows[0] || {}));
+console.log("sample", rows[0]);
 export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
