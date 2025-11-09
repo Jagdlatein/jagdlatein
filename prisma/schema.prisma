@@ -1,23 +1,13 @@
-// prisma/schema.prisma
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 model QuizQuestion {
-  id        String   @id
-  country   String?  @db.Text
-  category  String?  @db.Text
-  topic     String?  @db.Text
-  question  String   @db.Text
-  optionA   String   @db.Text
-  optionB   String   @db.Text
-  optionC   String   @db.Text
-  optionD   String   @db.Text
+  id        String   @id @default(uuid())
+  country   String?
+  category  String?
+  topic     String?
+  question  String
+  optionA   String
+  optionB   String
+  optionC   String
+  optionD   String
   correct   String   @db.VarChar(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
