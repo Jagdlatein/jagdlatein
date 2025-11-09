@@ -22,7 +22,7 @@ model QuizQuestion {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
-// prisma/schema.prisma (ergänzen)
+
 model GlossaryEntry {
   id        Int      @id @default(autoincrement())
   term      String
