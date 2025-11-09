@@ -1,135 +1,197 @@
 // pages/api/paypal/webhook.js
+// Next.js: rohen Body lesen (für Signaturprüfung)
+export const config = { api: { bodyParser: false } };
+
 import getRawBody from "raw-body";
-import { prisma } from "../../../lib/prisma";
+import https from "https";
+import { prisma } from "../../../lib/prisma"; // ggf. Pfad anpassen
 
-export const config = {
-  api: { bodyParser: false }, // Raw body required for PayPal signature verify
-};
+const PAYPAL_BASE =
+  process.env.PAYPAL_ENV === "live"
+    ? "https://api-m.paypal.com"
+    : "https://api-m.sandbox.paypal.com";
 
-function apiBase() {
-  return process.env.PAYPAL_ENV === "sandbox"
-    ? "https://api-m.sandbox.paypal.com"
-    : "https://api-m.paypal.com";
+async function getAccessToken() {
+  const creds = Buffer.from(
+    `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
+  ).toString("base64");
+
+  const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${creds}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+    // Node < 18: agent: new https.Agent({ keepAlive: true })
+  });
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(`PayPal token failed: ${res.status} ${t}`);
+  }
+  const json = await res.json();
+  return json.access_token;
 }
 
-async function verifySignature(req, rawBody) {
-  const headers = req.headers;
+async function verifySignature({
+  raw,
+  headers,
+  webhookId,
+  accessToken,
+}) {
   const payload = {
     auth_algo: headers["paypal-auth-algo"],
     cert_url: headers["paypal-cert-url"],
     transmission_id: headers["paypal-transmission-id"],
     transmission_sig: headers["paypal-transmission-sig"],
     transmission_time: headers["paypal-transmission-time"],
-    webhook_id: process.env.PAYPAL_WEBHOOK_ID,
-    webhook_event: JSON.parse(rawBody.toString("utf8")),
+    webhook_id: webhookId,
+    webhook_event: JSON.parse(raw.toString("utf8")),
   };
 
-  const auth = Buffer.from(
-    `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_SECRET}`
-  ).toString("base64");
+  const res = await fetch(
+    `${PAYPAL_BASE}/v1/notifications/verify-webhook-signature`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }
+  );
 
-  const r = await fetch(`${apiBase()}/v1/notifications/verify-webhook-signature`, {
-    method: "POST",
-    headers: {
-      "Authorization": `Basic ${auth}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(`verify failed: ${res.status} ${t}`);
+  }
+  const json = await res.json();
+  return json.verification_status === "SUCCESS";
+}
+
+// optional: Bestelldetails laden, um Käufer-E-Mail zu ermitteln
+async function fetchOrder(orderId, accessToken) {
+  const res = await fetch(`${PAYPAL_BASE}/v2/checkout/orders/${orderId}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) return null;
+  return res.json();
+}
+
+async function grantAccessByEmail(email, durationDays = 30) {
+  if (!email) throw new Error("no buyer email");
+  // User anlegen/finden
+  const user = await prisma.user.upsert({
+    where: { id: email }, // wir verwenden Email als User.id (einfach)
+    update: {},
+    create: { id: email },
   });
 
-  if (!r.ok) return false;
-  const data = await r.json();
-  return data?.verification_status === "SUCCESS";
-}
+  // AccessPass anlegen/verlängern (Model: AccessPass(email, active, expiresAt, …))
+  const now = new Date();
+  const until = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
 
-function extractEmail(evt) {
-  return (
-    evt?.resource?.payer?.email_address ||
-    evt?.resource?.payment_source?.paypal?.email_address ||
-    evt?.resource?.payer_email ||
-    evt?.resource?.payer_email_address ||
-    null
-  )?.toLowerCase() || null;
-}
+  await prisma.accessPass.upsert({
+    where: { email }, // UNIQUE Index auf email
+    update: {
+      active: true,
+      expiresAt: until,
+      updatedAt: new Date(),
+    },
+    create: {
+      email,
+      userId: user.id,
+      active: true,
+      expiresAt: until,
+    },
+  });
 
-function detectPlan(evt) {
-  // Betrag oder (falls vorhanden) custom_id auswerten
-  const amount =
-    evt?.resource?.amount?.value ||
-    evt?.resource?.purchase_units?.[0]?.amount?.value ||
-    null;
-
-  const custom =
-    evt?.resource?.custom_id ||
-    evt?.resource?.purchase_units?.[0]?.custom_id ||
-    null;
-
-  if (custom === "monthly") return "monthly";
-  if (custom === "yearly")  return "yearly";
-
-  if (String(amount) === "10" || String(amount) === "10.00") return "monthly";
-  if (String(amount) === "100" || String(amount) === "100.00") return "yearly";
-
-  return "yearly"; // Default
+  return { email, until };
 }
 
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ ok: false, error: "Method not allowed" });
+  }
+
   try {
+    // 1) Raw Body einlesen
     const raw = await getRawBody(req);
-    const evt = JSON.parse(raw.toString("utf8"));
 
-    // 1) Signatur prüfen
-    const ok = await verifySignature(req, raw);
+    // 2) PayPal Signatur prüfen
+    const accessToken = await getAccessToken();
+    const ok = await verifySignature({
+      raw,
+      headers: {
+        "paypal-auth-algo": req.headers["paypal-auth-algo"],
+        "paypal-cert-url": req.headers["paypal-cert-url"],
+        "paypal-transmission-id": req.headers["paypal-transmission-id"],
+        "paypal-transmission-sig": req.headers["paypal-transmission-sig"],
+        "paypal-transmission-time": req.headers["paypal-transmission-time"],
+      },
+      webhookId: process.env.PAYPAL_WEBHOOK_ID,
+      accessToken,
+    });
+
     if (!ok) {
-      return res.status(400).json({ ok: false, error: "invalid_signature" });
+      return res.status(400).json({ ok: false, error: "Invalid signature" });
     }
 
-    const type = evt?.event_type || "";
-    const email = extractEmail(evt);
+    // 3) Event parsen & behandeln
+    const event = JSON.parse(raw.toString("utf8"));
+    const type = event.event_type;
+    const resource = event.resource || {};
 
-    // 2) Event loggen (hilft beim Debuggen)
-    try {
-      await prisma.paymentEvent.create({
-        data: {
-          provider: "paypal",
-          status: type,
-          email: email || undefined,
-          raw: evt,
-        },
-      });
-    } catch (_) {}
+    // Käufer-Email versuchen zu bestimmen
+    let buyerEmail =
+      resource?.payer?.email_address ||
+      resource?.payment_source?.paypal?.email_address ||
+      resource?.payer_email || null;
 
-    // 3) Bei erfolgreicher Zahlung freischalten
-    const successTypes = new Set([
-      "PAYMENT.CAPTURE.COMPLETED",
-      "CHECKOUT.ORDER.APPROVED",
-      "PAYMENT.SALE.COMPLETED",
-      "BILLING.SUBSCRIPTION.ACTIVATED",
-    ]);
-
-    if (successTypes.has(type) && email) {
-      const plan = detectPlan(evt);
-      const starts = new Date();
-      const expires = new Date(
-        starts.getTime() + (plan === "monthly" ? 30 : 365) * 24 * 3600 * 1000
-      );
-
-      await prisma.user.upsert({
-        where: { id: email },
-        create: { id: email, email },
-        update: {},
-      });
-
-      await prisma.accessPass.upsert({
-        where: { userId: email },
-        create: { userId: email, plan, status: "active", startsAt: starts, expiresAt: expires },
-        update: { plan, status: "active", startsAt: starts, expiresAt: expires },
-      });
+    // Bei Capture → Order holen (dort steckt die Email)
+    if (!buyerEmail) {
+      const orderId =
+        resource?.supplementary_data?.related_ids?.order_id ||
+        resource?.id ||
+        resource?.order_id;
+      if (orderId) {
+        const order = await fetchOrder(orderId, accessToken);
+        buyerEmail =
+          order?.payer?.email_address ||
+          order?.payment_source?.paypal?.email_address ||
+          buyerEmail;
+      }
     }
 
-    return res.json({ ok: true });
-  } catch (e) {
-    console.error("paypal webhook error", e);
-    return res.status(500).json({ ok: false, error: String(e) });
+    let granted = null;
+
+    switch (type) {
+      case "CHECKOUT.ORDER.APPROVED":
+      case "PAYMENT.CAPTURE.COMPLETED":
+      case "PAYMENT.SALE.COMPLETED":
+        granted = await grantAccessByEmail(buyerEmail, 30);
+        break;
+
+      // Optional weitere Events
+      case "BILLING.SUBSCRIPTION.ACTIVATED":
+        granted = await grantAccessByEmail(buyerEmail, 30);
+        break;
+
+      default:
+        // nicht relevant für Zugang – aber bestätigen
+        break;
+    }
+
+    return res.status(200).json({
+      ok: true,
+      type,
+      buyerEmail: buyerEmail || null,
+      granted: granted || null,
+    });
+  } catch (err) {
+    console.error("paypal webhook error", err);
+    return res
+      .status(500)
+      .json({ ok: false, error: String(err?.message || err) });
   }
 }
