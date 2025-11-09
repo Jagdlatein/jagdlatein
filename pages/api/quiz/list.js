@@ -1,40 +1,17 @@
 // pages/api/quiz/list.js
-import { prisma } from "../../lib/prisma";
+import prisma from "../../../lib/prisma"; // <-- 3 Ebenen hoch!
 
 export default async function handler(req, res) {
   try {
-    const {
-      q,
-      country,
-      category,
-      topic,
-      page = "1",
-      pageSize = "20",
-    } = req.query;
-
-    const where = {};
-    if (q) {
-      where.OR = [
-        { question: { contains: q, mode: "insensitive" } },
-        { optionA: { contains: q, mode: "insensitive" } },
-        { optionB: { contains: q, mode: "insensitive" } },
-        { optionC: { contains: q, mode: "insensitive" } },
-        { optionD: { contains: q, mode: "insensitive" } },
-      ];
-    }
-    if (country && country !== "alle") where.country = country;
-    if (category && category !== "alle") where.category = category;
-    if (topic && topic !== "alle") where.topic = topic;
-
-    const take = Math.max(1, parseInt(pageSize, 10));
-    const skip = (Math.max(1, parseInt(page, 10)) - 1) * take;
+    const { page = 1, pageSize = 20 } = req.query;
+    const take = Math.min(Number(pageSize) || 20, 100);
+    const skip = Math.max((Number(page) || 1) - 1, 0) * take;
 
     const [items, total] = await Promise.all([
       prisma.quizQuestion.findMany({
-        where,
-        orderBy: [{ id: "asc" }],
         skip,
         take,
+        orderBy: { id: "asc" },
         select: {
           id: true,
           country: true,
@@ -46,17 +23,15 @@ export default async function handler(req, res) {
           optionC: true,
           optionD: true,
           correct: true,
-          createdAt: true,
-          updatedAt: true,
         },
       }),
-      prisma.quizQuestion.count({ where }),
+      prisma.quizQuestion.count(),
     ]);
 
-    res.status(200).json({ ok: true, total, items });
-  } catch (e) {
+    res.status(200).json({ ok: true, items, total, page: Number(page), pageSize: take });
+  } catch (err) {
     res
       .status(500)
-      .json({ ok: false, error: e?.message ?? "Unknown error in quiz list" });
+      .json({ ok: false, error: err?.message || "Unknown error in /api/quiz/list" });
   }
 }
