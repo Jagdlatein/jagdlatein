@@ -7,7 +7,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-// prisma/schema.prisma
+
 model QuizQuestion {
   id         Int      @id @default(autoincrement())
   country    String
@@ -27,48 +27,25 @@ model GlossaryEntry {
   id        Int      @id @default(autoincrement())
   term      String
   slug      String   @unique
-  country   String?  // DE/AT/CH optional
-  category  String?  // z.B. Wildkunde, Recht, Waffen
-  body      String   // Markdown/Text
+  country   String?
+  category  String?
+  body      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model User {
-  id        String   @id           // z.B. anon_<uuid> im Client gespeichert (localStorage)
+  id        String   @id           // E-Mail oder anon_<uuid>
   createdAt DateTime @default(now())
+
+  // Gegenkante für 1:1 zu AccessPass (wichtig!)
+  access    AccessPass?
+
+  // optionale Back-Relations (nicht zwingend, aber praktisch)
+  attempts  QuizAttempt[]
+  // Für Feedback gäbe es keine Relation im Model; kann man später ergänzen
 }
 
-model QuizAttempt {
-  id        String   @id @default(uuid())
-  userId    String
-  startedAt DateTime @default(now())
-  finishedAt DateTime?
-  total     Int      @default(0)
-  correct   Int      @default(0)
-  durationS Int      @default(0)
-
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-model QuizAnswer {
-  id           String   @id @default(uuid())
-  attemptId    String
-  questionId   Int
-  selected     String   // A|B|C|D
-  correct      Boolean
-  answeredAt   DateTime @default(now())
-
-  attempt      QuizAttempt @relation(fields: [attemptId], references: [id])
-}
-
-model QuizFeedback {
-  id          String   @id @default(uuid())
-  questionId  Int
-  userId      String?
-  message     String
-  createdAt   DateTime @default(now())
-}
 model AccessPass {
   id        String   @id @default(uuid())
   userId    String   @unique
@@ -79,6 +56,7 @@ model AccessPass {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // 1:1 Relation -> braucht Gegenfeld im User (oben 'access')
   user      User     @relation(fields: [userId], references: [id])
 }
 
@@ -98,4 +76,36 @@ model PaymentEvent {
   email     String?
   status    String?
   createdAt DateTime @default(now())
+}
+
+model QuizAttempt {
+  id        String   @id @default(uuid())
+  userId    String
+  startedAt DateTime @default(now())
+  finishedAt DateTime?
+  total     Int      @default(0)
+  correct   Int      @default(0)
+  durationS Int      @default(0)
+
+  user      User     @relation(fields: [userId], references: [id])
+  answers   QuizAnswer[]
+}
+
+model QuizAnswer {
+  id           String   @id @default(uuid())
+  attemptId    String
+  questionId   Int
+  selected     String   // A|B|C|D
+  correct      Boolean
+  answeredAt   DateTime @default(now())
+
+  attempt      QuizAttempt @relation(fields: [attemptId], references: [id])
+}
+
+model QuizFeedback {
+  id          String   @id @default(uuid())
+  questionId  Int
+  userId      String?
+  message     String
+  createdAt   DateTime @default(now())
 }
