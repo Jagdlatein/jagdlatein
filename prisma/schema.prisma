@@ -132,9 +132,5 @@ model AccessPass {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-model User {
-  id        String   @id          // wir nutzen Email als id
-  createdAt DateTime @default(now())
-  // relation back
-  accessPass AccessPass?
-}
+
+
