@@ -1,19 +1,32 @@
-// pages/api/admin/auth-check.js
-export const config = { api: { bodyParser: true }, runtime: "nodejs" };
+// pages/api/auth/check.js
+import prisma from "../../../lib/prisma";
 
-function getBearer(req) {
-  const h = req.headers.authorization || "";
-  return h.startsWith("Bearer ") ? h.slice(7).trim() : "";
-}
+export default async function handler(req, res) {
+  try {
+    const emailRaw = req.body?.email || req.query?.email || "";
+    const email = emailRaw.trim().toLowerCase();
 
-export default function handler(req, res) {
-  const sent = getBearer(req);
-  const want = (process.env.ADMIN_PASS || "").trim();
-  return res.status(200).json({
-    ok: Boolean(sent && want && sent === want),
-    has_admin_pass: Boolean(want),
-    header_present: Boolean(req.headers.authorization),
-    sent_len: sent ? sent.length : 0,
-    match: sent === want
-  });
+    if (!email) {
+      return res.status(400).json({ ok: false, error: "missing-email" });
+    }
+
+    const pass = await prisma.accessPass.findFirst({
+      where: {
+        userId: email,
+        status: "active",
+        startsAt: { lte: new Date() },
+        expiresAt: { gt: new Date() },
+      },
+      select: { id: true, expiresAt: true },
+    });
+
+    return res.json({
+      ok: true,
+      hasAccess: !!pass,
+      expiresAt: pass?.expiresAt ?? null,
+    });
+
+  } catch (e) {
+    return res.status(500).json({ ok: false, error: String(e) });
+  }
 }
