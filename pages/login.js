@@ -28,11 +28,13 @@ try {
 } catch {
   // keine JSON-Antwort → wahrscheinlich Fehler-HTML oder leer
 }
+let data = null, text = "";
+text = await r.text();
+try { data = JSON.parse(text); } catch {}
 if (!r.ok) {
   const msg = (data && data.error) || text || "Serverfehler / Login fehlgeschlagen";
   throw new Error(msg);
 }
-
 
       setMsg("Erfolg: Zugang aktiv – weiter zum Quiz …");
       router.replace("/quiz");
