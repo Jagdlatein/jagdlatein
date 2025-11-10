@@ -71,13 +71,15 @@ export default function LoginPage() {
     }
   }
 
-  function doLogout() {
-    setBusy(true);
-    setMsg("");
-    fetch("/api/auth/session", { method: "DELETE" })
-      .then(() => setMsg("Abgemeldet."))
-      .catch(() => setMsg("Fehler beim Abmelden"))
-      .finally(() => setBusy(false));
+ function doLogout() {
+  // Alle Cookies löschen
+  ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(name => {
+    document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+  });
+  // Zur Login-Seite weiterleiten
+  window.location.href = "/login";
+}
+
   }
 
   return (
