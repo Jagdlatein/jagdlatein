@@ -1,6 +1,7 @@
 // app/api/auth/confirm/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+export const dynamic = "force-dynamic";
 
 const COOKIE_OPTS = {
   httpOnly: true,
