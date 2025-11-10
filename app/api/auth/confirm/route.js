@@ -1,63 +1,62 @@
-// app/api/auth/confirm/route.js
+// app/api/auth/session/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 
 const COOKIE_OPTS = {
   httpOnly: true,
-  sameSite: "lax",           // bei anderer Domain/Subdomain ggf. "none" + secure:true
+  sameSite: "lax",
   path: "/",
   secure: process.env.NODE_ENV === "production",
   maxAge: 60 * 60 * 24 * 40,
 };
 
-async function internalCheck(req, { email, token }) {
+async function internalCheck(req, email) {
   const url = new URL("/api/auth/check", req.url);
   url.searchParams.set("email", email);
-  if (token) url.searchParams.set("token", token);
   const r = await fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" });
-  if (!r.ok) return null;
-  return r.json();
+  if (!r.ok) throw new Error(`Auth-Check failed (${r.status})`);
+  const data = await r.json();
+  if (!data?.hasAccess) throw new Error("Kein aktives Abo");
+  return data;
 }
 
-export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-  const token = searchParams.get("token");
-  const email = searchParams.get("email");
-  const next = searchParams.get("next") || "/quiz";
-  const html = searchParams.get("html") === "1"; // optional: HTML-Fallback forcieren
+export async function POST(req) {
+  try {
+    const { email, adminToken } = await req.json();
+    if (adminToken) {
+      if (!process.env.ADMIN_PASS || adminToken !== process.env.ADMIN_PASS) {
+        return NextResponse.json({ error: "Admin-Token ungültig" }, { status: 401 });
+      }
+      if (email) cookies().set({ name: "jl_email", value: encodeURIComponent(email), ...COOKIE_OPTS });
+      cookies().set({ name: "jl_admin", value: "1", ...COOKIE_OPTS });
+      cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
+      return NextResponse.json({ ok: true, mode: "admin" });
+    }
 
-  if (!token || !email) {
-    return NextResponse.json({ error: "Missing token/email" }, { status: 400 });
+    if (!email) return NextResponse.json({ error: "E-Mail fehlt" }, { status: 400 });
+
+    await internalCheck(req, email);
+
+    cookies().set({ name: "jl_email", value: encodeURIComponent(email), ...COOKIE_OPTS });
+    cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
+    cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
+
+    return NextResponse.json({ ok: true, mode: "user" });
+  } catch (err) {
+    console.error("SESSION ROUTE ERROR:", err);
+    return NextResponse.json({ error: err.message || "Server error" }, { status: 500 });
   }
+}
 
-  const data = await internalCheck(req, { email, token });
-  if (!data || !data.hasAccess) {
-    const fail = new URL("/login", req.url);
-    fail.searchParams.set("msg", data ? "Kein aktives Abo" : "Bestätigung fehlgeschlagen");
-    return NextResponse.redirect(fail, { status: 303 });
+export async function DELETE() {
+  try {
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) =>
+      cookies().set({ name: n, value: "", path: "/", maxAge: 0 })
+    );
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("SESSION DELETE ERROR:", err);
+    return NextResponse.json({ error: err.message || "Server error" }, { status: 500 });
   }
-
-  // Cookies setzen (serverseitig)
-  cookies().set({ name: "jl_email", value: encodeURIComponent(email), ...COOKIE_OPTS });
-  cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
-  cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
-
-  const dest = new URL(next, req.url);
-
-  // 1) Primär: 303 Redirect (sicherer als 302/307 für Folgeseite)
-  const res = NextResponse.redirect(dest, { status: 303 });
-
-  // 2) Zusatz: Refresh-Header als Fallback (manche E-Mail-InApp-Browser)
-  res.headers.set("Refresh", `0; url=${dest.toString()}`);
-
-  if (!html) return res;
-
-  // 3) Optionales Mini-HTML als dritter Fallback (z. B. Safari/Deep-Link)
-  return new NextResponse(
-    `<!doctype html>
-     <meta http-equiv="refresh" content="0;url='${dest.toString()}'">
-     <script>location.replace(${JSON.stringify(dest.toString())});</script>`,
-    { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
-  );
 }
