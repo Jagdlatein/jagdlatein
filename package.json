@@ -12,7 +12,10 @@
     "prisma:generate": "prisma generate",
     "prisma:deploy": "prisma migrate deploy",
     "build": "next build",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+     "build": "next build",
+    "postinstall": "prisma generate",
+    "prisma:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
