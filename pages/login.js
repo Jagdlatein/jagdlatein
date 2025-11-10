@@ -20,25 +20,18 @@ export default function LoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+
+      const raw = await r.text();
       let data = null;
-let text = "";
-try {
-  text = await r.text();
-  data = JSON.parse(text);
-} catch {
-  // keine JSON-Antwort → wahrscheinlich Fehler-HTML oder leer
-}
-let data = null, text = "";
-text = await r.text();
-try { data = JSON.parse(text); } catch {}
-if (!r.ok) {
-  const msg = (data && data.error) || text || "Serverfehler / Login fehlgeschlagen";
-  throw new Error(msg);
-}
+      try { data = JSON.parse(raw); } catch {}
+
+      if (!r.ok) {
+        throw new Error((data && data.error) || raw || "Serverfehler / Login fehlgeschlagen");
+      }
 
       setMsg("Erfolg: Zugang aktiv – weiter zum Quiz …");
       router.replace("/quiz");
-      router.reload(); // stellt Cookie-Sync sicher
+      router.reload(); // sichert Cookie-Sync im Pages Router
     } catch (err) {
       console.error(err);
       setMsg(err.message || "Unbekannter Fehler");
@@ -58,19 +51,15 @@ if (!r.ok) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email || undefined, adminToken }),
       });
+
+      const raw = await r.text();
       let data = null;
-let text = "";
-try {
-  text = await r.text();
-  data = JSON.parse(text);
-} catch {
-  // keine JSON-Antwort → wahrscheinlich Fehler-HTML oder leer
-}
-if (!r.ok) {
-  const msg = (data && data.error) || text || "Serverfehler / Login fehlgeschlagen";
-  throw new Error(msg);
-}
-      
+      try { data = JSON.parse(raw); } catch {}
+
+      if (!r.ok) {
+        throw new Error((data && data.error) || raw || "Admin-Login fehlgeschlagen");
+      }
+
       setMsg("Admin-Vorschau aktiv. Weiter zum Quiz …");
       router.replace("/quiz");
       router.reload();
@@ -83,20 +72,20 @@ if (!r.ok) {
   }
 
   function doLogout() {
+    setBusy(true);
+    setMsg("");
     fetch("/api/auth/session", { method: "DELETE" })
       .then(() => setMsg("Abgemeldet."))
-      .catch(() => setMsg("Fehler beim Abmelden"));
+      .catch(() => setMsg("Fehler beim Abmelden"))
+      .finally(() => setBusy(false));
   }
 
   return (
     <main style={{ maxWidth: 720, margin: "2rem auto", padding: "0 1rem" }}>
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>
-        Login
-      </h1>
+      <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>Login</h1>
 
       <p style={{ opacity: 0.9, marginBottom: "1rem" }}>
-        Gib die E-Mail ein, mit der du bezahlt hast. Dein Zugang wird automatisch
-        geprüft.
+        Gib die E-Mail ein, mit der du bezahlt hast. Dein Zugang wird automatisch geprüft.
       </p>
 
       <form
@@ -109,9 +98,7 @@ if (!r.ok) {
           marginBottom: "1rem",
         }}
       >
-        <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>
-          E-Mail
-        </label>
+        <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>E-Mail</label>
         <input
           type="email"
           required
@@ -199,8 +186,8 @@ if (!r.ok) {
             </button>
           </div>
           <p style={{ fontSize: 13, opacity: 0.8, marginTop: 8 }}>
-            Bei Erfolg wird serverseitig eine Session gesetzt. Zugriff auf Quiz &amp;
-            Glossar ohne Abo (nur mit gültigem Admin-Token).
+            Bei Erfolg wird serverseitig eine Session gesetzt. Zugriff auf Quiz &amp; Glossar
+            ohne Abo (nur mit gültigem Admin-Token).
           </p>
         </form>
       </details>
