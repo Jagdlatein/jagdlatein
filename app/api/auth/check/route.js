@@ -127,16 +127,55 @@ export async function GET(req) {
     }
 
     // ✅ Normale DB-Prüfung
-    const { hasAccess, plan, expiresAt } = await findAccessForEmail(email);
+    import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
+
+export async function GET(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const email = (searchParams.get("email") || "").trim().toLowerCase();
+
+    if (!email) {
+      return NextResponse.json(
+        { ok: false, hasAccess: false, error: "E-Mail fehlt" },
+        { status: 400 }
+      );
+    }
+
+    // 1) ENV-Allowlist (optional, für Notfälle/Test)
+    const allowEnv = (process.env.ALLOW_ACCESS_EMAILS || "")
+      .split(",")
+      .map((s) => s.trim().toLowerCase())
+      .filter(Boolean);
+
+    if (allowEnv.includes(email)) {
+      return NextResponse.json({
+        ok: true,
+        hasAccess: true,
+        status: "allowlist",
+        plan: "MANUAL",
+        expiresAt: null,
+      });
+    }
+
+    // 2) DB: AccessGrant lesen
+    const grant = await prisma.accessGrant.findFirst({
+      where: { email },
+      orderBy: { updatedAt: "desc" },
+    });
+
+    const now = new Date();
+    const valid =
+      !!grant && (!grant.expiresAt || new Date(grant.expiresAt) > now);
 
     return NextResponse.json({
       ok: true,
-      hasAccess: !!hasAccess,
-      status: hasAccess ? "active" : "inactive",
-      plan: plan || null,
-      expiresAt: expiresAt ? new Date(expiresAt) : null,
-      // optional: token zurückgeben, falls du’s debuggen willst
-      // token: token || null,
+      hasAccess: valid,
+      status: valid ? "active" : "inactive",
+      plan: grant?.plan || null,
+      expiresAt: grant?.expiresAt || null,
     });
   } catch (err) {
     console.error("AUTH CHECK ERROR:", err);
