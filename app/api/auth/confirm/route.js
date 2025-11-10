@@ -1,3 +1,4 @@
+// app/api/auth/confirm/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "../../../../lib/prisma";
@@ -10,6 +11,10 @@ const COOKIE_OPTS = {
   secure: process.env.NODE_ENV === "production",
   maxAge: 60 * 60 * 24 * 40,
 };
+
+function hasModel(client, name) {
+  return !!client && Object.prototype.hasOwnProperty.call(client, name);
+}
 
 async function internalCheck(req, { email, token }) {
   const url = new URL("/api/auth/check", req.url);
@@ -35,7 +40,7 @@ export async function GET(req) {
   }
   const email = emailRaw.trim().toLowerCase();
 
-  // 1) interner Check (kann Allowlist oder DB bereits nutzen)
+  // 1) Check (Allowlist/AccessGrant/AccessPass)
   const data = await internalCheck(req, { email, token });
   if (!data?.hasAccess) {
     const fail = new URL("/login", req.url);
@@ -43,23 +48,54 @@ export async function GET(req) {
     return NextResponse.redirect(fail, { status: 303 });
   }
 
-  // 2) DB: AccessGrant upsert (dauerhafter Zugang)
+  // 2) Persistenz: User + AccessPass aktivieren/verlängern
   try {
-    await prisma.accessGrant.upsert({
-      where: { email },
+    // User sicherstellen
+    await prisma.user.upsert({
+      where: { id: email },
+      update: {},
+      create: { id: email },
+    });
+
+    // AccessPass aktiv/upsert
+    const expiresAt = data.expiresAt ? new Date(data.expiresAt) : null;
+    // Wenn du immer eine Laufzeit setzen willst (z. B. 365 Tage), ersetze expiresAt:
+    // const expiresAt = new Date(Date.now() + 365*24*60*60*1000);
+
+    await prisma.accessPass.upsert({
+      where: { userId: email },
       update: {
         plan: data.plan || "CONFIRMED",
-        expiresAt: data.expiresAt ? new Date(data.expiresAt) : null,
+        status: "active",
+        expiresAt: expiresAt || undefined,
       },
       create: {
-        email,
+        userId: email,
         plan: data.plan || "CONFIRMED",
-        expiresAt: data.expiresAt ? new Date(data.expiresAt) : null,
+        status: "active",
+        // falls dein Modell expiresAt required ist, setze hier ein Datum
+        expiresAt: expiresAt ?? new Date(Date.now() + 365*24*60*60*1000),
       },
     });
+
+    // Optional: Wenn AccessGrant-Model existiert, parallel pflegen (zukunftssicher)
+    if (hasModel(prisma, "accessGrant")) {
+      await prisma.accessGrant.upsert({
+        where: { email },
+        update: {
+          plan: data.plan || "CONFIRMED",
+          expiresAt: data.expiresAt ? new Date(data.expiresAt) : null,
+        },
+        create: {
+          email,
+          plan: data.plan || "CONFIRMED",
+          expiresAt: data.expiresAt ? new Date(data.expiresAt) : null,
+        },
+      });
+    }
   } catch (e) {
-    console.error("ACCESSGRANT UPSERT ERROR", e);
-    // kein Hard-Fail – Cookie/Redirect trotzdem fortsetzen
+    console.error("CONFIRM UPSERT ERROR", e);
+    // kein Hard-Fail – Cookies/Redirect trotzdem fortsetzen
   }
 
   // 3) Cookies setzen
@@ -67,7 +103,7 @@ export async function GET(req) {
   cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
   cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
 
-  // 4) Redirect + Fallbacks
+  // 4) Redirect (+ Fallback)
   const dest = new URL(next, req.url);
   const res = NextResponse.redirect(dest, { status: 303 });
   res.headers.set("Refresh", `0; url=${dest.toString()}`);
@@ -80,3 +116,4 @@ export async function GET(req) {
     { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
   );
 }
+
