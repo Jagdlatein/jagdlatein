@@ -1,11 +1,15 @@
 // pages/_app.js
-import "../styles/globals.css"; // falls vorhanden, ansonsten weglassen
-import Layout from "../components/Layout";
+import "../styles/globals.css";
+import Header from "../components/Header";
 
-export default function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }) {
+  // Header nur anzeigen, wenn der User eingeloggt ist (nicht auf /login oder /preise)
+  const hideHeader = router.pathname === "/login" || router.pathname === "/preise";
+
   return (
-    <Layout>
+    <>
+      {!hideHeader && <Header />}
       <Component {...pageProps} />
-    </Layout>
+    </>
   );
 }
