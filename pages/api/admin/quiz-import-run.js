@@ -2,7 +2,7 @@
 import path from "path";
 import fs from "fs";
 import * as XLSX from "xlsx";
-import { prisma } from "../../../lib/prisma";
+import  prisma  from "../../../lib/prisma";
 
 const ADMIN_PASS = process.env.ADMIN_PASS;
 
