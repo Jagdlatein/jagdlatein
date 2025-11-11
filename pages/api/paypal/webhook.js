@@ -1,7 +1,7 @@
 export const config = { api: { bodyParser: false } };
 
 import getRawBody from "raw-body";
-import { prisma } from "../../../lib/prisma";
+import  prisma  from "../../../lib/prisma";
 
 const PAYPAL_BASE =
   process.env.PAYPAL_ENV === "live"
