@@ -1,7 +1,7 @@
 // pages/api/auth/request-code.js
 import { allowRate } from "../../../lib/rate-limit";
 import { sendLoginCode } from "../../../lib/email";
-import { prisma } from "../../../lib/prisma"; // vorhandene Datei
+import prisma  from "../../../lib/prisma"; // vorhandene Datei
 import crypto from "crypto";
 
 function ok(res, data){ return res.status(200).json(data); }
