@@ -2,11 +2,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const links = [
-  { href: "/quiz", label: "Quiz" },
-  { href: "/glossar", label: "Glossar" },
-];
-
 export default function Header() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -18,120 +13,152 @@ export default function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Logout-Funktion
   function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
-      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
+      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
     });
     router.replace("/login");
-    setTimeout(() => (window.location.href = "/login"), 300);
+    setTimeout(() => (window.location.href = "/login"), 400);
   }
 
-  const isActive = (href) =>
-    router.pathname === href || router.pathname.startsWith(href + "/");
+  // Aktive Seite
+  const isActive = (href) => router.pathname === href;
 
   return (
     <>
-      {/* Sticky, glasiger Header */}
-      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-black/5">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="h-14 flex items-center justify-between">
-            {/* Logo */}
-            <button
-              onClick={() => router.push("/")}
-              className="text-[18px] font-extrabold tracking-wide text-gray-900 hover:opacity-80"
-              aria-label="Startseite"
-            >
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-gradient-to-b from-[#f7f3ea] to-[#efe7d6] border-b border-[#b8943b]/40 shadow-sm">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
+          {/* Logo */}
+          <button
+            onClick={() => router.push("/")}
+            className="flex items-center gap-2 text-[#2b2b2b] hover:opacity-80 transition"
+          >
+            <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#2b2b2b]">
               Jagdlatein
-            </button>
+            </span>
+          </button>
 
-            {/* Desktop Nav */}
-            <nav className="hidden sm:flex items-center gap-2">
-              {links.map((l) => (
-                <button
-                  key={l.href}
-                  onClick={() => router.push(l.href)}
-                  className={`px-3 py-1.5 rounded-xl text-sm font-semibold transition
-                  ${isActive(l.href)
-                    ? "bg-emerald-600 text-white shadow"
-                    : "text-gray-800 hover:bg-gray-100"
-                  }`}
-                >
-                  {l.label}
-                </button>
-              ))}
-              <button
-                onClick={logout}
-                className="px-3 py-1.5 rounded-xl text-sm font-semibold bg-rose-600 text-white hover:bg-rose-700 shadow"
-              >
-                Logout
-              </button>
-            </nav>
-
-            {/* Mobile Burger */}
+          {/* Desktop Navigation */}
+          <nav className="hidden sm:flex gap-3 items-center">
             <button
-              onClick={() => setOpen(true)}
-              className="sm:hidden inline-flex items-center justify-center rounded-xl p-2.5 hover:bg-black/5"
-              aria-label="Menü öffnen"
+              onClick={() => router.push("/quiz")}
+              className={`px-4 py-2 rounded-full font-semibold text-sm transition ${
+                isActive("/quiz")
+                  ? "bg-[#b8943b] text-white shadow"
+                  : "text-[#2b2b2b] hover:bg-[#b8943b]/15"
+              }`}
             >
-              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              </svg>
+              Quiz
             </button>
-          </div>
+
+            <button
+              onClick={() => router.push("/glossar")}
+              className={`px-4 py-2 rounded-full font-semibold text-sm transition ${
+                isActive("/glossar")
+                  ? "bg-[#b8943b] text-white shadow"
+                  : "text-[#2b2b2b] hover:bg-[#b8943b]/15"
+              }`}
+            >
+              Glossar
+            </button>
+
+            <button
+              onClick={logout}
+              className="px-4 py-2 rounded-full font-semibold text-sm bg-[#2b2b2b] text-white hover:bg-[#b8943b] transition"
+            >
+              Logout
+            </button>
+          </nav>
+
+          {/* Mobile Menü-Button */}
+          <button
+            onClick={() => setOpen(true)}
+            className="sm:hidden rounded-lg p-2 hover:bg-[#b8943b]/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-7 h-7 text-[#2b2b2b]"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menü Drawer */}
       {open && (
         <>
+          {/* Hintergrund */}
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
             onClick={() => setOpen(false)}
-          />
-          <aside
-            className="fixed right-0 top-0 h-full w-[82%] max-w-xs bg-white z-50 shadow-2xl p-4 flex flex-col"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-base font-bold text-gray-900">Menü</span>
+          ></div>
+
+          {/* Seitenmenü */}
+          <aside className="fixed top-0 right-0 z-50 h-full w-[80%] max-w-xs bg-[#f9f5eb] shadow-2xl flex flex-col p-5 border-l border-[#b8943b]/30">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-lg font-bold text-[#2b2b2b]">Menü</span>
               <button
                 onClick={() => setOpen(false)}
-                className="rounded-xl p-2 hover:bg-black/5"
-                aria-label="Menü schließen"
+                className="rounded-lg p-2 hover:bg-[#b8943b]/10"
               >
-                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                  <path d="M6.7 5.3 5.3 6.7 10.6 12l-5.3 5.3 1.4 1.4L12 13.4l5.3 5.3 1.4-1.4L13.4 12l5.3-5.3-1.4-1.4L12 10.6z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-[#2b2b2b]"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            <nav className="mt-1 flex flex-col gap-2">
-              {links.map((l) => (
-                <button
-                  key={l.href}
-                  onClick={() => {
-                    setOpen(false);
-                    router.push(l.href);
-                  }}
-                  className={`text-left px-3 py-2 rounded-xl border transition
-                  ${isActive(l.href)
-                    ? "bg-emerald-600 text-white border-emerald-600"
-                    : "border-gray-200 hover:bg-gray-50"
-                  }`}
-                >
-                  {l.label}
-                </button>
-              ))}
+            <nav className="flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  router.push("/quiz");
+                  setOpen(false);
+                }}
+                className={`px-3 py-2 text-left rounded-lg border ${
+                  isActive("/quiz")
+                    ? "bg-[#b8943b] text-white border-[#b8943b]"
+                    : "border-[#b8943b]/30 hover:bg-[#b8943b]/15 text-[#2b2b2b]"
+                }`}
+              >
+                Quiz
+              </button>
+
+              <button
+                onClick={() => {
+                  router.push("/glossar");
+                  setOpen(false);
+                }}
+                className={`px-3 py-2 text-left rounded-lg border ${
+                  isActive("/glossar")
+                    ? "bg-[#b8943b] text-white border-[#b8943b]"
+                    : "border-[#b8943b]/30 hover:bg-[#b8943b]/15 text-[#2b2b2b]"
+                }`}
+              >
+                Glossar
+              </button>
+
               <button
                 onClick={logout}
-                className="mt-1 text-left px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold"
+                className="mt-2 px-3 py-2 text-left rounded-lg bg-[#2b2b2b] text-white hover:bg-[#b8943b]"
               >
                 Logout
               </button>
             </nav>
 
-            <div className="mt-auto pt-3 text-xs text-gray-500">
+            <div className="mt-auto pt-4 text-xs text-[#6c6c6c]">
               © {new Date().getFullYear()} Jagdlatein
             </div>
           </aside>
