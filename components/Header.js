@@ -7,7 +7,6 @@ export default function Header() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  // ESC schließt mobiles Menü
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setOpen(false);
     if (open) document.addEventListener("keydown", onKey);
@@ -27,15 +26,13 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header-inner">
-        {/* Brand */}
-        <button onClick={() => router.push("/")} className="brand" aria-label="Startseite">
-          {/* ersetze /logo.svg durch deine Datei im /public Ordner */}
-          <img src="/logo.svg" alt="Jagdlatein" className="logo" />
+        {/* Text-Brand */}
+        <Link href="/" className="brand" aria-label="Startseite">
           <span className="brand-title">
-            <span style={{ fontSize: 22, fontWeight: 900 }}>Jagdlatein</span>
+            <span className="brand-name">Jagdlatein</span>
             <small>Lernplattform</small>
           </span>
-        </button>
+        </Link>
 
         {/* Desktop-Menü */}
         <nav className="menu">
@@ -50,18 +47,18 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* Hamburger */}
+        {/* Hamburger für Mobile */}
         <button
           className={`hamburger ${open ? "is-open" : ""}`}
           onClick={() => setOpen((v) => !v)}
-          aria-label="Menü umschalten"
+          aria-label="Menü öffnen"
           aria-expanded={open}
         >
           <span></span><span></span><span></span>
         </button>
       </div>
 
-      {/* Mobile-Menü */}
+      {/* Mobiles Menü */}
       <div className={`mobile-menu ${open ? "open" : ""}`}>
         <Link href="/quiz" className={isActive("/quiz") ? "active" : ""} onClick={() => setOpen(false)}>
           Quiz
@@ -69,9 +66,7 @@ export default function Header() {
         <Link href="/glossar" className={isActive("/glossar") ? "active" : ""} onClick={() => setOpen(false)}>
           Glossar
         </Link>
-        <button onClick={() => { setOpen(false); logout(); }} className="">
-          Logout
-        </button>
+        <button onClick={() => { setOpen(false); logout(); }}>Logout</button>
         <div className="mobile-meta">© {new Date().getFullYear()} Jagdlatein</div>
       </div>
     </header>
