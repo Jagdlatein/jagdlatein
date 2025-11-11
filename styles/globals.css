@@ -264,3 +264,89 @@ html, body {
   margin: 0;
   padding: 0;
 }
+/* ===== Mobile Optimierung ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--forest);
+  letter-spacing: -0.2px;
+}
+
+.brand-title small {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: -2px;
+}
+
+@media (max-width: 480px) {
+  .brand-name {
+    font-size: 22px;
+  }
+  .brand-title small {
+    font-size: 12px;
+  }
+  .header-inner {
+    height: 60px;
+  }
+}
+
+/* Menü-Buttons auf Mobile optimieren */
+.menu {
+  gap: 10px;
+}
+.menu .nav-link {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(31,43,35,0.06);
+  font-weight: 700;
+  font-size: 15px;
+}
+.menu .nav-link:hover {
+  background: rgba(31,43,35,0.1);
+}
+.menu .nav-link.active {
+  background: var(--forest);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+/* Hamburger-Button für Fingergröße */
+.hamburger {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(31,43,35,.15);
+}
+
+/* Mobiles Menü kompakter */
+.mobile-menu a, .mobile-menu button {
+  font-size: 17px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(31,43,35,0.1);
+  margin-bottom: 8px;
+  background: rgba(255,255,255,.8);
+}
+.mobile-menu a.active {
+  background: var(--forest);
+  color: #fff;
+  border-color: var(--forest);
+}
