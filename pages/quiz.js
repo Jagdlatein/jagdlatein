@@ -4,9 +4,9 @@ export default function QuizPage() {
   return (
     <>
       <Header />
-      <main className="p-4 max-w-3xl mx-auto">
+      <main className="max-w-4xl mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">Quiz</h1>
-        {/* Dein Quiz-Inhalt */}
+        {/* Dein Inhalt */}
       </main>
     </>
   );
