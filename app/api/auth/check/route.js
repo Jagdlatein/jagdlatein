@@ -1,6 +1,6 @@
 // app/api/auth/check/route.js
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../lib/prisma"; // 4 Ebenen hoch ab /app/api/auth/check
+import  prisma  from "../../../../lib/prisma"; // 4 Ebenen hoch ab /app/api/auth/check
 
 export const dynamic = "force-dynamic";
 
