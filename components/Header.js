@@ -24,8 +24,6 @@ function logout() {
   window.location.replace("/");
 }
 
-  }
-
   return (
     <header className="header">
       <div className="container header-inner">
