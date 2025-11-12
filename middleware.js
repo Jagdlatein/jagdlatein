@@ -1,7 +1,7 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-// Nur Admin-Bereich (und Admin-APIs) schützen
+// Nur Admin-Bereich + Admin-APIs schützen
 const ADMIN_ONLY = [
   /^\/admin(?:\/|$)/,
   /^\/api\/glossar\/import(?:\/|$)/,
@@ -22,14 +22,10 @@ export function middleware(req) {
       }
     }
   }
-
-  // ALLES ANDERE FREI (inkl. /quiz, /glossar, /api/quiz, /api/glossar)
+  // ALLES ANDERE FREI (Quiz/Glossar inkl. API)
   return NextResponse.next();
 }
 
-// Matcher: alles abfangen außer Next-Assets & Standarddateien
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|images/|assets/).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|images/|assets/).*)"],
 };
