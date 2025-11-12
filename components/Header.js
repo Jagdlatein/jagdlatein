@@ -1,33 +1,35 @@
 // components/Header.js
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
 export default function Header() {
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setOpen(false);
-    if (open) document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
+    // Clientseitig Cookies prüfen
+    const s = !!getCookie("jl_session");
+    const a = getCookie("jl_admin") === "1";
+    setLoggedIn(s);
+    setIsAdmin(a);
+  }, []);
 
-  const isActive = (href) =>
-    router.pathname === href || router.pathname.startsWith(href + "/");
-
-function logout() {
-  ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n => {
-    document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
-  });
-  // direkt ins Hauptmenü
-  window.location.replace("/");
-}
+  function logout() {
+    ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n=>{
+      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
+    });
+    window.location.replace("/"); // zurück ins Hauptmenü
+  }
 
   return (
     <header className="header">
       <div className="container header-inner">
-        {/* Text-Brand */}
         <Link href="/" className="brand" aria-label="Startseite">
           <span className="brand-title">
             <span className="brand-name">Jagdlatein</span>
@@ -35,40 +37,43 @@ function logout() {
           </span>
         </Link>
 
-        {/* Desktop-Menü */}
         <nav className="menu">
-          <Link href="/quiz" className={`nav-link ${isActive("/quiz") ? "active" : ""}`}>
-            Quiz
-          </Link>
-          <Link href="/glossar" className={`nav-link ${isActive("/glossar") ? "active" : ""}`}>
-            Glossar
-          </Link>
-          <button onClick={logout} className="nav-link" style={{ fontWeight: 800 }}>
-            Logout
-          </button>
+          <Link href="/quiz" className="nav-link">Quiz</Link>
+          <Link href="/glossar" className="nav-link">Glossar</Link>
+
+          {!loggedIn && (
+            <Link href="/login" className="nav-link">Login</Link>
+          )}
+
+          {loggedIn && (
+            <>
+              {isAdmin && <Link href="/admin/glossar" className="nav-link">Admin</Link>}
+              <button onClick={logout} className="nav-link" type="button">Logout</button>
+            </>
+          )}
         </nav>
 
-        {/* Hamburger für Mobile */}
-        <button
-          className={`hamburger ${open ? "is-open" : ""}`}
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menü öffnen"
-          aria-expanded={open}
-        >
+        <button className="hamburger" onClick={()=>{
+          document.querySelector(".mobile-menu")?.classList.toggle("open");
+        }} aria-label="Menü">
           <span></span><span></span><span></span>
         </button>
       </div>
 
-      {/* Mobiles Menü */}
-      <div className={`mobile-menu ${open ? "open" : ""}`}>
-        <Link href="/quiz" className={isActive("/quiz") ? "active" : ""} onClick={() => setOpen(false)}>
-          Quiz
-        </Link>
-        <Link href="/glossar" className={isActive("/glossar") ? "active" : ""} onClick={() => setOpen(false)}>
-          Glossar
-        </Link>
-        <button onClick={() => { setOpen(false); logout(); }}>Logout</button>
-        <div className="mobile-meta">© {new Date().getFullYear()} Jagdlatein</div>
+      <div className="mobile-menu">
+        <Link href="/quiz" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Quiz</Link>
+        <Link href="/glossar" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Glossar</Link>
+
+        {!loggedIn && <Link href="/login" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Login</Link>}
+
+        {loggedIn && (
+          <>
+            {isAdmin && <Link href="/admin/glossar" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Admin</Link>}
+            <button type="button" onClick={()=>{ document.querySelector(".mobile-menu")?.classList.remove("open"); logout(); }}>
+              Logout
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
