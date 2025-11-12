@@ -106,9 +106,13 @@ export default function LoginPage() {
     }
   }
 
-  function doLogout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
-    window.location.href = "/login";
+function doLogout() {
+  ["jl_session","jl_paid","jl_email","jl_admin"].forEach(name => {
+    document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+  });
+  window.location.replace("/"); // statt /login
+}
+
   }
 
   // Optional: Query-Param ?email= vorbelegen
