@@ -1,59 +1,29 @@
-// middleware.js
+// middleware.js (TEST)
 import { NextResponse } from "next/server";
-
-// Alles, was nur mit Login erlaubt ist:
-const PROTECTED_PATHS = [
-  /^\/quiz(?:\/|$)/,
-  /^\/glossar(?:\/|$)/,
-  /^\/api\/quiz(?:\/|$)/,
-  /^\/api\/glossar(?:\/|$)/,
-];
-
-// Admin-Bereich separat absichern:
-const ADMIN_PATHS = [
-  /^\/admin(?:\/|$)/,
-  /^\/api\/admin(?:\/|$)/,
-  /^\/api\/glossar\/import(?:\/|$)/,
-];
 
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  // Admin-Schutz
-  for (const re of ADMIN_PATHS) {
-    if (re.test(pathname)) {
-      const isAdmin = req.cookies.get("jl_admin")?.value === "1";
-      if (!isAdmin) {
-        const url = req.nextUrl.clone();
-        url.pathname = "/login";
-        url.searchParams.set("next", pathname);
-        return NextResponse.redirect(url);
-      }
-      return NextResponse.next();
-    }
+  // Assets & Login erlauben
+  if (
+    pathname.startsWith("/_next/") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/robots.txt") ||
+    pathname.startsWith("/sitemap.xml") ||
+    pathname.startsWith("/images/") ||
+    pathname.startsWith("/assets/") ||
+    pathname === "/login"
+  ) {
+    return NextResponse.next();
   }
 
-  // Login-Schutz für Quiz & Glossar
-  for (const re of PROTECTED_PATHS) {
-    if (re.test(pathname)) {
-      const hasSession = req.cookies.get("jl_session")?.value === "1";
-      const hasPaid = req.cookies.get("jl_paid")?.value === "1";
-      const isAdmin = req.cookies.get("jl_admin")?.value === "1";
-      if (!(hasSession && (hasPaid || isAdmin))) {
-        const url = req.nextUrl.clone();
-        url.pathname = "/login";
-        url.searchParams.set("next", pathname);
-        return NextResponse.redirect(url);
-      }
-      return NextResponse.next();
-    }
-  }
-
-  return NextResponse.next();
+  // ALLES andere → redirect auf /login
+  const url = req.nextUrl.clone();
+  url.pathname = "/login";
+  url.searchParams.set("next", pathname);
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|images/|assets/).*)",
-  ],
+  matcher: ["/:path*"],
 };
