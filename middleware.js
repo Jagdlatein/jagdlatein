@@ -1,7 +1,6 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-// Nur Admin-Bereich + Admin-APIs schützen
 const ADMIN_ONLY = [
   /^\/admin(?:\/|$)/,
   /^\/api\/glossar\/import(?:\/|$)/,
@@ -22,7 +21,6 @@ export function middleware(req) {
       }
     }
   }
-  // ALLES ANDERE FREI (Quiz/Glossar inkl. API)
   return NextResponse.next();
 }
 
