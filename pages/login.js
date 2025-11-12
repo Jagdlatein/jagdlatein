@@ -113,9 +113,7 @@ function doLogout() {
   window.location.replace("/"); // statt /login
 }
 
-  }
-
-  // Optional: Query-Param ?email= vorbelegen
+   // Optional: Query-Param ?email= vorbelegen
   useEffect(() => {
     if (!router.isReady) return;
     const qEmail = router.query?.email;
