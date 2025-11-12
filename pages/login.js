@@ -97,9 +97,10 @@ export default function LoginPage() {
       <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>Login</h1>
 
       <p style={{ opacity: 0.9, marginBottom: "1rem" }}>
-        Gib die E-Mail ein, mit der du bezahlt hast. (Quiz & Glossar sind frei zugänglich – Login
-        ist vor allem für Admin & spätere Features.)
-      </p>
+  Gib die E-Mail ein, mit der du bezahlt hast. <br />
+  Der Login ist erforderlich, um auf <strong>Quiz</strong> und <strong>Glossar</strong> zuzugreifen.
+</p>
+      
 
       <form
         onSubmit={tryUserAccess}
