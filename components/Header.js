@@ -16,11 +16,14 @@ export default function Header() {
   const isActive = (href) =>
     router.pathname === href || router.pathname.startsWith(href + "/");
 
-  function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
-      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
-    });
-    router.replace("/login");
+function logout() {
+  ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n => {
+    document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
+  });
+  // direkt ins Hauptmenü
+  window.location.replace("/");
+}
+
   }
 
   return (
