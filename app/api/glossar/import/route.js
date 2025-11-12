@@ -1,9 +1,11 @@
 // app/api/glossar/import/route.js
-export const runtime = "nodejs"; // sicherstellen: Node runtime (für Buffer, xlsx)
-import prisma from "../../../lib/prisma";
+export const runtime = "nodejs";
+
+import prisma from "../../../../lib/prisma";
+import { requireAdmin } from "../../../../lib/adminGuard";
 import { NextResponse } from "next/server";
-import { requireAdmin } from "../../../lib/adminGuard";
 import * as XLSX from "xlsx";
+
 
 function slugify(s = "") {
   return s
