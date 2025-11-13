@@ -1,54 +1,70 @@
 "use client";
+
 import { useSession, signIn } from "next-auth/react";
-import { useEffect } from "react";
-import Seo from '../components/Seo';
+import Seo from "../components/Seo";
 
 export default function EbookPage() {
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      // automatische Weiterleitung zu OneDrive
-      window.location.href =
-        "https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA?e=B0pRyj";
-    }
-  }, [session]);
+  if (status === "loading") return <p>Lade…</p>;
 
-  if (status === "loading") return <p>Lade...</p>;
-
+  // ❌ Nicht eingeloggt → Login anzeigen
   if (!session) {
     return (
-      <div style={{ padding: 40, textAlign: 'center' }}>
-        <Seo 
-          title="Jagdlatein E-Book" 
-          description="Zugriff nur für registrierte Mitglieder" 
-        />
+      <div style={{ padding: 40, textAlign: "center" }}>
+        <Seo title="E-Book" description="E-Book Download" />
 
         <h2>🔒 Login erforderlich</h2>
-        <p>Bitte melde dich an, um automatisch zum E-Book weitergeleitet zu werden.</p>
+        <p>Bitte melde dich an, um das E-Book zu öffnen.</p>
 
-        <button 
+        <button
           onClick={() => signIn()}
           style={{
-            padding: '12px 20px',
-            background: '#2b6e3e',
-            color: '#fff',
-            borderRadius: '8px',
-            fontSize: '18px',
-            cursor: 'pointer'
+            padding: "14px 24px",
+            background: "#2b6e3e",
+            color: "#fff",
+            borderRadius: "10px",
+            fontSize: "18px",
+            cursor: "pointer",
+            border: "none",
           }}
         >
-          Jetzt einloggen
+          Login
         </button>
       </div>
     );
   }
 
-  return <p>Weiterleitung zum E-Book…</p>;
-}
-export async function getServerSideProps() {
-  return {
-    props: {}
-  };
+  // ✔️ Eingeloggt → Button zum E-Book anzeigen
+  return (
+    <div style={{ padding: 40, textAlign: "center" }}>
+      <Seo title="E-Book" description="Direkter Zugriff" />
+
+      <h1>📘 Jagdlatein E-Book</h1>
+      <p>Klicke unten, um das E-Book zu öffnen.</p>
+
+      <a
+        href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA?e=B0pRyj"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          padding: "16px 32px",
+          background: "#2b6e3e",
+          color: "#fff",
+          borderRadius: "10px",
+          fontSize: "18px",
+          textDecoration: "none",
+          display: "inline-block",
+          marginTop: "20px",
+        }}
+      >
+        📥 E-Book öffnen
+      </a>
+    </div>
+  );
 }
 
+// ❗ notwendig, damit kein Prerendering passiert
+export async function getServerSideProps() {
+  return { props: {} };
+}
