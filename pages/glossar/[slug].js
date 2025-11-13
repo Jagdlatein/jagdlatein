@@ -13,6 +13,65 @@ const TERMS = {
     title:'Bruch',
     body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.',
   }
+  wechsel: {
+  title: "Wechsel",
+  body: "Regelmäßig genutzter Weg des Wildes, der oft zu Pirsch oder Ansitz genutzt wird."
+},
+kirren: {
+  title: "Kirren",
+  body: "Anlocken des Wildes durch Futter wie Mais, üblicherweise zur Schwarzwildbejagung."
+},
+verhoffen: {
+  title: "Verhoffen",
+  body: "Kurzfristiges Stehenbleiben des Wildes, um die Umgebung zu sichern."
+},
+fuchsfang: {
+  title: "Fuchsfang",
+  body: "Bejagung des Fuchses durch Fallenjagd, Baujagd oder Ansitz."
+},
+sichern: {
+  title: "Sichern",
+  body: "Das Wild prüft seine Umgebung durch Hören, Riechen und Sehen."
+},
+zeichnen: {
+  title: "Zeichnen",
+  body: "Körperliche Reaktion des Wildes beim Treffer, z. B. Zusammensacken oder Ausschlagen."
+},
+verblasen: {
+  title: "Verblasen",
+  body: "Jagdlicher Brauch, bei dem Stücke mit dem Jagdhorn verblasen werden."
+},
+verhitzen: {
+  title: "Verhitzen",
+  body: "Wild wird durch Lärm oder Störungen unruhig."
+},
+blasen: {
+  title: "Blasen",
+  body: "Lockruf oder Lautäußerung, häufig bei Rehwild in der Blattzeit."
+},
+plätzen: {
+  title: "Plätzen",
+  body: "Äsung des Rehwildes, oft im morgendlichen oder abendlichen Rhythmus."
+},
+brechen: {
+  title: "Brechen",
+  body: "Nahrungsaufnahme des Schwarzwildes, häufig laut und gründelnd."
+},
+fegen: {
+  title: "Fegen",
+  body: "Das Abreiben des Bastes vom Gehörn oder Geweih an Bäumen und Sträuchern."
+},
+rickenruf: {
+  title: "Rickenruf",
+  body: "Kontaktlaut der Ricke, besonders wichtig in der Setzzeit."
+},
+anschuss: {
+  title: "Anschuss",
+  body: "Die Stelle, an der das Wild beim Schuss stand; wichtiger Startpunkt für Nachsuchen."
+},
+ausschuss: {
+  title: "Ausschuss",
+  body: "Austrittsöffnung des Geschosses, wichtig für Schweißmenge und Nachsuche."
 };
 
 export default function GlossarDetail({ title, body }){
