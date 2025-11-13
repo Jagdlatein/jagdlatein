@@ -11,7 +11,7 @@ const TERMS = {
   },
   bruch: {
     title:'Bruch',
-    body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.'
+    body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.',
   },
 wechsel: {
   title: "Wechsel",
