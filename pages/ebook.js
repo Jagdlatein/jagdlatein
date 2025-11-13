@@ -46,4 +46,9 @@ export default function EbookPage() {
 
   return <p>Weiterleitung zum E-Book…</p>;
 }
+export async function getServerSideProps() {
+  return {
+    props: {}
+  };
+}
 
