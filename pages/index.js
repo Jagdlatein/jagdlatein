@@ -1,8 +1,29 @@
 // pages/index.js
 import Head from "next/head";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
 export default function Home() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const s = !!getCookie("jl_session");
+    setLoggedIn(s);
+  }, []);
+
+  function logout() {
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
+      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=None; Secure`;
+    });
+    window.location.replace("/");
+  }
+
   return (
     <>
       <Head>
@@ -23,22 +44,31 @@ export default function Home() {
               Jetzt freischalten
             </Link>
 
-
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
-{/* MOBILE NAV UNTER DEM FREISCHALTEN-BUTTON */}
-<div className="mobile-nav-under-buttons">
-  <Link href="/quiz">Quiz</Link>
-  <Link href="/glossar">Glossar</Link>
-  <Link href="/ebook">E-Book</Link>
 
-  {!loggedIn && <Link href="/login">Login</Link>}
-  {loggedIn && (
-    <button className="logout-inline" onClick={logout}>Logout</button>
-  )}
-</div>
+          {/* MOBILE NAV UNTER DEM FREISCHALTEN-BUTTON */}
+          <div className="mobile-nav-under-buttons">
+            <Link href="/quiz">Quiz</Link>
+            <Link href="/glossar">Glossar</Link>
+            <Link href="/ebook">E-Book</Link>
+
+            {!loggedIn && <Link href="/login">Login</Link>}
+
+            {loggedIn && (
+              <button className="logout-inline" onClick={logout}>
+                Logout
+              </button>
+            )}
+          </div>
+
+        </div>
+      </main>
+    </>
+  );
+}
 
 const styles = {
   main: {
@@ -62,7 +92,6 @@ const styles = {
   },
   btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
 
-  // NEUER E-BOOK BUTTON (gleiches Format wie andere)
   btnBook: {
     background: "#2b6e3e",
     color: "white",
@@ -98,4 +127,3 @@ const styles = {
     color: "#555",
   },
 };
-
