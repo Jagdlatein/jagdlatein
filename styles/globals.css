@@ -396,6 +396,7 @@ img {
 @media (max-width: 780px) {
   .header-inner {
     height: 64px;
+    justify-content: center; /* Logo in der Mitte, Menü ist weg */
   }
 
   .brand-name {
@@ -404,6 +405,11 @@ img {
 
   .brand-title small {
     font-size: 12px;
+  }
+
+  /* Desktop-Menü im Header auf Handy ausblenden */
+  .menu {
+    display: none;
   }
 
   .hero {
@@ -423,8 +429,10 @@ img {
     padding: 12px 0;
   }
 
+  /* Mobile Navigation unter dem CTA anzeigen */
   .mobile-nav-under-buttons {
     display: block;
     margin-top: 20px;
   }
 }
+
