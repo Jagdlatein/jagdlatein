@@ -73,6 +73,38 @@ ausschuss: {
   title: "Ausschuss",
   body: "Austrittsöffnung des Geschosses, wichtig für Schweißmenge und Nachsuche."
 },
+feisthirsch: {
+  title: "Feisthirsch",
+  body: "Besonders gut genährter Hirsch vor der Brunft, oft schwer und stark."
+},
+schmalspieser: {
+  title: "Schmalspießer",
+  body: "Einjähriger Hirsch mit schlanken, unverzweigten Stangen."
+},
+kahlwild: {
+  title: "Kahlwild",
+  body: "Weibliches Rotwild und dessen einjährige Nachkommen."
+},
+alttier: {
+  title: "Alttier",
+  body: "Erwachsenes weibliches Rotwild, meist Leittier der Rudel."
+},
+spieser: {
+  title: "Spießer",
+  body: "Junger Hirsch mit zwei unverzweigten Stangen."
+},
+schmelzer: {
+  title: "Schmelzer",
+  body: "Einjähriges Rotwild, das körperlich und geistig heranwächst."
+},
+plaetzruhe: {
+  title: "Plätzruhe",
+  body: "Ruhephase des Rotwildes, häufig im Tagesversteck."
+},
+brunftschrei: {
+  title: "Brunftschrei",
+  body: "Laut des Hirsches während der Brunft, dient Revierabgrenzung und Rivalenausruf."
+},
 
 
 };
