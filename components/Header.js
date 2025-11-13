@@ -29,10 +29,9 @@ export default function Header() {
   return (
     <header className="header">
 
-      {/* OBERER HEADER */}
+      {/* OBERER HEADER — NUR LOGO */}
       <div className="container header-inner">
 
-        {/* BRAND */}
         <Link href="/" className="brand">
           <span className="brand-title">
             <span className="brand-name">Jagdlatein</span>
@@ -40,37 +39,9 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* DESKTOP MENÜ */}
-        <nav className="menu">
-          <Link href="/quiz" className="nav-link">Quiz</Link>
-          <Link href="/glossar" className="nav-link">Glossar</Link>
-          <Link href="/ebook" className="nav-link">📘 E-Book</Link>
-
-          {!loggedIn && (
-            <Link href="/login" className="nav-link">Login</Link>
-          )}
-
-          {loggedIn && (
-            <>
-              {isAdmin && (
-                <Link href="/admin/glossar" className="nav-link">
-                  Admin
-                </Link>
-              )}
-
-              <button
-                onClick={logout}
-                className="nav-link"
-                type="button"
-              >
-                Logout
-              </button>
-            </>
-          )}
-        </nav>
       </div>
 
-      {/* UNTERE LEISTE */}
+      {/* UNTERE LEISTE — ALLES WICHTIGE */}
       <div className="header-sub">
         <div className="container header-sub-inner">
 
@@ -81,6 +52,13 @@ export default function Header() {
           <span>·</span>
 
           <Link href="/ebook">E-Book</Link>
+
+          {isAdmin && (
+            <>
+              <span>·</span>
+              <Link href="/admin/glossar">Admin</Link>
+            </>
+          )}
 
           {!loggedIn && (
             <>
