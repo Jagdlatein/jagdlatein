@@ -20,7 +20,7 @@ export default function Header() {
   }, []);
 
   function logout() {
-    ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n=>{
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
       document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
     });
     window.location.replace("/");
@@ -39,6 +39,7 @@ export default function Header() {
     <header className="header">
       <div className="container header-inner">
 
+        {/* BRAND */}
         <Link href="/" className="brand">
           <span className="brand-title">
             <span className="brand-name">Jagdlatein</span>
@@ -46,6 +47,7 @@ export default function Header() {
           </span>
         </Link>
 
+        {/* DESKTOP MENU */}
         <nav className="menu">
           <Link href="/quiz" className="nav-link">Quiz</Link>
           <Link href="/glossar" className="nav-link">Glossar</Link>
@@ -55,15 +57,21 @@ export default function Header() {
 
           {loggedIn && (
             <>
-              {isAdmin && <Link href="/admin/glossar" className="nav-link">Admin</Link>}
-              <button onClick={logout} className="nav-link">Logout</button>
+              {isAdmin && (
+                <Link href="/admin/glossar" className="nav-link">Admin</Link>
+              )}
+
+              <button onClick={logout} className="nav-link" type="button">
+                Logout
+              </button>
             </>
           )}
         </nav>
 
+        {/* BURGER BUTTON */}
         <button
           className="hamburger"
-          onClick={()=>{
+          onClick={() => {
             if (typeof window === "undefined") return;
             const menu = document.querySelector(".mobile-menu");
             const burger = document.querySelector(".hamburger");
@@ -72,28 +80,41 @@ export default function Header() {
             burger.classList.toggle("open");
           }}
         >
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
-
       </div>
 
+      {/* MOBILE MENU */}
       <div className="mobile-menu">
         <Link href="/quiz" onClick={closeMenu}>Quiz</Link>
         <Link href="/glossar" onClick={closeMenu}>Glossar</Link>
         <Link href="/ebook" onClick={closeMenu}>📘 E-Book</Link>
-        {!loggedIn && <Link href="/login" onClick={closeMenu}>Login</Link>}
+        
+        {!loggedIn && (
+          <Link href="/login" onClick={closeMenu}>Login</Link>
+        )}
+
         {loggedIn && (
           <>
-            {isAdmin && <Link href="/admin/glossar" onClick={closeMenu}>Admin</Link>}
-            <button onClick={()=>{closeMenu(); logout();}}>Logout</button>
+            {isAdmin && (
+              <Link href="/admin/glossar" onClick={closeMenu}>
+                Admin
+              </Link>
+            )}
+
+            <button
+              type="button"
+              onClick={() => {
+                closeMenu();
+                logout();
+              }}
+            >
+              Logout
+            </button>
           </>
         )}
-      </div>
-
-    </header>
-  );
-}
-
       </div>
     </header>
   );
