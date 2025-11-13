@@ -36,7 +36,7 @@ export default function Home() {
           <h1 style={styles.title}>Jagdlatein</h1>
 
           <p style={styles.sub}>
-            Lernen für Jagdschein und Praxis in Deutschland, Österreich & Schweiz
+            Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
           <div style={styles.btnRow}>
@@ -49,7 +49,25 @@ export default function Home() {
             </Link>
           </div>
 
-      
+          {/* MOBILE-NAVIGATION UNTER DEM FREISCHALTEN-BUTTON */}
+          <div className="mobile-nav-under-buttons">
+            <Link href="/quiz">Quiz</Link>
+            <Link href="/glossar">Glossar</Link>
+            <Link href="/ebook">E-Book</Link>
+
+            {!loggedIn && <Link href="/login">Login</Link>}
+
+            {loggedIn && (
+              <button
+                type="button"
+                className="logout-inline"
+                onClick={logout}
+              >
+                Logout
+              </button>
+            )}
+          </div>
+
         </div>
       </main>
     </>
