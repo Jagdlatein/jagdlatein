@@ -20,21 +20,27 @@ export default function LoginPage() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
 
-  // E-Mail aus ?email= vorbelegen (falls vorhanden)
+  // E-Mail aus ?email= vorbelegen (optional)
   useEffect(() => {
     if (!router.isReady) return;
     const q = router.query || {};
-    if (typeof q.email === "string") {
-      setEmail(q.email);
-    }
+    if (typeof q.email === "string") setEmail(q.email);
   }, [router.isReady, router.query]);
 
-  // Immer den richtigen Zielpfad ermitteln
+  // Ziel nach Login bestimmen (next-Param oder /quiz)
   function getNextPath() {
-    if (!router.isReady) return "/quiz";
-    const n = router.query?.next;
+    const n = router?.query?.next;
     if (typeof n === "string" && n.startsWith("/")) return n;
-    return "/quiz"; // Standard: nach Login immer ins Quiz
+    return "/quiz"; // Standard: Quiz
+  }
+
+  function hardRedirectToNext() {
+    const next = getNextPath();
+    if (typeof window !== "undefined") {
+      window.location.href = next; // HARTE Weiterleitung, unabhängig vom Router
+    } else {
+      router.replace(next);
+    }
   }
 
   async function tryUserAccess(e) {
@@ -47,6 +53,7 @@ export default function LoginPage() {
         headers: { Accept: "application/json" },
         cache: "no-store",
       });
+
       const data = await r.json();
 
       if (!r.ok) throw new Error(data?.error || "Serverfehler");
@@ -59,8 +66,7 @@ export default function LoginPage() {
 
         setMsg("Erfolg: Zugang aktiv – weiter …");
 
-        const next = getNextPath();
-        router.replace(next); // HIER: immer zurück zu /quiz oder /glossar
+        hardRedirectToNext(); // ⬅️ hier wird jetzt WIRKLICH weitergeleitet
       } else {
         setMsg("Kein aktives Abo zu dieser E-Mail gefunden.");
       }
@@ -89,8 +95,7 @@ export default function LoginPage() {
 
         setMsg("Admin-Vorschau aktiv. Weiter …");
 
-        const next = getNextPath();
-        router.replace(next);
+        hardRedirectToNext();
       } else {
         setMsg("Admin-Token ungültig.");
       }
@@ -103,7 +108,11 @@ export default function LoginPage() {
 
   function doLogout() {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
-    router.replace("/"); // nach Logout zurück zur Startseite
+    if (typeof window !== "undefined") {
+      window.location.href = "/"; // direkt Startseite
+    } else {
+      router.replace("/");
+    }
   }
 
   return (
