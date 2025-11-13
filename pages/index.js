@@ -28,11 +28,17 @@ export default function Home() {
               Login
             </Link>
           </div>
+{/* MOBILE NAV UNTER DEM FREISCHALTEN-BUTTON */}
+<div className="mobile-nav-under-buttons">
+  <Link href="/quiz">Quiz</Link>
+  <Link href="/glossar">Glossar</Link>
+  <Link href="/ebook">E-Book</Link>
 
-
-
-
-        </div>
+  {!loggedIn && <Link href="/login">Login</Link>}
+  {loggedIn && (
+    <button className="logout-inline" onClick={logout}>Logout</button>
+  )}
+</div>
       </main>
     </>
   );
