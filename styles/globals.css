@@ -503,3 +503,23 @@ img {
 button, a {
   background-image: none !important;
 }
+{!menuOpen && (
+  <div
+    className="hamburger"
+    role="button"
+    aria-label="Menü öffnen"
+    aria-expanded={false}
+    tabIndex={0}
+    onClick={() => setMenuOpen(true)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setMenuOpen(true);
+      }
+    }}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+)}
