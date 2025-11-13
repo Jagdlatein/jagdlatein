@@ -27,24 +27,36 @@ export default function Header() {
   }
 
   function closeMenu() {
-    document.querySelector(".mobile-menu")?.classList.remove("open");
-    document.querySelector(".hamburger")?.classList.remove("open");
+    if (typeof window === "undefined") return;
+    const menu = document.querySelector(".mobile-menu");
+    const burger = document.querySelector(".hamburger");
+    if (!menu || !burger) return;
+    menu.classList.remove("open");
+    burger.classList.remove("open");
   }
 
   return (
     <header className="header">
       <div className="container header-inner">
-        <Link href="/" className="brand"><span className="brand-title"><span className="brand-name">Jagdlatein</span><small>Lernplattform</small></span></Link>
+
+        <Link href="/" className="brand">
+          <span className="brand-title">
+            <span className="brand-name">Jagdlatein</span>
+            <small>Lernplattform</small>
+          </span>
+        </Link>
 
         <nav className="menu">
           <Link href="/quiz" className="nav-link">Quiz</Link>
           <Link href="/glossar" className="nav-link">Glossar</Link>
           <Link href="/ebook" className="nav-link">📘 E-Book</Link>
+
           {!loggedIn && <Link href="/login" className="nav-link">Login</Link>}
+
           {loggedIn && (
             <>
               {isAdmin && <Link href="/admin/glossar" className="nav-link">Admin</Link>}
-              <button className="nav-link" onClick={logout}>Logout</button>
+              <button onClick={logout} className="nav-link">Logout</button>
             </>
           )}
         </nav>
@@ -52,12 +64,17 @@ export default function Header() {
         <button
           className="hamburger"
           onClick={()=>{
-            document.querySelector(".mobile-menu")?.classList.toggle("open");
-            document.querySelector(".hamburger")?.classList.toggle("open");
+            if (typeof window === "undefined") return;
+            const menu = document.querySelector(".mobile-menu");
+            const burger = document.querySelector(".hamburger");
+            if (!menu || !burger) return;
+            menu.classList.toggle("open");
+            burger.classList.toggle("open");
           }}
         >
           <span></span><span></span><span></span>
         </button>
+
       </div>
 
       <div className="mobile-menu">
@@ -71,6 +88,12 @@ export default function Header() {
             <button onClick={()=>{closeMenu(); logout();}}>Logout</button>
           </>
         )}
+      </div>
+
+    </header>
+  );
+}
+
       </div>
     </header>
   );
