@@ -61,16 +61,22 @@ export default function Header() {
         </nav>
 
         {/* HAMBURGER MENU */}
-        <button
-          className="hamburger"
-          onClick={() => {
-            document.querySelector(".mobile-menu")?.classList.toggle("open");
-          }}
-          aria-label="Menü"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+       <button
+  className="hamburger"
+  onClick={() => {
+    const menu = document.querySelector(".mobile-menu");
+    const burger = document.querySelector(".hamburger");
+    menu.classList.toggle("open");
+    burger.classList.toggle("open");
+  }}
+  aria-label="Menü"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+      
 
       {/* MOBILE MENU */}
       <div className="mobile-menu">
