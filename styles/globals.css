@@ -79,7 +79,7 @@ img {
 }
 
 /* =========================================
-   Header & obere Navigation
+   Header & Navigation
 ========================================= */
 .header {
   position: sticky;
@@ -157,7 +157,7 @@ img {
 }
 
 /* =========================================
-   Untere Header-Leiste (Quiz · Glossar · E-Book · Login/Logout)
+   (Optional) Untere Header-Leiste (falls später wieder genutzt)
 ========================================= */
 .header-sub {
   background: rgba(255,255,255,0.65);
@@ -171,7 +171,7 @@ img {
   flex-wrap: wrap;
   gap: 12px;
   padding: 14px 0;
-  font-size: 18px;         /* größer wie gewünscht */
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -196,7 +196,7 @@ img {
 }
 
 /* =========================================
-   Hero-Bereich
+   Hero-Bereich (falls verwendet)
 ========================================= */
 .hero {
   position: relative;
@@ -311,7 +311,7 @@ img {
 }
 
 /* =========================================
-   Sonstiges & Hilfsklassen
+   Zusätzliche Utility-Typo / Sektionen
 ========================================= */
 .lead {
   font-size: 18px;
@@ -362,7 +362,36 @@ img {
 }
 
 /* =========================================
-   Media Queries
+   Mobile Navigation unter "Jetzt freischalten"
+   (Startseite)
+========================================= */
+.mobile-nav-under-buttons {
+  display: none;
+}
+
+.mobile-nav-under-buttons a,
+.mobile-nav-under-buttons button {
+  display: block;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--forest);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.logout-inline {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+}
+
+/* =========================================
+   Media Queries (nur mobile Anpassungen unten)
 ========================================= */
 @media (max-width: 780px) {
   .header-inner {
@@ -392,46 +421,10 @@ img {
   .header-sub-inner {
     font-size: 17px;
     padding: 12px 0;
-  .mobile-nav-under-buttons {
-  display: none;
-}
-/* Mobile Navigation unter CTA */
-.mobile-nav-under-buttons {
-  display: none;
-}
+  }
 
-.mobile-nav-under-buttons a,
-.mobile-nav-under-buttons button {
-  display: block;
-  padding: 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  color: var(--forest);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.logout-inline {
-  background: none;
-  border: none;
-  padding: 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--forest);
-}
-
-/* Nur auf Handy anzeigen */
-@media (max-width: 780px) {
   .mobile-nav-under-buttons {
     display: block;
     margin-top: 20px;
   }
-}  /* ❤️ WICHTIG – DIESE KLAMMER HAT BEI DIR GEFEHLT */
-
-/* dein header-sub-inner Block */
-.header-sub-inner {
-  font-size: 17px;
-  padding: 12px 0;
 }
-
-
