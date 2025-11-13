@@ -84,12 +84,8 @@ img {
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: linear-gradient(
-    180deg,
-    rgba(241,231,211,.96),
-    rgba(241,231,211,.86)
-  );
+  z-index: 9999; /* ganz oben */
+  background: linear-gradient(180deg, rgba(241,231,211,.96), rgba(241,231,211,.86));
   border-bottom: 1px solid rgba(42,35,25,.12);
   backdrop-filter: saturate(120%) blur(6px);
 }
@@ -102,7 +98,6 @@ img {
   height: 68px;
 }
 
-/* Brand links */
 .brand {
   display: flex;
   align-items: center;
@@ -152,11 +147,7 @@ img {
   border-radius: 10px;
   border: 1px solid transparent;
   background: rgba(255,255,255,.4);
-  transition:
-    background .15s ease,
-    color .15s ease,
-    border-color .15s ease,
-    box-shadow .15s ease;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
 .menu .nav-link:hover {
@@ -165,29 +156,20 @@ img {
   border-color: rgba(31,43,35,.6);
 }
 
-.menu .nav-link.active {
-  background: var(--forest);
-  color: #fff;
-  border-color: rgba(31,43,35,.6);
-  box-shadow:
-    0 0 0 2px var(--gold),
-    0 4px 8px rgba(0,0,0,.15);
-}
-
 /* =========================================
    Hamburger-Button & Mobile-Menü
 ========================================= */
+/* Hamburger */
 .hamburger {
-  display: none;                 /* wird nur auf Mobile gezeigt */
+  display: none;                 /* wird per Media Query auf Mobile angezeigt */
   width: 44px;
   height: 44px;
   border-radius: 12px;
   border: 1px solid rgba(31,43,35,.15);
-  background: #fff;
-  background-image: none;        /* falls der Browser Standardpfeile setzt */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  position: relative;
+  z-index: 10000; /* über allem im Header */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -204,7 +186,7 @@ img {
   transition: transform .2s, opacity .2s;
 }
 
-/* Animation: ☰ → ✕  (Header.js nutzt .open) */
+/* ☰ → ✕ */
 .hamburger.open span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -215,10 +197,11 @@ img {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile-Menü Overlay */
+/* Mobile-Menü */
 .mobile-menu {
   display: none;
   position: fixed;
+  z-index: 1050; /* über Content, unter dem Hamburger */
   top: 68px;
   left: 0;
   right: 0;
@@ -248,47 +231,22 @@ img {
   cursor: pointer;
 }
 
-.mobile-menu a:hover,
-.mobile-menu button:hover {
-  background: rgba(31,43,35,.12);
-}
-
-.mobile-menu a.active {
-  background: var(--forest);
-  color: #fff;
-  border-color: var(--forest);
-}
-
-.mobile-meta {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* Breakpoints Header */
+/* Mobile Breakpoints */
 @media (max-width: 780px) {
-  .menu {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
-  .header-inner {
-    height: 60px;
-  }
-  .brand-name {
-    font-size: 22px;
-  }
-  .brand-title small {
-    font-size: 12px;
-  }
+  .menu { display: none; }
+  .hamburger { display: flex; }
 }
 
 @media (min-width: 781px) {
-  .mobile-menu {
-    display: none !important;
-  }
+  .mobile-menu { display: none !important; }
 }
+
+
+
+
+
+
+/
 
 /* =========================================
    Hero-Bereich
@@ -348,7 +306,7 @@ img {
   }
   .hero h1 {
     font-size: 32px;
-  }
+  
 }
 
 /* =========================================
