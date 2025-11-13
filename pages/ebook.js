@@ -1,17 +1,31 @@
 import { useSession, signIn } from "next-auth/react";
+import { useEffect } from "react";
 import Seo from '../components/Seo';
 
 export default function EbookPage() {
   const { data: session, status } = useSession();
 
-  // Wenn nicht eingeloggt → Login auffordern
+  useEffect(() => {
+    if (session) {
+      // automatische Weiterleitung zu OneDrive
+      window.location.href =
+        "https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA?e=B0pRyj";
+    }
+  }, [session]);
+
   if (status === "loading") return <p>Lade...</p>;
 
   if (!session) {
     return (
       <div style={{ padding: 40, textAlign: 'center' }}>
-        <h2>🔒 Nur für registrierte Mitglieder</h2>
-        <p>Bitte melde dich an, um das E-Book herunterzuladen.</p>
+        <Seo 
+          title="Jagdlatein E-Book" 
+          description="Zugriff nur für registrierte Mitglieder" 
+        />
+
+        <h2>🔒 Login erforderlich</h2>
+        <p>Bitte melde dich an, um automatisch zum E-Book weitergeleitet zu werden.</p>
+
         <button 
           onClick={() => signIn()}
           style={{
@@ -29,34 +43,6 @@ export default function EbookPage() {
     );
   }
 
-  return (
-    <>
-      <Seo 
-        title="Jagdlatein E-Book" 
-        description="Download nur für Mitglieder" 
-      />
-
-      <div style={{ maxWidth: '700px', margin: '40px auto', padding: '20px' }}>
-        <h1>📘 Jagdlatein – E-Book</h1>
-
-        <p>Du bist eingeloggt — hier kannst du das E-Book herunterladen.</p>
-
-        <a 
-          href="/api/ebook"
-          style={{
-            display: 'inline-block',
-            marginTop: '20px',
-            padding: '14px 22px',
-            background: '#2b6e3e',
-            color: 'white',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            fontSize: '18px'
-          }}
-        >
-          📥 E-Book herunterladen
-        </a>
-      </div>
-    </>
-  );
+  return <p>Weiterleitung zum E-Book…</p>;
 }
+
