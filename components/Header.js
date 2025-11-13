@@ -37,9 +37,13 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="menu">
-          <Link href="/quiz" className="nav-link">Quiz</Link>
-          <Link href="/glossar" className="nav-link">Glossar</Link>
+<nav className="menu">
+  <Link href="/quiz" className="nav-link">Quiz</Link>
+  <Link href="/glossar" className="nav-link">Glossar</Link>
+
+  {/* 📘 E-Book Button */}
+  <Link href="/ebook" className="nav-link">📘 E-Book</Link>
+
 
           {!loggedIn && (
             <Link href="/login" className="nav-link">Login</Link>
