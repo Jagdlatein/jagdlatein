@@ -485,3 +485,21 @@ img {
   padding: 20px 18px;
   color: var(--muted);
 }
+/* === FINALER FIX: Entfernt ALLE Pfeile aus Modulen === */
+
+.hamburger,
+.hamburger *,
+.hamburger::before,
+.hamburger::after {
+  background: none !important;
+  background-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  content: "" !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+/* verhindert Default-Icons auf Buttons allgemein */
+button, a {
+  background-image: none !important;
+}
