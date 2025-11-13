@@ -29,11 +29,7 @@ export default function Home() {
             </Link>
           </div>
 
-         <div style={styles.links}>
-  <Link href="/quiz">Quiz</Link> ·{" "}
-  <Link href="/glossar">Glossar</Link> ·{" "}
- <Link href="/logout">Logout</Link>
-</div>
+
 
 
         </div>
