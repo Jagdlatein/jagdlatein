@@ -8,6 +8,7 @@ function setCookie(name, value, days = 40) {
     typeof window !== "undefined" && window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAge}; SameSite=Lax${secure}`;
 }
+
 function delCookie(name) {
   document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
 }
@@ -19,25 +20,29 @@ export default function LoginPage() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
 
-  // ?email= und ?next= aus der URL übernehmen
+  // E-Mail aus ?email= vorbelegen (falls vorhanden)
   useEffect(() => {
     if (!router.isReady) return;
     const q = router.query || {};
-    if (typeof q.email === "string") setEmail(q.email);
+    if (typeof q.email === "string") {
+      setEmail(q.email);
+    }
   }, [router.isReady, router.query]);
 
-  const nextPath = (() => {
+  // Immer den richtigen Zielpfad ermitteln
+  function getNextPath() {
     if (!router.isReady) return "/quiz";
     const n = router.query?.next;
-    return typeof n === "string" && n.startsWith("/") ? n : "/quiz";
-  })();
+    if (typeof n === "string" && n.startsWith("/")) return n;
+    return "/quiz"; // Standard: nach Login immer ins Quiz
+  }
 
   async function tryUserAccess(e) {
     e?.preventDefault();
     setBusy(true);
     setMsg("");
+
     try {
-      // Dein Backend prüft Abo/Zugang
       const r = await fetch(`/api/auth/check?email=${encodeURIComponent(email)}`, {
         headers: { Accept: "application/json" },
         cache: "no-store",
@@ -47,11 +52,15 @@ export default function LoginPage() {
       if (!r.ok) throw new Error(data?.error || "Serverfehler");
 
       if (data?.hasAccess) {
+        // Session-Cookies setzen
         setCookie("jl_session", "1");
         setCookie("jl_paid", "1");
         setCookie("jl_email", encodeURIComponent(email));
+
         setMsg("Erfolg: Zugang aktiv – weiter …");
-        router.replace(nextPath);
+
+        const next = getNextPath();
+        router.replace(next); // HIER: immer zurück zu /quiz oder /glossar
       } else {
         setMsg("Kein aktives Abo zu dieser E-Mail gefunden.");
       }
@@ -66,21 +75,26 @@ export default function LoginPage() {
     e?.preventDefault();
     setBusy(true);
     setMsg("");
+
     try {
       const r = await fetch("/api/admin/auth/check", {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       const data = await r.json();
+
       if (data?.ok) {
         setCookie("jl_admin", "1");
         if (email) setCookie("jl_email", encodeURIComponent(email));
         setCookie("jl_session", "1");
+
         setMsg("Admin-Vorschau aktiv. Weiter …");
-        router.replace(nextPath);
+
+        const next = getNextPath();
+        router.replace(next);
       } else {
         setMsg("Admin-Token ungültig.");
       }
-    } catch {
+    } catch (err) {
       setMsg("Admin-Check fehlgeschlagen.");
     } finally {
       setBusy(false);
@@ -89,7 +103,7 @@ export default function LoginPage() {
 
   function doLogout() {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
-    router.replace("/"); // direkt Hauptmenü
+    router.replace("/"); // nach Logout zurück zur Startseite
   }
 
   return (
@@ -97,10 +111,9 @@ export default function LoginPage() {
       <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>Login</h1>
 
       <p style={{ opacity: 0.9, marginBottom: "1rem" }}>
-  Gib die E-Mail ein, mit der du bezahlt hast. <br />
-  Der Login ist erforderlich, um auf <strong>Quiz</strong> und <strong>Glossar</strong> zuzugreifen.
-</p>
-      
+        Gib die E-Mail ein, mit der du bezahlt hast. <br />
+        Der Login ist erforderlich, um auf <strong>Quiz</strong> und <strong>Glossar</strong> zuzugreifen.
+      </p>
 
       <form
         onSubmit={tryUserAccess}
@@ -119,7 +132,12 @@ export default function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value.trim())}
           placeholder="deine@mail.de"
-          style={{ width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid #ddd" }}
+          style={{
+            width: "100%",
+            padding: "10px 12px",
+            borderRadius: 10,
+            border: "1px solid #ddd",
+          }}
         />
         <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
           <button
@@ -138,7 +156,12 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={doLogout}
-            style={{ padding: "10px 14px", borderRadius: 10, border: "1px solid #ddd", background: "#fff" }}
+            style={{
+              padding: "10px 14px",
+              borderRadius: 10,
+              border: "1px solid #ddd",
+              background: "#fff",
+            }}
           >
             Abmelden
           </button>
@@ -165,7 +188,12 @@ export default function LoginPage() {
             value={adminToken}
             onChange={(e) => setAdminToken(e.target.value)}
             placeholder="ADMIN_PASS Token"
-            style={{ width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid #ddd" }}
+            style={{
+              width: "100%",
+              padding: "10px 12px",
+              borderRadius: 10,
+              border: "1px solid #ddd",
+            }}
           />
           <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
             <button
