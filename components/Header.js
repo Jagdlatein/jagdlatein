@@ -64,21 +64,63 @@ export default function Header() {
         </button>
       </div>
 
-      <div className="mobile-menu">
-        <Link href="/quiz" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Quiz</Link>
-        <Link href="/glossar" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Glossar</Link>
+<div className="mobile-menu">
+  <Link 
+    href="/quiz" 
+    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+  >
+    Quiz
+  </Link>
 
-        {!loggedIn && <Link href="/login" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Login</Link>}
+  <Link 
+    href="/glossar" 
+    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+  >
+    Glossar
+  </Link>
 
-        {loggedIn && (
-          <>
-            {isAdmin && <Link href="/admin/glossar" onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}>Admin</Link>}
-            <button type="button" onClick={()=>{ document.querySelector(".mobile-menu")?.classList.remove("open"); logout(); }}>
-              Logout
-            </button>
-          </>
-        )}
-      </div>
+  {/* 📘 NEU: E-Book Button Mobile */}
+  <Link 
+    href="/ebook" 
+    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+  >
+    📘 E-Book
+  </Link>
+
+  {!loggedIn && (
+    <Link 
+      href="/login" 
+      onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+    >
+      Login
+    </Link>
+  )}
+
+  {loggedIn && (
+    <>
+      {isAdmin && (
+        <Link 
+          href="/admin/glossar" 
+          onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+        >
+          Admin
+        </Link>
+      )}
+
+      <button 
+        type="button" 
+        onClick={()=>{
+          document.querySelector(".mobile-menu")?.classList.remove("open"); 
+          logout();
+        }}
+      >
+        Logout
+      </button>
+    </>
+  )}
+</div>
+
+
     </header>
   );
 }
