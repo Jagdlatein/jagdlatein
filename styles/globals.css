@@ -84,8 +84,12 @@ img {
 .header {
   position: sticky;
   top: 0;
-  z-index: 9999; /* ganz oben */
-  background: linear-gradient(180deg, rgba(241,231,211,.96), rgba(241,231,211,.86));
+  z-index: 9999;
+  background: linear-gradient(
+    180deg,
+    rgba(241,231,211,.96),
+    rgba(241,231,211,.86)
+  );
   border-bottom: 1px solid rgba(42,35,25,.12);
   backdrop-filter: saturate(120%) blur(6px);
 }
@@ -98,6 +102,7 @@ img {
   height: 68px;
 }
 
+/* Brand links */
 .brand {
   display: flex;
   align-items: center;
@@ -147,7 +152,11 @@ img {
   border-radius: 10px;
   border: 1px solid transparent;
   background: rgba(255,255,255,.4);
-  transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+  transition:
+    background .15s ease,
+    color .15s ease,
+    border-color .15s ease,
+    box-shadow .15s ease;
 }
 
 .menu .nav-link:hover {
@@ -157,11 +166,10 @@ img {
 }
 
 /* =========================================
-   Hamburger-Button & Mobile-Menü
+   Hamburger & Mobile-Menü
 ========================================= */
-/* Hamburger */
 .hamburger {
-  display: none;                 /* wird per Media Query auf Mobile angezeigt */
+  display: none;                 /* wird nur auf Mobile angezeigt */
   width: 44px;
   height: 44px;
   border-radius: 12px;
@@ -169,7 +177,7 @@ img {
   background-color: #fff;
   background-image: none;
   position: relative;
-  z-index: 10000; /* über allem im Header */
+  z-index: 10000;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -197,11 +205,11 @@ img {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile-Menü */
+/* Mobile-Menü Overlay */
 .mobile-menu {
   display: none;
   position: fixed;
-  z-index: 1050; /* über Content, unter dem Hamburger */
+  z-index: 1050;
   top: 68px;
   left: 0;
   right: 0;
@@ -230,23 +238,6 @@ img {
   text-align: left;
   cursor: pointer;
 }
-
-/* Mobile Breakpoints */
-@media (max-width: 780px) {
-  .menu { display: none; }
-  .hamburger { display: flex; }
-}
-
-@media (min-width: 781px) {
-  .mobile-menu { display: none !important; }
-}
-
-
-
-
-
-
-/
 
 /* =========================================
    Hero-Bereich
@@ -291,22 +282,6 @@ img {
   font-weight: 700;
   color: var(--forest);
   margin: 6px 0 0;
-}
-
-.hero-xl .container {
-  padding-top: 8px;
-}
-
-@media (max-width: 780px) {
-  .hero {
-    padding: 64px 0 36px;
-  }
-  .hero-logo {
-    height: 72px;
-  }
-  .hero h1 {
-    font-size: 32px;
-  
 }
 
 /* =========================================
@@ -379,20 +354,6 @@ img {
   filter: brightness(.98);
 }
 
-.cta-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.cta-group {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* =========================================
    Sonstiges & Hilfsklassen
 ========================================= */
@@ -443,24 +404,50 @@ img {
   padding: 20px 18px;
   color: var(--muted);
 }
-/* === FINALER FIX: Entfernt ALLE Pfeile aus Modulen === */
 
-.hamburger,
-.hamburger *,
-.hamburger::before,
-.hamburger::after {
-  background: none !important;
-  background-image: none !important;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-  content: "" !important;
-  box-shadow: none !important;
-  filter: none !important;
+/* =========================================
+   Media Queries (am Ende, sauber geschlossen)
+========================================= */
+@media (max-width: 780px) {
+  .header-inner {
+    height: 60px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+  }
+
+  .brand-title small {
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 64px 0 36px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-logo {
+    height: 72px;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
-/* verhindert Default-Icons auf Buttons allgemein */
-button, a {
-  background-image: none !important;
+
+@media (min-width: 781px) {
+  .mobile-menu {
+    display: none !important;
+  }
 }
+
 /* === Pfeil-/Icon-Killer im Header === */
 .header *::before,
 .header *::after {
@@ -472,4 +459,3 @@ button, a {
   border: none !important;
   box-shadow: none !important;
 }
-
