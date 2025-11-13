@@ -461,4 +461,15 @@ img {
 button, a {
   background-image: none !important;
 }
+/* === Pfeil-/Icon-Killer im Header === */
+.header *::before,
+.header *::after {
+  content: none !important;
+  background: none !important;
+  background-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
