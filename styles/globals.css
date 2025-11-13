@@ -79,7 +79,7 @@ img {
 }
 
 /* =========================================
-   Header & Navigation
+   Header & obere Navigation
 ========================================= */
 .header {
   position: sticky;
@@ -98,8 +98,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  height: 68px;
+  height: 70px;
+  padding: 10px 0;
 }
 
 /* Brand links */
@@ -107,12 +107,6 @@ img {
   display: flex;
   align-items: center;
   gap: 8px;
-  text-decoration: none;
-  border: none;
-  background: transparent;
-  padding: 0;
-  font-weight: 800;
-  letter-spacing: .2px;
 }
 
 .brand-title {
@@ -122,7 +116,7 @@ img {
 }
 
 .brand-name {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 900;
   color: var(--forest);
   letter-spacing: -0.2px;
@@ -130,28 +124,25 @@ img {
 
 .brand-title small {
   color: var(--muted);
+  font-size: 14px;
+  margin-top: -4px;
   font-weight: 600;
-  font-size: 13px;
-  margin-top: -2px;
 }
 
-/* Desktop-Menü */
+/* Desktop-Menü oben rechts */
 .menu {
   display: flex;
   gap: 20px;
   align-items: center;
-  margin-left: auto;
 }
 
-.nav-link,
-.menu a {
-  color: var(--forest);
-  font-weight: 700;
-  letter-spacing: .2px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
+.nav-link {
+  padding: 10px 14px;
   background: rgba(255,255,255,.4);
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--forest);
+  border: 1px solid transparent;
   transition:
     background .15s ease,
     color .15s ease,
@@ -159,83 +150,48 @@ img {
     box-shadow .15s ease;
 }
 
-.menu .nav-link:hover {
+.nav-link:hover {
   background: var(--forest);
-  color: #f1e7d3;
-  border-color: rgba(31,43,35,.6);
+  color: #fff;
+  border-color: rgba(31,43,35,.5);
 }
 
 /* =========================================
-   Hamburger & Mobile-Menü
+   Untere Header-Leiste (Quiz · Glossar · E-Book · Login/Logout)
 ========================================= */
-.hamburger {
-  display: none;                 /* wird nur auf Mobile angezeigt */
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid rgba(31,43,35,.15);
-  background-color: #fff;
-  background-image: none;
-  position: relative;
-  z-index: 10000;
-  flex-direction: column;
-  justify-content: center;
+.header-sub {
+  background: rgba(255,255,255,0.65);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(4px);
+}
+
+.header-sub-inner {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 0;
+  font-size: 18px;         /* größer wie gewünscht */
+  font-weight: 600;
+}
+
+.header-sub-inner a {
+  color: var(--forest);
+}
+
+.header-sub-inner span {
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 2px;
+}
+
+.logout-btn-inline {
+  background: none;
+  border: none;
   padding: 0;
-}
-
-.hamburger span {
-  width: 22px;
-  height: 2px;
-  background: var(--forest);
-  border-radius: 2px;
-  transition: transform .2s, opacity .2s;
-}
-
-/* ☰ → ✕ */
-.hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Mobile-Menü Overlay */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  z-index: 1050;
-  top: 68px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  background: rgba(241,231,211,.97);
-  border-top: 1px solid rgba(42,35,25,.12);
-  overflow-y: auto;
-}
-
-.mobile-menu.open {
-  display: block;
-}
-
-.mobile-menu a,
-.mobile-menu button {
-  display: block;
-  font-size: 17px;
-  font-weight: 700;
-  padding: 14px;
-  margin-bottom: 8px;
-  border-radius: 12px;
-  border: 1px solid rgba(31,43,35,0.1);
-  background: rgba(255,255,255,.9);
-  color: var(--ink);
-  text-align: left;
+  color: var(--forest);
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -406,15 +362,15 @@ img {
 }
 
 /* =========================================
-   Media Queries (am Ende, sauber geschlossen)
+   Media Queries
 ========================================= */
 @media (max-width: 780px) {
   .header-inner {
-    height: 60px;
+    height: 64px;
   }
 
   .brand-name {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .brand-title small {
@@ -433,39 +389,8 @@ img {
     height: 72px;
   }
 
-  .menu {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
+  .header-sub-inner {
+    font-size: 17px;
+    padding: 12px 0;
   }
 }
-
-@media (min-width: 781px) {
-  .mobile-menu {
-    display: none !important;
-  }
-}
-/* === Alles an Pfeil-/Icon-Deko im Header abschalten === */
-
-/* alle Pseudo-Elemente im Header killen */
-.header *::before,
-.header *::after {
-  content: none !important;
-  background: none !important;
-  background-image: none !important;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* falls irgendwo Background-Icons auf Links/Buttons liegen */
-.header a,
-.header button,
-.header .hamburger {
-  background-image: none !important;
-}
-
-
