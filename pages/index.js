@@ -23,6 +23,10 @@ export default function Home() {
               Jetzt freischalten
             </Link>
 
+            <Link href="/ebook" style={styles.btnBook}>
+              📘 E-Book
+            </Link>
+
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
@@ -60,6 +64,18 @@ const styles = {
     margin: "0 0 26px",
   },
   btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
+
+  // NEUER E-BOOK BUTTON (gleiches Format wie andere)
+  btnBook: {
+    background: "#2b6e3e",
+    color: "white",
+    padding: "14px 26px",
+    borderRadius: 14,
+    fontWeight: 700,
+    textDecoration: "none",
+    fontSize: 17,
+  },
+
   btnPrimary: {
     background: "#caa53b",
     color: "#111",
@@ -85,3 +101,4 @@ const styles = {
     color: "#555",
   },
 };
+
