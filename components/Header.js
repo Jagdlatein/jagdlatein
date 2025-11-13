@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <header className="header">
 
-      {/* OBERER HEADER – NUR LOGO */}
+      {/* OBERER BEREICH – nur Logo */}
       <div className="container header-inner">
         <Link href="/" className="brand">
           <span className="brand-title">
@@ -40,14 +40,18 @@ export default function Header() {
         </Link>
       </div>
 
-      {/* UNTERE LEISTE – Quiz / Glossar / Logout ENTFERNT */}
+      {/* UNTERE LEISTE – wieder wie vorher */}
       <div className="header-sub">
         <div className="container header-sub-inner">
 
-          {/* Nur E-Book bleibt sichtbar */}
+          <Link href="/quiz">Quiz</Link>
+          <span>·</span>
+
+          <Link href="/glossar">Glossar</Link>
+          <span>·</span>
+
           <Link href="/ebook">E-Book</Link>
 
-          {/* Admin optional */}
           {isAdmin && (
             <>
               <span>·</span>
@@ -55,7 +59,6 @@ export default function Header() {
             </>
           )}
 
-          {/* Login optional */}
           {!loggedIn && (
             <>
               <span>·</span>
@@ -63,16 +66,17 @@ export default function Header() {
             </>
           )}
 
-          {/* Logout optional */}
           {loggedIn && (
             <>
               <span>·</span>
-              <button className="logout-btn-inline" onClick={logout}>
+              <button
+                className="logout-btn-inline"
+                onClick={logout}
+              >
                 Logout
               </button>
             </>
           )}
-
         </div>
       </div>
 
