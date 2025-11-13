@@ -20,10 +20,15 @@ export default function Header() {
   }, []);
 
   function logout() {
-    ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n=>{
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(n => {
       document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
     });
     window.location.replace("/");
+  }
+
+  function closeMobileMenu() {
+    document.querySelector(".mobile-menu")?.classList.remove("open");
+    document.querySelector(".hamburger")?.classList.remove("open");
   }
 
   return (
@@ -52,7 +57,10 @@ export default function Header() {
 
           {loggedIn && (
             <>
-              {isAdmin && <Link href="/admin/glossar" className="nav-link">Admin</Link>}
+              {isAdmin && (
+                <Link href="/admin/glossar" className="nav-link">Admin</Link>
+              )}
+
               <button onClick={logout} className="nav-link" type="button">
                 Logout
               </button>
@@ -60,57 +68,57 @@ export default function Header() {
           )}
         </nav>
 
-        {/* HAMBURGER MENU */}
-       <button
-  className="hamburger"
-  onClick={() => {
-    const menu = document.querySelector(".mobile-menu");
-    const burger = document.querySelector(".hamburger");
-    menu.classList.toggle("open");
-    burger.classList.toggle("open");
-  }}
-  aria-label="Menü"
->
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-
-      
+        {/* HAMBURGER BUTTON */}
+        <button
+          className="hamburger"
+          onClick={() => {
+            const menu = document.querySelector(".mobile-menu");
+            const burger = document.querySelector(".hamburger");
+            burger.classList.toggle("open");
+            menu.classList.toggle("open");
+          }}
+          aria-label="Menü"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
       {/* MOBILE MENU */}
-<div className="mobile-menu">
+      <div className="mobile-menu">
+        
+        <Link href="/quiz" onClick={closeMobileMenu}>Quiz</Link>
 
-  <Link href="/quiz" onClick={() => closeMobileMenu()}>
-    Quiz
-  </Link>
+        <Link href="/glossar" onClick={closeMobileMenu}>Glossar</Link>
 
-  <Link href="/glossar" onClick={() => closeMobileMenu()}>
-    Glossar
-  </Link>
+        <Link href="/ebook" onClick={closeMobileMenu}>📘 E-Book</Link>
 
-  <Link href="/ebook" onClick={() => closeMobileMenu()}>
-    📘 E-Book
-  </Link>
+        {!loggedIn && (
+          <Link href="/login" onClick={closeMobileMenu}>Login</Link>
+        )}
 
-  {!loggedIn && (
-    <Link href="/login" onClick={() => closeMobileMenu()}>
-      Login
-    </Link>
-  )}
+        {loggedIn && (
+          <>
+            {isAdmin && (
+              <Link href="/admin/glossar" onClick={closeMobileMenu}>
+                Admin
+              </Link>
+            )}
 
-  {loggedIn && (
-    <>
-      {isAdmin && (
-        <Link href="/admin/glossar" onClick={() => closeMobileMenu()}>
-          Admin
-        </Link>
-      )}
+            <button
+              type="button"
+              onClick={() => {
+                closeMobileMenu();
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
 
-      <button type="button" onClick={() => { closeMobileMenu(); logout(); }}>
-        Logout
-      </button>
-    </>
-  )}
-</div>
-
+      </div>
+    </header>
+  );
+}
