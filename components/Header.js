@@ -72,7 +72,7 @@ export default function Header() {
           )}
         </nav>
 
-        {/* HAMBURGER (immer da auf Mobile, Styling macht den Rest) */}
+        {/* HAMBURGER (Mobile) */}
         <div
           className={`hamburger${menuOpen ? " open" : ""}`}
           role="button"
