@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 function getCookie(name) {
@@ -9,6 +10,8 @@ function getCookie(name) {
 }
 
 export default function Header() {
+  const pathname = usePathname();
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -30,7 +33,7 @@ export default function Header() {
   return (
     <header className="header">
 
-      {/* OBERER BEREICH – nur Logo */}
+      {/* OBERER HEADER – nur Logo */}
       <div className="container header-inner">
         <Link href="/" className="brand">
           <span className="brand-title">
@@ -40,46 +43,49 @@ export default function Header() {
         </Link>
       </div>
 
-      {/* UNTERE LEISTE – wieder wie vorher */}
-      <div className="header-sub">
-        <div className="container header-sub-inner">
+      {/* UNTERE LEISTE – NICHT auf der Startseite anzeigen */}
+      {pathname !== "/" && (
+        <div className="header-sub">
+          <div className="container header-sub-inner">
 
-          <Link href="/quiz">Quiz</Link>
-          <span>·</span>
+            <Link href="/quiz">Quiz</Link>
+            <span>·</span>
 
-          <Link href="/glossar">Glossar</Link>
-          <span>·</span>
+            <Link href="/glossar">Glossar</Link>
+            <span>·</span>
 
-          <Link href="/ebook">E-Book</Link>
+            <Link href="/ebook">E-Book</Link>
 
-          {isAdmin && (
-            <>
-              <span>·</span>
-              <Link href="/admin/glossar">Admin</Link>
-            </>
-          )}
+            {isAdmin && (
+              <>
+                <span>·</span>
+                <Link href="/admin/glossar">Admin</Link>
+              </>
+            )}
 
-          {!loggedIn && (
-            <>
-              <span>·</span>
-              <Link href="/login">Login</Link>
-            </>
-          )}
+            {!loggedIn && (
+              <>
+                <span>·</span>
+                <Link href="/login">Login</Link>
+              </>
+            )}
 
-          {loggedIn && (
-            <>
-              <span>·</span>
-              <button
-                className="logout-btn-inline"
-                onClick={logout}
-              >
-                Logout
-              </button>
-            </>
-          )}
+            {loggedIn && (
+              <>
+                <span>·</span>
+                <button
+                  className="logout-btn-inline"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
     </header>
   );
 }
+
