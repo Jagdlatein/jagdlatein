@@ -39,10 +39,6 @@ export default function Home() {
     <button className="logout-inline" onClick={logout}>Logout</button>
   )}
 </div>
-      </main>
-    </>
-  );
-}
 
 const styles = {
   main: {
