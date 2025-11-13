@@ -13,7 +13,6 @@ export default function Header() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Clientseitig Cookies prüfen
     const s = !!getCookie("jl_session");
     const a = getCookie("jl_admin") === "1";
     setLoggedIn(s);
@@ -24,12 +23,14 @@ export default function Header() {
     ["jl_session","jl_paid","jl_email","jl_admin"].forEach(n=>{
       document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
     });
-    window.location.replace("/"); // zurück ins Hauptmenü
+    window.location.replace("/");
   }
 
   return (
     <header className="header">
       <div className="container header-inner">
+
+        {/* BRAND */}
         <Link href="/" className="brand" aria-label="Startseite">
           <span className="brand-title">
             <span className="brand-name">Jagdlatein</span>
@@ -37,13 +38,13 @@ export default function Header() {
           </span>
         </Link>
 
-<nav className="menu">
-  <Link href="/quiz" className="nav-link">Quiz</Link>
-  <Link href="/glossar" className="nav-link">Glossar</Link>
+        {/* DESKTOP MENU */}
+        <nav className="menu">
+          <Link href="/quiz" className="nav-link">Quiz</Link>
+          <Link href="/glossar" className="nav-link">Glossar</Link>
 
-  {/* 📘 E-Book Button */}
-  <Link href="/ebook" className="nav-link">📘 E-Book</Link>
-
+          {/* 📘 E-Book Desktop */}
+          <Link href="/ebook" className="nav-link">📘 E-Book</Link>
 
           {!loggedIn && (
             <Link href="/login" className="nav-link">Login</Link>
@@ -52,75 +53,82 @@ export default function Header() {
           {loggedIn && (
             <>
               {isAdmin && <Link href="/admin/glossar" className="nav-link">Admin</Link>}
-              <button onClick={logout} className="nav-link" type="button">Logout</button>
+              <button onClick={logout} className="nav-link" type="button">
+                Logout
+              </button>
             </>
           )}
         </nav>
 
-        <button className="hamburger" onClick={()=>{
-          document.querySelector(".mobile-menu")?.classList.toggle("open");
-        }} aria-label="Menü">
+        {/* HAMBURGER MENU */}
+        <button
+          className="hamburger"
+          onClick={() => {
+            document.querySelector(".mobile-menu")?.classList.toggle("open");
+          }}
+          aria-label="Menü"
+        >
           <span></span><span></span><span></span>
         </button>
       </div>
 
-<div className="mobile-menu">
-  <Link 
-    href="/quiz" 
-    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
-  >
-    Quiz
-  </Link>
+      {/* MOBILE MENU */}
+      <div className="mobile-menu">
 
-  <Link 
-    href="/glossar" 
-    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
-  >
-    Glossar
-  </Link>
-
-  {/* 📘 NEU: E-Book Button Mobile */}
-  <Link 
-    href="/ebook" 
-    onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
-  >
-    📘 E-Book
-  </Link>
-
-  {!loggedIn && (
-    <Link 
-      href="/login" 
-      onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
-    >
-      Login
-    </Link>
-  )}
-
-  {loggedIn && (
-    <>
-      {isAdmin && (
         <Link 
-          href="/admin/glossar" 
-          onClick={()=>document.querySelector(".mobile-menu")?.classList.remove("open")}
+          href="/quiz" 
+          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
         >
-          Admin
+          Quiz
         </Link>
-      )}
 
-      <button 
-        type="button" 
-        onClick={()=>{
-          document.querySelector(".mobile-menu")?.classList.remove("open"); 
-          logout();
-        }}
-      >
-        Logout
-      </button>
-    </>
-  )}
-</div>
+        <Link 
+          href="/glossar" 
+          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
+        >
+          Glossar
+        </Link>
 
+        {/* 📘 E-Book Mobile */}
+        <Link
+          href="/ebook"
+          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
+        >
+          📘 E-Book
+        </Link>
 
+        {!loggedIn && (
+          <Link 
+            href="/login"
+            onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
+          >
+            Login
+          </Link>
+        )}
+
+        {loggedIn && (
+          <>
+            {isAdmin && (
+              <Link 
+                href="/admin/glossar"
+                onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
+              >
+                Admin
+              </Link>
+            )}
+
+            <button
+              type="button"
+              onClick={() => {
+                document.querySelector(".mobile-menu")?.classList.remove("open");
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
+      </div>
     </header>
   );
 }
