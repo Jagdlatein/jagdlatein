@@ -1,23 +1,48 @@
+import { useSession, signIn } from "next-auth/react";
 import Seo from '../components/Seo';
 
 export default function EbookPage() {
+  const { data: session, status } = useSession();
+
+  // Wenn nicht eingeloggt → Login auffordern
+  if (status === "loading") return <p>Lade...</p>;
+
+  if (!session) {
+    return (
+      <div style={{ padding: 40, textAlign: 'center' }}>
+        <h2>🔒 Nur für registrierte Mitglieder</h2>
+        <p>Bitte melde dich an, um das E-Book herunterzuladen.</p>
+        <button 
+          onClick={() => signIn()}
+          style={{
+            padding: '12px 20px',
+            background: '#2b6e3e',
+            color: '#fff',
+            borderRadius: '8px',
+            fontSize: '18px',
+            cursor: 'pointer'
+          }}
+        >
+          Jetzt einloggen
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
       <Seo 
-        title="Jagdlatein E-Book Download" 
-        description="Lade das offizielle Jagdlatein Lehrbuch herunter." 
+        title="Jagdlatein E-Book" 
+        description="Download nur für Mitglieder" 
       />
 
       <div style={{ maxWidth: '700px', margin: '40px auto', padding: '20px' }}>
         <h1>📘 Jagdlatein – E-Book</h1>
 
-        <p>
-          Hier kannst du das komplette <strong>Jagdlatein Lehrbuch</strong> als PDF direkt herunterladen.
-        </p>
+        <p>Du bist eingeloggt — hier kannst du das E-Book herunterladen.</p>
 
         <a 
-          href="/ebook/Jagdlatein-Lehrbuch.pdf"
-          download
+          href="/api/ebook"
           style={{
             display: 'inline-block',
             marginTop: '20px',
@@ -29,12 +54,8 @@ export default function EbookPage() {
             fontSize: '18px'
           }}
         >
-          📥 Jetzt E-Book herunterladen
+          📥 E-Book herunterladen
         </a>
-
-        <p style={{ marginTop: '20px', color: '#666' }}>
-          Dateiformat: PDF • Umfang: 133 Seiten
-        </p>
       </div>
     </>
   );
