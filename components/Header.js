@@ -11,7 +11,6 @@ function getCookie(name) {
 export default function Header() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const s = !!getCookie("jl_session");
@@ -27,12 +26,10 @@ export default function Header() {
     window.location.replace("/");
   }
 
-  function closeMenu() {
-    setMenuOpen(false);
-  }
-
   return (
     <header className="header">
+
+      {/* OBERER HEADER */}
       <div className="container header-inner">
 
         {/* BRAND */}
@@ -43,7 +40,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* DESKTOP MENÜ */}
         <nav className="menu">
           <Link href="/quiz" className="nav-link">Quiz</Link>
           <Link href="/glossar" className="nav-link">Glossar</Link>
@@ -71,58 +68,38 @@ export default function Header() {
             </>
           )}
         </nav>
+      </div>
 
-        {/* HAMBURGER (Mobile) */}
-        <div
-          className={`hamburger${menuOpen ? " open" : ""}`}
-          role="button"
-          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-          aria-expanded={menuOpen}
-          tabIndex={0}
-          onClick={() => setMenuOpen((v) => !v)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setMenuOpen((v) => !v);
-            }
-          }}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+      {/* UNTERE LEISTE */}
+      <div className="header-sub">
+        <div className="container header-sub-inner">
+
+          <Link href="/quiz">Quiz</Link>
+          <span>·</span>
+
+          <Link href="/glossar">Glossar</Link>
+          <span>·</span>
+
+          <Link href="/ebook">E-Book</Link>
+
+          {!loggedIn && (
+            <>
+              <span>·</span>
+              <Link href="/login">Login</Link>
+            </>
+          )}
+
+          {loggedIn && (
+            <>
+              <span>·</span>
+              <button className="logout-btn-inline" onClick={logout}>
+                Logout
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      <div className={`mobile-menu${menuOpen ? " open" : ""}`}>
-        <Link href="/quiz" onClick={closeMenu}>Quiz</Link>
-        <Link href="/glossar" onClick={closeMenu}>Glossar</Link>
-        <Link href="/ebook" onClick={closeMenu}>📘 E-Book</Link>
-
-        {!loggedIn && (
-          <Link href="/login" onClick={closeMenu}>Login</Link>
-        )}
-
-        {loggedIn && (
-          <>
-            {isAdmin && (
-              <Link href="/admin/glossar" onClick={closeMenu}>
-                Admin
-              </Link>
-            )}
-
-            <button
-              type="button"
-              onClick={() => {
-                closeMenu();
-                logout();
-              }}
-            >
-              Logout
-            </button>
-          </>
-        )}
-      </div>
     </header>
   );
 }
