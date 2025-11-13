@@ -32,8 +32,7 @@ export default function Home() {
          <div style={styles.links}>
   <Link href="/quiz">Quiz</Link> ·{" "}
   <Link href="/glossar">Glossar</Link> ·{" "}
-  <Link href="/ebook">📘 E-Book</Link> ·{" "}
-  <Link href="/logout">Logout</Link>
+ <Link href="/logout">Logout</Link>
 </div>
 
 
