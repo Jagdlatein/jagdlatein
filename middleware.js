@@ -1,54 +1,40 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-const PROTECTED = [/^\/quiz(?:\/|$)/, /^\/glossar(?:\/|$)/];
-const ADMIN_ONLY = [/^\/admin(?:\/|$)/, /^\/api\/admin(?:\/|$)/, /^\/api\/glossar\/import(?:\/|$)/];
+const PUBLIC_PATHS = ["/", "/login"];
 
 export function middleware(req) {
   const { pathname } = req.nextUrl;
-  const isApi = pathname.startsWith("/api/");
-  const hasSession = req.cookies.get("jl_session")?.value === "1";
-  const hasPaid    = req.cookies.get("jl_paid")?.value === "1";
-  const isAdmin    = req.cookies.get("jl_admin")?.value === "1";
-  const authed     = hasSession && (hasPaid || isAdmin);
 
-  // Admin
-  for (const re of ADMIN_ONLY) {
-    if (re.test(pathname)) {
-      if (!isAdmin) {
-        if (isApi) {
-          return new NextResponse(JSON.stringify({ ok:false, error:"Unauthorized" }), {
-            status: 401, headers: { "content-type": "application/json" }
-          });
-        }
-        const url = req.nextUrl.clone();
-        url.pathname = "/login"; url.searchParams.set("next", pathname);
-        return NextResponse.redirect(url);
-      }
-      return NextResponse.next();
-    }
+  // Statische Dateien immer durchlassen
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/public")
+  ) {
+    return NextResponse.next();
   }
 
-  // Quiz/Glossar
-  for (const re of PROTECTED) {
-    if (re.test(pathname)) {
-      if (!authed) {
-        if (isApi) {
-          return new NextResponse(JSON.stringify({ ok:false, error:"Unauthorized" }), {
-            status: 401, headers: { "content-type": "application/json" }
-          });
-        }
-        const url = req.nextUrl.clone();
-        url.pathname = "/login"; url.searchParams.set("next", pathname);
-        return NextResponse.redirect(url);
-      }
-      return NextResponse.next();
-    }
+  // öffentlich erlaubte Seiten
+  if (PUBLIC_PATHS.includes(pathname)) {
+    return NextResponse.next();
   }
 
+  // Session-Cookie prüfen
+  const hasSession = req.cookies.get("jl_session");
+
+  // Wenn kein Login → immer auf /login umleiten (egal ob mobile oder Desktop)
+  if (!hasSession) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
+  }
+
+  // eingeloggt → Seite ganz normal laden
   return NextResponse.next();
 }
 
+// Auf alle Seiten anwenden (außer _next & favicon)
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|images/|assets/).*)"],
+  matcher: ["/((?!_next|favicon.ico).*)"],
 };
