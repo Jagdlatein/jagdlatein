@@ -447,8 +447,9 @@ img {
     display: none !important;
   }
 }
+/* === Alles an Pfeil-/Icon-Deko im Header abschalten === */
 
-/* === Pfeil-/Icon-Killer im Header === */
+/* alle Pseudo-Elemente im Header killen */
 .header *::before,
 .header *::after {
   content: none !important;
@@ -459,3 +460,12 @@ img {
   border: none !important;
   box-shadow: none !important;
 }
+
+/* falls irgendwo Background-Icons auf Links/Buttons liegen */
+.header a,
+.header button,
+.header .hamburger {
+  background-image: none !important;
+}
+
+
