@@ -21,7 +21,8 @@ export default function Header() {
 
   function logout() {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
-      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=Lax`;
+      document.cookie =
+        `${n}=; Path=/; Max-Age=0; SameSite=None; Secure`;
     });
     window.location.replace("/");
   }
@@ -29,30 +30,24 @@ export default function Header() {
   return (
     <header className="header">
 
-      {/* OBERER HEADER — NUR LOGO */}
+      {/* OBERER HEADER – NUR LOGO */}
       <div className="container header-inner">
-
         <Link href="/" className="brand">
           <span className="brand-title">
             <span className="brand-name">Jagdlatein</span>
             <small>Lernplattform</small>
           </span>
         </Link>
-
       </div>
 
-      {/* UNTERE LEISTE — ALLES WICHTIGE */}
+      {/* UNTERE LEISTE – Quiz / Glossar / Logout ENTFERNT */}
       <div className="header-sub">
         <div className="container header-sub-inner">
 
-          <Link href="/quiz">Quiz</Link>
-          <span>·</span>
-
-          <Link href="/glossar">Glossar</Link>
-          <span>·</span>
-
+          {/* Nur E-Book bleibt sichtbar */}
           <Link href="/ebook">E-Book</Link>
 
+          {/* Admin optional */}
           {isAdmin && (
             <>
               <span>·</span>
@@ -60,6 +55,7 @@ export default function Header() {
             </>
           )}
 
+          {/* Login optional */}
           {!loggedIn && (
             <>
               <span>·</span>
@@ -67,6 +63,7 @@ export default function Header() {
             </>
           )}
 
+          {/* Logout optional */}
           {loggedIn && (
             <>
               <span>·</span>
@@ -75,6 +72,7 @@ export default function Header() {
               </button>
             </>
           )}
+
         </div>
       </div>
 
