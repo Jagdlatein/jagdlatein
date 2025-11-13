@@ -3,16 +3,16 @@ import Seo from '../../components/Seo';
 const TERMS = {
   ansitz: {
     title:'Ansitz',
-    body:'Stationäre Jagdart vom festen Stand (z. B. Hochsitz). Fördert Ruhe und sichere Schussabgabe.',
+    body:'Stationäre Jagdart vom festen Stand (z. B. Hochsitz). Fördert Ruhe und sichere Schussabgabe.'
   },
   bergstock: {
     title:'Bergstock',
-    body:'Stab/Stock als Gehhilfe im alpinen Gelände; unterstützt Stand und Sicherheit.',
+    body:'Stab/Stock als Gehhilfe im alpinen Gelände; unterstützt Stand und Sicherheit.'
   },
   bruch: {
     title:'Bruch',
-    body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.',
-  }
+    body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.'
+  },
 wechsel: {
   title: "Wechsel",
   body: "Regelmäßig genutzter Weg des Wildes, der oft zu Pirsch oder Ansitz genutzt wird."
