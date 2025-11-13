@@ -395,6 +395,10 @@ img {
   .mobile-nav-under-buttons {
   display: none;
 }
+/* Mobile Navigation unter CTA */
+.mobile-nav-under-buttons {
+  display: none;
+}
 
 .mobile-nav-under-buttons a,
 .mobile-nav-under-buttons button {
@@ -422,6 +426,12 @@ img {
     display: block;
     margin-top: 20px;
   }
+}  /* ❤️ WICHTIG – DIESE KLAMMER HAT BEI DIR GEFEHLT */
+
+/* dein header-sub-inner Block */
+.header-sub-inner {
+  font-size: 17px;
+  padding: 12px 0;
 }
 
 
