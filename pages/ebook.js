@@ -1,47 +1,58 @@
-"use client";
+// pages/ebook.js
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
-import { useSession, signIn } from "next-auth/react";
-import Seo from "../components/Seo";
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
 export default function EbookPage() {
-  const { data: session, status } = useSession();
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  if (status === "loading") return <p>Lade…</p>;
+  useEffect(() => {
+    const s = !!getCookie("jl_session");  // gleicher Login-Check wie Header
+    setLoggedIn(s);
+  }, []);
 
   // ❌ Nicht eingeloggt → Login anzeigen
-  if (!session) {
+  if (!loggedIn) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
-        <Seo title="E-Book" description="E-Book Download" />
+        <Head>
+          <title>E-Book – Login erforderlich</title>
+        </Head>
 
         <h2>🔒 Login erforderlich</h2>
-        <p>Bitte melde dich an, um das E-Book zu öffnen.</p>
+        <p>Bitte logge dich ein, um das E-Book zu öffnen.</p>
 
-        <button
-          onClick={() => signIn()}
+        <a
+          href="/login"
           style={{
             padding: "14px 24px",
             background: "#2b6e3e",
             color: "#fff",
             borderRadius: "10px",
             fontSize: "18px",
-            cursor: "pointer",
-            border: "none",
+            textDecoration: "none",
           }}
         >
           Login
-        </button>
+        </a>
       </div>
     );
   }
 
-  // ✔️ Eingeloggt → Button zum E-Book anzeigen
+  // ✔ Eingeloggt → Link anzeigen
   return (
     <div style={{ padding: 40, textAlign: "center" }}>
-      <Seo title="E-Book" description="Direkter Zugriff" />
+      <Head>
+        <title>E-Book – Zugriff</title>
+      </Head>
 
       <h1>📘 Jagdlatein E-Book</h1>
-      <p>Klicke unten, um das E-Book zu öffnen.</p>
+      <p>Klicke unten, um das E-Book zu öffnen:</p>
 
       <a
         href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA?e=B0pRyj"
@@ -50,7 +61,7 @@ export default function EbookPage() {
         style={{
           padding: "16px 32px",
           background: "#2b6e3e",
-          color: "#fff",
+          color: "white",
           borderRadius: "10px",
           fontSize: "18px",
           textDecoration: "none",
@@ -64,7 +75,7 @@ export default function EbookPage() {
   );
 }
 
-// ❗ notwendig, damit kein Prerendering passiert
 export async function getServerSideProps() {
   return { props: {} };
 }
+
