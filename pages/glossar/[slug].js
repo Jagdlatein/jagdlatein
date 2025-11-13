@@ -13,7 +13,7 @@ const TERMS = {
     title:'Bruch',
     body:'Traditionelles Jagdzeichen aus Zweigen, z. B. Anschussbruch, Inbesitznahmebruch.',
   }
-  wechsel: {
+wechsel: {
   title: "Wechsel",
   body: "Regelmäßig genutzter Weg des Wildes, der oft zu Pirsch oder Ansitz genutzt wird."
 },
@@ -72,6 +72,9 @@ anschuss: {
 ausschuss: {
   title: "Ausschuss",
   body: "Austrittsöffnung des Geschosses, wichtig für Schweißmenge und Nachsuche."
+},
+
+
 };
 
 export default function GlossarDetail({ title, body }){
