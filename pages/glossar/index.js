@@ -19,6 +19,15 @@ const TERMS = [
 { slug:'rickenruf', term:'Rickenruf', def:'Ton der Ricke zur Kontaktaufnahme.' },
 { slug:'anschuss', term:'Anschuss', def:'Ort, an dem das Stück beim Schuss stand.' },
 { slug:'ausschuss', term:'Ausschuss', def:'Austrittsöffnung des Geschosses.' },
+  { slug:'feisthirsch', term:'Feisthirsch', def:'Gut genährter Hirsch vor der Brunft.' },
+{ slug:'schmalspieser', term:'Schmalspießer', def:'Einjähriger Hirsch mit spitzen Stangen.' },
+{ slug:'kahlwild', term:'Kahlwild', def:'Weibliches Rotwild inkl. Nachwuchs.' },
+{ slug:'alttier', term:'Alttier', def:'Erwachsenes weibliches Rotwild.' },
+{ slug:'spießer', term:'Spießer', def:'Junger Hirsch mit unverzweigten Stangen.' },
+{ slug:'schmelzer', term:'Schmelzer', def:'Einjähriges Rotwild in der Entwicklung.' },
+{ slug:'plätzruhe', term:'Plätzruhe', def:'Ruhephase des Rotwildes am Tag.' },
+{ slug:'brunftschrei', term:'Brunftschrei', def:'Ruf des Hirsches in der Brunft.' },
+
 ];
 
 export default function GlossarIndex(){
