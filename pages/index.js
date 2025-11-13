@@ -23,19 +23,19 @@ export default function Home() {
               Jetzt freischalten
             </Link>
 
-            <Link href="/ebook" style={styles.btnBook}>
-              📘 E-Book
-            </Link>
 
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
-          <div style={styles.links}>
-            <Link href="/quiz">Zum Quiz</Link> ·{" "}
-            <Link href="/glossar">Zum Glossar</Link>
-          </div>
+         <div style={styles.links}>
+  <Link href="/quiz">Quiz</Link> ·{" "}
+  <Link href="/glossar">Glossar</Link> ·{" "}
+  <Link href="/ebook">📘 E-Book</Link> ·{" "}
+  <Link href="/logout">Logout</Link>
+</div>
+
 
         </div>
       </main>
