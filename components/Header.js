@@ -79,62 +79,38 @@ export default function Header() {
       
 
       {/* MOBILE MENU */}
-      <div className="mobile-menu">
+<div className="mobile-menu">
 
-        <Link 
-          href="/quiz" 
-          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
-        >
-          Quiz
+  <Link href="/quiz" onClick={() => closeMobileMenu()}>
+    Quiz
+  </Link>
+
+  <Link href="/glossar" onClick={() => closeMobileMenu()}>
+    Glossar
+  </Link>
+
+  <Link href="/ebook" onClick={() => closeMobileMenu()}>
+    📘 E-Book
+  </Link>
+
+  {!loggedIn && (
+    <Link href="/login" onClick={() => closeMobileMenu()}>
+      Login
+    </Link>
+  )}
+
+  {loggedIn && (
+    <>
+      {isAdmin && (
+        <Link href="/admin/glossar" onClick={() => closeMobileMenu()}>
+          Admin
         </Link>
+      )}
 
-        <Link 
-          href="/glossar" 
-          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
-        >
-          Glossar
-        </Link>
+      <button type="button" onClick={() => { closeMobileMenu(); logout(); }}>
+        Logout
+      </button>
+    </>
+  )}
+</div>
 
-        {/* 📘 E-Book Mobile */}
-        <Link
-          href="/ebook"
-          onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
-        >
-          📘 E-Book
-        </Link>
-
-        {!loggedIn && (
-          <Link 
-            href="/login"
-            onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
-          >
-            Login
-          </Link>
-        )}
-
-        {loggedIn && (
-          <>
-            {isAdmin && (
-              <Link 
-                href="/admin/glossar"
-                onClick={() => document.querySelector(".mobile-menu")?.classList.remove("open")}
-              >
-                Admin
-              </Link>
-            )}
-
-            <button
-              type="button"
-              onClick={() => {
-                document.querySelector(".mobile-menu")?.classList.remove("open");
-                logout();
-              }}
-            >
-              Logout
-            </button>
-          </>
-        )}
-      </div>
-    </header>
-  );
-}
