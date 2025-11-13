@@ -702,3 +702,67 @@ html, body {
   color: #fff;
   border-color: var(--forest);
 }
+/* === HAMBURGER MODERN === */
+
+.hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--forest);
+  border-radius: 2px;
+  transition: .2s;
+}
+
+/* Animation: ☰ → ✕ */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Menü */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  background: rgba(241,231,211,.97);
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.1);
+}
