@@ -77,34 +77,39 @@ export default function LoginPage() {
     }
   }
 
-  async function tryAdmin(e) {
+   async function tryUserAccess(e) {
     e?.preventDefault();
     setBusy(true);
     setMsg("");
 
     try {
-      const r = await fetch("/api/admin/auth/check", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      const r = await fetch("/api/auth/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
-      const data = await r.json();
 
-      if (data?.ok) {
-        setCookie("jl_admin", "1");
-        if (email) setCookie("jl_email", encodeURIComponent(email));
-        setCookie("jl_session", "1");
+      const data = await r.json(); // hier kommt jetzt garantiert JSON
 
-        setMsg("Admin-Vorschau aktiv. Weiter …");
-
-        hardRedirectToNext();
-      } else {
-        setMsg("Admin-Token ungültig.");
+      if (!r.ok || !data?.ok) {
+        throw new Error(data?.error || "Login fehlgeschlagen");
       }
+
+      // Cookies zusätzlich im Browser setzen (für Header usw.)
+      setCookie("jl_session", "1");
+      setCookie("jl_paid", "1");
+      setCookie("jl_email", encodeURIComponent(email));
+
+      setMsg("Erfolg: Zugang aktiv – weiter …");
+      hardRedirectToNext();
     } catch (err) {
-      setMsg("Admin-Check fehlgeschlagen.");
+      console.error("Login-Fehler:", err);
+      setMsg(err?.message || "Unbekannter Fehler");
     } finally {
       setBusy(false);
     }
   }
+
 
   function doLogout() {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
