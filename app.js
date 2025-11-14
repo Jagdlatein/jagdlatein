@@ -76,13 +76,14 @@
 
     try {
       // Hier deine echte Login-URL eintragen
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-      });
+  const response = await fetch('/api/auth/session', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ email })
+});
+
 
       const rawText = await response.text(); // erst als Text holen
       const data = safeJsonParse(rawText);
