@@ -2,15 +2,34 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+// Cookies setzen / löschen
 function setCookie(name, value, days = 40) {
   const maxAge = days * 24 * 60 * 60;
   const secure =
-    typeof window !== "undefined" && window.location.protocol === "https:" ? "; Secure" : "";
+    typeof window !== "undefined" && window.location.protocol === "https:"
+      ? "; Secure"
+      : "";
   document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAge}; SameSite=Lax${secure}`;
 }
 
 function delCookie(name) {
   document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+}
+
+// Robust: Serverantwort erst als Text holen, dann JSON parsen
+async function fetchJsonSafe(url, options = {}) {
+  const res = await fetch(url, options);
+  const text = await res.text();
+
+  let data = null;
+  try {
+    data = JSON.parse(text);
+  } catch (e) {
+    console.error("❌ Server hat KEIN gültiges JSON geschickt:", text);
+    throw new Error("Server-Antwort ist ungültig (kein JSON).");
+  }
+
+  return { res, data };
 }
 
 export default function LoginPage() {
@@ -37,71 +56,41 @@ export default function LoginPage() {
   function hardRedirectToNext() {
     const next = getNextPath();
     if (typeof window !== "undefined") {
-      window.location.href = next; // HARTE Weiterleitung, unabhängig vom Router
+      window.location.href = next; // HARTE Weiterleitung
     } else {
       router.replace(next);
     }
   }
 
+  // USER-LOGIN
   async function tryUserAccess(e) {
     e?.preventDefault();
     setBusy(true);
     setMsg("");
 
     try {
-      const r = await fetch(`/api/auth/check?email=${encodeURIComponent(email)}`, {
-        headers: { Accept: "application/json" },
-        cache: "no-store",
-      });
+      const { res, data } = await fetchJsonSafe(
+        `/api/auth/check?email=${encodeURIComponent(email)}`,
+        {
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+        }
+      );
 
-      const data = await r.json();
-
-      if (!r.ok) throw new Error(data?.error || "Serverfehler");
+      if (!res.ok) {
+        throw new Error(data?.error || "Serverfehler");
+      }
 
       if (data?.hasAccess) {
-        // Session-Cookies setzen
         setCookie("jl_session", "1");
         setCookie("jl_paid", "1");
         setCookie("jl_email", encodeURIComponent(email));
 
         setMsg("Erfolg: Zugang aktiv – weiter …");
-
-        hardRedirectToNext(); // ⬅️ hier wird jetzt WIRKLICH weitergeleitet
+        hardRedirectToNext();
       } else {
         setMsg("Kein aktives Abo zu dieser E-Mail gefunden.");
       }
-    } catch (err) {
-      setMsg(err?.message || "Unbekannter Fehler");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-   async function tryUserAccess(e) {
-    e?.preventDefault();
-    setBusy(true);
-    setMsg("");
-
-    try {
-      const r = await fetch("/api/auth/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await r.json(); // hier kommt jetzt garantiert JSON
-
-      if (!r.ok || !data?.ok) {
-        throw new Error(data?.error || "Login fehlgeschlagen");
-      }
-
-      // Cookies zusätzlich im Browser setzen (für Header usw.)
-      setCookie("jl_session", "1");
-      setCookie("jl_paid", "1");
-      setCookie("jl_email", encodeURIComponent(email));
-
-      setMsg("Erfolg: Zugang aktiv – weiter …");
-      hardRedirectToNext();
     } catch (err) {
       console.error("Login-Fehler:", err);
       setMsg(err?.message || "Unbekannter Fehler");
@@ -110,6 +99,34 @@ export default function LoginPage() {
     }
   }
 
+  // ADMIN-LOGIN
+  async function tryAdmin(e) {
+    e?.preventDefault();
+    setBusy(true);
+    setMsg("");
+
+    try {
+      const { res, data } = await fetchJsonSafe("/api/admin/auth/check", {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Admin-Token ungültig.");
+      }
+
+      setCookie("jl_admin", "1");
+      if (email) setCookie("jl_email", encodeURIComponent(email));
+      setCookie("jl_session", "1");
+
+      setMsg("Admin-Vorschau aktiv. Weiter …");
+      hardRedirectToNext();
+    } catch (err) {
+      console.error("Admin-Login-Fehler:", err);
+      setMsg(err?.message || "Admin-Check fehlgeschlagen.");
+    } finally {
+      setBusy(false);
+    }
+  }
 
   function doLogout() {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
@@ -122,13 +139,17 @@ export default function LoginPage() {
 
   return (
     <main style={{ maxWidth: 720, margin: "2rem auto", padding: "0 1rem" }}>
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>Login</h1>
+      <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem" }}>
+        Login
+      </h1>
 
       <p style={{ opacity: 0.9, marginBottom: "1rem" }}>
         Gib die E-Mail ein, mit der du bezahlt hast. <br />
-        Der Login ist erforderlich, um auf <strong>Quiz</strong> und <strong>Glossar</strong> zuzugreifen.
+        Der Login ist erforderlich, um auf <strong>Quiz</strong> und{" "}
+        <strong>Glossar</strong> zuzugreifen.
       </p>
 
+      {/* User-Login */}
       <form
         onSubmit={tryUserAccess}
         style={{
@@ -139,7 +160,11 @@ export default function LoginPage() {
           marginBottom: "1rem",
         }}
       >
-        <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>E-Mail</label>
+        <label
+          style={{ display: "block", fontWeight: 600, marginBottom: 6 }}
+        >
+          E-Mail
+        </label>
         <input
           type="email"
           required
@@ -182,9 +207,32 @@ export default function LoginPage() {
         </div>
       </form>
 
-      
-        
-          <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Admin-Token</label>
+      {/* Admin-Login */}
+      <details>
+        <summary
+          style={{
+            cursor: "pointer",
+            fontWeight: 700,
+            marginBottom: 8,
+          }}
+        >
+          Admin-Login (Token)
+        </summary>
+        <form
+          onSubmit={tryAdmin}
+          style={{
+            background: "#fff",
+            padding: "1rem",
+            borderRadius: 12,
+            boxShadow: "0 2px 10px rgba(0,0,0,.06)",
+            marginTop: 10,
+          }}
+        >
+          <label
+            style={{ display: "block", fontWeight: 600, marginBottom: 6 }}
+          >
+            Admin-Token
+          </label>
           <input
             type="password"
             value={adminToken}
@@ -212,13 +260,23 @@ export default function LoginPage() {
               Als Admin einloggen (Preview)
             </button>
           </div>
-          <p style={{ fontSize: 13, opacity: 0.8, marginTop: 8 }}>
-            Bei Erfolg wird <code>jl_admin=1</code> gesetzt.
+          <p
+            style={{
+              fontSize: 13,
+              opacity: 0.8,
+              marginTop: 8,
+            }}
+          >
+            Bei Erfolg wird jl_admin=1 gesetzt.
           </p>
         </form>
       </details>
 
-      {msg && <p style={{ marginTop: 16, fontWeight: 700 }}>{msg}</p>}
+      {msg && (
+        <p style={{ marginTop: 16, fontWeight: 700 }}>
+          {msg}
+        </p>
+      )}
     </main>
   );
-}
+          }
