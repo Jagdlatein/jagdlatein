@@ -182,20 +182,8 @@ export default function LoginPage() {
         </div>
       </form>
 
-      <details>
-        <summary style={{ cursor: "pointer", fontWeight: 700, marginBottom: 8 }}>
-          Admin-Login (Token)
-        </summary>
-        <form
-          onSubmit={tryAdmin}
-          style={{
-            background: "#fff",
-            padding: "1rem",
-            borderRadius: 12,
-            boxShadow: "0 2px 10px rgba(0,0,0,.06)",
-            marginTop: 10,
-          }}
-        >
+      
+        
           <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Admin-Token</label>
           <input
             type="password"
