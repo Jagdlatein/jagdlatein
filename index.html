@@ -1,2 +1,26 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#b38a44">
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Manifest einbinden -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#b38a44">
+
+  <title>Jagdlatein</title>
+</head>
+<body>
+  <h1>Jagdlatein App</h1>
+  <p>App erfolgreich geladen.</p>
+
+  <script>
+    // Service Worker registrieren
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>
