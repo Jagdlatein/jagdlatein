@@ -6,8 +6,9 @@ const PUBLIC_PATHS = ["/", "/login"];
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  // Statische Dateien immer durchlassen
+  // 🔓 API & statische Dateien NICHT schützen
   if (
+    pathname.startsWith("/api") ||        // ⬅️ WICHTIG: API ausnehmen
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
@@ -15,22 +16,22 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // öffentlich erlaubte Seiten
-  if (PUBLIC_PATHS.includes(pathname)) {
-    return NextResponse.next();
-  }
+  // prüfen, ob User eingeloggt ist
+  const hasSession =
+    req.cookies.get("jl_session")?.value === "1" &&
+    (req.cookies.get("jl_paid")?.value === "1" ||
+      req.cookies.get("jl_admin")?.value === "1");
 
-  // Session-Cookie prüfen
-  const hasSession = req.cookies.get("jl_session");
+  const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // Wenn kein Login → immer auf /login umleiten (egal ob mobile oder Desktop)
-  if (!hasSession) {
+  // Wenn nicht eingeloggt und nicht auf einer freien Seite → auf /login schicken
+  if (!hasSession && !isPublic) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // eingeloggt → Seite ganz normal laden
+  // Sonst normal weiter
   return NextResponse.next();
 }
 
