@@ -1,19 +1,19 @@
-// app/api/login/route.ts
+// app/api/login/route.js
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
-  let body: { email?: string } | null = null;
+export async function POST(req) {
+  let body = null;
 
   try {
     body = await req.json();
-  } catch {
+  } catch (e) {
     return NextResponse.json(
       { success: false, message: 'Ungültige Anfrage' },
       { status: 400 }
     );
   }
 
-  const email = body?.email?.trim();
+  const email = body && body.email ? body.email.trim() : '';
 
   if (!email) {
     return NextResponse.json(
@@ -22,9 +22,7 @@ export async function POST(req: Request) {
     );
   }
 
-  // TODO: Hier deine echte Kauf-Prüfung einbauen
-  // z.B. gegen Datenbank oder Liste von bezahlten E-Mails
-
+  // TODO: hier echte Prüfung einbauen
   const fakeToken = 'token-' + Date.now();
 
   return NextResponse.json(
@@ -33,7 +31,6 @@ export async function POST(req: Request) {
   );
 }
 
-// Optional: GET blocken, damit du siehst, dass Route existiert
 export function GET() {
   return NextResponse.json(
     { success: false, message: 'Method not allowed' },
