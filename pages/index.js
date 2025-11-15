@@ -40,13 +40,8 @@ export default function Home() {
           </p>
 
           <div style={styles.btnRow}>
-            {/* 👉 HIER: Direkt zu PayPal / Bezahlseite */}
-            <Link
-              href="https://dein-paypal-oder-bezahl-link.de" 
-              style={styles.btnPrimary}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            {/* 👉 RICHTIG: führt jetzt auf /preise */}
+            <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
 
@@ -55,7 +50,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* MOBILE-NAVIGATION UNTER DEM FREISCHALTEN-BUTTON */}
+          {/* MOBILE-NAVIGATION */}
           <div className="mobile-nav-under-buttons">
             <Link href="/quiz">Quiz</Link>
             <Link href="/glossar">Glossar</Link>
@@ -101,15 +96,6 @@ const styles = {
     margin: "0 0 26px",
   },
   btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
-  btnBook: {
-    background: "#2b6e3e",
-    color: "white",
-    padding: "14px 26px",
-    borderRadius: 14,
-    fontWeight: 700,
-    textDecoration: "none",
-    fontSize: 17,
-  },
   btnPrimary: {
     background: "#caa53b",
     color: "#111",
@@ -128,10 +114,5 @@ const styles = {
     fontWeight: 700,
     textDecoration: "none",
     fontSize: 17,
-  },
-  links: {
-    marginTop: 26,
-    fontSize: 16,
-    color: "#555",
   },
 };
