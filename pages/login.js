@@ -144,9 +144,9 @@ export default function LoginPage() {
       </h1>
 
       <p style={{ opacity: 0.9, marginBottom: "1rem" }}>
-        Gib die E-Mail ein, mit der du bezahlt hast. <br />
-        Der Login ist erforderlich, um auf <strong>Quiz</strong> und{" "}
-        <strong>Glossar</strong> zuzugreifen.
+        Nutze die E-Mail, die du beim Kauf hinterlegt hast. <br />
+        Nach dem Login ist der komplette Zugang zur Lernplattform für dich
+        freigeschaltet.
       </p>
 
       {/* User-Login */}
@@ -279,4 +279,4 @@ export default function LoginPage() {
       )}
     </main>
   );
-          }
+            }
