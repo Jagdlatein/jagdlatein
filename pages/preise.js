@@ -4,19 +4,83 @@ import Link from "next/link";
 
 export default function Preise() {
   // Styles (mobil zuerst)
-  const container = { maxWidth: 960, margin: "0 auto", padding: "16px 14px 26px",
-    fontFamily: "system-ui, Segoe UI, Roboto, Arial" };
-  const h1 = { margin: "6px 0 8px", fontSize: 30, lineHeight: 1.2, letterSpacing: "-.01em", color: "#121518" };
-  const lead = { color: "#475569", margin: "0 0 16px", fontSize: 16 };
-  const grid = { display: "grid", gap: 14, gridTemplateColumns: "1fr" }; // <- default: 1 Spalte
-  const card = { background: "#fff", border: "1px solid #e6eee6", borderRadius: 14, padding: 14,
-    boxShadow: "0 8px 18px rgba(17,41,25,0.06)" };
-  const sub = { margin: "0 0 12px", color: "#4b5563" };
-  const ppBtn = { textAlign: "center", border: "none", borderRadius: 12, width: "100%", height: 52,
-    fontWeight: 800, backgroundColor: "#FFD140", color: "#111",
-    fontFamily: 'system-ui, "Helvetica Neue", Arial, sans-serif', fontSize: 16, lineHeight: 1, cursor: "pointer" };
-  const brands = { height: 22, opacity: .9, margin: "2px auto 0" };
-  const note = { fontSize: 12, color: "#6b7280", textAlign: "center" };
+  const container = {
+    maxWidth: 960,
+    margin: "0 auto",
+    padding: "16px 14px 26px",
+    fontFamily: "system-ui, Segoe UI, Roboto, Arial",
+  };
+
+  const h1 = {
+    margin: "6px 0 8px",
+    fontSize: 30,
+    lineHeight: 1.2,
+    letterSpacing: "-.01em",
+    color: "#121518",
+  };
+
+  const lead = {
+    color: "#475569",
+    margin: "0 0 16px",
+    fontSize: 16,
+  };
+
+  const grid = {
+    display: "grid",
+    gap: 14,
+    gridTemplateColumns: "1fr", // mobil: eine Spalte
+  };
+
+  const card = {
+    background: "#fff",
+    border: "1px solid #e6eee6",
+    borderRadius: 14,
+    padding: 14,
+    boxShadow: "0 8px 18px rgba(17,41,25,0.06)",
+  };
+
+  const priceTitle = {
+    margin: "0 0 6px",
+    fontSize: 22,
+  };
+
+  const sub = {
+    margin: "0 0 12px",
+    color: "#4b5563",
+  };
+
+  const ppBtn = {
+    textAlign: "center",
+    border: "none",
+    borderRadius: 12,
+    width: "100%",
+    height: 52,
+    fontWeight: 800,
+    backgroundColor: "#FFD140",
+    color: "#111",
+    fontFamily: 'system-ui, "Helvetica Neue", Arial, sans-serif',
+    fontSize: 16,
+    lineHeight: 1,
+    cursor: "pointer",
+  };
+
+  const brands = {
+    height: 22,
+    opacity: 0.9,
+    margin: "2px auto 0",
+  };
+
+  const note = {
+    fontSize: 12,
+    color: "#6b7280",
+    textAlign: "center",
+  };
+
+  const smallText = {
+    marginTop: 18,
+    color: "#6b7280",
+    fontSize: 14,
+  };
 
   return (
     <>
@@ -34,15 +98,19 @@ export default function Preise() {
 
       <main style={{ background: "linear-gradient(180deg,#fff,#f7faf7)" }}>
         <div style={container}>
-          <h1 className="jl" style={h1}>Preise</h1>
+          <h1 className="jl" style={h1}>
+            Preise
+          </h1>
+
           <p style={lead}>
-            Wähle dein Modell. Zugang wird nach erfolgreicher Bezahlung automatisch freigeschaltet.
+            Wähle dein Modell. Der Zugang zur Lernplattform wird nach
+            erfolgreicher Bezahlung automatisch freigeschaltet.
           </p>
 
           <div className="pricing-grid" style={grid}>
-            {/* Monat */}
+            {/* Monatszugang */}
             <div style={card}>
-              <h3 style={{ margin: "0 0 6px", fontSize: 22 }}>Monatszugang</h3>
+              <h3 style={priceTitle}>Monatszugang</h3>
               <p style={sub}>10 € / Monat · jederzeit kündbar</p>
 
               <form
@@ -52,7 +120,11 @@ export default function Preise() {
                 style={{ display: "grid", gap: 10 }}
               >
                 <input type="submit" value="Jetzt kaufen" style={ppBtn} />
-                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="Karten" style={brands} />
+                <img
+                  src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
+                  alt="Kredit- und Debitkarten"
+                  style={brands}
+                />
                 <div style={note}>
                   Abgewickelt durch{" "}
                   <img
@@ -64,9 +136,9 @@ export default function Preise() {
               </form>
             </div>
 
-            {/* Jahr */}
+            {/* Jahreszugang */}
             <div style={card}>
-              <h3 style={{ margin: "0 0 6px", fontSize: 22 }}>Jahreszugang</h3>
+              <h3 style={priceTitle}>Jahreszugang</h3>
               <p style={sub}>100 € / Jahr · entspricht 8,33 € / Monat</p>
 
               <form
@@ -76,7 +148,11 @@ export default function Preise() {
                 style={{ display: "grid", gap: 10 }}
               >
                 <input type="submit" value="Jetzt kaufen" style={ppBtn} />
-                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="Karten" style={brands} />
+                <img
+                  src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
+                  alt="Kredit- und Debitkarten"
+                  style={brands}
+                />
                 <div style={note}>
                   Abgewickelt durch{" "}
                   <img
@@ -89,11 +165,16 @@ export default function Preise() {
             </div>
           </div>
 
-          <p style={{ marginTop: 18, color: "#6b7280" }}>
+          {/* Hinweis Login + Kontakt */}
+          <p style={smallText}>
+            Bereits gekauft?{" "}
+            <Link href="/login">Hier mit deiner E-Mail einloggen</Link>.
+          </p>
+          <p style={smallText}>
             Fragen zur Zahlung? <Link href="/kontakt">Kontakt</Link>
           </p>
         </div>
       </main>
     </>
   );
-                }
+}
