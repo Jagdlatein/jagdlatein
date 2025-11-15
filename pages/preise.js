@@ -1,6 +1,7 @@
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
+import PayPalButtons from "../components/PayPalButtons";
 
 export default function Preise() {
   // Styles (mobil zuerst)
@@ -49,31 +50,10 @@ export default function Preise() {
     color: "#4b5563",
   };
 
-  const ppBtn = {
-    textAlign: "center",
-    border: "none",
-    borderRadius: 12,
-    width: "100%",
-    height: 52,
-    fontWeight: 800,
-    backgroundColor: "#FFD140",
-    color: "#111",
-    fontFamily: 'system-ui, "Helvetica Neue", Arial, sans-serif',
-    fontSize: 16,
-    lineHeight: 1,
-    cursor: "pointer",
-  };
-
-  const brands = {
-    height: 22,
-    opacity: 0.9,
-    margin: "2px auto 0",
-  };
-
   const note = {
     fontSize: 12,
     color: "#6b7280",
-    textAlign: "center",
+    marginTop: 8,
   };
 
   const smallText = {
@@ -113,27 +93,13 @@ export default function Preise() {
               <h3 style={priceTitle}>Monatszugang</h3>
               <p style={sub}>10 € / Monat · jederzeit kündbar</p>
 
-              <form
-                action="https://www.paypal.com/ncp/payment/WBPRVVCEQ8HU8"
-                method="post"
-                target="_blank"
-                style={{ display: "grid", gap: 10 }}
-              >
-                <input type="submit" value="Jetzt kaufen" style={ppBtn} />
-                <img
-                  src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
-                  alt="Kredit- und Debitkarten"
-                  style={brands}
-                />
-                <div style={note}>
-                  Abgewickelt durch{" "}
-                  <img
-                    src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
-                    alt="PayPal"
-                    style={{ height: 14, verticalAlign: "-2px" }}
-                  />
-                </div>
-              </form>
+              {/* Deine PayPal-Komponente – Tarif: monthly */}
+              <PayPalButtons tier="monthly" />
+
+              <p style={note}>
+                Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
+                erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
+              </p>
             </div>
 
             {/* Jahreszugang */}
@@ -141,31 +107,17 @@ export default function Preise() {
               <h3 style={priceTitle}>Jahreszugang</h3>
               <p style={sub}>100 € / Jahr · entspricht 8,33 € / Monat</p>
 
-              <form
-                action="https://www.paypal.com/ncp/payment/UAGCGVBMKL6VJ"
-                method="post"
-                target="_blank"
-                style={{ display: "grid", gap: 10 }}
-              >
-                <input type="submit" value="Jetzt kaufen" style={ppBtn} />
-                <img
-                  src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
-                  alt="Kredit- und Debitkarten"
-                  style={brands}
-                />
-                <div style={note}>
-                  Abgewickelt durch{" "}
-                  <img
-                    src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
-                    alt="PayPal"
-                    style={{ height: 14, verticalAlign: "-2px" }}
-                  />
-                </div>
-              </form>
+              {/* Deine PayPal-Komponente – Tarif: yearly */}
+              <PayPalButtons tier="yearly" />
+
+              <p style={note}>
+                Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
+                erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
+              </p>
             </div>
           </div>
 
-          {/* Hinweis Login + Kontakt */}
+          {/* Login-Hinweis + Kontakt */}
           <p style={smallText}>
             Bereits gekauft?{" "}
             <Link href="/login">Hier mit deiner E-Mail einloggen</Link>.
