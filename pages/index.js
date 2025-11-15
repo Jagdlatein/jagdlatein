@@ -40,7 +40,13 @@ export default function Home() {
           </p>
 
           <div style={styles.btnRow}>
-            <Link href="/preise" style={styles.btnPrimary}>
+            {/* 👉 HIER: Direkt zu PayPal / Bezahlseite */}
+            <Link
+              href="https://dein-paypal-oder-bezahl-link.de" 
+              style={styles.btnPrimary}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Jetzt freischalten
             </Link>
 
@@ -95,7 +101,6 @@ const styles = {
     margin: "0 0 26px",
   },
   btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
-
   btnBook: {
     background: "#2b6e3e",
     color: "white",
@@ -105,7 +110,6 @@ const styles = {
     textDecoration: "none",
     fontSize: 17,
   },
-
   btnPrimary: {
     background: "#caa53b",
     color: "#111",
