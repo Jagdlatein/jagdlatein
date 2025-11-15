@@ -46,11 +46,11 @@ export default function LoginPage() {
     if (typeof q.email === "string") setEmail(q.email);
   }, [router.isReady, router.query]);
 
-  // Ziel nach Login bestimmen (next-Param oder /quiz)
+  // Ziel nach Login bestimmen (next-Param oder /preise)
   function getNextPath() {
     const n = router?.query?.next;
     if (typeof n === "string" && n.startsWith("/")) return n;
-    return "/quiz"; // Standard: Quiz
+    return "/preise"; // Standardziel geändert
   }
 
   function hardRedirectToNext() {
@@ -279,4 +279,4 @@ export default function LoginPage() {
       )}
     </main>
   );
-            }
+}
