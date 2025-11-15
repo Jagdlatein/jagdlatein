@@ -1,7 +1,86 @@
 /* =========================================
+   Farbwelt & Design-Variablen
+========================================= */
+:root {
+  --parchment: #f1e7d3;
+  --ink: #2a2319;
+  --forest: #1f2b23;
+  --gold: #d4af37;
+  --sepia: #8a6a3e;
+  --muted: #6c6458;
+
+  --radius: 14px;
+  --shadow: 0 10px 25px rgba(0,0,0,.18),
+            0 2px 6px rgba(0,0,0,.15);
+}
+
+/* =========================================
+   Basis & Typografie
+========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--parchment);
+  color: var(--ink);
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0 0 .4em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(212,175,55,.6);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   Layout-Helfer
+========================================= */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.section {
+  padding: 36px 0;
+}
+
+@media (min-width: 992px) {
+  .section {
+    padding: 56px 0;
+  }
+}
+
+/* =========================================
    Header & Navigation
 ========================================= */
-
 .header {
   position: sticky;
   top: 0;
@@ -43,11 +122,10 @@
   letter-spacing: -0.2px;
 }
 
-/* NUR HIER wurde geändert → Lernplattform weiter runter */
 .brand-title small {
   color: var(--muted);
   font-size: 14px;
-  margin-top: 4px;   /* statt -4px → jetzt richtig nach unten */
+  margin-top: 4px; /* Lernplattform leicht nach unten */
   font-weight: 600;
 }
 
@@ -79,12 +157,246 @@
 }
 
 /* =========================================
-   Mobile Header
+   (Optional) Untere Header-Leiste
+========================================= */
+.header-sub {
+  background: rgba(255,255,255,0.65);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(4px);
+}
+
+.header-sub-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header-sub-inner a {
+  color: var(--forest);
+}
+
+.header-sub-inner span {
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 2px;
+}
+
+.logout-btn-inline {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--forest);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================================
+   Hero-Bereich (falls verwendet)
+========================================= */
+.hero {
+  position: relative;
+  padding: 72px 0 48px;
+  background:
+    radial-gradient(
+      1200px 380px at 20% -10%,
+      rgba(212,175,55,.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 420px at 120% 0%,
+      rgba(31,43,35,.18),
+      transparent 60%
+    ),
+    var(--parchment);
+  border-bottom: 1px solid rgba(42,35,25,.12);
+}
+
+.hero-logo {
+  height: 96px;
+  margin: 0 0 8px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.15));
+}
+
+.hero h1 {
+  font-size: 44px;
+  line-height: 1.1;
+  margin: 0 0 8px;
+}
+
+.hero p {
+  color: var(--sepia);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.hero .status {
+  font-weight: 700;
+  color: var(--forest);
+  margin: 6px 0 0;
+}
+
+/* =========================================
+   Karten / Grid
+========================================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.55),
+    rgba(255,255,255,.35)
+  );
+  border: 1px solid rgba(42,35,25,.14);
+  border-radius: var(--radius);
+  padding: 16px 16px 18px;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease;
+}
+
+.card h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0 0 6px;
+}
+
+.card p {
+  color: #3c372f;
+  margin: 0 0 10px;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   Buttons / CTAs
+========================================= */
+.btn,
+.cta {
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: .2px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgba(42,35,25,.18);
+  cursor: pointer;
+}
+
+.btn {
+  background: #fff8;
+  color: var(--ink);
+}
+
+.btn:hover {
+  background: #fff;
+}
+
+.cta {
+  background: var(--gold);
+  color: #231c0f;
+  border-color: rgba(212,175,55,.5);
+  box-shadow: 0 8px 18px rgba(212,175,55,.22);
+}
+
+.cta:hover {
+  filter: brightness(.98);
+}
+
+/* =========================================
+   Zusätzliche Utility-Typo / Sektionen
+========================================= */
+.lead {
+  font-size: 18px;
+  color: var(--sepia);
+}
+
+.section-alt {
+  background: linear-gradient(
+    0deg,
+    rgba(241,231,211,.7),
+    rgba(241,231,211,.5)
+  );
+}
+
+.trust {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  padding: 8px 12px;
+  border: 1px solid rgba(42,35,25,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.55);
+}
+
+.small {
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* =========================================
+   Footer
+========================================= */
+.footer {
+  border-top: 1px solid rgba(42,35,25,.12);
+  background: linear-gradient(
+    0deg,
+    rgba(241,231,211,.9),
+    rgba(241,231,211,.7)
+  );
+}
+
+.footer .container {
+  padding: 20px 18px;
+  color: var(--muted);
+}
+
+/* =========================================
+   Mobile Navigation unter "Jetzt freischalten"
+   (Startseite)
+========================================= */
+.mobile-nav-under-buttons {
+  display: none;
+}
+
+.mobile-nav-under-buttons a,
+.mobile-nav-under-buttons button {
+  display: block;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--forest);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.logout-inline {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+}
+
+/* =========================================
+   Media Queries (nur mobile Anpassungen unten)
 ========================================= */
 @media (max-width: 780px) {
   .header-inner {
     height: 64px;
-    justify-content: center; 
+    justify-content: center; /* Logo in der Mitte, Menü ist weg */
   }
 
   .brand-name {
@@ -93,10 +405,34 @@
 
   .brand-title small {
     font-size: 12px;
-    margin-top: 3px;  /* auch mobil sauber */
+    margin-top: 3px;
   }
 
+  /* Desktop-Menü im Header auf Handy ausblenden */
   .menu {
     display: none;
+  }
+
+  .hero {
+    padding: 64px 0 36px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-logo {
+    height: 72px;
+  }
+
+  .header-sub-inner {
+    font-size: 17px;
+    padding: 12px 0;
+  }
+
+  /* Mobile Navigation unter dem CTA anzeigen */
+  .mobile-nav-under-buttons {
+    display: block;
+    margin-top: 20px;
   }
 }
