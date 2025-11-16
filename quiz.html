@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jagdlatein Quiz</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f3f3;
+        padding: 20px;
+    }
+
+    .quiz-container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 450px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    .question {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .answer {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background: #eaeaea;
+        transition: 0.2s;
+    }
+
+    .answer:hover {
+        background: #d8d8d8;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="question">Welche Spur gehört zum Keiler?</div>
+
+    <button class="answer" data-correct="false">A: Hirsch</button>
+    <button class="answer" data-correct="true">B: Keiler</button>
+    <button class="answer" data-correct="false">C: Fuchs</button>
+    <button class="answer" data-correct="false">D: Dachs</button>
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Antworten deaktivieren
+        document.querySelectorAll('.answer').forEach(btn => btn.disabled = true);
+
+        // Richtige Antwort markieren
+        const correct = document.querySelector('[data-correct="true"]');
+        correct.style.background = "green";
+        correct.style.color = "white";
+
+        // Wenn falsch gewählt → rot markieren
+        if (button.dataset.correct === "false") {
+            button.style.background = "red";
+            button.style.color = "white";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
