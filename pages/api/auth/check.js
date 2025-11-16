@@ -1,5 +1,5 @@
 // pages/api/auth/check.js
-import prisma from "../../lib/prisma"; // Pfad prüfen
+import prisma from "../../../lib/prisma"; // ⬅️ WICHTIG: drei ../
 
 function safeJson(str) {
   try {
@@ -13,6 +13,7 @@ async function hasActiveAccess(email) {
   if (!email) return false;
   const normalized = email.trim().toLowerCase();
 
+  // AccessPass per userId = E-Mail
   const pass = await prisma.accessPass.findUnique({
     where: { userId: normalized },
   });
@@ -48,7 +49,7 @@ export default async function handler(req, res) {
   const active = await hasActiveAccess(email);
 
   return res.status(200).json({
-    active,          // für neue Komponenten
-    hasAccess: active, // für evtl. alten Code
+    active,
+    hasAccess: active,
   });
 }
