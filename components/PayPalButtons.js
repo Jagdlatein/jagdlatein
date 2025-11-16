@@ -10,15 +10,19 @@ export default function PayPalButtons({ tier = "monthly" }) {
   const currency = process.env.NEXT_PUBLIC_PAYPAL_CURRENCY || "EUR";
 
   useEffect(() => {
-    // Diagnose
     if (!clientId) {
-      setMsg("PayPal ist nicht konfiguriert (Client-ID fehlt).");
+      setMsg("PayPal ist momentan nicht konfiguriert. Bitte Betreiber kontaktieren.");
       console.error("PayPal: NEXT_PUBLIC_PAYPAL_CLIENT_ID fehlt");
       return;
     }
 
-    // SDK nur einmal laden
-    if (window.paypal) { setSdkReady(true); setMsg(""); return; }
+    if (typeof window === "undefined") return;
+
+    if (window.paypal) {
+      setSdkReady(true);
+      setMsg("");
+      return;
+    }
 
     const params = new URLSearchParams({
       "client-id": clientId,
@@ -28,13 +32,23 @@ export default function PayPalButtons({ tier = "monthly" }) {
       commit: "true",
     }).toString();
 
+    const src = `https://www.paypal.com/sdk/js?${params}`;
+    console.log("Lade PayPal SDK:", src);
+
     const script = document.createElement("script");
-    script.src = `https://www.paypal.com/sdk/js?${params}`;
+    script.src = src;
     script.async = true;
-    script.onload = () => { setSdkReady(true); setMsg(""); };
-    script.onerror = () => {
-      setMsg("PayPal-SDK konnte nicht geladen werden.");
-      console.error("PayPal SDK load error");
+    script.onload = () => {
+      console.log("PayPal SDK geladen");
+      setSdkReady(true);
+      setMsg("");
+    };
+    script.onerror = (e) => {
+      console.error("PayPal SDK load error", e);
+      setMsg(
+        "PayPal-SDK konnte nicht geladen werden. " +
+        "Bitte Werbeblocker/Tracking-Schutz prüfen oder später erneut versuchen."
+      );
     };
     document.body.appendChild(script);
   }, [clientId, currency]);
@@ -85,14 +99,19 @@ export default function PayPalButtons({ tier = "monthly" }) {
     }).render(mountRef.current);
   }, [sdkReady, tier]);
 
-  // Sichtbarer Platzhalter / Diagnose
   return (
     <div style={{ minWidth: 260 }}>
       {msg && (
-        <div style={{
-          fontSize: 13, color: "#6b7280", marginBottom: 8,
-          padding: "6px 8px", border: "1px dashed #d1d5db", borderRadius: 8
-        }}>
+        <div
+          style={{
+            fontSize: 13,
+            color: "#6b7280",
+            marginBottom: 8,
+            padding: "6px 8px",
+            border: "1px dashed #d1d5db",
+            borderRadius: 8,
+          }}
+        >
           {msg}
         </div>
       )}
