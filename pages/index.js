@@ -39,30 +39,36 @@ export default function Home() {
           </p>
 
           <div style={styles.btnRow}>
-            {/* 👉 Korrekt zu /preise */}
+            {/* Kaufseite / Preise bleibt immer gleich */}
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
 
-            {/* Login bleibt Login */}
+            {/* Login direkt */}
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
-          {/* MOBILE-NAVIGATION */}
+          {/* MOBILE-NAVIGATION UNTER DEN BUTTONS */}
           <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
-            <Link href="/quiz">Quiz</Link>
+            <Link href={loggedIn ? "/quiz" : "/login?next=/quiz"}>Quiz</Link>
             <span> · </span>
-            <Link href="/glossar">Glossar</Link>
+            <Link href={loggedIn ? "/glossar" : "/login?next=/glossar"}>
+              Glossar
+            </Link>
             <span> · </span>
-            <Link href="/ebook">E-Book</Link>
-            {(!loggedIn) && (
+            <Link href={loggedIn ? "/ebook" : "/login?next=/ebook"}>
+              E-Book
+            </Link>
+
+            {!loggedIn && (
               <>
                 <span> · </span>
                 <Link href="/login">Login</Link>
               </>
             )}
+
             {loggedIn && (
               <>
                 <span> · </span>
