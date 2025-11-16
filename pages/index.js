@@ -94,7 +94,10 @@ const styles = {
     padding: "45px 16px 80px",
     minHeight: "100vh",
   },
-  wrap: { maxWidth: 860, margin: "0 auto" },
+  wrap: {
+    maxWidth: 860,
+    margin: "0 auto",
+  },
   title: {
     fontSize: 44,
     fontWeight: 800,
@@ -108,7 +111,12 @@ const styles = {
     maxWidth: 600,
     margin: "0 0 26px",
   },
-  btnRow: { display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 24 },
+  btnRow: {
+    display: "flex",
+    gap: 14,
+    flexWrap: "wrap",
+    marginBottom: 24,
+  },
   btnPrimary: {
     background: "#caa53b",
     color: "#111",
@@ -120,7 +128,7 @@ const styles = {
   },
   btnGhost: {
     background: "#fff",
-    border: "2px solid "#ddd",
+    border: "2px solid #ddd",
     color: "#111",
     padding: "14px 26px",
     borderRadius: 14,
