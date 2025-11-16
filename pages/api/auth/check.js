@@ -1,42 +1,5 @@
 // pages/api/auth/check.js
-
-function isPaidEmail(email) {
-  const raw = process.env.PAID_EMAILS || '';
-  const allowed = raw
-    .split(',')
-    .map((e) => e.trim().toLowerCase())
-    .filter(Boolean);
-
-  return allowed.includes(email.toLowerCase());
-}
-
-export default async function handler(req, res) {
-  let email = '';
-
-  if (req.method === 'POST') {
-    // Kommt vom Frontend mit body: JSON.stringify({ email })
-    const body = typeof req.body === 'string' ? safeJson(req.body) : req.body || {};
-    email = (body.email || '').toString().trim().toLowerCase();
-  } else {
-    // Fallback für GET ?email=...
-    email = (req.query.email || '').toString().trim().toLowerCase();
-  }
-
-  if (!email) {
-    return res.status(400).json({
-      error: 'E-Mail ungültig',
-      active: false,
-      hasAccess: false,
-    });
-  }
-
-  const active = isPaidEmail(email);
-
-  return res.status(200).json({
-    active,          // für neue Komponenten (RequireAccess mit data.active)
-    hasAccess: active, // für evtl. alten Code
-  });
-}
+import prisma from "../../lib/prisma"; // Pfad prüfen
 
 function safeJson(str) {
   try {
@@ -44,4 +7,48 @@ function safeJson(str) {
   } catch {
     return {};
   }
+}
+
+async function hasActiveAccess(email) {
+  if (!email) return false;
+  const normalized = email.trim().toLowerCase();
+
+  const pass = await prisma.accessPass.findUnique({
+    where: { userId: normalized },
+  });
+
+  if (!pass) return false;
+  if (pass.status !== "active") return false;
+
+  const now = new Date();
+  if (pass.expiresAt && pass.expiresAt < now) return false;
+
+  return true;
+}
+
+export default async function handler(req, res) {
+  let email = "";
+
+  if (req.method === "POST") {
+    const body =
+      typeof req.body === "string" ? safeJson(req.body) : req.body || {};
+    email = (body.email || "").toString().trim().toLowerCase();
+  } else {
+    email = (req.query.email || "").toString().trim().toLowerCase();
+  }
+
+  if (!email) {
+    return res.status(400).json({
+      error: "E-Mail ungültig",
+      active: false,
+      hasAccess: false,
+    });
+  }
+
+  const active = await hasActiveAccess(email);
+
+  return res.status(200).json({
+    active,          // für neue Komponenten
+    hasAccess: active, // für evtl. alten Code
+  });
 }
