@@ -32,42 +32,58 @@ export default function Home() {
 
       <main style={styles.main}>
         <div style={styles.wrap}>
-
           <h1 style={styles.title}>Jagdlatein</h1>
 
           <p style={styles.sub}>
             Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
+          </p>
+
           <div style={styles.btnRow}>
-  {/* 👉 Jetzt wieder korrekt zu /preise */}
-  <Link href="/preise" style={styles.btnPrimary}>
-    Jetzt freischalten
-  </Link>
+            {/* 👉 Korrekt zu /preise */}
+            <Link href="/preise" style={styles.btnPrimary}>
+              Jetzt freischalten
+            </Link>
 
-  {/* Login bleibt Login */}
-  <Link href="/login" style={styles.btnGhost}>
-    Login
-  </Link>
-</div>
-
-          {/* MOBILE-NAVIGATION */}
-          <div className="mobile-nav-under-buttons">
-            <Link href="/quiz">Quiz</Link>
-            <Link href="/glossar">Glossar</Link>
-            <Link href="/ebook">E-Book</Link>
-
-            {!loggedIn && <Link href="/login">Login</Link>}
-
-            {loggedIn && (
-              <button
-                type="button"
-                className="logout-inline"
-                onClick={logout}
-              >
-                Logout
-              </button>
-            )}
+            {/* Login bleibt Login */}
+            <Link href="/login" style={styles.btnGhost}>
+              Login
+            </Link>
           </div>
 
+          {/* MOBILE-NAVIGATION */}
+          <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
+            <Link href="/quiz">Quiz</Link>
+            <span> · </span>
+            <Link href="/glossar">Glossar</Link>
+            <span> · </span>
+            <Link href="/ebook">E-Book</Link>
+            {(!loggedIn) && (
+              <>
+                <span> · </span>
+                <Link href="/login">Login</Link>
+              </>
+            )}
+            {loggedIn && (
+              <>
+                <span> · </span>
+                <button
+                  type="button"
+                  className="logout-inline"
+                  onClick={logout}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    textDecoration: "underline",
+                    font: "inherit",
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </main>
     </>
@@ -94,7 +110,7 @@ const styles = {
     maxWidth: 600,
     margin: "0 0 26px",
   },
-  btnRow: { display: "flex", gap: 14, flexWrap: "wrap" },
+  btnRow: { display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 24 },
   btnPrimary: {
     background: "#caa53b",
     color: "#111",
