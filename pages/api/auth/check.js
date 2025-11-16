@@ -1,14 +1,47 @@
 // pages/api/auth/check.js
 
-export default function handler(req, res) {
-  const { email } = req.query;
+function isPaidEmail(email) {
+  const raw = process.env.PAID_EMAILS || '';
+  const allowed = raw
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
 
-  if (!email || typeof email !== "string") {
-    return res.status(400).json({ error: "E-Mail ungültig" });
+  return allowed.includes(email.toLowerCase());
+}
+
+export default async function handler(req, res) {
+  let email = '';
+
+  if (req.method === 'POST') {
+    // Kommt vom Frontend mit body: JSON.stringify({ email })
+    const body = typeof req.body === 'string' ? safeJson(req.body) : req.body || {};
+    email = (body.email || '').toString().trim().toLowerCase();
+  } else {
+    // Fallback für GET ?email=...
+    email = (req.query.email || '').toString().trim().toLowerCase();
   }
 
-  // ❗ VORÜBERGEHEND: Jeder hat Zugang (für Test)
+  if (!email) {
+    return res.status(400).json({
+      error: 'E-Mail ungültig',
+      active: false,
+      hasAccess: false,
+    });
+  }
+
+  const active = isPaidEmail(email);
+
   return res.status(200).json({
-    hasAccess: true,
+    active,          // für neue Komponenten (RequireAccess mit data.active)
+    hasAccess: active, // für evtl. alten Code
   });
+}
+
+function safeJson(str) {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return {};
+  }
 }
