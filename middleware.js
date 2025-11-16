@@ -1,14 +1,15 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/login"];
+// hier /preise hinzufügen (und ggf. weitere freie Seiten)
+const PUBLIC_PATHS = ["/", "/login", "/preise"];
 
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
   // 🔓 API & statische Dateien NICHT schützen
   if (
-    pathname.startsWith("/api") ||        // ⬅️ WICHTIG: API ausnehmen
+    pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
