@@ -39,28 +39,20 @@ export default function Home() {
           </p>
 
           <div style={styles.btnRow}>
-            {/* Kaufseite / Preise bleibt immer gleich */}
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
-
-            {/* Login direkt */}
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
-          {/* MOBILE-NAVIGATION UNTER DEN BUTTONS */}
           <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
-            <Link href={loggedIn ? "/quiz" : "/login?next=/quiz"}>Quiz</Link>
+            <Link href="/quiz">Quiz</Link>
             <span> · </span>
-            <Link href={loggedIn ? "/glossar" : "/login?next=/glossar"}>
-              Glossar
-            </Link>
+            <Link href="/glossar">Glossar</Link>
             <span> · </span>
-            <Link href={loggedIn ? "/ebook" : "/login?next=/ebook"}>
-              E-Book
-            </Link>
+            <Link href="/ebook">E-Book</Link>
 
             {!loggedIn && (
               <>
@@ -128,7 +120,7 @@ const styles = {
   },
   btnGhost: {
     background: "#fff",
-    border: "2px solid #ddd",
+    border: "2px solid "#ddd",
     color: "#111",
     padding: "14px 26px",
     borderRadius: 14,
