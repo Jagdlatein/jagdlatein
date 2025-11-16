@@ -32,6 +32,11 @@ async function fetchJsonSafe(url, options = {}) {
   return { res, data };
 }
 
+// nach Login immer auf /quiz
+function getNextPath() {
+  return "/quiz";
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -46,17 +51,10 @@ export default function LoginPage() {
     if (typeof q.email === "string") setEmail(q.email);
   }, [router.isReady, router.query]);
 
-  // Ziel nach Login bestimmen (next-Param oder /preise)
-  function getNextPath() {
-    const n = router?.query?.next;
-    if (typeof n === "string" && n.startsWith("/")) return n;
-    return "/preise"; // Standardziel geändert
-  }
-
   function hardRedirectToNext() {
     const next = getNextPath();
     if (typeof window !== "undefined") {
-      window.location.href = next; // HARTE Weiterleitung
+      window.location.href = next;
     } else {
       router.replace(next);
     }
