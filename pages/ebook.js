@@ -1,87 +1,95 @@
 // pages/ebook.js
-import Head from "next/head";
+import { useEffect, useState } from "react";
+import Seo from "../components/Seo";
+import Link from "next/link";
 
-function EbookPage() {
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(
+    new RegExp("(?:^|; )" + name + "=([^;]*)")
+  );
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
+export default function EbookPage() {
+  const [state, setState] = useState({
+    checked: false,
+    loggedIn: false,
+    paid: false,
+  });
+
+  useEffect(() => {
+    const session = !!getCookie("jl_session");
+    const paidCookie = getCookie("jl_paid");
+    const paid = paidCookie === "1" || paidCookie === "true";
+    setState({ checked: true, loggedIn: session, paid });
+  }, []);
+
+  if (!state.checked) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <p>Seite wird geladen …</p>
+        </section>
+      </>
+    );
+  }
+
+  if (!state.loggedIn) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <h1>E-Book geschützt</h1>
+          <p>Bitte logge dich ein, um dein E-Book zu öffnen.</p>
+          <Link href="/login">Zum Login</Link>
+        </section>
+      </>
+    );
+  }
+
+  if (!state.paid) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <h1>Nur für Käufer</h1>
+          <p>
+            Du bist eingeloggt, aber dein Zugang für das E-Book ist noch
+            nicht freigeschaltet.
+          </p>
+        </section>
+      </>
+    );
+  }
+
+  // ✔ Nutzer ist eingeloggt und hat bezahlt
   return (
     <>
-      <Head>
-        <title>Jagdlatein – E-Book</title>
-        <meta
-          name="description"
-          content="E-Book für die Vorbereitung auf die Jagdprüfung – exklusiv für zahlende Mitglieder von Jagdlatein."
-        />
-      </Head>
-      <main
-        style={{
-          maxWidth: "720px",
-          margin: "0 auto",
-          padding: "32px 16px 64px",
-        }}
-      >
-        <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: 12 }}>
-          E-Book Jagdlatein
-        </h1>
-        <p
-          style={{
-            fontSize: 16,
-            lineHeight: 1.5,
-            marginBottom: 24,
-            color: "#374151",
-          }}
-        >
-          Hier kannst du das aktuelle Jagdlatein-E-Book öffnen. Der Zugriff ist
-          nur für eingeloggte und zahlende Nutzer freigeschaltet.
-        </p>
+      <Seo title="E-Book – Jagdlatein" />
+      <section className="page">
+        <h1>Jagdlatein E-Book</h1>
+        <p>Hier kannst du dein E-Book öffnen oder herunterladen.</p>
 
-        <a
-          href="/api/ebook"
-          className="cta"
-          style={{
-            textDecoration: "none",
-            padding: "10px 18px",
-            borderRadius: 999,
-            display: "inline-block",
-            marginTop: 12,
-          }}
-        >
-          📥 E-Book öffnen
-        </a>
-
-        <p
-          style={{
-            fontSize: 14,
-            marginTop: 24,
-            color: "#6b7280",
-          }}
-        >
-          Wenn sich das E-Book nicht öffnet, prüfe bitte, ob dein Browser
-          Pop-ups/Downloads blockiert oder melde dich kurz bei mir.
+        <p>
+          <a
+            href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: "#2f6d2f",
+              color: "#fff",
+              padding: "10px 16px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              display: "inline-block",
+            }}
+          >
+            📘 E-Book öffnen
+          </a>
         </p>
-      </main>
+      </section>
     </>
   );
 }
-
-function hasPaidAccessFromCookies(req) {
-  const cookieHeader = req.headers.cookie || "";
-  const loggedIn = cookieHeader.includes("jl_session=1");
-  const paid = cookieHeader.includes("jl_paid=1");
-  return loggedIn && paid;
-}
-
-export async function getServerSideProps(ctx) {
-  const { req } = ctx;
-
-  if (!hasPaidAccessFromCookies(req)) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: {} };
-}
-
-export default EbookPage;
