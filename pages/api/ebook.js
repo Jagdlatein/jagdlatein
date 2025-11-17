@@ -1,40 +1,95 @@
-// pages/api/download-ebook.js
-import fs from "fs";
-import path from "path";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]"; // <-- anpassen falls dein Pfad anders ist
+// pages/ebook.js
+import { useEffect, useState } from "react";
+import Seo from "../components/Seo";
+import Link from "next/link";
 
-export default async function handler(req, res) {
-  const session = await getServerSession(req, res, authOptions);
-
-  // ❌ Nicht eingeloggt
-  if (!session) {
-    return res.status(401).json({ error: "Not authorized" });
-  }
-
-  // ❌ Zugriff bezahlt?
-  if (!session.user?.paid && session.user?.paid !== true) {
-    return res.status(403).json({ error: "Payment required" });
-  }
-
-  // 📄 Pfad zur Datei
-  const filePath = path.join(process.cwd(), "files", "Jagdlatein-Lehrbuch.pdf");
-
-  // 🔐 Existiert Datei?
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: "File not found" });
-  }
-
-  // 📤 Stream statt readFile → besser für große PDFs
-  const stat = fs.statSync(filePath);
-
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader(
-    "Content-Disposition",
-    'attachment; filename="Jagdlatein-Lehrbuch.pdf"'
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(
+    new RegExp("(?:^|; )" + name + "=([^;]*)")
   );
-  res.setHeader("Content-Length", stat.size);
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
-  const stream = fs.createReadStream(filePath);
-  stream.pipe(res);
+export default function EbookPage() {
+  const [state, setState] = useState({
+    checked: false,
+    loggedIn: false,
+    paid: false,
+  });
+
+  useEffect(() => {
+    const session = !!getCookie("jl_session");
+    const paidCookie = getCookie("jl_paid");
+    const paid = paidCookie === "1" || paidCookie === "true";
+    setState({ checked: true, loggedIn: session, paid });
+  }, []);
+
+  if (!state.checked) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <p>Seite wird geladen …</p>
+        </section>
+      </>
+    );
+  }
+
+  if (!state.loggedIn) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <h1>E-Book geschützt</h1>
+          <p>Bitte logge dich ein, um dein E-Book zu öffnen.</p>
+          <Link href="/login">Zum Login</Link>
+        </section>
+      </>
+    );
+  }
+
+  if (!state.paid) {
+    return (
+      <>
+        <Seo title="E-Book – Jagdlatein" />
+        <section className="page">
+          <h1>Nur für Käufer</h1>
+          <p>
+            Du bist eingeloggt, aber dein Zugang für das E-Book ist noch
+            nicht freigeschaltet.
+          </p>
+        </section>
+      </>
+    );
+  }
+
+  // ✔ Nutzer ist eingeloggt und hat bezahlt
+  return (
+    <>
+      <Seo title="E-Book – Jagdlatein" />
+      <section className="page">
+        <h1>Jagdlatein E-Book</h1>
+        <p>Hier kannst du dein E-Book öffnen oder herunterladen.</p>
+
+        <p>
+          <a
+            href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: "#2f6d2f",
+              color: "#fff",
+              padding: "10px 16px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              display: "inline-block",
+            }}
+          >
+            📘 E-Book öffnen
+          </a>
+        </p>
+      </section>
+    </>
+  );
 }
