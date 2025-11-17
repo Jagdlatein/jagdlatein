@@ -16,55 +16,30 @@ export default function EbookPage() {
     setLoggedIn(s);
   }, []);
 
-  // ❌ Nicht eingeloggt → Login anzeigen
-  if (!loggedIn) {
-    return (
-      <div style={{ padding: 40, textAlign: "center" }}>
-        <Head>
-          <title>E-Book – Login erforderlich</title>
-        </Head>
-
-        <h2>🔒 Login erforderlich</h2>
-        <p>Bitte logge dich ein, um das E-Book zu öffnen.</p>
-
-        <a
-          href="/login"
-          style={{
-            padding: "14px 24px",
-            background: "#2b6e3e",
-            color: "#fff",
-            borderRadius: "10px",
-            fontSize: "18px",
-            textDecoration: "none",
-          }}
-        >
-          Login
-        </a>
-      </div>
-    );
-  }
-
-  // ✔ Eingeloggt → Link anzeigen
-  return (
-    <div style={{ padding: 40, textAlign: "center" }}>
+  ...
+    <div
+      style={{
+        maxWidth: "720px",
+        margin: "0 auto",
+        padding: "32px 16px 64px",
+      }}
+    >
       <Head>
-        <title>E-Book – Zugriff</title>
+        <title>Jagdlatein – E-Book</title>
       </Head>
 
-      <h1>📘 Jagdlatein E-Book</h1>
-      <p>Klicke unten, um das E-Book zu öffnen:</p>
+      <h1>E-Book für Jagdlatein</h1>
+      <p className="lead">
+        Hier kannst du dein E-Book öffnen. Es ist nur für registrierte und zahlende Nutzer zugänglich.
+      </p>
 
       <a
-        href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA?e=B0pRyj"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/api/ebook"
+        className="cta"
         style={{
-          padding: "16px 32px",
-          background: "#2b6e3e",
-          color: "white",
-          borderRadius: "10px",
-          fontSize: "18px",
           textDecoration: "none",
+          padding: "10px 18px",
+          borderRadius: "999px",
           display: "inline-block",
           marginTop: "20px",
         }}
@@ -75,7 +50,25 @@ export default function EbookPage() {
   );
 }
 
-export async function getServerSideProps() {
-  return { props: {} };
+function hasPaidAccessFromCookies(req) {
+  const cookies = req.headers.cookie || "";
+  const loggedIn = cookies.includes("jl_session=1");
+  const paid = cookies.includes("jl_paid=1");
+  return loggedIn && paid;
 }
 
+export async function getServerSideProps(ctx) {
+  const { req } = ctx;
+
+  // ⛔ ohne Login + Zahlung → redirect auf /login
+  if (!hasPaidAccessFromCookies(req)) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
