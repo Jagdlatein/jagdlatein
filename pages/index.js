@@ -42,16 +42,27 @@ export default function Home() {
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
+
+            <Link href="/kurse" style={styles.btnGhost}>
+              Kurse
+            </Link>
+
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
+          {/* Navigation unter den Buttons */}
           <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
+            <Link href="/kurse">Kurse</Link>
+            <span> · </span>
+
             <Link href="/quiz">Quiz</Link>
             <span> · </span>
+
             <Link href="/glossar">Glossar</Link>
             <span> · </span>
+
             <Link href="/ebook">E-Book</Link>
 
             {!loggedIn && (
