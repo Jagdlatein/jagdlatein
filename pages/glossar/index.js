@@ -5,46 +5,36 @@ const TERMS = [
   { slug:'bergstock', term:'Bergstock', def:'Stab zur Unterstützung beim Gehen im alpinen Gelände.' },
   { slug:'bruch', term:'Bruch', def:'Zweig als Jagdzeichen, z. B. Anschuss-, Inbesitznahmebruch.' },
   { slug:'wechsel', term:'Wechsel', def:'Regelmäßig genutzter Weg des Wildes.' },
-{ slug:'kirren', term:'Kirren', def:'Anlocken von Wild durch Futter.' },
-{ slug:'verhoffen', term:'Verhoffen', def:'Wild bleibt kurz stehen, um zu sichern.' },
-{ slug:'fuchsfang', term:'Fuchsfang', def:'Bejagen des Fuchses mit unterschiedlichen Fangmethoden.' },
-{ slug:'sichern', term:'Sichern', def:'Wild prüft Umgebung mit Auge, Ohr und Nase.' },
-{ slug:'zeichnen', term:'Zeichnen', def:'Reaktion des Wildes nach dem Schuss.' },
-{ slug:'verblasen', term:'Verblasen', def:'Jagdlicher Brauch mit dem Jagdhorn.' },
-{ slug:'verhitzen', term:'Verhitzen', def:'Wild wird durch Störung unruhig.' },
-{ slug:'blasen', term:'Blasen', def:'Geräusch, wenn Rehbock weibliches Reh anlockt.' },
-{ slug:'plätzen', term:'Plätzen', def:'Nahrungsaufnahme des Rehwildes.' },
-{ slug:'brechen', term:'Brechen', def:'Fressen des Schwarzwildes.' },
-{ slug:'fegen', term:'Fegen', def:'Hirsch/ Rehbock reibt Neubast ab.' },
-{ slug:'rickenruf', term:'Rickenruf', def:'Ton der Ricke zur Kontaktaufnahme.' },
-{ slug:'anschuss', term:'Anschuss', def:'Ort, an dem das Stück beim Schuss stand.' },
-{ slug:'ausschuss', term:'Ausschuss', def:'Austrittsöffnung des Geschosses.' },
-  { slug:'feisthirsch', term:'Feisthirsch', def:'Gut genährter Hirsch vor der Brunft.' },
-{ slug:'schmalspieser', term:'Schmalspießer', def:'Einjähriger Hirsch mit spitzen Stangen.' },
-{ slug:'kahlwild', term:'Kahlwild', def:'Weibliches Rotwild inkl. Nachwuchs.' },
-{ slug:'alttier', term:'Alttier', def:'Erwachsenes weibliches Rotwild.' },
-{ slug:'spießer', term:'Spießer', def:'Junger Hirsch mit unverzweigten Stangen.' },
-{ slug:'schmelzer', term:'Schmelzer', def:'Einjähriges Rotwild in der Entwicklung.' },
-{ slug:'plätzruhe', term:'Plätzruhe', def:'Ruhephase des Rotwildes am Tag.' },
-{ slug:'brunftschrei', term:'Brunftschrei', def:'Ruf des Hirsches in der Brunft.' },
-
+  { slug:'kirren', term:'Kirren', def:'Anlocken von Wild durch Futter.' },
+  { slug:'verhoffen', term:'Verhoffen', def:'Wild bleibt kurz stehen, um zu sichern.' },
+  { slug:'fuchsfang', term:'Fuchsfang', def:'Bejagen des Fuchses mit unterschiedlichen Fangmethoden.' },
+  { slug:'sichern', term:'Sichern', def:'Wild prüft Umgebung mit Auge, Ohr und Nase.' },
+  { slug:'zeichnen', term:'Zeichnen', def:'Reaktion des Wildes nach dem Schuss.' },
+  { slug:'verblasen', term:'Verblasen', def:'Jagdlicher Brauch mit dem Jagdhorn.' },
+  { slug:'verhitzen', term:'Verhitzen', def:'Wild wird durch Störung unruhig.' },
+  { slug:'blasen', term:'Blasen', def:'Geräusch, wenn Rehbock weibliches Reh anlockt.' },
+  { slug:'plätzen', term:'Plätzen', def:'Nahrungsaufnahme des Rehwildes.' },
+  ...
 ];
 
 export default function GlossarIndex(){
   return (
     <>
-      <Seo title="Glossar – Jagdlatein" description="Begriffe aus Jagd und Praxis kurz erklärt." />
-      <section className="section">
-        <div className="container" style={{maxWidth:820}}>
-          <h1>Glossar</h1>
+      <Seo title="Jagd-Glossar – Jagdlatein" description="Wichtige Begriffe aus der Jägersprache einfach erklärt." />
+      <section className="page">
+        <div className="page-inner">
+          <h1>Jagd-Glossar</h1>
+          <p className="lead">
+            Hier findest du zentrale Begriffe aus der Jägersprache kurz und verständlich erklärt.
+          </p>
 
-          <ul style={{listStyle:'none', padding:0, margin:0}}>
-            {TERMS.map(x=>(
-              <li key={x.slug} style={{margin:'10px 0'}}>
-                <a className="card" href={`/glossar/${x.slug}`} style={{display:'block'}}>
-                  <h3 style={{margin:'0 0 6px'}}>{x.term}</h3>
-                  <p style={{margin:0}}>{x.def}</p>
+          <ul style={{listStyle:'none', padding:0, marginTop:24}}>
+            {TERMS.map(t => (
+              <li key={t.slug} style={{marginBottom:12}}>
+                <a href={`/glossar/${t.slug}`} style={{fontWeight:600, textDecoration:'none'}}>
+                  {t.term}
                 </a>
+                <div style={{fontSize:14, color:'#4b5563'}}>{t.def}</div>
               </li>
             ))}
           </ul>
@@ -58,4 +48,27 @@ export default function GlossarIndex(){
       </section>
     </>
   );
+}
+
+function hasPaidAccessFromCookies(req) {
+  const cookies = req.headers.cookie || "";
+  const loggedIn = cookies.includes("jl_session=1");
+  const paid = cookies.includes("jl_paid=1");
+  return loggedIn && paid;
+}
+
+export async function getServerSideProps(ctx) {
+  const { req } = ctx;
+
+  // ⛔ ohne Login + Zahlung → redirect auf /login
+  if (!hasPaidAccessFromCookies(req)) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
 }
