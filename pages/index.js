@@ -38,21 +38,17 @@ export default function Home() {
             Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
+          {/* OBERSTE BUTTON-REIHE — OHNE KURSE */}
           <div style={styles.btnRow}>
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
-
-            <Link href="/kurse" style={styles.btnGhost}>
-              Kurse
-            </Link>
-
             <Link href="/login" style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
-          {/* Navigation unter den Buttons */}
+          {/* UNTERE NAVIGATION — MIT KURSE */}
           <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
             <Link href="/kurse">Kurse</Link>
             <span> · </span>
