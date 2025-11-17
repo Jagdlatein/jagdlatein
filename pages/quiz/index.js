@@ -1,28 +1,129 @@
 // pages/quiz/index.js
-import prisma from "../../lib/prisma";
 import Link from "next/link";
 
-// --- Helpers ---
+const TOPICS = [
+  "Alle",
+  "Wildkunde",
+  "Waffen & Schuss",
+  "Recht",
+  "Hege/Naturschutz",
+  "Hundewesen",
+  "Wildbrethygiene",
+];
+
+const COUNTRIES = ["DE", "AT", "CH"];
+
+function QuizIndex() {
+  return (
+    <main style={pageMain}>
+      <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: 8 }}>
+        Jagdlatein Quiz
+      </h1>
+      <p style={{ marginBottom: 24, color: "#374151", lineHeight: 1.5 }}>
+        Wähle dein Land und ein Thema aus und starte ein zufälliges 10-Fragen-Quiz.
+      </p>
+
+      <section
+        style={{
+          border: "1px solid #e5e7eb",
+          borderRadius: 12,
+          padding: 16,
+          marginBottom: 24,
+        }}
+      >
+        <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>
+          Einstellungen
+        </h2>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <div style={label}>Land</div>
+            <div style={{ display: "flex", gap: 8 }}>
+              {COUNTRIES.map((c) => (
+                <span key={c} style={pill}>
+                  {c}
+                </span>
+              ))}
+            </div>
+            <p style={hint}>Das Land wählst du später direkt im Quiz.</p>
+          </div>
+
+          <div>
+            <div style={label}>Themen (Beispiele)</div>
+            <ul style={{ paddingLeft: 18, marginTop: 4, marginBottom: 0 }}>
+              {TOPICS.map((t) => (
+                <li key={t} style={{ fontSize: 14 }}>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 20 }}>
+          <Link
+            href="/quiz/run"
+            className="cta"
+            style={{
+              textDecoration: "none",
+              padding: "10px 18px",
+              borderRadius: 999,
+              display: "inline-block",
+            }}
+          >
+            ▶️ Quiz starten
+          </Link>
+        </div>
+      </section>
+
+      <p style={{ fontSize: 14, color: "#6b7280" }}>
+        Tipp: Du kannst das Quiz beliebig oft neu starten – die Fragen werden
+        jeweils neu gemischt.
+      </p>
+    </main>
+  );
+}
+
+const pageMain = {
+  maxWidth: 960,
+  margin: "0 auto",
+  padding: "32px 16px 64px",
+};
+
+const label = {
+  fontSize: 13,
+  fontWeight: 600,
+  marginBottom: 4,
+  textTransform: "uppercase",
+  letterSpacing: 0.04,
+  color: "#6b7280",
+};
+
+const pill = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "4px 10px",
+  borderRadius: 999,
+  background: "#f3f4f6",
+  fontSize: 13,
+};
+
+const hint = {
+  fontSize: 12,
+  color: "#9ca3af",
+  marginTop: 4,
+};
+
 function hasPaidAccessFromCookies(req) {
-  const cookies = req.headers.cookie || "";
-  const loggedIn = cookies.includes("jl_session=1");
-  const paid = cookies.includes("jl_paid=1");
+  const cookieHeader = req.headers.cookie || "";
+  const loggedIn = cookieHeader.includes("jl_session=1");
+  const paid = cookieHeader.includes("jl_paid=1");
   return loggedIn && paid;
-}
-function toArray(x) {
-  if (!x) return [];
-  if (Array.isArray(x)) return x.filter(Boolean);
-  return [String(x)];
-}
-function int(v, d = 1) {
-  const n = parseInt(v, 10);
-  return Number.isFinite(n) && n > 0 ? n : d;
 }
 
 export async function getServerSideProps(ctx) {
-  const { req, query } = ctx;
+  const { req } = ctx;
 
-  // ⛔ ohne Login + Zahlung → redirect auf /login
   if (!hasPaidAccessFromCookies(req)) {
     return {
       redirect: {
@@ -32,87 +133,7 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  // ✅ deine bisherige Logik:
-  ...
-};
-
-export default function QuizIndex({
-  page,
-  pageSize,
-  total,
-  q,
-  random,
-  selected,
-  filters,
-  items,
-  error,
-}) {
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
-
-  function qs(ne
-  ...
+  return { props: {} };
 }
 
-const pageMain = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "32px 16px 64px",
-};
-
-const filterBar = {
-  display: "flex",
-  flexWrap: "wrap",
-  gap: 12,
-  marginBottom: 16,
-};
-
-const tag = {
-  display: "inline-flex",
-  alignItems: "center",
-  padding: "4px 10px",
-  borderRadius: 999,
-  background: "#f3f4f6",
-  fontSize: 13,
-};
-
-const table = {
-  width: "100%",
-  borderCollapse: "collapse",
-  marginTop: 12,
-};
-
-const th = {
-  textAlign: "left",
-  fontSize: 13,
-  padding: "8px 6px",
-  borderBottom: "1px solid #e5e7eb",
-  color: "#4b5563",
-};
-
-const td = {
-  fontSize: 14,
-  padding: "8px 6px",
-  borderBottom: "1px solid #f3f4f6",
-};
-
-const pagination = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginTop: 16,
-  fontSize: 14,
-};
-
-const linkMuted = {
-  color: "#6b7280",
-  textDecoration: "none",
-};
-const errorBox = {
-  border: "1px solid #fecaca",
-  background: "#fff1f2",
-  color: "#7f1d1d",
-  padding: 12,
-  borderRadius: 8,
-};
-
-// Ende der Datei
+export default QuizIndex;
