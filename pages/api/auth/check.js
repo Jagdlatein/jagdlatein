@@ -15,17 +15,22 @@ export default async function handler(req, res) {
 
     const email = rawEmail.toLowerCase();
 
-    // User anhand der E-Mail holen oder anlegen
-    const user = await prisma.user.upsert({
+    // User existiert?
+    let user = await prisma.user.findUnique({
       where: { id: email },
-      create: { id: email },
-      update: {},
     });
 
+    // Falls Nutzer nicht existiert → KEIN auto-anlegen!
+    // Nur PayPal darf anlegen.
+    if (!user) {
+      return res.status(200).json({ hasAccess: false });
+    }
+
+    // Prüfen ob Nutzer aktive PayPal-Lizenz hat
     const active = await hasActiveAccess(user.id);
 
     return res.status(200).json({
-      hasAccess: active,
+      hasAccess: !!active,
     });
   } catch (err) {
     console.error("AUTH CHECK ERROR:", err);
