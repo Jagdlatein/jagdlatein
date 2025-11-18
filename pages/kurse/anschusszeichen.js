@@ -2,125 +2,134 @@ import { useState } from "react";
 
 const quizFragen = [
   {
-    frage: "Was versteht man unter \"Schusszeichen\"?",
+    frage: "Was versteht man unter Anschusszeichen?",
     antworten: [
-      { text: "Lautäußerungen des Wildes vor dem Schuss", richtig: false },
+      { text: "Nur die Fährte des flüchtenden Stückes", richtig: false },
       {
-        text: "Reaktionen von Wild und Pirschzeichen nach dem Treffer",
+        text: "Alle am Schussort auffindbaren Pirschzeichen wie Schweiß, Haar, Knochensplitter",
         richtig: true,
       },
-      { text: "Art der geladenen Munition", richtig: false },
-      { text: "Standort des Schützen", richtig: false },
+      { text: "Nur Schweiß am Wechsel", richtig: false },
+      { text: "Nur Lautäußerungen des Wildes", richtig: false },
     ],
   },
   {
-    frage: "Welches Schusszeichen passt TYPISCH zu einem Kammerschuss?",
+    frage: "Welches Zeichen deutet am ehesten auf einen Kammerschuss hin?",
     antworten: [
       {
-        text: "Wild zeichnet, springt hoch ab und flüchtet oft noch ein kurzes Stück",
+        text: "Heller, schaumiger Lungenschweiß am Anschuss",
         richtig: true,
       },
       {
-        text: "Wild bricht sofort im Knall zusammen, kaum Flucht",
+        text: "Reine Losung ohne Schweiß",
         richtig: false,
       },
       {
-        text: "Wild flüchtet scheinbar unbeeindruckt, später langsame Pirschzeichen",
+        text: "Nur Spiegelhaar ohne weiteren Befund",
         richtig: false,
       },
       {
-        text: "Wild setzt sich, zieht Hinterhand nach und schleift Läufe",
+        text: "Knochensplitter vom Röhrenknochen",
         richtig: false,
       },
     ],
   },
   {
-    frage: "Was ist ein typisches Zeichen für einen Weichschuss (Leber/Bauch)?",
+    frage: "Woran erkennst du typischerweise einen Laufschuss?",
     antworten: [
       {
-        text: "Heller, schweißarmer Anschuss ohne Darminhalt",
+        text: "Dunkler Leber- oder Pansenschweiß mit Darminhalt",
         richtig: false,
       },
       {
-        text: "Schweiß mit Darminhalt, Pansenteilen und üblem Geruch",
+        text: "Splitter vom Röhrenknochen und weite, oft schweißarme Flucht",
         richtig: true,
       },
       {
-        text: "Nur Knochensplitter und Läufe weggezogen",
+        text: "Nur Lungenschaum am Anschuss",
         richtig: false,
+      },
+      {
+        text: "Kein Schweiß, kein Haar, nur Losung",
+        richtig: false,
+      },
+    ],
+  },
+  {
+    frage: "Was spricht TYPISCH für einen Weichschuss (Pansen/Darm)?",
+    antworten: [
+      {
+        text: "Heller, fein zerstäubter Lungenschweiß",
+        richtig: false,
+      },
+      {
+        text: "Schweiß mit Panseninhalt, Darminhalt und starkem Geruch",
+        richtig: true,
       },
       {
         text: "Nur Spiegelhaar ohne Schweiß",
         richtig: false,
       },
-    ],
-  },
-  {
-    frage: "Was zeigt oft auf einen Laufschuss hin?",
-    antworten: [
       {
-        text: "Starker Schweiß am Anschuss, Wild bleibt im Knall liegen",
-        richtig: false,
-      },
-      {
-        text: "Splitter vom Röhrenknochen, weite, oft schweißarme Flucht",
-        richtig: true,
-      },
-      {
-        text: "Nur Pansenteile am Anschuss",
-        richtig: false,
-      },
-      {
-        text: "Nur Spiegelhaar und dünner Schweißfilm",
+        text: "Nur Knochensplitter am Anschuss",
         richtig: false,
       },
     ],
   },
   {
-    frage: "Wie verhältst du dich nach einem mutmaßlichen Kammerschuss beim Rehwild?",
+    frage: "Wie verhältst du dich bei Verdacht auf Weichschuss am sinnvollsten?",
     antworten: [
       {
-        text: "Sofort hinterher, um das Stück schnell zu bekommen",
+        text: "Sofort hinterher, bevor die Fährte kalt wird",
         richtig: false,
       },
       {
-        text: "Je nach Situation 5–10 Minuten warten, dann Anschuss kontrollieren",
+        text: "Mindestens mehrere Stunden warten und dann ein Nachsuchengespann rufen",
         richtig: true,
       },
       {
-        text: "Mindestens 4 Stunden warten, bevor du nachsiehst",
+        text: "Stück direkt laut rufend nachgehen",
         richtig: false,
       },
       {
-        text: "Prinzipiell nie nähern, nur Hund schicken",
+        text: "Gar nichts unternehmen, das Stück verendet schon irgendwo",
         richtig: false,
       },
     ],
   },
   {
-    frage: "Was ist bei Verdacht auf Weichschuss sinnvoll?",
+    frage: "Was ist beim Sichern des Anschusses wichtig?",
     antworten: [
       {
-        text: "Sofortiges Hinterhergehen ohne Hund, bevor die Fährte kalt wird",
+        text: "Nur grob merken, irgendwo dort im Bestand",
         richtig: false,
       },
       {
-        text: "Nach kurzer Wartezeit das Stück im Feuer halten",
-        richtig: false,
-      },
-      {
-        text: "Längere Wartezeit (mehrere Stunden) und dann erfahrene Nachsuche anfordern",
+        text: "Genauen Ort einprägen, markieren und erst dann zurück zum Stand",
         richtig: true,
       },
       {
-        text: "Die Situation ignorieren, das Stück wird schon verenden",
+        text: "Anschuss sofort zertrampeln, damit kein anderes Wild gewittert wird",
         richtig: false,
       },
+      {
+        text: "Keine Markierung setzen, um Unbeteiligte zu verwirren",
+        richtig: false,
+      },
+    ],
+  },
+  {
+    frage: "Welches Hilfsmittel IST sinnvoll am Anschuss?",
+    antworten: [
+      { text: "Starkes Parfum, um Wildgeruch zu überdecken", richtig: false },
+      { text: "Markierungsband oder Zweig zum Kennzeichnen", richtig: true },
+      { text: "Laute Musik vom Handy", richtig: false },
+      { text: "Offenes Feuer zum besseren Licht", richtig: false },
     ],
   },
 ];
 
-export default function SchusszeichenKurs() {
+export default function AnschusszeichenKurs() {
   const [aktuelleFrage, setAktuelleFrage] = useState(0);
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
@@ -157,21 +166,20 @@ export default function SchusszeichenKurs() {
       }}
     >
       <h1 style={{ fontSize: 32, fontWeight: "bold", marginBottom: 15 }}>
-        🎯 Schusszeichen & Nachsuche – Mini-Kurs
+        🔍 Anschusszeichen lesen – Mini-Kurs
       </h1>
 
       <p style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 25 }}>
-        Nach dem Schuss beginnt die eigentliche Arbeit. In diesem Minikurs
-        wiederholst du typische Schusszeichen, Pirschzeichen am Anschuss und
-        Grundregeln für die Nachsuche.
+        Am Anschuss entscheidet sich oft, ob eine Nachsuche erfolgreich wird.
+        In diesem Minikurs wiederholst du typische Anschusszeichen und lernst,
+        wie du sie richtig deutest.
       </p>
 
       <h2 style={{ fontSize: 24, marginBottom: 10 }}>Anschuss & Pirschzeichen</h2>
       <p style={{ fontSize: 17, lineHeight: 1.6, marginBottom: 20 }}>
-        Schweiß, Knochensplitter, Pansenteile, Haar – all das kann dir Hinweise
-        auf die Trefferlage geben. Wichtig: Ruhe bewahren, Anschuss merken und
-        bei Unsicherheit rechtzeitig einen erfahrenen Nachsuchengespannführer
-        hinzuziehen.
+        Schweiß, Haar, Knochensplitter, Panseninhalt – jedes Zeichen liefert
+        Hinweise auf die Trefferlage. Wichtig sind Ruhe, sauberes Beobachten
+        und der Respekt vor der Arbeit des Nachsuchengespanns.
       </p>
 
       {!fertig && (
