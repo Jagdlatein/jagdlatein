@@ -1,6 +1,4 @@
-// pages/api/auth/check.js
 import prisma from "../../../lib/prisma";
-import { hasActiveAccess } from "../../../lib/access";
 
 export default async function handler(req, res) {
   try {
@@ -9,28 +7,27 @@ export default async function handler(req, res) {
         (req.body && req.body.email) ||
         "").toString().trim();
 
-    if (!rawEmail || typeof rawEmail !== "string") {
+    if (!rawEmail) {
       return res.status(400).json({ error: "E-Mail ungültig" });
     }
 
     const email = rawEmail.toLowerCase();
 
-    // User existiert?
-    let user = await prisma.user.findUnique({
+    // User suchen
+    const user = await prisma.user.findUnique({
       where: { id: email },
+      include: { access: true },
     });
 
-    // Falls Nutzer nicht existiert → KEIN auto-anlegen!
-    // Nur PayPal darf anlegen.
-    if (!user) {
+    if (!user || !user.access) {
       return res.status(200).json({ hasAccess: false });
     }
 
-    // Prüfen ob Nutzer aktive PayPal-Lizenz hat
-    const active = await hasActiveAccess(user.id);
+    const now = new Date();
+    const active = user.access.expiresAt > now;
 
     return res.status(200).json({
-      hasAccess: !!active,
+      hasAccess: active,
     });
   } catch (err) {
     console.error("AUTH CHECK ERROR:", err);
