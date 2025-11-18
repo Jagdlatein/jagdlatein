@@ -13,8 +13,8 @@ export function middleware(req) {
   if (
     hostname !== mainDomain &&
     (hostname.endsWith("jagdlatein.de") ||
-     hostname.endsWith("jagdlatein.ch") ||
-     hostname.endsWith("jagdlatein.at"))
+      hostname.endsWith("jagdlatein.ch") ||
+      hostname.endsWith("jagdlatein.at"))
   ) {
     url.hostname = mainDomain;
     return NextResponse.redirect(url);
@@ -30,7 +30,7 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // 3) Access check
+  // 3) Access check (Session + Paid oder Admin)
   const hasSession =
     req.cookies.get("jl_session")?.value === "1" &&
     (req.cookies.get("jl_paid")?.value === "1" ||
