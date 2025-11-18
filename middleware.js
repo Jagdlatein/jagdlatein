@@ -7,9 +7,8 @@ export function middleware(req) {
   const url = req.nextUrl.clone();
   const { hostname, pathname } = url;
 
-  // 1) Alle Domains auf www.jagdlatein.de zusammenführen
+  // 1) Domain-Redirects
   const mainDomain = "www.jagdlatein.de";
-
   if (
     hostname !== mainDomain &&
     (hostname.endsWith("jagdlatein.de") ||
@@ -30,19 +29,26 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // 3) Access check (Session + Paid oder Admin)
-  const hasSession =
-    req.cookies.get("jl_session")?.value === "1" &&
-    (req.cookies.get("jl_paid")?.value === "1" ||
-      req.cookies.get("jl_admin")?.value === "1");
+  // 3) PAYWALL-CHECK (nur mit Zahlung Zugriff)
+  const hasSession = req.cookies.get("jl_session")?.value === "1";
+  const hasPaid = req.cookies.get("jl_paid")?.value === "1";
+  const isAdmin = req.cookies.get("jl_admin")?.value === "1";
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // Wenn NICHT eingeloggt → Login
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
+  // Eingeloggt, aber NICHT bezahlt → Preise
+  if (hasSession && !hasPaid && !isAdmin && !isPublic) {
+    url.pathname = "/preise";
+    return NextResponse.redirect(url);
+  }
+
+  // Zugriff erlaubt (bezahlt oder Admin oder öffentlich)
   return NextResponse.next();
 }
 
