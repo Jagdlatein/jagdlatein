@@ -26,8 +26,7 @@ const quizFragen = [
       },
       {
         text: "Nur Spiegelhaar ohne weiteren Befund",
-        richtig: false,
-      },
+        richtig: false },
       {
         text: "Knochensplitter vom Röhrenknochen",
         richtig: false,
@@ -84,7 +83,7 @@ const quizFragen = [
         richtig: false,
       },
       {
-        text: "Mindestens mehrere Stunden warten und dann ein Nachsuchengespann rufen",
+        text: "Mehrere Stunden warten und dann ein Nachsuchengespann rufen",
         richtig: true,
       },
       {
@@ -109,7 +108,7 @@ const quizFragen = [
         richtig: true,
       },
       {
-        text: "Anschuss sofort zertrampeln, damit kein anderes Wild gewittert wird",
+        text: "Anschuss zertrampeln, damit kein anderes Wild gewittert wird",
         richtig: false,
       },
       {
@@ -129,7 +128,7 @@ const quizFragen = [
   },
 ];
 
-export default function AnschusszeichenKurs() {
+export default function AnschussKurs() {
   const [aktuelleFrage, setAktuelleFrage] = useState(0);
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
