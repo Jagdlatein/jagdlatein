@@ -3,49 +3,55 @@
 import { prisma } from "@/lib/prisma";
 import { verifyPaypalWebhook } from "./_base";
 
-export default async function handler(req, res) {
-  // Webhook-Event validieren
-  const event = await verifyPaypalWebhook(req, res);
+// Premiumzugang gilt für 30 Tage nach jeder Zahlung
+const ACCESS_DAYS = 30;
 
+export default async function handler(req, res) {
+  // PayPal Signatur prüfen
+  const event = await verifyPaypalWebhook(req, res);
   if (!event) return;
 
-  // Wichtiger Event: Zahlung erfolgreich
-  if (event.event_type === "PAYMENT.CAPTURE.COMPLETED") {
-    const buyerEmail = event?.resource?.payer?.email_address;
-
-    if (!buyerEmail) {
-      return res.status(400).send("Webhook error: No email found");
-    }
-
-    // Prüfen ob Nutzer schon existiert
-    let user = await prisma.user.findUnique({
-      where: { email: buyerEmail },
-    });
-
-    // Falls Nutzer nicht existiert → automatisch anlegen
-    if (!user) {
-      const password = Math.random().toString(36).slice(2, 10);
-
-      user = await prisma.user.create({
-        data: {
-          email: buyerEmail,
-          password: password, // TODO E-Mail Versand aktivieren
-          isPaidUser: true,
-        },
-      });
-
-      // E-Mail wäre optional:
-      // await sendMail(buyerEmail, password);
-    } else {
-      // Existierender Nutzer → Zugang aktivieren
-      await prisma.user.update({
-        where: { email: buyerEmail },
-        data: { isPaidUser: true },
-      });
-    }
-
-    return res.status(200).send("User access activated");
+  // Erfolgreiche Zahlung?
+  if (event.event_type !== "PAYMENT.CAPTURE.COMPLETED") {
+    return res.status(200).send("IGNORED");
   }
 
-  return res.status(200).send("OK");
+  const buyerEmail = event?.resource?.payer?.email_address;
+  if (!buyerEmail) {
+    return res.status(400).send("Webhook error: No email found");
+  }
+
+  const email = buyerEmail.toLowerCase();
+
+  // Nutzer existiert?
+  let user = await prisma.user.findUnique({
+    where: { id: email },
+  });
+
+  // Falls nicht vorhanden → automatisch anlegen
+  if (!user) {
+    user = await prisma.user.create({
+      data: {
+        id: email,
+      },
+    });
+  }
+
+  // Ablaufdatum berechnen
+  const now = new Date();
+  const base =
+    user.accessUntil && user.accessUntil > now
+      ? user.accessUntil
+      : now;
+  const newUntil = new Date(base.getTime() + ACCESS_DAYS * 24 * 60 * 60 * 1000);
+
+  // Zugang verlängern / setzen
+  await prisma.user.update({
+    where: { id: email },
+    data: {
+      accessUntil: newUntil,
+    },
+  });
+
+  return res.status(200).send("ACCESS_UPDATED");
 }
