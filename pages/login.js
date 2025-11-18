@@ -53,10 +53,8 @@ export default function LoginPage() {
   const [busy, setBusy] = useState(false);
   const [busyAdmin, setBusyAdmin] = useState(false);
 
-  // Beim Laden: evtl. bestehende Session prüfen
   useEffect(() => {
-    // Hier könntest du z.B. prüfen, ob schon jl_session Cookie da ist
-    // und dann direkt auf /quiz weiterleiten
+    // Optional: könnte vorhandene Session prüfen / redirecten
   }, []);
 
   // USER-LOGIN
@@ -79,12 +77,12 @@ export default function LoginPage() {
       }
 
       if (data?.hasAccess) {
-        // Cookies wie bisher
+        // Cookies
         setCookie("jl_session", "1");
         setCookie("jl_paid", "1");
         setCookie("jl_email", encodeURIComponent(email));
 
-        // 🆕 Variante A: LocalStorage für RequireAccess
+        // Variante A: LocalStorage für RequireAccess
         if (typeof window !== "undefined") {
           try {
             localStorage.setItem("jagdlatein_email", email);
@@ -138,10 +136,7 @@ export default function LoginPage() {
 
   // Logout
   function handleLogout() {
-    delCookie("jl_session");
-    delCookie("jl_paid");
-    delCookie("jl_email");
-    delCookie("jl_admin");
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
 
     if (typeof window !== "undefined") {
       try {
@@ -150,9 +145,11 @@ export default function LoginPage() {
       } catch (e) {
         console.warn("Konnte localStorage nicht löschen:", e);
       }
-    }
 
-    setMsg("Du wurdest ausgeloggt.");
+      window.location.href = "/";
+    } else {
+      router.replace("/");
+    }
   }
 
   return (
