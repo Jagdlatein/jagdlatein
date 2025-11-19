@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Seo from "../../components/Seo";
+
 const TERMS = [
   // --- A ---
   { slug: "ansitz", term: "Ansitz", def: "Stationäre Jagdart vom Hochsitz/Ansitz aus." },
@@ -91,7 +93,14 @@ const TERMS = [
 ];
 
 
-function GlossarIndex() {
+export default function GlossarIndex() {
+  const [query, setQuery] = useState("");
+
+  const filtered = TERMS.filter((t) =>
+    t.term.toLowerCase().includes(query.toLowerCase()) ||
+    t.def.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <>
       <Seo
@@ -103,12 +112,25 @@ function GlossarIndex() {
         <h1 className="text-3xl font-bold mb-4">Jagd-Glossar</h1>
 
         <p className="text-lg text-gray-700 mb-6">
-          Zentrale Begriffe aus der Jägersprache – kompakt erklärt, damit du sie
-          in der Jagdprüfung sicher beherrschst.
+          Zentrale Begriffe aus der Jägersprache – kompakt erklärt.
         </p>
 
+        {/* SUCHFELD */}
+        <input
+          type="text"
+          placeholder="Begriff suchen..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full p-3 mb-6 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
+        />
+
+        {/* ERGEBNISLISTE */}
         <ul className="list-none p-0">
-          {TERMS.map((t) => (
+          {filtered.length === 0 && (
+            <p className="text-gray-500">Keine passenden Begriffe gefunden.</p>
+          )}
+
+          {filtered.map((t) => (
             <li key={t.slug} className="mb-4">
               <a
                 href={`/glossar/${t.slug}`}
@@ -134,7 +156,6 @@ function GlossarIndex() {
     </>
   );
 }
-
 
 function hasPaidAccessFromCookies(req) {
   const cookieHeader = req.headers.cookie || "";
