@@ -7,47 +7,48 @@ export function middleware(req) {
   const url = req.nextUrl.clone();
   const { hostname, pathname } = url;
 
-  // 1) API & statische Dateien KOMPLETT rauslassen
-  if (
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/_next") ||
-    pathname === "/favicon.ico" ||
-    pathname.startsWith("/public")
-  ) {
-    return NextResponse.next();
-  }
-
-  // 2) Domain-Redirect nur für normale Seiten
-  // (www -> apex; anpassen, falls du lieber www als Hauptdomain willst)
+  // 1) Domain-Redirects
+  // Nur wenn die Domain "www." hat → auf "jagdlatein.de" umleiten
   if (hostname === "www.jagdlatein.de") {
     url.hostname = "jagdlatein.de";
     return NextResponse.redirect(url);
   }
 
-  // 3) PAYWALL-CHECK
+  // 2) API komplett ausschließen (KRITISCH!)
+  if (pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  // 3) Statische Dateien ausschließen
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/public")
+  ) {
+    return NextResponse.next();
+  }
+
+  // 4) PAYWALL
   const hasSession = req.cookies.get("jl_session")?.value === "1";
   const hasPaid = req.cookies.get("jl_paid")?.value === "1";
   const isAdmin = req.cookies.get("jl_admin")?.value === "1";
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // nicht eingeloggt -> /login
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // eingeloggt, aber nicht bezahlt -> /preise
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
   }
 
-  // alles okay
   return NextResponse.next();
 }
 
-// WICHTIG: /api komplett aus dem Matcher rausnehmen
+// WICHTIG: API ausschließen!!!
 export const config = {
-  matcher: ["/((?!api|_next|favicon\\.ico).*)"],
+  matcher: ["/((?!api|_next|favicon.ico).*)"],
 };
