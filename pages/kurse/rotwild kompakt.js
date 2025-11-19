@@ -22,14 +22,14 @@ const rotwildQuiz = [
   {
     frage: "Wie erkennt man typischerweise die Losung von Rotwild?",
     antworten: [
-      { text: "Kleine trockene Kügelchen wie beim Rehwild", richtig: false },
+      { text: "Kleine, trockene Kügelchen wie beim Rehwild", richtig: false },
       { text: "Würstchenform wie bei Schwarzwild", richtig: false },
       { text: "Große, eiförmige Stücke, oft in Haufen", richtig: true },
       { text: "Feine, längliche Pellets", richtig: false }
     ]
   },
   {
-    frage: "Wie leben Rotwildhirsche außerhalb der Brunft meist?",
+    frage: "Wie leben Rotwildhirsche außerhalb der Brunft?",
     antworten: [
       { text: "In großen Kahlwildrudeln", richtig: false },
       { text: "Einzeln oder in Hirschtrupps", richtig: true },
