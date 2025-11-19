@@ -45,6 +45,7 @@ export default function Header() {
           <Link href="/quiz" className="nav-link">Quiz</Link>
           <Link href="/glossar" className="nav-link">Glossar</Link>
           <Link href="/ebook" className="nav-link">📘 E-Book</Link>
+    <Link href="/kurse" className="nav-link">Kurse</Link>
 
           {!loggedIn && (
             <Link href="/login" className="nav-link">Login</Link>
