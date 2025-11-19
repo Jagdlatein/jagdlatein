@@ -1,287 +1,135 @@
 // pages/login.js
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
-// Cookies setzen / löschen
-function setCookie(name, value, days = 40) {
-  const maxAge = days * 24 * 60 * 60;
-  const secure =
-    typeof window !== "undefined" && window.location.protocol === "https:"
-      ? "; Secure"
-      : "";
-  document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAge}; SameSite=Lax${secure}`;
-}
-
-function delCookie(name) {
-  document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
-}
-
-// Sicheres Fetch mit JSON-Parsing
-async function fetchJsonSafe(url, options = {}) {
-  const res = await fetch(url, options);
-  const text = await res.text();
-
-  let data = null;
-  try {
-    data = JSON.parse(text);
-  } catch (e) {
-    console.error("❌ Server hat KEIN gültiges JSON geschickt:", text);
-    throw new Error("Server-Antwort ist ungültig (kein JSON).");
-  }
-
-  return { res, data };
-}
-
-// nach Login immer auf /quiz
-function getNextPath() {
-  return "/quiz";
-}
-
-// Harte Weiterleitung, wenn Login erfolgreich
-function hardRedirectToNext() {
-  if (typeof window !== "undefined") {
-    window.location.href = getNextPath();
-  }
-}
+import { useState } from "react";
+import Head from "next/head";
 
 export default function LoginPage() {
   const router = useRouter();
+  const nextUrl = router.query.next || "/"; // Wohin nach Login?
 
   const [email, setEmail] = useState("");
-  const [adminToken, setAdminToken] = useState("");
   const [msg, setMsg] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [busyAdmin, setBusyAdmin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // Optional: könnte vorhandene Session prüfen / redirecten
-  }, []);
-
-  // USER-LOGIN
-  async function tryUserAccess(e) {
-    e?.preventDefault();
-    setBusy(true);
+  async function handleLogin(e) {
+    e.preventDefault();
     setMsg("");
 
-    try {
-      const { res, data } = await fetchJsonSafe(
-        `/api/auth/check?email=${encodeURIComponent(email)}`,
-        {
-          headers: { Accept: "application/json" },
-          cache: "no-store",
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error(data?.error || "Serverfehler");
-      }
-
-      if (data?.hasAccess) {
-        // Cookies
-        setCookie("jl_session", "1");
-        setCookie("jl_paid", "1");
-        setCookie("jl_email", encodeURIComponent(email));
-
-        // Variante A: LocalStorage für RequireAccess
-        if (typeof window !== "undefined") {
-          try {
-            localStorage.setItem("jagdlatein_email", email);
-            localStorage.setItem("jagdlatein_access", "true");
-          } catch (e) {
-            console.warn("Konnte localStorage nicht setzen:", e);
-          }
-        }
-
-        setMsg("Erfolg: Zugang aktiv – weiter …");
-        hardRedirectToNext();
-      } else {
-        setMsg("Kein aktives Abo zu dieser E-Mail gefunden.");
-      }
-    } catch (err) {
-      console.error("Login-Fehler:", err);
-      setMsg(err?.message || "Unbekannter Fehler");
-    } finally {
-      setBusy(false);
+    if (!email.includes("@")) {
+      setMsg("Bitte eine gültige E-Mail eingeben.");
+      return;
     }
-  }
 
-  // ADMIN-LOGIN (Token)
-  async function tryAdminAccess(e) {
-    e?.preventDefault();
-    setBusyAdmin(true);
-    setMsg("");
+    setLoading(true);
 
     try {
-      const { res, data } = await fetchJsonSafe("/api/admin/auth/check", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      const res = await fetch("/api/auth/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
-      if (!res.ok || !data?.ok) {
-        throw new Error(data?.error || "Admin-Token ungültig.");
+      const data = await res.json();
+
+      if (!res.ok || data.success === false) {
+        setMsg(data.message || "Login fehlgeschlagen.");
+        setLoading(false);
+        return;
       }
 
-      setCookie("jl_admin", "1");
-      if (email) setCookie("jl_email", encodeURIComponent(email));
-      setCookie("jl_session", "1");
+      setMsg("Erfolgreich eingeloggt. Weiterleitung …");
 
-      setMsg("Admin-Vorschau aktiv. Weiter …");
-      hardRedirectToNext();
+      setTimeout(() => {
+        router.push(nextUrl);
+      }, 600);
+
     } catch (err) {
-      console.error("Admin-Login-Fehler:", err);
-      setMsg(err?.message || "Admin-Login fehlgeschlagen");
-    } finally {
-      setBusyAdmin(false);
+      setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
-  }
 
-  // Logout
-  function handleLogout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach(delCookie);
-
-    if (typeof window !== "undefined") {
-      try {
-        localStorage.removeItem("jagdlatein_email");
-        localStorage.removeItem("jagdlatein_access");
-      } catch (e) {
-        console.warn("Konnte localStorage nicht löschen:", e);
-      }
-
-      window.location.href = "/";
-    } else {
-      router.replace("/");
-    }
+    setLoading(false);
   }
 
   return (
-    <main
-      style={{
-        maxWidth: 480,
-        margin: "40px auto",
-        padding: "0 16px 40px",
-        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-      }}
-    >
-      <h1 style={{ fontSize: 28, marginBottom: 16 }}>Login Jagdlatein</h1>
-      <p style={{ marginBottom: 24 }}>
-        Gib deine E-Mail-Adresse ein, mit der du dein Abo abgeschlossen hast.
-      </p>
+    <>
+      <Head>
+        <title>Login – Jagdlatein</title>
+      </Head>
 
-      {/* User Login */}
-      <form onSubmit={tryUserAccess} style={{ marginBottom: 32 }}>
-        <label
-          htmlFor="email"
-          style={{ display: "block", fontWeight: 600, marginBottom: 8 }}
-        >
-          E-Mail-Adresse
-        </label>
-        <input
-          id="email"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value.trim())}
-          placeholder="deine@mail.de"
-          style={{
-            width: "100%",
-            padding: "10px 12px",
-            borderRadius: 10,
-            border: "1px solid #ddd",
-          }}
-        />
-        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
-          <button
-            disabled={busy}
-            style={{
-              padding: "10px 16px",
-              borderRadius: 999,
-              border: "none",
-              background: "#136f39",
-              color: "white",
-              fontWeight: 600,
-              cursor: busy ? "wait" : "pointer",
-              opacity: busy ? 0.7 : 1,
-            }}
-          >
-            {busy ? "Prüfe Zugang …" : "Login"}
-          </button>
+      <main style={styles.main}>
+        <div style={styles.box}>
+          <h1 style={styles.title}>Login</h1>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            style={{
-              padding: "10px 16px",
-              borderRadius: 999,
-              border: "1px solid #ccc",
-              background: "white",
-              color: "#444",
-              fontWeight: 500,
-              cursor: "pointer",
-            }}
-          >
-            Logout
-          </button>
+          <form onSubmit={handleLogin} style={styles.form}>
+            <input
+              type="email"
+              placeholder="E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+              required
+            />
+
+            <button type="submit" style={styles.button} disabled={loading}>
+              {loading ? "Wird geprüft…" : "Einloggen"}
+            </button>
+          </form>
+
+          {msg && <p style={styles.msg}>{msg}</p>}
         </div>
-      </form>
-
-      {/* Admin-Login */}
-      <details>
-        <summary
-          style={{
-            cursor: "pointer",
-            fontWeight: 700,
-            marginBottom: 8,
-          }}
-        >
-          Admin-Login (Token)
-        </summary>
-        <form onSubmit={tryAdminAccess}>
-          <label
-            htmlFor="adminToken"
-            style={{ display: "block", fontWeight: 600, marginBottom: 8 }}
-          >
-            Admin-Token
-          </label>
-          <input
-            id="adminToken"
-            type="text"
-            required
-            value={adminToken}
-            onChange={(e) => setAdminToken(e.target.value.trim())}
-            placeholder="Admin-Token"
-            style={{
-              width: "100%",
-              padding: "10px 12px",
-              borderRadius: 10,
-              border: "1px solid #ddd",
-            }}
-          />
-          <button
-            disabled={busyAdmin}
-            style={{
-              marginTop: 12,
-              padding: "10px 16px",
-              borderRadius: 999,
-              border: "none",
-              background: "#333",
-              color: "white",
-              fontWeight: 600,
-              cursor: busyAdmin ? "wait" : "pointer",
-              opacity: busyAdmin ? 0.7 : 1,
-            }}
-          >
-            {busyAdmin ? "Prüfe Token …" : "Admin-Login"}
-          </button>
-          <p style={{ marginTop: 8, fontSize: 13, color: "#666" }}>
-            Bei Erfolg wird <code>jl_admin=1</code> gesetzt.
-          </p>
-        </form>
-      </details>
-
-      {msg && (
-        <p style={{ marginTop: 16, fontWeight: 700 }}>
-          {msg}
-        </p>
-      )}
-    </main>
+      </main>
+    </>
   );
 }
+
+const styles = {
+  main: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
+    padding: 20,
+  },
+  box: {
+    background: "white",
+    padding: "30px 26px",
+    borderRadius: 18,
+    width: "100%",
+    maxWidth: 420,
+    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+  },
+  title: {
+    fontSize: 32,
+    marginBottom: 20,
+    textAlign: "center",
+    color: "#1f2b23",
+    fontFamily: "Georgia, serif",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+  },
+  input: {
+    padding: "12px 14px",
+    borderRadius: 12,
+    border: "1px solid #ccc",
+    fontSize: 16,
+  },
+  button: {
+    background: "#caa53b",
+    padding: "14px 16px",
+    borderRadius: 14,
+    border: "none",
+    fontSize: 18,
+    fontWeight: 700,
+    cursor: "pointer",
+    color: "#111",
+  },
+  msg: {
+    textAlign: "center",
+    marginTop: 16,
+    fontSize: 15,
+  },
+};
