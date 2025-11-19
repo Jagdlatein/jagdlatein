@@ -92,8 +92,29 @@ const TERMS = [
   { slug: "zusammentrieb", term: "Zusammentrieb", def: "Wild sammelt sich, bevor es gemeinsam zieht." },
 ];
 
+function hasPaidAccessFromCookies(req) {
+  const cookieHeader = req.headers.cookie || "";
+  const loggedIn = cookieHeader.includes("jl_session=1");
+  const paid = cookieHeader.includes("jl_paid=1");
+  return loggedIn && paid;
+}
 
-export default function GlossarIndex() {
+export async function getServerSideProps(ctx) {
+  const { req } = ctx;
+
+  if (!hasPaidAccessFromCookies(req)) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
+
+function GlossarIndex() {
   const [query, setQuery] = useState("");
 
   const filtered = TERMS.filter((t) =>
@@ -115,16 +136,16 @@ export default function GlossarIndex() {
           Zentrale Begriffe aus der Jägersprache – kompakt erklärt.
         </p>
 
-        {/* SUCHFELD */}
+        {/* SUCHE */}
         <input
           type="text"
           placeholder="Begriff suchen..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full p-3 mb-6 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
+          className="w-full p-3 mb-6 border rounded-lg border-gray-300 
+                     focus:outline-none focus:ring-2 focus:ring-green-700"
         />
 
-        {/* ERGEBNISLISTE */}
         <ul className="list-none p-0">
           {filtered.length === 0 && (
             <p className="text-gray-500">Keine passenden Begriffe gefunden.</p>
@@ -155,28 +176,6 @@ export default function GlossarIndex() {
       </main>
     </>
   );
-}
-
-function hasPaidAccessFromCookies(req) {
-  const cookieHeader = req.headers.cookie || "";
-  const loggedIn = cookieHeader.includes("jl_session=1");
-  const paid = cookieHeader.includes("jl_paid=1");
-  return loggedIn && paid;
-}
-
-export async function getServerSideProps(ctx) {
-  const { req } = ctx;
-
-  if (!hasPaidAccessFromCookies(req)) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: {} };
 }
 
 export default GlossarIndex;
