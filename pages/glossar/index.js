@@ -114,7 +114,7 @@ export async function getServerSideProps(ctx) {
   return { props: {} };
 }
 
-function GlossarIndex() {
+export default function GlossarIndex() {
   const [query, setQuery] = useState("");
 
   const filtered = TERMS.filter((t) =>
@@ -129,53 +129,73 @@ function GlossarIndex() {
         description="Wichtige Begriffe aus der Jägersprache kurz und verständlich erklärt."
       />
 
-      <main className="p-4 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">Jagd-Glossar</h1>
+      <main className="py-12 px-4 flex justify-center bg-[#faf8f1] min-h-screen">
+        <div className="w-full max-w-3xl">
 
-        <p className="text-lg text-gray-700 mb-6">
-          Zentrale Begriffe aus der Jägersprache – kompakt erklärt.
-        </p>
+          <h1 className="text-4xl font-extrabold mb-6 text-center">
+            Jagd-Glossar
+          </h1>
 
-        {/* SUCHE */}
-        <input
-          type="text"
-          placeholder="Begriff suchen..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full p-3 mb-6 border rounded-lg border-gray-300 
-                     focus:outline-none focus:ring-2 focus:ring-green-700"
-        />
+          <p className="text-lg text-gray-700 mb-10 text-center">
+            Zentrale Begriffe aus der Jägersprache – kompakt & prüfungsrelevant.
+          </p>
 
-        <ul className="list-none p-0">
-          {filtered.length === 0 && (
-            <p className="text-gray-500">Keine passenden Begriffe gefunden.</p>
-          )}
+          {/* SUCHFELD */}
+          <div className="flex justify-center mb-10">
+            <input
+              type="text"
+              placeholder="Begriff suchen…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="
+                w-full max-w-md p-3 border rounded-lg shadow-sm 
+                border-gray-300 bg-white
+                focus:outline-none focus:ring-2 focus:ring-green-700
+              "
+            />
+          </div>
 
-          {filtered.map((t) => (
-            <li key={t.slug} className="mb-4">
-              <a
-                href={`/glossar/${t.slug}`}
-                className="font-semibold text-green-800 hover:underline"
+          {/* GLOSSAR-LISTE */}
+          <ul className="list-none space-y-5">
+            {filtered.length === 0 && (
+              <p className="text-gray-500 text-center">
+                Keine passenden Begriffe gefunden.
+              </p>
+            )}
+
+            {filtered.map((t) => (
+              <li
+                key={t.slug}
+                className="
+                  bg-white p-5 rounded-xl shadow-sm border border-gray-200
+                  hover:shadow-md transition
+                "
               >
-                {t.term}
-              </a>
-              <div className="text-gray-700 text-sm mt-1">{t.def}</div>
-            </li>
-          ))}
-        </ul>
+                <a
+                  href={`/glossar/${t.slug}`}
+                  className="text-green-800 font-semibold text-xl hover:underline"
+                >
+                  {t.term}
+                </a>
 
-        <p className="text-sm mt-8">
-          <a href="/" className="mr-4 text-green-800 hover:underline">
-            Startseite
-          </a>
-          ·
-          <a href="/quiz" className="ml-4 text-green-800 hover:underline">
-            Zum Quiz
-          </a>
-        </p>
+                <p className="text-gray-700 mt-2 text-sm leading-relaxed">
+                  {t.def}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {/* FOOTER */}
+          <div className="text-sm mt-12 flex justify-center space-x-6">
+            <a href="/" className="text-green-800 hover:underline">
+              Startseite
+            </a>
+            <a href="/quiz" className="text-green-800 hover:underline">
+              Zum Quiz
+            </a>
+          </div>
+        </div>
       </main>
     </>
   );
 }
-
-export default GlossarIndex;
