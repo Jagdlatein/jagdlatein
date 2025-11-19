@@ -1,60 +1,60 @@
 // pages/login.js
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import Head from "next/head";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const nextUrl = router.query.next || "/"; // Seite nach Login
+
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const messageFromURL = params.get("msg");
-    if (messageFromURL) {
-      setMsg(messageFromURL);
-    }
-  }, []);
-
+  // -------------------------------------
+  // LOGIN FUNKTION
+  // -------------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
 
     if (!email.includes("@")) {
-      setMsg("Bitte eine gültige E-Mail eingeben.");
+      setMsg("Bitte gültige E-Mail eingeben.");
       return;
     }
 
     setLoading(true);
 
     try {
-      const response = await fetch("/api/login", {
+      const res = await fetch("/api/auth/session", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
+      if (!res.ok || data.success === false) {
         setMsg(data.message || "Login fehlgeschlagen.");
         setLoading(false);
         return;
       }
 
-      setMsg("Login erfolgreich! Weiterleitung…");
+      setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        window.location.href = data.redirect || "/";
-      }, 800);
-    } catch (error) {
-      setMsg("Verbindungsfehler. Bitte später erneut versuchen.");
+        router.push(nextUrl);
+      }, 600);
+    } catch (err) {
+      setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
 
     setLoading(false);
   }
 
+  // -------------------------------------
+  // UI
+  // -------------------------------------
   return (
     <>
       <Head>
@@ -63,82 +63,102 @@ export default function LoginPage() {
 
       <main style={styles.main}>
         <div style={styles.box}>
-          <h1 style={styles.title}>Login</h1>
 
+          <h1 style={styles.title}>Login</h1>
+          <p style={styles.subtitle}>Melde dich an, um fortzufahren</p>
+
+          {/* LOGIN FORMULAR */}
           <form onSubmit={handleLogin} style={styles.form}>
             <input
               type="email"
-              placeholder="E-Mail eingeben"
+              placeholder="E-Mail-Adresse"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
               style={styles.input}
+              required
             />
 
-            <button type="submit" disabled={loading} style={styles.button}>
-              {loading ? "Wird geprüft…" : "Login"}
+            <button type="submit" style={styles.button} disabled={loading}>
+              {loading ? "Wird geprüft…" : "Einloggen"}
             </button>
           </form>
 
-          {msg && (
-            <p style={styles.msg}>
-              {msg}
-            </p>
-          )}
+          {msg && <p style={styles.msg}>{msg}</p>}
+
+          {/* ZURÜCK ZUR STARTSEITE */}
+          <div style={{ marginTop: 20, textAlign: "center" }}>
+            <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
+          </div>
+
         </div>
       </main>
     </>
   );
 }
 
+// ------------------------------------------------------
+// UI STYLES — moderner, klarer, Startseiten-Stil
+// ------------------------------------------------------
 const styles = {
   main: {
+    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh",
     background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
     padding: 20,
   },
   box: {
+    background: "rgba(255,255,255,0.95)",
+    padding: "32px 28px",
+    borderRadius: 18,
     width: "100%",
     maxWidth: 420,
-    background: "white",
-    padding: "28px 24px",
-    borderRadius: 16,
-    boxShadow: "0 4px 18px rgba(0,0,0,0.1)",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+    border: "1px solid #e9e1cd",
   },
   title: {
+    fontSize: 34,
+    marginBottom: 8,
     textAlign: "center",
-    fontSize: 28,
-    marginBottom: 20,
-    fontFamily: "Georgia, serif",
     color: "#1f2b23",
+    fontFamily: "Georgia, serif",
+  },
+  subtitle: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "#6c6458",
+    marginBottom: 24,
   },
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: 14,
+    gap: 16,
   },
   input: {
     padding: "12px 14px",
-    border: "1px solid #ccc",
     borderRadius: 12,
+    border: "1px solid #c9c3b8",
     fontSize: 16,
   },
   button: {
-    padding: "14px 18px",
+    background: "#caa53b",
+    padding: "14px 16px",
+    borderRadius: 14,
+    border: "none",
     fontSize: 18,
     fontWeight: 700,
-    background: "#caa53b",
-    color: "#111",
-    border: "none",
-    borderRadius: 12,
     cursor: "pointer",
+    color: "#111",
   },
   msg: {
-    marginTop: 16,
     textAlign: "center",
+    marginTop: 18,
     fontSize: 15,
+  },
+  backLink: {
+    fontSize: 16,
+    color: "#1f2b23",
+    textDecoration: "underline",
   },
 };
