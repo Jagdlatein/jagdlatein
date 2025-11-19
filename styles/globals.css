@@ -102,7 +102,6 @@ img {
   padding: 10px 0;
 }
 
-/* Brand links */
 .brand {
   display: flex;
   align-items: center;
@@ -125,11 +124,11 @@ img {
 .brand-title small {
   color: var(--muted);
   font-size: 14px;
-  margin-top: 4px; /* Lernplattform leicht nach unten */
+  margin-top: 4px;
   font-weight: 600;
 }
 
-/* Desktop-Menü oben rechts */
+/* Desktop-Menü */
 .menu {
   display: flex;
   gap: 20px;
@@ -143,11 +142,10 @@ img {
   font-weight: 700;
   color: var(--forest);
   border: 1px solid transparent;
-  transition:
-    background .15s ease,
-    color .15s ease,
-    border-color .15s ease,
-    box-shadow .15s ease;
+  transition: background .15s ease,
+              color .15s ease,
+              border-color .15s ease,
+              box-shadow .15s ease;
 }
 
 .nav-link:hover {
@@ -157,7 +155,7 @@ img {
 }
 
 /* =========================================
-   (Optional) Untere Header-Leiste
+   Header-Sub
 ========================================= */
 .header-sub {
   background: rgba(255,255,255,0.65);
@@ -196,7 +194,7 @@ img {
 }
 
 /* =========================================
-   Hero-Bereich (falls verwendet)
+   Hero
 ========================================= */
 .hero {
   position: relative;
@@ -225,7 +223,6 @@ img {
 .hero h1 {
   font-size: 44px;
   line-height: 1.1;
-  margin: 0 0 8px;
 }
 
 .hero p {
@@ -234,14 +231,8 @@ img {
   font-weight: 600;
 }
 
-.hero .status {
-  font-weight: 700;
-  color: var(--forest);
-  margin: 6px 0 0;
-}
-
 /* =========================================
-   Karten / Grid
+   Karten
 ========================================= */
 .grid {
   display: grid;
@@ -257,19 +248,9 @@ img {
   );
   border: 1px solid rgba(42,35,25,.14);
   border-radius: var(--radius);
-  padding: 16px 16px 18px;
+  padding: 16px;
   box-shadow: var(--shadow);
   transition: transform .18s ease;
-}
-
-.card h3 {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  margin: 0 0 6px;
-}
-
-.card p {
-  color: #3c372f;
-  margin: 0 0 10px;
 }
 
 .card:hover {
@@ -277,13 +258,11 @@ img {
 }
 
 /* =========================================
-   Buttons / CTAs
+   Buttons
 ========================================= */
-.btn,
-.cta {
+.btn, .cta {
   display: inline-block;
   font-weight: 800;
-  letter-spacing: .2px;
   border-radius: 12px;
   padding: 10px 14px;
   border: 1px solid rgba(42,35,25,.18);
@@ -292,7 +271,6 @@ img {
 
 .btn {
   background: #fff8;
-  color: var(--ink);
 }
 
 .btn:hover {
@@ -302,46 +280,7 @@ img {
 .cta {
   background: var(--gold);
   color: #231c0f;
-  border-color: rgba(212,175,55,.5);
   box-shadow: 0 8px 18px rgba(212,175,55,.22);
-}
-
-.cta:hover {
-  filter: brightness(.98);
-}
-
-/* =========================================
-   Zusätzliche Utility-Typo / Sektionen
-========================================= */
-.lead {
-  font-size: 18px;
-  color: var(--sepia);
-}
-
-.section-alt {
-  background: linear-gradient(
-    0deg,
-    rgba(241,231,211,.7),
-    rgba(241,231,211,.5)
-  );
-}
-
-.trust {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.trust-item {
-  padding: 8px 12px;
-  border: 1px solid rgba(42,35,25,.14);
-  border-radius: 12px;
-  background: rgba(255,255,255,.55);
-}
-
-.small {
-  font-size: 12px;
-  opacity: .9;
 }
 
 /* =========================================
@@ -362,83 +301,8 @@ img {
 }
 
 /* =========================================
-   Mobile Navigation unter "Jetzt freischalten"
-   (Startseite)
+   GLOSSAR — DESKTOP
 ========================================= */
-.mobile-nav-under-buttons {
-  display: none;
-}
-
-.mobile-nav-under-buttons a,
-.mobile-nav-under-buttons button {
-  display: block;
-  padding: 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  color: var(--forest);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.logout-inline {
-  background: none;
-  border: none;
-  padding: 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--forest);
-  cursor: pointer;
-}
-
-/* =========================================
-   Media Queries (nur mobile Anpassungen unten)
-========================================= */
-@media (max-width: 780px) {
-  .header-inner {
-    height: 64px;
-    justify-content: center; /* Logo in der Mitte, Menü ist weg */
-  }
-
-  .brand-name {
-    font-size: 24px;
-  }
-
-  .brand-title small {
-    font-size: 12px;
-    margin-top: 3px;
-  }
-
-  /* Desktop-Menü im Header auf Handy ausblenden */
-  .menu {
-    display: none;
-  }
-
-  .hero {
-    padding: 64px 0 36px;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero-logo {
-    height: 72px;
-  }
-
-  .header-sub-inner {
-    font-size: 17px;
-    padding: 12px 0;
-  }
-
-  /* Mobile Navigation unter dem CTA anzeigen */
-  .mobile-nav-under-buttons {
-    display: block;
-    margin-top: 20px;
-  }
-/* =========================================
-   GLOSSAR — Desktop Optimierung
-========================================= */
-
 @media (min-width: 781px) {
 
   .glossar-wrapper {
@@ -495,11 +359,7 @@ img {
   }
 
   .glossar-card {
-    background: linear-gradient(
-      180deg,
-      rgba(255,255,255,.55),
-      rgba(255,255,255,.35)
-    );
+    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
     border: 1px solid rgba(42,35,25,.14);
     border-radius: var(--radius);
     padding: 22px 26px;
@@ -545,5 +405,47 @@ img {
   }
 }
 
-  
+/* =========================================
+   MOBILE (bestehend)
+========================================= */
+@media (max-width: 780px) {
+  .header-inner {
+    height: 64px;
+    justify-content: center;
+  }
+
+  .brand-name {
+    font-size: 24px;
+  }
+
+  .brand-title small {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hero {
+    padding: 64px 0 36px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-logo {
+    height: 72px;
+  }
+
+  .header-sub-inner {
+    font-size: 17px;
+    padding: 12px 0;
+  }
+
+  .mobile-nav-under-buttons {
+    display: block;
+    margin-top: 20px;
+  }
 }
