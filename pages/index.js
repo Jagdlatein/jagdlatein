@@ -50,7 +50,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* UNTERE BUTTON-LISTE IM GOLD-STIL */}
+          {/* UNTERE BUTTON-LISTE — KLEINER GEMACHT */}
           <div style={styles.linkColumn}>
             <Link href="/kurse" style={styles.linkButton}>Kurse</Link>
             <Link href="/quiz" style={styles.linkButton}>Quiz</Link>
@@ -88,7 +88,7 @@ const styles = {
     margin: "0 0 26px",
   },
 
-  /* OBERSTE BUTTONS */
+  /* OBERSTE GROSSE BUTTONS */
   btnRow: {
     display: "flex",
     gap: 14,
@@ -115,25 +115,26 @@ const styles = {
     fontSize: 17,
   },
 
-  /* UNTERE BUTTONS — GOLDSTIL */
+  /* UNTERE BUTTONS — KLEINER, GOLD */
   linkColumn: {
     display: "flex",
     flexDirection: "column",
-    gap: 14,
+    gap: 12,
     textAlign: "center",
     marginTop: 20,
   },
+
   linkButton: {
     background: "#caa53b",
     color: "#111",
-    padding: "14px 26px",
-    borderRadius: 14,
+    padding: "10px 22px",   // kleiner gemacht
+    borderRadius: 12,       // leicht kleiner
     fontWeight: 700,
     textDecoration: "none",
-    fontSize: 17,
+    fontSize: 16,           // kleiner
     display: "block",
     width: "100%",
-    maxWidth: 260,
+    maxWidth: 220,          // kleiner (vorher 260)
     margin: "0 auto",
   },
 };
