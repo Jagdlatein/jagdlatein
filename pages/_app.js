@@ -5,8 +5,8 @@ export default function MyApp({ Component, pageProps }) {
     <div className="app-wrapper">
       {/* HEADER */}
       <header className="navbar">
-        <a href="/" className="logo">Jagdlatein</a>
-        <a href="/api/auth/logout" className="logout-btn">Logout</a>
+        <a href="/" className="logo">Jagdlatein Die Lernplattform</a>
+        
       </header>
 
       {/* CONTENT */}
