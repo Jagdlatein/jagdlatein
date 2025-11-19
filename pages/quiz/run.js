@@ -14,9 +14,9 @@ export default function QuizRun() {
 
   const questions = filterQuestions({ country, topic, count: 10 });
 
-  // ---- Quiz State ----
+  // ---- QUIZ STATE ----
   const [index, setIndex] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(30); // ⭐ Mehr Zeit pro Frage
   const [score, setScore] = useState(0);
   const [locked, setLocked] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -24,24 +24,29 @@ export default function QuizRun() {
 
   const q = questions[index];
 
-  // ---- Countdown ----
+  // ---- TIMER FIX ----
   useEffect(() => {
-    if (finished || locked) return;
+    if (finished) return;
+    if (locked) return; // Stop if answer chosen
     if (timer <= 0) {
-      handleTimeUp();
+      handleTimeout();
       return;
     }
-    const int = setTimeout(() => setTimer((t) => t - 1), 1000);
-    return () => clearTimeout(int);
-  }, [timer, locked, finished]);
 
-  function handleTimeUp() {
+    const t = setTimeout(() => {
+      setTimer((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(t);
+  }, [timer, locked, finished, index]);
+
+  function handleTimeout() {
     setLocked(true);
     setSelected("timeout");
     setTimeout(() => nextQuestion(), 1200);
   }
 
-  // ---- Antwort klicken ----
+  // ---- ANSWER ----
   function handleAnswer(a, idx) {
     if (locked) return;
 
@@ -49,7 +54,6 @@ export default function QuizRun() {
     setSelected(idx);
 
     if (a.correct) {
-      // BONUS: je schneller, desto mehr Punkte
       const bonus = timer * 10;
       setScore((s) => s + 100 + bonus);
     }
@@ -57,27 +61,23 @@ export default function QuizRun() {
     setTimeout(() => nextQuestion(), 1000);
   }
 
-  // ---- Weiter ----
+  // ---- NEXT QUESTION ----
   function nextQuestion() {
     if (index + 1 >= questions.length) {
       setFinished(true);
       return;
     }
     setIndex((i) => i + 1);
-    setTimer(10);
+    setTimer(30);    // ⭐ Reset Timer
     setSelected(null);
     setLocked(false);
   }
 
-  // ---- Erneut spielen ----
+  // ---- RESTART ----
   function restart() {
     router.push({
       pathname: "/quiz/run",
-      query: {
-        country,
-        topic,
-        rnd: Math.random().toString(36).substring(2),
-      },
+      query: { country, topic, rnd: Math.random().toString(36).substring(2) },
     });
   }
 
@@ -86,21 +86,12 @@ export default function QuizRun() {
       <Seo title="Quiz Spielmodus" />
       <RequireAccess />
 
-      {/* MOBILE VERBESSERUNG */}
+      {/* MOBILE OPTIMIERUNG */}
       <style>{`
         @media (max-width:780px) {
-          .quiz-wrapper {
-            max-width:100%;
-            margin:10px auto !important;
-            padding:14px !important;
-          }
-          .quiz-card {
-            padding:14px !important;
-          }
-          .quiz-answer {
-            padding:10px !important;
-            font-size:16px !important;
-          }
+          .quiz-wrapper { padding:14px !important; }
+          .quiz-card { padding:14px !important; }
+          .quiz-answer { font-size:16px !important; padding:10px !important; }
         }
       `}</style>
 
@@ -115,14 +106,12 @@ export default function QuizRun() {
           padding: 24,
         }}
       >
-        {/* GAME FINISHED */}
+        {/* FINISHED VIEW */}
         {finished && (
           <div style={{ textAlign: "center" }}>
             <h1 style={{ fontSize: 32, marginBottom: 12 }}>🎉 Quiz fertig!</h1>
-            <p style={{ fontSize: 20, marginBottom: 8 }}>
-              Dein Score:
-            </p>
-            <p style={{ fontSize: 48, fontWeight: 900, color: "#136f39" }}>
+            <p style={{ fontSize: 20 }}>Dein Score:</p>
+            <p style={{ fontSize: 48, color: "#136f39", fontWeight: 900 }}>
               {score}
             </p>
 
@@ -147,7 +136,7 @@ export default function QuizRun() {
         {/* GAME VIEW */}
         {!finished && (
           <>
-            {/* Fortschritt + Timer */}
+            {/* Progress + Timer */}
             <div
               style={{
                 display: "flex",
@@ -158,20 +147,13 @@ export default function QuizRun() {
               }}
             >
               <span>Frage {index + 1} / {questions.length}</span>
-              <span style={{ color: timer <= 3 ? "red" : "#136f39" }}>
+              <span style={{ color: timer <= 5 ? "red" : "#136f39" }}>
                 ⏱ {timer}s
               </span>
             </div>
 
-            {/* SCORE */}
-            <div
-              style={{
-                fontSize: 16,
-                fontWeight: 600,
-                color: "#444",
-                marginBottom: 16,
-              }}
-            >
+            {/* Score */}
+            <div style={{ fontSize: 16, marginBottom: 16 }}>
               Score: {score}
             </div>
 
@@ -203,12 +185,11 @@ export default function QuizRun() {
                         padding: "12px 14px",
                         borderRadius: 10,
                         border: "1px solid rgba(42,35,25,0.14)",
-                        background: isSelected
-                          ? isCorrect
-                            ? "#c6f6d5"
-                            : "#fed7d7"
-                          : "#fff8",
                         cursor: locked ? "default" : "pointer",
+                        background:
+                          isSelected && isCorrect ? "#c6f6d5" :
+                          isSelected && !isCorrect ? "#fed7d7" :
+                          "#fff8",
                       }}
                     >
                       {a.text}
@@ -224,7 +205,7 @@ export default function QuizRun() {
   );
 }
 
-// SSR – Login prüfen via Cookie
+// SSR – Premium prüfen (Cookie: jl_paid=1)
 export async function getServerSideProps({ req }) {
   const { hasPaidAccessFromCookies } = await import("../../lib/auth-check");
 
