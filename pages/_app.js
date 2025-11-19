@@ -1,46 +1,26 @@
-// pages/_app.js
 import "../styles/globals.css";
-import Header from "../components/Header";
-import Link from "next/link";
 
-export default function App({ Component, pageProps, router }) {
-  // Header wird NICHT auf Login & Preise angezeigt
-  const hideHeader =
-    router.pathname === "/login" || router.pathname === "/preise";
-
-  // Der Button soll auf ALLEN Seiten außer der Startseite erscheinen
-  const showMainButton = router.pathname !== "/";
-
+export default function MyApp({ Component, pageProps }) {
   return (
-    <>
-      {/* Header auf allen Seiten außer login/preise */}
-      {!hideHeader && <Header />}
+    <div className="app-wrapper">
+      {/* HEADER */}
+      <header className="navbar">
+        <a href="/" className="logo">Jagdlatein</a>
+        <a href="/api/auth/logout" className="logout-btn">Logout</a>
+      </header>
 
-      {/* Hauptmenü-Button auf allen Seiten außer "/" */}
-      {showMainButton && (
-        <div
-          style={{
-            padding: "1rem",
-            textAlign: "center",
-          }}
-        >
-          <Link
-            href="/"
-            style={{
-              background: "#1f2b23",
-              color: "#fff",
-              padding: "10px 18px",
-              borderRadius: 12,
-              display: "inline-block",
-              fontWeight: 700,
-            }}
-          >
-            Zum Hauptmenü
-          </Link>
-        </div>
-      )}
+      {/* CONTENT */}
+      <main className="content-area">
+        <Component {...pageProps} />
+      </main>
 
-      <Component {...pageProps} />
-    </>
+      {/* MOBILE BOTTOM NAV */}
+      <nav className="bottom-nav">
+        <a href="/kurse">Kurse</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/glossar">Glossar</a>
+        <a href="/ebook">E-Book</a>
+      </nav>
+    </div>
   );
 }
