@@ -19,45 +19,46 @@ const TERMS = [
 function GlossarIndex() {
   return (
     <>
-<Seo
-  title="Jagd-Glossar – Jagdlatein"
-  description="Wichtige Begriffe aus der Jägersprache kurz und verständlich erklärt."
-/>
+      <Seo
+        title="Jagd-Glossar – Jagdlatein"
+        description="Wichtige Begriffe aus der Jägersprache kurz und verständlich erklärt."
+      />
 
-<section className="page">
-  <div className="p-4 max-w-3xl mx-auto">
-    <h1>Jagd-Glossar</h1>
-    <p className="lead">
-      Zentrale Begriffe aus der Jägersprache – kompakt erklärt, damit du sie
-      in der Jagdprüfung sicher beherrschst.
-    </p>
+      <main className="p-4 max-w-3xl mx-auto">
+        <h1>Jagd-Glossar</h1>
 
-    <ul style={{ listStyle: "none", padding: 0, marginTop: 24 }}>
-      {TERMS.map((t) => (
-        <li key={t.slug} style={{ marginBottom: 12 }}>
-          <a
-            href={`/glossar/${t.slug}`}
-            style={{ fontWeight: 600, textDecoration: "none" }}
-          >
-            {t.term}
+        <p className="lead" style={{ marginBottom: 24 }}>
+          Zentrale Begriffe aus der Jägersprache – kompakt erklärt, damit du sie
+          in der Jagdprüfung sicher beherrschst.
+        </p>
+
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {TERMS.map((t) => (
+            <li key={t.slug} style={{ marginBottom: 12 }}>
+              <a
+                href={`/glossar/${t.slug}`}
+                style={{ fontWeight: 600, textDecoration: "none" }}
+              >
+                {t.term}
+              </a>
+              <div style={{ fontSize: 14, color: "#4b5563" }}>{t.def}</div>
+            </li>
+          ))}
+        </ul>
+
+        <p className="small" style={{ marginTop: 16 }}>
+          <a href="/" style={{ marginRight: 10 }}>
+            Startseite
           </a>
-          <div style={{ fontSize: 14, color: "#4b5563" }}>{t.def}</div>
-        </li>
-      ))}
-    </ul>
-
-    <p className="small" style={{ marginTop: 16 }}>
-      <a href="/" style={{ marginRight: 10 }}>
-        Startseite
-      </a>
-      ·
-      <a href="/quiz" style={{ marginLeft: 10 }}>
-        Zum Quiz
-      </a>
-    </p>
-  </div>
-</section>
-
+          ·
+          <a href="/quiz" style={{ marginLeft: 10 }}>
+            Zum Quiz
+          </a>
+        </p>
+      </main>
+    </>
+  );
+}
 
 function hasPaidAccessFromCookies(req) {
   const cookieHeader = req.headers.cookie || "";
