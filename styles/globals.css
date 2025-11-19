@@ -435,13 +435,12 @@ img {
     display: block;
     margin-top: 20px;
   }
-
-   /* =========================================
-   GLOSSAR DESIGN (no Tailwind)
+/* =========================================
+   GLOSSAR DESIGN – DESKTOP VERSION
 ========================================= */
 
 .glossar-wrapper {
-  padding: 40px 18px;
+  padding: 60px 18px;
   background: var(--parchment);
   display: flex;
   justify-content: center;
@@ -450,39 +449,42 @@ img {
 
 .glossar-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px; /* breiter für PC */
+  margin: 0 auto;   /* absolut zentriert */
 }
 
 .glossar-title {
-  font-size: 40px;
+  font-size: 52px;
   font-weight: 900;
   text-align: center;
   color: var(--forest);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
 }
 
 .glossar-subtitle {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   color: var(--sepia);
-  margin-bottom: 36px;
+  margin-bottom: 42px;
   font-weight: 600;
 }
 
 .glossar-search-box {
   display: flex;
   justify-content: center;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .glossar-input {
   width: 100%;
-  max-width: 420px;
-  padding: 12px 14px;
+  max-width: 480px;
+  padding: 14px 16px;
   border-radius: var(--radius);
-  border: 1px solid rgba(42,35,25,.25);
+  border: 1px solid rgba(42,35,25,.28);
   background: #fff;
-  font-size: 16px;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
 }
 
 .glossar-input:focus {
@@ -494,25 +496,32 @@ img {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: 18px;
+  gap: 22px;
 }
 
 .glossar-card {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,.55),
-    rgba(255,255,255,.35)
+    rgba(255,255,255,.65),
+    rgba(255,255,255,.45)
   );
-  border: 1px solid rgba(42,35,25,.14);
+  border: 1px solid rgba(42,35,25,.16);
   border-radius: var(--radius);
-  padding: 18px 20px;
+  padding: 22px 24px;
   box-shadow: var(--shadow);
+  transition: transform .18s ease, background .18s ease;
+}
+
+.glossar-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.75);
 }
 
 .glossar-term {
   color: var(--forest);
   font-weight: 900;
-  font-size: 20px;
+  font-size: 24px;
+  margin-bottom: 6px;
 }
 
 .glossar-term:hover {
@@ -522,23 +531,25 @@ img {
 .glossar-def {
   margin-top: 8px;
   color: var(--ink);
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.55;
 }
 
 .glossar-empty {
   text-align: center;
   color: var(--muted);
+  font-size: 18px;
+  margin-top: 20px;
 }
 
 .glossar-footer {
   text-align: center;
-  margin-top: 40px;
-  font-size: 15px;
+  margin-top: 45px;
+  font-size: 16px;
   color: var(--forest);
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .glossar-footer a {
@@ -550,4 +561,4 @@ img {
   text-decoration: underline;
 }
 
-}
+ 
