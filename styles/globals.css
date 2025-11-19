@@ -107,40 +107,7 @@ a:hover {
   }
 }
 
-/* =========================================
-   BOTTOM NAVIGATION (Mobile)
-========================================= */
 
-.bottom-nav {
-  display: none;
-}
-
-@media (max-width: 780px) {
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #f8f1dd;
-    padding: 12px 0;
-    border-top: 1px solid #d1c4a8;
-
-    display: flex;
-    justify-content: space-around;
-    z-index: 9999;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .bottom-nav a {
-    color: #2a2319;
-  }
-
-  /* Platz damit Seite nicht hinter Menü verschwindet */
-  body {
-    padding-bottom: 80px;
-  }
-}
 
 /* =========================================
    GLOSSAR – Desktop-Styles
