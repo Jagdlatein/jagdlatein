@@ -12,12 +12,13 @@ export default function QuizRun() {
   const country = (router.query.country || "DE").toString().toUpperCase();
   const topic = (router.query.topic || "Alle").toString();
 
-  // 10 neue Fragen
-  const questions = filterQuestions({ country, topic, count: 10 });
+  // ⭐ FIX: Fragen EINMAL erzeugen
+  const [questions] = useState(() =>
+    filterQuestions({ country, topic, count: 10 })
+  );
 
-  // ---- QUIZ STATE ----
   const [index, setIndex] = useState(0);
-  const [timer, setTimer] = useState(30);  // ⭐ 30 Sekunden
+  const [timer, setTimer] = useState(30);
   const [score, setScore] = useState(0);
   const [locked, setLocked] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -25,10 +26,10 @@ export default function QuizRun() {
 
   const q = questions[index];
 
-  // ---- TIMER FIX (perfekt stabil) ----
+  // ⭐ TIMER FIX
   useEffect(() => {
-    if (finished) return;   // Stop when quiz done
-    if (locked) return;     // Stop when user answered
+    if (finished) return;
+    if (locked) return;
 
     if (timer <= 0) {
       handleTimeout();
@@ -42,14 +43,12 @@ export default function QuizRun() {
     return () => clearTimeout(countdown);
   }, [timer, locked, finished, index]);
 
-  // ---- TIMEOUT ----
   function handleTimeout() {
     setLocked(true);
     setSelected("timeout");
     setTimeout(() => nextQuestion(), 1200);
   }
 
-  // ---- ANSWER CLICK ----
   function handleAnswer(a, i) {
     if (locked) return;
 
@@ -64,20 +63,18 @@ export default function QuizRun() {
     setTimeout(() => nextQuestion(), 1000);
   }
 
-  // ---- NEXT QUESTION ----
   function nextQuestion() {
     if (index + 1 >= questions.length) {
       setFinished(true);
       return;
     }
 
-    setIndex((idx) => idx + 1);
-    setTimer(30);        // ⭐ Reset auf 30 Sekunden
+    setIndex((x) => x + 1);
+    setTimer(30);
     setSelected(null);
     setLocked(false);
   }
 
-  // ---- RESTART ----
   function restart() {
     router.push({
       pathname: "/quiz/run",
@@ -94,120 +91,44 @@ export default function QuizRun() {
       <Seo title="Quiz Spielmodus" />
       <RequireAccess />
 
-      {/* MOBILE OPTIMIERUNG */}
-      <style>{`
-        @media (max-width:780px) {
-          .quiz-wrapper { padding:14px !important; }
-          .quiz-card { padding:14px !important; }
-          .quiz-answer { font-size:16px !important; padding:10px !important; }
-        }
-      `}</style>
-
-      <main
-        className="quiz-wrapper"
-        style={{
-          maxWidth: 650,
-          margin: "40px auto",
-          background: "rgba(255,255,255,0.55)",
-          border: "1px solid rgba(42,35,25,0.14)",
-          borderRadius: 14,
-          padding: 24,
-        }}
-      >
-        {/* ---- QUIZ ENDE ---- */}
-        {finished && (
+      <main style={{ maxWidth: 650, margin: "40px auto", padding: 24 }}>
+        {finished ? (
           <div style={{ textAlign: "center" }}>
-            <h1 style={{ fontSize: 32, marginBottom: 12 }}>🎉 Quiz fertig!</h1>
-            <p style={{ fontSize: 20 }}>Dein Score:</p>
-            <p style={{ fontSize: 48, color: "#136f39", fontWeight: 900 }}>
-              {score}
-            </p>
-
-            <button
-              onClick={restart}
-              style={{
-                marginTop: 25,
-                padding: "12px 20px",
-                borderRadius: 12,
-                fontSize: 18,
-                background: "#1f2b23",
-                color: "#fff",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              🔄 Nochmal spielen
-            </button>
+            <h1>🎉 Quiz fertig!</h1>
+            <p>Score: {score}</p>
+            <button onClick={restart}>🔄 Nochmal spielen</button>
           </div>
-        )}
-
-        {/* ---- QUIZ SPIELMODUS ---- */}
-        {!finished && (
+        ) : (
           <>
-            {/* Fortschritt & Timer */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: 12,
-                fontSize: 18,
-                fontWeight: 700,
-              }}
-            >
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span>Frage {index + 1} / {questions.length}</span>
-              <span style={{ color: timer <= 5 ? "red" : "#136f39" }}>
-                ⏱ {timer}s
-              </span>
+              <span>⏱ {timer}s</span>
             </div>
 
-            {/* Punktestand */}
-            <div style={{ fontSize: 16, marginBottom: 16 }}>
-              Score: {score}
-            </div>
+            <h2>{q.question}</h2>
 
-            {/* FRAGE */}
-            <div
-              className="quiz-card"
-              style={{
-                padding: 16,
-                background: "rgba(255,255,255,0.35)",
-                borderRadius: 12,
-                border: "1px solid rgba(42,35,25,0.14)",
-                marginBottom: 20,
-              }}
-            >
-              <h2 style={{ marginBottom: 12 }}>{q.question}</h2>
-
-              <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-                {q.answers.map((a, i) => {
-                  const isCorrect = a.correct;
-                  const isSelected = selected === i;
-
-                  return (
-                    <li
-                      key={i}
-                      className="quiz-answer"
-                      onClick={() => handleAnswer(a, i)}
-                      style={{
-                        marginBottom: 8,
-                        padding: "12px 14px",
-                        borderRadius: 10,
-                        border: "1px solid rgba(42,35,25,0.14)",
-                        cursor: locked ? "default" : "pointer",
-                        background:
-                          isSelected && isCorrect
-                            ? "#c6f6d5"
-                            : isSelected && !isCorrect
-                            ? "#fed7d7"
-                            : "#fff8",
-                      }}
-                    >
-                      {a.text}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+              {q.answers.map((a, i) => (
+                <li
+                  key={i}
+                  onClick={() => handleAnswer(a, i)}
+                  style={{
+                    padding: 12,
+                    marginBottom: 8,
+                    background:
+                      selected === i
+                        ? a.correct
+                          ? "#c6f6d5"
+                          : "#fed7d7"
+                        : "#fff",
+                    borderRadius: 8,
+                    cursor: locked ? "default" : "pointer",
+                  }}
+                >
+                  {a.text}
+                </li>
+              ))}
+            </ul>
           </>
         )}
       </main>
@@ -215,7 +136,7 @@ export default function QuizRun() {
   );
 }
 
-// ---- SSR LOGIN CHECK ----
+// SSR – Premium-Check
 export async function getServerSideProps({ req }) {
   const { hasPaidAccessFromCookies } = await import("../../lib/auth-check");
 
