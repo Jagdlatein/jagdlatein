@@ -1,29 +1,20 @@
 // pages/login.js
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
 export default function LoginPage() {
-  const router = useRouter();
-  const nextUrl = router.query.next || "/"; // Ziel nach Login
-
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("");
 
-  // ------------------------------
-  // LOGOUT FUNKTION (NEU)
-  // ------------------------------
-  function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
-      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=None; Secure`;
-    });
-    window.location.replace("/");
-  }
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const messageFromURL = params.get("msg");
+    if (messageFromURL) {
+      setMsg(messageFromURL);
+    }
+  }, []);
 
-  // ------------------------------
-  // LOGIN FUNKTION
-  // ------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
@@ -36,27 +27,29 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/session", {
+      const response = await fetch("/api/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email }),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (!res.ok || data.success === false) {
+      if (!response.ok) {
         setMsg(data.message || "Login fehlgeschlagen.");
         setLoading(false);
         return;
       }
 
-      setMsg("Erfolgreich eingeloggt. Weiterleitung …");
+      setMsg("Login erfolgreich! Weiterleitung…");
 
       setTimeout(() => {
-        router.push(nextUrl);
-      }, 600);
-    } catch (err) {
-      setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
+        window.location.href = data.redirect || "/";
+      }, 800);
+    } catch (error) {
+      setMsg("Verbindungsfehler. Bitte später erneut versuchen.");
     }
 
     setLoading(false);
@@ -72,34 +65,26 @@ export default function LoginPage() {
         <div style={styles.box}>
           <h1 style={styles.title}>Login</h1>
 
-          {/* LOGIN FORMULAR */}
           <form onSubmit={handleLogin} style={styles.form}>
             <input
               type="email"
-              placeholder="E-Mail"
+              placeholder="E-Mail eingeben"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={styles.input}
               required
+              style={styles.input}
             />
 
-            <button type="submit" style={styles.button} disabled={loading}>
-              {loading ? "Wird geprüft…" : "Einloggen"}
+            <button type="submit" disabled={loading} style={styles.button}>
+              {loading ? "Wird geprüft…" : "Login"}
             </button>
           </form>
 
-          {/* MELDUNGEN */}
-          {msg && <p style={styles.msg}>{msg}</p>}
-
-          {/* LOGOUT BUTTON (NEU) */}
-          <div style={{ marginTop: 20, textAlign: "center" }}>
-            <button
-              onClick={logout}
-              style={styles.logoutButton}
-            >
-              Logout
-            </button>
-          </div>
+          {msg && (
+            <p style={styles.msg}>
+              {msg}
+            </p>
+          )}
         </div>
       </main>
     </>
@@ -108,66 +93,52 @@ export default function LoginPage() {
 
 const styles = {
   main: {
-    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    minHeight: "100vh",
     background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
     padding: 20,
   },
   box: {
-    background: "white",
-    padding: "30px 26px",
-    borderRadius: 18,
     width: "100%",
     maxWidth: 420,
-    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+    background: "white",
+    padding: "28px 24px",
+    borderRadius: 16,
+    boxShadow: "0 4px 18px rgba(0,0,0,0.1)",
   },
   title: {
-    fontSize: 32,
-    marginBottom: 20,
     textAlign: "center",
-    color: "#1f2b23",
+    fontSize: 28,
+    marginBottom: 20,
     fontFamily: "Georgia, serif",
+    color: "#1f2b23",
   },
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: 16,
+    gap: 14,
   },
   input: {
     padding: "12px 14px",
-    borderRadius: 12,
     border: "1px solid #ccc",
+    borderRadius: 12,
     fontSize: 16,
   },
   button: {
-    background: "#caa53b",
-    padding: "14px 16px",
-    borderRadius: 14,
-    border: "none",
+    padding: "14px 18px",
     fontSize: 18,
     fontWeight: 700,
-    cursor: "pointer",
+    background: "#caa53b",
     color: "#111",
+    border: "none",
+    borderRadius: 12,
+    cursor: "pointer",
   },
   msg: {
-    textAlign: "center",
     marginTop: 16,
+    textAlign: "center",
     fontSize: 15,
-  },
-
-  // ------------------------------
-  // LOGOUT BUTTON STYLE (NEU)
-  // ------------------------------
-  logoutButton: {
-    background: "#fff",
-    border: "2px solid #caa53b",
-    padding: "10px 20px",
-    borderRadius: 12,
-    fontSize: 16,
-    fontWeight: 600,
-    color: "#1f2b23",
-    cursor: "pointer",
   },
 };
