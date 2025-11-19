@@ -8,15 +8,30 @@ export default function AdminLogin() {
   const [pass, setPass] = useState(process.env.NEXT_PUBLIC_ADMIN_HINT || "");
   const [error, setError] = useState("");
 
+  function setCookie(name, value, days = 40) {
+    const maxAge = days * 24 * 60 * 60;
+    const secure =
+      typeof window !== "undefined" && window.location.protocol === "https:"
+        ? "; Secure"
+        : "";
+    document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAge}; SameSite=Lax${secure}`;
+  }
+
   async function onSubmit(e) {
     e.preventDefault();
     setError("");
+
     const res = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user, pass }),
     });
+
     if (res.ok) {
+      // admin cookies setzen
+      setCookie("jl_admin", "1");
+      setCookie("paid_access", "true");
+
       r.push("/admin/quiz");
     } else {
       const j = await res.json().catch(() => ({}));
@@ -25,22 +40,80 @@ export default function AdminLogin() {
   }
 
   return (
-    <main style={{minHeight:"100dvh",display:"grid",placeItems:"center",fontFamily:"system-ui,sans-serif",padding:24}}>
-      <form onSubmit={onSubmit} style={{width:360,maxWidth:"100%",display:"grid",gap:12, padding:20, border:"1px solid #e5e7eb", borderRadius:10}}>
-        <h1 style={{margin:0}}>🔐 Admin-Login</h1>
-        <label>Benutzername
-          <input value={user} onChange={e=>setUser(e.target.value)} required
-                 style={{width:"100%",padding:"10px 12px",border:"1px solid #d1d5db",borderRadius:8}} />
+    <main
+      style={{
+        minHeight: "100dvh",
+        display: "grid",
+        placeItems: "center",
+        fontFamily: "system-ui,sans-serif",
+        padding: 24,
+      }}
+    >
+      <form
+        onSubmit={onSubmit}
+        style={{
+          width: 360,
+          maxWidth: "100%",
+          display: "grid",
+          gap: 12,
+          padding: 20,
+          border: "1px solid #e5e7eb",
+          borderRadius: 10,
+        }}
+      >
+        <h1 style={{ margin: 0 }}>🔐 Admin-Login</h1>
+
+        <label>
+          Benutzername
+          <input
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
+            style={{
+              width: "100%",
+              padding: "10px 12px",
+              border: "1px solid #d1d5db",
+              borderRadius: 8,
+            }}
+          />
         </label>
-        <label>Passwort
-          <input type="password" value={pass} onChange={e=>setPass(e.target.value)} required
-                 style={{width:"100%",padding:"10px 12px",border:"1px solid #d1d5db",borderRadius:8}} />
+
+        <label>
+          Passwort
+          <input
+            type="password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            required
+            style={{
+              width: "100%",
+              padding: "10px 12px",
+              border: "1px solid #d1d5db",
+              borderRadius: 8,
+            }}
+          />
         </label>
-        {error && <p style={{color:"#b91c1c",margin:"4px 0 0"}}>{error}</p>}
-        <button type="submit" style={{padding:"10px 14px",borderRadius:8,border:"1px solid #111827",background:"#111827",color:"#fff"}}>
+
+        {error && (
+          <p style={{ color: "#b91c1c", margin: "4px 0 0" }}>{error}</p>
+        )}
+
+        <button
+          type="submit"
+          style={{
+            padding: "10px 14px",
+            borderRadius: 8,
+            border: "1px solid #111827",
+            background: "#111827",
+            color: "#fff",
+          }}
+        >
           Einloggen
         </button>
-        <p style={{fontSize:12,color:"#6b7280",margin:0}}>Tipp: Passwort entspricht <code>ADMIN_PASS</code>.</p>
+
+        <p style={{ fontSize: 12, color: "#6b7280", margin: 0 }}>
+          Tipp: Passwort entspricht <code>ADMIN_PASS</code>.
+        </p>
       </form>
     </main>
   );
