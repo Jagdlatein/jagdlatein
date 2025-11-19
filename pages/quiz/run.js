@@ -109,21 +109,7 @@ function QuizRun() {
 }
 
 // Serverseitige Berechtigung prüfen
-export async function getServerSideProps({ req }) {
-  const { hasPaidAccessFromCookies } = await import(
-    "../../lib/auth-check"
-  );
-
-  if (!hasPaidAccessFromCookies(req)) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
+export async function getServerSideProps() {
   return { props: {} };
 }
 
-export default QuizRun;
