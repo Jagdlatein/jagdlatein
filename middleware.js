@@ -7,21 +7,21 @@ export function middleware(req) {
   const url = req.nextUrl.clone();
   const { hostname, pathname } = url;
 
-  // 1) Domain-Redirects (KORREKT!)
-  // jagdlatein.de = Hauptdomain
-  if (hostname === "www.jagdlatein.de") {
-    url.hostname = "jagdlatein.de";
-    return NextResponse.redirect(url);
-  }
-
-  // 2) API & statische Dateien nicht schützen
+  // 1) API & statische Dateien KOMPLETT rauslassen
   if (
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
-    pathname.startsWith("/favicon") ||
+    pathname === "/favicon.ico" ||
     pathname.startsWith("/public")
   ) {
     return NextResponse.next();
+  }
+
+  // 2) Domain-Redirect nur für normale Seiten
+  // (www -> apex; anpassen, falls du lieber www als Hauptdomain willst)
+  if (hostname === "www.jagdlatein.de") {
+    url.hostname = "jagdlatein.de";
+    return NextResponse.redirect(url);
   }
 
   // 3) PAYWALL-CHECK
@@ -31,19 +31,23 @@ export function middleware(req) {
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // nicht eingeloggt -> /login
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
+  // eingeloggt, aber nicht bezahlt -> /preise
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
   }
 
+  // alles okay
   return NextResponse.next();
 }
 
+// WICHTIG: /api komplett aus dem Matcher rausnehmen
 export const config = {
-  matcher: ["/((?!_next|favicon.ico).*)"],
+  matcher: ["/((?!api|_next|favicon\\.ico).*)"],
 };
