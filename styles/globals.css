@@ -65,6 +65,84 @@ a:hover {
 }
 
 /* =========================================
+   HEADER oben (Mobile & Desktop)
+========================================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1e7d3;
+  padding: 14px 18px;
+  border-bottom: 1px solid #d1c4a8;
+}
+
+.navbar a {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.logout-btn {
+  background: #1f2b23;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 28px;
+}
+
+/* ===== MOBILE HEADER fix ===== */
+@media (max-width: 780px) {
+  .navbar-links {
+    display: none !important; /* Kategorien oben ausblenden */
+  }
+
+  .logout-btn {
+    padding: 6px 12px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* =========================================
+   BOTTOM NAVIGATION (Mobile)
+========================================= */
+
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f8f1dd;
+    padding: 12px 0;
+    border-top: 1px solid #d1c4a8;
+
+    display: flex;
+    justify-content: space-around;
+    z-index: 9999;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .bottom-nav a {
+    color: #2a2319;
+  }
+
+  /* Platz damit Seite nicht hinter Menü verschwindet */
+  body {
+    padding-bottom: 80px;
+  }
+}
+
+/* =========================================
    GLOSSAR – Desktop-Styles
 ========================================= */
 .glossar-wrapper {
@@ -134,7 +212,7 @@ a:hover {
    MOBILE STYLES – Glossar Optimierung
 ========================================= */
 @media (max-width: 780px) {
-  
+
   .glossar-wrapper {
     padding: 24px 12px 40px;
   }
@@ -161,7 +239,6 @@ a:hover {
     width: 100%;
     font-size: 15px;
     padding: 10px 12px;
-    border-radius: 10px;
   }
 
   .glossar-list {
