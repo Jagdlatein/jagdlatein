@@ -667,6 +667,293 @@ export const QUESTIONS = [
     correct:['b'],
     explain:'Bei Schwarzwild behördlich vorgeschrieben.'
   },
+  /* =============================
+ * NEUE FRAGEN – BLOCK 1 (50x)
+ * Wildkunde (Prüfungsrelevant)
+ * ============================= */
+
+{
+  id:'DE-wk-bock-gebiss-01',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welches Merkmal weist beim Rehbock auf ein Alter von über 5 Jahren hin?',
+  answers:[
+    {id:'a', text:'Deutlich abgenutzte Schmelzleiste'},
+    {id:'b', text:'Milchgebiss noch vorhanden'},
+    {id:'c', text:'Schneidezähne erscheinen spitz'},
+    {id:'d', text:'Backenzähne wirken scharfkantig'}
+  ],
+  correct:['a'],
+  explain:'Bei älteren Rehböcken nutzt sich die Schmelzleiste stark ab.'
+},
+
+{
+  id:'DE-wk-hirsch-abschussreife-02',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Woran erkennt man bei Hirschen häufig eine hohe Altersklasse?',
+  answers:[
+    {id:'a', text:'Sehr helle Läufe'},
+    {id:'b', text:'Stark ausgeprägte Rosenstöcke'},
+    {id:'c', text:'Unregelmäßige Tränenspuren'},
+    {id:'d', text:'Dunkler Wedel'}
+  ],
+  correct:['b'],
+  explain:'Ältere Hirsche zeigen massivere Rosenstöcke und stärkere Stangenbasis.'
+},
+
+{
+  id:'DE-wk-sauen-geburt-03',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wann setzen Bachen typischerweise ihre Frischlinge?',
+  answers:[
+    {id:'a', text:'Januar–März'},
+    {id:'b', text:'Mai–Juli'},
+    {id:'c', text:'August–Oktober'},
+    {id:'d', text:'November–Dezember'}
+  ],
+  correct:['a'],
+  explain:'Frischlingszeit liegt schwerpunktmäßig im Winter/Frühjahr.'
+},
+
+{
+  id:'DE-wk-fuchs-ranz-04',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wann ist die Ranzzeit beim Fuchs?',
+  answers:[
+    {id:'a', text:'April–Mai'},
+    {id:'b', text:'Januar–Februar'},
+    {id:'c', text:'Juli–August'},
+    {id:'d', text:'Oktober–November'}
+  ],
+  correct:['b'],
+  explain:'Füchse haben früh im Jahr Ranzzeit.'
+},
+
+{
+  id:'DE-wk-dachs-spur-05',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie erkennst du eine typische Dachsspur?',
+  answers:[
+    {id:'a', text:'Krallen deutlich vor den Zehenabdrücken'},
+    {id:'b', text:'Kein Ballen sichtbar'},
+    {id:'c', text:'Zweizehige Trittspur'},
+    {id:'d', text:'Sehr kleine, ovale Abdrücke'}
+  ],
+  correct:['a'],
+  explain:'Dachse haben lange Krallen, die im Trittsiegel klar sichtbar sind.'
+},
+
+{
+  id:'AT-wk-rotwild-laut-06',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wie nennt man den typischen Laut des brunftigen Rothirsches?',
+  answers:[
+    {id:'a', text:'Röhren'},
+    {id:'b', text:'Kläffen'},
+    {id:'c', text:'Quieken'},
+    {id:'d', text:'Fiepen'}
+  ],
+  correct:['a'],
+  explain:'Der Hirsch „röhrt“ während der Brunft.'
+},
+
+{
+  id:'AT-wk-gams-kitteln-07',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Was bedeutet „Kitteln“ bei der Gams?',
+  answers:[
+    {id:'a', text:'Sich an Felsen reiben'},
+    {id:'b', text:'Ein optisches Warnsignal mit Schwanzaufstellen'},
+    {id:'c', text:'Kurzzeitiges Hochwerfen des Hauptes zum Witterung prüfen'},
+    {id:'d', text:'Jungen führen beim Wechsel'}
+  ],
+  correct:['c'],
+  explain:'Kitteln = kurzes Kopfhochwerfen zur besseren Witterungsaufnahme.'
+},
+
+{
+  id:'AT-wk-schwarzwild-kennzahl-08',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Was deutet auf ein starkes Keilergebiss hin?',
+  answers:[
+    {id:'a', text:'Kurze Hauer, breite Schneiden'},
+    {id:'b', text:'Lange, geschwungene Hauer (Gewehre)'},
+    {id:'c', text:'Flache Molaren'},
+    {id:'d', text:'Abgerundete Grandeln'}
+  ],
+  correct:['b'],
+  explain:'Starke Keiler zeigen kräftig geschwungene Hauer.'
+},
+
+{
+  id:'AT-wk-hasen-setzen-09',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wann setzt die Häsin in der Regel?',
+  answers:[
+    {id:'a', text:'Ganzjährig'},
+    {id:'b', text:'Februar–August'},
+    {id:'c', text:'November–Februar'},
+    {id:'d', text:'Nur im Mai'}
+  ],
+  correct:['b'],
+  explain:'Hasen setzen mehrfach im Jahr zwischen Februar und August.'
+},
+
+{
+  id:'AT-wk-steinwild-platzhirsch-10',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wie nennt man beim Steinwild den ranghöchsten Bock?',
+  answers:[
+    {id:'a', text:'Hauptbock'},
+    {id:'b', text:'Platzbock'},
+    {id:'c', text:'Revierbock'},
+    {id:'d', text:'Standbock'}
+  ],
+  correct:['b'],
+  explain:'Der ranghöchste Steinbock wird Platzbock genannt.'
+},
+
+{
+  id:'CH-wk-muffel-baercke-11',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wie nennt man das männliche Muffelwild?',
+  answers:[
+    {id:'a', text:'Widder'},
+    {id:'b', text:'Bock'},
+    {id:'c', text:'Hirsch'},
+    {id:'d', text:'Bulle'}
+  ],
+  correct:['a'],
+  explain:'Beim Muffelwild heißt das Männchen Widder.'
+},
+
+{
+  id:'CH-wk-hirsch-grandeln-12',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Was sind „Grandeln“ beim Rotwild?',
+  answers:[
+    {id:'a', text:'Backenzähne'},
+    {id:'b', text:'Rudimentäre Eckzähne im Oberkiefer'},
+    {id:'c', text:'Ein Stirnbeinfortsatz'},
+    {id:'d', text:'Hautdrüsen am Haupt'}
+  ],
+  correct:['b'],
+  explain:'Grandeln sind kleine, rudimentäre Eckzähne.'
+},
+
+{
+  id:'CH-wk-spur-luchs-13',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wie unterscheidet sich die Luchsspur von der des Hundes?',
+  answers:[
+    {id:'a', text:'Krallen deutlich sichtbar'},
+    {id:'b', text:'Nie Krallen sichtbar, rundliche Form'},
+    {id:'c', text:'Sehr längliche Abdrücke'},
+    {id:'d', text:'Zehen in zwei Reihen'}
+  ],
+  correct:['b'],
+  explain:'Katzenartigen (Luchs) sieht man die Krallen im Trittsiegel nicht.'
+},
+
+{
+  id:'DE-wk-fasan-henne-14',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie unterscheidet sich die Fasanenhenne vom Hahn?',
+  answers:[
+    {id:'a', text:'Helle, auffällige Farben'},
+    {id:'b', text:'Tarnfarben, braun gefleckt'},
+    {id:'c', text:'Lange Sporen'},
+    {id:'d', text:'Grüne Brustfedern'}
+  ],
+  correct:['b'],
+  explain:'Die Henne ist tarntönig gefärbt – wichtig für Brut und Schutz.'
+},
+
+{
+  id:'DE-wk-kaninchen-kessel-15',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was ist ein „Kessel“ beim Kaninchen?',
+  answers:[
+    {id:'a', text:'Bau eines Dachses'},
+    {id:'b', text:'Liegestelle im hohen Gras'},
+    {id:'c', text:'Fangplatz eines Fuchses'},
+    {id:'d', text:'Spezielle Schälstelle'}
+  ],
+  correct:['b'],
+  explain:'Der Kessel ist die abgeflachte Liegestelle im Gras.'
+},
+
+{
+  id:'DE-wk-schneehase-wechsel-16',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Woran erkennst du den Wechsel eines Schneehasen im Winter?',
+  answers:[
+    {id:'a', text:'Dunkle Trittsiegel'},
+    {id:'b', text:'V-förmiges Spurbild mit großen Hinterlaufabdrücken vorne'},
+    {id:'c', text:'Einzelne runde Ballenabdrücke'},
+    {id:'d', text:'Dreiteiliges Trittsiegel'}
+  ],
+  correct:['b'],
+  explain:'Hasenspur: V-Form, Hinterläufe landen vor den Vorderläufen.'
+},
+
+{
+  id:'DE-wk-birkhahn-balz-17',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wo balzt der Birkhahn typischerweise?',
+  answers:[
+    {id:'a', text:'Im dichten Unterholz'},
+    {id:'b', text:'Auf freien Balzplätzen/Legestellen'},
+    {id:'c', text:'In Baumhöhlen'},
+    {id:'d', text:'Direkt an Gewässern'}
+  ],
+  correct:['b'],
+  explain:'Birkhahn-Balz findet auf offenen Balzplätzen statt.'
+},
+
+{
+  id:'DE-wk-wildkatze-schwanz-18',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wodurch unterscheidet sich der Schwanz der Wildkatze von dem der Hauskatze?',
+  answers:[
+    {id:'a', text:'Sehr lang und dünn'},
+    {id:'b', text:'Kurz und geringelt mit dicker Spitze'},
+    {id:'c', text:'Dreifarbig'},
+    {id:'d', text:'Ohne Ringelung'}
+  ],
+  correct:['b'],
+  explain:'Wildkatzen haben einen kurzen, buschigen Ringelschwanz.'
+},
+
+{
+  id:'DE-wk-kuh-rotwild-19',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie heißt das weibliche Rotwild?',
+  answers:[
+    {id:'a', text:'Hirschkuh'},
+    {id:'b', text:'Alttier'},
+    {id:'c', text:'Geiß'},
+    {id:'d', text:'Kahlwild'}
+  ],
+  correct:['b'],
+  explain:'Das weibliche Rotwild heißt Alttier.'
+},
+
+{
+  id:'DE-wk-steinmarder-losung-20',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie unterscheidet sich Steinmarderlosung von Iltislosung?',
+  answers:[
+    {id:'a', text:'Steinmarderlosung ist spitz zulaufend und gewunden'},
+    {id:'b', text:'Iltislosung ist größer und spiralförmig'},
+    {id:'c', text:'Steinmarderlosung ist fladenartig'},
+    {id:'d', text:'Iltislosung ist kettenartig'}
+  ],
+  correct:['a'],
+  explain:'Steinmarder: spitz und gewunden; Iltis: anders strukturiert.'
+},
+
+
+
 ];
 
 // Validator im Dev ausführen
