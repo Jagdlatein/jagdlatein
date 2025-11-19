@@ -13,14 +13,6 @@ export default function MyApp({ Component, pageProps }) {
       <main className="content-area">
         <Component {...pageProps} />
       </main>
-
-      {/* MOBILE BOTTOM NAV */}
-      <nav className="bottom-nav">
-        <a href="/kurse">Kurse</a>
-        <a href="/quiz">Quiz</a>
-        <a href="/glossar">Glossar</a>
-        <a href="/ebook">E-Book</a>
-      </nav>
     </div>
   );
 }
