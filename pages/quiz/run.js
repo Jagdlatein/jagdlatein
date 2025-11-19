@@ -1,4 +1,5 @@
 // pages/quiz/run.js
+
 import RequireAccess from "../../components/RequireAccess";
 import Seo from "../../components/Seo";
 import { useMemo } from "react";
@@ -10,49 +11,85 @@ function QuizRun() {
   const country = (router.query.country || "DE").toString().toUpperCase();
   const topic = (router.query.topic || "Alle").toString();
 
-  // hole 10 neue Fragen
+  // Neue Reihenfolge dank rnd
   const items = useMemo(
     () => filterQuestions({ country, topic, count: 10 }),
-    [country, topic, router.query.rnd] // → wichtig für neue Reihenfolge
+    [country, topic, router.query.rnd]
   );
 
   return (
     <>
       <Seo title="Quiz" />
-
       <RequireAccess />
 
+      {/* MOBILE ANPASSUNG */}
+      <style>{`
+        @media (max-width: 780px) {
+          .quiz-wrapper {
+            max-width: 100% !important;
+            margin: 10px auto !important;
+            padding: 14px !important;
+          }
+          .quiz-title {
+            font-size: 24px !important;
+            margin-bottom: 12px !important;
+          }
+          .quiz-card {
+            padding: 14px !important;
+            margin-bottom: 16px !important;
+          }
+          .quiz-card h2 {
+            font-size: 16px !important;
+            margin-bottom: 10px !important;
+          }
+          .quiz-answer {
+            padding: 10px !important;
+            font-size: 15px !important;
+            margin-bottom: 8px !important;
+          }
+          .quiz-button {
+            padding: 12px !important;
+            font-size: 16px !important;
+            border-radius: 10px !important;
+            margin-top: 20px !important;
+          }
+        }
+      `}</style>
+
       <main
+        className="quiz-wrapper"
         style={{
           maxWidth: 650,
           margin: "40px auto",
           background: "rgba(255,255,255,0.55)",
           border: "1px solid rgba(42,35,25,0.14)",
           borderRadius: 14,
-          padding: 24,
+          padding: 24
         }}
       >
         <h1
+          className="quiz-title"
           style={{
             fontFamily: "Georgia, serif",
             fontSize: "32px",
             marginBottom: "16px",
             color: "#1f2b23",
+            textAlign: "center"
           }}
         >
           Quiz – {topic}
         </h1>
 
-        {/* Fragenliste */}
         {items.map((q, index) => (
           <div
             key={index}
+            className="quiz-card"
             style={{
               marginBottom: 24,
               padding: 16,
               background: "rgba(255,255,255,0.35)",
               borderRadius: 12,
-              border: "1px solid rgba(42,35,25,0.14)",
+              border: "1px solid rgba(42,35,25,0.14)"
             }}
           >
             <h2 style={{ marginBottom: 12 }}>{q.question}</h2>
@@ -61,12 +98,13 @@ function QuizRun() {
               {q.answers.map((a, i) => (
                 <li
                   key={i}
+                  className="quiz-answer"
                   style={{
                     marginBottom: 8,
                     padding: "10px 14px",
                     background: "#fff8",
                     borderRadius: 10,
-                    border: "1px solid rgba(42,35,25,0.14)",
+                    border: "1px solid rgba(42,35,25,0.14)"
                   }}
                 >
                   {a}
@@ -76,16 +114,16 @@ function QuizRun() {
           </div>
         ))}
 
-        {/* BUTTON: Nochmal mit neuer Reihenfolge */}
         <button
+          className="quiz-button"
           onClick={() =>
             router.push({
               pathname: "/quiz/run",
               query: {
-                country: country,
-                topic: topic,
-                rnd: Math.random().toString(36).substring(2),
-              },
+                country,
+                topic,
+                rnd: Math.random().toString(36).substring(2)
+              }
             })
           }
           style={{
@@ -98,7 +136,7 @@ function QuizRun() {
             borderRadius: 12,
             fontSize: 18,
             fontWeight: 700,
-            cursor: "pointer",
+            cursor: "pointer"
           }}
         >
           Nochmal mit neuer Reihenfolge
@@ -108,8 +146,20 @@ function QuizRun() {
   );
 }
 
-// Serverseitige Berechtigung prüfen
-export async function getServerSideProps() {
+// SERVER AUTH (nutzt dein neues auth-check.js)
+export async function getServerSideProps({ req }) {
+  const { hasPaidAccessFromCookies } = await import("../../lib/auth-check");
+
+  if (!hasPaidAccessFromCookies(req)) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false
+      }
+    };
+  }
+
   return { props: {} };
 }
 
+export default QuizRun;
