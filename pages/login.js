@@ -5,12 +5,25 @@ import Head from "next/head";
 
 export default function LoginPage() {
   const router = useRouter();
-  const nextUrl = router.query.next || "/"; // Wohin nach Login?
+  const nextUrl = router.query.next || "/"; // Ziel nach Login
 
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ------------------------------
+  // LOGOUT FUNKTION (NEU)
+  // ------------------------------
+  function logout() {
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
+      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=None; Secure`;
+    });
+    window.location.replace("/");
+  }
+
+  // ------------------------------
+  // LOGIN FUNKTION
+  // ------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
@@ -42,7 +55,6 @@ export default function LoginPage() {
       setTimeout(() => {
         router.push(nextUrl);
       }, 600);
-
     } catch (err) {
       setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
@@ -60,6 +72,7 @@ export default function LoginPage() {
         <div style={styles.box}>
           <h1 style={styles.title}>Login</h1>
 
+          {/* LOGIN FORMULAR */}
           <form onSubmit={handleLogin} style={styles.form}>
             <input
               type="email"
@@ -75,7 +88,18 @@ export default function LoginPage() {
             </button>
           </form>
 
+          {/* MELDUNGEN */}
           {msg && <p style={styles.msg}>{msg}</p>}
+
+          {/* LOGOUT BUTTON (NEU) */}
+          <div style={{ marginTop: 20, textAlign: "center" }}>
+            <button
+              onClick={logout}
+              style={styles.logoutButton}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </main>
     </>
@@ -131,5 +155,19 @@ const styles = {
     textAlign: "center",
     marginTop: 16,
     fontSize: 15,
+  },
+
+  // ------------------------------
+  // LOGOUT BUTTON STYLE (NEU)
+  // ------------------------------
+  logoutButton: {
+    background: "#fff",
+    border: "2px solid #caa53b",
+    padding: "10px 20px",
+    borderRadius: 12,
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#1f2b23",
+    cursor: "pointer",
   },
 };
