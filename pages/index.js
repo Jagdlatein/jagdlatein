@@ -40,7 +40,7 @@ export default function Home() {
             Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
-          {/* BUTTONS */}
+          {/* OBERSTE BUTTONS */}
           <div style={styles.btnRow}>
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
@@ -50,29 +50,14 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* UNTERE LINKS – UNTEREINANDER DEUTLICH SICHTBAR */}
+          {/* UNTERE BUTTON-LISTE IM GOLD-STIL */}
           <div style={styles.linkColumn}>
-            <Link href="/kurse" style={styles.linkItem}>Kurse</Link>
-            <Link href="/quiz" style={styles.linkItem}>Quiz</Link>
-            <Link href="/glossar" style={styles.linkItem}>Glossar</Link>
-            <Link href="/ebook" style={styles.linkItem}>E-Book</Link>
-
-            {loggedIn && (
-              <button
-                type="button"
-                onClick={logout}
-                style={{
-                  ...styles.linkItem,
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                }}
-              >
-                Logout
-              </button>
-            )}
+            <Link href="/kurse" style={styles.linkButton}>Kurse</Link>
+            <Link href="/quiz" style={styles.linkButton}>Quiz</Link>
+            <Link href="/glossar" style={styles.linkButton}>Glossar</Link>
+            <Link href="/ebook" style={styles.linkButton}>E-Book</Link>
           </div>
+
         </div>
       </main>
     </>
@@ -102,11 +87,13 @@ const styles = {
     maxWidth: 600,
     margin: "0 0 26px",
   },
+
+  /* OBERSTE BUTTONS */
   btnRow: {
     display: "flex",
     gap: 14,
     flexWrap: "wrap",
-    marginBottom: 28,
+    marginBottom: 26,
   },
   btnPrimary: {
     background: "#caa53b",
@@ -128,19 +115,25 @@ const styles = {
     fontSize: 17,
   },
 
-  /* NEUE SPALTEN-LINKS */
+  /* UNTERE BUTTONS — GOLDSTIL */
   linkColumn: {
     display: "flex",
     flexDirection: "column",
-    gap: 12,
+    gap: 14,
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 20,
   },
-
-  linkItem: {
-    fontSize: 20,
-    fontWeight: 600,
-    color: "#1f2b23",
+  linkButton: {
+    background: "#caa53b",
+    color: "#111",
+    padding: "14px 26px",
+    borderRadius: 14,
+    fontWeight: 700,
     textDecoration: "none",
+    fontSize: 17,
+    display: "block",
+    width: "100%",
+    maxWidth: 260,
+    margin: "0 auto",
   },
 };
