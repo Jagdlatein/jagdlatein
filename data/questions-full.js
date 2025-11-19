@@ -951,6 +951,710 @@ export const QUESTIONS = [
   correct:['a'],
   explain:'Steinmarder: spitz und gewunden; Iltis: anders strukturiert.'
 },
+/* =============================
+ * NEUE FRAGEN – BLOCK 2 (50x)
+ * Wildkunde (Fortsetzung)
+ * ============================= */
+
+{
+  id:'DE-wk-rehwild-sprung-51',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie nennt man die Fortpflanzungsphase beim Rehwild?',
+  answers:[
+    {id:'a', text:'Ranz'},
+    {id:'b', text:'Brunft'},
+    {id:'c', text:'Setzzeit'},
+    {id:'d', text:'Kitzzeit'}
+  ],
+  correct:['a'],
+  explain:'Beim Rehwild heißt die Paarungszeit "Ranz".'
+},
+
+{
+  id:'DE-wk-rotwild-geburt-52',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wann setzen Alttiere typischerweise ihre Kälber?',
+  answers:[
+    {id:'a', text:'Mai–Juni'},
+    {id:'b', text:'Dezember–Januar'},
+    {id:'c', text:'August–September'},
+    {id:'d', text:'November'}
+  ],
+  correct:['a'],
+  explain:'Rotwild setzt meist vom späten Frühjahr bis Frühsommer.'
+},
+
+{
+  id:'DE-wk-federwild-spur-53',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Woran erkennst du eine typische Gänsefeder?',
+  answers:[
+    {id:'a', text:'Starke Mittelrippe, grauweißes Deckgefieder'},
+    {id:'b', text:'Sehr kleine Daune'},
+    {id:'c', text:'Stahlblauer Glanz'},
+    {id:'d', text:'Schwarzer Kiel'}
+  ],
+  correct:['a'],
+  explain:'Gänsefedern haben ausgeprägte Rippen und große Deckfedern.'
+},
+
+{
+  id:'DE-wk-biber-spuren-54',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welches Zeichen deutet auf Biberaktivität hin?',
+  answers:[
+    {id:'a', text:'Frische Rindenfraßstellen an Bäumen'},
+    {id:'b', text:'Eckige Trittsiegel'},
+    {id:'c', text:'Scharrstellen im Wald'},
+    {id:'d', text:'Nahrungsvorratskammern'}
+  ],
+  correct:['a'],
+  explain:'Biber hinterlassen typische Fraßkegel an Bäumen.'
+},
+
+{
+  id:'DE-wk-feldhase-ruhe-55',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wo ruht der Feldhase tagsüber?',
+  answers:[
+    {id:'a', text:'In Röhre unter der Erde'},
+    {id:'b', text:'Im offenen Kessel in Bewuchs'},
+    {id:'c', text:'In Baumhöhlen'},
+    {id:'d', text:'Unter Wasserpflanzen'}
+  ],
+  correct:['b'],
+  explain:'Der Hase ruht im flachen, gut getarnten "Kessel".'
+},
+
+{
+  id:'DE-wk-marderbaue-56',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welcher Marder bewohnt oft Gebäude oder Dachböden?',
+  answers:[
+    {id:'a', text:'Steinmarder'},
+    {id:'b', text:'Baummarder'},
+    {id:'c', text:'Iltis'},
+    {id:'d', text:'Nerz'}
+  ],
+  correct:['a'],
+  explain:'Der Steinmarder ist ein typischer Kulturfolger.'
+},
+
+{
+  id:'DE-wk-wildkaninchen-bau-57',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie nennt man das weit verzweigte Kaninchenversteck?',
+  answers:[
+    {id:'a', text:'Wurfkessel'},
+    {id:'b', text:'Bau'},
+    {id:'c', text:'Setzmulde'},
+    {id:'d', text:'Lager'}
+  ],
+  correct:['b'],
+  explain:'Kaninchen leben in weitläufigen Bauen.'
+},
+
+{
+  id:'DE-wk-schreiadler-58',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wodurch ist der Schreiadler in Mitteleuropa besonders bedroht?',
+  answers:[
+    {id:'a', text:'Nahrungsmangel durch intensive Landwirtschaft'},
+    {id:'b', text:'Zu viele natürliche Feinde'},
+    {id:'c', text:'Wassermangel'},
+    {id:'d', text:'Winterhärte'}
+  ],
+  correct:['a'],
+  explain:'Der Schreiadler leidet stark unter Lebensraumverlust.'
+},
+
+{
+  id:'DE-wk-waschbaer-nahrung-59',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was gehört NICHT typischerweise zum Nahrungsspektrum des Waschbären?',
+  answers:[
+    {id:'a', text:'Früchte und Insekten'},
+    {id:'b', text:'Fische'},
+    {id:'c', text:'Müllabfälle'},
+    {id:'d', text:'Reine Pflanzenkost wie Rehwild'}
+  ],
+  correct:['d'],
+  explain:'Waschbären sind Allesfresser, aber keine reinen Pflanzenfresser.'
+},
+
+{
+  id:'DE-wk-schwarzstorch-60',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wo brütet der Schwarzstorch bevorzugt?',
+  answers:[
+    {id:'a', text:'In dicht besiedelten Gebieten'},
+    {id:'b', text:'In ruhigen, alten Waldgebieten'},
+    {id:'c', text:'Im Röhricht direkt am Wasser'},
+    {id:'d', text:'Auf Kirchtürmen'}
+  ],
+  correct:['b'],
+  explain:'Der Schwarzstorch benötigt störungsarme Wälder.'
+},
+
+{
+  id:'AT-wk-habicht-jagdweise-61',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wie jagt der Habicht typischerweise?',
+  answers:[
+    {id:'a', text:'Stoßt von oben mit hoher Geschwindigkeit'},
+    {id:'b', text:'Schlägt aus dichtem Bewuchs heraus'},
+    {id:'c', text:'Jagd nur am Boden'},
+    {id:'d', text:'Taucht unter Wasser'}
+  ],
+  correct:['b'],
+  explain:'Habichte schlagen überraschend aus Deckung.'
+},
+
+{
+  id:'AT-wk-alpenhase-farbe-62',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welche Besonderheit zeigt der Alpenhase im Winter?',
+  answers:[
+    {id:'a', text:'Er wird rotbraun'},
+    {id:'b', text:'Er wird weiß'},
+    {id:'c', text:'Er bekommt Streifen'},
+    {id:'d', text:'Das Fell verfilzt stark'}
+  ],
+  correct:['b'],
+  explain:'Kältesteuung: weißes Winterfell als Tarnung.'
+},
+
+{
+  id:'AT-wk-aasfresser-63',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welche Art zählt NICHT zu den Aasfressern?',
+  answers:[
+    {id:'a', text:'Kolkrabe'},
+    {id:'b', text:'Steinadler'},
+    {id:'c', text:'Geier'},
+    {id:'d', text:'Rebhuhn'}
+  ],
+  correct:['d'],
+  explain:'Rebhühner sind Körnerfresser, keine Aasfresser.'
+},
+
+{
+  id:'AT-wk-gams-laute-64',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welchen Laut gibt eine beunruhigte Gams typischerweise ab?',
+  answers:[
+    {id:'a', text:'Heulen'},
+    {id:'b', text:'Pfeifen'},
+    {id:'c', text:'Röhren'},
+    {id:'d', text:'Krähen'}
+  ],
+  correct:['b'],
+  explain:'Gams warnen mit einem scharfen Pfeifton.'
+},
+
+{
+  id:'AT-wk-steingeiss-feinde-65',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welcher Feind spielt für junge Steinwildgeißen die größte Rolle?',
+  answers:[
+    {id:'a', text:'Luchs'},
+    {id:'b', text:'Fuchs'},
+    {id:'c', text:'Steinadler'},
+    {id:'d', text:'Dachs'}
+  ],
+  correct:['c'],
+  explain:'Steinadler schlagen bevorzugt Kitze.'
+},
+
+{
+  id:'AT-wk-murmeltier-winter-66',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wie übersteht das Murmeltier den Winter?',
+  answers:[
+    {id:'a', text:'Winterruhe'},
+    {id:'b', text:'Winterstarre'},
+    {id:'c', text:'Echten Winterschlaf'},
+    {id:'d', text:'Aktiv mit Futtersuche'}
+  ],
+  correct:['c'],
+  explain:'Murmeltier hält echten Winterschlaf.'
+},
+
+{
+  id:'AT-wk-schneehuhn-tarnung-67',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welche Tarnung zeigt das Alpenschneehuhn?',
+  answers:[
+    {id:'a', text:'Rotes Kopffeld'},
+    {id:'b', text:'Weiße Wintertracht'},
+    {id:'c', text:'Komplett dunkles Federkleid'},
+    {id:'d', text:'Glänzende Schwanzfedern'}
+  ],
+  correct:['b'],
+  explain:'Die Schneehühner wechseln zu weißem Wintergefieder.'
+},
+
+{
+  id:'AT-wk-steinwild-habitat-68',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welchen Lebensraum bevorzugt Steinwild?',
+  answers:[
+    {id:'a', text:'Flussauen'},
+    {id:'b', text:'Hochgebirge und Felsregionen'},
+    {id:'c', text:'Reine Wälder'},
+    {id:'d', text:'Steppen'}
+  ],
+  correct:['b'],
+  explain:'Steinwild lebt im Hochgebirge.'
+},
+
+{
+  id:'AT-wk-aalweibchen-69',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welches Tier ist KEIN Wild in Österreich?',
+  answers:[
+    {id:'a', text:'Steinbock'},
+    {id:'b', text:'Fasan'},
+    {id:'c', text:'Aalweibchen (Fisch)'},
+    {id:'d', text:'Dachs'}
+  ],
+  correct:['c'],
+  explain:'Fische zählen nicht zum jagdbaren Wild.'
+},
+
+{
+  id:'AT-wk-wildschwein-rotten-70',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Wie nennt man beim Schwarzwild die typischen Sozialgruppen?',
+  answers:[
+    {id:'a', text:'Brunftkolonien'},
+    {id:'b', text:'Rotten'},
+    {id:'c', text:'Züge'},
+    {id:'d', text:'Lager'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild lebt in Rotten.'
+},
+
+{
+  id:'CH-wk-steingeiss-71',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wie nennt man das weibliche Steinwild?',
+  answers:[
+    {id:'a', text:'Geiß'},
+    {id:'b', text:'Alttier'},
+    {id:'c', text:'Hindin'},
+    {id:'d', text:'Fähe'}
+  ],
+  correct:['a'],
+  explain:'Beim Steinwild heißt das Weibchen Geiß.'
+},
+
+{
+  id:'CH-wk-luchs-jagdweise-72',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wie jagt der Luchs typischerweise?',
+  answers:[
+    {id:'a', text:'Hetzjagd in großen Rudeln'},
+    {id:'b', text:'Schleichender Ansitz und kurzer Sprint'},
+    {id:'c', text:'Aasfresser'},
+    {id:'d', text:'Nur durch Fallen'}
+  ],
+  correct:['b'],
+  explain:'Luchse pirschen lautlos und schlagen überraschend zu.'
+},
+
+{
+  id:'CH-wk-auerochse-73',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Was war der Auerochse?',
+  answers:[
+    {id:'a', text:'Vorfahre des heutigen Rindes'},
+    {id:'b', text:'Ein Wildschwein'},
+    {id:'c', text:'Ein Hirsch'},
+    {id:'d', text:'Ein ausgestorbenes Raubtier'}
+  ],
+  correct:['a'],
+  explain:'Der Auerochse war das ursprüngliche Wildrind Europas.'
+},
+
+{
+  id:'CH-wk-fischotter-nahrung-74',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Was frisst der Fischotter hauptsächlich?',
+  answers:[
+    {id:'a', text:'Grassamen'},
+    {id:'b', text:'Fische und Amphibien'},
+    {id:'c', text:'Rehwild'},
+    {id:'d', text:'Tannennadeln'}
+  ],
+  correct:['b'],
+  explain:'Fischotter sind spezialisierte Fischjäger.'
+},
+
+{
+  id:'CH-wk-steinadler-horste-75',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wo baut der Steinadler bevorzugt seine Horste?',
+  answers:[
+    {id:'a', text:'In Baumhöhlen'},
+    {id:'b', text:'In Felsspalten/Steilwänden'},
+    {id:'c', text:'Am Boden'},
+    {id:'d', text:'In Gebäuden'}
+  ],
+  correct:['b'],
+  explain:'Steinadler horsten in Felsen.'
+},
+
+{
+  id:'CH-wk-reh-feinde-76',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Welcher Feind spielt beim Rehwild in der Schweiz die größte Rolle?',
+  answers:[
+    {id:'a', text:'Wolf'},
+    {id:'b', text:'Dachs'},
+    {id:'c', text:'Steinadler'},
+    {id:'d', text:'Auerhahn'}
+  ],
+  correct:['a'],
+  explain:'Wölfe nehmen deutlich Einfluss auf Rehwildbestände.'
+},
+
+{
+  id:'CH-wk-schalenwild-abwurf-77',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wann werfen Rothirsche typischerweise ihr Geweih ab?',
+  answers:[
+    {id:'a', text:'Februar–April'},
+    {id:'b', text:'Juni–Juli'},
+    {id:'c', text:'November'},
+    {id:'d', text:'September'}
+  ],
+  correct:['a'],
+  explain:'Der Abwurf erfolgt im späten Winter/Frühjahr.'
+},
+
+{
+  id:'CH-wk-feldhase-gegner-78',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Welcher Prädator schlägt regelmäßig junge Feldhasen?',
+  answers:[
+    {id:'a', text:'Kolkrabe'},
+    {id:'b', text:'Fuchs'},
+    {id:'c', text:'Buntspecht'},
+    {id:'d', text:'Marderhund'}
+  ],
+  correct:['b'],
+  explain:'Füchse schlagen regelmäßig Junghasen.'
+},
+
+{
+  id:'CH-wk-steinwild-sprungkraft-79',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Welche Besonderheit zeigt Steinwild beim Klettern?',
+  answers:[
+    {id:'a', text:'Sehr weiche Schalen'},
+    {id:'b', text:'Gummiähnliche Sohlenstruktur für Haftung'},
+    {id:'c', text:'Krallen wie ein Greifvogel'},
+    {id:'d', text:'Schwimmhäute'}
+  ],
+  correct:['b'],
+  explain:'Steinwild besitzt harte Ränder und weiche Sohlen für Felsgriffe.'
+},
+
+{
+  id:'CH-wk-rotwild-brunftzeit-80',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Wann beginnt typischerweise die Brunft beim Rotwild?',
+  answers:[
+    {id:'a', text:'Januar'},
+    {id:'b', text:'September–Oktober'},
+    {id:'c', text:'Mai–Juni'},
+    {id:'d', text:'November'}
+  ],
+  correct:['b'],
+  explain:'Hauptbrunft liegt im Herbst.'
+},
+
+{
+  id:'DE-wk-speer-81',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was bezeichnet man als „Speer“ beim Schwarzwild?',
+  answers:[
+    {id:'a', text:'Auge'},
+    {id:'b', text:'Ohr'},
+    {id:'c', text:'Rückenlinie'},
+    {id:'d', text:'Schwanzwurzel'}
+  ],
+  correct:['c'],
+  explain:'Der Speer ist die Rückenlinie.'
+},
+
+{
+  id:'DE-wk-feldhase-sprung-82',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie schnell kann ein Feldhase kurzfristig flüchten?',
+  answers:[
+    {id:'a', text:'10 km/h'},
+    {id:'b', text:'25 km/h'},
+    {id:'c', text:'70 km/h'},
+    {id:'d', text:'120 km/h'}
+  ],
+  correct:['c'],
+  explain:'Feldhasen erreichen bis 70 km/h.'
+},
+
+{
+  id:'DE-wk-marderhund-83',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Der Marderhund ist in Deutschland…',
+  answers:[
+    {id:'a', text:'ein heimisches Raubwild'},
+    {id:'b', text:'ein invasiver Neozoon'},
+    {id:'c', text:'ein Hirschartiger'},
+    {id:'d', text:'ein Nagetier'}
+  ],
+  correct:['b'],
+  explain:'Der Marderhund ist ein eingeschleppter Neozoon.'
+},
+
+{
+  id:'DE-wk-fischotter-rueckkehr-84',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welche Entwicklung zeigt der Fischotterbestand in Deutschland?',
+  answers:[
+    {id:'a', text:'Nimmt ab'},
+    {id:'b', text:'Stabil bis zunehmend'},
+    {id:'c', text:'Komplett verschwunden'},
+    {id:'d', text:'Wird zur Plage'}
+  ],
+  correct:['b'],
+  explain:'Fischotter breiten sich in vielen Regionen wieder aus.'
+},
+
+{
+  id:'DE-wk-buntschiller-85',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Der Buntschiller ist…',
+  answers:[
+    {id:'a', text:'eine Rehwildfärbung'},
+    {id:'b', text:'eine Hasenkrankheit'},
+    {id:'c', text:'ein Federwild'},
+    {id:'d', text:'eine Rotwildkrankheit'}
+  ],
+  correct:['a'],
+  explain:'Buntschiller: seltene Rehwild-Fellvariante.'
+},
+
+{
+  id:'DE-wk-bussard-86',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was frisst der Mäusebussard überwiegend?',
+  answers:[
+    {id:'a', text:'Rehwildkälber'},
+    {id:'b', text:'Nagetiere'},
+    {id:'c', text:'Gräser'},
+    {id:'d', text:'Steinwild'}
+  ],
+  correct:['b'],
+  explain:'Der Mäusebussard jagt hauptsächlich Nagetiere.'
+},
+
+{
+  id:'DE-wk-damhirsch-87',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wodurch ist das Damhirschgeweih charakterisiert?',
+  answers:[
+    {id:'a', text:'Spieße'},
+    {id:'b', text:'Schaufeln'},
+    {id:'c', text:'Krumme Gabel'},
+    {id:'d', text:'Keine Geweihbildung'}
+  ],
+  correct:['b'],
+  explain:'Der Damhirsch hat schaufelförmiges Geweih.'
+},
+
+{
+  id:'DE-wk-biber-laenge-88',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie lang kann ein ausgewachsener Biber werden?',
+  answers:[
+    {id:'a', text:'40–50 cm'},
+    {id:'b', text:'60–100 cm'},
+    {id:'c', text:'120–150 cm'},
+    {id:'d', text:'200 cm'}
+  ],
+  correct:['b'],
+  explain:'Biber erreichen rund einen Meter.'
+},
+
+{
+  id:'DE-wk-uhu-jagdzeit-89',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wann jagt der Uhu überwiegend?',
+  answers:[
+    {id:'a', text:'Tagsüber'},
+    {id:'b', text:'Dämmerung und Nacht'},
+    {id:'c', text:'Nur im Winter'},
+    {id:'d', text:'Nur bei Regen'}
+  ],
+  correct:['b'],
+  explain:'Der Uhu jagt meist nachts.'
+},
+
+{
+  id:'DE-wk-lerche-90',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welche Besonderheit zeigt die Feldlerche?',
+  answers:[
+    {id:'a', text:'Stummer Vogel'},
+    {id:'b', text:'Steigt singend senkrecht in die Luft'},
+    {id:'c', text:'Kann nicht fliegen'},
+    {id:'d', text:'Lebt nur im Wald'}
+  ],
+  correct:['b'],
+  explain:'Die Feldlerche steigt singend senkrecht auf.'
+},
+
+{
+  id:'DE-wk-marder-spur-91',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie unterscheidet sich die Spur des Baummarders von der des Steinmarders?',
+  answers:[
+    {id:'a', text:'Baummarder hat kleinere, rundere Trittsiegel'},
+    {id:'b', text:'Steinmarder zeigt keine Krallenabdrücke'},
+    {id:'c', text:'Beide haben identische Spuren'},
+    {id:'d', text:'Baummarder läuft dreizehig'}
+  ],
+  correct:['a'],
+  explain:'Baummarder leichter, rundere Abdrücke.'
+},
+
+{
+  id:'DE-wk-schwan-federn-92',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welche Farbe haben die Schwungfedern adulter Höckerschwäne?',
+  answers:[
+    {id:'a', text:'Braun'},
+    {id:'b', text:'Schwarz'},
+    {id:'c', text:'Weiß'},
+    {id:'d', text:'Grau'}
+  ],
+  correct:['c'],
+  explain:'Höckerschwäne tragen vollständig weiße Schwungfedern.'
+},
+
+{
+  id:'DE-wk-turteltaube-93',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Warum ist die Turteltaube stark bedroht?',
+  answers:[
+    {id:'a', text:'Hohe Prädation durch Greifvögel'},
+    {id:'b', text:'Lebensraumverlust & Intensivlandwirtschaft'},
+    {id:'c', text:'Klimawandel reduziert Atmung'},
+    {id:'d', text:'Sie kann nicht mehr fliegen'}
+  ],
+  correct:['b'],
+  explain:'Turteltauben leiden besonders unter Agrarintensivierung.'
+},
+
+{
+  id:'DE-wk-dachs-graben-94',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Woran erkennst du frische Grabarbeiten vom Dachs?',
+  answers:[
+    {id:'a', text:'Große Erdkuppen vor Baueingängen'},
+    {id:'b', text:'Rote Haare in Sträuchern'},
+    {id:'c', text:'Querfurchen am Baum'},
+    {id:'d', text:'Federreste am Horstrand'}
+  ],
+  correct:['a'],
+  explain:'Dachse schieben viel Erde aus dem Bau.'
+},
+
+{
+  id:'DE-wk-fischreiher-95',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was ist die Hauptnahrung des Graureihers?',
+  answers:[
+    {id:'a', text:'Hasen'},
+    {id:'b', text:'Fische'},
+    {id:'c', text:'Aas'},
+    {id:'d', text:'Gräser'}
+  ],
+  correct:['b'],
+  explain:'Graureiher sind spezialisierte Fischjäger.'
+},
+
+{
+  id:'DE-wk-kormoran-96',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welche Besonderheit zeigt der Kormoran?',
+  answers:[
+    {id:'a', text:'Sehr ölhaltiges Gefieder'},
+    {id:'b', text:'Gefieder lässt Wasser durch'},
+    {id:'c', text:'Kann nicht tauchen'},
+    {id:'d', text:'Ist ein reiner Pflanzenfresser'}
+  ],
+  correct:['b'],
+  explain:'Kormorane müssen ihr Gefieder trocknen, da es Wasser durchlässt.'
+},
+
+{
+  id:'DE-wk-uhu-schwingen-97',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wodurch fliegt der Uhu besonders geräuscharm?',
+  answers:[
+    {id:'a', text:'Sehr kurze Flügel'},
+    {id:'b', text:'Besonderer Aufbau der Schwingenfedern'},
+    {id:'c', text:'Er fliegt gar nicht'},
+    {id:'d', text:'Er nutzt Thermik'}
+  ],
+  correct:['b'],
+  explain:'Spezielle Schwingenstruktur dämpft Fluggeräusche.'
+},
+
+{
+  id:'DE-wk-schwarzwild-bachen-98',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie viele Frischlinge setzt eine Bache durchschnittlich?',
+  answers:[
+    {id:'a', text:'1–2'},
+    {id:'b', text:'3–8'},
+    {id:'c', text:'10–15'},
+    {id:'d', text:'0'}
+  ],
+  correct:['b'],
+  explain:'Bachen setzen meist mehrere Frischlinge.'
+},
+
+{
+  id:'DE-wk-spiesser-99',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Was bezeichnet man als „Spießer“?',
+  answers:[
+    {id:'a', text:'Damhirsch im 7. Kopf'},
+    {id:'b', text:'Jungen Hirsch mit ungegabelten Stangen'},
+    {id:'c', text:'Alten Keiler'},
+    {id:'d', text:'Schmalreh'}
+  ],
+  correct:['b'],
+  explain:'Spießer = Junger Hirsch mit zwei ungegabelten Stangen.'
+},
+
+{
+  id:'DE-wk-gams-farbe-100',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welche Farbe trägt die Gams im Winter?',
+  answers:[
+    {id:'a', text:'Rötlich'},
+    {id:'b', text:'Dunkelbraun bis schwarz'},
+    {id:'c', text:'Weiß'},
+    {id:'d', text:'Schiefergrau'}
+  ],
+  correct:['b'],
+  explain:'Gams führt im Winter dunkles, fast schwarzes Haarkleid.'
+},
 
 
 
