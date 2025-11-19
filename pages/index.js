@@ -50,44 +50,27 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* SAUBERE LINKS UNTER DEN BUTTONS */}
-          <div style={styles.linkRow}>
-            <Link href="/kurse">Kurse</Link>
-            <span> · </span>
-
-            <Link href="/quiz">Quiz</Link>
-            <span> · </span>
-
-            <Link href="/glossar">Glossar</Link>
-            <span> · </span>
-
-            <Link href="/ebook">E-Book</Link>
-
-            {!loggedIn && (
-              <>
-                <span> · </span>
-                <Link href="/login">Login</Link>
-              </>
-            )}
+          {/* UNTERE LINKS – UNTEREINANDER DEUTLICH SICHTBAR */}
+          <div style={styles.linkColumn}>
+            <Link href="/kurse" style={styles.linkItem}>Kurse</Link>
+            <Link href="/quiz" style={styles.linkItem}>Quiz</Link>
+            <Link href="/glossar" style={styles.linkItem}>Glossar</Link>
+            <Link href="/ebook" style={styles.linkItem}>E-Book</Link>
 
             {loggedIn && (
-              <>
-                <span> · </span>
-                <button
-                  type="button"
-                  onClick={logout}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    cursor: "pointer",
-                    textDecoration: "underline",
-                    font: "inherit",
-                  }}
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                type="button"
+                onClick={logout}
+                style={{
+                  ...styles.linkItem,
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </button>
             )}
           </div>
         </div>
@@ -123,7 +106,7 @@ const styles = {
     display: "flex",
     gap: 14,
     flexWrap: "wrap",
-    marginBottom: 22,
+    marginBottom: 28,
   },
   btnPrimary: {
     background: "#caa53b",
@@ -145,11 +128,19 @@ const styles = {
     fontSize: 17,
   },
 
-  /* Neue Linkzeile */
-  linkRow: {
-    marginTop: 10,
+  /* NEUE SPALTEN-LINKS */
+  linkColumn: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
     textAlign: "center",
-    fontSize: 17,
-    fontWeight: 500,
+    marginTop: 12,
+  },
+
+  linkItem: {
+    fontSize: 20,
+    fontWeight: 600,
+    color: "#1f2b23",
+    textDecoration: "none",
   },
 };
