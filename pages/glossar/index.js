@@ -129,71 +129,46 @@ export default function GlossarIndex() {
         description="Wichtige Begriffe aus der Jägersprache kurz und verständlich erklärt."
       />
 
-      <main className="py-12 px-4 flex justify-center bg-[#faf8f1] min-h-screen">
-        <div className="w-full max-w-3xl">
+      <main className="glossar-wrapper">
+        <div className="glossar-container">
 
-          <h1 className="text-4xl font-extrabold mb-6 text-center">
-            Jagd-Glossar
-          </h1>
+          <h1 className="glossar-title">Jagd-Glossar</h1>
 
-          <p className="text-lg text-gray-700 mb-10 text-center">
-            Zentrale Begriffe aus der Jägersprache – kompakt & prüfungsrelevant.
+          <p className="glossar-subtitle">
+            Zentrale Begriffe aus der Jägersprache – kompakt & prüfungsrelevant erklärt.
           </p>
 
-          {/* SUCHFELD */}
-          <div className="flex justify-center mb-10">
+          <div className="glossar-search-box">
             <input
               type="text"
               placeholder="Begriff suchen…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="
-                w-full max-w-md p-3 border rounded-lg shadow-sm 
-                border-gray-300 bg-white
-                focus:outline-none focus:ring-2 focus:ring-green-700
-              "
+              className="glossar-input"
             />
           </div>
 
-          {/* GLOSSAR-LISTE */}
-          <ul className="list-none space-y-5">
+          <ul className="glossar-list">
             {filtered.length === 0 && (
-              <p className="text-gray-500 text-center">
-                Keine passenden Begriffe gefunden.
-              </p>
+              <p className="glossar-empty">Keine passenden Begriffe gefunden.</p>
             )}
 
             {filtered.map((t) => (
-              <li
-                key={t.slug}
-                className="
-                  bg-white p-5 rounded-xl shadow-sm border border-gray-200
-                  hover:shadow-md transition
-                "
-              >
-                <a
-                  href={`/glossar/${t.slug}`}
-                  className="text-green-800 font-semibold text-xl hover:underline"
-                >
+              <li key={t.slug} className="glossar-card">
+                <a href={`/glossar/${t.slug}`} className="glossar-term">
                   {t.term}
                 </a>
-
-                <p className="text-gray-700 mt-2 text-sm leading-relaxed">
-                  {t.def}
-                </p>
+                <p className="glossar-def">{t.def}</p>
               </li>
             ))}
           </ul>
 
-          {/* FOOTER */}
-          <div className="text-sm mt-12 flex justify-center space-x-6">
-            <a href="/" className="text-green-800 hover:underline">
-              Startseite
-            </a>
-            <a href="/quiz" className="text-green-800 hover:underline">
-              Zum Quiz
-            </a>
+          <div className="glossar-footer">
+            <a href="/">Startseite</a>
+            <span>·</span>
+            <a href="/quiz">Zum Quiz</a>
           </div>
+
         </div>
       </main>
     </>
