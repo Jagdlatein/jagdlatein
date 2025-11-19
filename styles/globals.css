@@ -435,4 +435,119 @@ img {
     display: block;
     margin-top: 20px;
   }
+
+   /* =========================================
+   GLOSSAR DESIGN (no Tailwind)
+========================================= */
+
+.glossar-wrapper {
+  padding: 40px 18px;
+  background: var(--parchment);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.glossar-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.glossar-title {
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--forest);
+  margin-bottom: 12px;
+}
+
+.glossar-subtitle {
+  font-size: 18px;
+  text-align: center;
+  color: var(--sepia);
+  margin-bottom: 36px;
+  font-weight: 600;
+}
+
+.glossar-search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.glossar-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(42,35,25,.25);
+  background: #fff;
+  font-size: 16px;
+}
+
+.glossar-input:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.glossar-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.glossar-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.55),
+    rgba(255,255,255,.35)
+  );
+  border: 1px solid rgba(42,35,25,.14);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+
+.glossar-term {
+  color: var(--forest);
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.glossar-term:hover {
+  text-decoration: underline;
+}
+
+.glossar-def {
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.glossar-empty {
+  text-align: center;
+  color: var(--muted);
+}
+
+.glossar-footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 15px;
+  color: var(--forest);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.glossar-footer a {
+  color: var(--forest);
+  font-weight: 700;
+}
+
+.glossar-footer a:hover {
+  text-decoration: underline;
+}
+
 }
