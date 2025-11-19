@@ -12,7 +12,7 @@ export default function QuizRun() {
   const country = (router.query.country || "DE").toString().toUpperCase();
   const topic = (router.query.topic || "Alle").toString();
 
-  // ⭐ Fragen EINMAL erzeugen
+  // ⭐ Fragen EINMAL generieren
   const [questions] = useState(() =>
     filterQuestions({ country, topic, count: 10 })
   );
@@ -26,7 +26,7 @@ export default function QuizRun() {
 
   const q = questions[index];
 
-  // ⭐ TIMER FIX
+  // ⭐ Stabiler Timer
   useEffect(() => {
     if (finished) return;
     if (locked) return;
@@ -36,7 +36,10 @@ export default function QuizRun() {
       return;
     }
 
-    const t = setTimeout(() => setTimer(t => t - 1), 1000);
+    const t = setTimeout(() => {
+      setTimer((x) => x - 1);
+    }, 1000);
+
     return () => clearTimeout(t);
   }, [timer, locked, finished, index]);
 
@@ -46,36 +49,45 @@ export default function QuizRun() {
     setTimeout(() => nextQuestion(), 1200);
   }
 
-  function handleAnswer(a, i) {
+  // ⭐ Antwort auswählen
+  function handleAnswer(ans, idx) {
     if (locked) return;
 
     setLocked(true);
-    setSelected(i);
+    setSelected(idx);
 
-    if (a.correct) {
-      const bonus = timer * 10;
-      setScore(s => s + 100 + bonus);
+    const correctIds = q.correct; // Beispiel: ['a']
+    const isRight = correctIds.includes(ans.id);
+
+    if (isRight) {
+      setScore((s) => s + 100 + timer * 10);
     }
 
     setTimeout(() => nextQuestion(), 1000);
   }
 
+  // ⭐ Nächste Frage
   function nextQuestion() {
     if (index + 1 >= questions.length) {
       setFinished(true);
       return;
     }
 
-    setIndex(i => i + 1);
+    setIndex((i) => i + 1);
     setTimer(30);
     setSelected(null);
     setLocked(false);
   }
 
+  // ⭐ Neu starten
   function restart() {
     router.push({
       pathname: "/quiz/run",
-      query: { country, topic, rnd: Math.random().toString(36).substring(2) }
+      query: {
+        country,
+        topic,
+        rnd: Math.random().toString(36).substring(2),
+      },
     });
   }
 
@@ -84,55 +96,112 @@ export default function QuizRun() {
       <Seo title="Quiz Spielmodus" />
       <RequireAccess />
 
-      <main style={{ maxWidth: 650, margin: "40px auto", padding: 24 }}>
-        {finished ? (
+      <main
+        style={{
+          maxWidth: 650,
+          margin: "40px auto",
+          padding: 24,
+          background: "rgba(255,255,255,0.55)",
+          borderRadius: 14,
+          border: "1px solid rgba(42,35,25,0.14)",
+        }}
+      >
+        {/* FERTIG */}
+        {finished && (
           <div style={{ textAlign: "center" }}>
             <h1>🎉 Quiz beendet!</h1>
-            <p>Score:</p>
+            <p style={{ fontSize: 20 }}>Score:</p>
             <p style={{ fontSize: 48, color: "#136f39" }}>{score}</p>
-            <button onClick={restart}>🔄 Nochmal</button>
+            <button
+              onClick={restart}
+              style={{
+                padding: "12px 20px",
+                borderRadius: 12,
+                background: "#1f2b23",
+                color: "white",
+                border: "none",
+                fontSize: 18,
+                cursor: "pointer",
+              }}
+            >
+              🔄 Nochmal spielen
+            </button>
           </div>
-        ) : (
+        )}
+
+        {/* SPIEL */}
+        {!finished && (
           <>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: 12,
+                fontWeight: 700,
+                fontSize: 18,
+              }}
+            >
               <span>Frage {index + 1} / {questions.length}</span>
-              <span>⏱ {timer}s</span>
+              <span style={{ color: timer <= 5 ? "red" : "#136f39" }}>
+                ⏱ {timer}s
+              </span>
             </div>
 
-            {/* ⭐️ FRAGE OBEN */}
-            <h2 style={{ marginTop: 20, marginBottom: 20 }}>
-              {q.q}
-            </h2>
+            <div style={{ marginBottom: 16, fontSize: 16 }}>
+              Score: {score}
+            </div>
 
-            {/* ⭐️ ANTWORTEN */}
-            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-              {q.a.map((a, i) => {
-                const isCorrect = a.correct;
-                const isSelected = selected === i;
+            {/* ⭐ FRAGE */}
+            <div
+              style={{
+                padding: 16,
+                background: "rgba(255,255,255,0.45)",
+                borderRadius: 12,
+                border: "1px solid rgba(42,35,25,0.14)",
+                marginBottom: 20,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  marginBottom: 16,
+                  lineHeight: 1.4,
+                }}
+              >
+                {q.q}
+              </div>
 
-                return (
-                  <li
-                    key={i}
-                    onClick={() => handleAnswer(a, i)}
-                    style={{
-                      marginBottom: 10,
-                      padding: "12px 14px",
-                      borderRadius: 10,
-                      border: "1px solid rgba(42,35,25,0.14)",
-                      cursor: locked ? "default" : "pointer",
-                      background:
-                        isSelected && isCorrect
-                          ? "#c6f6d5"
-                          : isSelected && !isCorrect
-                          ? "#fed7d7"
-                          : "#fff"
-                    }}
-                  >
-                    {a.text}
-                  </li>
-                );
-              })}
-            </ul>
+              {/* ⭐ ANTWORTEN */}
+              <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+                {q.answers.map((ans, i) => {
+                  const isCorrect = q.correct.includes(ans.id);
+                  const isSelected = selected === i;
+
+                  return (
+                    <li
+                      key={i}
+                      onClick={() => handleAnswer(ans, i)}
+                      style={{
+                        padding: "12px 14px",
+                        borderRadius: 10,
+                        marginBottom: 10,
+                        border: "1px solid rgba(42,35,25,0.14)",
+                        cursor: locked ? "default" : "pointer",
+                        background:
+                          isSelected && isCorrect
+                            ? "#c6f6d5"
+                            : isSelected && !isCorrect
+                            ? "#fed7d7"
+                            : "#fff",
+                      }}
+                    >
+                      {ans.text}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </>
         )}
       </main>
@@ -140,7 +209,7 @@ export default function QuizRun() {
   );
 }
 
-// SSR LOGIN CHECK
+// SSR Login Check
 export async function getServerSideProps({ req }) {
   const { hasPaidAccessFromCookies } = await import("../../lib/auth-check");
 
@@ -152,4 +221,3 @@ export async function getServerSideProps({ req }) {
 
   return { props: {} };
 }
-
