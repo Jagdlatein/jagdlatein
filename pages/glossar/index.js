@@ -25,33 +25,33 @@ function GlossarIndex() {
       />
 
       <main className="p-4 max-w-3xl mx-auto">
-        <h1>Jagd-Glossar</h1>
+        <h1 className="text-3xl font-bold mb-4">Jagd-Glossar</h1>
 
-        <p className="lead" style={{ marginBottom: 24 }}>
+        <p className="text-lg text-gray-700 mb-6">
           Zentrale Begriffe aus der Jägersprache – kompakt erklärt, damit du sie
           in der Jagdprüfung sicher beherrschst.
         </p>
 
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <ul className="list-none p-0">
           {TERMS.map((t) => (
-            <li key={t.slug} style={{ marginBottom: 12 }}>
+            <li key={t.slug} className="mb-4">
               <a
                 href={`/glossar/${t.slug}`}
-                style={{ fontWeight: 600, textDecoration: "none" }}
+                className="font-semibold text-green-800 hover:underline"
               >
                 {t.term}
               </a>
-              <div style={{ fontSize: 14, color: "#4b5563" }}>{t.def}</div>
+              <div className="text-gray-700 text-sm mt-1">{t.def}</div>
             </li>
           ))}
         </ul>
 
-        <p className="small" style={{ marginTop: 16 }}>
-          <a href="/" style={{ marginRight: 10 }}>
+        <p className="text-sm mt-8">
+          <a href="/" className="mr-4 text-green-800 hover:underline">
             Startseite
           </a>
           ·
-          <a href="/quiz" style={{ marginLeft: 10 }}>
+          <a href="/quiz" className="ml-4 text-green-800 hover:underline">
             Zum Quiz
           </a>
         </p>
@@ -59,6 +59,7 @@ function GlossarIndex() {
     </>
   );
 }
+
 
 function hasPaidAccessFromCookies(req) {
   const cookieHeader = req.headers.cookie || "";
