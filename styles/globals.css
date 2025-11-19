@@ -15,16 +15,9 @@
 }
 
 /* =========================================
-   Basis & Typografie
+   Allgemeine Basis-Resets
 ========================================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -39,413 +32,180 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  margin: 0 0 .4em;
+  font-family: Georgia, serif;
+  color: var(--forest);
 }
 
+/* =========================================
+   Globale Links & Layout
+========================================= */
 a {
-  color: inherit;
+  color: var(--forest);
   text-decoration: none;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+a:hover {
+  color: var(--gold);
 }
 
-:focus-visible {
-  outline: 2px solid rgba(212,175,55,.6);
-  outline-offset: 2px;
-}
-
-/* =========================================
-   Layout-Helfer
-========================================= */
 .container {
-  max-width: 1120px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 0 18px;
-}
-
-.section {
-  padding: 36px 0;
-}
-
-@media (min-width: 992px) {
-  .section {
-    padding: 56px 0;
-  }
+  padding: 30px 20px;
 }
 
 /* =========================================
-   Header & Navigation
+   Karten-Design
 ========================================= */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  background: linear-gradient(
-    180deg,
-    rgba(241,231,211,.96),
-    rgba(241,231,211,.86)
-  );
-  border-bottom: 1px solid rgba(42,35,25,.12);
-  backdrop-filter: saturate(120%) blur(6px);
+.card {
+  background: #fff;
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  padding: 10px 0;
+/* =========================================
+   GLOSSAR – Desktop-Styles
+========================================= */
+.glossar-wrapper {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 42px 24px 60px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.glossar-title {
+  font-size: 44px;
+  font-family: Georgia, serif;
+  margin: 0 0 10px;
 }
 
-.brand-title {
+.glossar-subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.glossar-search-box {
+  margin-top: 10px;
+  margin-bottom: 26px;
+}
+
+.glossar-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #c9c3b8;
+}
+
+.glossar-list {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
-}
-
-.brand-name {
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--forest);
-  letter-spacing: -0.2px;
-}
-
-.brand-title small {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 4px;
-  font-weight: 600;
-}
-
-/* Desktop-Menü */
-.menu {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.nav-link {
-  padding: 10px 14px;
-  background: rgba(255,255,255,.4);
-  border-radius: 10px;
-  font-weight: 700;
-  color: var(--forest);
-  border: 1px solid transparent;
-  transition: background .15s ease,
-              color .15s ease,
-              border-color .15s ease,
-              box-shadow .15s ease;
-}
-
-.nav-link:hover {
-  background: var(--forest);
-  color: #fff;
-  border-color: rgba(31,43,35,.5);
-}
-
-/* =========================================
-   Header-Sub
-========================================= */
-.header-sub {
-  background: rgba(255,255,255,0.65);
-  border-top: 1px solid rgba(0,0,0,0.06);
-  backdrop-filter: blur(4px);
-}
-
-.header-sub-inner {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 14px 0;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.header-sub-inner a {
-  color: var(--forest);
-}
-
-.header-sub-inner span {
-  color: var(--muted);
-  font-weight: 600;
-  margin: 0 2px;
-}
-
-.logout-btn-inline {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--forest);
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* =========================================
-   Hero
-========================================= */
-.hero {
-  position: relative;
-  padding: 72px 0 48px;
-  background:
-    radial-gradient(
-      1200px 380px at 20% -10%,
-      rgba(212,175,55,.18),
-      transparent 60%
-    ),
-    radial-gradient(
-      900px 420px at 120% 0%,
-      rgba(31,43,35,.18),
-      transparent 60%
-    ),
-    var(--parchment);
-  border-bottom: 1px solid rgba(42,35,25,.12);
-}
-
-.hero-logo {
-  height: 96px;
-  margin: 0 0 8px;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.15));
-}
-
-.hero h1 {
-  font-size: 44px;
-  line-height: 1.1;
-}
-
-.hero p {
-  color: var(--sepia);
-  margin: 0 0 16px;
-  font-weight: 600;
-}
-
-/* =========================================
-   Karten
-========================================= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 
-.card {
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.55),
-    rgba(255,255,255,.35)
-  );
-  border: 1px solid rgba(42,35,25,.14);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
-  transition: transform .18s ease;
-}
-
-.card:hover {
-  transform: translateY(-1px);
-}
-
-/* =========================================
-   Buttons
-========================================= */
-.btn, .cta {
-  display: inline-block;
-  font-weight: 800;
+.glossar-card {
+  background: white;
+  padding: 20px 16px;
   border-radius: 12px;
-  padding: 10px 14px;
-  border: 1px solid rgba(42,35,25,.18);
-  cursor: pointer;
+  box-shadow: var(--shadow);
 }
 
-.btn {
-  background: #fff8;
+.glossar-term {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-.btn:hover {
-  background: #fff;
+.glossar-def {
+  font-size: 16px;
+  color: #4a433b;
 }
 
-.cta {
-  background: var(--gold);
-  color: #231c0f;
-  box-shadow: 0 8px 18px rgba(212,175,55,.22);
-}
-
-/* =========================================
-   Footer
-========================================= */
-.footer {
-  border-top: 1px solid rgba(42,35,25,.12);
-  background: linear-gradient(
-    0deg,
-    rgba(241,231,211,.9),
-    rgba(241,231,211,.7)
-  );
-}
-
-.footer .container {
-  padding: 20px 18px;
+.glossar-footer {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
   color: var(--muted);
+  font-size: 15px;
 }
 
 /* =========================================
-   GLOSSAR — DESKTOP
+   MOBILE STYLES – Glossar Optimierung
 ========================================= */
-@media (min-width: 781px) {
-
+@media (max-width: 780px) {
+  
   .glossar-wrapper {
-    padding: 60px 20px;
-    background: var(--parchment);
-    display: flex;
-    justify-content: center;
-  }
-
-  .glossar-container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+    padding: 24px 12px 40px;
   }
 
   .glossar-title {
-    font-size: 52px;
-    font-weight: 900;
-    text-align: center;
-    color: var(--forest);
-    margin-bottom: 8px;
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    text-align: left;
   }
 
   .glossar-subtitle {
-    text-align: center;
-    font-size: 20px;
-    color: var(--sepia);
-    font-weight: 600;
-    margin-bottom: 36px;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 18px;
   }
 
   .glossar-search-box {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 36px;
+    margin-top: 12px;
+    margin-bottom: 18px;
   }
 
   .glossar-input {
     width: 100%;
-    max-width: 450px;
-    padding: 14px 16px;
-    border-radius: var(--radius);
-    border: 1px solid rgba(42,35,25,.28);
-    background: #fff;
-    font-size: 18px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    font-size: 15px;
+    padding: 10px 12px;
+    border-radius: 10px;
   }
 
   .glossar-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 22px;
+    gap: 10px;
   }
 
   .glossar-card {
-    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
-    border: 1px solid rgba(42,35,25,.14);
-    border-radius: var(--radius);
-    padding: 22px 26px;
-    box-shadow: var(--shadow);
-    transition: .2s;
-  }
-
-  .glossar-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,.75);
+    padding: 14px 12px;
+    border-radius: 10px;
   }
 
   .glossar-term {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--forest);
-    margin-bottom: 6px;
+    font-size: 18px;
+    margin-bottom: 4px;
   }
 
   .glossar-def {
-    font-size: 17px;
-    color: var(--ink);
-    line-height: 1.55;
+    font-size: 14px;
+    line-height: 1.45;
   }
 
   .glossar-footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 16px;
-    color: var(--forest);
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .glossar-footer a {
-    font-weight: 700;
-    color: var(--forest);
-  }
-
-  .glossar-footer a:hover {
-    text-decoration: underline;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 14px;
   }
 }
 
 /* =========================================
-   MOBILE (bestehend)
+   Buttons + Interaktive Elemente
 ========================================= */
-@media (max-width: 780px) {
-  .header-inner {
-    height: 64px;
-    justify-content: center;
-  }
+button {
+  background: var(--forest);
+  color: white;
+  padding: 12px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,.2);
+}
 
-  .brand-name {
-    font-size: 24px;
-  }
-
-  .brand-title small {
-    font-size: 12px;
-    margin-top: 3px;
-  }
-
-  .menu {
-    display: none;
-  }
-
-  .hero {
-    padding: 64px 0 36px;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero-logo {
-    height: 72px;
-  }
-
-  .header-sub-inner {
-    font-size: 17px;
-    padding: 12px 0;
-  }
-
-  .mobile-nav-under-buttons {
-    display: block;
-    margin-top: 20px;
-  }
+button:hover {
+  background: var(--gold);
+  color: black;
 }
