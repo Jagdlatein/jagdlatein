@@ -32,13 +32,15 @@ export default function Home() {
 
       <main style={styles.main}>
         <div style={styles.wrap}>
+
+          {/* TITEL */}
           <h1 style={styles.title}>Jagdlatein</h1>
 
           <p style={styles.sub}>
             Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
-          {/* OBERSTE BUTTON-REIHE — OHNE KURSE */}
+          {/* BUTTONS */}
           <div style={styles.btnRow}>
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
@@ -48,8 +50,8 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* UNTERE NAVIGATION — MIT KURSE */}
-          <div className="mobile-nav-under-buttons" style={{ marginTop: 24 }}>
+          {/* SAUBERE LINKS UNTER DEN BUTTONS */}
+          <div style={styles.linkRow}>
             <Link href="/kurse">Kurse</Link>
             <span> · </span>
 
@@ -73,7 +75,6 @@ export default function Home() {
                 <span> · </span>
                 <button
                   type="button"
-                  className="logout-inline"
                   onClick={logout}
                   style={{
                     background: "none",
@@ -98,7 +99,7 @@ export default function Home() {
 const styles = {
   main: {
     background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
-    padding: "45px 16px 80px",
+    padding: "45px 16px 40px",
     minHeight: "100vh",
   },
   wrap: {
@@ -110,7 +111,7 @@ const styles = {
     fontWeight: 800,
     margin: "0 0 14px",
     lineHeight: 1.1,
-    color: "#1a1a1a",
+    color: "#1f2b23",
   },
   sub: {
     fontSize: 19,
@@ -122,7 +123,7 @@ const styles = {
     display: "flex",
     gap: 14,
     flexWrap: "wrap",
-    marginBottom: 24,
+    marginBottom: 22,
   },
   btnPrimary: {
     background: "#caa53b",
@@ -142,5 +143,13 @@ const styles = {
     fontWeight: 700,
     textDecoration: "none",
     fontSize: 17,
+  },
+
+  /* Neue Linkzeile */
+  linkRow: {
+    marginTop: 10,
+    textAlign: "center",
+    fontSize: 17,
+    fontWeight: 500,
   },
 };
