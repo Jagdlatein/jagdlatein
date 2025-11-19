@@ -435,119 +435,115 @@ img {
     display: block;
     margin-top: 20px;
   }
-
-   /* =========================================
-   GLOSSAR DESIGN (no Tailwind)
+/* =========================================
+   GLOSSAR — Desktop Optimierung
 ========================================= */
 
-.glossar-wrapper {
-  padding: 40px 18px;
-  background: var(--parchment);
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+@media (min-width: 781px) {
+
+  .glossar-wrapper {
+    padding: 60px 20px;
+    background: var(--parchment);
+    display: flex;
+    justify-content: center;
+  }
+
+  .glossar-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .glossar-title {
+    font-size: 52px;
+    font-weight: 900;
+    text-align: center;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .glossar-subtitle {
+    text-align: center;
+    font-size: 20px;
+    color: var(--sepia);
+    font-weight: 600;
+    margin-bottom: 36px;
+  }
+
+  .glossar-search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  .glossar-input {
+    width: 100%;
+    max-width: 450px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(42,35,25,.28);
+    background: #fff;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  }
+
+  .glossar-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 22px;
+  }
+
+  .glossar-card {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,.55),
+      rgba(255,255,255,.35)
+    );
+    border: 1px solid rgba(42,35,25,.14);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    box-shadow: var(--shadow);
+    transition: .2s;
+  }
+
+  .glossar-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.75);
+  }
+
+  .glossar-term {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .glossar-def {
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  .glossar-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--forest);
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .glossar-footer a {
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .glossar-footer a:hover {
+    text-decoration: underline;
+  }
 }
 
-.glossar-container {
-  width: 100%;
-  max-width: 800px;
-}
-
-.glossar-title {
-  font-size: 40px;
-  font-weight: 900;
-  text-align: center;
-  color: var(--forest);
-  margin-bottom: 12px;
-}
-
-.glossar-subtitle {
-  font-size: 18px;
-  text-align: center;
-  color: var(--sepia);
-  margin-bottom: 36px;
-  font-weight: 600;
-}
-
-.glossar-search-box {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-
-.glossar-input {
-  width: 100%;
-  max-width: 420px;
-  padding: 12px 14px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(42,35,25,.25);
-  background: #fff;
-  font-size: 16px;
-}
-
-.glossar-input:focus {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-.glossar-list {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 18px;
-}
-
-.glossar-card {
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.55),
-    rgba(255,255,255,.35)
-  );
-  border: 1px solid rgba(42,35,25,.14);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-}
-
-.glossar-term {
-  color: var(--forest);
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.glossar-term:hover {
-  text-decoration: underline;
-}
-
-.glossar-def {
-  margin-top: 8px;
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.glossar-empty {
-  text-align: center;
-  color: var(--muted);
-}
-
-.glossar-footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 15px;
-  color: var(--forest);
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.glossar-footer a {
-  color: var(--forest);
-  font-weight: 700;
-}
-
-.glossar-footer a:hover {
-  text-decoration: underline;
-}
-
+  
 }
