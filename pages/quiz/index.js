@@ -114,26 +114,4 @@ const hint = {
   marginTop: 4,
 };
 
-function hasPaidAccessFromCookies(req) {
-  const cookieHeader = req.headers.cookie || "";
-  const loggedIn = cookieHeader.includes("jl_session=1");
-  const paid = cookieHeader.includes("jl_paid=1");
-  return loggedIn && paid;
-}
-
-export async function getServerSideProps(ctx) {
-  const { req } = ctx;
-
-  if (!hasPaidAccessFromCookies(req)) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: {} };
-}
-
 export default QuizIndex;
