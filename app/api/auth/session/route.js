@@ -107,7 +107,7 @@ export async function POST(req) {
 }
 
 // ---------------------------
-// LOGOUT (DELETE)
+// LOGOUT
 // ---------------------------
 export async function DELETE() {
   ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) =>
