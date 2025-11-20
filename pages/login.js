@@ -11,17 +11,11 @@ export default function LoginPage() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ---------------------------------------------------
-  // LOGOUT
-  // ---------------------------------------------------
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
     window.location.href = "/";
   }
 
-  // ---------------------------------------------------
-  // LOGIN FUNKTION
-  // ---------------------------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
@@ -42,18 +36,16 @@ export default function LoginPage() {
 
       const data = await res.json();
 
-      // ❗ KORREKTE FEHLERBEHANDLUNG — kein Redirect!
       if (!data || data.success === false) {
         setMsg(data?.message || "Diese E-Mail ist nicht registriert.");
         setLoading(false);
-        return; // <- wichtig!
+        return;
       }
 
-      // ✔ LOGIN OK → Weiterleitung
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        window.location.href = nextUrl;   // <- FIX
+        window.location.href = nextUrl;
       }, 600);
 
     } catch (err) {
@@ -70,11 +62,10 @@ export default function LoginPage() {
       </Head>
 
       <main style={styles.main}>
-        <div style={styles.box}>
+        <div style={styles.card}>
 
-          <h1 style={styles.title}>Login</h1>
-
-          <p style={styles.subtitle}>Melde dich an, um fortzufahren</p>
+          <h1 style={styles.title}>Willkommen zurück</h1>
+          <p style={styles.subtitle}>Melde dich mit deiner E-Mail an</p>
 
           <form onSubmit={handleLogin} style={styles.form}>
             <input
@@ -86,20 +77,27 @@ export default function LoginPage() {
               required
             />
 
-            <button type="submit" disabled={loading} style={styles.button}>
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                ...styles.button,
+                opacity: loading ? 0.7 : 1,
+              }}
+            >
               {loading ? "Wird geprüft…" : "Einloggen"}
             </button>
           </form>
 
-          {msg && <p style={styles.msg}>{msg}</p>}
+          {msg && (
+            <div style={styles.alert}>
+              {msg}
+            </div>
+          )}
 
-          <button onClick={logout} style={styles.logoutBtn}>
-            Logout
-          </button>
+          <button onClick={logout} style={styles.logoutBtn}>Logout</button>
 
-          <div style={{ textAlign: "center", marginTop: 12 }}>
-            <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
-          </div>
+          <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
 
         </div>
       </main>
@@ -113,74 +111,85 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
     padding: 20,
+    background: "linear-gradient(180deg,#faf8f1,#efe7d5)",
   },
-  box: {
-    background: "white",
-    padding: "32px 28px",
-    borderRadius: 18,
+
+  card: {
+    background: "#fff",
+    padding: "36px 30px",
+    borderRadius: 20,
     width: "100%",
     maxWidth: 420,
-    boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+    textAlign: "center",
   },
+
   title: {
-    fontSize: 34,
-    marginBottom: 8,
-    textAlign: "center",
-    color: "#1f2b23",
+    fontSize: 32,
     fontFamily: "Georgia, serif",
+    color: "#1f2b23",
+    marginBottom: 8,
   },
+
   subtitle: {
-    fontSize: 16,
-    textAlign: "center",
+    fontSize: 15,
     color: "#6c6458",
-    marginBottom: 24,
+    marginBottom: 28,
   },
+
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: 16,
+    gap: 14,
   },
+
   input: {
-    padding: "12px 14px",
-    borderRadius: 12,
-    border: "1px solid #c9c3b8",
+    padding: "14px 16px",
+    borderRadius: 14,
+    border: "1px solid #cfc7b6",
     fontSize: 16,
+    background: "#faf8f1",
   },
+
   button: {
     background: "#caa53b",
     padding: "14px 16px",
     borderRadius: 14,
     border: "none",
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 700,
     cursor: "pointer",
     color: "#111",
+    transition: "0.2s",
   },
-  msg: {
-    textAlign: "center",
+
+  alert: {
     marginTop: 18,
+    background: "#fff4e5",
+    padding: "12px 14px",
+    borderRadius: 12,
     fontSize: 15,
+    color: "#8a5a1f",
+    border: "1px solid #f1d2a8",
   },
+
   logoutBtn: {
-    marginTop: 24,
-    padding: "10px 20px",
+    marginTop: 22,
+    padding: "10px 16px",
     background: "#fff",
     border: "2px solid #caa53b",
     borderRadius: 12,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 600,
     color: "#1f2b23",
     cursor: "pointer",
-    display: "block",
-    width: "100%",
-    maxWidth: 220,
-    marginLeft: "auto",
-    marginRight: "auto",
   },
+
   backLink: {
-    fontSize: 16,
+    display: "block",
+    marginTop: 18,
+    fontSize: 15,
     color: "#1f2b23",
     textDecoration: "underline",
   },
