@@ -5,15 +5,28 @@ import Head from "next/head";
 
 export default function LoginPage() {
   const router = useRouter();
-  const nextUrl = router.query.next || "/"; // Seite nach Login
+  const nextUrl = router.query.next || "/";
 
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // -------------------------------------
+  // ------------------------------
+  // LOGOUT FUNKTION (voll kompatibel)
+  // ------------------------------
+  function logout() {
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
+      document.cookie = `${name}=; Path=/; Max-Age=0`;
+      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=None; Secure`;
+    });
+
+    window.location.href = "/";
+  }
+
+  // ------------------------------
   // LOGIN FUNKTION
-  // -------------------------------------
+  // ------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
@@ -52,9 +65,6 @@ export default function LoginPage() {
     setLoading(false);
   }
 
-  // -------------------------------------
-  // UI
-  // -------------------------------------
   return (
     <>
       <Head>
@@ -65,6 +75,7 @@ export default function LoginPage() {
         <div style={styles.box}>
 
           <h1 style={styles.title}>Login</h1>
+
           <p style={styles.subtitle}>Melde dich an, um fortzufahren</p>
 
           {/* LOGIN FORMULAR */}
@@ -78,15 +89,21 @@ export default function LoginPage() {
               required
             />
 
-            <button type="submit" style={styles.button} disabled={loading}>
+            <button type="submit" disabled={loading} style={styles.button}>
               {loading ? "Wird geprüft…" : "Einloggen"}
             </button>
           </form>
 
+          {/* MELDUNGEN */}
           {msg && <p style={styles.msg}>{msg}</p>}
 
-          {/* ZURÜCK ZUR STARTSEITE */}
-          <div style={{ marginTop: 20, textAlign: "center" }}>
+          {/* LOGOUT BUTTON UNTEN */}
+          <button onClick={logout} style={styles.logoutBtn}>
+            Logout
+          </button>
+
+          {/* Zurück zur Startseite */}
+          <div style={{ textAlign: "center", marginTop: 12 }}>
             <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
           </div>
 
@@ -96,9 +113,6 @@ export default function LoginPage() {
   );
 }
 
-// ------------------------------------------------------
-// UI STYLES — moderner, klarer, Startseiten-Stil
-// ------------------------------------------------------
 const styles = {
   main: {
     minHeight: "100vh",
@@ -109,13 +123,12 @@ const styles = {
     padding: 20,
   },
   box: {
-    background: "rgba(255,255,255,0.95)",
+    background: "white",
     padding: "32px 28px",
     borderRadius: 18,
     width: "100%",
     maxWidth: 420,
     boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
-    border: "1px solid #e9e1cd",
   },
   title: {
     fontSize: 34,
@@ -155,6 +168,22 @@ const styles = {
     textAlign: "center",
     marginTop: 18,
     fontSize: 15,
+  },
+  logoutBtn: {
+    marginTop: 24,
+    padding: "10px 20px",
+    background: "#fff",
+    border: "2px solid #caa53b",
+    borderRadius: 12,
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#1f2b23",
+    cursor: "pointer",
+    display: "block",
+    width: "100%",
+    maxWidth: 220,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   backLink: {
     fontSize: 16,
