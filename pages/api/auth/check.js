@@ -14,13 +14,13 @@ export default async function handler(req, res) {
 
     const email = rawEmail.toLowerCase();
 
-    // User suchen (E-Mail = ID)
+    // RICHTIGER USERCHECK
     const user = await prisma.user.findUnique({
       where: { id: email },
       include: { access: true },
     });
 
-    // ❗ Nutzer existiert NICHT → Login blockieren
+    // 💥 Nutzer existiert NICHT → kein Login!
     if (!user) {
       return res.status(200).json({
         exists: false,
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // Nutzer existiert → Abo prüfen
+    // Zugang prüfen
     const now = new Date();
     const active = user.access && user.access.expiresAt > now;
 
