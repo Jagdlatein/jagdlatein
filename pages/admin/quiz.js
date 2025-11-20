@@ -3,17 +3,18 @@ function getBearer(req) {
   const h = req.headers.authorization || "";
   return h.startsWith("Bearer ") ? h.slice(7) : "";
 }
+
 function isAuthorized(req) {
   const sent = getBearer(req).trim();
   const want = (process.env.ADMIN_PASS || "").trim();
   return Boolean(sent && want && sent === want);
 }
 
-// pages/admin/quiz.js
-<button onClick={async()=>{
-  await fetch("/api/admin/logout",{method:"POST"});
-  window.location.href="/admin/login";
-}} style={{marginLeft:"auto"}}>Logout</button>
+// 🔥 KORREKTE LOGOUT-FUNKTION (SETZT DELETE)
+async function doLogout() {
+  await fetch("/api/auth/session", { method: "DELETE" });
+  window.location.href = "/admin/login";
+}
 
 import { useState } from "react";
 
@@ -78,9 +79,29 @@ export default function AdminQuiz() {
     <main style={{ padding: 24, maxWidth: 900, margin: "0 auto", fontFamily: "system-ui, sans-serif" }}>
       <h1>🧠 Quiz-Administration</h1>
 
-      <section style={{ marginTop: 32 }}>
+      {/* 🔥 LOGOUT BUTTON OBEN RECHTS */}
+      <button
+        onClick={doLogout}
+        style={{
+          float: "right",
+          padding: "8px 14px",
+          background: "#fff",
+          border: "2px solid #caa53b",
+          borderRadius: 8,
+          cursor: "pointer",
+          marginTop: -10
+        }}
+      >
+        Logout
+      </button>
+
+      <section style={{ marginTop: 48 }}>
         <h2>📄 Excel-Import</h2>
-        <input type="file" accept=".xlsx" onChange={e => setExcelFile(e.target.files?.[0] || null)} />
+        <input
+          type="file"
+          accept=".xlsx"
+          onChange={e => setExcelFile(e.target.files?.[0] || null)}
+        />
         <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
           <button onClick={() => handleExcelUpload(false)}>Nur DB importieren</button>
           <button onClick={() => handleExcelUpload(true)}>DB + GitHub Commit</button>
