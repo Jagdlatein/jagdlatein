@@ -17,10 +17,14 @@ export default function Home() {
     setLoggedIn(s);
   }, []);
 
+  // FUNKTIONIERENDER LOGOUT
   function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) => {
-      document.cookie = `${n}=; Path=/; Max-Age=0; SameSite=None; Secure`;
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
+      document.cookie = `${name}=; Path=/; Max-Age=0`;
+      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=None; Secure`;
     });
+
     window.location.replace("/");
   }
 
@@ -45,12 +49,12 @@ export default function Home() {
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
-            <Link href="/login" style={styles.btnGhost}>
+            <Link href={`/login?next=/`} style={styles.btnGhost}>
               Login
             </Link>
           </div>
 
-          {/* UNTERE BUTTON-LISTE — KLEINER GEMACHT */}
+          {/* UNTERE BUTTON-LISTE — KLEINER, GOLD */}
           <div style={styles.linkColumn}>
             <Link href="/kurse" style={styles.linkButton}>Kurse</Link>
             <Link href="/quiz" style={styles.linkButton}>Quiz</Link>
@@ -58,6 +62,12 @@ export default function Home() {
             <Link href="/ebook" style={styles.linkButton}>E-Book</Link>
           </div>
 
+          {/* LOGOUT BUTTON UNTEN */}
+          {loggedIn && (
+            <button onClick={logout} style={styles.logoutButton}>
+              Logout
+            </button>
+          )}
         </div>
       </main>
     </>
@@ -88,7 +98,7 @@ const styles = {
     margin: "0 0 26px",
   },
 
-  /* OBERSTE GROSSE BUTTONS */
+  /* OBERSTE BUTTONS */
   btnRow: {
     display: "flex",
     gap: 14,
@@ -115,7 +125,7 @@ const styles = {
     fontSize: 17,
   },
 
-  /* UNTERE BUTTONS — KLEINER, GOLD */
+  /* UNTERE KLEINERE GOLD-BUTTONS */
   linkColumn: {
     display: "flex",
     flexDirection: "column",
@@ -127,14 +137,31 @@ const styles = {
   linkButton: {
     background: "#caa53b",
     color: "#111",
-    padding: "10px 22px",   // kleiner gemacht
-    borderRadius: 12,       // leicht kleiner
+    padding: "10px 22px",   // kleiner
+    borderRadius: 12,       // kleiner
     fontWeight: 700,
     textDecoration: "none",
     fontSize: 16,           // kleiner
     display: "block",
     width: "100%",
-    maxWidth: 220,          // kleiner (vorher 260)
+    maxWidth: 220,
     margin: "0 auto",
+  },
+
+  /* LOGOUT BUTTON UNTEN */
+  logoutButton: {
+    background: "#fff",
+    border: "2px solid #caa53b",
+    padding: "10px 20px",
+    borderRadius: 12,
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#1f2b23",
+    cursor: "pointer",
+    display: "block",
+    width: "100%",
+    maxWidth: 220,
+    margin: "18px auto 0 auto",
+    textAlign: "center",
   },
 };
