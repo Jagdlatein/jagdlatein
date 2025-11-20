@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   // ---------------------------------------------------
-  // 🔥 KORREKTER LOGOUT — über API (löscht HttpOnly Cookies)
+  // 🔥 LOGOUT – löscht alle Auth-Cookies
   // ---------------------------------------------------
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
@@ -42,17 +42,20 @@ export default function LoginPage() {
 
       const data = await res.json();
 
-      if (!res.ok || data.success === false) {
-        setMsg(data.message || "Login fehlgeschlagen.");
+      // ❗ RICHTIGE FEHLERBEHANDLUNG
+      if (!data || data.success === false) {
+        setMsg(data?.message || "Diese E-Mail ist nicht registriert.");
         setLoading(false);
         return;
       }
 
+      // ✔ LOGIN OK
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
         router.push(nextUrl);
       }, 600);
+
     } catch (err) {
       setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
@@ -186,3 +189,4 @@ const styles = {
     textDecoration: "underline",
   },
 };
+
