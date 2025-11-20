@@ -1,78 +1,119 @@
-// app/api/login/route.js
+// app/api/auth/session/route.js
 import { NextResponse } from "next/server";
-import prisma from "../../../lib/prisma"; // ggf. Pfad anpassen
+import { cookies } from "next/headers";
+export const dynamic = "force-dynamic";
 
-async function hasActiveAccess(email) {
-  if (!email) return false;
-  const normalized = email.trim().toLowerCase();
+const COOKIE_OPTS = {
+  httpOnly: true,
+  sameSite: "lax",
+  path: "/",
+  secure: process.env.NODE_ENV === "production",
+  maxAge: 60 * 60 * 24 * 40, // 40 Tage
+};
 
-  // AccessPass per userId = E-Mail
-  const pass = await prisma.accessPass.findUnique({
-    where: { userId: normalized },
+// -----------------------------
+// Überprüfung, ob Nutzer existiert
+// -----------------------------
+async function authCheck(req, email) {
+  const url = new URL("/api/auth/check", req.url);
+  url.searchParams.set("email", email);
+
+  const r = await fetch(url, {
+    headers: { Accept: "application/json" },
+    cache: "no-store",
   });
 
-  if (!pass) return false;
-  if (pass.status !== "active") return false;
-
-  const now = new Date();
-
-  // falls expiresAt gesetzt ist: prüfen
-  if (pass.expiresAt && pass.expiresAt < now) {
-    return false;
+  if (!r.ok) {
+    throw new Error("API /auth/check antwortet nicht korrekt");
   }
 
-  return true;
+  return r.json();
 }
 
+// -----------------------------
+// LOGIN (POST)
+// -----------------------------
 export async function POST(req) {
-  let body;
   try {
-    body = await req.json();
-  } catch (e) {
-    return NextResponse.json(
-      { success: false, message: "Ungültige Anfrage" },
-      { status: 400 }
-    );
-  }
+    const body = await req.json();
+    const email = body?.email?.toLowerCase()?.trim();
 
-  const email = body?.email?.toString().trim().toLowerCase();
+    if (!email || !email.includes("@")) {
+      return NextResponse.json(
+        { success: false, message: "Bitte gültige E-Mail eingeben." },
+        { status: 400 }
+      );
+    }
 
-  if (!email) {
-    return NextResponse.json(
-      { success: false, message: "E-Mail fehlt" },
-      { status: 400 }
-    );
-  }
+    const verify = await authCheck(req, email);
 
-  const allowed = await hasActiveAccess(email);
+    // ---------------------------------------
+    // SESSION & PAYWALL COOKIES SETZEN
+    // (WICHTIG: damit middleware.js funktioniert)
+    // ---------------------------------------
+    cookies().set({
+      name: "jl_session",
+      value: "1",                  // <— Der entscheidende Fix!
+      ...COOKIE_OPTS,
+    });
 
-  if (!allowed) {
-    return NextResponse.json(
-      {
-        success: false,
-        message:
-          "Für diese E-Mail ist (noch) kein aktiver Zugang hinterlegt. Bitte zuerst über PayPal kaufen.",
-      },
-      { status: 403 }
-    );
-  }
+    cookies().set({
+      name: "jl_email",
+      value: email,
+      ...COOKIE_OPTS,
+    });
 
-  // hier könnte man später ein echtes JWT verwenden
-  const token = "token-" + Date.now();
+    if (verify?.paid) {
+      cookies().set({
+        name: "jl_paid",
+        value: "1",
+        ...COOKIE_OPTS,
+      });
+    }
 
-  return NextResponse.json(
-    {
+    if (verify?.admin) {
+      cookies().set({
+        name: "jl_admin",
+        value: "1",
+        ...COOKIE_OPTS,
+      });
+    }
+
+    return NextResponse.json({
       success: true,
-      token,
-      email,
-    },
-    { status: 200 }
-  );
+      paid: verify?.paid || false,
+      admin: verify?.admin || false,
+      message: "Login erfolgreich",
+    });
+  } catch (err) {
+    console.error("SESSION LOGIN ERROR:", err);
+    return NextResponse.json(
+      { success: false, error: String(err?.message || err) },
+      { status: 500 }
+    );
+  }
 }
 
-export function GET() {
-  return NextResponse.json(
-    { success: false, message: "Method not allowed" },
-    { status: 405 }
-  );
+// -----------------------------
+// LOGOUT (DELETE)
+// -----------------------------
+export async function DELETE() {
+  try {
+    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) =>
+      cookies().set({
+        name: n,
+        value: "",
+        path: "/",
+        maxAge: 0,
+      })
+    );
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("SESSION DELETE ERROR:", err);
+    return NextResponse.json(
+      { error: String(err?.message || err) },
+      { status: 500 }
+    );
+  }
 }
