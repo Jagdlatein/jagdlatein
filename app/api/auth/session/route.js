@@ -5,14 +5,14 @@ export const dynamic = "force-dynamic";
 
 const COOKIE_OPTS = {
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: "none",   // ← WICHTIG!!!
+  secure: true,        // ← WICHTIG!!!
   path: "/",
-  secure: process.env.NODE_ENV === "production",
   maxAge: 60 * 60 * 24 * 40, // 40 Tage
 };
 
 // -----------------------------
-// User check
+// Überprüfung, ob Nutzer existiert
 // -----------------------------
 async function authCheck(req, email) {
   const url = new URL("/api/auth/check", req.url);
@@ -23,12 +23,15 @@ async function authCheck(req, email) {
     cache: "no-store",
   });
 
-  if (!r.ok) throw new Error("API /auth/check Fehler");
+  if (!r.ok) {
+    throw new Error("API /auth/check antwortet nicht korrekt");
+  }
+
   return r.json();
 }
 
 // -----------------------------
-// LOGIN
+// LOGIN (POST)
 // -----------------------------
 export async function POST(req) {
   try {
@@ -44,7 +47,7 @@ export async function POST(req) {
 
     const verify = await authCheck(req, email);
 
-    // 🔥 WICHTIG: Session MUSS = "1" sein
+    // SESSION COOKIES (jetzt korrekt!)
     cookies().set({
       name: "jl_session",
       value: "1",
@@ -89,7 +92,7 @@ export async function POST(req) {
 }
 
 // -----------------------------
-// LOGOUT (DELETE) – funktioniert zu 100%
+// LOGOUT (DELETE)
 // -----------------------------
 export async function DELETE() {
   try {
