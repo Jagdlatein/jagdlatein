@@ -35,25 +35,12 @@
     }
   }
 
-  // Beispiel: Token im LocalStorage speichern (sicher versuchen)
   function safeSetItem(key, value) {
     try {
       if (window.localStorage) {
         localStorage.setItem(key, value);
       }
-    } catch (e) {
-      // Ignorieren – einige Browser/Modi verbieten Storage
-    }
-  }
-
-  function safeRemoveItem(key) {
-    try {
-      if (window.localStorage) {
-        localStorage.removeItem(key);
-      }
-    } catch (e) {
-      // Ignorieren
-    }
+    } catch (e) {}
   }
 
   async function handleLogin(event) {
@@ -65,7 +52,6 @@
       return;
     }
 
-    // einfache Mail-Prüfung für UX
     if (!email.includes('@')) {
       showMessage('Diese E-Mail-Adresse sieht nicht gültig aus.', 'error');
       return;
@@ -75,30 +61,25 @@
     showMessage('');
 
     try {
-      // Hier deine echte Login-URL eintragen
-  const response = await fetch('/api/auth/session', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ email })
-});
+      const response = await fetch('/api/auth/session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
 
-
-      const rawText = await response.text(); // erst als Text holen
+      const rawText = await response.text();
       const data = safeJsonParse(rawText);
 
       if (!data) {
-        console.error('Ungültige JSON-Antwort vom Server:', rawText);
         showMessage(
-          'Es gab ein technisches Problem mit der Server-Antwort. Bitte versuche es später noch einmal.',
+          'Technisches Problem: Ungültige Server-Antwort.',
           'error'
         );
         return;
       }
 
-      // Einheitliches Format erwartet:
-      // { success: true, token: '...', message?: '...' }
       if (!response.ok || data.success === false) {
         const msg =
           (data && data.message) ||
@@ -108,21 +89,18 @@
         return;
       }
 
-      // Erfolg
       if (data.token) {
         safeSetItem('jagdlatein_auth_token', data.token);
       }
 
       showMessage('Erfolgreich eingeloggt. Du wirst weitergeleitet…', 'success');
 
-      // Weiterleitung nach kurzer Zeit – URL anpassen
       setTimeout(function () {
         window.location.href = '/quiz';
       }, 800);
     } catch (err) {
-      console.error('Netzwerk- oder Fetch-Fehler:', err);
       showMessage(
-        'Keine Verbindung zum Server. Bitte prüfe deine Internetverbindung oder versuche es später erneut.',
+        'Keine Verbindung zum Server. Bitte versuche es später erneut.',
         'error'
       );
     } finally {
@@ -130,16 +108,38 @@
     }
   }
 
-  function handleLogout() {
-    safeRemoveItem('jagdlatein_auth_token');
-    showMessage('Du wurdest abgemeldet.', 'success');
+  // 🔥 NEUER KORREKTER LOGOUT (funktioniert mit HttpOnly-Cookies)
+  async function handleLogout() {
+    try {
+      await fetch("/api/auth/session", { method: "DELETE" });
+      showMessage("Du wurdest abgemeldet.", "success");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+    } catch (e) {
+      console.error("Logout fehlgeschlagen:", e);
+      showMessage("Logout fehlgeschlagen.", "error");
+    }
   }
 
-  if (form) {
-    form.addEventListener('submit', handleLogin);
-  }
-
-  if (logoutButton) {
-    logoutButton.addEventListener('click', handleLogout);
-  }
+  if (form) form.addEventListener('submit', handleLogin);
+  if (logoutButton) logoutButton.addEventListener('click', handleLogout);
 })();
+
+export default function App({ Component, pageProps }) {
+  return (
+    <div className="app-wrapper">
+
+      {/* HEADER */}
+      <header className="navbar">
+        <a href="/" className="logo">Jagdlatein Die Lernplattform</a>
+      </header>
+
+      {/* CONTENT */}
+      <main className="content-area">
+        <Component {...pageProps} />
+      </main>
+
+    </div>
+  );
+}
