@@ -1,102 +1,84 @@
 // pages/ebook.js
-import { useEffect, useState } from "react";
-import Seo from "../components/Seo";
-import Link from "next/link";
+import Head from "next/head";
 
-function getCookie(name) {
-  if (typeof document === "undefined") return null;
-  const m = document.cookie.match(
-    new RegExp("(?:^|; )" + name + "=([^;]*)")
-  );
-  return m ? decodeURIComponent(m[1]) : null;
+export async function getServerSideProps({ req }) {
+  const cookie = req.headers.cookie || "";
+
+  const hasSession = cookie.includes("jl_session=1");
+  const hasPaid = cookie.includes("jl_paid=1");
+  const isAdmin = cookie.includes("jl_admin=1");
+
+  if (!hasSession) {
+    return {
+      redirect: {
+        destination: "/login?next=/ebook",
+        permanent: false,
+      },
+    };
+  }
+
+  if (!hasPaid && !isAdmin) {
+    return {
+      redirect: {
+        destination: "/preise",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
 }
 
-export default function EbookPage() {
-  const [state, setState] = useState({
-    checked: false,
-    loggedIn: false,
-    paid: false,
-  });
-
-  useEffect(() => {
-    const session = !!getCookie("jl_session");
-    const paidCookie = getCookie("jl_paid");
-    const paid = paidCookie === "1" || paidCookie === "true";
-    setState({ checked: true, loggedIn: session, paid });
-  }, []);
-
-  // Loading
-  if (!state.checked) {
-    return (
-      <>
-        <Seo title="E-Book – Jagdlatein" />
-        <main className="p-4 max-w-3xl mx-auto">
-          <p>Seite wird geladen …</p>
-        </main>
-      </>
-    );
-  }
-
-  // Not logged in
-  if (!state.loggedIn) {
-    return (
-      <>
-        <Seo title="E-Book – Jagdlatein" />
-        <main className="p-4 max-w-3xl mx-auto">
-          <h1>E-Book geschützt</h1>
-          <p>Bitte logge dich ein, um dein E-Book zu öffnen.</p>
-          <Link href="/login">Zum Login</Link>
-        </main>
-      </>
-    );
-  }
-
-  // Logged in but not paid
-  if (!state.paid) {
-    return (
-      <>
-        <Seo title="E-Book – Jagdlatein" />
-        <main className="p-4 max-w-3xl mx-auto">
-          <h1>Nur für Käufer</h1>
-          <p>
-            Du bist eingeloggt, aber dein Zugang für das E-Book ist noch
-            nicht freigeschaltet.
-          </p>
-        </main>
-      </>
-    );
-  }
-
-  // ✔ Logged in AND paid
+export default function Ebook() {
   return (
     <>
-      <Seo title="E-Book – Jagdlatein" />
+      <Head>
+        <title>E-Book – Jagdlatein</title>
+      </Head>
 
-      <main className="p-4 max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Jagdlatein E-Book</h1>
+      <main style={styles.main}>
+        <h1 style={styles.title}>E-Book</h1>
 
-        <p className="mb-4">
-          Hier kannst du dein E-Book öffnen oder herunterladen.
+        <p style={styles.text}>
+          Dein exklusiver Zugriff auf das E-Book ist freigeschaltet.
         </p>
 
-        <p>
-          <a
-            href="https://1drv.ms/b/c/357722b348ffd019/EbveCgU6lLpLpbbe4Na5LO8BtDYreUafjSunpVFmLkmXWA"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: "#2f6d2f",
-              color: "#fff",
-              padding: "10px 16px",
-              borderRadius: "6px",
-              textDecoration: "none",
-              display: "inline-block",
-            }}
-          >
-            📘 E-Book öffnen
-          </a>
-        </p>
+        <a
+          href="/ebook.pdf"
+          style={styles.btn}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          E-Book öffnen
+        </a>
       </main>
     </>
   );
 }
+
+const styles = {
+  main: {
+    padding: "40px 20px",
+    maxWidth: 900,
+    margin: "0 auto",
+  },
+  title: {
+    fontSize: 40,
+    marginBottom: 20,
+    fontFamily: "Georgia, serif",
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 20,
+  },
+  btn: {
+    display: "inline-block",
+    padding: "14px 24px",
+    background: "#caa53b",
+    color: "#111",
+    borderRadius: 12,
+    fontSize: 18,
+    fontWeight: 700,
+    textDecoration: "none",
+  },
+};
