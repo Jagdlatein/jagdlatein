@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   // ---------------------------------------------------
-  // 🔥 LOGOUT – löscht alle Auth-Cookies
+  // LOGOUT
   // ---------------------------------------------------
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
@@ -42,18 +42,18 @@ export default function LoginPage() {
 
       const data = await res.json();
 
-      // ❗ RICHTIGE FEHLERBEHANDLUNG
+      // ❗ KORREKTE FEHLERBEHANDLUNG — kein Redirect!
       if (!data || data.success === false) {
         setMsg(data?.message || "Diese E-Mail ist nicht registriert.");
         setLoading(false);
-        return;
+        return; // <- wichtig!
       }
 
-      // ✔ LOGIN OK
+      // ✔ LOGIN OK → Weiterleitung
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        router.push(nextUrl);
+        window.location.href = nextUrl;   // <- FIX
       }, 600);
 
     } catch (err) {
@@ -76,7 +76,6 @@ export default function LoginPage() {
 
           <p style={styles.subtitle}>Melde dich an, um fortzufahren</p>
 
-          {/* LOGIN FORMULAR */}
           <form onSubmit={handleLogin} style={styles.form}>
             <input
               type="email"
@@ -92,15 +91,12 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* MELDUNG */}
           {msg && <p style={styles.msg}>{msg}</p>}
 
-          {/* LOGOUT BUTTON */}
           <button onClick={logout} style={styles.logoutBtn}>
             Logout
           </button>
 
-          {/* ZURÜCK */}
           <div style={{ textAlign: "center", marginTop: 12 }}>
             <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
           </div>
@@ -189,4 +185,3 @@ const styles = {
     textDecoration: "underline",
   },
 };
-
