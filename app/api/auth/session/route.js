@@ -13,9 +13,7 @@ const COOKIE_OPTS = {
   maxAge: 60 * 60 * 24 * 40,
 };
 
-// ---------------------------
-// LOGIN CHECK
-// ---------------------------
+// USER CHECK
 async function authCheck(email) {
   const user = await prisma.user.findUnique({
     where: { id: email },
@@ -23,11 +21,7 @@ async function authCheck(email) {
   });
 
   if (!user) {
-    return {
-      exists: false,
-      paid: false,
-      admin: false,
-    };
+    return { exists: false, paid: false, admin: false };
   }
 
   const now = new Date();
@@ -40,12 +34,11 @@ async function authCheck(email) {
   };
 }
 
-// ---------------------------
-// LOGIN (POST)
-// ---------------------------
+// LOGIN
 export async function POST(req) {
   try {
     const { email } = await req.json();
+
     if (!email || !email.includes("@")) {
       return NextResponse.json(
         { success: false, message: "Bitte gültige E-Mail." },
@@ -56,7 +49,7 @@ export async function POST(req) {
     const mail = email.toLowerCase().trim();
     const verify = await authCheck(mail);
 
-    // ❗ BLOCKIERE UNBEKANNTE EMAILS
+    // ❌ FALL 1: Nutzer existiert NICHT
     if (!verify.exists) {
       return NextResponse.json(
         { success: false, message: "E-Mail ist nicht registriert." },
@@ -64,7 +57,7 @@ export async function POST(req) {
       );
     }
 
-    // COOKIES setzen
+    // ✔ Nutzer existiert → Cookies setzen
     cookies().set({
       name: "jl_session",
       value: "1",
@@ -98,7 +91,9 @@ export async function POST(req) {
       paid: verify.paid,
       admin: verify.admin,
     });
+
   } catch (err) {
+    console.error("SESSION LOGIN ERROR:", err);
     return NextResponse.json(
       { success: false, error: err.toString() },
       { status: 500 }
@@ -106,9 +101,7 @@ export async function POST(req) {
   }
 }
 
-// ---------------------------
 // LOGOUT
-// ---------------------------
 export async function DELETE() {
   ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) =>
     cookies().set({
