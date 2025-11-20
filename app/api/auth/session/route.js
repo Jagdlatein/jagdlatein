@@ -1,3 +1,4 @@
+// app/api/auth/session/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
@@ -7,59 +8,106 @@ const COOKIE_OPTS = {
   sameSite: "lax",
   path: "/",
   secure: process.env.NODE_ENV === "production",
-  maxAge: 60 * 60 * 24 * 40,
+  maxAge: 60 * 60 * 24 * 40, // 40 Tage
 };
 
+// -----------------------------
+// User check
+// -----------------------------
 async function authCheck(req, email) {
   const url = new URL("/api/auth/check", req.url);
   url.searchParams.set("email", email);
-  const r = await fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" });
-  const raw = await r.text();
-  let data = null;
-  try { data = JSON.parse(raw); } catch {}
-  if (!r.ok) throw new Error((data && (data.error || data.message)) || raw || "Auth-Check failed");
-  if (!data?.hasAccess) throw new Error("Kein aktives Abo");
-  return data;
+
+  const r = await fetch(url, {
+    headers: { Accept: "application/json" },
+    cache: "no-store",
+  });
+
+  if (!r.ok) throw new Error("API /auth/check Fehler");
+  return r.json();
 }
 
+// -----------------------------
+// LOGIN
+// -----------------------------
 export async function POST(req) {
   try {
-    const { email, adminToken } = (await req.json?.()) || {};
+    const body = await req.json();
+    const email = body?.email?.toLowerCase()?.trim();
 
-    // Admin
-    if (adminToken) {
-      if (!process.env.ADMIN_PASS || adminToken !== process.env.ADMIN_PASS) {
-        return NextResponse.json({ error: "Admin-Token ungültig" }, { status: 401 });
-      }
-      if (email) cookies().set({ name: "jl_email", value: encodeURIComponent(email), ...COOKIE_OPTS });
-      cookies().set({ name: "jl_admin", value: "1", ...COOKIE_OPTS });
-      cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
-      return NextResponse.json({ ok: true, mode: "admin" });
+    if (!email || !email.includes("@")) {
+      return NextResponse.json(
+        { success: false, message: "Bitte gültige E-Mail eingeben." },
+        { status: 400 }
+      );
     }
 
-    if (!email) return NextResponse.json({ error: "E-Mail fehlt" }, { status: 400 });
+    const verify = await authCheck(req, email);
 
-    await authCheck(req, email);
+    // 🔥 WICHTIG: Session MUSS = "1" sein
+    cookies().set({
+      name: "jl_session",
+      value: "1",
+      ...COOKIE_OPTS,
+    });
 
-    cookies().set({ name: "jl_email", value: encodeURIComponent(email), ...COOKIE_OPTS });
-    cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
-    cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
+    cookies().set({
+      name: "jl_email",
+      value: email,
+      ...COOKIE_OPTS,
+    });
 
-    return NextResponse.json({ ok: true, mode: "user" });
+    if (verify?.paid) {
+      cookies().set({
+        name: "jl_paid",
+        value: "1",
+        ...COOKIE_OPTS,
+      });
+    }
+
+    if (verify?.admin) {
+      cookies().set({
+        name: "jl_admin",
+        value: "1",
+        ...COOKIE_OPTS,
+      });
+    }
+
+    return NextResponse.json({
+      success: true,
+      paid: verify?.paid || false,
+      admin: verify?.admin || false,
+      message: "Login erfolgreich",
+    });
   } catch (err) {
-    console.error("SESSION ROUTE ERROR:", err);
-    return NextResponse.json({ error: String(err?.message || err) }, { status: 500 });
+    console.error("SESSION LOGIN ERROR:", err);
+    return NextResponse.json(
+      { success: false, error: String(err?.message || err) },
+      { status: 500 }
+    );
   }
 }
 
+// -----------------------------
+// LOGOUT (DELETE) – funktioniert zu 100%
+// -----------------------------
 export async function DELETE() {
   try {
     ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) =>
-      cookies().set({ name: n, value: "", path: "/", maxAge: 0 })
+      cookies().set({
+        name: n,
+        value: "",
+        path: "/",
+        maxAge: 0,
+      })
     );
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("SESSION DELETE ERROR:", err);
-    return NextResponse.json({ error: String(err?.message || err) }, { status: 500 });
+    return NextResponse.json(
+      { error: String(err?.message || err) },
+      { status: 500 }
+    );
   }
 }
