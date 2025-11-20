@@ -11,22 +11,17 @@ export default function LoginPage() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ------------------------------
-  // LOGOUT FUNKTION (voll kompatibel)
-  // ------------------------------
-  function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
-      document.cookie = `${name}=; Path=/; Max-Age=0`;
-      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
-      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=None; Secure`;
-    });
-
+  // ---------------------------------------------------
+  // 🔥 KORREKTER LOGOUT — über API (löscht HttpOnly Cookies)
+  // ---------------------------------------------------
+  async function logout() {
+    await fetch("/api/auth/session", { method: "DELETE" });
     window.location.href = "/";
   }
 
-  // ------------------------------
+  // ---------------------------------------------------
   // LOGIN FUNKTION
-  // ------------------------------
+  // ---------------------------------------------------
   async function handleLogin(e) {
     e.preventDefault();
     setMsg("");
@@ -94,15 +89,15 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* MELDUNGEN */}
+          {/* MELDUNG */}
           {msg && <p style={styles.msg}>{msg}</p>}
 
-          {/* LOGOUT BUTTON UNTEN */}
+          {/* LOGOUT BUTTON */}
           <button onClick={logout} style={styles.logoutBtn}>
             Logout
           </button>
 
-          {/* Zurück zur Startseite */}
+          {/* ZURÜCK */}
           <div style={{ textAlign: "center", marginTop: 12 }}>
             <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
           </div>
