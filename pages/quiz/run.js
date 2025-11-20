@@ -1,6 +1,5 @@
 // pages/quiz/run.js
 
-import RequireAccess from "../../components/RequireAccess";
 import Seo from "../../components/Seo";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -12,10 +11,7 @@ export default function QuizRun() {
   const country = (router.query.country || "DE").toString().toUpperCase();
   const topic = (router.query.topic || "Alle").toString();
 
-  // ⭐ Fragen müssen dynamisch nachgeladen werden (Restart FIX)
   const [questions, setQuestions] = useState([]);
-
-  // ⭐ Quiz State
   const [index, setIndex] = useState(0);
   const [timer, setTimer] = useState(30);
   const [score, setScore] = useState(0);
@@ -23,7 +19,6 @@ export default function QuizRun() {
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
 
-  // ⭐ Lade Fragen und reset bei Start + Restart
   useEffect(() => {
     const qset = filterQuestions({ country, topic, count: 10 });
 
@@ -38,9 +33,8 @@ export default function QuizRun() {
 
   const q = questions[index];
 
-  // ⭐ Perfekt stabiler Timer
   useEffect(() => {
-    if (!q) return; // Warten bis Fragen geladen sind
+    if (!q) return;
     if (finished) return;
     if (locked) return;
 
@@ -53,14 +47,12 @@ export default function QuizRun() {
     return () => clearTimeout(t);
   }, [timer, locked, finished, index, q]);
 
-  // ⭐ Timeout
   function handleTimeout() {
     setLocked(true);
     setSelected("timeout");
     setTimeout(() => nextQuestion(), 1200);
   }
 
-  // ⭐ Antwort
   function handleAnswer(ans, idx) {
     if (locked) return;
 
@@ -76,7 +68,6 @@ export default function QuizRun() {
     setTimeout(() => nextQuestion(), 1000);
   }
 
-  // ⭐ Weiter
   function nextQuestion() {
     if (index + 1 >= questions.length) {
       setFinished(true);
@@ -89,7 +80,6 @@ export default function QuizRun() {
     setLocked(false);
   }
 
-  // ⭐ Restart
   function restart() {
     router.push({
       pathname: "/quiz/run",
@@ -101,7 +91,6 @@ export default function QuizRun() {
     });
   }
 
-  // ⭐ Warten bis Fragen generiert sind
   if (!q) {
     return (
       <main style={{ padding: 40, textAlign: "center" }}>
@@ -110,15 +99,9 @@ export default function QuizRun() {
     );
   }
 
-  // ⭐ MOBILE-Styles
-  const mobileStyle = {
-    padding: 14,
-  };
-
   return (
     <>
       <Seo title="Quiz Spielmodus" />
-      <RequireAccess />
 
       <main
         className="quiz-wrapper"
@@ -131,8 +114,7 @@ export default function QuizRun() {
           padding: 24,
         }}
       >
-        {/* ⭐ QUIZ FERTIG */}
-        {finished && (
+        {finished ? (
           <div style={{ textAlign: "center" }}>
             <h1 style={{ fontSize: 32, marginBottom: 12 }}>🎉 Quiz beendet!</h1>
 
@@ -164,12 +146,8 @@ export default function QuizRun() {
               🔄 Nochmal spielen
             </button>
           </div>
-        )}
-
-        {/* ⭐ QUIZ LAUFEND */}
-        {!finished && (
+        ) : (
           <>
-            {/* Fortschritt & Timer */}
             <div
               style={{
                 display: "flex",
@@ -185,12 +163,10 @@ export default function QuizRun() {
               </span>
             </div>
 
-            {/* Score */}
             <div style={{ marginBottom: 16, fontSize: 16 }}>
               Score: {score}
             </div>
 
-            {/* ⭐ FRAGE */}
             <div
               className="quiz-card"
               style={{
@@ -212,7 +188,6 @@ export default function QuizRun() {
                 {q.q}
               </div>
 
-              {/* ⭐ ANTWORTEN */}
               <ul style={{ listStyle: "none", paddingLeft: 0 }}>
                 {q.answers.map((ans, i) => {
                   const isCorrect = q.correct.includes(ans.id);
@@ -247,16 +222,4 @@ export default function QuizRun() {
       </main>
     </>
   );
-}
-
-export async function getServerSideProps({ req }) {
-  const { hasPaidAccessFromCookies } = await import("../../lib/auth-check");
-
-  if (!hasPaidAccessFromCookies(req)) {
-    return {
-      redirect: { destination: "/login", permanent: false },
-    };
-  }
-
-  return { props: {} };
 }
