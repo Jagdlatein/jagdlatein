@@ -7,18 +7,18 @@ export function middleware(req) {
   const url = req.nextUrl.clone();
   const { hostname, pathname } = url;
 
-  // 1) Domain-Redirect
+  // 🚀 FIX FÜR VERCEL
+  if (req.headers.get("x-vercel-deployment")) {
+    return NextResponse.next();
+  }
+
   if (hostname === "www.jagdlatein.de") {
     url.hostname = "jagdlatein.de";
     return NextResponse.redirect(url);
   }
 
-  // 2) API ausschließen
-  if (pathname.startsWith("/api")) {
-    return NextResponse.next();
-  }
+  if (pathname.startsWith("/api")) return NextResponse.next();
 
-  // 3) Static ausschließen
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon") ||
@@ -27,21 +27,13 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // 4) COOKIES LESEN
   const hasSession = req.cookies.get("jl_session")?.value === "1";
   const hasPaid = req.cookies.get("jl_paid")?.value === "1";
   const isAdmin = req.cookies.get("jl_admin")?.value === "1";
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // ⏳ WICHTIG:
-  // Erlaube 1 Durchlauf nach Login, damit Cookies 100% bereit sind
   if (!hasSession && !isPublic) {
-    // Wenn User gerade von /login kommt → nicht blockieren
-    if (req.headers.get("referer")?.includes("/login")) {
-      return NextResponse.next(); // Cookies kommen beim nächsten Request
-    }
-
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
@@ -57,4 +49,3 @@ export function middleware(req) {
 export const config = {
   matcher: ["/((?!api|_next|favicon.ico).*)"],
 };
-
