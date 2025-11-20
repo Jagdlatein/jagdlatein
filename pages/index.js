@@ -17,15 +17,10 @@ export default function Home() {
     setLoggedIn(s);
   }, []);
 
-  // FUNKTIONIERENDER LOGOUT
-  function logout() {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
-      document.cookie = `${name}=; Path=/; Max-Age=0`;
-      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
-      document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=None; Secure`;
-    });
-
-    window.location.replace("/");
+  // 🔥 FUNKTIONIERENDER LOGOUT (löscht HttpOnly Cookies über API)
+  async function logout() {
+    await fetch("/api/auth/session", { method: "DELETE" });
+    window.location.href = "/";
   }
 
   return (
@@ -137,11 +132,11 @@ const styles = {
   linkButton: {
     background: "#caa53b",
     color: "#111",
-    padding: "10px 22px",   // kleiner
-    borderRadius: 12,       // kleiner
+    padding: "10px 22px",
+    borderRadius: 12,
     fontWeight: 700,
     textDecoration: "none",
-    fontSize: 16,           // kleiner
+    fontSize: 16,
     display: "block",
     width: "100%",
     maxWidth: 220,
