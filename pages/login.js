@@ -36,15 +36,18 @@ export default function LoginPage() {
 
       const data = await res.json();
 
+      // Fehlermeldung → KEIN Redirect
       if (!data || data.success === false) {
         setMsg(data?.message || "Diese E-Mail ist nicht registriert.");
         setLoading(false);
         return;
       }
 
+      // Login OK
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
+        // Full Reload → Middleware sieht Cookies sofort
         window.location.href = nextUrl;
       }, 600);
 
@@ -114,7 +117,6 @@ const styles = {
     padding: 20,
     background: "linear-gradient(180deg,#faf8f1,#efe7d5)",
   },
-
   card: {
     background: "#fff",
     padding: "36px 30px",
@@ -124,26 +126,22 @@ const styles = {
     boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
     textAlign: "center",
   },
-
   title: {
     fontSize: 32,
     fontFamily: "Georgia, serif",
     color: "#1f2b23",
     marginBottom: 8,
   },
-
   subtitle: {
     fontSize: 15,
     color: "#6c6458",
     marginBottom: 28,
   },
-
   form: {
     display: "flex",
     flexDirection: "column",
     gap: 14,
   },
-
   input: {
     padding: "14px 16px",
     borderRadius: 14,
@@ -151,7 +149,6 @@ const styles = {
     fontSize: 16,
     background: "#faf8f1",
   },
-
   button: {
     background: "#caa53b",
     padding: "14px 16px",
@@ -163,7 +160,6 @@ const styles = {
     color: "#111",
     transition: "0.2s",
   },
-
   alert: {
     marginTop: 18,
     background: "#fff4e5",
@@ -173,7 +169,6 @@ const styles = {
     color: "#8a5a1f",
     border: "1px solid #f1d2a8",
   },
-
   logoutBtn: {
     marginTop: 22,
     padding: "10px 16px",
@@ -185,7 +180,6 @@ const styles = {
     color: "#1f2b23",
     cursor: "pointer",
   },
-
   backLink: {
     display: "block",
     marginTop: 18,
