@@ -5,20 +5,17 @@ const PUBLIC_PATHS = ["/", "/login", "/preise"];
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
-  const { hostname, pathname } = url;
+  const { pathname } = url;
 
-  // 🚀 FIX FÜR VERCEL
+  // Vercel-Build nicht stören
   if (req.headers.get("x-vercel-deployment")) {
     return NextResponse.next();
   }
 
-  if (hostname === "www.jagdlatein.de") {
-    url.hostname = "jagdlatein.de";
-    return NextResponse.redirect(url);
-  }
-
+  // API ausschließen
   if (pathname.startsWith("/api")) return NextResponse.next();
 
+  // Static ausschließen
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon") ||
@@ -33,11 +30,13 @@ export function middleware(req) {
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // Nicht eingeloggt → nur Public-Seiten erlaubt
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
+  // Eingeloggt, aber nicht bezahlt → auf Preise umleiten
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
