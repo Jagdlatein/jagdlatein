@@ -1,48 +1,48 @@
-// middleware.js
 import { NextResponse } from "next/server";
+import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 const PUBLIC_PATHS = ["/", "/login", "/preise"];
 
-export function middleware(req) {
+export async function middleware(req) {
+  const res = NextResponse.next();
   const url = req.nextUrl.clone();
   const { pathname } = url;
 
-  // Vercel-Build nicht stören
-  if (req.headers.get("x-vercel-deployment")) {
-    return NextResponse.next();
-  }
+  // Supabase Client initialisieren
+  const supabase = createMiddlewareClient({ req, res });
 
-  // API ausschließen
-  if (pathname.startsWith("/api")) return NextResponse.next();
-
-  // Static ausschließen
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/favicon") ||
-    pathname.startsWith("/public")
-  ) {
-    return NextResponse.next();
-  }
-
-  const hasSession = req.cookies.get("jl_session")?.value === "1";
-  const hasPaid = req.cookies.get("jl_paid")?.value === "1";
-  const isAdmin = req.cookies.get("jl_admin")?.value === "1";
+  // Supabase-Session abrufen
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // Nicht eingeloggt → nur Public-Seiten erlaubt
-  if (!hasSession && !isPublic) {
+  // ❌ Nicht eingeloggt → Login erzwingen
+  if (!session && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // Eingeloggt, aber nicht bezahlt → auf Preise umleiten
-  if (hasSession && !hasPaid && !isAdmin && !isPublic) {
-    url.pathname = "/preise";
-    return NextResponse.redirect(url);
+  // Wenn eingeloggt → Premium prüfen
+  if (session) {
+    const { data: user } = await supabase
+      .from("User")
+      .select("is_premium")
+      .eq("id", session.user.id)
+      .single();
+
+    const isPremium = user?.is_premium === true;
+
+    // ❌ Eingeloggt aber kein Premium → Preise
+    if (!isPremium && !isPublic && pathname !== "/preise") {
+      url.pathname = "/preise";
+      return NextResponse.redirect(url);
+    }
   }
 
-  return NextResponse.next();
+  // Alles ok
+  return res;
 }
 
 export const config = {
