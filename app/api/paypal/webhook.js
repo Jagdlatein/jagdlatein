@@ -1,93 +1,59 @@
 // /pages/api/paypal/webhook.js
 
-import { prisma } from "@/lib/prisma";
-import { verifyPaypalWebhook } from "./_base";
+import { createClient } from "@supabase/supabase-js";
 
-const ACCESS_DAYS = 30;
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE
+);
 
 export default async function handler(req, res) {
-  const event = await verifyPaypalWebhook(req, res);
-  if (!event) return;
+  // Webhook Body
+  const event = req.body;
 
-  // Alle Events, die vom Hosted Button (Subscription) kommen UND
-  // die eine Freischaltung bedeuten
   const validEvents = [
-    "PAYMENT.CAPTURE.COMPLETED",            // einmalige Zahlungen
-    "BILLING.SUBSCRIPTION.ACTIVATED",       // neues Abo
-    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED" // Abo-Verlängerung
+    "BILLING.SUBSCRIPTION.ACTIVATED",
+    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED",
+    "PAYMENT.CAPTURE.COMPLETED"
   ];
 
   if (!validEvents.includes(event.event_type)) {
     return res.status(200).send("IGNORED");
   }
 
-  // Email extrahieren je nach Event-Typ
-  const buyerEmail =
-    event?.resource?.payer?.email_address ||           // PAYMENT.CAPTURE.COMPLETED
-    event?.resource?.subscriber?.email_address ||       // SUBSCRIPTIONS
+  // Buyer email aus PayPal
+  const email =
+    event?.resource?.payer?.email_address ||
+    event?.resource?.subscriber?.email_address ||
     null;
 
-  if (!buyerEmail) {
-    return res.status(400).send("Webhook error: No email found");
+  if (!email) {
+    return res.status(400).json({ error: "No email found" });
   }
 
-  const email = buyerEmail.toLowerCase();
+  const normalized = email.toLowerCase();
 
-  // Nutzer laden oder erstellen
-  let user = await prisma.user.findUnique({
-    where: { id: email },
-  });
+  // 🔥 Supabase User suchen
+  const { data: users } = await supabase
+    .from("User")
+    .select("id")
+    .eq("email", normalized)
+    .limit(1);
+
+  const user = users?.[0];
 
   if (!user) {
-    user = await prisma.user.create({
-      data: { id: email },
-    });
+    console.log("User existiert nicht in Supabase:", normalized);
+    return res.status(200).send("USER_NOT_FOUND");
   }
 
-  // AccessPass laden
-  const existing = await prisma.accessPass.findUnique({
-    where: { userId: user.id },
-  });
+  // PREMIUM setzen
+  await supabase
+    .from("User")
+    .update({ is_premium: true })
+    .eq("id", user.id);
 
-  const now = new Date();
-  const base =
-    existing?.expiresAt && existing.expiresAt > now
-      ? existing.expiresAt
-      : now;
+  console.log("Premium aktiviert für:", normalized);
 
-  const newExpiresAt = new Date(
-    base.getTime() + ACCESS_DAYS * 24 * 60 * 60 * 1000
-  );
-
-  // Access erstellen/verlängern
-  if (!existing) {
-    await prisma.accessPass.create({
-      data: {
-        userId: user.id,
-        plan: "monthly",
-        status: "active",
-        expiresAt: newExpiresAt,
-      },
-    });
-  } else {
-    await prisma.accessPass.update({
-      where: { userId: user.id },
-      data: {
-        status: "active",
-        expiresAt: newExpiresAt,
-      },
-    });
-  }
-
-  // Event loggen
-  await prisma.paymentEvent.create({
-    data: {
-      provider: "paypal",
-      email: user.id,
-      status: "completed",
-      raw: event,
-    },
-  });
-
-  return res.status(200).send("ACCESS_UPDATED");
+  return res.status(200).send("PREMIUM_GRANTED");
 }
