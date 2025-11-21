@@ -1,12 +1,14 @@
-// /pages/api/paypal/_base.js
+// /app/api/paypal/webhook/_base.js
 
 export function paypalBase() {
   const env = (process.env.PAYPAL_ENV || "live").toLowerCase();
-  const base =
-    env === "sandbox"
-      ? "https://api-m.sandbox.paypal.com"
-      : "https://api-m.paypal.com";
-  return { env, base };
+  return {
+    env,
+    base:
+      env === "sandbox"
+        ? "https://api-m.sandbox.paypal.com"
+        : "https://api-m.paypal.com",
+  };
 }
 
 // Access Token holen
@@ -24,6 +26,7 @@ export async function paypalAccessToken() {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "grant_type=client_credentials",
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -35,28 +38,25 @@ export async function paypalAccessToken() {
   return access_token;
 }
 
-// Webhook verifizieren
-export async function verifyPaypalWebhook(req, res) {
+// Webhook verifizieren – App Router Version
+export async function verifyPaypalWebhook(req, rawBody) {
   const { base } = paypalBase();
   const webhookId = process.env.PAYPAL_WEBHOOK_ID;
 
   if (!webhookId) {
     console.error("❌ PAYPAL_WEBHOOK_ID fehlt!");
-    return res.status(500).send("Missing config");
+    return null;
   }
 
-  // Headers von PayPal
-  const authAlgo = req.headers["paypal-auth-algo"];
-  const certUrl = req.headers["paypal-cert-url"];
-  const transmissionId = req.headers["paypal-transmission-id"];
-  const transmissionSig = req.headers["paypal-transmission-sig"];
-  const transmissionTime = req.headers["paypal-transmission-time"];
-
-  const body = req.body;
+  const authAlgo = req.headers.get("paypal-auth-algo");
+  const certUrl = req.headers.get("paypal-cert-url");
+  const transmissionId = req.headers.get("paypal-transmission-id");
+  const transmissionSig = req.headers.get("paypal-transmission-sig");
+  const transmissionTime = req.headers.get("paypal-transmission-time");
 
   const token = await paypalAccessToken();
 
-  // PayPal Signature prüfen
+  // Prüfanfrage an PayPal senden
   const verifyRes = await fetch(
     `${base}/v1/notifications/verify-webhook-signature`,
     {
@@ -72,8 +72,9 @@ export async function verifyPaypalWebhook(req, res) {
         transmission_sig: transmissionSig,
         transmission_time: transmissionTime,
         webhook_id: webhookId,
-        webhook_event: body,
+        webhook_event: JSON.parse(rawBody),
       }),
+      cache: "no-store",
     }
   );
 
@@ -81,8 +82,8 @@ export async function verifyPaypalWebhook(req, res) {
 
   if (verifyJson.verification_status !== "SUCCESS") {
     console.error("❌ Webhook Verification failed:", verifyJson);
-    return res.status(400).send("Invalid signature");
+    return null;
   }
 
-  return body;
+  return JSON.parse(rawBody);
 }
