@@ -2,75 +2,56 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function PayPalButtons() {
-  const mountRef = useRef(null);
-  const [sdkReady, setSdkReady] = useState(false);
-  const [msg, setMsg] = useState("PayPal lädt …");
+  const containerRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "";
-  const currency = process.env.NEXT_PUBLIC_PAYPAL_CURRENCY || "EUR";
+  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
 
   useEffect(() => {
-    if (!clientId) {
-      setMsg("PayPal ist momentan nicht konfiguriert. Bitte Betreiber kontaktieren.");
-      return;
-    }
+    if (!clientId || typeof window === "undefined") return;
 
-    if (typeof window === "undefined") return;
-
+    // PayPal SDK bereits geladen?
     if (window.paypal) {
-      setSdkReady(true);
-      setMsg("");
+      setReady(true);
       return;
     }
-
-    const params = new URLSearchParams({
-      "client-id": clientId,
-      currency,
-      components: "hosted-buttons",
-      "disable-funding": "venmo",
-    }).toString();
 
     const script = document.createElement("script");
-    script.src = `https://www.paypal.com/sdk/js?${params}`;
+    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&vault=true&intent=subscription`;
     script.async = true;
-    script.onload = () => {
-      setSdkReady(true);
-      setMsg("");
-    };
-    script.onerror = () => {
-      setMsg("PayPal konnte nicht geladen werden.");
-    };
-
+    script.onload = () => setReady(true);
     document.body.appendChild(script);
-  }, [clientId, currency]);
+  }, [clientId]);
 
   useEffect(() => {
-    if (!sdkReady || !window.paypal || !mountRef.current) return;
+    if (!ready || !window.paypal || !containerRef.current) return;
 
-    window.paypal
-      .HostedButtons({
-        hostedButtonId: "GDPFM87K7X6TJ", // <<< deine neue Hosted Button ID
-      })
-      .render(mountRef.current);
-  }, [sdkReady]);
+    window.paypal.Buttons({
+      style: {
+        shape: "rect",
+        color: "gold",
+        layout: "vertical",
+        label: "subscribe",
+      },
 
-  return (
-    <div style={{ minWidth: 260 }}>
-      {msg && (
-        <div
-          style={{
-            fontSize: 13,
-            color: "#6b7280",
-            marginBottom: 8,
-            padding: "6px 8px",
-            border: "1px dashed #d1d5db",
-            borderRadius: 8,
-          }}
-        >
-          {msg}
-        </div>
-      )}
-      <div ref={mountRef} />
-    </div>
-  );
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-38V69183FP2658041NEQFIYQ", // deine Plan-ID
+        });
+      },
+
+      onApprove: function (data) {
+        // Weiterleitung auf success — Webhook schaltet frei
+        window.location.href = `/success?subscription=${data.subscriptionID}`;
+      },
+
+      onError: function (err) {
+        console.error("PayPal error:", err);
+        alert("PayPal konnte nicht gestartet werden.");
+      },
+
+    }).render(containerRef.current);
+  }, [ready]);
+
+  return <div id="paypal-button-container" ref={containerRef}></div>;
 }
