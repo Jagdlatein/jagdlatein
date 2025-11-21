@@ -1,98 +1,87 @@
-// /pages/api/paypal/webhook.js
-
+import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { verifyPaypalWebhook } from "./_base";
 
-// Supabase admin client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE
 );
 
-export default async function handler(req, res) {
-  // 1. PayPal Signature prüfen
-  const event = await verifyPaypalWebhook(req, res);
-  if (!event) return;
+export async function POST(req) {
+  const body = await req.text();
 
-  // 2. Relevante PayPal Events
-  const validEvents = [
-    "BILLING.SUBSCRIPTION.ACTIVATED",
-    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED",
-    "BILLING.SUBSCRIPTION.CANCELLED",
-  ];
-
-  if (!validEvents.includes(event.event_type)) {
-    return res.status(200).send("IGNORED");
+  // 1. Webhook Signatur prüfen
+  const event = await verifyPaypalWebhook(req, body);
+  if (!event) {
+    return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
-  // 3. Kunde Email extrahieren
+  // Relevante Events
+  const valid = [
+    "BILLING.SUBSCRIPTION.ACTIVATED",
+    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED",
+    "BILLING.SUBSCRIPTION.CANCELLED"
+  ];
+
+  if (!valid.includes(event.event_type)) {
+    return NextResponse.json({ ok: true });
+  }
+
+  // 2. Email extrahieren
   const email =
     event?.resource?.subscriber?.email_address ||
-    event?.resource?.payer?.email_address ||
-    null;
+    event?.resource?.payer?.email_address;
 
-  if (!email) return res.status(400).send("No email in PayPal event");
+  if (!email) {
+    return NextResponse.json({ error: "No email found" }, { status: 400 });
+  }
 
-  const normalized = email.toLowerCase();
+  const normalizedEmail = email.toLowerCase();
 
-  // 4. Supabase-USER suchen (über email — Magic Link)
-  const { data: sbUser } = await supabase
-    .from("UserProfile")
+  // 3. Userprofile finden
+  const { data: profile } = await supabase
+    .from("userprofile")
     .select("user_id")
-    .eq("email", normalized)
-    .single();
+    .eq("email", normalizedEmail)
+    .maybeSingle();
 
-  let userId = sbUser?.user_id;
+  let userId = profile?.user_id;
 
-  // Falls User noch nie eingeloggt war → neuen Supabase-Eintrag erzeugen
+  // Falls User noch nie eingeloggt → Profil anlegen
   if (!userId) {
-    const { data: created } = await supabase
-      .from("UserProfile")
-      .insert({
-        email: normalized,
-        is_premium: false,
-      })
+    const { data: newProfile } = await supabase
+      .from("userprofile")
+      .insert({ email: normalizedEmail, is_premium: false })
       .select()
       .single();
 
-    userId = created.user_id;
+    userId = newProfile.user_id;
   }
 
-  // 5. Subscription Infos aus PayPal
-  const subscriptionId = event.resource.id;
-  const status = event.resource.status;
-
-  const nextBilling =
-    event.resource?.billing_info?.next_billing_time || null;
-
-  // 6. Subscription upsert
+  // 4. Subscription speichern
   await supabase.from("subscription").upsert({
     user_id: userId,
-    paypal_subscription_id: subscriptionId,
-    status: status,
-    next_billing_time: nextBilling,
+    paypal_subscription_id: event.resource.id,
+    status: event.resource.status,
+    next_billing_time:
+      event.resource.billing_info?.next_billing_time || null,
   });
 
-  // 7. Premium setzen / entfernen
-  if (status === "ACTIVE") {
-    await supabase
-      .from("userprofile")
-      .update({ is_premium: true })
-      .eq("user_id", userId);
-  } else if (status === "CANCELLED") {
-    await supabase
-      .from("userprofile")
-      .update({ is_premium: false })
-      .eq("user_id", userId);
-  }
+  // 5. Premium setzen oder entfernen
+  const isActive = event.resource.status === "ACTIVE";
 
-  // 8. Logging
+  await supabase
+    .from("userprofile")
+    .update({ is_premium: isActive })
+    .eq("user_id", userId);
+
+  // 6. Loggen
   await supabase.from("paymentlog").insert({
     provider: "paypal",
-    email: normalized,
-    status,
+    email: normalizedEmail,
+    status: event.event_type,
     raw: event,
   });
 
-  return res.status(200).send("OK");
+  return NextResponse.json({ ok: true });
 }
