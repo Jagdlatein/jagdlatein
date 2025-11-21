@@ -1,4 +1,3 @@
-// app/api/auth/session/route.js
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import prisma from "../../../../lib/prisma";
@@ -13,11 +12,10 @@ const COOKIE_OPTS = {
   maxAge: 60 * 60 * 24 * 40,
 };
 
-// USER CHECK
 async function authCheck(email) {
   const user = await prisma.user.findUnique({
     where: { id: email },
-    include: { access: true },
+    include: { accessPass: true }, // <-- FIX
   });
 
   if (!user) {
@@ -25,7 +23,8 @@ async function authCheck(email) {
   }
 
   const now = new Date();
-  const active = user.access && user.access.expiresAt > now;
+  const active =
+    user.accessPass && user.accessPass.expiresAt > now; // <-- FIX
 
   return {
     exists: true,
@@ -34,7 +33,6 @@ async function authCheck(email) {
   };
 }
 
-// LOGIN
 export async function POST(req) {
   try {
     const { email } = await req.json();
@@ -49,7 +47,6 @@ export async function POST(req) {
     const mail = email.toLowerCase().trim();
     const verify = await authCheck(mail);
 
-    // ❌ FALL 1: Nutzer existiert NICHT
     if (!verify.exists) {
       return NextResponse.json(
         { success: false, message: "E-Mail ist nicht registriert." },
@@ -57,33 +54,15 @@ export async function POST(req) {
       );
     }
 
-    // ✔ Nutzer existiert → Cookies setzen
-    cookies().set({
-      name: "jl_session",
-      value: "1",
-      ...COOKIE_OPTS,
-    });
-
-    cookies().set({
-      name: "jl_email",
-      value: mail,
-      ...COOKIE_OPTS,
-    });
+    cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
+    cookies().set({ name: "jl_email", value: mail, ...COOKIE_OPTS });
 
     if (verify.paid) {
-      cookies().set({
-        name: "jl_paid",
-        value: "1",
-        ...COOKIE_OPTS,
-      });
+      cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
     }
 
     if (verify.admin) {
-      cookies().set({
-        name: "jl_admin",
-        value: "1",
-        ...COOKIE_OPTS,
-      });
+      cookies().set({ name: "jl_admin", value: "1", ...COOKIE_OPTS });
     }
 
     return NextResponse.json({
@@ -93,7 +72,6 @@ export async function POST(req) {
     });
 
   } catch (err) {
-    console.error("SESSION LOGIN ERROR:", err);
     return NextResponse.json(
       { success: false, error: err.toString() },
       { status: 500 }
@@ -101,7 +79,6 @@ export async function POST(req) {
   }
 }
 
-// LOGOUT
 export async function DELETE() {
   ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) =>
     cookies().set({
