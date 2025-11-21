@@ -11,7 +11,6 @@ export function paypalBase() {
   };
 }
 
-// Access Token holen
 export async function paypalAccessToken() {
   const { base } = paypalBase();
 
@@ -38,7 +37,6 @@ export async function paypalAccessToken() {
   return access_token;
 }
 
-// Webhook verifizieren – App Router Version
 export async function verifyPaypalWebhook(req, rawBody) {
   const { base } = paypalBase();
   const webhookId = process.env.PAYPAL_WEBHOOK_ID;
@@ -56,7 +54,6 @@ export async function verifyPaypalWebhook(req, rawBody) {
 
   const token = await paypalAccessToken();
 
-  // Prüfanfrage an PayPal senden
   const verifyRes = await fetch(
     `${base}/v1/notifications/verify-webhook-signature`,
     {
@@ -81,7 +78,7 @@ export async function verifyPaypalWebhook(req, rawBody) {
   const verifyJson = await verifyRes.json();
 
   if (verifyJson.verification_status !== "SUCCESS") {
-    console.error("❌ Webhook Verification failed:", verifyJson);
+    console.error("❌ Webhook Signature invalid:", verifyJson);
     return null;
   }
 
