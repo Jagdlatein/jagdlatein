@@ -14,14 +14,17 @@ export async function POST(req) {
     const { base } = paypalBase();
     const access_token = await paypalAccessToken();
 
-    const capRes = await fetch(`${base}/v2/checkout/orders/${orderId}/capture`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+    const capRes = await fetch(
+      `${base}/v2/checkout/orders/${orderId}/capture`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }
+    );
 
     const capJson = await capRes.json();
 
@@ -29,7 +32,7 @@ export async function POST(req) {
       return Response.json(capJson, { status: 500 });
     }
 
-    // Capture ist erfolgreich
+    // Capture erfolgreich
     return Response.json(
       { ok: true, capture: capJson },
       { status: 200 }
@@ -40,6 +43,4 @@ export async function POST(req) {
       { status: 500 }
     );
   }
-}
-
 }
