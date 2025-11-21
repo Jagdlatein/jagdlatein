@@ -1,4 +1,4 @@
-import { paypalBase, paypalAccessToken } from "@/app/api/paypal/_base";
+import { paypalBase, paypalAccessToken } from "../webhook/_base";
 
 export async function POST(req) {
   try {
