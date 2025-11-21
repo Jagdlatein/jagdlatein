@@ -1,50 +1,47 @@
-// middleware.js
 import { NextResponse } from "next/server";
+import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
-const PUBLIC_PATHS = ["/", "/login", "/preise"];
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};
 
-export function middleware(req) {
+export async function middleware(req) {
+  const res = NextResponse.next();
   const url = req.nextUrl.clone();
-  const { pathname } = url;
+  const pathname = url.pathname;
 
-  // Vercel-Build nicht stören
-  if (req.headers.get("x-vercel-deployment")) {
-    return NextResponse.next();
-  }
+  const PUBLIC = ["/", "/login", "/preise"];
+  const isPublic = PUBLIC.includes(pathname);
 
-  // API ausschließen
-  if (pathname.startsWith("/api")) return NextResponse.next();
+  // Supabase Client für Edge Middleware
+  const supabase = createMiddlewareClient({ req, res });
 
-  // Static ausschließen
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/favicon") ||
-    pathname.startsWith("/public")
-  ) {
-    return NextResponse.next();
-  }
+  // Session laden
+  const { data: { session } } = await supabase.auth.getSession();
 
-  const hasSession = req.cookies.get("jl_session")?.value === "1";
-  const hasPaid = req.cookies.get("jl_paid")?.value === "1";
-  const isAdmin = req.cookies.get("jl_admin")?.value === "1";
-
-  const isPublic = PUBLIC_PATHS.includes(pathname);
-
-  // Nicht eingeloggt → nur Public-Seiten erlaubt
-  if (!hasSession && !isPublic) {
+  // 1. Nicht eingeloggt
+  if (!session && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // Eingeloggt, aber nicht bezahlt → auf Preise umleiten
-  if (hasSession && !hasPaid && !isAdmin && !isPublic) {
-    url.pathname = "/preise";
-    return NextResponse.redirect(url);
+  // 2. Premium prüfen
+  if (session) {
+    const userId = session.user.id;
+
+    const { data: profile } = await supabase
+      .from("userprofile")
+      .select("is_premium")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    const isPremium = profile?.is_premium === true;
+
+    if (!isPremium && !isPublic && pathname !== "/preise") {
+      url.pathname = "/preise";
+      return NextResponse.redirect(url);
+    }
   }
 
-  return NextResponse.next();
+  return res;
 }
-
-export const config = {
-  matcher: ["/((?!api|_next|favicon.ico).*)"],
-};
