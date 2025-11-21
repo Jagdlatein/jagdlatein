@@ -1,7 +1,7 @@
 // /components/PayPalButtons.js
 import { useEffect, useRef, useState } from "react";
 
-export default function PayPalButtons({ tier = "monthly" }) {
+export default function PayPalButtons() {
   const mountRef = useRef(null);
   const [sdkReady, setSdkReady] = useState(false);
   const [msg, setMsg] = useState("PayPal lädt …");
@@ -18,18 +18,19 @@ export default function PayPalButtons({ tier = "monthly" }) {
 
     if (typeof window === "undefined") return;
 
+    // PayPal SDK bereits geladen?
     if (window.paypal) {
       setSdkReady(true);
       setMsg("");
       return;
     }
 
+    // Hosted Buttons Script laden
     const params = new URLSearchParams({
       "client-id": clientId,
       currency,
-      intent: "capture",
-      components: "buttons",
-      commit: "true",
+      components: "hosted-buttons",
+      "disable-funding": "venmo",
     }).toString();
 
     const src = `https://www.paypal.com/sdk/js?${params}`;
@@ -45,59 +46,21 @@ export default function PayPalButtons({ tier = "monthly" }) {
     };
     script.onerror = (e) => {
       console.error("PayPal SDK load error", e);
-      setMsg(
-        "PayPal-SDK konnte nicht geladen werden. " +
-        "Bitte Werbeblocker/Tracking-Schutz prüfen oder später erneut versuchen."
-      );
+      setMsg("PayPal-SDK konnte nicht geladen werden. Bitte erneut versuchen.");
     };
+
     document.body.appendChild(script);
   }, [clientId, currency]);
 
   useEffect(() => {
     if (!sdkReady || !window.paypal || !mountRef.current) return;
 
-    window.paypal.Buttons({
-      style: { layout: "horizontal", color: "gold", shape: "rect", label: "paypal", height: 40 },
-      createOrder: async () => {
-        const res = await fetch("/api/paypal/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ tier }),
-        });
-        const data = await res.json();
-        if (!res.ok || !data?.id) {
-          console.error("create-order error:", data);
-          setMsg("PayPal konnte nicht gestartet werden.");
-          throw new Error("create-order failed");
-        }
-        return data.id;
-      },
-      onApprove: async (data) => {
-        try {
-          const res = await fetch("/api/paypal/capture-order", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ orderId: data.orderID }),
-          });
-          const j = await res.json();
-          if (!res.ok) {
-            console.error("capture error:", j);
-            setMsg("PayPal-Zahlung konnte nicht abgeschlossen werden.");
-            return;
-          }
-          window.location.href = "/success?provider=paypal";
-        } catch (e) {
-          console.error(e);
-          setMsg("Unerwarteter PayPal-Fehler.");
-        }
-      },
-      onCancel: () => (window.location.href = "/preise?canceled=1"),
-      onError: (err) => {
-        console.error("paypal onError:", err);
-        setMsg("PayPal-Fehler – bitte erneut versuchen.");
-      },
-    }).render(mountRef.current);
-  }, [sdkReady, tier]);
+    window.paypal
+      .HostedButtons({
+        hostedButtonId: "WBPRVVCEQ8HU8", // <<< deine Button-ID
+      })
+      .render(mountRef.current);
+  }, [sdkReady]);
 
   return (
     <div style={{ minWidth: 260 }}>
@@ -115,6 +78,7 @@ export default function PayPalButtons({ tier = "monthly" }) {
           {msg}
         </div>
       )}
+
       <div ref={mountRef} />
     </div>
   );
