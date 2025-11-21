@@ -26,13 +26,16 @@ export async function middleware(req) {
 
   // Wenn eingeloggt → Premium prüfen
   if (session) {
-    const { data: user } = await supabase
-      .from("User")
+    const userId = session.user.id;
+
+    // 🔥 KORREKT: Premium-Status aus userprofile laden
+    const { data: profile } = await supabase
+      .from("userprofile")
       .select("is_premium")
-      .eq("id", session.user.id)
+      .eq("user_id", userId)
       .single();
 
-    const isPremium = user?.is_premium === true;
+    const isPremium = profile?.is_premium === true;
 
     // ❌ Eingeloggt aber kein Premium → Preise
     if (!isPremium && !isPublic && pathname !== "/preise") {
