@@ -1,37 +1,14 @@
+// app/api/auth/check/route.js
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import prisma from "../../../../lib/prisma";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
-const COOKIE_OPTS = {
-  httpOnly: true,
-  sameSite: "none",
-  secure: true,
-  path: "/",
-  maxAge: 60 * 60 * 24 * 40,
-};
-
-async function authCheck(email) {
-  const user = await prisma.user.findUnique({
-    where: { id: email },
-    include: { accessPass: true }, // <-- FIX
-  });
-
-  if (!user) {
-    return { exists: false, paid: false, admin: false };
-  }
-
-  const now = new Date();
-  const active =
-    user.accessPass && user.accessPass.expiresAt > now; // <-- FIX
-
-  return {
-    exists: true,
-    paid: active,
-    admin: user.admin === true,
-  };
-}
+// Supabase Admin Client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE
+);
 
 export async function POST(req) {
   try {
@@ -45,32 +22,27 @@ export async function POST(req) {
     }
 
     const mail = email.toLowerCase().trim();
-    const verify = await authCheck(mail);
 
-    if (!verify.exists) {
-      return NextResponse.json(
-        { success: false, message: "E-Mail ist nicht registriert." },
-        { status: 403 }
-      );
-    }
+    // 🔥 User aus userprofile holen
+    const { data: profile } = await supabase
+      .from("userprofile")
+      .select("is_premium")
+      .eq("email", mail)
+      .maybeSingle();
 
-    cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
-    cookies().set({ name: "jl_email", value: mail, ...COOKIE_OPTS });
-
-    if (verify.paid) {
-      cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
-    }
-
-    if (verify.admin) {
-      cookies().set({ name: "jl_admin", value: "1", ...COOKIE_OPTS });
+    // User hat kein Profil → nicht registriert
+    if (!profile) {
+      return NextResponse.json({
+        success: false,
+        message: "E-Mail ist nicht registriert.",
+      });
     }
 
     return NextResponse.json({
       success: true,
-      paid: verify.paid,
-      admin: verify.admin,
+      paid: profile.is_premium === true,
+      admin: false, // optional: falls du ein Admin-System aufbauen willst
     });
-
   } catch (err) {
     return NextResponse.json(
       { success: false, error: err.toString() },
