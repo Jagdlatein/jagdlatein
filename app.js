@@ -1,3 +1,13 @@
+// ---------- SUPABASE LOGIN SYSTEM ----------
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+// 🔥 HIER deine echten Keys eintragen
+const supabase = createClient(
+  "https://YOUR-PROJECT.supabase.co",
+  "YOUR-ANON-KEY"
+);
+
 (function () {
   const form = document.getElementById('login-form');
   const emailInput = document.getElementById('email');
@@ -27,119 +37,52 @@
     loginButton.textContent = isLoading ? 'Wird geprüft…' : 'Einloggen';
   }
 
-  function safeJsonParse(text) {
-    try {
-      return JSON.parse(text);
-    } catch (e) {
-      return null;
-    }
-  }
+  // 🔥 NEU: LOGIN via Supabase Magic Link
+  async function handleLogin(e) {
+    e.preventDefault();
 
-  function safeSetItem(key, value) {
-    try {
-      if (window.localStorage) {
-        localStorage.setItem(key, value);
-      }
-    } catch (e) {}
-  }
-
-  async function handleLogin(event) {
-    event.preventDefault();
-
-    const email = (emailInput.value || '').trim();
+    const email = emailInput.value.trim();
     if (!email) {
-      showMessage('Bitte gib deine E-Mail-Adresse ein.', 'error');
-      return;
-    }
-
-    if (!email.includes('@')) {
-      showMessage('Diese E-Mail-Adresse sieht nicht gültig aus.', 'error');
+      showMessage("Bitte E-Mail eingeben.", "error");
       return;
     }
 
     setLoading(true);
-    showMessage('');
+    showMessage("");
 
-    try {
-      const response = await fetch('/api/auth/session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-      });
-
-      const rawText = await response.text();
-      const data = safeJsonParse(rawText);
-
-      if (!data) {
-        showMessage(
-          'Technisches Problem: Ungültige Server-Antwort.',
-          'error'
-        );
-        return;
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: window.location.origin + "/", 
       }
+    });
 
-      if (!response.ok || data.success === false) {
-        const msg =
-          (data && data.message) ||
-          'Login fehlgeschlagen. Bitte prüfe deine E-Mail-Adresse.';
+    setLoading(false);
 
-        showMessage(msg, 'error');
-        return;
-      }
-
-      if (data.token) {
-        safeSetItem('jagdlatein_auth_token', data.token);
-      }
-
-      showMessage('Erfolgreich eingeloggt. Du wirst weitergeleitet…', 'success');
-
-      setTimeout(function () {
-        window.location.href = '/quiz';
-      }, 800);
-    } catch (err) {
-      showMessage(
-        'Keine Verbindung zum Server. Bitte versuche es später erneut.',
-        'error'
-      );
-    } finally {
-      setLoading(false);
+    if (error) {
+      showMessage("Login fehlgeschlagen: " + error.message, "error");
+      return;
     }
+
+    showMessage(
+      "Login-Link wurde an deine E-Mail gesendet. Bitte Posteingang prüfen!",
+      "success"
+    );
   }
 
-  // 🔥 NEUER KORREKTER LOGOUT (funktioniert mit HttpOnly-Cookies)
+  // 🔥 LOGOUT mit Supabase Auth
   async function handleLogout() {
     try {
-      await fetch("/api/auth/session", { method: "DELETE" });
+      await supabase.auth.signOut();
       showMessage("Du wurdest abgemeldet.", "success");
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 500);
-    } catch (e) {
-      console.error("Logout fehlgeschlagen:", e);
+      setTimeout(() => location.href = "/", 500);
+    } catch (err) {
+      console.log(err);
       showMessage("Logout fehlgeschlagen.", "error");
     }
   }
 
-  if (form) form.addEventListener('submit', handleLogin);
-  if (logoutButton) logoutButton.addEventListener('click', handleLogout);
+  if (form) form.addEventListener("submit", handleLogin);
+  if (logoutButton) logoutButton.addEventListener("click", handleLogout);
+
 })();
-
-export default function App({ Component, pageProps }) {
-  return (
-    <div className="app-wrapper">
-
-      {/* HEADER */}
-      <header className="navbar">
-        <a href="/" className="logo">Jagdlatein Die Lernplattform</a>
-      </header>
-
-      {/* CONTENT */}
-      <main className="content-area">
-        <Component {...pageProps} />
-      </main>
-
-    </div>
-  );
-}
