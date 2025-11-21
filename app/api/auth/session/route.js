@@ -4,11 +4,20 @@ import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
-// Supabase Admin Client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE
-);
+// Build Mode aktiv, wenn ENV fehlt
+const BUILD_MODE =
+  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  !process.env.SUPABASE_SERVICE_ROLE;
+
+// Supabase nur initialisieren, wenn ENV vorhanden
+let supabase = null;
+
+if (!BUILD_MODE) {
+  supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE
+  );
+}
 
 export async function POST(req) {
   try {
@@ -23,14 +32,22 @@ export async function POST(req) {
 
     const mail = email.toLowerCase().trim();
 
-    // 🔥 User aus userprofile holen
+    // 🛡️ Build Mode: Dummy Antwort passt zum Cookie-Login-System
+    if (BUILD_MODE) {
+      return NextResponse.json({
+        success: true,
+        paid: false,
+        admin: false,
+      });
+    }
+
+    // 🔥 Runtime: User aus userprofile holen
     const { data: profile } = await supabase
       .from("userprofile")
       .select("is_premium")
       .eq("email", mail)
       .maybeSingle();
 
-    // User hat kein Profil → nicht registriert
     if (!profile) {
       return NextResponse.json({
         success: false,
@@ -41,7 +58,7 @@ export async function POST(req) {
     return NextResponse.json({
       success: true,
       paid: profile.is_premium === true,
-      admin: false, // optional: falls du ein Admin-System aufbauen willst
+      admin: false,
     });
   } catch (err) {
     return NextResponse.json(
@@ -52,14 +69,5 @@ export async function POST(req) {
 }
 
 export async function DELETE() {
-  ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) =>
-    cookies().set({
-      name,
-      value: "",
-      path: "/",
-      maxAge: 0,
-    })
-  );
-
   return NextResponse.json({ ok: true });
 }
