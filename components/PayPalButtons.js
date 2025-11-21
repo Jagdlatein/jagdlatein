@@ -12,7 +12,6 @@ export default function PayPalButtons() {
   useEffect(() => {
     if (!clientId) {
       setMsg("PayPal ist momentan nicht konfiguriert. Bitte Betreiber kontaktieren.");
-      console.error("PayPal: NEXT_PUBLIC_PAYPAL_CLIENT_ID fehlt");
       return;
     }
 
@@ -50,7 +49,7 @@ export default function PayPalButtons() {
 
     window.paypal
       .HostedButtons({
-        hostedButtonId: "WBPRVVCEQ8HU8",
+        hostedButtonId: "GDPFM87K7X6TJ", // <<< deine neue Hosted Button ID
       })
       .render(mountRef.current);
   }, [sdkReady]);
