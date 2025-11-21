@@ -4,7 +4,6 @@ import Link from "next/link";
 import PayPalButtons from "../components/PayPalButtons";
 
 export default function Preise() {
-  // Styles (mobil zuerst)
   const container = {
     maxWidth: 960,
     margin: "0 auto",
@@ -26,18 +25,13 @@ export default function Preise() {
     fontSize: 16,
   };
 
-  const grid = {
-    display: "grid",
-    gap: 14,
-    gridTemplateColumns: "1fr", // mobil: eine Spalte
-  };
-
   const card = {
     background: "#fff",
     border: "1px solid #e6eee6",
     borderRadius: 14,
     padding: 14,
     boxShadow: "0 8px 18px rgba(17,41,25,0.06)",
+    marginBottom: 14,
   };
 
   const priceTitle = {
@@ -67,13 +61,6 @@ export default function Preise() {
       <Head>
         <title>Preise – Jagdlatein</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Desktop-Regel: ab 920px zwei Spalten + größere Headline */}
-        <style>{`
-          @media (min-width:920px){
-            .pricing-grid{grid-template-columns:1fr 1fr; gap:16px}
-            h1.jl{font-size:42px; margin:8px 0 6px}
-          }
-        `}</style>
       </Head>
 
       <main style={{ background: "linear-gradient(180deg,#fff,#f7faf7)" }}>
@@ -83,45 +70,26 @@ export default function Preise() {
           </h1>
 
           <p style={lead}>
-            Wähle dein Modell. Der Zugang zur Lernplattform wird nach
-            erfolgreicher Bezahlung automatisch freigeschaltet.
+            Wähle dein Modell. Der Zugang zur Lernplattform wird nach erfolgreicher
+            Bezahlung automatisch freigeschaltet.
           </p>
 
-          <div className="pricing-grid" style={grid}>
-            {/* Monatszugang */}
-            <div style={card}>
-              <h3 style={priceTitle}>Monatszugang</h3>
-              <p style={sub}>10 € / Monat · jederzeit kündbar</p>
+          <div style={card}>
+            <h3 style={priceTitle}>Monatszugang</h3>
+            <p style={sub}>5 € / Monat · jederzeit kündbar</p>
 
-              {/* Deine PayPal-Komponente – Tarif: monthly */}
-              <PayPalButtons tier="monthly" />
+            <PayPalButtons />
 
-              <p style={note}>
-                Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
-                erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
-              </p>
-            </div>
-
-            {/* Jahreszugang */}
-            <div style={card}>
-              <h3 style={priceTitle}>Jahreszugang</h3>
-              <p style={sub}>100 € / Jahr · entspricht 8,33 € / Monat</p>
-
-              {/* Deine PayPal-Komponente – Tarif: yearly */}
-              <PayPalButtons tier="yearly" />
-
-              <p style={note}>
-                Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
-                erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
-              </p>
-            </div>
+            <p style={note}>
+              Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
+              erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
+            </p>
           </div>
 
-          {/* Login-Hinweis + Kontakt */}
           <p style={smallText}>
-            Bereits gekauft?{" "}
-            <Link href="/login">Hier mit deiner E-Mail einloggen</Link>.
+            Bereits gekauft? <Link href="/login">Hier einloggen</Link>.
           </p>
+
           <p style={smallText}>
             Fragen zur Zahlung? <Link href="/kontakt">Kontakt</Link>
           </p>
@@ -130,3 +98,4 @@ export default function Preise() {
     </>
   );
 }
+
