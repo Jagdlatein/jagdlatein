@@ -22,10 +22,32 @@ export async function POST(req) {
 
   if (!email) return NextResponse.json({ error: "no email" });
 
-  // Normalisieren
   const normalized = email.toLowerCase();
 
-  // 1️⃣ paymentlog speichern
+  // 1️⃣ User anhand Email in userprofile finden
+  let { data: profile } = await supabase
+    .from("userprofile")
+    .select("user_id")
+    .eq("email", normalized)
+    .maybeSingle();
+
+  let userId = profile?.user_id;
+
+  // 2️⃣ Falls User nicht existiert → anlegen
+  if (!userId) {
+    const { data: created } = await supabase
+      .from("userprofile")
+      .insert({
+        email: normalized,
+        is_premium: false,
+      })
+      .select("user_id")
+      .single();
+
+    userId = created.user_id;
+  }
+
+  // 3️⃣ paymentlog speichern
   await supabase.from("paymentlog").insert({
     provider: "paypal",
     email: normalized,
@@ -33,20 +55,20 @@ export async function POST(req) {
     raw: event,
   });
 
-  // 2️⃣ subscription speichern
+  // 4️⃣ subscription upsert (mit user_id = UUID!)
   await supabase.from("subscription").upsert({
-    user_id: normalized, // wir speichern Email als user_id
+    user_id: userId,
     paypal_subscription_id: event.resource.id,
     status: event.resource.status,
     next_billing_time:
       event.resource?.billing_info?.next_billing_time || null,
   });
 
-  // 3️⃣ userprofile aktualisieren
+  // 5️⃣ Premium setzen
   const isActive = event.resource.status === "ACTIVE";
 
   await supabase.from("userprofile").upsert({
-    user_id: normalized,
+    user_id: userId,       // UUID bleibt bestehen
     email: normalized,
     is_premium: isActive,
   });
