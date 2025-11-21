@@ -18,14 +18,12 @@ export default function PayPalButtons() {
 
     if (typeof window === "undefined") return;
 
-    // PayPal SDK bereits geladen?
     if (window.paypal) {
       setSdkReady(true);
       setMsg("");
       return;
     }
 
-    // Hosted Buttons Script laden
     const params = new URLSearchParams({
       "client-id": clientId,
       currency,
@@ -33,20 +31,15 @@ export default function PayPalButtons() {
       "disable-funding": "venmo",
     }).toString();
 
-    const src = `https://www.paypal.com/sdk/js?${params}`;
-    console.log("Lade PayPal SDK:", src);
-
     const script = document.createElement("script");
-    script.src = src;
+    script.src = `https://www.paypal.com/sdk/js?${params}`;
     script.async = true;
     script.onload = () => {
-      console.log("PayPal SDK geladen");
       setSdkReady(true);
       setMsg("");
     };
-    script.onerror = (e) => {
-      console.error("PayPal SDK load error", e);
-      setMsg("PayPal-SDK konnte nicht geladen werden. Bitte erneut versuchen.");
+    script.onerror = () => {
+      setMsg("PayPal konnte nicht geladen werden.");
     };
 
     document.body.appendChild(script);
@@ -57,7 +50,7 @@ export default function PayPalButtons() {
 
     window.paypal
       .HostedButtons({
-        hostedButtonId: "WBPRVVCEQ8HU8", // <<< deine Button-ID
+        hostedButtonId: "WBPRVVCEQ8HU8",
       })
       .render(mountRef.current);
   }, [sdkReady]);
@@ -78,7 +71,6 @@ export default function PayPalButtons() {
           {msg}
         </div>
       )}
-
       <div ref={mountRef} />
     </div>
   );
