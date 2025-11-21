@@ -9,11 +9,24 @@ export default async function handler(req, res) {
   const event = await verifyPaypalWebhook(req, res);
   if (!event) return;
 
-  if (event.event_type !== "PAYMENT.CAPTURE.COMPLETED") {
+  // Alle Events, die vom Hosted Button (Subscription) kommen UND
+  // die eine Freischaltung bedeuten
+  const validEvents = [
+    "PAYMENT.CAPTURE.COMPLETED",            // einmalige Zahlungen
+    "BILLING.SUBSCRIPTION.ACTIVATED",       // neues Abo
+    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED" // Abo-Verlängerung
+  ];
+
+  if (!validEvents.includes(event.event_type)) {
     return res.status(200).send("IGNORED");
   }
 
-  const buyerEmail = event?.resource?.payer?.email_address;
+  // Email extrahieren je nach Event-Typ
+  const buyerEmail =
+    event?.resource?.payer?.email_address ||           // PAYMENT.CAPTURE.COMPLETED
+    event?.resource?.subscriber?.email_address ||       // SUBSCRIPTIONS
+    null;
+
   if (!buyerEmail) {
     return res.status(400).send("Webhook error: No email found");
   }
@@ -31,18 +44,22 @@ export default async function handler(req, res) {
     });
   }
 
-  // Prüfen ob bereits AccessPass vorhanden ist
+  // AccessPass laden
   const existing = await prisma.accessPass.findUnique({
     where: { userId: user.id },
   });
 
   const now = new Date();
-  const base = existing?.expiresAt && existing.expiresAt > now
-    ? existing.expiresAt
-    : now;
+  const base =
+    existing?.expiresAt && existing.expiresAt > now
+      ? existing.expiresAt
+      : now;
 
-  const newExpiresAt = new Date(base.getTime() + ACCESS_DAYS * 24 * 60 * 60 * 1000);
+  const newExpiresAt = new Date(
+    base.getTime() + ACCESS_DAYS * 24 * 60 * 60 * 1000
+  );
 
+  // Access erstellen/verlängern
   if (!existing) {
     await prisma.accessPass.create({
       data: {
@@ -62,7 +79,7 @@ export default async function handler(req, res) {
     });
   }
 
-  // Loggen
+  // Event loggen
   await prisma.paymentEvent.create({
     data: {
       provider: "paypal",
