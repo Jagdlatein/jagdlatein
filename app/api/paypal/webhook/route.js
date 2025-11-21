@@ -2,12 +2,22 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { verifyPaypalWebhook } from "./_base";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE
-);
+// Build-safe Supabase Init
+let supabase = null;
+
+if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE) {
+  supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE
+  );
+}
 
 export async function POST(req) {
+  // Prevent Build-time crash
+  if (!supabase) {
+    return NextResponse.json({ ok: true, build: true });
+  }
+
   const text = await req.text();
 
   const event = await verifyPaypalWebhook(req, text);
@@ -23,7 +33,7 @@ export async function POST(req) {
 
   const normalized = email.toLowerCase();
 
-  // 🔥 1. USERPROFILE (UUID) suchen
+  // 1. userprofile suchen
   let { data: profile } = await supabase
     .from("userprofile")
     .select("user_id")
@@ -32,7 +42,7 @@ export async function POST(req) {
 
   let userId = profile?.user_id;
 
-  // 🔥 2. Wenn User noch nicht existiert → neu anlegen
+  // 2. ggf. userprofile erzeugen
   if (!userId) {
     const { data: newProfile } = await supabase
       .from("userprofile")
@@ -43,10 +53,10 @@ export async function POST(req) {
       .select("user_id")
       .single();
 
-    userId = newProfile.user_id; // UUID
+    userId = newProfile.user_id;
   }
 
-  // 🔥 3. PAYMENTLOG speichern
+  // 3. paymentlog
   await supabase.from("paymentlog").insert({
     provider: "paypal",
     email: normalized,
@@ -54,7 +64,7 @@ export async function POST(req) {
     raw: event,
   });
 
-  // 🔥 4. SUBSCRIPTION upsert (MIT UUID!)
+  // 4. subscription
   await supabase.from("subscription").upsert({
     user_id: userId,
     paypal_subscription_id: event.resource.id,
@@ -63,13 +73,13 @@ export async function POST(req) {
       event.resource?.billing_info?.next_billing_time || null,
   });
 
-  // 🔥 5. PREMIUM setzen / entfernen
+  // 5. premium aktualisieren
   const isActive = event.resource.status === "ACTIVE";
 
-  await supabase.from("userprofile").update({
-    is_premium: isActive,
-  })
-  .eq("user_id", userId);
+  await supabase
+    .from("userprofile")
+    .update({ is_premium: isActive })
+    .eq("user_id", userId);
 
   return NextResponse.json({ ok: true });
 }
