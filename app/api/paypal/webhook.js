@@ -3,86 +3,96 @@
 import { createClient } from "@supabase/supabase-js";
 import { verifyPaypalWebhook } from "./_base";
 
+// Supabase admin client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE
 );
 
-const ACCESS_DAYS = 30;
-
 export default async function handler(req, res) {
-  // Verify PayPal Signature
+  // 1. PayPal Signature prüfen
   const event = await verifyPaypalWebhook(req, res);
   if (!event) return;
 
-  // Relevante PayPal Events
+  // 2. Relevante PayPal Events
   const validEvents = [
-    "PAYMENT.CAPTURE.COMPLETED",
     "BILLING.SUBSCRIPTION.ACTIVATED",
-    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED"
+    "BILLING.SUBSCRIPTION.PAYMENT.SUCCEEDED",
+    "BILLING.SUBSCRIPTION.CANCELLED",
   ];
 
   if (!validEvents.includes(event.event_type)) {
     return res.status(200).send("IGNORED");
   }
 
-  // E-Mail von PayPal holen
-  const buyerEmail =
-    event?.resource?.payer?.email_address ||
+  // 3. Kunde Email extrahieren
+  const email =
     event?.resource?.subscriber?.email_address ||
+    event?.resource?.payer?.email_address ||
     null;
 
-  if (!buyerEmail) {
-    return res.status(400).send("Webhook error: No email found");
-  }
+  if (!email) return res.status(400).send("No email in PayPal event");
 
-  const email = buyerEmail.toLowerCase();
+  const normalized = email.toLowerCase();
 
-  // 🔥 Supabase User suchen
-  let { data: user } = await supabase
-    .from("User")
-    .select("*")
-    .eq("email", email)
+  // 4. Supabase-USER suchen (über email — Magic Link)
+  const { data: sbUser } = await supabase
+    .from("UserProfile")
+    .select("user_id")
+    .eq("email", normalized)
     .single();
 
-  // Wenn User nicht existiert → anlegen
-  if (!user) {
-    const { data: newUser } = await supabase
-      .from("User")
-      .insert({ email, is_premium: true })
+  let userId = sbUser?.user_id;
+
+  // Falls User noch nie eingeloggt war → neuen Supabase-Eintrag erzeugen
+  if (!userId) {
+    const { data: created } = await supabase
+      .from("UserProfile")
+      .insert({
+        email: normalized,
+        is_premium: false,
+      })
       .select()
       .single();
-    user = newUser;
+
+    userId = created.user_id;
   }
 
-  // Access verlängern wie vorher
-  const now = new Date();
+  // 5. Subscription Infos aus PayPal
+  const subscriptionId = event.resource.id;
+  const status = event.resource.status;
 
-  // Abos speichern
-  await supabase
-    .from("Subscription")
-    .upsert({
-      user_id: user.id,
-      paypal_subscription_id: event.resource.id,
-      status: "active",
-      next_billing_time:
-        event.resource.billing_info?.next_billing_time || null,
-      updated_at: now.toISOString()
-    });
+  const nextBilling =
+    event.resource?.billing_info?.next_billing_time || null;
 
-  // Premium aktivieren
-  await supabase
-    .from("User")
-    .update({ is_premium: true })
-    .eq("id", user.id);
-
-  // Log speichern
-  await supabase.from("PaymentLog").insert({
-    provider: "paypal",
-    email,
-    status: "completed",
-    raw: event
+  // 6. Subscription upsert
+  await supabase.from("subscription").upsert({
+    user_id: userId,
+    paypal_subscription_id: subscriptionId,
+    status: status,
+    next_billing_time: nextBilling,
   });
 
-  return res.status(200).send("ACCESS_UPDATED");
+  // 7. Premium setzen / entfernen
+  if (status === "ACTIVE") {
+    await supabase
+      .from("userprofile")
+      .update({ is_premium: true })
+      .eq("user_id", userId);
+  } else if (status === "CANCELLED") {
+    await supabase
+      .from("userprofile")
+      .update({ is_premium: false })
+      .eq("user_id", userId);
+  }
+
+  // 8. Logging
+  await supabase.from("paymentlog").insert({
+    provider: "paypal",
+    email: normalized,
+    status,
+    raw: event,
+  });
+
+  return res.status(200).send("OK");
 }
