@@ -1,47 +1,50 @@
+// middleware.js
 import { NextResponse } from "next/server";
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
-export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-};
+const PUBLIC_PATHS = ["/", "/login", "/preise"];
 
-export async function middleware(req) {
-  const res = NextResponse.next();
+export function middleware(req) {
   const url = req.nextUrl.clone();
-  const pathname = url.pathname;
+  const { pathname } = url;
 
-  const PUBLIC = ["/", "/login", "/preise"];
-  const isPublic = PUBLIC.includes(pathname);
+  // Vercel-Build nicht stören
+  if (req.headers.get("x-vercel-deployment")) {
+    return NextResponse.next();
+  }
 
-  // Supabase Client für Edge Middleware
-  const supabase = createMiddlewareClient({ req, res });
+  // API ausschließen
+  if (pathname.startsWith("/api")) return NextResponse.next();
 
-  // Session laden
-  const { data: { session } } = await supabase.auth.getSession();
+  // Static ausschließen
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/public")
+  ) {
+    return NextResponse.next();
+  }
 
-  // 1. Nicht eingeloggt
-  if (!session && !isPublic) {
+  const hasSession = req.cookies.get("jl_session")?.value === "1";
+  const hasPaid = req.cookies.get("jl_paid")?.value === "1";
+  const isAdmin = req.cookies.get("jl_admin")?.value === "1";
+
+  const isPublic = PUBLIC_PATHS.includes(pathname);
+
+  // Nicht eingeloggt → nur Public-Seiten erlaubt
+  if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // 2. Premium prüfen
-  if (session) {
-    const userId = session.user.id;
-
-    const { data: profile } = await supabase
-      .from("userprofile")
-      .select("is_premium")
-      .eq("user_id", userId)
-      .maybeSingle();
-
-    const isPremium = profile?.is_premium === true;
-
-    if (!isPremium && !isPublic && pathname !== "/preise") {
-      url.pathname = "/preise";
-      return NextResponse.redirect(url);
-    }
+  // Eingeloggt, aber nicht bezahlt → auf Preise umleiten
+  if (hasSession && !hasPaid && !isAdmin && !isPublic) {
+    url.pathname = "/preise";
+    return NextResponse.redirect(url);
   }
 
-  return res;
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: ["/((?!api|_next|favicon.ico).*)"],
+};
