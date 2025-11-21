@@ -2,10 +2,10 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// 🔥 HIER deine echten Keys eintragen
+// 🔥 Deine echten Projekt-Keys
 const supabase = createClient(
-  "https://YOUR-PROJECT.supabase.co",
-  "YOUR-ANON-KEY"
+  "https://tjbcmhhwazioyosvrezo.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqYmNtaGh3YXppb3lvc3ZyZXpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1MzY1NDksImV4cCI6MjA3ODExMjU0OX0.7CD1_aqUgR8Br_wTx0l8hADupQYdk8JhHHcJeiAmNOE"
 );
 
 (function () {
@@ -37,13 +37,17 @@ const supabase = createClient(
     loginButton.textContent = isLoading ? 'Wird geprüft…' : 'Einloggen';
   }
 
-  // 🔥 NEU: LOGIN via Supabase Magic Link
+  // 🔥 LOGIN via Supabase Magic Link
   async function handleLogin(e) {
     e.preventDefault();
 
     const email = emailInput.value.trim();
     if (!email) {
       showMessage("Bitte E-Mail eingeben.", "error");
+      return;
+    }
+    if (!email.includes("@")) {
+      showMessage("Ungültige E-Mail-Adresse.", "error");
       return;
     }
 
@@ -53,7 +57,7 @@ const supabase = createClient(
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: window.location.origin + "/", 
+        emailRedirectTo: window.location.origin + "/",
       }
     });
 
@@ -65,12 +69,12 @@ const supabase = createClient(
     }
 
     showMessage(
-      "Login-Link wurde an deine E-Mail gesendet. Bitte Posteingang prüfen!",
+      "Der Login-Link wurde an deine E-Mail gesendet. Bitte Posteingang prüfen!",
       "success"
     );
   }
 
-  // 🔥 LOGOUT mit Supabase Auth
+  // 🔥 LOGOUT
   async function handleLogout() {
     try {
       await supabase.auth.signOut();
@@ -84,5 +88,4 @@ const supabase = createClient(
 
   if (form) form.addEventListener("submit", handleLogin);
   if (logoutButton) logoutButton.addEventListener("click", handleLogout);
-
 })();
