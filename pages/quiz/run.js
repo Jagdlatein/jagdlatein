@@ -18,6 +18,7 @@ export default function QuizRun() {
   const [locked, setLocked] = useState(false);
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const qset = filterQuestions({ country, topic, count: 10 });
@@ -29,10 +30,12 @@ export default function QuizRun() {
     setSelected(null);
     setLocked(false);
     setFinished(false);
+    setSaved(false);
   }, [router.query.rnd]);
 
   const q = questions[index];
 
+  // Timer
   useEffect(() => {
     if (!q) return;
     if (finished) return;
@@ -91,6 +94,38 @@ export default function QuizRun() {
     });
   }
 
+  // 👉 NEU – Punkte in Supabase speichern
+  async function saveScoreToSupabase() {
+    if (saved) return; // doppelte Speicherung verhindern
+    setSaved(true);
+
+    try {
+      const username =
+        localStorage.getItem("jagd_username") || "Gastjäger";
+
+      const body = {
+        userId: username, // falls kein Login vorhanden → username als ID
+        username,
+        points: score,
+      };
+
+      await fetch("/api/quiz/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    } catch (err) {
+      console.error("Score speichern fehlgeschlagen:", err);
+    }
+  }
+
+  // Speichern sobald fertig
+  useEffect(() => {
+    if (finished) {
+      saveScoreToSupabase();
+    }
+  }, [finished]);
+
   if (!q) {
     return (
       <main style={{ padding: 40, textAlign: "center" }}>
@@ -131,6 +166,26 @@ export default function QuizRun() {
               {score}
             </p>
 
+            {/* Rangliste ansehen */}
+            <button
+              onClick={() => router.push("/quiz/leaderboard")}
+              style={{
+                padding: "12px 20px",
+                borderRadius: 12,
+                background: "#136f39",
+                color: "white",
+                border: "none",
+                fontSize: 18,
+                cursor: "pointer",
+                marginBottom: 16,
+                display: "block",
+                width: "100%",
+              }}
+            >
+              🏆 Rangliste ansehen
+            </button>
+
+            {/* Nochmal spielen */}
             <button
               onClick={restart}
               style={{
@@ -141,6 +196,7 @@ export default function QuizRun() {
                 border: "none",
                 fontSize: 18,
                 cursor: "pointer",
+                width: "100%",
               }}
             >
               🔄 Nochmal spielen
@@ -157,7 +213,9 @@ export default function QuizRun() {
                 fontSize: 18,
               }}
             >
-              <span>Frage {index + 1} / {questions.length}</span>
+              <span>
+                Frage {index + 1} / {questions.length}
+              </span>
               <span style={{ color: timer <= 5 ? "red" : "#136f39" }}>
                 ⏱ {timer}s
               </span>
