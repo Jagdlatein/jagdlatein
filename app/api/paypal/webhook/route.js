@@ -1,85 +1,51 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { verifyPaypalWebhook } from "./_base";
 
-// Build-safe Supabase Init
-let supabase = null;
+export const dynamic = "force-dynamic";
 
-if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE) {
-  supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE
-  );
-}
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE
+);
 
+// PayPal sendet Events hierher
 export async function POST(req) {
-  // Prevent Build-time crash
-  if (!supabase) {
-    return NextResponse.json({ ok: true, build: true });
-  }
+  try {
+    const body = await req.json();
 
-  const text = await req.text();
+    // Wichtig: Nur Completed-Zahlungen akzeptieren
+    const eventType = body?.event_type;
+    const payerEmail = body?.resource?.payer?.email_address;
 
-  const event = await verifyPaypalWebhook(req, text);
-  if (!event) return NextResponse.json({ error: "invalid signature" });
+    if (!payerEmail) {
+      return NextResponse.json({ error: "Keine E-Mail erhalten" }, { status: 400 });
+    }
 
-  const email =
-    event?.resource?.subscriber?.email_address ||
-    event?.resource?.payer?.email_address ||
-    null;
+    if (eventType !== "PAYMENT.CAPTURE.COMPLETED") {
+      return NextResponse.json({ ok: true, info: "Event ignoriert" });
+    }
 
-  if (!email)
-    return NextResponse.json({ error: "no email" }, { status: 400 });
-
-  const normalized = email.toLowerCase();
-
-  // 1. userprofile suchen
-  let { data: profile } = await supabase
-    .from("userprofile")
-    .select("user_id")
-    .eq("email", normalized)
-    .maybeSingle();
-
-  let userId = profile?.user_id;
-
-  // 2. ggf. userprofile erzeugen
-  if (!userId) {
-    const { data: newProfile } = await supabase
+    // Auto-User erstellen + Premium aktivieren
+    const { data, error } = await supabase
       .from("userprofile")
-      .insert({
-        email: normalized,
-        is_premium: false,
-      })
-      .select("user_id")
-      .single();
+      .upsert(
+        {
+          email: payerEmail.toLowerCase(),
+          is_premium: true,
+        },
+        { onConflict: "email" }
+      );
 
-    userId = newProfile.user_id;
+    if (error) {
+      console.log("Supabase Fehler", error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    return NextResponse.json(
+      { error: err.toString() },
+      { status: 500 }
+    );
   }
-
-  // 3. paymentlog
-  await supabase.from("paymentlog").insert({
-    provider: "paypal",
-    email: normalized,
-    status: event.event_type,
-    raw: event,
-  });
-
-  // 4. subscription
-  await supabase.from("subscription").upsert({
-    user_id: userId,
-    paypal_subscription_id: event.resource.id,
-    status: event.resource.status,
-    next_billing_time:
-      event.resource?.billing_info?.next_billing_time || null,
-  });
-
-  // 5. premium aktualisieren
-  const isActive = event.resource.status === "ACTIVE";
-
-  await supabase
-    .from("userprofile")
-    .update({ is_premium: isActive })
-    .eq("user_id", userId);
-
-  return NextResponse.json({ ok: true });
 }
