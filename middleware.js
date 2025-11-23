@@ -1,7 +1,14 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/login", "/preise", "/debug-cookies"];
+// Alle öffentlich zugänglichen Seiten
+const PUBLIC_PATHS = [
+  "/", 
+  "/login", 
+  "/preise", 
+  "/debug-cookies", 
+  "/debug-cookies/"
+];
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
@@ -28,15 +35,16 @@ export function middleware(req) {
   const hasPaid = req.cookies.get("jl_paid")?.value === "1";
   const isAdmin = req.cookies.get("jl_admin")?.value === "1";
 
+  // Check ob Route öffentlich ist
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // Nicht eingeloggt → nur Public-Seiten erlaubt
+  // Nicht eingeloggt → Public-Seiten erlauben
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // Eingeloggt, aber nicht bezahlt → auf Preise umleiten
+  // Eingeloggt, aber nicht bezahlt → Nur Public-Seiten + Admin erlaubt
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
@@ -45,6 +53,9 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
+// Matcher → /debug-cookies vollständig ausnehmen
 export const config = {
-  matcher: ["/((?!api|_next|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next|favicon.ico|debug-cookies|debug-cookies/).*)",
+  ],
 };
