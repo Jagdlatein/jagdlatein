@@ -1,2 +1,0 @@
-router.replace("/quiz");
-setTimeout(() => { window.location.href = "/quiz"; }, 800);
