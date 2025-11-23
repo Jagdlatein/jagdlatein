@@ -9,7 +9,6 @@ const BUILD_MODE =
   !process.env.NEXT_PUBLIC_SUPABASE_URL ||
   !process.env.SUPABASE_SERVICE_ROLE;
 
-// Supabase nur initialisieren, wenn ENV vorhanden
 let supabase = null;
 
 if (!BUILD_MODE) {
@@ -19,9 +18,12 @@ if (!BUILD_MODE) {
   );
 }
 
-export async function POST(req) {
+// -------------------------------
+// GET – für Login-Check (authCheck nutzt GET!)
+// -------------------------------
+export async function GET(req) {
   try {
-    const { email } = await req.json();
+    const email = req.nextUrl.searchParams.get("email");
 
     if (!email || !email.includes("@")) {
       return NextResponse.json(
@@ -32,7 +34,6 @@ export async function POST(req) {
 
     const mail = email.toLowerCase().trim();
 
-    // 🛡️ Build Mode: Dummy Antwort passt zum Cookie-Login-System
     if (BUILD_MODE) {
       return NextResponse.json({
         success: true,
@@ -41,7 +42,6 @@ export async function POST(req) {
       });
     }
 
-    // 🔥 Runtime: User aus userprofile holen
     const { data: profile } = await supabase
       .from("userprofile")
       .select("is_premium")
@@ -66,6 +66,11 @@ export async function POST(req) {
       { status: 500 }
     );
   }
+}
+
+// POST bleibt zur Sicherheit bestehen (falls später benutzt)
+export async function POST(req) {
+  return GET(req);
 }
 
 export async function DELETE() {
