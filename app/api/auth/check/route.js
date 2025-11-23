@@ -35,9 +35,21 @@ export async function GET(req) {
       .eq("email", mail)
       .maybeSingle();
 
+    // ❗❗ Wenn kein User gefunden wurde → Fehler zurück
+    if (!profile) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "E-Mail ist nicht registriert.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // ❗ Rückgabe für registrierten Nutzer
     return NextResponse.json({
       success: true,
-      paid: profile?.is_premium === true,
+      paid: profile.is_premium === true,
       admin: false,
     });
   } catch (err) {
