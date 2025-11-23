@@ -22,10 +22,14 @@ export default function Leaderboard() {
         padding: 24,
       }}
     >
-      <h1 style={{ textAlign: "center", marginBottom: 20 }}>🏆 Rangliste</h1>
+      <h1 style={{ textAlign: "center", marginBottom: 20, fontSize: 32 }}>
+        🏆 Rangliste
+      </h1>
 
       {rows.length === 0 && (
-        <p style={{ textAlign: "center" }}>Noch keine Einträge!</p>
+        <p style={{ textAlign: "center", fontSize: 18 }}>
+          Noch keine Einträge – spiele das Quiz!
+        </p>
       )}
 
       {rows.map((u, i) => (
@@ -34,8 +38,9 @@ export default function Leaderboard() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            padding: "10px 0",
+            padding: "12px 0",
             borderBottom: "1px solid rgba(0,0,0,0.1)",
+            fontSize: 18,
           }}
         >
           <strong>{i + 1}. {u.username}</strong>
