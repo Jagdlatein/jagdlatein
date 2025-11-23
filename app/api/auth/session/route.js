@@ -1,64 +1,77 @@
-// app/api/auth/check/route.js
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
+import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 
-// Build Mode aktiv, wenn ENV fehlt
-const BUILD_MODE =
-  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-  !process.env.SUPABASE_SERVICE_ROLE;
+const COOKIE_OPTS = {
+  httpOnly: true,
+  sameSite: "none",
+  secure: true,
+  path: "/",
+  maxAge: 60 * 60 * 24 * 40, // 40 Tage
+};
 
-let supabase = null;
+// Hilfsfunktion für /auth/check
+async function authCheck(req, email) {
+  const url = new URL(req.url);
+  url.pathname = "/api/auth/check";
+  url.searchParams.set("email", email);
 
-if (!BUILD_MODE) {
-  supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE
-  );
+  const r = await fetch(url.toString(), {
+    method: "GET",
+    headers: { Accept: "application/json" },
+    cache: "no-store",
+  });
+
+  return r.json();
 }
 
-// -------------------------------
-// GET – für Login-Check (authCheck nutzt GET!)
-// -------------------------------
-export async function GET(req) {
+export async function POST(req) {
   try {
-    const email = req.nextUrl.searchParams.get("email");
+    const body = await req.json();
 
-    if (!email || !email.includes("@")) {
+    if (typeof body?.email !== "string") {
       return NextResponse.json(
-        { success: false, message: "Bitte gültige E-Mail." },
+        { success: false, message: "E-Mail fehlt." },
         { status: 400 }
       );
     }
 
-    const mail = email.toLowerCase().trim();
+    const email = body.email.toLowerCase().trim();
 
-    if (BUILD_MODE) {
-      return NextResponse.json({
-        success: true,
-        paid: false,
-        admin: false,
-      });
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!valid) {
+      return NextResponse.json(
+        { success: false, message: "Bitte gültige E-Mail eingeben." },
+        { status: 400 }
+      );
     }
 
-    const { data: profile } = await supabase
-      .from("userprofile")
-      .select("is_premium")
-      .eq("email", mail)
-      .maybeSingle();
+    const verify = await authCheck(req, email);
 
-    if (!profile) {
-      return NextResponse.json({
-        success: false,
-        message: "E-Mail ist nicht registriert.",
-      });
+    if (!verify.success) {
+      return NextResponse.json(
+        { success: false, message: verify.message || "Fehler" },
+        { status: 400 }
+      );
+    }
+
+    // Session Cookies setzen
+    cookies().set({ name: "jl_session", value: "1", ...COOKIE_OPTS });
+    cookies().set({ name: "jl_email", value: email, ...COOKIE_OPTS });
+
+    if (verify.paid) {
+      cookies().set({ name: "jl_paid", value: "1", ...COOKIE_OPTS });
+    }
+
+    if (verify.admin) {
+      cookies().set({ name: "jl_admin", value: "1", ...COOKIE_OPTS });
     }
 
     return NextResponse.json({
       success: true,
-      paid: profile.is_premium === true,
-      admin: false,
+      paid: verify.paid,
+      admin: verify.admin,
+      message: "Login erfolgreich",
     });
   } catch (err) {
     return NextResponse.json(
@@ -68,11 +81,10 @@ export async function GET(req) {
   }
 }
 
-// POST bleibt zur Sicherheit bestehen (falls später benutzt)
-export async function POST(req) {
-  return GET(req);
-}
-
 export async function DELETE() {
+  ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) =>
+    cookies().set({ name: n, value: "", path: "/", maxAge: 0 })
+  );
+
   return NextResponse.json({ ok: true });
 }
