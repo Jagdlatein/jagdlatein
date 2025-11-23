@@ -1,119 +1,85 @@
-// app/api/auth/session/route.js
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-export const dynamic = "force-dynamic";
+"use client";
 
-const COOKIE_OPTS = {
-  httpOnly: true,
-  sameSite: "lax",
-  path: "/",
-  secure: process.env.NODE_ENV === "production",
-  maxAge: 60 * 60 * 24 * 40, // 40 Tage
-};
+import { useState } from "react";
 
-// -----------------------------
-// Überprüfung, ob Nutzer existiert
-// -----------------------------
-async function authCheck(req, email) {
-  const url = new URL("/api/auth/check", req.url);
-  url.searchParams.set("email", email);
+export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
 
-  const r = await fetch(url, {
-    headers: { Accept: "application/json" },
-    cache: "no-store",
-  });
-
-  if (!r.ok) {
-    throw new Error("API /auth/check antwortet nicht korrekt");
-  }
-
-  return r.json();
-}
-
-// -----------------------------
-// LOGIN (POST)
-// -----------------------------
-export async function POST(req) {
-  try {
-    const body = await req.json();
-    const email = body?.email?.toLowerCase()?.trim();
+  async function handleLogin() {
+    setMsg("");
 
     if (!email || !email.includes("@")) {
-      return NextResponse.json(
-        { success: false, message: "Bitte gültige E-Mail eingeben." },
-        { status: 400 }
-      );
+      setMsg("Bitte gültige E-Mail eingeben.");
+      return;
     }
 
-    const verify = await authCheck(req, email);
-
-    // ---------------------------------------
-    // SESSION & PAYWALL COOKIES SETZEN
-    // (WICHTIG: damit middleware.js funktioniert)
-    // ---------------------------------------
-    cookies().set({
-      name: "jl_session",
-      value: "1",                  // <— Der entscheidende Fix!
-      ...COOKIE_OPTS,
-    });
-
-    cookies().set({
-      name: "jl_email",
-      value: email,
-      ...COOKIE_OPTS,
-    });
-
-    if (verify?.paid) {
-      cookies().set({
-        name: "jl_paid",
-        value: "1",
-        ...COOKIE_OPTS,
+    try {
+      const res = await fetch("/api/auth/session", {
+        method: "POST",
+        credentials: "include",  // 🟢 GANZ WICHTIG!
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
       });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setMsg(data.message || "Fehler beim Login.");
+        return;
+      }
+
+      // Falls E-Mail später erneut benötigt wird
+      localStorage.setItem("jl_email_last", email);
+
+      // 🟢 Weiterleitung: jetzt sind Cookies gesetzt!
+      window.location.href = "/";
+
+    } catch (err) {
+      setMsg("Serverfehler: " + err.toString());
     }
-
-    if (verify?.admin) {
-      cookies().set({
-        name: "jl_admin",
-        value: "1",
-        ...COOKIE_OPTS,
-      });
-    }
-
-    return NextResponse.json({
-      success: true,
-      paid: verify?.paid || false,
-      admin: verify?.admin || false,
-      message: "Login erfolgreich",
-    });
-  } catch (err) {
-    console.error("SESSION LOGIN ERROR:", err);
-    return NextResponse.json(
-      { success: false, error: String(err?.message || err) },
-      { status: 500 }
-    );
   }
-}
 
-// -----------------------------
-// LOGOUT (DELETE)
-// -----------------------------
-export async function DELETE() {
-  try {
-    ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((n) =>
-      cookies().set({
-        name: n,
-        value: "",
-        path: "/",
-        maxAge: 0,
-      })
-    );
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Login</h1>
+      <p>Gib deine E-Mail ein:</p>
 
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("SESSION DELETE ERROR:", err);
-    return NextResponse.json(
-      { error: String(err?.message || err) },
-      { status: 500 }
-    );
-  }
+      <input
+        type="email"
+        value={email}
+        placeholder="dein@email.de"
+        onChange={(e) => setEmail(e.target.value)}
+        style={{
+          display: "block",
+          marginBottom: "12px",
+          padding: "10px",
+          width: "100%",
+          maxWidth: "400px",
+        }}
+      />
+
+      <button
+        onClick={handleLogin}
+        style={{
+          padding: "12px 20px",
+          background: "#0a7f0a",
+          color: "white",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+        }}
+      >
+        Login
+      </button>
+
+      {msg && (
+        <p style={{ color: "red", marginTop: "12px" }}>
+          {msg}
+        </p>
+      )}
+    </div>
+  );
 }
