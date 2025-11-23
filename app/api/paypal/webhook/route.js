@@ -1,16 +1,12 @@
-// app/api/paypal/webhook/route.js
-
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
-// Build Mode aktiv, wenn ENV fehlt
 const BUILD_MODE =
   !process.env.NEXT_PUBLIC_SUPABASE_URL ||
   !process.env.SUPABASE_SERVICE_ROLE;
 
-// Supabase NICHT in Build-Phase initialisieren!
 let supabase = null;
 
 if (!BUILD_MODE) {
@@ -24,37 +20,51 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    const eventType = body?.event_type;
-    const payerEmail = body?.resource?.payer?.email_address;
+    // Events, die Premium aktivieren dürfen
+    const event = body?.event_type;
+    const email =
+      body?.resource?.subscriber?.email_address ||
+      body?.resource?.payer?.email_address;
 
-    if (!payerEmail) {
-      return NextResponse.json({ error: "Keine Email." }, { status: 400 });
+    if (!email) {
+      return NextResponse.json({ error: "Keine E-Mail erhalten" }, { status: 400 });
     }
 
-    // Im Build nur Dummy zurückgeben
+    // Nur echte Premium-Events
+    const validEvents = [
+      "BILLING.SUBSCRIPTION.ACTIVATED",
+      "PAYMENT.CAPTURE.COMPLETED"
+    ];
+
+    if (!validEvents.includes(event)) {
+      return NextResponse.json({
+        ok: true,
+        info: "Event ignoriert",
+        event
+      });
+    }
+
     if (BUILD_MODE) {
       return NextResponse.json({ ok: true, build: true });
     }
 
-    // Nur abgeschlossene Zahlungen akzeptieren
-    if (eventType !== "PAYMENT.CAPTURE.COMPLETED") {
-      return NextResponse.json({ ok: true, ignored: true });
-    }
-
-    // Premium-Benutzer erstellen/aktualisieren
-    const { error } = await supabase
+    // Premium setzen/geupsert
+    await supabase
       .from("userprofile")
       .upsert(
-        { email: payerEmail.toLowerCase(), is_premium: true },
+        {
+          email: email.toLowerCase(),
+          is_premium: true,
+        },
         { onConflict: "email" }
       );
 
-    if (error) {
-      console.log("Supabase Error:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ ok: true, premium: true });
+    return NextResponse.json({
+      ok: true,
+      premium: true,
+      event,
+      email,
+    });
   } catch (err) {
     return NextResponse.json(
       { error: err.toString() },
@@ -63,7 +73,7 @@ export async function POST(req) {
   }
 }
 
-// GET → erlaubt, dass Vercel PageScanner nicht crasht
-export async function GET() {
+// GET für Vercel Build
+export function GET() {
   return NextResponse.json({ ok: true });
 }
