@@ -3,11 +3,11 @@ import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 
 const COOKIE_OPTS = {
-  httpOnly: true,
-  sameSite: "none",
-  secure: true,
+  httpOnly: false,     // wichtig für Debug + mobile!
+  sameSite: "none",    // für mobile Chrome/Safari
+  secure: true,        // Pflicht für "none"
   path: "/",
-  maxAge: 60 * 60 * 24 * 40, // 40 Tage
+  maxAge: 60 * 60 * 24 * 40,
 };
 
 // Hilfsfunktion für /auth/check
