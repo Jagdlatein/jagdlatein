@@ -1,7 +1,7 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/login", "/preise"];
+const PUBLIC_PATHS = ["/", "/login", "/preise", "/debug-cookies"];
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
