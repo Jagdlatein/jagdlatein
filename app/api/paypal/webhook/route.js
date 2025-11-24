@@ -20,20 +20,24 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    // Events, die Premium aktivieren dürfen
     const event = body?.event_type;
+
     const email =
       body?.resource?.subscriber?.email_address ||
       body?.resource?.payer?.email_address;
 
     if (!email) {
-      return NextResponse.json({ error: "Keine E-Mail erhalten" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Keine E-Mail erhalten" },
+        { status: 400 }
+      );
     }
 
-    // Nur echte Premium-Events
+    // FIX 1: Alle PayPal Checkout Events freigeben
     const validEvents = [
-      "BILLING.SUBSCRIPTION.ACTIVATED",
-      "PAYMENT.CAPTURE.COMPLETED"
+      "CHECKOUT.ORDER.APPROVED",
+      "PAYMENT.CAPTURE.COMPLETED",
+      "BILLING.SUBSCRIPTION.ACTIVATED"
     ];
 
     if (!validEvents.includes(event)) {
@@ -48,7 +52,7 @@ export async function POST(req) {
       return NextResponse.json({ ok: true, build: true });
     }
 
-    // Premium setzen/geupsert
+    // Upsert Premium
     await supabase
       .from("userprofile")
       .upsert(
@@ -63,7 +67,7 @@ export async function POST(req) {
       ok: true,
       premium: true,
       event,
-      email,
+      email
     });
   } catch (err) {
     return NextResponse.json(
@@ -73,7 +77,7 @@ export async function POST(req) {
   }
 }
 
-// GET für Vercel Build
+// GET für Build
 export function GET() {
   return NextResponse.json({ ok: true });
 }
