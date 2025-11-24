@@ -1,26 +1,28 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/login", "/preise", "/debug-cookies"];
+// Alle öffentlich zugänglichen Seiten
+const PUBLIC_PATHS = [
+  "/", 
+  "/login", 
+  "/preise", 
+  "/debug-cookies",
+  "/paytest"   // 🟢 Testseite öffentlich machen
+];
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
   const { pathname } = url;
 
-  // 🔥 WICHTIG: PayPal Webhooks immer ausschließen
+  // 🔥 PayPal Webhook IMMER erlauben
   if (pathname.startsWith("/api/paypal")) {
     return NextResponse.next();
   }
 
-  // Vercel Build Schutz
-  if (req.headers.get("x-vercel-deployment")) {
-    return NextResponse.next();
-  }
-
-  // API komplett ausschließen
+  // Alle API-Routen erlauben
   if (pathname.startsWith("/api")) return NextResponse.next();
 
-  // Static Files ausschließen
+  // Static Files niemals blockieren
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon") ||
@@ -29,17 +31,21 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
+  // Session prüfen
   const hasSession = req.cookies.get("jl_session")?.value === "1";
   const hasPaid = req.cookies.get("jl_paid")?.value === "1";
   const isAdmin = req.cookies.get("jl_admin")?.value === "1";
 
+  // ist Route öffentlich?
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // ❌ Nicht eingeloggt → nur Public
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
+  // ❌ Eingeloggt, aber nicht Premium → einschränken
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
@@ -48,10 +54,9 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-// 💯 Perfekte Matcher-Regel:
-// Middleware DARF NICHT für API-Routen laufen
+// 💯 Matcher: blockiert ALLES außer _next, api, favicon, paytest
 export const config = {
   matcher: [
-    "/((?!_next|api|favicon.ico).*)"
+    "/((?!_next|api|favicon.ico|paytest).*)"
   ],
 };
