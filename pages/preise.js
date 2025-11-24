@@ -1,7 +1,7 @@
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
-import PayPalButtons from "../components/PayPalButtons";
+import { useEffect } from "react";
 
 export default function Preise() {
   const container = {
@@ -56,6 +56,37 @@ export default function Preise() {
     fontSize: 14,
   };
 
+  // ⭐ Neuer LIVE PayPal Button (Subscription)
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://www.paypal.com/sdk/js?client-id=AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW&vault=true&intent=subscription&currency=EUR";
+    script.async = true;
+    script.onload = () => {
+      if (window.paypal) {
+        window.paypal
+          .Buttons({
+            style: {
+              shape: "rect",
+              color: "gold",
+              layout: "vertical",
+              label: "subscribe",
+            },
+            createSubscription(data, actions) {
+              return actions.subscription.create({
+                plan_id: "P-9XU38461YG7706134NESJQWA", // ✔ Dein LIVE-Abo-Plan
+              });
+            },
+            onApprove(data) {
+              alert("Danke! Dein Premiumzugang wurde aktiviert.");
+            },
+          })
+          .render("#paypal-subscribe-preise");
+      }
+    };
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <>
       <Head>
@@ -78,7 +109,8 @@ export default function Preise() {
             <h3 style={priceTitle}>Monatszugang</h3>
             <p style={sub}>5 € / Monat · jederzeit kündbar</p>
 
-            <PayPalButtons />
+            {/* ⭐ Neuer Button */}
+            <div id="paypal-subscribe-preise"></div>
 
             <p style={note}>
               Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
@@ -98,4 +130,3 @@ export default function Preise() {
     </>
   );
 }
-
