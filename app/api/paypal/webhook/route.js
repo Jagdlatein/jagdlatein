@@ -3,27 +3,18 @@ import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
-const corsHeaders = {
+const cors = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-const BUILD_MODE =
-  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-  !process.env.SUPABASE_SERVICE_ROLE;
-
-let supabase = null;
-
-if (!BUILD_MODE) {
-  supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE
-  );
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 200, headers: cors });
 }
 
-export async function OPTIONS() {
-  return NextResponse.json({}, { headers: corsHeaders });
+export async function GET() {
+  return NextResponse.json({ ok: true }, { headers: cors });
 }
 
 export async function POST(req) {
@@ -39,29 +30,34 @@ export async function POST(req) {
     if (!email) {
       return NextResponse.json(
         { error: "Keine E-Mail erhalten" },
-        { status: 400, headers: corsHeaders }
+        { status: 400, headers: cors }
       );
     }
 
     const validEvents = [
       "CHECKOUT.ORDER.APPROVED",
       "PAYMENT.CAPTURE.COMPLETED",
-      "BILLING.SUBSCRIPTION.ACTIVATED"
+      "BILLING.SUBSCRIPTION.ACTIVATED",
     ];
 
     if (!validEvents.includes(event)) {
       return NextResponse.json(
         { ok: true, info: "Event ignoriert", event },
-        { headers: corsHeaders }
+        { headers: cors }
       );
     }
 
-    if (BUILD_MODE) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const service = process.env.SUPABASE_SERVICE_ROLE;
+
+    if (!url || !service) {
       return NextResponse.json(
         { ok: true, build: true },
-        { headers: corsHeaders }
+        { headers: cors }
       );
     }
+
+    const supabase = createClient(url, service);
 
     await supabase
       .from("userprofile")
@@ -75,19 +71,12 @@ export async function POST(req) {
 
     return NextResponse.json(
       { ok: true, premium: true, event, email },
-      { headers: corsHeaders }
+      { headers: cors }
     );
   } catch (err) {
     return NextResponse.json(
-      { error: err.toString() },
-      { status: 500, headers: corsHeaders }
+      { error: err.message },
+      { status: 500, headers: cors }
     );
   }
-}
-
-export function GET() {
-  return NextResponse.json(
-    { ok: true },
-    { headers: corsHeaders }
-  );
 }
