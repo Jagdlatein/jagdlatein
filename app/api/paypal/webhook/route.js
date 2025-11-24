@@ -20,41 +20,59 @@ export function GET() {
 }
 
 export async function POST(req) {
+  let rawBody = "";
   try {
-    const rawBody = await req.text();
+    rawBody = await req.text();
 
-    // 🔥 1. Prüfen, ob Signatur-Header vorhanden sind
+    // headers lowercase
+    const headers = Object.fromEntries(req.headers.entries());
+
     const hasSignature =
-      req.headers.get("paypal-transmission-id") &&
-      req.headers.get("paypal-transmission-sig") &&
-      req.headers.get("paypal-cert-url");
+      headers["paypal-transmission-id"] &&
+      headers["paypal-transmission-sig"] &&
+      headers["paypal-cert-url"];
 
-    let verifiedEvent = null;
+    let event;
 
-    // 🔥 2. Wenn Signaturen da → echte Live-Zahlung → Signatur prüfen
+    // ⭐ SIGNATUR-EVENT
     if (hasSignature) {
-      verifiedEvent = await verifyPaypalWebhook(req, rawBody);
-      if (!verifiedEvent) {
+      event = await verifyPaypalWebhook(req, rawBody);
+      if (!event) {
+        console.error("❌ Invalid PayPal signature", headers);
         return NextResponse.json(
           { error: "Invalid PayPal signature" },
           { status: 400, headers: cors }
         );
       }
-    } else {
-      // 🔥 3. Keine Signatur → PayPal Test Event → direkt JSON parsen
-      console.warn("⚠ PayPal TEST EVENT ohne Signatur empfangen");
-      verifiedEvent = JSON.parse(rawBody);
     }
 
-    const event = verifiedEvent.event_type;
+    // ⭐ TEST-EVENT oder JSON-PARSE
+    if (!event) {
+      try {
+        event = JSON.parse(rawBody);
+      } catch (e) {
+        console.error("❌ JSON parsing failed:", rawBody);
+        return NextResponse.json(
+          { error: "Invalid JSON" },
+          { status: 400, headers: cors }
+        );
+      }
+    }
 
+    const eventType = event.event_type;
+
+    // ⭐ EMAIL-LOGIK (ALLE PayPal Varianten abgedeckt)
     const email =
-      verifiedEvent?.resource?.subscriber?.email_address ||
-      verifiedEvent?.resource?.payer?.email_address;
+      event?.resource?.subscriber?.email_address ||
+      event?.resource?.payer?.email_address ||
+      event?.resource?.billing_agreement_details?.payer?.payer_info?.email_address ||
+      event?.resource?.billing_agreement_details?.payer?.payer_info?.email ||
+      null;
 
     if (!email) {
+      console.error("❌ Keine Email im PayPal Event:", JSON.stringify(event, null, 2));
       return NextResponse.json(
-        { error: "Keine E-Mail erhalten" },
+        { error: "Keine E-Mail im PayPal Event" },
         { status: 400, headers: cors }
       );
     }
@@ -63,24 +81,23 @@ export async function POST(req) {
       "CHECKOUT.ORDER.APPROVED",
       "PAYMENT.CAPTURE.COMPLETED",
       "BILLING.SUBSCRIPTION.ACTIVATED",
+      "BILLING.SUBSCRIPTION.CREATED",
     ];
 
-    if (!validEvents.includes(event)) {
+    if (!validEvents.includes(eventType)) {
       return NextResponse.json(
-        { ok: true, ignored: true, event },
+        { ok: true, ignored: true, eventType },
         { headers: cors }
       );
     }
 
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const service = process.env.SUPABASE_SERVICE_ROLE;
+    // ⭐ SUPABASE CLIENT
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE
+    );
 
-    if (!url || !service) {
-      return NextResponse.json({ ok: true, build: true }, { headers: cors });
-    }
-
-    const supabase = createClient(url, service);
-
+    // ⭐ PREMIIUM EINTRAG
     await supabase
       .from("userprofile")
       .upsert(
@@ -91,13 +108,16 @@ export async function POST(req) {
         { onConflict: "email" }
       );
 
+    console.log("✅ PREMIUM gesetzt für:", email);
+
     return NextResponse.json(
-      { ok: true, premium: true, email, event },
+      { ok: true, premium: true, email, eventType },
       { headers: cors }
     );
   } catch (err) {
+    console.error("❌ Webhook ERROR:", err, rawBody);
     return NextResponse.json(
-      { error: err.message },
+      { error: err.toString() },
       { status: 500, headers: cors }
     );
   }
