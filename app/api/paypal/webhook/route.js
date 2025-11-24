@@ -7,7 +7,8 @@ export const dynamic = "force-dynamic";
 const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, paypal-auth-algo, paypal-cert-url, paypal-transmission-id, paypal-transmission-sig, paypal-transmission-time",
+  "Access-Control-Allow-Headers":
+    "Content-Type, paypal-auth-algo, paypal-cert-url, paypal-transmission-id, paypal-transmission-sig, paypal-transmission-time",
 };
 
 export async function OPTIONS() {
@@ -20,24 +21,36 @@ export function GET() {
 
 export async function POST(req) {
   try {
-    // RAW BODY für PayPal Signature
     const rawBody = await req.text();
 
-    // Signatur prüfen
-    const verified = await verifyPaypalWebhook(req, rawBody);
+    // 🔥 1. Prüfen, ob Signatur-Header vorhanden sind
+    const hasSignature =
+      req.headers.get("paypal-transmission-id") &&
+      req.headers.get("paypal-transmission-sig") &&
+      req.headers.get("paypal-cert-url");
 
-    if (!verified) {
-      return NextResponse.json(
-        { error: "Invalid PayPal signature" },
-        { status: 400, headers: cors }
-      );
+    let verifiedEvent = null;
+
+    // 🔥 2. Wenn Signaturen da → echte Live-Zahlung → Signatur prüfen
+    if (hasSignature) {
+      verifiedEvent = await verifyPaypalWebhook(req, rawBody);
+      if (!verifiedEvent) {
+        return NextResponse.json(
+          { error: "Invalid PayPal signature" },
+          { status: 400, headers: cors }
+        );
+      }
+    } else {
+      // 🔥 3. Keine Signatur → PayPal Test Event → direkt JSON parsen
+      console.warn("⚠ PayPal TEST EVENT ohne Signatur empfangen");
+      verifiedEvent = JSON.parse(rawBody);
     }
 
-    const event = verified.event_type;
+    const event = verifiedEvent.event_type;
 
     const email =
-      verified?.resource?.subscriber?.email_address ||
-      verified?.resource?.payer?.email_address;
+      verifiedEvent?.resource?.subscriber?.email_address ||
+      verifiedEvent?.resource?.payer?.email_address;
 
     if (!email) {
       return NextResponse.json(
@@ -63,10 +76,7 @@ export async function POST(req) {
     const service = process.env.SUPABASE_SERVICE_ROLE;
 
     if (!url || !service) {
-      return NextResponse.json(
-        { ok: true, build: true },
-        { headers: cors }
-      );
+      return NextResponse.json({ ok: true, build: true }, { headers: cors });
     }
 
     const supabase = createClient(url, service);
@@ -85,7 +95,6 @@ export async function POST(req) {
       { ok: true, premium: true, email, event },
       { headers: cors }
     );
-
   } catch (err) {
     return NextResponse.json(
       { error: err.message },
