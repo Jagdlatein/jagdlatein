@@ -3,6 +3,12 @@ import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
 const BUILD_MODE =
   !process.env.NEXT_PUBLIC_SUPABASE_URL ||
   !process.env.SUPABASE_SERVICE_ROLE;
@@ -14,6 +20,10 @@ if (!BUILD_MODE) {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE
   );
+}
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { headers: corsHeaders });
 }
 
 export async function POST(req) {
@@ -29,11 +39,10 @@ export async function POST(req) {
     if (!email) {
       return NextResponse.json(
         { error: "Keine E-Mail erhalten" },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
-    // FIX 1: Alle PayPal Checkout Events freigeben
     const validEvents = [
       "CHECKOUT.ORDER.APPROVED",
       "PAYMENT.CAPTURE.COMPLETED",
@@ -41,18 +50,19 @@ export async function POST(req) {
     ];
 
     if (!validEvents.includes(event)) {
-      return NextResponse.json({
-        ok: true,
-        info: "Event ignoriert",
-        event
-      });
+      return NextResponse.json(
+        { ok: true, info: "Event ignoriert", event },
+        { headers: corsHeaders }
+      );
     }
 
     if (BUILD_MODE) {
-      return NextResponse.json({ ok: true, build: true });
+      return NextResponse.json(
+        { ok: true, build: true },
+        { headers: corsHeaders }
+      );
     }
 
-    // Upsert Premium
     await supabase
       .from("userprofile")
       .upsert(
@@ -63,21 +73,21 @@ export async function POST(req) {
         { onConflict: "email" }
       );
 
-    return NextResponse.json({
-      ok: true,
-      premium: true,
-      event,
-      email
-    });
+    return NextResponse.json(
+      { ok: true, premium: true, event, email },
+      { headers: corsHeaders }
+    );
   } catch (err) {
     return NextResponse.json(
       { error: err.toString() },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
 
-// GET für Build
 export function GET() {
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(
+    { ok: true },
+    { headers: corsHeaders }
+  );
 }
