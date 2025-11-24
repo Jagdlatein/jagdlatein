@@ -19,7 +19,7 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // Alle API-Routen erlauben
+  // 🔥 Alle API-Routen erlauben
   if (pathname.startsWith("/api")) return NextResponse.next();
 
   // Static Files niemals blockieren
@@ -31,7 +31,7 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // Session prüfen
+  // Cookies prüfen
   const hasSession = req.cookies.get("jl_session")?.value === "1";
   const hasPaid = req.cookies.get("jl_paid")?.value === "1";
   const isAdmin = req.cookies.get("jl_admin")?.value === "1";
@@ -54,9 +54,9 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-// 💯 Matcher: blockiert ALLES außer _next, api, favicon, paytest
+// 💯 Matcher: PayPal-Webhook komplett ausschließen
 export const config = {
   matcher: [
-    "/((?!_next|api|favicon.ico|paytest).*)"
+    "/((?!_next|api/paypal|api|favicon.ico|paytest).*)"
   ],
 };
