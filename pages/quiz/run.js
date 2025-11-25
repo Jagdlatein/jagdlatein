@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { filterQuestions } from "../../data/questions-full";
 
+// NEU: Persönlicher Rangzustand
 export default function QuizRun() {
   const router = useRouter();
 
@@ -20,6 +21,10 @@ export default function QuizRun() {
   const [finished, setFinished] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  // NEU: persönlicher Rang
+  const [personalRank, setPersonalRank] = useState(null);
+  const [monthlyRank, setMonthlyRank] = useState(null);
+
   useEffect(() => {
     const qset = filterQuestions({ country, topic, count: 10 });
 
@@ -31,6 +36,8 @@ export default function QuizRun() {
     setLocked(false);
     setFinished(false);
     setSaved(false);
+    setPersonalRank(null);
+    setMonthlyRank(null);
   }, [router.query.rnd]);
 
   const q = questions[index];
@@ -94,9 +101,9 @@ export default function QuizRun() {
     });
   }
 
-  // 👉 NEU – Punkte in Supabase speichern
+  // 👉 Score speichern
   async function saveScoreToSupabase() {
-    if (saved) return; // doppelte Speicherung verhindern
+    if (saved) return;
     setSaved(true);
 
     try {
@@ -104,7 +111,7 @@ export default function QuizRun() {
         localStorage.getItem("jagd_username") || "Gastjäger";
 
       const body = {
-        userId: username, // falls kein Login vorhanden → username als ID
+        userId: username,
         username,
         points: score,
       };
@@ -114,8 +121,33 @@ export default function QuizRun() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+
+      // Nach dem Speichern Rang abrufen
+      fetchRanks(username);
+
     } catch (err) {
       console.error("Score speichern fehlgeschlagen:", err);
+    }
+  }
+
+  // 👉 Persönlicher Rang abrufen
+  async function fetchRanks(username) {
+    try {
+      // Gesamt-Rangliste laden
+      const res1 = await fetch("/api/quiz/leaderboard");
+      const data1 = await res1.json();
+      const list1 = data1.data || [];
+      const rank1 = list1.findIndex((x) => x.username === username);
+      setPersonalRank(rank1 >= 0 ? rank1 + 1 : null);
+
+      // Monats-Rangliste laden
+      const res2 = await fetch("/api/quiz/leaderboard-month");
+      const data2 = await res2.json();
+      const list2 = data2.data || [];
+      const rank2 = list2.findIndex((x) => x.username === username);
+      setMonthlyRank(rank2 >= 0 ? rank2 + 1 : null);
+    } catch (err) {
+      console.error("Fehler beim Rang abrufen:", err);
     }
   }
 
@@ -165,6 +197,20 @@ export default function QuizRun() {
             >
               {score}
             </p>
+
+            {/* Persönlicher Platz - Gesamt */}
+            {personalRank && (
+              <p style={{ fontSize: 20, marginBottom: 10 }}>
+                🥇 Dein Platz gesamt: <b>{personalRank}</b>
+              </p>
+            )}
+
+            {/* Persönlicher Platz - Monat */}
+            {monthlyRank && (
+              <p style={{ fontSize: 20, marginBottom: 20 }}>
+                📅 Dein Platz (dieser Monat): <b>{monthlyRank}</b>
+              </p>
+            )}
 
             {/* Rangliste ansehen */}
             <button
