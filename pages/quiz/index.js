@@ -18,11 +18,11 @@ const COUNTRIES = ["DE", "AT", "CH"];
 function QuizIndex() {
   const router = useRouter();
 
-  // 👉 NEU: Username prüfen
+  // 👉 Username prüfen – falls keiner vorhanden → Username-Seite
   useEffect(() => {
     const name = localStorage.getItem("jagd_username");
     if (!name) {
-      router.push("/quiz/username"); // wenn kein Name → Username wählen
+      router.push("/quiz/username");
     }
   }, [router]);
 
@@ -31,6 +31,7 @@ function QuizIndex() {
       <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: 8 }}>
         Jagdlatein Quiz
       </h1>
+
       <p style={{ marginBottom: 24, color: "#374151", lineHeight: 1.5 }}>
         Wähle dein Land und ein Thema aus und starte ein zufälliges 10-Fragen-Quiz.
       </p>
@@ -72,25 +73,40 @@ function QuizIndex() {
           </div>
         </div>
 
-        <div style={{ marginTop: 20 }}>
+        {/* ⭐ Neuer großer Start-Button */}
+        <div style={{ marginTop: 24 }}>
           <Link
             href="/quiz/run"
-            className="cta"
             style={{
+              display: "block",
+              width: "100%",
+              backgroundColor: "#136f39",
+              color: "white",
+              textAlign: "center",
+              padding: "20px 0",
+              borderRadius: 16,
+              fontSize: "1.8rem",
+              fontWeight: 700,
               textDecoration: "none",
-              padding: "10px 18px",
-              borderRadius: 999,
-              display: "inline-block",
+              boxShadow: "0 5px 14px rgba(0,0,0,0.25)",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "scale(1.05)";
+              e.target.style.boxShadow = "0 8px 20px rgba(0,0,0,0.32)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "scale(1)";
+              e.target.style.boxShadow = "0 5px 14px rgba(0,0,0,0.25)";
             }}
           >
-            ▶️ Quiz starten
+            ▶️ QUIZ STARTEN
           </Link>
         </div>
       </section>
 
       <p style={{ fontSize: 14, color: "#6b7280" }}>
-        Tipp: Du kannst das Quiz beliebig oft neu starten – die Fragen werden
-        jeweils neu gemischt.
+        Tipp: Du kannst das Quiz beliebig oft neu starten – die Fragen werden jeweils neu gemischt.
       </p>
     </main>
   );
