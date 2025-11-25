@@ -1,6 +1,3 @@
-import crypto from "crypto";
-
-// 🔐 PayPal: Webhook-Signatur prüfen
 export async function verifyPaypalWebhook(req, rawBody) {
   const transmissionId = req.headers.get("paypal-transmission-id");
   const transmissionTime = req.headers.get("paypal-transmission-time");
@@ -12,20 +9,15 @@ export async function verifyPaypalWebhook(req, rawBody) {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_SECRET;
 
-  if (!webhookId || !clientId || !secret) {
-    console.error("❌ PayPal ENV Variablen fehlen.");
-    return null;
-  }
+  const base64 = Buffer.from(`${clientId}:${secret}`).toString("base64");
 
-  // PayPal Webhook Verification API
-  const resp = await fetch(
+  const response = await fetch(
     `${process.env.PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Basic " + Buffer.from(`${clientId}:${secret}`).toString("base64"),
+        Authorization: `Basic ${base64}`,
       },
       body: JSON.stringify({
         auth_algo: authAlgo,
@@ -39,39 +31,36 @@ export async function verifyPaypalWebhook(req, rawBody) {
     }
   );
 
-  const data = await resp.json();
-  if (data.verification_status !== "SUCCESS") {
-    console.error("❌ Webhook-Signatur ungültig:", data);
-    return null;
-  }
-
-  return JSON.parse(rawBody);
+  const data = await response.json();
+  return data.verification_status === "SUCCESS" ? JSON.parse(rawBody) : null;
 }
 
-// 🔑 PayPal-Token abrufen
 export async function paypalAccessToken() {
-  const client = process.env.PAYPAL_CLIENT_ID;
+  const clientId = process.env.PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_SECRET;
 
-  const resp = await fetch(`${process.env.PAYPAL_API_BASE}/v1/oauth2/token`, {
-    method: "POST",
-    headers: {
-      Authorization:
-        "Basic " + Buffer.from(`${client}:${secret}`).toString("base64"),
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-  });
+  const base64 = Buffer.from(`${clientId}:${secret}`).toString("base64");
 
-  const data = await resp.json();
-  return data?.access_token || null;
+  const response = await fetch(
+    `${process.env.PAYPAL_API_BASE}/v1/oauth2/token`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${base64}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+    }
+  );
+
+  const json = await response.json();
+  return json?.access_token || null;
 }
 
-// 🧩 Basis-Aufruf für Capture/Create-Order
 export async function paypalBase(path, method = "POST", body = null) {
   const token = await paypalAccessToken();
 
-  return fetch(`${process.env.PAYPAL_API_BASE}${path}`, {
+  const response = await fetch(`${process.env.PAYPAL_API_BASE}${path}`, {
     method,
     headers: {
       Authorization: `Bearer ${token}`,
@@ -79,4 +68,6 @@ export async function paypalBase(path, method = "POST", body = null) {
     },
     body: body ? JSON.stringify(body) : null,
   });
+
+  return response.json();
 }
