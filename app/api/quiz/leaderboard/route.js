@@ -1,38 +1,38 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
-
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-export async function GET() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
-  // Highscore pro Username
+export async function GET() {
   const { data, error } = await supabase
     .from("quiz_scores")
-    .select(`
-      username,
-      max(points)
-    `)
-    .group("username")
-    .order("max", { ascending: false }); // sortiere nach Highscore
+    .select("user_id, username, points");
 
-  if (error) {
-    console.error("Leaderboard Fehler:", error);
-    return NextResponse.json({ error }, { status: 400 });
+  if (error) return NextResponse.json({ data: [] });
+
+  const map = new Map();
+
+  for (const row of data) {
+    const key = row.user_id;
+    const prev = map.get(key) || {
+      username: row.username,
+      user_id: row.user_id,
+      total_points: 0,
+      rounds: 0,
+    };
+
+    prev.total_points += row.points;
+    prev.rounds += 1;
+
+    map.set(key, prev);
   }
 
-  return new NextResponse(JSON.stringify({ data }), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": "no-store, max-age=0",
-      "CDN-Cache-Control": "no-store",
-      "Vercel-CDN-Cache-Control": "no-store",
-    }
-  });
+  const sorted = Array.from(map.values()).sort(
+    (a, b) => b.total_points - a.total_points
+  );
+
+  return NextResponse.json({ data: sorted });
 }
