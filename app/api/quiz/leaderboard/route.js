@@ -11,12 +11,15 @@ export async function GET() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
 
-  // Immer live laden – kein Cache, kein Delay
+  // Highscore pro Username
   const { data, error } = await supabase
     .from("quiz_scores")
-    .select("user_id, username, points, created_at")
-    .order("points", { ascending: false })
-    .limit(50);
+    .select(`
+      username,
+      max(points)
+    `)
+    .group("username")
+    .order("max", { ascending: false }); // sortiere nach Highscore
 
   if (error) {
     console.error("Leaderboard Fehler:", error);
@@ -27,11 +30,9 @@ export async function GET() {
     status: 200,
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "no-store, max-age=0, private",
+      "Cache-Control": "no-store, max-age=0",
       "CDN-Cache-Control": "no-store",
       "Vercel-CDN-Cache-Control": "no-store",
-      "Pragma": "no-cache",
-      "Expires": "0",
     }
   });
 }
