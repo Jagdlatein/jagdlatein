@@ -1,112 +1,82 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-import { verifyPaypalWebhook } from "./_base";
+import crypto from "crypto";
 
-export const dynamic = "force-dynamic";
+// 🔐 PayPal: Webhook-Signatur prüfen
+export async function verifyPaypalWebhook(req, rawBody) {
+  const transmissionId = req.headers.get("paypal-transmission-id");
+  const transmissionTime = req.headers.get("paypal-transmission-time");
+  const certUrl = req.headers.get("paypal-cert-url");
+  const transmissionSig = req.headers.get("paypal-transmission-sig");
+  const authAlgo = req.headers.get("paypal-auth-algo");
 
-const cors = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers":
-    "Content-Type, paypal-auth-algo, paypal-cert-url, paypal-transmission-id, paypal-transmission-sig, paypal-transmission-time",
-};
+  const webhookId = process.env.PAYPAL_WEBHOOK_ID;
+  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const secret = process.env.PAYPAL_SECRET;
 
-export async function OPTIONS() {
-  return new NextResponse(null, { status: 200, headers: cors });
-}
-
-export function GET() {
-  return NextResponse.json({ ok: true }, { headers: cors });
-}
-
-export async function POST(req) {
-  try {
-    const rawBody = await req.text();
-
-    // ⭐ Prüfe, ob Signatur vorhanden ist (echter PayPal-Webhook)
-    const hasSignature =
-      req.headers.get("paypal-transmission-id") &&
-      req.headers.get("paypal-transmission-sig") &&
-      req.headers.get("paypal-cert-url");
-
-    let verifiedEvent = null;
-
-    if (hasSignature) {
-      // 🟢 ECHTE LIVE-ZAHLUNG → Signatur prüfen
-      verifiedEvent = await verifyPaypalWebhook(req, rawBody);
-      if (!verifiedEvent) {
-        return NextResponse.json(
-          { error: "Invalid PayPal signature" },
-          { status: 400, headers: cors }
-        );
-      }
-    } else {
-      // 🟣 PAYPAL LIVE TEST EVENT → KEINE SIGNATUR → AKZEPTIEREN!
-      console.warn("⚠ PayPal TEST EVENT ohne Signatur empfangen.");
-      verifiedEvent = JSON.parse(rawBody);
-    }
-
-    // ⭐ Event & Email extrahieren
-    const event = verifiedEvent.event_type;
-
-    const email =
-      verifiedEvent?.resource?.subscriber?.email_address ||
-      verifiedEvent?.resource?.payer?.email_address;
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "Keine E-Mail erhalten" },
-        { status: 400, headers: cors }
-      );
-    }
-
-    // ⭐ Erlaubte Events
-    const validEvents = [
-      "CHECKOUT.ORDER.APPROVED",
-      "PAYMENT.CAPTURE.COMPLETED",
-      "BILLING.SUBSCRIPTION.ACTIVATED",
-    ];
-
-    if (!validEvents.includes(event)) {
-      return NextResponse.json(
-        { ok: true, ignored: true, event },
-        { headers: cors }
-      );
-    }
-
-    // ⭐ Supabase Verbindung prüfen
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const service = process.env.SUPABASE_SERVICE_ROLE;
-
-    if (!url || !service) {
-      return NextResponse.json(
-        { ok: true, build: true },
-        { headers: cors }
-      );
-    }
-
-    const supabase = createClient(url, service);
-
-    // ⭐ Premium setzen
-    await supabase
-      .from("userprofile")
-      .upsert(
-        {
-          email: email.toLowerCase(),
-          is_premium: true,
-        },
-        { onConflict: "email" }
-      );
-
-    return NextResponse.json(
-      { ok: true, premium: true, email, event },
-      { headers: cors }
-    );
-
-  } catch (err) {
-    return NextResponse.json(
-      { error: err.message },
-      { status: 500, headers: cors }
-    );
+  if (!webhookId || !clientId || !secret) {
+    console.error("❌ PayPal ENV Variablen fehlen.");
+    return null;
   }
+
+  // PayPal Webhook Verification API
+  const resp = await fetch(
+    `${process.env.PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Basic " + Buffer.from(`${clientId}:${secret}`).toString("base64"),
+      },
+      body: JSON.stringify({
+        auth_algo: authAlgo,
+        cert_url: certUrl,
+        transmission_id: transmissionId,
+        transmission_sig: transmissionSig,
+        transmission_time: transmissionTime,
+        webhook_id: webhookId,
+        webhook_event: JSON.parse(rawBody),
+      }),
+    }
+  );
+
+  const data = await resp.json();
+  if (data.verification_status !== "SUCCESS") {
+    console.error("❌ Webhook-Signatur ungültig:", data);
+    return null;
+  }
+
+  return JSON.parse(rawBody);
+}
+
+// 🔑 PayPal-Token abrufen
+export async function paypalAccessToken() {
+  const client = process.env.PAYPAL_CLIENT_ID;
+  const secret = process.env.PAYPAL_SECRET;
+
+  const resp = await fetch(`${process.env.PAYPAL_API_BASE}/v1/oauth2/token`, {
+    method: "POST",
+    headers: {
+      Authorization:
+        "Basic " + Buffer.from(`${client}:${secret}`).toString("base64"),
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+
+  const data = await resp.json();
+  return data?.access_token || null;
+}
+
+// 🧩 Basis-Aufruf für Capture/Create-Order
+export async function paypalBase(path, method = "POST", body = null) {
+  const token = await paypalAccessToken();
+
+  return fetch(`${process.env.PAYPAL_API_BASE}${path}`, {
+    method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : null,
+  });
 }
