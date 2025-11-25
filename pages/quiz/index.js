@@ -1,5 +1,7 @@
 // pages/quiz/index.js
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const TOPICS = [
   "Alle",
@@ -14,6 +16,16 @@ const TOPICS = [
 const COUNTRIES = ["DE", "AT", "CH"];
 
 function QuizIndex() {
+  const router = useRouter();
+
+  // 👉 NEU: Username prüfen
+  useEffect(() => {
+    const name = localStorage.getItem("jagd_username");
+    if (!name) {
+      router.push("/quiz/username"); // wenn kein Name → Username wählen
+    }
+  }, [router]);
+
   return (
     <main style={pageMain}>
       <h1 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: 8 }}>
