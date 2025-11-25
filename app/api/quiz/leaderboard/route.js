@@ -9,14 +9,15 @@ export async function GET() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
 
+  // Wichtig: richtige Tabelle + Username auswählen!
   const { data, error } = await supabase
-    .from("quiz_leaderboard")
-    .select("*")
-    .order("total_points", { ascending: false })
+    .from("quiz_scores")
+    .select("user_id, username, points, created_at")
+    .order("points", { ascending: false })
     .limit(50);
 
   if (error) {
-    console.error(error);
+    console.error("Leaderboard Fehler:", error);
     return NextResponse.json({ error }, { status: 400 });
   }
 
