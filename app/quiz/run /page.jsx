@@ -1,14 +1,11 @@
-// app/quiz/run/page.jsx
-import QuizClient from "./QuizClient";
+"use client";
 
-export const metadata = {
-  title: "Jagdquiz | Jagdlatein",
-};
+import dynamic from "next/dynamic";
 
-export default function QuizPage() {
-  return (
-    <div style={{ padding: 0, margin: 0 }}>
-      <QuizClient />
-    </div>
-  );
+const QuizClient = dynamic(() => import("./QuizClient"), {
+  ssr: false,
+});
+
+export default function QuizRunPage() {
+  return <QuizClient />;
 }
