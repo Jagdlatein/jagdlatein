@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// KORREKT:
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -10,7 +9,6 @@ import Flag from "../components/Flag";
 import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
-
 
 export default function LeaderboardPage() {
   const [data, setData] = useState([]);
@@ -25,13 +23,17 @@ export default function LeaderboardPage() {
   }, []);
 
   async function load() {
-    const all = await fetch("/api/quiz/leaderboard").then((r) => r.json());
-    const month = await fetch("/api/quiz/leaderboard-month").then((r) =>
-      r.json()
-    );
+    try {
+      const all = await fetch("/api/quiz/leaderboard").then((r) => r.json());
+      const month = await fetch("/api/quiz/leaderboard-month").then((r) =>
+        r.json()
+      );
 
-    setData(all.data || []);
-    setMonthData(month.data || []);
+      setData(all.data || []);
+      setMonthData(month.data || []);
+    } catch (err) {
+      console.error("Fehler beim Laden der Rangliste:", err);
+    }
   }
 
   const filtered =
@@ -39,7 +41,9 @@ export default function LeaderboardPage() {
       ? monthData
       : filter === "all"
       ? data
-      : data.filter((x) => x.username.toLowerCase().includes(query.toLowerCase()));
+      : data.filter((x) =>
+          x.username.toLowerCase().includes(query.toLowerCase())
+        );
 
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
@@ -74,8 +78,7 @@ export default function LeaderboardPage() {
 
             <div style={{ marginLeft: 12, flexGrow: 1 }}>
               <div style={{ fontSize: 18, fontWeight: 700 }}>
-                {item.username}
-                <Flag />
+                {item.username} <Flag country="DE" />
               </div>
               <Level points={item.total_points} />
             </div>
@@ -84,7 +87,7 @@ export default function LeaderboardPage() {
               {item.total_points}
             </div>
 
-            <Badge />
+            <Badge points={item.total_points} />
           </div>
         ))}
       </div>
