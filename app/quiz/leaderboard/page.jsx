@@ -9,8 +9,6 @@ import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 
-export const revalidate = 0; // Wichtig: Keine Cache-Probleme
-
 export default function LeaderboardPage() {
   const [data, setData] = useState([]);
   const [monthData, setMonthData] = useState([]);
@@ -19,15 +17,14 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
-  // Laden der Scores
   useEffect(() => {
     load();
   }, []);
 
   async function load() {
     try {
-      const all = await fetch("/api/quiz/leaderboard").then((r) => r.json());
-      const month = await fetch("/api/quiz/leaderboard-month").then((r) =>
+      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" }).then((r) => r.json());
+      const month = await fetch("/api/quiz/leaderboard-month", { cache: "no-store" }).then((r) =>
         r.json()
       );
 
@@ -38,7 +35,6 @@ export default function LeaderboardPage() {
     }
   }
 
-  // Filter & Suche
   const filtered =
     filter === "month"
       ? monthData
@@ -65,10 +61,7 @@ export default function LeaderboardPage() {
         🏆 Rangliste
       </h1>
 
-      {/* Filter */}
       <Filters filter={filter} setFilter={setFilter} />
-
-      {/* Suche */}
       <SearchBar query={query} setQuery={setQuery} />
 
       <div style={{ marginTop: 20 }}>
@@ -89,7 +82,6 @@ export default function LeaderboardPage() {
                 boxShadow: "0 2px 6px rgba(0,0,0,0.04)",
               }}
             >
-              {/* Platzierung */}
               <div
                 style={{
                   width: 40,
@@ -101,10 +93,8 @@ export default function LeaderboardPage() {
                 {place}
               </div>
 
-              {/* Avatar */}
               <Avatar username={item.username} />
 
-              {/* Username + Level */}
               <div style={{ marginLeft: 14, flexGrow: 1 }}>
                 <div
                   style={{
@@ -122,7 +112,6 @@ export default function LeaderboardPage() {
                 <Level points={item.total_points} />
               </div>
 
-              {/* Punkte */}
               <div
                 style={{
                   fontSize: 26,
@@ -136,14 +125,12 @@ export default function LeaderboardPage() {
                 {item.total_points}
               </div>
 
-              {/* Hirsch-Badge */}
               <Badge points={item.total_points} />
             </div>
           );
         })}
       </div>
 
-      {/* Pagination */}
       <Pagination
         page={page}
         setPage={setPage}
@@ -151,7 +138,6 @@ export default function LeaderboardPage() {
         perPage={perPage}
       />
 
-      {/* Zurück */}
       <button
         onClick={() => (window.location.href = "/quiz/run")}
         style={{
