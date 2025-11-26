@@ -1,14 +1,16 @@
-export const metadata = {
-  title: "Jagdlatein – Die Lernplattform",
-  description: "Jagdquiz und Lernplattform für Jägerinnen und Jäger.",
-};
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="de">
-      <body>
-        {children}
-      </body>
-    </html>
-  );
+export default function QuizLayout({ children }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // wenn user direkt /quiz öffnet → sofort weiter
+    if (window.location.pathname === "/quiz") {
+      router.replace("/quiz/run");
+    }
+  }, []);
+
+  return <>{children}</>;
 }
