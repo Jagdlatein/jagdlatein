@@ -1,8 +1,8 @@
-"use client";                     // MUSS GANZ OBEN SEIN
+"use client";                        // MUSS ganz oben stehen
 
-// Deaktiviert jegliches Revalidate/SSR
-export const dynamic = "force-dynamic";
-export const revalidate = false;
+// WICHTIG: Niemals revalidate hier definieren!
+// Username ist immer eine Client-Only Seite.
+// Daher entfernen wir revalidate komplett.
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ export default function UsernamePage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // check localStorage on client
   useEffect(() => {
     const stored = localStorage.getItem("jagd_username");
     if (stored) {
@@ -27,7 +28,9 @@ export default function UsernamePage() {
     router.replace("/quiz/run");
   }
 
-  if (loading) return <p style={{ padding: 20 }}>Lade...</p>;
+  if (loading) {
+    return <p style={{ padding: 20 }}>Lade...</p>;
+  }
 
   return (
     <div style={{ padding: 20, maxWidth: 400, margin: "0 auto" }}>
