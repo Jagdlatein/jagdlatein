@@ -3,37 +3,53 @@
 import { useEffect, useState } from "react";
 
 export default function LeaderboardPage() {
-  const [board, setBoard] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState("all"); // all | month
+  const [allData, setAllData] = useState([]);
+  const [monthData, setMonthData] = useState([]);
+  const [loadingAll, setLoadingAll] = useState(true);
+  const [loadingMonth, setLoadingMonth] = useState(true);
 
   useEffect(() => {
-    loadBoard();
+    loadAll();
+    loadMonth();
   }, []);
 
-  async function loadBoard() {
+  async function loadAll() {
     try {
-      const res = await fetch("/api/quiz/leaderboard");
-      const data = await res.json();
-      setBoard(data.data || []);
+      const r = await fetch("/api/quiz/leaderboard");
+      const d = await r.json();
+      setAllData(d.data || []);
     } catch (e) {
-      console.error("Fehler beim Laden der Rangliste:", e);
+      console.error("Fehler beim Laden der Gesamtrangliste:", e);
     }
-    setLoading(false);
+    setLoadingAll(false);
   }
 
-  const medal = (index) => {
-    if (index === 0) return "🥇";
-    if (index === 1) return "🥈";
-    if (index === 2) return "🥉";
-    return index + 1 + ".";
-  };
+  async function loadMonth() {
+    try {
+      const r = await fetch("/api/quiz/leaderboard-month");
+      const d = await r.json();
+      setMonthData(d.data || []);
+    } catch (e) {
+      console.error("Fehler beim Laden der Monatsrangliste:", e);
+    }
+    setLoadingMonth(false);
+  }
 
-  const medalColor = (index) => {
-    if (index === 0) return "#f5d142";   // Gold
-    if (index === 1) return "#c0c0c0";   // Silber
-    if (index === 2) return "#cd7f32";   // Bronze
-    return "#136f39";                    // Jagdlatein-Grün
-  };
+  const medal = (i) =>
+    i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}.`;
+
+  const medalColor = (i) =>
+    i === 0
+      ? "#f5d142"
+      : i === 1
+      ? "#c0c0c0"
+      : i === 2
+      ? "#cd7f32"
+      : "#136f39";
+
+  const data = tab === "all" ? allData : monthData;
+  const loading = tab === "all" ? loadingAll : loadingMonth;
 
   return (
     <div
@@ -48,21 +64,65 @@ export default function LeaderboardPage() {
         🏆 Rangliste
       </h1>
 
+      {/* Tabs */}
+      <div
+        style={{
+          display: "flex",
+          marginBottom: 22,
+          borderRadius: 12,
+          overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.12)",
+        }}
+      >
+        <button
+          onClick={() => setTab("all")}
+          style={{
+            flex: 1,
+            padding: "12px 0",
+            fontSize: 18,
+            fontWeight: 600,
+            background: tab === "all" ? "#136f39" : "#eee",
+            color: tab === "all" ? "white" : "#333",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Gesamt
+        </button>
+
+        <button
+          onClick={() => setTab("month")}
+          style={{
+            flex: 1,
+            padding: "12px 0",
+            fontSize: 18,
+            fontWeight: 600,
+            background: tab === "month" ? "#136f39" : "#eee",
+            color: tab === "month" ? "white" : "#333",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Monat
+        </button>
+      </div>
+
+      {/* Loading */}
       {loading && (
-        <p style={{ textAlign: "center", opacity: 0.6 }}>
-          Lade Rangliste…
-        </p>
+        <p style={{ textAlign: "center", opacity: 0.6 }}>Lade Daten…</p>
       )}
 
-      {!loading && board.length === 0 && (
+      {/* Leere Liste */}
+      {!loading && data.length === 0 && (
         <p style={{ textAlign: "center", opacity: 0.7 }}>
           ❗ Noch keine Einträge vorhanden.
         </p>
       )}
 
-      {!loading && board.length > 0 && (
+      {/* Liste */}
+      {!loading && data.length > 0 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {board.map((item, i) => (
+          {data.map((item, i) => (
             <div
               key={i}
               style={{
@@ -90,18 +150,14 @@ export default function LeaderboardPage() {
                 {medal(i)}
               </div>
 
-              {/* Username */}
-              <div
-                style={{
-                  flex: 1,
-                  fontSize: 20,
-                  fontWeight: 600,
-                }}
-              >
+              {/* Username + Runden */}
+              <div style={{ flex: 1, fontSize: 20, fontWeight: 600 }}>
                 {item.username}
-                <div style={{ fontSize: 13, opacity: 0.6 }}>
-                  {item.rounds} Runden gespielt
-                </div>
+                {item.rounds && (
+                  <div style={{ fontSize: 13, opacity: 0.6 }}>
+                    {item.rounds} Runden
+                  </div>
+                )}
               </div>
 
               {/* Punkte */}
