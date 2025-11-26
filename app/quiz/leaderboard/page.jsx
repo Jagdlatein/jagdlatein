@@ -2,117 +2,51 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
-
-// ---- Supabase Realtime ----
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
-
-// ---- Flaggen ----
-const flag = {
-  DE: "🇩🇪",
-  AT: "🇦🇹",
-  CH: "🇨🇭",
-};
-
-// ---- Hirsch-Badges ----
-function getHirschBadge(points) {
-  if (points >= 15000) return "🦌 Kapitaler Hirsch";
-  if (points >= 10000) return "🦌 Starker Hirsch";
-  if (points >= 5000) return "🦌 Spießer";
-  if (points >= 2000) return "🦌 Jährling";
-  return "🦌 Kalb";
-}
 
 export default function LeaderboardPage() {
   const router = useRouter();
-
   const [tab, setTab] = useState("all");
 
-  const [dataAll, setDataAll] = useState([]);
-  const [dataMonth, setDataMonth] = useState([]);
-  const [dataWeek, setDataWeek] = useState([]);
-  const [dataToday, setDataToday] = useState([]);
-  const [dataYear, setDataYear] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [monthData, setMonthData] = useState([]);
+  const [loadingAll, setLoadingAll] = useState(true);
+  const [loadingMonth, setLoadingMonth] = useState(true);
 
-  const [loading, setLoading] = useState(true);
-
-  // -------------------------
-  //    LADEN DER DATEN
-  // -------------------------
   useEffect(() => {
-    loadData();
-    subscribeRealtime();
+    loadAll();
+    loadMonth();
   }, []);
 
-  async function loadData() {
-    setLoading(true);
-
-    const all = await fetch("/api/quiz/leaderboard").then((r) => r.json());
-    setDataAll(all.data || []);
-
-    const month = await fetch("/api/quiz/leaderboard-month").then((r) =>
-      r.json()
-    );
-    setDataMonth(month.data || []);
-
-    const week = await fetch("/api/quiz/leaderboard-week").then((r) =>
-      r.json()
-    );
-    setDataWeek(week.data || []);
-
-    const today = await fetch("/api/quiz/leaderboard-today").then((r) =>
-      r.json()
-    );
-    setDataToday(today.data || []);
-
-    const year = await fetch("/api/quiz/leaderboard-year").then((r) =>
-      r.json()
-    );
-    setDataYear(year.data || []);
-
-    setLoading(false);
+  async function loadAll() {
+    try {
+      const r = await fetch("/api/quiz/leaderboard");
+      const d = await r.json();
+      setAllData(d.data || []);
+    } catch (e) {
+      console.error("Fehler beim Laden der Gesamtrangliste:", e);
+    }
+    setLoadingAll(false);
   }
 
-  // -------------------------
-  //   SUPABASE LIVE UPDATE
-  // -------------------------
-  function subscribeRealtime() {
-    supabase
-      .channel("quiz_scores")
-      .on("postgres_changes", { event: "*", schema: "public" }, () => {
-        loadData(); // Auto reload
-      })
-      .subscribe();
+  async function loadMonth() {
+    try {
+      const r = await fetch("/api/quiz/leaderboard-month");
+      const d = await r.json();
+      setMonthData(d.data || []);
+    } catch (e) {
+      console.error("Fehler beim Laden der Monatsrangliste:", e);
+    }
+    setLoadingMonth(false);
   }
-
-  // -------------------------
-  //   PASSENDE DATEN AUSWÄHLEN
-  // -------------------------
-  const data =
-    tab === "today"
-      ? dataToday
-      : tab === "week"
-      ? dataWeek
-      : tab === "month"
-      ? dataMonth
-      : tab === "year"
-      ? dataYear
-      : dataAll;
 
   const medal = (i) =>
     i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}.`;
 
   const medalColor = (i) =>
-    i === 0
-      ? "#f5d142"
-      : i === 1
-      ? "#c0c0c0"
-      : i === 2
-      ? "#cd7f32"
-      : "#136f39";
+    i === 0 ? "#f5d142" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "#136f39";
+
+  const data = tab === "all" ? allData : monthData;
+  const loading = tab === "all" ? loadingAll : loadingMonth;
 
   return (
     <div
@@ -123,57 +57,66 @@ export default function LeaderboardPage() {
         fontFamily: "system-ui",
       }}
     >
-      <h1 style={{ fontSize: 34, marginBottom: 14, textAlign: "center" }}>
+      <h1 style={{ fontSize: 34, marginBottom: 20, textAlign: "center" }}>
         🏆 Rangliste
       </h1>
 
-      {/* FILTER-TABS */}
+      {/* Tabs */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
+          display: "flex",
           marginBottom: 22,
           borderRadius: 12,
           overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.12)",
         }}
       >
-        {[
-          ["Heute", "today"],
-          ["Woche", "week"],
-          ["Monat", "month"],
-          ["Jahr", "year"],
-          ["Gesamt", "all"],
-        ].map(([label, key]) => (
-          <button
-            key={key}
-            onClick={() => setTab(key)}
-            style={{
-              padding: "12px 0",
-              fontSize: 16,
-              fontWeight: 600,
-              background: tab === key ? "#136f39" : "#eee",
-              color: tab === key ? "white" : "#333",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            {label}
-          </button>
-        ))}
+        <button
+          onClick={() => setTab("all")}
+          style={{
+            flex: 1,
+            padding: "12px 0",
+            fontSize: 18,
+            fontWeight: 600,
+            background: tab === "all" ? "#136f39" : "#eee",
+            color: tab === "all" ? "white" : "#333",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Gesamt
+        </button>
+
+        <button
+          onClick={() => setTab("month")}
+          style={{
+            flex: 1,
+            padding: "12px 0",
+            fontSize: 18,
+            fontWeight: 600,
+            background: tab === "month" ? "#136f39" : "#eee",
+            color: tab === "month" ? "white" : "#333",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Monat
+        </button>
       </div>
 
-      {/* LADEN */}
-      {loading && <p style={{ textAlign: "center" }}>Lade Daten…</p>}
+      {/* Loading */}
+      {loading && (
+        <p style={{ textAlign: "center", opacity: 0.6 }}>Lade Daten…</p>
+      )}
 
-      {/* LEER */}
+      {/* Empty */}
       {!loading && data.length === 0 && (
         <p style={{ textAlign: "center", opacity: 0.7 }}>
           ❗ Noch keine Einträge vorhanden.
         </p>
       )}
 
-      {/* LISTE */}
+      {/* List */}
       {!loading && data.length > 0 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {data.map((item, i) => (
@@ -185,7 +128,7 @@ export default function LeaderboardPage() {
                 justifyContent: "space-between",
                 padding: "16px 18px",
                 background: "rgba(255,255,255,0.65)",
-                backdropFilter: "blur(10px)",
+                backdropFilter: "blur(8px)",
                 borderRadius: 16,
                 border: "1px solid rgba(0,0,0,0.1)",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
@@ -198,27 +141,20 @@ export default function LeaderboardPage() {
                   fontWeight: 700,
                   color: medalColor(i),
                   width: 60,
+                  textAlign: "left",
                 }}
               >
                 {medal(i)}
               </div>
 
-              {/* Username + Badges */}
-              <div style={{ flex: 1 }}>
-                <div
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 700,
-                    marginBottom: 4,
-                  }}
-                >
-                  {item.username} {flag[item.country] || ""}
-                </div>
-
-                {/* Badges */}
-                <div style={{ fontSize: 14, opacity: 0.7 }}>
-                  {getHirschBadge(item.total_points)} • {item.rounds} Runden
-                </div>
+              {/* Username */}
+              <div style={{ flex: 1, fontSize: 20, fontWeight: 600 }}>
+                {item.username}
+                {item.rounds && (
+                  <div style={{ fontSize: 13, opacity: 0.6 }}>
+                    {item.rounds} Runden
+                  </div>
+                )}
               </div>
 
               {/* Punkte */}
@@ -238,6 +174,24 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      {/* ZURÜCK ZUM QUIZ */}
+      {/* Zurück zum Quiz */}
       <button
         onClick={() => router.push("/quiz/run")}
+        style={{
+          width: "100%",
+          background: "#136f39",
+          color: "white",
+          padding: "15px",
+          borderRadius: 12,
+          fontSize: 18,
+          fontWeight: 600,
+          border: "none",
+          cursor: "pointer",
+          marginTop: 30,
+        }}
+      >
+        🔙 Zurück zum Quiz
+      </button>
+    </div>
+  );
+}
