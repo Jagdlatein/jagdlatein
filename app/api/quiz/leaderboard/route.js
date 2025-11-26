@@ -1,10 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const dynamic = "force-dynamic"; // WICHTIG! Kein API Cache
+export const dynamic = "force-dynamic";
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  process.env.SUPABASE_URL ?? "",
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? ""
 );
 
 export async function GET() {
@@ -14,7 +14,9 @@ export async function GET() {
     .order("score", { ascending: false })
     .order("created_at", { ascending: true });
 
-  if (error) return Response.json({ error }, { status: 500 });
+  if (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 
   return Response.json(data, { status: 200 });
 }
