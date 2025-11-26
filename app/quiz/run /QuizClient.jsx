@@ -22,14 +22,12 @@ export default function QuizClient() {
   const [personalRank, setPersonalRank] = useState(null);
   const [monthlyRank, setMonthlyRank] = useState(null);
 
-  // Lade Fragen aus deinem bestehenden Endpoint
+  // Fragen laden
   useEffect(() => {
     async function load() {
-      const res = await fetch(
-        `/api/questions?country=${country}&topic=${topic}`
-      );
+      const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
       const data = await res.json();
-      setQuestions(data.questions);
+      setQuestions(data.questions || []);
     }
     load();
   }, [country, topic]);
@@ -40,6 +38,7 @@ export default function QuizClient() {
   useEffect(() => {
     if (!q || finished || locked) return;
     if (timer <= 0) return handleTimeout();
+
     const t = setTimeout(() => setTimer((x) => x - 1), 1000);
     return () => clearTimeout(t);
   }, [timer, q, locked, finished]);
@@ -66,6 +65,7 @@ export default function QuizClient() {
       setFinished(true);
       return;
     }
+
     setIndex((i) => i + 1);
     setTimer(30);
     setSelected(null);
@@ -80,7 +80,6 @@ export default function QuizClient() {
 
   async function saveScore() {
     setSaved(true);
-
     const username = localStorage.getItem("jagd_username") || "Gastjäger";
 
     await fetch("/api/quiz/submit", {
@@ -102,9 +101,7 @@ export default function QuizClient() {
     const rank1 = list1.findIndex((x) => x.username === username);
     setPersonalRank(rank1 >= 0 ? rank1 + 1 : null);
 
-    const mon = await fetch("/api/quiz/leaderboard-month").then((r) =>
-      r.json()
-    );
+    const mon = await fetch("/api/quiz/leaderboard-month").then((r) => r.json());
     const list2 = mon.data ?? [];
     const rank2 = list2.findIndex((x) => x.username === username);
     setMonthlyRank(rank2 >= 0 ? rank2 + 1 : null);
@@ -115,7 +112,7 @@ export default function QuizClient() {
     router.push(`/quiz/run?country=${country}&topic=${topic}&rnd=${Math.random()}`);
   }
 
-  // UI — moderner App-Style
+  // UI Rendering
   return (
     <div
       style={{
@@ -125,7 +122,7 @@ export default function QuizClient() {
         fontFamily: "system-ui",
       }}
     >
-      {/* Fertig Screen */}
+      {/* Fertig-Screen */}
       {finished && (
         <div style={{ textAlign: "center", animation: "fadeIn 0.4s" }}>
           <h1 style={{ fontSize: 36, marginBottom: 12 }}>🎉 Jagdquiz beendet!</h1>
@@ -143,11 +140,15 @@ export default function QuizClient() {
           </div>
 
           {personalRank && (
-            <p style={{ fontSize: 20 }}>🥇 Gesamt: Platz <b>{personalRank}</b></p>
+            <p style={{ fontSize: 20 }}>
+              🥇 Gesamt: Platz <b>{personalRank}</b>
+            </p>
           )}
 
           {monthlyRank && (
-            <p style={{ fontSize: 20 }}>📅 Monat: Platz <b>{monthlyRank}</b></p>
+            <p style={{ fontSize: 20 }}>
+              📅 Monat: Platz <b>{monthlyRank}</b>
+            </p>
           )}
 
           <button
@@ -184,7 +185,7 @@ export default function QuizClient() {
         </div>
       )}
 
-      {/* Laufender Quiz Screen */}
+      {/* Quiz-Screen */}
       {!finished && q && (
         <>
           <div
@@ -196,7 +197,9 @@ export default function QuizClient() {
               marginBottom: 12,
             }}
           >
-            <span>Frage {index + 1}/{questions.length}</span>
+            <span>
+              Frage {index + 1}/{questions.length}
+            </span>
             <span style={{ color: timer <= 5 ? "red" : "#136f39" }}>
               ⏱ {timer}s
             </span>
@@ -266,4 +269,4 @@ export default function QuizClient() {
       )}
     </div>
   );
-              }
+}
