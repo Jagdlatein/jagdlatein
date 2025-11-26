@@ -10,13 +10,12 @@ export async function POST(req) {
 
   const { userId, username, country, points } = body;
 
-  // Score in DB schreiben
+  // 🟢 WICHTIG: Nur total_points speichern
   const { error } = await supabase.from("quiz_scores").insert({
     user_id: userId,
-    username,
+    username: username,
     country: country || "DE",
-    total_points: points,   // ← WICHTIG! total_points statt points
-    points: points,         // optional, wenn du altes Feld behalten willst
+    total_points: points,   // ← einzig richtige Spalte
   });
 
   if (error) {
