@@ -6,19 +6,26 @@ export function calcBadge(points) {
   return { emoji: "🌱", label: "Anfänger" };
 }
 
+// Alias für alte Stats-Page-Kompatibilität
+export function getHirschBadge(points) {
+  return calcBadge(points);
+}
+
 export default function Badge({ points }) {
   const { emoji, label } = calcBadge(points);
 
   return (
-    <div style={{
-      background: "#f8ead5",
-      borderRadius: 12,
-      padding: "6px 12px",
-      fontSize: 14,
-      display: "flex",
-      alignItems: "center",
-      gap: 6
-    }}>
+    <div
+      style={{
+        background: "#f8ead5",
+        borderRadius: 12,
+        padding: "6px 12px",
+        fontSize: 14,
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+      }}
+    >
       <span>{emoji}</span> {label}
     </div>
   );
