@@ -1,0 +1,22 @@
+/* Basis-Reset + ruhiges Styling für Jagdlatein */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f6f1e7; /* dezente Jagd-Papierfarbe */
+  color: #1b1b1b;
+  min-height: 100vh;
+}
+
+/* Smooth transitions global */
+button,
+a,
+div {
+  transition: all 0.15s ease;
+}
