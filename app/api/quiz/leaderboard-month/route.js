@@ -1,19 +1,24 @@
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic"; // WICHTIG!
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
 export async function GET() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
+  const now = new Date();
+  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
-  const firstDay = new Date();
-  firstDay.setDate(1);
+  const { data, error } = await supabase
+    .from("scores")
+    .select("*")
+    .gte("created_at", firstDay)
+    .order("score", { ascending: false })
+    .order("created_at", { ascending: true });
 
-  const { data } = await supabase
-    .from("quiz_scores")
-    .select("username, total_points, created_at")
-    .gte("created_at", firstDay.toISOString())
-    .order("total_points", { ascending: false });
+  if (error) return Response.json({ error }, { status: 500 });
 
-  return Response.json({ data });
+  return Response.json(data, { status: 200 });
 }
