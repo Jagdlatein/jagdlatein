@@ -1,6 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
+export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
-export const dynamic = "force-dynamic"; // WICHTIG!
+import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -8,17 +9,18 @@ const supabase = createClient(
 );
 
 export async function GET() {
-  const now = new Date();
-  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+  const firstDay = new Date();
+  firstDay.setDate(1);
 
   const { data, error } = await supabase
-    .from("scores")
-    .select("*")
-    .gte("created_at", firstDay)
-    .order("score", { ascending: false })
-    .order("created_at", { ascending: true });
+    .from("quiz_scores")
+    .select("username, total_points, created_at")
+    .gte("created_at", firstDay.toISOString())
+    .order("total_points", { ascending: false });
 
-  if (error) return Response.json({ error }, { status: 500 });
+  if (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 
-  return Response.json(data, { status: 200 });
+  return Response.json({ data });
 }
