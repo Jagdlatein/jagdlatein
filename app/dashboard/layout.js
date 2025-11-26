@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "Dashboard – Jagdlatein",
-};
-
-export default function DashboardLayout({ children }) {
+export default function Layout({ children }) {
   return <>{children}</>;
 }
