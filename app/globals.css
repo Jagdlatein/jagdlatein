@@ -28,3 +28,68 @@ div {
   transform: scale(1.015);
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
+/* PREMIUM QUIZ UI */
+
+/* Fade-in */
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Flash green */
+.flash-correct {
+  animation: flashCorrect 0.35s ease;
+}
+
+@keyframes flashCorrect {
+  0% { background: #c6f6d5; }
+  100% { background: #ffffff; }
+}
+
+/* Flash red */
+.flash-wrong {
+  animation: flashWrong 0.35s ease;
+}
+
+@keyframes flashWrong {
+  0% { background: #fed7d7; }
+  100% { background: #ffffff; }
+}
+
+/* Score pop */
+.score-pop {
+  animation: scorePop 0.4s ease-out;
+}
+
+@keyframes scorePop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Progressbar */
+.progressbar {
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progressbar-fill {
+  height: 100%;
+  background: #136f39;
+  transition: width 0.3s linear;
+}
+
+/* Answer button */
+.answer-btn {
+  transition: all 0.15s ease;
+}
+
+.answer-btn:active {
+  transform: scale(0.98);
+}
