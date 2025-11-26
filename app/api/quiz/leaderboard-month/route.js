@@ -11,8 +11,8 @@ export async function GET() {
 
   const { data } = await supabase
     .from("quiz_scores")
-    .select("*")
-    .gte("updated_at", firstDay.toISOString())
+    .select("username, total_points, created_at")
+    .gte("created_at", firstDay.toISOString())
     .order("total_points", { ascending: false });
 
   return Response.json({ data });
