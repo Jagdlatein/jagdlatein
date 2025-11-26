@@ -36,6 +36,11 @@ export default function LeaderboardPage() {
     }
   }
 
+  // Punkte sicher auslesen (egal wie Supabase liefert)
+  function getPoints(entry) {
+    return entry.points ?? entry.total_points ?? 0;
+  }
+
   const filtered =
     filter === "month"
       ? monthData
@@ -57,39 +62,44 @@ export default function LeaderboardPage() {
       <SearchBar query={query} setQuery={setQuery} />
 
       <div style={{ marginTop: 20 }}>
-        {paginated.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              background: "#fff",
-              padding: 16,
-              borderRadius: 12,
-              marginBottom: 12,
-              border: "1px solid rgba(0,0,0,0.1)",
-            }}
-          >
-            <div style={{ width: 40, fontSize: 22, fontWeight: 700 }}>
-              {i + 1 + (page - 1) * perPage}
-            </div>
+        {paginated.map((item, i) => {
+          const points = getPoints(item);
 
-            <Avatar username={item.username} />
-
-            <div style={{ marginLeft: 12, flexGrow: 1 }}>
-              <div style={{ fontSize: 18, fontWeight: 700 }}>
-                {item.username} <Flag country="DE" />
+          return (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                background: "#fff",
+                padding: 16,
+                borderRadius: 12,
+                marginBottom: 12,
+                border: "1px solid rgba(0,0,0,0.1)",
+              }}
+            >
+              <div style={{ width: 40, fontSize: 22, fontWeight: 700 }}>
+                {i + 1 + (page - 1) * perPage}
               </div>
-              <Level points={item.total_points} />
-            </div>
 
-            <div style={{ fontSize: 22, fontWeight: 900, color: "#136f39" }}>
-              {item.total_points}
-            </div>
+              <Avatar username={item.username} />
 
-            <Badge points={item.total_points} />
-          </div>
-        ))}
+              <div style={{ marginLeft: 12, flexGrow: 1 }}>
+                <div style={{ fontSize: 18, fontWeight: 700 }}>
+                  {item.username} <Flag country="DE" />
+                </div>
+
+                <Level points={points} />
+              </div>
+
+              <div style={{ fontSize: 22, fontWeight: 900, color: "#136f39" }}>
+                {points}
+              </div>
+
+              <Badge points={points} />
+            </div>
+          );
+        })}
       </div>
 
       <Pagination
