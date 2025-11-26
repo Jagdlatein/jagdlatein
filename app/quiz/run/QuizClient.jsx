@@ -107,12 +107,10 @@ export default function QuizClient() {
     setMonthlyRank(rank2 >= 0 ? rank2 + 1 : null);
   }
 
-  // Restart
   function restart() {
     router.push(`/quiz/run?country=${country}&topic=${topic}&rnd=${Math.random()}`);
   }
 
-  // UI Rendering
   return (
     <div
       style={{
@@ -188,6 +186,26 @@ export default function QuizClient() {
       {/* Quiz-Screen */}
       {!finished && q && (
         <>
+          {/* Fortschritt */}
+          <div
+            style={{
+              height: 6,
+              background: "#ddd",
+              borderRadius: 10,
+              marginBottom: 20,
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: `${((index + 1) / questions.length) * 100}%`,
+                background: "#136f39",
+                transition: "0.3s width",
+              }}
+            />
+          </div>
+
           <div
             style={{
               fontSize: 22,
@@ -212,7 +230,7 @@ export default function QuizClient() {
               opacity: 0.7,
             }}
           >
-            Score: {score}
+            🦌 Punkte: {score}
           </div>
 
           <div
@@ -223,6 +241,7 @@ export default function QuizClient() {
               border: "1px solid rgba(0,0,0,0.1)",
               boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
               marginBottom: 20,
+              backdropFilter: "blur(10px)",
             }}
           >
             <div
