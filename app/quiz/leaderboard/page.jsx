@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+// KORREKT:
 import Avatar from "../components/Avatar";
-import { getLevel } from "../components/Level";
-import { getHirschBadge } from "../components/Badge";
+import Level from "../components/Level";
+import Badge from "../components/Badge";
 import Flag from "../components/Flag";
 import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+
 
 export default function LeaderboardPage() {
   const [data, setData] = useState([]);
