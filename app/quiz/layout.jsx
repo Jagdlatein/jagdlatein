@@ -1,7 +1,3 @@
-export default function QuizLayout({ children }) {
-  return (
-    <>
-      {children}
-    </>
-  );
+export default function Layout({ children }) {
+  return <>{children}</>;
 }
