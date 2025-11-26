@@ -1,27 +1,51 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { createClient } from "@supabase/supabase-js";
 
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
 export async function POST(req) {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
+  const { userId, username, country, points } = await req.json();
 
-  const body = await req.json();
+  // 1️⃣ Bestehenden Datensatz holen
+  const { data: existing } = await supabase
+    .from("quiz_scores")
+    .select("*")
+    .eq("user_id", userId)
+    .maybeSingle();
 
-  const { userId, username, country, points } = body;
+  // 2️⃣ Neue Gesamtpunkte berechnen
+  const newTotal = existing
+    ? (existing.total_points || 0) + points
+    : points;
 
-  // 🟢 WICHTIG: Nur total_points speichern
-  const { error } = await supabase.from("quiz_scores").insert({
-    user_id: userId,
-    username: username,
-    country: country || "DE",
-    total_points: points,   // ← einzig richtige Spalte
-  });
+  const newRounds = existing
+    ? (existing.rounds || 0) + 1
+    : 1;
+
+  // 3️⃣ Upsert (insert OR update)
+  const { error } = await supabase
+    .from("quiz_scores")
+    .upsert(
+      {
+        user_id: userId,
+        username,
+        country: country || "DE",
+        total_points: newTotal,
+        rounds: newRounds,
+        updated_at: new Date().toISOString()
+      },
+      { onConflict: "user_id" }
+    );
 
   if (error) {
     console.error("Fehler beim Speichern:", error);
     return Response.json({ success: false, error });
   }
 
-  return Response.json({ success: true });
+  return Response.json({ success: true, total_points: newTotal });
 }
