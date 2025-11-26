@@ -1,73 +1,125 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function UsernamePage() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [country, setCountry] = useState("DE");
 
+  const countries = [
+    { code: "DE", name: "Deutschland 🇩🇪" },
+    { code: "AT", name: "Österreich 🇦🇹" },
+    { code: "CH", name: "Schweiz 🇨🇭" },
+    { code: "FR", name: "Frankreich 🇫🇷" },
+    { code: "IT", name: "Italien 🇮🇹" },
+    { code: "ES", name: "Spanien 🇪🇸" },
+    { code: "PT", name: "Portugal 🇵🇹" },
+    { code: "NL", name: "Niederlande 🇳🇱" },
+    { code: "BE", name: "Belgien 🇧🇪" },
+    { code: "LU", name: "Luxemburg 🇱🇺" },
+    { code: "DK", name: "Dänemark 🇩🇰" },
+    { code: "NO", name: "Norwegen 🇳🇴" },
+    { code: "SE", name: "Schweden 🇸🇪" },
+    { code: "FI", name: "Finnland 🇫🇮" },
+    { code: "PL", name: "Polen 🇵🇱" },
+    { code: "CZ", name: "Tschechien 🇨🇿" },
+    { code: "SK", name: "Slowakei 🇸🇰" },
+    { code: "HU", name: "Ungarn 🇭🇺" },
+    { code: "SI", name: "Slowenien 🇸🇮" },
+    { code: "HR", name: "Kroatien 🇭🇷" },
+    { code: "RO", name: "Rumänien 🇷🇴" },
+    { code: "BG", name: "Bulgarien 🇧🇬" },
+    { code: "GR", name: "Griechenland 🇬🇷" },
+    { code: "IE", name: "Irland 🇮🇪" },
+    { code: "UK", name: "Vereinigtes Königreich 🇬🇧" },
+  ];
+
+  // Wenn bereits gespeichert → direkt weiter
   useEffect(() => {
-    const saved = localStorage.getItem("jagd_username");
+    const savedName = localStorage.getItem("jagd_username");
+    const savedCountry = localStorage.getItem("jagd_country");
 
-    if (saved && saved.length > 0) {
+    if (savedName && savedCountry) {
       router.replace("/quiz/run");
     }
   }, []);
 
-  function handleStart() {
-    if (!name.trim()) return;
+  function start() {
+    if (!username.trim()) {
+      alert("Bitte Username eingeben!");
+      return;
+    }
 
-    localStorage.setItem("jagd_username", name.trim());
+    localStorage.setItem("jagd_username", username.trim());
+    localStorage.setItem("jagd_country", country);
+
     router.push("/quiz/run");
   }
 
   return (
-    <div
-      style={{
-        maxWidth: 500,
-        margin: "80px auto",
-        padding: 20,
-        textAlign: "center",
-        fontFamily: "system-ui",
-      }}
-    >
+    <div style={{ maxWidth: 500, margin: "0 auto", padding: 30 }}>
       <h1 style={{ fontSize: 32, fontWeight: 900, marginBottom: 20 }}>
-        🎯 Benutzername wählen
+        🏹 Jagdquiz – Start
       </h1>
 
-      <p style={{ opacity: 0.7, marginBottom: 20 }}>
-        Bitte gib deinen Jägernamen ein, damit du in der Rangliste erscheinst.
-      </p>
-
+      <label style={{ fontSize: 18, fontWeight: 700 }}>Dein Username:</label>
       <input
         type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Dein Name..."
+        placeholder="z.B. HannesJäger"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
         style={{
           width: "100%",
-          padding: 15,
-          fontSize: 18,
+          padding: 14,
+          marginTop: 8,
           borderRadius: 10,
           border: "1px solid #ccc",
-          marginBottom: 20,
+          fontSize: 18,
         }}
       />
 
+      <div style={{ marginTop: 20 }}>
+        <label style={{ fontSize: 18, fontWeight: 700 }}>
+          Dein Land / Region:
+        </label>
+
+        <select
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 14,
+            fontSize: 18,
+            marginTop: 8,
+            borderRadius: 10,
+            border: "1px solid #ccc",
+          }}
+        >
+          {countries.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <button
-        onClick={handleStart}
+        onClick={start}
         style={{
+          marginTop: 30,
           width: "100%",
-          padding: 15,
-          borderRadius: 10,
+          padding: 16,
           background: "#136f39",
           color: "white",
           fontSize: 20,
+          borderRadius: 12,
           border: 0,
+          cursor: "pointer",
         }}
       >
-        ▶ Quiz starten
+        ▶️ Quiz starten
       </button>
     </div>
   );
