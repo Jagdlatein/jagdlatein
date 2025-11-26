@@ -6,43 +6,55 @@ import { useEffect, useState } from "react";
 export default function UsernamePage() {
   const router = useRouter();
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  // Wenn Name bereits existiert → direkt weiterleiten
+  // Client-side check
   useEffect(() => {
-    const saved = localStorage.getItem("jagd_username");
+    const saved = window.localStorage.getItem("jagd_username");
+
     if (saved) {
       router.replace("/quiz/run");
+    } else {
+      setLoading(false);
     }
   }, []);
 
+  if (loading) {
+    return (
+      <div style={{ padding: 40, fontSize: 26 }}>Lade...</div>
+    );
+  }
+
   function save() {
     if (!name.trim()) return;
-    localStorage.setItem("jagd_username", name.trim());
+    window.localStorage.setItem("jagd_username", name.trim());
     router.replace("/quiz/run");
   }
 
   return (
     <div
       style={{
-        maxWidth: 400,
-        margin: "60px auto",
-        fontFamily: "system-ui",
+        maxWidth: 420,
+        margin: "40px auto",
         padding: 20,
+        fontFamily: "system-ui",
       }}
     >
-      <h1 style={{ fontSize: 28, marginBottom: 20 }}>Wie heißt du auf der Jagd?</h1>
+      <h1 style={{ fontSize: 30, marginBottom: 20 }}>
+        Dein Jagdname
+      </h1>
 
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Dein Jagdname..."
+        placeholder="z.B. Bergjäger"
         style={{
           width: "100%",
-          padding: "12px 14px",
-          borderRadius: 12,
-          border: "1px solid #ccc",
-          marginBottom: 16,
           fontSize: 18,
+          padding: "12px 14px",
+          borderRadius: 10,
+          border: "1px solid #ccc",
+          marginBottom: 20,
         }}
       />
 
@@ -50,16 +62,16 @@ export default function UsernamePage() {
         onClick={save}
         style={{
           width: "100%",
-          padding: "14px",
           background: "#136f39",
           color: "white",
-          border: 0,
+          padding: "14px",
           borderRadius: 12,
           fontSize: 18,
+          border: 0,
           cursor: "pointer",
         }}
       >
-        Weiter zum Quiz
+        Speichern & weiter
       </button>
     </div>
   );
