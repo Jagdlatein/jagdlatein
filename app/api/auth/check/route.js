@@ -1,11 +1,13 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-export const dynamic = "force-dynamic";
-
+// SERVER CLIENT benutzen – NICHT NEXT_PUBLIC
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 export async function GET(req) {
@@ -19,14 +21,12 @@ export async function GET(req) {
       );
     }
 
-    // Case-insensitive Suche
     const mail = email.toLowerCase().trim();
 
-    // Hole komplett den User
     const { data: profile, error } = await supabase
       .from("userprofile")
       .select("*")
-      .ilike("email", mail)   // ⭐ ilike → case-insensitive
+      .ilike("email", mail)
       .maybeSingle();
 
     if (error) {
