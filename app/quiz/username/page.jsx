@@ -1,66 +1,90 @@
-"use client";                        // MUSS ganz oben stehen
+"use client";
 
-// WICHTIG: Niemals revalidate hier definieren!
-// Username ist immer eine Client-Only Seite.
-// Daher entfernen wir revalidate komplett.
-
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function UsernamePage() {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [loading, setLoading] = useState(true);
 
-  // check localStorage on client
+  const [username, setUsername] = useState("");
+  const [country, setCountry] = useState("DE");
+
+  // Nutzer hat bereits alles → direkt weiter
   useEffect(() => {
-    const stored = localStorage.getItem("jagd_username");
-    if (stored) {
+    const savedName = localStorage.getItem("jagd_username");
+    const savedCountry = localStorage.getItem("jagd_country");
+
+    if (savedName && savedCountry) {
       router.replace("/quiz/run");
-    } else {
-      setLoading(false);
     }
-  }, []);
+  }, [router]);
 
-  function save() {
-    if (!name.trim()) return;
-    localStorage.setItem("jagd_username", name.trim());
-    router.replace("/quiz/run");
-  }
+  function handleStart() {
+    if (!username.trim()) return;
 
-  if (loading) {
-    return <p style={{ padding: 20 }}>Lade...</p>;
+    localStorage.setItem("jagd_username", username.trim());
+    localStorage.setItem("jagd_country", country);
+
+    router.push("/quiz/run");
   }
 
   return (
-    <div style={{ padding: 20, maxWidth: 400, margin: "0 auto" }}>
-      <h1 style={{ marginBottom: 16 }}>Wie heißt du?</h1>
+    <div style={{ maxWidth: 450, margin: "60px auto", textAlign: "center" }}>
+      <h1 style={{ fontSize: 32, marginBottom: 20 }}>🦌 Jagdquiz starten</h1>
 
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Dein Name"
-        style={{
-          padding: "12px 16px",
-          width: "100%",
-          borderRadius: 8,
-          border: "1px solid #ccc",
-          marginBottom: 12,
-        }}
-      />
+      <div style={{ textAlign: "left", marginBottom: 16 }}>
+        <label style={{ fontSize: 18 }}>👤 Dein Spielername</label>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="z.B. Gastjäger"
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #ccc",
+            marginTop: 6,
+            fontSize: 16,
+          }}
+        />
+      </div>
+
+      <div style={{ textAlign: "left", marginBottom: 26 }}>
+        <label style={{ fontSize: 18 }}>🇩🇪 Dein Land</label>
+        <select
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #ccc",
+            marginTop: 6,
+            fontSize: 16,
+          }}
+        >
+          <option value="DE">🇩🇪 Deutschland</option>
+          <option value="AT">🇦🇹 Österreich</option>
+          <option value="CH">🇨🇭 Schweiz</option>
+          <option value="IT">🇮🇹 Italien</option>
+          <option value="FR">🇫🇷 Frankreich</option>
+        </select>
+      </div>
 
       <button
-        onClick={save}
+        onClick={handleStart}
         style={{
-          width: "100%",
-          padding: "12px 16px",
           background: "#136f39",
-          color: "white",
-          borderRadius: 8,
+          padding: "14px 30px",
+          width: "100%",
           border: 0,
+          color: "white",
+          fontSize: 18,
+          borderRadius: 10,
+          cursor: "pointer",
         }}
       >
-        Weiter
+        🎯 Quiz starten
       </button>
     </div>
   );
