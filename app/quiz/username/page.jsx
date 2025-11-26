@@ -1,6 +1,7 @@
+"use client";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,70 +11,50 @@ export default function UsernamePage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Client-side check
   useEffect(() => {
-    const saved = window.localStorage.getItem("jagd_username");
-
-    if (saved) {
+    const stored = localStorage.getItem("jagd_username");
+    if (stored) {
       router.replace("/quiz/run");
     } else {
       setLoading(false);
     }
   }, []);
 
-  if (loading) {
-    return (
-      <div style={{ padding: 40, fontSize: 26 }}>Lade...</div>
-    );
-  }
-
   function save() {
     if (!name.trim()) return;
-    window.localStorage.setItem("jagd_username", name.trim());
+    localStorage.setItem("jagd_username", name.trim());
     router.replace("/quiz/run");
   }
 
-  return (
-    <div
-      style={{
-        maxWidth: 420,
-        margin: "40px auto",
-        padding: 20,
-        fontFamily: "system-ui",
-      }}
-    >
-      <h1 style={{ fontSize: 30, marginBottom: 20 }}>
-        Dein Jagdname
-      </h1>
+  if (loading) return <p style={{ padding: 20 }}>Lade...</p>;
 
+  return (
+    <div style={{ padding: 20, maxWidth: 400, margin: "0 auto" }}>
+      <h1 style={{ marginBottom: 16 }}>Wie heißt du?</h1>
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="z.B. Bergjäger"
+        placeholder="Dein Name"
         style={{
+          padding: "12px 16px",
           width: "100%",
-          fontSize: 18,
-          padding: "12px 14px",
-          borderRadius: 10,
+          borderRadius: 8,
           border: "1px solid #ccc",
-          marginBottom: 20,
+          marginBottom: 12,
         }}
       />
-
       <button
         onClick={save}
         style={{
           width: "100%",
+          padding: "12px 16px",
           background: "#136f39",
           color: "white",
-          padding: "14px",
-          borderRadius: 12,
-          fontSize: 18,
+          borderRadius: 8,
           border: 0,
-          cursor: "pointer",
         }}
       >
-        Speichern & weiter
+        Weiter
       </button>
     </div>
   );
