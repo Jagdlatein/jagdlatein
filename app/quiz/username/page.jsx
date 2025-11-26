@@ -1,7 +1,8 @@
-"use client";
+"use client";                     // MUSS GANZ OBEN SEIN
 
+// Deaktiviert jegliches Revalidate/SSR
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = false;
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,6 +32,7 @@ export default function UsernamePage() {
   return (
     <div style={{ padding: 20, maxWidth: 400, margin: "0 auto" }}>
       <h1 style={{ marginBottom: 16 }}>Wie heißt du?</h1>
+
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -43,6 +45,7 @@ export default function UsernamePage() {
           marginBottom: 12,
         }}
       />
+
       <button
         onClick={save}
         style={{
