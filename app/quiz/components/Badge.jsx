@@ -1,31 +1,25 @@
-export default function Badge({ points }) {
-  let emoji = "🦌";
-  let label = "Jäger";
+export function calcBadge(points) {
+  if (points >= 20000) return { emoji: "👑", label: "Elitejäger" };
+  if (points >= 10000) return { emoji: "🦊", label: "Wilderer" };
+  if (points >= 5000) return { emoji: "🐗", label: "Profi" };
+  if (points >= 1000) return { emoji: "🦌", label: "Jäger" };
+  return { emoji: "🌱", label: "Anfänger" };
+}
 
-  if (points > 10000) {
-    emoji = "👑";
-    label = "Elite";
-  } else if (points > 5000) {
-    emoji = "🦊";
-    label = "Profi";
-  } else if (points > 2000) {
-    emoji = "🐗";
-    label = "Fortgeschritten";
-  }
+export default function Badge({ points }) {
+  const { emoji, label } = calcBadge(points);
 
   return (
-    <div
-      style={{
-        marginLeft: 12,
-        background: "#f2e2c4",
-        padding: "6px 10px",
-        borderRadius: 8,
-        fontSize: 14,
-        fontWeight: 700,
-        color: "#4b371c",
-      }}
-    >
-      {emoji} {label}
+    <div style={{
+      background: "#f8ead5",
+      borderRadius: 12,
+      padding: "6px 12px",
+      fontSize: 14,
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }}>
+      <span>{emoji}</span> {label}
     </div>
   );
 }
