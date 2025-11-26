@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -9,6 +8,8 @@ import Flag from "../components/Flag";
 import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+
+export const revalidate = 0; // Wichtig: Keine Cache-Probleme
 
 export default function LeaderboardPage() {
   const [data, setData] = useState([]);
@@ -18,6 +19,7 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
+  // Laden der Scores
   useEffect(() => {
     load();
   }, []);
@@ -36,11 +38,7 @@ export default function LeaderboardPage() {
     }
   }
 
-  // Punkte sicher auslesen (egal wie Supabase liefert)
-  function getPoints(entry) {
-    return entry.points ?? entry.total_points ?? 0;
-  }
-
+  // Filter & Suche
   const filtered =
     filter === "month"
       ? monthData
@@ -53,55 +51,99 @@ export default function LeaderboardPage() {
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 20 }}>
-      <h1 style={{ fontSize: 36, fontWeight: 900, marginBottom: 20 }}>
+    <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
+      <h1
+        style={{
+          fontSize: 40,
+          fontWeight: 900,
+          marginBottom: 25,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
         🏆 Rangliste
       </h1>
 
+      {/* Filter */}
       <Filters filter={filter} setFilter={setFilter} />
+
+      {/* Suche */}
       <SearchBar query={query} setQuery={setQuery} />
 
       <div style={{ marginTop: 20 }}>
-        {paginated.map((item, i) => {
-          const points = getPoints(item);
+        {paginated.map((item, idx) => {
+          const place = idx + 1 + (page - 1) * perPage;
 
           return (
             <div
-              key={i}
+              key={idx}
               style={{
                 display: "flex",
                 alignItems: "center",
                 background: "#fff",
                 padding: 16,
-                borderRadius: 12,
-                marginBottom: 12,
-                border: "1px solid rgba(0,0,0,0.1)",
+                borderRadius: 14,
+                marginBottom: 14,
+                border: "1px solid rgba(0,0,0,0.08)",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.04)",
               }}
             >
-              <div style={{ width: 40, fontSize: 22, fontWeight: 700 }}>
-                {i + 1 + (page - 1) * perPage}
+              {/* Platzierung */}
+              <div
+                style={{
+                  width: 40,
+                  textAlign: "center",
+                  fontSize: 22,
+                  fontWeight: 900,
+                }}
+              >
+                {place}
               </div>
 
+              {/* Avatar */}
               <Avatar username={item.username} />
 
-              <div style={{ marginLeft: 12, flexGrow: 1 }}>
-                <div style={{ fontSize: 18, fontWeight: 700 }}>
-                  {item.username} <Flag country="DE" />
+              {/* Username + Level */}
+              <div style={{ marginLeft: 14, flexGrow: 1 }}>
+                <div
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 700,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
+                  {item.username}
+                  <Flag country={item.country || "DE"} />
                 </div>
 
-                <Level points={points} />
+                <Level points={item.total_points} />
               </div>
 
-              <div style={{ fontSize: 22, fontWeight: 900, color: "#136f39" }}>
-                {points}
+              {/* Punkte */}
+              <div
+                style={{
+                  fontSize: 26,
+                  fontWeight: 900,
+                  color: "#136f39",
+                  textAlign: "right",
+                  marginRight: 10,
+                  minWidth: 60,
+                }}
+              >
+                {item.total_points}
               </div>
 
-              <Badge points={points} />
+              {/* Hirsch-Badge */}
+              <Badge points={item.total_points} />
             </div>
           );
         })}
       </div>
 
+      {/* Pagination */}
       <Pagination
         page={page}
         setPage={setPage}
@@ -109,6 +151,7 @@ export default function LeaderboardPage() {
         perPage={perPage}
       />
 
+      {/* Zurück */}
       <button
         onClick={() => (window.location.href = "/quiz/run")}
         style={{
@@ -116,8 +159,8 @@ export default function LeaderboardPage() {
           width: "100%",
           background: "#136f39",
           color: "#fff",
-          padding: 15,
-          borderRadius: 12,
+          padding: 16,
+          borderRadius: 14,
           fontSize: 18,
           border: 0,
         }}
