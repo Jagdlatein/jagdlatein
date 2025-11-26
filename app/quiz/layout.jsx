@@ -1,3 +1,5 @@
-export default function Layout({ children }) {
+"use client";
+
+export default function QuizLayout({ children }) {
   return <>{children}</>;
 }
