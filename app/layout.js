@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Jagdlatein",
-  description: "Jagdlatein Lernplattform",
+  title: "Jagdlatein – Die Lernplattform",
+  description: "Jagdquiz und Lernplattform für Jäger und Jägerinnen.",
 };
 
 export default function RootLayout({ children }) {
