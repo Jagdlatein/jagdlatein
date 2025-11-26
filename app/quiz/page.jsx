@@ -1,5 +1,14 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function QuizIndexPage() {
-  redirect("/quiz/run");
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/quiz/run");
+  }, []);
+
+  return null;
 }
