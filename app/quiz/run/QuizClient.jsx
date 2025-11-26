@@ -85,13 +85,19 @@ export default function QuizClient() {
     setLocked(false);
   }
 
+  // ✅ FIX HIER – KORREKTE API-PAYLOAD
   async function saveScore() {
     const username = localStorage.getItem("jagd_username") || "Gastjäger";
 
     await fetch("/api/quiz/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, points: score }),
+      body: JSON.stringify({
+        userId: username,     // eindeutige ID
+        username: username,   // Anzeigename
+        country: country,     // DE / AT / CH
+        points: score,        // Score
+      }),
     });
   }
 
@@ -198,7 +204,6 @@ export default function QuizClient() {
         Score: {score}
       </div>
 
-      {/* Frage */}
       <div
         className={`fade-in ${effect}`}
         style={{
