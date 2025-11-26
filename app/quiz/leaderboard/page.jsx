@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
-import Badge from "../components/Badge";
-import Level from "../components/Level";
+import { getLevel } from "../components/Level";
+import { getHirschBadge } from "../components/Badge";
 import Flag from "../components/Flag";
 import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
