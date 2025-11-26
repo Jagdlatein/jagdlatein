@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LeaderboardPage() {
+  const router = useRouter();
   const [tab, setTab] = useState("all"); // all | month
   const [allData, setAllData] = useState([]);
   const [monthData, setMonthData] = useState([]);
@@ -41,12 +43,12 @@ export default function LeaderboardPage() {
 
   const medalColor = (i) =>
     i === 0
-      ? "#f5d142"
+      ? "#f5d142" // Gold
       : i === 1
-      ? "#c0c0c0"
+      ? "#c0c0c0" // Silber
       : i === 2
-      ? "#cd7f32"
-      : "#136f39";
+      ? "#cd7f32" // Bronze
+      : "#136f39"; // Jagdlatein-Grün
 
   const data = tab === "all" ? allData : monthData;
   const loading = tab === "all" ? loadingAll : loadingMonth;
@@ -176,6 +178,25 @@ export default function LeaderboardPage() {
           ))}
         </div>
       )}
+
+      {/* Zurück zum Quiz */}
+      <button
+        onClick={() => router.push("/quiz/run")}
+        style={{
+          width: "100%",
+          background: "#136f39",
+          color: "white",
+          padding: "15px",
+          borderRadius: 12,
+          fontSize: 18,
+          fontWeight: 600,
+          border: 0,
+          cursor: "pointer",
+          marginTop: 30,
+        }}
+      >
+        🔙 Zurück zum Quiz
+      </button>
     </div>
   );
 }
