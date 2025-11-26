@@ -1,42 +1,31 @@
-"use client";
-
-export default function Filters({ active, onChange }) {
-  const tabs = [
-    ["today", "Heute"],
-    ["week", "Woche"],
-    ["month", "Monat"],
-    ["year", "Jahr"],
-    ["all", "Gesamt"]
-  ];
-
+export default function Filters({ filter, setFilter }) {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)",
-        marginBottom: 22,
-        borderRadius: 12,
-        overflow: "hidden",
-        border: "1px solid rgba(0,0,0,0.12)",
-      }}
-    >
-      {tabs.map(([key, label]) => (
-        <button
-          key={key}
-          onClick={() => onChange(key)}
-          style={{
-            padding: "12px 0",
-            fontSize: 16,
-            fontWeight: 600,
-            background: active === key ? "#136f39" : "#eee",
-            color: active === key ? "white" : "#333",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          {label}
-        </button>
-      ))}
+    <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+      <button
+        onClick={() => setFilter("all")}
+        style={{
+          padding: "8px 14px",
+          borderRadius: 10,
+          border: 0,
+          background: filter === "all" ? "#136f39" : "#ddd",
+          color: filter === "all" ? "#fff" : "#000",
+        }}
+      >
+        Gesamt
+      </button>
+
+      <button
+        onClick={() => setFilter("month")}
+        style={{
+          padding: "8px 14px",
+          borderRadius: 10,
+          border: 0,
+          background: filter === "month" ? "#136f39" : "#ddd",
+          color: filter === "month" ? "#fff" : "#000",
+        }}
+      >
+        Monat
+      </button>
     </div>
   );
 }
