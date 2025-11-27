@@ -11,28 +11,24 @@ const supabase = createClient(
 export async function POST(req) {
   const { username, country = "DE" } = await req.json();
 
-  // 1️⃣ quiz_users upsert
-  await supabase
-    .from("quiz_users")
-    .upsert(
-      {
-        username,
-        country
-      },
-      { onConflict: "username" }
-    );
+  if (!username) {
+    return Response.json({ success: false, message: "Username fehlt" });
+  }
 
-  // 2️⃣ quiz_scores upsert
-  await supabase
-    .from("quiz_scores")
-    .upsert(
-      {
-        username,
-        total_points: 0,
-        rounds: 0
-      },
-      { onConflict: "username" }
-    );
+  // User in quiz_users anlegen
+  await supabase.from("quiz_users").upsert({
+    username,
+    country,
+    created_at: new Date().toISOString()
+  });
+
+  // Score anlegen falls noch nicht existiert
+  await supabase.from("quiz_scores").upsert({
+    username,
+    total_points: 0,
+    rounds: 0,
+    updated_at: new Date().toISOString()
+  });
 
   return Response.json({ success: true });
 }
