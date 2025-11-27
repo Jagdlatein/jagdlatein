@@ -8,38 +8,24 @@ const supabase = createClient(
 );
 
 export async function GET() {
-  // 🟩 Start der Woche (Montag 00:00)
+  // 🟩 Wochenstart berechnen (Montag 00:00)
   const now = new Date();
   const day = now.getDay(); // So=0, Mo=1...
-  
-  // Montag berechnen
   const monday = new Date(now);
   monday.setHours(0, 0, 0, 0);
-  monday.setDate(now.getDate() - ((day + 6) % 7)); // Mo=0 Korrektur
-
+  monday.setDate(now.getDate() - ((day + 6) % 7));
   const weekStart = monday.toISOString();
 
-  // 🟩 quiz_results filtern
+  // 🟩 Nur Scores, die diese Woche aktualisiert wurden
   const { data, error } = await supabase
-    .from("quiz_results")
-    .select("username, points, created_at")
-    .gte("created_at", weekStart);
+    .from("quiz_scores")
+    .select("username, country, total_points, updated_at")
+    .gte("updated_at", weekStart)
+    .order("total_points", { ascending: false });
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }
 
-  // 🟩 Punkte pro Spieler summieren
-  const map = {};
-  data.forEach((r) => {
-    if (!map[r.username]) map[r.username] = 0;
-    map[r.username] += r.points;
-  });
-
-  // 🟩 Ranking erzeugen
-  const ranking = Object.entries(map)
-    .map(([username, total]) => ({ username, total_points: total }))
-    .sort((a, b) => b.total_points - a.total_points);
-
-  return Response.json({ weekStart, data: ranking });
+  return Response.json({ weekStart, data });
 }
