@@ -5,10 +5,24 @@ import { useState } from "react";
 export default function NameModal({ onDone }) {
   const [name, setName] = useState("");
 
-  function save() {
+  async function save() {
     const clean = name.trim();
     if (!clean) return;
+
+    // Username lokal speichern
     localStorage.setItem("jagd_username", clean);
+
+    // 🟩 WICHTIG: Username in Supabase registrieren
+    await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: clean,
+        country: "DE",
+      }),
+    });
+
+    // Weiter im Quiz
     onDone(clean);
   }
 
