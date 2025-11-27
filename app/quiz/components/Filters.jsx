@@ -1,6 +1,8 @@
 export default function Filters({ filter, setFilter }) {
   return (
     <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+      
+      {/* Gesamt */}
       <button
         onClick={() => setFilter("all")}
         style={{
@@ -14,18 +16,20 @@ export default function Filters({ filter, setFilter }) {
         Gesamt
       </button>
 
+      {/* Woche */}
       <button
-        onClick={() => setFilter("month")}
+        onClick={() => setFilter("week")}
         style={{
           padding: "8px 14px",
           borderRadius: 10,
           border: 0,
-          background: filter === "month" ? "#136f39" : "#ddd",
-          color: filter === "month" ? "#fff" : "#000",
+          background: filter === "week" ? "#136f39" : "#ddd",
+          color: filter === "week" ? "#fff" : "#000",
         }}
       >
-        Monat
+        Woche
       </button>
+
     </div>
   );
 }
