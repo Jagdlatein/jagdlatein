@@ -2,29 +2,31 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
-
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 export async function GET() {
-  const query = `
-    select
-      user_id,
-      username,
-      max(points) as weekly_highscore
-    from quiz_results
-    where created_at >= date_trunc('week', now())
-    group by user_id, username
-    order by weekly_highscore desc;
-  `;
+  const monday = new Date();
+  monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+  monday.setHours(0, 0, 0, 0);
 
-  const { data, error } = await supabase.rpc("exec_sql", { sql: query });
+  const { data } = await supabase
+    .from("quiz_results")
+    .select("username, points")
+    .gte("created_at", monday.toISOString());
 
-  if (error) {
-    return Response.json({ error: error.message }, { status: 500 });
-  }
+  const map = {};
+  data.forEach((row) => {
+    if (!map[row.username] || row.points > map[row.username]) {
+      map[row.username] = row.points;
+    }
+  });
 
-  return Response.json(data);
+  const result = Object.entries(map)
+    .map(([username, points]) => ({ username, points }))
+    .sort((a, b) => b.points - a.points);
+
+  return Response.json(result);
 }
