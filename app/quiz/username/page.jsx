@@ -46,15 +46,29 @@ export default function UsernamePage() {
     }
   }, []);
 
-  function start() {
+  async function start() {
     if (!username.trim()) {
       alert("Bitte Username eingeben!");
       return;
     }
 
-    localStorage.setItem("jagd_username", username.trim());
+    const clean = username.trim();
+
+    // 🔥 LOCAL SPEICHERN
+    localStorage.setItem("jagd_username", clean);
     localStorage.setItem("jagd_country", country);
 
+    // 🔥 SUPABASE REGISTRIERUNG (WICHTIG!)
+    await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: clean,
+        country: country
+      }),
+    });
+
+    // 🔥 WEITERLEITUNG
     router.push("/quiz/run");
   }
 
