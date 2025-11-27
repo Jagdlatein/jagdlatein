@@ -1,5 +1,8 @@
 "use client";
-import { useLiveSync } from "../useLiveSync";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
@@ -23,9 +26,11 @@ export default function LeaderboardPage() {
 
   async function load() {
     try {
+      // Alltime
       const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" })
         .then((r) => r.json());
 
+      // Weekly
       const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" })
         .then((r) => r.json());
 
