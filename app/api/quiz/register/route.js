@@ -11,18 +11,28 @@ const supabase = createClient(
 export async function POST(req) {
   const { username, country = "DE" } = await req.json();
 
-  // quiz_users anlegen
-  await supabase.from("quiz_users").upsert({
-    username,
-    country
-  });
+  // 1️⃣ quiz_users upsert
+  await supabase
+    .from("quiz_users")
+    .upsert(
+      {
+        username,
+        country
+      },
+      { onConflict: "username" }
+    );
 
-  // quiz_scores anlegen
-  await supabase.from("quiz_scores").upsert({
-    username,
-    total_points: 0,
-    rounds: 0
-  });
+  // 2️⃣ quiz_scores upsert
+  await supabase
+    .from("quiz_scores")
+    .upsert(
+      {
+        username,
+        total_points: 0,
+        rounds: 0
+      },
+      { onConflict: "username" }
+    );
 
   return Response.json({ success: true });
 }
