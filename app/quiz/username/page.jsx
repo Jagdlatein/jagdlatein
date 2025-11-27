@@ -36,7 +36,7 @@ export default function UsernamePage() {
     { code: "UK", name: "Vereinigtes Königreich 🇬🇧" },
   ];
 
-  // Wenn bereits gespeichert → direkt weiter
+  // Wenn Username + Land bereits gesetzt sind → direkt ins Quiz
   useEffect(() => {
     const savedName = localStorage.getItem("jagd_username");
     const savedCountry = localStorage.getItem("jagd_country");
@@ -54,21 +54,21 @@ export default function UsernamePage() {
 
     const clean = username.trim();
 
-    // 🔥 LOCAL SPEICHERN
+    // 🟢 LOCAL SPEICHERN
     localStorage.setItem("jagd_username", clean);
     localStorage.setItem("jagd_country", country);
 
-    // 🔥 SUPABASE REGISTRIERUNG (WICHTIG!)
+    // 🟢 SUPABASE REGISTRIERUNG
     await fetch("/api/quiz/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: clean,
-        country: country
+        country: country,
       }),
     });
 
-    // 🔥 WEITERLEITUNG
+    // 🟢 WEITERLEITUNG
     router.push("/quiz/run");
   }
 
