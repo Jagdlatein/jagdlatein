@@ -1,5 +1,5 @@
 "use client";
-
+import { useLiveSync } from "../useLiveSync";
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
