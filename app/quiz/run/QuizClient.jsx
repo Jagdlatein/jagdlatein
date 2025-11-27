@@ -18,10 +18,45 @@ export default function QuizClient() {
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
   const [effect, setEffect] = useState("");
+  const [username, setUsername] = useState("");
+  const [askName, setAskName] = useState(true);
+
+  // --------------------------------------------------------
+  // 1) USERNAME Modal Abfrage + Registrierung in Supabase
+  // --------------------------------------------------------
+
+  async function registerUser(name) {
+    const clean = name.trim();
+    if (!clean) return;
+
+    setUsername(clean);
+    localStorage.setItem("jagd_username", clean);
+
+    await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: clean,
+        country: country,
+      }),
+    });
+
+    setAskName(false);
+  }
+
+  // --------------------------------------------------------
 
   useEffect(() => {
-    loadQuestions();
-  }, [country, topic]);
+    const stored = localStorage.getItem("jagd_username");
+    if (stored) {
+      setUsername(stored);
+      setAskName(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!askName) loadQuestions();
+  }, [askName, country, topic]);
 
   async function loadQuestions() {
     const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
@@ -32,12 +67,12 @@ export default function QuizClient() {
   const q = questions[index];
 
   useEffect(() => {
-    if (!q || finished || locked) return;
+    if (!q || finished || locked || askName) return;
     if (timer <= 0) return handleTimeout();
 
     const t = setTimeout(() => setTimer((x) => x - 1), 1000);
     return () => clearTimeout(t);
-  }, [timer, q, locked, finished]);
+  }, [timer, q, locked, finished, askName]);
 
   function vibrate(ms) {
     if (navigator.vibrate) navigator.vibrate(ms);
@@ -85,21 +120,99 @@ export default function QuizClient() {
     setLocked(false);
   }
 
-  // ✅ FIX HIER – KORREKTE API-PAYLOAD
-  async function saveScore() {
-    const username = localStorage.getItem("jagd_username") || "Gastjäger";
+  // --------------------------------------------------------
+  // 2) SCORE SPEICHERN (korrekt)
+  // --------------------------------------------------------
 
+  async function saveScore() {
     await fetch("/api/quiz/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        userId: username,     // eindeutige ID
-        username: username,   // Anzeigename
-        country: country,     // DE / AT / CH
-        points: score,        // Score
+        username: username,
+        points: score,
       }),
     });
   }
+
+  // --------------------------------------------------------
+  // 3) UI — USERNAME MODAL
+  // --------------------------------------------------------
+
+  if (askName) {
+    const [nameInput, setNameInput] = useState("");
+
+    return (
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          backdropFilter: "blur(5px)",
+          background: "rgba(0,0,0,0.4)",
+          zIndex: 999,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 20,
+        }}
+      >
+        <div
+          style={{
+            background: "rgba(255,255,255,0.85)",
+            padding: 30,
+            borderRadius: 20,
+            maxWidth: 350,
+            width: "100%",
+            textAlign: "center",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+          }}
+        >
+          <h2 style={{ marginBottom: 10, fontSize: 26 }}>
+            🦌 Willkommen im Jagdquiz
+          </h2>
+
+          <p style={{ marginBottom: 20, opacity: 0.8 }}>
+            Bitte Namen eingeben für die Rangliste.
+          </p>
+
+          <input
+            autoFocus
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+            placeholder="Dein Name"
+            style={{
+              width: "100%",
+              padding: "12px 14px",
+              borderRadius: 12,
+              border: "1px solid rgba(0,0,0,0.2)",
+              fontSize: 18,
+              marginBottom: 20,
+            }}
+          />
+
+          <button
+            onClick={() => registerUser(nameInput)}
+            style={{
+              width: "100%",
+              padding: "14px 20px",
+              fontSize: 18,
+              background: "#136f39",
+              color: "white",
+              borderRadius: 12,
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ▶ Quiz starten
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // --------------------------------------------------------
+  // 4) QUIZ UI
+  // --------------------------------------------------------
 
   if (!q) {
     return (
@@ -169,9 +282,7 @@ export default function QuizClient() {
       <div className="progressbar">
         <div
           className="progressbar-fill"
-          style={{
-            width: `${(timer / 30) * 100}%`,
-          }}
+          style={{ width: `${(timer / 30) * 100}%` }}
         />
       </div>
 
@@ -194,13 +305,7 @@ export default function QuizClient() {
         </div>
       </div>
 
-      <div
-        style={{
-          fontSize: 18,
-          marginTop: 12,
-          opacity: 0.7,
-        }}
-      >
+      <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>
         Score: {score}
       </div>
 
