@@ -8,10 +8,14 @@ const supabase = createClient(
 );
 
 export async function GET() {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("quiz_scores")
-    .select("username, total_points, rounds")
+    .select("username, total_points, rounds, updated_at")
     .order("total_points", { ascending: false });
 
-  return Response.json(data || []);
+  if (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+
+  return Response.json({ data });
 }
