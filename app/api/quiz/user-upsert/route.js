@@ -9,7 +9,9 @@ const supabase = createClient(
 );
 
 export async function POST(req) {
-  const { userId, username, country = "DE", points } = await req.json();
+  const { username, country = "DE", points } = await req.json();
+
+  const userId = username; // 💥 HIER IST DER FIX !!!
 
   // 1️⃣ bestehenden Eintrag holen
   const { data: existing } = await supabase
@@ -20,7 +22,6 @@ export async function POST(req) {
 
   // 2️⃣ neue Werte berechnen
   const newTotal = existing ? (existing.total_points || 0) + points : points;
-
   const newRounds = existing ? (existing.rounds || 0) + 1 : 1;
 
   // 3️⃣ upsert speichern
