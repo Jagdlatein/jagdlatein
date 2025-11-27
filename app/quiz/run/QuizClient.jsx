@@ -18,34 +18,14 @@ export default function QuizClient() {
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
   const [effect, setEffect] = useState("");
-  const [username, setUsername] = useState("");
+
   const [askName, setAskName] = useState(true);
+  const [username, setUsername] = useState("");
+  const [nameInput, setNameInput] = useState(""); // 🟩 FIX — oben erlaubt
 
   // --------------------------------------------------------
-  // 1) USERNAME Modal Abfrage + Registrierung in Supabase
+  // Username-Erkennung beim Laden
   // --------------------------------------------------------
-
-  async function registerUser(name) {
-    const clean = name.trim();
-    if (!clean) return;
-
-    setUsername(clean);
-    localStorage.setItem("jagd_username", clean);
-
-    await fetch("/api/quiz/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: clean,
-        country: country,
-      }),
-    });
-
-    setAskName(false);
-  }
-
-  // --------------------------------------------------------
-
   useEffect(() => {
     const stored = localStorage.getItem("jagd_username");
     if (stored) {
@@ -58,6 +38,28 @@ export default function QuizClient() {
     if (!askName) loadQuestions();
   }, [askName, country, topic]);
 
+  // --------------------------------------------------------
+  // Username registrieren in Supabase
+  // --------------------------------------------------------
+  async function registerUser() {
+    const clean = nameInput.trim();
+    if (!clean) return;
+
+    setUsername(clean);
+    localStorage.setItem("jagd_username", clean);
+
+    await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: clean, country }),
+    });
+
+    setAskName(false);
+  }
+
+  // --------------------------------------------------------
+  // Fragen laden
+  // --------------------------------------------------------
   async function loadQuestions() {
     const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
     const data = await res.json();
@@ -74,6 +76,9 @@ export default function QuizClient() {
     return () => clearTimeout(t);
   }, [timer, q, locked, finished, askName]);
 
+  // --------------------------------------------------------
+  // Quiz Logik
+  // --------------------------------------------------------
   function vibrate(ms) {
     if (navigator.vibrate) navigator.vibrate(ms);
   }
@@ -121,9 +126,8 @@ export default function QuizClient() {
   }
 
   // --------------------------------------------------------
-  // 2) SCORE SPEICHERN (korrekt)
+  // Score speichern (korrekt)
   // --------------------------------------------------------
-
   async function saveScore() {
     await fetch("/api/quiz/submit", {
       method: "POST",
@@ -136,12 +140,9 @@ export default function QuizClient() {
   }
 
   // --------------------------------------------------------
-  // 3) UI — USERNAME MODAL
+  // Username Modal
   // --------------------------------------------------------
-
   if (askName) {
-    const [nameInput, setNameInput] = useState("");
-
     return (
       <div
         style={{
@@ -164,7 +165,6 @@ export default function QuizClient() {
             maxWidth: 350,
             width: "100%",
             textAlign: "center",
-            boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
           }}
         >
           <h2 style={{ marginBottom: 10, fontSize: 26 }}>
@@ -191,7 +191,7 @@ export default function QuizClient() {
           />
 
           <button
-            onClick={() => registerUser(nameInput)}
+            onClick={registerUser}
             style={{
               width: "100%",
               padding: "14px 20px",
@@ -211,26 +211,14 @@ export default function QuizClient() {
   }
 
   // --------------------------------------------------------
-  // 4) QUIZ UI
+  // Quiz fertig
   // --------------------------------------------------------
-
-  if (!q) {
-    return (
-      <div style={{ padding: 40, textAlign: "center" }}>
-        <h2>Lade Quiz…</h2>
-      </div>
-    );
-  }
-
   if (finished) {
     return (
       <div style={{ textAlign: "center", padding: 40 }}>
-        <h1 className="fade-in" style={{ fontSize: 34, marginBottom: 10 }}>
-          🎉 Quiz abgeschlossen!
-        </h1>
+        <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
 
         <div
-          className="score-pop"
           style={{
             fontSize: 60,
             fontWeight: 900,
@@ -277,12 +265,25 @@ export default function QuizClient() {
     );
   }
 
+  // --------------------------------------------------------
+  // Quiz läuft
+  // --------------------------------------------------------
+  if (!q) {
+    return (
+      <div style={{ padding: 40, textAlign: "center" }}>
+        <h2>Lade Quiz…</h2>
+      </div>
+    );
+  }
+
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
       <div className="progressbar">
         <div
           className="progressbar-fill"
-          style={{ width: `${(timer / 30) * 100}%` }}
+          style={{
+            width: `${(timer / 30) * 100}%`,
+          }}
         />
       </div>
 
