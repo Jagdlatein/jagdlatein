@@ -2,50 +2,38 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
-
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 export async function POST(req) {
-  const { userId, username, country, points } = await req.json();
+  const { username, points } = await req.json();
 
-  // 1️⃣ Bestehenden Datensatz holen
   const { data: existing } = await supabase
     .from("quiz_scores")
     .select("*")
-    .eq("user_id", userId)
+    .eq("username", username)
     .maybeSingle();
 
-  // 2️⃣ Neue Gesamtpunkte berechnen
-  const newTotal = existing
-    ? (existing.total_points || 0) + points
-    : points;
+  const newTotal = existing ? (existing.total_points || 0) + points : points;
+  const newRounds = existing ? (existing.rounds || 0) + 1 : 1;
 
-  const newRounds = existing
-    ? (existing.rounds || 0) + 1
-    : 1;
+  await supabase.from("quiz_scores").upsert({
+    username,
+    total_points: newTotal,
+    rounds: newRounds,
+    updated_at: new Date().toISOString(),
+  });
 
-  // 3️⃣ Upsert (insert OR update)
-  const { error } = await supabase
-    .from("quiz_scores")
-    .upsert(
-      {
-        user_id: userId,
-        username,
-        country: country || "DE",
-        total_points: newTotal,
-        rounds: newRounds,
-        updated_at: new Date().toISOString()
-      },
-      { onConflict: "user_id" }
-    );
+  await supabase.from("quiz_results").insert({
+    username,
+    points
+  });
 
-  if (error) {
-    console.error("Fehler beim Speichern:", error);
-    return Response.json({ success: false, error });
-  }
-
-  return Response.json({ success: true, total_points: newTotal });
+  return Response.json({
+    success: true,
+    total_points: newTotal,
+    rounds: newRounds
+  });
 }
