@@ -11,7 +11,7 @@ import SearchBar from "../components/SearchBar";
 
 export default function LeaderboardPage() {
   const [data, setData] = useState([]);
-  const [monthData, setMonthData] = useState([]);
+  const [weekData, setWeekData] = useState([]);
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -23,21 +23,22 @@ export default function LeaderboardPage() {
 
   async function load() {
     try {
-      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" }).then((r) => r.json());
-      const month = await fetch("/api/quiz/leaderboard-month", { cache: "no-store" }).then((r) =>
-        r.json()
-      );
+      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" })
+        .then((r) => r.json());
+
+      const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" })
+        .then((r) => r.json());
 
       setData(all.data || []);
-      setMonthData(month.data || []);
+      setWeekData(week.data || []);
     } catch (err) {
       console.error("Fehler beim Laden der Rangliste:", err);
     }
   }
 
   const filtered =
-    filter === "month"
-      ? monthData
+    filter === "week"
+      ? weekData
       : filter === "all"
       ? data
       : data.filter((x) =>
