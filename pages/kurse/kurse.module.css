@@ -8,46 +8,31 @@
   max-width: 860px;
   margin: 0 auto;
 }
-
 .title {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 16px;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  font-family: Georgia, serif;
+  margin-bottom: 20px;
   color: #1a1a1a;
 }
 
 .sub {
-  font-size: 18px;
-  color: #4b4b4b;
-  margin-bottom: 28px;
-  max-width: 640px;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  font-size: 20px;
+  line-height: 1.6;
+  font-family: Georgia, serif;
+  color: #4a4a4a;
+  margin-bottom: 34px;
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e0ddcf;
-  padding: 14px 18px;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.card:hover {
-  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-  transform: translateY(-2px);
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 18px 22px;
 }
 
 .arrow {
-  color: #777;
-  font-size: 18px;
+  font-size: 22px;
+  opacity: 0.6;
 }
