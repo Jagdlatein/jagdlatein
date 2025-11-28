@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./kurse.module.css"; 
+import styles from "./kurse.module.css";
 
 export default function KurseOverview() {
   const kurse = [
@@ -21,18 +21,18 @@ export default function KurseOverview() {
     <main className={styles.wrapper}>
       <div className={styles.container}>
 
-        <h1 className={styles.title}>📚 Jagdlatein – Mini-Kurse</h1>
+        <h1 className={styles.title}>Jagdlatein – Mini-Kurse</h1>
 
-        <p className={styles.sub}>
+        <p className={styles.subtitle}>
           Kompakte Lernmodule für Jungjäger und erfahrene Jäger.
           Jeder Kurs ist kurz, praxisnah und schließt mit einem Quiz ab.
         </p>
 
         <div className={styles.list}>
-          {kurse.map((kurs, i) => (
-            <Link key={i} href={kurs.link}>
+          {kurse.map((k, i) => (
+            <Link key={i} href={k.link}>
               <div className={styles.card}>
-                <span>{kurs.name}</span>
+                <span className={styles.term}>{k.name}</span>
                 <span className={styles.arrow}>➜</span>
               </div>
             </Link>
