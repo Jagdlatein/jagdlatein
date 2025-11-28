@@ -36,7 +36,6 @@ export default function UsernamePage() {
     { code: "UK", name: "Vereinigtes Königreich 🇬🇧" },
   ];
 
-  // Falls der User bereits registriert ist → direkt weiterleiten
   useEffect(() => {
     const savedName = localStorage.getItem("jagd_username");
     const savedCountry = localStorage.getItem("jagd_country");
@@ -47,9 +46,23 @@ export default function UsernamePage() {
   }, [router]);
 
   async function start() {
-    const clean = username.trim();
+    const clean = username.trim().toLowerCase();
     if (!clean) {
       alert("Bitte Username eingeben!");
+      return;
+    }
+
+    // Supabase registrieren — WICHTIG: abwarten!
+    const res = await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: clean, country }),
+    });
+
+    const json = await res.json();
+
+    if (!json.success) {
+      alert("Fehler beim Registrieren!");
       return;
     }
 
@@ -57,20 +70,8 @@ export default function UsernamePage() {
     localStorage.setItem("jagd_username", clean);
     localStorage.setItem("jagd_country", country);
 
-    // In Supabase registrieren
-    await fetch("/api/quiz/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: clean,
-        country
-      })
-    });
-
     // Weiter
-    router.push("/quiz-app/run");
+    router.push(`/quiz-app/run?country=${country}`);
   }
 
   return (
@@ -82,7 +83,7 @@ export default function UsernamePage() {
       <label style={{ fontSize: 18, fontWeight: 700 }}>Dein Username:</label>
       <input
         type="text"
-        placeholder="z.B. HannesJäger"
+        placeholder="z.B. hannesjäger"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         style={{
