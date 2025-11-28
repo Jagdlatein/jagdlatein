@@ -5,13 +5,13 @@
   background: linear-gradient(180deg, #faf8f1, #f4efe3);
 }
 
-/* Inhalt */
+/* Container */
 .container {
   max-width: 860px;
   margin: 0 auto;
 }
 
-/* Titel */
+/* Allgemeiner Titel */
 .title {
   font-size: 36px;
   font-weight: 800;
@@ -27,93 +27,122 @@
   margin-bottom: 26px;
 }
 
-/* Suchbox */
-.searchBox {
-  margin-bottom: 24px;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 14px 16px;
-  font-size: 17px;
-  border-radius: 12px;
-  border: 1px solid #dcd7c8;
-  outline: none;
-  background: #ffffff;
-  transition: all 0.2s ease;
-}
-
-.searchInput:focus {
-  border-color: #b38b2e;
-  box-shadow: 0 0 0 3px rgba(179, 139, 46, 0.25);
-}
-
-/* Liste */
-.list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Glossar-Karten */
+/* Karte */
 .card {
   background: #ffffff;
   border-radius: 14px;
   border: 1px solid #e0ddcf;
-  padding: 16px 20px;
+  padding: 26px 28px;
   transition: all 0.2s ease;
-  cursor: pointer;
 }
 
-/* Hover-Effekt */
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-}
-
-/* Glossar-Term (Gold) → lokal, NICHT global */
-.term {
-  font-size: 20px;
-  font-weight: 600;
-  color: #b38b2e; 
-  text-decoration: none;
-}
-
-/* Hover-Effect Gold-Dunkler */
-.card:hover .term {
-  color: #8e6f22;
-}
-
-/* Definition */
-.def {
-  margin-top: 6px;
-  font-size: 16px;
-  color: #3b3b3b;
-  line-height: 1.45;
-}
-
-/* Keine Ergebnisse */
-.empty {
-  font-size: 18px;
-  color: #777;
-  padding: 20px 0;
-}
-
-/* Footer → lokalisiert für CSS Modules */
-.footer {
-  margin-top: 40px;
+/* Slug Header: Titel + Großbuchstabe */
+.slugHeader {
   display: flex;
-  gap: 8px;
-  font-size: 16px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Footer Links */
-.footerLink {
+.slugTitle {
+  font-size: 30px;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.slugLetter {
+  font-size: 42px;
+  font-weight: 900;
+  color: #b38b2e;
+  opacity: 0.4;
+}
+
+/* Große Definition */
+.defBig {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #3b3b3b;
+  margin: 22px 0 32px 0;
+}
+
+/* Zurück-Link */
+.linkBack {
+  font-size: 16px;
+  font-weight: 600;
   color: #b38b2e;
   text-decoration: none;
 }
 
-.footerLink:hover {
+.linkBack:hover {
+  color: #8e6f22;
+}
+
+/* Navigation vorher / nachher */
+.navRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 30px 0;
+}
+
+.navLink {
+  font-size: 16px;
+  color: #b38b2e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: #8e6f22;
+}
+
+/* A–Z Leiste */
+.azBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.azItem {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #e4dfcf;
+  color: #b38b2e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.azItem:hover {
+  background: #f9f6ee;
+  color: #8e6f22;
+}
+
+/* Verwandte Begriffe */
+.relatedBox {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e4dfcf;
+}
+
+.relatedTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.relatedList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.relatedLink {
+  color: #b38b2e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.relatedLink:hover {
   color: #8e6f22;
 }
