@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -19,9 +19,6 @@ export default function LeaderboardPage() {
     loadWeek();
   }, []);
 
-  // ----------------------------------------------------
-  // Nur Wochenrangliste laden
-  // ----------------------------------------------------
   async function loadWeek() {
     try {
       const week = await fetch("/api/quiz/leaderboard-week", {
@@ -34,16 +31,10 @@ export default function LeaderboardPage() {
     }
   }
 
-  // ----------------------------------------------------
-  // Suche filtern
-  // ----------------------------------------------------
   const filtered = weekData.filter((row) =>
     row.username.toLowerCase().includes(query.toLowerCase())
   );
 
-  // ----------------------------------------------------
-  // Pagination
-  // ----------------------------------------------------
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
@@ -125,7 +116,7 @@ export default function LeaderboardPage() {
                 {item.total_points}
               </div>
 
-                <Badge points={item.total_points} />
+              <Badge points={item.total_points} />
             </div>
           );
         })}
