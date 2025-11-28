@@ -26,9 +26,9 @@ const nextConfig = {
         source: "/quiz/username",
         destination: "/quiz-app/username",
         permanent: true,
-      }
+      },
     ];
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
