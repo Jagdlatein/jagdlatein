@@ -1,4 +1,6 @@
-/* Basis-Reset + ruhiges Styling für Jagdlatein */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Reset */
 * {
