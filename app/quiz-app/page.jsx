@@ -1,7 +1,14 @@
 "use client";
 
-import LeaderboardClient from "./LeaderboardClient";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Page() {
-  return <LeaderboardClient />;
+export default function QuizIndexPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/quiz-app/run");
+  }, []);
+
+  return <div>Lädt…</div>;
 }
