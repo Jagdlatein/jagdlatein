@@ -18,7 +18,7 @@ export default function StatsPage() {
     const c = localStorage.getItem("jagd_country");
 
     if (!u) {
-      router.push("/quiz/username");
+      router.push("/quiz-app/username");
       return;
     }
 
