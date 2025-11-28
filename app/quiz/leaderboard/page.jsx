@@ -1,4 +1,4 @@
-"use client";   // MUSS ganz oben stehen
+"use client";
 
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
@@ -9,9 +9,7 @@ import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 
 export default function LeaderboardPage() {
-  const [data, setData] = useState([]);
   const [weekData, setWeekData] = useState([]);
-  const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 20;
@@ -22,71 +20,28 @@ export default function LeaderboardPage() {
 
   async function load() {
     try {
-      const all = await fetch("/api/quiz/leaderboard", {
-        cache: "no-store",
-      }).then((r) => r.json());
-
       const week = await fetch("/api/quiz/leaderboard-week", {
         cache: "no-store",
       }).then((r) => r.json());
 
-      setData(all.data || []);
       setWeekData(week.data || []);
     } catch (err) {
       console.error("Fehler beim Laden der Rangliste:", err);
     }
   }
 
-  const filtered =
-    filter === "week"
-      ? weekData
-      : filter === "all"
-      ? data
-      : data.filter((x) =>
-          x.username.toLowerCase().includes(query.toLowerCase())
-        );
+  // Filtering + Suche
+  const filtered = weekData.filter((x) =>
+    x.username.toLowerCase().includes(query.toLowerCase())
+  );
 
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1
-        style={{
-          fontSize: 40,
-          fontWeight: 900,
-          marginBottom: 25,
-        }}
-      >
-        🏆 Rangliste
+      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
+        🏆 Wochen-Rangliste
       </h1>
-
-      <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-        <button
-          onClick={() => setFilter("all")}
-          style={{
-            padding: "8px 14px",
-            borderRadius: 10,
-            border: 0,
-            background: filter === "all" ? "#136f39" : "#ddd",
-            color: filter === "all" ? "#fff" : "#000",
-          }}
-        >
-          Gesamt
-        </button>
-
-        <button
-          onClick={() => setFilter("week")}
-          style={{
-            padding: "8px 14px",
-            borderRadius: 10,
-            border: 0,
-            background: filter === "week" ? "#136f39" : "#ddd",
-            color: filter === "week" ? "#fff" : "#000",
-          }}
-        >
-          Woche
-        </button>
-      </div>
 
       <SearchBar query={query} setQuery={setQuery} />
 
