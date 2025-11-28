@@ -2,6 +2,7 @@
 
 export const dynamic = "force-dynamic";
 export const revalidate = false;
+export const fetchCache = "force-no-store";
 
 import { useEffect, useState, useCallback } from "react";
 import { useLiveLeaderboard } from "./useLiveLeaderboard";
@@ -21,18 +22,13 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
-  // 🔥 load() stabil für Realtime
   const load = useCallback(async () => {
     try {
-      // Gesamt
-      const all = await fetch("/api/quiz/leaderboard", {
-        cache: "no-store",
-      }).then((r) => r.json());
+      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" })
+        .then((r) => r.json());
 
-      // Wöchentlich
-      const week = await fetch("/api/quiz/leaderboard-week", {
-        cache: "no-store",
-      }).then((r) => r.json());
+      const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" })
+        .then((r) => r.json());
 
       setData(all.data || []);
       setWeekData(week.data || []);
@@ -41,17 +37,12 @@ export default function LeaderboardPage() {
     }
   }, []);
 
-  // Initial laden
   useEffect(() => {
     load();
   }, [load]);
 
-  // 🔥 Supabase Live Änderungen
-  useLiveLeaderboard(() => {
-    load();
-  });
+  useLiveLeaderboard(() => load());
 
-  // Filter + Suche
   const filtered =
     filter === "week"
       ? weekData
@@ -65,20 +56,10 @@ export default function LeaderboardPage() {
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1
-        style={{
-          fontSize: 40,
-          fontWeight: 900,
-          marginBottom: 25,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-        }}
-      >
+      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
         🏆 Rangliste (Live)
       </h1>
 
-      {/* Filter */}
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
         <button
           onClick={() => setFilter("all")}
@@ -182,22 +163,6 @@ export default function LeaderboardPage() {
         total={filtered.length}
         perPage={perPage}
       />
-
-      <button
-        onClick={() => (window.location.href = "/quiz/run")}
-        style={{
-          marginTop: 30,
-          width: "100%",
-          background: "#136f39",
-          color: "#fff",
-          padding: 16,
-          borderRadius: 14,
-          fontSize: 18,
-          border: 0,
-        }}
-      >
-        🔙 Zurück zum Quiz
-      </button>
     </div>
   );
 }
