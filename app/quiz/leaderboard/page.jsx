@@ -1,7 +1,4 @@
-"use client";                     // ⬅️ MUSS ZUERST STEHEN!!!
-
-export const dynamic = "force-dynamic";
-export const revalidate = 0;       // ⬅️ Korrekt
+"use client";   // MUSS ganz oben stehen
 
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
