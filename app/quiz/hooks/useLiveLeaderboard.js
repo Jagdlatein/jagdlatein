@@ -20,7 +20,8 @@ export function useLiveLeaderboard(onChange) {
           table: "quiz_scores",
         },
         () => {
-          onChange(); // 🔥 neu laden
+          console.log("📡 Live-Update erkannt!");
+          onChange(); // neu laden
         }
       )
       .subscribe();
