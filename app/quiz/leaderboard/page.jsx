@@ -1,12 +1,11 @@
 "use client";
 
+// 🔥 GANZ WICHTIG: SERVER-RENDERING AUSSCHALTEN
 export const dynamic = "force-dynamic";
 export const revalidate = false;
 export const fetchCache = "force-no-store";
 
 import { useEffect, useState, useCallback } from "react";
-import { useLiveLeaderboard } from "./useLiveLeaderboard";
-
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -24,24 +23,24 @@ export default function LeaderboardPage() {
 
   const load = useCallback(async () => {
     try {
-      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" })
-        .then((r) => r.json());
+      const all = await fetch("/api/quiz/leaderboard", {
+        cache: "no-store",
+      }).then((r) => r.json());
 
-      const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" })
-        .then((r) => r.json());
+      const week = await fetch("/api/quiz/leaderboard-week", {
+        cache: "no-store",
+      }).then((r) => r.json());
 
       setData(all.data || []);
       setWeekData(week.data || []);
     } catch (err) {
-      console.error("Fehler beim Laden:", err);
+      console.error("Fehler beim Laden der Rangliste:", err);
     }
   }, []);
 
   useEffect(() => {
     load();
   }, [load]);
-
-  useLiveLeaderboard(() => load());
 
   const filtered =
     filter === "week"
@@ -57,7 +56,7 @@ export default function LeaderboardPage() {
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
       <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
-        🏆 Rangliste (Live)
+        🏆 Rangliste
       </h1>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
@@ -66,9 +65,9 @@ export default function LeaderboardPage() {
           style={{
             padding: "8px 14px",
             borderRadius: 10,
-            border: 0,
             background: filter === "all" ? "#136f39" : "#ddd",
             color: filter === "all" ? "#fff" : "#000",
+            border: 0,
           }}
         >
           Gesamt
@@ -79,9 +78,9 @@ export default function LeaderboardPage() {
           style={{
             padding: "8px 14px",
             borderRadius: 10,
-            border: 0,
             background: filter === "week" ? "#136f39" : "#ddd",
             color: filter === "week" ? "#fff" : "#000",
+            border: 0,
           }}
         >
           Woche
@@ -143,9 +142,8 @@ export default function LeaderboardPage() {
                   fontSize: 26,
                   fontWeight: 900,
                   color: "#136f39",
-                  textAlign: "right",
-                  marginRight: 10,
                   minWidth: 60,
+                  textAlign: "right",
                 }}
               >
                 {item.total_points}
@@ -163,6 +161,22 @@ export default function LeaderboardPage() {
         total={filtered.length}
         perPage={perPage}
       />
+
+      <button
+        onClick={() => (window.location.href = "/quiz/run")}
+        style={{
+          marginTop: 30,
+          width: "100%",
+          background: "#136f39",
+          color: "#fff",
+          padding: 16,
+          borderRadius: 14,
+          fontSize: 18,
+          border: 0,
+        }}
+      >
+        🔙 Zurück zum Quiz
+      </button>
     </div>
   );
 }
