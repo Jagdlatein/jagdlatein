@@ -11,8 +11,13 @@ export default function QuizRunPage() {
 
   useEffect(() => {
     const u = localStorage.getItem("jagd_username");
-    if (!u) router.replace("/quiz-app/username");
-  }, [router]);
+    const c = localStorage.getItem("jagd_country");
+
+    // Wenn kein Username → zurück zur Username-Seite
+    if (!u || !c) {
+      router.replace("/quiz-app/username");
+    }
+  }, []);
 
   return <QuizClient />;
 }
