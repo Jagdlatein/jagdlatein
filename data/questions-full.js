@@ -1975,7 +1975,7 @@ export const QUESTIONS = [
   ],
   correct: ['b'],
   explain: 'Deckung & Nahrung durch Hecken.'
-}
+},
   // BLOCK 1 – Fragen JL-1000 bis JL-1099
 
 {
