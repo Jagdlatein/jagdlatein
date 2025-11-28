@@ -3731,7 +3731,707 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Altgrasinseln bieten Deckung & Schutz.'
-}
+},
+  {
+  id:'JL-1200',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Woran erkennt man ein Schmalreh?',
+  answers:[
+    {id:'a', text:'An deutlich ausgeprägter Trägerbildung'},
+    {id:'b', text:'Einjährige Ricke ohne Kitz'},
+    {id:'c', text:'Besonders dunkles Sommerhaar'},
+    {id:'d', text:'Fleckung am Spiegel'}
+  ],
+  correct:['b'],
+  explain:'Schmalrehe sind einjährige weibliche Stücke ohne Kitz.'
+},
+{
+  id:'JL-1201',
+  countries:['DE','AT'],
+  topic:'Rotwild',
+  q:'Wie nennt man die Stirnzapfen des Hirschgeweihs?',
+  answers:[
+    {id:'a', text:'Rosenstöcke'},
+    {id:'b', text:'Gabel'},
+    {id:'c', text:'Spitzen'},
+    {id:'d', text:'Fahnen'}
+  ],
+  correct:['a'],
+  explain:'Rosenstöcke bilden die Basis des Geweihs.'
+},
+{
+  id:'JL-1202',
+  countries:['CH'],
+  topic:'Steinwild',
+  q:'Wodurch unterscheidet sich das weibliche Steinwild vom Bock?',
+  answers:[
+    {id:'a', text:'Geiß hat viel längere Krucken'},
+    {id:'b', text:'Geiß hat kürzere, dünnere Hörner'},
+    {id:'c', text:'Geiß hat keine Hörner'},
+    {id:'d', text:'Geiß ist größer'}
+  ],
+  correct:['b'],
+  explain:'Geißen tragen kürzere, schmalere Hörner.'
+},
+{
+  id:'JL-1203',
+  countries:['DE'],
+  topic:'Schwarzwild',
+  q:'Was ist die typische Losung des Schwarzwildes?',
+  answers:[
+    {id:'a', text:'Kugelartig'},
+    {id:'b', text:'Wurstartig'},
+    {id:'c', text:'Fladenartig'},
+    {id:'d', text:'Kettenartig'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild loset wurstartig.'
+},
+{
+  id:'JL-1204',
+  countries:['AT','DE'],
+  topic:'Jägersprache',
+  q:'Was bedeutet „verhoffen“?',
+  answers:[
+    {id:'a', text:'Flucht in vollem Lauf'},
+    {id:'b', text:'Kurzes Stehenbleiben, um zu sichern'},
+    {id:'c', text:'Niederlegen in Deckung'},
+    {id:'d', text:'Haarwechsel im Frühjahr'}
+  ],
+  correct:['b'],
+  explain:'Verhoffen: Wild bleibt kurz stehen und sichert.'
+},
+{
+  id:'JL-1205',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art zeigt ein trommelndes Balzgeräusch?',
+  answers:[
+    {id:'a', text:'Stockente'},
+    {id:'b', text:'Bekassine'},
+    {id:'c', text:'Ringeltaube'},
+    {id:'d', text:'Graugans'}
+  ],
+  correct:['b'],
+  explain:'Die Bekassine erzeugt ein surrendes Trommeln in der Balz.'
+},
+{
+  id:'JL-1206',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was beschreibt die Mündungsgeschwindigkeit?',
+  answers:[
+    {id:'a', text:'Geschwindigkeit nach 100 m'},
+    {id:'b', text:'Geschwindigkeit beim Austritt aus dem Lauf'},
+    {id:'c', text:'Beschleunigung im Magazin'},
+    {id:'d', text:'Rückstoßkraft des Systems'}
+  ],
+  correct:['b'],
+  explain:'Mündungsgeschwindigkeit = Geschwindigkeit beim Laufende.'
+},
+{
+  id:'JL-1207',
+  countries:['CH','DE'],
+  topic:'Ökologie',
+  q:'Welcher Lebensraum hat normalerweise die höchste Insektenvielfalt?',
+  answers:[
+    {id:'a', text:'Maisacker'},
+    {id:'b', text:'Extensivwiese'},
+    {id:'c', text:'Schotterfläche'},
+    {id:'d', text:'Dichter Fichtenforst'}
+  ],
+  correct:['b'],
+  explain:'Extensivflächen bieten viele Pflanzen & Nischen.'
+},
+{
+  id:'JL-1208',
+  countries:['DE','AT'],
+  topic:'Wildbrethygiene',
+  q:'Was passiert bei zu langsamer Kühlung von Wildbret?',
+  answers:[
+    {id:'a', text:'Es wird heller'},
+    {id:'b', text:'Keime vermehren sich schnell'},
+    {id:'c', text:'Es wird zu trocken'},
+    {id:'d', text:'Es verliert Nährstoffe'}
+  ],
+  correct:['b'],
+  explain:'Lange Warmphase = Keimwachstum.'
+},
+{
+  id:'JL-1209',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wann ist Fangjagd erlaubt?',
+  answers:[
+    {id:'a', text:'Immer und ohne Genehmigung'},
+    {id:'b', text:'Nur mit geprüften, zugelassenen Fallen'},
+    {id:'c', text:'Nur im Gebäudebereich'},
+    {id:'d', text:'Nur mit Selbstschussgeräten'}
+  ],
+  correct:['b'],
+  explain:'Nur tierschutzkonform zugelassene Fallen.'
+},
+{
+  id:'JL-1210',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welcher Raubwildart sieht man die Krallen IMMER im Trittsiegel?',
+  answers:[
+    {id:'a', text:'Luchs'},
+    {id:'b', text:'Fuchs'},
+    {id:'c', text:'Katze'},
+    {id:'d', text:'Marder'}
+  ],
+  correct:['b'],
+  explain:'Füchse zeigen stets Krallenabdrücke.'
+},
+{
+  id:'JL-1211',
+  countries:['AT','DE'],
+  topic:'Rotwild',
+  q:'Woran erkennt man einen starken Hirsch?',
+  answers:[
+    {id:'a', text:'An kurzen Stangen'},
+    {id:'b', text:'An massiver Stangenbasis & starken Rosen'},
+    {id:'c', text:'Am Fehlen der Augsprossen'},
+    {id:'d', text:'An einer grauen Decke'}
+  ],
+  correct:['b'],
+  explain:'Starke Hirsche haben eine massive Stangenbasis.'
+},
+{
+  id:'JL-1212',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wann setzt das Reh typischerweise?',
+  answers:[
+    {id:'a', text:'Februar'},
+    {id:'b', text:'Mai/Juni'},
+    {id:'c', text:'September'},
+    {id:'d', text:'November'}
+  ],
+  correct:['b'],
+  explain:'Rehe setzen im späten Frühjahr.'
+},
+{
+  id:'JL-1213',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was verhindert eine Abzugssicherung?',
+  answers:[
+    {id:'a', text:'Öffnen des Verschlusses'},
+    {id:'b', text:'Bewegung des Abzugs'},
+    {id:'c', text:'Schalldämpferfunktion'},
+    {id:'d', text:'Magazinwechsel'}
+  ],
+  correct:['b'],
+  explain:'Abzugssicherung blockiert den Abzug mechanisch.'
+},
+{
+  id:'JL-1214',
+  countries:['CH','DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man das Maul des Schwarzwildes?',
+  answers:[
+    {id:'a', text:'Äser'},
+    {id:'b', text:'Gebräch'},
+    {id:'c', text:'Träger'},
+    {id:'d', text:'Fahne'}
+  ],
+  correct:['b'],
+  explain:'Gebräch = Maul des Schwarzwildes.'
+},
+{
+  id:'JL-1215',
+  countries:['DE','AT'],
+  topic:'Hege',
+  q:'Welche Maßnahme hilft besonders gegen Fuchsbejagungsdruck bei Bodenbrütern?',
+  answers:[
+    {id:'a', text:'Ganzjährige Mahd'},
+    {id:'b', text:'Altgrasinseln & Deckungsstrukturen'},
+    {id:'c', text:'Reiner Wald'},
+    {id:'d', text:'Entwässerung'}
+  ],
+  correct:['b'],
+  explain:'Deckung reduziert Prädationsdruck.'
+},
+{
+  id:'JL-1216',
+  countries:['DE'],
+  topic:'Wildbrethygiene',
+  q:'Welche Temperatur ist ideal für Wildkühlung?',
+  answers:[
+    {id:'a', text:'0–1 °C'},
+    {id:'b', text:'4–7 °C'},
+    {id:'c', text:'15–20 °C'},
+    {id:'d', text:'Über 20 °C'}
+  ],
+  correct:['b'],
+  explain:'4–7 °C verhindern Keimwachstum optimal.'
+},
+{
+  id:'JL-1217',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welche Art hinterlässt schnurgerade Spur?',
+  answers:[
+    {id:'a', text:'Hund'},
+    {id:'b', text:'Wolf'},
+    {id:'c', text:'Marderhund'},
+    {id:'d', text:'Fuchs im Trollgang'}
+  ],
+  correct:['b'],
+  explain:'Wölfe laufen extrem gerade und zielgerichtet.'
+},
+{
+  id:'JL-1218',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist bei Schalenwild IMMER verboten?',
+  answers:[
+    {id:'a', text:'Nachtjagd'},
+    {id:'b', text:'Anleuchten'},
+    {id:'c', text:'Ansitz im Hochsitz'},
+    {id:'d', text:'Nachsuche'}
+  ],
+  correct:['b'],
+  explain:'Anleuchten von Wild ist verboten.'
+},
+{
+  id:'JL-1219',
+  countries:['AT','CH'],
+  topic:'Rotwild',
+  q:'Wie nennt man den jungen Hirsch im 1. Kopf?',
+  answers:[
+    {id:'a', text:'Spießer'},
+    {id:'b', text:'Gabler'},
+    {id:'c', text:'Sechser'},
+    {id:'d', text:'Schaufler'}
+  ],
+  correct:['a'],
+  explain:'Spießer = 1. Kopf mit ungegabelten Stangen.'
+},
+{
+  id:'JL-1220',
+  countries:['DE','CH'],
+  topic:'Steinwild',
+  q:'Was ist typisch für alte Steinböcke?',
+  answers:[
+    {id:'a', text:'Sehr helle Krucken'},
+    {id:'b', text:'Enge Jahresringe'},
+    {id:'c', text:'Kleine Hörner'},
+    {id:'d', text:'Kein Bart'}
+  ],
+  correct:['b'],
+  explain:'Jahresringe rücken im Alter enger zusammen.'
+},
+{
+  id:'JL-1221',
+  countries:['DE'],
+  topic:'Rehwild',
+  q:'Welche Lautäußerung gibt ein Reh bei Gefahr?',
+  answers:[
+    {id:'a', text:'Röhren'},
+    {id:'b', text:'Bellen / Schrecken'},
+    {id:'c', text:'Trillern'},
+    {id:'d', text:'Gurren'}
+  ],
+  correct:['b'],
+  explain:'Der Schrecklaut warnt andere Stücke.'
+},
+{
+  id:'JL-1222',
+  countries:['DE','AT'],
+  topic:'Waffen',
+  q:'Was ist ein Direktabzug?',
+  answers:[
+    {id:'a', text:'Abzug ohne Druckpunkt'},
+    {id:'b', text:'Abzug mit zwei Druckpunkten'},
+    {id:'c', text:'Abzug mit Rückstellfeder'},
+    {id:'d', text:'Elektronischer Abzug'}
+  ],
+  correct:['a'],
+  explain:'Direktabzug löst ohne Druckpunkt aus.'
+},
+{
+  id:'JL-1223',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art ist ein Höhlenbrüter?',
+  answers:[
+    {id:'a', text:'Hohltaube'},
+    {id:'b', text:'Fasan'},
+    {id:'c', text:'Krickente'},
+    {id:'d', text:'Bekassine'}
+  ],
+  correct:['a'],
+  explain:'Hohltauben nutzen Baumhöhlen.'
+},
+{
+  id:'JL-1224',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man die Hinterläufe des Schwarzwildes?',
+  answers:[
+    {id:'a', text:'Waffen'},
+    {id:'b', text:'Blätter'},
+    {id:'c', text:'Läufe'},
+    {id:'d', text:'Haken'}
+  ],
+  correct:['c'],
+  explain:'Läufe = Beine.'
+},
+{
+  id:'JL-1225',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche fördert Bodenbrüter stark?',
+  answers:[
+    {id:'a', text:'Kurzrasen'},
+    {id:'b', text:'Altgrasinseln'},
+    {id:'c', text:'Betonflächen'},
+    {id:'d', text:'Steinbrüche'}
+  ],
+  correct:['b'],
+  explain:'Altgrasinseln bieten Deckung & Brutplatz.'
+},
+{
+  id:'JL-1226',
+  countries:['DE'],
+  topic:'Schwarzwild',
+  q:'Wann sind Frischlinge gestreift?',
+  answers:[
+    {id:'a', text:'3–4 Monate'},
+    {id:'b', text:'Bis ca. 3 Monate'},
+    {id:'c', text:'Bis 1 Jahr'},
+    {id:'d', text:'Gar nicht'}
+  ],
+  correct:['b'],
+  explain:'Streifenmuster erfolgt in den ersten Monaten.'
+},
+{
+  id:'JL-1227',
+  countries:['AT','DE'],
+  topic:'Ökologie',
+  q:'Was entsteht bei starkem Wildverbiss?',
+  answers:[
+    {id:'a', text:'Starke Naturverjüngung'},
+    {id:'b', text:'Schadbild an Leittrieben'},
+    {id:'c', text:'Mehr Blühpflanzen'},
+    {id:'d', text:'Feuchtere Böden'}
+  ],
+  correct:['b'],
+  explain:'Verbiss zeigt Überbestand oder wenig Nahrung.'
+},
+{
+  id:'JL-1228',
+  countries:['DE','CH'],
+  topic:'Wildbrethygiene',
+  q:'Welche Probenpflicht gilt für Schwarzwild?',
+  answers:[
+    {id:'a', text:'Keine'},
+    {id:'b', text:'Trichinenprobe'},
+    {id:'c', text:'Rückstandstest'},
+    {id:'d', text:'Trophäenprobe'}
+  ],
+  correct:['b'],
+  explain:'Trichinenprobe ist vorgeschrieben.'
+},
+{
+  id:'JL-1229',
+  countries:['DE','AT'],
+  topic:'Jägersprache',
+  q:'Wie nennt man das Fegen des Geweihs?',
+  answers:[
+    {id:'a', text:'Schmelzen'},
+    {id:'b', text:'Verfegen'},
+    {id:'c', text:'Rauschen'},
+    {id:'d', text:'Werfen'}
+  ],
+  correct:['b'],
+  explain:'Verfegen = Entfernen der Basthaut.'
+},
+{
+  id:'JL-1230',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wann darf eine Waffe im Auto transportiert werden?',
+  answers:[
+    {id:'a', text:'Geladen & offen sichtbar'},
+    {id:'b', text:'Ungeladen & verschlossen'},
+    {id:'c', text:'Immer geladen'},
+    {id:'d', text:'Offen auf Rückbank'}
+  ],
+  correct:['b'],
+  explain:'Verschlossen & ungeladen transportieren.'
+},
+{
+  id:'JL-1231',
+  countries:['CH','DE'],
+  topic:'Rotwild',
+  q:'Wie nennt man das helle Hinterteil des Rotwildes?',
+  answers:[
+    {id:'a', text:'Fahne'},
+    {id:'b', text:'Spiegel'},
+    {id:'c', text:'Balg'},
+    {id:'d', text:'Fleck'}
+  ],
+  correct:['b'],
+  explain:'Spiegel ist typisch hell gefärbt.'
+},
+{
+  id:'JL-1232',
+  countries:['DE','AT'],
+  topic:'Raubwild',
+  q:'Welche Art ist streng territorial?',
+  answers:[
+    {id:'a', text:'Marderhund'},
+    {id:'b', text:'Baummarder'},
+    {id:'c', text:'Waschbär'},
+    {id:'d', text:'Dachs'}
+  ],
+  correct:['b'],
+  explain:'Baummarder verteidigen feste Territorien.'
+},
+{
+  id:'JL-1233',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was bedeutet Joule (J)?',
+  answers:[
+    {id:'a', text:'Mündungsdruck'},
+    {id:'b', text:'Energie'},
+    {id:'c', text:'Geschwindigkeit'},
+    {id:'d', text:'Drall'}
+  ],
+  correct:['b'],
+  explain:'Energieeinheit bei Geschossen.'
+},
+{
+  id:'JL-1234',
+  countries:['AT','CH'],
+  topic:'Federwild',
+  q:'Welche Rufe gibt der Fasanenhahn in der Balzzeit?',
+  answers:[
+    {id:'a', text:'Grunzen'},
+    {id:'b', text:'Krähen'},
+    {id:'c', text:'Pfeifen'},
+    {id:'d', text:'Singen'}
+  ],
+  correct:['b'],
+  explain:'Besonders laut rufend in der Balz.'
+},
+{
+  id:'JL-1235',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Welche Fellfarbe trägt das Reh im Winter?',
+  answers:[
+    {id:'a', text:'Rotbraun'},
+    {id:'b', text:'Grau'},
+    {id:'c', text:'Schwarz'},
+    {id:'d', text:'Gelblich'}
+  ],
+  correct:['b'],
+  explain:'Winterhaar ist graubraun.'
+},
+{
+  id:'JL-1236',
+  countries:['DE','AT'],
+  topic:'Schwarzwild',
+  q:'Wie nennt man junge Schwarzwildmännchen im zweiten Lebensjahr?',
+  answers:[
+    {id:'a', text:'Keiler'},
+    {id:'b', text:'Blattkeiler'},
+    {id:'c', text:'Überläuferkeiler'},
+    {id:'d', text:'Frischling'}
+  ],
+  correct:['c'],
+  explain:'Überläuferkeiler = 2. Lebensjahr.'
+},
+{
+  id:'JL-1237',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Was ist ein „Stangenwurf“?',
+  answers:[
+    {id:'a', text:'Angriff mit den Stangen'},
+    {id:'b', text:'Abwerfen des Geweihs'},
+    {id:'c', text:'Angriff eines Keilers'},
+    {id:'d', text:'Sprungtechnik des Rehwildes'}
+  ],
+  correct:['b'],
+  explain:'Stangenwurf = Geweihabwurf.'
+},
+{
+  id:'JL-1238',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche begünstigt Insekten am meisten?',
+  answers:[
+    {id:'a', text:'Schottergärten'},
+    {id:'b', text:'Blühstreifen'},
+    {id:'c', text:'Asphalt'},
+    {id:'d', text:'Maisfelder'}
+  ],
+  correct:['b'],
+  explain:'Blühstreifen sind wertvoll für Insekten.'
+},
+{
+  id:'JL-1239',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was ist ein Rückstoßlader?',
+  answers:[
+    {id:'a', text:'Repetierer'},
+    {id:'b', text:'Selbstladebüchse'},
+    {id:'c', text:'Bockflinte'},
+    {id:'d', text:'Druckluftwaffe'}
+  ],
+  correct:['b'],
+  explain:'Selbstlader nutzt Rückstoßenergie.'
+},
+{
+  id:'JL-1240',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wie nennt man den Nachwuchs der Ricke?',
+  answers:[
+    {id:'a', text:'Kalb'},
+    {id:'b', text:'Kitz'},
+    {id:'c', text:'Frischling'},
+    {id:'d', text:'Lamm'}
+  ],
+  correct:['b'],
+  explain:'Rehwildnachwuchs = Kitz.'
+},
+{
+  id:'JL-1241',
+  countries:['AT','DE'],
+  topic:'Ökologie',
+  q:'Welche Fläche speichert am meisten CO₂?',
+  answers:[
+    {id:'a', text:'Moor'},
+    {id:'b', text:'Wiese'},
+    {id:'c', text:'Acker'},
+    {id:'d', text:'Nadelwald'}
+  ],
+  correct:['a'],
+  explain:'Moore sind die stärksten CO₂-Speicher.'
+},
+{
+  id:'JL-1242',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welches Raubwild lebt territorial allein?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Baummarder'},
+    {id:'c', text:'Luchs'},
+    {id:'d', text:'Marderhund'}
+  ],
+  correct:['c'],
+  explain:'Luchse leben solitär und territorial.'
+},
+{
+  id:'JL-1243',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wer trägt die Verantwortung für einen sicheren Schuss?',
+  answers:[
+    {id:'a', text:'Revierpächter'},
+    {id:'b', text:'Schütze selbst'},
+    {id:'c', text:'Jagdkollege'},
+    {id:'d', text:'Hegering'}
+  ],
+  correct:['b'],
+  explain:'Der Schütze trägt immer die volle Verantwortung.'
+},
+{
+  id:'JL-1244',
+  countries:['DE','AT'],
+  topic:'Rotwild',
+  q:'Wie nennt man junge Hirschkälber?',
+  answers:[
+    {id:'a', text:'Kitze'},
+    {id:'b', text:'Frischlinge'},
+    {id:'c', text:'Kälber'},
+    {id:'d', text:'Lämmer'}
+  ],
+  correct:['c'],
+  explain:'Rotwildnachwuchs = Kalb.'
+},
+{
+  id:'JL-1245',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Warum nutzt man Schalldämpfer?',
+  answers:[
+    {id:'a', text:'Erhöht Energie'},
+    {id:'b', text:'Reduziert Knall & Rückstoß'},
+    {id:'c', text:'Als Zielfernrohrersatz'},
+    {id:'d', text:'Verhindert Winddrift'}
+  ],
+  correct:['b'],
+  explain:'Dämpft Knall & Rückstoß.'
+},
+{
+  id:'JL-1246',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art ist ein Zugvogel?',
+  answers:[
+    {id:'a', text:'Auerhuhn'},
+    {id:'b', text:'Krickente'},
+    {id:'c', text:'Fasan'},
+    {id:'d', text:'Waldkauz'}
+  ],
+  correct:['b'],
+  explain:'Krickenten ziehen im Winter Richtung Süden.'
+},
+{
+  id:'JL-1247',
+  countries:['DE','AT'],
+  topic:'Rehwild',
+  q:'Welches Rehmerkmal zeigt ein älterer Bock?',
+  answers:[
+    {id:'a', text:'Breite Rosen & dicke Stangen'},
+    {id:'b', text:'Sehr heller Spiegel'},
+    {id:'c', text:'Stark gefleckte Decke'},
+    {id:'d', text:'Keine Trägerbildung'}
+  ],
+  correct:['a'],
+  explain:'Ältere Böcke: starke Stangenbasis.'
+},
+{
+  id:'JL-1248',
+  countries:['CH','DE'],
+  topic:'Raubwild',
+  q:'Welche Beute schlägt der Steinadler regelmäßig?',
+  answers:[
+    {id:'a', text:'Rehwild'},
+    {id:'b', text:'Gamskitze'},
+    {id:'c', text:'Füchse'},
+    {id:'d', text:'Dachse'}
+  ],
+  correct:['b'],
+  explain:'Steinadler schlagen bevorzugt Kitze.'
+},
+{
+  id:'JL-1249',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Maßnahme hilft Niederwild am meisten?',
+  answers:[
+    {id:'a', text:'Dauermahd'},
+    {id:'b', text:'Hecken & Saumbiotope'},
+    {id:'c', text:'Düngung'},
+    {id:'d', text:'Pflügen im Herbst'}
+  ],
+  correct:['b'],
+  explain:'Hecken fördern Deckung & Nahrung.'
+},
 ]; // ← ✔ nur diese eine eckige Klammer ist korrekt!
 
 // Validator im Dev ausführen
