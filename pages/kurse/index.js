@@ -30,11 +30,11 @@ export default function KurseOverview() {
 
         <div className={styles.list}>
           {kurse.map((k, i) => (
-            <Link key={i} href={k.link}>
-              <div className={styles.card}>
+            <Link key={i} href={k.link} legacyBehavior>
+              <a className={styles.card}>
                 <span className={styles.term}>{k.name}</span>
                 <span className={styles.arrow}>➜</span>
-              </div>
+              </a>
             </Link>
           ))}
         </div>
