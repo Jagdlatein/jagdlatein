@@ -5,20 +5,24 @@ import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
 import Flag from "../components/Flag";
-import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
 
 export default function LeaderboardPage() {
   const [weekData, setWeekData] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
+
   const perPage = 20;
 
   useEffect(() => {
-    load();
+    loadWeek();
   }, []);
 
-  async function load() {
+  // ----------------------------------------------------
+  // Nur Wochenrangliste laden
+  // ----------------------------------------------------
+  async function loadWeek() {
     try {
       const week = await fetch("/api/quiz/leaderboard-week", {
         cache: "no-store",
@@ -26,22 +30,37 @@ export default function LeaderboardPage() {
 
       setWeekData(week.data || []);
     } catch (err) {
-      console.error("Fehler beim Laden der Rangliste:", err);
+      console.error("Fehler beim Laden der Wochenrangliste:", err);
     }
   }
 
-  // Filtering + Suche
-  const filtered = weekData.filter((x) =>
-    x.username.toLowerCase().includes(query.toLowerCase())
+  // ----------------------------------------------------
+  // Suche filtern
+  // ----------------------------------------------------
+  const filtered = weekData.filter((row) =>
+    row.username.toLowerCase().includes(query.toLowerCase())
   );
 
+  // ----------------------------------------------------
+  // Pagination
+  // ----------------------------------------------------
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
+      <h1
+        style={{
+          fontSize: 40,
+          fontWeight: 900,
+          marginBottom: 25,
+        }}
+      >
         🏆 Wochen-Rangliste
       </h1>
+
+      <p style={{ opacity: 0.7, marginTop: -10, marginBottom: 20 }}>
+        Zeigt nur deinen besten Score dieser Woche an (Mo–So).
+      </p>
 
       <SearchBar query={query} setQuery={setQuery} />
 
