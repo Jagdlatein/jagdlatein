@@ -1,61 +1,74 @@
+/* Hintergrund */
 .wrapper {
   min-height: 100vh;
   padding: 45px 16px 80px;
   background: linear-gradient(180deg, #faf8f1, #f4efe3);
 }
 
+/* Container */
 .container {
   max-width: 860px;
   margin: 0 auto;
 }
+
+/* Titel */
 .title {
-  font-size: 40px;
-  font-weight: 900;
-  letter-spacing: -1px;
-  font-family: Georgia, serif;
-  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
   color: #1a1a1a;
 }
 
-.sub {
-  font-size: 20px;
-  line-height: 1.6;
-  font-family: Georgia, serif;
-  color: #4a4a4a;
-  margin-bottom: 34px;
+/* Untertitel */
+.subtitle {
+  font-size: 18px;
+  color: #4b4b4b;
+  max-width: 620px;
+  margin-bottom: 26px;
 }
 
+/* Liste */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Karte */
 .card {
-  font-family: Georgia, serif;
-  font-size: 22px;
-  font-weight: 600;
-  padding: 18px 22px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e0ddcf;
+  padding: 16px 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.arrow {
-  font-size: 22px;
-  opacity: 0.6;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
-/* Link-Darstellung innerhalb der Kurskarte */
-.card a {
-  color: inherit;
+
+/* Goldene Schrift */
+.term {
+  color: #b38b2e;
+  font-size: 20px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-/* Goldfarbe */
-.card span:first-child {
-  color: #b38b2e;
+.card:hover .term {
+  color: #8e6f22;
 }
 
 /* Pfeil */
 .arrow {
   color: #b38b2e;
+  font-size: 18px;
   opacity: 0.85;
-}
-
-/* Hover */
-.card:hover span:first-child {
-  color: #8e6f22;
 }
 
 .card:hover .arrow {
