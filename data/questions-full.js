@@ -3451,7 +3451,7 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Laubwald spendet Schatten & kühlt.'
-}
+},
 
 ];
 
