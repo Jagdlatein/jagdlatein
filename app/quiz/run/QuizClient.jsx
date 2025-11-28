@@ -21,11 +21,11 @@ export default function QuizClient() {
 
   const [askName, setAskName] = useState(true);
   const [username, setUsername] = useState("");
-  const [nameInput, setNameInput] = useState(""); // 🟩 FIX — oben erlaubt
+  const [nameInput, setNameInput] = useState("");
 
-  // --------------------------------------------------------
-  // Username-Erkennung beim Laden
-  // --------------------------------------------------------
+  // -------------------------
+  // Username Erkennung
+  // -------------------------
   useEffect(() => {
     const stored = localStorage.getItem("jagd_username");
     if (stored) {
@@ -38,9 +38,9 @@ export default function QuizClient() {
     if (!askName) loadQuestions();
   }, [askName, country, topic]);
 
-  // --------------------------------------------------------
-  // Username registrieren in Supabase
-  // --------------------------------------------------------
+  // -------------------------
+  // Benutzer registrieren
+  // -------------------------
   async function registerUser() {
     const clean = nameInput.trim();
     if (!clean) return;
@@ -57,17 +57,20 @@ export default function QuizClient() {
     setAskName(false);
   }
 
-  // --------------------------------------------------------
+  // -------------------------
   // Fragen laden
-  // --------------------------------------------------------
+  // -------------------------
   async function loadQuestions() {
     const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
     const data = await res.json();
-    setQuestions(data.questions);
+    setQuestions(data.questions || []);
   }
 
   const q = questions[index];
 
+  // -------------------------
+  // Timer
+  // -------------------------
   useEffect(() => {
     if (!q || finished || locked || askName) return;
     if (timer <= 0) return handleTimeout();
@@ -76,9 +79,9 @@ export default function QuizClient() {
     return () => clearTimeout(t);
   }, [timer, q, locked, finished, askName]);
 
-  // --------------------------------------------------------
+  // -------------------------
   // Quiz Logik
-  // --------------------------------------------------------
+  // -------------------------
   function vibrate(ms) {
     if (navigator.vibrate) navigator.vibrate(ms);
   }
@@ -110,10 +113,15 @@ export default function QuizClient() {
     setTimeout(() => nextQuestion(), 900);
   }
 
+  // -------------------------
+  // WICHTIGER BUGFIX:
+  // Quiz darf NUR enden, wenn wirklich Fragen existieren
+  // -------------------------
   function nextQuestion() {
     setEffect("");
 
-    if (index + 1 >= questions.length) {
+    // ⛔ alter Bug: finish wurde ausgelöst, obwohl questions.length = 0 war
+    if (questions.length > 0 && index + 1 >= questions.length) {
       setFinished(true);
       saveScore();
       return;
@@ -125,23 +133,23 @@ export default function QuizClient() {
     setLocked(false);
   }
 
-  // --------------------------------------------------------
-  // Score speichern (korrekt)
-  // --------------------------------------------------------
+  // -------------------------
+  // Score speichern
+  // -------------------------
   async function saveScore() {
     await fetch("/api/quiz/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: username,
+        username,
         points: score,
       }),
     });
   }
 
-  // --------------------------------------------------------
+  // -------------------------
   // Username Modal
-  // --------------------------------------------------------
+  // -------------------------
   if (askName) {
     return (
       <div
@@ -210,13 +218,15 @@ export default function QuizClient() {
     );
   }
 
-  // --------------------------------------------------------
+  // -------------------------
   // Quiz fertig
-  // --------------------------------------------------------
+  // -------------------------
   if (finished) {
     return (
       <div style={{ textAlign: "center", padding: 40 }}>
-        <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
+        <h1 style={{ fontSize: 34, marginBottom: 10 }}>
+          🎉 Quiz abgeschlossen!
+        </h1>
 
         <div
           style={{
@@ -265,9 +275,9 @@ export default function QuizClient() {
     );
   }
 
-  // --------------------------------------------------------
-  // Quiz läuft
-  // --------------------------------------------------------
+  // -------------------------
+  // Ladebildschirm
+  // -------------------------
   if (!q) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
@@ -276,6 +286,9 @@ export default function QuizClient() {
     );
   }
 
+  // -------------------------
+  // Quiz läuft
+  // -------------------------
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
       <div className="progressbar">
