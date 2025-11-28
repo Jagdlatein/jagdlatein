@@ -11,65 +11,41 @@ export default function KurseOverview() {
     { name: "🦌 Rehwild ansprechen", link: "/kurse/rehwild" },
     { name: "🦌 Rotwild kompakt", link: "/kurse/rotwild" },
     { name: "🪤 Fallenjagd Basics", link: "/kurse/fallenjagd" },
-    { name: "⚠ Sicherheit im Revier", link: "/kurse/sicherheit" },
+    { name: "⚠️ Sicherheit im Revier", link: "/kurse/sicherheit" },
     { name: "🌲 Pirsch & Ansitz", link: "/kurse/pirsch" },
     { name: "📚 25 Prüfungstipps", link: "/kurse/pruefung" },
   ];
 
   return (
-    <main
-      style={{
-        background: "linear-gradient(180deg,#faf8f1,#f4efe3)",
-        minHeight: "100vh",
-        padding: "45px 16px 80px",
-      }}
-    >
-      <div style={{ maxWidth: 860, margin: "0 auto" }}>
-        <h1
-          style={{
-            fontSize: 36,
-            fontWeight: 800,
-            margin: "0 0 16px",
-            color: "#1a1a1a",
-          }}
-        >
+    <main className="min-h-screen px-4 py-12 bg-gradient-to-b from-[#faf8f1] to-[#f4efe3]">
+      <div className="max-w-3xl mx-auto">
+        
+        <h1 className="text-3xl font-extrabold mb-3 text-[#1a1a1a]">
           📚 Jagdlatein – Mini-Kurse
         </h1>
 
-        <p
-          style={{
-            fontSize: 18,
-            color: "#4b4b4b",
-            margin: "0 0 26px",
-            maxWidth: 640,
-          }}
-        >
+        <p className="text-lg text-gray-700 mb-8 max-w-xl">
           Kompakte Lernmodule für Jungjäger und erfahrene Jäger.
           Jeder Kurs ist kurz, praxisnah und schließt mit einem Quiz ab.
         </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div className="flex flex-col gap-3">
           {kurse.map((kurs, i) => (
             <Link key={i} href={kurs.link}>
-              <div
-                style={{
-                  background: "#ffffff",
-                  borderRadius: 14,
-                  padding: "14px 18px",
-                  border: "1px solid #e0ddcf",
-                  cursor: "pointer",
-                  fontSize: 18,
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
+              <div className="
+                bg-white border border-[#e0ddcf] rounded-xl 
+                px-5 py-4 text-[18px]
+                flex items-center justify-between
+                hover:shadow-md transition-shadow
+                cursor-pointer
+              ">
                 <span>{kurs.name}</span>
-                <span style={{ fontSize: 16 }}>➜</span>
+                <span className="text-gray-500">➜</span>
               </div>
             </Link>
           ))}
         </div>
+
       </div>
     </main>
   );
