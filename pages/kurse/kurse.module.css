@@ -74,3 +74,11 @@
 .card:hover .arrow {
   color: #8e6f22;
 }
+.card {
+  text-decoration: none;
+  color: #b38b2e;
+}
+
+.card:hover {
+  text-decoration: none;
+}
