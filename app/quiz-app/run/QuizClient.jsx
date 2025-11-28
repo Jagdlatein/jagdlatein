@@ -19,82 +19,69 @@ export default function QuizClient() {
   const [finished, setFinished] = useState(false);
   const [effect, setEffect] = useState("");
 
+  const [askName, setAskName] = useState(false);
   const [username, setUsername] = useState("");
 
-  // -------------------------
-  // Username laden
-  // -------------------------
+  // 👤 Username laden
   useEffect(() => {
     const u = localStorage.getItem("jagd_username");
     if (!u) {
-      router.push("/quiz-app/username");
+      router.replace("/quiz-app/username");
       return;
     }
     setUsername(u);
+    loadQuestions();
   }, []);
 
-  // -------------------------
-  // Fragen laden
-  // -------------------------
-  useEffect(() => {
-    if (!username) return;
-
-    async function load() {
-      const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
-      const data = await res.json();
-      setQuestions(data.questions || []);
-    }
-
-    load();
-  }, [username, country, topic]);
+  async function loadQuestions() {
+    const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
+    const data = await res.json();
+    setQuestions(data.questions || []);
+  }
 
   const q = questions[index];
 
-  // -------------------------
-  // Timer
-  // -------------------------
+  // ⏱ Timer
   useEffect(() => {
-    if (!q || locked || finished) return;
+    if (!q || finished || locked) return;
     if (timer <= 0) return handleTimeout();
 
-    const t = setTimeout(() => setTimer(t => t - 1), 1000);
+    const t = setTimeout(() => setTimer((x) => x - 1), 1000);
     return () => clearTimeout(t);
   }, [timer, q, locked, finished]);
 
-  // -------------------------
-  // Timeout
-  // -------------------------
-  function handleTimeout() {
-    setLocked(true);
-    setEffect("flash-wrong");
-    setSelected("timeout");
-
-    setTimeout(() => nextQuestion(), 900);
+  function vibrate(ms) {
+    if (navigator.vibrate) navigator.vibrate(ms);
   }
 
-  // -------------------------
-  // Antwort logik
-  // -------------------------
+  function handleTimeout() {
+    setEffect("flash-wrong");
+    vibrate(40);
+    setLocked(true);
+    setSelected("timeout");
+    setTimeout(() => nextQuestion(), 800);
+  }
+
   function handleAnswer(ans, idx) {
     if (locked) return;
-
-    const isCorrect = q.correct.includes(ans.id);
     setLocked(true);
     setSelected(idx);
 
+    const isCorrect = q.correct.includes(ans.id);
+
     if (isCorrect) {
       setEffect("flash-correct");
-      setScore(s => s + 100 + timer * 10);
+      vibrate(30);
+      setScore((s) => s + 100 + timer * 10);
     } else {
       setEffect("flash-wrong");
+      vibrate(60);
     }
 
-    setTimeout(() => nextQuestion(), 900);
+    setTimeout(() => nextQuestion(), 800);
   }
 
-  // -------------------------
-  // Nächste Frage
-  // -------------------------
+  // ▶ nächste Frage
   function nextQuestion() {
     setEffect("");
 
@@ -104,15 +91,13 @@ export default function QuizClient() {
       return;
     }
 
-    setIndex(i => i + 1);
+    setIndex((i) => i + 1);
     setTimer(30);
-    setLocked(false);
     setSelected(null);
+    setLocked(false);
   }
 
-  // -------------------------
-  // Score speichern
-  // -------------------------
+  // 💾 Score speichern
   async function saveScore() {
     await fetch("/api/quiz/submit", {
       method: "POST",
@@ -124,9 +109,7 @@ export default function QuizClient() {
     });
   }
 
-  // -------------------------
-  // Loading
-  // -------------------------
+  // 🟦 Ladebildschirm
   if (!q && !finished) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
@@ -135,12 +118,10 @@ export default function QuizClient() {
     );
   }
 
-  // -------------------------
-  // Fertig-Screen
-  // -------------------------
+  // 🟩 Fertig
   if (finished) {
     return (
-      <div style={{ padding: 40, textAlign: "center" }}>
+      <div style={{ textAlign: "center", padding: 40 }}>
         <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
 
         <div
@@ -171,7 +152,9 @@ export default function QuizClient() {
         </button>
 
         <button
-          onClick={() => router.push(`/quiz-app/run?country=${country}&topic=${topic}`)}
+          onClick={() =>
+            router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
+          }
           style={{
             padding: 14,
             width: "100%",
@@ -188,22 +171,19 @@ export default function QuizClient() {
     );
   }
 
-  // -------------------------
-  // Quiz läuft
-  // -------------------------
+  // 🟧 Quiz läuft
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
       <div className="progressbar">
         <div
           className="progressbar-fill"
-          style={{ width: `${(timer / 30) * 100}%` }}
+          style={{
+            width: `${(timer / 30) * 100}%`,
+          }}
         />
       </div>
 
-      <div
-        className="fade-in"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ fontSize: 20, fontWeight: 700 }}>
           Frage {index + 1}/{questions.length}
         </div>
@@ -244,7 +224,6 @@ export default function QuizClient() {
           return (
             <div
               key={i}
-              className="answer-btn fade-in"
               onClick={() => handleAnswer(ans, i)}
               style={{
                 padding: "14px 16px",
