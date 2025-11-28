@@ -27,7 +27,7 @@ export default function StatsPage() {
 
     loadStats(u);
     loadTop10();
-  }, []);
+  }, [router]);
 
   async function loadStats(u) {
     const res = await fetch("/api/quiz/player-stats?u=" + u);
@@ -96,11 +96,7 @@ export default function StatsPage() {
         <StatCard title="Gesamtpunkte" value={stats.total_points} icon="🏆" />
         <StatCard title="Runden gespielt" value={stats.rounds} icon="🎮" />
         <StatCard title="Durchschnitt / Runde" value={stats.avgScore} icon="📈" />
-        <StatCard
-          title="Trefferquote"
-          value={stats.hitRate + "%"}
-          icon="🎯"
-        />
+        <StatCard title="Trefferquote" value={stats.hitRate + "%"} icon="🎯" />
         <StatCard title="Beste Kategorie" value={stats.bestTopic} icon="⭐" />
         <StatCard title="Land" value={country} icon="🌍" />
       </div>
@@ -135,7 +131,7 @@ export default function StatsPage() {
       </div>
 
       <button
-        onClick={() => router.push("/quiz/run")}
+        onClick={() => router.push("/quiz-app/run")}
         style={{
           width: "100%",
           padding: 16,
