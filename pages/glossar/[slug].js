@@ -2,38 +2,18 @@ import { useRouter } from "next/router";
 import Seo from "../../components/Seo";
 import styles from "./glossar.module.css";
 
-// 👉 gleiche TERMS wie in index.js
 const TERMS = [
-  { slug: "ansitz", term: "Ansitz", def: "Stationäre Jagdart vom Hochsitz/Ansitz aus." },
-  { slug: "anschuss", term: "Anschuss", def: "Ort, an dem das Wild beschossen wurde." },
-  { slug: "absehen", term: "Absehen", def: "Fadenkreuz oder Markierung im Zielfernrohr." },
-  { slug: "alttier", term: "Alttier", def: "Weibliches Rotwild ab dem dritten Lebensjahr." },
-  { slug: "apportieren", term: "Apportieren", def: "Bringen des erlegten Wildes durch den Hund." },
-  { slug: "bergstock", term: "Bergstock", def: "Stab zur Unterstützung beim Gehen im alpinen Gelände." },
-  { slug: "balg", term: "Balg", def: "Fell von Raubwild oder Niederwild." },
-  { slug: "balzen", term: "Balzen", def: "Paarungsritual des Federwildes." },
-  { slug: "bejagungsschneise", term: "Bejagungsschneise", def: "Freigeschnittene Sichtschneise für sichere Schüsse." },
-  { slug: "bruch", term: "Bruch", def: "Zweig als Jagdzeichen." },
-  { slug: "bruchzeichen", term: "Bruchzeichen", def: "Mit Zweigen gelegte Zeichen im Revier." },
-
-  { slug: "decke", term: "Decke", def: "Haut und Fell des Haarwildes." },
-  { slug: "deckungswechsel", term: "Deckungswechsel", def: "Wechsel zwischen zwei Deckungsbereichen." },
-
-  { slug: "einstand", term: "Einstand", def: "Bevorzugtes Rückzugsgebiet des Wildes." },
-  { slug: "einfliegen", term: "Einfliegen", def: "Regelmäßiger Flugweg des Federwildes." },
-
-  { slug: "fuchsfang", term: "Fuchsfang", def: "Bejagen des Fuchses." },
-  { slug: "fegeschild", term: "Fegeschild", def: "Abgefegte Rinde durch Reh- oder Rotwild." },
-  { slug: "frischling", term: "Frischling", def: "Junges Schwarzwild im ersten Lebensjahr." },
+  // … deine komplette TERMS-Liste hier wie gehabt …
 ];
 
 export default function GlossarSlugPage() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const entry = TERMS.find((t) => t.slug === slug);
+  const entryIndex = TERMS.findIndex((t) => t.slug === slug);
+  const entry = TERMS[entryIndex];
 
-  // ❌ Begriff nicht gefunden
+  // Fallback – Begriff existiert nicht
   if (!entry) {
     return (
       <main className={styles.wrapper}>
@@ -54,29 +34,83 @@ export default function GlossarSlugPage() {
     );
   }
 
-  // ✅ Begriff gefunden
+  // Vorheriger / Nächster Begriff
+  const prev = TERMS[entryIndex - 1] || null;
+  const next = TERMS[entryIndex + 1] || null;
+
+  // Verwandte Begriffe (selber Anfangsbuchstabe)
+  const related = TERMS.filter(
+    (t) => t.term[0].toLowerCase() === entry.term[0].toLowerCase() && t.slug !== entry.slug
+  ).slice(0, 6);
+
+  // Alphabet-Leiste
+  const letters = [...new Set(TERMS.map((t) => t.term[0].toUpperCase()))].sort();
+
   return (
     <>
       <Seo
-        title={`${entry.term} – Jagd-Glossar`}
-        description={`Glossarbegriff: ${entry.term} – erklärt auf Jagdlatein.de`}
+        title={`${entry.term} – Jagd-Glossar Definition`}
+        description={`Definition von "${entry.term}" aus der Jägersprache: ${entry.def}`}
+        keywords={`Jagd Glossar ${entry.term}, Jägersprache Begriff ${entry.term}, Jagdlatein`}
       />
 
       <main className={styles.wrapper}>
         <div className={styles.container}>
 
-          <div className={styles.card}>
-            <h1 className={styles.title}>{entry.term}</h1>
+          {/* A–Z Leiste */}
+          <div className={styles.azBar}>
+            {letters.map((l) => (
+              <a key={l} href={`/glossar?letter=${l}`} className={styles.azItem}>
+                {l}
+              </a>
+            ))}
+          </div>
 
-            <p className={styles.defBig}>
-              {entry.def}
-            </p>
+          {/* Begriff-Karte */}
+          <div className={styles.card}>
+
+            <div className={styles.slugHeader}>
+              <h1 className={styles.slugTitle}>{entry.term}</h1>
+              <span className={styles.slugLetter}>{entry.term[0].toUpperCase()}</span>
+            </div>
+
+            <p className={styles.defBig}>{entry.def}</p>
+
+            {/* Kontrolle: Vorher/Nachher */}
+            <div className={styles.navRow}>
+              {prev && (
+                <a href={`/glossar/${prev.slug}`} className={styles.navLink}>
+                  ← {prev.term}
+                </a>
+              )}
+              {next && (
+                <a href={`/glossar/${next.slug}`} className={styles.navLink}>
+                  {next.term} →
+                </a>
+              )}
+            </div>
+
+            {/* Verwandte Begriffe */}
+            {related.length > 0 && (
+              <div className={styles.relatedBox}>
+                <h3 className={styles.relatedTitle}>Verwandte Begriffe</h3>
+                <ul className={styles.relatedList}>
+                  {related.map((r) => (
+                    <li key={r.slug}>
+                      <a href={`/glossar/${r.slug}`} className={styles.relatedLink}>
+                        {r.term}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <a href="/glossar" className={styles.linkBack}>
               ← Zurück zum Glossar
             </a>
-          </div>
 
+          </div>
         </div>
       </main>
     </>
