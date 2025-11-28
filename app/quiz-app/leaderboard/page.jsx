@@ -139,7 +139,7 @@ export default function LeaderboardPage() {
       />
 
       <button
-        onClick={() => (window.location.href = "/quiz/run")}
+      onClick={() => (window.location.href = "/quiz-app/run")}
         style={{
           marginTop: 30,
           width: "100%",
