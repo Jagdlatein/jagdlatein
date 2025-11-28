@@ -3,6 +3,9 @@
 export const dynamic = "force-dynamic";
 export const revalidate = false;
 
+import { useEffect, useState, useCallback } from "react";
+import { useLiveLeaderboard } from "./useLiveLeaderboard";
+
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -18,13 +21,15 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
-  // 🔥 load() muss stable sein für den Realtime-Hook
+  // 🔥 load() stabil für Realtime
   const load = useCallback(async () => {
     try {
+      // Gesamt
       const all = await fetch("/api/quiz/leaderboard", {
         cache: "no-store",
       }).then((r) => r.json());
 
+      // Wöchentlich
       const week = await fetch("/api/quiz/leaderboard-week", {
         cache: "no-store",
       }).then((r) => r.json());
@@ -36,14 +41,14 @@ export default function LeaderboardPage() {
     }
   }, []);
 
-  // 🔥 Initial Laden
+  // Initial laden
   useEffect(() => {
     load();
   }, [load]);
 
-  // 🔥 Live-Updates aus SUPABASE
+  // 🔥 Supabase Live Änderungen
   useLiveLeaderboard(() => {
-    load(); // automatisch neu laden
+    load();
   });
 
   // Filter + Suche
