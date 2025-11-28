@@ -8,35 +8,75 @@ const supabase = createClient(
 );
 
 export async function POST(req) {
-  const { username, points, country = "DE" } = await req.json();
+  const { username, points } = await req.json();
 
-  // Bestehenden Score laden
-  const { data: existing } = await supabase
+  if (!username || points === undefined) {
+    return Response.json({
+      success: false,
+      message: "Username oder Punkte fehlen"
+    });
+  }
+
+  // Aktuellen Score laden
+  const { data: existing, error: fetchError } = await supabase
     .from("quiz_scores")
-    .select("*")
+    .select("total_points, rounds")
     .eq("username", username)
-    .maybeSingle();
+    .single();
 
-  const newTotal = existing ? (existing.total_points || 0) + points : points;
-  const newRounds = existing ? (existing.rounds || 0) + 1 : 1;
+  if (fetchError && fetchError.code !== "PGRST116") {
+    console.error("fetch error:", fetchError);
+    return Response.json({ success: false, error: fetchError.message });
+  }
 
-  // Speichern
-  await supabase
+  // Wenn kein Score existiert → Highscore = Punkte
+  if (!existing) {
+    await supabase.from("quiz_scores").insert({
+      username,
+      total_points: points,
+      rounds: 1,
+      updated_at: new Date().toISOString()
+    });
+
+    return Response.json({
+      success: true,
+      highscore: true,
+      newScore: points,
+      oldScore: 0
+    });
+  }
+
+  const oldScore = existing.total_points || 0;
+
+  // Highscore nicht geschlagen → NICHT speichern
+  if (points <= oldScore) {
+    return Response.json({
+      success: true,
+      highscore: false,
+      oldScore,
+      newScore: points
+    });
+  }
+
+  // Highscore verbessert → Speichern
+  const { error: updateError } = await supabase
     .from("quiz_scores")
-    .upsert(
-      {
-        username,
-        country,
-        total_points: newTotal,
-        rounds: newRounds,
-        updated_at: new Date().toISOString()
-      },
-      { onConflict: "username" }
-    );
+    .update({
+      total_points: points,
+      rounds: (existing.rounds || 0) + 1,
+      updated_at: new Date().toISOString()
+    })
+    .eq("username", username);
+
+  if (updateError) {
+    console.error(updateError);
+    return Response.json({ success: false, error: updateError.message });
+  }
 
   return Response.json({
     success: true,
-    total_points: newTotal,
-    rounds: newRounds
+    highscore: true,
+    oldScore,
+    newScore: points
   });
 }
