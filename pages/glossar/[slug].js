@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import Seo from "../../components/Seo";
+import styles from "./glossar.module.css";
 
-// 👉 gleiche TERMS wie in index.js einfügen
+// 👉 gleiche TERMS wie in index.js
 const TERMS = [
   { slug: "ansitz", term: "Ansitz", def: "Stationäre Jagdart vom Hochsitz/Ansitz aus." },
   { slug: "anschuss", term: "Anschuss", def: "Ort, an dem das Wild beschossen wurde." },
@@ -24,8 +25,6 @@ const TERMS = [
   { slug: "fuchsfang", term: "Fuchsfang", def: "Bejagen des Fuchses." },
   { slug: "fegeschild", term: "Fegeschild", def: "Abgefegte Rinde durch Reh- oder Rotwild." },
   { slug: "frischling", term: "Frischling", def: "Junges Schwarzwild im ersten Lebensjahr." },
-
-  // usw … (alle anderen Begriffe einfügen)
 ];
 
 export default function GlossarSlugPage() {
@@ -34,16 +33,19 @@ export default function GlossarSlugPage() {
 
   const entry = TERMS.find((t) => t.slug === slug);
 
+  // ❌ Begriff nicht gefunden
   if (!entry) {
     return (
-      <main className="glossar-wrapper">
-        <div className="glossar-container">
-          <h1 className="glossar-title">Begriff nicht gefunden</h1>
+      <main className={styles.wrapper}>
+        <div className={styles.container}>
+          <div className={styles.card}>
+            <h1 className={styles.title}>Begriff nicht gefunden</h1>
 
-          <p className="glossar-subtitle">Dieser Glossarbegriff existiert nicht.</p>
+            <p className={styles.subtitle}>
+              Dieser Glossarbegriff existiert nicht.
+            </p>
 
-          <div style={{ textAlign: "center", marginTop: 20 }}>
-            <a href="/glossar" style={{ color: "var(--forest)", fontWeight: 700 }}>
+            <a href="/glossar" className={styles.linkBack}>
               ← Zurück zum Glossar
             </a>
           </div>
@@ -52,6 +54,7 @@ export default function GlossarSlugPage() {
     );
   }
 
+  // ✅ Begriff gefunden
   return (
     <>
       <Seo
@@ -59,19 +62,17 @@ export default function GlossarSlugPage() {
         description={`Glossarbegriff: ${entry.term} – erklärt auf Jagdlatein.de`}
       />
 
-      <main className="glossar-wrapper">
-        <div className="glossar-container">
+      <main className={styles.wrapper}>
+        <div className={styles.container}>
 
-          <div className="glossar-card" style={{ padding: "28px 32px" }}>
-            <h1 className="glossar-title" style={{ marginBottom: "18px" }}>
-              {entry.term}
-            </h1>
+          <div className={styles.card}>
+            <h1 className={styles.title}>{entry.term}</h1>
 
-            <p className="glossar-def" style={{ fontSize: 18, marginBottom: 32 }}>
+            <p className={styles.defBig}>
               {entry.def}
             </p>
 
-            <a href="/glossar" className="glossar-term" style={{ fontSize: 16 }}>
+            <a href="/glossar" className={styles.linkBack}>
               ← Zurück zum Glossar
             </a>
           </div>
