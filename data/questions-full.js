@@ -1975,8 +1975,8 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Deckung & Nahrung durch Hecken.'
-},
-
+}
+];
 
 // Validator im Dev ausführen
 if (process.env.NODE_ENV !== 'production') {
