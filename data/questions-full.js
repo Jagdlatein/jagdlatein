@@ -1655,10 +1655,328 @@ export const QUESTIONS = [
   correct:['b'],
   explain:'Gams führt im Winter dunkles, fast schwarzes Haarkleid.'
 },
+{
+  id:'JL-101',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wodurch unterscheidet sich die Fährte eines Wolfs von der eines Hundes?',
+  answers:[
+    {id:'a', text:'Wolf läuft enger in der Spur, fast wie auf einer Linie'},
+    {id:'b', text:'Hunde laufen immer im Passgang'},
+    {id:'c', text:'Wolf zeigt niemals Krallenabdrücke'},
+    {id:'d', text:'Hund hat immer längere Zehen'}
+  ],
+  correct:['a'],
+  explain:'Wölfe setzen ihre Pfoten enger in einer Linie, Hunde deutlich breiter.'
+},
 
+{
+  id:'JL-102',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Wie nennt man den Haarwechsel beim Rehwild?',
+  answers:[
+    {id:'a', text:'Mauser'},
+    {id:'b', text:'Fegen'},
+    {id:'c', text:'Schlüpfen'},
+    {id:'d', text:'Verfärben'}
+  ],
+  correct:['d'],
+  explain:'Das jahreszeitliche Haarwechseln nennt man Verfärben.'
+},
 
+{
+  id:'JL-103',
+  countries:['DE'], topic:'Wildkunde',
+  q:'Welches Merkmal zeigt typisches Kahlwild?',
+  answers:[
+    {id:'a', text:'Fehlende Rosenstöcke'},
+    {id:'b', text:'Gehörn mit zwei Spießen'},
+    {id:'c', text:'Starke Trägerbildung'},
+    {id:'d', text:'Schaufeln an den Stangen'}
+  ],
+  correct:['a'],
+  explain:'Kahlwild trägt kein Geweih und hat daher keine Rosenstöcke.'
+},
 
-];
+{
+  id:'JL-104',
+  countries:['AT'], topic:'Wildkunde',
+  q:'Welche Aussage über den Steinadler ist korrekt?',
+  answers:[
+    {id:'a', text:'Er brütet meist in Felswänden'},
+    {id:'b', text:'Er jagt fast ausschließlich Aas'},
+    {id:'c', text:'Er lebt nur in Wäldern'},
+    {id:'d', text:'Er kann nicht über 1000 m Höhe kreisen'}
+  ],
+  correct:['a'],
+  explain:'Steinadler horsten typischerweise in Felswänden.'
+},
+
+{
+  id:'JL-105',
+  countries:['CH'], topic:'Wildkunde',
+  q:'Woran erkennst du den Steinmarder?',
+  answers:[
+    {id:'a', text:'Er hat einen rein weißen Kehlfleck'},
+    {id:'b', text:'Er hat gelbliche Beine'},
+    {id:'c', text:'Er zeigt immer schwarze Ohrspitzen'},
+    {id:'d', text:'Er hat einen ringelnden Schwanz'}
+  ],
+  correct:['a'],
+  explain:'Steinmarder: weißer Kehlfleck; Baummarder eher gelblich.'
+},
+
+{
+  id:'JL-106',
+  countries:['DE'], topic:'Waffen & Schuss',
+  q:'Welche Schussentfernung gilt für die meisten Drückjagdsituationen als typisch?',
+  answers:[
+    {id:'a', text:'5–30 m'},
+    {id:'b', text:'80–120 m'},
+    {id:'c', text:'200–300 m'},
+    {id:'d', text:'Über 500 m'}
+  ],
+  correct:['a'],
+  explain:'Auf Drückjagden erfolgen Schüsse meist auf kurze Distanzen.'
+},
+
+{
+  id:'JL-107',
+  countries:['DE'], topic:'Waffen & Schuss',
+  q:'Was bewirkt ein Schalldämpfer hauptsächlich?',
+  answers:[
+    {id:'a', text:'Erhöht die Geschossgeschwindigkeit'},
+    {id:'b', text:'Reduziert Mündungsknall & Rückstoß'},
+    {id:'c', text:'Erlaubt das Schießen ohne Gehörschutz'},
+    {id:'d', text:'Verhindert Kugelfangtreffer'}
+  ],
+  correct:['b'],
+  explain:'Schalldämpfer mindert Knall und Rückstoß deutlich.'
+},
+
+{
+  id:'JL-108',
+  countries:['AT'], topic:'Waffen & Schuss',
+  q:'Welches Geschossprinzip eignet sich für Schalenwild?',
+  answers:[
+    {id:'a', text:'Vollmantel für maximale Penetration'},
+    {id:'b', text:'Deformationsgeschoss oder Zerleger'},
+    {id:'c', text:'Schrotladung über 100 m'},
+    {id:'d', text:'Pfeilgeschoss aus Druckluftwaffen'}
+  ],
+  correct:['b'],
+  explain:'Deformations- und Teilzerlegergeschosse sind jagdlich üblich.'
+},
+
+{
+  id:'JL-109',
+  countries:['CH'], topic:'Waffen & Schuss',
+  q:'Was bedeutet „Drall“ im Lauf?',
+  answers:[
+    {id:'a', text:'Die Anzahl der Züge pro Waffe'},
+    {id:'b', text:'Die Drehung, die dem Geschoss Stabilität gibt'},
+    {id:'c', text:'Eine Sicherungsfunktion'},
+    {id:'d', text:'Die Größe der Patronenhülse'}
+  ],
+  correct:['b'],
+  explain:'Der Drall versetzt das Geschoss in Rotation und stabilisiert Flugbahn.'
+},
+
+{
+  id:'JL-110',
+  countries:['DE'], topic:'Recht',
+  q:'Wer prüft in Deutschland die Zuverlässigkeit für einen Jagdschein?',
+  answers:[
+    {id:'a', text:'Der Jagdpächter'},
+    {id:'b', text:'Untere Jagdbehörde'},
+    {id:'c', text:'Der Schießstandbetreiber'},
+    {id:'d', text:'Der Hegering'}
+  ],
+  correct:['b'],
+  explain:'Die untere Jagdbehörde prüft Zuverlässigkeit & Eignung.'
+},
+
+{
+  id:'JL-111',
+  countries:['DE'], topic:'Recht',
+  q:'Welche Pflicht gilt nach dem Jagdrecht immer?',
+  answers:[
+    {id:'a', text:'Trophäenabgabe an die Behörde'},
+    {id:'b', text:'Waidgerechtes Jagen'},
+    {id:'c', text:'Ganzjährige Fütterung'},
+    {id:'d', text:'Abschuss von Rotwild im Winter verboten'}
+  ],
+  correct:['b'],
+  explain:'Waidgerechtes Jagen ist gesetzliche Grundpflicht.'
+},
+
+{
+  id:'JL-112',
+  countries:['AT'], topic:'Recht',
+  q:'Welche Hauptform des Jagdrechts existiert in Österreich?',
+  answers:[
+    {id:'a', text:'Bundesjagdrecht'},
+    {id:'b', text:'Landesjagdrecht'},
+    {id:'c', text:'EU-Jagdrecht'},
+    {id:'d', text:'Kommunaljagdrecht'}
+  ],
+  correct:['b'],
+  explain:'Jagdrecht ist in Österreich Ländersache.'
+},
+
+{
+  id:'JL-113',
+  countries:['CH'], topic:'Recht',
+  q:'Wie erfolgt die Jagd in einigen Schweizer Kantonen hauptsächlich?',
+  answers:[
+    {id:'a', text:'Durch Patentjagd'},
+    {id:'b', text:'Nur durch Pachtjagd'},
+    {id:'c', text:'Gar keine Jagd'},
+    {id:'d', text:'Nur durch staatliche Jäger'}
+  ],
+  correct:['a'],
+  explain:'Viele Kantone haben das Patentjagdsystem.'
+},
+
+{
+  id:'JL-114',
+  countries:['DE'], topic:'Hundewesen',
+  q:'Was ist ein wesentliches Merkmal eines brauchbaren Jagdhundes?',
+  answers:[
+    {id:'a', text:'Er bellt selten'},
+    {id:'b', text:'Zuverlässige Schweißarbeit'},
+    {id:'c', text:'Kann 5 Tricks ausführen'},
+    {id:'d', text:'Ist besonders klein'}
+  ],
+  correct:['b'],
+  explain:'Schweißarbeit ist zentral für tierschutzgerechtes Jagen.'
+},
+
+{
+  id:'JL-115',
+  countries:['AT'], topic:'Hundewesen',
+  q:'Wofür steht der Begriff „Vorstehen“?',
+  answers:[
+    {id:'a', text:'Hund legt sich hin'},
+    {id:'b', text:'Hund zeigt Wild an durch Starre'},
+    {id:'c', text:'Hund jagt selbstständig nach'},
+    {id:'d', text:'Hund schwimmt weit auf Gewässern'}
+  ],
+  correct:['b'],
+  explain:'Vorstehen = regungsloses Anzeigen von Wild.'
+},
+
+{
+  id:'JL-116',
+  countries:['CH'], topic:'Hundewesen',
+  q:'Was beschreibt die „Fährtenlaut“-Eigenschaft?',
+  answers:[
+    {id:'a', text:'Hund bellt nur bei Sichtkontakt'},
+    {id:'b', text:'Hund gibt auf der Fährte Spurlaut'},
+    {id:'c', text:'Hund schweigt beim Arbeiten'},
+    {id:'d', text:'Hund jault beim Schlafen'}
+  ],
+  correct:['b'],
+  explain:'Fährtenlaut = Lautgeben während der Fährtenarbeit.'
+},
+
+{
+  id:'JL-117',
+  countries:['DE'], topic:'Wildbrethygiene',
+  q:'Welcher Schritt erfolgt unmittelbar nach dem Erlegen?',
+  answers:[
+    {id:'a', text:'Trophäenpräparation'},
+    {id:'b', text:'Sauberes Aufbrechen'},
+    {id:'c', text:'Transport bei 30 °C Außentemperatur'},
+    {id:'d', text:'Langes Liegenlassen'}
+  ],
+  correct:['b'],
+  explain:'Schnelles Aufbrechen verhindert Keimbildung.'
+},
+
+{
+  id:'JL-118',
+  countries:['AT'], topic:'Wildbrethygiene',
+  q:'Wie hoch soll die Kerntemperatur von Wildbret für sichere Lagerung sein?',
+  answers:[
+    {id:'a', text:'Unter 7 °C'},
+    {id:'b', text:'15 °C'},
+    {id:'c', text:'25 °C'},
+    {id:'d', text:'10–20 °C'}
+  ],
+  correct:['a'],
+  explain:'Unter 7 °C → hygienisch sicherer Bereich.'
+},
+
+{
+  id:'JL-119',
+  countries:['CH'], topic:'Wildbrethygiene',
+  q:'Welche Wildart ist trichinenuntersuchungspflichtig?',
+  answers:[
+    {id:'a', text:'Rehwild'},
+    {id:'b', text:'Schwarzwild'},
+    {id:'c', text:'Rotwild'},
+    {id:'d', text:'Fasan'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild → immer trichinenpflichtig.'
+},
+
+{
+  id:'JL-120',
+  countries:['DE'], topic:'Hege',
+  q:'Was ist Ziel einer angepassten Bejagungsstrategie?',
+  answers:[
+    {id:'a', text:'Überhöhte Bestände fördern'},
+    {id:'b', text:'Wald-Wild-Balance herstellen'},
+    {id:'c', text:'Nur starke Trophäen erlegen'},
+    {id:'d', text:'Totalverzicht auf Abschüsse'}
+  ],
+  correct:['b'],
+  explain:'Balance zwischen Waldverjüngung und Wildbestand.'
+},
+
+{
+  id:'JL-121',
+  countries:['DE'], topic:'Hege',
+  q:'Was deutet auf Überbesatz bei Rehwild hin?',
+  answers:[
+    {id:'a', text:'Starker Verbiss an Leittrieben'},
+    {id:'b', text:'Mehr Jungwuchs als Altbestand'},
+    {id:'c', text:'Keine Losung im Bestand'},
+    {id:'d', text:'Viel Bodenvegetation'}
+  ],
+  correct:['a'],
+  explain:'Verbiss an Leittrieben zeigt Überbesatz.'
+},
+
+{
+  id:'JL-122',
+  countries:['AT'], topic:'Hege',
+  q:'Welche Maßnahme verbessert Biotope?',
+  answers:[
+    {id:'a', text:'Totholz entfernen'},
+    {id:'b', text:'Strukturreiche Waldränder schaffen'},
+    {id:'c', text:'Alle Büsche entfernen'},
+    {id:'d', text:'Monokulturen erweitern'}
+  ],
+  correct:['b'],
+  explain:'Strukturreiche Ränder erhöhen Biodiversität.'
+},
+  
+{
+  id:'JL-123',
+  countries:['CH'], topic:'Hege',
+  q:'Was fördert Niederwild besonders?',
+  answers:[
+    {id:'a', text:'Intensive Mahd während Brutzeit'},
+    {id:'b', text:'Hecken & Saumbiotope'},
+    {id:'c', text:'Bodenverdichtung'},
+    {id:'d', text:'Ganzjähriges Mulchen'}
+  ],
+  correct:['b'],
+  explain:'Deckung & Nahrung durch Hecken.'
+},
+
 
 // Validator im Dev ausführen
 if (process.env.NODE_ENV !== 'production') {
