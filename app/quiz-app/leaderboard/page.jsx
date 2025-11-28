@@ -125,7 +125,7 @@ export default function LeaderboardPage() {
                 {item.total_points}
               </div>
 
-              <Badge points={item.total_points} />
+                <Badge points={item.total_points} />
             </div>
           );
         })}
@@ -139,7 +139,7 @@ export default function LeaderboardPage() {
       />
 
       <button
-      onClick={() => (window.location.href = "/quiz-app/run")}
+        onClick={() => (window.location.href = "/quiz-app/run")}
         style={{
           marginTop: 30,
           width: "100%",
