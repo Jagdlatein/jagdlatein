@@ -11,7 +11,7 @@ export default function QuizRunPage() {
 
   useEffect(() => {
     const u = localStorage.getItem("jagd_username");
-    if (!u) router.replace("/quiz/username");
+    if (!u) router.replace("/quiz-app/username");
   }, []);
 
   return <QuizClient />;
