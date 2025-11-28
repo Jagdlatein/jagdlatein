@@ -7,7 +7,7 @@ export default function QuizIndexPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/quiz/run");
+    router.replace("/quiz-app/run");
   }, []);
 
   return <div>Lädt…</div>;
