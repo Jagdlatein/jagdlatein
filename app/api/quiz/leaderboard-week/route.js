@@ -8,15 +8,15 @@ const supabase = createClient(
 );
 
 export async function GET() {
-  // 🟩 Wochenstart berechnen (Montag 00:00)
+  // Wochenstart
   const now = new Date();
-  const day = now.getDay(); // So=0, Mo=1...
+  const day = now.getDay();
   const monday = new Date(now);
   monday.setHours(0, 0, 0, 0);
   monday.setDate(now.getDate() - ((day + 6) % 7));
   const weekStart = monday.toISOString();
 
-  // 🟩 Nur Scores, die diese Woche aktualisiert wurden
+  // Scores dieser Woche
   const { data, error } = await supabase
     .from("quiz_scores")
     .select("username, country, total_points, updated_at")
