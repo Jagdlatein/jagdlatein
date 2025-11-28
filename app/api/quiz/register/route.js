@@ -1,55 +1,29 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
-
-export async function POST(req) {
-  try {
-    const { username, country } = await req.json();
-
-    if (!username) {
-      return Response.json(
-        { success: false, error: "Username fehlt" },
-        { status: 400 }
-      );
+useEffect(() => {
+  async function init() {
+    const u = localStorage.getItem("jagd_username");
+    if (!u) {
+      router.replace("/quiz-app/username");
+      return;
     }
 
-    const clean = username.trim().toLowerCase();
+    // direkt speichern
+    setUsername(u);
 
-    // Prüfen ob User existiert
-    const { data: exists } = await supabase
-      .from("quiz_users")
-      .select("username")
-      .eq("username", clean)
-      .maybeSingle();
-
-    if (exists) {
-      return Response.json({ success: true, exists: true });
-    }
-
-    // User anlegen
-    const { error } = await supabase.from("quiz_users").insert({
-      username: clean,
-      country: country || "DE",
-      total_points: 0,
-      rounds: 0,
+    // 🔥 User SOFORT registrieren – ohne auf username-State zu warten
+    await fetch("/api/quiz/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: u,
+        country,
+      }),
     });
 
-    if (error) {
-      console.error("INSERT ERROR:", error);
-      return Response.json(
-        { success: false, error: error.message },
-        { status: 500 }
-      );
-    }
-
-    return Response.json({ success: true, created: true });
-  } catch (err) {
-    return Response.json({ success: false, error: err.message });
+    // erst jetzt Fragen laden
+    const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
+    const data = await res.json();
+    setQuestions(data.questions || []);
   }
-}
+
+  init();
+}, [router, country, topic]);
