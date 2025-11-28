@@ -1982,7 +1982,7 @@ export const QUESTIONS = [
 if (process.env.NODE_ENV !== 'production') {
   validatePool(QUESTIONS);
 }
-
+];
 /** Ziehe Fragen nach Land/Topic & mische sie, begrenze auf count */
 export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) {
   const pool = QUESTIONS.filter(q =>
