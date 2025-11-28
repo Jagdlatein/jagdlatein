@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function UsernamePage() {
@@ -36,7 +36,7 @@ export default function UsernamePage() {
     { code: "UK", name: "Vereinigtes Königreich 🇬🇧" },
   ];
 
-  // Wenn Username + Land bereits gesetzt sind → direkt ins Quiz
+  // Falls der User bereits registriert ist → direkt weiterleiten
   useEffect(() => {
     const savedName = localStorage.getItem("jagd_username");
     const savedCountry = localStorage.getItem("jagd_country");
@@ -47,28 +47,29 @@ export default function UsernamePage() {
   }, [router]);
 
   async function start() {
-    if (!username.trim()) {
+    const clean = username.trim();
+    if (!clean) {
       alert("Bitte Username eingeben!");
       return;
     }
 
-    const clean = username.trim();
-
-    // 🟢 LOCAL SPEICHERN
+    // Lokal speichern
     localStorage.setItem("jagd_username", clean);
     localStorage.setItem("jagd_country", country);
 
-    // 🟢 SUPABASE REGISTRIERUNG (API-Pfad ist korrekt)
+    // In Supabase registrieren
     await fetch("/api/quiz/register", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         username: clean,
-        country: country,
-      }),
+        country
+      })
     });
 
-    // 🟢 WEITERLEITUNG
+    // Weiter
     router.push("/quiz-app/run");
   }
 
@@ -95,10 +96,7 @@ export default function UsernamePage() {
       />
 
       <div style={{ marginTop: 20 }}>
-        <label style={{ fontSize: 18, fontWeight: 700 }}>
-          Dein Land / Region:
-        </label>
-
+        <label style={{ fontSize: 18, fontWeight: 700 }}>Dein Land:</label>
         <select
           value={country}
           onChange={(e) => setCountry(e.target.value)}
