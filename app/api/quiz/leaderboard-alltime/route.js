@@ -8,14 +8,28 @@ const supabase = createClient(
 );
 
 export async function GET() {
-  const { data, error } = await supabase
-    .from("quiz_scores")
-    .select("username, total_points, rounds, updated_at")
-    .order("total_points", { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from("quiz_scores")
+      .select("username, total_points, rounds, updated_at")
+      .order("total_points", { ascending: false });
 
-  if (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    if (error) {
+      return Response.json({ error: error.message }, { status: 500 });
+    }
+
+    // total_points → points (für Frontend)
+    const formatted = data.map((row) => ({
+      username: row.username,
+      points: row.total_points,
+      rounds: row.rounds,
+      updated_at: row.updated_at
+    }));
+
+    return Response.json(formatted);
+
+  } catch (err) {
+    console.error("Leaderboard error:", err);
+    return Response.json({ error: err.message }, { status: 500 });
   }
-
-  return Response.json({ data });
 }
