@@ -1976,6 +1976,1483 @@ export const QUESTIONS = [
   correct: ['b'],
   explain: 'Deckung & Nahrung durch Hecken.'
 }
+  // BLOCK 1 – Fragen JL-1000 bis JL-1099
+
+{
+  id:'JL-1000',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Welche Struktur nutzt das Reh bevorzugt als Tageseinstand?',
+  answers:[
+    {id:'a', text:'Offene Ackerflächen'},
+    {id:'b', text:'Dichte Hecken & Jungwuchs'},
+    {id:'c', text:'Unbewachsene Kuppen'},
+    {id:'d', text:'Kahlschläge ohne Unterwuchs'}
+  ],
+  correct:['b'],
+  explain:'Rehe bevorzugen deckungsreiche Einstände.'
+},
+{
+  id:'JL-1001',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man die Nasenspitze des Fuchses?',
+  answers:[
+    {id:'a', text:'Fahne'},
+    {id:'b', text:'Blume'},
+    {id:'c', text:'Gehöre'},
+    {id:'d', text:'Lichter'}
+  ],
+  correct:['d'],
+  explain:'Lichter = Nase & Augenpartie.'
+},
+{
+  id:'JL-1002',
+  countries:['CH','DE'],
+  topic:'Steinwild',
+  q:'Womit bestimmt man beim Steinbock zuverlässig das Alter?',
+  answers:[
+    {id:'a', text:'Fellfarbe'},
+    {id:'b', text:'Jahresringe an den Hörnern'},
+    {id:'c', text:'Körpergewicht'},
+    {id:'d', text:'Höhe der Schulter'}
+  ],
+  correct:['b'],
+  explain:'Jahresringe belegen das Alter.'
+},
+{
+  id:'JL-1003',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Was kennzeichnet den Feistzustand beim Schwarzwild?',
+  answers:[
+    {id:'a', text:'Starke Fettpolster'},
+    {id:'b', text:'Helle Rückenborsten'},
+    {id:'c', text:'Verändertes Gebräch'},
+    {id:'d', text:'Abwurf der Waffen'}
+  ],
+  correct:['a'],
+  explain:'Feist = Körperfett vor Rauschzeit.'
+},
+{
+  id:'JL-1004',
+  countries:['DE'],
+  topic:'Fallenjagd',
+  q:'Welche Falle gilt als tierschutzgerecht für Raubwild?',
+  answers:[
+    {id:'a', text:'Wippbrettfalle'},
+    {id:'b', text:'Selbstschussgerät'},
+    {id:'c', text:'Lebendfalle mit Fangraum'},
+    {id:'d', text:'Schlagfalle mit Federkraft'}
+  ],
+  correct:['c'],
+  explain:'Lebendfallen entsprechen den Vorgaben.'
+},
+{
+  id:'JL-1005',
+  countries:['CH','DE'],
+  topic:'Waffen',
+  q:'Welche Eigenschaft hat ein Deformationsgeschoss?',
+  answers:[
+    {id:'a', text:'Geringe Energieabgabe'},
+    {id:'b', text:'Pilzt im Wildkörper auf'},
+    {id:'c', text:'Bleibt unverformt'},
+    {id:'d', text:'Wird nur in KK verwendet'}
+  ],
+  correct:['b'],
+  explain:'Deformationsgeschosse geben Energie ab.'
+},
+{
+  id:'JL-1006',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wann ist Hauptbrunftzeit des Rotwildes?',
+  answers:[
+    {id:'a', text:'Mai–Juni'},
+    {id:'b', text:'Juli–August'},
+    {id:'c', text:'September–Oktober'},
+    {id:'d', text:'November–Dezember'}
+  ],
+  correct:['c'],
+  explain:'Rotwild brunftet im Frühherbst.'
+},
+{
+  id:'JL-1007',
+  countries:['CH'],
+  topic:'Raubwild',
+  q:'Welche Art ist ein Kulturfolger?',
+  answers:[
+    {id:'a', text:'Luchs'},
+    {id:'b', text:'Fuchs'},
+    {id:'c', text:'Wildkatze'},
+    {id:'d', text:'Baummarder'}
+  ],
+  correct:['b'],
+  explain:'Füchse leben verstärkt nahe Siedlungen.'
+},
+{
+  id:'JL-1008',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Maßnahme fördert Insekten am stärksten?',
+  answers:[
+    {id:'a', text:'Frühjahrsmahd'},
+    {id:'b', text:'Blühstreifen & Saumstrukturen'},
+    {id:'c', text:'Ganzjährige Mulchung'},
+    {id:'d', text:'Düngung'}
+  ],
+  correct:['b'],
+  explain:'Blühflächen sind entscheidend für Insekten.'
+},
+{
+  id:'JL-1009',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Welcher Nachweis ist für viele Jagdarten Pflicht?',
+  answers:[
+    {id:'a', text:'Hundeführerschein'},
+    {id:'b', text:'Schießstandnachweis'},
+    {id:'c', text:'Waffenpass'},
+    {id:'d', text:'Jagdverband-Mitgliedschaft'}
+  ],
+  correct:['b'],
+  explain:'Schießstandnachweise sind vorgeschrieben.'
+},
+{
+  id:'JL-1010',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art zeigt Wellenflug?',
+  answers:[
+    {id:'a', text:'Auerhuhn'},
+    {id:'b', text:'Ringeltaube'},
+    {id:'c', text:'Kormoran'},
+    {id:'d', text:'Gans'}
+  ],
+  correct:['b'],
+  explain:'Typischer wellenförmiger Flug.'
+},
+{
+  id:'JL-1011',
+  countries:['CH'],
+  topic:'Ökologie',
+  q:'Was kennzeichnet einen strukturreichen Lebensraum?',
+  answers:[
+    {id:'a', text:'Monokultur'},
+    {id:'b', text:'Wechsel Deckung/Offenland'},
+    {id:'c', text:'Nur Hochwald'},
+    {id:'d', text:'Reiner Grasbewuchs'}
+  ],
+  correct:['b'],
+  explain:'Strukturvielfalt = Artenvielfalt.'
+},
+{
+  id:'JL-1012',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie heißt der Pürzel des Rehwildes?',
+  answers:[
+    {id:'a', text:'Fahne'},
+    {id:'b', text:'Blume'},
+    {id:'c', text:'Wedel'},
+    {id:'d', text:'Bürzel'}
+  ],
+  correct:['b'],
+  explain:'Blume = Rehwildschwanz.'
+},
+{
+  id:'JL-1013',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Was bedeutet „Gebräch“?',
+  answers:[
+    {id:'a', text:'Maul/Gebiss'},
+    {id:'b', text:'Schwarte'},
+    {id:'c', text:'Lauf'},
+    {id:'d', text:'Rückenborsten'}
+  ],
+  correct:['a'],
+  explain:'Gebräch = Maul.'
+},
+{
+  id:'JL-1014',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wie nennt man den Haarwechsel beim Reh?',
+  answers:[
+    {id:'a', text:'Fegen'},
+    {id:'b', text:'Schmelzen'},
+    {id:'c', text:'Rausch'},
+    {id:'d', text:'Zeckenwurf'}
+  ],
+  correct:['b'],
+  explain:'Sommer/Winterhaarwechsel = Schmelzen.'
+},
+{
+  id:'JL-1015',
+  countries:['DE'],
+  topic:'Raubwild',
+  q:'Welche Art ist streng territorial?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Dachs'},
+    {id:'c', text:'Baummarder'},
+    {id:'d', text:'Iltis'}
+  ],
+  correct:['c'],
+  explain:'Baummarder verteidigen feste Territorien.'
+},
+{
+  id:'JL-1016',
+  countries:['CH','DE'],
+  topic:'Biologie',
+  q:'Warum betreiben Wiederkäuer Wiederkauen?',
+  answers:[
+    {id:'a', text:'Reviermarkierung'},
+    {id:'b', text:'Verbesserte Verdauung'},
+    {id:'c', text:'Balz'},
+    {id:'d', text:'Thermoregulation'}
+  ],
+  correct:['b'],
+  explain:'Zerkleinert Nahrung für effiziente Verdauung.'
+},
+{
+  id:'JL-1017',
+  countries:['DE','CH'],
+  topic:'Waffen',
+  q:'Welche Optik für weite Distanzen?',
+  answers:[
+    {id:'a', text:'Offene Visierung'},
+    {id:'b', text:'Rotpunkt'},
+    {id:'c', text:'Zielfernrohr mit hoher Vergrößerung'},
+    {id:'d', text:'Diopter'}
+  ],
+  correct:['c'],
+  explain:'Hohe Vergrößerung = weite Schüsse.'
+},
+{
+  id:'JL-1018',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Maßnahme verbessert den Wasserhaushalt?',
+  answers:[
+    {id:'a', text:'Drainage'},
+    {id:'b', text:'Anlage von Kleingewässern'},
+    {id:'c', text:'Ganzjährige Mulchung'},
+    {id:'d', text:'Verdichtung'}
+  ],
+  correct:['b'],
+  explain:'Kleingewässer fördern Arten & Feuchte.'
+},
+{
+  id:'JL-1019',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art brütet in Baumhöhlen?',
+  answers:[
+    {id:'a', text:'Rebhuhn'},
+    {id:'b', text:'Fasan'},
+    {id:'c', text:'Hohltaube'},
+    {id:'d', text:'Wiesenweihe'}
+  ],
+  correct:['c'],
+  explain:'Hohltauben sind Höhlenbrüter.'
+},
+
+// --- AB HIER GEHT ES WEITER BIS JL-1099 ---
+
+{
+  id:'JL-1020',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Welcher Hirsch führt typischerweise ein Kahlwildrudel?',
+  answers:[
+    {id:'a', text:'Schmalspießer'},
+    {id:'b', text:'Alttier'},
+    {id:'c', text:'Hirsch II. Kopf'},
+    {id:'d', text:'Kalb'}
+  ],
+  correct:['b'],
+  explain:'Alttiere führen das Rudel.'
+},
+{
+  id:'JL-1021',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist beim Transport von Waffen zwingend?',
+  answers:[
+    {id:'a', text:'Offener Transport'},
+    {id:'b', text:'Entladen & verschlossen'},
+    {id:'c', text:'Abzugsbügel entfernt'},
+    {id:'d', text:'Getarnte Tasche'}
+  ],
+  correct:['b'],
+  explain:'Waffe muss ungeladen & verschlossen transportiert werden.'
+},
+{
+  id:'JL-1022',
+  countries:['CH','DE'],
+  topic:'Rehwild',
+  q:'Wann fegt der Rehbock typischerweise sein Gehörn?',
+  answers:[
+    {id:'a', text:'Januar'},
+    {id:'b', text:'März–April'},
+    {id:'c', text:'Juni–Juli'},
+    {id:'d', text:'September'}
+  ],
+  correct:['b'],
+  explain:'Böcke fegen im Frühjahr.'
+},
+{
+  id:'JL-1023',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Wie nennt man die Eckzähne des Keilers?',
+  answers:[
+    {id:'a', text:'Lichter'},
+    {id:'b', text:'Waffen'},
+    {id:'c', text:'Grannen'},
+    {id:'d', text:'Schaufeln'}
+  ],
+  correct:['b'],
+  explain:'Waffen = Keilerzähne.'
+},
+{
+  id:'JL-1024',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Aussage zu Flintenlaufgeschossen ist korrekt?',
+  answers:[
+    {id:'a', text:'Sind Luftdruckgeschosse'},
+    {id:'b', text:'Werden aus dem Kugellauf verschossen'},
+    {id:'c', text:'Sind massive Projektile für den Schrotlauf'},
+    {id:'d', text:'Zerfallen im Lauf'}
+  ],
+  correct:['c'],
+  explain:'Flintenlaufgeschosse sind Vollgeschosse für Schrotläufe.'
+},
+{
+  id:'JL-1025',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art ist ein Bodenbrüter?',
+  answers:[
+    {id:'a', text:'Eichelhäher'},
+    {id:'b', text:'Rebhuhn'},
+    {id:'c', text:'Hohltaube'},
+    {id:'d', text:'Turteltaube'}
+  ],
+  correct:['b'],
+  explain:'Rebhühner brüten am Boden.'
+},
+{
+  id:'JL-1026',
+  countries:['DE','CH'],
+  topic:'Biologie',
+  q:'Welche Sinnesleistung ist bei Wildschweinen am stärksten?',
+  answers:[
+    {id:'a', text:'Sehen'},
+    {id:'b', text:'Riechen'},
+    {id:'c', text:'Farbsehen'},
+    {id:'d', text:'Wärmesicht'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild hat exzellenten Geruchssinn.'
+},
+{
+  id:'JL-1027',
+  countries:['CH','DE'],
+  topic:'Steinwild',
+  q:'Wie nennt man die Hörner der Geiß?',
+  answers:[
+    {id:'a', text:'Schaufeln'},
+    {id:'b', text:'Krucken'},
+    {id:'c', text:'Spieße'},
+    {id:'d', text:'Fahne'}
+  ],
+  correct:['b'],
+  explain:'Krucken = Hörner von Steinwild.'
+},
+{
+  id:'JL-1028',
+  countries:['DE'],
+  topic:'Hege',
+  q:'Welche Maßnahme fördert Bodenbrüter?',
+  answers:[
+    {id:'a', text:'Frühjahrsmahd'},
+    {id:'b', text:'Gestaffelte Mahd & Altgrasinseln'},
+    {id:'c', text:'Ganzjahresweiden'},
+    {id:'d', text:'Grünlanddüngung'}
+  ],
+  correct:['b'],
+  explain:'Altgrasinseln ermöglichen erfolgreiche Brut.'
+},
+{
+  id:'JL-1029',
+  countries:['DE','CH'],
+  topic:'Jägersprache',
+  q:'Wie nennt man das Haar am Rücken des Wildschweins?',
+  answers:[
+    {id:'a', text:'Grannen'},
+    {id:'b', text:'Weißhaar'},
+    {id:'c', text:'Besen'},
+    {id:'d', text:'Fahne'}
+  ],
+  correct:['a'],
+  explain:'Grannen = harte Rückenborsten.'
+},
+
+{
+  id:'JL-1030',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wie heißt die Fortpflanzungszeit des Rehwildes?',
+  answers:[
+    {id:'a', text:'Rausch'},
+    {id:'b', text:'Brunft'},
+    {id:'c', text:'Rammeln'},
+    {id:'d', text:'Feist'}
+  ],
+  correct:['b'],
+  explain:'Rehwild brunftet im Sommer.'
+},
+
+{
+  id:'JL-1031',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was bedeutet „Drall“ im Lauf?',
+  answers:[
+    {id:'a', text:'Durchmesser'},
+    {id:'b', text:'Zahl der Züge'},
+    {id:'c', text:'Drall = Drehung des Geschosses'},
+    {id:'d', text:'Reinigungszustand'}
+  ],
+  correct:['c'],
+  explain:'Drall stabilisiert das Geschoss.'
+},
+
+{
+  id:'JL-1032',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie nennt man die Stimme des Hirsches in der Brunft?',
+  answers:[
+    {id:'a', text:'Keckern'},
+    {id:'b', text:'Klagen'},
+    {id:'c', text:'Röhren'},
+    {id:'d', text:'Fiepen'}
+  ],
+  correct:['c'],
+  explain:'Hirsche röhren in der Brunft.'
+},
+
+{
+  id:'JL-1033',
+  countries:['CH'],
+  topic:'Ökologie',
+  q:'Welche Fläche hat höchste Artenvielfalt?',
+  answers:[
+    {id:'a', text:'Monokulturacker'},
+    {id:'b', text:'Extensivwiese'},
+    {id:'c', text:'Versiegelter Parkplatz'},
+    {id:'d', text:'Fichtenforst'}
+  ],
+  correct:['b'],
+  explain:'Extensivflächen bieten Raum für viele Arten.'
+},
+
+{
+  id:'JL-1034',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welche Art legt ein Spurenbild mit 2×2 Abdruck?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Dachs'},
+    {id:'c', text:'Wolf'},
+    {id:'d', text:'Luchs'}
+  ],
+  correct:['d'],
+  explain:'Luchse setzen in typischer 2×2-Anordnung.'
+},
+
+{
+  id:'JL-1035',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist beim Kirren verboten?',
+  answers:[
+    {id:'a', text:'Getreidehaufen'},
+    {id:'b', text:'Kirrring über 5 kg'},
+    {id:'c', text:'Lebendköder'},
+    {id:'d', text:'Ankirren von Rehwild'}
+  ],
+  correct:['c'],
+  explain:'Lebendköder sind verboten.'
+},
+
+{
+  id:'JL-1036',
+  countries:['CH','DE'],
+  topic:'Schwarzwild',
+  q:'Was bezeichnet der Begriff „Frischling“?',
+  answers:[
+    {id:'a', text:'Bache vor dem Setzen'},
+    {id:'b', text:'Stück im ersten Lebensjahr'},
+    {id:'c', text:'Männliches Alttier'},
+    {id:'d', text:'Überläuferkeiler'}
+  ],
+  correct:['b'],
+  explain:'Frischlinge = Tiere im ersten Jahr.'
+},
+
+{
+  id:'JL-1037',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Pflanzung fördert Niederwild?',
+  answers:[
+    {id:'a', text:'Maismonokulturen'},
+    {id:'b', text:'Hecken & Feldgehölze'},
+    {id:'c', text:'Fichtenreinbestände'},
+    {id:'d', text:'Kurzrasenwiesen'}
+  ],
+  correct:['b'],
+  explain:'Hecken bieten Deckung & Nahrung.'
+},
+
+{
+  id:'JL-1038',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was bedeutet „offene Visierung“?',
+  answers:[
+    {id:'a', text:'Optik ohne Glas'},
+    {id:'b', text:'Visier + Korn'},
+    {id:'c', text:'Laserpunkt'},
+    {id:'d', text:'Zerlegbare Optik'}
+  ],
+  correct:['b'],
+  explain:'Korn & Visier ohne Optik.'
+},
+
+{
+  id:'JL-1039',
+  countries:['CH','DE'],
+  topic:'Steinwild',
+  q:'Welche Geiß weist typisches Verhalten auf?',
+  answers:[
+    {id:'a', text:'Solitäres Leben'},
+    {id:'b', text:'Familienverbände'},
+    {id:'c', text:'Rudel mit Alttieren'},
+    {id:'d', text:'Tägliche Ortswechsel über 20 km'}
+  ],
+  correct:['b'],
+  explain:'Geißen leben in Mutterfamilien.'
+},
+
+// Weiter mit JL-1040 bis JL-1099 …
+
+{
+  id:'JL-1040',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art ist ein Kurzstreckenzieher?',
+  answers:[
+    {id:'a', text:'Kranich'},
+    {id:'b', text:'Ringeltaube'},
+    {id:'c', text:'Auerhuhn'},
+    {id:'d', text:'Rebhuhn'}
+  ],
+  correct:['b'],
+  explain:'Viele Ringeltauben ziehen nur kurze Distanzen.'
+},
+
+{
+  id:'JL-1041',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Warum setzt das Rehwild die Keimruhe ein?',
+  answers:[
+    {id:'a', text:'Weniger Feinde'},
+    {id:'b', text:'Optimierte Geburt im Frühsommer'},
+    {id:'c', text:'Lange Tragzeit'},
+    {id:'d', text:'Hirsche beeinflussen es'}
+  ],
+  correct:['b'],
+  explain:'Geburt im Juni maximal günstig.'
+},
+
+{
+  id:'JL-1042',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie heißt das Haar des Fuchses?',
+  answers:[
+    {id:'a', text:'Balg'},
+    {id:'b', text:'Schwarte'},
+    {id:'c', text:'Vlies'},
+    {id:'d', text:'Flaum'}
+  ],
+  correct:['a'],
+  explain:'Fuchsfell = Balg.'
+},
+
+{
+  id:'JL-1043',
+  countries:['CH','DE'],
+  topic:'Rotwild',
+  q:'Wie nennt man den jungen Hirsch im 2. Kopf?',
+  answers:[
+    {id:'a', text:'Spießer'},
+    {id:'b', text:'Sechser'},
+    {id:'c', text:'Gabler'},
+    {id:'d', text:'Schaufler'}
+  ],
+  correct:['c'],
+  explain:'Gabler = 2. Kopf.'
+},
+
+{
+  id:'JL-1044',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Munition eignet sich für bewegtes Wild?',
+  answers:[
+    {id:'a', text:'Vollmantel'},
+    {id:'b', text:'Langsam fliegendes Geschoss'},
+    {id:'c', text:'Schnelles Deformationsgeschoss'},
+    {id:'d', text:'Hartkerngeschoss'}
+  ],
+  correct:['c'],
+  explain:'Schnelles, deformationsfreudiges Geschoss wirkt sicherer.'
+},
+
+{
+  id:'JL-1045',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Wie nennt man die Geräusche eines Keilers in der Rauschzeit?',
+  answers:[
+    {id:'a', text:'Bellen'},
+    {id:'b', text:'Grunzen'},
+    {id:'c', text:'Röhren'},
+    {id:'d', text:'Knurren'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild grunzt & klagt.'
+},
+
+{
+  id:'JL-1046',
+  countries:['DE'],
+  topic:'Raubwild',
+  q:'Welche Art hinterlässt Losung auf Steinen und Wegen?',
+  answers:[
+    {id:'a', text:'Dachs'},
+    {id:'b', text:'Baummarder'},
+    {id:'c', text:'Fuchs'},
+    {id:'d', text:'Marderhund'}
+  ],
+  correct:['c'],
+  explain:'Füchse markieren erhöhte Stellen.'
+},
+
+{
+  id:'JL-1047',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche verbessert Wildäse am stärksten?',
+  answers:[
+    {id:'a', text:'Getreideacker'},
+    {id:'b', text:'Wildacker'},
+    {id:'c', text:'Kurzrasenwiese'},
+    {id:'d', text:'Fichtenforst'}
+  ],
+  correct:['b'],
+  explain:'Wildäcker bieten gezielte Futterpflanzen.'
+},
+
+{
+  id:'JL-1048',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wann ist Nachtjagd verboten?',
+  answers:[
+    {id:'a', text:'Immer'},
+    {id:'b', text:'Bei Federwildarten'},
+    {id:'c', text:'Nur im Winter'},
+    {id:'d', text:'Bei Vollmond'}
+  ],
+  correct:['b'],
+  explain:'Federwild darf nachts nicht bejagt werden.'
+},
+
+{
+  id:'JL-1049',
+  countries:['DE','CH'],
+  topic:'Ökologie',
+  q:'Welcher Lebensraum ist CO₂-ärmster?',
+  answers:[
+    {id:'a', text:'Torfmoore'},
+    {id:'b', text:'Streuobstwiesen'},
+    {id:'c', text:'Nadelholzmonokulturen'},
+    {id:'d', text:'Urbanflächen'}
+  ],
+  correct:['a'],
+  explain:'Moore sind große CO₂-Speicher.'
+},
+
+{
+  id:'JL-1050',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Welche Lautäußerung gibt die Ricke bei Gefahr?',
+  answers:[
+    {id:'a', text:'Fiepen'},
+    {id:'b', text:'Schrecken'},
+    {id:'c', text:'Bellen'},
+    {id:'d', text:'Röhren'}
+  ],
+  correct:['b'],
+  explain:'Schrecklaut warnt andere Stücke.'
+},
+
+{
+  id:'JL-1051',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Art von Abzug hat zwei Druckpunkte?',
+  answers:[
+    {id:'a', text:'Flintenabzug'},
+    {id:'b', text:'Feine Abzüge'},
+    {id:'c', text:'Druckpunktabzug'},
+    {id:'d', text:'Direktabzug'}
+  ],
+  correct:['c'],
+  explain:'Druckpunktabzug hat Vorweg + Druckpunkt.'
+},
+
+{
+  id:'JL-1052',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie heißt das Geweih im bastigen Zustand?',
+  answers:[
+    {id:'a', text:'Schmelz'},
+    {id:'b', text:'Bast'},
+    {id:'c', text:'Lichter'},
+    {id:'d', text:'Fahne'}
+  ],
+  correct:['b'],
+  explain:'Bastgeweih = weiche Basthaut.'
+},
+
+{
+  id:'JL-1053',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie heißt die Fährte des Hasen?',
+  answers:[
+    {id:'a', text:'Sprung'},
+    {id:'b', text:'Geläufe'},
+    {id:'c', text:'Wechsel'},
+    {id:'d', text:'Sasse'}
+  ],
+  correct:['a'],
+  explain:'Hasenspur = Sprung.'
+},
+
+{
+  id:'JL-1054',
+  countries:['CH','DE'],
+  topic:'Steinwild',
+  q:'Welche Struktur wird vom Steinbock bevorzugt?',
+  answers:[
+    {id:'a', text:'Steile Felswände'},
+    {id:'b', text:'Flussaue'},
+    {id:'c', text:'Dichter Wald'},
+    {id:'d', text:'Offene Steppe'}
+  ],
+  correct:['a'],
+  explain:'Steinwild ist perfekt an Fels angepasst.'
+},
+
+{
+  id:'JL-1055',
+  countries:['DE'],
+  topic:'Federwild',
+  q:'Welcher Hahn prunkt im Frühjahr?',
+  answers:[
+    {id:'a', text:'Fasan'},
+    {id:'b', text:'Gänsegeier'},
+    {id:'c', text:'Waldkauz'},
+    {id:'d', text:'Kranich'}
+  ],
+  correct:['a'],
+  explain:'Fasanenhähne prunken auffällig.'
+},
+
+{
+  id:'JL-1056',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welche Art hat die größte Streiffläche?',
+  answers:[
+    {id:'a', text:'Iltis'},
+    {id:'b', text:'Steinmarder'},
+    {id:'c', text:'Fuchs'},
+    {id:'d', text:'Wiesel'}
+  ],
+  correct:['c'],
+  explain:'Füchse ziehen großräumig.'
+},
+
+{
+  id:'JL-1057',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Maßnahme stärkt das Niederwild im Winter?',
+  answers:[
+    {id:'a', text:'Mahd im November'},
+    {id:'b', text:'Schneisen freihalten'},
+    {id:'c', text:'Winterstreifen stehen lassen'},
+    {id:'d', text:'Überwinternde Düngung'}
+  ],
+  correct:['c'],
+  explain:'Winterstreifen bieten Nahrung & Deckung.'
+},
+
+{
+  id:'JL-1058',
+  countries:['DE'],
+  topic:'Fallenjagd',
+  q:'Welche Kontrollen sind Pflicht?',
+  answers:[
+    {id:'a', text:'Täglich'},
+    {id:'b', text:'Wöchentlich'},
+    {id:'c', text:'2× täglich'},
+    {id:'d', text:'Alle 48 Std.'}
+  ],
+  correct:['a'],
+  explain:'Lebendfallen müssen täglich kontrolliert werden.'
+},
+
+{
+  id:'JL-1059',
+  countries:['DE','CH'],
+  topic:'Biologie',
+  q:'Welche Funktion hat der Pansen?',
+  answers:[
+    {id:'a', text:'Salzbildung'},
+    {id:'b', text:'Mikrobielle Vorverdauung'},
+    {id:'c', text:'Blutfilterung'},
+    {id:'d', text:'Sauerstoffspeicherung'}
+  ],
+  correct:['b'],
+  explain:'Pansenmikroben verdauen Pflanzenfasern.'
+},
+
+{
+  id:'JL-1060',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Welche Losung ist typisch für Schwarzwild?',
+  answers:[
+    {id:'a', text:'Kügelchen'},
+    {id:'b', text:'Würstchenform'},
+    {id:'c', text:'Fladen'},
+    {id:'d', text:'Trockenpellets'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild loset wurstartig.'
+},
+
+{
+  id:'JL-1061',
+  countries:['CH'],
+  topic:'Steinwild',
+  q:'Welche Jahreszeit ist für Steinwild kritisch?',
+  answers:[
+    {id:'a', text:'Sommer'},
+    {id:'b', text:'Frühling'},
+    {id:'c', text:'Winter'},
+    {id:'d', text:'Herbst'}
+  ],
+  correct:['c'],
+  explain:'Winter: Nahrung knapp & Energieverbrauch hoch.'
+},
+
+{
+  id:'JL-1062',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art hat den Ruf „kurr-kurr“?',
+  answers:[
+    {id:'a', text:'Fasan'},
+    {id:'b', text:'Turteltaube'},
+    {id:'c', text:'Auerhuhn'},
+    {id:'d', text:'Wachtel'}
+  ],
+  correct:['b'],
+  explain:'Turteltauben gurren charakteristisch.'
+},
+
+{
+  id:'JL-1063',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Wie heißt der hintere Teil des Laufes?',
+  answers:[
+    {id:'a', text:'Korn'},
+    {id:'b', text:'Patronenlager'},
+    {id:'c', text:'Hülse'},
+    {id:'d', text:'Drall'}
+  ],
+  correct:['b'],
+  explain:'Patronenlager nimmt Patrone auf.'
+},
+
+{
+  id:'JL-1064',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie nennt man das Abwerfen des Geweihs?',
+  answers:[
+    {id:'a', text:'Fegen'},
+    {id:'b', text:'Schmelzen'},
+    {id:'c', text:'Stangenwurf'},
+    {id:'d', text:'Nasenwurf'}
+  ],
+  correct:['c'],
+  explain:'Geweihabwurf = Stangenwurf.'
+},
+
+{
+  id:'JL-1065',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist bei Nachsuchen Pflicht?',
+  answers:[
+    {id:'a', text:'Schweißhund'},
+    {id:'b', text:'GPS'},
+    {id:'c', text:'Nachtsichtgerät'},
+    {id:'d', text:'Warnweste'}
+  ],
+  correct:['a'],
+  explain:'Geeignete Hunde sind vorgeschrieben.'
+},
+
+{
+  id:'JL-1066',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welches Tier hat eine Zickzackspur?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Marder'},
+    {id:'c', text:'Luchs'},
+    {id:'d', text:'Wolf'}
+  ],
+  correct:['b'],
+  explain:'Marder laufen zickzackartig.'
+},
+
+{
+  id:'JL-1067',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche bietet Äsung & Deckung?',
+  answers:[
+    {id:'a', text:'Getreideacker'},
+    {id:'b', text:'Brachfläche'},
+    {id:'c', text:'Maisfeld'},
+    {id:'d', text:'Moor'}
+  ],
+  correct:['b'],
+  explain:'Brachflächen liefern Nahrung & Deckung.'
+},
+
+{
+  id:'JL-1068',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man das Nest des Hasen?',
+  answers:[
+    {id:'a', text:'Sasse'},
+    {id:'b', text:'Horst'},
+    {id:'c', text:'Kobel'},
+    {id:'d', text:'Kessel'}
+  ],
+  correct:['a'],
+  explain:'Sasse = flache Mulde des Hasen.'
+},
+
+{
+  id:'JL-1069',
+  countries:['CH','DE'],
+  topic:'Steinwild',
+  q:'Wann werden Steinbockkitze gesetzt?',
+  answers:[
+    {id:'a', text:'Januar'},
+    {id:'b', text:'April–Juni'},
+    {id:'c', text:'September'},
+    {id:'d', text:'November'}
+  ],
+  correct:['b'],
+  explain:'Setzzeit Frühjahr/Frühsommer.'
+},
+
+{
+  id:'JL-1070',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Taube ist Höhlenbrüter?',
+  answers:[
+    {id:'a', text:'Ringeltaube'},
+    {id:'b', text:'Turteltaube'},
+    {id:'c', text:'Hohltaube'},
+    {id:'d', text:'Türkentaube'}
+  ],
+  correct:['c'],
+  explain:'Hohltaube nutzt Baumhöhlen.'
+},
+
+{
+  id:'JL-1071',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was ist ein Flintenlauf?',
+  answers:[
+    {id:'a', text:'Gezogener Lauf'},
+    {id:'b', text:'Glatter Lauf'},
+    {id:'c', text:'Polygonlauf'},
+    {id:'d', text:'Wechselchoke'}
+  ],
+  correct:['b'],
+  explain:'Flinten haben glatte Läufe.'
+},
+
+{
+  id:'JL-1072',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Welche Farbe trägt das Sommerhaar?',
+  answers:[
+    {id:'a', text:'Rotbraun'},
+    {id:'b', text:'Grau'},
+    {id:'c', text:'Dunkelbraun'},
+    {id:'d', text:'Schwarz'}
+  ],
+  correct:['a'],
+  explain:'Sommerhaar ist rötlich.'
+},
+
+{
+  id:'JL-1073',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Welcher Sinn ist bei Schwarzwild schwach?',
+  answers:[
+    {id:'a', text:'Geruch'},
+    {id:'b', text:'Gehör'},
+    {id:'c', text:'Sehen'},
+    {id:'d', text:'Tastsinn'}
+  ],
+  correct:['c'],
+  explain:'Schwarzwild sieht schlecht.'
+},
+
+{
+  id:'JL-1074',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist bei der Jagdausübung immer verboten?',
+  answers:[
+    {id:'a', text:'Kirren'},
+    {id:'b', text:'Beleuchten von Wild mit Lampen'},
+    {id:'c', text:'Ansitz im Hochsitz'},
+    {id:'d', text:'Nachsuche'}
+  ],
+  correct:['b'],
+  explain:'Anleuchten ist verboten.'
+},
+
+{
+  id:'JL-1075',
+  countries:['CH','DE'],
+  topic:'Ökologie',
+  q:'Welche Schicht besteht aus Moosen & Flechten?',
+  answers:[
+    {id:'a', text:'Baumschicht'},
+    {id:'b', text:'Strauchschicht'},
+    {id:'c', text:'Krautschicht'},
+    {id:'d', text:'Bodenschicht'}
+  ],
+  correct:['d'],
+  explain:'Bodenschicht = Moose & Flechten.'
+},
+
+{
+  id:'JL-1076',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie nennt man Hirsche über 10 Jahren?',
+  answers:[
+    {id:'a', text:'Halbstarke'},
+    {id:'b', text:'Althirsche'},
+    {id:'c', text:'Schmalhirsche'},
+    {id:'d', text:'Jährlinge'}
+  ],
+  correct:['b'],
+  explain:'Althirsche sind ältere Tiere.'
+},
+
+{
+  id:'JL-1077',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Was bedeutet „verblasen“ bei Federwild?',
+  answers:[
+    {id:'a', text:'Flüchten'},
+    {id:'b', text:'Aufbauschen des Gefieders'},
+    {id:'c', text:'Abstreifen der Federn'},
+    {id:'d', text:'Schnelles Auffliegen'}
+  ],
+  correct:['d'],
+  explain:'Verblasen = explosionsartiges Auffliegen.'
+},
+
+{
+  id:'JL-1078',
+  countries:['DE','CH'],
+  topic:'Raubwild',
+  q:'Welche Art hat eine Trittsiegelung mit 4 Zehen ohne Krallenabdruck?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Dachs'},
+    {id:'c', text:'Luchs'},
+    {id:'d', text:'Marderhund'}
+  ],
+  correct:['c'],
+  explain:'Luchse zeigen keine Krallenabdrücke.'
+},
+
+{
+  id:'JL-1079',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche ist wichtig für Insekten?',
+  answers:[
+    {id:'a', text:'Schottergärten'},
+    {id:'b', text:'Blühinseln'},
+    {id:'c', text:'Reinweiden'},
+    {id:'d', text:'Getreidefelder'}
+  ],
+  correct:['b'],
+  explain:'Blühinseln fördern Biodiversität.'
+},
+
+{
+  id:'JL-1080',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art balzt mit trommelnden Flügelschlägen?',
+  answers:[
+    {id:'a', text:'Auerhuhn'},
+    {id:'b', text:'Buntspecht'},
+    {id:'c', text:'Bekassine'},
+    {id:'d', text:'Rebhuhn'}
+  ],
+  correct:['c'],
+  explain:'Bekassine trommelt in Balzflügen.'
+},
+
+{
+  id:'JL-1081',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Was ist ein Rückstoßlader?',
+  answers:[
+    {id:'a', text:'Repetierer'},
+    {id:'b', text:'Bockflinte'},
+    {id:'c', text:'Selbstladebüchse'},
+    {id:'d', text:'Handspanner'}
+  ],
+  correct:['c'],
+  explain:'Selbstladebüchsen nutzen Rückstoßenergie.'
+},
+
+{
+  id:'JL-1082',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wie nennt man das erste Gehörn des Rehbocks?',
+  answers:[
+    {id:'a', text:'Gabler'},
+    {id:'b', text:'Krückel'},
+    {id:'c', text:'Perücken'}
+  ],
+  correct:['b'],
+  explain:'Krückel = erstes Gehörn.'
+},
+
+{
+  id:'JL-1083',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Wann setzt die Rauschzeit ein?',
+  answers:[
+    {id:'a', text:'Herbst'},
+    {id:'b', text:'Sommer'},
+    {id:'c', text:'Frühling'},
+    {id:'d', text:'Winter'}
+  ],
+  correct:['a'],
+  explain:'Rauschzeit beginnt im Herbst.'
+},
+
+{
+  id:'JL-1084',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Welche Dokumente müssen bei der Jagd mitgeführt werden?',
+  answers:[
+    {id:'a', text:'Jagdschein & Personalausweis'},
+    {id:'b', text:'Hundepass'},
+    {id:'c', text:'Fallenbuch'},
+    {id:'d', text:'Wildursprungsschein'}
+  ],
+  correct:['a'],
+  explain:'Jagdschein + Ausweis sind verpflichtend.'
+},
+
+{
+  id:'JL-1085',
+  countries:['CH','DE'],
+  topic:'Ökologie',
+  q:'Was entsteht bei langjähriger Übernutzung?',
+  answers:[
+    {id:'a', text:'Verwaldung'},
+    {id:'b', text:'Versteppung'},
+    {id:'c', text:'Verlandung'},
+    {id:'d', text:'Versauerung'}
+  ],
+  correct:['b'],
+  explain:'Übernutzung kann zur Versteppung führen.'
+},
+
+{
+  id:'JL-1086',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie heißt die dunkle Färbung am Hinterteil?',
+  answers:[
+    {id:'a', text:'Fahne'},
+    {id:'b', text:'Spiegel'},
+    {id:'c', text:'Brunftfleck'},
+    {id:'d', text:'Rückensattel'}
+  ],
+  correct:['b'],
+  explain:'Spiegel = helles/kontrastreiches Hinterteil.'
+},
+
+{
+  id:'JL-1087',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man die Losung des Rotwildes?',
+  answers:[
+    {id:'a', text:'Pansen'},
+    {id:'b', text:'Kreisel'},
+    {id:'c', text:'Hecken'},
+    {id:'d', text:'Kügelchen'}
+  ],
+  correct:['d'],
+  explain:'Rotwild loset in Kugeln.'
+},
+
+{
+  id:'JL-1088',
+  countries:['CH','DE'],
+  topic:'Raubwild',
+  q:'Welche Art wechselt gerne über Steine?',
+  answers:[
+    {id:'a', text:'Fuchs'},
+    {id:'b', text:'Luchs'},
+    {id:'c', text:'Marder'},
+    {id:'d', text:'Dachs'}
+  ],
+  correct:['b'],
+  explain:'Luchse nutzen erhöhte Übergänge.'
+},
+
+{
+  id:'JL-1089',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche unterstützt Amphibien?',
+  answers:[
+    {id:'a', text:'Sandgruben'},
+    {id:'b', text:'Kleingewässer'},
+    {id:'c', text:'Steinbrüche'},
+    {id:'d', text:'Getreidefelder'}
+  ],
+  correct:['b'],
+  explain:'Amphibien benötigen Wasserflächen.'
+},
+
+{
+  id:'JL-1090',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Wie nennt man das Gebiss des Rehwildes ohne obere Schneidezähne?',
+  answers:[
+    {id:'a', text:'Meißelgebiss'},
+    {id:'b', text:'Schalentiergebiss'},
+    {id:'c', text:'Dentalplatte'},
+    {id:'d', text:'Kronengebiss'}
+  ],
+  correct:['c'],
+  explain:'Oben nur Dentalplatte.'
+},
+
+{
+  id:'JL-1091',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Einheit misst Pulverladung?',
+  answers:[
+    {id:'a', text:'Joule'},
+    {id:'b', text:'Grain'},
+    {id:'c', text:'Newton'},
+    {id:'d', text:'Kaliber'}
+  ],
+  correct:['b'],
+  explain:'Pulver wird in Grain gewogen.'
+},
+
+{
+  id:'JL-1092',
+  countries:['DE','CH'],
+  topic:'Rotwild',
+  q:'Wie nennt man die helle Färbung beim Hirschkalb?',
+  answers:[
+    {id:'a', text:'Fleckung'},
+    {id:'b', text:'Bastung'},
+    {id:'c', text:'Lichter'},
+    {id:'d', text:'Spiegel'}
+  ],
+  correct:['a'],
+  explain:'Kälber tragen Fleckenmuster.'
+},
+
+{
+  id:'JL-1093',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Schalenwildart äst im Winter Baumrinde?',
+  answers:[
+    {id:'a', text:'Rehwild'},
+    {id:'b', text:'Rotwild'},
+    {id:'c', text:'Gams'},
+    {id:'d', text:'Steinwild'}
+  ],
+  correct:['b'],
+  explain:'Rotwild schält Rinde.'
+},
+
+{
+  id:'JL-1094',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie heißt das Nest des Fuchses?',
+  answers:[
+    {id:'a', text:'Kobel'},
+    {id:'b', text:'Bau'},
+    {id:'c', text:'Horst'},
+    {id:'d', text:'Kessel'}
+  ],
+  correct:['b'],
+  explain:'Füchse leben im Bau.'
+},
+
+{
+  id:'JL-1095',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Wie nennt man die Vorderläufe des Schwarzwilds?',
+  answers:[
+    {id:'a', text:'Blätter'},
+    {id:'b', text:'Feist'},
+    {id:'c', text:'Fänge'},
+    {id:'d', text:'Waffen'}
+  ],
+  correct:['a'],
+  explain:'Blätter = Schultern/Vorderläufe.'
+},
+
+{
+  id:'JL-1096',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist bei Drückjagden Pflicht?',
+  answers:[
+    {id:'a', text:'Helm'},
+    {id:'b', text:'Warnkleidung'},
+    {id:'c', text:'Kurzwaffe'},
+    {id:'d', text:'GPS-Pflicht'}
+  ],
+  correct:['b'],
+  explain:'Warnkleidung sorgt für Sichtbarkeit.'
+},
+
+{
+  id:'JL-1097',
+  countries:['CH','DE'],
+  topic:'Ökologie',
+  q:'Was verbessert die Bodenstruktur?',
+  answers:[
+    {id:'a', text:'Verdichtung'},
+    {id:'b', text:'Humusaufbau'},
+    {id:'c', text:'Staulagen'},
+    {id:'d', text:'Pflügen im Herbst'}
+  ],
+  correct:['b'],
+  explain:'Humus verbessert Bodenleben.'
+},
+
+{
+  id:'JL-1098',
+  countries:['DE','CH'],
+  topic:'Steinwild',
+  q:'Was ist ein typisches Merkmal alter Steinböcke?',
+  answers:[
+    {id:'a', text:'Helle Hörner'},
+    {id:'b', text:'Enge Jahresringe'},
+    {id:'c', text:'Kurze Krucken'},
+    {id:'d', text:'Fehlende Bartstreifen'}
+  ],
+  correct:['b'],
+  explain:'Jahresringe rücken im Alter enger zusammen.'
+},
+
+{
+  id:'JL-1099',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Fläche bietet Wild in Hitzeperioden Vorteile?',
+  answers:[
+    {id:'a', text:'Dunkler Acker'},
+    {id:'b', text:'Lichter Laubwald'},
+    {id:'c', text:'Südhang ohne Bewuchs'},
+    {id:'d', text:'Asphaltwege'}
+  ],
+  correct:['b'],
+  explain:'Laubwald spendet Schatten & kühlt.'
+}
+
 ];
 
 // Validator im Dev ausführen
