@@ -3451,9 +3451,8 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Laubwald spendet Schatten & kühlt.'
-},
-
-];
+}
+]; // ← ✔ nur diese eine eckige Klammer ist korrekt!
 
 // Validator im Dev ausführen
 if (process.env.NODE_ENV !== 'production') {
@@ -3469,4 +3468,3 @@ export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) 
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }
-
