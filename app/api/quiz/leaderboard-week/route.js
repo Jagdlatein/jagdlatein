@@ -10,6 +10,9 @@ const supabase = createClient(
 
 export async function GET() {
   try {
+    // -------------------------------
+    // Wochenstart (Montag 00:00 UTC)
+    // -------------------------------
     const now = new Date();
 
     const monday = new Date(
@@ -24,19 +27,45 @@ export async function GET() {
 
     const weekStart = monday.toISOString();
 
+    // -------------------------------
+    // Highscores der Woche (pro User)
+    // -------------------------------
     const { data, error } = await supabase
       .from("quiz_scores")
       .select("username, country, total_points, rounds, updated_at")
-      .gte("updated_at", weekStart)
-      .order("total_points", { ascending: false });
+      .gte("updated_at", weekStart);
 
     if (error) {
+      console.error("❌ SUPABASE WEEK ERROR:", error);
       return Response.json({ error: error.message }, { status: 500 });
     }
 
-    return Response.json({ weekStart, data: data || [] });
+    if (!data || data.length === 0) {
+      return Response.json({ weekStart, data: [] });
+    }
+
+    // -------------------------------
+    // PRO USER NUR DEN BESTEN SCORE
+    // -------------------------------
+    const bestPerUser = Object.values(
+      data.reduce((acc, row) => {
+        if (!acc[row.username] || row.total_points > acc[row.username].total_points) {
+          acc[row.username] = row;
+        }
+        return acc;
+      }, {})
+    );
+
+    // nach Highscore sortieren
+    bestPerUser.sort((a, b) => b.total_points - a.total_points);
+
+    return Response.json({
+      weekStart,
+      data: bestPerUser
+    });
 
   } catch (err) {
+    console.error("❌ SERVER ERROR:", err);
     return Response.json({ error: err.toString() }, { status: 500 });
   }
 }
