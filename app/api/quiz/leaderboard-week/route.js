@@ -10,63 +10,44 @@ const supabase = createClient(
 
 export async function GET() {
   try {
-    // 🔥 Woche nach lokaler CH-Zeit berechnen
-    const now = new Date();
+    // Lokales Datum auf CH/DE Woche rechnen
+    const d = new Date();
 
-    // CH/DE Woche beginnt Montag
-    const day = now.getDay(); // Sonntag=0
-    const diff = (day === 0 ? -6 : 1 - day); // Montag=1
+    // 0 = Sonntag → wir wollen Montag (1)
+    const day = (d.getDay() + 6) % 7;
 
-    const monday = new Date(now);
-    monday.setDate(now.getDate() + diff);
-    monday.setHours(0, 0, 0, 0);
+    // Montag bestimmen
+    const monday = new Date(d);
+    monday.setDate(d.getDate() - day);
+    monday.setHours(0, 0, 0, 0); // lokales 00:00
 
-    const weekStart = monday.toISOString();
+    // In UTC umwandeln
+    const weekStart = new Date(
+      Date.UTC(
+        monday.getFullYear(),
+        monday.getMonth(),
+        monday.getDate(),
+        0, 0, 0, 0
+      )
+    ).toISOString();
 
-    // 🔥 Korrekte Punktespalte automatisch erkennen
-    const { data: columns } = await supabase
-      .from("quiz_scores")
-      .select("*")
-      .limit(1);
-
-    const row = columns?.[0] || {};
-
-    const pointsColumn =
-      "total_points" in row
-        ? "total_points"
-        : "points" in row
-        ? "points"
-        : "score" in row
-        ? "score"
-        : null;
-
-    if (!pointsColumn) {
-      return Response.json(
-        { error: "Keine Punkte-Spalte gefunden!" },
-        { status: 500 }
-      );
-    }
-
-    // 🔥 Week-Data laden
+    // Scores ab Wochenbeginn
     const { data, error } = await supabase
       .from("quiz_scores")
-      .select(`username, country, ${pointsColumn}, rounds, updated_at`)
+      .select("username, country, total_points, rounds, updated_at")
       .gte("updated_at", weekStart)
-      .order(pointsColumn, { ascending: false });
+      .order("total_points", { ascending: false });
 
-    if (error) {
-      console.error(error);
-      return Response.json({ error: error.message }, { status: 500 });
-    }
+    if (error) throw error;
 
     return Response.json({
       weekStart,
-      pointsColumn,
+      pointsColumn: "total_points",
       data: data || [],
     });
 
   } catch (err) {
-    console.error(err);
-    return Response.json({ error: err.toString() }, { status: 500 });
+    console.error("❌ WEEK API ERROR:", err);
+    return Response.json({ error: err.message }, { status: 500 });
   }
 }
