@@ -1962,26 +1962,26 @@ export const QUESTIONS = [
   correct:['b'],
   explain:'Strukturreiche Ränder erhöhen Biodiversität.'
 },
-  
-{
-  id:'JL-123',
-  countries:['CH'], topic:'Hege',
-  q:'Was fördert Niederwild besonders?',
-  answers:[
-    {id:'a', text:'Intensive Mahd während Brutzeit'},
-    {id:'b', text:'Hecken & Saumbiotope'},
-    {id:'c', text:'Bodenverdichtung'},
-    {id:'d', text:'Ganzjähriges Mulchen'}
+  {
+  id: 'JL-123',
+  countries: ['CH'],
+  topic: 'Hege',
+  q: 'Was fördert Niederwild besonders?',
+  answers: [
+    { id: 'a', text: 'Intensive Mahd während Brutzeit' },
+    { id: 'b', text: 'Hecken & Saumbiotope' },
+    { id: 'c', text: 'Bodenverdichtung' },
+    { id: 'd', text: 'Ganzjähriges Mulchen' }
   ],
-  correct:['b'],
-  explain:'Deckung & Nahrung durch Hecken.'
+  correct: ['b'],
+  explain: 'Deckung & Nahrung durch Hecken.'
 }
 ];
 
 // Validator im Dev ausführen
 if (process.env.NODE_ENV !== 'production') {
   validatePool(QUESTIONS);
-},
+}
 
 /** Ziehe Fragen nach Land/Topic & mische sie, begrenze auf count */
 export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) {
@@ -1992,3 +1992,4 @@ export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) 
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }
+
