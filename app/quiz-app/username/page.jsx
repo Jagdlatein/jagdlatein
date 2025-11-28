@@ -69,7 +69,7 @@ export default function UsernamePage() {
     });
 
     // 🟢 WEITERLEITUNG
-    router.push("/quiz/run");
+    router.push("/quiz-app/run");
   }
 
   return (
