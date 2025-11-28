@@ -10,8 +10,8 @@ const supabase = createClient(
 
 export async function GET() {
   try {
-    // Wochenstart berechnen
     const now = new Date();
+
     const monday = new Date(
       Date.UTC(
         now.getUTCFullYear(),
@@ -19,11 +19,11 @@ export async function GET() {
         now.getUTCDate() - ((now.getUTCDay() + 6) % 7)
       )
     );
+
     monday.setUTCHours(0, 0, 0, 0);
 
     const weekStart = monday.toISOString();
 
-    // WICHTIG: zuerst ALLE Einträge holen
     const { data, error } = await supabase
       .from("quiz_scores")
       .select("*")
@@ -33,23 +33,19 @@ export async function GET() {
       return Response.json({ error: error.message }, { status: 500 });
     }
 
-    // PRO USER nur den HÖCHSTEN Score
+    // PRO USER NUR DER BESTE SCORE
     const map = {};
-
     for (const row of data) {
       if (!map[row.username] || row.total_points > map[row.username].total_points) {
         map[row.username] = row;
       }
     }
 
-    const result = Object.values(map)
-      .sort((a, b) => b.total_points - a.total_points);
+    const result = Object.values(map).sort(
+      (a, b) => b.total_points - a.total_points
+    );
 
-    return Response.json({
-      weekStart,
-      data: result
-    });
-
+    return Response.json({ weekStart, data: result });
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
   }
