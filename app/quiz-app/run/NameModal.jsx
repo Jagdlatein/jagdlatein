@@ -4,21 +4,27 @@ import { useState } from "react";
 
 export default function NameModal({ onDone }) {
   const [name, setName] = useState("");
+  const [country, setCountry] = useState(
+    typeof window !== "undefined"
+      ? localStorage.getItem("jagd_country") || "DE"
+      : "DE"
+  );
 
   async function save() {
     const clean = name.trim();
     if (!clean) return;
 
-    // Username lokal speichern
+    // Username speichern
     localStorage.setItem("jagd_username", clean);
+    localStorage.setItem("jagd_country", country);
 
-    // 🟩 WICHTIG: Username in Supabase registrieren
+    // In Supabase registrieren
     await fetch("/api/quiz/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: clean,
-        country: "DE",
+        country: country,
       }),
     });
 
@@ -73,6 +79,11 @@ export default function NameModal({ onDone }) {
             marginBottom: 20,
           }}
         />
+
+        {/* Land anzeigen, wenn vorhanden */}
+        <div style={{ marginBottom: 15, opacity: 0.8 }}>
+          Land: {country}
+        </div>
 
         <button
           onClick={save}
