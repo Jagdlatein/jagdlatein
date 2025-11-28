@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./kurse.module.css"; 
 
 export default function KurseOverview() {
   const kurse = [
@@ -17,30 +18,22 @@ export default function KurseOverview() {
   ];
 
   return (
-    <main className="min-h-screen px-4 py-12 bg-gradient-to-b from-[#faf8f1] to-[#f4efe3]">
-      <div className="max-w-3xl mx-auto">
-        
-        <h1 className="text-3xl font-extrabold mb-3 text-[#1a1a1a]">
-          📚 Jagdlatein – Mini-Kurse
-        </h1>
+    <main className={styles.wrapper}>
+      <div className={styles.container}>
 
-        <p className="text-lg text-gray-700 mb-8 max-w-xl">
+        <h1 className={styles.title}>📚 Jagdlatein – Mini-Kurse</h1>
+
+        <p className={styles.sub}>
           Kompakte Lernmodule für Jungjäger und erfahrene Jäger.
           Jeder Kurs ist kurz, praxisnah und schließt mit einem Quiz ab.
         </p>
 
-        <div className="flex flex-col gap-3">
+        <div className={styles.list}>
           {kurse.map((kurs, i) => (
             <Link key={i} href={kurs.link}>
-              <div className="
-                bg-white border border-[#e0ddcf] rounded-xl 
-                px-5 py-4 text-[18px]
-                flex items-center justify-between
-                hover:shadow-md transition-shadow
-                cursor-pointer
-              ">
+              <div className={styles.card}>
                 <span>{kurs.name}</span>
-                <span className="text-gray-500">➜</span>
+                <span className={styles.arrow}>➜</span>
               </div>
             </Link>
           ))}
