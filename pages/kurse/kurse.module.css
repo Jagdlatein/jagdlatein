@@ -36,3 +36,28 @@
   font-size: 22px;
   opacity: 0.6;
 }
+/* Link-Standard deaktivieren */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Goldiger Schriftton für die Kursnamen */
+.card span:first-child {
+  color: #b38b2e; /* Jagd-Gold */
+}
+
+/* Pfeil dezenter */
+.arrow {
+  color: #b38b2e;
+  opacity: 0.85;
+}
+
+/* Hover: etwas dunkleres Gold */
+.card:hover span:first-child {
+  color: #8e6f22;
+}
+
+.card:hover .arrow {
+  color: #8e6f22;
+}
