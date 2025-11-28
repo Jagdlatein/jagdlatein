@@ -1,43 +1,32 @@
 "use client";
 
-import { createClient } from "@supabase/supabase-js";
 import { useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-// 🟩 RICHTIGER CLIENT für Realtime
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  {
-    realtime: {
-      params: {
-        eventsPerSecond: 5,
-      },
-    },
-  }
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-export function useLiveLeaderboard(onUpdate) {
+export function useLiveLeaderboard(onChange) {
   useEffect(() => {
-    // 🟩 Auf UPDATE + INSERT hören
     const channel = supabase
-      .channel("quiz_scores_live")
+      .channel("real-time-scores")
       .on(
         "postgres_changes",
         {
-          event: "*",  // insert / update / delete
+          event: "*",
           schema: "public",
           table: "quiz_scores",
         },
-        (payload) => {
-          console.log("LIVE UPDATE", payload);
-          onUpdate();
+        () => {
+          onChange(); // 🔥 neu laden
         }
       )
-      .subscribe((status) => console.log("STATUS:", status));
+      .subscribe();
 
-    // 🟩 Cleanup
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [onUpdate]);
+  }, [onChange]);
 }
