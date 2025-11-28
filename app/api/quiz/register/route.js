@@ -13,7 +13,10 @@ export async function POST(req) {
     const { username, country } = await req.json();
 
     if (!username) {
-      return Response.json({ success: false, error: "Username fehlt" }, { status: 400 });
+      return Response.json(
+        { success: false, error: "Username fehlt" },
+        { status: 400 }
+      );
     }
 
     const clean = username.trim().toLowerCase();
@@ -39,11 +42,14 @@ export async function POST(req) {
 
     if (error) {
       console.error("INSERT ERROR:", error);
-      return Response.json({ success: false, error: error.message }, { status: 500 });
+      return Response.json(
+        { success: false, error: error.message },
+        { status: 500 }
+      );
     }
 
     return Response.json({ success: true, created: true });
   } catch (err) {
-    return Response.json({ success: false, error: err.message }, { status: 500 });
+    return Response.json({ success: false, error: err.message });
   }
 }
