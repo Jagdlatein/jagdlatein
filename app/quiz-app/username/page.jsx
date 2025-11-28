@@ -36,14 +36,7 @@ export default function UsernamePage() {
     { code: "UK", name: "Vereinigtes Königreich 🇬🇧" },
   ];
 
-  useEffect(() => {
-    const savedName = localStorage.getItem("jagd_username");
-    const savedCountry = localStorage.getItem("jagd_country");
-
-    if (savedName && savedCountry) {
-      router.replace("/quiz-app/run");
-    }
-  }, [router]);
+  
 
   async function start() {
     const clean = username.trim().toLowerCase();
