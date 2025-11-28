@@ -31,24 +31,15 @@ export async function POST(req) {
       return Response.json({ success: true, exists: true });
     }
 
-    const { error } = await supabase.from("quiz_users").insert({
+    await supabase.from("quiz_users").insert({
       username: clean,
       country: country || "DE",
       total_points: 0,
       rounds: 0,
     });
 
-    if (error) {
-      console.error("INSERT ERROR:", error);
-      return Response.json(
-        { success: false, error: error.message },
-        { status: 500 }
-      );
-    }
-
     return Response.json({ success: true, created: true });
   } catch (err) {
-    console.error("REGISTER ROUTE ERROR:", err);
     return Response.json({ success: false, error: err.message }, { status: 500 });
   }
 }
