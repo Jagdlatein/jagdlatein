@@ -27,8 +27,56 @@
   margin-bottom: 26px;
 }
 
-/* Karte */
+/* 🔥 LISTE – wichtig: keine Punkte */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 🔥 Glossar-Karte (Übersicht + Slug identisch) */
 .card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e0ddcf;
+  padding: 16px 20px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* 🔥 Begriff in der Übersicht */
+.term {
+  font-size: 20px;
+  font-weight: 600;
+  color: #b38b2e;
+  text-decoration: none;
+}
+
+.card:hover .term {
+  color: #8e6f22;
+}
+
+/* Beschreibung im Glossar */
+.def {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #3b3b3b;
+  line-height: 1.45;
+}
+
+/* ========================================================= */
+/* 🔽 AB HIER: SLUG-SEITE (Detailseite)                      */
+/* ========================================================= */
+
+/* Karte groß für den Eintrag */
+.cardSlug {
   background: #ffffff;
   border-radius: 14px;
   border: 1px solid #e0ddcf;
@@ -132,6 +180,8 @@
 
 .relatedList {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
