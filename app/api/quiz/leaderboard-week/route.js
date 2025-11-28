@@ -10,9 +10,8 @@ const supabase = createClient(
 
 export async function GET() {
   try {
+    // Wochenstart berechnen
     const now = new Date();
-
-    // Montag 00:00 UTC berechnen
     const monday = new Date(
       Date.UTC(
         now.getUTCFullYear(),
@@ -24,27 +23,34 @@ export async function GET() {
 
     const weekStart = monday.toISOString();
 
-    // DEBUG: Welchen Wert liest Next.js?
-    console.log("DEBUG weekStart:", weekStart);
-
+    // WICHTIG: zuerst ALLE Einträge holen
     const { data, error } = await supabase
       .from("quiz_scores")
-      .select("username, country, total_points, rounds, updated_at")
-      .gte("updated_at", weekStart)
-      .order("total_points", { ascending: false });
+      .select("*")
+      .gte("updated_at", weekStart);
 
     if (error) {
-      console.error("SUPABASE ERROR:", error);
       return Response.json({ error: error.message }, { status: 500 });
     }
 
+    // PRO USER nur den HÖCHSTEN Score
+    const map = {};
+
+    for (const row of data) {
+      if (!map[row.username] || row.total_points > map[row.username].total_points) {
+        map[row.username] = row;
+      }
+    }
+
+    const result = Object.values(map)
+      .sort((a, b) => b.total_points - a.total_points);
+
     return Response.json({
       weekStart,
-      data
+      data: result
     });
 
   } catch (err) {
-    console.error("SERVER ERROR:", err);
     return Response.json({ error: err.message }, { status: 500 });
   }
 }
