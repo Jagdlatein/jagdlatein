@@ -1,7 +1,7 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 0;  // ⬅️ FIX: Wert MUSS eine Zahl sein
+"use client";                     // ⬅️ MUSS ZUERST STEHEN!!!
 
-"use client";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;       // ⬅️ Korrekt
 
 import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
@@ -25,12 +25,18 @@ export default function LeaderboardPage() {
 
   async function load() {
     try {
-      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" }).then(r => r.json());
-      const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" }).then(r => r.json());
+      const all = await fetch("/api/quiz/leaderboard", {
+        cache: "no-store",
+      }).then((r) => r.json());
+
+      const week = await fetch("/api/quiz/leaderboard-week", {
+        cache: "no-store",
+      }).then((r) => r.json());
+
       setData(all.data || []);
       setWeekData(week.data || []);
     } catch (err) {
-      console.error("Fehler beim Laden:", err);
+      console.error("Fehler beim Laden der Rangliste:", err);
     }
   }
 
@@ -39,13 +45,23 @@ export default function LeaderboardPage() {
       ? weekData
       : filter === "all"
       ? data
-      : data.filter((x) => x.username.toLowerCase().includes(query.toLowerCase()));
+      : data.filter((x) =>
+          x.username.toLowerCase().includes(query.toLowerCase())
+        );
 
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>🏆 Rangliste</h1>
+      <h1
+        style={{
+          fontSize: 40,
+          fontWeight: 900,
+          marginBottom: 25,
+        }}
+      >
+        🏆 Rangliste
+      </h1>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
         <button
