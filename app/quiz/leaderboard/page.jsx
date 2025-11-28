@@ -1,11 +1,9 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;  // ⬅️ FIX: Wert MUSS eine Zahl sein
+
 "use client";
 
-// 🔥 GANZ WICHTIG: SERVER-RENDERING AUSSCHALTEN
-export const dynamic = "force-dynamic";
-export const revalidate = false;
-export const fetchCache = "force-no-store";
-
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -21,43 +19,33 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
-  const load = useCallback(async () => {
+  useEffect(() => {
+    load();
+  }, []);
+
+  async function load() {
     try {
-      const all = await fetch("/api/quiz/leaderboard", {
-        cache: "no-store",
-      }).then((r) => r.json());
-
-      const week = await fetch("/api/quiz/leaderboard-week", {
-        cache: "no-store",
-      }).then((r) => r.json());
-
+      const all = await fetch("/api/quiz/leaderboard", { cache: "no-store" }).then(r => r.json());
+      const week = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" }).then(r => r.json());
       setData(all.data || []);
       setWeekData(week.data || []);
     } catch (err) {
-      console.error("Fehler beim Laden der Rangliste:", err);
+      console.error("Fehler beim Laden:", err);
     }
-  }, []);
-
-  useEffect(() => {
-    load();
-  }, [load]);
+  }
 
   const filtered =
     filter === "week"
       ? weekData
       : filter === "all"
       ? data
-      : data.filter((x) =>
-          x.username.toLowerCase().includes(query.toLowerCase())
-        );
+      : data.filter((x) => x.username.toLowerCase().includes(query.toLowerCase()));
 
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
-        🏆 Rangliste
-      </h1>
+      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>🏆 Rangliste</h1>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
         <button
@@ -65,9 +53,9 @@ export default function LeaderboardPage() {
           style={{
             padding: "8px 14px",
             borderRadius: 10,
+            border: 0,
             background: filter === "all" ? "#136f39" : "#ddd",
             color: filter === "all" ? "#fff" : "#000",
-            border: 0,
           }}
         >
           Gesamt
@@ -78,9 +66,9 @@ export default function LeaderboardPage() {
           style={{
             padding: "8px 14px",
             borderRadius: 10,
+            border: 0,
             background: filter === "week" ? "#136f39" : "#ddd",
             color: filter === "week" ? "#fff" : "#000",
-            border: 0,
           }}
         >
           Woche
@@ -142,8 +130,9 @@ export default function LeaderboardPage() {
                   fontSize: 26,
                   fontWeight: 900,
                   color: "#136f39",
-                  minWidth: 60,
                   textAlign: "right",
+                  marginRight: 10,
+                  minWidth: 60,
                 }}
               >
                 {item.total_points}
