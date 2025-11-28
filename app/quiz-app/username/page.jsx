@@ -42,9 +42,9 @@ export default function UsernamePage() {
     const savedCountry = localStorage.getItem("jagd_country");
 
     if (savedName && savedCountry) {
-      router.replace("/quiz/run");
+      router.replace("/quiz-app/run");
     }
-  }, []);
+  }, [router]);
 
   async function start() {
     if (!username.trim()) {
@@ -58,7 +58,7 @@ export default function UsernamePage() {
     localStorage.setItem("jagd_username", clean);
     localStorage.setItem("jagd_country", country);
 
-    // 🟢 SUPABASE REGISTRIERUNG
+    // 🟢 SUPABASE REGISTRIERUNG (API-Pfad ist korrekt)
     await fetch("/api/quiz/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
