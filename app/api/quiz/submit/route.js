@@ -17,38 +17,45 @@ export async function POST(req) {
     });
   }
 
-  // Aktuellen Score laden
-  const { data: existing, error: fetchError } = await supabase
-    .from("quiz_scores")
-    .select("total_points, rounds")
+  // Country aus quiz_users holen
+  const { data: userRow } = await supabase
+    .from("quiz_users")
+    .select("country")
     .eq("username", username)
     .single();
 
-  if (fetchError && fetchError.code !== "PGRST116") {
-    console.error("fetch error:", fetchError);
-    return Response.json({ success: false, error: fetchError.message });
-  }
+  const country = userRow?.country || "DE";
 
-  // Wenn kein Score existiert → Highscore = Punkte
+  // Existierenden Score holen
+  const { data: existing } = await supabase
+    .from("quiz_scores")
+    .select("*")
+    .eq("username", username)
+    .maybeSingle();
+
+  const now = new Date().toISOString();
+
+  // Noch kein Score → neu anlegen
   if (!existing) {
     await supabase.from("quiz_scores").insert({
       username,
+      country,
       total_points: points,
       rounds: 1,
-      updated_at: new Date().toISOString()
+      updated_at: now
     });
 
     return Response.json({
       success: true,
       highscore: true,
-      newScore: points,
-      oldScore: 0
+      oldScore: 0,
+      newScore: points
     });
   }
 
   const oldScore = existing.total_points || 0;
 
-  // Highscore nicht geschlagen → NICHT speichern
+  // Kein neuer Highscore → NICHT überschreiben
   if (points <= oldScore) {
     return Response.json({
       success: true,
@@ -58,20 +65,16 @@ export async function POST(req) {
     });
   }
 
-  // Highscore verbessert → Speichern
-  const { error: updateError } = await supabase
+  // Highscore verbessern → speichern
+  await supabase
     .from("quiz_scores")
     .update({
       total_points: points,
-      rounds: (existing.rounds || 0) + 1,
-      updated_at: new Date().toISOString()
+      rounds: existing.rounds + 1,
+      country,          // 🔥 WICHTIG
+      updated_at: now
     })
     .eq("username", username);
-
-  if (updateError) {
-    console.error(updateError);
-    return Response.json({ success: false, error: updateError.message });
-  }
 
   return Response.json({
     success: true,
