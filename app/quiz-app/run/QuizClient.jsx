@@ -114,13 +114,11 @@ export default function QuizClient() {
   }
 
   // -------------------------
-  // WICHTIGER BUGFIX:
-  // Quiz darf NUR enden, wenn wirklich Fragen existieren
+  // Nächste Frage
   // -------------------------
   function nextQuestion() {
     setEffect("");
 
-    // ⛔ alter Bug: finish wurde ausgelöst, obwohl questions.length = 0 war
     if (questions.length > 0 && index + 1 >= questions.length) {
       setFinished(true);
       saveScore();
@@ -240,7 +238,7 @@ export default function QuizClient() {
         </div>
 
         <button
-          onClick={() => router.push("/quiz/leaderboard")}
+          onClick={() => router.push("/quiz-app/leaderboard")}
           style={{
             padding: 14,
             width: "100%",
@@ -257,7 +255,7 @@ export default function QuizClient() {
 
         <button
           onClick={() =>
-            router.push(`/quiz/run?country=${country}&topic=${topic}`)
+            router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
           }
           style={{
             padding: 14,
