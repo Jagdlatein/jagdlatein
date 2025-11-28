@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 
 export async function POST(req) {
-  const { username, points } = await req.json();
+  const { username, points, country = "DE" } = await req.json();
 
   // Bestehenden Score laden
   const { data: existing } = await supabase
@@ -20,26 +20,19 @@ export async function POST(req) {
   const newTotal = existing ? (existing.total_points || 0) + points : points;
   const newRounds = existing ? (existing.rounds || 0) + 1 : 1;
 
-  // Score upserten – updated_at MUSS gesetzt werden
+  // Speichern
   await supabase
     .from("quiz_scores")
     .upsert(
       {
         username,
-        country: existing?.country || "DE",
+        country,
         total_points: newTotal,
         rounds: newRounds,
-        updated_at: new Date().toISOString()  // ⭐ WICHTIG
+        updated_at: new Date().toISOString()
       },
       { onConflict: "username" }
     );
-
-  // Jede Runde einzeln speichern
-  await supabase.from("quiz_results").insert({
-    username,
-    points,
-    created_at: new Date().toISOString()
-  });
 
   return Response.json({
     success: true,
