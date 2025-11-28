@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useLiveLeaderboard } from "./useLiveLeaderboard";
+
 import Avatar from "../components/Avatar";
 import Level from "../components/Level";
 import Badge from "../components/Badge";
@@ -16,29 +18,35 @@ export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const perPage = 20;
 
-  useEffect(() => {
-    load();
-  }, []);
-
-  async function load() {
+  // 🔥 load() muss stable sein für den Realtime-Hook
+  const load = useCallback(async () => {
     try {
-      // Gesamtwertung
       const all = await fetch("/api/quiz/leaderboard", {
-        cache: "no-store"
+        cache: "no-store",
       }).then((r) => r.json());
 
-      // Wochenwertung
       const week = await fetch("/api/quiz/leaderboard-week", {
-        cache: "no-store"
+        cache: "no-store",
       }).then((r) => r.json());
 
       setData(all.data || []);
       setWeekData(week.data || []);
     } catch (err) {
-      console.error("Fehler beim Laden der Rangliste:", err);
+      console.error("Fehler beim Laden:", err);
     }
-  }
+  }, []);
 
+  // 🔥 Initial Laden
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  // 🔥 Live-Updates aus SUPABASE
+  useLiveLeaderboard(() => {
+    load(); // automatisch neu laden
+  });
+
+  // Filter + Suche
   const filtered =
     filter === "week"
       ? weekData
@@ -52,8 +60,17 @@ export default function LeaderboardPage() {
 
   return (
     <div style={{ maxWidth: 850, margin: "0 auto", padding: 20 }}>
-      <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 25 }}>
-        🏆 Rangliste
+      <h1
+        style={{
+          fontSize: 40,
+          fontWeight: 900,
+          marginBottom: 25,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
+        🏆 Rangliste (Live)
       </h1>
 
       {/* Filter */}
