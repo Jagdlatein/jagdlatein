@@ -3451,6 +3451,286 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Laubwald spendet Schatten & kühlt.'
+},
+  {
+  id:'JL-1100',
+  countries:['DE','CH'],
+  topic:'Rehwild',
+  q:'Woran erkennt man eine führende Ricke?',
+  answers:[
+    {id:'a', text:'Sie trägt Bast am Gehörn'},
+    {id:'b', text:'Sie führt ein oder mehrere Kitze'},
+    {id:'c', text:'Sie schmelzt später als Böcke'},
+    {id:'d', text:'Sie röhrt laut in der Brunft'}
+  ],
+  correct:['b'],
+  explain:'Führende Ricken sind mit Kitz(en) zusammen.'
+},
+{
+  id:'JL-1101',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Wie nennt man den flachen Ruheplatz des Hasen?',
+  answers:[
+    {id:'a', text:'Sasse'},
+    {id:'b', text:'Kessel'},
+    {id:'c', text:'Horst'},
+    {id:'d', text:'Kobel'}
+  ],
+  correct:['a'],
+  explain:'Die Sasse ist die flache Mulde des Hasen.'
+},
+{
+  id:'JL-1102',
+  countries:['CH','AT'],
+  topic:'Steinwild',
+  q:'Woran erkennt man die Setzzeit der Steinwildgeiß?',
+  answers:[
+    {id:'a', text:'Am bleichen Haar im Rücken'},
+    {id:'b', text:'Kitze werden im Mai/Juni gesetzt'},
+    {id:'c', text:'Geiß ruft laut'},
+    {id:'d', text:'Krucken werden heller'}
+  ],
+  correct:['b'],
+  explain:'Steinwild setzt im Frühling/Frühsommer.'
+},
+{
+  id:'JL-1103',
+  countries:['DE','CH'],
+  topic:'Schwarzwild',
+  q:'Welche Aussage beschreibt die Rottenstruktur?',
+  answers:[
+    {id:'a', text:'Nur Keiler leben in Rotten'},
+    {id:'b', text:'Bachen und Frischlinge bilden Rotten'},
+    {id:'c', text:'Frischlinge leben allein'},
+    {id:'d', text:'Keiler und Hirsch im Rudel'}
+  ],
+  correct:['b'],
+  explain:'Bachen führen Rotten, Keiler leben meist allein.'
+},
+{
+  id:'JL-1104',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Funktion hat ein Mündungsfeuerdämpfer?',
+  answers:[
+    {id:'a', text:'Erhöht Rückstoß'},
+    {id:'b', text:'Reduziert sichtbares Mündungsfeuer'},
+    {id:'c', text:'Steigert Geschossenergie'},
+    {id:'d', text:'Verhindert Kugelfang'}
+  ],
+  correct:['b'],
+  explain:'Verringert Blendung & sichtbares Feuer.'
+},
+{
+  id:'JL-1105',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Art zeigt einen auffälligen Balzruf in der Dämmerung?',
+  answers:[
+    {id:'a', text:'Kranich'},
+    {id:'b', text:'Wachtel'},
+    {id:'c', text:'Auerhuhn'},
+    {id:'d', text:'Waldkauz'}
+  ],
+  correct:['b'],
+  explain:'Der Wachtelruf ist typisch in der Abenddämmerung.'
+},
+{
+  id:'JL-1106',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wann darf eine Waffe geführt werden?',
+  answers:[
+    {id:'a', text:'Immer, wenn sie geladen ist'},
+    {id:'b', text:'Nur mit Jagdschein & Bedürfnis'},
+    {id:'c', text:'Bei Spaziergängen im Wald'},
+    {id:'d', text:'Im Wohngebiet ohne Grund'}
+  ],
+  correct:['b'],
+  explain:'Führen nur mit Erlaubnis & Bedürfnis.'
+},
+{
+  id:'JL-1107',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Was dient als wertvolle Deckung für Niederwild?',
+  answers:[
+    {id:'a', text:'Kurzrasen'},
+    {id:'b', text:'Hecken & Altgrasstreifen'},
+    {id:'c', text:'Bare Äcker'},
+    {id:'d', text:'Streuobst ohne Unterbewuchs'}
+  ],
+  correct:['b'],
+  explain:'Strukturen bieten Deckung, Nahrung, Schutz.'
+},
+{
+  id:'JL-1108',
+  countries:['AT','DE'],
+  topic:'Jägersprache',
+  q:'Was ist das „Gehäuse“ beim Fuchs?',
+  answers:[
+    {id:'a', text:'Hinterlauf'},
+    {id:'b', text:'Kopf'},
+    {id:'c', text:'Brustkorb'},
+    {id:'d', text:'Schwanz'}
+  ],
+  correct:['c'],
+  explain:'Gehäuse = Brustkörper beim Raubwild.'
+},
+{
+  id:'JL-1109',
+  countries:['DE','CH'],
+  topic:'Wildbrethygiene',
+  q:'Warum muss Wildbret schnell gekühlt werden?',
+  answers:[
+    {id:'a', text:'Um Gewicht zu reduzieren'},
+    {id:'b', text:'Um Keimwachstum zu bremsen'},
+    {id:'c', text:'Um Fell leichter abziehen zu können'},
+    {id:'d', text:'Für bessere Trophäen'}
+  ],
+  correct:['b'],
+  explain:'Schnelles Kühlen verhindert Keimvermehrung.'
+},
+{
+  id:'JL-1110',
+  countries:['CH'],
+  topic:'Rotwild',
+  q:'Wie verhält sich Rotwild bei starkem Wind?',
+  answers:[
+    {id:'a', text:'Wechselt in dichte Deckung'},
+    {id:'b', text:'Sucht offene Flächen'},
+    {id:'c', text:'Verliert Rudelkontakt'},
+    {id:'d', text:'Rückt an Straßen heran'}
+  ],
+  correct:['a'],
+  explain:'Wind erschwert Witterung → Deckung gesucht.'
+},
+{
+  id:'JL-1111',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Was ist beim Nachtzielgerät in DE besonders?',
+  answers:[
+    {id:'a', text:'Allgemein erlaubt'},
+    {id:'b', text:'Nur mit Ausnahmegenehmigung je Bundesland'},
+    {id:'c', text:'Nur bei Federwild erlaubt'},
+    {id:'d', text:'Pflicht für Rehwild'}
+  ],
+  correct:['b'],
+  explain:'Regeln sind Ländersache → teils genehmigungspflichtig.'
+},
+{
+  id:'JL-1112',
+  countries:['DE','CH'],
+  topic:'Federwild',
+  q:'Welche Ente taucht längere Zeit unter?',
+  answers:[
+    {id:'a', text:'Stockente'},
+    {id:'b', text:'Tafelente'},
+    {id:'c', text:'Krickente'},
+    {id:'d', text:'Moorente'}
+  ],
+  correct:['b'],
+  explain:'Tauchenten bleiben deutlich länger unter Wasser.'
+},
+{
+  id:'JL-1113',
+  countries:['AT','CH'],
+  topic:'Raubwild',
+  q:'Was kennzeichnet die Losung des Luchses?',
+  answers:[
+    {id:'a', text:'Kugelig in Ketten'},
+    {id:'b', text:'Groß, krümelig, mit Haarresten'},
+    {id:'c', text:'Immer spiralig'},
+    {id:'d', text:'Flach & breiig'}
+  ],
+  correct:['b'],
+  explain:'Losung enthält oft Fellreste & ist krümelig.'
+},
+{
+  id:'JL-1114',
+  countries:['DE'],
+  topic:'Waffen',
+  q:'Welche Sicherungsart verhindert den Abzugsweg vollständig?',
+  answers:[
+    {id:'a', text:'Handspanner'},
+    {id:'b', text:'Schlittensicherung'},
+    {id:'c', text:'Abzugssicherung'},
+    {id:'d', text:'Magazinsicherung'}
+  ],
+  correct:['c'],
+  explain:'Abzugssicherung blockiert den Abzug.'
+},
+{
+  id:'JL-1115',
+  countries:['DE','CH'],
+  topic:'Ökologie',
+  q:'Welche Fläche hat die höchste Artenvielfalt?',
+  answers:[
+    {id:'a', text:'Maisacker'},
+    {id:'b', text:'Buntbrachen'},
+    {id:'c', text:'Fichtenforst'},
+    {id:'d', text:'Kahlschlag'}
+  ],
+  correct:['b'],
+  explain:'Buntbrachen schaffen Strukturreichtum.'
+},
+{
+  id:'JL-1116',
+  countries:['DE','AT'],
+  topic:'Rehwild',
+  q:'Wann ist die Hauptfegzeit der Böcke?',
+  answers:[
+    {id:'a', text:'Januar'},
+    {id:'b', text:'März/April'},
+    {id:'c', text:'August'},
+    {id:'d', text:'November'}
+  ],
+  correct:['b'],
+  explain:'Fegen im Frühling.'
+},
+{
+  id:'JL-1117',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Was ist die „Decke“ beim Haarwild?',
+  answers:[
+    {id:'a', text:'Magen'},
+    {id:'b', text:'Fell des Tieres'},
+    {id:'c', text:'Fährte'},
+    {id:'d', text:'Kiefer'}
+  ],
+  correct:['b'],
+  explain:'Decke = Fell.'
+},
+{
+  id:'JL-1118',
+  countries:['CH','DE'],
+  topic:'Schwarzwild',
+  q:'Welche Aussage trifft auf Keiler zu?',
+  answers:[
+    {id:'a', text:'Keiler sind fast immer in Rotten'},
+    {id:'b', text:'Keiler leben meist als Einzelgänger'},
+    {id:'c', text:'Keiler führen Frischlinge'},
+    {id:'d', text:'Keiler sind tagaktive Pflanzenfresser'}
+  ],
+  correct:['b'],
+  explain:'Keiler leben überwiegend allein.'
+},
+{
+  id:'JL-1119',
+  countries:['DE','CH'],
+  topic:'Hege',
+  q:'Welche Maßnahme fördert Bodenbrüter besonders?',
+  answers:[
+    {id:'a', text:'Mahd im Mai'},
+    {id:'b', text:'Altgrasinseln stehen lassen'},
+    {id:'c', text:'Ganzjahresweiden'},
+    {id:'d', text:'Waldschlag'}
+  ],
+  correct:['b'],
+  explain:'Altgrasinseln bieten Deckung & Schutz.'
 }
 ]; // ← ✔ nur diese eine eckige Klammer ist korrekt!
 
