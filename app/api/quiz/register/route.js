@@ -17,8 +17,7 @@ export default function QuizClient() {
   const [locked, setLocked] = useState(false);
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
-  const [effect, setEffect] = useState("");
-
+  const [effect, setEffectState] = useState("");
   const [username, setUsername] = useState("");
 
   // -------------------------
@@ -31,7 +30,27 @@ export default function QuizClient() {
       return;
     }
     setUsername(u);
-  }, []);
+  }, [router]);
+
+  // -------------------------
+  // User in Supabase registrieren, falls nicht vorhanden
+  // -------------------------
+  useEffect(() => {
+    if (!username) return;
+
+    async function ensureUser() {
+      await fetch("/api/quiz/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          country,
+        }),
+      });
+    }
+
+    ensureUser();
+  }, [username, country]);
 
   // -------------------------
   // Fragen laden
@@ -66,9 +85,8 @@ export default function QuizClient() {
   // -------------------------
   function handleTimeout() {
     setLocked(true);
-    setEffect("flash-wrong");
+    setEffectState("flash-wrong");
     setSelected("timeout");
-
     setTimeout(() => nextQuestion(), 900);
   }
 
@@ -83,10 +101,10 @@ export default function QuizClient() {
     setSelected(idx);
 
     if (isCorrect) {
-      setEffect("flash-correct");
+      setEffectState("flash-correct");
       setScore(s => s + 100 + timer * 10);
     } else {
-      setEffect("flash-wrong");
+      setEffectState("flash-wrong");
     }
 
     setTimeout(() => nextQuestion(), 900);
@@ -96,7 +114,7 @@ export default function QuizClient() {
   // Nächste Frage
   // -------------------------
   function nextQuestion() {
-    setEffect("");
+    setEffectState("");
 
     if (index + 1 >= questions.length) {
       setFinished(true);
@@ -171,7 +189,9 @@ export default function QuizClient() {
         </button>
 
         <button
-          onClick={() => router.push(`/quiz-app/run?country=${country}&topic=${topic}`)}
+          onClick={() =>
+            router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
+          }
           style={{
             padding: 14,
             width: "100%",
