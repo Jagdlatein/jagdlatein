@@ -1,23 +1,32 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
+import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const supabase = createClient(
-  process.env.SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 export async function GET() {
   try {
-    const { data, error } = await supabase.rpc("get_week_scores");
+    const { data, error } = await supabase
+      .from("quiz_scores")
+      .select("*")
+      .order("total_points", { ascending: false });
 
     if (error) {
-      return Response.json({ error: error.message }, { status: 500 });
+      console.error("Leaderboard fetch error:", error);
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    return Response.json({ data });
+    return NextResponse.json(
+      { data },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (err) {
-    return Response.json({ error: err.message }, { status: 500 });
+    console.error("Leaderboard exception:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
