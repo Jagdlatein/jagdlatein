@@ -1,97 +1,47 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<div className="progressbar">
+  <div
+    className="progressbar-fill"
+    style={{ width: `${(timer / 30) * 100}%` }}
+  />
+</div>
 
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<div className="fade-in" style={{ display: "flex", justifyContent: "space-between" }}>
+  <div style={{ fontSize: 20, fontWeight: 700 }}>
+    Frage {index + 1}/{questions.length}
+  </div>
 
-body {
-  font-family: system-ui, sans-serif;
-  background: #f6f1e7; /* dezente Jagd-Papierfarbe */
-  color: #1b1b1b;
-  min-height: 100vh;
-}
+  <div
+    style={{
+      fontSize: 22,
+      fontWeight: 900,
+      color: timer <= 5 ? "red" : "#d4af37", // GOLD
+    }}
+  >
+    ⏱ {timer}s
+  </div>
+</div>
 
-/* Smooth transitions global */
-button,
-a,
-div {
-  transition: all 0.15s ease;
-}
-.leader-card {
-  transition: all 0.25s ease;
-}
+<div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>
+  Score: {score}
+</div>
 
-.leader-card:hover {
-  transform: scale(1.015);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-/* PREMIUM QUIZ UI */
+<div className={`quiz-card fade-in ${effect}`}>
+  <div className="quiz-question">{q.q}</div>
 
-/* Fade-in */
-.fade-in {
-  animation: fadeIn 0.4s ease;
-}
+  {q.answers.map((ans, i) => {
+    const isSelected = selected === i;
+    const isCorrect = q.correct.includes(ans.id);
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Flash green */
-.flash-correct {
-  animation: flashCorrect 0.35s ease;
-}
-
-@keyframes flashCorrect {
-  0% { background: #c6f6d5; }
-  100% { background: #ffffff; }
-}
-
-/* Flash red */
-.flash-wrong {
-  animation: flashWrong 0.35s ease;
-}
-
-@keyframes flashWrong {
-  0% { background: #fed7d7; }
-  100% { background: #ffffff; }
-}
-
-/* Score pop */
-.score-pop {
-  animation: scorePop 0.4s ease-out;
-}
-
-@keyframes scorePop {
-  0% { transform: scale(0.6); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Progressbar */
-.progressbar {
-  height: 6px;
-  background: #eee;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.progressbar-fill {
-  height: 100%;
-  background: #136f39;
-  transition: width 0.3s linear;
-}
-
-/* Answer button */
-.answer-btn {
-  transition: all 0.15s ease;
-}
-
-.answer-btn:active {
-  transform: scale(0.98);
-}
+    return (
+      <div
+        key={i}
+        className={`quiz-answer fade-in ${
+          isSelected ? (isCorrect ? "quiz-answer-correct" : "quiz-answer-wrong") : ""
+        }`}
+        onClick={() => handleAnswer(ans, i)}
+      >
+        {ans.text}
+      </div>
+    );
+  })}
+</div>
