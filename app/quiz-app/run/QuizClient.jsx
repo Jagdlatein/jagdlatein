@@ -20,9 +20,9 @@ export default function QuizClient() {
   const [effect, setEffect] = useState("");
   const [username, setUsername] = useState("");
 
-  // --------------------------------
+  // -----------------------------
   // LOAD USER + REGISTER + QUESTIONS
-  // --------------------------------
+  // -----------------------------
   useEffect(() => {
     async function init() {
       const u = localStorage.getItem("jagd_username");
@@ -33,14 +33,14 @@ export default function QuizClient() {
 
       setUsername(u);
 
-      // User registrieren
+      // 1️⃣ USER REGISTRIEREN
       await fetch("/api/quiz/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: u, country })
       });
 
-      // Fragen laden
+      // 2️⃣ FRAGEN LADEN
       const res = await fetch(`/api/questions?country=${country}&topic=${topic}`);
       const data = await res.json();
       setQuestions(data.questions || []);
@@ -51,14 +51,14 @@ export default function QuizClient() {
 
   const q = questions[index];
 
-  // -------------------------
-  // Timer
-  // -------------------------
+  // -----------------------------
+  // TIMER
+  // -----------------------------
   useEffect(() => {
     if (!q || locked || finished) return;
     if (timer <= 0) return handleTimeout();
 
-    const t = setTimeout(() => setTimer(t => t - 1), 1000);
+    const t = setTimeout(() => setTimer((t) => t - 1), 1000);
     return () => clearTimeout(t);
   }, [timer, q, locked, finished]);
 
@@ -78,7 +78,7 @@ export default function QuizClient() {
 
     if (isCorrect) {
       setEffect("flash-correct");
-      setScore(s => s + 100 + timer * 10);
+      setScore((s) => s + 100 + timer * 10);
     } else {
       setEffect("flash-wrong");
     }
@@ -95,7 +95,7 @@ export default function QuizClient() {
       return;
     }
 
-    setIndex(i => i + 1);
+    setIndex((i) => i + 1);
     setTimer(30);
     setLocked(false);
     setSelected(null);
@@ -107,37 +107,54 @@ export default function QuizClient() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username,
-        points: score,
-      }),
+        points: score
+      })
     });
   }
 
-  // -------------------------
-  // Loading
-  // -------------------------
+  // -----------------------------
+  // LOADING
+  // -----------------------------
   if (!q && !finished) {
     return (
-      <div className="text-center p-10">
-        <h2>Lade Quiz…</h2>
+      <div style={{ padding: 40, textAlign: "center", fontSize: 22 }}>
+        Lade Quiz…
       </div>
     );
   }
 
-  // -------------------------
-  // Fertig-Screen
-  // -------------------------
+  // -----------------------------
+  // FINISHED SCREEN
+  // -----------------------------
   if (finished) {
     return (
-      <div className="text-center p-10">
-        <h1 className="text-[34px] mb-3">🎉 Quiz abgeschlossen!</h1>
+      <div style={{ padding: 40, textAlign: "center" }}>
+        <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
 
-        <div className="text-[60px] font-extrabold text-[#d4af37] mb-5 score-pop">
+        <div
+          style={{
+            fontSize: 60,
+            fontWeight: 900,
+            color: "#d4af37",
+            marginBottom: 20,
+            textShadow: "0 0 6px rgba(0,0,0,0.2)"
+          }}
+        >
           {score}
         </div>
 
         <button
           onClick={() => router.push("/quiz-app/leaderboard")}
-          className="w-full p-4 bg-[#d4af37] text-white rounded-xl mb-4 text-[18px]"
+          style={{
+            padding: 14,
+            width: "100%",
+            background: "#d4af37",
+            borderRadius: 12,
+            marginBottom: 12,
+            color: "#fff",
+            fontSize: 18,
+            border: 0
+          }}
         >
           🏆 Wochen-Rangliste ansehen
         </button>
@@ -146,7 +163,15 @@ export default function QuizClient() {
           onClick={() =>
             router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
           }
-          className="w-full p-4 bg-[#1f2b23] text-white rounded-xl text-[18px]"
+          style={{
+            padding: 14,
+            width: "100%",
+            background: "#1f2b23",
+            borderRadius: 12,
+            color: "#fff",
+            fontSize: 18,
+            border: 0
+          }}
         >
           🔄 Neues Quiz starten
         </button>
@@ -154,12 +179,12 @@ export default function QuizClient() {
     );
   }
 
-  // -------------------------
-  // QUIZ
-  // -------------------------
+  // -----------------------------
+  // QUIZ RUNNING — GOLD UI
+  // -----------------------------
   return (
-    <div className="max-w-[650px] mx-auto p-5">
-      {/* GOLD TIMER BAR */}
+    <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+      {/* PROGRESSBAR */}
       <div className="progressbar">
         <div
           className="progressbar-fill"
@@ -167,30 +192,35 @@ export default function QuizClient() {
         />
       </div>
 
-      {/* HEADER */}
-      <div className="fade-in flex justify-between">
-        <div className="text-[20px] font-bold">
+      {/* INFO HEADER */}
+      <div
+        className="fade-in"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <div style={{ fontSize: 20, fontWeight: 700 }}>
           Frage {index + 1}/{questions.length}
         </div>
+
         <div
-          className="text-[22px] font-extrabold"
-          style={{ color: timer <= 5 ? "red" : "#d4af37" }}
+          style={{
+            fontSize: 22,
+            fontWeight: 900,
+            color: timer <= 5 ? "red" : "#d4af37"
+          }}
         >
           ⏱ {timer}s
         </div>
       </div>
 
-      <div className="text-[18px] mt-3 opacity-70">
+      {/* SCORE */}
+      <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>
         Score: {score}
       </div>
 
-      {/* GOLD QUESTION CARD */}
+      {/* QUIZ CARD */}
       <div className={`quiz-card fade-in ${effect}`}>
-        <div className="quiz-question">
-          {q.q}
-        </div>
+        <div className="quiz-question">{q.q}</div>
 
-        {/* ANSWERS */}
         {q.answers.map((ans, i) => {
           const isSelected = selected === i;
           const isCorrect = q.correct.includes(ans.id);
@@ -198,15 +228,15 @@ export default function QuizClient() {
           return (
             <div
               key={i}
-              onClick={() => handleAnswer(ans, i)}
-              className={`quiz-answer fade-in ${
-                isSelected
+              className={
+                "quiz-answer fade-in " +
+                (isSelected
                   ? isCorrect
                     ? "quiz-answer-correct"
                     : "quiz-answer-wrong"
-                  : ""
-              }`}
-              style={{ cursor: locked ? "default" : "pointer" }}
+                  : "")
+              }
+              onClick={() => handleAnswer(ans, i)}
             >
               {ans.text}
             </div>
