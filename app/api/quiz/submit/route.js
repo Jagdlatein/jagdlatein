@@ -8,18 +8,32 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+function cors() {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: cors(),
+  });
+}
+
 export async function POST(req) {
   try {
     const { username, points } = await req.json();
 
     if (!username || points === undefined) {
-      return Response.json(
-        { success: false, message: "Username oder Punkte fehlen" },
-        { status: 400 }
+      return new Response(
+        JSON.stringify({ success: false, message: "Username oder Punkte fehlen" }),
+        { status: 400, headers: cors() }
       );
     }
 
-    // Land des Users holen
     const { data: userRow } = await supabase
       .from("quiz_users")
       .select("country")
@@ -28,7 +42,6 @@ export async function POST(req) {
 
     const country = userRow?.country || "DE";
 
-    // vorhandenen Score holen
     const { data: existing } = await supabase
       .from("quiz_scores")
       .select("*")
@@ -36,7 +49,6 @@ export async function POST(req) {
       .maybeSingle();
 
     if (!existing) {
-      // 🔥 updated_at NICHT setzen → Supabase macht das selbst korrekt
       await supabase.from("quiz_scores").insert({
         username,
         country,
@@ -44,43 +56,53 @@ export async function POST(req) {
         rounds: 1,
       });
 
-      return Response.json({
-        success: true,
-        highscore: true,
-        newScore: points,
-        oldScore: 0,
-      });
+      return new Response(
+        JSON.stringify({
+          success: true,
+          highscore: true,
+          newScore: points,
+          oldScore: 0,
+        }),
+        { status: 200, headers: cors() }
+      );
     }
 
     const oldScore = existing.total_points;
 
-    // kein Highscore → nicht aktualisieren
     if (points <= oldScore) {
-      return Response.json({
-        success: true,
-        highscore: false,
-        newScore: points,
-        oldScore,
-      });
+      return new Response(
+        JSON.stringify({
+          success: true,
+          highscore: false,
+          newScore: points,
+          oldScore,
+        }),
+        { status: 200, headers: cors() }
+      );
     }
 
-    // 🔥 Highscore verbessern (OHNE updated_at!)
     await supabase
       .from("quiz_scores")
       .update({
         total_points: points,
         rounds: existing.rounds + 1,
-        country
+        country,
       })
       .eq("username", username);
 
-    return Response.json({
-      success: true,
-      highscore: true,
-      newScore: points,
-      oldScore,
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        highscore: true,
+        newScore: points,
+        oldScore,
+      }),
+      { status: 200, headers: cors() }
+    );
   } catch (err) {
-    return Response.json({ success: false, error: err.message });
+    return new Response(
+      JSON.stringify({ success: false, error: err.message }),
+      { status: 500, headers: cors() }
+    );
   }
 }
