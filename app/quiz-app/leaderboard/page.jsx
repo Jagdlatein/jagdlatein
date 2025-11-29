@@ -1,9 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-export const revalidate = 0;
-
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
@@ -18,7 +14,9 @@ export default function LeaderboardPage() {
   async function load() {
     const res = await fetch("/api/quiz/leaderboard-week", {
       cache: "no-store",
+      next: { revalidate: 0 },
     });
+
     const json = await res.json();
     setRows(json.data || []);
   }
@@ -26,7 +24,6 @@ export default function LeaderboardPage() {
   useEffect(() => {
     load();
 
-    // Live Updates
     const channel = supabase
       .channel("quiz_scores_live")
       .on(
