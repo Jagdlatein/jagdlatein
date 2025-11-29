@@ -1,14 +1,5 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function QuizIndexPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/quiz-app/run");
-  }, []);
-
-  return <div>Lädt…</div>;
+export default function Page() {
+  redirect("/quiz-app/run");
 }
