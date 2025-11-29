@@ -1,9 +1,25 @@
-export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export async function GET() {
-  return Response.json({
-    url: process.env.SUPABASE_URL,
-    role: process.env.SUPABASE_SERVICE_ROLE_KEY?.slice(0, 10) + "...",
-    anon: process.env.SUPABASE_ANON_KEY?.slice(0, 10) + "..."
-  });
+  try {
+    const { data } = await supabase
+      .from("quiz_scores")
+      .select("*")
+      .order("updated_at", { ascending: false })
+      .limit(5);
+
+    return Response.json({
+      supabase_url: process.env.SUPABASE_URL,
+      latest_rows: data,
+    });
+  } catch (err) {
+    return Response.json({ error: err.message }, { status: 500 });
+  }
 }
