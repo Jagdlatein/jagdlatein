@@ -1,49 +1,40 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
+import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const supabase = createClient(
-  process.env.SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export async function GET(req) {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const username = searchParams.get("username");
+
+  if (!username) {
+    return NextResponse.json({ error: "username missing" }, { status: 400 });
+  }
+
   try {
-    const username = req.nextUrl.searchParams.get("username");
-
-    if (!username) {
-      return Response.json({ error: "Username fehlt" }, { status: 400 });
-    }
-
     const { data, error } = await supabase
       .from("quiz_scores")
-      .select("total_points, rounds, updated_at")
+      .select("*")
       .eq("username", username)
-      .maybeSingle();
+      .single();
 
     if (error) {
-      return Response.json({ error: error.message }, { status: 500 });
+      console.error("myhighscore error:", error);
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    if (!data) {
-      return Response.json({
-        username,
-        points: 0,
-        rounds: 0,
-        updated_at: null
-      });
-    }
-
-    return Response.json({
-      username,
-      points: data.total_points,
-      rounds: data.rounds,
-      updated_at: data.updated_at
-    });
-
+    return NextResponse.json(
+      { data },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (err) {
-    console.error("myhighscore error:", err);
-    return Response.json({ error: err.message }, { status: 500 });
+    console.error("myhighscore exception:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
