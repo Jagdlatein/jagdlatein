@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/quiz",
+      "destination": "/quiz-app/run",
+      "permanent": true
+    },
+    {
+      "source": "/quiz/",
+      "destination": "/quiz-app/run",
+      "permanent": true
+    },
+    {
+      "source": "/quiz/:path*",
+      "destination": "/quiz-app/run",
+      "permanent": true
+    }
+  ]
+}
