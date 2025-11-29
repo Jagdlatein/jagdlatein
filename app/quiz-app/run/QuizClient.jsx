@@ -98,8 +98,7 @@ export default function QuizClient() {
 
     if (index + 1 >= questions.length) {
       setFinished(true);
-      saveScore();
-      return;
+      return; // ❗ KEIN saveScore() hier!
     }
 
     setIndex(i => i + 1);
@@ -107,6 +106,13 @@ export default function QuizClient() {
     setLocked(false);
     setSelected(null);
   }
+
+  // Variante B → Score speichern NACH React-Update
+  useEffect(() => {
+    if (finished) {
+      saveScore();
+    }
+  }, [finished]);
 
   async function saveScore() {
     await fetch("/api/quiz/submit", {
@@ -121,136 +127,3 @@ export default function QuizClient() {
 
   if (!q && !finished) {
     return (
-      <div style={{ padding: 40, textAlign: "center" }}>Lade Quiz…</div>
-    );
-  }
-
-  if (finished) {
-    return (
-      <div style={{ padding: 40, textAlign: "center" }}>
-        <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
-
-        <div
-          style={{
-            fontSize: 60,
-            fontWeight: 900,
-            color: "#136f39",
-            marginBottom: 20,
-          }}
-        >
-          {score}
-        </div>
-
-        <button
-          onClick={() => router.push("/quiz-app/leaderboard")}
-          style={{
-            padding: 14,
-            width: "100%",
-            background: "#136f39",
-            borderRadius: 12,
-            marginBottom: 12,
-            color: "#fff",
-            fontSize: 18,
-            border: 0,
-          }}
-        >
-          🏆 Wochen-Rangliste ansehen
-        </button>
-
-        <button
-          onClick={() =>
-            router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
-          }
-          style={{
-            padding: 14,
-            width: "100%",
-            background: "#1f2b23",
-            borderRadius: 12,
-            color: "#fff",
-            fontSize: 18,
-            border: 0,
-          }}
-        >
-          🔄 Neues Quiz starten
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
-      <div className="progressbar">
-        <div
-          className="progressbar-fill"
-          style={{ width: `${(timer / 30) * 100}%` }}
-        />
-      </div>
-
-      <div
-        className="fade-in"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <div style={{ fontSize: 20, fontWeight: 700 }}>
-          Frage {index + 1}/{questions.length}
-        </div>
-
-        <div
-          style={{
-            fontSize: 22,
-            fontWeight: 900,
-            color: timer <= 5 ? "red" : "#136f39",
-          }}
-        >
-          ⏱ {timer}s
-        </div>
-      </div>
-
-      <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>
-        Score: {score}
-      </div>
-
-      <div
-        className={`fade-in ${effect}`}
-        style={{
-          padding: 18,
-          background: "rgba(255,255,255,0.75)",
-          borderRadius: 16,
-          border: "1px solid rgba(0,0,0,0.1)",
-          marginTop: 20,
-        }}
-      >
-        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 16 }}>
-          {q.q}
-        </div>
-
-        {q.answers.map((ans, i) => {
-          const isSelected = selected === i;
-          const isCorrect = q.correct.includes(ans.id);
-
-          return (
-            <div
-              key={i}
-              onClick={() => handleAnswer(ans, i)}
-              style={{
-                padding: "14px 16px",
-                borderRadius: 12,
-                border: "1px solid rgba(0,0,0,0.15)",
-                background:
-                  isSelected && isCorrect
-                    ? "#c6f6d5"
-                    : isSelected && !isCorrect
-                    ? "#fed7d7"
-                    : "#fff",
-                marginBottom: 12,
-                fontSize: 18,
-                cursor: locked ? "default" : "pointer",
-              }}
-            >
-              {ans.text}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
