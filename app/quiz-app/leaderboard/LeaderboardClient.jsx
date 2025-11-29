@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
 export default function LeaderboardClient() {
   const [rows, setRows] = useState([]);
-
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
 
   async function load() {
     const res = await fetch("/api/quiz/leaderboard-week", {
@@ -60,3 +60,4 @@ export default function LeaderboardClient() {
     </div>
   );
 }
+
