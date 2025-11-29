@@ -1,24 +1,67 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+"use client";
 
+import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+export default function LeaderboardPage() {
+  const [rows, setRows] = useState([]);
 
-export async function GET() {
-  try {
-    // Mit RPC Funktion laden
-    const { data: rows, error } = await supabase.rpc("get_week_scores");
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
 
-    if (error) {
-      return Response.json({ error: error.message }, { status: 500 });
-    }
-
-    return Response.json({ data: rows });
-  } catch (err) {
-    return Response.json({ error: err.message }, { status: 500 });
+  async function load() {
+    const res = await fetch("/api/quiz/leaderboard-week", { cache: "no-store" });
+    const json = await res.json();
+    setRows(json.data || []);
   }
+
+  useEffect(() => {
+    load();
+
+    const channel = supabase
+      .channel("live_scores")
+      .on(
+        "postgres_changes",
+        {
+          schema: "public",
+          table: "quiz_scores",
+          event: "*",
+        },
+        () => {
+          console.log("🔄 Live Update von Supabase empfangen");
+          load();
+        }
+      )
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
+  }, []);
+
+  return (
+    <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+      <h1 style={{ fontSize: 32, fontWeight: 900, marginBottom: 20 }}>
+        🏆 Wochen-Rangliste (Live)
+      </h1>
+
+      {rows.map((r, i) => (
+        <div
+          key={i}
+          style={{
+            padding: 12,
+            borderBottom: "1px solid #ddd",
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 18,
+          }}
+        >
+          <span>
+            <strong>{i + 1}. {r.username}</strong> ({r.country})
+          </span>
+          <span>{r.total_points} Punkte</span>
+        </div>
+      ))}
+    </div>
+  );
 }
