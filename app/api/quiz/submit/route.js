@@ -19,7 +19,7 @@ export async function POST(req) {
       );
     }
 
-    // Country des Users laden
+    // Land des Users holen
     const { data: userRow } = await supabase
       .from("quiz_users")
       .select("country")
@@ -28,22 +28,20 @@ export async function POST(req) {
 
     const country = userRow?.country || "DE";
 
-    // existierenden Score holen
+    // vorhandenen Score holen
     const { data: existing } = await supabase
       .from("quiz_scores")
       .select("*")
       .eq("username", username)
       .maybeSingle();
 
-    const now = new Date().toISOString();
-
     if (!existing) {
+      // 🔥 updated_at NICHT setzen → Supabase macht das selbst korrekt
       await supabase.from("quiz_scores").insert({
         username,
         country,
         total_points: points,
         rounds: 1,
-        updated_at: now,
       });
 
       return Response.json({
@@ -56,7 +54,7 @@ export async function POST(req) {
 
     const oldScore = existing.total_points;
 
-    // kein Highscore → nichts tun
+    // kein Highscore → nicht aktualisieren
     if (points <= oldScore) {
       return Response.json({
         success: true,
@@ -66,14 +64,13 @@ export async function POST(req) {
       });
     }
 
-    // Highscore verbessern
+    // 🔥 Highscore verbessern (OHNE updated_at!)
     await supabase
       .from("quiz_scores")
       .update({
         total_points: points,
         rounds: existing.rounds + 1,
-        country,
-        updated_at: now,
+        country
       })
       .eq("username", username);
 
