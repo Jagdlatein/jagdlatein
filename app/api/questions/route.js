@@ -16,6 +16,13 @@ export async function GET(req) {
       count: 10,
     });
 
+    function shuffleArray(arr) {
+    return arr
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(obj => obj.value);
+}
+
     return NextResponse.json({ questions });
   } catch (err) {
     console.error("API /api/questions ERROR:", err);
