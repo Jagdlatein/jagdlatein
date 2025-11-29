@@ -10,7 +10,7 @@ const supabase = createClient(
 
 export async function GET(req) {
   try {
-    const username = req.nextUrl.searchParams.get("u");
+    const username = req.nextUrl.searchParams.get("username");
 
     if (!username) {
       return Response.json({ error: "Username fehlt" }, { status: 400 });
