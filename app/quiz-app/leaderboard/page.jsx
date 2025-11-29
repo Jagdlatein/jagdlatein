@@ -1,11 +1,14 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 export default function LeaderboardPage() {
   const [rows, setRows] = useState([]);
 
+  // Supabase client nur im Browser verwenden
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -14,9 +17,7 @@ export default function LeaderboardPage() {
   async function load() {
     const res = await fetch("/api/quiz/leaderboard-week", {
       cache: "no-store",
-      next: { revalidate: 0 },
     });
-
     const json = await res.json();
     setRows(json.data || []);
   }
@@ -24,11 +25,12 @@ export default function LeaderboardPage() {
   useEffect(() => {
     load();
 
+    // Live updates
     const channel = supabase
       .channel("quiz_scores_live")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "quiz_scores" },
+        { schema: "public", table: "quiz_scores", event: "*" },
         () => load()
       )
       .subscribe();
