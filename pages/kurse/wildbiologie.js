@@ -85,8 +85,9 @@ export default function WildbiologieKurs() {
         </>
       ) : (
         <>
-          <h3 style={{ fontSize: २४, marginTop: 20 }}>🎉 Hervorragend!</h3>
-          <p>Du hast {punkte} von {quiz.length} Fragen richtig.</p>
+          <h3 style={{ fontSize: 24, marginTop: 20 }}>🎉 Hervorragend!</h3>
+<p>Du hast {punkte} von {quiz.length} Fragen richtig.</p>
+
         </>
       )}
     </div>
