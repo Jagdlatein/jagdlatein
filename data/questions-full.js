@@ -4431,7 +4431,7 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Hecken fördern Deckung & Nahrung.'
-}
+},
   // ======================
 // BLOCK 1 — Fragen 1–100
 // ======================
