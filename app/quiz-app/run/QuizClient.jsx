@@ -18,7 +18,6 @@ export default function QuizClient() {
   const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
   const [effect, setEffectState] = useState("");
-
   const [username, setUsername] = useState("");
 
   // Username laden
@@ -98,7 +97,7 @@ export default function QuizClient() {
 
     if (index + 1 >= questions.length) {
       setFinished(true);
-      return; // Kein saveScore!
+      return;
     }
 
     setIndex(i => i + 1);
@@ -107,7 +106,7 @@ export default function QuizClient() {
     setSelected(null);
   }
 
-  // Speichern des Scores NACH vollständigem Update
+  // Speichern des Scores
   useEffect(() => {
     if (finished) {
       saveScore();
@@ -125,8 +124,52 @@ export default function QuizClient() {
     });
   }
 
-  // --- RENDER ABSCHNITT ---
+  // -------------------------------
+  // PREMIUM-GOLD END-SCREEN
+  // -------------------------------
+  if (finished) {
+    return (
+      <div style={{ padding: 40 }}>
+        
+        <div className="quiz-finish-box fade-in">
 
+          <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
+
+          <div className="quiz-score-badge">
+            {score}
+          </div>
+
+          <button
+            onClick={() => router.push("/quiz-app/leaderboard")}
+            className="quiz-end-btn"
+          >
+            🏆 Wochen-Rangliste ansehen
+          </button>
+
+          <button
+            onClick={() =>
+              router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
+            }
+            className="quiz-end-btn"
+          >
+            🔄 Neues Quiz starten
+          </button>
+
+          <button
+            onClick={() => router.push("/")}
+            className="quiz-end-btn"
+          >
+            🏠 Zur Startseite
+          </button>
+
+        </div>
+      </div>
+    );
+  }
+
+  // -------------------------------
+  // QUIZ ANSICHT
+  // -------------------------------
   if (!q && !finished) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
@@ -135,60 +178,9 @@ export default function QuizClient() {
     );
   }
 
-  if (finished) {
-    return (
-      <div style={{ padding: 40, textAlign: "center" }}>
-        <h1 style={{ fontSize: 34, marginBottom: 10 }}>🎉 Quiz abgeschlossen!</h1>
-
-        <div
-          style={{
-            fontSize: 60,
-            fontWeight: 900,
-            color: "#136f39",
-            marginBottom: 20,
-          }}
-        >
-          {score}
-        </div>
-
-        <button
-          onClick={() => router.push("/quiz-app/leaderboard")}
-          style={{
-            padding: 14,
-            width: "100%",
-            background: "#136f39",
-            borderRadius: 12,
-            marginBottom: 12,
-            color: "#fff",
-            fontSize: 18,
-            border: 0,
-          }}
-        >
-          🏆 Wochen-Rangliste ansehen
-        </button>
-
-        <button
-          onClick={() =>
-            router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
-          }
-          style={{
-            padding: 14,
-            width: "100%",
-            background: "#1f2b23",
-            borderRadius: 12,
-            color: "#fff",
-            fontSize: 18,
-            border: 0,
-          }}
-        >
-          🔄 Neues Quiz starten
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+
       <div className="progressbar">
         <div
           className="progressbar-fill"
