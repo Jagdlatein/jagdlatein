@@ -10,24 +10,21 @@ const supabase = createClient(
 
 export function useLiveLeaderboard(onChange) {
   useEffect(() => {
+    console.log("🔧 URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log("🔧 ANON:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
     const channel = supabase
       .channel("real-time-scores")
       .on(
         "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "quiz_scores",
-        },
+        { event: "*", schema: "public", table: "quiz_scores" },
         () => {
           console.log("📡 Live-Update erkannt!");
-          onChange(); // neu laden
+          onChange();
         }
       )
       .subscribe();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    return () => supabase.removeChannel(channel);
   }, [onChange]);
 }
