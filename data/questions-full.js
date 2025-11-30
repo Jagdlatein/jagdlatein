@@ -4431,6 +4431,309 @@ export const QUESTIONS = [
   ],
   correct:['b'],
   explain:'Hecken fördern Deckung & Nahrung.'
+}
+  // ======================
+// BLOCK 1 — Fragen 1–100
+// ======================
+
+{
+  id:'JL-new-0001',
+  countries:['DE','AT','CH'],
+  topic:'Waffen & Schuss',
+  q:'Was bewirkt ein längerer Lauf bei einer Büchse normalerweise?',
+  answers:[
+    {id:'a', text:'Höhere Mündungsgeschwindigkeit'},
+    {id:'b', text:'Weniger Drall'},
+    {id:'c', text:'Schlechtere Präzision'},
+    {id:'d', text:'Stärkere Rückstoßvergrößerung'}
+  ],
+  correct:['a'],
+  explain:'Längere Läufe erlauben vollständigere Pulververbrennung → höhere V₀.'
+},
+
+{
+  id:'JL-new-0002',
+  countries:['DE'],
+  topic:'Recht',
+  q:'Wer ist in Deutschland für die Jagdscheinprüfung zuständig?',
+  answers:[
+    {id:'a', text:'Bundestag'},
+    {id:'b', text:'Länder bzw. deren Behörden'},
+    {id:'c', text:'NATO'},
+    {id:'d', text:'Forstämter allein'}
+  ],
+  correct:['b'],
+  explain:'Jagdrecht ist Ländersache.'
+},
+
+{
+  id:'JL-new-0003',
+  countries:['AT'],
+  topic:'Recht',
+  q:'Wer regelt in Österreich die Abschusspläne?',
+  answers:[
+    {id:'a', text:'Bund'},
+    {id:'b', text:'Jeweiliges Bundesland'},
+    {id:'c', text:'Forstverwaltung der EU'},
+    {id:'d', text:'Schützenvereine'}
+  ],
+  correct:['b'],
+  explain:'Jagdrecht = Landesrecht.'
+},
+
+{
+  id:'JL-new-0004',
+  countries:['CH'],
+  topic:'Recht',
+  q:'Was unterscheidet die Schweizer Patentjagd vom Pachtsystem?',
+  answers:[
+    {id:'a', text:'Keine Jagdprüfung notwendig'},
+    {id:'b', text:'Jagdausübung via Jahrespatent statt gepachteter Fläche'},
+    {id:'c', text:'Jagd nur mit Falken erlaubt'},
+    {id:'d', text:'Kein Schusswaffengebrauch'}
+  ],
+  correct:['b'],
+  explain:'Patentjagd: Gebiet ist kantonal definiert und per Patent bejagbar.'
+},
+
+{
+  id:'JL-new-0005',
+  countries:['DE','AT','CH'],
+  topic:'Hundewesen',
+  q:'Welche Eigenschaft ist besonders wichtig für die Nachsuche?',
+  answers:[
+    {id:'a', text:'Weitjagd'},
+    {id:'b', text:'Schweißarbeit & Fährtenwillen'},
+    {id:'c', text:'Hütetrieb'},
+    {id:'d', text:'Wasserapport'}
+  ],
+  correct:['b'],
+  explain:'Nachsuchehunde benötigen Spurwille & Ausdauer.'
+},
+
+{
+  id:'JL-new-0006',
+  countries:['DE','AT','CH'],
+  topic:'Hege',
+  q:'Welcher Lebensraum fördert Biodiversität am stärksten?',
+  answers:[
+    {id:'a', text:'Monokulturen'},
+    {id:'b', text:'Strukturreiche Waldränder & Saumbiotope'},
+    {id:'c', text:'Schotterflächen'},
+    {id:'d', text:'Reiner Fichtenbestand'}
+  ],
+  correct:['b'],
+  explain:'Strukturvielfalt = hohe Artenvielfalt.'
+},
+
+{
+  id:'JL-new-0007',
+  countries:['DE','AT','CH'],
+  topic:'Wildbrethygiene',
+  q:'Warum ist schnelles Aufbrechen nach dem Erlegen wichtig?',
+  answers:[
+    {id:'a', text:'Verringert Keimdruck'},
+    {id:'b', text:'Verbessert Trophäe'},
+    {id:'c', text:'Senkt Fleischgewicht'},
+    {id:'d', text:'Macht Fell glänzend'}
+  ],
+  correct:['a'],
+  explain:'Schnelles Abkühlen ist entscheidend für Hygiene.'
+},
+
+{
+  id:'JL-new-0008',
+  countries:['DE','AT'],
+  topic:'Jägersprache',
+  q:'Wie nennt man den Ruheplatz des Hasen?',
+  answers:[
+    {id:'a', text:'Kessel'},
+    {id:'b', text:'Sasse'},
+    {id:'c', text:'Horst'},
+    {id:'d', text:'Bau'}
+  ],
+  correct:['b'],
+  explain:'Die Sasse ist die flache Mulde des Feldhasen.'
+},
+
+{
+  id:'JL-new-0009',
+  countries:['DE'],
+  topic:'Wildkunde',
+  q:'Wann setzt das Reh typischerweise seine Kitze?',
+  answers:[
+    {id:'a', text:'Februar'},
+    {id:'b', text:'Mai/Juni'},
+    {id:'c', text:'September'},
+    {id:'d', text:'Januar'}
+  ],
+  correct:['b'],
+  explain:'Kitzzeit ist Mai/Juni.'
+},
+
+{
+  id:'JL-new-0010',
+  countries:['AT'],
+  topic:'Wildkunde',
+  q:'Woran erkennt man einen Gamsbock im Sommer?',
+  answers:[
+    {id:'a', text:'Er trägt komplett weißes Haarkleid'},
+    {id:'b', text:'Deutlich dunkler Rückenstreifen'},
+    {id:'c', text:'Fehlen der Krucken'},
+    {id:'d', text:'Gefleckte Decke'}
+  ],
+  correct:['b'],
+  explain:'Sommergams zeigt dunklen Aalstrich.'
+},
+
+{
+  id:'JL-new-0011',
+  countries:['CH'],
+  topic:'Wildkunde',
+  q:'Welche Jagdart des Steinadlers ist typisch?',
+  answers:[
+    {id:'a', text:'Hetzjagd im Rudel'},
+    {id:'b', text:'Stoßflug aus großer Höhe'},
+    {id:'c', text:'Nur Aasfressen'},
+    {id:'d', text:'Balzflugjagd im Frühling'}
+  ],
+  correct:['b'],
+  explain:'Er schlägt Beute im Sturzflug.'
+},
+
+{
+  id:'JL-new-0012',
+  countries:['DE','AT','CH'],
+  topic:'Waffen & Schuss',
+  q:'Welcher Faktor beeinflusst die Geschossbahn am stärksten?',
+  answers:[
+    {id:'a', text:'Schaftfarbe'},
+    {id:'b', text:'Wind'},
+    {id:'c', text:'Größe des Zielfernrohres'},
+    {id:'d', text:'Lauflänge allein'}
+  ],
+  correct:['b'],
+  explain:'Winddrift beeinflusst Geschossflug massiv.'
+},
+
+{
+  id:'JL-new-0013',
+  countries:['DE','AT','CH'],
+  topic:'Ökologie',
+  q:'Welche Fläche speichert am meisten CO₂?',
+  answers:[
+    {id:'a', text:'Moor'},
+    {id:'b', text:'Acker'},
+    {id:'c', text:'Kurzgraswiese'},
+    {id:'d', text:'Schotterfläche'}
+  ],
+  correct:['a'],
+  explain:'Moore sind bedeutende Kohlenstoffspeicher.'
+},
+
+{
+  id:'JL-new-0014',
+  countries:['DE','AT','CH'],
+  topic:'Hundewesen',
+  q:'Was bedeutet „Vorstehen“ beim Jagdhund?',
+  answers:[
+    {id:'a', text:'Hund legt sich hin'},
+    {id:'b', text:'Hund fixiert Wild regungslos'},
+    {id:'c', text:'Hund zeigt Freude'},
+    {id:'d', text:'Hund jagt selbstständig weit'}
+  ],
+  correct:['b'],
+  explain:'Vorstehen ist das starre Anzeigen von Wild.'
+},
+
+{
+  id:'JL-new-0015',
+  countries:['DE','AT','CH'],
+  topic:'Wildkunde',
+  q:'Welche Losung ist typisch für Schwarzwild?',
+  answers:[
+    {id:'a', text:'Kugelig'},
+    {id:'b', text:'Wurstartig'},
+    {id:'c', text:'Fladen'},
+    {id:'d', text:'Reiskornartig'}
+  ],
+  correct:['b'],
+  explain:'Schwarzwild loset wurstartig.'
+},
+
+{
+  id:'JL-new-0016',
+  countries:['DE','AT','CH'],
+  topic:'Waffen & Schuss',
+  q:'Was ist ein „Direktabzug“?',
+  answers:[
+    {id:'a', text:'Abzug ohne Druckpunkt'},
+    {id:'b', text:'Elektronischer Abzug'},
+    {id:'c', text:'Sehr langer Vorweg'},
+    {id:'d', text:'Abzug mit Sicherungsautomatik'}
+  ],
+  correct:['a'],
+  explain:'Direktabzug löst unmittelbar aus.'
+},
+
+{
+  id:'JL-new-0017',
+  countries:['DE','AT','CH'],
+  topic:'Hege',
+  q:'Welche Fläche ist besonders wichtig für Bodenbrüter?',
+  answers:[
+    {id:'a', text:'Altgrasinseln'},
+    {id:'b', text:'Asphaltflächen'},
+    {id:'c', text:'Kurzrasen'},
+    {id:'d', text:'Monokultur-Winterweizen'}
+  ],
+  correct:['a'],
+  explain:'Deckungsstrukturen fördern erfolgreiche Brut.'
+},
+
+{
+  id:'JL-new-0018',
+  countries:['DE','AT','CH'],
+  topic:'Wildkunde',
+  q:'Wie nennt man den Nachwuchs des Rotwildes?',
+  answers:[
+    {id:'a', text:'Kalb'},
+    {id:'b', text:'Kitz'},
+    {id:'c', text:'Lamm'},
+    {id:'d', text:'Frischling'}
+  ],
+  correct:['a'],
+  explain:'Rotwild: Kalb.'
+},
+
+{
+  id:'JL-new-0019',
+  countries:['DE'],
+  topic:'Jägersprache',
+  q:'Was bedeutet „verhoffen“?',
+  answers:[
+    {id:'a', text:'Wild rennt in Panik'},
+    {id:'b', text:'Wild bleibt kurz stehen und sichert'},
+    {id:'c', text:'Wild wechselt langsam ab'},
+    {id:'d', text:'Wild äst im Sitzen'}
+  ],
+  correct:['b'],
+  explain:'Verhoffen = kurzes Stehen zum Sichern.'
+},
+
+{
+  id:'JL-new-0020',
+  countries:['AT','DE','CH'],
+  topic:'Wildbrethygiene',
+  q:'Welche Temperatur ist ideal für die Wildkühlung?',
+  answers:[
+    {id:'a', text:'15–20 °C'},
+    {id:'b', text:'4–7 °C'},
+    {id:'c', text:'0–1 °C'},
+    {id:'d', text:'Über 20 °C'}
+  ],
+  correct:['b'],
+  explain:'4–7 °C verhindern Keimwachstum optimal.'
 },
 ]; // ← ✔ nur diese eine eckige Klammer ist korrekt!
 
