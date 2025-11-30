@@ -44,7 +44,7 @@ export default function WildkundeKurs() {
     setAuswahl(index);
 
     if (frage.antworten[index].richtig) {
-      setPunkte((p) => p + 1);
+      setPunkte(p => p + 1);
     }
 
     setTimeout(() => {
@@ -55,7 +55,7 @@ export default function WildkundeKurs() {
       } else {
         setFertig(true);
       }
-    }, 1200);
+    }, 1100);
   }
 
   return (
@@ -64,11 +64,12 @@ export default function WildkundeKurs() {
       margin: "40px auto",
       background: "white",
       padding: 24,
-      borderRadius: 12,
-      boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
+      borderRadius: 16,
+      boxShadow: "0 4px 18px rgba(0,0,0,0.1)",
+      fontFamily: "system-ui"
     }}>
       
-      <h1 style={{ fontSize: 32, fontWeight: "bold", marginBottom: 15 }}>
+      <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 15, color: "#2e4d32" }}>
         🦌 Wildkunde Basics
       </h1>
 
@@ -77,19 +78,22 @@ export default function WildkundeKurs() {
         Ideal für Jungjäger und zur schnellen Wiederholung.
       </p>
 
-      <h2 style={{ fontSize: 24, marginBottom: 10 }}>Rehwild</h2>
+      {/* --- REHWILD --- */}
+      <h2 style={{ fontSize: 24, marginBottom: 10, color: "#254026" }}>Rehwild</h2>
       <p style={{ fontSize: 17, lineHeight: 1.6 }}>
         Rehwild ist die kleinste heimische Hirschart. Männliche heißen <strong>Bock</strong>,
         weibliche <strong>Geiß</strong>. Die Blattzeit ist die Paarungszeit.
       </p>
 
-      <h2 style={{ fontSize: 24, marginTop: 25, marginBottom: 10 }}>Schwarzwild</h2>
+      {/* --- SCHWARZWILD --- */}
+      <h2 style={{ fontSize: 24, marginTop: 25, marginBottom: 10, color: "#254026" }}>Schwarzwild</h2>
       <p style={{ fontSize: 17, lineHeight: 1.6 }}>
         Schwarzwild lebt in Rotten. Typisch sind breite Trittsiegel, Wühlspuren,
         Suhlen und die kräftige Losung.
       </p>
 
-      <h2 style={{ fontSize: 24, marginTop: 25, marginBottom: 10 }}>Rotwild</h2>
+      {/* --- ROTWILD --- */}
+      <h2 style={{ fontSize: 24, marginTop: 25, marginBottom: 10, color: "#254026" }}>Rotwild</h2>
       <p style={{ fontSize: 17, lineHeight: 1.6 }}>
         Rotwild ist die größte heimische Wildart. Zur Brunft röhren die Hirsche,
         während Kahlwildrudel von erfahrenen Tieren geführt werden.
@@ -97,6 +101,7 @@ export default function WildkundeKurs() {
 
       <hr style={{ margin: "30px 0" }} />
 
+      {/* QUIZ */}
       <h2 style={{ fontSize: 26, marginBottom: 12 }}>Quiz</h2>
 
       {!fertig && (
@@ -113,17 +118,20 @@ export default function WildkundeKurs() {
             const richtig = a.richtig;
             const istAuswahl = auswahl === i;
 
-            let bg = "#eaeaea";
+            let bg = "#f1f1f1";
             let color = "#000";
+            let border = "1px solid #ccc";
 
             if (auswahl !== null) {
               if (richtig) {
-                bg = "green";
+                bg = "#207a1e";
                 color = "white";
+                border = "none";
               }
               if (istAuswahl && !richtig) {
-                bg = "red";
+                bg = "#b40000";
                 color = "white";
+                border = "none";
               }
             }
 
@@ -134,15 +142,16 @@ export default function WildkundeKurs() {
                 disabled={auswahl !== null}
                 style={{
                   width: "100%",
-                  padding: "12px",
+                  padding: "14px",
                   fontSize: 17,
-                  marginBottom: 10,
-                  borderRadius: 8,
-                  border: "none",
+                  marginBottom: 12,
+                  borderRadius: 10,
                   background: bg,
                   color: color,
+                  border: border,
                   cursor: auswahl === null ? "pointer" : "default",
-                  textAlign: "left"
+                  textAlign: "left",
+                  transition: "0.2s",
                 }}
               >
                 {a.text}
@@ -154,13 +163,13 @@ export default function WildkundeKurs() {
 
       {fertig && (
         <>
-          <h3 style={{ fontSize: 24, marginTop: 20 }}>🎉 Fertig!</h3>
+          <h3 style={{ fontSize: 28, marginTop: 20, color: "#254026" }}>🎉 Fertig!</h3>
           <p style={{ fontSize: 20 }}>
-            Du hast <strong>{punkte}</strong> von <strong>{quizFragen.length}</strong> Fragen richtig.
+            Du hast <strong>{punkte}</strong> von <strong>{quizFragen.length}</strong> Fragen richtig beantwortet.
           </p>
         </>
       )}
 
     </div>
   );
-              }
+}
