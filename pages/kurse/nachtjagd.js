@@ -5,57 +5,57 @@ import { useState } from "react";
 export default function NachtjagdKurs() {
   const quiz = [
     {
-      frage: "Wann beginnt eine Nachsuche?",
+      frage: "Warum ist Nachtjagd besonders anspruchsvoll?",
       antworten: [
-        { text: "Erst am nächsten Tag", richtig: false },
-        { text: "Sobald ein Treffer zweifelhaft ist", richtig: true },
-        { text: "Nur bei viel Schweiß", richtig: false },
-        { text: "Nur wenn das Stück nicht liegt", richtig: false }
+        { text: "Weil Jäger nachts schneller rennen müssen", richtig: false },
+        { text: "Weil Sicht, Ansprache & Sicherheit erschwert sind", richtig: true },
+        { text: "Weil Wild nachts schläft", richtig: false },
+        { text: "Weil Waffen anders funktionieren", richtig: false }
       ]
     },
     {
-      frage: "Was ist die wichtigste Sofortmaßnahme nach dem Schuss?",
+      frage: "Wofür eignet sich das Wärmebildgerät besonders?",
       antworten: [
-        { text: "Schnell dem Stück nachrennen", richtig: false },
-        { text: "Anschuss beobachten & markieren", richtig: true },
-        { text: "Waffe sofort entladen", richtig: false },
-        { text: "Ins Auto sitzen", richtig: false }
+        { text: "Zum sicheren Ansprechen", richtig: false },
+        { text: "Zum Entdecken von Wild", richtig: true },
+        { text: "Zum Messen der Entfernung", richtig: false },
+        { text: "Zum Locken", richtig: false }
       ]
     },
     {
-      frage: "Welche Wartezeit gilt beim Weichschuss (Pansen)?",
+      frage: "Was ist die wichtigste Regel bei Nacht?",
       antworten: [
-        { text: "10 Minuten", richtig: false },
-        { text: "1 Stunde", richtig: false },
-        { text: "3–4 Stunden", richtig: true },
-        { text: "Sofortige Nachsuche", richtig: false }
+        { text: "Immer sofort schießen", richtig: false },
+        { text: "Keine sichere Ansprache = kein Schuss", richtig: true },
+        { text: "Nur bei Regen jagen", richtig: false },
+        { text: "Wild mit Licht anleuchten", richtig: false }
       ]
     },
     {
-      frage: "Wer ist bei der Nachsuche der wichtigste Partner?",
+      frage: "Welches Wild ist typischerweise nachtaktiv?",
       antworten: [
-        { text: "Der Hundeführer", richtig: false },
-        { text: "Der Schweißhund", richtig: true },
-        { text: "Der Förster", richtig: false },
-        { text: "Der Nachbar", richtig: false }
+        { text: "Rebhuhn", richtig: false },
+        { text: "Schwarzwild", richtig: true },
+        { text: "Fasan", richtig: false },
+        { text: "Steinwild", richtig: false }
       ]
     },
     {
-      frage: "Was sollte man auf der Suche unbedingt vermeiden?",
+      frage: "Was sollte man bei der Nachtpirsch besonders beachten?",
       antworten: [
-        { text: "Langsam gehen", richtig: false },
-        { text: "Fährte zertrampeln", richtig: true },
-        { text: "Wind prüfen", richtig: false },
-        { text: "Gelände lesen", richtig: false }
+        { text: "Sehr schnelle Bewegungen", richtig: false },
+        { text: "Extrem leises Vorgehen & Wind", richtig: true },
+        { text: "Helle Kleidung tragen", richtig: false },
+        { text: "Auf freiem Feld stehen bleiben", richtig: false }
       ]
     },
     {
-      frage: "Was gilt, wenn verletztes Wild gefunden wird?",
+      frage: "Was gilt bei Schwarzwild in der Nacht?",
       antworten: [
-        { text: "Sofort nah rangehen", richtig: false },
-        { text: "Sicherheit beachten, Stück waidgerecht erlösen", richtig: true },
-        { text: "Foto machen", richtig: false },
-        { text: "Hund ableinen", richtig: false }
+        { text: "Nur Leitbachen schießen", richtig: false },
+        { text: "Frischlinge sicher ausschließen, Rottenstruktur respektieren", richtig: true },
+        { text: "Blind auf die Rotte schießen", richtig: false },
+        { text: "Nachtjagd ist verboten", richtig: false }
       ]
     }
   ];
@@ -69,8 +69,8 @@ export default function NachtjagdKurs() {
 
   function choose(a) {
     if (sel !== null) return;
-    setSel(a);
 
+    setSel(a);
     if (frage.antworten[a].richtig) setPunkte(prev => prev + 1);
 
     setTimeout(() => {
@@ -94,13 +94,13 @@ export default function NachtjagdKurs() {
       fontFamily: "Arial, sans-serif"
     }}>
       <h1 style={{ fontSize: 34, fontWeight: "bold", marginBottom: 20 }}>
-        🩸 Nachjagd – Grundlagenkurs
+        🌙 Nachtjagd – Grundlagenkurs
       </h1>
 
       <p style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 28 }}>
-        Die Nachsuche dient dazu, verletztes Wild schnell und waidgerecht zu
-        finden. Ruhe, Erfahrung und ein gut geführter Schweißhund sind entscheidend
-        für eine erfolgreiche und sichere Nachjagd.
+        Die Nachtjagd erfordert besondere Sicherheit, Technik und Erfahrung.
+        Wärmebildgeräte, Nachtsichttechnik und richtiges Verhalten bei Dunkelheit
+        ermöglichen eine waidgerechte Jagdausübung.
       </p>
 
       {!fertig ? (
