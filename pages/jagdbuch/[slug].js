@@ -82,8 +82,8 @@ export default function JagdbuchPost({ post }) {
       body: JSON.stringify({
         slug: post.slug,
         text: comment,
-        replyTo, // Antwort auf Kommentar-ID
-        user: "Jäger", // du wolltest KEIN Cookie-User
+        replyTo,
+        user: "Jäger",
       }),
     });
 
@@ -176,6 +176,26 @@ export default function JagdbuchPost({ post }) {
         >
           {post.content}
         </article>
+
+        {/* BILDER (NEU – BLOCK 5) */}
+        {post.images && post.images.length > 0 && (
+          <div style={{ marginTop: 30 }}>
+            <h3>Bilder</h3>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              {post.images.map((img) => (
+                <img
+                  key={img.id}
+                  src={img.data}
+                  style={{
+                    width: "200px",
+                    borderRadius: 10,
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* LIKE BUTTON */}
         <button
