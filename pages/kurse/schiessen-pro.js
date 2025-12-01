@@ -28,62 +28,132 @@ export default function SchiessenProKurs() {
   const [sel, setSel] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
   const frage = quiz[i];
 
   function choose(a) {
     if (sel !== null) return;
+    
     setSel(a);
-    if (frage.antworten[a].richtig) setPunkte(punkte + 1);
+
+    if (frage.antworten[a].richtig) {
+      setPunkte((p) => p + 1);
+    }
 
     setTimeout(() => {
       if (i + 1 < quiz.length) {
-        setI(i + 1); setSel(null);
-      } else setFertig(true);
-    }, 1000);
+        setI((prev) => prev + 1);
+        setSel(null);
+      } else {
+        setFertig(true);
+      }
+    }, 900);
   }
 
   return (
-    <div style={{
-      maxWidth: 800, margin: "40px auto", padding: 24,
-      background: "white", borderRadius: 12,
-      boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
-    }}>
-      <h1 style={{ fontSize: 32, marginBottom: 15 }}>🔥 Schießtechnik Aufbaukurs</h1>
+    <div
+      style={{
+        maxWidth: 800,
+        margin: "40px auto",
+        padding: 24,
+        background: "white",
+        borderRadius: 14,
+        boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+        fontFamily: "Arial, sans-serif"
+      }}
+    >
+      <h1 style={{ fontSize: 34, fontWeight: "bold", marginBottom: 20 }}>
+        🔥 Schießtechnik – Aufbaukurs
+      </h1>
 
-      <p style={{ fontSize: 18, marginBottom: 25 }}>
-        Fortgeschrittene Schießtechnik umfasst präzise Kontrolle des Abzugs, 
-        stabile Schusspositionen und Verständnis der Geschosswirkung auf verschiedene 
-        Distanzen. Kleine Abweichungen wirken sich auf weite Schüsse stark aus.
+      <p style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 28 }}>
+        Fortgeschrittenes Schießen erfordert absolute Beherrschung von Anschlag,
+        Atmung, Abzugskontrolle und Ballistik. Schon minimale Abweichungen wirken
+        sich auf große Distanzen stark aus. Präzision entsteht durch Ruhe,
+        Wiederholbarkeit und saubere Technik.
       </p>
 
       {!fertig ? (
         <>
-          <p>Frage {i + 1} von {quiz.length}</p>
-          <p style={{ fontSize: 20 }}>{frage.frage}</p>
+          <p style={{ fontSize: 17, marginBottom: 8 }}>
+            Frage {i + 1} von {quiz.length}
+          </p>
+
+          <p style={{ fontSize: 22, marginBottom: 18, fontWeight: 500 }}>
+            {frage.frage}
+          </p>
 
           {frage.antworten.map((a, idx) => {
-            let bg = "#eaeaea";
+            let bg = "#f3f3f3";
+            let color = "#000";
+            let border = "1px solid #ccc";
+
             if (sel !== null) {
-              if (a.richtig) bg = "green";
-              if (sel === idx && !a.richtig) bg = "red";
+              if (a.richtig) {
+                bg = "#2e7d32";     // Grün
+                color = "white";
+                border = "1px solid #2e7d32";
+              }
+              if (sel === idx && !a.richtig) {
+                bg = "#c62828";     // Rot
+                color = "white";
+                border = "1px solid #c62828";
+              }
             }
 
             return (
-              <button key={idx} onClick={() => choose(idx)} disabled={sel !== null}
+              <button
+                key={idx}
+                onClick={() => choose(idx)}
+                disabled={sel !== null}
                 style={{
-                  width: "100%", padding: 12, marginBottom: 10,
-                  borderRadius: 8, background: bg, color: "white"
-                }}>
+                  width: "100%",
+                  padding: 14,
+                  marginBottom: 12,
+                  borderRadius: 10,
+                  background: bg,
+                  color,
+                  border,
+                  textAlign: "left",
+                  cursor: sel === null ? "pointer" : "default",
+                  fontSize: 17,
+                  transition: "0.2s"
+                }}
+              >
                 {a.text}
               </button>
             );
           })}
         </>
       ) : (
-        <>
-          <h3 style={{ fontSize: 24 }}>🎉 Sehr gut!</h3>
-          <p>Du hast {punkte} von {quiz.length} Fragen richtig.</p>
-        </>
+        <div style={{ textAlign: "center", marginTop: 30 }}>
+          <h3 style={{ fontSize: 26, marginBottom: 12 }}>🎉 Sehr gut!</h3>
+          <p style={{ fontSize: 20 }}>
+            Du hast <strong>{punkte}</strong> von{" "}
+            <strong>{quiz.length}</strong> Fragen richtig.
+          </p>
+
+          <button
+            onClick={() => {
+              setI(0);
+              setSel(null);
+              setPunkte(0);
+              setFertig(false);
+            }}
+            style={{
+              marginTop: 20,
+              padding: "12px 18px",
+              fontSize: 18,
+              borderRadius: 8,
+              border: "none",
+              background: "#1b5e20",
+              color: "white",
+              cursor: "pointer"
+            }}
+          >
+            Nochmal starten 🔄
+          </button>
+        </div>
       )}
     </div>
   );
