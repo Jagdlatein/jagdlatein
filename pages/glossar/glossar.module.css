@@ -237,3 +237,37 @@
     padding: 26px 24px;
   }
 }
+/* =======================================
+   SUCHFELD – größer, moderner, auffälliger
+   ======================================= */
+.searchBox {
+  margin-bottom: 32px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 18px 22px;        /* GRÖSSER */
+  font-size: 19px;           /* GRÖSSER */
+  border-radius: 14px;       
+  border: 1px solid #d6d0c0;
+  background: #ffffff;
+  transition: all 0.25s ease;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.searchInput::placeholder {
+  color: #9c9c9c;            /* edleres Placeholder-Grau */
+  font-size: 18px;           /* besser sichtbar */
+}
+
+.searchInput:hover {
+  border-color: #c8bea7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.searchInput:focus {
+  border-color: #b38b2e;
+  box-shadow: 0 0 0 4px rgba(179, 139, 46, 0.25);
+  background: #fffef9;
+}
