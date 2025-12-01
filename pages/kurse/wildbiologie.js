@@ -45,8 +45,12 @@ export default function WildbiologieKurs() {
 
   return (
     <div style={{
-      maxWidth: 800, margin: "40px auto", background: "white",
-      padding: 24, borderRadius: 12, boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
+      maxWidth: 800,
+      margin: "40px auto",
+      background: "white",
+      padding: 24,
+      borderRadius: 12,
+      boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
     }}>
       <h1 style={{ fontSize: 32, marginBottom: 15 }}>🧬 Wildbiologie kompakt</h1>
 
