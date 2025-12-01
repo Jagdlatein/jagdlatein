@@ -108,6 +108,51 @@ const TERMS = [
 
 { slug: "zaunflucht", term: "Zaunflucht", def: "Wild orientiert sich an einem Zaun und zieht entlang." },
 { slug: "zirpen", term: "Zirpen", def: "Feiner Warnlaut, z. B. beim Rehwild." },
+{ slug: "aeser", term: "Äser", def: "Maul des Schalenwildes; wichtig zur Beurteilung von Äsung und Gesundheit." },
+{ slug: "aesung", term: "Äsung", def: "Nahrung des Wildes, besonders Kräuter, Gräser, Knospen und Feldfrüchte." },
+
+{ slug: "abschussplan", term: "Abschussplan", def: "Behördlich festgelegte Vorgaben zur Regulierung von Wildbeständen." },
+{ slug: "abwurfstange", term: "Abwurfstange", def: "Natürlich abgeworfene Geweihstange des Hirsches." },
+
+{ slug: "balg", term: "Balg", def: "Haut bzw. Fell kleinerer Haarwildarten." },
+{ slug: "balgzeit", term: "Balgzeit", def: "Periode maximaler Fellqualität, meist im Winter." },
+{ slug: "blattzeit", term: "Blattzeit", def: "Paarungszeit des Rehwildes im Juli und August." },
+
+{ slug: "bruch", term: "Bruch", def: "Zweig mit symbolischer Bedeutung im jagdlichen Brauchtum." },
+{ slug: "brunft", term: "Brunft", def: "Paarungszeit des Rotwildes, Damwildes oder Muffelwildes." },
+
+{ slug: "deckungswechsel", term: "Deckungswechsel", def: "Wild wechselt von einer Deckung in eine andere." },
+{ slug: "damwildstand", term: "Damwildstand", def: "Gebiet mit stabilen Damwildbeständen." },
+
+{ slug: "einstellen", term: "Einstellen", def: "Wild zeigt sich an einem Wechsel oder Futterplatz." },
+{ slug: "einwechseln", term: "Einwechseln", def: "Wild zieht sichtbar in ein Gebiet ein." },
+{ slug: "einstand", term: "Einstand", def: "Bevorzugtes Rückzugsgebiet des Wildes." },
+
+{ slug: "federwild", term: "Federwild", def: "Jagdbares Flugwild wie Enten, Gänse oder Fasane." },
+{ slug: "foersterdreieck", term: "Försterdreieck", def: "Hilfsmittel zur Altersbestimmung beim Schwarzwild." },
+{ slug: "frischling", term: "Frischling", def: "Junges Schwarzwild im ersten Lebensjahr." },
+
+{ slug: "gamsbart", term: "Gamsbart", def: "Schmuck aus langen Rückenborsten des Gamsbocks." },
+{ slug: "geheck", term: "Geheck", def: "Familienverband des Fuchses (Fähe + Welpen)." },
+{ slug: "gestoeber", term: "Gestöber", def: "Aufgewühlter Boden, häufig verursacht durch Schwarzwild." },
+
+{ slug: "grandeln", term: "Grandeln", def: "Canini im Oberkiefer des Rotwildes — Reliktzähne." },
+{ slug: "gewaff", term: "Gewaff", def: "Eckzähne des Keilers (Haderer und Wetzer)." },
+
+{ slug: "hegering", term: "Hegering", def: "Lokale Gruppe von Jägern zur Hege des Wildbestandes." },
+{ slug: "hegeschau", term: "Hegeschau", def: "Öffentliche Präsentation erlegter Trophäen zur Bestandsbewertung." },
+
+{ slug: "jaegerlatein", term: "Jägerlatein", def: "Übertriebene oder humorvolle Jagderzählungen." },
+{ slug: "jagddruck", term: "Jagddruck", def: "Einfluss intensiver Jagd auf das Verhalten und die Aktivität des Wildes." },
+
+{ slug: "kirrplatz", term: "Kirrplatz", def: "Ort zur Kirrung, also zur gezielten Anlockung von Schwarzwild." },
+{ slug: "kugelfang", term: "Kugelfang", def: "Sicherer Hintergrund für den Geschossfang — absolut zwingend." },
+
+{ slug: "malbaum", term: "Malbaum", def: "Baum, an dem Schwarzwild sich scheuert und Duftmarken abgibt." },
+{ slug: "maeusefraß", term: "Mäusefraß", def: "Verbissschäden an Kulturen durch Mäuse und Wühltiere." },
+
+{ slug: "nachsuche", term: "Nachsuche", def: "Suchen und Stellen verletzten oder angeschossenen Wildes." },
+{ slug: "nachtwechsel", term: "Nachtwechsel", def: "Von Wild überwiegend nachts genutzter Wechsel." },
 
 ];
 
