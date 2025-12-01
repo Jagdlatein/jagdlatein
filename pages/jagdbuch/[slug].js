@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import fs from "fs";
 import path from "path";
 
@@ -34,37 +34,42 @@ export async function getStaticProps({ params }) {
 
 export default function JagdbuchPost({ post }) {
   const [likes, setLikes] = useState(post.likes || 0);
-  const [hasLiked, setHasLiked] = useState(
-    typeof window !== "undefined"
-      ? localStorage.getItem("liked_" + post.slug) === "1"
-      : false
-  );
-
-  const [comment, setComment] = useState("");
   const [comments, setComments] = useState(post.comments || []);
-  const [replyTo, setReplyTo] = useState(null); // ID des Kommentars für Antworten
+  const [comment, setComment] = useState("");
+  const [replyTo, setReplyTo] = useState(null);
 
-  if (!post) return <p>Beitrag nicht gefunden.</p>;
-
+  // Admin-Erkennung (Cookie)
   const isAdmin =
     typeof document !== "undefined" &&
     document.cookie.includes("jl_admin=1");
 
-  // 👍 Like senden (pro Benutzer nur einmal)
+  // Browser-ID erzeugen (für Likes nur 1×)
+  useEffect(() => {
+    if (!localStorage.getItem("browserId")) {
+      localStorage.setItem(
+        "browserId",
+        "id-" + Math.random().toString(36).substring(2)
+      );
+    }
+  }, []);
+
+  if (!post) return <p>Beitrag nicht gefunden.</p>;
+
+  // 👍 Like senden
   async function sendLike() {
-    if (hasLiked) return;
+    const browserId = localStorage.getItem("browserId");
 
     const res = await fetch("/api/jagdbuch/like", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-client-id": browserId,
+      },
       body: JSON.stringify({ slug: post.slug }),
     });
 
     const data = await res.json();
     setLikes(data.likes);
-
-    localStorage.setItem("liked_" + post.slug, "1");
-    setHasLiked(true);
   }
 
   // 💬 Kommentar oder Antwort senden
@@ -77,8 +82,8 @@ export default function JagdbuchPost({ post }) {
       body: JSON.stringify({
         slug: post.slug,
         text: comment,
-        replyTo,
-        user: "Jäger", // Benutzername bleibt statisch
+        replyTo, // Antwort auf Kommentar-ID
+        user: "Jäger", // du wolltest KEIN Cookie-User
       }),
     });
 
@@ -88,9 +93,9 @@ export default function JagdbuchPost({ post }) {
     setReplyTo(null);
   }
 
-  // 🔥 Admin: Beitrag löschen
+  // ❌ Admin: Beitrag löschen
   async function deletePost() {
-    if (!confirm("Diesen Beitrag wirklich löschen?")) return;
+    if (!confirm("Beitrag wirklich löschen?")) return;
 
     await fetch("/api/jagdbuch/posts", {
       method: "DELETE",
@@ -104,18 +109,18 @@ export default function JagdbuchPost({ post }) {
     window.location.href = "/jagdbuch";
   }
 
-  // 🎯 Kommentare mit Antworten rendern
+  // 🔁 Kommentare + Antworten verschachtelt anzeigen
   function renderComments(list, level = 0) {
-    return list.map((c, i) => (
+    return list.map((c) => (
       <div
-        key={i}
+        key={c.id}
         style={{
           marginLeft: level * 20,
           background: "#fff",
           padding: 16,
           borderRadius: 10,
           boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          marginTop: 12,
+          marginTop: 14,
         }}
       >
         <strong>🦌 {c.user}</strong>{" "}
@@ -123,20 +128,21 @@ export default function JagdbuchPost({ post }) {
 
         <p style={{ marginTop: 10, whiteSpace: "pre-line" }}>{c.text}</p>
 
+        {/* Antworten-Button */}
         <button
           onClick={() => setReplyTo(c.id)}
           style={{
             background: "transparent",
             border: "none",
             color: "#8a6a3e",
-            marginTop: 6,
             cursor: "pointer",
+            marginTop: 5,
           }}
         >
           ↳ Antworten
         </button>
 
-        {/* Antworten */}
+        {/* Antworten rekursiv darstellen */}
         {c.replies && c.replies.length > 0
           ? renderComments(c.replies, level + 1)
           : null}
@@ -146,7 +152,7 @@ export default function JagdbuchPost({ post }) {
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      {/* Beitrag */}
+      {/* BEITRAG */}
       <div
         style={{
           background: "#fff",
@@ -165,24 +171,23 @@ export default function JagdbuchPost({ post }) {
             whiteSpace: "pre-line",
             color: "#2a2319",
             fontSize: 17,
-            lineHeight: 1.5,
+            lineHeight: 1.6,
           }}
         >
           {post.content}
         </article>
 
-        {/* LIKE */}
+        {/* LIKE BUTTON */}
         <button
           onClick={sendLike}
-          disabled={hasLiked}
           style={{
             marginTop: 24,
-            background: hasLiked ? "#ccc" : "#caa53b",
+            background: "#caa53b",
             border: "none",
             padding: "10px 18px",
             fontSize: 16,
             borderRadius: 12,
-            cursor: hasLiked ? "default" : "pointer",
+            cursor: "pointer",
             color: "#111",
             fontWeight: "bold",
           }}
@@ -190,12 +195,12 @@ export default function JagdbuchPost({ post }) {
           👍 Gefällt mir ({likes})
         </button>
 
-        {/* ADMIN: LÖSCHEN */}
+        {/* ADMIN DELETE */}
         {isAdmin && (
           <button
             onClick={deletePost}
             style={{
-              marginTop: 20,
+              marginTop: 18,
               background: "#8a1a1a",
               color: "#fff",
               padding: "10px 16px",
@@ -209,7 +214,7 @@ export default function JagdbuchPost({ post }) {
         )}
       </div>
 
-      {/* Kommentare */}
+      {/* KOMMENTAR-BEREICH */}
       <div style={{ marginTop: 40 }}>
         <h2>Kommentare</h2>
 
@@ -217,10 +222,12 @@ export default function JagdbuchPost({ post }) {
           <p style={{ color: "#555" }}>Noch keine Kommentare vorhanden.</p>
         )}
 
-        {/* Kommentar-Thread */}
-        <div>{renderComments(comments)}</div>
+        {/* THREAD */}
+        <div style={{ marginTop: 16 }}>
+          {renderComments(comments)}
+        </div>
 
-        {/* Kommentar-Feld */}
+        {/* Kommentar-Formular */}
         <form onSubmit={sendComment} style={{ marginTop: 24 }}>
           {replyTo && (
             <p style={{ color: "#8a6a3e" }}>
@@ -228,8 +235,8 @@ export default function JagdbuchPost({ post }) {
               <button
                 onClick={() => setReplyTo(null)}
                 style={{
-                  border: "none",
                   background: "transparent",
+                  border: "none",
                   cursor: "pointer",
                   color: "#8a1a1a",
                 }}
