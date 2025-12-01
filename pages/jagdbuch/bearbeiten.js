@@ -8,6 +8,7 @@ export default function EditPost() {
   const [post, setPost] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [images, setImages] = useState([]);
 
   // Admin prüfen
   const isAdmin =
@@ -24,6 +25,7 @@ export default function EditPost() {
       setPost(data);
       setTitle(data.title);
       setContent(data.content);
+      setImages(data.images || []);
     }
 
     loadPost();
@@ -46,6 +48,29 @@ export default function EditPost() {
     );
   }
 
+  // 🔼 Bild-Upload (Base64)
+  async function uploadImage(file) {
+    const reader = new FileReader();
+
+    reader.onloadend = async () => {
+      const base64 = reader.result;
+
+      const res = await fetch("/api/jagdbuch/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: slug,
+          image: base64,
+        }),
+      });
+
+      const data = await res.json();
+      setImages(data.images);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   // SPEICHERN
   async function save() {
     await fetch("/api/jagdbuch/posts", {
@@ -55,7 +80,7 @@ export default function EditPost() {
         "x-admin": "1",
       },
       body: JSON.stringify({
-        slug: slug,           // Slug bleibt exakt unverändert
+        slug: slug, // Slug bleibt exakt unverändert
         title,
         content,
       }),
@@ -100,6 +125,37 @@ export default function EditPost() {
           }}
         ></textarea>
       </label>
+
+      {/* BILD-UPLOAD */}
+      <label style={{ display: "block", marginTop: 30 }}>
+        Bilder hochladen
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => uploadImage(e.target.files[0])}
+          style={{ display: "block", marginTop: 10 }}
+        />
+      </label>
+
+      {/* BILD-VORSCHAU */}
+      {images.length > 0 && (
+        <div style={{ marginTop: 20 }}>
+          <h3>Bilder</h3>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            {images.map((img) => (
+              <img
+                key={img.id}
+                src={img.data}
+                style={{
+                  width: "150px",
+                  borderRadius: 10,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <button
         onClick={save}
