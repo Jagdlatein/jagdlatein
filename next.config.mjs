@@ -27,10 +27,12 @@ const nextConfig = {
         destination: "/quiz-app/username",
         permanent: true,
       },
-        {
-        source: '/jagdbuch',
-        destination: '/jagdbuch',
+      // ✅ Jagdbuch Redirect
+      {
+        source: "/jagdbuch",
+        destination: "/jagdbuch",
         permanent: true,
+      },
     ];
   },
 };
