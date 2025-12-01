@@ -55,6 +55,9 @@ export default function Home() {
             <Link href="/quiz" style={styles.linkButton}>Quiz</Link>
             <Link href="/glossar" style={styles.linkButton}>Glossar</Link>
             <Link href="/ebook" style={styles.linkButton}>E-Book</Link>
+
+            {/* 🔥 NEU: JAGDBUCH */}
+            <Link href="/jagdbuch" style={styles.linkButton}>Jagdbuch</Link>
           </div>
 
           {/* LOGOUT BUTTON UNTEN */}
