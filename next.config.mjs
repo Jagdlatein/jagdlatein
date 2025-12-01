@@ -27,12 +27,6 @@ const nextConfig = {
         destination: "/quiz-app/username",
         permanent: true,
       },
-      // ✅ Jagdbuch Redirect
-      {
-        source: "/jagdbuch",
-        destination: "/jagdbuch",
-        permanent: true,
-      },
     ];
   },
 };
