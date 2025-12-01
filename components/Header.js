@@ -15,7 +15,13 @@ export default function Header() {
       setIsPaid(cookie.includes("jl_paid=1"));
     }
   }, []);
-
+export const metadata = {
+  title: "Jagdlatein",
+  description: "Jagdquiz und Lernplattform für Jägerinnen und Jäger.",
+  icons: {
+    icon: [
+      { url: "/favicon_32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon_48.png", sizes: "48x48", type: "image/png" },
   // 🔥 KORREKTER LOGOUT — über API Route (löscht HttpOnly Cookies)
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
