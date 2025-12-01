@@ -34,6 +34,80 @@ const TERMS = [
 
 { slug: "fegen", term: "Fegen", def: "Reinigung des Geweihs von Bast durch Reiben an Bäumen." },
 { slug: "fressfeind", term: "Fressfeind", def: "Natürlicher Beutegreifer des Wildes." },
+{ slug: "aeser", term: "Äser", def: "Maul des Schalenwildes (Jägersprache)." },
+{ slug: "aesung", term: "Äsung", def: "Nahrung des Wildes, besonders Pflanzen und Kräuter." },
+
+{ slug: "abschussplan", term: "Abschussplan", def: "Behördlich festgelegte Vorgabe zur Regulierung von Wildbeständen." },
+{ slug: "abwurfstange", term: "Abwurfstange", def: "Natürlich abgeworfene Geweihstange eines Hirschs." },
+
+{ slug: "balg", term: "Balg", def: "Fell oder Haut eines kleinen Haarwildes." },
+{ slug: "ballistik", term: "Ballistik", def: "Lehre von Geschossflug, Geschwindigkeit und Wirkung." },
+{ slug: "blattzeit", term: "Blattzeit", def: "Paarungszeit des Rehwildes (Juli–August)." },
+{ slug: "brunft", term: "Brunft", def: "Paarungszeit des Rotwildes, Damwildes und anderen Arten." },
+{ slug: "bruch", term: "Bruch", def: "Traditioneller Zweig als Zeichen bei Jagderfolg oder Ritual." },
+
+{ slug: "drueckjagdlinie", term: "Drückjagdlinie", def: "Reihe von Schützen bei Bewegungsjagden." },
+{ slug: "durchschuss", term: "Durchschuss", def: "Geschoss tritt auf der Gegenseite aus dem Wildkörper aus." },
+{ slug: "deckungswechsel", term: "Deckungswechsel", def: "Wechsel des Wildes aus einer Deckungsform in die nächste." },
+
+{ slug: "einstand", term: "Einstand", def: "Bevorzugtes Rückzugsgebiet des Wildes." },
+{ slug: "einwechseln", term: "Einwechseln", def: "Wild zieht in ein Gebiet ein." },
+
+{ slug: "federwild", term: "Federwild", def: "Alle jagdbaren Vogelarten." },
+{ slug: "flaeche", term: "Fläche", def: "Schulterblatt des Schalenwildes." },
+{ slug: "fluchtlinie", term: "Fluchtlinie", def: "Richtung, in die Wild bei Störung flüchtet." },
+{ slug: "foersterdreieck", term: "Försterdreieck", def: "Messhilfe zur Altersbestimmung von Schwarzwild am Gebiss." },
+
+{ slug: "geweih", term: "Geweih", def: "Knochige Waffe der Hirsche, jährlich erneuert." },
+{ slug: "grandeln", term: "Grandeln", def: "Canini der Hirsche, besonders beim Rotwild bekannt." },
+{ slug: "gestoeb", term: "Gestöb", def: "Verwühlte Fläche, oft durch Schwarzwild verursacht." },
+
+{ slug: "herbstlaub", term: "Herbstlaub", def: "Bezeichnung für Wild, das im Herbstfärbungszustand steht." },
+{ slug: "hegering", term: "Hegering", def: "Zusammenschluss von Jägern zur Pflege des Wildbestandes." },
+{ slug: "herkunftsbruch", term: "Herkunftsbruch", def: "Bruch am Schützen zur Anzeige des erfolgreichen Schusses." },
+
+{ slug: "jaegerrecht", term: "Jägerrecht", def: "Historische Bezeichnung für traditionelle Rechte des Jägers." },
+{ slug: "jagdschneise", term: "Jagdschneise", def: "Freigeschnittener Streifen zur Beobachtung und zum Schuss." },
+{ slug: "jagddruck", term: "Jagddruck", def: "Einwirkung durch Jagd, die Wild in Verhalten und Einstand beeinflusst." },
+
+{ slug: "kirrplatz", term: "Kirrplatz", def: "Ort der Kirrung zur schonenden Bejagung des Schwarzwildes." },
+{ slug: "kugelfang", term: "Kugelfang", def: "Sicherer Hintergrund, in dem das Geschoss gefahrlos wirkt." },
+{ slug: "kitzrettung", term: "Kitzrettung", def: "Maßnahmen zum Schutz von Jungwild vor Mähwerken." },
+
+{ slug: "lauben", term: "Lauben", def: "Sich lautlos bewegen, besonders bei der Pirsch." },
+{ slug: "leitbache", term: "Leitbache", def: "Führendes weibliches Schwarzwild, soziale Anführerin der Rotte." },
+{ slug: "loeffeln", term: "Löffeln", def: "Bewegen der Ohren bei Hunden oder Rehen." },
+
+{ slug: "malbaum", term: "Malbaum", def: "Baum, an dem Schwarzwild sich scheuert oder Duftmarken hinterlässt." },
+{ slug: "maeusefraß", term: "Mäusefraß", def: "Schäden an Kulturen durch Nagetierverbiss." },
+{ slug: "meisterlampe", term: "Meister Lampe", def: "Jägersprache für den Feldhasen." },
+
+{ slug: "nachtwechsel", term: "Nachtwechsel", def: "Wechsel, den Wild vorwiegend nachts nutzt." },
+{ slug: "nachsuche", term: "Nachsuche", def: "Suchen und Stellen angeschossenen oder verletzten Wildes." },
+{ slug: "nachsuchenfuehrer", term: "Nachsuchenführer", def: "Spezialisierter Hundeführer für schwierige Nachsuchen." },
+
+{ slug: "pirsch", term: "Pirsch", def: "Anschleichen an das Wild, leise und gedeckt." },
+{ slug: "pirschzeichen", term: "Pirschzeichen", def: "Spuren nach dem Schuss: Schweiß, Schnitthaar, Knochensplitter." },
+{ slug: "plastron", term: "Plastron", def: "Brustfeder eines Birkhahns." },
+
+{ slug: "rehfieber", term: "Rehfieber", def: "Aufgeregtheit des Jägers vor dem Schuss." },
+{ slug: "rudel", term: "Rudel", def: "Sozialgruppe des Rotwildes oder Damwildes." },
+
+{ slug: "schweiß", term: "Schweiß", def: "Blut des Wildes (Jägersprache)." },
+{ slug: "schweisshund", term: "Schweißhund", def: "Speziell gezüchteter Hund für Nachsuchen." },
+{ slug: "schnitthaar", term: "Schnitthaar", def: "Abgeschnittenes Haar am Anschuss, Hinweis auf den Treffer." },
+{ slug: "standlaut", term: "Standlaut", def: "Laut eines Hundes, wenn er das Wild gestellt hat." },
+
+{ slug: "truemmerbruch", term: "Trümmerbruch", def: "Starker, unruhiger Bruch am Ende eines Geweihs." },
+
+{ slug: "verhoffung", term: "Verhoffung", def: "Wild bleibt kurz stehen, um zu prüfen, woher die Gefahr kommt." },
+{ slug: "verblasen", term: "Verblasen", def: "Musikalisches Ehrenritual mit Jagdhorn." },
+
+{ slug: "wechsel", term: "Wechsel", def: "Gleichbleibender Weg, den das Wild regelmäßig nutzt." },
+{ slug: ".windkante", term: "Windkante", def: "Bereich, in dem Windverhältnisse sich abrupt ändern." },
+
+{ slug: "zaunflucht", term: "Zaunflucht", def: "Wild orientiert sich an einem Zaun und zieht entlang." },
+{ slug: "zirpen", term: "Zirpen", def: "Feiner Warnlaut, z. B. beim Rehwild." },
 
 ];
 
