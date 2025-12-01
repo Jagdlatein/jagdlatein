@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function NachjagdKurs() {
+export default function NachtjagdKurs() {
   const quiz = [
     {
       frage: "Wann beginnt eine Nachsuche?",
