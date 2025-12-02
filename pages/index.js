@@ -56,9 +56,8 @@ export default function Home() {
             <Link href="/glossar" style={styles.linkButton}>Glossar</Link>
             <Link href="/ebook" style={styles.linkButton}>E-Book</Link>
             <Link href="/jagdbuch" style={styles.linkButton}>Jagdbuch</Link>
-
-            {/* 🔥 NEU: JAGDPraxis */}
             <Link href="/jagdpraxis" style={styles.linkButton}>Jagdpraxis</Link>
+            <Link href="/jagdrecht" style={styles.linkButton}>Jagdrecht</Link>
           </div>
 
           {/* LOGOUT BUTTON UNTEN */}
