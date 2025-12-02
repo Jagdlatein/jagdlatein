@@ -48,9 +48,11 @@ export async function POST(req) {
 
   const validEvents = [
     "BILLING.SUBSCRIPTION.ACTIVATED",
-    "PAYMENT.CAPTURE.COMPLETED",
-    "CHECKOUT.ORDER.APPROVED",
     "BILLING.SUBSCRIPTION.CREATED",
+    "BILLING.SUBSCRIPTION.UPDATED",
+    "PAYMENT.CAPTURE.COMPLETED",
+    "PAYMENT.SALE.COMPLETED",
+    "CHECKOUT.ORDER.APPROVED",
   ];
 
   if (!validEvents.includes(event.event_type)) {
@@ -63,16 +65,19 @@ export async function POST(req) {
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE
+    process.env.SUPABASE_SERVICE_ROLE_KEY // FIXED
   );
 
-  const { error } = await supabase.from("userprofile").upsert(
-    {
-      email: email.toLowerCase(),
-      is_premium: true,
-    },
-    { onConflict: "email" }
-  );
+  const { error } = await supabase
+    .from("userprofile") // sicher?
+    .upsert(
+      {
+        email: email.toLowerCase(),
+        is_premium: true,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "email" }
+    );
 
   if (error) {
     console.error("❌ Supabase Fehler:", error);
