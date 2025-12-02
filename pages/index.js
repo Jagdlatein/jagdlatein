@@ -39,25 +39,28 @@ export default function Home() {
             Lernen für Jagdschein und Praxis in Deutschland, Österreich &amp; Schweiz
           </p>
 
-          {/* OBERSTE BUTTONS */}
+          {/* OBERSTE BUTTONS (JETZT MIT WHATSAPP) */}
           <div style={styles.btnRow}>
+
             <Link href="/preise" style={styles.btnPrimary}>
               Jetzt freischalten
             </Link>
+
             <Link href={`/login?next=/`} style={styles.btnGhost}>
               Login
             </Link>
-          
-  {/* 🔥 WHATSAPP BUTTON – NEU */}
-  <a
-    href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={styles.btnWhatsApp}
-  >
-    🟢 WhatsApp
-  </a>
-</div>
+
+            {/* 🟢 WHATSAPP BUTTON */}
+            <a
+              href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.btnWhatsApp}
+            >
+              🟢 WhatsApp
+            </a>
+
+          </div>
 
           {/* UNTERE BUTTON-LISTE — KLEINER, GOLD */}
           <div style={styles.linkColumn}>
@@ -131,6 +134,18 @@ const styles = {
     fontWeight: 700,
     textDecoration: "none",
     fontSize: 17,
+  },
+
+  /* 🟢 WHATSAPP BUTTON */
+  btnWhatsApp: {
+    background: "#25D366",
+    color: "#fff",
+    padding: "14px 26px",
+    borderRadius: 14,
+    fontWeight: 700,
+    textDecoration: "none",
+    fontSize: 17,
+    display: "inline-block",
   },
 
   /* UNTERE KLEINERE GOLD-BUTTONS */
