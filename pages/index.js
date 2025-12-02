@@ -47,7 +47,17 @@ export default function Home() {
             <Link href={`/login?next=/`} style={styles.btnGhost}>
               Login
             </Link>
-          </div>
+          
+  {/* 🔥 WHATSAPP BUTTON – NEU */}
+  <a
+    href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={styles.btnWhatsApp}
+  >
+    🟢 WhatsApp
+  </a>
+</div>
 
           {/* UNTERE BUTTON-LISTE — KLEINER, GOLD */}
           <div style={styles.linkColumn}>
