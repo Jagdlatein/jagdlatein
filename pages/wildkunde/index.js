@@ -15,13 +15,14 @@ export default function WildkundeIndex() {
         { name: "Sikawild", slug: "sikawild" },
       ],
     },
+
     {
       title: "Raubwild",
       items: [
         { name: "Fuchs", slug: "fuchs" },
         { name: "Dachs", slug: "dachs" },
-        { name: "Marderhund", slug: "marderhund" },
         { name: "Waschbär", slug: "waschbaer" },
+        { name: "Marderhund", slug: "marderhund" },
         { name: "Steinmarder", slug: "steinmarder" },
         { name: "Baummarder", slug: "baummarder" },
         { name: "Iltis", slug: "iltis" },
@@ -31,6 +32,7 @@ export default function WildkundeIndex() {
         { name: "Luchs", slug: "luchs" },
       ],
     },
+
     {
       title: "Niederwild (Hase, Kaninchen, Nagetiere)",
       items: [
@@ -43,6 +45,7 @@ export default function WildkundeIndex() {
         { name: "Eichhörnchen", slug: "eichhoernchen" },
       ],
     },
+
     {
       title: "Federwild – Hühner- & Raufußhühner",
       items: [
@@ -50,21 +53,22 @@ export default function WildkundeIndex() {
         { name: "Rebhuhn", slug: "rebhuhn" },
         { name: "Birkhuhn", slug: "birkhuhn" },
         { name: "Auerhuhn", slug: "auerhuhn" },
-        { name: "Schneehuhn (Federwild)", slug: "schneehuuhn-federwild" },
+        { name: "Schneehuhn", slug: "schneehuhn" },
       ],
     },
+
     {
       title: "Federwild – Enten",
       items: [
         { name: "Stockente", slug: "stockente" },
         { name: "Krickente", slug: "krickente" },
-        { name: "Spießente", slug: "spiessente" },
         { name: "Pfeifente", slug: "pfeifente" },
-        { name: "Schnatterente", slug: "schnatterente" },
+        { name: "Spießente", slug: "spiessente" },
         { name: "Tafelente", slug: "tafelente" },
         { name: "Reiherente", slug: "reiherente" },
       ],
     },
+
     {
       title: "Federwild – Gänse",
       items: [
@@ -73,6 +77,7 @@ export default function WildkundeIndex() {
         { name: "Nilgans", slug: "nilgans" },
       ],
     },
+
     {
       title: "Federwild – Krähen & Tauben",
       items: [
@@ -85,36 +90,96 @@ export default function WildkundeIndex() {
         { name: "Hohltaube", slug: "hohltaube" },
       ],
     },
-    {
-      title: "Federwild – Sonstige",
-      items: [
-        { name: "Waldschnepfe", slug: "waldschnepfe" },
-        { name: "Blässhuhn", slug: "blaesshuhn" },
-        { name: "Haubentaucher", slug: "haubentaucher" },
-      ],
-    },
   ];
 
   return (
-    <main style={{ padding: "2rem", maxWidth: "900px", margin: "0 auto" }}>
-      <h1>Wildkunde – Alle jagdbaren Wildarten</h1>
-      <p>
-        Hier findest du alle jagdbaren Wildarten aus Deutschland, Österreich und
-        der Schweiz – sortiert nach Wildkategorie.
-      </p>
+    <main style={styles.main}>
+      <div style={styles.wrap}>
+        
+        <h1 style={styles.title}>Wildkunde – Alle jagdbaren Wildarten</h1>
+        <p style={styles.sub}>
+          Übersicht über alle jagdbaren Wildarten in Deutschland, Österreich und der Schweiz.
+        </p>
 
-      {kategorien.map((kat) => (
-        <section key={kat.title} style={{ marginBottom: "2rem" }}>
-          <h2>{kat.title}</h2>
-          <ul>
-            {kat.items.map((art) => (
-              <li key={art.slug}>
-                <a href={`/wildkunde/${art.slug}`}>{art.name}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+        {kategorien.map((kat) => (
+          <section key={kat.title} style={styles.categoryBox}>
+            <h2 style={styles.categoryTitle}>{kat.title}</h2>
+
+            <ul style={styles.list}>
+              {kat.items.map((art) => (
+                <li key={art.slug} style={styles.listItem}>
+                  <a href={`/wildkunde/${art.slug}`} style={styles.link}>
+                    {art.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </main>
   );
 }
+
+const styles = {
+  main: {
+    background: "#faf8f1",
+    padding: "40px 20px",
+    minHeight: "100vh",
+  },
+  wrap: {
+    maxWidth: "900px",
+    margin: "0 auto",
+  },
+  title: {
+    fontSize: "42px",
+    fontWeight: 800,
+    marginBottom: "10px",
+    color: "#1f2b23",
+  },
+  sub: {
+    fontSize: "19px",
+    marginBottom: "30px",
+    color: "#4b4b4b",
+  },
+
+  categoryBox: {
+    background: "#fff",
+    borderRadius: "14px",
+    padding: "22px 26px",
+    marginBottom: "28px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+    border: "1px solid #e2d9c9",
+  },
+
+  categoryTitle: {
+    fontSize: "26px",
+    marginBottom: "12px",
+    color: "#1f2b23",
+    borderBottom: "2px solid #caa53b",
+    paddingBottom: "6px",
+    display: "inline-block",
+  },
+
+  list: {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+  listItem: {},
+
+  link: {
+    fontSize: "18px",
+    color: "#1f2b23",
+    textDecoration: "none",
+    padding: "6px 0",
+    borderRadius: "6px",
+    transition: "0.2s",
+  },
+  linkHover: {
+    background: "#f1eadb",
+  },
+};
