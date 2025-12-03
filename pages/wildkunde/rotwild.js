@@ -2,7 +2,6 @@ import { useState } from "react";
 import Image from "next/image";
 
 export default function Rotwild() {
-  // QUIZ-DATEN
   const quiz = [
     {
       q: "Wann brunftet das Rotwild?",
@@ -38,10 +37,10 @@ export default function Rotwild() {
         <h1 style={styles.title}>Rotwild (Cervus elaphus)</h1>
         <p style={styles.subtitle}>Rotwild – Hirsch, Tier & Kalb</p>
 
-        {/* ✔ Bild funktioniert */}
+        {/* ⭐ Bild aus /public – funktioniert IMMER */}
         <div style={styles.imageBox}>
           <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/1/19/Red_deer_stag_%28Cervus_elaphus%29.jpg"
+            src="/wildkunde/hirsch.jpg"
             alt="Rotwild Hirsch"
             width={1200}
             height={800}
@@ -49,7 +48,7 @@ export default function Rotwild() {
           />
         </div>
 
-        {/* ABSCHNITTE – ULTRA DETAILLIERT */}
+        {/* --- STECKBRIEF --- */}
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Allgemeines</h2>
           <ul style={styles.list}>
@@ -57,12 +56,10 @@ export default function Rotwild() {
             <li>Gewicht: Hirsch 120–220 kg, Tier 70–120 kg</li>
             <li>Körperlänge 170–240 cm, Schulterhöhe 110–140 cm</li>
             <li>Lebensraum: Bergwälder, Mittelgebirge, Rotwildgebiete</li>
-            <li>Nahrung: Gräser, Kräuter, Triebe, Rinde, Bucheckern, Eicheln</li>
-            <li>Sozialstruktur: Rudel · Leittier = erfahrenes Alttier</li>
+            <li>Nahrung: Gräser, Kräuter, Triebe, Rinde</li>
+            <li>Sozialstruktur: Rudel um ein erfahrenes Alttier</li>
             <li>Brunftzeit: September–Oktober</li>
-            <li>Setzzeit: Mai–Juni (1 Kalb)</li>
-            <li>Hirsche bilden Sommer–Hirschrudel</li>
-            <li>Winter: Energiesparen, geringere Aktivität</li>
+            <li>Setzzeit: Mai–Juni (meist 1 Kalb)</li>
           </ul>
         </section>
 
@@ -71,20 +68,9 @@ export default function Rotwild() {
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
             <li>Grandeln = rudimentäre Eckzähne im Oberkiefer</li>
-            <li>Kälber → vollständiges Milchgebiss</li>
+            <li>Kälber: Milchgebiss vollständig</li>
             <li>Zahnwechsel ab 13 Monaten</li>
-            <li>Altersschätzung über Abnutzung (M3 wichtig)</li>
-          </ul>
-        </section>
-
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Geweihentwicklung</h2>
-          <ul style={styles.list}>
-            <li>1. Kopf: Spießer</li>
-            <li>2.–5. Kopf: Ausbau · Endenzahl steigt</li>
-            <li>ab 6.–12. Kopf: Hochpflege</li>
-            <li>Abwurf: Februar–März</li>
-            <li>Neubildung unter Bast im Frühjahr</li>
+            <li>Altersschätzung über M2 & M3</li>
           </ul>
         </section>
 
@@ -92,14 +78,14 @@ export default function Rotwild() {
           <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
           <ul style={styles.list}>
             <li>Hirsch mit mächtigem Stangengeweih</li>
-            <li>Sommerfell rotbraun, Winterfell graubraun</li>
+            <li>Sommerfell rotbraun – Winterfell graubraun</li>
             <li>Spiegel gelblich-weiß</li>
-            <li>Losung: olivenförmig, dunkel</li>
-            <li>Fährte: 6–8 cm · breit und tief</li>
+            <li>Losung olivenförmig</li>
+            <li>Fährte 6–8 cm, breit gestellt</li>
           </ul>
         </section>
 
-        {/* INTERAKTIVES QUIZ */}
+        {/* --- QUIZ --- */}
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
@@ -107,15 +93,14 @@ export default function Rotwild() {
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
 
-              {q.a.map((answer, ai) => {
-                const isCorrect = q.correct === ai;
+              {q.a.map((ans, ai) => {
+                const isCorrect = ai === q.correct;
                 const isSelected = selected[qi] === ai;
 
                 let bg = "#fff";
-
                 if (answered[qi]) {
-                  if (isSelected && isCorrect) bg = "#c6f6c6"; // grün
-                  else if (isSelected && !isCorrect) bg = "#f7c6c6"; // rot
+                  if (isCorrect && isSelected) bg = "#c6f6c6";
+                  else if (!isCorrect && isSelected) bg = "#f7c6c6";
                 }
 
                 return (
@@ -124,7 +109,7 @@ export default function Rotwild() {
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >
-                    {answer}
+                    {ans}
                   </button>
                 );
               })}
@@ -137,49 +122,15 @@ export default function Rotwild() {
 }
 
 const styles = {
-  main: {
-    background: "#faf8f1",
-    padding: "40px 20px",
-    minHeight: "100vh",
-  },
-  wrap: {
-    maxWidth: "900px",
-    margin: "0 auto",
-  },
-  title: {
-    fontSize: "42px",
-    fontWeight: 800,
-    marginBottom: "6px",
-    color: "#1f2b23",
-  },
-  subtitle: {
-    fontSize: "19px",
-    marginBottom: "26px",
-    color: "#5a5a5a",
-  },
-  imageBox: {
-    borderRadius: "14px",
-    overflow: "hidden",
-    marginBottom: "32px",
-  },
-  image: {
-    width: "100%",
-    height: "auto",
-  },
-  section: {
-    marginBottom: "36px",
-  },
-  sectionTitle: {
-    fontSize: "26px",
-    marginBottom: "14px",
-    color: "#1f2b23",
-  },
-  list: {
-    paddingLeft: "22px",
-    lineHeight: "1.7",
-    fontSize: "17px",
-    color: "#333",
-  },
+  main: { background: "#faf8f1", padding: "40px 20px", minHeight: "100vh" },
+  wrap: { maxWidth: "900px", margin: "0 auto" },
+  title: { fontSize: "42px", fontWeight: 800, marginBottom: "6px" },
+  subtitle: { fontSize: "19px", marginBottom: "26px", color: "#5a5a5a" },
+  imageBox: { borderRadius: "14px", overflow: "hidden", marginBottom: "32px" },
+  image: { width: "100%", height: "auto" },
+  section: { marginBottom: "36px" },
+  sectionTitle: { fontSize: "26px", marginBottom: "14px" },
+  list: { paddingLeft: "22px", lineHeight: "1.7", fontSize: "17px" },
   quizBlock: {
     marginBottom: "26px",
     padding: "16px",
@@ -187,20 +138,16 @@ const styles = {
     borderRadius: "12px",
     border: "1px solid #e2d9c9",
   },
-  quizQuestion: {
-    fontSize: "18px",
-    marginBottom: "12px",
-    fontWeight: 600,
-  },
+  quizQuestion: { fontSize: "18px", marginBottom: "12px", fontWeight: 600 },
   quizButton: {
     display: "block",
     width: "100%",
-    textAlign: "left",
     padding: "10px 14px",
     marginBottom: "10px",
     borderRadius: "10px",
     border: "1px solid #ccc",
     fontSize: "16px",
+    textAlign: "left",
     cursor: "pointer",
   },
 };
