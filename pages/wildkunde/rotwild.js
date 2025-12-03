@@ -38,23 +38,18 @@ export default function Rotwild() {
         <h1 style={styles.title}>Rotwild (Cervus elaphus)</h1>
         <p style={styles.subtitle}>Rotwild – Hirsch, Tier & Kalb</p>
 
-        {/* ✔ Bild funktioniert 100 % */}
+        {/* ✔ Bild funktioniert */}
         <div style={styles.imageBox}>
-<Image
-  src=https://upload.wikimedia.org/wikipedia/commons/1/19/Red_deer_stag_%28Cervus_elaphus%29.jpg
-alt="Rotwild Hirsch"
-  width={1200}
-  height={800}
-  style={styles.image}
-/>
-
-
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/1/19/Red_deer_stag_%28Cervus_elaphus%29.jpg"
+            alt="Rotwild Hirsch"
+            width={1200}
+            height={800}
+            style={styles.image}
+          />
         </div>
 
-        {/* ————————————————————————————— */}
         {/* ABSCHNITTE – ULTRA DETAILLIERT */}
-        {/* ————————————————————————————— */}
-
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Allgemeines</h2>
           <ul style={styles.list}>
@@ -104,10 +99,7 @@ alt="Rotwild Hirsch"
           </ul>
         </section>
 
-        {/* ————————————————————————————— */}
         {/* INTERAKTIVES QUIZ */}
-        {/* ————————————————————————————— */}
-
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
@@ -188,8 +180,6 @@ const styles = {
     fontSize: "17px",
     color: "#333",
   },
-
-  // QUIZ
   quizBlock: {
     marginBottom: "26px",
     padding: "16px",
