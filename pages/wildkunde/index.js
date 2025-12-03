@@ -107,8 +107,17 @@ export default function WildkundeIndex() {
 
             <ul style={styles.list}>
               {kat.items.map((art) => (
-                <li key={art.slug} style={styles.listItem}>
-                  <a href={`/wildkunde/${art.slug}`} style={styles.link}>
+                <li key={art.slug}>
+                  <a
+                    href={`/wildkunde/${art.slug}`}
+                    style={styles.link}
+                    onMouseEnter={(e) =>
+                      (e.target.style.background = "#f1eadb")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.background = "transparent")
+                    }
+                  >
                     {art.name}
                   </a>
                 </li>
@@ -167,19 +176,15 @@ const styles = {
     margin: 0,
     display: "flex",
     flexDirection: "column",
-    gap: "8px",
+    gap: "6px",
   },
-  listItem: {},
 
   link: {
     fontSize: "18px",
     color: "#1f2b23",
     textDecoration: "none",
-    padding: "6px 0",
-    borderRadius: "6px",
+    padding: "8px 6px",
+    borderRadius: "8px",
     transition: "0.2s",
-  },
-  linkHover: {
-    background: "#f1eadb",
   },
 };
