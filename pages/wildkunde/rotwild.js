@@ -40,13 +40,14 @@ export default function Rotwild() {
 
         {/* ✔ Bild funktioniert 100 % */}
         <div style={styles.imageBox}>
-          <Image
-            src="https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1500&q=80"
-            alt="Rotwild Hirsch"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+       <Image
+  src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Cervus_elaphus_Luc_Viatour_8.jpg"
+  alt="Rotwild Hirsch"
+  width={1200}
+  height={800}
+  style={styles.image}
+/>
+
         </div>
 
         {/* ————————————————————————————— */}
