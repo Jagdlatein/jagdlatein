@@ -136,12 +136,14 @@ const styles = {
   section: { marginBottom: "36px" },
   sectionTitle: { fontSize: "26px", marginBottom: "14px" },
   list: { paddingLeft: "22px", lineHeight: "1.7", fontSize: "17px" },
-  quizBlock: {
-    marginBottom: "26px",
-    padding: "16px",
-    background: "#fff",
-    borderRadius: "12px",
-    border: "1px solid "#e2d9c9",
+ quizBlock: {
+  marginBottom: "26px",
+  padding: "16px",
+  background: "#fff",
+  borderRadius: "12px",
+  border: "1px solid #e2d9c9",
+},
+
   },
   quizQuestion: { fontSize: "18px", marginBottom: "12px", fontWeight: 600 },
   quizButton: {
