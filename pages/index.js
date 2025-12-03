@@ -96,8 +96,7 @@ export default function Home() {
             <Link href="/jagdbuch" style={styles.linkButton}>Jagdbuch</Link>
             <Link href="/jagdpraxis" style={styles.linkButton}>Jagdpraxis</Link>
             <Link href="/jagdrecht" style={styles.linkButton}>Jagdrecht</Link>
-            <Link href="/jagdrecht" style={styles.linkButton}>Wildkunde</Link>
-          </div>
+         </div>
 
           {/* LOGOUT BUTTON */}
           {loggedIn && (
