@@ -48,5 +48,57 @@
     "id": "jsg_art_10",
     "title": "Art. 10 Schiessfertigkeit",
     "text": "Die Kantone verlangen den periodischen Nachweis der Schiessfertigkeit. Ohne gültigen Schiessnachweis darf keine Jagdberechtigung erteilt werden."
+  },
+
+  {
+    "id": "jsg_art_11",
+    "title": "Art. 11 Wildhut",
+    "text": "Die Kantone stellen eine ausreichende Wildhut sicher. Die Wildhüter überwachen die Einhaltung der jagdrechtlichen Vorschriften, führen Kontrollen durch, unterstützen die Jagdverwaltung, überwachen Wildbestände, kümmern sich um verletzte Tiere und sorgen für den Vollzug von Schutzmassnahmen."
+  },
+  {
+    "id": "jsg_art_12",
+    "title": "Art. 12 Schutzgebiete und Wildruhezonen",
+    "text": "Der Bund kann Schutzgebiete und Wildruhezonen von nationaler Bedeutung bezeichnen. Die Kantone errichten weitere Zonen entsprechend ihren Bedürfnissen. In diesen Gebieten können Betretungsbeschränkungen und Jagdverbote verfügt werden."
+  },
+  {
+    "id": "jsg_art_13",
+    "title": "Art. 13 Beobachtung und Monitoring",
+    "text": "Die Kantone sind verpflichtet, den Zustand und die Entwicklung der Wildtierbestände zu überwachen. Der Bund kann Standards zur Datenerhebung festlegen und Programme zur schweizweiten Koordination einrichten."
+  },
+  {
+    "id": "jsg_art_14",
+    "title": "Art. 14 Regulierung geschützter Arten",
+    "text": "Der Bundesrat kann Ausnahmen vom Jagdverbot geschützter Arten zulassen, wenn erhebliche Schäden entstehen, Gefahren für Menschen oder Nutztiere bestehen oder das ökologische Gleichgewicht gestört ist. Bewilligungen müssen streng kontrolliert werden."
+  },
+  {
+    "id": "jsg_art_15",
+    "title": "Art. 15 Abschussplanung",
+    "text": "Für jagdbare Arten erstellen die Kantone jährliche oder mehrjährige Abschusspläne. Diese berücksichtigen biologische Kriterien, Populationsentwicklung und Lebensraumkapazität. Jäger dürfen nur im Rahmen dieser Pläne jagen."
+  },
+  {
+    "id": "jsg_art_16",
+    "title": "Art. 16 Jagdausübung",
+    "text": "Die Ausübung der Jagd muss weidgerecht und tierschutzkonform erfolgen. Der Bundesrat legt Mindestanforderungen fest. Die Kantone regeln Jagdmethoden, erlaubte Waffen, Munition, Jagdhunde sowie Sicherheitsbestimmungen."
+  },
+  {
+    "id": "jsg_art_17",
+    "title": "Art. 17 Tierschutz bei der Jagd",
+    "text": "Die Jagd ist so auszuüben, dass Tierleid minimiert wird. Verboten sind nicht tierschutzkonforme Methoden, unnötiges Stören von Tieren sowie vermeidbares Nachsuchenversäumnis. Nachsuchen müssen unverzüglich eingeleitet werden."
+  },
+  {
+    "id": "jsg_art_18",
+    "title": "Art. 18 Wildverwertung",
+    "text": "Erlegtes Wild ist fachgerecht zu versorgen und zu verwerten. Die Kantone regeln, ob Wild zur amtlichen Kontrolle vorzuführen ist. Der Handel mit Wildbret ist gemäss Lebensmittelrecht erlaubt."
+  },
+  {
+    "id": "jsg_art_19",
+    "title": "Art. 19 Haftung und Schadenersatz",
+    "text": "Die Kantone regeln, wer bei Wildschäden ersatzpflichtig ist. Der Bund kann Beiträge an Präventionsmassnahmen leisten. Jäger haften bei Fehlabschüssen und Verstoss gegen Sicherheitsvorschriften."
+  },
+  {
+    "id": "jsg_art_20",
+    "title": "Art. 20 Straftaten",
+    "text": "Wer vorsätzlich oder fahrlässig gegen das Jagdgesetz verstösst, jagt ohne Berechtigung, Schonzeiten verletzt, geschützte Arten erlegt oder unzulässige Mittel einsetzt, wird nach kantonalem oder bundesrechtlichem Strafrecht bestraft."
   }
-]
+[
+
