@@ -1,0 +1,52 @@
+[
+  {
+    "id": "sg-1",
+    "title": "Grundlagen des Jagdrechts im Kanton St. Gallen",
+    "text": "St. Gallen führt eine Patentjagd. Der Kanton regelt Wildschutz, Abschussplanung, Weiterbildung und die Ausübung der Jagd in sämtlichen Höhenlagen."
+  },
+  {
+    "id": "sg-2",
+    "title": "Patentwesen und Zulassung",
+    "text": "Jagdpatente werden nach bestandener Prüfung vergeben. Für bestimmte Wildarten gelten zusätzliche Bewilligungen."
+  },
+  {
+    "id": "sg-3",
+    "title": "Abschussplanung und Bewirtschaftung",
+    "text": "Reh-, Rot- und Gamswild unterliegen jährlicher Planung. Ziel ist eine Balance zwischen Wildbestand und Waldverjüngung."
+  },
+  {
+    "id": "sg-4",
+    "title": "Digitale Jagdadministration",
+    "text": "St. Gallen setzt auf digitale Streckenmeldungen und onlinebasierte Jagdverwaltungssysteme."
+  },
+  {
+    "id": "sg-5",
+    "title": "Jagdzeiten und Sperrzonen",
+    "text": "Jagdzeiten unterscheiden zwischen Tal-, Mittel- und Hochgebirgslagen. Schutzgebiete sind ganzjährig gesperrt."
+  },
+  {
+    "id": "sg-6",
+    "title": "Waffen- und Schussregeln",
+    "text": "Vorgeschrieben sind geeignete Kaliber, sichere Schussabgabe und Einhaltung aller Sicherheitsgrundsätze."
+  },
+  {
+    "id": "sg-7",
+    "title": "Ausbildung und Schiessnachweis",
+    "text": "Ein jährlicher Schiessnachweis ist Pflicht. Die Jagdschule St. Gallen legt Wert auf Bergjagdkompetenz."
+  },
+  {
+    "id": "sg-8",
+    "title": "Wildschutz und Biotope",
+    "text": "Auen, Feuchtgebiete und Auerhuhnareale stehen unter besonderem Schutz."
+  },
+  {
+    "id": "sg-9",
+    "title": "Meldungen und Grossraubtiere",
+    "text": "Beobachtungen von Wolf, Luchs oder Bär sind meldepflichtig."
+  },
+  {
+    "id": "sg-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Die Wildhut führt Kontrollen durch und kann Bussen oder Jagdverbote aussprechen."
+  }
+]
