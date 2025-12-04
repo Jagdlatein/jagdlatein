@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function JagdrechtCH() {
-  const [mode, setMode] = useState("kantone"); // jsg | jsv | kantone
+  const [mode, setMode] = useState("kantone"); // jsg | jsv | kantone | infos
   const [kantone, setKantone] = useState([]);
   const [selectedKanton, setSelectedKanton] = useState("");
   const [articles, setArticles] = useState([]);
@@ -14,7 +14,7 @@ export default function JagdrechtCH() {
       .then(setKantone);
   }, []);
 
-  // 2. Inhalt dynamisch laden je nach Modus
+  // 2. Inhalt für JSG / JSV / Kanton laden
   useEffect(() => {
     let path = "";
 
@@ -25,7 +25,7 @@ export default function JagdrechtCH() {
       path = `/data/jagdrecht/ch/${selectedKanton}.json`;
     }
 
-    if (!path) {
+    if (!path || mode === "infos") {
       setArticles([]);
       return;
     }
@@ -42,7 +42,7 @@ export default function JagdrechtCH() {
       .includes(search.toLowerCase())
   );
 
-  // Highlighting
+  // Highlight
   const highlight = (text) => {
     if (!search) return text;
     const parts = text.split(new RegExp(`(${search})`, "gi"));
@@ -57,7 +57,7 @@ export default function JagdrechtCH() {
     <main style={styles.container}>
       <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht</h1>
 
-      {/* Mode-Wechsel */}
+      {/* TABS */}
       <div style={styles.tabs}>
         <button
           style={mode === "jsg" ? styles.tabActive : styles.tab}
@@ -79,9 +79,16 @@ export default function JagdrechtCH() {
         >
           Kantone
         </button>
+
+        <button
+          style={mode === "infos" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("infos"); setSelectedKanton(""); }}
+        >
+          Kantonsinfos
+        </button>
       </div>
 
-      {/* Kantonsauswahl nur wenn kantone aktiv */}
+      {/* KANTONS-AUSWAHL */}
       {mode === "kantone" && (
         <select
           value={selectedKanton}
@@ -97,54 +104,60 @@ export default function JagdrechtCH() {
         </select>
       )}
 
-      {/* Suchfeld */}
-      {((mode !== "kantone") || (mode === "kantone" && selectedKanton)) && (
-        <input
-          type="text"
-          placeholder="Suchbegriff eingeben…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={styles.search}
-        />
+      {/* SUCHE */}
+      {((mode !== "kantone") || (mode === "kantone" && selectedKanton)) &&
+        mode !== "infos" && (
+          <input
+            type="text"
+            placeholder="Suchbegriff eingeben…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={styles.search}
+          />
+        )}
+
+      {/* ARTIKELLISTE */}
+      {mode !== "infos" && (
+        <div style={styles.list}>
+          {filtered.map(article => (
+            <div id={article.id} key={article.id} style={styles.card}>
+              <h2 style={styles.articleTitle}>{highlight(article.title)}</h2>
+              <p style={styles.text}>{highlight(article.text)}</p>
+            </div>
+          ))}
+        </div>
       )}
 
-      {/* Artikel */}
-      <div style={styles.list}>
-        {filtered.map(article => (
-          <div id={article.id} key={article.id} style={styles.card}>
-            <h2 style={styles.articleTitle}>{highlight(article.title)}</h2>
-            <p style={styles.text}>{highlight(article.text)}</p>
-          </div>
-        ))}
-      </div>
+      {/* KANTONSINFOS-LISTE */}
+      {mode === "infos" && (
+        <div style={styles.infoList}>
+          {kantone.map(k => (
+            <div key={k.kurz} style={styles.infoCard}>
+              <h2 style={styles.articleTitle}>
+                {k.name} ({k.kurz})
+              </h2>
+              <p><b>Jagsystem:</b> {k.system}</p>
+              <p><b>Prüfung:</b> {k.prüfung}</p>
+              <p><b>Besonderheiten:</b> {k.besonderheiten}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }
 
 const styles = {
-  container: {
-    maxWidth: 900,
-    margin: "0 auto",
-    padding: 32,
-    fontFamily: "system-ui",
-  },
-  h1: {
-    fontSize: 34,
-    marginBottom: 20,
-    fontWeight: 700,
-  },
-  tabs: {
-    display: "flex",
-    gap: 12,
-    marginBottom: 20,
-  },
+  container: { maxWidth: 900, margin: "0 auto", padding: 32, fontFamily: "system-ui" },
+  h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
+  tabs: { display: "flex", gap: 12, marginBottom: 20 },
   tab: {
     padding: "10px 16px",
     borderRadius: 10,
     border: "1px solid #bbb",
     background: "#f7f7f7",
     fontSize: 16,
-    cursor: "pointer",
+    cursor: "pointer"
   },
   tabActive: {
     padding: "10px 16px",
@@ -153,46 +166,31 @@ const styles = {
     background: "#caa53b",
     color: "white",
     fontSize: 16,
-    fontWeight: 600,
     cursor: "pointer",
+    fontWeight: 600
   },
   select: {
-    width: "100%",
-    padding: 14,
-    borderRadius: 12,
-    border: "1px solid #bbb",
-    fontSize: 17,
-    marginBottom: 20,
-    background: "#fff",
+    width: "100%", padding: 14, borderRadius: 12, marginBottom: 20,
+    border: "1px solid #bbb", fontSize: 17
   },
   search: {
-    width: "100%",
-    padding: 14,
-    borderRadius: 12,
-    border: "1px solid #bbb",
-    fontSize: 17,
-    marginBottom: 30,
+    width: "100%", padding: 14, borderRadius: 12, marginBottom: 30,
+    border: "1px solid #bbb", fontSize: 17
   },
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 22,
-  },
+  list: { display: "flex", flexDirection: "column", gap: 22 },
   card: {
-    background: "#fff",
-    padding: 18,
-    borderRadius: 14,
+    background: "#fff", padding: 18, borderRadius: 14,
     boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-    borderLeft: "6px solid #caa53b",
+    borderLeft: "6px solid #caa53b"
   },
-  articleTitle: {
-    fontSize: 20,
-    fontWeight: 600,
-    marginBottom: 8,
-  },
-  text: {
-    whiteSpace: "pre-line",
-    fontSize: 16,
-    color: "#333",
-  },
+  articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
+  text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
+
+  /* INFO SECTION */
+  infoList: { display: "flex", flexDirection: "column", gap: 18 },
+  infoCard: {
+    background: "#fff", padding: 18, borderRadius: 14,
+    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+    borderLeft: "6px solid #888"
+  }
 };
