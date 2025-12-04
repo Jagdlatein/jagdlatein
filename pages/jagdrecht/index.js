@@ -1,28 +1,28 @@
 import { useState, useEffect } from "react";
 
-export default function JagdrechtDE() {
-  const [mode, setMode] = useState("laender"); // bjagdg | verordnung | laender | infos
-  const [laender, setLaender] = useState([]);
-  const [selectedLand, setSelectedLand] = useState("");
+export default function JagdrechtCH() {
+  const [mode, setMode] = useState("kantone"); // jsg | jsv | kantone | infos
+  const [kantone, setKantone] = useState([]);
+  const [selectedKanton, setSelectedKanton] = useState("");
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Länderindex laden
+  // Kantonsindex laden
   useEffect(() => {
-    fetch("/data/jagdrecht/de/laender.json")
+    fetch("/data/jagdrecht/ch/kantone.json")
       .then(r => r.json())
-      .then(setLaender);
+      .then(setKantone);
   }, []);
 
-  // Inhalt BJagdG / Verordnung / Länderartikel laden
+  // Inhalte je nach Modus laden
   useEffect(() => {
     let path = "";
 
-    if (mode === "bjagdg") path = "/data/jagdrecht/de/bjagdg.json";
-    if (mode === "verordnung") path = "/data/jagdrecht/de/bundesverordnung.json";
+    if (mode === "jsg") path = "/data/jagdrecht/ch/jsg.json";
+    if (mode === "jsv") path = "/data/jagdrecht/ch/jsv.json";
 
-    if (mode === "laender" && selectedLand) {
-      path = `/data/jagdrecht/de/${selectedLand}.json`;
+    if (mode === "kantone" && selectedKanton) {
+      path = `/data/jagdrecht/ch/${selectedKanton}.json`;
     }
 
     if (!path || mode === "infos") {
@@ -33,7 +33,7 @@ export default function JagdrechtDE() {
     fetch(path)
       .then(r => r.json())
       .then(setArticles);
-  }, [mode, selectedLand]);
+  }, [mode, selectedKanton]);
 
   // Suche
   const filtered = articles.filter(a =>
@@ -52,57 +52,57 @@ export default function JagdrechtDE() {
 
   return (
     <main style={styles.container}>
-      <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
+      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht</h1>
 
       {/* TABS */}
       <div style={styles.tabs}>
         <button
-          style={mode === "bjagdg" ? styles.tabActive : styles.tab}
-          onClick={() => { setMode("bjagdg"); setSelectedLand(""); }}
+          style={mode === "jsg" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("jsg"); setSelectedKanton(""); }}
         >
-          Bundesjagdgesetz (BJagdG)
+          Bundesgesetz (JSG)
         </button>
 
         <button
-          style={mode === "verordnung" ? styles.tabActive : styles.tab}
-          onClick={() => { setMode("verordnung"); setSelectedLand(""); }}
+          style={mode === "jsv" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("jsv"); setSelectedKanton(""); }}
         >
-          Verordnungen
+          Verordnung (JSV)
         </button>
 
         <button
-          style={mode === "laender" ? styles.tabActive : styles.tab}
-          onClick={() => setMode("laender")}
+          style={mode === "kantone" ? styles.tabActive : styles.tab}
+          onClick={() => setMode("kantone")}
         >
-          Bundesländer
+          Kantone
         </button>
 
         <button
           style={mode === "infos" ? styles.tabActive : styles.tab}
-          onClick={() => { setMode("infos"); setSelectedLand(""); }}
+          onClick={() => { setMode("infos"); setSelectedKanton(""); }}
         >
-          Länderinfos
+          Kantonsinfos
         </button>
       </div>
 
-      {/* Land Auswahl */}
-      {mode === "laender" && (
+      {/* Kanton Auswahl */}
+      {mode === "kantone" && (
         <select
-          value={selectedLand}
-          onChange={(e) => setSelectedLand(e.target.value)}
+          value={selectedKanton}
+          onChange={(e) => setSelectedKanton(e.target.value)}
           style={styles.select}
         >
-          <option value="">Bitte Bundesland wählen…</option>
-          {laender.map(l => (
-            <option key={l.kurz} value={l.kurz}>
-              {l.name} ({l.kurz})
+          <option value="">Bitte Kanton wählen…</option>
+          {kantone.map(k => (
+            <option key={k.kurz} value={k.kurz}>
+              {k.name} ({k.kurz})
             </option>
           ))}
         </select>
       )}
 
-      {/* Suche */}
-      {((mode !== "laender") || (mode === "laender" && selectedLand)) &&
+      {/* Suchfeld */}
+      {((mode !== "kantone") || (mode === "kantone" && selectedKanton)) &&
         mode !== "infos" && (
           <input
             type="text"
@@ -125,15 +125,15 @@ export default function JagdrechtDE() {
         </div>
       )}
 
-      {/* Länderinfos */}
+      {/* Kantonsinfos */}
       {mode === "infos" && (
         <div style={styles.infoList}>
-          {laender.map(l => (
-            <div key={l.kurz} style={styles.infoCard}>
-              <h2 style={styles.articleTitle}>{l.name} ({l.kurz})</h2>
-              <p><b>Jagsystem:</b> {l.system}</p>
-              <p><b>Prüfung:</b> {l.pruefung}</p>
-              <p><b>Besonderheiten:</b> {l.besonderheiten}</p>
+          {kantone.map(k => (
+            <div key={k.kurz} style={styles.infoCard}>
+              <h2 style={styles.articleTitle}>{k.name} ({k.kurz})</h2>
+              <p><b>Jagsystem:</b> {k.system}</p>
+              <p><b>Prüfung:</b> {k.pruefung}</p>
+              <p><b>Besonderheiten:</b> {k.besonderheiten}</p>
             </div>
           ))}
         </div>
@@ -142,7 +142,7 @@ export default function JagdrechtDE() {
   );
 }
 
-// Styles 1:1 wie Schweiz, inkl. goldener Rand
+// Styles identisch Deutschland
 const styles = {
   container: { maxWidth: 900, margin: "0 auto", padding: 32, fontFamily: "system-ui" },
   h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
@@ -182,7 +182,6 @@ const styles = {
   articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
   text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
 
-  // Länderinfos (goldene Premiumkarten)
   infoList: { display: "flex", flexDirection: "column", gap: 18 },
   infoCard: {
     background: "#fff",
@@ -190,6 +189,5 @@ const styles = {
     borderRadius: 16,
     border: "3px solid #caa53b",
     boxShadow: "0 0 18px rgba(202,165,59,0.25)",
-    transition: "0.25s ease",
-  },
+  }
 };
