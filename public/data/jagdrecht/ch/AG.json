@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ag-1",
+    "title": "Grundlagen des Jagdrechts im Kanton Aargau",
+    "text": "Das Jagdrecht im Kanton Aargau basiert auf der Revier- bzw. Pachtjagd. Die Kantonsverfassung überträgt das Jagdrecht dem Staat, welcher es an Jagdgesellschaften verleiht. Ziel ist eine nachhaltige Bewirtschaftung des heimischen Wildbestands, unter besonderer Berücksichtigung von Wildschutz und Schadensprävention."
+  },
+  {
+    "id": "ag-2",
+    "title": "Organisation der Revierjagd",
+    "text": "Der Kanton ist in Jagdreviere unterteilt, die öffentlich ausgeschrieben und an Jagdgesellschaften verpachtet werden. Jede Pachtperiode dauert mehrere Jahre und ist an strikte Vorgaben wie Mindestmitgliederzahlen, jagdliche Qualifikationen und Pflichtabschüsse gebunden."
+  },
+  {
+    "id": "ag-3",
+    "title": "Abschussplanung und Wildbewirtschaftung",
+    "text": "Für Reh-, Rot-, Gams- und Schwarzwild setzt der Kanton verbindliche Abschusspläne fest. Diese berücksichtigen Wildschäden, Wilddichten, Verkehrsaufkommen, Lebensraumverfügbarkeit und wildbiologische Bedürfnisse. Jagdgesellschaften müssen die Pläne vollständig erfüllen."
+  },
+  {
+    "id": "ag-4",
+    "title": "Jagdzeiten und Schutzbestimmungen",
+    "text": "Jede Wildart unterliegt spezifischen Jagdzeiten. Besonders geschützte Arten wie Luchs, Wolf oder Biber dürfen nicht bejagt werden. Für Niederwild gelten verkürzte Jagdperioden zur Erhaltung stabiler Bestände."
+  },
+  {
+    "id": "ag-5",
+    "title": "Waffen- und Sicherheitsvorschriften",
+    "text": "Das Aargauer Jagdrecht verlangt den sicheren Umgang mit Waffen, regelmässige Schiessübungen und das Einhalten zwingender Sicherheitsregeln im Feld, darunter Schussfeldkontrolle, Kugelfang und sichere Distanzvorgaben."
+  },
+  {
+    "id": "ag-6",
+    "title": "Schiessnachweis und Ausbildung",
+    "text": "Jägerinnen und Jäger müssen einen periodischen Schiessnachweis erbringen, der ihre Treffsicherheit dokumentiert. Die kantonale Jagdausbildung umfasst Wildbiologie, Recht, Ethik, Hunde, Waffenhandhabung und Sicherheitslehre."
+  },
+  {
+    "id": "ag-7",
+    "title": "Jagdgesellschaften und Verantwortlichkeiten",
+    "text": "Jagdgesellschaften tragen Verantwortung für die Einhaltung gesetzlicher Vorgaben, für die Durchführung von Nachsuchen und für die Kommunikation mit Behörden, Landwirten und Bevölkerung."
+  },
+  {
+    "id": "ag-8",
+    "title": "Wildschaden und Entschädigung",
+    "text": "Wildschäden an Kulturen müssen der Jagdgesellschaft gemeldet werden. Nach Kontrolle durch Fachpersonen wird eine Entschädigung geregelt, deren Höhe sich nach Art und Umfang des Schadens richtet."
+  },
+  {
+    "id": "ag-9",
+    "title": "Hegepflicht und Lebensraumpflege",
+    "text": "Jagdgesellschaften haben Hegepflicht: Pflege von Wildwiesen, Gestaltung von Deckungsstrukturen und Unterstützung von Artenförderungsprojekten. Störung sensibler Wildlebensräume ist untersagt."
+  },
+  {
+    "id": "ag-10",
+    "title": "Kontrolle, Aufsicht und Sanktionen",
+    "text": "Der Kanton überwacht die Einhaltung des Jagdrechts durch Wildhüter und Behörden. Verstösse können zu Bussen, Jagdverboten oder Entzug der Waffen führen."
+  }
+]
