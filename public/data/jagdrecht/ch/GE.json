@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ge-1",
+    "title": "Sonderstellung des Kantons Genf",
+    "text": "Genf ist der einzige Schweizer Kanton ohne öffentliche Jagd. Die Regulierung von Wildtieren erfolgt ausschliesslich durch staatliche Wildhüter."
+  },
+  {
+    "id": "ge-2",
+    "title": "Aufgaben der staatlichen Wildhut",
+    "text": "Die Wildhut übernimmt Bestandeskontrolle, Regulierung, Nachsuchen und Seuchenüberwachung. Sie arbeitet eng mit Polizei, Landwirtschaft und Gemeinden zusammen."
+  },
+  {
+    "id": "ge-3",
+    "title": "Wildtiermanagement in urbaner Umgebung",
+    "text": "Genf besitzt viele Siedlungsgebiete, weshalb Konflikte mit Wildschweinen, Füchsen oder Steinmardern durch gezielte Eingriffe der Behörden gelöst werden."
+  },
+  {
+    "id": "ge-4",
+    "title": "Schutzgebiete und Biodiversität",
+    "text": "Der Kanton schützt zahlreiche Biotope. Wildtierkorridore, Wasserzonen und Feuchtgebiete besitzen strenge Schutzauflagen."
+  },
+  {
+    "id": "ge-5",
+    "title": "Seuchen- und Gesundheitsmanagement",
+    "text": "Mit urbanen Wildtierpopulationen steigt das Risiko von Krankheiten wie Fuchsbandwurm. Genf führt regelmässige Gesundheitskontrollen durch."
+  },
+  {
+    "id": "ge-6",
+    "title": "Einsatz von Fachpersonal",
+    "text": "Regulierungen dürfen ausschliesslich durch ausgebildete Wildhüter durchgeführt werden. Die Bevölkerung darf keine Jagd ausüben."
+  },
+  {
+    "id": "ge-7",
+    "title": "Interventionen und Meldungen",
+    "text": "Eingriffe erfolgen nur bei Bedarf: Verkehrsgefährdung, landwirtschaftliche Schäden, verletzte Tiere oder Seuchenverdacht."
+  },
+  {
+    "id": "ge-8",
+    "title": "Waffen- und Sicherheitsrichtlinien",
+    "text": "Abschüsse innerhalb des Kantons unterliegen strengsten Sicherheitsanforderungen, insbesondere im Siedlungsraum."
+  },
+  {
+    "id": "ge-9",
+    "title": "Kooperation mit Landwirten",
+    "text": "Zum Schutz der Landwirtschaft führt Genf immer wieder geordnete Schwarzwildreduktionen durch."
+  },
+  {
+    "id": "ge-10",
+    "title": "Dokumentation und Monitoring",
+    "text": "Alle Eingriffe werden protokolliert und dienen wissenschaftlicher Auswertung."
+  }
+]
