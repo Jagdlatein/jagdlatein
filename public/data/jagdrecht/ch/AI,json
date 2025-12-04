@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ai-1",
+    "title": "Grundstruktur des Jagdrechts in Appenzell Innerrhoden",
+    "text": "Der Kanton AI führt eine traditionelle Patentjagd. Jede jagdberechtigte Person erwirbt ein Jahrespatent und darf im Rahmen festgelegter Abschusslimiten jagen. Die Jagd ist historisch verankert und stark bergjagdgeprägt."
+  },
+  {
+    "id": "ai-2",
+    "title": "Patentwesen und Zulassung",
+    "text": "Die Anzahl Jagdpatente ist limitiert. Die Zulassung erfolgt über Wohnsitzkriterien, Prüfungserfolg und teilweise Losverfahren. Auswärtige Jäger sind eingeschränkt zugelassen."
+  },
+  {
+    "id": "ai-3",
+    "title": "Wildarten und Abschusskontingente",
+    "text": "Für Gams- und Steinwild gelten strikte Kontingente. Rotwildabschüsse erfolgen nach wildbiologischen Vorgaben. Niederwild darf nur in gut besetzten Gebieten bejagt werden."
+  },
+  {
+    "id": "ai-4",
+    "title": "Bergjagd und topografische Bedingungen",
+    "text": "Die Jagd findet oft in hochalpinem Gelände statt, weshalb Schiessdistanzen, Trittsicherheit und Wetterbedingungen besonders berücksichtigt werden müssen."
+  },
+  {
+    "id": "ai-5",
+    "title": "Jagdzeiten und Ruhephasen",
+    "text": "Für jede Wildart bestehen individuelle Jagdzeiten und Schonphasen. Besonders empfindliche Gebiete werden temporär gesperrt."
+  },
+  {
+    "id": "ai-6",
+    "title": "Waffen- und Ausrüstungsregeln",
+    "text": "Nur geeignete Bergjagdwaffen und ausreichend starkes Kaliber für Hochwild sind zugelassen. Verstösse gegen Sicherheitsvorschriften werden streng geahndet."
+  },
+  {
+    "id": "ai-7",
+    "title": "Nachsuchepflicht",
+    "text": "AI verpflichtet jede Jägerin und jeden Jäger zur unverzüglichen Nachsuche bei verletztem Wild. Spezialgespanne stehen zur Verfügung."
+  },
+  {
+    "id": "ai-8",
+    "title": "Wildschutzgebiete und Sperrzonen",
+    "text": "Sensitivitätszonen für Auerhuhn, Steinbock und Schneehase sind ganzjährig geschützt. Störungen durch Freizeitnutzung werden reglementiert."
+  },
+  {
+    "id": "ai-9",
+    "title": "Meldepflichten",
+    "text": "Abschüsse, Fehlabschüsse und besondere Beobachtungen (z.B. Grossraubtiere) müssen innert Frist gemeldet werden."
+  },
+  {
+    "id": "ai-10",
+    "title": "Disziplinarmassnahmen",
+    "text": "Bei Gesetzesverstössen drohen Patententzug, Jagdverbot oder finanzielle Sanktionen."
+  }
+]
