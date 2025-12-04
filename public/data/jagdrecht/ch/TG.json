@@ -1,0 +1,52 @@
+[
+  {
+    "id": "tg-1",
+    "title": "Grundlagen des Thurgauer Jagdrechts",
+    "text": "Thurgau führt eine klassische Revierjagd. Reviere werden verpachtet, und Pächter tragen Verantwortung für Abschussplan und Hege."
+  },
+  {
+    "id": "tg-2",
+    "title": "Reviervergabe",
+    "text": "Pachtbewerber müssen jagdliche Eignung und Personalstärke nachweisen."
+  },
+  {
+    "id": "tg-3",
+    "title": "Abschusspläne",
+    "text": "Der Kanton schreibt Abschusszahlen für Rehwild, Fuchs und Schwarzwild vor."
+  },
+  {
+    "id": "tg-4",
+    "title": "Jagdzeiten",
+    "text": "Jagdzeiten sind für alle Wildarten festgelegt. Besonders geschützte Arten sind ausgenommen."
+  },
+  {
+    "id": "tg-5",
+    "title": "Schiess- und Weiterbildungspflicht",
+    "text": "Pächter und Jäger müssen regelmässig Schiessen und Weiterbildungen besuchen."
+  },
+  {
+    "id": "tg-6",
+    "title": "Waffen- und Sicherheitsregeln",
+    "text": "Thurgau legt strikte Sicherheitsanforderungen an alle Schussabgaben fest."
+  },
+  {
+    "id": "tg-7",
+    "title": "Wildschutz und Lebensräume",
+    "text": "Der Kanton fördert Niederwildlebensräume und unterstützt Biodiversitätsprogramme."
+  },
+  {
+    "id": "tg-8",
+    "title": "Wildschäden",
+    "text": "Schäden werden beurteilt und entschädigt. Präventivmassnahmen sind Pflicht."
+  },
+  {
+    "id": "tg-9",
+    "title": "Meldepflichten",
+    "text": "Abschüsse, Fehlschüsse und besondere Beobachtungen müssen gemeldet werden."
+  },
+  {
+    "id": "tg-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Wildhüter überwachen die Jagd. Verstösse führen zu Sanktionen bis hin zum Pachtentzug."
+  }
+]
