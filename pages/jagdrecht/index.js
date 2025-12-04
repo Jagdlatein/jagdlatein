@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function JagdrechtCH() {
+  const [mode, setMode] = useState("kantone"); // jsg | jsv | kantone
   const [kantone, setKantone] = useState([]);
   const [selectedKanton, setSelectedKanton] = useState("");
   const [articles, setArticles] = useState([]);
@@ -13,24 +14,35 @@ export default function JagdrechtCH() {
       .then(setKantone);
   }, []);
 
-  // 2. Artikel für ausgewählten Kanton laden
+  // 2. Inhalt dynamisch laden je nach Modus
   useEffect(() => {
-    if (!selectedKanton) {
+    let path = "";
+
+    if (mode === "jsg") path = "/data/jagdrecht/jsg.json";
+    if (mode === "jsv") path = "/data/jagdrecht/jsv.json";
+
+    if (mode === "kantone" && selectedKanton) {
+      path = `/data/jagdrecht/ch/${selectedKanton}.json`;
+    }
+
+    if (!path) {
       setArticles([]);
       return;
     }
 
-    fetch(`/data/jagdrecht/ch/${selectedKanton}.json`)
+    fetch(path)
       .then(r => r.json())
       .then(setArticles);
-  }, [selectedKanton]);
+  }, [mode, selectedKanton]);
 
+  // Suche
   const filtered = articles.filter(a =>
     (a.title + " " + a.text)
       .toLowerCase()
       .includes(search.toLowerCase())
   );
 
+  // Highlighting
   const highlight = (text) => {
     if (!search) return text;
     const parts = text.split(new RegExp(`(${search})`, "gi"));
@@ -43,24 +55,50 @@ export default function JagdrechtCH() {
 
   return (
     <main style={styles.container}>
-      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht – Kantone</h1>
+      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht</h1>
 
-      {/* Kantonsauswahl */}
-      <select
-        value={selectedKanton}
-        onChange={(e) => setSelectedKanton(e.target.value)}
-        style={styles.select}
-      >
-        <option value="">Bitte Kanton wählen…</option>
-        {kantone.map(k => (
-          <option key={k.kurz} value={k.kurz}>
-            {k.name} ({k.kurz})
-          </option>
-        ))}
-      </select>
+      {/* Mode-Wechsel */}
+      <div style={styles.tabs}>
+        <button
+          style={mode === "jsg" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("jsg"); setSelectedKanton(""); }}
+        >
+          Bundesgesetz (JSG)
+        </button>
 
-      {/* Suche */}
-      {selectedKanton && (
+        <button
+          style={mode === "jsv" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("jsv"); setSelectedKanton(""); }}
+        >
+          Verordnung (JSV)
+        </button>
+
+        <button
+          style={mode === "kantone" ? styles.tabActive : styles.tab}
+          onClick={() => setMode("kantone")}
+        >
+          Kantone
+        </button>
+      </div>
+
+      {/* Kantonsauswahl nur wenn kantone aktiv */}
+      {mode === "kantone" && (
+        <select
+          value={selectedKanton}
+          onChange={(e) => setSelectedKanton(e.target.value)}
+          style={styles.select}
+        >
+          <option value="">Bitte Kanton wählen…</option>
+          {kantone.map(k => (
+            <option key={k.kurz} value={k.kurz}>
+              {k.name} ({k.kurz})
+            </option>
+          ))}
+        </select>
+      )}
+
+      {/* Suchfeld */}
+      {((mode !== "kantone") || (mode === "kantone" && selectedKanton)) && (
         <input
           type="text"
           placeholder="Suchbegriff eingeben…"
@@ -70,6 +108,7 @@ export default function JagdrechtCH() {
         />
       )}
 
+      {/* Artikel */}
       <div style={styles.list}>
         {filtered.map(article => (
           <div id={article.id} key={article.id} style={styles.card}>
@@ -93,6 +132,29 @@ const styles = {
     fontSize: 34,
     marginBottom: 20,
     fontWeight: 700,
+  },
+  tabs: {
+    display: "flex",
+    gap: 12,
+    marginBottom: 20,
+  },
+  tab: {
+    padding: "10px 16px",
+    borderRadius: 10,
+    border: "1px solid #bbb",
+    background: "#f7f7f7",
+    fontSize: 16,
+    cursor: "pointer",
+  },
+  tabActive: {
+    padding: "10px 16px",
+    borderRadius: 10,
+    border: "1px solid #caa53b",
+    background: "#caa53b",
+    color: "white",
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: "pointer",
   },
   select: {
     width: "100%",
