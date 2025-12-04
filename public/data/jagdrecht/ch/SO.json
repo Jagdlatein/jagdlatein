@@ -1,0 +1,52 @@
+[
+  {
+    "id": "so-1",
+    "title": "Grundlagen des Solothurner Jagdrechts",
+    "text": "Solothurn führt eine Revierjagd, bei der Jagdreviere verpachtet werden. Wildschutz und Konfliktprävention sind zentrale Ziele."
+  },
+  {
+    "id": "so-2",
+    "title": "Reviervergabe",
+    "text": "Reviere werden an Jagdgesellschaften vergeben, die qualifizierte Mitglieder und ausreichende Kapazitäten nachweisen müssen."
+  },
+  {
+    "id": "so-3",
+    "title": "Schwarzwildbewirtschaftung",
+    "text": "Der Kanton hat hohe Schwarzwildbestände und setzt stark auf Prävention, Abschussplanung und Jagdkoordination."
+  },
+  {
+    "id": "so-4",
+    "title": "Abschusspläne",
+    "text": "Reh- und Schwarzwildabschüsse werden jährlich vorgegeben und von den Jagdgesellschaften umgesetzt."
+  },
+  {
+    "id": "so-5",
+    "title": "Jagdzeiten",
+    "text": "Jagdzeiten sind je Wildart festgelegt. Besonders geschützte Arten sind ganzjährig geschützt."
+  },
+  {
+    "id": "so-6",
+    "title": "Schiessnachweis und Ausbildung",
+    "text": "Jäger müssen einen jährlichen Schiessnachweis erbringen. Weiterbildung wird gefördert."
+  },
+  {
+    "id": "so-7",
+    "title": "Waffen- und Sicherheitsvorschriften",
+    "text": "Der Kanton legt grossen Wert auf sichere Schussabgabe, Kugelfangkontrolle und verantwortungsvollen Umgang mit Waffen."
+  },
+  {
+    "id": "so-8",
+    "title": "Wildschäden",
+    "text": "Schäden werden nach kantonalen Richtlinien beurteilt und entschädigt."
+  },
+  {
+    "id": "so-9",
+    "title": "Meldewesen",
+    "text": "Abschüsse, Nachsuchen und besondere Beobachtungen müssen gemeldet werden."
+  },
+  {
+    "id": "so-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Die Wildhut überwacht die Jagd. Verstösse führen zu Bussen oder Pachtentzug."
+  }
+]
