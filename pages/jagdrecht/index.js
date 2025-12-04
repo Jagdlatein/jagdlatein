@@ -1,18 +1,31 @@
 import { useState, useEffect } from "react";
 
 export default function JagdrechtCH() {
-  const [jsg, setJsg] = useState([]);
-  const [jsv, setJsv] = useState([]);
+  const [kantone, setKantone] = useState([]);
+  const [selectedKanton, setSelectedKanton] = useState("");
+  const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
+  // 1. Kantonsindex laden
   useEffect(() => {
-    fetch("/data/jsg.json").then(r => r.json()).then(setJsg);
-    fetch("/data/jsv.json").then(r => r.json()).then(setJsv);
+    fetch("/data/jagdrecht/ch/kantone.json")
+      .then(r => r.json())
+      .then(setKantone);
   }, []);
 
-  const allArticles = [...jsg, ...jsv];
+  // 2. Artikel für ausgewählten Kanton laden
+  useEffect(() => {
+    if (!selectedKanton) {
+      setArticles([]);
+      return;
+    }
 
-  const filtered = allArticles.filter(a =>
+    fetch(`/data/jagdrecht/ch/${selectedKanton}.json`)
+      .then(r => r.json())
+      .then(setArticles);
+  }, [selectedKanton]);
+
+  const filtered = articles.filter(a =>
     (a.title + " " + a.text)
       .toLowerCase()
       .includes(search.toLowerCase())
@@ -30,15 +43,32 @@ export default function JagdrechtCH() {
 
   return (
     <main style={styles.container}>
-      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht – JSG & JSV</h1>
+      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht – Kantone</h1>
 
-      <input
-        type="text"
-        placeholder="Suchbegriff eingeben…"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={styles.search}
-      />
+      {/* Kantonsauswahl */}
+      <select
+        value={selectedKanton}
+        onChange={(e) => setSelectedKanton(e.target.value)}
+        style={styles.select}
+      >
+        <option value="">Bitte Kanton wählen…</option>
+        {kantone.map(k => (
+          <option key={k.kurz} value={k.kurz}>
+            {k.name} ({k.kurz})
+          </option>
+        ))}
+      </select>
+
+      {/* Suche */}
+      {selectedKanton && (
+        <input
+          type="text"
+          placeholder="Suchbegriff eingeben…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={styles.search}
+        />
+      )}
 
       <div style={styles.list}>
         {filtered.map(article => (
@@ -63,6 +93,15 @@ const styles = {
     fontSize: 34,
     marginBottom: 20,
     fontWeight: 700,
+  },
+  select: {
+    width: "100%",
+    padding: 14,
+    borderRadius: 12,
+    border: "1px solid #bbb",
+    fontSize: 17,
+    marginBottom: 20,
+    background: "#fff",
   },
   search: {
     width: "100%",
