@@ -30,7 +30,9 @@ export default function JagdrechtDE() {
       return;
     }
 
-    fetch(path).then(r => r.json()).then(setArticles);
+    fetch(path)
+      .then(r => r.json())
+      .then(setArticles);
   }, [mode, selectedLand]);
 
   const filtered = articles.filter(a =>
@@ -42,7 +44,7 @@ export default function JagdrechtDE() {
     const parts = text.split(new RegExp(`(${search})`, "gi"));
     return parts.map((p, i) =>
       p.toLowerCase() === search.toLowerCase()
-        ? <mark key={i}>{p}</mark>
+        ? <mark key={i} style={{ backgroundColor: "#ffeb3b" }}>{p}</mark>
         : p
     );
   };
@@ -51,12 +53,13 @@ export default function JagdrechtDE() {
     <main style={styles.container}>
       <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
 
+      {/* Tabs */}
       <div style={styles.tabs}>
         <button
           style={mode === "bjagdg" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("bjagdg"); setSelectedLand(""); }}
         >
-          BJagdG
+          Bundesjagdgesetz (BJagdG)
         </button>
 
         <button
@@ -81,6 +84,7 @@ export default function JagdrechtDE() {
         </button>
       </div>
 
+      {/* Länder Auswahl */}
       {mode === "laender" && (
         <select
           value={selectedLand}
@@ -96,6 +100,7 @@ export default function JagdrechtDE() {
         </select>
       )}
 
+      {/* Suchfeld */}
       {mode !== "infos" && (
         <input
           type="text"
@@ -106,12 +111,27 @@ export default function JagdrechtDE() {
         />
       )}
 
+      {/* Artikelanzeige */}
       {mode !== "infos" && (
         <div style={styles.list}>
           {filtered.map(a => (
             <div key={a.id} style={styles.card}>
-              <h2>{highlight(a.title)}</h2>
-              <p>{highlight(a.text)}</p>
+              <h2 style={styles.articleTitle}>{highlight(a.title)}</h2>
+              <p style={styles.text}>{highlight(a.text)}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Länderinfos */}
+      {mode === "infos" && (
+        <div style={styles.infoList}>
+          {laender.map(l => (
+            <div key={l.kurz} style={styles.infoCard}>
+              <h2 style={styles.articleTitle}>{l.name} ({l.kurz})</h2>
+              <p><b>Jagdsystem:</b> {l.system}</p>
+              <p><b>Prüfung:</b> {l.pruefung}</p>
+              <p><b>Besonderheiten:</b> {l.besonderheiten}</p>
             </div>
           ))}
         </div>
@@ -120,20 +140,81 @@ export default function JagdrechtDE() {
   );
 }
 
+// Styling identisch zur Schweiz!
 const styles = {
-  container: { maxWidth: 900, margin: "0 auto", padding: 32 },
-  h1: { fontSize: 34, marginBottom: 20 },
+  container: {
+    maxWidth: 900,
+    margin: "0 auto",
+    padding: 32,
+    fontFamily: "system-ui",
+  },
+  h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
   tabs: { display: "flex", gap: 12, marginBottom: 20 },
-  tab: { padding: "10px 16px", borderRadius: 10, border: "1px solid #bbb" },
+
+  tab: {
+    padding: "10px 16px",
+    borderRadius: 10,
+    border: "1px solid #bbb",
+    background: "#f7f7f7",
+    fontSize: 16,
+    cursor: "pointer",
+  },
+
   tabActive: {
     padding: "10px 16px",
     borderRadius: 10,
+    border: "1px solid #caa53b",
     background: "#caa53b",
     color: "white",
-    border: "1px solid #caa53b"
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: "pointer",
   },
-  select: { width: "100%", padding: 14, borderRadius: 12, marginBottom: 20 },
-  search: { width: "100%", padding: 14, borderRadius: 12, marginBottom: 20 },
-  list: { display: "flex", flexDirection: "column", gap: 20 },
-  card: { padding: 18, borderLeft: "6px solid #caa53b", background: "#fff" }
+
+  select: {
+    width: "100%",
+    padding: 14,
+    borderRadius: 12,
+    border: "1px solid #bbb",
+    fontSize: 17,
+    marginBottom: 20,
+  },
+
+  search: {
+    width: "100%",
+    padding: 14,
+    borderRadius: 12,
+    border: "1px solid #bbb",
+    fontSize: 17,
+    marginBottom: 30,
+  },
+
+  list: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 22,
+  },
+
+  card: {
+    background: "#fff",
+    padding: 18,
+    borderRadius: 14,
+    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+    borderLeft: "6px solid #caa53b",
+  },
+
+  articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
+  text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
+
+  // Länderinfos – goldener Kasten
+  infoList: { display: "flex", flexDirection: "column", gap: 18 },
+
+  infoCard: {
+    background: "#fff",
+    padding: 18,
+    borderRadius: 16,
+    border: "3px solid #caa53b",
+    boxShadow: "0 0 18px rgba(202,165,59,0.25)",
+    transition: "0.25s ease",
+  },
 };
