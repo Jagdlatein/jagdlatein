@@ -1,0 +1,52 @@
+[
+  {
+    "id": "lu-1",
+    "title": "Grundstruktur des Jagdrechts im Kanton Luzern",
+    "text": "Luzern führt eine Patentjagd mit klaren Vorgaben für Abschussplanung, Hege und Wildschutz. Die Jagd ist im ganzen Kantonsgebiet geregelt."
+  },
+  {
+    "id": "lu-2",
+    "title": "Patentwesen und Zulassung",
+    "text": "Jagdpatente werden jährlich vergeben. Der Kanton verlangt eine abgeschlossene Jagdprüfung sowie regelmässige Weiterbildung."
+  },
+  {
+    "id": "lu-3",
+    "title": "Abschussplanung",
+    "text": "Reh-, Rot- und Schwarzwild unterliegen jährlichen Abschussplänen. Die Planung erfolgt in Zusammenarbeit mit Wald- und Landwirtschaftsstellen."
+  },
+  {
+    "id": "lu-4",
+    "title": "Digitale Streckenmeldungen",
+    "text": "Luzern nutzt ein elektronisches Meldesystem. Abschüsse müssen zeitnah digital gemeldet werden."
+  },
+  {
+    "id": "lu-5",
+    "title": "Jagdzeiten und Schutzperioden",
+    "text": "Die Jagdzeiten sind kantonal festgelegt. Besonders geschützte Arten dürfen nicht bejagt werden, darunter Luchs und Biber."
+  },
+  {
+    "id": "lu-6",
+    "title": "Schiessnachweis und Sicherheit",
+    "text": "Jägerinnen und Jäger müssen jährlich einen Schiessnachweis erbringen. Sicherheitsregeln sind strikt einzuhalten."
+  },
+  {
+    "id": "lu-7",
+    "title": "Wildschweinjagd",
+    "text": "Luzern hat regelmässig zusätzliche Bestimmungen zur Regulierung von Schwarzwild. Nachtjagd und Interventionsjagd sind teilweise zulässig."
+  },
+  {
+    "id": "lu-8",
+    "title": "Wildschutzgebiete",
+    "text": "Der Kanton verfügt über zahlreiche Ruhezonen und Schutzflächen, in denen Jagd und Freizeitnutzung eingeschränkt sind."
+  },
+  {
+    "id": "lu-9",
+    "title": "Meldungen und Zusammenarbeit",
+    "text": "Beobachtungen gefährdeter Arten, Krankwild sowie Wolfsnachweise sind meldepflichtig."
+  },
+  {
+    "id": "lu-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Die kantonale Wildhut überwacht Jagdgeschehen und ahndet Verstösse."
+  }
+]
