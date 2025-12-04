@@ -1,0 +1,52 @@
+[
+  {
+    "id": "bl-1",
+    "title": "Grundlagen des Jagdrechts im Kanton Basel-Landschaft",
+    "text": "Basel-Landschaft führt eine Revierjagd mit vertraglich geregelten Jagdpachten. Der Kanton strukturiert die Reviere und überwacht die Wildbestände mit Fokus auf Nachhaltigkeit und Siedlungsnähe."
+  },
+  {
+    "id": "bl-2",
+    "title": "Pachtwesen und Zuständigkeiten",
+    "text": "Jagdreviere werden an Jagdpächter oder -gesellschaften vergeben. Pachtverträge regeln Pflichten wie Abschussvorgaben, Hege, Nachsuchepflicht und Zusammenarbeit mit Behörden."
+  },
+  {
+    "id": "bl-3",
+    "title": "Abschussplanung und Wildbewirtschaftung",
+    "text": "Der Kanton legt jährliche Abschussvorgaben für Rehwild, Schwarzwild und Raubwild fest. Lebensraumerhaltung und Schadensminimierung stehen im Vordergrund."
+  },
+  {
+    "id": "bl-4",
+    "title": "Jagdzeiten und Schutzvorschriften",
+    "text": "Jede Wildart besitzt festgelegte Jagdzeiten. Besonders geschützte Arten wie Luchs, Fischotter und Biber sind ganzjährig geschützt."
+  },
+  {
+    "id": "bl-5",
+    "title": "Waffen- und Munitionsregelungen",
+    "text": "Für Hochwild sind geeignete Büchsenkaliber vorgeschrieben. Der sichere Umgang mit Waffen und Munition ist gesetzlich verankert."
+  },
+  {
+    "id": "bl-6",
+    "title": "Jagdprüfung und Weiterbildung",
+    "text": "Die Jagdausbildung umfasst Theorie, Schiessausbildung und praktische Prüfungen. Regelmässige Weiterbildung wird empfohlen."
+  },
+  {
+    "id": "bl-7",
+    "title": "Siedlungswild und Konfliktmanagement",
+    "text": "In Stadtrandgebieten hat BL häufige Konflikte mit Fuchs und Schwarzwild. Der Kanton erlaubt gezielte Eingriffe durch Wildhut und Jagdpächter."
+  },
+  {
+    "id": "bl-8",
+    "title": "Meldepflichten und Dokumentation",
+    "text": "Wildabschüsse müssen zeitnah gemeldet werden. Beobachtungen besonderer Arten werden erfasst."
+  },
+  {
+    "id": "bl-9",
+    "title": "Wildschäden und Ersatzregelung",
+    "text": "Entschädigungen werden nach Prüfung durch kantonale Fachpersonen geregelt. Ziel ist die Minimierung von Schäden an landwirtschaftlichen Kulturen."
+  },
+  {
+    "id": "bl-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Wildhut und Behörden kontrollieren Jagdausübung und Pachtverträge. Verstösse führen zu Bussen oder Pachtentzug."
+  }
+]
