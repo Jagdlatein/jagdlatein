@@ -1,0 +1,147 @@
+[
+  {
+    "id": "jsg_art_1",
+    "title": "Art. 1 Zweck",
+    "text": "Dieses Gesetz bezweckt den Schutz und die nachhaltige Nutzung der einheimischen wildlebenden Säugetiere und Vögel sowie die Erhaltung ihrer Lebensräume. Es trägt zur Erhaltung der Artenvielfalt und zur Sicherstellung eines ausgeglichenen Verhältnisses zwischen Wildtierbestand und Lebensraum bei."
+  },
+  {
+    "id": "jsg_art_2",
+    "title": "Art. 2 Geltungsbereich",
+    "text": "Dieses Gesetz gilt für wildlebende einheimische Säugetiere und Vögel sowie für deren Lebensräume. Es betrifft ferner die Jagd, den Schutz, die Beobachtung und die Regulierung dieser Tiere."
+  },
+  {
+    "id": "jsg_art_3",
+    "title": "Art. 3 Geschützte Arten",
+    "text": "Vollständig geschützt sind alle bedrohten, seltenen oder besonders störungsanfälligen Arten. Die Schutzliste wird durch den Bundesrat festgelegt. Für geschützte Arten besteht ein generelles Jagdverbot."
+  },
+  {
+    "id": "jsg_art_4",
+    "title": "Art. 4 Jagdbare Arten",
+    "text": "Der Bundesrat bestimmt die jagdbaren Arten unter Berücksichtigung des Erhaltungszustandes und der ökologischen Verträglichkeit. Die Kantone setzen die Jagdzeiten fest und können den Abschuss weiter einschränken."
+  },
+  {
+    "id": "jsg_art_5",
+    "title": "Art. 5 Schonzeiten",
+    "text": "Für jede jagdbare Art gelten bundesrechtlich festgelegte Mindestschonzeiten. Die Kantone dürfen längere Schonzeiten verfügen. Während der Schonzeit ist jede Jagdausübung verboten."
+  },
+  {
+    "id": "jsg_art_6",
+    "title": "Art. 6 Lebensraumschutz",
+    "text": "Der Bund fördert Massnahmen zur Sicherung und Wiederherstellung geeigneter Lebensräume, insbesondere durch Schutzgebiete, Wildruhezonen und Vernetzungsprojekte. Die Kantone sorgen für deren Umsetzung."
+  },
+  {
+    "id": "jsg_art_7",
+    "title": "Art. 7 Wildschaden",
+    "text": "Die Kantone regeln die Verhütung und Vergütung von Wildschäden. Sie treffen Massnahmen zur Verhinderung übermässiger Schäden an Wald und landwirtschaftlichen Kulturen."
+  },
+  {
+    "id": "jsg_art_8",
+    "title": "Art. 8 Jagdsysteme",
+    "text": "Die Kantone können unterschiedliche Jagdsysteme anwenden: Patentjagd, Revierjagd oder Mischformen. Sie legen die jagdlichen Bezirke sowie die Voraussetzungen für die Jagdausübung fest."
+  },
+  {
+    "id": "jsg_art_9",
+    "title": "Art. 9 Jägerprüfung",
+    "text": "Zur Jagdausübung ist eine staatlich anerkannte Jägerprüfung erforderlich. Die Prüfung umfasst Kenntnisse über Wildtierbiologie, Jagdpraxis, Waffenhandhabung, Tierschutz und Hege."
+  },
+  {
+    "id": "jsg_art_10",
+    "title": "Art. 10 Schiessfertigkeit",
+    "text": "Die Kantone verlangen den periodischen Nachweis der Schiessfertigkeit. Ohne gültigen Schiessnachweis darf keine Jagdberechtigung erteilt werden."
+  },
+  {
+    "id": "jsg_art_11",
+    "title": "Art. 11 Wildhut",
+    "text": "Die Kantone stellen eine ausreichende Wildhut sicher. Die Wildhüter überwachen die Einhaltung der jagdrechtlichen Vorschriften, unterstützen die Jagdverwaltung, überwachen Bestände und setzen Schutzmassnahmen durch."
+  },
+  {
+    "id": "jsg_art_12",
+    "title": "Art. 12 Schutzgebiete und Ruhezonen",
+    "text": "Der Bund kann Schutzgebiete und Wildruhezonen von nationaler Bedeutung bezeichnen. Kantone können zusätzliche Zonen errichten, in denen Betretungsbeschränkungen und Jagdverbote gelten."
+  },
+  {
+    "id": "jsg_art_13",
+    "title": "Art. 13 Monitoring",
+    "text": "Die Kantone überwachen Zustand und Entwicklung der Wildtierbestände. Der Bund koordiniert Standards und Programme für einheitliches Monitoring."
+  },
+  {
+    "id": "jsg_art_14",
+    "title": "Art. 14 Regulierung geschützter Arten",
+    "text": "In Ausnahmefällen kann der Bund Eingriffe in geschützte Arten bewilligen, wenn erhebliche Schäden, Gefahren oder ökologische Störungen bestehen."
+  },
+  {
+    "id": "jsg_art_15",
+    "title": "Art. 15 Abschussplanung",
+    "text": "Die Kantone erstellen Abschusspläne auf Basis biologischer Kriterien und Lebensraumkapazität. Jäger dürfen nur im Rahmen dieser Pläne jagen."
+  },
+  {
+    "id": "jsg_art_16",
+    "title": "Art. 16 Jagdausübung",
+    "text": "Die Jagd ist weidgerecht und tierschutzkonform auszuüben. Der Bundesrat definiert Mindeststandards zu Waffen, Munition, Jagdhunden und Methoden."
+  },
+  {
+    "id": "jsg_art_17",
+    "title": "Art. 17 Tierschutz bei der Jagd",
+    "text": "Tierleid ist zu minimieren. Verboten sind unweidgerechte Methoden, unnötige Störung und verzögerte Nachsuche. Nachsuchen müssen sofort erfolgen."
+  },
+  {
+    "id": "jsg_art_18",
+    "title": "Art. 18 Wildverwertung",
+    "text": "Erlegtes Wild ist fachgerecht zu versorgen und zu verwerten. Kontrolle durch Behörden ist möglich."
+  },
+  {
+    "id": "jsg_art_19",
+    "title": "Art. 19 Haftung",
+    "text": "Kantone regeln Ersatzpflichten bei Wildschäden. Jäger haften bei Fehlabschüssen oder Sicherheitsverstössen."
+  },
+  {
+    "id": "jsg_art_20",
+    "title": "Art. 20 Straftaten",
+    "text": "Wer gegen Schonzeiten, Schutzbestimmungen oder Waffenregeln verstösst, macht sich strafbar."
+  },
+  {
+    "id": "jsg_art_21",
+    "title": "Art. 21 Zusammenarbeit",
+    "text": "Bund und Kantone koordinieren Jagd, Monitoring und Wildschutzprogramme."
+  },
+  {
+    "id": "jsg_art_22",
+    "title": "Art. 22 Bundesbeiträge",
+    "text": "Der Bund unterstützt Projekte zur Lebensraumförderung, Prävention und Forschung."
+  },
+  {
+    "id": "jsg_art_23",
+    "title": "Art. 23 Vollzug",
+    "text": "Der Vollzug liegt bei den Kantonen; der Bund überwacht die Umsetzung."
+  },
+  {
+    "id": "jsg_art_24",
+    "title": "Art. 24 Rechtspflege",
+    "text": "Verfügungen können nach kantonalem Recht angefochten werden. Bundesrechtlich besteht Beschwerderecht."
+  },
+  {
+    "id": "jsg_art_25",
+    "title": "Art. 25 Datenbearbeitung",
+    "text": "Behörden dürfen Wildtier- und Personendaten für Vollzug, Forschung und Monitoring bearbeiten."
+  },
+  {
+    "id": "jsg_art_26",
+    "title": "Art. 26 Internationale Zusammenarbeit",
+    "text": "Der Bund arbeitet mit Nachbarländern bei wandernden Wildarten zusammen."
+  },
+  {
+    "id": "jsg_art_27",
+    "title": "Art. 27 Verordnungskompetenz",
+    "text": "Der Bundesrat erlässt die notwendigen Ausführungsverordnungen."
+  },
+  {
+    "id": "jsg_art_28",
+    "title": "Art. 28 Übergangsrecht",
+    "text": "Kantonale Bestimmungen bleiben gültig, sofern sie dem neuen Bundesrecht nicht widersprechen."
+  },
+  {
+    "id": "jsg_art_29",
+    "title": "Art. 29 Inkrafttreten",
+    "text": "Der Bundesrat legt das Inkrafttreten fest."
+  }
+]
