@@ -1,0 +1,52 @@
+[
+  {
+    "id": "be-1",
+    "title": "Grundstruktur des Jagdrechts im Kanton Bern",
+    "text": "Bern nutzt ein Patentjagdsystem mit starkem Fokus auf Wildschutz und Intervalljagd. Die Jagd ist kantonal organisiert und umfasst Hoch-, Nieder- und Sonderjagden."
+  },
+  {
+    "id": "be-2",
+    "title": "Intervalljagd im Kanton Bern",
+    "text": "Rotwild und Gams werden in Intervallen bejagt. Jagdzeiten wechseln zwischen Jagdfenstern und Schonwochen, um Störungen zu reduzieren."
+  },
+  {
+    "id": "be-3",
+    "title": "Abschussplanung und Bewirtschaftung",
+    "text": "Der Kanton gibt Abschusspläne vor, insbesondere für Rotwild. Ziel ist eine Balance zwischen Wildbestand und Waldverjüngung."
+  },
+  {
+    "id": "be-4",
+    "title": "Hochjagd und Niederjagd",
+    "text": "Die Hochjagd umfasst Rot-, Gams- und Rehwild. Die Niederjagd umfasst Fuchs, Dachs, Hase, Ente und weitere Wildarten."
+  },
+  {
+    "id": "be-5",
+    "title": "Jagdprüfung und Schiessnachweis",
+    "text": "Die Berner Jagdprüfung ist umfangreich. Ein jährlicher Schiessnachweis ist Pflicht für die Teilnahme an der Jagd."
+  },
+  {
+    "id": "be-6",
+    "title": "Waffen- und Sicherheitsvorschriften",
+    "text": "Die Schussabgabe ist an klare Sicherheitsregeln gebunden. Jagd bei schlechten Sichtverhältnissen ist eingeschränkt."
+  },
+  {
+    "id": "be-7",
+    "title": "Wildschäden und Prävention",
+    "text": "Der Kanton arbeitet mit Waldbesitzern und Landwirtschaft zusammen, um Schäden durch Rot- und Schwarzwild zu minimieren."
+  },
+  {
+    "id": "be-8",
+    "title": "Wildruhezonen und Schutzgebiete",
+    "text": "Bern verfügt über zahlreiche Schutzgebiete, in denen die Jagd eingeschränkt oder verboten ist."
+  },
+  {
+    "id": "be-9",
+    "title": "Meldewesen",
+    "text": "Alle Abschüsse, aussergewöhnliche Beobachtungen und Fehlschüsse sind meldepflichtig."
+  },
+  {
+    "id": "be-10",
+    "title": "Aufsicht und Sanktionen",
+    "text": "Wildhut und Polizei kontrollieren die Jagdausübung. Gesetzesverstösse führen zu Bussen oder Patententzug."
+  }
+]
