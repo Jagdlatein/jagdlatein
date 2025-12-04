@@ -1,0 +1,52 @@
+[
+  {
+    "id": "sh-1",
+    "title": "Grundlagen des Schaffhauser Jagdrechts",
+    "text": "Schaffhausen betreibt eine klassische Revierjagd. Jagdreviere werden verpachtet, und Pächter tragen Verantwortung für Hege und Abschussplan."
+  },
+  {
+    "id": "sh-2",
+    "title": "Pachtwesen",
+    "text": "Pächter müssen Qualifikationen und jagdliche Erfahrung nachweisen. Pachtverträge enthalten klare Verpflichtungen."
+  },
+  {
+    "id": "sh-3",
+    "title": "Abschussplanung",
+    "text": "Rehwild ist die wichtigste Hochwildart. Der Kanton definiert jährliche Mindest- und Maximalabschüsse."
+  },
+  {
+    "id": "sh-4",
+    "title": "Jagdzeiten und Regelungen",
+    "text": "Niederwild wie Fuchs, Ente oder Hase unterliegt kantonal festgelegten Jagdzeiten. Geschützte Arten dürfen nicht bejagt werden."
+  },
+  {
+    "id": "sh-5",
+    "title": "Jagdprüfung",
+    "text": "Die Schaffhauser Jagdprüfung ist anspruchsvoll und umfasst Theorie, Schiessen und Praxis."
+  },
+  {
+    "id": "sh-6",
+    "title": "Waffen- und Sicherheitsvorschriften",
+    "text": "Es gelten strenge Regeln zu Kugelfang, Schussfeld und erlaubten Waffen."
+  },
+  {
+    "id": "sh-7",
+    "title": "Wildschutz und Lebensräume",
+    "text": "Der Kanton fördert Niederwildlebensräume und schützt Wildkorridore."
+  },
+  {
+    "id": "sh-8",
+    "title": "Wildschäden und Ersatz",
+    "text": "Schäden werden von der Jagdgesellschaft beurteilt und entschädigt."
+  },
+  {
+    "id": "sh-9",
+    "title": "Meldepflichten",
+    "text": "Alle Abschüsse sind meldepflichtig. Besondere Beobachtungen werden registriert."
+  },
+  {
+    "id": "sh-10",
+    "title": "Kontrolle und Sanktionen",
+    "text": "Die Wildhut überwacht die Jagdausübung und ahndet Verstösse."
+  }
+]
