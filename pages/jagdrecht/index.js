@@ -188,9 +188,12 @@ const styles = {
 
   /* INFO SECTION */
   infoList: { display: "flex", flexDirection: "column", gap: 18 },
-  infoCard: {
-    background: "#fff", padding: 18, borderRadius: 14,
-    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-    borderLeft: "6px solid #888"
-  }
+infoCard: {
+  background: "#fff",
+  padding: 18,
+  borderRadius: 16,
+  border: "3px solid #caa53b",            // GOLDENER RAND
+  boxShadow: "0 0 18px rgba(202,165,59,0.25)",  // Goldener Glow
+  transition: "0.25s ease",
+}
 };
