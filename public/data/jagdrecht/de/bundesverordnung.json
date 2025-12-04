@@ -49,6 +49,7 @@
     "title": "§ 10 Verbotene Jagdmethoden",
     "text": "Verboten sind: 1. der Einsatz von künstlichen Lichtquellen bei der Jagd, 2. der Einsatz automatischer Waffen, sofern nicht gesetzlich besonders zugelassen, 3. Fanggeräte ohne Selektivität. Ausnahmen sind nur mit behördlicher Genehmigung zulässig."
   },
+
   {
     "id": "verordnung_bwildschv_par_1",
     "title": "§ 1 Zweck der Verordnung",
@@ -75,7 +76,7 @@
     "text": "Der Besitz, Erwerb und die Vermarktung geschützter Tiere oder Teile davon ist verboten. Ausnahmen bestehen für wissenschaftliche Einrichtungen mit entsprechender Genehmigung."
   },
   {
-    "id":="verordnung_bwildschv_par_6",
+    "id": "verordnung_bwildschv_par_6",
     "title": "§ 6 Fortpflanzungsstätten",
     "text": "Nistplätze, Höhlen, Baue und andere Fortpflanzungsstätten geschützter Arten sind dauerhaft zu schützen. Änderungen sind nur mit Ausnahmegenehmigung zulässig."
   },
@@ -124,6 +125,7 @@
     "title": "§ 15 Ordnungswidrigkeiten",
     "text": "Ordnungswidrig handelt, wer gegen Vorschriften dieser Verordnung verstößt, insbesondere durch Störung, Fang oder Tötung geschützter Arten. Es können Bußgelder verhängt werden."
   },
+
   {
     "id": "verordnung_tierschutz_par_1",
     "title": "§ 1 Grundsätze des Tierschutzes bei der Jagd",
@@ -144,6 +146,7 @@
     "title": "§ 4 Verbot nicht waidgerechter Jagdmethoden",
     "text": "Verboten sind: 1. Schüsse auf zu große Distanzen ohne sichere Wirkung, 2. Schüsse in dichte Deckung, 3. Treiben von Wild ohne jagdlichen Zweck, 4. Einsatz nicht geeigneter Munition. Verstöße gelten als tierschutzwidrige Jagdausübung."
   },
+
   {
     "id": "verordnung_waffen_par_1",
     "title": "§ 1 Jagdlich zulässige Waffen",
@@ -157,13 +160,14 @@
   {
     "id": "verordnung_waffen_par_3",
     "title": "§ 3 Verbotene Waffen",
-    "text": "Verboten sind: 1. vollautomatische Waffen, 2. Nachtsichtvorsätze ohne Genehmigung, 3. Schusswaffen mit Jagduntauglichkeit (z.B. zu geringe Energie), 4. Waffen, die nicht sicher geführt werden können. Ausnahmen bestehen bei Seuchenbekämpfung."
+    "text": "Verboten sind: 1. vollautomatische Waffen, 2. Nachtsichtvorsätze ohne Genehmigung, 3. Schusswaffen mit Jagduntauglichkeit (z. B. zu geringe Energie), 4. Waffen, die nicht sicher geführt werden können. Ausnahmen bestehen bei Seuchenbekämpfung."
   },
   {
     "id": "verordnung_waffen_par_4",
     "title": "§ 4 Einsatz von Schalldämpfern",
     "text": "Schalldämpfer dürfen eingesetzt werden, wenn sie eingetragen sind und jagdlich notwendig erscheinen, insbesondere aus Gründen des Gehörschutzes. In einigen Ländern ist der Einsatz generell erlaubt."
   },
+
   {
     "id": "verordnung_fangjagd_par_1",
     "title": "§ 1 Zulässige Fanggeräte",
@@ -188,7 +192,8 @@
     "id": "verordnung_fangjagd_par_5",
     "title": "§ 5 Einsatzgebiete der Fangjagd",
     "text": "Fangjagd darf nur dort ausgeübt werden, wo andere Jagdmethoden wirkungslos oder unzulässig sind. Typische Einsatzbereiche sind: Siedlungsnähe, Naturschutzgebiete, Seuchenbekämpfung und Fallwildprävention."
-  }
+  },
+
   {
     "id": "verordnung_wildbrethygiene_par_1",
     "title": "§ 1 Anforderungen an die Wildbrethygiene",
@@ -219,6 +224,7 @@
     "title": "§ 6 Hygiene beim Transport",
     "text": "Wildbret ist sauber, gekühlt und in geeigneten Behältnissen zu transportieren. Der Transport darf nicht zusammen mit verunreinigenden Stoffen erfolgen."
   },
+
   {
     "id": "verordnung_nebenprodukte_par_1",
     "title": "§ 1 Tierische Nebenprodukte – Einstufung",
@@ -234,6 +240,7 @@
     "title": "§ 3 Umgang mit seuchenverdächtigem Wild",
     "text": "Bei Verdacht auf Seuchen wie ASP, Aujeszkysche Krankheit oder Tollwut ist das Veterinäramt unverzüglich zu informieren. Die Jagdbehörde kann weitere Maßnahmen anordnen."
   },
+
   {
     "id": "verordnung_eu_par_1",
     "title": "EU-Verordnung 853/2004 – Auszug",
