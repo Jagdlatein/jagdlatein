@@ -1,0 +1,152 @@
+[
+  {
+    "id": "jsv_art_1",
+    "title": "Art. 1 Zweck der Verordnung",
+    "text": "Diese Verordnung konkretisiert das Jagdgesetz und legt Mindestanforderungen zur Jagdausübung, zum Schutz der Wildtiere sowie zur Regulierung der Wildbestände fest."
+  },
+  {
+    "id": "jsv_art_2",
+    "title": "Art. 2 Definitionen",
+    "text": "Die Verordnung definiert Begriffe wie jagdbare Arten, Wildhüter, Wildruhezonen, Schonzeiten, Störungsbereiche und Schutzarten. Diese Begriffe gelten einheitlich für die gesamte Schweiz."
+  },
+  {
+    "id": "jsv_art_3",
+    "title": "Art. 3 Jagdbare Arten",
+    "text": "Der Bundesrat legt die Arten fest, die bejagt werden dürfen. Er berücksichtigt biologische Kriterien, den Zustand der Populationen und das ökologische Gleichgewicht."
+  },
+  {
+    "id": "jsv_art_4",
+    "title": "Art. 4 Jagdverbot geschützter Arten",
+    "text": "Geschützte Arten dürfen nicht bejagt werden. Ausnahmen sind nur mit Bewilligung möglich und müssen strengen Schutzinteressen entsprechen."
+  },
+  {
+    "id": "jsv_art_5",
+    "title": "Art. 5 Schonzeiten",
+    "text": "Die Verordnung legt Mindestschonzeiten für jede jagdbare Art fest. Sie dienen dem Schutz während Fortpflanzungs- und Aufzuchtphasen."
+  },
+  {
+    "id": "jsv_art_6",
+    "title": "Art. 6 Jagdzeiten",
+    "text": "Die Kantone setzen Jagdzeiten fest, dürfen diese aber nicht unter die bundesrechtlichen Mindestanforderungen senken."
+  },
+  {
+    "id": "jsv_art_7",
+    "title": "Art. 7 Abschussplanpflicht",
+    "text": "Für bestimmte Arten, insbesondere Reh-, Rot- und Gamswild, sind Abschusspläne obligatorisch. Diese müssen jährlich überprüft werden."
+  },
+  {
+    "id": "jsv_art_8",
+    "title": "Art. 8 Abschussnachweis",
+    "text": "Alle Abschüsse müssen unverzüglich gemeldet werden. Die Meldung umfasst Art, Geschlecht, Alter und Ort."
+  },
+  {
+    "id": "jsv_art_9",
+    "title": "Art. 9 Nachsuchepflicht",
+    "text": "Verletztes Wild muss unverzüglich nachgesucht werden. Jäger dürfen die Nachsuche nicht verzögern oder unterlassen."
+  },
+  {
+    "id": "jsv_art_10",
+    "title": "Art. 10 Einsatz von Hunden",
+    "text": "Jagd- und Nachsuchehunde müssen ausgebildet, geprüft und für die jeweilige Jagdart geeignet sein. Der Bund kann Mindestanforderungen definieren."
+  },
+  {
+    "id": "jsv_art_11",
+    "title": "Art. 11 Erlaubte Jagdmittel",
+    "text": "Der Bundesrat bestimmt erlaubte Waffen, Kaliber, Munition sowie optische Hilfsmittel. Verboten sind Mittel, die unnötiges Tierleid verursachen könnten."
+  },
+  {
+    "id": "jsv_art_12",
+    "title": "Art. 12 Verbotene Jagdmethoden",
+    "text": "Verboten sind Fallen ohne tierschutzkonforme Fangtechnik, Gift, künstliche Lichtquellen bei der Jagd sowie elektronische Lockmittel."
+  },
+  {
+    "id": "jsv_art_13",
+    "title": "Art. 13 Sicherheit bei der Jagd",
+    "text": "Jäger müssen jederzeit für einen sicheren Kugelfang sorgen. Schüsse in Richtung von Gebäuden, Wanderwegen oder Gefahrenbereichen sind verboten."
+  },
+  {
+    "id": "jsv_art_14",
+    "title": "Art. 14 Sichtverhältnisse",
+    "text": "Die Jagd ist bei ungenügenden Sichtverhältnissen wie Nebel, Dämmerung oder Schneefall nur beschränkt zulässig. Die Kantone können Verschärfungen erlassen."
+  },
+  {
+    "id": "jsv_art_15",
+    "title": "Art. 15 Wildhut und Kontrollen",
+    "text": "Die Wildhut hat umfassende Kontrollbefugnisse, darunter Waffen-, Dokument- und Revierkontrolle sowie Kontrolle der Schussabgabe."
+  },
+  {
+    "id": "jsv_art_16",
+    "title": "Art. 16 Wildschadenprävention",
+    "text": "Die Verordnung regelt Massnahmen zur Verhinderung von Wildschäden an Wald und Kulturen, darunter Zäune, Vergrämung und Abschussplanung."
+  },
+  {
+    "id": "jsv_art_17",
+    "title": "Art. 17 Vergütung von Wildschäden",
+    "text": "Kantone legen Verfahren und Bedingungen für Schadenvergütung fest. Schäden müssen innert Fristen gemeldet werden."
+  },
+  {
+    "id": "jsv_art_18",
+    "title": "Art. 18 Wildtiermonitoring",
+    "text": "Bund und Kantone koordinieren Erfassung von Daten zu Wildbeständen, Krankheiten und Populationsentwicklung."
+  },
+  {
+    "id": "jsv_art_19",
+    "title": "Art. 19 Umgang mit Krankheiten",
+    "text": "Bei Seuchenverdacht müssen Jäger Meldung erstatten. Der Bund kann Sofortmassnahmen anordnen, etwa Aussetzen der Jagd."
+  },
+  {
+    "id": "jsv_art_20",
+    "title": "Art. 20 Regulierung geschützter Arten",
+    "text": "Die Verordnung legt Bedingungen für Eingriffe in geschützte Arten wie Wolf, Biber oder Luchs fest. Jeder Eingriff bedarf Bewilligung."
+  },
+  {
+    "id": "jsv_art_21",
+    "title": "Art. 21 Störungsarme Gebiete",
+    "text": "Der Bund kann Wildruhezonen festlegen. In solchen Gebieten sind Jagd, Forstwirtschaft und Freizeitaktivitäten eingeschränkt."
+  },
+  {
+    "id": "jsv_art_22",
+    "title": "Art. 22 Betretungsverbote",
+    "text": "In sensiblen Wildgebieten können kantonale Behörden Betretungsverbote oder zeitliche Einschränkungen verfügen."
+  },
+  {
+    "id": "jsv_art_23",
+    "title": "Art. 23 Ausbildung der Jäger",
+    "text": "Die Verordnung definiert Mindestinhalte der Jagdprüfung: Wildtierkunde, Jagdpraxis, Waffensicherheit, Tierschutz und Rechtsgrundlagen."
+  },
+  {
+    "id": "jsv_art_24",
+    "title": "Art. 24 Schiessnachweis",
+    "text": "Jäger müssen regelmässig ihre Schiessfertigkeit nachweisen. Der Bund kann Standards festlegen."
+  },
+  {
+    "id": "jsv_art_25",
+    "title": "Art. 25 Wildverwertung",
+    "text": "Erlegtes Wild ist hygienisch korrekt aufzubrechen, zu bergen und zu verwerten. Verkauf unterliegt Lebensmittelrecht."
+  },
+  {
+    "id": "jsv_art_26",
+    "title": "Art. 26 Datenbearbeitung",
+    "text": "Bund und Kantone dürfen Abschussdaten, Monitoringdaten und Gesundheitsdaten von Wildtieren verarbeiten."
+  },
+  {
+    "id": "jsv_art_27",
+    "title": "Art. 27 Internationale Zusammenarbeit",
+    "text": "Der Bund arbeitet bei Wanderwildarten mit Nachbarländern zusammen und harmonisiert Monitoringstandards."
+  },
+  {
+    "id": "jsv_art_28",
+    "title": "Art. 28 Sanktionen",
+    "text": "Verstösse gegen die Verordnung können zu Bussen, Jagdverbot oder Entzug der Jagdberechtigung führen."
+  },
+  {
+    "id": "jsv_art_29",
+    "title": "Art. 29 Aufgaben der Kantone",
+    "text": "Die Kantone vollziehen die Verordnung, erstellen Abschusspläne, richten Schutzgebiete ein und kontrollieren die Jagd."
+  },
+  {
+    "id": "jsv_art_30",
+    "title": "Art. 30 Inkrafttreten",
+    "text": "Der Bundesrat legt das Inkrafttreten dieser Verordnung fest."
+  }
+]
