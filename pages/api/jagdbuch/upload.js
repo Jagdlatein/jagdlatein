@@ -30,10 +30,10 @@ export default function handler(req, res) {
     posts[index].images = [];
   }
 
-  // Das Base64-Bild speichern
+  // Bild speichern
   posts[index].images.push({
     id: Date.now(),
-    data: image, // vollständiger Base64 String
+    data: image, // vollständiger Base64-String
   });
 
   fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
