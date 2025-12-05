@@ -1,30 +1,40 @@
 import fs from "fs";
 import path from "path";
 
+// Body-Parser für JSON aktivieren
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
+
 export default function handler(req, res) {
-
-  // Browser Preflight
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
 
+  // Datei laden
   let posts = [];
   if (fs.existsSync(filePath)) {
     try {
       posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
-    } catch {
+    } catch (e) {
       posts = [];
     }
   }
 
-  // --------------------------
-  // POST → Beitrag speichern
-  // --------------------------
+  // POST → neuen Beitrag speichern
   if (req.method === "POST") {
+    const { title, content, slug } = req.body;
+
+    if (!title || !content || !slug) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
+
     const newPost = {
-      ...req.body,
+      title,
+      content,
+      slug,
+      excerpt: content.substring(0, 150),
+      date: new Date().toISOString().split("T")[0],
       likes: 0,
       comments: [],
       images: []
