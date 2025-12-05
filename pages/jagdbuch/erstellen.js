@@ -22,11 +22,13 @@ export default function JagdbuchErstellen() {
 
     const slug = createSlug(title);
 
+    console.log("➡️ Sende POST an /api/jagdbuch/posts ...");
+
     const res = await fetch("/api/jagdbuch/posts", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "x-user": "Jäger"   // 🔥 MUSS mitgesendet werden
+        "x-user": "Jäger"
       },
       body: JSON.stringify({
         title,
@@ -36,6 +38,11 @@ export default function JagdbuchErstellen() {
         date: new Date().toISOString().split("T")[0],
       }),
     });
+
+    console.log("📡 Status:", res.status);
+
+    const responseText = await res.text();
+    console.log("📨 Antwort vom Server:", responseText);
 
     if (!res.ok) {
       setSaving(false);
@@ -82,17 +89,14 @@ export default function JagdbuchErstellen() {
           required
         />
 
-        {/* EXCERPT ZÄHLER */}
         <div style={{ fontSize: 14, opacity: 0.6 }}>
           Vorschau-Text Länge: {content.substring(0, 150).length}/150
         </div>
 
-        {/* FEHLERMELDUNG */}
         {error && (
           <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>
         )}
 
-        {/* 🔥 WICHTIG: type="submit" */}
         <button
           type="submit"
           disabled={saving}
