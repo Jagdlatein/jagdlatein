@@ -1,117 +1,69 @@
-"use client";
+import path from "path";
+import { promises as fs } from "fs";
+import Link from "next/link";
 
-import { useState } from "react";
-import RichEditor from "../components/RichEditor";
+export default async function JagdbuchPage() {
+  const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
 
-export default function ErstellenPage() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
+  let posts = [];
 
-  async function submit(e) {
-    e.preventDefault();
-    setSaving(true);
-    setError("");
-
-    const res = await fetch("/api/jagdbuch/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-user": "Jäger",
-      },
-      body: JSON.stringify({
-        title,
-        content,
-        slug: title.toLowerCase().replace(/\s+/g, "-"),
-        excerpt: content.slice(0, 150),
-        date: new Date().toISOString().split("T")[0],
-      }),
-    });
-
-    if (!res.ok) {
-      setError("Fehler beim Speichern.");
-      setSaving(false);
-      return;
-    }
-
-    window.location.href = "/jagdbuch";
+  try {
+    const data = await fs.readFile(filePath, "utf8");
+    posts = JSON.parse(data);
+  } catch (err) {
+    console.error("❌ Konnte posts.json nicht lesen:", err);
   }
 
   return (
-    <main
-      style={{
-        background: "#f7f1e3",
-        minHeight: "100vh",
-        padding: "40px 20px",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 860,
-          width: "100%",
-          background: "white",
-          padding: 30,
-          borderRadius: 14,
-          boxShadow: "0 8px 22px rgba(0,0,0,0.08)",
-        }}
-      >
-        <h1 style={{ fontSize: 32, marginBottom: 20 }}>Neuen Beitrag erstellen</h1>
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
+      <h1 style={{ fontSize: 38, fontWeight: 700, marginBottom: 20 }}>
+        Jagdbuch
+      </h1>
 
-        <form
-          onSubmit={submit}
-          style={{ display: "flex", flexDirection: "column", gap: 20 }}
+      <Link href="/jagdbuch/erstellen">
+        <button
+          style={{
+            background: "#eee",
+            border: "1px solid #ccc",
+            padding: "8px 14px",
+            borderRadius: 8,
+            cursor: "pointer",
+            marginBottom: 20,
+          }}
         >
-          <div>
-            <label style={{ display: "block", marginBottom: 6, fontWeight: "600" }}>
-              Titel
-            </label>
-            <input
-              type="text"
-              placeholder="Titel eingeben…"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-              style={{
-                width: "100%",
-                padding: 12,
-                border: "1px solid #aaa",
-                borderRadius: 10,
-                fontSize: 16,
-              }}
-            />
-          </div>
+          ➕ Neuen Beitrag erstellen
+        </button>
+      </Link>
 
-          <div>
-            <label style={{ display: "block", marginBottom: 6, fontWeight: "600" }}>
-              Beitrag
-            </label>
+      {posts.length === 0 && (
+        <p style={{ opacity: 0.6 }}>Noch keine Beiträge vorhanden.</p>
+      )}
 
-            <RichEditor value={content} onChange={setContent} />
-          </div>
-
-          {error && (
-            <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>
-          )}
-
-          <button
-            disabled={saving}
+      {posts.map((post) => (
+        <Link
+          key={post.slug}
+          href={`/jagdbuch/${post.slug}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div
             style={{
-              background: saving ? "#b89633" : "#caa53b",
-              padding: "14px 20px",
-              borderRadius: 12,
-              fontSize: 16,
-              fontWeight: "bold",
-              cursor: saving ? "not-allowed" : "pointer",
-              opacity: saving ? 0.7 : 1,
+              background: "#fff",
+              padding: 20,
+              marginBottom: 16,
+              borderRadius: 10,
+              border: "1px solid #ddd",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+              cursor: "pointer",
             }}
           >
-            {saving ? "Speichere…" : "Speichern"}
-          </button>
-        </form>
-      </div>
+            <h2 style={{ margin: 0 }}>{post.title}</h2>
+            <p style={{ opacity: 0.7 }}>{post.excerpt}</p>
+            <small style={{ opacity: 0.5 }}>
+              {post.date} — Likes: {post.likes ?? 0}
+            </small>
+          </div>
+        </Link>
+      ))}
     </main>
   );
 }
