@@ -9,23 +9,33 @@ export default function EditPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
+  const [saving, setSaving] = useState(false);
 
-  // Admin prüfen
+  // Admin prüfen (Client-Only)
   const isAdmin =
-    typeof document !== "undefined" &&
+    typeof window !== "undefined" &&
     document.cookie.includes("jl_admin=1");
 
+  // ---------------------------
+  // POST LADEN
+  // ---------------------------
   useEffect(() => {
     if (!slug) return;
 
     async function loadPost() {
-      const res = await fetch("/api/jagdbuch/get?slug=" + slug);
-      const data = await res.json();
+      try {
+        const res = await fetch("/api/jagdbuch/get?slug=" + slug);
+        if (!res.ok) return;
 
-      setPost(data);
-      setTitle(data.title);
-      setContent(data.content);
-      setImages(data.images || []);
+        const data = await res.json();
+
+        setPost(data);
+        setTitle(data.title);
+        setContent(data.content);
+        setImages(data.images || []);
+      } catch (err) {
+        console.error("Fehler beim Laden des Beitrags:", err);
+      }
     }
 
     loadPost();
@@ -48,8 +58,12 @@ export default function EditPost() {
     );
   }
 
-  // 🔼 Bild-Upload (Base64)
+  // ---------------------------
+  // BILD HOCHLADEN
+  // ---------------------------
   async function uploadImage(file) {
+    if (!file) return;
+
     const reader = new FileReader();
 
     reader.onloadend = async () => {
@@ -59,10 +73,12 @@ export default function EditPost() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          slug: slug,
+          slug,
           image: base64,
         }),
       });
+
+      if (!res.ok) return;
 
       const data = await res.json();
       setImages(data.images);
@@ -71,7 +87,9 @@ export default function EditPost() {
     reader.readAsDataURL(file);
   }
 
-  // ❌ Bild löschen
+  // ---------------------------
+  // BILD LÖSCHEN
+  // ---------------------------
   async function deleteImage(id) {
     const res = await fetch("/api/jagdbuch/delete-image", {
       method: "POST",
@@ -79,18 +97,21 @@ export default function EditPost() {
         "Content-Type": "application/json",
         "x-admin": "1",
       },
-      body: JSON.stringify({
-        slug: slug,
-        imageId: id,
-      }),
+      body: JSON.stringify({ slug, imageId: id }),
     });
+
+    if (!res.ok) return;
 
     const data = await res.json();
     setImages(data.images);
   }
 
-  // SPEICHERN
+  // ---------------------------
+  // BEITRAG SPEICHERN
+  // ---------------------------
   async function save() {
+    setSaving(true);
+
     await fetch("/api/jagdbuch/posts", {
       method: "PUT",
       headers: {
@@ -98,7 +119,7 @@ export default function EditPost() {
         "x-admin": "1",
       },
       body: JSON.stringify({
-        slug: slug, // Slug bleibt exakt unverändert
+        slug,
         title,
         content,
       }),
@@ -111,6 +132,7 @@ export default function EditPost() {
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
       <h1>Beitrag bearbeiten</h1>
 
+      {/* Titel */}
       <label style={{ display: "block", marginTop: 20 }}>
         Titel
         <input
@@ -127,6 +149,7 @@ export default function EditPost() {
         />
       </label>
 
+      {/* Inhalt */}
       <label style={{ display: "block", marginTop: 20 }}>
         Inhalt
         <textarea
@@ -141,10 +164,10 @@ export default function EditPost() {
             border: "1px solid #ccc",
             fontSize: 16,
           }}
-        ></textarea>
+        />
       </label>
 
-      {/* BILD-HOCHLADEN */}
+      {/* BILD UPLOAD */}
       <label style={{ display: "block", marginTop: 30 }}>
         Bilder hochladen
         <input
@@ -155,7 +178,7 @@ export default function EditPost() {
         />
       </label>
 
-      {/* BILD-VORSCHAU MIT LÖSCHEN */}
+      {/* BILDER ANZEIGEN */}
       {images.length > 0 && (
         <div style={{ marginTop: 20 }}>
           <h3>Bilder</h3>
@@ -171,7 +194,7 @@ export default function EditPost() {
                   }}
                 />
 
-                {/* Löschbutton */}
+                {/* Löschen */}
                 <button
                   onClick={() => deleteImage(img.id)}
                   style={{
@@ -186,8 +209,6 @@ export default function EditPost() {
                     height: 28,
                     cursor: "pointer",
                     fontSize: 16,
-                    lineHeight: "28px",
-                    textAlign: "center",
                   }}
                 >
                   ×
@@ -198,21 +219,25 @@ export default function EditPost() {
         </div>
       )}
 
+      {/* Speichern */}
       <button
         onClick={save}
+        disabled={saving}
         style={{
           marginTop: 24,
           padding: "12px 22px",
-          background: "#1f2b23",
+          background: saving ? "#444" : "#1f2b23",
           color: "#fff",
           borderRadius: 12,
           border: "none",
-          cursor: "pointer",
+          cursor: saving ? "not-allowed" : "pointer",
           fontSize: 17,
           fontWeight: "bold",
+          opacity: saving ? 0.7 : 1,
+          transition: "0.2s",
         }}
       >
-        💾 Speichern
+        {saving ? "Speichere…" : "💾 Speichern"}
       </button>
     </main>
   );
