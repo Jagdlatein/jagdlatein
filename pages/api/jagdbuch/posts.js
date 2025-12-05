@@ -9,17 +9,22 @@ export default function handler(req, res) {
     posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
   }
 
-  // 🔐 Benutzername aus Cookie (Client sendet ihn mit)
-  const user = req.headers["x-user"] || "Unbekannt";
+  // 🔐 Benutzer (Ersteller) — MUSS vom Client gesendet werden
+  const user = req.headers["x-user"] || "Jäger";
+
+  // 🔐 Admin — muss 1 sein
   const isAdmin = req.headers["x-admin"] === "1";
 
-  // 🟢 CREATE
+  // ------------------------------------
+  // 🟢 CREATE POST
+  // ------------------------------------
   if (req.method === "POST") {
     const newPost = {
       ...req.body,
       likes: 0,
       comments: [],
-      user,
+      images: [],
+      user, // Ersteller speichern
     };
 
     posts.unshift(newPost);
@@ -27,7 +32,9 @@ export default function handler(req, res) {
     return res.status(200).json({ ok: true });
   }
 
-  // ✏️ UPDATE
+  // ------------------------------------
+  // ✏️ UPDATE POST
+  // ------------------------------------
   if (req.method === "PUT") {
     const { slug, title, content } = req.body;
     const index = posts.findIndex((p) => p.slug === slug);
@@ -36,7 +43,7 @@ export default function handler(req, res) {
 
     const post = posts[index];
 
-    // Ersteller ODER Admin darf editieren
+    // Ersteller ODER Admin darf bearbeiten
     if (post.user !== user && !isAdmin) {
       return res.status(403).json({ error: "Not allowed" });
     }
@@ -53,7 +60,9 @@ export default function handler(req, res) {
     return res.json({ ok: true });
   }
 
-  // ❌ DELETE
+  // ------------------------------------
+  // ❌ DELETE POST
+  // ------------------------------------
   if (req.method === "DELETE") {
     const { slug } = req.body;
     const index = posts.findIndex((p) => p.slug === slug);
@@ -68,6 +77,7 @@ export default function handler(req, res) {
 
     posts.splice(index, 1);
     fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+
     return res.json({ ok: true });
   }
 
