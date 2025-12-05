@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CreatePostPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [slug, setSlug] = useState("");
+
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,12 +19,14 @@ export default function CreatePostPage() {
       .replace(/-+/g, "-");
   }
 
+  useEffect(() => {
+    setSlug(slugify(title));
+  }, [title]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     setSaving(true);
     setError("");
-
-    const slug = slugify(title);
 
     const res = await fetch("/api/jagdbuch/posts", {
       method: "POST",
@@ -38,7 +42,7 @@ export default function CreatePostPage() {
 
     if (!res.ok) {
       setSaving(false);
-      setError("Fehler beim Speichern!");
+      setError("⚠ Fehler beim Speichern!");
       return;
     }
 
@@ -47,56 +51,120 @@ export default function CreatePostPage() {
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      <h1 style={{ marginBottom: 20 }}>Neuen Beitrag erstellen</h1>
+      <h1 style={{ fontSize: 42, fontWeight: 700, marginBottom: 24 }}>
+        Beitrag erstellen
+      </h1>
 
+      {/* FORMULAR */}
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: 16 }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 22,
+          marginBottom: 40,
+        }}
       >
-        <input
-          type="text"
-          placeholder="Titel"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          style={{
-            padding: 12,
-            borderRadius: 10,
-            border: "1px solid #ccc",
-            fontSize: 16,
-          }}
-          required
-        />
+        {/* Titel */}
+        <div>
+          <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>
+            Titel
+          </label>
+          <input
+            type="text"
+            value={title}
+            placeholder="Titel eingeben…"
+            onChange={(e) => setTitle(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "12px 14px",
+              borderRadius: 10,
+              border: "1px solid #bbb",
+              fontSize: 17,
+            }}
+            required
+          />
+        </div>
 
-        <textarea
-          placeholder="Inhalt"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          style={{
-            minHeight: 200,
-            padding: 12,
-            borderRadius: 10,
-            border: "1px solid #ccc",
-            fontSize: 16,
-          }}
-          required
-        />
+        {/* Slug Vorschau */}
+        {slug && (
+          <div style={{ opacity: 0.6, marginTop: -10, fontSize: 14 }}>
+            URL: /jagdbuch/<b>{slug}</b>
+          </div>
+        )}
 
-        {error && <div style={{ color: "red" }}>{error}</div>}
+        {/* Inhalt */}
+        <div>
+          <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>
+            Inhalt
+          </label>
+          <textarea
+            value={content}
+            placeholder="Deinen Jagdbeitrag hier schreiben…"
+            onChange={(e) => setContent(e.target.value)}
+            style={{
+              width: "100%",
+              minHeight: 260,
+              padding: "12px 14px",
+              borderRadius: 10,
+              border: "1px solid #bbb",
+              fontSize: 16,
+              lineHeight: 1.5,
+            }}
+            required
+          />
+        </div>
 
+        {/* Fehler */}
+        {error && (
+          <div
+            style={{
+              padding: 10,
+              background: "#ffd8d8",
+              borderRadius: 8,
+              color: "#900",
+              border: "1px solid #ffb4b4",
+            }}
+          >
+            {error}
+          </div>
+        )}
+
+        {/* Speichern */}
         <button
           disabled={saving}
           style={{
-            background: saving ? "#b89633" : "#caa53b",
-            padding: "12px 20px",
+            background: saving ? "#9c8b43" : "#caa53b",
+            padding: "14px 20px",
             borderRadius: 12,
-            fontSize: 16,
-            fontWeight: "bold",
+            fontSize: 18,
+            fontWeight: 700,
             cursor: saving ? "not-allowed" : "pointer",
+            opacity: saving ? 0.7 : 1,
+            border: "none",
           }}
         >
-          {saving ? "Speichere…" : "Speichern"}
+          {saving ? "Speichert…" : "Beitrag speichern"}
         </button>
       </form>
+
+      {/* LIVE VORSCHAU */}
+      {title || content ? (
+        <div
+          style={{
+            background: "#fff",
+            padding: 22,
+            borderRadius: 12,
+            border: "1px solid #ddd",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+          }}
+        >
+          <h2 style={{ marginTop: 0 }}>{title || "Vorschau Titel…"}</h2>
+          <p style={{ opacity: 0.8, whiteSpace: "pre-wrap" }}>
+            {content || "Beitragstext wird hier angezeigt…"}
+          </p>
+        </div>
+      ) : null}
     </main>
   );
 }
