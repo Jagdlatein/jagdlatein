@@ -6,12 +6,21 @@ export async function getStaticProps() {
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
   let posts = [];
 
-  if (fs.existsSync(filePath)) {
-    posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  try {
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, "utf8");
+      posts = JSON.parse(raw);
+    }
+  } catch (err) {
+    console.error("❌ Fehler beim Lesen von posts.json:", err);
   }
 
-  // 🔥 NEUESTE BEITRÄGE OBEN
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Sortierung: Neueste Beiträge ganz oben
+  posts.sort((a, b) => {
+    const da = new Date(a.date || "1970-01-01");
+    const db = new Date(b.date || "1970-01-01");
+    return db - da;
+  });
 
   return { props: { posts } };
 }
@@ -27,7 +36,7 @@ export default function Jagdbuch({ posts }) {
         Austausch für Jäger – Beiträge, Erfahrungen und Wissen.
       </p>
 
-      {/* Beitrag erstellen */}
+      {/* Neuer Beitrag Button */}
       <Link
         href="/jagdbuch/erstellen"
         style={{
@@ -40,49 +49,57 @@ export default function Jagdbuch({ posts }) {
           marginBottom: 30,
           textDecoration: "none",
           boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          transition: "0.2s",
         }}
       >
         ➕ Beitrag erstellen
       </Link>
 
-      {/* Leere Liste */}
+      {/* Keine Beiträge */}
       {posts.length === 0 && (
-        <p style={{ marginTop: 20 }}>Noch keine Einträge vorhanden.</p>
+        <p style={{ marginTop: 20, opacity: 0.7 }}>
+          Noch keine Einträge vorhanden.
+        </p>
       )}
 
-      {/* Beitragskarten */}
+      {/* Beitragsliste */}
       <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/jagdbuch/${post.slug}`}
-            style={{
-              background: "#fff",
-              padding: 22,
-              borderRadius: 14,
-              boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
-              textDecoration: "none",
-              color: "#1f2b23",
-              borderLeft: "6px solid #caa53b",
-              transition: "0.2s",
-            }}
-          >
-            <h2 style={{ margin: 0, fontSize: 24 }}>{post.title}</h2>
+        {posts.map((post) => {
+          const excerpt =
+            post.excerpt ||
+            (post.content ? post.content.substring(0, 140) + "..." : "");
 
-            <p style={{ margin: "8px 0 12px 0", color: "#6c6458" }}>
-              {post.excerpt || post.content?.slice(0, 120) + "..."}
-            </p>
+          return (
+            <Link
+              key={post.slug}
+              href={`/jagdbuch/${post.slug}`}
+              style={{
+                background: "#fff",
+                padding: 22,
+                borderRadius: 14,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
+                textDecoration: "none",
+                color: "#1f2b23",
+                borderLeft: "6px solid #caa53b",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: 24 }}>{post.title}</h2>
 
-            {/* Likes-Anzeige */}
-            <p style={{ color: "#8a6a3e", fontSize: 15 }}>
-              👍 {post.likes || 0} Likes
-            </p>
+              <p style={{ margin: "8px 0 12px 0", color: "#6c6458" }}>
+                {excerpt}
+              </p>
 
-            <p style={{ color: "#999", marginTop: 4, fontSize: 14 }}>
-              📅 {post.date}
-            </p>
-          </Link>
-        ))}
+              <p style={{ color: "#8a6a3e", fontSize: 15 }}>
+                👍 {post.likes || 0} Likes
+              </p>
+
+              <p style={{ color: "#999", marginTop: 4, fontSize: 14 }}>
+                📅 {post.date || "Unbekanntes Datum"}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </main>
   );
