@@ -1,85 +1,79 @@
-import { promises as fs } from "fs";
+import { NextResponse } from "next/server";
+import fs from "fs";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
+const filePath = "/tmp/jagdbuch-posts.json";
 
-async function loadPosts() {
+function loadPosts() {
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, "[]"); // Datei erzeugen
+  }
+
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function savePosts(posts) {
+  fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+}
+
+// ░░░ GET ░░░
+export async function GET() {
+  const posts = loadPosts();
+  return NextResponse.json(posts);
+}
+
+// ░░░ POST ░░░
+export async function POST(req) {
   try {
-    const data = await fs.readFile(filePath, "utf8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+    const body = await req.json();
+    const posts = loadPosts();
+
+    const newPost = {
+      ...body,
+      user: req.headers.get("x-user") || "Jäger",
+      created: new Date().toISOString(),
+    };
+
+    posts.unshift(newPost);
+    savePosts(posts);
+
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    console.error("POST ERROR:", e);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
 
-async function savePosts(posts) {
-  await fs.writeFile(filePath, JSON.stringify(posts, null, 2));
-}
-
-export async function POST(req) {
-  const body = await req.json();
-  const user = req.headers.get("x-user") || "Jäger";
-
-  const posts = await loadPosts();
-
-  const newPost = {
-    ...body,
-    likes: 0,
-    comments: [],
-    images: [],
-    user,
-  };
-
-  posts.unshift(newPost);
-  await savePosts(posts);
-
-  return Response.json({ ok: true });
-}
-
+// ░░░ PUT ░░░
 export async function PUT(req) {
   const body = await req.json();
-  const user = req.headers.get("x-user") || "Jäger";
-  const isAdmin = req.headers.get("x-admin") === "1";
-
-  const posts = await loadPosts();
+  const posts = loadPosts();
 
   const index = posts.findIndex((p) => p.slug === body.slug);
-  if (index === -1) return Response.json({ error: "Not found" }, { status: 404 });
-
-  const post = posts[index];
-
-  if (post.user !== user && !isAdmin)
-    return Response.json({ error: "Not allowed" }, { status: 403 });
+  if (index === -1)
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   posts[index] = {
-    ...post,
-    title: body.title,
-    content: body.content,
-    excerpt: body.content.slice(0, 120),
+    ...posts[index],
+    ...body,
     updated: new Date().toISOString(),
   };
 
-  await savePosts(posts);
-  return Response.json({ ok: true });
+  savePosts(posts);
+  return NextResponse.json({ ok: true });
 }
 
+// ░░░ DELETE ░░░
 export async function DELETE(req) {
   const body = await req.json();
-  const user = req.headers.get("x-user") || "Jäger";
-  const isAdmin = req.headers.get("x-admin") === "1";
-
-  let posts = await loadPosts();
+  const posts = loadPosts();
 
   const index = posts.findIndex((p) => p.slug === body.slug);
-  if (index === -1) return Response.json({ error: "Not found" }, { status: 404 });
-
-  const post = posts[index];
-
-  if (post.user !== user && !isAdmin)
-    return Response.json({ error: "Not allowed" }, { status: 403 });
+  if (index === -1)
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   posts.splice(index, 1);
-  await savePosts(posts);
+  savePosts(posts);
 
-  return Response.json({ ok: true });
+  return NextResponse.json({ ok: true });
 }
