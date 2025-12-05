@@ -13,13 +13,13 @@ export function middleware(req) {
   const url = req.nextUrl.clone();
   const pathname = url.pathname;
 
-  // PayPal Webhooks immer erlauben
+  // PayPal immer erlauben
   if (pathname.startsWith("/api/paypal")) {
     return NextResponse.next();
   }
 
-  // API NIE blockieren
-  if (pathname.startsWith("/api")) {
+  // ░░░ API NIE blockieren ░░░
+  if (pathname.startsWith("/api/")) {
     return NextResponse.next();
   }
 
@@ -53,5 +53,7 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  matcher: [
+    "/((?!_next/|favicon.ico|api/).*)"
+  ],
 };
