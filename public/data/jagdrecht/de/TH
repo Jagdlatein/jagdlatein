@@ -1,0 +1,102 @@
+[
+  {
+    "id": "th_par_1",
+    "title": "§ 1 Zweck des Gesetzes",
+    "text": "Dieses Gesetz dient dem Schutz und der nachhaltigen Nutzung der Wildbestände in Thüringen sowie der Erhaltung ihrer Lebensräume."
+  },
+  {
+    "id": "th_par_2",
+    "title": "§ 2 Hegegrundsätze",
+    "text": "Die Hege soll gesunde und artenreiche Wildbestände sichern. Besondere Bedeutung haben Rotwild, Rehwild und die Regulierung des Schwarzwildes."
+  },
+  {
+    "id": "th_par_3",
+    "title": "§ 3 Lebensräume und Wildkorridore",
+    "text": "Der Thüringer Wald, die Rhön und die mitteldeutschen Hügellandschaften bilden wesentliche Lebensräume. Wildtierkorridore sind zu erhalten und zu fördern."
+  },
+  {
+    "id": "th_par_4",
+    "title": "§ 4 Jagdbezirke",
+    "text": "Jagdbezirke bestehen aus Eigenjagdbezirken und gemeinschaftlichen Jagdbezirken. Größe und Verwaltung richten sich nach den landesrechtlichen Vorgaben."
+  },
+  {
+    "id": "th_par_5",
+    "title": "§ 5 Jagdzeiten",
+    "text": "Jagdzeiten orientieren sich an regionalen Wildbeständen. Der Abschuss von Schwarzwild ist zur ASP-Prävention prioritär zu ermöglichen."
+  },
+  {
+    "id": "th_par_6",
+    "title": "§ 6 Rotwildgebiete",
+    "text": "Rotwildgebiete sind festgelegt. Innerhalb dieser Gebiete erfolgt ein abgestimmtes Management, außerhalb ist der Bestand niedrig zu halten."
+  },
+  {
+    "id": "th_par_7",
+    "title": "§ 7 Wolf und Luchs",
+    "text": "Wolf und Luchs sind streng geschützt. Monitoring, Herdenschutzmaßnahmen und Schadensregulierung erfolgen nach bundesrechtlichen Vorgaben."
+  },
+  {
+    "id": "th_par_8",
+    "title": "§ 8 Muffelwild",
+    "text": "Das Muffelwild gilt als nicht autochthon. Eine Bestandsregulierung kann in bestimmten Regionen angeordnet werden."
+  },
+  {
+    "id": "th_par_9",
+    "title": "§ 9 Hegegemeinschaften",
+    "text": "Hegegemeinschaften koordinieren Wildbewirtschaftung und Abschussplanung. Planungen sind der unteren Jagdbehörde vorzulegen."
+  },
+  {
+    "id": "th_par_10",
+    "title": "§ 10 Jagdschein",
+    "text": "Der Jagdschein setzt eine bestandene Jägerprüfung, waffenrechtliche Zuverlässigkeit und eine Jagdhaftpflichtversicherung voraus."
+  },
+  {
+    "id": "th_par_11",
+    "title": "§ 11 Jägerprüfung",
+    "text": "Die Prüfung umfasst Theorie, Praxis, Waffenhandhabung und Schießen. Inhalte orientieren sich an bundesrechtlichen Standards."
+  },
+  {
+    "id": "th_par_12",
+    "title": "§ 12 Waidgerechtigkeit",
+    "text": "Die Jagd ist waidgerecht auszuüben. Sicherheitsbestimmungen sind strikt einzuhalten. Tierleid ist zu minimieren."
+  },
+  {
+    "id": "th_par_13",
+    "title": "§ 13 Drück- und Bewegungsjagden",
+    "text": "Bewegungsjagden sind zu koordinieren, anzumelden und sicherheitsgerecht durchzuführen. Geeignete Jagdhunde sind einzusetzen."
+  },
+  {
+    "id": "th_par_14",
+    "title": "§ 14 Fangjagd",
+    "text": "Fangjagd ist zulässig, wenn selektive und tierschutzgerechte Fanggeräte verwendet werden. Lebendfallen sind täglich zu kontrollieren."
+  },
+  {
+    "id": "th_par_15",
+    "title": "§ 15 Schwarzwildbekämpfung",
+    "text": "Zur Vorbeugung der Afrikanischen Schweinepest kann die Jagdbehörde erweiterte Jagdzeiten und besondere Maßnahmen anordnen."
+  },
+  {
+    "id": "th_par_16",
+    "title": "§ 16 Unfallwild",
+    "text": "Wildunfälle sind unverzüglich zu melden. Verletztes Wild ist waidgerecht zu versorgen und gegebenenfalls nachzusuchen."
+  },
+  {
+    "id": "th_par_17",
+    "title": "§ 17 Wildbrethygiene",
+    "text": "Wildbret ist hygienisch aufzubereiten. Schwarzwild ist der Trichinenuntersuchung zu unterziehen. Dokumentationspflichten gelten nach EU-Recht."
+  },
+  {
+    "id": "th_par_18",
+    "title": "§ 18 Jagd in Schutzgebieten",
+    "text": "In Nationalparks, FFH-Gebieten und Naturschutzgebieten gelten besondere Einschränkungen. Jagdliche Maßnahmen sind mit den Schutzbehörden abzustimmen."
+  },
+  {
+    "id": "th_par_19",
+    "title": "§ 19 Zusammenarbeit der Behörden",
+    "text": "Forst, Jagdbehörde, Veterinärämter und Polizei arbeiten insbesondere bei Wildschäden, Monitoring und Seuchenprävention zusammen."
+  },
+  {
+    "id": "th_par_20",
+    "title": "§ 20 Ordnungswidrigkeiten",
+    "text": "Verstöße gegen jagdrechtliche Vorschriften, Sicherheitsbestimmungen oder Jagdzeiten können als Ordnungswidrigkeiten geahndet werden."
+  }
+]
