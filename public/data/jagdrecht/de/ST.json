@@ -1,0 +1,102 @@
+[
+  {
+    "id": "st_par_1",
+    "title": "§ 1 Zweck des Gesetzes",
+    "text": "Dieses Gesetz regelt die Jagd im Land Sachsen-Anhalt. Ziel ist eine nachhaltige Nutzung des Wildes sowie der Schutz der natürlichen Lebensgrundlagen."
+  },
+  {
+    "id": "st_par_2",
+    "title": "§ 2 Hege und Pflege",
+    "text": "Die Hege dient dem Erhalt artenreicher, gesunder Wildbestände. Besondere Bedeutung haben Rotwild, Rehwild und die Eindämmung des Schwarzwildbestandes."
+  },
+  {
+    "id": "st_par_3",
+    "title": "§ 3 Wildlebensräume",
+    "text": "Die Elbauen, Harzregionen und die ausgedehnten Agrarflächen des Landes sind als Wildlebensräume besonders zu schützen und nachhaltig zu entwickeln."
+  },
+  {
+    "id": "st_par_4",
+    "title": "§ 4 Jagdbezirke",
+    "text": "Jagdbezirke bestehen aus Eigenjagdbezirken und gemeinschaftlichen Jagdbezirken. Mindestgrößen und Pachtvorgaben richten sich nach landesrechtlichen Bestimmungen."
+  },
+  {
+    "id": "st_par_5",
+    "title": "§ 5 Jagdzeiten",
+    "text": "Die Jagdzeiten orientieren sich an wildbiologischen Erfordernissen. Schwerpunkt liegt auf der Regulierung von Schwarzwild zur Reduzierung von Wildschäden."
+  },
+  {
+    "id": "st_par_6",
+    "title": "§ 6 Rotwildgebiete",
+    "text": "Rotwildkerngebiete sind festgelegt und dürfen nicht ohne Abstimmung verändert werden. Außerhalb der Gebiete ist der Bestand niedrig zu halten."
+  },
+  {
+    "id": "st_par_7",
+    "title": "§ 7 Wolf und andere Großraubtiere",
+    "text": "Der Wolf ist eine streng geschützte Art. Monitoring, Herdenschutz und Schadensmeldungen erfolgen nach bundes- und landesrechtlichen Vorgaben."
+  },
+  {
+    "id": "st_par_8",
+    "title": "§ 8 Hegegemeinschaften",
+    "text": "Hegegemeinschaften koordinieren die Wildbewirtschaftung über Reviergrenzen hinweg. Abschusspläne sind mit der Jagdbehörde abzustimmen."
+  },
+  {
+    "id": "st_par_9",
+    "title": "§ 9 Jagdschein",
+    "text": "Der Jagdschein erfordert Sachkunde, Zuverlässigkeit, eine Jagdhaftpflichtversicherung sowie eine bestandene Jägerprüfung."
+  },
+  {
+    "id": "st_par_10",
+    "title": "§ 10 Jägerprüfung",
+    "text": "Die Prüfung umfasst Theorie, Schießen, Praxis sowie Waffenhandhabung. Inhalte werden durch das Land festgelegt."
+  },
+  {
+    "id": "st_par_11",
+    "title": "§ 11 Waidgerechtigkeit",
+    "text": "Jagd ist so auszuüben, dass vermeidbares Leiden ausgeschlossen ist. Sicherheitsbestimmungen sind strikt einzuhalten."
+  },
+  {
+    "id": "st_par_12",
+    "title": "§ 12 Fangjagd",
+    "text": "Fangjagd ist zulässig, sofern tierschutzgerechte und selektive Fanggeräte verwendet werden. Es besteht tägliche Kontrollpflicht."
+  },
+  {
+    "id": "st_par_13",
+    "title": "§ 13 Nachsuche",
+    "text": "Bei Verdacht auf eine Verwundung ist unverzüglich eine fachgerechte Nachsuche einzuleiten. Geeignete Jagdhunde sind einzusetzen."
+  },
+  {
+    "id": "st_par_14",
+    "title": "§ 14 Waffen und Munition",
+    "text": "Nur sichere und zulässige Waffen dürfen eingesetzt werden. Schalldämpfer sind erlaubt, sofern sie eingetragen sind."
+  },
+  {
+    "id": "st_par_15",
+    "title": "§ 15 Wildschäden",
+    "text": "Wildschäden an land- und forstwirtschaftlichen Kulturen sind möglichst zu vermeiden. Schwarzwild ist vorrangig zu regulieren."
+  },
+  {
+    "id": "st_par_16",
+    "title": "§ 16 Unfallwild",
+    "text": "Wildunfälle sind unverzüglich der Polizei oder dem Jagdausübungsberechtigten zu melden. Das Wild ist waidgerecht zu versorgen."
+  },
+  {
+    "id": "st_par_17",
+    "title": "§ 17 Wildbrethygiene",
+    "text": "Wild ist hygienisch aufzubrechen und zu verwerten. Schwarzwild muss der Trichinenuntersuchung zugeführt werden."
+  },
+  {
+    "id": "st_par_18",
+    "title": "§ 18 Jagd in Schutzgebieten",
+    "text": "In Natur- und FFH-Gebieten gelten besondere Einschränkungen. Jagdliche Maßnahmen sind mit Schutzbestimmungen abzugleichen."
+  },
+  {
+    "id": "st_par_19",
+    "title": "§ 19 Zusammenarbeit der Behörden",
+    "text": "Jagdbehörde, Veterinäramt, Naturschutz, Polizei und Forst arbeiten insbesondere bei Monitoring, Wildschäden und Seuchenprävention zusammen."
+  },
+  {
+    "id": "st_par_20",
+    "title": "§ 20 Ordnungswidrigkeiten",
+    "text": "Verstöße gegen dieses Gesetz, Jagdzeiten oder Sicherheitsvorschriften können als Ordnungswidrigkeiten geahndet werden."
+  }
+]
