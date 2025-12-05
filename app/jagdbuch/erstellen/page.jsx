@@ -98,18 +98,11 @@ export default function CreatePostPage() {
           <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>
             Inhalt
           </label>
-          <textarea
-            value={content}
-            placeholder="Deinen Jagdbeitrag hier schreiben…"
-            onChange={(e) => setContent(e.target.value)}
-            style={{
-              width: "100%",
-              minHeight: 260,
-              padding: "12px 14px",
-              borderRadius: 10,
-              border: "1px solid #bbb",
-              fontSize: 16,
-              lineHeight: 1.5,
+          import RichEditor from "../components/RichEditor";
+
+…
+
+<RichEditor value={content} onChange={setContent} />
             }}
             required
           />
