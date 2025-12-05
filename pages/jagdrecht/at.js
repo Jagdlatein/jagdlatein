@@ -7,19 +7,19 @@ export default function JagdrechtAT() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // 1. Bundesländer einlesen
+  // 1. Bundesländerindex laden
   useEffect(() => {
     fetch("/data/jagdrecht/at/bundeslaender.json")
       .then(r => r.json())
       .then(setBundeslaender);
   }, []);
 
-  // 2. Inhalte dynamisch laden (FIX enthalten)
+  // 2. Inhalte dynamisch laden
   useEffect(() => {
     let path = "";
 
-    // *** FIX → lade deine echte Datei bundesrecht.json ***
-    if (mode === "bundes") path = "/data/jagdrecht/at/bundesrecht.json";
+    // ⬅️ WICHTIG: korrigiert!
+    if (mode === "bundes") path = "/data/jagdrecht/at/bundesgesetz.json";
 
     if (mode === "bundeslaender" && selectedBL) {
       path = `/data/jagdrecht/at/${selectedBL}.json`;
@@ -37,7 +37,9 @@ export default function JagdrechtAT() {
 
   // Suche
   const filtered = articles.filter(a =>
-    (a.title + " " + a.text).toLowerCase().includes(search.toLowerCase())
+    (a.title + " " + a.text)
+      .toLowerCase()
+      .includes(search.toLowerCase())
   );
 
   // Highlight
@@ -79,7 +81,7 @@ export default function JagdrechtAT() {
         </button>
       </div>
 
-      {/* Bundesländerauswahl */}
+      {/* Auswahl */}
       {mode === "bundeslaender" && (
         <select
           value={selectedBL}
@@ -110,10 +112,10 @@ export default function JagdrechtAT() {
       {/* Artikel */}
       {mode !== "infos" && (
         <div style={styles.list}>
-          {filtered.map(article => (
-            <div id={article.id} key={article.id} style={styles.card}>
-              <h2 style={styles.articleTitle}>{highlight(article.title)}</h2>
-              <p style={styles.text}>{highlight(article.text)}</p>
+          {filtered.map(a => (
+            <div key={a.id} style={styles.card}>
+              <h2 style={styles.articleTitle}>{highlight(a.title)}</h2>
+              <p style={styles.text}>{highlight(a.text)}</p>
             </div>
           ))}
         </div>
@@ -125,7 +127,6 @@ export default function JagdrechtAT() {
           {bundeslaender.map(b => (
             <div key={b.kurz} style={styles.infoCard}>
               <h2 style={styles.articleTitle}>{b.name} ({b.kurz})</h2>
-
               <p><b>Jagdsystem:</b> {b.system}</p>
               <p><b>Prüfung:</b> {b.pruefung}</p>
               <p><b>Besonderheiten:</b> {b.besonderheiten}</p>
@@ -144,22 +145,13 @@ const styles = {
     padding: 32,
     fontFamily: "system-ui",
   },
-  h1: {
-    fontSize: 34,
-    marginBottom: 20,
-    fontWeight: 700,
-  },
-  tabs: {
-    display: "flex",
-    gap: 12,
-    marginBottom: 20,
-  },
+  h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
+  tabs: { display: "flex", gap: 12, marginBottom: 20 },
   tab: {
     padding: "10px 16px",
     borderRadius: 10,
     border: "1px solid #bbb",
     background: "#f7f7f7",
-    fontSize: 16,
     cursor: "pointer",
   },
   tabActive: {
@@ -167,8 +159,7 @@ const styles = {
     borderRadius: 10,
     border: "1px solid #caa53b",
     background: "#caa53b",
-    color: "white",
-    fontSize: 16,
+    color: "#fff",
     fontWeight: 600,
     cursor: "pointer",
   },
@@ -177,45 +168,26 @@ const styles = {
     padding: 14,
     borderRadius: 12,
     border: "1px solid #bbb",
-    fontSize: 17,
     marginBottom: 20,
-    background: "#fff",
   },
   search: {
     width: "100%",
     padding: 14,
     borderRadius: 12,
     border: "1px solid #bbb",
-    fontSize: 17,
     marginBottom: 30,
   },
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 22,
-  },
+  list: { display: "flex", flexDirection: "column", gap: 22 },
   card: {
     background: "#fff",
     padding: 18,
     borderRadius: 14,
-    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
     borderLeft: "6px solid #caa53b",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
   },
-  articleTitle: {
-    fontSize: 20,
-    fontWeight: 600,
-    marginBottom: 8,
-  },
-  text: {
-    whiteSpace: "pre-line",
-    fontSize: 16,
-    color: "#333",
-  },
-  infoList: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 18,
-  },
+  articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
+  text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
+  infoList: { display: "flex", flexDirection: "column", gap: 18 },
   infoCard: {
     background: "#fff",
     padding: 18,
