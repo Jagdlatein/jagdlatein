@@ -13,7 +13,8 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/supabase-js": "^2.39.8",
-   
+   "@tiptap/react": "^2.1.8",
+"@tiptap/starter-kit": "^2.1.8",
     "bcryptjs": "^2.4.3",
     "formidable": "^3.5.1",
     "next": "14.2.7",
