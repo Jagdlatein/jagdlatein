@@ -7,18 +7,19 @@ export default function JagdrechtAT() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // 1. Bundesländerindex laden
+  // 1. Bundesländer einlesen
   useEffect(() => {
     fetch("/data/jagdrecht/at/bundeslaender.json")
       .then(r => r.json())
       .then(setBundeslaender);
   }, []);
 
-  // 2. Inhalte dynamisch laden
+  // 2. Inhalte dynamisch laden (FIX enthalten)
   useEffect(() => {
     let path = "";
 
-    if (mode === "bundes") path = "/data/jagdrecht/at/bundesjagdgesetz.json";
+    // *** FIX → lade deine echte Datei bundesrecht.json ***
+    if (mode === "bundes") path = "/data/jagdrecht/at/bundesrecht.json";
 
     if (mode === "bundeslaender" && selectedBL) {
       path = `/data/jagdrecht/at/${selectedBL}.json`;
@@ -34,11 +35,9 @@ export default function JagdrechtAT() {
       .then(setArticles);
   }, [mode, selectedBL]);
 
-  // Suche / Filter
+  // Suche
   const filtered = articles.filter(a =>
-    (a.title + " " + a.text)
-      .toLowerCase()
-      .includes(search.toLowerCase())
+    (a.title + " " + a.text).toLowerCase().includes(search.toLowerCase())
   );
 
   // Highlight
@@ -56,7 +55,7 @@ export default function JagdrechtAT() {
     <main style={styles.container}>
       <h1 style={styles.h1}>🇦🇹 Österreichisches Jagdrecht</h1>
 
-      {/* TABS */}
+      {/* Tabs */}
       <div style={styles.tabs}>
         <button
           style={mode === "bundes" ? styles.tabActive : styles.tab}
@@ -97,7 +96,7 @@ export default function JagdrechtAT() {
       )}
 
       {/* Suche */}
-      {((mode !== "bundeslaender") || (selectedBL)) &&
+      {((mode !== "bundeslaender") || selectedBL) &&
         mode !== "infos" && (
           <input
             type="text"
@@ -127,7 +126,7 @@ export default function JagdrechtAT() {
             <div key={b.kurz} style={styles.infoCard}>
               <h2 style={styles.articleTitle}>{b.name} ({b.kurz})</h2>
 
-              <p><b>Jagsystem:</b> {b.system}</p>
+              <p><b>Jagdsystem:</b> {b.system}</p>
               <p><b>Prüfung:</b> {b.pruefung}</p>
               <p><b>Besonderheiten:</b> {b.besonderheiten}</p>
             </div>
@@ -212,8 +211,6 @@ const styles = {
     fontSize: 16,
     color: "#333",
   },
-
-  // Infos
   infoList: {
     display: "flex",
     flexDirection: "column",
