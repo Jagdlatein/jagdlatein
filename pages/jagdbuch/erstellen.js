@@ -24,7 +24,10 @@ export default function JagdbuchErstellen() {
 
     const res = await fetch("/api/jagdbuch/posts", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "x-user": "Jäger"   // 🔥 WICHTIG: MUSS mitgesendet werden
+      },
       body: JSON.stringify({
         title,
         content,
