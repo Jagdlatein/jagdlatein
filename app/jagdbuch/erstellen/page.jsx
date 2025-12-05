@@ -2,32 +2,18 @@
 
 import { useState } from "react";
 
-export default function CreatePost() {
+export default function CreatePage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [saving, setSaving] = useState(false);
 
-  function createSlug(text) {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "")
-      .replace(/-+/g, "-");
-  }
-
-  async function savePost(e) {
+  async function submit(e) {
     e.preventDefault();
-    setSaving(true);
 
-    const slug = createSlug(title);
+    const slug = title.toLowerCase().replace(/ /g, "-");
 
-    const res = await fetch("/api/jagdbuch/posts", {
+    await fetch("/api/jagdbuch/posts", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-user": "Jäger",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title,
         content,
@@ -37,36 +23,17 @@ export default function CreatePost() {
       }),
     });
 
-    if (!res.ok) {
-      alert("Fehler!");
-      setSaving(false);
-      return;
-    }
-
     window.location.href = "/jagdbuch";
   }
 
   return (
-    <main style={{ padding: 20 }}>
-      <h1>Neuen Beitrag erstellen</h1>
+    <main style={{ padding: 32 }}>
+      <h1>Beitrag erstellen</h1>
 
-      <form onSubmit={savePost} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <input
-          placeholder="Titel"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Inhalt"
-          style={{ minHeight: 200 }}
-        />
-
-        <button disabled={saving}>
-          {saving ? "Speichere..." : "Speichern"}
-        </button>
+      <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel" required />
+        <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Inhalt" />
+        <button>Speichern</button>
       </form>
     </main>
   );
