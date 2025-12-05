@@ -1,0 +1,102 @@
+[
+  {
+    "id": "bb_par_1",
+    "title": "§ 1 Geltungsbereich",
+    "text": "Dieses Gesetz gilt für die Ausübung der Jagd im Land Brandenburg. Es berücksichtigt die wald- und wildreichen Regionen des Landes sowie großflächige Agrarlandschaften."
+  },
+  {
+    "id": "bb_par_2",
+    "title": "§ 2 Ziele des Jagdrechts",
+    "text": "Ziele sind die Erhaltung artenreicher Wildbestände, die Sicherung eines gesunden Wildes sowie die Gewährleistung eines ausgewogenen Wald-Wild-Verhältnisses."
+  },
+  {
+    "id": "bb_par_3",
+    "title": "§ 3 Jagdbezirke",
+    "text": "Jagdbezirke bestehen aus Eigenjagdbezirken und gemeinschaftlichen Jagdbezirken. Die Mindestgröße richtet sich nach regionalen Gegebenheiten und beträgt grundsätzlich 150 Hektar."
+  },
+  {
+    "id": "bb_par_4",
+    "title": "§ 4 Hegepflicht",
+    "text": "Die Hege hat nachhaltige Wildbewirtschaftung, Lebensraumverbesserung und Vermeidung überhöhter Wildschäden zu gewährleisten. Maßnahmen im Wald haben die Wiederbewaldung zu sichern."
+  },
+  {
+    "id": "bb_par_5",
+    "title": "§ 5 Wildschadensverhütung",
+    "text": "Jagdbezirksinhaber müssen geeignete Maßnahmen zur Vermeidung von Wildschäden ergreifen. Dazu zählen Bejagung, Schutzmaßnahmen und Zusammenarbeit mit Land- und Forstwirten."
+  },
+  {
+    "id": "bb_par_6",
+    "title": "§ 6 Jagd- und Schonzeiten",
+    "text": "Das Land Brandenburg kann abweichende Jagd- und Schonzeiten festlegen. Besonderheiten bestehen für Rotwildgebiete, Schwarzwildjagd und Wasserwild."
+  },
+  {
+    "id": "bb_par_7",
+    "title": "§ 7 Rotwildbewirtschaftung",
+    "text": "Rotwild wird in Bewirtschaftungsgebieten geführt. Abschusspläne sind verbindlich und haben die sozialen Strukturen sowie die Waldverträglichkeit zu berücksichtigen."
+  },
+  {
+    "id": "bb_par_8",
+    "title": "§ 8 Schwarzwildregulierung",
+    "text": "Wegen hoher Bestände und ASP-Risiko sind weitergehende Bejagungsmöglichkeiten zulässig. Nachtsichttechnik kann im Rahmen der Verordnung erlaubt werden."
+  },
+  {
+    "id": "bb_par_9",
+    "title": "§ 9 Niederwildhege",
+    "text": "Feldhasen, Rebhühner und weitere Arten erfordern Lebensraumverbesserungen. Prädatorenmanagement ist Teil der Hegeverantwortung."
+  },
+  {
+    "id": "bb_par_10",
+    "title": "§ 10 Jagdschein",
+    "text": "Voraussetzungen sind eine bestandene Jägerprüfung, Zuverlässigkeit, körperliche Eignung und Versicherungsschutz. Der Jagdschein kann als Tages-, Jahres- oder Ausländerjagdschein erteilt werden."
+  },
+  {
+    "id": "bb_par_11",
+    "title": "§ 11 Jägerprüfung",
+    "text": "Die Prüfung umfasst Theorie, Waffenhandhabung und Schießen. Der Prüfungsinhalt orientiert sich an waldreichen Gegebenheiten und Schwarzwildschwerpunkt."
+  },
+  {
+    "id": "bb_par_12",
+    "title": "§ 12 Jagdausübung",
+    "text": "Die Jagd ist waidgerecht auszuüben. Jagdliche Maßnahmen in Siedlungsnähe oder Tourismusgebieten erfordern besondere Vorsicht."
+  },
+  {
+    "id": "bb_par_13",
+    "title": "§ 13 Hunde und Falknerei",
+    "text": "Zur Nachsuche ist ein brauchbarer Hund vorzuhalten. Die Falknerei ist zulässig und bedarf eines Falknerjagdscheins."
+  },
+  {
+    "id": "bb_par_14",
+    "title": "§ 14 Nachsuchepflicht",
+    "text": "Verletztes Wild ist unverzüglich nachzusuchen. Revierübergreifende Nachsuchen sind zu ermöglichen."
+  },
+  {
+    "id": "bb_par_15",
+    "title": "§ 15 Umgang mit Fallwild",
+    "text": "Fallwild ist der zuständigen Behörde zu melden. Probenahme bei Schwarzwild erfolgt nach ASP-Vorgaben."
+  },
+  {
+    "id": "bb_par_16",
+    "title": "§ 16 Waffen- und Munitionseinsatz",
+    "text": "Es sind nur sichere und wirksame Waffen zu verwenden. Bei der Schwarzwildjagd ist ausreichende Geschosswirkung verpflichtend."
+  },
+  {
+    "id": "bb_par_17",
+    "title": "§ 17 Bewegungsjagden",
+    "text": "Bewegungsjagden sind frühzeitig abzustimmen und sicherheitsgerecht durchzuführen. Einsatz von Signalbekleidung ist Pflicht."
+  },
+  {
+    "id": "bb_par_18",
+    "title": "§ 18 Naturschutzanforderungen",
+    "text": "Jagdliche Maßnahmen müssen Natura-2000-Gebiete, Brutzeiten und Artenschutz berücksichtigen. Eingriffe bedürfen ggf. einer Genehmigung."
+  },
+  {
+    "id": "bb_par_19",
+    "title": "§ 19 Wildkörper und Wildbret",
+    "text": "Wildbret ist hygienisch zu gewinnen. Schwarzwild ist verpflichtend der Trichinenuntersuchung zuzuführen."
+  },
+  {
+    "id": "bb_par_20",
+    "title": "§ 20 Ordnungswidrigkeiten",
+    "text": "Ordnungswidrig handelt, wer gegen Schonzeiten, Sicherheitsvorschriften, Abschusspläne oder ASP-Regelungen verstößt. Bußgelder können erheblich sein."
+  }
+]
