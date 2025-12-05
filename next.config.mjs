@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: false,   // 🔥 WICHTIG: App Router deaktivieren
+    appDir: false, // 🔥 WICHTIG!
   },
 
   images: {
@@ -56,4 +56,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig; // 🔥 NICHT "export default"
