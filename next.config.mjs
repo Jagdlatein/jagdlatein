@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: false, // 🔥 WICHTIG!
+    appDir: false,   // 🔥 Deaktiviert App Router, aktiviert pages/api
   },
 
   images: {
@@ -56,4 +56,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig; // 🔥 NICHT "export default"
+module.exports = nextConfig; // 🔥 WICHTIG: CJS Export
