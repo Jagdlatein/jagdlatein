@@ -7,7 +7,8 @@ const PUBLIC_PATHS = [
   "/login", 
   "/preise", 
   "/debug-cookies",
-  "/paytest"
+  "/paytest",
+  "/jagdbuch/erstellen" // 🔥 Wenn du willst dass Erstellen ohne Login geht
 ];
 
 export function middleware(req) {
@@ -19,10 +20,8 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // 🔥 ALLE API-Endpunkte erlauben
-  if (pathname.startsWith("/api")) {
-    return NextResponse.next();
-  }
+  // 🔥 ALLE API-Routen überspringen
+  if (pathname.startsWith("/api")) return NextResponse.next();
 
   // Static Files niemals blockieren
   if (
@@ -41,13 +40,13 @@ export function middleware(req) {
   // ist Route öffentlich?
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // ❌ Nicht eingeloggt → nur Public zugelassen
+  // ❌ Nicht eingeloggt → nur Public
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // ❌ Eingeloggt, aber kein Premium
+  // ❌ Eingeloggt, aber nicht Premium → einschränken
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
@@ -56,9 +55,9 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
+// 💯 Richtiger Matcher – API wird ausgeschlossen
 export const config = {
-  // 🔥 WICHTIG: API komplett ausschließen
   matcher: [
-    "/((?!api|_next|favicon.ico).*)"
-  ]
+    "/((?!api|_next|favicon.ico|public).*)"
+  ],
 };
