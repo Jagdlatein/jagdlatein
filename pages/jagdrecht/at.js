@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 
 export default function JagdrechtAT() {
-  const [mode, setMode] = useState("bundeslaender"); // bundes | bundeslaender | infos
+  const [mode, setMode] = useState("bundeslaender"); 
   const [bundeslaender, setBundeslaender] = useState([]);
   const [selectedBL, setSelectedBL] = useState("");
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // 1. Bundesländerindex laden
+  // Bundesländerindex laden
   useEffect(() => {
     fetch("/data/jagdrecht/at/bundeslaender.json")
       .then(r => r.json())
       .then(setBundeslaender);
   }, []);
 
-  // 2. Inhalte dynamisch laden
+  // Inhalte dynamisch laden
   useEffect(() => {
     let path = "";
 
-    // ⬅️ WICHTIG: korrigiert!
-    if (mode === "bundes") path = "/data/jagdrecht/at/bundesgesetz.json";
+    if (mode === "bundesgesetz") path = "/data/jagdrecht/at/bundesgesetz.json";
+    if (mode === "bundesrecht")  path = "/data/jagdrecht/at/bundesrecht.json";
 
     if (mode === "bundeslaender" && selectedBL) {
       path = `/data/jagdrecht/at/${selectedBL}.json`;
@@ -37,12 +37,9 @@ export default function JagdrechtAT() {
 
   // Suche
   const filtered = articles.filter(a =>
-    (a.title + " " + a.text)
-      .toLowerCase()
-      .includes(search.toLowerCase())
+    (a.title + " " + a.text).toLowerCase().includes(search.toLowerCase())
   );
 
-  // Highlight
   const highlight = (text) => {
     if (!search) return text;
     const parts = text.split(new RegExp(`(${search})`, "gi"));
@@ -57,13 +54,21 @@ export default function JagdrechtAT() {
     <main style={styles.container}>
       <h1 style={styles.h1}>🇦🇹 Österreichisches Jagdrecht</h1>
 
-      {/* Tabs */}
+      {/* TABS */}
       <div style={styles.tabs}>
+
         <button
-          style={mode === "bundes" ? styles.tabActive : styles.tab}
-          onClick={() => { setMode("bundes"); setSelectedBL(""); }}
+          style={mode === "bundesgesetz" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("bundesgesetz"); setSelectedBL(""); }}
         >
-          Bundesrecht (Jagdgesetz Bund)
+          Bundesgesetz (Jagdgesetz)
+        </button>
+
+        <button
+          style={mode === "bundesrecht" ? styles.tabActive : styles.tab}
+          onClick={() => { setMode("bundesrecht"); setSelectedBL(""); }}
+        >
+          Bundesrecht
         </button>
 
         <button
@@ -81,7 +86,7 @@ export default function JagdrechtAT() {
         </button>
       </div>
 
-      {/* Auswahl */}
+      {/* Bundesländerauswahl */}
       {mode === "bundeslaender" && (
         <select
           value={selectedBL}
@@ -98,24 +103,23 @@ export default function JagdrechtAT() {
       )}
 
       {/* Suche */}
-      {((mode !== "bundeslaender") || selectedBL) &&
-        mode !== "infos" && (
-          <input
-            type="text"
-            placeholder="Suchbegriff eingeben…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={styles.search}
-          />
-        )}
+      {mode !== "infos" && ((mode !== "bundeslaender") || selectedBL) && (
+        <input
+          type="text"
+          placeholder="Suchbegriff eingeben…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={styles.search}
+        />
+      )}
 
-      {/* Artikel */}
+      {/* Artikelanzeige */}
       {mode !== "infos" && (
         <div style={styles.list}>
-          {filtered.map(a => (
-            <div key={a.id} style={styles.card}>
-              <h2 style={styles.articleTitle}>{highlight(a.title)}</h2>
-              <p style={styles.text}>{highlight(a.text)}</p>
+          {filtered.map(article => (
+            <div key={article.id} style={styles.card}>
+              <h2 style={styles.articleTitle}>{highlight(article.title)}</h2>
+              <p style={styles.text}>{highlight(article.text)}</p>
             </div>
           ))}
         </div>
@@ -138,13 +142,9 @@ export default function JagdrechtAT() {
   );
 }
 
+/* Styles */
 const styles = {
-  container: {
-    maxWidth: 900,
-    margin: "0 auto",
-    padding: 32,
-    fontFamily: "system-ui",
-  },
+  container: { maxWidth: 900, margin: "0 auto", padding: 32, fontFamily: "system-ui" },
   h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
   tabs: { display: "flex", gap: 12, marginBottom: 20 },
   tab: {
@@ -152,14 +152,16 @@ const styles = {
     borderRadius: 10,
     border: "1px solid #bbb",
     background: "#f7f7f7",
+    fontSize: 16,
     cursor: "pointer",
   },
   tabActive: {
     padding: "10px 16px",
     borderRadius: 10,
-    border: "1px solid #caa53b",
     background: "#caa53b",
-    color: "#fff",
+    color: "white",
+    border: "1px solid #caa53b",
+    fontSize: 16,
     fontWeight: 600,
     cursor: "pointer",
   },
@@ -168,6 +170,7 @@ const styles = {
     padding: 14,
     borderRadius: 12,
     border: "1px solid #bbb",
+    fontSize: 17,
     marginBottom: 20,
   },
   search: {
@@ -175,6 +178,7 @@ const styles = {
     padding: 14,
     borderRadius: 12,
     border: "1px solid #bbb",
+    fontSize: 17,
     marginBottom: 30,
   },
   list: { display: "flex", flexDirection: "column", gap: 22 },
@@ -186,7 +190,7 @@ const styles = {
     boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
   },
   articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
-  text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
+  text: { whiteSpace: "pre-line", fontSize: 16 },
   infoList: { display: "flex", flexDirection: "column", gap: 18 },
   infoCard: {
     background: "#fff",
