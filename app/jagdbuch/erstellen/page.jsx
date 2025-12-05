@@ -1,48 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import RichEditor from "../components/RichEditor";
 
-export default function CreatePostPage() {
+export default function ErstellenPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [slug, setSlug] = useState("");
-
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  function slugify(text) {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "")
-      .replace(/-+/g, "-");
-  }
-
-  useEffect(() => {
-    setSlug(slugify(title));
-  }, [title]);
-
-  async function handleSubmit(e) {
+  async function submit(e) {
     e.preventDefault();
     setSaving(true);
     setError("");
 
     const res = await fetch("/api/jagdbuch/posts", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-user": "Jäger"
+      },
       body: JSON.stringify({
         title,
         content,
-        slug,
-        excerpt: content.substring(0, 150),
+        slug: title.toLowerCase().replace(/\s+/g, "-"),
+        excerpt: content.slice(0, 150),
         date: new Date().toISOString().split("T")[0],
-      }),
+      })
     });
 
     if (!res.ok) {
+      setError("Fehler beim Speichern.");
       setSaving(false);
-      setError("⚠ Fehler beim Speichern!");
       return;
     }
 
@@ -50,114 +39,43 @@ export default function CreatePostPage() {
   }
 
   return (
-    <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      <h1 style={{ fontSize: 42, fontWeight: 700, marginBottom: 24 }}>
-        Beitrag erstellen
-      </h1>
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: 24 }}>
+      <h1>Neuen Beitrag erstellen</h1>
 
-      {/* FORMULAR */}
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 22,
-          marginBottom: 40,
-        }}
-      >
-        {/* Titel */}
-        <div>
-          <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>
-            Titel
-          </label>
-          <input
-            type="text"
-            value={title}
-            placeholder="Titel eingeben…"
-            onChange={(e) => setTitle(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "12px 14px",
-              borderRadius: 10,
-              border: "1px solid #bbb",
-              fontSize: 17,
-            }}
-            required
-          />
-        </div>
+      <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        
+        <input
+          type="text"
+          placeholder="Titel"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          style={{ padding: 12, border: "1px solid #ccc", borderRadius: 8 }}
+        />
 
-        {/* Slug Vorschau */}
-        {slug && (
-          <div style={{ opacity: 0.6, marginTop: -10, fontSize: 14 }}>
-            URL: /jagdbuch/<b>{slug}</b>
-          </div>
-        )}
+        {/* Rich Editor */}
+        <RichEditor
+          value={content}
+          onChange={setContent}
+        />
 
-        {/* Inhalt */}
-        <div>
-          <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>
-            Inhalt
-          </label>
-          import RichEditor from "../components/RichEditor";
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-…
-
-<RichEditor value={content} onChange={setContent} />
-            }}
-            required
-          />
-        </div>
-
-        {/* Fehler */}
-        {error && (
-          <div
-            style={{
-              padding: 10,
-              background: "#ffd8d8",
-              borderRadius: 8,
-              color: "#900",
-              border: "1px solid #ffb4b4",
-            }}
-          >
-            {error}
-          </div>
-        )}
-
-        {/* Speichern */}
         <button
           disabled={saving}
           style={{
-            background: saving ? "#9c8b43" : "#caa53b",
-            padding: "14px 20px",
-            borderRadius: 12,
-            fontSize: 18,
-            fontWeight: 700,
-            cursor: saving ? "not-allowed" : "pointer",
-            opacity: saving ? 0.7 : 1,
-            border: "none",
+            background: "#caa53b",
+            padding: "12px 20px",
+            borderRadius: 10,
+            fontWeight: "bold",
+            cursor: "pointer",
+            opacity: saving ? 0.6 : 1
           }}
         >
-          {saving ? "Speichert…" : "Beitrag speichern"}
+          {saving ? "Speichere…" : "Speichern"}
         </button>
-      </form>
 
-      {/* LIVE VORSCHAU */}
-      {title || content ? (
-        <div
-          style={{
-            background: "#fff",
-            padding: 22,
-            borderRadius: 12,
-            border: "1px solid #ddd",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>{title || "Vorschau Titel…"}</h2>
-          <p style={{ opacity: 0.8, whiteSpace: "pre-wrap" }}>
-            {content || "Beitragstext wird hier angezeigt…"}
-          </p>
-        </div>
-      ) : null}
+      </form>
     </main>
   );
 }
