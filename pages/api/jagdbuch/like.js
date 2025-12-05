@@ -15,10 +15,19 @@ export default function handler(req, res) {
   }
 
   // Daten laden
-  let posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  let posts = [];
+  try {
+    posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (e) {
+    return res.status(500).json({ error: "Invalid posts file" });
+  }
 
   const { slug } = req.body;
   const clientId = req.headers["x-client-id"]; // Browser-ID vom Client
+
+  if (!slug) {
+    return res.status(400).json({ error: "Missing slug" });
+  }
 
   if (!clientId) {
     return res.status(400).json({ error: "Missing client ID" });
@@ -38,7 +47,7 @@ export default function handler(req, res) {
 
   // 🔐 Prüfen: Hat dieser Client bereits geliked?
   if (post.likedBy.includes(clientId)) {
-    // Schon geliked — nichts ändern
+    // Schon geliked → kein Fehler, nur Like zurückgeben
     return res.status(200).json({ ok: true, likes: post.likes });
   }
 
