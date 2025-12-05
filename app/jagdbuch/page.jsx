@@ -1,18 +1,9 @@
-import Link from "next/link";
-import path from "path";
-import { promises as fs } from "fs";
-
 export default async function JagdbuchPage() {
-  const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/jagdbuch/posts`, {
+    cache: "no-store",
+  });
 
-  let posts = [];
-
-  try {
-    const data = await fs.readFile(filePath, "utf8");
-    posts = JSON.parse(data);
-  } catch (e) {
-    console.error("❌ posts.json konnte nicht geladen werden:", e);
-  }
+  const posts = res.ok ? await res.json() : [];
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
