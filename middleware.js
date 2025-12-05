@@ -7,20 +7,22 @@ const PUBLIC_PATHS = [
   "/login", 
   "/preise", 
   "/debug-cookies",
-  "/paytest"   // 🟢 Testseite öffentlich machen
+  "/paytest"
 ];
 
 export function middleware(req) {
   const url = req.nextUrl.clone();
   const { pathname } = url;
 
-  // 🔥 PayPal Webhook IMMER erlauben
+  // 🔥 PayPal Webhooks IMMER erlauben
   if (pathname.startsWith("/api/paypal")) {
     return NextResponse.next();
   }
 
-  // 🔥 Alle API-Routen erlauben
-  if (pathname.startsWith("/api")) return NextResponse.next();
+  // 🔥 ALLE API-Endpunkte erlauben
+  if (pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
 
   // Static Files niemals blockieren
   if (
@@ -39,13 +41,13 @@ export function middleware(req) {
   // ist Route öffentlich?
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // ❌ Nicht eingeloggt → nur Public
+  // ❌ Nicht eingeloggt → nur Public zugelassen
   if (!hasSession && !isPublic) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // ❌ Eingeloggt, aber nicht Premium → einschränken
+  // ❌ Eingeloggt, aber kein Premium
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
     url.pathname = "/preise";
     return NextResponse.redirect(url);
@@ -54,9 +56,9 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-// 💯 Matcher: PayPal-Webhook komplett ausschließen
 export const config = {
+  // 🔥 WICHTIG: API komplett ausschließen
   matcher: [
-    "/((?!_next|api/paypal|api|favicon.ico|paytest).*)"
-  ],
+    "/((?!api|_next|favicon.ico).*)"
+  ]
 };
