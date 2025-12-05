@@ -1,0 +1,65 @@
+[
+  {
+    "kurz": "B",
+    "name": "Burgenland",
+    "system": "Revierjagd",
+    "pruefung": "Jagdprüfung mit Theorie, Praxis und Schießprüfung.",
+    "besonderheiten": "Stark agrarisch geprägt, hoher Niederwildanteil, strikte Abschussplanung."
+  },
+  {
+    "kurz": "K",
+    "name": "Kärnten",
+    "system": "Revierjagd",
+    "pruefung": "Umfassende Jagdprüfung inkl. Gebirgsjagd-Praxis und Schießnachweis.",
+    "besonderheiten": "Alpine Jagdgebiete, starker Fokus auf Gams- und Rotwild."
+  },
+  {
+    "kurz": "NOE",
+    "name": "Niederösterreich",
+    "system": "Revierjagd",
+    "pruefung": "Mehrteilige Prüfung mit Theorie, Praxis und Waffenhandhabung.",
+    "besonderheiten": "Größtes Bundesland, sehr vielfältige Wildarten, Schwerpunkt Schwarzwild."
+  },
+  {
+    "kurz": "OOE",
+    "name": "Oberösterreich",
+    "system": "Revierjagd",
+    "pruefung": "Jagdprüfung mit schriftlichem, mündlichem und praktischem Teil.",
+    "besonderheiten": "Alpenvorland und Waldgebiete, hohe Anforderungen an Revierführung."
+  },
+  {
+    "kurz": "S",
+    "name": "Salzburg",
+    "system": "Revierjagd",
+    "pruefung": "Jagdprüfung mit alpinem Schwerpunkt und Pflicht-Schießprüfung.",
+    "besonderheiten": "Auffällig hoher Anteil an Hochgebirgsrevieren, strenge Wildruhegebiete."
+  },
+  {
+    "kurz": "ST",
+    "name": "Steiermark",
+    "system": "Revierjagd",
+    "pruefung": "Mehrstufige Jagdprüfung, praktische Ausbildung verpflichtend.",
+    "besonderheiten": "Waldreichstes Bundesland, starkes Rotwildmanagement."
+  },
+  {
+    "kurz": "T",
+    "name": "Tirol",
+    "system": "Revierjagd",
+    "pruefung": "Hochgebirgsorientierte Prüfung mit strengen Schießauflagen.",
+    "besonderheiten": "Alpenkanton mit traditionell strenger Hege und klaren Abschussvorgaben."
+  },
+  {
+    "kurz": "V",
+    "name": "Vorarlberg",
+    "system": "Revierjagd",
+    "pruefung": "Jagdprüfung mit Fokus auf alpine Tierarten und schwierige Schüsse.",
+    "besonderheiten": "Kleinstes Bundesland, aber sehr anspruchsvolle Gebirgsjagd."
+  },
+  {
+    "kurz": "W",
+    "name": "Wien",
+    "system": "Revierjagd (stark eingeschränkt)",
+    "pruefung": "Gleich wie Niederösterreich; Jagdausübung praktisch nur in Randgebieten.",
+    "besonderheiten": "Nur wenige, stark regulierte Reviere; hoher Verwaltungsanteil."
+  }
+]
