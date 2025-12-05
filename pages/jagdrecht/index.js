@@ -15,6 +15,11 @@ export default function JagdrechtHome() {
           <h2>🇨🇭 Schweizer Jagdrecht</h2>
           <p>JSG, JSV, Kantone & Jagdsysteme.</p>
         </Link>
+
+        <Link href="/jagdrecht/at" style={styles.card}>
+          <h2>🇦🇹 Österreichisches Jagdrecht</h2>
+          <p>Bundesjagdgesetz, Landesjagdgesetze & Wildökologische Vorgaben.</p>
+        </Link>
       </div>
     </main>
   );
