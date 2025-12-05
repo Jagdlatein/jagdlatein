@@ -1,3 +1,5 @@
+console.log("🔥 Middleware test 12345");
+
 import { NextResponse } from "next/server";
 
 const PUBLIC_PATHS = [
