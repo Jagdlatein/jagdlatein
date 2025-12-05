@@ -26,7 +26,7 @@ export default function JagdbuchErstellen() {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "x-user": "Jäger"   // 🔥 WICHTIG: MUSS mitgesendet werden
+        "x-user": "Jäger"   // 🔥 MUSS mitgesendet werden
       },
       body: JSON.stringify({
         title,
@@ -92,7 +92,9 @@ export default function JagdbuchErstellen() {
           <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>
         )}
 
+        {/* 🔥 WICHTIG: type="submit" */}
         <button
+          type="submit"
           disabled={saving}
           style={{
             background: saving ? "#b89633" : "#caa53b",
