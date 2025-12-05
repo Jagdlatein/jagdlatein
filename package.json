@@ -13,7 +13,7 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/supabase-js": "^2.39.8",
-    "@vercel/kv": "0.2.4",
+   
     "bcryptjs": "^2.4.3",
     "formidable": "^3.5.1",
     "next": "14.2.7",
