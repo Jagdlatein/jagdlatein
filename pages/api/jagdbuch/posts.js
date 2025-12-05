@@ -2,6 +2,12 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
+
+  // 🔥 FIX: OPTIONS erlauben (Browser Preflight)
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
 
   let posts = [];
@@ -9,10 +15,10 @@ export default function handler(req, res) {
     posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
   }
 
-  // 🔐 Benutzer (Ersteller) — MUSS vom Client gesendet werden
+  // 🔐 Benutzer (Ersteller)
   const user = req.headers["x-user"] || "Jäger";
 
-  // 🔐 Admin — muss 1 sein
+  // 🔐 Admin
   const isAdmin = req.headers["x-admin"] === "1";
 
   // ------------------------------------
@@ -24,7 +30,7 @@ export default function handler(req, res) {
       likes: 0,
       comments: [],
       images: [],
-      user, // Ersteller speichern
+      user,
     };
 
     posts.unshift(newPost);
@@ -43,7 +49,6 @@ export default function handler(req, res) {
 
     const post = posts[index];
 
-    // Ersteller ODER Admin darf bearbeiten
     if (post.user !== user && !isAdmin) {
       return res.status(403).json({ error: "Not allowed" });
     }
