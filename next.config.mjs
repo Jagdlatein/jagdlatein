@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    appDir: false,   // 🔥 WICHTIG: App Router deaktivieren
+  },
+
   images: {
     remotePatterns: [
       {
