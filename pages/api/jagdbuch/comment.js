@@ -4,18 +4,32 @@ import path from "path";
 export default function handler(req, res) {
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
 
+  // Datei existiert?
   if (!fs.existsSync(filePath)) {
     return res.status(500).json({ error: "Posts file missing" });
   }
 
-  let posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  let posts;
 
+  // JSON sicher laden
+  try {
+    posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (err) {
+    return res.status(500).json({ error: "Invalid posts file" });
+  }
+
+  // Nur POST erlauben
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Only POST allowed" });
   }
 
   const { slug, text, replyTo, user } = req.body;
 
+  if (!slug || !text) {
+    return res.status(400).json({ error: "Missing slug or text" });
+  }
+
+  // Beitrag finden
   const postIndex = posts.findIndex((p) => p.slug === slug);
   if (postIndex === -1) {
     return res.status(404).json({ error: "Post not found" });
@@ -23,10 +37,10 @@ export default function handler(req, res) {
 
   const post = posts[postIndex];
 
-  // Stelle sicher, dass Kommentare existieren
+  // Sicherstellen, dass Kommentare existieren
   if (!Array.isArray(post.comments)) post.comments = [];
 
-  // Einfache ID für Kommentare
+  // Kommentar ID Generator
   function generateId() {
     return Math.floor(Math.random() * 1_000_000);
   }
@@ -39,11 +53,12 @@ export default function handler(req, res) {
     replies: [],
   };
 
-  // 🔥 WENN es eine Antwort auf einen Kommentar ist:
+  // 🔥 Antwort auf bestehenden Kommentar
   if (replyTo) {
     function addReply(list) {
       for (let c of list) {
         if (c.id === replyTo) {
+          if (!Array.isArray(c.replies)) c.replies = [];
           c.replies.push(newComment);
           return true;
         }
@@ -53,14 +68,24 @@ export default function handler(req, res) {
     }
 
     addReply(post.comments);
-  } else {
-    // 🔥 normaler Kommentar
+  }
+
+  // 🔥 normaler Kommentar
+  if (!replyTo) {
     post.comments.push(newComment);
   }
 
   // Speichern
   posts[postIndex] = post;
-  fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
 
-  return res.status(200).json({ ok: true, comments: post.comments });
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to save comments" });
+  }
+
+  return res.status(200).json({
+    ok: true,
+    comments: post.comments,
+  });
 }
