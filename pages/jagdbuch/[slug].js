@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
-import fs from "fs";
-import path from "path";
 
+// -------------------------------------
+// SERVER: POSTS PFAD LADEN
+// -------------------------------------
 export async function getStaticPaths() {
+  const fs = require("fs");
+  const path = require("path");
+
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
   let posts = [];
 
-  if (fs.existsSync(filePath)) {
-    posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  try {
+    if (fs.existsSync(filePath)) {
+      posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+  } catch (err) {
+    console.error("Fehler beim Lesen posts.json:", err);
   }
 
   return {
@@ -17,34 +25,47 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const fs = require("fs");
+  const path = require("path");
+
   const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
   let posts = [];
 
-  if (fs.existsSync(filePath)) {
-    posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  try {
+    if (fs.existsSync(filePath)) {
+      posts = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+  } catch (err) {
+    console.error("Fehler beim Lesen posts.json:", err);
   }
 
-  const post = posts.find((p) => p.slug === params.slug);
+  const post = posts.find((p) => p.slug === params.slug) || null;
 
   return {
     props: { post },
     notFound: !post,
+    revalidate: 10,
   };
 }
 
+// ----------------------------------------------------------------
+// FRONTEND – BEITRAG ANZEIGEN
+// ----------------------------------------------------------------
 export default function JagdbuchPost({ post }) {
-  const [likes, setLikes] = useState(post.likes || 0);
-  const [comments, setComments] = useState(post.comments || []);
+  const [likes, setLikes] = useState(post?.likes || 0);
+  const [comments, setComments] = useState(post?.comments || []);
   const [comment, setComment] = useState("");
   const [replyTo, setReplyTo] = useState(null);
 
-  // Admin-Erkennung (Cookie)
+  // Admin – Client Only
   const isAdmin =
     typeof document !== "undefined" &&
     document.cookie.includes("jl_admin=1");
 
-  // Browser-ID erzeugen (für Likes nur 1×)
+  // Browser-ID für Likes
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (!localStorage.getItem("browserId")) {
       localStorage.setItem(
         "browserId",
@@ -53,9 +74,17 @@ export default function JagdbuchPost({ post }) {
     }
   }, []);
 
-  if (!post) return <p>Beitrag nicht gefunden.</p>;
+  if (!post) {
+    return (
+      <main style={{ padding: 40 }}>
+        <h1>Beitrag nicht gefunden</h1>
+      </main>
+    );
+  }
 
-  // 👍 Like senden
+  // ----------------------------------
+  // 👍 LIKE
+  // ----------------------------------
   async function sendLike() {
     const browserId = localStorage.getItem("browserId");
 
@@ -68,13 +97,18 @@ export default function JagdbuchPost({ post }) {
       body: JSON.stringify({ slug: post.slug }),
     });
 
+    if (!res.ok) return;
+
     const data = await res.json();
     setLikes(data.likes);
   }
 
-  // 💬 Kommentar oder Antwort senden
+  // ----------------------------------
+  // 💬 KOMMENTAR & ANTWORT
+  // ----------------------------------
   async function sendComment(e) {
     e.preventDefault();
+    if (!comment.trim()) return;
 
     const res = await fetch("/api/jagdbuch/comment", {
       method: "POST",
@@ -93,7 +127,9 @@ export default function JagdbuchPost({ post }) {
     setReplyTo(null);
   }
 
-  // ❌ Admin: Beitrag löschen
+  // ----------------------------------
+  // ❌ ADMIN – POST LÖSCHEN
+  // ----------------------------------
   async function deletePost() {
     if (!confirm("Beitrag wirklich löschen?")) return;
 
@@ -101,7 +137,7 @@ export default function JagdbuchPost({ post }) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "x-admin": isAdmin ? "1" : "0",
+        "x-admin": "1",
       },
       body: JSON.stringify({ slug: post.slug }),
     });
@@ -109,7 +145,9 @@ export default function JagdbuchPost({ post }) {
     window.location.href = "/jagdbuch";
   }
 
-  // 🔁 Kommentare + Antworten verschachtelt anzeigen
+  // ----------------------------------
+  // KOMMENTARE REKURSIV RENDERN
+  // ----------------------------------
   function renderComments(list, level = 0) {
     return list.map((c) => (
       <div
@@ -128,7 +166,6 @@ export default function JagdbuchPost({ post }) {
 
         <p style={{ marginTop: 10, whiteSpace: "pre-line" }}>{c.text}</p>
 
-        {/* Antworten-Button */}
         <button
           onClick={() => setReplyTo(c.id)}
           style={{
@@ -142,17 +179,18 @@ export default function JagdbuchPost({ post }) {
           ↳ Antworten
         </button>
 
-        {/* Antworten rekursiv darstellen */}
-        {c.replies && c.replies.length > 0
-          ? renderComments(c.replies, level + 1)
-          : null}
+        {c.replies?.length > 0 &&
+          renderComments(c.replies, level + 1)}
       </div>
     ));
   }
 
+  // ----------------------------------
+  // UI
+  // ----------------------------------
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      {/* BEITRAG */}
+      {/* Beitrag */}
       <div
         style={{
           background: "#fff",
@@ -177,8 +215,8 @@ export default function JagdbuchPost({ post }) {
           {post.content}
         </article>
 
-        {/* BILDER (NEU – BLOCK 5) */}
-        {post.images && post.images.length > 0 && (
+        {/* Bilder */}
+        {post.images?.length > 0 && (
           <div style={{ marginTop: 30 }}>
             <h3>Bilder</h3>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -197,7 +235,7 @@ export default function JagdbuchPost({ post }) {
           </div>
         )}
 
-        {/* LIKE BUTTON */}
+        {/* Like */}
         <button
           onClick={sendLike}
           style={{
@@ -215,7 +253,7 @@ export default function JagdbuchPost({ post }) {
           👍 Gefällt mir ({likes})
         </button>
 
-        {/* ADMIN DELETE */}
+        {/* Admin Delete */}
         {isAdmin && (
           <button
             onClick={deletePost}
@@ -234,7 +272,7 @@ export default function JagdbuchPost({ post }) {
         )}
       </div>
 
-      {/* KOMMENTAR-BEREICH */}
+      {/* Kommentare */}
       <div style={{ marginTop: 40 }}>
         <h2>Kommentare</h2>
 
@@ -242,12 +280,10 @@ export default function JagdbuchPost({ post }) {
           <p style={{ color: "#555" }}>Noch keine Kommentare vorhanden.</p>
         )}
 
-        {/* THREAD */}
-        <div style={{ marginTop: 16 }}>
-          {renderComments(comments)}
-        </div>
+        {/* Thread */}
+        <div style={{ marginTop: 16 }}>{renderComments(comments)}</div>
 
-        {/* Kommentar-Formular */}
+        {/* Formular */}
         <form onSubmit={sendComment} style={{ marginTop: 24 }}>
           {replyTo && (
             <p style={{ color: "#8a6a3e" }}>
@@ -291,6 +327,7 @@ export default function JagdbuchPost({ post }) {
               border: "none",
               cursor: "pointer",
               fontSize: 16,
+              fontWeight: "bold",
             }}
           >
             {replyTo ? "Antwort senden" : "Kommentar senden"}
