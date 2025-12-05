@@ -1,35 +1,40 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
-
-async function loadPosts() {
-  try {
-    const json = await fs.readFile(filePath, "utf8");
-    return JSON.parse(json || "[]");
-  } catch {
-    return [];
-  }
-}
-
-async function savePosts(posts) {
-  await fs.writeFile(filePath, JSON.stringify(posts, null, 2));
-}
-
 export async function POST(req) {
-  const body = await req.json();
-  const posts = await loadPosts();
+  try {
+    const body = await req.json();
 
-  const newPost = {
-    ...body,
-    likes: 0,
-    comments: [],
-    images: [],
-    created: new Date().toISOString(),
-  };
+    const filePath = path.join(process.cwd(), "data/jagdbuch/posts.json");
 
-  posts.unshift(newPost);
-  await savePosts(posts);
+    // Datei einlesen oder neu erzeugen
+    let posts = [];
+    try {
+      const data = await fs.readFile(filePath, "utf8");
+      posts = JSON.parse(data);
+    } catch {
+      posts = [];
+    }
 
-  return Response.json({ ok: true });
+    const newPost = {
+      ...body,
+      likes: 0,
+      comments: [],
+      images: []
+    };
+
+    posts.unshift(newPost);
+
+    // Speichern
+    await fs.writeFile(filePath, JSON.stringify(posts, null, 2));
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500
+    });
+  }
 }
