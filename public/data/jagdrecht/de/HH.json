@@ -1,0 +1,102 @@
+[
+  {
+    "id": "hh_par_1",
+    "title": "§ 1 Geltungsbereich",
+    "text": "Dieses Gesetz regelt die Ausübung der Jagd im Land Hamburg. Es gilt für alle Jagdbezirke, Naturschutzgebiete, Tideflächen und waldnahen Erholungsbereiche."
+  },
+  {
+    "id": "hh_par_2",
+    "title": "§ 2 Besondere Bedingungen im Stadtstaat",
+    "text": "Die Jagd muss den Anforderungen eines dicht besiedelten Stadtgebietes entsprechen. Sicherheit, Lärmschutz und Rücksichtnahme auf Erholungssuchende haben oberste Priorität."
+  },
+  {
+    "id": "hh_par_3",
+    "title": "§ 3 Jagdbezirke",
+    "text": "Die Jagdbezirke Hamburgs bestehen überwiegend aus Waldflächen, Moorgebieten, Deichen und Naturschutzflächen. Gemeinschaftliche Jagdbezirke sind üblich."
+  },
+  {
+    "id": "hh_par_4",
+    "title": "§ 4 Hege und Wildbewirtschaftung",
+    "text": "Die Hege dient der Erhaltung gesunder Wildbestände. In Hamburg stehen Wasservögel, Prädatorenmanagement sowie der Schutz von Bodenbrütern im Vordergrund."
+  },
+  {
+    "id": "hh_par_5",
+    "title": "§ 5 Naturschutzvorrang",
+    "text": "In Hamburg hat der Naturschutz besonderen Vorrang. Jagdliche Maßnahmen dürfen Naturschutz- und Landschaftsschutzgebiete nicht beeinträchtigen."
+  },
+  {
+    "id": "hh_par_6",
+    "title": "§ 6 Jagd- und Schonzeiten",
+    "text": "Das Land Hamburg kann abweichende Jagd- und Schonzeiten festlegen. Für Wasservögel gelten verkürzte Schießzeiten zur Störungseinschränkung."
+  },
+  {
+    "id": "hh_par_7",
+    "title": "§ 7 Wasservogeljagd",
+    "text": "Die Jagd auf Enten und Gänse ist nur in bestimmten Bereichen zulässig. Schüsse in der Nähe von Wohngebieten und viel genutzten Uferbereichen sind verboten."
+  },
+  {
+    "id": "hh_par_8",
+    "title": "§ 8 Schwarzwildregulierung",
+    "text": "Schwarzwild hat sich auch in Hamburg ausgebreitet. Die Bejagung dient der Seuchenprävention und der Schadensvermeidung und kann durch Sonderabschüsse ergänzt werden."
+  },
+  {
+    "id": "hh_par_9",
+    "title": "§ 9 Prädatorenmanagement",
+    "text": "Fuchs, Marderhund und Waschbär sind zur Sicherung von Brutvögeln und Niederwild gezielt zu bejagen. Fallenfang ist zulässig, sofern tierschutzgerecht."
+  },
+  {
+    "id": "hh_par_10",
+    "title": "§ 10 Jagdschein",
+    "text": "Voraussetzung für den Jagdschein sind die bestandene Jägerprüfung, Zuverlässigkeit, Eignung und Versicherungsschutz. Ausländerjagdscheine können befristet erteilt werden."
+  },
+  {
+    "id": "hh_par_11",
+    "title": "§ 11 Jägerprüfung",
+    "text": "Die Prüfung umfasst Theorie, Waffenhandhabung und Schießen. Besonderheiten sind Inhalte zu Naturschutz, Gezeitenlandschaften und urbaner Jagd."
+  },
+  {
+    "id": "hh_par_12",
+    "title": "§ 12 Ausübung der Jagd",
+    "text": "Die Jagd ist waidgerecht und sicher auszuüben. In Erholungsgebieten besteht erhöhte Rücksichtnahme auf die Bevölkerung."
+  },
+  {
+    "id": "hh_par_13",
+    "title": "§ 13 Fangjagd",
+    "text": "Der Fang von Prädatoren ist zulässig, sofern anerkannte, selektive und tierschutzkonforme Fanggeräte verwendet werden."
+  },
+  {
+    "id": "hh_par_14",
+    "title": "§ 14 Nachsuchepflicht",
+    "text": "Verletztes Wild ist unverzüglich nachzusuchen. In städtischen Bereichen ist die Koordination mit Polizei und Behörden sicherzustellen."
+  },
+  {
+    "id": "hh_par_15",
+    "title": "§ 15 Waffen und Munition",
+    "text": "Nur sichere und wirksame Waffen dürfen eingesetzt werden. Schalldämpfer sind zulässig, sofern waffenrechtlich genehmigt."
+  },
+  {
+    "id": "hh_par_16",
+    "title": "§ 16 Jagd in Schutzgebieten",
+    "text": "In Naturschutzgebieten, Mooren und FFH-Flächen gelten besondere Einschränkungen. Die Jagd darf den Schutzzweck nicht beeinträchtigen."
+  },
+  {
+    "id": "hh_par_17",
+    "title": "§ 17 Seuchenvorsorge",
+    "text": "Bei ASP oder anderen Tierseuchen kann die Behörde jagdliche Maßnahmen erweitern oder zeitlich ausdehnen."
+  },
+  {
+    "id": "hh_par_18",
+    "title": "§ 18 Wildunfälle und Fallwild",
+    "text": "Wildunfälle und Fallwild sind unverzüglich zu melden. Die Entsorgung erfolgt nach hygienerechtlichen Vorgaben."
+  },
+  {
+    "id": "hh_par_19",
+    "title": "§ 19 Verarbeitung und Wildbret",
+    "text": "Wildbret darf nur hygienisch einwandfrei gewonnen werden. Schwarzwild ist der Trichinenuntersuchung zuzuführen."
+  },
+  {
+    "id": "hh_par_20",
+    "title": "§ 20 Ordnungswidrigkeiten",
+    "text": "Ordnungswidrig handelt, wer gegen Schonzeiten, Sicherheitsvorgaben, Schutzgebietsregelungen oder tierschutzrechtliche Anforderungen verstößt."
+  }
+]
