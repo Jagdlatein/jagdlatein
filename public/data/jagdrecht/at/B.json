@@ -1,0 +1,102 @@
+[
+  {
+    "id": "b_par_1",
+    "title": "§ 1 Geltungsbereich",
+    "text": "Dieses Landesjagdgesetz gilt für das gesamte Gebiet des Burgenlandes und regelt die Ausübung der Jagd, den Schutz des Wildes und die Bewirtschaftung der Lebensräume."
+  },
+  {
+    "id": "b_par_2",
+    "title": "§ 2 Jagdrecht",
+    "text": "Das Jagdrecht steht dem Grundeigentümer zu und umfasst das Recht, Wild zu hegen, zu bejagen und sich anzueignen. Eine Übertragung des Jagdrechts erfolgt über Jagdpacht oder Eigenjagd."
+  },
+  {
+    "id": "b_par_3",
+    "title": "§ 3 Jagdgebietseinteilung",
+    "text": "Das Landesgebiet wird in Genossenschaftsjagden, Eigenjagden und gemeinschaftliche Jagdgebiete eingeteilt. Die Mindestgröße für Eigenjagden beträgt 115 Hektar."
+  },
+  {
+    "id": "b_par_4",
+    "title": "§ 4 Jagdbares Wild",
+    "text": "Jagdbar sind die im Landesverzeichnis geführten Wildarten. Nicht jagdbare Arten unterliegen besonderem Schutz und dürfen nicht beunruhigt, gefangen oder getötet werden."
+  },
+  {
+    "id": "b_par_5",
+    "title": "§ 5 Schonzeiten",
+    "text": "Für jagdbare Wildarten gelten die jährlich kundgemachten Schonzeiten. Die Landesregierung kann Schonzeiten verlängern oder verkürzen, sofern wildbiologische Gründe dies erfordern."
+  },
+  {
+    "id": "b_par_6",
+    "title": "§ 6 Abschussplanung",
+    "text": "Für Schalenwild ist eine Abschussplanung zu erstellen, die von der Bezirksverwaltungsbehörde zu genehmigen ist. Der Jagdausübungsberechtigte hat die Erfüllung nachzuweisen."
+  },
+  {
+    "id": "b_par_7",
+    "title": "§ 7 Jagdschutzorgane",
+    "text": "Jagdaufsichtsorgane überwachen die Einhaltung jagdrechtlicher Vorschriften. Sie sind zur Kontrolle von Jagdberechtigungen und Waffen befugt."
+  },
+  {
+    "id": "b_par_8",
+    "title": "§ 8 Jagdkarten",
+    "text": "Zur Ausübung der Jagd ist eine gültige Jagdkarte erforderlich. Die Jagdkarte wird nach erfolgreicher Ausbildung und Prüfung sowie nach Vorlage eines Versicherungsnachweises ausgestellt."
+  },
+  {
+    "id": "b_par_9",
+    "title": "§ 9 Jagdprüfung",
+    "text": "Die Jagdprüfung besteht aus einem schriftlichen und mündlichen Teil sowie einer Schießprüfung. Die Inhalte umfassen Wildkunde, Recht, Waffenhandhabung und Naturschutz."
+  },
+  {
+    "id": "b_par_10",
+    "title": "§ 10 Waffen und Munition",
+    "text": "Bei der Jagd dürfen nur zugelassene Waffen und Munition verwendet werden. Schalldämpfer sind zulässig, sofern waffenrechtliche Vorschriften eingehalten werden."
+  },
+  {
+    "id": "b_par_11",
+    "title": "§ 11 Fangjagd",
+    "text": "Fanggeräte dürfen nur verwendet werden, wenn sie tierschutzkonform, selektiv und behördlich zugelassen sind. Lebendfanggeräte sind täglich zu kontrollieren."
+  },
+  {
+    "id": "b_par_12",
+    "title": "§ 12 Nachtjagd",
+    "text": "Die Nachtjagd ist auf bestimmte Wildarten beschränkt. Künstliche Lichtquellen und Nachtsichtgeräte bedürfen einer gesonderten Bewilligung."
+  },
+  {
+    "id": "b_par_13",
+    "title": "§ 13 Gesellschaftsjagden",
+    "text": "Gesellschaftsjagden sind vorab bei der Behörde zu melden. Es ist ein Jagdleiter zu bestellen, der für Sicherheit und Ablauf verantwortlich ist."
+  },
+  {
+    "id": "b_par_14",
+    "title": "§ 14 Wildfütterung",
+    "text": "Wildfütterungen dürfen nur eingerichtet werden, wenn sie wildökologisch notwendig sind. Fütterungen müssen bei der Behörde angezeigt werden."
+  },
+  {
+    "id": "b_par_15",
+    "title": "§ 15 Wildschäden",
+    "text": "Der Jagdausübungsberechtigte ist verpflichtet, Wildschäden zu verhindern und zu ersetzen. Die Schadensermittlung erfolgt durch die Bezirksverwaltungsbehörde."
+  },
+  {
+    "id": "b_par_16",
+    "title": "§ 16 Tierschutz bei der Jagd",
+    "text": "Jagd ist so auszuüben, dass vermeidbare Schmerzen und Leiden ausgeschlossen sind. Nachsuchen sind unverzüglich mit einem geeigneten Hund durchzuführen."
+  },
+  {
+    "id": "b_par_17",
+    "title": "§ 17 Meldung von Erlegungen",
+    "text": "Erlegungen von Schalenwild sind innerhalb von 7 Tagen der Behörde zu melden. Für bestimmte Arten gelten besondere Meldepflichten."
+  },
+  {
+    "id": "b_par_18",
+    "title": "§ 18 Eingriffe in Lebensräume",
+    "text": "Eingriffe, die Wildlebensräume erheblich verändern, sind der Behörde zu melden. Maßnahmen dürfen den günstigen Erhaltungszustand der Wildarten nicht beeinträchtigen."
+  },
+  {
+    "id": "b_par_19",
+    "title": "§ 19 Verbotene Jagdmethoden",
+    "text": "Verboten sind unter anderem Schlingen, Giftstoffe, Sprengmittel sowie der Einsatz nicht selektiver Fanggeräte."
+  },
+  {
+    "id": "b_par_20",
+    "title": "§ 20 Strafbestimmungen",
+    "text": "Übertretungen dieses Gesetzes werden als Verwaltungsübertretungen geahndet. Schwere Verstöße können den Entzug der Jagdkarte zur Folge haben."
+  }
+]
