@@ -1,25 +1,15 @@
-import { NextResponse } from "next/server";
-import fs from "fs";
-
-const FILE = "/tmp/jagdbuch.json";
+import { supabase } from "../../../../lib/supabase";
 
 export async function POST(req) {
-  const { slug, text, user } = await req.json();
+  const { post_id, text } = await req.json();
 
-  const posts = JSON.parse(fs.readFileSync(FILE, "utf8"));
-  const post = posts.find(p => p.slug === slug);
-
-  if (!post)
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
-
-  post.comments.push({
-    id: Date.now(),
-    user: user || "Jäger",
+  const { error } = await supabase.from("comments").insert({
+    post_id,
     text,
-    date: new Date().toISOString()
+    user_name: "Jäger"
   });
 
-  fs.writeFileSync(FILE, JSON.stringify(posts, null, 2));
+  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
-  return NextResponse.json(post.comments);
+  return new Response(JSON.stringify({ ok: true }), { status: 200 });
 }
