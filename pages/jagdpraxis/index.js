@@ -25,6 +25,7 @@ export default function Jagdpraxis() {
         }}
       >
         {[
+          // Bestehende Einträge
           ["ansitz", "🎯 Ansitz-Simulator"],
           ["drueckjagd", "🐗 Drückjagd-Simulator"],
           ["pirsch", "👣 Pirsch-Simulator"],
@@ -34,6 +35,29 @@ export default function Jagdpraxis() {
           ["wild", "🦌 Wildkunde"],
           ["wildansprache", "🦌 Wildansprache-Trainer"],
           ["nachsuche", "🐕 Nachsuche-Simulator"],
+
+          // Erweiterungen
+          ["schussfeld", "🎯 Schussfeld-Beurteilung"],
+          ["revier", "🌲 Revierkunde & Geländeformen"],
+          ["trophäen", "🦌 Trophäenbewertung"],
+          ["nachtjagd", "🌙 Nachtjagd-Simulator"],
+          ["waermebild", "🔥 Wärmebild-Ansprechen"],
+          ["entfernung", "📏 Entfernungsschätzung"],
+          ["beschuss", "💥 Kugelfang & Sicherheitstrainer"],
+          ["krankeswild", "🩸 Krankes Wild erkennen"],
+          ["familienverbaende", "🦌 Wildfamilien & Sozialstrukturen"],
+          ["verhalten", "👀 Wildverhalten beurteilen"],
+          ["lauscher", "🦌 Lauscher- und Zeichendeutung"],
+          ["wind", "💨 Wind & Pirschrichtung"],
+          ["mond", "🌕 Mondphasen-Revieraktivität"],
+          ["ansprache_rehwild", "🦌 Rehwild-Ansprechen"],
+          ["ansprache_schwarzwild", "🐗 Schwarzwild-Ansprechen"],
+          ["ansprache_rotwild", "🦌 Rotwild-Ansprechen"],
+          ["wildspuren", "👣 Fährten- & Spurenkunde"],
+          ["kugelwirkung", "💥 Geschosswirkung-Demo"],
+          ["wildalarm", "⚠️ Wild reagiert – was nun?"],
+          ["optik", "🔭 Optik richtig nutzen"],
+          ["waffenhandhabung", "🔫 Waffenhandhabungs-Simulator"],
         ].map(([slug, label]) => (
           <a
             key={slug}
