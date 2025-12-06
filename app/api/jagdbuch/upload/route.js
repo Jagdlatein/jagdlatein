@@ -1,22 +1,20 @@
-import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { supabase } from "../../../../lib/supabase";
 
 export async function POST(req) {
   const form = await req.formData();
-  const file = form.get("image");
+  const file = form.get("file");
 
-  if (!file) return NextResponse.json({ error: "No file" }, { status: 400 });
+  const filename = `${Date.now()}-${file.name}`;
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  const { data, error } = await supabase.storage
+    .from("jagdbuch")
+    .upload(filename, file, {
+      contentType: file.type
+    });
 
-  const fileName = Date.now() + "-" + file.name;
-  const filePath = path.join(process.cwd(), "public/jagdbuch", fileName);
+  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
-  await writeFile(filePath, buffer);
+  const url = supabase.storage.from("jagdbuch").getPublicUrl(filename).data.publicUrl;
 
-  return NextResponse.json({
-    url: "/jagdbuch/" + fileName,
-  });
+  return new Response(JSON.stringify({ url }), { status: 200 });
 }
