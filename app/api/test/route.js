@@ -1,4 +1,3 @@
-export async function GET() {
-  console.log("TEST API HIT");
+export function GET() {
   return new Response("OK", { status: 200 });
 }
