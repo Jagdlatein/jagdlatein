@@ -48,48 +48,44 @@ const scenarios = [
 ];
 
 // ------------------------------------------------------------
-// ERGEBNISBOX
+// ERGEBNIS-KOMPONENTE
 // ------------------------------------------------------------
-function DecisionResult({ correct, learn }) {
+function DecisionResult({ isCorrect, learn }) {
   return (
     <ResultBox>
       <h2
         style={{
           fontSize: 24,
           marginBottom: 8,
-          color:
-            correct === "shoot"
-              ? "green"
-              : correct === "wait"
-              ? "#caa53b"
-              : "red"
+          color: isCorrect ? "green" : "red"
         }}
       >
-        {correct === "shoot"
-          ? "Schuss wäre richtig."
-          : correct === "wait"
-          ? "Besser abwarten."
-          : "Nicht schießen!"}
+        {isCorrect ? "Richtige Entscheidung!" : "Falsche Entscheidung!"}
       </h2>
-
       <p style={{ fontSize: 17, lineHeight: 1.5 }}>{learn}</p>
     </ResultBox>
   );
 }
 
 // ------------------------------------------------------------
-// HAUPT SIMULATOR – MIT PERFEKT ZENTRIERTEN BUTTONS
+// HAUPTSIMULATOR
 // ------------------------------------------------------------
 export default function Ansitz() {
   const [step, setStep] = useState(0);
   const [result, setResult] = useState(null);
+  const [score, setScore] = useState(0);
 
   const current = scenarios[step];
 
   function answer(decision) {
+    const isCorrect = decision === current.correct;
+
+    if (isCorrect) {
+      setScore((prev) => prev + 1);
+    }
+
     setResult({
-      decision,
-      correct: current.correct,
+      isCorrect,
       learn: current.learn
     });
   }
@@ -100,7 +96,7 @@ export default function Ansitz() {
   }
 
   // -------------------------------
-  // ENDSEITE
+  // END-SEITE
   // -------------------------------
   if (step >= scenarios.length) {
     return (
@@ -108,10 +104,10 @@ export default function Ansitz() {
         <HomeButton />
         <h1 style={{ fontSize: 34, marginBottom: 20 }}>Ansitz – Ergebnis</h1>
 
-        <ScoreBox score={step} max={scenarios.length} />
+        <ScoreBox score={score} max={scenarios.length} />
 
         <NavigationButton
-          text="Zurück"
+          text="Zurück zur Übersicht"
           onClick={() => (window.location.href = "/jagdpraxis")}
         />
       </main>
@@ -119,7 +115,7 @@ export default function Ansitz() {
   }
 
   // -------------------------------
-  // SIMULATIONSANSICHT
+  // SIMULATIONS-ANSICHT
   // -------------------------------
   return (
     <main
@@ -145,17 +141,17 @@ export default function Ansitz() {
         Ansitz-Simulator
       </h1>
 
-      {/* Szenario */}
+      {/* Szenariokarte */}
       <ScenarioCard title={current.title} text={current.text} />
 
-      {/* BUTTONS ZENTRIERT */}
+      {/* BUTTONS – PERFEKT ZENTRIERT */}
       {!result && (
         <div
           style={{
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",        // ← EXACT CENTER
+            alignItems: "center",
             justifyContent: "center",
             gap: 20,
             marginTop: 20
@@ -187,7 +183,10 @@ export default function Ansitz() {
       {/* ERGEBNIS */}
       {result && (
         <>
-          <DecisionResult correct={result.correct} learn={result.learn} />
+          <DecisionResult
+            isCorrect={result.isCorrect}
+            learn={result.learn}
+          />
 
           <div style={{ width: "100%", maxWidth: 420, margin: "0 auto" }}>
             <NavigationButton text="Weiter" onClick={nextStep} />
