@@ -1,20 +1,17 @@
-import { NextResponse } from "next/server";
-import fs from "fs";
+import { supabase } from "../../../../lib/supabase";
 
-const FILE = "/tmp/jagdbuch.json";
+export async function POST(req) {
+  const { slug } = await req.json();
 
-export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-  const slug = searchParams.get("slug");
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
-  if (!fs.existsSync(FILE))
-    return NextResponse.json({ error: "No posts" }, { status: 404 });
+  if (error) {
+    return new Response(JSON.stringify({ error: error.message }), { status: 404 });
+  }
 
-  const posts = JSON.parse(fs.readFileSync(FILE, "utf8"));
-  const post = posts.find(p => p.slug === slug);
-
-  if (!post)
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
-
-  return NextResponse.json(post);
+  return new Response(JSON.stringify(data), { status: 200 });
 }
