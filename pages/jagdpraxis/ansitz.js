@@ -7,7 +7,7 @@ import NavigationButton from "./components/NavigationButton";
 import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
-// SZENARIEN (INHALT UNVERÄNDERT)
+// SZENARIEN – INHALT UNVERÄNDERT
 // ------------------------------------------------------------
 const scenarios = [
   {
@@ -48,7 +48,7 @@ const scenarios = [
 ];
 
 // ------------------------------------------------------------
-// ERGEBNIS-KOMPONENTE
+// ERGEBNIS-KOMPONENTE – KORREKT MIT isCorrect
 // ------------------------------------------------------------
 function DecisionResult({ isCorrect, learn }) {
   return (
@@ -62,13 +62,14 @@ function DecisionResult({ isCorrect, learn }) {
       >
         {isCorrect ? "Richtige Entscheidung!" : "Falsche Entscheidung!"}
       </h2>
+
       <p style={{ fontSize: 17, lineHeight: 1.5 }}>{learn}</p>
     </ResultBox>
   );
 }
 
 // ------------------------------------------------------------
-// HAUPTSIMULATOR
+// HAUPT-SIMULATOR – KORREKT
 // ------------------------------------------------------------
 export default function Ansitz() {
   const [step, setStep] = useState(0);
@@ -77,6 +78,7 @@ export default function Ansitz() {
 
   const current = scenarios[step];
 
+  // WICHTIG: Hier wird korrekt geprüft!
   function answer(decision) {
     const isCorrect = decision === current.correct;
 
@@ -95,9 +97,9 @@ export default function Ansitz() {
     setStep(step + 1);
   }
 
-  // -------------------------------
-  // END-SEITE
-  // -------------------------------
+  // ------------------------------------------------------------
+  // ENDSEITE
+  // ------------------------------------------------------------
   if (step >= scenarios.length) {
     return (
       <main style={{ maxWidth: 900, margin: "0 auto", padding: "40px 20px" }}>
@@ -114,9 +116,9 @@ export default function Ansitz() {
     );
   }
 
-  // -------------------------------
+  // ------------------------------------------------------------
   // SIMULATIONS-ANSICHT
-  // -------------------------------
+  // ------------------------------------------------------------
   return (
     <main
       style={{
@@ -141,10 +143,10 @@ export default function Ansitz() {
         Ansitz-Simulator
       </h1>
 
-      {/* Szenariokarte */}
+      {/* Szenario */}
       <ScenarioCard title={current.title} text={current.text} />
 
-      {/* BUTTONS – PERFEKT ZENTRIERT */}
+      {/* BUTTONS – ZENTRIERT */}
       {!result && (
         <div
           style={{
@@ -180,7 +182,7 @@ export default function Ansitz() {
         </div>
       )}
 
-      {/* ERGEBNIS */}
+      {/* ERGEBNIS – KORREKT */}
       {result && (
         <>
           <DecisionResult
@@ -195,4 +197,4 @@ export default function Ansitz() {
       )}
     </main>
   );
-}
+  }
