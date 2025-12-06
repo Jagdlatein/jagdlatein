@@ -1,17 +1,22 @@
 import { supabase } from "../../../../lib/supabase";
 
 export async function POST(req) {
+  console.log("POST /api/posts -> START");
+
   try {
-    const body = await req.json();
+    const body = await req.json().catch(() => null);
+
+    if (!body) {
+      console.log("INVALID JSON BODY");
+      return new Response(JSON.stringify({ error: "Ungültiger JSON Body" }), { status: 400 });
+    }
 
     const { slug, title, content, excerpt, date, images } = body;
 
-    // Basic Validation
+    // Validation
     if (!slug || !title || !content) {
-      return new Response(
-        JSON.stringify({ error: "slug, title und content sind Pflichtfelder." }),
-        { status: 400 }
-      );
+      console.log("VALIDATION FAILED");
+      return new Response(JSON.stringify({ error: "Pflichtfelder fehlen" }), { status: 400 });
     }
 
     // Post speichern
@@ -28,15 +33,14 @@ export async function POST(req) {
       .select()
       .single();
 
+    console.log("POST INSERT RESULT:", post, postError);
+
     if (postError) {
-      return new Response(
-        JSON.stringify({ error: postError.message }),
-        { status: 500 }
-      );
+      return new Response(JSON.stringify({ error: postError.message }), { status: 500 });
     }
 
-    // Bilder speichern (falls vorhanden)
-    if (Array.isArray(images) && images.length > 0) {
+    // Bilder speichern
+    if (images?.length) {
       const { error: imgError } = await supabase
         .from("images")
         .insert(images.map((url) => ({
@@ -44,25 +48,22 @@ export async function POST(req) {
           url,
         })));
 
+      console.log("IMAGE INSERT ERROR:", imgError);
+
       if (imgError) {
         return new Response(
-          JSON.stringify({
-            error: "Post gespeichert, aber Fehler beim Speichern der Bilder: " + imgError.message
-          }),
+          JSON.stringify({ error: "Bild-Fehler: " + imgError.message }),
           { status: 500 }
         );
       }
     }
 
-    return new Response(
-      JSON.stringify({ ok: true, id: post.id }),
-      { status: 200 }
-    );
+    console.log("POST /api/posts -> SUCCESS");
+
+    return new Response(JSON.stringify({ ok: true, id: post.id }), { status: 200 });
 
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: err.message }),
-      { status: 500 }
-    );
+    console.log("SERVER ERROR:", err);
+    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
