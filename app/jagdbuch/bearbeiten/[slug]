@@ -1,0 +1,75 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+export default function EditPost({ params }) {
+  const slug = params.slug;
+
+  const [post, setPost] = useState(null);
+
+  async function load() {
+    const res = await fetch(`/api/jagdbuch/post/${slug}`);
+    setPost(await res.json());
+  }
+
+  async function save() {
+    await fetch("/api/jagdbuch/update", {
+      method: "PUT",
+      body: JSON.stringify(post),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    window.location.href = `/jagdbuch/${slug}`;
+  }
+
+  async function remove() {
+    if (!confirm("Diesen Beitrag wirklich löschen?")) return;
+
+    await fetch("/api/jagdbuch/delete", {
+      method: "DELETE",
+      body: JSON.stringify({ slug }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    window.location.href = "/jagdbuch";
+  }
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  if (!post) return <p>Lade…</p>;
+
+  return (
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
+      <h1>Beitrag bearbeiten</h1>
+
+      <input
+        value={post.title}
+        onChange={(e) => setPost({ ...post, title: e.target.value })}
+        style={{ width: "100%", padding: 10 }}
+      />
+
+      <textarea
+        value={post.content}
+        onChange={(e) => setPost({ ...post, content: e.target.value })}
+        style={{ width: "100%", minHeight: 200, marginTop: 12 }}
+      />
+
+      <button onClick={save} style={{ padding: 10, marginRight: 10 }}>
+        Speichern
+      </button>
+
+      <button
+        onClick={remove}
+        style={{
+          padding: 10,
+          background: "red",
+          color: "white",
+        }}
+      >
+        Löschen
+      </button>
+    </main>
+  );
+}
