@@ -6,32 +6,63 @@ export async function POST(req) {
 
     const { slug, title, content, excerpt, date, images } = body;
 
-    const { data, error } = await supabase
+    // Basic Validation
+    if (!slug || !title || !content) {
+      return new Response(
+        JSON.stringify({ error: "slug, title und content sind Pflichtfelder." }),
+        { status: 400 }
+      );
+    }
+
+    // Post speichern
+    const { data: post, error: postError } = await supabase
       .from("posts")
       .insert({
         slug,
         title,
         content,
-        excerpt,
-        date,
-        user_name: "Jäger"
+        excerpt: excerpt ?? "",
+        date: date ?? new Date().toISOString(),
+        user_name: "Jäger",
       })
       .select()
       .single();
 
-    if (error) {
-      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-    }
-
-    // Bilder in DB speichern
-    if (images?.length) {
-      await supabase.from("images").insert(
-        images.map((url) => ({ post_id: data.id, url }))
+    if (postError) {
+      return new Response(
+        JSON.stringify({ error: postError.message }),
+        { status: 500 }
       );
     }
 
-    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    // Bilder speichern (falls vorhanden)
+    if (Array.isArray(images) && images.length > 0) {
+      const { error: imgError } = await supabase
+        .from("images")
+        .insert(images.map((url) => ({
+          post_id: post.id,
+          url,
+        })));
+
+      if (imgError) {
+        return new Response(
+          JSON.stringify({
+            error: "Post gespeichert, aber Fehler beim Speichern der Bilder: " + imgError.message
+          }),
+          { status: 500 }
+        );
+      }
+    }
+
+    return new Response(
+      JSON.stringify({ ok: true, id: post.id }),
+      { status: 200 }
+    );
+
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: err.message }),
+      { status: 500 }
+    );
   }
 }
