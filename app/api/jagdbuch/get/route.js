@@ -3,9 +3,9 @@ import { supabase } from "../../../../lib/supabase";
 export async function POST(req) {
   const { slug } = await req.json();
 
-  const { data, error } = await supabase
+  const { data: post, error } = await supabase
     .from("posts")
-    .select("*")
+    .select("*, images(url), comments(id, user_name, text, created_at)")
     .eq("slug", slug)
     .single();
 
@@ -13,5 +13,5 @@ export async function POST(req) {
     return new Response(JSON.stringify({ error: error.message }), { status: 404 });
   }
 
-  return new Response(JSON.stringify(data), { status: 200 });
+  return new Response(JSON.stringify(post), { status: 200 });
 }
