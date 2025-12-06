@@ -5,35 +5,25 @@ import { useState } from "react";
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
 
-  const createSlug = (text) =>
-    text.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  async function save() {
+    const slug =
+      title.toLowerCase().replace(/[^a-z0-9]+/g, "-") +
+      "-" +
+      Date.now();
 
-  async function submit(e) {
-    e.preventDefault();
-    setSaving(true);
+    const excerpt = content.replace(/<[^>]+>/g, "").slice(0, 120);
 
-    const slug = createSlug(title);
-
-    const res = await fetch("/api/jagdbuch/posts", {
+    await fetch("/api/jagdbuch/create", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        slug,
         title,
+        slug,
         content,
-        excerpt: content.slice(0, 150),
-        date: new Date().toISOString().split("T")[0],
+        excerpt,
       }),
+      headers: { "Content-Type": "application/json" },
     });
-
-    if (!res.ok) {
-      setSaving(false);
-      setError("Fehler beim Speichern");
-      return;
-    }
 
     window.location.href = "/jagdbuch";
   }
@@ -42,31 +32,26 @@ export default function CreatePost() {
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
       <h1>Neuen Beitrag erstellen</h1>
 
-      <form onSubmit={submit}>
-        <input
-          style={{ width: "100%", padding: 10 }}
-          placeholder="Titel"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <input
+        placeholder="Titel"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+      />
 
-        <textarea
-          style={{ width: "100%", minHeight: 200, marginTop: 15 }}
-          placeholder="Inhalt"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+      <textarea
+        placeholder="Inhalt (HTML/Richtext)"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        style={{ width: "100%", minHeight: 200, padding: 10 }}
+      />
 
-        <button
-          type="submit"
-          disabled={saving}
-          style={{ marginTop: 20, padding: 12, background: "#caa53b" }}
-        >
-          {saving ? "Speichern..." : "Speichern"}
-        </button>
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
+      <button
+        onClick={save}
+        style={{ padding: "8px 14px", marginTop: 12 }}
+      >
+        Speichern
+      </button>
     </main>
   );
 }
