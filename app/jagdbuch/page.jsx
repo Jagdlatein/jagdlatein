@@ -16,7 +16,9 @@ export default function JagdbuchPage() {
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
       <h1>Jagdbuch</h1>
 
-      <Link href="/jagdbuch/erstellen">➕ Neuen Beitrag erstellen</Link>
+      <Link href="/jagdbuch/erstellen">
+        <button>➕ Neuen Beitrag erstellen</button>
+      </Link>
 
       {posts.map((post) => (
         <Link key={post.slug} href={`/jagdbuch/${post.slug}`}>
