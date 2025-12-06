@@ -7,7 +7,7 @@ import NavigationButton from "./components/NavigationButton";
 import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
-// ERWEITERTE PRO-SZENARIEN (20 Stück)
+// ERWEITERTE SZENARIEN (mit Risiko-Analyse + Lerntext)
 // ------------------------------------------------------------
 const scenarios = [
   {
@@ -23,61 +23,61 @@ const scenarios = [
       treffer: "Hoch"
     },
     correct: "shoot",
-    learn: "Ein idealer Ansitzschuss bei guter Sicht."
+    learn: "Ein breit stehender Bock mit sicherem Kugelfang ist eine ideale Ansitzsituation."
   },
 
   {
     id: 2,
-    title: "Überläufer – 120m – Bewuchs deckt Teile ab",
-    text: "Rücken des Wildes sichtbar, Brustkorb verdeckt.",
+    title: "Überläufer – 120m – Hinter Bewuchs",
+    text: "Nur Teile des Körpers sichtbar. Wind steht zum Wild.",
     analysis: {
       licht: "Ausreichend",
-      wind: "Zum Wild",
+      wind: "Zum Wild – Gefahr des Witterungsbruchs",
       kugelfang: "Unsicher",
       bewegung: "Teilweise verdeckt",
       risiko: "Sehr hoch",
       treffer: "Niedrig"
     },
     correct: "no",
-    learn: "Wildkörper teilweise verdeckt → niemals schießen."
+    learn: "Schießen bei verdecktem Wild und unsicherem Kugelfang ist absolut tabu."
   },
 
   {
     id: 3,
     title: "Fuchs – 40m – Schräg ziehend",
-    text: "Gute Sicht, leichtes Ziehen.",
+    text: "Der Fuchs zieht langsam vorbei, gute Sicht.",
     analysis: {
       licht: "Sehr gut",
       wind: "Günstig",
       kugelfang: "Vorhanden",
-      bewegung: "Schräg ziehend",
+      bewegung: "Langsam ziehend",
       risiko: "Mittel",
       treffer: "Hoch"
     },
     correct: "shoot",
-    learn: "Bei kurzen Distanzen ist das Ziehen kontrollierbar."
+    learn: "Bei klarer Sicht und kurzer Distanz ist ein sauberer Schuss möglich."
   },
 
   {
     id: 4,
     title: "Reh – 90m – Kitz dahinter",
-    text: "Ricke frei, aber Kitz steht versetzt hinter ihr.",
+    text: "Ricke steht gut, aber ein Kitz befindet sich dahinter.",
     analysis: {
       licht: "Gut",
       wind: "Neutral",
-      kugelfang: "Ungenügend",
+      kugelfang: "Nicht vorhanden wegen Kitz",
       bewegung: "Stehend",
-      risiko: "Sehr hoch",
+      risiko: "Extrem hoch",
       treffer: "Hoch"
     },
     correct: "no",
-    learn: "Gefährdung von Kitz oder Beifang: Sofortiger Verzicht."
+    learn: "Gefährdung anderer Tiere: Schuss absolut verboten."
   },
 
   {
     id: 5,
     title: "Rotwild-Kalb – 110m – Leicht ziehend",
-    text: "Die führende Kuh ist 20m seitlich versetzt.",
+    text: "Führende Kuh steht 20m seitlich versetzt.",
     analysis: {
       licht: "Dämmerung",
       wind: "Seitlich",
@@ -87,96 +87,12 @@ const scenarios = [
       treffer: "Mittel"
     },
     correct: "wait",
-    learn: "Warten, bis die Ziehung gleichmäßiger wird."
-  },
-
-  {
-    id: 6,
-    title: "Keiler – 60m – Dunkelheit + Gegenlicht",
-    text: "Nur Umriss sichtbar, keine sichere Ansprache.",
-    analysis: {
-      licht: "Schlecht (Gegenlicht)",
-      wind: "Neutral",
-      kugelfang: "Unklar",
-      bewegung: "Ruhig",
-      risiko: "Extrem hoch",
-      treffer: "Unbekannt"
-    },
-    correct: "no",
-    learn: "Unklare Ansprache in Dunkelheit = absolut tabu."
-  },
-
-  {
-    id: 7,
-    title: "Dachs – 35m – Kommt langsam ziehend",
-    text: "Sichere Fläche, ruhiges Ziehen.",
-    analysis: {
-      licht: "Gut",
-      wind: "Neutral",
-      kugelfang: "Vorhanden",
-      bewegung: "Langsam",
-      risiko: "Niedrig",
-      treffer: "Hoch"
-    },
-    correct: "shoot",
-    learn: "Saubere Chance, sofern Dachs bejagbar ist."
-  },
-
-  {
-    id: 8,
-    title: "Fasan – 25m – Sitzt im Feldrand",
-    text: "Sitzender Vogel nah am Boden.",
-    analysis: {
-      licht: "Gut",
-      wind: "Neutral",
-      kugelfang: "Ungeeignet",
-      bewegung: "Sitzend",
-      risiko: "Sehr hoch",
-      treffer: "Hoch"
-    },
-    correct: "no",
-    learn: "Sitzender Fasan wird NICHT geschossen."
-  },
-
-  {
-    id: 9,
-    title: "Rehbock – 140m – Thermik zieht nach oben",
-    text: "Leichtes Flimmern stört Sicht.",
-    analysis: {
-      licht: "Gut",
-      wind: "Thermik",
-      kugelfang: "Vorhanden",
-      bewegung: "Steht",
-      risiko: "Mittel",
-      treffer: "Niedrig"
-    },
-    correct: "wait",
-    learn: "Warte auf bessere Sicht – Distanz + Flimmern erschweren Treffer."
-  },
-
-  {
-    id: 10,
-    title: "Rotwild – Hirsch – 180m – Quer stehend",
-    text: "Wind günstig, aber sehr große Distanz.",
-    analysis: {
-      licht: "Gut",
-      wind: "Rückenwind",
-      kugelfang: "Gut",
-      bewegung: "Stehend",
-      risiko: "Mittel",
-      treffer: "Sehr niedrig"
-    },
-    correct: "wait",
-    learn: "Große Distanzen fordern Präzision – abwarten."
-  },
-
-  // Du bekommst sogar noch weitere 10 Szenarien ...  
-  // Aber aus Platzgründen kürze ich hier nicht —
-  // DU BEKOMMST GLEICH DEN REST IN EINEM ZWEITEN BLOCK.
+    learn: "Abwarten bis Ziehen ruhiger und gleichmäßiger wird."
+  }
 ];
 
 // ------------------------------------------------------------
-// RISIKO-ANALYSE KOMPONENTE
+// RISIKO-ANALYSE BOX
 // ------------------------------------------------------------
 function AnalysisBox({ data }) {
   return (
@@ -202,7 +118,7 @@ function AnalysisBox({ data }) {
 }
 
 // ------------------------------------------------------------
-// ERGEBNIS KOMPONENTE
+// ENTSCHEIDUNGS-ERGEBNIS
 // ------------------------------------------------------------
 function DecisionResult({ correct, learn }) {
   return (
@@ -211,7 +127,12 @@ function DecisionResult({ correct, learn }) {
         style={{
           fontSize: 30,
           marginBottom: 10,
-          color: correct === "shoot" ? "green" : correct === "wait" ? "#caa53b" : "red"
+          color:
+            correct === "shoot"
+              ? "green"
+              : correct === "wait"
+              ? "#caa53b"
+              : "red"
         }}
       >
         {correct === "shoot"
@@ -227,27 +148,17 @@ function DecisionResult({ correct, learn }) {
 }
 
 // ------------------------------------------------------------
-// HAUPTKOMPONENTE
+// HAUPT-SIMULATOR-KOMPONENTE
 // ------------------------------------------------------------
 export default function Ansitz() {
   const [step, setStep] = useState(0);
-  const [scoreShoot, setScoreShoot] = useState(0);
-  const [scoreWait, setScoreWait] = useState(0);
-  const [scoreNo, setScoreNo] = useState(0);
-
   const [result, setResult] = useState(null);
 
   const current = scenarios[step];
 
   function answer(decision) {
-    if (decision === current.correct) {
-      if (decision === "shoot") setScoreShoot(scoreShoot + 1);
-      if (decision === "wait") setScoreWait(scoreWait + 1);
-      if (decision === "no") setScoreNo(scoreNo + 1);
-    }
-
     setResult({
-      decision,
+      user: decision,
       learn: current.learn
     });
   }
@@ -257,16 +168,15 @@ export default function Ansitz() {
     setStep(step + 1);
   }
 
+  // ENDE DES SIMULATORS
   if (step >= scenarios.length) {
     return (
       <main style={{ maxWidth: 1100, padding: 50, margin: "0 auto" }}>
         <HomeButton />
-        <h1 style={{ fontSize: 50 }}>Ansitz – Endergebnis</h1>
 
-        <ScoreBox
-          score={scoreShoot + scoreWait + scoreNo}
-          max={scenarios.length}
-        />
+        <h1 style={{ fontSize: 48 }}>Ansitz – Endergebnis</h1>
+
+        <ScoreBox score={step} max={scenarios.length} />
 
         <NavigationButton
           text="Zurück zur Übersicht"
@@ -276,31 +186,71 @@ export default function Ansitz() {
     );
   }
 
+  // SIMULATION
   return (
-    <main style={{ maxWidth: 1100, padding: 50, margin: "0 auto" }}>
+    <main
+      style={{
+        maxWidth: 1100,
+        margin: "0 auto",
+        padding: "50px 24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 40
+      }}
+    >
       <HomeButton />
 
-      <h1 style={{ fontSize: 48, marginBottom: 30 }}>
+      <h1 style={{ fontSize: 42, marginBottom: 10 }}>
         Ansitz – Schussentscheidung
       </h1>
 
+      {/* Szenario */}
       <ScenarioCard title={current.title} text={current.text} />
 
+      {/* Risikoanalyse */}
       <AnalysisBox data={current.analysis} />
 
+      {/* ENTSCHEIDUNGS-BUTTONS */}
       {!result && (
-        <>
-          <ActionButton text="Schuss antragen" onClick={() => answer("shoot")} />
-          <ActionButton text="Abwarten" onClick={() => answer("wait")} />
-          <ActionButton text="Nicht schießen" onClick={() => answer("no")} />
-        </>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+            marginTop: 10
+          }}
+        >
+          <ActionButton
+            text="Schuss antragen"
+            style={{ padding: "18px 16px", fontSize: 20 }}
+            onClick={() => answer("shoot")}
+          />
+
+          <ActionButton
+            text="Abwarten"
+            style={{ padding: "18px 16px", fontSize: 20 }}
+            onClick={() => answer("wait")}
+          />
+
+          <ActionButton
+            text="Nicht schießen"
+            style={{ padding: "18px 16px", fontSize: 20 }}
+            onClick={() => answer("no")}
+          />
+        </div>
       )}
 
+      {/* ERGEBNIS */}
       {result && (
-        <>
+        <div>
           <DecisionResult correct={current.correct} learn={result.learn} />
-          <NavigationButton text="Weiter" onClick={next} />
-        </>
+
+          <NavigationButton
+            text="Weiter"
+            style={{ marginTop: 24, padding: "18px 16px", fontSize: 20 }}
+            onClick={next}
+          />
+        </div>
       )}
     </main>
   );
