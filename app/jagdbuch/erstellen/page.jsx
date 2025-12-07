@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const router = useRouter();
 
   async function save() {
     const slug =
@@ -14,7 +16,7 @@ export default function CreatePost() {
 
     const excerpt = content.replace(/<[^>]+>/g, "").slice(0, 120);
 
-    await fetch("/api/jagdbuch/create", {
+    await fetch("/api/jagdbuch/posts/create", {
       method: "POST",
       body: JSON.stringify({
         title,
@@ -23,9 +25,10 @@ export default function CreatePost() {
         excerpt,
       }),
       headers: { "Content-Type": "application/json" },
+      cache: "no-store", // ⭐ wichtig für sofortige Aktualisierung
     });
 
-    window.location.href = "/jagdbuch";
+    router.push("/jagdbuch"); // schneller, kein Cache-Delay
   }
 
   return (
