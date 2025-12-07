@@ -1,7 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
 
-
-
 // GET -> Liste aller Beiträge
 export async function GET() {
   const { data, error } = await supabase
@@ -13,7 +11,22 @@ export async function GET() {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 
-  return new Response(JSON.stringify(data), { status: 200 });
+  // FIX -> Datum IMMER in gültiges ISO Datum konvertieren
+  const fixed = data.map((post) => {
+    let iso = null;
+
+    if (post.date) {
+      const d = new Date(post.date);
+      iso = isNaN(d) ? null : d.toISOString();
+    }
+
+    return {
+      ...post,
+      date: iso,
+    };
+  });
+
+  return new Response(JSON.stringify(fixed), { status: 200 });
 }
 
 // POST -> Einzelnen Beitrag nach Slug abrufen
@@ -30,5 +43,19 @@ export async function POST(req) {
     return new Response(JSON.stringify({ error: error.message }), { status: 404 });
   }
 
-  return new Response(JSON.stringify(post), { status: 200 });
+  // Datum auch für einzelnes Post-Detail korrigieren
+  let iso = null;
+
+  if (post.date) {
+    const d = new Date(post.date);
+    iso = isNaN(d) ? null : d.toISOString();
+  }
+
+  return new Response(
+    JSON.stringify({
+      ...post,
+      date: iso,
+    }),
+    { status: 200 }
+  );
 }
