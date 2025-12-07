@@ -1,14 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function EditPost({ params }) {
   const slug = params.slug;
-
   const [post, setPost] = useState(null);
+  const router = useRouter();
 
   async function load() {
-    const res = await fetch(`/api/jagdbuch/post/${slug}`);
+    const res = await fetch(`/api/jagdbuch/post/${slug}`, {
+      cache: "no-store",
+    });
     setPost(await res.json());
   }
 
@@ -19,7 +22,7 @@ export default function EditPost({ params }) {
       headers: { "Content-Type": "application/json" },
     });
 
-    window.location.href = `/jagdbuch/${slug}`;
+    router.push(`/jagdbuch/${slug}`);
   }
 
   async function remove() {
@@ -31,7 +34,7 @@ export default function EditPost({ params }) {
       headers: { "Content-Type": "application/json" },
     });
 
-    window.location.href = "/jagdbuch";
+    router.push("/jagdbuch");
   }
 
   useEffect(() => {
