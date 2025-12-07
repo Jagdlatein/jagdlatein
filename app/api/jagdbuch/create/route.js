@@ -19,10 +19,9 @@ export async function POST(req) {
           likes: 0,
         },
       ])
-      .select(); // KEIN single()
+      .select();
 
     if (error) {
-      console.error("CREATE ERROR:", error);
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
       });
@@ -30,7 +29,6 @@ export async function POST(req) {
 
     return new Response(JSON.stringify(data[0]), { status: 201 });
   } catch (err) {
-    console.error("CREATE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
