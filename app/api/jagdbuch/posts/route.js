@@ -8,7 +8,11 @@ export async function GET() {
     .select("*")
     .order("id", { ascending: false });
 
-  if (error) return Response.json({ error: error.message }, { status: 500 });
+  if (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
+  }
 
-  return Response.json(data, { status: 200 });
+  return new Response(JSON.stringify(data), { status: 200 });
 }
