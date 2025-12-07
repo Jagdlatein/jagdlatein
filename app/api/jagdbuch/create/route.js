@@ -3,8 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 export const dynamic = "force-dynamic";
 
 export async function POST(req) {
-  const body = await req.json();
-  const { title, slug, excerpt, content } = body;
+  const { title, slug, excerpt, content } = await req.json();
 
   const { data, error } = await supabase
     .from("posts")
@@ -16,13 +15,12 @@ export async function POST(req) {
         content,
         date: new Date().toISOString(),
         likes: 0,
-      },
+      }
     ])
-    .select();
+    .select()
+    .single();
 
-  if (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-  }
+  if (error) return Response.json({ error: error.message }, { status: 500 });
 
-  return new Response(JSON.stringify(data[0]), { status: 201 });
+  return Response.json(data, { status: 201 });
 }
