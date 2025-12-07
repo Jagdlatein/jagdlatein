@@ -1,4 +1,5 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabaseClient";
+
 
 
 // GET -> Liste aller Beiträge
