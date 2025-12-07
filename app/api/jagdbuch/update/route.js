@@ -24,7 +24,7 @@ export async function PUT(req) {
       .update(updates)
       .eq("slug", slug)
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error("UPDATE ERROR:", error);
