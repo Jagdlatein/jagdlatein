@@ -3,7 +3,12 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export default async function JagdbuchListPage() {
-  const res = await fetch("/api/jagdbuch/posts", { cache: "no-store" });
+ const base = process.env.NEXT_PUBLIC_BASE_URL || "https://jagdlatein.de";
+
+const res = await fetch(`${base}/api/jagdbuch/posts`, {
+  cache: "no-store",
+});
+
   const posts = await res.json();
 
   return (
