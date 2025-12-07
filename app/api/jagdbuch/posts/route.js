@@ -1,71 +1,63 @@
 import { supabase } from "@/lib/supabaseClient";
 
+export const dynamic = "force-dynamic"; // kein Cache
+export const revalidate = 0;
 
+// GET → alle Beiträge
+export async function GET() {
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .order("id", { ascending: false });
 
-export async function POST(req) {
-  console.log("POST /api/posts -> START");
-
-  try {
-    const body = await req.json().catch(() => null);
-
-    if (!body) {
-      console.log("INVALID JSON BODY");
-      return new Response(JSON.stringify({ error: "Ungültiger JSON Body" }), { status: 400 });
-    }
-
-    const { slug, title, content, excerpt, date, images } = body;
-
-    // Validation
-    if (!slug || !title || !content) {
-      console.log("VALIDATION FAILED");
-      return new Response(JSON.stringify({ error: "Pflichtfelder fehlen" }), { status: 400 });
-    }
-
-    // Post speichern
-    const { data: post, error: postError } = await supabase
-      .from("posts")
-      .insert({
-        slug,
-        title,
-        content,
-        excerpt: excerpt ?? "",
-        date: date ?? new Date().toISOString(),
-        user_name: "Jäger",
-      })
-      .select()
-      .single();
-
-    console.log("POST INSERT RESULT:", post, postError);
-
-    if (postError) {
-      return new Response(JSON.stringify({ error: postError.message }), { status: 500 });
-    }
-
-    // Bilder speichern
-    if (images?.length) {
-      const { error: imgError } = await supabase
-        .from("images")
-        .insert(images.map((url) => ({
-          post_id: post.id,
-          url,
-        })));
-
-      console.log("IMAGE INSERT ERROR:", imgError);
-
-      if (imgError) {
-        return new Response(
-          JSON.stringify({ error: "Bild-Fehler: " + imgError.message }),
-          { status: 500 }
-        );
-      }
-    }
-
-    console.log("POST /api/posts -> SUCCESS");
-
-    return new Response(JSON.stringify({ ok: true, id: post.id }), { status: 200 });
-
-  } catch (err) {
-    console.log("SERVER ERROR:", err);
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+  if (error) {
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
+
+  // Datum reparieren
+  const fixed = data.map((post) => {
+    let iso = null;
+
+    if (post.date) {
+      const d = new Date(post.date);
+      iso = isNaN(d) ? null : d.toISOString();
+    }
+
+    return {
+      ...post,
+      date: iso,
+    };
+  });
+
+  return new Response(JSON.stringify(fixed), { status: 200 });
+}
+
+// POST → neuen Beitrag speichern
+export async function POST(req) {
+  const body = await req.json();
+
+  const { title, slug, excerpt, content, date } = body;
+
+  const { data, error } = await supabase
+    .from("posts")
+    .insert([
+      {
+        title,
+        slug,
+        excerpt,
+        content,
+        date: date ? new Date(date).toISOString() : new Date().toISOString(),
+        likes: 0,
+      },
+    ])
+    .select();
+
+  if (error) {
+    console.error("Supabase INSERT ERROR:", error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
+  }
+
+  return new Response(JSON.stringify(data[0]), { status: 201 });
 }
