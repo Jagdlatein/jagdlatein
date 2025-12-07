@@ -1,30 +1,29 @@
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export async function PUT(req) {
   try {
     const body = await req.json();
     const { slug, title, content, excerpt } = body;
 
-    if (!slug) {
-      return new Response(JSON.stringify({ error: "Slug fehlt" }), {
-        status: 400,
-      });
-    }
-
-    const updates = {};
-    if (typeof title === "string") updates.title = title;
-    if (typeof content === "string") updates.content = content;
-    if (typeof excerpt === "string") updates.excerpt = excerpt;
-    updates.date = new Date().toISOString();
+    const updates = {
+      title,
+      content,
+      excerpt,
+      date: new Date().toISOString(),
+    };
 
     const { data, error } = await supabase
       .from("posts")
       .update(updates)
       .eq("slug", slug)
-      .select()
-      .maybeSingle();
+      .select();
 
     if (error) {
       console.error("UPDATE ERROR:", error);
@@ -33,9 +32,9 @@ export async function PUT(req) {
       });
     }
 
-    return new Response(JSON.stringify(data), { status: 200 });
+    return new Response(JSON.stringify(data?.[0] || {}), { status: 200 });
   } catch (err) {
-    console.error("UPDATE EXCEPTION:", err);
+    console.error("UPDATE ROUTE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
