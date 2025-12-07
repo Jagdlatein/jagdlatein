@@ -50,13 +50,8 @@ export default function EditPostPage({ params }) {
     load();
   }, []);
 
-  if (loading) {
-    return <p style={{ padding: 32 }}>Lade…</p>;
-  }
-
-  if (!post) {
-    return <p style={{ padding: 32 }}>Beitrag nicht gefunden.</p>;
-  }
+  if (loading) return <p style={{ padding: 32 }}>Lade…</p>;
+  if (!post) return <p style={{ padding: 32 }}>Beitrag nicht gefunden.</p>;
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
