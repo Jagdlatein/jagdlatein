@@ -3,11 +3,10 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export default async function JagdbuchListPage() {
-  // KORREKTER API-ENDPOINT
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/jagdbuch/posts`,
-    { cache: "no-store" }
-  );
+  // API Call an deine Supabase-Liste
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/jagdbuch/list`, {
+    cache: "no-store",
+  });
 
   let posts = [];
   try {
@@ -15,9 +14,6 @@ export default async function JagdbuchListPage() {
   } catch (e) {
     console.error("Fehler beim Laden:", e);
   }
-
-  // Optional: Sortierung nach Datum (vom neuesten zum ältesten)
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
@@ -64,10 +60,7 @@ export default async function JagdbuchListPage() {
             <h2 style={{ margin: 0 }}>{post.title}</h2>
             <p style={{ opacity: 0.7 }}>{post.excerpt}</p>
             <small style={{ opacity: 0.5 }}>
-              {post.date
-                ? new Date(post.date).toLocaleDateString("de-DE")
-                : "Kein Datum"}
-              {" · "}Likes: {post.likes}
+              {new Date(post.created_at).toLocaleDateString()} · Likes: {post.likes}
             </small>
           </div>
         </Link>
