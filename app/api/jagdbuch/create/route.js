@@ -17,17 +17,22 @@ export async function POST(req) {
           content,
           date: new Date().toISOString(),
           likes: 0,
-        }
+        },
       ])
-      .select(); // ❗ single() entfernt
+      .select(); // KEIN single()
 
     if (error) {
-      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+      console.error("CREATE ERROR:", error);
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+      });
     }
 
     return new Response(JSON.stringify(data[0]), { status: 201 });
-
   } catch (err) {
-    return new Response(JSON.stringify({ error: String(err) }), { status: 500 });
+    console.error("CREATE EXCEPTION:", err);
+    return new Response(JSON.stringify({ error: String(err) }), {
+      status: 500,
+    });
   }
 }
