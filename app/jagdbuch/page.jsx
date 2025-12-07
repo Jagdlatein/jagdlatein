@@ -3,7 +3,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export default async function JagdbuchListPage() {
-  const res = await fetch("/api/jagdbuch/list", { cache: "no-store" });
+  const res = await fetch("/api/jagdbuch/posts", { cache: "no-store" });
   const posts = await res.json();
 
   return (
