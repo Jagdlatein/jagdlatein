@@ -1,4 +1,4 @@
-"use client";
+
 import { useState } from "react";
 import ScenarioCard from "../../components/ScenarioCard";
 import ActionButton from "../../components/ActionButton";
