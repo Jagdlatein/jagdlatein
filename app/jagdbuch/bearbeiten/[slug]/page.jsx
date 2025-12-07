@@ -8,16 +8,23 @@ export default function EditPostPage({ params }) {
   const router = useRouter();
 
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   async function load() {
-    const res = await fetch(`/api/jagdbuch/posts/${slug}`, {
-      cache: "no-store",
-    });
-    const data = await res.json();
-    setPost(data);
+    try {
+      const res = await fetch(`/api/jagdbuch/posts/${slug}`, {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setPost(data);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function save() {
+    if (!post) return;
+
     await fetch(`/api/jagdbuch/update`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -43,14 +50,20 @@ export default function EditPostPage({ params }) {
     load();
   }, []);
 
-  if (!post) return <p>Lade…</p>;
+  if (loading) {
+    return <p style={{ padding: 32 }}>Lade…</p>;
+  }
+
+  if (!post) {
+    return <p style={{ padding: 32 }}>Beitrag nicht gefunden.</p>;
+  }
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
       <h1 style={{ fontSize: 34, marginBottom: 20 }}>Beitrag bearbeiten</h1>
 
       <input
-        value={post.title}
+        value={post.title || ""}
         onChange={(e) => setPost({ ...post, title: e.target.value })}
         style={{
           width: "100%",
@@ -62,7 +75,7 @@ export default function EditPostPage({ params }) {
       />
 
       <textarea
-        value={post.content}
+        value={post.content || ""}
         onChange={(e) => setPost({ ...post, content: e.target.value })}
         style={{
           width: "100%",
