@@ -1,5 +1,8 @@
 import { supabase } from "@/lib/supabaseClient";
 
+export const dynamic = "force-dynamic";
+// alternativ: export const revalidate = 0;
+
 // GET -> Liste aller Beiträge
 export async function GET() {
   const { data, error } = await supabase
@@ -11,19 +14,13 @@ export async function GET() {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 
-  // FIX -> Datum IMMER in gültiges ISO Datum konvertieren
   const fixed = data.map((post) => {
     let iso = null;
-
     if (post.date) {
       const d = new Date(post.date);
       iso = isNaN(d) ? null : d.toISOString();
     }
-
-    return {
-      ...post,
-      date: iso,
-    };
+    return { ...post, date: iso };
   });
 
   return new Response(JSON.stringify(fixed), { status: 200 });
@@ -43,19 +40,11 @@ export async function POST(req) {
     return new Response(JSON.stringify({ error: error.message }), { status: 404 });
   }
 
-  // Datum auch für einzelnes Post-Detail korrigieren
   let iso = null;
-
   if (post.date) {
     const d = new Date(post.date);
     iso = isNaN(d) ? null : d.toISOString();
   }
 
-  return new Response(
-    JSON.stringify({
-      ...post,
-      date: iso,
-    }),
-    { status: 200 }
-  );
+  return new Response(JSON.stringify({ ...post, date: iso }), { status: 200 });
 }
