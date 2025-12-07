@@ -1,8 +1,9 @@
 import { supabase } from "@/lib/supabaseClient";
 
+export const dynamic = "force-dynamic";
+
 export async function PUT(req) {
-  const body = await req.json();
-  const { slug, title, content } = body;
+  const { slug, title, content } = await req.json();
 
   const { data, error } = await supabase
     .from("posts")
@@ -13,5 +14,5 @@ export async function PUT(req) {
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
 
-  return Response.json(data);
+  return Response.json(data, { status: 200 });
 }
