@@ -8,17 +8,7 @@ export async function GET() {
     .select("*")
     .order("id", { ascending: false });
 
-  if (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-  }
+  if (error) return Response.json({ error: error.message }, { status: 500 });
 
-  const fixed = data.map((post) => {
-    const d = new Date(post.date);
-    return {
-      ...post,
-      date: isNaN(d) ? null : d.toISOString(),
-    };
-  });
-
-  return new Response(JSON.stringify(fixed), { status: 200 });
+  return Response.json(data, { status: 200 });
 }
