@@ -19,6 +19,7 @@ export default async function JagdbuchListPage() {
             background: "#eee",
             borderRadius: 8,
             cursor: "pointer",
+            border: "1px solid #ddd",
           }}
         >
           ➕ Neuer Eintrag
@@ -35,15 +36,18 @@ export default async function JagdbuchListPage() {
             style={{
               padding: 20,
               borderRadius: 12,
-              background: "white",
+              background: "#fff",
               border: "1px solid #ddd",
               marginBottom: 16,
+              boxShadow: "0 3px 8px rgba(0,0,0,0.06)",
             }}
           >
             <h2 style={{ margin: 0 }}>{post.title}</h2>
-            <p style={{ opacity: 0.7 }}>{post.excerpt}</p>
+            <p style={{ opacity: 0.7, margin: "8px 0" }}>{post.excerpt}</p>
             <small style={{ opacity: 0.6 }}>
-              {new Date(post.date).toLocaleDateString("de-DE")}
+              {post.date
+                ? new Date(post.date).toLocaleDateString("de-DE")
+                : "Kein Datum"}
             </small>
           </div>
         </Link>
