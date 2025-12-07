@@ -9,9 +9,13 @@ export async function GET(req, { params }) {
     .from("posts")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .maybeSingle(); // kein single()-Fehler mehr
 
-  if (error) return Response.json({ error: error.message }, { status: 404 });
+  if (error || !data) {
+    return new Response(JSON.stringify({ error: "Not found" }), {
+      status: 404,
+    });
+  }
 
-  return Response.json(data, { status: 200 });
+  return new Response(JSON.stringify(data), { status: 200 });
 }
