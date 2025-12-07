@@ -9,18 +9,21 @@ export default function CreatePostPage() {
   const router = useRouter();
 
   async function save() {
+    if (!title.trim()) return;
+
     const slug =
       title.toLowerCase().replace(/[^a-z0-9]+/g, "-") +
       "-" +
       Date.now();
 
-    const excerpt = content.replace(/<[^>]+>/g, "").slice(0, 120);
+    const plainContent = content.replace(/<[^>]+>/g, "");
+    const excerpt = plainContent.slice(0, 120);
 
     await fetch("/api/jagdbuch/create", {
       method: "POST",
-      body: JSON.stringify({ title, slug, content, excerpt }),
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
+      body: JSON.stringify({ title, slug, content, excerpt }),
     });
 
     router.push("/jagdbuch");
