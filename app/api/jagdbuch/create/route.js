@@ -1,6 +1,11 @@
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export async function POST(req) {
   try {
@@ -22,13 +27,15 @@ export async function POST(req) {
       .select();
 
     if (error) {
+      console.error("Supabase INSERT ERROR:", error);
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
       });
     }
 
-    return new Response(JSON.stringify(data[0]), { status: 201 });
+    return new Response(JSON.stringify(data?.[0] || {}), { status: 201 });
   } catch (err) {
+    console.error("CREATE ROUTE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
