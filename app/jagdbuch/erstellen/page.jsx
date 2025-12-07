@@ -19,7 +19,11 @@ export default function CreatePostPage() {
     const plainContent = content.replace(/<[^>]+>/g, "");
     const excerpt = plainContent.slice(0, 120);
 
-    await fetch("/api/jagdbuch/create", {
+   const base = process.env.NEXT_PUBLIC_BASE_URL || "https://jagdlatein.de";
+
+await fetch(`${base}/api/jagdbuch/create`, {
+
+
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
