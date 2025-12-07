@@ -27,7 +27,6 @@ export async function POST(req) {
       .select();
 
     if (error) {
-      console.error("Supabase INSERT ERROR:", error);
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
       });
@@ -35,7 +34,6 @@ export async function POST(req) {
 
     return new Response(JSON.stringify(data?.[0] || {}), { status: 201 });
   } catch (err) {
-    console.error("CREATE ROUTE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
