@@ -1,11 +1,10 @@
-
 import { useState } from "react";
-import ScenarioCard from "../../components/ScenarioCard";
-import ActionButton from "../../components/ActionButton";
-import ResultBox from "../../components/ResultBox";
-import ScoreBox from "../../components/ScoreBox";
-import NavigationButton from "../../components/NavigationButton";
-import HomeButton from "../../components/HomeButton";
+import ScenarioCard from "./components/ScenarioCard";
+import ActionButton from "./components/ActionButton";
+import ResultBox from "./components/ResultBox";
+import ScoreBox from "./components/ScoreBox";
+import NavigationButton from "./components/NavigationButton";
+import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 PIRSCH-SZENARIEN — TRUE = Schuss, FALSE = kein Schuss
