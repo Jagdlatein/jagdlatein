@@ -3,24 +3,31 @@ import { supabase } from "@/lib/supabaseClient";
 export const dynamic = "force-dynamic";
 
 export async function POST(req) {
-  const { title, slug, excerpt, content } = await req.json();
+  try {
+    const body = await req.json();
+    const { title, slug, excerpt, content } = body;
 
-  const { data, error } = await supabase
-    .from("posts")
-    .insert([
-      {
-        title,
-        slug,
-        excerpt,
-        content,
-        date: new Date().toISOString(),
-        likes: 0,
-      }
-    ])
-    .select()
-    .single();
+    const { data, error } = await supabase
+      .from("posts")
+      .insert([
+        {
+          title,
+          slug,
+          excerpt,
+          content,
+          date: new Date().toISOString(),
+          likes: 0,
+        }
+      ])
+      .select(); // ❗ single() entfernt
 
-  if (error) return Response.json({ error: error.message }, { status: 500 });
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    }
 
-  return Response.json(data, { status: 201 });
+    return new Response(JSON.stringify(data[0]), { status: 201 });
+
+  } catch (err) {
+    return new Response(JSON.stringify({ error: String(err) }), { status: 500 });
+  }
 }
