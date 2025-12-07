@@ -12,29 +12,26 @@ export async function PUT(req) {
     const body = await req.json();
     const { slug, title, content, excerpt } = body;
 
-    const updates = {
-      title,
-      content,
-      excerpt,
-      date: new Date().toISOString(),
-    };
-
     const { data, error } = await supabase
       .from("posts")
-      .update(updates)
+      .update({
+        title,
+        content,
+        excerpt,
+        date: new Date().toISOString(),
+      })
       .eq("slug", slug)
-      .select();
+      .select()
+      .maybeSingle();
 
     if (error) {
-      console.error("UPDATE ERROR:", error);
       return new Response(JSON.stringify({ error: error.message }), {
         status: 500,
       });
     }
 
-    return new Response(JSON.stringify(data?.[0] || {}), { status: 200 });
+    return new Response(JSON.stringify(data || {}), { status: 200 });
   } catch (err) {
-    console.error("UPDATE ROUTE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
