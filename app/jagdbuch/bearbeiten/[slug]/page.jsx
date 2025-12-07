@@ -8,24 +8,15 @@ export default function EditPostPage({ params }) {
   const router = useRouter();
 
   const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  // ---------------------
-  // 🔥 EINZELNEN POST LADEN
-  // ---------------------
   async function load() {
-    const res = await fetch(`/api/jagdbuch/post/${slug}`, {
+    const res = await fetch(`/api/jagdbuch/posts/${slug}`, {
       cache: "no-store",
     });
-
     const data = await res.json();
     setPost(data);
-    setLoading(false);
   }
 
-  // ---------------------
-  // 🔥 POST SPEICHERN
-  // ---------------------
   async function save() {
     await fetch(`/api/jagdbuch/update`, {
       method: "PUT",
@@ -36,9 +27,6 @@ export default function EditPostPage({ params }) {
     router.push(`/jagdbuch/${slug}`);
   }
 
-  // ---------------------
-  // 🔥 POST LÖSCHEN
-  // ---------------------
   async function remove() {
     if (!confirm("Diesen Beitrag wirklich löschen?")) return;
 
@@ -55,14 +43,12 @@ export default function EditPostPage({ params }) {
     load();
   }, []);
 
-  if (loading) return <p style={{ padding: 32 }}>Lade…</p>;
-  if (!post) return <p style={{ padding: 32 }}>Beitrag nicht gefunden.</p>;
+  if (!post) return <p>Lade…</p>;
 
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
       <h1 style={{ fontSize: 34, marginBottom: 20 }}>Beitrag bearbeiten</h1>
 
-      {/* Titel */}
       <input
         value={post.title}
         onChange={(e) => setPost({ ...post, title: e.target.value })}
@@ -75,7 +61,6 @@ export default function EditPostPage({ params }) {
         }}
       />
 
-      {/* Inhalt */}
       <textarea
         value={post.content}
         onChange={(e) => setPost({ ...post, content: e.target.value })}
@@ -89,7 +74,6 @@ export default function EditPostPage({ params }) {
         }}
       />
 
-      {/* Buttons */}
       <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
         <button
           onClick={save}
