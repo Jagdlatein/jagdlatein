@@ -26,6 +26,10 @@ export default async function JagdbuchListPage() {
         </button>
       </Link>
 
+      {posts.length === 0 && (
+        <p style={{ opacity: 0.6 }}>Noch keine Einträge.</p>
+      )}
+
       {posts.map((post) => (
         <Link
           key={post.slug}
