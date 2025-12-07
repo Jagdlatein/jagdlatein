@@ -1,16 +1,15 @@
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export async function DELETE(req) {
   try {
     const { slug } = await req.json();
-
-    if (!slug) {
-      return new Response(JSON.stringify({ error: "Slug fehlt" }), {
-        status: 400,
-      });
-    }
 
     const { error } = await supabase
       .from("posts")
@@ -26,7 +25,7 @@ export async function DELETE(req) {
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
-    console.error("DELETE EXCEPTION:", err);
+    console.error("DELETE ROUTE EXCEPTION:", err);
     return new Response(JSON.stringify({ error: String(err) }), {
       status: 500,
     });
