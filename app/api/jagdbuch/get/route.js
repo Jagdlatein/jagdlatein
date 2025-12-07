@@ -1,4 +1,5 @@
-import { supabase } from "../../../../lib/supabase";
+import { supabase } from "@/lib/supabase";
+
 
 // GET -> Liste aller Beiträge
 export async function GET() {
