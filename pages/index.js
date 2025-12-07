@@ -72,7 +72,7 @@ export default function Home() {
             <Link href="/quiz" style={styles.linkButton}>Quiz</Link>
             <Link href="/glossar" style={styles.linkButton}>Glossar</Link>
             <Link href="/ebook" style={styles.linkButton}>E-Book</Link>
-            <Link href="/jagdbuch" style={styles.linkButton}>Jagdbuch</Link>
+            
             <Link href="/jagdpraxis" style={styles.linkButton}>Jagdpraxis</Link>
             <Link href="/jagdrecht" style={styles.linkButton}>Jagdrecht</Link>
 
