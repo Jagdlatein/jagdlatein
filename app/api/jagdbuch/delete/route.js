@@ -3,14 +3,32 @@ import { supabase } from "@/lib/supabaseClient";
 export const dynamic = "force-dynamic";
 
 export async function DELETE(req) {
-  const { slug } = await req.json();
+  try {
+    const { slug } = await req.json();
 
-  const { error } = await supabase
-    .from("posts")
-    .delete()
-    .eq("slug", slug);
+    if (!slug) {
+      return new Response(JSON.stringify({ error: "Slug fehlt" }), {
+        status: 400,
+      });
+    }
 
-  if (error) return Response.json({ error: error.message }, { status: 500 });
+    const { error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("slug", slug);
 
-  return Response.json({ success: true }, { status: 200 });
+    if (error) {
+      console.error("DELETE ERROR:", error);
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+      });
+    }
+
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (err) {
+    console.error("DELETE EXCEPTION:", err);
+    return new Response(JSON.stringify({ error: String(err) }), {
+      status: 500,
+    });
+  }
 }
