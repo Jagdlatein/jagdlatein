@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreatePost() {
+export default function CreatePostPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
@@ -16,42 +16,58 @@ export default function CreatePost() {
 
     const excerpt = content.replace(/<[^>]+>/g, "").slice(0, 120);
 
-    await fetch("/api/jagdbuch/posts/create", {
+    await fetch("/api/jagdbuch/create", {
       method: "POST",
-      body: JSON.stringify({
-        title,
-        slug,
-        content,
-        excerpt,
-      }),
+      body: JSON.stringify({ title, slug, content, excerpt }),
       headers: { "Content-Type": "application/json" },
-      cache: "no-store", // ⭐ wichtig für sofortige Aktualisierung
+      cache: "no-store",
     });
 
-    router.push("/jagdbuch"); // schneller, kein Cache-Delay
+    router.push("/jagdbuch");
   }
 
   return (
-    <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      <h1>Neuen Beitrag erstellen</h1>
+    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
+      <h1 style={{ fontSize: 34, marginBottom: 20 }}>Neuen Beitrag erstellen</h1>
 
       <input
         placeholder="Titel"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginBottom: 12,
+          borderRadius: 8,
+          border: "1px solid #ccc",
+        }}
       />
 
       <textarea
-        placeholder="Inhalt (HTML/Richtext)"
+        placeholder="Inhalt"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        style={{ width: "100%", minHeight: 200, padding: 10 }}
+        style={{
+          width: "100%",
+          minHeight: 220,
+          padding: 12,
+          borderRadius: 8,
+          border: "1px solid #ccc",
+        }}
       />
 
       <button
         onClick={save}
-        style={{ padding: "8px 14px", marginTop: 12 }}
+        style={{
+          padding: "12px 20px",
+          marginTop: 20,
+          borderRadius: 8,
+          background: "#2563eb",
+          color: "white",
+          fontWeight: 600,
+          cursor: "pointer",
+          border: "none",
+        }}
       >
         Speichern
       </button>
