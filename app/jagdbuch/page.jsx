@@ -1,76 +1,53 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function CreatePostPage() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const router = useRouter();
-
-  async function save() {
-    const slug =
-      title.toLowerCase().replace(/[^a-z0-9]+/g, "-") +
-      "-" +
-      Date.now();
-
-    const excerpt = content.replace(/<[^>]+>/g, "").slice(0, 120);
-
-    await fetch("/api/jagdbuch/create", {
-      method: "POST",
-      body: JSON.stringify({ title, slug, content, excerpt }),
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
-
-    router.push("/jagdbuch");
-  }
+export default async function JagdbuchListPage() {
+  const res = await fetch("/api/jagdbuch/list", { cache: "no-store" });
+  const posts = await res.json();
 
   return (
-    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
-      <h1 style={{ fontSize: 34, marginBottom: 20 }}>Neuen Beitrag erstellen</h1>
+    <main style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}>
+      <h1 style={{ fontSize: 38, fontWeight: 700 }}>Jagdbuch</h1>
 
-      <input
-        placeholder="Titel"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginBottom: 12,
-          borderRadius: 8,
-          border: "1px solid #ccc",
-        }}
-      />
+      <Link href="/jagdbuch/erstellen">
+        <button
+          style={{
+            marginTop: 12,
+            marginBottom: 24,
+            padding: "10px 16px",
+            background: "#eee",
+            borderRadius: 8,
+            cursor: "pointer",
+          }}
+        >
+          ➕ Neuer Eintrag
+        </button>
+      </Link>
 
-      <textarea
-        placeholder="Inhalt"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        style={{
-          width: "100%",
-          minHeight: 220,
-          padding: 12,
-          borderRadius: 8,
-          border: "1px solid #ccc",
-        }}
-      />
-
-      <button
-        onClick={save}
-        style={{
-          padding: "12px 20px",
-          marginTop: 20,
-          borderRadius: 8,
-          background: "#2563eb",
-          color: "white",
-          fontWeight: 600,
-          cursor: "pointer",
-          border: "none",
-        }}
-      >
-        Speichern
-      </button>
+      {posts.map((post) => (
+        <Link
+          key={post.slug}
+          href={`/jagdbuch/${post.slug}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div
+            style={{
+              padding: 20,
+              borderRadius: 12,
+              background: "white",
+              border: "1px solid #ddd",
+              marginBottom: 16,
+            }}
+          >
+            <h2 style={{ margin: 0 }}>{post.title}</h2>
+            <p style={{ opacity: 0.7 }}>{post.excerpt}</p>
+            <small style={{ opacity: 0.6 }}>
+              {new Date(post.date).toLocaleDateString("de-DE")}
+            </small>
+          </div>
+        </Link>
+      ))}
     </main>
   );
 }
