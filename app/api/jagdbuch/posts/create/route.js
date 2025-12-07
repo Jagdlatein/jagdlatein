@@ -7,11 +7,13 @@ export async function POST(req) {
   try {
     const body = await req.json();
 
-    const { title, slug, excerpt, content, date } = body;
+    console.log("BODY:", body); // Debug
+
+    const { title, slug, excerpt, content } = body;
 
     if (!title || !slug) {
       return new Response(
-        JSON.stringify({ error: "Title und Slug sind Pflichtfelder" }),
+        JSON.stringify({ error: "Title und Slug erforderlich" }),
         { status: 400 }
       );
     }
@@ -24,9 +26,7 @@ export async function POST(req) {
           slug,
           excerpt: excerpt || "",
           content: content || "",
-          date: date
-            ? new Date(date).toISOString()
-            : new Date().toISOString(), // immer gültiges Datum
+          date: new Date().toISOString(),
           likes: 0,
         },
       ])
@@ -35,18 +35,12 @@ export async function POST(req) {
 
     if (error) {
       console.error("Supabase INSERT ERROR:", error);
-      return new Response(
-        JSON.stringify({ error: error.message }),
-        { status: 500 }
-      );
+      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 
     return new Response(JSON.stringify(data), { status: 201 });
-  } catch (err) {
-    console.error("Route ERROR:", err);
-    return new Response(
-      JSON.stringify({ error: "Ungültige Anfrage" }),
-      { status: 400 }
-    );
+  } catch (e) {
+    console.error("CREATE ROUTE ERROR:", e);
+    return new Response(JSON.stringify({ error: String(e) }), { status: 500 });
   }
 }
