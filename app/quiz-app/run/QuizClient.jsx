@@ -10,12 +10,12 @@ export default function QuizClient() {
   const country = (params.get("country") || "DE").toUpperCase();
   const topic = params.get("topic") || "Alle";
 
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
   const [timer, setTimer] = useState(30);
   const [score, setScore] = useState(0);
   const [locked, setLocked] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState(null);
   const [finished, setFinished] = useState(false);
   const [effect, setEffectState] = useState("");
   const [username, setUsername] = useState("");
@@ -57,7 +57,6 @@ export default function QuizClient() {
         { cache: "no-store" }
       );
       const data = await res.json();
-
       const qs = data.questions || [];
       setQuestions(qs.sort(() => Math.random() - 0.5));
     }
@@ -85,7 +84,7 @@ export default function QuizClient() {
     setTimeout(nextQuestion, 900);
   }
 
-  function handleAnswer(ans: any, idx: number) {
+  function handleAnswer(ans, idx) {
     if (locked) return;
 
     const isCorrect = q.correct.includes(ans.id);
@@ -133,7 +132,7 @@ export default function QuizClient() {
   }, [finished, score, username]);
 
   // -------------------------------
-  // QUIZ RESET (NEUES QUIZ)
+  // QUIZ RESET
   // -------------------------------
   function restartQuiz() {
     setIndex(0);
@@ -245,7 +244,7 @@ export default function QuizClient() {
           {q.q}
         </div>
 
-        {q.answers.map((ans: any, i: number) => {
+        {q.answers.map((ans, i) => {
           const isSelected = selected === i;
           const isCorrect = q.correct.includes(ans.id);
 
