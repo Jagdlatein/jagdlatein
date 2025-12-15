@@ -10,17 +10,19 @@ export default function QuizClient() {
   const country = (params.get("country") || "DE").toUpperCase();
   const topic = params.get("topic") || "Alle";
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<any[]>([]);
   const [index, setIndex] = useState(0);
   const [timer, setTimer] = useState(30);
   const [score, setScore] = useState(0);
   const [locked, setLocked] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
   const [finished, setFinished] = useState(false);
   const [effect, setEffectState] = useState("");
   const [username, setUsername] = useState("");
 
-  // Username laden
+  // -------------------------------
+  // USERNAME LADEN
+  // -------------------------------
   useEffect(() => {
     const u = localStorage.getItem("jagd_username");
     if (!u) {
@@ -30,7 +32,9 @@ export default function QuizClient() {
     setUsername(u);
   }, [router]);
 
-  // User registrieren falls nicht vorhanden
+  // -------------------------------
+  // USER REGISTRIEREN
+  // -------------------------------
   useEffect(() => {
     if (!username) return;
 
@@ -41,7 +45,9 @@ export default function QuizClient() {
     });
   }, [username, country]);
 
-  // Fragen laden
+  // -------------------------------
+  // FRAGEN LADEN
+  // -------------------------------
   useEffect(() => {
     if (!username) return;
 
@@ -51,7 +57,9 @@ export default function QuizClient() {
         { cache: "no-store" }
       );
       const data = await res.json();
-      setQuestions(data.questions || []);
+
+      const qs = data.questions || [];
+      setQuestions(qs.sort(() => Math.random() - 0.5));
     }
 
     load();
@@ -59,7 +67,9 @@ export default function QuizClient() {
 
   const q = questions[index];
 
-  // Timer
+  // -------------------------------
+  // TIMER
+  // -------------------------------
   useEffect(() => {
     if (!q || locked || finished) return;
     if (timer <= 0) return handleTimeout();
@@ -71,11 +81,11 @@ export default function QuizClient() {
   function handleTimeout() {
     setLocked(true);
     setEffectState("flash-wrong");
-    setSelected("timeout");
+    setSelected(-1);
     setTimeout(nextQuestion, 900);
   }
 
-  function handleAnswer(ans, idx) {
+  function handleAnswer(ans: any, idx: number) {
     if (locked) return;
 
     const isCorrect = q.correct.includes(ans.id);
@@ -106,15 +116,13 @@ export default function QuizClient() {
     setSelected(null);
   }
 
-  // Speichern des Scores
+  // -------------------------------
+  // SCORE SPEICHERN
+  // -------------------------------
   useEffect(() => {
-    if (finished) {
-      saveScore();
-    }
-  }, [finished]);
+    if (!finished) return;
 
-  async function saveScore() {
-    await fetch("/api/quiz/submit", {
+    fetch("/api/quiz/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -122,22 +130,33 @@ export default function QuizClient() {
         points: score,
       }),
     });
+  }, [finished, score, username]);
+
+  // -------------------------------
+  // QUIZ RESET (NEUES QUIZ)
+  // -------------------------------
+  function restartQuiz() {
+    setIndex(0);
+    setTimer(30);
+    setScore(0);
+    setLocked(false);
+    setSelected(null);
+    setFinished(false);
+    setEffectState("");
+    setQuestions(qs => [...qs].sort(() => Math.random() - 0.5));
   }
 
   // -------------------------------
-  // PREMIUM-GOLD END-SCREEN
+  // END-SCREEN
   // -------------------------------
   if (finished) {
     return (
       <div style={{ padding: 40 }}>
-        
         <div className="quiz-finish-box fade-in">
 
           <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
 
-          <div className="quiz-score-badge">
-            {score}
-          </div>
+          <div className="quiz-score-badge">{score}</div>
 
           <button
             onClick={() => router.push("/quiz-app/leaderboard")}
@@ -147,9 +166,7 @@ export default function QuizClient() {
           </button>
 
           <button
-            onClick={() =>
-              router.push(`/quiz-app/run?country=${country}&topic=${topic}`)
-            }
+            onClick={restartQuiz}
             className="quiz-end-btn"
           >
             🔄 Neues Quiz starten
@@ -168,9 +185,9 @@ export default function QuizClient() {
   }
 
   // -------------------------------
-  // QUIZ ANSICHT
+  // LOADING
   // -------------------------------
-  if (!q && !finished) {
+  if (!q) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
         Lade Quiz…
@@ -178,6 +195,9 @@ export default function QuizClient() {
     );
   }
 
+  // -------------------------------
+  // QUIZ
+  // -------------------------------
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
 
@@ -225,7 +245,7 @@ export default function QuizClient() {
           {q.q}
         </div>
 
-        {q.answers.map((ans, i) => {
+        {q.answers.map((ans: any, i: number) => {
           const isSelected = selected === i;
           const isCorrect = q.correct.includes(ans.id);
 
