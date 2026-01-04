@@ -6,22 +6,35 @@ const PUBLIC_PATHS = [
   "/preise",
   "/debug-cookies",
   "/paytest",
-  "/jagdbuch/erstellen"
+  "/jagdbuch/erstellen",
 ];
 
+// Ziel: direkt zum "Jetzt freischalten" Abschnitt springen
+// Optional per Env: NEXT_PUBLIC_PAYMENT_URL="/preise#paypal-subscribe-preise"
+const PAYMENT_URL =
+  process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
+
+function redirectToPayment(req, nextPathWithQuery) {
+  // PAYMENT_URL kann relativ (mit #hash) oder absolut sein
+  const target =
+    PAYMENT_URL.startsWith("http://") || PAYMENT_URL.startsWith("https://")
+      ? new URL(PAYMENT_URL)
+      : new URL(PAYMENT_URL, req.url);
+
+  // Rücksprungziel merken
+  target.searchParams.set("next", nextPathWithQuery);
+
+  return NextResponse.redirect(target);
+}
+
 export function middleware(req) {
-  const url = req.nextUrl.clone();
-  const pathname = url.pathname;
+  const pathname = req.nextUrl.pathname;
 
   // PayPal immer erlauben
-  if (pathname.startsWith("/api/paypal")) {
-    return NextResponse.next();
-  }
+  if (pathname.startsWith("/api/paypal")) return NextResponse.next();
 
-  // ░░░ API NIE blockieren ░░░
-  if (pathname.startsWith("/api/")) {
-    return NextResponse.next();
-  }
+  // API NIE blockieren
+  if (pathname.startsWith("/api/")) return NextResponse.next();
 
   // Static Files erlauben
   if (
@@ -39,21 +52,22 @@ export function middleware(req) {
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // gewünschte Zielseite merken (inkl. Query)
+  const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
+
+  // 1) NICHT eingeloggt + protected → direkt "Jetzt freischalten" auf /preise
   if (!hasSession && !isPublic) {
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+    return redirectToPayment(req, nextPathWithQuery);
   }
 
+  // 2) Eingeloggt aber NICHT bezahlt (und kein Admin) + protected → ebenfalls /preise#...
   if (hasSession && !hasPaid && !isAdmin && !isPublic) {
-    url.pathname = "/preise";
-    return NextResponse.redirect(url);
+    return redirectToPayment(req, nextPathWithQuery);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/|favicon.ico|api/).*)"
-  ],
+  matcher: ["/((?!_next/|favicon.ico|api/).*)"],
 };
