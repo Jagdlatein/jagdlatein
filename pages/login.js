@@ -5,7 +5,16 @@ import Head from "next/head";
 
 export default function LoginPage() {
   const router = useRouter();
-  const nextUrl = router.query.next || "/";
+
+  // next kann string | string[] sein
+  const nextUrl =
+    (Array.isArray(router.query.next) ? router.query.next[0] : router.query.next) ||
+    "/";
+
+  // Falls nicht bezahlt: nach Login direkt zur Zahlung schicken.
+  // Optional konfigurierbar über NEXT_PUBLIC_PAYMENT_URL (z.B. "/preise#paypal-subscribe-preise" oder kompletter https-Link)
+  const PAYMENT_URL =
+    process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
 
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -47,10 +56,26 @@ export default function LoginPage() {
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        // Full Reload → Middleware sieht Cookies sofort
-        window.location.href = nextUrl;
-      }, 600);
+        // Wenn noch nicht bezahlt (und kein Admin): direkt zur Zahlung
+        if (data && data.admin !== true && data.paid !== true) {
+          // nextUrl als Rücksprung merken (optional)
+          const base = String(PAYMENT_URL);
+          const next = encodeURIComponent(String(nextUrl));
 
+          // Query sauber vor einem evtl. Hash einfügen
+          const hashIndex = base.indexOf("#");
+          const hasHash = hashIndex >= 0;
+          const beforeHash = hasHash ? base.slice(0, hashIndex) : base;
+          const afterHash = hasHash ? base.slice(hashIndex) : "";
+
+          const sep = beforeHash.includes("?") ? "&" : "?";
+          window.location.href = `${beforeHash}${sep}next=${next}${afterHash}`;
+          return;
+        }
+
+        // Full Reload → Middleware sieht Cookies sofort
+        window.location.href = String(nextUrl);
+      }, 600);
     } catch (err) {
       setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
@@ -66,7 +91,6 @@ export default function LoginPage() {
 
       <main style={styles.main}>
         <div style={styles.card}>
-
           <h1 style={styles.title}>Willkommen zurück</h1>
           <p style={styles.subtitle}>Melde dich mit deiner E-Mail an</p>
 
@@ -92,16 +116,15 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {msg && (
-            <div style={styles.alert}>
-              {msg}
-            </div>
-          )}
+          {msg && <div style={styles.alert}>{msg}</div>}
 
-          <button onClick={logout} style={styles.logoutBtn}>Logout</button>
+          <button onClick={logout} style={styles.logoutBtn}>
+            Logout
+          </button>
 
-          <a href="/" style={styles.backLink}>← Zurück zur Startseite</a>
-
+          <a href="/" style={styles.backLink}>
+            ← Zurück zur Startseite
+          </a>
         </div>
       </main>
     </>
