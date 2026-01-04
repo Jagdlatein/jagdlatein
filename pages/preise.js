@@ -1,9 +1,24 @@
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useRouter } from "next/router";
 
 export default function Preise() {
+  const router = useRouter();
+
+  // next kann string | string[] sein
+  const nextParam = useMemo(() => {
+    const raw = router.query.next;
+    return Array.isArray(raw) ? raw[0] : raw;
+  }, [router.query.next]);
+
+  // Login-Link soll das Rücksprungziel mitnehmen
+  const loginHref = useMemo(() => {
+    if (!nextParam) return "/login";
+    return `/login?next=${encodeURIComponent(String(nextParam))}`;
+  }, [nextParam]);
+
   const container = {
     maxWidth: 960,
     margin: "0 auto",
@@ -62,6 +77,7 @@ export default function Preise() {
     script.src =
       "https://www.paypal.com/sdk/js?client-id=AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW&vault=true&intent=subscription&currency=EUR";
     script.async = true;
+
     script.onload = () => {
       if (window.paypal) {
         window.paypal
@@ -78,14 +94,25 @@ export default function Preise() {
               });
             },
             onApprove(data) {
-              alert("Danke! Dein Premiumzugang wurde aktiviert.");
+              alert("Danke! Dein Premiumzugang wurde aktiviert. Bitte logge dich jetzt ein.");
+
+              // Wichtig: nach Zahlung direkt zum Login, inkl. next (z.B. /kurse)
+              window.location.href = loginHref;
             },
           })
           .render("#paypal-subscribe-preise");
       }
     };
+
     document.body.appendChild(script);
-  }, []);
+
+    // Cleanup (optional)
+    return () => {
+      try {
+        document.body.removeChild(script);
+      } catch {}
+    };
+  }, [loginHref]);
 
   return (
     <>
@@ -119,7 +146,7 @@ export default function Preise() {
           </div>
 
           <p style={smallText}>
-            Bereits gekauft? <Link href="/login">Hier einloggen</Link>.
+            Bereits gekauft? <Link href={loginHref}>Hier einloggen</Link>.
           </p>
 
           <p style={smallText}>
