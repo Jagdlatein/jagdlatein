@@ -150,8 +150,11 @@ export default function Preise() {
           </p>
 
           <p style={smallText}>
-            Fragen zur Zahlung? <Link href="/kontakt">Kontakt</Link>
-          </p>
+  Fragen zur Zahlung?{" "}
+  <a href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein">
+    info@jagdlatein.de
+  </a>
+</p>
         </div>
       </main>
     </>
