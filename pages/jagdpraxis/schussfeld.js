@@ -87,11 +87,11 @@ export default function SchussfeldBeurteilung() {
     if (isCorrect) setScore(score + 1);
 
     setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep(step + 1);
-    }, 1200);
-  }
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
 
   // ------------------------------------------------------------
   // ENDSEITE
@@ -143,7 +143,10 @@ export default function SchussfeldBeurteilung() {
       <HomeButton />
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Schussfeld-Beurteilung</h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
 
       <div
         style={{
