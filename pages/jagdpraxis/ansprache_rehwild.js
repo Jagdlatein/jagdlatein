@@ -90,7 +90,6 @@ export default function AnspracheRehwild() {
   setStep((prev) => prev + 1);
 }, isCorrect ? 3500 : 1200);
 }
-  }
 
   // ------------------------------------------------------------
   // ENDSEITE
