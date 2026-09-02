@@ -85,11 +85,11 @@ export default function WindPirsch() {
     if (isCorrect) setScore(score + 1);
 
     setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep(step + 1);
-    }, 1200);
-  }
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
 
   // ------------------------------------------------------------
   // ENDANSICHT
@@ -146,7 +146,10 @@ export default function WindPirsch() {
         Wind & Pirschrichtung
       </h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
 
       <div
         style={{
