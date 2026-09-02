@@ -83,11 +83,11 @@ export default function Ansitz() {
     }
 
     setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep((prev) => prev + 1);
-    }, 1200);
-  }
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
 
   // ------------------------------------------------------------
   // ENDSEITE
