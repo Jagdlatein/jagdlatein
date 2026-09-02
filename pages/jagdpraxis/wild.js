@@ -85,12 +85,12 @@ export default function Wildkunde() {
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep(step + 1);
-    }, 1200);
-  }
+   setTimeout(() => {
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
 
   // ------------------------------------------------------------
   // ENDSEITE
@@ -143,8 +143,10 @@ export default function Wildkunde() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Wildkunde – Trainer</h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
-
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
       {/* Antwort-Buttons */}
       <div
         style={{
