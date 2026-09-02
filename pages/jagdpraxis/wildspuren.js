@@ -85,12 +85,11 @@ export default function Wildspuren() {
     if (isCorrect) setScore(score + 1);
 
     setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep(step + 1);
-    }, 1200);
-  }
-
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
   // ------------------------------------------------------------
   // ENDSEITE
   // ------------------------------------------------------------
@@ -146,7 +145,10 @@ export default function Wildspuren() {
         Fährten- & Spurenkunde
       </h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
 
       <div
         style={{
