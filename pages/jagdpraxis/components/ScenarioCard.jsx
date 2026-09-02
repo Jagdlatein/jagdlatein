@@ -10,8 +10,20 @@ export default function ScenarioCard({ title, text }) {
         borderLeft: "6px solid #d4af37",
       }}
     >
-      <h2 style={{ margin: 0 }}>{title}</h2>
-      <p style={{ marginTop: 10, lineHeight: 1.5 }}>{text}</p>
+      <h2 style={{ margin: 0 }}>
+        {title}
+      </h2>
+
+      {text && (
+        <p
+          style={{
+            marginTop: 10,
+            lineHeight: 1.5,
+          }}
+        >
+          {text}
+        </p>
+      )}
     </div>
   );
 }
