@@ -83,12 +83,11 @@ export default function Pirsch() {
     if (isCorrect) setScore((prev) => prev + 1);
 
     setTimeout(() => {
-      setFeedback(null);
-      setLockButtons(false);
-      setStep((prev) => prev + 1);
-    }, 1200);
-  }
-
+  setFeedback(null);
+  setLockButtons(false);
+  setStep((prev) => prev + 1);
+}, isCorrect ? 3500 : 1200);
+}
   // ------------------------------------------------------------
   // ENDSEITE
   // ------------------------------------------------------------
@@ -133,7 +132,10 @@ export default function Pirsch() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Pirsch-Simulator</h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
 
       <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginTop: 20 }}>
         <div style={{ width: "100%", maxWidth: 420 }}>
