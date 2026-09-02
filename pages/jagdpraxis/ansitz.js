@@ -134,7 +134,10 @@ export default function Ansitz() {
       <HomeButton />
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Ansitz-Simulator</h1>
 
-      <ScenarioCard title={current.title} text={current.text} />
+      <ScenarioCard
+  title={current.title}
+  text={feedback === true ? current.text : null}
+/>
 
       {/* BUTTONS ZENTRIERT */}
       <div
