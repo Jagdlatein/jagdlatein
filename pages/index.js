@@ -19,13 +19,11 @@ function getCookie(name) {
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // LOGIN STATUS
   useEffect(() => {
     const s = !!getCookie("jl_session");
     setLoggedIn(s);
   }, []);
 
-  // PUSH BENACHRICHTIGUNGEN
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
 
@@ -102,15 +100,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>
-          Jagdlatein – Lernplattform für Jäger
-        </title>
+        <title>Jagdlatein – Lernplattform für Jäger</title>
       </Head>
 
       <main style={styles.main}>
         <div style={styles.wrap}>
-          {/* TITEL */}
-
           <h1 style={styles.title}>
             Jagdlatein
           </h1>
@@ -119,8 +113,6 @@ export default function Home() {
             Lernen für Jagdschein und Praxis in Deutschland,
             Österreich &amp; Schweiz
           </p>
-
-          {/* OBERSTE BUTTONS */}
 
           <div style={styles.btnRow}>
             <Link
@@ -136,8 +128,6 @@ export default function Home() {
             >
               Login
             </Link>
-
-            {/* WhatsApp Icon */}
 
             <a
               href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
@@ -156,8 +146,6 @@ export default function Home() {
                 <path d="M12 2C6.5 2 2 6.3 2 11.7c0 2.1.7 4 2 5.6L2 22l4.9-1.9c1.5.8 3.2 1.2 5 1.2 5.5 0 10-4.3 10-9.7S17.5 2 12 2zm4.6 13.8c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.1-1.5-.1-.3-.1-.7-.2-1.2-.5-2.1-1-3.4-2.8-3.6-3-.2-.3-.9-1.2-.9-2.3s.6-1.6.8-1.8c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3.1.3.5 1.3.6 1.4.1.1.1.2 0 .4-.1.2-.2.3-.3.5-.1.1-.2.2-.3.3-.1.1-.2.2-.1.4.1.2.5.8 1.1 1.3.8.7 1.4.9 1.6 1 .2.1.3.1.4 0 .1-.1.5-.6.6-.8.1-.2.3-.2.4-.1.2.1 1.3.6 1.5.7.2.1.3.1.4.2.1.1.1.6-.1 1.2z" />
               </svg>
             </a>
-
-            {/* Instagram Icon */}
 
             <a
               href="https://instagram.com/jagdlatein"
@@ -178,67 +166,39 @@ export default function Home() {
             </a>
           </div>
 
-          {/* UNTERE GOLD-BUTTONS */}
-
           <div style={styles.linkColumn}>
-            <Link
-              href="/tagesquiz"
-              style={styles.linkButton}
-            >
+            <Link href="/tagesquiz" style={styles.linkButton}>
               Tagesquiz
             </Link>
 
-            <Link
-              href="/kurse"
-              style={styles.linkButton}
-            >
+            <Link href="/kurse" style={styles.linkButton}>
               Kurse
             </Link>
 
-            <Link
-              href="/quiz"
-              style={styles.linkButton}
-            >
+            <Link href="/quiz" style={styles.linkButton}>
               Quiz
             </Link>
 
-            <Link
-              href="/glossar"
-              style={styles.linkButton}
-            >
+            <Link href="/glossar" style={styles.linkButton}>
               Glossar
             </Link>
 
-            <Link
-              href="/ebook"
-              style={styles.linkButton}
-            >
+            <Link href="/ebook" style={styles.linkButton}>
               E-Book
             </Link>
 
-            <Link
-              href="/jagdpraxis"
-              style={styles.linkButton}
-            >
+            <Link href="/jagdpraxis" style={styles.linkButton}>
               Jagdpraxis
             </Link>
 
-            <Link
-              href="/jagdrecht"
-              style={styles.linkButton}
-            >
+            <Link href="/jagdrecht" style={styles.linkButton}>
               Jagdrecht
             </Link>
 
-            <Link
-              href="/wildkunde"
-              style={styles.linkButton}
-            >
+            <Link href="/wildkunde" style={styles.linkButton}>
               Wildkunde
             </Link>
           </div>
-
-          {/* LOGOUT BUTTON */}
 
           {loggedIn && (
             <button
@@ -325,8 +285,7 @@ const styles = {
     textDecoration: "none",
     width: 52,
     height: 52,
-    boxShadow:
-      "0 3px 6px rgba(0,0,0,0.18)",
+    boxShadow: "0 3px 6px rgba(0,0,0,0.18)",
   },
 
   linkColumn: {
