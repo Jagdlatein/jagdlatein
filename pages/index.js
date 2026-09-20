@@ -53,11 +53,35 @@ export default function Home() {
         registrationListener =
           await PushNotifications.addListener(
             "registration",
-            (token) => {
+            async (token) => {
               console.log(
                 "JAGDLATEIN PUSH TOKEN:",
                 token.value
               );
+
+              try {
+                const response = await fetch("/api/push/register", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    token: token.value,
+                  }),
+                });
+
+                const result = await response.json();
+
+                console.log(
+                  "JAGDLATEIN PUSH TOKEN GESPEICHERT:",
+                  result
+                );
+              } catch (error) {
+                console.error(
+                  "Push Token konnte nicht gespeichert werden:",
+                  error
+                );
+              }
             }
           );
 
@@ -100,7 +124,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jagdlatein – Lernplattform für Jäger</title>
+        <title>Jagdlatein â€“ Lernplattform fÃ¼r JÃ¤ger</title>
       </Head>
 
       <main style={styles.main}>
@@ -110,8 +134,8 @@ export default function Home() {
           </h1>
 
           <p style={styles.sub}>
-            Lernen für Jagdschein und Praxis in Deutschland,
-            Österreich &amp; Schweiz
+            Lernen fÃ¼r Jagdschein und Praxis in Deutschland,
+            Ã–sterreich &amp; Schweiz
           </p>
 
           <div style={styles.btnRow}>
