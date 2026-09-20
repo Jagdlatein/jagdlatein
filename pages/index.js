@@ -1,7 +1,10 @@
 // pages/index.js
+
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Capacitor } from "@capacitor/core";
+import { PushNotifications } from "@capacitor/push-notifications";
 
 function getCookie(name) {
   if (typeof document === "undefined") return null;
@@ -16,9 +19,76 @@ function getCookie(name) {
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // LOGIN STATUS
   useEffect(() => {
     const s = !!getCookie("jl_session");
     setLoggedIn(s);
+  }, []);
+
+  // PUSH BENACHRICHTIGUNGEN
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+
+    let registrationListener;
+    let registrationErrorListener;
+
+    async function setupPush() {
+      try {
+        let permission =
+          await PushNotifications.checkPermissions();
+
+        if (
+          permission.receive === "prompt" ||
+          permission.receive === "prompt-with-rationale"
+        ) {
+          permission =
+            await PushNotifications.requestPermissions();
+        }
+
+        if (permission.receive !== "granted") {
+          console.log(
+            "Push-Benachrichtigungen nicht erlaubt"
+          );
+          return;
+        }
+
+        registrationListener =
+          await PushNotifications.addListener(
+            "registration",
+            (token) => {
+              console.log(
+                "JAGDLATEIN PUSH TOKEN:",
+                token.value
+              );
+            }
+          );
+
+        registrationErrorListener =
+          await PushNotifications.addListener(
+            "registrationError",
+            (error) => {
+              console.error(
+                "Push Registrierung fehlgeschlagen:",
+                error
+              );
+            }
+          );
+
+        await PushNotifications.register();
+      } catch (error) {
+        console.error(
+          "Push Setup Fehler:",
+          error
+        );
+      }
+    }
+
+    setupPush();
+
+    return () => {
+      registrationListener?.remove();
+      registrationErrorListener?.remove();
+    };
   }, []);
 
   async function logout() {
@@ -255,7 +325,8 @@ const styles = {
     textDecoration: "none",
     width: 52,
     height: 52,
-    boxShadow: "0 3px 6px rgba(0,0,0,0.18)",
+    boxShadow:
+      "0 3px 6px rgba(0,0,0,0.18)",
   },
 
   linkColumn: {
