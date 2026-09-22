@@ -1,4 +1,5 @@
-import "./globals.css";
+﻿import "./globals.css";
+import GlobalHomeButton from "../components/GlobalHomeButton";
 
 export const metadata = {
   title: "Jagdlatein",
@@ -15,8 +16,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="de">
-      <head /> {/* WICHTIG! Ohne das kein Favicon! */}
-      <body>{children}</body>
+      <head />
+      <body>
+        {children}
+        <GlobalHomeButton />
+      </body>
     </html>
   );
 }
