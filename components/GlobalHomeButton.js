@@ -1,16 +1,4 @@
-﻿"use client";
-
-import { useEffect, useState } from "react";
-
-export default function GlobalHomeButton() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    setShow(window.location.pathname !== "/");
-  }, []);
-
-  if (!show) return null;
-
+﻿export default function GlobalHomeButton() {
   return (
     <a
       href="/"
@@ -19,7 +7,7 @@ export default function GlobalHomeButton() {
         position: "fixed",
         left: 16,
         bottom: "max(16px, env(safe-area-inset-bottom))",
-        zIndex: 9999,
+        zIndex: 2147483647,
         padding: "11px 16px",
         borderRadius: 999,
         background: "#111827",
@@ -28,7 +16,7 @@ export default function GlobalHomeButton() {
         fontFamily: "system-ui, sans-serif",
         fontSize: 14,
         fontWeight: 700,
-        boxShadow: "0 4px 14px rgba(0,0,0,.25)",
+        boxShadow: "0 4px 14px rgba(0,0,0,.30)",
       }}
     >
       🏠 Startseite
