@@ -1,4 +1,14 @@
-﻿export default function GlobalHomeButton() {
+﻿"use client";
+
+import { usePathname } from "next/navigation";
+
+export default function GlobalHomeButton() {
+  const pathname = usePathname();
+
+  if (!pathname || pathname === "/") {
+    return null;
+  }
+
   return (
     <a
       href="/"
