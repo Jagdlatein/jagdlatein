@@ -1,4 +1,4 @@
-// pages/index.js
+﻿// pages/index.js
 
 import Head from "next/head";
 import Link from "next/link";
@@ -124,7 +124,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jagdlatein â€“ Lernplattform fÃ¼r JÃ¤ger</title>
+        <title>Jagdlatein – Lernplattform für Jäger</title>
       </Head>
 
       <main style={styles.main}>
@@ -134,8 +134,8 @@ export default function Home() {
           </h1>
 
           <p style={styles.sub}>
-            Lernen fÃ¼r Jagdschein und Praxis in Deutschland,
-            Ã–sterreich &amp; Schweiz
+            Lernen für Jagdschein und Praxis in Deutschland,
+            Österreich &amp; Schweiz
           </p>
 
           <div style={styles.btnRow}>
