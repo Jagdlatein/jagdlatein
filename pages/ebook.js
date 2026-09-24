@@ -33,7 +33,7 @@ export default function Ebook() {
   return (
     <>
       <Head>
-        <title>E-Book – Jagdlatein</title>
+        <title>E-Book â€“ Jagdlatein</title>
       </Head>
 
       <main style={styles.main}>
@@ -44,12 +44,11 @@ export default function Ebook() {
         </p>
 
         <a
-          href="/ebook.pdf"
+          href="https://jagdlatein.de/ebook.pdf"
           style={styles.btn}
-          target="_blank"
           rel="noopener noreferrer"
         >
-          E-Book öffnen
+          E-Book Ã¶ffnen
         </a>
       </main>
     </>
