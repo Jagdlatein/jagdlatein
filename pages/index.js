@@ -1,4 +1,4 @@
-﻿// pages/index.js
+// pages/index.js
 
 import Head from "next/head";
 import Link from "next/link";
@@ -168,6 +168,24 @@ export default function Home() {
                 aria-hidden="true"
               >
                 <path d="M12 2C6.5 2 2 6.3 2 11.7c0 2.1.7 4 2 5.6L2 22l4.9-1.9c1.5.8 3.2 1.2 5 1.2 5.5 0 10-4.3 10-9.7S17.5 2 12 2zm4.6 13.8c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.1-1.5-.1-.3-.1-.7-.2-1.2-.5-2.1-1-3.4-2.8-3.6-3-.2-.3-.9-1.2-.9-2.3s.6-1.6.8-1.8c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3.1.3.5 1.3.6 1.4.1.1.1.2 0 .4-.1.2-.2.3-.3.5-.1.1-.2.2-.3.3-.1.1-.2.2-.1.4.1.2.5.8 1.1 1.3.8.7 1.4.9 1.6 1 .2.1.3.1.4 0 .1-.1.5-.6.6-.8.1-.2.3-.2.4-.1.2.1 1.3.6 1.5.7.2.1.3.1.4.2.1.1.1.6-.1 1.2z" />
+              </svg>
+            </a>
+
+            <a
+              href="https://www.facebook.com/share/1FRELdRuAP/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.iconButton}
+              aria-label="Jagdlatein auf Facebook"
+            >
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="#111"
+                aria-hidden="true"
+              >
+                <path d="M13.5 22v-9h3l.5-3.5h-3.5V7.3c0-1 .3-1.7 1.8-1.7H17V2.5c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.6H7V13h3v9h3.5z" />
               </svg>
             </a>
 
