@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@capacitor/browser": "^8.0.4",
     "@capacitor/core": "^8.5.2",
     "@capacitor/push-notifications": "^8.1.2",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
