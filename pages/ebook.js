@@ -30,11 +30,7 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Ebook() {
-  const pdfUrl = "https://jagdlatein.de/ebook.pdf";
-
-  const viewerUrl =
-    "https://docs.google.com/gview?embedded=1&url=" +
-    encodeURIComponent(pdfUrl);
+  const pdfUrl = "/ebook.pdf";
 
   return (
     <>
@@ -49,19 +45,32 @@ export default function Ebook() {
           Dein exklusiver Zugriff auf das Jagdlatein E-Book ist freigeschaltet.
         </p>
 
-        <iframe
-          src={viewerUrl}
-          title="Jagdlatein E-Book"
-          style={styles.viewer}
-        />
+        <div style={styles.card}>
+          <div style={styles.icon}>📖</div>
 
-        <a
-          href={pdfUrl}
-          style={styles.btn}
-          rel="noopener noreferrer"
-        >
-          PDF herunterladen
-        </a>
+          <h2 style={styles.cardTitle}>Jagdlatein E-Book</h2>
+
+          <p style={styles.description}>
+            Öffne das vollständige E-Book als PDF.
+          </p>
+
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.btn}
+          >
+            PDF öffnen
+          </a>
+
+          <a
+            href={pdfUrl}
+            download
+            style={styles.btnSecondary}
+          >
+            PDF herunterladen
+          </a>
+        </div>
       </main>
     </>
   );
@@ -69,7 +78,7 @@ export default function Ebook() {
 
 const styles = {
   main: {
-    padding: "24px 14px 90px",
+    padding: "24px 14px 110px",
     maxWidth: 1000,
     margin: "0 auto",
   },
@@ -82,26 +91,54 @@ const styles = {
 
   text: {
     fontSize: 17,
-    marginBottom: 18,
+    marginBottom: 24,
   },
 
-  viewer: {
-    width: "100%",
-    height: "75vh",
-    minHeight: 500,
+  card: {
+    padding: 28,
     border: "1px solid #ddd",
-    borderRadius: 12,
+    borderRadius: 16,
     background: "#fff",
+    textAlign: "center",
+  },
+
+  icon: {
+    fontSize: 64,
+    marginBottom: 12,
+  },
+
+  cardTitle: {
+    fontSize: 26,
+    marginBottom: 10,
+  },
+
+  description: {
+    fontSize: 17,
+    marginBottom: 24,
   },
 
   btn: {
-    display: "inline-block",
-    marginTop: 20,
-    padding: "14px 24px",
+    display: "block",
+    maxWidth: 320,
+    margin: "0 auto 14px",
+    padding: "15px 24px",
     background: "#caa53b",
     color: "#111",
     borderRadius: 12,
     fontSize: 18,
+    fontWeight: 700,
+    textDecoration: "none",
+  },
+
+  btnSecondary: {
+    display: "block",
+    maxWidth: 320,
+    margin: "0 auto",
+    padding: "14px 24px",
+    background: "#111827",
+    color: "#fff",
+    borderRadius: 12,
+    fontSize: 17,
     fontWeight: 700,
     textDecoration: "none",
   },
