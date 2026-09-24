@@ -15,7 +15,7 @@ export default function Header() {
       setIsPaid(cookie.includes("jl_paid=1"));
     }
   }, []);
- // 🔥 KORREKTER LOGOUT — über API Route (löscht HttpOnly Cookies)
+ // ðŸ”¥ KORREKTER LOGOUT â€” Ã¼ber API Route (lÃ¶scht HttpOnly Cookies)
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
     window.location.href = "/";
