@@ -62,14 +62,6 @@ export default function Ebook() {
           >
             PDF öffnen
           </a>
-
-          <a
-            href={pdfUrl}
-            download
-            style={styles.btnSecondary}
-          >
-            PDF herunterladen
-          </a>
         </div>
       </main>
     </>
@@ -143,3 +135,4 @@ const styles = {
     textDecoration: "none",
   },
 };
+
