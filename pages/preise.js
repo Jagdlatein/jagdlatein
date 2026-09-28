@@ -1,4 +1,4 @@
-// pages/preise.js
+﻿// pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useMemo } from "react";
@@ -13,7 +13,7 @@ export default function Preise() {
     return Array.isArray(raw) ? raw[0] : raw;
   }, [router.query.next]);
 
-  // Login-Link soll das Rücksprungziel mitnehmen
+  // Login-Link soll das RÃ¼cksprungziel mitnehmen
   const loginHref = useMemo(() => {
     if (!nextParam) return "/login";
     return `/login?next=${encodeURIComponent(String(nextParam))}`;
@@ -71,7 +71,7 @@ export default function Preise() {
     fontSize: 14,
   };
 
-  // ⭐ Neuer LIVE PayPal Button (Subscription)
+  // â­ Neuer LIVE PayPal Button (Subscription)
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -90,7 +90,7 @@ export default function Preise() {
             },
             createSubscription(data, actions) {
               return actions.subscription.create({
-                plan_id: "P-9XU38461YG7706134NESJQWA", // ✔ Dein LIVE-Abo-Plan
+                plan_id: "P-9XU38461YG7706134NESJQWA", // âœ” Dein LIVE-Abo-Plan
               });
             },
             onApprove(data) {
@@ -117,7 +117,7 @@ export default function Preise() {
   return (
     <>
       <Head>
-        <title>Preise – Jagdlatein</title>
+        <title>Preise â€“ Jagdlatein</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -128,30 +128,33 @@ export default function Preise() {
           </h1>
 
           <p style={lead}>
-            Wähle dein Modell. Der Zugang zur Lernplattform wird nach erfolgreicher
+            WÃ¤hle dein Modell. Der Zugang zur Lernplattform wird nach erfolgreicher
             Bezahlung automatisch freigeschaltet.
           </p>
 
           <div style={card}>
             <h3 style={priceTitle}>Monatszugang</h3>
-            <p style={sub}>5 € / Monat · jederzeit kündbar</p>
+            <p style={sub}>5 â‚¬ / Monat Â· jederzeit kÃ¼ndbar</p>
 
-            {/* ⭐ Neuer Button */}
+            {/* â­ Neuer Button */}
             <div id="paypal-subscribe-preise"></div>
 
             <p style={note}>
-              Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung
-              erhältst du eine Bestätigung und kannst dich mit deiner E-Mail einloggen.
+              Die Zahlung wird sicher Ã¼ber PayPal abgewickelt. Nach erfolgreicher Zahlung
+              erhÃ¤ltst du eine BestÃ¤tigung und kannst dich mit deiner E-Mail einloggen.
             </p>
           </div>
 
           <p style={smallText}>
-            Bereits gekauft? <Link href={loginHref}>Hier einloggen</Link>.
+            Bereits gekauft? <Link href={loginHref} style={themeLink}>Hier einloggen</Link>.
           </p>
 
           <p style={smallText}>
   Fragen zur Zahlung?{" "}
-  <a href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein">
+  <a
+    href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein"
+    style={themeLink}
+  >
     info@jagdlatein.de
   </a>
 </p>
@@ -160,3 +163,4 @@ export default function Preise() {
     </>
   );
 }
+
