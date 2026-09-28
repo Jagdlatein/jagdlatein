@@ -202,13 +202,6 @@ export default function Tagesquiz({
             >
               Mehr Fragen spielen
             </Link>
-
-            <Link
-              href="/"
-              style={styles.homeLink}
-            >
-              Zur Startseite
-            </Link>
           </div>
         </div>
       </main>

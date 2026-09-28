@@ -121,10 +121,6 @@ export default function LoginPage() {
           <button onClick={logout} style={styles.logoutBtn}>
             Logout
           </button>
-
-          <a href="/" style={styles.backLink}>
-            ← Zurück zur Startseite
-          </a>
         </div>
       </main>
     </>

@@ -171,13 +171,6 @@ export default function QuizClient() {
             🔄 Neues Quiz starten
           </button>
 
-          <button
-            onClick={() => router.push("/")}
-            className="quiz-end-btn"
-          >
-            🏠 Zur Startseite
-          </button>
-
         </div>
       </div>
     );
