@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const HISTORY_KEY = "jl_page_history";
 
@@ -22,32 +22,34 @@ function readHistory() {
 }
 
 export default function GlobalHomeButton() {
-  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (!router.isReady) return;
+    if (!pathname) return;
 
+    const current = window.location.pathname + window.location.search;
     const history = readHistory();
-    if (history[history.length - 1] !== router.asPath) {
-      history.push(router.asPath);
+    if (history[history.length - 1] !== current) {
+      history.push(current);
       sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(-20)));
     }
-  }, [router.isReady, router.asPath]);
+  }, [pathname]);
 
-  if (!router.isReady || router.pathname === "/") {
+  if (!pathname || pathname === "/") {
     return null;
   }
 
   function goBack() {
+    const current = window.location.pathname + window.location.search;
     const history = readHistory();
-    if (history[history.length - 1] !== router.asPath) {
-      history.push(router.asPath);
+    if (history[history.length - 1] !== current) {
+      history.push(current);
     }
     history.pop();
 
     const previous = history[history.length - 1];
     sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-    router.push(previous || "/");
+    window.location.assign(previous || "/");
   }
 
   const buttonStyle = {
