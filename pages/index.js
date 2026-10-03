@@ -2,27 +2,19 @@
 
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 
-function getCookie(name) {
-  if (typeof document === "undefined") return null;
-
-  const m = document.cookie.match(
-    new RegExp("(?:^|; )" + name + "=([^;]*)")
-  );
-
-  return m ? decodeURIComponent(m[1]) : null;
+export async function getServerSideProps({ req }) {
+  return {
+    props: {
+      loggedIn: req.cookies?.jl_session === "1",
+    },
+  };
 }
 
-export default function Home() {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const s = !!getCookie("jl_session");
-    setLoggedIn(s);
-  }, []);
+export default function Home({ loggedIn = false }) {
 
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
@@ -146,12 +138,22 @@ export default function Home() {
               Jetzt freischalten
             </Link>
 
-            <Link
-              href="/login?next=/"
-              style={styles.btnGhost}
-            >
-              Login
-            </Link>
+            {loggedIn ? (
+              <button
+                type="button"
+                onClick={logout}
+                style={{ ...styles.btnGhost, cursor: "pointer" }}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login?next=/"
+                style={styles.btnGhost}
+              >
+                Login
+              </Link>
+            )}
 
             <a
               href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
@@ -242,15 +244,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {loggedIn && (
-            <button
-              type="button"
-              onClick={logout}
-              style={styles.logoutButton}
-            >
-              Logout
-            </button>
-          )}
         </div>
       </main>
     </>
@@ -352,19 +345,4 @@ const styles = {
     margin: "0 auto",
   },
 
-  logoutButton: {
-    background: "#fff",
-    border: "2px solid #caa53b",
-    padding: "10px 20px",
-    borderRadius: 12,
-    fontSize: 16,
-    fontWeight: 600,
-    color: "#1f2b23",
-    cursor: "pointer",
-    display: "block",
-    width: "100%",
-    maxWidth: 220,
-    margin: "18px auto 0 auto",
-    textAlign: "center",
-  },
 };

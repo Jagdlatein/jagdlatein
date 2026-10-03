@@ -6,14 +6,36 @@ import Link from "next/link";
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      const cookie = document.cookie || "";
+    let active = true;
 
-      setIsLoggedIn(cookie.includes("jl_session=1"));
-      setIsPaid(cookie.includes("jl_paid=1"));
+    async function loadAuth() {
+      try {
+        const response = await fetch("/api/auth/status", {
+          cache: "no-store",
+          credentials: "same-origin",
+        });
+        if (!response.ok) throw new Error("Anmeldestatus nicht erreichbar");
+
+        const auth = await response.json();
+        if (active) {
+          setIsLoggedIn(auth.loggedIn === true);
+          setIsPaid(auth.paid === true);
+        }
+      } catch {
+        if (active) {
+          setIsLoggedIn(false);
+          setIsPaid(false);
+        }
+      } finally {
+        if (active) setAuthLoading(false);
+      }
     }
+
+    loadAuth();
+    return () => { active = false; };
   }, []);
  // ðŸ”¥ KORREKTER LOGOUT â€” Ã¼ber API Route (lÃ¶scht HttpOnly Cookies)
   async function logout() {
@@ -56,7 +78,7 @@ export default function Header() {
             </>
           )}
 
-          {!isLoggedIn && (
+          {!authLoading && !isLoggedIn && (
             <>
               <Link href="/login">Login</Link>
             </>

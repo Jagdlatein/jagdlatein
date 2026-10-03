@@ -3,13 +3,48 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+function getNextUrl(next) {
+  const value = Array.isArray(next) ? next[0] : next;
+
+  if (
+    typeof value !== "string" ||
+    !value.startsWith("/") ||
+    value.startsWith("//") ||
+    /[\\\u0000-\u001f\u007f]/.test(value)
+  ) {
+    return "/";
+  }
+
+  try {
+    const target = new URL(value, "https://jagdlatein.invalid");
+    const pathname = decodeURIComponent(target.pathname).replace(/\/+$/, "");
+    if (target.origin !== "https://jagdlatein.invalid" || pathname === "/login") {
+      return "/";
+    }
+  } catch {
+    return "/";
+  }
+
+  return value;
+}
+
+export async function getServerSideProps({ req, query }) {
+  if (req.cookies?.jl_session === "1") {
+    return {
+      redirect: {
+        destination: getNextUrl(query.next),
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
+
 export default function LoginPage() {
   const router = useRouter();
 
-  const nextUrl =
-    (Array.isArray(router.query.next)
-      ? router.query.next[0]
-      : router.query.next) || "/";
+  const nextUrl = getNextUrl(router.query.next);
 
   const PAYMENT_URL =
     process.env.NEXT_PUBLIC_PAYMENT_URL ||
