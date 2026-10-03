@@ -1,21 +1,9 @@
 // data/questions-full.js
 // Struktur für großen Fragenpool (DE/AT/CH) mit integrierter Filter- & Shuffle-Funktion.
-// Enthält 45 Startfragen (15 je Land). Du kannst beliebig erweitern.
+// Bestehende Fragen und Quizfragen aus dem gemeinsamen Lernwissen.
 // Format kompatibel zu deinem bestehenden Quiz.
 
-export const PACK_INFO = {
-  version: "1.0.0",
-  topics: [
-    "Wildkunde",
-    "Waffen & Schuss",
-    "Recht",
-    "Hege/Naturschutz",
-    "Hundewesen",
-    "Wildbrethygiene",
-    // optional später: "Fangjagd","Seuchen","Erste Hilfe","Ökologie","Wald & Forst"
-  ],
-  countries: ["DE", "AT", "CH"]
-};
+import { learningQuestions } from "../lib/learning-curriculum";
 
 // Hilfs-Validator: wirft warn logs bei inkonsistenten Einträgen (nur Dev).
 function validatePool(arr) {
@@ -34,7 +22,7 @@ function validatePool(arr) {
   });
 }
 
-export const QUESTIONS = [
+const baseQUESTIONS = [
   /* =========================
    * DEUTSCHLAND (15)
    * ========================= */
@@ -4725,15 +4713,16 @@ export const QUESTIONS = [
   id:'JL-new-0020',
   countries:['AT','DE','CH'],
   topic:'Wildbrethygiene',
-  q:'Welche Temperatur ist ideal für die Wildkühlung?',
+  q:'Welche Aussage zur Kühlung von Wildbret ist richtig?',
   answers:[
-    {id:'a', text:'15–20 °C'},
-    {id:'b', text:'4–7 °C'},
-    {id:'c', text:'0–1 °C'},
-    {id:'d', text:'Über 20 °C'}
+    {id:'a', text:'Kühlung tötet alle krankmachenden Keime zuverlässig ab.'},
+    {id:'b', text:'Sie verlangsamt die Vermehrung vieler Keime, ersetzt aber keine hygienische Verarbeitung.'},
+    {id:'c', text:'Bereits verdorbenes Wildbret wird durch erneutes Kühlen wieder genusstauglich.'},
+    {id:'d', text:'Die Dauer der Lagerung spielt bei gekühltem Wildbret keine Rolle.'}
   ],
   correct:['b'],
-  explain:'4–7 °C verhindern Keimwachstum optimal.'
+  explain:'Kühlung verlangsamt oder hemmt die Vermehrung vieler Keime, beseitigt vorhandene Krankheitserreger aber nicht zuverlässig. Hygienischer Umgang, eine eingehaltene Kühlkette und die zum jeweiligen Produkt passenden Lagerbedingungen bleiben notwendig.',
+  source:'https://www.bfr.bund.de/fragen-und-antworten/thema/korrektes-kuehlen-von-lebensmitteln-im-privathaushalt/'
 },
   // ======================
 // BLOCK 1 — Fragen 1–100
@@ -5028,17 +5017,42 @@ export const QUESTIONS = [
   id:'JL-new-0020',
   countries:['AT','DE','CH'],
   topic:'Wildbrethygiene',
-  q:'Welche Temperatur ist ideal für die Wildkühlung?',
+  q:'Welche Aussage zur Kühlung von Wildbret ist richtig?',
   answers:[
-    {id:'a', text:'15–20 °C'},
-    {id:'b', text:'4–7 °C'},
-    {id:'c', text:'0–1 °C'},
-    {id:'d', text:'Über 20 °C'}
+    {id:'a', text:'Kühlung tötet alle krankmachenden Keime zuverlässig ab.'},
+    {id:'b', text:'Sie verlangsamt die Vermehrung vieler Keime, ersetzt aber keine hygienische Verarbeitung.'},
+    {id:'c', text:'Bereits verdorbenes Wildbret wird durch erneutes Kühlen wieder genusstauglich.'},
+    {id:'d', text:'Die Dauer der Lagerung spielt bei gekühltem Wildbret keine Rolle.'}
   ],
   correct:['b'],
-  explain:'4–7 °C verhindern Keimwachstum optimal.'
+  explain:'Kühlung verlangsamt oder hemmt die Vermehrung vieler Keime, beseitigt vorhandene Krankheitserreger aber nicht zuverlässig. Hygienischer Umgang, eine eingehaltene Kühlkette und die zum jeweiligen Produkt passenden Lagerbedingungen bleiben notwendig.',
+  source:'https://www.bfr.bund.de/fragen-und-antworten/thema/korrektes-kuehlen-von-lebensmitteln-im-privathaushalt/'
 },
 ]; // ← ✔ nur diese eine eckige Klammer ist korrekt!
+
+function uniqueQuestions(pool) {
+  const byId = new Map();
+  for (const question of pool) {
+    const previous = byId.get(question.id);
+    if (previous) {
+      if (JSON.stringify(previous) !== JSON.stringify(question)) {
+        throw new Error(`Unterschiedliche Quizfragen verwenden dieselbe ID: ${question.id}`);
+      }
+      continue;
+    }
+    byId.set(question.id, question);
+  }
+  return [...byId.values()];
+}
+
+export const QUESTIONS = uniqueQuestions([...baseQUESTIONS, ...learningQuestions]);
+
+export const PACK_INFO = {
+  version: "1.1.0",
+  topics: [...new Set(QUESTIONS.map(question => question.topic))]
+    .sort((left, right) => left.localeCompare(right, "de")),
+  countries: ["DE", "AT", "CH"],
+};
 
 // Validator im Dev ausführen
 if (process.env.NODE_ENV !== 'production') {
@@ -5047,10 +5061,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 /** Ziehe Fragen nach Land/Topic & mische sie, begrenze auf count */
 export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) {
+  if (!PACK_INFO.countries.includes(country) || typeof topic !== 'string' || !Number.isInteger(count) || count < 1) {
+    return [];
+  }
   const pool = QUESTIONS.filter(q =>
     q.countries.includes(country) &&
     (topic === 'Alle' || q.topic === topic)
   );
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const shuffled = [...pool];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const next = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[next]] = [shuffled[next], shuffled[index]];
+  }
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }

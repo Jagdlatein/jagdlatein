@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import useActivityResult from "../../../hooks/useActivityResult";
 import ActivityResultNotice from "../../../components/ActivityResultNotice";
 
@@ -25,9 +26,13 @@ export default function QuizClient() {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [timedOutAnswers, setTimedOutAnswers] = useState(0);
   const [runKey, setRunKey] = useState(0);
+  const [reloadKey, setReloadKey] = useState(0);
   const [loadError, setLoadError] = useState(false);
   const startedAt = useRef(Date.now());
   const answerPending = useRef(false);
+  const feedbackTimer = useRef(null);
+  const feedbackGeneration = useRef(0);
+  const leagueSubmittedRun = useRef(null);
   const roundMetadata = useRef({ country, topic });
   const resultCompleted = questions.length > 0 && (finished || (locked && index === questions.length - 1));
   const activityResult = useActivityResult({
@@ -36,6 +41,28 @@ export default function QuizClient() {
     points: score, startedAt: startedAt.current,
   });
   const returnUrl = `/quiz-app/run?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
+  const setupUrl = `/quiz-app?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
+
+  function clearFeedbackTimer() {
+    if (feedbackTimer.current !== null) clearTimeout(feedbackTimer.current);
+    feedbackTimer.current = null;
+    feedbackGeneration.current += 1;
+  }
+
+  function scheduleNextQuestion() {
+    clearFeedbackTimer();
+    const generation = feedbackGeneration.current;
+    feedbackTimer.current = setTimeout(() => {
+      if (generation !== feedbackGeneration.current) return;
+      feedbackTimer.current = null;
+      nextQuestion();
+    }, 10000);
+  }
+
+  useEffect(() => () => {
+    clearFeedbackTimer();
+    answerPending.current = false;
+  }, []);
 
   // -------------------------------
   // USERNAME LADEN
@@ -43,11 +70,11 @@ export default function QuizClient() {
   useEffect(() => {
     const u = localStorage.getItem("jagd_username");
     if (!u) {
-      router.push("/quiz-app/username");
+      router.push(`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`);
       return;
     }
     setUsername(u);
-  }, [router]);
+  }, [router, country, topic]);
 
   // -------------------------------
   // USER REGISTRIEREN
@@ -58,7 +85,7 @@ export default function QuizClient() {
     fetch("/api/quiz/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, country }),
+      body: JSON.stringify({ username, country: localStorage.getItem("jagd_country") || country }),
     });
   }, [username, country]);
 
@@ -68,12 +95,20 @@ export default function QuizClient() {
   useEffect(() => {
     if (!username) return;
     let active = true;
+    const controller = new AbortController();
 
     async function load() {
+      clearFeedbackTimer();
+      answerPending.current = false;
       setLoadError(false);
+      setQuestions([]);
+      setFinished(false);
+      setLocked(false);
+      setSelected(null);
+      setEffectState("");
       const res = await fetch(
         `/api/questions?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`,
-        { cache: "no-store" }
+        { cache: "no-store", signal: controller.signal }
       );
       if (!res.ok) throw new Error("Fragen nicht erreichbar");
       const data = await res.json();
@@ -92,12 +127,17 @@ export default function QuizClient() {
       setSelected(null);
       setFinished(false);
       setRunKey(value => value + 1);
-      setQuestions(qs.sort(() => Math.random() - 0.5));
+      setQuestions(qs);
     }
 
     load().catch(() => { if (active) setLoadError(true); });
-    return () => { active = false; };
-  }, [username, country, topic]);
+    return () => {
+      active = false;
+      controller.abort();
+      clearFeedbackTimer();
+      answerPending.current = false;
+    };
+  }, [username, country, topic, reloadKey]);
 
   const q = questions[index];
 
@@ -119,7 +159,7 @@ export default function QuizClient() {
     setTimedOutAnswers(value => value + 1);
     setEffectState("flash-wrong");
     setSelected(-1);
-    setTimeout(nextQuestion, 900);
+    scheduleNextQuestion();
   }
 
   function handleAnswer(ans, idx) {
@@ -138,10 +178,13 @@ export default function QuizClient() {
       setEffectState("flash-wrong");
     }
 
-    setTimeout(nextQuestion, 900);
+    scheduleNextQuestion();
   }
 
   function nextQuestion() {
+    if (!answerPending.current || finished) return;
+    clearFeedbackTimer();
+    answerPending.current = false;
     setEffectState("");
 
     if (index + 1 >= questions.length) {
@@ -150,7 +193,6 @@ export default function QuizClient() {
     }
 
     setIndex(i => i + 1);
-    answerPending.current = false;
     setTimer(30);
     setLocked(false);
     setSelected(null);
@@ -160,7 +202,8 @@ export default function QuizClient() {
   // SCORE SPEICHERN
   // -------------------------------
   useEffect(() => {
-    if (!resultCompleted) return;
+    if (!resultCompleted || !username || leagueSubmittedRun.current === runKey) return;
+    leagueSubmittedRun.current = runKey;
 
     fetch("/api/quiz/submit", {
       method: "POST",
@@ -170,12 +213,13 @@ export default function QuizClient() {
         points: score,
       }),
     });
-  }, [resultCompleted, score, username]);
+  }, [resultCompleted, score, username, runKey]);
 
   // -------------------------------
   // QUIZ RESET
   // -------------------------------
   function restartQuiz() {
+    clearFeedbackTimer();
     answerPending.current = false;
     startedAt.current = Date.now();
     setRunKey(value => value + 1);
@@ -188,7 +232,8 @@ export default function QuizClient() {
     setSelected(null);
     setFinished(false);
     setEffectState("");
-    setQuestions(qs => [...qs].sort(() => Math.random() - 0.5));
+    setQuestions([]);
+    setReloadKey(value => value + 1);
   }
 
   // -------------------------------
@@ -203,6 +248,7 @@ export default function QuizClient() {
 
           <div className="quiz-score-badge">{score}</div>
           <p>{correctAnswers} von {questions.length} Fragen richtig</p>
+          <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
           <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
 
           <button
@@ -234,6 +280,7 @@ export default function QuizClient() {
           <>
             <p>Die Quizfragen konnten gerade nicht geladen werden.</p>
             <button type="button" onClick={() => window.location.reload()}>Erneut laden</button>
+            <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
           </>
         ) : "Lade Quiz…"}
       </div>
@@ -245,6 +292,7 @@ export default function QuizClient() {
   // -------------------------------
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+      <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Land und Thema wählen</Link></p>
 
       <div className="progressbar">
         <div
@@ -318,6 +366,47 @@ export default function QuizClient() {
           );
         })}
       </div>
+      {locked && (
+        <section
+          role="status"
+          aria-live="polite"
+          style={{
+            marginTop: 18,
+            padding: 18,
+            borderRadius: 14,
+            background: selected !== -1 && q.correct.includes(q.answers[selected]?.id) ? "#e5f6e9" : "#fff2f2",
+            color: "#1f2937",
+            lineHeight: 1.5,
+          }}
+        >
+          <strong>
+            {selected === -1
+              ? "Zeit abgelaufen."
+              : q.correct.includes(q.answers[selected]?.id) ? "Richtig!" : "Leider falsch."}
+          </strong>
+          <p style={{ margin: "8px 0" }}>
+            <b>Richtige Antwort:</b>{" "}
+            {q.answers.filter(answer => q.correct.includes(answer.id)).map(answer => answer.text).join("; ")}
+          </p>
+          {q.explain && <p style={{ margin: "8px 0" }}>{q.explain}</p>}
+          {typeof q.learningHref === "string" && q.learningHref.startsWith("/") && !q.learningHref.startsWith("//") && (
+            <p style={{ margin: "8px 0" }}>
+              <Link href={q.learningHref}>Im Lernwissen nachlesen</Link>
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={nextQuestion}
+            className="quiz-end-btn"
+            style={{ marginTop: 8 }}
+          >
+            {index === questions.length - 1 ? "Ergebnis anzeigen" : "Weiter"}
+          </button>
+          <p style={{ margin: "8px 0 0", fontSize: 14, color: "#4b5563" }}>
+            Automatisch weiter nach 10 Sekunden.
+          </p>
+        </section>
+      )}
       <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
     </div>
   );

@@ -216,6 +216,10 @@ export default function Home({ loggedIn = false }) {
           </div>
 
           <div style={styles.linkColumn}>
+            <Link href="/lernen" style={styles.linkButton}>
+              Lernbereich & Lernpfade
+            </Link>
+
             <Link href="/tagesquiz" style={styles.linkButton}>
               Tagesquiz
             </Link>
@@ -224,7 +228,7 @@ export default function Home({ loggedIn = false }) {
               Kurse
             </Link>
 
-            <Link href="/quiz" style={styles.linkButton}>
+            <Link href="/quiz-app" style={styles.linkButton}>
               Quiz
             </Link>
 

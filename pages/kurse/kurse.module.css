@@ -70,6 +70,10 @@
   font-size: 18px;
   opacity: 0.85;
 }
+.courseMeta { display: block; color: #575c50; font-size: 14px; margin-top: 7px; line-height: 1.5; }
+.learningLink { display: block; padding: 18px; background: #edf3e9; color: #2e4d32; border: 1px solid #cbd8c3; border-radius: 12px; font-weight: 700; line-height: 1.6; text-decoration: none; }
+.card > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.arrow { flex-shrink: 0; margin-left: 12px; }
 
 .card:hover .arrow {
   color: #8e6f22;

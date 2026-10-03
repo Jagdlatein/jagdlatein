@@ -1,4 +1,5 @@
 // pages/wildkunde/index.js
+import LearningDiscovery from "../../components/LearningDiscovery";
 
 export default function WildkundeIndex() {
   const kategorien = [
@@ -96,10 +97,12 @@ export default function WildkundeIndex() {
     <main style={styles.main}>
       <div style={styles.wrap}>
         
-        <h1 style={styles.title}>Wildkunde – Alle jagdbaren Wildarten</h1>
+        <h1 style={styles.title}>Wildkunde – Artenübersicht</h1>
         <p style={styles.sub}>
-          Übersicht über alle jagdbaren Wildarten in Deutschland, Österreich und der Schweiz.
+          Arten und ihre Merkmale kennenlernen. Schutzstatus und Bejagbarkeit werden
+          für Deutschland, Österreich und die Schweiz jeweils örtlich geprüft.
         </p>
+        <LearningDiscovery category="Wildkunde" title="Wildtiere und ihren Jahreslauf verstehen" />
 
         {kategorien.map((kat) => (
           <section key={kat.title} style={styles.categoryBox}>

@@ -1,3 +1,5 @@
+import LearningDiscovery from "../../components/LearningDiscovery";
+
 export default function Jagdpraxis() {
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
@@ -15,6 +17,7 @@ export default function Jagdpraxis() {
       <p style={{ color: "#4b4b4b", marginBottom: 28 }}>
         Realistische Jagdszenarien – Schießen oder nicht? Ansprechen, Verhalten, Sicherheit.
       </p>
+      <LearningDiscovery category="Jagdpraxis" title="Vor den Simulatoren: Praxiswissen vertiefen" />
 
       <div 
         style={{ 
@@ -39,7 +42,7 @@ export default function Jagdpraxis() {
           // Erweiterungen
           ["schussfeld", "🎯 Schussfeld-Beurteilung"],
           ["revier", "🌲 Revierkunde & Geländeformen"],
-          ["trophäen", "🦌 Trophäenbewertung"],
+          ["trophaeen", "🦌 Trophäenbewertung"],
           ["nachtjagd", "🌙 Nachtjagd-Simulator"],
           ["waermebild", "🔥 Wärmebild-Ansprechen"],
           ["entfernung", "📏 Entfernungsschätzung"],

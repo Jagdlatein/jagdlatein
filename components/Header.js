@@ -56,9 +56,10 @@ export default function Header() {
 
           {isLoggedIn && (
             <>
-              <Link href="/quiz">Quiz</Link>
+              <Link href="/quiz-app">Quiz</Link>
               <Link href="/glossar">Glossar</Link>
               <Link href="/kurse">Kurse</Link>
+              <Link href="/lernen">Lernbereich</Link>
 
               {isPaid && <Link href="/protected/ebook">E-Book</Link>}
 
