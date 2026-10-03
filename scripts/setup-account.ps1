@@ -1,14 +1,15 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('SessionSecret', 'DatabaseSql')]
+    [ValidateSet('SessionSecret', 'DatabaseSql', 'StatisticsSql')]
     [string]$Step = 'SessionSecret'
 )
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 
-if ($Step -eq 'DatabaseSql') {
-    $sqlPath = Join-Path $projectRoot 'supabase\migrations\20261003_course_progress.sql'
+if ($Step -in @('DatabaseSql', 'StatisticsSql')) {
+    $sqlFile = if ($Step -eq 'StatisticsSql') { '20261003160000_activity_results.sql' } else { '20261003_course_progress.sql' }
+    $sqlPath = Join-Path $projectRoot "supabase\migrations\$sqlFile"
     Get-Content -LiteralPath $sqlPath -Raw -Encoding UTF8 | Set-Clipboard
     Write-Host 'Die SQL-Einrichtung liegt in der Zwischenablage. Im Supabase SQL Editor einfuegen und ausfuehren.'
     return

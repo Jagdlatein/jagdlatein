@@ -132,7 +132,7 @@ export default function LoginPage() {
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        const accountDestination = ["/konto", "/meine-kurse"].includes(
+        const accountDestination = ["/konto", "/meine-kurse", "/auswertungen", "/quiz-app/stats", "/quiz/stats"].includes(
           nextUrl.split(/[?#]/)[0]
         );
 

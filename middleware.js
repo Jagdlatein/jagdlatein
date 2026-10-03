@@ -56,7 +56,7 @@ export function middleware(req) {
   const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
 
   // Das eigene Konto bleibt auch ohne aktives Premium erreichbar.
-  if (["/konto", "/meine-kurse", "/dashboard"].includes(pathname)) {
+  if (["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)) {
     if (hasSession) return NextResponse.next();
     const login = new URL("/login", req.url);
     login.searchParams.set("next", nextPathWithQuery);

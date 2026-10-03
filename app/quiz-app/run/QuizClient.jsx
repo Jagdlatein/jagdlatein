@@ -1,13 +1,16 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import useActivityResult from "../../../hooks/useActivityResult";
+import ActivityResultNotice from "../../../components/ActivityResultNotice";
 
 export default function QuizClient() {
   const router = useRouter();
   const params = useSearchParams();
 
-  const country = (params.get("country") || "DE").toUpperCase();
+  const requestedCountry = (params.get("country") || "DE").toUpperCase();
+  const country = ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
   const topic = params.get("topic") || "Alle";
 
   const [questions, setQuestions] = useState([]);
@@ -19,6 +22,20 @@ export default function QuizClient() {
   const [finished, setFinished] = useState(false);
   const [effect, setEffectState] = useState("");
   const [username, setUsername] = useState("");
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [timedOutAnswers, setTimedOutAnswers] = useState(0);
+  const [runKey, setRunKey] = useState(0);
+  const [loadError, setLoadError] = useState(false);
+  const startedAt = useRef(Date.now());
+  const answerPending = useRef(false);
+  const roundMetadata = useRef({ country, topic });
+  const resultCompleted = questions.length > 0 && (finished || (locked && index === questions.length - 1));
+  const activityResult = useActivityResult({
+    runKey, completed: resultCompleted, type: "quiz", country: roundMetadata.current.country, topic: roundMetadata.current.topic,
+    totalQuestions: questions.length, correctAnswers, timedOutAnswers,
+    points: score, startedAt: startedAt.current,
+  });
+  const returnUrl = `/quiz-app/run?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
 
   // -------------------------------
   // USERNAME LADEN
@@ -50,18 +67,36 @@ export default function QuizClient() {
   // -------------------------------
   useEffect(() => {
     if (!username) return;
+    let active = true;
 
     async function load() {
+      setLoadError(false);
       const res = await fetch(
-        `/api/questions?country=${country}&topic=${topic}`,
+        `/api/questions?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`,
         { cache: "no-store" }
       );
+      if (!res.ok) throw new Error("Fragen nicht erreichbar");
       const data = await res.json();
-      const qs = data.questions || [];
+      const qs = Array.isArray(data.questions) ? data.questions : [];
+      if (!active) return;
+      if (qs.length === 0) throw new Error("Keine Fragen verfügbar");
+      roundMetadata.current = { country, topic };
+      answerPending.current = false;
+      startedAt.current = Date.now();
+      setIndex(0);
+      setTimer(30);
+      setScore(0);
+      setCorrectAnswers(0);
+      setTimedOutAnswers(0);
+      setLocked(false);
+      setSelected(null);
+      setFinished(false);
+      setRunKey(value => value + 1);
       setQuestions(qs.sort(() => Math.random() - 0.5));
     }
 
-    load();
+    load().catch(() => { if (active) setLoadError(true); });
+    return () => { active = false; };
   }, [username, country, topic]);
 
   const q = questions[index];
@@ -78,20 +113,25 @@ export default function QuizClient() {
   }, [timer, q, locked, finished]);
 
   function handleTimeout() {
+    if (answerPending.current || locked || finished) return;
+    answerPending.current = true;
     setLocked(true);
+    setTimedOutAnswers(value => value + 1);
     setEffectState("flash-wrong");
     setSelected(-1);
     setTimeout(nextQuestion, 900);
   }
 
   function handleAnswer(ans, idx) {
-    if (locked) return;
+    if (answerPending.current || locked || finished) return;
+    answerPending.current = true;
 
     const isCorrect = q.correct.includes(ans.id);
     setLocked(true);
     setSelected(idx);
 
     if (isCorrect) {
+      setCorrectAnswers(value => value + 1);
       setEffectState("flash-correct");
       setScore(s => s + 100 + timer * 10);
     } else {
@@ -110,6 +150,7 @@ export default function QuizClient() {
     }
 
     setIndex(i => i + 1);
+    answerPending.current = false;
     setTimer(30);
     setLocked(false);
     setSelected(null);
@@ -119,7 +160,7 @@ export default function QuizClient() {
   // SCORE SPEICHERN
   // -------------------------------
   useEffect(() => {
-    if (!finished) return;
+    if (!resultCompleted) return;
 
     fetch("/api/quiz/submit", {
       method: "POST",
@@ -129,12 +170,17 @@ export default function QuizClient() {
         points: score,
       }),
     });
-  }, [finished, score, username]);
+  }, [resultCompleted, score, username]);
 
   // -------------------------------
   // QUIZ RESET
   // -------------------------------
   function restartQuiz() {
+    answerPending.current = false;
+    startedAt.current = Date.now();
+    setRunKey(value => value + 1);
+    setCorrectAnswers(0);
+    setTimedOutAnswers(0);
     setIndex(0);
     setTimer(30);
     setScore(0);
@@ -156,6 +202,8 @@ export default function QuizClient() {
           <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
 
           <div className="quiz-score-badge">{score}</div>
+          <p>{correctAnswers} von {questions.length} Fragen richtig</p>
+          <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
 
           <button
             onClick={() => router.push("/quiz-app/leaderboard")}
@@ -182,7 +230,12 @@ export default function QuizClient() {
   if (!q) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
-        Lade Quiz…
+        {loadError ? (
+          <>
+            <p>Die Quizfragen konnten gerade nicht geladen werden.</p>
+            <button type="button" onClick={() => window.location.reload()}>Erneut laden</button>
+          </>
+        ) : "Lade Quiz…"}
       </div>
     );
   }
@@ -265,6 +318,7 @@ export default function QuizClient() {
           );
         })}
       </div>
+      <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
     </div>
   );
 }

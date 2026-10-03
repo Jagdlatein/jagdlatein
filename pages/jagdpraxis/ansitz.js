@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import useActivityResult from "../../hooks/useActivityResult";
+import ActivityResultNotice from "../../components/ActivityResultNotice";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -69,11 +71,22 @@ export default function Ansitz() {
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
+  const startedAt = useRef(Date.now());
+  const answerPending = useRef(false);
+  const feedbackTimer = useRef(null);
+  const resultCompleted = step >= scenarios.length || (step === scenarios.length - 1 && feedback !== null);
+  const activityResult = useActivityResult({
+    completed: resultCompleted, type: "ansitz", country: null, topic: "Ansitzsimulator",
+    totalQuestions: scenarios.length, correctAnswers: score, points: score, startedAt: startedAt.current,
+  });
+
+  useEffect(() => () => clearTimeout(feedbackTimer.current), []);
 
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (answerPending.current || lockButtons) return;
+    answerPending.current = true;
 
     setLockButtons(true);
     setFeedback(isCorrect);
@@ -82,12 +95,13 @@ export default function Ansitz() {
       setScore((prev) => prev + 1);
     }
 
-    setTimeout(() => {
-  setFeedback(null);
-  setLockButtons(false);
-  setStep((prev) => prev + 1);
-}, 10000);
-}
+    feedbackTimer.current = setTimeout(() => {
+      answerPending.current = false;
+      setFeedback(null);
+      setLockButtons(false);
+      setStep((prev) => prev + 1);
+    }, 10000);
+  }
 
   // ------------------------------------------------------------
   // ENDSEITE
@@ -102,6 +116,7 @@ export default function Ansitz() {
         <h1 style={{ fontSize: 34, marginBottom: 20 }}>Ansitz – Ergebnis</h1>
 
         <ScoreBox score={score} max={scenarios.length} />
+        <ActivityResultNotice {...activityResult} nextUrl="/jagdpraxis/ansitz" />
 
         <div
           style={{
@@ -168,6 +183,7 @@ export default function Ansitz() {
       </div>
 
       {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      <ActivityResultNotice {...activityResult} nextUrl="/jagdpraxis/ansitz" />
     </main>
   );
 }

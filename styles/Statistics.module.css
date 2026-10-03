@@ -1,0 +1,19 @@
+.card { background: #fff; border: 1px solid #e1daca; border-radius: 18px; padding: 24px; margin-bottom: 18px; }
+.card h2 { margin: 0 0 18px; font-size: 24px; }
+.card p, .notice p { line-height: 1.6; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.metric { display: flex; flex-direction: column; gap: 8px; padding: 18px 10px; border-radius: 12px; background: #faf8f1; text-align: center; overflow-wrap: anywhere; }
+.metric strong { font-size: 27px; }
+.metric span { color: #5d615c; font-size: 14px; }
+.explanation { color: #5d615c; line-height: 1.6; }
+.notice { padding: 18px; margin-bottom: 20px; border: 1px solid #e5ce92; border-radius: 12px; background: #fff8e8; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border: 1px solid #b99835; border-radius: 12px; background: #caa53b; color: #171d18; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.button:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
+.list { padding: 0; margin: 0; list-style: none; }
+.row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid #eee8dd; }
+.row:last-child { border-bottom: none; }
+.row > div { min-width: 0; overflow-wrap: anywhere; }
+.row > strong { flex-shrink: 0; }
+.row p { margin: 6px 0 0; color: #5d615c; }
+@media (max-width: 650px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .card { padding: 18px; } .metric { padding: 14px 8px; } .metric strong { font-size: 23px; } .row { flex-wrap: wrap; } }

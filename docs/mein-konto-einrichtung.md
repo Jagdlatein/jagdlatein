@@ -54,5 +54,5 @@ Der bestehende Git-Verbund löst den Vercel-Build aus. In Vercel den erfolgreich
 - Wiederholungen löschen keinen Abschluss. Das beste vollständige Ergebnis und das erste Abschlussdatum bleiben erhalten.
 - Der gespeicherte Fortschritt ist eine Übersicht. Das Quiz beginnt beim erneuten Öffnen wie bisher von vorne.
 - Frühere Abschlüsse können nicht rekonstruiert werden, weil sie vorher nicht gespeichert wurden.
-- Kontodaten und Premiumstatus sind zunächst eine Anzeige. Änderungen an der E-Mail-Adresse sowie eigene Auswertungen für Quiz und Simulator folgen separat.
+- Kontodaten und Premiumstatus sind zunächst eine Anzeige. Änderungen an der E-Mail-Adresse folgen separat. Persönliche Quiz- und Simulatorauswertungen sind unter `/auswertungen` verfügbar; die zusätzliche Einrichtung steht in [Auswertungen einrichten](./auswertungen-einrichtung.md).
 - Ältere Sitzungen erhalten keine persönliche Identität aus einem unbestätigten Cookie. Die einmalige erneute Anmeldung stellt die signierte Sitzung aus.

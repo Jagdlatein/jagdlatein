@@ -44,6 +44,11 @@ export default function AccountPage() {
               </>
             )}
           </section>
+          <section className={styles.card} aria-labelledby="activity-summary">
+            <h2 id="activity-summary">Meine Auswertungen</h2>
+            <p className={styles.muted}>Deine Quizrunden und Ansitzdurchläufe mit Trefferquote, Bestwert und Verlauf.</p>
+            <Link href="/auswertungen" className={styles.button}>Auswertungen ansehen</Link>
+          </section>
         </>
       )}
     </AccountLayout>
