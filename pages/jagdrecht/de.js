@@ -7,7 +7,7 @@ export default function JagdrechtDE() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Länderindex laden
+  // LÃ¤nderindex laden
   useEffect(() => {
     fetch("/data/jagdrecht/de/laender.json")
       .then(r => r.json())
@@ -51,7 +51,7 @@ export default function JagdrechtDE() {
 
   return (
     <main style={styles.container}>
-      <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
+      <h1 style={styles.h1}>ðŸ‡©ðŸ‡ª Deutsches Jagdrecht</h1>
 
       {/* Tabs */}
       <div style={styles.tabs}>
@@ -73,25 +73,25 @@ export default function JagdrechtDE() {
           style={mode === "laender" ? styles.tabActive : styles.tab}
           onClick={() => setMode("laender")}
         >
-          Bundesländer
+          BundeslÃ¤nder
         </button>
 
         <button
           style={mode === "infos" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("infos"); setSelectedLand(""); }}
         >
-          Länderinfos
+          LÃ¤nderinfos
         </button>
       </div>
 
-      {/* Länder Auswahl */}
+      {/* LÃ¤nder Auswahl */}
       {mode === "laender" && (
         <select
           value={selectedLand}
           onChange={(e) => setSelectedLand(e.target.value)}
           style={styles.select}
         >
-          <option value="">Bitte Bundesland wählen…</option>
+          <option value="">Bitte Bundesland wÃ¤hlenâ€¦</option>
           {laender.map(l => (
             <option key={l.kurz} value={l.kurz}>
               {l.name} ({l.kurz})
@@ -104,7 +104,7 @@ export default function JagdrechtDE() {
       {mode !== "infos" && (
         <input
           type="text"
-          placeholder="Suchbegriff eingeben…"
+          placeholder="Suchbegriff eingebenâ€¦"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={styles.search}
@@ -123,14 +123,14 @@ export default function JagdrechtDE() {
         </div>
       )}
 
-      {/* Länderinfos */}
+      {/* LÃ¤nderinfos */}
       {mode === "infos" && (
         <div style={styles.infoList}>
           {laender.map(l => (
             <div key={l.kurz} style={styles.infoCard}>
               <h2 style={styles.articleTitle}>{l.name} ({l.kurz})</h2>
               <p><b>Jagdsystem:</b> {l.system}</p>
-              <p><b>Prüfung:</b> {l.pruefung}</p>
+              <p><b>PrÃ¼fung:</b> {l.pruefung}</p>
               <p><b>Besonderheiten:</b> {l.besonderheiten}</p>
             </div>
           ))}
@@ -143,76 +143,53 @@ export default function JagdrechtDE() {
 // Styling identisch zur Schweiz!
 const styles = {
   container: {
-    maxWidth: 900,
-    margin: "0 auto",
-    padding: 32,
-    fontFamily: "system-ui",
+    maxWidth: 900, width: "100%", boxSizing: "border-box",
+    margin: "0 auto", padding: "24px 16px 96px",
+    fontFamily: "system-ui", overflowWrap: "anywhere",
   },
-  h1: { fontSize: 34, marginBottom: 20, fontWeight: 700 },
-  tabs: { display: "flex", gap: 12, marginBottom: 20 },
-
+  h1: {
+    fontSize: "clamp(26px, 6vw, 34px)",
+    margin: "0 0 20px", fontWeight: 700,
+  },
+  tabs: {
+    display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20,
+  },
   tab: {
-    padding: "10px 16px",
-    borderRadius: 10,
-    border: "1px solid #bbb",
-    background: "#f7f7f7",
-    fontSize: 16,
-    cursor: "pointer",
+    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere",
+    padding: "10px 16px", borderRadius: 10,
+    border: "1px solid #bbb", background: "#f7f7f7",
+    fontSize: 16, cursor: "pointer",
   },
-
   tabActive: {
-    padding: "10px 16px",
-    borderRadius: 10,
-    border: "1px solid #caa53b",
-    background: "#caa53b",
-    color: "white",
-    fontSize: 16,
-    fontWeight: 600,
-    cursor: "pointer",
+    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere",
+    padding: "10px 16px", borderRadius: 10,
+    border: "1px solid #caa53b", background: "#caa53b",
+    color: "white", fontSize: 16, fontWeight: 600, cursor: "pointer",
   },
-
   select: {
-    width: "100%",
-    padding: 14,
-    borderRadius: 12,
-    border: "1px solid #bbb",
-    fontSize: 17,
-    marginBottom: 20,
+    width: "100%", maxWidth: "100%", minWidth: 0,
+    boxSizing: "border-box", padding: 14, borderRadius: 12,
+    border: "1px solid #bbb", fontSize: 17,
+    marginBottom: 20, background: "#fff",
   },
-
   search: {
-    width: "100%",
-    padding: 14,
-    borderRadius: 12,
-    border: "1px solid #bbb",
-    fontSize: 17,
-    marginBottom: 30,
+    width: "100%", maxWidth: "100%", minWidth: 0,
+    boxSizing: "border-box", padding: 14, borderRadius: 12,
+    border: "1px solid #bbb", fontSize: 17, marginBottom: 30,
   },
-
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 22,
-  },
-
+  list: { display: "flex", flexDirection: "column", gap: 22 },
   card: {
-    background: "#fff",
-    padding: 18,
-    borderRadius: 14,
+    background: "#fff", padding: 18, borderRadius: 14,
     boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
     borderLeft: "6px solid #caa53b",
   },
-
   articleTitle: { fontSize: 20, fontWeight: 600, marginBottom: 8 },
   text: { whiteSpace: "pre-line", fontSize: 16, color: "#333" },
-
-  // Länderinfos – goldener Kasten
   infoList: { display: "flex", flexDirection: "column", gap: 18 },
-
   infoCard: {
-    background: "#fff",
-    padding: 18,
-    borderRadius: 16,
+    background: "#fff", padding: 18, borderRadius: 16,
     border: "3px solid #caa53b",
     boxShadow: "0 0 18px rgba(202,165,59,0.25)",
     transition: "0.25s ease",
