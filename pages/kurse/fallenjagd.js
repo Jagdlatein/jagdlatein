@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function FallenjagdBasicKurs() {
   const fallenjagdQuiz = [
@@ -44,6 +46,14 @@ export default function FallenjagdBasicKurs() {
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("fallenjagd", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? fallenjagdQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: fallenjagdQuiz.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === fallenjagdQuiz.length - 1 && auswahl !== null),
+  });
 
   const frage = fallenjagdQuiz[aktuelleFrage];
 
@@ -163,6 +173,7 @@ export default function FallenjagdBasicKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="fallenjagd" {...courseProgress} />
     </div>
   );
 }

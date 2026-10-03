@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { JL_ACCOUNT_COOKIE } from "../../../../lib/account-session";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export async function POST() {
   return NextResponse.json(
@@ -14,7 +16,7 @@ export async function POST() {
 }
 
 export async function DELETE() {
-  ["jl_session", "jl_paid", "jl_email", "jl_admin"].forEach((name) => {
+  ["jl_session", "jl_paid", "jl_email", "jl_admin", JL_ACCOUNT_COOKIE].forEach((name) => {
     cookies().set({
       name,
       value: "",

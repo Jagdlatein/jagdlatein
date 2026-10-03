@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function SicherheitImRevierKurs() {
   const sicherheitQuiz = [
@@ -44,6 +46,14 @@ export default function SicherheitImRevierKurs() {
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("sicherheit", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? sicherheitQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: sicherheitQuiz.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === sicherheitQuiz.length - 1 && auswahl !== null),
+  });
 
   const frage = sicherheitQuiz[aktuelleFrage];
 
@@ -164,6 +174,7 @@ export default function SicherheitImRevierKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="sicherheit" {...courseProgress} />
     </div>
   );
 }

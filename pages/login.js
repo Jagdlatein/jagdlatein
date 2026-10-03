@@ -29,7 +29,7 @@ function getNextUrl(next) {
 }
 
 export async function getServerSideProps({ req, query }) {
-  if (req.cookies?.jl_session === "1") {
+  if (req.cookies?.jl_session === "1" && query.reauth !== "1") {
     return {
       redirect: {
         destination: getNextUrl(query.next),
@@ -132,7 +132,11 @@ export default function LoginPage() {
       setMsg("Erfolgreich eingeloggt – Weiterleitung …");
 
       setTimeout(() => {
-        if (data.admin !== true && data.paid !== true) {
+        const accountDestination = ["/konto", "/meine-kurse"].includes(
+          nextUrl.split(/[?#]/)[0]
+        );
+
+        if (data.admin !== true && data.paid !== true && !accountDestination) {
           const base = String(PAYMENT_URL);
           const next = encodeURIComponent(String(nextUrl));
 

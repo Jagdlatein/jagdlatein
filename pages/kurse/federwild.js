@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function FederwildKurs() {
   const quiz = [
@@ -37,6 +39,14 @@ export default function FederwildKurs() {
   const [sel, setSel] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("federwild", {
+    started: i > 0 || sel !== null || fertig,
+    answeredQuestions: fertig ? quiz.length : i + (sel !== null ? 1 : 0),
+    totalQuestions: quiz.length,
+    score: punkte,
+    completed: fertig || (i === quiz.length - 1 && sel !== null),
+  });
   const frage = quiz[i];
 
   function choose(a) {
@@ -109,6 +119,7 @@ export default function FederwildKurs() {
           <p>Du hast {punkte} von {quiz.length} Fragen richtig.</p>
         </>
       )}
+      <CourseProgressNotice courseId="federwild" {...courseProgress} />
     </div>
   );
 }

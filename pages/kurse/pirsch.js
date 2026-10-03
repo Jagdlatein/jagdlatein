@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function PirschAnsitzKurs() {
   const pirschAnsitzQuiz = [
@@ -44,6 +46,14 @@ export default function PirschAnsitzKurs() {
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("pirsch", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? pirschAnsitzQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: pirschAnsitzQuiz.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === pirschAnsitzQuiz.length - 1 && auswahl !== null),
+  });
 
   const frage = pirschAnsitzQuiz[aktuelleFrage];
 
@@ -176,6 +186,7 @@ export default function PirschAnsitzKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="pirsch" {...courseProgress} />
     </div>
   );
 }

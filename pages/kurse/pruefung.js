@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function PruefungstippsKurs() {
   const tipps = [
@@ -72,6 +74,14 @@ export default function PruefungstippsKurs() {
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("pruefung", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? quiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: quiz.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === quiz.length - 1 && auswahl !== null),
+  });
 
   const frage = quiz[aktuelleFrage];
 
@@ -182,6 +192,7 @@ export default function PruefungstippsKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="pruefung" {...courseProgress} />
     </div>
   );
 }

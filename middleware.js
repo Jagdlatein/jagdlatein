@@ -55,6 +55,14 @@ export function middleware(req) {
   // gewünschte Zielseite merken (inkl. Query)
   const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
 
+  // Das eigene Konto bleibt auch ohne aktives Premium erreichbar.
+  if (["/konto", "/meine-kurse", "/dashboard"].includes(pathname)) {
+    if (hasSession) return NextResponse.next();
+    const login = new URL("/login", req.url);
+    login.searchParams.set("next", nextPathWithQuery);
+    return NextResponse.redirect(login);
+  }
+
   // 1) NICHT eingeloggt + protected → direkt "Jetzt freischalten" auf /preise
   if (!hasSession && !isPublic) {
     return redirectToPayment(req, nextPathWithQuery);

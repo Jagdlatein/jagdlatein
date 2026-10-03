@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function RaubwildKurs() {
   const quiz = [
@@ -37,6 +39,14 @@ export default function RaubwildKurs() {
   const [sel, setSel] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("raubwild", {
+    started: i > 0 || sel !== null || fertig,
+    answeredQuestions: fertig ? quiz.length : i + (sel !== null ? 1 : 0),
+    totalQuestions: quiz.length,
+    score: punkte,
+    completed: fertig || (i === quiz.length - 1 && sel !== null),
+  });
 
   const frage = quiz[i];
 
@@ -127,6 +137,7 @@ export default function RaubwildKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="raubwild" {...courseProgress} />
     </div>
   );
 }

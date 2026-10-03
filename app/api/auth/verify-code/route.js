@@ -5,11 +5,13 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
+import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, normalizeAccountEmail } from "../../../../lib/account-session";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+function getSupabase() {
+  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
+}
 
 const COOKIE_OPTS = {
   httpOnly: true,
@@ -21,6 +23,7 @@ const COOKIE_OPTS = {
 
 export async function POST(req) {
   try {
+    const supabase = getSupabase();
     const body = await req.json();
 
     const email =
@@ -129,7 +132,7 @@ export async function POST(req) {
       .ilike("email", email)
       .maybeSingle();
 
-    if (profileError || !profile) {
+    if (profileError || !profile || normalizeAccountEmail(profile.email) !== email) {
       return NextResponse.json(
         {
           success: false,
@@ -154,6 +157,14 @@ export async function POST(req) {
       name: "jl_email",
       value: email,
       ...COOKIE_OPTS,
+    });
+
+    const accountToken = createAccountSession(email);
+    cookies().set({
+      name: JL_ACCOUNT_COOKIE,
+      value: accountToken || "",
+      ...COOKIE_OPTS,
+      maxAge: accountToken ? ACCOUNT_SESSION_MAX_AGE : 0,
     });
 
     if (profile.is_premium === true) {

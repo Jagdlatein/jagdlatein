@@ -62,6 +62,8 @@ export default function Header() {
 
               {isPaid && <Link href="/protected/ebook">E-Book</Link>}
 
+              <Link href="/konto">Mein Konto</Link>
+
               <button
                 onClick={logout}
                 className="logout-btn"

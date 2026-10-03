@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 const quizFragen = [
   {
@@ -134,6 +136,14 @@ export default function AnschussKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const courseProgress = useCourseProgress("anschuss", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? quizFragen.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: quizFragen.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === quizFragen.length - 1 && auswahl !== null),
+  });
+
   const frage = quizFragen[aktuelleFrage];
 
   function handleAntwort(index) {
@@ -242,6 +252,7 @@ export default function AnschussKurs() {
           </p>
         </>
       )}
+      <CourseProgressNotice courseId="anschuss" {...courseProgress} />
     </div>
   );
 }

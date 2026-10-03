@@ -1,4 +1,6 @@
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 const rotwildQuiz = [
   {
@@ -44,6 +46,14 @@ export default function RotwildKompaktKurs() {
   const [auswahl, setAuswahl] = useState(null);
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
+
+  const courseProgress = useCourseProgress("rotwild", {
+    started: aktuelleFrage > 0 || auswahl !== null || fertig,
+    answeredQuestions: fertig ? rotwildQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
+    totalQuestions: rotwildQuiz.length,
+    score: punkte,
+    completed: fertig || (aktuelleFrage === rotwildQuiz.length - 1 && auswahl !== null),
+  });
 
   const frage = rotwildQuiz[aktuelleFrage];
 
@@ -168,6 +178,7 @@ export default function RotwildKompaktKurs() {
         </>
       )}
 
+      <CourseProgressNotice courseId="rotwild" {...courseProgress} />
     </div>
   );
 }

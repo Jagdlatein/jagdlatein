@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import useCourseProgress from "../../hooks/useCourseProgress";
+import CourseProgressNotice from "../../components/CourseProgressNotice";
 
 export default function RevierplanungKurs() {
   const quiz = [
@@ -28,6 +30,14 @@ export default function RevierplanungKurs() {
   const [sel,setSel]=useState(null);
   const [p,setP]=useState(0);
   const [f,setF]=useState(false);
+
+  const courseProgress = useCourseProgress("revierplanung", {
+    started: i > 0 || sel !== null || f,
+    answeredQuestions: f ? quiz.length : i + (sel !== null ? 1 : 0),
+    totalQuestions: quiz.length,
+    score: p,
+    completed: f || (i === quiz.length - 1 && sel !== null),
+  });
 
   const q=quiz[i];
 
@@ -80,6 +90,7 @@ export default function RevierplanungKurs() {
           <p>Du hast {p} von {quiz.length} Fragen richtig.</p>
         </>
       )}
+      <CourseProgressNotice courseId="revierplanung" {...courseProgress} />
     </div>
   );
 }

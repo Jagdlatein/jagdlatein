@@ -139,13 +139,18 @@ export default function Home({ loggedIn = false }) {
             </Link>
 
             {loggedIn ? (
-              <button
-                type="button"
-                onClick={logout}
-                style={{ ...styles.btnGhost, cursor: "pointer" }}
-              >
-                Logout
-              </button>
+              <>
+                <Link href="/konto" style={styles.btnGhost}>
+                  Mein Konto
+                </Link>
+                <button
+                  type="button"
+                  onClick={logout}
+                  style={{ ...styles.btnGhost, cursor: "pointer" }}
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 href="/login?next=/"
