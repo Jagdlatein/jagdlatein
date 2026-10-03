@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import layout from "../../styles/JagdrechtTabs.module.css";
 
 export default function JagdrechtDE() {
   const [mode, setMode] = useState("laender");
@@ -7,7 +8,7 @@ export default function JagdrechtDE() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // LÃ¤nderindex laden
+  // Länderindex laden
   useEffect(() => {
     fetch("/data/jagdrecht/de/laender.json")
       .then(r => r.json())
@@ -50,11 +51,11 @@ export default function JagdrechtDE() {
   };
 
   return (
-    <main style={styles.container}>
-      <h1 style={styles.h1}>ðŸ‡©ðŸ‡ª Deutsches Jagdrecht</h1>
+    <main lang="de" style={styles.container}>
+      <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
 
       {/* Tabs */}
-      <div style={styles.tabs}>
+      <div className={layout.tabs}>
         <button
           style={mode === "bjagdg" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("bjagdg"); setSelectedLand(""); }}
@@ -73,25 +74,25 @@ export default function JagdrechtDE() {
           style={mode === "laender" ? styles.tabActive : styles.tab}
           onClick={() => setMode("laender")}
         >
-          BundeslÃ¤nder
+          Bundesländer
         </button>
 
         <button
           style={mode === "infos" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("infos"); setSelectedLand(""); }}
         >
-          LÃ¤nderinfos
+          Länderinfos
         </button>
       </div>
 
-      {/* LÃ¤nder Auswahl */}
+      {/* Länder Auswahl */}
       {mode === "laender" && (
         <select
           value={selectedLand}
           onChange={(e) => setSelectedLand(e.target.value)}
           style={styles.select}
         >
-          <option value="">Bitte Bundesland wÃ¤hlenâ€¦</option>
+          <option value="">Bitte Bundesland wählen…</option>
           {laender.map(l => (
             <option key={l.kurz} value={l.kurz}>
               {l.name} ({l.kurz})
@@ -104,7 +105,7 @@ export default function JagdrechtDE() {
       {mode !== "infos" && (
         <input
           type="text"
-          placeholder="Suchbegriff eingebenâ€¦"
+          placeholder="Suchbegriff eingeben…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={styles.search}
@@ -123,14 +124,14 @@ export default function JagdrechtDE() {
         </div>
       )}
 
-      {/* LÃ¤nderinfos */}
+      {/* Länderinfos */}
       {mode === "infos" && (
         <div style={styles.infoList}>
           {laender.map(l => (
             <div key={l.kurz} style={styles.infoCard}>
               <h2 style={styles.articleTitle}>{l.name} ({l.kurz})</h2>
               <p><b>Jagdsystem:</b> {l.system}</p>
-              <p><b>PrÃ¼fung:</b> {l.pruefung}</p>
+              <p><b>Prüfung:</b> {l.pruefung}</p>
               <p><b>Besonderheiten:</b> {l.besonderheiten}</p>
             </div>
           ))}
@@ -151,20 +152,17 @@ const styles = {
     fontSize: "clamp(26px, 6vw, 34px)",
     margin: "0 0 20px", fontWeight: 700,
   },
-  tabs: {
-    display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20,
-  },
   tab: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #bbb", background: "#f7f7f7",
     fontSize: 16, cursor: "pointer",
   },
   tabActive: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #caa53b", background: "#caa53b",
     color: "white", fontSize: 16, fontWeight: 600, cursor: "pointer",
   },

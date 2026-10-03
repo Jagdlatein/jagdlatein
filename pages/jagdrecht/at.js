@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import layout from "../../styles/JagdrechtTabs.module.css";
 
 export default function JagdrechtAT() {
   const [mode, setMode] = useState("bundeslaender"); 
@@ -7,7 +8,7 @@ export default function JagdrechtAT() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
 
-  // BundeslÃ¤nderindex laden
+  // Bundesländerindex laden
   useEffect(() => {
     fetch("/data/jagdrecht/at/bundeslaender.json")
       .then(r => r.json())
@@ -51,11 +52,11 @@ export default function JagdrechtAT() {
   };
 
   return (
-    <main style={styles.container}>
-      <h1 style={styles.h1}>ðŸ‡¦ðŸ‡¹ Ã–sterreichisches Jagdrecht</h1>
+    <main lang="de" style={styles.container}>
+      <h1 style={styles.h1}>🇦🇹 Österreichisches Jagdrecht</h1>
 
       {/* TABS */}
-      <div style={styles.tabs}>
+      <div className={layout.tabs}>
 
         <button
           style={mode === "bundesgesetz" ? styles.tabActive : styles.tab}
@@ -75,25 +76,25 @@ export default function JagdrechtAT() {
           style={mode === "bundeslaender" ? styles.tabActive : styles.tab}
           onClick={() => setMode("bundeslaender")}
         >
-          BundeslÃ¤nder
+          Bundesländer
         </button>
 
         <button
           style={mode === "infos" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("infos"); setSelectedBL(""); }}
         >
-          LÃ¤nderinfos
+          Länderinfos
         </button>
       </div>
 
-      {/* BundeslÃ¤nderauswahl */}
+      {/* Bundesländerauswahl */}
       {mode === "bundeslaender" && (
         <select
           value={selectedBL}
           onChange={(e) => setSelectedBL(e.target.value)}
           style={styles.select}
         >
-          <option value="">Bitte Bundesland wÃ¤hlenâ€¦</option>
+          <option value="">Bitte Bundesland wählen…</option>
           {bundeslaender.map(b => (
             <option key={b.kurz} value={b.kurz}>
               {b.name} ({b.kurz})
@@ -106,7 +107,7 @@ export default function JagdrechtAT() {
       {mode !== "infos" && ((mode !== "bundeslaender") || selectedBL) && (
         <input
           type="text"
-          placeholder="Suchbegriff eingebenâ€¦"
+          placeholder="Suchbegriff eingeben…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={styles.search}
@@ -125,14 +126,14 @@ export default function JagdrechtAT() {
         </div>
       )}
 
-      {/* LÃ¤nderinfos */}
+      {/* Länderinfos */}
       {mode === "infos" && (
         <div style={styles.infoList}>
           {bundeslaender.map(b => (
             <div key={b.kurz} style={styles.infoCard}>
               <h2 style={styles.articleTitle}>{b.name} ({b.kurz})</h2>
               <p><b>Jagdsystem:</b> {b.system}</p>
-              <p><b>PrÃ¼fung:</b> {b.pruefung}</p>
+              <p><b>Prüfung:</b> {b.pruefung}</p>
               <p><b>Besonderheiten:</b> {b.besonderheiten}</p>
             </div>
           ))}
@@ -153,20 +154,17 @@ const styles = {
     fontSize: "clamp(26px, 6vw, 34px)",
     margin: "0 0 20px", fontWeight: 700,
   },
-  tabs: {
-    display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20,
-  },
   tab: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #bbb", background: "#f7f7f7",
     fontSize: 16, cursor: "pointer",
   },
   tabActive: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #caa53b", background: "#caa53b",
     color: "white", fontSize: 16, fontWeight: 600, cursor: "pointer",
   },

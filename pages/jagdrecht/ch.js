@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import layout from "../../styles/JagdrechtTabs.module.css";
 
 export default function JagdrechtCH() {
   const [mode, setMode] = useState("kantone"); // jsg | jsv | kantone | infos
@@ -54,11 +55,11 @@ export default function JagdrechtCH() {
   };
 
   return (
-    <main style={styles.container}>
-      <h1 style={styles.h1}>ðŸ‡¨ðŸ‡­ Schweizer Jagdrecht</h1>
+    <main lang="de" style={styles.container}>
+      <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht</h1>
 
       {/* Tabs */}
-      <div style={styles.tabs}>
+      <div className={layout.tabs}>
         <button
           style={mode === "jsg" ? styles.tabActive : styles.tab}
           onClick={() => { setMode("jsg"); setSelectedKanton(""); }}
@@ -95,7 +96,7 @@ export default function JagdrechtCH() {
           onChange={(e) => setSelectedKanton(e.target.value)}
           style={styles.select}
         >
-          <option value="">Bitte Kanton wÃ¤hlenâ€¦</option>
+          <option value="">Bitte Kanton wählen…</option>
           {kantone.map(k => (
             <option key={k.kurz} value={k.kurz}>
               {k.name} ({k.kurz})
@@ -109,7 +110,7 @@ export default function JagdrechtCH() {
         mode !== "infos" && (
           <input
             type="text"
-            placeholder="Suchbegriff eingebenâ€¦"
+            placeholder="Suchbegriff eingeben…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={styles.search}
@@ -136,7 +137,7 @@ export default function JagdrechtCH() {
               <h2 style={styles.articleTitle}>{k.name} ({k.kurz})</h2>
 
               <p><b>Jagdsystem:</b> {k.system}</p>
-              <p><b>PrÃ¼fung:</b> {k.prÃ¼fung}</p>
+              <p><b>Prüfung:</b> {k["prüfung"]}</p>
               <p><b>Besonderheiten:</b> {k.besonderheiten}</p>
             </div>
           ))}
@@ -156,20 +157,17 @@ const styles = {
     fontSize: "clamp(26px, 6vw, 34px)",
     margin: "0 0 20px", fontWeight: 700,
   },
-  tabs: {
-    display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20,
-  },
   tab: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #bbb", background: "#f7f7f7",
     fontSize: 16, cursor: "pointer",
   },
   tabActive: {
-    flex: "1 1 140px", minWidth: 0, boxSizing: "border-box",
-    whiteSpace: "normal", overflowWrap: "anywhere",
-    padding: "10px 16px", borderRadius: 10,
+    width: "100%", minWidth: 0, minHeight: 56, boxSizing: "border-box",
+    whiteSpace: "normal", overflowWrap: "anywhere", hyphens: "auto",
+    padding: "10px 12px", borderRadius: 10,
     border: "1px solid #caa53b", background: "#caa53b",
     color: "white", fontSize: 16, fontWeight: 600, cursor: "pointer",
   },
