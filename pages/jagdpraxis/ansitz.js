@@ -86,7 +86,7 @@ export default function Ansitz() {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 3500);
 }
 
   // ------------------------------------------------------------
@@ -136,7 +136,7 @@ export default function Ansitz() {
 
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={feedback !== null ? current.text : null}
 />
 
       {/* BUTTONS ZENTRIERT */}
