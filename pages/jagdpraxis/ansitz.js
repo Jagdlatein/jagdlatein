@@ -86,7 +86,7 @@ export default function Ansitz() {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, 3500);
+}, 10000);
 }
 
   // ------------------------------------------------------------
