@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Marderhund() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="marderhund" title={"Marderhund (Nyctereutes procyonoides)"} subtitle={"Neozon · Allesfresser"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Marderhund (Nyctereutes procyonoides)</h1>
-        <p style={styles.subtitle}>Neozon · Allesfresser</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -123,7 +124,7 @@ export default function Marderhund() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

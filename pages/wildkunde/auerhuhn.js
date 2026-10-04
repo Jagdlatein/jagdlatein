@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -34,11 +35,11 @@ export default function Auerhuhn() {
 
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="auerhuhn" title={"Auerhuhn (Tetrao urogallus)"} subtitle={"Großvogel des Bergwaldes · Balzkönig · Selten"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Auerhuhn (Tetrao urogallus)</h1>
-        <p style={styles.subtitle}>Großvogel des Bergwaldes · Balzkönig · Selten</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +131,7 @@ export default function Auerhuhn() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Bisam() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="bisam" title={"Bisam (Ondatra zibethicus)"} subtitle={"Kleines Wassernagetier · leicht mit Nutria zu verwechseln"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Bisam (Ondatra zibethicus)</h1>
-        <p style={styles.subtitle}>Kleines Wassernagetier · leicht mit Nutria zu verwechseln</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +130,7 @@ export default function Bisam() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

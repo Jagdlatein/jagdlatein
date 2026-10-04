@@ -1,0 +1,7 @@
+.body { max-width: 960px; margin: 0 auto 24px; }
+.body > div { max-width: none !important; }
+.body section { border: 1px solid #e0c989; border-radius: 18px; padding: 24px; background: #fffdf7; }
+.body a { color: #72541d; text-underline-offset: 3px; }
+.body button { color: #4f4023; border-color: #cfbb8f !important; min-height: 48px; }
+.body button:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+@media (max-width: 620px) { .body section { padding: 20px 16px; } }

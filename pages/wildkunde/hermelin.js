@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Hermelin() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="hermelin" title={"Hermelin (Mustela erminea)"} subtitle={"Schneefellträger · Extrem beweglicher Kleindrauber"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Hermelin (Mustela erminea)</h1>
-        <p style={styles.subtitle}>Schneefellträger · Extrem beweglicher Kleindrauber</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -137,7 +138,7 @@ export default function Hermelin() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

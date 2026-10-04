@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -33,11 +34,11 @@ export default function Feldhase() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="feldhase" title={"Feldhase (Lepus europaeus)"} subtitle={"Typisches Niederwild des Offenlandes"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Feldhase (Lepus europaeus)</h1>
-        <p style={styles.subtitle}>Typisches Niederwild des Offenlandes</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -133,7 +134,7 @@ export default function Feldhase() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

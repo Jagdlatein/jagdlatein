@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Muffelwild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="muffelwild" title={"Muffelwild (Ovis musimon)"} subtitle={"Widder · Schaf · Lamm"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Muffelwild (Ovis musimon)</h1>
-        <p style={styles.subtitle}>Widder · Schaf · Lamm</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -122,7 +123,7 @@ export default function Muffelwild() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

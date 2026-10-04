@@ -6,7 +6,8 @@ import styles from "../styles/LearningTools.module.css";
 export default function LearningExperiences({ category }) {
   const experiences = learningExperiences.filter(tool => !category || tool.categories.includes(category));
   const groupDefinitions = [
-    ["Wildtiere erkennen und beobachten", ["fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
+    ["Wildtiere erkennen und beobachten", ["wildkunde", "fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
+    ["Jagdrecht und Artenschutz nachschlagen", ["wildarten"]],
     ["Pflanzen und Lebensräume verstehen", ["pflanzenatlas", "lebensraum-werkstatt"]],
     ["Mit Jagdhunden lernen", ["jagdhund-kompass", "hundetraining-tagebuch"]],
     ["Fälle lösen und die Prüfung vorbereiten", ["wildbret-fallwerkstatt", "beobachtungswerkstatt", "pruefungsgespraech", "offline-rucksack"]],

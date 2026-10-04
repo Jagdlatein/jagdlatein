@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,13 +38,11 @@ export default function Reiherente() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="reiherente" title={"Reiherente (Aythya fuligula)"} subtitle={"\r\n          Tauchente · Gelbe Augen · Federschopf · Kontrastreiches Prachtkleid\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Reiherente (Aythya fuligula)</h1>
-        <p style={styles.subtitle}>
-          Tauchente · Gelbe Augen · Federschopf · Kontrastreiches Prachtkleid
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -126,7 +125,7 @@ export default function Reiherente() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

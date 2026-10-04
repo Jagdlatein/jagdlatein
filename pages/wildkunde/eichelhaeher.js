@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Eichelhaeher() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="eichelhaeher" title={"Eichelhäher (Garrulus glandarius)"} subtitle={"\r\n          Blauer Flügelspiegel · Polizei des Waldes · Lauter Warnruf · Verbreitet Eicheln\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Eichelhäher (Garrulus glandarius)</h1>
-        <p style={styles.subtitle}>
-          Blauer Flügelspiegel · Polizei des Waldes · Lauter Warnruf · Verbreitet Eicheln
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +128,7 @@ export default function Eichelhaeher() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

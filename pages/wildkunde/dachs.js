@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Dachs() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="dachs" title={"Dachs (Meles meles)"} subtitle={"Dachs – Meistergräber"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Dachs (Meles meles)</h1>
-        <p style={styles.subtitle}>Dachs – Meistergräber</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -130,7 +131,7 @@ export default function Dachs() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

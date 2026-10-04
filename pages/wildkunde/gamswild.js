@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Gamswild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="gamswild" title={"Gamswild (Rupicapra rupicapra)"} subtitle={"Bock · Geiß · Kitz"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Gamswild (Rupicapra rupicapra)</h1>
-        <p style={styles.subtitle}>Bock · Geiß · Kitz</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -122,7 +123,7 @@ export default function Gamswild() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,10 +30,10 @@ export default function Damwild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="damwild" title={"Damwild (Dama dama)"} subtitle={"Damhirsch, Damtier & Kalb"}>
       <div style={styles.wrap}>
-        <h1 style={styles.title}>Damwild (Dama dama)</h1>
-        <p style={styles.subtitle}>Damhirsch, Damtier & Kalb</p>
+
+
 
         {/* ⭐ Bild aus /public */}
         <div style={styles.imageBox}>
@@ -118,7 +119,7 @@ export default function Damwild() {
           ))}
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

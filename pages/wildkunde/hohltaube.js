@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Hohltaube() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="hohltaube" title={"Hohltaube (Columba oenas)"} subtitle={"\r\n          Zierliche Taube · Kein Halsfleck · Höhlenbrüter · Wichtig in der Prüfung!\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Hohltaube (Columba oenas)</h1>
-        <p style={styles.subtitle}>
-          Zierliche Taube · Kein Halsfleck · Höhlenbrüter · Wichtig in der Prüfung!
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -138,7 +137,7 @@ export default function Hohltaube() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

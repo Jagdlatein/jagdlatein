@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,11 +42,11 @@ export default function Nutria() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="nutria" title={"Nutria (Myocastor coypus)"} subtitle={"Neozoon · Verwechslungsgefahr mit Biber"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Nutria (Myocastor coypus)</h1>
-        <p style={styles.subtitle}>Neozoon · Verwechslungsgefahr mit Biber</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -136,7 +137,7 @@ export default function Nutria() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

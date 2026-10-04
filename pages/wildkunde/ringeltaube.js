@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Ringeltaube() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="ringeltaube" title={"Ringeltaube (Columba palumbus)"} subtitle={"\r\n          Größte heimische Taube · Weißer Halsfleck · Weiße Flügelbinde · Wichtiges Federwild\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Ringeltaube (Columba palumbus)</h1>
-        <p style={styles.subtitle}>
-          Größte heimische Taube · Weißer Halsfleck · Weiße Flügelbinde · Wichtiges Federwild
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +129,7 @@ export default function Ringeltaube() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

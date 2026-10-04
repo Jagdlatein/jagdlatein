@@ -14,6 +14,7 @@ function load(relative, overrides = {}) {
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} }, req = createRequire(filename);
   function resolve(id) {
+    if (id === 'next/router') return { useRouter: () => ({ query: {} }) };
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);

@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -31,10 +32,10 @@ export default function Pfeifente() {
   };
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="pfeifente" title={"Pfeifente (Mareca penelope)"} subtitle={"Markanter Ruf · Zugvogel · Pflanzennahrung"}>
       <div style={styles.wrap}>
-        <h1 style={styles.title}>Pfeifente (Mareca penelope)</h1>
-        <p style={styles.subtitle}>Markanter Ruf · Zugvogel · Pflanzennahrung</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -123,7 +124,7 @@ export default function Pfeifente() {
           ))}
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

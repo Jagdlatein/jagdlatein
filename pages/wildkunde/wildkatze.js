@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Wildkatze() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="wildkatze" title={"Wildkatze (Felis silvestris)"} subtitle={"Streng geschützt · heimliches Waldtier"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Wildkatze (Felis silvestris)</h1>
-        <p style={styles.subtitle}>Streng geschützt · heimliches Waldtier</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -137,7 +138,7 @@ export default function Wildkatze() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

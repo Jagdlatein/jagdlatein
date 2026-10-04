@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Tuerkentaube() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="tuerkentaube" title={"Türkentaube (Streptopelia decaocto)"} subtitle={"\r\n          Kulturfolger · Schwarzer Nackenring · Heller Körper · Typischer „gu-gu-gu“ Ruf\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Türkentaube (Streptopelia decaocto)</h1>
-        <p style={styles.subtitle}>
-          Kulturfolger · Schwarzer Nackenring · Heller Körper · Typischer „gu-gu-gu“ Ruf
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +129,7 @@ export default function Tuerkentaube() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

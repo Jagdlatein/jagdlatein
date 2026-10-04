@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -33,11 +34,11 @@ export default function Schneehase() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="schneehase" title={"Schneehase (Lepus timidus)"} subtitle={"An kalte Bergregionen angepasst"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Schneehase (Lepus timidus)</h1>
-        <p style={styles.subtitle}>An kalte Bergregionen angepasst</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -118,7 +119,7 @@ export default function Schneehase() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

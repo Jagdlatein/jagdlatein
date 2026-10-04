@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Birkhuhn() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="birkhuhn" title={"Birkhuhn (Lyrurus tetrix, Synonym Tetrao tetrix)"} subtitle={"Balzplätze · Spielhähne · Strukturreicher Lebensraum"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Birkhuhn (Lyrurus tetrix, Synonym Tetrao tetrix)</h1>
-        <p style={styles.subtitle}>Balzplätze · Spielhähne · Strukturreicher Lebensraum</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -134,7 +135,7 @@ export default function Birkhuhn() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

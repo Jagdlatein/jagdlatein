@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Steinmarder() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="steinmarder" title={"Steinmarder (Martes foina)"} subtitle={"Kulturfolger · Allesfresser"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Steinmarder (Martes foina)</h1>
-        <p style={styles.subtitle}>Kulturfolger · Allesfresser</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +130,7 @@ export default function Steinmarder() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

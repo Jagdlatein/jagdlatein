@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,10 +30,10 @@ export default function Rehwild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="rehwild" title={"Rehwild (Capreolus capreolus)"} subtitle={"Rehbock, Ricke & Kitz"}>
       <div style={styles.wrap}>
-        <h1 style={styles.title}>Rehwild (Capreolus capreolus)</h1>
-        <p style={styles.subtitle}>Rehbock, Ricke & Kitz</p>
+
+
 
         {/* ⭐ Bild aus /public */}
         <div style={styles.imageBox}>
@@ -110,7 +111,7 @@ export default function Rehwild() {
           ))}
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

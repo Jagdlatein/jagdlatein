@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Schneehuhn() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="schneehuhn" title={"Schneehuhn (Lagopus muta)"} subtitle={"Alpenregion · Weiße Tarnung · Extrem kälteresistent"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Schneehuhn (Lagopus muta)</h1>
-        <p style={styles.subtitle}>Alpenregion · Weiße Tarnung · Extrem kälteresistent</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -132,7 +133,7 @@ export default function Schneehuhn() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

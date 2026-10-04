@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Kanadagans() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="kanadagans" title={"Kanadagans (Branta canadensis)"} subtitle={"\r\n          Neozoon aus Nordamerika · Markantes weißes Kinnband · Große, kräftige Gans\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Kanadagans (Branta canadensis)</h1>
-        <p style={styles.subtitle}>
-          Neozoon aus Nordamerika · Markantes weißes Kinnband · Große, kräftige Gans
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +129,7 @@ export default function Kanadagans() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

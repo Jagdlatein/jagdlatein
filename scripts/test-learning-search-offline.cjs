@@ -15,10 +15,10 @@ function load(relative, overrides = {}, cache = new Map(), expose = '') {
   function requireLocal(id) { if (Object.hasOwn(overrides, id)) return overrides[id]; if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) }; if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, cache); return requireProject(id); }
   new Function('require', 'module', 'exports', code + expose)(requireLocal, mod, mod.exports); cache.set(filename, mod.exports); return mod.exports;
 }
-test('Search covers courses, species, terms and all 13 tools; results contain summaries only', () => {
+test('Search covers courses, species, terms and all tools; results contain summaries only', () => {
   const { searchLearning } = load('lib/learning-search.js');
   const { learningExperiences } = load('lib/learning-experiences.js');
-  const tools = searchLearning({ type: 'tool' }); assert.equal(tools.total, 13);
+  const tools = searchLearning({ type: 'tool' }); assert.equal(tools.total, learningExperiences.length);
   for (const tool of learningExperiences) assert.ok(tools.results.some(item => item.href === tool.href));
   for (const [query, type] of [['Rehwild', 'course'], ['Rehwild', 'species'], ['Abschussplan', 'glossary'], ['Kühlkette', 'entry'], ['Ansitz', 'practice']]) assert.ok(searchLearning({ query, type }).total > 0, query + ':' + type);
   assert.deepEqual(searchLearning({ query: 'Münsterländer' }), searchLearning({ query: 'Muensterlaender' }));
@@ -45,12 +45,16 @@ test('Every detailed course creates a valid offline pack; trials cap expiry and 
   process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
   const { createOfflinePack } = load('lib/offline-learning-server.js'); const { validateOfflinePack } = load('lib/offline-learning.js');
   const { learningModules } = load('lib/learning-curriculum.js'); const now = Date.now(); const access = { email: 'test@example.invalid', paidUntil: new Date(now + 3600000).toISOString() };
-  for (const course of learningModules) { const pack = createOfflinePack({ courseIds: [course.id], sounds: true }, access, now); assert.ok(validateOfflinePack(pack, now), course.id); assert.equal(pack.expiresAt, now + 3600000); assert.equal(pack.sounds.length, 8); assert.ok(!JSON.stringify(pack).includes('test@example.invalid')); }
+  const soundCount = load('lib/animal-sounds.js').animalSounds.length;
+  for (const course of learningModules) { const pack = createOfflinePack({ courseIds: [course.id], sounds: true }, access, now); assert.ok(validateOfflinePack(pack, now), course.id); assert.equal(pack.expiresAt, now + 3600000); assert.equal(pack.sounds.length, soundCount); assert.ok(!JSON.stringify(pack).includes('test@example.invalid')); }
   const body = { courseIds: [learningModules[0].id], sounds: false }; const pack = createOfflinePack(body, access, now);
   const alpine = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, access, now); assert.deepEqual(alpine.photos.map(photo => photo.src), ['/wildkunde/gamswild.jpg', '/wildkunde/steinwild.jpg']);
   assert.equal(validateOfflinePack(pack, pack.expiresAt), false); assert.equal(validateOfflinePack({ ...pack, expiresAt: now + 8 * 86400000 }, now), false);
   assert.throws(() => createOfflinePack({ ...body, courseIds: Array(9).fill(learningModules[0].id) }, access, now)); assert.throws(() => createOfflinePack({ ...body, courseIds: ['fake'] }, access, now));
   assert.equal(validateOfflinePack({ ...pack, courses: [{ ...pack.courses[0], questions: [{ ...pack.courses[0].questions[0], correct: ['evil'] }] }] }, now), false);
+  const recordings = createOfflinePack({ ...body, sounds: true }, access, now);
+  assert.equal(validateOfflinePack({ ...recordings, sounds: [...recordings.sounds, recordings.sounds[0]] }, now), false);
+  assert.equal(validateOfflinePack({ ...recordings, sounds: [{ ...recordings.sounds[0], src: '/lernen/stimmen/erfundene-datei.mp3' }] }, now), false);
 });
 test('Offline download requires same origin, active account and JSON without any writes', async () => {
   const route = load('app/api/lernen/offline/route.js', { '../../../../lib/account-access': { requirePaidAccount: async () => { throw Object.assign(new Error('Bitte anmelden.'), { status: 401 }); } }, '../../../../lib/offline-learning-server': { createOfflinePack: () => assert.fail('Unauthenticated pack created') } });
@@ -58,6 +62,23 @@ test('Offline download requires same origin, active account and JSON without any
   assert.equal((await route.POST(new Request(url, { method: 'POST', headers: { origin: 'https://evil.example', 'content-type': 'application/json' }, body: '{}' }))).status, 403);
   const response = await route.POST(new Request(url, { method: 'POST', headers: { origin: 'https://jagdlatein.example', 'content-type': 'application/json' }, body: '{}' })); assert.equal(response.status, 401); assert.match(response.headers.get('cache-control'), /no-store/);
   assert.equal((await route.GET(new Request(url))).status, 401);
+});
+test('Offline recordings retain linked licenses, origin and disclosed source processing', () => {
+  process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
+  const { createOfflinePack } = load('lib/offline-learning-server.js');
+  const pack = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: true }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
+  const React = requireProject('react'); let stateIndex = 0;
+  const hooks = { ...React, useState(initial) { const value = stateIndex++ === 0 ? pack : typeof initial === 'function' ? initial() : initial; return [value, () => {}]; }, useEffect() {}, useRef(value) { return { current: value }; } };
+  const OfflineLearning = load('components/OfflineLearning.js', { react: hooks, './LearningToolLayout': { __esModule: true, default: ({ children }) => children } }).default;
+  const html = requireProject('react-dom/server').renderToStaticMarkup(React.createElement(OfflineLearning, { courses: [] }));
+  for (const id of ['gams', 'murmeltier']) {
+    const sound = pack.sounds.find(item => item.id === id); assert.ok(sound);
+    assert.ok(html.includes(sound.licenseUrl), id + ' license link');
+    assert.ok(html.includes(sound.sourceUrl.replaceAll('&', '&amp;')), id + ' recording source');
+    assert.ok(html.includes(sound.recording.replaceAll('&', '&amp;')), id + ' recording context');
+    assert.ok(html.includes(sound.modifications.replaceAll('&', '&amp;')), id + ' processing disclosure');
+  }
+  assert.match(html, /Hintergrundgeräusche reduziert/);
 });
 test('Offline legal questions follow the selected country; expired and double answers cannot change scores', () => {
   const React = requireProject('react'); let cursor = 0; const slots = [];

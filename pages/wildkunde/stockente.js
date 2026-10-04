@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Stockente() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="stockente" title={"Stockente (Anas platyrhynchos)"} subtitle={"Häufigste Entenart · Prachtkleid · Zug- & Standvogel"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Stockente (Anas platyrhynchos)</h1>
-        <p style={styles.subtitle}>Häufigste Entenart · Prachtkleid · Zug- & Standvogel</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +131,7 @@ export default function Stockente() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

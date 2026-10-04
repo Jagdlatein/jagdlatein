@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,10 +30,10 @@ export default function Sikawild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="sikawild" title={"Sikawild (Cervus nippon)"} subtitle={"Sikahirsch, Sikatier & Kalb"}>
       <div style={styles.wrap}>
-        <h1 style={styles.title}>Sikawild (Cervus nippon)</h1>
-        <p style={styles.subtitle}>Sikahirsch, Sikatier & Kalb</p>
+
+
 
         {/* ⭐ Bild aus /public */}
         <div style={styles.imageBox}>
@@ -112,7 +113,7 @@ export default function Sikawild() {
           ))}
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

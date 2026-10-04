@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Elster() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="elster" title={"Elster (Pica pica)"} subtitle={"\r\n          Schwarz-weiß · Sehr langer Stoß · Intelligent · Nestplünderer · Kulturfolger\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Elster (Pica pica)</h1>
-        <p style={styles.subtitle}>
-          Schwarz-weiß · Sehr langer Stoß · Intelligent · Nestplünderer · Kulturfolger
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +128,7 @@ export default function Elster() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -33,11 +34,11 @@ export default function Fuchs() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="fuchs" title={"Fuchs (Vulpes vulpes)"} subtitle={"Rüde · Fähe · Welpen"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Fuchs (Vulpes vulpes)</h1>
-        <p style={styles.subtitle}>Rüde · Fähe · Welpen</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -160,7 +161,7 @@ export default function Fuchs() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

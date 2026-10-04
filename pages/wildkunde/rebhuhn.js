@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -33,11 +34,11 @@ export default function Rebhuhn() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="rebhuhn" title={"Rebhuhn (Perdix perdix)"} subtitle={"Agrarlandschaft · Kettenbildung · Stark gefährdet"}>
       <div style={styles.wrap}>
-        
-        <h1 style={styles.title}>Rebhuhn (Perdix perdix)</h1>
-        <p style={styles.subtitle}>Agrarlandschaft · Kettenbildung · Stark gefährdet</p>
+
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -127,7 +128,7 @@ export default function Rebhuhn() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

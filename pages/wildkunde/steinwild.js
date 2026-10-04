@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Steinwild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="steinwild" title={"Steinwild (Capra ibex)"} subtitle={"Steinbock · Geiß · Kitz"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Steinwild (Capra ibex)</h1>
-        <p style={styles.subtitle}>Steinbock · Geiß · Kitz</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -123,7 +124,7 @@ export default function Steinwild() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

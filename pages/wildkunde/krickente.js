@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Krickente() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="krickente" title={"Krickente (Anas crecca)"} subtitle={"\r\n          Kleinste Ente Europas · Rastvogel · Gründelente\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Krickente (Anas crecca)</h1>
-        <p style={styles.subtitle}>
-          Kleinste Ente Europas · Rastvogel · Gründelente
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -136,7 +135,7 @@ export default function Krickente() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

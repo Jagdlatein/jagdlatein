@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Rabenkraehe() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="rabenkraehe" title={"Rabenkrähe (Corvus corone)"} subtitle={"\r\n          Ganz schwarz · Sehr intelligent · Kulturfolger · Aas- & Allesfresser\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Rabenkrähe (Corvus corone)</h1>
-        <p style={styles.subtitle}>
-          Ganz schwarz · Sehr intelligent · Kulturfolger · Aas- & Allesfresser
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +129,7 @@ export default function Rabenkraehe() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

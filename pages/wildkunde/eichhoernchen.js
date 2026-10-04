@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Eichhoernchen() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="eichhoernchen" title={"Eichhörnchen (Sciurus vulgaris)"} subtitle={"Kletterkünstler · Nahrungssammler · Kulturfolger"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Eichhörnchen (Sciurus vulgaris)</h1>
-        <p style={styles.subtitle}>Kletterkünstler · Nahrungssammler · Kulturfolger</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -139,7 +140,7 @@ export default function Eichhoernchen() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

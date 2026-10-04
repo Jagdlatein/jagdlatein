@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Fasan() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="fasan" title={"Fasan (Phasianus colchicus)"} subtitle={"Bodenbrüter · Kulturfolger · Niederwild"}>
       <div style={styles.wrap}>
-        
-        <h1 style={styles.title}>Fasan (Phasianus colchicus)</h1>
-        <p style={styles.subtitle}>Bodenbrüter · Kulturfolger · Niederwild</p>
+
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -131,7 +132,7 @@ export default function Fasan() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

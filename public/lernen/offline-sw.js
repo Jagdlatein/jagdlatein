@@ -6,6 +6,9 @@ const MEDIA = new Set([
   "/lernen/deutsch-drahthaar.jpg", "/lernen/kleiner-muensterlaender.jpg", "/lernen/wachtelhund.jpg", "/lernen/bayerischer-gebirgsschweisshund.jpg",
   "/wildkunde/rehwild.jpg", "/wildkunde/hirsch.jpg", "/wildkunde/schwarzwild.jpg", "/wildkunde/gamswild.jpg", "/wildkunde/steinwild.jpg", "/wildkunde/stockente.jpg", "/wildkunde/fasan.jpg", "/wildkunde/feldhase.jpg", "/wildkunde/wildkaninchen.jpg", "/wildkunde/fuchs.jpg", "/wildkunde/dachs.jpg", "/wildkunde/baummarder.jpg",
   ...Array.from({ length: 8 }, (_, index) => `/lernen/stimmen/aufnahme-0${index + 1}.mp3`),
+  ...Array.from({ length: 22 }, (_, index) => `/lernen/stimmen/vogel-${String(index + 1).padStart(2, "0")}.mp3`),
+  ...Array.from({ length: 6 }, (_, index) => `/lernen/stimmen/saeuger-${String(index + 1).padStart(2, "0")}.mp3`),
+  "/lernen/stimmen/gams-01.mp3",
 ]);
 const staticAsset = path => /^\/_next\/static\/[a-zA-Z0-9_./%~-]+$/.test(path);
 self.addEventListener("install", () => self.skipWaiting());

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import { animalSounds, animalSoundById, shuffledSoundIds, soundFeedback } from "../lib/animal-sounds";
+import { filterAnimalSounds, soundGroups, soundRound, SOUND_PAGE_SIZE, SOUND_ROUND_SIZE } from "../lib/animal-sound-learning";
 import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/AnimalSounds.module.css";
 
@@ -32,8 +34,12 @@ export function SoundPlayer({ sound, label, onPlay, reveal = true }) {
 }
 
 export default function AnimalSounds() {
+  const router = useRouter();
   const [mode, setMode] = useState("library");
   const [search, setSearch] = useState("");
+  const [group, setGroup] = useState("all");
+  const [page, setPage] = useState(1);
+  const [roundSize, setRoundSize] = useState(String(SOUND_ROUND_SIZE));
   const [order, setOrder] = useState(animalSounds.map(sound => sound.id));
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState(null);
@@ -42,6 +48,14 @@ export default function AnimalSounds() {
   const [finished, setFinished] = useState(false);
   const playing = useRef(null);
   useEffect(() => () => { playing.current?.pause(); }, []);
+  useEffect(() => {
+    const id = typeof router.query.stimme === "string" ? router.query.stimme : "";
+    const linked = animalSoundById[id];
+    if (!linked) return;
+    playing.current?.pause();
+    quizGuard.current.generation += 1;
+    setMode("library"); setGroup("all"); setSearch(linked.name); setPage(1);
+  }, [router.query.stimme]);
   // Native double clicks and callbacks from an older question must not count
   // an answer twice or advance a newly restarted round.
   const quizGuard = useRef({ generation: 0, index: 0, answered: false, heard: false });
@@ -49,7 +63,11 @@ export default function AnimalSounds() {
   const sound = animalSoundById[order[index]];
   const mistakes = results.filter(result => !result.correct).map(result => result.id);
   const correct = results.filter(result => result.correct).length;
-  const filtered = animalSounds.filter(item => `${item.name} ${item.scientificName} ${item.call}`.toLocaleLowerCase("de").includes(search.toLocaleLowerCase("de").trim()));
+  const filtered = filterAnimalSounds({ query: search, group });
+  const pages = Math.max(1, Math.ceil(filtered.length / SOUND_PAGE_SIZE));
+  const shownPage = Math.min(page, pages);
+  const visible = filtered.slice((shownPage - 1) * SOUND_PAGE_SIZE, shownPage * SOUND_PAGE_SIZE);
+  const roundCount = roundSize === "all" ? filtered.length : Math.min(SOUND_ROUND_SIZE, filtered.length);
 
   function pauseAudio() {
     if (playing.current) playing.current.pause();
@@ -66,10 +84,12 @@ export default function AnimalSounds() {
     if (quiz) { quizGuard.current.heard = true; setHeard(true); }
   }
 
-  function startQuiz(ids = animalSounds) {
+  function startQuiz(ids = filtered, repeat = false) {
+    const nextOrder = repeat ? shuffledSoundIds(ids) : soundRound(ids, roundSize === "all" ? "all" : SOUND_ROUND_SIZE);
+    if (!nextOrder.length) return;
     pauseAudio();
     quizGuard.current = { generation: quizGuard.current.generation + 1, index: 0, answered: false, heard: false };
-    setOrder(shuffledSoundIds(ids));
+    setOrder(nextOrder);
     setIndex(0);
     setAnswer(null);
     setHeard(false);
@@ -80,7 +100,7 @@ export default function AnimalSounds() {
 
   function submitAnswer(id) {
     const guard = quizGuard.current;
-    if (guard.generation !== generation || guard.index !== index || guard.answered || (id && !guard.heard)) return;
+    if (guard.generation !== generation || guard.index !== index || guard.answered || !sound || (id && (!guard.heard || !sound.options.includes(id)))) return;
     guard.answered = true;
     setAnswer(id || "skipped");
     setResults(current => [...current, { id: sound.id, selected: id, correct: id === sound.id }]);
@@ -102,7 +122,7 @@ export default function AnimalSounds() {
   return <LearningToolLayout title="Tierstimmen entdecken" description="Höre echte Originalaufnahmen aus der Natur, entdecke typische Hörmerkmale und übe im erklärten Hörquiz." icon="sound" category="wildkunde" stats={[{ value: animalSounds.length, label: "Originalaufnahmen" }, { value: "immer", label: "erklärte Antworten" }, { value: "ohne", label: "Zeitdruck" }]}>
       <div className={experienceStyles.modeButtons} aria-label="Lernmodus">
         <button type="button" aria-pressed={mode === "library"} onClick={openLibrary}>Stimmen entdecken</button>
-        <button type="button" aria-pressed={mode === "quiz"} onClick={() => { if (mode !== "quiz") startQuiz(); }}>Hörquiz starten</button>
+        <button type="button" aria-pressed={mode === "quiz"} disabled={!filtered.length} onClick={() => { if (mode !== "quiz") startQuiz(); }}>Hörquiz starten</button>
       </div>
 
       {mode === "library" ? <>
@@ -111,24 +131,28 @@ export default function AnimalSounds() {
           <ol><li><strong>Klang:</strong> tief oder hoch, weich oder rau?</li><li><strong>Rhythmus:</strong> einzelne Rufe, Rufgruppen oder längere Strophen?</li><li><strong>Zusammenhang:</strong> Welche anderen Stimmen sind im Hintergrund zu hören?</li></ol>
           <p>Eine Aufnahme zeigt einen Ausschnitt aus dem Repertoire. Ähnliche Arten, Nachahmung und Nebengeräusche können täuschen. Im Revier ergänzen Sichtbeobachtung, Lebensraum und Verhalten das Hören. Spiele die Aufnahmen zum Lernen zu Hause ab; vermeide es, Wildtiere draußen durch Wiedergabe zu stören.</p>
         </section>
-        <div className={styles.libraryHeading}><h2>Deine Stimmenbibliothek</h2><label>Stimme suchen<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Zum Beispiel Waldkauz oder Gurren" /></label></div>
-        <div className={styles.library}>{filtered.map(item => <article key={item.id} className={styles.soundCard}>
+        <div className={styles.libraryHeading}><h2>Deine Stimmenbibliothek</h2><label htmlFor="sound-search">Stimme suchen<input id="sound-search" type="search" value={search} onChange={event => { pauseAudio(); setSearch(event.target.value); setPage(1); }} placeholder="Zum Beispiel Rehwild, Graugans oder Bellen" /></label></div>
+        <div className={experienceStyles.toolbar}><label className={experienceStyles.field}>Artengruppe<select id="sound-group" value={group} onChange={event => { pauseAudio(); setGroup(event.target.value); setPage(1); }}>{soundGroups.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label><label className={experienceStyles.field}>Länge der Hörrunde<select id="sound-round-size" value={roundSize} onChange={event => setRoundSize(event.target.value)}><option value="10">Bis zu zehn Stimmen</option><option value="all">Alle gefundenen Stimmen</option></select></label><button className={experienceStyles.secondary} type="button" onClick={() => { pauseAudio(); setSearch(""); setGroup("all"); setPage(1); }}>Filter zurücksetzen</button></div>
+        <p className={experienceStyles.muted} role="status">{filtered.length} von {animalSounds.length} Originalaufnahmen · Die Hörrunde verwendet deine Auswahl.</p>
+        <div className={styles.library}>{visible.map(item => <article key={item.id} className={styles.soundCard}>
           <div className={styles.cardHeading}><span className={styles.speciesIcon}><AppIcon name={item.group === "Säugetiere" ? "deer" : "sound"} size={27} /></span><div><h3>{item.name}</h3><p><i>{item.scientificName}</i> · {item.call}</p></div></div>
           <SoundPlayer sound={item} label={`${item.name}: ${item.call} abspielen`} onPlay={event => playAudio(event)} />
           <div className={styles.cue}><strong>Darauf hörst du</strong><p>{item.cue}</p></div>
           <p>{item.context}</p>
           <details><summary>Ähnliche Stimmen und Grenzen der Bestimmung</summary><p>{item.confusion}</p></details>
           <a className={styles.sourceLink} href={item.factsUrl} target="_blank" rel="noreferrer">{item.factsTitle}</a>
+          {item.speciesSlug && <div className={experienceStyles.actions}><Link className={experienceStyles.secondary} href={`/wildkunde/${item.speciesSlug}`}>Artenporträt öffnen</Link></div>}
         </article>)}</div>
-        {filtered.length === 0 && <p className={styles.empty}>Keine passende Stimme gefunden. Suche mit einem anderen Begriff oder <button type="button" onClick={() => setSearch("")}>zeige alle Stimmen</button>.</p>}
-        <div className={styles.startPanel}><h2>Bereit, nur mit den Ohren zu bestimmen?</h2><p>Die Reihenfolge wird bei jedem Start neu gemischt. Du kannst jede Aufnahme mehrmals hören.</p><button type="button" className={experienceStyles.primary} onClick={() => startQuiz()}>Hörquiz mit 8 Stimmen starten<AppIcon name="arrow-right" size={20} /></button></div>
+        {filtered.length === 0 && <p className={styles.empty}>Keine passende Stimme gefunden. Suche mit einem anderen Begriff oder <button type="button" onClick={() => { setSearch(""); setGroup("all"); setPage(1); }}>zeige alle Stimmen</button>.</p>}
+        {pages > 1 && <nav className={experienceStyles.actions} aria-label="Seiten der Stimmenbibliothek"><button className={experienceStyles.secondary} disabled={shownPage <= 1} onClick={() => { pauseAudio(); setPage(shownPage - 1); }}>Vorherige Seite</button><span>Seite {shownPage} von {pages}</span><button className={experienceStyles.secondary} disabled={shownPage >= pages} onClick={() => { pauseAudio(); setPage(shownPage + 1); }}>Nächste Seite</button></nav>}
+        <div className={styles.startPanel}><h2>Bereit, nur mit den Ohren zu bestimmen?</h2><p>Die Reihenfolge wird bei jedem Start neu gemischt. Du kannst jede Aufnahme mehrmals hören. Eine kurze Runde zieht bis zu zehn verschiedene Stimmen aus deiner Auswahl; die vollständige Runde umfasst alle Treffer.</p><button type="button" className={experienceStyles.primary} disabled={!roundCount} onClick={() => startQuiz()}>Hörquiz mit {roundCount} {roundCount === 1 ? "Stimme" : "Stimmen"} starten<AppIcon name="arrow-right" size={20} /></button></div>
       </> : finished ? <section className={styles.result} aria-labelledby="sound-result">
         <span className={styles.resultIcon}><AppIcon name="sound" size={38} /></span>
         <h2 id="sound-result">Deine Hörrunde ist abgeschlossen</h2>
         <p className={styles.score}>{correct} von {order.length} Stimmen erkannt</p>
         <p>{mistakes.length ? "Vergleiche die Hörmerkmale noch einmal. Bei der Wiederholung kommen nur die Stimmen vor, die du noch nicht erkannt oder übersprungen hast." : "Du hast alle Stimmen in dieser Runde erkannt. Eine neue Runde mischt die Reihenfolge erneut."}</p>
         <ul className={styles.resultList}>{results.map(result => <li key={result.id}><strong>{animalSoundById[result.id].name}</strong><span>{result.correct ? "Erkannt" : result.selected ? "Noch einmal hören" : "Übersprungen"}</span></li>)}</ul>
-        <div className={styles.actions}>{mistakes.length > 0 && <button type="button" className={experienceStyles.primary} onClick={() => startQuiz(mistakes)}>Unsichere Stimmen wiederholen</button>}<button type="button" className={experienceStyles.secondary} onClick={() => startQuiz()}>Neue Runde mit allen Stimmen</button><button type="button" className={experienceStyles.secondary} onClick={openLibrary}>Zur Stimmenbibliothek</button></div>
+        <div className={styles.actions}>{mistakes.length > 0 && <button type="button" className={experienceStyles.primary} onClick={() => startQuiz(mistakes, true)}>Unsichere Stimmen wiederholen</button>}<button type="button" className={experienceStyles.secondary} onClick={() => startQuiz()}>Neue Runde mit meiner Auswahl</button><button type="button" className={experienceStyles.secondary} onClick={openLibrary}>Zur Stimmenbibliothek</button></div>
         <p className={styles.sessionNote}>Das Ergebnis gilt für diese Übungsrunde und wird nicht als Kursabschluss gespeichert.</p>
       </section> : <section className={styles.quiz} aria-labelledby="sound-question">
         <div className={styles.quizTop}><span>Aufnahme {index + 1} von {order.length}</span><span>{correct} richtig erkannt</span></div>
@@ -145,6 +169,6 @@ export default function AnimalSounds() {
           <button type="button" className={experienceStyles.primary} onClick={nextSound}>{index + 1 === order.length ? "Ergebnis ansehen" : "Nächste Aufnahme"}<AppIcon name="arrow-right" size={20} /></button>
         </div>}
       </section>}
-      <aside className={styles.more}><AppIcon name="book" size={24} /><div><strong>Hören mit Beobachten verbinden</strong><p>Vertiefe Körpermerkmale, Lebensweise und Verhalten in Wildkunde.</p><Link href="/lernen/wildkunde">Zur Kategorie Wildkunde<AppIcon name="arrow-right" size={18} /></Link></div></aside>
+      <aside className={styles.more}><AppIcon name="book" size={24} /><div><strong>Hören mit Beobachten verbinden</strong><p>Der Wildartenatlas ergänzt die Stimmen um Merkmale und Lebensräume. Für manche Arten liegt noch keine geprüfte Aufnahme vor. Waldkauz, Amsel und Kuckuck helfen als ergänzende Beobachtungsarten beim Hören; aus einer Stimme folgt keine Jagdfreigabe.</p><div className={experienceStyles.actions}><Link href="/wildkunde">Zum Wildartenatlas<AppIcon name="arrow-right" size={18} /></Link><Link href="/jagdrecht/wildarten">Jagdstatus in DACH nachschlagen<AppIcon name="arrow-right" size={18} /></Link></div></div></aside>
   </LearningToolLayout>;
 }

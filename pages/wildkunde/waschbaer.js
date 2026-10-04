@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -29,11 +30,11 @@ export default function Waschbaer() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="waschbaer" title={"Waschbär (Procyon lotor)"} subtitle={"Neozon · Allesfresser"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Waschbär (Procyon lotor)</h1>
-        <p style={styles.subtitle}>Neozon · Allesfresser</p>
+
+
 
         {/* Bild */}
         <div style={styles.imageBox}>
@@ -122,7 +123,7 @@ export default function Waschbaer() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

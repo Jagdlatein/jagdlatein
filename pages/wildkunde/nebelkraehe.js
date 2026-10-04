@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Nebelkraehe() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="nebelkraehe" title={"Nebelkrähe (Corvus cornix)"} subtitle={"\r\n          Zweifarbige Krähe · Graues Gefieder mit schwarzen Partien · Ost- & Nordeuropa\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Nebelkrähe (Corvus cornix)</h1>
-        <p style={styles.subtitle}>
-          Zweifarbige Krähe · Graues Gefieder mit schwarzen Partien · Ost- & Nordeuropa
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +128,7 @@ export default function Nebelkraehe() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

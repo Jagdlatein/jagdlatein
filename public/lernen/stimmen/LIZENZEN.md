@@ -1,6 +1,10 @@
 # Originalaufnahmen für Tierstimmen lernen
 
-Alle acht Audiodateien sind echte, artbezogen dokumentierte Aufnahmen. Es werden keine KI-Stimmen, synthetischen Tierlaute oder künstlich zusammengesetzten Geräusche verwendet. Die Dateien sind vollständige MP3-Transcodierungen, die Wikimedia Commons bereitstellt; Jagdlatein hat sie weder gekürzt noch klanglich bearbeitet.
+Diese Datei dokumentiert die ersten acht Aufnahmen. Die Erweiterungen mit weiteren Vogelstimmen stehen in [LIZENZEN-VOEGEL.md](LIZENZEN-VOEGEL.md) und [quellen-voegel.json](quellen-voegel.json), die Säugetieraufnahmen in [LIZENZEN-SAEUGER.md](LIZENZEN-SAEUGER.md) und [quellen-saeuger.json](quellen-saeuger.json).
+
+Der Gams-Warnpfiff aus dem Tierstimmenarchiv des Museums für Naturkunde ist zusätzlich in [LIZENZEN-GAMS.md](LIZENZEN-GAMS.md) und [quellen-gams.json](quellen-gams.json) dokumentiert.
+
+Alle Audiodateien sind echte, artbezogen dokumentierte Aufnahmen. Es werden keine KI-Stimmen, synthetischen Tierlaute oder künstlich zusammengesetzten Geräusche verwendet. Die Dateien sind vollständige MP3-Versionen, die Wikimedia Commons bereitstellt; Jagdlatein hat sie weder gekürzt noch klanglich bearbeitet.
 
 Die Aufnahme der Amsel war bereits in der Veröffentlichung des Urhebers zur Reduktion von Autogeräuschen bearbeitet. Diese Vorbearbeitung wird in der App und im Nachweis ausdrücklich genannt. Bei der Ringeltaube ist eine Elster im Hintergrund hörbar; die Aufgabe bezieht sich auf den Vordergrund.
 

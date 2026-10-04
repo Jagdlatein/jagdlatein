@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-04",
+  "policy": "Nur echte, dokumentierte Tieraufnahmen. Kein KI-Ton und keine Synthese. Diese vollständige Archiv-MP3 bleibt unverändert. Die Lizenz der Aufnahme bleibt maßgeblich.",
+  "recordings": [
+    {
+      "file": "/lernen/stimmen/gams-01.mp3",
+      "species": "Gamswild",
+      "scientificName": "Rupicapra rupicapra",
+      "author": "Michael Schubert · Tierstimmenarchiv, Museum für Naturkunde Berlin (Sammlung SUB)",
+      "license": "CC BY-SA 3.0 DE",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+      "sourceUrl": "https://suche.tierstimmenarchiv.de/search/showdetails.html?from_search=true&language=deutsch&unique_identifier=SUB%3ARupicapra_rupicapra_Sub_CD0034_26",
+      "recording": "Sibiu, Transilvania, Rumänien, 21. Mai 1976; Tierstimmenarchiv SUB:Rupicapra_rupicapra_Sub_CD0034_26. Gruppe von zwölf Gämsen, ein Pfiff. Nagra III BH, Sennheiser MD 21 mit Parabolspiegel; Archivqualität B.",
+      "modifications": "Vollständige MP3-Datei des Tierstimmenarchivs; von Jagdlatein unverändert übernommen. Keine Schnitte, Wiederholungen, Synthese oder Tonhöhenänderungen.",
+      "downloadUrl": "https://suche.tierstimmenarchiv.de/download.mp3?unique_identifier=SUB:Rupicapra_rupicapra_Sub_CD0034_26",
+      "originalFileUrl": "https://suche.tierstimmenarchiv.de/download.mp3?unique_identifier=SUB:Rupicapra_rupicapra_Sub_CD0034_26",
+      "originalDurationSeconds": 67.36979591836734,
+      "durationProvenance": "Dauer aus der im unveränderten Original-MP3 hinterlegten Xing-Anzahl von 2579 Frames bei 44100 Hz; die Archivseite zeigt gerundet 00:01:07.",
+      "archiveDisplayedDuration": "00:01:07",
+      "bytes": 1044432,
+      "sha256": "1f622be8f17dc1c901e773be289df1ef8a1ffe1936898aa3bc1a5d9a95508c7c",
+      "parsedFrames": 2580,
+      "parsedDurationSeconds": 67.4,
+      "sourceDescription": "Gemse, 1 Pfiff (Gruppe von 12 Explemplaren)",
+      "sourceRecordingType": "w (Wildaufnahme)",
+      "aiGenerated": false,
+      "synthesized": false
+    }
+  ]
+}

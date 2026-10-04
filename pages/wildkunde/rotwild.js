@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -32,10 +33,10 @@ export default function Rotwild() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="rotwild" title={"Rotwild (Cervus elaphus)"} subtitle={"Rotwild – Hirsch, Tier & Kalb"}>
       <div style={styles.wrap}>
-        <h1 style={styles.title}>Rotwild (Cervus elaphus)</h1>
-        <p style={styles.subtitle}>Rotwild – Hirsch, Tier & Kalb</p>
+
+
 
         {/* ⭐ Bild aus /public – funktioniert IMMER */}
         <div style={styles.imageBox}>
@@ -130,7 +131,7 @@ export default function Rotwild() {
           ))}
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

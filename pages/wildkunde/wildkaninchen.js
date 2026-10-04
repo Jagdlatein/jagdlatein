@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Wildkaninchen() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="wildkaninchen" title={"Wildkaninchen (Oryctolagus cuniculus)"} subtitle={"Gesellig, grabend, weit verbreitet"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Wildkaninchen (Oryctolagus cuniculus)</h1>
-        <p style={styles.subtitle}>Gesellig, grabend, weit verbreitet</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -137,7 +138,7 @@ export default function Wildkaninchen() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,13 +38,11 @@ export default function Tafelente() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="tafelente" title={"Tafelente (Aythya ferina)"} subtitle={"\r\n          Tauchente · Rötlicher Kopf · Schwarze Brust\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Tafelente (Aythya ferina)</h1>
-        <p style={styles.subtitle}>
-          Tauchente · Rötlicher Kopf · Schwarze Brust
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -125,7 +124,7 @@ export default function Tafelente() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

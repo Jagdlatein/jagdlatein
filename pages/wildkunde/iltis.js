@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Iltis() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="iltis" title={"Iltis (Mustela putorius)"} subtitle={"Stinkmarder · Feuchtgebiets-Raubwild"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Iltis (Mustela putorius)</h1>
-        <p style={styles.subtitle}>Stinkmarder · Feuchtgebiets-Raubwild</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -130,7 +131,7 @@ export default function Iltis() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

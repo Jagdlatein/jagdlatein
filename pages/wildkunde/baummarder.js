@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,11 +38,11 @@ export default function Baummarder() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="baummarder" title={"Baummarder (Martes martes)"} subtitle={"Waldmarder · Indikator für gesunde Wälder"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Baummarder (Martes martes)</h1>
-        <p style={styles.subtitle}>Waldmarder · Indikator für gesunde Wälder</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +130,7 @@ export default function Baummarder() {
 
         </section>
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

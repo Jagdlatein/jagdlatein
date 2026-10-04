@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -33,11 +34,11 @@ export default function Biber() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="biber" title={"Biber (Castor fiber)"} subtitle={"Streng geschützt · Landschaftsgestalter"}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Biber (Castor fiber)</h1>
-        <p style={styles.subtitle}>Streng geschützt · Landschaftsgestalter</p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -128,7 +129,7 @@ export default function Biber() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

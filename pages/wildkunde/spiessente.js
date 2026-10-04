@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Spiessente() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="spiessente" title={"Spießente (Anas acuta)"} subtitle={"\r\n          Eleganteste Entenart · Langer Schwanzspieß · Zugvogel\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Spießente (Anas acuta)</h1>
-        <p style={styles.subtitle}>
-          Eleganteste Entenart · Langer Schwanzspieß · Zugvogel
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -136,7 +135,7 @@ export default function Spiessente() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

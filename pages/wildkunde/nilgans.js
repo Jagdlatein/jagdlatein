@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -41,13 +42,11 @@ export default function Nilgans() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="nilgans" title={"Nilgans (Alopochen aegyptiaca)"} subtitle={"\r\n          Neozoon aus Afrika · Markanter Augenfleck · Sehr territorial & aggressiv\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Nilgans (Alopochen aegyptiaca)</h1>
-        <p style={styles.subtitle}>
-          Neozoon aus Afrika · Markanter Augenfleck · Sehr territorial & aggressiv
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -129,7 +128,7 @@ export default function Nilgans() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 

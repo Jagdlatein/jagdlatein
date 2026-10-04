@@ -1,3 +1,4 @@
+import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -37,13 +38,11 @@ export default function Graugans() {
   }
 
   return (
-    <main style={styles.main}>
+    <WildlifePortraitLayout slug="graugans" title={"Graugans (Anser anser)"} subtitle={"\r\n          Größte heimische Wildgans · Stammform der Hausgans · Charakteristische V-Formation\r\n        "}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Graugans (Anser anser)</h1>
-        <p style={styles.subtitle}>
-          Größte heimische Wildgans · Stammform der Hausgans · Charakteristische V-Formation
-        </p>
+
+
 
         <div style={styles.imageBox}>
           <Image
@@ -133,7 +132,7 @@ export default function Graugans() {
         </section>
 
       </div>
-    </main>
+    </WildlifePortraitLayout>
   );
 }
 
