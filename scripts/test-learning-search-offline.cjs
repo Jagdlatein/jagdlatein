@@ -18,8 +18,11 @@ function load(relative, overrides = {}, cache = new Map(), expose = '') {
 test('Search covers courses, species, terms and all tools; results contain summaries only', () => {
   const { searchLearning } = load('lib/learning-search.js');
   const { learningExperiences } = load('lib/learning-experiences.js');
-  const tools = searchLearning({ type: 'tool' }); assert.equal(tools.total, learningExperiences.length);
-  for (const tool of learningExperiences) assert.ok(tools.results.some(item => item.href === tool.href));
+  const { learningToolCatalog } = load('lib/learning-tool-catalog.js');
+  const expectedTools = new Set([...learningToolCatalog, ...learningExperiences].map(tool => tool.href));
+  const tools = searchLearning({ type: 'tool' }); assert.equal(tools.total, expectedTools.size);
+  const foundTools = new Set(Array.from({ length: tools.pages }, (_, index) => searchLearning({ type: 'tool', page: index + 1 }).results).flat().map(item => item.href));
+  assert.deepEqual(foundTools, expectedTools);
   for (const [query, type] of [['Rehwild', 'course'], ['Rehwild', 'species'], ['Abschussplan', 'glossary'], ['Kühlkette', 'entry'], ['Ansitz', 'practice']]) assert.ok(searchLearning({ query, type }).total > 0, query + ':' + type);
   assert.deepEqual(searchLearning({ query: 'Münsterländer' }), searchLearning({ query: 'Muensterlaender' }));
   for (const item of searchLearning({ type: 'entry' }).results) { assert.ok(!('text' in item) && !('questions' in item) && !('correct' in item)); assert.ok(item.href.startsWith('/lernen/')); }
@@ -105,4 +108,45 @@ test('Offline worker excludes APIs/protected pages and supports cached audio byt
   let result; handlers.fetch({ request: new Request('https://jagdlatein.example/lernen/stimmen/aufnahme-01.mp3', { headers: { range: 'bytes=1-3' } }), respondWith: promise => result = promise });
   const response = await result; assert.equal(response.status, 206); assert.equal(response.headers.get('content-range'), 'bytes 1-3/5'); assert.deepEqual([...new Uint8Array(await response.arrayBuffer())], [2, 3, 4]);
   let completion, message; handlers.message({ data: { type: 'PREPARE', assets: ['/konto'] }, source: { url: 'https://jagdlatein.example/lernen/offline-rucksack' }, ports: [{ postMessage: value => message = value }], waitUntil: promise => completion = promise }); await completion; assert.equal(message.ok, false); assert.match(message.message, /Unzulässige/);
+});
+
+
+test('All established learning shortcuts and legal country hubs are discoverable exactly once', () => {
+  const { searchLearning } = load('lib/learning-search.js');
+  const { learningTools, legalLearningHubs, learningToolCatalog } = load('lib/learning-tool-catalog.js');
+  const validCategories = new Set(load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug));
+  assert.equal(learningTools.length, 8); assert.equal(legalLearningHubs.length, 3);
+  assert.equal(new Set(learningToolCatalog.map(item => item.href)).size, learningToolCatalog.length);
+  for (const tool of learningToolCatalog) {
+    const base = tool.href.split('?')[0];
+    assert.ok(fs.existsSync(path.join(root, 'pages', base + '.js')) || fs.existsSync(path.join(root, 'pages', base, 'index.js')) || fs.existsSync(path.join(root, 'app', base, 'page.jsx')), tool.href);
+    assert.ok(tool.categories.length && tool.categories.every(category => validCategories.has(category)), tool.href);
+  }
+  for (const [query, href] of [['Quiz', '/quiz-app'], ['Tagesquiz', '/tagesquiz'], ['Ebook', '/ebook'], ['PDF', '/ebook'], ['Glossar', '/glossar'], ['Deutsches Jagdrecht', '/jagdrecht/de'], ['Österreichisches Jagdrecht', '/jagdrecht/at'], ['Schweizer Jagdrecht', '/jagdrecht/ch']]) {
+    assert.ok(searchLearning({ query, type: 'tool' }).results.some(item => item.href === href), query);
+  }
+  const first = searchLearning({ type: 'tool' });
+  const all = Array.from({ length: first.pages }, (_, index) => searchLearning({ type: 'tool', page: index + 1 }).results).flat();
+  assert.equal(all.filter(item => item.href === '/wildkunde').length, 1, 'The atlas shortcut and atlas experience share one result');
+  for (const [country, href] of [['DE', '/jagdrecht/de'], ['AT', '/jagdrecht/at'], ['CH', '/jagdrecht/ch']]) {
+    const results = searchLearning({ category: 'jagdrecht', country, type: 'tool' }).results;
+    assert.ok(results.some(item => item.href === href));
+    assert.ok(!results.some(item => legalLearningHubs.some(other => other.href === item.href && other.href !== href)));
+  }
+});
+
+test('Practice exercises are found within their relevant learning categories without losing the practice index', () => {
+  const { searchLearning } = load('lib/learning-search.js');
+  const { practiceCatalog, practiceCategories } = load('lib/practice-catalog.js');
+  const validCategories = new Set(load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug));
+  assert.equal(Object.keys(practiceCategories).length, practiceCatalog.length);
+  for (const [id, title] of practiceCatalog) {
+    const categories = practiceCategories[id];
+    assert.ok(categories && categories.includes('jagdpraxis') && categories.every(category => validCategories.has(category)), id);
+    assert.equal(new Set(categories).size, categories.length, id);
+    for (const category of categories) assert.ok(searchLearning({ query: title, type: 'practice', category }).results.some(item => item.href === `/jagdpraxis/${id}`), `${id}:${category}`);
+  }
+  for (const [query, category, href] of [['Waffenhandhabung', 'waffen-sicherheit', '/jagdpraxis/waffenhandhabung'], ['Krankes Wild', 'wildbret-gesundheit', '/jagdpraxis/krankeswild'], ['Nachsuche', 'hundewesen', '/jagdpraxis/nachsuche'], ['Optik', 'ausruestung-technik', '/jagdpraxis/optik'], ['Fährten', 'natur-revier', '/jagdpraxis/wildspuren']]) {
+    assert.ok(searchLearning({ query, category, type: 'practice' }).results.some(item => item.href === href), `${query}:${category}`);
+  }
 });

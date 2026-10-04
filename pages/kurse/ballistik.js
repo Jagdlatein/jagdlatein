@@ -1,12 +1,7 @@
-"use client";
+import MiniCourse from "../../components/MiniCourse";
+import { getMiniCourseDetails } from "../../lib/mini-course-details";
 
-import { useState } from "react";
-import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
-import useCourseProgress from "../../hooks/useCourseProgress";
-import CourseProgressNotice from "../../components/CourseProgressNotice";
-
-export default function BallistikKurs() {
-  const quiz = [
+const quiz = [
     {
       frage: "Welche Größen gehören zu den Einflüssen auf die Geschossflugbahn?",
       antworten: [
@@ -27,71 +22,18 @@ export default function BallistikKurs() {
     }
   ];
 
-  const [i,setI]=useState(0);
-  const [sel,setSel]=useState(null);
-  const [p,setP]=useState(0);
-  const [f,setF]=useState(false);
-
-  const answerGuard = useMiniQuizAnswer(i, f, quiz[i].antworten.length);
-  const courseProgress = useCourseProgress("ballistik", {
-    started: i > 0 || sel !== null || f,
-    answeredQuestions: f ? quiz.length : i + (sel !== null ? 1 : 0),
-    totalQuestions: quiz.length,
-    score: p,
-    completed: f || (i === quiz.length - 1 && sel !== null),
-  });
-  const q=quiz[i];
-
-  function choose(a){
-    if (!answerGuard.accept(a)) return;
-    setSel(a);
-    if(q.antworten[a].richtig) setP(p+1);
-    answerGuard.schedule(()=>{
-      if(i+1<quiz.length){setI(i+1);setSel(null);}
-      else setF(true);
-    },900);
-  }
-
+export default function BallistikKurs({ details }) {
   return (
-    <div style={{
-      maxWidth:800, margin:"40px auto", padding:24, background:"white",
-      borderRadius:12, boxShadow:"0 4px 14px rgba(0,0,0,0.1)"
-    }}>
-      <h1 style={{fontSize:32,marginBottom:15}}>💡 Ballistik Grundlagen</h1>
-
-      <p style={{fontSize:18,marginBottom:25}}>
-        Ballistik beschreibt die Flugbahn eines Geschosses. Geschwindigkeit, Masse und
-        Form bestimmen Reichweite und Wirkung. Deformationsgeschosse pilzen im Wildkörper auf
-        und erhöhen die Energieabgabe.
-      </p>
-
-      {!f ? (
-        <>
-          <p>Frage {i+1} von {quiz.length}</p>
-          <p style={{fontSize:20}}>{q.frage}</p>
-
-          {q.antworten.map((a,idx)=>{
-            let bg="#eaeaea";
-            if(sel!==null){
-              if(a.richtig) bg="green";
-              if(sel===idx && !a.richtig) bg="red";
-            }
-            return(
-              <button key={idx} onClick={()=>choose(idx)} disabled={sel!==null}
-                style={{
-                  width:"100%",padding:12,marginBottom:10,borderRadius:8,
-                  background:bg,color:"white",textAlign:"left"
-                }}>{a.text}</button>
-            )
-          })}
-        </>
-      ):(
-        <>
-          <h3 style={{fontSize:24}}>🎉 Gut gemacht!</h3>
-          <p>Du hast {p} von {quiz.length} Fragen richtig.</p>
-        </>
-      )}
-      <CourseProgressNotice courseId="ballistik" {...courseProgress} />
-    </div>
+    <MiniCourse courseId="ballistik" questions={quiz} details={details}>
+      <p>
+              Ballistik beschreibt die Flugbahn eines Geschosses. Geschwindigkeit, Masse und
+              Form bestimmen Reichweite und Wirkung. Deformationsgeschosse pilzen im Wildkörper auf
+              und erhöhen die Energieabgabe.
+            </p>
+    </MiniCourse>
   );
+}
+
+export function getStaticProps() {
+  return { props: { details: getMiniCourseDetails("ballistik") } };
 }

@@ -13,6 +13,7 @@ const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.pn
 const PUBLIC_PATHS = [
   "/",
   "/news",
+  "/community",
   "/login",
   "/preise",
   "/debug-cookies",
@@ -97,7 +98,8 @@ export async function middleware(req) {
   }
 
   // Das eigene Konto bleibt auch ohne aktives Premium erreichbar.
-  if (["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)) {
+  if (["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)
+    || /^\/community\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(pathname)) {
     if (hasSession && access) return finish(NextResponse.next());
     const login = new URL("/login", req.url);
     login.searchParams.set("next", nextPathWithQuery);

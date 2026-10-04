@@ -4,4 +4,6 @@
 .learning { --icon-accent: #796021; background: #caa53b; color: #3e321b; }
 .learning:hover { background: #d6b44e; }
 .button:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
-@media (max-width: 380px) { .nav { left: 8px; max-width: calc(100vw - 16px); gap: 2px; padding: 4px; } .button { padding: 10px 8px; gap: 5px; font-size: 12px; } }
+.button[aria-current="page"] { background: #f3e5bd; color: #4e3c15; }
+@media (max-width: 620px) { .nav { left: 8px; right: 8px; max-width: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; } .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: 11px; min-height: 49px; } }
+@media (max-width: 380px) { .nav { gap: 1px; padding: 4px; } .button { padding: 7px 1px; } }

@@ -1,0 +1,13 @@
+.lesson { display: grid; grid-template-columns: minmax(220px, 320px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.introduction { min-width: 0; font-size: 17px; line-height: 1.75; }
+.introduction > :first-child { margin-top: 0; }
+.introduction h2 { margin-top: 24px; }
+.introduction :where(p, ul, ol) { margin-bottom: 18px; }
+.introduction li { margin-bottom: 8px; }
+.introduction a { color: #73571a; text-underline-offset: 3px; }
+.photo { margin: 0; }
+.question { font-size: clamp(20px, 3vw, 25px); line-height: 1.55; margin: 18px 0; }
+.status { font-weight: 700; color: #73571a; }
+.related { display: flex; flex-wrap: wrap; gap: 10px; }
+.related a { flex: 1 1 260px; text-align: left; justify-content: flex-start; }
+@media (max-width: 720px) { .lesson { grid-template-columns: minmax(0, 1fr); } .photo { max-width: 420px; } .introduction { font-size: 16px; } }

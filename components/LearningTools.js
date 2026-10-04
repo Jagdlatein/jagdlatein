@@ -1,19 +1,10 @@
 import Link from "next/link";
 import AppIcon from "./AppIcon";
+import { learningTools, legalLearningHubs } from "../lib/learning-tool-catalog";
 import styles from "../styles/LearningTools.module.css";
 
-const tools = [
-  { href: "/kurse", icon: "courses", title: "Kurse", description: "Alle Kurse und kompakte Wissenschecks." },
-  { href: "/quiz-app", icon: "quiz", title: "Quiz", description: "Dein Wissen nach Thema prüfen." },
-  { href: "/tagesquiz", icon: "daily", title: "Tagesquiz", description: "Jeden Tag eine neue Herausforderung." },
-  { href: "/jagdpraxis", icon: "practice", title: "Praxis & Simulatoren", description: "Ansprechen, Sicherheit und Entscheidungen üben." },
-  { href: "/glossar", icon: "glossary", title: "Glossar", description: "Jagdsprache und Fachbegriffe nachschlagen." },
-  { href: "/ebook", icon: "ebook", title: "E-Book", description: "Jagdwissen in Ruhe lesen und vertiefen." },
-  { href: "/wildkunde", icon: "deer", title: "Wildarten bestimmen", description: "Die Artenübersicht mit Merkmalen und Lebensweisen." },
-  { href: "/jagdrecht", icon: "law", title: "Recht nach Land", description: "Gesetze und regionale Regelungen für DE, AT und CH." },
-];
-
-export default function LearningTools() {
+export default function LearningTools({ category } = {}) {
+  const tools = [...learningTools, ...(category === "jagdrecht" ? legalLearningHubs : [])].filter(tool => !category || tool.categories.includes(category));
   return (
     <section className={styles.section} aria-labelledby="learning-tools-heading">
       <h2 id="learning-tools-heading">Lernen, üben und nachschlagen</h2>

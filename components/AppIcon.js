@@ -39,6 +39,7 @@ export default function AppIcon({ name = "book", size = 24, className, style }) 
     progress: <><path d="M4 6h5m6 0h5M4 12h5m6 0h5M4 18h5m6 0h5" /><path stroke={accent} d="m10 5 2 2 3-4m-5 8 2 2 3-4m-5 8 2 2 3-4" /></>,
     home: <><path d="m3 10 9-8 9 8M5 9v12h14V9" /><path stroke={accent} d="M9 21v-8h6v8" /></>,
     account: <><circle cx="12" cy="7" r="4" /><path stroke={accent} d="M4 21v-2a8 8 0 0 1 16 0v2" /></>,
+    community: <><circle cx="9" cy="7" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2" /><path stroke={accent} d="M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 4 5v1" /><path d="M8 18h2" /></>,
     "arrow-right": <path d="M4 12h16m-6-6 6 6-6 6" />,
     "arrow-left": <path d="M20 12H4m6-6-6 6 6 6" />,
     moon: <path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z" />,

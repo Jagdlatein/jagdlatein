@@ -1,12 +1,7 @@
-"use client";
+import MiniCourse from "../../components/MiniCourse";
+import { getMiniCourseDetails } from "../../lib/mini-course-details";
 
-import { useState } from "react";
-import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
-import useCourseProgress from "../../hooks/useCourseProgress";
-import CourseProgressNotice from "../../components/CourseProgressNotice";
-
-export default function GreifvoegelKurs() {
-  const quiz = [
+const quiz = [
     {
       frage: "Welche Art ist ein typischer Greifvogel?",
       antworten: [
@@ -27,106 +22,19 @@ export default function GreifvoegelKurs() {
     }
   ];
 
-  const [i, setI] = useState(0);
-  const [sel, setSel] = useState(null);
-  const [punkte, setPunkte] = useState(0);
-  const [fertig, setFertig] = useState(false);
-
-  const answerGuard = useMiniQuizAnswer(i, fertig, quiz[i].antworten.length);
-  const courseProgress = useCourseProgress("greifvoegel", {
-    started: i > 0 || sel !== null || fertig,
-    answeredQuestions: fertig ? quiz.length : i + (sel !== null ? 1 : 0),
-    totalQuestions: quiz.length,
-    score: punkte,
-    completed: fertig || (i === quiz.length - 1 && sel !== null),
-  });
-
-  const frage = quiz[i];
-
-  function choose(a) {
-    if (!answerGuard.accept(a)) return;
-
-    setSel(a);
-    if (frage.antworten[a].richtig) setPunkte(p => p + 1);
-
-    answerGuard.schedule(() => {
-      if (i + 1 < quiz.length) {
-        setI(i + 1);
-        setSel(null);
-      } else setFertig(true);
-    }, 1000);
-  }
-
+export default function GreifvoegelKurs({ details }) {
   return (
-    <div style={{
-      maxWidth: 800,
-      margin: "40px auto",
-      background: "white",
-      padding: 24,
-      borderRadius: 12,
-      boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
-    }}>
-      <h1 style={{ fontSize: 32, fontWeight: "bold", marginBottom: 15 }}>
-        🦅 Greifvögel erkennen
-      </h1>
-
-      <p style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 25 }}>
-        Greifvögel sind Beutegreifer mit stark gekrümmtem Schnabel und 
-        kraftvollen Fängen. Zu den wichtigsten Arten zählen Bussard, Habicht 
-        und Falke. Eine sichere Ansprache erfolgt über Flugbild, Silhouette 
-        und typische Verhaltensweisen.
-      </p>
-
-      <h2 style={{ fontSize: 24, marginBottom: 10 }}>Quiz</h2>
-
-      {!fertig && (
-        <>
-          <p>Frage {i + 1} von {quiz.length}</p>
-          <p style={{ fontSize: 20, marginBottom: 16 }}>{frage.frage}</p>
-
-          {frage.antworten.map((a, idx) => {
-            let bg = "#eaeaea";
-            let color = "#000";
-
-            if (sel !== null) {
-              if (a.richtig) { bg = "green"; color = "white"; }
-              if (sel === idx && !a.richtig) { bg = "red"; color = "white"; }
-            }
-
-            return (
-              <button
-                key={idx}
-                onClick={() => choose(idx)}
-                disabled={sel !== null}
-                style={{
-                  width: "100%",
-                  padding: 12,
-                  fontSize: 17,
-                  marginBottom: 10,
-                  borderRadius: 8,
-                  border: "none",
-                  background: bg,
-                  color: color,
-                  cursor: sel === null ? "pointer" : "default",
-                  textAlign: "left"
-                }}
-              >
-                {a.text}
-              </button>
-            );
-          })}
-        </>
-      )}
-
-      {fertig && (
-        <>
-          <h3 style={{ fontSize: 24, marginTop: 20 }}>🎉 Sehr gut!</h3>
-          <p style={{ fontSize: 20 }}>
-            Du hast <strong>{punkte}</strong> von <strong>{quiz.length}</strong> Fragen richtig.
-          </p>
-        </>
-      )}
-      <CourseProgressNotice courseId="greifvoegel" {...courseProgress} />
-    </div>
+    <MiniCourse courseId="greifvoegel" questions={quiz} details={details}>
+      <p>
+              Greifvögel sind Beutegreifer mit stark gekrümmtem Schnabel und
+              kraftvollen Fängen. Zu den wichtigsten Arten zählen Bussard, Habicht
+              und Falke. Eine sichere Ansprache erfolgt über Flugbild, Silhouette
+              und typische Verhaltensweisen.
+            </p>
+    </MiniCourse>
   );
+}
+
+export function getStaticProps() {
+  return { props: { details: getMiniCourseDetails("greifvoegel") } };
 }

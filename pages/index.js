@@ -6,6 +6,7 @@ import Link from "next/link";
 import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
 import HomeNews from "../components/HomeNews";
+import { CommunityInvite } from "../components/Community";
 import { getJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { useEffect } from "react";
@@ -237,6 +238,7 @@ export default function Home({ loggedIn = false, initialNews }) {
           </Link>
           <p className={home.learningHint}>Gemeinsames Jagdwissen für Deutschland, Österreich und die Schweiz. Die Länderwahl findest du dort, wo sich die rechtlichen Regeln unterscheiden.</p>
 
+          <CommunityInvite />
           <HomeNews initialNews={initialNews} />
 
         </div>

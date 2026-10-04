@@ -15,6 +15,7 @@ export default function AccountLayout({ title, description, active, children }) 
             <Link href="/konto" aria-current={active === "account" ? "page" : undefined}>Mein Konto</Link>
             <Link href="/meine-kurse" aria-current={active === "courses" ? "page" : undefined}>Meine Kurse</Link>
             <Link href="/auswertungen" aria-current={active === "statistics" ? "page" : undefined}>Auswertungen</Link>
+            <Link href="/community">Community</Link>
             <Link href="/">Startseite</Link>
           </nav>
           <h1 className={styles.title}>{title}</h1>

@@ -16,7 +16,7 @@ export default function LearningCategoryMenu({ counts }) {
           const media = getLearningMedia({ category: category.title });
           return <article key={category.slug} className={styles.card}>
           <Link href={`/lernen/${category.slug}`} className={styles.cardLink}>
-            <Image className={styles.photo} src={media.src} alt="" width={media.width} height={media.height} style={{ objectFit: media.fit || "cover" }} sizes="(max-width: 580px) 90vw, (max-width: 900px) 45vw, 340px" loading="lazy" />
+            <Image className={styles.photo} src={media.src} alt="" width={media.width} height={media.height} style={{ objectFit: "cover", objectPosition: media.objectPosition || "center" }} sizes="(max-width: 580px) 90vw, (max-width: 900px) 45vw, 340px" loading="lazy" />
             <span className={styles.cardBody}>
             <span className={styles.icon}><AppIcon name={category.slug} size={30} /></span>
             <span className={styles.content}>

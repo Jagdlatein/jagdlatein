@@ -6,6 +6,7 @@ import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningTools from "./LearningTools";
 import LearningExperiences from "./LearningExperiences";
 import LearningSearch from "./LearningSearch";
+import { CommunityInvite } from "./Community";
 import { getLearningMedia, learningHero } from "../lib/learning-media";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
@@ -60,7 +61,8 @@ export default function LearningOverview({ data }) {
           <LearningCover media={categoryInfo ? getLearningMedia({ category: categoryInfo.title }) : learningHero} />
           {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
           <LearningExperiences category={categoryInfo?.slug} />
-          {!categoryInfo && <LearningTools />}
+          <LearningTools category={categoryInfo?.slug} />
+          <CommunityInvite category={categoryInfo?.slug} />
           <section className={styles.filterCard} aria-labelledby="learning-search-heading">
             <h2 id="learning-search-heading">Kurse und Lernpfade auswählen</h2>
             <div className={styles.filters}>

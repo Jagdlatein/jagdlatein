@@ -4,7 +4,7 @@ import AppIcon from "./AppIcon";
 import { getLearningCategory } from "../lib/learning-categories";
 import styles from "../styles/LearningExperience.module.css";
 
-export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], children }) {
+export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, children }) {
   const info = typeof category === "string" ? getLearningCategory(category) : category;
   const categoryHref = info?.href || (info?.slug ? `/lernen/${info.slug}` : null);
   return <>
@@ -23,7 +23,7 @@ export default function LearningToolLayout({ title, description, icon = "book", 
         {stats.length > 0 && <dl className={styles.stats}>{stats.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>}
       </header>
       <div className={styles.content}>{children}</div>
-      <footer className={styles.footer}><Link href={categoryHref || "/lernen"}><AppIcon name="book" size={20} />Weitere Themen entdecken<AppIcon name="arrow-right" size={18} /></Link><Link href="/lernen#lernen-suche"><AppIcon name="search" size={20} />Zur gemeinsamen Suche</Link></footer>
+      <footer className={styles.footer}><Link href={categoryHref || "/lernen"}><AppIcon name="book" size={20} />Weitere Themen entdecken<AppIcon name="arrow-right" size={18} /></Link><Link href="/lernen#lernen-suche"><AppIcon name="search" size={20} />Zur gemeinsamen Suche</Link>{!hideCommunity && <Link href={{ pathname: "/community", query: { ...(info?.slug ? { category: info.slug } : {}), thema: title.slice(0, 120) } }}><AppIcon name="community" size={20} />In der Community besprechen</Link>}</footer>
     </main>
   </>;
 }

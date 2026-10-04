@@ -58,7 +58,7 @@ function setup(relative, exportName = 'default', expose = '', props = {}) {
 
 test('New tools resolve from the learning hub and relevant categories without changing legal country selection', () => {
   const { learningExperiences } = load('lib/learning-experiences.js');
-  assert.equal(learningExperiences.length, 16);
+  assert.equal(learningExperiences.length, 17);
   assert.equal(new Set(learningExperiences.map(tool => tool.href)).size, learningExperiences.length);
   const Component = load('components/LearningExperiences.js').default;
   for (const tool of learningExperiences) {

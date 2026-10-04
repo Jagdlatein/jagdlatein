@@ -1,12 +1,7 @@
-"use client";
+import MiniCourse from "../../components/MiniCourse";
+import { getMiniCourseDetails } from "../../lib/mini-course-details";
 
-import { useState } from "react";
-import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
-import useCourseProgress from "../../hooks/useCourseProgress";
-import CourseProgressNotice from "../../components/CourseProgressNotice";
-
-export default function OrientierungKurs() {
-  const quiz = [
+const quiz = [
     {
       frage: "Woran kann man ohne Technik die Himmelsrichtung bestimmen?",
       antworten: [
@@ -27,84 +22,18 @@ export default function OrientierungKurs() {
     }
   ];
 
-  const [i, setI] = useState(0);
-  const [sel, setSel] = useState(null);
-  const [punkte, setPunkte] = useState(0);
-  const [fertig, setFertig] = useState(false);
-
-  const answerGuard = useMiniQuizAnswer(i, fertig, quiz[i].antworten.length);
-  const courseProgress = useCourseProgress("orientierung", {
-    started: i > 0 || sel !== null || fertig,
-    answeredQuestions: fertig ? quiz.length : i + (sel !== null ? 1 : 0),
-    totalQuestions: quiz.length,
-    score: punkte,
-    completed: fertig || (i === quiz.length - 1 && sel !== null),
-  });
-  const frage = quiz[i];
-
-  function choose(a) {
-    if (!answerGuard.accept(a)) return;
-    setSel(a);
-    if (frage.antworten[a].richtig) setPunkte(punkte + 1);
-
-    answerGuard.schedule(() => {
-      if (i + 1 < quiz.length) {
-        setI(i + 1);
-        setSel(null);
-      } else setFertig(true);
-    }, 1000);
-  }
-
+export default function OrientierungKurs({ details }) {
   return (
-    <div style={{
-      maxWidth: 800, margin: "40px auto",
-      background: "white", padding: 24,
-      borderRadius: 12, boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
-    }}>
-      <h1 style={{ fontSize: 32, marginBottom: 15 }}>🧭 Orientierung & Revierpraxis</h1>
-
-      <p style={{ fontSize: 18, marginBottom: 25 }}>
-        Revierpraxis umfasst Wegeplanung, Wildbeobachtung, Pflegearbeiten und 
-        Orientierung im Gelände. Wichtig ist stets, die eigene Position, 
-        Windrichtung und mögliche Gefahren zu kennen.
-      </p>
-
-      {!fertig ? (
-        <>
-          <p>Frage {i + 1} von {quiz.length}</p>
-          <p style={{ fontSize: 20 }}>{frage.frage}</p>
-
-          {frage.antworten.map((a, idx) => {
-            let bg = "#eaeaea";
-            if (sel !== null) {
-              if (a.richtig) bg = "green";
-              if (sel === idx && !a.richtig) bg = "red";
-            }
-
-            return (
-              <button
-                key={idx}
-                onClick={() => choose(idx)}
-                disabled={sel !== null}
-                style={{
-                  width: "100%", padding: 12, marginBottom: 10,
-                  borderRadius: 8, background: bg,
-                  color: sel !== null ? "white" : "black",
-                  textAlign: "left"
-                }}
-              >
-                {a.text}
-              </button>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          <h3 style={{ fontSize: 24, marginTop: 20 }}>🎉 Gut gemacht!</h3>
-          <p>Du hast {punkte} von {quiz.length} Fragen richtig.</p>
-        </>
-      )}
-      <CourseProgressNotice courseId="orientierung" {...courseProgress} />
-    </div>
+    <MiniCourse courseId="orientierung" questions={quiz} details={details}>
+      <p>
+              Revierpraxis umfasst Wegeplanung, Wildbeobachtung, Pflegearbeiten und
+              Orientierung im Gelände. Wichtig ist stets, die eigene Position,
+              Windrichtung und mögliche Gefahren zu kennen.
+            </p>
+    </MiniCourse>
   );
+}
+
+export function getStaticProps() {
+  return { props: { details: getMiniCourseDetails("orientierung") } };
 }

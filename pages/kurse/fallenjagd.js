@@ -1,10 +1,7 @@
-import { useState } from "react";
-import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
-import useCourseProgress from "../../hooks/useCourseProgress";
-import CourseProgressNotice from "../../components/CourseProgressNotice";
+import MiniCourse from "../../components/MiniCourse";
+import { getMiniCourseDetails } from "../../lib/mini-course-details";
 
-export default function FallenjagdBasicKurs() {
-  const fallenjagdQuiz = [
+const fallenjagdQuiz = [
     {
       frage: "Welche Falle ist eine klassische Lebendfangfalle?",
       antworten: [
@@ -45,139 +42,35 @@ export default function FallenjagdBasicKurs() {
     }
   ];
 
-  const [aktuelleFrage, setAktuelleFrage] = useState(0);
-  const [auswahl, setAuswahl] = useState(null);
-  const [punkte, setPunkte] = useState(0);
-  const [fertig, setFertig] = useState(false);
-
-  const answerGuard = useMiniQuizAnswer(aktuelleFrage, fertig, fallenjagdQuiz[aktuelleFrage].antworten.length);
-  const courseProgress = useCourseProgress("fallenjagd", {
-    started: aktuelleFrage > 0 || auswahl !== null || fertig,
-    answeredQuestions: fertig ? fallenjagdQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
-    totalQuestions: fallenjagdQuiz.length,
-    score: punkte,
-    completed: fertig || (aktuelleFrage === fallenjagdQuiz.length - 1 && auswahl !== null),
-  });
-
-  const frage = fallenjagdQuiz[aktuelleFrage];
-
-  function handleAntwort(index) {
-    if (!answerGuard.accept(index)) return;
-
-    setAuswahl(index);
-
-    if (frage.antworten[index].richtig) {
-      setPunkte((p) => p + 1);
-    }
-
-    answerGuard.schedule(() => {
-      const next = aktuelleFrage + 1;
-      if (next < fallenjagdQuiz.length) {
-        setAktuelleFrage(next);
-        setAuswahl(null);
-      } else {
-        setFertig(true);
-      }
-    }, 1200);
-  }
-
+export default function FallenjagdBasicKurs({ details }) {
   return (
-    <div
-      style={{
-        maxWidth: 800,
-        margin: "40px auto",
-        background: "white",
-        padding: 24,
-        borderRadius: 12,
-        boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
-      }}
-    >
-      <h1 style={{ fontSize: 32, fontWeight: "bold", marginBottom: 15 }}>
-        🪤 Fallenjagd Basics
-      </h1>
+    <MiniCourse courseId="fallenjagd" questions={fallenjagdQuiz} details={details}>
+      <p>
+              Grundlagen der waidgerechten und tierschutzgerechten Fallenjagd.
+              Kompakt erklärt für Ausbildung und Praxis.
+            </p>
 
-      <p style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 25 }}>
-        Grundlagen der waidgerechten und tierschutzgerechten Fallenjagd.  
-        Kompakt erklärt für Ausbildung und Praxis.
-      </p>
+      <h2>Fallenjagd</h2>
 
-      <h2 style={{ fontSize: 24, marginBottom: 10 }}>Fallenjagd</h2>
-
-      <p style={{ fontSize: 17, lineHeight: 1.6 }}>
-        Die Fallenjagd dient der <strong>Hege</strong>, der <strong>Prädatorenregulierung</strong>
-        und dem <strong>Artenschutz</strong>. Dabei steht der Tierschutz im Vordergrund.
-        <br /><br />
-        Häufig eingesetzt werden <strong>Kastenfallen</strong>, die Wild lebend und
-        unverletzt fangen. Schlagfallen sind nur für bestimmte Arten und unter
-        strengen gesetzlichen Vorgaben erlaubt.
-        <br /><br />
-        Fallen müssen <strong>mindestens einmal täglich</strong> kontrolliert werden.
-        Wichtige Faktoren sind Standortwahl, Tarnung, Lockwirkung und eine sichere
-        Entnahme gefangenen Wildes.
-      </p>
-
-      <hr style={{ margin: "30px 0" }} />
-
-      <h2 style={{ fontSize: 26, marginBottom: 12 }}>Quiz</h2>
-
-      {!fertig && (
-        <>
-          <p style={{ fontSize: 18, marginBottom: 12 }}>
-            Frage {aktuelleFrage + 1} von {fallenjagdQuiz.length}
-          </p>
-
-          <p style={{ fontSize: 20, marginBottom: 16 }}>{frage.frage}</p>
-
-          {frage.antworten.map((a, i) => {
-            let bg = "#eaeaea";
-            let color = "#000";
-
-            if (auswahl !== null) {
-              if (a.richtig) {
-                bg = "green";
-                color = "white";
-              }
-              if (auswahl === i && !a.richtig) {
-                bg = "red";
-                color = "white";
-              }
-            }
-
-            return (
-              <button
-                key={i}
-                onClick={() => handleAntwort(i)}
-                disabled={auswahl !== null}
-                style={{
-                  width: "100%",
-                  padding: 12,
-                  fontSize: 17,
-                  marginBottom: 10,
-                  borderRadius: 8,
-                  border: "none",
-                  background: bg,
-                  color: color,
-                  cursor: auswahl === null ? "pointer" : "default",
-                  textAlign: "left",
-                }}
-              >
-                {a.text}
-              </button>
-            );
-          })}
-        </>
-      )}
-
-      {fertig && (
-        <>
-          <h3 style={{ fontSize: 24, marginTop: 20 }}>🎉 Fertig!</h3>
-          <p style={{ fontSize: 20 }}>
-            Du hast <strong>{punkte}</strong> von <strong>{fallenjagdQuiz.length}</strong> Fragen
-            richtig.
-          </p>
-        </>
-      )}
-      <CourseProgressNotice courseId="fallenjagd" {...courseProgress} />
-    </div>
+      <p>
+              Die Fallenjagd dient der <strong>Hege</strong>, der <strong>Prädatorenregulierung</strong>
+              und dem <strong>Artenschutz</strong>. Dabei steht der Tierschutz im Vordergrund.
+              <br /><br />
+              Häufig eingesetzt werden <strong>Kastenfallen</strong>, die Wild lebend und
+              unverletzt fangen. Schlagfallen sind nur für bestimmte Arten und unter
+              strengen gesetzlichen Vorgaben erlaubt.
+              <br /><br />
+              Kontrollpflichten, zulässige Bauarten und erforderliche Sachkundenachweise
+              richten sich nach den geltenden örtlichen Vorschriften. Je nach Fallentyp
+              und zugelassenem Fangmelder können unterschiedliche Anforderungen gelten.
+              Wichtige Faktoren sind Standortwahl, Tarnung, Lockwirkung und eine sichere
+              Entnahme gefangenen Wildes.
+            </p>
+      <p><a href="https://www.gesetze-bayern.de/Content/Document/BayAVJG-12a" target="_blank" rel="noopener noreferrer">Amtliches Beispiel: Bayern, AVBayJG § 12a – Lebendfang und Kontrollpflichten</a></p>
+    </MiniCourse>
   );
+}
+
+export function getStaticProps() {
+  return { props: { details: getMiniCourseDetails("fallenjagd") } };
 }

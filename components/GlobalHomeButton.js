@@ -76,8 +76,10 @@ export default function GlobalHomeButton() {
         <AppIcon name="arrow-left" size={18} /> Zurück
       </button>
       <a href="/lernen" className={`${styles.button} ${styles.learning}`} aria-label="Zum Lernbereich">
-        <AppIcon name="book" size={18} /> Lernbereich
+        <AppIcon name="book" size={18} /> Lernen
       </a>
+      <a href="/lernen#lernen-suche" className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</a>
+      <a href="/community" className={styles.button} aria-label="Zur Community" aria-current={pathname.startsWith("/community") ? "page" : undefined}><AppIcon name="community" size={18} /> Community</a>
       <a
         href="/"
         aria-label="Zur Startseite"
