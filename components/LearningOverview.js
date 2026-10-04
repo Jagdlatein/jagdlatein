@@ -1,10 +1,11 @@
-import Head from "next/head";
 import Link from "next/link";
+import LearningToolLayout from "./LearningToolLayout";
 import { useState } from "react";
 import { getLearningCategoryByTitle, learningCategories } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningTools from "./LearningTools";
 import LearningExperiences from "./LearningExperiences";
+import LearningSearch from "./LearningSearch";
 import { getLearningMedia, learningHero } from "../lib/learning-media";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
@@ -46,37 +47,22 @@ export default function LearningOverview({ data }) {
   }
 
   return (
-    <>
-      <Head>
-        <title>{categoryInfo ? `${categoryInfo.title} – Lernen mit Jagdlatein` : "Lernbereich – Jagdlatein"}</title>
-        <meta name="description" content="Lerne Jagdwissen für Deutschland, Österreich und die Schweiz mit Lektionen, Wissenschecks und persönlichen Kursabschlüssen." />
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.wrap}>
-          <nav className={styles.nav} aria-label="Lernmenü">
+    <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Vertiefe dein Wissen mit ausführlichen Lektionen, praktischen Denkaufgaben und Wissenschecks. Entdecke die Kategorien oder suche direkt nach deinem Thema. Beim Jagdrecht findest du die passenden Inhalte für dein Land."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} stats={[{ value: learningCounts.modules, label: "Lerneinheiten" }, { value: learningCounts.lessons, label: "Lektionen" }, { value: learningCounts.questions, label: "Übungsfragen" }]}>
+          <nav className={styles.nav} aria-label="Kursübersicht">
             {categoryInfo && <Link href="/lernen">Alle Kategorien</Link>}
             <Link href="/kurse">Alle Kurse</Link>
             <Link href="/meine-kurse">Meine Kurse</Link>
             <Link href="/auswertungen">Auswertungen</Link>
             <Link href="/">Startseite</Link>
           </nav>
-          <header className={styles.header}>
-            <p className={styles.eyebrow}>Schritt für Schritt zum Jagdwissen</p>
-            <h1>{categoryInfo?.title || "Dein Lernbereich"}</h1>
-            <p className={styles.intro}>{categoryInfo?.description || "Vertiefe dein Wissen mit ausführlichen Lektionen, praktischen Denkaufgaben und Wissenschecks. Wähle einzelne Themen oder folge einem Lernpfad. Beim Jagdrecht findest du die passenden Inhalte für dein Land."}</p>
-            {categoryInfo && <ul className={styles.focusTopics}>{categoryInfo.focus.map(topic => <li key={topic}>{topic}</li>)}</ul>}
-            <dl className={styles.counts}>
-              <div><dt>Lerneinheiten</dt><dd>{learningCounts.modules}</dd></div>
-              <div><dt>Lektionen</dt><dd>{learningCounts.lessons}</dd></div>
-              <div><dt>Übungsfragen</dt><dd>{learningCounts.questions}</dd></div>
-            </dl>
-          </header>
+          {categoryInfo && <ul className={styles.focusTopics}>{categoryInfo.focus.map(topic => <li key={topic}>{topic}</li>)}</ul>}
+          <LearningSearch category={categoryInfo?.slug || "all"} />
           <LearningCover media={categoryInfo ? getLearningMedia({ category: categoryInfo.title }) : learningHero} />
           {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
           <LearningExperiences category={categoryInfo?.slug} />
           {!categoryInfo && <LearningTools />}
           <section className={styles.filterCard} aria-labelledby="learning-search-heading">
-            <h2 id="learning-search-heading">Finde dein nächstes Lernthema</h2>
+            <h2 id="learning-search-heading">Kurse und Lernpfade auswählen</h2>
             <div className={styles.filters}>
               <div className={styles.searchField}>
                 <label htmlFor="learning-search">Thema suchen</label>
@@ -143,8 +129,6 @@ export default function LearningOverview({ data }) {
               </section>
             </>
           )}
-        </div>
-      </main>
-    </>
+    </LearningToolLayout>
   );
 }

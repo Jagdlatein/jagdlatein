@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
+import LearningToolLayout from "./LearningToolLayout";
 import { animalSounds, animalSoundById, shuffledSoundIds, soundFeedback } from "../lib/animal-sounds";
+import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/AnimalSounds.module.css";
 
 function SoundCredit({ sound, full = true }) {
@@ -23,7 +24,7 @@ export function SoundPlayer({ sound, label, onPlay, reveal = true }) {
     <p className={styles.duration}>{Math.round(sound.duration)} Sekunden · Originalaufnahme · Start über die Wiedergabetaste</p>
     {failed && <div className={styles.error} role="alert">
       <p>Die Aufnahme konnte nicht abgespielt werden. Prüfe die Verbindung und versuche es erneut.</p>
-      <button type="button" className={styles.secondary} onClick={() => { setFailed(false); setAttempt(value => value + 1); }}>Noch einmal laden</button>
+      <button type="button" className={experienceStyles.secondary} onClick={() => { setFailed(false); setAttempt(value => value + 1); }}>Noch einmal laden</button>
       <a href={sound.sourceUrl} target="_blank" rel="noreferrer">Bei der Originalquelle abspielen{!reveal && " (verrät die Art)"}</a>
     </div>}
     <SoundCredit sound={sound} full={reveal} />
@@ -98,17 +99,8 @@ export default function AnimalSounds() {
 
   function openLibrary() { pauseAudio(); quizGuard.current.generation += 1; setMode("library"); }
 
-  return <>
-    <Head><title>Tierstimmen lernen – Jagdlatein</title><meta name="description" content="Acht echte Tierstimmen entdecken: mit Hörmerkmalen, Originalaufnahmen und einem Quiz mit Erklärungen zu jeder Antwort." /></Head>
-    <main className={styles.page}>
-      <Link href="/lernen" className={styles.back}><AppIcon name="arrow-left" size={20} />Zum Lernbereich</Link>
-      <header className={styles.header}>
-        <span className={styles.badge}><AppIcon name="sound" size={22} />Mit echten Tierstimmen lernen</span>
-        <h1>Tierstimmen entdecken</h1>
-        <p>Höre genau hin: acht Originalaufnahmen aus der Natur. Entdecke typische Hörmerkmale und prüfe anschließend, welche Stimmen du wiedererkennst.</p>
-        <div className={styles.facts}><span>8 Originalaufnahmen</span><span>Erklärung bei jeder Antwort</span><span>Ohne Zeitdruck</span></div>
-      </header>
-      <div className={styles.modeButtons} aria-label="Lernmodus">
+  return <LearningToolLayout title="Tierstimmen entdecken" description="Höre echte Originalaufnahmen aus der Natur, entdecke typische Hörmerkmale und übe im erklärten Hörquiz." icon="sound" category="wildkunde" stats={[{ value: animalSounds.length, label: "Originalaufnahmen" }, { value: "immer", label: "erklärte Antworten" }, { value: "ohne", label: "Zeitdruck" }]}>
+      <div className={experienceStyles.modeButtons} aria-label="Lernmodus">
         <button type="button" aria-pressed={mode === "library"} onClick={openLibrary}>Stimmen entdecken</button>
         <button type="button" aria-pressed={mode === "quiz"} onClick={() => { if (mode !== "quiz") startQuiz(); }}>Hörquiz starten</button>
       </div>
@@ -129,14 +121,14 @@ export default function AnimalSounds() {
           <a className={styles.sourceLink} href={item.factsUrl} target="_blank" rel="noreferrer">{item.factsTitle}</a>
         </article>)}</div>
         {filtered.length === 0 && <p className={styles.empty}>Keine passende Stimme gefunden. Suche mit einem anderen Begriff oder <button type="button" onClick={() => setSearch("")}>zeige alle Stimmen</button>.</p>}
-        <div className={styles.startPanel}><h2>Bereit, nur mit den Ohren zu bestimmen?</h2><p>Die Reihenfolge wird bei jedem Start neu gemischt. Du kannst jede Aufnahme mehrmals hören.</p><button type="button" className={styles.primary} onClick={() => startQuiz()}>Hörquiz mit 8 Stimmen starten<AppIcon name="arrow-right" size={20} /></button></div>
+        <div className={styles.startPanel}><h2>Bereit, nur mit den Ohren zu bestimmen?</h2><p>Die Reihenfolge wird bei jedem Start neu gemischt. Du kannst jede Aufnahme mehrmals hören.</p><button type="button" className={experienceStyles.primary} onClick={() => startQuiz()}>Hörquiz mit 8 Stimmen starten<AppIcon name="arrow-right" size={20} /></button></div>
       </> : finished ? <section className={styles.result} aria-labelledby="sound-result">
         <span className={styles.resultIcon}><AppIcon name="sound" size={38} /></span>
         <h2 id="sound-result">Deine Hörrunde ist abgeschlossen</h2>
         <p className={styles.score}>{correct} von {order.length} Stimmen erkannt</p>
         <p>{mistakes.length ? "Vergleiche die Hörmerkmale noch einmal. Bei der Wiederholung kommen nur die Stimmen vor, die du noch nicht erkannt oder übersprungen hast." : "Du hast alle Stimmen in dieser Runde erkannt. Eine neue Runde mischt die Reihenfolge erneut."}</p>
         <ul className={styles.resultList}>{results.map(result => <li key={result.id}><strong>{animalSoundById[result.id].name}</strong><span>{result.correct ? "Erkannt" : result.selected ? "Noch einmal hören" : "Übersprungen"}</span></li>)}</ul>
-        <div className={styles.actions}>{mistakes.length > 0 && <button type="button" className={styles.primary} onClick={() => startQuiz(mistakes)}>Unsichere Stimmen wiederholen</button>}<button type="button" className={styles.secondary} onClick={() => startQuiz()}>Neue Runde mit allen Stimmen</button><button type="button" className={styles.secondary} onClick={openLibrary}>Zur Stimmenbibliothek</button></div>
+        <div className={styles.actions}>{mistakes.length > 0 && <button type="button" className={experienceStyles.primary} onClick={() => startQuiz(mistakes)}>Unsichere Stimmen wiederholen</button>}<button type="button" className={experienceStyles.secondary} onClick={() => startQuiz()}>Neue Runde mit allen Stimmen</button><button type="button" className={experienceStyles.secondary} onClick={openLibrary}>Zur Stimmenbibliothek</button></div>
         <p className={styles.sessionNote}>Das Ergebnis gilt für diese Übungsrunde und wird nicht als Kursabschluss gespeichert.</p>
       </section> : <section className={styles.quiz} aria-labelledby="sound-question">
         <div className={styles.quizTop}><span>Aufnahme {index + 1} von {order.length}</span><span>{correct} richtig erkannt</span></div>
@@ -150,10 +142,9 @@ export default function AnimalSounds() {
           <h3>{answer === sound.id ? "Richtig erkannt" : answer === "skipped" ? "Gemeinsam nachhören" : `Es ist ${sound.name}`}</h3>
           <p>{soundFeedback(sound, answer === "skipped" ? null : answer)}</p><p><strong>Beachte:</strong> {sound.confusion}</p>
           <div className={styles.feedbackLinks}><a href={sound.factsUrl} target="_blank" rel="noreferrer">Fachquelle zur Art</a><Link href={sound.lessonUrl}>Passende Lerneinheit</Link></div>
-          <button type="button" className={styles.primary} onClick={nextSound}>{index + 1 === order.length ? "Ergebnis ansehen" : "Nächste Aufnahme"}<AppIcon name="arrow-right" size={20} /></button>
+          <button type="button" className={experienceStyles.primary} onClick={nextSound}>{index + 1 === order.length ? "Ergebnis ansehen" : "Nächste Aufnahme"}<AppIcon name="arrow-right" size={20} /></button>
         </div>}
       </section>}
       <aside className={styles.more}><AppIcon name="book" size={24} /><div><strong>Hören mit Beobachten verbinden</strong><p>Vertiefe Körpermerkmale, Lebensweise und Verhalten in Wildkunde.</p><Link href="/lernen/wildkunde">Zur Kategorie Wildkunde<AppIcon name="arrow-right" size={18} /></Link></div></aside>
-    </main>
-  </>;
+  </LearningToolLayout>;
 }

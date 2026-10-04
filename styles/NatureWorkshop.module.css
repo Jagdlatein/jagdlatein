@@ -1,0 +1,28 @@
+.landscape { width: 100%; height: auto; display: block; }
+.landscape text { font: 13px system-ui, sans-serif; fill: #423727; }
+.feature, .species { padding: 18px; border: 1px solid #e4d7b6; border-radius: 16px; background: #fffdf8; min-width: 0; }
+.feature label { display:flex; gap:10px; align-items:center; cursor:pointer; min-height:44px; }
+.feature input { width:20px; height:20px; accent-color:#94712a; flex-shrink:0; }
+.feature p, .species p { line-height:1.7; }
+.species h3 { display:flex; align-items:center; gap:10px; }
+.species li { margin-bottom:10px; line-height:1.65; }
+.photo { display:block; width:100%; max-height:500px; object-fit:contain; height:auto; background:#f8f5e9; border-radius:14px; }
+.partPhoto { width:100%; max-height:340px; object-fit:contain; height:auto; background:#f8f5e9; border-radius:14px; }
+.credit { font-size:12px; line-height:1.6; margin-top:10px; overflow-wrap:anywhere; }
+.credit a { margin-left:6px; }
+.catalog { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+.catalog button { display:flex; flex-direction:column; gap:7px; text-align:left; min-width:0; border:1px solid #ddcda7; border-radius:14px; background:#fffdf8; color:#48391e; padding:16px; cursor:pointer; }
+.catalog button[aria-pressed="true"] { background:#f3e3b7; border-color:#a7802a; }
+.catalog button span { line-height:1.5; font-size:14px; }
+.catalog button small { color:#75674d; }
+.seasonTabs { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.seasonTabs button { flex:1 1 120px; padding:12px; border:1px solid #d9c69c; border-radius:12px; background:#fff; color:#4e3d1e; font:inherit; cursor:pointer; }
+.seasonTabs button[aria-pressed="true"] { background:#f0dc9f; border-color:#9d792b; font-weight:700; }
+.schema { display:block; width:100%; max-width:550px; margin:auto; height:auto; background:#f8f2e3; border-radius:16px; }
+.schema text { fill:#55442b; font:15px system-ui,sans-serif; }
+.checklist label { display:flex; gap:12px; align-items:flex-start; margin:12px 0; line-height:1.6; }
+.checklist input { width:20px; height:20px; accent-color:#94712a; flex-shrink:0; }
+.feature a, .species a, .credit a { color:#7c6025; text-decoration:underline; text-underline-offset:3px; }
+.feature a:hover, .species a:hover, .credit a:hover { color:#473515; }
+.catalog button:focus-visible, .seasonTabs button:focus-visible, .feature input:focus-visible { outline:3px solid #99752a; outline-offset:3px; }
+@media(max-width:500px){.feature,.species{padding:15px}.catalog{grid-template-columns:minmax(0,1fr)}.landscape text{font-size:15px}}

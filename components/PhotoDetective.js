@@ -2,8 +2,10 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AppIcon from "./AppIcon";
+import LearningToolLayout from "./LearningToolLayout";
 import { LearningPhotoCredit } from "./LearningMedia";
 import { photoDetectiveRounds, getPhotoDetectiveSummary } from "../lib/photo-detective";
+import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/PhotoDetective.module.css";
 
 function PhotoEvidence({ round, revealed, activeTrait, onTrait }) {
@@ -81,16 +83,14 @@ export default function PhotoDetective() {
   }
   function changeExplore(id) { setExploreId(id); setActiveTrait(0); }
 
-  return <main className={styles.main}>
-    <nav className={styles.nav} aria-label="Lernmenü"><Link href="/lernen"><AppIcon name="arrow-left" size={18} />Lernbereich</Link><Link href="/lernen/wildkunde">Wildkunde</Link></nav>
-    <header className={styles.header}><p className={styles.eyebrow}>Mit echten Fotos lernen</p><h1><AppIcon name="camera" size={34} />Fotodetektiv</h1><p>Erkenne Wildarten an sichtbaren Merkmalen. Jede Antwort wird erklärt; die Zahlen im Foto zeigen dir anschließend, worauf es ankommt.</p></header>
-    <div className={styles.modeButtons} role="group" aria-label="Lernweise wählen"><button type="button" aria-pressed={mode === "quiz"} onClick={() => setMode("quiz")}><AppIcon name="target" size={20} />Wissen testen</button><button type="button" aria-pressed={mode === "explore"} onClick={() => { setMode("explore"); setActiveTrait(0); }}><AppIcon name="eye" size={20} />Merkmale entdecken</button></div>
+  return <LearningToolLayout title="Fotodetektiv" description="Erkenne Wildarten an echten Fotos und entdecke die sichtbaren Merkmale. Jede Antwort wird erklärt." icon="camera" category="wildkunde" stats={[{ value: photoDetectiveRounds.length, label: "Wildarten" }, { value: photoDetectiveRounds.reduce((count, item) => count + item.traits.length, 0), label: "Bildmerkmale" }, { value: "echt", label: "fotografiert" }]}>
+    <div className={experienceStyles.modeButtons} role="group" aria-label="Lernweise wählen"><button type="button" aria-pressed={mode === "quiz"} onClick={() => setMode("quiz")}><AppIcon name="target" size={20} />Wissen testen</button><button type="button" aria-pressed={mode === "explore"} onClick={() => { setMode("explore"); setActiveTrait(0); }}><AppIcon name="eye" size={20} />Merkmale entdecken</button></div>
 
     {mode === "quiz" && finished ? <section className={styles.card} aria-labelledby="photo-result-heading">
       <p className={styles.eyebrow}>{practice ? "Deine Wiederholung" : "Deine Fotorunde"}</p><h2 id="photo-result-heading">{summary.correct} von {rounds.length} Arten richtig erkannt</h2>
       <div className={styles.resultStats}><span><strong>{summary.independent}</strong> ohne Merkmals-Hilfe</span><span><strong>{summary.assisted}</strong> mit Merkmals-Hilfe</span><span><strong>{rounds.length - summary.correct}</strong> noch zu üben</span></div>
       <p>Die Auswertung gilt für diese Fotorunde. Wiederhole unsichere Arten gezielt und versuche es beim nächsten Mal ohne Merkmals-Hilfe.</p>
-      <div className={styles.actions}><button type="button" className={styles.primary} onClick={() => start()}>Alle Fotos neu üben</button>{summary.retryIds.length > 0 && <button type="button" className={styles.secondary} onClick={() => start(summary.retryIds, true)}>Fehler und Hilfefragen wiederholen ({summary.retryIds.length})</button>}</div>
+      <div className={styles.actions}><button type="button" className={experienceStyles.primary} onClick={() => start()}>Alle Fotos neu üben</button>{summary.retryIds.length > 0 && <button type="button" className={experienceStyles.secondary} onClick={() => start(summary.retryIds, true)}>Fehler und Hilfefragen wiederholen ({summary.retryIds.length})</button>}</div>
       <h3>Deine Antworten nachlesen</h3>
       <div className={styles.reviewList}>{rounds.map(item => { const result = answers[item.id]; return <details key={item.id}><summary>{item.name} · {result.choice === item.name ? result.assisted ? "richtig mit Hilfe" : "richtig" : `deine Antwort: ${result.choice}`}</summary><p>{item.explanation}</p>{result.choice !== item.name && <p>{item.wrong[result.choice]}</p>}<Link href={`/kurse/${item.course}`}>Passenden Kurs öffnen</Link></details>; })}</div>
     </section> : <section className={styles.card} aria-labelledby="photo-question-heading">
@@ -101,8 +101,8 @@ export default function PhotoDetective() {
       {mode === "explore" && <p className={styles.explanation}>{round.explanation}</p>}
       {revealed && <EvidenceDetails round={round} activeTrait={activeTrait} onTrait={setActiveTrait} />}
       {(mode === "explore" || answer) && <FurtherLearning round={round} />}
-      {mode === "quiz" && answer && <div className={styles.actions}><button type="button" className={styles.primary} onClick={next}>{index + 1 === rounds.length ? "Auswertung ansehen" : "Nächstes Foto"}<AppIcon name="arrow-right" size={18} /></button></div>}
+      {mode === "quiz" && answer && <div className={styles.actions}><button type="button" className={experienceStyles.primary} onClick={next}>{index + 1 === rounds.length ? "Auswertung ansehen" : "Nächstes Foto"}<AppIcon name="arrow-right" size={18} /></button></div>}
     </section>}
     <aside className={styles.observation}><AppIcon name="binoculars" size={24} /><p><strong>Genau hinsehen, Unsicherheit erkennen.</strong> Vergleiche mehrere Merkmale. Ein Foto liefert nur einen Ausschnitt; die Artbestimmung ersetzt keine vollständige Ansprache im Revier.</p></aside>
-  </main>;
+  </LearningToolLayout>;
 }

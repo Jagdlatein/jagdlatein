@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
+import LearningToolLayout from "./LearningToolLayout";
 import { useRef, useState } from "react";
 import CourseProgressNotice from "./CourseProgressNotice";
 import useCourseProgress from "../hooks/useCourseProgress";
@@ -74,21 +74,11 @@ function LearningContent({ module }) {
   }
 
   return (
-    <>
-      <Head><title>{`${module.title} – Lernen mit Jagdlatein`}</title></Head>
-      <main className={styles.main}>
-        <div className={styles.wrap}>
-          <nav className={styles.topNav} aria-label="Lernmenü">
-            <Link href="/lernen">Lernbereich</Link>
-            {category && <Link href={`/lernen/${category.slug}`}>{category.title}</Link>}
+    <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} stats={[{ value: module.lessons.length, label: "Lektionen" }, { value: module.questions.length, label: "Fragen" }, { value: module.minutes, label: "Minuten" }, { value: module.level, label: "Lernstufe" }]}>
+          <nav className={styles.topNav} aria-label="Kursübersicht">
             <Link href="/kurse">Alle Kurse</Link>
             <Link href="/meine-kurse">Meine Kurse</Link>
           </nav>
-          <header className={styles.header}>
-            <p className={styles.eyebrow}>{module.category} · {module.level} · etwa {module.minutes} Minuten</p>
-            <h1>{module.title}</h1>
-            <p className={styles.description}>{module.description}</p>
-          </header>
           <LearningCover media={media} />
           <section className={styles.card} aria-labelledby="learning-objectives">
             <h2 id="learning-objectives">Das lernst du</h2>
@@ -198,8 +188,6 @@ function LearningContent({ module }) {
             <p className={styles.muted}>Eigene Lerntexte und Übungsfragen zur Vertiefung deiner Ausbildung. Die verlinkten Quellen dienen zum Nachschlagen; verbindliche örtliche Vorgaben prüfst du vor der praktischen Anwendung.</p>
             <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a></li>)}</ul>
           </section>
-        </div>
-      </main>
-    </>
+    </LearningToolLayout>
   );
 }

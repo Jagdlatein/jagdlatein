@@ -5,6 +5,7 @@ import { readRequestAccountSession } from "../lib/account-access";
 import Link from "next/link";
 import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
+import { clearOfflineLearning } from "../lib/offline-learning";
 import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
@@ -112,6 +113,7 @@ export default function Home({ loggedIn = false }) {
     await fetch("/api/auth/session", {
       method: "DELETE",
     });
+    try { await clearOfflineLearning(); } catch { window.alert("Abgemeldet. Die lokalen Downloads konnten nicht vollständig entfernt werden. Bitte im Lernrucksack entfernen oder die Browserdaten dieser App löschen."); }
 
     window.location.href = "/";
   }

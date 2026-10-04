@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
+import { clearOfflineLearning } from "../lib/offline-learning";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,6 +39,7 @@ export default function Header() {
   // Logout über die API löscht die HttpOnly-Cookies.
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
+    try { await clearOfflineLearning(); } catch { window.alert("Abgemeldet. Die lokalen Downloads konnten nicht vollständig entfernt werden. Bitte im Lernrucksack entfernen oder die Browserdaten dieser App löschen."); }
     window.location.href = "/";
   }
 

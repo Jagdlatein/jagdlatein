@@ -57,14 +57,15 @@ function setup(relative, exportName = 'default', expose = '', props = {}) {
 
 test('New tools resolve from the learning hub and relevant categories without changing legal country selection', () => {
   const { learningExperiences } = load('lib/learning-experiences.js');
-  assert.equal(learningExperiences.length, 3);
+  assert.equal(learningExperiences.length, 13);
+  assert.equal(new Set(learningExperiences.map(tool => tool.href)).size, 13);
   const Component = load('components/LearningExperiences.js').default;
   for (const tool of learningExperiences) {
     assert.ok(fs.existsSync(path.join(root, 'pages', tool.href + '.js')));
     const html = renderToStaticMarkup(React.createElement(Component, {})); assert.ok(html.includes(tool.href));
     for (const category of tool.categories) assert.ok(renderToStaticMarkup(React.createElement(Component, { category })).includes(tool.href));
   }
-  assert.equal(renderToStaticMarkup(React.createElement(Component, { category: 'jagdrecht' })), '');
+  assert.ok(!renderToStaticMarkup(React.createElement(Component, { category: 'jagdrecht' })).includes('country-select'));
 });
 
 test('Original sound records have credits, playable local MP3 headers, and source/lesson links', () => {

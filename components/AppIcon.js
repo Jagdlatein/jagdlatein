@@ -49,6 +49,10 @@ export default function AppIcon({ name = "book", size = 24, className, style }) 
     alert: <><path d="m12 3 10 18H2Z" /><path stroke={accent} d="M12 9v5m0 3h.01" /></>,
     camera: <><path d="M3 7h4l2-3h6l2 3h4v14H3Z" /><circle cx="12" cy="13" r="4" stroke={accent} /><path d="M18 10h.01" /></>,
     sound: <><path d="m3 10 5 0 5-4v12l-5-4H3Z" /><path stroke={accent} d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></>,
+    search: <><circle cx="10" cy="10" r="6" /><path stroke={accent} d="m15 15 6 6" /></>,
+    download: <><path d="M4 16v5h16v-5" /><path stroke={accent} d="M12 3v12m-5-5 5 5 5-5" /></>,
+    video: <><rect x="2" y="5" width="14" height="14" rx="2" /><path stroke={accent} d="m16 10 6-4v12l-6-4Z" /></>,
+    cube: <><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 10v10M3 7l9 5 9-5" /><path stroke={accent} d="m7 4 9 5v5" /></>,
   };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" className={className} style={style}>{shapes[icon] || shapes.book}</svg>;
 }

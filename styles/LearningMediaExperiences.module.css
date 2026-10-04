@@ -1,0 +1,10 @@
+.modelViewer { display: block; width: 100%; height: clamp(300px, 48vw, 480px); background: #f4eee0; border: 1px solid #d6c49a; border-radius: 16px; }
+.video { width: 100%; display: block; border: 1px solid #d6c49a; border-radius: 14px; background: #29271e; max-height: 560px; }
+.caseList { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.caseList button { text-align: left; }
+.transcript { line-height: 1.7; margin-top: 12px; }
+.transcript summary { min-height: 44px; display: flex; align-items: center; font-weight: 700; cursor: pointer; }
+.evidence { list-style: none; margin: 0; padding: 0; }
+.evidence li { background: #f5edd9; border-left: 3px solid #ac8740; border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 12px 0; }
+.evidence strong { display: block; color: #765820; margin-bottom: 5px; }
+@media (max-width: 620px) { .modelViewer { height: 330px; } .caseList { flex-direction: column; } .caseList button { width: 100%; } }

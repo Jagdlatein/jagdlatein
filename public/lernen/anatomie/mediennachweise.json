@@ -1,0 +1,50 @@
+[
+  {
+    "file": "/lernen/anatomie/weisswedelhirsch-unterkiefer.glb",
+    "originalFilename": "USNM_PAL_Deer_mandible-100k-2048_std.glb",
+    "source": "https://3d-api.si.edu/content/document/3d_package:fcc69841-d8be-4103-be0f-143e374c9ce6/resources/USNM_PAL_Deer_mandible-100k-2048_std.glb",
+    "record": "edanmdm:nmnheducation_15006160",
+    "collection": "Smithsonian Institution, NMNH Education & Outreach, EO404749",
+    "species": "Odocoileus virginianus",
+    "material": "3D scan of real museum teaching casts",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "Unchanged GLB, local descriptive filename only",
+    "aiGenerated": false,
+    "checked": "2026-10-04",
+    "bytes": 3245880,
+    "sha256": "a3dc747b4c27002a3ffdef26a9bd1b04e0ba8679f0557991eef19a2e86d868b3"
+  },
+  {
+    "file": "/lernen/anatomie/weisswedelhirsch-schaedel.glb",
+    "originalFilename": "USNM_PAL_Deer_skull-100k-2048_std.glb",
+    "source": "https://3d-api.si.edu/content/document/3d_package:fcc69841-d8be-4103-be0f-143e374c9ce6/resources/USNM_PAL_Deer_skull-100k-2048_std.glb",
+    "record": "edanmdm:nmnheducation_15006160",
+    "collection": "Smithsonian Institution, NMNH Education & Outreach, EO404749",
+    "species": "Odocoileus virginianus",
+    "material": "3D scan of real museum teaching casts",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "Unchanged GLB, local descriptive filename only",
+    "aiGenerated": false,
+    "checked": "2026-10-04",
+    "bytes": 3314124,
+    "sha256": "28072893757d4286be1e82e1bab94a6f6cb8ffef00978b0c95e62210c8ce602e"
+  },
+  {
+    "file": "/lernen/anatomie/weisswedelhirsch-vorderlauf.glb",
+    "originalFilename": "USNM_PAL_Deer_forelimb-100k-2048_std.glb",
+    "source": "https://3d-api.si.edu/content/document/3d_package:9395b925-4132-468c-a974-745abec177b4/resources/USNM_PAL_Deer_forelimb-100k-2048_std.glb",
+    "record": "edanmdm:nmnheducation_15006160",
+    "collection": "Smithsonian Institution, NMNH Education & Outreach, EO404749",
+    "species": "Odocoileus virginianus",
+    "material": "3D scan of real museum teaching casts",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "Unchanged GLB, local descriptive filename only",
+    "aiGenerated": false,
+    "checked": "2026-10-04",
+    "bytes": 3575768,
+    "sha256": "2b10bdd021c5dcb0d13a3fc4ba2b2aac3d1833a1f9714f3098840c0253f9ed51"
+  }
+]
