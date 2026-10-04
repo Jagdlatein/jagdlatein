@@ -30,6 +30,9 @@
 .lessonNav { padding: 20px; border: 1px solid #e0c989; background: #fffdf7; border-radius: 18px; margin-bottom: 22px; }
 .lessonNav h2 { font-size: 20px; margin: 0 0 16px; }
 .lessonNav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.mobileLessonChoice { display: none; }
+.mobileLessonChoice label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+.mobileLessonChoice select { display: block; width: 100%; min-width: 0; min-height: 48px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; font: inherit; color: #3e321b; background: #fbf7ec; }
 .lessonNav button { display: flex; align-items: flex-start; gap: 10px; text-align: left; width: 100%; min-height: 44px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; background: #fbf7ec; color: inherit; font: inherit; line-height: 1.5; cursor: pointer; }
 .lessonNav button[aria-current="step"] { background: #fbf1d5; border-color: #796021; font-weight: 600; }
 .lessonNav button > span:last-child { min-width: 0; overflow-wrap: anywhere; }
@@ -71,6 +74,7 @@
 .sources a:hover { background: #f5e7bf; border-color: #796021; }
 .externalLabel { display: block; font-size: 13px; color: #6e6249; font-weight: 400; }
 .main a:focus-visible, .main button:focus-visible, .main summary:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.mobileLessonChoice select:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
 @media (max-width: 760px) {
   .lessonGrid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .lessonNav ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -81,7 +85,8 @@
   .main { padding: 20px 12px 100px; }
   .topNav a { flex: 1 1 auto; justify-content: center; padding: 10px 12px; }
   .card { padding: 18px; }
-  .lessonNav ol { grid-template-columns: minmax(0, 1fr); }
+  .lessonNav ol { display: none; }
+  .mobileLessonChoice { display: block; }
   .countryButtons button { flex: 1 1 auto; }
   .actions > * { flex: 1 1 100%; }
   .question { font-size: 19px; }

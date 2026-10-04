@@ -1,0 +1,16 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-04",
+  "assets": [
+    {
+      "path": "/lernen/lernlandschaft.png",
+      "prompt": "Use case: illustration-story. Asset type: wide website learning-area hero for a German hunting education app with warm gold and cream branding. Create a refined editorial naturalist illustration, panoramic landscape composition, Central European woodland merging into meadows and a distant mountain foothill. In the near foreground are a closed field notebook, a folded topographic map and simple binoculars on a wooden table, a healthy medium-sized dog calmly resting beside the table; distant generic deer silhouettes remain tiny and undisturbed. Beautiful botanically suggestive woodland textures, soft autumn sunlight, restrained warm ochre/gold highlights, natural greens permitted inside the landscape, calm responsible learning atmosphere. This is an illustrative scene, not a species identification plate. No visible weapons, no hunting action, no dead animals, no anatomical labels, no text, no logos, no watermark, no UI. Keep all key objects comfortably inside the frame so a wide cover crop can display them.",
+      "purpose": "Illustrative Themenbilder, keine Art- oder Rassebestimmung"
+    },
+    {
+      "path": "/lernen/hund-alltag.png",
+      "prompt": "Use case: illustration-story. Asset type: educational Hundewesen category cover, landscape composition. Create a high-quality naturalist editorial illustration of a healthy medium-sized brown dog with floppy ears calmly standing near a person on a loose ordinary lead at the edge of a Central European meadow. Frame primarily the dog and the person's lower torso and legs, not an identifiable face. Relaxed humane daily interaction, soft gold afternoon light, cream and ochre accents, meadow and woodland background, refined detailed illustration. Depict a generic dog without claiming a specific breed or performance ability. No training devices, no weapons, no wild animal pursuit, no bite work, no injured animals, no text, no logos, no watermark. Composition suitable as a website course image and an editorial photograph-like illustration.",
+      "purpose": "Illustrative Themenbilder, keine Art- oder Rassebestimmung"
+    }
+  ]
+}

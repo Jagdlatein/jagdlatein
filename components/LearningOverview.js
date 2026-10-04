@@ -4,6 +4,8 @@ import { useState } from "react";
 import { getLearningCategoryByTitle, learningCategories } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningTools from "./LearningTools";
+import { getLearningMedia, learningHero } from "../lib/learning-media";
+import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
@@ -68,6 +70,7 @@ export default function LearningOverview({ data }) {
               <div><dt>Übungsfragen</dt><dd>{learningCounts.questions}</dd></div>
             </dl>
           </header>
+          <LearningCover media={categoryInfo ? getLearningMedia({ category: categoryInfo.title }) : learningHero} />
           {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
           {!categoryInfo && <LearningTools />}
           <section className={styles.filterCard} aria-labelledby="learning-search-heading">
@@ -125,6 +128,7 @@ export default function LearningOverview({ data }) {
                 <h2 id="learning-modules-heading">{filtered ? "Passende Lerneinheiten" : "Alle Lerneinheiten"}</h2>
                 <div className={styles.moduleGrid}>
                   {visible.map((module) => <article key={module.id} className={styles.moduleCard}>
+                    <LearningCover media={getLearningMedia(module)} compact />
                     <div className={styles.tags}><span>{module.category}</span><span>{module.level}</span></div>
                     <h3>{module.title}</h3>
                     <p className={styles.muted}>{module.description}</p>

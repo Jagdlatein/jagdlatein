@@ -5,6 +5,8 @@ import CourseProgressNotice from "./CourseProgressNotice";
 import useCourseProgress from "../hooks/useCourseProgress";
 import styles from "../styles/Learning.module.css";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
+import { getLearningMedia } from "../lib/learning-media";
+import { LearningCover, LearningDiagram, BreedGallery } from "./LearningMedia";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -18,6 +20,7 @@ export default function LearningCourse({ module }) {
 
 function LearningContent({ module }) {
   const category = getLearningCategoryByTitle(module.category);
+  const media = getLearningMedia(module);
   const countrySelection = category?.slug === "jagdrecht";
   const regionalNotes = module.countries.filter((item) => module.countryNotes?.[item]);
   const [country, setCountry] = useState(module.countries[0]);
@@ -86,9 +89,11 @@ function LearningContent({ module }) {
             <h1>{module.title}</h1>
             <p className={styles.description}>{module.description}</p>
           </header>
+          <LearningCover media={media} />
           <section className={styles.card} aria-labelledby="learning-objectives">
             <h2 id="learning-objectives">Das lernst du</h2>
             <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
+            {module.id === "wissen-vertiefung-jagdhunderassen" && <p><a href="#breed-gallery-heading" className={styles.secondaryButton}>Rassebilder ansehen</a></p>}
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
@@ -107,6 +112,12 @@ function LearningContent({ module }) {
           <div className={styles.lessonGrid}>
             <nav className={styles.lessonNav} aria-label="Lektionen">
               <h2>Lektionen</h2>
+              <div className={styles.mobileLessonChoice}>
+                <label htmlFor="lesson-selection">Lektion auswählen</label>
+                <select id="lesson-selection" value={lessonIndex} onChange={event => setLessonIndex(Number(event.target.value))}>
+                  {module.lessons.map((item, index) => <option value={index} key={item.id}>{index + 1}. {item.title}</option>)}
+                </select>
+              </div>
               <ol>
                 {module.lessons.map((item, index) => (
                   <li key={item.id}><button type="button" aria-current={index === lessonIndex ? "step" : undefined} onClick={() => setLessonIndex(index)}><span className={styles.lessonNumber}>{index + 1}</span><span>{item.title}</span></button></li>
@@ -125,6 +136,8 @@ function LearningContent({ module }) {
               </div>
             </article>
           </div>
+          <LearningDiagram media={media} />
+          {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery />}
           <section id="wissenscheck" className={styles.card} aria-labelledby="quiz-heading">
             <h2 id="quiz-heading">Wissenscheck</h2>
             {!run.started ? (

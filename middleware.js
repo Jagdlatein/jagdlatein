@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { JL_ACCOUNT_COOKIE, readAccountSessionEdge } from "./lib/account-session-edge";
+import { learningImagePaths } from "./lib/learning-image-paths";
+
+const LEARNING_IMAGES = new Set(learningImagePaths);
 
 const PUBLIC_PATHS = [
   "/",
@@ -40,6 +43,7 @@ export async function middleware(req) {
   // Static Files erlauben
   if (
     pathname.startsWith("/_next") ||
+    LEARNING_IMAGES.has(pathname) ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
   ) {

@@ -1,0 +1,27 @@
+.cover, .compact { margin: 0 0 24px; border: 1px solid #e0c989; border-radius: 18px; background: #fffdf7; overflow: hidden; }
+.cover img { display: block; width: 100%; height: auto; max-height: 400px; object-fit: cover; object-position: center 22%; }
+.cover figcaption { padding: 16px 20px; color: #6e6249; line-height: 1.6; }
+.cover figcaption p { margin: 0 0 6px; }
+.cover small { font-size: 12px; }
+.compact { width: 100%; margin-bottom: 18px; border-radius: 12px; }
+.compact img { display: block; width: 100%; height: 155px; object-fit: cover; }
+.diagram { padding: 22px; margin: 24px 0; background: #fbf7ec; border: 1px solid #e0c989; border-radius: 16px; }
+.diagramHeading { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; color: #796021; }
+.diagramHeading svg { flex-shrink: 0; }
+.diagramHeading h3 { font-size: 20px; line-height: 1.4; margin: 0; color: #3e321b; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.steps li { display: flex; align-items: flex-start; gap: 12px; min-width: 0; background: #fffdf7; border: 1px solid #e0c989; border-radius: 12px; padding: 18px; }
+.stepNumber { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; flex-shrink: 0; font-weight: 800; color: #3e321b; background: #f5e7bf; border-radius: 50%; }
+.steps h4 { margin: 0 0 8px; font-size: 17px; line-height: 1.4; }
+.steps p { margin: 0; font-size: 15px; line-height: 1.7; color: #6e6249; }
+.breeds { margin: 28px 0; padding: 26px; background: #fffdf7; border: 1px solid #e0c989; border-radius: 18px; }
+.breeds h2 { margin: 0 0 12px; font-size: 24px; }
+.breeds > p { color: #6e6249; line-height: 1.75; }
+.breedGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.breedGrid figure { margin: 0; border: 1px solid #e0c989; border-radius: 14px; overflow: hidden; }
+.breedGrid img { display: block; width: 100%; height: 280px; object-fit: contain; background: #fbf7ec; }
+.breedGrid figcaption { padding: 16px; line-height: 1.65; }
+.breedGrid strong, .breedGrid small { display: block; }
+.breedGrid small { color: #6e6249; margin-top: 8px; font-size: 12px; }
+.breedGrid a { color: #796021; text-decoration: underline; }
+@media (max-width: 600px) { .steps, .breedGrid { grid-template-columns: minmax(0, 1fr); } .diagram { padding: 16px; } .steps li { padding: 16px; } .cover figcaption { padding: 14px 16px; } .breeds { padding: 18px; } .breedGrid img { height: 240px; } }
