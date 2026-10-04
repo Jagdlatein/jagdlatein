@@ -51,6 +51,7 @@ export default function PhotoDetective() {
   const hintGuard = useRef(false);
   const attemptGuard = useRef(0);
   const quizRoundGuard = useRef(null);
+  const exploredThisRound = useRef(new Set());
   const rounds = roundIds.map(id => photoDetectiveRounds.find(round => round.id === id));
   const round = mode === "explore" ? photoDetectiveRounds.find(item => item.id === exploreId) : rounds[index];
   const attempt = attemptGuard.current;
@@ -63,11 +64,12 @@ export default function PhotoDetective() {
     attemptGuard.current += 1;
     nextGuard.current = null;
     hintGuard.current = false;
+    exploredThisRound.current.clear();
     setRoundIds(ids); setIndex(0); setAnswers({}); setHint(false); setActiveTrait(0); setFinished(false); setPractice(isPractice); setMode("quiz");
   }
   function choose(choice) {
-    if (answer || attemptGuard.current !== attempt || quizRoundGuard.current !== round.id) return;
-    const assisted = hint || hintGuard.current;
+    if (mode !== "quiz" || !round.options.includes(choice) || answer || attemptGuard.current !== attempt || quizRoundGuard.current !== round.id) return;
+    const assisted = hint || hintGuard.current || exploredThisRound.current.has(round.id);
     setAnswers(previous => previous[round.id] ? previous : ({ ...previous, [round.id]: { choice, assisted } }));
     setActiveTrait(0);
   }
@@ -81,10 +83,20 @@ export default function PhotoDetective() {
     if (attemptGuard.current !== attempt || quizRoundGuard.current !== round.id || answer) return;
     hintGuard.current = true; setHint(true);
   }
-  function changeExplore(id) { setExploreId(id); setActiveTrait(0); }
+  function changeMode(nextMode) {
+    if (nextMode === mode) return;
+    attemptGuard.current += 1;
+    if (nextMode === "explore") exploredThisRound.current.add(exploreId);
+    setMode(nextMode); setActiveTrait(0);
+  }
+  function changeExplore(id) {
+    if (!photoDetectiveRounds.some(item => item.id === id)) return;
+    exploredThisRound.current.add(id);
+    setExploreId(id); setActiveTrait(0);
+  }
 
   return <LearningToolLayout title="Fotodetektiv" description="Erkenne Wildarten an echten Fotos und entdecke die sichtbaren Merkmale. Jede Antwort wird erklärt." icon="camera" category="wildkunde" stats={[{ value: photoDetectiveRounds.length, label: "Wildarten" }, { value: photoDetectiveRounds.reduce((count, item) => count + item.traits.length, 0), label: "Bildmerkmale" }, { value: "echt", label: "fotografiert" }]}>
-    <div className={experienceStyles.modeButtons} role="group" aria-label="Lernweise wählen"><button type="button" aria-pressed={mode === "quiz"} onClick={() => setMode("quiz")}><AppIcon name="target" size={20} />Wissen testen</button><button type="button" aria-pressed={mode === "explore"} onClick={() => { setMode("explore"); setActiveTrait(0); }}><AppIcon name="eye" size={20} />Merkmale entdecken</button></div>
+    <div className={experienceStyles.modeButtons} role="group" aria-label="Lernweise wählen"><button type="button" aria-pressed={mode === "quiz"} onClick={() => changeMode("quiz")}><AppIcon name="target" size={20} />Wissen testen</button><button type="button" aria-pressed={mode === "explore"} onClick={() => changeMode("explore")}><AppIcon name="eye" size={20} />Merkmale entdecken</button></div>
 
     {mode === "quiz" && finished ? <section className={styles.card} aria-labelledby="photo-result-heading">
       <p className={styles.eyebrow}>{practice ? "Deine Wiederholung" : "Deine Fotorunde"}</p><h2 id="photo-result-heading">{summary.correct} von {rounds.length} Arten richtig erkannt</h2>
@@ -97,7 +109,7 @@ export default function PhotoDetective() {
       {mode === "explore" ? <><label className={styles.selectLabel} htmlFor="photo-species">Welche Art möchtest du ansehen?</label><select id="photo-species" className={styles.select} value={exploreId} onChange={event => changeExplore(event.target.value)}>{photoDetectiveRounds.map(item => <option key={item.id} value={item.id}>{item.name} · {item.group}</option>)}</select><h2 id="photo-question-heading">{round.name}: Merkmale im Bild</h2></> : <><div className={styles.progressLabel}><span>{practice ? "Wiederholung" : "Fotorunde"} · Foto {index + 1} von {rounds.length}</span><span>{summary.independent} richtig ohne Hilfe</span></div><progress className={styles.progress} max={rounds.length} value={summary.completed} aria-label="Beantwortete Fotos" /><h2 id="photo-question-heading">Welche Wildart zeigt das Foto?</h2></>}
       <PhotoEvidence key={round.id} round={round} revealed={revealed} activeTrait={activeTrait} onTrait={setActiveTrait} />
       {mode === "quiz" && <><div className={styles.answerGrid} role="group" aria-label="Art auswählen">{round.options.map(choice => <button key={choice} type="button" disabled={Boolean(answer)} className={[styles.answer, answer && choice === round.name ? styles.correctAnswer : "", answer && choice === answer.choice && choice !== round.name ? styles.wrongAnswer : ""].filter(Boolean).join(" ")} onClick={() => choose(choice)}>{choice}{answer && choice === round.name && <span>Richtig</span>}{answer && choice === answer.choice && choice !== round.name && <span>Deine Antwort</span>}</button>)}</div>{!answer && <button type="button" className={styles.hintButton} aria-expanded={hint} onClick={showHint} disabled={hint}>{hint ? "Merkmals-Hilfe aktiv – diese Antwort wird als unterstützt gezählt" : "Merkmale als Hilfe anzeigen"}</button>}</>}
-      {answer && mode === "quiz" && <div className={[styles.feedback, answer.choice === round.name ? styles.feedbackCorrect : styles.feedbackWrong].join(" ")} role="status"><h3>{answer.choice === round.name ? "Richtig erkannt" : `Das ist ${round.name}`}</h3>{answer.choice !== round.name && <p><strong>Du hast {answer.choice} gewählt.</strong> {round.wrong[answer.choice]}</p>}<p>{round.explanation}</p>{answer.assisted && <small>Mit Merkmals-Hilfe beantwortet.</small>}</div>}
+      {answer && mode === "quiz" && <div className={[styles.feedback, answer.choice === round.name ? styles.feedbackCorrect : styles.feedbackWrong].join(" ")} role="status"><h3>{answer.choice === round.name ? "Richtig erkannt" : `Das ist ${round.name}`}</h3>{answer.choice !== round.name && <p><strong>Du hast {answer.choice} gewählt.</strong> {round.wrong[answer.choice]}</p>}<p>{round.explanation}</p>{answer.assisted && <small>Mit Merkmals-Hilfe beantwortet.{exploredThisRound.current.has(round.id) && " Die Art wurde in dieser Runde bereits nachgeschlagen."}</small>}</div>}
       {mode === "explore" && <p className={styles.explanation}>{round.explanation}</p>}
       {revealed && <EvidenceDetails round={round} activeTrait={activeTrait} onTrait={setActiveTrait} />}
       {(mode === "explore" || answer) && <FurtherLearning round={round} />}

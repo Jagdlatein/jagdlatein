@@ -1,5 +1,5 @@
 import {
-  requireAccountSession, getAccountDatabase, requireSameOriginJson,
+  requireAccountSession, getAccountDatabase, requireSameOriginJson, requireCurrentAccount,
   accountJson, accountErrorResponse, accountUnavailable,
 } from "../../../lib/course-progress-server";
 import { ActivityResultError, RESULT_COLUMNS, validateActivityResult, sameActivityResult } from "../../../lib/activity-results-server";
@@ -18,6 +18,7 @@ export async function GET(req) {
   try {
     const session = requireAccountSession(req, "STATISTICS_UNAVAILABLE");
     const database = getAccountDatabase("STATISTICS_UNAVAILABLE");
+    await requireCurrentAccount(database, session, "STATISTICS_UNAVAILABLE");
     const { data, error } = await database.rpc("get_activity_statistics", { p_account_email: session.email });
     if (error || !data) throw accountUnavailable("STATISTICS_UNAVAILABLE");
     return accountJson({ statistics: data });
@@ -37,6 +38,7 @@ export async function POST(req) {
       throw new ActivityResultError("Quizergebnisse werden ausschließlich aus einer abgeschlossenen Serverrunde gespeichert.");
     }
     const database = getAccountDatabase("STATISTICS_UNAVAILABLE");
+    await requireCurrentAccount(database, session, "STATISTICS_UNAVAILABLE");
     const { data, error } = await database.from("activity_results")
       .insert({ account_email: session.email, ...result })
       .select(RESULT_COLUMNS).single();

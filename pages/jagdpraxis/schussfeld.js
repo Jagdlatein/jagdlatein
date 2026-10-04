@@ -1,3 +1,4 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
@@ -6,7 +7,6 @@ import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
 import ScoreBox from "./components/ScoreBox";
 import NavigationButton from "./components/NavigationButton";
-import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 SZENARIEN – Schussfeld sicher? true = sicher, false = nicht sicher
@@ -72,10 +72,7 @@ export default function SchussfeldBeurteilung() {
     const passed = percent >= 70;
 
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-        <HomeButton />
-
-        <h1 style={{ fontSize: 34, marginBottom: 20 }}>Schussfeld – Ergebnis</h1>
+      <PracticeLayout exercise="schussfeld" title="Schussfeld – Ergebnis" result>
 
         <ScoreBox score={score} max={scenarios.length} />
 
@@ -102,7 +99,7 @@ export default function SchussfeldBeurteilung() {
             onClick={() => (window.location.href = "/jagdpraxis")}
           />
         </div>
-      </main>
+      </PracticeLayout>
     );
   }
 
@@ -110,9 +107,7 @@ export default function SchussfeldBeurteilung() {
   // SIMULATOR-ANSICHT
   // ------------------------------------------------------------
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-      <HomeButton />
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Schussfeld-Beurteilung</h1>
+    <PracticeLayout exercise="schussfeld" title="Schussfeld-Beurteilung">
 
       <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
@@ -148,6 +143,6 @@ export default function SchussfeldBeurteilung() {
       </div>
 
       {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
-    </main>
+    </PracticeLayout>
   );
 }

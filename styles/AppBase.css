@@ -1,4 +1,4 @@
-:root { --forest: #796021; --gold: #caa53b; --icon-accent: #aa812b; }
+:root { --forest: #796021; --gold: #caa53b; --icon-accent: #aa812b; --jl-ink: #3e321b; --jl-muted: #6e6249; --jl-surface: #fffdf7; --jl-border: #e0c989; --jl-accent: #80601d; --jl-soft: #f8f3e6; }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #3e321b; background: #faf8f1; padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 button, input, select, textarea { font-family: inherit; }

@@ -1,4 +1,6 @@
 import { getPaidPageProps } from "../../lib/account-access";
+import LearningToolLayout from "../../components/LearningToolLayout";
+import styles from "../../styles/LearningExperience.module.css";
 // pages/protected/ebook.js
 export async function getServerSideProps(context) {
   return getPaidPageProps(context);
@@ -6,34 +8,25 @@ export async function getServerSideProps(context) {
 
 export default function ProtectedEbookPage() {
   return (
-    <main style={{ padding: 40, textAlign: "center" }}>
-      <h1>E-Book</h1>
-
-      <p>Dein exklusiver Zugriff ist freigeschaltet:</p>
+    <LearningToolLayout title="Jagdlatein E-Book" description="Dein Jagdwissen als PDF zum Lesen und Nachschlagen." icon="book">
+      <section className={styles.panel}><h2>Das E-Book lesen</h2>
 
       <iframe
         src="/ebook.pdf"
-        style={{ width: "100%", height: "90vh", border: "none", marginTop: 20 }}
+        title="Jagdlatein E-Book als PDF"
+        style={{ width: "100%", height: "75vh", border: "1px solid #e0c989", borderRadius: 12, marginTop: 20 }}
       ></iframe>
 
       <p>
         <a
           href="/ebook.pdf"
           download
-          style={{
-            display: "inline-block",
-            marginTop: 20,
-            padding: "12px 20px",
-            background: "#caa53b",
-            color: "#111",
-            borderRadius: 10,
-            fontWeight: "bold",
-            textDecoration: "none",
-          }}
+          className={styles.primary}
         >
           PDF herunterladen
         </a>
       </p>
-    </main>
+      </section>
+    </LearningToolLayout>
   );
 }

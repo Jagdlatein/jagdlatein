@@ -16,6 +16,10 @@ const PUBLIC_PATHS = [
   "/community",
   "/login",
   "/preise",
+  "/impressum",
+  "/datenschutz",
+  "/robots.txt",
+  "/sitemap.xml",
   "/debug-cookies",
   "/paytest",
   "/jagdbuch/erstellen",
@@ -68,13 +72,18 @@ export async function middleware(req) {
   let renewedCookie = null;
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
+  const isAccountPage = ["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)
+    || /^\/community\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(pathname);
 
   // gewünschte Zielseite merken (inkl. Query)
   const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
 
   // Existing signed identity sessions are upgraded without losing account data.
   // Refresh permissions regularly so removed subscriptions do not last 40 days.
-  if (session && !isPublic && !(session.accessExpiresAt > Math.floor(Date.now() / 1000))) {
+  // Account pages and the community require a signed identity, not subscription
+  // coverage. Their APIs check the current account separately; a provider outage
+  // must not prevent an unpaid member from reaching their own account or thread.
+  if (session && !isPublic && !isAccountPage && !(session.accessExpiresAt > Math.floor(Date.now() / 1000))) {
     try {
       const check = await fetch(new URL("/api/auth/status", req.url), {
         headers: { Cookie: `${JL_ACCOUNT_COOKIE}=${token}` },
@@ -98,8 +107,7 @@ export async function middleware(req) {
   }
 
   // Das eigene Konto bleibt auch ohne aktives Premium erreichbar.
-  if (["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)
-    || /^\/community\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(pathname)) {
+  if (isAccountPage) {
     if (hasSession && access) return finish(NextResponse.next());
     const login = new URL("/login", req.url);
     login.searchParams.set("next", nextPathWithQuery);

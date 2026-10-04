@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import AccountLayout, { AccountError, ProgressError } from "../components/AccountLayout";
+import AppIcon from "../components/AppIcon";
 import useAccountOverview from "../hooks/useAccountOverview";
 import { getAccountPageProps } from "../lib/account-page";
 import { courses } from "../lib/course-catalog";
@@ -49,7 +50,7 @@ export default function MyCoursesPage() {
                 return (
                   <article className={styles.courseCard} key={course.id}>
                     <div className={styles.courseHeading}>
-                      <h2>{course.title}</h2>
+                      <h2><AppIcon name="book" size={24} />{course.title.replace(/^[^\p{L}\p{N}]+/u, "")}</h2>
                       <span className={completed ? styles.completed : styles.badge}>{completed ? "Abgeschlossen" : entry ? "Begonnen" : "Noch offen"}</span>
                     </div>
                     <p className={styles.muted}>{course.description}</p>

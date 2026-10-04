@@ -1,23 +1,23 @@
-.main { min-height: 100vh; padding: 32px 16px 100px; background: linear-gradient(180deg, #faf8f1, #f4efe3); color: #1f2b23; font-family: system-ui, sans-serif; }
-.wrap { max-width: 860px; margin: 0 auto; }
+.main { min-height: 100vh; padding: 32px 16px 100px; background: linear-gradient(180deg, #faf8f1, #f4efe3); color: var(--jl-ink); font-family: system-ui, sans-serif; }
+.wrap { min-width: 0; }
 .main *, .main *::before, .main *::after { box-sizing: border-box; }
 .title { font-size: clamp(28px, 6vw, 40px); margin: 28px 0 10px; }
-.subtitle, .muted { color: #5d615c; line-height: 1.6; }
+.subtitle, .muted { color: var(--jl-muted); line-height: 1.6; }
 .subtitle { margin: 0 0 24px; }
-.nav, .filters { display: flex; flex-wrap: wrap; gap: 10px; }
-.nav a, .filters button, .button, .secondaryButton { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border: 1px solid #d3c7a8; border-radius: 12px; background: #fff; color: #1f2b23; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
-.nav a[aria-current="page"], .filters button[aria-pressed="true"], .button { background: #caa53b; color: #171d18; border-color: #b99835; }
-.nav a:focus-visible, .filters button:focus-visible, .button:focus-visible, .secondaryButton:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
-.card, .courseCard { background: #fff; border: 1px solid #e1daca; border-radius: 18px; padding: 24px; margin-bottom: 18px; }
+.nav, .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 24px; }
+.nav a, .filters button, .button, .secondaryButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 16px; border: 1px solid #c5a966; border-radius: 12px; background: var(--jl-surface); color: var(--jl-ink); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+.nav a[aria-current="page"], .filters button[aria-pressed="true"], .button { background: var(--jl-accent); color: #fff; border-color: var(--jl-accent); }
+.nav a:focus-visible, .filters button:focus-visible, .button:focus-visible, .secondaryButton:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.card, .courseCard { background: var(--jl-surface); border: 1px solid var(--jl-border); border-radius: 18px; padding: 26px; margin-bottom: 22px; }
 .card h2, .courseCard h2 { font-size: 22px; margin: 0 0 18px; line-height: 1.3; }
 .details { margin: 0 0 18px; }
-.details > div { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid #eee8dd; }
-.details dt { color: #5d615c; }
-.details dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.details > div { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid #e9dfc7; }
+.details dt { color: var(--jl-muted); }
+.details dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
 .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .metrics > div { display: flex; flex-direction: column; gap: 6px; padding: 18px 10px; border-radius: 12px; background: #faf8f1; text-align: center; overflow-wrap: anywhere; }
 .metrics strong { font-size: 30px; }
-.metrics span { color: #5d615c; font-size: 14px; }
+.metrics span { color: var(--jl-muted); font-size: 14px; }
 .notice { padding: 18px; border: 1px solid #e5ce92; border-radius: 12px; background: #fff8e8; }
 .notice p { margin-top: 0; line-height: 1.6; }
 .filters { margin: 24px 0; }
@@ -25,7 +25,8 @@
 .courseCard { margin: 0; }
 .courseHeading { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .courseHeading h2 { margin: 0; flex: 1 1 220px; min-width: 0; overflow-wrap: anywhere; }
-.badge, .completed { padding: 6px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; background: #f4efe3; }
+.courseHeading h2 svg { color: #856523; margin-right: 10px; }
+.badge, .completed { padding: 6px 10px; border-radius: 20px; font-size: 13px; font-weight: 700; background: #f4efe3; }
 .completed { background: #e4f0e5; color: #285832; }
 .courseCard p { line-height: 1.6; margin: 14px 0; }
 @media (max-width: 480px) {

@@ -1,5 +1,6 @@
 "use client";
 
+import PracticeLayout from "../../components/PracticeLayout";
 import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
@@ -8,7 +9,6 @@ import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
 import ScoreBox from "./components/ScoreBox";
 import NavigationButton from "./components/NavigationButton";
-import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 SZENARIEN – Keiler richtig erkennen (true = Keiler, false = kein Keiler)
@@ -74,10 +74,7 @@ export default function KeilerErkennung() {
     const passed = percent >= 70;
 
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-        <HomeButton />
-
-        <h1 style={{ fontSize: 34, marginBottom: 20 }}>Keiler-Erkennung – Ergebnis</h1>
+      <PracticeLayout exercise="keiler" title="Keiler-Erkennung – Ergebnis" result>
 
         <ScoreBox score={score} max={scenarios.length} />
 
@@ -97,7 +94,7 @@ export default function KeilerErkennung() {
         <div style={{ marginTop: 30, maxWidth: 420 }}>
           <NavigationButton text="Zur Jagdpraxis-Übersicht" onClick={() => (window.location.href = "/jagdpraxis")} />
         </div>
-      </main>
+      </PracticeLayout>
     );
   }
 
@@ -105,10 +102,7 @@ export default function KeilerErkennung() {
   // SIMULATOR-ANSICHT
   // ------------------------------------------------------------
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-      <HomeButton />
-
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Keiler-Erkennung</h1>
+    <PracticeLayout exercise="keiler" title="Keiler-Erkennung">
 
     <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
@@ -136,6 +130,6 @@ export default function KeilerErkennung() {
       </div>
 
       {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
-    </main>
+    </PracticeLayout>
   );
 }

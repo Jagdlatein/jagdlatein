@@ -1,363 +1,106 @@
-// pages/login.js
-import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import LearningToolLayout from "../components/LearningToolLayout";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
+import { getNextUrl, getLoginDestination } from "../lib/login-destination";
+import styles from "../styles/LearningExperience.module.css";
+import authStyles from "../styles/Auth.module.css";
 
-function getNextUrl(next) {
-  const value = Array.isArray(next) ? next[0] : next;
-
-  if (
-    typeof value !== "string" ||
-    !value.startsWith("/") ||
-    value.startsWith("//") ||
-    /[\\\u0000-\u001f\u007f]/.test(value)
-  ) {
-    return "/";
-  }
-
-  try {
-    const target = new URL(value, "https://jagdlatein.invalid");
-    const pathname = decodeURIComponent(target.pathname).replace(/\/+$/, "");
-    if (target.origin !== "https://jagdlatein.invalid" || pathname === "/login") {
-      return "/";
-    }
-  } catch {
-    return "/";
-  }
-
-  return value;
-}
-
-export async function getServerSideProps({ req, query }) {
+export async function getServerSideProps({ req, res, query }) {
+  res?.setHeader("Cache-Control", "private, no-store, max-age=0");
   if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
-    return {
-      redirect: {
-        destination: getNextUrl(query.next),
-        permanent: false,
-      },
-    };
+    return { redirect: { destination: getNextUrl(query.next), permanent: false } };
   }
-
   return { props: {} };
 }
 
 export default function LoginPage() {
   const router = useRouter();
-
   const nextUrl = getNextUrl(router.query.next);
-
-  const PAYMENT_URL =
-    process.env.NEXT_PUBLIC_PAYMENT_URL ||
-    "/preise#paypal-subscribe-preise";
-
+  const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [step, setStep] = useState("email");
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const busy = useRef(false);
+  const mounted = useRef(true);
+  const request = useRef(null);
+  const redirectTimer = useRef(null);
 
-  async function requestCode(e) {
-    e.preventDefault();
-    setMsg("");
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      request.current?.abort();
+      clearTimeout(redirectTimer.current);
+    };
+  }, []);
 
+  async function submitCode(event, verify) {
+    event.preventDefault();
+    if (busy.current) return;
     const cleanEmail = email.toLowerCase().trim();
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
-      setMsg("Bitte gültige E-Mail eingeben.");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/auth/request-code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: cleanEmail,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || data.success === false) {
-        setMsg(data.message || "Code konnte nicht versendet werden.");
-        return;
-      }
-
-      setEmail(cleanEmail);
-      setStep("code");
-      setMsg(
-        "Wir haben dir einen 6-stelligen Login-Code per E-Mail geschickt."
-      );
-    } catch {
-      setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function verifyCode(e) {
-    e.preventDefault();
     setMsg("");
-
-    if (!/^\d{6}$/.test(code)) {
-      setMsg("Bitte den 6-stelligen Login-Code eingeben.");
+    if (verify ? !/^\d{6}$/.test(code) : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+      setMsg(verify ? "Bitte den 6-stelligen Login-Code eingeben." : "Bitte gültige E-Mail eingeben.");
       return;
     }
-
+    busy.current = true;
     setLoading(true);
-
+    const controller = new AbortController();
+    request.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 18000);
+    let redirecting = false;
     try {
-      const res = await fetch("/api/auth/verify-code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          code,
-        }),
+      const response = await fetch(verify ? "/api/auth/verify-code" : "/api/auth/request-code", {
+        method: "POST", credentials: "same-origin", signal: controller.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(verify ? { email: cleanEmail, code } : { email: cleanEmail }),
       });
-
-      const data = await res.json();
-
-      if (!res.ok || data.success === false) {
-        setMsg(data.message || "Login-Code ist ungültig.");
+      const data = await response.json();
+      if (!mounted.current) return;
+      if (!response.ok || data.success === false) {
+        setMsg(data.message || (verify ? "Login-Code ist ungültig." : "Code konnte nicht versendet werden."));
         return;
       }
-
-      setMsg("Erfolgreich eingeloggt – Weiterleitung …");
-
-      setTimeout(() => {
-        const accountDestination = ["/konto", "/meine-kurse", "/auswertungen", "/quiz-app/stats", "/quiz/stats"].includes(
-          nextUrl.split(/[?#]/)[0]
-        );
-
-        if (data.admin !== true && data.paid !== true && !accountDestination) {
-          const base = String(PAYMENT_URL);
-          const next = encodeURIComponent(String(nextUrl));
-
-          const hashIndex = base.indexOf("#");
-          const hasHash = hashIndex >= 0;
-          const beforeHash = hasHash
-            ? base.slice(0, hashIndex)
-            : base;
-          const afterHash = hasHash
-            ? base.slice(hashIndex)
-            : "";
-
-          const sep = beforeHash.includes("?") ? "&" : "?";
-
-          window.location.href =
-            `${beforeHash}${sep}next=${next}${afterHash}`;
-
-          return;
-        }
-
-        window.location.href = String(nextUrl);
-      }, 500);
+      if (verify) {
+        redirecting = true;
+        setMsg("Erfolgreich eingeloggt – Weiterleitung …");
+        redirectTimer.current = setTimeout(() => {
+          if (mounted.current) window.location.href = getLoginDestination(nextUrl, data, paymentUrl);
+        }, 500);
+      } else {
+        setEmail(cleanEmail);
+        setStep("code");
+        setMsg("Wir haben dir einen 6-stelligen Login-Code per E-Mail geschickt.");
+      }
     } catch {
-      setMsg("Server nicht erreichbar. Bitte später erneut versuchen.");
+      if (mounted.current) setMsg("Server nicht erreichbar. Bitte erneut versuchen.");
     } finally {
-      setLoading(false);
+      clearTimeout(timeout);
+      request.current = null;
+      if (!redirecting) {
+        busy.current = false;
+        if (mounted.current) setLoading(false);
+      }
     }
   }
 
-  return (
-    <>
-      <Head>
-        <title>Login – Jagdlatein</title>
-      </Head>
-
-      <main style={styles.main}>
-        <div style={styles.card}>
-          <h1 style={styles.title}>
-            Willkommen zurück
-          </h1>
-
-          {step === "email" ? (
-            <>
-              <p style={styles.subtitle}>
-                Gib deine registrierte E-Mail-Adresse ein.
-              </p>
-
-              <form onSubmit={requestCode} style={styles.form}>
-                <input
-                  type="email"
-                  autoComplete="email"
-                  placeholder="E-Mail-Adresse"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={styles.input}
-                  required
-                />
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    ...styles.button,
-                    opacity: loading ? 0.7 : 1,
-                  }}
-                >
-                  {loading
-                    ? "Wird gesendet…"
-                    : "Login-Code senden"}
-                </button>
-              </form>
-            </>
-          ) : (
-            <>
-              <p style={styles.subtitle}>
-                Code an <strong>{email}</strong>
-              </p>
-
-              <form onSubmit={verifyCode} style={styles.form}>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  placeholder="6-stelliger Code"
-                  value={code}
-                  maxLength={6}
-                  onChange={(e) =>
-                    setCode(
-                      e.target.value
-                        .replace(/\D/g, "")
-                        .slice(0, 6)
-                    )
-                  }
-                  style={{
-                    ...styles.input,
-                    textAlign: "center",
-                    fontSize: 24,
-                    letterSpacing: 6,
-                    fontWeight: 700,
-                  }}
-                  required
-                />
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    ...styles.button,
-                    opacity: loading ? 0.7 : 1,
-                  }}
-                >
-                  {loading
-                    ? "Wird geprüft…"
-                    : "Einloggen"}
-                </button>
-              </form>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setStep("email");
-                  setCode("");
-                  setMsg("");
-                }}
-                style={styles.secondaryButton}
-              >
-                Andere E-Mail verwenden
-              </button>
-            </>
-          )}
-
-          {msg && (
-            <div style={styles.alert}>
-              {msg}
-            </div>
-          )}
-        </div>
-      </main>
-    </>
-  );
+  return <LearningToolLayout title="Willkommen zurück" description="Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an." icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity>
+    <section className={`${styles.panel} ${authStyles.formPanel}`} aria-labelledby="login-heading">
+      <h2 id="login-heading">{step === "email" ? "Mit E-Mail anmelden" : "Login-Code bestätigen"}</h2>
+      <p>{step === "email" ? "Gib deine registrierte E-Mail-Adresse ein." : <>Code an <strong>{email}</strong></>}</p>
+      <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
+        {step === "email" ? <label>E-Mail-Adresse
+          <input type="email" autoComplete="email" placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => setEmail(event.target.value)} required />
+        </label> : <label>6-stelliger Login-Code
+          <input type="text" inputMode="numeric" autoComplete="one-time-code" placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} className={authStyles.code} required />
+        </label>}
+        <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? "Login-Code senden" : "Einloggen")}</button>
+      </form>
+      {step === "code" && <button type="button" className={`${styles.secondary} ${authStyles.otherEmail}`} disabled={loading} onClick={() => { setStep("email"); setCode(""); setMsg(""); }}>Andere E-Mail verwenden</button>}
+      {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
+    </section>
+  </LearningToolLayout>;
 }
-
-const styles = {
-  main: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    background:
-      "linear-gradient(180deg,#faf8f1,#efe7d5)",
-  },
-
-  card: {
-    background: "#fff",
-    padding: "36px 30px",
-    borderRadius: 20,
-    width: "100%",
-    maxWidth: 420,
-    boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
-    textAlign: "center",
-  },
-
-  title: {
-    fontSize: 32,
-    fontFamily: "Georgia, serif",
-    color: "#1f2b23",
-    marginBottom: 8,
-  },
-
-  subtitle: {
-    fontSize: 15,
-    color: "#6c6458",
-    marginBottom: 28,
-  },
-
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 14,
-  },
-
-  input: {
-    padding: "14px 16px",
-    borderRadius: 14,
-    border: "1px solid #cfc7b6",
-    fontSize: 16,
-    background: "#faf8f1",
-    boxSizing: "border-box",
-    width: "100%",
-  },
-
-  button: {
-    background: "#caa53b",
-    padding: "14px 16px",
-    borderRadius: 14,
-    border: "none",
-    fontSize: 17,
-    fontWeight: 700,
-    cursor: "pointer",
-    color: "#111",
-  },
-
-  secondaryButton: {
-    marginTop: 16,
-    background: "transparent",
-    border: "none",
-    color: "#6c6458",
-    textDecoration: "underline",
-    cursor: "pointer",
-    fontSize: 14,
-  },
-
-  alert: {
-    marginTop: 18,
-    background: "#fff4e5",
-    padding: "12px 14px",
-    borderRadius: 12,
-    fontSize: 14,
-    color: "#8a5a1f",
-    border: "1px solid #f1d2a8",
-  },
-};

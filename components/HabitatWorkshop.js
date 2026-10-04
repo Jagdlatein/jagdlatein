@@ -23,15 +23,21 @@ function HabitatMap({ selected }) {
 
 export default function HabitatWorkshop() {
   const [selected, setSelected] = useState(habitatPresets[1].ids);
+  const [preset, setPreset] = useState(habitatPresets[1].id);
   const [focus, setFocus] = useState("alle");
   const [mode, setMode] = useState("gestalten");
   const results = evaluateHabitat(selected).filter(species => focus === "alle" || species.id === focus);
-  function toggle(id) { setSelected(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]); }
+  function toggle(id) { setPreset("custom"); setSelected(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]); }
+  function loadPreset(id) {
+    const next = habitatPresets.find(item => item.id === id);
+    if (!next) return;
+    setPreset(id); setSelected([...next.ids]);
+  }
   return <LearningToolLayout title="Lebensraum-Werkstatt" description="Gestalte eine Lernlandschaft und entdecke, wie Nahrung, Deckung, Brutplätze und Verbindungen zusammenwirken." icon="leaf" category="natur-revier" stats={[{value:8,label:"Bausteine"},{value:8,label:"Tierarten"},{value:3,label:"Wissensfälle"}]}>
     <div className={styles.modeButtons} role="group" aria-label="Lernweise"><button type="button" aria-pressed={mode === "gestalten"} onClick={() => setMode("gestalten")}>Landschaft gestalten</button><button type="button" aria-pressed={mode === "quiz"} onClick={() => setMode("quiz")}>Zusammenhänge prüfen</button></div>
     {mode === "quiz" ? <NatureQuestionRound entries={habitatQuestions} sources={habitatSources} label="Lebensraumfälle" /> : <>
       <section className={styles.panel}><h2>Welche Funktionen bietet deine Landschaft?</h2><p className={styles.note}>Dieses qualitative Lernmodell zeigt Zusammenhänge. Die Anzeige zählt angebotene Funktionen und berechnet weder Tierzahlen noch eine Ansiedlungswahrscheinlichkeit.</p>
-        <div className={styles.toolbar}><label className={styles.field}>Lernlandschaft laden<select onChange={event => setSelected([...habitatPresets.find(item => item.id === event.target.value).ids])} defaultValue="feld">{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label><label className={styles.field}>Tierart hervorheben<select value={focus} onChange={event => setFocus(event.target.value)}><option value="alle">Alle Tierarten</option>{habitatSpecies.map(species => <option key={species.id} value={species.id}>{species.name}</option>)}</select></label></div>
+        <div className={styles.toolbar}><label className={styles.field}>Lernlandschaft laden<select value={preset} onChange={event => loadPreset(event.target.value)}>{preset === "custom" && <option value="custom">Eigene Zusammenstellung</option>}{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label><label className={styles.field}>Tierart hervorheben<select value={focus} onChange={event => setFocus(event.target.value)}><option value="alle">Alle Tierarten</option>{habitatSpecies.map(species => <option key={species.id} value={species.id}>{species.name}</option>)}</select></label></div>
         <HabitatMap selected={selected}/>
         <div className={styles.grid}>{habitatFeatures.map(feature => <div key={feature.id} className={nature.feature}><label><input type="checkbox" checked={selected.includes(feature.id)} onChange={() => toggle(feature.id)}/><AppIcon name={feature.icon} size={24}/><strong>{feature.name}</strong></label><p><strong>{feature.function}</strong></p><p>{feature.text}</p><a href={habitatSources[feature.source].url} target="_blank" rel="noreferrer">Fachliche Grundlage</a></div>)}</div>
       </section>

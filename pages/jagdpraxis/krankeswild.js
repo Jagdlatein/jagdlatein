@@ -1,3 +1,4 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
@@ -5,7 +6,6 @@ import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
 import ScoreBox from "./components/ScoreBox";
 import NavigationButton from "./components/NavigationButton";
-import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 SZENARIEN – true = Wild zeigt Krankheitsanzeichen
@@ -295,10 +295,7 @@ export default function KrankesWildErkennen() {
     const passed = percent >= 70;
 
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-        <HomeButton />
-
-        <h1 style={{ fontSize: 34, marginBottom: 20 }}>Krankes Wild – Ergebnis</h1>
+      <PracticeLayout exercise="krankeswild" title="Krankes Wild – Ergebnis" result>
 
         <ScoreBox score={score} max={scenarios.length} />
 
@@ -325,7 +322,7 @@ export default function KrankesWildErkennen() {
             onClick={() => (window.location.href = "/jagdpraxis")}
           />
         </div>
-      </main>
+      </PracticeLayout>
     );
   }
 
@@ -333,9 +330,7 @@ export default function KrankesWildErkennen() {
   // SIMULATORANSICHT
   // ------------------------------------------------------------
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-      <HomeButton />
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Krankes Wild erkennen</h1>
+    <PracticeLayout exercise="krankeswild" title="Krankes Wild erkennen">
 
      <ScenarioCard
   title={current.title}
@@ -370,6 +365,6 @@ export default function KrankesWildErkennen() {
       </div>
 
       {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
-    </main>
+    </PracticeLayout>
   );
 }

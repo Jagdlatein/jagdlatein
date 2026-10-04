@@ -1,13 +1,14 @@
 import { getPaidPageProps } from "../lib/account-access";
 // pages/ebook.js
-import Head from "next/head";
+import LearningToolLayout from "../components/LearningToolLayout";
+import styles from "../styles/LearningExperience.module.css";
 
 export async function getServerSideProps(context) {
   return getPaidPageProps(context);
 }
 
 export default function Ebook() {
-  const pdfUrl = "https://jagdlatein.de/ebook.pdf";
+  const pdfUrl = "/ebook.pdf";
 
   async function openPdf() {
     try {
@@ -17,7 +18,7 @@ export default function Ebook() {
         const { Browser } = await import("@capacitor/browser");
 
         await Browser.open({
-          url: pdfUrl,
+          url: new URL(pdfUrl, window.location.origin).href,
         });
 
         return;
@@ -30,59 +31,10 @@ export default function Ebook() {
   }
 
   return (
-    <>
-      <Head>
-        <title>E-Book – Jagdlatein</title>
-      </Head>
-
-      <main style={styles.main}>
-        <h1 style={styles.title}>E-Book</h1>
-
-        <p style={styles.text}>
-          Dein exklusiver Zugriff auf das Jagdlatein E-Book ist freigeschaltet.
-        </p>
-
-        <button
-          type="button"
-          onClick={openPdf}
-          style={styles.btn}
-        >
-          PDF öffnen
-        </button>
-      </main>
-    </>
+    <LearningToolLayout title="Jagdlatein E-Book" description="Dein Jagdwissen als PDF zum Lesen und Nachschlagen." icon="book">
+      <section className={styles.panel}><h2>Das E-Book lesen</h2><p>Dein Zugang ist freigeschaltet. Öffne das PDF in einem neuen Fenster.</p>
+        <button type="button" onClick={openPdf} className={styles.primary}>PDF öffnen</button>
+      </section>
+    </LearningToolLayout>
   );
 }
-
-const styles = {
-  main: {
-    padding: "24px 14px 110px",
-    maxWidth: 1000,
-    margin: "0 auto",
-  },
-
-  title: {
-    fontSize: 36,
-    marginBottom: 12,
-    fontFamily: "Georgia, serif",
-  },
-
-  text: {
-    fontSize: 17,
-    marginBottom: 24,
-  },
-
-  btn: {
-    display: "block",
-    width: "100%",
-    maxWidth: 320,
-    padding: "15px 24px",
-    background: "#caa53b",
-    color: "#111",
-    border: "none",
-    borderRadius: 12,
-    fontSize: 18,
-    fontWeight: 700,
-    cursor: "pointer",
-  },
-};

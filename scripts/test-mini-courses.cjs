@@ -148,6 +148,14 @@ const preserved = {
     "introductionHash": "d0d40389a802754d4f37f4d43be7468a255ac01d295489f8a2287e8b04f8df34"
   }
 };
+// Deliberate content review, 2026-10-04: remove the unqualified Rotwild size
+// superlative; qualify thermal observation limits; clarify safe examination tips.
+const reviewedIntroductions = {
+  wildkunde: '2c5762b55bf3216fab8a01fa0e87de0ffba2035f22003292004d9ac4ea0f5fb6',
+  rotwild: 'd0a250a66230bc4548f9c1f008b3550c0413204821a9f967bf6a5f24de576fc8',
+  technik: '11ca4effea9d45cb742fcac7beed91f57f1dfd37504b5fa3014bd0e988bb1bef',
+  pruefung: '4ad59ec6ab11a3440e1225cec7a03664ae39b8fe9f176f005d95acee1f4aabf1',
+};
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
   if (cache.has(filename)) return cache.get(filename);
@@ -223,7 +231,7 @@ test('All 34 original course IDs, 122 question records, answer order and source 
 test('Legacy introduction contents and all 25 examination tips survive the common layout', () => {
   for (const course of miniCourses) {
     if (['fallenjagd', 'fallenrecht', 'nachtjagd-pro'].includes(course.id)) continue;
-    assert.equal(hash(normalizedHtml(pages.get(course.id).element.props.children)), preserved[course.id].introductionHash, `${course.id}: introduction content`);
+    assert.equal(hash(normalizedHtml(pages.get(course.id).element.props.children)), reviewedIntroductions[course.id] || preserved[course.id].introductionHash, `${course.id}: introduction content`);
   }
   const tips = normalizedHtml(pages.get('pruefung').element.props.children);
   assert.equal((tips.match(/<li>/g) || []).length, 25);
@@ -298,6 +306,20 @@ test('Reviewed legacy introductions use local legal requirements and distinguish
   const thermal = normalizedHtml(pages.get('nachtjagd-pro').element.props.children);
   assert.ok(!thermal.includes('ermöglichen eine zuverlässige Wildansprache'));
   assert.match(thermal, /Wärmequellen/); assert.match(thermal, /Schussfeld und Kugelfang/); assert.match(thermal, /Unsicherheit/);
+});
+
+test('Reviewed mini-course content avoids unsupported size/safety claims and clarifies practice tips', () => {
+  for (const id of ['rotwild', 'wildkunde']) {
+    const text = words(pages.get(id).element.props.children);
+    assert.ok(!/größte(?:s)? heimische/.test(text)); assert.match(text, /heimische[n]? Hirschart/);
+  }
+  const thermal = words(pages.get('technik').element.props.children);
+  assert.match(thermal, /Regen und Nebel/); assert.match(thermal, /Reichweite deutlich verringern/);
+  assert.match(thermal, /Schussfeld und\s+Kugelfang/); assert.ok(!thermal.includes('erhöhen die Sicherheit'));
+  const tips = words(pages.get('pruefung').element.props.children);
+  assert.match(tips, /kontrolliert entladener Waffe/); assert.match(tips, /scharfe Munition bleibt außerhalb/);
+  assert.match(tips, /kein zusätzlicher Schuss/); assert.ok(!tips.includes('Schieße im Anschlag'));
+  assert.match(tips, /Region und den aktuellen Rechtsstand/);
 });
 
 test('The Next.js client transform removes full metadata imports from every mini-course page', () => {

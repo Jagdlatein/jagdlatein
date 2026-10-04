@@ -1,8 +1,8 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import NavigationButton from "./components/NavigationButton";
 import ScoreBox from "./components/ScoreBox";
-import HomeButton from "./components/HomeButton";
 
 export default function Rotte() {
   const [step, setStep] = useState(0);
@@ -16,9 +16,7 @@ export default function Rotte() {
   }
 
   return (
-    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
-      <HomeButton />
-      <h1>🐗 Schwarzwild-Rotten-Erkennung</h1>
+    <PracticeLayout exercise="rotte" title="Schwarzwild-Rotten-Erkennung">
 
       {step === 0 && (
         <>
@@ -54,6 +52,6 @@ export default function Rotte() {
           <NavigationButton text="Neu starten" onClick={() => { if (!answerGuard.accept()) return;  setScore(0); setStep(0); }} />
         </>
       )}
-    </main>
+    </PracticeLayout>
   );
 }

@@ -2,21 +2,14 @@ import { practiceCatalog } from "../../lib/practice-catalog";
 import Link from "next/link";
 import AppIcon from "../../components/AppIcon";
 import LearningDiscovery from "../../components/LearningDiscovery";
+import PracticeLayout from "../../components/PracticeLayout";
 import styles from "../../styles/SectionMenu.module.css";
 
 const exercises = practiceCatalog;
 
 export default function Jagdpraxis() {
   return (
-    <main className={styles.main}>
-      <nav className={styles.nav} aria-label="Lernmenü">
-        <Link href="/lernen"><AppIcon name="book" size={18} />Lernbereich</Link>
-      </nav>
-      <header className={styles.header}>
-        <p className={styles.eyebrow}>Üben und anwenden</p>
-        <h1><span className={styles.headingIcon}><AppIcon name="practice" size={30} /></span><span>Jagdpraxis: Übungen & Ansitzsimulator</span></h1>
-        <p className={styles.intro}>Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.</p>
-      </header>
+    <PracticeLayout title="Jagdpraxis: Übungen & Ansitzsimulator" description="Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.">
       <LearningDiscovery category="Jagdpraxis" title="Vor den Simulatoren: Praxiswissen vertiefen" />
       <section className={styles.section} aria-labelledby="practice-exercises">
         <h2 id="practice-exercises">Wähle deine Übung</h2>
@@ -30,6 +23,6 @@ export default function Jagdpraxis() {
           ))}
         </div>
       </section>
-    </main>
+    </PracticeLayout>
   );
 }

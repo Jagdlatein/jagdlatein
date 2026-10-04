@@ -1,0 +1,255 @@
+{
+  "reviewedOn": "2026-10-04",
+  "scope": "Zusätzliche gezielte Prüfung von Lerninhalten, Quiz, Glossar, Kursen und Nachrichten; bestehende Prüfprotokolle bleiben als historische Nachweise erhalten.",
+  "inventory": {
+    "courses": 107,
+    "miniCourses": 34,
+    "detailedCourses": 73,
+    "detailedLessons": 372,
+    "detailedQuestions": 732,
+    "activeLegacyQuizQuestions": 231,
+    "activeMainQuizQuestions": 963,
+    "originalMiniQuizQuestions": 122,
+    "glossaryTerms": 72,
+    "withdrawnLegacyQuestions": 97,
+    "legacyCorrectionRecordsAfterReview": 40,
+    "activeLegacyQuestionsWithoutDirectSourceLink": 190
+  },
+  "verifiedChecks": [
+    "Alle 963 aktiven Quizfragen haben eindeutige IDs, auflösbare richtige Antworten, Länderkennungen und eine Erklärung.",
+    "Alle 732 Vertiefungsfragen verweisen auf vorhandene Lektionen und Kurse; Kursquellen und Länderhinweise sind vorhanden.",
+    "Die 72 Glossarbegriffe wurden gelesen und auf eindeutige Schlüssel sowie Widersprüche zu wichtigen korrigierten Quizbegriffen geprüft.",
+    "Die 231 aktiven alten Hauptquizfragen wurden anhand von Frage, richtiger Lösung und Erklärung auf auffällige Pauschalaussagen und fachliche Widersprüche gelesen.",
+    "Die vorhandenen Prüfprotokolle, Wildbiologie- und Regionalrechtsberichte wurden berücksichtigt; ihre älteren Mengenangaben sind kein aktueller Gesamtbestand.",
+    "Bei gezielten Rechts-, Hygiene-, Anatomie-, Wildbiologie- und Technikfragen wurden die unten genannten Primärquellen abgerufen.",
+    "Alle ursprünglichen 122 Miniquizfragen, Antwortreihenfolgen, Kurs-IDs und Fragequellen bleiben unverändert und werden durch Hash-Vergleiche geschützt."
+  ],
+  "correctedFindings": [
+    {
+      "id": "DE-hygiene-trichinen",
+      "file": "lib/quiz-content-review.js",
+      "before": "Pauschale Probenpflicht vor jeder Abgabe beziehungsweise jedem Verzehr, ohne konkreten Fall oder direkte Quelle.",
+      "after": "Ausdrückliche deutsche Rechtsfrage für selbst erlegtes Wildschwein im eigenen häuslichen Verbrauch; Anmeldung vor weiterer Bearbeitung und gesetzliches Freigabeverfahren werden erklärt.",
+      "source": "https://www.gesetze-im-internet.de/tier-lmhv/__2b.html",
+      "note": "Der zentrale Länderfilter ordnete diesen Datensatz bereits vor dieser Prüfung korrekt dem deutschen Recht zu. Ein Länderleck wird daher nicht als neu behobener Fehler behauptet. § 4 Tier-LMHV enthält bei bestimmten Abgaben Übergänge der Untersuchungspflicht; der neue Fall vermeidet eine pauschale Aussage dazu."
+    },
+    {
+      "id": "JL-110",
+      "file": "lib/quiz-content-review.js",
+      "before": "Untere Jagdbehörde prüft Zuverlässigkeit und Eignung allein.",
+      "after": "Das aktuelle Verfahren nach § 17 Absatz 1 BJagdG unterscheidet die Auskunft der Waffenbehörde von der Jagdbehörde, die den Jagdschein erteilt.",
+      "source": "https://www.gesetze-im-internet.de/bjagdg/__17.html"
+    },
+    {
+      "id": "JL-1090",
+      "file": "lib/quiz-content-review.js",
+      "before": "Dentalplatte wurde als Name des gesamten Rehgebisses behandelt.",
+      "after": "Frage nach der Struktur im oberen Vordergebiss anstelle oberer Schneidezähne; Zusammenwirken mit den unteren Vorderzähnen wird erklärt.",
+      "source": "https://www.desertmuseum.org/fileexchange/fileexchange/skulls.pdf",
+      "note": "Das Museums-Lehrmaterial erklärt den Hirsch-Bauplan am Weißwedelhirsch. Die Quelle wird nicht als artgenaue Gebissaufnahme eines Rehs ausgegeben."
+    },
+    {
+      "id": "JL-1083",
+      "file": "lib/quiz-content-review.js",
+      "before": "Rauschzeit beginnt im Herbst als starre Saisonregel.",
+      "after": "Überwiegende Paarungszeit und mögliche Fortpflanzung außerhalb dieser Zeit werden unterschieden; keine sichere Folgerung über abhängige Junge allein aus dem Kalender.",
+      "source": "https://www.wildtierportal.bayern.de/wildtiere_bayern/084682/index.php"
+    },
+    {
+      "id": "JL-1227",
+      "file": "lib/quiz-content-review.js",
+      "before": "Verbiss wurde als Nachweis von Überbestand oder wenig Nahrung erklärt.",
+      "after": "Ein einzelnes Schadbild bestimmt keine Wilddichte oder Ursache; örtliche Einflüsse und Vergleichsflächen werden erläutert.",
+      "source": "https://www.lwf.bayern.de/service/publikationen/lwf_merkblatt/022686/index.php",
+      "note": "Das Merkblatt ist von 2013. Verwendet wird die Methodik der Vergleichsflächen, keine aktuelle Rechts- oder Bestandsaussage."
+    },
+    {
+      "id": "JL-1093",
+      "file": "lib/quiz-content-review.js",
+      "before": "Rotwildfrage zu Rindenfraß stand im Thema Federwild.",
+      "after": "Thema Rotwild, Erklärung des Unterschieds zwischen Schälen und Verbiss, direkter Fachquellenlink.",
+      "source": "https://www.wildtierportal.bayern.de/wildtiere_bayern/087879/index.php"
+    },
+    {
+      "id": "rotwild-size",
+      "files": [
+        "pages/kurse/wildkunde.js",
+        "pages/kurse/rotwild.js",
+        "lib/course-catalog.js"
+      ],
+      "before": "Rotwild als größte heimische Wildart beziehungsweise größtes heimisches Schalenwild ohne räumliche Abgrenzung.",
+      "after": "Große heimische Hirschart; der unbegrenzte Superlativ wird nicht mehr auf das DACH-Angebot mit Elch und Wisent übertragen.",
+      "source": "https://www.wildtierportal.bayern.de/wildtiere_bayern/098187/index.php",
+      "note": "Das amtliche Portal beschreibt den Elch ausdrücklich als größer als Rotwild und nennt Beobachtungen in Bayern. Daraus wird keine Jagdfreigabe oder flächendeckende Besiedlung abgeleitet."
+    },
+    {
+      "id": "thermal-observation-limits",
+      "file": "pages/kurse/technik.js",
+      "before": "Wärmebildgeräte erhöhen die Sicherheit bei Nacht und schlechtem Wetter als pauschale Behauptung.",
+      "after": "Wärmequellendetektion, Wetter- und Bildgrenzen sowie die getrennte Prüfung von Ansprache, Schussfeld und Kugelfang werden erklärt; entspricht dem vorhandenen Kurs wissen-optik.",
+      "sources": [
+        "https://www.flir.com/discover/rd-science/can-thermal-imaging-see-through-fog-and-rain/",
+        "https://www.svlfg.de/sichere-jagd"
+      ]
+    },
+    {
+      "id": "examination-practice-tips",
+      "file": "pages/kurse/pruefung.js",
+      "before": "Missverständliches mehrere Sekunden Nachschießen, unpräzise Übungsmunition und bloßes Auswendiglernen von Schonzeiten.",
+      "after": "Nachhalten wird von einem zusätzlichen Schuss getrennt; angeleitete Übungen mit kontrolliert entladener Waffe und geeigneten Attrappen sowie aktuelle örtliche Jagdzeitenprüfung werden genannt. Alle 25 Tipps bleiben erhalten.",
+      "source": "https://www.svlfg.de/sichere-jagd"
+    },
+    {
+      "id": "DE-wk-fuchs-losung",
+      "file": "lib/quiz-content-review.js",
+      "before": "Kegelförmig als typische Gesamtform von Fuchslosung.",
+      "after": "Längliche Losung mit häufig zugespitztem Ende, variable Nahrungsreste, kein sicherer Artnachweis allein aus Form/Ablageort und keine Berührung von Losung.",
+      "sources": [
+        "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/wildtierkot-erkennen",
+        "https://www.anl.bayern.de/projekte/tierelive/doc/014_tierspuren_ges_ba.pdf"
+      ],
+      "note": "FVA-Redaktion, 2025, für die Formbeschreibung; ANL Tierspuren S. 6 für ähnliche Enden von Fuchs-/Marderlosung und die Berührungswarnung."
+    }
+  ],
+  "newsRetrieval": {
+    "checkedAt": "2026-10-04T17:12:52Z",
+    "allSixOfficialSourcesFetchedSuccessfully": true,
+    "freshlyParsedRelevantItemCounts": {
+      "lwf-DE": 12,
+      "bfw-AT": 1,
+      "vogelwarte-CH": 10,
+      "waldwissen-DACH": 7,
+      "izw-DE": 4,
+      "vetmed-AT": 1
+    },
+    "countryCoverage": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "check": "Vorhandene Parser und Fach-/Politikfilter wurden für die tatsächlichen Antworten der sechs Quellen verwendet. Originaltitel, Quellenlinks und Veröffentlichungsdaten bleiben erhalten; das Abrufdatum wird nicht als Veröffentlichungsdatum behandelt.",
+    "latestExamples": [
+      {
+        "country": "DE",
+        "title": "Käfer mit Geweih gefunden! Mehr als 2.300 Hirschkäfer gemeldet",
+        "publishedOn": "2026-09-10",
+        "url": "https://www.lwf.bayern.de/cms04/service/presse/405781/index.php"
+      },
+      {
+        "country": "AT",
+        "title": "AquaSilva: Wie Wälder Wasser speichern und Hochwasserrisiken reduzieren können",
+        "publishedOn": "2026-09-24",
+        "url": "https://www.bfw.gv.at/aquasilva-wie-waelder-wasser-speichern-und-hochwasserrisiken-reduzieren-koennen/"
+      },
+      {
+        "country": "CH",
+        "title": "Pflanze des Monats im Besuchszentrum: Echter Dost",
+        "publishedOn": "2026-09-30",
+        "url": "https://www.vogelwarte.ch/de/news/pflanze-des-monats-im-besuchszentrum-echter-dost/"
+      }
+    ],
+    "limitation": "Dies bestätigt den Quellenabruf und die Metadaten, nicht die unabhängige vollständige wissenschaftliche Nachprüfung jedes verlinkten Artikels. Der automatisierte thematische Filter kann passende Meldungen auslassen."
+  },
+  "regressionTests": {
+    "files": [
+      "scripts/test-content-review.cjs",
+      "scripts/test-mini-courses.cjs"
+    ],
+    "command": "node --test scripts/test-content-review.cjs scripts/test-mini-courses.cjs",
+    "passed": 20,
+    "failed": 0,
+    "purpose": "Bestandskonsistenz, bestehende Mini-Fragen, korrekte Antwortauflösung, Kurs-/Lektionsbezüge, Landeszuordnung der Rechtsfragen und die gezielt korrigierten fachlichen Aussagen."
+  },
+  "verificationLimits": [
+    "Dies ist keine unabhängige fachwissenschaftliche Vollprüfung aller 372 Lektionen und aller Aussagen gegen aktuelle Primärliteratur.",
+    "190 aktive alte Quizfragen besitzen weiterhin keinen direkten Quellenlink am einzelnen Datensatz. Vorhandene kurze Erklärungen sind nicht bei jeder Frage eine ausführliche Begründung.",
+    "Die 122 originalen Miniquizfragen haben keine individuellen Warum-Erklärungen im Datenbestand. Die gemeinsame Oberfläche zeigt die richtige Lösung und verlinkt passende geprüfte Vertiefungen; neue Begründungen wurden nicht erfunden.",
+    "Regionale Rechtsinformationen bedürfen auch nach dem dokumentierten Stand der jeweils geltenden amtlichen Quelle, konkreten Gebietsdaten und möglicher Anordnungen. Es wird keine vollständige aktuelle Prüfung aller Einzelregelungen in sämtlichen Bundesländern und Kantonen behauptet.",
+    "Fachliche Foto- und Audiozuordnung, rechtliche Regionaldaten, Community, Zugriffsrechte, Zahlungen und allgemeine Oberfläche werden in anderen Teilprüfungen behandelt. Hier wurden keine API-, Middleware- oder UI-Komponenten geändert.",
+    "Quellenerreichbarkeit bei diesem Abruf garantiert keine dauerhafte Verfügbarkeit; die Nachrichtenoberfläche unterscheidet deshalb erfolgreiche Abrufe und Rückfallstände."
+  ],
+  "unlinkedQuizFollowup": {
+    "readOnlyScanBeforeCorrection": 191,
+    "coverage": {
+      "wildlifeAndBiology": 109,
+      "weaponsAndShooting": 26,
+      "lawTopic": 13,
+      "natureAndHege": 24,
+      "dogs": 9,
+      "hygiene": 5,
+      "huntingTerms": 5
+    },
+    "method": "Erneute Sichtung von Frage, richtiger Lösung und Erklärung aller 191 damaligen Datensätze ohne direkten Quellenlink. 38 Formulierungen zu Sicherheit, sicheren Merkmalen, festen Jahreszeiten oder Pflichten wurden zusätzlich markiert. Waffen- und Hygienegruppen vollständig nochmals gelesen. Rechtskontexte einschließlich des österreichischen Fisch/Wild-Begriffs gesondert betrachtet.",
+    "courseSourceContext": {
+      "wildlife": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-rotwild-sozialverhalten",
+        "wissen-schwarzwild-lebensweise",
+        "wissen-gams-steinbock",
+        "wissen-spuren-systematisch"
+      ],
+      "weapons": [
+        "wissen-waffensicherheit",
+        "wissen-kugelfang",
+        "wissen-optik",
+        "wissen-vertiefung-sicherheitsroutine-stand"
+      ],
+      "hygiene": [
+        "wissen-wildbrethygiene",
+        "wissen-ausbau-hygieneprozess",
+        "wissen-ausbau-wildkrankheiten",
+        "wissen-vertiefung-wildbret-hygienekette"
+      ],
+      "law": [
+        "wissen-jagdrecht-de",
+        "wissen-jagdrecht-at",
+        "wissen-jagdrecht-ch",
+        "wissen-ausbau-rechtsquellen",
+        "wissen-vertiefung-recht-pruefmethode"
+      ]
+    },
+    "targetedPrimarySourceComparisons": [
+      {
+        "ids": [
+          "DE-wk-fuchs-losung"
+        ],
+        "result": "Formulierung korrigiert, siehe Befund.",
+        "sources": [
+          "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/wildtierkot-erkennen",
+          "https://www.anl.bayern.de/projekte/tierelive/doc/014_tierspuren_ges_ba.pdf"
+        ]
+      },
+      {
+        "ids": [
+          "JL-1002",
+          "JL-1098",
+          "JL-1220"
+        ],
+        "result": "Jahresringe zur Altersbestimmung und geringerer Hornzuwachs älterer Tiere stimmen mit dem SNP-Material überein. Sichtbare Jahresringe und vordere Schmuckknoten sind verschiedene Merkmale; der vorhandene Aufbaukurs erläutert Beobachtungsgrenzen.",
+        "sources": [
+          "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf"
+        ]
+      },
+      {
+        "ids": [
+          "JL-1024"
+        ],
+        "result": "Ein massives einzelnes Projektil anstelle einer Schrotgarbe wird durch das Hersteller-Lehrmaterial bestätigt. Produktwerbung zu universeller Wildarteignung, garantierter Wirkung oder festen Einsatzdistanzen wurde nicht übernommen.",
+        "sources": [
+          "https://www.brenneke-ammunition.de/jagd/mit-brenneke-auf-der-jagd/jagdmunition"
+        ]
+      },
+      {
+        "ids": [
+          "AT-wk-aasfresser-63"
+        ],
+        "result": "Rebhuhn ist kein typischer Aasfresser. Die knappe Beschreibung als Körnerfresser ist keine vollständige Nahrungsbeschreibung: Der Kurs-/Artenbestand ergänzt wichtige Insektennahrung besonders für Küken. Daher keine Einstufung der Quizlösung als falsch.",
+        "sources": [
+          "https://www.wildtierportal-bw.de/de/frontend/product/detail?productId=18"
+        ]
+      }
+    ],
+    "result": "Ein zusätzlicher bestätigter Merkmalsfehler korrigiert. Keine weitere gefährliche Sicherheits- oder Hygieneanweisung in diesem gezielten Scan nachgewiesen.",
+    "limits": "Nicht alle 191 damaligen Fragen wurden einzeln gegen eine neue Primärquelle abgeglichen. Die vorhandenen Fachkursquellen geben einen Kontext, belegen jedoch nicht automatisch jeden historischen Fragenwortlaut. Das Fehlen eines Direktlinks wurde nicht als Nachweis eines fachlichen Fehlers gewertet."
+  }
+}

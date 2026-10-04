@@ -1,8 +1,8 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import NavigationButton from "./components/NavigationButton";
 import ScoreBox from "./components/ScoreBox";
-import HomeButton from "./components/HomeButton";
 
 export default function Wildunfall() {
   const [step, setStep] = useState(0);
@@ -16,9 +16,7 @@ export default function Wildunfall() {
   }
 
   return (
-    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
-      <HomeButton />
-      <h1>🚗 Wildunfall-Simulator</h1>
+    <PracticeLayout exercise="wildunfall" title="Wildunfall-Simulator">
 
       {step === 0 && (
         <>
@@ -55,6 +53,6 @@ export default function Wildunfall() {
           <NavigationButton text="Neu starten" onClick={() => { if (!answerGuard.accept()) return;  setScore(0); setStep(0); }} />
         </>
       )}
-    </main>
+    </PracticeLayout>
   );
 }

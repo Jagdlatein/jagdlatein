@@ -62,7 +62,7 @@ export default function WildkundeKurs({ details }) {
       <h2>Rotwild</h2>
 
       <p>
-              Rotwild ist die größte heimische Wildart. Zur Brunft röhren die Hirsche,
+              Rotwild ist eine große heimische Hirschart. Zur Brunft röhren die Hirsche,
               während Kahlwildrudel von erfahrenen Tieren geführt werden.
             </p>
 

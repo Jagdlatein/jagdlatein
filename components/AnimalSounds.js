@@ -16,17 +16,33 @@ function SoundCredit({ sound, full = true }) {
 }
 
 export function SoundPlayer({ sound, label, onPlay, reveal = true }) {
-  const [failed, setFailed] = useState(false);
+  const [failedMedia, setFailedMedia] = useState(null);
   const [attempt, setAttempt] = useState(0);
+  const mediaKey = `${sound.id}:${sound.src}`;
+  const playback = useRef(null);
+  const audio = useRef(null);
+  if (!playback.current || playback.current.mediaKey !== mediaKey || playback.current.attempt !== attempt) playback.current = { mediaKey, attempt };
+  const renderedPlayback = playback.current;
+  const failed = failedMedia === renderedPlayback;
+  function fail() { if (playback.current === renderedPlayback) setFailedMedia(renderedPlayback); }
+  function play(event) {
+    if (playback.current !== renderedPlayback) { event.currentTarget.pause(); return; }
+    setFailedMedia(null); onPlay?.(event);
+  }
+  function retry() {
+    playback.current = null;
+    setFailedMedia(null); setAttempt(value => value + 1);
+  }
+  useEffect(() => { const element = audio.current; return () => element?.pause(); }, [mediaKey, attempt]);
   return <div className={styles.player}>
-    <audio key={`${sound.id}-${attempt}`} controls preload="none" aria-label={label} onPlay={onPlay} onError={() => setFailed(true)}>
-      <source src={sound.src} type="audio/mpeg" />
+    <audio key={`${mediaKey}-${attempt}`} ref={audio} controls preload="none" aria-label={label} onPlay={play} onError={fail}>
+      <source src={sound.src} type="audio/mpeg" onError={fail} />
       Dein Browser kann diese Aufnahme nicht direkt abspielen.
     </audio>
     <p className={styles.duration}>{Math.round(sound.duration)} Sekunden · Originalaufnahme · Start über die Wiedergabetaste</p>
     {failed && <div className={styles.error} role="alert">
       <p>Die Aufnahme konnte nicht abgespielt werden. Prüfe die Verbindung und versuche es erneut.</p>
-      <button type="button" className={experienceStyles.secondary} onClick={() => { setFailed(false); setAttempt(value => value + 1); }}>Noch einmal laden</button>
+      <button type="button" className={experienceStyles.secondary} onClick={retry}>Noch einmal laden</button>
       <a href={sound.sourceUrl} target="_blank" rel="noreferrer">Bei der Originalquelle abspielen{!reveal && " (verrät die Art)"}</a>
     </div>}
     <SoundCredit sound={sound} full={reveal} />

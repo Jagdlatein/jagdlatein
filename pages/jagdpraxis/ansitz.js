@@ -1,3 +1,4 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState, useEffect, useRef } from "react";
 import useActivityResult from "../../hooks/useActivityResult";
 import ActivityResultNotice from "../../components/ActivityResultNotice";
@@ -5,7 +6,6 @@ import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ScoreBox from "./components/ScoreBox";
 import NavigationButton from "./components/NavigationButton";
-import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 SZENARIEN – TRUE = schießen, FALSE = nicht schießen
@@ -109,19 +109,21 @@ export default function Ansitz() {
   const answerPending = useRef(false);
   const feedbackTimer = useRef(null);
   const activeScenario = useRef(null);
+  const generation = useRef(0);
+  const renderedGeneration = generation.current;
   const resultCompleted = step >= scenarios.length || (step === scenarios.length - 1 && feedback !== null);
   const activityResult = useActivityResult({
     runKey, completed: resultCompleted, type: "ansitz", country: null, topic: "Ansitzsimulator",
     totalQuestions: scenarios.length, correctAnswers: score, points: score, startedAt: startedAt.current,
   });
 
-  useEffect(() => () => { clearTimeout(feedbackTimer.current); activeScenario.current = null; }, []);
+  useEffect(() => () => { clearTimeout(feedbackTimer.current); activeScenario.current = null; generation.current += 1; }, []);
 
   const current = scenarios[step];
   activeScenario.current = current?.id ?? null;
 
   function answer(isCorrect, scenarioId) {
-    if (answerPending.current || lockButtons || activeScenario.current !== scenarioId) return;
+    if (generation.current !== renderedGeneration || answerPending.current || lockButtons || activeScenario.current !== scenarioId) return;
     answerPending.current = true;
 
     setLockButtons(true);
@@ -132,7 +134,8 @@ export default function Ansitz() {
     }
 
     feedbackTimer.current = setTimeout(() => {
-      if (activeScenario.current !== scenarioId) return;
+      if (generation.current !== renderedGeneration || activeScenario.current !== scenarioId) return;
+      activeScenario.current = null;
       answerPending.current = false;
       setFeedback(null);
       setLockButtons(false);
@@ -141,6 +144,9 @@ export default function Ansitz() {
   }
 
   function restart() {
+    if (generation.current !== renderedGeneration) return;
+    generation.current += 1;
+    activeScenario.current = null;
     clearTimeout(feedbackTimer.current);
     answerPending.current = false;
     startedAt.current = Date.now();
@@ -159,9 +165,7 @@ export default function Ansitz() {
     const passed = percent >= 70;
 
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-        <HomeButton />
-        <h1 style={{ fontSize: 34, marginBottom: 20 }}>Ansitz – Ergebnis</h1>
+      <PracticeLayout exercise="ansitz" title="Ansitz – Ergebnis" result>
 
         <ScoreBox score={score} max={scenarios.length} />
         <ActivityResultNotice {...activityResult} nextUrl="/jagdpraxis/ansitz" />
@@ -186,7 +190,7 @@ export default function Ansitz() {
             onClick={() => (window.location.href = "/jagdpraxis")}
           />
         </div>
-      </main>
+      </PracticeLayout>
     );
   }
 
@@ -194,9 +198,7 @@ export default function Ansitz() {
   // SIMULATOR-ANSICHT
   // ------------------------------------------------------------
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-      <HomeButton />
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Ansitz-Simulator</h1>
+    <PracticeLayout exercise="ansitz" title="Ansitz-Simulator">
       <p>Situation {step + 1} von {scenarios.length}. Prüfe alle Angaben vor deiner Entscheidung.</p>
 
       <ScenarioCard
@@ -235,6 +237,6 @@ export default function Ansitz() {
       {feedback !== null && <InstantFeedback isCorrect={feedback} scenario={current} />}
       <p style={{ marginTop: 24, fontSize: 14 }}>Grundlagen: <a href="https://www.svlfg.de/sichere-jagd" target="_blank" rel="noopener noreferrer">SVLFG: sichere Jagd</a> und <a href="https://www.gesetze-im-internet.de/bjagdg/__22.html" target="_blank" rel="noopener noreferrer">§ 22 BJagdG (Deutschland)</a>. In Österreich und der Schweiz gelten die jeweiligen Landes- und Kantonsvorschriften.</p>
       <ActivityResultNotice {...activityResult} nextUrl="/jagdpraxis/ansitz" />
-    </main>
+    </PracticeLayout>
   );
 }

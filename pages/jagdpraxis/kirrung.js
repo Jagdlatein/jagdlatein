@@ -1,8 +1,8 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import NavigationButton from "./components/NavigationButton";
 import ScoreBox from "./components/ScoreBox";
-import HomeButton from "./components/HomeButton";
 
 export default function Kirrung() {
   const [step, setStep] = useState(0);
@@ -16,10 +16,7 @@ export default function Kirrung() {
   }
 
   return (
-    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
-      <HomeButton />
-
-      <h1>🪵 Kirrung-Wissensübung</h1>
+    <PracticeLayout exercise="kirrung" title="Kirrung-Wissens&#252;bung">
 
       {/* STEP 0 */}
       {step === 0 && (
@@ -67,6 +64,6 @@ export default function Kirrung() {
           <NavigationButton text="Nochmal spielen" onClick={() => { if (!answerGuard.accept()) return;  setScore(0); setStep(0); }} />
         </>
       )}
-    </main>
+    </PracticeLayout>
   );
 }

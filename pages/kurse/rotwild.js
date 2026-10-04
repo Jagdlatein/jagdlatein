@@ -44,14 +44,14 @@ export default function RotwildKompaktKurs({ details }) {
   return (
     <MiniCourse courseId="rotwild" questions={rotwildQuiz} details={details}>
       <p>
-              Kompaktes Wissen über unser größtes heimisches Schalenwild.
+              Kompaktes Wissen über Rotwild: Lebensweise, Brunft und typische Feldzeichen.
               Ideal für Jagdscheinanwärter und zur schnellen Wiederholung.
             </p>
 
       <h2>Rotwild</h2>
 
       <p>
-              Rotwild ist die größte heimische Schalenwildart. Die <strong>Hirsche</strong> tragen
+              Rotwild gehört zu den großen heimischen Hirscharten. Die <strong>Hirsche</strong> tragen
               ein eindrucksvolles Geweih, das jedes Jahr neu gebildet, verfegt und
               anschließend abgeworfen wird. Weibliches Rotwild heißt <strong>Tier</strong>,
               der Nachwuchs <strong>Kalb</strong>.

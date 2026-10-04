@@ -1,8 +1,8 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import NavigationButton from "./components/NavigationButton";
 import ScoreBox from "./components/ScoreBox";
-import HomeButton from "./components/HomeButton";
 
 export default function Notfall() {
   const [step, setStep] = useState(0);
@@ -16,9 +16,7 @@ export default function Notfall() {
   }
 
   return (
-    <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
-      <HomeButton />
-      <h1>🚨 Notfall-Simulator</h1>
+    <PracticeLayout exercise="notfall" title="Notfall-Simulator">
 
       {step === 0 && (
         <>
@@ -55,6 +53,6 @@ export default function Notfall() {
           <NavigationButton text="Neu starten" onClick={() => { if (!answerGuard.accept()) return;  setScore(0); setStep(0); }} />
         </>
       )}
-    </main>
+    </PracticeLayout>
   );
 }

@@ -26,9 +26,12 @@ export default function TechnikKurs({ details }) {
   return (
     <MiniCourse courseId="technik" questions={quiz} details={details}>
       <p>
-              Moderne Jagdtechnik unterstützt sichere Entscheidungen. Wärmebildgeräte
-              erkennen Wild unabhängig von Lichtquellen, erleichtern die Pirsch und
-              erhöhen die Sicherheit bei Nacht und schlechtem Wetter.
+              Wärmebildgeräte zeigen Unterschiede der Wärmestrahlung und helfen beim
+              Auffinden von Wärmequellen auch ohne sichtbares Licht. Bildqualität,
+              Sichtfeld, Vegetation und Wetter begrenzen die erkennbaren Informationen;
+              Regen und Nebel können die Reichweite deutlich verringern. Ein Gerät
+              ersetzt weder sichere Ansprache noch die Prüfung von Schussfeld und
+              Kugelfang. Bei Unsicherheit unterbleibt der Schuss.
             </p>
     </MiniCourse>
   );

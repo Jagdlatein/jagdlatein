@@ -1,5 +1,5 @@
 import {
-  PROGRESS_COLUMNS, requireAccountSession, getAccountDatabase,
+  PROGRESS_COLUMNS, requireAccountSession, getAccountDatabase, requireCurrentAccount,
   requireSameOriginJson, validateCourseProgress,
   accountJson, accountErrorResponse, accountUnavailable,
 } from "../../../lib/course-progress-server";
@@ -11,6 +11,7 @@ export async function GET(req) {
   try {
     const session = requireAccountSession(req, "PROGRESS_UNAVAILABLE");
     const database = getAccountDatabase("PROGRESS_UNAVAILABLE");
+    await requireCurrentAccount(database, session, "PROGRESS_UNAVAILABLE");
     const { data, error } = await database
       .from("course_progress")
       .select(PROGRESS_COLUMNS)
@@ -35,6 +36,7 @@ export async function POST(req) {
     }
     const progress = validateCourseProgress(body);
     const database = getAccountDatabase("PROGRESS_UNAVAILABLE");
+    await requireCurrentAccount(database, session, "PROGRESS_UNAVAILABLE");
     const { data, error } = await database
       .from("course_progress")
       .upsert({ account_email: session.email, ...progress }, {

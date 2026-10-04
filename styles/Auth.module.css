@@ -1,0 +1,10 @@
+.formPanel { max-width: 640px; margin: 0 auto; }
+.form { display: grid; gap: 16px; }
+.form label { display: grid; gap: 8px; font-weight: 700; }
+.form input { width: 100%; min-height: 48px; }
+.code { text-align: center; font-size: 24px !important; letter-spacing: .25em; font-weight: 700; }
+.otherEmail { margin-top: 18px; }
+.message { margin-bottom: 0; }
+.pricePanel { max-width: 840px; margin: 0 auto 22px; }
+.price { color: #796021; font-size: 20px; font-weight: 700; }
+.support { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }

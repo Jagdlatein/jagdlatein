@@ -1,5 +1,7 @@
 // pages/preise.js
-import Head from "next/head";
+import LearningToolLayout from "../components/LearningToolLayout";
+import styles from "../styles/LearningExperience.module.css";
+import authStyles from "../styles/Auth.module.css";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
@@ -34,69 +36,6 @@ export default function Preise() {
     if (!nextParam) return "/login";
     return `/login?next=${encodeURIComponent(String(nextParam))}`;
   }, [nextParam]);
-
-  const container = {
-    maxWidth: 960,
-    margin: "0 auto",
-    padding: "16px 14px 26px",
-    fontFamily: "system-ui, Segoe UI, Roboto, Arial",
-  };
-
-  const h1 = {
-    margin: "6px 0 8px",
-    fontSize: 30,
-    lineHeight: 1.2,
-    letterSpacing: "-.01em",
-    color: "#121518",
-  };
-
-  const lead = {
-    color: "#475569",
-    margin: "0 0 16px",
-    fontSize: 16,
-  };
-
-  const card = {
-    background: "#fff",
-    border: "1px solid #e6eee6",
-    borderRadius: 14,
-    padding: 14,
-    boxShadow: "0 8px 18px rgba(17,41,25,0.06)",
-    marginBottom: 14,
-  };
-
-  const priceTitle = {
-    margin: "0 0 6px",
-    fontSize: 22,
-  };
-
-  const sub = {
-    margin: "0 0 12px",
-    color: "#4b5563",
-  };
-
-  const note = {
-    fontSize: 12,
-    color: "#6b7280",
-    marginTop: 8,
-  };
-
-  const smallText = {
-    marginTop: 18,
-    color: "#6b7280",
-    fontSize: 14,
-  };
-
-  const themeLink = {
-    display: "inline-block",
-    padding: "5px 10px",
-    borderRadius: 999,
-    background: "#f3e7b2",
-    border: "1px solid #d9bd55",
-    color: "#111827",
-    fontWeight: 700,
-    textDecoration: "none",
-  };
 
   useEffect(() => {
     let cancelled = false;
@@ -257,92 +196,38 @@ export default function Preise() {
     };
   }, [loginHref, planId, checkoutRevision]);
 
-  return (
-    <>
-      <Head>
-        <title>Preise – Jagdlatein</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-      </Head>
-
-      <main
-        style={{
-          background: "linear-gradient(180deg,#fff,#f7faf7)",
-        }}
-      >
-        <div style={container}>
-          <h1 className="jl" style={h1}>
-            Preise
-          </h1>
-
-          <p style={lead}>
-            {checkoutStatus === "existing" ? "Dein Zugang ist aktiv. Die Laufzeit und dein Abo findest du im Konto." : showTrialOffer
-              ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 5 € pro Monat."
-              : trialPlan ? "Die Konditionen für den Testzugang werden vor dem Aboabschluss geprüft."
-              : "Der Zugang zur Lernplattform wird nach erfolgreicher Bezahlung automatisch freigeschaltet."}
-          </p>
-
-          <div style={card}>
-            <h3 style={priceTitle}>
-              {checkoutStatus === "existing" ? "Dein Zugang" : showTrialOffer ? "3 Tage kostenlos testen" : trialPlan ? "Testabo" : "Monatszugang"}
-            </h3>
-
-            <p style={sub}>
-              {checkoutStatus === "existing" ? null : showTrialOffer ? "3 Tage kostenlos, danach automatisch 5 € / Monat · jederzeit kündbar" : trialPlan ? null : "5 € / Monat · jederzeit kündbar"}
-            </p>
-
-            {showTrialOffer && <p style={sub}>
-              Du bestätigst das Abo zuerst in PayPal. Die drei kostenlosen Tage laufen ab dem von PayPal bestätigten Abostart;
-              das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 5 €. Wenn du vor Ablauf bei PayPal kündigst,
-              fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.
-            </p>}
-            {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
-            {checkoutStatus === "existing" && <p>
-              {account?.accessType === "trial" ? "Dein Testzugang ist bereits aktiv." : "Dein Zugang ist bereits aktiv."}{" "}
-              <Link href="/konto" style={themeLink}>Zum Konto</Link>
-            </p>}
-            {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert">{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
-            {(checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" style={themeLink} onClick={() => setCheckoutRevision((value) => value + 1)}>Erneut prüfen</button></p>}
-            {checkoutStatus === "error" && <p role="alert">
-              Dein Kontostatus konnte nicht geprüft werden.{" "}
-              <button type="button" style={themeLink} onClick={() => setCheckoutRevision((value) => value + 1)}>Erneut prüfen</button>
-            </p>}
-            <div id="paypal-subscribe-preise" hidden={checkoutStatus !== "ready" || Boolean(activation)}></div>
-            {paymentMessage && <p role="status" aria-live="polite">{paymentMessage}</p>}
-            {activation && <p><Link href={`${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`} style={themeLink}>Mit PayPal-E-Mail anmelden</Link></p>}
-
-            <p style={note}>
-              {checkoutStatus === "existing" ? "Informationen zu deinem aktuellen Zugang findest du im Konto."
-                : showTrialOffer
-                ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Nach der geprüften Abo-Bestätigung meldest du dich mit der E-Mail-Adresse deines PayPal-Kontos an."
-                : trialPlan ? "Der Abschluss ist erst nach Bestätigung der Testabo-Konditionen möglich."
-                : "Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung kannst du dich mit der E-Mail-Adresse deines PayPal-Kontos einloggen."}
-            </p>
-          </div>
-
-          <p style={smallText}>
-            Bereits einen Zugang?{" "}
-            <Link
-              href={loginHref}
-              style={themeLink}
-            >
-              Hier einloggen
-            </Link>
-          </p>
-
-          <p style={smallText}>
-            Fragen zur Zahlung?{" "}
-            <a
-              href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein"
-              style={themeLink}
-            >
-              info@jagdlatein.de
-            </a>
-          </p>
-        </div>
-      </main>
-    </>
-  );
+  return <LearningToolLayout title="Preise und Zugang" description={checkoutStatus === "existing"
+    ? "Dein Zugang ist aktiv. Die Laufzeit und dein Abo findest du im Konto."
+    : showTrialOffer ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 5 € pro Monat."
+    : trialPlan ? "Die Konditionen für den Testzugang werden vor dem Aboabschluss geprüft."
+    : "Dein Monatszugang zur Lernplattform wird nach geprüfter Zahlungsbestätigung freigeschaltet."}
+    icon="shield" eyebrow="Lernen mit Jagdlatein" hideCommunity>
+    <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="price-heading">
+      <h2 id="price-heading">{checkoutStatus === "existing" ? "Dein Zugang" : showTrialOffer ? "3 Tage kostenlos testen" : trialPlan ? "Testabo" : "Monatszugang"}</h2>
+      {checkoutStatus !== "existing" && (!trialPlan || showTrialOffer) && <p className={authStyles.price}>{showTrialOffer ? "3 Tage kostenlos, danach automatisch 5 € / Monat · jederzeit kündbar" : "5 € / Monat · jederzeit kündbar"}</p>}
+      {showTrialOffer && <p>Du bestätigst das Abo zuerst in PayPal. Die drei kostenlosen Tage laufen ab dem von PayPal bestätigten Abostart;
+        das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 5 €. Wenn du vor Ablauf bei PayPal kündigst,
+        fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.</p>}
+      {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
+      {checkoutStatus === "existing" && <div className={styles.note}><p>{account?.accessType === "trial" ? "Dein Testzugang ist bereits aktiv." : "Dein Zugang ist bereits aktiv."}</p><Link href="/konto" className={styles.primary}>Zum Konto</Link></div>}
+      {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert" className={styles.note}>{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
+      {(checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></p>}
+      {checkoutStatus === "error" && <div role="alert" className={styles.note}><p>Dein Kontostatus konnte nicht geprüft werden.</p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></div>}
+      <div id="paypal-subscribe-preise" hidden={checkoutStatus !== "ready" || Boolean(activation)} />
+      {paymentMessage && <p role="status" aria-live="polite" className={styles.note}>{paymentMessage}</p>}
+      {activation && <p><Link href={`${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`} className={styles.primary}>Mit PayPal-E-Mail anmelden</Link></p>}
+      <p className={styles.muted}>{checkoutStatus === "existing" ? "Informationen zu deinem aktuellen Zugang findest du im Konto."
+        : showTrialOffer ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Nach der geprüften Abo-Bestätigung meldest du dich mit der E-Mail-Adresse deines PayPal-Kontos an."
+        : trialPlan ? "Der Abschluss ist erst nach Bestätigung der Testabo-Konditionen möglich."
+        : "Die Zahlung erfolgt über PayPal. Nach geprüfter Zahlungsbestätigung kannst du dich mit der E-Mail-Adresse deines PayPal-Kontos einloggen."}</p>
+    </section>
+    <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="access-help-heading">
+      <h2 id="access-help-heading">Anmeldung und Hilfe</h2>
+      <p>Bereits einen Zugang? Melde dich mit deiner registrierten E-Mail-Adresse an.</p>
+      <div className={authStyles.support}>
+        <Link href={loginHref} className={styles.secondary}>Hier einloggen</Link>
+        <a href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein" className={styles.secondary}>Fragen zur Zahlung</a>
+      </div>
+    </section>
+  </LearningToolLayout>;
 }

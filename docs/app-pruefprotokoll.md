@@ -1,3 +1,5 @@
+Aktueller ausführlicher Prüfstand: [App-Prüfung vom 4. Oktober 2026](app-pruefung-2026-10-04.md). Die folgenden Angaben sind historische Nachweise vor dem weiteren Ausbau.
+
 # App-Prüfung und ergänzende Restprüfung – 4. Oktober 2026
 
 Aktueller Prüfstand: lokale Ergänzungen auf main, Ausgangscommit 6aef87d.

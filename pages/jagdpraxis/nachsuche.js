@@ -1,3 +1,4 @@
+import PracticeLayout from "../../components/PracticeLayout";
 import { useState } from "react";
 import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
@@ -5,7 +6,6 @@ import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
 import ScoreBox from "./components/ScoreBox";
 import NavigationButton from "./components/NavigationButton";
-import HomeButton from "./components/HomeButton";
 
 // ------------------------------------------------------------
 // 25 NACH-SUCHE Szenarien – true = richtige Entscheidung, false = falsch
@@ -296,9 +296,7 @@ export default function Nachsuche() {
     const passed = percent >= 70;
 
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-        <HomeButton />
-        <h1 style={{ fontSize: 34, marginBottom: 20 }}>Nachsuche – Ergebnis</h1>
+      <PracticeLayout exercise="nachsuche" title="Nachsuche – Ergebnis" result>
 
         <ScoreBox score={score} max={scenarios.length} />
 
@@ -325,7 +323,7 @@ export default function Nachsuche() {
             onClick={() => (window.location.href = "/jagdpraxis")}
           />
         </div>
-      </main>
+      </PracticeLayout>
     );
   }
 
@@ -333,9 +331,7 @@ export default function Nachsuche() {
   // SIMULATOR ANSICHT
 // ------------------------------------------------------------
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
-      <HomeButton />
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Nachsuche-Simulator</h1>
+    <PracticeLayout exercise="nachsuche" title="Nachsuche-Simulator">
 
      <ScenarioCard
   title={current.title}
@@ -370,6 +366,6 @@ export default function Nachsuche() {
       </div>
 
       {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
-    </main>
+    </PracticeLayout>
   );
       }

@@ -4,11 +4,11 @@ import AppIcon from "./AppIcon";
 import { getLearningCategory } from "../lib/learning-categories";
 import styles from "../styles/LearningExperience.module.css";
 
-export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, children }) {
+export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, eyebrow = "Entdecken, üben und verstehen", robots, children }) {
   const info = typeof category === "string" ? getLearningCategory(category) : category;
   const categoryHref = info?.href || (info?.slug ? `/lernen/${info.slug}` : null);
   return <>
-    <Head><title>{`${title} – Jagdlatein`}</title><meta name="description" content={description} /></Head>
+    <Head><title>{`${title} – Jagdlatein`}</title><meta name="description" content={description} />{robots && <meta name="robots" content={robots} />}</Head>
     <main className={styles.main}>
       <nav className={styles.nav} aria-label="Lernmenü">
         <Link href="/lernen"><AppIcon name="arrow-left" size={18} />Lernbereich</Link>
@@ -17,7 +17,7 @@ export default function LearningToolLayout({ title, description, icon = "book", 
       </nav>
       <header className={styles.header}>
         <span className={styles.heroIcon}><AppIcon name={icon} size={38} /></span>
-        <p className={styles.eyebrow}>Entdecken, üben und verstehen</p>
+        <p className={styles.eyebrow}>{eyebrow}</p>
         <h1>{title}</h1>
         <p>{description}</p>
         {stats.length > 0 && <dl className={styles.stats}>{stats.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>}

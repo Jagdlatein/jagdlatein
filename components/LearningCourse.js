@@ -154,6 +154,7 @@ function LearningContent({ module }) {
                 {practice && <p className={styles.trainingNotice}><strong>Fehlertraining:</strong> Du übst nur die zuvor falsch beantworteten Fragen. Dein gespeicherter Kursabschluss bleibt erhalten.</p>}
                 <p className={styles.eyebrow}>Frage {run.index + 1} von {run.questions.length} · {answered} beantwortet</p>
                 <progress className={styles.progress} value={answered} max={run.questions.length} aria-label={`${answered} von ${run.questions.length} Fragen beantwortet`} />
+                {(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.countryNote}><strong>Geltungsbereich dieser Frage:</strong> {question.countries.map(item => countryNames[item] || item).join(" · ")}</p>}
                 <h3 id="current-question" className={styles.question}>{question.q}</h3>
                 <div className={styles.answers} role="group" aria-labelledby="current-question">
                   {question.answers.map((answer) => {
