@@ -4,9 +4,26 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 
+function accessDate(value) {
+  if (typeof value !== "string" || !Number.isFinite(Date.parse(value))) return null;
+  return new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Berlin", timeZoneName: "short" }).format(new Date(value));
+}
+
 export default function Preise() {
   const router = useRouter();
   const [paymentMessage, setPaymentMessage] = useState("");
+  const [checkoutStatus, setCheckoutStatus] = useState("checking");
+  const [account, setAccount] = useState(null);
+  const [activation, setActivation] = useState(null);
+  const [trialOfferVerified, setTrialOfferVerified] = useState(false);
+  const [checkoutRevision, setCheckoutRevision] = useState(0);
+  const trialPlan = (process.env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID || "").trim();
+  const regularPlan = (process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA").trim();
+  const validPlan = (value) => /^P-[A-Z0-9]{6,64}$/.test(value);
+  const isTrialPlan = Boolean(trialPlan && validPlan(trialPlan));
+  // A broken explicit trial configuration must never charge the old plan.
+  const planId = trialPlan ? (isTrialPlan ? trialPlan : null) : (validPlan(regularPlan) ? regularPlan : null);
+  const showTrialOffer = isTrialPlan && trialOfferVerified;
 
   const nextParam = useMemo(() => {
     const raw = router.query.next;
@@ -82,18 +99,42 @@ export default function Preise() {
   };
 
   useEffect(() => {
-    const script = document.createElement("script");
     let cancelled = false;
+    let eligible = false;
+    let confirming = false;
+    let subscriptionPromise;
+    let script;
     let buttons;
+    const controller = new AbortController();
+    setCheckoutStatus("checking");
+    setPaymentMessage("");
+    setTrialOfferVerified(false);
 
-    script.src =
-      `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW")}&vault=true&intent=subscription&currency=EUR`;
+    if (!planId) {
+      setCheckoutStatus("unavailable");
+      return () => controller.abort();
+    }
 
-    script.async = true;
+    function loadPayPal(paypalPlanId) {
+      if (cancelled || !eligible) return;
+      script = document.createElement("script");
+      const paypalFailed = () => {
+        if (cancelled) return;
+        eligible = false;
+        setCheckoutStatus("sdk-error");
+        setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen.");
+      };
 
-    script.onload = () => {
-      if (!cancelled && window.paypal) {
-        buttons = window.paypal.Buttons({
+      script.src =
+        `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW")}&vault=true&intent=subscription&currency=EUR`;
+
+      script.async = true;
+
+      script.onload = () => {
+        if (cancelled || !eligible) return;
+        try {
+          if (!window.paypal || typeof window.paypal.Buttons !== "function") throw new Error("PayPal nicht geladen.");
+          buttons = window.paypal.Buttons({
             style: {
               shape: "rect",
               color: "gold",
@@ -102,17 +143,25 @@ export default function Preise() {
             },
 
             createSubscription(data, actions) {
-              return actions.subscription.create({
-                plan_id: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA",
-              });
+              if (cancelled || !eligible) return Promise.reject(new Error("Aboabschluss derzeit nicht möglich."));
+              if (!subscriptionPromise) {
+                subscriptionPromise = Promise.resolve().then(() => {
+                  if (cancelled || !eligible) throw new Error("Aboabschluss derzeit nicht möglich.");
+                  return actions.subscription.create({ plan_id: paypalPlanId });
+                })
+                  .catch((error) => { subscriptionPromise = null; throw error; });
+              }
+              return subscriptionPromise;
             },
 
             async onApprove(data) {
-              if (cancelled) return;
-              setPaymentMessage("Die Zahlungsbestätigung wird geprüft …");
+              if (cancelled || !eligible || confirming) return;
+              confirming = true;
+              setPaymentMessage("Deine Abo-Bestätigung wird geprüft …");
               try {
                 const response = await fetch("/api/paypal/confirm-subscription", {
-                  method: "POST", headers: { "Content-Type": "application/json" },
+                  method: "POST", credentials: "same-origin", signal: controller.signal,
+                  headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ subscriptionId: data.subscriptionID }),
                 });
                 const confirmation = await response.json();
@@ -121,30 +170,92 @@ export default function Preise() {
                   setPaymentMessage(confirmation.error || "Die Bestätigung wird noch verarbeitet. Bitte melde dich in Kürze mit deiner PayPal-E-Mail an.");
                   return;
                 }
+                eligible = false;
+                try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
+                if (confirmation.accessType === "trial") {
+                  const until = accessDate(confirmation.trialUntil);
+                  setActivation({ accessType: "trial" });
+                  setPaymentMessage(until
+                    ? `Testzugang aktiviert – kostenlos bis ${until}. Melde dich mit deiner PayPal-E-Mail an.`
+                    : "Dein Testzugang wurde bestätigt. Melde dich mit deiner PayPal-E-Mail an, um die Laufzeit im Konto zu prüfen.");
+                  return;
+                }
                 window.location.href = `${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`;
               } catch {
                 if (!cancelled) setPaymentMessage("Die Bestätigung konnte noch nicht geprüft werden. Bitte melde dich später mit deiner PayPal-E-Mail an.");
+              } finally {
+                confirming = false;
               }
+            },
+            onCancel() {
+              subscriptionPromise = null;
+              if (!cancelled) setPaymentMessage("Der Aboabschluss bei PayPal wurde abgebrochen.");
             },
             onError() { if (!cancelled) setPaymentMessage("PayPal ist derzeit nicht erreichbar. Bitte erneut versuchen."); },
           });
-        Promise.resolve(buttons.render("#paypal-subscribe-preise")).catch(() => {
-          if (!cancelled) setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen.");
-        });
-      }
-    };
+          Promise.resolve(buttons.render("#paypal-subscribe-preise")).catch(paypalFailed);
+        } catch {
+          paypalFailed();
+        }
+      };
 
-    document.body.appendChild(script);
-    script.onerror = () => { if (!cancelled) setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen."); };
+      script.onerror = paypalFailed;
+      document.body.appendChild(script);
+    }
+
+    async function checkAccount() {
+      try {
+        const response = await fetch("/api/account", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
+        if (cancelled) return;
+        if (response.status !== 401) {
+          if (!response.ok) throw new Error("Kontostatus nicht verfügbar.");
+          const data = await response.json();
+          if (cancelled) return;
+          if (!data.account || typeof data.account.paid !== "boolean" || typeof data.account.admin !== "boolean") throw new Error("Kontostatus nicht verfügbar.");
+          setAccount(data.account);
+          if (data.account.paid || data.account.admin) {
+            setCheckoutStatus("existing");
+            return;
+          }
+        } else {
+          setAccount(null);
+        }
+        let paypalPlanId = planId;
+        if (isTrialPlan) {
+          let offer;
+          try {
+            const configuration = await fetch("/api/paypal/checkout-config", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
+            if (cancelled) return;
+            if (!configuration.ok) throw new Error("Testabo nicht verfügbar.");
+            offer = await configuration.json();
+            if (cancelled) return;
+            if (!offer || offer.planId !== planId || !validPlan(offer.planId) || offer.trialDays !== 3 || offer.amount !== "5.00" || offer.currency !== "EUR") throw new Error("Testabo nicht verfügbar.");
+          } catch {
+            if (!cancelled) setCheckoutStatus("trial-unavailable");
+            return;
+          }
+          paypalPlanId = offer.planId;
+          setTrialOfferVerified(true);
+        }
+        eligible = true;
+        setCheckoutStatus("ready");
+        loadPayPal(paypalPlanId);
+      } catch {
+        if (!cancelled) setCheckoutStatus("error");
+      }
+    }
+    void checkAccount();
 
     return () => {
       cancelled = true;
+      eligible = false;
+      controller.abort();
       try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
       try {
-        document.body.removeChild(script);
+        if (script) document.body.removeChild(script);
       } catch {}
     };
-  }, [loginHref]);
+  }, [loginHref, planId, checkoutRevision]);
 
   return (
     <>
@@ -167,31 +278,52 @@ export default function Preise() {
           </h1>
 
           <p style={lead}>
-            Wähle dein Modell. Der Zugang zur Lernplattform wird nach
-            erfolgreicher Bezahlung automatisch freigeschaltet.
+            {checkoutStatus === "existing" ? "Dein Zugang ist aktiv. Die Laufzeit und dein Abo findest du im Konto." : showTrialOffer
+              ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 5 € pro Monat."
+              : trialPlan ? "Die Konditionen für den Testzugang werden vor dem Aboabschluss geprüft."
+              : "Der Zugang zur Lernplattform wird nach erfolgreicher Bezahlung automatisch freigeschaltet."}
           </p>
 
           <div style={card}>
             <h3 style={priceTitle}>
-              Monatszugang
+              {checkoutStatus === "existing" ? "Dein Zugang" : showTrialOffer ? "3 Tage kostenlos testen" : trialPlan ? "Testabo" : "Monatszugang"}
             </h3>
 
             <p style={sub}>
-              5 € / Monat · jederzeit kündbar
+              {checkoutStatus === "existing" ? null : showTrialOffer ? "3 Tage kostenlos, danach automatisch 5 € / Monat · jederzeit kündbar" : trialPlan ? null : "5 € / Monat · jederzeit kündbar"}
             </p>
 
-            <div id="paypal-subscribe-preise"></div>
+            {showTrialOffer && <p style={sub}>
+              Du bestätigst das Abo zuerst in PayPal. Die drei kostenlosen Tage laufen ab dem von PayPal bestätigten Abostart;
+              das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 5 €. Wenn du vor Ablauf bei PayPal kündigst,
+              fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.
+            </p>}
+            {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
+            {checkoutStatus === "existing" && <p>
+              {account?.accessType === "trial" ? "Dein Testzugang ist bereits aktiv." : "Dein Zugang ist bereits aktiv."}{" "}
+              <Link href="/konto" style={themeLink}>Zum Konto</Link>
+            </p>}
+            {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert">{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
+            {(checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" style={themeLink} onClick={() => setCheckoutRevision((value) => value + 1)}>Erneut prüfen</button></p>}
+            {checkoutStatus === "error" && <p role="alert">
+              Dein Kontostatus konnte nicht geprüft werden.{" "}
+              <button type="button" style={themeLink} onClick={() => setCheckoutRevision((value) => value + 1)}>Erneut prüfen</button>
+            </p>}
+            <div id="paypal-subscribe-preise" hidden={checkoutStatus !== "ready" || Boolean(activation)}></div>
             {paymentMessage && <p role="status" aria-live="polite">{paymentMessage}</p>}
+            {activation && <p><Link href={`${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`} style={themeLink}>Mit PayPal-E-Mail anmelden</Link></p>}
 
             <p style={note}>
-              Die Zahlung wird sicher über PayPal abgewickelt. Nach
-              erfolgreicher Zahlung erhältst du eine Bestätigung und kannst
-              dich mit deiner E-Mail einloggen.
+              {checkoutStatus === "existing" ? "Informationen zu deinem aktuellen Zugang findest du im Konto."
+                : showTrialOffer
+                ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Nach der geprüften Abo-Bestätigung meldest du dich mit der E-Mail-Adresse deines PayPal-Kontos an."
+                : trialPlan ? "Der Abschluss ist erst nach Bestätigung der Testabo-Konditionen möglich."
+                : "Die Zahlung wird sicher über PayPal abgewickelt. Nach erfolgreicher Zahlung kannst du dich mit der E-Mail-Adresse deines PayPal-Kontos einloggen."}
             </p>
           </div>
 
           <p style={smallText}>
-            Bereits gekauft?{" "}
+            Bereits einen Zugang?{" "}
             <Link
               href={loginHref}
               style={themeLink}

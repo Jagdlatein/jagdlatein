@@ -155,7 +155,7 @@ export async function POST(req) {
     const subscription = profile.is_admin === true && profile.is_premium !== true ? { paid: false, paidUntil: null }
       : await resolveSubscriptionAccess(supabase, email, { legacyPaid: profile.is_premium === true });
     const accountToken = createAccountSession(email, Date.now(), {
-      paid: subscription.paid, paidUntil: subscription.paidUntil, admin: profile.is_admin === true,
+      paid: subscription.paid, paidUntil: subscription.paidUntil, accessType: subscription.accessType, admin: profile.is_admin === true,
     });
     if (!accountToken) return NextResponse.json({ success: false, message: "Die Anmeldung ist derzeit nicht verfügbar." }, { status: 503 });
     const { data: consumed, error: consumeError } = await supabase

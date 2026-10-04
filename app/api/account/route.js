@@ -27,6 +27,9 @@ export async function GET(req) {
       email: session.email,
       paid: subscription.paid,
       paidUntil: subscription.paidUntil,
+      accessType: subscription.accessType || "none",
+      trialUntil: subscription.trialUntil || null,
+      subscriptionStatus: subscription.status || null,
       admin: profile.is_admin === true,
     } });
   } catch (error) {

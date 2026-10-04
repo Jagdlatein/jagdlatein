@@ -13,7 +13,7 @@ export function paypalBase() {
 
 export async function paypalAccessToken() {
   const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
-  const secret = process.env.PAYPAL_SECRET;
+  const secret = process.env.PAYPAL_SECRET || process.env.PAYPAL_CLIENT_SECRET;
   if (!clientId || !secret) throw new Error("PayPal configuration unavailable");
   const { base } = paypalBase();
   const response = await fetch(`${base}/v1/oauth2/token`, {

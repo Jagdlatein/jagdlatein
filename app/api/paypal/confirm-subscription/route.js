@@ -1,4 +1,4 @@
-import { accessFromSubscriptions, refreshVerifiedSubscription } from "../../../../lib/subscription-access";
+import { accessFromSubscriptions, configuredTrialPlanId, refreshVerifiedSubscription } from "../../../../lib/subscription-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,8 +14,11 @@ export async function POST(req) {
     return Response.json({ error: "Ungültiges Abo." }, { status: 400 });
   try {
     const subscription = await refreshVerifiedSubscription(id);
-    const activated = Boolean(subscription && accessFromSubscriptions([subscription]).paid);
-    return Response.json({ activated }, { status: activated ? 200 : 202, headers: { "Cache-Control": "no-store" } });
+    const access = subscription ? accessFromSubscriptions([subscription]) : null;
+    const activated = Boolean(access?.paid);
+    return Response.json({ activated, ...(configuredTrialPlanId() ? {
+      accessType: access?.accessType || "none", trialUntil: access?.trialUntil || null, paidUntil: access?.paidUntil || null,
+    } : {}) }, { status: activated ? 200 : 202, headers: { "Cache-Control": "no-store" } });
   } catch {
     return Response.json({ error: "Die Zahlungsbestätigung wird noch verarbeitet. Bitte später erneut anmelden." }, { status: 503 });
   }
