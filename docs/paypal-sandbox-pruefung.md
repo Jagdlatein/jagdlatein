@@ -1,6 +1,42 @@
 # PayPal: getrennte Testversion und vollständiger Abo-Test
 
-Stand: 4. Oktober 2026. **Eine getrennte Testumgebung ist noch nicht eingerichtet.** `https://jagdlatein.vercel.app` ist die öffentliche App. Dieser Ablauf verändert dort keine Variablen, Pläne, Abos oder Daten. Die Live-Anleitung `setup-paypal-trial.ps1` gehört nicht in diesen Testablauf.
+Stand: 4. Oktober 2026. **Die PayPal-Seite der Sandbox ist eingerichtet: ein Produkt und zwei aktive Testpläne sind angelegt und durch einen zweiten lesenden Abruf bei PayPal verifiziert.** Eine vorhandene Sandbox-App und getrennte Schweizer Sandbox-Händler-/Käuferkonten sind verfügbar. Ein getrenntes Vercel-/Supabase-Testprojekt fehlt noch. `https://jagdlatein.vercel.app` ist die öffentliche App. Den privaten Anbieterstatus und die Kennungen zeigt `%LOCALAPPDATA%\Jagdlatein\paypal-sandbox\plans-report.json`. Dieser Ablauf verändert in der öffentlichen App keine Variablen, Pläne, Abos oder Daten. Die Live-Anleitung `setup-paypal-trial.ps1` gehört nicht in diesen Testablauf.
+
+## PayPal-Sandbox-Tarife anlegen
+
+Im PayPal-Entwicklerbereich **Sandbox** auswählen und die vorhandene Sandbox-App öffnen. Ihre vollständige Client-ID über das Kopiersymbol übernehmen und in die lokale `config.json` eintragen. Eine über mehrere Zeilen angezeigte ID gehört vollständig zu diesem Wert. Keine Live-Client-ID, Live-Plan-ID oder Live-Secrets verwenden. Die vorhandenen Händler- und Käufer-Testkonten können weiterverwendet werden; ihre Passwörter bleiben bei PayPal.
+
+```powershell
+Set-Location 'C:\Projekte\jagdlatein-github'
+& .\scripts\setup-paypal-sandbox-plans.ps1 -Step Prepare
+```
+
+`Prepare` sendet keine Anfrage. Es speichert außerhalb des Git-Projekts unter `%LOCALAPPDATA%\Jagdlatein\paypal-sandbox\plans-state.json` ein eigenes Sandbox-Produkt und zwei feste Tarifentwürfe: 5 EUR monatlich sowie einmal 3 Tage kostenlos, anschließend 5 EUR monatlich ohne festes Ende. Beide haben keine Einrichtungsgebühr oder Steuerzuschläge. PayPal vergibt die Produktkennung; die Tarifentwürfe werden danach an genau dieses Produkt gebunden. In dieser Datei stehen keine Secrets. Die Entwürfe und Wiederholungskennungen bleiben bei erneutem Aufruf erhalten.
+
+Nach Prüfung der gespeicherten Bedingungen:
+
+```powershell
+& .\scripts\setup-paypal-sandbox-plans.ps1 -Step Create
+& .\scripts\setup-paypal-sandbox-plans.ps1 -Step Status
+```
+
+Beide Schritte fragen das Secret **derselben Sandbox-App verdeckt** ab. `Create` legt ausschließlich ein Sandbox-Produkt und zwei aktive Sandbox-Pläne an und prüft danach die bei PayPal gespeicherten Bedingungen. Es schließt kein Abo ab, erstellt keine Zahlung oder Webhooks und greift auf keine Datenbank zu. `Status` liest die vorhandenen Ressourcen; sein einziger POST ist der Sandbox-Zugangstoken. Der Bericht `plans-report.json` unterscheidet vorbereitete, offene und bei PayPal verifizierte Ressourcen. Auch bei verifizierten Plänen bleibt der echte Zahlungsdurchlauf offen.
+
+Die nicht geheimen Werte für das **getrennte** Vercel-Testprojekt stehen nach erfolgreicher Verifikation in `paypal-values.txt`; die beiden Plan-IDs werden auch in die lokale Sandbox-Vorlage übernommen. Das Secret steht in keiner Ausgabedatei. Diese Werte gehören nicht in die öffentliche App.
+
+Bei mehreren Node-Versionen kann jeder Aufruf um `-NodePath 'C:\Pfad\zu\Node22\node.exe'` ergänzt werden. Der Helfer benötigt Node 22 oder neuer und wurde auch über Windows PowerShell 5.1 aufgerufen.
+
+Bei einem Abbruch die Zustandsdatei **nicht löschen**: bestätigte IDs werden sofort gespeichert und nicht nochmals angelegt. Für unbestätigte Anfragen gelten dieselben gespeicherten Kennungen und Bedingungen. Nach 24 Stunden blockiert der Helfer eine erneute unbestätigte Anlage. Dann die vorhandenen IDs im Sandbox-Händlerkonto suchen und beispielsweise lesend wieder zuordnen:
+
+```powershell
+& .\scripts\setup-paypal-sandbox-plans.ps1 -Step Status -RegularPlanId 'P-DEINE_SANDBOX_PLAN_ID'
+```
+
+Erst eine erfolgreich geprüfte Zuordnung erlaubt die Fortsetzung fehlender Schritte. HTTP-Fehler nennen den festen Schritt, numerischen Status und gegebenenfalls bekannte feste Validierungscodes/Feldnamen; freie Antwortinhalte und Zugangsdaten werden nicht ausgegeben. `Zugangstoken; HTTP 401` bedeutet, dass PayPal die Anmeldung mit diesem Sandbox-Zugang nicht bestätigt hat. Dann zunächst die vollständige Client-ID und die Zuordnung beider Werte zur gleichen Sandbox-App prüfen. Neue oder geänderte Zugangsdaten direkt bei PayPal selbst anlegen, niemals in Chat, Git oder der Zustandsdatei speichern.
+
+Der bisherige Sandbox-Webhook zeigt noch auf die öffentliche App. Er gilt daher nicht als Nachweis einer getrennten Testumgebung. Sobald die eigene Testadresse feststeht, einen Sandbox-Webhook für genau diese Adresse anlegen und dessen ID in die Vorlage übernehmen; zuvor keine Testabos auslösen.
+
+Anbietergrundlagen: [PayPal-Authentifizierung](https://developer.paypal.com/api/rest/authentication/), [Produktanlage](https://developer.paypal.com/api/catalog-products/v1/products-create/), [Plananlage](https://developer.paypal.com/api/subscriptions/v1/plans-create/). Das [Produktschema](https://developer.paypal.com/api/catalog-products/v1/schema.json) reserviert das Präfix `PROD-` für automatisch vergebene IDs. Produkt- und Plananlage dokumentieren 72 Stunden Speicherung der Wiederholungskennung; der Helfer verwendet vorsichtshalber ein Fenster unter 24 Stunden.
 
 ## Sofort nutzbare PowerShell-Prüfung
 
@@ -27,7 +63,7 @@ Bei mehreren Node-Versionen kann `-NodePath 'C:\Pfad\zu\Node22\node.exe'` ergän
 1. Ein **eigenes Vercel-Testprojekt** mit derselben Repository-Version anlegen. Seine separate Adresse in `config.json` bei `testUrl` eintragen. Die öffentliche Adresse bleibt bei `publicUrl` stehen. Keine Sandbox-Werte in Production oder All Environments der öffentlichen App setzen.
 2. Ein **neues, leeres Supabase-Testprojekt** anlegen. Keine Kundenkonten oder Zahlungsdaten aus der öffentlichen Datenbank kopieren. Der besondere Testentwurf `supabase/test-only/paypal-sandbox-bootstrap.sql` legt die bisher nicht versionierten Basistabellen `userprofile` und `login_codes` an und lehnt vorhandene Tabellen strikt ab. Er gehört ausschließlich zur Einrichtung dieses frischen Testprojekts, nicht zu den Produktionsmigrationen.
 3. Beide nicht geheimen Supabase-Projektadressen in `config.json` eintragen. Sie müssen verschiedene Projektkennungen besitzen. Die tatsächlichen Vercel-Werte für `SUPABASE_URL` und `NEXT_PUBLIC_SUPABASE_URL` mit der Testadresse vergleichen. Erst danach `separateDatabaseConfirmed` auf `true` setzen. Die automatische Prüfung liest die konfigurierte Testdatenbank; sie hat keinen Zugriff auf die geheimen Vercel-Einstellungen und kann diese Zuordnung nicht selbst beweisen.
-4. Eine eigene **PayPal-Sandbox-App**, einen Sandbox-Händler und einen separaten Sandbox-Käufer verwenden. In dieser App zwei aktive Pläne anlegen: 5 EUR je Monat sowie einmal 3 Tage kostenlos, danach 5 EUR je Monat ohne festes Ende. Keine Einrichtungsgebühren, Steuerzuschläge, Versand oder variable Mengen. Die Sandbox-Plan-IDs in `regularPlanId` und `trialPlanId` eintragen; die vorhandenen Live-IDs werden vom Helfer gesperrt. Client-ID und Webhook-ID sind nicht geheim und gehören ebenfalls in `config.json`; **Secrets niemals dort speichern**.
+4. Die eigene **PayPal-Sandbox-App**, einen Sandbox-Händler und einen separaten Sandbox-Käufer verwenden. Die oben beschriebene Tarifanlage legt in dieser App zwei aktive Pläne an: 5 EUR je Monat sowie einmal 3 Tage kostenlos, danach 5 EUR je Monat ohne festes Ende. Keine Einrichtungsgebühren, Steuerzuschläge, Versand oder variable Mengen. Die Sandbox-Plan-IDs werden nach Verifikation in `regularPlanId` und `trialPlanId` übernommen; die vorhandenen Live-IDs werden vom Helfer gesperrt. Client-ID und Webhook-ID sind nicht geheim und gehören ebenfalls in `config.json`; **Secrets niemals dort speichern**.
 5. Einen **isolierten Mail-Sink** konfigurieren, der ausschließlich Testnachrichten auffängt und keinen externen Versand zulässt. `ENABLE_SMTP=false` ist kein Laufzeit-Versandschalter. Die Testversion ohne Firebase-/Produktions-Pushzugang betreiben. Den Mail-Sink tatsächlich prüfen und erst dann `mailSinkConfirmed=true` setzen.
 
 Im eigenen Vercel-Testprojekt folgende Werte setzen. Die Secrets dort als Secret speichern; ein eigener Sitzungsschlüssel muss mindestens 32 Bytes lang sein.
@@ -89,6 +125,6 @@ Der Webhook-Simulator liefert Beispielereignisse und keine echte Abo- oder Trans
 
 ## Aktueller Prüfstand
 
-30 lokale Tests bestanden: 5 Isolations-/Einrichtungsregressionen und 25 Ablauf-/Schemaschutzprüfungen mit dem frischen Testschema und allen sieben echten SQL-Migrationen. Keine Zahlung, keine Live-Datenbankänderung und kein Mail-/Pushversand. **Echte Sandbox-Zustimmung, zeitgesteuerte erste Abbuchung und Provider-Zahlungsausfall bleiben offen**, solange die eigene Testumgebung fehlt.
+30 lokale Tests bestanden: 5 Isolations-/Einrichtungsregressionen und 25 Ablauf-/Schemaschutzprüfungen mit dem frischen Testschema und allen sieben echten SQL-Migrationen. Zusätzlich 46 Regressionen für den neuen Sandbox-Anlagehelfer bestanden: Teilabbrüche, verlorene Antworten, Wiederholungsschutz, von PayPal vergebene Produkt-IDs, falsche Tarife, sichere Fehlerphasen sowie verbotene Ziele und Live-IDs. Diese automatischen Providerantworten sind simuliert. Windows PowerShell 5.1 hat die Vorbereitung mit dem v2-Zustand und atomarem Berichtsaustausch erfolgreich ausgeführt. Die echte Sandbox-Anlage und beide lesenden Tarifprüfungen waren erfolgreich; PayPals API-Protokoll bestätigt drei erfolgreiche Ressourcenanlagen mit HTTP 201. Keine Zahlung, keine Live-Datenbankänderung und kein Mail-/Pushversand. **Echte Sandbox-Zustimmung, zeitgesteuerte erste Abbuchung und Provider-Zahlungsausfall bleiben offen**, solange die eigene Test-App mit getrennter Datenbank und korrektem Sandbox-Webhook fehlt.
 
 Anbietergrundlagen: [PayPal: Subscription-Tests](https://developer.paypal.com/subscriptions/test-go-live), [Subscriptions-API](https://developer.paypal.com/api/subscriptions/v1), [Webhook-Simulator](https://developer.paypal.com/api/rest/webhooks/simulator/). Diese Dokumentation unterscheidet API-Fehlersimulationen von echten Sandbox-Abos; daraus wird keine beschleunigte Drei-Tage-Abrechnung abgeleitet.
