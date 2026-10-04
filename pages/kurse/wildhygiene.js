@@ -16,13 +16,14 @@ export default function WildhygieneKurs() {
       ]
     },
     {
-      frage: "Woran erkennt man gutes Wildbret?",
+      frage: "Was gehört zur Beurteilung von Wildbret?",
       antworten: [
         { text: "Starker Geruch", richtig: false },
-        { text: "Feste Struktur & neutrale Farbe", richtig: true },
+        { text: "Geruch, Aussehen, auffällige Befunde und den gesamten hygienischen Umgang gemeinsam bewerten", richtig: true },
         { text: "Schmierige Oberfläche", richtig: false },
         { text: "Grünliche Töne", richtig: false }
-      ]
+      ],
+      source: "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
     }
   ];
 

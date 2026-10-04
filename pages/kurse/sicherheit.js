@@ -23,22 +23,24 @@ export default function SicherheitImRevierKurs() {
       ]
     },
     {
-      frage: "Wie wird eine Waffe sicher transportiert?",
+      frage: "Was gehört zum sicheren und rechtmäßigen Waffentransport?",
       antworten: [
         { text: "Ladung im Lauf, aber Sicherung an", richtig: false },
-        { text: "Entladen, geöffnet und im Futteral", richtig: true },
+        { text: "Entladen, gegen unbefugten Zugriff gesichert und nach den örtlichen Transportvorgaben", richtig: true },
         { text: "Geladen, aber ohne Magazin", richtig: false },
         { text: "Entladen, aber gespannt", richtig: false }
-      ]
+      ],
+      source: "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
     },
     {
-      frage: "Welche Aussage zur Drückjagd-Sicherheit ist richtig?",
+      frage: "Welche Aussage zur Sicherheit bei einer Gesellschaftsjagd ist richtig?",
       antworten: [
         { text: "Schussrichtung ist egal, Hauptsache schnell reagieren", richtig: false },
-        { text: "Man schießt niemals in Treibrichtung", richtig: true },
+        { text: "Nur im freigegebenen Schussbereich schießen, mit ausreichendem Kugelfang und ohne Gefährdung anderer", richtig: true },
         { text: "Man schießt auf alles, was sich bewegt", richtig: false },
         { text: "Man hält keine Kommunikation mit Nachbarschützen", richtig: false }
-      ]
+      ],
+      source: "https://www.svlfg.de/fa-sichere-erntejagd",
     }
   ];
 

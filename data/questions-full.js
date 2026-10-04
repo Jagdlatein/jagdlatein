@@ -4,6 +4,7 @@
 // Format kompatibel zu deinem bestehenden Quiz.
 
 import { learningQuestions } from "../lib/learning-curriculum";
+import { reviewLegacyQuestions } from "../lib/quiz-content-review";
 
 // Hilfs-Validator: wirft warn logs bei inkonsistenten Einträgen (nur Dev).
 function validatePool(arr) {
@@ -5045,10 +5046,10 @@ function uniqueQuestions(pool) {
   return [...byId.values()];
 }
 
-export const QUESTIONS = uniqueQuestions([...baseQUESTIONS, ...learningQuestions]);
+export const QUESTIONS = uniqueQuestions([...reviewLegacyQuestions(uniqueQuestions(baseQUESTIONS)), ...learningQuestions]);
 
 export const PACK_INFO = {
-  version: "1.1.0",
+  version: "1.2.0",
   topics: [...new Set(QUESTIONS.map(question => question.topic))]
     .sort((left, right) => left.localeCompare(right, "de")),
   countries: ["DE", "AT", "CH"],

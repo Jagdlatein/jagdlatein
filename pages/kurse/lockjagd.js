@@ -16,10 +16,10 @@ export default function LockjagdBasicKurs() {
       ]
     },
     {
-      frage: "Warum ist Wind bei der Lockjagd entscheidend?",
+      frage: "Warum beeinflusst Wind die Planung einer Lockjagd?",
       antworten: [
         { text: "Wild ignoriert Gerüche", richtig: false },
-        { text: "Wild kommt meist gegen den Wind", richtig: true },
+        { text: "Wind transportiert die eigene Witterung und beeinflusst, wo Wild sie wahrnehmen kann", richtig: true },
         { text: "Wind hilft beim Lockruf-Tragen", richtig: false },
         { text: "Der Wind ist unwichtig", richtig: false }
       ]

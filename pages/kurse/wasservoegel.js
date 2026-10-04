@@ -16,10 +16,10 @@ export default function WasservoegelKurs() {
       ]
     },
     {
-      frage: "Wie unterscheidet man Stockente ♂ und ♀?",
+      frage: "Wie unterscheiden sich männliche und weibliche Stockenten im Prachtkleid?",
       antworten: [
         { text: "Keine Unterschiede erkennbar", richtig: false },
-        { text: "Erpel hat grünen Kopf, Ente braun gemustert", richtig: true },
+        { text: "Der Erpel hat unter anderem einen grünen Kopf; das Weibchen ist braun gemustert", richtig: true },
         { text: "Erpel ist kleiner", richtig: false },
         { text: "Ente ist bunt gefärbt", richtig: false }
       ]

@@ -7,10 +7,10 @@ import CourseProgressNotice from "../../components/CourseProgressNotice";
 export default function OrientierungProKurs() {
   const quiz = [
     {
-      frage: "Welches Hilfsmittel ist am zuverlässigsten zur Standortbestimmung?",
+      frage: "Welche Kombination hilft bei der Orientierung, wenn elektronische Geräte ausfallen?",
       antworten: [
         { text: "Smartphone allein", richtig: false },
-        { text: "Karte & Kompass", richtig: true },
+        { text: "Karte und Kompass, deren Nutzung vorher geübt wurde", richtig: true },
         { text: "Richtung nach Gefühl", richtig: false },
         { text: "Sterne nur bei Tageslicht", richtig: false }
       ]

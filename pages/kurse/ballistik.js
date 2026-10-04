@@ -7,10 +7,10 @@ import CourseProgressNotice from "../../components/CourseProgressNotice";
 export default function BallistikKurs() {
   const quiz = [
     {
-      frage: "Was beeinflusst die Geschossflugbahn am stärksten?",
+      frage: "Welche Größen gehören zu den Einflüssen auf die Geschossflugbahn?",
       antworten: [
         { text: "Waffengewicht", richtig: false },
-        { text: "Geschossgeschwindigkeit & -gewicht", richtig: true },
+        { text: "Geschossgeschwindigkeit, Luftwiderstand, Schwerkraft, Wind und Entfernung", richtig: true },
         { text: "Riemenbreite", richtig: false },
         { text: "Schalldämpferfarbe", richtig: false }
       ]

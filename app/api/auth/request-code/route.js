@@ -7,10 +7,6 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { sendLoginCode } from "../../../../lib/email";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 export async function POST(req) {
   try {
@@ -35,6 +31,11 @@ export async function POST(req) {
     }
 
     // Prüfen, ob die E-Mail bei Jagdlatein registriert ist
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
+
     const { data: profile, error: profileError } = await supabase
       .from("userprofile")
       .select("email")

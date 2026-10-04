@@ -16,10 +16,10 @@ export default function WetterKurs() {
       ]
     },
     {
-      frage: "Wann ist Wild besonders aktiv?",
+      frage: "Wann sind viele Rehe und Wildschweine besonders gut zu beobachten, abhängig von Störung und Lebensraum?",
       antworten: [
         { text: "Bei starkem Sturm", richtig: false },
-        { text: "In den Dämmerungsphasen", richtig: true },
+        { text: "Häufig in den Dämmerungsphasen", richtig: true },
         { text: "Bei greller Mittagssonne", richtig: false },
         { text: "Nur bei Regen", richtig: false }
       ]

@@ -85,7 +85,7 @@ const quizFragen = [
         richtig: false,
       },
       {
-        text: "Mehrere Stunden warten und dann ein Nachsuchengespann rufen",
+        text: "Nachsuchenführer umgehend informieren und Wartezeit sowie weiteres Vorgehen mit ihm abstimmen",
         richtig: true,
       },
       {
@@ -97,6 +97,7 @@ const quizFragen = [
         richtig: false,
       },
     ],
+    source: "https://www.jghv.de/aktuelles/pressemitteilung-jghv-nachsuche",
   },
   {
     frage: "Was ist beim Sichern des Anschusses wichtig?",

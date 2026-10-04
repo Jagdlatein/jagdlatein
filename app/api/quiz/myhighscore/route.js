@@ -5,10 +5,6 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,              // FIX 1
-  process.env.SUPABASE_SERVICE_ROLE_KEY  // FIX 2
-);
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -19,6 +15,11 @@ export async function GET(request) {
   }
 
   try {
+    const supabase = createClient(
+      process.env.SUPABASE_URL,              // FIX 1
+      process.env.SUPABASE_SERVICE_ROLE_KEY  // FIX 2
+    );
+
     const { data, error } = await supabase
       .from("quiz_scores")
       .select("*")

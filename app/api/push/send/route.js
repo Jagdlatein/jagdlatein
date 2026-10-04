@@ -5,10 +5,6 @@ import { createClient } from "@supabase/supabase-js";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getMessaging } from "firebase-admin/messaging";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 function isAuthorized(req) {
   const auth = req.headers.get("authorization") || "";
@@ -66,6 +62,11 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
 
     const { data, error } = await supabase
       .from("push_tokens")

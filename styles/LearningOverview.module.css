@@ -6,6 +6,8 @@
 .header { margin: 32px 0 24px; }
 .eyebrow { margin: 0 0 12px; font-size: 14px; font-weight: 600; color: #626957; line-height: 1.6; }
 .header h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 18px; }
+.focusTopics { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 22px; }
+.focusTopics li { padding: 8px 12px; border-radius: 12px; background: #e9efdf; font-size: 14px; line-height: 1.5; }
 .intro { max-width: 880px; font-size: 18px; line-height: 1.75; color: #535d50; margin: 0 0 24px; }
 .counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 650px; margin: 0; }
 .counts > div { display: flex; flex-direction: column-reverse; gap: 6px; padding: 18px; border: 1px solid #e1daca; border-radius: 14px; background: #fff; }
@@ -27,6 +29,9 @@
 .pathCard { min-width: 0; background: #f5f8ef; border: 1px solid #d3dec9; border-radius: 18px; padding: 22px; }
 .pathCard h3, .moduleCard h3 { font-size: 22px; line-height: 1.35; margin: 0 0 12px; overflow-wrap: anywhere; }
 .pathCard p { margin: 0 0 16px; }
+.pathSummary { min-height: 44px; cursor: pointer; font-size: 20px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.pathSummary > span:first-child { margin-left: 4px; }
+.pathCount { display: block; margin: 8px 0 16px; font-size: 14px; font-weight: 400; color: #5d615c; }
 .pathHint { font-size: 14px; color: #626957; line-height: 1.65; }
 .pathModules { margin: 0; padding-left: 24px; }
 .pathModules li { padding: 5px 0 5px 4px; color: #365840; line-height: 1.6; }
@@ -45,7 +50,7 @@
 .moduleCard .button { margin-top: auto; width: 100%; }
 .empty { padding: 28px; border: 1px solid #e1daca; border-radius: 18px; background: #fff; }
 .empty p { line-height: 1.7; margin: 0 0 20px; }
-.main a:focus-visible, .main button:focus-visible, .main input:focus-visible, .main select:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
+.main a:focus-visible, .main button:focus-visible, .main input:focus-visible, .main select:focus-visible, .main summary:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
 @media (max-width: 940px) {
   .pathGrid, .moduleGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }

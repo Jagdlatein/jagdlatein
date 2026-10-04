@@ -3,10 +3,6 @@ export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 export async function POST(req) {
   try {
@@ -20,6 +16,11 @@ export async function POST(req) {
     }
 
     const clean = username.trim().toLowerCase();
+
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
 
     const { data: exists } = await supabase
       .from("quiz_users")

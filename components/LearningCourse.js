@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import CourseProgressNotice from "./CourseProgressNotice";
 import useCourseProgress from "../hooks/useCourseProgress";
 import styles from "../styles/Learning.module.css";
+import { getLearningCategoryByTitle } from "../lib/learning-categories";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -16,6 +17,7 @@ export default function LearningCourse({ module }) {
 }
 
 function LearningContent({ module }) {
+  const category = getLearningCategoryByTitle(module.category);
   const [country, setCountry] = useState(module.countries[0]);
   const [lessonIndex, setLessonIndex] = useState(0);
   const [run, setRun] = useState(() => makeRun(module.questions));
@@ -73,6 +75,7 @@ function LearningContent({ module }) {
         <div className={styles.wrap}>
           <nav className={styles.topNav} aria-label="Lernmenü">
             <Link href="/lernen">Lernbereich</Link>
+            {category && <Link href={`/lernen/${category.slug}`}>{category.title}</Link>}
             <Link href="/kurse">Alle Kurse</Link>
             <Link href="/meine-kurse">Meine Kurse</Link>
           </nav>

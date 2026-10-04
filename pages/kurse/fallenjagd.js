@@ -14,13 +14,14 @@ export default function FallenjagdBasicKurs() {
       ]
     },
     {
-      frage: "Was gehört zur waidgerechten Fallenprüfung?",
+      frage: "Was gehört zur verantwortlichen Kontrolle einer Fangvorrichtung?",
       antworten: [
         { text: "Kontrolle alle 7 Tage", richtig: false },
-        { text: "Mindestens einmal täglich kontrollieren", richtig: true },
+        { text: "Die örtlich vorgeschriebenen Kontrollfristen einhalten und Fänge unverzüglich versorgen", richtig: true },
         { text: "Nur bei Fangmeldung kontrollieren", richtig: false },
         { text: "Nur am Wochenende prüfen", richtig: false }
-      ]
+      ],
+      source: "https://www.jagdverband.de/sites/default/files/2026-05/2026-05_DJV_Fallenjagd_Laenderuebersicht.pdf",
     },
     {
       frage: "Welches Ziel verfolgt die tierschutzgerechte Fallenjagd?",
@@ -32,13 +33,14 @@ export default function FallenjagdBasicKurs() {
       ]
     },
     {
-      frage: "Was ist ein Merkmal der Kastenfalle?",
+      frage: "Welches Ziel hat eine geeignete Lebendfangkastenfalle bei korrektem Betrieb?",
       antworten: [
         { text: "Sie tötet das Wild sofort", richtig: false },
-        { text: "Sie fängt Wild lebend und unverletzt", richtig: true },
+        { text: "Das Tier lebend fangen; Verletzungen und Belastungen sollen vermieden werden", richtig: true },
         { text: "Sie wird im Wasser eingesetzt", richtig: false },
         { text: "Sie ist nur für Schwarzwild", richtig: false }
-      ]
+      ],
+      source: "https://www.jagdverband.de/rund-um-die-jagd/was-draussen-passiert/fangjagd",
     }
   ];
 

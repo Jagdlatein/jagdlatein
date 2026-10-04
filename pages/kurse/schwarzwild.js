@@ -43,18 +43,18 @@ const quizFragen = [
     ]
   },
   {
-    frage: "Woran erkennst du einen starken Keiler an der Fährte am ehesten?",
+    frage: "Was lässt sich aus einem einzelnen Schwarzwild-Trittsiegel sicher ableiten?",
     antworten: [
       {
-        text: "Sehr kleine und runde Schalen, eng beieinander",
+        text: "Jeder breite Abdruck beweist einen alten Keiler",
         richtig: false
       },
       {
-        text: "Breite Schalen mit deutlich gespreizten Zehen und starkem Trittsiegel",
+        text: "Ein einzelnes Trittsiegel reicht für eine sichere Geschlechts- und Altersbestimmung nicht aus",
         richtig: true
       },
-      { text: "Langgezogene, hochhackige Fährte", richtig: false },
-      { text: "Fährte ist optisch nicht unterscheidbar", richtig: false }
+      { text: "Jeder kleine Abdruck beweist eine Bache", richtig: false },
+      { text: "Die Bodenfarbe zeigt die Altersklasse", richtig: false }
     ]
   },
   {
@@ -66,11 +66,12 @@ const quizFragen = [
         richtig: false
       },
       {
-        text: "Sicherer Kugelfang in den Boden oder Hang, keine Häuser im Rücken",
+        text: "Ausreichender natürlicher Kugelfang und ein Schussfeld ohne Gefährdung von Menschen oder Gebäuden",
         richtig: true
       },
       { text: "Hauptsache der Stand ist bequem", richtig: false }
-    ]
+    ],
+    source: "https://www.svlfg.de/sichere-jagd",
   }
 ];
 

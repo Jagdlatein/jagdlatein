@@ -16,9 +16,9 @@ export default function GreifvoegelKurs() {
       ]
     },
     {
-      frage: "Worüber lassen sich Greifvögel gut ansprechen?",
+      frage: "Welche Kombination hilft bei der Bestimmung von Greifvögeln?",
       antworten: [
-        { text: "Schnabel- und Krallenform", richtig: true },
+        { text: "Flugbild, Körperproportionen, Gefieder und weitere Merkmale zusammen betrachten", richtig: true },
         { text: "Schwanzlänge", richtig: false },
         { text: "Körperfarbe allein", richtig: false },
         { text: "Fluggeschwindigkeit", richtig: false }

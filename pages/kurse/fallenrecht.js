@@ -7,22 +7,24 @@ import CourseProgressNotice from "../../components/CourseProgressNotice";
 export default function FallenrechtKurs() {
   const quiz = [
     {
-      frage: "Was ist bei der Fallenprüfung gesetzlich vorgeschrieben?",
+      frage: "Was musst du vor dem Einsatz einer Falle zu den Kontrollen klären?",
       antworten: [
         { text: "Prüfung nur am Wochenende", richtig: false },
-        { text: "Mindestens einmal täglich", richtig: true },
+        { text: "Die örtlichen Kontrollfristen und Vorgaben zur unverzüglichen Versorgung eines Fangs", richtig: true },
         { text: "Prüfung nur bei Fangmeldung", richtig: false },
         { text: "Keine Kontrolle nötig", richtig: false }
-      ]
+      ],
+      source: "https://www.jagdverband.de/sites/default/files/2026-05/2026-05_DJV_Fallenjagd_Laenderuebersicht.pdf",
     },
     {
-      frage: "Welche Falle ist tierschutzgerecht?",
+      frage: "Welche Aussage zu Lebendfangkastenfallen ist richtig?",
       antworten: [
-        { text: "Tellereisen", richtig: false },
-        { text: "Lebendfangkastenfalle", richtig: true },
-        { text: "Selbstschussgerät", richtig: false },
-        { text: "Verbotene Schlagfallen", richtig: false }
-      ]
+        { text: "Jede Kastenfalle ist überall zulässig", richtig: false },
+        { text: "Zulässigkeit, Bauart, Aufstellung und Betrieb müssen örtliche Vorgaben und Tierschutz erfüllen", richtig: true },
+        { text: "Ein Fallenmelder ersetzt jede Form der Versorgung", richtig: false },
+        { text: "Die Bauart allein garantiert einen unverletzten Fang", richtig: false }
+      ],
+      source: "https://www.jagdverband.de/sites/default/files/2026-05/2026-05_DJV_Fallenjagd_Laenderuebersicht.pdf",
     }
   ];
 

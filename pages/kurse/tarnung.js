@@ -16,10 +16,10 @@ export default function TarnungAnsitzKurs() {
       ]
     },
     {
-      frage: "Welcher Faktor verrät den Jäger am häufigsten?",
+      frage: "Welche Handlung kann den Beobachter trotz Tarnkleidung deutlich sichtbar machen?",
       antworten: [
         { text: "Geräusch der Kleidung", richtig: false },
-        { text: "Bewegung", richtig: true },
+        { text: "Auffällige Bewegung", richtig: true },
         { text: "Schuhfarbe", richtig: false },
         { text: "Rucksackgröße", richtig: false }
       ]
@@ -37,10 +37,11 @@ export default function TarnungAnsitzKurs() {
       frage: "Worauf ist beim Aufsteigen auf den Hochsitz zu achten?",
       antworten: [
         { text: "Schnell rauf, damit es fertig ist", richtig: false },
-        { text: "Langsam, leise und gegen den Wind", richtig: true },
+        { text: "Zustand und Standsicherheit prüfen, Waffe entladen und sicheren Halt behalten", richtig: true },
         { text: "Mit freiem Gewehrlauf schwingen", richtig: false },
         { text: "Geräusche sind egal", richtig: false }
-      ]
+      ],
+      source: "https://www.svlfg.de/sichere-jagd",
     },
     {
       frage: "Was sollte beim Glasen vermieden werden?",
@@ -52,13 +53,14 @@ export default function TarnungAnsitzKurs() {
       ]
     },
     {
-      frage: "Was ist beim Wind zu beachten?",
+      frage: "Was ist bei Wind und Thermik zu beachten?",
       antworten: [
         { text: "Wind ist egal bei Tarnkleidung", richtig: false },
-        { text: "Immer gegen den Wind jagen", richtig: true },
+        { text: "Veränderungen beachten und vermeiden, dass die eigene Witterung zum Wild zieht", richtig: true },
         { text: "Windrichtung verändert sich nie", richtig: false },
         { text: "Wind ist nur relevant bei Regen", richtig: false }
-      ]
+      ],
+      source: "https://www.meteoschweiz.admin.ch/wetter/wetter-und-klima-von-a-bis-z/wind.html",
     }
   ];
 

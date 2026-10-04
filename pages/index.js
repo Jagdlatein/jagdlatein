@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import Link from "next/link";
+import LearningCategoryMenu from "../components/LearningCategoryMenu";
 import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
@@ -214,6 +215,8 @@ export default function Home({ loggedIn = false }) {
               </svg>
             </a>
           </div>
+
+          <LearningCategoryMenu />
 
           <div style={styles.linkColumn}>
             <Link href="/lernen" style={styles.linkButton}>

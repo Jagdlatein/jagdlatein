@@ -52,13 +52,14 @@ export default function NachtjagdKurs() {
       ]
     },
     {
-      frage: "Was gilt bei Schwarzwild in der Nacht?",
+      frage: "Was ist beim Ansprechen von Schwarzwild in der Nacht zu beachten?",
       antworten: [
         { text: "Nur Leitbachen schießen", richtig: false },
-        { text: "Frischlinge sicher ausschließen, Rottenstruktur respektieren", richtig: true },
+        { text: "Wild sicher bestimmen, Schutz führender Bachen und örtliche Freigaben beachten", richtig: true },
         { text: "Blind auf die Rotte schießen", richtig: false },
         { text: "Nachtjagd ist verboten", richtig: false }
-      ]
+      ],
+      source: "https://www.gesetze-im-internet.de/bjagdg/__22.html",
     }
   ];
 

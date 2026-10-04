@@ -46,14 +46,14 @@ const quizFragen = [
     ],
   },
   {
-    frage: "Wie wird eine Büchse in der Regel sicher transportiert?",
+    frage: "Was gehört zum sicheren und rechtmäßigen Transport einer Büchse?",
     antworten: [
       {
         text: "Geladen, entsichert auf dem Beifahrersitz",
         richtig: false,
       },
       {
-        text: "Entladen, mit offener Kammer im Futteral",
+        text: "Entladen, gegen unbefugten Zugriff gesichert und nach den örtlichen Transportvorgaben",
         richtig: true,
       },
       {
@@ -65,6 +65,7 @@ const quizFragen = [
         richtig: false,
       },
     ],
+    source: "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
   },
   {
     frage: "Wie gehst du beim Übersteigen eines Zaunes mit der Waffe vor?",
@@ -116,7 +117,7 @@ const quizFragen = [
         richtig: false,
       },
       {
-        text: "Erst am Stand, wenn die Sicherheitsbelehrung erfolgt ist",
+        text: "Am zugewiesenen Stand nach Einweisung und Freigabe durch die Jagdleitung",
         richtig: true,
       },
       {
@@ -128,6 +129,7 @@ const quizFragen = [
         richtig: false,
       },
     ],
+    source: "https://www.svlfg.de/fa-sichere-erntejagd",
   },
   {
     frage: "Wie kontrollierst du nach der Jagd sicher, ob die Waffe entladen ist?",
@@ -137,7 +139,7 @@ const quizFragen = [
         richtig: false,
       },
       {
-        text: "Kammer öffnen, Magazin entnehmen/entleeren, in Lauf und Lager sehen",
+        text: "Bei sicherer Mündungsrichtung nach Herstelleranleitung Magazin und Patronenlager auf Munition prüfen",
         richtig: true,
       },
       {
@@ -149,6 +151,7 @@ const quizFragen = [
         richtig: false,
       },
     ],
+    source: "https://www.svlfg.de/sichere-jagd",
   },
 ];
 

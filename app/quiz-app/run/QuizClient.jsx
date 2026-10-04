@@ -389,6 +389,9 @@ export default function QuizClient() {
             {q.answers.filter(answer => q.correct.includes(answer.id)).map(answer => answer.text).join("; ")}
           </p>
           {q.explain && <p style={{ margin: "8px 0" }}>{q.explain}</p>}
+          {typeof q.source === "string" && q.source.startsWith("https://") && (
+            <p style={{ margin: "8px 0" }}><a href={q.source} target="_blank" rel="noopener noreferrer">Quelle nachlesen (neuer Tab)</a></p>
+          )}
           {typeof q.learningHref === "string" && q.learningHref.startsWith("/") && !q.learningHref.startsWith("//") && (
             <p style={{ margin: "8px 0" }}>
               <Link href={q.learningHref}>Im Lernwissen nachlesen</Link>
