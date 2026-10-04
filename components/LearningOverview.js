@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getLearningCategoryByTitle, learningCategories } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningTools from "./LearningTools";
+import LearningExperiences from "./LearningExperiences";
 import { getLearningMedia, learningHero } from "../lib/learning-media";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
@@ -72,6 +73,7 @@ export default function LearningOverview({ data }) {
           </header>
           <LearningCover media={categoryInfo ? getLearningMedia({ category: categoryInfo.title }) : learningHero} />
           {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
+          <LearningExperiences category={categoryInfo?.slug} />
           {!categoryInfo && <LearningTools />}
           <section className={styles.filterCard} aria-labelledby="learning-search-heading">
             <h2 id="learning-search-heading">Finde dein nächstes Lernthema</h2>

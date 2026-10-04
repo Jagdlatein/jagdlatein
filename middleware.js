@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { JL_ACCOUNT_COOKIE, readAccountSessionEdge } from "./lib/account-session-edge";
 import { learningImagePaths } from "./lib/learning-image-paths";
+import { learningAudioPaths } from "./lib/learning-audio-paths";
 
 const LEARNING_IMAGES = new Set(learningImagePaths);
+const LEARNING_AUDIO = new Set(learningAudioPaths);
 const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png"]);
 
 const PUBLIC_PATHS = [
@@ -44,7 +46,7 @@ export async function middleware(req) {
   // Static Files erlauben
   if (
     pathname.startsWith("/_next") ||
-    LEARNING_IMAGES.has(pathname) || APP_ICONS.has(pathname) ||
+    LEARNING_IMAGES.has(pathname) || LEARNING_AUDIO.has(pathname) || APP_ICONS.has(pathname) ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
   ) {

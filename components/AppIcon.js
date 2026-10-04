@@ -47,6 +47,8 @@ export default function AppIcon({ name = "book", size = 24, className, style }) 
     ruler: <><path d="m3 16 13-13 5 5L8 21Z" /><path stroke={accent} d="m7 12 2 2m2-6 2 2m2-6 2 2m-14 2 2 2" /></>,
     binoculars: <><circle cx="6" cy="16" r="4" /><circle cx="18" cy="16" r="4" /><path d="m2 15 3-11h3l2 11m4 0 2-11h3l3 11M10 12h4" /><path stroke={accent} d="M6 14h.01M18 14h.01" /></>,
     alert: <><path d="m12 3 10 18H2Z" /><path stroke={accent} d="M12 9v5m0 3h.01" /></>,
+    camera: <><path d="M3 7h4l2-3h6l2 3h4v14H3Z" /><circle cx="12" cy="13" r="4" stroke={accent} /><path d="M18 10h.01" /></>,
+    sound: <><path d="m3 10 5 0 5-4v12l-5-4H3Z" /><path stroke={accent} d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" /></>,
   };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" className={className} style={style}>{shapes[icon] || shapes.book}</svg>;
 }
