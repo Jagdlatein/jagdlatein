@@ -47,7 +47,7 @@ export default function AccountPage() {
             </dl>
             {trial && account.paid && !trialStopped && <p className={styles.muted}>
               Nach den 3 kostenlosen Tagen verlängert sich dein Abo automatisch für 5 € pro Monat.
-              Du kannst es vor Ablauf bei PayPal kündigen. Dann fällt keine Abozahlung an und dein Testzugang endet.
+              Kündige vor dem oben angezeigten Termin bei PayPal, wenn du keine Abozahlung möchtest. Die Kündigung beendet deinen Testzugang.
             </p>}
             {!account.admin && account.subscriptionStatus === "CANCELLED" && <p className={styles.muted}>
               Dein PayPal-Abo ist gekündigt. Es verlängert sich nicht mehr.

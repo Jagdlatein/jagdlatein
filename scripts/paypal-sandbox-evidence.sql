@@ -20,6 +20,7 @@ SELECT jsonb_build_object(
   'trial_started_at', (SELECT trial_started_at FROM subscription),
   'trial_until', (SELECT trial_until FROM subscription),
   'exact_72_hour_window', (SELECT trial_until = trial_started_at + interval '72 hours' FROM subscription),
+  'within_72_hour_limit', (SELECT trial_until > trial_started_at AND trial_until <= trial_started_at + interval '72 hours' FROM subscription),
   'paid_until', (SELECT paid_until FROM subscription),
   'verified_at', (SELECT verified_at FROM subscription),
   'review_reason', (SELECT review_reason FROM subscription),
@@ -29,6 +30,10 @@ SELECT jsonb_build_object(
   'payments_pending', (SELECT count(*) FROM payments WHERE status = 'PENDING'),
   'completed_payments_match_5_eur', NOT EXISTS (
     SELECT 1 FROM payments WHERE status = 'COMPLETED'
+      AND (currency IS DISTINCT FROM 'EUR' OR amount IS NULL OR amount !~ '^5([.]0{1,3})?$')
+  ),
+  'funded_payments_match_5_eur', NOT EXISTS (
+    SELECT 1 FROM payments WHERE status = 'COMPLETED' AND period_until IS NOT NULL
       AND (currency IS DISTINCT FROM 'EUR' OR amount IS NULL OR amount !~ '^5([.]0{1,3})?$')
   ),
   'provider_payment_proof', 'Compare exact transaction ID/status/amount/time in the PayPal Sandbox merchant account; this SQL is not provider proof.'
