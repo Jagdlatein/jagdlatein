@@ -114,7 +114,8 @@ if ($Step -eq 'LocalTests') {
     return
 }
 
-$validation = & $NodePath (Join-Path $PSScriptRoot 'paypal-sandbox-check.cjs') --validate $configPath 2>&1
+$validationMode = if ($Step -eq 'TestDatabaseSql') { '--validate-database' } else { '--validate' }
+$validation = & $NodePath (Join-Path $PSScriptRoot 'paypal-sandbox-check.cjs') $validationMode $configPath 2>&1
 if ($LASTEXITCODE -ne 0) {
     Save-PendingReport 'Sandbox-Voraussetzungen fehlen oder die Isolation ist nicht bestaetigt. Keine Zugangsdaten abgefragt und keine Netzwerkaufrufe ausgefuehrt.'
     Write-Host ($validation | Out-String).Trim()

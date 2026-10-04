@@ -1,12 +1,17 @@
-﻿export const runtime = "nodejs";
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
 import { readRequestAccountSession } from "../../../../lib/account-access";
+import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
 
 
 export async function POST(req) {
   try {
+    if (isPayPalSandboxTestEnvironment()) return Response.json(
+      { success: false, error: "Push ist in der Testumgebung deaktiviert." },
+      { status: 503, headers: { "Cache-Control": "no-store" } }
+    );
     if (!readRequestAccountSession(req)) {
       return Response.json({ success: false, error: "Bitte anmelden." }, { status: 401 });
     }

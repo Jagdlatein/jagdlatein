@@ -1,9 +1,10 @@
-﻿export const runtime = "nodejs";
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getMessaging } from "firebase-admin/messaging";
+import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
 
 
 function isAuthorized(req) {
@@ -39,6 +40,10 @@ function getFirebaseApp() {
 
 export async function POST(req) {
   try {
+    if (isPayPalSandboxTestEnvironment()) return Response.json(
+      { success: false, error: "Push ist in der Testumgebung deaktiviert." },
+      { status: 503, headers: { "Cache-Control": "no-store" } }
+    );
     if (!isAuthorized(req)) {
       return Response.json(
         { success: false, error: "Unauthorized" },

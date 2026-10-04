@@ -1,5 +1,6 @@
 import { configuredTrialPlanId, regularAccessPolicy, subscriptionDatabase } from "../../../../lib/subscription-access";
 import { paypalRequest } from "../webhook/_base";
+import { paypalCheckoutSettings } from "../../../../lib/paypal-checkout-settings";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,24 +10,34 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const headers = { "Cache-Control": "no-store" };
   try {
+    const settings = paypalCheckoutSettings();
     const planId = configuredTrialPlanId();
-    if (!planId) {
+    if (!planId && !settings.sandbox) {
       if (process.env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID?.trim()) throw new Error("Invalid trial plan");
-      return Response.json({ planId: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA",
+      return Response.json({ planId: settings.planId, clientId: settings.clientId,
         trialDays: 0, amount: "5.00", currency: "EUR" }, { headers });
     }
     if (process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_ID !== process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID)
       throw new Error("Client configuration mismatch");
     const allowed = process.env.PAYPAL_PLAN_IDS?.split(",").map(value => value.trim());
-    if (allowed && !allowed.includes(planId)) throw new Error("Trial plan not allowed");
-    const { data, error } = await subscriptionDatabase().from("paypal_subscriptions")
-      .select("trial_started_at,trial_until").limit(0);
-    if (error || !Array.isArray(data) || data.length !== 0) throw new Error("Trial ledger unavailable");
-    const plan = await paypalRequest(`/v1/billing/plans/${encodeURIComponent(planId)}`);
-    const policy = regularAccessPolicy({ plan_id: planId }, plan);
-    if (plan.id !== planId || plan.status !== "ACTIVE" || policy.reviewReason || !policy.trial)
+    const offeredPlanId = settings.planId;
+    if (allowed && !allowed.includes(offeredPlanId)) throw new Error("Plan not allowed");
+    if (planId) {
+      const { data, error } = await subscriptionDatabase().from("paypal_subscriptions")
+        .select("trial_started_at,trial_until").limit(0);
+      if (error || !Array.isArray(data) || data.length !== 0) throw new Error("Trial ledger unavailable");
+    }
+    const plan = await paypalRequest(`/v1/billing/plans/${encodeURIComponent(offeredPlanId)}`);
+    const policy = regularAccessPolicy({ plan_id: offeredPlanId }, plan);
+    if (plan.id !== offeredPlanId || plan.status !== "ACTIVE" || policy.reviewReason || Boolean(policy.trial) !== settings.trial)
       throw new Error("Trial plan unavailable");
-    return Response.json({ planId, trialDays: 3, amount: "5.00", currency: "EUR" }, { headers });
+    if (settings.sandbox && (policy.amount !== "5.000" || policy.currency !== "EUR" ||
+        policy.frequency?.interval_unit !== "MONTH" || policy.frequency?.interval_count !== 1 ||
+        plan.quantity_supported === true || (!settings.trial &&
+          (plan.billing_cycles[0].sequence !== 1 || plan.billing_cycles[0].total_cycles !== 0))))
+      throw new Error("Sandbox monthly price unavailable");
+    return Response.json({ planId: offeredPlanId, clientId: settings.clientId,
+      trialDays: settings.trial ? 3 : 0, amount: "5.00", currency: "EUR" }, { headers });
   } catch {
     return Response.json({ error: "Das Testabo ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503, headers });
   }

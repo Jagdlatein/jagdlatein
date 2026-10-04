@@ -24,6 +24,10 @@ export default function AccountPage() {
   const endedTrial = !account?.admin && !account?.paid && trialUntil && (Date.parse(account.trialUntil) <= Date.now() || ["CANCELLED", "SUSPENDED", "EXPIRED"].includes(account.subscriptionStatus));
   const subscriptionLabels = { ACTIVE: "Aktiv", APPROVED: "Bestätigung wird verarbeitet", APPROVAL_PENDING: "Zustimmung ausstehend", CANCELLED: "Gekündigt", SUSPENDED: "Pausiert", EXPIRED: "Beendet" };
   const subscriptionLabel = subscriptionLabels[account?.subscriptionStatus];
+  const paypalManagementUrl = [
+    "https://www.paypal.com/myaccount/autopay/",
+    "https://www.sandbox.paypal.com/myaccount/autopay/",
+  ].includes(account?.paypalManagementUrl) ? account.paypalManagementUrl : null;
 
   return (
     <AccountLayout title="Mein Konto" description="Deine Kontodaten und dein persönlicher Lernfortschritt." active="account">
@@ -49,8 +53,8 @@ export default function AccountPage() {
               Dein PayPal-Abo ist gekündigt. Es verlängert sich nicht mehr.
               {account.accessType === "paid" && account.paid ? " Dein bereits bezahlter Zugang bleibt bis zum bestätigten Ablauf nutzbar." : !account.paid ? " Dein Zugang ist nicht mehr aktiv." : trialStopped ? " Dein Testzugang ist beendet." : ""}
             </p>}
-            {!account.admin && (trial || account.accessType === "paid" || subscriptionLabel) && <p>
-              <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener noreferrer" className={styles.secondaryButton}>Abo bei PayPal verwalten</a>
+            {!account.admin && paypalManagementUrl && (trial || account.accessType === "paid" || subscriptionLabel) && <p>
+              <a href={paypalManagementUrl} target="_blank" rel="noopener noreferrer" className={styles.secondaryButton}>Abo bei PayPal verwalten</a>
             </p>}
             {!account.paid && !account.admin && <Link href="/preise" className={styles.button}>Premium freischalten</Link>}
           </section>

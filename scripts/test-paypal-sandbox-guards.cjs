@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { API, REQUIRED_EVENTS, validateConfig, validatePlan, inspect } = require('./paypal-sandbox-check.cjs');
+const { API, REQUIRED_EVENTS, validateDatabaseConfig, validateConfig, validatePlan, inspect } = require('./paypal-sandbox-check.cjs');
 const regularId = 'P-AAAAAAAAAAAAAAAAAAAAAAAA';
 const trialId = 'P-BBBBBBBBBBBBBBBBBBBBBBBB';
 function configuration(overrides = {}) { return {
@@ -37,6 +37,19 @@ test('Invalid isolation is rejected before any credential or network operation',
   assert.equal(requests, 0);
   await assert.rejects(inspect(configuration(), {}, async () => { requests++; }), /fehlen/);
   assert.equal(requests, 0);
+});
+test('SQL preparation needs separate database targets before the app, webhook or mail sink exists', () => {
+  const preparing = configuration({ testUrl: '', publicUrl: '', webhookId: '', clientId: '',
+    regularPlanId: '', trialPlanId: '', mailSinkConfirmed: false });
+  assert.equal(validateDatabaseConfig(preparing), preparing);
+  assert.throws(() => validateConfig(preparing));
+  for (const change of [
+    { apiBase: 'https://api-m.paypal.com' }, { apiBase: undefined },
+    { publicSupabaseUrl: preparing.testSupabaseUrl }, { publicSupabaseUrl: '' },
+    { separateDatabaseConfirmed: false }, { testSupabaseUrl: 'https://user:pass@aaaaaaaaaaaaaaaaaaaa.supabase.co' },
+    { testSupabaseUrl: 'https://aaaaaaaaaaaaaaaaaaaa.supabase.co/?secret=unsafe' },
+    { paypalSecret: 'do-not-save' }, { version: 2 },
+  ]) assert.throws(() => validateDatabaseConfig({ ...preparing, ...change }));
 });
 test('Plan checks reject wrong trial duration, price, inactive plan and fees', () => {
   assert.equal(validatePlan(plan(true), trialId, true), true);

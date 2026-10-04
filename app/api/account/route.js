@@ -3,12 +3,16 @@ import {
   accountUnavailable, sessionRenewalRequired,
 } from "../../../lib/course-progress-server";
 import { resolveSubscriptionAccess } from "../../../lib/subscription-access";
+import { isPayPalSandboxTestEnvironment } from "../../../lib/test-environment";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(req) {
   try {
+    const paypalManagementUrl = isPayPalSandboxTestEnvironment()
+      ? "https://www.sandbox.paypal.com/myaccount/autopay/"
+      : "https://www.paypal.com/myaccount/autopay/";
     const session = requireAccountSession(req);
     const database = getAccountDatabase();
     const pattern = session.email.replace(/[\\%_]/g, "\\$&");
@@ -30,6 +34,7 @@ export async function GET(req) {
       accessType: subscription.accessType || "none",
       trialUntil: subscription.trialUntil || null,
       subscriptionStatus: subscription.status || null,
+      paypalManagementUrl,
       admin: profile.is_admin === true,
     } });
   } catch (error) {

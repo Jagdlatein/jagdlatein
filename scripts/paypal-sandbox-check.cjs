@@ -19,20 +19,24 @@ function origin(value, label) {
     throw new Error(`${label} muss eine reine HTTPS-Adresse ohne Zugangsdaten sein.`);
   return url;
 }
-function validateConfig(config) {
+function validateDatabaseConfig(config) {
   if (!config || typeof config !== 'object' || Array.isArray(config) || config.version !== 1 ||
       Object.keys(config).some(key => !fields.includes(key)))
     throw new Error('Die Konfiguration ist ungültig. Secrets gehören nicht in diese Datei.');
   if (config.apiBase !== API) throw new Error('Gesperrt: Ausschließlich die PayPal-Sandbox-API ist erlaubt.');
-  const testUrl = origin(config.testUrl, 'Adresse der Testversion');
-  const publicUrl = origin(config.publicUrl, 'Adresse der öffentlichen App');
-  if (!testUrl.hostname.endsWith('.vercel.app') || PUBLIC_HOSTS.has(testUrl.hostname) || testUrl.origin === publicUrl.origin)
-    throw new Error('Gesperrt: Eine eigene Vercel-Testadresse wird benötigt; die öffentliche App ist keine Testversion.');
   const testDb = origin(config.testSupabaseUrl, 'Testdatenbank');
   const publicDb = origin(config.publicSupabaseUrl, 'Öffentliche Datenbank');
   if (![testDb, publicDb].every(url => /^[a-z0-9]{20}\.supabase\.co$/.test(url.hostname)) || testDb.origin === publicDb.origin ||
       config.separateDatabaseConfirmed !== true)
     throw new Error('Gesperrt: Getrennte Supabase-Projekte bestätigen und beide Projektadressen eintragen.');
+  return config;
+}
+function validateConfig(config) {
+  validateDatabaseConfig(config);
+  const testUrl = origin(config.testUrl, 'Adresse der Testversion');
+  const publicUrl = origin(config.publicUrl, 'Adresse der öffentlichen App');
+  if (!testUrl.hostname.endsWith('.vercel.app') || PUBLIC_HOSTS.has(testUrl.hostname) || testUrl.origin === publicUrl.origin)
+    throw new Error('Gesperrt: Eine eigene Vercel-Testadresse wird benötigt; die öffentliche App ist keine Testversion.');
   if (config.mailSinkConfirmed !== true) throw new Error('Gesperrt: Die Testversion braucht einen isolierten Mail-Sink.');
   if (typeof config.clientId !== 'string' || !/^[A-Za-z0-9_-]{20,256}$/.test(config.clientId))
     throw new Error('Die Client-ID der Sandbox-App fehlt.');
@@ -111,10 +115,15 @@ async function inspect(config, secrets = {}, fetchFn = fetch) {
 }
 async function main() {
   const [, , mode, configPath, reportPath] = process.argv;
-  if (!['--validate', '--check'].includes(mode) || !configPath) throw new Error('Den PowerShell-Helfer setup-paypal-sandbox.ps1 verwenden.');
+  if (!['--validate', '--validate-database', '--check'].includes(mode) || !configPath) throw new Error('Den PowerShell-Helfer setup-paypal-sandbox.ps1 verwenden.');
   let config;
   try { config = JSON.parse(fs.readFileSync(configPath, 'utf8').replace(/^\uFEFF/, '')); }
   catch { throw new Error('Zuerst die Sandbox-Konfigurationsvorlage außerhalb des Git-Projekts ausfüllen.'); }
+  if (mode === '--validate-database') {
+    validateDatabaseConfig(config);
+    console.log('Getrennte Datenbankziele für die SQL-Vorbereitung lokal geprüft; keine Netzwerkaufrufe.');
+    return;
+  }
   validateConfig(config);
   if (mode === '--validate') { console.log('Isolierte Ziele lokal geprüft; keine Netzwerkaufrufe.'); return; }
   const report = await inspect(config, { paypalSecret: process.env.JL_SANDBOX_PAYPAL_SECRET,
@@ -125,4 +134,4 @@ async function main() {
 // Stdout keeps Windows PowerShell 5.1 from treating a safe prerequisite message
 // as an unhandled NativeCommandError before the PowerShell wrapper writes its report.
 if (require.main === module) main().catch(error => { console.log(error.message); process.exitCode = 1; });
-module.exports = { API, REQUIRED_EVENTS, validateConfig, validatePlan, inspect };
+module.exports = { API, REQUIRED_EVENTS, validateDatabaseConfig, validateConfig, validatePlan, inspect };

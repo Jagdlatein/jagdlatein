@@ -54,7 +54,7 @@ export default function Preise() {
       return () => controller.abort();
     }
 
-    function loadPayPal(paypalPlanId) {
+    function loadPayPal(paypalPlanId, paypalClientId) {
       if (cancelled || !eligible) return;
       script = document.createElement("script");
       const paypalFailed = () => {
@@ -65,7 +65,7 @@ export default function Preise() {
       };
 
       script.src =
-        `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW")}&vault=true&intent=subscription&currency=EUR`;
+        `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(paypalClientId)}&vault=true&intent=subscription&currency=EUR`;
 
       script.async = true;
 
@@ -159,26 +159,27 @@ export default function Preise() {
         } else {
           setAccount(null);
         }
-        let paypalPlanId = planId;
-        if (isTrialPlan) {
-          let offer;
-          try {
-            const configuration = await fetch("/api/paypal/checkout-config", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
-            if (cancelled) return;
-            if (!configuration.ok) throw new Error("Testabo nicht verfügbar.");
-            offer = await configuration.json();
-            if (cancelled) return;
-            if (!offer || offer.planId !== planId || !validPlan(offer.planId) || offer.trialDays !== 3 || offer.amount !== "5.00" || offer.currency !== "EUR") throw new Error("Testabo nicht verfügbar.");
-          } catch {
-            if (!cancelled) setCheckoutStatus("trial-unavailable");
-            return;
-          }
-          paypalPlanId = offer.planId;
-          setTrialOfferVerified(true);
+        let offer;
+        try {
+          // Every checkout is approved by the server before the SDK is loaded.
+          // In the private sandbox mode this rejects incomplete test settings.
+          const configuration = await fetch("/api/paypal/checkout-config", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
+          if (cancelled) return;
+          if (!configuration.ok) throw new Error("Abo nicht verfügbar.");
+          offer = await configuration.json();
+          if (cancelled) return;
+          if (!offer || offer.planId !== planId || !validPlan(offer.planId) ||
+              typeof offer.clientId !== "string" || !/^[A-Za-z0-9_-]{20,256}$/.test(offer.clientId) ||
+              offer.trialDays !== (isTrialPlan ? 3 : 0) || offer.amount !== "5.00" || offer.currency !== "EUR")
+            throw new Error("Abo nicht verfügbar.");
+        } catch {
+          if (!cancelled) setCheckoutStatus(isTrialPlan ? "trial-unavailable" : "unavailable");
+          return;
         }
+        if (isTrialPlan) setTrialOfferVerified(true);
         eligible = true;
         setCheckoutStatus("ready");
-        loadPayPal(paypalPlanId);
+        loadPayPal(offer.planId, offer.clientId);
       } catch {
         if (!cancelled) setCheckoutStatus("error");
       }

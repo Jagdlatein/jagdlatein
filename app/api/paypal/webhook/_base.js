@@ -1,3 +1,5 @@
+import { assertTestPayPalApiBase } from "../../../../lib/test-environment";
+
 const PAYPAL_API_ORIGINS = new Set([
   "https://api-m.paypal.com", "https://api-m.sandbox.paypal.com",
   "https://api.paypal.com", "https://api.sandbox.paypal.com",
@@ -8,6 +10,7 @@ export function paypalBase() {
   const url = new URL(configured);
   if (!PAYPAL_API_ORIGINS.has(url.origin) || url.pathname !== "/" || url.search || url.hash || url.username || url.password)
     throw new Error("PayPal configuration unavailable");
+  assertTestPayPalApiBase(url.origin);
   return { base: url.origin };
 }
 
