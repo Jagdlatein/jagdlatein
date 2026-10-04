@@ -20,12 +20,9 @@
 .learningContent > span { line-height: 1.6; }
 .learningLabel { font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #3e321b; }
 .learningAction { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; margin-top: 6px; font-weight: 700; color: #4e3c15; }
-.highlights { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
-.highlights span { display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px solid #e0d2af; border-radius: 14px; background: #fffdf7b3; font-weight: 600; font-size: 14px; }
-.highlights svg { flex-shrink: 0; color: #796021; }
 .learningHint { margin: 22px 0 0; color: #6f664f; line-height: 1.7; max-width: 740px; font-size: 15px; }
 .learningCard:focus-visible { outline: 3px solid #aa812b; outline-offset: 4px; }
 .btnPrimary:focus-visible, .btnGhost:focus-visible, .iconButton:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
-@media (max-width: 620px) { .main { padding-left: 16px; padding-right: 16px; } .learningCard { gap: 16px; align-items: flex-start; } .learningIcon { flex-basis: 54px; width: 54px; height: 54px; border-radius: 16px; } .learningIcon svg { width: 30px; height: 30px; } .highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .highlights span { padding: 13px 10px; } }
+@media (max-width: 620px) { .main { padding-left: 16px; padding-right: 16px; } .learningCard { gap: 16px; align-items: flex-start; } .learningIcon { flex-basis: 54px; width: 54px; height: 54px; border-radius: 16px; } .learningIcon svg { width: 30px; height: 30px; } }
 @media (max-width: 380px) { .learningCard { flex-direction: column; } .btnPrimary, .btnGhost { padding: 12px 14px; } }
 @media (prefers-reduced-motion: reduce) { .learningCard { transition: none; } }

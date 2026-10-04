@@ -229,12 +229,6 @@ export default function Home({ loggedIn = false }) {
               <span className={home.learningAction}>Lernbereich öffnen <AppIcon name="arrow-right" size={20} /></span>
             </span>
           </Link>
-          <div className={home.highlights} aria-label="Einblicke in den Lernbereich">
-            <span><AppIcon name="deer" size={24} />Wildkunde</span>
-            <span><AppIcon name="paw" size={24} />Hundewesen</span>
-            <span><AppIcon name="tree" size={24} />Natur & Revier</span>
-            <span><AppIcon name="law" size={24} />Jagdrecht</span>
-          </div>
           <p className={home.learningHint}>Gemeinsames Jagdwissen für Deutschland, Österreich und die Schweiz. Die Länderwahl findest du dort, wo sich die rechtlichen Regeln unterscheiden.</p>
 
         </div>
