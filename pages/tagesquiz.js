@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { QUESTIONS } from "../data/questions-full";
+import { isCountryQuizTopic, QUIZ_LEARNING_COUNTRIES, quizQuestionCountries, quizQuestionTopic } from "../lib/quiz-learning-scope";
 
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
@@ -62,6 +63,10 @@ export default function Tagesquiz({
   const [selectedId, setSelectedId] = useState(null);
 
   const answered = selectedId !== null;
+  const questionTopic = quizQuestionTopic(question);
+  const jurisdiction = isCountryQuizTopic(questionTopic)
+    ? quizQuestionCountries(question).map(code => QUIZ_LEARNING_COUNTRIES.find(country => country.code === code)?.name || code).join(" · ")
+    : null;
 
   const isCorrect =
     answered &&
@@ -128,12 +133,12 @@ export default function Tagesquiz({
           >
             <div style={styles.metaRow}>
               <span style={styles.topic}>
-                {question.topic}
+                {questionTopic}
               </span>
 
-              <span style={styles.countries}>
-                {question.countries.join(" · ")}
-              </span>
+              {jurisdiction && <span style={styles.countries}>
+                {jurisdiction}
+              </span>}
             </div>
 
             <h2

@@ -1,5 +1,6 @@
 ﻿import "./globals.css";
 import GlobalHomeButton from "../components/GlobalHomeButton";
+import "../styles/AppBase.css";
 
 export const metadata = {
   title: "Jagdlatein",

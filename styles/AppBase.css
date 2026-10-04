@@ -1,0 +1,16 @@
+:root { --forest: #365840; --gold: #caa53b; --icon-accent: #aa812b; }
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #243328; background: #faf8f1; padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+button, input, select, textarea { font-family: inherit; }
+a { color: #365840; text-decoration-thickness: 1.5px; text-underline-offset: .2em; }
+a:hover { text-decoration-color: #aa812b; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
+svg { vertical-align: middle; }
+.navbar { padding: 16px 20px; border-bottom: 1px solid #d9dfd0; background: #fffdf7; }
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1120px; margin: auto; }
+.navbar .logo { color: #243d2e; text-decoration: none; font-size: 20px; font-weight: 800; }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.nav-links a, .nav-links button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 14px; border: 1px solid transparent; border-radius: 12px; color: #365840; text-decoration: none; font-size: 14px; font-weight: 700; background: transparent; cursor: pointer; }
+.nav-links a:hover, .nav-links button:hover { background: #edf2e6; border-color: #d9dfd0; }
+.nav-links .learning-nav { background: #edf2e6; border-color: #d9dfd0; }
+@media (max-width: 780px) { .navbar-inner { align-items: flex-start; flex-direction: column; gap: 12px; } .navbar { padding: 16px; } .nav-links { gap: 4px; } .nav-links a, .nav-links button { padding: 10px 12px; } }

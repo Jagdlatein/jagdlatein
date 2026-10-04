@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { courses, miniCourses } from "../../lib/course-catalog";
 import { learningCounts } from "../../lib/learning-curriculum";
+import AppIcon from "../../components/AppIcon";
 import styles from "./kurse.module.css";
 
 export default function KurseOverview() {
@@ -34,7 +35,7 @@ export default function KurseOverview() {
                   <span className={styles.term}>{course.title}</span>
                   <span className={styles.courseMeta}>{course.id.startsWith("wissen-") ? "Ausführliche Lerneinheit" : "Mini-Kurs"} · {course.totalQuestions} Fragen</span>
                 </span>
-                <span className={styles.arrow}>➜</span>
+                <AppIcon name="arrow-right" size={22} className={styles.arrow} />
               </a>
             </Link>
           ))}

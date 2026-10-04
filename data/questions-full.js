@@ -5,6 +5,7 @@
 
 import { learningQuestions } from "../lib/learning-curriculum";
 import { reviewLegacyQuestions } from "../lib/quiz-content-review";
+import { quizLearningPool } from "../lib/quiz-learning-scope";
 
 // Hilfs-Validator: wirft warn logs bei inkonsistenten Einträgen (nur Dev).
 function validatePool(arr) {
@@ -5060,15 +5061,12 @@ if (process.env.NODE_ENV !== 'production') {
   validatePool(QUESTIONS);
 }
 
-/** Ziehe Fragen nach Land/Topic & mische sie, begrenze auf count */
+/** Gemeinsames Jagdwissen; das Land begrenzt ausschließlich Rechtsfragen. */
 export function filterQuestions({ country = 'DE', topic = 'Alle', count = 10 }) {
   if (!PACK_INFO.countries.includes(country) || typeof topic !== 'string' || !Number.isInteger(count) || count < 1) {
     return [];
   }
-  const pool = QUESTIONS.filter(q =>
-    q.countries.includes(country) &&
-    (topic === 'Alle' || q.topic === topic)
-  );
+  const pool = quizLearningPool(QUESTIONS, { country, topic });
   const shuffled = [...pool];
   for (let index = shuffled.length - 1; index > 0; index -= 1) {
     const next = Math.floor(Math.random() * (index + 1));

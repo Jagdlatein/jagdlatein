@@ -18,6 +18,8 @@ export default function LearningCourse({ module }) {
 
 function LearningContent({ module }) {
   const category = getLearningCategoryByTitle(module.category);
+  const countrySelection = category?.slug === "jagdrecht";
+  const regionalNotes = module.countries.filter((item) => module.countryNotes?.[item]);
   const [country, setCountry] = useState(module.countries[0]);
   const [lessonIndex, setLessonIndex] = useState(0);
   const [run, setRun] = useState(() => makeRun(module.questions));
@@ -87,15 +89,20 @@ function LearningContent({ module }) {
           <section className={styles.card} aria-labelledby="learning-objectives">
             <h2 id="learning-objectives">Das lernst du</h2>
             <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
-            <fieldset className={styles.countryChoice}>
+            {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
                 {module.countries.map((item) => (
                   <button type="button" key={item} aria-pressed={country === item} onClick={() => setCountry(item)}>{countryNames[item] || item}</button>
                 ))}
               </div>
-            </fieldset>
-            {module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
+            </fieldset>}
+            {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
+            {!countrySelection && regionalNotes.length > 0 && <details className={styles.regionalNotes}>
+              <summary>Regionale Vorschriften und Hinweise</summary>
+              <p>Für die praktische Anwendung beachtest du die örtlichen Vorgaben und den Geltungsbereich der Quellen.</p>
+              <dl>{regionalNotes.map((item) => <div key={item}><dt>{countryNames[item] || item}</dt><dd>{module.countryNotes[item]}</dd></div>)}</dl>
+            </details>}
           </section>
           <div className={styles.lessonGrid}>
             <nav className={styles.lessonNav} aria-label="Lektionen">

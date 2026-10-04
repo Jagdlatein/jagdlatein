@@ -1,98 +1,65 @@
+import Link from "next/link";
+import AppIcon from "../../components/AppIcon";
 import LearningDiscovery from "../../components/LearningDiscovery";
+import styles from "../../styles/SectionMenu.module.css";
+
+const exercises = [
+  ["ansitz", "Ansitz-Simulator", "target"],
+  ["drueckjagd", "Drückjagd-Wissen üben", "practice"],
+  ["pirsch", "Pirsch-Wissen üben", "practice"],
+  ["keiler", "Keiler-Erkennung", "deer"],
+  ["schusszeichen", "Schusszeichen-Trainer", "alert"],
+  ["trefferzonen", "Trefferzonen-Trainer", "target"],
+  ["wild", "Wildkunde", "deer"],
+  ["wildansprache", "Wildansprache-Trainer", "deer"],
+  ["nachsuche", "Nachsuche-Simulator", "paw"],
+  ["schussfeld", "Schussfeld-Beurteilung", "target"],
+  ["revier", "Revierkunde & Geländeformen", "tree"],
+  ["trophaeen", "Trophäenbewertung", "deer"],
+  ["nachtjagd", "Nachtjagd-Wissen üben", "moon"],
+  ["waermebild", "Wärmebild-Ansprechen", "eye"],
+  ["entfernung", "Entfernungsschätzung", "ruler"],
+  ["beschuss", "Kugelfang & Sicherheitstrainer", "shield"],
+  ["krankeswild", "Krankes Wild erkennen", "health"],
+  ["familienverbaende", "Wildfamilien & Sozialstrukturen", "deer"],
+  ["verhalten", "Wildverhalten beurteilen", "eye"],
+  ["lauscher", "Lauscher- und Zeichendeutung", "deer"],
+  ["wind", "Wind & Pirschrichtung", "wind"],
+  ["mond", "Mondphasen-Revieraktivität", "moon"],
+  ["ansprache_rehwild", "Rehwild-Ansprechen", "deer"],
+  ["ansprache_schwarzwild", "Schwarzwild-Ansprechen", "deer"],
+  ["ansprache_rotwild", "Rotwild-Ansprechen", "deer"],
+  ["wildspuren", "Fährten- & Spurenkunde", "practice"],
+  ["kugelwirkung", "Geschosswirkung-Demo", "target"],
+  ["wildalarm", "Wild reagiert – was nun?", "alert"],
+  ["optik", "Optik richtig nutzen", "binoculars"],
+  ["waffenhandhabung", "Waffenhandhabungs-Simulator", "shield"],
+];
 
 export default function Jagdpraxis() {
   return (
-    <main style={{ maxWidth: 860, margin: "0 auto", padding: 32 }}>
-      <h1 
-        style={{
-          fontSize: 36,
-          marginBottom: 10,
-          color: "#1f2b23",
-          fontFamily: "Georgia, serif"
-        }}
-      >
-        🦌 Jagdpraxis: Übungen & Ansitzsimulator
-      </h1>
-
-      <p style={{ color: "#4b4b4b", marginBottom: 28 }}>
-        Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.
-      </p>
+    <main className={styles.main}>
+      <nav className={styles.nav} aria-label="Lernmenü">
+        <Link href="/lernen"><AppIcon name="book" size={18} />Lernbereich</Link>
+      </nav>
+      <header className={styles.header}>
+        <p className={styles.eyebrow}>Üben und anwenden</p>
+        <h1><span className={styles.headingIcon}><AppIcon name="practice" size={30} /></span><span>Jagdpraxis: Übungen & Ansitzsimulator</span></h1>
+        <p className={styles.intro}>Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.</p>
+      </header>
       <LearningDiscovery category="Jagdpraxis" title="Vor den Simulatoren: Praxiswissen vertiefen" />
-
-      <div 
-        style={{ 
-          display: "flex", 
-          flexDirection: "column", 
-          gap: 18, 
-          marginTop: 32 
-        }}
-      >
-        {[
-          // Bestehende Einträge
-          ["ansitz", "🎯 Ansitz-Simulator"],
-          ["drueckjagd", "🐗 Drückjagd-Wissen üben"],
-          ["pirsch", "👣 Pirsch-Wissen üben"],
-          ["keiler", "🐗 Keiler-Erkennung"],
-          ["schusszeichen", "💥 Schusszeichen-Trainer"],
-          ["trefferzonen", "🎯 Trefferzonen-Trainer"],
-          ["wild", "🦌 Wildkunde"],
-          ["wildansprache", "🦌 Wildansprache-Trainer"],
-          ["nachsuche", "🐕 Nachsuche-Simulator"],
-
-          // Erweiterungen
-          ["schussfeld", "🎯 Schussfeld-Beurteilung"],
-          ["revier", "🌲 Revierkunde & Geländeformen"],
-          ["trophaeen", "🦌 Trophäenbewertung"],
-          ["nachtjagd", "🌙 Nachtjagd-Wissen üben"],
-          ["waermebild", "🔥 Wärmebild-Ansprechen"],
-          ["entfernung", "📏 Entfernungsschätzung"],
-          ["beschuss", "💥 Kugelfang & Sicherheitstrainer"],
-          ["krankeswild", "🩸 Krankes Wild erkennen"],
-          ["familienverbaende", "🦌 Wildfamilien & Sozialstrukturen"],
-          ["verhalten", "👀 Wildverhalten beurteilen"],
-          ["lauscher", "🦌 Lauscher- und Zeichendeutung"],
-          ["wind", "💨 Wind & Pirschrichtung"],
-          ["mond", "🌕 Mondphasen-Revieraktivität"],
-          ["ansprache_rehwild", "🦌 Rehwild-Ansprechen"],
-          ["ansprache_schwarzwild", "🐗 Schwarzwild-Ansprechen"],
-          ["ansprache_rotwild", "🦌 Rotwild-Ansprechen"],
-          ["wildspuren", "👣 Fährten- & Spurenkunde"],
-          ["kugelwirkung", "💥 Geschosswirkung-Demo"],
-          ["wildalarm", "⚠️ Wild reagiert – was nun?"],
-          ["optik", "🔭 Optik richtig nutzen"],
-          ["waffenhandhabung", "🔫 Waffenhandhabungs-Simulator"],
-        ].map(([slug, label]) => (
-          <a
-            key={slug}
-            href={`/jagdpraxis/${slug}`}
-            style={{
-              display: "block",
-              background: "#fff",
-              padding: "14px 20px",
-              borderRadius: 12,
-              fontSize: 18,
-              fontWeight: "600",
-              color: "#1f2b23",
-              textDecoration: "none",
-              borderLeft: "6px solid #caa53b",
-              boxShadow: "0 6px 16px rgba(0,0,0,0.12)",
-              transition: "transform 0.15s ease, box-shadow 0.15s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.boxShadow = "0 10px 22px rgba(0,0,0,0.18)";
-              e.currentTarget.style.background = "#faf4e4";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.12)";
-              e.currentTarget.style.background = "#fff";
-            }}
-          >
-            {label}
-          </a>
-        ))}
-      </div>
+      <section className={styles.section} aria-labelledby="practice-exercises">
+        <h2 id="practice-exercises">Wähle deine Übung</h2>
+        <div className={styles.grid}>
+          {exercises.map(([slug, label, icon]) => (
+            <Link key={slug} href={`/jagdpraxis/${slug}`} className={styles.card}>
+              <span className={styles.icon}><AppIcon name={icon} size={24} /></span>
+              <span className={styles.cardTitle}>{label}</span>
+              <AppIcon name="arrow-right" size={20} className={styles.arrow} />
+            </Link>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

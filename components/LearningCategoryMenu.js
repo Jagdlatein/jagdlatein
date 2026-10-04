@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AppIcon from "./AppIcon";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/LearningCategoryMenu.module.css";
 
@@ -10,13 +11,13 @@ export default function LearningCategoryMenu({ counts }) {
       <div className={styles.grid}>
         {learningCategoryDetails.map(category => (
           <Link href={`/lernen/${category.slug}`} key={category.slug} className={styles.card}>
-            <span className={styles.icon} aria-hidden="true">{category.icon}</span>
+            <span className={styles.icon}><AppIcon name={category.slug} size={30} /></span>
             <span className={styles.content}>
               <strong>{category.title}</strong>
               <span>{category.description}</span>
               {counts?.[category.title] && <span className={styles.count}>{counts[category.title]} Lerneinheiten</span>}
             </span>
-            <span className={styles.arrow} aria-hidden="true">→</span>
+            <AppIcon name="arrow-right" size={18} className={styles.arrow} />
           </Link>
         ))}
       </div>

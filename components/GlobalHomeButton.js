@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import AppIcon from "./AppIcon";
+import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
 
@@ -60,53 +62,28 @@ export default function GlobalHomeButton() {
     window.location.assign(previous || "/");
   }
 
-  const buttonStyle = {
-    padding: "11px 16px",
-    borderRadius: 999,
-    fontFamily: "system-ui, sans-serif",
-    fontSize: 14,
-    fontWeight: 700,
-    boxShadow: "0 4px 14px rgba(0,0,0,.30)",
-    cursor: "pointer",
-  };
-
   return (
     <nav
       aria-label="Seitennavigation"
-      style={{
-        position: "fixed",
-        left: 16,
-        bottom: "max(16px, env(safe-area-inset-bottom))",
-        zIndex: 2147483647,
-        display: "flex",
-        gap: 8,
-      }}
+      className={styles.nav}
     >
       <button
         type="button"
         onClick={goBack}
         aria-label="Zurück zur vorherigen Seite"
-        style={{
-          ...buttonStyle,
-          border: "1px solid #111827",
-          background: "#ffffff",
-          color: "#111827",
-        }}
+        className={styles.button}
       >
-        ← Zurück
+        <AppIcon name="arrow-left" size={18} /> Zurück
       </button>
+      <a href="/lernen" className={`${styles.button} ${styles.learning}`} aria-label="Zum Lernbereich">
+        <AppIcon name="book" size={18} /> Lernbereich
+      </a>
       <a
         href="/"
         aria-label="Zur Startseite"
-        style={{
-          ...buttonStyle,
-          border: "1px solid #111827",
-          background: "#111827",
-          color: "#ffffff",
-          textDecoration: "none",
-        }}
+        className={styles.button}
       >
-        🏠 Startseite
+        <AppIcon name="home" size={18} /> Start
       </a>
     </nav>
   );

@@ -3,7 +3,8 @@
 import Head from "next/head";
 import { readRequestAccountSession } from "../lib/account-access";
 import Link from "next/link";
-import LearningCategoryMenu from "../components/LearningCategoryMenu";
+import AppIcon from "../components/AppIcon";
+import home from "../styles/Home.module.css";
 import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
@@ -121,34 +122,36 @@ export default function Home({ loggedIn = false }) {
         <title>Jagdlatein – Lernplattform für Jäger</title>
       </Head>
 
-      <main style={styles.main}>
-        <div style={styles.wrap}>
-          <h1 style={styles.title}>
+      <main className={home.main}>
+        <div className={home.wrap}>
+          <p className={home.eyebrow}>Wissen für Revier und Prüfung</p>
+          <h1 className={home.title}>
             Jagdlatein
           </h1>
 
-          <p style={styles.sub}>
+          <p className={home.sub}>
             Lernen für Jagdschein und Praxis in Deutschland,
             Österreich &amp; Schweiz
           </p>
 
-          <div style={styles.btnRow}>
+          <div className={home.btnRow}>
             <Link
               href="/preise"
-              style={styles.btnPrimary}
+              className={home.btnPrimary}
             >
               Jetzt freischalten
             </Link>
 
             {loggedIn ? (
               <>
-                <Link href="/konto" style={styles.btnGhost}>
+                <Link href="/konto" className={home.btnGhost}>
+                  <AppIcon name="account" size={20} />
                   Mein Konto
                 </Link>
                 <button
                   type="button"
                   onClick={logout}
-                  style={{ ...styles.btnGhost, cursor: "pointer" }}
+                  className={home.btnGhost}
                 >
                   Logout
                 </button>
@@ -156,7 +159,7 @@ export default function Home({ loggedIn = false }) {
             ) : (
               <Link
                 href="/login?next=/"
-                style={styles.btnGhost}
+                className={home.btnGhost}
               >
                 Login
               </Link>
@@ -166,7 +169,7 @@ export default function Home({ loggedIn = false }) {
               href="https://whatsapp.com/channel/0029VbBQe6jD8SDpuh6q2y2v"
               target="_blank"
               rel="noopener noreferrer"
-              style={styles.iconButton}
+              className={home.iconButton}
               aria-label="Jagdlatein auf WhatsApp"
             >
               <svg
@@ -184,7 +187,7 @@ export default function Home({ loggedIn = false }) {
               href="https://www.facebook.com/share/1FRELdRuAP/"
               target="_blank"
               rel="noopener noreferrer"
-              style={styles.iconButton}
+              className={home.iconButton}
               aria-label="Jagdlatein auf Facebook"
             >
               <svg
@@ -202,7 +205,7 @@ export default function Home({ loggedIn = false }) {
               href="https://instagram.com/jagdlatein"
               target="_blank"
               rel="noopener noreferrer"
-              style={styles.iconButton}
+              className={home.iconButton}
               aria-label="Jagdlatein auf Instagram"
             >
               <svg
@@ -217,145 +220,25 @@ export default function Home({ loggedIn = false }) {
             </a>
           </div>
 
-          <LearningCategoryMenu />
-
-          <div style={styles.linkColumn}>
-            <Link href="/lernen" style={styles.linkButton}>
-              Lernbereich & Lernpfade
-            </Link>
-
-            <Link href="/tagesquiz" style={styles.linkButton}>
-              Tagesquiz
-            </Link>
-
-            <Link href="/kurse" style={styles.linkButton}>
-              Kurse
-            </Link>
-
-            <Link href="/quiz-app" style={styles.linkButton}>
-              Quiz
-            </Link>
-
-            <Link href="/glossar" style={styles.linkButton}>
-              Glossar
-            </Link>
-
-            <Link href="/ebook" style={styles.linkButton}>
-              E-Book
-            </Link>
-
-            <Link href="/jagdpraxis" style={styles.linkButton}>
-              Jagdpraxis
-            </Link>
-
-            <Link href="/jagdrecht" style={styles.linkButton}>
-              Jagdrecht
-            </Link>
-
-            <Link href="/wildkunde" style={styles.linkButton}>
-              Wildkunde
-            </Link>
+          <Link href="/lernen" className={home.learningCard}>
+            <span className={home.learningIcon}><AppIcon name="book" size={42} /></span>
+            <span className={home.learningContent}>
+              <span className={home.learningLabel}>Alles für deinen Lernerfolg</span>
+              <strong>Lernbereich</strong>
+              <span>Alle Kategorien, Lernpfade, Kurse, Quiz und Praxisübungen an einem Ort.</span>
+              <span className={home.learningAction}>Lernbereich öffnen <AppIcon name="arrow-right" size={20} /></span>
+            </span>
+          </Link>
+          <div className={home.highlights} aria-label="Einblicke in den Lernbereich">
+            <span><AppIcon name="deer" size={24} />Wildkunde</span>
+            <span><AppIcon name="paw" size={24} />Hundewesen</span>
+            <span><AppIcon name="tree" size={24} />Natur & Revier</span>
+            <span><AppIcon name="law" size={24} />Jagdrecht</span>
           </div>
+          <p className={home.learningHint}>Gemeinsames Jagdwissen für Deutschland, Österreich und die Schweiz. Die Länderwahl findest du dort, wo sich die rechtlichen Regeln unterscheiden.</p>
 
         </div>
       </main>
     </>
   );
 }
-
-const styles = {
-  main: {
-    background:
-      "linear-gradient(180deg,#faf8f1,#f4efe3)",
-    padding: "45px 16px 40px",
-    minHeight: "100vh",
-  },
-
-  wrap: {
-    maxWidth: 860,
-    margin: "0 auto",
-  },
-
-  title: {
-    fontSize: 44,
-    fontWeight: 800,
-    margin: "0 0 14px",
-    lineHeight: 1.1,
-    color: "#1f2b23",
-  },
-
-  sub: {
-    fontSize: 19,
-    color: "#4b4b4b",
-    maxWidth: 600,
-    margin: "0 0 26px",
-  },
-
-  btnRow: {
-    display: "flex",
-    gap: 14,
-    flexWrap: "wrap",
-    marginBottom: 26,
-    alignItems: "center",
-  },
-
-  btnPrimary: {
-    background: "#caa53b",
-    color: "#111",
-    padding: "14px 26px",
-    borderRadius: 14,
-    fontWeight: 700,
-    textDecoration: "none",
-    fontSize: 17,
-  },
-
-  btnGhost: {
-    background: "#fff",
-    border: "2px solid #ddd",
-    color: "#111",
-    padding: "14px 26px",
-    borderRadius: 14,
-    fontWeight: 700,
-    textDecoration: "none",
-    fontSize: 17,
-  },
-
-  iconButton: {
-    background: "#caa53b",
-    border: "2px solid #b89532",
-    padding: "12px 14px",
-    borderRadius: 14,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#111",
-    cursor: "pointer",
-    textDecoration: "none",
-    width: 52,
-    height: 52,
-    boxShadow: "0 3px 6px rgba(0,0,0,0.18)",
-  },
-
-  linkColumn: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 12,
-    textAlign: "center",
-    marginTop: 20,
-  },
-
-  linkButton: {
-    background: "#caa53b",
-    color: "#111",
-    padding: "10px 22px",
-    borderRadius: 12,
-    fontWeight: 700,
-    textDecoration: "none",
-    fontSize: 16,
-    display: "block",
-    width: "100%",
-    maxWidth: 220,
-    margin: "0 auto",
-  },
-
-};

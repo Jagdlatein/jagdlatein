@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AppIcon from "../../components/AppIcon";
 import { readJagdrechtArray, splitLiteralSearch } from "../../lib/jagdrecht-reader";
 import layout from "../../styles/JagdrechtTabs.module.css";
 
@@ -64,7 +65,7 @@ export default function JagdrechtDE() {
 
   return (
     <main lang="de" style={styles.container}>
-      <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
+      <h1 className={layout.heading} style={styles.h1}><span className={layout.flag}><AppIcon name="flag-DE" size={32} /></span><span>Deutsches Jagdrecht</span></h1>
       <p style={{ lineHeight: 1.6 }}>Lernübersichten mit amtlichen Quellen. Für die konkrete Jagd gelten die aktuelle Rechtsfassung und örtliche Vorgaben. Die Karten geben keine vollständigen Gesetzestexte wieder.</p>
       {indexError && <p role="alert">{indexError}</p>}
       {contentError && <p role="alert">{contentError}</p>}

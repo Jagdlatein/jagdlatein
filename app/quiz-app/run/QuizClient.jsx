@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-scope";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -37,9 +38,9 @@ export default function QuizClient() {
   const router = useRouter();
   const params = useSearchParams();
   const requestedCountry = (params.get("country") || "DE").toUpperCase();
-  const country = ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
   const requestedTopic = (params.get("topic") || "Alle").trim();
   const topic = requestedTopic && requestedTopic.length <= 120 && !/[\u0000-\u001f\u007f]/.test(requestedTopic) ? requestedTopic : "Alle";
+  const country = isCountryQuizTopic(topic) && ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
   const [round, setRound] = useState(null);
   const [busy, setBusy] = useState("profile");
   const [error, setError] = useState(null);
@@ -56,10 +57,10 @@ export default function QuizClient() {
   const timerGeneration = useRef(0);
   const serverClock = useRef(null);
   currentRound.current = round;
-  const storageKey = `jagd_quiz_round:${country}:${topic}`;
-  const returnUrl = `/quiz-app/run?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
-  const setupUrl = `/quiz-app?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
-  const nameUrl = `/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
+  const storageKey = `jagd_quiz_round:${isCountryQuizTopic(topic) ? country : "COMMON"}:${topic}`;
+  const returnUrl = quizLearningUrl("/quiz-app/run", country, topic);
+  const setupUrl = quizLearningUrl("/quiz-app", country, topic);
+  const nameUrl = quizLearningUrl("/quiz-app/username", country, topic);
 
   function clearFeedbackTimer() {
     timerGeneration.current += 1;
@@ -278,7 +279,7 @@ export default function QuizClient() {
           else setReloadKey(value => value + 1);
         }}>Erneut versuchen</button>}
       {[400, 404, 409].includes(error.status) && <p><button type="button" onClick={restart}>Neue Runde starten</button></p>}
-      <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
+      <p><Link href={setupUrl}>Thema wählen</Link></p>
     </aside>;
   }
   function savedNotice() {
@@ -289,7 +290,7 @@ export default function QuizClient() {
 
   if (!round) return <div style={{ padding: 30, textAlign: "center" }}>
     {error ? errorNotice() : <p role="status">{busy === "profile" ? "Dein Quizname wird bestätigt …" : busy === "redirect" ? "Bitte wähle deinen Quiznamen …" : "Lade Quizrunde …"}</p>}
-    {!error && <p><Link href={setupUrl}>Land und Thema wählen</Link></p>}
+    {!error && <p><Link href={setupUrl}>Thema wählen</Link></p>}
   </div>;
 
   if (round.phase === "complete") return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
@@ -297,7 +298,7 @@ export default function QuizClient() {
       <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
       <div className="quiz-score-badge">{round.points}</div>
       <p>{round.correctAnswers} von {round.total} Fragen richtig</p>
-      <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
+      <p><Link href={setupUrl}>Thema wählen</Link></p>
       {savedNotice()}
       <button type="button" onClick={() => router.push("/quiz-app/leaderboard")} className="quiz-end-btn">🏆 Rangliste ansehen</button>
       <button type="button" onClick={restart} className="quiz-end-btn">🔄 Neues Quiz starten</button>
@@ -308,7 +309,7 @@ export default function QuizClient() {
   const feedback = round.phase === "feedback" ? round.feedback : null;
   const locked = round.phase !== "asking" || !!busy || !!error || !!pending.current;
   return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
-    <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Land und Thema wählen</Link></p>
+    <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Thema wählen</Link></p>
     <div className="progressbar"><div className="progressbar-fill" style={{ width: `${seconds / 30 * 100}%` }} /></div>
     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
       <div style={{ fontSize: 20, fontWeight: 700 }}>Frage {round.index + 1}/{round.total}</div>

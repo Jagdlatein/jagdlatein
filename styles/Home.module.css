@@ -1,21 +1,31 @@
-/* /styles/Home.module.css */
-.main {
-  background: linear-gradient(180deg, #fff, #f7faf7);
-  min-height: 60vh;
-}
-
-.cta {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 12px 16px;
-  border-radius: 14px;
-  border: 1px solid #e2e8e2;
-}
-
-.ctaPrimary {
-  background: var(--forest);
-  color: #fff;
-  border-color: transparent;
-}
-.ctaPrimary:hover { opacity: .95; }
+.main { background: radial-gradient(ellipse at 90% 10%, #e3e8d8 0, transparent 45%), linear-gradient(180deg, #faf8f1, #f4efe3); min-height: 100vh; padding: clamp(32px, 6vw, 70px) 20px 48px; color: #243d2e; }
+.wrap { max-width: 940px; margin: 0 auto; }
+.eyebrow { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #627452; }
+.title { margin: 0 0 14px; font-size: clamp(40px, 7vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; }
+.sub { max-width: 630px; font-size: clamp(17px, 3vw, 20px); line-height: 1.65; margin: 0 0 26px; color: #566154; }
+.btnRow { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 34px; align-items: center; }
+.btnPrimary, .btnGhost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 20px; border-radius: 13px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer; }
+.btnPrimary { background: #caa53b; border: 1px solid #b69332; color: #252e21; }
+.btnPrimary:hover { background: #d6b44e; }
+.btnGhost { background: #ffffffbf; border: 1px solid #c9d1c0; color: #365840; }
+.btnGhost:hover { background: #eef2e7; border-color: #839775; }
+.iconButton { width: 48px; height: 48px; flex: 0 0 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 13px; border: 1px solid #d8d0b7; background: #fffdf6; color: #365840; text-decoration: none; }
+.iconButton svg { fill: currentColor; width: 22px; height: 22px; }
+.iconButton:hover { background: #e9eee2; border-color: #839775; }
+.learningCard { display: flex; align-items: center; gap: 28px; padding: clamp(24px, 4vw, 42px); border: 1px solid #405840; border-radius: 26px; background: linear-gradient(125deg, #233c2b, #3b5335); color: #fffdf6; text-decoration: none; box-shadow: 0 12px 32px #243d2e1a; transition: box-shadow .2s, border-color .2s; }
+.learningCard:hover { border-color: #a88d48; box-shadow: 0 14px 38px #243d2e2b; }
+.learningIcon { --icon-accent: #ead89c; width: 84px; height: 84px; flex: 0 0 84px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #ded29a4d; border-radius: 24px; background: #ffffff0d; color: #f2e4b7; }
+.learningContent { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.learningContent strong { font-size: clamp(29px, 5vw, 40px); line-height: 1.2; letter-spacing: -.02em; }
+.learningContent > span { line-height: 1.6; }
+.learningLabel { font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #e3d29a; }
+.learningAction { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; margin-top: 6px; font-weight: 700; color: #f2e4b7; }
+.highlights { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.highlights span { display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px solid #d9ddcf; border-radius: 14px; background: #fffdf7b3; font-weight: 600; font-size: 14px; }
+.highlights svg { flex-shrink: 0; color: #365840; }
+.learningHint { margin: 22px 0 0; color: #596453; line-height: 1.7; max-width: 740px; font-size: 15px; }
+.learningCard:focus-visible { outline: 3px solid #aa812b; outline-offset: 4px; }
+.btnPrimary:focus-visible, .btnGhost:focus-visible, .iconButton:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
+@media (max-width: 620px) { .main { padding-left: 16px; padding-right: 16px; } .learningCard { gap: 16px; align-items: flex-start; } .learningIcon { flex-basis: 54px; width: 54px; height: 54px; border-radius: 16px; } .learningIcon svg { width: 30px; height: 30px; } .highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .highlights span { padding: 13px 10px; } }
+@media (max-width: 380px) { .learningCard { flex-direction: column; } .btnPrimary, .btnGhost { padding: 12px 14px; } }
+@media (prefers-reduced-motion: reduce) { .learningCard { transition: none; } }

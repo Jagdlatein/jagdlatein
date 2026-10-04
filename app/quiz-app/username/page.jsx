@@ -3,18 +3,19 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-scope";
 
 function UsernameForm() {
   const router = useRouter();
   const params = useSearchParams();
   const requestedCountry = (params.get("country") || "DE").toUpperCase();
-  const quizCountry = ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
   const requestedTopic = (params.get("topic") || "Alle").trim();
   const quizTopic = requestedTopic.length > 0 && requestedTopic.length <= 120 && !/[\u0000-\u001f\u007f]/.test(requestedTopic)
     ? requestedTopic : "Alle";
-  const quizUrl = `/quiz-app/run?country=${encodeURIComponent(quizCountry)}&topic=${encodeURIComponent(quizTopic)}`;
+  const quizCountry = isCountryQuizTopic(quizTopic) && ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
+  const quizUrl = quizLearningUrl("/quiz-app/run", quizCountry, quizTopic);
   const [username, setUsername] = useState("");
-  const [country, setCountry] = useState(quizCountry);
+  const [country, setCountry] = useState(["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [renewalRequired, setRenewalRequired] = useState(false);
@@ -29,7 +30,7 @@ function UsernameForm() {
       const storedCountry = localStorage.getItem("jagd_country");
       if (countries.some(item => item.code === storedCountry)) setCountry(storedCountry);
     } catch {
-      // Keep the selected quiz country when browser storage is unavailable.
+      // Keep the initial profile choice when browser storage is unavailable.
     }
     return () => {
       mounted.current = false;
@@ -127,8 +128,8 @@ function UsernameForm() {
       <h1 style={{ fontSize: 32, fontWeight: 900, marginBottom: 20 }}>
         🏹 Jagdquiz – Start
       </h1>
-      <p>Quizland: <strong>{{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[quizCountry]}</strong> · {quizTopic === "Alle" ? "Alle Themen" : quizTopic}</p>
-      <p><Link href={`/quiz-app?country=${encodeURIComponent(quizCountry)}&topic=${encodeURIComponent(quizTopic)}`}>Land und Thema wählen</Link></p>
+      <p>{isCountryQuizTopic(quizTopic) ? <>Recht: <strong>{{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[quizCountry]}</strong></> : <>Lernbereich: <strong>{quizTopic === "Alle" ? "Alle Lernbereiche" : quizTopic}</strong></>}</p>
+      <p><Link href={quizLearningUrl("/quiz-app", quizCountry, quizTopic)}>Thema wählen</Link></p>
 
       <label htmlFor="quiz-username" style={{ fontSize: 18, fontWeight: 700 }}>Dein Username:</label>
       <input
@@ -195,7 +196,7 @@ function UsernameForm() {
       </button>
       <p style={{ lineHeight: 1.5 }}>Dein Quizname gehört zu deinem Konto. Ein bereits gespeicherter Name bleibt mit deinem Konto verbunden.</p>
       {error && <p role="alert" style={{ color: "#9b2828", lineHeight: 1.5 }}>{error}</p>}
-      {renewalRequired && <p><Link href={`/login?reauth=1&next=${encodeURIComponent(`/quiz-app/username?country=${encodeURIComponent(quizCountry)}&topic=${encodeURIComponent(quizTopic)}`)}`}>Anmeldung erneuern</Link></p>}
+      {renewalRequired && <p><Link href={`/login?reauth=1&next=${encodeURIComponent(quizLearningUrl("/quiz-app/username", quizCountry, quizTopic))}`}>Anmeldung erneuern</Link></p>}
     </div>
   );
 }

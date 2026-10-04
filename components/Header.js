@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import AppIcon from "./AppIcon";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isPaid, setIsPaid] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
@@ -22,12 +22,10 @@ export default function Header() {
         const auth = await response.json();
         if (active) {
           setIsLoggedIn(auth.loggedIn === true);
-          setIsPaid(auth.paid === true);
         }
       } catch {
         if (active) {
           setIsLoggedIn(false);
-          setIsPaid(false);
         }
       } finally {
         if (active) setAuthLoading(false);
@@ -50,31 +48,18 @@ export default function Header() {
           Jagdlatein Die Lernplattform
         </Link>
 
-        <nav className="nav-links">
+        <nav className="nav-links" aria-label="Hauptmenü">
           <Link href="/">Start</Link>
+          <Link href="/lernen" className="learning-nav"><AppIcon name="book" size={20} />Lernbereich</Link>
           <Link href="/preise">Preise</Link>
 
           {isLoggedIn && (
             <>
-              <Link href="/quiz-app">Quiz</Link>
-              <Link href="/glossar">Glossar</Link>
-              <Link href="/kurse">Kurse</Link>
-              <Link href="/lernen">Lernbereich</Link>
-
-              {isPaid && <Link href="/protected/ebook">E-Book</Link>}
-
-              <Link href="/konto">Mein Konto</Link>
+              <Link href="/konto"><AppIcon name="account" size={20} />Mein Konto</Link>
 
               <button
                 onClick={logout}
                 className="logout-btn"
-                style={{
-                  background: "none",
-                  border: "1px solid #caa53b",
-                  padding: "6px 12px",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                }}
               >
                 Logout
               </button>
