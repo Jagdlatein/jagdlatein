@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Rabenkraehe() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Rabenkraehe() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/rabenkraehe.jpg"
-            alt="Rabenkrähe"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="rabenkraehe" />
         </div>
 
         {/* ALLGEMEINES */}

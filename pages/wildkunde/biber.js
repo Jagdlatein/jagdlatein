@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Biber() {
   const quiz = [
@@ -41,13 +41,7 @@ export default function Biber() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/biber.jpg"
-            alt="Biber"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="biber" />
         </div>
 
         {/* ALLGEMEINES */}

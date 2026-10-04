@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Ringeltaube() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Ringeltaube() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/ringeltaube.jpg"
-            alt="Ringeltaube"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="ringeltaube" />
         </div>
 
         {/* ALLGEMEINES */}

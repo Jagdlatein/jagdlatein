@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Krickente() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Krickente() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/krickente.jpg"
-            alt="Krickente"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="krickente" />
         </div>
 
         {/* ALLGEMEINES */}

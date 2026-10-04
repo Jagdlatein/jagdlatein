@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Nebelkraehe() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Nebelkraehe() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/nebelkraehe.jpg"
-            alt="Nebelkrähe"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="nebelkraehe" />
         </div>
 
         {/* ALLGEMEINES */}

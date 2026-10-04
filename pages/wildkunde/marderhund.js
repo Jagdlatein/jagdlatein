@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Marderhund() {
   const quiz = [
@@ -37,13 +37,7 @@ export default function Marderhund() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/marderhund.jpg"
-            alt="Marderhund"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="marderhund" />
         </div>
 
         {/* ALLGEMEINES */}

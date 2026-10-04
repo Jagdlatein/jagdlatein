@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Eichelhaeher() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Eichelhaeher() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/eichelhaeher.jpg"
-            alt="Eichelhäher"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="eichelhaeher" />
         </div>
 
         {/* ALLGEMEINES */}

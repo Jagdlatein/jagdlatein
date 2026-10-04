@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Nilgans() {
   const quiz = [
@@ -49,13 +49,7 @@ export default function Nilgans() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/nilgans.jpg"
-            alt="Nilgans"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="nilgans" />
         </div>
 
         {/* ALLGEMEINES */}

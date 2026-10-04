@@ -75,6 +75,14 @@ export default function AccountPage() {
             <p className={styles.muted}>Deine Quizrunden und Ansitzdurchläufe mit Trefferquote, Bestwert und Verlauf.</p>
             <Link href="/auswertungen" className={styles.button}>Auswertungen ansehen</Link>
           </section>
+          <section className={styles.card} aria-labelledby="account-privacy">
+            <h2 id="account-privacy">Datenschutz und Kontohilfe</h2>
+            <p className={styles.muted}>Fragen zu deinen gespeicherten Daten oder eine Anfrage zu Auskunft, Berichtigung oder Löschung kannst du per E-Mail stellen. Eine Datenanfrage kündigt dein PayPal-Abo nicht automatisch.</p>
+            <div className={styles.actions}>
+              <Link href="/datenschutz" className={styles.secondaryButton}>Datenschutzhinweise lesen</Link>
+              <a href="mailto:info@jagdlatein.de?subject=Anfrage%20zu%20meinen%20Kontodaten" className={styles.secondaryButton}>Kontohilfe per E-Mail</a>
+            </div>
+          </section>
         </>
       )}
     </AccountLayout>

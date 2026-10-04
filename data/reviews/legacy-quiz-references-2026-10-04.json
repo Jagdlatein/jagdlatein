@@ -1,0 +1,846 @@
+{
+  "checkedAt": "2026-10-04",
+  "questions": 190,
+  "references": 72,
+  "method": "Redaktioneller Quellenabgleich; Abrufstatus ergänzt die inhaltliche Prüfung, ersetzt sie nicht. Keine externe Fachzertifizierung.",
+  "checks": [
+    {
+      "source": "https://www.desertmuseum.org/fileexchange/fileexchange/skulls.pdf",
+      "status": 200,
+      "finalUrl": "https://www.desertmuseum.org/fileexchange/fileexchange/skulls.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "DE-wk-rotwild-zahnpad"
+      ]
+    },
+    {
+      "source": "https://www.svlfg.de/sichere-jagd",
+      "status": 200,
+      "finalUrl": "https://www.svlfg.de/sichere-jagd",
+      "pdf": false,
+      "title": "Sicheres Jagdwesen",
+      "questions": [
+        "DE-ws-safety-muendung",
+        "AT-ws-safety",
+        "CH-ws-safety",
+        "JL-1114",
+        "JL-1213",
+        "JL-1243",
+        "JL-new-0001"
+      ]
+    },
+    {
+      "source": "https://www.brenneke-ammunition.de/jagd/mit-brenneke-auf-der-jagd/jagdmunition",
+      "status": 200,
+      "finalUrl": "https://www.brenneke-ammunition.de/jagd/mit-brenneke-auf-der-jagd/jagdmunition",
+      "pdf": false,
+      "title": "Jagdmunition | BRENNEKE - Munition",
+      "questions": [
+        "DE-ws-flintenlaufgeschoss",
+        "AT-ws-flg",
+        "CH-ws-flg",
+        "JL-1024"
+      ]
+    },
+    {
+      "source": "https://blogs.zeiss.com/sports-optics/hunting/de/parallaxenausgleich/",
+      "status": 200,
+      "finalUrl": "https://blogs.zeiss.com/sports-optics/hunting/de/parallaxenausgleich/",
+      "pdf": false,
+      "title": "Parallaxenausgleich - ZEISS Jagd",
+      "questions": [
+        "DE-ws-zielfernrohr-parallaxe",
+        "CH-ws-parallaxe"
+      ]
+    },
+    {
+      "source": "https://www.gesetze-im-internet.de/bjagdg/__3.html",
+      "status": 200,
+      "finalUrl": "https://www.gesetze-im-internet.de/bjagdg/__3.html",
+      "pdf": false,
+      "title": "&#167; 3 BJagdG - Einzelnorm",
+      "questions": [
+        "DE-recht-traeger"
+      ]
+    },
+    {
+      "source": "https://www.gesetze-im-internet.de/bjagdg/__1.html",
+      "status": 200,
+      "finalUrl": "https://www.gesetze-im-internet.de/bjagdg/__1.html",
+      "pdf": false,
+      "title": "&#167; 1 BJagdG - Einzelnorm",
+      "questions": [
+        "DE-recht-hege",
+        "JL-111"
+      ]
+    },
+    {
+      "source": "https://www.bfn.de/pflege-und-verbund",
+      "status": 200,
+      "finalUrl": "https://www.bfn.de/pflege-und-verbund",
+      "pdf": false,
+      "title": "Pflege und Verbund | BFN",
+      "questions": [
+        "DE-hege-biotope",
+        "AT-hege-biotope",
+        "CH-hege-biotope",
+        "JL-122"
+      ]
+    },
+    {
+      "source": "https://www.lwf.bayern.de/service/publikationen/lwf_merkblatt/022686/index.php",
+      "status": 200,
+      "finalUrl": "https://www.lwf.bayern.de/service/publikationen/lwf_merkblatt/022686/index.php",
+      "pdf": false,
+      "title": "Wildverbiss mit Weiserflächen beurteilen - LWF-Merkblatt 25",
+      "questions": [
+        "DE-hege-verbiss",
+        "JL-120"
+      ]
+    },
+    {
+      "source": "https://jghv.de/images/managed/dateien/2024/service/pruefungsordnungen-des-jghv/VGPO_VPSO_2018_01.pdf",
+      "status": 200,
+      "finalUrl": "https://jghv.de/images/managed/dateien/2024/service/pruefungsordnungen-des-jghv/VGPO_VPSO_2018_01.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "DE-hund-brauchbarkeit",
+        "DE-hund-fuehrung",
+        "AT-hund-nachsuchen",
+        "AT-hund-fuehrung",
+        "CH-hund-nachsuchen",
+        "CH-hund-fuehrung",
+        "JL-115",
+        "JL-new-0005",
+        "JL-new-0014"
+      ]
+    },
+    {
+      "source": "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+      "status": 200,
+      "finalUrl": "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+      "pdf": false,
+      "title": "Lebensmittelsicherheit Wildbret - BfR",
+      "questions": [
+        "DE-hygiene-kuehlung",
+        "AT-hygiene-aufbrechen",
+        "CH-hygiene-aufbrechen",
+        "JL-1208",
+        "JL-new-0007"
+      ]
+    },
+    {
+      "source": "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf",
+      "status": 200,
+      "finalUrl": "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "AT-wk-gams-anpassung",
+        "CH-wk-gams-anpassung",
+        "AT-wk-gams-laute-64",
+        "DE-wk-gams-farbe-100",
+        "JL-1039"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/stockente-anas-platyrhynchos",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/stockente-anas-platyrhynchos",
+      "pdf": false,
+      "title": "Stockente (Anas platyrhynchos) | Deutscher Jagdverband",
+      "questions": [
+        "AT-wk-ente-schwimm",
+        "CH-wk-ente-schwimm"
+      ]
+    },
+    {
+      "source": "https://rws-ammunition.com/de/infotainment/geschosse",
+      "status": 200,
+      "finalUrl": "https://rws-ammunition.com/de/infotainment/geschosse",
+      "pdf": false,
+      "title": "RWS Geschosse | RWS Ammunition",
+      "questions": [
+        "AT-ws-kaliber-rehwild",
+        "JL-108",
+        "JL-1005"
+      ]
+    },
+    {
+      "source": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+      "status": 200,
+      "finalUrl": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+      "pdf": false,
+      "title": "Jagdkarte",
+      "questions": [
+        "AT-recht-landesrecht",
+        "AT-recht-jagdkarte",
+        "JL-112"
+      ]
+    },
+    {
+      "source": "https://www.land-oberoesterreich.gv.at/93740.htm",
+      "status": 200,
+      "finalUrl": "https://www.land-oberoesterreich.gv.at/93740.htm",
+      "pdf": false,
+      "title": "Land Ober&ouml;sterreich - Jagdrecht",
+      "questions": [
+        "AT-recht-schonzeiten",
+        "JL-new-0003"
+      ]
+    },
+    {
+      "source": "https://www.bundesforste.at/newsroom/positionen/wald-und-wild.html",
+      "status": 200,
+      "finalUrl": "https://www.bundesforste.at/newsroom/positionen/wald-und-wild.html",
+      "pdf": false,
+      "title": "Wald und Wild - Österreichische Bundesforste",
+      "questions": [
+        "AT-hege-fuettern"
+      ]
+    },
+    {
+      "source": "https://www.bafu.admin.ch/de/jagd",
+      "status": 200,
+      "finalUrl": "https://www.bafu.admin.ch/de/jagd",
+      "pdf": false,
+      "title": "Jagd",
+      "questions": [
+        "CH-recht-ebene",
+        "CH-recht-schonzeiten",
+        "JL-113",
+        "JL-new-0004"
+      ]
+    },
+    {
+      "source": "https://www.bafu.admin.ch/dam/de/sd-web/tKNiPvft35Qa/wald_und_wild_grundlagenfuerdiepraxis.pdf",
+      "status": 200,
+      "finalUrl": "https://www.bafu.admin.ch/dam/de/sd-web/tKNiPvft35Qa/wald_und_wild_grundlagenfuerdiepraxis.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "CH-hege-fuettern"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fuchs-vulpes-vulpes",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fuchs-vulpes-vulpes",
+      "pdf": false,
+      "title": "Fuchs (Vulpes vulpes) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-fuchs-ranz-04",
+        "CH-wk-feldhase-gegner-78",
+        "JL-1007"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/dachs-meles-meles",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/dachs-meles-meles",
+      "pdf": false,
+      "title": "Dachs (Meles meles) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-dachs-spur-05",
+        "DE-wk-dachs-graben-94"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+      "pdf": false,
+      "title": "Rothirsch (Cervus elaphus) | Deutscher Jagdverband",
+      "questions": [
+        "AT-wk-rotwild-laut-06",
+        "CH-wk-hirsch-grandeln-12",
+        "DE-wk-rotwild-geburt-52",
+        "CH-wk-schalenwild-abwurf-77",
+        "CH-wk-rotwild-brunftzeit-80",
+        "JL-1006",
+        "JL-1032",
+        "JL-1092",
+        "JL-1201",
+        "JL-1211",
+        "JL-1231",
+        "JL-1244",
+        "JL-new-0018"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa",
+      "pdf": false,
+      "title": "Wildschwein (Sus scrofa) | Deutscher Jagdverband",
+      "questions": [
+        "AT-wk-schwarzwild-kennzahl-08",
+        "AT-wk-wildschwein-rotten-70",
+        "DE-wk-schwarzwild-bachen-98",
+        "JL-1026",
+        "JL-1036",
+        "JL-1045",
+        "JL-1073",
+        "JL-1103",
+        "JL-1118",
+        "JL-1236"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/mufflon-ovis-ammon-musimon",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/mufflon-ovis-ammon-musimon",
+      "pdf": false,
+      "title": "Mufflon (Ovis ammon musimon) | Deutscher Jagdverband",
+      "questions": [
+        "CH-wk-muffel-baercke-11"
+      ]
+    },
+    {
+      "source": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/fasan/",
+      "status": 200,
+      "finalUrl": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/fasan/",
+      "pdf": false,
+      "title": "Fasan - LBV",
+      "questions": [
+        "DE-wk-fasan-henne-14",
+        "JL-1055",
+        "JL-1234"
+      ]
+    },
+    {
+      "source": "https://nationalpark.ch/flora-und-fauna/schneehase/",
+      "status": 200,
+      "finalUrl": "https://nationalpark.ch/flora-und-fauna/schneehase/",
+      "pdf": false,
+      "title": "Alpenschneehase - Schweizerischer Nationalpark",
+      "questions": [
+        "DE-wk-schneehase-wechsel-16",
+        "AT-wk-alpenhase-farbe-62"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/biber-castor-fiber",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/biber-castor-fiber",
+      "pdf": false,
+      "title": "Biber (Castor fiber) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-biber-spuren-54"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/steinmarder-martes-foina",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/steinmarder-martes-foina",
+      "pdf": false,
+      "title": "Steinmarder (Martes foina) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-marderbaue-56",
+        "JL-105"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildkaninchen-oryctolagus-cuniculus",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildkaninchen-oryctolagus-cuniculus",
+      "pdf": false,
+      "title": "Wildkaninchen (Oryctolagus cuniculus) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-wildkaninchen-bau-57"
+      ]
+    },
+    {
+      "source": "https://natura2000.sachsen-anhalt.de/arten-lebensraeume/vogelarten/uebersicht-vogelarten/schreiadler",
+      "status": 200,
+      "finalUrl": "https://natura2000.sachsen-anhalt.de/arten-lebensraeume/vogelarten/uebersicht-vogelarten/schreiadler",
+      "pdf": false,
+      "title": "Natura 2000: Schreiadler",
+      "questions": [
+        "DE-wk-schreiadler-58"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/waschbaer-procyon-lotor",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/waschbaer-procyon-lotor",
+      "pdf": false,
+      "title": "Waschbär (Procyon lotor) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-waschbaer-nahrung-59"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/schwarzstorch/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/schwarzstorch/",
+      "pdf": false,
+      "title": "Vogelarten: Schwarzstorch",
+      "questions": [
+        "DE-wk-schwarzstorch-60"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/habicht/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/habicht/",
+      "pdf": false,
+      "title": "Vogelarten: Habicht",
+      "questions": [
+        "AT-wk-habicht-jagdweise-61"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rebhuhn-perdix-perdix",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rebhuhn-perdix-perdix",
+      "pdf": false,
+      "title": "Rebhuhn (Perdix perdix) | Deutscher Jagdverband",
+      "questions": [
+        "AT-wk-aasfresser-63",
+        "JL-1025"
+      ]
+    },
+    {
+      "source": "https://nationalpark.ch/flora-und-fauna/murmeltier/",
+      "status": 200,
+      "finalUrl": "https://nationalpark.ch/flora-und-fauna/murmeltier/",
+      "pdf": false,
+      "title": "Murmeltier - Schweizerischer Nationalpark",
+      "questions": [
+        "AT-wk-murmeltier-winter-66"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/alpenschneehuhn/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/alpenschneehuhn/",
+      "pdf": false,
+      "title": "Vogelarten: Alpenschneehuhn",
+      "questions": [
+        "AT-wk-schneehuhn-tarnung-67"
+      ]
+    },
+    {
+      "source": "https://nationalpark.ch/flora-und-fauna/steinbock/",
+      "status": 200,
+      "finalUrl": "https://nationalpark.ch/flora-und-fauna/steinbock/",
+      "pdf": false,
+      "title": "Steinbock - Schweizerischer Nationalpark",
+      "questions": [
+        "AT-wk-steinwild-habitat-68",
+        "CH-wk-steingeiss-71",
+        "CH-wk-steinwild-sprungkraft-79",
+        "JL-1002",
+        "JL-1054",
+        "JL-1098",
+        "JL-1102",
+        "JL-1202",
+        "JL-1220"
+      ]
+    },
+    {
+      "source": "https://www.lfl.bayern.de/ifi/flussfischerei/116126/index.php",
+      "status": 200,
+      "finalUrl": "https://www.lfl.bayern.de/ifi/flussfischerei/116126/index.php",
+      "pdf": false,
+      "title": "Die Situation des Europäischen Aals in Bayern - LfL",
+      "questions": [
+        "AT-wk-aalweibchen-69"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/luchs-lynx-lynx",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/luchs-lynx-lynx",
+      "pdf": false,
+      "title": "Luchs (Lynx lynx) | Deutscher Jagdverband",
+      "questions": [
+        "CH-wk-luchs-jagdweise-72",
+        "JL-1242"
+      ]
+    },
+    {
+      "source": "https://www.nature.com/articles/s41586-024-08112-6",
+      "status": 200,
+      "finalUrl": "https://www.nature.com/articles/s41586-024-08112-6?error=cookies_not_supported&code=6c3f1d85-cbf7-466b-b66c-27f9da205491",
+      "pdf": false,
+      "title": "The genomic natural history of the aurochs | Nature",
+      "questions": [
+        "CH-wk-auerochse-73"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fischotter-lutra-lutra",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fischotter-lutra-lutra",
+      "pdf": false,
+      "title": "Fischotter (Lutra lutra) | Deutscher Jagdverband",
+      "questions": [
+        "CH-wk-fischotter-nahrung-74"
+      ]
+    },
+    {
+      "source": "https://nationalpark.ch/flora-und-fauna/steinadler/",
+      "status": 200,
+      "finalUrl": "https://nationalpark.ch/flora-und-fauna/steinadler/",
+      "pdf": false,
+      "title": "Steinadler - Schweizerischer Nationalpark",
+      "questions": [
+        "CH-wk-steinadler-horste-75",
+        "JL-104"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus",
+      "pdf": false,
+      "title": "Feldhase (Lepus europaeus) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-feldhase-sprung-82",
+        "JL-1101",
+        "JL-new-0008"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/marderhund-nyctereutes-procyonoides",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/marderhund-nyctereutes-procyonoides",
+      "pdf": false,
+      "title": "Marderhund (Nyctereutes procyonoides) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-marderhund-83"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/maeusebussard/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/maeusebussard/",
+      "pdf": false,
+      "title": "Vogelarten: Mäusebussard",
+      "questions": [
+        "DE-wk-bussard-86"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/damwild-dama-dama",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/damwild-dama-dama",
+      "pdf": false,
+      "title": "Damwild (Dama dama) | Deutscher Jagdverband",
+      "questions": [
+        "DE-wk-damhirsch-87"
+      ]
+    },
+    {
+      "source": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/uhu/",
+      "status": 200,
+      "finalUrl": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/uhu/",
+      "pdf": false,
+      "title": "Uhu - LBV",
+      "questions": [
+        "DE-wk-uhu-jagdzeit-89",
+        "DE-wk-uhu-schwingen-97"
+      ]
+    },
+    {
+      "source": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/feldlerche/",
+      "status": 200,
+      "finalUrl": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/feldlerche/",
+      "pdf": false,
+      "title": "Feldlerche - LBV",
+      "questions": [
+        "DE-wk-lerche-90"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/hoeckerschwan/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/hoeckerschwan/",
+      "pdf": false,
+      "title": "Vogelarten: Höckerschwan",
+      "questions": [
+        "DE-wk-schwan-federn-92"
+      ]
+    },
+    {
+      "source": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/turteltaube/",
+      "status": 200,
+      "finalUrl": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/turteltaube/",
+      "pdf": false,
+      "title": "Turteltaube - LBV",
+      "questions": [
+        "DE-wk-turteltaube-93",
+        "JL-1062"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/graureiher/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/graureiher/",
+      "pdf": false,
+      "title": "Vogelarten: Graureiher",
+      "questions": [
+        "DE-wk-fischreiher-95"
+      ]
+    },
+    {
+      "source": "https://mecklenburg-vorpommern.nabu.de/imperia/md/content/mecklenburgvorpommern/projekteundaktionen/winterwanderung_neum__hler_see.pdf",
+      "status": 200,
+      "finalUrl": "https://mecklenburg-vorpommern.nabu.de/imperia/md/content/mecklenburgvorpommern/projekteundaktionen/winterwanderung_neum__hler_see.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "DE-wk-kormoran-96"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+      "pdf": false,
+      "title": "Reh (Capreolus capreolus) | Deutscher Jagdverband",
+      "questions": [
+        "JL-102",
+        "JL-1000",
+        "JL-1022",
+        "JL-1030",
+        "JL-1050",
+        "JL-1072",
+        "JL-1116",
+        "JL-1212",
+        "JL-1221",
+        "JL-1235",
+        "JL-1240",
+        "JL-new-0009"
+      ]
+    },
+    {
+      "source": "https://www.ooeljv.at/wp-content/uploads/2026/04/7_jagdliche-Fachausdruecke-und-Jagdgebraeuche.pdf",
+      "status": 200,
+      "finalUrl": "https://www.ooeljv.at/wp-content/uploads/2026/04/7_jagdliche-Fachausdruecke-und-Jagdgebraeuche.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "JL-103",
+        "JL-1023",
+        "JL-1204",
+        "JL-1224",
+        "JL-new-0019"
+      ]
+    },
+    {
+      "source": "https://www.svlfg.de/pm-schalldaempfer-jagd",
+      "status": 200,
+      "finalUrl": "https://www.svlfg.de/pm-schalldaempfer-jagd",
+      "pdf": false,
+      "title": "SVLFG | Pressemitteilung",
+      "questions": [
+        "JL-107",
+        "JL-1104",
+        "JL-1245"
+      ]
+    },
+    {
+      "source": "https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_2_Stand_29.03.2018_mit_L%C3%B6sung.pdf",
+      "status": 200,
+      "finalUrl": "https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_2_Stand_29.03.2018_mit_L%C3%B6sung.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "JL-109",
+        "JL-1031",
+        "JL-1038",
+        "JL-1063",
+        "JL-1071",
+        "JL-1206",
+        "JL-1233"
+      ]
+    },
+    {
+      "source": "https://lfl.bayern.de/iab/kulturlandschaft/259137/index.php",
+      "status": 200,
+      "finalUrl": "https://lfl.bayern.de/iab/kulturlandschaft/259137/index.php",
+      "pdf": false,
+      "title": "Hecken und Feldgehölze mit ihren Säumen der Vielfalt - LfL",
+      "questions": [
+        "JL-123",
+        "JL-1037",
+        "JL-1107"
+      ]
+    },
+    {
+      "source": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes",
+      "status": 200,
+      "finalUrl": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes",
+      "pdf": false,
+      "title": "Baummarder (Martes martes) | Deutscher Jagdverband",
+      "questions": [
+        "JL-1015",
+        "JL-1232"
+      ]
+    },
+    {
+      "source": "https://www.vetmeduni.ac.at/fileadmin/v/z/lehre/Aufnahmeverfahren/AV_22_VET_V2.pdf",
+      "status": 200,
+      "finalUrl": "https://www.vetmeduni.ac.at/fileadmin/v/z/lehre/Aufnahmeverfahren/AV_22_VET_V2.pdf",
+      "pdf": true,
+      "title": "",
+      "questions": [
+        "JL-1016",
+        "JL-1059"
+      ]
+    },
+    {
+      "source": "https://www.umweltbundesamt.de/themen/wasser/gewaessertyp-des-jahres/gewaessertyp-des-jahres-2026-kleingewaesser",
+      "status": 200,
+      "finalUrl": "https://www.umweltbundesamt.de/themen/wasser/gewaessertyp-des-jahres/gewaessertyp-des-jahres-2026-kleingewaesser",
+      "pdf": false,
+      "title": "Gewässertyp des Jahres 2026 - Kleingewässer | Umweltbundesamt",
+      "questions": [
+        "JL-1018",
+        "JL-1089"
+      ]
+    },
+    {
+      "source": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/hohltaube/",
+      "status": 200,
+      "finalUrl": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/hohltaube/",
+      "pdf": false,
+      "title": "Hohltaube - LBV",
+      "questions": [
+        "JL-1019",
+        "JL-1070",
+        "JL-1223"
+      ]
+    },
+    {
+      "source": "https://www.lfl.bayern.de/maehknigge",
+      "status": 200,
+      "finalUrl": "https://www.lfl.bayern.de/maehknigge",
+      "pdf": false,
+      "title": "Der LfL-Mähknigge - LfL",
+      "questions": [
+        "JL-1028",
+        "JL-1119",
+        "JL-1225",
+        "JL-new-0017"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/ringeltaube/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/ringeltaube/",
+      "pdf": false,
+      "title": "Vogelarten: Ringeltaube",
+      "questions": [
+        "JL-1040"
+      ]
+    },
+    {
+      "source": "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/wildtierkot-erkennen",
+      "status": 200,
+      "finalUrl": "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/wildtierkot-erkennen",
+      "pdf": false,
+      "title": "Wildtierkot erkennen: Losung von Waldbewohnern bestimmen - waldwissen.net",
+      "questions": [
+        "JL-1046"
+      ]
+    },
+    {
+      "source": "https://lfl.bayern.de/iab/kulturlandschaft/292400/index.php",
+      "status": 200,
+      "finalUrl": "https://lfl.bayern.de/iab/kulturlandschaft/292400/index.php",
+      "pdf": false,
+      "title": "Anlage von Altgrasstreifen (KULAP B42) - LfL",
+      "questions": [
+        "JL-1057",
+        "JL-1067"
+      ]
+    },
+    {
+      "source": "https://www.waldwissen.net/de/lebensraum-wald/waldboden/der-gruene-teppich-die-bedeutung-von-moosen-fuer-unsere-waldoekosysteme",
+      "status": 200,
+      "finalUrl": "https://www.waldwissen.net/de/lebensraum-wald/waldboden/der-gruene-teppich-die-bedeutung-von-moosen-fuer-unsere-waldoekosysteme",
+      "pdf": false,
+      "title": "Der grüne Teppich: Die Bedeutung von Moosen für unsere Waldökosysteme - waldwissen.net",
+      "questions": [
+        "JL-1075"
+      ]
+    },
+    {
+      "source": "https://lfl.bayern.de/publikationen/merkblaetter/135906/index.php",
+      "status": 200,
+      "finalUrl": "https://lfl.bayern.de/publikationen/merkblaetter/135906/index.php",
+      "pdf": false,
+      "title": "Blühflächen &ndash; Farbe und Vielfalt im Feld - Publikation - LfL",
+      "questions": [
+        "JL-1079"
+      ]
+    },
+    {
+      "source": "https://www.umweltbundesamt.de/umweltatlas/umwelt-landwirtschaft/wirkungen/boden/wie-beeinflusst-die-landwirtschaftliche-nutzung-den",
+      "status": 200,
+      "finalUrl": "https://www.umweltbundesamt.de/umweltatlas/umwelt-landwirtschaft/wirkungen/boden/wie-beeinflusst-die-landwirtschaftliche-nutzung-den",
+      "pdf": false,
+      "title": "Wie beeinflusst die landwirtschaftliche Nutzung den Humusgehalt im Boden? | Umweltbundesamt",
+      "questions": [
+        "JL-1085",
+        "JL-1097"
+      ]
+    },
+    {
+      "source": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
+      "status": 200,
+      "finalUrl": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
+      "pdf": false,
+      "title": "NIST Guide to the SI, Appendix B: Conversion Factors | NIST",
+      "questions": [
+        "JL-1091"
+      ]
+    },
+    {
+      "source": "https://www.forstwirtschaft-in-deutschland.de/aktuelles/news-detailansicht/news/so-trotzen-waldtiere-der-sommerhitze/",
+      "status": 200,
+      "finalUrl": "https://www.forstwirtschaft-in-deutschland.de/aktuelles/news-detailansicht/news/so-trotzen-waldtiere-der-sommerhitze/",
+      "pdf": false,
+      "title": "News-Detailansicht - Forstwirtschaft in Deutschland",
+      "questions": [
+        "JL-1099"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/wachtel/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/wachtel/",
+      "pdf": false,
+      "title": "Vogelarten: Wachtel",
+      "questions": [
+        "JL-1105"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/tafelente/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/tafelente/",
+      "pdf": false,
+      "title": "Vogelarten: Tafelente",
+      "questions": [
+        "JL-1112"
+      ]
+    },
+    {
+      "source": "https://www.vogelwarte.ch/de/voegel-der-schweiz/krickente/",
+      "status": 200,
+      "finalUrl": "https://www.vogelwarte.ch/de/voegel-der-schweiz/krickente/",
+      "pdf": false,
+      "title": "Vogelarten: Krickente",
+      "questions": [
+        "JL-1246"
+      ]
+    }
+  ]
+}

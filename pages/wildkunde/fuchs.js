@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Fuchs() {
   const quiz = [
@@ -42,13 +42,7 @@ export default function Fuchs() {
 
         {/* Bild */}
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/fuchs.jpg"
-            alt="Fuchs"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="fuchs" />
         </div>
 
         {/* ALLGEMEINES */}

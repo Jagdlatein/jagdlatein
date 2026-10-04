@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Steinwild() {
   const quiz = [
@@ -38,13 +38,7 @@ export default function Steinwild() {
 
         {/* Bild */}
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/steinwild.jpg"
-            alt="Steinwild"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="steinwild" />
         </div>
 
         {/* ALLGEMEINES */}

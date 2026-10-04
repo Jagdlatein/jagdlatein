@@ -329,7 +329,12 @@ export default function QuizClient() {
       <strong>{feedback.timedOut ? "Zeit abgelaufen." : feedback.correct ? "Richtig!" : "Leider falsch."}</strong>
       <p style={{ margin: "8px 0" }}><b>Richtige Antwort:</b>{" "}{question.answers.filter(option => feedback.correctAnswerIds.includes(option.id)).map(option => option.text).join("; ")}</p>
       {feedback.explain && <p style={{ margin: "8px 0" }}>{feedback.explain}</p>}
-      {feedback.source?.startsWith("https://") && <p style={{ margin: "8px 0" }}><a href={feedback.source} target="_blank" rel="noopener noreferrer">Quelle nachlesen (neuer Tab)</a></p>}
+      {feedback.source?.startsWith("https://") && <div style={{ marginTop: 12 }}>
+        <a href={feedback.source} target="_blank" rel="noopener noreferrer">{feedback.sourceTitle || "Quelle nachlesen"} (neuer Tab)</a>
+        {/^\d{4}-\d{2}-\d{2}$/.test(feedback.sourceCheckedAt || "") && <p style={{ margin: "8px 0", fontSize: 14 }}>Quellenabgleich: {feedback.sourceCheckedAt.split("-").reverse().join(".")}</p>}
+        {feedback.sourceScope && <p style={{ margin: "8px 0", fontSize: 14 }}>{feedback.sourceScope}</p>}
+      </div>}
+      {!feedback.source && /^\/kurse\/[a-z0-9-]+$/.test(feedback.learningHref || "") && <p style={{ margin: "8px 0" }}><Link href={feedback.learningHref}>Lerneinheit und zugehörige Quellen öffnen</Link></p>}
       <p style={{ margin: "8px 0" }}><Link href="/lernen">Im Lernwissen nachlesen</Link></p>
       <button type="button" disabled={!!busy || !!error} onClick={() => next(round)} className="quiz-end-btn" style={{ marginTop: 8 }}>{round.index === round.total - 1 ? "Ergebnis anzeigen" : "Weiter"}</button>
       <p style={{ margin: "8px 0 0", fontSize: 14, color: "#4b5563" }}>{busy === "next" || busy === "sync" ? "Quizrunde wird geladen …" : "Automatisch weiter nach 10 Sekunden."}</p>

@@ -84,6 +84,8 @@ Anschliessend in Vercel pruefen, dass das neue Deployment erfolgreich ist. Hier 
 
 ## 4. Verhalten pruefen
 
+Der reproduzierbare, getrennte Testablauf mit PowerShell-Helfer, lokalen SQL-/Webhookregressionen und einem ehrlichen offenen Anbieterstatus steht in [paypal-sandbox-pruefung.md](paypal-sandbox-pruefung.md). Die öffentliche App ist keine Sandbox-Testversion.
+
 Die Preisseite muss **3 Tage kostenlos, danach 5 EUR/Monat** zeigen. PayPal muss vor Abschluss denselben Tarif zur ausdruecklichen Bestaetigung anzeigen. Im Konto steht nach der Bestaetigung das Ende des Testzugangs. Die Anmeldung verwendet die bei PayPal bestaetigte E-Mail-Adresse. Das Ende ist fest auf **die bei PayPal verifizierte Startzeit plus 72 Stunden** begrenzt; ein neuer Login oder erneut empfangener Webhook verschiebt es nicht. Anschliessend wird Zugang anhand bestaetigter Zahlungen gewaehrt.
 
 Bei einer Kuendigung wird der kostenlose Zugriff nach der verifizierten Statusaenderung beendet. Ohne frueher eintreffenden Webhook kann die Aktualisierung einschliesslich kurzer Sitzungsgueltigkeit bis zu sechs Minuten dauern. Das feste Testende wird dadurch nicht verlaengert. Eine nicht moegliche Anbieterpruefung verlaengert den Testzugang ebenfalls nicht.

@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Rotwild() {
   const quiz = [
@@ -40,13 +40,7 @@ export default function Rotwild() {
 
         {/* ⭐ Bild aus /public – funktioniert IMMER */}
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/hirsch.jpg"
-            alt="Rotwild Hirsch"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="rotwild" />
         </div>
 
         {/* --- STECKBRIEF --- */}

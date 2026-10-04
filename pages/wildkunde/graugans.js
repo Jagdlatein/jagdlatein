@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Graugans() {
   const quiz = [
@@ -45,13 +45,7 @@ export default function Graugans() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/graugans.jpg"
-            alt="Graugans"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="graugans" />
         </div>
 
         {/* ALLGEMEINES */}

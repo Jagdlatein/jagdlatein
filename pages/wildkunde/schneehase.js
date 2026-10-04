@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Schneehase() {
   const quiz = [
@@ -41,13 +41,7 @@ export default function Schneehase() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/schneehase.jpg"
-            alt="Schneehase"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="schneehase" />
         </div>
 
         {/* ALLGEMEINES */}

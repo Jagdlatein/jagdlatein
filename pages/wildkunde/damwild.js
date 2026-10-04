@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Damwild() {
   const quiz = [
@@ -37,13 +37,7 @@ export default function Damwild() {
 
         {/* ⭐ Bild aus /public */}
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/damwild.jpg"
-            alt="Damwild"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="damwild" />
         </div>
 
         {/* STECKBRIEF */}

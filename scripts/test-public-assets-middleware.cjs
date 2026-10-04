@@ -35,16 +35,39 @@ const { learningImagePaths } = load('lib/learning-image-paths.js');
 const { middleware } = load('middleware.js');
 const request = pathname => new NextRequest(`https://jagdlatein.test${pathname}`);
 
-for (const name of oldPortraitNames) test(`The exact ${name} portrait JPEG is public and decodes without account access`, async () => {
+for (const name of oldPortraitNames) test(`An older cached ${name} portrait remains publicly accessible during the download transition`, async () => {
   const pathname = `/wildkunde/${name}.jpg`;
   assert.ok(learningImagePaths.includes(pathname));
   const bytes = fs.readFileSync(path.join(root, 'public', pathname));
   assert.equal(bytes.subarray(0, 3).toString('hex'), 'ffd8ff');
   const metadata = await sharp(bytes).metadata();
   assert.equal(metadata.format, 'jpeg'); assert.ok(metadata.width >= 100 && metadata.height >= 100);
-  const pageFiles = fs.readdirSync(path.join(root, 'pages/wildkunde')).filter(file => file.endsWith('.js'));
-  assert.ok(pageFiles.some(file => fs.readFileSync(path.join(root, 'pages/wildkunde', file), 'utf8').includes(`"${pathname}"`)), 'Existing page must reference this exact file');
   const response = await middleware(request(pathname)); assert.equal(response.headers.get('x-middleware-next'), '1');
+});
+
+const reviewedPhotos = JSON.parse(fs.readFileSync(path.join(root, 'data/reviews/wildlife-photo-provenance-2026-10-04.json'), 'utf8')).assets;
+test('Every reviewed wildlife photo decodes, has the recorded dimensions/hash and remains available without a paid account', async () => {
+  assert.equal(reviewedPhotos.length, 47);
+  assert.equal(new Set(reviewedPhotos.map(photo => photo.slug)).size, 47);
+  const { createHash } = require('node:crypto');
+  for (const photo of reviewedPhotos) {
+    const bytes = fs.readFileSync(path.join(root, 'public', photo.src));
+    const metadata = await sharp(bytes).metadata();
+    assert.equal(metadata.format, 'jpeg', photo.slug);
+    assert.equal(metadata.width, photo.width, photo.slug); assert.equal(metadata.height, photo.height, photo.slug);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), photo.sha256, photo.slug);
+    assert.ok(photo.author && photo.credit && photo.creditUrl && photo.license && photo.licenseUrl, photo.slug);
+    assert.ok(photo.sourcePage.startsWith('https://commons.wikimedia.org/wiki/File:'), photo.slug);
+    assert.ok(learningImagePaths.includes(photo.src), photo.slug);
+    assert.equal((await middleware(request(photo.src))).headers.get('x-middleware-next'), '1', photo.slug);
+    const route = photo.slug === 'hirsch' ? 'rotwild' : photo.slug;
+    const page = fs.readFileSync(path.join(root, 'pages/wildkunde', `${route}.js`), 'utf8');
+    assert.ok(page.includes(`<WildlifePhoto slug="${route}" />`), route);
+  }
+  const blackGrouse = reviewedPhotos.find(photo => photo.slug === 'birkhuhn');
+  assert.ok(blackGrouse.sourcePage.includes('48203418512'), 'Actual photo replaces historical drawing');
+  const hoodedCrow = reviewedPhotos.find(photo => photo.slug === 'nebelkraehe');
+  assert.ok(hoodedCrow.sourcePage.includes('Kristiansand'), 'Species photo replaces documented hybrid');
 });
 
 test('Every published learning image path is exact, unique and backed by a real file', () => {

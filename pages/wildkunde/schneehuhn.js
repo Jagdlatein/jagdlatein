@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Schneehuhn() {
   const quiz = [
@@ -45,13 +45,7 @@ export default function Schneehuhn() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/schneehuhn.jpg"
-            alt="Schneehuhn"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="schneehuhn" />
         </div>
 
         {/* ALLGEMEINES */}

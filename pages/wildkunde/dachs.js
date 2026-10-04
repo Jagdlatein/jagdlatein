@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Dachs() {
   const quiz = [
@@ -38,13 +38,7 @@ export default function Dachs() {
 
         {/* Bild */}
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/dachs.jpg"
-            alt="Dachs"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="dachs" />
         </div>
 
         {/* ALLGEMEINES */}

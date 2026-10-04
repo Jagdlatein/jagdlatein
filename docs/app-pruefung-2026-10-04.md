@@ -2,6 +2,8 @@
 
 Geprüft wurde der lokale Stand nach `c04cc0413b86d1e557dc91514643fb7176592b37`. Die älteren Prüfprotokolle dokumentieren frühere, kleinere Ausbaustände.
 
+Die anschließende [Nachprüfung](app-nachpruefung-2026-10-04.md) dokumentiert die Ergänzung aller 190 bisher unbelegten aktiven Altfragen, 47 vollständige Bildnachweise, Kontohilfe und den vorbereiteten isolierten PayPal-Test. Die unten genannten offenen Quellen-/Fotoaufgaben beschreiben den damaligen Stand.
+
 ## Behobene Fehler
 
 - Die Anmeldung erhält das Rücksprungziel zur kostenlosen Community, einschließlich Themenauswahl und gültiger Beitragsadresse. Ein fehlendes Abo führt dabei nicht mehr zur Preisseite. Doppelte Codeprüfungen, späte Antworten nach Verlassen der Seite und hängende Anfragen sind abgesichert.

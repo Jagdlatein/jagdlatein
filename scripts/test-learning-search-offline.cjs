@@ -51,7 +51,7 @@ test('Every detailed course creates a valid offline pack; trials cap expiry and 
   const soundCount = load('lib/animal-sounds.js').animalSounds.length;
   for (const course of learningModules) { const pack = createOfflinePack({ courseIds: [course.id], sounds: true }, access, now); assert.ok(validateOfflinePack(pack, now), course.id); assert.equal(pack.expiresAt, now + 3600000); assert.equal(pack.sounds.length, soundCount); assert.ok(!JSON.stringify(pack).includes('test@example.invalid')); }
   const body = { courseIds: [learningModules[0].id], sounds: false }; const pack = createOfflinePack(body, access, now);
-  const alpine = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, access, now); assert.deepEqual(alpine.photos.map(photo => photo.src), ['/wildkunde/gamswild.jpg', '/wildkunde/steinwild.jpg']);
+  const alpine = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, access, now); assert.deepEqual(alpine.photos.map(photo => photo.src), ['/wildkunde/nachweise-2026/gamswild.jpg', '/wildkunde/nachweise-2026/steinwild.jpg']);
   assert.equal(validateOfflinePack(pack, pack.expiresAt), false); assert.equal(validateOfflinePack({ ...pack, expiresAt: now + 8 * 86400000 }, now), false);
   assert.throws(() => createOfflinePack({ ...body, courseIds: Array(9).fill(learningModules[0].id) }, access, now)); assert.throws(() => createOfflinePack({ ...body, courseIds: ['fake'] }, access, now));
   assert.equal(validateOfflinePack({ ...pack, courses: [{ ...pack.courses[0], questions: [{ ...pack.courses[0].questions[0], correct: ['evil'] }] }] }, now), false);

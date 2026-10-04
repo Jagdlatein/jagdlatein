@@ -4,6 +4,8 @@ const SHELL = "/lernen/offline-rucksack";
 const MEDIA = new Set([
   "/lernen/waldwiese.jpg", "/lernen/sicherheit.jpg", "/lernen/jagdpraxis.jpg", "/lernen/ausruestung.jpg", "/lernen/jagdrecht.jpg", "/lernen/lernmaterial.jpg", "/lernen/feldlandschaft.jpg", "/lernen/hygiene.jpg",
   "/lernen/deutsch-drahthaar.jpg", "/lernen/kleiner-muensterlaender.jpg", "/lernen/wachtelhund.jpg", "/lernen/bayerischer-gebirgsschweisshund.jpg",
+  "/wildkunde/nachweise-2026/rehwild.jpg", "/wildkunde/nachweise-2026/hirsch.jpg", "/wildkunde/nachweise-2026/schwarzwild.jpg", "/wildkunde/nachweise-2026/gamswild.jpg", "/wildkunde/nachweise-2026/steinwild.jpg", "/wildkunde/nachweise-2026/stockente.jpg", "/wildkunde/nachweise-2026/fasan.jpg", "/wildkunde/nachweise-2026/feldhase.jpg", "/wildkunde/nachweise-2026/wildkaninchen.jpg", "/wildkunde/nachweise-2026/fuchs.jpg", "/wildkunde/nachweise-2026/dachs.jpg", "/wildkunde/nachweise-2026/baummarder.jpg",
+  // Preserve already downloaded packs until their existing expiry (at most seven days).
   "/wildkunde/rehwild.jpg", "/wildkunde/hirsch.jpg", "/wildkunde/schwarzwild.jpg", "/wildkunde/gamswild.jpg", "/wildkunde/steinwild.jpg", "/wildkunde/stockente.jpg", "/wildkunde/fasan.jpg", "/wildkunde/feldhase.jpg", "/wildkunde/wildkaninchen.jpg", "/wildkunde/fuchs.jpg", "/wildkunde/dachs.jpg", "/wildkunde/baummarder.jpg",
   ...Array.from({ length: 8 }, (_, index) => `/lernen/stimmen/aufnahme-0${index + 1}.mp3`),
   ...Array.from({ length: 22 }, (_, index) => `/lernen/stimmen/vogel-${String(index + 1).padStart(2, "0")}.mp3`),

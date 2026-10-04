@@ -1,6 +1,6 @@
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { useState } from "react";
-import Image from "next/image";
+import WildlifePhoto from "../../components/WildlifePhoto";
 
 export default function Reiherente() {
   const quiz = [
@@ -45,13 +45,7 @@ export default function Reiherente() {
 
 
         <div style={styles.imageBox}>
-          <Image
-            src="/wildkunde/reiherente.jpg"
-            alt="Reiherente"
-            width={1200}
-            height={800}
-            style={styles.image}
-          />
+          <WildlifePhoto slug="reiherente" />
         </div>
 
         {/* ALLGEMEINES */}
