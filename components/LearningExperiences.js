@@ -6,6 +6,7 @@ import styles from "../styles/LearningTools.module.css";
 export default function LearningExperiences({ category }) {
   const experiences = learningExperiences.filter(tool => !category || tool.categories.includes(category));
   const groupDefinitions = [
+    ["Neues aus Wissenschaft und Revier", ["news"]],
     ["Wildtiere erkennen und beobachten", ["wildkunde", "fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
     ["Jagdrecht und Artenschutz nachschlagen", ["wildarten"]],
     ["Pflanzen und Lebensräume verstehen", ["pflanzenatlas", "lebensraum-werkstatt"]],

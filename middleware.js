@@ -12,6 +12,7 @@ const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.pn
 
 const PUBLIC_PATHS = [
   "/",
+  "/news",
   "/login",
   "/preise",
   "/debug-cookies",

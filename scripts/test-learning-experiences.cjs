@@ -58,8 +58,8 @@ function setup(relative, exportName = 'default', expose = '', props = {}) {
 
 test('New tools resolve from the learning hub and relevant categories without changing legal country selection', () => {
   const { learningExperiences } = load('lib/learning-experiences.js');
-  assert.equal(learningExperiences.length, 15);
-  assert.equal(new Set(learningExperiences.map(tool => tool.href)).size, 15);
+  assert.equal(learningExperiences.length, 16);
+  assert.equal(new Set(learningExperiences.map(tool => tool.href)).size, learningExperiences.length);
   const Component = load('components/LearningExperiences.js').default;
   for (const tool of learningExperiences) {
     assert.ok(fs.existsSync(path.join(root, 'pages', tool.href + '.js')) || fs.existsSync(path.join(root, 'pages', tool.href, 'index.js')));

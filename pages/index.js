@@ -5,20 +5,24 @@ import { readRequestAccountSession } from "../lib/account-access";
 import Link from "next/link";
 import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
+import HomeNews from "../components/HomeNews";
+import { getJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 
 export async function getServerSideProps({ req }) {
+  const initialNews = await getJagdNews();
   return {
     props: {
       loggedIn: Boolean(readRequestAccountSession(req)),
+      initialNews,
     },
   };
 }
 
-export default function Home({ loggedIn = false }) {
+export default function Home({ loggedIn = false, initialNews }) {
 
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
@@ -232,6 +236,8 @@ export default function Home({ loggedIn = false }) {
             </span>
           </Link>
           <p className={home.learningHint}>Gemeinsames Jagdwissen für Deutschland, Österreich und die Schweiz. Die Länderwahl findest du dort, wo sich die rechtlichen Regeln unterscheiden.</p>
+
+          <HomeNews initialNews={initialNews} />
 
         </div>
       </main>

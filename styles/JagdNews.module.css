@@ -1,0 +1,57 @@
+.homeSection { margin-top: 38px; padding: clamp(20px, 4vw, 30px); border: 1px solid #ddc690; border-radius: 24px; background: #fffdf7; color: #3e321b; min-width: 0; }
+.homeSection *, .homeSection *::before, .homeSection *::after { box-sizing: border-box; }
+.homeHeader { display: flex; gap: 17px; align-items: flex-start; }
+.homeHeader > div { min-width: 0; }
+.homeIcon { display: inline-flex; flex: 0 0 56px; justify-content: center; align-items: center; width: 56px; height: 56px; border: 1px solid #d7bf86; border-radius: 16px; background: #f8edcb; color: #80601d; }
+.eyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 800; letter-spacing: .05em; color: #796021; }
+.homeHeader h2 { font-size: clamp(24px, 4vw, 32px); line-height: 1.25; letter-spacing: -.02em; margin: 0 0 10px; overflow-wrap: anywhere; }
+.homeHeader p:last-child { font-size: 15px; line-height: 1.7; margin: 0; color: #6e6249; }
+.homeGrid, .grid { display: grid; gap: 18px; margin: 22px 0; }
+.homeGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card { border: 1px solid #ddc690; border-radius: 18px; padding: 24px; background: #fffdf7; min-width: 0; display: flex; flex-direction: column; }
+.compactCard { padding: 19px 17px; background: #faf5e7; }
+.topic { display: flex; align-items: center; gap: 7px; margin: 0 0 12px; color: #796021; font-size: 12px; font-weight: 800; line-height: 1.4; }
+.topic svg, .date svg { flex-shrink: 0; }
+.card h3 { font-size: 21px; line-height: 1.4; margin: 0 0 17px; overflow-wrap: anywhere; }
+.compactCard h3 { font-size: 18px; }
+.card h3 a { display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: #493815; }
+.card h3 a svg { margin-top: 4px; flex-shrink: 0; color: #9c7828; }
+.card h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; line-height: 1.6; margin: 0 0 8px; color: #695937; overflow-wrap: anywhere; }
+.country { font-size: 11px; font-weight: 700; color: #796021; background: #f4e8c6; border: 1px solid #e1cea0; border-radius: 20px; padding: 3px 8px; line-height: 1.5; overflow-wrap: anywhere; }
+.date { display: flex; align-items: center; gap: 7px; margin: 0 0 14px; color: #6e6249; font-size: 13px; line-height: 1.6; }
+.sourceFetched { font-size: 11px; line-height: 1.65; color: #6e6249; margin: -7px 0 15px; overflow-wrap: anywhere; }
+.topicDescription { font-size: 14px; color: #6e6249; margin: 0 0 18px; line-height: 1.7; }
+.articleLink { display: inline-flex; justify-content: flex-start; align-items: center; gap: 7px; align-self: flex-start; min-height: 44px; margin-top: auto; padding: 8px 0; color: #72541d; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.articleLink:hover { color: #493815; }
+.status { font-size: 13px; line-height: 1.65; color: #6e6249; margin-top: 18px; }
+.status p { margin: 5px 0; overflow-wrap: anywhere; }
+.refreshMessage { min-height: 21px; }
+.status .notice { margin-top: 12px; padding: 12px 14px; border: 1px solid #ddc994; border-radius: 12px; background: #f8f0d9; color: #72541d; }
+.homeActions, .pagination { display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.primaryLink, .refreshButton { display: inline-flex; justify-content: center; align-items: center; gap: 9px; min-height: 48px; padding: 12px 17px; border: 1px solid #80601d; border-radius: 12px; font: inherit; font-size: 14px; line-height: 1.5; font-weight: 700; cursor: pointer; text-decoration: none; }
+.primaryLink { background: #80601d; color: #fff; }
+.primaryLink:hover { background: #654815; }
+.refreshButton { background: #fffdf7; color: #72541d; border-color: #d1b976; }
+.refreshButton:hover:enabled { background: #f4e7c1; }
+.refreshButton:disabled { opacity: .65; cursor: default; }
+.homeSection :where(a, button):focus-visible { outline: 3px solid #796021; outline-offset: 4px; }
+.intro, .filters, .sourcesPanel { padding: 25px; margin-bottom: 22px; border: 1px solid #e0c989; border-radius: 18px; background: #fffdf7; min-width: 0; }
+.intro > p, .sourcesPanel > p { color: #6e6249; }
+.filterRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 16px; align-items: end; }
+.filterRow button { margin-bottom: 8px; }
+.field { display: flex; flex-direction: column; gap: 8px; margin: 16px 0 8px; min-width: 0; font-size: 14px; font-weight: 700; }
+.field input, .field select { display: block; width: 100%; min-height: 48px; font-weight: 400; }
+.results { font-size: 14px; margin: 18px 0 0; color: #6e6249; }
+.pagination { margin-bottom: 28px; }
+.sourceList { margin: 24px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.sourceList li { padding: 17px; border: 1px solid #e0d2af; border-radius: 14px; background: #faf6e9; min-width: 0; }
+.sourceList li > div { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.sourceList a { display: inline-flex; align-items: center; gap: 7px; color: #72541d; font-size: 14px; font-weight: 700; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.sourceList a svg { flex-shrink: 0; }
+.sourceList p { font-size: 12px; line-height: 1.65; margin: 8px 0 0; color: #6e6249; }
+.sourceList .sourceOk { color: #4b6230; font-weight: 700; }
+.sourceList .sourceNotice { color: #8a5b24; font-weight: 700; }
+@media (max-width: 850px) { .homeGrid { grid-template-columns: minmax(0, 1fr); } .filterRow { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filterRow button { grid-column: 1 / -1; justify-self: start; margin-top: 5px; } }
+@media (max-width: 620px) { .homeSection { border-radius: 18px; padding: 22px 16px; margin-top: 28px; } .homeHeader { gap: 12px; } .homeIcon { flex-basis: 43px; width: 43px; height: 43px; border-radius: 12px; } .homeIcon svg { width: 25px; height: 25px; } .homeHeader h2 { font-size: 24px; } .homeHeader p:last-child { font-size: 14px; } .grid, .filterRow, .sourceList { grid-template-columns: minmax(0, 1fr); } .intro, .filters, .sourcesPanel, .card { padding: 20px 16px; } .card h3 { font-size: 19px; } .homeActions > * { flex: 1 1 auto; } .sourceList li { padding: 15px; } }
