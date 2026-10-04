@@ -6,7 +6,7 @@ import useCourseProgress from "../hooks/useCourseProgress";
 import styles from "../styles/Learning.module.css";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import { getLearningMedia } from "../lib/learning-media";
-import { LearningCover, LearningDiagram, BreedGallery } from "./LearningMedia";
+import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -94,6 +94,7 @@ function LearningContent({ module }) {
             <h2 id="learning-objectives">Das lernst du</h2>
             <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
             {module.id === "wissen-vertiefung-jagdhunderassen" && <p><a href="#breed-gallery-heading" className={styles.secondaryButton}>Rassebilder ansehen</a></p>}
+            {media?.pictures?.length > 1 && <p><a href="#wildlife-gallery-heading" className={styles.secondaryButton}>Wildarten im Bild ansehen</a></p>}
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
@@ -138,6 +139,7 @@ function LearningContent({ module }) {
           </div>
           <LearningDiagram media={media} />
           {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery />}
+          <WildlifeGallery pictures={media?.pictures} />
           <section id="wissenscheck" className={styles.card} aria-labelledby="quiz-heading">
             <h2 id="quiz-heading">Wissenscheck</h2>
             {!run.started ? (

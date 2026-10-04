@@ -1,10 +1,15 @@
 .cover, .compact { margin: 0 0 24px; border: 1px solid #e0c989; border-radius: 18px; background: #fffdf7; overflow: hidden; }
-.cover img { display: block; width: 100%; height: auto; max-height: 400px; object-fit: cover; object-position: center 22%; }
+.cover img { display: block; width: 100%; height: auto; max-height: 400px; object-fit: cover; object-position: center; margin: 0 auto; }
 .cover figcaption { padding: 16px 20px; color: #6e6249; line-height: 1.6; }
 .cover figcaption p { margin: 0 0 6px; }
 .cover small { font-size: 12px; }
 .compact { width: 100%; margin-bottom: 18px; border-radius: 12px; }
-.compact img { display: block; width: 100%; height: 155px; object-fit: cover; }
+.compact img { display: block; width: 100%; height: 155px; object-fit: cover; margin: 0 auto; }
+.compactCaption { padding: 10px 12px; line-height: 1.5; }
+.photoCredit { display: block; font-size: 12px; line-height: 1.6; color: #6e6249; }
+.photoCredit a { color: #796021; text-decoration: underline; text-underline-offset: 3px; }
+.photoCover img { object-fit: contain; object-position: center; background: #fbf7ec; }
+.cover a { color: #796021; text-decoration: underline; text-underline-offset: 3px; }
 .diagram { padding: 22px; margin: 24px 0; background: #fbf7ec; border: 1px solid #e0c989; border-radius: 16px; }
 .diagramHeading { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; color: #796021; }
 .diagramHeading svg { flex-shrink: 0; }
@@ -19,7 +24,7 @@
 .breeds > p { color: #6e6249; line-height: 1.75; }
 .breedGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .breedGrid figure { margin: 0; border: 1px solid #e0c989; border-radius: 14px; overflow: hidden; }
-.breedGrid img { display: block; width: 100%; height: 280px; object-fit: contain; background: #fbf7ec; }
+.breedGrid img { display: block; width: 100%; height: 280px; object-fit: contain; background: #fbf7ec; margin: 0 auto; }
 .breedGrid figcaption { padding: 16px; line-height: 1.65; }
 .breedGrid strong, .breedGrid small { display: block; }
 .breedGrid small { color: #6e6249; margin-top: 8px; font-size: 12px; }

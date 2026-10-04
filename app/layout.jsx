@@ -7,10 +7,10 @@ export const metadata = {
   description: "Jagdquiz und Lernplattform für Jägerinnen und Jäger.",
   icons: {
     icon: [
-      { url: "/favicon_32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon_48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon_32.png?v=book", sizes: "32x32", type: "image/png" },
+      { url: "/favicon_48.png?v=book", sizes: "48x48", type: "image/png" },
     ],
-    apple: "/apple_touch_icon.png",
+    apple: "/apple_touch_icon.png?v=book",
   },
 };
 

@@ -5,10 +5,26 @@ import styles from "../styles/LearningMedia.module.css";
 
 export function LearningCover({ media, compact = false }) {
   if (!media) return null;
-  return <figure className={compact ? styles.compact : styles.cover}>
-    <Image src={media.src} alt={compact ? "" : media.alt} width={media.width} height={media.height} sizes={compact ? "(max-width: 600px) 90vw, (max-width: 940px) 45vw, 340px" : "(max-width: 1120px) 95vw, 1120px"} loading={compact ? "lazy" : "eager"} />
-    {!compact && <figcaption><p>{media.caption}</p><small>{media.credit}</small></figcaption>}
+  return <figure className={[compact ? styles.compact : styles.cover, media.fit === "contain" ? styles.photoCover : ""].filter(Boolean).join(" ")}>
+    <Image src={media.src} alt={compact ? "" : media.alt} width={media.width} height={media.height} style={media.fit === "contain" ? { maxWidth: media.width } : undefined} sizes={compact ? "(max-width: 600px) 90vw, (max-width: 940px) 45vw, 340px" : "(max-width: 1120px) 95vw, 1120px"} loading={compact ? "lazy" : "eager"} />
+    <figcaption className={compact ? styles.compactCaption : undefined}>{!compact && <p>{media.caption}</p>}<LearningPhotoCredit media={media} /></figcaption>
   </figure>;
+}
+
+export function LearningPhotoCredit({ media }) {
+  if (!media?.credit) return null;
+  return <small className={styles.photoCredit}>{media.credit}{media.modifications && <> Für die Webanzeige proportional verkleinert.</>}{media.creditUrl && <> · <a href={media.creditUrl} target="_blank" rel="noreferrer">Bildquelle</a></>}{media.licenseUrl && <> · <a href={media.licenseUrl} target="_blank" rel="noreferrer">Lizenz</a></>}</small>;
+}
+
+export function WildlifeGallery({ pictures }) {
+  if (!pictures || pictures.length < 2) return null;
+  return <section className={styles.breeds} aria-labelledby="wildlife-gallery-heading">
+    <h2 id="wildlife-gallery-heading">Wildarten dieser Lerneinheit im Bild</h2>
+    <div className={styles.breedGrid}>{pictures.map(picture => <figure key={picture.src}>
+      <Image src={picture.src} alt={picture.alt} width={picture.width} height={picture.height} style={{ maxWidth: picture.width }} sizes="(max-width: 600px) 85vw, 520px" loading="lazy" />
+      <figcaption><strong>{picture.name}</strong><LearningPhotoCredit media={picture} /></figcaption>
+    </figure>)}</div>
+  </section>;
 }
 
 export function LearningDiagram({ media }) {

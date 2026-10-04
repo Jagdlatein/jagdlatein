@@ -3,6 +3,7 @@ import { JL_ACCOUNT_COOKIE, readAccountSessionEdge } from "./lib/account-session
 import { learningImagePaths } from "./lib/learning-image-paths";
 
 const LEARNING_IMAGES = new Set(learningImagePaths);
+const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png"]);
 
 const PUBLIC_PATHS = [
   "/",
@@ -43,7 +44,7 @@ export async function middleware(req) {
   // Static Files erlauben
   if (
     pathname.startsWith("/_next") ||
-    LEARNING_IMAGES.has(pathname) ||
+    LEARNING_IMAGES.has(pathname) || APP_ICONS.has(pathname) ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
   ) {
