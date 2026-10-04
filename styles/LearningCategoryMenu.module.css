@@ -1,16 +1,16 @@
-.section { margin: 30px 0; color: #1f2b23; }
+.section { margin: 30px 0; color: #3e321b; }
 .section *, .section *::before, .section *::after { box-sizing: border-box; }
 .section h2 { margin: 0 0 12px; font-size: clamp(24px, 4vw, 30px); line-height: 1.3; }
-.intro { margin: 0 0 20px; color: #535d50; line-height: 1.7; }
+.intro { margin: 0 0 20px; color: #6f664f; line-height: 1.7; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.card { display: flex; align-items: flex-start; gap: 12px; min-height: 44px; padding: 20px; background: #fff; color: inherit; border: 1px solid #d7ddce; border-radius: 18px; text-decoration: none; box-shadow: 0 3px 12px #243d2e05; transition: background .18s, border-color .18s, box-shadow .18s; }
-.icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 52px; width: 52px; height: 52px; color: #365840; background: linear-gradient(145deg, #faf5e7, #eee8d5); border: 1px solid #e5dbbd; border-radius: 16px; }
+.card { display: flex; align-items: flex-start; gap: 12px; min-height: 44px; padding: 20px; background: #fff; color: inherit; border: 1px solid #e0d2af; border-radius: 18px; text-decoration: none; box-shadow: 0 3px 12px #3e321b05; transition: background .18s, border-color .18s, box-shadow .18s; }
+.icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 52px; width: 52px; height: 52px; color: #796021; background: linear-gradient(145deg, #faf5e7, #eee8d5); border: 1px solid #e5dbbd; border-radius: 16px; }
 .content { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .content strong { font-size: 18px; line-height: 1.4; overflow-wrap: anywhere; }
-.content > span { font-size: 14px; color: #535d50; line-height: 1.6; }
-.content .count { color: #365840; font-weight: 700; }
-.arrow { margin: 3px 0 0 auto; flex-shrink: 0; color: #718465; }
-.card:hover { background: #f5f8ef; border-color: #789076; box-shadow: 0 5px 18px #243d2e0c; }
-.card:focus-visible { outline: 3px solid #365840; outline-offset: 3px; }
+.content > span { font-size: 14px; color: #6f664f; line-height: 1.6; }
+.content .count { color: #796021; font-weight: 700; }
+.arrow { margin: 3px 0 0 auto; flex-shrink: 0; color: #9a7d35; }
+.card:hover { background: #fbf1d5; border-color: #b7984d; box-shadow: 0 5px 18px #3e321b0c; }
+.card:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 580px) { .grid { grid-template-columns: minmax(0, 1fr); } .card { padding: 18px; } }

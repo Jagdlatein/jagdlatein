@@ -16,7 +16,7 @@ export default function AppIcon({ name = "book", size = 24, className, style }) 
         {country === "DE" ? <><path fill="#252b29" d="M3 5h18v5H3z" /><path fill="#b93b36" d="M3 10h18v5H3z" /><path fill="#d6af49" d="M3 15h18v4H3z" /></>
           : country === "AT" ? <><path fill="#b93b36" d="M3 5h18v14H3z" /><path fill="#fff" d="M3 10h18v4H3z" /></>
           : <><rect x="4" y="4" width="16" height="16" rx="2" fill="#b93b36" /><path fill="#fff" d="M10 7h4v3h3v4h-3v3h-4v-3H7v-4h3z" /></>}
-        {country !== "CH" && <rect x="3" y="5" width="18" height="14" rx="1" fill="none" stroke="#1f392a" strokeOpacity=".15" />}
+        {country !== "CH" && <rect x="3" y="5" width="18" height="14" rx="1" fill="none" stroke="#796021" strokeOpacity=".15" />}
       </svg>
     );
   }
