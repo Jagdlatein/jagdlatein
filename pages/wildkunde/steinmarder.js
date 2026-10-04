@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Steinmarder() {
   const quiz = [
     {
-      q: "Woran erkennt man den Steinmarder eindeutig?",
+      q: "Welcher Kehlfleck ist für den Steinmarder typisch?",
       a: [
         "Gelblichen Kehlfleck",
         "Weißen, gegabelten Kehlfleck",
@@ -70,10 +70,10 @@ export default function Steinmarder() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
           <ul style={styles.list}>
-            <li>Weißer, geteilter Kehlfleck → wichtigstes Merkmal!</li>
+            <li>Meist weißlicher, oft gegabelter Kehlfleck; mehrere Merkmale gemeinsam betrachten</li>
             <li>Ohren weiß gerandet</li>
             <li>Fell graubraun</li>
-            <li>Buschiger Schwanz, aber kürzer als beim Baummarder</li>
+            <li>Buschiger Schwanz; Länge allein ist kein sicheres Unterscheidungsmerkmal</li>
             <li>Fährte: 3–4 cm, oft „Doppeldruck“ sichtbar</li>
             <li>Losung: länglich, gedreht, oft mit Früchten und Haaren</li>
           </ul>
@@ -105,7 +105,7 @@ export default function Steinmarder() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Krankheiten</h2>
           <ul style={styles.list}>
-            <li>Staupe (sehr häufig)</li>
+            <li>Staupe kann vorkommen</li>
             <li>Tollwut (regional möglich)</li>
             <li>Räude</li>
             <li>Fuchsbandwurm</li>
@@ -124,11 +124,18 @@ export default function Steinmarder() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/steinmarder-martes-foina" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -143,6 +150,7 @@ export default function Steinmarder() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

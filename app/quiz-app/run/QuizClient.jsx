@@ -28,12 +28,19 @@ export default function QuizClient() {
   const [runKey, setRunKey] = useState(0);
   const [reloadKey, setReloadKey] = useState(0);
   const [loadError, setLoadError] = useState(false);
+  const [storageError, setStorageError] = useState(false);
+  const [loadStage, setLoadStage] = useState("questions");
+  const [leagueState, setLeagueState] = useState({ status: "idle", renewalRequired: false });
   const startedAt = useRef(Date.now());
   const answerPending = useRef(false);
   const feedbackTimer = useRef(null);
   const feedbackGeneration = useRef(0);
   const leagueSubmittedRun = useRef(null);
   const roundMetadata = useRef({ country, topic });
+  const mounted = useRef(false);
+  const leaguePending = useRef(null);
+  const renderedQuestion = useRef({ question: null, runKey });
+  const advancePending = useRef(false);
   const resultCompleted = questions.length > 0 && (finished || (locked && index === questions.length - 1));
   const activityResult = useActivityResult({
     runKey, completed: resultCompleted, type: "quiz", country: roundMetadata.current.country, topic: roundMetadata.current.topic,
@@ -59,39 +66,35 @@ export default function QuizClient() {
     }, 10000);
   }
 
-  useEffect(() => () => {
-    clearFeedbackTimer();
-    answerPending.current = false;
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      clearFeedbackTimer();
+      answerPending.current = false;
+    };
   }, []);
 
   // -------------------------------
-  // USERNAME LADEN
+  // Read the quiz name without crashing when browser storage is unavailable.
   // -------------------------------
   useEffect(() => {
-    const u = localStorage.getItem("jagd_username");
-    if (!u) {
-      router.push(`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`);
-      return;
+    try {
+      const stored = localStorage.getItem("jagd_username");
+      setStorageError(false);
+      if (!stored) {
+        setUsername("");
+        router.push(`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`);
+        return;
+      }
+      setUsername(stored);
+    } catch {
+      setUsername("");
+      setStorageError(true);
     }
-    setUsername(u);
-  }, [router, country, topic]);
+  }, [router, country, topic, reloadKey]);
 
-  // -------------------------------
-  // USER REGISTRIEREN
-  // -------------------------------
-  useEffect(() => {
-    if (!username) return;
-
-    fetch("/api/quiz/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, country: localStorage.getItem("jagd_country") || country }),
-    });
-  }, [username, country]);
-
-  // -------------------------------
-  // FRAGEN LADEN
-  // -------------------------------
+  // Registration must succeed before starting a question round.
   useEffect(() => {
     if (!username) return;
     let active = true;
@@ -101,20 +104,35 @@ export default function QuizClient() {
       clearFeedbackTimer();
       answerPending.current = false;
       setLoadError(false);
+      setLoadStage("registration");
       setQuestions([]);
       setFinished(false);
       setLocked(false);
       setSelected(null);
       setEffectState("");
+      let leagueCountry = country;
+      try { leagueCountry = localStorage.getItem("jagd_country") || country; } catch {}
+      const registration = await fetch("/api/quiz/register", {
+        method: "POST", credentials: "same-origin", signal: controller.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, country: leagueCountry }),
+      });
+      const registrationResult = await registration.json();
+      if (!registration.ok || registrationResult.success !== true) throw new Error("Registrierung fehlgeschlagen");
+      if (!active) return;
+      setLoadStage("questions");
       const res = await fetch(
         `/api/questions?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`,
-        { cache: "no-store", signal: controller.signal }
+        { cache: "no-store", credentials: "same-origin", signal: controller.signal }
       );
       if (!res.ok) throw new Error("Fragen nicht erreichbar");
       const data = await res.json();
       const qs = Array.isArray(data.questions) ? data.questions : [];
       if (!active) return;
-      if (qs.length === 0) throw new Error("Keine Fragen verfügbar");
+      if (qs.length === 0 || !qs.every(item => typeof item.q === "string" && Array.isArray(item.answers)
+        && item.answers.length > 0 && item.answers.every(answer => typeof answer.id === "string" && typeof answer.text === "string")
+        && Array.isArray(item.correct) && item.correct.length > 0
+        && item.correct.every(id => item.answers.some(answer => answer.id === id)))) throw new Error("Keine gültigen Fragen verfügbar");
       roundMetadata.current = { country, topic };
       answerPending.current = false;
       startedAt.current = Date.now();
@@ -126,6 +144,8 @@ export default function QuizClient() {
       setLocked(false);
       setSelected(null);
       setFinished(false);
+      leaguePending.current = null;
+      setLeagueState({ status: "idle", renewalRequired: false });
       setRunKey(value => value + 1);
       setQuestions(qs);
     }
@@ -140,6 +160,11 @@ export default function QuizClient() {
   }, [username, country, topic, reloadKey]);
 
   const q = questions[index];
+  if (renderedQuestion.current.question !== q || renderedQuestion.current.runKey !== runKey) {
+    renderedQuestion.current = { question: q, runKey };
+    answerPending.current = false;
+    advancePending.current = false;
+  }
 
   // -------------------------------
   // TIMER
@@ -163,7 +188,7 @@ export default function QuizClient() {
   }
 
   function handleAnswer(ans, idx) {
-    if (answerPending.current || locked || finished) return;
+    if (answerPending.current || locked || finished || !q || renderedQuestion.current.question !== q || renderedQuestion.current.runKey !== runKey) return;
     answerPending.current = true;
 
     const isCorrect = q.correct.includes(ans.id);
@@ -182,9 +207,9 @@ export default function QuizClient() {
   }
 
   function nextQuestion() {
-    if (!answerPending.current || finished) return;
+    if (!answerPending.current || advancePending.current || finished) return;
+    advancePending.current = true;
     clearFeedbackTimer();
-    answerPending.current = false;
     setEffectState("");
 
     if (index + 1 >= questions.length) {
@@ -201,19 +226,48 @@ export default function QuizClient() {
   // -------------------------------
   // SCORE SPEICHERN
   // -------------------------------
+  async function saveLeagueResult(record = leaguePending.current) {
+    if (!record || record.running || record.saved) return;
+    record.running = true;
+    if (mounted.current && leaguePending.current === record) setLeagueState({ status: "saving", renewalRequired: false });
+    try {
+      const response = await fetch("/api/quiz/submit", {
+        method: "POST", credentials: "same-origin", keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(record.payload),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        const failure = new Error("Ranglistenergebnis nicht gespeichert");
+        failure.renewalRequired = response.status === 401 || response.status === 403;
+        throw failure;
+      }
+      record.saved = true;
+      if (mounted.current && leaguePending.current === record) setLeagueState({ status: "saved", renewalRequired: false });
+    } catch (failure) {
+      if (mounted.current && leaguePending.current === record) setLeagueState({ status: "error", renewalRequired: failure?.renewalRequired === true });
+    } finally {
+      record.running = false;
+    }
+  }
+
   useEffect(() => {
     if (!resultCompleted || !username || leagueSubmittedRun.current === runKey) return;
     leagueSubmittedRun.current = runKey;
-
-    fetch("/api/quiz/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        points: score,
-      }),
-    });
+    const record = { runKey, payload: { username, points: score }, running: false, saved: false };
+    leaguePending.current = record;
+    void saveLeagueResult(record);
   }, [resultCompleted, score, username, runKey]);
+
+  function leagueNotice() {
+    if (leagueState.status === "idle") return null;
+    return <aside role={leagueState.status === "error" ? "alert" : "status"} style={{ marginTop: 20, padding: "12px 14px", borderRadius: 12, background: leagueState.status === "error" ? "#fff4dc" : "#eaf4e9", color: "#2e4d32", lineHeight: 1.5 }}>
+      {leagueState.status === "saving" ? "Dein Ranglistenergebnis wird gespeichert …" : leagueState.status === "saved" ? "Dein Ranglistenergebnis wurde bestätigt. Die Rangliste zeigt deinen besten Durchlauf." : <>
+        <p style={{ margin: "0 0 8px" }}>Dein Ergebnis für die Rangliste konnte gerade nicht gespeichert werden.</p>
+        {leagueState.renewalRequired ? <Link href={`/login?reauth=1&next=${encodeURIComponent(returnUrl)}`}>Anmeldung erneuern</Link> : <button type="button" onClick={() => { void saveLeagueResult(); }}>Ranglistenergebnis erneut speichern</button>}
+      </>}
+    </aside>;
+  }
 
   // -------------------------------
   // QUIZ RESET
@@ -233,6 +287,8 @@ export default function QuizClient() {
     setFinished(false);
     setEffectState("");
     setQuestions([]);
+    leaguePending.current = null;
+    setLeagueState({ status: "idle", renewalRequired: false });
     setReloadKey(value => value + 1);
   }
 
@@ -250,12 +306,13 @@ export default function QuizClient() {
           <p>{correctAnswers} von {questions.length} Fragen richtig</p>
           <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
           <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
+          {leagueNotice()}
 
           <button
             onClick={() => router.push("/quiz-app/leaderboard")}
             className="quiz-end-btn"
           >
-            🏆 Wochen-Rangliste ansehen
+            🏆 Rangliste ansehen
           </button>
 
           <button
@@ -276,13 +333,18 @@ export default function QuizClient() {
   if (!q) {
     return (
       <div style={{ padding: 40, textAlign: "center" }}>
-        {loadError ? (
+        {storageError ? <>
+          <p role="alert">Dein Browser gibt den gespeicherten Quiznamen gerade nicht frei. Bitte erlaube den Browserspeicher oder versuche es erneut.</p>
+          <button type="button" onClick={() => setReloadKey(value => value + 1)}>Erneut prüfen</button>
+          <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
+        </> : loadError ? (
           <>
-            <p>Die Quizfragen konnten gerade nicht geladen werden.</p>
-            <button type="button" onClick={() => window.location.reload()}>Erneut laden</button>
+            <p role="alert">{loadStage === "registration" ? "Dein Quizname konnte gerade nicht bestätigt werden. Bitte versuche es erneut." : "Die Quizfragen konnten gerade nicht geladen werden."}</p>
+            <button type="button" onClick={() => setReloadKey(value => value + 1)}>Erneut laden</button>
+            {loadStage === "registration" && <p><Link href={`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`}>Anderen Quiznamen wählen</Link></p>}
             <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
           </>
-        ) : "Lade Quiz…"}
+        ) : loadStage === "registration" ? "Dein Quizname wird bestätigt …" : "Lade Quiz…"}
       </div>
     );
   }
@@ -343,11 +405,18 @@ export default function QuizClient() {
           const isCorrect = q.correct.includes(ans.id);
 
           return (
-            <div
+            <button
+              type="button"
+              disabled={locked}
               key={i}
               onClick={() => handleAnswer(ans, i)}
               style={{
                 padding: "14px 16px",
+                display: "block",
+                width: "100%",
+                font: "inherit",
+                textAlign: "left",
+                color: "inherit",
                 borderRadius: 12,
                 border: "1px solid rgba(0,0,0,0.15)",
                 background:
@@ -362,7 +431,7 @@ export default function QuizClient() {
               }}
             >
               {ans.text}
-            </div>
+            </button>
           );
         })}
       </div>
@@ -411,6 +480,7 @@ export default function QuizClient() {
         </section>
       )}
       <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
+      {leagueNotice()}
     </div>
   );
 }

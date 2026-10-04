@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 REHWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Reh – langer Träger – dünner Körper – feiner Kopf", text: "Ist das eine Geiß?", correct: true },
-  { id: 2, title: "Reh – kräftiger Träger – deutlicher Pinsel", text: "Geiß?", correct: false },
-  { id: 3, title: "Bock – kleiner Pinsel – Spießer – kurzer Träger", text: "Ist es ein Jahrling?", correct: true },
-
-  { id: 4, title: "Reh – hochtragend – mit Kitzbürzel", text: "Bock?", correct: false },
-  { id: 5, title: "Bock – kurze, dünne Stangen – schmale Rose", text: "Jahrling oder Knopfler?", correct: true },
-  { id: 6, title: "Reh – Spiegel herzförmig – kein Pinsel sichtbar", text: "Geiß?", correct: true },
-
-  { id: 7, title: "Bock – starke Stangen – lange Stangenlänge", text: "Alterer Bock?", correct: true },
-  { id: 8, title: "Reh – sommerkahl – zierlicher Körper – kleiner Kopf", text: "Bock?", correct: false },
-  { id: 9, title: "Rehbock – Gehörn wirkt asymmetrisch", text: "Trotzdem Bock?", correct: true },
-
-  { id: 10, title: "Reh – Träger wirkt kurz – Körper wirkt massig", text: "Junge Geiß?", correct: false },
-  { id: 11, title: "Bock – Knopfbock – kaum sichtbare Stangen", text: "Jahrling?", correct: false },
-  { id: 12, title: "Reh – Kitz eng bei ihr – Führungsgeiß", text: "Erlegbar?", correct: false },
-
-  { id: 13, title: "Bock – Spießer – langer Träger – schmale Brust", text: "Jahrling?", correct: true },
-  { id: 14, title: "Geiß – schlanker Körper – kein Pinsel", text: "Geiß korrekt erkannt?", correct: true },
-  { id: 15, title: "Reh – kein Kitz – aber Sommer – guter Körperbau", text: "Kann Geiß sein?", correct: true },
-
-  { id: 16, title: "Bock – Stangen in Bast – April", text: "Bock korrekt erkannt?", correct: true },
-  { id: 17, title: "Reh – Bauch schwingt stark – schwere Hinterhand", text: "Geiß?", correct: true },
-  { id: 18, title: "Bock – sehr kleiner Pinsel – kaum sichtbar", text: "Könnte dennoch Bock sein?", correct: true },
-
-  { id: 19, title: "Rehbock – deutliche Rosen – starke Stangen", text: "Älterer Bock?", correct: true },
-  { id: 20, title: "Reh – hochflüchtig – kleiner Körper – Träger kurz", text: "Geiß?", correct: false },
-
-  { id: 21, title: "Reh – Spiegel rundlich – dreckiger Bürzel – Winterdecke", text: "Geiß korrekt erkannt?", correct: true },
-  { id: 22, title: "Reh – Pinsel kaum sichtbar – Beine dünn", text: "Geiß?", correct: true },
-  { id: 23, title: "Bock – Stangen extrem kurz – Kopf wirkt lang", text: "Sicher Bock?", correct: false },
-  { id: 24, title: "Rehbock – deutlicher Pinsel – markanter Hals", text: "Bock richtig erkannt?", correct: true },
-
-  { id: 25, title: "Reh – kein Pinsel – Träger lang – schlank", text: "Geiß?", correct: true },
-];
+const scenarios = getPracticeScenarios("ansprache_rehwild");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function AnspracheRehwild() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ export default function AnspracheRehwild() {
         Rehwild sicher ansprechen
       </h1>
 
-     <ScenarioCard
+     <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ export default function AnspracheRehwild() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ export default function AnspracheRehwild() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

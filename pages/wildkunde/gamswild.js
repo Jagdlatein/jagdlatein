@@ -15,7 +15,7 @@ export default function Gamswild() {
     },
     {
       q: "Wie lange ist die Tragzeit beim Gamswild?",
-      a: ["ca. 5 Monate", "ca. 7 Monate"],
+      a: ["ca. 5 Monate", "ca. 6 Monate"],
       correct: 1,
     },
   ];
@@ -64,7 +64,7 @@ export default function Gamswild() {
           <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
           <ul style={styles.list}>
             <li>Brunft: November</li>
-            <li>Tragzeit: ca. 7 Monate</li>
+            <li>Tragzeit: ca. 6 Monate</li>
             <li>Setzzeit: Mai–Juni (1 Kitz)</li>
           </ul>
         </section>
@@ -77,7 +77,7 @@ export default function Gamswild() {
             <li>Typisch: stark nach hinten gebeugt („Hakeln“)</li>
             <li>Jahresringe → Altersbestimmung eingeschränkt möglich</li>
             <li>Winterhaar schwarz–braun · Sommerhaar hellbraun</li>
-            <li>Charakteristischer heller Gesichtsausdruck („Gamsbartfarbe“)</li>
+            <li>Helle Gesichtsseiten mit dunklem Streifen von der Schnauze über die Augen</li>
           </ul>
         </section>
 
@@ -99,17 +99,24 @@ export default function Gamswild() {
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
             <li>Wiederkäuer → keine Schneidezähne im Oberkiefer</li>
-            <li>M1–M3 wichtig für Altersbestimmung</li>
+            <li>Zahnabnutzung erlaubt nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -124,6 +131,7 @@ export default function Gamswild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

@@ -5,12 +5,12 @@ export default function Schneehase() {
   const quiz = [
     {
       q: "Welche Fellfarbe trägt der Schneehase im Winter?",
-      a: ["Graubraun", "Komplett weiß", "Dunkel gesprenkelt"],
+      a: ["Graubraun","Weiß mit schwarzen Ohrspitzen","Dunkel gesprenkelt"],
       correct: 1,
     },
     {
-      q: "Wo lebt der Schneehase bevorzugt?",
-      a: ["Wälder im Tiefland", "Offene Feldflur", "Hochlagen der Alpen und Mittelgebirge"],
+      q: "Wo kommt der Schneehase im deutschsprachigen Raum typischerweise vor?",
+      a: ["In warmen Küstenmarschen","In jeder offenen Feldflur","In den Alpen"],
       correct: 2,
     },
     {
@@ -55,7 +55,7 @@ export default function Schneehase() {
           <ul style={styles.list}>
             <li>Körperlänge: 45–60 cm</li>
             <li>Gewicht: 2–4 kg (kleiner als Feldhase)</li>
-            <li>Lebensraum: Alpen, Mittelgebirge, Tundra-ähnliche Zonen</li>
+            <li>Im deutschsprachigen Alpenraum vor allem in Gebirgslagen; weitere Populationen in nördlichen Regionen Europas und Asiens</li>
             <li>Sehr gute Tarnung durch saisonalen Fellwechsel</li>
             <li>Einzelgänger</li>
             <li>Ruheplatz: Mulde, ähnlich der Sasse</li>
@@ -67,7 +67,7 @@ export default function Schneehase() {
           <h2 style={styles.sectionTitle}>Fellwechsel & Anpassung</h2>
           <ul style={styles.list}>
             <li><strong>Sommer:</strong> graubraun, gesprenkelt</li>
-            <li><strong>Winter:</strong> komplett weiß (Schneekamouflage)</li>
+            <li><strong>Winter:</strong> beim Alpenschneehasen weiß mit schwarzen Ohrspitzen</li>
             <li>Ohren („Löffel“) kürzer, aber mit schwarzer Spitze</li>
             <li>Fellwechsel ausgelöst durch Tageslichtlänge, nicht Temperatur</li>
           </ul>
@@ -116,11 +116,18 @@ export default function Schneehase() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/flora-und-fauna/schneehase/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -135,6 +142,7 @@ export default function Schneehase() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

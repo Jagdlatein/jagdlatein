@@ -19,8 +19,12 @@ function UsernameForm() {
   const [error, setError] = useState("");
   const registrationPending = useRef(false);
   useEffect(() => {
-    const storedCountry = localStorage.getItem("jagd_country");
-    if (countries.some(item => item.code === storedCountry)) setCountry(storedCountry);
+    try {
+      const storedCountry = localStorage.getItem("jagd_country");
+      if (countries.some(item => item.code === storedCountry)) setCountry(storedCountry);
+    } catch {
+      // Keep the selected quiz country when browser storage is unavailable.
+    }
   }, []);
   const countries = [
     { code: "DE", name: "Deutschland 🇩🇪" },
@@ -59,12 +63,17 @@ function UsernameForm() {
       setError("Bitte gib einen Namen für die Rangliste ein.");
       return;
     }
+    if (clean.length > 40 || /[\u0000-\u001f\u007f]/.test(clean)) {
+      setError("Dein Quizname darf höchstens 40 Zeichen lang sein und keine Steuerzeichen enthalten.");
+      return;
+    }
     registrationPending.current = true;
     setBusy(true);
     setError("");
     try {
       const res = await fetch("/api/quiz/register", {
         method: "POST",
+        credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: clean, country }),
       });
@@ -93,6 +102,7 @@ function UsernameForm() {
       <input
         id="quiz-username"
         type="text"
+        maxLength={40}
         placeholder="z.B. hannesjäger"
         value={username}
         onChange={(e) => setUsername(e.target.value)}

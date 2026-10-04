@@ -14,8 +14,8 @@ export default function Sikawild() {
       correct: 1,
     },
     {
-      q: "Welche Fellzeichnung ist typisch für Sikawild?",
-      a: ["Gefleckt, auch im Winter sichtbar", "Komplett einfarbig braun"],
+      q: "Welche Fellzeichnung ist beim Sikawild im Sommer typisch?",
+      a: ["Rotbraun mit hellen Flecken","Immer vollständig schwarz"],
       correct: 0,
     },
   ];
@@ -73,21 +73,28 @@ export default function Sikawild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
           <ul style={styles.list}>
-            <li>Ganzjährig helle Flecken auf braunem Fell</li>
+            <li>Sommerfell rotbraun mit hellen Flecken; Winterfell dunkler, Flecken meist kaum erkennbar</li>
             <li>Deutlicher Aalstrich (dunkler Mittelrückenstreifen)</li>
             <li>Charakteristischer „Pfeifton“ bei Erregung</li>
-            <li>Spiegel nierenförmig, weiß umrandet</li>
+            <li>Spiegel weiß und meist dunkel umrandet</li>
             <li>Bewegung: mehr „trippelnd“ als Rotwild</li>
           </ul>
         </section>
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/118649/index.php" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -102,6 +109,7 @@ export default function Sikawild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

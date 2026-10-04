@@ -1,11 +1,12 @@
 // pages/preise.js
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Preise() {
   const router = useRouter();
+  const [paymentMessage, setPaymentMessage] = useState("");
 
   const nextParam = useMemo(() => {
     const raw = router.query.next;
@@ -82,16 +83,17 @@ export default function Preise() {
 
   useEffect(() => {
     const script = document.createElement("script");
+    let cancelled = false;
+    let buttons;
 
     script.src =
-      "https://www.paypal.com/sdk/js?client-id=AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW&vault=true&intent=subscription&currency=EUR";
+      `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "AQx7R9V-b-x8NJmvXUkRrJ-Js68jqMq3udNpdVmONZrpS0y6zpUj5QMIAiunCQDCTPpwmiKFaJJybJBW")}&vault=true&intent=subscription&currency=EUR`;
 
     script.async = true;
 
     script.onload = () => {
-      if (window.paypal) {
-        window.paypal
-          .Buttons({
+      if (!cancelled && window.paypal) {
+        buttons = window.paypal.Buttons({
             style: {
               shape: "rect",
               color: "gold",
@@ -101,25 +103,43 @@ export default function Preise() {
 
             createSubscription(data, actions) {
               return actions.subscription.create({
-                plan_id: "P-9XU38461YG7706134NESJQWA",
+                plan_id: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA",
               });
             },
 
-            onApprove() {
-              alert(
-                "Danke! Dein Premiumzugang wurde aktiviert. Bitte logge dich jetzt ein."
-              );
-
-              window.location.href = loginHref;
+            async onApprove(data) {
+              if (cancelled) return;
+              setPaymentMessage("Die Zahlungsbestätigung wird geprüft …");
+              try {
+                const response = await fetch("/api/paypal/confirm-subscription", {
+                  method: "POST", headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ subscriptionId: data.subscriptionID }),
+                });
+                const confirmation = await response.json();
+                if (cancelled) return;
+                if (!response.ok || confirmation.activated !== true) {
+                  setPaymentMessage(confirmation.error || "Die Bestätigung wird noch verarbeitet. Bitte melde dich in Kürze mit deiner PayPal-E-Mail an.");
+                  return;
+                }
+                window.location.href = `${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`;
+              } catch {
+                if (!cancelled) setPaymentMessage("Die Bestätigung konnte noch nicht geprüft werden. Bitte melde dich später mit deiner PayPal-E-Mail an.");
+              }
             },
-          })
-          .render("#paypal-subscribe-preise");
+            onError() { if (!cancelled) setPaymentMessage("PayPal ist derzeit nicht erreichbar. Bitte erneut versuchen."); },
+          });
+        Promise.resolve(buttons.render("#paypal-subscribe-preise")).catch(() => {
+          if (!cancelled) setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen.");
+        });
       }
     };
 
     document.body.appendChild(script);
+    script.onerror = () => { if (!cancelled) setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen."); };
 
     return () => {
+      cancelled = true;
+      try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
       try {
         document.body.removeChild(script);
       } catch {}
@@ -161,6 +181,7 @@ export default function Preise() {
             </p>
 
             <div id="paypal-subscribe-preise"></div>
+            {paymentMessage && <p role="status" aria-live="polite">{paymentMessage}</p>}
 
             <p style={note}>
               Die Zahlung wird sicher über PayPal abgewickelt. Nach

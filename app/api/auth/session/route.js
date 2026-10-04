@@ -16,8 +16,9 @@ export async function POST() {
 }
 
 export async function DELETE() {
+  const cookieStore = await cookies();
   ["jl_session", "jl_paid", "jl_email", "jl_admin", JL_ACCOUNT_COOKIE].forEach((name) => {
-    cookies().set({
+    cookieStore.set({
       name,
       value: "",
       path: "/",

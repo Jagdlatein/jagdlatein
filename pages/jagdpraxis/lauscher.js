@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 ZEICHENDEUTUNGS-SZENARIEN – true = richtig gedeutet
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Reh – Lauscher locker zur Seite – entspanntes Äsen", text: "Entspanntes Stück?", correct: true },
-  { id: 2, title: "Reh – Lauscher nach vorne fixiert – Körper steif", text: "Entspannt?", correct: false },
-  { id: 3, title: "Rehbock – Spiegel leicht bewegt – tiefes Wedeln", text: "Warnung?", correct: false },
-
-  { id: 4, title: "Reh – Spiegel schnell hin und her – abruptes Stehen", text: "Alarm?", correct: true },
-  { id: 5, title: "Fuchs – Ohren nach vorne – ruhiges Sichern", text: "Beunruhigt?", correct: true },
-  { id: 6, title: "Sau – Teller nach hinten – ruhig ziehend", text: "Beunruhigt?", correct: false },
-
-  { id: 7, title: "Rotwild – Ohren drehen ständig – Kopf oben", text: "Gefahr wahrgenommen?", correct: true },
-  { id: 8, title: "Rotwild – Kopf unten – Ohren locker", text: "Warnsignal?", correct: false },
-  { id: 9, title: "Reh – Spiegel weit gestellt – wildes Wedeln", text: "Aufgeregt / unsicher?", correct: true },
-
-  { id: 10, title: "Sau – Teller steil nach oben – abruptes Stoppen", text: "Alarmstück?", correct: true },
-  { id: 11, title: "Fuchs – leichte Ohrenbewegung – normaler Schritt", text: "Auffällig?", correct: false },
-  { id: 12, title: "Rehbock – Stirnt sich – Ohren nach innen gedreht", text: "Aggressionsanzeichen?", correct: true },
-
-  { id: 13, title: "Reh – Spiegel kaum sichtbar – entspanntes Rudern", text: "Fluchtanzeichen?", correct: false },
-  { id: 14, title: "Rotwild – Schweif hebt kurz – sofortiges Sichern", text: "Warnzeichen?", correct: true },
-  { id: 15, title: "Reh – Lauscher liegen flach an – Kopf tief", text: "Angst / Flucht?", correct: true },
-
-  { id: 16, title: "Sau – ruhiges Zucken des Schwanzes – normaler Gang", text: "Warnung?", correct: false },
-  { id: 17, title: "Reh – Spiegel hoch gestellt – kurzes Schnalzen", text: "Alarm?", correct: true },
-  { id: 18, title: "Rotwild – Ohren locker, seitlich", text: "Stress?", correct: false },
-
-  { id: 19, title: "Fuchs – Ohren kurz steil gestellt – sofortige Flucht", text: "Reaktion auf Gefahr?", correct: true },
-  { id: 20, title: "Reh – Spiegel kaum bewegt – entspannte Schritte", text: "Nervosität?", correct: false },
-
-  { id: 21, title: "Rotwild – Schweif leicht angehoben – Körper angespannt", text: "Alarm?", correct: true },
-  { id: 22, title: "Reh – Ohren rotieren – aber Äsen geht weiter", text: "Hochgradige Gefahr?", correct: false },
-  { id: 23, title: "Sau – Teller nach vorne – schneller Schritt", text: "Unsicher?", correct: true },
-  { id: 24, title: "Reh – plötzliches Spiegelschlagen – dann ruhig", text: "Akute Gefahr?", correct: false },
-
-  { id: 25, title: "Rotwild – Ohren steil nach vorne – Nüstern weit geöffnet", text: "Starke Alarmbereitschaft?", correct: true },
-];
+const scenarios = getPracticeScenarios("lauscher");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig gedeutet!" : "Falsch gedeutet!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function LauscherZeichen() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ export default function LauscherZeichen() {
         Lauscher- & Zeichendeutung
       </h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ export default function LauscherZeichen() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig gedeutet"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ export default function LauscherZeichen() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
               }

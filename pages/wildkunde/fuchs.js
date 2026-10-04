@@ -80,7 +80,7 @@ export default function Fuchs() {
           <ul style={styles.list}>
             <li>Roter bis rotbrauner Rücken</li>
             <li>Helle Bauchseite</li>
-            <li>Typischer „Pinsel“ (weiße Schwanzspitze)</li>
+            <li>Weiße Schwanzspitze (Blume) der Lunte</li>
             <li>Schwarze „Stiefel“ an den Läufen</li>
             <li>Fährte: 4–5 cm · länglich, eng gestellt</li>
             <li>Losung: dunkel, wulstig, oft mit Haar- & Knochenresten</li>
@@ -94,7 +94,7 @@ export default function Fuchs() {
             <li>Fuchsbandwurm (Echinococcus multilocularis)</li>
             <li>Staupe</li>
             <li>Räude (Sarcoptes scabiei)</li>
-            <li>Tollwut (in DE ausgerottet, in Osteuropa noch vorhanden)</li>
+            <li>Deutschland gilt seit 2008 als frei von terrestrischer Tollwut; Fledermaus-Lyssaviren kommen weiterhin vor</li>
           </ul>
         </section>
 
@@ -110,11 +110,18 @@ export default function Fuchs() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.rki.de/SharedDocs/FAQs/DE/Tollwut/FAQ_Liste.html?nn=16907352" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -129,6 +136,7 @@ export default function Fuchs() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

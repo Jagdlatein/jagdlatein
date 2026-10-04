@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 WILDKUNDE-SZENARIEN – true = korrekt angesprochen, false = falsch
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehwild – kleiner Kopf – runder Spiegel – kurzer Träger", text: "Ist es ein Kitz?", correct: true },
-  { id: 2, title: "Rehbock – Perückenbildung – Bast im Sommer", text: "Kann man ihn jetzt sicher ansprechen?", correct: true },
-  { id: 3, title: "Stück Schwarzwild – 25 kg – langer Strich – feminine Form", text: "Handelt es sich um einen Überläuferkeiler?", correct: false },
-
-  { id: 4, title: "Rotwild – großes Tier – deutlich sichtbare Rosenstöcke", text: "Ist es ein Hirsch?", correct: true },
-  { id: 5, title: "Stück Schwarzwild – mit Frischlingen – defensive Haltung", text: "Ist es eine Bache?", correct: true },
-  { id: 6, title: "Rehwild – kein Kopfschmuck – schlank – große Lauscher", text: "Handelt es sich um einen Bock?", correct: false },
-
-  { id: 7, title: "Rotwild – kurzer Träger – kompakt – läuft eng hinter Alttier", text: "Ist es ein Kalb?", correct: true },
-  { id: 8, title: "Rehwild – langer Träger – markante Stirn – kräftige Läufe", text: "Jährlingsbock?", correct: true },
-  { id: 9, title: "Schwarzwild – massiver Schädel – Schild sichtbar", text: "Bache?", correct: false },
-
-  { id: 10, title: "Rehwild – Geweih im Bast – spitze Enden", text: "Ist es ein alter Bock?", correct: false },
-  { id: 11, title: "Rotwild – Tier zieht allein – wirkt unsicher – klein", text: "Alttier?", correct: false },
-  { id: 12, title: "Fuchs – langer schlanker Körper – helle Brust – buschiger Schweif", text: "Ist es ein Jungfuchs?", correct: true },
-
-  { id: 13, title: "Rehwild – schmal – leichte Färbung – wirkt ‚kindlich’", text: "Kitz?", correct: true },
-  { id: 14, title: "Schwarzwild – Keilkopf – breite Brust – Pinsel sichtbar", text: "Keiler?", correct: true },
-  { id: 15, title: "Rotwild – breiter Schädel – dunkler Spiegel – große Masse", text: "Kalb?", correct: false },
-
-  { id: 16, title: "Rehwild – kurzer Träger – weicher Kopf – kein Bast", text: "Schmalreh?", correct: true },
-  { id: 17, title: "Schwarzwild – Tiere laufen eng als Trupp", text: "Sind Keiler in Rotten?", correct: false },
-  { id: 18, title: "Rotwild – Alttier zieht mit Kalb – Kalb wirkt schwach", text: "Kalb?", correct: true },
-
-  { id: 19, title: "Rehwild – dünner Körper – lange Läufe – Stirn kaum ausgeprägt", text: "Alter Bock?", correct: false },
-  { id: 20, title: "Fuchs – kurzer Körper – runder Kopf – unruhiges Verhalten", text: "Jungtier?", correct: true },
-
-  { id: 21, title: "Rotwild – viel Brust – starke Stangen – dunkle Färbung", text: "Alter Hirsch?", correct: true },
-  { id: 22, title: "Schwarzwild – kleiner Kopf – dünne Läufe – lange Schnauze", text: "Frischling?", correct: true },
-  { id: 23, title: "Rehwild – stärkerer Körper – dunkler Aalstrich im Sommer", text: "Rehbock?", correct: true },
-  { id: 24, title: "Rotwild – helles Spiegelmuster – zierlich – nah beim Alttier", text: "Schmalspießer?", correct: false },
-
-  { id: 25, title: "Schwarzwild – kurze, kompakte Form – schneller Bewegungsstil", text: "Überläufer?", correct: true },
-];
+const scenarios = getPracticeScenarios("wild");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,20 +46,21 @@ export default function Wildkunde() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -143,9 +114,10 @@ export default function Wildkunde() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Wildkunde – Trainer</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
       {/* Antwort-Buttons */}
       <div
@@ -160,7 +132,7 @@ export default function Wildkunde() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton 
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -168,14 +140,14 @@ export default function Wildkunde() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton 
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

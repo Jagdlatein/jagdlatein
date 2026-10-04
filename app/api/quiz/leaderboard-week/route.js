@@ -1,34 +1,16 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { requirePaidAccount } from "../../../../lib/account-access";
+import { quizDatabase, quizFailure } from "../../../../lib/quiz-api";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 
-
-export async function GET() {
+export async function GET(req) {
   try {
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-
-    const { data, error } = await supabase
-      .from("quiz_scores")
-      .select("*")
-      .order("total_points", { ascending: false });
-
-    if (error) {
-      console.error("Leaderboard fetch error:", error);
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-
-    return NextResponse.json(
-      { data },
-      { headers: { "Cache-Control": "no-store" } }
-    );
-  } catch (err) {
-    console.error("Leaderboard exception:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
+    await requirePaidAccount(req);
+    const { data, error } = await quizDatabase().from("quiz_scores")
+      .select("username,country,total_points").order("total_points", { ascending: false }).limit(100);
+    if (error) throw error;
+    return Response.json({ data: data || [] }, { headers: { "Cache-Control": "private, no-store" } });
+  } catch (error) { return quizFailure(error); }
 }

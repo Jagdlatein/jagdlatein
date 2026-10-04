@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,44 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 PIRSCH-SZENARIEN — TRUE = Schuss, FALSE = kein Schuss
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehbock – 60 m – Halbdeckung", text: "Der Bock steht teilweise hinter einem Baum. Keine klare Trefferfläche.", correct: false },
-  { id: 2, title: "Überläufer – 35 m – Breit stehend", text: "Freies Feld, sicherer Kugelfang.", correct: true },
-  { id: 3, title: "Reh – 80 m – Leicht ziehend", text: "Bewegung gering, gutes Licht.", correct: true },
-
-  { id: 4, title: "Rotwild – 120 m – Im Hang", text: "Schusswinkel schwierig, Kugelfang unsicher.", correct: false },
-  { id: 5, title: "Rehgeiß – 40 m – Kitz sichtbar", text: "Ethik: Kein Schuss auf führende Geiß.", correct: false },
-  { id: 6, title: "Keiler – 65 m – Breit stehend", text: "Gutes Zielbild, Bewegungsfrei.", correct: true },
-  { id: 7, title: "Fuchs – 25 m – Sitzend", text: "Nah, ruhig, sicherer Kugelfang.", correct: true },
-  { id: 8, title: "Überläufer – 100 m – Dämmerung", text: "Ziel unscharf – Risiko hoch.", correct: false },
-  { id: 9, title: "Rehbock – 30 m – Durch Bewuchs", text: "Gestrüpp verdeckt lebenswichtige Zonen.", correct: false },
-  { id: 10, title: "Rotwildspießer – 70 m – Breit", text: "Sichere Lage, klare Fläche.", correct: true },
-
-  { id: 11, title: "Überläufer – 45 m – Kommt ziehend", text: "Langsame Bewegung, gutes Licht.", correct: true },
-  { id: 12, title: "Reh – 55 m – Spitz von vorn", text: "Unethischer Winkel.", correct: false },
-  { id: 13, title: "Fuchs – 90 m – Ruhig ziehend", text: "Weit + klein = Risiko.", correct: false },
-  { id: 14, title: "Keiler – 20 m – Direkt frontal", text: "Gefährliche Situation, schlechter Winkel.", correct: false },
-  { id: 15, title: "Rehbock – 40 m – Perfekt breit", text: "Ideales Bild, ruhiges Stück.", correct: true },
-
-  { id: 16, title: "Sau – 75 m – Hinter dünnem Bewuchs", text: "Teilweise verdeckt.", correct: false },
-  { id: 17, title: "Reh – 25 m – Breit stehend", text: "Sicherer Umfeld, guter Kugelfang.", correct: true },
-  { id: 18, title: "Überläufer – 60 m – Zieht bergauf", text: "Kugelablenkung möglich.", correct: false },
-  { id: 19, title: "Fuchs – 35 m – Ruhig stehend", text: "Gutes Bild.", correct: true },
-  { id: 20, title: "Rotwild – 90 m – Kahlwildgruppe", text: "Ungenaue Ansprache möglich.", correct: false },
-
-  { id: 21, title: "Rehbock – 55 m – Hinter Zaun", text: "Kugel könnte abprallen.", correct: false },
-  { id: 22, title: "Überläufer – 30 m – Breit, ruhig", text: "Sehr gutes Zielbild.", correct: true },
-  { id: 23, title: "Reh – 85 m – Bewegung", text: "Bewegungsunschärfe.", correct: false },
-  { id: 24, title: "Fuchs – 45 m – Sitzend", text: "Klarer Kugelfang.", correct: true },
-  { id: 25, title: "Keiler – 50 m – Hinter Altholz", text: "Gefahr von Splittern & Ablenkung.", correct: false },
-];
+const scenarios = getPracticeScenarios("pirsch");
 
 // ------------------------------------------------------------
 // SOFORT-RÜCKMELDUNG
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -59,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtige Entscheidung!" : "Falsche Entscheidung!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -72,21 +46,22 @@ export default function Pirsch() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore((prev) => prev + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
   // ------------------------------------------------------------
   // ENDSEITE
@@ -113,7 +88,7 @@ export default function Pirsch() {
             fontSize: 18,
           }}
         >
-          {passed ? <b>Sehr gut! Pirsch-Simulator bestanden 🎉</b> : <b>Weiter üben – Pirsch erfordert Präzision!</b>}
+          {passed ? <b>Sehr gut! Pirsch-Trainer bestanden 🎉</b> : <b>Weiter üben – Pirsch erfordert Präzision!</b>}
         </div>
 
         <div style={{ marginTop: 30, maxWidth: 420 }}>
@@ -130,24 +105,25 @@ export default function Pirsch() {
     <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
       <HomeButton />
 
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Pirsch-Simulator</h1>
+      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Pirsch-Trainer</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginTop: 20 }}>
         <div style={{ width: "100%", maxWidth: 420 }}>
-          <ActionButton text="Schuss antragen" disabled={lockButtons} onClick={() => answer(current.correct)} />
+          <ActionButton text="Aussage stimmt" disabled={lockButtons} onClick={() => answer(current.correct)} />
         </div>
 
         <div style={{ width: "100%", maxWidth: 420 }}>
-          <ActionButton text="Nicht schießen" disabled={lockButtons} onClick={() => answer(!current.correct)} />
+          <ActionButton text="Aussage stimmt nicht" disabled={lockButtons} onClick={() => answer(!current.correct)} />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

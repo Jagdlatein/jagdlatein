@@ -1,6 +1,7 @@
 // pages/index.js
 
 import Head from "next/head";
+import { readRequestAccountSession } from "../lib/account-access";
 import Link from "next/link";
 import LearningCategoryMenu from "../components/LearningCategoryMenu";
 import { useEffect } from "react";
@@ -10,7 +11,7 @@ import { PushNotifications } from "@capacitor/push-notifications";
 export async function getServerSideProps({ req }) {
   return {
     props: {
-      loggedIn: req.cookies?.jl_session === "1",
+      loggedIn: Boolean(readRequestAccountSession(req)),
     },
   };
 }

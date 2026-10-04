@@ -1,46 +1,7 @@
-import { paypalBase, paypalAccessToken } from "../webhook/_base";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-export async function POST(req) {
-  try {
-    const { orderId } = await req.json();
-
-    if (!orderId) {
-      return Response.json(
-        { error: "Missing orderId" },
-        { status: 400 }
-      );
-    }
-
-    const { base } = paypalBase();
-    const access_token = await paypalAccessToken();
-
-    const capRes = await fetch(
-      `${base}/v2/checkout/orders/${orderId}/capture`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-      }
-    );
-
-    const capJson = await capRes.json();
-
-    if (!capRes.ok) {
-      return Response.json(capJson, { status: 500 });
-    }
-
-    // Capture erfolgreich
-    return Response.json(
-      { ok: true, capture: capJson },
-      { status: 200 }
-    );
-  } catch (e) {
-    return Response.json(
-      { error: e.message || "paypal_capture_error" },
-      { status: 500 }
-    );
-  }
+// The active product is the subscription on /preise, not the former one-time orders.
+export function POST() {
+  return Response.json({ error: "Einmalzahlungen sind nicht verfügbar. Bitte die Preisseite verwenden." }, { status: 410 });
 }

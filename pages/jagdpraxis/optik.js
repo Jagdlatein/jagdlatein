@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 OPTIK-SZENARIEN – true = richtig gehandelt / beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Dämmerung – Vergrößerung zu hoch eingestellt", text: "Vergrößerung reduzieren für mehr Licht?", correct: true },
-  { id: 2, title: "Nahes Stück – 30 m – ZF auf 10x", text: "Schuss antragen?", correct: false },
-  { id: 3, title: "100 m – Fuchs – ZF 5–6x – gutes Licht", text: "Einstellung passend?", correct: true },
-
-  { id: 4, title: "Parallaxe falsch eingestellt – Ziel unscharf", text: "Vor Schuss korrigieren?", correct: true },
-  { id: 5, title: "Vergrößerung 12x – flüchtiges Stück", text: "Optimal?", correct: false },
-  { id: 6, title: "Dämmerung – große Austrittspupille durch geringe Vergrößerung", text: "Correct?", correct: true },
-
-  { id: 7, title: "Starkes Gegenlicht – keine Sonnenblende", text: "Trotzdem schießen?", correct: false },
-  { id: 8, title: "Ziel verwaschen – Dioptrien falsch eingestellt", text: "Korrektur vor Schuss?", correct: true },
-  { id: 9, title: "Wärmebild: helles, klares Signal – kein Hintergrund erkennbar", text: "Schussabgabe?", correct: false },
-
-  { id: 10, title: "Ferne Distanz – 180 m – ruhiges Stück – 10x Vergrößerung", text: "Schießen möglich?", correct: true },
-  { id: 11, title: "Beschlagene Optik – kalter Ansitz – Feuchtigkeit", text: "Sofort schießen?", correct: false },
-  { id: 12, title: "Dämmerung – Ziel gut sichtbar – 3x Vergrößerung", text: "Passend?", correct: true },
-
-  { id: 13, title: "Wärmebild zeigt leichtes Zittern – Stück bewegt sich", text: "Schuss antragen?", correct: false },
-  { id: 14, title: "Restlichtverstärker – Stück gut sichtbar – Kugelfang klar", text: "Schussabgabe korrekt?", correct: true },
-  { id: 15, title: "ZF schief montiert – Schuss weicht ab", text: "Trotzdem jagen?", correct: false },
-
-  { id: 16, title: "Flüchtige Sau – geringe Vergrößerung für weites Sehfeld", text: "Richtig gewählt?", correct: true },
-  { id: 17, title: "Nahbereich – Parallaxe fix auf 100 m – Ziel auf 20 m", text: "Schussabgabe empfohlen?", correct: false },
-  { id: 18, title: "Stück auf 120 m – Ziel scharf – ruhiger Anschlag", text: "Schussabgabe möglich?", correct: true },
-
-  { id: 19, title: "Hitzeflimmern – Bild wabert – hohe Vergrößerung", text: "Vergrößerung reduzieren?", correct: true },
-  { id: 20, title: "Dämmerung – Vergrößerung zu niedrig – Ziel zu klein", text: "Vergrößerung leicht erhöhen?", correct: true },
-
-  { id: 21, title: "Mondlicht – wenig Kontrast – Ziel schwer erkennbar", text: "Trotzdem schießen?", correct: false },
-  { id: 22, title: "Wärmebild hell – klare Silhouette – Kugelfang sichtbar", text: "Schussabgabe möglich?", correct: true },
-  { id: 23, title: "ZF auf 1x – Ziel 100 m – präziser Einzelschuss", text: "Optimal?", correct: false },
-  { id: 24, title: "Schnee – helles Umfeld – Blendung stark", text: "Helligkeit reduzieren?", correct: true },
-
-  { id: 25, title: "100 m – Reh – 4x – stabile Auflage – klares Bild", text: "Schussabgabe korrekt?", correct: true },
-];
+const scenarios = getPracticeScenarios("optik");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig entschieden!" : "Falsch entschieden!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,20 +46,21 @@ export default function Optik() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
-setTimeout(() => {
+answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
   // ------------------------------------------------------------
   // ENDANZEIGE
@@ -146,9 +117,10 @@ setTimeout(() => {
         Optik richtig nutzen
       </h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ setTimeout(() => {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig entschieden"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ setTimeout(() => {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

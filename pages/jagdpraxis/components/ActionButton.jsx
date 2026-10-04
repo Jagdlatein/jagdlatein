@@ -1,6 +1,8 @@
-export default function ActionButton({ text, onClick }) {
+export default function ActionButton({ text, onClick, disabled = false }) {
   return (
     <button
+      type="button"
+      disabled={disabled}
       onClick={onClick}
       style={{
         width: "100%",
@@ -11,7 +13,8 @@ export default function ActionButton({ text, onClick }) {
         borderRadius: 12,
         marginTop: 12,
         fontSize: 17,
-        cursor: "pointer",
+        cursor: disabled ? "default" : "pointer",
+        opacity: disabled ? 0.65 : 1,
         fontWeight: "bold"
       }}
     >

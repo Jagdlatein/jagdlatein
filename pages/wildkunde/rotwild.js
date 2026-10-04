@@ -16,7 +16,7 @@ export default function Rotwild() {
     {
       q: "Wie lautet die Zahnformel?",
       a: [
-        "I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32",
+        "I 0/3 · C 1/1 · P 3/3 · M 3/3 = 34",
         "I 3/3 · C 1/1 · P 4/4 · M 3/3 = 44",
       ],
       correct: 0,
@@ -52,7 +52,7 @@ export default function Rotwild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Allgemeines</h2>
           <ul style={styles.list}>
-            <li>Größtes heimisches Schalenwild</li>
+            <li>Eine der größten heimischen Schalenwildarten</li>
             <li>Gewicht: Hirsch 120–220 kg, Tier 70–120 kg</li>
             <li>Körperlänge 170–240 cm, Schulterhöhe 110–140 cm</li>
             <li>Lebensraum: Bergwälder, Mittelgebirge, Rotwildgebiete</li>
@@ -66,11 +66,11 @@ export default function Rotwild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Zähne & Gebiss</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
+            <li>Zahnformel: I 0/3 · C 1/1 · P 3/3 · M 3/3 = 34</li>
             <li>Grandeln = rudimentäre Eckzähne im Oberkiefer</li>
             <li>Kälber: Milchgebiss vollständig</li>
-            <li>Zahnwechsel ab 13 Monaten</li>
-            <li>Altersschätzung über M2 & M3</li>
+            <li>Milchzähne werden im Laufe der Jugend gegen bleibende Zähne ausgetauscht</li>
+            <li>Zahnwechsel und Zahnabnutzung liefern Anhaltspunkte; das Alter lässt sich damit nicht in jedem Fall exakt bestimmen</li>
           </ul>
         </section>
 
@@ -87,11 +87,18 @@ export default function Rotwild() {
 
         {/* --- QUIZ --- */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -106,6 +113,7 @@ export default function Rotwild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

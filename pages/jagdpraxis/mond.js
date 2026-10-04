@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 MONDPHASEN-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Vollmond – klare Nacht – Rotwild zieht spät", text: "Hohe Sichtbarkeit → Aktivität im Freien?", correct: true },
-  { id: 2, title: "Neumond – stockdunkel – Rehwild verlagert Aktivität", text: "Mehr Bewegung am frühen Morgen?", correct: true },
-  { id: 3, title: "Zunehmender Mond – helle Nacht – Sauen meiden offene Flächen", text: "Typisches Verhalten?", correct: true },
-
-  { id: 4, title: "Vollmond – offenes Feld – Sauen kommen früh raus", text: "Realistisch?", correct: false },
-  { id: 5, title: "Halbmond – leichte Bewölkung – Aktivität gedämpft", text: "Weniger Bewegung?", correct: true },
-  { id: 6, title: "Neumond – Schwarzwild auf Wiesen – gute Sichtbarkeit", text: "Realistisch?", correct: false },
-
-  { id: 7, title: "Zunehmender Mond – Sauen wechseln zwischen Maisschlägen", text: "Bewegungsintensiv?", correct: true },
-  { id: 8, title: "Vollmond – Rehwild äst früh und spät", text: "Typisches Verhalten?", correct: true },
-  { id: 9, title: "Neumond – Rotwild zeigt sich offen", text: "Wahrscheinlich?", correct: false },
-
-  { id: 10, title: "Vollmond – starke Bewölkung – kaum Licht", text: "Hohe Aktivität im Freien?", correct: false },
-  { id: 11, title: "Mondlos – leichte Thermik – Sauen fühlen sich sicherer", text: "Mehr Aktivität?", correct: true },
-  { id: 12, title: "Halbmond – sehr hell – Rehwild verlagert Äsen in die Deckung", text: "Korrekt?", correct: true },
-
-  { id: 13, title: "Zunehmender Mond – ruhige Bedingungen – Fuchs stark aktiv", text: "Richtig?", correct: true },
-  { id: 14, title: "Vollmond – harte Schatten – Wild erscheint früher", text: "Realistisch?", correct: false },
-  { id: 15, title: "Mondlos – starke Dunkelheit – Rehwild bleibt lange verborgen", text: "Typisch?", correct: true },
-
-  { id: 16, title: "Zunehmender Mond – helle Nacht – Rotwild bleibt im Bestand", text: "Wahrscheinlich?", correct: false },
-  { id: 17, title: "Neumond – leichte Bewölkung – Fuchs jagt Maus aktiv", text: "Typisches Verhalten?", correct: true },
-  { id: 18, title: "Vollmond – Rehwild reagiert empfindlicher auf Geräusche", text: "Richtig?", correct: true },
-
-  { id: 19, title: "Mondaufgang spät – Nacht beginnt dunkel – Sauen kommen früher", text: "Realistisch?", correct: true },
-  { id: 20, title: "Monduntergang früh – Restnacht hell – Sauen erst spät aktiv", text: "Korrekt?", correct: false },
-
-  { id: 21, title: "Zunehmender Mond – helle erste Nachthälfte – Rehwild spät aktiv", text: "Richtig?", correct: true },
-  { id: 22, title: "Neumond – völlige Dunkelheit – Rotwild zieht offen über Wiesen", text: "Wahrscheinlich?", correct: false },
-  { id: 23, title: "Halbmond – schwacher Schatten – Sauen kommen normal", text: "Richtig?", correct: true },
-  { id: 24, title: "Vollmond – Sauen ruhen viel, bewegen sich spät", text: "Typisches Verhalten?", correct: true },
-
-  { id: 25, title: "Mondlos – leichter Schneefall – gute Sichtbarkeit", text: "Realistisch?", correct: false },
-];
+const scenarios = getPracticeScenarios("mond");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig beurteilt!" : "Falsch beurteilt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function Mondphasen() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ export default function Mondphasen() {
         Mondphasen & Revieraktivität
       </h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ export default function Mondphasen() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig beurteilt"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ export default function Mondphasen() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

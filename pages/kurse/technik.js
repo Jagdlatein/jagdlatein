@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -31,6 +32,7 @@ export default function TechnikKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const answerGuard = useMiniQuizAnswer(i, fertig, quiz[i].antworten.length);
   const courseProgress = useCourseProgress("technik", {
     started: i > 0 || sel !== null || fertig,
     answeredQuestions: fertig ? quiz.length : i + (sel !== null ? 1 : 0),
@@ -42,14 +44,14 @@ export default function TechnikKurs() {
   const frage = quiz[i];
 
   function choose(a) {
-    if (sel !== null) return;
+    if (!answerGuard.accept(a)) return;
 
     setSel(a);
     if (frage.antworten[a].richtig) {
       setPunkte((p) => p + 1);
     }
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
       if (i + 1 < quiz.length) {
         setI((prev) => prev + 1);
         setSel(null);

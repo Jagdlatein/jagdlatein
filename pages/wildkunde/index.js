@@ -18,7 +18,7 @@ export default function WildkundeIndex() {
     },
 
     {
-      title: "Raubwild",
+      title: "Raubtiere",
       items: [
         { name: "Fuchs", slug: "fuchs" },
         { name: "Dachs", slug: "dachs" },
@@ -35,7 +35,7 @@ export default function WildkundeIndex() {
     },
 
     {
-      title: "Niederwild (Hase, Kaninchen, Nagetiere)",
+      title: "Hasenartige und Nagetiere",
       items: [
         { name: "Feldhase", slug: "feldhase" },
         { name: "Schneehase", slug: "schneehase" },

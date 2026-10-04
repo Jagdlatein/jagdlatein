@@ -1,44 +1,24 @@
-// 🔒 helpers
-function getBearer(req) {
-  const h = req.headers.authorization || "";
-  return h.startsWith("Bearer ") ? h.slice(7) : "";
-}
-function isAuthorized(req) {
-  const sent = getBearer(req).trim();
-  const want = (process.env.ADMIN_PASS || "").trim();
-  return Boolean(sent && want && sent === want);
-}
-
 // pages/admin/import.js
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { getPaidPageProps } from "../../lib/account-access";
 
 const REQUIRED = ["id","country","category","topic","question","option_a","option_b","option_c","option_d","correct"];
-const PASS_KEY = "jl_admin_pass";
 
 export default function ImportQuiz() {
   const [ready, setReady] = useState(false);
   const [rows, setRows] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [okMsg, setOkMsg] = useState("");
-  const [busy, setBusy] = useState(false);
-  const fileRef = useRef(null);
-  const [pass, setPass] = useState("");
-
-  // Passwort aus Session laden
-  useEffect(() => {
-    const p = sessionStorage.getItem(PASS_KEY) || "";
-    setPass(p);
-  }, []);
 
   // SheetJS laden (CDN)
   useEffect(() => {
     if (window.XLSX) { setReady(true); return; }
     const s = document.createElement("script");
-    s.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+    s.src = "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js";
     s.async = true;
     s.onload = () => setReady(true);
-    s.onerror = () => alert("XLSX konnte nicht geladen werden.");
+    s.onerror = () => setErrors(["Die Importvorschau konnte nicht geladen werden. Bitte lade die Seite erneut."]);
     document.body.appendChild(s);
+    return () => { s.onload = null; s.onerror = null; s.remove(); };
   }, []);
 
   function validate(list) {
@@ -58,90 +38,43 @@ export default function ImportQuiz() {
   }
 
   function onFile(e) {
-    setOkMsg("");
+    setRows([]);
+    setErrors([]);
     const f = e.target.files?.[0];
     if (!f) return;
+    if (f.size > 5 * 1024 * 1024) { setErrors(["Die Datei darf höchstens 5 MB groß sein."]); return; }
     const reader = new FileReader();
     reader.onload = ev => {
-      const data = ev.target.result;
-      const wb = window.XLSX.read(data, { type: "array" });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const json = window.XLSX.utils.sheet_to_json(ws, { defval: "" });
-      const errs = validate(json);
-      setErrors(errs);
-      setRows(json);
+      try {
+        const data = ev.target.result;
+        const wb = window.XLSX.read(data, { type: "array" });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        if (!ws) throw new Error();
+        const json = window.XLSX.utils.sheet_to_json(ws, { defval: "" });
+        setErrors(validate(json));
+        setRows(json);
+      } catch { setErrors(["Die Datei konnte nicht gelesen werden. Bitte eine gültige Excel- oder CSV-Datei wählen."]); }
     };
+    reader.onerror = () => setErrors(["Die Datei konnte nicht gelesen werden."]);
     reader.readAsArrayBuffer(f);
   }
 
-  async function upload() {
-    if (!pass) return alert("Passwort erforderlich.");
-    if (!rows.length) return alert("Bitte zuerst eine Datei laden.");
-    const errs = validate(rows);
-    if (errs.length) { setErrors(errs); return; }
-
-    try {
-      setBusy(true);
-      setOkMsg("");
-      const res = await fetch("/api/quiz/upload", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-pass": pass
-        },
-        body: JSON.stringify({
-          path: "public/data/quiz_bank.json",
-          message: "chore(quiz): update quiz_bank.json via admin import",
-          data: rows
-        })
-      });
-      const j = await res.json();
-      if (!res.ok) throw new Error(j?.error || "Upload fehlgeschlagen");
-      setOkMsg("✅ Erfolgreich committed. Das Quiz wird mit dem nächsten Deployment aktualisiert.");
-    } catch (e) {
-      alert(e.message || "Fehler beim Upload.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
   function saveLocal() {
+    const issues = validate(rows);
+    if (issues.length) { setErrors(issues); return; }
     const blob = new Blob([JSON.stringify(rows, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = "quiz_bank.json"; a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function setPassword(p) {
-    setPass(p);
-    sessionStorage.setItem(PASS_KEY, p);
-  }
-
-  // Passwort-Gate (einfach)
-  if (pass !== "Jagdlatein2025") {
-    return (
-      <main style={st.page}>
-        <div style={st.wrap}>
-          <h1 style={st.h1}>Admin Login</h1>
-          <input
-            type="password"
-            placeholder="Passwort"
-            onChange={e=>setPassword(e.target.value)}
-            style={st.input}
-          />
-          <p style={{color:"#6b7280", marginTop:8}}>Tipp: Passwort bleibt wie von dir bestätigt.</p>
-        </div>
-      </main>
-    );
+    a.href = url; a.download = "quiz_import_entwurf.json"; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   return (
     <main style={st.page}>
       <div style={st.wrap}>
-        <h1 style={st.h1}>Quiz-Import</h1>
+        <h1 style={st.h1}>Quiz-Importvorschau</h1>
         <p style={{color:"#475569", margin:"0 0 12px"}}>
-          Excel (.xlsx/.xls/.csv) hochladen → prüfen → per Klick ins Repo committen.
+          Excel oder CSV auswählen, prüfen und als JSON-Entwurf herunterladen. Die Vorschau verändert keine veröffentlichten Fragen. Neue Fragen müssen fachlich geprüft und anschließend in den Fragenbestand übernommen werden.
         </p>
 
         <div style={{display:"grid", gap:10}}>
@@ -161,10 +94,7 @@ export default function ImportQuiz() {
             <>
               <div style={{display:"flex", gap:10, flexWrap:"wrap", alignItems:"center"}}>
                 <span><strong>{rows.length}</strong> Datensätze geladen</span>
-                <button onClick={saveLocal} style={st.btnGhost}>JSON herunterladen</button>
-                <button onClick={upload} disabled={busy} style={st.btnPrimary}>
-                  {busy ? "Lade hoch…" : "✅ Ins Repo committen"}
-                </button>
+                <button onClick={saveLocal} disabled={errors.length > 0} style={st.btnGhost}>JSON-Entwurf herunterladen</button>
               </div>
 
               <div style={st.tableWrap}>
@@ -191,11 +121,14 @@ export default function ImportQuiz() {
             </>
           )}
 
-          {okMsg && <div style={st.note}>{okMsg}</div>}
         </div>
       </div>
     </main>
   );
+}
+
+export async function getServerSideProps(context) {
+  return getPaidPageProps(context, { adminOnly: true });
 }
 
 const st = {

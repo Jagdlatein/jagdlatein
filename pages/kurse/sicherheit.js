@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -49,6 +50,7 @@ export default function SicherheitImRevierKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const answerGuard = useMiniQuizAnswer(aktuelleFrage, fertig, sicherheitQuiz[aktuelleFrage].antworten.length);
   const courseProgress = useCourseProgress("sicherheit", {
     started: aktuelleFrage > 0 || auswahl !== null || fertig,
     answeredQuestions: fertig ? sicherheitQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
@@ -60,7 +62,7 @@ export default function SicherheitImRevierKurs() {
   const frage = sicherheitQuiz[aktuelleFrage];
 
   function handleAntwort(index) {
-    if (auswahl !== null) return;
+    if (!answerGuard.accept(index)) return;
 
     setAuswahl(index);
 
@@ -68,7 +70,7 @@ export default function SicherheitImRevierKurs() {
       setPunkte((p) => p + 1);
     }
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
       const next = aktuelleFrage + 1;
       if (next < sicherheitQuiz.length) {
         setAktuelleFrage(next);
@@ -108,11 +110,13 @@ export default function SicherheitImRevierKurs() {
         Vor jedem Schießen müssen Schussfeld, Hintergrund und Kugelfang eindeutig
         identifiziert werden. Büsche oder Gräser bremsen Geschosse nicht zuverlässig ab.
         <br /><br />
-        Beim Transport müssen Waffen <strong>entladen</strong>, <strong>gesichert</strong>  
-        und in einem geeigneten <strong>Futteral</strong> verstaut sein.
+        Beim Transport wird die Waffe <strong>entladen</strong> und gegen unbefugten
+        Zugriff gesichert. Behältnis, Zugänglichkeit und zulässiger Transportzweck
+        richten sich nach dem örtlichen Waffenrecht.
         <br /><br />
         Auf Gesellschaftsjagden wie Drückjagden gilt:  
-        Klare Kommunikation, eindeutige Schussbereiche und niemals in Treibrichtung schießen.
+        Klare Kommunikation, freigegebene Schussbereiche, ausreichender Kugelfang und
+        keine Gefährdung von Treibern, Hunden oder anderen Personen.
       </p>
 
       <hr style={{ margin: "30px 0" }} />

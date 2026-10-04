@@ -7,7 +7,8 @@ const countries = [
   { code: "CH", name: "Schweiz" },
 ];
 
-export default function Page({ searchParams = {} }) {
+export default async function Page({ searchParams = {} }) {
+  searchParams = (await searchParams) || {};
   const countryOptions = countries.map(country => {
     const counts = new Map();
     const questions = QUESTIONS.filter(question => question.countries.includes(country.code));

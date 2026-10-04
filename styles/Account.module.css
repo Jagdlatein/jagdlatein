@@ -24,7 +24,7 @@
 .courseList { display: grid; gap: 16px; }
 .courseCard { margin: 0; }
 .courseHeading { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.courseHeading h2 { margin: 0; flex: 1 1 220px; }
+.courseHeading h2 { margin: 0; flex: 1 1 220px; min-width: 0; overflow-wrap: anywhere; }
 .badge, .completed { padding: 6px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; background: #f4efe3; }
 .completed { background: #e4f0e5; color: #285832; }
 .courseCard p { line-height: 1.6; margin: 14px 0; }

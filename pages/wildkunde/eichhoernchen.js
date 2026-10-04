@@ -135,7 +135,7 @@ export default function Eichhoernchen() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 1/1 · C 0/0 · P 0/0 · M 3/3 = 20</li>
+            <li>Zahnformel: I 1/1 · C 0/0 · P 2/1 · M 3/3 = 22</li>
             <li>Nagezähne wachsen ständig</li>
             <li>Typisches Nagetiergebiss</li>
           </ul>
@@ -143,11 +143,18 @@ export default function Eichhoernchen() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.science.smith.edu/departments/Biology/VHAYSSEN/msi/pdf/769_Sciurus_vulgaris.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -162,6 +169,7 @@ export default function Eichhoernchen() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

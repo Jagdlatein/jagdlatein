@@ -1,42 +1,18 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { requirePaidAccount } from "../../../../lib/account-access";
+import { cleanQuizUsername, quizDatabase, quizFailure } from "../../../../lib/quiz-api";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 
-
-export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const username = searchParams.get("username");
-
-  if (!username) {
-    return NextResponse.json({ error: "username missing" }, { status: 400 });
-  }
-
+export async function GET(req) {
   try {
-    const supabase = createClient(
-      process.env.SUPABASE_URL,              // FIX 1
-      process.env.SUPABASE_SERVICE_ROLE_KEY  // FIX 2
-    );
-
-    const { data, error } = await supabase
-      .from("quiz_scores")
-      .select("*")
-      .eq("username", username)
-      .single();
-
-    if (error) {
-      console.error("myhighscore error:", error);
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-
-    return NextResponse.json(
-      { data },
-      { headers: { "Cache-Control": "no-store" } }
-    );
-  } catch (err) {
-    console.error("myhighscore exception:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
+    await requirePaidAccount(req);
+    const username = cleanQuizUsername(new URL(req.url).searchParams.get("username"));
+    if (!username) return Response.json({ error: "Quizname fehlt oder ist ungültig." }, { status: 400 });
+    const { data, error } = await quizDatabase().from("quiz_scores")
+      .select("username,country,total_points,rounds,updated_at").eq("username", username).maybeSingle();
+    if (error) throw error;
+    return Response.json({ data }, { headers: { "Cache-Control": "private, no-store" } });
+  } catch (error) { return quizFailure(error); }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { readJagdrechtArray, splitLiteralSearch } from "../../lib/jagdrecht-reader";
 import layout from "../../styles/JagdrechtTabs.module.css";
 
 export default function JagdrechtDE() {
@@ -7,16 +8,25 @@ export default function JagdrechtDE() {
   const [selectedLand, setSelectedLand] = useState("");
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
+  const [indexError, setIndexError] = useState("");
+  const [contentError, setContentError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Länderindex laden
   useEffect(() => {
-    fetch("/data/jagdrecht/de/laender.json")
-      .then(r => r.json())
-      .then(setLaender);
+    const controller = new AbortController();
+    readJagdrechtArray("/data/jagdrecht/de/laender.json", controller.signal, ["kurz", "name", "pruefung"])
+      .then(data => { if (!controller.signal.aborted) { setLaender(data); setIndexError(""); } })
+      .catch(error => { if (!controller.signal.aborted) setIndexError(error.message); });
+    return () => controller.abort();
   }, []);
 
   // Inhalte laden
   useEffect(() => {
+    const controller = new AbortController();
+    setArticles([]);
+    setContentError("");
+    setLoading(false);
     let path = "";
 
     if (mode === "bjagdg") path = "/data/jagdrecht/de/bjagdg.json";
@@ -27,13 +37,15 @@ export default function JagdrechtDE() {
     }
 
     if (!path || mode === "infos") {
-      setArticles([]);
-      return;
+      return () => controller.abort();
     }
 
-    fetch(path)
-      .then(r => r.json())
-      .then(setArticles);
+    setLoading(true);
+    readJagdrechtArray(path, controller.signal, ["id", "title", "text", "source"])
+      .then(data => { if (!controller.signal.aborted) setArticles(data); })
+      .catch(error => { if (!controller.signal.aborted) setContentError(error.message); })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
   }, [mode, selectedLand]);
 
   const filtered = articles.filter(a =>
@@ -42,7 +54,7 @@ export default function JagdrechtDE() {
 
   const highlight = (text) => {
     if (!search) return text;
-    const parts = text.split(new RegExp(`(${search})`, "gi"));
+    const parts = splitLiteralSearch(text, search);
     return parts.map((p, i) =>
       p.toLowerCase() === search.toLowerCase()
         ? <mark key={i} style={{ backgroundColor: "#ffeb3b" }}>{p}</mark>
@@ -53,6 +65,10 @@ export default function JagdrechtDE() {
   return (
     <main lang="de" style={styles.container}>
       <h1 style={styles.h1}>🇩🇪 Deutsches Jagdrecht</h1>
+      <p style={{ lineHeight: 1.6 }}>Lernübersichten mit amtlichen Quellen. Für die konkrete Jagd gelten die aktuelle Rechtsfassung und örtliche Vorgaben. Die Karten geben keine vollständigen Gesetzestexte wieder.</p>
+      {indexError && <p role="alert">{indexError}</p>}
+      {contentError && <p role="alert">{contentError}</p>}
+      {loading && <p role="status">Inhalte werden geladen…</p>}
 
       {/* Tabs */}
       <div className={layout.tabs}>
@@ -88,6 +104,7 @@ export default function JagdrechtDE() {
       {/* Länder Auswahl */}
       {mode === "laender" && (
         <select
+          aria-label="Region auswählen"
           value={selectedLand}
           onChange={(e) => setSelectedLand(e.target.value)}
           style={styles.select}
@@ -106,6 +123,7 @@ export default function JagdrechtDE() {
         <input
           type="text"
           placeholder="Suchbegriff eingeben…"
+            aria-label="Rechtsübersichten durchsuchen"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={styles.search}
@@ -119,6 +137,8 @@ export default function JagdrechtDE() {
             <div key={a.id} style={styles.card}>
               <h2 style={styles.articleTitle}>{highlight(a.title)}</h2>
               <p style={styles.text}>{highlight(a.text)}</p>
+              <a href={a.source} target="_blank" rel="noopener noreferrer">Amtliche Quelle öffnen</a>
+              <p style={{ fontSize: 13 }}>Lernübersicht geprüft: {a.reviewedOn}</p>
             </div>
           ))}
         </div>
@@ -132,7 +152,8 @@ export default function JagdrechtDE() {
               <h2 style={styles.articleTitle}>{l.name} ({l.kurz})</h2>
               <p><b>Jagdsystem:</b> {l.system}</p>
               <p><b>Prüfung:</b> {l.pruefung}</p>
-              <p><b>Besonderheiten:</b> {l.besonderheiten}</p>
+              <p><b>Hinweise:</b> {l.besonderheiten}</p>
+              <a href={l.source} target="_blank" rel="noopener noreferrer">Zuständige Rechtsquellen öffnen</a>
             </div>
           ))}
         </div>

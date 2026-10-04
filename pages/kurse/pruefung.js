@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -75,6 +76,7 @@ export default function PruefungstippsKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const answerGuard = useMiniQuizAnswer(aktuelleFrage, fertig, quiz[aktuelleFrage].antworten.length);
   const courseProgress = useCourseProgress("pruefung", {
     started: aktuelleFrage > 0 || auswahl !== null || fertig,
     answeredQuestions: fertig ? quiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
@@ -86,7 +88,7 @@ export default function PruefungstippsKurs() {
   const frage = quiz[aktuelleFrage];
 
   function handleAntwort(index) {
-    if (auswahl !== null) return;
+    if (!answerGuard.accept(index)) return;
 
     setAuswahl(index);
 
@@ -94,7 +96,7 @@ export default function PruefungstippsKurs() {
       setPunkte((p) => p + 1);
     }
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
       const next = aktuelleFrage + 1;
       if (next < quiz.length) {
         setAktuelleFrage(next);

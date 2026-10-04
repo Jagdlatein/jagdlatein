@@ -9,9 +9,9 @@ export default function Feldhase() {
       correct: 1,
     },
     {
-      q: "Zu welcher Jungtierform zählt der Junghase?",
-      a: ["Nesthocker", "Nestflüchter", "Dauernestflüchter"],
-      correct: 2,
+      q: "Wie sind Junghasen bei der Geburt entwickelt?",
+      a: ["Nackt und blind","Behaart und sehfähig","Sie schlüpfen aus Eiern"],
+      correct: 1,
     },
     {
       q: "Wie bewegt sich der Feldhase bei Gefahr?",
@@ -92,7 +92,7 @@ export default function Feldhase() {
             <li>Rammelzeit: Januar–September</li>
             <li>3–4 Würfe pro Jahr möglich</li>
             <li>Wurfgröße: 1–4 Junge</li>
-            <li>Jungtiere: <strong>Dauernestflüchter</strong></li>
+            <li>Jungtiere: <strong>behaart und sehfähig (Nestflüchter)</strong></li>
             <li>Gebären in freier Deckung, nicht im Bau</li>
           </ul>
         </section>
@@ -124,18 +124,25 @@ export default function Feldhase() {
           <ul style={styles.list}>
             <li>Hase → Einzelgänger · Kaninchen → Kolonie</li>
             <li>Hase → Sasse · Kaninchen → Bau</li>
-            <li>Junghase → Dauernestflüchter · Kaninchen → Nesthocker</li>
+            <li>Junghase → behaart und sehfähig · Kaninchen → nackt und blind</li>
             <li>Hase → längere Läufe & Ohren</li>
           </ul>
         </section>
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -150,6 +157,7 @@ export default function Feldhase() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

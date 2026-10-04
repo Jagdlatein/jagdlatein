@@ -9,13 +9,13 @@ export default function Dachs() {
       correct: 1,
     },
     {
-      q: "Wie nennt man den Bau des Dachses?",
-      a: ["Setz", "Kessel", "Röhre"],
-      correct: 2,
+      q: "Wie heißt die Wohnkammer im Dachsbau?",
+      a: ["Horst","Kessel","Sasse"],
+      correct: 1,
     },
     {
       q: "Wie lautet die Zahnformel des Dachses?",
-      a: ["I 3/3 · C 1/1 · P 4/4 · M 2/3", "I 3/3 · C 1/1 · P 4/3 · M 2/2", "I 2/2 · C 1/1 · P 3/3 · M 3/3"],
+      a: ["I 3/3 · C 1/1 · P 4/4 · M 1/2", "I 3/3 · C 1/1 · P 4/3 · M 2/2", "I 2/2 · C 1/1 · P 3/3 · M 3/3"],
       correct: 0,
     },
   ];
@@ -63,7 +63,7 @@ export default function Dachs() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Bau & Lebensweise</h2>
           <ul style={styles.list}>
-            <li>Dachs lebt in großen, weit verzweigten Bauen („Röhren“)</li>
+            <li>Dachsbaue bestehen aus Röhren und Wohnkammern (Kesseln)</li>
             <li>Bau wird über Jahrzehnte genutzt</li>
             <li>Mehrere Notausgänge</li>
             <li>Oft Gemeinschaftsbau mit Fuchs</li>
@@ -75,8 +75,8 @@ export default function Dachs() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
           <ul style={styles.list}>
-            <li>Paarungszeit: Februar–April</li>
-            <li>Keimruhe → effektiver Wurf im Februar</li>
+            <li>Paarungen sind über weite Teile des Jahres möglich; Schwerpunkte variieren regional</li>
+            <li>Keimruhe; Geburten häufig im Februar–März</li>
             <li>2–3 Jungtiere („Dachswelpen“)</li>
           </ul>
         </section>
@@ -89,7 +89,7 @@ export default function Dachs() {
             <li>Kurz, gedrungen, kräftige Beine</li>
             <li>Fährte: breit, 5 Zehen sichtbar</li>
             <li>Losung: breiig bis kompakt, je nach Nahrung</li>
-            <li>Lauft: gleitend, schwerfällig</li>
+            <li>Lauf: gedrungen wirkend</li>
           </ul>
         </section>
 
@@ -108,7 +108,7 @@ export default function Dachs() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/3 = 38</li>
+            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
             <li>Starkes Raubtiergebiss, kann harte Nahrung aufbrechen</li>
             <li>Breite Molaren für Allesfresser typisch</li>
           </ul>
@@ -116,11 +116,18 @@ export default function Dachs() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://animaldiversity.org/accounts/Meles_meles/" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -135,6 +142,7 @@ export default function Dachs() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

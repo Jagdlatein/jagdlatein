@@ -10,11 +10,7 @@ export default function Auerhuhn() {
     },
     {
       q: "Was ist typisch für die Balz des Auerhahns?",
-      a: [
-        "Balz auf Bäumen im Sitzen",
-        "Vierstufiger Balzgesang mit Hauptschlag",
-        "Balz im Wasser"
-      ],
+      a: ["Balz ausschließlich auf dem Wasser","Balzgesang, zuerst oft auf dem Baum und später am Boden","Es gibt keinen Balzgesang"],
       correct: 1,
     },
     {
@@ -90,8 +86,8 @@ export default function Auerhuhn() {
           <ul style={styles.list}>
             <li>Balzzeit: April–Mai</li>
             <li>Typisch: <strong>Vierstufiger Balzgesang</strong></li>
-            <li>Phasen: „Knappen“ → „Trillern“ → „Hauptschlag“ → „Wettschlag“</li>
-            <li>Hahn wird während des Hauptschlags „taub“ für kurze Zeit</li>
+            <li>Balzgesang aus charakteristischen, aufeinanderfolgenden Lauten</li>
+            <li>Während des Balzgesangs kann die Wahrnehmung eingeschränkt sein; Störungen der Balz vermeiden</li>
             <li>Balz findet am Boden oder in niedrigen Bäumen statt</li>
           </ul>
         </section>
@@ -129,7 +125,7 @@ export default function Auerhuhn() {
           <ul style={styles.list}>
             <li>Birkhahn: kleiner, schwarzer, sichelförmiger Stoß</li>
             <li>Auerhenne ↔ Birkhenne: Auerhenne deutlich größer</li>
-            <li>Balzplatz unterscheidet sich → Auer balzt einzeln, Birkhuhn in Gruppen</li>
+            <li>Auch mehrere Auerhähne können einen gemeinsamen Balzplatz nutzen</li>
           </ul>
         </section>
 
@@ -150,11 +146,18 @@ export default function Auerhuhn() {
         {/* QUIZ */}
         {/* ===================================== */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/auerhuhn-tetrao-urogallus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -169,6 +172,7 @@ export default function Auerhuhn() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

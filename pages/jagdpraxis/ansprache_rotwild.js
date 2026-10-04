@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 ROTWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Hirsch – schwaches Geweih – dünner Träger – kurze Stangen", text: "Junger Hirsch?", correct: true },
-  { id: 2, title: "Kuh – Kalb eng bei ihr", text: "Erlegbar?", correct: false },
-  { id: 3, title: "Spießer – sehr schmale Stangen – wenig Masse", text: "Junger Spießer?", correct: true },
-
-  { id: 4, title: "Hirsch – starke Stangen – dunkles Geweih – breite Brust", text: "Alter Hirsch?", correct: true },
-  { id: 5, title: "Rotkahl – ohne Kalb – Oktober", text: "Erlegbar?", correct: true },
-  { id: 6, title: "Kuh – wirkt schlank – aber Kalb läuft verdeckt", text: "Sicher erlegbar?", correct: false },
-
-  { id: 7, title: "Hirsch – Geweih asymmetrisch – Körper kräftig", text: "Trotz Asymmetrie ein Hirsch?", correct: true },
-  { id: 8, title: "Kälber laufen hinter Kuh – Sommer", text: "Kuh erlegbar?", correct: false },
-  { id: 9, title: "Hirsch – kurze Stangen – dünner Fang", text: "Alter Hirsch?", correct: false },
-
-  { id: 10, title: "Kalb allein – ruft suchend – August", text: "Verwaist?", correct: false },
-  { id: 11, title: "Hirsch – helle Stangen – feines Geweih – schlanker Körper", text: "Junger Hirsch?", correct: true },
-  { id: 12, title: "Kuh – sehr massig – kein Kalb sichtbar – November", text: "Erlegbar?", correct: true },
-
-  { id: 13, title: "Spießer – deutlicher Stangenansatz – wenig Masse", text: "Richtig erkannt?", correct: true },
-  { id: 14, title: "Rotkahl – tief hängender Bauch – breiter Rücken", text: "Kalbführend?", correct: true },
-  { id: 15, title: "Hirsch – dunkle Stangen – starke Rose", text: "Alter Hirsch?", correct: true },
-
-  { id: 16, title: "Kuh – Kalb weit vor ihr – unruhig", text: "Erlegbar?", correct: false },
-  { id: 17, title: "Hirsch – dünner Träger – kaum Brusttiefe", text: "Alter Hirsch?", correct: false },
-  { id: 18, title: "Hirsch – deutliche Masse – dicke Stangen – starker Fang", text: "Alter Hirsch?", correct: true },
-
-  { id: 19, title: "Kuh – kein Kalb – Winter", text: "Höchstwahrscheinlich führungslos?", correct: true },
-  { id: 20, title: "Kalb – sehr klein – läuft normal bei der Kuh", text: "Erlegbar?", correct: false },
-
-  { id: 21, title: "Hirsch – Stangen stark perlverziert – dunkle Masse", text: "Alter Hirsch?", correct: true },
-  { id: 22, title: "Kuh – auffällige Gesäuge – Sommer", text: "Kalb führend?", correct: true },
-  { id: 23, title: "Hirsch – kurze Aug- & Mittelsprossen – schwaches Geweih", text: "Junger Hirsch?", correct: true },
-  { id: 24, title: "Spießer – starke Läufe – breiter Fang", text: "Althirsch?", correct: false },
-
-  { id: 25, title: "Kahlwild – tiefes Blatten – keine Kälber", text: "Erlegbar?", correct: true },
-];
+const scenarios = getPracticeScenarios("ansprache_rotwild");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,21 +46,22 @@ export default function AnspracheRotwild() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -148,9 +119,10 @@ export default function AnspracheRotwild() {
         Rotwild sicher ansprechen
       </h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -165,7 +137,7 @@ export default function AnspracheRotwild() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -173,14 +145,14 @@ export default function AnspracheRotwild() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

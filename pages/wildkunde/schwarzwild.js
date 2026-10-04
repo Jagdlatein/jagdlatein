@@ -61,9 +61,9 @@ export default function Schwarzwild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
           <ul style={styles.list}>
-            <li>Rauschzeit: November–Januar</li>
+            <li>Rauschzeit häufig im späten Herbst/Winter; unter günstigen Bedingungen auch außerhalb dieses Zeitraums</li>
             <li>Tragzeit: „3 Monate, 3 Wochen, 3 Tage“</li>
-            <li>Frischlingswurf: März–Mai (4–8 Frischlinge)</li>
+            <li>Frischlinge häufig im Frühjahr, aber auch zu anderen Jahreszeiten; Wurfgröße variabel</li>
           </ul>
         </section>
 
@@ -72,7 +72,7 @@ export default function Schwarzwild() {
           <h2 style={styles.sectionTitle}>Gebiss & Besonderheiten</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 3/3 = 44</li>
-            <li>Keiler: Haderer (unten) & Gewehre (oben)</li>
+            <li>Keiler: Haderer im Oberkiefer; Gewehre (Hauer) im Unterkiefer</li>
             <li>Gefährlicher Hauerbiss durch Selbstschärfung</li>
             <li>Dicke Schwarte schützt vor Verletzungen</li>
           </ul>
@@ -92,11 +92,18 @@ export default function Schwarzwild() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -111,6 +118,7 @@ export default function Schwarzwild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

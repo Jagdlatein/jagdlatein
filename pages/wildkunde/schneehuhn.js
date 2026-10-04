@@ -60,7 +60,7 @@ export default function Schneehuhn() {
             <li>Lebensraum: Alpen, arktische Regionen, Tundra</li>
             <li>Extrem gut an Kälte angepasst</li>
             <li>Wechselt mehrfach im Jahr das Gefieder</li>
-            <li>Schneehuhn kommt in CH & AT vor, in DE verschollen</li>
+            <li>Alpenschneehühner kommen in CH, AT und in den Hochlagen der bayerischen Alpen vor</li>
             <li>Jagdstatus regional streng reglementiert</li>
           </ul>
         </section>
@@ -69,7 +69,7 @@ export default function Schneehuhn() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
           <ul style={styles.list}>
-            <li><strong>Winter:</strong> völlig weißes Gefieder → perfekte Tarnung</li>
+            <li><strong>Winter:</strong> überwiegend weiß; die Schwanzfedern bleiben schwarz</li>
             <li><strong>Sommer:</strong> braun-grau gemustert</li>
             <li>Männchen mit rotem Rosenkamm</li>
             <li>Beinbefiederung („Schneeschuhe“) zur Wärmeisolierung</li>
@@ -122,11 +122,18 @@ export default function Schneehuhn() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.lfu.bayern.de/natur/sap/arteninformationen/steckbrief/zeige?stbname=Lagopus+muta+helvetica" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.lfu.bayern.de/natur/artenhilfsprogramme_voegel/raufusshuehner/index.htm" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -141,6 +148,7 @@ export default function Schneehuhn() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

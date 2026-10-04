@@ -1,46 +1,28 @@
+import { requirePaidAccount } from "../../../../lib/account-access";
+import { cleanQuizUsername, LEAGUE_COUNTRIES, quizDatabase, quizFailure, readQuizBody } from "../../../../lib/quiz-api";
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-import { createClient } from "@supabase/supabase-js";
-
-
 export async function POST(req) {
   try {
-    const { username, country } = await req.json();
-
-    if (!username) {
-      return Response.json(
-        { success: false, error: "Username fehlt" },
-        { status: 400 }
-      );
+    await requirePaidAccount(req);
+    const body = await readQuizBody(req);
+    const username = cleanQuizUsername(body.username);
+    const country = typeof body.country === "string" ? body.country.trim().toUpperCase() : "DE";
+    if (!username || !LEAGUE_COUNTRIES.has(country)) {
+      return Response.json({ success: false, error: "Bitte einen Quiznamen (maximal 40 Zeichen) und ein gültiges Land angeben." }, { status: 400 });
     }
-
-    const clean = username.trim().toLowerCase();
-
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-
-    const { data: exists } = await supabase
-      .from("quiz_users")
-      .select("username")
-      .eq("username", clean)
-      .maybeSingle();
-
-    if (exists) {
-      return Response.json({ success: true, exists: true });
+    const database = quizDatabase();
+    const { data, error } = await database.from("quiz_users").select("username").eq("username", username).maybeSingle();
+    if (error) throw error;
+    if (data) return Response.json({ success: true, exists: true });
+    const { error: insertError } = await database.from("quiz_users").insert({ username, country, total_points: 0, rounds: 0 });
+    if (insertError) {
+      // Ein paralleler Start kann denselben Namen bereits angelegt haben.
+      if (insertError.code === "23505") return Response.json({ success: true, exists: true });
+      throw insertError;
     }
-
-    await supabase.from("quiz_users").insert({
-      username: clean,
-      country: country || "DE",
-      total_points: 0,
-      rounds: 0,
-    });
-
     return Response.json({ success: true, created: true });
-  } catch (err) {
-    return Response.json({ success: false, error: err.message }, { status: 500 });
-  }
+  } catch (error) { return quizFailure(error); }
 }

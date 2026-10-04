@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 WIND-SZENARIEN – true = richtige Pirschrichtung
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Wind kommt von vorn – Wild steht vor dir", text: "Pirsch ansetzen?", correct: true },
-  { id: 2, title: "Wind im Rücken – Wild vor dir äsend", text: "Gute Pirschrichtung?", correct: false },
-  { id: 3, title: "Seitenwind – leichter Hangwind – Wild seitlich", text: "Pirsch möglich?", correct: true },
-
-  { id: 4, title: "Thermik steigt – Morgen – Hang unter dir", text: "Wind steigt zu dir → Pirsch von oben sinnvoll?", correct: false },
-  { id: 5, title: "Abfallende Thermik – Abend – Wind fällt abwärts", text: "Pirsch von oben möglich?", correct: true },
-  { id: 6, title: "Wind dreht alle 10 Sekunden", text: "Pirsch empfehlenswert?", correct: false },
-
-  { id: 7, title: "Konstanter Rückenwind – offenes Feld", text: "Angehen?", correct: false },
-  { id: 8, title: "Wind leicht von links – Deckung links", text: "Linke Pirschseite richtig?", correct: true },
-  { id: 9, title: "Thermik neutral – leichter Seitenwind – Waldkante", text: "Pirsch möglich?", correct: true },
-
-  { id: 10, title: "Starker Wind – Wild sichert kaum", text: "Pirsch trotz Geräuschkulisse sinnvoll?", correct: true },
-  { id: 11, title: "Windstill – aber Hanglage – Thermik steigt leicht", text: "Pirsch von unten?", correct: false },
-  { id: 12, title: "Windstill – Deckung vorhanden – Wild entspannt", text: "Pirsch möglich?", correct: true },
-
-  { id: 13, title: "Regen setzt ein – Wind drückt stark", text: "Wild wird unruhig → Pirsch gut möglich?", correct: false },
-  { id: 14, title: "Gegenwind + dichter Bewuchs", text: "Ideale Pirschbedingungen?", correct: true },
-  { id: 15, title: "Wind von rechts – du willst von rechts pirschen", text: "Richtig?", correct: false },
-
-  { id: 16, title: "Wind von vorn – Wild auf Kuppe", text: "Pirsch bergauf?", correct: false },
-  { id: 17, title: "Leichter Rückenwind – große Distanz – wechselhafte Thermik", text: "Pirsch ratsam?", correct: false },
-  { id: 18, title: "Wind von links – Wild etwas rechts versetzt", text: "Pirsch sinnvoll?", correct: true },
-
-  { id: 19, title: "Böiger Wind – aber klar einseitig", text: "Pirsch möglich?", correct: true },
-  { id: 20, title: "Wind fällt am Abend ins Tal – du stehst oben", text: "Pirsch von oben?", correct: true },
-
-  { id: 21, title: "Wind steht Richtung Wild – du stehst leicht versetzt", text: "Sicher?", correct: false },
-  { id: 22, title: "Thermik steigt nach Sonnenaufgang", text: "Pirsch von oben?", correct: false },
-  { id: 23, title: "Wind neutral – Wild direkt vor dir – keine Thermik", text: "Pirsch gut machbar?", correct: true },
-  { id: 24, title: "Seitenwind – Wild steht im Windschatten", text: "Pirsch sinnvoll?", correct: false },
-
-  { id: 25, title: "Leichter Wind von vorn – guter Bewuchs – Hanglage", text: "Optimale Pirschbedingungen?", correct: true },
-];
+const scenarios = getPracticeScenarios("wind");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtige Einschätzung!" : "Falsche Einschätzung!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function WindPirsch() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ export default function WindPirsch() {
         Wind & Pirschrichtung
       </h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ export default function WindPirsch() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig beurteilt"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ export default function WindPirsch() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

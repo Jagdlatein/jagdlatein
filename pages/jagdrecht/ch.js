@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { readJagdrechtArray, splitLiteralSearch } from "../../lib/jagdrecht-reader";
 import layout from "../../styles/JagdrechtTabs.module.css";
 
 export default function JagdrechtCH() {
@@ -7,16 +8,25 @@ export default function JagdrechtCH() {
   const [selectedKanton, setSelectedKanton] = useState("");
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
+  const [indexError, setIndexError] = useState("");
+  const [contentError, setContentError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // 1. Kantonsindex laden
   useEffect(() => {
-    fetch("/data/jagdrecht/ch/kantone.json")
-      .then(r => r.json())
-      .then(setKantone);
+    const controller = new AbortController();
+    readJagdrechtArray("/data/jagdrecht/ch/kantone.json", controller.signal, ["kurz", "name", "pruefung"])
+      .then(data => { if (!controller.signal.aborted) { setKantone(data); setIndexError(""); } })
+      .catch(error => { if (!controller.signal.aborted) setIndexError(error.message); });
+    return () => controller.abort();
   }, []);
 
   // 2. Inhalt dynamisch laden je nach Modus
   useEffect(() => {
+    const controller = new AbortController();
+    setArticles([]);
+    setContentError("");
+    setLoading(false);
     let path = "";
 
     if (mode === "jsg") path = "/data/jagdrecht/jsg.json";
@@ -27,13 +37,15 @@ export default function JagdrechtCH() {
     }
 
     if (!path || mode === "infos") {
-      setArticles([]);
-      return;
+      return () => controller.abort();
     }
 
-    fetch(path)
-      .then(r => r.json())
-      .then(setArticles);
+    setLoading(true);
+    readJagdrechtArray(path, controller.signal, ["id", "title", "text", "source"])
+      .then(data => { if (!controller.signal.aborted) setArticles(data); })
+      .catch(error => { if (!controller.signal.aborted) setContentError(error.message); })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
   }, [mode, selectedKanton]);
 
   // Suche
@@ -46,7 +58,7 @@ export default function JagdrechtCH() {
   // Highlight
   const highlight = (text) => {
     if (!search) return text;
-    const parts = text.split(new RegExp(`(${search})`, "gi"));
+    const parts = splitLiteralSearch(text, search);
     return parts.map((p, i) =>
       p.toLowerCase() === search.toLowerCase()
         ? <mark key={i} style={{ backgroundColor: "#ffeb3b" }}>{p}</mark>
@@ -57,6 +69,10 @@ export default function JagdrechtCH() {
   return (
     <main lang="de" style={styles.container}>
       <h1 style={styles.h1}>🇨🇭 Schweizer Jagdrecht</h1>
+      <p style={{ lineHeight: 1.6 }}>Lernübersichten mit amtlichen Quellen. Für die konkrete Jagd gelten die aktuelle Rechtsfassung und örtliche Vorgaben. Die Karten geben keine vollständigen Gesetzestexte wieder.</p>
+      {indexError && <p role="alert">{indexError}</p>}
+      {contentError && <p role="alert">{contentError}</p>}
+      {loading && <p role="status">Inhalte werden geladen…</p>}
 
       {/* Tabs */}
       <div className={layout.tabs}>
@@ -92,6 +108,7 @@ export default function JagdrechtCH() {
       {/* Kantonsauswahl */}
       {mode === "kantone" && (
         <select
+          aria-label="Region auswählen"
           value={selectedKanton}
           onChange={(e) => setSelectedKanton(e.target.value)}
           style={styles.select}
@@ -111,6 +128,7 @@ export default function JagdrechtCH() {
           <input
             type="text"
             placeholder="Suchbegriff eingeben…"
+            aria-label="Rechtsübersichten durchsuchen"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={styles.search}
@@ -124,6 +142,8 @@ export default function JagdrechtCH() {
             <div id={article.id} key={article.id} style={styles.card}>
               <h2 style={styles.articleTitle}>{highlight(article.title)}</h2>
               <p style={styles.text}>{highlight(article.text)}</p>
+              <a href={article.source} target="_blank" rel="noopener noreferrer">Amtliche Quelle öffnen</a>
+              <p style={{ fontSize: 13 }}>Lernübersicht geprüft: {article.reviewedOn}</p>
             </div>
           ))}
         </div>
@@ -137,8 +157,9 @@ export default function JagdrechtCH() {
               <h2 style={styles.articleTitle}>{k.name} ({k.kurz})</h2>
 
               <p><b>Jagdsystem:</b> {k.system}</p>
-              <p><b>Prüfung:</b> {k["prüfung"]}</p>
-              <p><b>Besonderheiten:</b> {k.besonderheiten}</p>
+              <p><b>Prüfung:</b> {k.pruefung}</p>
+              <p><b>Hinweise:</b> {k.besonderheiten}</p>
+              <a href={k.source} target="_blank" rel="noopener noreferrer">Zuständige Rechtsquellen öffnen</a>
             </div>
           ))}
         </div>

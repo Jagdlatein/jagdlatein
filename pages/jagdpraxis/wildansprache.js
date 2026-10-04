@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Wild richtig ansprechen (true = korrekt, false = falsch)
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehwild – zierlicher Körper – großer Kopf – kurze Läufe", text: "Kitz richtig angesprochen?", correct: true },
-  { id: 2, title: "Rehbock – schwache Stangen – dünner Träger – feine Rosen", text: "Alter Bock?", correct: false },
-  { id: 3, title: "Rehbock – starke Stangen – dicke Rosen – Muskelpaket", text: "Mittlerer bis alter Bock?", correct: true },
-
-  { id: 4, title: "Rehgeiß – ohne Kitz – zierlicher Körper – kurze Tritte", text: "Ist es eine Schmalgeiß?", correct: true },
-  { id: 5, title: "Schwarzwild – 30 kg – langer Strich – feminine Linien", text: "Überläuferkeiler?", correct: false },
-  { id: 6, title: "Schwarzwild – massiver Vorderkörper – Schild sichtbar", text: "Keiler?", correct: true },
-
-  { id: 7, title: "Rotwild – großer Körper – druckvolle Haltung – doch kein Geweih", text: "Hirsch?", correct: false },
-  { id: 8, title: "Rotwild – schmales Tier – zieht eng hinter anderem Tier", text: "Kalb?", correct: true },
-  { id: 9, title: "Rehwild – Bastgeweih im Januar", text: "Bock richtig angesprochen?", correct: true },
-
-  { id: 10, title: "Rehbock – abgekaute, kurze Stangen – abgenutzt", text: "Alter Bock?", correct: true },
-  { id: 11, title: "Reh – keine Stangen – schlanker Körper – spitzer Kopf", text: "Geiß?", correct: true },
-  { id: 12, title: "Rotwild – kurzer Träger – lange dünne Läufe", text: "Alttier?", correct: false },
-
-  { id: 13, title: "Schwarzwild – runder Kopf – sehr kurze Schnauze", text: "Frischling richtig erkannt?", correct: true },
-  { id: 14, title: "Schwarzwild – Keilkopf – wuchtige Schultern – Einzelgänger", text: "Keiler?", correct: true },
-  { id: 15, title: "Rotwild – feine Linien – zierlich – unsicher", text: "Schmalspießer?", correct: false },
-
-  { id: 16, title: "Rehwild – langer Körper – feine Statur – keine Stangen", text: "Schmalreh?", correct: true },
-  { id: 17, title: "Rehbock – Spieße dünn und sehr kurz", text: "Jährlingsbock?", correct: true },
-  { id: 18, title: "Schwarzwild – 50 kg – Sozialverhalten im Trupp", text: "Keiler?", correct: false },
-
-  { id: 19, title: "Rotwild – kurze Stangen – Häkchen – kleiner Körper", text: "Spießer?", correct: true },
-  { id: 20, title: "Rotwild – massig – dunkler Spiegel – dicke Stangen", text: "Hirsch mittleren Alters?", correct: true },
-
-  { id: 21, title: "Rehwild – Träger sehr kurz – schmale Brust – keine Stangen", text: "Kitz?", correct: true },
-  { id: 22, title: "Schwarzwild – femininer Kopf – keine sichtbare Wamme", text: "Keiler?", correct: false },
-  { id: 23, title: "Rehbock – dicke Stangen – deutliche Perlenbildung", text: "Alter Bock?", correct: true },
-  { id: 24, title: "Rotwild – groß – ohne Kalb – weit hinter Rudel", text: "Alttier?", correct: false },
-
-  { id: 25, title: "Schwarzwild – kompakter Körper – kräftiges Haupt – Einzelgänger", text: "Keiler?", correct: true },
-];
+const scenarios = getPracticeScenarios("wildansprache");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,20 +46,21 @@ export default function Wildansprache() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -142,9 +113,10 @@ export default function Wildansprache() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Wildansprache-Trainer</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -159,7 +131,7 @@ export default function Wildansprache() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -167,14 +139,14 @@ export default function Wildansprache() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
         }

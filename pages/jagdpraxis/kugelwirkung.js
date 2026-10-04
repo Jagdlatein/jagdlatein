@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 KUGELWIRKUNGS-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Kammerschuss – Weichteil – Deformationsgeschoss", text: "Sicherer Ausschuss?", correct: true },
-  { id: 2, title: "Schräger Schuss von hinten – trifft Weichteil", text: "Gute Wirkung?", correct: false },
-  { id: 3, title: "Herz-Lunge Bereich – gerader Winkel", text: "Zuverlässige Wirkung?", correct: true },
-
-  { id: 4, title: "Spitzer Winkel – zu weit hinten – Bauch getroffen", text: "Tödliche Wirkung sofort?", correct: false },
-  { id: 5, title: "Starkes Kaliber – breit stehend – Wirbelsäule getroffen", text: "Sofortiger Zusammenbruch?", correct: true },
-  { id: 6, title: "Schuss durchs Blatt – hohe Treffpunktlage", text: "Saubere Wirkung?", correct: true },
-
-  { id: 7, title: "Schräger Winkel – trifft nur Fleisch am Träger", text: "Gute Wirkung?", correct: false },
-  { id: 8, title: "Treffer hinter dem Blatt – moderates Kaliber", text: "Gute Wildbretschonung?", correct: true },
-  { id: 9, title: "Kleinkaliber – Rotwild – weiter Schuss", text: "Gute Wirkung?", correct: false },
-
-  { id: 10, title: "Starkes Kaliber – Rehwild – Blatt getroffen", text: "Wildbretschonend?", correct: false },
-  { id: 11, title: "Deformationsgeschoss – Kammertreffer – kurzer Fluchtweg", text: "Gute Jagdpraxiswirkung?", correct: true },
-  { id: 12, title: "Vollmantelgeschoss – Kammerschuss", text: "Gute Wirkung?", correct: false },
-
-  { id: 13, title: "Schuss durch beide Lungenflügel", text: "Sicher tödlich?", correct: true },
-  { id: 14, title: "Schuss oberhalb der Wirbelsäule – Rückenstreifschuss", text: "Sofort tödlich?", correct: false },
-  { id: 15, title: "Starkes Deformationsgeschoss – kurze Distanz – großer Ausschuss", text: "Starke Wildbretentwertung?", correct: true },
-
-  { id: 16, title: "Schuss durch Oberarmknochen – trifft Kammer", text: "Sicher tödlich?", correct: true },
-  { id: 17, title: "Leichtes Kaliber – spitzer Winkel – nur Muskeln getroffen", text: "Gute Wirkung?", correct: false },
-  { id: 18, title: "Schuss von oben – trifft Lunge", text: "Sicher tödlich?", correct: true },
-
-  { id: 19, title: "Tief angetragen – Bauchschuss", text: "Sofort tödlich?", correct: false },
-  { id: 20, title: "Kammerschuss – Ausschuss vorhanden", text: "Gute Pirschzeichen?", correct: true },
-
-  { id: 21, title: "Hoch angetragen – Wirbelsäule durchtrennt", text: "Sofortiger Zusammenbruch?", correct: true },
-  { id: 22, title: "Schuss ins Blatt – trifft Gelenk", text: "Sofort tödlich?", correct: false },
-  { id: 23, title: "Schuss aufs Haupt – sicherer Treffer", text: "Gute Jagdpraxis?", correct: false },
-
-  { id: 24, title: "Schulterblatt durchschlagen – Kammer verletzt", text: "Gute Wirkung?", correct: true },
-  { id: 25, title: "Sehr spitzer Winkel – trifft nicht Kammer – nur Fleisch", text: "Saubere Wirkung?", correct: false },
-];
+const scenarios = getPracticeScenarios("kugelwirkung");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig beurteilt!" : "Falsch beurteilt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function Kugelwirkung() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ export default function Kugelwirkung() {
         Geschosswirkung / Kugelwirkung
       </h1>
 
-  <ScenarioCard
+  <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ export default function Kugelwirkung() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig beurteilt"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ export default function Kugelwirkung() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

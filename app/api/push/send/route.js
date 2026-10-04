@@ -52,7 +52,7 @@ export async function POST(req) {
       typeof title !== "string" ||
       typeof body !== "string" ||
       !title.trim() ||
-      !body.trim()
+      !body.trim() || title.length > 200 || body.length > 2000
     ) {
       return Response.json(
         {
@@ -83,9 +83,9 @@ export async function POST(req) {
       );
     }
 
-    const tokens = (data || [])
+    const tokens = [...new Set((data || [])
       .map((row) => row.token)
-      .filter(Boolean);
+      .filter(token => typeof token === "string" && token.trim()))];
 
     if (tokens.length === 0) {
       return Response.json({
@@ -137,13 +137,17 @@ export async function POST(req) {
     }
 
     if (invalidTokens.length > 0) {
-      await supabase
+      const cleanup = await supabase
         .from("push_tokens")
         .update({
           enabled: false,
           updated_at: new Date().toISOString(),
         })
         .in("token", invalidTokens);
+      if (cleanup.error) {
+        return Response.json({ success: true, sent, failed, disabled: 0, total: tokens.length,
+          warning: "Ungültige Empfänger konnten noch nicht deaktiviert werden." });
+      }
     }
 
     return Response.json({
@@ -159,7 +163,7 @@ export async function POST(req) {
     return Response.json(
       {
         success: false,
-        error: error?.message || "Serverfehler",
+        error: "Die Nachricht konnte nicht vollständig versendet werden.",
       },
       { status: 500 }
     );

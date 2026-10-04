@@ -18,12 +18,8 @@ export default function Biber() {
       correct: 1,
     },
     {
-      q: "Welchen Schutzstatus hat der Biber?",
-      a: [
-        "Ganzjährig jagdbar",
-        "Mit Auflagen jagdbar",
-        "Ganzjährig streng geschützt"
-      ],
+      q: "Was ist beim Umgang mit dem Biber in Deutschland zu beachten?",
+      a: ["Ein Vorkommen berechtigt zum eigenmächtigen Fang","Grundstückseigentümer dürfen immer selbst eingreifen","Artenschutz beachten; Eingriffe benötigen die erforderliche behördliche Grundlage"],
       correct: 2,
     },
   ];
@@ -60,7 +56,7 @@ export default function Biber() {
             <li>Gewicht: 15–30 kg → eines der größten Nagetiere Europas</li>
             <li>Körperlänge: 80–100 cm</li>
             <li>Lebensraum: Flüsse, Seen, Bäche, Auenlandschaften</li>
-            <li>Streng geschützt in DE, AT, CH</li>
+            <li>Geschützte Art; Eingriffe richten sich nach örtlichem Artenschutzrecht und behördlichen Ausnahmen</li>
             <li>Hervorragender Schwimmer</li>
           </ul>
         </section>
@@ -134,7 +130,7 @@ export default function Biber() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 1/1 · C 0/0 · P 0/0 · M 3/3 = 20</li>
+            <li>Zahnformel: I 1/1 · C 0/0 · P 1/1 · M 3/3 = 20</li>
             <li><strong>Sehr starke Schneidezähne</strong></li>
             <li>Schneidezähne wachsen ständig nach</li>
           </ul>
@@ -142,11 +138,18 @@ export default function Biber() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://environnement.public.lu/dam-assets/fr/conserv_nature/publications/2022/anf-europaische-biber-web.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.bfn.de/artenportraits/castor-fiber" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -161,6 +164,7 @@ export default function Biber() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

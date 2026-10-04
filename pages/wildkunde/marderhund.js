@@ -10,13 +10,13 @@ export default function Marderhund() {
     },
     {
       q: "Wie verhält sich der Marderhund im Winter?",
-      a: ["Hält Winterruhe", "Wandert in den Süden", "Bleibt durchgehend aktiv"],
+      a: ["Kann in strengen Wintern Winterruhe halten","Wandert stets in den Süden","Bleibt bei jedem Winterwetter durchgehend aktiv"],
       correct: 0,
     },
     {
       q: "Wie viele Zähne hat der Marderhund?",
       a: ["38", "40", "42"],
-      correct: 1,
+      correct: 2,
     },
   ];
 
@@ -65,8 +65,8 @@ export default function Marderhund() {
           <ul style={styles.list}>
             <li>Nachtaktiv</li>
             <li>Sehr standorttreu</li>
-            <li>Lebt häufig in Fuchs- oder Dachsbaue</li>
-            <li>Hält Winterruhe (einziger Canide!)</li>
+            <li>Lebt häufig in Fuchs- oder Dachsbauen</li>
+            <li>Kann in strengen Wintern Winterruhe halten; bei mildem Wetter bleibt er aktiv</li>
             <li>Monogam lebend → Paare bleiben oft lebenslang zusammen</li>
           </ul>
         </section>
@@ -89,7 +89,7 @@ export default function Marderhund() {
             <li>Typische schwarze Gesichtsmaske ähnlich Waschbär</li>
             <li>Langhaariges, buschiges Fell</li>
             <li>Laufstil: trollend, schwerfällig</li>
-            <li>Fährte: 4–5 cm, fünf Zehen sichtbar (wie Hund, aber kleiner)</li>
+            <li>Fährte hundeartig, meist vier Zehen im Trittsiegel; Größe allein erlaubt keine sichere Artbestimmung</li>
             <li>Losung: sehr variabel durch allesfressende Ernährung</li>
           </ul>
         </section>
@@ -110,7 +110,7 @@ export default function Marderhund() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40</li>
+            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42</li>
             <li>Allesfressergebiss</li>
             <li>Starke Molaren zum Zermahlen pflanzlicher Nahrung</li>
           </ul>
@@ -118,11 +118,18 @@ export default function Marderhund() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.mdpi.com/2076-2615/13/15/2437" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/223538/index.php" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -137,6 +144,7 @@ export default function Marderhund() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

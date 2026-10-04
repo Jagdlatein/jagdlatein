@@ -78,7 +78,7 @@ export default function Krickente() {
           <h3>Erpel</h3>
           <ul style={styles.list}>
             <li>Kastanienbrauner Kopf</li>
-            <li>Smargdgrüner Augenstreifen bis zum Nacken</li>
+            <li>Smaragdgrüner Augenstreifen bis zum Nacken</li>
             <li>Grauer Körper</li>
             <li>Gelblich-weißes Unterschwanzfeld</li>
           </ul>
@@ -116,7 +116,7 @@ export default function Krickente() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Zugverhalten</h2>
           <ul style={styles.list}>
-            <li>Teilziehender Wasser- & Watvogel</li>
+            <li>Entenvogel; je nach Population Stand- oder Zugvogel</li>
             <li>Viele überwintern in Mittel- und Westeuropa</li>
             <li>Sehr schnelle, dichte Schwarmflüge</li>
           </ul>
@@ -129,6 +129,12 @@ export default function Krickente() {
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -143,6 +149,7 @@ export default function Krickente() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

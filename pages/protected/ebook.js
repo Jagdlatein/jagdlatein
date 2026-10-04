@@ -1,30 +1,7 @@
+import { getPaidPageProps } from "../../lib/account-access";
 // pages/protected/ebook.js
-export async function getServerSideProps({ req }) {
-  const cookie = req.headers.cookie || "";
-
-  const hasSession = cookie.includes("jl_session=1");
-  const hasPaid = cookie.includes("jl_paid=1");
-  const isAdmin = cookie.includes("jl_admin=1");
-
-  if (!hasSession) {
-    return {
-      redirect: {
-        destination: "/login?next=/protected/ebook",
-        permanent: false,
-      },
-    };
-  }
-
-  if (!hasPaid && !isAdmin) {
-    return {
-      redirect: {
-        destination: "/preise",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: {} };
+export async function getServerSideProps(context) {
+  return getPaidPageProps(context);
 }
 
 export default function ProtectedEbookPage() {

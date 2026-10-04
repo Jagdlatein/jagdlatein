@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,8 @@ function readHistory() {
           (path) =>
             typeof path === "string" &&
             path.startsWith("/") &&
-            !path.startsWith("//")
+            !path.startsWith("//") &&
+            !/[\\\u0000-\u001f\u007f]/.test(path)
         )
       : [];
   } catch {
@@ -21,6 +22,13 @@ function readHistory() {
   }
 }
 
+function writeHistory(history) {
+  try {
+    sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch {
+    // Navigation still works when browser storage is blocked or full.
+  }
+}
 export default function GlobalHomeButton() {
   const pathname = usePathname();
 
@@ -31,7 +39,7 @@ export default function GlobalHomeButton() {
     const history = readHistory();
     if (history[history.length - 1] !== current) {
       history.push(current);
-      sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(-20)));
+      writeHistory(history.slice(-20));
     }
   }, [pathname]);
 
@@ -48,7 +56,7 @@ export default function GlobalHomeButton() {
     history.pop();
 
     const previous = history[history.length - 1];
-    sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    writeHistory(history);
     window.location.assign(previous || "/");
   }
 

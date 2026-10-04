@@ -11,11 +11,11 @@ export default function Jagdpraxis() {
           fontFamily: "Georgia, serif"
         }}
       >
-        🦌 Jagdpraxis-Simulator
+        🦌 Jagdpraxis: Übungen & Ansitzsimulator
       </h1>
 
       <p style={{ color: "#4b4b4b", marginBottom: 28 }}>
-        Realistische Jagdszenarien – Schießen oder nicht? Ansprechen, Verhalten, Sicherheit.
+        Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.
       </p>
       <LearningDiscovery category="Jagdpraxis" title="Vor den Simulatoren: Praxiswissen vertiefen" />
 
@@ -30,8 +30,8 @@ export default function Jagdpraxis() {
         {[
           // Bestehende Einträge
           ["ansitz", "🎯 Ansitz-Simulator"],
-          ["drueckjagd", "🐗 Drückjagd-Simulator"],
-          ["pirsch", "👣 Pirsch-Simulator"],
+          ["drueckjagd", "🐗 Drückjagd-Wissen üben"],
+          ["pirsch", "👣 Pirsch-Wissen üben"],
           ["keiler", "🐗 Keiler-Erkennung"],
           ["schusszeichen", "💥 Schusszeichen-Trainer"],
           ["trefferzonen", "🎯 Trefferzonen-Trainer"],
@@ -43,7 +43,7 @@ export default function Jagdpraxis() {
           ["schussfeld", "🎯 Schussfeld-Beurteilung"],
           ["revier", "🌲 Revierkunde & Geländeformen"],
           ["trophaeen", "🦌 Trophäenbewertung"],
-          ["nachtjagd", "🌙 Nachtjagd-Simulator"],
+          ["nachtjagd", "🌙 Nachtjagd-Wissen üben"],
           ["waermebild", "🔥 Wärmebild-Ansprechen"],
           ["entfernung", "📏 Entfernungsschätzung"],
           ["beschuss", "💥 Kugelfang & Sicherheitstrainer"],

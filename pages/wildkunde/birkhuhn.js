@@ -111,7 +111,7 @@ export default function Birkhuhn() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Nahrung</h2>
           <ul style={styles.list}>
-            <li>Kn os pen, Kräuter, Beeren</li>
+            <li>Knospen, Kräuter, Beeren</li>
             <li>Junge: Insekten → extrem wichtig!</li>
             <li>Im Winter Birkenknospen</li>
           </ul>
@@ -151,6 +151,12 @@ export default function Birkhuhn() {
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -165,6 +171,7 @@ export default function Birkhuhn() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

@@ -10,7 +10,7 @@ export default function Steinwild() {
     },
     {
       q: "Wie nennt man die Hörner des Steinwildes?",
-      a: ["Schaufeln", "Krucken", "Stangen"],
+      a: ["Schaufeln","Hörner","Geweihstangen"],
       correct: 1,
     },
     {
@@ -100,17 +100,24 @@ export default function Steinwild() {
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
             <li>Typischer Wiederkäuer → keine Oberkiefer-Schneidezähne</li>
-            <li>Altersbestimmung über Molaren möglich</li>
+            <li>Zahnabnutzung erlaubt nur eine ungefähre Altersschätzung; Hornjahresringe liefern weitere Anhaltspunkte</li>
           </ul>
         </section>
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/flora-und-fauna/steinbock/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -125,6 +132,7 @@ export default function Steinwild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

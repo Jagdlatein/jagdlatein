@@ -13,12 +13,8 @@ export default function Luchs() {
       correct: 1,
     },
     {
-      q: "Wie ist der Schutzstatus des Luchses?",
-      a: [
-        "Jagbar mit Schonzeit",
-        "Nur in Ausnahmefällen jagdbar",
-        "Ganzjährig streng geschützt"
-      ],
+      q: "Welche Aussage gilt zum Luchs in Deutschland?",
+      a: ["Regulär ganzjährig jagdbar","Jeder Grundstückseigentümer darf ihn entfernen","Geschützte Art; keine eigenmächtige Bejagung"],
       correct: 2,
     },
     {
@@ -109,7 +105,7 @@ export default function Luchs() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Schutzstatus</h2>
           <ul style={styles.list}>
-            <li><strong>Ganzjährig streng geschützt</strong></li>
+            <li><strong>Geschützte Art; keine eigenmächtige Bejagung</strong></li>
             <li>Wiederansiedlungsprogramme in DE/AT/CH</li>
             <li>Monitoring über Fotofallen & DNA</li>
           </ul>
@@ -129,7 +125,7 @@ export default function Luchs() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 3/2 · M 1/1 = 30</li>
+            <li>Zahnformel: I 3/3 · C 1/1 · P 2/2 · M 1/1 = 28</li>
             <li>Kräftige Fangzähne</li>
             <li>Schneidende Reißzähne</li>
           </ul>
@@ -137,11 +133,18 @@ export default function Luchs() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.lifelynx.eu/biology/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -156,6 +159,7 @@ export default function Luchs() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

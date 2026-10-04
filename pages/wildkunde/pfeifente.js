@@ -116,6 +116,12 @@ export default function Pfeifente() {
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answers[qi] !== undefined && (
+                <p role="status">
+                  {answers[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const selected = answers[qi];
@@ -131,6 +137,7 @@ export default function Pfeifente() {
                 return (
                   <button
                     key={ai}
+                    disabled={answers[qi] !== undefined}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

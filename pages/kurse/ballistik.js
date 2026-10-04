@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -31,6 +32,7 @@ export default function BallistikKurs() {
   const [p,setP]=useState(0);
   const [f,setF]=useState(false);
 
+  const answerGuard = useMiniQuizAnswer(i, f, quiz[i].antworten.length);
   const courseProgress = useCourseProgress("ballistik", {
     started: i > 0 || sel !== null || f,
     answeredQuestions: f ? quiz.length : i + (sel !== null ? 1 : 0),
@@ -41,10 +43,10 @@ export default function BallistikKurs() {
   const q=quiz[i];
 
   function choose(a){
-    if(sel!==null) return;
+    if (!answerGuard.accept(a)) return;
     setSel(a);
     if(q.antworten[a].richtig) setP(p+1);
-    setTimeout(()=>{
+    answerGuard.schedule(()=>{
       if(i+1<quiz.length){setI(i+1);setSel(null);}
       else setF(true);
     },900);

@@ -70,9 +70,9 @@ export default function Baummarder() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
           <ul style={styles.list}>
-            <li>Gelblicher, ovaler Kehlfleck (nicht gegabelt!)</li>
+            <li>Meist gelblicher Kehlfleck; Form und Farbe können variieren</li>
             <li>Dichter, seidiger Pelz</li>
-            <li>Längerer Schwanz als Steinmarder</li>
+            <li>Langer, buschiger Schwanz</li>
             <li>Dunkelbraunes Fell</li>
             <li>Fährte: 3–4 cm, oft Doppeltritt</li>
           </ul>
@@ -85,7 +85,7 @@ export default function Baummarder() {
             <li><strong>Kehlfleck:</strong> Baummarder → gelb, oval · Steinmarder → weiß, gespalten</li>
             <li><strong>Lebensraum:</strong> Baummarder → Wald · Steinmarder → Siedlungen</li>
             <li><strong>Fell:</strong> Baummarder weicher & dichter</li>
-            <li><strong>Schwanz:</strong> länger & buschiger</li>
+            <li><strong>Bestimmung:</strong> mehrere Merkmale gemeinsam betrachten; Schwanzlänge allein genügt nicht</li>
             <li><strong>Schnauze:</strong> Baummarder rundlicher, Steinmarder spitzer</li>
           </ul>
         </section>
@@ -124,11 +124,18 @@ export default function Baummarder() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -143,6 +150,7 @@ export default function Baummarder() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

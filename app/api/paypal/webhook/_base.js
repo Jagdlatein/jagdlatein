@@ -1,73 +1,80 @@
-export async function verifyPaypalWebhook(req, rawBody) {
-  const transmissionId = req.headers.get("paypal-transmission-id");
-  const transmissionTime = req.headers.get("paypal-transmission-time");
-  const certUrl = req.headers.get("paypal-cert-url");
-  const transmissionSig = req.headers.get("paypal-transmission-sig");
-  const authAlgo = req.headers.get("paypal-auth-algo");
+import { createClient } from "@supabase/supabase-js";
+import { normalizeAccountEmail } from "../../../../lib/account-session";
 
-  const webhookId = process.env.PAYPAL_WEBHOOK_ID;
-  const clientId = process.env.PAYPAL_CLIENT_ID;
-  const secret = process.env.PAYPAL_SECRET;
+const PAYPAL_API_ORIGINS = new Set([
+  "https://api-m.paypal.com", "https://api-m.sandbox.paypal.com",
+  "https://api.paypal.com", "https://api.sandbox.paypal.com",
+]);
 
-  const base64 = Buffer.from(`${clientId}:${secret}`).toString("base64");
-
-  const response = await fetch(
-    `${process.env.PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Basic ${base64}`,
-      },
-      body: JSON.stringify({
-        auth_algo: authAlgo,
-        cert_url: certUrl,
-        transmission_id: transmissionId,
-        transmission_sig: transmissionSig,
-        transmission_time: transmissionTime,
-        webhook_id: webhookId,
-        webhook_event: JSON.parse(rawBody),
-      }),
-    }
-  );
-
-  const data = await response.json();
-  return data.verification_status === "SUCCESS" ? JSON.parse(rawBody) : null;
+export function paypalBase() {
+  const configured = process.env.PAYPAL_API_BASE || "https://api-m.paypal.com";
+  const url = new URL(configured);
+  if (!PAYPAL_API_ORIGINS.has(url.origin) || url.pathname !== "/" || url.search || url.hash || url.username || url.password)
+    throw new Error("PayPal configuration unavailable");
+  return { base: url.origin };
 }
 
 export async function paypalAccessToken() {
-  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_SECRET;
-
-  const base64 = Buffer.from(`${clientId}:${secret}`).toString("base64");
-
-  const response = await fetch(
-    `${process.env.PAYPAL_API_BASE}/v1/oauth2/token`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${base64}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "grant_type=client_credentials",
-    }
-  );
-
-  const json = await response.json();
-  return json?.access_token || null;
+  if (!clientId || !secret) throw new Error("PayPal configuration unavailable");
+  const { base } = paypalBase();
+  const response = await fetch(`${base}/v1/oauth2/token`, {
+    method: "POST", headers: {
+      Authorization: `Basic ${Buffer.from(`${clientId}:${secret}`).toString("base64")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    }, body: "grant_type=client_credentials", cache: "no-store", signal: AbortSignal.timeout(10000),
+  });
+  const data = await response.json();
+  if (!response.ok || typeof data.access_token !== "string" || !data.access_token)
+    throw new Error("PayPal authentication unavailable");
+  return data.access_token;
 }
 
-export async function paypalBase(path, method = "POST", body = null) {
+export async function paypalRequest(path, { method = "GET", body } = {}) {
+  if (!/^\/v[12]\//.test(path)) throw new Error("Invalid PayPal path");
+  const { base } = paypalBase();
   const token = await paypalAccessToken();
-
-  const response = await fetch(`${process.env.PAYPAL_API_BASE}${path}`, {
-    method,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : null,
+  const response = await fetch(`${base}${path}`, {
+    method, headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+    cache: "no-store", signal: AbortSignal.timeout(10000),
   });
+  const data = await response.json();
+  if (!response.ok) throw new Error("PayPal request unavailable");
+  return data;
+}
 
-  return response.json();
+export async function verifyPaypalWebhook(req, rawBody) {
+  const headerFields = {
+    transmission_id: "paypal-transmission-id", transmission_time: "paypal-transmission-time",
+    cert_url: "paypal-cert-url", transmission_sig: "paypal-transmission-sig", auth_algo: "paypal-auth-algo",
+  };
+  const input = Object.fromEntries(Object.entries(headerFields).map(([key, header]) => [key, req.headers.get(header)]));
+  if (Object.values(input).some(value => typeof value !== "string" || !value || value.length > 8192)) return null;
+  const webhookId = process.env.PAYPAL_WEBHOOK_ID;
+  if (!webhookId) throw new Error("PayPal webhook configuration unavailable");
+  const event = JSON.parse(rawBody);
+  const result = await paypalRequest("/v1/notifications/verify-webhook-signature", {
+    method: "POST", body: { ...input, webhook_id: webhookId, webhook_event: event },
+  });
+  return result.verification_status === "SUCCESS" ? event : null;
+}
+
+export async function activateVerifiedSubscription(subscriptionId) {
+  if (typeof subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(subscriptionId)) return false;
+  const subscription = await paypalRequest(`/v1/billing/subscriptions/${encodeURIComponent(subscriptionId)}`);
+  const allowedPlans = (process.env.PAYPAL_PLAN_IDS || process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA")
+    .split(",").map(value => value.trim()).filter(Boolean);
+  if (!allowedPlans.includes(subscription.plan_id) || subscription.status !== "ACTIVE") return false;
+  const email = normalizeAccountEmail(subscription.subscriber?.email_address);
+  if (!email) return false;
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error("Account service unavailable");
+  const database = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
+  const { error } = await database.from("userprofile").upsert({ email, is_premium: true,
+    updated_at: new Date().toISOString() }, { onConflict: "email" });
+  if (error) throw new Error("Account service unavailable");
+  return true;
 }

@@ -1,4 +1,6 @@
-﻿import { useState } from "react";
+import { getPaidPageProps } from "../../lib/account-access";
+
+import { useState } from "react";
 
 export default function AdminPush() {
   const [title, setTitle] = useState("Jagdlatein");
@@ -199,4 +201,8 @@ export default function AdminPush() {
       )}
     </main>
   );
+}
+
+export async function getServerSideProps(context) {
+  return getPaidPageProps(context, { adminOnly: true });
 }

@@ -6,11 +6,19 @@ import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { sendLoginCode } from "../../../../lib/email";
+import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
 
 
 export async function POST(req) {
   try {
-    const body = await req.json();
+    if ((req.headers.get("content-type") || "").split(";")[0].trim().toLowerCase() !== "application/json")
+      return NextResponse.json({ success: false, message: "Bitte JSON senden." }, { status: 415 });
+    if (!isAccountSessionConfigured()) return NextResponse.json(
+      { success: false, message: "Die Anmeldung ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503 });
+    let body;
+    try { body = await req.json(); } catch {
+      return NextResponse.json({ success: false, message: "Ungültige Anfrage." }, { status: 400 });
+    }
 
     if (typeof body?.email !== "string") {
       return NextResponse.json(
@@ -19,7 +27,7 @@ export async function POST(req) {
       );
     }
 
-    const email = body.email.toLowerCase().trim();
+    const email = normalizeAccountEmail(body.email);
 
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -32,7 +40,7 @@ export async function POST(req) {
 
     // Prüfen, ob die E-Mail bei Jagdlatein registriert ist
     const supabase = createClient(
-      process.env.SUPABASE_URL,
+      process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
@@ -52,7 +60,7 @@ export async function POST(req) {
     }
 
     // Absichtlich neutrale Antwort
-    if (!profile) {
+    if (!profile || normalizeAccountEmail(profile.email) !== email) {
       return NextResponse.json({
         success: true,
         message:
@@ -61,11 +69,13 @@ export async function POST(req) {
     }
 
     // Maximal ungefähr eine neue Mail pro Minute
-    const { data: existing } = await supabase
+    const { data: existing, error: existingError } = await supabase
       .from("login_codes")
       .select("requested_at")
       .eq("email", email)
       .maybeSingle();
+
+    if (existingError) return NextResponse.json({ success: false, message: "Serverfehler." }, { status: 500 });
 
     if (existing?.requested_at) {
       const lastRequest = new Date(existing.requested_at).getTime();

@@ -1,52 +1,26 @@
 [
   {
-    "id": "ju-1",
-    "title": "Grundlagen des Jurassischen Jagdrechts",
-    "text": "Der Kanton Jura führt eine Revier- bzw. Konzessionsjagd. Die Bewirtschaftung des Wildes erfolgt durch ausgewählte Jagdgesellschaften, die für Hege, Abschussplan und Schadensvermeidung verantwortlich sind."
+    "id": "ch-JU-system",
+    "title": "Jagdsystem",
+    "text": "Jura: Patentjagd.",
+    "source": "https://www.bafu.admin.ch/de/jagd",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "ju-2",
-    "title": "Revierorganisation",
-    "text": "Jagdgebiete werden verpachtet. Jede Jagdgesellschaft muss über qualifizierte Mitglieder verfügen und ist für die Umsetzung der kantonalen Vorgaben verantwortlich."
+    "id": "ch-JU-quellen",
+    "title": "Kanton Jura: Rechtsquellen finden",
+    "text": "Wähle in der amtlichen Übersicht Jura. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "ju-3",
-    "title": "Wildarten und Bewirtschaftung",
-    "text": "Rotwild, Rehwild und Schwarzwild stehen im Fokus der Regulierung. Die Schwarzwildbewirtschaftung hat aufgrund hoher Bestände grosse Bedeutung."
-  },
-  {
-    "id": "ju-4",
-    "title": "Jagdzeiten und Schutzgebiete",
-    "text": "Für jede Wildart existieren Jagdzeiten. Besondere Biotope, Brutgebiete und Wildruhezonen sind strikt geschützt."
-  },
-  {
-    "id": "ju-5",
-    "title": "Schiessnachweis und Ausbildung",
-    "text": "Der Kanton verlangt einen regelmässigen Schiessnachweis sowie den Nachweis theoretischer Kenntnisse."
-  },
-  {
-    "id": "ju-6",
-    "title": "Waffenregelungen",
-    "text": "Jägerinnen und Jäger müssen geeignete Kaliber für Hochwild verwenden. Sicherheit und Kugelfangregeln stehen im Vordergrund."
-  },
-  {
-    "id": "ju-7",
-    "title": "Wildschäden und Präventionsmassnahmen",
-    "text": "Schäden an Kulturen werden durch Fachpersonen beurteilt. Präventive Massnahmen wie Zäune und Vergrämung werden gefördert."
-  },
-  {
-    "id": "ju-8",
-    "title": "Meldepflichten",
-    "text": "Abschüsse, Nachsucheeinsätze und Beobachtungen geschützter Arten müssen gemeldet werden."
-  },
-  {
-    "id": "ju-9",
-    "title": "Konfliktmanagement",
-    "text": "Der Kanton koordiniert die Zusammenarbeit zwischen Landwirtschaft, Forstwirtschaft und Jagdgesellschaften."
-  },
-  {
-    "id": "ju-10",
-    "title": "Kontrollen und Sanktionen",
-    "text": "Wildhüter kontrollieren Jagd und Pachtgebiete. Bei Gesetzesverstössen drohen Bussen oder Entzug der Pacht."
+    "id": "ch-JU-check",
+    "title": "Vor der Jagd konkret nachschlagen",
+    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   }
 ]

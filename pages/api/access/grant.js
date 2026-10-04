@@ -1,11 +1,6 @@
-// pages/api/access/grant.js
-export default async function handler(req, res) {
+// Access can only be granted by the verified payment and account login flows.
+export default function handler(req, res) {
+  res.setHeader("Allow", "POST");
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-
-  // Set-Cookie: 180 Tage Zugang
-  const maxAge = 60 * 60 * 24 * 180;
-  res.setHeader("Set-Cookie", [
-    `access=pro; Path=/; Max-Age=${maxAge}; SameSite=Lax; Secure`,
-  ]);
-  return res.status(200).json({ ok: true });
+  return res.status(410).json({ error: "Bitte über die Preisseite bezahlen und mit einem E-Mail-Code anmelden." });
 }

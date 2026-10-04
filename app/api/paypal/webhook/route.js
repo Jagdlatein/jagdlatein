@@ -1,103 +1,37 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-import { createClient } from "@supabase/supabase-js";
+import { activateVerifiedSubscription, verifyPaypalWebhook } from "./_base";
 
-const cors = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers":
-    "Content-Type, paypal-auth-algo, paypal-cert-url, paypal-transmission-id, paypal-transmission-sig, paypal-transmission-time",
-};
+const subscriptionEvents = new Set([
+  "BILLING.SUBSCRIPTION.ACTIVATED", "BILLING.SUBSCRIPTION.UPDATED",
+]);
 
-export async function OPTIONS() {
-  return new Response(null, { status: 200, headers: cors });
+function json(data, status = 200) {
+  return Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(req) {
   const rawBody = await req.text();
-  console.log("🔥 WEBHOOK HIT");
-  console.log("📩 RAW BODY:", rawBody);
-
-  let event;
-
+  if (rawBody.length > 1024 * 1024) return json({ error: "payload too large" }, 413);
+  let parsed;
+  try { parsed = JSON.parse(rawBody); }
+  catch { return json({ error: "invalid json" }, 400); }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return json({ error: "invalid event" }, 400);
   try {
-    event = JSON.parse(rawBody);
-  } catch (e) {
-    console.error("❌ JSON ungültig", rawBody);
-    return new Response(JSON.stringify({ error: "invalid json" }), {
-      status: 400,
-      headers: cors,
-    });
+    const event = await verifyPaypalWebhook(req, rawBody);
+    if (!event) return json({ error: "invalid signature" }, 401);
+    // Approval and creation do not prove an active subscription or a paid order.
+    if (!subscriptionEvents.has(event.event_type)) return json({ ignored: true });
+    const subscriptionId = event.resource?.id;
+    if (typeof subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(subscriptionId))
+      return json({ error: "invalid subscription" }, 400);
+    // Read current status: delayed/replayed activation messages must not restore a cancelled subscription.
+    if (!await activateVerifiedSubscription(subscriptionId)) return json({ ignored: true });
+    return json({ ok: true, premium: true });
+  } catch {
+    return json({ error: "payment verification unavailable" }, 503);
   }
-
-  const email =
-    event?.resource?.subscriber?.email_address ||
-    event?.resource?.payer?.email_address ||
-    null;
-
-  if (!email) {
-    console.error("❌ Keine Email im PayPal Event");
-    return new Response(JSON.stringify({ error: "email missing" }), {
-      status: 400,
-      headers: cors,
-    });
-  }
-
-  console.log("📧 EMAIL:", email);
-
-  const validEvents = [
-    "BILLING.SUBSCRIPTION.ACTIVATED",
-    "BILLING.SUBSCRIPTION.CREATED",
-    "BILLING.SUBSCRIPTION.UPDATED",
-    "PAYMENT.CAPTURE.COMPLETED",
-    "PAYMENT.SALE.COMPLETED",
-    "CHECKOUT.ORDER.APPROVED",
-  ];
-
-  if (!validEvents.includes(event.event_type)) {
-    console.log("ℹ Event ignoriert:", event.event_type);
-    return new Response(JSON.stringify({ ignored: true }), {
-      status: 200,
-      headers: cors,
-    });
-  }
-
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY // FIXED
-  );
-
-  const { error } = await supabase
-    .from("userprofile") // sicher?
-    .upsert(
-      {
-        email: email.toLowerCase(),
-        is_premium: true,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "email" }
-    );
-
-  if (error) {
-    console.error("❌ Supabase Fehler:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: cors,
-    });
-  }
-
-  console.log("✅ PREMIUM gesetzt für:", email);
-
-  return new Response(JSON.stringify({ ok: true, premium: true }), {
-    status: 200,
-    headers: cors,
-  });
 }
 
-export function GET() {
-  return new Response(JSON.stringify({ ok: true }), {
-    status: 200,
-    headers: cors,
-  });
-}
+export function GET() { return json({ ok: true }); }

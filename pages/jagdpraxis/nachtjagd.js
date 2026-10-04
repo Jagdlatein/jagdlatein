@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 NACHTJAGD-SZENARIEN – true = Schuss möglich, false = nicht möglich
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehwild – 70 m – klare Silhouette – Mond hinter dir", text: "Sicherer Schuss möglich?", correct: true },
-  { id: 2, title: "Reh – 90 m – Dämmerung fast vorbei – unscharfes Bild", text: "Sauberes Ansprechen möglich?", correct: false },
-  { id: 3, title: "Überläufer – 40 m – leicht ziehend – klare Kontur", text: "Schuss verantwortbar?", correct: true },
-
-  { id: 4, title: "Sau – 120 m – stockdunkel – Hintergrund unklar", text: "Sicherheitslage gegeben?", correct: false },
-  { id: 5, title: "Fuchs – 35 m – Mondlicht perfekt – ruhiges Bild", text: "Saubere Schussabgabe?", correct: true },
-  { id: 6, title: "Reh – 60 m – Nebel zieht auf – Konturen verschwimmen", text: "Sicher?", correct: false },
-
-  { id: 7, title: "Rotwild – 80 m – im Schatten – kaum erkennbar", text: "Ansprechen möglich?", correct: false },
-  { id: 8, title: "Sau – 50 m – Kugelfang klar – ruhiges Stück", text: "Möglich?", correct: true },
-  { id: 9, title: "Rehbock – 30 m – direkt vor dem Kanzelfenster", text: "Wegen steilem Winkel sicher?", correct: false },
-
-  { id: 10, title: "Überläufer – 70 m – auf Wiese – guter Kontrast", text: "Möglich?", correct: true },
-  { id: 11, title: "Fuchs – 120 m – Silhouette zu klein", text: "Schuss vertretbar?", correct: false },
-  { id: 12, title: "Sau – 40 m – kurz ziehend – Hintergrund Wiese", text: "Saubere Lage?", correct: true },
-
-  { id: 13, title: "Reh – 85 m – Waldkante – fast schwarze Silhouette", text: "Ansprechen möglich?", correct: false },
-  { id: 14, title: "Überläufer – 55 m – seitliches Mondlicht – ruhig", text: "Trefferzone erkennbar?", correct: true },
-  { id: 15, title: "Rotwild – 100 m – bei Nebel – kaum Kontrast", text: "Sicher?", correct: false },
-
-  { id: 16, title: "Sau – 45 m – ruhige Lage – Hang als Kugelfang", text: "Möglich?", correct: true },
-  { id: 17, title: "Rehwild – 60 m – leichter Nieselregen", text: "Zu riskant?", correct: false },
-  { id: 18, title: "Fuchs – 25 m – perfektes Licht – keine Bewegung", text: "Sehr sicher?", correct: true },
-
-  { id: 19, title: "Überläufer – 110 m – schwaches Mondlicht", text: "Distanz + Sicht = riskant?", correct: false },
-  { id: 20, title: "Sau – 35 m – deutliche Kontur – ruhiges Bild", text: "Schuss möglich?", correct: true },
-
-  { id: 21, title: "Reh – 90 m – Blätter im Vordergrund verdecken Brust", text: "Unsicher?", correct: false },
-  { id: 22, title: "Sau – 70 m – heller Schnee – perfekter Kontrast", text: "Sehr gutes Zielbild?", correct: true },
-  { id: 23, title: "Fuchs – 50 m – dunkler Hintergrund – Silhouette klar", text: "Möglich?", correct: true },
-
-  { id: 24, title: "Rehwild – 40 m – Hintergrund unbekannt", text: "Sicherheit gewährleistet?", correct: false },
-  { id: 25, title: "Überläufer – 55 m – Kugelfang frei – leichte Bewegung", text: "Trefferzone gut sichtbar?", correct: true },
-];
+const scenarios = getPracticeScenarios("nachtjagd");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtige Entscheidung!" : "Falsche Entscheidung!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,20 +46,21 @@ export default function Nachtjagd() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore((prev) => prev + 1);
 
- setTimeout(() => {
+ answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -141,11 +112,12 @@ export default function Nachtjagd() {
     <main style={{ maxWidth: 900, margin: "0 auto", padding: 40 }}>
       <HomeButton />
 
-      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Nachtjagd-Simulator</h1>
+      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Nachtjagd-Trainer</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -160,7 +132,7 @@ export default function Nachtjagd() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Schuss möglich"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -168,14 +140,14 @@ export default function Nachtjagd() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Nicht sicher / nicht schießen"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

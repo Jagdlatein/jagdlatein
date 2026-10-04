@@ -1,52 +1,26 @@
 [
   {
-    "id": "nw-1",
-    "title": "Grundstruktur des Nidwaldner Jagdrechts",
-    "text": "Nidwalden führt eine Patentjagd in anspruchsvollem Berggelände. Sicherheitsvorgaben und Wildschutz besitzen hohe Priorität."
+    "id": "ch-NW-system",
+    "title": "Jagdsystem",
+    "text": "Nidwalden: Patentjagd.",
+    "source": "https://www.bafu.admin.ch/de/jagd",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "nw-2",
-    "title": "Patentwesen und Zulassung",
-    "text": "Patente werden jährlich vergeben. Die Jagdprüfung umfasst Theorie, Praxis und eine anspruchsvolle Schiessprüfung."
+    "id": "ch-NW-quellen",
+    "title": "Kanton Nidwalden: Rechtsquellen finden",
+    "text": "Wähle in der amtlichen Übersicht Nidwalden. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "nw-3",
-    "title": "Jagdgebiete und Terrainanpassung",
-    "text": "Aufgrund steiler Topografie gelten strenge Regeln zu Schusswinkeln, Kugelfang und Jagdorganisation."
-  },
-  {
-    "id": "nw-4",
-    "title": "Abschussplanung",
-    "text": "Gams- und Rotwildabschüsse werden zentral geplant. Bestandsregulation erfolgt regelmässig."
-  },
-  {
-    "id": "nw-5",
-    "title": "Jagdzeiten und Sperrzonen",
-    "text": "Bestimmte Gebiete sind temporär gesperrt, besonders Winterruhezonen und Gebiete mit gefährdeten Arten."
-  },
-  {
-    "id": "nw-6",
-    "title": "Wildschutz",
-    "text": "Förderung von Auerhuhn, Steinwild und weiteren Bergarten besitzt hohe Priorität."
-  },
-  {
-    "id": "nw-7",
-    "title": "Waffen- und Sicherheitsvorschriften",
-    "text": "Heikle Geländeformen bedingen strengste Sicherheitsstandards. Schüsse ohne sicheren Kugelfang sind verboten."
-  },
-  {
-    "id": "nw-8",
-    "title": "Nachsuchepflicht",
-    "text": "Nachsuchen müssen unverzüglich eingeleitet werden. Spezialisten mit Gebirgshunden stehen zur Verfügung."
-  },
-  {
-    "id": "nw-9",
-    "title": "Meldepflichten",
-    "text": "Abschüsse, Fehlschüsse und Grossraubtierbeobachtungen sind meldepflichtig."
-  },
-  {
-    "id": "nw-10",
-    "title": "Kontrolle und Sanktionen",
-    "text": "Wildhüter kontrollieren Jagd, Ausrüstung und Verhalten im Gelände."
+    "id": "ch-NW-check",
+    "title": "Vor der Jagd konkret nachschlagen",
+    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   }
 ]

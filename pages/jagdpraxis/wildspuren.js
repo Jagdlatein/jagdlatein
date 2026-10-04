@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SPURENSZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Schmaler, länglicher Abdruck – klauen eng – Herzform", text: "Rehwild?", correct: true },
-  { id: 2, title: "Sehr großer Abdruck – rundlich – stark gespreizt", text: "Rotwild?", correct: true },
-  { id: 3, title: "Kleiner Abdruck – rund – 4 Zehen sichtbar – Krallen klar erkennbar", text: "Fuchs?", correct: true },
-
-  { id: 4, title: "Breiter Abdruck – gespreizt – Schalen weit auseinander", text: "Schwarzwild?", correct: true },
-  { id: 5, title: "Abdruck länglich – klein – ohne Krallen sichtbar", text: "Dachs?", correct: false },
-  { id: 6, title: "Losung wurstartig – dunkle Farbe – spitze Enden", text: "Rehwildlosung?", correct: true },
-
-  { id: 7, title: "Losung stark segmentiert – 3–6 cm lang – oft in Haufen", text: "Rotwild?", correct: true },
-  { id: 8, title: "Losung sehr weich – breiig – nach Maisfraß", text: "Schwarzwild?", correct: true },
-  { id: 9, title: "Fuchslosung – dünn, schnurartig – mit Haaren", text: "Richtig erkannt?", correct: true },
-
-  { id: 10, title: "Schalenabdruck tief – Boden aufgewühlt – Trittsiegel breit", text: "Keiler?", correct: true },
-  { id: 11, title: "Abdruck klein – eng – kaum gespreizt – zierlich", text: "Reh oder Kitz?", correct: true },
-  { id: 12, title: "Losung pelletartig – sehr groß – glänzend", text: "Rehwild?", correct: false },
-
-  { id: 13, title: "Fährtenbild: diagonaler Trab – gleichmäßiger Abstand", text: "Fuchs?", correct: true },
-  { id: 14, title: "Fährtenbild: Gruppierung von 4 Abdrucken – Sprungfolge", text: "Hase?", correct: true },
-  { id: 15, title: "Fährtenbild: paralleler Gang – schwere Schalen – Spuren tief", text: "Rotwild?", correct: true },
-
-  { id: 16, title: "Schwarzwildfährte – Schalen weit gespreizt – tiefe Fährte", text: "Richtig erkannt?", correct: true },
-  { id: 17, title: "Fährte mit Krallenabdrücken – Tapsen rundlich", text: "Katzenart?", correct: false },
-  { id: 18, title: "Fraßspur: Entrindung an jungen Bäumen", text: "Rehwildfraß?", correct: false },
-
-  { id: 19, title: "Fraßspur: Gras sauber abgerissen – kurze Halme", text: "Rehwild?", correct: true },
-  { id: 20, title: "Fraßspur: Boden stark umgewühlt – Maisreste sichtbar", text: "Schwarzwild?", correct: true },
-
-  { id: 21, title: "Fährtenbild: große Sprünge – tiefe Druckpunkte vorne", text: "Hirsch im schnellen Gang?", correct: true },
-  { id: 22, title: "Fährtenbild: Zickzack – unregelmäßig – Schalen eng", text: "Rehwild?", correct: true },
-  { id: 23, title: "Schalenabdruck klein – rund – kaum sichtbar", text: "Rotwild?", correct: false },
-  { id: 24, title: "Losung: kleine Pellets – sehr helle Farbe", text: "Rehwild?", correct: true },
-
-  { id: 25, title: "Fährtenbild: ruhiger Trollgang – breite Schritte – tiefer Abdruck", text: "Keiler?", correct: true },
-];
+const scenarios = getPracticeScenarios("wildspuren");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig erkannt!" : "Falsch erkannt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function Wildspuren() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
   // ------------------------------------------------------------
   // ENDSEITE
@@ -145,9 +116,10 @@ export default function Wildspuren() {
         Fährten- & Spurenkunde
       </h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -162,7 +134,7 @@ export default function Wildspuren() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig erkannt"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -170,14 +142,14 @@ export default function Wildspuren() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

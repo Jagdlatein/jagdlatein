@@ -2,13 +2,17 @@
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@supabase/supabase-js";
+import { readRequestAccountSession } from "../../../../lib/account-access";
 
 
 export async function POST(req) {
   try {
+    if (!readRequestAccountSession(req)) {
+      return Response.json({ success: false, error: "Bitte anmelden." }, { status: 401 });
+    }
     const { token } = await req.json();
 
-    if (!token || typeof token !== "string") {
+    if (typeof token !== "string" || !token.trim() || token.length > 4096 || /[\s\u0000-\u001f\u007f]/.test(token.trim())) {
       return Response.json(
         { success: false, error: "Token fehlt" },
         { status: 400 }

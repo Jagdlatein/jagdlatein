@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { getPaidPageProps } from '../lib/account-access';
 import Seo from '../components/Seo';
 
 const blank = {
@@ -10,23 +11,6 @@ const blank = {
 export default function Admin(){
   const [items, setItems] = useState([]);
   const [draft, setDraft] = useState(blank);
-  const [ok, setOk] = useState(false);
-
-  useEffect(()=>{
-    const gate = sessionStorage.getItem('admin-ok') === 'true';
-    if (!gate) {
-      const t = prompt('Admin-Token eingeben:');
-      if (t && process.env.NEXT_PUBLIC_ADMIN_TOKEN && t === process.env.NEXT_PUBLIC_ADMIN_TOKEN) {
-        sessionStorage.setItem('admin-ok','true');
-        setOk(true);
-      } else {
-        alert('Kein Zugriff');
-        location.href='/';
-      }
-    } else setOk(true);
-  }, []);
-
-  if (!ok) return null;
 
   const add = () => {
     if (!draft.id || !draft.q) return alert('ID & Frage sind Pflicht.');
@@ -139,4 +123,8 @@ export default function Admin(){
       </section>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  return getPaidPageProps(context, { adminOnly: true });
 }

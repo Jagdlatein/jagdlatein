@@ -1,105 +1,40 @@
-export const runtime = "nodejs";  
-export const dynamic = "force-dynamic";  
+import { requirePaidAccount } from "../../../../lib/account-access";
+import { cleanQuizUsername, quizDatabase, quizFailure, readQuizBody } from "../../../../lib/quiz-api";
 
-import { createClient } from "@supabase/supabase-js";
-
-
-function cors() {
-  return {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  };
-}
-
-export async function OPTIONS() {
-  return new Response(null, { status: 204, headers: cors() });
-}
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   try {
-    const { username, points } = await req.json();
-
-    if (!username || points === undefined) {
-      return new Response(
-        JSON.stringify({ success: false, message: "Username oder Punkte fehlen" }),
-        { status: 400, headers: cors() }
-      );
+    await requirePaidAccount(req);
+    const body = await readQuizBody(req);
+    const username = cleanQuizUsername(body.username);
+    const points = body.points;
+    if (!username || !Number.isInteger(points) || points < 0 || points > 4000) {
+      return Response.json({ success: false, error: "Quizname oder Punkte sind ungültig." }, { status: 400 });
     }
-
-    const now = new Date().toISOString();
-
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-
-    const { data: userRow } = await supabase
-      .from("quiz_users")
-      .select("country")
-      .eq("username", username)
-      .maybeSingle();
-
-    const country = userRow?.country || "DE";
-
-    const { data: existing } = await supabase
-      .from("quiz_scores")
-      .select("*")
-      .eq("username", username)
-      .maybeSingle();
-
-    // INSERT
-    if (!existing) {
-      await supabase.from("quiz_scores").insert({
-        username,
-        country,
-        total_points: points,
-        rounds: 1,
-        updated_at: now
-      });
-
-      return new Response(JSON.stringify({
-        success: true,
-        highscore: true,
-        newScore: points,
-        oldScore: 0,
-      }), { status: 200, headers: cors() });
+    const database = quizDatabase();
+    const { data: user, error: userError } = await database.from("quiz_users").select("country").eq("username", username).maybeSingle();
+    if (userError) throw userError;
+    if (!user) return Response.json({ success: false, error: "Bitte zuerst deinen Quiznamen registrieren." }, { status: 400 });
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const { data: existing, error: scoreError } = await database.from("quiz_scores").select("total_points,rounds").eq("username", username).maybeSingle();
+      if (scoreError) throw scoreError;
+      const oldScore = Number(existing?.total_points) || 0;
+      if (existing && points <= oldScore) {
+        return Response.json({ success: true, highscore: false, newScore: points, oldScore }, { headers: { "Cache-Control": "private, no-store" } });
+      }
+      const record = { username, country: user.country, total_points: points,
+        rounds: (Number(existing?.rounds) || 0) + 1, updated_at: new Date().toISOString() };
+      const result = existing
+        ? await database.from("quiz_scores").update(record).eq("username", username).eq("total_points", oldScore).select("total_points").maybeSingle()
+        : await database.from("quiz_scores").insert(record).select("total_points").maybeSingle();
+      if (result.error && result.error.code !== "23505") throw result.error;
+      if (!result.error && result.data) {
+        return Response.json({ success: true, highscore: true, newScore: points, oldScore }, { headers: { "Cache-Control": "private, no-store" } });
+      }
+      // Ein anderer Lauf hat den Datensatz zwischen Lesen und Schreiben geändert.
     }
-
-    const oldScore = existing.total_points;
-
-    // Kein Highscore → kein Update
-    if (points <= oldScore) {
-      return new Response(JSON.stringify({
-        success: true,
-        highscore: false,
-        newScore: points,
-        oldScore,
-      }), { status: 200, headers: cors() });
-    }
-
-    // HIGH SCORE → UPDATE
-    await supabase
-      .from("quiz_scores")
-      .update({
-        total_points: points,
-        rounds: existing.rounds + 1,
-        country,
-        updated_at: now
-      })
-      .eq("username", username);
-
-    return new Response(JSON.stringify({
-      success: true,
-      highscore: true,
-      newScore: points,
-      oldScore,
-    }), { status: 200, headers: cors() });
-
-  } catch (err) {
-    return new Response(
-      JSON.stringify({ success: false, error: err.message }),
-      { status: 500, headers: cors() }
-    );
-  }
+    throw Object.assign(new Error("Die Rangliste wird gerade aktualisiert. Bitte erneut speichern."), { status: 503 });
+  } catch (error) { return quizFailure(error); }
 }

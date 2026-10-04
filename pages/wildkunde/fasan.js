@@ -84,7 +84,7 @@ export default function Fasan() {
             <li>Tagaktiv</li>
             <li>Männchen lautstark, Balzrufe im Frühjahr</li>
             <li>Hühnerartige Flucht → erst laufen, dann auffliegen</li>
-            <li>Leben in kleinen Trupps („Sprünge“)</li>
+            <li>Leben außerhalb der Fortpflanzungszeit häufig in kleinen Trupps</li>
           </ul>
         </section>
 
@@ -137,6 +137,12 @@ export default function Fasan() {
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -151,6 +157,7 @@ export default function Fasan() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

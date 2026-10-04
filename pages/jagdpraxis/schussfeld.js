@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Schussfeld sicher? true = sicher, false = nicht sicher
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehbock – Breit stehend – Hang dahinter", text: "Kugelfang sicher vorhanden?", correct: true },
-  { id: 2, title: "Reh – nur Rücken sichtbar – hohes Gras", text: "Kugelfang & Trefferzone unklar.", correct: false },
-  { id: 3, title: "Überläufer – 60 m – hinter dünnem Gestrüpp", text: "Deckung könnte Geschoss ablenken.", correct: false },
-
-  { id: 4, title: "Fuchs – 40 m – vor steiler Erdwand", text: "Idealstes Schussfeld.", correct: true },
-  { id: 5, title: "Rehwild – 120 m – über Kuppenlinie", text: "Kugelfang nicht einsehbar.", correct: false },
-  { id: 6, title: "Rotwild – 75 m – klar im Talboden", text: "Kugelfang durch Boden sicher.", correct: true },
-
-  { id: 7, title: "Keiler – 90 m – vor Waldkante", text: "Bäume könnten Geschoss ablenken.", correct: false },
-  { id: 8, title: "Fuchs – 20 m – im offenen Feld", text: "Sicheres Schussfeld.", correct: true },
-  { id: 9, title: "Rehbock – 50 m – Straße 300 m dahinter", text: "Straße in Schussrichtung → verboten.", correct: false },
-
-  { id: 10, title: "Sau – 45 m – steht breit – Kugelfang Hang", text: "Sauberes Bild.", correct: true },
-  { id: 11, title: "Reh – 35 m – hinter Weidezaun", text: "Zaun könnte Geschoss ablenken.", correct: false },
-  { id: 12, title: "Fuchs – 55 m – vor dichter Hecke", text: "Hecke als Kugelfang ungeeignet.", correct: false },
-
-  { id: 13, title: "Rotwild – 120 m – fester Boden dahinter", text: "Sicherer Kugelfang.", correct: true },
-  { id: 14, title: "Rehbock – zieht quer – Bewuchs vor Brust", text: "Schussfeld blockiert.", correct: false },
-  { id: 15, title: "Überläufer – 25 m – perfekte Sicht", text: "Schussfeld sicher.", correct: true },
-
-  { id: 16, title: "Sau – 60 m – hinter Baumgruppe", text: "Gefahr eines Abprallers.", correct: false },
-  { id: 17, title: "Reh – 70 m – offene Wiese – leichter Hang", text: "Kugelfang vorhanden.", correct: true },
-  { id: 18, title: "Keiler – 40 m – Wasser hinter dem Stück", text: "Geschoss könnte weit fehlgehen.", correct: false },
-
-  { id: 19, title: "Fuchs – 30 m – Erdwall perfekt dahinter", text: "Bestes Schussfeld.", correct: true },
-  { id: 20, title: "Rotwild – 65 m – hinterer Bereich unübersichtlich", text: "Keine Sicht in Hintergrund.", correct: false },
-
-  { id: 21, title: "Reh – 55 m – leichter Nebel", text: "Sicht & Hintergrund unsicher.", correct: false },
-  { id: 22, title: "Überläufer – 80 m – freies Feld – Hang dahinter", text: "Sicherer Kugelfang.", correct: true },
-  { id: 23, title: "Fuchs – 50 m – hinter Holzzaun", text: "Holzzaun kann Geschosse ablenken.", correct: false },
-  { id: 24, title: "Rehbock – 40 m – hinter ihm dichter Wald", text: "Kein sicherer Kugelfang.", correct: false },
-
-  { id: 25, title: "Sau – 70 m – vor Erdhang – ruhige Lage", text: "Sicheres Schussfeld.", correct: true },
-];
+const scenarios = getPracticeScenarios("schussfeld");
 
 // ------------------------------------------------------------
 // FEEDBACK BOX
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Sicheres Schussfeld!" : "Nicht sicher – richtige Entscheidung!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,21 +46,22 @@ export default function SchussfeldBeurteilung() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -143,9 +114,10 @@ export default function SchussfeldBeurteilung() {
       <HomeButton />
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Schussfeld-Beurteilung</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -160,7 +132,7 @@ export default function SchussfeldBeurteilung() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Sicheres Schussfeld"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -168,14 +140,14 @@ export default function SchussfeldBeurteilung() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Nicht sicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -10,47 +11,239 @@ import HomeButton from "./components/HomeButton";
 // 25 WAFFENHANDHABUNG-SZENARIEN – true = richtig gehandelt
 // ------------------------------------------------------------
 const scenarios = [
-  { id: 1, title: "Waffe wird übernommen – Verschluss geschlossen", text: "Annehmen?", correct: false },
-  { id: 2, title: "Waffe übergeben – Verschluss offen – Patronenlager sichtbar leer", text: "Korrekt?", correct: true },
-  { id: 3, title: "Beim Pirschgang – Finger liegt am Abzug", text: "Richtig?", correct: false },
-
-  { id: 4, title: "Waffe auf dem Hochsitz – entladen – Lauf nach oben", text: "Sicher?", correct: true },
-  { id: 5, title: "Lauf zeigt kurz Richtung Nebenperson", text: "Tolerierbar?", correct: false },
-  { id: 6, title: "Waffe transportiert – Futteral verschlossen", text: "Richtig?", correct: true },
-
-  { id: 7, title: "Schussfeld geprüft – Kugelfang gegeben", text: "Schuss antragen?", correct: true },
-  { id: 8, title: "Schuss löst sich – trotz gesichert", text: "Waffe weiter benutzen?", correct: false },
-  { id: 9, title: "Patrone verklemmt – Störung beheben – Lauf zeigt in sichere Richtung", text: "Korrekt?", correct: true },
-
-  { id: 10, title: "Laden auf der Kanzel – Lauf zeigt Richtung Waldrand", text: "Sicher?", correct: false },
-  { id: 11, title: "Waffe überladen – zu viele Patronen im Magazin", text: "Erlaubt?", correct: false },
-  { id: 12, title: "Abschussprüfung – Verschluss offen – Magazin entnommen", text: "Korrekt?", correct: true },
-
-  { id: 13, title: "Waffe beim Aufstehen auf dem Hochsitz kurz unkontrolliert", text: "Vertretbar?", correct: false },
-  { id: 14, title: "Vor Schuss: Sicherung gelöst – Finger neben Abzug", text: "Richtig?", correct: true },
-  { id: 15, title: "Nach Schuss: Waffe sofort sichern und entladen", text: "Korrekt?", correct: true },
-
-  { id: 16, title: "Transport im Auto – ungeladen – Futteral offen", text: "Korrekt?", correct: false },
-  { id: 17, title: "Munition in der Tasche – getrennt von der Waffe", text: "Richtig gehandhabt?", correct: true },
-  { id: 18, title: "Schussfeld unklar – Schatten und Bewuchs", text: "Schuss abgeben?", correct: false },
-
-  { id: 19, title: "Waffe führt der Hund beim Einsteigen ans Auto kurz um", text: "Noch sicher?", correct: false },
-  { id: 20, title: "Drückjagd – Waffe geladen – Sicherung drin – Finger gerade", text: "Richtig?", correct: true },
-
-  { id: 21, title: "Magazin fällt herunter – schmutzt – weiterverwenden?", text: "Unbedenklich?", correct: false },
-  { id: 22, title: "Waffe auf dem Schießstand – Lauf zeigt immer Richtung Kugelfang", text: "Korrekt?", correct: true },
-  { id: 23, title: "Vor Hindernisüberstieg: Waffe entladen", text: "Richtig?", correct: true },
-  { id: 24, title: "Schussabgabe: Finger noch nicht am Abzug während Zielaufnahme", text: "Korrekt?", correct: true },
-
-  { id: 25, title: "Waffe gesichert über die Schulter getragen – Finger nahe am Abzug", text: "Sicher?", correct: false }
+  {
+    "id": 1,
+    "title": "Eine fremde Waffe wird mit geschlossenem Verschluss gereicht",
+    "text": "Ohne eigene Entladekontrolle übernehmen?",
+    "correct": false,
+    "explanation": "Jede Waffe als geladen behandeln; bei sicherer Mündung Lager und Magazin selbst kontrollieren.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 2,
+    "title": "Übergabe: Lager und Magazin kontrolliert leer, Verschluss offen",
+    "text": "Ist dieser kontrollierte Zustand bei sicherer Mündungsrichtung richtig?",
+    "correct": true,
+    "explanation": "Ein offener Verschluss allein genügt nicht; die vollständige Entladekontrolle gehört dazu.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 3,
+    "title": "Beim Pirschen liegt der Finger am Abzug",
+    "text": "Ist das sicher?",
+    "correct": false,
+    "explanation": "Finger außerhalb des Abzugsbügels halten, bis der Schuss bewusst abgegeben werden soll.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 4,
+    "title": "Auf dem Hochsitz wird eine entladene Waffe gehandhabt",
+    "text": "Mündungsrichtung auch jetzt kontrollieren und ungefährlich halten?",
+    "correct": true,
+    "explanation": "Eine entladene Waffe wird mit derselben Sorgfalt gehandhabt.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 5,
+    "title": "Die Laufmündung zeigt kurz auf eine andere Person",
+    "text": "Ist das tolerierbar?",
+    "correct": false,
+    "explanation": "Auch kurzzeitiges Überstreichen einer Person gefährdet sie.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 6,
+    "title": "Deutschland: Beförderung nach § 12 Abs. 3 Nr. 2 WaffG",
+    "text": "Entladen, nicht zugriffsbereit und zu einem zulässigen Zweck transportieren?",
+    "correct": true,
+    "explanation": "Ein Futteral allein genügt nicht; Entladezustand, Zugänglichkeit und Transportzweck sind maßgeblich.",
+    "source": "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
+    "country": "DE"
+  },
+  {
+    "id": 7,
+    "title": "Vor dem Schuss werden Ziel, Umfeld, Kugelfang und örtliche Berechtigung geprüft",
+    "text": "Ist diese vollständige Prüfung erforderlich?",
+    "correct": true,
+    "explanation": "Ein vorhandener Kugelfang ersetzt weder sicheres Ansprechen noch die Prüfung möglicher Gefährdungen.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 8,
+    "title": "Eine Waffe hat trotz betätigter Sicherung unbeabsichtigt ausgelöst",
+    "text": "Ohne fachliche Prüfung weiterverwenden?",
+    "correct": false,
+    "explanation": "Sicher aus dem Einsatz nehmen; Reparaturen gehören in eine Fachwerkstatt.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 9,
+    "title": "Eine Patrone klemmt; die Ursache ist unklar",
+    "text": "Sichere Mündung behalten und nur nach Herstelleranleitung fachgerecht vorgehen?",
+    "correct": true,
+    "explanation": "Unklare Störungen nicht gewaltsam beheben. Bei Zweifel fachliche Hilfe holen.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 10,
+    "title": "Beim Laden zeigt die Mündung zum Waldrand; Gefährdung ist unklar",
+    "text": "Reicht „Waldrand“ als sichere Richtung?",
+    "correct": false,
+    "explanation": "Bewuchs beweist keine ungefährliche Richtung. Jede Mündungsbewegung kontrollieren.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 11,
+    "title": "Das Magazin soll über die vorgesehene Kapazität hinaus befüllt werden",
+    "text": "Ist das sachgerecht?",
+    "correct": false,
+    "explanation": "Waffe und Magazin nur bestimmungsgemäß nach Herstellerangaben verwenden.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 12,
+    "title": "Das Magazin ist entfernt; das Patronenlager wird ebenfalls kontrolliert",
+    "text": "Sind beide Kontrollen für sicheres Entladen erforderlich?",
+    "correct": true,
+    "explanation": "Auch ohne Magazin kann sich noch eine Patrone im Lager befinden.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 13,
+    "title": "Beim Aufstehen auf dem Hochsitz bleibt die Waffe kurz unkontrolliert",
+    "text": "Ist das vertretbar?",
+    "correct": false,
+    "explanation": "Waffe und Mündungsrichtung müssen bei jeder Bewegung unter Kontrolle bleiben.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 14,
+    "title": "Das Ziel wird erst aufgenommen; die Schussentscheidung ist noch nicht gefallen",
+    "text": "Finger außerhalb des Abzugsbügels lassen?",
+    "correct": true,
+    "explanation": "Zielaufnahme allein ist noch keine bewusste Schussabgabe.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 15,
+    "title": "Nach der Schussabgabe wird das Stück beobachtet; vor Absteigen oder Bergen wird entladen",
+    "text": "Ist dieses kontrollierte Vorgehen richtig?",
+    "correct": true,
+    "explanation": "Schussreaktion beobachten und Handhabung situationsgerecht sichern; vor Gefahrenbewegungen entladen.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 16,
+    "title": "Deutschland: Standardtransport nach § 12 Abs. 3 Nr. 2 WaffG; entladene Waffe liegt sofort griffbereit",
+    "text": "Ist das allein wegen des Entladens zulässig?",
+    "correct": false,
+    "explanation": "Diese Beförderungsausnahme verlangt auch fehlende Zugriffsbereitschaft. Andere jagdliche Ausnahmen gesondert prüfen.",
+    "source": "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
+    "country": "DE"
+  },
+  {
+    "id": 17,
+    "title": "Deutschland: Munition wird lose in der Tasche neben einer entladenen Waffe transportiert",
+    "text": "Reicht dieser Umstand allein als Nachweis eines rechtmäßigen Transports?",
+    "correct": false,
+    "explanation": "Die gesamte Beförderung muss die einschlägigen Voraussetzungen erfüllen; „getrennt“ allein beantwortet das nicht.",
+    "source": "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
+    "country": "DE"
+  },
+  {
+    "id": 18,
+    "title": "Zielbereich und Hintergrund sind wegen Schatten und Bewuchs unklar",
+    "text": "Trotzdem schießen?",
+    "correct": false,
+    "explanation": "Bei unklarer Gefährdung unterbleibt der Schuss.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 19,
+    "title": "Ein Hund stößt beim Einsteigen gegen die Waffe; die Mündung wird unkontrolliert",
+    "text": "Ist das sicher?",
+    "correct": false,
+    "explanation": "Vor Einsteigen entladen und die Waffe gegen unkontrollierte Bewegungen sichern.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 20,
+    "title": "Drückjagd: zugewiesener Stand, Freigabe, sichere Mündung; geladene Waffe nach Herstelleranleitung gesichert",
+    "text": "Ist dieser Zustand nach Einweisung zulässig?",
+    "correct": true,
+    "explanation": "Nur während freigegebener Jagdausübung laden; Sicherung ersetzt sichere Handhabung nicht.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 21,
+    "title": "Ein Magazin ist nach einem Sturz verschmutzt",
+    "text": "Ohne Prüfung weiterverwenden?",
+    "correct": false,
+    "explanation": "Verschmutzung und Schäden können Störungen verursachen; sichere Prüfung und Reinigung sind erforderlich.",
+    "source": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Merkblatt_praktische_Jagdpruefung_Waffenhandhabung.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 22,
+    "title": "Auf dem Schützenstand zeigt die Mündung in die freigegebene Schussrichtung",
+    "text": "Ist das für die sichere Handhabung erforderlich?",
+    "correct": true,
+    "explanation": "Die Standaufsicht und Standordnung bleiben zusätzlich verbindlich.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 23,
+    "title": "Ein Hindernis soll überwunden werden",
+    "text": "Vorher entladen und den sicheren Übergang planen?",
+    "correct": true,
+    "explanation": "Entladen und kontrollierte Handhabung reduzieren das Risiko beim Hindernisüberstieg.",
+    "source": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/8a17ae3e3d74af01/0eb4f2df124a/b11-broschuere-jagd.pdf",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 24,
+    "title": "Während der Zielaufnahme liegt der Finger außerhalb des Abzugsbügels",
+    "text": "Ist das richtig?",
+    "correct": true,
+    "explanation": "Erst für die bewusste sichere Schussabgabe an den Abzug gehen.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  },
+  {
+    "id": 25,
+    "title": "Eine gesicherte Waffe wird mit dem Finger am Abzug getragen",
+    "text": "Macht die Sicherung das ungefährlich?",
+    "correct": false,
+    "explanation": "Eine technische Sicherung ersetzt niemals Mündungskontrolle und Abzugsdisziplin.",
+    "source": "https://www.svlfg.de/sichere-jagd",
+    "country": "Grundsätzliche Sicherheit; örtliches Recht zusätzlich prüfen"
+  }
 ];
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +256,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig gehandhabt!" : "Falsch gehandhabt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +271,20 @@ export default function Waffenhandhabung() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -148,7 +344,7 @@ export default function Waffenhandhabung() {
 
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +359,7 @@ export default function Waffenhandhabung() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig gehandhabt"
+            text="Ja / trifft zu"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +367,14 @@ export default function Waffenhandhabung() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Nein / trifft nicht zu"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

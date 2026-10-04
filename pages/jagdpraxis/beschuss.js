@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SICHERHEITSSZENARIEN – true = sicher, false = NICHT sicher
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehwild – 60 m – Hang dahinter steigt an", text: "Natürlicher Kugelfang vorhanden?", correct: true },
-  { id: 2, title: "Reh – 90 m – freies Feld – Straße 400 m dahinter", text: "Schuss sicher?", correct: false },
-  { id: 3, title: "Fuchs – 30 m – Kugelfang Wall – ruhige Lage", text: "Schuss sicher?", correct: true },
-
-  { id: 4, title: "Sau – 80 m – hinter ihr fällt Gelände ab", text: "Gefahr einer Weitflugkugel?", correct: false },
-  { id: 5, title: "Überläufer – 50 m – Waldrand – starker Wall", text: "Schuss sicher?", correct: true },
-  { id: 6, title: "Reh – 120 m – hinter Hecke Häuser", text: "Sicher?", correct: false },
-
-  { id: 7, title: "Fuchs – 40 m – Kugelfang bewaldete Böschung", text: "Sicher?", correct: true },
-  { id: 8, title: "Reh – 150 m – Hügelkuppe – Hintergrund nicht erkennbar", text: "Gefährlich?", correct: false },
-  { id: 9, title: "Sau – 35 m – vor steilem Erdwall", text: "Sicher?", correct: true },
-
-  { id: 10, title: "Fuchs – 90 m – offenes Feld – keine Deckung dahinter", text: "Gefährlich?", correct: false },
-  { id: 11, title: "Reh – 45 m – steil nach oben schießen", text: "Kugelfang unklar?", correct: false },
-  { id: 12, title: "Rehwild – 65 m – vor dichtem Erdhang", text: "Natürlicher Kugelfang?", correct: true },
-
-  { id: 13, title: "Rotwild – 110 m – Kuppe dahinter", text: "Gefahr einer Überschusssituation?", correct: false },
-  { id: 14, title: "Überläufer – 55 m – Waldschneise – Hang steigt an", text: "Sicher?", correct: true },
-  { id: 15, title: "Fuchs – 25 m – direkt unter Hochsitz", text: "Extremer Winkel: sicher?", correct: false },
-
-  { id: 16, title: "Reh – 80 m – dahinter dichter Forst", text: "Kugelfang gegeben?", correct: true },
-  { id: 17, title: "Sau – 100 m – Boden gefroren – Abprallergefahr", text: "Sicherer Schuss?", correct: false },
-  { id: 18, title: "Reh – 35 m – steiler Hang als Fang", text: "Sehr sicher?", correct: true },
-
-  { id: 19, title: "Fuchs – 140 m – dahinter Wiesenhang abfallend", text: "Hohes Risiko für Überschuss?", correct: false },
-  { id: 20, title: "Reh – 60 m – Waldhang dahinter steigend", text: "Sicher?", correct: true },
-
-  { id: 21, title: "Sau – 70 m – Hintergrund dichtes Gebüsch", text: "Gebüsch ≠ Kugelfang – sicher?", correct: false },
-  { id: 22, title: "Rehbock – 50 m – Lehmhang dahinter", text: "Optimaler Kugelfang?", correct: true },
-  { id: 23, title: "Fuchs – 85 m – Feldweg dahinter", text: "Feldweg = Risiko?", correct: false },
-  { id: 24, title: "Reh – 100 m – Felsenwand als Hintergrund", text: "Kugelfang absolut sicher?", correct: true },
-
-  { id: 25, title: "Überläufer – 40 m – leichter Winkel nach oben", text: "Sicher?", correct: false },
-];
+const scenarios = getPracticeScenarios("beschuss");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtige Entscheidung!" : "Falsche Entscheidung!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,20 +46,21 @@ export default function KugelfangSicherheit() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-  setTimeout(() => {
+  answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -147,9 +118,10 @@ export default function KugelfangSicherheit() {
         Kugelfang & Sicherheitstrainer
       </h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -164,7 +136,7 @@ export default function KugelfangSicherheit() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Sicher"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -172,14 +144,14 @@ export default function KugelfangSicherheit() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Nicht sicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

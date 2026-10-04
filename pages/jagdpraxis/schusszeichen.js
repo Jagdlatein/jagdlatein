@@ -1,5 +1,7 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -10,51 +12,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SCHUSSZEICHEN-SZENARIEN – TRUE = tödlicher Treffer, FALSE = nicht tödlich
 // ------------------------------------------------------------
-const scenarios = [
-  // Einschuss / Ausschuss / Verhalten
-  { id: 1, title: "Rehbock – Zeichnet mit starkem Zeichnen nach vorn", text: "Typisches Zeichen für Kammertreffer?", correct: true },
-  { id: 2, title: "Überläufer – Flucht ohne Zeichnen – hohes Tempo", text: "Kein sichtbares Schusszeichen – Treffer fraglich?", correct: false },
-  { id: 3, title: "Fuchs – schlägt mit der Hinterhand aus", text: "Zeichen für Weichschuss.", correct: false },
-
-  // Pirschzeichen
-  { id: 4, title: "Schwarzwild – kreisrunder Schweißtropfen, hellrot", text: "Hellrot = Kammer, tödlich.", correct: true },
-  { id: 5, title: "Reh – dunkler Schweiß, gallertartige Stücke", text: "Weichschuss (Pansen/Magen).", correct: false },
-  { id: 6, title: "Rotwild – schwerer Anschuss, Lungenschweiß mit Blasen", text: "Lungenblut mit Blasen = tödlich.", correct: true },
-  { id: 7, title: "Fuchs – nur ein Haarbüschel, kein Schweiß", text: "Streifschuss sehr wahrscheinlich.", correct: false },
-  { id: 8, title: "Keiler – scharfkantige Borsten, dunkler Schweiß", text: "Schulterblatt oder Weichbereich → nicht sicher tödlich.", correct: false },
-
-  // Verhalten nach dem Treffer
-  { id: 9, title: "Rehbock – geht hochblattig ab, fällt nach 40 m", text: "Typischer Hochblattschuss.", correct: true },
-  { id: 10, title: "Überläufer – dreht sich im Schuss – flüchtet 200 m", text: "Zeichen für Weich oder Knochen.", correct: false },
-  { id: 11, title: "Reh – schlägt einmal aus – bleibt kurz stehen – kippt", text: "Hirn / Atlas oder Kammer – tödlich.", correct: true },
-  { id: 12, title: "Rotwild – rennt bergauf – keine Pirschzeichen sichtbar", text: "Treffer unsicher.", correct: false },
-
-  // Pirschzeichen fortgeschritten
-  { id: 13, title: "Reh – feinblasiger Lungenschweiß", text: "Lunger – sicher tödlich.", correct: true },
-  { id: 14, title: "Sau – Panseninhalt am Anschuss", text: "Pansenschuss – nicht sofort tödlich.", correct: false },
-  { id: 15, title: "Rotwild – Knochensplitter am Anschuss", text: "Kein Organ getroffen → nicht sicher tödlich.", correct: false },
-  { id: 16, title: "Fuchs – heller Schweiß, feine Lufteinschlüsse", text: "Lunge → tödlich.", correct: true },
-
-  // Sonderfälle
-  { id: 17, title: "Reh – hoher Schuss, Rückenspur, Haare kurz geschnitten", text: "Streifschuss über dem Rücken.", correct: false },
-  { id: 18, title: "Keiler – Kreuz im Feuer – starker Ausschlag", text: "Wirbelsäule getroffen → tödlich.", correct: true },
-  { id: 19, title: "Überläufer – Bauchschweiß, dünnflüssig, grünlich", text: "Weichbereich – nicht tödlich.", correct: false },
-  { id: 20, title: "Fuchs – fällt im Feuer, bleibt liegen", text: "Sofort tödlicher Treffer.", correct: true },
-
-  // Expertenfälle
-  { id: 21, title: "Rotwild – Wildbretgeruch am Anschuss, wenig Schweiß", text: "Weichschuss, nicht tödlich.", correct: false },
-  { id: 22, title: "Rehbock – viel Lungenschweiß in Spritzern", text: "Lunge sicher.", correct: true },
-  { id: 23, title: "Sau – Schweiß mit Schaum und dunklem Blut", text: "Mischschuss → nicht sicher tödlich.", correct: false },
-  { id: 24, title: "Fuchs – dunkler Schweiß + Knochenstücke", text: "Knochen / Weichbereich.", correct: false },
-  { id: 25, title: "Reh – heller Schweiß mit Haaren, aber viel Blut", text: "Hals-/Hochblattschuss → tödlich.", correct: true },
-];
+const scenarios = getPracticeScenarios("schusszeichen");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -67,6 +32,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig erkannt!" : "Falsch erkannt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -80,21 +47,22 @@ export default function Schusszeichen() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -148,9 +116,10 @@ export default function Schusszeichen() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Schusszeichen-Trainer</h1>
 
-     <ScenarioCard
+     <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -165,7 +134,7 @@ export default function Schusszeichen() {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Tödlicher Treffer"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -173,14 +142,14 @@ export default function Schusszeichen() {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Nicht tödlich / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

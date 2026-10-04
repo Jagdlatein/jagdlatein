@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 VERHALTENS-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehgeiß äst ruhig – Ohren locker – wiederkäuend", text: "Ist das Stück entspannt?", correct: true },
-  { id: 2, title: "Rehbock schlägt mit dem Vorderlauf – wirkt unruhig", text: "Normales entspanntes Verhalten?", correct: false },
-  { id: 3, title: "Fuchs springt spielend – Stopps und lauscht kurz", text: "Unauffälliges Verhalten?", correct: true },
-
-  { id: 4, title: "Reh starrt lange in eine Richtung – äst nicht mehr", text: "Warnverhalten?", correct: true },
-  { id: 5, title: "Rotwild zieht breitlinie – Kopf unten – ruhig", text: "Fluchtverhalten?", correct: false },
-  { id: 6, title: "Sau kreist – nimmt Witterung – hebt den Teller", text: "Unsicherheit erkannt?", correct: true },
-
-  { id: 7, title: "Rehwild – stark wechselnde Bewegungen – nervös", text: "Unauffällig?", correct: false },
-  { id: 8, title: "Fuchs trottet gleichmäßig – regelmäßige Pausen", text: "Ruhiges Sichern?", correct: true },
-  { id: 9, title: "Rotwild – Kuh treibt Kalb ständig vor sich", text: "Normales Verhalten?", correct: false },
-
-  { id: 10, title: "Reh – tiefes Wedeln des Spiegels – entspannt", text: "Fluchtanzeichen?", correct: false },
-  { id: 11, title: "Rehbock – starker Platzgeruch – markiert – schreckt", text: "Brunftverhalten?", correct: true },
-  { id: 12, title: "Sau – Frischlinge spielen – Bache entspannt", text: "Normale Situation?", correct: true },
-
-  { id: 13, title: "Reh – Kopf hoch – Lauscher rotieren hektisch", text: "Aufmerksam / Gefahr erkannt?", correct: true },
-  { id: 14, title: "Fuchs – geduckter Gang – schneller Blickwechsel", text: "Beunruhigt?", correct: true },
-  { id: 15, title: "Rotwild – Hirsch äst tiefenentspannt", text: "Warnsignal?", correct: false },
-
-  { id: 16, title: "Sau – plötzlicher Sprung – sofortiges Verharren", text: "Gefahr wahrgenommen?", correct: true },
-  { id: 17, title: "Rehwild – ruhiges Kauen – Seitenlage entspannt", text: "Normales Ruheverhalten?", correct: true },
-  { id: 18, title: "Rotwild – Kuh setzt zum leisen Hüpfen an", text: "Fluchtverhalten?", correct: true },
-
-  { id: 19, title: "Fuchs – tritt auf gleiche Stelle – springt vor", text: "Mausen → normales Verhalten?", correct: true },
-  { id: 20, title: "Rehbock – zieht buckelig – Haupt gesenkt", text: "Auffällig und unnatürlich?", correct: true },
-
-  { id: 21, title: "Reh – Kitz hüpft – Geiß entspannt", text: "Normale Familiensituation?", correct: true },
-  { id: 22, title: "Rotwild – Kälber laufen weit voraus", text: "Unauffällig?", correct: false },
-  { id: 23, title: "Sau – mehrfaches tiefes Knurren – steht breit", text: "Warnverhalten?", correct: true },
-  { id: 24, title: "Rotwild – Hirsch wirft kurz den Kopf hoch, äst weiter", text: "Alarm?", correct: false },
-
-  { id: 25, title: "Rehgeiß – abruptes Abbrechen des Äsens – starrt lange", text: "Auffällig?", correct: true },
-];
+const scenarios = getPracticeScenarios("verhalten");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig beurteilt!" : "Falsch beurteilt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,18 +46,19 @@ export default function Wildverhalten() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
-setTimeout(() => {
+answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
   // ------------------------------------------------------------
   // ENDSEITE
@@ -142,9 +113,10 @@ setTimeout(() => {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Wildverhalten beurteilen</h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -159,7 +131,7 @@ setTimeout(() => {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig beurteilt"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -167,14 +139,14 @@ setTimeout(() => {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

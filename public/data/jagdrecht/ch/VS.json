@@ -1,52 +1,26 @@
 [
   {
-    "id": "vs-1",
-    "title": "Grundlagen des Walliser Jagdrechts",
-    "text": "Das Wallis führt eine Patentjagd mit starker Ausrichtung auf Bergwild. Steinwild, Gams und Rotwild spielen zentrale Rollen."
+    "id": "ch-VS-system",
+    "title": "Jagdsystem",
+    "text": "Wallis: Patentjagd.",
+    "source": "https://www.bafu.admin.ch/de/jagd",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "vs-2",
-    "title": "Patentwesen",
-    "text": "Patente sind limitiert, insbesondere für Steinwild. Prüfungen und Schiessnachweise sind obligatorisch."
+    "id": "ch-VS-quellen",
+    "title": "Kanton Wallis: Rechtsquellen finden",
+    "text": "Wähle in der amtlichen Übersicht Wallis. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "vs-3",
-    "title": "Steinwildjagd",
-    "text": "Wallis hat die grössten Steinwildbestände der Schweiz. Die Jagd erfolgt nach strikten Kontingenten."
-  },
-  {
-    "id": "vs-4",
-    "title": "Jagdzeiten",
-    "text": "Jagdzeiten sind je nach Tal- oder Gebirgszone unterschiedlich. Die Hochjagd besitzt grosse Tradition."
-  },
-  {
-    "id": "vs-5",
-    "title": "Wildschutz und Reservate",
-    "text": "Auen, Hochgebirgszonen und Wildruhezonen sind besonders geschützt."
-  },
-  {
-    "id": "vs-6",
-    "title": "Sicherheitsregeln",
-    "text": "Im steilen Gelände gelten erhöhte Sicherheitsstandards für Schussabgabe und Geländebeurteilung."
-  },
-  {
-    "id": "vs-7",
-    "title": "Meldepflichten",
-    "text": "Beobachtungen von Luchs, Wolf oder Bär sind meldepflichtig. Abschüsse müssen zeitnah gemeldet werden."
-  },
-  {
-    "id": "vs-8",
-    "title": "Wildschäden",
-    "text": "Besonders Rotwild kann Waldverjüngung beeinträchtigen. Präventionsmassnahmen sind Pflicht."
-  },
-  {
-    "id": "vs-9",
-    "title": "Nachsuche",
-    "text": "Nachsuche ist unverzüglich einzuleiten. Spezialisierte Gebirgshunde stehen zur Verfügung."
-  },
-  {
-    "id": "vs-10",
-    "title": "Kontrolle und Sanktionen",
-    "text": "Die Walliser Wildhut überwacht alle Jagdaktivitäten und ahndet Verstösse streng."
+    "id": "ch-VS-check",
+    "title": "Vor der Jagd konkret nachschlagen",
+    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   }
 ]

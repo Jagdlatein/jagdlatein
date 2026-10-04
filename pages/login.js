@@ -2,6 +2,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
 
 function getNextUrl(next) {
   const value = Array.isArray(next) ? next[0] : next;
@@ -29,7 +30,7 @@ function getNextUrl(next) {
 }
 
 export async function getServerSideProps({ req, query }) {
-  if (req.cookies?.jl_session === "1" && query.reauth !== "1") {
+  if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
     return {
       redirect: {
         destination: getNextUrl(query.next),

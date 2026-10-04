@@ -1,52 +1,26 @@
 [
   {
-    "id": "vd-1",
-    "title": "Grundlagen des Waadtländer Jagdrechts",
-    "text": "Der Kanton Waadt führt eine strenge Revier- bzw. Konzessionsjagd. Jagdrechte werden an Jagdgesellschaften vergeben, die umfangreiche Pflichten haben."
+    "id": "ch-VD-system",
+    "title": "Jagdsystem",
+    "text": "Waadt: Patentjagd.",
+    "source": "https://www.bafu.admin.ch/de/jagd",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "vd-2",
-    "title": "Revierorganisation",
-    "text": "Reviere werden alle mehrere Jahre öffentlich vergeben. Bewerbungen erfordern Qualifikation und Hegekonzepte."
+    "id": "ch-VD-quellen",
+    "title": "Kanton Waadt: Rechtsquellen finden",
+    "text": "Wähle in der amtlichen Übersicht Waadt. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "vd-3",
-    "title": "Wildarten und Abschussplanung",
-    "text": "Schwerpunkt ist die Regulierung von Rot- und Schwarzwild. Abschüsse werden jährlich vorgegeben."
-  },
-  {
-    "id": "vd-4",
-    "title": "Jagdzeiten",
-    "text": "Jagdzeiten sind kantonal definiert. Bestimmte Arten dürfen nur in ausgewiesenen Gebieten bejagt werden."
-  },
-  {
-    "id": "vd-5",
-    "title": "Schiessnachweis",
-    "text": "Ein jährlicher Schiessnachweis ist erforderlich, besonders vor der Hochwildjagd."
-  },
-  {
-    "id": "vd-6",
-    "title": "Wildschutz und Reservate",
-    "text": "Waadt besitzt zahlreiche Schutzgebiete, insbesondere im Jura und in Feuchtbiotopen."
-  },
-  {
-    "id": "vd-7",
-    "title": "Wildschäden und Prävention",
-    "text": "Der Kanton ist stark von Wildschweinschäden betroffen und betreibt intensive Präventionsprogramme."
-  },
-  {
-    "id": "vd-8",
-    "title": "Waffen- und Sicherheitsregeln",
-    "text": "Jäger müssen hohe Sicherheitsstandards einhalten. Die Verwendung geeigneter Büchsen ist Pflicht."
-  },
-  {
-    "id": "vd-9",
-    "title": "Meldungen und Dokumentation",
-    "text": "Jagdgesellschaften müssen Streckenberichte und besondere Ereignisse dokumentieren."
-  },
-  {
-    "id": "vd-10",
-    "title": "Kontrolle und Sanktionen",
-    "text": "Die Wildhut überwacht Jagd, Reviere und Abschusspläne. Verstösse werden strikt geahndet."
+    "id": "ch-VD-check",
+    "title": "Vor der Jagd konkret nachschlagen",
+    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   }
 ]

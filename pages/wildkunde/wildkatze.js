@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Wildkatze() {
   const quiz = [
     {
-      q: "Welches Merkmal unterscheidet die Wildkatze eindeutig von der Hauskatze?",
+      q: "Welche Merkmalskombination ist ein Hinweis auf eine Wildkatze?",
       a: [
         "Schlanker Schwanz",
         "Buschiger Schwanz mit 3–5 dunklen Ringen und stumpfer Spitze",
@@ -13,12 +13,8 @@ export default function Wildkatze() {
       correct: 1,
     },
     {
-      q: "Welchen Schutzstatus hat die Wildkatze?",
-      a: [
-        "Jagbar mit Schonzeit",
-        "Ganzjährig streng geschützt",
-        "Jagbar nur in bestimmten Regionen"
-      ],
+      q: "Welche Aussage gilt zur Wildkatze in Deutschland?",
+      a: ["Regulär ganzjährig jagdbar","Streng geschützte Art; keine reguläre Bejagung","Fellzeichnung allein berechtigt zur Bejagung"],
       correct: 1,
     },
     {
@@ -91,8 +87,8 @@ export default function Wildkatze() {
             <li>Hauskatze: dünnerer Schwanz, oft spitz zulaufend</li>
             <li>Wildkatze: Aalstrich deutlich ausgeprägt</li>
             <li>Hauskatze: abwechslungsreiche Fellfarben möglich</li>
-            <li>Wildkatze massiver Körperbau</li>
-            <li>Hauskatze schlanker, leichter</li>
+            <li>Wildkatzen wirken häufig kräftig, aber Hauskatzen können ähnlich aussehen</li>
+            <li>Körpergröße und Fellzeichnung allein beweisen keine Wildkatzenzugehörigkeit</li>
           </ul>
         </section>
 
@@ -112,8 +108,8 @@ export default function Wildkatze() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Schutzstatus</h2>
           <ul style={styles.list}>
-            <li><strong>Ganzjährig streng geschützt!</strong></li>
-            <li>Keine Bejagung erlaubt</li>
+            <li><strong>Geschützte Art; keine eigenmächtige Bejagung</strong></li>
+            <li>Verwechslungen mit Hauskatzen vermeiden; bei Unsicherheit nicht schießen</li>
             <li>Sensible Art mit Wiederansiedlungsprogrammen</li>
           </ul>
         </section>
@@ -140,11 +136,18 @@ export default function Wildkatze() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.bfn.de/artenportraits/felis-silvestris" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -159,6 +162,7 @@ export default function Wildkatze() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

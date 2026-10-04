@@ -23,11 +23,7 @@ export default function Iltis() {
     },
     {
       q: "Wie lautet die Zahnformel des Iltis?",
-      a: [
-        "I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40",
-        "I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34",
-        "I 3/3 · C 1/1 · P 4/3 · M 2/1 = 38"
-      ],
+      a: ["I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34","I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40","I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42"],
       correct: 0,
     },
   ];
@@ -120,7 +116,7 @@ export default function Iltis() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40</li>
+            <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
             <li>Typisches Gebiss der Musteliden</li>
             <li>Ausgeprägte Reißzähne</li>
           </ul>
@@ -128,11 +124,18 @@ export default function Iltis() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0021997520300190" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -147,6 +150,7 @@ export default function Iltis() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

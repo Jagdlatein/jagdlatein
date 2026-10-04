@@ -1,4 +1,5 @@
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import NavigationButton from "./components/NavigationButton";
 import ScoreBox from "./components/ScoreBox";
 import HomeButton from "./components/HomeButton";
@@ -6,8 +7,10 @@ import HomeButton from "./components/HomeButton";
 export default function Fuchs() {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
+  const answerGuard = usePracticeAnswer(step);
 
   function answer(p) {
+    if (!answerGuard.accept()) return;
     setScore(score + p);
     setStep(step + 1);
   }
@@ -15,29 +18,31 @@ export default function Fuchs() {
   return (
     <main style={{ maxWidth: 800, margin: "0 auto", padding: 32 }}>
       <HomeButton />
-      <h1>🦊 Fuchs-Simulator</h1>
+      <h1>🦊 Fuchs-Wissensübung</h1>
 
       {step === 0 && (
         <>
           <p>Ein Fuchs zieht über die Wiese. Es ist Februar.</p>
-          <NavigationButton text="Weiter" onClick={() => setStep(1)} />
+          <NavigationButton text="Weiter" onClick={() => { if (!answerGuard.accept()) return; setStep(1); }} />
         </>
       )}
 
       {step === 1 && (
         <>
-          <p>Was ist zu beachten?</p>
-          <NavigationButton text="Ranzzeit – erhöhte Bewegung" onClick={() => answer(1)} />
-          <NavigationButton text="Schonzeit (falsch)" onClick={() => answer(-1)} />
-          <NavigationButton text="Er ist tollwütig (falsch)" onClick={() => answer(-1)} />
+          <p>Wie beurteilst du die Situation rechtlich und fachlich?</p>
+          <NavigationButton text="Örtliche Jagdzeiten und Elterntierschutz prüfen; Bewegung ist keine Diagnose" onClick={() => answer(1)} />
+          <NavigationButton text="Im Februar gilt überall dieselbe Jagdzeit" onClick={() => answer(-1)} />
+          <NavigationButton text="Ein Fuchs auf der Wiese hat sicher Tollwut" onClick={() => answer(-1)} />
         </>
       )}
 
       {step === 2 && (
         <>
           <h2>Ergebnis</h2>
+          <p>Bewegung und Jahreszeit beweisen keine Erkrankung. Jagd- und Schonzeiten sowie der Schutz notwendiger Elterntiere sind anhand der am Ort geltenden Vorschriften zu prüfen.</p>
+          <p>Grundlagen: <a href="https://www.svlfg.de/sichere-jagd" target="_blank" rel="noopener noreferrer">SVLFG: sichere Jagd</a>. Länderbezug: Deutschland, Österreich, Schweiz; Freigaben immer örtlich prüfen.</p>
           <ScoreBox score={score} max={1} />
-          <NavigationButton text="Neu starten" onClick={() => { setScore(0); setStep(0); }} />
+          <NavigationButton text="Neu starten" onClick={() => { if (!answerGuard.accept()) return;  setScore(0); setStep(0); }} />
         </>
       )}
     </main>

@@ -72,7 +72,7 @@ export default function Bisam() {
           <ul style={styles.list}>
             <li><strong>Seitlich abgeflachter Schwanz</strong> (Nutria → rund)</li>
             <li>Kleiner Kopf, dichter Pelz</li>
-            <li>Keine orangen Schneidezähne</li>
+            <li>Zur Abgrenzung von Nutria besonders Schwanzform und Körpergröße betrachten</li>
             <li>Kleine Vorderpfoten, große Hinterpfoten</li>
             <li>Bewegung: schwimmt oft mit nur Kopf sichtbar</li>
           </ul>
@@ -137,6 +137,12 @@ export default function Bisam() {
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -151,6 +157,7 @@ export default function Bisam() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
-import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, normalizeAccountEmail } from "../../../../lib/account-session";
+import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
 
 function getSupabase() {
-  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+  return createClient(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
 }
@@ -16,20 +16,25 @@ function getSupabase() {
 const COOKIE_OPTS = {
   httpOnly: true,
   sameSite: "lax",
-  secure: true,
+  secure: process.env.NODE_ENV === "production",
   path: "/",
   maxAge: 60 * 60 * 24 * 40,
 };
 
 export async function POST(req) {
   try {
+    const cookieStore = await cookies();
+    if ((req.headers.get("content-type") || "").split(";")[0].trim().toLowerCase() !== "application/json")
+      return NextResponse.json({ success: false, message: "Bitte JSON senden." }, { status: 415 });
+    if (!isAccountSessionConfigured()) return NextResponse.json(
+      { success: false, message: "Die Anmeldung ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503 });
+    let body;
+    try { body = await req.json(); } catch {
+      return NextResponse.json({ success: false, message: "Ungültige Anfrage." }, { status: 400 });
+    }
     const supabase = getSupabase();
-    const body = await req.json();
 
-    const email =
-      typeof body?.email === "string"
-        ? body.email.toLowerCase().trim()
-        : "";
+    const email = normalizeAccountEmail(body?.email);
 
     const code =
       typeof body?.code === "string"
@@ -74,11 +79,12 @@ export async function POST(req) {
       );
     }
 
-    if (new Date(loginCode.expires_at).getTime() < Date.now()) {
+    const expiresAt = new Date(loginCode.expires_at).getTime();
+    if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
       await supabase
         .from("login_codes")
         .delete()
-        .eq("email", email);
+        .eq("email", email).eq("code_hash", loginCode.code_hash);
 
       return NextResponse.json(
         {
@@ -93,7 +99,7 @@ export async function POST(req) {
       await supabase
         .from("login_codes")
         .delete()
-        .eq("email", email);
+        .eq("email", email).eq("code_hash", loginCode.code_hash);
 
       return NextResponse.json(
         {
@@ -104,19 +110,19 @@ export async function POST(req) {
       );
     }
 
+    const attempts = loginCode.attempts || 0;
+    const { data: attempt, error: attemptError } = await supabase.from("login_codes")
+      .update({ attempts: attempts + 1 }).eq("email", email).eq("code_hash", loginCode.code_hash)
+      .eq("attempts", attempts).select("email").maybeSingle();
+    if (attemptError) return NextResponse.json({ success: false, message: "Serverfehler." }, { status: 500 });
+    if (!attempt) return NextResponse.json({ success: false, message: "Code wird bereits geprüft. Bitte erneut versuchen." }, { status: 429 });
+
     const validCode = await bcrypt.compare(
       code,
       loginCode.code_hash
     );
 
     if (!validCode) {
-      await supabase
-        .from("login_codes")
-        .update({
-          attempts: (loginCode.attempts || 0) + 1,
-        })
-        .eq("email", email);
-
       return NextResponse.json(
         {
           success: false,
@@ -142,25 +148,33 @@ export async function POST(req) {
       );
     }
 
-    await supabase
+    if (expiresAt <= Date.now()) return NextResponse.json(
+      { success: false, message: "Login-Code ist abgelaufen." }, { status: 400 });
+
+    const accountToken = createAccountSession(email, Date.now(), {
+      paid: profile.is_premium === true, admin: profile.is_admin === true,
+    });
+    if (!accountToken) return NextResponse.json({ success: false, message: "Die Anmeldung ist derzeit nicht verfügbar." }, { status: 503 });
+    const { data: consumed, error: consumeError } = await supabase
       .from("login_codes")
       .delete()
-      .eq("email", email);
+      .eq("email", email).eq("code_hash", loginCode.code_hash).select("email").maybeSingle();
+    if (consumeError) return NextResponse.json({ success: false, message: "Serverfehler." }, { status: 500 });
+    if (!consumed) return NextResponse.json({ success: false, message: "Login-Code bereits verwendet. Bitte neuen Code anfordern." }, { status: 400 });
 
-    cookies().set({
+    cookieStore.set({
       name: "jl_session",
       value: "1",
       ...COOKIE_OPTS,
     });
 
-    cookies().set({
+    cookieStore.set({
       name: "jl_email",
       value: email,
       ...COOKIE_OPTS,
     });
 
-    const accountToken = createAccountSession(email);
-    cookies().set({
+    cookieStore.set({
       name: JL_ACCOUNT_COOKIE,
       value: accountToken || "",
       ...COOKIE_OPTS,
@@ -168,13 +182,13 @@ export async function POST(req) {
     });
 
     if (profile.is_premium === true) {
-      cookies().set({
+      cookieStore.set({
         name: "jl_paid",
         value: "1",
         ...COOKIE_OPTS,
       });
     } else {
-      cookies().set({
+      cookieStore.set({
         name: "jl_paid",
         value: "",
         ...COOKIE_OPTS,
@@ -183,13 +197,13 @@ export async function POST(req) {
     }
 
     if (profile.is_admin === true) {
-      cookies().set({
+      cookieStore.set({
         name: "jl_admin",
         value: "1",
         ...COOKIE_OPTS,
       });
     } else {
-      cookies().set({
+      cookieStore.set({
         name: "jl_admin",
         value: "",
         ...COOKIE_OPTS,

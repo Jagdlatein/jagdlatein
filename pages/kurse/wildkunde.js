@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -38,6 +39,7 @@ export default function WildkundeKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const answerGuard = useMiniQuizAnswer(aktuelleFrage, fertig, quizFragen[aktuelleFrage].antworten.length);
   const courseProgress = useCourseProgress("wildkunde", {
     started: aktuelleFrage > 0 || auswahl !== null || fertig,
     answeredQuestions: fertig ? quizFragen.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
@@ -49,7 +51,7 @@ export default function WildkundeKurs() {
   const frage = quizFragen[aktuelleFrage];
 
   function handleAntwort(index) {
-    if (auswahl !== null) return;
+    if (!answerGuard.accept(index)) return;
 
     setAuswahl(index);
 
@@ -57,7 +59,7 @@ export default function WildkundeKurs() {
       setPunkte(p => p + 1);
     }
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
       const next = aktuelleFrage + 1;
       if (next < quizFragen.length) {
         setAktuelleFrage(next);

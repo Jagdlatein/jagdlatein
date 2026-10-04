@@ -1,6 +1,8 @@
 "use client";
 
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -11,44 +13,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Keiler richtig erkennen (true = Keiler, false = kein Keiler)
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Stück steht breit – Wamme sichtbar?", text: "Deutlich ausgeprägte Wamme, kräftiger Trägerbau.", correct: true },
-  { id: 2, title: "Schwarzwild – schlanker Körper – lange Schnauze", text: "Typisch für Bache.", correct: false },
-  { id: 3, title: "Starkes Haupt – Breite Stirn – Pinsel erkennbar", text: "Mehrere Keilermerkmale.", correct: true },
-
-  { id: 4, title: "Schwarzwild 40 kg – hoher Rücken – kurze Läufe", text: "Jungbache oder Überläuferbache.", correct: false },
-  { id: 5, title: "Stück mit starkem Schild – massiver Vorderkörper", text: "Das spricht klar für Keiler.", correct: true },
-  { id: 6, title: "Schwarzwild – sichtbar gespannter Strich", text: "Klassisches Merkmal einer Bache.", correct: false },
-  { id: 7, title: "Starkes Gebrumm – drohendes Verhalten – breiter Kopf", text: "Keiler in Aggressionsphase.", correct: true },
-  { id: 8, title: "Schwarzwild – mit Frischlingen", text: "Immer Bache.", correct: false },
-  { id: 9, title: "Einzelgänger – kräftige Schultern – steifer Gang", text: "Typisches Keilerverhalten.", correct: true },
-  { id: 10, title: "Sau zieht mit weiterer Bache", text: "Sozialverband → keine Keiler.", correct: false },
-
-  { id: 11, title: "Stück in Rauschzeit – verfolgt Bache", text: "Meist ein Keiler.", correct: true },
-  { id: 12, title: "Langgezogener Körper – kaum Nackenmuskulatur", text: "Sicher kein Keiler.", correct: false },
-  { id: 13, title: "Harter, kantiger Kopf – wenig feminin", text: "Merkmal Keiler.", correct: true },
-  { id: 14, title: "Einzelgänger – 25 kg – jung", text: "Könnte Überläuferkeiler sein → ja.", correct: true },
-  { id: 15, title: "Rundlicher Körper – weicher Kopf – gruppenorientiert", text: "Bache.", correct: false },
-
-  { id: 16, title: "Sehr dunkler Keilkopf – hoher Widerrist", text: "Keilermerkmale.", correct: true },
-  { id: 17, title: "Schwarzwild – langer, dünner Strich – feminin", text: "Bache.", correct: false },
-  { id: 18, title: "Breiter Pinsel – großer Abstand zum Körper", text: "Keiler sich erkennbar.", correct: true },
-  { id: 19, title: "Sau mit harmonischem Körperbau", text: "Bache.", correct: false },
-  { id: 20, title: "Starkes Standbild – viel Vorderkörper – kaum Taille", text: "Typisch für Keiler.", correct: true },
-
-  { id: 21, title: "Sehr große Ohren – feminine Proportionen", text: "Bache.", correct: false },
-  { id: 22, title: "Stark ausgeprägtes Schild – massiver Nacken", text: "Keiler.", correct: true },
-  { id: 23, title: "Schwarzwild im Trupp – wenig ausgeprägt", text: "Kein Keiler.", correct: false },
-  { id: 24, title: "Einzelstück – markanter Keilkopf – drohend", text: "Keiler.", correct: true },
-  { id: 25, title: "Schwarzwild – femininer Kopf – kleinere Körperform", text: "Bache.", correct: false },
-];
+const scenarios = getPracticeScenarios("keiler");
 
 // ------------------------------------------------------------
 // SOFORT-RÜCKMELDUNG
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -61,6 +33,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig erkannt!" : "Falsch erkannt!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -74,21 +48,22 @@ export default function KeilerErkennung() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
 
     if (isCorrect) setScore(score + 1);
 
-   setTimeout(() => {
+   answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -135,9 +110,10 @@ export default function KeilerErkennung() {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Keiler-Erkennung</h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -151,15 +127,15 @@ export default function KeilerErkennung() {
         }}
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
-          <ActionButton text="Keiler" disabled={lockButtons} onClick={() => answer(current.correct)} />
+          <ActionButton text="Aussage stimmt" disabled={lockButtons} onClick={() => answer(current.correct)} />
         </div>
 
         <div style={{ width: "100%", maxWidth: 420 }}>
-          <ActionButton text="Keine Keiler" disabled={lockButtons} onClick={() => answer(!current.correct)} />
+          <ActionButton text="Aussage stimmt nicht" disabled={lockButtons} onClick={() => answer(!current.correct)} />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

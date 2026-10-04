@@ -1,52 +1,26 @@
 [
   {
-    "id": "bs-1",
-    "title": "Besonderheiten des Jagdrechts in Basel-Stadt",
-    "text": "Der Kanton BS besitzt aufgrund seiner Urbanität kein klassisches Jagdsystem. Die Wildtierregulierung erfolgt durch die kantonale Wildhut."
+    "id": "ch-BS-system",
+    "title": "Jagdsystem",
+    "text": "Basel-Stadt: Revierjagd.",
+    "source": "https://www.bafu.admin.ch/de/jagd",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "bs-2",
-    "title": "Zuständigkeit der Wildhut",
-    "text": "Die Wildhut ist für Eingriffe, Regulierung, Nachsuchen und Sicherheitsmassnahmen verantwortlich. Jagdpatente existieren nicht."
+    "id": "ch-BS-quellen",
+    "title": "Kanton Basel-Stadt: Rechtsquellen finden",
+    "text": "Wähle in der amtlichen Übersicht Basel-Stadt. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   },
   {
-    "id": "bs-3",
-    "title": "Regulierung urbaner Wildtiere",
-    "text": "Fuchs, Waschbär und invasive Arten werden durch Fachpersonen reguliert, insbesondere in Konflikt- und Seuchensituationen."
-  },
-  {
-    "id": "bs-4",
-    "title": "Schutzgebiete und Biotope",
-    "text": "Trotz Urbanität besitzt BS wertvolle Biotope, die strengen Schutzauflagen unterliegen."
-  },
-  {
-    "id": "bs-5",
-    "title": "Strecken- und Beobachtungswesen",
-    "text": "Alle Eingriffe der Wildhut werden protokolliert. Bürger können Sichtungen melden."
-  },
-  {
-    "id": "bs-6",
-    "title": "Waffen- und Sicherheitsrichtlinien",
-    "text": "In BS gelten besonders strenge Sicherheitsvorgaben für offizielle Abschüsse im Siedlungsgebiet."
-  },
-  {
-    "id": "bs-7",
-    "title": "Meldungen und Interventionen",
-    "text": "Einsätze erfolgen bei Seuchenverdacht, verletztem Wild, Verkehrsereignissen und Gefahrenlagen."
-  },
-  {
-    "id": "bs-8",
-    "title": "Rechtliche Grundlagen",
-    "text": "Die kantonale Wildtierverordnung regelt den Umgang mit Wildtieren, Schutz und Eingriffe."
-  },
-  {
-    "id": "bs-9",
-    "title": "Tierschutz in der Wildtierregulierung",
-    "text": "Bei Eingriffen gelten strikte Vorgaben zur Minimierung von Leid. Jede Massnahme wird dokumentiert."
-  },
-  {
-    "id": "bs-10",
-    "title": "Kooperation mit Bevölkerung und Behörden",
-    "text": "Information, Aufklärung und Konfliktmanagement stehen im Fokus der Zusammenarbeit."
+    "id": "ch-BS-check",
+    "title": "Vor der Jagd konkret nachschlagen",
+    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
+    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "reviewedOn": "2026-10-04",
+    "kind": "Lernübersicht"
   }
 ]

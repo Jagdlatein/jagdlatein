@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 TROPHÄEN-SZENARIEN – true = korrekt bewertet
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Rehbock – starke Rosen – dicke Stangen – grobe Perlen", text: "Alter Bock richtig erkannt?", correct: true },
-  { id: 2, title: "Rehbock – dünne Stangen – kleine Rosen – zarte Perlung", text: "Alter Bock?", correct: false },
-  { id: 3, title: "Rehbock – Spieße 10 cm – kaum Perlung", text: "Jährlingsbock?", correct: true },
-
-  { id: 4, title: "Hirsch – massige Stangen – dunkle Färbung – Rücksetzung sichtbar", text: "Alter Hirsch?", correct: true },
-  { id: 5, title: "Hirsch – helle Stangen – feine Enden – wenig Masse", text: "Hirsch mittleren Alters?", correct: false },
-  { id: 6, title: "Hirsch – Kronenbildung erkennbar", text: "Alter reifer Hirsch?", correct: true },
-
-  { id: 7, title: "Rehbock – asymmetrisch – schwache Stange rechts", text: "Typischer alter Bock?", correct: false },
-  { id: 8, title: "Rehbock – symmetrischer 6-Ender – klare Masse", text: "Gute Trophäenqualität?", correct: true },
-  { id: 9, title: "Rehbock – verkrüppelte Stange – Bast bleibt", text: "Perückenbock sicher erkannt?", correct: true },
-
-  { id: 10, title: "Hirsch – dünne Leiter – gleichmäßig – jung?", text: "Alter Hirsch?", correct: false },
-  { id: 11, title: "Hirsch – deutliche Burren – starke Krone", text: "Reifer Hirsch?", correct: true },
-  { id: 12, title: "Rehbock – fehlende Enden – geringe Masse", text: "Trophäenschwacher Altbock?", correct: true },
-
-  { id: 13, title: "Rehbock – starke Perlung – dunkle Färbung", text: "Alter Bock?", correct: true },
-  { id: 14, title: "Rehbock – kurze Stangen – helle Farbe", text: "Altbock?", correct: false },
-  { id: 15, title: "Hirsch – unregelmäßige Krone – starke Masse", text: "Alter Hirsch?", correct: true },
-
-  { id: 16, title: "Rehbock – langer schlanker Gehörnaufbau", text: "Junger Bock?", correct: true },
-  { id: 17, title: "Hirsch – starke Abnutzung am Gehörn", text: "Alter Hirsch?", correct: true },
-  { id: 18, title: "Rehbock – Bast sehr weich – Mai", text: "Älterer Bock?", correct: false },
-
-  { id: 19, title: "Hirsch – kaum Rücksetzung – feine Enden – hell", text: "Jung?", correct: true },
-  { id: 20, title: "Rehbock – kompakte Stangen – dunkler Abrieb", text: "Alter Bock?", correct: true },
-
-  { id: 21, title: "Hirsch – vereinzelt Ausfallende – schwache Masse", text: "Reifer Hirsch?", correct: false },
-  { id: 22, title: "Rehbock – dicke enden – starke Rosen", text: "Reifer Altbock?", correct: true },
-  { id: 23, title: "Hirsch – Färbung dunkel – starke Krone – schwere Stangen", text: "Alter Hirsch?", correct: true },
-  { id: 24, title: "Rehbock – dünne Spieße – kaum Rosen", text: "Spießer?", correct: true },
-
-  { id: 25, title: "Hirsch – helle leiternartige Stangen – kaum Abnutzung", text: "Alter Hirsch?", correct: false },
-];
+const scenarios = getPracticeScenarios("trophaeen");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig bewertet!" : "Falsch bewertet!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function Trophaeenbewertung() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
 
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
-setTimeout(() => {
+answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
   // ------------------------------------------------------------
   // ENDSEITE
@@ -141,9 +112,10 @@ setTimeout(() => {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Trophäenbewertung</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -158,7 +130,7 @@ setTimeout(() => {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig bewertet"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -166,14 +138,14 @@ setTimeout(() => {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

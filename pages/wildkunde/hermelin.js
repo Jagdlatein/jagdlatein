@@ -14,11 +14,7 @@ export default function Hermelin() {
     },
     {
       q: "Wie verändert sich das Hermelin im Winter?",
-      a: [
-        "Es bekommt ein graues Fell",
-        "Es bleibt unverändert",
-        "Es wechselt ins weiße Schneefell"
-      ],
+      a: ["Es bekommt stets ein graues Fell","Es verändert sein Fell niemals","Es kann weißes Winterfell mit schwarzer Schwanzspitze bekommen"],
       correct: 2,
     },
     {
@@ -28,7 +24,7 @@ export default function Hermelin() {
         "I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34",
         "I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38"
       ],
-      correct: 2,
+      correct: 1,
     },
   ];
 
@@ -75,7 +71,7 @@ export default function Hermelin() {
           <ul style={styles.list}>
             <li>Charakteristisch: <strong>Schwarze Schwanzspitze</strong> → wichtigstes Merkmal!</li>
             <li>Sommerfell: braun oben, weiß unten</li>
-            <li>Winterfell (Schneefell): komplett weiß, Schwanzspitze bleibt schwarz</li>
+            <li>Winterfell in schneereichen Regionen oft weiß; die Schwanzspitze bleibt schwarz. In milden Regionen kann das Fell braun bleiben</li>
             <li>Langer, schlanker Körper</li>
             <li>Sehr schnelle Bewegungen</li>
             <li>Losung: dünn, gedreht, 4–6 cm</li>
@@ -91,7 +87,7 @@ export default function Hermelin() {
             <li><strong>Mauswiesel:</strong> Schwanz ohne Schwarz</li>
             <li>Hermelin größer und kräftiger</li>
             <li>Mauswiesel kleinste heimische Raubwildart</li>
-            <li>Hermelin zeigt Schneefell → Mauswiesel selten vollständig weiß</li>
+            <li>Schwarze Schwanzspitze als wichtiger Hinweis; Weißfärbung im Winter ist regional unterschiedlich</li>
           </ul>
         </section>
 
@@ -120,7 +116,7 @@ export default function Hermelin() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
+            <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
             <li>Raubtiergebiss</li>
             <li>Schmale Reißzähne</li>
           </ul>
@@ -128,11 +124,18 @@ export default function Hermelin() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://observatoire-mammiferes.fr/espece/60686" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/hermelin-mustela-erminea" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -147,6 +150,7 @@ export default function Hermelin() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

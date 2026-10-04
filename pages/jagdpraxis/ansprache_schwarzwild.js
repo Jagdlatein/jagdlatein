@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 SCHWARZWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Einzelne Sau – schlank – langer Kopf – dünner Träger", text: "Überläufer?", correct: true },
-  { id: 2, title: "Sau mit Frischlingen im Wechsel", text: "Erlegbar?", correct: false },
-  { id: 3, title: "Starke Sau – breiter Kopf – gut ausgebildete Waffen", text: "Keiler?", correct: true },
-
-  { id: 4, title: "Sau – kurzer Kopf – kompakte Form – kleine Ohren", text: "Bache?", correct: true },
-  { id: 5, title: "Einzelne Sau – stark schmal – leichte Kruppe – helles Gesicht", text: "Überläuferbache?", correct: true },
-  { id: 6, title: "Rotte – mehrere kleine gestreifte Frischlinge", text: "Führende Bache erlegbar?", correct: false },
-
-  { id: 7, title: "Keiler – breite Stirn – massiger Träger – langer Pinsel", text: "Richtig erkannt?", correct: true },
-  { id: 8, title: "Sau – sehr kurze Läufe – Bauch tief", text: "Frischlingsbache?", correct: true },
-  { id: 9, title: "Überläufer – zieht mit starker Rotte", text: "Einzeln ansprechen sicher?", correct: false },
-
-  { id: 10, title: "Sau – Pfeffer-/Salz-Färbung – massive Waffen", text: "Alter Keiler?", correct: true },
-  { id: 11, title: "Sau – schmaler Fang – lange Läufe – dünner Spiegel", text: "Keiler?", correct: false },
-  { id: 12, title: "Bache – Frischlinge eng hinter ihr", text: "Erlegbar?", correct: false },
-
-  { id: 13, title: "Überläufer – rundlich – sommerleicht", text: "Überläufer korrekt erkannt?", correct: true },
-  { id: 14, title: "Sau – steiler Rücken – kurzer Träger", text: "Bache?", correct: true },
-  { id: 15, title: "Keiler – weite Waffen – langer Fang", text: "Richtig erkannt?", correct: true },
-
-  { id: 16, title: "Rotte – 6 Stück – mittlere Größe – kein klares Führungsstück erkennbar", text: "Schussabgabe sicher?", correct: false },
-  { id: 17, title: "Einzelner starker Keiler – tiefe Brust – massiger Körper", text: "Keiler?", correct: true },
-  { id: 18, title: "Sau – steiler Stich – kurzer Fang – kleine Ohren", text: "Bache?", correct: true },
-
-  { id: 19, title: "Frischling – im Oktober – schmal – langer Kopf", text: "Noch Frischling?", correct: false },
-  { id: 20, title: "Überläufer – dunkle Decke – kompakte Form", text: "Richtig erkannt?", correct: true },
-
-  { id: 21, title: "Keiler – langer Pinsel – muskulöse Schultern", text: "Richtig angesprochen?", correct: true },
-  { id: 22, title: "Sau – Kümmerer – extrem mager – mit Rotte", text: "Bache?", correct: false },
-  { id: 23, title: "Frischlinge – keine Leitbache sichtbar – Sommer", text: "Führungsstück könnte versteckt sein?", correct: true },
-  { id: 24, title: "Keiler – helles Gesicht – schmaler Körper", text: "Alter Keiler?", correct: false },
-
-  { id: 25, title: "Sau – kugelig – kurze Läufe – breite Stirn", text: "Bache?", correct: true },
-];
+const scenarios = getPracticeScenarios("ansprache_schwarzwild");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,19 +46,20 @@ export default function AnspracheSchwarzwild() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
 
-setTimeout(() => {
+answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -146,9 +117,10 @@ setTimeout(() => {
         Schwarzwild sicher ansprechen
       </h1>
 
-    <ScenarioCard
+    <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
+      <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -163,7 +135,7 @@ setTimeout(() => {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -171,14 +143,14 @@ setTimeout(() => {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

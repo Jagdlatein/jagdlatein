@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { JL_ACCOUNT_COOKIE, readAccountSessionEdge } from "./lib/account-session-edge";
 
 const PUBLIC_PATHS = [
   "/",
@@ -27,7 +28,7 @@ function redirectToPayment(req, nextPathWithQuery) {
   return NextResponse.redirect(target);
 }
 
-export function middleware(req) {
+export async function middleware(req) {
   const pathname = req.nextUrl.pathname;
 
   // PayPal immer erlauben
@@ -46,34 +47,65 @@ export function middleware(req) {
   }
 
   // Session prüfen
-  const hasSession = req.cookies.get("jl_session")?.value === "1";
-  const hasPaid = req.cookies.get("jl_paid")?.value === "1";
-  const isAdmin = req.cookies.get("jl_admin")?.value === "1";
+  const token = req.cookies.get(JL_ACCOUNT_COOKIE)?.value;
+  const session = await readAccountSessionEdge(token);
+  const hasSession = Boolean(session);
+  let access = session;
+  let renewedCookie = null;
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
   // gewünschte Zielseite merken (inkl. Query)
   const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
 
+  // Existing signed identity sessions are upgraded without losing account data.
+  // Refresh permissions regularly so removed subscriptions do not last 40 days.
+  if (session && !isPublic && !(session.accessExpiresAt > Math.floor(Date.now() / 1000))) {
+    try {
+      const check = await fetch(new URL("/api/auth/status", req.url), {
+        headers: { Cookie: `${JL_ACCOUNT_COOKIE}=${token}` },
+        cache: "no-store",
+        signal: AbortSignal.timeout(8000),
+      });
+      const status = await check.json();
+      if (!check.ok) return new NextResponse("Der Kontozugriff ist vorübergehend nicht verfügbar. Bitte erneut versuchen.",
+        { status: 503, headers: { "Cache-Control": "private, no-store" } });
+      access = status.loggedIn ? { paid: status.paid === true, admin: status.admin === true } : null;
+      renewedCookie = check.headers.get("set-cookie");
+    } catch {
+      return new NextResponse("Der Kontozugriff ist vorübergehend nicht verfügbar. Bitte erneut versuchen.",
+        { status: 503, headers: { "Cache-Control": "private, no-store" } });
+    }
+  }
+
+  function finish(response) {
+    if (renewedCookie) response.headers.append("set-cookie", renewedCookie);
+    return response;
+  }
+
   // Das eigene Konto bleibt auch ohne aktives Premium erreichbar.
   if (["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)) {
-    if (hasSession) return NextResponse.next();
+    if (hasSession && access) return finish(NextResponse.next());
     const login = new URL("/login", req.url);
     login.searchParams.set("next", nextPathWithQuery);
-    return NextResponse.redirect(login);
+    return finish(NextResponse.redirect(login));
   }
 
   // 1) NICHT eingeloggt + protected → direkt "Jetzt freischalten" auf /preise
-  if (!hasSession && !isPublic) {
-    return redirectToPayment(req, nextPathWithQuery);
+  if ((!hasSession || !access) && !isPublic) {
+    return finish(redirectToPayment(req, nextPathWithQuery));
   }
 
   // 2) Eingeloggt aber NICHT bezahlt (und kein Admin) + protected → ebenfalls /preise#...
-  if (hasSession && !hasPaid && !isAdmin && !isPublic) {
-    return redirectToPayment(req, nextPathWithQuery);
+  if (hasSession && !access?.paid && !access?.admin && !isPublic) {
+    return finish(redirectToPayment(req, nextPathWithQuery));
   }
 
-  return NextResponse.next();
+  // Admin pages also require a signed admin entitlement, beyond premium.
+  if (pathname.startsWith("/admin") && !access?.admin) {
+    return finish(NextResponse.redirect(new URL("/konto", req.url)));
+  }
+  return finish(NextResponse.next());
 }
 
 export const config = {

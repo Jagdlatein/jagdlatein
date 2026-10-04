@@ -1,4 +1,6 @@
+import { getPracticeScenarios } from "../../lib/practice-scenarios";
 import { useState } from "react";
+import usePracticeAnswer from "../../hooks/usePracticeAnswer";
 import ScenarioCard from "./components/ScenarioCard";
 import ActionButton from "./components/ActionButton";
 import ResultBox from "./components/ResultBox";
@@ -9,48 +11,14 @@ import HomeButton from "./components/HomeButton";
 // ------------------------------------------------------------
 // 25 WÄRMEBILD-SZENARIEN – true = korrekt angesprochen
 // ------------------------------------------------------------
-const scenarios = [
-  { id: 1, title: "Kleine kompakte Wärmequelle – kurzer Träger – schnelle Bewegungen", text: "Handelt es sich um einen Fuchs?", correct: true },
-  { id: 2, title: "Sehr kleine Quelle – runder Körper – hüpfende Bewegung", text: "Rehwild?", correct: false },
-  { id: 3, title: "Langes Wärmebild – deutlicher Spiegelbereich – ruhiges Äsen", text: "Rehwild sicher erkannt?", correct: true },
-
-  { id: 4, title: "Massive Wärmequelle – breiter Vorderkörper – niedrig", text: "Schwarzwild?", correct: true },
-  { id: 5, title: "Lange Läufe – hoher Träger – schlanker Körper", text: "Schwarzwild?", correct: false },
-  { id: 6, title: "Große Wärmequelle – Kopf kaum erkennbar – langsam ziehend", text: "Rotwild sicher?", correct: true },
-
-  { id: 7, title: "Zwei kleine Wärmequellen eng hintereinander", text: "Bache mit Frischlingen?", correct: true },
-  { id: 8, title: "Einzelne kleine Quelle – extrem schnelle Bewegungen", text: "Rotwildkalb?", correct: false },
-  { id: 9, title: "Recht große Wärmequelle – schlank – lange Läufe", text: "Rotwild?", correct: true },
-
-  { id: 10, title: "Kompakte Wärmeform – kurze Läufe – keilförmig", text: "Keiler?", correct: true },
-  { id: 11, title: "Wärmequelle sehr hell, aber winzig – hektisch", text: "Rehwild?", correct: false },
-  { id: 12, title: "Deutliches Wärmebild von zwei gleich großen Stücken", text: "Rotwildkuh + Kalb?", correct: false },
-
-  { id: 13, title: "Warmes, breites Stück – tiefer Schwerpunkt", text: "Schwarzwild?", correct: true },
-  { id: 14, title: "Großes Wärmebild – sehr lange Läufe – Kopf klar erkennbar", text: "Fuchs?", correct: false },
-  { id: 15, title: "Sehr helles kompaktes Wärmebild – wühlende Bewegung", text: "Sau?", correct: true },
-
-  { id: 16, title: "Wärmequelle klein, rund, kaum Hals erkennbar", text: "Rehgeiß?", correct: false },
-  { id: 17, title: "Langgezogene Quelle – hoher Halsansatz – ruhige Schritte", text: "Rehwild?", correct: true },
-  { id: 18, title: "Drei Wärmequellen in Linie – unterschiedliche Größe", text: "Rotwildfamilie?", correct: true },
-
-  { id: 19, title: "Sehr breite Front – deutliche Hitze am Kopf – wenig Kontrast am Hinterkörper", text: "Keiler?", correct: true },
-  { id: 20, title: "Winzige Quelle – sehr helle Hitze – buschige Form", text: "Fuchs?", correct: true },
-
-  { id: 21, title: "Langgestreckte Kontur – hoher Träger – Hirsche typisch?", text: "Rotwild?", correct: true },
-  { id: 22, title: "Schnelle kleine Quelle – extrem agile Bewegungen", text: "Rehwild?", correct: false },
-  { id: 23, title: "Komplexes Wärmebild – Gruppenbewegung – verschiedene Höhen", text: "Schwarzwildrotte?", correct: true },
-  { id: 24, title: "Wärmequelle sehr schmal – lange Läufe – hoppelnde Bewegung", text: "Feldhase?", correct: true },
-
-  { id: 25, title: "Hitzequelle groß – aber unregelmäßig – kaum Kontur", text: "Rehwild?", correct: false },
-];
+const scenarios = getPracticeScenarios("waermebild");
 
 // ------------------------------------------------------------
 // FEEDBACK
 // ------------------------------------------------------------
-function InstantFeedback({ isCorrect }) {
+function InstantFeedback({ isCorrect , scenario }) {
   return (
-    <div
+    <div role="status" aria-live="polite"
       style={{
         marginTop: 20,
         padding: "14px 20px",
@@ -63,6 +31,8 @@ function InstantFeedback({ isCorrect }) {
       }}
     >
       {isCorrect ? "Richtig angesprochen!" : "Falsch angesprochen!"}
+    {scenario?.explanation && <p style={{ fontWeight: 400, lineHeight: 1.6, marginBottom: 0 }}>{scenario.explanation}</p>}
+      {typeof scenario?.source === "string" && scenario.source.startsWith("https://") && <p><a href={scenario.source} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Quelle nachlesen (neuer Tab)</a></p>}
     </div>
   );
 }
@@ -76,18 +46,19 @@ export default function Waermebild() {
   const [feedback, setFeedback] = useState(null);
   const [lockButtons, setLockButtons] = useState(false);
 
+  const answerGuard = usePracticeAnswer(step, step >= scenarios.length);
   const current = scenarios[step];
 
   function answer(isCorrect) {
-    if (lockButtons) return;
+    if (!answerGuard.accept()) return;
     setLockButtons(true);
     setFeedback(isCorrect);
     if (isCorrect) setScore(score + 1);
-setTimeout(() => {
+answerGuard.schedule(() => {
   setFeedback(null);
   setLockButtons(false);
   setStep((prev) => prev + 1);
-}, isCorrect ? 3500 : 1200);
+}, 10000);
 }
 
   // ------------------------------------------------------------
@@ -143,9 +114,10 @@ setTimeout(() => {
 
       <h1 style={{ fontSize: 34, marginBottom: 10 }}>Wärmebild-Ansprechen</h1>
 
+      <p>Wissensübung: Prüfe die Aussage zur Frage. Länderbezug: {current.countryLabel}. Thema: {current.moduleTitle}.</p>
       <ScenarioCard
   title={current.title}
-  text={feedback === true ? current.text : null}
+  text={current.text}
 />
 
       <div
@@ -160,7 +132,7 @@ setTimeout(() => {
       >
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Richtig angesprochen"
+            text="Aussage stimmt"
             disabled={lockButtons}
             onClick={() => answer(current.correct)}
           />
@@ -168,14 +140,14 @@ setTimeout(() => {
 
         <div style={{ width: "100%", maxWidth: 420 }}>
           <ActionButton
-            text="Falsch / unsicher"
+            text="Aussage stimmt nicht"
             disabled={lockButtons}
             onClick={() => answer(!current.correct)}
           />
         </div>
       </div>
 
-      {feedback !== null && <InstantFeedback isCorrect={feedback} />}
+      {feedback !== null && <InstantFeedback scenario={current} isCorrect={feedback} />}
     </main>
   );
 }

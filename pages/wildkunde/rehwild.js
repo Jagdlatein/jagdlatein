@@ -54,7 +54,7 @@ export default function Rehwild() {
             <li>Körperlänge: 95–140 cm, Schulterhöhe 60–75 cm</li>
             <li>Lebensraum: Feld-Wald-Mosaik, Waldränder, Agrarlandschaften</li>
             <li>Nahrung: Kräuter, Knospen, Blätter, Triebe, Beeren</li>
-            <li>Sozialstruktur: territorial · Einzelgänger</li>
+            <li>Sozialstruktur saisonabhängig: Böcke im Sommer territorial; im Winter häufig Gruppen (Sprünge)</li>
             <li>Brunftzeit: Juli–August</li>
             <li>Setzzeit: Mai–Juni (meist zwei Kitze)</li>
             <li>Besonderheit: Keimruhe (embryonale Diapause)</li>
@@ -64,7 +64,7 @@ export default function Rehwild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Geweih</h2>
           <ul style={styles.list}>
-            <li>Bock trägt ein Stangengehörn mit 2–6 Enden</li>
+            <li>Bock trägt ein jährlich erneuertes Gehörn; Zahl der Enden ist variabel</li>
             <li>Abwurf: Oktober–November</li>
             <li>Schieben unter Bast: Januar–April</li>
             <li>Farbe abhängig vom Fegen (Baumarten)</li>
@@ -84,11 +84,18 @@ export default function Rehwild() {
 
         {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
             <div key={qi} style={styles.quizBlock}>
               <p style={styles.quizQuestion}>{q.q}</p>
+              {answered[qi] && (
+                <p role="status">
+                  {selected[qi] === q.correct ? "Richtig." : "Noch nicht richtig."}
+                  {" "}Die richtige Antwort lautet: {q.a[q.correct]}
+                </p>
+              )}
 
               {q.a.map((ans, ai) => {
                 const isCorrect = ai === q.correct;
@@ -103,6 +110,7 @@ export default function Rehwild() {
                 return (
                   <button
                     key={ai}
+                    disabled={Boolean(answered[qi])}
                     onClick={() => choose(qi, ai)}
                     style={{ ...styles.quizButton, background: bg }}
                   >

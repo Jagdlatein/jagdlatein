@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useMiniQuizAnswer from "../../hooks/useMiniQuizAnswer";
 import useCourseProgress from "../../hooks/useCourseProgress";
 import CourseProgressNotice from "../../components/CourseProgressNotice";
 
@@ -47,6 +48,7 @@ export default function RotwildKompaktKurs() {
   const [punkte, setPunkte] = useState(0);
   const [fertig, setFertig] = useState(false);
 
+  const answerGuard = useMiniQuizAnswer(aktuelleFrage, fertig, rotwildQuiz[aktuelleFrage].antworten.length);
   const courseProgress = useCourseProgress("rotwild", {
     started: aktuelleFrage > 0 || auswahl !== null || fertig,
     answeredQuestions: fertig ? rotwildQuiz.length : aktuelleFrage + (auswahl !== null ? 1 : 0),
@@ -58,7 +60,7 @@ export default function RotwildKompaktKurs() {
   const frage = rotwildQuiz[aktuelleFrage];
 
   function handleAntwort(index) {
-    if (auswahl !== null) return;
+    if (!answerGuard.accept(index)) return;
 
     setAuswahl(index);
 
@@ -66,7 +68,7 @@ export default function RotwildKompaktKurs() {
       setPunkte((p) => p + 1);
     }
 
-    setTimeout(() => {
+    answerGuard.schedule(() => {
       const next = aktuelleFrage + 1;
       if (next < rotwildQuiz.length) {
         setAktuelleFrage(next);

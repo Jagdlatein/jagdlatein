@@ -37,7 +37,7 @@ export default function Header() {
     loadAuth();
     return () => { active = false; };
   }, []);
- // ðŸ”¥ KORREKTER LOGOUT â€” Ã¼ber API Route (lÃ¶scht HttpOnly Cookies)
+  // Logout über die API löscht die HttpOnly-Cookies.
   async function logout() {
     await fetch("/api/auth/session", { method: "DELETE" });
     window.location.href = "/";
