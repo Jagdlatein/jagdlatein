@@ -54,99 +54,44 @@ export default function Auerhuhn() {
         {/* ALLGEMEINES */}
         {/* ===================================== */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Größtes Raufußhuhn Europas</li>
-            <li>Lebensraum: strukturreiche Berg- & Nadelwälder</li>
-            <li>In Mitteleuropa stark gefährdet</li>
+            <li>Großes Raufußhuhn lichter, strukturreicher Nadel- und Mischwälder</li>
             <li>Sehr störungsempfindlich</li>
-            <li>Strenger Schutz in vielen Ländern</li>
+            <li>Auerhahn ist deutlich größer als die braun getarnte Auerhenne</li>
+            <li>Hahn mit breiten, fächerartig aufstellbaren Schwanzfedern</li>
+            <li>Rote Hautpartien über den Augen heißen Rosen</li>
+            <li>Erwachsene Vögel fressen vorwiegend Pflanzen</li>
+            <li>Im Winter sind Nadelbaum-Nadeln wichtige Nahrung</li>
+            <li>Beersträucher bieten Blätter, Triebe und Früchte</li>
+            <li>Küken benötigen besonders in den ersten Lebenswochen viele Insekten</li>
           </ul>
         </section>
 
-        {/* ===================================== */}
-        {/* ERKENNUNG */}
-        {/* ===================================== */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Auerhahn:</strong> schwarzgrün metallisch glänzend</li>
-            <li>Großer Fächerstoß (kein Sichelstoß wie Birkhuhn!)</li>
-            <li>Blutrote Rosen über dem Auge</li>
-            <li><strong>Auerhenne:</strong> braun-orange gemustert, stark getarnt</li>
-            <li>Deutlich größer als Birkhenne</li>
+            <li>Balz vor allem im Frühjahr, regional ab März bis Mai</li>
+            <li>Balzgesang beginnt häufig auf Bäumen; später balzen Hähne auch am Boden</li>
+            <li>Mehrere Hähne können einen gemeinsamen Balzplatz nutzen</li>
+            <li>Henne legt ein Bodennest an und übernimmt Brut und Aufzucht</li>
+            <li>Gelegegröße variabel, häufig ungefähr sieben bis acht Eier</li>
+            <li>Küken sind Nestflüchter und werden von der Henne gewärmt</li>
+            <li>Balzplätze, Gelege und Jungvögel vor Störungen schützen</li>
           </ul>
         </section>
 
-        {/* ===================================== */}
-        {/* BALZ */}
-        {/* ===================================== */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Balz & Balzgesang</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Balzzeit: April–Mai</li>
-            <li>Typisch: <strong>Vierstufiger Balzgesang</strong></li>
-            <li>Balzgesang aus charakteristischen, aufeinanderfolgenden Lauten</li>
-            <li>Während des Balzgesangs kann die Wahrnehmung eingeschränkt sein; Störungen der Balz vermeiden</li>
-            <li>Balz findet am Boden oder in niedrigen Bäumen statt</li>
+            <li>Henne mit rostbrauner, weitgehend ungebänderter Brust; Birkhenne dort stärker gebändert</li>
+            <li>Balzgesang besteht aus aufeinanderfolgenden Lauten</li>
           </ul>
         </section>
 
-        {/* ===================================== */}
-        {/* FORTPFLANZUNG */}
-        {/* ===================================== */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Gelege: 6–12 Eier</li>
-            <li>Brutdauer: ca. 26 Tage</li>
-            <li>Auerhenne führt die Küken allein</li>
-            <li>Küken benötigen Insekten → Eiweiß für schnelles Wachstum</li>
-          </ul>
-        </section>
-
-        {/* ===================================== */}
-        {/* NAHRUNG */}
-        {/* ===================================== */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Jährlich: Kräuter, Beeren, Knospen</li>
-            <li>Winter: Nadeln und Triebe von Kiefern & Tannen</li>
-            <li>Küken: Insekten (lebensnotwendig!)</li>
-          </ul>
-        </section>
-
-        {/* ===================================== */}
-        {/* VERWECHSLUNG */}
-        {/* ===================================== */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verwechslungsgefahr</h2>
-          <ul style={styles.list}>
-            <li>Birkhahn: kleiner, schwarzer, sichelförmiger Stoß</li>
-            <li>Auerhenne ↔ Birkhenne: Auerhenne deutlich größer</li>
-            <li>Auch mehrere Auerhähne können einen gemeinsamen Balzplatz nutzen</li>
-          </ul>
-        </section>
-
-        {/* ===================================== */}
-        {/* GEFÄHRDUNG */}
-        {/* ===================================== */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gefährdung & Schutz</h2>
-          <ul style={styles.list}>
-            <li>Lebensraumverlust → fehlende strukturreiche Wälder</li>
-            <li>Freizeitdruck (Wanderer, Skitouren, Hunde)</li>
-            <li>Klimawandel verändert Schneedecken und Vegetation</li>
-            <li>In vielen Ländern streng geschützt</li>
-          </ul>
-        </section>
-
-        {/* ===================================== */}
-        {/* QUIZ */}
-        {/* ===================================== */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/auerhuhn-tetrao-urogallus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/096750/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

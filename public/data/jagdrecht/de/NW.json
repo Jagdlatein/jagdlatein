@@ -2,17 +2,19 @@
   {
     "id": "de-NW-quellen",
     "title": "Bundesland Nordrhein-Westfalen: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Nordrhein-Westfalen. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "text": "Nutze Amtliches Serviceportal RECHT.NRW für Nordrhein-Westfalen. Prüfe Bundesjagdgesetz, geltendes Landesjagdrecht, Verordnungen und örtliche Anordnungen gemeinsam; landesrechtliche Abweichungen sind möglich. Notiere Fassung und Geltungsbeginn. Diese Karte ersetzt keinen Gesetzestext.",
+    "source": "https://recht.nrw.de/",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Amtliches Serviceportal RECHT.NRW"
   },
   {
     "id": "de-NW-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "source": "https://recht.nrw.de/",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Amtliches Serviceportal RECHT.NRW"
   }
 ]

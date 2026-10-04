@@ -17,7 +17,7 @@ export default function Schneehase() {
       q: "Welche Aussage trifft zu?",
       a: [
         "Schneehase ist größer als Feldhase",
-        "Schneehase ist kleiner und kompakter",
+        "Im Vergleich zum Feldhasen meist kleiner und mit kürzeren Ohren",
         "Schneehase lebt ausschließlich im Bau"
       ],
       correct: 1,
@@ -51,72 +51,34 @@ export default function Schneehase() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 45–60 cm</li>
-            <li>Gewicht: 2–4 kg (kleiner als Feldhase)</li>
-            <li>Im deutschsprachigen Alpenraum vor allem in Gebirgslagen; weitere Populationen in nördlichen Regionen Europas und Asiens</li>
-            <li>Sehr gute Tarnung durch saisonalen Fellwechsel</li>
-            <li>Einzelgänger</li>
-            <li>Ruheplatz: Mulde, ähnlich der Sasse</li>
+            <li>Hasenartiger kalter Regionen; im deutschsprachigen Alpenraum vor allem in Gebirgslagen</li>
+            <li>Kleiner und gedrungener als der Feldhase, mit kürzeren Ohren</li>
+            <li>Sommerfell überwiegend graubraun</li>
+            <li>Alpenschneehasen tragen im Winter ein weißes Fell mit schwarzen Ohrspitzen</li>
+            <li>Weiße Schwanzoberseite ist ein weiterer Hinweis gegenüber dem Feldhasen</li>
+            <li>Besonders spreizbare, behaarte Hinterpfoten helfen im Schnee</li>
+            <li>Nahrung: Gräser, Kräuter, Zwergsträucher, Knospen, Zweige und Rinde</li>
+            <li>Alpenschneehasen leben eher einzeln und sind vor allem dämmerungs- und nachtaktiv</li>
+            <li>Ruhen in geschützten Mulden; nutzen im Winter auch Schneehöhlen</li>
           </ul>
         </section>
 
-        {/* FELLWECHSEL */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fellwechsel & Anpassung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Sommer:</strong> graubraun, gesprenkelt</li>
-            <li><strong>Winter:</strong> beim Alpenschneehasen weiß mit schwarzen Ohrspitzen</li>
-            <li>Ohren („Löffel“) kürzer, aber mit schwarzer Spitze</li>
-            <li>Fellwechsel ausgelöst durch Tageslichtlänge, nicht Temperatur</li>
+            <li>Fortpflanzung hauptsächlich vom Frühjahr bis in den Sommer; regionale Variation</li>
+            <li>Tragzeit ungefähr 50 Tage</li>
+            <li>Meist zwei, gelegentlich drei Würfe pro Jahr</li>
+            <li>Wurfgröße variabel, häufig zwei bis drei Junge</li>
+            <li>Junge werden behaart und sehfähig geboren</li>
           </ul>
         </section>
 
-        {/* ERNÄHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gräser, Kräuter, Knospen, Zweige</li>
-            <li>Im Winter: Rinde, Moos, Heidekraut</li>
-            <li>Sehr genügsam, an karge Regionen angepasst</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Februar–Juli</li>
-            <li>2–3 Würfe pro Jahr</li>
-            <li>Wurfgröße: 1–3 Junge</li>
-            <li>Junghasen: <strong>Dauernestflüchter</strong></li>
-          </ul>
-        </section>
-
-        {/* FÄHRTE & LOSUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fährte & Losung</h2>
-          <ul style={styles.list}>
-            <li>Fährte kleiner und runder als beim Feldhasen</li>
-            <li>Hinterlaufabdruck ca. 6–7 cm</li>
-            <li>Losung: kleiner, rundlicher</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Tularämie</li>
-            <li>Kokzidiose</li>
-            <li>EBHS (Hasenseuche) – selten</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/flora-und-fauna/schneehase/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/126311/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://nationalpark.ch/flora-und-fauna/schneehase/" target="_blank" rel="noopener noreferrer">Nationalpark: Schneehase</a> · <a href="https://jagdverband.it/schneehase-2/" target="_blank" rel="noopener noreferrer">Südtiroler Jagdverband: Schneehase</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

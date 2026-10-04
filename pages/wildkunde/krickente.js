@@ -61,69 +61,43 @@ export default function Krickente() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Kleinste Ente Europas (30–35 cm)</li>
-            <li>Leicht, äußerst wendig im Flug</li>
-            <li>Kommt als Brut-, Zug- und Wintergast vor</li>
-            <li>Lebensraum: Flachwasser, Seen, Flussauen, Feuchtgebiete</li>
-            <li>Sehr sozial → bildet große Schwärme im Winter</li>
+            <li>Kleinste europäische Ente</li>
+            <li>Gründelente kleiner, flacher Gewässer mit Deckung</li>
+            <li>Erpel im Prachtkleid mit kastanienbraunem Kopf und grünem Augenstreifen</li>
+            <li>Ente braun gemustert und unauffälliger</li>
+            <li>Grüner Flügelspiegel bei beiden Geschlechtern</li>
+            <li>Kann fast senkrecht von der Wasseroberfläche starten</li>
+            <li>Nahrung: Samen und kleine wirbellose Tiere, jahreszeitlich unterschiedlich</li>
+            <li>In Mitteleuropa Brutvogel, Durchzügler und Wintergast</li>
+            <li>Erpel ruft hell und pfeifend</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
-          <h3>Erpel</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Kastanienbrauner Kopf</li>
-            <li>Smaragdgrüner Augenstreifen bis zum Nacken</li>
-            <li>Grauer Körper</li>
-            <li>Gelblich-weißes Unterschwanzfeld</li>
-          </ul>
-
-          <h3>Ente</h3>
-          <ul style={styles.list}>
-            <li>Stark getarnt, braun gemustert</li>
-            <li>Kleiner, kompakter Körperbau</li>
-            <li>Dezenter Augenstreif</li>
+            <li>Nest am Boden in dichter Vegetation</li>
+            <li>Gelegegröße variabel, häufig acht bis elf Eier</li>
+            <li>Brutdauer ungefähr 21 bis 23 Tage</li>
+            <li>Küken sind Nestflüchter</li>
+            <li>Ente übernimmt die Führung der Jungen</li>
+            <li>Junge fressen vorwiegend tierische Kost</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: April–Juni</li>
-            <li>Nest: gut versteckte Bodenbruten</li>
-            <li>Gelege: 8–11 Eier</li>
-            <li>Küken: Nestflüchter, sehr schnell mobil</li>
+            <li>Küken fressen anfangs besonders wirbellose Tiere</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gründelt im Flachwasser</li>
-            <li>Frisst Samen, Insektenlarven, kleine Krebse</li>
-            <li>Küken benötigen tierisches Eiweiß</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Entenvogel; je nach Population Stand- oder Zugvogel</li>
-            <li>Viele überwintern in Mittel- und Westeuropa</li>
-            <li>Sehr schnelle, dichte Schwarmflüge</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/213492/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

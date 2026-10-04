@@ -2,17 +2,19 @@
   {
     "id": "de-HB-quellen",
     "title": "Bundesland Bremen: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Bremen. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "text": "Nutze Transparenzportal Bremen: Bremisches Landesjagdgesetz für Bremen. Prüfe Bundesjagdgesetz, geltendes Landesjagdrecht, Verordnungen und örtliche Anordnungen gemeinsam; landesrechtliche Abweichungen sind möglich. Notiere Fassung und Geltungsbeginn. Diese Karte ersetzt keinen Gesetzestext.",
+    "source": "https://www.transparenz.bremen.de/metainformationen/bremisches-landesjagdgesetz-ljagdg-vom-26-oktober-1981-296450?asl=bremen203_tpgesetz.c.55340.de&template=20_gp_ifg_meta_detail_d",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Transparenzportal Bremen: Bremisches Landesjagdgesetz"
   },
   {
     "id": "de-HB-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "source": "https://www.transparenz.bremen.de/metainformationen/bremisches-landesjagdgesetz-ljagdg-vom-26-oktober-1981-296450?asl=bremen203_tpgesetz.c.55340.de&template=20_gp_ifg_meta_detail_d",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Transparenzportal Bremen: Bremisches Landesjagdgesetz"
   }
 ]

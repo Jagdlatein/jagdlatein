@@ -1,4 +1,55 @@
-# App-Prüfung – 4. Oktober 2026
+# App-Prüfung und ergänzende Restprüfung – 4. Oktober 2026
+
+Aktueller Prüfstand: lokale Ergänzungen auf main, Ausgangscommit 6aef87d.
+Die Ergänzungen sind für einen Commit vorbereitet; sie wurden noch nicht veröffentlicht.
+
+## Ergebnis der ergänzenden Restprüfung
+
+- 846 automatisierte Prüfungen unter Node 22.23.3: 846 bestanden, 0 fehlgeschlagen, 0 übersprungen.
+- Vollständiges npm run build unter Node 22: erfolgreich. Next.js 15.5.24 hat 220 statische Seiten erzeugt; Seitendaten, Optimierung und Build-Traces abgeschlossen.
+- Die neuen Datenbankfunktionen wurden mit lokalem PostgreSQL über PGlite ausgeführt. Geprüft wurden unter anderem Zugriffsrechte, konkurrierende Anfragen, Wiederholungen, Ablaufzeiten und das Zurückrollen fehlgeschlagener Ergebnisspeicherungen.
+- Die Abhängigkeiten wurden gegenüber dem zuvor geprüften Stand nicht verändert. Der vorige npm-audit-Befund war 0 bekannte Sicherheitslücken.
+- Git-Diff auf Formatfehler geprüft: bestanden.
+
+### Rangliste und Quiz
+
+Quiznamen sind jetzt eindeutig einem angemeldeten Konto zugeordnet. Fragen, Antwortschlüssel, Zeitlimits und Punkte liegen beim Server; der Browser kann keine eigenen Ranglistenpunkte einreichen. Korrekte Antworten und Erklärungen werden erst nach der Antwort freigegeben. Antwort-, Weiter- und Startanfragen sind gegen doppelte Verarbeitung geschützt. Die Rückmeldung bleibt zehn Sekunden sichtbar; eine Wiederaufnahme verwendet den gespeicherten Rundenstand und setzt den Zeitbonus nicht zurück.
+
+Bestwert, Rundenzähler und persönliches Ergebnis werden gemeinsam gespeichert. Ein Fehler kann dadurch keinen halbfertigen Abschluss hinterlassen. Die Rangliste liest nur die neuen verifizierten Ergebnisse. Alte Werte bleiben in ihren bisherigen Tabellen erhalten und werden nicht in die neue Wertung übernommen. Alte Quiznamen sind mangels belegter Kontozuordnung reserviert; ein neuer freier Name ist nötig, bis ein Administrator eine bestehende Zuordnung gezielt nachweisen und migrieren kann. Persönliche Lernstatistiken behalten die alten Ergebnisse und unterscheiden deren Herkunft im Datenbestand.
+
+### Abo-Laufzeiten und Anmeldung
+
+Für neue unterstützte PayPal-Abos wird der bezahlte Zeitraum aus bestätigten regulären Zahlungen und dem verifizierten Festpreisplan gespeichert. Ein aktiver Abostatus allein reicht nicht zur Freischaltung. Kündigung oder Ablauf verlängern den Zugang nicht; eine bestätigte vollständige Erstattung oder Rückbuchung entfernt den Zeitraum der betroffenen Zahlung. Die signierte Berechtigung endet spätestens am bezahlten Ablaufdatum. Anbieterfehler erzeugen keine neue Deckung.
+
+Vorhandene Premiumflags bleiben als manuelle oder ungeklärte Altzugänge erhalten. Eine automatische Bereinigung alter PayPal-Zugänge ist weiterhin offen, bis Abo-ID, Kontozuordnung und manuelle Ausnahmen eindeutig abgeglichen sind. Komplexe Pläne mit Trial, Gebühren oder mehreren Abrechnungszyklen werden zur Prüfung markiert und nicht automatisch freigeschaltet.
+
+Zusätzlich sind parallele Anfragen nach einem E-Mail-Anmeldecode jetzt atomar reserviert. Nur die erfolgreiche Anfrage darf den gespeicherten Code versenden. Ein neuer Code kann nicht durch eine gleichzeitig laufende Anfrage überschrieben werden. Sonderzeichen in E-Mail-Adressen werden in Datenbankfiltern wörtlich behandelt.
+
+### Fachinhalte und regionale Quellen
+
+Alle 47 Artenseiten wurden fachlich neu abgeglichen. Der aktuelle Bestand umfasst 781 artspezifische Biologiepunkte, 141 lokale Quizfragen und 22 Zahnformeln. Jede Seite nennt ihre Quellen. 80 zuvor unbelegte Bestimmungs- oder Krankheitsangaben wurden zurückgezogen; zurückgezogen bedeutet fehlende konkrete Beleggrundlage, nicht automatisch falsch.
+
+Die amtlichen Quellen sind für alle 51 Rechtsregionen einzeln zugeordnet: 16 deutsche Länder, 9 österreichische Länder und 26 Schweizer Kantone. Schweizer Jagdsysteme und Genfs staatliche Bestandsregulierung wurden präzisiert; österreichische Prüfungsaussagen berücksichtigen regionale Anforderungen und anerkannte Nachweise. Karten- und Kurs-IDs bleiben erhalten.
+
+Der Quellenabgleich ist keine Vollprüfung sämtlicher aktueller Rechtsartikel und Anordnungen. Bei zehn deutschen Portalen war nur die amtliche Zuordnung samt Metadaten lesbar; einzelne Schweizer Gesetzessammlungen erforderten Such- oder PDF-Nachweise. Biologische Quellen sind abschnittsweise zugeordnet. Die vorhandenen Fotos wurden technisch geprüft, nicht unabhängig auf Artidentität bestimmt.
+
+Die Einzelbelege, Grenzen und Änderungen stehen in data/reviews/legal-regions-de-at-2026-10-04.json, data/reviews/legal-regions-ch-2026-10-04.json und data/reviews/wildlife-biology-2026-10-04.json.
+
+### Einrichtung und Grenzen des Echtbetriebs
+
+Vor Veröffentlichung müssen die beiden Migrationen 20261004100000_ranked_quiz.sql und 20261004110000_subscription_access.sql im bestehenden Supabase-Projekt ausgeführt werden. Die bisherigen Konto- und Auswertungstabellen sind Voraussetzung. PayPal-Webhookereignisse und Servervariablen müssen passend eingerichtet sein. Die konkrete Anleitung steht in [rest-einrichtung.md](rest-einrichtung.md).
+
+Der neue Einrichtungstest arbeitet rein lesend. Lokal fehlen erforderliche Supabase- und PayPal-Werte, weshalb keine Datenbankverbindung geprüft wurde. Daraus folgt keine Aussage über die Einstellungen in Vercel.
+
+Die bereits veröffentlichte öffentliche App wurde im Browser geprüft: Startseite, Weiterleitung aus Wildkunde zur Preisübersicht und Anmeldung mit erhaltenem Rücksprungziel. Vercel meldete Erfolg für den vorherigen Commit 6aef87d. Das belegt keine Veröffentlichung dieser neuen lokalen Ergänzungen. Für deren Verhalten liegen kontrollierte React-, API-, PostgreSQL- und Renderingtests sowie der vollständige Build vor.
+
+Es wurden keine echten oder Sandbox-Zahlungen, E-Mails oder Pushnachrichten ausgelöst und keine Live-Datenbank geändert. Ein vollständiger angemeldeter Browser- und Android-Test der neuen Version sowie PayPal-Lebenszyklustests in einer passend eingerichteten Sandbox-Preview bleiben offen.
+
+Aktuelle Prüfnachweise im lokalen Chat-Arbeitsordner work: remaining-app-tests-final.log, remaining-app-build-final.log sowie die zugehörigen *.test.cjs-Dateien.
+
+## Dokumentation der vorangegangenen Prüfung
+
+Der folgende Abschnitt beschreibt den vorherigen Stand. Seine damaligen offenen Punkte werden durch die oben dokumentierte Restprüfung konkret ergänzt; er ist kein zweiter aktueller Ergebnisstand.
 
 Projekt: C:\Projekte\jagdlatein-github
 Prüfstand: lokale Änderungen auf main, Ausgangscommit 64f14c0.
@@ -59,7 +110,7 @@ https://nextjs.org/docs/app/guides/upgrading/version-15
 https://github.com/nodemailer/nodemailer/releases
 https://docs.sheetjs.com/docs/getting-started/installation/standalone/
 
-Verbleibende Grenzen und konkrete offene Punkte
+Damals verbleibende Grenzen und konkrete offene Punkte
 
 1. Automatische Abo-Kündigung und Ablauf
 Das bisherige Konto-Datenmodell enthält weder eine verlässliche Zuordnung zu einem PayPal-Abo noch einen bezahlten Zeitraum. Eine automatische Entziehung von Premium nach Kündigung/Ablauf ist deshalb noch nicht umgesetzt. Dafür werden eine Datenmodellerweiterung und die zugehörige Verarbeitung benötigt. Manuelle Premiumzugänge dürfen dabei nicht versehentlich entzogen werden.

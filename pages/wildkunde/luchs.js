@@ -18,7 +18,7 @@ export default function Luchs() {
       correct: 2,
     },
     {
-      q: "Wie groß ist die Trittspur eines Luchses?",
+      q: "Welche ungefähre Größe kann ein Trittsiegel eines erwachsenen Luchses haben?",
       a: [
         "3–4 cm",
         "5–6 cm",
@@ -55,85 +55,50 @@ export default function Luchs() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 80–110 cm</li>
-            <li>Gewicht: 15–30 kg</li>
-            <li>Lebensraum: große, geschlossene Waldgebiete</li>
-            <li>Einzelgänger, sehr große Streifgebiete (100+ km²)</li>
-            <li>Ernährung: Rehwild, Hasen, Füchse, Vögel</li>
-            <li>Sehr heimlich, kaum sichtbar</li>
+            <li>Große heimische Katzenart mit Ohrpinseln, Backenbart und kurzer Rute mit schwarzem Ende</li>
+            <li>Fellzeichnung und Fleckung variieren zwischen Individuen</li>
+            <li>Lebt überwiegend einzeln mit großen Streifgebieten</li>
+            <li>Nutzt Waldlandschaften und strukturreiche Kulturlandschaften</li>
+            <li>Vor allem dämmerungs- und nachtaktiv</li>
+            <li>Beute in Mitteleuropa häufig Rehwild; regionale Nahrungsspektren unterscheiden sich</li>
+            <li>Pirscht sich an und erbeutet Wild auf kurze Distanz</li>
+            <li>Kehrt wiederholt zu einem Riss zurück</li>
+            <li>Runde Trittsiegel erwachsener Luchse sind häufig etwa 7 bis 9 cm groß; Größe allein beweist die Art nicht</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Typische schwarze Ohrpinsel</strong></li>
-            <li><strong>Backenbart („Backenbärte“)</strong></li>
-            <li>Gepunktetes Fell → Muster individuell wie Fingerabdruck</li>
-            <li>Stummelschwanz mit schwarzer Spitze</li>
-            <li>Fährte: sehr groß → 7–9 cm, rund ohne Krallenabdruck</li>
-            <li>Losung: ähnelt Katze, aber größer und oft haarreich</li>
+            <li>Ranz hauptsächlich Februar bis März</li>
+            <li>Tragzeit ungefähr 70 bis 73 Tage</li>
+            <li>Junge werden im späten Frühjahr geboren</li>
+            <li>Wurfgröße variabel, häufig zwei bis drei Junge</li>
+            <li>Die Mutter übernimmt die Aufzucht</li>
+            <li>Junge bleiben häufig bis zur nächsten Ranz bei der Mutter</li>
           </ul>
         </section>
 
-        {/* JAGDVERHALTEN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Jagdverhalten</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Pirscht langsam, schlägt Beute mit einem kurzen Sprint</li>
-            <li>Bevorzugte Beute: Rehwild</li>
-            <li>Tötet durch Kehlbiss</li>
-            <li>Verbleibt häufig an der geschlagenen Beute und frisst mehrere Tage daran</li>
+            <li>Das Fleckenmuster ist individuell und kann in der Forschung zur Wiedererkennung dienen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Februar–März</li>
-            <li>Tragzeit: 70 Tage</li>
-            <li>Wurfzeit: Mai–Juni</li>
-            <li>Wurfgröße: 1–3 Junge</li>
-          </ul>
-        </section>
-
-        {/* SCHUTZSTATUS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Schutzstatus</h2>
-          <ul style={styles.list}>
-            <li><strong>Geschützte Art; keine eigenmächtige Bejagung</strong></li>
-            <li>Wiederansiedlungsprogramme in DE/AT/CH</li>
-            <li>Monitoring über Fotofallen & DNA</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Katzenkrankheiten (FIV, FeLV)</li>
-            <li>Parasiten (Bandwürmer, Spulwürmer)</li>
-            <li>Räude selten</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 2/2 · M 1/1 = 28</li>
-            <li>Kräftige Fangzähne</li>
-            <li>Schneidende Reißzähne</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.lifelynx.eu/biology/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102683/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.kora.ch/de/arten/luchs/nachweise-im-feld" target="_blank" rel="noopener noreferrer">KORA: Nachweise im Feld</a> · <a href="https://www.lifelynx.eu/biology/" target="_blank" rel="noopener noreferrer">LIFE Lynx: Biologie</a> · <a href="https://www.bfn.de/artenportraits/lynx-lynx" target="_blank" rel="noopener noreferrer">Bundesamt für Naturschutz: Luchs und Schutzstatus</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

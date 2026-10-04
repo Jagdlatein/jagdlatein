@@ -10,8 +10,8 @@
   {
     "id": "ch-BS-quellen",
     "title": "Kanton Basel-Stadt: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Basel-Stadt. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "text": "Öffne das amtliche Angebot für den Kanton Basel-Stadt. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.gesetzessammlung.bs.ch/app/de/texts_of_law/912.200",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   },
@@ -19,7 +19,7 @@
     "id": "ch-BS-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "source": "https://www.gesetzessammlung.bs.ch/app/de/texts_of_law/912.200",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   }

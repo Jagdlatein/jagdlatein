@@ -1,4 +1,4 @@
-import { activateVerifiedSubscription } from "../webhook/_base";
+import { accessFromSubscriptions, refreshVerifiedSubscription } from "../../../../lib/subscription-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +13,8 @@ export async function POST(req) {
   if (typeof id !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(id))
     return Response.json({ error: "Ungültiges Abo." }, { status: 400 });
   try {
-    const activated = await activateVerifiedSubscription(id);
+    const subscription = await refreshVerifiedSubscription(id);
+    const activated = Boolean(subscription && accessFromSubscriptions([subscription]).paid);
     return Response.json({ activated }, { status: activated ? 200 : 202, headers: { "Cache-Control": "no-store" } });
   } catch {
     return Response.json({ error: "Die Zahlungsbestätigung wird noch verarbeitet. Bitte später erneut anmelden." }, { status: 503 });

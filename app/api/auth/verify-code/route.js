@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
+import { resolveSubscriptionAccess } from "../../../../lib/subscription-access";
 
 function getSupabase() {
   return createClient(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
@@ -135,7 +136,7 @@ export async function POST(req) {
     const { data: profile, error: profileError } = await supabase
       .from("userprofile")
       .select("email, is_premium, is_admin")
-      .ilike("email", email)
+      .ilike("email", email.replace(/[\\%_]/g, "\\$&"))
       .maybeSingle();
 
     if (profileError || !profile || normalizeAccountEmail(profile.email) !== email) {
@@ -151,8 +152,10 @@ export async function POST(req) {
     if (expiresAt <= Date.now()) return NextResponse.json(
       { success: false, message: "Login-Code ist abgelaufen." }, { status: 400 });
 
+    const subscription = profile.is_admin === true && profile.is_premium !== true ? { paid: false, paidUntil: null }
+      : await resolveSubscriptionAccess(supabase, email, { legacyPaid: profile.is_premium === true });
     const accountToken = createAccountSession(email, Date.now(), {
-      paid: profile.is_premium === true, admin: profile.is_admin === true,
+      paid: subscription.paid, paidUntil: subscription.paidUntil, admin: profile.is_admin === true,
     });
     if (!accountToken) return NextResponse.json({ success: false, message: "Die Anmeldung ist derzeit nicht verfügbar." }, { status: 503 });
     const { data: consumed, error: consumeError } = await supabase
@@ -181,7 +184,7 @@ export async function POST(req) {
       maxAge: accountToken ? ACCOUNT_SESSION_MAX_AGE : 0,
     });
 
-    if (profile.is_premium === true) {
+    if (subscription.paid) {
       cookieStore.set({
         name: "jl_paid",
         value: "1",
@@ -213,7 +216,7 @@ export async function POST(req) {
 
     return NextResponse.json({
       success: true,
-      paid: profile.is_premium === true,
+      paid: subscription.paid,
       admin: profile.is_admin === true,
       message: "Login erfolgreich.",
     });
@@ -223,9 +226,9 @@ export async function POST(req) {
     return NextResponse.json(
       {
         success: false,
-        message: "Serverfehler.",
+        message: error?.status === 503 ? "Dein Konto ist derzeit nicht verfügbar. Bitte erneut versuchen." : "Serverfehler.",
       },
-      { status: 500 }
+      { status: error?.status === 503 ? 503 : 500 }
     );
   }
 }

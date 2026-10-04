@@ -48,75 +48,49 @@ export default function Dachs() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 8–17 kg, im Herbst bis über 20 kg</li>
-            <li>Körperlänge: 60–90 cm</li>
-            <li>Lebensraum: Mischwälder, Feldgehölze, Waldränder</li>
-            <li>Nahrung: Regenwürmer, Insekten, Früchte, Aas, Getreide</li>
-            <li>Omnivor und sehr anpassungsfähig</li>
-            <li>Sehr reinliches Tier – „Toilettenplätze“ außerhalb des Baues</li>
+            <li>Marderartiger Allesfresser mit schwarz-weißer Gesichtszeichnung</li>
+            <li>Gedrungener Körper, kurze kräftige Beine und kurze Rute</li>
+            <li>Kopf-Rumpf-Länge ungefähr 60 bis 90 cm; Gewicht schwankt saisonal</li>
+            <li>Nutzt Wälder, Feldgehölze und strukturreiche Landschaften</li>
+            <li>Nahrung unter anderem Regenwürmer, Insekten, Früchte, Getreide und Kleinsäuger</li>
+            <li>Baue besitzen Röhren und Wohnkammern, die Kessel heißen</li>
+            <li>Lebt je nach Lebensraum und Nahrungsangebot in sozialen Gruppen</li>
+            <li>Überwiegend dämmerungs- und nachtaktiv</li>
+            <li>Winterruhe kann bei mildem Wetter unterbrochen werden; kein tiefer Winterschlaf</li>
           </ul>
         </section>
 
-        {/* BAU */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Bau & Lebensweise</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Dachsbaue bestehen aus Röhren und Wohnkammern (Kesseln)</li>
-            <li>Bau wird über Jahrzehnte genutzt</li>
-            <li>Mehrere Notausgänge</li>
-            <li>Oft Gemeinschaftsbau mit Fuchs</li>
-            <li>Winterruhe (keine echte Winterstarre)</li>
+            <li>Paarungen sind über weite Teile des Jahres möglich; regionale Schwerpunkte unterscheiden sich</li>
+            <li>Verzögerte Einnistung der befruchteten Eizelle, auch Keimruhe genannt</li>
+            <li>Junge werden häufig Februar bis März geboren</li>
+            <li>Wurfgröße variabel, häufig zwei bis drei Junge</li>
+            <li>Jungtiere können länger im Familienverband verbleiben</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Paarungen sind über weite Teile des Jahres möglich; Schwerpunkte variieren regional</li>
-            <li>Keimruhe; Geburten häufig im Februar–März</li>
-            <li>2–3 Jungtiere („Dachswelpen“)</li>
+            <li>Kräftige Grabkrallen und schwarz-weiße Kopfzeichnung</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Markante schwarz-weiße Kopfzeichnung</li>
-            <li>Kurz, gedrungen, kräftige Beine</li>
-            <li>Fährte: breit, 5 Zehen sichtbar</li>
-            <li>Losung: breiig bis kompakt, je nach Nahrung</li>
-            <li>Lauf: gedrungen wirkend</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Tuberkulose</li>
-            <li>Räude</li>
-            <li>Trichinen (selten, aber relevant)</li>
-          </ul>
-        </section>
-
-        {/* ZÄHNE */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
-            <li>Starkes Raubtiergebiss, kann harte Nahrung aufbrechen</li>
-            <li>Breite Molaren für Allesfresser typisch</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://animaldiversity.org/accounts/Meles_meles/" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101575/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://animaldiversity.org/accounts/Meles_meles/" target="_blank" rel="noopener noreferrer">University of Michigan: Dachsbiologie und Gebiss</a> · <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Bayerische Staatsforsten: Waldjagd und Fachbegriffe</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

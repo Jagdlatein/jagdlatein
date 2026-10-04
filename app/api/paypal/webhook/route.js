@@ -1,10 +1,13 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-import { activateVerifiedSubscription, verifyPaypalWebhook } from "./_base";
+import { verifyPaypalWebhook } from "./_base";
+import { accessFromSubscriptions, applyVerifiedPaypalEvent } from "../../../../lib/subscription-access";
 
 const subscriptionEvents = new Set([
   "BILLING.SUBSCRIPTION.ACTIVATED", "BILLING.SUBSCRIPTION.UPDATED",
+  "BILLING.SUBSCRIPTION.CANCELLED", "BILLING.SUBSCRIPTION.SUSPENDED", "BILLING.SUBSCRIPTION.EXPIRED",
+  "BILLING.SUBSCRIPTION.PAYMENT.FAILED", "PAYMENT.SALE.COMPLETED", "PAYMENT.SALE.REFUNDED", "PAYMENT.SALE.REVERSED",
 ]);
 
 function json(data, status = 200) {
@@ -23,12 +26,11 @@ export async function POST(req) {
     if (!event) return json({ error: "invalid signature" }, 401);
     // Approval and creation do not prove an active subscription or a paid order.
     if (!subscriptionEvents.has(event.event_type)) return json({ ignored: true });
-    const subscriptionId = event.resource?.id;
-    if (typeof subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(subscriptionId))
-      return json({ error: "invalid subscription" }, 400);
-    // Read current status: delayed/replayed activation messages must not restore a cancelled subscription.
-    if (!await activateVerifiedSubscription(subscriptionId)) return json({ ignored: true });
-    return json({ ok: true, premium: true });
+    // Current provider reads and atomic payment records make retries idempotent.
+    // A cancelled subscription can retain only its already confirmed paid period.
+    const subscription = await applyVerifiedPaypalEvent(event);
+    if (!subscription) return json({ ignored: true });
+    return json({ ok: true, premium: accessFromSubscriptions([subscription]).paid });
   } catch {
     return json({ error: "payment verification unavailable" }, 503);
   }

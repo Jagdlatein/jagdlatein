@@ -57,69 +57,35 @@ export default function Tafelente() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
             <li>Mittelgroße Tauchente</li>
-            <li>Lebensraum: Seen, Teiche, Altwasser, ruhige Flüsse</li>
-            <li>Fliegt schnell, startet mit kräftigem Anlauf</li>
-            <li>Bevorzugt tiefere Gewässer</li>
-            <li>Wintergast in großen Gruppen</li>
+            <li>Erpel im Prachtkleid mit rotbraunem Kopf, schwarzer Brust und grauem Körper</li>
+            <li>Ente überwiegend braun gefärbt</li>
+            <li>Schnabel dunkel mit grauem Querband</li>
+            <li>Nutzt nährstoffreiche Gewässer mit offener Wasserfläche und geeigneter Ufervegetation</li>
+            <li>Tauchende Nahrungssuche mit tierischen und pflanzlichen Bestandteilen</li>
+            <li>In Mitteleuropa Brutvogel sowie Zug- und Wintergast</li>
+            <li>Nicht alle Populationen zeigen dasselbe Zugverhalten</li>
+            <li>Außerhalb der Brutzeit oft größere Gruppen</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
-          <h3>Erpel (Prachtkleid)</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Kastanienroter Kopf</li>
-            <li>Schwarze Brust</li>
-            <li>Grauer Körper</li>
-            <li>Hellblauer Schnabel mit dunkler Spitze</li>
-          </ul>
-
-          <h3>Ente</h3>
-          <ul style={styles.list}>
-            <li>Braun getarnt</li>
-            <li>Deutlich unauffälliger als der Erpel</li>
-            <li>Kleinerer, runder Kopf</li>
+            <li>Nest in geschützter Ufervegetation oder auf geeigneten Inseln und Pflanzenunterlagen</li>
+            <li>Gelegegröße variabel, häufig sieben bis elf Eier</li>
+            <li>Ente übernimmt Brut und Führung</li>
+            <li>Küken sind Nestflüchter und können früh tauchen</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
+            <li>Störungsarme Mauser- und Rastgewässer sind wichtig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: April–Juni</li>
-            <li>Nest in dichter Ufervegetation</li>
-            <li>Gelege: 8–10 Eier</li>
-            <li>Küken: Nestflüchter, tauchen früh</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Tauchente → sucht Nahrung unter Wasser</li>
-            <li>Pflanzenreste, Samen, Schnecken, Muscheln, Insektenlarven</li>
-            <li>Küken benötigen tierisches Eiweiß</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Starker Zugvogel</li>
-            <li>Brütet in Europa und Asien</li>
-            <li>Überwintert in Mitteleuropa, Mittelmeer, Afrika</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/236312/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

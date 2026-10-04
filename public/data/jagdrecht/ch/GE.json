@@ -2,7 +2,7 @@
   {
     "id": "ch-GE-system",
     "title": "Jagdsystem",
-    "text": "Genf: Staatliche Bestandsregulierung (Genf).",
+    "text": "Genf: keine reguläre private Jagd. Erforderliche Bestandsregulierungen werden durch staatliche Wildhüter durchgeführt.",
     "source": "https://www.bafu.admin.ch/de/jagd",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
@@ -10,16 +10,16 @@
   {
     "id": "ch-GE-quellen",
     "title": "Kanton Genf: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Genf. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "text": "Das amtliche Genfer Angebot erläutert den Kanton ohne reguläre private Jagd. Staatliche Wildtierregulierung und private Jagdausübung sind unterschiedliche Sachverhalte. Konkrete Fragen werden mit der kantonalen Wildtierverwaltung geklärt.",
+    "source": "https://www.ge.ch/cohabiter-avec-faune-sauvage/canton-sans-chasse",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   },
   {
     "id": "ch-GE-check",
-    "title": "Vor der Jagd konkret nachschlagen",
-    "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "title": "Genfs Sonderfall beachten",
+    "text": "Eine Jagdausbildung oder eine Bewilligung aus einem anderen Kanton verleiht keine reguläre private Jagdberechtigung in Genf. Bei Wildtierproblemen und erforderlicher Bestandsregulierung ist die zuständige kantonale Stelle einzubeziehen. Amtliche Regeln zu Wildtierschutz und örtlichen Schutzgebieten bleiben zu beachten.",
+    "source": "https://www.ge.ch/cohabiter-avec-faune-sauvage/canton-sans-chasse",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   }

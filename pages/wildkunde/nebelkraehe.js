@@ -13,10 +13,10 @@ export default function Nebelkraehe() {
       correct: 1,
     },
     {
-      q: "Welche Aussage ist richtig?",
+      q: "Wie hängen Nebelkrähe und Rabenkrähe zusammen?",
       a: [
-        "Nebelkrähe und Rabenkrähe sind zwei völlig verschiedene Arten",
-        "Nebelkrähe ist die graue Farbmorphe der Rabenkrähe",
+        "Sie gehören zu völlig verschiedenen Vogelfamilien",
+        "Eng verwandte Krähen, die in Kontaktzonen hybridisieren können",
         "Nebelkrähe lebt ausschließlich im Gebirge"
       ],
       correct: 1,
@@ -61,65 +61,35 @@ export default function Nebelkraehe() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Zweifarbige Variante der Rabenkrähe</li>
-            <li>Lebensraum: Städte, Ackerland, Küstenregionen, Wälder</li>
-            <li>Sehr intelligent und anpassungsfähig</li>
-            <li>Starker Kulturfolger</li>
-            <li>Hybridzone: Mitte Deutschlands (beide Formen mischen sich)</li>
+            <li>Rabenvogel mit grauem Rumpf und schwarzem Kopf, Brustbereich, Flügeln und Schwanz</li>
+            <li>Als Corvus cornix geführt; eng mit der Rabenkrähe verwandt</li>
+            <li>In Kontaktzonen entstehen Hybriden; keine beliebige Farbvariante einzelner Rabenkrähen</li>
+            <li>Nutzt offene Landschaften und Siedlungsbereiche</li>
+            <li>Krächzende Rufe ähneln denen der Rabenkrähe</li>
+            <li>Allesfresser: Wirbellose, kleine Wirbeltiere, Aas, Samen, Früchte und weitere Nahrung</li>
+            <li>Verpaarte Tiere verteidigen Brutreviere gegen Nichtbrütertrupps</li>
+            <li>Kann Personen und Fahrzeuge unterscheiden und auf Erfahrungen reagieren</li>
+            <li>Verbreitung vor allem in nördlichen und östlichen Teilen Europas; Kontaktzone unter anderem in Deutschland und Österreich</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Grauer Rumpf und graue Unterseite</li>
-            <li>Schwarzer Kopf, Brust, Schwanz und Flügel</li>
-            <li>Kräftiger schwarzer Schnabel</li>
-            <li>Flugbild identisch zur Rabenkrähe</li>
-            <li>Ruf: typische Krähenlaute, kaum unterscheidbar</li>
-          </ul>
-
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: März–Mai</li>
-            <li>Baut große, stabile Nester in Bäumen</li>
-            <li>Gelege: 3–6 Eier</li>
-            <li>Jungvögel verlassen das Nest nach etwa 4 Wochen</li>
+            <li>Nest meist hoch in Bäumen oder an anderen erhöhten Standorten</li>
+            <li>Gelegegröße variabel, häufig drei bis sechs Eier</li>
+            <li>Brutdauer ungefähr 18 bis 20 Tage</li>
+            <li>Junge sind Nesthocker</li>
+            <li>Nestlingszeit ungefähr ein Monat</li>
+            <li>Alte Nester können von anderen Vogelarten genutzt werden</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Aas, Insekten, Larven</li>
-            <li>Eier, Jungvögel, Mäuse</li>
-            <li>Getreide, Obst, Abfälle</li>
-            <li>Sehr vielseitiger Allesfresser</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Sehr lernfähig und sozial</li>
-            <li>Kann Nüsse und Muscheln aus großer Höhe fallen lassen</li>
-            <li>Nutzen von Werkzeugen möglich</li>
-            <li>Teilweise große Schwärme</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.birdlife.at/voegel/nebelkraehe/" target="_blank" rel="noopener noreferrer">BirdLife Österreich: Artprofil</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6445362/" target="_blank" rel="noopener noreferrer">Knief et al. 2019: Krähen-Hybridzone</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

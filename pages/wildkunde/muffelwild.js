@@ -10,7 +10,7 @@ export default function Muffelwild() {
     },
     {
       q: "Wann setzt das Muffelschaf in der Regel?",
-      a: ["Mai–Juni", "November–Dezember", "Januar–Februar"],
+      a: ["April–Mai", "November–Dezember", "Januar–Februar"],
       correct: 0,
     },
     {
@@ -48,65 +48,42 @@ export default function Muffelwild() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: Widder 35–50 kg · Schaf 25–35 kg</li>
-            <li>Körperlänge: 110–130 cm · Schulterhöhe: 65–75 cm</li>
-            <li>Lebensraum: Mittelgebirge, Felsregionen, große Waldgebiete</li>
-            <li>Nahrung: Gräser, Kräuter, Knospen, junge Triebe, Heidekraut</li>
-            <li>Sozialstruktur: Widderrudel & Schafrudel getrennt</li>
-            <li>Sehr gute Kletterfähigkeit und Fluchtdistanz</li>
+            <li>Wildschaf; mitteleuropäische Vorkommen gehen auf Einbürgerungen zurück</li>
+            <li>Bevorzugt trockene, übersichtliche Lebensräume mit lichten Wäldern und felsigen Rückzugsbereichen</li>
+            <li>Widder und Schafe leben außerhalb der Brunft meist in getrennten Rudeln</li>
+            <li>Widder tragen gedrehte Hörner, die Schnecken heißen</li>
+            <li>Schafe haben kleine Hörner oder sind hornlos</li>
+            <li>Hörner werden nicht jährlich abgeworfen</li>
+            <li>Typisch beim Widder ist der helle Sattelfleck, auch Schabracke genannt</li>
+            <li>Weiche Böden können mangelnden Schalenabrieb und schmerzhafte Klauenprobleme begünstigen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Brunftzeit: Oktober–November</li>
-            <li>Tragzeit: ca. 5 Monate</li>
-            <li>Setzzeit: Mai–Juni</li>
-            <li>Schaf setzt 1 Lamm, selten 2</li>
+            <li>Brunft überwiegend Oktober bis November</li>
+            <li>Tragzeit etwa fünf bis fünfeinhalb Monate</li>
+            <li>Lämmer kommen häufig im April und Mai zur Welt</li>
+            <li>Meist ein Lamm, Zwillinge seltener</li>
+            <li>Hornjahresringe liefern Altersanhaltspunkte; Länge allein reicht zur Altersbestimmung nicht</li>
           </ul>
         </section>
 
-        {/* HÖRNER (SCHNECKEN) */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Hörner (Schnecken)</h2>
-          <ul style={styles.list}>
-            <li>Widder trägt starke, gedrehte Schnecken (Hörner)</li>
-            <li>Schnecken wachsen lebenslang</li>
-            <li>Jahresringe → grobe Altersbestimmung möglich</li>
-            <li>Schafe i.d.R. ohne Hörner</li>
-            <li>Stärke & Länge der Schnecken = wichtiges Merkmal</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Typischer weißer „Sattel“ beim Widder</li>
-            <li>Dunkelbraunes Fell, im Winter dichter</li>
-            <li>Schmaler Kopf, helle Fangpartie</li>
-            <li>Fährte: klein, schmal, 3–4 cm, ähnlich Rehwild aber runder</li>
-            <li>Losung: linsenförmig, ähnlich Schaflosung</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
-            <li>Typischer Wiederkäuer</li>
-            <li>Kauflächen der Backenzähne verraten das Alter</li>
-            <li>Kein Oberkiefer-Schneidezahn</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/096779/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

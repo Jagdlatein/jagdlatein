@@ -15,7 +15,7 @@ export default function Steinwild() {
     },
     {
       q: "Wann setzt die Steinwild-Geiß üblicherweise?",
-      a: ["Mai–Juni", "September", "Dezember"],
+      a: ["Überwiegend im Juni", "September", "Dezember"],
       correct: 0,
     },
   ];
@@ -48,65 +48,43 @@ export default function Steinwild() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Lebt im Hochgebirge der Alpen</li>
-            <li>Gewicht: Bock 70–120 kg · Geiß 40–55 kg</li>
-            <li>Körperlänge: 130–165 cm · Schulterhöhe: 85–100 cm</li>
-            <li>Lebensraum: Felsregionen, Schrofen, alpine Matten</li>
-            <li>Extrem trittsicher und kletterstark</li>
-            <li>Nahrung: Gräser, Kräuter, Moose, Zwergsträucher</li>
-            <li>Sozialstruktur: Böcke und Geißen leben getrennt</li>
+            <li>Alpensteinbock: Hornträger und Spezialist felsiger Hochgebirgslebensräume</li>
+            <li>Nutzt alpine Matten, felsige Hänge und saisonal unterschiedliche Höhenlagen</li>
+            <li>Sehr guter Kletterer</li>
+            <li>Nahrung: Gräser und Kräuter; im Winter auch weitere verfügbare Pflanzenteile</li>
+            <li>Böcke sind erheblich massiger als Geißen</li>
+            <li>Bockhörner können etwa einen Meter lang werden</li>
+            <li>Beide Geschlechter tragen Hörner; jene der Geißen sind deutlich kleiner</li>
+            <li>Böcke und Geißen mit Jungtieren leben überwiegend in getrennten Rudeln</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Brunftzeit: Dezember–Januar</li>
-            <li>Tragzeit: ca. 6 Monate</li>
-            <li>Setzzeit: Mai–Juni</li>
-            <li>Geiß setzt 1 Kitz, selten 2</li>
+            <li>Brunft hauptsächlich Dezember bis Januar</li>
+            <li>Tragzeit ungefähr sechs Monate</li>
+            <li>Kitze werden überwiegend im Juni geboren</li>
+            <li>Meist ein Kitz, Zwillinge selten</li>
+            <li>Hörner wachsen über viele Jahre; Jahresringe sind von Schmuckknoten zu unterscheiden</li>
+            <li>Bei Geißen erschweren enge Jahresringe die Altersansprache</li>
           </ul>
         </section>
 
-        {/* HÖRNER */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Hörner</h2>
-          <ul style={styles.list}>
-            <li>Böcke tragen massive, stark gebogene Hörner</li>
-            <li>Hörner wachsen lebenslang → deutliche Jahresringe</li>
-            <li>Geißen tragen deutlich kleinere, schwächere Hörner</li>
-            <li>Bockhörner bis 1 Meter lang möglich</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Mächtige Körperform, dunkles Haarkleid</li>
-            <li>Sommerfell heller, Winterfell dunkler & dichter</li>
-            <li>Typische „Kletterbewegung“ in Felswänden</li>
-            <li>Fährte: breit, 5–7 cm · runde, kräftige Schalen</li>
-            <li>Losung: länglich, dunkel, oft gruppiert</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
-            <li>Typischer Wiederkäuer → keine Oberkiefer-Schneidezähne</li>
-            <li>Zahnabnutzung erlaubt nur eine ungefähre Altersschätzung; Hornjahresringe liefern weitere Anhaltspunkte</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/flora-und-fauna/steinbock/" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://nationalpark.ch/flora-und-fauna/steinbock/" target="_blank" rel="noopener noreferrer">Schweizerischer Nationalpark: Artprofil</a> · <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/143521/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Steinwild</a> · <a href="https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf" target="_blank" rel="noopener noreferrer">Nationalpark: Fokus Steinbock</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

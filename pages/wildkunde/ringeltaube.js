@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Ringeltaube() {
   const quiz = [
     {
-      q: "Welches Merkmal ist typisch für die Ringeltaube?",
+      q: "Welches Merkmal ist typisch für erwachsene Ringeltauben?",
       a: [
         "Schwarzer Kopf und grauer Körper",
         "Weißer Halsfleck und weiße Flügelbinde",
@@ -61,62 +61,36 @@ export default function Ringeltaube() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Größte heimische Taube</li>
-            <li>Sehr häufig in Städten, Wäldern, Parks, Agrarlandschaften</li>
-            <li>Wichtige jagdbare Art (stark verbreitet)</li>
-            <li>Charakteristischer Ruf: „gu-gu-gu-gugúu“</li>
+            <li>Große heimische Wildtaube</li>
+            <li>Erwachsene mit weißen Halsflecken und weißem Flügelband</li>
+            <li>Jungvögeln fehlt der deutliche weiße Halsfleck zunächst</li>
+            <li>Überwiegend graublaues Gefieder mit rötlicher Brust</li>
+            <li>Nutzt Wälder, Feldgehölze, Parks und Siedlungsbereiche</li>
+            <li>Nahrung überwiegend Samen, Früchte, Knospen und grüne Pflanzenteile</li>
+            <li>Außerhalb der Brutzeit gesellig</li>
+            <li>Zugverhalten variiert; viele mitteleuropäische Vögel sind Teilzieher</li>
+            <li>Typischer mehrsilbiger gurrender Reviergesang</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Graublaues Gefieder</li>
-            <li>Weiße Flügelbinde (im Flug sehr auffällig)</li>
-            <li>Weißer Halsfleck beidseitig</li>
-            <li>Rosa Brust</li>
-            <li>Gelber Schnabel</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: März–August</li>
             <li>Mehrere Jahresbruten möglich</li>
-            <li>Nest sehr schlicht, meist in Bäumen oder Hecken</li>
-            <li>Gelege: 2 weiße Eier</li>
-            <li>Eltern füttern „Kropfmilch“ → wichtig in Prüfungen!</li>
+            <li>Schlichtes Zweignest meist in Bäumen oder Gebüschen</li>
+            <li>Gelege gewöhnlich zwei Eier</li>
+            <li>Beide Eltern beteiligen sich an Brut und Aufzucht</li>
+            <li>Junge sind Nesthocker</li>
+            <li>Eltern füttern zunächst nährstoffreiche Kropfmilch</li>
+            <li>Brutzeit kann bis in den Spätsommer reichen</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Getreide, Samen, Bucheckern, Eicheln</li>
-            <li>Knospen und Grünpflanzen</li>
-            <li>Raps, Mais, Weizen → teilweise Schaden auf Feldern</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Oft in Schwärmen, besonders im Winter</li>
-            <li>Standvogel bis Teilzieher</li>
-            <li>Sehr gutes Flugvermögen</li>
-            <li>Vertraut in Städten</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/099167/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.wald.rlp.de/wald/voegel/ringeltaube" target="_blank" rel="noopener noreferrer">Landesforsten Rheinland-Pfalz: Ringeltaube</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/ringeltaube-columba-palumbus" target="_blank" rel="noopener noreferrer">DJV: Ringeltaube</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

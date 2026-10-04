@@ -17,14 +17,24 @@ function UsernameForm() {
   const [country, setCountry] = useState(quizCountry);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [renewalRequired, setRenewalRequired] = useState(false);
   const registrationPending = useRef(false);
+  const mounted = useRef(false);
+  const registrationController = useRef(null);
   useEffect(() => {
+    mounted.current = true;
     try {
+      const storedName = localStorage.getItem("jagd_username");
+      if (typeof storedName === "string" && storedName.length <= 40 && !/[\u0000-\u001f\u007f]/.test(storedName)) setUsername(storedName);
       const storedCountry = localStorage.getItem("jagd_country");
       if (countries.some(item => item.code === storedCountry)) setCountry(storedCountry);
     } catch {
       // Keep the selected quiz country when browser storage is unavailable.
     }
+    return () => {
+      mounted.current = false;
+      registrationController.current?.abort();
+    };
   }, []);
   const countries = [
     { code: "DE", name: "Deutschland 🇩🇪" },
@@ -57,7 +67,7 @@ function UsernameForm() {
   
 
   async function start() {
-    if (registrationPending.current) return;
+    if (!mounted.current || registrationPending.current) return;
     const clean = username.trim().toLowerCase();
     if (!clean) {
       setError("Bitte gib einen Namen für die Rangliste ein.");
@@ -68,25 +78,47 @@ function UsernameForm() {
       return;
     }
     registrationPending.current = true;
+    registrationController.current = new AbortController();
     setBusy(true);
     setError("");
+    setRenewalRequired(false);
     try {
       const res = await fetch("/api/quiz/register", {
         method: "POST",
         credentials: "same-origin",
+        signal: registrationController.current.signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: clean, country }),
       });
       const json = await res.json();
-      if (!res.ok || !json.success) throw new Error("Registrierung fehlgeschlagen");
-      localStorage.setItem("jagd_username", clean);
-      localStorage.setItem("jagd_country", country);
+      if (!mounted.current) return;
+      if (!res.ok || json.success !== true) {
+        const failure = new Error(res.status === 409
+          ? "Dieser Quizname ist bereits vergeben. Bitte wähle einen anderen Namen."
+          : "Dein Quizname konnte gerade nicht gespeichert werden. Bitte versuche es erneut.");
+        failure.renewalRequired = res.status === 401 || res.status === 403;
+        failure.expected = true;
+        throw failure;
+      }
+      if (typeof json.username !== "string" || !json.username || json.username.length > 40
+        || /[\u0000-\u001f\u007f]/.test(json.username) || !countries.some(item => item.code === json.country)) {
+        throw Object.assign(new Error("Dein Quizname konnte gerade nicht bestätigt werden. Bitte versuche es erneut."), { expected: true });
+      }
+      setUsername(json.username);
+      setCountry(json.country);
+      try {
+        localStorage.setItem("jagd_username", json.username);
+        localStorage.setItem("jagd_country", json.country);
+      } catch { /* Browser storage is optional; the name belongs to the signed-in account. */ }
       router.push(quizUrl);
-    } catch {
-      setError("Dein Quizname konnte gerade nicht gespeichert werden. Bitte versuche es erneut.");
+    } catch (failure) {
+      if (mounted.current) {
+        setError(failure.expected ? failure.message : "Dein Quizname konnte gerade nicht gespeichert werden. Bitte versuche es erneut.");
+        setRenewalRequired(failure.renewalRequired === true);
+      }
     } finally {
       registrationPending.current = false;
-      setBusy(false);
+      if (mounted.current) setBusy(false);
     }
   }
 
@@ -102,6 +134,7 @@ function UsernameForm() {
       <input
         id="quiz-username"
         type="text"
+        disabled={busy}
         maxLength={40}
         placeholder="z.B. hannesjäger"
         value={username}
@@ -121,6 +154,7 @@ function UsernameForm() {
         <label htmlFor="leaderboard-country" style={{ fontSize: 18, fontWeight: 700 }}>Dein Land für die Rangliste:</label>
         <select
           id="leaderboard-country"
+          disabled={busy}
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           style={{
@@ -159,7 +193,9 @@ function UsernameForm() {
       >
         {busy ? "Quizname wird gespeichert…" : "▶️ Quiz starten"}
       </button>
+      <p style={{ lineHeight: 1.5 }}>Dein Quizname gehört zu deinem Konto. Ein bereits gespeicherter Name bleibt mit deinem Konto verbunden.</p>
       {error && <p role="alert" style={{ color: "#9b2828", lineHeight: 1.5 }}>{error}</p>}
+      {renewalRequired && <p><Link href={`/login?reauth=1&next=${encodeURIComponent(`/quiz-app/username?country=${encodeURIComponent(quizCountry)}&topic=${encodeURIComponent(quizTopic)}`)}`}>Anmeldung erneuern</Link></p>}
     </div>
   );
 }

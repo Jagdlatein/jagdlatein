@@ -55,74 +55,45 @@ export default function Schneehuhn() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Lebensraum: Alpen, arktische Regionen, Tundra</li>
-            <li>Extrem gut an Kälte angepasst</li>
-            <li>Wechselt mehrfach im Jahr das Gefieder</li>
-            <li>Alpenschneehühner kommen in CH, AT und in den Hochlagen der bayerischen Alpen vor</li>
-            <li>Jagdstatus regional streng reglementiert</li>
+            <li>Alpenschneehuhn: Raufußhuhn kalter Hochgebirgs- und nördlicher Lebensräume</li>
+            <li>Im Alpenraum vorwiegend oberhalb der Baumgrenze</li>
+            <li>Vorkommen auch in den Hochlagen der bayerischen Alpen</li>
+            <li>Dicht befiederte Beine und Zehen helfen bei Kälte und Schnee</li>
+            <li>Wintergefieder überwiegend weiß, Schwanzfedern bleiben dunkel</li>
+            <li>Sommergefieder überwiegend braun-grau gescheckt</li>
+            <li>Hahn mit schwarzem Zügelstreifen und roten Rosen</li>
+            <li>Nahrung im Winter: Triebe, Knospen und weitere Pflanzenteile</li>
+            <li>Im Sommer Kräuter; Küken zunächst besonders Insekten und Spinnen</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Winter:</strong> überwiegend weiß; die Schwanzfedern bleiben schwarz</li>
-            <li><strong>Sommer:</strong> braun-grau gemustert</li>
-            <li>Männchen mit rotem Rosenkamm</li>
-            <li>Beinbefiederung („Schneeschuhe“) zur Wärmeisolierung</li>
-            <li>Kompakter Körperbau</li>
+            <li>Jahreszeitlicher Gefiederwechsel verbessert Tarnung und Isolation</li>
+            <li>Brutbeginn im Gebirge abhängig von Schneelage, meist im späten Frühjahr oder Frühsommer</li>
+            <li>Bodennest in geschützter Vegetation</li>
+            <li>Gelegegröße variabel, häufig sechs bis neun Eier</li>
+            <li>Brutdauer ungefähr drei Wochen</li>
+            <li>Küken sind Nestflüchter</li>
+            <li>Nutzt im Winter auch Schneehöhlen</li>
+            <li>Klimawandel und Freizeitstörungen können den Lebensraum beeinträchtigen</li>
           </ul>
         </section>
 
-        {/* MAUSER */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Mauser & Färbung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>3 Jahreskleider: Winter, Sommer, Übergang</li>
-            <li>Weißkleid = Schutz vor Raubfeinden</li>
-            <li>Sommerkleid schützt vor Sichtung zwischen Felsen</li>
-            <li>Männchen im Frühjahr teils noch weiß → Balzzeit</li>
+            <li>Henne ohne den auffälligen schwarzen Zügel des Hahns</li>
+            <li>Alpine Vorkommen liegen häufig ungefähr zwischen 1.800 und 3.000 Metern</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: Mai–Juni</li>
-            <li>Gelege: 5–10 Eier</li>
-            <li>Bodenbrüter in Felsspalten und Geröll</li>
-            <li>Küken: Nestflüchter</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Winter: Knospen, Triebe, Beeren</li>
-            <li>Sommer: Kräuter, Blätter, Insekten</li>
-            <li>Küken brauchen tierisches Eiweiß</li>
-          </ul>
-        </section>
-
-        {/* GEFÄHRDUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gefährdung & Schutz</h2>
-          <ul style={styles.list}>
-            <li>Klimawandel → schrumpfender Lebensraum</li>
-            <li>Störung durch Wintersport</li>
-            <li>Rückgang der Schneedecke</li>
-            <li>Prädation durch Fuchs, Marder, Greifvögel</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.lfu.bayern.de/natur/sap/arteninformationen/steckbrief/zeige?stbname=Lagopus+muta+helvetica" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.lfu.bayern.de/natur/artenhilfsprogramme_voegel/raufusshuehner/index.htm" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/120348/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.lfu.bayern.de/natur/sap/arteninformationen/steckbrief/zeige?stbname=Lagopus+muta+helvetica" target="_blank" rel="noopener noreferrer">LfU Bayern: Alpenschneehuhn</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

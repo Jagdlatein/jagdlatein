@@ -1,0 +1,360 @@
+{
+  "checkedOn": "2026-10-04",
+  "scope": "Amtliche Quellenzuordnung für 16 deutsche und 9 österreichische Bundesländer; keine erfundenen Jagdzeiten, Fristen oder Freigaben und keine Vollprüfung aller Einzelnormen.",
+  "summary": {
+    "regions": 25,
+    "openedContent": 15,
+    "portalMetadataOnly": 10
+  },
+  "records": [
+    {
+      "country": "DE",
+      "code": "BW",
+      "name": "Baden-Württemberg",
+      "label": "Landesrecht Baden-Württemberg",
+      "url": "https://www.landesrecht-bw.de/bsbw/",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "BY",
+      "name": "Bayern",
+      "label": "Bayerisches Staatsministerium: Bayerisches Jagdgesetz",
+      "url": "https://www.stmwi.bayern.de/jagd-forst/oberste-jagdbehoerde/bayerisches-jagdgesetz/",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "BE",
+      "name": "Berlin",
+      "label": "Berliner Vorschriften- und Rechtsprechungsdatenbank",
+      "url": "https://gesetze.berlin.de/bsbe/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "BB",
+      "name": "Brandenburg",
+      "label": "BRAVORS – Landesrecht Brandenburg",
+      "url": "https://bravors.brandenburg.de/de/vorschriften_schnellsuche",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "HB",
+      "name": "Bremen",
+      "label": "Transparenzportal Bremen: Bremisches Landesjagdgesetz",
+      "url": "https://www.transparenz.bremen.de/metainformationen/bremisches-landesjagdgesetz-ljagdg-vom-26-oktober-1981-296450?asl=bremen203_tpgesetz.c.55340.de&template=20_gp_ifg_meta_detail_d",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "HH",
+      "name": "Hamburg",
+      "label": "Landesrecht Hamburg",
+      "url": "https://www.landesrecht-hamburg.de/bsha/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "HE",
+      "name": "Hessen",
+      "label": "Bürgerservice Hessenrecht",
+      "url": "https://www.lareda.hessenrecht.hessen.de/bshe/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "MV",
+      "name": "Mecklenburg-Vorpommern",
+      "label": "Landesrecht Mecklenburg-Vorpommern",
+      "url": "https://www.landesrecht-mv.de/bsmv/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "NI",
+      "name": "Niedersachsen",
+      "label": "Niedersächsisches Landwirtschaftsministerium: Jagd und Recht",
+      "url": "https://www.ml.niedersachsen.de/startseite/themen/wald_holz_jagd/jagd_in_niedersachsen/gesetze-und-andere-bestimmungen-rund-um-das-thema-jagd-und-jager-5137.html",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "NW",
+      "name": "Nordrhein-Westfalen",
+      "label": "Amtliches Serviceportal RECHT.NRW",
+      "url": "https://recht.nrw.de/",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "RP",
+      "name": "Rheinland-Pfalz",
+      "label": "Landesrecht Rheinland-Pfalz",
+      "url": "https://www.landesrecht.rlp.de/bsrp/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "SL",
+      "name": "Saarland",
+      "label": "Bürgerservice Saarland: Saarländisches Jagdgesetz",
+      "url": "https://recht.saarland.de/bssl/document/jlr-JagdGSL1998rahmen",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "SN",
+      "name": "Sachsen",
+      "label": "REVOSax – Landesrecht Sachsen",
+      "url": "https://www.revosax.sachsen.de/",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "Amtliches Landesportal bzw. Behördenseite geöffnet; regionale Zuordnung und Recherchezugang geprüft. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "ST",
+      "name": "Sachsen-Anhalt",
+      "label": "Landesrecht Sachsen-Anhalt",
+      "url": "https://www.landesrecht.sachsen-anhalt.de/bsst/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "SH",
+      "name": "Schleswig-Holstein",
+      "label": "Gesetze und Rechtsprechung Schleswig-Holstein",
+      "url": "https://www.gesetze-rechtsprechung.sh.juris.de/bssh/",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "DE",
+      "code": "TH",
+      "name": "Thüringen",
+      "label": "Bürgerservice Thüringen",
+      "url": "https://landesrecht.thueringen.de/bsth/search",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "portal_metadata_only",
+      "scope": "Amtliche regionale Zuordnung und Portaltitel geprüft; das Tool lieferte nur zwei Zeilen. Kein Gesetzesvolltext aus diesem Portal gelesen.",
+      "directoryEvidence": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php"
+    },
+    {
+      "country": "AT",
+      "code": "B",
+      "name": "Burgenland",
+      "label": "Burgenländisches Jagdgesetz 2017",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001124",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "K",
+      "name": "Kärnten",
+      "label": "Kärntner Jagdgesetz 2000 – K-JG",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrK&Gesetzesnummer=20000013",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "NOE",
+      "name": "Niederösterreich",
+      "label": "NÖ Jagdgesetz 1974",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20000559",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "OOE",
+      "name": "Oberösterreich",
+      "label": "Oö. Jagdgesetz 2024",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrOO&Gesetzesnummer=20001285",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "S",
+      "name": "Salzburg",
+      "label": "Jagdgesetz 1993 (Salzburg)",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrSbg&Gesetzesnummer=10000930",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "ST",
+      "name": "Steiermark",
+      "label": "Steiermärkisches Jagdgesetz 1986",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000850",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "T",
+      "name": "Tirol",
+      "label": "Tiroler Jagdgesetz 2004",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrT&Gesetzesnummer=10000088",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "V",
+      "name": "Vorarlberg",
+      "label": "Jagdgesetz (Vorarlberg)",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20000567",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    },
+    {
+      "country": "AT",
+      "code": "W",
+      "name": "Wien",
+      "label": "Wiener Jagdgesetz",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrW&Gesetzesnummer=20000437",
+      "checkedOn": "2026-10-04",
+      "method": "web.open / web.click",
+      "status": "opened_content",
+      "scope": "RIS-Gesamtfassung geöffnet; Gesetzestitel und Bundesland stimmen überein. Keine vollständige Prüfung aller Einzelnormen.",
+      "directoryEvidence": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html"
+    }
+  ],
+  "supportingSources": [
+    {
+      "url": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+      "title": "Justizportal des Bundes und der Länder: amtliche Landesrecht-Angebote",
+      "status": "opened_content"
+    },
+    {
+      "url": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html",
+      "title": "BMLUK: Zuständigkeit der Länder und neun Landesjagdgesetze",
+      "status": "opened_content"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bjagdg/",
+      "title": "Bundesjagdgesetz: aktueller Recherchezugang",
+      "status": "opened_content"
+    },
+    {
+      "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+      "title": "Jagdkarte: Karte, konkrete Erlaubnis und Zuständigkeiten",
+      "status": "opened_content"
+    },
+    {
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001124",
+      "title": "Burgenländisches Jagdgesetz 2017: § 62 Jagdgastkarten als Beispiel für abweichende Nachweise",
+      "status": "opened_content"
+    }
+  ],
+  "failedAttempts": [
+    {
+      "url": "https://www.gesetze-bayern.de/Content/Document/BayJG/true",
+      "result": "web.open lieferte Internal Error; stattdessen geöffnete aktuelle StMWi-Jagdgesetzseite verlinkt."
+    },
+    {
+      "url": "https://voris.wolterskluwer-online.de/",
+      "result": "Justizportal-Verweis lieferte Internal Error; stattdessen geöffnete amtliche Jagd-Rechtsübersicht des Landesministeriums verlinkt."
+    },
+    {
+      "url": "https://www.saarland.de/arbg/DE/landesrecht",
+      "result": "web.open lieferte Internal Error; Ersatz recht.saarland.de lieferte regionalen Portaltitel, keinen Normvolltext."
+    },
+    {
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrOO&Gesetzesnummer=20001285",
+      "result": "Erste Direktabrufe lieferten Internal Error; späterer Aufruf über amtliche BMLUK-Verlinkung lieferte die Oö.-Gesamtfassung mit 2494 Textzeilen."
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/gg/art_72.html",
+      "result": "web.open lieferte Internal Error; keine vollständige Prüfung der Abweichungskompetenz hier behauptet."
+    }
+  ]
+}

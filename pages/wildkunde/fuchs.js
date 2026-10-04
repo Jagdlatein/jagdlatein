@@ -4,12 +4,12 @@ import Image from "next/image";
 export default function Fuchs() {
   const quiz = [
     {
-      q: "Wann ist die Ranzzeit des Fuchses?",
-      a: ["Januar–Februar", "Mai–Juni", "September"],
+      q: "Wann liegt überwiegend die Ranzzeit des Fuchses?",
+      a: ["Dezember–Februar", "Mai–Juni", "September"],
       correct: 0,
     },
     {
-      q: "Woran erkennt man die typische Fuchslosung?",
+      q: "Welche Merkmale können bei Fuchslosung auftreten, ohne allein die Art zu beweisen?",
       a: [
         "Länglich, mit Haar- oder Knochenresten",
         "Rund und trocken",
@@ -52,65 +52,75 @@ export default function Fuchs() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 5–9 kg</li>
-            <li>Körperlänge: 60–90 cm · Schwanzlänge: 30–40 cm</li>
-            <li>Lebensraum: Wälder, Feldfluren, Siedlungsbereiche</li>
-            <li>Allesfresser: Mäuse, Kaninchen, Regenwürmer, Früchte</li>
-            <li>Territorial · meist nachts aktiv</li>
-            <li>Sehr anpassungsfähig – auch in Städten verbreitet</li>
+            <li>Hundeartiger Beutegreifer mit sehr breitem Lebensraumspektrum</li>
+            <li>Kommt in Wald, offener Kulturlandschaft und Siedlungen vor</li>
+            <li>Überwiegend dämmerungs- und nachtaktiv</li>
+            <li>Allesfresser: Mäuse, weitere Kleintiere, Wirbellose, Aas und Früchte</li>
+            <li>Rötliche Oberseite und helle Unterseite; Fellfarbe variiert</li>
+            <li>Buschiger Schwanz heißt Lunte; eine helle Schwanzspitze wird Blume genannt</li>
+            <li>Gräbt eigene Baue und nutzt auch Dachsbaue</li>
+            <li>Geruchs- und Gehörsinn sind sehr gut entwickelt</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Ranzzeit: Januar–Februar</li>
-            <li>Würfe: März–April</li>
-            <li>Wurfgröße: 3–6 Welpen</li>
-            <li>Bau: erweitert alte Dachsbaue oder nutzt Röhren</li>
+            <li>Ranz hauptsächlich Dezember bis Februar</li>
+            <li>Tragzeit knapp acht Wochen</li>
+            <li>Welpen kommen überwiegend im März und April zur Welt</li>
+            <li>Wurfgröße variabel, häufig vier bis sechs Welpen</li>
+            <li>Fähe ist das Weibchen, Rüde das Männchen</li>
           </ul>
         </section>
 
-        {/* MERKMALE */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Gesundheit und Nachweise</h2>
           <ul style={styles.list}>
-            <li>Roter bis rotbrauner Rücken</li>
-            <li>Helle Bauchseite</li>
-            <li>Weiße Schwanzspitze (Blume) der Lunte</li>
-            <li>Schwarze „Stiefel“ an den Läufen</li>
-            <li>Fährte: 4–5 cm · länglich, eng gestellt</li>
-            <li>Losung: dunkel, wulstig, oft mit Haar- & Knochenresten</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Wichtige Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Fuchsbandwurm (Echinococcus multilocularis)</li>
-            <li>Staupe</li>
-            <li>Räude (Sarcoptes scabiei)</li>
+            <li>Fuchsbandwurm und Räude können vorkommen; keine Häufigkeit allein aus dem Erscheinungsbild ableiten</li>
             <li>Deutschland gilt seit 2008 als frei von terrestrischer Tollwut; Fledermaus-Lyssaviren kommen weiterhin vor</li>
+            <li>Losung kann langgezogen, gedreht und mit Nahrungsresten durchsetzt sein; Form allein beweist die Art nicht</li>
           </ul>
         </section>
 
-        {/* ZÄHNE */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
+          <ul style={styles.list}>
+            <li>Welpen werden meist ungefähr zwei Monate gesäugt</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Spuren als Hinweise</h2>
+          <ul style={styles.list}>
+            <li>Losung kann länglich und zugespitzt sein; oft sind Haare, Kerne oder andere Nahrungsreste sichtbar</li>
+            <li>Ähnliche Losung kann von anderen Arten stammen; ein einzelnes Merkmal beweist die Art nicht</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Gesundheit und Hygiene</h2>
+          <ul style={styles.list}>
+            <li>Räude wird durch Milben ausgelöst und kann Juckreiz und Haarverlust verursachen; Haarverlust allein ist keine Diagnose</li>
+            <li>Füchse können Endwirte des Kleinen Fuchsbandwurms sein; sichtbare Gesundheit schließt Parasiten nicht aus</li>
+            <li>Deutschland gilt seit 2008 als frei von klassischer terrestrischer Tollwut; Fledermaus-Lyssaviren und Importfälle bleiben möglich</li>
+            <li>Verdächtige Wildtiere und Kot nicht ungeschützt anfassen; bei möglichem Tollwutkontakt ärztlich abklären lassen</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42</li>
-            <li>Reißzahngebiss – perfekt für Fleisch</li>
-            <li>Typisch für Caniden</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.rki.de/SharedDocs/FAQs/DE/Tollwut/FAQ_Liste.html?nn=16907352" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/085227/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.rki.de/SharedDocs/FAQs/DE/Tollwut/FAQ_Liste.html?nn=16907352" target="_blank" rel="noopener noreferrer">RKI: Tollwut</a> · <a href="https://jagdverband.it/fuchs-2/" target="_blank" rel="noopener noreferrer">Südtiroler Jagdverband: Fuchsmerkmale</a> · <a href="https://fuchsratgeber.ch/u6.html" target="_blank" rel="noopener noreferrer">SWILD/INFOX: Fuchslosung erkennen</a> · <a href="https://www.fli.de/de/aktuelles/kurznachrichten/neues-einzelansicht/aktuelles-zur-tollwut-in-deutschland/" target="_blank" rel="noopener noreferrer">FLI: Tollwut in Deutschland, 20. Februar 2026</a> · <a href="https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/27_26.pdf?__blob=publicationFile&amp;v=3" target="_blank" rel="noopener noreferrer">RKI: Tollwut, Epidemiologisches Bulletin 27/2026</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

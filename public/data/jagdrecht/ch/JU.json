@@ -10,8 +10,8 @@
   {
     "id": "ch-JU-quellen",
     "title": "Kanton Jura: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Jura. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "text": "Öffne das amtliche Angebot für den Kanton Jura. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
+    "source": "https://www.jura.ch/fr/Autorites/Administration/DEC/ENV/Chasse-et-faune-sauvage/Chasse-et-protection-de-la-faune-sauvage.html",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   },
@@ -19,7 +19,7 @@
     "id": "ch-JU-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.kvu.ch/de/adressen/jagd-fischerei",
+    "source": "https://www.jura.ch/fr/Autorites/Administration/DEC/ENV/Chasse-et-faune-sauvage/Chasse-et-protection-de-la-faune-sauvage.html",
     "reviewedOn": "2026-10-04",
     "kind": "Lernübersicht"
   }

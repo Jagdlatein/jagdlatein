@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Pfeifente() {
   const quiz = [
     {
-      q: "Was ist typisch für den Ruf der Pfeifente?",
+      q: "Was ist typisch für den Ruf des Pfeifenten-Erpels?",
       a: ["Tiefes Knurren", "Hohes pfeifendes 'fiie'", "Lautes Kollern wie beim Birkhahn"],
       correct: 1,
     },
@@ -48,69 +48,43 @@ export default function Pfeifente() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
             <li>Mittelgroße Gründelente</li>
-            <li>Sehr auffälliger Ruf → „pfeifendes fiiee“</li>
-            <li>Zugvogel: Brut in Nordeuropa, Winter in Mitteleuropa</li>
-            <li>Lebensraum: Seen, Lagunen, Flachwasserzonen, Küsten</li>
+            <li>Erpel im Prachtkleid mit kastanienbraunem Kopf und heller Stirn</li>
+            <li>Rosa-bräunliche Brust und überwiegend graue Körperpartien beim Erpel</li>
+            <li>Ente überwiegend braun und unauffälliger</li>
+            <li>Männchen mit charakteristischem pfeifendem Ruf</li>
+            <li>Brutgebiete vor allem im Norden Eurasiens</li>
+            <li>In Mitteleuropa vor allem Durchzügler und Wintergast</li>
+            <li>Nutzt flache Gewässer, Lagunen, Küstenfeuchtgebiete und überschwemmte Wiesen</li>
+            <li>Nahrung überwiegend Wasserpflanzen, Gräser, Kräuter und Samen</li>
+            <li>Sucht Nahrung sowohl im Wasser als auch weidend an Land</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
-          <h3>Erpel (Prachtkleid)</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Kastanienbrauner Kopf</li>
-            <li>Cremig-gelbe Stirn („Stirnbinde“)</li>
-            <li>Grauer Körper, rosa Brust</li>
-            <li>Weiße Vorderflügel sichtbar im Flug</li>
-          </ul>
-
-          <h3>Ente</h3>
-          <ul style={styles.list}>
-            <li>Unauffällig braun gemustert</li>
-            <li>Deutlich helle Bauchseite</li>
-            <li>Kleiner Kopf, sanfte Linien</li>
+            <li>Brütet in einem geschützten Bodennest</li>
+            <li>Jahreszeit und Gelegegröße variieren regional</li>
+            <li>Junge sind Nestflüchter; Ente übernimmt die Führung</li>
+            <li>Außerhalb der Brutzeit häufig gesellig</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: Mai–Juli (Nordeuropa)</li>
-            <li>Nest: Bodenbrut, gut versteckt in Ufervegetation</li>
-            <li>Gelege: 6–10 Eier</li>
-            <li>Küken: Nestflüchter</li>
+            <li>Weibchen rufen eher tief und knurrend als pfeifend</li>
+            <li>Beide Geschlechter haben einen blau-grauen Schnabel mit dunkler Spitze</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gründelt überwiegend pflanzliches Material</li>
-            <li>Frisst Gräser, Kräuter, Samen, Algen</li>
-            <li>Küken benötigen tierisches Eiweiß</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Ausgeprägter Zugvogel</li>
-            <li>Brütet in Skandinavien, Baltikum, Russland</li>
-            <li>Überwintert in West- und Südeuropa sowie Afrika</li>
-            <li>Große Schwärme in küstennahen Feuchtgebieten</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://ffh-arten.naturschutzinformationen.nrw.de/ffh-arten/de/arten/vogelarten/kurzbeschreibung/102962" target="_blank" rel="noopener noreferrer">Fachquelle zur Art</a> · <a href="https://animaldiversity.org/accounts/Anas_penelope/" target="_blank" rel="noopener noreferrer">University of Michigan: Pfeifente (Biologie)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

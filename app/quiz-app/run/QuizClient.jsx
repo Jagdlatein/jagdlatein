@@ -1,486 +1,339 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import useActivityResult from "../../../hooks/useActivityResult";
-import ActivityResultNotice from "../../../components/ActivityResultNotice";
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
+
+function validRound(round) {
+  if (!round || !UUID.test(round.roundId) || !["asking", "feedback", "complete"].includes(round.phase)
+    || !Number.isInteger(round.total) || round.total < 1 || round.total > 10
+    || !Number.isInteger(round.index) || round.index < 0 || round.index >= round.total
+    || !["DE", "AT", "CH"].includes(round.country) || typeof round.topic !== "string"
+    || !timestamp(round.serverNow) || !Number.isInteger(round.points) || round.points < 0 || round.points > round.total * 400
+    || !Number.isInteger(round.correctAnswers) || round.correctAnswers < 0 || round.correctAnswers > round.total
+    || !Number.isInteger(round.timedOutAnswers) || round.timedOutAnswers < 0 || round.timedOutAnswers > round.total - round.correctAnswers
+    || (round.finishedAt !== null && !timestamp(round.finishedAt))) return false;
+  if (round.phase === "complete") return timestamp(round.finishedAt);
+  const question = round.question;
+  if (!question || typeof question.id !== "string" || typeof question.q !== "string"
+    || !Array.isArray(question.answers) || question.answers.length < 2
+    || !question.answers.every(answer => typeof answer.id === "string" && typeof answer.text === "string")
+    || new Set(question.answers.map(answer => answer.id)).size !== question.answers.length) return false;
+  if (round.phase === "asking") return timestamp(round.deadlineAt) && !round.feedback;
+  const feedback = round.feedback;
+  return feedback && feedback.questionId === question.id && typeof feedback.correct === "boolean"
+    && typeof feedback.timedOut === "boolean" && timestamp(feedback.answeredAt)
+    && (feedback.selectedAnswerId === null || question.answers.some(answer => answer.id === feedback.selectedAnswerId))
+    && Array.isArray(feedback.correctAnswerIds) && feedback.correctAnswerIds.length > 0
+    && feedback.correctAnswerIds.every(id => question.answers.some(answer => answer.id === id))
+    && typeof feedback.explain === "string" && (feedback.source === null || typeof feedback.source === "string")
+    && Number.isInteger(feedback.earnedPoints) && feedback.earnedPoints >= 0 && feedback.earnedPoints <= 400;
+}
 
 export default function QuizClient() {
   const router = useRouter();
   const params = useSearchParams();
-
   const requestedCountry = (params.get("country") || "DE").toUpperCase();
   const country = ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
-  const topic = params.get("topic") || "Alle";
-
-  const [questions, setQuestions] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [timer, setTimer] = useState(30);
-  const [score, setScore] = useState(0);
-  const [locked, setLocked] = useState(false);
+  const requestedTopic = (params.get("topic") || "Alle").trim();
+  const topic = requestedTopic && requestedTopic.length <= 120 && !/[\u0000-\u001f\u007f]/.test(requestedTopic) ? requestedTopic : "Alle";
+  const [round, setRound] = useState(null);
+  const [busy, setBusy] = useState("profile");
+  const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
-  const [finished, setFinished] = useState(false);
-  const [effect, setEffectState] = useState("");
-  const [username, setUsername] = useState("");
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [timedOutAnswers, setTimedOutAnswers] = useState(0);
-  const [runKey, setRunKey] = useState(0);
+  const [seconds, setSeconds] = useState(30);
   const [reloadKey, setReloadKey] = useState(0);
-  const [loadError, setLoadError] = useState(false);
-  const [storageError, setStorageError] = useState(false);
-  const [loadStage, setLoadStage] = useState("questions");
-  const [leagueState, setLeagueState] = useState({ status: "idle", renewalRequired: false });
-  const startedAt = useRef(Date.now());
-  const answerPending = useRef(false);
-  const feedbackTimer = useRef(null);
-  const feedbackGeneration = useRef(0);
-  const leagueSubmittedRun = useRef(null);
-  const roundMetadata = useRef({ country, topic });
+  const [username, setUsername] = useState("");
   const mounted = useRef(false);
-  const leaguePending = useRef(null);
-  const renderedQuestion = useRef({ question: null, runKey });
-  const advancePending = useRef(false);
-  const resultCompleted = questions.length > 0 && (finished || (locked && index === questions.length - 1));
-  const activityResult = useActivityResult({
-    runKey, completed: resultCompleted, type: "quiz", country: roundMetadata.current.country, topic: roundMetadata.current.topic,
-    totalQuestions: questions.length, correctAnswers, timedOutAnswers,
-    points: score, startedAt: startedAt.current,
-  });
+  const context = useRef(null);
+  const startRequest = useRef(null);
+  const pending = useRef(null);
+  const currentRound = useRef(round);
+  const feedbackTimer = useRef(null);
+  const timerGeneration = useRef(0);
+  const serverClock = useRef(null);
+  currentRound.current = round;
+  const storageKey = `jagd_quiz_round:${country}:${topic}`;
   const returnUrl = `/quiz-app/run?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
   const setupUrl = `/quiz-app?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
+  const nameUrl = `/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`;
 
   function clearFeedbackTimer() {
+    timerGeneration.current += 1;
     if (feedbackTimer.current !== null) clearTimeout(feedbackTimer.current);
     feedbackTimer.current = null;
-    feedbackGeneration.current += 1;
   }
-
-  function scheduleNextQuestion() {
-    clearFeedbackTimer();
-    const generation = feedbackGeneration.current;
-    feedbackTimer.current = setTimeout(() => {
-      if (generation !== feedbackGeneration.current) return;
-      feedbackTimer.current = null;
-      nextQuestion();
-    }, 10000);
+  function rememberRound(id) {
+    try { window.sessionStorage.setItem(storageKey, id); } catch { /* The server remains authoritative without browser storage. */ }
+  }
+  function forgetRound() {
+    try { window.sessionStorage.removeItem(storageKey); } catch {}
+  }
+  function remainingSeconds() {
+    const clock = serverClock.current;
+    if (!clock) return 0;
+    const elapsed = Math.max(0, globalThis.performance.now() - clock.receivedAt);
+    return Math.max(0, Math.min(30, Math.ceil((clock.deadline - clock.serverNow - elapsed) / 1000)));
+  }
+  function applyRound(value) {
+    if (!validRound(value)) throw new Error("Die Quizrunde enthält keine gültige Antwort.");
+    serverClock.current = value.phase === "asking" ? {
+      deadline: Date.parse(value.deadlineAt), serverNow: Date.parse(value.serverNow), receivedAt: globalThis.performance.now(),
+    } : null;
+    currentRound.current = value;
+    setRound(value);
+    setSelected(value.feedback?.selectedAnswerId ?? null);
+    setSeconds(value.phase === "asking" ? remainingSeconds() : 0);
+    setError(null);
+    setBusy(null);
+    if (value.phase === "complete") forgetRound();
+  }
+  async function readResponse(response) {
+    let data;
+    try { data = await response.json(); } catch { throw new Error("Die Quizrunde ist gerade nicht erreichbar."); }
+    if (!response.ok || data?.success !== true) {
+      const failure = new Error(typeof data?.error === "string" && data.error.length <= 300 ? data.error : "Die Quizrunde ist gerade nicht erreichbar.");
+      failure.status = response.status;
+      throw failure;
+    }
+    return data;
+  }
+  function failureState(stage, failure) {
+    return { stage, status: failure?.status || 0 };
   }
 
   useEffect(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
+      context.current?.controller.abort();
+      pending.current?.controller?.abort();
       clearFeedbackTimer();
-      answerPending.current = false;
     };
   }, []);
 
-  // -------------------------------
-  // Read the quiz name without crashing when browser storage is unavailable.
-  // -------------------------------
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("jagd_username");
-      setStorageError(false);
-      if (!stored) {
-        setUsername("");
-        router.push(`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`);
-        return;
+    const record = { controller: new AbortController() };
+    context.current = record;
+    pending.current?.controller?.abort();
+    pending.current = null;
+    clearFeedbackTimer();
+    currentRound.current = null;
+    setRound(null);
+    setSelected(null);
+    setError(null);
+    setBusy("profile");
+    if (startRequest.current?.key !== storageKey) {
+      let savedId;
+      try { savedId = window.sessionStorage.getItem(storageKey); } catch {}
+      startRequest.current = { key: storageKey, id: UUID.test(savedId || "") ? savedId : null };
+    }
+    async function start() {
+      let stage = "profile";
+      try {
+        const profile = await readResponse(await fetch("/api/quiz/register", {
+          method: "GET", credentials: "same-origin", cache: "no-store", signal: record.controller.signal,
+        }));
+        if (!mounted.current || context.current !== record) return;
+        if (profile.identity === null) {
+          setBusy("redirect");
+          router.push(nameUrl);
+          return;
+        }
+        if (typeof profile.identity?.username !== "string" || typeof profile.identity?.country !== "string") throw new Error("Quizname fehlt.");
+        setUsername(profile.identity.username);
+        stage = "start";
+        setBusy("start");
+        if (!startRequest.current.id) startRequest.current.id = globalThis.crypto.randomUUID();
+        rememberRound(startRequest.current.id);
+        const result = await readResponse(await fetch("/api/quiz/round", {
+          method: "POST", credentials: "same-origin", cache: "no-store", signal: record.controller.signal,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ country, topic, requestId: startRequest.current.id }),
+        }));
+        if (!mounted.current || context.current !== record) return;
+        if (result.round?.roundId !== startRequest.current.id) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
+        applyRound(result.round);
+      } catch (failure) {
+        if (mounted.current && context.current === record) {
+          setBusy(null);
+          setError(failureState(stage, failure));
+        }
       }
-      setUsername(stored);
-    } catch {
-      setUsername("");
-      setStorageError(true);
     }
-  }, [router, country, topic, reloadKey]);
-
-  // Registration must succeed before starting a question round.
-  useEffect(() => {
-    if (!username) return;
-    let active = true;
-    const controller = new AbortController();
-
-    async function load() {
-      clearFeedbackTimer();
-      answerPending.current = false;
-      setLoadError(false);
-      setLoadStage("registration");
-      setQuestions([]);
-      setFinished(false);
-      setLocked(false);
-      setSelected(null);
-      setEffectState("");
-      let leagueCountry = country;
-      try { leagueCountry = localStorage.getItem("jagd_country") || country; } catch {}
-      const registration = await fetch("/api/quiz/register", {
-        method: "POST", credentials: "same-origin", signal: controller.signal,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, country: leagueCountry }),
-      });
-      const registrationResult = await registration.json();
-      if (!registration.ok || registrationResult.success !== true) throw new Error("Registrierung fehlgeschlagen");
-      if (!active) return;
-      setLoadStage("questions");
-      const res = await fetch(
-        `/api/questions?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`,
-        { cache: "no-store", credentials: "same-origin", signal: controller.signal }
-      );
-      if (!res.ok) throw new Error("Fragen nicht erreichbar");
-      const data = await res.json();
-      const qs = Array.isArray(data.questions) ? data.questions : [];
-      if (!active) return;
-      if (qs.length === 0 || !qs.every(item => typeof item.q === "string" && Array.isArray(item.answers)
-        && item.answers.length > 0 && item.answers.every(answer => typeof answer.id === "string" && typeof answer.text === "string")
-        && Array.isArray(item.correct) && item.correct.length > 0
-        && item.correct.every(id => item.answers.some(answer => answer.id === id)))) throw new Error("Keine gültigen Fragen verfügbar");
-      roundMetadata.current = { country, topic };
-      answerPending.current = false;
-      startedAt.current = Date.now();
-      setIndex(0);
-      setTimer(30);
-      setScore(0);
-      setCorrectAnswers(0);
-      setTimedOutAnswers(0);
-      setLocked(false);
-      setSelected(null);
-      setFinished(false);
-      leaguePending.current = null;
-      setLeagueState({ status: "idle", renewalRequired: false });
-      setRunKey(value => value + 1);
-      setQuestions(qs);
-    }
-
-    load().catch(() => { if (active) setLoadError(true); });
+    void start();
     return () => {
-      active = false;
-      controller.abort();
+      record.controller.abort();
       clearFeedbackTimer();
-      answerPending.current = false;
     };
-  }, [username, country, topic, reloadKey]);
+  }, [country, topic, reloadKey, router]);
 
-  const q = questions[index];
-  if (renderedQuestion.current.question !== q || renderedQuestion.current.runKey !== runKey) {
-    renderedQuestion.current = { question: q, runKey };
-    answerPending.current = false;
-    advancePending.current = false;
-  }
-
-  // -------------------------------
-  // TIMER
-  // -------------------------------
-  useEffect(() => {
-    if (!q || locked || finished) return;
-    if (timer <= 0) return handleTimeout();
-
-    const t = setTimeout(() => setTimer(t => t - 1), 1000);
-    return () => clearTimeout(t);
-  }, [timer, q, locked, finished]);
-
-  function handleTimeout() {
-    if (answerPending.current || locked || finished) return;
-    answerPending.current = true;
-    setLocked(true);
-    setTimedOutAnswers(value => value + 1);
-    setEffectState("flash-wrong");
-    setSelected(-1);
-    scheduleNextQuestion();
-  }
-
-  function handleAnswer(ans, idx) {
-    if (answerPending.current || locked || finished || !q || renderedQuestion.current.question !== q || renderedQuestion.current.runKey !== runKey) return;
-    answerPending.current = true;
-
-    const isCorrect = q.correct.includes(ans.id);
-    setLocked(true);
-    setSelected(idx);
-
-    if (isCorrect) {
-      setCorrectAnswers(value => value + 1);
-      setEffectState("flash-correct");
-      setScore(s => s + 100 + timer * 10);
-    } else {
-      setEffectState("flash-wrong");
-    }
-
-    scheduleNextQuestion();
-  }
-
-  function nextQuestion() {
-    if (!answerPending.current || advancePending.current || finished) return;
-    advancePending.current = true;
-    clearFeedbackTimer();
-    setEffectState("");
-
-    if (index + 1 >= questions.length) {
-      setFinished(true);
-      return;
-    }
-
-    setIndex(i => i + 1);
-    setTimer(30);
-    setLocked(false);
-    setSelected(null);
-  }
-
-  // -------------------------------
-  // SCORE SPEICHERN
-  // -------------------------------
-  async function saveLeagueResult(record = leaguePending.current) {
-    if (!record || record.running || record.saved) return;
-    record.running = true;
-    if (mounted.current && leaguePending.current === record) setLeagueState({ status: "saving", renewalRequired: false });
+  async function execute(operation) {
+    if (!operation || operation.running || !mounted.current || operation.context !== context.current) return;
+    operation.running = true;
+    operation.controller = new AbortController();
+    setBusy(operation.kind);
+    setError(null);
     try {
-      const response = await fetch("/api/quiz/submit", {
-        method: "POST", credentials: "same-origin", keepalive: true,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(record.payload),
-      });
-      const result = await response.json();
-      if (!response.ok || result.success !== true) {
-        const failure = new Error("Ranglistenergebnis nicht gespeichert");
-        failure.renewalRequired = response.status === 401 || response.status === 403;
-        throw failure;
+      const url = operation.kind === "sync" ? `/api/quiz/round?roundId=${encodeURIComponent(operation.payload.roundId)}` : `/api/quiz/round/${operation.kind}`;
+      const options = {
+        method: operation.kind === "sync" ? "GET" : "POST", credentials: "same-origin", cache: "no-store", signal: operation.controller.signal,
+      };
+      if (options.method === "POST") {
+        options.headers = { "Content-Type": "application/json" };
+        options.body = JSON.stringify(operation.payload);
       }
-      record.saved = true;
-      if (mounted.current && leaguePending.current === record) setLeagueState({ status: "saved", renewalRequired: false });
+      const result = await readResponse(await fetch(url, options));
+      if (!mounted.current || operation.context !== context.current || pending.current !== operation) return;
+      if (result.round?.roundId !== operation.payload.roundId) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
+      applyRound(result.round);
+      pending.current = null;
     } catch (failure) {
-      if (mounted.current && leaguePending.current === record) setLeagueState({ status: "error", renewalRequired: failure?.renewalRequired === true });
+      if (mounted.current && operation.context === context.current && pending.current === operation) {
+        setBusy(null);
+        setError(failureState(operation.kind, failure));
+      }
     } finally {
-      record.running = false;
+      operation.running = false;
     }
   }
 
-  useEffect(() => {
-    if (!resultCompleted || !username || leagueSubmittedRun.current === runKey) return;
-    leagueSubmittedRun.current = runKey;
-    const record = { runKey, payload: { username, points: score }, running: false, saved: false };
-    leaguePending.current = record;
-    void saveLeagueResult(record);
-  }, [resultCompleted, score, username, runKey]);
-
-  function leagueNotice() {
-    if (leagueState.status === "idle") return null;
-    return <aside role={leagueState.status === "error" ? "alert" : "status"} style={{ marginTop: 20, padding: "12px 14px", borderRadius: 12, background: leagueState.status === "error" ? "#fff4dc" : "#eaf4e9", color: "#2e4d32", lineHeight: 1.5 }}>
-      {leagueState.status === "saving" ? "Dein Ranglistenergebnis wird gespeichert …" : leagueState.status === "saved" ? "Dein Ranglistenergebnis wurde bestätigt. Die Rangliste zeigt deinen besten Durchlauf." : <>
-        <p style={{ margin: "0 0 8px" }}>Dein Ergebnis für die Rangliste konnte gerade nicht gespeichert werden.</p>
-        {leagueState.renewalRequired ? <Link href={`/login?reauth=1&next=${encodeURIComponent(returnUrl)}`}>Anmeldung erneuern</Link> : <button type="button" onClick={() => { void saveLeagueResult(); }}>Ranglistenergebnis erneut speichern</button>}
-      </>}
-    </aside>;
+  function answer(answerId, rendered = round) {
+    if (!mounted.current || pending.current || rendered !== currentRound.current || rendered?.phase !== "asking") return;
+    if (answerId !== null && !rendered.question.answers.some(item => item.id === answerId)) return;
+    const operation = { kind: "answer", context: context.current, payload: {
+      roundId: rendered.roundId, questionId: rendered.question.id, answerId, requestId: globalThis.crypto.randomUUID(),
+    } };
+    pending.current = operation;
+    setSelected(answerId);
+    void execute(operation);
   }
-
-  // -------------------------------
-  // QUIZ RESET
-  // -------------------------------
-  function restartQuiz() {
+  function next(rendered = round) {
+    if (!mounted.current || pending.current || rendered !== currentRound.current || rendered?.phase !== "feedback") return;
     clearFeedbackTimer();
-    answerPending.current = false;
-    startedAt.current = Date.now();
-    setRunKey(value => value + 1);
-    setCorrectAnswers(0);
-    setTimedOutAnswers(0);
-    setIndex(0);
-    setTimer(30);
-    setScore(0);
-    setLocked(false);
-    setSelected(null);
-    setFinished(false);
-    setEffectState("");
-    setQuestions([]);
-    leaguePending.current = null;
-    setLeagueState({ status: "idle", renewalRequired: false });
+    const operation = { kind: "next", context: context.current, payload: { roundId: rendered.roundId, requestId: globalThis.crypto.randomUUID() } };
+    pending.current = operation;
+    void execute(operation);
+  }
+  function synchronize() {
+    if (!round || pending.current?.running) return;
+    clearFeedbackTimer();
+    const operation = { kind: "sync", context: context.current, payload: { roundId: round.roundId } };
+    pending.current = operation;
+    void execute(operation);
+  }
+  function restart() {
+    if (pending.current?.running) return;
+    clearFeedbackTimer();
+    forgetRound();
+    startRequest.current = { key: storageKey, id: null };
     setReloadKey(value => value + 1);
   }
 
-  // -------------------------------
-  // END-SCREEN
-  // -------------------------------
-  if (finished) {
-    return (
-      <div style={{ padding: 40 }}>
-        <div className="quiz-finish-box fade-in">
+  useEffect(() => {
+    if (!round || round.phase !== "asking" || busy || error) return;
+    let timer;
+    function tick() {
+      if (!mounted.current || currentRound.current !== round || pending.current) return;
+      const remaining = remainingSeconds();
+      setSeconds(remaining);
+      if (remaining <= 0) answer(null, round);
+      else timer = setTimeout(tick, 250);
+    }
+    tick();
+    return () => clearTimeout(timer);
+  }, [round, busy, error]);
 
-          <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
+  useEffect(() => {
+    clearFeedbackTimer();
+    if (round?.phase !== "feedback" || busy || error) return;
+    const generation = timerGeneration.current;
+    const elapsed = Math.max(0, Date.parse(round.serverNow) - Date.parse(round.feedback.answeredAt));
+    feedbackTimer.current = setTimeout(() => {
+      if (!mounted.current || generation !== timerGeneration.current) return;
+      feedbackTimer.current = null;
+      next(round);
+    }, Math.max(0, 10000 - elapsed));
+    return clearFeedbackTimer;
+  }, [round, busy, error]);
 
-          <div className="quiz-score-badge">{score}</div>
-          <p>{correctAnswers} von {questions.length} Fragen richtig</p>
-          <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
-          <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
-          {leagueNotice()}
-
-          <button
-            onClick={() => router.push("/quiz-app/leaderboard")}
-            className="quiz-end-btn"
-          >
-            🏆 Rangliste ansehen
-          </button>
-
-          <button
-            onClick={restartQuiz}
-            className="quiz-end-btn"
-          >
-            🔄 Neues Quiz starten
-          </button>
-
-        </div>
-      </div>
-    );
+  function errorNotice() {
+    if (!error) return null;
+    const messages = {
+      profile: "Dein Quizname konnte gerade nicht bestätigt werden.",
+      start: "Die Quizrunde konnte gerade nicht geladen werden.",
+      answer: "Deine Antwort konnte gerade nicht bestätigt werden. Bitte sende sie erneut.",
+      next: "Die nächste Frage konnte gerade nicht geladen werden.",
+      sync: "Die Quizrunde konnte gerade nicht erneut geladen werden.",
+    };
+    return <aside role="alert" style={{ marginTop: 20, padding: 16, borderRadius: 12, background: "#fff4dc", lineHeight: 1.5 }}>
+      <p style={{ marginTop: 0 }}>{messages[error.stage]}</p>
+      {[401, 403].includes(error.status) ? <Link href={`/login?reauth=1&next=${encodeURIComponent(returnUrl)}`}>Anmeldung erneuern</Link>
+        : error.status === 409 && round ? <button type="button" onClick={synchronize}>Runde erneut laden</button>
+        : <button type="button" onClick={() => {
+          if (pending.current) void execute(pending.current);
+          else setReloadKey(value => value + 1);
+        }}>Erneut versuchen</button>}
+      {[400, 404, 409].includes(error.status) && <p><button type="button" onClick={restart}>Neue Runde starten</button></p>}
+      <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
+    </aside>;
+  }
+  function savedNotice() {
+    return timestamp(round?.finishedAt) ? <aside role="status" style={{ marginTop: 20, padding: 16, borderRadius: 12, background: "#eaf4e9", lineHeight: 1.5 }}>
+      Dein Ranglistenergebnis und deine Auswertung wurden gespeichert. Die Rangliste zeigt deinen besten Durchlauf.
+    </aside> : null;
   }
 
-  // -------------------------------
-  // LOADING
-  // -------------------------------
-  if (!q) {
-    return (
-      <div style={{ padding: 40, textAlign: "center" }}>
-        {storageError ? <>
-          <p role="alert">Dein Browser gibt den gespeicherten Quiznamen gerade nicht frei. Bitte erlaube den Browserspeicher oder versuche es erneut.</p>
-          <button type="button" onClick={() => setReloadKey(value => value + 1)}>Erneut prüfen</button>
-          <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
-        </> : loadError ? (
-          <>
-            <p role="alert">{loadStage === "registration" ? "Dein Quizname konnte gerade nicht bestätigt werden. Bitte versuche es erneut." : "Die Quizfragen konnten gerade nicht geladen werden."}</p>
-            <button type="button" onClick={() => setReloadKey(value => value + 1)}>Erneut laden</button>
-            {loadStage === "registration" && <p><Link href={`/quiz-app/username?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}`}>Anderen Quiznamen wählen</Link></p>}
-            <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
-          </>
-        ) : loadStage === "registration" ? "Dein Quizname wird bestätigt …" : "Lade Quiz…"}
-      </div>
-    );
-  }
+  if (!round) return <div style={{ padding: 30, textAlign: "center" }}>
+    {error ? errorNotice() : <p role="status">{busy === "profile" ? "Dein Quizname wird bestätigt …" : busy === "redirect" ? "Bitte wähle deinen Quiznamen …" : "Lade Quizrunde …"}</p>}
+    {!error && <p><Link href={setupUrl}>Land und Thema wählen</Link></p>}
+  </div>;
 
-  // -------------------------------
-  // QUIZ
-  // -------------------------------
-  return (
-    <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
-      <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Land und Thema wählen</Link></p>
-
-      <div className="progressbar">
-        <div
-          className="progressbar-fill"
-          style={{ width: `${(timer / 30) * 100}%` }}
-        />
-      </div>
-
-      <div
-        className="fade-in"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <div style={{ fontSize: 20, fontWeight: 700 }}>
-          Frage {index + 1}/{questions.length}
-        </div>
-
-        <div
-          style={{
-            fontSize: 22,
-            fontWeight: 900,
-            color: timer <= 5 ? "red" : "#136f39",
-          }}
-        >
-          ⏱ {timer}s
-        </div>
-      </div>
-
-      <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>
-        Score: {score}
-      </div>
-
-      <div
-        className={`fade-in ${effect}`}
-        style={{
-          padding: 18,
-          background: "rgba(255,255,255,0.75)",
-          borderRadius: 16,
-          border: "1px solid rgba(0,0,0,0.1)",
-          marginTop: 20,
-        }}
-      >
-        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 16 }}>
-          {q.q}
-        </div>
-
-        {q.answers.map((ans, i) => {
-          const isSelected = selected === i;
-          const isCorrect = q.correct.includes(ans.id);
-
-          return (
-            <button
-              type="button"
-              disabled={locked}
-              key={i}
-              onClick={() => handleAnswer(ans, i)}
-              style={{
-                padding: "14px 16px",
-                display: "block",
-                width: "100%",
-                font: "inherit",
-                textAlign: "left",
-                color: "inherit",
-                borderRadius: 12,
-                border: "1px solid rgba(0,0,0,0.15)",
-                background:
-                  isSelected && isCorrect
-                    ? "#c6f6d5"
-                    : isSelected && !isCorrect
-                    ? "#fed7d7"
-                    : "#fff",
-                marginBottom: 12,
-                fontSize: 18,
-                cursor: locked ? "default" : "pointer",
-              }}
-            >
-              {ans.text}
-            </button>
-          );
-        })}
-      </div>
-      {locked && (
-        <section
-          role="status"
-          aria-live="polite"
-          style={{
-            marginTop: 18,
-            padding: 18,
-            borderRadius: 14,
-            background: selected !== -1 && q.correct.includes(q.answers[selected]?.id) ? "#e5f6e9" : "#fff2f2",
-            color: "#1f2937",
-            lineHeight: 1.5,
-          }}
-        >
-          <strong>
-            {selected === -1
-              ? "Zeit abgelaufen."
-              : q.correct.includes(q.answers[selected]?.id) ? "Richtig!" : "Leider falsch."}
-          </strong>
-          <p style={{ margin: "8px 0" }}>
-            <b>Richtige Antwort:</b>{" "}
-            {q.answers.filter(answer => q.correct.includes(answer.id)).map(answer => answer.text).join("; ")}
-          </p>
-          {q.explain && <p style={{ margin: "8px 0" }}>{q.explain}</p>}
-          {typeof q.source === "string" && q.source.startsWith("https://") && (
-            <p style={{ margin: "8px 0" }}><a href={q.source} target="_blank" rel="noopener noreferrer">Quelle nachlesen (neuer Tab)</a></p>
-          )}
-          {typeof q.learningHref === "string" && q.learningHref.startsWith("/") && !q.learningHref.startsWith("//") && (
-            <p style={{ margin: "8px 0" }}>
-              <Link href={q.learningHref}>Im Lernwissen nachlesen</Link>
-            </p>
-          )}
-          <button
-            type="button"
-            onClick={nextQuestion}
-            className="quiz-end-btn"
-            style={{ marginTop: 8 }}
-          >
-            {index === questions.length - 1 ? "Ergebnis anzeigen" : "Weiter"}
-          </button>
-          <p style={{ margin: "8px 0 0", fontSize: 14, color: "#4b5563" }}>
-            Automatisch weiter nach 10 Sekunden.
-          </p>
-        </section>
-      )}
-      <ActivityResultNotice {...activityResult} nextUrl={returnUrl} />
-      {leagueNotice()}
+  if (round.phase === "complete") return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+    <div className="quiz-finish-box fade-in">
+      <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
+      <div className="quiz-score-badge">{round.points}</div>
+      <p>{round.correctAnswers} von {round.total} Fragen richtig</p>
+      <p><Link href={setupUrl}>Land und Thema wählen</Link></p>
+      {savedNotice()}
+      <button type="button" onClick={() => router.push("/quiz-app/leaderboard")} className="quiz-end-btn">🏆 Rangliste ansehen</button>
+      <button type="button" onClick={restart} className="quiz-end-btn">🔄 Neues Quiz starten</button>
     </div>
-  );
+  </div>;
+
+  const question = round.question;
+  const feedback = round.phase === "feedback" ? round.feedback : null;
+  const locked = round.phase !== "asking" || !!busy || !!error || !!pending.current;
+  return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
+    <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Land und Thema wählen</Link></p>
+    <div className="progressbar"><div className="progressbar-fill" style={{ width: `${seconds / 30 * 100}%` }} /></div>
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
+      <div style={{ fontSize: 20, fontWeight: 700 }}>Frage {round.index + 1}/{round.total}</div>
+      <div style={{ fontSize: 22, fontWeight: 900, color: seconds <= 5 ? "red" : "#136f39" }}>⏱ {seconds}s</div>
+    </div>
+    <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>Score: {round.points} · {username}</div>
+    <div className={`fade-in ${feedback ? feedback.correct ? "flash-correct" : "flash-wrong" : ""}`} style={{ padding: 18, background: "rgba(255,255,255,0.75)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.1)", marginTop: 20 }}>
+      <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 16 }}>{question.q}</div>
+      {question.answers.map(option => <button type="button" disabled={locked} key={option.id} onClick={() => answer(option.id, round)} style={{
+        padding: "14px 16px", display: "block", width: "100%", font: "inherit", textAlign: "left", color: "inherit", borderRadius: 12,
+        border: "1px solid rgba(0,0,0,0.15)", background: selected === option.id ? feedback ? feedback.correct ? "#c6f6d5" : "#fed7d7" : "#e8edf2" : "#fff",
+        marginBottom: 12, fontSize: 18, cursor: locked ? "default" : "pointer",
+      }}>{option.text}</button>)}
+    </div>
+    {busy === "answer" && <p role="status">Deine Antwort wird geprüft …</p>}
+    {feedback && <section role="status" aria-live="polite" style={{ marginTop: 18, padding: 18, borderRadius: 14, background: feedback.correct ? "#e5f6e9" : "#fff2f2", color: "#1f2937", lineHeight: 1.5 }}>
+      <strong>{feedback.timedOut ? "Zeit abgelaufen." : feedback.correct ? "Richtig!" : "Leider falsch."}</strong>
+      <p style={{ margin: "8px 0" }}><b>Richtige Antwort:</b>{" "}{question.answers.filter(option => feedback.correctAnswerIds.includes(option.id)).map(option => option.text).join("; ")}</p>
+      {feedback.explain && <p style={{ margin: "8px 0" }}>{feedback.explain}</p>}
+      {feedback.source?.startsWith("https://") && <p style={{ margin: "8px 0" }}><a href={feedback.source} target="_blank" rel="noopener noreferrer">Quelle nachlesen (neuer Tab)</a></p>}
+      <p style={{ margin: "8px 0" }}><Link href="/lernen">Im Lernwissen nachlesen</Link></p>
+      <button type="button" disabled={!!busy || !!error} onClick={() => next(round)} className="quiz-end-btn" style={{ marginTop: 8 }}>{round.index === round.total - 1 ? "Ergebnis anzeigen" : "Weiter"}</button>
+      <p style={{ margin: "8px 0 0", fontSize: 14, color: "#4b5563" }}>{busy === "next" || busy === "sync" ? "Quizrunde wird geladen …" : "Automatisch weiter nach 10 Sekunden."}</p>
+    </section>}
+    {errorNotice()}
+    {savedNotice()}
+  </div>;
 }

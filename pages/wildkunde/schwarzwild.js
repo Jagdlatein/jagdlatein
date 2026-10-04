@@ -46,53 +46,50 @@ export default function Schwarzwild() {
 
         {/* Allgemeines */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: Keiler 90–200+ kg, Bache 60–120 kg</li>
-            <li>Körperlänge: 120–180 cm · Schulterhöhe: 70–110 cm</li>
-            <li>Lebensraum: Wälder, Felder, Feuchtgebiete</li>
-            <li>Nahrung: Allesfresser (Eicheln, Bucheckern, Mais, Würmer)</li>
-            <li>Sozialstruktur: Rotte aus Bachen & Frischlingen</li>
-            <li>Keiler leben meist einzelgängerisch</li>
+            <li>Wildschwein: anpassungsfähiger Allesfresser in Wald, Feldflur und weiteren Lebensräumen</li>
+            <li>Nahrung überwiegend pflanzlich, ergänzt durch Wirbellose, kleine Wirbeltiere und Aas</li>
+            <li>Vorwiegend dämmerungs- und nachtaktiv, abhängig von Störungen auch tagsüber</li>
+            <li>Frischlinge haben in den ersten Monaten gelblich-braune Längsstreifen</li>
+            <li>Bachen und Jungtiere leben in Rotten; erwachsene Keiler häufig einzeln</li>
+            <li>Keiler: Haderer im Oberkiefer; Gewehre (Hauer) im Unterkiefer</li>
+            <li>Gute Geruchs- und Gehörleistung</li>
+            <li>Wühlschäden können Wiesen und landwirtschaftliche Kulturen betreffen</li>
           </ul>
         </section>
 
-        {/* Fortpflanzung */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Rauschzeit häufig im späten Herbst/Winter; unter günstigen Bedingungen auch außerhalb dieses Zeitraums</li>
-            <li>Tragzeit: „3 Monate, 3 Wochen, 3 Tage“</li>
-            <li>Frischlinge häufig im Frühjahr, aber auch zu anderen Jahreszeiten; Wurfgröße variabel</li>
+            <li>Paarung und Geburt sind grundsätzlich ganzjährig möglich</li>
+            <li>Hauptfortpflanzung liegt häufig im Herbst und Winter, mit Geburten im Frühjahr</li>
+            <li>Tragzeit durchschnittlich etwa 115 Tage; Merkspruch: drei Monate, drei Wochen, drei Tage</li>
+            <li>Wurfgröße hängt unter anderem von Alter und Ernährungszustand ab</li>
+            <li>Bache baut zur Geburt einen Wurfkessel</li>
+            <li>Überläufer sind Tiere im zweiten Lebensjahr</li>
           </ul>
         </section>
 
-        {/* Gebiss */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Besonderheiten</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
+          <ul style={styles.list}>
+            <li>Die Rauschzeit liegt häufig zwischen Oktober und Dezember; junge Tiere können außerhalb dieser Hauptphase frischen</li>
+            <li>Suhlen dienen unter anderem der Abkühlung und Körperpflege</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 3/3 = 44</li>
-            <li>Keiler: Haderer im Oberkiefer; Gewehre (Hauer) im Unterkiefer</li>
-            <li>Gefährlicher Hauerbiss durch Selbstschärfung</li>
-            <li>Dicke Schwarte schützt vor Verletzungen</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* Merkmale */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Farbe: schwarz–braun, borstig</li>
-            <li>Frischlinge: gelb-braune Streifen</li>
-            <li>Überläufer: 1–2 Jahre alt</li>
-            <li>Losung: wurstartig, grob</li>
-            <li>Fährte: rund, kräftig, 6–10 cm</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/084682/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

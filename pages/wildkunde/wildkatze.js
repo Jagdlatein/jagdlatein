@@ -7,7 +7,7 @@ export default function Wildkatze() {
       q: "Welche Merkmalskombination ist ein Hinweis auf eine Wildkatze?",
       a: [
         "Schlanker Schwanz",
-        "Buschiger Schwanz mit 3–5 dunklen Ringen und stumpfer Spitze",
+        "Buschiger Schwanz mit dunklen Ringen und stumpfer dunkler Spitze",
         "Dreifarbige Fellmusterung"
       ],
       correct: 1,
@@ -55,88 +55,49 @@ export default function Wildkatze() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 45–65 cm</li>
-            <li>Gewicht: 3–8 kg</li>
-            <li>Lebensraum: strukturreiche Laub- und Mischwälder</li>
-            <li>Sehr scheu, dämmerungs- und nachtaktiv</li>
-            <li>Ernährung: Mäuse, Kleinvögel, Jungkaninchen</li>
-            <li>Bevorzugt Wildnisareale mit viel Deckung</li>
+            <li>Europäische Wildkatze: scheue Katzenart strukturreicher Landschaften</li>
+            <li>Nutzt Wälder mit Deckung und Totholz; jagt auch an Waldrändern, Lichtungen und Wiesen</li>
+            <li>Außerhalb der Paarungszeit meist einzeln</li>
+            <li>Hauptnahrung sind kleine Säugetiere, besonders Mäuse</li>
+            <li>Buschiger Schwanz mit abgesetzten Ringen und stumpfem dunklem Ende ist ein Hinweis</li>
+            <li>Getigerte Hauskatzen können sehr ähnlich aussehen</li>
+            <li>Fellzeichnung, Größe und einzelne Spuren sind kein sicherer Zugehörigkeitsnachweis</li>
+            <li>Monitoring kann genetische Untersuchung von Haaren einschließen</li>
+            <li>Verwechslungen vermeiden; keine eigenmächtige Bejagung</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Buschiger, stumpf endender Schwanz mit 3–5 dunklen Ringen</strong></li>
-            <li>Typischer Aalstrich auf dem Rücken</li>
-            <li>Fell: sandgrau bis fahlbraun, gleichmäßig getönt</li>
-            <li>Ohren breit, Kopf rundlich</li>
-            <li>Stärkerer Körperbau als Hauskatze</li>
-            <li>Fährte: wie Hauskatze, aber etwas breiter (3,5–4,5 cm)</li>
+            <li>Paarungszeit hauptsächlich Januar bis März</li>
+            <li>Tragzeit ungefähr 63 bis 69 Tage</li>
+            <li>Meist ein Wurf pro Jahr; Zahl der Jungen variiert</li>
+            <li>Geschützte Wurfplätze in Höhlen, Wurzeltellern oder dichter Deckung</li>
+            <li>Mutter versorgt die Jungen über mehrere Monate</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUR HAUSKATZE */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zur Hauskatze</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Wildkatze: buschiger Schwanz, stumpf, klar geringelt</li>
-            <li>Hauskatze: dünnerer Schwanz, oft spitz zulaufend</li>
-            <li>Wildkatze: Aalstrich deutlich ausgeprägt</li>
-            <li>Hauskatze: abwechslungsreiche Fellfarben möglich</li>
-            <li>Wildkatzen wirken häufig kräftig, aber Hauskatzen können ähnlich aussehen</li>
-            <li>Körpergröße und Fellzeichnung allein beweisen keine Wildkatzenzugehörigkeit</li>
+            <li>Männchen sind durchschnittlich etwas größer als Weibchen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Januar–März</li>
-            <li>Tragzeit: ca. 65 Tage</li>
-            <li>Wurfzeit: März–Mai</li>
-            <li>Wurfgröße: 2–4 Junge</li>
-            <li>Geburtsort: Wurfhöhlen, Baumstümpfe, dichtes Unterholz</li>
-          </ul>
-        </section>
-
-        {/* SCHUTZSTATUS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Schutzstatus</h2>
-          <ul style={styles.list}>
-            <li><strong>Geschützte Art; keine eigenmächtige Bejagung</strong></li>
-            <li>Verwechslungen mit Hauskatzen vermeiden; bei Unsicherheit nicht schießen</li>
-            <li>Sensible Art mit Wiederansiedlungsprogrammen</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe (selten)</li>
-            <li>Toxoplasmose</li>
-            <li>Katzenkrankheiten wie FeLV, FIV</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 3/2 · M 1/1 = 30</li>
-            <li>Typisches Katzengebiss mit kräftigen Fangzähnen</li>
-            <li>Perfekt für den Mäusefang angepasst</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.bfn.de/artenportraits/felis-silvestris" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102627/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.bfn.de/artenportraits/felis-silvestris" target="_blank" rel="noopener noreferrer">BfN: Wildkatze und Schutzstatus</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

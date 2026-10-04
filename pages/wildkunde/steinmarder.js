@@ -55,76 +55,42 @@ export default function Steinmarder() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 1,5–2,5 kg</li>
-            <li>Körperlänge: 40–55 cm</li>
-            <li>Lebensraum: Siedlungen, Dörfer, Ställe, Heuschober, Autos</li>
-            <li>Sehr guter Kletterer</li>
-            <li>Nahrung: Mäuse, Vögel, Eier, Obst, Aas</li>
-            <li>Starker Kulturfolger – Nähe zum Menschen typisch</li>
+            <li>Marderartiger Kulturfolger, auch Hausmarder genannt</li>
+            <li>Nutzt Siedlungen, Dachböden, Schuppen und strukturreiche offene Landschaften</li>
+            <li>Überwiegend dämmerungs- und nachtaktiver Einzelgänger</li>
+            <li>Graubraunes Fell mit buschigem Schwanz</li>
+            <li>Kehlfleck meist weißlich und häufig zu den Vorderläufen gegabelt</li>
+            <li>Nasenspitze typischerweise heller beziehungsweise rosafarben</li>
+            <li>Guter Kletterer</li>
+            <li>Nahrung: Kleinsäuger, Insekten, Vögel, Eier, Aas, Früchte und Beeren</li>
+            <li>Artbestimmung durch Kombination mehrerer Merkmale</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Meist weißlicher, oft gegabelter Kehlfleck; mehrere Merkmale gemeinsam betrachten</li>
-            <li>Ohren weiß gerandet</li>
-            <li>Fell graubraun</li>
-            <li>Buschiger Schwanz; Länge allein ist kein sicheres Unterscheidungsmerkmal</li>
-            <li>Fährte: 3–4 cm, oft „Doppeldruck“ sichtbar</li>
-            <li>Losung: länglich, gedreht, oft mit Früchten und Haaren</li>
+            <li>Ranz hauptsächlich Juli bis August</li>
+            <li>Keimruhe verzögert die Entwicklung des Embryos</li>
+            <li>Junge werden meist März bis April geboren</li>
+            <li>Junge sind zunächst nackt und blind</li>
+            <li>Aufzucht durch die Fähe; bis zum Herbst können die Jungen im Familienverband bleiben</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIEDE ZUM BAUMMARDER */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Baummarder</h2>
-          <ul style={styles.list}>
-            <li>Steinmarder: weißer Kehlfleck (gespalten)</li>
-            <li>Baummarder: gelblicher Kehlfleck (oval)</li>
-            <li>Steinmarder: urban, kulturfolgend</li>
-            <li>Baummarder: waldbewohnend</li>
-            <li>Steinmarder: Kopf flacher, Schnauze schmaler</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Juli–August</li>
-            <li>Keimruhe → effektiver Wurf im März</li>
-            <li>Wurfgröße: 3–5 Jungtiere</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe kann vorkommen</li>
-            <li>Tollwut (regional möglich)</li>
-            <li>Räude</li>
-            <li>Fuchsbandwurm</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
-            <li>Typisches Raubtiergebiss</li>
-            <li>Starke Reißzähne</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/steinmarder-martes-foina" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/100869/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/steinmarder-martes-foina" target="_blank" rel="noopener noreferrer">DJV: Steinmarder</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

@@ -48,64 +48,42 @@ export default function Gamswild() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: Bock 25–40 kg · Geiß 20–32 kg</li>
-            <li>Körperlänge: 110–130 cm · Schulterhöhe: 70–85 cm</li>
-            <li>Lebensraum: Hochgebirge, Steilhänge, Latschenzonen, Lawinenzüge</li>
-            <li>Nahrung: Kräuter, Gräser, Knospen, Zwergsträucher</li>
-            <li>Aktiv: tag- und dämmerungsaktiv</li>
-            <li>Sozialstruktur: Geißrudel · Böcke oft einzeln oder in kleinen Gruppen</li>
+            <li>Ziegenverwandter Hornträger in europäischen Gebirgen</li>
+            <li>Nutzt alpine Matten, Fels- und Krummholzbereiche sowie Bergwälder</li>
+            <li>Überwiegend tagaktiv und sehr trittsicher</li>
+            <li>Nahrung: Gräser, Kräuter, Knospen und Zwergsträucher</li>
+            <li>Geißen und Kitze leben in Rudeln; Böcke häufig einzeln oder in kleinen Gruppen</li>
+            <li>Beide Geschlechter tragen Hörner, die Krucken heißen</li>
+            <li>Krucken sind nach hinten gehakelt und werden nicht jährlich abgeworfen</li>
+            <li>Sommerfell heller, Winterfell überwiegend dunkel</li>
+            <li>Typisch ist der dunkle Zügelstreifen von der Schnauze über das Auge</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Brunft: November</li>
-            <li>Tragzeit: ca. 6 Monate</li>
-            <li>Setzzeit: Mai–Juni (1 Kitz)</li>
+            <li>Hauptbrunft im November</li>
+            <li>Tragzeit ungefähr sechs Monate</li>
+            <li>Setzzeit gewöhnlich Mai bis Juni, meist ein Kitz</li>
+            <li>Hornwachstum bildet Jahresabschnitte; Altersansprache erfordert sorgfältige Beurteilung</li>
           </ul>
         </section>
 
-        {/* HÖRNER */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Hörner & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Bock & Geiß tragen Hörner („Krucken“)</li>
-            <li>Typisch: stark nach hinten gebeugt („Hakeln“)</li>
-            <li>Jahresringe → Altersbestimmung eingeschränkt möglich</li>
-            <li>Winterhaar schwarz–braun · Sommerhaar hellbraun</li>
-            <li>Helle Gesichtsseiten mit dunklem Streifen von der Schnauze über die Augen</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Markanter Aalstrich am Rücken</li>
-            <li>Hell abgesetzte Wangen und Kehlfleck</li>
-            <li>Sehr trittsicher · bevorzugt Steillagen</li>
-            <li>Fährte: 3–5 cm lang, spitz, eng stehend</li>
-            <li>Losung klein, zylindrisch, oft spitz zulaufend</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
-            <li>Wiederkäuer → keine Schneidezähne im Oberkiefer</li>
-            <li>Zahnabnutzung erlaubt nur eine ungefähre Altersschätzung</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/085402/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://nationalpark.ch/flora-und-fauna/gaemse/" target="_blank" rel="noopener noreferrer">Nationalpark: Gämse</a> · <a href="https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf" target="_blank" rel="noopener noreferrer">Nationalpark: Fokus Gämse (Tragzeit)</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

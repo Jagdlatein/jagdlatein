@@ -3,16 +3,18 @@
     "id": "at-zustaendigkeit",
     "title": "Jagdrecht ist Landesrecht",
     "text": "Österreich hat neun Landesjagdgesetze. Es gibt kein einheitliches österreichisches Bundesjagdgesetz, das bundesweite Jagdzeiten vorgibt. Wähle das betreffende Bundesland und prüfe dessen aktuelles Jagdgesetz, Verordnungen und behördliche Vorgaben im RIS.",
-    "source": "https://www.ris.bka.gv.at/Land/",
+    "source": "https://www.bmluk.gv.at/ministerium/rechtliches/ressortrecht-detailliert.html",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "BMLUK: Jagdwesen und neun Landesjagdgesetze"
   },
   {
     "id": "at-jagdkarte",
     "title": "Jagdkarte und konkrete Erlaubnis",
-    "text": "Eine Jagdkarte und die Zustimmung des Jagdausübungsberechtigten sind verschiedene Voraussetzungen. Die Jagdprüfung ist eine Voraussetzung für die Ausstellung; zusätzliche Voraussetzungen und Zuständigkeiten richten sich nach dem Bundesland.",
-    "source": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+    "text": "Eine Jagdkarte oder Jagdgastkarte und die konkrete Erlaubnis im Jagdgebiet sind getrennt zu prüfen. Welche Jagdprüfung oder anerkannten Qualifikationsnachweise erforderlich sind, richtet sich nach Landesrecht; Gast- und Anerkennungsregelungen können andere Nachweise vorsehen. Ein Beispiel sind die Jagdgastkarten im Burgenland (§ 62). Versicherung, Gültigkeit und Zuständigkeit vorab klären.",
+    "source": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001124",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Burgenländisches Jagdgesetz 2017: Jagdgastkarten und Jagdprüfung"
   }
 ]

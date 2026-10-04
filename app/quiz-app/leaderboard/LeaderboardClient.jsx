@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 
 export default function LeaderboardClient() {
@@ -14,8 +13,6 @@ export default function LeaderboardClient() {
   useEffect(() => {
     let active = true;
     let controller;
-    let client;
-    let channel;
     async function load() {
       const request = ++generation.current;
       controller?.abort();
@@ -38,27 +35,18 @@ export default function LeaderboardClient() {
       }
     }
     load();
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (url && key) {
-      try {
-        client = createClient(url, key);
-        channel = client.channel("quiz_scores_live").on("postgres_changes",
-          { schema: "public", table: "quiz_scores", event: "*" }, load).subscribe();
-      } catch { /* Die Rangliste ist auch ohne Live-Verbindung abrufbar. */ }
-    }
     return () => {
       active = false;
       generation.current += 1;
       controller?.abort();
-      if (client && channel) client.removeChannel(channel);
     };
   }, [reloadKey]);
 
   return (
     <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
       <h1 style={{ fontSize: 32, fontWeight: 900, marginBottom: 12 }}>🏆 Quiz-Rangliste</h1>
-      <p>Die besten gespeicherten Einzelergebnisse · Top 100</p>
+      <p>Die besten Ergebnisse aus vollständig gespielten Runden · Top 100</p>
+      <p>Für diese Rangliste spielen alle ihre Ergebnisse neu ein. Frühere Ranglistenpunkte werden nicht übernommen.</p>
       <p><Link href="/quiz-app">Zum Quiz</Link> · <Link href="/auswertungen">Meine Auswertungen</Link></p>
       {loading && <p role="status">Rangliste wird geladen…</p>}
       {error && <p role="alert">{error}</p>}

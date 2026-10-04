@@ -61,64 +61,36 @@ export default function Kanadagans() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Große, stark verbreitete Neozoen-Art</li>
-            <li>Ursprünglich aus Nordamerika</li>
-            <li>Lebensraum: Seen, Stadtparks, Flüsse, Feuchtgebiete</li>
-            <li>Sehr anpassungsfähig und standorttreu</li>
-            <li>Oft in großen, teils aggressiven Gruppen</li>
+            <li>Große Gans mit ursprünglichem Verbreitungsgebiet in Nordamerika</li>
+            <li>In Europa durch Ansiedlungen etabliert</li>
+            <li>Schwarzer Kopf und Hals mit weißem Kinnband</li>
+            <li>Schnabel und Füße schwarz, Körper überwiegend braun-grau</li>
+            <li>Geschlechter ähnlich gefärbt</li>
+            <li>Nutzt Gewässer mit offenen Nahrungsflächen, auch Stadtparks</li>
+            <li>Nahrung überwiegend Gräser, Kräuter, Wasserpflanzen und Getreide</li>
+            <li>Fliegt häufig in Keilformation</li>
+            <li>Mitteleuropäische Populationen sind oft ganzjährig anwesend</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Schwarzer Kopf und schwarzer langer Hals</li>
-            <li>Typisches weißes „Kinnband“ (Backenfleck)</li>
-            <li>Braun-grauer Körper</li>
-            <li>Hellere Brust und Bauch</li>
-            <li>Im Flug ruhiger, kraftvoller Schlag</li>
-          </ul>
-
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: März–Mai</li>
-            <li>Nest: Bodenbrüter, häufig in Ufernähe oder Inseln</li>
-            <li>Gelege: 4–7 Eier</li>
-            <li>Partnerbindung oft lebenslang</li>
-            <li>Küken sehr früh mobil, folgen Eltern sofort</li>
+            <li>Langjährige Paarbindung häufig</li>
+            <li>Brut vorwiegend im Frühjahr</li>
+            <li>Gelegegröße variabel, häufig fünf bis sechs Eier</li>
+            <li>Ganter bewacht Partnerin und Familienbereich</li>
+            <li>Junge sind Nestflüchter und werden von den Eltern geführt</li>
+            <li>Familien können bis zum folgenden Frühjahr zusammenbleiben</li>
+            <li>Besonders zur Brutzeit territoriales Verhalten möglich</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gräser, Kräuter, junge Triebe</li>
-            <li>Ackerflächen (Getreide, Raps)</li>
-            <li>Wasserpflanzen</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Standvogel bis Teilzieher</li>
-            <li>Stadtpopulationen oft ganzjährig ortstreu</li>
-            <li>Manchmal V-Formation ähnlich der Graugans</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/087928/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

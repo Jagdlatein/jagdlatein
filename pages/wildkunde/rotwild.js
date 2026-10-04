@@ -50,44 +50,49 @@ export default function Rotwild() {
 
         {/* --- STECKBRIEF --- */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Eine der größten heimischen Schalenwildarten</li>
-            <li>Gewicht: Hirsch 120–220 kg, Tier 70–120 kg</li>
-            <li>Körperlänge 170–240 cm, Schulterhöhe 110–140 cm</li>
-            <li>Lebensraum: Bergwälder, Mittelgebirge, Rotwildgebiete</li>
-            <li>Nahrung: Gräser, Kräuter, Triebe, Rinde</li>
-            <li>Sozialstruktur: Rudel um ein erfahrenes Alttier</li>
-            <li>Brunftzeit: September–Oktober</li>
-            <li>Setzzeit: Mai–Juni (meist 1 Kalb)</li>
+            <li>Große Hirschart; Hirsche sind meist schwerer als weibliche Tiere</li>
+            <li>Lebensräume reichen von der Küste bis ins Gebirge; heute häufig große Waldgebiete</li>
+            <li>Wiederkäuer: Gräser, Kräuter, Triebe und Rinde</li>
+            <li>Meist getrennte Hirsch- und Kahlwildrudel; zum Kahlwild gehören weibliche Tiere und Jungtiere</li>
+            <li>Sommerdecke rotbraun, Winterdecke graubraun</li>
+            <li>Nur Hirsche tragen normalerweise ein Geweih</li>
+            <li>Grandeln sind die zurückgebildeten oberen Eckzähne</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zähne & Gebiss</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
+          <ul style={styles.list}>
+            <li>Hauptbrunft im September und Oktober</li>
+            <li>Setzzeit meist Mai bis Juni, gewöhnlich ein Kalb</li>
+            <li>Hirsche werfen ihr Geweih im späten Winter oder Frühjahr ab</li>
+            <li>Das neue Geweih wächst bis zum Sommer unter Bast</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
+          <ul style={styles.list}>
+            <li>Hirsche können etwa 250 kg, weibliche Tiere etwa 170 kg erreichen</li>
+            <li>Die Schulterhöhe liegt häufig ungefähr zwischen 120 und 150 cm</li>
+            <li>Hirsch, Alttier und Kalb sind wichtige Geschlechts- und Altersbezeichnungen</li>
+          </ul>
+        </section>
+
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 0/3 · C 1/1 · P 3/3 · M 3/3 = 34</li>
-            <li>Grandeln = rudimentäre Eckzähne im Oberkiefer</li>
-            <li>Kälber: Milchgebiss vollständig</li>
-            <li>Milchzähne werden im Laufe der Jugend gegen bleibende Zähne ausgetauscht</li>
-            <li>Zahnwechsel und Zahnabnutzung liefern Anhaltspunkte; das Alter lässt sich damit nicht in jedem Fall exakt bestimmen</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Hirsch mit mächtigem Stangengeweih</li>
-            <li>Sommerfell rotbraun – Winterfell graubraun</li>
-            <li>Spiegel gelblich-weiß</li>
-            <li>Losung olivenförmig</li>
-            <li>Fährte 6–8 cm, breit gestellt</li>
-          </ul>
-        </section>
-
-        {/* --- QUIZ --- */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/087879/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus" target="_blank" rel="noopener noreferrer">DJV: Rothirsch</a> · <a href="https://www.researchgate.net/publication/225782588_Supernumerary_incisiform_tooth_in_a_red_deer_Cervus_elaphus_L" target="_blank" rel="noopener noreferrer">Kierdorf et al.: Rothirschgebiss</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

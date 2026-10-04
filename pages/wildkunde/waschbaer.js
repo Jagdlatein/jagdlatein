@@ -48,76 +48,42 @@ export default function Waschbaer() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Ursprung: Nordamerika</li>
-            <li>Seit 20. Jahrhundert in Europa eingebürgert</li>
-            <li>Gewicht: 4–10 kg, im Herbst bis über 12 kg</li>
-            <li>Körperlänge: 60–95 cm</li>
-            <li>Lebensraum: Wälder, Siedlungen, Dachböden, Stadtparks</li>
-            <li>Sehr geschickte Vorderpfoten – Türgriffe, Behälter, Mülltonnen</li>
-            <li>Nachtaktiv</li>
+            <li>Kleinbär mit ursprünglichem Verbreitungsgebiet in Nordamerika</li>
+            <li>In Europa durch Freisetzungen und entkommene Tiere etabliert</li>
+            <li>Schwarze Gesichtsmaske und geringelter Schwanz</li>
+            <li>Sehr bewegliche Vorderpfoten mit gutem Tastsinn</li>
+            <li>Guter Kletterer; nutzt Baumhöhlen und auch Gebäude als Ruheplätze</li>
+            <li>Überwiegend dämmerungs- und nachtaktiv</li>
+            <li>Besiedelt strukturreiche Wälder und Siedlungen</li>
+            <li>Allesfresser: Früchte, Wirbellose, kleine Wirbeltiere, Eier und weitere verfügbare Nahrung</li>
+            <li>Auswirkungen auf andere Arten hängen von Ort, Beutetierart und Bestandslage ab</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Allesfresser: Früchte, Nüsse, Eier, Jungvögel</li>
-            <li>Kleinsäuger, Insekten, Amphibien</li>
-            <li>Menschliche Abfälle → große Anpassungsfähigkeit</li>
+            <li>Paarungszeit vor allem Januar bis März</li>
+            <li>Tragzeit ungefähr 65 Tage</li>
+            <li>Geburten überwiegend im Frühjahr</li>
+            <li>Wurfgröße variabel, häufig zwei bis vier Junge</li>
+            <li>Junge sind zunächst blind und werden von der Mutter versorgt</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Februar–März</li>
-            <li>Tragzeit: ca. 65 Tage</li>
-            <li>Wurfzeit: April–Mai</li>
-            <li>Wurfgröße: 3–5 Junge</li>
-            <li>Geburtsort: Baumhöhlen, Dachböden, Scheunen</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Typische schwarze Gesichtsmaske</li>
-            <li>Buschiger Ringelschwanz</li>
-            <li>Graubraunes Fell</li>
-            <li>Fährte: fünf Zehen mit „Menschenhand“-Form</li>
-            <li>Losung: wurstartig, häufig mit Fruchtkernen</li>
-            <li>Kletterfähig → Bäume, Dachrinnen, Schornsteine</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Tollwut (selten)</li>
-            <li>Spulwürmer (Baylisascaris procyonis)</li>
-            <li>Trichinen</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40</li>
-            <li>Allesfressergebiss → vielseitig</li>
-            <li>Breite Molaren zum Zerkleinern von Pflanzenmaterial</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/176023/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

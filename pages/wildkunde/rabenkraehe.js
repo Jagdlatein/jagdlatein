@@ -61,63 +61,35 @@ export default function Rabenkraehe() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Eine der häufigsten Krähenarten Mitteleuropas</li>
-            <li>Sehr hohe Intelligenz (Werkzeuggebrauch belegt)</li>
-            <li>Lebensraum: landwirtschaftliche Flächen, Städte, Wälder, Küsten</li>
-            <li>Starker Kulturfolger → profitiert von menschlichen Strukturen</li>
-            <li>Teilweise problematisch für Bodenbrüter</li>
+            <li>Rabenvogel mit durchgehend schwarzem Gefieder</li>
+            <li>Schnabel und Beine ebenfalls dunkel</li>
+            <li>Im Unterschied zur erwachsenen Saatkrähe ist die Schnabelwurzel befiedert</li>
+            <li>Nutzt halboffene Landschaften und Siedlungen</li>
+            <li>Raue krächzende Stimme; gehört systematisch zu den Singvögeln</li>
+            <li>Allesfresser mit pflanzlicher und tierischer Nahrung sowie Aas</li>
+            <li>Geschlechter ähnlich gefärbt</li>
+            <li>Verpaarte Tiere verhalten sich territorial; Nichtbrüter bilden häufig Trupps</li>
+            <li>Raben- und Nebelkrähen sind eng verwandt und können in Kontaktzonen hybridisieren</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Komplett schwarz (Feder, Schnabel, Beine)</li>
-            <li>Kein grauer Mantel (→ Unterschied zur Nebelkrähe)</li>
-            <li>Groß, kräftig, mächtiger Schnabel</li>
-            <li>Flugbild: lange Flügel, ruhiger Flügelschlag</li>
-            <li>Ruf: hartes „krääh“</li>
+            <li>Balz und Brut im Frühjahr</li>
+            <li>Nest meist auf Bäumen, auch andere erhöhte Standorte möglich</li>
+            <li>Gelegegröße variabel, häufig vier bis sechs Eier</li>
+            <li>Brutdauer ungefähr 18 bis 20 Tage</li>
+            <li>Junge sind Nesthocker</li>
+            <li>Beide Eltern versorgen die Jungen auch nach dem Ausfliegen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: März–Mai</li>
-            <li>Nest im Baum oder Gebäuden</li>
-            <li>Gelege: 3–6 Eier</li>
-            <li>Junge werden 3–4 Wochen gefüttert</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Aas, Insekten, Larven</li>
-            <li>Kleinsäuger, Jungvögel, Eier</li>
-            <li>Getreide, Früchte, Abfälle</li>
-            <li>Sehr opportunistischer Allesfresser</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Hoch sozial</li>
-            <li>Sehr lernfähig</li>
-            <li>Nutzt Werkzeuge</li>
-            <li>Kann Schalen von Muscheln oder Nüssen öffnen</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/131712/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24948738/" target="_blank" rel="noopener noreferrer">Poelstra et al. 2014: Krähen-Hybridzone</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

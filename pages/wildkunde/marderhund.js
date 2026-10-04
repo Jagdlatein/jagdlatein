@@ -47,78 +47,43 @@ export default function Marderhund() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Ursprung: Ostasien</li>
-            <li>In Europa etabliert durch frühere Pelztierzuchten</li>
-            <li>Gewicht: 4–10 kg</li>
-            <li>Körperlänge: 50–70 cm · Schwanz 15–25 cm</li>
-            <li>Nahrung: Früchte, Insekten, Eier, Kleintiere, Aas</li>
-            <li>Geringe Fluchtdistanz · häufig langsam und trollend</li>
-            <li>Hervorragender Geruchssinn</li>
+            <li>Hundeartiger mit ursprünglichem Verbreitungsgebiet in Ostasien</li>
+            <li>Europäische Bestände gehen unter anderem auf Aussetzungen zur Pelznutzung in Osteuropa zurück</li>
+            <li>Kopf-Rumpf-Länge ungefähr 50 bis 70 cm</li>
+            <li>Gewicht schwankt saisonal, häufig etwa 3 bis 12 kg</li>
+            <li>Langhaariges Fell und dunkle Gesichtszeichnung; Rute ohne Waschbär-Ringelung</li>
+            <li>Bevorzugt feuchte, deckungsreiche und strukturreiche Landschaften</li>
+            <li>Überwiegend nachtaktiv</li>
+            <li>Allesfresser mit tierischer und pflanzlicher Nahrung sowie Aas</li>
+            <li>Nutzt häufig Fuchs- und Dachsbaue</li>
           </ul>
         </section>
 
-        {/* LEBENSWEISE */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Lebensweise</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Nachtaktiv</li>
-            <li>Sehr standorttreu</li>
-            <li>Lebt häufig in Fuchs- oder Dachsbauen</li>
-            <li>Kann in strengen Wintern Winterruhe halten; bei mildem Wetter bleibt er aktiv</li>
-            <li>Monogam lebend → Paare bleiben oft lebenslang zusammen</li>
+            <li>Ranz hauptsächlich Februar bis April</li>
+            <li>Tragzeit ungefähr acht Wochen</li>
+            <li>Wurfgröße variabel, häufig fünf bis sieben Welpen</li>
+            <li>Beide Eltern können die Jungen versorgen</li>
+            <li>Paare bleiben oft über längere Zeit zusammen</li>
+            <li>Bei strengen Wintern Winterruhe möglich; bei mildem Wetter häufig weiter aktiv</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Februar–März</li>
-            <li>Tragzeit: ca. 60 Tage</li>
-            <li>Wurfzeit: April–Mai</li>
-            <li>Wurfgröße: 4–8 Jungtiere</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Typische schwarze Gesichtsmaske ähnlich Waschbär</li>
-            <li>Langhaariges, buschiges Fell</li>
-            <li>Laufstil: trollend, schwerfällig</li>
-            <li>Fährte hundeartig, meist vier Zehen im Trittsiegel; Größe allein erlaubt keine sichere Artbestimmung</li>
-            <li>Losung: sehr variabel durch allesfressende Ernährung</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe (häufig)</li>
-            <li>Tollwut (in einigen Regionen Europas Nachweise)</li>
-            <li>Räude</li>
-            <li>Trichinen (wichtig für Lebensmittelhygiene!)</li>
-            <li>Fuchsbandwurm</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42</li>
-            <li>Allesfressergebiss</li>
-            <li>Starke Molaren zum Zermahlen pflanzlicher Nahrung</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.mdpi.com/2076-2615/13/15/2437" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/223538/index.php" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/223538/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.mdpi.com/2076-2615/13/15/2437" target="_blank" rel="noopener noreferrer">Anatomische Studie: Marderhundgebiss (2023)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

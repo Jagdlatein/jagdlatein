@@ -55,95 +55,51 @@ export default function Eichhoernchen() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 20–25 cm</li>
-            <li>Gewicht: 250–400 g</li>
-            <li>Lebensraum: Wälder, Parks, Gärten</li>
-            <li>Sehr guter Kletterer → Lebensraum in den Baumkronen</li>
-            <li>Einzelgänger, außer zur Paarungszeit</li>
+            <li>Heimisches Nagetier der Wälder, Feldgehölze und Parks</li>
+            <li>Kopf-Rumpf-Länge ungefähr 20 bis 25 cm</li>
+            <li>Oberseite von rot bis schwarzbraun; Unterseite hell</li>
+            <li>Buschiger Schwanz und im Winter oft ausgeprägte Ohrpinsel</li>
+            <li>Guter Kletterer</li>
+            <li>Tagaktiv; kein echter Winterschlaf</li>
+            <li>Überwiegend einzeln, Kontakt unter anderem zur Paarung</li>
+            <li>Nahrung: Baumsamen, Nüsse, Knospen, Pilze, Früchte und gelegentlich tierische Kost</li>
+            <li>Versteckt Vorräte an mehreren Stellen und trägt dadurch zur Samenverbreitung bei</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Buschiger Schwanz</strong> als Balancier- und Wärmewerkzeug</li>
-            <li><strong>Pinselohren</strong> – im Winter besonders ausgeprägt</li>
-            <li>Fellfarben variieren: rot, braun, dunkel bis schwarz</li>
-            <li>Lange Krallen → perfekt fürs Klettern</li>
-            <li>Bewegung: schnelle Sprünge, klettert kopfüber am Stamm</li>
+            <li>Nester heißen Kobel und werden beispielsweise in Astgabeln angelegt</li>
+            <li>Nutzt häufig mehrere Ruhe- und Schlafplätze</li>
+            <li>Fortpflanzung hängt stark vom Nahrungsangebot ab</li>
+            <li>Paarung kann in günstigen Jahren bereits im Januar beginnen</li>
+            <li>Junge sind Nesthocker und wachsen im gepolsterten Wurfkobel auf</li>
           </ul>
         </section>
 
-        {/* KOBEL & LEBENSRAUM */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Kobel & Lebensweise</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Nester heißen <strong>Kobel</strong>, meist kugelförmig</li>
-            <li>Oft mehrere Kobel gleichzeitig</li>
-            <li>Schlaf- und Wurfkobel getrennt</li>
-            <li>Vorratssammler: Nüsse, Zapfen, Pilze → Wintervorräte</li>
+            <li>Schwanz häufig ungefähr 16 bis 20 cm lang</li>
+            <li>Ein Wurf umfasst häufig etwa fünf Junge, kann aber kleiner oder größer sein</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Januar–Februar & Juni–Juli</li>
-            <li>Wurfgröße: 3–6 Junge</li>
-            <li>Jungtiere: Nesthocker</li>
-            <li>Wurfkobel gut gepolstert mit Pflanzenmaterial</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Nüsse (Hasel, Walnuss)</li>
-            <li>Fichtenzapfen, Tannenzapfen</li>
-            <li>Pilze, Knospen, junge Triebe</li>
-            <li>Gelegentlich Vogeleier</li>
-          </ul>
-        </section>
-
-        {/* VERWECHSLUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verwechslungsgefahr</h2>
-          <ul style={styles.list}>
-            <li><strong>Grauhörnchen (Sciurus carolinensis)</strong> – Neozoon</li>
-            <li>Deutlich größer</li>
-            <li>Verdrängt das heimische Eichhörnchen (Konkurrenz)</li>
-            <li>In Europa lokal problematisch</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Squirrelpox-Virus (besonders im UK)</li>
-            <li>Parasiten: Flöhe, Zecken, Würmer</li>
-            <li>Räude möglich</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 1/1 · C 0/0 · P 2/1 · M 3/3 = 22</li>
-            <li>Nagezähne wachsen ständig</li>
-            <li>Typisches Nagetiergebiss</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.science.smith.edu/departments/Biology/VHAYSSEN/msi/pdf/769_Sciurus_vulgaris.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://lwf.bayern.de/waldschutz/kleinsaeuger/064070/index.php" target="_blank" rel="noopener noreferrer">Bayerische Landesanstalt für Wald und Forstwirtschaft</a> · <a href="https://www.science.smith.edu/departments/Biology/VHAYSSEN/msi/pdf/769_Sciurus_vulgaris.pdf" target="_blank" rel="noopener noreferrer">Mammalian Species: Sciurus vulgaris</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

@@ -33,6 +33,9 @@ export async function POST(req) {
     let body;
     try { body = await req.json(); } catch { body = null; }
     const result = validateActivityResult(body);
+    if (result.type === "quiz") {
+      throw new ActivityResultError("Quizergebnisse werden ausschließlich aus einer abgeschlossenen Serverrunde gespeichert.");
+    }
     const database = getAccountDatabase("STATISTICS_UNAVAILABLE");
     const { data, error } = await database.from("activity_results")
       .insert({ account_email: session.email, ...result })

@@ -39,15 +39,18 @@ export async function POST(req) {
     }
 
     // Prüfen, ob die E-Mail bei Jagdlatein registriert ist
-    const supabase = createClient(
-      process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
+    const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) return NextResponse.json(
+      { success: false, message: "Die Anmeldung ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503 });
+    const supabase = createClient(url, key, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+    });
 
     const { data: profile, error: profileError } = await supabase
       .from("userprofile")
       .select("email")
-      .ilike("email", email)
+      .ilike("email", email.replace(/[\\%_]/g, "\\$&"))
       .maybeSingle();
 
     if (profileError) {
@@ -68,7 +71,7 @@ export async function POST(req) {
       });
     }
 
-    // Maximal ungefähr eine neue Mail pro Minute
+    // Dieser Zeitstempel dient auch als atomare Reservierung gegen parallele Anfragen.
     const { data: existing, error: existingError } = await supabase
       .from("login_codes")
       .select("requested_at")
@@ -100,20 +103,31 @@ export async function POST(req) {
       Date.now() + 10 * 60 * 1000
     ).toISOString();
 
-    const { error: saveError } = await supabase
-      .from("login_codes")
-      .upsert(
-        {
-          email,
-          code_hash: codeHash,
-          expires_at: expiresAt,
-          attempts: 0,
-          requested_at: new Date().toISOString(),
-        },
-        {
-          onConflict: "email",
-        }
-      );
+    const reservation = {
+      email,
+      code_hash: codeHash,
+      expires_at: expiresAt,
+      attempts: 0,
+      requested_at: new Date().toISOString(),
+    };
+    let save;
+    if (existing) {
+      let query = supabase.from("login_codes").update(reservation).eq("email", email);
+      query = existing.requested_at == null
+        ? query.is("requested_at", null)
+        : query.eq("requested_at", existing.requested_at);
+      save = await query.select("email").maybeSingle();
+    } else {
+      save = await supabase.from("login_codes").insert(reservation).select("email").maybeSingle();
+    }
+    // Nur der Gewinner darf seinen gespeicherten Code senden; Verlierer bleiben neutral.
+    if ((!existing && save.error?.code === "23505") || (!save.error && !save.data)) {
+      return NextResponse.json({
+        success: true,
+        message: "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet.",
+      });
+    }
+    const saveError = save.error;
 
     if (saveError) {
       console.error("Login-Code konnte nicht gespeichert werden:", saveError);

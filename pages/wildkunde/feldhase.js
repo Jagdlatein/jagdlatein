@@ -51,87 +51,49 @@ export default function Feldhase() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 3–6 kg</li>
-            <li>Körperlänge: 50–70 cm</li>
-            <li>Lebensraum: Feldfluren, Wiesen, Heckenbereiche</li>
-            <li>Nahrung: Kräuter, Gräser, Feldfrüchte, Rinde</li>
-            <li>Einzelgänger</li>
-            <li>Ruheplatz: <strong>Sasse</strong> (flache Bodenmulde)</li>
+            <li>Hasenartiger, kein Nagetier</li>
+            <li>Kopf-Rumpf-Länge etwa 50 bis 70 cm; Gewicht variiert nach Region und Alter</li>
+            <li>Lange Ohren, Löffel genannt, mit dunklen Spitzen</li>
+            <li>Kräftige Hinterläufe ermöglichen schnelle Flucht mit Hakenschlagen</li>
+            <li>Lebt besonders in offener, strukturreicher Agrarlandschaft; kommt auch in anderen Landschaften vor</li>
+            <li>Nahrung: Kräuter, Gräser, Kulturpflanzen, Knospen und Triebe</li>
+            <li>Ruht in einer flachen Erdmulde, der Sasse</li>
+            <li>Bei Gefahr zunächst oft regungslos geduckt, dann schnelle Flucht</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Löffelspitzen schwarz</strong> → wichtiges Erkennungsmerkmal</li>
-            <li>Lange Hinterläufe</li>
-            <li>Rötlich-graues Fell</li>
-            <li>Langer Körper, hohe Fluchtgeschwindigkeit</li>
-            <li>Fährte: V-förmig, Hinterläufe deutlich länger abgedrückt</li>
-            <li>Losung: rundlich-oval, hellbraun bis dunkel</li>
+            <li>Fortpflanzungsperiode erstreckt sich über Frühjahr und Sommer; Beginn und Ende variieren</li>
+            <li>Mehrere Würfe pro Jahr möglich</li>
+            <li>Junge werden behaart und mit offenen Augen geboren</li>
+            <li>Häsin setzt die Jungen oberirdisch, nicht in einem Kaninchenbau</li>
+            <li>Häsin und Rammler sind die Geschlechtsbezeichnungen</li>
           </ul>
         </section>
 
-        {/* SPRINGEN & FLUCHT */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Flucht- & Bewegungsverhalten</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Typisch: <strong>Haken schlagen</strong> zur Verwirrung von Feinden</li>
-            <li>Sehr schnelle Sprints über kurze Distanzen</li>
-            <li>Verharrt reglos in der Sasse bei Gefahr</li>
+            <li>Löffellänge häufig ungefähr 12 bis 14 cm</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Rammelzeit: Januar–September</li>
-            <li>3–4 Würfe pro Jahr möglich</li>
-            <li>Wurfgröße: 1–4 Junge</li>
-            <li>Jungtiere: <strong>behaart und sehfähig (Nestflüchter)</strong></li>
-            <li>Gebären in freier Deckung, nicht im Bau</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>EBHS (Europäische Hasenseuche)</li>
-            <li>Tularämie</li>
-            <li>Kokzidien</li>
-            <li>Räude (selten)</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 2/1 · C 0/0 · P 3/2 · M 3/3 = 28</li>
-            <li>Typisches Nagerähnliches Gebiss, aber kein Nagetier!</li>
-            <li>Ständig nachwachsende Schneidezähne</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUM KANINCHEN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Wildkaninchen</h2>
-          <ul style={styles.list}>
-            <li>Hase → Einzelgänger · Kaninchen → Kolonie</li>
-            <li>Hase → Sasse · Kaninchen → Bau</li>
-            <li>Junghase → behaart und sehfähig · Kaninchen → nackt und blind</li>
-            <li>Hase → längere Läufe & Ohren</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102456/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus" target="_blank" rel="noopener noreferrer">DJV: Feldhase</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

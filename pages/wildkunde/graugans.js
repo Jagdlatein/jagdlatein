@@ -4,8 +4,8 @@ import Image from "next/image";
 export default function Graugans() {
   const quiz = [
     {
-      q: "Welche Schnabelfarbe hat die Graugans?",
-      a: ["Schwarz", "Orange", "Gelb"],
+      q: "Welche Schnabelfärbung ist für Graugänse typisch?",
+      a: ["Einheitlich schwarz", "Rosarot bis orange", "Leuchtend blau"],
       correct: 1,
     },
     {
@@ -20,7 +20,7 @@ export default function Graugans() {
     {
       q: "Welche Aussage trifft zu?",
       a: [
-        "Die Graugans ist die Stammform der Hausgans",
+        "Viele europäische Hausgänse stammen von der Graugans ab",
         "Graugänse sind reine Hochgebirgsvögel",
         "Graugänse brüten ausschließlich in Baumhöhlen"
       ],
@@ -57,72 +57,43 @@ export default function Graugans() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Größte natürlich vorkommende Gans Mitteleuropas</li>
-            <li>Schlicht graues Gefieder</li>
-            <li>Typisch: ORANGEFARBENER Schnabel & rosa Füße</li>
-            <li>Lebensraum: Seen, Flussauen, Feuchtgebiete, Kulturland</li>
-            <li>Oft in großen, lautstarken Verbänden</li>
+            <li>Große Gans mit graubraunem Gefieder und kräftigem Schnabel</li>
+            <li>Schnabel rosarot bis orange, Beine rosafarben</li>
+            <li>Geschlechter ähnlich gefärbt</li>
+            <li>Lebt an Seen, Teichen und anderen geeigneten Gewässern mit offenen Nahrungsflächen</li>
+            <li>Nahrung überwiegend Gräser, Kräuter, Wasserpflanzen und Kulturpflanzen</li>
+            <li>Häufig gesellig in Familien und größeren Gruppen</li>
+            <li>Lautes, mehrsilbiges Gänserufen</li>
+            <li>Längere Strecken oft in V- oder Keilformation</li>
+            <li>Zugverhalten variiert; manche mitteleuropäische Populationen bleiben ganzjährig</li>
+            <li>Viele europäische Hausgänse gehen auf die Graugans zurück</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
-          <h3>Äußere Merkmale</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Orangefarbener Schnabel</li>
-            <li>Grau-braunes Gefieder mit heller Brust</li>
-            <li>Rosafarbene Beine</li>
-            <li>Langer Hals · massive Körperform</li>
-          </ul>
-
-          <h3>Flugbild</h3>
-          <ul style={styles.list}>
-            <li>Breite Flügel</li>
-            <li>Ruhiger, kraftvoller Flügelschlag</li>
-            <li>Typische V-Formation oder Linie</li>
-            <li>Lautes „ga-ga-ga“-Rufen</li>
+            <li>Paarbindung häufig langjährig; nach Partnerverlust kann eine neue Paarung erfolgen</li>
+            <li>Brut überwiegend im Frühjahr</li>
+            <li>Gelegegröße variabel, häufig vier bis neun Eier</li>
+            <li>Gössel sind Nestflüchter und bleiben längere Zeit im Familienverband</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
+            <li>Deckungsreiche Gewässer sind während Aufzucht und Mauser besonders wichtig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: März–Mai</li>
-            <li>Nest: Bodenbrut, gut versteckt in Schilf oder Wiesen</li>
-            <li>Gelege: 4–7 Eier</li>
-            <li>Küken: Nestflüchter, folgen den Eltern sofort</li>
-            <li>Familiiverband bleibt lange zusammen</li>
+            <li>Jungvögel können nach etwa zwei Monaten fliegen</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gräser, Kräuter, Getreide</li>
-            <li>Frisst oft auf Ackerflächen (Schadwild)</li>
-            <li>Wasserpflanzen an Flachwasserzonen</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Teilzieher</li>
-            <li>Viele Populationen überwintern in Mitteleuropa</li>
-            <li>Bekannt für V-Formationsflug</li>
-            <li>Weite Zugstrecken möglich</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/085417/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.birdlife.at/voegel/graugans/" target="_blank" rel="noopener noreferrer">BirdLife Österreich: Graugans</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/graugans-anser-anser" target="_blank" rel="noopener noreferrer">Deutscher Jagdverband: Graugans</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

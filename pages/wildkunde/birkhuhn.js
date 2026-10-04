@@ -40,7 +40,7 @@ export default function Birkhuhn() {
     <main style={styles.main}>
       <div style={styles.wrap}>
 
-        <h1 style={styles.title}>Birkhuhn (Tetrao tetrix)</h1>
+        <h1 style={styles.title}>Birkhuhn (Lyrurus tetrix, Synonym Tetrao tetrix)</h1>
         <p style={styles.subtitle}>Balzplätze · Spielhähne · Strukturreicher Lebensraum</p>
 
         <div style={styles.imageBox}>
@@ -57,95 +57,45 @@ export default function Birkhuhn() {
         {/* ALLGEMEINES */}
         {/* -------------------------------- */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Lebensraum: Moorlandschaften, Heidelandschaften, Gebirge</li>
-            <li>Bestände vielerorts stark rückläufig</li>
-            <li>Sehr störungsempfindlich während der Balz</li>
-            <li>Jagd in vielen Ländern nur stark begrenzt erlaubt</li>
+            <li>Raufußhuhn halboffener Übergangsbereiche von Wald und Offenland</li>
+            <li>Nutzt unter anderem Moorränder, lichte Bergwälder und alpine Matten</li>
+            <li>Kleiner als das Auerhuhn</li>
+            <li>Spielhahn mit dunklem, bläulich glänzendem Gefieder und sichelförmigen äußeren Schwanzfedern</li>
+            <li>Weiße Unterschwanzdecken sind bei der Balz auffällig</li>
+            <li>Henne braun gemustert; Brust im Gegensatz zur Auerhenne gebändert</li>
+            <li>Nahrung: Triebe, Knospen, Blätter und Früchte</li>
+            <li>Im Winter unter anderem Knospen und Kätzchen von Birken und anderen Gehölzen</li>
+            <li>Junge benötigen zunächst viele Insekten</li>
           </ul>
         </section>
 
-        {/* -------------------------------- */}
-        {/* ERKENNUNG */}
-        {/* -------------------------------- */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Birkhahn:</strong> schwarz glänzend, rote Rosen, weißer Flügelspiegel</li>
-            <li>Sichelförmiger Stoß → wichtigstes Merkmal</li>
-            <li><strong>Birkhenne:</strong> braun-grau gemustert, gut getarnt</li>
-            <li>Kleiner als Auerhuhn</li>
-          </ul>
-        </section>
-
-        {/* -------------------------------- */}
-        {/* BALZ */}
-        {/* -------------------------------- */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Balz</h2>
-          <ul style={styles.list}>
-            <li>Balzzeit: April–Mai</li>
-            <li>Balzplätze in offenen Bereichen</li>
-            <li>Spielhähne kämpfen lautstark → Fauchen, Zischen, Kollern</li>
-            <li>Balzarena wird über Jahre genutzt</li>
-          </ul>
-        </section>
-
-        {/* -------------------------------- */}
-        {/* FORTPFLANZUNG */}
-        {/* -------------------------------- */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Gelege: 6–10 Eier, gut versteckt am Boden</li>
-            <li>Brutdauer: ca. 26 Tage</li>
+            <li>Gemeinschaftsbalz auf offenen Balzarenen</li>
+            <li>Höhepunkt häufig Ende April bis Anfang Mai; regionale Unterschiede</li>
+            <li>Hähne kullern und zischen</li>
+            <li>Brut und Aufzucht übernimmt die Henne</li>
+            <li>Gelegegröße variabel, häufig sieben bis zehn Eier</li>
+            <li>Brutdauer ungefähr 25 bis 27 Tage</li>
             <li>Küken sind Nestflüchter</li>
-            <li>Junge benötigen hohe Insektennahrung</li>
+            <li>Schneehöhlen dienen im Winter als geschützte Ruheplätze</li>
           </ul>
         </section>
 
-        {/* -------------------------------- */}
-        {/* NAHRUNG */}
-        {/* -------------------------------- */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Knospen, Kräuter, Beeren</li>
-            <li>Junge: Insekten → extrem wichtig!</li>
-            <li>Im Winter Birkenknospen</li>
+            <li>Rote Rosen liegen über den Augen des Spielhahns</li>
+            <li>Ruheplätze und Balzarenen sind besonders störungsempfindlich</li>
           </ul>
         </section>
 
-        {/* -------------------------------- */}
-        {/* VERWECHSLUNG */}
-        {/* -------------------------------- */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verwechslungsgefahr</h2>
-          <ul style={styles.list}>
-            <li>Auerhuhn → größer, anderer Stoß</li>
-            <li>Birkhenne ähnelt Auerhenne, aber deutlich kleiner</li>
-            <li>Balzverhalten unterscheidet sich stark</li>
-          </ul>
-        </section>
-
-        {/* -------------------------------- */}
-        {/* BEDROHUNG */}
-        {/* -------------------------------- */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gefährdung</h2>
-          <ul style={styles.list}>
-            <li>Lebensraumverlust (Verbuschung, Nutzungswandel)</li>
-            <li>Störung durch Freizeitaktivitäten</li>
-            <li>Witterungseinflüsse</li>
-            <li>Raubwilddruck</li>
-          </ul>
-        </section>
-
-        {/* -------------------------------- */}
-        {/* QUIZ */}
-        {/* -------------------------------- */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102436/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

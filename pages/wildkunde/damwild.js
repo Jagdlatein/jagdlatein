@@ -47,41 +47,40 @@ export default function Damwild() {
 
         {/* STECKBRIEF */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Mittelgroßes Schalenwild</li>
-            <li>Gewicht: Hirsch 60–100 kg, Tier 35–60 kg</li>
-            <li>Körperlänge: 130–175 cm, Schulterhöhe 80–110 cm</li>
-            <li>Vorkommen: Parkwild, Wälder, Feldreviere</li>
-            <li>Nahrung: Gräser, Kräuter, Knospen, Eicheln, Bucheckern</li>
-            <li>Sozialstruktur: Rudelbildung, sehr standorttreu</li>
-            <li>Brunftzeit: Oktober–November („Platzbrunft“)</li>
-            <li>Setzzeit: Juni (meist 1 Kalb)</li>
+            <li>Mittelgroße Hirschart; Hirsche können etwa 100 kg, weibliche Tiere etwa 60 kg erreichen</li>
+            <li>Bevorzugt lichte Wälder im Wechsel mit Offenland</li>
+            <li>Lebt meist in getrennten Hirsch- und Kahlwildrudeln</li>
+            <li>Wiederkäuer mit Gräsern, Kräutern, Trieben und Baumfrüchten im Nahrungsspektrum</li>
+            <li>Fellfarben variieren von hell bis sehr dunkel</li>
+            <li>Helle Flecken sind besonders im rotbraunen Sommerfell sichtbar</li>
+            <li>Ältere Hirsche tragen ein charakteristisches Schaufelgeweih; die Entwicklung ist individuell unterschiedlich</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Geweih</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Damhirsch trägt ein charakteristisches Schaufelgeweih</li>
-            <li>1. Kopf Spießer → ab 3. Kopf Schaufeln</li>
-            <li>Abwurf: April</li>
-            <li>Neubildung unter Bast im Frühjahr</li>
+            <li>Hauptbrunft im Oktober und November</li>
+            <li>Tragzeit ungefähr siebeneinhalb Monate</li>
+            <li>Setzzeit meist Ende Mai bis Juni; gewöhnlich ein Kalb</li>
+            <li>Geweihabwurf überwiegend im April</li>
+            <li>Neues Geweih wächst unter Bast bis zum Spätsommer</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Typischer Aalstrich (dunkler Rückenstreifen)</li>
-            <li>Gefleckte Decke im Sommer (weiß auf braun)</li>
-            <li>Spiegel: sehr groß, herzförmig, schwarz umrandet</li>
-            <li>Losung kleiner als beim Rotwild, länglicher als Rehwild</li>
+            <li>Junge Hirsche tragen zunächst Spieße; eine bestimmte Schaufelgröße beweist kein genaues Alter</li>
+            <li>Der dunkle Rückenstreifen wird Aalstrich genannt</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/083840/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

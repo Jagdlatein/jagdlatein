@@ -2,17 +2,19 @@
   {
     "id": "at-NOE-quellen",
     "title": "Bundesland Niederösterreich: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Niederösterreich. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.ris.bka.gv.at/Land/",
+    "text": "Die verlinkte RIS-Gesamtfassung führt zu NÖ Jagdgesetz 1974. Prüfe geltende Fassung, Geltungsbeginn, ergänzende Verordnungen und örtliche Anordnungen. Jagdrecht und weitere einschlägige Vorschriften sind zusammen zu beachten. Diese Karte ersetzt keinen Gesetzestext.",
+    "source": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20000559",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "NÖ Jagdgesetz 1974"
   },
   {
     "id": "at-NOE-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.ris.bka.gv.at/Land/",
+    "source": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20000559",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "NÖ Jagdgesetz 1974"
   }
 ]

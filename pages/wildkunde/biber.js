@@ -51,94 +51,44 @@ export default function Biber() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 15–30 kg → eines der größten Nagetiere Europas</li>
-            <li>Körperlänge: 80–100 cm</li>
-            <li>Lebensraum: Flüsse, Seen, Bäche, Auenlandschaften</li>
-            <li>Geschützte Art; Eingriffe richten sich nach örtlichem Artenschutzrecht und behördlichen Ausnahmen</li>
-            <li>Hervorragender Schwimmer</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li><strong>Flacher, breiter Schwanz (Kelle)</strong> → wichtigstes Merkmal</li>
+            <li>Großes, an Gewässer gebundenes Nagetier</li>
+            <li>Breiter, abgeflachter Schwanz heißt Kelle</li>
             <li>Orangerote Schneidezähne</li>
-            <li>Großer Kopf, kleine Ohren</li>
-            <li>Dichtes braunes Fell</li>
-            <li>Beim Schwimmen ragt nur Kopf + Rücken heraus</li>
+            <li>Lebt an stehenden und fließenden Gewässern mit geeigneter Ufervegetation</li>
+            <li>Überwiegend dämmerungs- und nachtaktiv</li>
+            <li>Pflanzenfresser: Kräuter, Blätter, Zweige und Rinde</li>
+            <li>Gräbt Uferbaue oder errichtet Burgen aus Ästen</li>
+            <li>Baut dort Dämme, wo dies zur Sicherung des Wasserstands nötig ist; nicht jede Ansiedlung hat einen Damm</li>
+            <li>Nageaktivität und Wasserstau schaffen neue Lebensräume und können zugleich Nutzungskonflikte verursachen</li>
+            <li>Eingriffe benötigen die jeweils erforderliche artenschutzrechtliche Grundlage</li>
           </ul>
         </section>
 
-        {/* SPUREN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Spuren & Hinweise</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Fraßspuren:</strong> angenagte Bäume, typisch schräg gefällte Stämme</li>
-            <li><strong>Biberpfade</strong> vom Wasser ans Land</li>
-            <li><strong>Rutschbahnen</strong> → vom Körper glatt gedrückt</li>
-            <li>Losung: länglich, dunkel, oft im Wasser</li>
+            <li>Lebt in Familienrevieren mit Paar und Jungtieren</li>
+            <li>Junge kommen meist Ende Mai bis Anfang Juni zur Welt</li>
+            <li>Jungtiere verbleiben häufig bis zum Alter von zwei Jahren im elterlichen Revier</li>
+            <li>Für den Winter werden unter anderem Äste unter Wasser bevorratet</li>
+            <li>Wintervorrat und geeignetes Ufergehölz sind für den Lebensraum wichtig</li>
           </ul>
         </section>
 
-        {/* BURG & DAMM */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Biberburg & Biberdamm</h2>
-          <ul style={styles.list}>
-            <li>Biber bauen Burgen aus Ästen, Schlamm & Pflanzenmaterial</li>
-            <li>Eingang meist unter Wasser zur Feindvermeidung</li>
-            <li>Dämme stauen Wasser an und formen neue Lebensräume</li>
-            <li><strong>Ökologisch extrem wichtig</strong> → schaffen neue Biotope</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Rinde, Zweige, Blätter</li>
-            <li>Kräuter und Wasserpflanzen</li>
-            <li>Winterfuttervorräte unter Wasser</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Januar–März</li>
-            <li>Tragzeit: ca. 105 Tage</li>
-            <li>Wurfgröße: 1–3 Junge</li>
-            <li>Familienverband bleibt zusammen</li>
-          </ul>
-        </section>
-
-        {/* SCHÄDEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Konflikte & Schäden</h2>
-          <ul style={styles.list}>
-            <li>Überflutete Felder & Wiesen</li>
-            <li>Gefällte Bäume, beschädigte Uferbereiche</li>
-            <li>Dämme blockieren Gewässer und Durchflüsse</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 1/1 · C 0/0 · P 1/1 · M 3/3 = 20</li>
-            <li><strong>Sehr starke Schneidezähne</strong></li>
-            <li>Schneidezähne wachsen ständig nach</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://environnement.public.lu/dam-assets/fr/conserv_nature/publications/2022/anf-europaische-biber-web.pdf" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.bfn.de/artenportraits/castor-fiber" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.bfn.de/artenportraits/castor-fiber" target="_blank" rel="noopener noreferrer">Bundesamt für Naturschutz: Artprofil</a> · <a href="https://environnement.public.lu/dam-assets/fr/conserv_nature/publications/2022/anf-europaische-biber-web.pdf" target="_blank" rel="noopener noreferrer">Naturverwaltung Luxemburg: Europäischer Biber</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

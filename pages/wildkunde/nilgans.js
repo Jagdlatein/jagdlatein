@@ -22,10 +22,10 @@ export default function Nilgans() {
       correct: 1,
     },
     {
-      q: "Wie verhält sich die Nilgans gegenüber anderen Arten?",
+      q: "Welches Verhalten können Nilgänse im Brutbereich zeigen?",
       a: [
-        "Sehr scheu und zurückhaltend",
-        "Oft aggressiv, verteidigt große Reviere",
+        "Sie verteidigen niemals ihren Brutbereich",
+        "Sie können Nest und Junge energisch gegen andere Tiere verteidigen",
         "Lebt ausschließlich in großen Kolonien ohne Territorialverhalten"
       ],
       correct: 1,
@@ -61,64 +61,35 @@ export default function Nilgans() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Eine der erfolgreichsten Neozoen-Arten Europas</li>
-            <li>Ursprüngliches Verbreitungsgebiet: Afrika, Naher Osten</li>
-            <li>Lebensraum: Seen, Teiche, Parks, Flussauen, Ackerflächen</li>
-            <li>Sehr lautstark, aggressiv und territorial</li>
-            <li>Ganzjährig Standvogel</li>
+            <li>Entenvogel mit ursprünglichem Verbreitungsgebiet in Afrika</li>
+            <li>In Europa durch Aussetzungen und entkommene Ziervögel etabliert</li>
+            <li>Charakteristischer brauner Augenfleck</li>
+            <li>Graubraunes Gefieder und auffälliges weißes Flügelfeld</li>
+            <li>Rötlicher Schnabel und rosa bis rötliche Beine</li>
+            <li>Nutzt verschiedene Still- und Fließgewässer sowie Park- und Agrarflächen</li>
+            <li>Nahrung vorwiegend pflanzlich; weidet häufig an Land</li>
+            <li>Kann Nahrung und Brutbereich energisch verteidigen</li>
+            <li>Einzelne aggressive Beobachtungen beweisen keine allgemeine Verdrängung heimischer Arten</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Großer, brauner Augenfleck → wichtigstes Merkmal</li>
-            <li>Heller Kopf und Brust</li>
-            <li>Bräunlich-grau mit rostroten Partien</li>
-            <li>Kontrastreiche Flügel im Flug (weiß-schwarz-grün)</li>
-            <li>Roter Schnabel · rosa Beine</li>
+            <li>Neststandorte sehr vielfältig: Boden, Bäume und teils Gebäude</li>
+            <li>Bruten vor allem im Frühjahr; Beginn kann mit Klima und Standort variieren</li>
+            <li>Gelegegröße variabel, häufig fünf bis zehn Eier</li>
+            <li>Junge sind Nestflüchter</li>
+            <li>Paarbindung häufig längerfristig</li>
+            <li>Ökologische Auswirkungen müssen orts- und artspezifisch beurteilt werden</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: Februar–Juni</li>
-            <li>Nest: Boden, Schilf, Bäume, Gebäude, sogar auf Dächern</li>
-            <li>Gelege: 5–10 Eier</li>
-            <li>Sehr hohe Brut- und Aufzuchterfolge</li>
-            <li>Küken sind Nestflüchter und sehr mobil</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gräser, Kräuter, Ackerpflanzen</li>
-            <li>Sämereien, Getreide</li>
-            <li>Gelegentlich Insekten</li>
-            <li>Weidet auch auf Feldern → kann Schäden verursachen</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Sehr aggressiv gegenüber Enten und Gänsen</li>
-            <li>Verteidigt große Reviere</li>
-            <li>Stark expansionsfreudig</li>
-            <li>Kann heimische Arten verdrängen</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/087931/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

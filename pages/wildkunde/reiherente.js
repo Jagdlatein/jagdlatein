@@ -57,69 +57,36 @@ export default function Reiherente() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Mittelgroße Tauchente</li>
-            <li>Weit verbreitet in Europa</li>
-            <li>Lebensraum: Seen, Teiche, Altwasser, Stadtgewässer</li>
-            <li>Gute Taucherin (bis 3–4 m Tiefe)</li>
-            <li>Bildet große Wintertrupps</li>
+            <li>Tauchente geeigneter Seen, Weiher und weiterer Binnengewässer</li>
+            <li>Erpel im Prachtkleid mit dunklem Kopf und Rücken sowie hellen Flanken</li>
+            <li>Federschopf am Hinterkopf, beim Erpel ausgeprägter</li>
+            <li>Leuchtend gelbe Augen bei erwachsenen Tieren</li>
+            <li>Ente überwiegend dunkelbraun mit helleren Flanken</li>
+            <li>Weißer Flügelstreifen bei beiden Geschlechtern</li>
+            <li>Nahrung überwiegend Muscheln, Schnecken, Krebse und Insektenlarven; auch Samen</li>
+            <li>Sucht Nahrung tauchend</li>
+            <li>Außerhalb der Brutzeit häufig gesellig in größeren Trupps</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
-          <h3>Erpel (Prachtkleid)</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Tiefer schwarzer Kopf mit violettem Glanz</li>
-            <li>Markanter Federschopf</li>
-            <li>Knallgelbe Augen</li>
-            <li>Weiße Flanken, schwarzer Rücken</li>
-          </ul>
-
-          <h3>Ente</h3>
-          <ul style={styles.list}>
-            <li>Braun gemustert</li>
-            <li>Kleiner Schopf, aber weniger ausgeprägt</li>
-            <li>Gelbliche bis braune Augen</li>
+            <li>Nest am Boden in Ufernähe und dichter Vegetation</li>
+            <li>Brutbeginn häufig Mai bis Juni, regional variabel</li>
+            <li>Gelegegröße variabel, häufig sechs bis zwölf Eier</li>
+            <li>Brutdauer ungefähr vier Wochen</li>
+            <li>Küken sind Nestflüchter und können früh tauchen</li>
+            <li>Ente führt die Jungen</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: April–Juli</li>
-            <li>Nest: Bodenbrüter, oft in dichter Vegetation</li>
-            <li>Gelege: 8–11 Eier</li>
-            <li>Küken: Nestflüchter, können früh tauchen</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Muscheln, Schnecken, Würmer, Insektenlarven</li>
-            <li>Taucht aktiv am Gewässergrund</li>
-            <li>Pflanzliche Beikost nur gering</li>
-          </ul>
-        </section>
-
-        {/* ZUGVERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Zugverhalten</h2>
-          <ul style={styles.list}>
-            <li>Teilzieher</li>
-            <li>Nordeuropäische Populationen ziehen nach Westeuropa</li>
-            <li>Bildet große Wintergruppen auf offenen Gewässern</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101081/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

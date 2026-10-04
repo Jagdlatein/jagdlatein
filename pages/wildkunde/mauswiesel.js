@@ -13,8 +13,8 @@ export default function Mauswiesel() {
       correct: 1,
     },
     {
-      q: "Wie groß wird das Mauswiesel maximal?",
-      a: ["12–20 cm", "20–35 cm", "35–45 cm"],
+      q: "Welche Größenangabe passt häufig zur Kopf-Rumpf-Länge des Mauswiesels?",
+      a: ["Etwa 15–25 cm, regional unterschiedlich", "60–90 cm", "Über 100 cm"],
       correct: 0,
     },
     {
@@ -55,78 +55,43 @@ export default function Mauswiesel() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 12–20 cm (winzig!)</li>
-            <li>Gewicht: 25–80 g</li>
-            <li>Schnellster Stoffwechsel aller heimischen Raubtiere</li>
-            <li>Lebensraum: Wiesen, Feldgehölze, Steinmauern, Hecken</li>
-            <li>Beute: fast ausschließlich Mäuse (Wühlmäuse, Feldmäuse)</li>
-            <li>Kann Beute in engen Gängen verfolgen</li>
-            <li>Kein Winterschlaf, aktiv das ganze Jahr</li>
+            <li>Kleinster heimischer Vertreter der Raubtiere</li>
+            <li>Kopf-Rumpf-Länge häufig etwa 15 bis 25 cm; Größe variiert regional und zwischen Geschlechtern</li>
+            <li>Langgestreckter Körper erlaubt die Jagd in engen Nagergängen</li>
+            <li>Kurze Rute ohne schwarze Endquaste, im Unterschied zum Hermelin</li>
+            <li>Oberseite meist braun, Unterseite weißlich</li>
+            <li>Winterfärbung ist regional verschieden; in nördlichen und manchen Gebirgspopulationen weiß</li>
+            <li>Nutzt strukturreiche Feld- und Wiesenlandschaften, Hecken, Steinhaufen und Nagerbaue</li>
+            <li>Hauptbeute sind kleine Nagetiere</li>
+            <li>Kann zu verschiedenen Tageszeiten aktiv sein; hält keinen Winterschlaf</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Wichtig:</strong> KEINE schwarze Schwanzspitze</li>
-            <li>Sommerfell: rotbraun oben, weiß unten</li>
-            <li>Winterfell: teils weiß, aber selten komplett wie Hermelin</li>
-            <li>Extrem kleiner Kopf</li>
-            <li>Hohe Beweglichkeit, schnelle Sprünge</li>
-            <li>Fährte: <strong>winzig</strong> – 0,8–1,5 cm</li>
-            <li>Losung: 2–4 cm, dünn, gedreht</li>
+            <li>Lange Fortpflanzungsperiode vom Frühjahr bis Sommer</li>
+            <li>Keine verlängerte Tragzeit durch Keimruhe</li>
+            <li>Tragzeit ungefähr fünf Wochen</li>
+            <li>Junge sind anfangs Nesthocker</li>
+            <li>Bei gutem Nahrungsangebot sind zwei Würfe im Jahr möglich</li>
+            <li>Fortpflanzungserfolg und Bestände hängen stark vom Kleinnagerangebot ab</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUM HERMELIN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Hermelin</h2>
-          <ul style={styles.list}>
-            <li>Mauswiesel: <strong>keine schwarze Schwanzspitze</strong></li>
-            <li>Hermelin: <strong>immer schwarze Spitze</strong></li>
-            <li>Mauswiesel deutlich kleiner</li>
-            <li>Hermelin kräftiger gebaut</li>
-            <li>Mauswiesel selten komplett weiß im Winter</li>
-            <li>Hermelin deutlich größere Fährte</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: März–September</li>
-            <li>Tragzeit: ca. 34 Tage</li>
-            <li>Wurfzeit: April–Mai</li>
-            <li>Wurfgröße: 4–6 Junge</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Räude</li>
-            <li>Bandwürmer</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Kleines, aber scharfes Raubtiergebiss</li>
-            <li>Perfekt für Mäusejagd ausgelegt</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101647/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://courses.ecampus.oregonstate.edu/wildlife/species.php?id=358" target="_blank" rel="noopener noreferrer">Oregon State University: Mustela nivalis</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

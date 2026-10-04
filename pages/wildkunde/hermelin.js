@@ -55,76 +55,49 @@ export default function Hermelin() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 17–30 cm</li>
-            <li>Gewicht: 100–450 g</li>
-            <li>Lebensraum: Wiesen, Hecken, Feldgehölze, Hochlagen</li>
-            <li>Hervorragender Jäger auf Mäuse</li>
-            <li>Kann Beutetiere größer als sich selbst überwältigen</li>
+            <li>Marderartiger, auch Großes Wiesel genannt</li>
+            <li>Schlanker Körper mit kurzen Beinen</li>
+            <li>Schwarze Schwanzspitze ist ein wichtiger Unterschied zum Mauswiesel</li>
+            <li>Sommerfell braun auf der Oberseite und weißlich an der Unterseite</li>
+            <li>Winterfell kann weiß werden; in milden Regionen bleiben Tiere teilweise braun</li>
+            <li>Besiedelt strukturreiche Wiesenlandschaften, Hecken, Waldränder und weitere Deckungsbereiche</li>
+            <li>Jagt vor allem kleine Säugetiere und kann auch größere Beute überwältigen</li>
+            <li>Tag- und Nachtaktivität variieren jahreszeitlich</li>
+            <li>Nutzt vorhandene Baue und andere geschützte Verstecke</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Charakteristisch: <strong>Schwarze Schwanzspitze</strong> → wichtigstes Merkmal!</li>
-            <li>Sommerfell: braun oben, weiß unten</li>
-            <li>Winterfell in schneereichen Regionen oft weiß; die Schwanzspitze bleibt schwarz. In milden Regionen kann das Fell braun bleiben</li>
-            <li>Langer, schlanker Körper</li>
-            <li>Sehr schnelle Bewegungen</li>
-            <li>Losung: dünn, gedreht, 4–6 cm</li>
-            <li>Fährte: 1–2 cm, sehr kleine Trittsiegel</li>
+            <li>Paarungszeit hauptsächlich im späten Frühjahr und Sommer</li>
+            <li>Ausgeprägte Keimruhe führt zu verlängerter Gesamtdauer bis zur Geburt</li>
+            <li>Geburten meist April bis Mai des Folgejahres</li>
+            <li>Wurfgröße variabel, häufig sechs bis neun Junge</li>
+            <li>Junge sind zunächst blind und hilflos; die Fähe übernimmt die Aufzucht</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUM MAUSWIESEL */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Mauswiesel</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li><strong>Hermelin:</strong> schwarze Schwanzspitze</li>
-            <li><strong>Mauswiesel:</strong> Schwanz ohne Schwarz</li>
-            <li>Hermelin größer und kräftiger</li>
-            <li>Mauswiesel kleinste heimische Raubwildart</li>
-            <li>Schwarze Schwanzspitze als wichtiger Hinweis; Weißfärbung im Winter ist regional unterschiedlich</li>
+            <li>Kopf-Rumpf-Länge häufig ungefähr 22 bis 30 cm</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Mai–August</li>
-            <li>Ausgeprägte Keimruhe</li>
-            <li>Wurfzeit: April</li>
-            <li>Wurfgröße: 4–9 Junge</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Räude</li>
-            <li>Bandwürmer</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Raubtiergebiss</li>
-            <li>Schmale Reißzähne</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://observatoire-mammiferes.fr/espece/60686" target="_blank" rel="noopener noreferrer">Quelle 1</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/hermelin-mustela-erminea" target="_blank" rel="noopener noreferrer">Quelle 2</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101466/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://observatoire-mammiferes.fr/espece/60686" target="_blank" rel="noopener noreferrer">MNHN/SFEPM: Hermelin</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

@@ -9,8 +9,8 @@ export default function Sikawild() {
       correct: 0,
     },
     {
-      q: "Welche Größe erreicht ein Sikahirsch ungefähr?",
-      a: ["15–25 kg", "40–70 kg", "120–200 kg"],
+      q: "Welche Körpergewichte sind bei erwachsenem Sikawild möglich?",
+      a: ["Ausschließlich unter 5 kg", "Je nach Tier mehrere Dutzend Kilogramm, bis etwa 90 kg", "Stets mehr als 200 kg"],
       correct: 1,
     },
     {
@@ -47,43 +47,34 @@ export default function Sikawild() {
 
         {/* STECKBRIEF */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Mittelgroßes Hirschwild</li>
-            <li>Gewicht: Hirsch 40–70 kg, Tier 30–50 kg</li>
-            <li>Körperlänge: 110–160 cm · Schulterhöhe 70–95 cm</li>
-            <li>Vorkommen: Mischwälder, Dickungen, Feld-Wald-Mosaik</li>
-            <li>Nahrung: Gräser, Kräuter, Knospen, Nadeln, Rinde</li>
-            <li>Sozialstruktur: kleine Rudelbildung</li>
-            <li>Brunftzeit: September–November</li>
-            <li>Setzzeit: Mai–Juni (1 Kalb)</li>
+            <li>Hirschart mit ursprünglichem Verbreitungsgebiet in Ostasien</li>
+            <li>Bevorzugt deckungsreiche Wälder; nutzt auch Feuchtgebiete und Offenland</li>
+            <li>Größe variiert; Körpergewicht kann ungefähr 90 kg und Schulterhöhe etwa 100 cm erreichen</li>
+            <li>Nahrung: Gräser, Kräuter, Knospen, Zwergsträucher und Rinde</li>
+            <li>Lebt oft in kleinen Verbänden; ältere Hirsche häufig einzeln</li>
+            <li>Sommerfell rotbraun mit hellen Flecken, Winterfell dunkler mit wenig sichtbaren Flecken</li>
+            <li>Weißer Spiegel häufig schwarz umrandet</li>
+            <li>Nur männliche Tiere tragen normalerweise ein Geweih</li>
+            <li>Verfügt über hohe, pfeifende Lautäußerungen</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Geweih</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Stangengeweih mit 3–8 Enden</li>
-            <li>Ähnlich Reh- oder Rotwild, jedoch feiner</li>
-            <li>Abwurf: April</li>
-            <li>Schieben unter Bast: Frühling</li>
+            <li>Hauptbrunft meist im Oktober, regional von September bis November</li>
+            <li>Tragzeit etwa siebeneinhalb bis acht Monate</li>
+            <li>Setzzeit meist Mai bis Mitte Juli, gewöhnlich ein Kalb</li>
+            <li>Geweihwachstum von Frühjahr bis Sommer; Fegen meist im August</li>
+            <li>Geweihabwurf überwiegend April bis Mai</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Sommerfell rotbraun mit hellen Flecken; Winterfell dunkler, Flecken meist kaum erkennbar</li>
-            <li>Deutlicher Aalstrich (dunkler Mittelrückenstreifen)</li>
-            <li>Charakteristischer „Pfeifton“ bei Erregung</li>
-            <li>Spiegel weiß und meist dunkel umrandet</li>
-            <li>Bewegung: mehr „trippelnd“ als Rotwild</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/118649/index.php" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/118649/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

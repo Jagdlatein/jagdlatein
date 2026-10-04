@@ -11,7 +11,7 @@ export default function Stockente() {
     {
       q: "Welche Aussage zur Stockente ist richtig?",
       a: [
-        "Sie ist die häufigste Entenart Mitteleuropas",
+        "Sie ist eine häufige und anpassungsfähige Gründelente",
         "Sie lebt ausschließlich im Gebirge",
         "Sie ist ein reiner Bodenbrüter im Wald"
       ],
@@ -55,70 +55,43 @@ export default function Stockente() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Häufigste Wildentenart Mitteleuropas</li>
-            <li>Erpel: auffälliges Prachtkleid mit grünem Kopf</li>
-            <li>Ente: braun gemustert, stark getarnt</li>
-            <li>Lebensraum: Seen, Teiche, Flüsse, Feuchtgebiete, Städte</li>
-            <li>Zug- & Standvogel → viele überwintern in Europa</li>
+            <li>Häufige, anpassungsfähige Gründelente</li>
+            <li>Nutzt Gewässer verschiedener Größe, auch in Siedlungen</li>
+            <li>Erpel im Prachtkleid mit grün schimmerndem Kopf, weißem Halsring und gelbem Schnabel</li>
+            <li>Ente überwiegend braun gemustert</li>
+            <li>Blauer, weiß eingefasster Flügelspiegel bei beiden Geschlechtern</li>
+            <li>Erpel im Schlichtkleid unauffälliger und leichter mit Enten zu verwechseln</li>
+            <li>Frisst pflanzliche Nahrung sowie kleine wirbellose Tiere</li>
+            <li>Nahrungssuche an der Oberfläche und durch Gründeln</li>
+            <li>Zugverhalten variiert zwischen Populationen</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-          <h3>Erpel (Männchen)</h3>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Grün schillernder Kopf</li>
-            <li>Gelber Schnabel</li>
-            <li>Schwarze Schwanzlocke</li>
-            <li>Weißer Halsring</li>
-          </ul>
-
-          <h3>Ente (Weibchen)</h3>
-          <ul style={styles.list}>
-            <li>Braun gemustert</li>
-            <li>Orange-brauner Schnabel</li>
-            <li>Stark getarnt → ideal für Bodenbrut</li>
+            <li>Paarbildung kann bereits im Herbst und Winter beginnen</li>
+            <li>Nest meist gut versteckt am Boden; andere Standorte sind möglich</li>
+            <li>Gelegegröße variabel, häufig sieben bis dreizehn Eier</li>
+            <li>Küken sind Nestflüchter und nehmen früh selbst Nahrung auf</li>
+            <li>Ente führt die Küken</li>
+            <li>Während der Schwingenmauser zeitweise flugunfähig</li>
+            <li>Deckungsreiche, störungsarme Gewässer sind dann besonders wichtig</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: März–Mai</li>
-            <li>Nest: Bodenbrüter, oft nah am Wasser</li>
-            <li>Gelege: 7–14 Eier</li>
-            <li>Küken sind Nestflüchter</li>
-            <li>Sehr hohe Ausfallraten durch Fressfeinde</li>
+            <li>Auch beide Geschlechter in der Mauser oder Jungvögel müssen sorgfältig unterschieden werden</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Allesfresser (Pflanzen, Samen, Insekten, Schnecken)</li>
-            <li>Oberflächen- & Gründelente</li>
-            <li>Gründelt kopfüber im Wasser</li>
-          </ul>
-        </section>
-
-        {/* BEDROHUNGEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gefährdung & Besonderheiten</h2>
-          <ul style={styles.list}>
-            <li>Hybridisierung mit Hausenten (Gefahr für Wildform)</li>
-            <li>Störungen durch Freizeitaktivitäten</li>
-            <li>Bleivergiftungen durch alte Schrote (Bestandsrisiko)</li>
-            <li>Hohe Anpassungsfähigkeit → häufig in Städten</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101065/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

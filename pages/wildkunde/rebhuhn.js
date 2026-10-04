@@ -51,86 +51,43 @@ export default function Rebhuhn() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 28–32 cm</li>
-            <li>Gewicht: 300–450 g</li>
-            <li>Lebensraum: Offene Feldflur, Buntbrachen, Hecken, Feldraine</li>
-            <li>Kulturfolger der Agrarlandschaft</li>
-            <li>Bestände europaweit stark rückläufig</li>
-            <li>Hohe Bedeutung für Niederwildhege</li>
+            <li>Feldhuhn strukturreicher offener Agrarlandschaften</li>
+            <li>Gedrungener Körper, kurzer Schwanz und braungraues Tarngefieder</li>
+            <li>Nutzt Äcker, Wiesen, Hecken, Brachen und Altgrasstreifen</li>
+            <li>Bei Gefahr zunächst oft geduckt, später rasche Flucht</li>
+            <li>Benötigt Deckung, Nahrung und trockene Bereiche für Staubbäder</li>
+            <li>Erwachsene fressen überwiegend pflanzliche Kost</li>
+            <li>Küken sind zunächst stark auf Insekten angewiesen</li>
+            <li>Familien und Wintergruppen werden Ketten genannt</li>
+            <li>Nässe und Kälte können die Kükenaufzucht beeinträchtigen</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Rundlicher Körper, braun-grau gemustert</li>
-            <li>Brustfleck („Hufeisen“) beim Hahn ausgeprägt</li>
-            <li>Kurze Flügel, schneller Aufflug</li>
-            <li>Sanfte, helle Gesichtsfärbung</li>
-            <li>Ruf: „kirrick-kirrick“</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li><strong>Lebensweise im Familienverband = Kette</strong></li>
-            <li>Tagaktiv</li>
-            <li>Flucht: erst laufen, dann kurzer schneller Flug</li>
-            <li>Sehr störungsempfindlich zur Brutzeit</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: April–Mai</li>
-            <li>Gelege: 10–20 Eier → eines der größten Gelege heimischer Vögel</li>
-            <li>Brutdauer: ca. 24 Tage</li>
+            <li>Paarbildung häufig im späten Winter und Frühjahr</li>
+            <li>Nest am Boden in deckungsreicher Vegetation</li>
+            <li>Gelegegröße variabel, häufig etwa zwölf bis fünfzehn Eier</li>
+            <li>Henne brütet, Hahn beteiligt sich an Bewachung und Jungenführung</li>
             <li>Junge sind Nestflüchter</li>
-            <li>Familienverband bleibt lange zusammen</li>
+            <li>Familienverband bleibt über längere Zeit zusammen</li>
+            <li>Lebensraumverbesserung umfasst unter anderem Brachen, Altgras- und Blühflächen</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Gräser, Kräuter, Samen</li>
-            <li>Insekten → extrem wichtig für Jungvögel!</li>
-            <li>Korn und Feldfrüchte</li>
+            <li>Körperlänge häufig ungefähr 30 cm</li>
           </ul>
         </section>
 
-        {/* GEFAHREN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gefahren & Rückgang</h2>
-          <ul style={styles.list}>
-            <li>Intensive Landwirtschaft → Verlust der Deckung</li>
-            <li>Pestizide → weniger Insekten</li>
-            <li>Prädatoren: Fuchs, Marder, Habicht</li>
-            <li>Schlechtwetterperioden im Frühjahr</li>
-          </ul>
-        </section>
-
-        {/* HEGE */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Hege & Maßnahmen</h2>
-          <ul style={styles.list}>
-            <li>Anlage von Buntbrachen und Blühflächen</li>
-            <li>Schonung während der Brutzeit</li>
-            <li>Reduktion von Beutegreifern</li>
-            <li>Winterfütterung nur bei extremer Witterung</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102425/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

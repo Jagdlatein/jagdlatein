@@ -2,17 +2,19 @@
   {
     "id": "de-BY-quellen",
     "title": "Bundesland Bayern: Rechtsquellen finden",
-    "text": "Wähle in der amtlichen Übersicht Bayern. Suche das Jagdgesetz, zugehörige Verordnungen und aktuelle Anordnungen. Notiere Fassung, Geltungsbeginn und zuständige Behörde. Diese Karten geben keine einzelnen Gesetzesartikel wieder.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "text": "Nutze Bayerisches Staatsministerium: Bayerisches Jagdgesetz für Bayern. Prüfe Bundesjagdgesetz, geltendes Landesjagdrecht, Verordnungen und örtliche Anordnungen gemeinsam; landesrechtliche Abweichungen sind möglich. Notiere Fassung und Geltungsbeginn. Diese Karte ersetzt keinen Gesetzestext.",
+    "source": "https://www.stmwi.bayern.de/jagd-forst/oberste-jagdbehoerde/bayerisches-jagdgesetz/",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Bayerisches Staatsministerium: Bayerisches Jagdgesetz"
   },
   {
     "id": "de-BY-check",
     "title": "Vor der Jagd konkret nachschlagen",
     "text": "Prüfe Zulassung und Gebietsberechtigung, Art und Altersgruppe, Jagdzeit und Elternschutz, erlaubte Hilfsmittel, örtliche Schutzgebiete sowie gegebenenfalls Abschussvorgaben und Meldepflichten. Unklare Voraussetzungen werden vor der Jagd mit der zuständigen Stelle geklärt.",
-    "source": "https://www.justiz.de/onlinedienste/bundesundlandesrecht/index.php",
+    "source": "https://www.stmwi.bayern.de/jagd-forst/oberste-jagdbehoerde/bayerisches-jagdgesetz/",
     "reviewedOn": "2026-10-04",
-    "kind": "Lernübersicht"
+    "kind": "Lernübersicht",
+    "sourceLabel": "Bayerisches Staatsministerium: Bayerisches Jagdgesetz"
   }
 ]

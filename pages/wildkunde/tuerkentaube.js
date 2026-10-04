@@ -61,63 +61,36 @@ export default function Tuerkentaube() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Schlanke, mittelgroße Taube</li>
-            <li>Lebt bevorzugt in Siedlungen, auf Bauernhöfen und in Städten</li>
-            <li>Seit ca. 1940 starke Ausbreitung in Mitteleuropa</li>
-            <li>Kulturfolger → klassische Prüfungsfrage!</li>
-            <li>Typischer Ruf: dreisilbig „gu-gu-gu“</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-          <ul style={styles.list}>
-            <li>Hellgrau–beige</li>
-            <li>Schwarzer Nackenring (Namensgeber)</li>
-            <li>Langer, schmaler Stoß</li>
-            <li>Dunkles Auge, zarter Schnabel</li>
+            <li>Schlanke, beigegraue Taube</li>
+            <li>Erwachsene mit schwarzem, vorne offenem Nackenring</li>
+            <li>Jungvögeln fehlt der deutliche Ring zunächst</li>
             <li>Kleiner als die Ringeltaube</li>
+            <li>Typischer Kulturfolger in Dörfern, Gärten und Städten</li>
+            <li>Ausbreitung in Europa verstärkt seit den 1930er Jahren</li>
+            <li>Nahrung überwiegend Getreide und andere Samen, auch weitere Pflanzenteile</li>
+            <li>Meist Standvogel</li>
+            <li>Charakteristischer dreisilbiger Gesang</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: Februar–September</li>
-            <li>Bis zu 4–5 Bruten pro Jahr möglich</li>
-            <li>Nest oft sehr schlicht, häufig auf Gebäuden</li>
-            <li>Gelege: 2 Eier</li>
-            <li>Füttern Kropfmilch – prüfungsrelevant</li>
+            <li>Territoriales Verhalten während der Brutzeit</li>
+            <li>Nest auf Bäumen oder geeigneten Gebäudestrukturen</li>
+            <li>Gelege gewöhnlich zwei Eier</li>
+            <li>Mehrere Bruten im Jahr möglich</li>
+            <li>Bei mildem Wetter auch außerhalb der üblichen Frühjahr-Sommer-Brutzeit</li>
+            <li>Junge sind Nesthocker und werden zunächst mit Kropfmilch versorgt</li>
+            <li>Außerhalb der Brutzeit häufig gesellig</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Getreide und Sämereien</li>
-            <li>Knospen, junge Pflanzen</li>
-            <li>Sehr anpassungsfähig → findet Nahrung in Siedlungen</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Standvogel</li>
-            <li>Ganzjährig im Siedlungsbereich</li>
-            <li>Sehr hohe Vermehrungsrate</li>
-            <li>Paarbleibend, lebenslange Bindung typisch</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.birdlife.at/voegel/tuerkentaube/" target="_blank" rel="noopener noreferrer">BirdLife Österreich: Artprofil</a> · <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/100452/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Türkentaube</a> · <a href="https://www.wald.rlp.de/wald/voegel/ringeltaube" target="_blank" rel="noopener noreferrer">Landesforsten Rheinland-Pfalz: Taubenbiologie und Kropfmilch</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

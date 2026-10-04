@@ -2,6 +2,7 @@ import {
   requireAccountSession, getAccountDatabase, accountJson, accountErrorResponse,
   accountUnavailable, sessionRenewalRequired,
 } from "../../../lib/course-progress-server";
+import { resolveSubscriptionAccess } from "../../../lib/subscription-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,9 +21,12 @@ export async function GET(req) {
     if (!profile || typeof profile.email !== "string" || profile.email.trim().toLowerCase() !== session.email) {
       throw sessionRenewalRequired();
     }
+    const subscription = profile.is_admin === true && profile.is_premium !== true ? { paid: false, paidUntil: null }
+      : await resolveSubscriptionAccess(database, session.email, { legacyPaid: profile.is_premium === true });
     return accountJson({ account: {
       email: session.email,
-      paid: profile.is_premium === true,
+      paid: subscription.paid,
+      paidUntil: subscription.paidUntil,
       admin: profile.is_admin === true,
     } });
   } catch (error) {

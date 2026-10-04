@@ -13,7 +13,7 @@ export default function Bisam() {
       correct: 1,
     },
     {
-      q: "Wie groß wird ein Bisam etwa?",
+      q: "Welches Körpergewicht erreicht ein Bisam ungefähr?",
       a: ["1–2 kg", "5–9 kg", "10–15 kg"],
       correct: 0,
     },
@@ -55,83 +55,41 @@ export default function Bisam() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 1–2 kg → deutlich kleiner als Nutria</li>
-            <li>Körperlänge: 25–40 cm</li>
-            <li>Schwanz: 20–30 cm lang, seitlich abgeflacht</li>
-            <li>Lebensraum: Uferzonen, Seen, Flüsse, Teiche</li>
-            <li>Neozoon aus Nordamerika</li>
-            <li>Sehr guter Schwimmer</li>
+            <li>Große Wühlmaus mit ursprünglichem Verbreitungsgebiet in Nordamerika</li>
+            <li>Kopf-Rumpf-Länge bis etwa 40 cm; Gewicht bis ungefähr 2 kg</li>
+            <li>Nackter, seitlich abgeplatteter Schwanz von ungefähr 20 bis 25 cm</li>
+            <li>Gedrungener Körper mit kurzem Kopf</li>
+            <li>Fellfarbe variiert von dunkel bis zu helleren Brauntönen</li>
+            <li>Schwimmborsten an den Zehen unterstützen die Fortbewegung im Wasser</li>
+            <li>Kleiner als Biber und Nutria</li>
+            <li>Nahrung vor allem Wasser- und Uferpflanzen, zeitweise auch Muscheln, Krebse und Amphibien</li>
+            <li>Artbestimmung schwimmender Tiere kann schwierig sein</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum und Management</h2>
           <ul style={styles.list}>
-            <li><strong>Seitlich abgeflachter Schwanz</strong> (Nutria → rund)</li>
-            <li>Kleiner Kopf, dichter Pelz</li>
-            <li>Zur Abgrenzung von Nutria besonders Schwanzform und Körpergröße betrachten</li>
-            <li>Kleine Vorderpfoten, große Hinterpfoten</li>
-            <li>Bewegung: schwimmt oft mit nur Kopf sichtbar</li>
+            <li>Besiedelt geeignete Gewässerufer und Feuchtgebiete</li>
+            <li>Baue und Fraßaktivität können Uferstrukturen und Vegetation beeinflussen</li>
+            <li>Management invasiver Arten richtet sich nach den örtlichen rechtlichen Voraussetzungen</li>
           </ul>
         </section>
 
-        {/* NACHWEIS */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nachweis & Spuren</h2>
-          <ul style={styles.list}>
-            <li>Fressplätze mit zernagten Wasserpflanzen</li>
-            <li>Kleine Trittspuren ähnlich Ratte</li>
-            <li>Baut <strong>Bisamburgen</strong> aus Schilf und Schlamm</li>
-            <li>Losung im Wasser oder Uferbereich</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Frühling bis Herbst</li>
-            <li>2–3 Würfe pro Jahr</li>
-            <li>Wurfgröße: 4–8 Junge</li>
-            <li>Nest in Erdhöhlen oder kleinen Burgen</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Wasserpflanzen, Schilf, Gräser</li>
-            <li>Wurzeln und Knollen</li>
-            <li>Gelegentlich Muscheln und Kleintiere</li>
-          </ul>
-        </section>
-
-        {/* SCHÄDEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Schäden & Bedeutung</h2>
-          <ul style={styles.list}>
-            <li>Unterhöhlung von Dämmen und Uferbefestigungen</li>
-            <li>Gefährdung von Wasserbauwerken</li>
-            <li>Vermehrung rasant → Populationsdruck</li>
-            <li>Übertragung von Krankheiten (z. B. Giardien)</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 1/1 · C 0/0 · P 0/0 · M 3/3 = 16</li>
-            <li>Typisches Nagergebiss, Schneidezähne wachsen ständig</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://lfu.brandenburg.de/lfu/de/aufgaben/natur/artenschutz/invasive-arten/steckbriefe/bisam/" target="_blank" rel="noopener noreferrer">Landesamt für Umwelt Brandenburg</a> · <a href="https://www.bfn.de/sites/default/files/2025-07/EU-VO-Art-19_MMB-Ondatra-zibethicus_Version-2019-05.pdf" target="_blank" rel="noopener noreferrer">BfN: Bisam, Management- und Maßnahmenblatt</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

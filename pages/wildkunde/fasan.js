@@ -55,83 +55,43 @@ export default function Fasan() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Herkunft: Asien, seit Jahrhunderten in Europa eingebürgert</li>
-            <li>Körperlänge: Hahn bis 90 cm (mit langem Stoß)</li>
-            <li>Gewicht: 1,1–1,7 kg</li>
-            <li>Lebensraum: Feldflur, Hecken, Feldgehölze, Waldränder</li>
-            <li>Bodenbrüter → sehr störungsanfällig</li>
-            <li>Wärmeliebend · dichte Deckung notwendig</li>
+            <li>Hühnervogel mit ursprünglichem Verbreitungsgebiet in Asien</li>
+            <li>In Europa seit langer Zeit durch Menschen angesiedelt</li>
+            <li>Hahn farbenreicher und größer als die braun getarnte Henne</li>
+            <li>Beide Geschlechter mit langem Schwanz, beim Hahn besonders ausgeprägt</li>
+            <li>Nutzt vielfältige Feldfluren mit Hecken, Gehölzen, Schilf und Brachen</li>
+            <li>Ruht auch in Bäumen und Gebüschen</li>
+            <li>Nahrung: Samen, Körner und weitere Pflanzen sowie Wirbellose</li>
+            <li>Küken brauchen besonders in den ersten Lebenswochen viele Insekten</li>
+            <li>Strukturreiche Deckung ist auch im Winter wichtig</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li><strong>Hahn:</strong> bunt gefärbt, grün-metallischer Kopf, rote Rosen</li>
-            <li><strong>Henne:</strong> braun gemustert, sehr gute Tarnung</li>
-            <li>Typischer langer, spitzer Stoß (Schwanzfedern)</li>
-            <li>Flucht: kurzer schneller Aufflug, dann Gleitflug</li>
+            <li>Balz im Frühjahr; Hahn kann mehrere Hennen begleiten</li>
+            <li>Henne legt das Nest am Boden an</li>
+            <li>Gelegegröße variabel, häufig zwölf bis sechzehn Eier</li>
+            <li>Brutdauer ungefähr 23 bis 24 Tage</li>
+            <li>Küken sind Nestflüchter</li>
+            <li>Henne übernimmt Brut, Führung und Wärmen der Jungen</li>
+            <li>Küken sind empfindlich gegen Nässe und Kälte</li>
           </ul>
         </section>
 
-        {/* VERHALTEN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Tagaktiv</li>
-            <li>Männchen lautstark, Balzrufe im Frühjahr</li>
-            <li>Hühnerartige Flucht → erst laufen, dann auffliegen</li>
-            <li>Leben außerhalb der Fortpflanzungszeit häufig in kleinen Trupps</li>
+            <li>Hahn ruft zur Balz und zeigt auffällige Flügelbewegungen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: April–Mai</li>
-            <li>Gelege: 8–15 Eier</li>
-            <li>Brutdauer: ca. 24 Tage</li>
-            <li>Junge: Nestflüchter, folgen der Henne sofort</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Pflanzlich: Körner, Samen, Beeren, Knospen</li>
-            <li>Tierisch: Insekten, Larven, Schnecken</li>
-            <li>Junge benötigen Eiweiß → Insekten wichtig!</li>
-          </ul>
-        </section>
-
-        {/* HEGE */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Hege & Bedeutung</h2>
-          <ul style={styles.list}>
-            <li>Braucht Deckung: Buntbrachen, Hecken, Saumbiotope</li>
-            <li>Stark abhängig vom Wetter im Frühjahr</li>
-            <li>Prädatoren: Fuchs, Marder, Habicht</li>
-            <li>Wichtig für Niederwildjagd und Landschaftspflege</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Kokzidien</li>
-            <li>Wurmbefall</li>
-            <li>Newcastle-Krankheit (Geflügelkrankheit)</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102449/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

@@ -55,93 +55,49 @@ export default function Wildkaninchen() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Körperlänge: 35–45 cm</li>
-            <li>Gewicht: 1–2 kg</li>
-            <li>Lebensraum: Steppen, Wiesen, Parks, Waldränder</li>
-            <li>Sehr soziale Art, lebt in Kolonien</li>
-            <li>Tagaktiv und dämmerungsaktiv</li>
+            <li>Hasenartiger mit kurzen Ohren und gedrungenerer Gestalt als der Feldhase</li>
+            <li>Kopf-Rumpf-Länge etwa 35 bis 45 cm; Gewicht häufig ungefähr 1,3 bis 2,2 kg</li>
+            <li>Lebt gesellig in Kolonien mit unterirdischen Bauen</li>
+            <li>Bevorzugt grabfähige, eher trockene Böden in strukturreichen Landschaften, Parks und Siedlungsbereichen</li>
+            <li>Meidet dauerhaft nasse Böden und große geschlossene Waldgebiete</li>
+            <li>Vorwiegend dämmerungsaktiv; an störungsarmen Orten auch tagsüber</li>
+            <li>Nahrung: Gräser, Kräuter, Feldfrüchte, Knospen, Triebe und Rinde</li>
+            <li>Warnt andere Kaninchen durch Klopfen mit den Hinterläufen</li>
           </ul>
         </section>
 
-        {/* BAU-LEBEN */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Bau & Sozialstruktur</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Bauen große unterirdische Röhrensysteme (Kaninchenbau)</li>
-            <li>Familiengruppen mit strenger Rangordnung</li>
-            <li>Mehrere Eingänge, Fluchtgänge, Wurfhöhlen</li>
-            <li>Kotplätze → für Reviermarkierung</li>
+            <li>Mehrere Würfe pro Jahr; Zahl und Größe variieren mit den Lebensbedingungen</li>
+            <li>Häufig ungefähr drei bis fünf Würfe mit vier bis sechs Jungen</li>
+            <li>Jungtiere sind zunächst nackte und blinde Nesthocker</li>
+            <li>Geburt in einem geschützten, gepolsterten Teil des Baus</li>
+            <li>Myxomatose und RHD können erhebliche Bestandseinbrüche verursachen</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li><strong>Kürzere Ohren</strong> als der Feldhase</li>
-            <li>Kürzere Hinterläufe → weniger Sprungkraft</li>
-            <li>Losung: kleine, trockene Kügelchen</li>
-            <li>Fellfarbe: grau-braun, unauffällig</li>
-            <li>Bewegung: hoppelt, keine langen Sprints</li>
+            <li>Löffel häufig ungefähr sechs bis acht Zentimeter lang</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Februar–August</li>
-            <li>3–6 Würfe pro Jahr</li>
-            <li>Wurfgröße: 3–6 Junge</li>
-            <li>Jungtiere: <strong>Nesthocker</strong></li>
-            <li>Geburt in tiefer Wurfhöhle mit Fell gepolstert</li>
-          </ul>
-        </section>
-
-        {/* NAHRUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Gräser, Kräuter, Feldfrüchte</li>
-            <li>Rinde, junge Triebe</li>
-            <li>Sehr gute Verwerter → hoher Reproduktionsdruck</li>
-          </ul>
-        </section>
-
-        {/* SCHÄDEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Wildschäden</h2>
-          <ul style={styles.list}>
-            <li>Schäden an landwirtschaftlichen Kulturen</li>
-            <li>Unterhöhlung von Böschungen</li>
-            <li>Verschmutzung von Wiesen (Parasitenrisiko)</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Myxomatose</li>
-            <li>RHD (Rabbit Hemorrhagic Disease)</li>
-            <li>Parasiten: Würmer, Haarlinge</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 2/1 · C 0/0 · P 3/2 · M 3/3 = 28</li>
-            <li>Ständig nachwachsende Nagezähne</li>
-            <li>Unterkiefer breiter als beim Feldhasen</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/140874/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildkaninchen-oryctolagus-cuniculus" target="_blank" rel="noopener noreferrer">DJV: Wildkaninchen</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

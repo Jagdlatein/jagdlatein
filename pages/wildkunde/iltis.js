@@ -55,76 +55,43 @@ export default function Iltis() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 0,7–1,5 kg</li>
-            <li>Körperlänge: 35–45 cm</li>
-            <li>Lebensraum: Feuchtgebiete, Bachläufe, Auwälder</li>
-            <li>Nahrung: Amphibien, Mäuse, Vögel, Eier, Insekten</li>
-            <li>Typischer, starker Moschusgeruch → wichtiges Kennzeichen!</li>
-            <li>Art der Wieselartigen</li>
-            <li>Guter Schwimmer</li>
+            <li>Marderartiger mit dunklem Fell und kontrastreicher heller Gesichtszeichnung</li>
+            <li>Gelbliche Unterwolle scheint durch die dunklen Deckhaare</li>
+            <li>Kopf-Rumpf-Länge häufig ungefähr 35 bis 45 cm</li>
+            <li>Nutzt strukturreiche Waldränder, Hecken, Feldfluren und bewachsene Gewässerufer</li>
+            <li>Überwiegend dämmerungs- und nachtaktiv</li>
+            <li>Nahrung vor allem Amphibien und Kleinsäuger; Zusammensetzung hängt vom Lebensraum ab</li>
+            <li>Stark riechendes Sekret aus Analdrüsen dient unter anderem der Abwehr und Markierung</li>
+            <li>Geschützte Tagesverstecke beispielsweise in Holz- oder Reisighaufen</li>
+            <li>Gesichtsmaske ist ein Hinweis gegenüber dem Mink; Farbe oder Geruch allein beweisen die Art nicht</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Dunkles Gesicht mit heller Maske</li>
-            <li>Dunkelbraunes Fell, im Sommer heller</li>
-            <li>Rundlicher Kopf · kurze Beine</li>
-            <li>Starker Geruch aus Analdrüsen</li>
-            <li>Losung: 6–12 cm, gedreht, spitz auslaufend, stechender Geruch</li>
-            <li>Fährte: 2–3 cm, längliche Fußform</li>
+            <li>Paarungszeit überwiegend im Frühjahr bis Frühsommer</li>
+            <li>Tragzeit ungefähr 40 bis 42 Tage</li>
+            <li>Geburten meist Mai bis Juni</li>
+            <li>Wurfgröße variabel, häufig vier bis acht Junge</li>
+            <li>Junge sind Nesthocker und öffnen die Augen erst nach mehreren Wochen</li>
+            <li>Bei Verlust des ersten Wurfs ist ein Ersatzwurf möglich</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUM AMERIKANISCHEN MINK */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Mink (Amerikanischer Nerz)</h2>
-          <ul style={styles.list}>
-            <li>Mink fast schwarz, Iltis braun → wichtig!</li>
-            <li>Mink ohne helle Gesichtsmaske</li>
-            <li>Iltis deutlich stärkerer Geruch</li>
-            <li>Mink häufiger in tiefem Wasser jagend</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: März–April</li>
-            <li>Tragzeit: ca. 40 Tage</li>
-            <li>Wurfzeit: Mai</li>
-            <li>Wurfgröße: 4–7 Junge</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Räude</li>
-            <li>Fuchsbandwurm</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Typisches Gebiss der Musteliden</li>
-            <li>Ausgeprägte Reißzähne</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0021997520300190" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101494/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.sciencedirect.com/science/article/abs/pii/S0021997520300190" target="_blank" rel="noopener noreferrer">Anatomische Studie zum Iltisgebiss (2020)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

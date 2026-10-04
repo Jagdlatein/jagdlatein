@@ -55,76 +55,42 @@ export default function Baummarder() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 1,5–2 kg (ähnlich Steinmarder)</li>
-            <li>Körperlänge: 40–55 cm</li>
-            <li>Lebensraum: dichte Wälder, naturnahe Gebiete</li>
-            <li>Sehr guter Kletterer → lebt oft in Bäumen</li>
-            <li>Nahrung: Kleinsäuger, Vögel, Eier, Früchte</li>
-            <li>Deutlich scheuer als der Steinmarder</li>
+            <li>Marderartiger, auch Edelmarder genannt</li>
+            <li>Bevorzugt strukturreiche Wälder und ältere Baumbestände</li>
+            <li>Überwiegend dämmerungs- und nachtaktiver Einzelgänger</li>
+            <li>Guter Kletterer; nutzt Baumhöhlen, Kobel und andere geschützte Ruheplätze</li>
+            <li>Kastanien- bis dunkelbraunes Fell und buschiger Schwanz</li>
+            <li>Kehlfleck meist gelblich; Form und Farbe können variieren</li>
+            <li>Dunkle Nase ist ein weiteres Merkmal gegenüber dem Steinmarder</li>
+            <li>Nahrung: Kleinsäuger, Insekten, Vögel, Eier, Aas und Früchte</li>
+            <li>Ein einzelner Kehlfleck oder eine Spur erlaubt keine unfehlbare Artbestimmung</li>
           </ul>
         </section>
 
-        {/* IDENTIFIKATION */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Meist gelblicher Kehlfleck; Form und Farbe können variieren</li>
-            <li>Dichter, seidiger Pelz</li>
-            <li>Langer, buschiger Schwanz</li>
-            <li>Dunkelbraunes Fell</li>
-            <li>Fährte: 3–4 cm, oft Doppeltritt</li>
+            <li>Ranz hauptsächlich Juli bis August</li>
+            <li>Nach der Paarung folgt Keimruhe</li>
+            <li>Eigentliche Embryonalentwicklung setzt erst im folgenden Frühjahr ein</li>
+            <li>Geburten meist März bis April; Wurfgröße variabel</li>
+            <li>Jungtiere wachsen in einem geschützten Versteck auf</li>
           </ul>
         </section>
 
-        {/* UNTERSCHIED ZUM STEINMARDER */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Unterschied zum Steinmarder</h2>
-          <ul style={styles.list}>
-            <li><strong>Kehlfleck:</strong> Baummarder → gelb, oval · Steinmarder → weiß, gespalten</li>
-            <li><strong>Lebensraum:</strong> Baummarder → Wald · Steinmarder → Siedlungen</li>
-            <li><strong>Fell:</strong> Baummarder weicher & dichter</li>
-            <li><strong>Bestimmung:</strong> mehrere Merkmale gemeinsam betrachten; Schwanzlänge allein genügt nicht</li>
-            <li><strong>Schnauze:</strong> Baummarder rundlicher, Steinmarder spitzer</li>
-          </ul>
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: Juli–August</li>
-            <li>Keimruhe</li>
-            <li>Wurfzeit: März–April</li>
-            <li>Wurfgröße: 2–4 Jungtiere</li>
-            <li>Aufzucht in Baumhöhlen</li>
-          </ul>
-        </section>
-
-        {/* KRANKHEITEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Krankheiten</h2>
-          <ul style={styles.list}>
-            <li>Staupe</li>
-            <li>Räude</li>
-            <li>Bandwürmer (v.a. bei Mäusejagd)</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
-            <li>Starkes Raubtiergebiss</li>
-            <li>Reißzähne sehr ausgeprägt</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/100914/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes" target="_blank" rel="noopener noreferrer">DJV: Baummarder</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

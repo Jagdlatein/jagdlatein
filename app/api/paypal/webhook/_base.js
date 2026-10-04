@@ -1,6 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
-import { normalizeAccountEmail } from "../../../../lib/account-session";
-
 const PAYPAL_API_ORIGINS = new Set([
   "https://api-m.paypal.com", "https://api-m.sandbox.paypal.com",
   "https://api.paypal.com", "https://api.sandbox.paypal.com",
@@ -59,22 +56,4 @@ export async function verifyPaypalWebhook(req, rawBody) {
     method: "POST", body: { ...input, webhook_id: webhookId, webhook_event: event },
   });
   return result.verification_status === "SUCCESS" ? event : null;
-}
-
-export async function activateVerifiedSubscription(subscriptionId) {
-  if (typeof subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(subscriptionId)) return false;
-  const subscription = await paypalRequest(`/v1/billing/subscriptions/${encodeURIComponent(subscriptionId)}`);
-  const allowedPlans = (process.env.PAYPAL_PLAN_IDS || process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA")
-    .split(",").map(value => value.trim()).filter(Boolean);
-  if (!allowedPlans.includes(subscription.plan_id) || subscription.status !== "ACTIVE") return false;
-  const email = normalizeAccountEmail(subscription.subscriber?.email_address);
-  if (!email) return false;
-  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) throw new Error("Account service unavailable");
-  const database = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
-  const { error } = await database.from("userprofile").upsert({ email, is_premium: true,
-    updated_at: new Date().toISOString() }, { onConflict: "email" });
-  if (error) throw new Error("Account service unavailable");
-  return true;
 }

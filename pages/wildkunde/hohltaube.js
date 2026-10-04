@@ -7,7 +7,7 @@ export default function Hohltaube() {
       q: "Wichtigstes Erkennungsmerkmal der Hohltaube?",
       a: [
         "Weißer Halsfleck",
-        "Kein Halsfleck + kleiner als Ringeltaube",
+        "Kein weißer Halsfleck und kleiner als eine erwachsene Ringeltaube",
         "Blauer Flügelspiegel"
       ],
       correct: 1,
@@ -61,62 +61,44 @@ export default function Hohltaube() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Kleiner und zierlicher als die Ringeltaube</li>
-            <li>Ohne weißen Halsfleck – wichtiges Prüfungsmerkmal</li>
-            <li>Großes Verbreitungsgebiet in Europa</li>
-            <li>Sehr scheu, meidet Siedlungen</li>
+            <li>Heimische Wildtaube ohne die weißen Halsflecken erwachsener Ringeltauben</li>
+            <li>Graublaues Gefieder mit grünlich schimmernden Halsseiten</li>
+            <li>Kleiner als die Ringeltaube</li>
+            <li>Benötigt Höhlen für die Brut, häufig alte Schwarzspechthöhlen</li>
+            <li>Nutzt Wälder mit alten Bäumen, aber auch Parkanlagen und Alleen</li>
+            <li>Nahrungssuche häufig in offener Landschaft</li>
+            <li>Frisst Samen, Früchte und weitere Pflanzenteile</li>
+            <li>In Mitteleuropa überwiegend Zugvogel; Zugverhalten regional verschieden</li>
+            <li>Dumpfer, oft zweisilbiger Gesang</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Einheitlich graublaues Gefieder</li>
-            <li>Kein weißer Halsfleck</li>
-            <li>Kürzerer, schmaler Schwanz</li>
-            <li>Kleinere Körpergröße</li>
-            <li>Oft in kleinen Trupps</li>
+            <li>Nest in Baumhöhlen, geeigneten Nistkästen oder anderen Höhlungen</li>
+            <li>Gelege gewöhnlich zwei Eier</li>
+            <li>Mehrere Jahresbruten möglich</li>
+            <li>Beide Eltern übernehmen Brut und Aufzucht</li>
+            <li>Junge sind Nesthocker</li>
+            <li>Eltern füttern zunächst Kropfmilch</li>
+            <li>Erhalt geeigneter Höhlenbäume verbessert das Brutplatzangebot</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
+          <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Brutzeit: März–Juli</li>
-            <li>Typisch: Brütet in Baumhöhlen & Spechthöhlen</li>
-            <li>Nest kaum ausgebaut (Prüfungswissen!)</li>
-            <li>Gelege: 2 Eier</li>
-            <li>Füttert Kropfmilch</li>
+            <li>Dunkle Flügelzeichnungen, aber kein weißes Flügelband wie bei der Ringeltaube</li>
+            <li>Nestlingszeit variiert ungefähr zwischen 18 und 30 Tagen</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Sämereien, Getreide</li>
-            <li>Bucheckern, Eicheln</li>
-            <li>Knospen und grüne Pflanzenteile</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Sehr scheu und unauffällig</li>
-            <li>Waldgebundene Art</li>
-            <li>Teilzieher</li>
-            <li>Oft in kleinen Gruppen unterwegs</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/099087/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.wald.rlp.de/wald/voegel/ringeltaube" target="_blank" rel="noopener noreferrer">Landesforsten Rheinland-Pfalz: Taubenbiologie und Kropfmilch</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

@@ -61,66 +61,35 @@ export default function Eichelhaeher() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Auffälliger Rabenvogel der Wälder</li>
-            <li>Lebensraum: Laub- & Mischwälder, Parks, Gärten</li>
-            <li>Sehr scheu im Wald, aber in Städten vertrauter</li>
-            <li>Wichtig für die Verbreitung von Eicheln</li>
-            <li>Ruft laut und warnt → „Polizei des Waldes“</li>
+            <li>Rabenvogel mit beigebraunem Gefieder</li>
+            <li>Auffällige blau-schwarz gebänderte Flügelfedern</li>
+            <li>Weißer Bürzel und dunkle Schwanzfedern im Flug sichtbar</li>
+            <li>Nutzt verschiedene Wälder, Parkanlagen und Siedlungsbereiche</li>
+            <li>Lautes Rätschen kann vor Störungen warnen; daher die Bezeichnung Wächter des Waldes</li>
+            <li>Versteckt besonders Eicheln und andere Baumsamen als Vorräte</li>
+            <li>Nicht wieder genutzte Samen können keimen und zur Waldverjüngung beitragen</li>
+            <li>Nahrung: Baumsamen und weitere pflanzliche sowie tierische Bestandteile</li>
+            <li>Geschlechter im Gefieder ähnlich</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Beiger Körper, schwarzer Schnurrbartstreif</li>
-            <li>Leuchtend blauer Flügelspiegel (schwarz gebändert)</li>
-            <li>Weiße und schwarze Partien im Flügel</li>
-            <li>Schwarzer Schwanz</li>
-            <li>Sehr lauter Warnruf: „rätsch-rätsch“</li>
-          </ul>
-
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: April–Juni</li>
-            <li>Nest meist in Bäumen, gut getarnt</li>
-            <li>Gelege: 4–6 Eier</li>
-            <li>Starke Brutpflege durch beide Eltern</li>
+            <li>Nest in dichtem Geäst, häufig in Bäumen</li>
+            <li>Brutbeginn oft im April; regionale Unterschiede</li>
+            <li>Gelegegröße variabel, häufig ungefähr fünf Eier</li>
+            <li>Brutdauer ungefähr 16 bis 19 Tage</li>
+            <li>Beide Eltern versorgen die Jungen</li>
+            <li>Jungvögel werden nach dem Ausfliegen noch weiter geführt</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Eicheln (auch als Wintervorrat versteckt)</li>
-            <li>Nüsse, Früchte, Beeren</li>
-            <li>Insekten, Larven</li>
-            <li>Kleintiere, Eier, Jungvögel</li>
-            <li>Sehr vielseitiger Allesfresser</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Extrem aufmerksam und wachsam</li>
-            <li>Warnt laut vor Personen, Jägern & Raubwild</li>
-            <li>Versteckt Eicheln → ermöglicht natürliche Waldverjüngung</li>
-            <li>Sehr intelligent & lernfähig</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/100839/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

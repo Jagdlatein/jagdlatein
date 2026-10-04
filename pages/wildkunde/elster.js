@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Elster() {
   const quiz = [
     {
-      q: "Woran erkennt man die Elster eindeutig?",
+      q: "Welche Merkmalskombination ist typisch für eine erwachsene Elster?",
       a: [
         "Komplett schwarzes Gefieder",
         "Schwarz-weißes Gefieder mit sehr langem Schwanz",
@@ -22,11 +22,11 @@ export default function Elster() {
       correct: 0,
     },
     {
-      q: "Wofür ist die Elster besonders bekannt?",
+      q: "Welche Aussage beschreibt den Nestbau vieler Elstern?",
       a: [
-        "Für ihr völlig scheues Verhalten",
-        "Für das Plündern von Nestern anderer Arten",
-        "Für das Leben ausschließlich in großen Schwärmen"
+        "Sie legen ihre Eier ausschließlich in Erdhöhlen ab",
+        "Ihr Reisignest besitzt oft ein Dach über der Nestmulde",
+        "Sie bauen niemals eigene Nester"
       ],
       correct: 1,
     },
@@ -61,65 +61,35 @@ export default function Elster() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Auffälliger Rabenvogel mit schwarz-weißem Gefieder</li>
-            <li>Sehr langer Schwanz (Stoß) — markantestes Merkmal</li>
-            <li>Lebensraum: Dörfer, Städte, Parks, Feldgehölze</li>
-            <li>Ausgeprägter Kulturfolger</li>
-            <li>Sehr intelligent, kann Werkzeuge nutzen</li>
+            <li>Rabenvogel mit langem Schwanz und kontrastreichem schwarz-weißem Gefieder</li>
+            <li>Dunkle Federn können blau-grün schillern</li>
+            <li>Häufig in halboffenen Landschaften, Dörfern, Parks und Gärten</li>
+            <li>Typischer schackernder Ruf</li>
+            <li>Kulturfolger mit anpassungsfähigem Verhalten</li>
+            <li>Allesfresser: Wirbellose, kleine Wirbeltiere, Aas, Samen und Früchte</li>
+            <li>Auch Vogeleier können zum Nahrungsspektrum gehören; dies beweist keine allgemeine Verdrängung anderer Arten</li>
+            <li>Geschlechter ähnlich gefärbt</li>
+            <li>Jungvögel haben zunächst kürzere Schwanzfedern</li>
           </ul>
         </section>
 
-        {/* ERKENNUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung</h2>
-
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Schwarz-weißes Gefieder mit blau-grünem Glanz</li>
-            <li>Langer, keilförmiger Stoß (Schwanz)</li>
-            <li>Weiße Flügeldeckfedern → kontrastreich im Flug</li>
-            <li>Schwarzer Kopf und Brust</li>
-            <li>Typischer Ruf: „tschärr-tschärr“</li>
-          </ul>
-
-        </section>
-
-        {/* FORTPFLANZUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Brutzeit: März–Juni</li>
-            <li>Großes, kugelförmiges Nest mit seitlichem Eingang</li>
-            <li>Gelege: 4–7 Eier</li>
-            <li>Stark territorial während der Brutzeit</li>
+            <li>Zur Brutzeit lebt die Elster meist als territoriales Paar</li>
+            <li>Nest oft mit Reisigdach über der Nestmulde</li>
+            <li>Gelegegröße variabel, häufig fünf bis sieben Eier</li>
+            <li>Brut- und Nestlingsphase dauern jeweils ungefähr drei Wochen</li>
+            <li>Nach der Brutzeit können größere Schlafgesellschaften entstehen</li>
+            <li>Junge sind Nesthocker</li>
           </ul>
         </section>
 
-        {/* NAHRUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nahrung</h2>
-          <ul style={styles.list}>
-            <li>Insekten, Würmer, Larven</li>
-            <li>Eier und Jungvögel (wichtiger Prüfpunkt!)</li>
-            <li>Kleinsäuger, Aas</li>
-            <li>Getreide, Früchte, Abfälle</li>
-          </ul>
-        </section>
-
-        {/* VERHALTEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Verhalten</h2>
-          <ul style={styles.list}>
-            <li>Sehr intelligent und lernfähig</li>
-            <li>Neugierig und mutig</li>
-            <li>Oft paarweise oder in kleinen Gruppen unterwegs</li>
-            <li>Kann andere Arten verdrängen (Prädator)</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/213481/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

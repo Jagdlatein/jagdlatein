@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Nutria() {
   const quiz = [
     {
-      q: "Was ist das auffälligste Erkennungsmerkmal der Nutria?",
+      q: "Welche Zahnfärbung ist bei erwachsenen Nutrias typisch, ohne allein die Art zu beweisen?",
       a: [
         "Schwarze Ohren",
         "Orangerote Nagezähne",
@@ -22,10 +22,10 @@ export default function Nutria() {
       correct: 0,
     },
     {
-      q: "Welche Rolle spielt die Nutria in der Landschaft?",
+      q: "Welche Auswirkungen können Nutrias an Gewässern haben?",
       a: [
         "Harmlos, keine Auswirkungen",
-        "Verursacht Schäden an Ufern & Dämmen",
+        "Ihre Grabaktivität kann Ufer und Dämme beeinträchtigen",
         "Lebt nur in Hochgebirgen"
       ],
       correct: 1,
@@ -59,75 +59,44 @@ export default function Nutria() {
 
         {/* ALLGEMEINES */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Gewicht: 5–9 kg</li>
-            <li>Körperlänge: 40–65 cm</li>
-            <li>Schwanz: rund, bis 45 cm (wichtigstes Unterscheidungsmerkmal zum Biber)</li>
-            <li>Lebensraum: Flüsse, Kanäle, Teiche, Feuchtgebiete</li>
-            <li>Fremdländische Art aus Südamerika → Neozoon</li>
-            <li>Meisterschwimmer dank Schwimmhäuten an den Hinterbeinen</li>
-          </ul>
-        </section>
-
-        {/* ERKENNUNG */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li><strong>Orangerote Schneidezähne</strong> – eindeutiges Merkmal</li>
-            <li>Langes, braunes Fell</li>
-            <li>Runder, nackter Schwanz</li>
+            <li>Nagetiere mit ursprünglichem Verbreitungsgebiet in Südamerika</li>
+            <li>Europäische Bestände gehen unter anderem auf entlaufene oder freigelassene Pelztiere zurück</li>
+            <li>Runder, beschuppter und wenig behaarter Schwanz, im Unterschied zur Biberkelle</li>
+            <li>Orange Schneidezähne und auffällige helle Barthaare</li>
             <li>Schwimmhäute an den Hinterfüßen</li>
-            <li>Schmaler Kopf im Vergleich zum Biber</li>
+            <li>Nutzt stehende und langsam fließende Gewässer mit vegetationsreichen Ufern</li>
+            <li>Gräbt Erdbauten in Uferböschungen</li>
+            <li>Ernährt sich überwiegend von Wasser- und Uferpflanzen; nutzt auch Feldfrüchte</li>
+            <li>Kann Ufer unterhöhlen und Vegetationsschäden verursachen</li>
+            <li>Strenge Winter können die Sterblichkeit erhöhen</li>
           </ul>
         </section>
 
-        {/* NACHWEIS */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Nachweis & Spuren</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Fährte: ähnlich Biber, aber kleiner</li>
-            <li>Gangsysteme an Ufern</li>
-            <li>Nagespuren an Pflanzen</li>
-            <li>Losung: länglich, oliv- bis dunkelbraun</li>
+            <li>Fortpflanzung ganzjährig möglich</li>
+            <li>Tragzeit ungefähr 128 bis 135 Tage</li>
+            <li>Mehrere Würfe pro Jahr möglich</li>
+            <li>Wurfgröße variabel, häufig fünf bis sieben Junge</li>
+            <li>Junge werden behaart und sehfähig geboren und können bald laufen und schwimmen</li>
           </ul>
         </section>
 
-        {/* FORTPFLANZUNG */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Fortpflanzung</h2>
-          <ul style={styles.list}>
-            <li>Paarungszeit: ganzjährig möglich</li>
-            <li>Tragzeit: 130–140 Tage</li>
-            <li>Wurfgröße: 4–6 Junge</li>
-            <li>Jungtiere: Nestflüchter</li>
-            <li>Sehr reproduktiv → Populationsanstieg schnell</li>
-          </ul>
-        </section>
-
-        {/* WILDSCHÄDEN */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Schäden & Probleme</h2>
-          <ul style={styles.list}>
-            <li>Zerstörung von Uferstrukturen</li>
-            <li>Unterhöhlen von Dämmen</li>
-            <li>Ernte- & Vegetationsschäden</li>
-            <li>Übertragung von Parasiten & Krankheiten (Giardien)</li>
-          </ul>
-        </section>
-
-        {/* GEBISS */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss & Zähne</h2>
+          <h2 style={styles.sectionTitle}>Gebiss</h2>
           <ul style={styles.list}>
             <li>Zahnformel: I 1/1 · C 0/0 · P 1/1 · M 3/3 = 20</li>
-            <li><strong>Schneidezähne orange gefärbt</strong></li>
-            <li>Kräftige Backenzähne für Pflanzenkost</li>
+            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
+            <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>
 
-        {/* QUIZ */}
         <section style={styles.section}>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/218365/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (

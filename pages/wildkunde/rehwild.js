@@ -47,44 +47,32 @@ export default function Rehwild() {
 
         {/* STECKBRIEF */}
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Allgemeines</h2>
+          <h2 style={styles.sectionTitle}>Lebensraum, Merkmale und Nahrung</h2>
           <ul style={styles.list}>
-            <li>Kleinstes einheimisches Schalenwild</li>
-            <li>Gewicht: Bock 20–30 kg, Ricke 18–26 kg</li>
-            <li>Körperlänge: 95–140 cm, Schulterhöhe 60–75 cm</li>
-            <li>Lebensraum: Feld-Wald-Mosaik, Waldränder, Agrarlandschaften</li>
-            <li>Nahrung: Kräuter, Knospen, Blätter, Triebe, Beeren</li>
-            <li>Sozialstruktur saisonabhängig: Böcke im Sommer territorial; im Winter häufig Gruppen (Sprünge)</li>
-            <li>Brunftzeit: Juli–August</li>
-            <li>Setzzeit: Mai–Juni (meist zwei Kitze)</li>
-            <li>Besonderheit: Keimruhe (embryonale Diapause)</li>
+            <li>Kleine heimische Hirschart mit schmalem Vorderkörper und kräftigen Hinterläufen</li>
+            <li>Besiedelt Wald-Feld-Mosaike, unterholzreiche Wälder und auch offene Agrarlandschaften</li>
+            <li>Wiederkäuer; wählt bevorzugt leicht verdauliche Kräuter, Blätter, Knospen und junge Triebe</li>
+            <li>Böcke verhalten sich im Sommer territorial</li>
+            <li>Im Herbst und Winter häufig Gruppen, die Sprünge heißen</li>
+            <li>Der Bock trägt ein jährlich erneuertes Gehörn; Endenzahl und Stärke sind keine sichere Altersuhr</li>
+            <li>Schrecken klingt wie kurzes Bellen und kann von beiden Geschlechtern stammen</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Geweih</h2>
+          <h2 style={styles.sectionTitle}>Fortpflanzung und Jahresverlauf</h2>
           <ul style={styles.list}>
-            <li>Bock trägt ein jährlich erneuertes Gehörn; Zahl der Enden ist variabel</li>
-            <li>Abwurf: Oktober–November</li>
-            <li>Schieben unter Bast: Januar–April</li>
-            <li>Farbe abhängig vom Fegen (Baumarten)</li>
+            <li>Brunft im Juli und August</li>
+            <li>Anschließend embryonale Keimruhe bis in den Spätherbst</li>
+            <li>Gesamte Tragzeit einschließlich Keimruhe etwa neuneinhalb Monate</li>
+            <li>Setzzeit meist Mai bis Juni; gewöhnlich zwei Kitze</li>
+            <li>Gehörn wird im Herbst abgeworfen und anschließend neu gebildet</li>
           </ul>
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Erkennung & Merkmale</h2>
-          <ul style={styles.list}>
-            <li>Spiegel: weiß, nierenförmig (Ricke → herzförmig)</li>
-            <li>Sommer: rotbraune Decke</li>
-            <li>Winter: graubraune Decke</li>
-            <li>Losung: kleine, rundliche Kötel</li>
-            <li>Fährte: klein, schmal, 2–4 cm</li>
-          </ul>
-        </section>
-
-        {/* QUIZ */}
-        <section style={styles.section}>
-          <p style={styles.subtitle}>Quellen zum Weiterlesen: <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus" target="_blank" rel="noopener noreferrer">Quelle 1</a></p>
+          <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/084667/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus" target="_blank" rel="noopener noreferrer">DJV: Reh</a></p>
+          <p>Zeiten und Größen sind typische Richtwerte und können regional oder individuell abweichen. Eine Artbeschreibung ersetzt keine Prüfung der örtlichen Jagd- und Schutzbestimmungen.</p>
           <h2 style={styles.sectionTitle}>Quiz</h2>
 
           {quiz.map((q, qi) => (
