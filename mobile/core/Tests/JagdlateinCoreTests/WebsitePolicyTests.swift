@@ -1,6 +1,9 @@
 import Foundation
 import XCTest
 @testable import JagdlateinCore
+#if canImport(WebKit)
+import WebKit
+#endif
 
 final class WebsitePolicyTests: XCTestCase {
     private func url(_ string: String) -> URL { URL(string: string)! }
@@ -39,7 +42,7 @@ final class WebsitePolicyTests: XCTestCase {
         for path in ["/preise", "/preise/", "/preise?trial=1", "/paytest", "/api/paypal/create-subscription", "/%70reise", "/kurse/../preise", "/%2570reise"] {
             XCTAssertEqual(decision("https://jagdlatein.de" + path, user: true), .blockedPayment, path)
         }
-        for string in ["https://paypal.com/checkout", "https://www.paypal.com/webapps", "https://www.sandbox.paypal.com/", "https://checkout.paypal.com/", "https://www.paypal.com./checkout"] {
+        for string in ["https://paypal.com/checkout", "https://www.paypal.com/webapps", "https://www.sandbox.paypal.com/", "https://checkout.paypal.com/", "https://www.paypal.com./checkout", "https://www.paypalobjects.com/api/"] {
             XCTAssertEqual(decision(string, user: true), .blockedPayment, string)
             XCTAssertEqual(decision(string, main: false), .blockedPayment, string)
         }
@@ -71,4 +74,47 @@ final class WebsitePolicyTests: XCTestCase {
         XCTAssertEqual(try JSONDecoder().decode(WebsiteBookmark.self, from: JSONEncoder().encode(bookmark)), bookmark)
         XCTAssertEqual(WebsitePolicy.sanitizeBookmark(url: url("https://jagdlatein.de/"), title: " \n ")?.title, "Jagdlatein")
     }
+
+    func testContentRulesBlockPaymentNetworkRequestsWithoutBlockingAccountOrLearningRequests() throws {
+        let data = try XCTUnwrap(WebsitePolicy.contentBlockingRulesJSON.data(using: .utf8))
+        let rules = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [[String: Any]])
+        XCTAssertEqual(rules.count, 3)
+        let expressions = try rules.map { rule -> NSRegularExpression in
+            let trigger = try XCTUnwrap(rule["trigger"] as? [String: Any])
+            let action = try XCTUnwrap(rule["action"] as? [String: Any])
+            XCTAssertEqual(action["type"] as? String, "block")
+            XCTAssertNil(trigger["resource-type"], "fetch/XHR must be covered as well as scripts and frames")
+            XCTAssertEqual(trigger["url-filter-is-case-sensitive"] as? Bool, false)
+            return try NSRegularExpression(pattern: XCTUnwrap(trigger["url-filter"] as? String), options: .caseInsensitive)
+        }
+        func blocked(_ string: String) -> Bool {
+            expressions.contains { $0.firstMatch(in: string, range: NSRange(string.startIndex..., in: string)) != nil }
+        }
+        for string in [
+            "https://www.paypal.com/sdk/js?client-id=example",
+            "https://api-m.paypal.com/v1/billing/subscriptions", "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+            "https://paypal.com/checkout", "https://www.paypal.com./checkout", "https://user:password@paypal.com/checkout",
+            "https://www.paypalobjects.com/webstatic/image.png", "https://paypalobjects.com/script.js",
+            "https://jagdlatein.de/api/paypal/create", "https://www.jagdlatein.de:443/api/paypal/confirm?subscription=example"
+        ] { XCTAssertTrue(blocked(string), string) }
+        for string in [
+            "https://jagdlatein.de/api/auth/verify", "https://jagdlatein.de/api/learning/progress",
+            "https://jagdlatein.de/kurse", "https://jagdlatein.de/_next/static/chunk.js",
+            "https://jagdlatein.de/tiere/gams.jpg", "https://images.unsplash.com/photo-example",
+            "https://paypal.com.evil.test/sdk/js", "https://www.paypalobjects.com.evil.test/script.js",
+            "https://jagdlatein.de.evil.test/api/paypal/create"
+        ] { XCTAssertFalse(blocked(string), string) }
+    }
+
+    #if canImport(WebKit)
+    @MainActor
+    func testContentRulesCompileInTheActualWebKitEngine() async throws {
+        let store = try XCTUnwrap(WKContentRuleListStore.default())
+        let compiled = try await store.compileContentRuleList(
+            forIdentifier: "jagdlatein.preview.payment-rules.tests.v1",
+            encodedContentRuleList: WebsitePolicy.contentBlockingRulesJSON
+        )
+        XCTAssertNotNil(compiled)
+    }
+    #endif
 }

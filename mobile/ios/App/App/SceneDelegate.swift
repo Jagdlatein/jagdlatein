@@ -23,6 +23,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         return WKWebView(frame: .zero, configuration: configuration)
     }()
     private let toolbar = UIToolbar()
+    private let heading = UILabel()
     private let progress = UIProgressView(progressViewStyle: .bar)
     private let refresh = UIRefreshControl()
     private let errorPanel = UIStackView()
@@ -30,6 +31,11 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private let bookmarks = BookmarkStore()
     private var observations: [NSKeyValueObservation] = []
     private var lastRequestedURL = WebsitePolicy.homeURL
+    private var lastAllowedURL = WebsitePolicy.homeURL
+    private var contentRulesReady = false
+    private var compilingContentRules = false
+    private var restoringAllowedPage = false
+    private var paymentHintAfterRestore = false
     private var downloadDestinations: [ObjectIdentifier: URL] = [:]
     private var documentController: UIDocumentInteractionController?
     private lazy var backButton = toolbarButton("chevron.left", label: "Zurück", action: #selector(goBack))
@@ -46,6 +52,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         view.tintColor = accent
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.accessibilityIdentifier = "jagdlatein.website"
         webView.allowsBackForwardNavigationGestures = true
         webView.isOpaque = false
         webView.backgroundColor = background
@@ -54,8 +61,8 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         refresh.tintColor = accent
         refresh.addTarget(self, action: #selector(reloadPage), for: .valueChanged)
 
-        let heading = UILabel()
         heading.text = "Jagdlatein"
+        heading.accessibilityIdentifier = "jagdlatein.website.location"
         heading.font = .preferredFont(forTextStyle: .headline)
         heading.adjustsFontForContentSizeCategory = true
         heading.textColor = .label
@@ -96,9 +103,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
             webView.observe(\.estimatedProgress, options: [.new]) { [weak self] view, _ in self?.progress.progress = Float(view.estimatedProgress) },
             webView.observe(\.canGoBack, options: [.initial, .new]) { [weak self] _, _ in self?.updateToolbar() },
             webView.observe(\.canGoForward, options: [.initial, .new]) { [weak self] _, _ in self?.updateToolbar() },
-            webView.observe(\.url, options: [.initial, .new]) { [weak self] _, _ in self?.updateToolbar() }
+            webView.observe(\.url, options: [.initial, .new]) { [weak self] view, _ in self?.inspectVisibleURL(view.url) }
         ]
-        load(WebsitePolicy.homeURL)
+        prepareContentRules()
     }
 
     private func toolbarButton(_ symbol: String, label: String, action: Selector) -> UIBarButtonItem {
@@ -145,19 +152,79 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private func load(_ url: URL) {
         guard WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false) == .allowInWebView else { return }
         lastRequestedURL = url
+        guard contentRulesReady else { prepareContentRules(); return }
         errorPanel.isHidden = true
         webView.load(URLRequest(url: url))
     }
+    private func prepareContentRules() {
+        guard !contentRulesReady, !compilingContentRules else { return }
+        guard let store = WKContentRuleListStore.default() else {
+            showError("Die iOS-Vorschau konnte nicht vorbereitet werden. Bitte versuche es erneut.")
+            return
+        }
+        compilingContentRules = true
+        errorPanel.isHidden = true
+        progress.isHidden = false
+        updateToolbar()
+        store.compileContentRuleList(forIdentifier: "jagdlatein.preview.payment-rules.v1", encodedContentRuleList: WebsitePolicy.contentBlockingRulesJSON) { [weak self] ruleList, error in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.compilingContentRules = false
+                guard error == nil, let ruleList = ruleList else {
+                    // Fail closed: no page or payment request is loaded on error.
+                    self.showError("Die iOS-Vorschau konnte nicht vorbereitet werden. Bitte versuche es erneut.")
+                    return
+                }
+                self.webView.configuration.userContentController.add(ruleList)
+                self.contentRulesReady = true
+                self.load(self.lastRequestedURL)
+            }
+        }
+    }
+    private func inspectVisibleURL(_ url: URL?) {
+        // Native accessibility exposes only public, permitted paths. It never
+        // exposes a login code, query string or private account location.
+        let safeURL = url.flatMap { candidate -> URL? in
+            guard WebsitePolicy.decision(for: candidate, isMainFrame: true, userInitiated: false) == .allowInWebView else { return nil }
+            return WebsitePolicy.bookmarkURL(for: candidate)
+        }
+        heading.accessibilityValue = safeURL?.absoluteString ?? "Keine öffentliche Lernseite geöffnet"
+        updateToolbar()
+        guard contentRulesReady, let url = url, !restoringAllowedPage else { return }
+        switch WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false) {
+        case .allowInWebView:
+            lastAllowedURL = url
+            lastRequestedURL = url
+        case .blockedPayment, .reject, .openExternally:
+            // Next.js history changes need not invoke WKNavigationDelegate.
+            // The already-installed network rules also cover fetch/XHR while
+            // this view returns to the last permitted page.
+            paymentHintAfterRestore = WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false) == .blockedPayment
+            restoringAllowedPage = true
+            webView.isHidden = true
+            webView.stopLoading()
+            updateToolbar()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, self.restoringAllowedPage else { return }
+                self.load(self.lastAllowedURL)
+            }
+        }
+    }
     private func updateToolbar() {
-        backButton.isEnabled = webView.canGoBack
-        forwardButton.isEnabled = webView.canGoForward
-        shareButton.isEnabled = webView.url.flatMap { WebsitePolicy.bookmarkURL(for: $0) } != nil
+        backButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.canGoBack
+        forwardButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.canGoForward
+        reloadButton.isEnabled = !compilingContentRules && !restoringAllowedPage
+        shareButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.url.flatMap { WebsitePolicy.bookmarkURL(for: $0) } != nil
     }
     @objc private func goBack() { errorPanel.isHidden = true; webView.goBack() }
     @objc private func goForward() { errorPanel.isHidden = true; webView.goForward() }
     @objc private func reloadPage() {
+        guard contentRulesReady else { prepareContentRules(); return }
+        guard !restoringAllowedPage else { return }
         errorPanel.isHidden = true
-        if webView.url == nil { load(lastRequestedURL) } else { webView.reload() }
+        if let url = webView.url, WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false) == .allowInWebView {
+            webView.reload()
+        } else { load(lastRequestedURL) }
     }
     @objc private func retryPage() { load(lastRequestedURL) }
     @objc private func showBookmarks() {
@@ -176,14 +243,20 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     }
     private func finishLoading() { progress.isHidden = true; refresh.endRefreshing(); updateToolbar() }
     private func showError(_ message: String) {
+        if restoringAllowedPage {
+            restoringAllowedPage = false
+            paymentHintAfterRestore = false
+            lastRequestedURL = WebsitePolicy.homeURL
+        }
         finishLoading()
         errorDescription.text = message
         errorPanel.isHidden = false
         UIAccessibility.post(notification: .announcement, argument: message)
     }
-    private func showInformation(title: String, message: String) {
+    private func showInformation(title: String, message: String, identifier: String? = nil) {
         guard presentedViewController == nil else { return }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.accessibilityIdentifier = identifier
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
@@ -192,6 +265,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         return WebsitePolicy.decision(for: url, isMainFrame: action.targetFrame?.isMainFrame ?? true, userInitiated: action.navigationType == .linkActivated)
     }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard contentRulesReady else { decisionHandler(.cancel); return }
         guard let url = navigationAction.request.url else { decisionHandler(.cancel); return }
         switch handleNavigation(navigationAction) {
         case .allowInWebView:
@@ -217,7 +291,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
             decisionHandler(.cancel)
             if navigationAction.targetFrame?.isMainFrame != false {
                 finishLoading()
-                showInformation(title: "Abos in der iOS-Vorschau", message: "Diese Vorschau unterstützt keine Abo-Abschlüsse. Du kannst dich mit einem bestehenden Konto anmelden und freigeschaltete Lerninhalte nutzen.")
+                showPaymentInformation()
             }
         case .reject:
             decisionHandler(.cancel)
@@ -249,13 +323,40 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         progress.progress = 0
         progress.isHidden = false
     }
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { finishLoading() }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard let visibleURL = webView.url, WebsitePolicy.decision(for: visibleURL, isMainFrame: true, userInitiated: false) == .allowInWebView else {
+            restoringAllowedPage = false
+            paymentHintAfterRestore = false
+            lastRequestedURL = WebsitePolicy.homeURL
+            webView.isHidden = true
+            webView.stopLoading()
+            showError("Diese Seite kann in der Vorschau nicht geöffnet werden. Bitte kehre mit „Erneut versuchen“ zur Startseite zurück.")
+            return
+        }
+        if restoringAllowedPage {
+            restoringAllowedPage = false
+            // Recovery does not accept a blocked route or repeat itself.
+            lastAllowedURL = visibleURL
+            lastRequestedURL = visibleURL
+        }
+        webView.isHidden = false
+        finishLoading()
+        if paymentHintAfterRestore {
+            paymentHintAfterRestore = false
+            showPaymentInformation()
+        }
+    }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { handleFailure(error) }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { handleFailure(error) }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) { showError("Die Seite wurde unterbrochen. Bitte lade sie erneut.") }
     private func handleFailure(_ error: Error) {
         if (error as NSError).code == NSURLErrorCancelled { return }
+        if restoringAllowedPage { restoringAllowedPage = false; lastRequestedURL = WebsitePolicy.homeURL }
+        paymentHintAfterRestore = false
         showError("Jagdlatein konnte nicht geladen werden. Prüfe deine Internetverbindung und versuche es erneut.")
+    }
+    private func showPaymentInformation() {
+        showInformation(title: "Abos in der iOS-Vorschau", message: "Diese Vorschau unterstützt keine Abo-Abschlüsse. Du kannst dich mit einem bestehenden Konto anmelden und freigeschaltete Lerninhalte nutzen.", identifier: "jagdlatein.payment.preview")
     }
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if handleNavigation(navigationAction) == .allowInWebView { webView.load(navigationAction.request) }

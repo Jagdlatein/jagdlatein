@@ -34,6 +34,28 @@ try {
     )
     $iosSimulatorApp = Join-Path $mobileRoot 'DerivedData/Build/Products/Debug-iphonesimulator/App.app'
     if (-not (Test-Path -LiteralPath $iosSimulatorApp)) { throw 'Simulator-App wurde nicht gefunden.' }
+    # Test the real WebKit app on an available iPhone simulator, including Next's
+    # client-side links; no account, purchase or production data is created.
+    $iosDeviceJSON = (& xcrun simctl list devices available --json) -join [Environment]::NewLine
+    if ($LASTEXITCODE -ne 0) { throw 'Simulator-Liste konnte nicht gelesen werden.' }
+    $iosDeviceList = $iosDeviceJSON | ConvertFrom-Json
+    $iosRuntime = $iosDeviceList.devices.PSObject.Properties |
+        Where-Object { $_.Name -match 'SimRuntime\.iOS-' } |
+        Sort-Object Name -Descending |
+        Where-Object { @($_.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' }).Count -gt 0 } |
+        Select-Object -First 1
+    if (-not $iosRuntime) { throw 'Kein verfügbarer iPhone-Simulator gefunden.' }
+    $iosDevice = $iosRuntime.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' } | Select-Object -First 1
+    $iosUITestResult = Join-Path $mobileRoot ('DerivedData/WebsiteUITests-' + [Guid]::NewGuid().ToString('N') + '.xcresult')
+    Write-Host ('iOS-Bedienprüfung: ' + $iosDevice.name + ' / ' + $iosRuntime.Name)
+    Invoke-IOSProgram -Program 'xcodebuild' -ProgramArguments @(
+        '-project', 'ios/App/App.xcodeproj', '-scheme', 'App',
+        '-configuration', 'Debug', '-sdk', 'iphonesimulator', '-destination', ('platform=iOS Simulator,id=' + $iosDevice.udid),
+        '-destination-timeout', '120', '-derivedDataPath', 'DerivedData',
+        '-resultBundlePath', $iosUITestResult,
+        '-parallel-testing-enabled', 'NO', '-test-timeouts-enabled', 'YES', '-maximum-test-execution-time-allowance', '180',
+        'CODE_SIGNING_ALLOWED=NO', 'CODE_SIGNING_REQUIRED=NO', 'test'
+    )
     Invoke-IOSProgram -Program 'ditto' -ProgramArguments @('-c', '-k', '--sequesterRsrc', '--keepParent', $iosSimulatorApp, (Join-Path $mobileRoot 'DerivedData/Jagdlatein-Simulator.zip'))
     [ordered]@{
         checkedAtUtc = [DateTime]::UtcNow.ToString('o')
@@ -41,6 +63,9 @@ try {
         xcode = $iosXcodeVersion
         swiftTestsPassed = $true
         simulatorCompiled = $true
+        simulatorUITestsPassed = $true
+        simulatorDevice = $iosDevice.name
+        simulatorRuntime = $iosRuntime.Name
         codeSigned = $false
         iphoneRuntimeTested = $false
         appStoreReady = $false

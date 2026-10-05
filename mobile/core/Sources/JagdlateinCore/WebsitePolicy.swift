@@ -23,6 +23,25 @@ public enum WebsiteNavigationDecision: Equatable {
 /// A navigation policy, not a filter for website scripts, images or API requests.
 public enum WebsitePolicy {
     public static let homeURL = URL(string: "https://www.jagdlatein.de")!
+    /// Applied by WKContentRuleList before the first website request. No resource
+    /// type restriction: this covers scripts, frames and raw fetch/XHR requests.
+    /// Only the iOS preview uses these rules; the public website is unchanged.
+    public static let contentBlockingRulesJSON = #"""
+    [
+      {
+        "trigger": {"url-filter": "^https?://([^/]*@)?([^:/]+\\.)?paypal\\.com\\.?[:/]", "url-filter-is-case-sensitive": false},
+        "action": {"type": "block"}
+      },
+      {
+        "trigger": {"url-filter": "^https?://([^/]*@)?([^:/]+\\.)?paypalobjects\\.com\\.?[:/]", "url-filter-is-case-sensitive": false},
+        "action": {"type": "block"}
+      },
+      {
+        "trigger": {"url-filter": "^https://(www\\.)?jagdlatein\\.de(:443)?/api/paypal", "url-filter-is-case-sensitive": false},
+        "action": {"type": "block"}
+      }
+    ]
+    """#
     private static let websiteHosts: Set<String> = ["jagdlatein.de", "www.jagdlatein.de"]
     private static let privateRoots: Set<String> = [
         "api", "auth", "login", "anmelden", "logout", "abmelden", "verify", "verify-code",
@@ -42,7 +61,7 @@ public enum WebsitePolicy {
     public static func decision(for url: URL, isMainFrame: Bool, userInitiated: Bool) -> WebsiteNavigationDecision {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let scheme = components.scheme?.lowercased() else { return .reject }
-        if isPayPalHost(components.host) { return .blockedPayment }
+        if isPaymentProviderHost(components.host) { return .blockedPayment }
 
         if !isMainFrame {
             // Third-party HTTPS frames stay in the web view and never open apps.
@@ -88,10 +107,11 @@ public enum WebsitePolicy {
         return WebsiteBookmark(url: safeURL, title: bounded.isEmpty ? "Jagdlatein" : String(bounded.prefix(120)))
     }
 
-    private static func isPayPalHost(_ host: String?) -> Bool {
+    private static func isPaymentProviderHost(_ host: String?) -> Bool {
         guard var host = host?.lowercased() else { return false }
         while host.hasSuffix(".") { host.removeLast() }
-        return host == "paypal.com" || host.hasSuffix(".paypal.com")
+        return host == "paypal.com" || host.hasSuffix(".paypal.com") ||
+            host == "paypalobjects.com" || host.hasSuffix(".paypalobjects.com")
     }
 
     private static func isPaymentPath(_ url: URL) -> Bool {

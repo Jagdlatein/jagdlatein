@@ -2,7 +2,7 @@
 
 Die iOS-Entwicklungsversion lädt **https://www.jagdlatein.de/** direkt in einer nativen `WKWebView`. Die Website leitet auf `https://jagdlatein.de/` weiter; beide eigenen HTTPS-Adressen werden unterstützt. Inhalte, Fotos, Menü und laufende Website-Änderungen stammen somit aus dem bestehenden Angebot. Es gibt keinen zweiten Lernkatalog und keine Kopie der kostenpflichtigen Kursinhalte im App-Paket.
 
-**Stand: Vorbereitung unter Windows, noch kein auf einem Mac kompilierter oder auf einem iPhone getesteter Build. Keine App-Store-Version.**
+**Stand: Website-basierte Entwicklungsversion. Der erste Mac-Build mit Xcode 26.3 und sieben Swift-Tests wurde am 5. Oktober 2026 [erfolgreich ausgeführt](https://github.com/Jagdlatein/jagdlatein/actions/runs/37331751787). Die zusätzliche Absicherung interner Seitenwechsel und ihre Simulator-Bedientests werden anschließend erneut geprüft. Noch keine auf einem echten iPhone getestete oder im App Store veröffentlichte Version.**
 
 ## Umsetzung
 
@@ -12,7 +12,7 @@ Die iOS-Entwicklungsversion lädt **https://www.jagdlatein.de/** direkt in einer
 - Native Bedienung: Zurück, Vorwärts, Aktualisieren, Merkliste und Teilen; Fehler-/Wiederholenansicht bei fehlender Verbindung. Die Nutzung der Website erfordert Internet.
 - Eigene Hauptseiten müssen genau `www.jagdlatein.de` oder `jagdlatein.de` sein. Fremde Fachlinks werden nach einer Nutzeraktion extern geöffnet. Es gibt keine HTTP-/TLS-Ausnahme, allgemeine CORS-Freigabe oder übernommenen Server-Secrets.
 - Das App-Icon und Startbild verwenden das bestehende Buchsymbol aus `public/app-icon.svg`. Keine KI-Fotos. Die Fotos der Website werden dort weiter gepflegt.
-- `/preise`, `/paytest` und PayPal-Kaufziele sind in dieser privaten Entwicklungsversion gesperrt. Der vorhandene Webcheckout wird nicht verändert. Die iOS-Kaufanbindung ist noch offen.
+- `/preise`, `/paytest` und PayPal-Kaufziele sind in dieser Entwicklungsversion gesperrt. Vor dem ersten Laden wird ein nativer WebKit-Netzwerkfilter für PayPal-Ressourcen und `/api/paypal` aktiviert. Die URL-Prüfung erfasst außerdem interne Next-Seitenwechsel. Der vorhandene Webcheckout wird nicht verändert. Die iOS-Kaufanbindung ist noch offen.
 
 Die ursprüngliche Projektstruktur wurde mit dem offiziellen Capacitor-iOS-Template angelegt. Die App verwendet jetzt einen eigenen UIKit-/WebKit-Controller; die Capacitor-Laufzeit und die lokale React-Katalogvorschau sind nicht Teil des iOS-Projekts.
 
@@ -47,7 +47,7 @@ Danach `http://127.0.0.1:4180/` öffnen. Diese Windows-Vorschau leitet auf die O
 
 `.github/workflows/ios-preview.yml` startet den GitHub-Actions-Build auf `macos-15` ausschließlich für Änderungen am Entwicklungsbranch `codex/ios-website-preview` oder manuell. Der öffentliche Website-Branch `main` bleibt unverändert. Standard-Runner sind bei diesem öffentlichen Repository kostenlos; der Workflow lädt keine kostenpflichtigen Build-Artefakte hoch.
 
-Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Er führt die Foundation-Swift-Tests aus und kompiliert anschließend eine **unsignierte Simulator-App**. Das Ergebnis steht im Build-Protokoll. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
+Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Er führt die Swift-Tests aus, kompiliert eine **unsignierte Simulator-App** und prüft im iPhone-Simulator den echten Website-Link „Jetzt freischalten“ sowie die dauerhafte Merkliste. Das Ergebnis steht im Build-Protokoll. Die Tests legen kein Konto an und lösen keine Zahlung aus. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
 
 Auf einem vorhandenen Mac mit Xcode und PowerShell:
 
@@ -59,7 +59,7 @@ Projekt in Xcode öffnen: `mobile/ios/App/App.xcodeproj`. Die vorläufige Bundle
 
 ## Vor TestFlight und App Store noch erforderlich
 
-1. Mac-Kompilierung und Swift-Tests tatsächlich ausführen; bisherige Windows-Prüfungen ersetzen sie nicht.
+1. Mac-Kompilierung, Swift-Tests und Simulator-Bedientests für die finale Änderung erfolgreich abschließen; Windows-Prüfungen ersetzen sie nicht.
 2. Auf echtem iPhone und iPad: E-Mail-Code-Anmeldung, bestehendes Abo, Kursnavigation, Lernfortschritt, Community, Audio/Video/PDF, externe Quellen, Merkliste, Netzwerkfehler, Tastatur, Rotation und Safe Areas prüfen.
 3. Digitale iOS-Abos mit verifizierten Apple-Transaktionen, Kontozuordnung und Kaufwiederherstellung anbinden. Bestehende Webkonten sollen denselben berechtigten Zugang erhalten; ein zweiter Testzugang darf dadurch nicht entstehen. Die genaue Storefront-Regelung ist vor Veröffentlichung erneut zu prüfen.
 4. Kontolöschung innerhalb der App, Community-Meldung/Blockieren/Moderation, Datenschutzhinweise und App-Store-Datenangaben prüfen bzw. vervollständigen. Das vorhandene `PrivacyInfo.xcprivacy` beschreibt zunächst die lokale UserDefaults-Nutzung; es ist **keine abschließende Erklärung der über die Website verarbeiteten Kontodaten**.
