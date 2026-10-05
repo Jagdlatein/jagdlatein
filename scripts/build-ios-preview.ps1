@@ -39,15 +39,11 @@ try {
     $iosDeviceJSON = (& xcrun simctl list devices available --json) -join [Environment]::NewLine
     if ($LASTEXITCODE -ne 0) { throw 'Simulator-Liste konnte nicht gelesen werden.' }
     $iosDeviceList = $iosDeviceJSON | ConvertFrom-Json
-    $iosRuntimes = @($iosDeviceList.devices.PSObject.Properties |
+    $iosRuntime = $iosDeviceList.devices.PSObject.Properties |
         Where-Object { $_.Name -match 'SimRuntime\.iOS-' } |
         Sort-Object Name -Descending |
-        Where-Object { @($_.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' }).Count -gt 0 })
-    # The newest iOS 26.2 simulator stalled during startup on the hosted Mac.
-    # Keep Xcode 26.3/current SDK compilation; use the available iOS 18.5 runtime
-    # for the actual compatibility/UI check, with a fallback on other Macs.
-    $iosRuntime = $iosRuntimes | Where-Object { $_.Name -eq 'com.apple.CoreSimulator.SimRuntime.iOS-18-5' } | Select-Object -First 1
-    if (-not $iosRuntime) { $iosRuntime = $iosRuntimes | Select-Object -First 1 }
+        Where-Object { @($_.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' }).Count -gt 0 } |
+        Select-Object -First 1
     if (-not $iosRuntime) { throw 'Kein verfügbarer iPhone-Simulator gefunden.' }
     $iosDevice = $iosRuntime.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' } | Select-Object -First 1
     $iosUITestResult = Join-Path $mobileRoot ('DerivedData/WebsiteUITests-' + [Guid]::NewGuid().ToString('N') + '.xcresult')

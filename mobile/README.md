@@ -2,7 +2,7 @@
 
 Die iOS-Entwicklungsversion lädt **https://www.jagdlatein.de/** direkt in einer nativen `WKWebView`. Die Website leitet auf `https://jagdlatein.de/` weiter; beide eigenen HTTPS-Adressen werden unterstützt. Inhalte, Fotos, Menü und laufende Website-Änderungen stammen somit aus dem bestehenden Angebot. Es gibt keinen zweiten Lernkatalog und keine Kopie der kostenpflichtigen Kursinhalte im App-Paket.
 
-**Stand: Website-basierte Entwicklungsversion. Der erste Mac-Build mit Xcode 26.3 und sieben Swift-Tests wurde am 5. Oktober 2026 [erfolgreich ausgeführt](https://github.com/Jagdlatein/jagdlatein/actions/runs/37331751787). Die zusätzliche Absicherung interner Seitenwechsel und ihre Simulator-Bedientests werden anschließend erneut geprüft. Noch keine auf einem echten iPhone getestete oder im App Store veröffentlichte Version.**
+**Stand: Website-basierte Entwicklungsversion, erfolgreich auf dem Mac gebaut und im iPhone-Simulator geprüft. Am 5. Oktober 2026 bestanden [neun Swift-/WebKit-Tests und der vollständige Bedienungstest](https://github.com/Jagdlatein/jagdlatein/actions/runs/37334489446) mit Xcode 26.3, iPhone 17 Pro und iOS 26.2. Geprüfte native Quellen: Commit `3df56e0`. Die zwei Windows-Projekttests bestehen ebenfalls; npm audit meldet keine bekannten Sicherheitslücken in den mobilen Entwicklungswerkzeugen. Noch keine auf einem echten iPhone getestete oder im App Store veröffentlichte Version.**
 
 ## Umsetzung
 
@@ -47,7 +47,7 @@ Danach `http://127.0.0.1:4180/` öffnen. Diese Windows-Vorschau leitet auf die O
 
 `.github/workflows/ios-preview.yml` startet den GitHub-Actions-Build auf `macos-15` ausschließlich für Änderungen am Entwicklungsbranch `codex/ios-website-preview` oder manuell. Der öffentliche Website-Branch `main` bleibt unverändert. Standard-Runner sind bei diesem öffentlichen Repository kostenlos; der Workflow lädt keine kostenpflichtigen Build-Artefakte hoch.
 
-Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Er führt die Swift-Tests aus, kompiliert eine **unsignierte Simulator-App** und prüft im iPhone-Simulator den echten Website-Link „Jetzt freischalten“ sowie die dauerhafte Merkliste. Für den Bedienungstest wird die vorhandene iOS-18.5-Laufzeit bevorzugt; der iOS-26.2-Simulator blieb bei einem Folgelauf während des Starts hängen. Das verwendete Gerät und die Laufzeit stehen im Build-Ergebnis. Der Build verwendet weiterhin das aktuelle SDK. Tests auf echten Geräten mit aktuellen iOS-Versionen bleiben vor der Veröffentlichung erforderlich. Die Tests legen kein Konto an und lösen keine Zahlung aus. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
+Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Er führt die Swift-/WebKit-Tests aus, kompiliert eine **unsignierte Simulator-App** und prüft im iPhone-Simulator den echten Website-Link „Jetzt freischalten“ sowie die dauerhafte Merkliste vor und nach einem vollständigen App-Neustart. Das verwendete Gerät und die Laufzeit stehen im Build-Ergebnis. Ein frischer Simulatorstart im Builddienst kann mehrere Minuten dauern. Tests auf echten Geräten bleiben vor der Veröffentlichung erforderlich. Die Tests legen kein Konto an und lösen keine Zahlung aus. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
 
 Auf einem vorhandenen Mac mit Xcode und PowerShell:
 
@@ -59,11 +59,10 @@ Projekt in Xcode öffnen: `mobile/ios/App/App.xcodeproj`. Die vorläufige Bundle
 
 ## Vor TestFlight und App Store noch erforderlich
 
-1. Mac-Kompilierung, Swift-Tests und Simulator-Bedientests für die finale Änderung erfolgreich abschließen; Windows-Prüfungen ersetzen sie nicht.
-2. Auf echtem iPhone und iPad: E-Mail-Code-Anmeldung, bestehendes Abo, Kursnavigation, Lernfortschritt, Community, Audio/Video/PDF, externe Quellen, Merkliste, Netzwerkfehler, Tastatur, Rotation und Safe Areas prüfen.
-3. Digitale iOS-Abos mit verifizierten Apple-Transaktionen, Kontozuordnung und Kaufwiederherstellung anbinden. Bestehende Webkonten sollen denselben berechtigten Zugang erhalten; ein zweiter Testzugang darf dadurch nicht entstehen. Die genaue Storefront-Regelung ist vor Veröffentlichung erneut zu prüfen.
-4. Kontolöschung innerhalb der App, Community-Meldung/Blockieren/Moderation, Datenschutzhinweise und App-Store-Datenangaben prüfen bzw. vervollständigen. Das vorhandene `PrivacyInfo.xcprivacy` beschreibt zunächst die lokale UserDefaults-Nutzung; es ist **keine abschließende Erklärung der über die Website verarbeiteten Kontodaten**.
-5. Apple-Developer-Mitgliedschaft, finale App-ID, Signing, Screenshots, Store-Beschreibung und Review-Zugang einrichten. Apple prüft auch den eigenständigen Nutzen gegenüber einer bloß eingebetteten Website. Eine Annahme im App Store ist nicht zugesichert.
+1. Auf echtem iPhone und iPad: E-Mail-Code-Anmeldung, bestehendes Abo, Kursnavigation, Lernfortschritt, Community, Audio/Video/PDF, externe Quellen, Merkliste, Netzwerkfehler, Tastatur, Rotation und Safe Areas prüfen.
+2. Digitale iOS-Abos mit verifizierten Apple-Transaktionen, Kontozuordnung und Kaufwiederherstellung anbinden. Bestehende Webkonten sollen denselben berechtigten Zugang erhalten; ein zweiter Testzugang darf dadurch nicht entstehen. Die genaue Storefront-Regelung ist vor Veröffentlichung erneut zu prüfen.
+3. Kontolöschung innerhalb der App, Community-Meldung/Blockieren/Moderation, Datenschutzhinweise und App-Store-Datenangaben prüfen bzw. vervollständigen. Das vorhandene `PrivacyInfo.xcprivacy` beschreibt zunächst die lokale UserDefaults-Nutzung; es ist **keine abschließende Erklärung der über die Website verarbeiteten Kontodaten**.
+4. Apple-Developer-Mitgliedschaft, finale App-ID, Signing, Screenshots, Store-Beschreibung und Review-Zugang einrichten. Apple prüft auch den eigenständigen Nutzen gegenüber einer bloß eingebetteten Website. Eine Annahme im App Store ist nicht zugesichert.
 
 `npm run check:release` scheitert deshalb absichtlich. Diese Sperre erst nach den tatsächlichen Integrations- und Gerätetests durch einen konkreten Freigabecheck ersetzen.
 
