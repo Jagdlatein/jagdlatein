@@ -47,8 +47,8 @@ final class WebsiteAppUITests: XCTestCase {
         XCTAssertTrue(waitUntil(addCurrent, timeout: 10) { $0.exists && $0.isEnabled && $0.isHittable },
                       "A loaded public homepage must be available to bookmark.")
         addCurrent.tap()
-        XCTAssertTrue(waitFor(homeBookmark(in: app), timeout: 10),
-                      "Saving the current page must create the homepage bookmark.")
+        assertHomeBookmark(in: app,
+                           message: "Saving the current page must create the homepage bookmark.")
         attachScreenshot(app, name: "Homepage bookmark saved")
         bookmarkNavigation.buttons["Fertig"].tap()
 
@@ -59,8 +59,8 @@ final class WebsiteAppUITests: XCTestCase {
         assertHomepageLoaded(website: app.webViews["jagdlatein.website"],
                              location: app.staticTexts["jagdlatein.website.location"])
         openBookmarks(app)
-        XCTAssertTrue(waitFor(homeBookmark(in: app), timeout: 10),
-                      "The saved homepage must survive a complete app relaunch.")
+        assertHomeBookmark(in: app,
+                           message: "The saved homepage must survive a complete app relaunch.")
         attachScreenshot(app, name: "Homepage bookmark after relaunch")
         app.navigationBars["Merkliste"].buttons["Fertig"].tap()
     }
@@ -88,9 +88,21 @@ final class WebsiteAppUITests: XCTestCase {
 
     @MainActor
     private func homeBookmark(in app: XCUIApplication) -> XCUIElement {
-        // This subtitle is native, stable and independent of website marketing
-        // copy; UIKit may combine the two labels into the accessible cell label.
-        app.tables.cells.matching(NSPredicate(format: "label CONTAINS %@", "Startseite")).firstMatch
+        // The identifier comes from the actual sanitized stored URL; matching
+        // cell labels is unreliable when UIKit exposes subtitle labels separately.
+        app.tables.cells["jagdlatein.bookmark.https://jagdlatein.de/"].firstMatch
+    }
+
+    @MainActor
+    private func assertHomeBookmark(in app: XCUIApplication, message: String) {
+        let present = waitFor(homeBookmark(in: app), timeout: 10)
+        if !present {
+            // This test has visited only the public homepage. Limit diagnostics
+            // to its native bookmark table, excluding the website/access tokens.
+            print("Public homepage bookmark table at failure: " +
+                  String(app.tables.debugDescription.prefix(8000)))
+        }
+        XCTAssertTrue(present, message)
     }
 
     private func remainingTimeout(_ requested: TimeInterval) -> TimeInterval {

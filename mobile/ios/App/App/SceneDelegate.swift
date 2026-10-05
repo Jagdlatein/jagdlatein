@@ -485,6 +485,8 @@ private final class BookmarkViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         let item = store.items[indexPath.row]
+        // Derived from the real sanitized store entry, never from test fixtures.
+        cell.accessibilityIdentifier = "jagdlatein.bookmark." + item.url.absoluteString
         cell.textLabel?.text = item.title
         cell.textLabel?.font = .preferredFont(forTextStyle: .body)
         cell.textLabel?.adjustsFontForContentSizeCategory = true
