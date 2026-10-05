@@ -12,6 +12,12 @@ core/.build/
 core/.swiftpm/
 DerivedData/
 ios-preview-result.json
+ios-testflight-result.json
+*.p8
+*.p12
+*.mobileprovision
+*.cer
+*.certSigningRequest
 *.ipa
 *.xcarchive
 .DS_Store

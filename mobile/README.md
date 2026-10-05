@@ -2,7 +2,7 @@
 
 Die iOS-Entwicklungsversion lädt **https://www.jagdlatein.de/** direkt in einer nativen `WKWebView`. Die Website leitet auf `https://jagdlatein.de/` weiter; beide eigenen HTTPS-Adressen werden unterstützt. Inhalte, Fotos, Menü und laufende Website-Änderungen stammen somit aus dem bestehenden Angebot. Es gibt keinen zweiten Lernkatalog und keine Kopie der kostenpflichtigen Kursinhalte im App-Paket.
 
-**Stand: Website-basierte Entwicklungsversion, erfolgreich auf dem Mac gebaut und im iPhone-Simulator geprüft. Am 5. Oktober 2026 bestanden [neun Swift-/WebKit-Tests und der vollständige Bedienungstest](https://github.com/Jagdlatein/jagdlatein/actions/runs/37334489446) mit Xcode 26.3, iPhone 17 Pro und iOS 26.2. Geprüfte native Quellen: Commit `3df56e0`. Die zwei Windows-Projekttests bestehen ebenfalls; npm audit meldet keine bekannten Sicherheitslücken in den mobilen Entwicklungswerkzeugen. Noch keine auf einem echten iPhone getestete oder im App Store veröffentlichte Version.**
+**Stand: Website-basierte Entwicklungsversion, erfolgreich auf dem Mac gebaut und im iPhone-Simulator geprüft. Am 5. Oktober 2026 bestanden [neun Swift-/WebKit-Tests und der vollständige Bedienungstest](https://github.com/Jagdlatein/jagdlatein/actions/runs/37334489446) mit Xcode 26.3, iPhone 17 Pro und iOS 26.2. Geprüfte native Quellen: Commit `3df56e0`. Auch die fünf lokalen Prüfungen unter Windows bestehen, einschließlich der TestFlight-Profilprüfung; npm audit meldet keine bekannten Sicherheitslücken in den mobilen Entwicklungswerkzeugen. Noch keine auf einem echten iPhone getestete oder im App Store veröffentlichte Version.**
 
 ## Umsetzung
 
@@ -56,6 +56,51 @@ Auf einem vorhandenen Mac mit Xcode und PowerShell:
 ```
 
 Projekt in Xcode öffnen: `mobile/ios/App/App.xcodeproj`. Die vorläufige Bundle-ID `de.jagdlatein.preview` muss vor einer echten Veröffentlichung durch die bestätigte Apple-App-ID ersetzt werden. Ein Signing-Team ist noch nicht hinterlegt.
+
+## TestFlight nach Apples Freischaltung
+
+`Enrollment pending` bedeutet, dass die Registrierung noch bearbeitet wird. Das kostenlose Entwicklerprofil und die installierte TestFlight-App allein ermöglichen keinen Upload dieser App. Erst mit aktivierter Mitgliedschaft werden App-ID, App-Store-Connect-Eintrag und Signierung eingerichtet. Auf dem Testgerät wird außerdem die kostenlose TestFlight-App benötigt.
+
+`scripts/build-ios-testflight.ps1` und `.github/workflows/ios-testflight.yml` bereiten diesen Ablauf vor. **Noch kein Signaturzertifikat importiert, keine Apple-Zugangsdaten gespeichert, keine IPA exportiert oder hochgeladen.** Der bisher bestätigte Mac-Test betrifft weiterhin den Simulator. Das neue Export-/Upload-Verfahren kann erst mit den tatsächlichen Apple-Dateien und der finalen App-ID vollständig geprüft werden.
+
+Lokale Vorbereitung prüfen, ohne Apple-Zugangsdaten:
+
+```powershell
+Set-Location 'C:\Projekte\jagdlatein-github'
+& .\scripts\build-ios-testflight.ps1 -Step Check
+```
+
+Die manuell gestartete GitHub-Aktion hat vier getrennte Modi:
+
+| Modus | Wirkung |
+| --- | --- |
+| `Check` (Vorgabe) | Prüft Quellen und Werkzeuge; keine Apple-Verbindung. |
+| `DeviceArchive` | Kompiliert auf dem Mac für echte iPhone-/iPad-Prozessoren, ohne Signierung. Keine installierbare TestFlight-Version. |
+| `Export` | Erstellt mit vorhandenen Apple-Dateien ein signiertes Archiv und eine IPA. Kein Upload. |
+| `Upload` | Erstellt die IPA, prüft sie mit Apples Werkzeug und sendet sie ausdrücklich an App Store Connect. Keine App-Store-Einreichung und keine automatische Testereinladung. |
+
+Der Workflow hat keinen Push-/PR-Auslöser. Er muss zunächst im Standardbranch vorhanden sein, damit GitHubs manuelle Workflow-Auswahl verfügbar wird. Er nimmt ausschließlich den geprüften Entwicklungsbranch oder `main` an. Die bestehende Simulator-Aktion bleibt getrennt.
+
+Vor dem ersten signierten Lauf richtet der Kontoinhaber eine GitHub-Umgebung `ios-testflight` ein, begrenzt sie auf diese Branches und aktiviert eine Freigabe durch den Kontoinhaber. Die Umgebung erhält folgende **Variablen**:
+
+- `IOS_TEAM_ID`: Apple-Team-ID des aktivierten Kontos.
+- `IOS_BUNDLE_ID`: bestätigte finale App-ID, übereinstimmend in Apple-Profil und App Store Connect. Der Platzhalter `de.jagdlatein.preview` wird für die Signierung abgelehnt.
+- `ASC_KEY_ID` und `ASC_ISSUER_ID`: Kennungen eines vorhandenen Team-API-Schlüssels für den ausdrücklich gewählten Upload.
+
+API-Zugang wird zunächst vom Kontoinhaber in App Store Connect beantragt. Für den späteren Upload genügt die Rolle `Developer`; eine Admin-Rolle ist dafür nicht erforderlich. Ein Team-API-Schlüssel kann auf alle Apps dieses Apple-Kontos zugreifen und ist nicht auf Jagdlatein beschränkt. Seine erstmalige Einrichtung und Speicherung wird erst nach Freischaltung mit dem Kontoinhaber abgestimmt.
+
+Erforderliche **Secrets**, erst nach gesonderter Einrichtung und Freigabe des Speicherorts:
+
+- `IOS_CERTIFICATE_BASE64`: Apple-Distribution-Zertifikat mit passendem privatem Schlüssel als Base64-kodierte `.p12`-Datei.
+- `IOS_CERTIFICATE_PASSWORD`: Passwort dieser `.p12`-Datei.
+- `IOS_PROFILE_BASE64`: gültiges App-Store-Connect-Provisioningprofil als Base64-kodierte `.mobileprovision`-Datei.
+- `ASC_PRIVATE_KEY_BASE64`: privater `.p8`-API-Schlüssel, ausschließlich im Upload-Schritt verfügbar. Für einen manuellen Export ist er nicht erforderlich.
+
+Diese Dateien werden nicht in Git abgelegt oder im Chat eingefügt. Das Skript prüft die tatsächlichen Profilangaben und die Signierung; ein iPad-Testprofil/Ad-hoc-Profil ersetzt kein App-Store-Connect-Profil. Es erzeugt keine Apple-Zertifikate oder Profile und beantragt keine zusätzlichen Apple-Rechte. Die Schlüssel liegen während der Ausführung nur im temporären Bereich des Mac-Runners und werden nach dem Schritt bereinigt. Der Workflow lädt keine IPA oder Schlüssel als GitHub-Artefakt hoch; `Export` prüft somit nur die Erstellung auf dem Runner. Für die Installation wird anschließend ausdrücklich `Upload` verwendet.
+
+Für jeden Export/Upload wird eine noch nicht verwendete Apple-Buildnummer angegeben. Nach erfolgreichem Upload muss Apple den Build zunächst verarbeiten. Der Kontoinhaber beantwortet gegebenenfalls die Verschlüsselungsfragen in App Store Connect; das Projekt behauptet keine ungeprüfte Ausnahme. Danach wird eine interne TestFlight-Testgruppe mit dem eigenen Konto eingerichtet und der Build zugeordnet. Erst dann erscheint die App auf dem iPad. Externe Testgruppen können eine zusätzliche Apple-Beta-Prüfung erfordern.
+
+Quellen: [GitHub: Apple-Signierung auf Mac-Runners](https://docs.github.com/en/actions/how-tos/deploy/deploy-to-third-party-platforms/sign-xcode-applications), [Apple: TestFlight](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/), [Apple: App-Store-Connect-API](https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-api/).
 
 ## Vor TestFlight und App Store noch erforderlich
 
