@@ -160,6 +160,7 @@ namespace Jagdlatein {
                 throw new IOException("Vorhandene P12-Datei wird nicht ueberschrieben.");
             char[] characters = PasswordChars(keyPassword);
             byte[] p12 = null;
+            string cryptographicStage = "encryptedKeyImport";
             try {
                 // Validate P12 password without creating an immutable plaintext string.
                 char[] exportCharacters = PasswordChars(p12Password);
@@ -171,6 +172,7 @@ namespace Jagdlatein {
                     string publicKeyHash = Convert.ToHexString(SHA256.HashData(key.ExportSubjectPublicKeyInfo()));
                     if (!String.Equals(publicKeyHash, expectedPublicKeyHash, StringComparison.Ordinal))
                         throw new InvalidOperationException("Schluessel passt nicht zur gespeicherten Anfrage.");
+                    cryptographicStage = "certificateRead";
 #pragma warning disable SYSLIB0057
                     using (var certificate = new X509Certificate2(File.ReadAllBytes(certificatePath))) {
 #pragma warning restore SYSLIB0057
@@ -180,7 +182,9 @@ namespace Jagdlatein {
                                 !CryptographicOperations.FixedTimeEquals(key.ExportSubjectPublicKeyInfo(), publicKey.ExportSubjectPublicKeyInfo()))
                                 throw new InvalidOperationException("Zertifikat und privater Schluessel gehoeren nicht zusammen.");
                         }
+                        cryptographicStage = "privateKeyCombine";
                         using (var combined = certificate.CopyWithPrivateKey(key)) {
+                            cryptographicStage = "P12Export";
                             p12 = combined.Export(X509ContentType.Pkcs12, p12Password);
                             WriteNew(outputPath, p12);
                         }
@@ -188,7 +192,16 @@ namespace Jagdlatein {
                     }
                 }
             } catch (CryptographicException) {
-                throw new InvalidOperationException("Schluessel oder Zertifikat unlesbar. Passwort und heruntergeladene CER pruefen.");
+                switch (cryptographicStage) {
+                    case "encryptedKeyImport":
+                        throw new InvalidOperationException("Verschluesselter Schluessel konnte nicht geoeffnet werden (encryptedKeyImport). Urspruengliches Schluesselpasswort pruefen.");
+                    case "certificateRead":
+                        throw new InvalidOperationException("Apple-CER konnte nicht verarbeitet werden (certificateRead). Heruntergeladene CER pruefen.");
+                    case "privateKeyCombine":
+                        throw new InvalidOperationException("Zertifikat und privater Schluessel konnten nicht verbunden werden (privateKeyCombine). Lokalen Kryptografieanbieter pruefen.");
+                    default:
+                        throw new InvalidOperationException("P12 konnte nicht verschluesselt exportiert werden (P12Export). Lokalen Kryptografieanbieter pruefen.");
+                }
             } finally {
                 Array.Clear(characters, 0, characters.Length);
                 if (p12 != null) Array.Clear(p12, 0, p12.Length);

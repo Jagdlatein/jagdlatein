@@ -86,9 +86,15 @@ namespace Jagdlatein {
         private static void Require(bool condition, string message) {
             if (!condition) throw new Exception(message);
         }
-        private static void Reject(Action action, string outputPath, string message) {
+        private static void Reject(Action action, string outputPath, string message, string expectedError = null) {
             bool rejected = false;
-            try { action(); } catch (InvalidOperationException) { rejected = true; }
+            try { action(); } catch (InvalidOperationException exception) {
+                rejected = true;
+                if (expectedError != null) {
+                    Require(exception.Message == expectedError, "Fehlermeldung nennt nicht ausschliesslich die erwartete Kryptografie-Stufe.");
+                    Require(exception.InnerException == null, "Fehlermeldung enthaelt eine ungefilterte innere Ausnahme.");
+                }
+            }
             Require(rejected, message);
             Require(!File.Exists(outputPath), "Abgewiesener Export hat eine Datei hinterlassen.");
         }
@@ -151,7 +157,8 @@ namespace Jagdlatein {
                     }
                     passed++;
                     string badOutput = Path.Combine(directory, "rejected.p12");
-                    Reject(() => IosSigningCrypto.ExportP12(keyPath, cert, badOutput, fingerprint, wrongPassword, password), badOutput, "Falsches Key-Passwort akzeptiert.");
+                    Reject(() => IosSigningCrypto.ExportP12(keyPath, cert, badOutput, fingerprint, wrongPassword, password), badOutput, "Falsches Key-Passwort akzeptiert.",
+                        "Verschluesselter Schluessel konnte nicht geoeffnet werden (encryptedKeyImport). Urspruengliches Schluesselpasswort pruefen.");
                     passed++;
                     Reject(() => IosSigningCrypto.ExportP12(keyPath, cert, badOutput, new string('0', 64), password, password), badOutput, "Falsche Anfragezuordnung akzeptiert.");
                     passed++;
