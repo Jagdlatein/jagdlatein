@@ -59,7 +59,7 @@ Projekt in Xcode öffnen: `mobile/ios/App/App.xcodeproj`. Die vorläufige Bundle
 
 ## TestFlight nach Apples Freischaltung
 
-`Enrollment pending` bedeutet, dass die Registrierung noch bearbeitet wird. Das kostenlose Entwicklerprofil und die installierte TestFlight-App allein ermöglichen keinen Upload dieser App. Erst mit aktivierter Mitgliedschaft werden App-ID, App-Store-Connect-Eintrag und Signierung eingerichtet. Auf dem Testgerät wird außerdem die kostenlose TestFlight-App benötigt.
+Die Apple-Developer-Mitgliedschaft wurde am 6. Oktober 2026 im angemeldeten Konto als aktiv geprüft. Die feste App-ID `de.jagdlatein.app` ist registriert; der deutschsprachige App-Store-Connect-Eintrag **Jagdlatein** ist unter der Apple-App-ID `6819820561` angelegt. Dieser Eintrag allein ist noch kein hochgeladener oder installierbarer Build. Auf dem Testgerät wird außerdem die kostenlose TestFlight-App benötigt.
 
 `scripts/build-ios-testflight.ps1` und `.github/workflows/ios-testflight.yml` bereiten diesen Ablauf vor. **Noch kein Signaturzertifikat importiert, keine Apple-Zugangsdaten gespeichert, keine IPA exportiert oder hochgeladen.** Der bisher bestätigte Mac-Test betrifft weiterhin den Simulator. Das neue Export-/Upload-Verfahren kann erst mit den tatsächlichen Apple-Dateien und der finalen App-ID vollständig geprüft werden.
 
@@ -69,6 +69,20 @@ Lokale Vorbereitung prüfen, ohne Apple-Zugangsdaten:
 Set-Location 'C:\Projekte\jagdlatein-github'
 & .\scripts\build-ios-testflight.ps1 -Step Check
 ```
+
+Ein Signierungszertifikat lässt sich auch ohne eigenen Mac vorbereiten. `scripts/setup-ios-signing.ps1` verwendet unter Windows PowerShell 7.4 oder neuer und die integrierten .NET-Kryptografiefunktionen. Sein Standardmodus `Check` erzeugt keine Schlüssel. Die 13 lokalen Kryptografieprüfungen verwenden ausschließlich synthetische Zertifikate; sie bestätigen keine echte Apple-Signierung.
+
+```powershell
+pwsh -NoProfile -File .\scripts\setup-ios-signing.ps1 -Step Check
+```
+
+Erst für die tatsächliche Apple-Zertifikatsanfrage wird ausdrücklich `CreateCsr` aufgerufen. Der Benutzer gibt und bestätigt dabei selbst ein Passwort mit mindestens zwölf Zeichen. Die Anfrage und der mit AES-256/PBKDF2 verschlüsselte private RSA-2048-Schlüssel werden in einem eigenen geschützten Ordner unter `%LOCALAPPDATA%\Jagdlatein\ios-signing` abgelegt. Vorhandene Dateien werden nicht überschrieben; es werden keine Schlüssel oder Passwörter an Apple übertragen.
+
+```powershell
+pwsh -NoProfile -File .\scripts\setup-ios-signing.ps1 -Step CreateCsr -CommonName 'Jagdlatein iOS' -ContactEmail 'info@jagdlatein.de'
+```
+
+Nur die ausgegebene `.certSigningRequest` wird nach ausdrücklicher Freigabe im Apple-Formular für ein **Apple Distribution**-Zertifikat hochgeladen. Nach dem Download der `.cer` kann `ExportP12` diese mit genau dem vorhandenen privaten Schlüssel verbinden. Dafür werden die ausgegebene Anfrage-ID, der tatsächliche Downloadpfad und ein selbst festgelegtes P12-Passwort benötigt. Das Skript prüft Schlüsselzuordnung, Gültigkeit und Signaturverwendung. Es prüft weder Apples Vertrauenskette noch den Sperrstatus. Der Mac-Build prüft die gültige Signierungsidentität, das Apple-Profil und die App-Signatur; beim Upload erfolgt zusätzlich Apples Annahmeprüfung. Eine gesonderte Sperrprüfung ist nicht eingerichtet. Privater Schlüssel, P12 und Passwörter werden nicht in Git oder im Chat abgelegt. Die spätere Speicherung als GitHub-Secrets erfordert die Freigabe des vorgesehenen Speicherorts.
 
 Die manuell gestartete GitHub-Aktion hat vier getrennte Modi:
 
@@ -81,7 +95,7 @@ Die manuell gestartete GitHub-Aktion hat vier getrennte Modi:
 
 Der Workflow hat keinen Push-/PR-Auslöser. Er muss zunächst im Standardbranch vorhanden sein, damit GitHubs manuelle Workflow-Auswahl verfügbar wird. Er nimmt ausschließlich den geprüften Entwicklungsbranch oder `main` an. Die bestehende Simulator-Aktion bleibt getrennt.
 
-Vor dem ersten signierten Lauf richtet der Kontoinhaber eine GitHub-Umgebung `ios-testflight` ein, begrenzt sie auf diese Branches und aktiviert eine Freigabe durch den Kontoinhaber. Die Umgebung erhält folgende **Variablen**:
+Die GitHub-Umgebung `ios-testflight` wurde am 6. Oktober 2026 angelegt und auf die Branches `main` und `codex/ios-website-preview` begrenzt. Ein signierter Lauf verlangt die Freigabe des Kontoinhabers `Jagdlatein`. Noch sind dort keine Apple-Secrets gespeichert. Vor dem ersten signierten Lauf werden zusätzlich die Administrator-Ausnahme und die freigegebenen Zugangsdaten eingerichtet. Die Umgebung erhält folgende **Variablen**:
 
 - `IOS_TEAM_ID`: Apple-Team-ID des aktivierten Kontos.
 - `IOS_BUNDLE_ID`: bestätigte finale App-ID, übereinstimmend in Apple-Profil und App Store Connect. Der Platzhalter `de.jagdlatein.preview` wird für die Signierung abgelehnt.
