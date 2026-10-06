@@ -26,12 +26,23 @@ function Invoke-IOSPublicProgram {
 }
 
 function Invoke-IOSPrivateProgram {
-    param([string]$Program, [string[]]$ProgramArguments, [switch]$Capture)
+    param(
+        [string]$Program,
+        [string[]]$ProgramArguments,
+        [switch]$Capture,
+        [ValidateSet('Signaturpruefung', 'Zertifikatsextraktion')]
+        [string]$Operation
+    )
     # Native errors may contain command arguments. Do not echo either stream
     # for tools that handle a private key, certificate password or keychain.
+    $iosFailureName = [IO.Path]::GetFileName($Program)
+    if ($Operation) { $iosFailureName += ' (' + $Operation + ')' }
     try { $iosPrivateOutput = & $Program @ProgramArguments 2>&1 }
-    catch { throw ('Vertraulicher iOS-Schritt fehlgeschlagen: ' + [IO.Path]::GetFileName($Program)) }
-    if ($LASTEXITCODE -ne 0) { throw ('Vertraulicher iOS-Schritt fehlgeschlagen: ' + [IO.Path]::GetFileName($Program)) }
+    catch { throw ('Vertraulicher iOS-Schritt fehlgeschlagen: ' + $iosFailureName) }
+    if ($LASTEXITCODE -ne 0) {
+        $iosExitDescription = if ($Operation) { '; Exit-Code ' + [int]$LASTEXITCODE } else { '' }
+        throw ('Vertraulicher iOS-Schritt fehlgeschlagen: ' + $iosFailureName + $iosExitDescription)
+    }
     if ($Capture) { return (($iosPrivateOutput | ForEach-Object { [string]$_ }) -join [Environment]::NewLine) }
 }
 
@@ -102,7 +113,7 @@ function Assert-IOSApp {
     $iosInfoXML = Join-Path $TemporaryDirectory 'app-info.plist'
     Invoke-IOSPrivateProgram -Program 'plutil' -ProgramArguments @('-convert', 'xml1', '-o', $iosInfoXML, (Join-Path $App 'Info.plist'))
     if ($Signed) {
-        Invoke-IOSPrivateProgram -Program 'codesign' -ProgramArguments @('--verify', '--deep', '--strict', $App)
+        Invoke-IOSPrivateProgram -Program 'codesign' -ProgramArguments @('--verify', '--deep', '--strict', $App) -Operation Signaturpruefung
         $iosEmbeddedProfile = Join-Path $App 'embedded.mobileprovision'
         if (-not (Test-Path -LiteralPath $iosEmbeddedProfile -PathType Leaf)) { throw 'Signierte App enthält kein Apple-Profil.' }
         $iosEmbeddedXML = Join-Path $TemporaryDirectory 'embedded-profile.plist'
@@ -115,7 +126,8 @@ function Assert-IOSApp {
         if ($LASTEXITCODE -ne 0 -or $iosEntitlements -notmatch '<plist') { throw 'App-Signierungsrechte konnten nicht geprüft werden.' }
         [IO.File]::WriteAllText($iosEntitlementsXML, $iosEntitlements, [Text.UTF8Encoding]::new($false))
         $iosCertificatePrefix = Join-Path $TemporaryDirectory 'app-certificate-'
-        Invoke-IOSPrivateProgram -Program 'codesign' -ProgramArguments @('-d', '--extract-certificates', $iosCertificatePrefix, $App)
+        # codesign's optional prefix requires --name=value as one argument.
+        Invoke-IOSPrivateProgram -Program 'codesign' -ProgramArguments @('-d', ('--extract-certificates=' + $iosCertificatePrefix), $App) -Operation Zertifikatsextraktion
         $iosSigningCertificate = $iosCertificatePrefix + '0'
         if (-not (Test-Path -LiteralPath $iosSigningCertificate -PathType Leaf)) { throw 'App-Verteilungszertifikat konnte nicht geprüft werden.' }
         $iosCertBytes = [IO.File]::ReadAllBytes($iosSigningCertificate)
