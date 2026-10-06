@@ -218,17 +218,41 @@ function Assert-IosSigningPath {
     return $iosFullPath
 }
 
+function Test-IosSigningDirectoryPrivacy {
+    param([Security.AccessControl.DirectorySecurity]$Acl, [Security.Principal.SecurityIdentifier]$UserSid)
+    $iosInheritance = [Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [Security.AccessControl.InheritanceFlags]::ObjectInherit
+    $iosRules = @($Acl.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier]))
+    return ($Acl.AreAccessRulesProtected -and $Acl.GetOwner([Security.Principal.SecurityIdentifier]).Equals($UserSid) -and
+        $iosRules.Count -eq 1 -and $iosRules[0].IdentityReference.Equals($UserSid) -and
+        $iosRules[0].AccessControlType -eq [Security.AccessControl.AccessControlType]::Allow -and
+        $iosRules[0].FileSystemRights -eq [Security.AccessControl.FileSystemRights]::FullControl -and
+        $iosRules[0].InheritanceFlags -eq $iosInheritance -and
+        $iosRules[0].PropagationFlags -eq [Security.AccessControl.PropagationFlags]::None -and -not $iosRules[0].IsInherited)
+}
+
 function Set-IosSigningDirectoryPrivacy {
     param([string]$Path)
     $iosVerifiedPath = Assert-IosSigningPath -Path $Path
     if (-not (Test-Path -LiteralPath $iosVerifiedPath -PathType Container)) { [void][IO.Directory]::CreateDirectory($iosVerifiedPath) }
     $iosUserSid = [Security.Principal.WindowsIdentity]::GetCurrent().User
+    $iosDirectory = [IO.DirectoryInfo]::new($iosVerifiedPath)
+    $iosReadSections = [Security.AccessControl.AccessControlSections]::Access -bor [Security.AccessControl.AccessControlSections]::Owner
+    $iosExistingAcl = [IO.FileSystemAclExtensions]::GetAccessControl($iosDirectory, $iosReadSections)
+    if (Test-IosSigningDirectoryPrivacy -Acl $iosExistingAcl -UserSid $iosUserSid) { return }
+    if (-not $iosExistingAcl.GetOwner([Security.Principal.SecurityIdentifier]).Equals($iosUserSid)) {
+        throw 'Signierungsordner gehoert nicht dem aktuellen Benutzer. Keine Berechtigungen wurden geaendert.'
+    }
     $iosAcl = [Security.AccessControl.DirectorySecurity]::new()
     $iosAcl.SetAccessRuleProtection($true, $false)
-    $iosAcl.SetOwner($iosUserSid)
     $iosInheritance = [Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [Security.AccessControl.InheritanceFlags]::ObjectInherit
     $iosAcl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new($iosUserSid, [Security.AccessControl.FileSystemRights]::FullControl, $iosInheritance, [Security.AccessControl.PropagationFlags]::None, [Security.AccessControl.AccessControlType]::Allow))
-    Set-Acl -LiteralPath $iosVerifiedPath -AclObject $iosAcl
+    # Persist only the changed DACL; resetting owner/SACL can require privileges
+    # that a normal user does not have, even on an already private directory.
+    [IO.FileSystemAclExtensions]::SetAccessControl($iosDirectory, $iosAcl)
+    $iosVerifiedAcl = [IO.FileSystemAclExtensions]::GetAccessControl($iosDirectory, $iosReadSections)
+    if (-not (Test-IosSigningDirectoryPrivacy -Acl $iosVerifiedAcl -UserSid $iosUserSid)) {
+        throw 'Signierungsordner konnte nicht auf ausschliesslich private Benutzerrechte beschraenkt werden.'
+    }
 }
 
 function Read-IosSigningPassword {

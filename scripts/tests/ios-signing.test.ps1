@@ -1,16 +1,52 @@
 #Requires -Version 7.4
 # Synthetic local cryptography fixtures only. No real Apple identity or account.
+[CmdletBinding()]
+param([switch]$PrivacyOnly)
+
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $iosHelperPath = Join-Path (Split-Path -Parent $PSScriptRoot) 'setup-ios-signing.ps1'
-$iosRealSigningRoot = Join-Path $env:LOCALAPPDATA 'Jagdlatein\ios-signing'
-$iosRootExisted = Test-Path -LiteralPath $iosRealSigningRoot
-& $iosHelperPath -Step Check
-if (-not $iosRootExisted -and (Test-Path -LiteralPath $iosRealSigningRoot)) { throw 'Default-Check hat einen Signierungsordner angelegt.' }
+if (-not $PrivacyOnly) {
+    $iosRealSigningRoot = Join-Path $env:LOCALAPPDATA 'Jagdlatein\ios-signing'
+    $iosRootExisted = Test-Path -LiteralPath $iosRealSigningRoot
+    & $iosHelperPath -Step Check
+    if (-not $iosRootExisted -and (Test-Path -LiteralPath $iosRealSigningRoot)) { throw 'Default-Check hat einen Signierungsordner angelegt.' }
+}
 
 $iosTestRoot = Join-Path ([IO.Path]::GetTempPath()) ('jagdlatein-ios-signing-test-' + [Guid]::NewGuid().ToString('N'))
 [void][IO.Directory]::CreateDirectory($iosTestRoot)
 try {
+    & {
+        $iosPreviousLocalAppData = $env:LOCALAPPDATA
+        try {
+            $env:LOCALAPPDATA = Join-Path $iosTestRoot 'local-appdata'
+            . $iosHelperPath -Step Check
+            $iosPrivacyDirectory = Join-Path $env:LOCALAPPDATA 'Jagdlatein\ios-signing'
+            Set-IosSigningDirectoryPrivacy -Path $iosPrivacyDirectory
+            $iosPrivacySections = [Security.AccessControl.AccessControlSections]::Access -bor [Security.AccessControl.AccessControlSections]::Owner
+            $iosPrivacyInfo = [IO.DirectoryInfo]::new($iosPrivacyDirectory)
+            $iosFirstPrivacyAcl = [IO.FileSystemAclExtensions]::GetAccessControl($iosPrivacyInfo, $iosPrivacySections)
+            $iosExpectedSid = [Security.Principal.WindowsIdentity]::GetCurrent().User
+            $iosPrivacyRules = @($iosFirstPrivacyAcl.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier]))
+            $iosExpectedInheritance = [Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [Security.AccessControl.InheritanceFlags]::ObjectInherit
+            if (-not $iosFirstPrivacyAcl.AreAccessRulesProtected -or -not $iosFirstPrivacyAcl.GetOwner([Security.Principal.SecurityIdentifier]).Equals($iosExpectedSid) -or
+                $iosPrivacyRules.Count -ne 1 -or -not $iosPrivacyRules[0].IdentityReference.Equals($iosExpectedSid) -or
+                $iosPrivacyRules[0].AccessControlType -ne [Security.AccessControl.AccessControlType]::Allow -or
+                $iosPrivacyRules[0].FileSystemRights -ne [Security.AccessControl.FileSystemRights]::FullControl -or
+                $iosPrivacyRules[0].InheritanceFlags -ne $iosExpectedInheritance -or
+                $iosPrivacyRules[0].PropagationFlags -ne [Security.AccessControl.PropagationFlags]::None -or $iosPrivacyRules[0].IsInherited) {
+                throw 'Erster Datenschutzaufruf hat keine ausschliesslich privaten vererbbaren Benutzerrechte hergestellt.'
+            }
+            $iosFirstPrivacySddl = $iosFirstPrivacyAcl.GetSecurityDescriptorSddlForm($iosPrivacySections)
+            Set-IosSigningDirectoryPrivacy -Path $iosPrivacyDirectory
+            $iosRepeatedPrivacyAcl = [IO.FileSystemAclExtensions]::GetAccessControl($iosPrivacyInfo, $iosPrivacySections)
+            if ($iosRepeatedPrivacyAcl.GetSecurityDescriptorSddlForm($iosPrivacySections) -ne $iosFirstPrivacySddl) {
+                throw 'Wiederholter Datenschutzaufruf hat Eigentuemer oder private Benutzerrechte veraendert.'
+            }
+        } finally { $env:LOCALAPPDATA = $iosPreviousLocalAppData }
+    }
+    Write-Host 'iOS-Signierung: erster und wiederholter Verzeichnisschutz mit isoliertem LOCALAPPDATA bestanden.'
+    if ($PrivacyOnly) { return }
     Add-Type -TypeDefinition @'
 using System;
 using System.IO;

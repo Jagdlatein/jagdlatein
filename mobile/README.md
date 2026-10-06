@@ -47,7 +47,7 @@ Danach `http://127.0.0.1:4180/` öffnen. Diese Windows-Vorschau leitet auf die O
 
 `.github/workflows/ios-preview.yml` startet den GitHub-Actions-Build auf `macos-15` ausschließlich für Änderungen am Entwicklungsbranch `codex/ios-website-preview` oder manuell. Der öffentliche Website-Branch `main` bleibt unverändert. Standard-Runner sind bei diesem öffentlichen Repository kostenlos; der Workflow lädt keine kostenpflichtigen Build-Artefakte hoch.
 
-Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Er führt die Swift-/WebKit-Tests aus, kompiliert eine **unsignierte Simulator-App** und prüft im iPhone-Simulator den echten Website-Link „Jetzt freischalten“ sowie die dauerhafte Merkliste vor und nach einem vollständigen App-Neustart. Das verwendete Gerät und die Laufzeit stehen im Build-Ergebnis. Ein frischer Simulatorstart im Builddienst kann mehrere Minuten dauern. Tests auf echten Geräten bleiben vor der Veröffentlichung erforderlich. Die Tests legen kein Konto an und lösen keine Zahlung aus. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
+Der Workflow verwendet PowerShell, Node.js 22 und ausdrücklich Xcode 26.3. Ein eigener paralleler Job erstellt zusätzlich mit `build-ios-testflight.ps1 -Step DeviceArchive` ein unsigniertes Release-Archiv für echte iPhone-/iPad-Geräte und prüft die Geräte-Metadaten; auch dieser Job hat keine Apple-Secrets. Der Simulator-Job führt die Swift-/WebKit-Tests aus, kompiliert eine **unsignierte Simulator-App** und prüft im iPhone-Simulator den echten Website-Link „Jetzt freischalten“ sowie die dauerhafte Merkliste vor und nach einem vollständigen App-Neustart. Das verwendete Gerät und die Laufzeit stehen im Build-Ergebnis. Ein frischer Simulatorstart im Builddienst kann mehrere Minuten dauern. Tests auf echten Geräten bleiben vor der Veröffentlichung erforderlich. Die Tests legen kein Konto an und lösen keine Zahlung aus. Das Buildskript erzeugt außerdem lokal auf dem Mac `Jagdlatein-Simulator.zip`; diese Datei dient dem Simulator und ist **keine installierbare iPhone-IPA**, keine TestFlight-Version und keine Store-Veröffentlichung. Der Workflow benötigt keine Apple-, Supabase- oder PayPal-Secrets.
 
 Auf einem vorhandenen Mac mit Xcode und PowerShell:
 
@@ -61,7 +61,7 @@ Projekt in Xcode öffnen: `mobile/ios/App/App.xcodeproj`. Die vorläufige Bundle
 
 Die Apple-Developer-Mitgliedschaft wurde am 6. Oktober 2026 im angemeldeten Konto als aktiv geprüft. Die feste App-ID `de.jagdlatein.app` ist registriert; der deutschsprachige App-Store-Connect-Eintrag **Jagdlatein** ist unter der Apple-App-ID `6819820561` angelegt. Dieser Eintrag allein ist noch kein hochgeladener oder installierbarer Build. Auf dem Testgerät wird außerdem die kostenlose TestFlight-App benötigt.
 
-`scripts/build-ios-testflight.ps1` und `.github/workflows/ios-testflight.yml` bereiten diesen Ablauf vor. **Noch kein Signaturzertifikat importiert, keine Apple-Zugangsdaten gespeichert, keine IPA exportiert oder hochgeladen.** Der bisher bestätigte Mac-Test betrifft weiterhin den Simulator. Das neue Export-/Upload-Verfahren kann erst mit den tatsächlichen Apple-Dateien und der finalen App-ID vollständig geprüft werden.
+`scripts/build-ios-testflight.ps1` und `.github/workflows/ios-testflight.yml` bereiten diesen Ablauf vor. **Apple-Distribution-Zertifikat und passendes App-Store-Profil für `de.jagdlatein.app` sind angelegt. Der private RSA-Schlüssel liegt verschlüsselt lokal; die P12-Vorbereitung ist noch offen. Noch keine Apple-Secrets in GitHub gespeichert und keine IPA exportiert oder hochgeladen.** Das unsignierte Release-Gerätearchiv wurde im [Mac-Lauf vom 6. Oktober 2026](https://github.com/Jagdlatein/jagdlatein/actions/runs/37515914427) erfolgreich erstellt und geprüft. In demselben Lauf kompilierte die Simulator-App, aber XCTest meldete eine Zeitüberschreitung beim App-Start; der erneute Lauf wartet deshalb zuerst auf den vollständigen Simulatorstart. Ein unsigniertes Gerätearchiv bestätigt weiterhin keine Installation oder echte Gerätemessung. Die CMS-Signatur des heruntergeladenen Apple-Profils wurde auf Integrität geprüft; Team/App-ID und Distribution-Zertifikat stimmen mit den tatsächlich heruntergeladenen Dateien überein. Diese Prüfung ist keine Apple-Vertrauensketten- oder Sperrprüfung.
 
 Lokale Vorbereitung prüfen, ohne Apple-Zugangsdaten:
 
@@ -84,6 +84,16 @@ pwsh -NoProfile -File .\scripts\setup-ios-signing.ps1 -Step CreateCsr -CommonNam
 
 Nur die ausgegebene `.certSigningRequest` wird nach ausdrücklicher Freigabe im Apple-Formular für ein **Apple Distribution**-Zertifikat hochgeladen. Nach dem Download der `.cer` kann `ExportP12` diese mit genau dem vorhandenen privaten Schlüssel verbinden. Dafür werden die ausgegebene Anfrage-ID, der tatsächliche Downloadpfad und ein selbst festgelegtes P12-Passwort benötigt. Das Skript prüft Schlüsselzuordnung, Gültigkeit und Signaturverwendung. Es prüft weder Apples Vertrauenskette noch den Sperrstatus. Der Mac-Build prüft die gültige Signierungsidentität, das Apple-Profil und die App-Signatur; beim Upload erfolgt zusätzlich Apples Annahmeprüfung. Eine gesonderte Sperrprüfung ist nicht eingerichtet. Privater Schlüssel, P12 und Passwörter werden nicht in Git oder im Chat abgelegt. Die spätere Speicherung als GitHub-Secrets erfordert die Freigabe des vorgesehenen Speicherorts.
 
+
+Für die spätere Secret-Speicherung bereitet `scripts/setup-ios-github.ps1` die geprüfte portable GitHub CLI 2.102.0 vor. Sie liegt ausschließlich unter `%LOCALAPPDATA%\Jagdlatein\ios-tools`; der Download wird gegen den offiziellen SHA-256 geprüft. `Check` ist unverändernd und greift weder auf die Anmeldung noch auf private Dateiinhalte zu.
+
+```powershell
+pwsh -NoProfile -File .\scripts\setup-ios-github.ps1 -Step Check
+pwsh -NoProfile -File .\scripts\setup-ios-github.ps1 -Step InstallTools
+```
+
+Erst nach Freigabe der konkreten Dateien und des Speicherorts wird `-Step SaveSecrets` mit deren vollständigen Pfaden aufgerufen. Der Helfer prüft den tatsächlich angemeldeten Eigentümer, Adminzugriff, den erforderlichen Reviewer und die beiden Branchregeln. Er verwendet den vorhandenen Git-Credential-Manager-Token nur im Kindprozess, übergibt Secret-Werte über stdin und speichert keine `gh`-Anmeldung. Ein P12-Passwort wird verdeckt abgefragt und vor der ersten Speicherung gegen die P12 samt privatem Schlüssel geprüft. Bereits bestehende ausgewählte Secret-Namen werden abgewiesen; Ersetzen ist nur mit dem ausdrücklichen `-AllowUpdate` möglich. Die 26 synthetischen Prüfungen sowie die Prüfung der tatsächlichen GitHub-Zielmetadaten bestanden; es wurde noch kein echtes Secret gespeichert. Die gesonderte Dateirechteprüfung der Signierung besteht auch beim wiederholten Aufruf.
+
 Die manuell gestartete GitHub-Aktion hat vier getrennte Modi:
 
 | Modus | Wirkung |
@@ -95,13 +105,13 @@ Die manuell gestartete GitHub-Aktion hat vier getrennte Modi:
 
 Der Workflow hat keinen Push-/PR-Auslöser. Er muss zunächst im Standardbranch vorhanden sein, damit GitHubs manuelle Workflow-Auswahl verfügbar wird. Er nimmt ausschließlich den geprüften Entwicklungsbranch oder `main` an. Die bestehende Simulator-Aktion bleibt getrennt.
 
-Die GitHub-Umgebung `ios-testflight` wurde am 6. Oktober 2026 angelegt und auf die Branches `main` und `codex/ios-website-preview` begrenzt. Ein signierter Lauf verlangt die Freigabe des Kontoinhabers `Jagdlatein`. Noch sind dort keine Apple-Secrets gespeichert. Vor dem ersten signierten Lauf werden zusätzlich die Administrator-Ausnahme und die freigegebenen Zugangsdaten eingerichtet. Die Umgebung erhält folgende **Variablen**:
+Die GitHub-Umgebung `ios-testflight` wurde am 6. Oktober 2026 angelegt und auf die Branches `main` und `codex/ios-website-preview` begrenzt. Ein signierter Lauf verlangt die Freigabe des Kontoinhabers `Jagdlatein`. Die Administrator-Ausnahme wurde deaktiviert; der Kontoinhaber bestätigt daher auch selbst gestartete signierte Läufe. Noch sind dort keine Apple-Secrets gespeichert. Die nicht geheimen Apple-Team-/App- und API-Schlüssel-Kennungen wurden bereits als folgende **Variablen** eingerichtet:
 
 - `IOS_TEAM_ID`: Apple-Team-ID des aktivierten Kontos.
 - `IOS_BUNDLE_ID`: bestätigte finale App-ID, übereinstimmend in Apple-Profil und App Store Connect. Der Platzhalter `de.jagdlatein.preview` wird für die Signierung abgelehnt.
 - `ASC_KEY_ID` und `ASC_ISSUER_ID`: Kennungen eines vorhandenen Team-API-Schlüssels für den ausdrücklich gewählten Upload.
 
-API-Zugang wird zunächst vom Kontoinhaber in App Store Connect beantragt. Für den späteren Upload genügt die Rolle `Developer`; eine Admin-Rolle ist dafür nicht erforderlich. Ein Team-API-Schlüssel kann auf alle Apps dieses Apple-Kontos zugreifen und ist nicht auf Jagdlatein beschränkt. Seine erstmalige Einrichtung und Speicherung wird erst nach Freischaltung mit dem Kontoinhaber abgestimmt.
+Der API-Zugang wurde von Apple genehmigt. Der Kontoinhaber hat den Team-API-Schlüssel **Jagdlatein TestFlight** mit der Rolle `Developer` erstellt; eine Admin-Rolle ist für den Upload nicht erforderlich. Ein Team-API-Schlüssel kann auf alle Apps dieses Apple-Kontos zugreifen und ist nicht auf Jagdlatein beschränkt. Der einmalige Download wurde ausgelöst; der tatsächliche lokale Speicherort der privaten Datei ist noch zu bestätigen. Die Speicherung dieser Datei als GitHub-Secret ist noch nicht freigegeben oder erfolgt.
 
 Erforderliche **Secrets**, erst nach gesonderter Einrichtung und Freigabe des Speicherorts:
 
