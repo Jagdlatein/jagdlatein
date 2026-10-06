@@ -36,3 +36,28 @@ jobs:
         run: ./scripts/build-ios-preview.ps1
       - name: Prüfergebnis anzeigen
         run: Get-Content -LiteralPath mobile/ios-preview-result.json
+
+  device_archive:
+    # Physical-device compilation requires no Apple credentials or signing.
+    runs-on: macos-15
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Projekt lesen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Node.js 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Release-Archiv für echte iPhone-/iPad-Geräte prüfen
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+          IOS_BUNDLE_ID: de.jagdlatein.app
+        run: ./scripts/build-ios-testflight.ps1 -Step DeviceArchive
+      - name: Gerätearchiv-Ergebnis anzeigen
+        run: Get-Content -LiteralPath mobile/ios-testflight-result.json
