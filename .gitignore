@@ -4,3 +4,11 @@ node_modules
 .env.local
 .env.*.local
 /.vercel
+
+# Apple signing files stay outside source control.
+*.p8
+*.p12
+*.pfx
+*.key.pem
+*.certSigningRequest
+*.mobileprovision
