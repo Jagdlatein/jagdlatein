@@ -48,6 +48,11 @@ try {
     $iosDevice = $iosRuntime.Value | Where-Object { $_.isAvailable -and $_.name -like 'iPhone*' } | Select-Object -First 1
     $iosUITestResult = Join-Path $mobileRoot ('DerivedData/WebsiteUITests-' + [Guid]::NewGuid().ToString('N') + '.xcresult')
     Write-Host ('iOS-Bedienprüfung: ' + $iosDevice.name + ' / ' + $iosRuntime.Name)
+    # Wait for this exact simulator to finish booting before XCTest launches the app.
+    if ($iosDevice.state -eq 'Shutdown') {
+        Invoke-IOSProgram -Program 'xcrun' -ProgramArguments @('simctl', 'boot', $iosDevice.udid)
+    }
+    Invoke-IOSProgram -Program 'xcrun' -ProgramArguments @('simctl', 'bootstatus', $iosDevice.udid, '-b')
     Invoke-IOSProgram -Program 'xcodebuild' -ProgramArguments @(
         '-project', 'ios/App/App.xcodeproj', '-scheme', 'App',
         '-configuration', 'Debug', '-sdk', 'iphonesimulator', '-destination', ('platform=iOS Simulator,id=' + $iosDevice.udid),
