@@ -111,7 +111,7 @@ Die GitHub-Umgebung `ios-testflight` wurde am 6. Oktober 2026 angelegt und auf d
 - `IOS_BUNDLE_ID`: bestätigte finale App-ID, übereinstimmend in Apple-Profil und App Store Connect. Der Platzhalter `de.jagdlatein.preview` wird für die Signierung abgelehnt.
 - `ASC_KEY_ID` und `ASC_ISSUER_ID`: Kennungen eines vorhandenen Team-API-Schlüssels für den ausdrücklich gewählten Upload.
 
-Der API-Zugang wurde von Apple genehmigt. Der Kontoinhaber hat den Team-API-Schlüssel **Jagdlatein TestFlight** mit der Rolle `Developer` erstellt; eine Admin-Rolle ist für den Upload nicht erforderlich. Ein Team-API-Schlüssel kann auf alle Apps dieses Apple-Kontos zugreifen und ist nicht auf Jagdlatein beschränkt. Der einmalige Download wurde ausgelöst; der tatsächliche lokale Speicherort der privaten Datei ist noch zu bestätigen. Die Speicherung dieser Datei als GitHub-Secret ist noch nicht freigegeben oder erfolgt.
+Der API-Zugang wurde von Apple genehmigt. Der Team-API-Schlüssel **Jagdlatein TestFlight Ersatz** wurde nach Freigabe mit derselben Rolle `Developer` erstellt; eine Admin-Rolle ist für den Upload nicht erforderlich. Ein Team-API-Schlüssel kann auf alle Apps dieses Apple-Kontos zugreifen und ist nicht auf Jagdlatein beschränkt. Für den Ersatz ist der einmalige Download vorbereitet; die tatsächlich gespeicherte Datei muss noch bestätigt werden. Der freigegebene Widerruf des alten, nicht auffindbaren Schlüssels erfolgt nach der Speicherprüfung. Die Speicherung der privaten Datei als GitHub-Secret ist noch nicht freigegeben oder erfolgt.
 
 Erforderliche **Secrets**, erst nach gesonderter Einrichtung und Freigabe des Speicherorts:
 
