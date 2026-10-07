@@ -24,6 +24,8 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     }()
     private let toolbar = UIToolbar()
     private let heading = UILabel()
+    private let brandLogo = UIImageView(image: UIImage(named: "BrandLogo"))
+    private let brandHeader = UIStackView()
     private let progress = UIProgressView(progressViewStyle: .bar)
     private let refresh = UIRefreshControl()
     private let errorPanel = UIStackView()
@@ -67,8 +69,17 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         heading.adjustsFontForContentSizeCategory = true
         heading.textColor = .label
         heading.accessibilityTraits = .header
-        heading.textAlignment = .center
+        heading.textAlignment = .left
+        heading.numberOfLines = 0
         heading.setContentCompressionResistancePriority(.required, for: .vertical)
+        brandLogo.contentMode = .scaleAspectFit
+        brandLogo.isAccessibilityElement = false
+        brandLogo.translatesAutoresizingMaskIntoConstraints = false
+        brandHeader.axis = .horizontal
+        brandHeader.alignment = .center
+        brandHeader.spacing = 10
+        brandHeader.addArrangedSubview(brandLogo)
+        brandHeader.addArrangedSubview(heading)
         toolbar.tintColor = accent
         toolbar.barTintColor = background
         toolbar.isTranslucent = false
@@ -76,16 +87,19 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         progress.progressTintColor = accent
         progress.trackTintColor = .clear
         progress.isHidden = true
-        for child in [heading, webView, progress, toolbar] {
+        for child in [brandHeader, webView, progress, toolbar] {
             child.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(child)
         }
         let safe = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            heading.topAnchor.constraint(equalTo: safe.topAnchor, constant: 10),
-            heading.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 16),
-            heading.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -16),
-            progress.topAnchor.constraint(equalTo: heading.bottomAnchor, constant: 10),
+            brandLogo.widthAnchor.constraint(equalToConstant: 36),
+            brandLogo.heightAnchor.constraint(equalToConstant: 36),
+            brandHeader.topAnchor.constraint(equalTo: safe.topAnchor, constant: 10),
+            brandHeader.centerXAnchor.constraint(equalTo: safe.centerXAnchor),
+            brandHeader.leadingAnchor.constraint(greaterThanOrEqualTo: safe.leadingAnchor, constant: 16),
+            brandHeader.trailingAnchor.constraint(lessThanOrEqualTo: safe.trailingAnchor, constant: -16),
+            progress.topAnchor.constraint(equalTo: brandHeader.bottomAnchor, constant: 10),
             progress.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
             progress.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
             progress.heightAnchor.constraint(equalToConstant: 2),
