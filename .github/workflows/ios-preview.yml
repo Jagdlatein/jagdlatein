@@ -38,7 +38,7 @@ jobs:
           npm install --prefix $iosSqlRuntime --ignore-scripts --no-fund --no-audit --package-lock=false '@electric-sql/pglite@0.3.14'
           if ($LASTEXITCODE -ne 0) { throw 'Lokale SQL-Testbibliothek fehlt.' }
           $env:JL_PAYPAL_TEST_PGLITE_PATH = Join-Path $iosSqlRuntime 'node_modules/@electric-sql/pglite'
-          node --test scripts/test-account-generation.cjs scripts/test-account-registration.cjs scripts/test-account-deletion.cjs scripts/test-apple-subscriptions.cjs scripts/test-personal-data-access.cjs scripts/test-account-access-middleware.cjs scripts/test-account-paypal-management.cjs scripts/test-community-server.cjs scripts/test-login-destination.cjs
+          node --test scripts/test-account-generation.cjs scripts/test-account-registration.cjs scripts/test-account-deletion.cjs scripts/test-apple-subscriptions.cjs scripts/test-personal-data-access.cjs scripts/test-account-access-middleware.cjs scripts/test-account-paypal-management.cjs scripts/test-community-server.cjs scripts/test-login-destination.cjs scripts/test-sandbox-communications.cjs scripts/test-legacy-quiz-evidence.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Kontoprüfungen fehlgeschlagen.' }
       - name: Website kompilieren
         env:

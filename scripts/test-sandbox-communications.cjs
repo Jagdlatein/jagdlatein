@@ -165,7 +165,8 @@ for (const route of ['register', 'send']) {
     const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined });
     const response = await ctx.load(`app/api/push/${route}/route.js`).POST(new Request(
       `https://jagdlatein-test.vercel.app/api/push/${route}`, {
-        method: 'POST', headers: { authorization: `Bearer ${ctx.env.ADMIN_PASS}`, 'content-type': 'application/json' },
+        method: 'POST', headers: { authorization: `Bearer ${ctx.env.ADMIN_PASS}`, 'content-type': 'application/json',
+          origin: 'https://jagdlatein-test.vercel.app' },
         body: JSON.stringify(route === 'register' ? { token: 'isolated-fake-token' } : { title: 'Test', body: 'Test body' }),
       }
     ));
@@ -173,6 +174,18 @@ for (const route of ['register', 'send']) {
     assert.equal(ctx.calls.filter(call => call.type === 'firebase-send').length, route === 'send' ? 1 : 0);
   });
 }
+
+test('An authenticated push registration from another origin cannot write a device token', async () => {
+  const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined });
+  const response = await ctx.load('app/api/push/register/route.js').POST(new Request(
+    'https://jagdlatein-test.vercel.app/api/push/register', { method: 'POST',
+      headers: { 'content-type': 'application/json', origin: 'https://foreign.example.invalid' },
+      body: JSON.stringify({ token: 'isolated-fake-token' }),
+    }
+  ));
+  assert.equal(response.status, 403);
+  assert.ok(!ctx.calls.some(call => call.type === 'database-client' || call.type === 'push-write'));
+});
 
 test('Sandbox PayPal requests reject every live/default API before credentials leave the process', async () => {
   for (const api of [undefined, 'https://api-m.paypal.com', 'https://api.paypal.com']) {

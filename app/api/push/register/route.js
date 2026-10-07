@@ -61,6 +61,10 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
+    if ([401, 403, 415].includes(error?.status)) {
+      return Response.json({ success: false, error: error.message },
+        { status: error.status, headers: { "Cache-Control": "private, no-store" } });
+    }
     console.error("Push API Fehler:", error);
 
     return Response.json(
