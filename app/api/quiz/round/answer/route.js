@@ -17,6 +17,6 @@ export async function POST(req) {
     return roundResponse(await rankedQuizRpc("answer_ranked_quiz", {
       p_email: account.email, p_round_id: quizId(body.roundId), p_question_id: body.questionId,
       p_answer_id: body.answerId, p_request_id: quizId(body.requestId),
-    }));
+    }, account));
   } catch (error) { return quizFailure(error); }
 }

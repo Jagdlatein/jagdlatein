@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
-import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
+import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, isAccountSessionConfigured, isAccountGenerationEnabled, normalizeAccountEmail } from "../../../../lib/account-session";
 import { resolveSubscriptionAccess } from "../../../../lib/subscription-access";
 
 function getSupabase() {
@@ -135,7 +135,7 @@ export async function POST(req) {
 
     const { data: profile, error: profileError } = await supabase
       .from("userprofile")
-      .select("email, is_premium, is_admin")
+      .select("email, is_premium, is_admin" + (isAccountGenerationEnabled() ? ",account_generation" : ""))
       .ilike("email", email.replace(/[\\%_]/g, "\\$&"))
       .maybeSingle();
 
@@ -149,6 +149,11 @@ export async function POST(req) {
       );
     }
 
+    if (isAccountGenerationEnabled() && (typeof profile.account_generation !== "string" ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(profile.account_generation))) {
+      return NextResponse.json({ success: false, message: "Die Anmeldung ist derzeit nicht verfügbar." }, { status: 503 });
+    }
+
     if (expiresAt <= Date.now()) return NextResponse.json(
       { success: false, message: "Login-Code ist abgelaufen." }, { status: 400 });
 
@@ -156,6 +161,8 @@ export async function POST(req) {
       : await resolveSubscriptionAccess(supabase, email, { legacyPaid: profile.is_premium === true });
     const accountToken = createAccountSession(email, Date.now(), {
       paid: subscription.paid, paidUntil: subscription.paidUntil, accessType: subscription.accessType, admin: profile.is_admin === true,
+      authenticatedAt: Math.floor(Date.now() / 1000),
+      ...(isAccountGenerationEnabled() ? { accountGeneration: profile.account_generation } : {}),
     });
     if (!accountToken) return NextResponse.json({ success: false, message: "Die Anmeldung ist derzeit nicht verfügbar." }, { status: 503 });
     const { data: consumed, error: consumeError } = await supabase

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "../components/LearningToolLayout";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
@@ -11,10 +12,10 @@ export async function getServerSideProps({ req, res, query }) {
   if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
     return { redirect: { destination: getNextUrl(query.next), permanent: false } };
   }
-  return { props: {} };
+  return { props: { allowRegistration: process.env.ACCOUNT_REGISTRATION_ENABLED === "true" } };
 }
 
-export default function LoginPage() {
+export default function LoginPage({ registration = false, allowRegistration = false } = {}) {
   const router = useRouter();
   const nextUrl = getNextUrl(router.query.next);
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
@@ -53,7 +54,10 @@ export default function LoginPage() {
     const timeout = setTimeout(() => controller.abort(), 18000);
     let redirecting = false;
     try {
-      const response = await fetch(verify ? "/api/auth/verify-code" : "/api/auth/request-code", {
+      const endpoint = registration
+        ? (verify ? "/api/auth/register-verify" : "/api/auth/register-request")
+        : (verify ? "/api/auth/verify-code" : "/api/auth/request-code");
+      const response = await fetch(endpoint, {
         method: "POST", credentials: "same-origin", signal: controller.signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(verify ? { email: cleanEmail, code } : { email: cleanEmail }),
@@ -68,7 +72,7 @@ export default function LoginPage() {
         redirecting = true;
         setMsg("Erfolgreich eingeloggt – Weiterleitung …");
         redirectTimer.current = setTimeout(() => {
-          if (mounted.current) window.location.href = getLoginDestination(nextUrl, data, paymentUrl);
+          if (mounted.current) window.location.href = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
         }, 500);
       } else {
         setEmail(cleanEmail);
@@ -87,10 +91,10 @@ export default function LoginPage() {
     }
   }
 
-  return <LearningToolLayout title="Willkommen zurück" description="Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an." icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity>
+  return <LearningToolLayout title={registration ? "Dein Lernkonto" : "Willkommen zurück"} description={registration ? "Erstelle dein kostenloses Konto und bestätige deine E-Mail-Adresse. Ein Abo wählst du danach separat." : "Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an."} icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity>
     <section className={`${styles.panel} ${authStyles.formPanel}`} aria-labelledby="login-heading">
       <h2 id="login-heading">{step === "email" ? "Mit E-Mail anmelden" : "Login-Code bestätigen"}</h2>
-      <p>{step === "email" ? "Gib deine registrierte E-Mail-Adresse ein." : <>Code an <strong>{email}</strong></>}</p>
+      <p>{step === "email" ? (registration ? "Gib die E-Mail-Adresse für dein Lernkonto ein. Die Registrierung löst keine Zahlung aus." : "Gib deine registrierte E-Mail-Adresse ein.") : <>Code an <strong>{email}</strong></>}</p>
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
         {step === "email" ? <label>E-Mail-Adresse
           <input type="email" autoComplete="email" placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => setEmail(event.target.value)} required />
@@ -101,6 +105,7 @@ export default function LoginPage() {
       </form>
       {step === "code" && <button type="button" className={`${styles.secondary} ${authStyles.otherEmail}`} disabled={loading} onClick={() => { setStep("email"); setCode(""); setMsg(""); }}>Andere E-Mail verwenden</button>}
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
+      {registration ? <p>Bereits ein Konto? <Link href={`/login?next=${encodeURIComponent(nextUrl)}`}>Mit E-Mail anmelden</Link></p> : allowRegistration && <p>Noch kein Konto? <Link href="/registrieren">Kostenlos registrieren</Link></p>}
     </section>
   </LearningToolLayout>;
 }

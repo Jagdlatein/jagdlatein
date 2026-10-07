@@ -13,7 +13,8 @@ const validProfile = () => ({
   DeveloperCertificates: [Buffer.from("fixture public certificate")],
   Entitlements: { "application-identifier": `${team}.${bundle}`, "com.apple.developer.team-identifier": team, "get-task-allow": false, "beta-reports-active": true }
 });
-const validInfo = () => ({ CFBundleIdentifier: bundle, CFBundleVersion: "2", CFBundleShortVersionString: "0.1.0", CFBundleSupportedPlatforms: ["iPhoneOS"], DTPlatformName: "iphoneos", UIDeviceFamily: [1, 2] });
+const validInfo = () => ({ CFBundleIdentifier: bundle, CFBundleVersion: "2", CFBundleShortVersionString: "0.1.0", CFBundleSupportedPlatforms: ["iPhoneOS"], DTPlatformName: "iphoneos", UIDeviceFamily: [1, 2],
+  CFBundleDisplayName: "Jagdlatein", JagdlateinWebsiteEnvironment: "Production" });
 
 test("TestFlight-Profil verlangt das genaue Apple-Team und die genaue Bundle-ID", () => {
   assert.equal(validateSigningProfile(validProfile(), team, bundle, now).certificateSha1.length, 40);
@@ -56,4 +57,17 @@ test("Gerätearchiv und signierte App dürfen keine Simulator-App oder fremde Ap
   assert.equal(validateSignedApp(validInfo(), validProfile().Entitlements, expected, checked).signed, true);
   const other = validProfile().Entitlements; other["com.apple.developer.team-identifier"] = "ZZZZZ12345";
   assert.throws(() => validateSignedApp(validInfo(), other, expected, checked), /Signierte/);
+});
+
+test("Archiv und IPA müssen die gewählte Website-Umgebung und deren sichtbaren Namen enthalten", () => {
+  const expected = { bundle, build: "2", version: "0.1.0", websiteEnvironment: "Sandbox" };
+  const sandbox = { ...validInfo(), JagdlateinWebsiteEnvironment: "Sandbox", CFBundleDisplayName: "Jagdlatein Test" };
+  const profile = validateSigningProfile(validProfile(), team, bundle, now);
+  assert.equal(validateDeviceApp(sandbox, expected).websiteEnvironment, "Sandbox");
+  assert.equal(validateSignedApp(sandbox, validProfile().Entitlements, expected, profile).displayName, "Jagdlatein Test");
+  assert.throws(() => validateDeviceApp(validInfo(), expected), /Umgebung/);
+  assert.throws(() => validateSignedApp(sandbox, validProfile().Entitlements, { ...expected, websiteEnvironment: "Production" }, profile), /Umgebung/);
+  assert.throws(() => validateDeviceApp({ ...sandbox, CFBundleDisplayName: "Jagdlatein" }, expected), /Name/);
+  assert.throws(() => validateDeviceApp({ ...sandbox, JagdlateinWebsiteEnvironment: "https://evil.test" }, expected), /Umgebung/);
+  assert.throws(() => validateDeviceApp(sandbox, { ...expected, websiteEnvironment: "sandbox" }), /Unbekannte/);
 });

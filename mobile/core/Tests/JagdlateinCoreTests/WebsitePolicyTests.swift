@@ -6,6 +6,7 @@ import WebKit
 #endif
 
 final class WebsitePolicyTests: XCTestCase {
+    override func setUp() { WebsitePolicy.configure(environment: .production) }
     private func url(_ string: String) -> URL { URL(string: string)! }
     private func decision(_ string: String, user: Bool = false, main: Bool = true) -> WebsiteNavigationDecision {
         WebsitePolicy.decision(for: url(string), isMainFrame: main, userInitiated: user)
@@ -78,7 +79,7 @@ final class WebsitePolicyTests: XCTestCase {
     func testContentRulesBlockPaymentNetworkRequestsWithoutBlockingAccountOrLearningRequests() throws {
         let data = try XCTUnwrap(WebsitePolicy.contentBlockingRulesJSON.data(using: .utf8))
         let rules = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [[String: Any]])
-        XCTAssertEqual(rules.count, 3)
+        XCTAssertEqual(rules.count, 4)
         let expressions = try rules.map { rule -> NSRegularExpression in
             let trigger = try XCTUnwrap(rule["trigger"] as? [String: Any])
             let action = try XCTUnwrap(rule["action"] as? [String: Any])

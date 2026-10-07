@@ -6,15 +6,53 @@ Die iOS-Entwicklungsversion lädt **https://www.jagdlatein.de/** direkt in einer
 
 ## Umsetzung
 
+### Nächster Stand: Apple-Abos und Konto
+
+Die nächste Änderung bereitet StoreKit-2-Kauf, Wiederherstellung und Apple-Aboverwaltung vor. Der Server prüft Apples Signatur mit den öffentlichen Apple-Stammzertifikaten, die aktuelle Anbieterantwort, Produkt, Umgebung und die zufällige Kennung des verifizierten Lernkontos. Eine abgelaufene oder widerrufene Transaktion gewährt keinen Zugang. Alte Zahlungsnachrichten können gelöschte Konten nicht wieder zuordnen. Die Registrierung erstellt erst nach Bestätigung per E-Mail ein kostenloses Konto; sie löst keine Zahlung aus. Die Kontolöschung braucht einen frischen E-Mail-Code und eine ausdrückliche Löschbestätigung. Laufende Abos müssen separat beim Anbieter gekündigt werden.
+
+Alle drei Funktionen sind standardmäßig ausgeschaltet. Die bisherige TestFlight-Version `0.1.0 (3)` enthält sie noch nicht. Die lokale Website-Kompilierung ist erfolgreich; die Prüfungen verwenden ausschließlich synthetische Konten und eine lokale PostgreSQL-Testdatenbank. Ein echter Apple-Sandbox-Kauf, Wiederherstellung, Kündigung und Erstattung sind noch nicht ausgeführt.
+
+Die Vorbereitung läuft in dieser Reihenfolge:
+
+1. Code prüfen und die drei Migrationen `20261007105000_account_registration.sql`, `20261007110000_apple_subscriptions.sql`, `20261007120000_account_deletion.sql` zunächst ausschließlich in der bestätigten Testdatenbank `xwkvrsuplytalwploebw` anwenden. Das legt keine zahlungspflichtigen Konten an und löscht keine Konten. Die Löschvorbereitung vergibt Kontogenerationen und deaktiviert alte Push-Tokens ohne bekannte Kontozuordnung; neue Registrierungen benötigen den passenden Backendstand.
+2. In App Store Connect ein Monatsprodukt `de.jagdlatein.premium.monthly` in einer eigenen Abo-Gruppe vorbereiten, mit dem gewünschten dreitägigen Gratisangebot. Preis und verfügbare Länder im tatsächlichen Apple-Angebot prüfen. Die App zeigt den von Apple gelieferten Preis und das aktuell zulässige Einführungsangebot. Apple beurteilt die Berechtigung je Abo-Gruppe; eine früher abgelaufene PayPal-Probezeit wird dadurch nicht automatisch ausgeschlossen. Ein vorhandener aktiver Lernzugang verhindert einen zusätzlichen Kauf.
+3. Einen separaten **In-App-Purchase**-API-Schlüssel für die Prüfung des aktuellen Abostatus einrichten. Der bestehende TestFlight-Uploadschlüssel wird nicht verwendet. Für die erste Speicherung des neuen privaten Schlüssels wird der konkrete Empfänger bestätigt; der Schlüssel gehört ausschließlich als Server-Secret in das Testprojekt.
+4. Im Vercel-Projekt `jagdlatein-sandbox` `ACCOUNT_GENERATION_ENABLED=true`, `ACCOUNT_REGISTRATION_ENABLED=true`, `ACCOUNT_DELETION_ENABLED=true`, `APPLE_SUBSCRIPTIONS_ENABLED=true`, `APPLE_STORE_ENVIRONMENT=Sandbox`, `APPLE_BUNDLE_ID=de.jagdlatein.app`, `APPLE_APP_ID=6819820561`, `APPLE_PRODUCT_IDS=de.jagdlatein.premium.monthly` setzen. `JL_TEST_ENVIRONMENT=paypal-sandbox` bleibt für die vorhandene getrennte Testdatenbank aktiv. `APPLE_IAP_KEY_ID` und `APPLE_IAP_ISSUER_ID` sind Server-Konfiguration, `APPLE_IAP_PRIVATE_KEY` ist ein Server-Secret. Der Native-Build muss ausdrücklich auf die getrennte Testwebsite zeigen; ein Sandbox-Kauf wird von der öffentlichen Produktionswebsite abgewiesen. Nach der ersten Aktivierung bleibt `ACCOUNT_GENERATION_ENABLED=true` dauerhaft gesetzt, auch wenn Käufe oder Löschungen später vorübergehend deaktiviert werden.
+5. Apples V2-Benachrichtigungen an `https://jagdlatein-sandbox.vercel.app/api/apple/notifications` richten. Im Testaufbau Anmeldung, Kauf, Wiederherstellung, Kontowechsel, Erstattung, Ablauf und Kontolöschung prüfen. Eine Aktivierung der Kontogeneration verlangt für ältere Sitzungen einmalig eine neue Anmeldung; die vorhandenen Lern- und Zahlungsdaten bleiben erhalten.
+
+Die Helfer verbinden sich nicht mit einem Anbieter und führen keine Datenbankänderung aus:
+
+```powershell
+Set-Location 'C:\Projekte\jagdlatein-github'
+& .\scripts\setup-ios-account.ps1 -Step Check
+& .\scripts\setup-ios-account.ps1 -Step TestSql
+```
+
+Der zweite Befehl bereitet den SQL-Text für die getrennte Testdatenbank in einer Datei und in der Zwischenablage vor. Erst im richtigen Supabase-Testprojekt ausführen. Die öffentliche Website und ihre Datenbank bleiben bis zur gesonderten geprüften Aktivierung auf dem bisherigen Zugang. Für die spätere App-Store-Prüfung fehlt außerdem noch eine ausdrücklich geprüfte Regel für Apples Sandbox-Reviewkäufe auf dem Produktionsbackend; die aktuelle strikte Umgebungstrennung wird dafür nicht aufgeweicht.
+
 - Native iPhone-/iPad-Projektdateien: `ios/App/App.xcodeproj`.
 - UIKit und WebKit mit lokalem Foundation-Paket `core` für Navigation und Merkliste. Kein externer Capacitor-Webserver und kein JavaScript-Zugriff auf eine native Plugin-Brücke.
 - Die Website bleibt in ihrem echten HTTPS-Ursprung. Der reguläre persistente WebKit-Datenspeicher verwaltet die Cookies; die Website-Anmeldung wird nicht nachgebaut. Eine Anmeldung in Safari gilt nicht automatisch auch in dieser App.
-- Native Bedienung: Zurück, Vorwärts, Aktualisieren, Merkliste und Teilen; Fehler-/Wiederholenansicht bei fehlender Verbindung. Die Nutzung der Website erfordert Internet.
+- Native Bedienung: Zurück, Vorwärts, Aktualisieren, Merkliste und Teilen; Fehler-/Wiederholenansicht bei fehlender Verbindung. Die Nutzung der Website erfordert Internet. Im aktuellen Quellcode ist zusätzlich die native Übersicht „Abo und Käufe“ vorbereitet; sie ist noch nicht in Build `3` enthalten.
 - Eigene Hauptseiten müssen genau `www.jagdlatein.de` oder `jagdlatein.de` sein. Fremde Fachlinks werden nach einer Nutzeraktion extern geöffnet. Es gibt keine HTTP-/TLS-Ausnahme, allgemeine CORS-Freigabe oder übernommenen Server-Secrets.
 - App-Icon, native Kopfzeile und Startbild verwenden die vom Nutzer bereitgestellte Illustration aus `IMG_20250715_104310_496.webp` mit Jäger, Hirsch und dem Schriftzug „Jagd-Latein“. Die Bildpixel sind als PNG-Quelle `mobile/branding/jagdlatein-logo.png` übernommen; daraus werden die App-Ressourcen gerendert, einschließlich `BrandLogo.imageset` in drei Skalierungen. Die Illustration wurde nicht neu generiert. Build `3` enthält dieses Original-Logo und ist für den internen Test verfügbar; seine Installation und Logo-Anzeige auf dem iPad sind noch unbestätigt. Der [Build `2`](https://github.com/Jagdlatein/jagdlatein/actions/runs/37590245969) mit dem Buchsymbol bleibt ein nicht zugeordneter Zwischenstand. Die Fotos der Website werden dort weiter gepflegt.
-- `/preise`, `/paytest` und PayPal-Kaufziele sind in dieser Entwicklungsversion gesperrt. Vor dem ersten Laden wird ein nativer WebKit-Netzwerkfilter für PayPal-Ressourcen und `/api/paypal` aktiviert. Die URL-Prüfung erfasst außerdem interne Next-Seitenwechsel. Der vorhandene Webcheckout wird nicht verändert. Die iOS-Kaufanbindung ist noch offen.
+- `/preise`, `/paytest` und PayPal-Kaufziele bleiben im WebView gesperrt. Vor dem ersten Laden wird ein nativer WebKit-Netzwerkfilter für PayPal-Ressourcen und `/api/paypal` aktiviert. Die URL-Prüfung erfasst außerdem interne Next-Seitenwechsel. Der vorhandene Webcheckout wird nicht verändert. Der neue Quellcode öffnet stattdessen die native Abo-Übersicht; Apple-Käufe bleiben ohne ausdrücklich aktivierte und vollständige Serverkonfiguration deaktiviert.
 
 Die ursprüngliche Projektstruktur wurde mit dem offiziellen Capacitor-iOS-Template angelegt. Die App verwendet jetzt einen eigenen UIKit-/WebKit-Controller; die Capacitor-Laufzeit und die lokale React-Katalogvorschau sind nicht Teil des iOS-Projekts.
+
+## Apple-Abo: Vorbereitung im Quellcode
+
+`AppleSubscriptions.swift` verwendet StoreKit 2 ab iOS/iPadOS 15. Preise, Laufzeit und ein berechtigtes Einführungsangebot kommen aus dem tatsächlichen Apple-Produkt `de.jagdlatein.premium.monthly`. Es gibt keine fest eingetragene Preis- oder Testzeitbehauptung. Vorhandener Jagdlatein-Zugang verhindert ein zusätzliches Abo; ein bereits vorhandener Apple-Kauf muss zuerst wiederhergestellt werden. Kauf und Wiederherstellung prüfen das angemeldete Jagdlatein-Konto vor jedem Abgleich. Apple-Käufe eines anderen Kontos werden nicht übertragen. Eine Kontolöschung kündigt ein Apple-Abo nicht automatisch; die Übersicht verlinkt die Apple-Aboverwaltung.
+
+Die Kaufanbindung ruft ausschließlich `/api/apple/context` und `/api/apple/transactions` am eigenen, gerade geöffneten HTTPS-Ursprung auf. Sie verwendet die vorhandenen WebKit-Sitzungscookies nur für diese beiden festen API-Aufrufe, folgt keinen Weiterleitungen und installiert keine JavaScript-Brücke. Der stabile `appAccountToken` bindet den Kauf an das vom Server bestätigte Konto. Erst nach erfolgreicher serverseitiger Prüfung wird eine Apple-Transaktion abgeschlossen; Fehler und ausstehende Genehmigungen bleiben erneut abgleichbar. Ein anschließender, fest vorgegebener WebKit-Aufruf von `/api/auth/status` erneuert die bestehende HttpOnly-Anmeldesitzung, ohne ihren Wert an JavaScript oder native Seitenschnittstellen zu übergeben. Vor und nach diesem Aufruf wird das angemeldete Konto erneut geprüft. Freischaltungen stammen weiterhin aus dem Server, nicht aus einer lokalen Kaufbehauptung.
+
+Diese Vorbereitung ist noch kein abgeschlossener Zahlungs- oder App-Store-Test. Apple-Produkt, Einführungsangebot, Server-Schlüssel, Benachrichtigungen und Datenbankschema müssen eingerichtet und in einer getrennten Sandbox geprüft werden. Die lokalen Node-Prüfungen bestätigen die Projektstruktur; die neuen Swift-Tests für feste API-Ursprünge und Kontobindung sowie die geänderte Simulatorprüfung benötigen den Mac-Builddienst. In dieser Vorbereitung wurde kein echter Kauf ausgeführt und kein neuer TestFlight-Build hochgeladen.
+
+### Getrennte native Testversion
+
+Der Buildparameter `IOS_WEBSITE_ENVIRONMENT` akzeptiert ausschließlich `Production` (Standard) oder `Sandbox`. Production lädt nur die beiden öffentlichen Jagdlatein-Hosts. Sandbox lädt ausschließlich das bereits getrennt eingerichtete Testprojekt `https://jagdlatein-sandbox.vercel.app/`, zeigt den App-Namen **Jagdlatein Test** und in der Kopfzeile **Testumgebung**. Konto-, Datenschutz- und Kaufabgleiche verwenden denselben gewählten Ursprung. Es gibt keinen frei eintragbaren Website-Link. Native API-Aufrufe, WebKit-Netzwerkfilter und Navigation sperren den jeweils anderen Ursprung; die Merkliste ist ebenfalls getrennt. Ein Sandbox-Build verlangt beim Kaufabgleich die Serverumgebung `Sandbox`.
+
+Im manuellen TestFlight-Workflow muss `website_environment` vor dem Archivieren ausdrücklich ausgewählt werden. Gerätearchiv und exportierte IPA werden erneut gegen den angeforderten Umgebungswert und den sichtbaren App-Namen geprüft. Team-, Bundle-, Profil-, Zertifikats- und Signaturprüfungen gelten unverändert. Die Vorbereitung dieser Auswahl hat noch keinen Testbuild hochgeladen und keine bestehenden Test-/Produktionsdienste verändert.
 
 ## Vorbereitung mit PowerShell auf Windows
 

@@ -111,3 +111,15 @@ test('Missing or untrusted account target never creates a live fallback administ
   }
   assert.doesNotMatch(renderAccount(SANDBOX, { admin: true }), /Abo bei PayPal verwalten/);
 });
+
+test('Apple trial and cancellation show Apple management and never claim the PayPal trial price', () => {
+  const appleManagementUrl = 'https://apps.apple.com/account/subscriptions/';
+  for (const subscriptionStatus of ['ACTIVE', 'CANCELLED']) {
+    const html = renderAccount(LIVE, { accessProvider: 'apple', appleManagementUrl, subscriptionStatus,
+      trialUntil: new Date(Date.now() + 86400000).toISOString() });
+    assert.match(html, /Apple-Abo/);
+    assert.match(html, /Abo bei Apple verwalten/);
+    assert.ok(html.includes(`href="${appleManagementUrl}"`));
+    assert.doesNotMatch(html, /Abo bei PayPal verwalten|5 € pro Monat|Testzugang beendet/);
+  }
+});

@@ -17,7 +17,7 @@ function errorResponse(error) {
 export async function GET(req) {
   try {
     const session = requireAccountSession(req, "STATISTICS_UNAVAILABLE");
-    const database = getAccountDatabase("STATISTICS_UNAVAILABLE");
+    const database = getAccountDatabase("STATISTICS_UNAVAILABLE", session);
     await requireCurrentAccount(database, session, "STATISTICS_UNAVAILABLE");
     const { data, error } = await database.rpc("get_activity_statistics", { p_account_email: session.email });
     if (error || !data) throw accountUnavailable("STATISTICS_UNAVAILABLE");
@@ -37,7 +37,7 @@ export async function POST(req) {
     if (result.type === "quiz") {
       throw new ActivityResultError("Quizergebnisse werden ausschließlich aus einer abgeschlossenen Serverrunde gespeichert.");
     }
-    const database = getAccountDatabase("STATISTICS_UNAVAILABLE");
+    const database = getAccountDatabase("STATISTICS_UNAVAILABLE", session);
     await requireCurrentAccount(database, session, "STATISTICS_UNAVAILABLE");
     const { data, error } = await database.from("activity_results")
       .insert({ account_email: session.email, ...result })

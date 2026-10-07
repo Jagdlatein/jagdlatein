@@ -7,8 +7,8 @@ export const revalidate = 0;
 
 export async function GET(req) {
   try {
-    await requirePaidAccount(req);
-    const { data, error } = await quizDatabase().from("verified_quiz_scores")
+    const account = await requirePaidAccount(req);
+    const { data, error } = await quizDatabase(account).from("verified_quiz_scores")
       .select("username,country,total_points").order("total_points", { ascending: false }).limit(100);
     if (error) throw error;
     return Response.json({ data: data || [] }, { headers: { "Cache-Control": "private, no-store" } });

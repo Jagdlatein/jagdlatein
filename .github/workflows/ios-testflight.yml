@@ -16,6 +16,12 @@ on:
         type: string
         default: ''
         required: false
+      website_environment:
+        description: 'Production: öffentliche App; Sandbox: getrennte Test-App mit sichtbarem Testnamen'
+        type: choice
+        options: [Production, Sandbox]
+        default: Production
+        required: true
 
 permissions:
   contents: read
@@ -73,6 +79,7 @@ jobs:
       - name: Gerätearchiv ohne Signierung erzeugen
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+          IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
         run: ./scripts/build-ios-testflight.ps1 -Step DeviceArchive
 
   signing:
@@ -107,6 +114,7 @@ jobs:
           IOS_TEAM_ID: ${{ vars.IOS_TEAM_ID }}
           IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
           IOS_BUILD_NUMBER: ${{ inputs.build_number }}
+          IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
           IOS_CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}
           IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
           IOS_PROFILE_BASE64: ${{ secrets.IOS_PROFILE_BASE64 }}
@@ -117,6 +125,7 @@ jobs:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
           IOS_TEAM_ID: ${{ vars.IOS_TEAM_ID }}
           IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
+          IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
           ASC_KEY_ID: ${{ vars.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ vars.ASC_ISSUER_ID }}
           ASC_PRIVATE_KEY_BASE64: ${{ secrets.ASC_PRIVATE_KEY_BASE64 }}

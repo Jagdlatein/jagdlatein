@@ -30,11 +30,16 @@ final class WebsiteAppUITests: XCTestCase {
                       "The public homepage's real subscription link must be tappable.")
         subscribe.tap()
 
-        let previewAlert = app.alerts["Abos in der iOS-Vorschau"]
-        XCTAssertTrue(waitFor(previewAlert, timeout: 40),
-                      "The native preview must intercept the website subscription route.")
-        attachScreenshot(app, name: "Native subscription preview guard")
-        previewAlert.buttons["OK"].tap()
+        let subscriptions = app.navigationBars["Jagdlatein-Abo"]
+        XCTAssertTrue(waitFor(subscriptions, timeout: 40),
+                      "The native subscription sheet must intercept the website subscription route.")
+        let restore = app.buttons["jagdlatein.apple.restore"]
+        XCTAssertTrue(waitUntil(restore, timeout: 25) { $0.exists && !$0.isEnabled },
+                      "An unauthenticated public session must not restore or start a purchase.")
+        XCTAssertFalse(app.buttons["jagdlatein.apple.purchase"].exists,
+                       "The public unauthenticated test must never offer an Apple purchase.")
+        attachScreenshot(app, name: "Native subscription sheet without account or checkout")
+        subscriptions.buttons["Fertig"].tap()
         // Check the underlying page after dismissing the modal: accessibility
         // snapshots may omit elements beneath an alert on some iOS versions.
         assertHomepageLoaded(website: website, location: location)

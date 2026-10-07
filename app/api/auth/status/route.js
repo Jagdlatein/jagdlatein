@@ -16,7 +16,12 @@ export async function GET() {
         sameSite: "lax", secure: process.env.NODE_ENV === "production", maxAge: 0 });
       return NextResponse.json({ loggedIn: false, email: null, paid: false, admin: false }, { headers });
     }
-    const token = createAccountSession(access.email, Date.now(), access);
+    const token = createAccountSession(access.email, Date.now(), {
+      ...access,
+      // Legacy cookies have no separate authentication stamp. Preserve their
+      // original issue/deadline rather than granting another forty days.
+      authenticatedAt: access.authenticatedAt ?? access.issuedAt,
+    });
     if (!token) throw new Error("Session unavailable");
     cookieStore.set({ name: JL_ACCOUNT_COOKIE, value: token, path: "/", httpOnly: true,
       sameSite: "lax", secure: process.env.NODE_ENV === "production", maxAge: ACCOUNT_SESSION_MAX_AGE });

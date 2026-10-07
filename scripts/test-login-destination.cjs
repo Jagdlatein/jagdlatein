@@ -42,7 +42,7 @@ test('Paid or administrator access returns directly to the selected safe learnin
   assert.match(getLoginDestination('/lernen', { paid: 'true', admin: 1 }), /^\/preise\?/);
 });
 test('Unsafe return URLs and login loops cannot become navigation destinations', () => {
-  for (const route of ['https://evil.invalid', '//evil.invalid', '/\\evil.invalid', '/%5cevil.invalid', '/%2f%2fevil.invalid', '/login', '/login/?next=/lernen', '/%6cogin', '/bad%escape', '/%0anews', '/\nnews', null]) assert.equal(getNextUrl(route), '/');
+  for (const route of ['https://evil.invalid', '//evil.invalid', '/\\evil.invalid', '/%5cevil.invalid', '/%2f%2fevil.invalid', '/login', '/registrieren', '/login/?next=/lernen', '/%6cogin', '/bad%escape', '/%0anews', '/\nnews', null]) assert.equal(getNextUrl(route), '/');
   assert.equal(getNextUrl(['/community', 'https://evil.invalid']), '/community');
   assert.equal(getLoginDestination('/lernen#quiz', unpaid, '/preise?aktion=abo#paypal'), '/preise?aktion=abo&next=%2Flernen%23quiz#paypal');
 });
@@ -54,7 +54,7 @@ function find(node, predicate) {
 }
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const response = (body, status = 200) => ({ ok: status >= 200 && status < 300, json: async () => body });
-function harness(fetch) {
+function harness(fetch, props = {}) {
   const states = ['member@example.invalid', '123456', 'code', '', false], refs = [], effects = [], timers = new Map(), calls = [];
   let cursor = 0, refCursor = 0, sequence = 0;
   const window = { location: { href: null } };
@@ -66,11 +66,21 @@ function harness(fetch) {
     fetch: async (...args) => { calls.push(args); return fetch(...args); }, window,
     setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay }); return sequence; }, clearTimeout: id => timers.delete(id),
   }).default;
-  const render = () => { cursor = 0; refCursor = 0; return Component(); };
+  const render = () => { cursor = 0; refCursor = 0; return Component(props); };
   return { states, calls, timers, window, render, unmount: () => effects.forEach(fn => fn?.()),
     submit: tree => find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }),
   };
 }
+
+test('Registration confirms through the free-account endpoint and preserves a free community destination', async () => {
+  const h = harness(() => response({ success: true, paid: false, admin: false }), { registration: true, allowRegistration: true });
+  await h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-verify');
+  assert.deepEqual(JSON.parse(h.calls[0][1].body), { email: 'member@example.invalid', code: '123456' });
+  const navigation = [...h.timers.values()].find(item => item.delay === 500);
+  navigation.fn();
+  assert.equal(h.window.location.href, '/community?category=hundewesen');
+});
 test('Duplicate code confirmation and changing email stay blocked through the successful navigation', async () => {
   const pending = deferred(), h = harness(() => pending.promise), tree = h.render();
   const first = h.submit(tree); await h.submit(tree); assert.equal(h.calls.length, 1);
