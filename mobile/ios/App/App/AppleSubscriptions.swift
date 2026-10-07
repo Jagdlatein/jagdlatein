@@ -345,6 +345,13 @@ final class AppleSubscriptionViewController: UIViewController {
     private var buttons: [UIButton] = []
     private var loading = false
     private var task: Task<Void, Never>?
+    private var sandboxStorefrontBefore: String?
+    private var sandboxStorefrontAfter: String?
+    private var sandboxProductLoadState = "Nicht geladen"
+    private var sandboxProductDetails: [String] = []
+    private var sandboxDiagnosticsExpanded = false
+    private var sandboxDiagnosticsBody: UIStackView?
+    private var sandboxDiagnosticsButton: UIButton?
 
     init(manager: AppleSubscriptionManager, onSignIn: @escaping () -> Void) {
         self.manager = manager
@@ -418,6 +425,10 @@ final class AppleSubscriptionViewController: UIViewController {
     private func load() {
         guard !loading else { return }
         setLoading(true)
+        sandboxStorefrontBefore = nil
+        sandboxStorefrontAfter = nil
+        sandboxProductLoadState = "Nicht geladen"
+        sandboxProductDetails.removeAll()
         intentNotice.text = manager.purchaseIntentMessage
         intentNotice.isHidden = manager.purchaseIntentMessage == nil
         status.text = "Konto und Apple-Angebot werden geladen …"
@@ -435,7 +446,23 @@ final class AppleSubscriptionViewController: UIViewController {
                 }
                 self.status.text = "Angemeldet als \(context.email ?? "")\n" + (context.paid == true ? "Dein Konto hat bereits Zugang. Du brauchst kein weiteres Abo." : "Wähle dein Apple-Abo. Apple zeigt die verbindlichen Bedingungen vor der Bestätigung.")
                 if context.purchaseAllowed == true && context.paid != true {
-                    let products = try await self.manager.products(for: context)
+                    if WebsitePolicy.environment == .sandbox {
+                        self.sandboxStorefrontBefore = self.sandboxStorefrontText(await Storefront.current)
+                    }
+                    let products: [AppleSubscriptionManager.ProductChoice]
+                    do {
+                        products = try await self.manager.products(for: context)
+                    } catch {
+                        if WebsitePolicy.environment == .sandbox {
+                            self.sandboxStorefrontAfter = self.sandboxStorefrontText(await Storefront.current)
+                            self.sandboxProductLoadState = "Nicht geladen (Laden fehlgeschlagen)"
+                        }
+                        throw error
+                    }
+                    if WebsitePolicy.environment == .sandbox {
+                        self.sandboxStorefrontAfter = self.sandboxStorefrontText(await Storefront.current)
+                        self.sandboxProductLoadState = "\(products.count) \(products.count == 1 ? "Produkt" : "Produkte") geladen"
+                    }
                     guard !products.isEmpty else { throw AppleSubscriptionError.unavailable }
                     for choice in products { await self.addProduct(choice.product, context: context, intentRevision: choice.intentRevision) }
                 }
@@ -451,19 +478,37 @@ final class AppleSubscriptionViewController: UIViewController {
     private func clearProducts() {
         for child in productStack.arrangedSubviews { productStack.removeArrangedSubview(child); child.removeFromSuperview() }
         buttons.removeAll()
+        sandboxDiagnosticsBody = nil
+        sandboxDiagnosticsButton = nil
     }
 
     private func addProduct(_ product: Product, context: ApplePurchaseContext, intentRevision: Int?) async {
         guard let subscription = product.subscription else { return }
         let period = periodText(subscription.subscriptionPeriod)
         var offerText = "\(product.displayPrice) pro \(period)."
-        if let offer = subscription.introductoryOffer, await subscription.isEligibleForIntroOffer {
+        var eligibleForIntroOffer = false
+        if subscription.introductoryOffer != nil || WebsitePolicy.environment == .sandbox {
+            eligibleForIntroOffer = await subscription.isEligibleForIntroOffer
+        }
+        if let offer = subscription.introductoryOffer, eligibleForIntroOffer {
             let duration = periodText(offer.period, repetitions: offer.periodCount)
             if offer.paymentMode == .freeTrial {
                 offerText = "\(duration) kostenlos, danach \(product.displayPrice) pro \(period)."
             } else {
                 offerText = "Einführungsangebot: \(offer.displayPrice) für \(duration); danach \(product.displayPrice) pro \(period)."
             }
+        }
+        if WebsitePolicy.environment == .sandbox {
+            let offerDetails: String
+            if let offer = subscription.introductoryOffer {
+                let mode: String
+                if offer.paymentMode == .freeTrial { mode = "Kostenlose Probezeit" }
+                else if offer.paymentMode == .payAsYouGo { mode = "Zahlung je Zeitraum" }
+                else if offer.paymentMode == .payUpFront { mode = "Einmalige Vorauszahlung" }
+                else { mode = "Unbekannte Zahlungsart" }
+                offerDetails = "\(mode), \(periodText(offer.period, repetitions: offer.periodCount)), \(offer.displayPrice)"
+            } else { offerDetails = "Nicht von Apple geliefert" }
+            sandboxProductDetails.append("Produkt: \(product.id)\nApple-Preis: \(product.displayPrice)\nProduktwährung: \(product.priceFormatStyle.currencyCode)\nEinführungsangebot: \(offerDetails)\nVon Apple gemeldete Einführungsberechtigung: \(eligibleForIntroOffer ? "Ja" : "Nein")")
         }
         productStack.addArrangedSubview(label(product.displayName, style: .headline))
         productStack.addArrangedSubview(label(offerText + " Das Abo verlängert sich automatisch, bis du es in deinem Apple-Konto kündigst."))
@@ -486,6 +531,7 @@ final class AppleSubscriptionViewController: UIViewController {
     }
 
     private func addCommonActions() {
+        addSandboxDiagnostics()
         if manager.purchaseIntentMessage != nil {
             productStack.addArrangedSubview(button("App-Store-Anfrage verwerfen") { [weak self] in
                 guard let self = self else { return }
@@ -508,6 +554,66 @@ final class AppleSubscriptionViewController: UIViewController {
         productStack.addArrangedSubview(label("Abrechnung und Kündigung eines Apple-Abos verwaltest du bei Apple. Die Löschung deines Jagdlatein-Kontos beendet ein Apple-Abo nicht automatisch.", style: .footnote))
         productStack.addArrangedSubview(button("Datenschutz") { UIApplication.shared.open(WebsitePolicy.homeURL.appendingPathComponent("datenschutz")) })
         productStack.addArrangedSubview(button("Apple-Nutzungsbedingungen") { UIApplication.shared.open(URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!) })
+    }
+
+    private func sandboxStorefrontText(_ storefront: Storefront?) -> String {
+        guard let storefront = storefront else { return "Nicht verfügbar" }
+        return "\(storefront.countryCode) (Storefront \(storefront.id))"
+    }
+
+    private func addSandboxDiagnostics() {
+        guard WebsitePolicy.environment == .sandbox else { return }
+        // This snapshot stays in this view only. It never changes Apple prices,
+        // triggers a purchase, records a customer identity or leaves the device.
+        let card = UIStackView()
+        card.axis = .vertical
+        card.spacing = 12
+        card.isLayoutMarginsRelativeArrangement = true
+        card.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
+        card.backgroundColor = .secondarySystemGroupedBackground
+        card.layer.cornerRadius = 14
+        let toggle = button(sandboxDiagnosticsExpanded ? "Apple-Testdiagnose verbergen" : "Apple-Testdiagnose anzeigen") { [weak self] in
+            self?.toggleSandboxDiagnostics()
+        }
+        toggle.accessibilityIdentifier = "jagdlatein.apple.sandboxDiagnostics.toggle"
+        toggle.configuration?.image = UIImage(systemName: sandboxDiagnosticsExpanded ? "chevron.up" : "chevron.down")
+        toggle.configuration?.imagePadding = 8
+        toggle.accessibilityValue = sandboxDiagnosticsExpanded ? "Geöffnet" : "Geschlossen"
+        let details = UIStackView()
+        details.axis = .vertical
+        details.spacing = 12
+        details.isHidden = !sandboxDiagnosticsExpanded
+        details.accessibilityIdentifier = "jagdlatein.apple.sandboxDiagnostics.details"
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unbekannt"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "Unbekannt"
+        let snapshot = [
+            "System: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)",
+            "App-Version: \(version) (\(build))",
+            "Produktdaten: \(sandboxProductLoadState)",
+            "Von Apple gemeldete Region vor dem Laden: \(sandboxStorefrontBefore ?? "Nicht abgefragt")",
+            "Von Apple gemeldete Region nach dem Laden: \(sandboxStorefrontAfter ?? "Nicht abgefragt")",
+        ].joined(separator: "\n")
+        details.addArrangedSubview(label(snapshot, style: .footnote))
+        for product in sandboxProductDetails {
+            details.addArrangedSubview(label(product, style: .footnote))
+        }
+        details.addArrangedSubview(label("Nur in der Testumgebung: Apple-Produktdaten vom letzten Laden und lokale Geräteangaben. Sie werden nicht gespeichert oder gesendet. Die von Apple gemeldete Kaufregion kann in TestFlight abweichen. Die Diagnose startet keinen Kauf.", style: .footnote))
+        card.addArrangedSubview(toggle)
+        card.addArrangedSubview(details)
+        sandboxDiagnosticsBody = details
+        sandboxDiagnosticsButton = toggle
+        productStack.addArrangedSubview(card)
+    }
+
+    private func toggleSandboxDiagnostics() {
+        guard WebsitePolicy.environment == .sandbox, let details = sandboxDiagnosticsBody,
+              let toggle = sandboxDiagnosticsButton else { return }
+        sandboxDiagnosticsExpanded.toggle()
+        details.isHidden = !sandboxDiagnosticsExpanded
+        toggle.configuration?.title = sandboxDiagnosticsExpanded ? "Apple-Testdiagnose verbergen" : "Apple-Testdiagnose anzeigen"
+        toggle.configuration?.image = UIImage(systemName: sandboxDiagnosticsExpanded ? "chevron.up" : "chevron.down")
+        toggle.accessibilityValue = sandboxDiagnosticsExpanded ? "Geöffnet" : "Geschlossen"
+        UIAccessibility.post(notification: .layoutChanged, argument: toggle)
     }
 
     private func setLoading(_ value: Bool) {
