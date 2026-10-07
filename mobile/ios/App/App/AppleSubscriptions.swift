@@ -347,6 +347,7 @@ final class AppleSubscriptionViewController: UIViewController {
     private var task: Task<Void, Never>?
     private var sandboxStorefrontBefore: String?
     private var sandboxStorefrontAfter: String?
+    private var sandboxCountryCode: String?
     private var sandboxProductLoadState = "Nicht geladen"
     private var sandboxProductDetails: [String] = []
     private var sandboxDiagnosticsExpanded = false
@@ -427,6 +428,7 @@ final class AppleSubscriptionViewController: UIViewController {
         setLoading(true)
         sandboxStorefrontBefore = nil
         sandboxStorefrontAfter = nil
+        sandboxCountryCode = nil
         sandboxProductLoadState = "Nicht geladen"
         sandboxProductDetails.removeAll()
         intentNotice.text = manager.purchaseIntentMessage
@@ -454,13 +456,17 @@ final class AppleSubscriptionViewController: UIViewController {
                         products = try await self.manager.products(for: context)
                     } catch {
                         if WebsitePolicy.environment == .sandbox {
-                            self.sandboxStorefrontAfter = self.sandboxStorefrontText(await Storefront.current)
+                            let storefront = await Storefront.current
+                            self.sandboxStorefrontAfter = self.sandboxStorefrontText(storefront)
+                            self.sandboxCountryCode = storefront?.countryCode
                             self.sandboxProductLoadState = "Nicht geladen (Laden fehlgeschlagen)"
                         }
                         throw error
                     }
                     if WebsitePolicy.environment == .sandbox {
-                        self.sandboxStorefrontAfter = self.sandboxStorefrontText(await Storefront.current)
+                        let storefront = await Storefront.current
+                        self.sandboxStorefrontAfter = self.sandboxStorefrontText(storefront)
+                        self.sandboxCountryCode = storefront?.countryCode
                         self.sandboxProductLoadState = "\(products.count) \(products.count == 1 ? "Produkt" : "Produkte") geladen"
                     }
                     guard !products.isEmpty else { throw AppleSubscriptionError.unavailable }
@@ -497,6 +503,11 @@ final class AppleSubscriptionViewController: UIViewController {
             } else {
                 offerText = "Einführungsangebot: \(offer.displayPrice) für \(duration); danach \(product.displayPrice) pro \(period)."
             }
+        }
+        if AppleBillingPolicy.shouldDeferOfferDetails(environment: WebsitePolicy.environment,
+                                                     countryCode: sandboxCountryCode,
+                                                     productCurrencyCode: product.priceFormatStyle.currencyCode) {
+            offerText = "Den gültigen Preis und eine mögliche Probezeit zeigt Apple im nächsten Fenster."
         }
         if WebsitePolicy.environment == .sandbox {
             let offerDetails: String

@@ -4,6 +4,30 @@ import XCTest
 
 final class AppleBillingPolicyTests: XCTestCase {
     override func setUp() { WebsitePolicy.configure(environment: .production) }
+
+    func testOnlySandboxDachCurrencyConflictsDeferOfferDetailsToApple() {
+        let cases: [(countryCode: String?, currency: String, deferInSandbox: Bool)] = [
+            ("CHE", "USD", true),
+            ("CHE", "CHF", false),
+            ("DEU", "USD", true),
+            ("DEU", "EUR", false),
+            ("AUT", "USD", true),
+            ("AUT", "EUR", false),
+            ("USA", "USD", false),
+            ("GBR", "EUR", false),
+            (nil, "USD", false),
+        ]
+        for item in cases {
+            let details = "\(item.countryCode ?? "unknown") / \(item.currency)"
+            XCTAssertEqual(AppleBillingPolicy.shouldDeferOfferDetails(environment: .sandbox,
+                countryCode: item.countryCode, productCurrencyCode: item.currency), item.deferInSandbox,
+                "Only a known DACH currency conflict in Sandbox should defer the displayed offer: \(details)")
+            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(environment: .production,
+                countryCode: item.countryCode, productCurrencyCode: item.currency),
+                "Production offer display must remain unchanged: \(details)")
+        }
+    }
+
     func testBillingRequestsUseOnlyFixedEndpointsOnTheVisibleOwnOrigin() throws {
         let page = try XCTUnwrap(URL(string: "https://www.jagdlatein.de/konto?private=secret#details"))
         XCTAssertEqual(AppleBillingPolicy.requestURL(for: .context, visiblePage: page)?.absoluteString,

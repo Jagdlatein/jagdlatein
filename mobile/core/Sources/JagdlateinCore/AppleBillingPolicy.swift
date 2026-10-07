@@ -39,6 +39,19 @@ public enum AppleBillingPolicy {
         value == "de.jagdlatein.premium.monthly"
     }
 
+    /// Inconsistent TestFlight metadata must not become an advertised price.
+    /// Apple's confirmation supplies the terms; this never invents a trial or price.
+    public static func shouldDeferOfferDetails(environment: WebsiteEnvironment, countryCode: String?, productCurrencyCode: String) -> Bool {
+        guard environment == .sandbox, let countryCode = countryCode else { return false }
+        let expectedCurrency: String
+        switch countryCode.uppercased() {
+        case "CHE": expectedCurrency = "CHF"
+        case "DEU", "AUT": expectedCurrency = "EUR"
+        default: return false
+        }
+        return productCurrencyCode.uppercased() != expectedCurrency
+    }
+
     /// These two fixed endpoints may use the current first-party website cookie.
     /// An external URL, redirect, query or arbitrary API path cannot be supplied.
     public static func requestURL(for endpoint: AppleBillingEndpoint, visiblePage: URL) -> URL? {
