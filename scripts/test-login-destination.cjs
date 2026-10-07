@@ -13,7 +13,7 @@ function load(relative, overrides = {}, globals = {}) {
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} };
-  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', code)(id => {
+  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', 'process', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
@@ -21,7 +21,7 @@ function load(relative, overrides = {}, globals = {}) {
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, globals);
     return pr(id);
-  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout);
+  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout, globals.process || process);
   return mod.exports;
 }
 const { getNextUrl, getLoginDestination } = load('lib/login-destination.js');
@@ -80,6 +80,49 @@ test('Registration confirms through the free-account endpoint and preserves a fr
   const navigation = [...h.timers.values()].find(item => item.delay === 500);
   navigation.fn();
   assert.equal(h.window.location.href, '/community?category=hundewesen');
+});
+
+test('Requesting a code preserves the neutral server message without claiming the account exists or mail arrived', async () => {
+  const message = 'Falls diese E-Mail registriert ist, wurde ein Login-Code versendet.';
+  for (const serverMessage of [message, undefined]) {
+    const h = harness(() => response({ success: true, ...(serverMessage ? { message: serverMessage } : {}) }));
+    h.states[2] = 'email'; h.states[1] = '';
+    await h.submit(h.render());
+    assert.equal(h.calls[0][0], '/api/auth/request-code');
+    assert.equal(h.states[2], 'code'); assert.equal(h.states[3], message);
+    const html = renderToStaticMarkup(h.render());
+    assert.match(html, /Code für/); assert.ok(!html.includes('Wir haben dir'));
+    h.unmount();
+  }
+  const registrationMessage = 'Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet. Bitte prüfe auch den Spamordner.';
+  const h = harness(() => response({ success: true, message: registrationMessage }), { registration: true });
+  h.states[2] = 'email'; h.states[1] = '';
+  await h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-request'); assert.equal(h.states[3], registrationMessage);
+  h.unmount();
+});
+
+test('Both authentication pages derive only a boolean test-inbox hint from the private server mode', async () => {
+  for (const mode of [undefined, 'paypal-sandbox']) {
+    const globals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true', ...(mode ? { JL_TEST_ENVIRONMENT: mode } : {}) } } };
+    const login = await load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} }, query: { isTestMail: 'true' } });
+    const registration = await load('pages/registrieren.js', {}, globals).getServerSideProps({});
+    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: Boolean(mode) });
+    assert.deepEqual(registration.props, { registration: true, allowRegistration: true, isTestMail: Boolean(mode) });
+  }
+});
+
+test('Sandbox login and registration explain the isolated inbox and separate accounts; public pages omit that hint', () => {
+  const Login = load('pages/login.js').default;
+  for (const registration of [false, true]) {
+    const html = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: true }));
+    assert.match(html, /ausschließlich im getrennten Testpostfach/);
+    assert.match(html, /normales E-Mail-Postfach erhält keine Nachricht/);
+    assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
+    assert.match(html, registration ? /bestätigst du dein eigenes Testkonto/ : /wähle zuerst „Kostenlos registrieren“/);
+    const publicHtml = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: false }));
+    assert.ok(!publicHtml.includes('Testpostfach')); assert.ok(!publicHtml.includes('Testumgebung:'));
+  }
 });
 test('Duplicate code confirmation and changing email stay blocked through the successful navigation', async () => {
   const pending = deferred(), h = harness(() => pending.promise), tree = h.render();

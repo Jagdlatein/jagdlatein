@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "../components/LearningToolLayout";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
 import { getNextUrl, getLoginDestination } from "../lib/login-destination";
+import { isPayPalSandboxTestEnvironment } from "../lib/test-environment";
 import styles from "../styles/LearningExperience.module.css";
 import authStyles from "../styles/Auth.module.css";
 
@@ -12,10 +13,11 @@ export async function getServerSideProps({ req, res, query }) {
   if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
     return { redirect: { destination: getNextUrl(query.next), permanent: false } };
   }
-  return { props: { allowRegistration: process.env.ACCOUNT_REGISTRATION_ENABLED === "true" } };
+  return { props: { allowRegistration: process.env.ACCOUNT_REGISTRATION_ENABLED === "true",
+    isTestMail: isPayPalSandboxTestEnvironment() } };
 }
 
-export default function LoginPage({ registration = false, allowRegistration = false } = {}) {
+export default function LoginPage({ registration = false, allowRegistration = false, isTestMail = false } = {}) {
   const router = useRouter();
   const nextUrl = getNextUrl(router.query.next);
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
@@ -77,7 +79,9 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       } else {
         setEmail(cleanEmail);
         setStep("code");
-        setMsg("Wir haben dir einen 6-stelligen Login-Code per E-Mail geschickt.");
+        setMsg(typeof data.message === "string" && data.message.trim() ? data.message : (registration
+          ? "Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet."
+          : "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet."));
       }
     } catch {
       if (mounted.current) setMsg("Server nicht erreichbar. Bitte erneut versuchen.");
@@ -94,7 +98,12 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   return <LearningToolLayout title={registration ? "Dein Lernkonto" : "Willkommen zurück"} description={registration ? "Erstelle dein kostenloses Konto und bestätige deine E-Mail-Adresse. Ein Abo wählst du danach separat." : "Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an."} icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity>
     <section className={`${styles.panel} ${authStyles.formPanel}`} aria-labelledby="login-heading">
       <h2 id="login-heading">{step === "email" ? "Mit E-Mail anmelden" : "Login-Code bestätigen"}</h2>
-      <p>{step === "email" ? (registration ? "Gib die E-Mail-Adresse für dein Lernkonto ein. Die Registrierung löst keine Zahlung aus." : "Gib deine registrierte E-Mail-Adresse ein.") : <>Code an <strong>{email}</strong></>}</p>
+      <p>{step === "email" ? (registration ? "Gib die E-Mail-Adresse für dein Lernkonto ein. Die Registrierung löst keine Zahlung aus." : "Gib deine registrierte E-Mail-Adresse ein.") : <>Code für <strong>{email}</strong></>}</p>
+      {isTestMail && <p className={styles.note}>
+        <strong>Testumgebung:</strong> Anmelde- und Registrierungscodes landen ausschließlich im getrennten Testpostfach. Dein normales E-Mail-Postfach erhält keine Nachricht. Konten der öffentlichen App werden hier nicht übernommen.
+        {registration ? " Mit dem Code aus dem Testpostfach bestätigst du dein eigenes Testkonto."
+          : allowRegistration && " Wenn du hier noch kein Konto hast, wähle zuerst „Kostenlos registrieren“."}
+      </p>}
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
         {step === "email" ? <label>E-Mail-Adresse
           <input type="email" autoComplete="email" placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => setEmail(event.target.value)} required />
