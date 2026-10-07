@@ -5,7 +5,7 @@ import StoreKit
 import JagdlateinCore
 
 private enum AppleSubscriptionError: LocalizedError {
-    case signIn, disabled, accountChanged, unavailable, unverified, alreadyPaid, existingPurchase, otherAccount
+    case signIn, disabled, accountChanged, unavailable, unverified, alreadyPaid, existingPurchase, otherAccount, unsupportedIntent
     var errorDescription: String? {
         switch self {
         case .signIn: return "Bitte melde dich zuerst mit deinem Jagdlatein-Konto an."
@@ -16,6 +16,7 @@ private enum AppleSubscriptionError: LocalizedError {
         case .alreadyPaid: return "Dein Konto hat bereits Zugang. Ein weiteres Abo ist dafür nicht erforderlich."
         case .existingPurchase: return "Apple meldet bereits ein vorhandenes Abo. Wähle „Käufe wiederherstellen“, um es mit deinem Jagdlatein-Konto abzugleichen."
         case .otherAccount: return "Dieser Apple-Kauf gehört zu einem anderen Jagdlatein-Konto. Bitte melde dich mit dem ursprünglichen Konto an."
+        case .unsupportedIntent: return "Bitte verwirf die nicht unterstützte App-Store-Anfrage, bevor du das reguläre Monatsabo neu auswählst."
         }
     }
 }
@@ -120,14 +121,29 @@ private final class AppleAccountClient {
 final class AppleSubscriptionManager {
     private let client: AppleAccountClient
     private var updates: Task<Void, Never>?
+    private var purchaseIntents: Task<Void, Never>?
+    private var intentState = ApplePurchaseIntentState()
+    private var intentProduct: Product?
     private var confirming: [UInt64: Task<Bool, Error>] = [:]
     private var lastReconciliation = Date.distantPast
     var onConfirmed: ((UUID) -> Void)?
+    var onPurchaseIntent: (() -> Void)?
+    var purchaseIntentMessage: String? {
+        switch intentState.notice {
+        case .requiresManualConfirmation:
+            return "Du hast im App Store das Jagdlatein-Monatsabo ausgewählt. Melde dich mit deinem Jagdlatein-Konto an und prüfe das Angebot. Erst dein Tippen auf „Mit Apple abonnieren“ startet die Bestätigung bei Apple."
+        case .unsupportedProduct:
+            return "Das im App Store ausgewählte Produkt wird hier nicht unterstützt. Es wurde kein Kauf gestartet."
+        case .unsupportedOffer:
+            return "Das ausgewählte Sonderangebot wird hier noch nicht unterstützt. Es wurde kein Kauf gestartet. Die normale Abo-Übersicht enthält keine Zusage für dieses Sonderangebot."
+        case nil: return nil
+        }
+    }
 
     init(cookieStore: WKHTTPCookieStore, visiblePage: @escaping () -> URL?) {
         client = AppleAccountClient(cookieStore: cookieStore, visiblePage: visiblePage)
     }
-    deinit { updates?.cancel() }
+    deinit { updates?.cancel(); purchaseIntents?.cancel() }
 
     func start() {
         guard updates == nil else { return }
@@ -137,18 +153,58 @@ final class AppleSubscriptionManager {
                 do { _ = try await self.confirm(result) } catch { /* Leave unfinished for the original account to retry. */ }
             }
         }
+        if #available(iOS 16.4, *) {
+            purchaseIntents = Task { [weak self] in
+                for await intent in PurchaseIntent.intents {
+                    guard let self = self else { return }
+                    var hasAdditionalOffer = false
+                    if #available(iOS 18.0, *) { hasAdditionalOffer = intent.offer != nil }
+                    self.intentState.receive(productID: intent.product.id, hasAdditionalOffer: hasAdditionalOffer)
+                    self.intentProduct = self.intentState.productID == nil ? nil : intent.product
+                    // This is a request to show information only. In particular,
+                    // receiving an intent never calls purchase or AppStore.sync.
+                    self.onPurchaseIntent?()
+                }
+            }
+        }
     }
 
     func context() async throws -> ApplePurchaseContext { try await client.context() }
 
-    func products(for context: ApplePurchaseContext) async throws -> [Product] {
-        guard context.isConfigured, let ids = context.productIds else { throw AppleSubscriptionError.disabled }
-        try await ensureNoExistingPurchase(context)
-        let products = try await Product.products(for: ids)
-        return products.filter { ids.contains($0.id) && $0.type == .autoRenewable && $0.subscription != nil }
+    func dismissPurchaseIntent() {
+        intentState.clear()
+        intentProduct = nil
     }
 
-    func purchase(_ product: Product, context shownContext: ApplePurchaseContext, scene: UIWindowScene) async throws -> String {
+    struct ProductChoice {
+        let product: Product
+        let intentRevision: Int?
+    }
+
+    func products(for context: ApplePurchaseContext) async throws -> [ProductChoice] {
+        guard context.isConfigured, let ids = context.productIds else { throw AppleSubscriptionError.disabled }
+        try requireSupportedPurchaseIntent()
+        try await ensureNoExistingPurchase(context)
+        try requireSupportedPurchaseIntent()
+        if let requested = intentProduct, ids.contains(requested.id), requested.type == .autoRenewable,
+           requested.subscription != nil { return [ProductChoice(product: requested, intentRevision: intentState.revision)] }
+        let products = try await Product.products(for: ids)
+        try requireSupportedPurchaseIntent()
+        if let requested = intentProduct, ids.contains(requested.id), requested.type == .autoRenewable,
+           requested.subscription != nil { return [ProductChoice(product: requested, intentRevision: intentState.revision)] }
+        return products.filter { ids.contains($0.id) && $0.type == .autoRenewable && $0.subscription != nil }
+            .map { ProductChoice(product: $0, intentRevision: nil) }
+    }
+
+    private func requireSupportedPurchaseIntent() throws {
+        guard intentState.notice != .unsupportedProduct && intentState.notice != .unsupportedOffer else { throw AppleSubscriptionError.unsupportedIntent }
+    }
+
+    private func finishPurchaseIntent(revision: Int) {
+        if intentState.clear(ifRevision: revision) { intentProduct = nil }
+    }
+
+    func purchase(_ product: Product, context shownContext: ApplePurchaseContext, scene: UIWindowScene, intentRevision: Int? = nil) async throws -> String {
         let current = try await client.context()
         guard current.isConfigured, current.appAccountToken == shownContext.appAccountToken,
               current.productIds?.contains(product.id) == true, let token = current.appAccountToken else {
@@ -156,6 +212,24 @@ final class AppleSubscriptionManager {
         }
         guard current.purchaseAllowed == true, current.paid != true else { throw AppleSubscriptionError.alreadyPaid }
         try await ensureNoExistingPurchase(current)
+        // Entitlement enumeration suspends. Revalidate the actual web account
+        // and its access immediately afterwards, before Apple's purchase UI.
+        let purchaseContext = try await client.context()
+        guard purchaseContext.isConfigured, purchaseContext.appAccountToken == current.appAccountToken,
+              purchaseContext.appAccountToken == shownContext.appAccountToken,
+              purchaseContext.productIds?.contains(product.id) == true else { throw AppleSubscriptionError.accountChanged }
+        guard purchaseContext.purchaseAllowed == true, purchaseContext.paid == false else { throw AppleSubscriptionError.alreadyPaid }
+        try requireSupportedPurchaseIntent()
+        if let revision = intentRevision {
+            guard intentState.canConfirmManually(productID: product.id, revision: revision,
+                                                  shownContext: shownContext, currentContext: purchaseContext),
+                  intentProduct?.id == product.id else { throw AppleSubscriptionError.accountChanged }
+        } else if intentProduct != nil {
+            // An intent arrived while a normal product button was displayed.
+            // Require a fresh overview so its source and terms are visible.
+            throw AppleSubscriptionError.accountChanged
+        }
+        let purchaseRevision = intentState.revision
         let result: Product.PurchaseResult
         if #available(iOS 17.0, *) {
             result = try await product.purchase(confirmIn: scene, options: [.appAccountToken(token)])
@@ -165,9 +239,14 @@ final class AppleSubscriptionManager {
         switch result {
         case .success(let verification):
             let paid = try await confirm(verification, expectedToken: token)
+            finishPurchaseIntent(revision: purchaseRevision)
             return paid ? "Dein Apple-Abo ist bestätigt. Deine Lerninhalte sind freigeschaltet." : "Der Kauf ist geprüft. Bitte lade die Konto-Übersicht für deinen aktuellen Zugangsstatus neu."
-        case .userCancelled: return "Der Kauf wurde abgebrochen."
-        case .pending: return "Apple prüft den Kauf noch. Sobald er genehmigt ist, wird die Bestätigung erneut versucht."
+        case .userCancelled:
+            finishPurchaseIntent(revision: purchaseRevision)
+            return "Der Kauf wurde abgebrochen."
+        case .pending:
+            finishPurchaseIntent(revision: purchaseRevision)
+            return "Apple prüft den Kauf noch. Sobald er genehmigt ist, wird die Bestätigung erneut versucht."
         @unknown default: throw AppleSubscriptionError.unavailable
         }
     }
@@ -261,6 +340,7 @@ final class AppleSubscriptionViewController: UIViewController {
     private let stack = UIStackView()
     private let status = UILabel()
     private let productStack = UIStackView()
+    private let intentNotice = UILabel()
     private var context: ApplePurchaseContext?
     private var buttons: [UIButton] = []
     private var loading = false
@@ -297,6 +377,11 @@ final class AppleSubscriptionViewController: UIViewController {
         ])
         stack.addArrangedSubview(label("Wissen für deine Jagdpraxis", style: .title2))
         stack.addArrangedSubview(label("Lernkurse, Übungen und Tierstimmen in deinem Jagdlatein-Konto. Ein bestehender Zugang funktioniert auch auf iPhone und iPad."))
+        intentNotice.numberOfLines = 0
+        intentNotice.font = .preferredFont(forTextStyle: .body)
+        intentNotice.adjustsFontForContentSizeCategory = true
+        intentNotice.accessibilityIdentifier = "jagdlatein.apple.intent"
+        stack.addArrangedSubview(intentNotice)
         status.numberOfLines = 0
         status.font = .preferredFont(forTextStyle: .body)
         status.adjustsFontForContentSizeCategory = true
@@ -333,6 +418,8 @@ final class AppleSubscriptionViewController: UIViewController {
     private func load() {
         guard !loading else { return }
         setLoading(true)
+        intentNotice.text = manager.purchaseIntentMessage
+        intentNotice.isHidden = manager.purchaseIntentMessage == nil
         status.text = "Konto und Apple-Angebot werden geladen …"
         task = Task { [weak self] in
             guard let self = self else { return }
@@ -350,7 +437,7 @@ final class AppleSubscriptionViewController: UIViewController {
                 if context.purchaseAllowed == true && context.paid != true {
                     let products = try await self.manager.products(for: context)
                     guard !products.isEmpty else { throw AppleSubscriptionError.unavailable }
-                    for product in products { await self.addProduct(product, context: context) }
+                    for choice in products { await self.addProduct(choice.product, context: context, intentRevision: choice.intentRevision) }
                 }
                 self.addCommonActions()
             } catch {
@@ -366,7 +453,7 @@ final class AppleSubscriptionViewController: UIViewController {
         buttons.removeAll()
     }
 
-    private func addProduct(_ product: Product, context: ApplePurchaseContext) async {
+    private func addProduct(_ product: Product, context: ApplePurchaseContext, intentRevision: Int?) async {
         guard let subscription = product.subscription else { return }
         let period = periodText(subscription.subscriptionPeriod)
         var offerText = "\(product.displayPrice) pro \(period)."
@@ -380,7 +467,7 @@ final class AppleSubscriptionViewController: UIViewController {
         }
         productStack.addArrangedSubview(label(product.displayName, style: .headline))
         productStack.addArrangedSubview(label(offerText + " Das Abo verlängert sich automatisch, bis du es in deinem Apple-Konto kündigst."))
-        let purchaseButton = button("Mit Apple abonnieren", filled: true) { [weak self] in self?.purchase(product, context: context) }
+        let purchaseButton = button("Mit Apple abonnieren", filled: true) { [weak self] in self?.purchase(product, context: context, intentRevision: intentRevision) }
         purchaseButton.accessibilityIdentifier = "jagdlatein.apple.purchase"
         productStack.addArrangedSubview(purchaseButton)
     }
@@ -399,6 +486,13 @@ final class AppleSubscriptionViewController: UIViewController {
     }
 
     private func addCommonActions() {
+        if manager.purchaseIntentMessage != nil {
+            productStack.addArrangedSubview(button("App-Store-Anfrage verwerfen") { [weak self] in
+                guard let self = self else { return }
+                self.manager.dismissPurchaseIntent()
+                self.load()
+            })
+        }
         let restore = button("Käufe wiederherstellen") { [weak self] in self?.restore() }
         restore.accessibilityIdentifier = "jagdlatein.apple.restore"
         restore.isEnabled = context?.isConfigured == true && !loading
@@ -426,14 +520,23 @@ final class AppleSubscriptionViewController: UIViewController {
         isModalInPresentation = value
     }
 
-    private func purchase(_ product: Product, context: ApplePurchaseContext) {
+    func refreshForPurchaseIntent() {
+        guard isViewLoaded else { return }
+        intentNotice.text = manager.purchaseIntentMessage
+        intentNotice.isHidden = manager.purchaseIntentMessage == nil
+        if !loading { load() }
+    }
+
+    private func purchase(_ product: Product, context: ApplePurchaseContext, intentRevision: Int?) {
         guard !loading, let scene = view.window?.windowScene else { return }
         setLoading(true)
         task = Task { [weak self] in
             guard let self = self else { return }
             defer { self.setLoading(false) }
-            do { self.status.text = try await self.manager.purchase(product, context: context, scene: scene) }
+            do { self.status.text = try await self.manager.purchase(product, context: context, scene: scene, intentRevision: intentRevision) }
             catch { self.status.text = self.message(for: error) }
+            self.intentNotice.text = self.manager.purchaseIntentMessage
+            self.intentNotice.isHidden = self.manager.purchaseIntentMessage == nil
             // Refresh explicitly before offering another purchase, including
             // after cancellation, pending approval or a failed server request.
             self.buttons.first(where: { $0.accessibilityIdentifier == "jagdlatein.apple.purchase" })?.isHidden = true

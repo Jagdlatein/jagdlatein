@@ -60,6 +60,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private var compilingContentRules = false
     private var restoringAllowedPage = false
     private var paymentHintAfterRestore = false
+    private var purchaseIntentNeedsPresentation = false
     private var downloadDestinations: [ObjectIdentifier: URL] = [:]
     private var documentController: UIDocumentInteractionController?
     private lazy var backButton = toolbarButton("chevron.left", label: "Zurück", action: #selector(goBack))
@@ -146,6 +147,10 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         prepareContentRules()
         appleSubscriptions.onConfirmed = { [weak self] token in
             Task { [weak self] in await self?.refreshWebsiteAccess(for: token) }
+        }
+        appleSubscriptions.onPurchaseIntent = { [weak self] in
+            self?.purchaseIntentNeedsPresentation = true
+            self?.presentPurchaseIntentIfPossible()
         }
         appleSubscriptions.start()
     }
@@ -294,6 +299,18 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         navigation.modalPresentationStyle = .pageSheet
         present(navigation, animated: true)
     }
+    private func presentPurchaseIntentIfPossible() {
+        guard purchaseIntentNeedsPresentation, contentRulesReady, !restoringAllowedPage,
+              let page = webView.url, AppleBillingPolicy.requestURL(for: .context, visiblePage: page) != nil else { return }
+        if let navigation = presentedViewController as? UINavigationController,
+           let sheet = navigation.topViewController as? AppleSubscriptionViewController {
+            sheet.refreshForPurchaseIntent()
+            purchaseIntentNeedsPresentation = false
+        } else if presentedViewController == nil {
+            purchaseIntentNeedsPresentation = false
+            showSubscriptions()
+        }
+    }
     func refreshAppleTransactions() {
         Task { [weak self] in await self?.appleSubscriptions.reconcileIfNeeded() }
     }
@@ -416,6 +433,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         }
         webView.isHidden = false
         finishLoading()
+        if purchaseIntentNeedsPresentation { presentPurchaseIntentIfPossible() }
         Task { [weak self] in await self?.appleSubscriptions.reconcileIfNeeded() }
         if paymentHintAfterRestore {
             paymentHintAfterRestore = false
