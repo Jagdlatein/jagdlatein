@@ -50,7 +50,8 @@ function provider({ device = transaction(), current = transaction(), renewalInfo
     async verifyAndDecodeTransaction(signed) { if (invalidSignature) throw new Error('invalid signature');
       return signed === JWS.device ? device : current; },
     async verifyAndDecodeRenewalInfo() { return renewalInfo; },
-    async verifyAndDecodeNotification() { return { notificationUUID: 'c815a0bb-d432-40c6-bf2a-e97fb877b195',
+    async verifyAndDecodeNotification() { if (invalidSignature) throw new Error('invalid signature');
+      return { notificationUUID: 'c815a0bb-d432-40c6-bf2a-e97fb877b195',
       version: '2.0', signedDate: NOW, notificationType: 'DID_RENEW',
       data: { bundleId: CONFIG.bundleId, environment: CONFIG.environment, appAppleId: CONFIG.appAppleId,
         signedTransactionInfo: JWS.current }, ...notice }; },
@@ -185,6 +186,12 @@ test('Notification verification binds outer app metadata, current inner transact
   const result = await lib.applyVerifiedAppleNotification(JWS.notice, { database: data.database, config: CONFIG,
     nowMs: NOW, ...provider() });
   assert.equal(result.ok, true); assert.equal(data.snapshots[0].notification_id, 'c815a0bb-d432-40c6-bf2a-e97fb877b195');
+  const noId = fakeDatabase();
+  const noIdApple = provider({ notice: { data: { bundleId: CONFIG.bundleId, environment: 'Sandbox',
+    signedTransactionInfo: JWS.current } } });
+  assert.equal((await lib.applyVerifiedAppleNotification(JWS.notice, { database: noId.database, config: CONFIG,
+    nowMs: NOW, ...noIdApple })).ok, true);
+  assert.equal(noId.snapshots.length, 1); assert.equal(noIdApple.apiReads, 1);
   const bad = fakeDatabase();
   await assert.rejects(lib.applyVerifiedAppleNotification(JWS.notice, { database: bad.database, config: CONFIG,
     nowMs: NOW, ...provider({ notice: { data: { appAppleId: 1, bundleId: CONFIG.bundleId, environment: 'Sandbox' } } }) }),
@@ -195,6 +202,51 @@ test('Notification verification binds outer app metadata, current inner transact
     nowMs: NOW, ...provider({ notice: { data: undefined, notificationType: 'RENEWAL_EXTENSION',
       summary: { appAppleId: CONFIG.appAppleId, bundleId: CONFIG.bundleId, environment: CONFIG.environment } } }) });
   assert.equal(ignored.ignored, true); assert.equal(summary.snapshots.length, 0);
+});
+
+test('Verified Sandbox TEST accepts omitted appAppleId without account reads or entitlement writes', async () => {
+  const database = { from() { assert.fail('TEST must not read accounts'); }, rpc() { assert.fail('TEST must not grant access'); } };
+  const apple = provider({ notice: { notificationType: 'TEST',
+    data: { bundleId: CONFIG.bundleId, environment: 'Sandbox' } } });
+  const result = await lib.applyVerifiedAppleNotification(JWS.notice,
+    { database, config: CONFIG, nowMs: NOW, ...apple });
+  assert.equal(result.ok, true); assert.equal(result.test, true); assert.equal(apple.apiReads, 0);
+});
+
+test('Sandbox TEST still rejects supplied wrong IDs, cross-app/environment and invalid signed metadata', async () => {
+  const database = { from() { assert.fail('invalid TEST must not read accounts'); }, rpc() { assert.fail('invalid TEST must not grant access'); } };
+  const metadata = { bundleId: CONFIG.bundleId, environment: 'Sandbox' };
+  for (const change of [{ appAppleId: 1 }, { appAppleId: null }, { appAppleId: String(CONFIG.appAppleId) },
+    { bundleId: 'other.app' }, { environment: 'Production' }]) {
+    const apple = provider({ notice: { notificationType: 'TEST', data: { ...metadata, ...change } } });
+    await assert.rejects(lib.applyVerifiedAppleNotification(JWS.notice,
+      { database, config: CONFIG, nowMs: NOW, ...apple }), error => error.status === 400);
+    assert.equal(apple.apiReads, 0);
+  }
+  for (const options of [{ invalidSignature: true },
+    { notice: { version: '1.0' } }, { notice: { notificationUUID: 'invalid' } },
+    { notice: { signedDate: 0 } }, { notice: { signedDate: NOW + 6 * 60000 } }]) {
+    const apple = provider({ ...options, notice: { notificationType: 'TEST', data: metadata, ...options.notice } });
+    await assert.rejects(lib.applyVerifiedAppleNotification(JWS.notice,
+      { database, config: CONFIG, nowMs: NOW, ...apple }), error => error.status === 400);
+    assert.equal(apple.apiReads, 0);
+  }
+});
+
+test('Production TEST requires the exact configured appAppleId even when no purchase is present', async () => {
+  const config = { ...CONFIG, environment: 'Production' };
+  const database = { from() { assert.fail('TEST must not read accounts'); }, rpc() { assert.fail('TEST must not grant access'); } };
+  const metadata = { bundleId: CONFIG.bundleId, environment: 'Production' };
+  const accepted = provider({ notice: { notificationType: 'TEST', data: { ...metadata, appAppleId: CONFIG.appAppleId } } });
+  assert.equal((await lib.applyVerifiedAppleNotification(JWS.notice,
+    { database, config, nowMs: NOW, ...accepted })).test, true);
+  assert.equal(accepted.apiReads, 0);
+  for (const change of [{}, { appAppleId: 1 }, { appAppleId: null }]) {
+    const apple = provider({ notice: { notificationType: 'TEST', data: { ...metadata, ...change } } });
+    await assert.rejects(lib.applyVerifiedAppleNotification(JWS.notice,
+      { database, config, nowMs: NOW, ...apple }), error => error.status === 400);
+    assert.equal(apple.apiReads, 0);
+  }
 });
 
 test('Bounded JSON parsing rejects wrong fields, multiple fields, non-JSON and oversized raw payloads', async () => {
