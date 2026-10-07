@@ -33,9 +33,14 @@ if ($Step -eq 'LocalTests') {
 }
 # Prepares source only. No database connection, email, payment, delete or secret
 # operation is performed. The operator must select the separate test project.
+$testPushBasePath = Join-Path $PSScriptRoot 'sql\ios-test-push-base.sql'
+if (!(Test-Path -LiteralPath $testPushBasePath)) {
+    throw 'Getrennte Testbasis fehlt: scripts/sql/ios-test-push-base.sql'
+}
 $sqlParts = @('-- Jagdlatein: NUR getrennte Testdatenbank xwkvrsuplytalwploebw.',
     '-- Erst nach Pruefung im Supabase SQL Editor ausfuehren. Keine Konten werden geloescht.',
     '-- Die Loeschvorbereitung deaktiviert alte Push-Tokens ohne bekannte Kontozuordnung.')
+$sqlParts += [IO.File]::ReadAllText($testPushBasePath)
 foreach ($name in $migrationNames) {
     $sqlParts += [IO.File]::ReadAllText((Join-Path $projectRoot ('supabase\migrations\' + $name)))
 }
