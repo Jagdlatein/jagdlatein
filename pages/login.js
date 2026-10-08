@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "../components/LearningToolLayout";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
 import { getNextUrl, getLoginDestination } from "../lib/login-destination";
-import { isPayPalSandboxTestEnvironment } from "../lib/test-environment";
+import { getTestLoginMailMode } from "../lib/test-environment";
 import styles from "../styles/LearningExperience.module.css";
 import authStyles from "../styles/Auth.module.css";
 
@@ -13,11 +13,12 @@ export async function getServerSideProps({ req, res, query }) {
   if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
     return { redirect: { destination: getNextUrl(query.next), permanent: false } };
   }
+  const testMailMode = getTestLoginMailMode();
   return { props: { allowRegistration: process.env.ACCOUNT_REGISTRATION_ENABLED === "true",
-    isTestMail: isPayPalSandboxTestEnvironment() } };
+    isTestMail: testMailMode !== null, testMailMode } };
 }
 
-export default function LoginPage({ registration = false, allowRegistration = false, isTestMail = false } = {}) {
+export default function LoginPage({ registration = false, allowRegistration = false, isTestMail = false, testMailMode = "sink" } = {}) {
   const router = useRouter();
   const nextUrl = getNextUrl(router.query.next);
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
@@ -100,8 +101,11 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       <h2 id="login-heading">{step === "email" ? "Mit E-Mail anmelden" : "Login-Code bestätigen"}</h2>
       <p>{step === "email" ? (registration ? "Gib die E-Mail-Adresse für dein Lernkonto ein. Die Registrierung löst keine Zahlung aus." : "Gib deine registrierte E-Mail-Adresse ein.") : <>Code für <strong>{email}</strong></>}</p>
       {isTestMail && <p className={styles.note}>
-        <strong>Testumgebung:</strong> Anmelde- und Registrierungscodes landen ausschließlich im getrennten Testpostfach. Dein normales E-Mail-Postfach erhält keine Nachricht. Konten der öffentlichen App werden hier nicht übernommen.
-        {registration ? " Mit dem Code aus dem Testpostfach bestätigst du dein eigenes Testkonto."
+        <strong>Testumgebung:</strong> {testMailMode === "tester-smtp"
+          ? "Freigegebene Tester erhalten ihren Anmelde- oder Registrierungscode per E-Mail. Bitte prüfe auch den Spamordner."
+          : "Anmelde- und Registrierungscodes landen ausschließlich im getrennten Testpostfach. Dein normales E-Mail-Postfach erhält keine Nachricht."}
+        {" Konten der öffentlichen App werden hier nicht übernommen."}
+        {registration ? (testMailMode === "tester-smtp" ? " Registriere dein eigenes Testkonto mit deiner freigegebenen E-Mail-Adresse." : " Mit dem Code aus dem Testpostfach bestätigst du dein eigenes Testkonto.")
           : allowRegistration && " Wenn du hier noch kein Konto hast, wähle zuerst „Kostenlos registrieren“."}
       </p>}
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>

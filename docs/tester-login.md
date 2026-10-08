@@ -1,0 +1,36 @@
+# Anmeldung für freigegebene TestFlight-Tester
+
+Die TestFlight-Sandbox verwendet eigene Lernkonten und die feste Website `https://jagdlatein-sandbox.vercel.app`. Das bisherige Ethereal-Testpostfach stellt keine Nachricht an echte Empfänger zu. Für Tests direkt auf dem iPad ist deshalb ein ausdrücklich aktivierter SMTP-Versand an eine private Liste freigegebener Adressen vorgesehen.
+
+## Einstellungen ausschließlich im Vercel-Testprojekt
+
+| Schlüssel | Wert |
+| --- | --- |
+| `JL_TEST_ENVIRONMENT` | `paypal-sandbox` beibehalten |
+| `JL_TEST_MAIL_MODE` | `tester-smtp` |
+| `JL_TEST_SMTP_HOST` | `asmtp.mail.hostpoint.ch` |
+| `JL_TEST_SMTP_PORT` | `587` für zwingendes STARTTLS oder `465` für TLS ab Verbindungsbeginn |
+| `JL_TEST_SMTP_USER` | vollständige Adresse des ausdrücklich freigegebenen Versandpostfachs |
+| `JL_TEST_SMTP_PASS` | zugehöriges Passwort als Secret |
+| `JL_TEST_SMTP_FROM` | einzelne Absenderadresse ohne Anzeigenamen |
+| `JL_TEST_MAIL_RECIPIENTS` | private, kommagetrennte Liste exakt freigegebener Testeradressen; höchstens 100 |
+
+Hostpoint beschreibt den SMTP-Server, beide Ports und die Anmeldung mit der vollständigen Postfachadresse in seinen [E-Mail-Einstellungen](https://support.hostpoint.ch/de/technisches/e-mail/haeufig-gestellte-fragen/e-mail-einstellungen-auf-einen-blick). Die Transportkonfiguration verlangt eine gültige TLS-Verbindung und prüft das Serverzertifikat; [Nodemailer dokumentiert die TLS- und STARTTLS-Optionen](https://nodemailer.com/smtp).
+
+Der Testmodus liest ausschließlich die eigenen `JL_TEST_SMTP_*`-Einstellungen. Er greift nicht auf die SMTP-Konfiguration der öffentlichen App zurück. Ein bestehendes Postfach wie `info@jagdlatein.de` darf nur nach ausdrücklicher Freigabe für das Testprojekt hinterlegt werden. Das Passwort und die Empfängerliste gehören weder in Git noch in Chatnachrichten. Die Freigabe eines Empfängers verschafft ihm keinen Lernzugang: Registrierung, E-Mail-Bestätigung und Apples tatsächlicher Sandbox-Abostatus bleiben erforderlich.
+
+Ohne `JL_TEST_MAIL_MODE`, oder mit `sink`, bleibt das bisherige Ethereal-Verhalten bestehen. Unbekannte Modi und unvollständige Tester-Einstellungen brechen sicher ab. Im Tester-Modus erhalten nicht freigegebene Adressen dieselbe neutrale Codeantwort; es wird kein Code reserviert oder versendet. Die Empfängerliste ist ausschließlich serverseitig und wird nicht an die App übertragen.
+
+## Ablauf auf dem iPad
+
+1. Neue Tester öffnen „Kostenlos registrieren“ und verwenden ihre freigegebene Adresse. Bereits registrierte Tester wählen „Mit E-Mail anmelden“.
+2. Die als Testnachricht gekennzeichnete E-Mail enthält einen individuellen, zehn Minuten gültigen Einmalcode. Bei Bedarf den Spamordner prüfen.
+3. Nach der Anmeldung unter „Abo und Käufe“ vorhandene Käufe wiederherstellen oder einen neuen Sandbox-Kauf selbst bestätigen.
+
+Die App-Anzeige unterscheidet den internen Mail-Sink vom direkten Versand an Tester. Der Mailmodus ändert keine Datenbank-, Apple-, PayPal- oder Push-Isolation. Er ersetzt keinen Kaufbeleg und verspricht keine kostenlose Verlängerung. Für diese Serveränderung ist kein neues natives TestFlight-Paket erforderlich.
+
+## Prüfstatus
+
+Die Zustellungserweiterung ist vorbereitet und unabhängig geprüft. **98 synthetische Versand-, Login- und Registrierungsprüfungen** bestehen mit Node **22.23.3**, einschließlich TLS, Empfängerbegrenzung, fehlender Einstellungen, unveränderter Produktion, neutraler Antworten ohne Code-Reservierung und bereinigter SMTP-Fehler. Der vollständige Website-Build besteht mit **307 erzeugten Seiten**.
+
+Vor ihrer Aktivierung müssen die freigegebenen Postfachzugänge ausschließlich im Testprojekt gespeichert und die Testwebsite mit dem geprüften Quellstand bereitgestellt werden. Eine erfolgreiche SMTP-Anmeldung bestätigt nur die Verbindung; erst der Empfang eines vom Tester angeforderten Codes und die anschließende Anmeldung auf dem iPad bestätigen die tatsächliche Zustellung. Kaufwiederherstellung, Kündigung, Ablauf und Erstattung bleiben separate Prüfungen.

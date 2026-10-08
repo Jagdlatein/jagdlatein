@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { sendLoginCode } from "../../../../lib/email";
 import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
+import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
 
 
 export async function POST(req) {
@@ -36,6 +37,12 @@ export async function POST(req) {
         { success: false, message: "Bitte gültige E-Mail eingeben." },
         { status: 400 }
       );
+    }
+
+    if (!isLoginMailRecipientAllowed(email)) {
+      return NextResponse.json({ success: true,
+        message: "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet." },
+      { headers: { "Cache-Control": "no-store" } });
     }
 
     // Prüfen, ob die E-Mail bei Jagdlatein registriert ist

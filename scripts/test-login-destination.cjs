@@ -102,14 +102,37 @@ test('Requesting a code preserves the neutral server message without claiming th
   h.unmount();
 });
 
-test('Both authentication pages derive only a boolean test-inbox hint from the private server mode', async () => {
-  for (const mode of [undefined, 'paypal-sandbox']) {
-    const globals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true', ...(mode ? { JL_TEST_ENVIRONMENT: mode } : {}) } } };
-    const login = await load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} }, query: { isTestMail: 'true' } });
+test('Authentication pages expose only a private-derived mail mode, never tester addresses or transport credentials', async () => {
+  for (const isolated of [false, true]) for (const mode of [undefined, 'sink', 'tester-smtp']) {
+    const env = { ACCOUNT_REGISTRATION_ENABLED: 'true', JL_TEST_MAIL_MODE: mode,
+      JL_TEST_MAIL_RECIPIENTS: 'private-tester@example.invalid', JL_TEST_SMTP_PASS: 'private-test-smtp-password',
+      JL_TEST_SMTP_USER: 'private-sender@example.invalid', JL_TEST_SMTP_FROM: 'private-from@example.invalid',
+      ...(isolated ? { JL_TEST_ENVIRONMENT: 'paypal-sandbox' } : {}) };
+    const globals = { process: { env } };
+    const login = await load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} },
+      query: { isTestMail: isolated ? 'false' : 'true', testMailMode: isolated ? 'sink' : 'tester-smtp' } });
     const registration = await load('pages/registrieren.js', {}, globals).getServerSideProps({});
-    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: Boolean(mode) });
-    assert.deepEqual(registration.props, { registration: true, allowRegistration: true, isTestMail: Boolean(mode) });
+    const testMailMode = isolated ? mode || 'sink' : null;
+    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: isolated, testMailMode });
+    assert.deepEqual(registration.props, { registration: true, allowRegistration: true, isTestMail: isolated, testMailMode });
+    const exposed = JSON.stringify([login.props, registration.props]);
+    for (const key of ['JL_TEST_MAIL_RECIPIENTS', 'JL_TEST_SMTP_USER', 'JL_TEST_SMTP_PASS', 'JL_TEST_SMTP_FROM']) {
+      assert.ok(!exposed.includes(key)); assert.ok(!exposed.includes(env[key]));
+    }
   }
+});
+
+test('Invalid private mail modes cannot silently render a misleading sink or tester hint', async () => {
+  for (const mode of ['', 'smtp', 'TESTER-SMTP']) {
+    const globals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true',
+      JL_TEST_ENVIRONMENT: 'paypal-sandbox', JL_TEST_MAIL_MODE: mode } } };
+    await assert.rejects(load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} }, query: {} }),
+      error => error.status === 503);
+    await assert.rejects(load('pages/registrieren.js', {}, globals).getServerSideProps({}), error => error.status === 503);
+  }
+  const publicGlobals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true', JL_TEST_MAIL_MODE: 'invalid-private-mode' } } };
+  const publicProps = await load('pages/login.js', {}, publicGlobals).getServerSideProps({ req: { cookies: {} }, query: {} });
+  assert.equal(publicProps.props.isTestMail, false); assert.equal(publicProps.props.testMailMode, null);
 });
 
 test('Sandbox login and registration explain the isolated inbox and separate accounts; public pages omit that hint', () => {
@@ -122,6 +145,24 @@ test('Sandbox login and registration explain the isolated inbox and separate acc
     assert.match(html, registration ? /bestätigst du dein eigenes Testkonto/ : /wähle zuerst „Kostenlos registrieren“/);
     const publicHtml = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: false }));
     assert.ok(!publicHtml.includes('Testpostfach')); assert.ok(!publicHtml.includes('Testumgebung:'));
+  }
+});
+
+test('Opt-in tester login explains real delivery and separate accounts without promising a message to every address', () => {
+  const Login = load('pages/login.js').default;
+  for (const registration of [false, true]) {
+    const html = renderToStaticMarkup(React.createElement(Login, {
+      registration, allowRegistration: true, isTestMail: true, testMailMode: 'tester-smtp',
+    }));
+    assert.match(html, /Freigegebene Tester erhalten/); assert.match(html, /per E-Mail/);
+    assert.match(html, /Spamordner/); assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
+    assert.ok(!html.includes('normales E-Mail-Postfach erhält keine Nachricht'));
+    assert.ok(!html.includes('ausschließlich im getrennten Testpostfach'));
+    if (registration) assert.match(html, /freigegebenen E-Mail-Adresse/);
+    const publicHtml = renderToStaticMarkup(React.createElement(Login, {
+      registration, allowRegistration: true, isTestMail: false, testMailMode: 'tester-smtp',
+    }));
+    assert.ok(!publicHtml.includes('Freigegebene Tester')); assert.ok(!publicHtml.includes('Testumgebung:'));
   }
 });
 test('Duplicate code confirmation and changing email stay blocked through the successful navigation', async () => {

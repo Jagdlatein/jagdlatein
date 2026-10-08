@@ -37,7 +37,7 @@ function api(options = {}) {
   const env = { ACCOUNT_REGISTRATION_ENABLED: options.disabled ? 'false' : 'true', NODE_ENV: 'production',
     JL_SESSION_SECRET: options.noSession ? '' : 'synthetic-registration-session-secret-more-than-32-bytes',
     SUPABASE_URL: 'https://database.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'synthetic-not-a-key',
-    ACCOUNT_DELETION_ENABLED: options.generation ? 'true' : 'false' };
+    ACCOUNT_DELETION_ENABLED: options.generation ? 'true' : 'false', ...options.env };
   const cache = new Map();
   const context = vm.createContext({ process: { env }, Buffer, Date, URL, TextDecoder, Uint8Array, Response, console });
   function load(relative) {
@@ -86,6 +86,14 @@ async function requestCode(ctx) {
   return ctx.mail[0].code;
 }
 
+const REGISTRATION_REQUEST_MESSAGE = 'Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet. Bitte prüfe auch den Spamordner.';
+function testerEnv(overrides = {}) {
+  return { JL_TEST_ENVIRONMENT: 'paypal-sandbox', PAYPAL_API_BASE: 'https://api-m.sandbox.paypal.com',
+    JL_TEST_MAIL_MODE: 'tester-smtp', JL_TEST_SMTP_HOST: 'asmtp.mail.hostpoint.ch', JL_TEST_SMTP_PORT: '465',
+    JL_TEST_SMTP_USER: 'test-sender@example.invalid', JL_TEST_SMTP_PASS: 'synthetic-test-smtp-password',
+    JL_TEST_SMTP_FROM: 'info@example.invalid', JL_TEST_MAIL_RECIPIENTS: EMAIL, ...overrides };
+}
+
 test('Feature-disabled or missing-session deployments do not access the database or send email', async () => {
   for (const options of [{ disabled: true }, { noSession: true }]) {
     const ctx = api(options);
@@ -108,6 +116,59 @@ test('Cross-origin, non-JSON, extra fields and oversized bodies fail before a re
   }
   assert.equal((await api().requestRoute.POST(api().request(false, { body: 'x'.repeat(2049) }))).status, 413);
   const ctx = api(); assert.equal((await ctx.requestRoute.POST(ctx.request(false, { headers: { 'content-type': 'text/plain' } }))).status, 415);
+});
+
+test('Nonapproved tester registration stays neutral and creates no database client, code or profile', async () => {
+  await clear();
+  const ctx = api({ env: testerEnv({ JL_TEST_MAIL_RECIPIENTS: 'approved-other@example.invalid' }) });
+  const response = await ctx.requestRoute.POST(ctx.request());
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { success: true, message: REGISTRATION_REQUEST_MESSAGE });
+  assert.equal(ctx.database.calls, 0); assert.equal(ctx.database.rpcCalls, 0); assert.equal(ctx.mail.length, 0);
+  assert.equal((await pg.query('SELECT count(*)::integer AS count FROM public.account_registration_codes')).rows[0].count, 0);
+  assert.equal((await pg.query('SELECT count(*)::integer AS count FROM public.userprofile')).rows[0].count, 0);
+});
+
+test('Registration helper also rejects unlisted recipients before an RPC even when called directly', async () => {
+  const ctx = api({ env: testerEnv({ JL_TEST_MAIL_RECIPIENTS: 'approved-other@example.invalid' }) });
+  const result = await ctx.load('lib/account-registration.js').requestAccountRegistration(ctx.database, EMAIL);
+  assert.deepEqual({ ...result }, { success: true, message: REGISTRATION_REQUEST_MESSAGE });
+  assert.equal(ctx.database.rpcCalls, 0); assert.equal(ctx.mail.length, 0);
+});
+
+test('Approved tester registration normalizes the exact address and preserves the ordinary hash and rate limit', async () => {
+  await clear();
+  const ctx = api({ env: testerEnv({ JL_TEST_MAIL_RECIPIENTS: `other@example.invalid, ${EMAIL.toUpperCase()} ` }) });
+  const response = await ctx.requestRoute.POST(ctx.request(false, { body: { email: ` ${EMAIL.toUpperCase()} ` } }));
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { success: true, message: REGISTRATION_REQUEST_MESSAGE });
+  assert.equal(ctx.mail.length, 1); assert.equal(ctx.mail[0].email, EMAIL);
+  const row = (await pg.query('SELECT email,code_hash FROM public.account_registration_codes WHERE email=$1', [EMAIL])).rows[0];
+  assert.equal(row.email, EMAIL); assert.notEqual(row.code_hash, ctx.mail[0].code);
+  assert.equal(await bcrypt.compare(ctx.mail[0].code, row.code_hash), true);
+  await ctx.requestRoute.POST(ctx.request()); assert.equal(ctx.mail.length, 1);
+  assert.equal((await pg.query('SELECT count(*)::integer AS count FROM public.userprofile')).rows[0].count, 0);
+});
+
+test('Invalid tester delivery settings cannot reserve registration codes or silently use production credentials', async () => {
+  for (const values of [{ JL_TEST_MAIL_RECIPIENTS: undefined }, { JL_TEST_SMTP_PASS: undefined },
+    { JL_TEST_SMTP_FROM: undefined, MAIL_FROM: 'info@example.invalid' },
+    { JL_TEST_SMTP_HOST: undefined, SMTP_HOST: 'asmtp.mail.hostpoint.ch' },
+    { PAYPAL_API_BASE: 'https://api-m.paypal.com' }, { JL_TEST_MAIL_MODE: 'smtp' }]) {
+    const ctx = api({ env: testerEnv(values) });
+    const response = await ctx.requestRoute.POST(ctx.request());
+    assert.equal(response.status, 503); assert.equal(ctx.database.calls, 0);
+    assert.equal(ctx.database.rpcCalls, 0); assert.equal(ctx.mail.length, 0);
+    assert.deepEqual(await response.json(), { success: false, code: 'REGISTRATION_UNAVAILABLE',
+      message: 'Die Registrierung ist derzeit nicht verfügbar. Bitte später erneut versuchen.' });
+  }
+});
+
+test('Registration allowlist is checked again after the route and helper have loaded', async () => {
+  const ctx = api({ env: testerEnv() });
+  ctx.env.JL_TEST_MAIL_RECIPIENTS = 'another@example.invalid';
+  assert.deepEqual(await (await ctx.requestRoute.POST(ctx.request())).json(), { success: true, message: REGISTRATION_REQUEST_MESSAGE });
+  assert.equal(ctx.database.calls, 0); assert.equal(ctx.database.rpcCalls, 0); assert.equal(ctx.mail.length, 0);
 });
 
 test('Code requests store a real bcrypt hash, create no profile, and reserve only one mail in the rate window', async () => {
