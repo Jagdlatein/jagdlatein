@@ -107,6 +107,32 @@ export function selectCaptureAttachment(manifest) {
   return matches[0];
 }
 
+// Log a bounded schema description, never arbitrary manifest string values.
+// The only printable values are this public test's fixed identities/names and
+// UUID JPEG filenames. This lets us inspect Xcode's real export format without
+// accepting an unknown format or publishing raw test bundles.
+export function describeCaptureManifestSchema(value, depth = 0) {
+  if (depth > 6) return { type: "depth-limit" };
+  if (Array.isArray(value)) return { type: "array", length: value.length,
+    examples: value.slice(0, 3).map(item => describeCaptureManifestSchema(item, depth + 1)) };
+  if (!record(value)) return { type: value === null ? "null" : typeof value };
+  const fields = {};
+  for (const [key, item] of Object.entries(value).slice(0, 40)) {
+    if (!/^[A-Za-z][A-Za-z0-9_]{0,79}$/.test(key)) continue;
+    const knownTest = ["testIdentifier", "testIdentifierURL"].includes(key) &&
+      typeof item === "string" && item.length <= 200 && testLabel.test(item);
+    const knownName = ["name", "suggestedHumanReadableName"].includes(key) && typeof item === "string" &&
+      /^Jagdlatein\.Preparatory\.PublicHomepage(?:\.jpeg|_\d+_[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.jpeg)$/i.test(item);
+    const knownFile = key === "exportedFileName" && typeof item === "string" &&
+      /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.jpeg$/i.test(item);
+    fields[key] = knownTest ? { type: "string", publicCaptureValue: captureTestIdentifier }
+      : knownName || knownFile ? { type: "string", publicCaptureValue: item }
+      : key === "isAssociatedWithFailure" && typeof item === "boolean" ? { type: "boolean", value: item }
+      : describeCaptureManifestSchema(item, depth + 1);
+  }
+  return { type: "object", fields };
+}
+
 export async function validateStoreScreenshots({ inputPath, outputPath }) {
   const inputFile = path.resolve(inputPath); const output = path.resolve(outputPath);
   const evidenceRoot = path.dirname(inputFile);
@@ -157,13 +183,22 @@ export async function validateStoreScreenshots({ inputPath, outputPath }) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  let diagnosticManifest;
   try {
     const args = process.argv.slice(2);
-    if (args.length !== 4 || args[0] !== "--input" || args[2] !== "--output" || !args[1] || !args[3]) fail("Aufruf: --input capture-input.json --output neues-Ausgabeziel");
-    await validateStoreScreenshots({ inputPath: args[1], outputPath: args[3] });
-    console.log("Drei unveränderte native JPEG-Aufnahmen geprüft; Vorbereitung, kein Release 1.0.");
+    if (args.length === 2 && args[0] === "--check-attachment-manifest" && args[1]) {
+      diagnosticManifest = await readJson(path.resolve(args[1]));
+      selectCaptureAttachment(diagnosticManifest);
+      console.log("Fester öffentlicher Capture im xcresult-Manifest eindeutig zugeordnet.");
+    } else {
+      if (args.length !== 4 || args[0] !== "--input" || args[2] !== "--output" || !args[1] || !args[3]) fail("Aufruf: --input capture-input.json --output neues-Ausgabeziel");
+      await validateStoreScreenshots({ inputPath: args[1], outputPath: args[3] });
+      console.log("Drei unveränderte native JPEG-Aufnahmen geprüft; Vorbereitung, kein Release 1.0.");
+    }
   } catch (error) {
     console.error(error.message);
+    if (diagnosticManifest !== undefined) console.error("xcresult-Schema, unbekannte Werte verborgen: " +
+      JSON.stringify(describeCaptureManifestSchema(diagnosticManifest)).slice(0, 16000));
     process.exitCode = 1;
   }
 }

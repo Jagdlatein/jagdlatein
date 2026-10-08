@@ -132,6 +132,10 @@ try {
             $captureCurrentInfo.CFBundleVersion -cne $captureInfo.CFBundleVersion) { throw 'Native App-Version änderte sich während der Aufnahme.' }
         $captureExport = Join-Path $captureEvidence ($captureTarget.key + '-attachments')
         Invoke-CaptureProgram 'xcrun' @('xcresulttool','export','attachments','--path',$captureResult,'--output-path',$captureExport)
+        # Validate each actual export before spending time on the next device.
+        # Unknown schemas remain rejected, with bounded redacted diagnostics.
+        Invoke-CaptureProgram 'node' @('scripts/validate-store-screenshots.mjs',
+            '--check-attachment-manifest',(Join-Path $captureExport 'manifest.json'))
         $captureEntries.Add([ordered]@{
             key=$captureTarget.key; deviceName=$captureTarget.name; deviceTypeIdentifier=$captureTarget.typeIdentifier
             simulatorUDID=$captureUDID; runtimeIdentifier=$captureRuntime.identifier; runtimeVersion=$captureRuntime.version
