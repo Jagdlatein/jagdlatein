@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 /// Uses only the public homepage in the native simulator application. It never
 /// signs in, creates an account, submits a checkout or opens a PayPal destination.
@@ -11,6 +12,52 @@ final class WebsiteAppUITests: XCTestCase {
         // One shared wall-clock budget covers all live-website waits and the
         // relaunch; CI additionally enforces XCTest's 180-second hard limit.
         deadline = Date().addingTimeInterval(175)
+    }
+
+    @MainActor
+    func testPreparatoryPublicHomepageStoreScreenshot() throws {
+        // Ordinary build tests keep their existing device selection. Only the
+        // separate capture helper requests these exact screenshot assertions.
+        let environment = ProcessInfo.processInfo.environment
+        try XCTSkipUnless(environment["JL_PUBLIC_STORE_CAPTURE"] == "1",
+                          "Preparatory screenshots run only through the dedicated capture helper.")
+        let expectedWidth = try XCTUnwrap(Int(environment["JL_STORE_CAPTURE_WIDTH"] ?? ""))
+        let expectedHeight = try XCTUnwrap(Int(environment["JL_STORE_CAPTURE_HEIGHT"] ?? ""))
+        let allowedSizes = [(1206, 2622), (1320, 2868), (2064, 2752)]
+        XCTAssertTrue(allowedSizes.contains { $0.0 == expectedWidth && $0.1 == expectedHeight })
+        XCUIDevice.shared.orientation = .portrait
+        let app = XCUIApplication()
+        app.launch()
+        let website = app.webViews["jagdlatein.website"]
+        let location = app.staticTexts["jagdlatein.website.location"]
+        assertHomepageLoaded(website: website, location: location)
+        let heading = website.staticTexts["Jagdlatein"].firstMatch
+        let learning = website.links.matching(NSPredicate(format: "label CONTAINS %@", "Lernbereich öffnen")).firstMatch
+        XCTAssertTrue(waitUntil(heading, timeout: 15) { $0.exists && $0.isHittable },
+                      "The actual website heading must be visible in the capture.")
+        XCTAssertTrue(waitUntil(learning, timeout: 15) { $0.exists && $0.isHittable },
+                      "The public learning-area tile must be loaded and visible.")
+        XCTAssertTrue(website.links["Login"].firstMatch.exists,
+                      "Preparatory captures must use the public signed-out homepage.")
+        XCTAssertFalse(website.buttons["Logout"].exists)
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertFalse(app.buttons["Erneut versuchen"].isHittable,
+                       "An error panel must not be captured as a loaded homepage.")
+        XCTAssertFalse(app.navigationBars["Jagdlatein-Abo"].exists)
+        XCTAssertEqual(location.value as? String, "https://jagdlatein.de/")
+
+        // Capture the real full-screen framebuffer, including the native chrome.
+        // JPEG encoding removes the format's alpha channel without resizing,
+        // compositing, injecting website content or changing captured content.
+        let screenshot = XCUIScreen.main.screenshot()
+        let image = try XCTUnwrap(screenshot.image.cgImage)
+        XCTAssertEqual(image.width, expectedWidth)
+        XCTAssertEqual(image.height, expectedHeight)
+        let jpeg = try XCTUnwrap(UIImage(cgImage: image, scale: 1, orientation: .up).jpegData(compressionQuality: 1))
+        let attachment = XCTAttachment(data: jpeg, uniformTypeIdentifier: "public.jpeg")
+        attachment.name = "Jagdlatein.Preparatory.PublicHomepage.jpeg"
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 
     @MainActor
