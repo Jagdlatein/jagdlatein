@@ -19,6 +19,8 @@ Die Jagdhunde- und Kategoriefotos wurden am 4. Oktober 2026 aus Wikimedia Common
 
 Für Fotos werden echte, dokumentierte Fotografien verwendet. KI-generierte oder generativ veränderte Fotos werden in der App nicht eingesetzt. Die Bildquellen stehen zusätzlich in `bildnachweise.json`.
 
-Die ergänzenden Wildtierfotos unter `/wildkunde/` stammen aus dem bereits bestehenden Bildbestand der App. Die neuen Schaubilder sind eigene, barrierefrei beschriftete Darstellungen in HTML/CSS und SVG-Symbolen.
+Die Wildarten-Porträts und die zugehörigen Lerneinheiten verwenden 47 dokumentierte Originalfotografien unter `/wildkunde/nachweise-2026/`. Quelle, Urheber, Lizenz und Änderungen stehen direkt am jeweiligen Foto. Der Katalog `lib/wildlife-photographs.js` enthält die Nachweise für die veröffentlichten Dateien; der festgehaltene Quellenstand vom 4. Oktober 2026 liegt in `data/reviews/wildlife-photo-provenance-2026-10-04.json`. Die älteren Wild-JPEGs sind kein Teil dieses nachgewiesenen Fotokatalogs; zwölf alte Dateipfade bleiben für bereits heruntergeladene, höchstens sieben Tage gültige Offlinepakete erhalten.
+
+Die Schaubilder sind eigene, barrierefrei beschriftete Darstellungen in HTML/CSS und SVG-Symbolen.
 
 Die App-Symbole sind aus dem vorhandenen Buchsymbol als SVG und PNG abgeleitet. Ihre bearbeitbare Quelle ist `/app-icon.svg`; es handelt sich um eine Vektorgrafik.
