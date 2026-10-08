@@ -78,7 +78,25 @@ final class WebsiteAppUITests: XCTestCase {
         subscribe.tap()
 
         let subscriptions = app.navigationBars["Jagdlatein-Abo"]
-        XCTAssertTrue(waitFor(subscriptions, timeout: 40),
+        let subscriptionOpened = waitFor(subscriptions, timeout: 40)
+        if !subscriptionOpened {
+            // Public, signed-out test only. Log state booleans and a fixed
+            // location classification, never page bodies, URLs or credentials.
+            let retry = app.buttons["Erneut versuchen"].firstMatch
+            let billing = app.toolbars.buttons["Abo und Käufe"].firstMatch
+            let homepage = website.staticTexts["Jagdlatein"].firstMatch
+            let locationClass = (location.value as? String) == "https://jagdlatein.de/"
+                ? "public-home" : "other-or-unavailable-public-route"
+            print("Public subscription guard state: location=\(locationClass); " +
+                  "webViewExists=\(website.exists); homepageExists=\(homepage.exists); " +
+                  "homepageHittable=\(homepage.exists && homepage.isHittable); " +
+                  "subscriptionLinkExists=\(subscribe.exists); " +
+                  "retryVisible=\(retry.exists && retry.isHittable); " +
+                  "billingToolbarEnabled=\(billing.exists && billing.isEnabled); " +
+                  "alerts=\(app.alerts.count); navigationBars=\(app.navigationBars.count)")
+            attachScreenshot(app, name: "Public subscription guard failure before login")
+        }
+        XCTAssertTrue(subscriptionOpened,
                       "The native subscription sheet must intercept the website subscription route.")
         let restore = app.buttons["jagdlatein.apple.restore"]
         XCTAssertTrue(waitUntil(restore, timeout: 25) { $0.exists && !$0.isEnabled },
