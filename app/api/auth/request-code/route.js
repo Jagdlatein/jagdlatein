@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { sendLoginCode } from "../../../../lib/email";
+import { sendLoginCode, TestLoginMailError } from "../../../../lib/email";
 import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
 import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
 
@@ -153,6 +153,10 @@ export async function POST(req) {
         "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet.",
     });
   } catch (error) {
+    if (error instanceof TestLoginMailError) {
+      return NextResponse.json({ success: false, message: error.message },
+        { status: 503, headers: { "Cache-Control": "no-store" } });
+    }
     console.error("Request-Code Fehler:", error);
 
     return NextResponse.json(

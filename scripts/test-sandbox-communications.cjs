@@ -311,10 +311,103 @@ test('SMTP construction and delivery failures expose neither credentials, recipi
       method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: BUYER }),
     }
   ));
-  assert.ok(result.status >= 500);
+  assert.equal(result.status, 503);
   const exposed = JSON.stringify(await result.json()) + ctx.calls.filter(call => call.type === 'error-log')
     .map(call => call.args.map(value => String(value)).join(' ')).join(' ');
   assert.ok(!exposed.includes(privateText)); assert.ok(!exposed.includes('synthetic-tester-mail-password'));
+});
+
+const providerFailureCases = [
+  ['authentication', { code: 'EAUTH', command: 'AUTH LOGIN', responseCode: 535 }, 'auth', 'authentication', 535],
+  ['missing authentication', { code: 'ENOAUTH' }, 'auth', 'authentication', null],
+  ['STARTTLS', { code: 'ETLS', command: 'STARTTLS', responseCode: 454 }, 'tls', 'tls', 454],
+  ['TLS policy', { code: 'EREQUIRETLS', command: 'MAIL FROM', responseCode: 550 }, 'tls', 'sender', 550],
+  ['certificate expiry', { code: 'CERT_HAS_EXPIRED' }, 'tls', 'tls', null],
+  ['DNS', { code: 'EDNS' }, 'dns', 'connection', null],
+  ['timeout', { code: 'ETIMEDOUT', command: 'CONN' }, 'timeout', 'connection', null],
+  ['connection', { code: 'ECONNECTION', command: 'CONN' }, 'connection', 'connection', null],
+  ['socket during greeting', { code: 'ESOCKET', command: 'EHLO' }, 'connection', 'greeting', null],
+  ['rejected recipient', { code: 'EENVELOPE', command: 'RCPT TO', responseCode: 550 }, 'envelope', 'recipient', 550],
+  ['message', { code: 'EMESSAGE', command: 'DATA', responseCode: 554 }, 'message', 'message', 554],
+  ['message stream', { code: 'ESTREAM', command: 'DATA' }, 'message', 'message', null],
+  ['protocol greeting', { code: 'EPROTOCOL', command: 'HELO' }, 'protocol', 'greeting', null],
+  ['unrecognized provider values', { code: 'private-provider-diagnostic', command: 'private-provider-command', responseCode: '535' }, 'unknown', 'unknown', null],
+];
+for (const [label, values, category, stage, responseCode] of providerFailureCases) {
+  test(`Test SMTP ${label} diagnostics retain only bounded classifications and a numeric reply code`, async () => {
+    const privateText = `${BUYER} 012345 synthetic-tester-mail-password full SMTP response`;
+    const providerError = Object.assign(new Error(privateText), { response: privateText,
+      address: BUYER, hostname: 'private-internal-provider.example.invalid', ...values });
+    const ctx = fixture(testerMailSettings(), { mailError: providerError });
+    const email = ctx.load('lib/email.js');
+    await assert.rejects(email.sendLoginCode(BUYER, '012345'), error => {
+      assert.ok(error instanceof email.TestLoginMailError); assert.equal(error.status, 503);
+      assert.equal(error.code, 'TEST_MAIL_UNAVAILABLE'); assert.equal(error.cause, undefined);
+      assert.deepEqual(error.diagnostic, { category, stage, responseCode });
+      assert.equal(Object.isFrozen(error.diagnostic), true);
+      const exposed = JSON.stringify(error) + String(error);
+      for (const secret of [BUYER, '012345', 'synthetic-tester-mail-password', 'full SMTP response',
+        'private-internal-provider.example.invalid', 'private-provider-diagnostic', 'private-provider-command']) {
+        assert.ok(!exposed.includes(secret));
+      }
+      return true;
+    });
+    assert.deepEqual(ctx.calls.find(call => call.type === 'error-log').args,
+      ['Test-E-Mail Diagnose:', { category, stage, responseCode }]);
+  });
+}
+
+test('Unknown transport failures and invalid SMTP response codes cannot become arbitrary diagnostics', async () => {
+  const ctx = fixture(testerMailSettings(), { transportError: new Error('private construction error') });
+  const email = ctx.load('lib/email.js');
+  await assert.rejects(email.sendLoginCode(BUYER, '012345'), error => {
+    assert.ok(error instanceof email.TestLoginMailError);
+    assert.deepEqual(error.diagnostic, { category: 'unknown', stage: 'transport', responseCode: null });
+    assert.ok(!JSON.stringify(error).includes('private construction error'));
+    return true;
+  });
+  for (const responseCode of ['535', 99, 600, 535.5, NaN, null, { private: 'response details' }]) {
+    const item = fixture(testerMailSettings(), { mailError: Object.assign(new Error('private delivery error'), { responseCode }) });
+    await assert.rejects(item.load('lib/email.js').sendLoginCode(BUYER, '012345'), error => {
+      assert.equal(error.diagnostic.responseCode, null); return true;
+    });
+  }
+});
+
+test('Test request-code returns a retryable 503 while diagnostics stay private in sanitized logs', async () => {
+  const privateText = `${BUYER} 012345 synthetic-tester-mail-password SMTP AUTH details`;
+  const ctx = fixture(testerMailSettings(), { mailError: Object.assign(new Error(privateText), {
+    code: 'EAUTH', command: 'AUTH LOGIN', responseCode: 535, response: privateText,
+  }) });
+  const response = await ctx.load('app/api/auth/request-code/route.js').POST(new Request(
+    'https://jagdlatein-test.vercel.app/api/auth/request-code', {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: BUYER }),
+    }
+  ));
+  assert.equal(response.status, 503); const body = await response.json();
+  assert.equal(body.success, false); assert.match(body.message, /erneut versuchen/);
+  for (const field of ['diagnostic', 'responseCode', 'category', 'stage']) assert.equal(Object.hasOwn(body, field), false);
+  const diagnosticLog = ctx.calls.find(call => call.type === 'error-log' && call.args[0] === 'Test-E-Mail Diagnose:');
+  assert.deepEqual(diagnosticLog.args[1], { category: 'auth', stage: 'authentication', responseCode: 535 });
+  const logs = ctx.calls.filter(call => call.type === 'error-log')
+    .map(call => call.args.map(value => String(value) + JSON.stringify(value)).join(' ')).join(' ');
+  const exposed = JSON.stringify(body) + logs;
+  for (const secret of [BUYER, '012345', 'synthetic-tester-mail-password', 'SMTP AUTH details', 'AUTH LOGIN']) {
+    assert.ok(!exposed.includes(secret));
+  }
+});
+
+test('Public SMTP failures preserve existing error propagation and request-code server-error status', async () => {
+  const providerError = Object.assign(new Error('synthetic public provider failure'), { code: 'EAUTH', responseCode: 535 });
+  const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined }, { mailError: providerError });
+  await assert.rejects(ctx.load('lib/email.js').sendLoginCode(BUYER, '012345'), error => error === providerError);
+  const response = await ctx.load('app/api/auth/request-code/route.js').POST(new Request(
+    'https://jagdlatein-test.vercel.app/api/auth/request-code', {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: BUYER }),
+    }
+  ));
+  assert.equal(response.status, 500);
+  assert.deepEqual(await response.json(), { success: false, message: 'Serverfehler.' });
 });
 
 test('Unset test mode preserves existing live SMTP settings and login content', async () => {
