@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([ValidateSet('Sql','CheckSql','BlocksSql','PremoderationSql')][string]$Step = 'Sql', [switch]$NoClipboard)
+param([ValidateSet('Sql','CheckSql','BlocksSql','PremoderationSql','ModeratorSql')][string]$Step = 'Sql', [switch]$NoClipboard)
 $ErrorActionPreference = 'Stop'
 $communityProjectRoot = Split-Path -Parent $PSScriptRoot
 if ($Step -eq 'Sql') {
@@ -8,6 +8,8 @@ if ($Step -eq 'Sql') {
     $communitySql = Get-Content -LiteralPath (Join-Path $communityProjectRoot 'supabase\migrations\20261008140000_community_blocks.sql') -Raw -Encoding UTF8
 } elseif ($Step -eq 'PremoderationSql') {
     $communitySql = Get-Content -LiteralPath (Join-Path $communityProjectRoot 'supabase\migrations\20261008160000_community_premoderation.sql') -Raw -Encoding UTF8
+} elseif ($Step -eq 'ModeratorSql') {
+    $communitySql = Get-Content -LiteralPath (Join-Path $communityProjectRoot 'supabase\migrations\20261008170000_community_moderators.sql') -Raw -Encoding UTF8
 } else {
     $communitySql = @'
 SELECT jsonb_build_object(
@@ -30,13 +32,17 @@ SELECT jsonb_build_object(
 }
 $communityOutput = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'Jagdlatein\community'
 [void][IO.Directory]::CreateDirectory($communityOutput)
-$communityFilename = if ($Step -eq 'PremoderationSql') { 'community-premoderation.sql' } elseif ($Step -eq 'BlocksSql') { 'community-blocks.sql' } elseif ($Step -eq 'CheckSql') { 'community-check.sql' } else { 'community-setup.sql' }
+$communityFilename = if ($Step -eq 'ModeratorSql') { 'community-moderators.sql' } elseif ($Step -eq 'PremoderationSql') { 'community-premoderation.sql' } elseif ($Step -eq 'BlocksSql') { 'community-blocks.sql' } elseif ($Step -eq 'CheckSql') { 'community-check.sql' } else { 'community-setup.sql' }
 $communityOutputPath = Join-Path $communityOutput $communityFilename
 [IO.File]::WriteAllText($communityOutputPath,$communitySql,[Text.UTF8Encoding]::new($false))
 if (!$NoClipboard) { Set-Clipboard -Value $communitySql }
 Write-Host ('SQL vorbereitet: ' + $communityOutputPath)
 Write-Host 'Noch nicht ausgefuehrt. Vor Run das gewaehlte Supabase-Projekt pruefen.'
-if ($Step -eq 'PremoderationSql') {
+if ($Step -eq 'ModeratorSql') {
+    Write-Host 'Bereitet nur eine getrennte Community-Berechtigung vor. Alle vorhandenen Konten erhalten standardmaessig keine neue Rolle.'
+    Write-Host 'Benoetigt Konto-, Reviewlogin- und Premoderationsschema. Zuerst nur im getrennten Testprojekt pruefen.'
+    Write-Host 'Keine Rollenzuweisung: diese braucht spaeter das tatsaechlich E-Mail-bestaetigte Konto und seine aktuelle User-ID/Kontogeneration. Keine allgemeinen Adminrechte.'
+} elseif ($Step -eq 'PremoderationSql') {
     Write-Host 'Neue Themen und Antworten bleiben bis zur menschlichen Freigabe privat. Bestehende Beitraege bleiben erhalten.'
     Write-Host 'Benoetigt das bereits gepruefte Konto-/Blockschema. Zuerst nur im getrennten Testprojekt anwenden.'
 } elseif ($Step -eq 'BlocksSql') {

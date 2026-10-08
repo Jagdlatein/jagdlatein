@@ -99,7 +99,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     confirmation?.focus({ preventScroll: true });
   }, [block]);
   const { data, loading, error, reload } = useCommunityData({ signedIn, threadId, category, query: search, page, type, unanswered, view });
-  const viewer = data?.viewer; const canPost = Boolean(viewer && !viewer.profileRequired && viewer.displayName); const admin = viewer?.admin === true;
+  const viewer = data?.viewer; const canPost = Boolean(viewer && !viewer.profileRequired && viewer.displayName); const admin = viewer?.canModerate === true;
   const initialQuery = new URLSearchParams({ ...(initialCategory !== "all" ? { category: initialCategory } : {}), ...(context ? { thema: context } : {}) }).toString();
   const next = threadId ? `/community/${threadId}` : `/community${initialQuery ? `?${initialQuery}` : ""}`;
   useEffect(() => { setCategory(initialCategory); setCompose(Boolean(context)); setPage(1); setReport(null); setRemoval(null); setBlock(null); setNotice(""); setMutationError(null); }, [initialCategory, context, threadId]);

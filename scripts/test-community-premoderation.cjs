@@ -174,9 +174,9 @@ function load(relative, overrides={}, cache=new Map()) {
   },mod,mod.exports); return mod.exports;
 }
 function apiContext(admin=false, readData={posts:[],total:0,page:1,pageSize:20}) {
-  const calls=[]; const profile={email:A,account_generation:GA,is_admin:admin};
+  const calls=[]; const profile={email:A,account_generation:GA,is_admin:admin,is_community_moderator:false};
   const db={from(table){const q={select(){return q;},ilike(){return q;},eq(){return q;},async maybeSingle(){return {data:table==='userprofile'?profile:{display_name:'Lernfuchs'},error:null};}};return q;},
-    async rpc(name,args){calls.push({name,args});return {data:name==='community_read'?readData:{success:true,postId:ID,status:'pending',account_email:A,moderatorFlag:true},error:null};}};
+    async rpc(name,args){calls.push({name,args});return {data:name==='community_read'?{moderationAuthorized:profile.is_admin,...readData}:{success:true,postId:ID,status:'pending',account_email:A,moderatorFlag:true},error:null};}};
   const overrides={'@supabase/supabase-js':{createClient:()=>db},'./account-access':{readRequestAccountSession:()=>({email:A,accountGeneration:GA,admin:true})},'./account-session':{accountDatabaseOptions:()=>({}),isAccountSessionConfigured:()=>true,isAccountGenerationEnabled:()=>true,matchesAccountGeneration:(p,s)=>p.account_generation===s.accountGeneration}};
   const original={SUPABASE_URL:process.env.SUPABASE_URL,SUPABASE_SERVICE_ROLE_KEY:process.env.SUPABASE_SERVICE_ROLE_KEY};
   process.env.SUPABASE_URL='https://isolated.invalid';process.env.SUPABASE_SERVICE_ROLE_KEY='synthetic';

@@ -35,12 +35,16 @@ async function fixture(t,{community=false}={}){
     '20261007105000_account_registration.sql','20261007110000_apple_subscriptions.sql',
     '20261007120000_account_deletion.sql','20261008120000_apple_refund_ordering.sql',
     '20261008140000_community_blocks.sql','20261008150000_apple_review_login_rate_limits.sql',
-    '20261008160000_community_premoderation.sql']:
+    '20261008160000_community_premoderation.sql','20261008170000_community_moderators.sql']:
     ['20261007110000_apple_subscriptions.sql','20261008120000_apple_refund_ordering.sql',
       '20261008150000_apple_review_login_rate_limits.sql'];
   if(community)await pg.exec('CREATE TABLE public.push_tokens(token text PRIMARY KEY,platform text,enabled boolean,updated_at timestamptz); GRANT SELECT,INSERT,UPDATE ON public.push_tokens TO service_role;');
   for(const filename of migrations)
     await pg.exec(fs.readFileSync(path.join(root,'supabase/migrations',filename),'utf8'));
+  // The minimal login fixture has no Community subsystem. Its scoped profile
+  // field is needed by the shared identity guard; the full migration/RPC and
+  // privilege combinations are exercised by test-community-moderators.cjs.
+  if(!community) await pg.exec('ALTER TABLE public.userprofile ADD COLUMN is_community_moderator boolean NOT NULL DEFAULT false;');
   await pg.query('INSERT INTO public.userprofile(user_id,email,account_generation) VALUES(gen_random_uuid(),$1,$2)',[EMAIL,GENERATION]);
   const token=(await pg.query('SELECT public.ensure_apple_account_token($1,$2) AS v',[EMAIL,GENERATION])).rows[0].v.app_account_token;
   const calls={clients:0,rpcs:[],reads:0,readTables:[],mail:0,subscription:0,cookies:[]};
@@ -225,14 +229,16 @@ test('Rate database and bcrypt failures return a neutral unavailable response ra
   assert.equal(data.calls.mail,0);
 });
 
-test('Review identity requires a current nonadmin nonpremium profile and matching undeleted Apple token',async t=>{
+test('Review identity requires a current nonadmin nonpremium nonmoderator profile and matching undeleted Apple token',async t=>{
   const data=await fixture(t);const ctx=context(data);const quick={bcryptCompare:async()=>true};
   await assert.rejects(verified(ctx,data,{email:'different@example.invalid'},quick),error=>error.status===401);
   await data.pg.query('UPDATE public.userprofile SET is_admin=true WHERE email=$1',[EMAIL]);
   await assert.rejects(verified(ctx,data,{},quick),error=>error.status===401);
   await data.pg.query('UPDATE public.userprofile SET is_admin=false,is_premium=true WHERE email=$1',[EMAIL]);
   await assert.rejects(verified(ctx,data,{},quick),error=>error.status===401);
-  await data.pg.query('UPDATE public.userprofile SET is_premium=false,account_generation=$1 WHERE email=$2',[NEXT_GENERATION,EMAIL]);
+  await data.pg.query('UPDATE public.userprofile SET is_premium=false,is_community_moderator=true WHERE email=$1',[EMAIL]);
+  await assert.rejects(verified(ctx,data,{},quick),error=>error.status===401);
+  await data.pg.query('UPDATE public.userprofile SET is_community_moderator=false,account_generation=$1 WHERE email=$2',[NEXT_GENERATION,EMAIL]);
   await assert.rejects(verified(ctx,data,{},quick),error=>error.status===401);
   await data.pg.query('UPDATE public.userprofile SET account_generation=$1 WHERE email=$2',[GENERATION,EMAIL]);
   await data.pg.query('SELECT public.detach_apple_account($1,$2)',[EMAIL,GENERATION]);
@@ -384,6 +390,22 @@ test('A structurally valid review cookie loses live account access after Apple-t
   const response=await ctx.load('app/api/auth/status/route.js').GET();
   assert.equal(response.status,200);assert.equal((await response.json()).loggedIn,false);
   assert.equal(ctx.getCookie(),'');
+});
+
+test('Granting a Community-only role revokes an existing unprivileged review cookie without granting general admin access',async t=>{
+  const data=await fixture(t,{community:true});const ctx=context(data);
+  const access=await verified(ctx,data,{}, {bcryptCompare:async()=>true});
+  const sessions=ctx.load('lib/account-session.js');
+  const token=sessions.createAccountSession(EMAIL,ctx.now,access);ctx.setCookie(token);
+  const owner=(await data.pg.query('SELECT user_id FROM public.userprofile WHERE email=$1',[EMAIL])).rows[0];
+  await data.pg.transaction(async tx=>{
+    await tx.exec('SET LOCAL ROLE service_role');
+    await tx.query('SELECT public.set_community_moderator($1,$2,true)',[owner.user_id,GENERATION]);
+  });
+  assert.equal((await data.pg.query('SELECT is_admin FROM public.userprofile WHERE email=$1',[EMAIL])).rows[0].is_admin,false);
+  assert.ok(sessions.readAccountSession(token,ctx.now),'Only the live guard can observe the newly assigned scoped role');
+  const response=await ctx.load('app/api/auth/status/route.js').GET();
+  assert.equal(response.status,200);assert.equal((await response.json()).loggedIn,false);assert.equal(ctx.getCookie(),'');
 });
 
 test('Policy expiry, disable and credential rotation during live database reads stop DELETE before its personal RPC',async t=>{
