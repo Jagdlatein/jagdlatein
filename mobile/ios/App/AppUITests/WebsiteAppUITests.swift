@@ -46,18 +46,92 @@ final class WebsiteAppUITests: XCTestCase {
         XCTAssertFalse(app.navigationBars["Jagdlatein-Abo"].exists)
         XCTAssertEqual(location.value as? String, "https://jagdlatein.de/")
 
-        // Capture the real full-screen framebuffer, including the native chrome.
-        // JPEG encoding removes the format's alpha channel without resizing,
-        // compositing, injecting website content or changing captured content.
-        let screenshot = XCUIScreen.main.screenshot()
-        let image = try XCTUnwrap(screenshot.image.cgImage)
+        // Accessibility can be ready before WebKit's pixels reach the screen:
+        // the original iPhone 16 Pro capture in run 37821705006 had tappable
+        // homepage elements but only native chrome in its actual framebuffer.
+        // Poll real frames within the existing deadline; never reload, inject,
+        // manufacture content, or attach a blank frame as a fallback.
+        var renderedImage: CGImage?
+        var consecutiveRenderedFrames = 0
+        let renderedHomepage = NSPredicate { _, _ in
+            let retry = app.buttons["Erneut versuchen"]
+            guard heading.exists && heading.isHittable,
+                  learning.exists && learning.isHittable,
+                  website.links["Login"].firstMatch.exists,
+                  !website.buttons["Logout"].exists,
+                  app.alerts.count == 0,
+                  !(retry.exists && retry.isHittable),
+                  !app.navigationBars["Jagdlatein-Abo"].exists,
+                  (location.value as? String) == "https://jagdlatein.de/",
+                  let frame = XCUIScreen.main.screenshot().image.cgImage,
+                  frame.width == expectedWidth, frame.height == expectedHeight,
+                  self.captureInteriorIsWithinWebsite(app: app, website: website),
+                  let darkFraction = self.homepageInteriorDarkPixelFraction(frame),
+                  darkFraction >= 0.005 else {
+                consecutiveRenderedFrames = 0
+                renderedImage = nil
+                return false
+            }
+            consecutiveRenderedFrames += 1
+            renderedImage = frame
+            return consecutiveRenderedFrames >= 2
+        }
+        let renderedExpectation = XCTNSPredicateExpectation(predicate: renderedHomepage, object: app)
+        let rendered = XCTWaiter.wait(for: [renderedExpectation], timeout: remainingTimeout(20)) == .completed
+        XCTAssertTrue(rendered, "Two consecutive real frames must show homepage pixels inside the WebView; native logo/toolbar are insufficient.")
+        let image = try XCTUnwrap(rendered ? renderedImage : nil)
         XCTAssertEqual(image.width, expectedWidth)
         XCTAssertEqual(image.height, expectedHeight)
+        // Encode this last accepted, original full-screen frame. Pixel analysis
+        // above does not change it; no resize, crop, composition or substitution.
         let jpeg = try XCTUnwrap(UIImage(cgImage: image, scale: 1, orientation: .up).jpegData(compressionQuality: 1))
         let attachment = XCTAttachment(data: jpeg, uniformTypeIdentifier: "public.jpeg")
         attachment.name = "Jagdlatein.Preparatory.PublicHomepage.jpeg"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    private func captureInteriorIsWithinWebsite(app: XCUIApplication, website: XCUIElement) -> Bool {
+        let screen = app.frame
+        guard screen.width > 0, screen.height > 0 else { return false }
+        // This same central region is checked independently in the exported
+        // original JPEG. The actual WebView frame must contain it, so native
+        // header/toolbar cannot satisfy the screenshot-readiness condition.
+        let interior = CGRect(x: screen.minX + screen.width * 0.08,
+                              y: screen.minY + screen.height * 0.18,
+                              width: screen.width * 0.84, height: screen.height * 0.64)
+        return website.frame.contains(interior)
+    }
+
+    private func homepageInteriorDarkPixelFraction(_ image: CGImage) -> Double? {
+        let width = image.width, height = image.height
+        guard width > 0, height > 0, width <= 2064, height <= 2868,
+              let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) else { return nil }
+        var pixels = [UInt8](repeating: 0, count: width * height * 4)
+        let decoded = pixels.withUnsafeMutableBytes { buffer -> Bool in
+            guard let address = buffer.baseAddress,
+                  let context = CGContext(data: address, width: width, height: height,
+                                          bitsPerComponent: 8, bytesPerRow: width * 4, space: colorSpace,
+                                          bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue |
+                                              CGBitmapInfo.byteOrder32Big.rawValue) else { return false }
+            context.draw(image, in: CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)))
+            return true
+        }
+        guard decoded else { return nil }
+        let left = Int(Double(width) * 0.08), top = Int(Double(height) * 0.18)
+        let right = left + Int(Double(width) * 0.84), bottom = top + Int(Double(height) * 0.64)
+        var dark = 0, sampled = 0
+        for y in stride(from: top, to: bottom, by: 4) {
+            for x in stride(from: left, to: right, by: 4) {
+                let offset = (y * width + x) * 4
+                guard pixels[offset + 3] >= 250 else { return nil }
+                let luminance = (54 * Int(pixels[offset]) + 183 * Int(pixels[offset + 1]) +
+                                 19 * Int(pixels[offset + 2])) / 256
+                if luminance < 100 { dark += 1 }
+                sampled += 1
+            }
+        }
+        return sampled > 0 ? Double(dark) / Double(sampled) : nil
     }
 
     @MainActor

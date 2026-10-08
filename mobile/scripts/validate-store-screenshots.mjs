@@ -137,6 +137,45 @@ export function describeCaptureManifestSchema(value, depth = 0) {
   return { type: "object", fields };
 }
 
+// Pixel evidence is separate from accessibility readiness. The native logo and
+// toolbar can make whole-screen variation pass while WKWebView is still blank.
+// This central ROI lies between that chrome for the three exact portrait capture
+// layouts. It is a minimum content gate, never a semantic or visual approval.
+export async function inspectHomepageContentPixels(bytes) {
+  if (!Buffer.isBuffer(bytes) || bytes.length < 1024 || bytes.length > 32 * 1024 * 1024) {
+    fail("Pixelprüfung benötigt begrenzte Originalbildbytes.");
+  }
+  let decoded; let sourceMetadata;
+  try {
+    const decoder = sharp(bytes, { limitInputPixels: 2064 * 2752, failOn: "warning" });
+    sourceMetadata = await decoder.metadata();
+    decoded = await decoder.raw().toBuffer({ resolveWithObject: true });
+  } catch { fail("Der Decoder konnte die Originalpixel nicht vollständig prüfen."); }
+  const { data, info } = decoded;
+  if (!Number.isSafeInteger(info.width) || !Number.isSafeInteger(info.height) ||
+      info.width < 1 || info.height < 1 || sourceMetadata.channels !== 3 || info.channels !== 3 ||
+      data.length !== info.width * info.height * 3) {
+    fail("Die Pixelprüfung benötigt genau drei vollständige RGB-Kanäle.");
+  }
+  const roi = {
+    left: Math.floor(info.width * 0.08), top: Math.floor(info.height * 0.18),
+    width: Math.floor(info.width * 0.84), height: Math.floor(info.height * 0.64),
+  };
+  if (roi.width < 1 || roi.height < 1 || roi.left + roi.width > info.width ||
+      roi.top + roi.height > info.height) fail("Der Webseiten-Pixelbereich ist ungültig.");
+  let darkPixels = 0;
+  for (let y = roi.top; y < roi.top + roi.height; y++) {
+    for (let x = roi.left; x < roi.left + roi.width; x++) {
+      const offset = (y * info.width + x) * 3;
+      // luma = (54R + 183G + 19B) / 256; strict luma < 100.
+      if (54 * data[offset] + 183 * data[offset + 1] + 19 * data[offset + 2] < 25600) darkPixels++;
+    }
+  }
+  const totalPixels = roi.width * roi.height;
+  return { roi, darkPixels, totalPixels, darkPixelRatio: darkPixels / totalPixels,
+    minimumDarkPixelRatio: 0.005 };
+}
+
 export async function validateStoreScreenshots({ inputPath, outputPath }) {
   const inputFile = path.resolve(inputPath); const output = path.resolve(outputPath);
   const evidenceRoot = path.dirname(inputFile);
@@ -162,6 +201,10 @@ export async function validateStoreScreenshots({ inputPath, outputPath }) {
     }
     const { channels } = await sharp(bytes).stats();
     if (!channels.some(channel => channel.stdev > 2)) fail("Die Aufnahme ist leer oder einfarbig.");
+    const contentPixels = await inspectHomepageContentPixels(bytes);
+    if (contentPixels.darkPixelRatio < contentPixels.minimumDarkPixelRatio) {
+      fail("Der zentrale Webseitenbereich enthält zu wenig sichtbaren Inhalt (mindestens 0,5 % dunkle Pixel erforderlich).");
+    }
     const name = `${capture.key}-homepage.jpeg`;
     checked.push({ bytes, entry: {
       fileName: name, deviceName: capture.deviceName, deviceTypeIdentifier: capture.deviceTypeIdentifier,

@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { describeCaptureManifestSchema, selectCaptureAttachment, captureTestIdentifier }
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import sharp from "sharp";
+import { describeCaptureManifestSchema, selectCaptureAttachment, captureTestIdentifier,
+  captureTargets, captureAttachmentName, inspectHomepageContentPixels, validateStoreScreenshots }
   from "../scripts/validate-store-screenshots.mjs";
 
 test("Unknown xcresult schemas stay rejected while diagnostics redact arbitrary values and test URL queries", () => {
@@ -67,4 +73,90 @@ test("A named capture needs an explicit boolean non-failure marker", () => {
   }
   assert.equal(selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
     attachments: [{ ...attachment, isAssociatedWithFailure: false }] }]), attachment.exportedFileName);
+});
+
+// These geometric decoder fixtures are technical tests, never actual app or
+// Store screenshots. No website, logo, text or Store media is substituted.
+async function technicalPixelFixture({ bodyContent = false, grey = false } = {}) {
+  const width = 1206; const height = 2622;
+  const pixels = Buffer.alloc(width * height * 3, 247);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const chrome = y < 0.1 * height || y > 0.9 * height;
+      const body = bodyContent && y >= 0.4 * height && y < 0.45 * height &&
+        x >= 0.2 * width && x < 0.5 * width;
+      if ((chrome && x % 80 < 40) || body) {
+        const offset = (y * width + x) * 3;
+        pixels[offset] = pixels[offset + 1] = pixels[offset + 2] = 20;
+      }
+    }
+  }
+  let encoder = sharp(pixels, { raw: { width, height, channels: 3 } });
+  if (grey) encoder = encoder.greyscale().toColourspace("b-w");
+  return encoder.jpeg({ quality: 100 }).toBuffer();
+}
+
+test("Synthetic native chrome cannot authorize a blank webpage through global image variation", async () => {
+  const bytes = await technicalPixelFixture();
+  const wholeScreen = await sharp(bytes).stats();
+  assert.ok(wholeScreen.channels.some(channel => channel.stdev > 2),
+    "This reproduces why the former whole-screen guard accepted blank web content.");
+  const pixels = await inspectHomepageContentPixels(bytes);
+  assert.equal(pixels.darkPixelRatio, 0);
+  assert.ok(pixels.darkPixelRatio < pixels.minimumDarkPixelRatio);
+
+  const prefix = path.join(os.tmpdir(), "jagdlatein-SYNTHETIC-NOT-STORE-blank-body-");
+  const root = await fs.mkdtemp(prefix);
+  try {
+    const inputPath = path.join(root, "SYNTHETIC-TECHNICAL-capture-input.json");
+    const outputPath = path.join(root, "SYNTHETIC-NOT-STORE-output-must-not-exist");
+    const captures = Object.entries(captureTargets).map(([key, target], index) => ({
+      key, deviceName: target.deviceName, width: target.width, height: target.height,
+      deviceTypeIdentifier: "com.apple.CoreSimulator.SimDeviceType." + ({
+        iphone16pro: "iPhone-16-Pro", iphone16promax: "iPhone-16-Pro-Max",
+        ipadpro13m4: "iPad-Pro-13-inch-M4-8GB",
+      })[key],
+      simulatorUDID: `${index + 1}1111111-1111-4111-8111-111111111111`,
+      runtimeIdentifier: "com.apple.CoreSimulator.SimRuntime.iOS-26-3", runtimeVersion: "26.3",
+      exportDirectory: path.join(root, key), attachmentName: captureAttachmentName,
+      testIdentifier: captureTestIdentifier,
+    }));
+    await fs.mkdir(captures[0].exportDirectory);
+    const imagePath = path.join(captures[0].exportDirectory, "SYNTHETIC-NOT-STORE.jpeg");
+    await fs.writeFile(imagePath, bytes);
+    await fs.writeFile(path.join(captures[0].exportDirectory, "manifest.json"), JSON.stringify([
+      { testIdentifier: captureTestIdentifier, attachments: [{ name: captureAttachmentName,
+        exportedFileName: "SYNTHETIC-NOT-STORE.jpeg", isAssociatedWithFailure: false }] },
+    ]));
+    await fs.writeFile(inputPath, JSON.stringify({ schemaVersion: 1, purpose: "preparatory-not-release-1.0",
+      source: "native-ios-simulator", website: "https://jagdlatein.de/", signedOut: true,
+      checkoutOpened: false, codeSigned: false, appStoreReady: false, gitHead: "a".repeat(40),
+      sourceDirty: false, xcode: "Xcode 26.3\nBuild version 17C529", nativeAppVersion: "0.1",
+      nativeBuildNumber: "1", bundleId: "de.jagdlatein.preview", capturedAtUtc: "2026-10-08T12:00:00.000Z",
+      captures }));
+    const originalHash = createHash("sha256").update(bytes).digest("hex");
+    await assert.rejects(validateStoreScreenshots({ inputPath, outputPath }), /zentrale Webseitenbereich/);
+    await assert.rejects(fs.stat(outputPath), { code: "ENOENT" });
+    assert.equal(createHash("sha256").update(await fs.readFile(imagePath)).digest("hex"), originalHash);
+  } finally {
+    // This exact freshly created technical fixture root is the only cleanup.
+    assert.ok(path.resolve(root).startsWith(path.resolve(prefix)));
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Synthetic visible body pixels pass the content gate without changing source bytes", async () => {
+  const bytes = await technicalPixelFixture({ bodyContent: true });
+  const original = Buffer.from(bytes);
+  const pixels = await inspectHomepageContentPixels(bytes);
+  assert.ok(pixels.darkPixelRatio >= pixels.minimumDarkPixelRatio);
+  assert.ok(pixels.roi.top > 0.1 * 2622);
+  assert.ok(pixels.roi.top + pixels.roi.height < 0.9 * 2622);
+  assert.deepEqual(bytes, original);
+});
+
+test("Pixel inspection rejects broken decoders and unexpected grayscale channels", async () => {
+  await assert.rejects(inspectHomepageContentPixels(Buffer.alloc(2048, 17)), /Decoder/);
+  await assert.rejects(inspectHomepageContentPixels(await technicalPixelFixture({ bodyContent: true, grey: true })),
+    /drei vollständige RGB-Kanäle/);
 });
