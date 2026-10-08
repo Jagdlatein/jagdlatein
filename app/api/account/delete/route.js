@@ -25,7 +25,8 @@ export async function GET(req) {
     if (!isAccountDeletionEnabled()) return accountJson({ enabled: false });
     const database = getAccountDatabase("ACCOUNT_UNAVAILABLE", session);
     await requireCurrentAccount(database, session);
-    return accountJson({ enabled: true, requiresReauthentication: requiresDeletionReauthentication(session) });
+    return accountJson({ enabled: true, requiresReauthentication: requiresDeletionReauthentication(session),
+      ...(session.authenticationMethod === "review-password" ? { reauthenticationMethod: "review-password" } : {}) });
   } catch (error) { return errorResponse(error); }
 }
 

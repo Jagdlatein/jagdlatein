@@ -1,12 +1,18 @@
 import LearningToolLayout from "../components/LearningToolLayout";
 import styles from "../styles/LearningExperience.module.css";
+import { operatorContact } from "../lib/operator-contact";
 
 export default function Datenschutz(){
   return (
     <LearningToolLayout title="Datenschutzerklärung" description="Informationen zur Datenverarbeitung und deinen Rechten." icon="law" eyebrow="Informationen zu Jagdlatein" hideCommunity><section className={styles.panel}>
 
           <h2>1. Verantwortlicher</h2>
-          <p>Jagdlatein · Kontakt: <a href="mailto:info@jagdlatein.de">info@jagdlatein.de</a></p>
+          <address style={{ fontStyle: "normal", lineHeight: 1.8 }}>
+            {operatorContact.name} · Jagdlatein<br />{operatorContact.street}<br />
+            {operatorContact.city}, {operatorContact.country}
+          </address>
+          <p>Kontakt: <a href={`mailto:${operatorContact.email}`}>{operatorContact.email}</a> ·
+            Telefon: <a href={operatorContact.phoneHref}>{operatorContact.phone}</a></p>
 
           <h2>2. Welche Daten die App verwendet</h2>
           <ul>

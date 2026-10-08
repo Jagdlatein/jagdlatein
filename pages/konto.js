@@ -17,6 +17,7 @@ function accessDate(value) {
 function AccountDeletion({ onDeleted }) {
   const [available, setAvailable] = useState(false);
   const [reauthentication, setReauthentication] = useState(true);
+  const [reviewReauthentication, setReviewReauthentication] = useState(false);
   const [open, setOpen] = useState(false);
   const [confirmation, setConfirmation] = useState("");
   const [acknowledged, setAcknowledged] = useState(false);
@@ -33,6 +34,7 @@ function AccountDeletion({ onDeleted }) {
         if (!controller.signal.aborted && response.ok && data.enabled === true) {
           setAvailable(true);
           setReauthentication(data.requiresReauthentication !== false);
+          setReviewReauthentication(data.reauthenticationMethod === "review-password");
         }
       }).catch(() => {});
     return () => controller.abort();
@@ -86,8 +88,8 @@ function AccountDeletion({ onDeleted }) {
         <p>Nach der Löschung kannst du ein noch laufendes Abo nicht mehr für dieses Konto nutzen. Der lokale Lernrucksack wird auf diesem Gerät geleert.</p>
       </div>
       {reauthentication ? <>
-        <p>Bestätige zuerst deine Identität mit einem neuen E-Mail-Code. Danach entscheidest du erneut über die Löschung.</p>
-        <Link href="/login?reauth=1&next=%2Fkonto%3Fdelete%3D1" className={styles.button}>Anmeldung erneut bestätigen</Link>
+        <p>{reviewReauthentication ? "Bestätige zuerst deine Identität erneut mit dem Passwort deines Prüfkontos." : "Bestätige zuerst deine Identität mit einem neuen E-Mail-Code."} Danach entscheidest du erneut über die Löschung.</p>
+        <Link href={`${reviewReauthentication ? "/review-login" : "/login"}?reauth=1&next=%2Fkonto%3Fdelete%3D1`} className={styles.button}>Anmeldung erneut bestätigen</Link>
       </> : <form onSubmit={submitDeletion} aria-busy={pending}>
         <label style={{ display: "block", margin: "20px 0 16px", lineHeight: 1.6 }}>Zur Bestätigung <strong>KONTO LÖSCHEN</strong> eingeben
           <input value={confirmation} disabled={pending} onChange={event => setConfirmation(event.target.value)} autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={40} required

@@ -1,5 +1,6 @@
 import { getAccountDatabase, accountJson } from "../../../../lib/course-progress-server";
 import { appleSubscriptionConfig, applyVerifiedAppleNotification, readAppleJson, appleErrorResponse } from "../../../../lib/apple-subscriptions";
+import { appleReviewPolicy } from "../../../../lib/apple-review-policy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,6 +12,7 @@ export async function POST(request) {
     const config = appleSubscriptionConfig();
     if (!config) return accountJson({ code: "APPLE_DISABLED" }, 503);
     const signedPayload = await readAppleJson(request, "signedPayload");
-    return accountJson(await applyVerifiedAppleNotification(signedPayload, { database: getAccountDatabase(), config }));
+    return accountJson(await applyVerifiedAppleNotification(signedPayload,
+      { database: getAccountDatabase(), config, reviewPolicy: appleReviewPolicy() }));
   } catch (error) { return appleErrorResponse(error); }
 }

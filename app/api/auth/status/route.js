@@ -24,7 +24,10 @@ export async function GET() {
     });
     if (!token) throw new Error("Session unavailable");
     cookieStore.set({ name: JL_ACCOUNT_COOKIE, value: token, path: "/", httpOnly: true,
-      sameSite: "lax", secure: process.env.NODE_ENV === "production", maxAge: ACCOUNT_SESSION_MAX_AGE });
+      sameSite: "lax", secure: process.env.NODE_ENV === "production",
+      maxAge: access.authenticationMethod === "review-password"
+        ? Math.max(0, Math.min(ACCOUNT_SESSION_MAX_AGE, access.reviewAuth.expiresAt - Math.floor(Date.now() / 1000)))
+        : ACCOUNT_SESSION_MAX_AGE });
     return NextResponse.json({ loggedIn: true, email: access.email, paid: access.paid, admin: access.admin }, { headers });
   } catch {
     return NextResponse.json({ loggedIn: false, message: "Dein Konto ist derzeit nicht verfügbar. Bitte erneut versuchen." },

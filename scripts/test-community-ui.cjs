@@ -50,14 +50,15 @@ test('Choosing a public learner name and publishing text require deliberate rule
   const reply = render(Compose, { threadId: '11111111-1111-4111-8111-111111111111', onSubmit() {}, busy: false });
   assert.ok(post.includes('maxLength="140"') && post.includes('maxLength="6000"'));
   assert.ok(reply.includes('maxLength="4000"') && !reply.includes('Beitragsart'));
-  assert.ok(post.includes('Thema veröffentlichen') && reply.includes('Antwort veröffentlichen'));
+  assert.ok(post.includes('Zur Prüfung einreichen') && reply.includes('Zur Prüfung einreichen'));
+  assert.ok(post.includes('Bis zur Freigabe sehen nur du und die Moderation') && reply.includes('Bis zur Freigabe sehen nur du und die Moderation'));
 });
 test('User contributions render as plain text and reveal only their public learner name', () => {
   const { PostContent } = load('components/Community.js');
   const html = render(PostContent, { post: { id: '11111111-1111-4111-8111-111111111111', body: '<script>window.attack()</script> https://example.invalid', displayName: 'Lernfuchs', createdAt: '2026-10-04T10:00:00Z', owned: false, status: 'visible' }, setReport() {}, setRemoval() {} });
   assert.ok(html.includes('&lt;script&gt;window.attack()&lt;/script&gt;'));
   assert.ok(!html.includes('<script>') && !html.includes('href="https://example.invalid"'));
-  assert.ok(html.includes('Lernfuchs') && html.includes('Beitrag melden'));
+  assert.ok(html.includes('Lernfuchs') && html.includes('Beitrag melden') && html.includes('Nutzer blockieren'));
   assert.ok(!html.includes('Eigenen Beitrag entfernen') && !html.includes('Ausblenden'));
 });
 test('Forum pages validate route identifiers and keep signed identity pages private without querying payment access', () => {

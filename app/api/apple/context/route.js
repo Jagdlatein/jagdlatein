@@ -2,6 +2,7 @@ import { requireAccountSession, requireCurrentAccount, getAccountDatabase, accou
   accountUnavailable, sessionRenewalRequired } from "../../../../lib/course-progress-server";
 import { AppleSubscriptionError, appleSubscriptionConfig, createAppleApiClient, ensureAppleAccountToken,
   appleErrorResponse } from "../../../../lib/apple-subscriptions";
+import { appleReviewPolicy } from "../../../../lib/apple-review-policy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,6 +11,7 @@ export async function GET(request) {
   try {
     const config = appleSubscriptionConfig();
     if (!config) return accountJson({ enabled: false });
+    const reviewPolicy = appleReviewPolicy();
     // Missing In-App Purchase credentials disable checkout before Apple charges.
     createAppleApiClient(config);
     const session = requireAccountSession(request);
@@ -26,8 +28,11 @@ export async function GET(request) {
     const { resolveSubscriptionAccess } = await import("../../../../lib/subscription-access");
     const access = await resolveSubscriptionAccess(database, session.email, {
       legacyPaid: profile.is_premium === true && profile.is_admin !== true,
+      reviewPolicy,
     });
     const paid = access.paid === true || profile.is_admin === true;
+    // Website/native destination stays Production even when the privately bound
+    // review account verifies an Apple Sandbox purchase on this backend.
     return accountJson({ enabled: true, environment: config.environment, productIds: config.productIds,
       appAccountToken, email: session.email, paid, accessType: access.accessType,
       accessProvider: profile.is_admin ? "admin" : access.source, purchaseAllowed: !paid });
