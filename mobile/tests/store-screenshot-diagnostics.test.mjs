@@ -54,3 +54,17 @@ test("Schema diagnostics have bounded nesting, arrays and object fields", () => 
   assert.equal(Object.keys(fields.fields).length, 40);
   assert.ok(!JSON.stringify(fields).includes("PRIVATE_VALUE"));
 });
+
+test("A named capture needs an explicit boolean non-failure marker", () => {
+  const attachment = { suggestedHumanReadableName:
+    "Jagdlatein.Preparatory.PublicHomepage_0_06CC1705-2420-4FA6-8FEE-6B470BAC4CD0.jpeg",
+    exportedFileName: "3209133B-803A-4F69-8AA7-A907A408EFF3.jpeg" };
+  assert.throws(() => selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+    attachments: [attachment] }]), /nicht dem erfolgreichen/);
+  for (const marker of [true, "true", "false", null, 0, 1]) {
+    assert.throws(() => selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+      attachments: [{ ...attachment, isAssociatedWithFailure: marker }] }]), /nicht dem erfolgreichen/);
+  }
+  assert.equal(selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+    attachments: [{ ...attachment, isAssociatedWithFailure: false }] }]), attachment.exportedFileName);
+});

@@ -95,7 +95,7 @@ export function selectCaptureAttachment(manifest) {
     if (Object.hasOwn(value, "exportedFileName")) {
       const names = [value.name, value.suggestedHumanReadableName].filter(item => typeof item === "string");
       if (names.some(name => attachmentLabel.test(name) || suggestedAttachmentLabel.test(name))) {
-        if (!identities.length || !identities.every(identity => testLabel.test(identity)) || value.isAssociatedWithFailure === true ||
+        if (!identities.length || !identities.every(identity => testLabel.test(identity)) || value.isAssociatedWithFailure !== false ||
             typeof value.exportedFileName !== "string" || !/^[A-Za-z0-9._-]{1,240}\.(?:jpeg|jpg)$/i.test(value.exportedFileName)) {
           fail("Capture-Attachment ist nicht dem erfolgreichen vorgesehenen UI-Test zugeordnet.");
         }
