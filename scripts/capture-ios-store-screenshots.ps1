@@ -102,6 +102,7 @@ foreach ($captureVariable in $captureRunnerVariables) { $capturePreviousRunnerVa
 Push-Location -LiteralPath $captureMobile
 try {
     foreach ($captureTarget in $captureTargets) {
+        Write-Host ('Native Aufnahme: ' + $captureTarget.name + ', iOS ' + $captureRuntime.version + ', ' + $captureTarget.width + ' x ' + $captureTarget.height)
         $captureUDID = (Read-CaptureProgram 'xcrun' @('simctl','create',
             ('Jagdlatein capture ' + $captureTarget.key + ' ' + [Guid]::NewGuid().ToString('N')),
             $captureTarget.typeIdentifier,$captureRuntime.identifier)).Trim()
@@ -109,6 +110,7 @@ try {
         $captureCreated.Add($captureUDID)
         Invoke-CaptureProgram 'xcrun' @('simctl','boot',$captureUDID)
         Invoke-CaptureProgram 'xcrun' @('simctl','bootstatus',$captureUDID,'-b')
+        Write-Host ('Aufnahme-Simulator bereit: ' + $captureTarget.name)
         Invoke-CaptureProgram 'xcrun' @('simctl','ui',$captureUDID,'appearance','light')
         # Apple's documented TEST_RUNNER_ prefix passes values solely to XCTest;
         # no test-only launch arguments or environment are injected into the app.
@@ -125,6 +127,7 @@ try {
             'CODE_SIGNING_ALLOWED=NO','CODE_SIGNING_REQUIRED=NO','IOS_WEBSITE_ENVIRONMENT=Production','test'
         )
         $captureCurrentInfo = Read-CaptureNativeInfo
+        Write-Host ('Nativer UI-Aufnahmetest abgeschlossen: ' + $captureTarget.name)
         if ($captureCurrentInfo.CFBundleShortVersionString -cne $captureInfo.CFBundleShortVersionString -or
             $captureCurrentInfo.CFBundleVersion -cne $captureInfo.CFBundleVersion) { throw 'Native App-Version änderte sich während der Aufnahme.' }
         $captureExport = Join-Path $captureEvidence ($captureTarget.key + '-attachments')

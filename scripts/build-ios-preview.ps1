@@ -70,6 +70,7 @@ try {
         simulatorCompiled = $true
         simulatorUITestsPassed = $true
         simulatorDevice = $iosDevice.name
+        simulatorDeviceId = $iosDevice.udid
         simulatorRuntime = $iosRuntime.Name
         codeSigned = $false
         iphoneRuntimeTested = $false
