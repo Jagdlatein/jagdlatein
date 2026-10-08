@@ -105,7 +105,9 @@ test("Synthetic native chrome cannot authorize a blank webpage through global im
   assert.equal(pixels.darkPixelRatio, 0);
   assert.ok(pixels.darkPixelRatio < pixels.minimumDarkPixelRatio);
 
-  const prefix = path.join(os.tmpdir(), "jagdlatein-SYNTHETIC-NOT-STORE-blank-body-");
+  // macOS exposes its temporary directory through a /var symlink. The fixture
+  // must use its canonical path so the production no-symlink guard stays intact.
+  const prefix = path.join(await fs.realpath(os.tmpdir()), "jagdlatein-SYNTHETIC-NOT-STORE-blank-body-");
   const root = await fs.mkdtemp(prefix);
   try {
     const inputPath = path.join(root, "SYNTHETIC-TECHNICAL-capture-input.json");
