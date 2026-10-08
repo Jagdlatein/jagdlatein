@@ -90,6 +90,7 @@ test.before(async () => {
     await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations', file), 'utf8'));
   }
   await pg.exec(migration());
+  await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261008120000_apple_refund_ordering.sql'), 'utf8'));
 });
 test.after(async () => { await pg?.close(); });
 

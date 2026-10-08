@@ -11,7 +11,8 @@ const { PGlite } = require(runtime);
 const sql = fs.readFileSync(path.join(__dirname, 'sql/ios-test-push-base.sql'), 'utf8');
 const table = 'CREATE TABLE public.push_tokens(token text PRIMARY KEY,platform text,enabled boolean,updated_at timestamptz);';
 const migrations = ['20261007105000_account_registration.sql', '20261007110000_apple_subscriptions.sql',
-  '20261007120000_account_deletion.sql'].map(name => fs.readFileSync(path.join(root, 'supabase/migrations', name), 'utf8'));
+  '20261007120000_account_deletion.sql', '20261008120000_apple_refund_ordering.sql']
+  .map(name => fs.readFileSync(path.join(root, 'supabase/migrations', name), 'utf8'));
 let pg;
 
 test.before(async () => {
