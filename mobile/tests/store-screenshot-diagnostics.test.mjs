@@ -24,8 +24,22 @@ test("Only the fixed public attachment names and UUID JPEG filenames appear in s
   const description = JSON.stringify(describeCaptureManifestSchema(manifest));
   assert.ok(description.includes(name));
   assert.ok(description.includes(file));
-  // This diagnostic change alone must not authorize the unobserved schema.
-  assert.throws(() => selectCaptureAttachment(manifest), /unbekannt\/mehrdeutig/);
+  // The name is observed in the actual Xcode export log. Supported identity
+  // fields still have to bind it to this one successful public capture method.
+  assert.equal(selectCaptureAttachment(manifest), file);
+});
+
+test("The observed Xcode filename cannot authorize a foreign test, failed attachment or duplicate capture", () => {
+  const attachment = { suggestedHumanReadableName:
+    "Jagdlatein.Preparatory.PublicHomepage_0_06CC1705-2420-4FA6-8FEE-6B470BAC4CD0.jpeg",
+    exportedFileName: "3209133B-803A-4F69-8AA7-A907A408EFF3.jpeg", isAssociatedWithFailure: false };
+  assert.throws(() => selectCaptureAttachment([{ testIdentifier: "OtherTests/testLogin", attachments: [attachment] }]), /nicht dem erfolgreichen/);
+  assert.throws(() => selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+    attachments: [{ ...attachment, isAssociatedWithFailure: true }] }]), /nicht dem erfolgreichen/);
+  assert.throws(() => selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+    attachments: [attachment, { ...attachment }] }]), /mehrdeutig/);
+  assert.throws(() => selectCaptureAttachment([{ testIdentifier: captureTestIdentifier,
+    attachments: [{ ...attachment, suggestedHumanReadableName: attachment.suggestedHumanReadableName.replace("_0_", "_1_") }] }]), /unbekannt\/mehrdeutig/);
 });
 
 test("Schema diagnostics have bounded nesting, arrays and object fields", () => {

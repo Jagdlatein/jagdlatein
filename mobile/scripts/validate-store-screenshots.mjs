@@ -17,6 +17,10 @@ export const captureTargets = Object.freeze({
 const uuid = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i;
 const testLabel = /(?:^|[/.])WebsiteAppUITests\/testPreparatoryPublicHomepageStoreScreenshot(?:\(\))?(?:$|\?)/;
 const attachmentLabel = /(?:^|[ _/])Jagdlatein\.Preparatory\.PublicHomepage\.jpeg(?:$|[ _.])/;
+// Observed from Xcode 26.3's actual attachment export in run 37805473987,
+// attempt 2: it replaces the extension with _0_<attachment UUID>.jpeg.
+// Only this exact emitted public name is added; test scope and uniqueness stay.
+const suggestedAttachmentLabel = /^Jagdlatein\.Preparatory\.PublicHomepage_0_[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}\.jpeg$/;
 function fail(message) { throw new Error(`Simulator-Aufnahmen nicht freigegeben: ${message}`); }
 function record(value) { return value && typeof value === "object" && !Array.isArray(value); }
 function within(parent, child) {
@@ -90,7 +94,7 @@ export function selectCaptureAttachment(manifest) {
     const identities = explicitIdentities.length ? explicitIdentities : tests;
     if (Object.hasOwn(value, "exportedFileName")) {
       const names = [value.name, value.suggestedHumanReadableName].filter(item => typeof item === "string");
-      if (names.some(name => attachmentLabel.test(name))) {
+      if (names.some(name => attachmentLabel.test(name) || suggestedAttachmentLabel.test(name))) {
         if (!identities.length || !identities.every(identity => testLabel.test(identity)) || value.isAssociatedWithFailure === true ||
             typeof value.exportedFileName !== "string" || !/^[A-Za-z0-9._-]{1,240}\.(?:jpeg|jpg)$/i.test(value.exportedFileName)) {
           fail("Capture-Attachment ist nicht dem erfolgreichen vorgesehenen UI-Test zugeordnet.");
