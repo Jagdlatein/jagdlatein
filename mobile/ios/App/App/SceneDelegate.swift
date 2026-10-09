@@ -61,6 +61,39 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private var restoringAllowedPage = false
     private var paymentHintAfterRestore = false
     private var purchaseIntentNeedsPresentation = false
+#if DEBUG
+    private enum PublicNavigationDiagnosticEvent: String {
+        case urlObserved = "url-observed"
+        case recoveryRequested = "recovery-requested"
+        case recoveryLoadStarted = "recovery-load-started"
+        case navigationStarted = "navigation-started"
+        case navigationFinished = "navigation-finished"
+        case navigationFailed = "navigation-failed"
+        case recoveryFinished = "recovery-finished"
+        case recoveryFailed = "recovery-failed"
+        case blockedMainNavigation = "blocked-main-navigation"
+        case modalRequested = "modal-requested"
+        case modalSkipped = "modal-skipped-presenter"
+        case modalPresented = "modal-presented"
+    }
+    private func tracePublicNavigation(_ event: PublicNavigationDiagnosticEvent, decision: WebsiteNavigationDecision? = nil, errorCode: Int? = nil) {
+        // Only the fresh, signed-out public XCTest enables this diagnostic.
+        // Log fixed categories and state only; never URLs or website/account data.
+        guard ProcessInfo.processInfo.environment["JAGDLATEIN_PUBLIC_SIGNED_OUT_NAVIGATION_DIAGNOSTICS"] == "1" else { return }
+        let category: String
+        switch decision {
+        case .allowInWebView?: category = "allow"
+        case .blockedPayment?: category = "blocked-payment"
+        case .openExternally?: category = "external"
+        case .reject?: category = "reject"
+        case nil: category = "unavailable"
+        }
+        let stableErrorCode = errorCode.map { String($0) } ?? "none"
+        print("Public navigation guard: event=\(event.rawValue); decision=\(category); " +
+              "recovery=\(restoringAllowedPage); hint=\(paymentHintAfterRestore); " +
+              "presenter=\(presentedViewController != nil); errorCode=\(stableErrorCode)")
+    }
+#endif
     private var downloadDestinations: [ObjectIdentifier: URL] = [:]
     private var documentController: UIDocumentInteractionController?
     private lazy var backButton = toolbarButton("chevron.left", label: "Zurück", action: #selector(goBack))
@@ -229,6 +262,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         }
     }
     private func inspectVisibleURL(_ url: URL?) {
+#if DEBUG
+        tracePublicNavigation(.urlObserved, decision: url.map { WebsitePolicy.decision(for: $0, isMainFrame: true, userInitiated: false) })
+#endif
         // Native accessibility exposes only public, permitted paths. It never
         // exposes a login code, query string or private account location.
         let safeURL = url.flatMap { candidate -> URL? in
@@ -248,11 +284,17 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
             // this view returns to the last permitted page.
             paymentHintAfterRestore = WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false) == .blockedPayment
             restoringAllowedPage = true
+#if DEBUG
+            tracePublicNavigation(.recoveryRequested, decision: WebsitePolicy.decision(for: url, isMainFrame: true, userInitiated: false))
+#endif
             webView.isHidden = true
             webView.stopLoading()
             updateToolbar()
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, self.restoringAllowedPage else { return }
+#if DEBUG
+                self.tracePublicNavigation(.recoveryLoadStarted)
+#endif
                 self.load(self.lastAllowedURL)
             }
         }
@@ -290,14 +332,26 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         present(sheet, animated: true)
     }
     @objc private func showSubscriptions() {
-        guard presentedViewController == nil else { return }
+#if DEBUG
+        tracePublicNavigation(.modalRequested)
+#endif
+        guard presentedViewController == nil else {
+#if DEBUG
+            tracePublicNavigation(.modalSkipped)
+#endif
+            return
+        }
         let sheet = AppleSubscriptionViewController(manager: appleSubscriptions) { [weak self] in
             self?.load(WebsitePolicy.homeURL.appendingPathComponent("konto"))
         }
         let navigation = UINavigationController(rootViewController: sheet)
         navigation.navigationBar.tintColor = accent
         navigation.modalPresentationStyle = .pageSheet
+#if DEBUG
+        present(navigation, animated: true) { [weak self] in self?.tracePublicNavigation(.modalPresented) }
+#else
         present(navigation, animated: true)
+#endif
     }
     private func presentPurchaseIntentIfPossible() {
         guard purchaseIntentNeedsPresentation, contentRulesReady, !restoringAllowedPage,
@@ -336,6 +390,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private func finishLoading() { progress.isHidden = true; refresh.endRefreshing(); updateToolbar() }
     private func showError(_ message: String) {
         if restoringAllowedPage {
+#if DEBUG
+            tracePublicNavigation(.recoveryFailed)
+#endif
             restoringAllowedPage = false
             paymentHintAfterRestore = false
             lastRequestedURL = WebsitePolicy.homeURL
@@ -382,6 +439,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         case .blockedPayment:
             decisionHandler(.cancel)
             if navigationAction.targetFrame?.isMainFrame != false {
+#if DEBUG
+                tracePublicNavigation(.blockedMainNavigation, decision: .blockedPayment)
+#endif
                 finishLoading()
                 showPaymentInformation()
             }
@@ -411,12 +471,21 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         } else { decisionHandler(.allow) }
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+#if DEBUG
+        tracePublicNavigation(.navigationStarted, decision: webView.url.map { WebsitePolicy.decision(for: $0, isMainFrame: true, userInitiated: false) })
+#endif
         errorPanel.isHidden = true
         progress.progress = 0
         progress.isHidden = false
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+#if DEBUG
+        tracePublicNavigation(.navigationFinished, decision: webView.url.map { WebsitePolicy.decision(for: $0, isMainFrame: true, userInitiated: false) })
+#endif
         guard let visibleURL = webView.url, WebsitePolicy.decision(for: visibleURL, isMainFrame: true, userInitiated: false) == .allowInWebView else {
+#if DEBUG
+            if restoringAllowedPage { tracePublicNavigation(.recoveryFailed) }
+#endif
             restoringAllowedPage = false
             paymentHintAfterRestore = false
             lastRequestedURL = WebsitePolicy.homeURL
@@ -426,6 +495,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
             return
         }
         if restoringAllowedPage {
+#if DEBUG
+            tracePublicNavigation(.recoveryFinished, decision: .allowInWebView)
+#endif
             restoringAllowedPage = false
             // Recovery does not accept a blocked route or repeat itself.
             lastAllowedURL = visibleURL
@@ -444,7 +516,13 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { handleFailure(error) }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) { showError("Die Seite wurde unterbrochen. Bitte lade sie erneut.") }
     private func handleFailure(_ error: Error) {
+#if DEBUG
+        tracePublicNavigation(.navigationFailed, errorCode: (error as NSError).code)
+#endif
         if (error as NSError).code == NSURLErrorCancelled { return }
+#if DEBUG
+        if restoringAllowedPage { tracePublicNavigation(.recoveryFailed, errorCode: (error as NSError).code) }
+#endif
         if restoringAllowedPage { restoringAllowedPage = false; lastRequestedURL = WebsitePolicy.homeURL }
         paymentHintAfterRestore = false
         showError("Jagdlatein konnte nicht geladen werden. Prüfe deine Internetverbindung und versuche es erneut.")

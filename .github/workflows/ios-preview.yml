@@ -71,6 +71,33 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
         run: ./scripts/build-ios-preview.ps1
+      - name: Öffentliche UI-Screenshots aus der Diagnose exportieren
+        if: always()
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+        run: |
+          # Export originals from the fresh, signed-out baseline only. This
+          # makes existing XCTest evidence readable on Windows without Xcode.
+          $uiResultRoot = Join-Path $env:GITHUB_WORKSPACE 'mobile/DerivedData'
+          if (Test-Path -LiteralPath $uiResultRoot) {
+            $uiResults = @(Get-ChildItem -LiteralPath $uiResultRoot -Directory -Filter 'WebsiteUITests-*.xcresult')
+            if ($uiResults.Count -gt 1) { throw 'Öffentlicher Diagnosebefund ist mehrdeutig.' }
+            if ($uiResults.Count -eq 1) {
+              $uiExportHelp = (& xcrun xcresulttool help export attachments) -join [Environment]::NewLine
+              if ($LASTEXITCODE -ne 0 -or $uiExportHelp -notmatch '--path' -or $uiExportHelp -notmatch '--output-path') { throw 'Geprüfter Attachment-Export fehlt.' }
+              $uiScreenshotRoot = Join-Path $uiResultRoot 'PublicUITestAttachments'
+              & xcrun xcresulttool export attachments --path $uiResults[0].FullName --output-path $uiScreenshotRoot
+              if ($LASTEXITCODE -ne 0) { throw 'Öffentliche UI-Screenshots konnten nicht exportiert werden.' }
+            }
+          }
+      - name: Originale öffentliche UI-Screenshots bereitstellen
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ios-public-ui-screenshots-${{ github.run_attempt }}
+          path: mobile/DerivedData/PublicUITestAttachments
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Diagnose des öffentlichen nativen UI-Tests bereitstellen
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
