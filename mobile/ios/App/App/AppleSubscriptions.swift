@@ -6,12 +6,13 @@ import JagdlateinCore
 
 private enum AppleSubscriptionError: LocalizedError {
     case signIn, disabled, accountChanged, unavailable, unverified, alreadyPaid, existingPurchase, otherAccount, unsupportedIntent
+    case httpUnavailable(Int)
     var errorDescription: String? {
         switch self {
         case .signIn: return "Bitte melde dich zuerst mit deinem Jagdlatein-Konto an."
         case .disabled: return "Apple-Abos werden noch vorbereitet. Dein bestehender Jagdlatein-Zugang bleibt verfügbar."
         case .accountChanged: return "Das angemeldete Konto hat sich geändert. Bitte öffne die Abo-Übersicht erneut."
-        case .unavailable: return "Die Bestätigung ist gerade nicht erreichbar. Bitte versuche es erneut. Ein bereits erfolgter Kauf bleibt zur Wiederherstellung vorgemerkt."
+        case .unavailable, .httpUnavailable: return "Die Bestätigung ist gerade nicht erreichbar. Bitte versuche es erneut. Ein bereits erfolgter Kauf bleibt zur Wiederherstellung vorgemerkt."
         case .unverified: return "Dieser Kauf konnte nicht sicher geprüft werden. Es wurde kein Zugang freigeschaltet."
         case .alreadyPaid: return "Dein Konto hat bereits Zugang. Ein weiteres Abo ist dafür nicht erforderlich."
         case .existingPurchase: return "Apple meldet bereits ein vorhandenes Abo. Wähle „Käufe wiederherstellen“, um es mit deinem Jagdlatein-Konto abzugleichen."
@@ -112,7 +113,12 @@ private final class AppleAccountClient {
         case 401: throw AppleSubscriptionError.signIn
         case 404: throw AppleSubscriptionError.disabled
         case 409: throw AppleSubscriptionError.otherAccount
-        default: throw AppleSubscriptionError.unavailable
+        default:
+            if WebsitePolicy.environment == .sandbox,
+               let code = AppleRestoreDiagnosticFailure.http(response.statusCode).code {
+                throw AppleSubscriptionError.httpUnavailable(code)
+            }
+            throw AppleSubscriptionError.unavailable
         }
     }
 }
@@ -126,8 +132,13 @@ final class AppleSubscriptionManager {
     private var intentProduct: Product?
     private var confirming: [UInt64: Task<Bool, Error>] = [:]
     private var lastReconciliation = Date.distantPast
+    private var restoreDiagnostic = AppleRestoreDiagnostic(enabled: WebsitePolicy.environment == .sandbox)
     var onConfirmed: ((UUID) -> Void)?
     var onPurchaseIntent: (() -> Void)?
+    var onRestoreDiagnosticChange: (() -> Void)?
+    var sandboxRestoreDiagnostic: AppleRestoreDiagnostic.Snapshot? {
+        WebsitePolicy.environment == .sandbox ? restoreDiagnostic.snapshot : nil
+    }
     var purchaseIntentMessage: String? {
         switch intentState.notice {
         case .requiresManualConfirmation:
@@ -252,33 +263,98 @@ final class AppleSubscriptionManager {
     }
 
     func restore(expectedContext: ApplePurchaseContext) async throws -> String {
-        let current = try await client.context()
-        guard current.isConfigured, current.appAccountToken == expectedContext.appAccountToken else { throw AppleSubscriptionError.accountChanged }
-        // Only an explicit tap on Restore requests Apple authentication.
-        try await AppStore.sync()
-        var matched = false
-        var otherAccount = false
-        var seen = Set<UInt64>()
-        for await result in Transaction.currentEntitlements {
-            if case .unverified = result { throw AppleSubscriptionError.unverified }
-            guard case .verified(let transaction) = result,
-                  current.productIds?.contains(transaction.productID) == true else { continue }
-            guard current.accepts(transactionToken: transaction.appAccountToken, productID: transaction.productID) else {
-                otherAccount = true
-                continue
+        restoreDiagnostic.begin()
+        publishRestoreDiagnostic()
+        do {
+            let current = try await client.context()
+            guard current.isConfigured, current.appAccountToken == expectedContext.appAccountToken else { throw AppleSubscriptionError.accountChanged }
+            advanceRestoreDiagnostic(to: .appleSync)
+            // Only an explicit tap on Restore requests Apple authentication.
+            try await AppStore.sync()
+            var matched = false
+            var otherAccount = false
+            var seen = Set<UInt64>()
+            advanceRestoreDiagnostic(to: .entitlementScan)
+            for await result in Transaction.currentEntitlements {
+                if case .unverified = result { throw AppleSubscriptionError.unverified }
+                guard case .verified(let transaction) = result,
+                      current.productIds?.contains(transaction.productID) == true else { continue }
+                guard current.accepts(transactionToken: transaction.appAccountToken, productID: transaction.productID) else {
+                    otherAccount = true
+                    continue
+                }
+                seen.insert(transaction.id)
+                // confirm() may await an existing task; this stage does not claim a new POST.
+                advanceRestoreDiagnostic(to: .confirming)
+                _ = try await confirm(result, expectedToken: current.appAccountToken)
+                matched = true
+                advanceRestoreDiagnostic(to: .entitlementScan)
             }
-            seen.insert(transaction.id)
-            _ = try await confirm(result, expectedToken: current.appAccountToken)
-            matched = true
+            advanceRestoreDiagnostic(to: .unfinishedScan)
+            for await result in Transaction.unfinished {
+                guard case .verified(let transaction) = result, !seen.contains(transaction.id),
+                      current.accepts(transactionToken: transaction.appAccountToken, productID: transaction.productID) else { continue }
+                advanceRestoreDiagnostic(to: .confirming)
+                _ = try await confirm(result, expectedToken: current.appAccountToken)
+                matched = true
+                advanceRestoreDiagnostic(to: .unfinishedScan)
+            }
+            if !matched && otherAccount { throw AppleSubscriptionError.otherAccount }
+            restoreDiagnostic.complete()
+            publishRestoreDiagnostic()
+            return matched ? "Deine Apple-Käufe wurden mit diesem Jagdlatein-Konto abgeglichen." : "Für dieses Jagdlatein-Konto wurde kein passendes Apple-Abo gefunden."
+        } catch {
+            if WebsitePolicy.environment == .sandbox {
+                restoreDiagnostic.fail(restoreDiagnosticFailure(for: error))
+                publishRestoreDiagnostic()
+            }
+            throw error
         }
-        for await result in Transaction.unfinished {
-            guard case .verified(let transaction) = result, !seen.contains(transaction.id),
-                  current.accepts(transactionToken: transaction.appAccountToken, productID: transaction.productID) else { continue }
-            _ = try await confirm(result, expectedToken: current.appAccountToken)
-            matched = true
+    }
+
+    private func advanceRestoreDiagnostic(to stage: AppleRestoreDiagnostic.Stage) {
+        restoreDiagnostic.advance(to: stage)
+        publishRestoreDiagnostic()
+    }
+
+    private func publishRestoreDiagnostic() {
+        guard WebsitePolicy.environment == .sandbox, restoreDiagnostic.snapshot != nil else { return }
+        onRestoreDiagnosticChange?()
+    }
+
+    private func restoreDiagnosticFailure(for error: Error) -> AppleRestoreDiagnosticFailure {
+        if let error = error as? AppleSubscriptionError {
+            switch error {
+            case .signIn: return .init(category: .signIn)
+            case .disabled: return .init(category: .disabled)
+            case .accountChanged: return .init(category: .accountChanged)
+            case .unavailable: return .init(category: .unavailable)
+            case .unverified: return .init(category: .unverified)
+            case .otherAccount: return .init(category: .otherAccount)
+            case .httpUnavailable(let code): return .http(code)
+            case .alreadyPaid, .existingPurchase, .unsupportedIntent: return .init(category: .appValidation)
+            }
         }
-        if !matched && otherAccount { throw AppleSubscriptionError.otherAccount }
-        return matched ? "Deine Apple-Käufe wurden mit diesem Jagdlatein-Konto abgeglichen." : "Für dieses Jagdlatein-Konto wurde kein passendes Apple-Abo gefunden."
+        if let error = error as? StoreKitError {
+            if #available(iOS 15.4, *), case .notEntitled = error {
+                return .init(category: .storeKitAppCapability)
+            }
+            switch error {
+            case .userCancelled: return .init(category: .storeKitUserCancelled)
+            case .networkError(let network): return .foundation(network).withCategory(.storeKitNetwork)
+            case .systemError(let underlying):
+                // Inspect only this associated error, never NSError.userInfo or
+                // an underlying-error chain. Keep only typed/allowlisted codes.
+                if let nested = underlying as? StoreKitError, case .networkError(let network) = nested {
+                    return .foundation(network).withCategory(.storeKitSystem)
+                }
+                return .foundation(underlying).withCategory(.storeKitSystem)
+            case .notAvailableInStorefront: return .init(category: .storeKitStorefront)
+            case .unknown: return .init(category: .storeKitUnknown)
+            default: return .init(category: .storeKitUnknown)
+            }
+        }
+        return .foundation(error)
     }
 
     func reconcileIfNeeded() async {
@@ -352,11 +428,15 @@ final class AppleSubscriptionViewController: UIViewController {
     private var sandboxDiagnosticsExpanded = false
     private var sandboxDiagnosticsBody: UIStackView?
     private var sandboxDiagnosticsButton: UIButton?
+    private var sandboxRestoreDiagnosticLabel: UILabel?
 
     init(manager: AppleSubscriptionManager, onSignIn: @escaping () -> Void) {
         self.manager = manager
         self.onSignIn = onSignIn
         super.init(nibName: nil, bundle: nil)
+        if WebsitePolicy.environment == .sandbox {
+            manager.onRestoreDiagnosticChange = { [weak self] in self?.refreshSandboxRestoreDiagnostic() }
+        }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     deinit { task?.cancel() }
@@ -482,6 +562,7 @@ final class AppleSubscriptionViewController: UIViewController {
         buttons.removeAll()
         sandboxDiagnosticsBody = nil
         sandboxDiagnosticsButton = nil
+        sandboxRestoreDiagnosticLabel = nil
     }
 
     private func addProduct(_ product: Product, context: ApplePurchaseContext, intentRevision: Int?) async {
@@ -603,15 +684,32 @@ final class AppleSubscriptionViewController: UIViewController {
             "Von Apple gemeldete Region nach dem Laden: \(sandboxStorefrontAfter ?? "Nicht abgefragt")",
         ].joined(separator: "\n")
         details.addArrangedSubview(label(snapshot, style: .footnote))
+        let restoreDiagnostic = label(manager.sandboxRestoreDiagnostic?.text ?? "Letzte Wiederherstellung: Noch nicht gestartet", style: .footnote)
+        restoreDiagnostic.accessibilityIdentifier = "jagdlatein.apple.sandboxDiagnostics.restore"
+        details.addArrangedSubview(restoreDiagnostic)
+        sandboxRestoreDiagnosticLabel = restoreDiagnostic
         for product in sandboxProductDetails {
             details.addArrangedSubview(label(product, style: .footnote))
         }
-        details.addArrangedSubview(label("Nur in der Testumgebung: Apple-Produktdaten vom letzten Laden und lokale Geräteangaben. Sie werden nicht gespeichert oder gesendet. Die von Apple gemeldete Kaufregion kann in TestFlight abweichen. Die Diagnose startet keinen Kauf.", style: .footnote))
+        details.addArrangedSubview(label("Nur in der Testumgebung: Apple-Produktdaten, lokale Geräteangaben und die letzte Wiederherstellungsphase mit einer begrenzten Fehlerkategorie. Sie werden nicht gespeichert oder gesendet. Ein abgeschlossener Ablauf sagt nicht, ob ein Abo aktuell Zugang gewährt. Die von Apple gemeldete Kaufregion kann in TestFlight abweichen. Die Diagnose startet keinen Kauf.", style: .footnote))
         card.addArrangedSubview(toggle)
         card.addArrangedSubview(details)
         sandboxDiagnosticsBody = details
         sandboxDiagnosticsButton = toggle
         productStack.addArrangedSubview(card)
+        refreshSandboxRestoreDiagnostic()
+    }
+
+    private func refreshSandboxRestoreDiagnostic() {
+        guard WebsitePolicy.environment == .sandbox, let snapshot = manager.sandboxRestoreDiagnostic else { return }
+        sandboxRestoreDiagnosticLabel?.text = snapshot.text
+        // Make a restore result visible immediately; it survives product-load
+        // failures and an explicit reload through the manager's memory snapshot.
+        sandboxDiagnosticsExpanded = true
+        sandboxDiagnosticsBody?.isHidden = false
+        sandboxDiagnosticsButton?.configuration?.title = "Apple-Testdiagnose verbergen"
+        sandboxDiagnosticsButton?.configuration?.image = UIImage(systemName: "chevron.up")
+        sandboxDiagnosticsButton?.accessibilityValue = "Geöffnet"
     }
 
     private func toggleSandboxDiagnostics() {
@@ -667,6 +765,7 @@ final class AppleSubscriptionViewController: UIViewController {
             defer { self.setLoading(false) }
             do { self.status.text = try await self.manager.restore(expectedContext: context) }
             catch { self.status.text = self.message(for: error) }
+            self.refreshSandboxRestoreDiagnostic()
             UIAccessibility.post(notification: .announcement, argument: self.status.text)
         }
     }
