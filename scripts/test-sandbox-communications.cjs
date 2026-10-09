@@ -41,6 +41,8 @@ function fixture(overrides = {}, settings = {}) {
         insert(row) { candidate = row; codeReservation = row; return query; },
         upsert(row) { calls.push({ type: 'push-write', row }); return query; },
         async maybeSingle() {
+          if (table === 'userprofile' && settings.profileError) return { data: null, error: settings.profileError };
+          if (candidate && settings.saveError) return { data: null, error: settings.saveError };
           return { data: table === 'userprofile' ? { email: BUYER } : candidate ? { email: candidate.email } : null, error: null };
         },
         then(resolve) { resolve({ data: table === 'push_tokens' ? [{ token: 'isolated-fake-token' }] : [], error: null }); },
@@ -398,7 +400,10 @@ test('Test request-code returns a retryable 503 while diagnostics stay private i
 });
 
 test('Public SMTP failures preserve existing error propagation and request-code server-error status', async () => {
-  const providerError = Object.assign(new Error('synthetic public provider failure'), { code: 'EAUTH', responseCode: 535 });
+  const privateText = `${BUYER} 012345 synthetic-public-password private-public-provider.example.invalid SMTP AUTH details`;
+  const providerError = Object.assign(new Error(privateText), { code: 'EAUTH', command: 'AUTH LOGIN',
+    responseCode: 535, response: privateText, address: BUYER, credentials: 'synthetic-public-password',
+    hostname: 'private-public-provider.example.invalid', cause: new Error(privateText) });
   const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined }, { mailError: providerError });
   await assert.rejects(ctx.load('lib/email.js').sendLoginCode(BUYER, '012345'), error => error === providerError);
   const response = await ctx.load('app/api/auth/request-code/route.js').POST(new Request(
@@ -407,7 +412,59 @@ test('Public SMTP failures preserve existing error propagation and request-code 
     }
   ));
   assert.equal(response.status, 500);
-  assert.deepEqual(await response.json(), { success: false, message: 'Serverfehler.' });
+  const body = await response.json();
+  assert.deepEqual(body, { success: false, message: 'Serverfehler.' });
+  const logs = ctx.calls.filter(call => call.type === 'error-log').map(call => call.args);
+  assert.deepEqual(logs, [['Request-Code Fehler:', { category: 'auth', stage: 'authentication', responseCode: 535 }]]);
+  const exposed = JSON.stringify(body) + JSON.stringify(logs);
+  for (const secret of [BUYER, '012345', 'synthetic-public-password', 'private-public-provider.example.invalid',
+    'SMTP AUTH details', 'AUTH LOGIN', providerError.stack]) assert.ok(!exposed.includes(secret));
+});
+
+test('Public transport and unknown provider failures log only bounded values without changing HTTP errors', async () => {
+  const privateText = `${BUYER} synthetic-public-password private-provider.example.invalid 012345`;
+  for (const [setting, values, diagnostic] of [
+    ['transportError', {}, { category: 'unknown', stage: 'unknown', responseCode: null }],
+    ['mailError', { code: privateText, command: privateText, responseCode: privateText },
+      { category: 'unknown', stage: 'unknown', responseCode: null }],
+    ['mailError', { code: 'ETLS', command: 'STARTTLS', responseCode: 600 },
+      { category: 'tls', stage: 'tls', responseCode: null }],
+  ]) {
+    const providerError = Object.assign(new Error(privateText), { response: privateText, ...values });
+    const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined }, { [setting]: providerError });
+    const response = await ctx.load('app/api/auth/request-code/route.js').POST(new Request(
+      'https://jagdlatein-test.vercel.app/api/auth/request-code', {
+        method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: BUYER }),
+      }
+    ));
+    assert.equal(response.status, 500);
+    assert.deepEqual(await response.json(), { success: false, message: 'Serverfehler.' });
+    const logs = ctx.calls.filter(call => call.type === 'error-log').map(call => call.args);
+    assert.deepEqual(logs, [['Request-Code Fehler:', diagnostic]]);
+    assert.ok(!JSON.stringify(logs).includes(privateText));
+    assert.ok(!JSON.stringify(logs).includes(providerError.stack));
+  }
+});
+
+test('Login profile and code-reservation failures cannot write raw database details to auth logs', async () => {
+  const privateText = `${BUYER} synthetic-database-credential private-database.example.invalid`;
+  for (const [setting, label] of [
+    ['profileError', 'Userprofile Fehler: Datenbankabfrage fehlgeschlagen.'],
+    ['saveError', 'Login-Code konnte nicht gespeichert werden: Datenbankabfrage fehlgeschlagen.'],
+  ]) {
+    const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined }, {
+      [setting]: Object.assign(new Error(privateText), { details: privateText, hint: privateText }),
+    });
+    const response = await ctx.load('app/api/auth/request-code/route.js').POST(new Request(
+      'https://jagdlatein-test.vercel.app/api/auth/request-code', {
+        method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: BUYER }),
+      }
+    ));
+    assert.equal(response.status, 500);
+    assert.deepEqual(await response.json(), { success: false, message: 'Serverfehler.' });
+    assert.deepEqual(ctx.calls.filter(call => call.type === 'error-log').map(call => call.args), [[label]]);
+    assert.ok(!ctx.calls.some(call => call.type === 'mail-transport'));
+  }
 });
 
 test('Unset test mode preserves existing live SMTP settings and login content', async () => {

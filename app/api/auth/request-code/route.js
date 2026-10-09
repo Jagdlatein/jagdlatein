@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { sendLoginCode, TestLoginMailError } from "../../../../lib/email";
+import { sendLoginCode, TestLoginMailError, safeLoginMailDiagnostic } from "../../../../lib/email";
 import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
 import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
 
@@ -61,7 +61,7 @@ export async function POST(req) {
       .maybeSingle();
 
     if (profileError) {
-      console.error("Userprofile Fehler:", profileError);
+      console.error("Userprofile Fehler: Datenbankabfrage fehlgeschlagen.");
 
       return NextResponse.json(
         { success: false, message: "Serverfehler." },
@@ -137,7 +137,7 @@ export async function POST(req) {
     const saveError = save.error;
 
     if (saveError) {
-      console.error("Login-Code konnte nicht gespeichert werden:", saveError);
+      console.error("Login-Code konnte nicht gespeichert werden: Datenbankabfrage fehlgeschlagen.");
 
       return NextResponse.json(
         { success: false, message: "Serverfehler." },
@@ -157,7 +157,7 @@ export async function POST(req) {
       return NextResponse.json({ success: false, message: error.message },
         { status: 503, headers: { "Cache-Control": "no-store" } });
     }
-    console.error("Request-Code Fehler:", error);
+    console.error("Request-Code Fehler:", safeLoginMailDiagnostic(error));
 
     return NextResponse.json(
       { success: false, message: "Serverfehler." },

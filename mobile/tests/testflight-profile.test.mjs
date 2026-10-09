@@ -71,3 +71,17 @@ test("Archiv und IPA müssen die gewählte Website-Umgebung und deren sichtbaren
   assert.throws(() => validateDeviceApp({ ...sandbox, JagdlateinWebsiteEnvironment: "https://evil.test" }, expected), /Umgebung/);
   assert.throws(() => validateDeviceApp(sandbox, { ...expected, websiteEnvironment: "sandbox" }), /Unbekannte/);
 });
+
+test("Store-Version 1.0.0 wird im echten Plist geprüft und eine alte Testversion abgewiesen", () => {
+  const expected = { bundle, build: "7", version: "1.0.0", websiteEnvironment: "Production" };
+  const releaseInfo = parsePlist(buildPlist({ ...validInfo(), CFBundleVersion: "7", CFBundleShortVersionString: "1.0.0" }));
+  const profile = validateSigningProfile(validProfile(), team, bundle, now);
+  assert.equal(validateDeviceApp(releaseInfo, expected).version, "1.0.0");
+  assert.equal(validateSignedApp(releaseInfo, validProfile().Entitlements, expected, profile).version, "1.0.0");
+  const oldTestInfo = { ...releaseInfo, CFBundleShortVersionString: "0.1.0" };
+  assert.throws(() => validateDeviceApp(oldTestInfo, expected), /Metadaten/);
+  assert.throws(() => validateSignedApp(oldTestInfo, validProfile().Entitlements, expected, profile), /Metadaten/);
+  for (const version of ["1.0", "1.0.0.1", "1.0.0-beta", " 1.0.0", "1.0.0\n", "1.0.100", "10000.0.0"]) {
+    assert.throws(() => validateDeviceApp({ ...releaseInfo, CFBundleShortVersionString: version }, { ...expected, version }));
+  }
+});

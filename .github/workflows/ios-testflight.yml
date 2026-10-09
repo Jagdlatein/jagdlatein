@@ -16,6 +16,11 @@ on:
         type: string
         default: ''
         required: false
+      marketing_version:
+        description: 'App-Version: 0.1.0 für bisherige Tests; 1.0.0 für die geprüfte erste Store-Version'
+        type: string
+        default: '0.1.0'
+        required: true
       website_environment:
         description: 'Production: öffentliche App; Sandbox: getrennte Test-App mit sichtbarem Testnamen'
         type: choice
@@ -49,6 +54,11 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
+      - name: Gewünschte App-Version prüfen
+        env:
+          IOS_MARKETING_VERSION: ${{ inputs.marketing_version }}
+        run: |
+          if ($env:IOS_MARKETING_VERSION -notmatch '\A[0-9]{1,4}\.[0-9]{1,2}\.[0-9]{1,2}\z') { throw 'App-Version muss eine Version wie 0.1.0 oder 1.0.0 enthalten.' }
       - name: Quellen und TestFlight-Vorbereitung prüfen
         working-directory: mobile
         run: |
@@ -79,6 +89,7 @@ jobs:
       - name: Gerätearchiv ohne Signierung erzeugen
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+          IOS_MARKETING_VERSION: ${{ inputs.marketing_version }}
           IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
         run: ./scripts/build-ios-testflight.ps1 -Step DeviceArchive
 
@@ -114,6 +125,7 @@ jobs:
           IOS_TEAM_ID: ${{ vars.IOS_TEAM_ID }}
           IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
           IOS_BUILD_NUMBER: ${{ inputs.build_number }}
+          IOS_MARKETING_VERSION: ${{ inputs.marketing_version }}
           IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
           IOS_CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}
           IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
@@ -125,6 +137,7 @@ jobs:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
           IOS_TEAM_ID: ${{ vars.IOS_TEAM_ID }}
           IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
+          IOS_MARKETING_VERSION: ${{ inputs.marketing_version }}
           IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
           ASC_KEY_ID: ${{ vars.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ vars.ASC_ISSUER_ID }}
