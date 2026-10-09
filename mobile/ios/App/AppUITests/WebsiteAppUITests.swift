@@ -137,6 +137,7 @@ final class WebsiteAppUITests: XCTestCase {
     @MainActor
     func testPublicHomepagePaymentGuardAndBookmarkPersistence() throws {
         let app = XCUIApplication()
+        app.launchEnvironment["JAGDLATEIN_PUBLIC_SIGNED_OUT_NAVIGATION_DIAGNOSTICS"] = "1"
         app.launch()
         let website = app.webViews["jagdlatein.website"]
         let location = app.staticTexts["jagdlatein.website.location"]
