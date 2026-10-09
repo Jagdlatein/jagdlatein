@@ -71,6 +71,16 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
         run: ./scripts/build-ios-preview.ps1
+      - name: Diagnose des öffentlichen nativen UI-Tests bereitstellen
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ios-public-ui-diagnostics-${{ github.run_attempt }}
+          # Only this fresh, signed-out baseline's result bundle. No signing,
+          # account-backend, screenshot-capture or other DerivedData files.
+          path: mobile/DerivedData/WebsiteUITests-*.xcresult
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Prüfergebnis anzeigen
         run: Get-Content -LiteralPath mobile/ios-preview-result.json
       - name: Echte vorbereitende App-Screenshots aufnehmen
@@ -78,12 +88,10 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
         run: |
-          # Release the exact simulator used by this job before booting the
-          # capture devices. Running two simulators can exhaust Mac-runner RAM.
+          # The baseline helper has already released its own simulator. Keep
+          # proof of its successful test/cleanup before starting capture devices.
           $captureBaseline = Get-Content -LiteralPath mobile/ios-preview-result.json -Raw | ConvertFrom-Json
-          if ($captureBaseline.simulatorUITestsPassed -ne $true -or $captureBaseline.simulatorDeviceId -notmatch '^[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$') { throw 'Vorheriges Simulator-Prüfergebnis fehlt.' }
-          xcrun simctl shutdown $captureBaseline.simulatorDeviceId
-          if ($LASTEXITCODE -ne 0) { throw 'Der geprüfte CI-Simulator konnte nicht angehalten werden.' }
+          if ($captureBaseline.simulatorUITestsPassed -ne $true -or $captureBaseline.simulatorDeviceReleased -ne $true -or $captureBaseline.simulatorDeviceId -notmatch '^[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$') { throw 'Vorheriges Simulator-Prüfergebnis oder Simulator-Bereinigung fehlt.' }
           ./scripts/capture-ios-store-screenshots.ps1
       - name: Geprüfte öffentliche App-Screenshots bereitstellen
         if: github.event_name == 'workflow_dispatch'
