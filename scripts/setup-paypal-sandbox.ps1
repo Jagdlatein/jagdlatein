@@ -130,7 +130,18 @@ if ($Step -eq 'TestDatabaseSql') {
         'supabase\migrations\20261004110000_subscription_access.sql',
         'supabase\migrations\20261004120000_secure_private_tables.sql',
         'supabase\migrations\20261004130000_subscription_trial.sql',
-        'supabase\migrations\20261004190000_learning_community.sql'
+        'supabase\migrations\20261004190000_learning_community.sql',
+        'scripts\sql\ios-test-push-base.sql',
+        'supabase\migrations\20261007105000_account_registration.sql',
+        'supabase\migrations\20261007110000_apple_subscriptions.sql',
+        'supabase\migrations\20261007120000_account_deletion.sql',
+        'supabase\migrations\20261008120000_apple_refund_ordering.sql',
+        'supabase\migrations\20261008140000_community_blocks.sql',
+        'supabase\migrations\20261008150000_apple_review_login_rate_limits.sql',
+        'supabase\migrations\20261008160000_community_premoderation.sql',
+        'supabase\migrations\20261008170000_community_moderators.sql',
+        'supabase\migrations\20261009210000_paypal_account_generation.sql',
+        'supabase\migrations\20261009220000_complete_account_deletion.sql'
     )) {
         $sql = [System.IO.File]::ReadAllText((Join-Path $repoDirectory $relative))
         $envelope = [regex]::Match($sql, '(?s)\A(?:\s|--[^\r\n]*(?:\r?\n|\z))*BEGIN;\s*(?<body>.*?)\s*COMMIT;\s*\z')

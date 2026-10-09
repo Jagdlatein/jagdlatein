@@ -81,12 +81,19 @@ export default function Preise() {
               label: "subscribe",
             },
 
-            createSubscription(data, actions) {
+            createSubscription() {
               if (cancelled || !eligible) return Promise.reject(new Error("Aboabschluss derzeit nicht möglich."));
               if (!subscriptionPromise) {
-                subscriptionPromise = Promise.resolve().then(() => {
+                subscriptionPromise = Promise.resolve().then(async () => {
                   if (cancelled || !eligible) throw new Error("Aboabschluss derzeit nicht möglich.");
-                  return actions.subscription.create({ plan_id: paypalPlanId });
+                  const response = await fetch("/api/paypal/create-subscription", {
+                    method: "POST", credentials: "same-origin", signal: controller.signal,
+                    headers: { "Content-Type": "application/json" }, body: JSON.stringify({}),
+                  });
+                  const created = await response.json();
+                  if (!response.ok || typeof created.subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(created.subscriptionId))
+                    throw new Error("Das Abo konnte deinem aktuellen Konto nicht zugeordnet werden.");
+                  return created.subscriptionId;
                 })
                   .catch((error) => { subscriptionPromise = null; throw error; });
               }
@@ -106,7 +113,7 @@ export default function Preise() {
                 const confirmation = await response.json();
                 if (cancelled) return;
                 if (!response.ok || confirmation.activated !== true) {
-                  setPaymentMessage(confirmation.error || "Die Bestätigung wird noch verarbeitet. Bitte melde dich in Kürze mit deiner PayPal-E-Mail an.");
+                  setPaymentMessage(confirmation.error || confirmation.message || "Die Bestätigung wird noch verarbeitet. Bitte prüfe dein Konto später erneut.");
                   return;
                 }
                 eligible = false;
@@ -115,13 +122,13 @@ export default function Preise() {
                   const until = accessDate(confirmation.trialUntil);
                   setActivation({ accessType: "trial" });
                   setPaymentMessage(until
-                    ? `Testzugang aktiviert – kostenlos bis ${until}. Melde dich mit deiner PayPal-E-Mail an.`
-                    : "Dein Testzugang wurde bestätigt. Melde dich mit deiner PayPal-E-Mail an, um die Laufzeit im Konto zu prüfen.");
+                    ? `Testzugang aktiviert – kostenlos bis ${until}. Die Laufzeit findest du in deinem Konto.`
+                    : "Dein Testzugang wurde bestätigt. Die Laufzeit findest du in deinem Konto.");
                   return;
                 }
                 window.location.href = `${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`;
               } catch {
-                if (!cancelled) setPaymentMessage("Die Bestätigung konnte noch nicht geprüft werden. Bitte melde dich später mit deiner PayPal-E-Mail an.");
+                if (!cancelled) setPaymentMessage("Die Bestätigung konnte noch nicht geprüft werden. Bitte prüfe dein Konto später erneut.");
               } finally {
                 confirming = false;
               }
@@ -158,6 +165,8 @@ export default function Preise() {
           }
         } else {
           setAccount(null);
+          setCheckoutStatus("login-required");
+          return;
         }
         let offer;
         try {
@@ -210,17 +219,18 @@ export default function Preise() {
         das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 5 €. Wenn du vor Ablauf bei PayPal kündigst,
         fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.</p>}
       {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
+      {checkoutStatus === "login-required" && <div className={styles.note}><p>Lege vor dem PayPal-Kauf ein Jagdlatein-Konto an oder melde dich an. Dein Abo wird diesem Konto zugeordnet; deine PayPal-E-Mail darf davon abweichen.</p><Link href="/registrieren?next=%2Fpreise" className={styles.primary}>Konto anlegen</Link>{" "}<Link href="/login?next=%2Fpreise" className={styles.secondary}>Anmelden</Link></div>}
       {checkoutStatus === "existing" && <div className={styles.note}><p>{account?.accessType === "trial" ? "Dein Testzugang ist bereits aktiv." : "Dein Zugang ist bereits aktiv."}</p><Link href="/konto" className={styles.primary}>Zum Konto</Link></div>}
       {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert" className={styles.note}>{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
       {(checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></p>}
       {checkoutStatus === "error" && <div role="alert" className={styles.note}><p>Dein Kontostatus konnte nicht geprüft werden.</p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></div>}
       <div id="paypal-subscribe-preise" hidden={checkoutStatus !== "ready" || Boolean(activation)} />
       {paymentMessage && <p role="status" aria-live="polite" className={styles.note}>{paymentMessage}</p>}
-      {activation && <p><Link href={`${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`} className={styles.primary}>Mit PayPal-E-Mail anmelden</Link></p>}
+      {activation && <p><Link href="/konto" className={styles.primary}>Zum Konto</Link></p>}
       <p className={styles.muted}>{checkoutStatus === "existing" ? "Informationen zu deinem aktuellen Zugang findest du im Konto."
-        : showTrialOffer ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Nach der geprüften Abo-Bestätigung meldest du dich mit der E-Mail-Adresse deines PayPal-Kontos an."
+        : showTrialOffer ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Die geprüfte Abo-Bestätigung schaltet dein angemeldetes Jagdlatein-Konto frei."
         : trialPlan ? "Der Abschluss ist erst nach Bestätigung der Testabo-Konditionen möglich."
-        : "Die Zahlung erfolgt über PayPal. Nach geprüfter Zahlungsbestätigung kannst du dich mit der E-Mail-Adresse deines PayPal-Kontos einloggen."}</p>
+        : "Die Zahlung erfolgt über PayPal. Die geprüfte Zahlungsbestätigung schaltet dein angemeldetes Jagdlatein-Konto frei."}</p>
     </section>
     <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="access-help-heading">
       <h2 id="access-help-heading">Anmeldung und Hilfe</h2>
