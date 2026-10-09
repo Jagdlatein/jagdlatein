@@ -5,16 +5,23 @@ const MEDIA = new Set([
   "/lernen/waldwiese.jpg", "/lernen/sicherheit.jpg", "/lernen/jagdpraxis.jpg", "/lernen/ausruestung.jpg", "/lernen/jagdrecht.jpg", "/lernen/lernmaterial.jpg", "/lernen/feldlandschaft.jpg", "/lernen/hygiene.jpg",
   "/lernen/deutsch-drahthaar.jpg", "/lernen/kleiner-muensterlaender.jpg", "/lernen/wachtelhund.jpg", "/lernen/bayerischer-gebirgsschweisshund.jpg",
   "/wildkunde/nachweise-2026/rehwild.jpg", "/wildkunde/nachweise-2026/hirsch.jpg", "/wildkunde/nachweise-2026/schwarzwild.jpg", "/wildkunde/nachweise-2026/gamswild.jpg", "/wildkunde/nachweise-2026/steinwild.jpg", "/wildkunde/nachweise-2026/stockente.jpg", "/wildkunde/nachweise-2026/fasan.jpg", "/wildkunde/nachweise-2026/feldhase.jpg", "/wildkunde/nachweise-2026/wildkaninchen.jpg", "/wildkunde/nachweise-2026/fuchs.jpg", "/wildkunde/nachweise-2026/dachs.jpg", "/wildkunde/nachweise-2026/baummarder.jpg",
-  // Preserve already downloaded packs until their existing expiry (at most seven days).
-  "/wildkunde/rehwild.jpg", "/wildkunde/hirsch.jpg", "/wildkunde/schwarzwild.jpg", "/wildkunde/gamswild.jpg", "/wildkunde/steinwild.jpg", "/wildkunde/stockente.jpg", "/wildkunde/fasan.jpg", "/wildkunde/feldhase.jpg", "/wildkunde/wildkaninchen.jpg", "/wildkunde/fuchs.jpg", "/wildkunde/dachs.jpg", "/wildkunde/baummarder.jpg",
   ...Array.from({ length: 8 }, (_, index) => `/lernen/stimmen/aufnahme-0${index + 1}.mp3`),
   ...Array.from({ length: 22 }, (_, index) => `/lernen/stimmen/vogel-${String(index + 1).padStart(2, "0")}.mp3`),
   ...Array.from({ length: 6 }, (_, index) => `/lernen/stimmen/saeuger-${String(index + 1).padStart(2, "0")}.mp3`),
   "/lernen/stimmen/gams-01.mp3",
 ]);
+// Exact retirement list: purge old photographs without touching offline lessons or audio.
+const RETIRED_MEDIA = new Set([
+  ...'auerhuhn baummarder biber birkhuhn bisam dachs damwild eichelhaeher eichhoernchen elster fasan feldhase fuchs gamswild graugans hermelin hirsch hohltaube iltis kanadagans krickente luchs marderhund mauswiesel muffelwild nebelkraehe nilgans nutria pfeifente rabenkraehe rebhuhn rehwild reiherente ringeltaube schneehase schneehuhn schwarzwild sikawild spiessente steinmarder steinwild stockente tafelente tuerkentaube waschbaer wildkaninchen wildkatze'.split(' ').map(name => '/wildkunde/' + name + '.jpg'),
+  '/marderhund.jpg',
+]);
 const staticAsset = path => /^\/_next\/static\/[a-zA-Z0-9_./%~-]+$/.test(path);
 self.addEventListener("install", () => self.skipWaiting());
-self.addEventListener("activate", event => event.waitUntil(self.clients.claim()));
+self.addEventListener("activate", event => event.waitUntil((async () => {
+  const cache = await caches.open(CACHE);
+  for (const path of RETIRED_MEDIA) await cache.delete(path);
+  await self.clients.claim();
+})()));
 self.addEventListener("message", event => {
   if (event.data?.type !== "PREPARE" || !event.ports[0]) return;
   const port = event.ports[0];

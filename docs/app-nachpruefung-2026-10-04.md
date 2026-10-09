@@ -38,3 +38,9 @@ Die öffentlichen Betreiberangaben bleiben auf ausdrücklichen Nutzerwunsch bei 
 Eine getrennte Vercel-/Supabase-/PayPal-Testumgebung ist nach Nutzerangabe noch nicht vorhanden. Die vollständige Einrichtung ist als PowerShell-Helfer und Anleitung vorbereitet. PayPal-Antworten und Signaturen der lokalen Tests sind simuliert; echte Zustimmung, die erste Abbuchung nach 72 Stunden und ein tatsächlicher Provider-Zahlungsausfall bleiben offen. Die öffentliche App wurde nicht auf Sandbox umgestellt; es wurden keine realen Zahlungen oder Nachrichten ausgelöst und keine Live-Daten geändert.
 
 Mobile Browserbreiten ersetzen keine Prüfung auf tatsächlichen Android-/iOS-Geräten. Quellenabgleich und redaktionelle Korrekturen ersetzen keine unabhängige Fachzertifizierung sämtlicher App-Inhalte. Die Veröffentlichung erfolgt anschließend über den geprüften Commit auf `main`; ihr Vercel-Status wird separat kontrolliert.
+
+## Ergänzung vom 9. Oktober 2026: alte Fotodateien
+
+Die oben beschriebenen alten Bildpfade wurden inzwischen durch eine ausdrücklich begrenzte Foto-Migration abgelöst: 48 alte JPEGs sowie ihre öffentlichen und Offline-Download-Ausnahmen werden entfernt. Gespeicherte Kurse, Fragen, Aufnahmen, Kontobindung und Ablaufzeit bleiben erhalten. Alte Fotodatensätze erhalten gemeinsam den Pfad, Alternativtext und Bildnachweis der dokumentierten Ersatzfotografie. Nur bereits lokal vorhandene, anhand ihres SHA-256 geprüfte Ersatzbytes werden angezeigt; andernfalls fordert die Oberfläche zum bewussten erneuten Herunterladen auf. Der aktualisierte Service-Worker entfernt nur die exakt benannten alten Fotodateien aus seinem Cache.
+
+Diese Änderung erreicht ein bereits vollständig offline genutztes Gerät erst nach dem Laden der aktualisierten Anwendung beziehungsweise des aktualisierten Service-Workers mit Internetverbindung. Der historische Prüfstand und die übrigen Feststellungen vom 4. Oktober bleiben als datierter Nachweis erhalten.

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
-import { readOfflinePack, saveOfflinePack, clearOfflineLearning, prepareOfflineCache, validateOfflinePack, OFFLINE_MAX_COURSES } from "../lib/offline-learning";
+import { readOfflinePack, saveOfflinePack, clearOfflineLearning, prepareOfflineCache, validateOfflinePack, readCachedRetiredPhoto, OFFLINE_MAX_COURSES } from "../lib/offline-learning";
 import styles from "../styles/LearningExperience.module.css";
 import extra from "../styles/OfflineLearning.module.css";
 import photoStyles from "../styles/LearningMedia.module.css";
@@ -21,6 +21,24 @@ function OfflinePhotoCredit({ photo }) {
   const creditUrl = offlineCreditUrl(photo.creditUrl);
   const licenseUrl = offlineCreditUrl(photo.licenseUrl);
   return <small className={photoStyles.photoCredit}>{photo.credit}{creditUrl && <> · <a href={creditUrl} target="_blank" rel="noopener noreferrer">Bildquelle</a></>}{licenseUrl && <> · <a href={licenseUrl} target="_blank" rel="noopener noreferrer">Lizenz</a></>}</small>;
+}
+function OfflinePhoto({ photo, retired }) {
+  const [cachedUrl, setCachedUrl] = useState(null);
+  useEffect(() => {
+    if (!retired) return;
+    let alive = true; let objectUrl;
+    // A migrated picture is never fetched automatically. Only verified bytes
+    // already on this device may be shown before an explicit fresh download.
+    readCachedRetiredPhoto(photo.src).then(blob => {
+      if (!alive || !blob) return;
+      objectUrl = URL.createObjectURL(blob); setCachedUrl(objectUrl);
+    });
+    return () => { alive = false; if (objectUrl) URL.revokeObjectURL(objectUrl); };
+  }, [photo.src, retired]);
+  return <figure className={styles.figure}>
+    {retired && !cachedUrl ? <p className={styles.note}>Dieses Foto wurde aktualisiert. Lade deine Auswahl mit Internetverbindung erneut herunter, um es offline mitzunehmen.</p> : <img src={retired ? cachedUrl : photo.src} alt={photo.alt} loading="lazy" />}
+    <figcaption>{photo.alt}{(!retired || cachedUrl) && <OfflinePhotoCredit photo={photo} />}</figcaption>
+  </figure>;
 }
 function OfflineCourse({ course, expiresAt, onExpired }) {
   const legal = course.category === "Jagdrecht";
@@ -53,9 +71,10 @@ export default function OfflineLearning({ courses }) {
   const [query, setQuery] = useState(""); const [courseId, setCourseId] = useState("");
   const [busy, setBusy] = useState(false); const [message, setMessage] = useState(""); const [error, setError] = useState("");
   const [online, setOnline] = useState(true); const action = useRef(false);
+  const [retiredPhotoPaths, setRetiredPhotoPaths] = useState([]);
   useEffect(() => {
     let alive = true;
-    readOfflinePack().then(({ pack: saved, expired }) => { if (alive) { setPack(saved); setCourseId(saved?.courses[0]?.id || ""); setSelected(saved?.courses.map(course => course.id) || []); if (expired) setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte mit Internetverbindung neu herunterladen."); } }).catch(failure => { if (alive) setError(failure.message); }).finally(() => { if (alive) setLoaded(true); });
+    readOfflinePack().then(({ pack: saved, expired, retiredPhotoPaths: retired }) => { if (alive) { setPack(saved); setRetiredPhotoPaths(retired); setCourseId(saved?.courses[0]?.id || ""); setSelected(saved?.courses.map(course => course.id) || []); if (expired) setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte mit Internetverbindung neu herunterladen."); } }).catch(failure => { if (alive) setError(failure.message); }).finally(() => { if (alive) setLoaded(true); });
     const changeConnection = () => setOnline(navigator.onLine); changeConnection();
     window.addEventListener("online", changeConnection); window.addEventListener("offline", changeConnection);
     return () => { alive = false; window.removeEventListener("online", changeConnection); window.removeEventListener("offline", changeConnection); };
@@ -87,7 +106,7 @@ export default function OfflineLearning({ courses }) {
       const body = await response.json(); if (!response.ok) throw new Error(body.message || "Download fehlgeschlagen.");
       if (!validateOfflinePack(body.pack)) throw new Error("Die heruntergeladenen Lerninhalte sind ungültig.");
       await prepareOfflineCache([...body.pack.photos.map(photo => photo.src), ...body.pack.sounds.map(sound => sound.src)]);
-      await saveOfflinePack(body.pack); setPack(body.pack); setCourseId(body.pack.courses[0].id); setMessage("Dein Lernrucksack ist bereit. Du kannst diese Seite jetzt auch ohne Internet erneut öffnen.");
+      await saveOfflinePack(body.pack); setPack(body.pack); setRetiredPhotoPaths([]); setCourseId(body.pack.courses[0].id); setMessage("Dein Lernrucksack ist bereit. Du kannst diese Seite jetzt auch ohne Internet erneut öffnen.");
     } catch (failure) { setMessage(""); setError(failure.message || "Der Download konnte nicht abgeschlossen werden."); }
     finally { action.current = false; setBusy(false); }
   }
@@ -109,7 +128,7 @@ export default function OfflineLearning({ courses }) {
     </section>
     {pack && <><section className={styles.panel}><h2>Gespeicherte Kurse</h2><p>{pack.courses.length} Kurse · {pack.photos.length} Fotos · {pack.sounds.length} Aufnahmen<br />Heruntergeladen: {date(pack.createdAt)} · Verfügbar bis {date(pack.expiresAt)}</p><label className={styles.field}>Gespeicherten Kurs öffnen<select value={courseId} onChange={event => setCourseId(event.target.value)}>{pack.courses.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>
       {course && <OfflineCourse key={`${pack.id}:${course.id}`} course={course} expiresAt={pack.expiresAt} onExpired={() => { setPack(null); setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte online erneuern."); }} />}
-      {pack.photos.length > 0 && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2><div className={styles.grid}>{pack.photos.map(photo => <figure className={styles.figure} key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /><figcaption>{photo.alt}<OfflinePhotoCredit photo={photo} /></figcaption></figure>)}</div></section>}
+      {pack.photos.length > 0 && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2><div className={styles.grid}>{pack.photos.map((photo, index) => <OfflinePhoto photo={photo} retired={retiredPhotoPaths.includes(photo.src)} key={`${photo.src}:${index}`} />)}</div></section>}
       {pack.sounds.length > 0 && <section className={styles.panel}><h2>Originalstimmen unterwegs</h2><div className={styles.grid}>{pack.sounds.map(sound => <article className={styles.card} key={sound.id}><h3>{sound.name}</h3><audio controls preload="none" src={sound.src} aria-label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>Aufnahme: {sound.author} · {sound.licenseUrl ? <a href={sound.licenseUrl} target="_blank" rel="noopener noreferrer">{sound.license}</a> : sound.license}</p>{sound.recording && <p className={styles.muted}>{sound.recording}</p>}{sound.modifications && <p className={styles.muted}>{sound.modifications}</p>}<p><a href={sound.sourceUrl} target="_blank" rel="noopener noreferrer">Originalquelle mit Aufnahme- und Lizenznachweis</a></p></article>)}</div></section>}
     </>}
   </LearningToolLayout>;

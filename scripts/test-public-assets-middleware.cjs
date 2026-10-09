@@ -10,7 +10,6 @@ const pr = createRequire(path.join(root, 'package.json'));
 const swc = pr('next/dist/build/swc');
 const sharp = pr('sharp');
 const { NextRequest, NextResponse } = pr('next/server');
-const oldPortraitNames = 'auerhuhn biber birkhuhn bisam damwild eichelhaeher eichhoernchen elster graugans hermelin hohltaube iltis kanadagans krickente luchs marderhund mauswiesel muffelwild nebelkraehe nilgans nutria pfeifente rabenkraehe rebhuhn reiherente ringeltaube schneehase schneehuhn sikawild spiessente steinmarder tafelente tuerkentaube waschbaer wildkatze'.split(' ');
 const cache = new Map();
 const context = vm.createContext({ process: { env: { JL_SESSION_SECRET: 'isolated-public-paths-test-key-at-least-32-bytes' } },
   Buffer, Response, Request, Headers, crypto: webcrypto, TextEncoder, TextDecoder, atob, URL, AbortSignal, Date,
@@ -35,17 +34,14 @@ const { learningImagePaths } = load('lib/learning-image-paths.js');
 const { middleware } = load('middleware.js');
 const request = pathname => new NextRequest(`https://jagdlatein.test${pathname}`);
 
-for (const name of oldPortraitNames) test(`An older cached ${name} portrait remains publicly accessible during the download transition`, async () => {
-  const pathname = `/wildkunde/${name}.jpg`;
-  assert.ok(learningImagePaths.includes(pathname));
-  const bytes = fs.readFileSync(path.join(root, 'public', pathname));
-  assert.equal(bytes.subarray(0, 3).toString('hex'), 'ffd8ff');
-  const metadata = await sharp(bytes).metadata();
-  assert.equal(metadata.format, 'jpeg'); assert.ok(metadata.width >= 100 && metadata.height >= 100);
-  const response = await middleware(request(pathname)); assert.equal(response.headers.get('x-middleware-next'), '1');
-});
-
 const reviewedPhotos = JSON.parse(fs.readFileSync(path.join(root, 'data/reviews/wildlife-photo-provenance-2026-10-04.json'), 'utf8')).assets;
+for (const pathname of [...reviewedPhotos.map(photo => `/wildkunde/${path.posix.basename(photo.src)}`), '/marderhund.jpg']) test(`Retired photograph ${pathname} is absent and has no public middleware exception`, async () => {
+  assert.equal(learningImagePaths.includes(pathname), false);
+  assert.equal(fs.existsSync(path.join(root, 'public', pathname)), false);
+  const response = await middleware(request(pathname));
+  assert.equal(response.headers.get('x-middleware-next'), null);
+  assert.equal(new URL(response.headers.get('location')).pathname, '/preise');
+});
 test('Every reviewed wildlife photo decodes, has the recorded dimensions/hash and remains available without a paid account', async () => {
   assert.equal(reviewedPhotos.length, 47);
   assert.equal(new Set(reviewedPhotos.map(photo => photo.slug)).size, 47);

@@ -71,7 +71,7 @@ test('Profiles require voluntary rules acceptance and allow no identity override
   const bad = await ctx.api.POST(ctx.request('POST', { action: 'profile', displayName: 'Lernfuchs', acceptedRules: true, email: 'other@example.invalid' })); assert.equal(bad.status, 400);
   const unaccepted = await ctx.api.POST(ctx.request('POST', { action: 'profile', displayName: 'Lernfuchs', acceptedRules: false })); assert.equal(unaccepted.status, 400);
   const response = await ctx.api.POST(ctx.request('POST', { action: 'profile', displayName: 'Lernfuchs', acceptedRules: true })); assert.equal(response.status, 200);
-  const rpc = ctx.calls.find(call => call.name === 'community_write'); assert.equal(rpc.args.p_actor_email, 'learner@example.invalid'); assert.equal(rpc.args.p_action, 'profile'); assert.equal(rpc.args.p_payload.rulesVersion, '2026-10-04');
+  const rpc = ctx.calls.find(call => call.name === 'community_write'); assert.equal(rpc.args.p_actor_email, 'learner@example.invalid'); assert.equal(rpc.args.p_action, 'profile'); assert.equal(rpc.args.p_payload.rulesVersion, '2026-10-09');
 });
 test('Authors cannot supply admin, email, status or profile names when creating a post', async () => {
   const ctx = setup(); const body = { action: 'post', category: 'wildkunde', type: 'question', title: 'Wie lerne ich Wildkunde?', body: 'Meine Frage zum gemeinsamen Lernen.', acceptedRules: true };
