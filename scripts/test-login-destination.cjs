@@ -113,13 +113,92 @@ test('Authentication pages expose only a private-derived mail mode, never tester
       query: { isTestMail: isolated ? 'false' : 'true', testMailMode: isolated ? 'sink' : 'tester-smtp' } });
     const registration = await load('pages/registrieren.js', {}, globals).getServerSideProps({});
     const testMailMode = isolated ? mode || 'sink' : null;
-    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: isolated, testMailMode });
+    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: isolated, testMailMode, allowReviewLogin: false });
     assert.deepEqual(registration.props, { registration: true, allowRegistration: true, isTestMail: isolated, testMailMode });
     const exposed = JSON.stringify([login.props, registration.props]);
     for (const key of ['JL_TEST_MAIL_RECIPIENTS', 'JL_TEST_SMTP_USER', 'JL_TEST_SMTP_PASS', 'JL_TEST_SMTP_FROM']) {
       assert.ok(!exposed.includes(key)); assert.ok(!exposed.includes(env[key]));
     }
   }
+});
+
+function reviewEntryEnvironment(changes = {}) {
+  const now = Date.now();
+  return { ACCOUNT_REGISTRATION_ENABLED: 'true', ACCOUNT_GENERATION_ENABLED: 'true',
+    APPLE_SUBSCRIPTIONS_ENABLED: 'true', APPLE_STORE_ENVIRONMENT: 'Production',
+    APPLE_REVIEW_SANDBOX_ENABLED: 'true', APPLE_REVIEW_LOGIN_ENABLED: 'true',
+    APPLE_REVIEW_ACCOUNT_GENERATION: '4ccfa30c-1cde-4f60-b991-341ccddac3f1',
+    APPLE_REVIEW_APP_ACCOUNT_TOKEN: 'f2ae242e-ac4d-4390-a8db-07d477ff2541',
+    APPLE_REVIEW_VALID_FROM: new Date(now - 60000).toISOString(),
+    APPLE_REVIEW_VALID_UNTIL: new Date(now + 86400000).toISOString(),
+    APPLE_REVIEW_LOGIN_CREDENTIAL_ID: '4c7534f9-6725-4ab2-a146-0ad2e3c5452b',
+    APPLE_REVIEW_LOGIN_PASSWORD_HASH: '$2b$12$' + 'a'.repeat(53),
+    JL_SESSION_SECRET: 'synthetic-private-review-entry-session-secret', ...changes };
+}
+
+test('The actual ordinary sign-in page exposes a same-origin review entry only for a valid active private Production policy', async () => {
+  const disabled = [
+    { APPLE_REVIEW_LOGIN_ENABLED: undefined }, { APPLE_REVIEW_LOGIN_ENABLED: 'false' },
+    { APPLE_REVIEW_SANDBOX_ENABLED: 'false' }, { APPLE_REVIEW_LOGIN_ENABLED: 'TRUE' },
+    { APPLE_REVIEW_LOGIN_PASSWORD_HASH: 'not-a-hash' }, { APPLE_REVIEW_LOGIN_CREDENTIAL_ID: 'invalid' },
+    { APPLE_REVIEW_APP_ACCOUNT_TOKEN: 'invalid' }, { APPLE_REVIEW_ACCOUNT_GENERATION: 'invalid' },
+    { APPLE_REVIEW_VALID_FROM: new Date(Date.now() + 600000).toISOString() },
+    { APPLE_REVIEW_VALID_UNTIL: new Date(Date.now() - 1000).toISOString() },
+    { APPLE_REVIEW_VALID_UNTIL: new Date(Date.now() + 15 * 86400000).toISOString() },
+    { APPLE_REVIEW_VALID_FROM: '2026-10-09T14:00:00Z' },
+    { JL_SESSION_SECRET: 'short' }, { ACCOUNT_GENERATION_ENABLED: 'false' },
+    { APPLE_SUBSCRIPTIONS_ENABLED: 'false' },
+    { APPLE_STORE_ENVIRONMENT: 'Sandbox', JL_TEST_ENVIRONMENT: 'paypal-sandbox' },
+    { JL_TEST_ENVIRONMENT: 'paypal-sandbox' },
+  ];
+  for (const changes of [{}, ...disabled]) {
+    const env = reviewEntryEnvironment(changes);
+    const page = load('pages/login.js', {}, { process: { env } });
+    const headers = {};
+    const result = await page.getServerSideProps({ req: { cookies: {} }, query: { allowReviewLogin: 'true' },
+      res: { setHeader: (key, value) => headers[key] = value } });
+    const expected = Object.keys(changes).length === 0;
+    assert.equal(result.props.allowReviewLogin, expected, JSON.stringify(changes));
+    assert.match(headers['Cache-Control'], /private, no-store/);
+    const html = renderToStaticMarkup(React.createElement(page.default, result.props));
+    assert.equal(html.includes('href="/review-login?next=%2Fkonto"'), expected);
+    assert.equal(html.includes('Mit Prüfkonto anmelden'), expected);
+    assert.match(html, /Login-Code senden/);
+    const publicResult = JSON.stringify(result) + html;
+    for (const key of ['APPLE_REVIEW_ACCOUNT_GENERATION', 'APPLE_REVIEW_APP_ACCOUNT_TOKEN',
+      'APPLE_REVIEW_LOGIN_PASSWORD_HASH', 'APPLE_REVIEW_LOGIN_CREDENTIAL_ID', 'JL_SESSION_SECRET']) {
+      assert.ok(!publicResult.includes(key));
+      assert.ok(!publicResult.includes(env[key]));
+    }
+  }
+});
+
+test('Review entry preserves safe in-app destinations and never appears in registration or isolated tester forms', async () => {
+  const env = reviewEntryEnvironment();
+  const globals = { process: { env } };
+  for (const [next, expected] of [
+    ['/community?category=hundewesen#frage', '/community?category=hundewesen#frage'],
+    ['/lernen?suche=gams', '/lernen?suche=gams'],
+    ['//evil.invalid', '/konto'], ['/%5cevil.invalid', '/konto'],
+    ['/review-login', '/konto'], ['/review-login/?next=/lernen', '/konto'], ['/%72eview-login', '/konto'],
+  ]) {
+    const page = load('pages/login.js', { 'next/router': { useRouter: () => ({ query: { next } }) } }, globals);
+    const result = await page.getServerSideProps({ req: { cookies: {} }, query: { next } });
+    const html = renderToStaticMarkup(React.createElement(page.default, result.props));
+    const href = html.match(/href="(\/review-login\?[^"]+)"/)[1];
+    const url = new URL(href, 'https://jagdlatein.de');
+    assert.equal(url.origin, 'https://jagdlatein.de');
+    assert.equal(url.searchParams.get('next'), expected);
+    for (const props of [{ registration: true }, { isTestMail: true }]) {
+      const hidden = renderToStaticMarkup(React.createElement(page.default, { ...result.props, ...props }));
+      assert.ok(!hidden.includes('/review-login'));
+    }
+  }
+  const registration = load('pages/registrieren.js', {}, globals);
+  const result = await registration.getServerSideProps({});
+  assert.ok(!Object.hasOwn(result.props, 'allowReviewLogin'));
+  const html = renderToStaticMarkup(React.createElement(registration.default, result.props));
+  assert.ok(!html.includes('/review-login'));
 });
 
 test('Invalid private mail modes cannot silently render a misleading sink or tester hint', async () => {
