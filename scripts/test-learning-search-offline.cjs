@@ -150,3 +150,116 @@ test('Practice exercises are found within their relevant learning categories wit
     assert.ok(searchLearning({ query, category, type: 'practice' }).results.some(item => item.href === href), `${query}:${category}`);
   }
 });
+
+test('Retired photo migration pairs replacement bytes and source records while preserving all learning and access data', () => {
+  process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
+  const { createOfflinePack } = load('lib/offline-learning-server.js');
+  const { validateOfflinePack } = load('lib/offline-learning.js');
+  const { normalizeOfflinePackPhotos, retiredOfflinePhotoReplacements } = load('lib/offline-photo-retirement.js');
+  const reviewed = JSON.parse(fs.readFileSync(path.join(root, 'data/reviews/wildlife-photo-provenance-2026-10-04.json'), 'utf8')).assets;
+  const expectedPaths = [...reviewed.map(photo => `/wildkunde/${path.posix.basename(photo.src)}`), '/marderhund.jpg'];
+  assert.deepEqual(Object.keys(retiredOfflinePhotoReplacements).sort(), expectedPaths.sort());
+  for (const photo of reviewed) {
+    const replacement = retiredOfflinePhotoReplacements[`/wildkunde/${path.posix.basename(photo.src)}`];
+    for (const key of ['src', 'credit', 'creditUrl', 'licenseUrl', 'author', 'license', 'sourcePage', 'sha256']) assert.equal(replacement[key], key === 'licenseUrl' ? photo[key].replace(/^http:/, 'https:') : photo[key], `${photo.slug}:${key}`);
+  }
+  const current = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: true }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
+  const untouched = normalizeOfflinePackPhotos(current); assert.equal(untouched.pack, current); assert.deepEqual(untouched.retiredPhotoPaths, []);
+  const legacy = { ...current, photos: [{ ...current.photos[0], src: '/wildkunde/gamswild.jpg', credit: 'Old photograph attribution', creditUrl: 'https://old.example.invalid/source', licenseUrl: 'https://old.example.invalid/license' }, current.photos[1]] };
+  const original = JSON.stringify(legacy); assert.equal(validateOfflinePack(legacy), true);
+  const result = normalizeOfflinePackPhotos(legacy);
+  assert.equal(JSON.stringify(legacy), original, 'Migration must not mutate or persist the old pack');
+  for (const key of Object.keys(legacy).filter(key => key !== 'photos')) assert.equal(result.pack[key], legacy[key], key);
+  assert.equal(result.pack.photos[1], legacy.photos[1], 'A current photo remains unchanged');
+  assert.equal(result.pack.photos[0].alt, 'Originalfotografie: Gämse', 'Old scene-specific alt text must not describe replacement bytes');
+  assert.deepEqual(result.retiredPhotoPaths, ['/wildkunde/nachweise-2026/gamswild.jpg']);
+  for (const [key, value] of Object.entries(retiredOfflinePhotoReplacements['/wildkunde/gamswild.jpg'])) assert.equal(result.pack.photos[0][key], value, key);
+  assert.equal(JSON.stringify(result.pack).includes('old.example.invalid'), false);
+  assert.equal(validateOfflinePack(result.pack), true);
+  assert.equal(validateOfflinePack({ ...legacy, photos: [{ ...legacy.photos[0], src: '/wildkunde/unreviewed-photo.jpg' }] }), false);
+  assert.equal(validateOfflinePack(result.pack, result.pack.expiresAt), false, 'Migration never renews access');
+});
+
+test('Reading an old saved pack normalizes photos without downloads, cache writes or IndexedDB writes', async () => {
+  process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
+  const { createOfflinePack } = load('lib/offline-learning-server.js');
+  const { readOfflinePack } = load('lib/offline-learning.js');
+  const current = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
+  const saved = { ...current, photos: [{ ...current.photos[0], src: '/wildkunde/gamswild.jpg', credit: 'Old attribution' }] };
+  const original = JSON.stringify(saved); const modes = [];
+  const descriptors = Object.fromEntries(['indexedDB', 'fetch', 'caches'].map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
+  let closes = 0;
+  try {
+    globalThis.fetch = () => assert.fail('Reading a saved pack must not download anything');
+    globalThis.caches = { open: () => assert.fail('Reading must not mutate or fetch cached media') };
+    globalThis.indexedDB = { open() {
+      const request = {};
+      queueMicrotask(() => { request.result = { close() { closes++; }, transaction(name, mode) {
+        assert.equal(name, 'packs'); modes.push(mode);
+        const tx = { objectStore: () => ({ get(key) {
+          assert.equal(key, 'current'); const result = {};
+          queueMicrotask(() => { result.result = saved; result.onsuccess(); tx.oncomplete(); }); return result;
+        } }) }; return tx;
+      } }; request.onsuccess(); }); return request;
+    } };
+    const result = await readOfflinePack();
+    assert.deepEqual(modes, ['readonly']); assert.equal(closes, 1);
+    assert.equal(result.expired, false); assert.equal(result.pack.accountKey, saved.accountKey); assert.equal(result.pack.expiresAt, saved.expiresAt);
+    assert.deepEqual(result.retiredPhotoPaths, ['/wildkunde/nachweise-2026/gamswild.jpg']);
+    assert.equal(result.pack.photos[0].src, result.retiredPhotoPaths[0]); assert.equal(JSON.stringify(saved), original);
+  } finally { for (const [key, descriptor] of Object.entries(descriptors)) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key]; }
+});
+
+test('Migrated photos use only hash-matching existing replacement cache bytes and never fetch or cache old paths', async () => {
+  const { readCachedRetiredPhoto } = load('lib/offline-learning.js');
+  const src = '/wildkunde/nachweise-2026/gamswild.jpg';
+  const bytes = fs.readFileSync(path.join(root, 'public', src)); let response = new Response(bytes, { headers: { 'Content-Type': 'image/jpeg' } });
+  const matched = []; const descriptors = Object.fromEntries(['fetch', 'caches', 'crypto'].map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
+  try {
+    globalThis.fetch = () => assert.fail('Migrated photos must not download automatically');
+    Object.defineProperty(globalThis, 'crypto', { value: require('node:crypto').webcrypto, configurable: true });
+    globalThis.caches = { async open(name) { assert.equal(name, 'jagdlatein-rucksack-v1'); return { async match(pathname) { matched.push(pathname); return response?.clone(); }, put: () => assert.fail('No automatic cache writes'), delete: () => assert.fail('No cache deletion during a read') }; } };
+    const blob = await readCachedRetiredPhoto(src); assert.ok(blob instanceof Blob); assert.equal(blob.type, 'image/jpeg'); assert.deepEqual(Buffer.from(await blob.arrayBuffer()), bytes);
+    response = new Response('unproven old bytes', { headers: { 'Content-Type': 'image/jpeg' } }); assert.equal(await readCachedRetiredPhoto(src), null);
+    response = new Response(bytes, { headers: { 'Content-Type': 'text/html' } }); assert.equal(await readCachedRetiredPhoto(src), null);
+    response = null; assert.equal(await readCachedRetiredPhoto(src), null);
+    const count = matched.length;
+    for (const path of ['/wildkunde/gamswild.jpg', '/marderhund.jpg', '/wildkunde/unreviewed-photo.jpg', '/api/account']) assert.equal(await readCachedRetiredPhoto(path), null);
+    assert.equal(matched.length, count, 'Unlisted paths never reach the cache');
+  } finally { for (const [key, descriptor] of Object.entries(descriptors)) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key]; }
+});
+
+test('Offline migrated-photo placeholder omits the old image and attribution; current images keep their normal display', async () => {
+  const React = requireProject('react'); const effects = []; let cachedUrl = null;
+  const photo = load('lib/offline-photo-retirement.js').retiredOfflinePhotoReplacements['/wildkunde/gamswild.jpg'];
+  let reads = 0; const revoked = [];
+  const originalCreate = URL.createObjectURL, originalRevoke = URL.revokeObjectURL;
+  const hooks = { ...React, useState() { return [cachedUrl, value => { cachedUrl = value; }]; }, useEffect(fn) { effects.push(fn); } };
+  const { OfflinePhoto } = load('components/OfflineLearning.js', { react: hooks, '../lib/offline-learning': { async readCachedRetiredPhoto(src) { assert.equal(src, photo.src); reads++; return new Blob(['verified fixture']); } }, './LearningToolLayout': { default: () => null } }, new Map(), '\nexports.OfflinePhoto = OfflinePhoto;');
+  const render = retired => requireProject('react-dom/server').renderToStaticMarkup(React.createElement(OfflinePhoto, { photo: { ...photo, alt: 'Gämse' }, retired }));
+  try {
+    URL.createObjectURL = () => 'blob:verified-replacement'; URL.revokeObjectURL = url => revoked.push(url);
+    const pending = render(true); assert.match(pending, /Lade deine Auswahl mit Internetverbindung erneut herunter/); assert.equal(pending.includes('<img'), false); assert.equal(pending.includes(photo.credit), false); assert.equal(pending.includes(photo.src), false);
+    const cleanup = effects.shift()(); await Promise.resolve(); await Promise.resolve();
+    const available = render(true); assert.match(available, /src="blob:verified-replacement"/); assert.ok(available.includes(photo.credit)); assert.ok(available.includes(photo.creditUrl)); assert.equal(reads, 1); cleanup(); assert.deepEqual(revoked, ['blob:verified-replacement']);
+    cachedUrl = null; const current = render(false); assert.ok(current.includes(`src="${photo.src}"`)); assert.ok(current.includes(photo.credit)); assert.equal(current.includes('Lade deine Auswahl'), false);
+  } finally { URL.createObjectURL = originalCreate; URL.revokeObjectURL = originalRevoke; }
+});
+
+test('Offline worker removes only the exact retired photos, preserves all other saved content and rejects their download', async () => {
+  const handlers = {}; const deleted = []; let claims = 0; let network = 0;
+  const entries = new Set(['/wildkunde/gamswild.jpg', '/marderhund.jpg', '/wildkunde/nachweise-2026/gamswild.jpg', '/lernen/stimmen/gams-01.mp3', '/lernen/offline-rucksack', '/_next/static/old-learning.js', '/wildkunde/unrelated.jpg']);
+  const cache = { async delete(pathname) { deleted.push(pathname); return entries.delete(pathname); } };
+  const context = { self: { location: { origin: 'https://jagdlatein.example' }, addEventListener: (name, fn) => handlers[name] = fn, clients: { async claim() { claims++; } } }, caches: { async open(name) { assert.equal(name, 'jagdlatein-rucksack-v1'); return cache; } }, URL, Response, Headers, Set, Array, fetch: async () => { network++; assert.fail('Retirement must not request media'); } };
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'public/lernen/offline-sw.js'), 'utf8'), context);
+  let completion; handlers.activate({ waitUntil: promise => completion = promise }); await completion;
+  const expected = Object.keys(load('lib/offline-photo-retirement.js').retiredOfflinePhotoReplacements);
+  assert.deepEqual(deleted.sort(), expected.sort()); assert.equal(claims, 1); assert.equal(network, 0);
+  assert.deepEqual([...entries].sort(), ['/wildkunde/nachweise-2026/gamswild.jpg', '/lernen/stimmen/gams-01.mp3', '/lernen/offline-rucksack', '/_next/static/old-learning.js', '/wildkunde/unrelated.jpg'].sort());
+  for (const pathname of expected) {
+    let intercepted = false; handlers.fetch({ request: new Request('https://jagdlatein.example' + pathname), respondWith: () => intercepted = true }); assert.equal(intercepted, false, pathname);
+    let message; handlers.message({ data: { type: 'PREPARE', assets: [pathname] }, source: { url: 'https://jagdlatein.example/lernen/offline-rucksack' }, ports: [{ postMessage: value => message = value }], waitUntil: promise => completion = promise }); await completion;
+    assert.equal(message.ok, false, pathname); assert.match(message.message, /Unzulässige/);
+  }
+  assert.equal(network, 0);
+});
