@@ -5,6 +5,7 @@ import LearningToolLayout from "../components/LearningToolLayout";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
 import { getNextUrl, getLoginDestination } from "../lib/login-destination";
 import { getTestLoginMailMode } from "../lib/test-environment";
+import { reviewLoginConfiguration } from "../lib/apple-review-login-policy";
 import styles from "../styles/LearningExperience.module.css";
 import authStyles from "../styles/Auth.module.css";
 
@@ -14,13 +15,18 @@ export async function getServerSideProps({ req, res, query }) {
     return { redirect: { destination: getNextUrl(query.next), permanent: false } };
   }
   const testMailMode = getTestLoginMailMode();
+  let allowReviewLogin = false;
+  try { allowReviewLogin = Boolean(reviewLoginConfiguration()); }
+  catch { /* Invalid private review settings leave ordinary email sign-in available. */ }
   return { props: { allowRegistration: process.env.ACCOUNT_REGISTRATION_ENABLED === "true",
-    isTestMail: testMailMode !== null, testMailMode } };
+    isTestMail: testMailMode !== null, testMailMode, allowReviewLogin } };
 }
 
-export default function LoginPage({ registration = false, allowRegistration = false, isTestMail = false, testMailMode = "sink" } = {}) {
+export default function LoginPage({ registration = false, allowRegistration = false, isTestMail = false, testMailMode = "sink", allowReviewLogin = false } = {}) {
   const router = useRouter();
   const nextUrl = getNextUrl(router.query.next);
+  const nextPath = decodeURIComponent(new URL(nextUrl, "https://jagdlatein.invalid").pathname).replace(/\/+$/, "");
+  const reviewNextUrl = nextUrl === "/" || nextPath === "/review-login" ? "/konto" : nextUrl;
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -119,6 +125,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       {step === "code" && <button type="button" className={`${styles.secondary} ${authStyles.otherEmail}`} disabled={loading} onClick={() => { setStep("email"); setCode(""); setMsg(""); }}>Andere E-Mail verwenden</button>}
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
       {registration ? <p>Bereits ein Konto? <Link href={`/login?next=${encodeURIComponent(nextUrl)}`}>Mit E-Mail anmelden</Link></p> : allowRegistration && <p>Noch kein Konto? <Link href="/registrieren">Kostenlos registrieren</Link></p>}
+      {!registration && !isTestMail && allowReviewLogin === true && <p><Link href={`/review-login?next=${encodeURIComponent(reviewNextUrl)}`} className={styles.secondary}>Mit Prüfkonto anmelden</Link></p>}
     </section>
   </LearningToolLayout>;
 }
