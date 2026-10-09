@@ -24,9 +24,10 @@ function load(relative, dbFactory, cache = new Map()) {
 }
 function setup(overrides = {}) {
   const calls = []; let clients = 0;
-  const state = { profile: { email: 'learner@example.invalid', is_admin: false }, communityProfile: { display_name: 'Lernfuchs', rules_accepted_at: '2026-10-04T10:00:00Z' },
+  const state = { profile: { email: 'learner@example.invalid', is_admin: false, is_community_moderator: false }, communityProfile: { display_name: 'Lernfuchs', rules_accepted_at: '2026-10-04T10:00:00Z' },
     read: { posts: [{ id: postId, threadId: null, title: 'Wie lerne ich Wildkunde?', body: 'Eine echte Frage zum gemeinsamen Lernen.', category: 'wildkunde', type: 'question', displayName: 'Lernfuchs', status: 'visible', owned: true, solved: false, replyCount: 0, createdAt: '2026-10-04T10:00:00Z', updatedAt: '2026-10-04T10:00:00Z', account_email: 'must-never-leave@example.invalid' }], total: 1, page: 1, pageSize: 12, email: 'must-never-leave@example.invalid' }, ...overrides };
-  const db = { from(table) { const query = { select(columns) { calls.push({ table, columns }); return query; }, ilike() { return query; }, eq() { return query; }, async maybeSingle() { return table === 'userprofile' ? { data: state.profile, error: state.profileError || null } : { data: state.communityProfile, error: state.communityProfileError || null }; } }; return query; }, async rpc(name, args) { calls.push({ name, args }); return { data: name === 'community_read' ? state.read : state.write || { success: true, postId, email: 'private@example.invalid' }, error: state.rpcError || null }; } };
+  if (state.profile && !Object.hasOwn(state.profile, 'is_community_moderator')) state.profile.is_community_moderator = false;
+  const db = { from(table) { const query = { select(columns) { calls.push({ table, columns }); return query; }, ilike() { return query; }, eq() { return query; }, async maybeSingle() { return table === 'userprofile' ? { data: state.profile, error: state.profileError || null } : { data: state.communityProfile, error: state.communityProfileError || null }; } }; return query; }, async rpc(name, args) { calls.push({ name, args }); return { data: name === 'community_read' ? { moderationAuthorized: state.profile?.is_admin === true || state.profile?.is_community_moderator === true, ...state.read } : state.write || { success: true, postId, email: 'private@example.invalid' }, error: state.rpcError || null }; } };
   const factory = () => { clients++; return db; };
   const session = load('lib/account-session.js', factory);
   const token = session.createAccountSession('learner@example.invalid', Date.now(), { paid: false, admin: false });
@@ -103,4 +104,35 @@ test('Filters, solve flags, identifiers and field lengths validate before RPC', 
   assert.throws(() => ctx.server.validateCommunityWrite('PATCH', { action: 'mark-solved', postId, solved: 'true' }));
   assert.throws(() => ctx.server.validateCommunityWrite('POST', { action: 'profile', displayName: 'someone@example.invalid', acceptedRules: true }));
   assert.throws(() => ctx.server.validateCommunityWrite('POST', { action: 'reply', threadId: postId, body: 'x', acceptedRules: true }));
+});
+
+test('Block actions identify the target by post only and never accept account or actor overrides', async () => {
+  const ctx = setup();
+  for (const extra of [{ email: 'other@example.invalid' }, { actor: 'other@example.invalid' }, { blockedEmail: 'other@example.invalid' }]) {
+    assert.equal((await ctx.api.POST(ctx.request('POST', { action: 'block', postId, ...extra }))).status, 400);
+  }
+  assert.equal((await ctx.api.POST(ctx.request('POST', { action: 'block', postId }))).status, 200);
+  const call = ctx.calls.find(value => value.name === 'community_write');
+  assert.equal(call.args.p_actor_email, 'learner@example.invalid');
+  assert.deepEqual(call.args.p_payload, { postId });
+  assert.equal((await ctx.api.PATCH(ctx.request('PATCH', { action: 'unblock', blockId: postId }))).status, 200);
+});
+
+test('Own block management discloses only opaque record ID, public name and date', async () => {
+  const ctx = setup({ read: { blocks: [{ id: postId, displayName: 'Lernfuchs', createdAt: '2026-10-08T10:00:00Z', blocked_email: 'private@example.invalid', blocker_email: 'private2@example.invalid' }] } });
+  const response = await ctx.api.GET(ctx.request('GET', undefined, '?view=blocks'));
+  assert.equal(response.status, 200); const data = await response.json();
+  assert.deepEqual(Object.keys(data.blocks[0]).sort(), ['createdAt','displayName','id']);
+  assert.ok(!JSON.stringify(data).includes('@'));
+  assert.equal(ctx.calls.find(value => value.name === 'community_read').args.p_mode, 'blocks');
+});
+
+test('Blocked interaction errors are sanitized and profile-less accounts cannot set blocks', async () => {
+  const ctx = setup({ rpcError: { message: 'JL_COMMUNITY_BLOCKED private@example.invalid' } });
+  const response = await ctx.api.POST(ctx.request('POST', { action: 'reply', threadId: postId, body: 'Eine Antwort', acceptedRules: true }));
+  assert.equal(response.status, 403); const data = await response.json();
+  assert.equal(data.code, 'USER_BLOCKED'); assert.ok(!JSON.stringify(data).includes('@'));
+  const missing = setup({ communityProfile: null });
+  assert.equal((await missing.api.POST(missing.request('POST', { action: 'block', postId }))).status, 409);
+  assert.ok(!missing.calls.some(value => value.name));
 });

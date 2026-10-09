@@ -31,11 +31,16 @@ export function validateSigningProfile(profile, team, bundle, now = new Date()) 
 }
 
 export function validateDeviceApp(info, expected) {
+  const websiteEnvironment = expected.websiteEnvironment ?? "Production";
+  if (!["Production", "Sandbox"].includes(websiteEnvironment)) throw new Error("Unbekannte iOS-Website-Umgebung.");
+  const displayName = websiteEnvironment === "Sandbox" ? "Jagdlatein Test" : "Jagdlatein";
+  if (info.JagdlateinWebsiteEnvironment !== websiteEnvironment || info.CFBundleDisplayName !== displayName) throw new Error("App-Website-Umgebung oder sichtbarer App-Name stimmen nicht mit dem angeforderten Build überein.");
   if (!/^[1-9][0-9]{0,3}(?:\.[0-9]{1,2}){0,2}$/.test(info.CFBundleVersion ?? "") || !/^[0-9]{1,4}\.[0-9]{1,2}\.[0-9]{1,2}$/.test(info.CFBundleShortVersionString ?? "")) throw new Error("App hat keine gültige Apple-Version oder positive Build-Nummer.");
   if (info.CFBundleIdentifier !== expected.bundle || info.CFBundleVersion !== expected.build || info.CFBundleShortVersionString !== expected.version) throw new Error("Archiv-Metadaten stimmen nicht mit der angeforderten App überein.");
   if (info.CFBundleSupportedPlatforms?.length !== 1 || info.CFBundleSupportedPlatforms[0] !== "iPhoneOS" || info.DTPlatformName !== "iphoneos") throw new Error("Archiv wurde nicht für ein echtes iPhone/iPad gebaut.");
   if (!info.UIDeviceFamily?.includes(1) || !info.UIDeviceFamily.includes(2)) throw new Error("Archiv muss iPhone und iPad unterstützen.");
-  return { bundle: info.CFBundleIdentifier, build: info.CFBundleVersion, version: info.CFBundleShortVersionString, deviceFamilies: info.UIDeviceFamily };
+  return { bundle: info.CFBundleIdentifier, build: info.CFBundleVersion, version: info.CFBundleShortVersionString,
+    deviceFamilies: info.UIDeviceFamily, websiteEnvironment, displayName };
 }
 
 export function validateSignedApp(info, entitlements, expected, profile) {
@@ -48,17 +53,18 @@ export function validateSignedApp(info, entitlements, expected, profile) {
 // It never reads a keychain, private key, environment secret, or Apple account.
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const [mode, file, team, bundle, build, version, entitlementsFile, profileFile] = process.argv.slice(2);
+    const [mode, file, team, bundle, build, version, entitlementsFile, profileFile, websiteEnvironment = "Production"] = process.argv.slice(2);
     const load = filename => parse(fs.readFileSync(filename, "utf8"));
     if (mode === "profile") {
       console.log(JSON.stringify(validateSigningProfile(load(file), team, bundle)));
     } else if (mode === "device") {
-      console.log(JSON.stringify(validateDeviceApp(load(file), { bundle, build, version })));
+      console.log(JSON.stringify(validateDeviceApp(load(file), { bundle, build, version, websiteEnvironment })));
     } else if (mode === "signed") {
       const info = load(file);
       const profile = validateSigningProfile(load(profileFile), team, bundle);
       // Upload validates the actual IPA's build/version when not supplied.
-      console.log(JSON.stringify(validateSignedApp(info, load(entitlementsFile), { bundle, build: build || info.CFBundleVersion, version: version || info.CFBundleShortVersionString }, profile)));
+      console.log(JSON.stringify(validateSignedApp(info, load(entitlementsFile), { bundle, build: build || info.CFBundleVersion,
+        version: version || info.CFBundleShortVersionString, websiteEnvironment }, profile)));
     } else {
       throw new Error("Unbekannte TestFlight-Prüfung.");
     }

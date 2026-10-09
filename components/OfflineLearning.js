@@ -3,9 +3,25 @@ import LearningToolLayout from "./LearningToolLayout";
 import { readOfflinePack, saveOfflinePack, clearOfflineLearning, prepareOfflineCache, validateOfflinePack, OFFLINE_MAX_COURSES } from "../lib/offline-learning";
 import styles from "../styles/LearningExperience.module.css";
 import extra from "../styles/OfflineLearning.module.css";
+import photoStyles from "../styles/LearningMedia.module.css";
 import { learningAudioPaths } from "../lib/learning-audio-paths";
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 const date = value => new Date(value).toLocaleString("de-CH");
+function offlineCreditUrl(value) {
+  if (typeof value !== "string" || value.length > 2048) return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname && !url.username && !url.password
+      && (url.port === "" || url.port === "443") ? url.href : null;
+  } catch { return null; }
+}
+function OfflinePhotoCredit({ photo }) {
+  // Saved packs can predate optional license links; validate each external URL
+  // at display time while retaining the original attribution as readable text.
+  const creditUrl = offlineCreditUrl(photo.creditUrl);
+  const licenseUrl = offlineCreditUrl(photo.licenseUrl);
+  return <small className={photoStyles.photoCredit}>{photo.credit}{creditUrl && <> · <a href={creditUrl} target="_blank" rel="noopener noreferrer">Bildquelle</a></>}{licenseUrl && <> · <a href={licenseUrl} target="_blank" rel="noopener noreferrer">Lizenz</a></>}</small>;
+}
 function OfflineCourse({ course, expiresAt, onExpired }) {
   const legal = course.category === "Jagdrecht";
   const [country, setCountry] = useState(course.countries[0]);
@@ -93,7 +109,7 @@ export default function OfflineLearning({ courses }) {
     </section>
     {pack && <><section className={styles.panel}><h2>Gespeicherte Kurse</h2><p>{pack.courses.length} Kurse · {pack.photos.length} Fotos · {pack.sounds.length} Aufnahmen<br />Heruntergeladen: {date(pack.createdAt)} · Verfügbar bis {date(pack.expiresAt)}</p><label className={styles.field}>Gespeicherten Kurs öffnen<select value={courseId} onChange={event => setCourseId(event.target.value)}>{pack.courses.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>
       {course && <OfflineCourse key={`${pack.id}:${course.id}`} course={course} expiresAt={pack.expiresAt} onExpired={() => { setPack(null); setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte online erneuern."); }} />}
-      {pack.photos.length > 0 && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2><div className={styles.grid}>{pack.photos.map(photo => <figure className={styles.figure} key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /><figcaption>{photo.alt}<br />{photo.creditUrl ? <a href={photo.creditUrl} target="_blank" rel="noopener noreferrer">{photo.credit}</a> : photo.credit}</figcaption></figure>)}</div></section>}
+      {pack.photos.length > 0 && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2><div className={styles.grid}>{pack.photos.map(photo => <figure className={styles.figure} key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /><figcaption>{photo.alt}<OfflinePhotoCredit photo={photo} /></figcaption></figure>)}</div></section>}
       {pack.sounds.length > 0 && <section className={styles.panel}><h2>Originalstimmen unterwegs</h2><div className={styles.grid}>{pack.sounds.map(sound => <article className={styles.card} key={sound.id}><h3>{sound.name}</h3><audio controls preload="none" src={sound.src} aria-label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>Aufnahme: {sound.author} · {sound.licenseUrl ? <a href={sound.licenseUrl} target="_blank" rel="noopener noreferrer">{sound.license}</a> : sound.license}</p>{sound.recording && <p className={styles.muted}>{sound.recording}</p>}{sound.modifications && <p className={styles.muted}>{sound.modifications}</p>}<p><a href={sound.sourceUrl} target="_blank" rel="noopener noreferrer">Originalquelle mit Aufnahme- und Lizenznachweis</a></p></article>)}</div></section>}
     </>}
   </LearningToolLayout>;

@@ -14,9 +14,46 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  account_backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Projekt lesen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Node.js 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Konto und Apple-Anbindung ohne echte Konten prüfen
+        run: |
+          npm ci --no-fund
+          if ($LASTEXITCODE -ne 0) { throw 'Installation fehlgeschlagen.' }
+          $iosSqlRuntime = Join-Path $env:RUNNER_TEMP 'jagdlatein-account-sql-tests'
+          npm install --prefix $iosSqlRuntime --ignore-scripts --no-fund --no-audit --package-lock=false '@electric-sql/pglite@0.3.14'
+          if ($LASTEXITCODE -ne 0) { throw 'Lokale SQL-Testbibliothek fehlt.' }
+          $env:JL_PAYPAL_TEST_PGLITE_PATH = Join-Path $iosSqlRuntime 'node_modules/@electric-sql/pglite'
+          node --test scripts/test-account-generation.cjs scripts/test-account-registration.cjs scripts/test-account-deletion.cjs scripts/test-apple-subscriptions.cjs scripts/test-apple-review-policy.cjs scripts/test-apple-review-login.cjs scripts/test-personal-data-access.cjs scripts/test-account-access-middleware.cjs scripts/test-account-paypal-management.cjs scripts/test-community-server.cjs scripts/test-community-blocks.cjs scripts/test-community-premoderation.cjs scripts/test-community-moderators.cjs scripts/test-community-ui.cjs scripts/test-login-destination.cjs scripts/test-sandbox-communications.cjs scripts/test-legacy-quiz-evidence.cjs scripts/test-ios-test-push-base.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Kontoprüfungen fehlgeschlagen.' }
+      - name: Website kompilieren
+        env:
+          SUPABASE_URL: https://database.example.invalid
+          NEXT_PUBLIC_SUPABASE_URL: https://database.example.invalid
+          SUPABASE_SERVICE_ROLE_KEY: isolated-ci-placeholder
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: isolated-ci-placeholder
+          JL_SESSION_SECRET: isolated-ci-secret-not-a-real-account-secret-32-bytes
+        run: |
+          npm run build
+          if ($LASTEXITCODE -ne 0) { throw 'Website-Build fehlgeschlagen.' }
+
   simulator:
     runs-on: macos-15
-    timeout-minutes: 25
+    timeout-minutes: 45
     defaults:
       run:
         shell: pwsh
@@ -34,13 +71,46 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
         run: ./scripts/build-ios-preview.ps1
+      - name: Diagnose des öffentlichen nativen UI-Tests bereitstellen
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ios-public-ui-diagnostics-${{ github.run_attempt }}
+          # Only this fresh, signed-out baseline's result bundle. No signing,
+          # account-backend, screenshot-capture or other DerivedData files.
+          path: mobile/DerivedData/WebsiteUITests-*.xcresult
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Prüfergebnis anzeigen
         run: Get-Content -LiteralPath mobile/ios-preview-result.json
+      - name: Echte vorbereitende App-Screenshots aufnehmen
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+        run: |
+          # The baseline helper has already released its own simulator. Keep
+          # proof of its successful test/cleanup before starting capture devices.
+          $captureBaseline = Get-Content -LiteralPath mobile/ios-preview-result.json -Raw | ConvertFrom-Json
+          if ($captureBaseline.simulatorUITestsPassed -ne $true -or $captureBaseline.simulatorDeviceReleased -ne $true -or $captureBaseline.simulatorDeviceId -notmatch '^[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}$') { throw 'Vorheriges Simulator-Prüfergebnis oder Simulator-Bereinigung fehlt.' }
+          ./scripts/capture-ios-store-screenshots.ps1
+      - name: Geprüfte öffentliche App-Screenshots bereitstellen
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ios-preparatory-store-screenshots
+          path: |
+            mobile/DerivedData/StoreScreenshots/*.jpeg
+            mobile/DerivedData/StoreScreenshots/manifest.json
+          if-no-files-found: error
+          retention-days: 7
 
   device_archive:
     # Physical-device compilation requires no Apple credentials or signing.
     runs-on: macos-15
     timeout-minutes: 25
+    strategy:
+      matrix:
+        website_environment: [Production, Sandbox]
     defaults:
       run:
         shell: pwsh
@@ -58,6 +128,7 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
           IOS_BUNDLE_ID: de.jagdlatein.app
+          IOS_WEBSITE_ENVIRONMENT: ${{ matrix.website_environment }}
         run: ./scripts/build-ios-testflight.ps1 -Step DeviceArchive
       - name: Gerätearchiv-Ergebnis anzeigen
         run: Get-Content -LiteralPath mobile/ios-testflight-result.json

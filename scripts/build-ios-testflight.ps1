@@ -61,6 +61,10 @@ function Get-IOSMetadata {
     $iosBundle = [Environment]::GetEnvironmentVariable('IOS_BUNDLE_ID')
     $iosBuild = [Environment]::GetEnvironmentVariable('IOS_BUILD_NUMBER')
     $iosVersion = [Environment]::GetEnvironmentVariable('IOS_MARKETING_VERSION')
+    $iosWebsiteEnvironment = [Environment]::GetEnvironmentVariable('IOS_WEBSITE_ENVIRONMENT')
+    if (-not $iosWebsiteEnvironment) { $iosWebsiteEnvironment = 'Production' }
+    if ($iosWebsiteEnvironment -cnotin @('Production','Sandbox')) { throw 'IOS_WEBSITE_ENVIRONMENT muss genau Production oder Sandbox sein.' }
+    $iosDisplayName = if ($iosWebsiteEnvironment -eq 'Sandbox') { 'Jagdlatein Test' } else { 'Jagdlatein' }
     if (-not $iosVersion -and -not $ForUpload) { $iosVersion = '0.1.0' }
     if (-not $RequireApple) {
         if (-not $iosBundle) { $iosBundle = 'de.jagdlatein.preview' }
@@ -71,7 +75,7 @@ function Get-IOSMetadata {
     if ($RequireApple -and $iosBundle -eq 'de.jagdlatein.preview') { throw 'Für TestFlight zuerst eine endgültige Bundle-ID bei Apple registrieren.' }
     if ((-not $ForUpload -or $iosBuild) -and $iosBuild -notmatch '^[1-9][0-9]{0,3}(?:\.[0-9]{1,2}){0,2}$') { throw 'IOS_BUILD_NUMBER muss eine neue positive Apple-Build-Nummer wie 2 oder 2.1 enthalten (maximal 4/2/2 Ziffern).' }
     if ((-not $ForUpload -or $iosVersion) -and $iosVersion -notmatch '^[0-9]{1,4}\.[0-9]{1,2}\.[0-9]{1,2}$') { throw 'IOS_MARKETING_VERSION muss eine Version wie 0.1.0 enthalten.' }
-    return @{ team = $iosTeam; bundle = $iosBundle; build = $iosBuild; version = $iosVersion }
+    return @{ team = $iosTeam; bundle = $iosBundle; build = $iosBuild; version = $iosVersion; websiteEnvironment = $iosWebsiteEnvironment; displayName = $iosDisplayName }
 }
 
 function New-IOSPrivateDirectory {
@@ -133,9 +137,9 @@ function Assert-IOSApp {
         $iosCertBytes = [IO.File]::ReadAllBytes($iosSigningCertificate)
         $iosCertHash = [Convert]::ToHexString([Security.Cryptography.SHA1]::HashData($iosCertBytes))
         if ($iosCertHash -ne $iosEmbedded.certificateSha1) { throw 'App wurde nicht mit dem Zertifikat ihres Apple-Profils signiert.' }
-        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'signed', $iosInfoXML, $Metadata.team, $Metadata.bundle, $Metadata.build, $Metadata.version, $iosEntitlementsXML, $iosEmbeddedXML) -Capture
+        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'signed', $iosInfoXML, $Metadata.team, $Metadata.bundle, $Metadata.build, $Metadata.version, $iosEntitlementsXML, $iosEmbeddedXML, $Metadata.websiteEnvironment) -Capture
     } else {
-        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'device', $iosInfoXML, '', $Metadata.bundle, $Metadata.build, $Metadata.version) -Capture
+        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'device', $iosInfoXML, '', $Metadata.bundle, $Metadata.build, $Metadata.version, '', '', $Metadata.websiteEnvironment) -Capture
     }
     return $iosAppJSON | ConvertFrom-Json
 }
@@ -164,7 +168,8 @@ function Invoke-IOSArchive {
         '-project', $iosProject, '-scheme', 'App', '-configuration', 'Release',
         '-sdk', 'iphoneos', '-destination', 'generic/platform=iOS',
         '-archivePath', $Archive, '-derivedDataPath', (Join-Path $iosMobileRoot ('DerivedData/TestFlightBuild-' + [Guid]::NewGuid().ToString('N'))),
-        ('PRODUCT_BUNDLE_IDENTIFIER=' + $Metadata.bundle), ('CURRENT_PROJECT_VERSION=' + $Metadata.build), ('MARKETING_VERSION=' + $Metadata.version)
+        ('PRODUCT_BUNDLE_IDENTIFIER=' + $Metadata.bundle), ('CURRENT_PROJECT_VERSION=' + $Metadata.build), ('MARKETING_VERSION=' + $Metadata.version),
+        ('IOS_WEBSITE_ENVIRONMENT=' + $Metadata.websiteEnvironment), ('JL_APP_DISPLAY_NAME=' + $Metadata.displayName)
     )
     if ($Signed) {
         $iosArchiveArguments += @('CODE_SIGN_STYLE=Manual', ('DEVELOPMENT_TEAM=' + $Metadata.team), ('CODE_SIGN_IDENTITY=' + $Profile.certificateSha1), ('PROVISIONING_PROFILE_SPECIFIER=' + $Profile.uuid))
@@ -196,7 +201,7 @@ try {
         try {
             $iosApp = Invoke-IOSArchive -Metadata $iosMetadata -Archive $iosDeviceArchive
             $iosResult = Assert-IOSApp -App $iosApp -Metadata $iosMetadata -TemporaryDirectory $iosTemporary
-            [ordered]@{ deviceArchiveCompiled = $true; signed = $false; uploaded = $false; bundle = $iosResult.bundle; build = $iosResult.build } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+            [ordered]@{ deviceArchiveCompiled = $true; signed = $false; uploaded = $false; bundle = $iosResult.bundle; build = $iosResult.build; websiteEnvironment = $iosResult.websiteEnvironment; displayName = $iosResult.displayName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
         } finally { Remove-IOSPrivateDirectory -Directory $iosTemporary }
         Write-Host 'Gerätearchiv erfolgreich kompiliert. Es ist unsigniert und noch nicht auf dem iPad installierbar.'
         return
@@ -274,7 +279,7 @@ try {
             $iosExpanded = Join-Path $iosTemporary 'exported-ipa'
             $iosExportedApp = Expand-IOSCheckedIPA -Source $iosIPAs[0].FullName -Destination $iosExpanded
             Assert-IOSApp -App $iosExportedApp -Metadata $iosMetadata -TemporaryDirectory $iosTemporary -Signed -ExpectedProfile $iosProfile | Out-Null
-            [ordered]@{ deviceArchiveCompiled = $true; signed = $true; uploaded = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; ipa = $iosIPAs[0].FullName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+            [ordered]@{ deviceArchiveCompiled = $true; signed = $true; uploaded = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName; ipa = $iosIPAs[0].FullName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
             Write-Host 'Signierte IPA geprüft und exportiert. Keine Übertragung zu Apple; Upload ist ein eigener ausdrücklicher Schritt.'
         } finally {
             if ($iosKeychainChanged) {
@@ -322,7 +327,7 @@ try {
         [Environment]::SetEnvironmentVariable('API_PRIVATE_KEYS_DIR', $iosTemporary)
         Invoke-IOSPrivateProgram -Program 'xcrun' -ProgramArguments @('altool', '--validate-app', '-f', $IpaPath, '-t', 'ios', '--apiKey', $env:ASC_KEY_ID, '--apiIssuer', $env:ASC_ISSUER_ID)
         Invoke-IOSPrivateProgram -Program 'xcrun' -ProgramArguments @('altool', '--upload-app', '-f', $IpaPath, '-t', 'ios', '--apiKey', $env:ASC_KEY_ID, '--apiIssuer', $env:ASC_ISSUER_ID)
-        [ordered]@{ signed = $true; uploaded = $true; appleProcessed = $false; testerAccessGranted = $false; appStoreSubmitted = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+        [ordered]@{ signed = $true; uploaded = $true; appleProcessed = $false; testerAccessGranted = $false; appStoreSubmitted = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
         Write-Host 'Upload von Apple angenommen. Verarbeitung, Exportangaben und interne TestFlight-Zuordnung bleiben in App Store Connect zu prüfen.'
     } finally {
         [Environment]::SetEnvironmentVariable('API_PRIVATE_KEYS_DIR', $iosPreviousKeyDirectory)

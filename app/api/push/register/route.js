@@ -4,6 +4,8 @@ export const dynamic = "force-dynamic";
 import { createClient } from "@supabase/supabase-js";
 import { readRequestAccountSession } from "../../../../lib/account-access";
 import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
+import { accountDatabaseOptions, isAccountGenerationEnabled } from "../../../../lib/account-session";
+import { requireCurrentAccount, requireSameOriginJson } from "../../../../lib/course-progress-server";
 
 
 export async function POST(req) {
@@ -12,9 +14,11 @@ export async function POST(req) {
       { success: false, error: "Push ist in der Testumgebung deaktiviert." },
       { status: 503, headers: { "Cache-Control": "no-store" } }
     );
-    if (!readRequestAccountSession(req)) {
+    const session = readRequestAccountSession(req);
+    if (!session) {
       return Response.json({ success: false, error: "Bitte anmelden." }, { status: 401 });
     }
+    requireSameOriginJson(req);
     const { token } = await req.json();
 
     if (typeof token !== "string" || !token.trim() || token.length > 4096 || /[\s\u0000-\u001f\u007f]/.test(token.trim())) {
@@ -26,8 +30,10 @@ export async function POST(req) {
 
     const supabase = createClient(
       process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      accountDatabaseOptions(session)
     );
+    await requireCurrentAccount(supabase, session);
 
     const { error } = await supabase
       .from("push_tokens")
@@ -37,6 +43,7 @@ export async function POST(req) {
           platform: "android",
           enabled: true,
           updated_at: new Date().toISOString(),
+          ...(isAccountGenerationEnabled() ? { account_email: session.email } : {}),
         },
         {
           onConflict: "token",
@@ -44,7 +51,7 @@ export async function POST(req) {
       );
 
     if (error) {
-      console.error("Push-Token Fehler:", error);
+      console.error("Push-Token Speicherung fehlgeschlagen.");
 
       return Response.json(
         { success: false, error: "Datenbankfehler" },
@@ -54,7 +61,11 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
-    console.error("Push API Fehler:", error);
+    if ([401, 403, 415].includes(error?.status)) {
+      return Response.json({ success: false, error: error.message },
+        { status: error.status, headers: { "Cache-Control": "private, no-store" } });
+    }
+    console.error("Push Registrierung fehlgeschlagen.");
 
     return Response.json(
       { success: false, error: "Serverfehler" },

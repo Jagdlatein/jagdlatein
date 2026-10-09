@@ -12,6 +12,6 @@ export async function POST(req) {
     const body = await readQuizBody(req);
     return roundResponse(await rankedQuizRpc("advance_ranked_quiz", {
       p_email: account.email, p_round_id: quizId(body.roundId), p_request_id: quizId(body.requestId),
-    }));
+    }, account));
   } catch (error) { return quizFailure(error); }
 }

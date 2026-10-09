@@ -13,7 +13,7 @@ function load(relative, overrides = {}, globals = {}) {
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} };
-  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', code)(id => {
+  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', 'process', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
@@ -21,7 +21,7 @@ function load(relative, overrides = {}, globals = {}) {
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, globals);
     return pr(id);
-  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout);
+  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout, globals.process || process);
   return mod.exports;
 }
 const { getNextUrl, getLoginDestination } = load('lib/login-destination.js');
@@ -42,7 +42,7 @@ test('Paid or administrator access returns directly to the selected safe learnin
   assert.match(getLoginDestination('/lernen', { paid: 'true', admin: 1 }), /^\/preise\?/);
 });
 test('Unsafe return URLs and login loops cannot become navigation destinations', () => {
-  for (const route of ['https://evil.invalid', '//evil.invalid', '/\\evil.invalid', '/%5cevil.invalid', '/%2f%2fevil.invalid', '/login', '/login/?next=/lernen', '/%6cogin', '/bad%escape', '/%0anews', '/\nnews', null]) assert.equal(getNextUrl(route), '/');
+  for (const route of ['https://evil.invalid', '//evil.invalid', '/\\evil.invalid', '/%5cevil.invalid', '/%2f%2fevil.invalid', '/login', '/registrieren', '/login/?next=/lernen', '/%6cogin', '/bad%escape', '/%0anews', '/\nnews', null]) assert.equal(getNextUrl(route), '/');
   assert.equal(getNextUrl(['/community', 'https://evil.invalid']), '/community');
   assert.equal(getLoginDestination('/lernen#quiz', unpaid, '/preise?aktion=abo#paypal'), '/preise?aktion=abo&next=%2Flernen%23quiz#paypal');
 });
@@ -54,7 +54,7 @@ function find(node, predicate) {
 }
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const response = (body, status = 200) => ({ ok: status >= 200 && status < 300, json: async () => body });
-function harness(fetch) {
+function harness(fetch, props = {}) {
   const states = ['member@example.invalid', '123456', 'code', '', false], refs = [], effects = [], timers = new Map(), calls = [];
   let cursor = 0, refCursor = 0, sequence = 0;
   const window = { location: { href: null } };
@@ -66,11 +66,105 @@ function harness(fetch) {
     fetch: async (...args) => { calls.push(args); return fetch(...args); }, window,
     setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay }); return sequence; }, clearTimeout: id => timers.delete(id),
   }).default;
-  const render = () => { cursor = 0; refCursor = 0; return Component(); };
+  const render = () => { cursor = 0; refCursor = 0; return Component(props); };
   return { states, calls, timers, window, render, unmount: () => effects.forEach(fn => fn?.()),
     submit: tree => find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }),
   };
 }
+
+test('Registration confirms through the free-account endpoint and preserves a free community destination', async () => {
+  const h = harness(() => response({ success: true, paid: false, admin: false }), { registration: true, allowRegistration: true });
+  await h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-verify');
+  assert.deepEqual(JSON.parse(h.calls[0][1].body), { email: 'member@example.invalid', code: '123456' });
+  const navigation = [...h.timers.values()].find(item => item.delay === 500);
+  navigation.fn();
+  assert.equal(h.window.location.href, '/community?category=hundewesen');
+});
+
+test('Requesting a code preserves the neutral server message without claiming the account exists or mail arrived', async () => {
+  const message = 'Falls diese E-Mail registriert ist, wurde ein Login-Code versendet.';
+  for (const serverMessage of [message, undefined]) {
+    const h = harness(() => response({ success: true, ...(serverMessage ? { message: serverMessage } : {}) }));
+    h.states[2] = 'email'; h.states[1] = '';
+    await h.submit(h.render());
+    assert.equal(h.calls[0][0], '/api/auth/request-code');
+    assert.equal(h.states[2], 'code'); assert.equal(h.states[3], message);
+    const html = renderToStaticMarkup(h.render());
+    assert.match(html, /Code für/); assert.ok(!html.includes('Wir haben dir'));
+    h.unmount();
+  }
+  const registrationMessage = 'Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet. Bitte prüfe auch den Spamordner.';
+  const h = harness(() => response({ success: true, message: registrationMessage }), { registration: true });
+  h.states[2] = 'email'; h.states[1] = '';
+  await h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-request'); assert.equal(h.states[3], registrationMessage);
+  h.unmount();
+});
+
+test('Authentication pages expose only a private-derived mail mode, never tester addresses or transport credentials', async () => {
+  for (const isolated of [false, true]) for (const mode of [undefined, 'sink', 'tester-smtp']) {
+    const env = { ACCOUNT_REGISTRATION_ENABLED: 'true', JL_TEST_MAIL_MODE: mode,
+      JL_TEST_MAIL_RECIPIENTS: 'private-tester@example.invalid', JL_TEST_SMTP_PASS: 'private-test-smtp-password',
+      JL_TEST_SMTP_USER: 'private-sender@example.invalid', JL_TEST_SMTP_FROM: 'private-from@example.invalid',
+      ...(isolated ? { JL_TEST_ENVIRONMENT: 'paypal-sandbox' } : {}) };
+    const globals = { process: { env } };
+    const login = await load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} },
+      query: { isTestMail: isolated ? 'false' : 'true', testMailMode: isolated ? 'sink' : 'tester-smtp' } });
+    const registration = await load('pages/registrieren.js', {}, globals).getServerSideProps({});
+    const testMailMode = isolated ? mode || 'sink' : null;
+    assert.deepEqual(login.props, { allowRegistration: true, isTestMail: isolated, testMailMode });
+    assert.deepEqual(registration.props, { registration: true, allowRegistration: true, isTestMail: isolated, testMailMode });
+    const exposed = JSON.stringify([login.props, registration.props]);
+    for (const key of ['JL_TEST_MAIL_RECIPIENTS', 'JL_TEST_SMTP_USER', 'JL_TEST_SMTP_PASS', 'JL_TEST_SMTP_FROM']) {
+      assert.ok(!exposed.includes(key)); assert.ok(!exposed.includes(env[key]));
+    }
+  }
+});
+
+test('Invalid private mail modes cannot silently render a misleading sink or tester hint', async () => {
+  for (const mode of ['', 'smtp', 'TESTER-SMTP']) {
+    const globals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true',
+      JL_TEST_ENVIRONMENT: 'paypal-sandbox', JL_TEST_MAIL_MODE: mode } } };
+    await assert.rejects(load('pages/login.js', {}, globals).getServerSideProps({ req: { cookies: {} }, query: {} }),
+      error => error.status === 503);
+    await assert.rejects(load('pages/registrieren.js', {}, globals).getServerSideProps({}), error => error.status === 503);
+  }
+  const publicGlobals = { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'true', JL_TEST_MAIL_MODE: 'invalid-private-mode' } } };
+  const publicProps = await load('pages/login.js', {}, publicGlobals).getServerSideProps({ req: { cookies: {} }, query: {} });
+  assert.equal(publicProps.props.isTestMail, false); assert.equal(publicProps.props.testMailMode, null);
+});
+
+test('Sandbox login and registration explain the isolated inbox and separate accounts; public pages omit that hint', () => {
+  const Login = load('pages/login.js').default;
+  for (const registration of [false, true]) {
+    const html = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: true }));
+    assert.match(html, /ausschließlich im getrennten Testpostfach/);
+    assert.match(html, /normales E-Mail-Postfach erhält keine Nachricht/);
+    assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
+    assert.match(html, registration ? /bestätigst du dein eigenes Testkonto/ : /wähle zuerst „Kostenlos registrieren“/);
+    const publicHtml = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: false }));
+    assert.ok(!publicHtml.includes('Testpostfach')); assert.ok(!publicHtml.includes('Testumgebung:'));
+  }
+});
+
+test('Opt-in tester login explains real delivery and separate accounts without promising a message to every address', () => {
+  const Login = load('pages/login.js').default;
+  for (const registration of [false, true]) {
+    const html = renderToStaticMarkup(React.createElement(Login, {
+      registration, allowRegistration: true, isTestMail: true, testMailMode: 'tester-smtp',
+    }));
+    assert.match(html, /Freigegebene Tester erhalten/); assert.match(html, /per E-Mail/);
+    assert.match(html, /Spamordner/); assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
+    assert.ok(!html.includes('normales E-Mail-Postfach erhält keine Nachricht'));
+    assert.ok(!html.includes('ausschließlich im getrennten Testpostfach'));
+    if (registration) assert.match(html, /freigegebenen E-Mail-Adresse/);
+    const publicHtml = renderToStaticMarkup(React.createElement(Login, {
+      registration, allowRegistration: true, isTestMail: false, testMailMode: 'tester-smtp',
+    }));
+    assert.ok(!publicHtml.includes('Freigegebene Tester')); assert.ok(!publicHtml.includes('Testumgebung:'));
+  }
+});
 test('Duplicate code confirmation and changing email stay blocked through the successful navigation', async () => {
   const pending = deferred(), h = harness(() => pending.promise), tree = h.render();
   const first = h.submit(tree); await h.submit(tree); assert.equal(h.calls.length, 1);

@@ -8,9 +8,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
+        let selected = Bundle.main.object(forInfoDictionaryKey: "JagdlateinWebsiteEnvironment") as? String ?? "Production"
+        guard let environment = WebsiteEnvironment(rawValue: selected) else {
+            let error = UIViewController()
+            error.view.backgroundColor = .systemBackground
+            let message = UILabel()
+            message.text = "Die App-Konfiguration ist ungültig. Bitte installiere den freigegebenen Jagdlatein-Build erneut."
+            message.numberOfLines = 0
+            message.translatesAutoresizingMaskIntoConstraints = false
+            error.view.addSubview(message)
+            NSLayoutConstraint.activate([message.centerYAnchor.constraint(equalTo: error.view.centerYAnchor),
+                message.leadingAnchor.constraint(equalTo: error.view.leadingAnchor, constant: 24),
+                message.trailingAnchor.constraint(equalTo: error.view.trailingAnchor, constant: -24)])
+            window.rootViewController = error
+            self.window = window
+            window.makeKeyAndVisible()
+            return
+        }
+        WebsitePolicy.configure(environment: environment)
         window.rootViewController = WebsiteViewController()
         self.window = window
         window.makeKeyAndVisible()
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        (window?.rootViewController as? WebsiteViewController)?.refreshAppleTransactions()
     }
 }
 
@@ -38,6 +60,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private var compilingContentRules = false
     private var restoringAllowedPage = false
     private var paymentHintAfterRestore = false
+    private var purchaseIntentNeedsPresentation = false
     private var downloadDestinations: [ObjectIdentifier: URL] = [:]
     private var documentController: UIDocumentInteractionController?
     private lazy var backButton = toolbarButton("chevron.left", label: "Zurück", action: #selector(goBack))
@@ -45,6 +68,8 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
     private lazy var reloadButton = toolbarButton("arrow.clockwise", label: "Neu laden", action: #selector(reloadPage))
     private lazy var bookmarksButton = toolbarButton("bookmark", label: "Merkliste", action: #selector(showBookmarks))
     private lazy var shareButton = toolbarButton("square.and.arrow.up", label: "Seite teilen", action: #selector(sharePage))
+    private lazy var subscriptionButton = toolbarButton("person.crop.circle.badge.checkmark", label: "Abo und Käufe", action: #selector(showSubscriptions))
+    private lazy var appleSubscriptions = AppleSubscriptionManager(cookieStore: webView.configuration.websiteDataStore.httpCookieStore) { [weak self] in self?.webView.url }
     private var accent: UIColor { UIColor { $0.userInterfaceStyle == .dark ? UIColor(red: 0.88, green: 0.74, blue: 0.42, alpha: 1) : UIColor(red: 0.51, green: 0.38, blue: 0.11, alpha: 1) } }
     private var background: UIColor { UIColor { $0.userInterfaceStyle == .dark ? UIColor(red: 0.12, green: 0.13, blue: 0.11, alpha: 1) : UIColor(red: 0.98, green: 0.97, blue: 0.93, alpha: 1) } }
 
@@ -63,7 +88,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         refresh.tintColor = accent
         refresh.addTarget(self, action: #selector(reloadPage), for: .valueChanged)
 
-        heading.text = "Jagdlatein"
+        heading.text = WebsitePolicy.environment == .sandbox ? "Jagdlatein · Testumgebung" : "Jagdlatein"
         heading.accessibilityIdentifier = "jagdlatein.website.location"
         heading.font = .preferredFont(forTextStyle: .headline)
         heading.adjustsFontForContentSizeCategory = true
@@ -83,7 +108,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         toolbar.tintColor = accent
         toolbar.barTintColor = background
         toolbar.isTranslucent = false
-        toolbar.items = [backButton, .flexibleSpace(), forwardButton, .flexibleSpace(), reloadButton, .flexibleSpace(), bookmarksButton, .flexibleSpace(), shareButton]
+        toolbar.items = [backButton, .flexibleSpace(), forwardButton, .flexibleSpace(), reloadButton, .flexibleSpace(), bookmarksButton, .flexibleSpace(), subscriptionButton, .flexibleSpace(), shareButton]
         progress.progressTintColor = accent
         progress.trackTintColor = .clear
         progress.isHidden = true
@@ -120,6 +145,14 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
             webView.observe(\.url, options: [.initial, .new]) { [weak self] view, _ in self?.inspectVisibleURL(view.url) }
         ]
         prepareContentRules()
+        appleSubscriptions.onConfirmed = { [weak self] token in
+            Task { [weak self] in await self?.refreshWebsiteAccess(for: token) }
+        }
+        appleSubscriptions.onPurchaseIntent = { [weak self] in
+            self?.purchaseIntentNeedsPresentation = true
+            self?.presentPurchaseIntentIfPossible()
+        }
+        appleSubscriptions.start()
     }
 
     private func toolbarButton(_ symbol: String, label: String, action: Selector) -> UIBarButtonItem {
@@ -180,7 +213,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         errorPanel.isHidden = true
         progress.isHidden = false
         updateToolbar()
-        store.compileContentRuleList(forIdentifier: "jagdlatein.preview.payment-rules.v1", encodedContentRuleList: WebsitePolicy.contentBlockingRulesJSON) { [weak self] ruleList, error in
+        store.compileContentRuleList(forIdentifier: "jagdlatein.preview.payment-rules.\(WebsitePolicy.environment.rawValue).v2", encodedContentRuleList: WebsitePolicy.contentBlockingRulesJSON) { [weak self] ruleList, error in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.compilingContentRules = false
@@ -229,6 +262,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         forwardButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.canGoForward
         reloadButton.isEnabled = !compilingContentRules && !restoringAllowedPage
         shareButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.url.flatMap { WebsitePolicy.bookmarkURL(for: $0) } != nil
+        subscriptionButton.isEnabled = contentRulesReady && !restoringAllowedPage && webView.url.flatMap { AppleBillingPolicy.requestURL(for: .context, visiblePage: $0) } != nil
     }
     @objc private func goBack() { errorPanel.isHidden = true; webView.goBack() }
     @objc private func goForward() { errorPanel.isHidden = true; webView.goForward() }
@@ -254,6 +288,50 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         let sheet = UIActivityViewController(activityItems: [safeURL], applicationActivities: nil)
         sheet.popoverPresentationController?.barButtonItem = shareButton
         present(sheet, animated: true)
+    }
+    @objc private func showSubscriptions() {
+        guard presentedViewController == nil else { return }
+        let sheet = AppleSubscriptionViewController(manager: appleSubscriptions) { [weak self] in
+            self?.load(WebsitePolicy.homeURL.appendingPathComponent("konto"))
+        }
+        let navigation = UINavigationController(rootViewController: sheet)
+        navigation.navigationBar.tintColor = accent
+        navigation.modalPresentationStyle = .pageSheet
+        present(navigation, animated: true)
+    }
+    private func presentPurchaseIntentIfPossible() {
+        guard purchaseIntentNeedsPresentation, contentRulesReady, !restoringAllowedPage,
+              let page = webView.url, AppleBillingPolicy.requestURL(for: .context, visiblePage: page) != nil else { return }
+        if let navigation = presentedViewController as? UINavigationController,
+           let sheet = navigation.topViewController as? AppleSubscriptionViewController {
+            sheet.refreshForPurchaseIntent()
+            purchaseIntentNeedsPresentation = false
+        } else if presentedViewController == nil {
+            purchaseIntentNeedsPresentation = false
+            showSubscriptions()
+        }
+    }
+    func refreshAppleTransactions() {
+        Task { [weak self] in await self?.appleSubscriptions.reconcileIfNeeded() }
+    }
+    private func refreshWebsiteAccess(for token: UUID) async {
+        guard let page = webView.url, WebsitePolicy.isWebsiteURL(page),
+              let context = try? await appleSubscriptions.context(), context.isConfigured,
+              context.appAccountToken == token else { return }
+        do {
+            // One constant same-origin request lets WebKit renew its HttpOnly
+            // session cookie. No token/cookie value or arbitrary native method
+            // is passed to website JavaScript.
+            let result = try await webView.callAsyncJavaScript(
+                "const response = await fetch('/api/auth/status', {cache: 'no-store', credentials: 'same-origin'}); if (!response.ok) return false; const status = await response.json(); return status.loggedIn === true;",
+                arguments: [:], in: nil, contentWorld: .page
+            )
+            guard result as? Bool == true, let currentPage = webView.url,
+                  AppleBillingPolicy.origin(of: currentPage) == AppleBillingPolicy.origin(of: page),
+                  let current = try? await appleSubscriptions.context(), current.isConfigured,
+                  current.appAccountToken == token else { return }
+            reloadPage()
+        } catch { /* Server access stays authoritative; the next website status check can retry. */ }
     }
     private func finishLoading() { progress.isHidden = true; refresh.endRefreshing(); updateToolbar() }
     private func showError(_ message: String) {
@@ -355,6 +433,8 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         }
         webView.isHidden = false
         finishLoading()
+        if purchaseIntentNeedsPresentation { presentPurchaseIntentIfPossible() }
+        Task { [weak self] in await self?.appleSubscriptions.reconcileIfNeeded() }
         if paymentHintAfterRestore {
             paymentHintAfterRestore = false
             showPaymentInformation()
@@ -370,7 +450,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         showError("Jagdlatein konnte nicht geladen werden. Prüfe deine Internetverbindung und versuche es erneut.")
     }
     private func showPaymentInformation() {
-        showInformation(title: "Abos in der iOS-Vorschau", message: "Diese Vorschau unterstützt keine Abo-Abschlüsse. Du kannst dich mit einem bestehenden Konto anmelden und freigeschaltete Lerninhalte nutzen.", identifier: "jagdlatein.payment.preview")
+        showSubscriptions()
     }
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if handleNavigation(navigationAction) == .allowInWebView { webView.load(navigationAction.request) }
@@ -439,7 +519,7 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
 
 private final class BookmarkStore {
     private let defaults = UserDefaults.standard
-    private let key = "jagdlatein.website.bookmarks.v1"
+    private let key = WebsitePolicy.environment == .sandbox ? "jagdlatein.website.bookmarks.sandbox.v1" : "jagdlatein.website.bookmarks.v1"
     private(set) var items: [WebsiteBookmark] = []
     init() {
         guard let data = defaults.data(forKey: key), let saved = try? JSONDecoder().decode([WebsiteBookmark].self, from: data) else { return }

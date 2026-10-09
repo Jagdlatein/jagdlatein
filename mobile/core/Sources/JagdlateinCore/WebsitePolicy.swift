@@ -20,13 +20,35 @@ public enum WebsiteNavigationDecision: Equatable {
     case reject
 }
 
+/// The two reviewed, fixed destinations are separate. A build cannot supply an
+/// arbitrary website URL or add another host to the native cookie allowlist.
+public enum WebsiteEnvironment: String {
+    case production = "Production"
+    case sandbox = "Sandbox"
+
+    public var homeURL: URL {
+        URL(string: self == .production ? "https://www.jagdlatein.de" : "https://jagdlatein-sandbox.vercel.app")!
+    }
+    public var canonicalHost: String {
+        self == .production ? "jagdlatein.de" : "jagdlatein-sandbox.vercel.app"
+    }
+    fileprivate var hosts: Set<String> {
+        self == .production ? ["jagdlatein.de", "www.jagdlatein.de"] : ["jagdlatein-sandbox.vercel.app"]
+    }
+}
+
 /// A navigation policy, not a filter for website scripts, images or API requests.
 public enum WebsitePolicy {
-    public static let homeURL = URL(string: "https://www.jagdlatein.de")!
+    public private(set) static var environment: WebsiteEnvironment = .production
+    public static var homeURL: URL { environment.homeURL }
+    public static func configure(environment: WebsiteEnvironment) { self.environment = environment }
     /// Applied by WKContentRuleList before the first website request. No resource
     /// type restriction: this covers scripts, frames and raw fetch/XHR requests.
     /// Only the iOS preview uses these rules; the public website is unchanged.
-    public static let contentBlockingRulesJSON = #"""
+    public static var contentBlockingRulesJSON: String {
+        let paymentAPIHost = environment == .production ? #"(www\.)?jagdlatein\.de"# : #"jagdlatein-sandbox\.vercel\.app"#
+        let otherEnvironmentHost = environment == .production ? #"jagdlatein-sandbox\.vercel\.app"# : #"(www\.)?jagdlatein\.de"#
+        return #"""
     [
       {
         "trigger": {"url-filter": "^https?://([^/]*@)?([^:/]+\\.)?paypal\\.com\\.?[:/]", "url-filter-is-case-sensitive": false},
@@ -37,22 +59,26 @@ public enum WebsitePolicy {
         "action": {"type": "block"}
       },
       {
-        "trigger": {"url-filter": "^https://(www\\.)?jagdlatein\\.de(:443)?/api/paypal", "url-filter-is-case-sensitive": false},
+        "trigger": {"url-filter": "^https://\#(paymentAPIHost.replacingOccurrences(of: "\\", with: "\\\\"))(:443)?/api/paypal", "url-filter-is-case-sensitive": false},
+        "action": {"type": "block"}
+      },
+      {
+        "trigger": {"url-filter": "^https?://([^/]*@)?\#(otherEnvironmentHost.replacingOccurrences(of: "\\", with: "\\\\"))\\.?(:[0-9]+)?/", "url-filter-is-case-sensitive": false},
         "action": {"type": "block"}
       }
     ]
     """#
-    private static let websiteHosts: Set<String> = ["jagdlatein.de", "www.jagdlatein.de"]
+    }
     private static let privateRoots: Set<String> = [
         "api", "auth", "login", "anmelden", "logout", "abmelden", "verify", "verify-code",
         "confirm", "callback", "reset-password", "forgot-password", "passwort", "admin",
-        "konto", "mein-konto", "account", "profil", "preise", "paytest"
+        "konto", "mein-konto", "account", "profil", "registrieren", "preise", "paytest"
     ]
 
     public static func isWebsiteURL(_ url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               components.scheme?.lowercased() == "https",
-              let host = components.host?.lowercased(), websiteHosts.contains(host),
+              let host = components.host?.lowercased(), environment.hosts.contains(host),
               components.user == nil, components.password == nil,
               components.port == nil || components.port == 443 else { return false }
         return true
@@ -62,6 +88,11 @@ public enum WebsitePolicy {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let scheme = components.scheme?.lowercased() else { return .reject }
         if isPaymentProviderHost(components.host) { return .blockedPayment }
+        let otherEnvironment: WebsiteEnvironment = environment == .production ? .sandbox : .production
+        if var host = components.host?.lowercased() {
+            while host.hasSuffix(".") { host.removeLast() }
+            if otherEnvironment.hosts.contains(host) { return .reject }
+        }
 
         if !isMainFrame {
             // Third-party HTTPS frames stay in the web view and never open apps.
@@ -91,7 +122,7 @@ public enum WebsitePolicy {
         let root = path.split(separator: "/").first.map { String($0).lowercased() } ?? ""
         guard !privateRoots.contains(root), !isPaymentPath(url) else { return nil }
         components.scheme = "https"
-        components.host = "jagdlatein.de"
+        components.host = environment.canonicalHost
         components.port = nil
         components.query = nil
         components.fragment = nil

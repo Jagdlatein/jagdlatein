@@ -5,7 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>de</string>
 	<key>CFBundleDisplayName</key>
-        <string>Jagdlatein</string>
+        <string>$(JL_APP_DISPLAY_NAME)</string>
+	<key>JagdlateinWebsiteEnvironment</key>
+	<string>$(IOS_WEBSITE_ENVIRONMENT)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

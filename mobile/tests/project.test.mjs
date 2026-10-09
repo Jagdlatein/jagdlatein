@@ -4,7 +4,14 @@ import { inspectProject } from "../scripts/check-ios.mjs";
 
 test("iOS-Projekt hat eine native Scene und löst seine tatsächlichen Ressourcen auf", async () => {
   const { info, objects, resourceNames } = await inspectProject();
-  assert.equal(info.CFBundleDisplayName, "Jagdlatein");
+  assert.equal(info.CFBundleDisplayName, "$(JL_APP_DISPLAY_NAME)");
+  assert.equal(info.JagdlateinWebsiteEnvironment, "$(IOS_WEBSITE_ENVIRONMENT)");
+  const appDefaults = Object.values(objects.XCBuildConfiguration).filter(value => typeof value === "object" && value.buildSettings?.INFOPLIST_FILE === "App/Info.plist");
+  assert.equal(appDefaults.length, 2);
+  for (const configuration of appDefaults) {
+    assert.equal(configuration.buildSettings.IOS_WEBSITE_ENVIRONMENT, "Production");
+    assert.equal(configuration.buildSettings.JL_APP_DISPLAY_NAME, "Jagdlatein");
+  }
   assert.equal(info.UIApplicationSceneManifest.UISceneConfigurations.UIWindowSceneSessionRoleApplication[0].UISceneDelegateClassName, "$(PRODUCT_MODULE_NAME).SceneDelegate");
   assert.ok(resourceNames.includes("LaunchScreen.storyboard"));
   assert.ok(!resourceNames.includes("public"));

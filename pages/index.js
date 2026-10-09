@@ -55,11 +55,6 @@ export default function Home({ loggedIn = false, initialNews }) {
           await PushNotifications.addListener(
             "registration",
             async (token) => {
-              console.log(
-                "JAGDLATEIN PUSH TOKEN:",
-                token.value
-              );
-
               try {
                 const response = await fetch("/api/push/register", {
                   method: "POST",
@@ -71,17 +66,9 @@ export default function Home({ loggedIn = false, initialNews }) {
                   }),
                 });
 
-                const result = await response.json();
-
-                console.log(
-                  "JAGDLATEIN PUSH TOKEN GESPEICHERT:",
-                  result
-                );
-              } catch (error) {
-                console.error(
-                  "Push Token konnte nicht gespeichert werden:",
-                  error
-                );
+                await response.json();
+              } catch {
+                console.error("Push-Token konnte nicht gespeichert werden.");
               }
             }
           );
@@ -89,20 +76,14 @@ export default function Home({ loggedIn = false, initialNews }) {
         registrationErrorListener =
           await PushNotifications.addListener(
             "registrationError",
-            (error) => {
-              console.error(
-                "Push Registrierung fehlgeschlagen:",
-                error
-              );
+            () => {
+              console.error("Push Registrierung fehlgeschlagen.");
             }
           );
 
         await PushNotifications.register();
-      } catch (error) {
-        console.error(
-          "Push Setup Fehler:",
-          error
-        );
+      } catch {
+        console.error("Push konnte nicht eingerichtet werden.");
       }
     }
 

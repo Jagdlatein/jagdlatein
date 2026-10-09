@@ -3,6 +3,7 @@ import {
   requireSameOriginJson, validateCourseProgress,
   accountJson, accountErrorResponse, accountUnavailable,
 } from "../../../lib/course-progress-server";
+import { isAccountGenerationEnabled } from "../../../lib/account-session";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,8 +11,13 @@ export const dynamic = "force-dynamic";
 export async function GET(req) {
   try {
     const session = requireAccountSession(req, "PROGRESS_UNAVAILABLE");
-    const database = getAccountDatabase("PROGRESS_UNAVAILABLE");
+    const database = getAccountDatabase("PROGRESS_UNAVAILABLE", session);
     await requireCurrentAccount(database, session, "PROGRESS_UNAVAILABLE");
+    if (isAccountGenerationEnabled()) {
+      const result = await database.rpc("get_current_course_progress", { p_email: session.email });
+      if (result.error || !Array.isArray(result.data)) throw accountUnavailable("PROGRESS_UNAVAILABLE");
+      return accountJson({ progress: result.data });
+    }
     const { data, error } = await database
       .from("course_progress")
       .select(PROGRESS_COLUMNS)
@@ -35,7 +41,7 @@ export async function POST(req) {
       body = null;
     }
     const progress = validateCourseProgress(body);
-    const database = getAccountDatabase("PROGRESS_UNAVAILABLE");
+    const database = getAccountDatabase("PROGRESS_UNAVAILABLE", session);
     await requireCurrentAccount(database, session, "PROGRESS_UNAVAILABLE");
     const { data, error } = await database
       .from("course_progress")

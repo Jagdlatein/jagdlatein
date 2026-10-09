@@ -5,8 +5,9 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { sendLoginCode } from "../../../../lib/email";
+import { sendLoginCode, TestLoginMailError, safeLoginMailDiagnostic } from "../../../../lib/email";
 import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
+import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
 
 
 export async function POST(req) {
@@ -38,6 +39,12 @@ export async function POST(req) {
       );
     }
 
+    if (!isLoginMailRecipientAllowed(email)) {
+      return NextResponse.json({ success: true,
+        message: "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet." },
+      { headers: { "Cache-Control": "no-store" } });
+    }
+
     // Prüfen, ob die E-Mail bei Jagdlatein registriert ist
     const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -54,7 +61,7 @@ export async function POST(req) {
       .maybeSingle();
 
     if (profileError) {
-      console.error("Userprofile Fehler:", profileError);
+      console.error("Userprofile Fehler: Datenbankabfrage fehlgeschlagen.");
 
       return NextResponse.json(
         { success: false, message: "Serverfehler." },
@@ -130,7 +137,7 @@ export async function POST(req) {
     const saveError = save.error;
 
     if (saveError) {
-      console.error("Login-Code konnte nicht gespeichert werden:", saveError);
+      console.error("Login-Code konnte nicht gespeichert werden: Datenbankabfrage fehlgeschlagen.");
 
       return NextResponse.json(
         { success: false, message: "Serverfehler." },
@@ -146,7 +153,11 @@ export async function POST(req) {
         "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet.",
     });
   } catch (error) {
-    console.error("Request-Code Fehler:", error);
+    if (error instanceof TestLoginMailError) {
+      return NextResponse.json({ success: false, message: error.message },
+        { status: 503, headers: { "Cache-Control": "no-store" } });
+    }
+    console.error("Request-Code Fehler:", safeLoginMailDiagnostic(error));
 
     return NextResponse.json(
       { success: false, message: "Serverfehler." },

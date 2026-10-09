@@ -15,9 +15,12 @@ const PUBLIC_PATHS = [
   "/news",
   "/community",
   "/login",
+  "/review-login",
+  "/registrieren",
   "/preise",
   "/impressum",
   "/datenschutz",
+  "/hilfe",
   "/robots.txt",
   "/sitemap.xml",
   "/debug-cookies",
@@ -83,7 +86,10 @@ export async function middleware(req) {
   // Account pages and the community require a signed identity, not subscription
   // coverage. Their APIs check the current account separately; a provider outage
   // must not prevent an unpaid member from reaching their own account or thread.
-  if (session && !isPublic && !isAccountPage && !(session.accessExpiresAt > Math.floor(Date.now() / 1000))) {
+  if (session && !isPublic && !isAccountPage && (process.env.ACCOUNT_DELETION_ENABLED === "true" ||
+    process.env.ACCOUNT_GENERATION_ENABLED === "true" ||
+    process.env.APPLE_SUBSCRIPTIONS_ENABLED === "true" ||
+    !(session.accessExpiresAt > Math.floor(Date.now() / 1000)))) {
     try {
       const check = await fetch(new URL("/api/auth/status", req.url), {
         headers: { Cookie: `${JL_ACCOUNT_COOKIE}=${token}` },
