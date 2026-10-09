@@ -5,26 +5,47 @@ import XCTest
 final class AppleBillingPolicyTests: XCTestCase {
     override func setUp() { WebsitePolicy.configure(environment: .production) }
 
-    func testOnlySandboxDachCurrencyConflictsDeferOfferDetailsToApple() {
-        let cases: [(countryCode: String?, currency: String, deferInSandbox: Bool)] = [
+    func testKnownDachCurrencyConflictsDeferOfferDetailsInBothWebsiteEnvironments() {
+        let cases: [(countryCode: String?, currency: String, shouldDefer: Bool)] = [
             ("CHE", "USD", true),
             ("CHE", "CHF", false),
             ("DEU", "USD", true),
             ("DEU", "EUR", false),
             ("AUT", "USD", true),
             ("AUT", "EUR", false),
-            ("USA", "USD", false),
-            ("GBR", "EUR", false),
-            (nil, "USD", false),
+            ("CHE", "EUR", true),
+            ("DEU", "CHF", true),
+            ("AUT", "CHF", true),
         ]
-        for item in cases {
-            let details = "\(item.countryCode ?? "unknown") / \(item.currency)"
-            XCTAssertEqual(AppleBillingPolicy.shouldDeferOfferDetails(environment: .sandbox,
-                countryCode: item.countryCode, productCurrencyCode: item.currency), item.deferInSandbox,
-                "Only a known DACH currency conflict in Sandbox should defer the displayed offer: \(details)")
-            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(environment: .production,
-                countryCode: item.countryCode, productCurrencyCode: item.currency),
-                "Production offer display must remain unchanged: \(details)")
+        for environment in [WebsiteEnvironment.production, .sandbox] {
+            WebsitePolicy.configure(environment: environment)
+            for item in cases {
+                let details = "\(environment.rawValue): \(item.countryCode ?? "unknown") / \(item.currency)"
+                XCTAssertEqual(AppleBillingPolicy.shouldDeferOfferDetails(
+                    countryCode: item.countryCode, productCurrencyCode: item.currency), item.shouldDefer,
+                    "The website environment must not decide whether StoreKit's currency is consistent: \(details)")
+            }
+        }
+    }
+
+    func testCurrencyGuardPreservesGenuineUsdAndDoesNotInventAnUnknownStorefront() {
+        for environment in [WebsiteEnvironment.production, .sandbox] {
+            WebsitePolicy.configure(environment: environment)
+            for (countryCode, currency) in [("USA", "USD"), ("GBR", "GBP"), ("JPN", "JPY"), ("", "USD")] {
+                XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(
+                    countryCode: countryCode, productCurrencyCode: currency))
+            }
+            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(countryCode: nil, productCurrencyCode: "USD"))
+        }
+    }
+
+    func testKnownStorefrontAndCurrencyCodesAreCaseInsensitive() {
+        for environment in [WebsiteEnvironment.production, .sandbox] {
+            WebsitePolicy.configure(environment: environment)
+            XCTAssertTrue(AppleBillingPolicy.shouldDeferOfferDetails(countryCode: "che", productCurrencyCode: "usd"))
+            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(countryCode: "che", productCurrencyCode: "chf"))
+            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(countryCode: "deu", productCurrencyCode: "eur"))
+            XCTAssertFalse(AppleBillingPolicy.shouldDeferOfferDetails(countryCode: "aut", productCurrencyCode: "eur"))
         }
     }
 

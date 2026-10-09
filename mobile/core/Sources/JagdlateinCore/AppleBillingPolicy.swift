@@ -39,10 +39,11 @@ public enum AppleBillingPolicy {
         value == "de.jagdlatein.premium.monthly"
     }
 
-    /// Inconsistent TestFlight metadata must not become an advertised price.
-    /// Apple's confirmation supplies the terms; this never invents a trial or price.
-    public static func shouldDeferOfferDetails(environment: WebsiteEnvironment, countryCode: String?, productCurrencyCode: String) -> Bool {
-        guard environment == .sandbox, let countryCode = countryCode else { return false }
+    /// StoreKit prices must agree with the actual known storefront currency,
+    /// independently of which website backend the app uses. Apple's confirmation
+    /// supplies the terms; this never invents a trial, price or missing region.
+    public static func shouldDeferOfferDetails(countryCode: String?, productCurrencyCode: String) -> Bool {
+        guard let countryCode = countryCode else { return false }
         let expectedCurrency: String
         switch countryCode.uppercased() {
         case "CHE": expectedCurrency = "CHF"
