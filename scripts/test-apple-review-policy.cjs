@@ -112,6 +112,12 @@ async function ledger(t) {
   await pg.exec('CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role BYPASSRLS; CREATE TABLE public.userprofile(email text PRIMARY KEY);');
   for (const filename of ['20261007110000_apple_subscriptions.sql','20261008120000_apple_refund_ordering.sql'])
     await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations', filename), 'utf8'));
+  // This focused fixture needs only the current Apple RPC from the complete
+  // account migration, not unrelated application tables or legacy cleanup.
+  const deletionSource = fs.readFileSync(path.join(root,'supabase/migrations/20261009220000_complete_account_deletion.sql'),'utf8');
+  const currentAppleRpc = deletionSource.match(/CREATE OR REPLACE FUNCTION public\.apply_apple_subscription_snapshot\(p_snapshot jsonb\)[\s\S]*?END \$\$;/);
+  assert.ok(currentAppleRpc,'Current generation-checked Apple RPC must be present');
+  await pg.exec(currentAppleRpc[0]);
   await pg.query('INSERT INTO public.userprofile(email,account_generation) VALUES($1,$2)', [EMAIL, GENERATION]);
   const calls = { lookups: 0, reads: 0, snapshots: [] };
   const columns = { userprofile: new Set(['email']), apple_account_tokens: new Set(['app_account_token','account_email']),
@@ -136,7 +142,8 @@ async function ledger(t) {
       if (name === 'ensure_apple_account_token') return { data: (await pg.query('SELECT public.ensure_apple_account_token($1,$2) AS v',
         [args.p_email,args.p_account_generation])).rows[0].v, error: null };
       assert.equal(name,'apply_apple_subscription_snapshot'); calls.snapshots.push(plain(args.p_snapshot));
-      return { data: (await pg.query('SELECT public.apply_apple_subscription_snapshot($1::jsonb) AS v', [JSON.stringify(args.p_snapshot)])).rows[0].v, error: null };
+      try { return { data: (await pg.query('SELECT public.apply_apple_subscription_snapshot($1::jsonb) AS v', [JSON.stringify(args.p_snapshot)])).rows[0].v, error: null }; }
+      catch (error) { return { data: null,error }; }
     },
   };
   const token = await lib.ensureAppleAccountToken(database,EMAIL,GENERATION);
@@ -393,7 +400,7 @@ test('A verified unknown review token is forwarded only to the fixed public rece
   assert.equal(review.calls.api,0); assert.equal(data.calls.snapshots.length,0);
 });
 
-test('Local tokens, including deleted ones, are never forwarded from the test backend', async t => {
+test('Local tokens never forward; retained legacy detached tokens fail before any ledger mutation', async t => {
   const data=await ledger(t); const now=Date.now(); let forwarded=0;
   const fetcher=async()=>{forwarded++;return new Response('{}',{status:200});};
   const review=apple({now,device:transaction(now,{appAccountToken:data.token})});
@@ -402,8 +409,8 @@ test('Local tokens, including deleted ones, are never forwarded from the test ba
   assert.equal(forwarded,0); assert.equal(review.calls.api,1);
   await data.pg.query('SELECT public.detach_apple_account($1,$2)',[EMAIL,GENERATION]);
   const before=(await data.pg.query('SELECT to_jsonb(s) AS v FROM public.apple_subscriptions s')).rows[0].v;
-  assert.deepEqual(plain(await lib.applyVerifiedAppleNotification(JWS.notification,{database:data.database,config:SANDBOX,
-    nowMs:now,reviewPolicy:policy(now,data.token),reviewDependencies:{fetcher},...review})),{ok:true});
+  await assert.rejects(lib.applyVerifiedAppleNotification(JWS.notification,{database:data.database,config:SANDBOX,
+    nowMs:now,reviewPolicy:policy(now,data.token),reviewDependencies:{fetcher},...review}),error=>error.status===403);
   assert.equal(forwarded,0);
   assert.deepEqual((await data.pg.query('SELECT to_jsonb(s) AS v FROM public.apple_subscriptions s')).rows[0].v,before);
   const owner=(await data.pg.query('SELECT account_email,account_generation,deleted_at FROM public.apple_account_tokens WHERE app_account_token=$1',[data.token])).rows[0];

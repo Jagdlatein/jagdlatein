@@ -84,7 +84,7 @@ function AccountDeletion({ onDeleted }) {
     <p className={styles.muted}>Lösche dein Konto dauerhaft, einschließlich Lernfortschritten, Quiz-Auswertungen und eigenen Community-Inhalten. Dieser Schritt kann nicht rückgängig gemacht werden.</p>
     {!open ? <button type="button" className={styles.secondaryButton} onClick={() => setOpen(true)}>Kontolöschung vorbereiten</button> : <>
       <div className={styles.notice}>
-        <p><strong>Laufende Abos separat kündigen:</strong> Eine Kontolöschung kündigt dein Abo bei Apple oder PayPal nicht. Öffne vor der Löschung die Abo-Verwaltung des Anbieters. Erforderliche Zahlungsreferenzen bleiben ohne Zuordnung zu deinem gelöschten Konto erhalten.</p>
+        <p><strong>Laufende Abos separat kündigen:</strong> Eine Kontolöschung kündigt dein Abo bei Apple oder PayPal nicht. Öffne vor der Löschung die Abo-Verwaltung des Anbieters. Deine Kaufbindungen und Transaktionsdaten werden aus den aktiven Jagdlatein-Kontotabellen gelöscht; Zahlungsbelege beim Anbieter oder in der getrennten Buchführung werden dadurch nicht gelöscht.</p>
         <p>Nach der Löschung kannst du ein noch laufendes Abo nicht mehr für dieses Konto nutzen. Der lokale Lernrucksack wird auf diesem Gerät geleert.</p>
       </div>
       {reauthentication ? <>

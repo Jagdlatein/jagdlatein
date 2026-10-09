@@ -31,12 +31,14 @@ export async function paypalAccessToken() {
   return data.access_token;
 }
 
-export async function paypalRequest(path, { method = "GET", body } = {}) {
+export async function paypalRequest(path, { method = "GET", body, requestId = null } = {}) {
   if (!/^\/v[12]\//.test(path)) throw new Error("Invalid PayPal path");
+  if (requestId !== null && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(requestId)) throw new Error("Invalid PayPal request key");
   const { base } = paypalBase();
   const token = await paypalAccessToken();
   const response = await fetch(`${base}${path}`, {
-    method, headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    method, headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json",
+      ...(requestId === null ? {} : { "PayPal-Request-Id": requestId, Prefer: "return=representation" }) },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
     cache: "no-store", signal: AbortSignal.timeout(10000),
   });

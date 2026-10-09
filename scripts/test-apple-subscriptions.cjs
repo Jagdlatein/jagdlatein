@@ -1,5 +1,5 @@
-// Offline provider fakes exercise application boundaries; PGlite executes the
-// actual ledger migration. No Apple account, payment or remote database is used.
+// Offline provider fakes exercise application boundaries; embedded PGlite
+// executes the actual ledger SQL. No Apple account, payment or remote database is used.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -292,7 +292,16 @@ const pglitePath = process.env.JL_APPLE_TEST_PGLITE_PATH || process.env.JL_PAYPA
   (process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Jagdlatein/paypal-sandbox/test-runtime/node_modules/@electric-sql/pglite'));
 const sqlAvailable = pglitePath && fs.existsSync(path.join(pglitePath, 'package.json'));
 const lifecycleSql = { skip: sqlAvailable ? false : 'Local isolated PGlite runtime unavailable; set JL_APPLE_TEST_PGLITE_PATH.' };
-const refundOrderingMigration = () => fs.readFileSync(path.join(root, 'supabase/migrations/20261008120000_apple_refund_ordering.sql'), 'utf8');
+const refundOrderingMigration = () => {
+  const refundSource = fs.readFileSync(path.join(root,'supabase/migrations/20261008120000_apple_refund_ordering.sql'),'utf8');
+  // The complete account migration also includes unrelated provider cleanup.
+  // Install its exact current Apple RPC in the minimal ledger schema, then run
+  // the lifecycle/refund assertions against the actual SQL function below.
+  const deletionSource = fs.readFileSync(path.join(root,'supabase/migrations/20261009220000_complete_account_deletion.sql'),'utf8');
+  const currentRpc = deletionSource.match(/CREATE OR REPLACE FUNCTION public\.apply_apple_subscription_snapshot\(p_snapshot jsonb\)[\s\S]*?END \$\$;/);
+  if (!currentRpc) throw new Error('Current generation-checked Apple RPC is missing');
+  return `${refundSource}\n${currentRpc[0]}`;
+};
 
 // Exercise the application and real ledger together. This adapter only replaces
 // Supabase's query transport; entitlement decisions remain in application/SQL.
@@ -301,6 +310,7 @@ async function lifecycleLedger(t, { applyRefundOrdering = true } = {}) {
   t.after(() => pg.close());
   await pg.exec('CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role BYPASSRLS; CREATE TABLE public.userprofile(email text PRIMARY KEY);');
   await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261007110000_apple_subscriptions.sql'), 'utf8'));
+  await pg.exec('CREATE UNIQUE INDEX userprofile_account_generation_unique ON public.userprofile(account_generation)');
   if (applyRefundOrdering) await pg.exec(refundOrderingMigration());
   await pg.query('INSERT INTO public.userprofile(email,account_generation) VALUES($1,$2)', [EMAIL, GENERATION]);
   const columns = {
@@ -688,13 +698,34 @@ test('A legacy API signing date cannot suppress a genuine later refund after the
   assert.equal(new Date(stored.revocation_reversed_at).getTime(), now + 40);
 });
 
-test('Actual PostgreSQL ledger: ownership, replay, refunds, renewal, detach/recreation and browser denial',
+test('Current Apple RPC rejects missing and recreated live generations before creating any contract or notification rows', lifecycleSql, async t => {
+  const ledger = await lifecycleLedger(t);
+  const record = lib.verifiedAppleTransactionRecord(transaction({ appAccountToken: ledger.token }),CONFIG,NOW);
+  const snapshot = { environment: CONFIG.environment,original_transaction_id: record.original_transaction_id,
+    app_account_token: ledger.token,account_email: EMAIL,account_generation: GENERATION,status: 1,auto_renew: true,
+    observed_at: new Date(NOW).toISOString(),notification_id: GENERATION,transactions: [record] };
+  const apply = async value => ledger.pg.query('SELECT public.apply_apple_subscription_snapshot($1::jsonb)',[JSON.stringify(value)]);
+  await ledger.pg.query('DELETE FROM public.userprofile WHERE email=$1',[EMAIL]);
+  // Keep an apparently active token in this synthetic partial-deletion state:
+  // the SQL guard must check its actual profile, not just the token's flags.
+  await assert.rejects(apply(snapshot),/JL_APPLE_ACCOUNT/);
+  const newGeneration = 'd815ae8d-8300-4e50-a89d-98148a376625';
+  await ledger.pg.query('INSERT INTO public.userprofile(email,account_generation) VALUES($1,$2)',[EMAIL,newGeneration]);
+  await assert.rejects(apply(snapshot),/JL_APPLE_ACCOUNT/);
+  await assert.rejects(apply({ ...snapshot,account_generation: newGeneration }),/JL_APPLE_ACCOUNT/);
+  for (const table of ['apple_subscriptions','apple_subscription_transactions','apple_subscription_notifications']) {
+    assert.equal((await ledger.pg.query(`SELECT count(*)::integer AS count FROM public.${table}`)).rows[0].count,0,table);
+  }
+});
+
+test('Embedded PostgreSQL ledger: ownership, replay, refunds, renewal, detach/recreation and browser denial',
   { skip: sqlAvailable ? false : 'Local isolated PGlite runtime unavailable; set JL_APPLE_TEST_PGLITE_PATH.' }, async () => {
   const { PGlite } = require(path.resolve(pglitePath)); const pg = new PGlite();
   try {
     await pg.exec('CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role BYPASSRLS; CREATE TABLE public.userprofile(email text PRIMARY KEY);');
     await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261007110000_apple_subscriptions.sql'), 'utf8'));
     await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations/20261007110000_apple_subscriptions.sql'), 'utf8'));
+    await pg.exec('CREATE UNIQUE INDEX userprofile_account_generation_unique ON public.userprofile(account_generation)');
     await pg.query('INSERT INTO public.userprofile(email,account_generation) VALUES($1,$2)', [EMAIL, GENERATION]);
     const owner = (await pg.query('SELECT public.ensure_apple_account_token($1,$2) AS v', [EMAIL, GENERATION])).rows[0].v;
     const stable = (await pg.query('SELECT public.ensure_apple_account_token($1,$2) AS v', [EMAIL, GENERATION])).rows[0].v;
@@ -772,8 +803,7 @@ test('Actual PostgreSQL ledger: ownership, replay, refunds, renewal, detach/recr
     assert.notEqual(recreated.app_account_token, token);
     await assert.rejects(pg.query('SELECT public.ensure_apple_account_token($1,$2)', [EMAIL, GENERATION]), /JL_APPLE_ACCOUNT/);
     await assert.rejects(apply(snapshot()), /JL_APPLE_ACCOUNT/);
-    const detached = await apply(snapshot({ account_email: null, observed_at: new Date(NOW + 2).toISOString(), transactions: [renewedRecord] }));
-    assert.equal(detached.app_account_token, token);
+    await assert.rejects(apply(snapshot({ account_email: null, observed_at: new Date(NOW + 2).toISOString(), transactions: [renewedRecord] })), /JL_APPLE_ACCOUNT/);
     for (const role of ['anon', 'authenticated']) {
       await pg.exec(`SET ROLE ${role};`);
       await assert.rejects(pg.query('SELECT * FROM public.apple_account_tokens'), /permission denied/);

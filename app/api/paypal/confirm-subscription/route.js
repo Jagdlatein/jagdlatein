@@ -1,25 +1,24 @@
 import { accessFromSubscriptions, configuredTrialPlanId, refreshVerifiedSubscription } from "../../../../lib/subscription-access";
+import { requireSameOriginJson, accountJson, accountErrorResponse } from "../../../../lib/course-progress-server";
+import { requirePayPalAccount } from "../../../../lib/paypal-checkout";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req) {
-  let sameOrigin = false;
-  try { sameOrigin = new URL(req.headers.get("origin")).origin === new URL(req.url).origin; } catch {}
-  if (!sameOrigin) return Response.json({ error: "Anfrage nicht erlaubt." }, { status: 403 });
-  let body;
-  try { body = await req.json(); } catch { return Response.json({ error: "Ungültige Anfrage." }, { status: 400 }); }
-  const id = body?.subscriptionId;
-  if (typeof id !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(id))
-    return Response.json({ error: "Ungültiges Abo." }, { status: 400 });
   try {
-    const subscription = await refreshVerifiedSubscription(id);
+    requireSameOriginJson(req);
+    const { session, database } = await requirePayPalAccount(req);
+    const body = await req.json();
+    const id = body?.subscriptionId;
+    if (!body || Array.isArray(body) || Object.keys(body).some(key => key !== "subscriptionId") ||
+        typeof id !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(id)) return accountJson({ error: "Ungültiges Abo." }, 400);
+    const subscription = await refreshVerifiedSubscription(id, { database, expectedAccount: session });
+    if (!subscription) return accountJson({ error: "Dieses Abo ist deinem aktuellen Konto nicht zugeordnet." }, 409);
     const access = subscription ? accessFromSubscriptions([subscription]) : null;
     const activated = Boolean(access?.paid);
     return Response.json({ activated, ...(configuredTrialPlanId() ? {
       accessType: access?.accessType || "none", trialUntil: access?.trialUntil || null, paidUntil: access?.paidUntil || null,
     } : {}) }, { status: activated ? 200 : 202, headers: { "Cache-Control": "no-store" } });
-  } catch {
-    return Response.json({ error: "Die Zahlungsbestätigung wird noch verarbeitet. Bitte später erneut anmelden." }, { status: 503 });
-  }
+  } catch (error) { return accountErrorResponse(error); }
 }

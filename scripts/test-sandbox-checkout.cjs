@@ -13,6 +13,7 @@ const REGULAR = 'P-AAAAAAAAAAAAAAAAAAAAAAAA';
 const TRIAL = 'P-BBBBBBBBBBBBBBBBBBBBBBBB';
 const LIVE_REGULAR = 'P-9XU38461YG7706134NESJQWA';
 const LIVE_TRIAL = 'P-0SN76115U1905643NNLBEIGQ';
+const EMAIL='buyer@example.invalid', GENERATION='11111111-1111-4111-8111-111111111111', SUBSCRIPTION='I-CHECKOUT1234';
 
 function plan(id, overrides) {
   const trial = id === TRIAL;
@@ -28,6 +29,7 @@ function plan(id, overrides) {
 
 function fixture(overrides = {}, providerOverrides = {}) {
   const env = {
+    NODE_ENV:'test', JL_SESSION_SECRET:'isolated-checkout-session-secret-at-least-32-bytes', ACCOUNT_GENERATION_ENABLED:'true',
     JL_TEST_ENVIRONMENT: 'paypal-sandbox', PAYPAL_API_BASE: API,
     PAYPAL_CLIENT_ID: CLIENT, NEXT_PUBLIC_PAYPAL_CLIENT_ID: CLIENT, PAYPAL_SECRET: 'fake-isolated-secret',
     NEXT_PUBLIC_PAYPAL_PLAN_ID: REGULAR, NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: TRIAL,
@@ -49,6 +51,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
   } }, location: {} };
   function load(relative) {
     const filename = path.join(root, relative);
+    if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename,'utf8'));
     if (cache.has(filename)) return cache.get(filename).exports;
     const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), {
       filename, disableNextSsg: true,
@@ -60,7 +63,13 @@ function fixture(overrides = {}, providerOverrides = {}) {
       if (id === '@supabase/supabase-js') return { createClient() {
         calls.push({ type: 'database-client' }); return { from(table) {
           calls.push({ type: 'database-table', table });
-          return { select() { return this; }, async limit(n) { assert.equal(n, 0); return { data: [], error: null }; } };
+          return { select() { return this; }, eq() { return this; }, ilike() { return this; },
+            async maybeSingle() { return {data:table==='userprofile'?{email:EMAIL,account_generation:GENERATION,is_premium:false,is_admin:false}:null,error:null}; },
+            async limit(n) { assert.equal(n, 0); return { data: [], error: null }; },
+            then(resolve,reject) { return Promise.resolve({data:[],error:null}).then(resolve,reject); } };
+        }, async rpc(name,args) { calls.push({type:'database-rpc',name});
+          if(name==='begin_paypal_checkout')return {data:{request_id:'22222222-2222-4222-8222-222222222222',account_generation:GENERATION,plan_id:args.p_plan_id},error:null};
+          assert.equal(name,'reserve_paypal_subscription'); return {data:{subscription_id:SUBSCRIPTION,account_generation:GENERATION,account_email:EMAIL},error:null};
         } };
       } };
       if (id === 'react') return { ...pr('react'),
@@ -73,21 +82,35 @@ function fixture(overrides = {}, providerOverrides = {}) {
       return pr(id);
     }, mod, mod.exports, { env }, async (target, options) => {
       if (target === '/api/account') {
-        calls.push({ type: 'browser-fetch', target }); return Response.json({}, { status: 401 });
+        calls.push({ type: 'browser-fetch', target }); return providerOverrides.unsigned
+          ? Response.json({}, {status:401}) : Response.json({account:{paid:false,admin:false}});
       }
       if (target === '/api/paypal/checkout-config') {
         calls.push({ type: 'browser-fetch', target });
-        return load('app/api/paypal/checkout-config/route.js').GET();
+        return load('app/api/paypal/checkout-config/route.js').GET(request());
+      }
+      if(target==='/api/paypal/create-subscription') {
+        calls.push({type:'browser-fetch',target});
+        return load('app/api/paypal/create-subscription/route.js').POST(request(JSON.parse(options.body)));
       }
       const url = new URL(target); calls.push({ type: 'provider-fetch', url: url.href, options });
       assert.equal(url.origin, API);
       if (url.pathname === '/v1/oauth2/token') return Response.json({ access_token: 'fake-isolated-token' });
       if (url.pathname.startsWith('/v1/billing/plans/')) return Response.json(plan(url.pathname.split('/').at(-1), providerOverrides));
+      if(url.pathname==='/v1/billing/subscriptions' && options.method==='POST') {
+        calls.push({type:'server-subscription',body:JSON.parse(options.body)});
+        return Response.json({id:SUBSCRIPTION,plan_id:JSON.parse(options.body).plan_id,status:'APPROVAL_PENDING'});
+      }
       throw new Error('Unexpected provider target');
     }, document, window);
     return mod.exports;
   }
-  return { env, calls, load,
+  const session=load('lib/account-session.js');
+  const token=session.createAccountSession(EMAIL,Date.now(),{authenticatedAt:Math.floor(Date.now()/1000),accountGeneration:GENERATION});
+  function request(body={}) { return {url:'https://jagdlatein.test/api/paypal/create-subscription',
+    headers:new Headers({origin:'https://jagdlatein.test','content-type':'application/json'}),json:async()=>body,
+    cookies:{get:name=>name===session.JL_ACCOUNT_COOKIE&&!providerOverrides.unsigned?{value:token}:undefined}}; }
+  return { env, calls, load, request,
     async runPage() {
       load('pages/preise.js').default();
       effects.forEach(effect => effect());
@@ -116,25 +139,25 @@ const invalidSettings = {
   'explicit live API': { PAYPAL_API_BASE: 'https://api-m.paypal.com' },
 };
 for (const [name, values] of Object.entries(invalidSettings)) test(`Sandbox checkout rejects ${name} before any database or provider access`, async () => {
-  const ctx = fixture(values); const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET();
+  const ctx = fixture(values); const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
   assert.equal(response.status, 503); assert.deepEqual(ctx.calls, []);
   const body = JSON.stringify(await response.json()); assert.ok(!body.includes('fake-isolated-secret'));
 });
 
 test('Trial checkout returns only an explicit client and the verified three-day sandbox offer', async () => {
-  const ctx = fixture(); const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET();
-  assert.equal(response.status, 200); assert.equal(response.headers.get('cache-control'), 'no-store');
+  const ctx = fixture(); const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
+  assert.equal(response.status, 200); assert.ok(response.headers.get('cache-control').includes('no-store'));
   assert.deepEqual(await response.json(), { clientId: CLIENT, planId: TRIAL, trialDays: 3, amount: '5.00', currency: 'EUR' });
   assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
 });
 
 test('A regular-only sandbox offer is verified against its actual monthly plan before SDK approval', async () => {
   const ctx = fixture({ NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined });
-  const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET();
+  const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { clientId: CLIENT, planId: REGULAR, trialDays: 0, amount: '5.00', currency: 'EUR' });
   assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
-  assert.ok(!ctx.calls.some(call => call.type === 'database-client'));
+  assert.ok(ctx.calls.some(call => call.type === 'database-client'));
 });
 
 for (const wrongPlan of [{ status: 'INACTIVE' }, { quantity_supported: true }, { id: 'P-WRONGPLAN' },
@@ -143,7 +166,8 @@ for (const wrongPlan of [{ status: 'INACTIVE' }, { quantity_supported: true }, {
     pricing_scheme: { fixed_price: { value: '6.00', currency_code: 'EUR' } } }] }]) {
   test(`Regular sandbox checkout refuses mismatched actual plan: ${JSON.stringify(wrongPlan)}`, async () => {
     const ctx = fixture({ NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined }, wrongPlan);
-    assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET()).status, 503);
+    assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request())).status, 503);
+    assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
   });
 }
 
@@ -165,7 +189,8 @@ test('Both trial and regular browser checkouts verify the server offer before lo
     assert.ok(sdkIndex > ctx.calls.findIndex(call => call.type === 'browser-fetch' && call.target === '/api/paypal/checkout-config'));
     assert.equal(ctx.calls.slice(0, sdkIndex).filter(call => call.type === 'provider-fetch').length, 2);
     const script = new URL(ctx.calls[sdkIndex].src); assert.equal(script.searchParams.get('client-id'), CLIENT);
-    assert.deepEqual(ctx.calls.find(call => call.type === 'sdk-subscription').args, { plan_id: trial ? TRIAL : REGULAR });
+    assert.equal(ctx.calls.find(call => call.type === 'server-subscription').body.plan_id, trial ? TRIAL : REGULAR);
+    assert.ok(!ctx.calls.some(call=>call.type==='sdk-subscription'));
   }
 });
 
@@ -173,13 +198,21 @@ test('Production monthly defaults and the existing UI still use the original liv
   const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined, PAYPAL_API_BASE: undefined,
     PAYPAL_CLIENT_ID: undefined, NEXT_PUBLIC_PAYPAL_CLIENT_ID: undefined,
     NEXT_PUBLIC_PAYPAL_PLAN_ID: undefined, NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined });
-  const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET();
+  const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { clientId: LIVE_CLIENT, planId: LIVE_REGULAR, trialDays: 0, amount: '5.00', currency: 'EUR' });
-  assert.deepEqual(ctx.calls, []);
-  await ctx.runPage(); await ctx.createSubscription();
+  assert.ok(!ctx.calls.some(call=>call.type==='provider-fetch'));
+  await ctx.runPage();
   const script = new URL(ctx.calls.find(call => call.type === 'sdk-script').src);
   assert.equal(script.searchParams.get('client-id'), LIVE_CLIENT);
-  assert.deepEqual(ctx.calls.find(call => call.type === 'sdk-subscription').args, { plan_id: LIVE_REGULAR });
-  assert.ok(!ctx.calls.some(call => call.type === 'provider-fetch' || call.type === 'database-client'));
+  assert.ok(!ctx.calls.some(call=>call.type==='sdk-subscription'));
+  assert.ok(!ctx.calls.some(call => call.type === 'provider-fetch'));
+});
+
+test('Signed-out visitors cannot load a PayPal SDK or request server creation', async () => {
+  const ctx=fixture({}, {unsigned:true}); await ctx.runPage();
+  assert.ok(ctx.calls.some(call=>call.type==='browser-fetch'&&call.target==='/api/account'));
+  assert.ok(!ctx.calls.some(call=>['sdk-script','sdk-buttons','provider-fetch','database-client'].includes(call.type)));
+  assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request())).status,401);
+  assert.equal((await ctx.load('app/api/paypal/create-subscription/route.js').POST(ctx.request())).status,401);
 });
