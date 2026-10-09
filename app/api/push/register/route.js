@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import { createClient } from "@supabase/supabase-js";
 import { readRequestAccountSession } from "../../../../lib/account-access";
 import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
-import { accountDatabaseOptions, isAccountDeletionEnabled } from "../../../../lib/account-session";
+import { accountDatabaseOptions, isAccountGenerationEnabled } from "../../../../lib/account-session";
 import { requireCurrentAccount, requireSameOriginJson } from "../../../../lib/course-progress-server";
 
 
@@ -43,7 +43,7 @@ export async function POST(req) {
           platform: "android",
           enabled: true,
           updated_at: new Date().toISOString(),
-          ...(isAccountDeletionEnabled() ? { account_email: session.email } : {}),
+          ...(isAccountGenerationEnabled() ? { account_email: session.email } : {}),
         },
         {
           onConflict: "token",
@@ -51,7 +51,7 @@ export async function POST(req) {
       );
 
     if (error) {
-      console.error("Push-Token Fehler:", error);
+      console.error("Push-Token Speicherung fehlgeschlagen.");
 
       return Response.json(
         { success: false, error: "Datenbankfehler" },
@@ -65,7 +65,7 @@ export async function POST(req) {
       return Response.json({ success: false, error: error.message },
         { status: error.status, headers: { "Cache-Control": "private, no-store" } });
     }
-    console.error("Push API Fehler:", error);
+    console.error("Push Registrierung fehlgeschlagen.");
 
     return Response.json(
       { success: false, error: "Serverfehler" },

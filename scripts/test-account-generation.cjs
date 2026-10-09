@@ -20,7 +20,8 @@ function fixture(extraEnv = {}, overrides = {}) {
     SUPABASE_URL: 'https://database.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'fake-test-key', ...extraEnv };
   const cache = new Map();
   const context = vm.createContext({ process: { env }, Buffer, crypto: webcrypto, atob,
-    TextEncoder, TextDecoder, URL, Date, Response, AbortSignal, fetch: overrides.fetch });
+    TextEncoder, TextDecoder, URL, Date, Response, AbortSignal, fetch: overrides.fetch,
+    console: overrides.console || console });
   function load(relative) {
     const file = path.join(root, relative);
     if (cache.has(file)) return cache.get(file).exports;
@@ -155,4 +156,126 @@ test('Deletion-enabled middleware rechecks a fresh paid cookie before serving pr
   const response = await ctx.load('middleware.js').middleware(request);
   assert.equal(checked, 1);
   assert.equal(new URL(response.headers.get('location')).pathname, '/preise');
+});
+
+function pushFixture(env, { profileGeneration = GENERATION, sessionGeneration = GENERATION, unsigned = false,
+  writeError = null, thrownError = null } = {}) {
+  const writes = [], reads = [], logs = [];
+  let clientOptions, clients = 0;
+  const database = { from(table) {
+    if (table === 'userprofile') return {
+      select(columns) { reads.push(columns); return this; }, ilike() { return this; },
+      maybeSingle: async () => ({ data: { email: EMAIL,
+        ...(profileGeneration == null ? {} : { account_generation: profileGeneration }) }, error: null }),
+    };
+    assert.equal(table, 'push_tokens');
+    return { upsert: async (payload, options) => {
+      writes.push({ payload: JSON.parse(JSON.stringify(payload)), options: JSON.parse(JSON.stringify(options)) });
+      if (thrownError) throw thrownError;
+      return { error: writeError };
+    } };
+  } };
+  const ctx = fixture(env, { console: { error: (...args) => logs.push(args) },
+    '@supabase/supabase-js': { createClient: (url, key, options) => {
+    clients++; clientOptions = options; return database;
+  } } });
+  const cookie = unsigned ? null : ctx.session.createAccountSession(EMAIL, NOW, {
+    paid: false, admin: false, authenticatedAt: Math.floor(NOW / 1000),
+    ...(sessionGeneration ? { accountGeneration: sessionGeneration } : {}),
+  });
+  return { writes, reads, logs, get clientOptions() { return clientOptions; }, get clients() { return clients; },
+    register: (body = { token: '  synthetic-device-token  ' }, headers = {}) => ctx.load('app/api/push/register/route.js').POST(
+      new NextRequest('https://jagdlatein.test/api/push/register', { method: 'POST',
+        headers: { origin: 'https://jagdlatein.test', 'content-type': 'application/json',
+          ...(cookie ? { cookie: `jl_account_session=${cookie}` } : {}), ...headers }, body: JSON.stringify(body) })) };
+}
+
+for (const enabled of ['ACCOUNT_GENERATION_ENABLED', 'ACCOUNT_DELETION_ENABLED', 'APPLE_SUBSCRIPTIONS_ENABLED']) {
+  test(`${enabled}: push registration writes its authenticated owner and forwards its generation binding`, async () => {
+    const ctx = pushFixture({ [enabled]: 'true' });
+    const response = await ctx.register();
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { success: true });
+    assert.equal(ctx.writes.length, 1);
+    assert.deepEqual(ctx.writes[0].payload, { token: 'synthetic-device-token', platform: 'android', enabled: true,
+      updated_at: ctx.writes[0].payload.updated_at, account_email: EMAIL });
+    assert.ok(Number.isFinite(Date.parse(ctx.writes[0].payload.updated_at)));
+    assert.deepEqual(ctx.writes[0].options, { onConflict: 'token' });
+    assert.deepEqual(ctx.reads, ['email,account_generation']);
+    assert.equal(ctx.clientOptions.global.headers['x-jagdlatein-account-generation'], GENERATION);
+    assert.equal(ctx.clientOptions.global.headers['x-jagdlatein-account-email'], EMAIL);
+  });
+}
+
+test('Legacy push registration keeps its pre-migration payload and database options when generation flags are off', async () => {
+  const ctx = pushFixture({}, { profileGeneration: null, sessionGeneration: null });
+  assert.equal((await ctx.register()).status, 200);
+  assert.equal(ctx.writes.length, 1);
+  assert.deepEqual(ctx.writes[0].payload, { token: 'synthetic-device-token', platform: 'android', enabled: true,
+    updated_at: ctx.writes[0].payload.updated_at });
+  assert.ok(Number.isFinite(Date.parse(ctx.writes[0].payload.updated_at)));
+  assert.deepEqual(ctx.writes[0].options, { onConflict: 'token' });
+  assert.deepEqual(ctx.reads, ['email']);
+  assert.equal(ctx.clientOptions.global, undefined);
+});
+
+for (const [reason, identity] of [
+  ['revoked same-email generation', { profileGeneration: OTHER }],
+  ['missing session generation', { sessionGeneration: null }],
+  ['missing profile generation', { profileGeneration: null }],
+  ['unsigned request', { unsigned: true }],
+]) {
+  test(`Generation-only push registration rejects ${reason} before writing a device token`, async () => {
+    const ctx = pushFixture({ ACCOUNT_GENERATION_ENABLED: 'true' }, identity);
+    const response = await ctx.register();
+    assert.equal(response.status, 401);
+    assert.equal((await response.json()).success, false);
+    assert.deepEqual(ctx.writes, []);
+  });
+}
+
+test('Generation-bound push retains origin, JSON and token checks before creating a database client', async () => {
+  for (const [body, headers, status] of [
+    [{ token: 'synthetic-device-token' }, { origin: 'https://other.example.invalid' }, 403],
+    [{ token: 'synthetic-device-token' }, { 'content-type': 'text/plain' }, 415],
+    [{ token: 'synthetic token with spaces' }, {}, 400],
+    [{ token: '\u0000synthetic-device-token' }, {}, 400],
+    [{ token: 'x'.repeat(4097) }, {}, 400],
+  ]) {
+    const ctx = pushFixture({ ACCOUNT_GENERATION_ENABLED: 'true' });
+    assert.equal((await ctx.register(body, headers)).status, status);
+    assert.equal(ctx.clients, 0);
+    assert.deepEqual(ctx.writes, []);
+  }
+});
+
+test('An isolated sandbox still refuses push registration even for an authenticated current-generation account', async () => {
+  const ctx = pushFixture({ ACCOUNT_GENERATION_ENABLED: 'true', JL_TEST_ENVIRONMENT: 'paypal-sandbox' });
+  const response = await ctx.register();
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { success: false, error: 'Push ist in der Testumgebung deaktiviert.' });
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  assert.equal(ctx.clients, 0);
+  assert.deepEqual(ctx.writes, []);
+});
+
+test('Push failures log only fixed messages, excluding device tokens, owner email, provider details and stacks', async () => {
+  const token = 'synthetic-sensitive-device-token';
+  const rawDetails = `synthetic-provider-details owner=${EMAIL} device=${token}`;
+  const stack = `SyntheticError: ${rawDetails}\n    at synthetic-sensitive-stack`;
+  const error = Object.assign(new Error(rawDetails), { details: rawDetails, hint: rawDetails, stack });
+  for (const [failure, expectedError, expectedLog] of [
+    [{ writeError: error }, 'Datenbankfehler', 'Push-Token Speicherung fehlgeschlagen.'],
+    [{ thrownError: error }, 'Serverfehler', 'Push Registrierung fehlgeschlagen.'],
+  ]) {
+    const ctx = pushFixture({ ACCOUNT_GENERATION_ENABLED: 'true' }, failure);
+    const response = await ctx.register({ token });
+    assert.equal(response.status, 500);
+    assert.deepEqual(await response.json(), { success: false, error: expectedError });
+    assert.deepEqual(ctx.logs, [[expectedLog]]);
+    const captured = JSON.stringify(ctx.logs);
+    for (const sensitive of [token, EMAIL, rawDetails, stack, 'synthetic-sensitive-stack']) {
+      assert.ok(!captured.includes(sensitive), 'Raw push context must not reach logs');
+    }
+  }
 });
