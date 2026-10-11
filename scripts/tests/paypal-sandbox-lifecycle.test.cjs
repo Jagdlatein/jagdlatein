@@ -17,7 +17,8 @@ const ENV = { NODE_ENV: 'test', JL_SESSION_SECRET: 'isolated-sandbox-regression-
   SUPABASE_URL: 'https://database.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'fake-local-only',
   PAYPAL_API_BASE: 'https://api-m.sandbox.paypal.com', PAYPAL_CLIENT_ID: 'fake-sandbox-client',
   NEXT_PUBLIC_PAYPAL_CLIENT_ID: 'fake-sandbox-client', PAYPAL_SECRET: 'fake-local-only', PAYPAL_WEBHOOK_ID: 'fake-webhook',
-  NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: PLAN, PAYPAL_TRIAL_PLAN_IDS: PLAN, PAYPAL_PLAN_IDS: `${PLAN},${REGULAR}` };
+  NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: PLAN, PAYPAL_TRIAL_PLAN_IDS: PLAN, PAYPAL_PLAN_IDS: `${PLAN},${REGULAR}`,
+  PAYPAL_PLAN_PRICES: JSON.stringify({ [PLAN]: '5.00', [REGULAR]: '5.00' }) };
 const iso = ms => new Date(ms).toISOString();
 function trialPlan() { return { id: PLAN, status: 'ACTIVE', billing_cycles: [
   { tenure_type: 'TRIAL', sequence: 1, total_cycles: 1, frequency: { interval_unit: 'DAY', interval_count: 3 },
@@ -54,10 +55,15 @@ test.before(async () => {
 });
 test.after(async () => { await pg?.close(); });
 async function fixture(overrides = {}) {
+  const fixtureEnv = { ...ENV, ...(overrides.newOffer ? {
+    PAYPAL_PLAN_PRICES: JSON.stringify({ [PLAN]: '10.00', [REGULAR]: '10.00' }),
+  } : {}) };
+  const offerPlan = trialPlan();
+  if (overrides.newOffer) offerPlan.billing_cycles[1].pricing_scheme.fixed_price.value = '10.00';
   await pg.exec('TRUNCATE public.paypal_checkout_requests; TRUNCATE public.paypal_subscriptions CASCADE; TRUNCATE public.userprofile CASCADE;');
   await pg.query('INSERT INTO public.userprofile(user_id,email,is_premium,is_admin,account_generation,updated_at) VALUES(gen_random_uuid(),$1,false,false,$2,now())', [EMAIL, GENERATION]);
   if (!overrides.unknownContract) await pg.query('INSERT INTO public.paypal_subscriptions(subscription_id,account_email,account_generation,plan_id,status,verified_at) VALUES($1,$2,$3,$4,\'APPROVAL_PENDING\',$5)', [ID,EMAIL,GENERATION,PLAN,iso(NOW-DAY)]);
-  const state = { status: 'ACTIVE', start: iso(NOW - DAY), nextBilling: iso(NOW + 2 * DAY), subscriptionPlanId: PLAN, merchantPlan: trialPlan(), transactions: [],
+  const state = { status: 'ACTIVE', start: iso(NOW - DAY), nextBilling: iso(NOW + 2 * DAY), subscriptionPlanId: PLAN, merchantPlan: offerPlan, transactions: [],
     signature: 'SUCCESS', failProvider: false, reads: [], rpcCalls: 0, ...overrides };
   const database = {
     from(table) {
@@ -141,7 +147,7 @@ async function fixture(overrides = {}) {
       if (id === '@supabase/supabase-js') return { createClient: () => database };
       if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)));
       return pr(id);
-    }, mod, mod.exports, { env: ENV }, fakeFetch);
+    }, mod, mod.exports, { env: fixtureEnv }, fakeFetch);
     return mod.exports;
   }
   const initialRow = (await pg.query('SELECT to_jsonb(s) AS data FROM public.paypal_subscriptions s WHERE subscription_id=$1',[ID])).rows[0]?.data;
@@ -175,6 +181,34 @@ test('Simulated PayPal approval grants exact provider-bound 72-hour trial throug
   assert.equal(report.subscription_found, true); assert.equal(report.exact_72_hour_window, true);
   assert.equal(report.payments_total, 0); assert.equal(report.status, 'ACTIVE');
   assert.ok(!JSON.stringify(report).includes('@'));
+});
+
+test('A mapped new ten-euro trial activates through the real ledger without changing its three-day limit', async () => {
+  const ctx = await fixture({ newOffer: true });
+  const response = await ctx.confirm(); assert.equal(response.status, 200);
+  const row = await ctx.row(); assert.equal(row.review_reason, null); assert.equal(row.paid_until, null);
+  assert.equal(Date.parse(row.trial_until) - Date.parse(row.trial_started_at), 3 * DAY);
+  assert.equal(ctx.helper.accessFromSubscriptions([row], NOW).paid, true);
+  assert.equal(ctx.helper.accessFromSubscriptions([row], Date.parse(row.trial_until)).paid, false);
+});
+
+test('New ten-euro contracts require ten-euro payment proof and cancellation retains only the funded interval', async () => {
+  const paid = transaction({ amount_with_breakdown: { gross_amount: { value: '10.00', currency_code: 'EUR' } } });
+  const ctx = await fixture({ newOffer: true, start: iso(NOW - 4 * DAY), nextBilling: iso(NOW - DAY), transactions: [paid] });
+  const response = await ctx.confirm(); assert.equal(response.status, 200);
+  const first = await ctx.row(); assert.equal(first.review_reason, null); assert.ok(first.paid_until);
+  ctx.state.status = 'CANCELLED'; ctx.state.nextBilling = null;
+  await ctx.webhook('BILLING.SUBSCRIPTION.CANCELLED'); const cancelled = await ctx.row();
+  assert.equal(cancelled.status, 'CANCELLED'); assert.equal(cancelled.paid_until, first.paid_until);
+  assert.equal(ctx.helper.accessFromSubscriptions([cancelled], NOW).paid, true);
+  assert.equal(ctx.helper.accessFromSubscriptions([cancelled], Date.parse(cancelled.paid_until)).paid, false);
+});
+
+test('A five-euro transaction cannot fund a new ten-euro contract after its trial', async () => {
+  const ctx = await fixture({ newOffer: true, start: iso(NOW - 4 * DAY), nextBilling: iso(NOW - DAY), transactions: [transaction()] });
+  await ctx.confirm(); const row = await ctx.row();
+  assert.equal(row.review_reason, 'payment_amount_requires_review'); assert.equal(row.paid_until, null);
+  assert.equal(ctx.helper.accessFromSubscriptions([row], NOW).paid, false);
 });
 test('Trial expires at the exact boundary and checkout/webhook replay cannot restart it', async () => {
   const ctx = await fixture(); const first = await ctx.refresh(); await ctx.confirm(); await ctx.webhook('BILLING.SUBSCRIPTION.ACTIVATED');
@@ -429,7 +463,7 @@ test('A different current account cannot confirm another owner contract', async 
 });
 
 test('Server creation reserves the new provider ID before returning it, with one shared request key', async () => {
-  const ctx = await fixture({unknownContract:true});
+  const ctx = await fixture({unknownContract:true,newOffer:true});
   const responses=await Promise.all([ctx.create(),ctx.create()]);
   for (const response of responses) { assert.equal(response.status,200); assert.deepEqual(await response.json(),{subscriptionId:ID}); }
   const row=await ctx.row(); assert.equal(row.account_email,EMAIL); assert.equal(row.account_generation,GENERATION); assert.equal(row.status,'APPROVAL_PENDING');
@@ -441,13 +475,13 @@ test('Server creation reserves the new provider ID before returning it, with one
 
 test('Malformed provider creation and failed reservation never return an approvable ID', async () => {
   for (const change of [{createdId:'invalid'},{beforeRpc:name=>{if(name==='reserve_paypal_subscription') throw new Error('isolated reservation failure');}}]) {
-    const ctx=await fixture({unknownContract:true,...change}); const response=await ctx.create();
+    const ctx=await fixture({unknownContract:true,newOffer:true,...change}); const response=await ctx.create();
     assert.equal(response.status,503); assert.equal((await response.json()).subscriptionId,undefined); assert.equal(await ctx.row(),undefined);
   }
 });
 
 test('Provider creation delayed across deletion and same-email registration cannot reserve the old generation', async () => {
-  const ctx=await fixture({unknownContract:true});
+  const ctx=await fixture({unknownContract:true,newOffer:true});
   ctx.state.onCreate=async()=>{
     await pg.query('SELECT public.delete_jagdlatein_account($1,$2::uuid)',[EMAIL,GENERATION]);
     await pg.query('INSERT INTO public.userprofile(user_id,email,account_generation) VALUES(gen_random_uuid(),$1,$2)',[EMAIL,'22222222-2222-4222-8222-222222222222']);

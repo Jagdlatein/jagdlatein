@@ -1,6 +1,8 @@
 # Drei Tage kostenlos, danach PayPal-Abo
 
-Der neue Tarif beginnt mit drei kostenlosen Tagen. Der Kunde bestaetigt schon zu Beginn in PayPal, dass anschliessend **5 EUR pro Monat** bis zur Kuendigung abgebucht werden. Ohne diese Zustimmung beginnt kein Testzugang. Die App prueft das bestaetigte Abo bei PayPal und zeigt das Ende des Testzugangs im Konto.
+Diese Anleitung beschreibt den historischen 5-EUR-Tarif. Fuer neue 10-EUR-Tarife den getrennten Helfer und die [Anleitung zum Preiswechsel](paypal-preiswechsel-10.md) verwenden. Historische Plan-IDs und Zustimmungen bleiben fuer die Abwicklung bestehender Vertraege erhalten.
+
+Der historische Tarif beginnt mit drei kostenlosen Tagen. Der Kunde bestaetigt schon zu Beginn in PayPal, dass anschliessend **5 EUR pro Monat** bis zur Kuendigung abgebucht werden. Ohne diese Zustimmung beginnt kein Testzugang. Die App prueft das bestaetigte Abo bei PayPal und zeigt das Ende des Testzugangs im Konto.
 
 PayPal bildet die drei Tage als einen kostenlosen Testzyklus ab; danach beginnt der normale Monatszyklus. Der bisherige Monatsplan bleibt fuer bestehende Abos erhalten. [PayPal: Testzeitraum](https://developer.paypal.com/subscriptions/trial-period/), [PayPal: Abrechnungszyklen](https://developer.paypal.com/platforms/subscriptions/customize/billing-cycles/).
 
@@ -86,7 +88,7 @@ Anschliessend in Vercel pruefen, dass das neue Deployment erfolgreich ist. Hier 
 
 Der reproduzierbare, getrennte Testablauf mit PowerShell-Helfer, lokalen SQL-/Webhookregressionen und einem ehrlichen offenen Anbieterstatus steht in [paypal-sandbox-pruefung.md](paypal-sandbox-pruefung.md). Die öffentliche App ist keine Sandbox-Testversion.
 
-Die Preisseite muss **3 Tage kostenlos, danach 5 EUR/Monat** zeigen. PayPal muss vor Abschluss denselben Tarif zur ausdruecklichen Bestaetigung anzeigen. Im Konto steht nach der Bestaetigung das Ende des Testzugangs. Die Anmeldung verwendet die bei PayPal bestaetigte E-Mail-Adresse. Die erste kostenlose Frist endet zum frueheren Wert aus **verifiziertem ersten PayPal-Abrechnungstermin und Startzeit plus 72 Stunden**. Der echte Sandbox-Test hat gezeigt, dass PayPals Drei-Tage-Tarif keine exakt 72 Stunden bis zur Abbuchung garantierte. Ein neuer Login, ein erneut empfangener Webhook oder eine spaetere Monatsabrechnung verlaengert die gespeicherte Frist nicht. Anschliessend wird Zugang anhand bestaetigter Zahlungen gewaehrt; ein Abrechnungstermin alleine beweist keine Zahlung.
+Die damalige Preisseite musste **3 Tage kostenlos, danach 5 EUR/Monat** zeigen. PayPal musste vor Abschluss denselben Tarif zur ausdruecklichen Bestaetigung anzeigen. Im Konto steht nach der Bestaetigung das Ende des Testzugangs. Die Anmeldung verwendet die bei PayPal bestaetigte E-Mail-Adresse. Die erste kostenlose Frist endet zum frueheren Wert aus **verifiziertem ersten PayPal-Abrechnungstermin und Startzeit plus 72 Stunden**. Der echte Sandbox-Test hat gezeigt, dass PayPals Drei-Tage-Tarif keine exakt 72 Stunden bis zur Abbuchung garantierte. Ein neuer Login, ein erneut empfangener Webhook oder eine spaetere Monatsabrechnung verlaengert die gespeicherte Frist nicht. Anschliessend wird Zugang anhand bestaetigter Zahlungen gewaehrt; ein Abrechnungstermin alleine beweist keine Zahlung.
 
 Bei einer Kuendigung wird der kostenlose Zugriff nach der verifizierten Statusaenderung beendet. Ohne frueher eintreffenden Webhook kann die Aktualisierung einschliesslich kurzer Sitzungsgueltigkeit bis zu sechs Minuten dauern. Das feste Testende wird dadurch nicht verlaengert. Eine nicht moegliche Anbieterpruefung verlaengert den Testzugang ebenfalls nicht.
 

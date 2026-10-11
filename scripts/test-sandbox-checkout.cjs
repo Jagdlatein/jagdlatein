@@ -23,7 +23,7 @@ function plan(id, overrides) {
       pricing_scheme: { fixed_price: { value: '0.00', currency_code: 'EUR' } } }] : []),
     { tenure_type: 'REGULAR', sequence: trial ? 2 : 1, total_cycles: 0,
       frequency: { interval_unit: 'MONTH', interval_count: 1 },
-      pricing_scheme: { fixed_price: { value: '5.00', currency_code: 'EUR' } } },
+      pricing_scheme: { fixed_price: { value: '10.00', currency_code: 'EUR' } } },
   ], ...overrides };
 }
 
@@ -34,6 +34,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
     PAYPAL_CLIENT_ID: CLIENT, NEXT_PUBLIC_PAYPAL_CLIENT_ID: CLIENT, PAYPAL_SECRET: 'fake-isolated-secret',
     NEXT_PUBLIC_PAYPAL_PLAN_ID: REGULAR, NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: TRIAL,
     PAYPAL_PLAN_IDS: `${REGULAR},${TRIAL}`, PAYPAL_TRIAL_PLAN_IDS: TRIAL,
+    PAYPAL_PLAN_PRICES: JSON.stringify({ [REGULAR]: '10.00', [TRIAL]: '10.00' }),
     SUPABASE_URL: 'https://isolated-db.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'fake-isolated-db-key',
     ...overrides,
   };
@@ -73,10 +74,12 @@ function fixture(overrides = {}, providerOverrides = {}) {
         } };
       } };
       if (id === 'react') return { ...pr('react'),
-        useState: initial => [initial, () => {}], useMemo: fn => fn(), useEffect: fn => effects.push(fn),
+        useState: initial => [initial === false && providerOverrides.renderVerified ? true : initial, () => {}],
+        useMemo: fn => fn(), useEffect: fn => effects.push(fn),
       };
       if (id === 'next/router') return { useRouter: () => ({ query: {} }) };
-      if (id === 'next/link' || id.endsWith('/LearningToolLayout')) return () => null;
+      if (id === 'next/link') return ({ href, children }) => pr('react').createElement('a', { href }, children);
+      if (id.endsWith('/LearningToolLayout')) return ({ children }) => children;
       if (id.endsWith('.module.css')) return { __esModule: true, default: {} };
       if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)));
       return pr(id);
@@ -87,6 +90,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
       }
       if (target === '/api/paypal/checkout-config') {
         calls.push({ type: 'browser-fetch', target });
+        if (providerOverrides.browserOffer) return Response.json(providerOverrides.browserOffer);
         return load('app/api/paypal/checkout-config/route.js').GET(request());
       }
       if(target==='/api/paypal/create-subscription') {
@@ -94,7 +98,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
         return load('app/api/paypal/create-subscription/route.js').POST(request(JSON.parse(options.body)));
       }
       const url = new URL(target); calls.push({ type: 'provider-fetch', url: url.href, options });
-      assert.equal(url.origin, API);
+      assert.equal(url.origin, env.PAYPAL_API_BASE || 'https://api-m.paypal.com');
       if (url.pathname === '/v1/oauth2/token') return Response.json({ access_token: 'fake-isolated-token' });
       if (url.pathname.startsWith('/v1/billing/plans/')) return Response.json(plan(url.pathname.split('/').at(-1), providerOverrides));
       if(url.pathname==='/v1/billing/subscriptions' && options.method==='POST') {
@@ -111,6 +115,9 @@ function fixture(overrides = {}, providerOverrides = {}) {
     headers:new Headers({origin:'https://jagdlatein.test','content-type':'application/json'}),json:async()=>body,
     cookies:{get:name=>name===session.JL_ACCOUNT_COOKIE&&!providerOverrides.unsigned?{value:token}:undefined}}; }
   return { env, calls, load, request,
+    renderPage() {
+      return pr('react-dom/server').renderToStaticMarkup(load('pages/preise.js').default());
+    },
     async runPage() {
       load('pages/preise.js').default();
       effects.forEach(effect => effect());
@@ -147,7 +154,7 @@ for (const [name, values] of Object.entries(invalidSettings)) test(`Sandbox chec
 test('Trial checkout returns only an explicit client and the verified three-day sandbox offer', async () => {
   const ctx = fixture(); const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
   assert.equal(response.status, 200); assert.ok(response.headers.get('cache-control').includes('no-store'));
-  assert.deepEqual(await response.json(), { clientId: CLIENT, planId: TRIAL, trialDays: 3, amount: '5.00', currency: 'EUR' });
+  assert.deepEqual(await response.json(), { clientId: CLIENT, planId: TRIAL, trialDays: 3, amount: '10.00', currency: 'EUR' });
   assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
 });
 
@@ -155,7 +162,7 @@ test('A regular-only sandbox offer is verified against its actual monthly plan b
   const ctx = fixture({ NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined });
   const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { clientId: CLIENT, planId: REGULAR, trialDays: 0, amount: '5.00', currency: 'EUR' });
+  assert.deepEqual(await response.json(), { clientId: CLIENT, planId: REGULAR, trialDays: 0, amount: '10.00', currency: 'EUR' });
   assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
   assert.ok(ctx.calls.some(call => call.type === 'database-client'));
 });
@@ -176,7 +183,8 @@ test('Browser with missing public test settings cannot create an SDK script or s
     { NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined, NEXT_PUBLIC_PAYPAL_PLAN_ID: undefined, NEXT_PUBLIC_PAYPAL_CLIENT_ID: undefined },
     { NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined, NEXT_PUBLIC_PAYPAL_CLIENT_ID: LIVE_CLIENT, PAYPAL_CLIENT_ID: LIVE_CLIENT }]) {
     const ctx = fixture(values); await ctx.runPage();
-    assert.ok(ctx.calls.some(call => call.type === 'browser-fetch' && call.target === '/api/paypal/checkout-config'));
+    if (ctx.env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID || ctx.env.NEXT_PUBLIC_PAYPAL_PLAN_ID)
+      assert.ok(ctx.calls.some(call => call.type === 'browser-fetch' && call.target === '/api/paypal/checkout-config'));
     assert.ok(!ctx.calls.some(call => ['sdk-script', 'sdk-buttons', 'sdk-subscription', 'provider-fetch', 'database-client'].includes(call.type)));
   }
 });
@@ -194,19 +202,66 @@ test('Both trial and regular browser checkouts verify the server offer before lo
   }
 });
 
-test('Production monthly defaults and the existing UI still use the original live client and monthly plan', async () => {
+test('Missing production offer cannot fall back to a historical five-euro plan', async () => {
   const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined, PAYPAL_API_BASE: undefined,
     PAYPAL_CLIENT_ID: undefined, NEXT_PUBLIC_PAYPAL_CLIENT_ID: undefined,
     NEXT_PUBLIC_PAYPAL_PLAN_ID: undefined, NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined });
   const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
-  assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { clientId: LIVE_CLIENT, planId: LIVE_REGULAR, trialDays: 0, amount: '5.00', currency: 'EUR' });
-  assert.ok(!ctx.calls.some(call=>call.type==='provider-fetch'));
+  assert.equal(response.status, 503);
+  assert.deepEqual(ctx.calls, []);
   await ctx.runPage();
-  const script = new URL(ctx.calls.find(call => call.type === 'sdk-script').src);
-  assert.equal(script.searchParams.get('client-id'), LIVE_CLIENT);
-  assert.ok(!ctx.calls.some(call=>call.type==='sdk-subscription'));
-  assert.ok(!ctx.calls.some(call => call.type === 'provider-fetch'));
+  assert.ok(!ctx.calls.some(call => ['sdk-script', 'sdk-subscription', 'provider-fetch'].includes(call.type)));
+});
+
+test('Both production offers verify ten-euro monthly conditions before loading PayPal', async () => {
+  for (const trial of [true, false]) {
+    const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined, PAYPAL_API_BASE: 'https://api-m.paypal.com',
+      PAYPAL_CLIENT_ID: LIVE_CLIENT, NEXT_PUBLIC_PAYPAL_CLIENT_ID: LIVE_CLIENT,
+      ...(trial ? {} : { NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined }) });
+    const response = await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request());
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { clientId: LIVE_CLIENT, planId: trial ? TRIAL : REGULAR,
+      trialDays: trial ? 3 : 0, amount: '10.00', currency: 'EUR' });
+    assert.equal(ctx.calls.filter(call => call.type === 'provider-fetch').length, 2);
+    await ctx.runPage();
+    const script = new URL(ctx.calls.find(call => call.type === 'sdk-script').src);
+    assert.equal(script.searchParams.get('client-id'), LIVE_CLIENT);
+  }
+});
+
+test('Historical production plan IDs cannot be offered for a new checkout', async () => {
+  for (const overrides of [{ NEXT_PUBLIC_PAYPAL_PLAN_ID: LIVE_REGULAR, NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined },
+    { NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: LIVE_TRIAL }]) {
+    const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined, PAYPAL_API_BASE: 'https://api-m.paypal.com', ...overrides });
+    assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request())).status, 503);
+    assert.deepEqual(ctx.calls, []);
+  }
+});
+
+test('A missing or five-euro price mapping never permits a new subscription', async () => {
+  for (const prices of [undefined, JSON.stringify({ [REGULAR]: '5.00', [TRIAL]: '5.00' })]) {
+    const ctx = fixture({ PAYPAL_PLAN_PRICES: prices });
+    assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request())).status, 503);
+    await ctx.runPage();
+    assert.ok(!ctx.calls.some(call => ['sdk-script', 'provider-fetch', 'server-subscription'].includes(call.type)));
+  }
+});
+
+test('Browser rejects a stale five-euro server offer before loading PayPal', async () => {
+  const ctx = fixture({}, { browserOffer: { clientId: CLIENT, planId: TRIAL, trialDays: 3, amount: '5.00', currency: 'EUR' } });
+  await ctx.runPage();
+  assert.ok(!ctx.calls.some(call => ['sdk-script', 'provider-fetch', 'server-subscription'].includes(call.type)));
+});
+
+test('Prices are displayed only after verification and advertise ten euros for either new offer', () => {
+  for (const trial of [true, false]) {
+    const settings = trial ? {} : { NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID: undefined };
+    assert.doesNotMatch(fixture(settings).renderPage(), /10 €/);
+    const html = fixture(settings, { renderVerified: true }).renderPage();
+    assert.match(html, /10 € \/ Monat/);
+    assert.doesNotMatch(html, /5 €/);
+    if (trial) assert.match(html, /3 Tage kostenlos/);
+  }
 });
 
 test('Signed-out visitors cannot load a PayPal SDK or request server creation', async () => {

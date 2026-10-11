@@ -146,7 +146,7 @@ export default function AccountPage() {
               <div><dt>Anmeldung</dt><dd>Mit einem Code per E-Mail</dd></div>
             </dl>
             {trial && account.paid && !trialStopped && !apple && <p className={styles.muted}>
-              Nach den 3 kostenlosen Tagen verlängert sich dein Abo automatisch für 5 € pro Monat.
+              Nach den 3 kostenlosen Tagen verlängert sich dein Abo zu den beim Abschluss in PayPal bestätigten Bedingungen.
               Kündige vor dem oben angezeigten Termin bei PayPal, wenn du keine Abozahlung möchtest. Die Kündigung beendet deinen Testzugang.
             </p>}
             {trial && account.paid && apple && <p className={styles.muted}>

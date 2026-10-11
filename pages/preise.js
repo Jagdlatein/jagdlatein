@@ -17,15 +17,15 @@ export default function Preise() {
   const [checkoutStatus, setCheckoutStatus] = useState("checking");
   const [account, setAccount] = useState(null);
   const [activation, setActivation] = useState(null);
-  const [trialOfferVerified, setTrialOfferVerified] = useState(false);
+  const [offerVerified, setOfferVerified] = useState(false);
   const [checkoutRevision, setCheckoutRevision] = useState(0);
   const trialPlan = (process.env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID || "").trim();
-  const regularPlan = (process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "P-9XU38461YG7706134NESJQWA").trim();
+  const regularPlan = (process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "").trim();
   const validPlan = (value) => /^P-[A-Z0-9]{6,64}$/.test(value);
   const isTrialPlan = Boolean(trialPlan && validPlan(trialPlan));
   // A broken explicit trial configuration must never charge the old plan.
   const planId = trialPlan ? (isTrialPlan ? trialPlan : null) : (validPlan(regularPlan) ? regularPlan : null);
-  const showTrialOffer = isTrialPlan && trialOfferVerified;
+  const showTrialOffer = isTrialPlan && offerVerified;
 
   const nextParam = useMemo(() => {
     const raw = router.query.next;
@@ -47,7 +47,7 @@ export default function Preise() {
     const controller = new AbortController();
     setCheckoutStatus("checking");
     setPaymentMessage("");
-    setTrialOfferVerified(false);
+    setOfferVerified(false);
 
     if (!planId) {
       setCheckoutStatus("unavailable");
@@ -179,13 +179,13 @@ export default function Preise() {
           if (cancelled) return;
           if (!offer || offer.planId !== planId || !validPlan(offer.planId) ||
               typeof offer.clientId !== "string" || !/^[A-Za-z0-9_-]{20,256}$/.test(offer.clientId) ||
-              offer.trialDays !== (isTrialPlan ? 3 : 0) || offer.amount !== "5.00" || offer.currency !== "EUR")
+              offer.trialDays !== (isTrialPlan ? 3 : 0) || offer.amount !== "10.00" || offer.currency !== "EUR")
             throw new Error("Abo nicht verfügbar.");
         } catch {
           if (!cancelled) setCheckoutStatus(isTrialPlan ? "trial-unavailable" : "unavailable");
           return;
         }
-        if (isTrialPlan) setTrialOfferVerified(true);
+        setOfferVerified(true);
         eligible = true;
         setCheckoutStatus("ready");
         loadPayPal(offer.planId, offer.clientId);
@@ -208,15 +208,15 @@ export default function Preise() {
 
   return <LearningToolLayout title="Preise und Zugang" description={checkoutStatus === "existing"
     ? "Dein Zugang ist aktiv. Die Laufzeit und dein Abo findest du im Konto."
-    : showTrialOffer ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 5 € pro Monat."
+    : showTrialOffer ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 10 € pro Monat."
     : trialPlan ? "Die Konditionen für den Testzugang werden vor dem Aboabschluss geprüft."
     : "Dein Monatszugang zur Lernplattform wird nach geprüfter Zahlungsbestätigung freigeschaltet."}
     icon="shield" eyebrow="Lernen mit Jagdlatein" hideCommunity>
     <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="price-heading">
       <h2 id="price-heading">{checkoutStatus === "existing" ? "Dein Zugang" : showTrialOffer ? "3 Tage kostenlos testen" : trialPlan ? "Testabo" : "Monatszugang"}</h2>
-      {checkoutStatus !== "existing" && (!trialPlan || showTrialOffer) && <p className={authStyles.price}>{showTrialOffer ? "3 Tage kostenlos, danach automatisch 5 € / Monat · jederzeit kündbar" : "5 € / Monat · jederzeit kündbar"}</p>}
+      {checkoutStatus !== "existing" && offerVerified && <p className={authStyles.price}>{showTrialOffer ? "3 Tage kostenlos, danach automatisch 10 € / Monat · jederzeit kündbar" : "10 € / Monat · jederzeit kündbar"}</p>}
       {showTrialOffer && <p>Du bestätigst das Abo zuerst in PayPal. Die drei kostenlosen Tage laufen ab dem von PayPal bestätigten Abostart;
-        das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 5 €. Wenn du vor Ablauf bei PayPal kündigst,
+        das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 10 €. Wenn du vor Ablauf bei PayPal kündigst,
         fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.</p>}
       {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
       {checkoutStatus === "login-required" && <div className={styles.note}><p>Lege vor dem PayPal-Kauf ein Jagdlatein-Konto an oder melde dich an. Dein Abo wird diesem Konto zugeordnet; deine PayPal-E-Mail darf davon abweichen.</p><Link href="/registrieren?next=%2Fpreise" className={styles.primary}>Konto anlegen</Link>{" "}<Link href="/login?next=%2Fpreise" className={styles.secondary}>Anmelden</Link></div>}
