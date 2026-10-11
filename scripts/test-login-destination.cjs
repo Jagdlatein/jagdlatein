@@ -37,6 +37,12 @@ test('Personal account and statistics need identity, while learning and unknown 
     assert.equal(new URL(getLoginDestination(route, unpaid), 'https://test.invalid').searchParams.get('next'), route);
   }
 });
+test('An unpaid learner returns directly to checkout, preserving the original learning destination once', () => {
+  for (const route of ['/preise', '/preise?next=%2Flernen%3Fsuche%3Dgams#paypal-subscribe-preise']) {
+    assert.equal(getLoginDestination(route, unpaid), route);
+    assert.equal(getLoginDestination(route, { paid: true }), route);
+  }
+});
 test('Paid or administrator access returns directly to the selected safe learning page', () => {
   for (const account of [{ paid: true }, { admin: true }]) assert.equal(getLoginDestination('/lernen?suche=gams', account), '/lernen?suche=gams');
   assert.match(getLoginDestination('/lernen', { paid: 'true', admin: 1 }), /^\/preise\?/);
@@ -54,7 +60,7 @@ function find(node, predicate) {
 }
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const response = (body, status = 200) => ({ ok: status >= 200 && status < 300, json: async () => body });
-function harness(fetch, props = {}) {
+function harness(fetch, props = {}, query = { next: '/community?category=hundewesen' }) {
   const states = ['member@example.invalid', '123456', 'code', '', false], refs = [], effects = [], timers = new Map(), calls = [];
   let cursor = 0, refCursor = 0, sequence = 0;
   const window = { location: { href: null } };
@@ -62,7 +68,7 @@ function harness(fetch, props = {}) {
     useState(initial) { const i = cursor++; if (!(i in states)) states[i] = initial; return [states[i], value => { states[i] = value; }]; },
     useRef(initial) { const i = refCursor++; return refs[i] ||= { current: initial }; },
     useEffect(fn) { if (!effects.length) effects.push(fn()); },
-  }, 'next/router': { useRouter: () => ({ query: { next: '/community?category=hundewesen' } }) } }, {
+  }, 'next/router': { useRouter: () => ({ query }) } }, {
     fetch: async (...args) => { calls.push(args); return fetch(...args); }, window,
     setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay }); return sequence; }, clearTimeout: id => timers.delete(id),
   }).default;
@@ -100,6 +106,62 @@ test('Requesting a code preserves the neutral server message without claiming th
   await h.submit(h.render());
   assert.equal(h.calls[0][0], '/api/auth/register-request'); assert.equal(h.states[3], registrationMessage);
   h.unmount();
+});
+
+test('Payment sign-in and registration keep the checkout context when switching account modes and confirming the code', async () => {
+  const next = '/preise?next=%2Fkurse%2Fhundewesen%3Fmodus%3Dtest#paypal-subscribe-preise';
+  for (const registration of [false, true]) {
+    const h = harness(() => response({ success: true, paid: false, admin: false }), { registration, allowRegistration: true }, { next });
+    h.states[2] = 'email';
+    const html = renderToStaticMarkup(h.render());
+    assert.match(html, /Schritte zum Abo/);
+    assert.match(html, /Ich habe ein Konto/);
+    assert.match(html, /Konto kostenlos anlegen/);
+    const links = [...html.matchAll(/href="(\/(?:login|registrieren)\?[^"]+)"/g)].map(match => new URL(match[1], 'https://jagdlatein.invalid'));
+    assert.equal(links.length, 2);
+    for (const link of links) assert.equal(link.searchParams.get('next'), next);
+    h.states[2] = 'code'; h.states[1] = '123456';
+    assert.match(renderToStaticMarkup(h.render()), /Bestätigen und zum Abo/);
+    await h.submit(h.render());
+    assert.equal(h.calls[0][0], registration ? '/api/auth/register-verify' : '/api/auth/verify-code');
+    [...h.timers.values()].find(item => item.delay === 500).fn();
+    assert.equal(h.window.location.href, next);
+    h.unmount();
+  }
+});
+
+test('The registration link also preserves a selected free community thread for ordinary sign-in', () => {
+  const next = '/community/11111111-1111-4111-8111-111111111111?thema=Gams#frage';
+  const page = load('pages/login.js', { 'next/router': { useRouter: () => ({ query: { next } }) } }).default;
+  const html = renderToStaticMarkup(React.createElement(page, { allowRegistration: true }));
+  const href = html.match(/href="(\/registrieren\?[^"]+)"/)[1];
+  assert.equal(new URL(href, 'https://jagdlatein.invalid').searchParams.get('next'), next);
+  assert.ok(!html.includes('Schritte zum Abo'));
+});
+
+test('Resending a code uses the existing endpoint, clears a stale entry and blocks parallel sends', async () => {
+  for (const registration of [false, true]) {
+    const pending = deferred();
+    const h = harness(() => pending.promise, { registration });
+    const tree = h.render();
+    const resend = find(tree, node => node.type === 'button' && node.props.children === 'Neuen Code senden');
+    const event = { preventDefault() {} };
+    const first = resend.props.onClick(event);
+    await resend.props.onClick(event);
+    assert.equal(h.calls.length, 1);
+    assert.equal(h.calls[0][0], registration ? '/api/auth/register-request' : '/api/auth/request-code');
+    assert.deepEqual(JSON.parse(h.calls[0][1].body), { email: 'member@example.invalid' });
+    pending.resolve(response({ success: true }));
+    await first;
+    assert.equal(h.states[1], '');
+    assert.equal(h.states[2], 'code');
+    assert.equal(h.states[4], false);
+    assert.equal(h.window.location.href, null);
+    const html = renderToStaticMarkup(h.render());
+    assert.match(html, /Warte eine Minute/);
+    assert.ok(!html.includes('Wir haben dir'));
+    h.unmount();
+  }
 });
 
 test('Authentication pages expose only a private-derived mail mode, never tester addresses or transport credentials', async () => {
@@ -222,6 +284,11 @@ test('Sandbox login and registration explain the isolated inbox and separate acc
     assert.match(html, /normales E-Mail-Postfach erhält keine Nachricht/);
     assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
     assert.match(html, registration ? /bestätigst du dein eigenes Testkonto/ : /wähle zuerst „Kostenlos registrieren“/);
+    const codePage = harness(() => response({ success: true }), { registration, isTestMail: true });
+    const codeHtml = renderToStaticMarkup(codePage.render());
+    assert.match(codeHtml, /Der Code steht im getrennten Testpostfach/);
+    assert.ok(!codeHtml.includes('Öffne dein E-Mail-Postfach'));
+    codePage.unmount();
     const publicHtml = renderToStaticMarkup(React.createElement(Login, { registration, allowRegistration: true, isTestMail: false }));
     assert.ok(!publicHtml.includes('Testpostfach')); assert.ok(!publicHtml.includes('Testumgebung:'));
   }
@@ -272,7 +339,7 @@ test('A stalled authentication request times out and offers another attempt', as
 test('Login and personal pages use the shared design, explicit field labels and private metadata', () => {
   const Login = load('pages/login.js').default;
   const html = renderToStaticMarkup(React.createElement(Login));
-  assert.match(html, /class="header"/); assert.match(html, /<label>E-Mail-Adresse/); assert.match(html, /noindex, nofollow/);
+  assert.match(html, /class="header compactHeader"/); assert.match(html, /<label>E-Mail-Adresse/); assert.match(html, /noindex, nofollow/);
   const headers = {}; load('pages/login.js').getServerSideProps({ req: { cookies: {} }, res: { setHeader: (key, value) => headers[key] = value }, query: {} });
   assert.match(headers['Cache-Control'], /private, no-store/);
   const AccountLayout = load('components/AccountLayout.js').default;

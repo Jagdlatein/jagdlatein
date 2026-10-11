@@ -39,6 +39,8 @@ function fixture(overrides = {}, providerOverrides = {}) {
     ...overrides,
   };
   const calls = []; const effects = []; const cache = new Map(); let sdkOptions;
+  const states = [], refs = []; let stateCursor = 0, refCursor = 0, cleanup;
+  const confirmations = [...(providerOverrides.confirmations || [])];
   const document = {
     createElement(tag) { calls.push({ type: 'create-element', tag }); return {}; },
     body: {
@@ -48,7 +50,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
   };
   const window = { paypal: { Buttons(options) {
     sdkOptions = options; calls.push({ type: 'sdk-buttons' });
-    return { render: async () => {}, close: async () => {} };
+    return { render: async () => {}, close: async () => { calls.push({type:'sdk-close'}); } };
   } }, location: {} };
   function load(relative) {
     const filename = path.join(root, relative);
@@ -74,10 +76,15 @@ function fixture(overrides = {}, providerOverrides = {}) {
         } };
       } };
       if (id === 'react') return { ...pr('react'),
-        useState: initial => [initial === false && providerOverrides.renderVerified ? true : initial, () => {}],
+        useState(initial) {
+          const index = stateCursor++;
+          if (!(index in states)) states[index] = initial === false && providerOverrides.renderVerified ? true : initial;
+          return [states[index], value => { states[index] = typeof value === 'function' ? value(states[index]) : value; }];
+        },
+        useRef(initial) { const index = refCursor++; return refs[index] ||= {current:initial}; },
         useMemo: fn => fn(), useEffect: fn => effects.push(fn),
       };
-      if (id === 'next/router') return { useRouter: () => ({ query: {} }) };
+      if (id === 'next/router') return { useRouter: () => ({ query: providerOverrides.query || {} }) };
       if (id === 'next/link') return ({ href, children }) => pr('react').createElement('a', { href }, children);
       if (id.endsWith('/LearningToolLayout')) return ({ children }) => children;
       if (id.endsWith('.module.css')) return { __esModule: true, default: {} };
@@ -86,7 +93,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
     }, mod, mod.exports, { env }, async (target, options) => {
       if (target === '/api/account') {
         calls.push({ type: 'browser-fetch', target }); return providerOverrides.unsigned
-          ? Response.json({}, {status:401}) : Response.json({account:{paid:false,admin:false}});
+          ? Response.json({}, {status:401}) : Response.json({account:{email:EMAIL,paid:false,admin:false,...providerOverrides.account}});
       }
       if (target === '/api/paypal/checkout-config') {
         calls.push({ type: 'browser-fetch', target });
@@ -96,6 +103,17 @@ function fixture(overrides = {}, providerOverrides = {}) {
       if(target==='/api/paypal/create-subscription') {
         calls.push({type:'browser-fetch',target});
         return load('app/api/paypal/create-subscription/route.js').POST(request(JSON.parse(options.body)));
+      }
+      if(target==='/api/paypal/confirm-subscription') {
+        calls.push({type:'browser-fetch',target,body:JSON.parse(options.body)});
+        if (providerOverrides.stallConfirmation && calls.filter(call=>call.target===target).length===1)
+          return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')), {once:true}));
+        const reply = confirmations.shift() || {body:{activated:true,accessType:env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID?'trial':'paid'}};
+        return Response.json(reply.body,{status:reply.status || 200});
+      }
+      if(target==='/api/auth/status') {
+        calls.push({type:'browser-fetch',target,options});
+        return Response.json(providerOverrides.access || {loggedIn:true,email:EMAIL,paid:true,admin:false},{status:providerOverrides.accessStatus || 200});
       }
       const url = new URL(target); calls.push({ type: 'provider-fetch', url: url.href, options });
       assert.equal(url.origin, env.PAYPAL_API_BASE || 'https://api-m.paypal.com');
@@ -114,15 +132,19 @@ function fixture(overrides = {}, providerOverrides = {}) {
   function request(body={}) { return {url:'https://jagdlatein.test/api/paypal/create-subscription',
     headers:new Headers({origin:'https://jagdlatein.test','content-type':'application/json'}),json:async()=>body,
     cookies:{get:name=>name===session.JL_ACCOUNT_COOKIE&&!providerOverrides.unsigned?{value:token}:undefined}}; }
-  return { env, calls, load, request,
+  function page() { stateCursor=0; refCursor=0; return load('pages/preise.js').default(); }
+  return { env, calls, load, request, states, window,
     renderPage() {
-      return pr('react-dom/server').renderToStaticMarkup(load('pages/preise.js').default());
+      return pr('react-dom/server').renderToStaticMarkup(page());
     },
     async runPage() {
-      load('pages/preise.js').default();
-      effects.forEach(effect => effect());
+      page();
+      effects.forEach(effect => { cleanup=effect(); });
       await new Promise(resolve => setImmediate(resolve));
     },
+    async approve() { assert.ok(sdkOptions); await sdkOptions.onApprove({subscriptionID:SUBSCRIPTION}); },
+    async retryApproval() { assert.ok(refs[0]?.current); await refs[0].current(); },
+    unmount() { cleanup?.(); },
     async createSubscription() {
       assert.ok(sdkOptions, 'SDK must have been loaded after server verification');
       return sdkOptions.createSubscription({}, { subscription: { create(args) {
@@ -270,4 +292,93 @@ test('Signed-out visitors cannot load a PayPal SDK or request server creation', 
   assert.ok(!ctx.calls.some(call=>['sdk-script','sdk-buttons','provider-fetch','database-client'].includes(call.type)));
   assert.equal((await ctx.load('app/api/paypal/checkout-config/route.js').GET(ctx.request())).status,401);
   assert.equal((await ctx.load('app/api/paypal/create-subscription/route.js').POST(ctx.request())).status,401);
+});
+
+test('Both account choices preserve the safe learning destination through sign-in and checkout', async () => {
+  const ctx=fixture({}, {unsigned:true,query:{next:'/lernen/wildkunde?kapitel=2'}});
+  await ctx.runPage();
+  const html=ctx.renderPage();
+  for (const route of ['/login','/registrieren']) {
+    const href=html.match(new RegExp(`href="(${route}[^\"]+)"`))[1].replaceAll('&amp;','&');
+    const target=new URL(href,'https://jagdlatein.test').searchParams.get('next');
+    assert.equal(target,'/preise?next=%2Flernen%2Fwildkunde%3Fkapitel%3D2#paypal-subscribe-preise');
+  }
+  const unsafe=fixture({}, {unsigned:true,query:{next:'//untrusted.example/payment'}});
+  await unsafe.runPage();
+  assert.doesNotMatch(unsafe.renderPage(),/untrusted\.example/);
+});
+
+test('An unavailable new offer does not hide sign-in or block an already active learner', async () => {
+  const settings={NEXT_PUBLIC_PAYPAL_PLAN_ID:undefined,NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID:undefined};
+  const unsigned=fixture(settings,{unsigned:true}); await unsigned.runPage();
+  assert.equal(unsigned.states[1],'login-required');
+  assert.match(unsigned.renderPage(),/Ich habe schon ein Konto/);
+  const active=fixture(settings,{account:{paid:true}}); await active.runPage();
+  assert.equal(active.states[1],'existing'); assert.match(active.renderPage(),/>Jetzt lernen</);
+  for(const ctx of [unsigned,active]) assert.ok(!ctx.calls.some(call=>['sdk-script','provider-fetch','server-subscription'].includes(call.type)));
+});
+
+test('A confirmed PayPal purchase refreshes the same signed account without asking for another code', async () => {
+  for (const trial of [true,false]) {
+    const ctx=fixture(trial?{}:{NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID:undefined}, {query:{next:'/lernen/wildkunde'}});
+    await ctx.runPage(); await ctx.createSubscription(); await ctx.approve();
+    assert.equal(ctx.states[1],'complete');
+    const confirms=ctx.calls.filter(call=>call.target==='/api/paypal/confirm-subscription');
+    const refreshes=ctx.calls.filter(call=>call.target==='/api/auth/status');
+    assert.equal(confirms.length,1); assert.equal(refreshes.length,1);
+    assert.deepEqual(confirms[0].body,{subscriptionId:SUBSCRIPTION});
+    assert.equal(refreshes[0].options.credentials,'same-origin');
+    assert.equal(refreshes[0].options.cache,'no-store');
+    assert.ok(ctx.calls.indexOf(refreshes[0])>ctx.calls.indexOf(confirms[0]));
+    assert.equal(ctx.window.location.href,undefined);
+    assert.match(ctx.renderPage(),/href="\/lernen\/wildkunde"[^>]*>Jetzt lernen/);
+    assert.doesNotMatch(ctx.renderPage(),/reauth=1/);
+  }
+});
+
+test('Pending confirmation retries the approved subscription and cannot create or approve another purchase', async () => {
+  const ctx=fixture({}, {confirmations:[{status:202,body:{activated:false}},{body:{activated:true,accessType:'trial'}}]});
+  await ctx.runPage(); await ctx.createSubscription(); await ctx.approve();
+  assert.equal(ctx.states[1],'pending');
+  assert.match(ctx.renderPage(),/Zugang erneut prüfen/);
+  assert.ok(!ctx.calls.some(call=>call.target==='/api/auth/status'));
+  await assert.rejects(ctx.createSubscription(),/derzeit nicht möglich/);
+  await ctx.approve();
+  assert.equal(ctx.calls.filter(call=>call.target==='/api/paypal/confirm-subscription').length,1);
+  await ctx.retryApproval();
+  assert.equal(ctx.states[1],'complete');
+  const confirms=ctx.calls.filter(call=>call.target==='/api/paypal/confirm-subscription');
+  assert.equal(confirms.length,2);
+  assert.ok(confirms.every(call=>call.body.subscriptionId===SUBSCRIPTION));
+  assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
+});
+
+test('Session refresh cannot display activated learning for a different, unpaid or unavailable account', async () => {
+  for (const settings of [{access:{loggedIn:true,email:'other@example.invalid',paid:true}},
+    {access:{loggedIn:true,email:EMAIL,paid:false}}, {access:{loggedIn:false,email:null,paid:false}},
+    {accessStatus:503,access:{loggedIn:true,email:EMAIL,paid:true}}]) {
+    const ctx=fixture({},settings); await ctx.runPage(); await ctx.approve();
+    assert.equal(ctx.states[1],'pending');
+    assert.match(ctx.renderPage(),/Zugang erneut prüfen/);
+    assert.doesNotMatch(ctx.renderPage(),/>Jetzt lernen</);
+    assert.equal(ctx.window.location.href,undefined);
+  }
+});
+
+test('Leaving checkout removes the pending retry and prevents a late approval from checking a purchase', async () => {
+  const ctx=fixture(); await ctx.runPage(); ctx.unmount(); await ctx.approve();
+  assert.ok(!ctx.calls.some(call=>call.target==='/api/paypal/confirm-subscription'));
+  await assert.rejects(ctx.retryApproval());
+});
+
+test('A stalled confirmation times out and the same purchase can be retried with a fresh signal', async t => {
+  const ctx=fixture({}, {stallConfirmation:true}); await ctx.runPage(); await ctx.createSubscription();
+  t.mock.timers.enable({apis:['setTimeout']});
+  const approving=ctx.approve();
+  assert.equal(ctx.states[1],'confirming');
+  t.mock.timers.tick(18000); await approving;
+  assert.equal(ctx.states[1],'pending');
+  await ctx.retryApproval();
+  assert.equal(ctx.states[1],'complete');
+  assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
 });

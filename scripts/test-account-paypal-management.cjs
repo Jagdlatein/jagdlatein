@@ -112,6 +112,34 @@ test('Missing or untrusted account target never creates a live fallback administ
   assert.doesNotMatch(renderAccount(SANDBOX, { admin: true }), /Abo bei PayPal verwalten/);
 });
 
+test('An unpaid signed-in learner gets one direct checkout action before personal account details', () => {
+  const html = renderAccount(LIVE, { paid: false, admin: false, accessType: null, subscriptionStatus: null });
+  const checkout = html.match(/<section[^>]*aria-labelledby="account-checkout"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(checkout, 'The signed-in account must offer the next payment step.');
+  assert.match(checkout, /Dein Konto ist bereit/);
+  assert.match(checkout, /buyer@example\.invalid/);
+  assert.match(checkout, /<a href="\/preise" class="button">Abo auswählen und bestätigen<\/a>/);
+  assert.equal((html.match(/href="\/preise"/g) || []).length, 1);
+  assert.ok(html.indexOf('aria-labelledby="account-checkout"') < html.indexOf('aria-labelledby="account-details"'));
+  assert.doesNotMatch(checkout, /href="\/(?:login|registrieren)(?:\?|"|\/)/);
+  assert.match(checkout, /Apple-Aboübersicht/);
+  assert.match(checkout, /Website und unter Android der PayPal-Abschluss/);
+});
+
+test('Paid learners and administrators never receive the account purchase action', () => {
+  for (const overrides of [
+    { paid: true, admin: false, accessType: 'paid' },
+    { paid: true, admin: false, accessType: 'trial' },
+    { paid: false, admin: true },
+    { paid: true, admin: true },
+  ]) {
+    const html = renderAccount(LIVE, overrides);
+    assert.doesNotMatch(html, /account-checkout|Dein Konto ist bereit|Abo auswählen und bestätigen|href="\/preise"/);
+    assert.match(html, /Kontodaten/);
+    assert.match(html, /Zur Kursübersicht/);
+  }
+});
+
 test('Existing PayPal trials retain their agreed conditions without being relabeled at the new offer price', () => {
   const html = renderAccount(LIVE, { accessProvider: 'paypal',
     trialUntil: new Date(Date.now() + 86400000).toISOString() });

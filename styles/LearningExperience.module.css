@@ -18,6 +18,12 @@
 .eyebrow { color: #796021; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
 .header h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 16px; overflow-wrap: anywhere; }
 .header > p:last-of-type { max-width: 860px; font-size: 18px; line-height: 1.7; margin: 0; color: #65563b; }
+.compactHeader { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 6px 14px; padding: 20px 24px; margin-bottom: 20px; }
+.compactHeader .heroIcon { grid-row: 1 / span 2; width: 48px; height: 48px; border-radius: 14px; margin: 0; }
+.compactHeader .heroIcon svg { width: 29px; height: 29px; }
+.compactHeader .eyebrow { grid-column: 2; margin: 0; }
+.compactHeader h1 { grid-column: 2; font-size: clamp(25px, 4vw, 32px); margin: 0; }
+.compactHeader > p:last-of-type { grid-column: 1 / -1; margin-top: 8px; font-size: 16px; }
 .stats { display: flex; flex-wrap: wrap; list-style: none; gap: 9px; padding: 0; margin: 22px 0 0; }
 .stats div, .tags span { border: 1px solid #dfcb98; background: #fffdf7; border-radius: 24px; padding: 7px 12px; font-size: 13px; }
 .stats div { display: flex; gap: 5px; align-items: baseline; }

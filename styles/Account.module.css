@@ -10,6 +10,9 @@
 .nav a:focus-visible, .filters button:focus-visible, .button:focus-visible, .secondaryButton:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
 .card, .courseCard { background: var(--jl-surface); border: 1px solid var(--jl-border); border-radius: 18px; padding: 26px; margin-bottom: 22px; }
 .card h2, .courseCard h2 { font-size: 22px; margin: 0 0 18px; line-height: 1.3; }
+.checkoutCard { border-color: #c5a966; background: linear-gradient(140deg, #fffaf0, var(--jl-surface)); }
+.checkoutCard p { line-height: 1.6; overflow-wrap: anywhere; }
+.checkoutStep { margin: 0 0 12px; color: #796021; font-size: 14px; font-weight: 750; }
 .details { margin: 0 0 18px; }
 .details > div { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid #e9dfc7; }
 .details dt { color: var(--jl-muted); }

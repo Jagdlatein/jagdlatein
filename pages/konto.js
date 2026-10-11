@@ -135,6 +135,13 @@ export default function AccountPage() {
       ) : account && (
         <>
           {!accountDeleted && <>
+          {!account.paid && !account.admin && <section className={`${styles.card} ${styles.checkoutCard}`} aria-labelledby="account-checkout">
+            <p className={styles.checkoutStep}>Angemeldet · Nächster Schritt: Abo auswählen</p>
+            <h2 id="account-checkout">Dein Konto ist bereit</h2>
+            <p>Du bist als <strong>{account.email}</strong> angemeldet. Wähle jetzt dein Monatsabo und bestätige es beim Zahlungsanbieter.</p>
+            <p className={styles.muted}>Den Preis und eine mögliche Probezeit siehst du vor der Bestätigung. In der iPhone-/iPad-App öffnet sich die Apple-Aboübersicht, auf der Website und unter Android der PayPal-Abschluss.</p>
+            <a href="/preise" className={styles.button}>Abo auswählen und bestätigen</a>
+          </section>}
           <section className={styles.card} aria-labelledby="account-details">
             <h2 id="account-details">Kontodaten</h2>
             <dl className={styles.details}>
@@ -162,7 +169,6 @@ export default function AccountPage() {
             {!account.admin && apple && account.appleManagementUrl === "https://apps.apple.com/account/subscriptions/" && <p>
               <a href={account.appleManagementUrl} target="_blank" rel="noopener noreferrer" className={styles.secondaryButton}>Abo bei Apple verwalten</a>
             </p>}
-            {!account.paid && !account.admin && <Link href="/preise" className={styles.button}>Premium freischalten</Link>}
           </section>
           <section className={styles.card} aria-labelledby="course-summary">
             <h2 id="course-summary">Meine Kurse</h2>

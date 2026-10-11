@@ -1,0 +1,21 @@
+.panel { max-width: 840px; margin: 22px auto; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0 0 24px; margin: 0 0 24px; list-style: none; border-bottom: 1px solid #e7dcc3; }
+.steps li { display: flex; align-items: center; gap: 9px; color: #6e6249; font-size: 15px; font-weight: 650; }
+.steps li span { display: inline-flex; justify-content: center; align-items: center; flex: 0 0 32px; height: 32px; border: 1px solid #cbb884; border-radius: 50%; background: #f5f0e5; }
+.steps li.reached { color: #574015; }
+.steps li.reached span { background: #80601d; color: #fff; border-color: #80601d; }
+.steps li[aria-current="step"] { font-weight: 800; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 18px; }
+.account { display: grid; gap: 4px; padding: 16px 18px; border-radius: 12px; border: 1px solid #d7e4d2; background: #f1f6ed; color: #365332; overflow-wrap: anywhere; }
+.account span { font-size: 14px; }
+.price { font-size: clamp(18px, 3.5vw, 22px); color: #796021; font-weight: 800; line-height: 1.5; }
+.paypal { max-width: 540px; margin: 24px 0 16px; }
+.help summary { min-height: 44px; display: list-item; align-content: center; font-weight: 750; cursor: pointer; }
+.help summary:focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 4px; }
+.help p { margin-top: 18px; }
+@media (max-width: 620px) {
+  .steps { gap: 8px; }
+  .steps li { flex-direction: column; align-items: flex-start; font-size: 13px; gap: 7px; }
+  .actions { flex-direction: column; }
+  .actions a, .actions button { width: 100%; text-align: center; }
+}

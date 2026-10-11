@@ -4,7 +4,7 @@ import AppIcon from "./AppIcon";
 import { getLearningCategory } from "../lib/learning-categories";
 import styles from "../styles/LearningExperience.module.css";
 
-export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, eyebrow = "Entdecken, üben und verstehen", robots, children }) {
+export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, compact = false, eyebrow = "Entdecken, üben und verstehen", robots, children }) {
   const info = typeof category === "string" ? getLearningCategory(category) : category;
   const categoryHref = info?.href || (info?.slug ? `/lernen/${info.slug}` : null);
   return <>
@@ -15,7 +15,7 @@ export default function LearningToolLayout({ title, description, icon = "book", 
         {categoryHref && <Link href={categoryHref}><AppIcon name={info.slug || "book"} size={18} />{info.title}</Link>}
         <Link href="/lernen#lernen-suche"><AppIcon name="search" size={18} />Alle Angebote suchen</Link>
       </nav>
-      <header className={styles.header}>
+      <header className={`${styles.header}${compact ? ` ${styles.compactHeader}` : ""}`}>
         <span className={styles.heroIcon}><AppIcon name={icon} size={38} /></span>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h1>{title}</h1>

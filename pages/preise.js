@@ -1,9 +1,10 @@
 // pages/preise.js
 import LearningToolLayout from "../components/LearningToolLayout";
 import styles from "../styles/LearningExperience.module.css";
-import authStyles from "../styles/Auth.module.css";
+import checkoutStyles from "../styles/Checkout.module.css";
+import { getNextUrl } from "../lib/login-destination";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 function accessDate(value) {
@@ -19,6 +20,7 @@ export default function Preise() {
   const [activation, setActivation] = useState(null);
   const [offerVerified, setOfferVerified] = useState(false);
   const [checkoutRevision, setCheckoutRevision] = useState(0);
+  const retryApproval = useRef(null);
   const trialPlan = (process.env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID || "").trim();
   const regularPlan = (process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || "").trim();
   const validPlan = (value) => /^P-[A-Z0-9]{6,64}$/.test(value);
@@ -27,15 +29,13 @@ export default function Preise() {
   const planId = trialPlan ? (isTrialPlan ? trialPlan : null) : (validPlan(regularPlan) ? regularPlan : null);
   const showTrialOffer = isTrialPlan && offerVerified;
 
-  const nextParam = useMemo(() => {
-    const raw = router.query.next;
-    return Array.isArray(raw) ? raw[0] : raw;
+  const learningHref = useMemo(() => {
+    const destination = getNextUrl(router.query.next);
+    return new URL(destination, "https://jagdlatein.invalid").pathname.replace(/\/+$/, "") === "/preise" ? "/" : destination;
   }, [router.query.next]);
-
-  const loginHref = useMemo(() => {
-    if (!nextParam) return "/login";
-    return `/login?next=${encodeURIComponent(String(nextParam))}`;
-  }, [nextParam]);
+  const checkoutHref = `/preise${learningHref !== "/" ? `?next=${encodeURIComponent(learningHref)}` : ""}#paypal-subscribe-preise`;
+  const loginHref = `/login?next=${encodeURIComponent(checkoutHref)}`;
+  const registerHref = `/registrieren?next=${encodeURIComponent(checkoutHref)}`;
 
   useEffect(() => {
     let cancelled = false;
@@ -44,14 +44,67 @@ export default function Preise() {
     let subscriptionPromise;
     let script;
     let buttons;
+    let checkoutEmail;
     const controller = new AbortController();
     setCheckoutStatus("checking");
     setPaymentMessage("");
     setOfferVerified(false);
+    retryApproval.current = null;
 
-    if (!planId) {
-      setCheckoutStatus("unavailable");
-      return () => controller.abort();
+    function closeButtons() {
+      eligible = false;
+      try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
+    }
+
+    async function confirmApproval(subscriptionId) {
+      if (cancelled || confirming) return;
+      confirming = true;
+      setCheckoutStatus("confirming");
+      setPaymentMessage("Deine Abo-Bestätigung wird geprüft …");
+      const attempt = new AbortController();
+      const cancelAttempt = () => attempt.abort();
+      controller.signal.addEventListener("abort", cancelAttempt, { once: true });
+      const timeout = setTimeout(cancelAttempt, 18000);
+      try {
+        const response = await fetch("/api/paypal/confirm-subscription", {
+          method: "POST", credentials: "same-origin", signal: attempt.signal,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ subscriptionId }),
+        });
+        const confirmation = await response.json();
+        if (cancelled) return;
+        if (!response.ok || confirmation.activated !== true) {
+          setCheckoutStatus("pending");
+          setPaymentMessage(confirmation.error || confirmation.message || "Deine Bestätigung wird noch verarbeitet. Prüfe den Zugang erneut; ein weiterer Kauf ist nicht nötig.");
+          return;
+        }
+        // Refresh the signed session from the server, preserving its original
+        // authentication deadline. A confirmed purchase needs no second login.
+        const statusResponse = await fetch("/api/auth/status", { cache: "no-store", credentials: "same-origin", signal: attempt.signal });
+        const access = await statusResponse.json();
+        if (cancelled) return;
+        if (!statusResponse.ok || access.loggedIn !== true || access.paid !== true ||
+            typeof access.email !== "string" || access.email.toLowerCase() !== checkoutEmail) {
+          setCheckoutStatus("pending");
+          setPaymentMessage("Dein Abo ist bestätigt. Der Lernzugang konnte noch nicht geladen werden. Prüfe den Zugang erneut; ein weiterer Kauf ist nicht nötig.");
+          return;
+        }
+        const until = accessDate(confirmation.trialUntil);
+        setActivation({ accessType: confirmation.accessType === "trial" ? "trial" : "paid" });
+        setCheckoutStatus("complete");
+        setPaymentMessage(confirmation.accessType === "trial"
+          ? until ? `Dein Testzugang ist aktiv – kostenlos bis ${until}.` : "Dein Testzugang ist aktiv. Die Laufzeit steht in deinem Konto."
+          : "Dein Lernzugang ist aktiv. Du kannst jetzt weiterlernen.");
+      } catch {
+        if (!cancelled) {
+          setCheckoutStatus("pending");
+          setPaymentMessage("Deine Bestätigung konnte noch nicht geprüft werden. Prüfe den Zugang erneut; ein weiterer Kauf ist nicht nötig.");
+        }
+      } finally {
+        clearTimeout(timeout);
+        controller.signal.removeEventListener("abort", cancelAttempt);
+        confirming = false;
+      }
     }
 
     function loadPayPal(paypalPlanId, paypalClientId) {
@@ -102,36 +155,9 @@ export default function Preise() {
 
             async onApprove(data) {
               if (cancelled || !eligible || confirming) return;
-              confirming = true;
-              setPaymentMessage("Deine Abo-Bestätigung wird geprüft …");
-              try {
-                const response = await fetch("/api/paypal/confirm-subscription", {
-                  method: "POST", credentials: "same-origin", signal: controller.signal,
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ subscriptionId: data.subscriptionID }),
-                });
-                const confirmation = await response.json();
-                if (cancelled) return;
-                if (!response.ok || confirmation.activated !== true) {
-                  setPaymentMessage(confirmation.error || confirmation.message || "Die Bestätigung wird noch verarbeitet. Bitte prüfe dein Konto später erneut.");
-                  return;
-                }
-                eligible = false;
-                try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
-                if (confirmation.accessType === "trial") {
-                  const until = accessDate(confirmation.trialUntil);
-                  setActivation({ accessType: "trial" });
-                  setPaymentMessage(until
-                    ? `Testzugang aktiviert – kostenlos bis ${until}. Die Laufzeit findest du in deinem Konto.`
-                    : "Dein Testzugang wurde bestätigt. Die Laufzeit findest du in deinem Konto.");
-                  return;
-                }
-                window.location.href = `${loginHref}${loginHref.includes("?") ? "&" : "?"}reauth=1`;
-              } catch {
-                if (!cancelled) setPaymentMessage("Die Bestätigung konnte noch nicht geprüft werden. Bitte prüfe dein Konto später erneut.");
-              } finally {
-                confirming = false;
-              }
+              closeButtons();
+              retryApproval.current = () => confirmApproval(data.subscriptionID);
+              await confirmApproval(data.subscriptionID);
             },
             onCancel() {
               subscriptionPromise = null;
@@ -159,6 +185,7 @@ export default function Preise() {
           if (cancelled) return;
           if (!data.account || typeof data.account.paid !== "boolean" || typeof data.account.admin !== "boolean") throw new Error("Kontostatus nicht verfügbar.");
           setAccount(data.account);
+          checkoutEmail = typeof data.account.email === "string" ? data.account.email.trim().toLowerCase() : null;
           if (data.account.paid || data.account.admin) {
             setCheckoutStatus("existing");
             return;
@@ -166,6 +193,10 @@ export default function Preise() {
         } else {
           setAccount(null);
           setCheckoutStatus("login-required");
+          return;
+        }
+        if (!planId) {
+          setCheckoutStatus("unavailable");
           return;
         }
         let offer;
@@ -199,46 +230,55 @@ export default function Preise() {
       cancelled = true;
       eligible = false;
       controller.abort();
+      retryApproval.current = null;
       try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
       try {
         if (script) document.body.removeChild(script);
       } catch {}
     };
-  }, [loginHref, planId, checkoutRevision]);
+  }, [planId, checkoutRevision]);
 
-  return <LearningToolLayout title="Preise und Zugang" description={checkoutStatus === "existing"
-    ? "Dein Zugang ist aktiv. Die Laufzeit und dein Abo findest du im Konto."
-    : showTrialOffer ? "Teste die Lernplattform 3 Tage kostenlos. Danach kostet das Abo automatisch 10 € pro Monat."
-    : trialPlan ? "Die Konditionen für den Testzugang werden vor dem Aboabschluss geprüft."
-    : "Dein Monatszugang zur Lernplattform wird nach geprüfter Zahlungsbestätigung freigeschaltet."}
-    icon="shield" eyebrow="Lernen mit Jagdlatein" hideCommunity>
-    <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="price-heading">
-      <h2 id="price-heading">{checkoutStatus === "existing" ? "Dein Zugang" : showTrialOffer ? "3 Tage kostenlos testen" : trialPlan ? "Testabo" : "Monatszugang"}</h2>
-      {checkoutStatus !== "existing" && offerVerified && <p className={authStyles.price}>{showTrialOffer ? "3 Tage kostenlos, danach automatisch 10 € / Monat · jederzeit kündbar" : "10 € / Monat · jederzeit kündbar"}</p>}
-      {showTrialOffer && <p>Du bestätigst das Abo zuerst in PayPal. Die drei kostenlosen Tage laufen ab dem von PayPal bestätigten Abostart;
-        das Ablaufdatum steht im Konto. Danach verlängert sich das Abo monatlich für 10 €. Wenn du vor Ablauf bei PayPal kündigst,
-        fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.</p>}
+  const accessReady = checkoutStatus === "existing" || checkoutStatus === "complete";
+  const currentStep = accessReady ? 3 : account ? 2 : 1;
+  return <LearningToolLayout title="Dein Zugang zum Lernen" description="Mit deinem Jagdlatein-Konto anmelden, das Abo bestätigen und loslernen."
+    icon="shield" eyebrow="Lernen mit Jagdlatein" hideCommunity compact>
+    <section className={`${styles.panel} ${checkoutStyles.panel}`} aria-labelledby="price-heading">
+      <ol className={checkoutStyles.steps} aria-label="Dein Weg zum Lernzugang">
+        {["Anmelden", "Abo bestätigen", "Lernen"].map((label, index) => <li key={label} className={index + 1 <= currentStep ? checkoutStyles.reached : undefined} aria-current={index + 1 === currentStep ? "step" : undefined}>
+          <span aria-hidden="true">{index + 1}</span>{label}
+        </li>)}
+      </ol>
+      <h2 id="price-heading">{accessReady ? "Dein Lernzugang ist aktiv" : checkoutStatus === "login-required" ? "Zuerst mit deinem Konto anmelden" : showTrialOffer ? "3 Tage kostenlos testen" : "Dein Jagdlatein-Abo"}</h2>
+      {checkoutStatus === "login-required" && <>
+        <p>Du brauchst nur deine E-Mail-Adresse und einen Anmeldecode. Ein Passwort ist nicht nötig.</p>
+        <div className={checkoutStyles.actions}>
+          <Link href={loginHref} className={styles.primary}>Ich habe schon ein Konto</Link>
+          <Link href={registerHref} className={styles.secondary}>Kostenloses Konto anlegen</Link>
+        </div>
+        <p className={styles.muted}>Danach kommst du direkt zur Abo-Auswahl zurück. Das Konto ist kostenlos; ein Abo startet erst nach deiner Zustimmung beim Zahlungsanbieter.</p>
+      </>}
+      {account?.email && !accessReady && <p className={checkoutStyles.account}><span>Angemeldet als</span><strong>{account.email}</strong><span>Dein Abo wird diesem Jagdlatein-Konto zugeordnet.</span></p>}
+      {!accessReady && offerVerified && <>
+        <p className={checkoutStyles.price}>{showTrialOffer ? "3 Tage kostenlos, danach automatisch 10 € / Monat · jederzeit kündbar" : "10 € / Monat · jederzeit kündbar"}</p>
+        {showTrialOffer && <p>Die Probezeit beginnt mit dem von PayPal bestätigten Abostart. Danach verlängert sich dein Abo monatlich für 10 €. Kündigst du vor Ablauf bei PayPal, fällt keine Abozahlung an. Die Kündigung beendet den unbezahlten Testzugang.</p>}
+        {checkoutStatus === "ready" && <p>Bestätige jetzt dein Abo bei PayPal. Deine PayPal-E-Mail darf von deiner Jagdlatein-E-Mail abweichen.</p>}
+      </>}
       {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
-      {checkoutStatus === "login-required" && <div className={styles.note}><p>Lege vor dem PayPal-Kauf ein Jagdlatein-Konto an oder melde dich an. Dein Abo wird diesem Konto zugeordnet; deine PayPal-E-Mail darf davon abweichen.</p><Link href="/registrieren?next=%2Fpreise" className={styles.primary}>Konto anlegen</Link>{" "}<Link href="/login?next=%2Fpreise" className={styles.secondary}>Anmelden</Link></div>}
-      {checkoutStatus === "existing" && <div className={styles.note}><p>{account?.accessType === "trial" ? "Dein Testzugang ist bereits aktiv." : "Dein Zugang ist bereits aktiv."}</p><Link href="/konto" className={styles.primary}>Zum Konto</Link></div>}
+      {checkoutStatus === "existing" && <p>Du kannst direkt weiterlernen. Die Laufzeit und dein Abo findest du im Konto.</p>}
       {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert" className={styles.note}>{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
-      {(checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></p>}
+      {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></p>}
       {checkoutStatus === "error" && <div role="alert" className={styles.note}><p>Dein Kontostatus konnte nicht geprüft werden.</p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></div>}
-      <div id="paypal-subscribe-preise" hidden={checkoutStatus !== "ready" || Boolean(activation)} />
+      <div id="paypal-subscribe-preise" className={checkoutStyles.paypal} hidden={checkoutStatus !== "ready" || Boolean(activation)} />
       {paymentMessage && <p role="status" aria-live="polite" className={styles.note}>{paymentMessage}</p>}
-      {activation && <p><Link href="/konto" className={styles.primary}>Zum Konto</Link></p>}
-      <p className={styles.muted}>{checkoutStatus === "existing" ? "Informationen zu deinem aktuellen Zugang findest du im Konto."
-        : showTrialOffer ? "Abschluss und spätere Zahlungen erfolgen über PayPal. Die geprüfte Abo-Bestätigung schaltet dein angemeldetes Jagdlatein-Konto frei."
-        : trialPlan ? "Der Abschluss ist erst nach Bestätigung der Testabo-Konditionen möglich."
-        : "Die Zahlung erfolgt über PayPal. Die geprüfte Zahlungsbestätigung schaltet dein angemeldetes Jagdlatein-Konto frei."}</p>
+      {checkoutStatus === "pending" && <div className={checkoutStyles.actions}><button type="button" className={styles.primary} onClick={() => retryApproval.current?.()}>Zugang erneut prüfen</button><Link href="/konto" className={styles.secondary}>Zum Konto</Link></div>}
+      {accessReady && <div className={checkoutStyles.actions}><Link href={learningHref === "/" ? "/meine-kurse" : learningHref} className={styles.primary}>Jetzt lernen</Link><Link href="/konto" className={styles.secondary}>Mein Konto und Abo</Link></div>}
+      {offerVerified && !accessReady && <p className={styles.muted}>Abschluss und spätere Zahlungen erfolgen über PayPal. Erst die geprüfte Bestätigung schaltet deinen Lernzugang frei.</p>}
     </section>
-    <section className={`${styles.panel} ${authStyles.pricePanel}`} aria-labelledby="access-help-heading">
-      <h2 id="access-help-heading">Anmeldung und Hilfe</h2>
-      <p>Bereits einen Zugang? Melde dich mit deiner registrierten E-Mail-Adresse an.</p>
-      <div className={authStyles.support}>
-        <Link href={loginHref} className={styles.secondary}>Hier einloggen</Link>
-        <a href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein" className={styles.secondary}>Fragen zur Zahlung</a>
-      </div>
-    </section>
+    <details className={`${styles.panel} ${checkoutStyles.panel} ${checkoutStyles.help}`}>
+      <summary>Hilfe zu Anmeldung und Zahlung</summary>
+      <p>Der Anmeldecode kommt an deine Jagdlatein-E-Mail-Adresse. Prüfe auch den Spamordner. Auf der Anmeldeseite kannst du die Adresse ändern oder einen neuen Code anfordern.</p>
+      <p>Dein Jagdlatein-Konto speichert deinen Lernzugang. Die Zahlung bestätigst du anschließend bei PayPal oder in der iPhone-/iPad-App bei Apple.</p>
+      <a href="mailto:info@jagdlatein.de?subject=Frage%20zur%20Zahlung%20bei%20Jagdlatein" className={styles.secondary}>Kontohilfe per E-Mail</a>
+    </details>
   </LearningToolLayout>;
 }
