@@ -1,0 +1,147 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { createRequire } = require('node:module');
+const root = path.resolve(__dirname, '..');
+const pr = createRequire(path.join(root, 'package.json'));
+const swc = pr('next/dist/build/swc');
+const React = pr('react');
+const { renderToStaticMarkup } = pr('react-dom/server');
+function load(relative, overrides = {}, cache = new Map()) {
+  const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
+  if (cache.has(filename)) return cache.get(filename);
+  const mod = { exports: {} }; cache.set(filename, mod.exports);
+  const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
+  function resolve(id) {
+    if (Object.hasOwn(overrides, id)) return overrides[id];
+    if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
+    if (id === 'next/head') return ({ children }) => children;
+    if (id === 'next/image') return ({ priority, fill, sizes, ...props }) => React.createElement('img', props);
+    if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)), overrides, cache);
+    return pr(id);
+  }
+  new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports); cache.set(filename, mod.exports); return mod.exports;
+}
+function engine() {
+  const slots = []; let cursor = 0; let effects = [], writes = 0;
+  const hooks = { ...React,
+    useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; writes++; }]; },
+    useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
+    useEffect(fn, deps) { const i = cursor++, old = slots[i]; if (!old || !deps || deps.some((dep, j) => !Object.is(dep, old.deps[j]))) { slots[i] = { deps, cleanup: old?.cleanup }; effects.push(() => { slots[i].cleanup?.(); slots[i].cleanup = fn(); }); } },
+  };
+  return { hooks, get writes() { return writes; }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects; effects = []; pending.forEach(fn => fn()); }, unmount() { slots.forEach(slot => slot?.cleanup?.()); } };
+}
+function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(''); return typeof node === 'object' ? words(node.props?.children) : String(node); }
+function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
+function setup(pool, history = { version: 1, entries: {} }) {
+  const e = engine(), records = [], review = load('lib/daily-review.js');
+  const Component = load('components/DailyReview.js', { react: e.hooks, '../lib/daily-review': { ...review, readReviewHistory: () => history, recordReviewAnswer: (...args) => { records.push(args); return true; }, clearReviewHistory: () => true } }).default;
+  let tree; const render = () => tree = e.render(() => Component({ pool })); render();
+  return { e, records, render, get tree() { return tree; }, start() { e.flush(); render(); }, category(value) { find(tree, node => node.type === 'select').props.onChange({ target: { value } }); render(); }, button(label) { const found = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(found, label); return found; }, html() { return renderToStaticMarkup(tree); } };
+}
+const maintained = load('lib/daily-review-pool.js');
+const fixture = [['wissen-fixture-wild-a', 'wildkunde'], ['wissen-fixture-wild-b', 'wildkunde'], ['wissen-fixture-dog', 'hundewesen']].map(([id, category]) => ({ id, category, q: `Frage ${id}`, answers: ['a', 'b', 'c', 'd'].map(id => ({ id, text: `Antwort ${id}` })), correct: ['a'], explain: `Erklärung ${id}`, courseTitle: 'Fiktiver Testkurs', href: '/kurse/wissen-fixture#lesson-demo', sources: [{ label: 'Testquelle', url: 'https://example.test/' }] }));
+const fixtureCatalog = fixture.map(({ id, category }) => ({ id, category }));
+const settle = () => new Promise(resolve => setImmediate(resolve));
+function requests() {
+  const previous = global.fetch, pending = [];
+  global.fetch = (url, options) => new Promise((resolve, reject) => pending.push({ url, options, resolve, reject }));
+  return { pending, restore() { global.fetch = previous; }, async answer(index, status = 200, body = null) { const request = pending[index]; const ids = new URL(request.url, 'https://example.test').searchParams.get('ids').split(','); request.resolve({ ok: status >= 200 && status < 300, status, json: async () => body || { questions: ids.map(id => fixture.find(item => item.id === id)).reverse() } }); await settle(); } };
+}
+function responseRecorder() {
+  const res = { headers: {}, statusCode: 200, body: null, setHeader(key, value) { this.headers[key] = value; }, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } };
+  return res;
+}
+
+test('Static page data is under 128 KiB and never embeds maintained question text or solutions', () => {
+  const page = load('pages/lernen/fuenf-minuten.js', { '../../components/DailyReview': { __esModule: true, default: () => null } });
+  const result = page.getStaticProps(); const bytes = Buffer.byteLength(JSON.stringify(result.props));
+  assert.ok(bytes < 128 * 1024, `Static payload ${bytes} bytes`); assert.ok(result.props.pool.length > 600);
+  for (const item of result.props.pool) assert.deepEqual(Object.keys(item).sort(), ['category', 'id']);
+  assert.equal(result.props.pool.length, maintained.getDailyReviewPool().length);
+  assert.ok(!JSON.stringify(result.props).includes(maintained.getDailyReviewPool()[0].explain));
+});
+test('Server question retrieval preserves requested order and never serves legal, regional, unknown or excess IDs', () => {
+  const ids = maintained.getDailyReviewCatalog().slice(0, 8).map(item => item.id);
+  assert.deepEqual(maintained.getDailyReviewQuestions(ids.reverse()).map(item => item.id), ids);
+  for (const invalid of [[], [ids[0], ids[0]], ['wissen-jagdrecht-de-1'], ['wissen-waffensicherheit-4'], ['wissen-no-such-question'], ['__proto__'], Array.from({ length: 9 }, (_, i) => maintained.getDailyReviewCatalog()[i].id)]) assert.throws(() => maintained.getDailyReviewQuestions(invalid));
+});
+test('The API uses signed paid/admin access and never caches private question details', async () => {
+  let account = null, failure = false, calls = 0;
+  const handler = load('pages/api/lernen/wiederholung.js', { '../../../lib/account-access': { getSignedAccountAccess: async req => { calls++; assert.equal(req.method, 'GET'); if (failure) throw Error('service unavailable'); return account; } } }).default;
+  const req = { method: 'GET', query: { ids: maintained.getDailyReviewCatalog().slice(0, 8).map(item => item.id).join(',') } };
+  for (const [next, expected] of [[null, 401], [{ paid: false, admin: false }, 403], [{ paid: true, admin: false }, 200], [{ paid: false, admin: true }, 200]]) {
+    account = next; const res = responseRecorder(); await handler(req, res); assert.equal(res.statusCode, expected);
+    assert.equal(res.headers['Cache-Control'], 'private, no-store'); assert.equal(res.headers.Vary, 'Cookie');
+    if (expected === 200) { assert.equal(res.body.questions.length, 8); assert.deepEqual(Object.keys(res.body), ['questions']); }
+    else assert.ok(!('questions' in res.body));
+  }
+  failure = true; const unavailable = responseRecorder(); await handler(req, unavailable); assert.equal(unavailable.statusCode, 503);
+  const before = calls, method = responseRecorder(); await handler({ method: 'POST', query: req.query }, method); assert.equal(method.statusCode, 405); assert.equal(method.headers.Allow, 'GET'); assert.equal(calls, before);
+});
+test('The API rejects additional private fields and malformed batches without partial answers', async () => {
+  const handler = load('pages/api/lernen/wiederholung.js', { '../../../lib/account-access': { getSignedAccountAccess: async () => ({ paid: true }) } }).default;
+  const catalog = maintained.getDailyReviewCatalog(), ids = catalog.slice(0, 8).map(item => item.id).join(',');
+  for (const query of [{}, { ids: ['one', 'two'] }, { ids: 'x'.repeat(1288) }, { ids, history: 'private' }, { ids, email: 'private@example.test' }, { ids, answers: 'a' }, { ids: catalog.slice(0, 9).map(item => item.id).join(',') }, { ids: `${catalog[0].id},wissen-no-such-question` }, { ids: `${catalog[0].id},${catalog[0].id}` }]) {
+    const res = responseRecorder(); await handler({ method: 'GET', query }, res); assert.equal(res.statusCode, 400); assert.ok(!('questions' in res.body));
+  }
+});
+test('Client selection sends only IDs, leaves history local and never shows an empty result while pending', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog, { version: 1, email: 'private@example.test', entries: {} }); s.start();
+    assert.match(words(s.tree), /Fragen werden geladen/); assert.doesNotMatch(words(s.tree), /keine Fragen/);
+    const sent = network.pending[0], params = new URL(sent.url, 'https://example.test').searchParams;
+    assert.deepEqual([...params.keys()], ['ids']); assert.equal(sent.options.body, undefined); assert.equal(sent.options.credentials, 'same-origin'); assert.equal(sent.options.cache, 'no-store');
+    assert.doesNotMatch(sent.url, /private|history|reason|answers|email/); assert.ok(params.get('ids').split(',').length <= 8);
+    await network.answer(0); s.render(); assert.match(words(s.tree), /Neu entdecken/); assert.ok(s.button('Antwort a'));
+    const selectedIds = params.get('ids').split(','); assert.match(words(s.tree), new RegExp(`Frage ${selectedIds[0]}`));
+    assert.equal(s.records.length, 0); assert.equal((s.html().match(/href="\/lernen#lernen-suche"/g) || []).length, 1);
+  } finally { network.restore(); }
+});
+test('Slow previous category responses, including failed ones, cannot replace a new selected category', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog); s.start(); s.category('hundewesen');
+    assert.equal(network.pending[0].options.signal.aborted, true); assert.match(words(s.tree), /Fragen werden geladen/);
+    await network.answer(1); s.render(); assert.match(words(s.tree), /wissen-fixture-dog/);
+    await network.answer(0, 503, { message: 'Alte Kategorie nicht erreichbar' }); s.render();
+    assert.match(words(s.tree), /wissen-fixture-dog/); assert.doesNotMatch(words(s.tree), /Alte Kategorie/);
+    s.category('wildkunde'); assert.doesNotMatch(words(s.tree), /wissen-fixture-dog/);
+    await network.answer(2); s.render(); assert.match(words(s.tree), /wissen-fixture-wild/);
+  } finally { network.restore(); }
+});
+test('Failed or incomplete loads can be retried and do not count as answered or unavailable questions', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog); s.start(); await network.answer(0, 503, { message: 'Vorübergehend nicht erreichbar' }); s.render();
+    assert.match(words(s.tree), /Vorübergehend/); assert.equal(s.records.length, 0); assert.doesNotMatch(words(s.tree), /keine Fragen/);
+    s.button('Erneut versuchen').props.onClick(); s.render(); await network.answer(1, 200, { questions: [] }); s.render();
+    assert.match(words(s.tree), /nicht vollständig/); assert.equal(s.records.length, 0);
+    s.button('Erneut versuchen').props.onClick(); s.render(); await network.answer(2); s.render(); assert.ok(s.button('Antwort a'));
+  } finally { network.restore(); }
+});
+test('Double and stale answer/advance clicks still count only one local answer after asynchronous loading', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog); s.start(); s.category('hundewesen'); await network.answer(1); s.render();
+    const answer = s.button('Antwort a'); answer.props.onClick(); answer.props.onClick(); s.render();
+    assert.equal(s.records.length, 1); const finish = s.button('Runde abschließen'); finish.props.onClick(); finish.props.onClick(); s.render();
+    assert.match(words(s.tree), /1 von 1 richtig/);
+    s.category('wildkunde'); answer.props.onClick(); finish.props.onClick(); s.render();
+    assert.equal(s.records.length, 1); assert.match(words(s.tree), /Fragen werden geladen/);
+    await network.answer(2); s.render(); assert.doesNotMatch(words(s.tree), /Runde ist abgeschlossen/);
+    s.e.unmount();
+  } finally { network.restore(); }
+});
+test('Unmount aborts the pending fetch and ignores a late result without recording or state updates', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog); s.start(); s.e.unmount(); const writes = s.e.writes;
+    assert.equal(network.pending[0].options.signal.aborted, true); await network.answer(0);
+    assert.equal(s.e.writes, writes); assert.equal(s.records.length, 0);
+  } finally { network.restore(); }
+});

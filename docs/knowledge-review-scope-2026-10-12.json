@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-12",
+  "operatorRequirement": "All Jagdlatein knowledge must be correct and checked against multiple independent appropriate sources.",
+  "policyFiles": ["AGENTS.md", "KNOWLEDGE_POLICY.md"],
+  "newExperiences": ["Wildjahr", "Wildtier-Detailatlas", "Jagdhunde im Video", "Wildbret-Stückekunde", "Das kleine Leben im Revier", "Forschung verstehen", "Deine fünf Minuten Wissen"],
+  "reviewedScope": {
+    "wildYear": "8 ungulates, 86 biological phases, 96 complete month views; claim-specific sources and explicit differences between sources.",
+    "detailAtlas": "5 comparisons, 15 biological claims, documented real specimens and limits of photograph-based inference.",
+    "dogVideos": "4 licensed documentary clips, visible events separated from interpretation, qualified training and breed sources.",
+    "venisonCuts": "5 cuts correctly located on one documented roe deer photograph; source-scoped cooking and hygiene information.",
+    "smallRevierLife": "6 profiles, original teaching summaries with independent ecology sources; 6 real licensed photos.",
+    "research": "DWD annual values, BOKU yearly wildfire counts, BAFU/Swiss Bird Index changes checked against the original data. Methodology sources are not represented as independent duplicate measurements.",
+    "shortRepetition": "Reuses maintained DACH course questions, excludes regional law. Retrieval-practice research supports general methods, not the specific app interval schedule.",
+    "relatedExistingContent": "22 explicit aspects in 8 wildlife profiles, 15 lessons in 3 dog courses, 5 nature sections, and source-scoped safety/hygiene sections. Claim limits remain explicit."
+  },
+  "confirmedCorrections": [
+    {
+      "item": "wissen-waffensicherheit-4",
+      "issue": "German VSG 4.4 unloading provision for vehicles was classified for all DACH countries.",
+      "change": "Classified for Germany only and excluded from shared DACH repetition.",
+      "primarySource": "https://www.svlfg.de/vsg4-4-jagd.pdf"
+    },
+    {
+      "item": "wissen-ausbau-monitoring",
+      "issue": "Absolute rule that a zero always requires a performed survey overlooked prescribed program conventions.",
+      "change": "Scoped to the learner's own observation records; program-specific definitions explicitly acknowledged in the lesson and question explanation.",
+      "primarySource": "https://www.bafu.admin.ch/dam/de/sd-web/hoS5qaot9Fvn/biodiversitaetsmonitoringschweizbdm.pdf"
+    }
+  ],
+  "limitations": [
+    "This record is not a complete new factual review of all legacy lessons, questions, species portraits, glossary entries or the e-book.",
+    "Structural tests and different source hostnames do not prove factual correctness or source independence.",
+    "Existing recorded review dates were not automatically renewed.",
+    "Real photos do not independently prove animal age, sex, health, season, successful work or food hygiene unless the cited evidence supports that inference."
+  ]
+}

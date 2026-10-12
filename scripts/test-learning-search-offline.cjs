@@ -9,10 +9,11 @@ const requireProject = createRequire(path.join(root, 'package.json'));
 const swc = requireProject('next/dist/build/swc');
 function load(relative, overrides = {}, cache = new Map(), expose = '') {
   const filename = path.join(root, relative);
+  if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} }; cache.set(filename, mod.exports);
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
-  function requireLocal(id) { if (Object.hasOwn(overrides, id)) return overrides[id]; if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) }; if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, cache); return requireProject(id); }
+  function requireLocal(id) { if (Object.hasOwn(overrides, id)) return overrides[id]; if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) }; if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), (path.extname(id) ? id : id + '.js'))), overrides, cache); return requireProject(id); }
   new Function('require', 'module', 'exports', code + expose)(requireLocal, mod, mod.exports); cache.set(filename, mod.exports); return mod.exports;
 }
 test('Search covers courses, species, terms and all tools; results contain summaries only', () => {

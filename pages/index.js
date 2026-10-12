@@ -9,6 +9,7 @@ import HomeNews from "../components/HomeNews";
 import { CommunityInvite } from "../components/Community";
 import { getJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
+import { clearReviewHistory } from "../lib/daily-review";
 import { useEffect } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
@@ -99,6 +100,7 @@ export default function Home({ loggedIn = false, initialNews }) {
     await fetch("/api/auth/session", {
       method: "DELETE",
     });
+    if (!clearReviewHistory()) window.alert("Abgemeldet. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
     try { await clearOfflineLearning(); } catch { window.alert("Abgemeldet. Die lokalen Downloads konnten nicht vollständig entfernt werden. Bitte im Lernrucksack entfernen oder die Browserdaten dieser App löschen."); }
 
     window.location.href = "/";

@@ -1,0 +1,2108 @@
+{
+  "inventoryDate": "2026-10-12",
+  "kind": "structural-source-inventory",
+  "limitation": "Different hosts do not prove independent support for a concrete claim. All marked items need editorial review; unmarked items still need claim-level review. Existing review dates are copied, not updated by this inventory.",
+  "courses": [
+    {
+      "id": "wissen-rehwild-jahreslauf",
+      "title": "Rehwild im Jahreslauf verstehen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084667/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+        "https://www.jagdverband.de/das-reh-feinschmecker-und-anpassungskuenstler",
+        "https://www.vetmeduni.ac.at/universitaet/infoservice/presseinformationen/presseinformationen-2019/wie-rehen-das-winterfutter-auf-den-pansen-schlaegt"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de",
+        "vetmeduni.ac.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-rotwild-sozialverhalten",
+      "title": "Rotwild: Familien, Rudel und Raumnutzung",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/rothirsch/",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/087879/index.php",
+        "https://www.vetmeduni.ac.at/universitaet/infoservice/presseinformationen/presseinformationen-2024/hirsche-passen-physiologie-der-muskeln-an-jahreszeit-an"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch",
+        "jagdverband.de",
+        "wildtierportal.bayern.de",
+        "vetmeduni.ac.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-schwarzwild-lebensweise",
+      "title": "Schwarzwild: Rotte, Nahrung und Verhalten",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084682/index.php",
+        "https://www.vetmeduni.ac.at/fileadmin/v/fiwi/FIWI_Jahresberichte_und_Broschueren/FIWI_JB2019_WEB.pdf",
+        "https://www.lwf.bayern.de/mam/cms04/service/dateien/a35_schwarzwild_in_bayern.pdf",
+        "https://www.nationalpark-bayerischer-wald.bayern.de/service/downloads/doc/broschuere/wildtieren_auf_der_spur.pdf"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "vetmeduni.ac.at",
+        "lwf.bayern.de",
+        "nationalpark-bayerischer-wald.bayern.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-gams-steinbock",
+      "title": "Gämse und Steinbock im Gebirgslebensraum",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/gaemse/",
+        "https://nationalpark.ch/flora-und-fauna/steinbock/",
+        "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf",
+        "https://www.waldwissen.net/de/lebensraum-wald/wald-und-wild/wildoekologie/lebensraeume-der-gams"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch",
+        "waldwissen.net"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-federwild-beobachtung",
+      "title": "Federwild sicher beobachten und beschreiben",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/stockente-anas-platyrhynchos",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fasan-phasianus-colchicus",
+        "https://www.vogelwarte.ch/wp-content/uploads/2024/09/Verantwortungsvolles-Beobachten-und-Fotografieren_low_de.pdf",
+        "https://www.vogelwarte.ch/wp-content/uploads/2025/05/Vogelmonitoring-2024.pdf"
+      ],
+      "distinctHosts": [
+        "jagdverband.de",
+        "vogelwarte.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-spuren-systematisch",
+      "title": "Wildspuren systematisch lesen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://naturdetektive.bfn.de/lexikon/zum-lesen/jahreszeiten/fruehling/aktionsideen-fuer-den-fruehling/auf-spurensuche.html",
+        "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/die-kunst-des-faehrtenlesens",
+        "https://wolf.nrw.de/wolf/de/aktuelles/index.html",
+        "https://www.bfn.de/publikationen/bfn-schriften/bfn-schriften-413-monitoring-von-wolf-luchs-und-baer-deutschland"
+      ],
+      "distinctHosts": [
+        "naturdetektive.bfn.de",
+        "waldwissen.net",
+        "wolf.nrw.de",
+        "bfn.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-lebensraeume-biotopverbund",
+      "title": "Lebensräume und Biotopverbund verstehen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfn.de/handlungsfeld-2-vernetzung",
+        "https://www.bfn.de/daten-und-fakten/geeignete-flaechen-und-verbindungsachsen-fuer-einen-laenderuebergreifenden",
+        "https://www.umweltbundesamt.at/umweltthemen/boden/biodiversitaet-und-infrastruktur",
+        "https://www.bafu.admin.ch/de/wildtierkorridore"
+      ],
+      "distinctHosts": [
+        "bfn.de",
+        "umweltbundesamt.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-jagdhunde-aufgaben-ausbildung",
+      "title": "Jagdhunde: Aufgaben, Lernen und Zusammenarbeit",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://jghv.de/images/managed/dateien/2024/service/pruefungsordnungen-des-jghv/VGPO_VPSO_2018_01.pdf",
+        "https://www.oejgv.at/wp-content/uploads/2020/03/OEJGV_Hundebuch_Layout_Finale.pdf",
+        "https://www.blv.admin.ch/de/hunde",
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0225023"
+      ],
+      "distinctHosts": [
+        "jghv.de",
+        "oejgv.at",
+        "blv.admin.ch",
+        "journals.plos.org"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-waffensicherheit",
+      "title": "Waffensicherheit verstehen und anwenden",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/vsg4-4-jagd.pdf",
+        "https://www.svlfg.de/sichere-jagd",
+        "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Sicherheit_Schiessbetrieb_Jungjaeger_2020_ueberarbeitet.pdf"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "so.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-kugelfang",
+      "title": "Schussfeld und Kugelfang beurteilen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/vsg4-4-jagd.pdf",
+        "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Sicherheit_Schiessbetrieb_Jungjaeger_2020_ueberarbeitet.pdf",
+        "https://www.jagdverband.de/sicherheit-vor-jagderfolg"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "so.ch",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-optik",
+      "title": "Optik, Wärmebild und Beobachtungsgrenzen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.bafu.admin.ch/de/jagd"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-jaegersprache",
+      "title": "Jägersprache: Begriffe mit Beobachtungen verbinden",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/forschung-aufklaerung/kampagnen/gemeinsam-jagd-erleben/leitfaden-fuer-jaeger",
+        "https://www.jagdverband.de/die-jaegersprache-bildreiche-redewendungen-im-alltag"
+      ],
+      "distinctHosts": [
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-pruefungslernen",
+      "title": "Prüfungsvorbereitung: Wissen erklären und anwenden",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/jagd/jagdausbildung-im-kanton-zuerich.html"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "zh.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-jagdrecht-de",
+      "title": "Deutschland: Jagdrecht richtig einordnen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/",
+        "https://www.gesetze-im-internet.de/bjagdg/__3.html",
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.gesetze-im-internet.de/bjagdg/__22.html"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-jagdrecht-at",
+      "title": "Österreich: Landesrecht und Jagdkarte",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.ris.bka.gv.at/Land/",
+        "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20000559"
+      ],
+      "distinctHosts": [
+        "oesterreich.gv.at",
+        "ris.bka.gv.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-jagdrecht-ch",
+      "title": "Schweiz: Bund, Kanton und Jagdsystem",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bafu.admin.ch/de/jagd",
+        "https://www.bafu.admin.ch/de/jagdbanngebiete",
+        "https://www.bafu.admin.ch/de/biodiversitaet-gesetze-und-verordnungen"
+      ],
+      "distinctHosts": [
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-ansitzplanung",
+      "title": "Ansitz planen und Entscheidungen begründen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.svlfg.de/pm-jagd-hochsitze"
+      ],
+      "distinctHosts": [
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-gesellschaftsjagd",
+      "title": "Gesellschaftsjagd: Einweisung und Kommunikation",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/vsg4-4-jagd.pdf",
+        "https://www.svlfg.de/fa-sichere-erntejagd"
+      ],
+      "distinctHosts": [
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-nachsuche",
+      "title": "Nachsuche vorbereiten: Beobachtung und Meldung",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/vsg4-4-jagd.pdf",
+        "https://www.svlfg.de/sichere-jagd"
+      ],
+      "distinctHosts": [
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-orientierung",
+      "title": "Orientierung, Karten und Rückkehrplanung",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.swisstopo.admin.ch/de/karten",
+        "https://www.svlfg.de/sichere-jagd"
+      ],
+      "distinctHosts": [
+        "swisstopo.admin.ch",
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-wildbrethygiene",
+      "title": "Wildbret: Hygiene vom Revier bis zur Küche",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+        "https://www.bfr.bund.de/cm/343/wildfleisch-gesundheitliche-bewertung-von-humanpathogenen-parasiten.pdf",
+        "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln"
+      ],
+      "distinctHosts": [
+        "bfr.bund.de",
+        "blv.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-tiergesundheit",
+      "title": "Tiergesundheit, Fallwild und Biosicherheit",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.fli.de/de/aktuelles/tierseuchengeschehen/afrikanische-schweinepest/",
+        "https://www.fli.de/de/presse/pressemitteilungen/presse-einzelansicht/massnahmen-gegen-afrikanische-schweinepest/",
+        "https://www.bafu.admin.ch/de/wildtiermanagement"
+      ],
+      "distinctHosts": [
+        "fli.de",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-wald-wild",
+      "title": "Wald und Wild: Schäden lesen, Ursachen prüfen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.wsl.ch/de/wald/bewirtschaftung-und-waldfunktionen/waldbau-wachstum-und-ertrag/waldverjuengung/verbiss-durch-schalenwild/",
+        "https://www.bafu.admin.ch/dam/de/sd-web/tKNiPvft35Qa/wald_und_wild_grundlagenfuerdiepraxis.pdf"
+      ],
+      "distinctHosts": [
+        "wsl.ch",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-wetter-wind",
+      "title": "Wetter und Wind im Gelände beurteilen",
+      "lessons": 3,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.meteoswiss.admin.ch/dam/jcr%3A26d0cf06-eb32-427f-abde-24e3c79b333e/Web_Wetterlagen_DE_low.pdf",
+        "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2022/10/voruebergehend-recht-sonnig-und-mild.html",
+        "https://www.svlfg.de/sichere-jagd"
+      ],
+      "distinctHosts": [
+        "meteoswiss.admin.ch",
+        "meteoschweiz.admin.ch",
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-hasenartige",
+      "title": "Feldhase und Wildkaninchen im Vergleich",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.wildtierportal-bw.de/filefly/api?action=stream&path=%2Fwildarten%2Fpdfs%2F2023-wfs-hase-kaninchen.pdf",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102456/index.php",
+        "https://lfl.bayern.de/iab/kulturlandschaft/299133/index.php",
+        "https://www.vetmeduni.ac.at/universitaet/infoservice/news/news-detail/myxomatose-ausbruch-in-oesterreich"
+      ],
+      "distinctHosts": [
+        "wildtierportal-bw.de",
+        "wildtierportal.bayern.de",
+        "lfl.bayern.de",
+        "vetmeduni.ac.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-raubwildoekologie",
+      "title": "Raubwildökologie ohne einfache Feindbilder",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/fuchs-vulpes-vulpes",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/dachs-meles-meles",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/baummarder-martes-martes",
+        "https://nationalpark.ch/grossebeutegreifer/"
+      ],
+      "distinctHosts": [
+        "jagdverband.de",
+        "nationalpark.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-jungtiere-beobachten",
+      "title": "Wildtierbeobachtung und Jungtierfunde",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.wien.gv.at/zusammenleben/jungwildtieren-richtig-helfen",
+        "https://www.vogelwarte.ch/wp-content/uploads/2024/04/240416_MM_Jungvoegel-1.pdf",
+        "https://www.wildtierportal-bw.de/de/frontend/product/detail?productId=14",
+        "https://www.berlin.de/sen/uvk/natur-und-gruen/naturschutz/artenschutz/freilandartenschutz/hilflose-wildtiere/"
+      ],
+      "distinctHosts": [
+        "wien.gv.at",
+        "vogelwarte.ch",
+        "wildtierportal-bw.de",
+        "berlin.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-gewaesser-feuchtgebiete",
+      "title": "Gewässer und Feuchtgebiete als Lebensraum",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bafu.admin.ch/de/auen",
+        "https://www.bafu.admin.ch/de/biologie-der-fliessgewaesser",
+        "https://www.umweltbundesamt.at/wasser/daten-karten/gewaesserzustandsueberwachung",
+        "https://www.bfn.de/publikationen/bfn-schriften/bfn-schriften-591-methodische-grundlagen-zum-auenzustandsbericht-2021"
+      ],
+      "distinctHosts": [
+        "bafu.admin.ch",
+        "umweltbundesamt.at",
+        "bfn.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-biotoppflege",
+      "title": "Biotopgestaltung und Pflegeplanung",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lfu.bayern.de/natur/biotopkartierung/index.htm",
+        "https://www.lfl.bayern.de/iab/kulturlandschaft/390606/index.php",
+        "https://www.agroscope.admin.ch/de/biodiversitaetsfoerderung-im-ackerbau",
+        "https://www.bfw.gv.at/biodiversitaet-im-wirtschaftswald/"
+      ],
+      "distinctHosts": [
+        "lfu.bayern.de",
+        "lfl.bayern.de",
+        "agroscope.admin.ch",
+        "bfw.gv.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-monitoring",
+      "title": "Monitoring und Datenauswertung verstehen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfn.de/monitoring-bewertungsschemata",
+        "https://www.bfn.de/monitoring-ffh-richtlinie",
+        "https://www.bafu.admin.ch/dam/de/sd-web/hoS5qaot9Fvn/biodiversitaetsmonitoringschweizbdm.pdf",
+        "https://www.jagdverband.de/sites/default/files/projekthandbuch_wild0808_0.pdf",
+        "https://wildbienen.thuenen.de/fileadmin/nisthilfen/Publikationen/Grundlagen_Wildbienen-Monitoring.pdf"
+      ],
+      "distinctHosts": [
+        "bfn.de",
+        "bafu.admin.ch",
+        "jagdverband.de",
+        "wildbienen.thuenen.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-baumarten-waldaufbau",
+      "title": "Baumarten erkennen und Waldaufbau verstehen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.aelf-ds.bayern.de/forstwirtschaft/wald/277627/index.php",
+        "https://www.aelf-ds.bayern.de/forstwirtschaft/wald/277632/index.php",
+        "https://lwf.bayern.de/waldbau-bergwald/waldbau/087843/index.php?fontsize=-1",
+        "https://www.bfw.gv.at/die-forstlichen-wuchsgebiete-oesterreichs/",
+        "https://www.bfw.gv.at/bfw-praxisinformation41-mischwald/",
+        "https://www.bfw.gv.at/biodiversitaetsindex-fuer-oesterreichs-waelder/",
+        "https://www.bfn.de/daten-und-fakten/totholzmengen-im-wald",
+        "https://totholz.wsl.ch/de/totholz/vielfaeltiger-lebensraum/"
+      ],
+      "distinctHosts": [
+        "aelf-ds.bayern.de",
+        "lwf.bayern.de",
+        "bfw.gv.at",
+        "bfn.de",
+        "totholz.wsl.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-straeucher-jahreslauf",
+      "title": "Sträucher und saisonale Nahrung im Jahreslauf",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lwf.bayern.de/boden-klima/baumartenwahl/358473/index.php",
+        "https://lwf.bayern.de/biodiversitaet/biologische-vielfalt/209760/index.php",
+        "https://www.lwf.bayern.de/biodiversitaet/biologische-vielfalt/158665/index.php?layer=rss",
+        "https://opendata.dwd.de/climate_environment/CDC/help/PH_Beobachtungskriterien_VuB_17_Handbuch.pdf",
+        "https://www.bfr.bund.de/fragen-und-antworten/thema/giftpflanzen-wie-kann-man-sich-schuetzen-und-was-ist-bei-einer-vergiftung-zu-tun/"
+      ],
+      "distinctHosts": [
+        "lwf.bayern.de",
+        "opendata.dwd.de",
+        "bfr.bund.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-waldverjuengung-verbiss",
+      "title": "Waldverjüngung und Verbiss sachlich beurteilen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lwf.bayern.de/mam/cms04/service/dateien/mb32_naturverjuengung_bestimmungshilfe_bf.pdf",
+        "https://www.lwf.bayern.de/fb-verbiss",
+        "https://lwf.bayern.de/service/publikationen/lwf_merkblatt/022686/index.php",
+        "https://www.stmelf.bayern.de/mam/cms01/wald/jagd/dateien/anweisung_fur_die_erstellung_der_forstlichen_gutachten_2024_mit_anlagen_1-4.pdf",
+        "https://www.bfw.gv.at/reges-interesse-am-integralen-wald-wild-management/",
+        "https://www.bafu.admin.ch/dam/bafu/de/dokumente/biodiversitaet/uw-umwelt-wissen/wald_und_wild_grundlagenfuerdiepraxis.pdf.download.pdf/wald_und_wild_grundlagenfuerdiepraxis.pdf"
+      ],
+      "distinctHosts": [
+        "lwf.bayern.de",
+        "stmelf.bayern.de",
+        "bfw.gv.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-agrarjahr",
+      "title": "Das Agrarjahr als wechselnden Lebensraum verstehen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.landwirtschaft-verstehen.at/fileadmin/user_upload/07_Presse-Corner/Fachliche_Printsujets/Druckvorlage_Zeitung_210x148_Zwischenfrucht.pdf",
+        "https://lfl.bayern.de/iab/duengung/270817/index.php?fontsize=-1",
+        "https://www.agroscope.admin.ch/de/19-agraroekologische-produktionssysteme-fuer-den-pflanzenbau",
+        "https://www.bafu.admin.ch/de/biodiversitaet-in-der-agrarlandschaft"
+      ],
+      "distinctHosts": [
+        "landwirtschaft-verstehen.at",
+        "lfl.bayern.de",
+        "agroscope.admin.ch",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-mahd-wildtierrettung",
+      "title": "Mahd und Wildtierrettung gemeinsam vorbereiten",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lfl.bayern.de/maehknigge",
+        "https://lfl.bayern.de/ilt/pflanzenbau/gruenland/244335/index.php",
+        "https://rehkitzrettung.at/",
+        "https://www.rehkitzrettung.ch/"
+      ],
+      "distinctHosts": [
+        "lfl.bayern.de",
+        "rehkitzrettung.at",
+        "rehkitzrettung.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-feldraine-hecken",
+      "title": "Feldraine, Hecken und Übergänge bewerten",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lfl.bayern.de/iab/kulturlandschaft/307973/index.php",
+        "https://www.lfl.bayern.de/publikationen/informationen/040292/index.php?fontsize=1",
+        "https://www.land-oberoesterreich.gv.at/73349.htm",
+        "https://www.bafu.admin.ch/de/qualitaetsorientierte-landnutzungen-und-eingriffe",
+        "https://www.agroscope.admin.ch/de/biodiversitaetsfoerderung-im-ackerbau",
+        "https://wildbienen.thuenen.de/fileadmin/nisthilfen/Publikationen/Grundlagen_Wildbienen-Monitoring.pdf",
+        "https://www.bafu.admin.ch/dam/de/sd-web/Hs7Hc2b6PDaY/uv-2411-rl-laufkaefer.pdf"
+      ],
+      "distinctHosts": [
+        "lfl.bayern.de",
+        "land-oberoesterreich.gv.at",
+        "bafu.admin.ch",
+        "agroscope.admin.ch",
+        "wildbienen.thuenen.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-sicherheitskommunikation",
+      "title": "Sicherheit durch klare Kommunikation",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/so-gelingt-die-erntejagd",
+        "https://www.svlfg.de/fa-sichere-erntejagd",
+        "https://www.svlfg.de/pm-signalkleidung-jagd-vsg"
+      ],
+      "distinctHosts": [
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-ausbau-schiessstandtraining",
+      "title": "Schießstandtraining planen und auswerten",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/sites/default/files/2024-03/DJV-Schie%C3%9Fvorschrift_01-04-24_Neu.pdf",
+        "https://www.dsb.de/fileadmin/DSB.DE/PDF/PDF_2024/Schiessstandordnung_fuer_alle_Schusswaffen_05-2024.pdf",
+        "https://www.dsb.de/fileadmin/DSB.DE/PDF/PDF_2025/DSB_Richtlinine_Standaufsicht_2025.pdf"
+      ],
+      "distinctHosts": [
+        "jagdverband.de",
+        "dsb.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-waffenorganisation",
+      "title": "Waffenpflege, Verwahrung und Wege planen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/waffg_2002/__36.html",
+        "https://www.oesterreich.gv.at/de/themen/gesetze_und_recht/waffenrecht/Seite.2450120",
+        "https://www.fedpol.admin.ch/de/haeufige-fragen-betreffend-das-waffenrecht"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "fedpol.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-pirschbeobachtung",
+      "title": "Pirsch und störungsarme Beobachtung planen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur",
+        "https://www.bafu.admin.ch/de/jagdbanngebiete",
+        "https://www.bfn.de/thema/tourismus-und-sport"
+      ],
+      "distinctHosts": [
+        "bafu.admin.ch",
+        "bfn.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-rollenabsprachen",
+      "title": "Jagdorganisation und Rollen abstimmen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.bafu.admin.ch/de/jagd"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "oesterreich.gv.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-anschussmeldung",
+      "title": "Anschuss dokumentieren und Nachsuche abstimmen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/rund-um-die-jagd/was-draussen-passiert/bewegungsjagd",
+        "https://jagdschweiz.ch/jagdpraxis/jagd-kodex/",
+        "https://www.svlfg.de/so-gelingt-die-erntejagd"
+      ],
+      "distinctHosts": [
+        "jagdverband.de",
+        "jagdschweiz.ch",
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-ausruestungsplanung",
+      "title": "Ausrüstung für Wetter, Wege und Aufenthaltsdauer",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfu.ch/de/ratgeber/wandern-bergwandern",
+        "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/schutzkleidung/warnkleidung-wetterschutzkleidung",
+        "https://www.suva.ch/de-ch/ueber-uns/magazin-und-medien/magazin/arbeiten-bei-kaelte-das-muessen-sie-beachten"
+      ],
+      "distinctHosts": [
+        "bfu.ch",
+        "suva.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-karten-gps",
+      "title": "Karte, Koordinaten und digitale Orientierung",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.swisstopo.admin.ch/de/kartenlesen",
+        "https://www.bev.gv.at/Services/Produkte/Austrian-Map/Austrian-Map-online.html",
+        "https://www.bkg.bund.de/SharedDocs/Produktinformationen/BKG/DE/P-2023/230302_Abloesung_WebAtlasDE.html",
+        "https://www.swisstopo.admin.ch/de/swipos-haeufige-fragen-und-antworten",
+        "https://www.bfu.ch/de/ratgeber/wandern-bergwandern"
+      ],
+      "distinctHosts": [
+        "swisstopo.admin.ch",
+        "bev.gv.at",
+        "bkg.bund.de",
+        "bfu.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-wildkameras",
+      "title": "Wildkameras, Datenqualität und Privatsphäre",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.datenschutz.rlp.de/themen/videoueberwachung/wildkameras",
+        "https://dsb.gv.at/faqs/foto-video",
+        "https://www.edoeb.admin.ch/de/fotofallen-und-wildtierkameras"
+      ],
+      "distinctHosts": [
+        "datenschutz.rlp.de",
+        "dsb.gv.at",
+        "edoeb.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-verantwortungsentscheidungen",
+      "title": "Waidgerecht entscheiden und Grenzen anerkennen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://jagdschweiz.ch/jagdpraxis/jagd-kodex/",
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.bafu.admin.ch/de/jagd",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741"
+      ],
+      "distinctHosts": [
+        "jagdschweiz.ch",
+        "svlfg.de",
+        "bafu.admin.ch",
+        "oesterreich.gv.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-wildunfall-fundtiere",
+      "title": "Wildunfälle und vermeintlich hilflose Tiere",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://mleuv.brandenburg.de/mleuv/de/ueber-uns/landestierschutzbeauftragte/themen/wildtier-hilfe/",
+        "https://www.oeamtc.at/thema/panne-unfall/verkehrsunfaelle-durch-tiere-14647182",
+        "https://www.tcs.ch/de/testberichte-ratgeber/tests/auto-crashtests/crashtests/wildunfall.php"
+      ],
+      "distinctHosts": [
+        "mleuv.brandenburg.de",
+        "oeamtc.at",
+        "tcs.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-naturdialog",
+      "title": "Jagd, Naturnutzung und Konflikte sachlich besprechen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://jagdschweiz.ch/jagdpraxis/jagd-kodex/",
+        "https://www.bafu.admin.ch/de/freizeit-und-erholung",
+        "https://www.bfn.de/kooperation-mit-nutzern-beim-natura-2000-management",
+        "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur"
+      ],
+      "distinctHosts": [
+        "jagdschweiz.ch",
+        "bafu.admin.ch",
+        "bfn.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-jagdhundewahl",
+      "title": "Jagdhundetypen und eine passende Aufgabenwahl",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jghv.de/service/pruefungsordnungen-des-jghv",
+        "https://www.oejgv.at/verband/",
+        "https://www.blv.admin.ch/de/hunde",
+        "https://www.gesetze-im-internet.de/tierschhuv/"
+      ],
+      "distinctHosts": [
+        "jghv.de",
+        "oejgv.at",
+        "blv.admin.ch",
+        "gesetze-im-internet.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-hundelernen",
+      "title": "Welpe, Alltag und positives Lernverhalten",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/tierschhuv/",
+        "https://www.blv.admin.ch/de/hunde",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html",
+        "https://www.oejgv.at/verband/"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "blv.admin.ch",
+        "zh.ch",
+        "oejgv.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-hundeteam",
+      "title": "Zusammenarbeit, Nasenarbeit und Einsatzbeobachtung",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jghv.de/service/pruefungsordnungen-des-jghv",
+        "https://www.oejgv.at/leistungsbuch-oejgv/",
+        "https://www.blv.admin.ch/de/hunde",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html"
+      ],
+      "distinctHosts": [
+        "jghv.de",
+        "oejgv.at",
+        "blv.admin.ch",
+        "zh.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-wildbretprozess",
+      "title": "Wildbret: Prozesshygiene und Rückverfolgbarkeit",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+        "https://www.blv.admin.ch/de/schlachtung",
+        "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/authentizitaet-und-mikrobiologie-von-verzehrfertigen-speisen-mit-bezug-auf-wildbreterzeugnisse"
+      ],
+      "distinctHosts": [
+        "bfr.bund.de",
+        "blv.admin.ch",
+        "ages.at"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-wildkrankheiten",
+      "title": "Wildkrankheiten, Zoonosen und Biosicherheit",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.fli.de/de/aktuelles/tierseuchengeschehen/afrikanische-schweinepest/",
+        "https://www.ages.at/forschung/wissen-aktuell/detail/welche-biosicherheitsmassnahmen-koennen-jaegerinnen-treffen",
+        "https://www.blv.admin.ch/de/trichinellose-de",
+        "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/"
+      ],
+      "distinctHosts": [
+        "fli.de",
+        "ages.at",
+        "blv.admin.ch",
+        "bfr.bund.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-wildbretqualitaet",
+      "title": "Wildbretqualität, Küchenablauf und Lagerplanung",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfr.bund.de/presseinformation/wildfleisch-vor-genuss-vollstaendig-durchgaren/",
+        "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/vtec-in-rohwuersten-aus-mit-wildfleisch",
+        "https://www.blv.admin.ch/de/blei",
+        "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/authentizitaet-und-mikrobiologie-von-verzehrfertigen-speisen-mit-bezug-auf-wildbreterzeugnisse"
+      ],
+      "distinctHosts": [
+        "bfr.bund.de",
+        "ages.at",
+        "blv.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-rechtsquellen",
+      "title": "Jagdrecht: Quellen, Berechtigung und Grundbesitz",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/",
+        "https://www.ris.bka.gv.at/eli/lgbl/NI/6500/P4/LNO40035222",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.bafu.admin.ch/de/jagd"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "ris.bka.gv.at",
+        "oesterreich.gv.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-artenschutz",
+      "title": "Artenschutz, Jagdzeiten und Schutzgebiete vergleichen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bnatschg_2009/__44.html",
+        "https://www.gesetze-im-internet.de/bjagdg/__22.html",
+        "https://www.bafu.admin.ch/de/jagdbanngebiete",
+        "https://www.bafu.admin.ch/de/jagd"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-jagdverantwortung",
+      "title": "Verantwortung, Nachweise und Gesellschaftsjagd",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.bafu.admin.ch/de/jagd"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-pruefungsfaelle",
+      "title": "Prüfungsfälle verknüpfen und sicher begründen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/jagd/jagdausbildung-im-kanton-zuerich.html",
+        "https://www.svlfg.de/sichere-jagd"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "zh.ch",
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-jaegersprache",
+      "title": "Jägersprache: Körperteile, Wildbezeichnungen und Spuren",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.jagdverband.de/sites/default/files/Unterrichtsbaustein%20Rehwild%20i.m.a..pdf",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/mufflon-ovis-ammon-musimon",
+        "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/die-kunst-des-faehrtenlesens"
+      ],
+      "distinctHosts": [
+        "jagdverband.de",
+        "waldwissen.net"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-ausbau-lernmethoden",
+      "title": "Systematisch lernen, Fehler analysieren und wiederholen",
+      "lessons": 6,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.psychologicalscience.org/journals/pspi/1529100612453266/",
+        "https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/",
+        "https://www.psychologicalscience.org/journals/current-directions/09637214221100484/",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/jagd/jagdausbildung-im-kanton-zuerich.html"
+      ],
+      "distinctHosts": [
+        "psychologicalscience.org",
+        "zh.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-populationsoekologie",
+      "title": "Populationsökologie: Veränderungen richtig erklären",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.usgs.gov/publications/wildlife-population-dynamics",
+        "https://www.usgs.gov/publications/fragmentation-a-population-rate-changer-a-field-experiment",
+        "https://www.wildtierportal-bw.de/de/p/wildtiermanagement-forschung/wildtiermonitoring-1069.html",
+        "https://www.wsl.ch/de/services-produkte/erfolgskontrolle-von-vernetzungsmassnahmen/",
+        "https://wildbienen.thuenen.de/fileadmin/nisthilfen/Publikationen/Grundlagen_Wildbienen-Monitoring.pdf",
+        "https://www.vogelwarte.ch/wp-content/uploads/2025/05/Vogelmonitoring-2024.pdf"
+      ],
+      "distinctHosts": [
+        "usgs.gov",
+        "wildtierportal-bw.de",
+        "wsl.ch",
+        "wildbienen.thuenen.de",
+        "vogelwarte.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-revier-jahresplanung",
+      "title": "Revierplanung: Ziele, Jahresablauf und Entscheidungen",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lfl.bayern.de/wildlebensraum",
+        "https://www.bfn.de/handlungsfeld-2-vernetzung",
+        "https://www.bfn.de/daten-und-fakten/geeignete-flaechen-und-verbindungsachsen-fuer-einen-laenderuebergreifenden",
+        "https://www.wsl.ch/de/ueber-die-wsl/organisation/forschungseinheiten/landschaftsdynamik/",
+        "https://www.wsl.ch/de/services-produkte/erfolgskontrolle-von-vernetzungsmassnahmen/",
+        "https://www.wildtierportal-bw.de/de/p/wildtiermanagement-forschung/wildtiermonitoring-1069.html"
+      ],
+      "distinctHosts": [
+        "lfl.bayern.de",
+        "bfn.de",
+        "wsl.ch",
+        "wildtierportal-bw.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-waldstruktur-standort",
+      "title": "Waldstruktur: Standort, Schichten und Entwicklung",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lwf.bayern.de/boden-klima/wasserhaushalt/index.php",
+        "https://www.lwf.bayern.de/boden-klima/baumartenwahl/037173/index.php",
+        "https://www.lwf.bayern.de/boden-klima/standortinformationssystem/384826/index.php",
+        "https://www.bfw.gv.at/fachinstitute/waldoekologie-boden/standort-vegetation/",
+        "https://www.lfi.ch/de/ueber-das-lfi/module/biodiversitaet",
+        "https://www.wsl.ch/de/wald/bewirtschaftung-und-waldfunktionen/waldbau/",
+        "https://www.bfn.de/daten-und-fakten/totholzmengen-im-wald",
+        "https://totholz.wsl.ch/de/totholz/vielfaeltiger-lebensraum/"
+      ],
+      "distinctHosts": [
+        "lwf.bayern.de",
+        "bfw.gv.at",
+        "lfi.ch",
+        "wsl.ch",
+        "bfn.de",
+        "totholz.wsl.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-feldlandschaft-koordination",
+      "title": "Feldlandschaft: Bewirtschaftungswechsel gemeinsam planen",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.lfl.bayern.de/wildlebensraum",
+        "https://www.lfl.bayern.de/maehknigge",
+        "https://www.agroscope.admin.ch/de/okologischer-ausgleich",
+        "https://www.agroscope.admin.ch/de/bewirtschaftung-von-biodiversitaetsfoerderflaechen",
+        "https://www.agroscope.admin.ch/de/biodiversitaetsfoerderung-im-ackerbau"
+      ],
+      "distinctHosts": [
+        "lfl.bayern.de",
+        "agroscope.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hundeteam-belastung",
+      "title": "Hundeteam: Bedürfnisse, Belastung und Grenzen",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.blv.admin.ch/de/hunde",
+        "https://www.gesetze-im-internet.de/tierschhuv/__2.html",
+        "https://www.blv.admin.ch/dam/de/sd-web/Auw8tPNGoRam/merkblatt-hunde-hitzestress-de.pdf",
+        "https://jghv.de/service/pruefungsordnungen-des-jghv"
+      ],
+      "distinctHosts": [
+        "blv.admin.ch",
+        "gesetze-im-internet.de",
+        "jghv.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-ansitz-entscheidungsprotokoll",
+      "title": "Ansitz: Beobachtung und begründete Entscheidungen",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.svlfg.de/pm-jagd-hochsitze",
+        "https://www.bfu.ch/de/ratgeber/wandern-bergwandern",
+        "https://www.bfu.ch/de/ratgeber/blitzschlag"
+      ],
+      "distinctHosts": [
+        "svlfg.de",
+        "bfu.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-sicherheitsroutine-stand",
+      "title": "Betreute Sicherheitsroutine und menschliche Fehler",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.dsb.de/fileadmin/DSB.DE/PDF/PDF_2024/Schiessstandordnung_fuer_alle_Schusswaffen_05-2024.pdf",
+        "https://www.dsb.de/fileadmin/DSB.DE/PDF/PDF_2025/DSB_Richtlinine_Standaufsicht_2025.pdf",
+        "https://www.dguv.de/de/praevention/visionzero/kulturderpraevention/handlungsfelder/fehlerkultur/index.jsp",
+        "https://publikationen.dguv.de/regelwerk/dguv-informationen/3770/fehlerkultur-nochmal-glueck-gehabt.-mit-beinaheunfaellen-richtig-umgehen?c=4"
+      ],
+      "distinctHosts": [
+        "dsb.de",
+        "dguv.de",
+        "publikationen.dguv.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-outdoor-reserven",
+      "title": "Outdoor-Reserven, Optik und Technikausfall",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfu.ch/de/ratgeber/wandern-bergwandern",
+        "https://portale.geosphere.at/portallib/html/warninfo/warninfo_alle.php",
+        "https://www.swisstopo.admin.ch/en/faq-swisstopo-application-offline",
+        "https://blogs.zeiss.com/sports-optics/hunting/de/das-einblickverhalten-bei-fernglaesern/",
+        "https://www.bfu.ch/de/ratgeber/blitzschlag"
+      ],
+      "distinctHosts": [
+        "bfu.ch",
+        "portale.geosphere.at",
+        "swisstopo.admin.ch",
+        "blogs.zeiss.com"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-jagdhunderassen",
+      "title": "Jagdhunderassen: Aufgaben, Merkmale und passende Auswahl",
+      "lessons": 12,
+      "questions": 12,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.fci.be/de/nomenclature/7-Vorstehhunde.html",
+        "https://www.fci.be/Nomenclature/Standards/119g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/098g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/102g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/118g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/099g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/001g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/002g07-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/104g08-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/005g08-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/125g08-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/299g06-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/063g06-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/059g06-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/213g06-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/217g06-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/148g04-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/103g03-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/122g08-de.pdf",
+        "https://www.fci.be/Nomenclature/Standards/111g08-de.pdf",
+        "https://jghv.de/service/pruefungsordnungen-des-jghv",
+        "https://www.jagdverband.de/rund-um-die-jagd/jagdhundewesen/hunderassen-einsatzgebiete/vorstehhunde",
+        "https://www.jagdverband.de/rund-um-die-jagd/jagdhundewesen/hunderassen-einsatzgebiete/schweisshunde"
+      ],
+      "distinctHosts": [
+        "fci.be",
+        "jghv.de",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-wildbret-hygienekette",
+      "title": "Wildbret: Hygienekette, Herkunft und Freigabegrenzen",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+        "https://www.blv.admin.ch/de/schlachtung",
+        "https://www.ages.at/mensch/ernaehrung-lebensmittel/lebensmittelinformationen/fleisch",
+        "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20004645",
+        "https://eur-lex.europa.eu/eli/reg/2002/178/oj?locale=de",
+        "https://www.blv.admin.ch/de/trichinellose-de"
+      ],
+      "distinctHosts": [
+        "bfr.bund.de",
+        "blv.admin.ch",
+        "ages.at",
+        "ris.bka.gv.at",
+        "eur-lex.europa.eu"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-recht-pruefmethode",
+      "title": "Jagdrecht: Rechtssysteme und örtliche Fallprüfung",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/",
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.gesetze-im-internet.de/bjagdg/__22.html",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.bafu.admin.ch/de/jagd",
+        "https://www.bafu.admin.ch/de/jagdbanngebiete"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "bafu.admin.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-pruefung-lernwerkstatt",
+      "title": "Prüfung: Fachbegriffe, Abruflernen und Fallanalyse",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+        "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+        "https://www.zh.ch/de/umwelt-tiere/tiere/jagd/jagdausbildung-im-kanton-zuerich.html",
+        "https://learninglab.psych.purdue.edu/downloads/2011/2011_Karpicke_Blunt_Science.pdf",
+        "https://www.svlfg.de/sichere-jagd"
+      ],
+      "distinctHosts": [
+        "gesetze-im-internet.de",
+        "oesterreich.gv.at",
+        "zh.ch",
+        "learninglab.psych.purdue.edu",
+        "svlfg.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-verantwortung-fundtiere",
+      "title": "Verantwortung: Beobachten, Fundtiere und Rücksicht",
+      "lessons": 6,
+      "questions": 8,
+      "recordedReviewDate": "2026-10-04",
+      "links": [
+        "https://www.berlin.de/sen/uvk/natur-und-gruen/naturschutz/artenschutz/freilandartenschutz/hilflose-wildtiere/",
+        "https://www.wien.gv.at/zusammenleben/jungwildtieren-richtig-helfen",
+        "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/veterinaeramt/tieraerzte-und-heilmittel/formulare-merkblaetter-tierarzneimittel/merkblatt-verletzte-wildtiere-behandeln.pdf",
+        "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur",
+        "https://www.svlfg.de/sichere-jagd",
+        "https://www.fli.de/de/aktuelles/tierseuchengeschehen/afrikanische-schweinepest/"
+      ],
+      "distinctHosts": [
+        "berlin.de",
+        "wien.gv.at",
+        "zh.ch",
+        "bafu.admin.ch",
+        "svlfg.de",
+        "fli.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hunde-vorstehrassen",
+      "title": "Vorstehhunde im Vergleich: Namen, Merkmale und Arbeitsprofile",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.fci.be/Nomenclature/Standards/117g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/216g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/232g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/099g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/057g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/239g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/095g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/175g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/202g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/165g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/002g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/006g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/120g07-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/330g07-en.pdf",
+        "https://www.deutsch-langhaar-verband.de/verein/geschichtliches",
+        "https://www.pudelpointer.at/der-pudelpointer/",
+        "https://welpen.vdh.de/hunderassen/rasselexikon/ergebnis/deutsch-stichelhaar",
+        "https://weimaraner-klub-ev.de/weimaraner/rasseportrait/",
+        "https://www.vuv-vizsla.de/zucht-welpen/fahrplan-welpenkauf/",
+        "https://www.akc.org/dog-breeds/french-spaniel/",
+        "https://www.spinoneclubofamerica.com/judging-the-spinone",
+        "https://www.enci.it/libro-genealogico/razze/bracco-italiano",
+        "https://www.akc.org/expert-advice/dog-breeds/meet-setter-breeds/"
+      ],
+      "distinctHosts": [
+        "fci.be",
+        "deutsch-langhaar-verband.de",
+        "pudelpointer.at",
+        "welpen.vdh.de",
+        "weimaraner-klub-ev.de",
+        "vuv-vizsla.de",
+        "akc.org",
+        "spinoneclubofamerica.com",
+        "enci.it"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hunde-bracken-nordische",
+      "title": "Bracken, Schweißhunde und nordische Jagdhunde genauer unterscheiden",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.fci.be/Nomenclature/Standards/063g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/068g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/062g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/254g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/100g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/059g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/060g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/051g06-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/049g05-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/042g05-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/242g05-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/048g05-en.pdf",
+        "https://www.bracken.at/brandlbracke/rasseportrait",
+        "https://www.bracken.at/steirische-rauhaarbracke/rasseportrait",
+        "https://www.klub-dachsbracke.com/",
+        "https://www.laufhund.ch/der-laufhund",
+        "https://www.kennelliitto.fi/en/dogs/finnish-breeds/finnish-hound/",
+        "https://www.kennelliitto.fi/en/dogs/finnish-breeds/finnish-spitz/",
+        "https://www.skk.se/hundraser/jamthund/",
+        "https://www.nkk.no/hunderaser-og-kjop-av-hund/hundevelger/raser/norsk-elghund-gra",
+        "https://www.kennelliitto.fi/en/dogs/finnish-breeds/karelian-bear-dog/"
+      ],
+      "distinctHosts": [
+        "fci.be",
+        "bracken.at",
+        "klub-dachsbracke.com",
+        "laufhund.ch",
+        "kennelliitto.fi",
+        "skk.se",
+        "nkk.no"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hunde-retriever-spaniels",
+      "title": "Retriever und Spaniels: sechs Apportierrassen und verschiedene Stöberprofile",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.fci.be/Nomenclature/Standards/122g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/111g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/121g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/110g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/263g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/312g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/005g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/126g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/109g08-en.pdf",
+        "https://www.fci.be/Nomenclature/Standards/123g08-en.pdf",
+        "https://drc.de/interessenten",
+        "https://drc.de/interessenten/rassen/flat-coated-retriever",
+        "https://drc.de/interessenten/rassen/curly-coated-retriever",
+        "https://drc.de/interessenten/rassen/nova-scotia-duck-tolling-retriever",
+        "https://drc.de/interessenten/rassen/chesapeake-bay-retriever",
+        "https://cdn.akc.org/EnglishCockerSpaniel-club-flyer.pdf",
+        "https://www.royalkennelclub.com/search/breeds-a-to-z/breeds/gundog/spaniel-welsh-springer/",
+        "https://clumbers.org/find-a-clumber/find-a-breder/",
+        "https://www.fieldspanielsocietyofamerica.org/hunting/",
+        "https://avsab.org/wp-content/uploads/2021/08/AVSAB-Humane-Dog-Training-Position-Statement-2021.pdf",
+        "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/training"
+      ],
+      "distinctHosts": [
+        "fci.be",
+        "drc.de",
+        "cdn.akc.org",
+        "royalkennelclub.com",
+        "clumbers.org",
+        "fieldspanielsocietyofamerica.org",
+        "avsab.org",
+        "rspca.org.uk"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hunde-nase-spur-laut",
+      "title": "Nase, Spur und Laut: Hundearbeit sachlich beobachten",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871809/",
+        "https://jghv.de/images/managed/dateien/2024/service/pruefungsordnungen-des-jghv/VZPO_2018_Druck_3.pdf",
+        "https://www.jghv.de/images/managed/dateien/2025/service/satzung-ordnungen-des-jghv/Fragenkatalog_zum_Sachkundenachweis_2025_2.pdf",
+        "https://jghv.de/service/fragen-aus-der-pruefungspraxis-jghv/allgemeines/frage-55-verbandsstoeberpruefung",
+        "https://www.fci.be/Nomenclature/Standards/049g05-en.pdf"
+      ],
+      "distinctHosts": [
+        "pmc.ncbi.nlm.nih.gov",
+        "jghv.de",
+        "fci.be"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-hunde-klare-lernsignale",
+      "title": "Wenige klare Signale: Lernaufgaben im Hundeteam vereinfachen",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://avsab.org/talking-terms-positive-reinforcement/",
+        "https://avsab.org/use-natural-rewards-strategically/",
+        "https://avsab.org/wp-content/uploads/2021/08/AVSAB-Humane-Dog-Training-Position-Statement-2021.pdf",
+        "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2020.00508/full",
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0225023"
+      ],
+      "distinctHosts": [
+        "avsab.org",
+        "frontiersin.org",
+        "journals.plos.org"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-wild-alpine-winterstrategien",
+      "title": "Gams, Steinbock und alpine Winterstrategien",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/gaemse/",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085402/index.php",
+        "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/gaemse-rupicapra-rupicapra",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/143521/index.php",
+        "https://nationalpark.ch/flora-und-fauna/steinbock/",
+        "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf",
+        "https://nationalpark.ch/flora-und-fauna/murmeltier/",
+        "https://nationalpark.ch/flora-und-fauna/schneehase/",
+        "https://nationalpark.ch/flora-und-fauna/alpenschneehuhn/"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch",
+        "wildtierportal.bayern.de",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-wild-hirsche-vergleichen",
+      "title": "Reh, Rot-, Dam- und Sikawild im Vergleich",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084667/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+        "https://www.deutschewildtierstiftung.de/wildtiere/reh",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/087879/index.php",
+        "https://nationalpark.ch/forschung/hoehenverbreitung-der-hirsche-im-jahresverlauf/",
+        "https://www.deutschewildtierstiftung.de/Naturschutz/Tier-des-Jahres",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/083840/index.php",
+        "https://www.zootier-lexikon.org/saeugetiere-mammalia/paarzeher/hirsche-hirschferkel-und-moschustiere-cervidae-tragulidae-moschidae/europaeischer-damhirsch-dama-dama",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/damwild-dama-dama",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/118649/index.php",
+        "https://www.tierpark.ch/tierarten/sikahirsch-2/",
+        "https://www.wildtierportal-bw.de/de/frontend/product/detail?productId=13",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/100480/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de",
+        "deutschewildtierstiftung.de",
+        "nationalpark.ch",
+        "zootier-lexikon.org",
+        "tierpark.ch",
+        "wildtierportal-bw.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-wild-schwarzwild-fortpflanzung",
+      "title": "Schwarzwild: Nachwuchs, Nahrung und Fortpflanzung",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084682/index.php",
+        "https://www.vetmeduni.ac.at/fiwi-forschungsinstitut-fuer-wildtierkunde-und-oekologie/publikationen/fiwi-news-archiv/2021",
+        "https://www.deutschewildtierstiftung.de/wildtiere/wildschwein",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa",
+        "https://www.tierpark.ch/tierarten/wildschwein/",
+        "https://www.nature.com/articles/s41598-021-97825-z"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "vetmeduni.ac.at",
+        "deutschewildtierstiftung.de",
+        "jagdverband.de",
+        "tierpark.ch",
+        "nature.com"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wissen-vertiefung-wild-kleine-beutegreifer",
+      "title": "Dachs, Marder und Wiesel genauer verstehen",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085227/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101575/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/100869/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/100914/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101466/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101647/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-vertiefung-wild-huehner-nachwuchs",
+      "title": "Rebhuhn, Fasan und Raufußhühner: Nachwuchs und Lebensraum",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102425/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102449/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/096750/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102436/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wissen-vertiefung-wild-wasservoegel-jahreslauf",
+      "title": "Wasservögel: Nahrung, Mauser und Familien",
+      "lessons": 5,
+      "questions": 10,
+      "recordedReviewDate": "2026-10-12",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101065/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/213492/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101081/index.php",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085417/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    }
+  ],
+  "wildlife": [
+    {
+      "id": "gamswild",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/gaemse/",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085402/index.php",
+        "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Gaemse.pdf",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/gaemse-rupicapra-rupicapra",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/143521/index.php",
+        "https://nationalpark.ch/flora-und-fauna/steinbock/"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch",
+        "wildtierportal.bayern.de",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "steinwild",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/steinbock/",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/143521/index.php",
+        "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch",
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "rotwild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/087879/index.php",
+        "https://nationalpark.ch/forschung/hoehenverbreitung-der-hirsche-im-jahresverlauf/",
+        "https://www.deutschewildtierstiftung.de/Naturschutz/Tier-des-Jahres",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/083840/index.php",
+        "https://www.zootier-lexikon.org/saeugetiere-mammalia/paarzeher/hirsche-hirschferkel-und-moschustiere-cervidae-tragulidae-moschidae/europaeischer-damhirsch-dama-dama"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "nationalpark.ch",
+        "deutschewildtierstiftung.de",
+        "jagdverband.de",
+        "zootier-lexikon.org"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "rehwild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084667/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+        "https://www.deutschewildtierstiftung.de/wildtiere/reh"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de",
+        "deutschewildtierstiftung.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "damwild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/083840/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/damwild-dama-dama",
+        "https://www.zootier-lexikon.org/saeugetiere-mammalia/paarzeher/hirsche-hirschferkel-und-moschustiere-cervidae-tragulidae-moschidae/europaeischer-damhirsch-dama-dama"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de",
+        "zootier-lexikon.org"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "sikawild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/118649/index.php",
+        "https://www.tierpark.ch/tierarten/sikahirsch-2/",
+        "https://www.wildtierportal-bw.de/de/frontend/product/detail?productId=13"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "tierpark.ch",
+        "wildtierportal-bw.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "muffelwild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/096779/index.php",
+        "https://www.tierpark.ch/tierarten/mufflon-2/",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/mufflon-ovis-ammon-musimon"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "tierpark.ch",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "schwarzwild",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/084682/index.php",
+        "https://www.vetmeduni.ac.at/fiwi-forschungsinstitut-fuer-wildtierkunde-und-oekologie/publikationen/fiwi-news-archiv/2021",
+        "https://www.deutschewildtierstiftung.de/wildtiere/wildschwein",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildschwein-sus-scrofa",
+        "https://www.tierpark.ch/tierarten/wildschwein/"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "vetmeduni.ac.at",
+        "deutschewildtierstiftung.de",
+        "jagdverband.de",
+        "tierpark.ch"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "fuchs",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085227/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "dachs",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101575/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "steinmarder",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/100869/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "baummarder",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/100914/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "hermelin",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101466/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "mauswiesel",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101647/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "wildkatze",
+      "links": [
+        "https://www.bfn.de/artenportraits/felis-silvestris",
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102627/index.php"
+      ],
+      "distinctHosts": [
+        "bfn.de",
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "luchs",
+      "links": [
+        "https://www.kora.ch/de/arten/luchs/nachweise-im-feld",
+        "https://www.kora.ch/de/arten/luchs/portrait"
+      ],
+      "distinctHosts": [
+        "kora.ch"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "feldhase",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102456/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "wildkaninchen",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/140874/index.php",
+        "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/wildkaninchen-oryctolagus-cuniculus"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "jagdverband.de"
+      ],
+      "needsIndependentSourceReview": false
+    },
+    {
+      "id": "schneehase",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/schneehase/"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "murmeltier",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/murmeltier/"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "biber",
+      "links": [
+        "https://www.lfu.bayern.de/natur/sap/arteninformationen/steckbrief/zeige?stbname=Castor+fiber",
+        "https://www.lfu.bayern.de/natur/bayaz/artdesmonats/adventskalender_2023/index.htm"
+      ],
+      "distinctHosts": [
+        "lfu.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "nutria",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/218365/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "bisam",
+      "links": [
+        "https://lfu.brandenburg.de/lfu/de/aufgaben/natur/artenschutz/invasive-arten/steckbriefe/bisam/"
+      ],
+      "distinctHosts": [
+        "lfu.brandenburg.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "rebhuhn",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102425/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "fasan",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102449/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "auerhuhn",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/096750/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "birkhuhn",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/102436/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "schneehuhn",
+      "links": [
+        "https://nationalpark.ch/flora-und-fauna/alpenschneehuhn/"
+      ],
+      "distinctHosts": [
+        "nationalpark.ch"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "stockente",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101065/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "krickente",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/213492/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "reiherente",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/101081/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "graugans",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/085417/index.php"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de"
+      ],
+      "needsIndependentSourceReview": true
+    },
+    {
+      "id": "waldschnepfe",
+      "links": [
+        "https://www.wildtierportal.bayern.de/wildtiere_bayern/131696/index.php",
+        "https://wnsinfo.fva-bw.de/arten/waldschnepfe/",
+        "https://www.fva-bw.de/waldschnepfe"
+      ],
+      "distinctHosts": [
+        "wildtierportal.bayern.de",
+        "wnsinfo.fva-bw.de",
+        "fva-bw.de"
+      ],
+      "needsIndependentSourceReview": false
+    }
+  ],
+  "summary": {
+    "courses": 84,
+    "wildlifeProfiles": 33,
+    "coursesWithFewerThanTwoHosts": 10,
+    "wildlifeWithFewerThanTwoHosts": 21
+  }
+}

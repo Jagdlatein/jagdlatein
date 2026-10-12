@@ -1,0 +1,136 @@
+{
+  "reviewedOn": "2026-10-12",
+  "sourceRecords": {
+    "boku2022": { "organization": "Universität für Bodenkultur Wien, Institut für Waldbau", "title": "Jahresrückblick 2022", "url": "https://fireblog.boku.ac.at/2023/01/12/jahresrueckblick-2022/" },
+    "boku2024": { "organization": "Universität für Bodenkultur Wien, Institut für Waldbau", "title": "Jahresrückblick 2024 (einschließlich Vergleichswert 2023)", "url": "https://fireblog.boku.ac.at/2025/01/10/jahresrueckblick-2024/" },
+    "boku2025": { "organization": "Universität für Bodenkultur Wien, Institut für Waldbau", "title": "Jahresrückblick 2025", "url": "https://fireblog.boku.ac.at/2026/01/05/jahresrueckblick-2025/" }
+  },
+  "temperature": {
+    "sourceUrl": "https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/annual/air_temperature_mean/regional_averages_tm_year.txt",
+    "sourceSnapshot": "/lernen/forschung-2026/dwd-gebietsmittel-2026-10-12.txt",
+    "sourceVersion": "Zeitreihen fuer Gebietsmittel fuer Bundeslaender und Kombinationen von Bundeslaender, erstellt am: 20261002",
+    "extraction": "Spalte Deutschland; Jahre 2015 bis 2025; unveränderte Dezimalwerte.",
+    "unit": "°C",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "points": [
+      {
+        "year": 2015,
+        "value": 9.94
+      },
+      {
+        "year": 2016,
+        "value": 9.55
+      },
+      {
+        "year": 2017,
+        "value": 9.58
+      },
+      {
+        "year": 2018,
+        "value": 10.45
+      },
+      {
+        "year": 2019,
+        "value": 10.28
+      },
+      {
+        "year": 2020,
+        "value": 10.43
+      },
+      {
+        "year": 2021,
+        "value": 9.16
+      },
+      {
+        "year": 2022,
+        "value": 10.52
+      },
+      {
+        "year": 2023,
+        "value": 10.63
+      },
+      {
+        "year": 2024,
+        "value": 10.89
+      },
+      {
+        "year": 2025,
+        "value": 10.03
+      }
+    ]
+  },
+  "forestFires": {
+    "extraction": "Einzelne berichtete Jahresbilanzen; Werte können durch Nachmeldungen revidiert werden.",
+    "unit": "dokumentierte Waldbrände",
+    "points": [
+      {
+        "year": 2022,
+        "value": 217,
+        "source": "boku2022",
+        "statusOn": "2023-01-12"
+      },
+      {
+        "year": 2023,
+        "value": 122,
+        "source": "boku2024",
+        "statusOn": "2025-01-10"
+      },
+      {
+        "year": 2024,
+        "value": 125,
+        "source": "boku2024",
+        "statusOn": "2025-01-10"
+      },
+      {
+        "year": 2025,
+        "value": 193,
+        "source": "boku2025",
+        "statusOn": "2026-01-05"
+      }
+    ],
+    "areaComparison": [
+      {
+        "year": 2024,
+        "value": 142,
+        "source": "boku2024",
+        "unit": "Hektar, neigungskorrigiert"
+      },
+      {
+        "year": 2025,
+        "value": 45,
+        "source": "boku2025",
+        "unit": "Hektar, neigungskorrigiert",
+        "approximate": true
+      }
+    ]
+  },
+  "birds": {
+    "sourceUrl": "https://www.indikatoren.admin.ch/public/v2/detail?ind=BD138&lng=de",
+    "publishedOn": "2026-06-19",
+    "extraction": "Veröffentlichte Veränderung der Dreijahresmittel; keine Jahreswerte aus der Grafik abgelesen.",
+    "baseline": "Mittel 1990–1992",
+    "comparison": "Mittel 2023–2025",
+    "unit": "% Veränderung des Index",
+    "points": [
+      {
+        "id": "alle",
+        "label": "Regelmäßige Brutvögel",
+        "species": 171,
+        "value": 30.61
+      },
+      {
+        "id": "roteliste",
+        "label": "Arten der Roten Liste",
+        "species": 41,
+        "value": 6.42
+      },
+      {
+        "id": "wald",
+        "label": "Waldvögel",
+        "species": 56,
+        "value": 31.88
+      }
+    ]
+  }
+}

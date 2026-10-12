@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-scope";
+import { recordReviewAnswer } from "../../../lib/daily-review";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -90,6 +91,9 @@ export default function QuizClient() {
     setSeconds(value.phase === "asking" ? remainingSeconds() : 0);
     setError(null);
     setBusy(null);
+    if (value.phase === "feedback" && value.feedback.learningHref?.startsWith("/kurse/wissen-")) {
+      recordReviewAnswer(value.feedback.questionId, value.feedback.correct, `${value.roundId}:${value.feedback.questionId}:${value.feedback.answeredAt}`, Date.parse(value.feedback.answeredAt));
+    }
     if (value.phase === "complete") forgetRound();
   }
   async function readResponse(response) {

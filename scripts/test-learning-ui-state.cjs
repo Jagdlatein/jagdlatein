@@ -191,7 +191,12 @@ test('Detailed courses show the legal scope of regional questions while retainin
   assert.ok(module);
   const s = setup('components/LearningCourse.js', { module }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
   s.click('Wissen prüfen');
-  const question = module.questions[0];
+  const regionalIndex = module.questions.findIndex(question => question.countries.length < 3);
+  for (const earlier of module.questions.slice(0, regionalIndex)) {
+    s.click(earlier.answers.find(answer => earlier.correct.includes(answer.id)).text);
+    s.click('Nächste Frage');
+  }
+  const question = module.questions[regionalIndex];
   assert.match(words(s.tree), /Geltungsbereich dieser Frage/);
   for (const country of question.countries) assert.ok(words(s.tree).includes({ DE: 'Deutschland', AT: 'Österreich', CH: 'Schweiz' }[country]));
   const progress = find(s.tree, node => node.type === 'progress'); assert.equal(progress.props.max, module.questions.length);

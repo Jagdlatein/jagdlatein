@@ -1,0 +1,57 @@
+{
+  "author": "Hans J. Klaiber",
+  "source": "https://commons.wikimedia.org/wiki/File:Roe_deer_cuts_game-cleaning_facility_Germany_01.png",
+  "originalVideo": "https://www.youtube.com/watch?v=LOaacM5TzTA",
+  "originalDownload": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Roe_deer_cuts_game-cleaning_facility_Germany_01.png",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+  "originalDate": "2015-12-02",
+  "originalSha256": "970ce0dc738b99a2c600e79969822e9809b0dbc6cc49de03785eec61dbabee71",
+  "verifiedOn": "2026-10-12",
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "descriptionVerified": "left to right: two shoulders, ribs, two haunches, back; above: neck",
+  "changes": "WebP conversion; crops of the same authentic source image; no generated or replaced photographed content; numbered HTML overlay",
+  "cropBoxes": {
+    "schulter": [
+      0,
+      390,
+      605,
+      995
+    ],
+    "rippen": [
+      603,
+      406,
+      835,
+      740
+    ],
+    "keule": [
+      794,
+      386,
+      1558,
+      884
+    ],
+    "ruecken": [
+      1490,
+      296,
+      1885,
+      840
+    ],
+    "hals": [
+      910,
+      277,
+      1320,
+      460
+    ]
+  },
+  "outputs": {
+    "hals.webp": "631e21a7198d57b3d004533b065f0d548b2818de793cc76a337394a9707e4a49",
+    "keule.webp": "08f5bae45d503dd7048c107974bce5e8cda1c4f7d28dc4a830ec1e827ca14833",
+    "reh-teilstuecke.webp": "aafefb875d6afe05e6559d3d15eb457c779b66cdc1e27f25bd17664a051e8aac",
+    "rippen.webp": "8f35d67db582c5f8c3ed571e23e03f7b2e34496b8378d17e6e252dfd2fab2fb6",
+    "ruecken.webp": "accfbe30136e6bc142b5e62fcdee3f18eebe8142cbfbfd99f77d04a644f0c295",
+    "schulter.webp": "89b04fd60606b8765dffa0ce64c35078a3a7ecdaec5953e4071e08ad9cd32393"
+  }
+}

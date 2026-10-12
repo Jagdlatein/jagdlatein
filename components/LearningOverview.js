@@ -7,6 +7,7 @@ import LearningSearch from "./LearningSearch";
 import { learningTools, legalLearningHubs } from "../lib/learning-tool-catalog";
 import { learningExperiences } from "../lib/learning-experiences";
 import { getLearningMedia } from "../lib/learning-media";
+import { categoryPhotographs } from "../lib/learning-category-photos";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
 
@@ -47,7 +48,11 @@ export default function LearningOverview({ data }) {
       </section>
       {resources.length > 0 && <section className={styles.section} aria-labelledby="learning-resources-heading">
         <h2 id="learning-resources-heading">Entdecken & anwenden</h2>
-        <ul className={styles.resources}>{resources.map(tool => <li key={tool.href}><Link href={tool.href}>
+        <div className={styles.moduleGrid}>{resources.filter(tool => tool.featured).map(tool => <article key={tool.href} className={styles.moduleCard}>
+          <LearningCover media={categoryPhotographs[tool.imageCategory]} compact />
+          <Link href={tool.href} className={styles.moduleLink}><h3>{tool.title}<AppIcon name="arrow-right" size={20} /></h3><p className={styles.muted}>{tool.description}</p></Link>
+        </article>)}</div>
+        <ul className={styles.resources}>{resources.filter(tool => !tool.featured).map(tool => <li key={tool.href}><Link href={tool.href}>
           <AppIcon name={tool.icon} size={26} /><span><strong>{tool.title}</strong><span>{tool.description}</span></span><AppIcon name="arrow-right" size={18} />
         </Link></li>)}</ul>
       </section>}

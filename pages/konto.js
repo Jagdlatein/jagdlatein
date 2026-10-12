@@ -5,6 +5,7 @@ import useAccountOverview from "../hooks/useAccountOverview";
 import { getAccountPageProps } from "../lib/account-page";
 import { courses } from "../lib/course-catalog";
 import { clearOfflineLearning } from "../lib/offline-learning";
+import { clearReviewHistory } from "../lib/daily-review";
 import styles from "../styles/Account.module.css";
 
 export const getServerSideProps = getAccountPageProps;
@@ -60,6 +61,7 @@ function AccountDeletion({ onDeleted }) {
       }
       setDeleted(true);
       onDeleted();
+      if (!clearReviewHistory()) setMessage("Dein Konto ist gelöscht. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
       try { await clearOfflineLearning(); }
       catch { setMessage("Dein Konto ist gelöscht. Der lokale Lernrucksack auf diesem Gerät konnte nicht vollständig geleert werden. Entferne ihn bitte in den Browser-Einstellungen."); }
       window.dispatchEvent(new Event("jagdlatein-account-deleted"));

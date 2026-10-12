@@ -11,6 +11,7 @@ const { renderToStaticMarkup } = pr('react-dom/server');
 const css = new Proxy({}, { get: (_, key) => String(key) });
 function load(relative, overrides = {}, expose = '') {
   const filename = path.join(root, relative);
+  if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), {
     filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' },
   });
@@ -22,7 +23,7 @@ function load(relative, overrides = {}, expose = '') {
     if (id === 'next/router') return { useRouter: () => ({ query: {} }) };
     if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), (path.extname(id) ? id : id + '.js'))), overrides);
     return req(id);
   }
   new Function('require', 'module', 'exports', code + expose)(resolve, mod, mod.exports);
@@ -58,7 +59,7 @@ function setup(relative, exportName = 'default', expose = '', props = {}) {
 
 test('New tools resolve from the learning hub and relevant categories without changing legal country selection', () => {
   const { learningExperiences } = load('lib/learning-experiences.js');
-  assert.equal(learningExperiences.length, 17);
+  assert.equal(learningExperiences.length, 24);
   assert.equal(new Set(learningExperiences.map(tool => tool.href)).size, learningExperiences.length);
   const Component = load('components/LearningExperiences.js').default;
   for (const tool of learningExperiences) {
@@ -232,7 +233,9 @@ test('Only documented recordings bypass the gate; tools and invented media paths
   });
   const check = pathname => middleware({ nextUrl: new URL('https://example.org' + pathname), url: 'https://example.org' + pathname, cookies: { get: () => undefined } });
   for (const src of learningAudioPaths) { assert.ok(fs.statSync(path.join(root, 'public', src)).size > 5000); assert.equal((await check(src)).allowed, true); }
-  for (const src of ['/lernen/fotodetektiv', '/lernen/tierstimmen', '/lernen/jagdhund-kompass', '/lernen/stimmen/private.mp3', '/lernen/stimmen/aufnahme-09.mp3']) {
+  for (const src of load('lib/knowledge-expansion-assets.js').knowledgeExpansionAssetPaths) assert.equal((await check(src)).allowed, true, src);
+  const newTools = load('lib/learning-experiences.js').learningExperiences.filter(item => item.featured).map(item => item.href);
+  for (const src of ['/lernen/fotodetektiv', '/lernen/tierstimmen', '/lernen/jagdhund-kompass', '/lernen/stimmen/private.mp3', '/lernen/stimmen/aufnahme-09.mp3', '/lernen/hundevideos-2026/private.mp4', '/lernen/forschung-2026/private.json', ...newTools]) {
     const result = await check(src); assert.equal(result.allowed, false); assert.equal(new URL(result.target).pathname, '/preise'); assert.equal(new URL(result.target).searchParams.get('next'), src);
   }
 });

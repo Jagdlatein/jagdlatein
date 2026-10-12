@@ -9,6 +9,7 @@ import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
 import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
+import { recordReviewAnswer } from "../lib/daily-review";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -93,6 +94,7 @@ function LearningContent({ module }) {
     const count = Object.keys(answers).length;
     const complete = count === run.questions.length;
     updateRun({ ...run, answers, score, complete });
+    recordReviewAnswer(question.id, question.correct.includes(answerId));
     if (!practice) {
       setFullProgress({
         started: true,
@@ -216,7 +218,9 @@ function LearningContent({ module }) {
           <section className={styles.card} aria-labelledby="learning-sources">
             <h2 id="learning-sources">Quellen und weiterführende Informationen</h2>
             <p className={styles.muted}>Eigene Lerntexte und Übungsfragen zur Vertiefung deiner Ausbildung. Die verlinkten Quellen dienen zum Nachschlagen; verbindliche örtliche Vorgaben prüfst du vor der praktischen Anwendung.</p>
-            <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a></li>)}</ul>
+            <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a>{source.scope && <p>{source.scope}</p>}</li>)}</ul>
+            {module.sourceReview && <details><summary>Welche Aussagen wurden gegengeprüft?</summary><p>{module.sourceReview.scope}</p>{module.sourceReview.lessons.map(review => <div key={review.lesson}><h3>{module.lessons.find(lesson => lesson.id.endsWith(`-${review.lesson}`))?.title || review.lesson}</h3><ul>{review.confirmedClaims.map(claim => <li key={claim}>{claim}</li>)}</ul>{review.standardOnly.length > 0 && <p>Beleggrenze: {review.standardOnly.join(" ")}</p>}</div>)}</details>}
+            <p className={styles.muted}><Link href="/hilfe#wissensquellen">Wie wir Wissen und Quellen prüfen</Link></p>
           </section>
     </LearningToolLayout>
   );

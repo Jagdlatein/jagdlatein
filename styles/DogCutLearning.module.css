@@ -1,0 +1,66 @@
+.selector { margin: 0 0 22px; }
+.selector label, .searchLabel { display: block; margin-bottom: 8px; font-weight: 750; color: #3e321b; }
+.selector select, .search { width: 100%; min-height: 50px; padding: 12px 14px; background: #fffdf7; color: #3e321b; border: 1px solid #cdbb91; border-radius: 12px; font: inherit; font-size: 1rem; }
+.search { margin-bottom: 22px; }
+.selector select:focus-visible, .search:focus-visible, .answer input:focus-visible, .details summary:focus-visible, .question summary:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.sectionHeader h2 { margin: 0 0 6px; font-size: clamp(1.3rem, 3vw, 1.7rem); color: #3e321b; }
+.sectionHeader p { margin: 0 0 14px; color: #6e6249; font-size: .95rem; }
+.video { width: 100%; max-height: 540px; object-fit: contain; display: block; border-radius: 16px; border: 1px solid #dfcc9b; background: #2a2318; }
+.attribution { margin: 9px 0 22px; color: #6e6249; font-size: .88rem; line-height: 1.6; }
+.attribution a, .sources a, .details a, .overview a, .continueLink a { color: #72541d; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.twoColumns { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; }
+.observation, .context { padding: 20px; background: #fffaf0; border-radius: 14px; border: 1px solid #dfcc9b; }
+.context { background: #f8f3e6; border-color: #ded1af; }
+.observation h3, .context h3, .learningText h3, .checks h3, .kitchen h2, .kitchen h3 { margin: 0 0 10px; color: #3e321b; }
+.observation ol { padding-left: 20px; margin: 0; }
+.observation li { padding-left: 3px; margin: 0 0 14px; line-height: 1.65; }
+.observation li:last-child { margin-bottom: 0; }
+.observation strong { display: block; margin-bottom: 4px; font-size: .9rem; color: #796021; }
+.context p, .learningText p, .cutBody p, .kitchen p, .details p { line-height: 1.75; margin: 0 0 14px; }
+.context p { margin-bottom: 0; }
+.learningText, .checks { margin-top: 26px; }
+.sources { font-size: .88rem; color: #6e6249; line-height: 1.7; margin: 12px 0 0 !important; }
+.details, .question { margin-top: 18px; border-top: 1px solid #dfcc9b; padding-top: 9px; }
+.details summary, .question summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 700; color: #73571a; line-height: 1.5; }
+.details[open] summary, .question[open] summary { margin-bottom: 10px; }
+.details ul { padding-left: 21px; line-height: 1.75; }
+.question { padding: 10px 18px; background: #fffdf7; border: 1px solid #dfcc9b; border-radius: 12px; }
+.question fieldset { border: 0; margin: 0; padding: 0; }
+.answer { display: flex; align-items: flex-start; gap: 12px; padding: 12px 10px; margin-bottom: 7px; line-height: 1.6; background: #fffdf7; border: 1px solid #ded1af; border-radius: 8px; cursor: pointer; }
+.answer input { min-width: 19px; min-height: 19px; margin: 4px 0 0; accent-color: #796021; }
+.feedback, .correct { margin: 14px 0; padding: 14px 16px; line-height: 1.7; background: #faf2df; border-radius: 10px; color: #5e4b20; }
+.correct { background: #e8f0e0; color: #294d2e; }
+.continueLink { margin: 28px 0 0; }
+.overview { margin: 0 0 22px; border: 1px solid #dfcc9b; border-radius: 16px; overflow: hidden; background: #fffdf7; }
+.photoMap { position: relative; }
+.photoMap img { display: block; width: 100%; height: auto; }
+.markers { position: absolute; inset: 0; pointer-events: none; }
+.marker { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(25px, 4.3vw, 42px); aspect-ratio: 1; background: #f8f4e9; color: #614917; border: 2px solid #fff; border-radius: 50%; font-weight: 850; font-size: clamp(.83rem, 1.7vw, 1.16rem); box-shadow: 0 2px 8px #0005; }
+.markerActive { background: #80601d; color: #fff; }
+.overview figcaption { padding: 16px 18px; color: #3e321b; line-height: 1.6; }
+.overview figcaption p { margin: 9px 0 0; color: #6e6249; font-size: .84rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 19px; padding: 0; margin: 12px 0 0; list-style: none; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend span, .cutBody h2 span { display: inline-grid; place-items: center; width: 24px; height: 24px; background: #80601d; color: #fff; font-size: .82rem; border-radius: 50%; flex-shrink: 0; }
+.results { color: #6e6249; font-size: .92rem; margin: 0 0 14px; }
+.cutGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.cutCard { border: 1px solid #dfcc9b; border-radius: 16px; background: #fffdf7; overflow: hidden; }
+.cutCard figure { margin: 0; background: #f4eee0; }
+.cutCard img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; }
+.cutCard figcaption { padding: 7px 15px; color: #6e6249; font-size: .78rem; line-height: 1.5; border-bottom: 1px solid #ded1af; }
+.cutBody { padding: 20px; }
+.cutBody h2 { margin: 0 0 14px; display: flex; align-items: center; gap: 10px; color: #3e321b; font-size: 1.28rem; line-height: 1.4; }
+.methods { display: flex; flex-wrap: wrap; gap: 7px; padding: 0; margin: 14px 0; list-style: none; }
+.methods li { border-radius: 7px; background: #f7e8c2; color: #614917; font-size: .83rem; padding: 5px 9px; font-weight: 650; }
+.cutBody .details { margin-top: 10px; }
+.kitchen { margin-top: 32px; }
+.methodGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.methodGrid > div { padding: 18px; border-radius: 12px; border: 1px solid #dfcc9b; background: #fffaf0; }
+.methodGrid h3 { font-size: 1.05rem; }
+.methodGrid p { font-size: .95rem; }
+.safety { margin: 20px 0; padding: 20px; background: #f7f1de; border-radius: 12px; border: 1px solid #e3d6b7; }
+.safety p { margin-bottom: 0; }
+.imageFallback { padding: 50px 25px; margin: 0; line-height: 1.7; color: #6e6249; }
+.visuallyHidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 720px) { .twoColumns, .cutGrid, .methodGrid { grid-template-columns: 1fr; } .cutCard { display: grid; grid-template-columns: 1fr; } .video { max-height: 390px; } .overview figcaption { padding: 13px; } .legend { gap: 8px 13px; font-size: .9rem; } .cutBody { padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { .videoLesson { scroll-behavior: auto; } }

@@ -32,6 +32,7 @@ export default function Datenschutz(){
           <p>Der Lernrucksack speichert die von dir ausgewählten Kurse und Medien auf deinem Gerät. Ein Paket ist höchstens sieben Tage nutzbar und endet bei einem kürzeren bestätigten Zugang entsprechend früher. Über „Downloads entfernen“ kannst du es löschen; beim Abmelden werden die Downloads ebenfalls entfernt.</p>
           <p>Eigene Notizen im Hundetrainingsjournal bleiben im lokalen Browserspeicher dieses Geräts. Sie werden nicht als Journal in deinem Konto gespeichert. Du kannst Einträge im Journal entfernen oder eine Sicherungsdatei für dich exportieren. Das Löschen der Browserdaten entfernt auch diese lokalen Notizen.</p>
           <p>Für Navigation und das Fortsetzen einer Quizrunde werden außerdem vorübergehende Angaben in der Browsersitzung gespeichert.</p>
+          <p>Die kurze Wissensrunde verwendet einen lokalen Wiederholungsverlauf: Fragenkennungen, Anzahl der Antworten und Fehler sowie Zeitpunkte und Wiederholungsabstände. Er enthält keine E-Mail-Adresse und keine ausgewählten Antworttexte und wird nicht in dein Konto übertragen. Du kannst ihn in „Deine fünf Minuten Wissen“ entfernen; Logout und Kontolöschung entfernen ihn ebenfalls auf diesem Gerät. Andere Browser oder Geräte haben einen eigenen Verlauf.</p>
 
           <h2>5. Speicherung im Konto</h2>
           <p>Konto-, Lern- und Communitydaten werden für die Bereitstellung der jeweiligen Funktionen gespeichert. Die Gültigkeit eines Login-Codes ist nicht mit der Aufbewahrungsdauer aller Kontodaten gleichzusetzen.</p>

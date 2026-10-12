@@ -1,0 +1,110 @@
+[
+  {
+    "id": "basset-faehrtenende",
+    "author": "Cali1008",
+    "source": "https://commons.wikimedia.org/wiki/File:Viltspar_skank.ogv",
+    "originalDownload": "https://upload.wikimedia.org/wikipedia/commons/9/97/Viltspar_skank.ogv",
+    "license": "Public domain",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Viltspar_skank.ogv#Licensing",
+    "verifiedOn": "2026-10-12",
+    "changes": "MP4/H.264; original playback speed; no audio; max width 960px; same-recording preview; German visible-action captions",
+    "originalSha256": "be1be76d21ef9c6e45b5d3f8b15d0440af7c6b682c2f82796e7b0a542016c173",
+    "outputSha256": "5e18be52e3df4fab8985a5e6f75b6fab1c86163d488a4fcfccb9093b69a2240e",
+    "outputBytes": 1462912,
+    "duration": 27.64,
+    "dimensions": [
+      320,
+      240
+    ],
+    "videoCodec": "h264",
+    "audio": false,
+    "visuallyInspectedAtSeconds": [
+      1,
+      5,
+      10,
+      15,
+      20,
+      25
+    ]
+  },
+  {
+    "id": "golden-wasser",
+    "author": "Golden Woofs",
+    "source": "https://commons.wikimedia.org/wiki/File:Golden_retriever_swimming_the_doggy_paddle.webm",
+    "originalDownload": "https://upload.wikimedia.org/wikipedia/commons/8/85/Golden_retriever_swimming_the_doggy_paddle.webm",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "verifiedOn": "2026-10-12",
+    "changes": "MP4/H.264; original playback speed; no audio; max width 960px; same-recording preview; German visible-action captions",
+    "originalSha256": "18efd66e28e76cfd8d69ea38f7ec8fb12c548c3dcfa923068369c17dc6d7a0c8",
+    "outputSha256": "9b76fb9a42a296689e9fb01827bfc34324ae9dec4f51049d320bed08aa1a2518",
+    "outputBytes": 4876898,
+    "duration": 34.03,
+    "dimensions": [
+      960,
+      540
+    ],
+    "videoCodec": "h264",
+    "audio": false,
+    "visuallyInspectedAtSeconds": [
+      1,
+      5,
+      10,
+      15,
+      20,
+      25
+    ]
+  },
+  {
+    "id": "labrador-signal",
+    "author": "Sadie Campbell",
+    "source": "https://commons.wikimedia.org/wiki/File:Labrador_barking_on_command.theora.ogv",
+    "originalDownload": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Labrador_barking_on_command.theora.ogv",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "verifiedOn": "2026-10-12",
+    "changes": "MP4/H.264; original playback speed; no audio; max width 960px; same-recording preview; German visible-action captions",
+    "originalSha256": "84d886a81539f979a0f6db4bdece3f812cc10f3dc970118688e94159177ae4a9",
+    "outputSha256": "6de7d0f5204f35afce1a6c3a3f38f9fac44a2314a19a395b629b14566ffd9e1f",
+    "outputBytes": 839719,
+    "duration": 8.38,
+    "dimensions": [
+      960,
+      540
+    ],
+    "videoCodec": "h264",
+    "audio": false,
+    "visuallyInspectedAtSeconds": [
+      0.5,
+      2,
+      4,
+      6
+    ]
+  },
+  {
+    "id": "rute-kontext",
+    "author": "Liannadavis",
+    "source": "https://commons.wikimedia.org/wiki/File:Dog_wagging_tail.webm",
+    "originalDownload": "https://upload.wikimedia.org/wikipedia/commons/3/38/Dog_wagging_tail.webm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "verifiedOn": "2026-10-12",
+    "changes": "MP4/H.264; original playback speed; no audio; max width 960px; same-recording preview; German visible-action captions",
+    "originalSha256": "01764646ee531a447536407c5ab33337c53320b9ee1c741de251c7a94d95cc93",
+    "outputSha256": "7bb9d54cebedfc9198d2fbe2d41afeaf58b594e757d9156c6944116ab453b110",
+    "outputBytes": 281541,
+    "duration": 3.6,
+    "dimensions": [
+      960,
+      540
+    ],
+    "videoCodec": "h264",
+    "audio": false,
+    "visuallyInspectedAtSeconds": [
+      0.2,
+      1,
+      2,
+      3
+    ]
+  }
+]

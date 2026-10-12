@@ -102,6 +102,6 @@ test('Search deep links open only known content IDs in all three tools', () => {
   finally { global.window = oldWindow; }
 });
 test('All six learning tools share exactly one category-aware layout and retain specialized learning content', () => {
-  for (const component of ['GameMeatCases', 'DogTrainingJournal', 'OralExamTrainer', 'PhotoDetective', 'AnimalSounds', 'DogCompass']) { const s = setup(`components/${component}.js`); const html = s.html(); assert.equal((html.match(/<main\b/g) || []).length, 1, component); assert.equal((html.match(/<h1\b/g) || []).length, 1, component); assert.ok(html.includes('Alle Angebote suchen')); }
+  for (const component of ['GameMeatCases', 'DogTrainingJournal', 'OralExamTrainer', 'PhotoDetective', 'AnimalSounds', 'DogCompass']) { const s = setup(`components/${component}.js`); const html = s.html(); assert.equal((html.match(/<main\b/g) || []).length, 1, component); assert.equal((html.match(/<h1\b/g) || []).length, 1, component); assert.match(html, /href="\/lernen#lernen-suche"/); }
   const entries = load('lib/practice-search-entries.js').practiceSearchEntries; assert.equal(entries.length, 40); assert.equal(new Set(entries.map(item => item.id)).size, 40); assert.ok(entries.every(item => item.href.includes('?eintrag=') && item.text.length > 100));
 });

@@ -8,10 +8,11 @@ const pr = createRequire(path.join(root, 'package.json'));
 const swc = pr('next/dist/build/swc');
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
+  if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} };
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
-  const requireLocal = id => Object.hasOwn(overrides, id) ? overrides[id] : id.endsWith('.module.css') ? { __esModule: true, default: {} } : id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, cache) : pr(id);
+  const requireLocal = id => Object.hasOwn(overrides, id) ? overrides[id] : id.endsWith('.module.css') ? { __esModule: true, default: {} } : id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), (path.extname(id) ? id : id + '.js'))), overrides, cache) : pr(id);
   new Function('require', 'module', 'exports', code)(requireLocal, mod, mod.exports);
   cache.set(filename, mod.exports); return mod.exports;
 }

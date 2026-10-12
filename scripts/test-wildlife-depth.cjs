@@ -93,7 +93,7 @@ test('All lessons contain original paragraphs and carry regional context rather 
 
 test('Linked evidence uses named primary sources and contains no local files or credentials', () => {
   const sources = [...Object.values(profiles), ...courses].flatMap(item => item.sources);
-  const domains = new Set(['www.wildtierportal.bayern.de', 'nationalpark.ch', 'www.jagdverband.de', 'www.bfn.de', 'www.kora.ch', 'www.lfu.bayern.de', 'lfu.brandenburg.de', 'wnsinfo.fva-bw.de', 'www.fva-bw.de', 'www.vetmeduni.ac.at', 'www.nature.com']);
+  const domains = new Set(['www.wildtierportal.bayern.de', 'nationalpark.ch', 'www.jagdverband.de', 'www.bfn.de', 'www.kora.ch', 'www.lfu.bayern.de', 'lfu.brandenburg.de', 'wnsinfo.fva-bw.de', 'www.fva-bw.de', 'www.vetmeduni.ac.at', 'www.nature.com', 'www.deutschewildtierstiftung.de', 'www.zootier-lexikon.org', 'www.tierpark.ch', 'www.wildtierportal-bw.de']);
   for (const source of sources) {
     assert.ok(source.label?.length > 5);
     const url = new URL(source.url);

@@ -96,7 +96,7 @@ test('Result review and targeted practice include only incorrect entries',()=>{
   const s=setup('components/NatureQuestionRound.js',{entries:fixture});s.click('Erste richtig');s.click('Nächste Frage');s.click('Zweite falsch');s.click('Auswertung ansehen');assert.match(text(s.tree),/1 von 2 Fragen richtig/);assert.match(text(s.tree),/Erklärung zwei/);s.click('Fehler gezielt wiederholen (1)');assert.match(text(s.tree),/Frage 1 von 1/);assert.match(text(s.tree),/Welche zweite Antwort/);assert.doesNotMatch(text(s.tree),/Erklärung zwei/);
 });
 test('All three tools use one layout, render one main region and usable form labels',()=>{
-  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.match(html,/Alle Angebote suchen/);assert.match(html,/Lernbereich/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
+  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.match(html,/href="\/lernen#lernen-suche"/);assert.match(html,/Lernbereich/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
 });
 test('Valid direct entry parameters open the intended profiles; unknown values are ignored',()=>{
   const previous=global.window;try{

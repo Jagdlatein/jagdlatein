@@ -7,12 +7,12 @@ export default function LearningExperiences({ category }) {
   const experiences = learningExperiences.filter(tool => !category || tool.categories.includes(category));
   const groupDefinitions = [
     ["Gemeinsam lernen und Fragen klären", ["community"]],
-    ["Neues aus Wissenschaft und Revier", ["news"]],
-    ["Wildtiere erkennen und beobachten", ["wildkunde", "fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
+    ["Neues aus Wissenschaft und Revier", ["news", "forschung-verstehen"]],
+    ["Wildtiere erkennen und beobachten", ["wildkunde", "wildjahr", "wildtier-details", "fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
     ["Jagdrecht und Artenschutz nachschlagen", ["wildarten"]],
-    ["Pflanzen und Lebensräume verstehen", ["pflanzenatlas", "lebensraum-werkstatt"]],
-    ["Mit Jagdhunden lernen", ["jagdhund-kompass", "hundetraining-tagebuch"]],
-    ["Fälle lösen und die Prüfung vorbereiten", ["wildbret-fallwerkstatt", "beobachtungswerkstatt", "pruefungsgespraech", "offline-rucksack"]],
+    ["Pflanzen und Lebensräume verstehen", ["pflanzenatlas", "lebensraum-werkstatt", "kleines-revierleben"]],
+    ["Mit Jagdhunden lernen", ["jagdhund-kompass", "hundetraining-tagebuch", "jagdhund-videos"]],
+    ["Fälle lösen und die Prüfung vorbereiten", ["wildbret-stuecke", "wildbret-fallwerkstatt", "beobachtungswerkstatt", "pruefungsgespraech", "fuenf-minuten", "offline-rucksack"]],
   ];
   const groups = groupDefinitions.map(([title, slugs]) => ({ title, tools: experiences.filter(tool => slugs.includes(tool.href.split("/").pop())) })).filter(group => group.tools.length);
   if (!experiences.length) return null;
