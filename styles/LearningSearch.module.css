@@ -3,3 +3,18 @@
 .searchLink { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin: 10px 0 0; font-size: .9rem; }
 .searchLink a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: #796021; font-weight: 700; }
 .searchLink span { color: #64583d; }
+.queryRow { display: flex; align-items: flex-end; gap: 12px; }
+.queryRow .query { display: grid; flex: 1; gap: 7px; min-width: 0; font-weight: 700; }
+.query input { width: 100%; min-width: 0; min-height: 48px; border: 1px solid #cdb989; border-radius: 11px; background: white; padding: 10px 12px; color: #382b12; font: inherit; font-size: max(16px, 1rem); box-sizing: border-box; }
+.panel .searchButton { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; background: #796021; border-color: #796021; color: white; }
+.filterDetails { margin-top: 10px; }
+.filterDetails summary { padding: 10px 0; min-height: 44px; box-sizing: border-box; cursor: pointer; font-weight: 700; line-height: 1.5; }
+.filterDetails summary span { margin-left: 12px; font-weight: 400; font-size: .9rem; }
+.filterDetails .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 0 4px; }
+.resultArea { scroll-margin-top: 20px; }
+@media (max-width: 560px) {
+  .queryRow { flex-wrap: wrap; gap: 8px; }
+  .queryRow .query, .queryRow .searchButton { flex-basis: 100%; }
+  .filterDetails .filters { grid-template-columns: minmax(0, 1fr); }
+  .filterDetails summary span { display: block; margin-left: 16px; }
+}

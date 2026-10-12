@@ -12,7 +12,7 @@ function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} }; cache.set(filename, mod.exports);
-  const expose = relative === 'components/Community.js' ? '\nexport { ProfileForm, Compose, PostContent };' : '';
+  const expose = relative === 'components/Community.js' ? '\nexport { ProfileForm, Compose, PostContent, PostActions, CommunityToolbar, CommunitySearch, useCommunityData, focusSection };' : '';
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8') + expose, { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   new Function('require', 'module', 'exports', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
@@ -60,6 +60,118 @@ test('User contributions render as plain text and reveal only their public learn
   assert.ok(!html.includes('<script>') && !html.includes('href="https://example.invalid"'));
   assert.ok(html.includes('Lernfuchs') && html.includes('Beitrag melden') && html.includes('Nutzer blockieren'));
   assert.ok(!html.includes('Eigenen Beitrag entfernen') && !html.includes('Ausblenden'));
+});
+
+test('Community offers a clear writing action while moderation remains limited to moderators and extra options', () => {
+  const { CommunityToolbar } = load('components/Community.js');
+  const html = render(CommunityToolbar, { viewer: { displayName: 'Lernfuchs', canModerate: false }, view: 'posts' });
+  assert.match(html, /Frage stellen/);
+  assert.match(html, /aria-label="Community-Ansicht"/);
+  assert.match(html, /aria-pressed="true"[^>]*>Alle Themen/);
+  assert.ok(html.includes('Meine Einreichungen') && html.includes('<summary>Weitere Optionen</summary>'));
+  assert.ok(!html.includes('Neue Beiträge prüfen') && !html.includes('Gemeldete Beiträge prüfen'));
+  const moderator = render(CommunityToolbar, { viewer: { canModerate: true }, view: 'moderation' });
+  assert.ok(moderator.includes('Neue Beiträge prüfen') && moderator.includes('Gemeldete Beiträge prüfen'));
+  const writing = render(CommunityToolbar, { viewer: { canModerate: true }, compose: true });
+  assert.ok(!writing.includes('Frage stellen') && !writing.includes('Weitere Optionen'));
+});
+
+test('Search defaults to compact inputs and keeps selected restrictions understandable', () => {
+  const { CommunitySearch } = load('components/Community.js');
+  const base = { query: '', category: 'all', type: 'all', unanswered: false, search: '', total: 1 };
+  const html = render(CommunitySearch, base);
+  assert.match(html, /enterKeyHint="search"/);
+  assert.ok(html.includes('Treffer anzeigen') && html.includes('1 Thema'));
+  assert.ok(!html.includes('open=""') && !html.includes('Auswahl zurücksetzen'));
+  const filtered = render(CommunitySearch, { ...base, category: 'wildkunde', type: 'question', search: 'Gams' });
+  assert.ok(filtered.includes('open=""') && filtered.includes('Filter aktiv') && filtered.includes('Auswahl zurücksetzen'));
+  assert.match(filtered, /Thema für „Gams“/);
+});
+
+test('New contribution forms start with the text and retain explicit review consent', () => {
+  const { Compose, ProfileForm } = load('components/Community.js');
+  const html = render(Compose, { initialCategory: 'wildkunde', onSubmit() {} });
+  assert.ok(html.indexOf('>Titel<') < html.indexOf('>Beschreibung<'));
+  assert.ok(html.indexOf('>Beschreibung<') < html.indexOf('>Themenbereich<'));
+  assert.match(html, /id="community-compose" tabindex="-1"/);
+  assert.ok(html.includes('Wildkunde · Frage · ändern') && html.includes('Zur Prüfung einreichen'));
+  const profile = render(ProfileForm, { onSubmit() {} });
+  assert.ok(profile.includes('3–30 Zeichen') && profile.includes('sind reserviert'));
+  assert.ok(profile.includes('type="checkbox"') && profile.includes('disabled=""'));
+});
+
+test('Changing search keeps viewer context and inputs available without returning old results', () => {
+  const viewer = { displayName: 'Lernfuchs', profileRequired: false, canModerate: false };
+  const selection = JSON.stringify([undefined, 'all', '', 1, 'all', false, 'posts']);
+  let position = 0;
+  const values = [{ result: { viewer, posts: [{ title: 'Old search' }] }, selection }, null, false, 0];
+  const fakeReact = { ...React, useState: () => [values[position++], () => {}], useEffect() {}, useCallback: callback => callback };
+  const { useCommunityData } = load('components/Community.js', { react: fakeReact });
+  const result = useCommunityData({ signedIn: true, category: 'all', query: 'Gams', page: 1, type: 'all', unanswered: false, view: 'posts' });
+  assert.equal(result.data, null);
+  assert.equal(result.viewer, viewer);
+  assert.equal(result.loading, true);
+  position = 0;
+  const signedOut = useCommunityData({ signedIn: false, category: 'all', query: '', page: 1, type: 'all', unanswered: false, view: 'posts' });
+  assert.equal(signedOut.viewer, null);
+  assert.equal(signedOut.data, null);
+});
+
+test('Explicit actions reveal and focus their section with reduced motion respected', () => {
+  const { focusSection } = load('components/Community.js');
+  const oldDocument = global.document; const oldWindow = global.window;
+  const calls = [];
+  global.document = { getElementById: id => id === 'community-compose' ? { scrollIntoView: options => calls.push(['scroll', options]), focus: options => calls.push(['focus', options]) } : null };
+  global.window = { matchMedia: () => ({ matches: true }) };
+  try {
+    assert.equal(focusSection('missing'), false);
+    assert.equal(focusSection('community-compose'), true);
+    assert.deepEqual(calls, [['scroll', { block: 'start', behavior: 'auto' }], ['focus', { preventScroll: true }]]);
+  } finally { global.document = oldDocument; global.window = oldWindow; }
+});
+
+test('A reading error keeps the active draft form mounted and expired sessions disable writing', () => {
+  function htmlFor(code) {
+    const viewer = { displayName: 'Lernfuchs', profileRequired: false, canModerate: false };
+    const selection = JSON.stringify([undefined, 'all', '', 1, 'all', false, 'posts']);
+    const values = ['all', '', '', 1, 'all', false, 'posts', true, false, null, '', null, '', null, null, null,
+      { result: { viewer }, selection }, { code, message: 'Der Abruf ist fehlgeschlagen.' }, false, 0];
+    let position = 0;
+    const fakeReact = { ...React, useState: initial => [position < values.length ? values[position++] : initial, () => {}], useEffect() {}, useCallback: callback => callback, useRef: value => ({ current: value }) };
+    const { default: Community } = load('components/Community.js', { react: fakeReact });
+    return render(Community, { signedIn: true });
+  }
+  const unavailable = htmlFor('COMMUNITY_UNAVAILABLE');
+  assert.ok(unavailable.includes('Der Abruf ist fehlgeschlagen.') && unavailable.includes('id="community-compose"'));
+  assert.match(unavailable, /<textarea[^>]*maxLength="6000"/);
+  assert.doesNotMatch(unavailable, /<textarea[^>]*disabled/);
+  const expired = htmlFor('AUTH_REQUIRED');
+  assert.ok(expired.includes('id="community-compose"') && expired.includes('Erneut anmelden'));
+  assert.match(expired, /<textarea[^>]*disabled/);
+});
+
+test('New typing cancels delayed result focus and a new post action clears older notices', () => {
+  const viewer = { displayName: 'Lernfuchs', profileRequired: false, canModerate: false };
+  const selection = JSON.stringify([undefined, 'all', '', 1, 'all', false, 'posts']);
+  const post = { id: '11111111-1111-4111-8111-111111111111', body: 'Eine Lernfrage', title: 'Eine Lernfrage', category: 'allgemein', owned: false };
+  const values = ['all', '', '', 1, 'all', false, 'posts', false, false, null, 'Gespeichert.', null, '', null, null, null,
+    { result: { viewer, posts: [post], total: 1 }, selection }, null, false, 0];
+  const writes = []; const pendingFocus = { current: true }; let position = 0;
+  const fakeReact = { ...React, useState: initial => { const index = position++; return [index < values.length ? values[index] : initial, value => writes.push([index, value])]; }, useEffect() {}, useCallback: callback => callback, useRef: () => pendingFocus };
+  const { default: Community, CommunitySearch, PostActions } = load('components/Community.js', { react: fakeReact });
+  function find(element, type) {
+    if (!element || typeof element !== 'object') return null;
+    if (element.type === type) return element;
+    return React.Children.toArray(element.props?.children).map(child => find(child, type)).find(Boolean);
+  }
+  const tree = Community({ signedIn: true });
+  find(tree, CommunitySearch).props.onQuery('Gams');
+  assert.equal(pendingFocus.current, false);
+  assert.ok(writes.some(([index, value]) => index === 1 && value === 'Gams'));
+  find(tree, PostActions).props.setBlock({ postId: post.id, displayName: 'Waldlerner' });
+  assert.ok(writes.some(([index, value]) => index === 10 && value === ''));
+  assert.ok(writes.some(([index, value]) => index === 9 && value === null));
+  assert.ok(writes.some(([index, value]) => index === 14 && value.postId === post.id));
 });
 test('Forum pages validate route identifiers and keep signed identity pages private without querying payment access', () => {
   const landing = load('pages/community/index.js', { '../../lib/account-access': { readRequestAccountSession: () => null } });

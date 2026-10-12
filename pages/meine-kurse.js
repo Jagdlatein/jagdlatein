@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AccountLayout, { AccountError, ProgressError } from "../components/AccountLayout";
 import AppIcon from "../components/AppIcon";
 import useAccountOverview from "../hooks/useAccountOverview";
@@ -34,6 +34,7 @@ export default function MyCoursesPage({ catalog = [] }) {
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("recent");
   const [limit, setLimit] = useState(PAGE_SIZE);
+  const resultsRef = useRef(null);
   const view = getMyCoursesView(catalog, progress, { query, category, status, sort });
   const filtered = Boolean(query.trim() || category !== "all" || status !== "all");
 
@@ -44,6 +45,12 @@ export default function MyCoursesPage({ catalog = [] }) {
   function reset() {
     setStatus("all"); setQuery(""); setCategory("all"); setSort("recent"); setLimit(PAGE_SIZE);
   }
+  function showResults(event) {
+    event.preventDefault();
+    resultsRef.current?.focus({ preventScroll: true });
+    resultsRef.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+  const selectedFilters = [category !== "all" && view.categories.find(item => item.slug === category)?.title, status !== "all" && filters.find(item => item.value === status)?.label, sort === "title" && "A–Z"].filter(Boolean);
 
   return (
     <AccountLayout title="Meine Kurse" description="Finde dein Thema, sieh deinen gespeicherten Fortschritt und lerne direkt weiter." active="courses">
@@ -54,38 +61,46 @@ export default function MyCoursesPage({ catalog = [] }) {
           <ProgressError error={progressError} onRetry={reload} />
         ) : (
           <>
-            <section className={styles.card} aria-labelledby="my-learning-heading">
-              <h2 id="my-learning-heading">Dein Lernen im Überblick</h2>
+            <details className={`${styles.card} ${styles.courseOverview}`}>
+              <summary><strong>Dein Lernen im Überblick</strong><span>{view.metrics.in_progress} begonnen · {view.metrics.completed} abgeschlossen</span></summary>
               <div className={styles.metrics}>
                 <div><strong>{view.metrics.total}</strong><span>Kurse insgesamt</span></div>
                 <div><strong>{view.metrics.in_progress}</strong><span>Begonnen</span></div>
                 <div><strong>{view.metrics.completed}</strong><span>Abgeschlossen</span></div>
               </div>
               <p className={styles.muted}>Abgeschlossen bedeutet: alle Quizfragen beantwortet. Die Trefferquote steht separat beim Kurs. Der Balken zeigt deinen gespeicherten Fragenfortschritt.</p>
-            </section>
+            </details>
             <section className={styles.card} aria-labelledby="my-course-search-heading">
               <h2 id="my-course-search-heading"><AppIcon name="search" size={22} /> Deinen nächsten Kurs finden</h2>
-              <div className={styles.courseFilters}>
-                <label className={styles.courseQuery}>Kurse durchsuchen
-                  <input type="search" maxLength={160} value={query} onChange={event => change(setQuery, event.target.value)} placeholder="Zum Beispiel Gams, Nachsuche oder Hund" />
-                </label>
-                <label>Kategorie
-                  <select value={category} onChange={event => change(setCategory, event.target.value)}>
-                    <option value="all">Alle Kategorien</option>
-                    {view.categories.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}
-                  </select>
-                </label>
-                <label>Reihenfolge
-                  <select value={sort} onChange={event => change(setSort, event.target.value)}>
-                    <option value="recent">Zuletzt bearbeitet</option>
-                    <option value="title">Kurstitel A–Z</option>
-                  </select>
-                </label>
-              </div>
-              <div className={styles.filters} role="group" aria-label="Kurse nach Fortschritt filtern">
-                {filters.map(item => <button key={item.value} type="button" aria-pressed={status === item.value} onClick={() => change(setStatus, item.value)}>{item.label} <span className={styles.filterCount}>{view.metrics[item.metric]}</span></button>)}
-              </div>
-              <div className={styles.courseResultStatus}>
+              <form role="search" aria-label="Meine Kurse durchsuchen" onSubmit={showResults}>
+                <div className={styles.courseSearchRow}>
+                  <label className={styles.courseQuery}>Kurse durchsuchen
+                    <input type="search" enterKeyHint="search" aria-controls="my-course-results" maxLength={160} value={query} onChange={event => change(setQuery, event.target.value)} placeholder="Zum Beispiel Gams, Nachsuche oder Hund" />
+                  </label>
+                  <button type="submit" className={styles.button}><AppIcon name="search" size={18} />Treffer anzeigen</button>
+                </div>
+                <details className={styles.courseFilterDetails}>
+                  <summary>Suche eingrenzen{selectedFilters.length > 0 && <span>{selectedFilters.join(" · ")}</span>}</summary>
+                  <div className={styles.courseFilters}>
+                    <label>Kategorie
+                      <select value={category} onChange={event => change(setCategory, event.target.value)}>
+                        <option value="all">Alle Kategorien</option>
+                        {view.categories.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}
+                      </select>
+                    </label>
+                    <label>Reihenfolge
+                      <select value={sort} onChange={event => change(setSort, event.target.value)}>
+                        <option value="recent">Zuletzt bearbeitet</option>
+                        <option value="title">Kurstitel A–Z</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div className={styles.filters} role="group" aria-label="Kurse nach Fortschritt filtern">
+                    {filters.map(item => <button key={item.value} type="button" aria-pressed={status === item.value} onClick={() => change(setStatus, item.value)}>{item.label} <span className={styles.filterCount}>{view.metrics[item.metric]}</span></button>)}
+                  </div>
+                </details>
+              </form>
+              <div id="my-course-results" ref={resultsRef} tabIndex={-1} className={styles.courseResultStatus} role="region" aria-label="Passende Kurse">
                 <p role="status" aria-live="polite">{view.rows.length} von {view.metrics.total} Kursen {filtered ? "passen zu deiner Auswahl" : "stehen in deiner Übersicht"}.</p>
                 {filtered && <button type="button" className={styles.secondaryButton} onClick={reset}>Auswahl zurücksetzen</button>}
               </div>

@@ -19,6 +19,7 @@ export default function LearningSearch({ category: initialCategory = "all" }) {
   const currentRouter = useRef(router);
   const urlTimer = useRef(null);
   const ownURLs = useRef(new Set());
+  const resultsRef = useRef(null);
   currentRouter.current = router;
   const active = learningSearchActive(search, initialCategory);
 
@@ -95,21 +96,42 @@ export default function LearningSearch({ category: initialCategory = "all" }) {
   }, [query, category, type, country, page, retry, active, urlReady]);
   function reset() { update(defaultLearningSearch(initialCategory)); }
   function change(field, value) { update({ ...currentSearch.current, [field]: value, page: 1 }); }
+  function showResults(event) {
+    event?.preventDefault();
+    if (!urlReady || !resultsRef.current) return;
+    resultsRef.current.focus({ preventScroll: true });
+    resultsRef.current.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+  function changePage(nextPage) {
+    update({ ...currentSearch.current, page: nextPage });
+    showResults();
+  }
+  const selectedFilters = [category !== "all" && learningCategoryDetails.find(item => item.slug === category)?.title, type !== "all" && types[type], category === "jagdrecht" && country !== "all" && ({ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" })[country]].filter(Boolean);
   const searchHref = learningSearchURL(router.asPath || "/lernen", search, initialCategory);
   return <section id="lernen-suche" className={styles.panel} aria-labelledby="all-search-title">
     <h2 id="all-search-title"><AppIcon name="search" size={25} />Alles im Lernbereich finden</h2>
-    <p>Kurse, Wildarten, Fachbegriffe, Praxisübungen und einzelne Inhalte der Lernwerkzeuge gemeinsam durchsuchen.</p>
-    <div className={styles.filters}>
-      <label className={styles.query}>Suchbegriff<input type="search" maxLength={160} disabled={!urlReady} value={query} placeholder="Zum Beispiel Rehwild, Rückruf oder Kühlkette" onChange={event => change("query", event.target.value)} /></label>
-      <label>Kategorie<select disabled={!urlReady} value={category} onChange={event => update({ ...currentSearch.current, category: event.target.value, country: "all", page: 1 })}><option value="all">Alle Kategorien</option>{learningCategoryDetails.map(item => <option value={item.slug} key={item.slug}>{item.title}</option>)}</select></label>
-      <label>Angebotsart<select disabled={!urlReady} value={type} onChange={event => change("type", event.target.value)}><option value="all">Alle Angebote</option>{Object.entries(types).map(([key, value]) => <option key={key} value={key}>{value}</option>)}</select></label>
-      {category === "jagdrecht" && <label>Land<select disabled={!urlReady} value={country} onChange={event => change("country", event.target.value)}><option value="all">Alle Länder</option><option value="DE">Deutschland</option><option value="AT">Österreich</option><option value="CH">Schweiz</option></select></label>}
+    <p>Kurse, Wildarten, Begriffe und Übungen suchen. Die Treffer erscheinen direkt darunter.</p>
+    <form role="search" aria-label="Lernbereich durchsuchen" onSubmit={showResults}>
+      <div className={styles.queryRow}>
+        <label className={styles.query}>Suchbegriff<input type="search" enterKeyHint="search" aria-controls="learning-search-results" maxLength={160} disabled={!urlReady} value={query} placeholder="Zum Beispiel Rehwild, Rückruf oder Kühlkette" onChange={event => change("query", event.target.value)} /></label>
+        <button type="submit" disabled={!urlReady} className={styles.searchButton}><AppIcon name="search" size={18} />Treffer anzeigen</button>
+      </div>
+      <details className={styles.filterDetails}>
+        <summary>Suche eingrenzen{selectedFilters.length > 0 && <span>{selectedFilters.join(" · ")}</span>}</summary>
+        <div className={styles.filters}>
+          <label>Kategorie<select disabled={!urlReady} value={category} onChange={event => update({ ...currentSearch.current, category: event.target.value, country: "all", page: 1 })}><option value="all">Alle Kategorien</option>{learningCategoryDetails.map(item => <option value={item.slug} key={item.slug}>{item.title}</option>)}</select></label>
+          <label>Angebotsart<select disabled={!urlReady} value={type} onChange={event => change("type", event.target.value)}><option value="all">Alle Angebote</option>{Object.entries(types).map(([key, value]) => <option key={key} value={key}>{value}</option>)}</select></label>
+          {category === "jagdrecht" && <label>Land<select disabled={!urlReady} value={country} onChange={event => change("country", event.target.value)}><option value="all">Alle Länder</option><option value="DE">Deutschland</option><option value="AT">Österreich</option><option value="CH">Schweiz</option></select></label>}
+        </div>
+      </details>
+    </form>
+    <div id="learning-search-results" className={styles.resultArea} ref={resultsRef} tabIndex={-1} role="region" aria-label="Suchergebnisse">
+      <div className={styles.status} role="status" aria-live="polite">{!urlReady ? "Suche wird vorbereitet …" : loading ? "Suche läuft …" : data ? `${data.total} passende Angebote` : "Suchbegriff eingeben oder Angebotsart auswählen."}{active && <button type="button" onClick={reset}>Zurücksetzen</button>}</div>
+      {error && <div className={styles.error} role="alert"><p>{error}</p><button type="button" onClick={() => setRetry(value => value + 1)}>Erneut versuchen</button></div>}
+      {!loading && data?.total === 0 && <p>Keine passenden Angebote gefunden. Versuche einen kürzeren Begriff oder eine andere Kategorie.</p>}
+      {!loading && data && <ul className={styles.results}>{data.results.map(item => <li key={item.id}><Link href={item.href}><span className={styles.badges}>{types[item.type]} · {item.categories.map(slug => learningCategoryDetails.find(category => category.slug === slug)?.title).filter(Boolean).join(" / ")}</span><strong>{item.title}<AppIcon name="arrow-right" size={18} /></strong><span>{item.description}</span></Link></li>)}</ul>}
+      {!loading && data?.pages > 1 && <nav className={styles.pages} aria-label="Suchergebnisse"><button type="button" disabled={page <= 1} onClick={() => changePage(page - 1)}>Zurück</button><span>Seite {page} von {data.pages}</span><button type="button" disabled={page >= data.pages} onClick={() => changePage(page + 1)}>Weiter</button></nav>}
     </div>
-    <div className={styles.status} role="status" aria-live="polite">{!urlReady ? "Suche wird vorbereitet …" : loading ? "Suche läuft …" : data ? `${data.total} passende Angebote` : "Suchbegriff eingeben oder Angebotsart auswählen."}{active && <button type="button" onClick={reset}>Zurücksetzen</button>}</div>
-    {urlReady && active && <p className={styles.searchLink}><a href={searchHref.includes("#") ? searchHref : `${searchHref}#lernen-suche`}>Link zu dieser Suche<AppIcon name="arrow-right" size={16} /></a><span>Die Auswahl bleibt im Link erhalten. Zum Teilen kannst du den Link kopieren.</span></p>}
-    {error && <div className={styles.error} role="alert"><p>{error}</p><button type="button" onClick={() => setRetry(value => value + 1)}>Erneut versuchen</button></div>}
-    {!loading && data?.total === 0 && <p>Keine passenden Angebote gefunden. Versuche einen kürzeren Begriff oder eine andere Kategorie.</p>}
-    {!loading && data && <ul className={styles.results}>{data.results.map(item => <li key={item.id}><Link href={item.href}><span className={styles.badges}>{types[item.type]} · {item.categories.map(slug => learningCategoryDetails.find(category => category.slug === slug)?.title).filter(Boolean).join(" / ")}</span><strong>{item.title}<AppIcon name="arrow-right" size={18} /></strong><span>{item.description}</span></Link></li>)}</ul>}
-    {!loading && data?.pages > 1 && <nav className={styles.pages} aria-label="Suchergebnisse"><button type="button" disabled={page <= 1} onClick={() => update({ ...currentSearch.current, page: page - 1 })}>Zurück</button><span>Seite {page} von {data.pages}</span><button type="button" disabled={page >= data.pages} onClick={() => update({ ...currentSearch.current, page: page + 1 })}>Weiter</button></nav>}
+    {urlReady && active && <p className={styles.searchLink}><a href={searchHref.includes("#") ? searchHref : `${searchHref}#lernen-suche`}>Link zu dieser Suche<AppIcon name="arrow-right" size={16} /></a><span>Zum Teilen den Link kopieren.</span></p>}
   </section>;
 }

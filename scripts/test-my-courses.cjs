@@ -175,6 +175,11 @@ function pageHarness({ courseCatalog = catalog, entries = progress, ...changes }
     accountError: null, progressError: null, loading: false, progressLoading: false,
     reload() { retries++; }, ...changes };
   const hooks = { ...React,
+    useRef(initial) {
+      const slot = cursor++;
+      if (!(slot in states)) states[slot] = { current: initial };
+      return states[slot];
+    },
     useState(initial) {
       const slot = cursor++;
       if (!(slot in states)) states[slot] = typeof initial === 'function' ? initial() : initial;
@@ -242,6 +247,24 @@ test('The course page keeps answer completion distinct from correctness and uses
   h.select('Reihenfolge').props.onChange({ target: { value: 'title' } });
   assert.deepEqual(h.articles().map(article => textOf(findAll(article, node => node.type === 'h2')[0])),
     ['Fährten & Spuren', 'Große Waffenkunde', 'Jägersprache', 'Rehwild Basics', 'Wetterkunde']);
+});
+
+test('Course results update immediately and only explicit search moves focus to the summary', () => {
+  const h = pageHarness();
+  const calls = [];
+  const region = findAll(h.render(), node => node.props?.id === 'my-course-results')[0];
+  region.props.ref.current = { focus: options => calls.push(['focus', options]), scrollIntoView: options => calls.push(['scroll', options]) };
+  h.search().props.onChange({ target: { value: 'faehrten' } });
+  assert.equal(h.articles().length, 1, 'No submit or additional click is required to filter courses');
+  h.select('Kategorie').props.onChange({ target: { value: 'natur-revier' } });
+  assert.deepEqual(calls, []);
+  let prevented = false;
+  findAll(h.render(), node => node.type === 'form')[0].props.onSubmit({ preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.deepEqual(calls, [['focus', { preventScroll: true }], ['scroll', { block: 'start', behavior: 'auto' }]]);
+  assert.equal(h.search().props.enterKeyHint, 'search');
+  assert.equal(h.search().props['aria-controls'], 'my-course-results');
+  assert.equal(region.props.tabIndex, -1);
 });
 
 test('Showing more courses is bounded and changing any filter or sort restarts the first twelve results', () => {

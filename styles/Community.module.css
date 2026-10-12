@@ -42,5 +42,81 @@
 .categoryGrid > div { display: flex; gap: 10px; align-items: center; padding: 16px; border: 1px solid #dfcc9b; border-radius: 12px; background: #faf5e7; min-width: 0; }
 .categoryGrid svg { flex-shrink: 0; }
 .categoryGrid strong { font-size: 14px; overflow-wrap: anywhere; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0 0 20px; }
+.toolbarMain, .toolbarTools { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; min-width: 0; }
+.toolbarMain { flex: 1 1 260px; }
+.toolbarTools { justify-content: flex-end; }
+.toolbar :where(a, button) { overflow-wrap: anywhere; }
+.viewNav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; width: min(100%, 440px); margin: 0 0 20px; padding: 5px; border: 1px solid #dfcc9b; border-radius: 14px; background: #f3ecd9; }
+.viewNav button { min-width: 0; min-height: 48px; padding: 10px 12px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: #67532e; font: inherit; font-weight: 700; line-height: 1.4; cursor: pointer; overflow-wrap: anywhere; }
+.viewNav button[aria-pressed="true"] { background: #fffdf7; color: #493815; border-color: #dfcc9b; box-shadow: 0 2px 5px #72541d0d; }
+.viewNav button:hover:enabled { background: #fff9e9; }
+.viewNav button:disabled { opacity: .6; cursor: default; }
+.utilityMenu { width: 230px; max-width: 100%; border: 1px solid #dfcc9b; border-radius: 12px; background: #fffdf7; }
+.utilityMenu > summary { min-height: 48px; padding: 11px 14px; color: #614917; font-weight: 700; line-height: 1.5; cursor: pointer; }
+.utilityMenu[open] > summary { border-bottom: 1px solid #e6dcc1; }
+.utilityMenu > :not(summary) { display: flex; flex-direction: column; gap: 6px; padding: 8px; margin: 0; }
+.utilityMenu :where(button, a) { justify-content: flex-start; width: 100%; min-width: 0; text-align: left; }
+section.searchPanel { padding: 20px; }
+.searchPanel h2 { margin-bottom: 10px; }
+.searchRow { display: flex; align-items: flex-end; gap: 10px; min-width: 0; }
+.searchRow label { flex: 1 1 auto; min-width: 0; margin: 0; }
+.searchRow button { flex: 0 0 auto; min-height: 48px; padding: 11px 16px; }
+.searchRow input { min-width: 0; min-height: 48px; font-size: 16px; }
+.filtersDetails { margin-top: 14px; border-top: 1px solid #e6dcc1; }
+.filtersDetails > summary { min-height: 44px; padding: 10px 0; color: #67532e; font-weight: 700; line-height: 1.5; cursor: pointer; }
+.filtersDetails .formRow { gap: 12px; }
+.filtersDetails .formRow label { margin-top: 4px; }
+.filtersDetails select, .composePanel :where(input, select, textarea) { min-width: 0; min-height: 48px; font-size: 16px; }
+.filtersDetails .checkbox { margin: 6px 0 10px; min-height: 44px; }
+.resultSummary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e6dcc1; color: #6e6249; line-height: 1.6; }
+.resultSummary p { margin: 0; overflow-wrap: anywhere; }
+.resultSummary strong { color: #493815; }
+.resultSummary .textButton { padding: 8px 0; }
+.composePanel { scroll-margin-top: 100px; scroll-margin-bottom: 130px; }
+.composePanel h2 { margin-bottom: 10px; }
+.composePanel :where(input, select, textarea) { scroll-margin-top: 100px; scroll-margin-bottom: 130px; }
+.composeOptions { margin: 10px 0 18px; border-top: 1px solid #e6dcc1; border-bottom: 1px solid #e6dcc1; }
+.composeOptions > summary { min-height: 44px; padding: 10px 0; color: #67532e; font-weight: 700; line-height: 1.5; cursor: pointer; }
+.composeOptions .formRow label { margin-top: 4px; }
+.composerStatus { margin: 12px 0; padding: 10px 12px; border: 1px solid #d6dfbf; border-radius: 10px; background: #f2f6e7; color: #45602b; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.postActionsDetails { margin-top: 14px; border-top: 1px solid #e6dcc1; font-size: 14px; color: #72541d; }
+.postActionsDetails > summary { min-height: 44px; padding: 10px 0; line-height: 1.6; cursor: pointer; }
+.postActionsDetails .postActions { border: 0; margin-top: 0; padding-top: 0; gap: 4px 16px; }
+.postActionsDetails .postActions button { text-align: left; }
+.topicCard { padding: 20px 22px; }
+.topicCard h2 { margin: 10px 0 8px; font-size: 22px; line-height: 1.4; }
+.topicCard h2 .topicLink { min-height: 44px; align-items: center; padding: 3px 0; gap: 12px; overflow-wrap: anywhere; }
+.topicCard h2 .topicLink svg { margin-top: 0; }
+.topicCard .preview { margin: 8px 0 12px; color: #5e5138; line-height: 1.6; }
+.topicCard .badges { margin-top: 0; margin-bottom: 6px; }
+.topicCard .postMeta { gap: 4px 12px; }
+.postMeta :where(strong, span) { overflow-wrap: anywhere; }
+.errorFocus, .confirmation { scroll-margin-top: 100px; scroll-margin-bottom: 130px; }
+.errorFocus:focus-visible, .confirmation:focus-visible, .composePanel:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.viewNav button:focus-visible, .utilityMenu > summary:focus-visible, .filtersDetails > summary:focus-visible, .composeOptions > summary:focus-visible, .postActionsDetails > summary:focus-visible, .topicLink:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.rules summary { min-height: 44px; }
 @media (max-width: 760px) { .categoryGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .invite { padding: 20px 16px; gap: 12px; } .inviteIcon { flex-basis: 44px; width: 44px; height: 44px; border-radius: 13px; } .inviteIcon svg { width: 26px; height: 26px; } .formRow, .categoryGrid { grid-template-columns: minmax(0, 1fr); } .search { flex-wrap: wrap; gap: 0; } .search label { flex-basis: 100%; } .topicCard, .post { padding: 20px 16px; } .topicCard h2 { font-size: 21px; } }
+@media (max-width: 620px) {
+  .toolbar { gap: 10px; margin-bottom: 16px; }
+  .toolbarMain { flex-basis: 100%; }
+  .toolbarMain > :where(a, button) { width: 100%; }
+  .toolbarTools { flex: 1 1 auto; justify-content: flex-start; }
+  .utilityMenu { width: 100%; }
+  .viewNav { width: 100%; margin-bottom: 16px; }
+  .viewNav button { padding: 10px 8px; font-size: 14px; }
+  section.searchPanel { padding: 16px; }
+  .searchRow { gap: 8px; }
+  .searchRow button { gap: 6px; padding: 11px 12px; }
+  .searchRow label { font-size: 14px; }
+  .resultSummary { gap: 0 12px; }
+  .topicCard { padding: 16px; }
+  .topicCard h2 { font-size: 20px; }
+  .postActionsDetails > summary { font-size: 13px; }
+}
+@media (max-width: 420px) {
+  .searchRow { flex-wrap: wrap; }
+  .searchRow label { flex-basis: 100%; }
+  .searchRow button { width: 100%; }
+}

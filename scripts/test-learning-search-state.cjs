@@ -159,3 +159,41 @@ test('A bookmarked results page beyond the current result set recovers to the ac
   assert.equal(new URL(empty.requests[1].url, 'https://test.invalid').searchParams.get('page'), '1');
   await empty.respond(1, 'NOT-A-REAL-RESULT', 0, 0); empty.runTimers(); assert.equal(empty.requests.length, 2);
 });
+
+test('Live search keeps focus while typing; an explicit search moves to the visible result region without a new request', async () => {
+  const s = setup('/lernen?q=Reh');
+  const calls = [];
+  const region = find(s.tree, item => item.props?.id === 'learning-search-results');
+  region.props.ref.current = { focus: options => calls.push(['focus', options]), scrollIntoView: options => calls.push(['scroll', options]) };
+  s.change('Suchbegriff', 'Gams');
+  s.change('Kategorie', 'wildkunde');
+  assert.deepEqual(calls, [], 'Typing and live filters must not steal focus or jump the page');
+  s.runTimers(); await s.respond(0, 'GAMS-TREFFER');
+  assert.deepEqual(calls, [], 'A delayed response must not move the user unexpectedly');
+  const before = s.requests.length;
+  let prevented = false;
+  find(s.tree, item => item.type === 'form').props.onSubmit({ preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.deepEqual(calls, [['focus', { preventScroll: true }], ['scroll', { block: 'start', behavior: 'auto' }]]);
+  assert.equal(s.requests.length, before, 'The submit action displays the live results without duplicating the request');
+  assert.equal(s.field('Suchbegriff').props.enterKeyHint, 'search');
+  assert.equal(s.field('Suchbegriff').props['aria-controls'], 'learning-search-results');
+  assert.equal(region.props.tabIndex, -1);
+  assert.match(words(find(s.tree, item => item.props?.id === 'learning-search-results')), /GAMS-TREFFER/);
+});
+
+test('Paging explicitly returns to results, while bookmark and history restoration do not force a scroll', async () => {
+  const s = setup('/lernen?q=Gams');
+  const calls = [];
+  find(s.tree, item => item.props?.id === 'learning-search-results').props.ref.current = {
+    focus: () => calls.push('focus'), scrollIntoView: () => calls.push('scroll'),
+  };
+  s.runTimers(); await s.respond(0, 'Gams', 40, 2);
+  assert.deepEqual(calls, []);
+  find(s.tree, item => item.type === 'button' && words(item) === 'Weiter').props.onClick();
+  assert.deepEqual(calls, ['focus', 'scroll']);
+  s.render(); s.flush(); s.runTimers(); await s.respond(1, 'Seite zwei', 40, 2);
+  assert.deepEqual(calls, ['focus', 'scroll']);
+  s.route('/lernen?q=Rehwild', true);
+  assert.deepEqual(calls, ['focus', 'scroll']);
+});

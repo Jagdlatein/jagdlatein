@@ -57,6 +57,20 @@
 .courseProgress progress::-moz-progress-bar { background: #61774a; border-radius: 8px; }
 .courseMore { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 0; text-align: center; }
 .courseMore p { margin: 0; color: var(--jl-muted); }
+.courseOverview { padding: 12px 20px; margin-bottom: 16px; }
+.courseOverview summary { cursor: pointer; min-height: 44px; line-height: 1.5; padding: 10px 0; }
+.courseOverview summary span { margin-left: 14px; color: var(--jl-muted); font-size: 14px; }
+.courseOverview .metrics { margin-top: 14px; }
+.courseSearchRow { display: flex; align-items: flex-end; gap: 12px; }
+.courseSearchRow .courseQuery { display: grid; flex: 1; min-width: 0; gap: 8px; font-weight: 700; }
+.courseSearchRow input { width: 100%; min-width: 0; min-height: 48px; padding: 12px; border: 1px solid var(--jl-border); border-radius: 12px; background: var(--jl-surface); color: var(--jl-ink); font: inherit; font-size: max(16px, 1rem); }
+.courseFilterDetails { margin: 10px 0; }
+.courseFilterDetails summary { padding: 10px 0; min-height: 44px; cursor: pointer; font-weight: 700; line-height: 1.5; }
+.courseFilterDetails summary span { margin-left: 12px; font-weight: 400; font-size: 14px; }
+.courseFilterDetails .courseFilters { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 8px; }
+.courseFilterDetails .filters { margin: 16px 0 4px; }
+.courseSearchRow input:focus-visible, .courseFilterDetails summary:focus-visible, .courseOverview summary:focus-visible, .courseResultStatus:focus { outline: 3px solid #796021; outline-offset: 3px; }
+.courseResultStatus { scroll-margin-top: 20px; }
 @media (max-width: 760px) {
   .courseFilters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .courseQuery { grid-column: 1 / -1; }
@@ -75,4 +89,8 @@
   .courseFilters { grid-template-columns: minmax(0, 1fr); }
   .filters button { flex: 1 1 auto; }
   .courseMore .button { width: 100%; }
+  .courseOverview summary span, .courseFilterDetails summary span { display: block; margin-left: 16px; }
+  .courseSearchRow { flex-wrap: wrap; gap: 8px; }
+  .courseSearchRow .courseQuery, .courseSearchRow .button { flex-basis: 100%; }
+  .courseFilterDetails .courseFilters { grid-template-columns: minmax(0, 1fr); }
 }
