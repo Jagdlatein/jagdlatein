@@ -1,12 +1,14 @@
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import CourseProgressNotice from "./CourseProgressNotice";
 import useCourseProgress from "../hooks/useCourseProgress";
 import styles from "../styles/Learning.module.css";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
+import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -19,12 +21,46 @@ export default function LearningCourse({ module }) {
 }
 
 function LearningContent({ module }) {
+  const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
   const countrySelection = category?.slug === "jagdrecht";
   const regionalNotes = module.countries.filter((item) => module.countryNotes?.[item]);
   const [country, setCountry] = useState(module.countries[0]);
   const [lessonIndex, setLessonIndex] = useState(0);
+  const lessonHeading = useRef(null);
+  const revealLesson = useRef(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    function readLesson() {
+      const index = lessonIndexFromHash(module.lessons, window.location.hash);
+      if (index >= 0) { revealLesson.current = true; setLessonIndex(index); }
+    }
+    readLesson();
+    window.addEventListener("hashchange", readLesson);
+    window.addEventListener("popstate", readLesson);
+    return () => { window.removeEventListener("hashchange", readLesson); window.removeEventListener("popstate", readLesson); };
+  }, [module.id, module.lessons, router.asPath]);
+  useEffect(() => {
+    if (!revealLesson.current || !lessonHeading.current) return;
+    revealLesson.current = false;
+    lessonHeading.current.focus({ preventScroll: true });
+    lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
+  }, [lessonIndex, router.asPath]);
+  function selectLesson(index) {
+    if (!Number.isInteger(index) || !module.lessons[index]) return;
+    revealLesson.current = true;
+    if (typeof window !== "undefined" && typeof router.replace === "function") {
+      const href = `${window.location.pathname}${window.location.search}${lessonHash(module.lessons[index].id)}`;
+      router.replace(href, undefined, { shallow: true, scroll: false }).catch(error => { if (!error.cancelled) console.error("Lektion konnte nicht im Seitenverlauf aktualisiert werden."); });
+    }
+    if (index === lessonIndex && lessonHeading.current) {
+      revealLesson.current = false;
+      lessonHeading.current.focus({ preventScroll: true });
+      lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
+    }
+    setLessonIndex(index);
+  }
   const [run, setRun] = useState(() => makeRun(module.questions));
   const currentRun = useRef(run);
   const [fullProgress, setFullProgress] = useState({
@@ -76,15 +112,12 @@ function LearningContent({ module }) {
   return (
     <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} stats={[{ value: module.lessons.length, label: "Lektionen" }, { value: module.questions.length, label: "Fragen" }, { value: module.minutes, label: "Minuten" }, { value: module.level, label: "Lernstufe" }]}>
           <nav className={styles.topNav} aria-label="Kursübersicht">
-            <Link href="/kurse">Alle Kurse</Link>
             <Link href="/meine-kurse">Meine Kurse</Link>
           </nav>
           <LearningCover media={media} />
           <section className={styles.card} aria-labelledby="learning-objectives">
             <h2 id="learning-objectives">Das lernst du</h2>
             <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
-            {module.id === "wissen-vertiefung-jagdhunderassen" && <p><a href="#breed-gallery-heading" className={styles.secondaryButton}>Rassebilder ansehen</a></p>}
-            {media?.pictures?.length > 1 && <p><a href="#wildlife-gallery-heading" className={styles.secondaryButton}>Wildarten im Bild ansehen</a></p>}
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
@@ -105,25 +138,20 @@ function LearningContent({ module }) {
               <h2>Lektionen</h2>
               <div className={styles.mobileLessonChoice}>
                 <label htmlFor="lesson-selection">Lektion auswählen</label>
-                <select id="lesson-selection" value={lessonIndex} onChange={event => setLessonIndex(Number(event.target.value))}>
+                <select id="lesson-selection" value={lessonIndex} onChange={event => selectLesson(Number(event.target.value))}>
                   {module.lessons.map((item, index) => <option value={index} key={item.id}>{index + 1}. {item.title}</option>)}
                 </select>
               </div>
-              <ol>
-                {module.lessons.map((item, index) => (
-                  <li key={item.id}><button type="button" aria-current={index === lessonIndex ? "step" : undefined} onClick={() => setLessonIndex(index)}><span className={styles.lessonNumber}>{index + 1}</span><span>{item.title}</span></button></li>
-                ))}
-              </ol>
             </nav>
-            <article className={styles.card} aria-labelledby="current-lesson-heading">
+            <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">
               <p className={styles.eyebrow}>Lektion {lessonIndex + 1} von {module.lessons.length}</p>
-              <h2 id="current-lesson-heading">{lesson.title}</h2>
+              <h2 id="current-lesson-heading" tabIndex={-1} ref={lessonHeading}>{lesson.title}</h2>
               <div className={styles.lessonText}>{lesson.paragraphs.map((paragraph, index) => <p key={`${lesson.id}:${index}`}>{paragraph}</p>)}</div>
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>
               <div className={styles.actions}>
-                {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => setLessonIndex(lessonIndex - 1)}>Vorherige Lektion</button>}
-                {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => setLessonIndex(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" className={styles.button}>Zum Wissenscheck</a>}
+                {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => selectLesson(lessonIndex - 1)}>Vorherige Lektion</button>}
+                {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => selectLesson(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" className={styles.button}>Zum Wissenscheck</a>}
               </div>
             </article>
           </div>
@@ -173,9 +201,10 @@ function LearningContent({ module }) {
                     <h4>{question.correct.includes(selected) ? "Richtig beantwortet." : "Das ist noch nicht richtig."}</h4>
                     {!question.correct.includes(selected) && <p><strong>Richtig ist:</strong> {question.answers.filter((answer) => question.correct.includes(answer.id)).map((answer) => answer.text).join(", ")}</p>}
                     <p>{question.explain}</p>
-                    {question.lessonId && <a href="#current-lesson-heading" className={styles.textButton} onClick={() => {
+                    {question.lessonId && <a href={lessonHash(question.lessonId)} className={styles.textButton} onClick={event => {
+                      event.preventDefault();
                       const index = module.lessons.findIndex((item) => item.id === question.lessonId);
-                      if (index >= 0) setLessonIndex(index);
+                      if (index >= 0) selectLesson(index);
                     }}>Passende Lektion öffnen</a>}
                     <div className={styles.actions}><button type="button" className={styles.button} onClick={nextQuestion}>{run.complete ? "Ergebnis ansehen" : "Nächste Frage"}</button></div>
                   </div>

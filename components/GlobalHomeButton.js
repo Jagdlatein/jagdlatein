@@ -64,7 +64,7 @@ export default function GlobalHomeButton() {
   useEffect(() => {
     if (!pathname) return;
 
-    const current = window.location.pathname + window.location.search;
+    const current = window.location.pathname + window.location.search + (window.location.hash || "");
     const history = readHistory();
     if (rememberCurrentPath(history, current)) {
       writeHistory(history.slice(-20));
@@ -95,7 +95,7 @@ export default function GlobalHomeButton() {
   }
 
   function goBack() {
-    const current = window.location.pathname + window.location.search;
+    const current = window.location.pathname + window.location.search + (window.location.hash || "");
     const history = readHistory();
     rememberCurrentPath(history, current);
     history.pop();
@@ -127,17 +127,15 @@ export default function GlobalHomeButton() {
         <AppIcon name="book" size={18} /> Lernen
       </a>
       <a href="/lernen#lernen-suche" className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</a>
-      <a href="/community" className={styles.button} aria-label="Zur Community" aria-current={communityCurrent ? "true" : undefined}><AppIcon name="community" size={18} /><span className={styles.desktopLabel}>Community</span><span className={styles.mobileLabel}>Forum</span></a>
-      <a
-        href="/"
-        aria-label="Zur Startseite"
-        className={styles.button}
-      >
-        <AppIcon name="home" size={18} /> Start
-      </a>
-      <a href="/konto" className={styles.button} aria-label="Konto und Abo öffnen" aria-current={accountCurrent ? "true" : undefined}>
-        <AppIcon name="account" size={18} /> Konto
-      </a>
+      <details className={styles.more}>
+        <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
+        <div className={styles.moreLinks}>
+          <a href="/" aria-label="Zur Startseite"><AppIcon name="home" size={18} />Startseite</a>
+          <a href="/community" aria-label="Zur Community" aria-current={communityCurrent ? "true" : undefined}><AppIcon name="community" size={18} />Community</a>
+          <a href="/konto" aria-label="Konto und Abo öffnen" aria-current={accountCurrent ? "true" : undefined}><AppIcon name="account" size={18} />Konto & Abo</a>
+          <a href="/hilfe"><AppIcon name="help" size={18} />Hilfe & Kontakt</a>
+        </div>
+      </details>
     </nav>
   );
 }

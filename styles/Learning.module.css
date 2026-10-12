@@ -4,6 +4,8 @@
 .topNav { display: flex; flex-wrap: wrap; gap: 10px; }
 .topNav a { display: inline-flex; min-height: 44px; align-items: center; padding: 10px 16px; border: 1px solid #e0c989; border-radius: 12px; background: #fffdf7; color: inherit; font-weight: 600; text-decoration: none; }
 .topNav a:hover { background: #fbf1d5; border-color: #796021; color: #796021; }
+.topNav a { border: 0; border-radius: 0; padding: 10px 0; background: transparent; }
+.topNav a:hover { background: transparent; text-decoration: underline; text-underline-offset: 4px; }
 .header { margin: 30px 0 24px; }
 .header h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 10px 0 16px; overflow-wrap: anywhere; }
 .eyebrow { margin: 0 0 12px; font-size: 14px; font-weight: 600; color: #796021; line-height: 1.6; }
@@ -26,11 +28,13 @@
 .regionalNotes dl > div + div { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0c989; }
 .regionalNotes dt { font-weight: 700; margin-bottom: 6px; }
 .regionalNotes dd { margin: 0; line-height: 1.75; }
-.lessonGrid { display: grid; grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); gap: 22px; align-items: start; }
+.lessonGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; align-items: start; }
 .lessonNav { padding: 20px; border: 1px solid #e0c989; background: #fffdf7; border-radius: 18px; margin-bottom: 22px; }
 .lessonNav h2 { font-size: 20px; margin: 0 0 16px; }
 .lessonNav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.mobileLessonChoice { display: none; }
+.mobileLessonChoice { display: block; }
+.lessonGrid article { scroll-margin-top: 24px; }
+.lessonGrid h2:focus { outline: none; }
 .mobileLessonChoice label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
 .mobileLessonChoice select { display: block; width: 100%; min-width: 0; min-height: 48px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; font: inherit; color: #3e321b; background: #fbf7ec; }
 .lessonNav button { display: flex; align-items: flex-start; gap: 10px; text-align: left; width: 100%; min-height: 44px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; background: #fbf7ec; color: inherit; font: inherit; line-height: 1.5; cursor: pointer; }

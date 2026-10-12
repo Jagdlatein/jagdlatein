@@ -51,6 +51,29 @@
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 16px; border: 1px solid #b99835; border-radius: 12px; background: #caa53b; color: #3e321b; font: inherit; font-weight: 600; text-decoration: none; text-align: center; cursor: pointer; }
 .button:hover { background: #d7b548; border-color: #8b732a; }
 .moduleCard .button { margin-top: auto; width: 100%; }
+.quietNav { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 26px; }
+.quietNav a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; color: #72541d; text-decoration: none; font-weight: 600; }
+.quietNav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.sectionHeading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin-bottom: 20px; }
+.sectionHeading h2 { margin: 0; font-size: 26px; }
+.sectionHeading p { margin: 0; color: #6e6249; line-height: 1.6; }
+.moduleLink { display: block; width: 100%; color: inherit; text-decoration: none; }
+.moduleLink h3 { display: flex; justify-content: space-between; gap: 10px; }
+.moduleLink h3 svg { flex-shrink: 0; margin-top: 4px; }
+.moduleLink:hover h3 { color: #796021; text-decoration: underline; text-underline-offset: 4px; }
+.moduleLink .lessonPreview { margin-bottom: 0; }
+.resources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; list-style: none; padding: 0; margin: 0; }
+.resources li { min-width: 0; border-bottom: 1px solid #dfcda0; }
+.resources a { display: flex; gap: 14px; align-items: center; min-height: 86px; padding: 18px 0; color: inherit; text-decoration: none; }
+.resources a > svg { flex-shrink: 0; color: #796021; }
+.resources a > span { flex: 1; min-width: 0; }
+.resources strong, .resources a > span > span { display: block; }
+.resources strong { font-size: 18px; line-height: 1.4; }
+.resources a > span > span { color: #6e6249; line-height: 1.6; margin-top: 6px; }
+.resources a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.directory { margin: 0 0 28px; border-top: 1px solid #dfcda0; border-bottom: 1px solid #dfcda0; }
+.directory > summary { min-height: 56px; cursor: pointer; padding: 18px 0; font-size: 19px; font-weight: 600; }
+.directoryContent, .directory > .pathGrid { padding: 8px 0 24px; }
 .empty { padding: 28px; border: 1px solid #e0c989; border-radius: 18px; background: #fffdf7; }
 .empty p { line-height: 1.7; margin: 0 0 20px; }
 .main a:focus-visible, .main button:focus-visible, .main input:focus-visible, .main select:focus-visible, .main summary:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
@@ -61,6 +84,7 @@
 }
 @media (max-width: 600px) {
   .pathGrid, .moduleGrid { grid-template-columns: minmax(0, 1fr); }
+  .resources { grid-template-columns: minmax(0, 1fr); }
   .filterCard, .moduleCard, .pathCard, .empty { padding: 20px; }
   .nav a { flex: 1 1 auto; }
 }

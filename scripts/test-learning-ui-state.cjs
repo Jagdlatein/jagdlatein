@@ -210,7 +210,7 @@ test('Every practice page and result uses one shared heading, browser title and 
     assert.equal((html.match(/<main\b/g) || []).length, 1, filename);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, filename);
     assert.match(html, /<title>.+ – Jagdlatein<\/title>/, filename);
-    assert.ok(html.includes('Lernbereich') && html.includes('Alle Angebote suchen'), filename);
+    assert.ok(html.includes('Lernbereich') && html.includes('href="/lernen#lernen-suche"') && html.includes('Suche'), filename);
     assert.ok(!html.includes('padding:40px'), filename + ': outer mobile padding comes from the shared layout');
     if (filename !== 'index.js') assert.ok(html.includes('Alle Praxisübungen'), filename);
     if (!source.includes('step >= scenarios.length')) continue;

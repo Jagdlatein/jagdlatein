@@ -87,7 +87,7 @@ function setup(asPath = '/lernen', category = 'all', ready = true) {
     field(label) { const node = find(tree, item => item.type === 'label' && words(item).startsWith(label)); assert.ok(node, label); return find(node, item => ['input', 'select'].includes(item.type)); },
     change(label, value) { this.field(label).props.onChange({ target: { value } }); render(); flush(); },
     runTimers() { const pending = [...timers.entries()]; timers.clear(); pending.forEach(([, callback]) => callback()); },
-    async respond(index, title = 'Treffer', total = 1, pages = 1) { requests[index].resolve({ ok: true, json: async () => ({ total, pages, results: total > 0 ? [{ id: title, title, href: '/kurse/test', categories: ['wildkunde'], type: 'course', description: 'Erklärung' }] : [] }) }); for (let i = 0; i < 5; i++) await Promise.resolve(); render(); flush(); },
+    async respond(index, title = 'Treffer', total = 1, pages = 1, extra = {}) { requests[index].resolve({ ok: true, json: async () => ({ total, pages, results: total > 0 ? [{ id: title, title, href: '/kurse/test', categories: ['wildkunde'], type: 'course', description: 'Erklärung' }] : [], ...extra }) }); for (let i = 0; i < 5; i++) await Promise.resolve(); render(); flush(); },
     setCategory(value) { props = { category: value }; render(); flush(); },
     unmount() { slots.forEach(slot => slot?.cleanup?.()); },
   };
@@ -104,7 +104,7 @@ test('Client waits for router hydration and restores direct-link filters/page be
   const request = new URL(s.requests[0].url, 'https://test.invalid');
   assert.equal(request.searchParams.get('page'), '3'); assert.equal(request.searchParams.get('category'), 'jagdrecht');
   assert.equal(s.replacements.length, 0, 'URL restoration must not produce a router loop');
-  assert.match(s.words(), /Link zu dieser Suche/);
+  assert.doesNotMatch(s.words(), /Link zu dieser Suche|Treffer anzeigen/);
 });
 
 test('Typing produces one shallow replace, resets page, preserves context, and an older URL acknowledgement cannot overwrite a newer draft', () => {
@@ -196,4 +196,29 @@ test('Paging explicitly returns to results, while bookmark and history restorati
   assert.deepEqual(calls, ['focus', 'scroll']);
   s.route('/lernen?q=Rehwild', true);
   assert.deepEqual(calls, ['focus', 'scroll']);
+});
+
+test('One live search field needs no action button; filters remain optional and an empty response cannot precede the current request', async () => {
+  const s = setup('/lernen');
+  assert.equal(find(s.tree, item => item.type === 'button'), null, 'The initial search has no action strip');
+  const filters = find(s.tree, item => item.type === 'details');
+  assert.ok(filters); assert.ok(!filters.props.open, 'Filter controls are collapsed by default');
+  s.change('Suchbegriff', 'Reh');
+  assert.match(s.words(), /Suche läuft/);
+  assert.doesNotMatch(s.words(), /Keine Treffer/);
+  s.runTimers();
+  s.change('Suchbegriff', 'Gams'); s.runTimers();
+  await s.respond(0, 'ALT', 0, 0);
+  assert.doesNotMatch(s.words(), /Keine Treffer|ALT/);
+  await s.respond(1, 'GAMS', 1, 1);
+  assert.match(s.words(), /GAMS/);
+  assert.equal(find(s.tree, item => item.type === 'button' && item.props.type === 'submit'), null);
+});
+
+test('A corrected spelling explains the shown results while preserving the entered query and its URL', async () => {
+  const s = setup('/lernen?q=Rehwidl'); s.runTimers();
+  await s.respond(0, 'Rehwild', 2, 1, { suggestion: 'Rehwild' });
+  assert.equal(s.field('Suchbegriff').props.value, 'Rehwidl');
+  assert.match(s.words(), /2 Treffer für „Rehwild“/);
+  assert.equal(s.replacements.length, 0, 'The suggestion is not a silent URL or input replacement');
 });

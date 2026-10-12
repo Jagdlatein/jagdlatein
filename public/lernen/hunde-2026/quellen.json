@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-10-12",
+  "assets": [
+    {
+      "file": "Labrador-retriever.jpg",
+      "id": "labrador",
+      "name": "Labrador Retriever",
+      "alt": "Gelber Labrador Retriever im Sitzen",
+      "license": "CC BY 3.0",
+      "author": "Webdude1",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "src": "/lernen/hunde-2026/labrador.jpg",
+      "width": 1335,
+      "height": 1400,
+      "url": "https://commons.wikimedia.org/wiki/File:Labrador-retriever.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Labrador-retriever.jpg",
+      "sourceFileUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Labrador-retriever.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "aiGenerated": false,
+      "provenance": {
+        "type": "documentary-photograph",
+        "sourceDate": "2010-09-24",
+        "camera": "E-450           ",
+        "licenseFromSource": "CC BY 3.0",
+        "artistFromSource": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Webdude1&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Webdude1 (page does not exist)\">Webdude1</a>"
+      },
+      "modifications": "Proportional auf höchstens 1400 Pixel verkleinert und als JPEG gespeichert; kein Beschnitt.",
+      "sha256": "ba602b790f29850ae9763d6df36b41e19abb89cc97926f45480d22ff52e2ddb7"
+    },
+    {
+      "file": "German Short-haired Pointer 01.JPG",
+      "id": "kurzhaar",
+      "name": "Deutsch Kurzhaar",
+      "alt": "Deutsch Kurzhaar mit einfarbig braunem kurzem Fell auf einer Wiese",
+      "license": "CC BY-SA 3.0",
+      "author": "~riley",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "src": "/lernen/hunde-2026/kurzhaar.jpg",
+      "width": 1400,
+      "height": 933,
+      "url": "https://commons.wikimedia.org/wiki/File:German_Short-haired_Pointer_01.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:German_Short-haired_Pointer_01.JPG",
+      "sourceFileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/German_Short-haired_Pointer_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "aiGenerated": false,
+      "provenance": {
+        "type": "documentary-photograph",
+        "sourceDate": "2012-08-21",
+        "camera": "Canon EOS 60D",
+        "licenseFromSource": "CC BY-SA 3.0",
+        "artistFromSource": "<a href=\"//commons.wikimedia.org/wiki/User:~riley\" title=\"User:~riley\">~riley </a>"
+      },
+      "modifications": "Proportional auf höchstens 1400 Pixel verkleinert und als JPEG gespeichert; kein Beschnitt.",
+      "sha256": "f2bcddbe000e362c698870dfb08a0c768d00606044fbb7c99f0a87a6c9d2ff13"
+    },
+    {
+      "file": "Adult Male Weimeraner.jpg",
+      "id": "weimaraner",
+      "name": "Weimaraner",
+      "alt": "Erwachsener kurzhaariger Weimaraner auf einer Wiese",
+      "license": "CC0 1.0",
+      "author": "Borelandn",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "src": "/lernen/hunde-2026/weimaraner.jpg",
+      "width": 1024,
+      "height": 768,
+      "url": "https://commons.wikimedia.org/wiki/File:Adult_Male_Weimeraner.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adult_Male_Weimeraner.jpg",
+      "sourceFileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Adult_Male_Weimeraner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "aiGenerated": false,
+      "provenance": {
+        "type": "documentary-photograph",
+        "sourceDate": "2007-09-09 17:47:47",
+        "camera": "HP PhotoSmart R707 (V01.00)+",
+        "licenseFromSource": "CC0",
+        "artistFromSource": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Borelandn&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Borelandn (page does not exist)\">Borelandn</a>"
+      },
+      "modifications": "Proportional auf höchstens 1400 Pixel verkleinert und als JPEG gespeichert; kein Beschnitt.",
+      "sha256": "36afec1a7856bb3c988a0c8e39224a74f2b9aa040fb4156b5e0b7d5f26e67aff"
+    }
+  ]
+}

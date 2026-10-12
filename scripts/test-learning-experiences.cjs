@@ -195,19 +195,18 @@ test('Breed filtering explains missing work areas and comparison stays unique an
   for (const id of ['golden', 'labrador']) assert.deepEqual(getDogTaskMatch(dogBreeds.find(profile => profile.id === id), ['apport', 'wasser']).missing, []);
   assert.equal(getCompassAdvice({ access: 'none', guidance: 'none', everyday: 'open' }).length, 3);
   const s = setup('components/DogCompass.js');
-  const buttons = dogBreeds.slice(0, 4).map(profile => find(s.tree, n => n.type === 'button' && n.props['aria-label'] === `${profile.name} vergleichen`));
+  const buttons = dogBreeds.slice(0, 4).map(profile => find(s.tree, n => n.type === 'input' && n.props['aria-label'] === `${profile.name} vergleichen`));
   assert.ok(buttons.every(Boolean));
-  for (const button of buttons) button.props.onClick(); s.redraw();
-  assert.match(s.html(), /3 von 3 im Vergleich/);
+  for (const button of buttons) button.props.onChange(); s.redraw();
   assert.match(s.html(), /Drei Profile sind gewählt/);
   const section = find(s.tree, n => n.props?.id === 'dog-comparison');
   for (const profile of dogBreeds.slice(0, 3)) assert.ok(text(section).includes(profile.name));
   assert.equal(text(section).includes(dogBreeds[3].name), false);
   s.change('dog-search', 'this-breed-does-not-exist');
   assert.match(s.html(), /Kein Profil passt/);
-  assert.match(s.html(), /3 von 3 im Vergleich/);
-  s.click('Auswahl zurücksetzen'); assert.match(s.html(), /14 von 14 Profilen/);
-  s.click('Vergleich leeren'); assert.match(s.html(), /0 von 3 im Vergleich/);
+  assert.ok(find(s.tree, n => n.props?.id === 'dog-comparison'));
+  s.click('Auswahl zurücksetzen'); assert.ok(s.html().includes(`${dogBreeds.length} von ${dogBreeds.length} Profilen`));
+  s.click('Vergleich leeren'); assert.equal(find(s.tree, n => n.props?.id === 'dog-comparison'), null);
 });
 
 test('Dog knowledge feedback survives wrong answers, double clicks and handlers from a completed previous run', () => {

@@ -40,11 +40,11 @@ export function LearningDiagram({ media }) {
 
 export function BreedGallery() {
   return <section className={styles.breeds} aria-labelledby="breed-gallery-heading">
-    <h2 id="breed-gallery-heading">Vier Jagdhunderassen im Bild</h2>
+    <h2 id="breed-gallery-heading">Jagdhunderassen im Bild</h2>
     <p>Bildbeispiele zeigen das Erscheinungsbild. Arbeitsleistung, Gesundheit und Eignung eines einzelnen Hundes beurteilst du gesondert; Fell und Körperbau allein genügen dafür nicht.</p>
     <div className={styles.breedGrid}>{breedPictures.map(picture => <figure key={picture.name}>
-      <Image src={picture.src} alt={picture.alt} width={800} height={600} sizes="(max-width: 600px) 85vw, 520px" loading="lazy" />
-      <figcaption><strong>{picture.name}</strong><small>Foto: {picture.author} · {picture.licenseUrl ? <a href={picture.licenseUrl} target="_blank" rel="noreferrer">{picture.license}</a> : picture.license} · <a href={picture.url} target="_blank" rel="noreferrer">Bildquelle</a></small><small>Unveränderte Originalaufnahme; Anzeige an den Bildrahmen angepasst.</small></figcaption>
+      <Image src={picture.src} alt={picture.alt} width={picture.width || 800} height={picture.height || 600} sizes="(max-width: 600px) 85vw, 520px" loading="lazy" />
+      <figcaption><strong>{picture.name}</strong><small>Foto: {picture.author} · {picture.licenseUrl ? <a href={picture.licenseUrl} target="_blank" rel="noreferrer">{picture.license}</a> : picture.license} · <a href={picture.url} target="_blank" rel="noreferrer">Bildquelle</a></small><small>{picture.modifications || "Unveränderte Originalaufnahme; Anzeige an den Bildrahmen angepasst."}</small></figcaption>
     </figure>)}</div>
   </section>;
 }

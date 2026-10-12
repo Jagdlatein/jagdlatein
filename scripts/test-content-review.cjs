@@ -26,7 +26,7 @@ function correctText(id) { const question = byId.get(id); assert.ok(question, id
 function has(id, pool) { return pool.some(question => question.id === id); }
 
 test('The active quiz preserves unique stable IDs and complete, resolvable answers/explanations', () => {
-  assert.equal(QUESTIONS.length, 963); assert.equal(byId.size, QUESTIONS.length);
+  assert.equal(QUESTIONS.length, 231 + learningQuestions.length); assert.equal(byId.size, QUESTIONS.length);
   for (const question of QUESTIONS) {
     assert.ok(question.q.trim() && question.explain.trim(), question.id);
     assert.ok(Array.isArray(question.answers) && question.answers.length >= 2, question.id);
@@ -42,8 +42,8 @@ test('The active quiz preserves unique stable IDs and complete, resolvable answe
 });
 
 test('All detailed questions link to existing lessons, courses and country notes', () => {
-  assert.equal(courses.length, 107); assert.equal(miniCourses.length, 34); assert.equal(learningModules.length, 73);
-  assert.equal(learningCounts.lessons, 372); assert.equal(learningQuestions.length, 732);
+  assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(learningModules.length, 84);
+  assert.equal(learningCounts.lessons, 427); assert.equal(learningQuestions.length, 842);
   assert.equal(new Set(courses.map(course => course.id)).size, courses.length);
   for (const module of learningModules) {
     const lessons = new Set(module.lessons.map(lesson => lesson.id));

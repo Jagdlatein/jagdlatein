@@ -32,11 +32,53 @@ test('Search covers courses, species, terms and all tools; results contain summa
 test('Search pagination preserves counts and country filters apply to legal courses', () => {
   const { searchLearning } = load('lib/learning-search.js');
   const first = searchLearning({ type: 'course' }), second = searchLearning({ type: 'course', page: 2 });
-  assert.equal(first.total, 107); assert.equal(first.results.length, 30); assert.equal(second.results.length, 30); assert.equal(first.total, second.total);
+  const detailedCount = load('lib/learning-curriculum.js').learningModules.length;
+  const miniCount = load('lib/course-catalog.js').miniCourses.length;
+  assert.equal(first.total, detailedCount + miniCount); assert.equal(first.results.length, 30); assert.equal(second.results.length, 30); assert.equal(first.total, second.total);
   assert.ok(!first.results.some(item => second.results.some(other => other.id === item.id)));
   const de = searchLearning({ category: 'jagdrecht', country: 'DE', type: 'course' });
   assert.ok(de.results.some(item => item.href === '/kurse/wissen-jagdrecht-de')); assert.ok(!de.results.some(item => item.href === '/kurse/wissen-jagdrecht-at'));
   assert.deepEqual(searchLearning({ category: 'wildkunde', country: 'DE' }), searchLearning({ category: 'wildkunde', country: 'CH' }));
+});
+
+test('Search recovers clear spelling mistakes without broadening a valid or unrelated query', () => {
+  const { searchLearning } = load('lib/learning-search.js');
+  for (const [query, expected, id] of [['Rehwidl', 'Rehwild', 'species:rehwild'], ['Drahthar', 'Drahthaar', 'breed:drahthaar'], ['Kühlkete', 'Kühlkette', 'course:wissen-wildbrethygiene']]) {
+    const result = searchLearning({ query });
+    assert.equal(result.suggestion, expected, query);
+    assert.ok(result.results.some(item => item.id === id), query);
+  }
+  assert.equal(searchLearning({ query: 'Rehwild' }).suggestion, undefined);
+  for (const query of ['zzznichtvorhanden', 'Gams Drahthaar', 'abc']) {
+    const result = searchLearning({ query }); assert.equal(result.total, 0, query); assert.equal(result.suggestion, undefined, query);
+  }
+  assert.equal(searchLearning({ query: 'Rehwidl', category: 'hundewesen' }).total, 0, 'A spelling suggestion cannot escape category selection');
+  assert.throws(() => searchLearning({ type: '__proto__' }), /Ungültige/);
+});
+
+test('Search opens each indexed hunting breed directly and recognises common alternate breed names', () => {
+  const { searchLearning } = load('lib/learning-search.js');
+  const { dogBreeds } = load('lib/dog-compass.js');
+  for (const breed of dogBreeds) {
+    const match = searchLearning({ query: breed.name, category: 'hundewesen', type: 'entry' }).results.find(item => item.id === `breed:${breed.id}`);
+    assert.ok(match, breed.name);
+    const href = new URL(match.href, 'https://test.invalid');
+    assert.equal(href.pathname, '/lernen/jagdhund-kompass'); assert.equal(href.searchParams.get('rasse'), breed.id); assert.equal(href.hash, '#dog-' + breed.id);
+  }
+  assert.equal(searchLearning({ query: 'Dackel', category: 'hundewesen' }).results[0].id, 'breed:teckel');
+  assert.ok(searchLearning({ query: 'Muensterlaender', type: 'entry' }).results.filter(item => item.id.startsWith('breed:')).length >= 2);
+});
+
+test('Course search shows the matching lesson passage and deep link, with quiz data absent from the search index', () => {
+  const { searchLearning } = load('lib/learning-search.js');
+  const result = searchLearning({ query: 'Kühlkette', type: 'course' });
+  const match = result.results.find(item => item.id === 'course:wissen-wildbrethygiene');
+  assert.ok(match); assert.equal(match.href, '/kurse/wissen-wildbrethygiene#lesson-kuehlen');
+  assert.equal(match.lessonTitle, 'Kühlung ist ein kontrollierter Prozess');
+  assert.match(match.description, /Kühlkette/); assert.ok(match.description.length <= 260);
+  const fixtures = [{ id: 'search-fixture', title: 'Fixture', description: 'Neutral', category: 'Wildkunde', countries: ['DE'], lessons: [{ id: 'safe', title: 'Sichere Lektion', paragraphs: ['Öffentlicher Lehrtext über Merkmale.'], takeaway: 'Merkmale prüfen.', exercise: 'Merkmale nennen.', questions: [{ q: 'SecretProbe', options: ['SecretProbe'], explain: 'SecretProbe' }] }], questions: [{ q: 'SecretProbe', correct: ['SecretProbe'] }] }];
+  const isolated = load('lib/learning-search.js', { './learning-curriculum': { learningModules: fixtures } });
+  assert.equal(isolated.searchLearning({ query: 'SecretProbe', type: 'course' }).total, 0, 'Only selected teaching fields are searchable');
 });
 test('Search API rejects unauthenticated and unpaid access and never caches account results', async () => {
   for (const [access, status] of [[null, 401], [{ paid: false }, 403], [{ paid: true }, 200]]) {

@@ -1,136 +1,66 @@
 import Link from "next/link";
+import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
-import { useState } from "react";
-import { getLearningCategoryByTitle, learningCategories } from "../lib/learning-categories";
+import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
-import LearningTools from "./LearningTools";
-import LearningExperiences from "./LearningExperiences";
 import LearningSearch from "./LearningSearch";
-import { CommunityInvite } from "./Community";
+import { learningTools, legalLearningHubs } from "../lib/learning-tool-catalog";
+import { learningExperiences } from "../lib/learning-experiences";
 import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
-function normalize(value) {
-  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ß/g, "ss");
+function CourseCards({ modules }) {
+  return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
+    <LearningCover media={getLearningMedia(module)} compact />
+    <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
+      <span className={styles.tags}><span>{module.category}</span><span>{module.level}</span></span>
+      <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>
+      <p className={styles.muted}>{module.description}</p>
+      {getLearningCategoryByTitle(module.category)?.slug === "jagdrecht" && <p className={styles.countries}>{module.countries.map(item => countryNames[item] || item).join(" · ")}</p>}
+      <p className={styles.moduleFacts}>{module.lessonCount} Lektionen · {module.questionCount} Fragen · etwa {module.minutes} Minuten</p>
+      <ul className={styles.lessonPreview}>{module.lessonTitles.slice(0, 3).map(title => <li key={title}>{title}</li>)}</ul>
+    </Link>
+  </article>)}</div>;
 }
 
 export default function LearningOverview({ data }) {
-  const { modules: learningModules, counts: learningCounts, paths: learningPaths, categoryCounts, categoryInfo } = data;
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState(categoryInfo?.title || "all");
-  const [country, setCountry] = useState("all");
-  const countrySelection = getLearningCategoryByTitle(category)?.slug === "jagdrecht";
-  const search = normalize(query.trim());
-  const visible = learningModules.filter((module) => (
-    (category === "all" || module.category === category)
-    && (!countrySelection || country === "all" || module.countries.includes(country))
-    && (!search || normalize([module.title, module.description, ...module.lessonTitles].join(" ")).includes(search))
-  ));
-  const visibleIds = new Set(visible.map((module) => module.id));
-  const paths = learningPaths.map((path) => {
-    const modules = path.moduleIds.map((id, index) => ({ module: learningModules.find(module => module.id === id), position: index + 1 })).filter((entry) => entry.module && visibleIds.has(entry.module.id));
-    return { ...path, total: path.moduleIds.length, modules };
-  }).filter((path) => path.modules.length > 0);
-  const filtered = Boolean(query || category !== (categoryInfo?.title || "all") || (countrySelection && country !== "all"));
+  const { modules, counts, paths: learningPaths, categoryCounts, categoryInfo } = data;
+  const paths = learningPaths.filter(path => !categoryInfo || path.advanced).map(path => ({ ...path, modules: path.moduleIds.map(id => modules.find(module => module.id === id)).filter(Boolean) })).filter(path => path.modules.length);
+  const resources = categoryInfo ? [...learningExperiences, ...learningTools, ...(categoryInfo.slug === "jagdrecht" ? legalLearningHubs : [])]
+    .filter(tool => tool.categories.includes(categoryInfo.slug))
+    .filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index) : [];
 
-  function changeCategory(value) {
-    setCategory(value);
-    setCountry("all");
-  }
-
-  function resetFilters() {
-    setQuery("");
-    setCategory(categoryInfo?.title || "all");
-    setCountry("all");
-  }
-
-  return (
-    <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Vertiefe dein Wissen mit ausführlichen Lektionen, praktischen Denkaufgaben und Wissenschecks. Entdecke die Kategorien oder suche direkt nach deinem Thema. Beim Jagdrecht findest du die passenden Inhalte für dein Land."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly={!categoryInfo} stats={[{ value: learningCounts.modules, label: "Lerneinheiten" }, { value: learningCounts.lessons, label: "Lektionen" }, { value: learningCounts.questions, label: "Übungsfragen" }]}>
-          {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
-          <nav className={styles.nav} aria-label="Kursübersicht">
-            {categoryInfo && <Link href="/lernen">Alle Kategorien</Link>}
-            <Link href="/kurse">Alle Kurse</Link>
-            <Link href="/meine-kurse">Meine Kurse</Link>
-            <Link href="/auswertungen">Auswertungen</Link>
-            <Link href="/">Startseite</Link>
-          </nav>
-          {categoryInfo && <ul className={styles.focusTopics}>{categoryInfo.focus.map(topic => <li key={topic}>{topic}</li>)}</ul>}
-          <LearningSearch category={categoryInfo?.slug || "all"} />
-          {categoryInfo && <LearningCover media={getLearningMedia({ category: categoryInfo.title })} />}
-          <LearningExperiences category={categoryInfo?.slug} />
-          <LearningTools category={categoryInfo?.slug} />
-          <CommunityInvite category={categoryInfo?.slug} />
-          <section className={styles.filterCard} aria-labelledby="learning-search-heading">
-            <h2 id="learning-search-heading">Kurse und Lernpfade auswählen</h2>
-            <div className={styles.filters}>
-              <div className={styles.searchField}>
-                <label htmlFor="learning-search">Thema suchen</label>
-                <input id="learning-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Zum Beispiel Wildkunde oder Nachsuche" />
-              </div>
-              {!categoryInfo && <div>
-                <label htmlFor="learning-category">Kategorie</label>
-                <select id="learning-category" value={category} onChange={(event) => changeCategory(event.target.value)}>
-                  <option value="all">Alle Kategorien</option>
-                  {learningCategories.map((item) => <option key={item} value={item}>{item}</option>)}
-                </select>
-              </div>}
-              {countrySelection && <div>
-                <label htmlFor="learning-country">Land</label>
-                <select id="learning-country" value={country} onChange={(event) => setCountry(event.target.value)}>
-                  <option value="all">Alle Länder</option>
-                  {Object.entries(countryNames).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
-                </select>
-              </div>}
-            </div>
-            <div className={styles.filterStatus}>
-              <p role="status" aria-live="polite">{visible.length} von {learningModules.length} Lerneinheiten {filtered ? "passen zu deiner Auswahl" : "stehen für dich bereit"}.</p>
-              {filtered && <button type="button" className={styles.textButton} onClick={resetFilters}>Auswahl zurücksetzen</button>}
-            </div>
-          </section>
-          {visible.length === 0 ? (
-            <section className={styles.empty} aria-labelledby="learning-empty-heading">
-              <h2 id="learning-empty-heading">Keine Lerneinheiten gefunden</h2>
-              <p>Versuche einen anderen Suchbegriff oder wähle eine andere Kategorie{countrySelection ? " beziehungsweise ein anderes Land" : ""}.</p>
-              <button type="button" className={styles.button} onClick={resetFilters}>Alle Lerneinheiten anzeigen</button>
-            </section>
-          ) : (
-            <>
-              {paths.length > 0 && <section aria-labelledby="learning-paths-heading" className={styles.section}>
-                <h2 id="learning-paths-heading">Deine Lernpfade</h2>
-                <p className={styles.muted}>Diese Reihenfolgen helfen dir beim Einstieg. Du kannst jederzeit eine einzelne Lerneinheit öffnen. Deine Auswahl oben gilt auch für die Lernpfade.</p>
-                <div className={styles.pathGrid}>
-                  {paths.map((path) => <article key={path.id} className={styles.pathCard}>
-                    <details open={path.advanced ? undefined : true}>
-                      <summary className={styles.pathSummary}><span>{path.title}</span><span className={styles.pathCount}>{path.modules.length} Lerneinheiten</span></summary>
-                      <p className={styles.muted}>{path.description}</p>
-                      {path.modules.length < path.total && <p className={styles.pathHint}>{path.modules.length} von {path.total} Lerneinheiten passen zu deiner Auswahl. Die ursprüngliche Reihenfolge bleibt erhalten.</p>}
-                      <ol className={styles.pathModules}>
-                        {path.modules.map(({ module, position }) => <li key={module.id} value={position}><Link href={`/kurse/${module.id}`}>{module.title}</Link></li>)}
-                      </ol>
-                    </details>
-                  </article>)}
-                </div>
-              </section>}
-              <section className={styles.section} aria-labelledby="learning-modules-heading">
-                <h2 id="learning-modules-heading">{filtered ? "Passende Lerneinheiten" : "Alle Lerneinheiten"}</h2>
-                <div className={styles.moduleGrid}>
-                  {visible.map((module) => <article key={module.id} className={styles.moduleCard}>
-                    <LearningCover media={getLearningMedia(module)} compact />
-                    <div className={styles.tags}><span>{module.category}</span><span>{module.level}</span></div>
-                    <h3>{module.title}</h3>
-                    <p className={styles.muted}>{module.description}</p>
-                    {getLearningCategoryByTitle(module.category)?.slug === "jagdrecht" && <p className={styles.countries}>{module.countries.map((item) => countryNames[item] || item).join(" · ")}</p>}
-                    <p className={styles.moduleFacts}>{module.lessonCount} Lektionen · {module.questionCount} Fragen · etwa {module.minutes} Minuten</p>
-                    <ul className={styles.lessonPreview}>{module.lessonTitles.slice(0, 3).map((title) => <li key={title}>{title}</li>)}</ul>
-                    <Link href={`/kurse/${module.id}`} className={styles.button} aria-label={`Lerneinheit öffnen: ${module.title}`}>Lerneinheit öffnen</Link>
-                  </article>)}
-                </div>
-              </section>
-            </>
-          )}
-    </LearningToolLayout>
-  );
+  return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
+    {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
+    <LearningSearch category={categoryInfo?.slug || "all"} />
+    <nav className={styles.quietNav} aria-label="Deine Kurse">
+      <Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link>
+      <Link href="/kurse">Kursverzeichnis<AppIcon name="arrow-right" size={17} /></Link>
+    </nav>
+    {categoryInfo ? <>
+      <section className={styles.section} aria-labelledby="learning-modules-heading">
+        <div className={styles.sectionHeading}><h2 id="learning-modules-heading">Lerneinheiten</h2><p>{counts.modules} Kurse · {counts.lessons} Lektionen · {counts.questions} Übungsfragen</p></div>
+        <CourseCards modules={modules} />
+      </section>
+      {resources.length > 0 && <section className={styles.section} aria-labelledby="learning-resources-heading">
+        <h2 id="learning-resources-heading">Entdecken & anwenden</h2>
+        <ul className={styles.resources}>{resources.map(tool => <li key={tool.href}><Link href={tool.href}>
+          <AppIcon name={tool.icon} size={26} /><span><strong>{tool.title}</strong><span>{tool.description}</span></span><AppIcon name="arrow-right" size={18} />
+        </Link></li>)}</ul>
+      </section>}
+    </> : <details className={styles.directory}>
+      <summary>Alle {counts.modules} Lerneinheiten im Überblick</summary>
+      <div className={styles.directoryContent}><CourseCards modules={modules} /></div>
+    </details>}
+    {paths.length > 0 && <details className={styles.directory}>
+      <summary>Mit einem Lernpfad beginnen</summary>
+      <div className={styles.pathGrid}>{paths.map(path => <article key={path.id} className={styles.pathCard}>
+        <h3>{path.title}</h3><p className={styles.muted}>{path.description}</p>
+        <ol className={styles.pathModules}>{path.modules.map(module => <li key={module.id}><Link href={`/kurse/${module.id}`}>{module.title}</Link></li>)}</ol>
+      </article>)}</div>
+    </details>}
+  </LearningToolLayout>;
 }

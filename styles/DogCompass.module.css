@@ -92,5 +92,29 @@
 .courseLink svg { flex-shrink: 0; }
 .sources { padding-left: 20px; line-height: 1.75; }
 .sources li { margin-bottom: 10px; }
+.search select { width: 100%; min-width: 0; min-height: 48px; padding: 12px 14px; border: 1px solid #d0b978; border-radius: 10px; background: #fff; color: #3e321b; font: inherit; }
+.filterDisclosure { margin-top: 20px; border-top: 1px solid #eadbb4; }
+.filterDisclosure > summary { min-height: 48px; padding: 14px 0; cursor: pointer; font-weight: 600; color: #796021; }
+.textAction { min-height: 44px; border: 0; background: transparent; padding: 10px 0; font: inherit; color: #796021; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.breedList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; align-items: start; }
+.breedRow { min-width: 0; border-bottom: 1px solid #dfcda0; scroll-margin-top: 24px; }
+.breedDetails > summary { display: flex; align-items: flex-start; gap: 12px; padding: 18px 6px; cursor: pointer; list-style: none; }
+.breedDetails > summary::-webkit-details-marker { display: none; }
+.breedDetails > summary::after { content: "+"; margin-left: auto; color: #796021; font-size: 22px; }
+.breedDetails[open] > summary::after { content: "−"; }
+.breedDetails > summary > svg { flex-shrink: 0; margin-top: 2px; color: #796021; }
+.breedDetails > summary > span { display: block; min-width: 0; }
+.breedDetails > summary strong { display: block; font-size: 19px; line-height: 1.4; }
+.breedDetails > summary > span > span { display: block; margin-top: 5px; color: #6e6249; font-size: 13px; line-height: 1.6; }
+.breedContent { border: 1px solid #e0c989; border-radius: 14px; padding: 20px; margin-bottom: 18px; background: #fffdf7; }
+.breedContent > a { display: block; min-height: 44px; padding: 10px 0; font-size: 14px; overflow-wrap: anywhere; }
+.breedContent .photo { border-radius: 10px; overflow: hidden; }
+.compareChoice { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; min-height: 44px; font-size: 14px; line-height: 1.6; }
+.optionalPanel { border-top: 1px solid #dfcda0; border-bottom: 1px solid #dfcda0; margin: 0 0 24px; }
+.optionalPanel > summary { min-height: 56px; padding: 16px 0; font-size: 19px; line-height: 1.5; font-weight: 600; cursor: pointer; }
+.optionalPanel .panel { margin-top: 8px; }
+.optionalBody { padding: 0 0 24px; }
+.moreLink a { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; font-weight: 600; }
+@media (max-width: 650px) { .breedList { grid-template-columns: minmax(0, 1fr); } .breedContent { padding: 18px; } }
 @media (max-width: 1000px) { .profileGrid, .taskGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .comparisonGrid, .planGrid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 650px) { .main { padding: 18px 12px 36px; } .header, .panel { padding: 20px 16px; border-radius: 16px; } .header > p:last-of-type { font-size: 16px; } .panel h2, .sectionHeading h2 { font-size: 23px; } .profileGrid, .taskGrid { grid-template-columns: minmax(0, 1fr); } .nav { gap: 8px; } .nav a { padding: 10px 12px; font-size: 13px; } .photo img { height: 240px; } .sectionHeading p { margin-top: 0; } .feedback { padding: 16px; } .quickLinks a { font-size: 14px; } }

@@ -17,7 +17,7 @@ function setup(pathname = '/login', history = [], appRouter = false) {
     addEventListener(name, callback) { listeners.set(name, callback); },
     removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
   };
-  const window = { location: { pathname, search: '', assign(value) { destination = value; } },
+  const window = { location: { pathname, search: '', hash: '', assign(value) { destination = value; } },
     setTimeout(callback) { const id = ++timerId; timers.set(id, callback); return id; },
     clearTimeout(id) { timers.delete(id); },
   };
@@ -41,8 +41,8 @@ function setup(pathname = '/login', history = [], appRouter = false) {
   const tree = render();
   effects.splice(0).forEach(callback => cleanups.push(callback()));
   return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage,
-    route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
-    navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; },
+    route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
+    navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
     blur(element = null) { document.activeElement = element; listeners.get('focusout')?.(); timers.forEach(callback => callback()); timers.clear(); },
     get destination() { return destination; }, get history() { return JSON.parse(stored); },
@@ -51,6 +51,10 @@ function setup(pathname = '/login', history = [], appRouter = false) {
 }
 
 test('Shared dock retains Back, learning, search, community and Start and adds account access', () => {
+  const tree = setup('/lernen/wildkunde').tree;
+  assert.equal(tree.props.children.length, 4);
+  assert.equal(tree.props.children[3].type, 'details');
+  assert.equal(tree.props.children[3].props.children[0].type, 'summary');
   const html = setup('/lernen/wildkunde').html();
   for (const href of ['/lernen', '/lernen#lernen-suche', '/community', '/', '/konto']) assert.ok(html.includes(`href="${href}"`), href);
   assert.match(html, /Zurück zur vorherigen Seite/);
@@ -58,6 +62,15 @@ test('Shared dock retains Back, learning, search, community and Start and adds a
   assert.match(html, /aria-label="Zum Lernbereich" aria-current="true"/);
   assert.doesNotMatch(html, /aria-label="Konto und Abo öffnen" aria-current/);
   assert.equal(setup('/').tree, null);
+});
+
+test('Dock Back retains the selected lesson fragment instead of sending the learner to the first lesson', () => {
+  const s = setup('/lernen', ['/']);
+  s.route('/kurse/wissen-vertiefung-hunde-vorstehrassen#lesson-vizsla');
+  s.route('/kurse/wissen-vertiefung-hunde-vorstehrassen#lesson-setter');
+  s.route('/lernen/jagdhund-kompass?rasse=pointer#dog-pointer');
+  s.render().props.children[0].props.onClick();
+  assert.equal(s.destination, '/kurse/wissen-vertiefung-hunde-vorstehrassen#lesson-setter');
 });
 
 test('Account grouping follows login, registration, pricing, account and learning records without prefix collisions', () => {
