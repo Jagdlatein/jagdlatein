@@ -13,7 +13,7 @@ function load(relative, overrides = {}, globals = {}) {
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} };
-  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', 'process', code)(id => {
+  new Function('require', 'module', 'exports', 'fetch', 'window', 'setTimeout', 'clearTimeout', 'process', 'Date', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
@@ -21,7 +21,7 @@ function load(relative, overrides = {}, globals = {}) {
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, globals);
     return pr(id);
-  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout, globals.process || process);
+  }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout, globals.process || process, globals.Date || Date);
   return mod.exports;
 }
 const { getNextUrl, getLoginDestination } = load('lib/login-destination.js');
@@ -63,6 +63,8 @@ const response = (body, status = 200) => ({ ok: status >= 200 && status < 300, j
 function harness(fetch, props = {}, query = { next: '/community?category=hundewesen' }) {
   const states = ['member@example.invalid', '123456', 'code', '', false], refs = [], effects = [], timers = new Map(), calls = [];
   let cursor = 0, refCursor = 0, sequence = 0;
+  let now = 1780000000000;
+  class ClockDate extends Date { static now() { return now; } }
   const window = { location: { href: null } };
   const Component = load('pages/login.js', { react: { ...React,
     useState(initial) { const i = cursor++; if (!(i in states)) states[i] = initial; return [states[i], value => { states[i] = value; }]; },
@@ -70,11 +72,13 @@ function harness(fetch, props = {}, query = { next: '/community?category=hundewe
     useEffect(fn) { if (!effects.length) effects.push(fn()); },
   }, 'next/router': { useRouter: () => ({ query }) } }, {
     fetch: async (...args) => { calls.push(args); return fetch(...args); }, window,
-    setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay }); return sequence; }, clearTimeout: id => timers.delete(id),
+    Date: ClockDate,
+    setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay, dueAt: now + delay }); return sequence; }, clearTimeout: id => timers.delete(id),
   }).default;
   const render = () => { cursor = 0; refCursor = 0; return Component(props); };
   return { states, calls, timers, window, render, unmount: () => effects.forEach(fn => fn?.()),
     submit: tree => find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }),
+    advance: elapsed => { now += elapsed; for (const [id, timer] of [...timers]) if (timer.dueAt <= now) { timers.delete(id); timer.fn(); } },
   };
 }
 
@@ -158,9 +162,128 @@ test('Resending a code uses the existing endpoint, clears a stale entry and bloc
     assert.equal(h.states[4], false);
     assert.equal(h.window.location.href, null);
     const html = renderToStaticMarkup(h.render());
-    assert.match(html, /Warte eine Minute/);
+    assert.match(html, /Neuer Code in 60 Sekunden/);
+    assert.equal(find(h.render(), node => node.type === 'button' && node.props.children === 'Neuen Code senden').props.disabled, true);
     assert.ok(!html.includes('Wir haben dir'));
     h.unmount();
+  }
+});
+
+test('A successful request blocks resending for one minute without clearing an entered code, then permits a new request', async () => {
+  for (const registration of [false, true]) {
+    const h = harness(() => response({ success: true }), { registration });
+    h.states[2] = 'email';
+    await h.submit(h.render());
+    h.states[1] = '456789';
+    const resend = () => find(h.render(), node => node.type === 'button' && node.props.children === 'Neuen Code senden');
+    assert.equal(resend().props.disabled, true);
+    await resend().props.onClick({ preventDefault() {} });
+    assert.equal(h.calls.length, 1);
+    assert.equal(h.states[1], '456789');
+    assert.match(h.states[3], /zuletzt angeforderten Code/);
+    h.advance(59000);
+    assert.equal(resend().props.disabled, true);
+    assert.match(renderToStaticMarkup(h.render()), /Neuer Code in 1 Sekunde/);
+    h.advance(1000);
+    assert.equal(resend().props.disabled, false);
+    await resend().props.onClick({ preventDefault() {} });
+    assert.equal(h.calls.length, 2);
+    assert.equal(h.states[1], '');
+    assert.equal(resend().props.disabled, true);
+    h.unmount();
+    assert.equal(h.timers.size, 0);
+  }
+});
+
+test('The resend deadline catches up after the browser was paused, without announcing every timer tick', async () => {
+  const h = harness(() => response({ success: true }));
+  h.states[2] = 'email';
+  await h.submit(h.render());
+  const waiting = find(h.render(), node => node.type === 'p' && node.props.id === 'resend-help');
+  assert.equal(waiting.props['aria-live'], undefined);
+  assert.equal(waiting.props.role, undefined);
+  assert.equal(find(waiting, node => node.type === 'span' && node.props['aria-hidden'] === 'true')?.props.children?.[1], 60);
+  h.advance(5 * 60000);
+  assert.equal(find(h.render(), node => node.type === 'button' && node.props.children === 'Neuen Code senden').props.disabled, false);
+  assert.equal(h.timers.size, 0);
+  h.unmount();
+});
+
+test('Editing an address preserves its request deadline while a different address can receive its own code', async () => {
+  for (const registration of [false, true]) {
+    const h = harness(() => response({ success: true }), { registration });
+    h.states[2] = 'email';
+    await h.submit(h.render());
+    const edit = () => find(h.render(), node => node.type === 'button' && node.props.children === 'E-Mail ändern');
+    assert.equal(edit().props.disabled, false);
+    edit().props.onClick();
+    find(h.render(), node => node.type === 'input').props.onChange({ target: { value: '  MEMBER@EXAMPLE.INVALID  ' } });
+    await h.submit(h.render());
+    assert.equal(h.calls.length, 1);
+    assert.equal(h.states[2], 'code');
+    edit().props.onClick();
+    find(h.render(), node => node.type === 'input').props.onChange({ target: { value: 'other@example.invalid' } });
+    await h.submit(h.render());
+    assert.equal(h.calls.length, 2);
+    assert.deepEqual(JSON.parse(h.calls[1][1].body), { email: 'other@example.invalid' });
+    edit().props.onClick();
+    find(h.render(), node => node.type === 'input').props.onChange({ target: { value: 'member@example.invalid' } });
+    await h.submit(h.render());
+    assert.equal(h.calls.length, 2);
+    h.unmount();
+    assert.equal(h.timers.size, 0);
+  }
+});
+
+test('A failed code request leaves resend available and an entered code can still be corrected during the wait', async () => {
+  let failing = true;
+  const h = harness(() => failing ? response({ success: false, message: 'Dienst nicht erreichbar' }, 503) : response({ success: true }));
+  const resend = () => find(h.render(), node => node.type === 'button' && node.props.children === 'Neuen Code senden');
+  await resend().props.onClick({ preventDefault() {} });
+  assert.equal(resend().props.disabled, false);
+  assert.equal(h.states[1], '123456');
+  assert.equal(h.timers.size, 0);
+  failing = false;
+  await resend().props.onClick({ preventDefault() {} });
+  find(h.render(), node => node.type === 'input').props.onChange({ target: { value: '12 34-56' } });
+  assert.equal(h.states[1], '123456');
+  assert.equal(find(h.render(), node => node.type === 'button' && node.props.type === 'submit').props.disabled, false);
+  await h.submit(h.render());
+  assert.equal(h.calls[2][0], '/api/auth/verify-code');
+  assert.deepEqual(JSON.parse(h.calls[2][1].body), { email: 'member@example.invalid', code: '123456' });
+  h.unmount();
+  assert.equal(h.timers.size, 0);
+});
+
+test('Email and code fields support mobile keyboards and focus after changing the email step', () => {
+  for (const registration of [false, true]) {
+    const h = harness(() => response({ success: true }), { registration });
+    const code = find(h.render(), node => node.type === 'input');
+    assert.equal(code.props.inputMode, 'numeric');
+    assert.equal(code.props.autoComplete, 'one-time-code');
+    assert.equal(code.props.enterKeyHint, 'go');
+    assert.equal(code.props.autoFocus, true);
+    find(h.render(), node => node.type === 'button' && node.props.children === 'E-Mail ändern').props.onClick();
+    const email = find(h.render(), node => node.type === 'input');
+    assert.equal(email.props.type, 'email');
+    assert.equal(email.props.inputMode, 'email');
+    assert.equal(email.props.enterKeyHint, 'next');
+    assert.equal(email.props.autoFocus, true);
+    assert.notEqual(email.key, code.key);
+    assert.equal(h.calls.length, 0, 'Changing email must not send a request automatically.');
+    h.unmount();
+  }
+});
+
+test('Disabled registration preserves a safe return destination when it falls back to sign-in', async () => {
+  const page = load('pages/registrieren.js', {}, { process: { env: { ACCOUNT_REGISTRATION_ENABLED: 'false' } } });
+  for (const [next, expected] of [['/preise?next=%2Flernen#paypal-subscribe-preise', '/preise?next=%2Flernen#paypal-subscribe-preise'],
+    ['//evil.invalid', '/'], ['/login?next=/preise', '/'], [undefined, '/']]) {
+    const result = await page.getServerSideProps({ query: { next } });
+    const target = new URL(result.redirect.destination, 'https://jagdlatein.invalid');
+    assert.equal(target.pathname, '/login');
+    assert.equal(target.searchParams.get('next'), expected);
+    assert.equal(result.redirect.permanent, false);
   }
 });
 
@@ -344,5 +467,5 @@ test('Login and personal pages use the shared design, explicit field labels and 
   assert.match(headers['Cache-Control'], /private, no-store/);
   const AccountLayout = load('components/AccountLayout.js').default;
   const account = renderToStaticMarkup(React.createElement(AccountLayout, { title: 'Mein Konto', description: 'Dein Lernfortschritt', active: 'account' }));
-  assert.equal((account.match(/<h1>/g) || []).length, 1); assert.match(account, /aria-label="Kontomenü"/); assert.match(account, /aria-current="page"/); assert.match(account, /class="header"/);
+  assert.equal((account.match(/<h1>/g) || []).length, 1); assert.match(account, /aria-label="Kontomenü"/); assert.match(account, /aria-current="page"/); assert.match(account, /class="header compactHeader"/);
 });

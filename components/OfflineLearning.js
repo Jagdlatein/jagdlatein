@@ -7,6 +7,20 @@ import photoStyles from "../styles/LearningMedia.module.css";
 import { learningAudioPaths } from "../lib/learning-audio-paths";
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 const date = value => new Date(value).toLocaleString("de-CH");
+function supportsOfflineDownloads() {
+  // Check capabilities rather than the device name: app views and browsers on
+  // the same phone can expose different local storage and worker support.
+  try {
+    return typeof window !== "undefined" && window.isSecureContext === true
+      && typeof navigator !== "undefined" && typeof navigator.serviceWorker?.register === "function"
+      && typeof indexedDB !== "undefined" && typeof indexedDB.open === "function"
+      && typeof caches !== "undefined" && typeof caches.open === "function"
+      && typeof MessageChannel === "function";
+  } catch {
+    // Restricted views may expose a storage property that throws on access.
+    return false;
+  }
+}
 function offlineCreditUrl(value) {
   if (typeof value !== "string" || value.length > 2048) return null;
   try {
@@ -72,8 +86,10 @@ export default function OfflineLearning({ courses }) {
   const [busy, setBusy] = useState(false); const [message, setMessage] = useState(""); const [error, setError] = useState("");
   const [online, setOnline] = useState(true); const action = useRef(false);
   const [retiredPhotoPaths, setRetiredPhotoPaths] = useState([]);
+  const [downloadSupport, setDownloadSupport] = useState("checking");
   useEffect(() => {
     let alive = true;
+    setDownloadSupport(supportsOfflineDownloads() ? "supported" : "unsupported");
     readOfflinePack().then(({ pack: saved, expired, retiredPhotoPaths: retired }) => { if (alive) { setPack(saved); setRetiredPhotoPaths(retired); setCourseId(saved?.courses[0]?.id || ""); setSelected(saved?.courses.map(course => course.id) || []); if (expired) setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte mit Internetverbindung neu herunterladen."); } }).catch(failure => { if (alive) setError(failure.message); }).finally(() => { if (alive) setLoaded(true); });
     const changeConnection = () => setOnline(navigator.onLine); changeConnection();
     window.addEventListener("online", changeConnection); window.addEventListener("offline", changeConnection);
@@ -99,7 +115,7 @@ export default function OfflineLearning({ courses }) {
     return () => { alive = false; controller.abort(); };
   }, [pack, online]);
   async function download() {
-    if (action.current || !selected.length || !online) return;
+    if (action.current || !selected.length || !online || downloadSupport !== "supported" || !supportsOfflineDownloads()) return;
     action.current = true; setBusy(true); setError(""); setMessage("Kurse und Mediendateien werden vorbereitet …");
     try {
       const response = await fetch("/api/lernen/offline", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ courseIds: selected, sounds }), cache: "no-store" });
@@ -120,11 +136,12 @@ export default function OfflineLearning({ courses }) {
   return <LearningToolLayout title="Offline-Lernrucksack" description="Nimm ausgewählte Kurse, echte Fotos und Originalstimmen mit ins Revier oder auf die Reise." icon="download" category="ausruestung-technik" stats={[{ value: "8", label: "Kurse pro Paket" }, { value: "7 Tage", label: "maximal offline" }]}>
     <section className={styles.panel}><h2>{online ? "Für unterwegs vorbereiten" : "Du lernst gerade offline"}</h2><p>Downloads bleiben auf diesem Gerät. Für das Herunterladen brauchst du einen aktiven Zugang. Ein Paket gilt höchstens sieben Tage, bei kürzerem Test- oder Abo-Zugang bis zu dessen Ende. Online kannst du es erneuern.</p><p className={styles.muted}>Beim Abmelden werden die Downloads entfernt. Browserdaten oder Betriebssystembereinigung können sie ebenfalls löschen. Öffne für unterwegs diese Seite einmal über ihre gespeicherte Webadresse.</p>
       {message && <p className={styles.note} role="status">{message}</p>}{error && <p className={styles.wrong} role="alert">{error}</p>}{!loaded && <p role="status">Lokalen Lernrucksack laden …</p>}
+      {downloadSupport !== "supported" && <p id="offline-download-support" className={styles.note} role="status">{downloadSupport === "checking" ? "Offline-Downloads auf diesem Gerät prüfen …" : <>Neue Offline-Downloads sind in dieser Ansicht nicht verfügbar. Öffne Jagdlatein dafür in einem aktuellen Browser mit Internetverbindung. Bereits gespeicherte Kurse kannst du bis zum Ablauf weiter nutzen und entfernen.</>}</p>}
       <label className={styles.field}>Kurse durchsuchen<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Kurstitel oder Kategorie" /></label>
-      <p>{selected.length} von {OFFLINE_MAX_COURSES} ausgewählt</p><div className={extra.courseList}>{visible.map(item => <label key={item.id} className={extra.course}><input type="checkbox" checked={selected.includes(item.id)} disabled={busy || (!selected.includes(item.id) && selected.length >= OFFLINE_MAX_COURSES)} onChange={event => setSelected(current => event.target.checked ? [...current.filter(id => id !== item.id), item.id].slice(0, 8) : current.filter(id => id !== item.id))} /><span><strong>{item.title}</strong><small>{item.category} · {item.lessonCount} Lektionen · {item.questionCount} Fragen</small></span></label>)}</div>
+      <p>{selected.length} von {OFFLINE_MAX_COURSES} ausgewählt</p><div className={extra.courseList}>{visible.map(item => <label key={item.id} className={extra.course}><input type="checkbox" checked={selected.includes(item.id)} disabled={busy || downloadSupport !== "supported" || (!selected.includes(item.id) && selected.length >= OFFLINE_MAX_COURSES)} onChange={event => setSelected(current => event.target.checked ? [...current.filter(id => id !== item.id), item.id].slice(0, 8) : current.filter(id => id !== item.id))} /><span><strong>{item.title}</strong><small>{item.category} · {item.lessonCount} Lektionen · {item.questionCount} Fragen</small></span></label>)}</div>
       {visible.length === 0 && <p>Kein Kurs passt zu diesem Suchbegriff.</p>}
-      <label className={extra.check}><input type="checkbox" checked={sounds} disabled={busy} onChange={event => setSounds(event.target.checked)} />Alle {learningAudioPaths.length} Originalstimmen mitnehmen</label>
-      <div className={styles.actions}><button className={styles.primary} disabled={busy || !online || !loaded || !selected.length} onClick={download}>{busy ? "Bitte warten …" : pack ? "Auswahl neu herunterladen" : "Lernrucksack herunterladen"}</button>{loaded && <button className={styles.secondary} disabled={busy} onClick={remove}>Downloads entfernen</button>}</div>
+      <label className={extra.check}><input type="checkbox" checked={sounds} disabled={busy || downloadSupport !== "supported"} onChange={event => setSounds(event.target.checked)} />Alle {learningAudioPaths.length} Originalstimmen mitnehmen</label>
+      <div className={styles.actions}><button className={styles.primary} disabled={busy || !online || !loaded || !selected.length || downloadSupport !== "supported"} aria-describedby={downloadSupport !== "supported" ? "offline-download-support" : undefined} onClick={download}>{busy ? "Bitte warten …" : pack ? "Auswahl neu herunterladen" : "Lernrucksack herunterladen"}</button>{loaded && <button className={styles.secondary} disabled={busy} onClick={remove}>Downloads entfernen</button>}</div>
     </section>
     {pack && <><section className={styles.panel}><h2>Gespeicherte Kurse</h2><p>{pack.courses.length} Kurse · {pack.photos.length} Fotos · {pack.sounds.length} Aufnahmen<br />Heruntergeladen: {date(pack.createdAt)} · Verfügbar bis {date(pack.expiresAt)}</p><label className={styles.field}>Gespeicherten Kurs öffnen<select value={courseId} onChange={event => setCourseId(event.target.value)}>{pack.courses.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>
       {course && <OfflineCourse key={`${pack.id}:${course.id}`} course={course} expiresAt={pack.expiresAt} onExpired={() => { setPack(null); setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte online erneuern."); }} />}

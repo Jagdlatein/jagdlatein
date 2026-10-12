@@ -58,7 +58,7 @@ function accountRoute(env = {}, options = {}) {
   return { state, run: () => route.GET({}) };
 }
 
-function renderAccount(paypalManagementUrl, overrides = {}) {
+function renderAccount(paypalManagementUrl, overrides = {}, overview = {}) {
   const account = { email: 'buyer@example.invalid', paid: true, admin: false,
     accessType: 'trial', subscriptionStatus: 'ACTIVE', paypalManagementUrl, ...overrides };
   const context = vm.createContext({ Date });
@@ -66,10 +66,10 @@ function renderAccount(paypalManagementUrl, overrides = {}) {
     'next/link': ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children),
     '../components/AccountLayout': { __esModule: true, default: ({ children }) => React.createElement(React.Fragment, null, children),
       AccountError: () => null, ProgressError: () => null },
-    '../hooks/useAccountOverview': () => ({ account, progress: [], accountError: null, progressError: null,
-      loading: false, progressLoading: false, reload() {} }),
+    '../hooks/useAccountOverview': () => ({ account, progress: overview.progress || [], accountError: null, progressError: overview.progressError || null,
+      loading: false, progressLoading: overview.progressLoading || false, reload() {} }),
     '../lib/account-page': { getAccountPageProps() {} },
-    '../lib/course-catalog': { courses: [] },
+    '../lib/course-catalog': { courses: overview.courses || [] },
     '../styles/Account.module.css': { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) },
   }, context).default;
   return renderToStaticMarkup(React.createElement(Page));
@@ -138,6 +138,21 @@ test('Paid learners and administrators never receive the account purchase action
     assert.match(html, /Kontodaten/);
     assert.match(html, /Zur Kursübersicht/);
   }
+});
+
+test('Continue learning selects only the latest begun known course and ignores completed or untrusted destinations', () => {
+  const overview={courses:[{id:'older',title:'Älterer Kurs',href:'/kurse/older'},{id:'recent',title:'Aktueller Kurs',href:'/kurse/recent'}],
+    progress:[{course_id:'older',status:'in_progress',updated_at:'2026-10-10T10:00:00Z'},
+      {course_id:'recent',status:'in_progress',updated_at:'2026-10-11T10:00:00Z'},
+      {course_id:'unknown',status:'in_progress',updated_at:'2026-10-12T10:00:00Z',href:'https://untrusted.invalid'},
+      {course_id:'older',status:'completed',updated_at:'2026-10-12T11:00:00Z'}]};
+  const html=renderAccount(LIVE,{accessType:'paid'},overview);
+  assert.match(html,/<a href="\/kurse\/recent" class="button">Kurs weiterlernen<\/a>/);
+  assert.match(html,/Dein zuletzt begonnener Kurs: <strong>Aktueller Kurs/);
+  assert.doesNotMatch(html,/untrusted\.invalid|href="\/kurse\/older"/);
+  for(const blocked of [{paid:false,admin:false}]) assert.doesNotMatch(renderAccount(LIVE,blocked,overview),/Kurs weiterlernen/);
+  for(const unavailable of [{progressLoading:true},{progressError:{status:503}}])
+    assert.doesNotMatch(renderAccount(LIVE,{accessType:'paid'},{...overview,...unavailable}),/Kurs weiterlernen/);
 });
 
 test('Existing PayPal trials retain their agreed conditions without being relabeled at the new offer price', () => {

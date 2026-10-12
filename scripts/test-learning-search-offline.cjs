@@ -83,6 +83,94 @@ test('Offline recordings retain linked licenses, origin and disclosed source pro
   }
   assert.match(html, /Hintergrundgeräusche reduziert/);
 });
+function offlineSupportHarness({ missing, saved = null } = {}) {
+  const keys = ['window', 'navigator', 'indexedDB', 'caches', 'MessageChannel', 'document', 'fetch', 'setInterval', 'clearInterval'];
+  const descriptors = Object.fromEntries(keys.map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
+  const listeners = new Map();
+  const events = { addEventListener(name, callback) { listeners.set(name, callback); }, removeEventListener(name) { listeners.delete(name); } };
+  const globals = {
+    window: { ...events, isSecureContext: true }, navigator: { onLine: true, serviceWorker: { register() {} } },
+    indexedDB: { open() {} }, caches: { open() {} }, MessageChannel: function MessageChannel() {}, document: events,
+    setInterval: () => 1, clearInterval() {},
+  };
+  if (missing === 'secure') globals.window.isSecureContext = false;
+  else if (missing === 'worker') delete globals.navigator.serviceWorker;
+  else if (missing && missing !== 'blockedCache') globals[missing] = undefined;
+  const calls = { read: 0, fetch: 0, cache: 0, save: 0, remove: 0 };
+  globals.fetch = async (_url, options) => { calls.fetch++; assert.equal(options.method, 'POST'); return { ok: true, json: async () => ({ pack: saved }) }; };
+  for (const [key, value] of Object.entries(globals)) Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
+  if (missing === 'blockedCache') Object.defineProperty(globalThis, 'caches', { configurable: true, get() { throw new Error('Storage disabled'); } });
+  const React = requireProject('react'); let cursor = 0; const slots = []; let effects = [];
+  const hooks = { ...React,
+    useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = typeof initial === 'function' ? initial() : initial; return [slots[i], value => { slots[i] = typeof value === 'function' ? value(slots[i]) : value; }]; },
+    useRef(initial) { const i = cursor++; if (!(i in slots)) slots[i] = { current: initial }; return slots[i]; },
+    useEffect(callback) { effects.push(callback); },
+  };
+  const library = load('lib/offline-learning.js');
+  const Component = load('components/OfflineLearning.js', {
+    react: hooks, './LearningToolLayout': { __esModule: true, default: ({ children }) => children },
+    '../lib/offline-learning': { ...library,
+      async readOfflinePack() { calls.read++; return { pack: saved, expired: false, retiredPhotoPaths: [] }; },
+      async prepareOfflineCache() { calls.cache++; }, async saveOfflinePack() { calls.save++; }, async clearOfflineLearning() { calls.remove++; },
+    },
+  }).default;
+  const text = node => node == null || typeof node === 'boolean' ? '' : Array.isArray(node) ? node.map(text).join('') : typeof node === 'object' ? text(node.props?.children) : String(node);
+  function find(node, predicate) { if (Array.isArray(node)) return node.map(child => find(child, predicate)).find(Boolean); if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
+  return { calls, listeners,
+    render() { cursor = 0; effects = []; return Component({ courses: saved?.courses || [] }); },
+    effect(index) { return effects[index](); },
+    text, find, button(tree, title) { return find(tree, node => node.type === 'button' && text(node) === title); },
+    restore() { for (const [key, descriptor] of Object.entries(descriptors)) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key]; },
+  };
+}
+
+function offlineSupportPack() {
+  process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
+  return load('lib/offline-learning-server.js').createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
+}
+
+test('Unsupported offline downloads explain the limitation before requesting a package on any device', async () => {
+  for (const missing of ['secure', 'worker', 'indexedDB', 'caches', 'MessageChannel', 'blockedCache']) {
+    const harness = offlineSupportHarness({ missing, saved: offlineSupportPack() });
+    try {
+      let tree = harness.render();
+      assert.equal(harness.button(tree, 'Lernrucksack herunterladen').props.disabled, true, 'Disabled until the client capabilities are known');
+      assert.match(harness.text(tree), /Offline-Downloads auf diesem Gerät prüfen/);
+      harness.effect(0); await new Promise(resolve => setImmediate(resolve)); tree = harness.render();
+      assert.match(harness.text(tree), /Neue Offline-Downloads sind in dieser Ansicht nicht verfügbar/, missing);
+      const download = harness.button(tree, 'Auswahl neu herunterladen'); assert.equal(download.props.disabled, true, missing);
+      assert.equal(download.props['aria-describedby'], 'offline-download-support');
+      await download.props.onClick(); assert.equal(harness.calls.fetch, 0); assert.equal(harness.calls.cache, 0); assert.equal(harness.calls.save, 0);
+    } finally { harness.restore(); }
+  }
+});
+
+test('Supported browsers keep explicit offline downloads available without an installation requirement', async () => {
+  const harness = offlineSupportHarness({ saved: offlineSupportPack() });
+  try {
+    harness.render(); harness.effect(0); await new Promise(resolve => setImmediate(resolve)); const tree = harness.render();
+    const download = harness.button(tree, 'Auswahl neu herunterladen'); assert.equal(download.props.disabled, false);
+    assert.doesNotMatch(harness.text(tree), /Neue Offline-Downloads sind in dieser Ansicht nicht verfügbar|Offline-Downloads auf diesem Gerät prüfen/);
+    await download.props.onClick();
+    assert.deepEqual(harness.calls, { read: 1, fetch: 1, cache: 1, save: 1, remove: 0 });
+    assert.match(harness.text(harness.render()), /Dein Lernrucksack ist bereit/);
+  } finally { harness.restore(); }
+});
+
+test('Missing download support preserves saved courses, expiry checks and explicit removal', async () => {
+  const saved = offlineSupportPack(); const harness = offlineSupportHarness({ missing: 'worker', saved });
+  try {
+    harness.render(); harness.effect(0); await new Promise(resolve => setImmediate(resolve)); let tree = harness.render();
+    assert.match(harness.text(tree), /Gespeicherte Kurse/);
+    assert.ok(harness.find(tree, node => node.type === 'select' && node.props.value === saved.courses[0].id), 'The existing course viewer stays selectable');
+    const remove = harness.button(tree, 'Downloads entfernen'); assert.equal(remove.props.disabled, false);
+    const cleanup = harness.effect(1); saved.expiresAt = Date.now() - 1; harness.listeners.get('pageshow')(); cleanup();
+    tree = harness.render(); assert.doesNotMatch(harness.text(tree), /Gespeicherte Kurse/); assert.match(harness.text(tree), /Der gespeicherte Zugang ist abgelaufen/);
+    await harness.button(tree, 'Downloads entfernen').props.onClick(); assert.equal(harness.calls.remove, 1);
+    assert.equal(harness.calls.fetch, 0); assert.equal(harness.calls.cache, 0); assert.equal(harness.calls.save, 0);
+  } finally { harness.restore(); }
+});
+
 test('Offline legal questions follow the selected country; expired and double answers cannot change scores', () => {
   const React = requireProject('react'); let cursor = 0; const slots = [];
   const hooks = { ...React, useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = typeof initial === 'function' ? initial() : initial; return [slots[i], value => slots[i] = typeof value === 'function' ? value(slots[i]) : value]; }, useRef(initial) { const i = cursor++; if (!(i in slots)) slots[i] = { current: initial }; return slots[i]; } };

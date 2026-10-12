@@ -1,9 +1,20 @@
-.nav { position: fixed; left: 16px; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 2147483647; display: flex; align-items: center; gap: 6px; max-width: calc(100vw - 32px); padding: 6px; border: 1px solid #e0d2af; border-radius: 20px; background: #fffdf7f5; box-shadow: 0 5px 20px #3e321b1f; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 14px; background: transparent; color: #796021; font: inherit; font-size: 13px; font-weight: 700; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.nav { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 100; display: flex; align-items: stretch; gap: 6px; max-width: calc(100vw - 32px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); padding: 6px; border: 1px solid #e0d2af; border-radius: 20px; background: #fffdf7f5; box-shadow: 0 5px 20px #3e321b1f; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 14px; background: transparent; color: #796021; font: inherit; font-size: 13px; font-weight: 700; line-height: 1.25; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.button svg { flex-shrink: 0; }
+.desktopLabel { min-width: 0; }
+.mobileLabel { display: none; }
 .button:hover { background: #fbf1d5; }
 .learning { --icon-accent: #796021; background: #caa53b; color: #3e321b; }
 .learning:hover { background: #d6b44e; }
 .button:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
-.button[aria-current="page"] { background: #f3e5bd; color: #4e3c15; }
-@media (max-width: 620px) { .nav { left: 8px; right: 8px; max-width: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; } .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: 11px; min-height: 49px; } }
+.button[aria-current] { background: #f3e5bd; color: #4e3c15; box-shadow: inset 0 -3px 0 #80601d; }
+@media (max-width: 620px) {
+  .nav { left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: max(8px, env(safe-area-inset-bottom, 0px)); max-width: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; }
+  .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: clamp(10px, 2.8vw, 12px); min-height: 58px; white-space: normal; }
+  .desktopLabel { display: none; }
+  .mobileLabel { display: inline; }
+}
 @media (max-width: 380px) { .nav { gap: 1px; padding: 4px; } .button { padding: 7px 1px; } }
+@media (max-width: 620px), (hover: none) and (pointer: coarse) {
+  .editing { display: none; }
+}

@@ -36,10 +36,13 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const [step, setStep] = useState("email");
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resendSeconds, setResendSeconds] = useState(0);
   const busy = useRef(false);
   const mounted = useRef(true);
   const request = useRef(null);
   const redirectTimer = useRef(null);
+  const resendTimer = useRef(null);
+  const resendDeadlines = useRef(new Map());
 
   useEffect(() => {
     mounted.current = true;
@@ -47,8 +50,25 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       mounted.current = false;
       request.current?.abort();
       clearTimeout(redirectTimer.current);
+      clearTimeout(resendTimer.current);
     };
   }, []);
+
+  function remainingWait(cleanEmail) {
+    return Math.max(0, Math.ceil(((resendDeadlines.current.get(cleanEmail) || 0) - Date.now()) / 1000));
+  }
+
+  function updateResendWait(value) {
+    clearTimeout(resendTimer.current);
+    const cleanEmail = value.toLowerCase().trim();
+    const remaining = remainingWait(cleanEmail);
+    setResendSeconds(remaining);
+    // Use the original deadline rather than decrementing a counter. Timers
+    // paused by a mobile browser then catch up when the page becomes active.
+    if (remaining > 0) resendTimer.current = setTimeout(() => {
+      if (mounted.current) updateResendWait(cleanEmail);
+    }, 1000);
+  }
 
   async function submitCode(event, verify) {
     event.preventDefault();
@@ -57,6 +77,12 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     setMsg("");
     if (verify ? !/^\d{6}$/.test(code) : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
       setMsg(verify ? "Bitte den 6-stelligen Login-Code eingeben." : "Bitte gültige E-Mail eingeben.");
+      return;
+    }
+    if (!verify && remainingWait(cleanEmail) > 0) {
+      updateResendWait(cleanEmail);
+      setStep("code");
+      setMsg("Nutze den zuletzt angeforderten Code. Einen neuen kannst du nach Ablauf der Wartezeit anfordern.");
       return;
     }
     busy.current = true;
@@ -87,6 +113,10 @@ export default function LoginPage({ registration = false, allowRegistration = fa
           if (mounted.current) window.location.href = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
         }, 500);
       } else {
+        // Apply the same visible wait to every neutral success response. It
+        // does not reveal whether the address has a registered account.
+        resendDeadlines.current.set(cleanEmail, Date.now() + 60000);
+        updateResendWait(cleanEmail);
         setEmail(cleanEmail);
         setCode("");
         setStep("code");
@@ -132,18 +162,18 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       </p>}
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
         {step === "email" ? <label>E-Mail-Adresse
-          <input type="email" autoComplete="email" autoCapitalize="none" spellCheck={false} placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => setEmail(event.target.value)} aria-describedby="login-help" required />
+          <input key="email" type="email" inputMode="email" enterKeyHint="next" autoComplete="email" autoCapitalize="none" spellCheck={false} autoFocus placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => { setEmail(event.target.value); updateResendWait(event.target.value); }} aria-describedby="login-help" required />
         </label> : <label>{registration ? "6-stelliger Bestätigungscode" : "6-stelliger Login-Code"}
-          <input key="code" type="text" inputMode="numeric" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} className={authStyles.code} aria-describedby="login-help" required />
+          <input key="code" type="text" inputMode="numeric" enterKeyHint="go" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} className={authStyles.code} aria-describedby="login-help" required />
         </label>}
-        <p id="login-help" className={authStyles.help}>{step === "email" ? "Kein Passwort nötig: Du bestätigst deine E-Mail mit einem einmaligen Code." : isTestMail && testMailMode === "sink" ? "Der Code steht im getrennten Testpostfach. Gib den neuesten Code ein." : "Öffne dein E-Mail-Postfach und gib den neuesten Code ein. Prüfe auch den Spamordner."}</p>
+        <p id="login-help" className={authStyles.help}>{step === "email" ? "Kein Passwort nötig: Du bestätigst deine E-Mail mit einem einmaligen Code." : isTestMail && testMailMode === "sink" ? "Der Code steht im getrennten Testpostfach. Gib den neuesten Code ein; er ist 10 Minuten gültig." : "Öffne dein E-Mail-Postfach und gib den neuesten Code ein; er ist 10 Minuten gültig. Prüfe auch den Spamordner."}</p>
         <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registration ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und zum Abo" : "Einloggen"))}</button>
       </form>
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
       {step === "code" && <div className={authStyles.codeActions}>
         <button type="button" className={styles.secondary} disabled={loading} onClick={() => { setStep("email"); setCode(""); setMsg(""); }}>E-Mail ändern</button>
-        <button type="button" className={styles.secondary} disabled={loading} onClick={event => submitCode(event, false)}>Neuen Code senden</button>
-        <p>Kein Code angekommen? Warte eine Minute, bevor du einen neuen anforderst.</p>
+        <button type="button" className={styles.secondary} disabled={loading || resendSeconds > 0} aria-describedby="resend-help" onClick={event => submitCode(event, false)}>Neuen Code senden</button>
+        <p id="resend-help">{resendSeconds > 0 ? <><span aria-hidden="true">Neuer Code in {resendSeconds} {resendSeconds === 1 ? "Sekunde" : "Sekunden"}.</span><span className={authStyles.srOnly}>Bitte warte kurz, bevor du einen neuen Code anforderst.</span></> : "Kein Code angekommen? Prüfe zuerst den Spamordner und fordere dann einen neuen Code an."}</p>
       </div>}
       {!(forSubscription && allowRegistration && step === "email") && (registration ? <p className={authStyles.switchAccount}>Bereits ein Konto? <Link href={loginHref}>Mit E-Mail anmelden</Link></p> : allowRegistration && <p className={authStyles.switchAccount}>Noch kein Konto? <Link href={registrationHref}>Kostenlos registrieren</Link></p>)}
       {!registration && !isTestMail && allowReviewLogin === true && <p><Link href={`/review-login?next=${encodeURIComponent(reviewNextUrl)}`} className={styles.secondary}>Mit Prüfkonto anmelden</Link></p>}

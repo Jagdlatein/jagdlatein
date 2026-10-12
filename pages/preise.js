@@ -45,7 +45,21 @@ export default function Preise() {
     let script;
     let buttons;
     let checkoutEmail;
+    let loadingPayPal = false;
+    let startupComplete = false;
     const controller = new AbortController();
+    const startupTimeout = setTimeout(() => {
+      if (cancelled || startupComplete) return;
+      eligible = false;
+      controller.abort();
+      try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
+      setCheckoutStatus(loadingPayPal ? "sdk-error" : "error");
+      setPaymentMessage(loadingPayPal ? "PayPal konnte nicht rechtzeitig geladen werden. Bitte erneut prüfen." : "Dein Zugang konnte nicht rechtzeitig geprüft werden. Bitte erneut prüfen.");
+    }, 20000);
+    function finishStartup() {
+      startupComplete = true;
+      clearTimeout(startupTimeout);
+    }
     setCheckoutStatus("checking");
     setPaymentMessage("");
     setOfferVerified(false);
@@ -111,7 +125,8 @@ export default function Preise() {
       if (cancelled || !eligible) return;
       script = document.createElement("script");
       const paypalFailed = () => {
-        if (cancelled) return;
+        if (cancelled || !eligible || startupComplete) return;
+        finishStartup();
         eligible = false;
         setCheckoutStatus("sdk-error");
         setPaymentMessage("PayPal konnte nicht geladen werden. Bitte erneut versuchen.");
@@ -136,6 +151,10 @@ export default function Preise() {
 
             createSubscription() {
               if (cancelled || !eligible) return Promise.reject(new Error("Aboabschluss derzeit nicht möglich."));
+              // A user can click as soon as the SDK exposes its button, even
+              // before render() resolves. Startup must not interrupt approval.
+              finishStartup();
+              setCheckoutStatus("ready");
               if (!subscriptionPromise) {
                 subscriptionPromise = Promise.resolve().then(async () => {
                   if (cancelled || !eligible) throw new Error("Aboabschluss derzeit nicht möglich.");
@@ -155,17 +174,23 @@ export default function Preise() {
 
             async onApprove(data) {
               if (cancelled || !eligible || confirming) return;
+              finishStartup();
               closeButtons();
               retryApproval.current = () => confirmApproval(data.subscriptionID);
               await confirmApproval(data.subscriptionID);
             },
             onCancel() {
+              if (cancelled || !eligible) return;
               subscriptionPromise = null;
-              if (!cancelled) setPaymentMessage("Der Aboabschluss bei PayPal wurde abgebrochen.");
+              setPaymentMessage("Der Aboabschluss bei PayPal wurde abgebrochen.");
             },
-            onError() { if (!cancelled) setPaymentMessage("PayPal ist derzeit nicht erreichbar. Bitte erneut versuchen."); },
+            onError() { if (!cancelled && eligible) setPaymentMessage("PayPal ist derzeit nicht erreichbar. Bitte erneut versuchen."); },
           });
-          Promise.resolve(buttons.render("#paypal-subscribe-preise")).catch(paypalFailed);
+          Promise.resolve(buttons.render("#paypal-subscribe-preise")).then(() => {
+            if (cancelled || !eligible) return;
+            finishStartup();
+            setCheckoutStatus("ready");
+          }).catch(paypalFailed);
         } catch {
           paypalFailed();
         }
@@ -178,24 +203,27 @@ export default function Preise() {
     async function checkAccount() {
       try {
         const response = await fetch("/api/account", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
-        if (cancelled) return;
+        if (cancelled || controller.signal.aborted) return;
         if (response.status !== 401) {
           if (!response.ok) throw new Error("Kontostatus nicht verfügbar.");
           const data = await response.json();
-          if (cancelled) return;
+          if (cancelled || controller.signal.aborted) return;
           if (!data.account || typeof data.account.paid !== "boolean" || typeof data.account.admin !== "boolean") throw new Error("Kontostatus nicht verfügbar.");
           setAccount(data.account);
           checkoutEmail = typeof data.account.email === "string" ? data.account.email.trim().toLowerCase() : null;
           if (data.account.paid || data.account.admin) {
+            finishStartup();
             setCheckoutStatus("existing");
             return;
           }
         } else {
+          finishStartup();
           setAccount(null);
           setCheckoutStatus("login-required");
           return;
         }
         if (!planId) {
+          finishStartup();
           setCheckoutStatus("unavailable");
           return;
         }
@@ -204,30 +232,34 @@ export default function Preise() {
           // Every checkout is approved by the server before the SDK is loaded.
           // In the private sandbox mode this rejects incomplete test settings.
           const configuration = await fetch("/api/paypal/checkout-config", { cache: "no-store", credentials: "same-origin", signal: controller.signal });
-          if (cancelled) return;
+          if (cancelled || controller.signal.aborted) return;
           if (!configuration.ok) throw new Error("Abo nicht verfügbar.");
           offer = await configuration.json();
-          if (cancelled) return;
+          if (cancelled || controller.signal.aborted) return;
           if (!offer || offer.planId !== planId || !validPlan(offer.planId) ||
               typeof offer.clientId !== "string" || !/^[A-Za-z0-9_-]{20,256}$/.test(offer.clientId) ||
               offer.trialDays !== (isTrialPlan ? 3 : 0) || offer.amount !== "10.00" || offer.currency !== "EUR")
             throw new Error("Abo nicht verfügbar.");
         } catch {
-          if (!cancelled) setCheckoutStatus(isTrialPlan ? "trial-unavailable" : "unavailable");
+          finishStartup();
+          if (!cancelled && !controller.signal.aborted) setCheckoutStatus(isTrialPlan ? "trial-unavailable" : "unavailable");
           return;
         }
         setOfferVerified(true);
         eligible = true;
-        setCheckoutStatus("ready");
+        loadingPayPal = true;
+        setCheckoutStatus("loading-paypal");
         loadPayPal(offer.planId, offer.clientId);
       } catch {
-        if (!cancelled) setCheckoutStatus("error");
+        finishStartup();
+        if (!cancelled && !controller.signal.aborted) setCheckoutStatus("error");
       }
     }
     void checkAccount();
 
     return () => {
       cancelled = true;
+      finishStartup();
       eligible = false;
       controller.abort();
       retryApproval.current = null;
@@ -264,11 +296,12 @@ export default function Preise() {
         {checkoutStatus === "ready" && <p>Bestätige jetzt dein Abo bei PayPal. Deine PayPal-E-Mail darf von deiner Jagdlatein-E-Mail abweichen.</p>}
       </>}
       {checkoutStatus === "checking" && <p role="status">Dein Kontostatus wird geprüft …</p>}
+      {checkoutStatus === "loading-paypal" && <p role="status">PayPal wird geladen …</p>}
       {checkoutStatus === "existing" && <p>Du kannst direkt weiterlernen. Die Laufzeit und dein Abo findest du im Konto.</p>}
       {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable") && <p role="alert" className={styles.note}>{trialPlan ? "Das Testabo ist derzeit nicht verfügbar." : "Das Aboangebot ist derzeit nicht verfügbar."} Bitte versuche es später erneut.</p>}
       {(checkoutStatus === "unavailable" || checkoutStatus === "trial-unavailable" || checkoutStatus === "sdk-error") && <p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></p>}
       {checkoutStatus === "error" && <div role="alert" className={styles.note}><p>Dein Kontostatus konnte nicht geprüft werden.</p><button type="button" className={styles.secondary} onClick={() => setCheckoutRevision(value => value + 1)}>Erneut prüfen</button></div>}
-      <div id="paypal-subscribe-preise" className={checkoutStyles.paypal} hidden={checkoutStatus !== "ready" || Boolean(activation)} />
+      <div id="paypal-subscribe-preise" className={checkoutStyles.paypal} hidden={!["loading-paypal", "ready"].includes(checkoutStatus) || Boolean(activation)} />
       {paymentMessage && <p role="status" aria-live="polite" className={styles.note}>{paymentMessage}</p>}
       {checkoutStatus === "pending" && <div className={checkoutStyles.actions}><button type="button" className={styles.primary} onClick={() => retryApproval.current?.()}>Zugang erneut prüfen</button><Link href="/konto" className={styles.secondary}>Zum Konto</Link></div>}
       {accessReady && <div className={checkoutStyles.actions}><Link href={learningHref === "/" ? "/meine-kurse" : learningHref} className={styles.primary}>Jetzt lernen</Link><Link href="/konto" className={styles.secondary}>Mein Konto und Abo</Link></div>}

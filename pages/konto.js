@@ -115,6 +115,9 @@ export default function AccountPage() {
   const known = progress.filter((entry) => courses.some((course) => course.id === entry.course_id));
   const completed = known.filter((entry) => entry.status === "completed").length;
   const started = known.filter((entry) => entry.status === "in_progress").length;
+  const latestStarted = !progressLoading && !progressError ? [...known].filter(entry => entry.status === "in_progress")
+    .sort((left, right) => (Date.parse(right.updated_at) || 0) - (Date.parse(left.updated_at) || 0))[0] : null;
+  const continueCourse = courses.find(course => course.id === latestStarted?.course_id);
   const trial = account?.accessType === "trial" && !account?.admin;
   const apple = account?.accessProvider === "apple";
   const trialStopped = trial && !apple && ["CANCELLED", "SUSPENDED", "EXPIRED"].includes(account?.subscriptionStatus);
@@ -135,14 +138,23 @@ export default function AccountPage() {
       ) : account && (
         <>
           {!accountDeleted && <>
-          {!account.paid && !account.admin && <section className={`${styles.card} ${styles.checkoutCard}`} aria-labelledby="account-checkout">
+          {!account.paid && !account.admin ? <section id="abo-und-zugang" className={`${styles.card} ${styles.checkoutCard}`} aria-labelledby="account-checkout">
             <p className={styles.checkoutStep}>Angemeldet · Nächster Schritt: Abo auswählen</p>
             <h2 id="account-checkout">Dein Konto ist bereit</h2>
             <p>Du bist als <strong>{account.email}</strong> angemeldet. Wähle jetzt dein Monatsabo und bestätige es beim Zahlungsanbieter.</p>
             <p className={styles.muted}>Den Preis und eine mögliche Probezeit siehst du vor der Bestätigung. In der iPhone-/iPad-App öffnet sich die Apple-Aboübersicht, auf der Website und unter Android der PayPal-Abschluss.</p>
             <a href="/preise" className={styles.button}>Abo auswählen und bestätigen</a>
+            <p><Link href="/hilfe#abo" className={styles.helpLink}>Hilfe zum Abo</Link></p>
+          </section> : <section id="abo-und-zugang" className={`${styles.card} ${styles.accessCard}`} aria-labelledby="account-access">
+            <p className={styles.accessBadge}>{account.admin ? "Adminzugang aktiv" : trial ? "Testzugang aktiv" : "Lernzugang aktiv"}</p>
+            <h2 id="account-access">Bereit zum Weiterlernen</h2>
+            <p>{continueCourse ? <>Dein zuletzt begonnener Kurs: <strong>{continueCourse.title.replace(/^[^\p{L}\p{N}]+/u, "")}</strong>.</> : "Deine Kurse und Auswertungen findest du hier an einem Ort."}</p>
+            <div className={styles.actions}>
+              <Link href={continueCourse?.href || "/meine-kurse"} className={styles.button}>{continueCourse ? "Kurs weiterlernen" : "Meine Kurse öffnen"}</Link>
+              <a href="#kontodaten" className={styles.secondaryButton}>{account.admin ? "Kontodaten ansehen" : "Abo und Laufzeit ansehen"}</a>
+            </div>
           </section>}
-          <section className={styles.card} aria-labelledby="account-details">
+          <section id="kontodaten" className={styles.card} aria-labelledby="account-details">
             <h2 id="account-details">Kontodaten</h2>
             <dl className={styles.details}>
               <div><dt>E-Mail-Adresse</dt><dd>{account.email}</dd></div>

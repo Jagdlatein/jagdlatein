@@ -38,19 +38,19 @@ function fixture(overrides = {}, providerOverrides = {}) {
     SUPABASE_URL: 'https://isolated-db.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'fake-isolated-db-key',
     ...overrides,
   };
-  const calls = []; const effects = []; const cache = new Map(); let sdkOptions;
+  const calls = []; const effects = []; const cache = new Map(); let sdkOptions, pendingRender;
   const states = [], refs = []; let stateCursor = 0, refCursor = 0, cleanup;
   const confirmations = [...(providerOverrides.confirmations || [])];
   const document = {
     createElement(tag) { calls.push({ type: 'create-element', tag }); return {}; },
     body: {
-      appendChild(script) { calls.push({ type: 'sdk-script', src: script.src }); script.onload(); },
+      appendChild(script) { calls.push({ type: 'sdk-script', src: script.src }); if (!providerOverrides.stallSdkScript) script.onload(); },
       removeChild() {},
     },
   };
   const window = { paypal: { Buttons(options) {
     sdkOptions = options; calls.push({ type: 'sdk-buttons' });
-    return { render: async () => {}, close: async () => { calls.push({type:'sdk-close'}); } };
+    return { render: () => providerOverrides.stallSdkRender ? new Promise((resolve,reject)=>{pendingRender={resolve,reject};}) : Promise.resolve(), close: async () => { calls.push({type:'sdk-close'}); } };
   } }, location: {} };
   function load(relative) {
     const filename = path.join(root, relative);
@@ -92,7 +92,9 @@ function fixture(overrides = {}, providerOverrides = {}) {
       return pr(id);
     }, mod, mod.exports, { env }, async (target, options) => {
       if (target === '/api/account') {
-        calls.push({ type: 'browser-fetch', target }); return providerOverrides.unsigned
+        calls.push({ type: 'browser-fetch', target });
+        if(providerOverrides.stallAccount) return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')),{once:true}));
+        return providerOverrides.unsigned
           ? Response.json({}, {status:401}) : Response.json({account:{email:EMAIL,paid:false,admin:false,...providerOverrides.account}});
       }
       if (target === '/api/paypal/checkout-config') {
@@ -144,6 +146,9 @@ function fixture(overrides = {}, providerOverrides = {}) {
     },
     async approve() { assert.ok(sdkOptions); await sdkOptions.onApprove({subscriptionID:SUBSCRIPTION}); },
     async retryApproval() { assert.ok(refs[0]?.current); await refs[0].current(); },
+    finishSdkRender() { pendingRender?.resolve(); },
+    rejectSdkRender() { pendingRender?.reject(new Error('Late SDK render failure')); },
+    emitLateSdkEvents() { sdkOptions?.onCancel(); sdkOptions?.onError(); },
     unmount() { cleanup?.(); },
     async createSubscription() {
       assert.ok(sdkOptions, 'SDK must have been loaded after server verification');
@@ -381,4 +386,61 @@ test('A stalled confirmation times out and the same purchase can be retried with
   await ctx.retryApproval();
   assert.equal(ctx.states[1],'complete');
   assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
+});
+
+test('An account startup that never responds ends with a retry instead of an endless loading state', async t => {
+  t.mock.timers.enable({apis:['setTimeout']});
+  const ctx=fixture({}, {stallAccount:true}); await ctx.runPage();
+  assert.equal(ctx.states[1],'checking');
+  t.mock.timers.tick(20000); await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(ctx.states[1],'error');
+  assert.match(ctx.renderPage(),/Erneut prüfen/);
+  assert.ok(!ctx.calls.some(call=>['sdk-script','server-subscription'].includes(call.type)));
+  ctx.unmount();
+});
+
+test('A stalled PayPal script or button render times out and a late render cannot reopen checkout', async t => {
+  t.mock.timers.enable({apis:['setTimeout']});
+  for(const settings of [{stallSdkScript:true},{stallSdkRender:true}]) {
+    const ctx=fixture({},settings); await ctx.runPage();
+    assert.equal(ctx.states[1],'loading-paypal');
+    assert.match(ctx.renderPage(),/PayPal wird geladen/);
+    t.mock.timers.tick(20000); await new Promise(resolve=>setImmediate(resolve));
+    assert.equal(ctx.states[1],'sdk-error');
+    ctx.finishSdkRender(); await Promise.resolve();
+    assert.equal(ctx.states[1],'sdk-error');
+    assert.match(ctx.renderPage(),/Erneut prüfen/);
+    assert.ok(!ctx.calls.some(call=>call.type==='server-subscription'));
+    ctx.unmount();
+  }
+});
+
+test('Late SDK rendering, cancel and error events do not overwrite confirmed access', async () => {
+  const ctx=fixture({}, {stallSdkRender:true}); await ctx.runPage(); await ctx.approve();
+  const message=ctx.states[0];
+  assert.equal(ctx.states[1],'complete');
+  ctx.finishSdkRender(); await Promise.resolve(); ctx.emitLateSdkEvents();
+  assert.equal(ctx.states[1],'complete'); assert.equal(ctx.states[0],message);
+  ctx.unmount();
+});
+
+test('An explicit purchase during slow SDK rendering is not interrupted by the startup deadline', async t => {
+  t.mock.timers.enable({apis:['setTimeout']});
+  const ctx=fixture({}, {stallSdkRender:true}); await ctx.runPage(); await ctx.createSubscription();
+  t.mock.timers.tick(20000); await Promise.resolve();
+  assert.equal(ctx.states[1],'ready');
+  await ctx.approve(); assert.equal(ctx.states[1],'complete');
+  assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
+  assert.deepEqual(ctx.calls.find(call=>call.target==='/api/paypal/confirm-subscription').body,{subscriptionId:SUBSCRIPTION});
+  ctx.unmount();
+});
+
+test('A late SDK render failure does not interrupt an already-started purchase', async () => {
+  const ctx=fixture({}, {stallSdkRender:true}); await ctx.runPage(); await ctx.createSubscription();
+  ctx.rejectSdkRender(); await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(ctx.states[1],'ready');
+  await ctx.approve(); assert.equal(ctx.states[1],'complete');
+  assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
+  assert.deepEqual(ctx.calls.find(call=>call.target==='/api/paypal/confirm-subscription').body,{subscriptionId:SUBSCRIPTION});
+  ctx.unmount();
 });
