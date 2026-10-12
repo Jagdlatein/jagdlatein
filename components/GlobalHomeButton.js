@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import AppIcon from "./AppIcon";
 import styles from "../styles/GlobalNavigation.module.css";
 
@@ -45,8 +46,19 @@ function writeHistory(history) {
     // Navigation still works when browser storage is blocked or full.
   }
 }
+
+function rememberCurrentPath(history, current) {
+  const previous = history[history.length - 1];
+  if (previous === current) return false;
+  // Search/filter edits replace the current page rather than adding a Back stop.
+  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0]) history[history.length - 1] = current;
+  else history.push(current);
+  return true;
+}
+
 export default function GlobalHomeButton() {
   const pathname = usePathname();
+  const router = useRouter();
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -54,11 +66,10 @@ export default function GlobalHomeButton() {
 
     const current = window.location.pathname + window.location.search;
     const history = readHistory();
-    if (history[history.length - 1] !== current) {
-      history.push(current);
+    if (rememberCurrentPath(history, current)) {
       writeHistory(history.slice(-20));
     }
-  }, [pathname]);
+  }, [pathname, router?.asPath]);
 
   useEffect(() => {
     if (!pathname || pathname === "/") return;
@@ -86,9 +97,7 @@ export default function GlobalHomeButton() {
   function goBack() {
     const current = window.location.pathname + window.location.search;
     const history = readHistory();
-    if (history[history.length - 1] !== current) {
-      history.push(current);
-    }
+    rememberCurrentPath(history, current);
     history.pop();
 
     const previous = history[history.length - 1];

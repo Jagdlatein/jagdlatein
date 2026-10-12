@@ -9,7 +9,7 @@ const React = requireProject('react');
 const swc = requireProject('next/dist/build/swc');
 const { renderToStaticMarkup } = requireProject('react-dom/server');
 
-function setup(pathname = '/login', history = []) {
+function setup(pathname = '/login', history = [], appRouter = false) {
   let editing = false;
   const effects = [], cleanups = [], listeners = new Map(), timers = new Map();
   let timerId = 0, stored = JSON.stringify(history), destination;
@@ -22,6 +22,7 @@ function setup(pathname = '/login', history = []) {
     clearTimeout(id) { timers.delete(id); },
   };
   const sessionStorage = { getItem: () => stored, setItem: (_key, value) => { stored = value; } };
+  const router = { asPath: pathname };
   const filename = path.join(root, 'components/GlobalHomeButton.js');
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } },
@@ -31,6 +32,7 @@ function setup(pathname = '/login', history = []) {
   new Function('require', 'module', 'exports', 'window', 'document', 'sessionStorage', code)(id => {
     if (id === 'react') return { ...React, useState: () => [editing, value => { editing = value; }], useEffect: callback => effects.push(callback) };
     if (id === 'next/navigation') return { usePathname: () => pathname };
+    if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
     return requireProject(id);
@@ -39,6 +41,8 @@ function setup(pathname = '/login', history = []) {
   const tree = render();
   effects.splice(0).forEach(callback => cleanups.push(callback()));
   return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage,
+    route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
+    navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
     blur(element = null) { document.activeElement = element; listeners.get('focusout')?.(); timers.forEach(callback => callback()); timers.clear(); },
     get destination() { return destination; }, get history() { return JSON.parse(stored); },
@@ -84,4 +88,23 @@ test('Back ignores unsafe stored routes and works when session storage is unavai
   blocked.sessionStorage.setItem = () => { throw new Error('Storage blocked'); };
   blocked.tree.props.children[0].props.onClick();
   assert.equal(blocked.destination, '/');
+});
+
+test('Shallow search edits retain one history entry and dock Back returns from a result to the latest search', () => {
+  const s = setup('/lernen', ['/']);
+  s.route('/lernen?q=Gams'); s.route('/lernen?q=Steinbock&type=species');
+  assert.deepEqual(s.history, ['/', '/lernen?q=Steinbock&type=species']);
+  s.route('/wildkunde/steinwild');
+  s.render().props.children[0].props.onClick();
+  assert.equal(s.destination, '/lernen?q=Steinbock&type=species');
+  assert.deepEqual(s.history, ['/', '/lernen?q=Steinbock&type=species']);
+});
+
+test('An immediate Back click after a same-page query edit skips that page and the App Router remains compatible', () => {
+  const s = setup('/lernen', ['/']);
+  s.navigateBeforeEffects('/lernen?q=Gams'); s.tree.props.children[0].props.onClick();
+  assert.equal(s.destination, '/');
+  const app = setup('/quiz-app', ['/lernen'], true);
+  assert.match(app.html(), /Seitennavigation/);
+  app.tree.props.children[0].props.onClick(); assert.equal(app.destination, '/lernen');
 });
