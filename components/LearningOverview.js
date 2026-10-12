@@ -7,7 +7,7 @@ import LearningTools from "./LearningTools";
 import LearningExperiences from "./LearningExperiences";
 import LearningSearch from "./LearningSearch";
 import { CommunityInvite } from "./Community";
-import { getLearningMedia, learningHero } from "../lib/learning-media";
+import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover } from "./LearningMedia";
 import styles from "../styles/LearningOverview.module.css";
 
@@ -48,7 +48,8 @@ export default function LearningOverview({ data }) {
   }
 
   return (
-    <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Vertiefe dein Wissen mit ausführlichen Lektionen, praktischen Denkaufgaben und Wissenschecks. Entdecke die Kategorien oder suche direkt nach deinem Thema. Beim Jagdrecht findest du die passenden Inhalte für dein Land."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} stats={[{ value: learningCounts.modules, label: "Lerneinheiten" }, { value: learningCounts.lessons, label: "Lektionen" }, { value: learningCounts.questions, label: "Übungsfragen" }]}>
+    <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Vertiefe dein Wissen mit ausführlichen Lektionen, praktischen Denkaufgaben und Wissenschecks. Entdecke die Kategorien oder suche direkt nach deinem Thema. Beim Jagdrecht findest du die passenden Inhalte für dein Land."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly={!categoryInfo} stats={[{ value: learningCounts.modules, label: "Lerneinheiten" }, { value: learningCounts.lessons, label: "Lektionen" }, { value: learningCounts.questions, label: "Übungsfragen" }]}>
+          {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
           <nav className={styles.nav} aria-label="Kursübersicht">
             {categoryInfo && <Link href="/lernen">Alle Kategorien</Link>}
             <Link href="/kurse">Alle Kurse</Link>
@@ -58,8 +59,7 @@ export default function LearningOverview({ data }) {
           </nav>
           {categoryInfo && <ul className={styles.focusTopics}>{categoryInfo.focus.map(topic => <li key={topic}>{topic}</li>)}</ul>}
           <LearningSearch category={categoryInfo?.slug || "all"} />
-          <LearningCover media={categoryInfo ? getLearningMedia({ category: categoryInfo.title }) : learningHero} />
-          {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
+          {categoryInfo && <LearningCover media={getLearningMedia({ category: categoryInfo.title })} />}
           <LearningExperiences category={categoryInfo?.slug} />
           <LearningTools category={categoryInfo?.slug} />
           <CommunityInvite category={categoryInfo?.slug} />

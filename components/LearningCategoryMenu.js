@@ -9,14 +9,13 @@ import styles from "../styles/LearningCategoryMenu.module.css";
 export default function LearningCategoryMenu({ counts }) {
   return (
     <section className={styles.section} aria-labelledby="learning-categories-heading">
-      <h2 id="learning-categories-heading">Entdecke die Jagd von allen Seiten</h2>
-      <p className={styles.intro}>Wähle deinen Lernbereich – mit Grundlagen, Vertiefungen und praktischen Denkaufgaben.</p>
+      <h2 id="learning-categories-heading">Kategorien</h2>
       <div className={styles.grid}>
-        {learningCategoryDetails.map(category => {
+        {learningCategoryDetails.map((category, index) => {
           const media = getLearningMedia({ category: category.title });
           return <article key={category.slug} className={styles.card}>
           <Link href={`/lernen/${category.slug}`} className={styles.cardLink}>
-            <Image className={styles.photo} src={media.src} alt="" width={media.width} height={media.height} style={{ objectFit: "cover", objectPosition: media.objectPosition || "center" }} sizes="(max-width: 580px) 90vw, (max-width: 900px) 45vw, 340px" loading="lazy" />
+            <Image className={styles.photo} src={media.src} alt="" width={media.width} height={media.height} style={{ objectFit: "cover", objectPosition: media.objectPosition || "center" }} sizes="(max-width: 580px) 90vw, (max-width: 900px) 45vw, 340px" priority={index < 3} loading={index < 3 ? undefined : "lazy"} />
             <span className={styles.cardBody}>
             <span className={styles.icon}><AppIcon name={category.slug} size={30} /></span>
             <span className={styles.content}>
