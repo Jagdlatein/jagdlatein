@@ -17,6 +17,7 @@ const flush = async () => { for (let i = 0; i < 16; i++) await Promise.resolve()
 
 function harness(fetch) {
   const states = [], effects = [], calls = [], timers = new Map();
+  const returns = new Set();
   let cursor = 0, effectCursor = 0, sequence = 0, now = 0;
   let pending = [];
   const react = {
@@ -31,14 +32,17 @@ function harness(fetch) {
   };
   const mod = { exports: {} };
   new Function('require', 'module', 'exports', 'fetch', 'setTimeout', 'clearTimeout', code)(
-    id => id === 'react' ? react : pr(id), mod, mod.exports,
+    id => id === 'react' ? react : id.endsWith('/visible-return') ? {
+      onVisibleReturn(callback) { returns.add(callback); return () => returns.delete(callback); },
+    } : pr(id), mod, mod.exports,
     (...args) => { calls.push(args); return fetch(...args); },
     (fn, delay) => { timers.set(++sequence, { fn, dueAt: now + delay }); return sequence; },
     id => timers.delete(id),
   );
   const render = () => { cursor = 0; effectCursor = 0; pending = [];
     const result = mod.exports.default(); pending.forEach(fn => fn()); return result; };
-  return { states, calls, timers, render,
+  return { states, calls, timers, render, returns,
+    resume: () => { for (const callback of returns) callback(); },
     unmount: () => effects.forEach(effect => effect?.cleanup?.()),
     advance: elapsed => { now += elapsed; for (const [id, timer] of [...timers]) {
       if (timer.dueAt <= now) { timers.delete(id); timer.fn(); }
@@ -122,6 +126,92 @@ test('Reload cancels former progress and a late result cannot replace the new ov
   assert.deepEqual(h.render().progress, [{ course_id: 'current-course' }]);
   assert.equal(h.render().progressError, null);
   h.unmount(); assert.equal(h.timers.size, 0);
+});
+
+test('Returning refreshes account and progress without clearing visible data or starting parallel requests', async () => {
+  const refreshed = deferred(); let accounts = 0;
+  const h = harness(url => url === '/api/account'
+    ? ++accounts === 1 ? Promise.resolve(response({ account: account('member@example.invalid') })) : refreshed.promise
+    : Promise.resolve(response({ progress: [{ course_id: 'current-course' }] })));
+  h.render(); await flush();
+  const shown = h.render(); assert.equal(shown.account.paid, true); assert.equal(shown.loading, false);
+  h.resume(); h.resume(); h.resume();
+  assert.equal(h.calls.filter(call => call[0] === '/api/account').length, 2);
+  assert.equal(h.render().account.email, 'member@example.invalid'); assert.equal(h.render().loading, false);
+  assert.deepEqual(h.render().progress, shown.progress);
+  refreshed.resolve(response({ account: { ...account('member@example.invalid'), paid: false } })); await flush();
+  assert.equal(h.render().account.paid, false);
+  assert.equal(h.calls.filter(call => call[0] === '/api/account').length, 3, 'Overlapping return signals queue one later check, never three.');
+  assert.equal(h.render().accountError, null);
+  h.unmount(); await flush(); assert.equal(h.returns.size, 0); assert.equal(h.timers.size, 0);
+});
+
+test('A return during initial loading queues one check and unmount cancels the queued resume', async () => {
+  const first = deferred();
+  const h = harness(() => first.promise);
+  h.render(); h.resume(); h.resume(); assert.equal(h.calls.length, 1);
+  h.unmount(); await flush();
+  first.resolve(response({ account: account('member@example.invalid') })); await flush();
+  assert.equal(h.calls.length, 1); assert.equal(h.render().account, null);
+  assert.equal(h.returns.size, 0); assert.equal(h.timers.size, 0);
+});
+
+test('An account 401 after return clears the former account and progress before requesting renewal', async () => {
+  let requests = 0;
+  const h = harness(url => Promise.resolve(url === '/api/account'
+    ? ++requests === 1 ? response({ account: account('former@example.invalid') }) : response({ code: 'ACCOUNT_SESSION_REQUIRED' }, 401)
+    : response({ progress: [{ course_id: 'former-course', status: 'completed' }] })));
+  h.render(); await flush(); assert.equal(h.render().account.paid, true);
+  h.resume(); await flush();
+  const result = h.render();
+  assert.equal(result.account, null); assert.deepEqual(result.progress, []);
+  assert.equal(result.accountError.status, 401); assert.equal(result.progressError, null);
+  assert.equal(result.loading, false); assert.equal(result.progressLoading, false);
+  assert.equal(h.calls.filter(call => call[0] === '/api/course-progress').length, 1);
+  h.unmount(); await flush();
+});
+
+test('A progress 401 after return also invalidates the old active account rather than only its course section', async () => {
+  let requests = 0;
+  const h = harness(url => Promise.resolve(url === '/api/account'
+    ? response({ account: account('former@example.invalid') })
+    : ++requests === 1 ? response({ progress: [{ course_id: 'former-course' }] }) : response({ code: 'ACCOUNT_SESSION_REQUIRED' }, 401)));
+  h.render(); await flush(); h.resume(); await flush();
+  const result = h.render();
+  assert.equal(result.account, null); assert.deepEqual(result.progress, []);
+  assert.equal(result.accountError.status, 401); assert.equal(result.progressError, null);
+  assert.equal(result.progressLoading, false);
+  h.unmount(); await flush();
+});
+
+test('A confirmed identity switch removes former progress while the new identity is still loading its own courses', async () => {
+  const nextProgress = deferred(); let accounts = 0, progresses = 0;
+  const h = harness(url => url === '/api/account'
+    ? Promise.resolve(response({ account: account(++accounts === 1 ? 'former@example.invalid' : 'current@example.invalid') }))
+    : ++progresses === 1 ? Promise.resolve(response({ progress: [{ course_id: 'former-course', status: 'completed' }] })) : nextProgress.promise);
+  h.render(); await flush(); h.resume(); await flush();
+  assert.equal(h.render().account.email, 'current@example.invalid');
+  assert.deepEqual(h.render().progress, []); assert.equal(h.render().progressLoading, true);
+  nextProgress.resolve(response({ progress: [{ course_id: 'current-course', status: 'in_progress' }] })); await flush();
+  assert.deepEqual(h.render().progress, [{ course_id: 'current-course', status: 'in_progress' }]);
+  assert.equal(h.render().progressLoading, false); assert.equal(h.render().accountError, null);
+  h.unmount(); await flush();
+});
+
+test('Ordinary account and progress transport failures preserve data for the same identity', async () => {
+  for (const failingEndpoint of ['/api/account', '/api/course-progress']) {
+    const counts = {};
+    const h = harness(url => {
+      counts[url] = (counts[url] || 0) + 1;
+      return Promise.resolve(url === failingEndpoint && counts[url] > 1 ? response({ code: 'UNAVAILABLE' }, 503)
+        : response(url === '/api/account' ? { account: account('member@example.invalid') } : { progress: [{ course_id: 'retained-course' }] }));
+    });
+    h.render(); await flush(); h.resume(); await flush();
+    assert.equal(h.render().account.email, 'member@example.invalid');
+    assert.deepEqual(h.render().progress, [{ course_id: 'retained-course' }]);
+    assert.equal((failingEndpoint === '/api/account' ? h.render().accountError : h.render().progressError).status, 503);
+    h.unmount(); await flush();
+  }
 });
 
 test('Authentication failures retain their renewal status and do not load course progress', async () => {

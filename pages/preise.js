@@ -3,6 +3,7 @@ import LearningToolLayout from "../components/LearningToolLayout";
 import styles from "../styles/LearningExperience.module.css";
 import checkoutStyles from "../styles/Checkout.module.css";
 import { getNextUrl } from "../lib/login-destination";
+import { onVisibleReturn } from "../lib/visible-return";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -40,6 +41,11 @@ export default function Preise() {
     let cancelled = false;
     let eligible = false;
     let confirming = false;
+    let creating = false;
+    let approvalOpen = false;
+    let resuming = false;
+    let returnQueued = false;
+    let existingCheckout = false;
     let subscriptionPromise;
     let script;
     let buttons;
@@ -58,6 +64,7 @@ export default function Preise() {
     function finishStartup() {
       startupComplete = true;
       clearTimeout(startupTimeout);
+      flushVisibleReturn();
     }
     setCheckoutStatus("checking");
     setPaymentMessage("");
@@ -68,6 +75,103 @@ export default function Preise() {
     function closeButtons() {
       eligible = false;
       try { Promise.resolve(buttons?.close?.()).catch(() => {}); } catch {}
+    }
+
+    function validCheckout(checkout) {
+      return typeof checkout?.activated === "boolean" && (!checkout.activated || Boolean(checkout.subscriptionId)) &&
+        (checkout.subscriptionId === null && checkout.status === null ||
+          typeof checkout.subscriptionId === "string" && /^I-[A-Z0-9]{6,64}$/i.test(checkout.subscriptionId) &&
+          ["APPROVAL_PENDING", "APPROVED", "ACTIVE", "SUSPENDED", "CANCELLED", "EXPIRED"].includes(checkout.status));
+    }
+
+    function flushVisibleReturn() {
+      if (cancelled || !returnQueued || !startupComplete || creating || confirming || resuming) return;
+      returnQueued = false;
+      void resumeExistingCheckout();
+    }
+
+    async function resumeExistingCheckout() {
+      if (cancelled || !startupComplete || creating || confirming || resuming) { returnQueued = true; return; }
+      resuming = true;
+      const attempt = new AbortController();
+      const cancelAttempt = () => attempt.abort();
+      controller.signal.addEventListener("abort", cancelAttempt, { once: true });
+      const timeout = setTimeout(cancelAttempt, 18000);
+      try {
+        const response = await fetch("/api/account", { cache: "no-store", credentials: "same-origin", signal: attempt.signal });
+        if (cancelled) return;
+        if (creating || confirming) { returnQueued = true; return; }
+        if (response.status === 401) {
+          eligible = false;
+          setAccount(null);
+          setActivation(null);
+          setCheckoutStatus("login-required");
+          setPaymentMessage("Bitte melde dich erneut mit deinem Jagdlatein-Konto an, um deinen Zugang zu prüfen.");
+          return;
+        }
+        if (!response.ok) throw new Error("Kontostatus nicht verfügbar.");
+        const data = await response.json();
+        if (cancelled) return;
+        if (creating || confirming) { returnQueued = true; return; }
+        if (!data.account || typeof data.account.email !== "string" ||
+            typeof data.account.paid !== "boolean" || typeof data.account.admin !== "boolean") throw new Error("Kontostatus nicht verfügbar.");
+        if (!checkoutEmail || data.account.email.trim().toLowerCase() !== checkoutEmail) {
+          if (approvalOpen) {
+            eligible = false;
+            setAccount(data.account);
+            setCheckoutStatus("error");
+            setPaymentMessage("Das angemeldete Jagdlatein-Konto hat sich geändert. Prüfe dein Konto und öffne die Aboübersicht erneut.");
+            return;
+          }
+          // No live SDK operation is running. Re-establish the current account
+          // through the ordinary guarded startup; never reuse another identity.
+          setCheckoutRevision(value => value + 1);
+          return;
+        }
+        setAccount(data.account);
+        if (data.account.paid || data.account.admin) {
+          eligible = false;
+          setCheckoutStatus("existing");
+          setPaymentMessage("Dein Lernzugang ist aktiv. Du kannst jetzt weiterlernen.");
+          return;
+        }
+        const statusResponse = await fetch("/api/paypal/checkout-status", {
+          method: "POST", cache: "no-store", credentials: "same-origin", signal: attempt.signal,
+          headers: { "Content-Type": "application/json" }, body: JSON.stringify({}),
+        });
+        const checkout = await statusResponse.json();
+        if (cancelled) return;
+        if (creating || confirming) { returnQueued = true; return; }
+        if (!statusResponse.ok || !validCheckout(checkout)) throw new Error("Abo-Abgleich nicht verfügbar.");
+        existingCheckout = Boolean(checkout.subscriptionId);
+        // An unfinished provider popup is left intact. Returning never reloads
+        // its SDK or invokes create-subscription, even when approval is pending.
+        if (!checkout.subscriptionId || !checkout.activated && !["APPROVED", "ACTIVE", "SUSPENDED"].includes(checkout.status)) {
+          if (!approvalOpen && !eligible) setCheckoutRevision(value => value + 1);
+          return;
+        }
+        retryApproval.current = () => confirmApproval(checkout.subscriptionId);
+        if (checkout.activated) {
+          eligible = false;
+          await refreshAccess(checkout, attempt.signal);
+        } else if (checkout.status === "SUSPENDED") {
+          eligible = false;
+          setCheckoutStatus("suspended");
+          setPaymentMessage("Dein PayPal-Abo ist pausiert. Prüfe es in deinem Konto und verwalte es bei PayPal.");
+        } else {
+          eligible = false;
+          await confirmApproval(checkout.subscriptionId);
+        }
+      } catch {
+        if (!cancelled && !creating && !confirming) setPaymentMessage(existingCheckout || approvalOpen
+          ? "Dein Zugang konnte bei der Rückkehr noch nicht geprüft werden. Ein weiterer Kauf ist nicht nötig; prüfe dein bestehendes Abo erneut."
+          : "Dein Kontostatus konnte bei der Rückkehr noch nicht geprüft werden. Bitte erneut prüfen.");
+      } finally {
+        clearTimeout(timeout);
+        controller.signal.removeEventListener("abort", cancelAttempt);
+        resuming = false;
+        flushVisibleReturn();
+      }
     }
 
     async function refreshAccess(confirmation, signal) {
@@ -122,6 +226,7 @@ export default function Preise() {
         clearTimeout(timeout);
         controller.signal.removeEventListener("abort", cancelAttempt);
         confirming = false;
+        flushVisibleReturn();
       }
     }
 
@@ -155,11 +260,13 @@ export default function Preise() {
 
             createSubscription() {
               if (cancelled || !eligible) return Promise.reject(new Error("Aboabschluss derzeit nicht möglich."));
+              approvalOpen = true;
               // A user can click as soon as the SDK exposes its button, even
               // before render() resolves. Startup must not interrupt approval.
               finishStartup();
               setCheckoutStatus("ready");
               if (!subscriptionPromise) {
+                creating = true;
                 subscriptionPromise = Promise.resolve().then(async () => {
                   if (cancelled || !eligible) throw new Error("Aboabschluss derzeit nicht möglich.");
                   const attempt = new AbortController();
@@ -174,35 +281,45 @@ export default function Preise() {
                     const created = await response.json();
                     if (!response.ok || typeof created.subscriptionId !== "string" || !/^I-[A-Z0-9]{6,64}$/i.test(created.subscriptionId))
                       throw new Error("Das Abo konnte deinem aktuellen Konto nicht zugeordnet werden.");
+                    existingCheckout = true;
                     return created.subscriptionId;
                   } finally {
                     clearTimeout(timeout);
                     controller.signal.removeEventListener("abort", cancelAttempt);
                   }
                 })
-                  .catch((error) => { subscriptionPromise = null; throw error; });
+                  .catch((error) => { subscriptionPromise = null; throw error; })
+                  .finally(() => { creating = false; flushVisibleReturn(); });
               }
               return subscriptionPromise;
             },
 
             async onApprove(data) {
-              if (cancelled || !eligible || confirming) return;
+              if (cancelled) return;
+              approvalOpen = false;
+              if (!eligible || confirming) { flushVisibleReturn(); return; }
               finishStartup();
               closeButtons();
               retryApproval.current = () => confirmApproval(data.subscriptionID);
               await confirmApproval(data.subscriptionID);
             },
             onCancel() {
-              if (cancelled || !eligible) return;
+              if (cancelled) return;
+              approvalOpen = false;
+              if (!eligible) { flushVisibleReturn(); return; }
               subscriptionPromise = null;
               setPaymentMessage("Der Aboabschluss bei PayPal wurde abgebrochen.");
+              flushVisibleReturn();
             },
             onError() {
-              if (cancelled || !eligible) return;
+              if (cancelled) return;
+              approvalOpen = false;
+              if (!eligible) { flushVisibleReturn(); return; }
               finishStartup();
               closeButtons();
               setCheckoutStatus("sdk-error");
               setPaymentMessage("Der PayPal-Abschluss konnte nicht geladen werden. Prüfe den Zugang erneut; dabei wird zuerst ein bereits begonnenes Abo abgeglichen.");
+              flushVisibleReturn();
             },
           });
           Promise.resolve(buttons.render("#paypal-subscribe-preise")).then(() => {
@@ -250,11 +367,9 @@ export default function Preise() {
         });
         const checkout = await checkoutResponse.json();
         if (cancelled || controller.signal.aborted) return;
-        if (!checkoutResponse.ok || typeof checkout?.activated !== "boolean" || (checkout.activated && !checkout.subscriptionId) ||
-            !(checkout.subscriptionId === null && checkout.status === null ||
-              typeof checkout.subscriptionId === "string" && /^I-[A-Z0-9]{6,64}$/i.test(checkout.subscriptionId) &&
-              ["APPROVAL_PENDING", "APPROVED", "ACTIVE", "SUSPENDED", "CANCELLED", "EXPIRED"].includes(checkout.status)))
+        if (!checkoutResponse.ok || !validCheckout(checkout))
           throw new Error("Abo-Abgleich nicht verfügbar.");
+        existingCheckout = Boolean(checkout.subscriptionId);
         if (checkout.subscriptionId && checkout.activated) {
           retryApproval.current = () => confirmApproval(checkout.subscriptionId);
           await refreshAccess(checkout, controller.signal);
@@ -303,10 +418,22 @@ export default function Preise() {
         if (!cancelled && !controller.signal.aborted) setCheckoutStatus("error");
       }
     }
+    const stopObserving = onVisibleReturn(() => {
+      if (cancelled) return;
+      // A startup deadline already retired this SDK attempt. A fresh guarded
+      // startup may recover it; no creation or approval was running then.
+      if (controller.signal.aborted) {
+        setCheckoutRevision(value => value + 1);
+        return;
+      }
+      returnQueued = true;
+      flushVisibleReturn();
+    });
     void checkAccount();
 
     return () => {
       cancelled = true;
+      stopObserving();
       finishStartup();
       eligible = false;
       controller.abort();

@@ -15,6 +15,15 @@ const LIVE_REGULAR = 'P-9XU38461YG7706134NESJQWA';
 const LIVE_TRIAL = 'P-0SN76115U1905643NNLBEIGQ';
 const EMAIL='buyer@example.invalid', GENERATION='11111111-1111-4111-8111-111111111111', SUBSCRIPTION='I-CHECKOUT1234';
 
+function eventTarget() {
+  const listeners = new Map();
+  return { listeners,
+    addEventListener(name, fn) { const entries = listeners.get(name) || new Set(); entries.add(fn); listeners.set(name, entries); },
+    removeEventListener(name, fn) { listeners.get(name)?.delete(fn); },
+    emit(name, value = {}) { for (const fn of listeners.get(name) || []) fn(value); },
+  };
+}
+
 function plan(id, overrides) {
   const trial = id === TRIAL;
   return { id, status: 'ACTIVE', quantity_supported: false, billing_cycles: [
@@ -40,15 +49,17 @@ function fixture(overrides = {}, providerOverrides = {}) {
   };
   const calls = []; const effects = []; const cache = new Map(); let sdkOptions, pendingRender;
   const states = [], refs = []; let stateCursor = 0, refCursor = 0, cleanup;
+  let returnTime = 0;
   const confirmations = [...(providerOverrides.confirmations || [])];
   const document = {
+    ...eventTarget(), visibilityState: 'visible',
     createElement(tag) { calls.push({ type: 'create-element', tag }); return {}; },
     body: {
       appendChild(script) { calls.push({ type: 'sdk-script', src: script.src }); if (!providerOverrides.stallSdkScript) script.onload(); },
       removeChild() {},
     },
   };
-  const window = { paypal: { Buttons(options) {
+  const window = { ...eventTarget(), paypal: { Buttons(options) {
     sdkOptions = options; calls.push({ type: 'sdk-buttons' });
     return { render: () => providerOverrides.stallSdkRender ? new Promise((resolve,reject)=>{pendingRender={resolve,reject};}) : Promise.resolve(), close: async () => { calls.push({type:'sdk-close'}); } };
   } }, location: {} };
@@ -85,6 +96,9 @@ function fixture(overrides = {}, providerOverrides = {}) {
         useMemo: fn => fn(), useEffect: fn => effects.push(fn),
       };
       if (id === 'next/router') return { useRouter: () => ({ query: providerOverrides.query || {} }) };
+      if (id.endsWith('/visible-return')) return {
+        onVisibleReturn: callback => load('lib/visible-return.js').onVisibleReturn(callback, { document, window, now: () => returnTime }),
+      };
       if (id === 'next/link') return ({ href, children }) => pr('react').createElement('a', { href }, children);
       if (id.endsWith('/LearningToolLayout')) return ({ children }) => children;
       if (id.endsWith('.module.css')) return { __esModule: true, default: {} };
@@ -93,9 +107,11 @@ function fixture(overrides = {}, providerOverrides = {}) {
     }, mod, mod.exports, { env }, async (target, options) => {
       if (target === '/api/account') {
         calls.push({ type: 'browser-fetch', target });
+        if (providerOverrides.resumeAccount && calls.filter(call => call.target === target).length > 1)
+          return typeof providerOverrides.resumeAccount === 'function' ? providerOverrides.resumeAccount(options) : providerOverrides.resumeAccount;
         if(providerOverrides.stallAccount) return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')),{once:true}));
         return providerOverrides.unsigned
-          ? Response.json({}, {status:401}) : Response.json({account:{email:EMAIL,paid:false,admin:false,...providerOverrides.account}});
+          ? Response.json({}, {status:401}) : Response.json({account:{email:EMAIL,paid:false,admin:false,...(typeof providerOverrides.account === 'function' ? providerOverrides.account() : providerOverrides.account)}});
       }
       if (target === '/api/paypal/checkout-config') {
         calls.push({ type: 'browser-fetch', target });
@@ -104,15 +120,17 @@ function fixture(overrides = {}, providerOverrides = {}) {
       }
       if(target==='/api/paypal/checkout-status') {
         calls.push({type:'browser-fetch',target,options});
-        return Response.json(providerOverrides.checkoutReply || {subscriptionId:null,status:null,activated:false,accessType:'none',trialUntil:null}, {status:providerOverrides.checkoutStatus || 200});
+        return Response.json((typeof providerOverrides.checkoutReply === 'function' ? providerOverrides.checkoutReply() : providerOverrides.checkoutReply) || {subscriptionId:null,status:null,activated:false,accessType:'none',trialUntil:null}, {status:providerOverrides.checkoutStatus || 200});
       }
       if(target==='/api/paypal/create-subscription') {
         calls.push({type:'browser-fetch',target});
+        if (providerOverrides.creationGate) await providerOverrides.creationGate;
         if(providerOverrides.stallCreation) return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')),{once:true}));
         return load('app/api/paypal/create-subscription/route.js').POST(request(JSON.parse(options.body)));
       }
       if(target==='/api/paypal/confirm-subscription') {
         calls.push({type:'browser-fetch',target,body:JSON.parse(options.body)});
+        if (providerOverrides.confirmationGate) await providerOverrides.confirmationGate;
         if (providerOverrides.stallConfirmation && calls.filter(call=>call.target===target).length===1)
           return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')), {once:true}));
         const reply = confirmations.shift() || {body:{activated:true,accessType:env.NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID?'trial':'paid'}};
@@ -140,7 +158,14 @@ function fixture(overrides = {}, providerOverrides = {}) {
     headers:new Headers({origin:'https://jagdlatein.test','content-type':'application/json'}),json:async()=>body,
     cookies:{get:name=>name===session.JL_ACCOUNT_COOKIE&&!providerOverrides.unsigned?{value:token}:undefined}}; }
   function page() { stateCursor=0; refCursor=0; return load('pages/preise.js').default(); }
-  return { env, calls, load, request, states, window,
+  return { env, calls, load, request, states, window, document,
+    resume(kind = 'visible') {
+      returnTime += 1000;
+      if (kind === 'bfcache') { window.emit('pageshow', { persisted: true }); return; }
+      window.emit('blur'); document.visibilityState = 'hidden'; document.emit('visibilitychange');
+      document.visibilityState = 'visible'; document.emit('visibilitychange');
+      window.emit('focus'); window.emit('pageshow', { persisted: true });
+    },
     renderPage() {
       return pr('react-dom/server').renderToStaticMarkup(page());
     },
@@ -512,5 +537,143 @@ test('A stalled subscription creation times out instead of leaving the PayPal ca
   assert.equal(ctx.states[1],'sdk-error');
   assert.match(ctx.renderPage(),/Erneut prüfen/);
   assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,0);
+  ctx.unmount();
+});
+
+const deferredReturn = () => { let resolve; const promise = new Promise(yes => { resolve = yes; }); return { promise, resolve }; };
+const settleReturn = () => new Promise(resolve => setImmediate(resolve));
+const emptyCheckout = { subscriptionId: null, status: null, activated: false, accessType: 'none', trialUntil: null };
+
+test('Visible PWA return recovers a completed approval without another purchase or SDK restart', async () => {
+  let approved = false;
+  const ctx = fixture({}, { checkoutReply: () => approved
+    ? { subscriptionId: SUBSCRIPTION, status: 'ACTIVE', activated: true, accessType: 'trial', trialUntil: new Date(Date.now() + 86400000).toISOString() }
+    : emptyCheckout });
+  await ctx.runPage(); await ctx.createSubscription();
+  approved = true; ctx.resume(); await settleReturn();
+  assert.equal(ctx.states[1], 'complete'); assert.match(ctx.states[0], /Testzugang ist aktiv/);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 2, 'Overlapping return events must cause one account refresh.');
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0, 'Resume must leave the provider popup alone.');
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'server-subscription').length, 1);
+  assert.ok(ctx.calls.some(call => call.target === '/api/auth/status'));
+  ctx.unmount();
+});
+
+test('BFCache return rechecks only the existing approved agreement', async () => {
+  const ctx = fixture({}, { checkoutReply: { subscriptionId: SUBSCRIPTION, status: 'APPROVED', activated: false } });
+  await ctx.runPage(); assert.equal(ctx.states[1], 'pending');
+  ctx.resume('bfcache'); await settleReturn();
+  assert.equal(ctx.states[1], 'complete');
+  assert.deepEqual(ctx.calls.find(call => call.target === '/api/paypal/confirm-subscription').body, { subscriptionId: SUBSCRIPTION });
+  assert.ok(!ctx.calls.some(call => ['sdk-script', 'server-subscription'].includes(call.type)));
+  ctx.unmount();
+});
+
+test('Returning to an unfinished popup preserves it and never starts or confirms another purchase', async () => {
+  const ctx = fixture({}, { checkoutReply: { subscriptionId: SUBSCRIPTION, status: 'APPROVAL_PENDING', activated: false } });
+  await ctx.runPage(); await ctx.createSubscription(); ctx.resume(); await settleReturn();
+  assert.equal(ctx.states[1], 'ready');
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/confirm-subscription').length, 0);
+  ctx.unmount();
+});
+
+test('Return during creation waits for the existing request and leaves its popup intact', async () => {
+  const creation = deferredReturn();
+  const ctx = fixture({}, { creationGate: creation.promise,
+    checkoutReply: { subscriptionId: SUBSCRIPTION, status: 'APPROVAL_PENDING', activated: false } });
+  await ctx.runPage(); const creating = ctx.createSubscription(); await settleReturn();
+  ctx.resume(); ctx.resume('bfcache'); await settleReturn();
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0);
+  creation.resolve(); await creating; await settleReturn();
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 2);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  assert.equal(ctx.states[1], 'ready'); ctx.unmount();
+});
+
+test('Return during confirmation queues one access refresh and does not duplicate confirmation', async () => {
+  const confirmation = deferredReturn(); let completed = false;
+  const ctx = fixture({}, { confirmationGate: confirmation.promise, account: () => ({ paid: completed }) });
+  await ctx.runPage(); await ctx.createSubscription(); const approving = ctx.approve(); await settleReturn();
+  assert.equal(ctx.states[1], 'confirming');
+  ctx.resume(); ctx.resume('bfcache'); await settleReturn();
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 1);
+  completed = true; confirmation.resolve(); await approving; await settleReturn();
+  assert.equal(ctx.states[1], 'existing');
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 2);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/confirm-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 1, 'Only the original onApprove should close SDK buttons.');
+  ctx.unmount();
+});
+
+test('A return response racing a new creation cannot overwrite or interrupt that request', async () => {
+  const resumed = deferredReturn(), creation = deferredReturn(); let returns = 0;
+  const ctx = fixture({}, { creationGate: creation.promise,
+    resumeAccount: () => ++returns === 1 ? resumed.promise : Response.json({ account: { email: EMAIL, paid: false, admin: false } }),
+    checkoutReply: { subscriptionId: SUBSCRIPTION, status: 'APPROVAL_PENDING', activated: false } });
+  await ctx.runPage(); ctx.resume(); await settleReturn();
+  const creating = ctx.createSubscription(); await settleReturn();
+  resumed.resolve(Response.json({ account: { email: EMAIL, paid: false, admin: false } })); await settleReturn();
+  assert.equal(ctx.states[1], 'ready');
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0);
+  creation.resolve(); await creating; await settleReturn();
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 3);
+  ctx.unmount();
+});
+
+test('An account change during an open approval gates the old purchase without automatically closing its popup', async () => {
+  let changed = false;
+  const ctx = fixture({}, { account: () => changed ? { email: 'other@example.invalid' } : {} });
+  await ctx.runPage(); await ctx.createSubscription(); changed = true;
+  ctx.resume(); await settleReturn();
+  assert.equal(ctx.states[1], 'error'); assert.match(ctx.states[0], /Konto hat sich geändert/);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  await assert.rejects(ctx.createSubscription(), /derzeit nicht möglich/);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
+  ctx.unmount();
+});
+
+test('Unmount during return removes observers and ignores a late account response', async () => {
+  const resumed = deferredReturn(); const ctx = fixture({}, { resumeAccount: resumed.promise });
+  await ctx.runPage(); ctx.resume(); await settleReturn();
+  const status = ctx.states[1], message = ctx.states[0];
+  ctx.unmount(); ctx.resume(); resumed.resolve(Response.json({ account: { email: EMAIL, paid: true, admin: false } })); await settleReturn();
+  assert.equal(ctx.states[1], status); assert.equal(ctx.states[0], message);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/account').length, 2);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/checkout-status').length, 1);
+  for (const listeners of [...ctx.window.listeners.values(), ...ctx.document.listeners.values()]) assert.equal(listeners.size, 0);
+});
+
+test('An expired session on return removes stale success copy without starting or closing another purchase', async () => {
+  const ctx = fixture({}, { resumeAccount: Promise.resolve(Response.json({}, { status: 401 })) });
+  await ctx.runPage(); await ctx.approve(); assert.equal(ctx.states[1], 'complete');
+  ctx.resume(); await settleReturn();
+  assert.equal(ctx.states[1], 'login-required'); assert.equal(ctx.states[2], null); assert.equal(ctx.states[3], null);
+  assert.match(ctx.states[0], /erneut.*an/); assert.doesNotMatch(ctx.states[0], /Zugang ist aktiv/);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 1);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 0);
+  ctx.unmount();
+});
+
+test('A stalled return status times out while preserving the pending popup and original purchase', async t => {
+  const ctx = fixture({}, { resumeAccount: options => new Promise((resolve, reject) =>
+    options.signal.addEventListener('abort', () => reject(new Error('Aborted')), { once: true })) });
+  await ctx.runPage(); await ctx.createSubscription();
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  ctx.resume(); await settleReturn(); t.mock.timers.tick(18000); await settleReturn();
+  assert.equal(ctx.states[1], 'ready'); assert.match(ctx.states[0], /weiterer Kauf ist nicht nötig/);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-close').length, 0);
+  assert.equal(ctx.calls.filter(call => call.type === 'sdk-script').length, 1);
+  assert.equal(ctx.calls.filter(call => call.target === '/api/paypal/create-subscription').length, 1);
   ctx.unmount();
 });
