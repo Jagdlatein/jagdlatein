@@ -33,6 +33,6 @@ export default function CommunityWeeklyCase({ onDiscuss, canDiscuss }) {
         <p>{item.limit}</p>{canDiscuss && <button type="button" className={learning.secondary} onClick={() => onDiscuss(item)}>Deine Überlegung teilen</button>}
       </div></div>
     <details className={learning.sources}><summary>Begründung und Fachquellen</summary>{item.facts.map(fact => <p key={fact.id}><strong>{fact.title}:</strong> {fact.text}</p>)}<ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Diese Erklärung wurde inhaltlich am {new Intl.DateTimeFormat('de-CH', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${item.reviewedOn}T00:00:00Z`))} geprüft. <Link href={item.href}>Lerneinheit mit Bildnachweis</Link></p></details>
-    <p className={styles.hint}>Jeden Montag wechselt der Einstieg zwischen diesen fünf belegten Fällen. Eure Beiträge werden vor Veröffentlichung moderiert; persönliche Antworten sind kein fachliches Prüfsiegel.</p>
+    <p className={styles.hint}>Jeden Montag wechselt der Einstieg. Alle Lernfälle findest du direkt in der Auswahl. Eure Beiträge werden vor Veröffentlichung moderiert; persönliche Antworten sind kein fachliches Prüfsiegel.</p>
   </section>;
 }

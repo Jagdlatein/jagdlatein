@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { formatMovementTimestamp, getWildMovementDataset, movementCountryPaths, movementMapCountries, projectMovementPoint, selectMovementPoints, wildMovementSources } from "../lib/wild-movement";
+import { formatMovementTimestamp, getWildMovementDataset, movementCountryPaths, movementMapCountries, nearestMovementPointIndex, projectMovementPoint, selectMovementPoints, wildMovementSources } from "../lib/wild-movement";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/MovementDevelopment.module.css";
 
@@ -32,13 +32,13 @@ export default function WildMovementMap({ selectedId }) {
     if (value !== "four" && value !== "daily") return;
     const previousTime = current?.timestamp;
     const newPoints = selectMovementPoints(dataset, value);
-    const exactIndex = newPoints.findIndex(point => point.timestamp === previousTime);
-    setSampling(value); setIndex(exactIndex >= 0 ? exactIndex : 0);
+    setSampling(value); setIndex(nearestMovementPointIndex(newPoints, previousTime));
   }
   return <article className={shared.panel} id="wildbewegung" aria-labelledby="wildbewegung-heading">
     <p className={shared.eyebrow}>Veröffentlichte Originaldaten · {dataset.observedPeriod}</p><h2 id="wildbewegung-heading">{dataset.title}</h2><p>{dataset.description}</p>
     <p className={styles.dataNote}><strong>Ein Vogel:</strong> {dataset.shortName}. <strong>Projekt:</strong> Südwestdeutschland. Der dargestellte Ausschnitt reicht über Deutschland und die Schweiz nach Frankreich und Spanien.</p>
     <label className={shared.field}>Messungen vergleichen<select value={sampling} onChange={event => changeSampling(event.target.value)}><option value="four">Vier ausgewählte Messungen je Tag · 52 Punkte</option><option value="daily">Eine ausgewählte Messung je Tag · 13 Punkte</option></select></label>
+    <p className={shared.muted}>Beim Wechsel wird der zeitlich nächste enthaltene Originalpunkt ausgewählt.</p>
     <figure className={styles.mapFigure}><MovementMapGraphic points={points} index={safeIndex} /><figcaption>Gold: bis zur Auswahl. Grau: spätere Messungen. Großer Punkt: ausgewähltes Originalereignis. Punkte bleiben unverbunden. Kartengrundlage: Natural Earth, stark vereinfachte Länderumrisse; Mercator-Übersicht.</figcaption></figure>
     <label className={styles.timeline}><strong>Messung {safeIndex + 1} von {points.length}</strong><span>{formatMovementTimestamp(current.timestamp)}</span><input type="range" min="0" max={points.length - 1} step="1" value={safeIndex} onChange={event => setIndex(Number(event.target.value))} aria-label="Veröffentlichte Messung auswählen" aria-valuetext={`${safeIndex + 1} von ${points.length}: ${formatMovementTimestamp(current.timestamp)}`} /></label>
     <p className={styles.dataNote}><strong>Veröffentlichte Koordinaten:</strong> {current.latitude}° Breite, {current.longitude}° Länge. <strong>Geräteangabe horizontale Genauigkeitsschätzung:</strong> {current.horizontalAccuracyEstimateMetres === null ? "nicht angegeben" : `${current.horizontalAccuracyEstimateMetres} m`}.</p>

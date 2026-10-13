@@ -1,0 +1,131 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Zwei neue Profile mit sechs Fachblöcken, fünf begrenzten Verbindungen und je einer Frage. Keine vollständige Neuprüfung sämtlicher Naturinhalte oder Artbestimmung aus Fotos.",
+  "procedure": "Die benannten Original-/Fachseiten wurden online inhaltlich gelesen. Die LfU-Seiten gelten als eine Organisation, ebenso BAFU/info fauna als eine gemeinsam herausgegebene Quelle. Physikalische Originalforschung und Hochschul-/Fachinstitutionen erläutern Mechanismus und Begrenzung; keine amerikanischen Artgrößen, Artenzahlen oder regionale Verbreitung auf DACH übertragen. Inhalte sind eigene kurze Lernformulierungen; Quellenfehler wurden ausgeschlossen.",
+  "topics": [
+    {
+      "id": "libellenlarven",
+      "claims": [
+        {
+          "factId": "lebensphasen",
+          "sourceIds": ["pondSwissDragonflies", "pondBavariaDevelopment", "pondFribourgExuviae", "pondBavariaExuviae"],
+          "boundary": "Heimische Libellen: aquatische Larvenphase und letzte Häutung, keine einheitliche Entwicklungsdauer oder Kalenderangabe. Exuvie ist zurückgelassene Haut, keine Leiche; das neue Foto zeigt keine Exuvie.",
+          "support": [
+            { "sourceId": "pondSwissDragonflies", "section": "S. 9, 1.1 Lebenszyklus und Ökologie, Abb. 1; S. 36, Fortpflanzungsnachweis einer Exuvie", "supports": "Unvollständige Entwicklung und Lebensphasen Ei, Prolarve, Larve, Imago; Wasser- und Landlebensraum. Eine Exuvie wird als Fortpflanzungs-/Entwicklungsnachweis verwendet, nicht als Todesnachweis." },
+            { "sourceId": "pondBavariaDevelopment", "section": "Januar 2026, Eine kupferfarbene Eiskönigin", "supports": "Libellen allgemein ohne Puppenstadium; finale Häutung und Verlassen des Wassers am Artbeispiel beschrieben." },
+            { "sourceId": "pondFribourgExuviae", "section": "Einleitung Libellen: Exuvien bestimmen", "supports": "Exuvien ausdrücklich als letzte, nach dem Ausfliegen zurückgelassene Haut erklärt." },
+            { "sourceId": "pondBavariaExuviae", "section": "S. 2, Grüne Keiljungfer, erster Absatz", "supports": "Die Hüllen, aus denen die Libellen geschlüpft sind, heißen Exuvien. Nur dieses dauerhafte Begriffsmerkmal übernommen, keine Rechts-/Bestands- oder Kalenderangaben von 2012." }
+          ],
+          "subclaimPairs": [
+            { "claim": "Aquatische Larvenentwicklung / keine Puppe", "sourceIds": ["pondSwissDragonflies", "pondBavariaDevelopment"] },
+            { "claim": "Exuvie ist zurückgelassene Larvenhaut, kein Todesbeweis", "sourceIds": ["pondFribourgExuviae", "pondBavariaExuviae"], "interpretation": "Zurückgelassene Haut begründet die negative Schlussgrenze; keine individuelle Überlebensgarantie." }
+          ]
+        },
+        {
+          "factId": "beutefang",
+          "sourceIds": ["pondIgbDragonflies", "pondViennaDragonflies", "pondKielMask"],
+          "boundary": "Keine Geschwindigkeit, Beuterate, hydraulische Antriebsbehauptung oder identische Nahrung sämtlicher Arten. Kein Beutefang im Foto. Kein Stichorgan: morphologisch ein Mundwerkzeug.",
+          "support": [
+            { "sourceId": "pondIgbDragonflies", "section": "Faszinierende Fakten: vorschnelle Unterlippe bei Libellenlarven", "supports": "Larven und Erwachsene leben räuberisch; Fangmaske als besondere Unterlippe wird nach vorne bewegt." },
+            { "sourceId": "pondViennaDragonflies", "section": "Vitrine 53 und 54 zeigen Libellen", "supports": "Libellen und ihre Larven räuberisch, Mundwerkzeuge der Larven zur Fangmaske umgebildet." },
+            { "sourceId": "pondKielMask", "section": "Background; Results – Labium; Discussion – Comparative morphology", "supports": "Aquatische Prädation, Labium als bewegliche Fangmaske, Beute nach vorne ergreifen und zum Mund führen. Originalarbeit vergleicht Pyrrhosoma nymphula, Aeshna cyanea und Epiophlebia superstes." }
+          ],
+          "subclaimPairs": [
+            { "claim": "Räuberische Larven und Erwachsene", "sourceIds": ["pondIgbDragonflies", "pondViennaDragonflies"] },
+            { "claim": "Umgebildete Unterlippe / Bewegung zum Fangen", "sourceIds": ["pondIgbDragonflies", "pondKielMask"] }
+          ]
+        },
+        {
+          "factId": "lebensraeume",
+          "sourceIds": ["pondSwissDragonflies", "pondBavariaHabitats", "pondBavariaDevelopment"],
+          "boundary": "Gestreifte Quelljungfer als Fließgewässerbeispiel; Winterlibelle als Stillgewässerbeispiel, nicht ungeprüft auf Blaugrüne Mosaikjungfer-Foto übertragen. Kein Qualitätsurteil nach einer Sichtung.",
+          "support": [
+            { "sourceId": "pondSwissDragonflies", "section": "S. 10–11, 1.2 Lebensraumtypen; S. 19, Quellen/Quellabflüsse; S. 9–10, Mobilität", "supports": "Verschiedene Fließ- und Stillgewässer mit artspezifischen Gemeinschaften; Quellen und Bäche als Lebensraum von Quelljungfern, darunter Cordulegaster bidentata. Mobile Erwachsene sind nicht automatisch Nachweis einer etablierten Gewässergemeinschaft." },
+            { "sourceId": "pondBavariaHabitats", "section": "Bildtext Gestreifte Quelljungfer", "supports": "Cordulegaster bidentata lebt an Quellen und kleinen Bachoberläufen mit Larven im sandig-schlammigen Bodensubstrat." },
+            { "sourceId": "pondBavariaDevelopment", "section": "Januar 2026, Über und unter Wasser zuhause", "supports": "Sibirische Winterlibelle nutzt unter anderem flache Teiche und Weiher sowie verschiedene Teillebensräume." }
+          ],
+          "subclaimPairs": [
+            { "claim": "Fließgewässer und Gestreifte Quelljungfer", "sourceIds": ["pondSwissDragonflies", "pondBavariaHabitats"] },
+            { "claim": "Andere Arten nutzen Stillgewässer / artspezifische Habitate", "sourceIds": ["pondSwissDragonflies", "pondBavariaDevelopment"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wasserlaeufer",
+      "claims": [
+        {
+          "factId": "oberflaeche",
+          "sourceIds": ["pondMitStriders", "pondMaineStriders", "pondGaoJiangHairs"],
+          "boundary": "Keine echte feste Haut, keine getrocknete Wasserfläche oder bloße Schnelligkeit als Tragursache. Kräfte und Behaarung nicht aus dem Standbild gemessen; keine universellen Zahlen für alle Arten.",
+          "support": [
+            { "sourceId": "pondMitStriders", "section": "Water strider locomotion, Einleitung und Originalversuch Hu, Chan und Bush (2003)", "supports": "Gewicht getragen durch Oberflächenspannung an gekrümmter Grenzfläche; Beine sind hydrophob. Keine Behauptung, dass sichtbare Wellen allein für Vortrieb sorgen." },
+            { "sourceId": "pondMaineStriders", "section": "Water Striders, Einleitung und dritter Absatz", "supports": "Oberflächenspannung, lange Beine und wasserabweisende feine Haare wirken zusammen. Ausdrücklich unterschiedliche Aufgaben der Beinpaare." },
+            { "sourceId": "pondGaoJiangHairs", "section": "Originalabstract in PubMed, Nature 2004", "supports": "Gerichtete feine Haare und Struktur der Beine fördern Wasserabweisung. Mikro-/Nanostruktur wichtiger als eine bloße Erklärung durch ausgeschiedenes Wachs; keine Maße/Kräfte oder artspezifischen Werte übernommen." }
+          ],
+          "subclaimPairs": [
+            { "claim": "Oberflächenspannung an verformter Oberfläche trägt das Tier", "sourceIds": ["pondMitStriders", "pondMaineStriders"] },
+            { "claim": "Feine wasserabweisende Beinhaare erschweren Benetzung", "sourceIds": ["pondMaineStriders", "pondGaoJiangHairs"] }
+          ]
+        },
+        {
+          "factId": "nahrung",
+          "sourceIds": ["pondNajuStriders", "pondMaineStriders"],
+          "boundary": "Nahrungsgruppe, keine vollständige Beuteliste oder Fangmenge. Kein amerikanischer Artname und kein Größenwert übernommen. Standbild zeigt kleinen Insektenkontakt, keinen vollständigen Jagdablauf.",
+          "support": [
+            { "sourceId": "pondNajuStriders", "section": "Der Wasserläufer, Ernährung", "supports": "Kleine ins Wasser fallende Insekten als Nahrung, DACH-Lehrkontext." },
+            { "sourceId": "pondMaineStriders", "section": "Water Striders, erster und zweiter Absatz", "supports": "Räuberische und aasnutzende Ernährung sowie potentielle, zufällig ins Wasser gefallene Beute." }
+          ]
+        },
+        {
+          "factId": "bewegung",
+          "sourceIds": ["pondMitStriders", "pondMaineStriders", "pondNpsLegs"],
+          "boundary": "Nur Beinaufgaben; keine Normgeschwindigkeit oder quantitative Kraftmessung. NPS-Abschnitt zur Entwicklung wurde wegen fachlich falscher Libellen-Verpuppung ausdrücklich nicht verwendet.",
+          "support": [
+            { "sourceId": "pondMitStriders", "section": "Water strider locomotion, erster und zweiter Absatz", "supports": "Mittleres hydrophobes Beinpaar rudert; Experimente erklären Vortrieb mit Wasserbewegung unterhalb der Oberfläche." },
+            { "sourceId": "pondMaineStriders", "section": "Water Striders, dritter Absatz", "supports": "Vorderbeine greifen/halten Beute, mittlere Beine treiben an, hintere steuern." },
+            { "sourceId": "pondNpsLegs", "section": "They’ve Got Legs, and Know How to Use Them, Beinaufgaben", "supports": "Frontbeine zum Greifen, mittlere zum Paddeln, hintere zum Steuern und Bremsen. Quantitative und Entwicklungsabschnitte nicht übernommen." }
+          ],
+          "subclaimPairs": [
+            { "claim": "Rudern mit dem mittleren Beinpaar", "sourceIds": ["pondMitStriders", "pondMaineStriders"] },
+            { "claim": "Vorderbeine greifen und halten; Hinterbeine steuern", "sourceIds": ["pondMaineStriders", "pondNpsLegs"] }
+          ]
+        }
+      ]
+    }
+  ],
+  "connections": [
+    { "topicId": "libellenlarven", "scope": "Räuberische Ernährung; Wasser/Land-Lebensphasen; artspezifische Gewässer", "factIds": ["beutefang", "lebensphasen", "lebensraeume"], "boundary": "Vereinfachte Beziehungen aus den belegten Profilblöcken, keine Bestands-/Ertragsprognose." },
+    { "topicId": "wasserlaeufer", "scope": "Kleine Insekten auf der Oberfläche als Nahrung und ruhige Gewässeroberfläche als Aufenthaltsbereich", "factIds": ["nahrung", "oberflaeche"], "sourceIds": ["pondMaineStriders", "pondNajuStriders"], "boundary": "Maine und NAJU beschreiben Teiche/ruhige Gewässer; keine pauschale Familie auf reine Teichbewohner reduziert. Unterschied Oberfläche/Grund ist Ortsbeschreibung, keine Behauptung alle Arten leben nur in Teichen." }
+  ],
+  "sourceInventory": [
+    { "sourceId": "pondIgbDragonflies", "organization": "Leibniz-Institut für Gewässerökologie und Binnenfischerei", "title": "Eintagsfliegen, Libellen & Co. beginnen ihr Leben im Wasser", "url": "https://www.igb-berlin.de/news/eintagsfliegen-libellen-co-beginnen-ihr-leben-im-wasser", "readOn": "2026-10-13", "sectionsRead": ["Semiaquatische Insekten", "Faszinierende Fakten"] },
+    { "sourceId": "pondViennaDragonflies", "organization": "Naturhistorisches Museum Wien", "title": "Krebse, Spinnentiere, Insekten – Saal 24", "url": "https://www.nhm.at/ausstellung/dauerausstellung_schausammlung/erster_stock/krebse_spinnentiere_insekten", "readOn": "2026-10-13", "sectionsRead": ["Vitrinen 53 und 54"] },
+    { "sourceId": "pondKielMask", "organization": "Christian-Albrechts-Universität zu Kiel / Senckenberg", "title": "Büsse et al., The head morphology of Pyrrhosoma nymphula larvae (2017)", "url": "https://link.springer.com/article/10.1186/s12983-017-0209-x", "readOn": "2026-10-13", "sectionsRead": ["Background", "Results – Labium", "Discussion – Comparative morphology"] },
+    { "sourceId": "pondSwissDragonflies", "organization": "Bundesamt für Umwelt BAFU / info fauna", "title": "Rote Liste der Libellen. Gefährdete Arten der Schweiz. 2021", "url": "https://www.infofauna.ch/sites/default/files/files/publications/rote_liste_der_libellen_0.pdf", "readOn": "2026-10-13", "sectionsRead": ["S. 9–11 Lebenszyklus und Gewässertypen", "S. 19 Quellen und Bäche", "S. 36 Exuvie als Fortpflanzungsnachweis"] },
+    { "sourceId": "pondFribourgExuviae", "organization": "Naturhistorisches Museum Freiburg", "title": "Libellen: Exuvien bestimmen", "url": "https://www.fr.ch/de/nhmf/news/libellen-exuvien-bestimmen", "readOn": "2026-10-13", "sectionsRead": ["Einleitung"] },
+    { "sourceId": "pondBavariaDevelopment", "organization": "Bayerisches Landesamt für Umwelt", "title": "Art des Monats: Januar 2026, Sibirische Winterlibelle", "url": "https://www.lfu.bayern.de/natur/bayaz/artdesmonats/index.htm", "readOn": "2026-10-13", "sectionsRead": ["Eine kupferfarbene Eiskönigin", "Über und unter Wasser zuhause"] },
+    { "sourceId": "pondBavariaHabitats", "organization": "Bayerisches Landesamt für Umwelt", "title": "Ergebnisse der Naturschutzfachkartierung im Landkreis Regen liegen vor", "url": "https://www.lfu.bayern.de/pressemitteilungen/c/2257115/15-26-ergebnisse-naturschutzfachkartierung-im-landkreis-regen-liegen-vor", "readOn": "2026-10-13", "sectionsRead": ["Gestreifte Quelljungfer, Bildtext"] },
+    { "sourceId": "pondBavariaExuviae", "organization": "Bayerisches Landesamt für Umwelt", "title": "Natura 2000 – Tier- und Pflanzenarten: Libellen (2012)", "url": "https://www.lfu.bayern.de/natur/natura_2000/ffh/tier_pflanzenarten/doc/libellen.pdf", "readOn": "2026-10-13", "sectionsRead": ["S. 2, erster Absatz: Exuvien-Begriffsmerkmal"], "excluded": "Sämtliche Rechts-/Status-/Verbreitungs-/Zeitangaben von 2012 nicht übertragen." },
+    { "sourceId": "pondMitStriders", "organization": "Massachusetts Institute of Technology, John W. M. Bush", "title": "Water strider locomotion", "url": "https://thales.mit.edu/bush/index.php/2003/04/14/water-strider-locomotion-paradox-lost/", "readOn": "2026-10-13", "sectionsRead": ["Originalforschungszusammenfassung zur Studie Hu, Chan und Bush, Nature 2003"] },
+    { "sourceId": "pondGaoJiangHairs", "organization": "Chinese Academy of Sciences, Xuefeng Gao und Lei Jiang", "title": "Biophysics: water-repellent legs of water striders", "url": "https://pubmed.ncbi.nlm.nih.gov/15525973/", "readOn": "2026-10-13", "sectionsRead": ["Originalabstract, Nature 432(7013):36, DOI 10.1038/432036a"], "boundary": "Am untersuchten Artbeispiel Strukturfunktion belegt. Zusammen mit Maine nur allgemeine Haar-/Benetzungsfunktion vermittelt, keine universellen Strukturmaße oder Tragkraft." },
+    { "sourceId": "pondMaineStriders", "organization": "University of Maine Cooperative Extension", "title": "Water Striders", "url": "https://extension.umaine.edu/home-and-garden-ipm/fact-sheets/common-name-listing/water-striders/", "readOn": "2026-10-13", "sectionsRead": ["Alle drei Wissensabsätze"] },
+    { "sourceId": "pondNpsLegs", "organization": "U.S. National Park Service", "title": "Species Spotlight – Water Striders", "url": "https://www.nps.gov/articles/pecies-spotlight-water-strider.htm", "readOn": "2026-10-13", "sectionsRead": ["They’ve Got Legs, and Know How to Use Them", "Entwicklungsabschnitt zur Gegenprüfung, ausdrücklich ausgeschlossen"] },
+    { "sourceId": "pondNajuStriders", "organization": "Naturschutzjugend im NABU", "title": "Insekten und Spinnentiere am Gewässer", "url": "https://www.najuversum.de/gewaesser/insekten-und-spinnentiere/", "readOn": "2026-10-13", "sectionsRead": ["Der Wasserläufer – Lebensraum und Ernährung"] }
+  ],
+  "rejectedSourceClaims": [
+    { "url": "https://www.lfu.bayern.de/wasser/agws/doc/mediathek/6_bachvernetzungen.pdf", "reason": "Das Suchergebnis des LfU-Schulblatts beschreibt fälschlich eine Verpuppung der Libellenlarve. Diese Aussage wird durch die aktuelle eigene LfU-Seite und BAFU/info fauna widerlegt. Das Blatt wurde als Entwicklungsbeleg nicht verwendet." },
+    { "sourceId": "pondNpsLegs", "section": "Stride (In the Name of Love), Entwicklungsabsatz", "reason": "Die pauschale Einreihung von Libellen unter Insekten mit Puppenstadium ist falsch. Entwicklungsabschnitt und Größen-/Zeit-/Geschwindigkeitsangaben ausdrücklich ausgeschlossen. Nur unabhängig mit Maine/MIT bestätigte Beinaufgaben verwendet." }
+  ],
+  "accessNotes": [
+    { "sourceId": "pondKielMask", "method": "PMC meldete Browserprüfung. Die relevanten Abschnitte desselben öffentlichen Open-Access-Originalartikels wurden anschließend über die Verlagsseite gelesen; keine Schranke umgangen." },
+    { "mediaId": "wasserlaeufer", "method": "Web-Leser konnte die unicodehaltige Commons-Dateiseite nicht laden. Der öffentliche Commons API-Abruf action=query, prop=imageinfo, iiprop=url|extmetadata|size wurde gelesen; Originalbeschreibung, Jan Czeczotka, Lizenz CC BY-SA 4.0, Datum und Aufnahmeort bestätigt. Keine neue Artbestimmung aus dem Foto abgeleitet." }
+  ],
+  "relatedExistingReview": [
+    { "files": ["lib/small-revier-life.js", "lib/learning-expansion-nature.js"], "scope": "Bestehende Bach-/Amphibien-/Nahrungsnetzblöcke und Fundstellen für Libellen, Larven, Verpuppung, Wasserläufer und Oberflächenspannung", "result": "Keine bestätigte Gegenbehauptung zur neuen Libellenentwicklung oder zum Oberflächenmechanismus gefunden. Gemeinsame Dateien unverändert; ältere Prüfdatumswerte werden nicht ersetzt." }
+  ],
+  "media": [
+    { "id": "libellenlarven", "sourceRead": "Commons-Dateiseite Aeshna cyanea – larva (aka) und imageinfo-Metadaten", "actualSubject": "Als Aeshna cyanea ausdrücklich bestimmte Larve knapp unter der Wasseroberfläche im Gartenteich", "visuallyReviewedOn": "2026-10-13", "changes": "Unveränderte proportionale Wikimedia-JPEG-Vorschau, 1280 × 690; keine KI oder eigene Bildbearbeitung", "boundary": "Kein dokumentierter Ortsname, Alter, Beutefang oder Schlupf; weder Fangmaske in Aktion noch Lebensdauer aus Bild abgeleitet." },
+    { "id": "wasserlaeufer", "sourceRead": "Öffentliche Commons-Datei-Metadaten Gemeiner Wasserläufer im FFH-Gebiet Mangfalltal", "actualSubject": "Als Gerris lacustris dokumentiertes Insekt auf Wasseroberfläche, kleine weitere Insekten sichtbar, Mangfalltal Bayern", "visuallyReviewedOn": "2026-10-13", "changes": "Unveränderte proportionale Wikimedia-JPEG-Vorschau, 1280 × 854; keine KI oder eigene Bildbearbeitung", "boundary": "Kein vollständiger Fangablauf, keine Artbestimmung sämtlicher kleiner Insekten, keine Geschwindigkeit und keine Tragkraftmessung." }
+  ]
+}

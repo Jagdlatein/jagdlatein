@@ -49,7 +49,7 @@ const foodweb = load('lib/foodweb-learning.js');
 const report = load('docs/small-revier-life-stream-foodweb-oct13.json');
 const streamIds = ['eintagsfliegenlarven', 'koecherfliegenlarven', 'bachflohkrebse'];
 test('New stream profiles describe different biological strategies and no photograph certifies water quality', () => {
-  assert.equal(ecology.revierLifeTopics.length, 12);
+  assert.equal(ecology.revierLifeTopics.length, 16);
   for (const id of streamIds) {
     const topic = ecology.getRevierLifeTopic(id);
     assert.equal(topic.group, 'gewaesser'); assert.equal(topic.reviewedOn, '2026-10-13');
@@ -147,4 +147,43 @@ test('Existing selector supports food-web deep links, keeps URL state and return
   router.query.thema = changes[0][0].query.thema; s.render(); s.e.effects(); s.render();
   router.query.thema = 'nahrungsnetz'; s.render(); s.e.effects(); s.render(); assert.ok(find(s.tree, n => n.type?.name === 'FoodwebLearning'));
   router.query.thema = 'wildbienen'; s.render(); s.e.effects(); s.render(); assert.equal(find(s.tree, n => n.props?.topic)?.props.topic.id, 'wildbienen');
+});
+test('Food-web motif survives a saved URL and external navigation, and stale motif is removed from other profiles', () => {
+  const changes = []; const router = { query: { thema: 'nahrungsnetz', motiv: 'spinne', retained: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+  const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
+  const network = () => find(s.tree, n => n.type?.name === 'FoodwebLearning');
+  assert.equal(network().props.selectedId, 'spinne');
+  network().props.onSelect('grasfrosch'); s.render();
+  assert.equal(network().props.selectedId, 'grasfrosch');
+  assert.equal(changes[0][0].query.motiv, 'grasfrosch'); assert.equal(changes[0][0].query.retained, 'yes');
+  assert.equal(changes[0][0].hash, 'revierleben-inhalt'); assert.equal(changes[0][2].scroll, false);
+  router.query.motiv = 'laub'; s.render(); s.e.effects(); s.render(); assert.equal(network().props.selectedId, 'laub');
+  router.query.motiv = ['spinne', 'laub']; s.render(); s.e.effects(); s.render(); assert.equal(network().props.selectedId, 'regenwurm');
+  find(s.tree, n => n.type === 'select').props.onChange({ target: { value: 'wildbienen' } });
+  assert.equal(changes.at(-1)[0].query.motiv, undefined);
+});
+test('The inline food-web knowledge check explains an incorrect answer without another action', () => {
+  const s = setup('components/FoodwebLearning.js');
+  find(s.tree, n => n.type === 'input' && n.props.name === 'nahrungsnetz-lernfrage' && n.props.checked === false).props.onChange(); s.render();
+  assert.match(text(s.tree), /Das passt\..*Der Pfeil beschreibt einen Nahrungsweg/s);
+  const question = find(s.tree, n => n.type === 'fieldset' && text(n).startsWith('Was bedeutet hier der Pfeil'));
+  const wrong = find(question, n => n.type === 'label' && text(n).startsWith('Jede Regenwurmart'));
+  find(wrong, n => n.type === 'input').props.onChange(); s.render();
+  assert.match(text(s.tree), /Hier lohnt sich ein genauerer Blick\..*Passend ist:\s*Abgestorbene Pflanzenreste/s);
+  assert.deepEqual(foodweb.foodwebQuestion.sourceIds, ['muensterWorms', 'kielWorms']);
+});
+test('The four added soil and waterside profiles are reachable through the existing selector, shared search and public media registry', () => {
+  const search = load('lib/knowledge-expansion-search.js').knowledgeExpansionSearchEntries;
+  const assets = load('lib/knowledge-expansion-assets.js').knowledgeExpansionAssetPaths;
+  for (const id of ['asseln', 'doppelfuesser', 'libellenlarven', 'wasserlaeufer']) {
+    const topic = ecology.revierLifeTopics.find(item => item.id === id); assert.ok(topic);
+    const router = { query: { thema: id }, isReady: true, pathname: '/lernen/kleines-revierleben' };
+    const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
+    assert.equal(find(s.tree, n => n.type === 'select').props.value, id);
+    assert.equal(find(s.tree, n => n.props?.topic)?.props.topic.id, id);
+    assert.ok(ecology.revierLifeGroups.some(group => group.id === topic.group));
+    assert.equal(search.find(entry => entry.id === `revierleben:${id}`).href, `/lernen/kleines-revierleben?thema=${id}#revierleben-inhalt`);
+    assert.ok(assets.includes(topic.photo.src));
+  }
+  assert.equal(load('lib/learning-experiences.js').learningExperiences.length, 24);
 });

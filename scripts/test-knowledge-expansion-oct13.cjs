@@ -81,11 +81,12 @@ test('Weekly cases switch at Monday midnight in Zurich, including winter and day
   assert.equal(weekly.weeklyCaseIndex(new Date('2026-10-18T22:00:00Z')), 1);
   assert.equal(weekly.weeklyCaseIndex(new Date('2026-10-25T22:59:59Z')), 1);
   assert.equal(weekly.weeklyCaseIndex(new Date('2026-10-25T23:00:00Z')), 2);
-  assert.equal(weekly.weeklyCaseIndex(new Date('2026-11-15T23:00:00Z')), 0);
+  assert.equal(weekly.weeklyCaseIndex(new Date('2026-11-15T23:00:00Z')), 5);
+  assert.equal(weekly.weeklyCaseIndex(new Date('2026-12-13T23:00:00Z')), 0);
   assert.equal(weekly.weeklyCaseIndex(new Date('bad')), 0);
 });
 test('Weekly case feedback and discussion preserve topic, real credit, independent sources, and moderation', () => {
-  assert.equal(weekly.communityWeeklyCases.length, 5);
+  assert.equal(weekly.communityWeeklyCases.length, 9);
   for (const item of weekly.communityWeeklyCases) {
     assert.ok(item.question && item.choices[item.answer] && item.photo.author);
     assert.ok(new Set(item.sources.map(source => source.organization)).size >= 2);

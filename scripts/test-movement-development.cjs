@@ -112,8 +112,19 @@ test('Interactive movement timeline, sampling and learning answer update without
   tree = engine.render(Component); assert.match(renderToStaticMarkup(tree), /04\.09\.2014/);
   findNode(tree, node => node.type === 'select').props.onChange({target: {value: 'daily'}});
   tree = engine.render(Component); assert.equal(findNode(tree, node => node.type === 'input' && node.props.type === 'range').props.max, 12);
+  assert.equal(findNode(tree, node => node.type === 'input' && node.props.type === 'range').props.value, 12);
+  assert.match(renderToStaticMarkup(tree), /04\.09\.2014/);
   const radios = []; function collect(node) { if (!node || typeof node !== 'object') return; if (node.type === 'input' && node.props.type === 'radio') radios.push(node); React.Children.forEach(node.props?.children, collect); } collect(tree); radios[1].props.onChange();
   assert.match(renderToStaticMarkup(engine.render(Component)), /Richtig eingeordnet/);
+});
+test('Sampling keeps a nearest existing timestamp instead of returning to the first day or interpolating', () => {
+  const points = [{ timestamp: '2014-08-23 12:00:00' }, { timestamp: '2014-08-24 12:00:00' }, { timestamp: '2014-08-25 12:00:00' }];
+  assert.equal(movement.nearestMovementPointIndex(points, '2014-08-25 06:00:00'), 2);
+  assert.equal(movement.nearestMovementPointIndex(points, '2014-08-24 12:00:00'), 1);
+  assert.equal(movement.nearestMovementPointIndex(points, '2014-08-25 00:00:00'), 1);
+  assert.equal(movement.nearestMovementPointIndex(points, 'invalid'), 0);
+  assert.equal(movement.nearestMovementPointIndex([], '2014-08-25 06:00:00'), 0);
+  assert.equal(points.length, 3);
 });
 test('Interactive development slider keeps exact documented day and provides answer feedback', () => {
   const engine = hooksEngine(); const Component = load('components/DevelopmentPhotoSeries.js', {react: engine.hooks}).default;

@@ -47,16 +47,16 @@ const ecology = load('lib/small-revier-life.js');
 const research = load('lib/research-understanding.js');
 const data = load('public/lernen/forschung-2026/originaldaten.json');
 
-test('Twelve ecological topics carry distinct factual references, limits and actual licensed media', () => {
-  assert.equal(ecology.revierLifeTopics.length, 12);
-  assert.equal(new Set(ecology.revierLifeTopics.map(item => item.id)).size, 12);
+test('Sixteen ecological topics carry distinct factual references, limits and actual licensed media', () => {
+  assert.equal(ecology.revierLifeTopics.length, 16);
+  assert.equal(new Set(ecology.revierLifeTopics.map(item => item.id)).size, 16);
   for (const topic of ecology.revierLifeTopics) {
     assert.ok(topic.photoContext.length > 90 && topic.limit.length > 70);
     for (const fact of topic.facts) {
       assert.ok(fact.sourceIds.every(id => ecology.revierLifeSources[id]), `${topic.id}/${fact.id}: valid references`);
       assert.ok(new Set(fact.sourceIds.map(id => ecology.revierLifeSources[id].organization)).size >= 2, `${topic.id}/${fact.id}: independent organizations`);
     }
-    assert.equal(topic.reviewedOn, ['spinnen', 'amphibien', 'streuabbau', 'eintagsfliegenlarven', 'koecherfliegenlarven', 'bachflohkrebse'].includes(topic.id) ? '2026-10-13' : '2026-10-12');
+    assert.equal(topic.reviewedOn, ['spinnen', 'amphibien', 'streuabbau', 'eintagsfliegenlarven', 'koecherfliegenlarven', 'bachflohkrebse', 'asseln', 'doppelfuesser', 'libellenlarven', 'wasserlaeufer'].includes(topic.id) ? '2026-10-13' : '2026-10-12');
     assert.equal(topic.photo.aiGenerated, false);
   }
   assert.match(ecology.getRevierLifeTopic('laufkaefer').facts.map(item => item.text).join(' '), /samenfressende.*Regenwürmer/s);
@@ -64,14 +64,14 @@ test('Twelve ecological topics carry distinct factual references, limits and act
   assert.match(ecology.getRevierLifeTopic('springschwaenze').facts.map(item => item.text).join(' '), /zurückgebildet/);
 });
 test('Delivered image dimensions and hashes match the attributed unchanged photographs', async () => {
-  const sharp = pr('sharp'); const photos = load('public/lernen/kleines-revierleben-2026/bildnachweise.json');
+  const sharp = pr('sharp'); const photos = ['kleines-revierleben-2026', 'forest-floor-2026', 'pond-life-2026'].flatMap(folder => load(`public/lernen/${folder}/bildnachweise.json`));
   assert.deepEqual(photos.map(item => item.src).sort(), [...ecology.revierLifeAssetPaths].sort());
   for (const photo of photos) {
     const file = path.join(root, 'public', photo.src); const image = await sharp(file).metadata();
     assert.equal(image.width, photo.width); assert.equal(image.height, photo.height);
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'), photo.sha256);
     assert.ok(photo.author && photo.alt && photo.originalUrl && photo.modifications);
-    assert.match(photo.license, /^CC BY(?:-SA)? [234]\.0(?: DE)?$/);
+    assert.match(photo.license, /^CC BY(?:-SA)? (?:[234]\.0|2\.5)(?: DE)?$/);
     assert.match(photo.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
   }
 });
@@ -218,8 +218,8 @@ test('New factual segments retain an explicit evidence map and do not redate leg
       assert.ok(claim.support.every(item => claim.sourceIds.includes(item.sourceId) && item.supports && item.section));
     }
   }
-  const streamIds = ['eintagsfliegenlarven', 'koecherfliegenlarven', 'bachflohkrebse'];
-  assert.deepEqual(ecology.revierLifeTopics.filter(topic => !report.topics.some(item => item.id === topic.id) && !streamIds.includes(topic.id)).map(topic => topic.reviewedOn), Array(6).fill('2026-10-12'));
+  const legacyIds = ['wildbienen', 'laufkaefer', 'holzpilze', 'mykorrhiza', 'regenwuermer', 'springschwaenze'];
+  assert.deepEqual(legacyIds.map(id => { const topic = ecology.revierLifeTopics.find(item => item.id === id); assert.ok(topic); return topic.reviewedOn; }), Array(6).fill('2026-10-12'));
   const frogPhoto = ecology.getRevierLifeTopic('amphibien').photo;
   assert.equal(frogPhoto.license, 'CC BY-SA 3.0 DE');
   assert.match(frogPhoto.licenseUrl, /\/3\.0\/de\/$/);

@@ -1,0 +1,65 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Four soil/waterside profiles integrated into the existing small-revier-life tool, nine reused moderated community cases, and three targeted learning navigation fixes. No claim of a full app-wide factual re-review.",
+  "contentReviews": [
+    "docs/forest-floor-oct13.json",
+    "docs/pond-life-oct13.json"
+  ],
+  "newTopicIds": [
+    "asseln",
+    "doppelfuesser",
+    "libellenlarven",
+    "wasserlaeufer"
+  ],
+  "knowledgeCheck": {
+    "id": "nahrungsnetz-lernfrage",
+    "sourceClaim": "Existing laub-wurm relation; different earthworm life forms use dead plant material, photo does not measure intake.",
+    "independentSourcesRead": [
+      {
+        "organization": "Universität Münster",
+        "url": "https://hypersoil.uni-muenster.de/0/07/04/05.htm",
+        "section": "Streuformen/Tiefgräber/Mineralbodenbewohner, lines 288–292",
+        "supports": "Different life forms and consumption of decaying plant material; no universal leaf-only diet."
+      },
+      {
+        "organization": "Hochschule für Angewandte Wissenschaften Kiel",
+        "url": "https://www.haw-kiel.de/news/was-hat-der-regenwurm-mit-regen-zu-tun/",
+        "section": "What do earthworms eat? Independent interview with Dr Ute Kropf, line 181 and life-form discussion",
+        "supports": "Dead plant material as food; life-form context. Timing/amount and other claims not copied into the new check."
+      }
+    ],
+    "reviewMethod": "Original public pages read through web on 13 October 2026; new corrective explanation is a paraphrase of the already scoped relation. No new ecological prediction."
+  },
+  "existingScope": [
+    "Related uses of Asseln, Tausendfüßer, Doppelfüßer, Hundertfüßer, Libellenlarven and Wasserläufer searched in lib/pages. Existing leaf decomposition lists Asseln with no contradictory statement found.",
+    "Original biological texts/dates in the plant atlas and historic movement dataset not changed. UI selection, URL, focus and subset comparison changed only.",
+    "Original five community cases retain content and actual review dates; four new cases reuse the exact checked profile questions, photos and claims."
+  ],
+  "uiChanges": [
+    "Validated food-web motiv parameter, shallow URL state and content anchor",
+    "Plant selection and season preserved in URL; card activation focuses detail heading; one seasonal selector replaces four action buttons",
+    "Sampling switches to nearest retained original timestamp, never interpolates a point"
+  ],
+  "limits": [
+    "No new live animal locations",
+    "No collection or consumption instructions",
+    "Existing categories and 24 learning tools retained",
+    "Community submission still requires user text, rule confirmation and moderation"
+  ],
+  "independentReview": {
+    "scope": "Four new profiles and their actual photo captions only",
+    "result": "No confirmed false statement or unresolved required source gap found after independent review. Exuvie definition and water-repellent hair microstructure supplemented with directly read independent original sources.",
+    "method": "Separate reviewer read BMIG, Senckenberg handout, Münster, Massey, IGB, NHM Wien, BAFU, LfU, Freiburg, MIT, Maine and NAJU; reviewed original media metadata and all four local JPEGs."
+  },
+  "rootMediaReview": "Root additionally viewed all four delivered JPEGs on 13 October 2026; captions describe visible subjects and retain unmeasured/undocumented limits.",
+  "technicalVerification": {
+    "targetedTestsPassed": 95,
+    "productionBuild": "passed",
+    "browserChecks": [
+      "390px no horizontal overflow, real-photo render and immediate corrective feedback",
+      "Plant selection focuses heading at 24px and survives reload; one seasonal selector",
+      "Nahrungsnetz motiv persists after reload",
+      "1280px no horizontal overflow; selected latest GPS event remains latest when reduced to 13 original points"
+    ]
+  }
+}

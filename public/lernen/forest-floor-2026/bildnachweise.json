@@ -1,0 +1,43 @@
+[
+  {
+    "id": "asseln",
+    "src": "/lernen/forest-floor-2026/asseln.jpg",
+    "author": "Holger Krisp",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kellerassel_Porcellio_scaber.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Kellerassel_Porcellio_scaber.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Kellerassel_Porcellio_scaber.jpg/1280px-Kellerassel_Porcellio_scaber.jpg",
+    "caption": "Kellerassel (Porcellio scaber), Fundort Deutschland, Erbach-Ringingen; Motivangabe der Originalquelle.",
+    "capturedOn": "2021-10-03",
+    "aiGenerated": false,
+    "modifications": "Von Wikimedia bereitgestellte proportionale 1280-Pixel-Vorschau unverändert übernommen. Kein Beschnitt und kein generativer Bildinhalt.",
+    "width": 1280,
+    "height": 853,
+    "alt": "Rückenansicht einer Kellerassel auf Holz; Fühler und Rückenschilde sichtbar, Laufbeine teilweise verdeckt.",
+    "reviewedOn": "2026-10-13",
+    "visualReview": "Lokale JPEG-Datei mit view_image betrachtet: einzelne Assel in Rückenansicht auf Holz, keine eingeblendete Skala, kein Fraß sichtbar. Motiv stimmt mit Originalbeschreibung überein; Artangabe wird der Quelle zugeschrieben.",
+    "sha256": "7e3f975fdab8526af45383caeb8f39de709dfe06c3e7f52f01614ab3da6a5a2e"
+  },
+  {
+    "id": "doppelfuesser",
+    "src": "/lernen/forest-floor-2026/doppelfuesser.jpg",
+    "author": "nbasargin",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tachypodoiulus_niger_134026133.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Tachypodoiulus_niger_134026133.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Tachypodoiulus_niger_134026133.jpg",
+    "originalObservationUrl": "https://www.inaturalist.org/observations/81703837",
+    "caption": "Tachypodoiulus niger, Aufnahme in Bayern; Bestimmung und Ortsangabe der Originalquelle. Aufgerollte Körper und helle Beine sind sichtbar.",
+    "capturedOn": "2021-05-30",
+    "aiGenerated": false,
+    "modifications": "Original-JPEG unverändert übernommen. Kein Beschnitt, keine Farbänderung und kein generativer Bildinhalt.",
+    "width": 1772,
+    "height": 1772,
+    "alt": "Mehrere aufgerollte Schnurfüßer mit dunklen Körperringen und hellen Beinen zwischen Holzstücken.",
+    "reviewedOn": "2026-10-13",
+    "visualReview": "Lokale JPEG-Datei mit view_image betrachtet: mehrere dunkle, gegliederte, aufgerollte Körper mit hellen Beinen zwischen Holzstücken. Kein Fraßvorgang oder Auslöser des Aufrollens erkennbar; keine vollständige Beinzahl zählbar.",
+    "sha256": "c63279d91ba50daaa3e9598f258fc698e0dde77b92bfbb2f984da5cb51df1260"
+  }
+]

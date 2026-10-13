@@ -38,7 +38,7 @@ function engine() {
 }
 function text(node){if(node==null||typeof node==='boolean')return'';if(Array.isArray(node))return node.map(text).join('');return typeof node==='object'?text(node.props?.children):String(node);}
 function find(node,predicate){if(Array.isArray(node)){for(const child of node){const item=find(child,predicate);if(item)return item;}return null;}if(!node||typeof node!=='object')return null;return predicate(node)?node:find(node.props?.children,predicate);}
-function setup(relative,props={}){const e=engine();const Component=load(relative,{react:e.hooks}).default;let tree=e.render(()=>Component(props));return{e,get tree(){return tree;},redraw(){tree=e.render(()=>Component(props));return tree;},click(label){const button=find(tree,item=>item.type==='button'&&text(item)===label);assert.ok(button,label);button.props.onClick();this.redraw();return button;},html(){return renderToStaticMarkup(tree);}};}
+function setup(relative,props={},router={isReady:false,query:{}}){const e=engine();const Component=load(relative,{react:e.hooks,'next/router':{useRouter:()=>router}}).default;let tree=e.render(()=>Component(props));return{e,get tree(){return tree;},redraw(){tree=e.render(()=>Component(props));return tree;},click(label){const button=find(tree,item=>item.type==='button'&&text(item)===label);assert.ok(button,label);button.props.onClick();this.redraw();return button;},html(){return renderToStaticMarkup(tree);}};}
 const plants=load('lib/plant-atlas.js');
 const tracks=load('lib/tracks-workshop.js');
 const habitat=load('lib/habitat-workshop.js');
@@ -118,4 +118,20 @@ test('Valid direct entry parameters open the intended profiles; unknown values a
 });
 test('Documentation checklist is reversible and counts only selected current-session items',()=>{
   const s=setup('components/TracksWorkshop.js');s.click('Fund dokumentieren');const checkbox=find(s.tree,item=>item.type==='input'&&item.props.type==='checkbox');checkbox.props.onChange();s.redraw();assert.match(text(s.tree),/1 von 6/);s.click('Checkliste leeren');assert.match(text(s.tree),/0 von 6/);assert.match(text(s.tree),/nicht als amtlicher Nachweis/);
+});
+test('Choosing a plant preserves its URL, focuses its details, and reduces seasonal controls to one select',()=>{
+  const updates=[]; let focused=0;
+  const router={isReady:true,pathname:'/lernen/pflanzenatlas',query:{eintrag:'rotbuche',retained:'yes'},replace:async update=>{updates.push(update);router.query=update.query;}};
+  const p=setup('components/PlantAtlas.js',{},router);p.e.runEffects();p.redraw();
+  find(p.tree,n=>n.props?.id==='plant-title').props.ref.current={focus:()=>{focused++;}};
+  find(p.tree,n=>n.type==='button'&&text(n).startsWith('Waldkiefer / Waldföhre')).props.onClick();p.redraw();p.e.runEffects();p.redraw();
+  assert.equal(focused,1);assert.equal(updates[0].query.eintrag,'waldkiefer');assert.equal(updates[0].query.retained,'yes');assert.equal(updates[0].hash,'plant-detail');
+  const season=find(p.tree,n=>n.type==='select'&&n.props['aria-controls']==='plant-season');assert.ok(season);
+  season.props.onChange({target:{value:'winter'}});p.redraw();p.e.runEffects();p.redraw();
+  assert.equal(updates.at(-1).query.jahreszeit,'winter');assert.equal(updates.at(-1).query.eintrag,'waldkiefer');
+  assert.match(text(find(p.tree,n=>n.props?.id==='plant-season')),/^Winter/);
+  assert.equal(find(p.tree,n=>n.type==='button'&&n.props['aria-controls']==='plant-season'),null);
+  router.query={eintrag:'unknown',jahreszeit:'unknown'};p.e.runEffects();p.redraw();p.e.runEffects();p.redraw();
+  assert.equal(find(p.tree,n=>n.props?.id==='plant-title').props.children,plants.plantAtlasEntries[0].name);
+  assert.equal(find(p.tree,n=>n.type==='select'&&n.props['aria-controls']==='plant-season').props.value,'sommer');
 });

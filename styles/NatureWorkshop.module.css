@@ -26,3 +26,6 @@
 .feature a:hover, .species a:hover, .credit a:hover { color:#473515; }
 .catalog button:focus-visible, .seasonTabs button:focus-visible, .feature input:focus-visible { outline:3px solid #99752a; outline-offset:3px; }
 @media(max-width:500px){.feature,.species{padding:15px}.catalog{grid-template-columns:minmax(0,1fr)}.landscape text{font-size:15px}}
+
+.detailTitle { scroll-margin-top: 24px; }
+.detailTitle:focus { outline: 2px solid #99752a; outline-offset: 5px; border-radius: 3px; }

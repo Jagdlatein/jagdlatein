@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import FoodwebLearning from "./FoodwebLearning";
-import { foodwebTopic } from "../lib/foodweb-learning";
+import { foodwebTopic, foodwebNodes, getFoodwebSelection } from "../lib/foodweb-learning";
 import { getRevierLifeTopic, revierLifeGroups, revierLifeSources, revierLifeTopics } from "../lib/small-revier-life";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/RevierKnowledge.module.css";
@@ -31,15 +31,26 @@ function TopicContent({ topic }) {
 export default function SmallRevierLife() {
   const router = useRouter();
   const [selected, setSelected] = useState(revierLifeTopics[0].id);
+  const [foodwebNode, setFoodwebNode] = useState("regenwurm");
   useEffect(() => { if (router.isReady) setSelected(router.query.thema === foodwebTopic.id ? foodwebTopic.id : getRevierLifeTopic(typeof router.query.thema === "string" ? router.query.thema : "").id); }, [router.isReady, router.query.thema]);
+  useEffect(() => { if (router.isReady) setFoodwebNode(getFoodwebSelection(typeof router.query.motiv === "string" ? router.query.motiv : "").node.id); }, [router.isReady, router.query.motiv]);
   const topic = getRevierLifeTopic(selected);
+  function updateSelection(query) {
+    if (router.isReady) router.replace({ pathname: router.pathname, query, hash: "revierleben-inhalt" }, undefined, { shallow: true, scroll: false }).catch(() => {});
+  }
   function select(id) {
     if (id !== foodwebTopic.id && !revierLifeTopics.some(item => item.id === id)) return;
     setSelected(id);
-    if (router.isReady) router.replace({ pathname: router.pathname, query: { ...router.query, thema: id } }, undefined, { shallow: true, scroll: false }).catch(() => {});
+    const { motiv, ...query } = router.query;
+    updateSelection({ ...query, thema: id, ...(id === foodwebTopic.id ? { motiv: foodwebNode } : {}) });
+  }
+  function selectFoodwebNode(id) {
+    if (!foodwebNodes.some(node => node.id === id)) return;
+    setFoodwebNode(id);
+    updateSelection({ ...router.query, thema: foodwebTopic.id, motiv: id });
   }
   return <LearningToolLayout title="Das kleine Leben im Revier" description="Kleine Tiere, Pilze und Bodenleben mit echten Fotos entdecken und ihre ökologischen Beziehungen verstehen." category="natur-revier" icon="nature" compact>
     <section className={`${shared.panel} ${styles.selector}`} aria-label="Thema auswählen"><label className={shared.field}>Lebewesen oder Zusammenhang<select value={selected} onChange={event => select(event.target.value)}>{revierLifeGroups.map(group => <optgroup key={group.id} label={group.title}>{revierLifeTopics.filter(item => item.group === group.id).map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup>)}<optgroup label="Zusammenhänge"><option value={foodwebTopic.id}>{foodwebTopic.title}</option></optgroup></select></label></section>
-    {selected === foodwebTopic.id ? <FoodwebLearning /> : <TopicContent key={topic.id} topic={topic} />}
+    {selected === foodwebTopic.id ? <FoodwebLearning selectedId={foodwebNode} onSelect={selectFoodwebNode} /> : <TopicContent key={topic.id} topic={topic} />}
   </LearningToolLayout>;
 }
