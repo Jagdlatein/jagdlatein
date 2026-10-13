@@ -1,0 +1,150 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Drei neue Themen und ihre neun Wissenssegmente in Das kleine Leben im Revier. Bestehende sechs Themen erhalten kein neues vollständiges Prüfdatum. Keine vollständige Neuprüfung der App.",
+  "policy": "AGENTS.md und KNOWLEDGE_POLICY.md gelesen; eigene Kurzfassungen mit konkret zugeordneten, tatsächlich eingesehenen Fachquellen.",
+  "topics": [
+    {
+      "id": "spinnen",
+      "claims": [
+        {
+          "factId": "fangweisen",
+          "claim": "Nicht alle Webspinnen verwenden Fangnetze. Springspinnen bieten ein Beispiel für Annäherung und Beutesprung und nutzen Seide unter anderem für Verstecke.",
+          "sourceIds": ["aragesJumpers", "nhmSilk", "lflSpiders"],
+          "support": [
+            { "sourceId": "aragesJumpers", "section": "Lebensweise / Beutefang", "supports": "Fang ohne Fangnetz, Beutesprung und Wohngespinste; mitteleuropäischer Familienkontext." },
+            { "sourceId": "nhmSilk", "section": "Do all spiders make webs? / Silk: a multipurpose material", "supports": "Unabhängige Bestätigung von Springspinnen-Beutesprung und Seidenverstecken durch die Museumskuratorin. Britische Artenzahlen werden nicht auf DACH übertragen." },
+            { "sourceId": "lflSpiders", "section": "Spinnen (Araneae) / Lebensweise", "supports": "Spinnen verwenden unterschiedliche Fangweisen; nicht alle bauen ein Netz. Die Seite bestätigt nicht jede Einzelangabe zu Springspinnen." }
+          ],
+          "independentOrganizations": ["Arachnologische Gesellschaft", "Natural History Museum London", "Bayerische Landesanstalt für Landwirtschaft"],
+          "boundary": "Keine weltweite Aussage über ausnahmslos alle Springspinnen, keine Gesundheits- oder Gefahreneinschätzung und keine Artenzahl. Nicht gesehen bedeutet nicht sicher abwesend."
+        },
+        {
+          "factId": "radnetz",
+          "claim": "Die Gartenkreuzspinne verwendet ein Radnetz mit Speichen und Fangspirale. Radnetze unterscheiden sich nach Art unter anderem in Größe, Neigung und Anordnung.",
+          "sourceIds": ["aragesOrb", "baselWebs"],
+          "support": [
+            { "sourceId": "aragesOrb", "section": "Mehr Informationen zur Art", "supports": "Radnetz mit Klebfadenspirale als Fangfläche, Lage des Gartenkreuzspinnennetzes und unterschiedliche Fangfäden." },
+            { "sourceId": "baselWebs", "section": "Gartenkreuzspinne / Kürbisspinne / Larinioides patagiatus / Zwergradnetzspinne", "supports": "Eigene Netzbauaufzeichnungen des Forschers: Speichen, Klebespirale und konkrete Unterschiede zwischen Netzen. Keine Nutzung der fremden Aufzeichnungen als eigene Messung." }
+          ],
+          "independentOrganizations": ["Arachnologische Gesellschaft", "Universität Basel"],
+          "boundary": "Aus dem Netz allein entsteht kein vollständiger Artbestimmungsschlüssel. Das Foto zeigt kein gemessenes Netzmaß."
+        },
+        {
+          "factId": "beute",
+          "claim": "Radnetzspinnen erbeuten verschiedene Insekten. Das Beutespektrum hängt auch vom Lebensraum ab; ein einzelner Beuterest ist keine Fangrate.",
+          "sourceIds": ["lflSpiders", "aragesOrbFamily"],
+          "support": [
+            { "sourceId": "lflSpiders", "section": "Spinnen (Araneae) / Nutzen und Beute", "supports": "Verschiedene Beutegruppen einschließlich Fliegen, Mücken und Käfern; keine Beschränkung auf eine Schädlingsart." },
+            { "sourceId": "aragesOrbFamily", "section": "Netzbau und Beutefang", "supports": "Lebensraumabhängige Nahrung und meist wenig spezialisierte Beuteauswahl der Radnetzspinnen." }
+          ],
+          "independentOrganizations": ["Bayerische Landesanstalt für Landwirtschaft", "Arachnologische Gesellschaft"],
+          "boundary": "Keine Übertragung alter Artenzahlen, fester Tagesfangwerte oder pauschaler Nützlingsbewertung auf das gezeigte Tier."
+        }
+      ]
+    },
+    {
+      "id": "amphibien",
+      "claims": [
+        {
+          "factId": "lebensphasen",
+          "claim": "Viele heimische Amphibien nutzen Wasser- und Landlebensräume. Die Bindung ist artspezifisch. Grasfrösche können im Wasser oder an Land überwintern.",
+          "sourceIds": ["karchBiology", "karchFrog", "lfuAmphibians", "lubwFrog"],
+          "support": [
+            { "sourceId": "karchBiology", "section": "Lebensweise", "supports": "Zweiphasiger Lebenszyklus der großen Mehrheit und artspezifische Bindung fertig entwickelter Tiere an das Wasser. Die verkürzte Aussage zum Grasfrosch wird durch das detaillierte Artporträt präzisiert." },
+            { "sourceId": "karchFrog", "section": "Ökologie", "supports": "Winterquartiere eines Teils der Tiere im Wasser, anderer im Waldboden; anschließende Wanderung zum Laichplatz." },
+            { "sourceId": "lfuAmphibians", "section": "Ansprüche an den Lebensraum", "supports": "Lebensräume für verschiedene Entwicklungsphasen und Winterquartiere; Grasfrösche überwintern teilweise im Gewässer." },
+            { "sourceId": "lubwFrog", "section": "Lebensraum / Lebensweise", "supports": "Grasfrosch-Landhabitate, Laichgewässer sowie Überwinterung im Wasser oder in Bodenverstecken." }
+          ],
+          "independentOrganizations": ["info fauna / karch", "Bayerisches Landesamt für Umwelt", "Landesanstalt für Umwelt Baden-Württemberg"],
+          "boundary": "Keine Aussage, dass alle Amphibien zwingend aquatische Larven haben oder ausnahmslos an Land überwintern. Keine Bau- oder Umsetzungsanleitung."
+        },
+        {
+          "factId": "nahrung",
+          "claim": "Grasfrosch-Kaulquappen nutzen pflanzliches und auch tierisches Material. Erwachsene Tiere fressen verschiedene Beutetiere; der Speiseplan darf nicht auf alle Lebensphasen übertragen werden.",
+          "sourceIds": ["karchFrog", "lubwFrog", "lfuAmphibians"],
+          "support": [
+            { "sourceId": "karchFrog", "section": "Ökologie / Metamorphose", "supports": "Pflanzen und Aas fressende Grasfroschlarven vor dem Umbau zum Jungfrosch. Die Seite liefert keine vollständige Erwachsenen-Beuteliste." },
+            { "sourceId": "lubwFrog", "section": "Lebensweise", "supports": "Larvennahrung einschließlich Algenaufwuchs und tierischem Material; Nahrung erwachsener Grasfrösche einschließlich Insekten, Spinnen, Schnecken und Würmern." },
+            { "sourceId": "lfuAmphibians", "section": "Ansprüche an den Lebensraum / Nahrung und Der amphibienfreundliche Garten", "supports": "Unabhängige Ergänzung tierischer Nahrung fertig entwickelter Lurche, einschließlich Insekten, Schnecken, Spinnen und Würmern." }
+          ],
+          "independentOrganizations": ["info fauna / karch", "Landesanstalt für Umwelt Baden-Württemberg", "Bayerisches Landesamt für Umwelt"],
+          "boundary": "Kein ausschließlich pflanzlicher Kaulquappenspeiseplan behauptet; keine ungeprüfte Übertragung auf Molchlarven oder andere Arten."
+        },
+        {
+          "factId": "strukturen",
+          "claim": "Feuchte, strukturreiche Landlebensräume bieten Nahrung und Verstecke; geeignete Laub- und Totholzstrukturen sind mögliche Bestandteile.",
+          "sourceIds": ["karchWetlands", "lfuAmphibians"],
+          "support": [
+            { "sourceId": "karchWetlands", "section": "Ganzjähriger Lebensraum", "supports": "Nahrungsgrundlage, Versteckmöglichkeiten und feuchtes Mikroklima außerhalb der Laichzeit." },
+            { "sourceId": "lfuAmphibians", "section": "Ansprüche an den Lebensraum / Der amphibienfreundliche Garten", "supports": "Geeignete Hohlräume, Reisig- und Totholzstrukturen sowie Nahrung in feuchten, strukturreichen Bereichen." }
+          ],
+          "independentOrganizations": ["info fauna / karch", "Bayerisches Landesamt für Umwelt"],
+          "boundary": "Struktur vorhanden ist kein Besiedlungsnachweis. Keine pauschale Eignung jeder Struktur für jede Art."
+        }
+      ]
+    },
+    {
+      "id": "streuabbau",
+      "claims": [
+        {
+          "factId": "zusammenspiel",
+          "claim": "Bodentiere zerkleinern und verdauen Pflanzenreste. Pilze und Bakterien wirken am Ab- und Umbau mit; dadurch werden Nährstoffe erneut verfügbar.",
+          "sourceIds": ["muensterLitter", "muensterDecomposition", "lwfLitter"],
+          "support": [
+            { "sourceId": "muensterLitter", "section": "Information / Info-Blatt 1 und 2", "supports": "Blattzerkleinerung und Veränderung bei der Verdauung, Zusammenspiel mit Mikroorganismen und Nährstoffrückführung." },
+            { "sourceId": "muensterDecomposition", "section": "Zersetzung", "supports": "Ab- und Umbau organischer Substanz durch Bodenorganismen, Mineralisierung und eng verknüpfte Prozesse." },
+            { "sourceId": "lwfLitter", "section": "Podcast-Begleittext", "supports": "Unabhängige Darstellung von Zerkleinerung, Verarbeitung durch Pilze/Bakterien und Bedeutung frei werdender Mineralstoffe." }
+          ],
+          "independentOrganizations": ["Universität Münster", "Bayerische Landesanstalt für Wald und Forstwirtschaft"],
+          "boundary": "Keine feste Reihenfolge für jedes Blatt und kein pauschales vollständiges Umwandeln aller Blattmasse in Humus."
+        },
+        {
+          "factId": "nahrungsnetz",
+          "claim": "Bodenmilben besitzen unterschiedliche Ernährungsweisen: Hornmilben können Streu nutzen, Raubmilben andere Bodentiere. Nicht jedes Bodentier ist ein Laubfresser.",
+          "sourceIds": ["lflSpringtails", "muensterMites", "muensterLitter"],
+          "support": [
+            { "sourceId": "lflSpringtails", "section": "Milben", "supports": "Hornmilben als Streuzersetzer und Raubmilben mit anderen Bodentieren als Nahrung." },
+            { "sourceId": "muensterMites", "section": "Milben (Acari)", "supports": "Unabhängige Beschreibung überwiegend streunutzender Hornmilben und Beutetieren der räuberischen Milben." },
+            { "sourceId": "muensterLitter", "section": "Information", "supports": "Zusätzliche allgemeine Einordnung räuberischer Nutzer innerhalb der Streugemeinschaft. Keine eigenständige zweite Organisation." }
+          ],
+          "independentOrganizations": ["Bayerische Landesanstalt für Landwirtschaft", "Universität Münster"],
+          "boundary": "Keine Artbestimmung oder Nahrungszuordnung eines unbekannten winzigen Tiers aus der Fotografie. Keine alten pauschalen Milben-Artenzahlen übernommen."
+        },
+        {
+          "factId": "tempo",
+          "claim": "Temperatur, Feuchtigkeit, Boden und Ausgangsmaterial beeinflussen die Zersetzung; die Menge allein legt das Tempo nicht fest.",
+          "sourceIds": ["muensterDecomposition", "lwfLitter"],
+          "support": [
+            { "sourceId": "muensterDecomposition", "section": "Zersetzung / Intensität und Ausgangssubstanzen", "supports": "Standortfaktoren, Feuchte, Durchlüftung, Temperatur und unterschiedlich abbauresistente Bestandteile." },
+            { "sourceId": "lwfLitter", "section": "Podcast-Begleittext", "supports": "Unabhängige Darstellung klimatischer Einflüsse, Baumart sowie bodenphysikalischer und bodenchemischer Faktoren." }
+          ],
+          "independentOrganizations": ["Universität Münster", "Bayerische Landesanstalt für Wald und Forstwirtschaft"],
+          "boundary": "Keine universelle Abbaudauer, Temperaturgrenze oder Geschwindigkeitsformel für DACH."
+        }
+      ]
+    }
+  ],
+  "media": {
+    "manifest": "public/lernen/kleines-revierleben-2026/bildnachweise.json",
+    "ids": ["spinnen", "amphibien", "streuabbau"],
+    "visualReview": "Alle drei lokalen JPEGs am 13. Oktober 2026 visuell geöffnet. Tatsächlich sichtbare Motive und Bildgrenzen sind im Manifest und in photoContext dokumentiert.",
+    "licenses": ["CC BY-SA 4.0", "CC BY-SA 3.0 DE", "CC BY-SA 3.0"],
+    "noGenerativeMedia": true,
+    "changes": "Wikimedia-Vorschauen beziehungsweise Original-JPEG unverändert übernommen. Keine eigenen Bildbearbeitungen.",
+    "unknownLocation": "Plant litter2011.jpg: kein dokumentierter Aufnahmeort; die App behauptet keinen DACH-Ort."
+  },
+  "relatedContentReview": [
+    { "file": "lib/small-revier-life.js", "scope": "Vorhandene Holzpilz-, Regenwurm- und Springschwanztexte im Zusammenhang der Erweiterung gelesen; keine bestätigte fachliche Kollision mit den neuen Texten. Die alte vollständige Prüfung wird nicht neu datiert." },
+    { "file": "lib/learning-expansion-nature.js", "scope": "Passende Baum-/Totholz-, Strauch-Nahrungsnetz- und Feldrain/Heckenabschnitte sowie zugehörige Fragen betrachtet. Vorsicht bei Einzelbildern, Ressourcenangebot und tatsächlicher Nutzung ist mit den neuen Themen vereinbar. Keine Änderung erforderlich." },
+    { "file": "lib/learning-deepening-nature.js", "scope": "Populationsökologie: fehlender Nachweis, Nahrungs- und Lebensraumbezug sowie Waldstruktur/Standort betrachtet. Keine neue Bestandsbehauptung oder Kollisionskorrektur erforderlich." },
+    { "file": "lib/habitat-workshop.js", "scope": "Gewässer und Erdkröten-Landlebensraum einschließlich Frage amphibien-verbund gelesen; kein Widerspruch. Das bisherige Quelleninventar dieser Datei bleibt eine gesonderte Aufgabe." }
+  ],
+  "withheldOrAvoided": [
+    "Springspinnen-Wohngespinste tags oder nachts: unterschiedliche Kurzbeschreibungen der Fachseiten; ohne Tageszeit formuliert.",
+    "Genetische Hinweise auf Zelluloseabbau wirbelloser Bodentiere wurden bei Senckenberg gelesen, aber nicht als zweifach unabhängig nachgewiesene spezielle neue Lernbehauptung übernommen.",
+    "Kein pauschaler Satz, dass sämtliche Amphibien nur zum Laichen Wasser nutzen: die Grasfrosch-Artquellen dokumentieren auch Wasserüberwinterung.",
+    "Keine unverändert übernommenen veralteten Artenzahlen der allgemeinen Spinnen- oder Milbenseiten und keine Fangzahlen oder prognostizierten Bestände.",
+    "Kein Foto wird als Beweis für unsichtbare Mikroorganismen, Stoffwechsel, Fangrate oder Zersetzungsdauer ausgegeben."
+  ],
+  "technicalChecks": "Gezielte Revier-/Forschungstests prüfen Darstellung, Deep Links, Antwortwechsel, Fotoeigenschaften und Quellenstruktur. Sie ersetzen keinen fachlichen Abgleich."
+}

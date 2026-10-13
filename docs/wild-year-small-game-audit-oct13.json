@@ -1,0 +1,54 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Two new biological year profiles: Feldhase and Dachs. Eighteen distinct knowledge blocks, 24 month views and four fields per view. Targeted correction of the existing badger birth paragraph only; no full review of all older species or the app.",
+  "method": "Read named specialist organizations against each concrete block. Different URLs under the Bavarian ministry were counted as one organization. Monthly bands are editorial orientation, not absolute individual dates. Technical tests check structure and links, not factual certification.",
+  "sourcesRead": [
+    { "id": "haseDJV", "organization": "Deutscher Jagdverband", "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/feldhase-lepus-europaeus", "supports": ["Winter coloration and long ears/legs", "Plant diet", "Pairing December/January–July/August", "Approximately 42–43-day gestation; young born furred and seeing but still suckled", "Sasse and spring pairing groups"] },
+    { "id": "haseStiftung", "organization": "Deutsche Wildtier Stiftung", "url": "https://www.deutschewildtierstiftung.de/wildtiere/feldhase", "supports": ["Summer brown/winter grey-brown coat", "Long ears/legs", "Winter plant diet including bark", "Sasse and low-visibility resting"] },
+    { "id": "haseLfL", "organization": "Bayerische Landesanstalt für Landwirtschaft / StMELF", "url": "https://www.lfl.bayern.de/iab/kulturlandschaft/299133/index.php", "supports": ["Sasses rather than underground burrows", "Dusk/night activity", "Broad plant diet and year-round edges", "Reproduction February–October; about 42 days, seeing/furred young still suckled"] },
+    { "id": "haseBayern", "organization": "Wildtierportal Bayern / StMELF", "url": "https://www.wildtierportal.bayern.de/wildtiere_bayern/102456/index.php", "supports": ["Spring pairing groups", "Plant diet and harvest-related changes in food and cover", "Field margins, hedges and fallow sites"] },
+    { "id": "haseWFS", "organization": "Wildforschungsstelle Baden-Württemberg / LAZBW", "url": "https://www.wildtierportal-bw.de/filefly/api?action=stream&path=%2Fwildarten%2Fpdfs%2F2023-wfs-hase-kaninchen.pdf", "pages": [2, 5], "supports": ["Body/ear/fur identification and lighter winter coat", "Pairing December–August", "Plant diet", "Sasse, loose pairing groups, young born furred and seeing after about 42 days"] },
+    { "id": "dachsDJV", "organization": "Deutscher Jagdverband", "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/dachs-meles-meles", "supports": ["Face mask, grey back, short dark legs", "Omnivory", "Winter rest interruptions", "Clans and branched burrows", "Broad pairing January–October, embryonic delay, births late February–early April"] },
+    { "id": "dachsStiftung", "organization": "Deutsche Wildtier Stiftung", "url": "https://www.deutschewildtierstiftung.de/wildtiere/dachs", "supports": ["Coat and mask", "Ground-based animal and plant foods including fallen fruit and maize", "Family groups and burrows", "Births January–March in burrows, emerging after weeks", "Postpartum pairing and delay until winter development"] },
+    { "id": "dachsBayern", "organization": "Wildtierportal Bayern / StMELF", "url": "https://www.wildtierportal.bayern.de/wildtiere_bayern/101575/index.php", "supports": ["Winter rest can be interrupted for feeding", "Omnivory", "Main/secondary burrows and social groups", "February/March births"] },
+    { "id": "dachsWinterStiftung", "organization": "Deutsche Wildtier Stiftung", "url": "https://www.deutschewildtierstiftung.de/aktuelles/artikel/was-ist-eigentlich-winterschlaf", "supports": ["Winter-resting animals can be intermittently active and seek food; distinction from true hibernation"] }
+  ],
+  "newBlockSources": {
+    "hase-winterfell": ["haseDJV", "haseStiftung", "haseWFS"],
+    "hase-sommerfell": ["haseDJV", "haseStiftung", "haseWFS"],
+    "hase-winternahrung": ["haseDJV", "haseStiftung", "haseLfL"],
+    "hase-gruennahrung": ["haseBayern", "haseLfL", "haseWFS"],
+    "hase-rammelbeginn": ["haseDJV", "haseWFS", "haseLfL"],
+    "hase-junge": ["haseDJV", "haseLfL", "haseWFS"],
+    "hase-spaete-junge": ["haseDJV", "haseWFS", "haseLfL"],
+    "hase-fruehjahrgruppen": ["haseDJV", "haseBayern", "haseWFS"],
+    "hase-sasse": ["haseDJV", "haseLfL", "haseWFS"],
+    "dachs-maske": ["dachsDJV", "dachsStiftung"],
+    "dachs-winterausfluege": ["dachsBayern", "dachsWinterStiftung"],
+    "dachs-mischkost": ["dachsDJV", "dachsStiftung", "dachsBayern"],
+    "dachs-herbstangebot": ["dachsDJV", "dachsStiftung"],
+    "dachs-winterentwicklung": ["dachsDJV", "dachsStiftung"],
+    "dachs-junge": ["dachsDJV", "dachsStiftung", "dachsBayern"],
+    "dachs-keimruhe": ["dachsDJV", "dachsStiftung"],
+    "dachs-winterruhe": ["dachsDJV", "dachsBayern", "dachsWinterStiftung"],
+    "dachs-clan": ["dachsDJV", "dachsBayern", "dachsStiftung"]
+  },
+  "qualifications": [
+    { "issue": "Hare pairing and reproduction season are given differently", "evidence": "DJV/WFS December or January–August pairing versus LfL February–October reproduction.", "handling": "Pairing and the longer birth/upbringing season are explicitly separated; no universal last birth date. November is grouped with season transition, not claimed as a regular birth month." },
+    { "issue": "Badger birth windows differ", "evidence": "DWT January–March, DJV late February–early April, Bavaria February/March.", "handling": "Use late winter/early spring and show the exact difference in the note. A January birth is a possible edge case, not excluded by the main February–April teaching band." },
+    { "issue": "Badger metabolic accounts disagree", "evidence": "Bavarian species page says metabolism remains unchanged; DWT species page describes a strong reduction while its winter article qualifies reduction as less drastic than true hibernation.", "handling": "Do not publish numeric or absolute metabolic statements. Explain only independently agreed winter rest with possible activity/feeding interruptions." },
+    { "issue": "Photo scope", "handling": "Reused verified real portraits illustrate species only. They are not evidence for the selected month, sex, age, birth, diet intake or health." }
+  ],
+  "media": [
+    { "slug": "feldhase", "path": "/wildkunde/nachweise-2026/feldhase.jpg", "sourcePage": "https://commons.wikimedia.org/wiki/File:Lepus_EM115247_(27783674376).jpg", "author": "Bengt Nyman", "license": "CC BY 2.0", "sha256": "2a83d44e49e927dbe1b8a3230282392273a193315c6a26f955fa3fada59d7ad9", "visuallyInspectedOn": "2026-10-13", "visible": "Long ears with dark tips, brown fur and side-placed eye; species portrait." },
+    { "slug": "dachs", "path": "/wildkunde/nachweise-2026/dachs.jpg", "sourcePage": "https://commons.wikimedia.org/wiki/File:Badger-badger.jpg", "author": "BadgerHero", "license": "CC BY-SA 3.0", "sha256": "15467e58df2224da057a2f7429cb3faea96c98e6990600b53fa35cae1a4b8a2f", "visuallyInspectedOn": "2026-10-13", "visible": "Black/white face mask, grey back, small ear, dark legs; species portrait." }
+  ],
+  "relatedContentReview": [
+    { "file": "lib/wildlife-depth.js", "target": "dachs.seasonalLife[1]", "change": "Replace spring-only wording by late winter/early spring birth in the burrow.", "targetedMetadata": "wildlifeDepthEvidenceChecks.dachs[0] reviewed 2026-10-13; overall profile retains 2026-10-12." },
+    { "file": "lib/wildlife-depth.js", "target": "feldhase seasonal life and Sasse", "result": "Consistent with checked harvest, furred/seeing births and surface resting-place facts. No change." },
+    { "file": "lib/learning-expansion-nature.js", "target": "wissen-ausbau-hasenartige and raubwildoekologie", "result": "Compared covered identification, plant/omnivorous diet, Sasse/burrow and newborn development; no contradiction found in these aspects." },
+    { "file": "lib/learning-wildlife-depth.js", "target": "wissen-vertiefung-wild-kleine-beutegreifer, keimruhe lesson, p5/p6", "result": "Embryonic delay and winter physiology are already correctly separated; no change." },
+    { "file": "lib/quiz-content-review.js", "target": "DE-wk-feldhase-ruhe-55 and JL-1068", "result": "Sasse answers remain consistent; no change." }
+  ],
+  "notClaimed": ["Complete verification of all wildlife-depth paragraphs", "Independent certification of all app knowledge", "Law or hunting-season advice", "Calendar dates applying to every animal"]
+}

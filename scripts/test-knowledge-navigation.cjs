@@ -40,18 +40,44 @@ test('The learning overview exposes one search, twelve real photo categories, an
   assert.ok(html.indexOf('Kategorien') < html.indexOf('all-search-title'));
 });
 
-test('Category pages put photographed courses before deduplicated extra resources, with no separate opening button', () => {
+test('Category pages expose compact photographed practice before courses, with remaining resources below and no extra opening button', () => {
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
   const Component = load('components/LearningOverview.js').default;
   for (const category of ['hundewesen', 'wildkunde', 'jagdrecht']) {
     const html = renderToStaticMarkup(React.createElement(Component, {data: getData(category)}));
     assert.equal((html.match(/type="search"/g) || []).length, 1);
     assert.ok(html.indexOf('learning-modules-heading') < html.indexOf('learning-resources-heading'));
+    if (category !== 'jagdrecht') {
+      assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('id="learning-modules-heading"'));
+      assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('aria-label="Deine Kurse"'));
+      assert.ok(html.includes('class="featuredPhoto"'));
+    }
     assert.doesNotMatch(html, /Lerneinheit öffnen|id="learning-country"/);
+    assert.doesNotMatch(html, /class="lessonPreview"/);
     const resourceHtml = html.split('id="learning-resources-heading"')[1]?.split('</ul>')[0] || '';
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));
     const links = [...resourceHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => targets.has(href));
     assert.equal(new Set(links).size, links.length);
+  }
+});
+
+test('Overview photo summaries preserve exact delivered media and attribution without transferring full lesson datasets', async () => {
+  const summaries = load('lib/learning-featured-media.js').learningFeaturedMedia;
+  const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
+  assert.equal(Object.keys(summaries).length, 7);
+  assert.deepEqual(getData().featuredMedia, {});
+  assert.ok(new Set(Object.values(summaries).map(photo => photo.src)).size >= 6);
+  for (const [href, photo] of Object.entries(summaries)) {
+    const dimensions = await sharp(path.join(root, 'public', photo.src)).metadata();
+    assert.equal(dimensions.width, photo.width, href); assert.equal(dimensions.height, photo.height, href);
+    assert.ok(photo.credit && photo.alt && photo.creditUrl.startsWith('https://') && photo.licenseUrl.startsWith('https://'), href);
+    assert.ok(Object.values(photo).every(value => typeof value === 'string' || typeof value === 'number'));
+  }
+  for (const category of ['hundewesen', 'wildkunde', 'natur-revier']) {
+    const data = getData(category);
+    const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category)).map(tool => tool.href).sort();
+    assert.deepEqual(Object.keys(data.featuredMedia).sort(), expected);
+    assert.ok(data.modules.every(module => !module.lessons && !module.questions && !module.lessonTitles));
   }
 });
 

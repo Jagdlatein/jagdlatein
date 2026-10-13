@@ -41,11 +41,11 @@
 .pathModules a:hover { background: #f5e7bf; border-color: #796021; }
 .moduleGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .moduleCard { min-width: 0; padding: 22px; border: 1px solid #e0c989; border-radius: 18px; background: #fffdf7; display: flex; flex-direction: column; align-items: flex-start; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .tags span { padding: 5px 9px; border-radius: 16px; background: #f5e7bf; font-size: 12px; font-weight: 600; line-height: 1.5; }
 .moduleCard .muted { margin: 0 0 16px; }
 .countries { font-size: 13px; color: #796021; font-weight: 600; line-height: 1.6; margin: 0 0 10px; }
-.moduleFacts { font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
+.moduleFacts { font-size: 14px; line-height: 1.6; margin: 0; }
 .lessonPreview { padding-left: 20px; margin: 0 0 22px; font-size: 14px; color: #6e6249; line-height: 1.7; }
 .lessonPreview li + li { margin-top: 5px; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 16px; border: 1px solid #b99835; border-radius: 12px; background: #caa53b; color: #3e321b; font: inherit; font-weight: 600; text-decoration: none; text-align: center; cursor: pointer; }
@@ -61,6 +61,18 @@
 .moduleLink h3 { display: flex; justify-content: space-between; gap: 10px; }
 .moduleLink h3 svg { flex-shrink: 0; margin-top: 4px; }
 .moduleLink:hover h3 { color: #796021; text-decoration: underline; text-underline-offset: 4px; }
+.featuredGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.featuredCard { min-width: 0; padding: 16px; background: #fffdf7; border: 1px solid #e0c989; border-radius: 18px; }
+.featuredLink { display: flex; align-items: center; gap: 16px; color: inherit; text-decoration: none; min-height: 112px; }
+.featuredPhoto { flex: 0 0 112px; width: 112px; height: 112px; object-fit: contain; border-radius: 10px; background: #f6f0df; }
+.featuredText { display: block; flex: 1; min-width: 0; }
+.featuredText strong { display: block; font-size: 20px; line-height: 1.35; overflow-wrap: anywhere; }
+.featuredText > span { display: block; margin-top: 8px; color: #6e6249; font-size: 15px; line-height: 1.6; }
+.featuredLink > svg { flex-shrink: 0; color: #796021; }
+.featuredLink:hover strong { color: #796021; text-decoration: underline; text-underline-offset: 4px; }
+.featuredCredit { display: block; margin-top: 10px; color: #73664d; font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
+.featuredCredit a { color: inherit; text-underline-offset: 3px; }
+.featuredLink:focus-visible, .moduleLink:focus-visible, .featuredCredit a:focus-visible, .resources a:focus-visible, .quietNav a:focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 6px; }
 .moduleLink .lessonPreview { margin-bottom: 0; }
 .resources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; list-style: none; padding: 0; margin: 0; }
 .resources li { min-width: 0; border-bottom: 1px solid #dfcda0; }
@@ -78,11 +90,17 @@
 .empty p { line-height: 1.7; margin: 0 0 20px; }
 .main a:focus-visible, .main button:focus-visible, .main input:focus-visible, .main select:focus-visible, .main summary:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
 @media (max-width: 940px) {
+  .featuredGrid { grid-template-columns: minmax(0, 1fr); }
   .pathGrid, .moduleGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .searchField { grid-column: 1 / -1; }
 }
 @media (max-width: 600px) {
+  .featuredCard { padding: 14px; }
+  .featuredLink { gap: 12px; min-height: 80px; }
+  .featuredPhoto { flex-basis: 80px; width: 80px; height: 80px; }
+  .featuredText strong { font-size: 18px; }
+  .featuredText > span { font-size: 14px; margin-top: 5px; }
   .pathGrid, .moduleGrid { grid-template-columns: minmax(0, 1fr); }
   .resources { grid-template-columns: minmax(0, 1fr); }
   .filterCard, .moduleCard, .pathCard, .empty { padding: 20px; }

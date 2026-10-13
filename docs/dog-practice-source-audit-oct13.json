@@ -1,0 +1,74 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Vier neue Lektionen und acht verknüpfte Fragen in zwei vorhandenen Hundewesen-Kursen; keine vollständige Neuprüfung der übrigen App oder aller Rasseporträts.",
+  "newBlocks": [
+    {
+      "lessonId": "wissen-vertiefung-hunde-nase-spur-laut-fundkontrolle",
+      "sourceIds": ["handlerBelief", "handlerKnowledge"],
+      "independentResearchGroups": ["University of California, Davis", "Texas Tech University / Ford K9"],
+      "claims": [
+        { "statement": "Gemeldete Anzeige und tatsächliche Anwesenheit des Zielgeruchs werden getrennt ausgewertet.", "support": ["DeChant et al. 2020, Tabellen 1 und 2", "Lit et al. 2011, Methoden und Ergebnisgrenzen"] },
+        { "statement": "Menschliches Vorwissen kann die Suche beziehungsweise Fundmeldung beeinflussen; die beiden Studien untersuchten unterschiedliche Bedingungen.", "support": ["Lit et al. 2011, Ergebnisverteilung und Diskussion", "DeChant et al. 2020, Abstract und Diskussion"] }
+      ],
+      "limits": ["DeChant fand keine veränderte Fehlanzeigenrate in den verglichenen Bedingungen.", "Lits gemeldete Fehlanzeigen belegen nicht, welcher menschliche oder tierische Vorgang jeden einzelnen Fall verursacht hat.", "Keine verallgemeinerte Jagdhunde-Fehlerquote; Papierfall ist ein eigenes Unterrichtsmodell."]
+    },
+    {
+      "lessonId": "wissen-vertiefung-hunde-klare-lernsignale-markerzeitpunkt",
+      "sourceIds": ["markerDogsTrust", "markerBlueCross"],
+      "independentOrganizations": ["Dogs Trust", "Blue Cross"],
+      "claims": [
+        { "statement": "Ein gelernter Marker kennzeichnet den gewünschten Verhaltensmoment und kündigt die anschließende Belohnung an.", "support": ["Dogs Trust, What is marker training / Introducing the marker", "Blue Cross, What is clicker training / Getting started"] }
+      ],
+      "limits": ["Kein Markertyp wird als für jedes Tier überlegen behauptet.", "Der Handtarget-Zeitlinienfall ist ein eigenes Unterrichtsmodell.", "Ein unbekanntes Geräusch wird nicht trotz deutlicher Abwehr weiter eingesetzt."]
+    },
+    {
+      "lessonId": "wissen-vertiefung-hunde-klare-lernsignale-rueckruf-gesichert",
+      "sourceIds": ["recallDogsTrust", "recallRspca"],
+      "independentOrganizations": ["Dogs Trust", "RSPCA"],
+      "claims": [
+        { "statement": "Rückkehr wird belohnt, Distanz und Ablenkung werden schrittweise ergänzt; bei ungefestigter Rückkehr bleibt der Rahmen gesichert.", "support": ["Dogs Trust, Three steps / Running away", "RSPCA, Trainingsaufbau / Training lead"] }
+      ],
+      "limits": ["Keine Garantie für ungesicherten freien Lauf am Wild.", "Keine britische Kennzeichnungs- oder DACH-Einsatzregel aus allgemeinem Trainingswissen übertragen.", "Die Veränderung nur einer Anforderung ist ein eigenes überschaubares Vergleichsmodell, kein vorgeschriebener Prüfungsablauf."]
+    },
+    {
+      "lessonId": "wissen-vertiefung-hunde-klare-lernsignale-belastung-pausen",
+      "sourceIds": ["heatVetmed", "heatPdsa", "pantingPdsa", "firstAidZurich"],
+      "independentOrganizationsCounted": ["Vetmeduni Wien", "PDSA"],
+      "claims": [
+        { "statement": "Anstrengung bei Hitze ist ein Risiko und verlangt angepasste Belastung sowie aufmerksame Beobachtung.", "support": ["Vetmeduni, Hitze-Merkblatt 2024, Risikogruppen / Tipps", "PDSA, Heatstroke in dogs, Causes / Prevention"] },
+        { "statement": "Starkes Hecheln mit Taumeln oder Kollaps erfordert sofortiges Handeln und tierärztlichen Kontakt; Beobachtung allein ersetzt keine Diagnose.", "support": ["Vetmeduni, Hitze-Merkblatt 2024, Warnzeichen / Erste Hilfe", "PDSA, Heatstroke in dogs, Signs / First aid", "Zürcher Handbuch März 2026, Abschnitte 5.1 und 5.3", "PDSA, Panting Q&A"] }
+      ],
+      "limits": ["Zwei PDSA-Seiten sind keine zwei unabhängigen Organisationen.", "Das Zürcher Handbuch entstand mit Vetmeduni; es wird nicht als weitere unabhängige Wiener Bestätigung gezählt.", "Keine starre sichere Temperatur, Einsatzdauer oder Rasse-Immunität; keine Ferndiagnose und keine individuelle Wiederfreigabe zur Arbeit.", "Die 2021-Empfehlung zur langsamen Kühlung wurde nicht übernommen; benutzt wird das überarbeitete Merkblatt 2024 mit zügiger Kühlung."]
+    }
+  ],
+  "sourceLocations": {
+    "handlerBelief": "https://link.springer.com/article/10.1007/s10071-010-0373-2",
+    "handlerKnowledge": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2020.00250/full",
+    "markerDogsTrust": "https://www.dogstrust.org.uk/dog-advice/training/techniques/introducing-a-marker",
+    "markerBlueCross": "https://www.bluecross.org.uk/advice/pets/behaviour-and-training/clicker-training-dogs-and-cats",
+    "recallDogsTrust": "https://www.dogstrust.org.uk/dog-advice/training/basics/recall-training",
+    "recallRspca": "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/training/come",
+    "heatVetmed": "https://www.vetmeduni.ac.at/fileadmin/v/oeuk/Presse/2024/TippsFuersTier_HitzeNEU_2024.pdf",
+    "heatPdsa": "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs",
+    "pantingPdsa": "https://www.pdsa.org.uk/what-we-do/blog/vet-qa-is-my-dog-is-panting-too-much",
+    "firstAidZurich": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/veterinaeramt/hunde/ausbildung/handbuch-hundeausbildende-theorie.pdf"
+  },
+  "sourceAccess": "Originalstudien, Behörden-PDFs und eigene Organisationsseiten wurden inhaltlich eingesehen. Der Blue-Cross-Leitfaden wurde vollständig über den bereitgestellten indexierten Seitentext gelesen; direkter Seitenabruf war zeitweise nicht verfügbar.",
+  "relatedExistingContentChecked": [
+    { "file": "lib/hunting-dog-video-lessons.js", "sections": ["basset-faehrtenende", "labrador-signal", "golden-wasser", "rute-kontext"], "result": "Die neuen Aussagen behalten die Trennung sichtbare Handlung / Quellenkontext / Interpretation bei. Lautloser Labradorclip und unvollständiger Arbeitsverlauf werden nicht als Marker- oder Ausbildungsmethoden-Nachweis behandelt." },
+    { "file": "lib/learning-dog-depth.js", "sections": ["schnueffeln", "geruch-kontext", "protokoll", "eindeutig", "wirkung", "kontext", "forschung", "kleiner-plan"], "result": "Neue Lektionen vertiefen die bisherigen Lernprinzipien. Die bisherigen richtigen Antworten bleiben unverändert; keine neue Gesamtprüfmarkierung gesetzt." },
+    { "file": "lib/dog-training-journal.js", "sections": ["rueckruf", "handtarget", "ruheplatz"], "result": "Gesicherter Rückruf, freiwilliges Target und passende Pausen stimmen mit den neuen Erklärungen überein. Keine inhaltliche Korrektur erforderlich." },
+    { "file": "lib/observation-workshop.js", "sections": ["hund"], "result": "Keine Hecheln-Diagnose, Belastung beenden, Warnzeichen ernst nehmen und tierärztlich handeln stimmen überein. Bereits vorhandenes überarbeitetes Vetmeduni-Merkblatt 2024 wiederverwendet." },
+    { "file": "lib/learning-deepening-practice.js", "sections": ["wissen-vertiefung-hundeteam-belastung"], "result": "Keine starre Minuten- oder Rassegarantie; individuelle Bedingungen und Betreuung bleiben maßgeblich. Es wird keine neue fachliche Gesamtfreigabe dieses Altkurses behauptet." }
+  ],
+  "media": {
+    "newDownloads": 0,
+    "changesToPhotosOrVideos": 0,
+    "reused": "Vorhandene echte lizenzierte Hundewesen-Kursbilder und bestehende vier Videoaufnahmen. Kein neues Bild wird als Gesundheits-, Leistungs- oder Gefühlsnachweis benutzt."
+  },
+  "technicalValidation": {
+    "files": ["scripts/test-dog-practice-learning.cjs", "scripts/test-dog-knowledge-depth.cjs", "scripts/test-dog-cut-tools.cjs"],
+    "passed": 12,
+    "purpose": "Antwortschlüssel nach beiden Rotationsebenen, Kurs-/Wiederholungs-Verknüpfung, ID-Grenzen, DACH-Einordnung, vorhandene Rasseunterscheidungen, Quelldatum-Scope, unveränderte Medienprovenienz. Technische Tests sind keine fachliche Zertifizierung."
+  }
+}

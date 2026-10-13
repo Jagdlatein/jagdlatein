@@ -18,7 +18,7 @@ export default function WildYear() {
   }, [router.query.art, router.query.monat]);
   const view = getWildYearProfile(slug, month);
   const photograph = wildlifePhotographs[view.species.slug];
-  return <LearningToolLayout title="Das biologische Wildjahr" description="Art und Monat wählen. Fell, Kopfschmuck, Fortpflanzung und Verhalten erscheinen direkt darunter." icon="wildkunde" category="wildkunde" compact hideCommunity>
+  return <LearningToolLayout title="Das biologische Wildjahr" description="Art und Monat wählen. Merkmale, Fortpflanzung und Verhalten im Jahreslauf erscheinen direkt darunter." icon="wildkunde" category="wildkunde" compact hideCommunity>
     <section className={styles.controls} aria-label="Wildjahr auswählen">
       <label className={styles.species}>Wildart<select value={slug} onChange={event => setSlug(event.target.value)}>{wildYearSpecies.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</select></label>
       <div className={styles.month}><label htmlFor="wildjahr-month">Monat <output htmlFor="wildjahr-month">{view.monthName}</output></label><input id="wildjahr-month" type="range" min="1" max="12" step="1" value={month} aria-valuetext={view.monthName} onChange={event => setMonth(Number(event.target.value))} /><div className={styles.monthNames} aria-hidden="true">{wildYearMonths.map(item => <span key={item}>{item.slice(0, 3)}</span>)}</div></div>

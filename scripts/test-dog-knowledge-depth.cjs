@@ -54,11 +54,20 @@ test('Easily confused breeds preserve the source classification and separate wor
 test('Five dog courses supply linked lessons, unambiguous questions and usable primary references', () => {
   assert.equal(modules.length, 5);
   assert.equal(new Set(modules.map(item => item.id)).size, modules.length);
-  assert.equal(modules.reduce((sum, item) => sum + item.lessons.length, 0), 25);
-  assert.equal(modules.reduce((sum, item) => sum + item.questions.length, 0), 50);
+  assert.equal(modules.reduce((sum, item) => sum + item.lessons.length, 0), 29);
+  assert.equal(modules.reduce((sum, item) => sum + item.questions.length, 0), 58);
+  const expectedLessonCounts = {
+    'wissen-vertiefung-hunde-vorstehrassen': 5,
+    'wissen-vertiefung-hunde-bracken-nordische': 5,
+    'wissen-vertiefung-hunde-retriever-spaniels': 5,
+    'wissen-vertiefung-hunde-nase-spur-laut': 6,
+    'wissen-vertiefung-hunde-klare-lernsignale': 8,
+  };
   const allQuestionIds = new Set();
   const paragraphTexts = new Set();
   for (const item of modules) {
+    assert.equal(item.lessons.length, expectedLessonCounts[item.id], item.id);
+    assert.equal(item.questions.length, expectedLessonCounts[item.id] * 2, item.id);
     assert.equal(item.category, 'Hundewesen');
     assert.equal(item.reviewedOn, '2026-10-12');
     assert.ok(item.id.startsWith('wissen-vertiefung-hunde-'));
@@ -89,7 +98,7 @@ test('Five dog courses supply linked lessons, unambiguous questions and usable p
       assert.equal(new URL(source.url).protocol, 'https:');
     }
   }
-  assert.equal(paragraphTexts.size, 75);
+  assert.equal(paragraphTexts.size, 87);
 });
 
 test('Rotated choices keep the factual comparison answers correct', () => {

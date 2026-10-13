@@ -43,7 +43,7 @@ test('The active quiz preserves unique stable IDs and complete, resolvable answe
 
 test('All detailed questions link to existing lessons, courses and country notes', () => {
   assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(learningModules.length, 84);
-  assert.equal(learningCounts.lessons, 427); assert.equal(learningQuestions.length, 842);
+  assert.equal(learningCounts.lessons, 431); assert.equal(learningQuestions.length, 850);
   assert.equal(new Set(courses.map(course => course.id)).size, courses.length);
   for (const module of learningModules) {
     const lessons = new Set(module.lessons.map(lesson => lesson.id));

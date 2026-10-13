@@ -47,16 +47,16 @@ const ecology = load('lib/small-revier-life.js');
 const research = load('lib/research-understanding.js');
 const data = load('public/lernen/forschung-2026/originaldaten.json');
 
-test('Six ecological topics carry distinct factual references, limits and actual licensed media', () => {
-  assert.equal(ecology.revierLifeTopics.length, 6);
-  assert.equal(new Set(ecology.revierLifeTopics.map(item => item.id)).size, 6);
+test('Nine ecological topics carry distinct factual references, limits and actual licensed media', () => {
+  assert.equal(ecology.revierLifeTopics.length, 9);
+  assert.equal(new Set(ecology.revierLifeTopics.map(item => item.id)).size, 9);
   for (const topic of ecology.revierLifeTopics) {
     assert.ok(topic.photoContext.length > 90 && topic.limit.length > 70);
     for (const fact of topic.facts) {
       assert.ok(fact.sourceIds.every(id => ecology.revierLifeSources[id]), `${topic.id}/${fact.id}: valid references`);
       assert.ok(new Set(fact.sourceIds.map(id => ecology.revierLifeSources[id].organization)).size >= 2, `${topic.id}/${fact.id}: independent organizations`);
     }
-    assert.equal(topic.reviewedOn, '2026-10-12');
+    assert.equal(topic.reviewedOn, ['spinnen', 'amphibien', 'streuabbau'].includes(topic.id) ? '2026-10-13' : '2026-10-12');
     assert.equal(topic.photo.aiGenerated, false);
   }
   assert.match(ecology.getRevierLifeTopic('laufkaefer').facts.map(item => item.text).join(' '), /samenfressende.*Regenwürmer/s);
@@ -71,7 +71,7 @@ test('Delivered image dimensions and hashes match the attributed unchanged photo
     assert.equal(image.width, photo.width); assert.equal(image.height, photo.height);
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'), photo.sha256);
     assert.ok(photo.author && photo.alt && photo.originalUrl && photo.modifications);
-    assert.match(photo.license, /^CC BY(?:-SA)? [234]\.0$/);
+    assert.match(photo.license, /^CC BY(?:-SA)? [234]\.0(?: DE)?$/);
     assert.match(photo.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
   }
 });
@@ -180,4 +180,49 @@ test('Learning observation gaps remain missing data while the legacy course ackn
   const question = course.questions.find(item => item.id === '4');
   assert.match(question.q, /Lernbeobachtung/); assert.equal(question.options[question.answer], 'Keine Erhebung beziehungsweise fehlende Angabe');
   assert.ok(course.sources.some(source => source.url.includes('wildbienen.thuenen.de')));
+});
+test('Each new ecology deep link directly selects its group, photograph and immediate answer feedback', () => {
+  for (const id of ['spinnen', 'amphibien', 'streuabbau']) {
+    const router = { query: { thema: id }, isReady: true };
+    const view = setup('components/SmallRevierLife.js', {}, '', router); view.e.effects(); view.render();
+    const topic = find(view.tree, item => item.props?.topic)?.props.topic;
+    assert.equal(topic.id, id);
+    assert.ok(ecology.revierLifeGroups.some(group => group.id === topic.group));
+    assert.equal(find(view.tree, item => item.type === 'select').props.value, id);
+    const content = setup('components/SmallRevierLife.js', { topic }, 'TopicContent');
+    assert.match(content.html(), /13\. Oktober 2026/);
+    const photograph = find(content.tree, item => item.props?.src === topic.photo.src);
+    assert.ok(photograph); assert.ok(topic.photo.visuallyVerified);
+    const wrong = (topic.quiz.answer + 1) % topic.quiz.choices.length;
+    find(content.tree, item => item.type === 'input' && item.props.value === wrong).props.onChange(); content.render();
+    const feedback = find(content.tree, item => item.props?.role === 'status');
+    assert.ok(text(feedback).includes(topic.quiz.choices[topic.quiz.answer]));
+    find(content.tree, item => item.type === 'input' && item.props.value === topic.quiz.answer).props.onChange(); content.render();
+    assert.match(text(find(content.tree, item => item.props?.role === 'status')), /Das passt/);
+    assert.doesNotMatch(content.html(), /<button/);
+  }
+});
+test('New factual segments retain an explicit evidence map and do not redate legacy ecology', () => {
+  const report = load('docs/small-revier-life-expansion-oct13.json');
+  assert.equal(report.reviewedOn, '2026-10-13');
+  assert.equal(report.topics.flatMap(topic => topic.claims).length, 9);
+  for (const reviewed of report.topics) {
+    const topic = ecology.revierLifeTopics.find(item => item.id === reviewed.id);
+    assert.ok(topic);
+    assert.deepEqual(reviewed.claims.map(item => item.factId).sort(), topic.facts.map(item => item.id).sort());
+    for (const claim of reviewed.claims) {
+      const fact = topic.facts.find(item => item.id === claim.factId);
+      assert.deepEqual(claim.sourceIds, fact.sourceIds);
+      assert.deepEqual([...new Set(claim.sourceIds.map(id => ecology.revierLifeSources[id].organization))].sort(), [...claim.independentOrganizations].sort());
+      assert.ok(claim.independentOrganizations.length >= 2 && claim.boundary);
+      assert.ok(claim.support.every(item => claim.sourceIds.includes(item.sourceId) && item.supports && item.section));
+    }
+  }
+  assert.deepEqual(ecology.revierLifeTopics.filter(topic => !report.topics.some(item => item.id === topic.id)).map(topic => topic.reviewedOn), Array(6).fill('2026-10-12'));
+  const frogPhoto = ecology.getRevierLifeTopic('amphibien').photo;
+  assert.equal(frogPhoto.license, 'CC BY-SA 3.0 DE');
+  assert.match(frogPhoto.licenseUrl, /\/3\.0\/de\/$/);
+  const oldTopic = setup('components/SmallRevierLife.js', { topic: ecology.getRevierLifeTopic('wildbienen') }, 'TopicContent');
+  assert.match(oldTopic.html(), /12\. Oktober 2026/);
+  assert.doesNotMatch(oldTopic.html(), /13\. Oktober 2026/);
 });

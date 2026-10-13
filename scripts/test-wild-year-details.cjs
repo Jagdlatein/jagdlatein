@@ -33,9 +33,9 @@ function checkSources(claim, sources) {
   assert.ok(organizations.size >= 2, `${claim.id}: two independent organizations required, not two pages of one publisher`);
 }
 
-test('All 96 species-month views contain exactly one phase per biological section', () => {
-  assert.equal(year.wildYearSpecies.length, 8);
-  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 8);
+test('All 120 species-month views contain exactly one phase per biological section', () => {
+  assert.equal(year.wildYearSpecies.length, 10);
+  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 10);
   const { dachWildlifeBySlug } = load('lib/dach-wildlife.js');
   const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
   for (const item of year.wildYearSpecies) {
@@ -126,8 +126,8 @@ test('Search results link to selectable topics and species rather than an extra 
 
 test('Older species receive only explicit targeted aspect checks, not an all-species review badge', () => {
   const { wildlifeDepthBySlug, wildlifeDepthEvidenceChecks } = load('lib/wildlife-depth.js');
-  assert.equal(Object.keys(wildlifeDepthEvidenceChecks).length, 8);
-  assert.equal(Object.values(wildlifeDepthEvidenceChecks).flat().length, 22);
+  assert.equal(Object.keys(wildlifeDepthEvidenceChecks).length, 9);
+  assert.equal(Object.values(wildlifeDepthEvidenceChecks).flat().length, 23);
   for (const [slug, checks] of Object.entries(wildlifeDepthEvidenceChecks)) {
     const profile = wildlifeDepthBySlug[slug];
     assert.equal(profile.verifiedClaims.length, checks.length);
@@ -141,4 +141,54 @@ test('Older species receive only explicit targeted aspect checks, not an all-spe
   for (const [slug, profile] of Object.entries(wildlifeDepthBySlug)) {
     if (!(slug in wildlifeDepthEvidenceChecks)) assert.equal(profile.verifiedClaims, undefined, `${slug}: not newly audited`);
   }
+});
+
+test('Hare and badger use meaningful food fields and preserve seasonal uncertainty', () => {
+  for (const slug of ['feldhase', 'dachs']) {
+    const profile = year.wildYearSpecies.find(item => item.slug === slug);
+    assert.equal(profile.reviewedOn, '2026-10-13');
+    for (let month = 1; month <= 12; month++) {
+      const view = year.getWildYearProfile(slug, month);
+      assert.equal(view.sections.find(section => section.key === 'crown').label, 'Nahrung');
+      assert.ok(!view.sections.some(section => /Horn|Hörner|Geweih|Kopfschmuck/.test(section.label)), `${slug}: no invented crown field`);
+    }
+    const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
+    const photograph = wildlifePhotographs[slug];
+    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'public', photograph.src))).digest('hex'), photograph.sha256);
+  }
+  const view = (slug, month, key) => year.getWildYearProfile(slug, month).sections.find(item => item.key === key).claim;
+  assert.match(view('dachs', 7, 'reproduction').text, /nicht nur im Juli\/August/);
+  assert.match(view('dachs', 1, 'crown').text, /schließt.*nicht aus/);
+  assert.match(view('feldhase', 7, 'reproduction').text, /Muttermilch/);
+  assert.match(view('feldhase', 9, 'reproduction').text, /Paarungs- und Geburtszeit/);
+  assert.match(year.wildYearSpecies.find(item => item.slug === 'dachs').uncertainty, /Januar–März.*Ende Februar–Anfang April/);
+  const newClaims = year.wildYearSpecies.filter(item => ['feldhase','dachs'].includes(item.slug)).flatMap(item => ['coat','crown','reproduction','behavior'].flatMap(key => item[key]));
+  assert.equal(newClaims.length, 18);
+  assert.equal(new Set(newClaims.map(item => item.id)).size, 18);
+  assert.ok(!newClaims.some(item => /Jagdzeit|Schonzeit|bejah?g(?:en|t)/i.test(item.text)), 'Biological calendar cannot authorize hunting');
+});
+
+test('Targeted badger correction does not recertify old profiles or ungulate seasons', () => {
+  const { wildlifeDepthBySlug, wildlifeDepthEvidenceChecks } = load('lib/wildlife-depth.js');
+  assert.match(wildlifeDepthBySlug.dachs.seasonalLife[1], /Spätwinter oder frühen Frühjahr/);
+  assert.equal(wildlifeDepthBySlug.dachs.reviewedOn, '2026-10-12');
+  assert.equal(wildlifeDepthEvidenceChecks.dachs[0].reviewedOn, '2026-10-13');
+  for (const species of year.wildYearSpecies.filter(item => !['feldhase','dachs'].includes(item.slug))) assert.equal(species.reviewedOn, '2026-10-12');
+});
+
+test('New biological blocks and the editorial audit keep the same exact source scope', () => {
+  const report = JSON.parse(fs.readFileSync(path.join(root, 'docs/wild-year-small-game-audit-oct13.json'), 'utf8'));
+  assert.equal(report.reviewedOn, year.smallGameYearReviewedOn);
+  const sourcesRead = new Map(report.sourcesRead.map(item => [item.id, item]));
+  const claims = year.wildYearSpecies.filter(item => ['feldhase','dachs'].includes(item.slug)).flatMap(item => ['coat','crown','reproduction','behavior'].flatMap(key => item[key]));
+  assert.equal(Object.keys(report.newBlockSources).length, claims.length);
+  for (const claim of claims) {
+    assert.deepEqual(report.newBlockSources[claim.id], claim.sourceIds, `${claim.id}: audit must follow the published block`);
+    for (const sourceId of claim.sourceIds) {
+      assert.equal(sourcesRead.get(sourceId)?.url, year.wildYearSources[sourceId].url);
+      assert.ok(sourcesRead.get(sourceId).supports.length > 0);
+    }
+  }
+  const independentlyCounted = new Set(['haseBayern', 'haseLfL'].map(id => year.wildYearSources[id].organization));
+  assert.equal(independentlyCounted.size, 1, 'Two Bavarian ministry pages cannot substitute for independent source checks');
 });
