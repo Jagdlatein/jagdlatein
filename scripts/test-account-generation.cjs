@@ -24,6 +24,7 @@ function fixture(extraEnv = {}, overrides = {}) {
     console: overrides.console || console });
   function load(relative) {
     const file = path.join(root, relative);
+    if (file.endsWith('.json')) return JSON.parse(fs.readFileSync(file, 'utf8'));
     if (cache.has(file)) return cache.get(file).exports;
     const { code } = swc.transformSync(fs.readFileSync(file, 'utf8'), { filename: file,
       jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
@@ -31,7 +32,7 @@ function fixture(extraEnv = {}, overrides = {}) {
     const requireLocal = id => {
       if (Object.hasOwn(overrides, id)) return overrides[id];
       if (id === 'next/server') return { NextResponse };
-      if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(file), `${id}.js`)));
+      if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(file), path.extname(id) ? id : `${id}.js`)));
       return pr(id);
     };
     vm.runInContext(`(function(require,module,exports){${code}\n})`, context)(requireLocal, mod, mod.exports);

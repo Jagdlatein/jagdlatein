@@ -102,8 +102,13 @@ function fixture(overrides = {}, providerOverrides = {}) {
         if (providerOverrides.browserOffer) return Response.json(providerOverrides.browserOffer);
         return load('app/api/paypal/checkout-config/route.js').GET(request());
       }
+      if(target==='/api/paypal/checkout-status') {
+        calls.push({type:'browser-fetch',target,options});
+        return Response.json(providerOverrides.checkoutReply || {subscriptionId:null,status:null,activated:false,accessType:'none',trialUntil:null}, {status:providerOverrides.checkoutStatus || 200});
+      }
       if(target==='/api/paypal/create-subscription') {
         calls.push({type:'browser-fetch',target});
+        if(providerOverrides.stallCreation) return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new Error('Aborted')),{once:true}));
         return load('app/api/paypal/create-subscription/route.js').POST(request(JSON.parse(options.body)));
       }
       if(target==='/api/paypal/confirm-subscription') {
@@ -149,6 +154,7 @@ function fixture(overrides = {}, providerOverrides = {}) {
     finishSdkRender() { pendingRender?.resolve(); },
     rejectSdkRender() { pendingRender?.reject(new Error('Late SDK render failure')); },
     emitLateSdkEvents() { sdkOptions?.onCancel(); sdkOptions?.onError(); },
+    emitSdkError() { sdkOptions?.onError(); },
     unmount() { cleanup?.(); },
     async createSubscription() {
       assert.ok(sdkOptions, 'SDK must have been loaded after server verification');
@@ -299,15 +305,17 @@ test('Signed-out visitors cannot load a PayPal SDK or request server creation', 
   assert.equal((await ctx.load('app/api/paypal/create-subscription/route.js').POST(ctx.request())).status,401);
 });
 
-test('Both account choices preserve the safe learning destination through sign-in and checkout', async () => {
+test('One email entry preserves the safe learning destination through sign-in and checkout', async () => {
   const ctx=fixture({}, {unsigned:true,query:{next:'/lernen/wildkunde?kapitel=2'}});
   await ctx.runPage();
   const html=ctx.renderPage();
-  for (const route of ['/login','/registrieren']) {
+  for (const route of ['/registrieren']) {
     const href=html.match(new RegExp(`href="(${route}[^\"]+)"`))[1].replaceAll('&amp;','&');
     const target=new URL(href,'https://jagdlatein.test').searchParams.get('next');
     assert.equal(target,'/preise?next=%2Flernen%2Fwildkunde%3Fkapitel%3D2#paypal-subscribe-preise');
   }
+  assert.match(html,/Mit E-Mail fortfahren/);
+  assert.doesNotMatch(html,/href="\/login\?/);
   const unsafe=fixture({}, {unsigned:true,query:{next:'//untrusted.example/payment'}});
   await unsafe.runPage();
   assert.doesNotMatch(unsafe.renderPage(),/untrusted\.example/);
@@ -317,7 +325,7 @@ test('An unavailable new offer does not hide sign-in or block an already active 
   const settings={NEXT_PUBLIC_PAYPAL_PLAN_ID:undefined,NEXT_PUBLIC_PAYPAL_TRIAL_PLAN_ID:undefined};
   const unsigned=fixture(settings,{unsigned:true}); await unsigned.runPage();
   assert.equal(unsigned.states[1],'login-required');
-  assert.match(unsigned.renderPage(),/Ich habe schon ein Konto/);
+  assert.match(unsigned.renderPage(),/Mit E-Mail fortfahren/);
   const active=fixture(settings,{account:{paid:true}}); await active.runPage();
   assert.equal(active.states[1],'existing'); assert.match(active.renderPage(),/>Jetzt lernen</);
   for(const ctx of [unsigned,active]) assert.ok(!ctx.calls.some(call=>['sdk-script','provider-fetch','server-subscription'].includes(call.type)));
@@ -442,5 +450,67 @@ test('A late SDK render failure does not interrupt an already-started purchase',
   await ctx.approve(); assert.equal(ctx.states[1],'complete');
   assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,1);
   assert.deepEqual(ctx.calls.find(call=>call.target==='/api/paypal/confirm-subscription').body,{subscriptionId:SUBSCRIPTION});
+  ctx.unmount();
+});
+
+test('Reloaded approved or active checkouts resume the same confirmation without loading a new purchase', async () => {
+  for(const status of ['APPROVED','ACTIVE','SUSPENDED']) {
+    const ctx=fixture({}, {checkoutReply:{subscriptionId:SUBSCRIPTION,status,activated:false,accessType:'none',trialUntil:null}});
+    await ctx.runPage();
+    assert.equal(ctx.states[1],status==='SUSPENDED'?'suspended':'pending');
+    assert.match(ctx.renderPage(),/Zugang erneut prüfen/);
+    assert.ok(!ctx.calls.some(call=>['sdk-script','sdk-buttons','server-subscription'].includes(call.type)));
+    await ctx.retryApproval();
+    assert.equal(ctx.states[1],'complete');
+    assert.deepEqual(ctx.calls.find(call=>call.target==='/api/paypal/confirm-subscription').body,{subscriptionId:SUBSCRIPTION});
+    assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,0);
+    ctx.unmount();
+  }
+});
+
+test('A resumed checkout with verified access refreshes the same signed session and continues the selected lesson', async () => {
+  const ctx=fixture({}, {query:{next:'/lernen/hundewesen#rassen'},checkoutReply:{subscriptionId:SUBSCRIPTION,status:'ACTIVE',activated:true,accessType:'trial',trialUntil:new Date(Date.now()+86400000).toISOString()}});
+  await ctx.runPage();
+  assert.equal(ctx.states[1],'complete');
+  assert.match(ctx.renderPage(),/href="\/lernen\/hundewesen#rassen"[^>]*>Jetzt lernen/);
+  assert.match(ctx.states[0],/Testzugang ist aktiv/);
+  assert.ok(ctx.calls.some(call=>call.target==='/api/auth/status'));
+  assert.ok(!ctx.calls.some(call=>['sdk-script','server-subscription'].includes(call.type)));
+  ctx.unmount();
+});
+
+test('An uncertain or malformed checkout recovery blocks fresh purchases and exposes retry', async () => {
+  for(const override of [{checkoutStatus:503},{checkoutReply:{subscriptionId:null,status:null,activated:true}},
+    {checkoutReply:{subscriptionId:'I-UNKNOWN1234',status:'UNKNOWN',activated:false}}]) {
+    const ctx=fixture({},override); await ctx.runPage();
+    assert.equal(ctx.states[1],'error'); assert.match(ctx.renderPage(),/Erneut prüfen/);
+    assert.ok(!ctx.calls.some(call=>['sdk-script','provider-fetch','server-subscription'].includes(call.type)));
+    ctx.unmount();
+  }
+});
+
+test('Known unapproved and terminal checkouts can proceed only after the server recovery check', async () => {
+  for(const status of ['APPROVAL_PENDING','CANCELLED','EXPIRED']) {
+    const ctx=fixture({}, {checkoutReply:{subscriptionId:SUBSCRIPTION,status,activated:false}}); await ctx.runPage();
+    assert.equal(ctx.states[1],'ready');
+    const recovery=ctx.calls.findIndex(call=>call.target==='/api/paypal/checkout-status');
+    const offer=ctx.calls.findIndex(call=>call.target==='/api/paypal/checkout-config');
+    assert.ok(recovery>=0 && offer>recovery);
+    assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,0);
+    ctx.unmount();
+  }
+});
+
+test('A stalled subscription creation times out instead of leaving the PayPal callback pending', async t => {
+  const ctx=fixture({}, {stallCreation:true}); await ctx.runPage();
+  t.mock.timers.enable({apis:['setTimeout']});
+  const creating=ctx.createSubscription();
+  await new Promise(resolve=>setImmediate(resolve));
+  t.mock.timers.tick(18000);
+  await assert.rejects(creating,/Aborted/);
+  ctx.emitSdkError();
+  assert.equal(ctx.states[1],'sdk-error');
+  assert.match(ctx.renderPage(),/Erneut prüfen/);
+  assert.equal(ctx.calls.filter(call=>call.type==='server-subscription').length,0);
   ctx.unmount();
 });

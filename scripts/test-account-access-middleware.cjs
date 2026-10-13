@@ -21,13 +21,14 @@ function harness() {
   });
   function load(relative) {
     const filename = path.join(root, relative);
+    if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
     if (cache.has(filename)) return cache.get(filename).exports;
     const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
       jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
     const module = { exports: {} }; cache.set(filename, module);
     const localRequire = id => {
       if (id === 'next/server') return { NextResponse };
-      if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), `${id}.js`)));
+      if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)));
       return pr(id);
     };
     vm.runInContext(`(function(require,module,exports){${code}\n})`, context)(localRequire, module, module.exports);

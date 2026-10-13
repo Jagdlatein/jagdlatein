@@ -69,6 +69,7 @@ async function fixture(overrides = {}) {
     from(table) {
       const q = { filters: [], value: null, select() { return this; }, limit(n) { this.n = n; return this; },
         eq(name, value) { this.filters.push([name, value]); return this; },
+        in(name, values) { assert.equal(name, 'status'); this.statuses = [...values]; return this; },
         ilike(name, value) { this.filters.push([name, value.replace(/\\([\\%_])/g, '$1')]); return this; },
         insert(value) { this.value = value; return this; },
         async execute(single = false) {
@@ -81,12 +82,16 @@ async function fixture(overrides = {}) {
             return { data: null, error: null };
           }
           const filter = this.filters[0];
-          assert.ok(!filter || ['email', 'account_email', 'subscription_id', 'account_generation'].includes(filter[0]));
+          assert.ok(this.filters.every(([column]) => ['email', 'account_email', 'subscription_id', 'account_generation'].includes(column)));
           if (table === 'paypal_subscriptions' && filter?.[0] === 'subscription_id') {
             if (state.trialLookupError) return { data: null, error: { code: 'isolated-database-error' } };
             if (Object.hasOwn(state, 'trialLookupRow')) return { data: state.trialLookupRow, error: null };
           }
-          const result = await pg.query(`SELECT * FROM public.${table}${filter ? ` WHERE ${filter[0]}=$1` : ''}`, filter ? [filter[1]] : []);
+          const values = this.filters.map(([, value]) => value);
+          const conditions = this.filters.map(([column], index) => `${column}=$${index + 1}`);
+          if (this.statuses) { values.push(this.statuses); conditions.push(`status=ANY($${values.length}::text[])`); }
+          if (this.n !== undefined) assert.ok(Number.isInteger(this.n) && this.n >= 0 && this.n <= 2);
+          const result = await pg.query(`SELECT * FROM public.${table}${conditions.length ? ` WHERE ${conditions.join(' AND ')}` : ''}${this.n !== undefined ? ` LIMIT ${this.n}` : ''}`, values);
           const rows = JSON.parse(JSON.stringify(result.rows));
           return { data: single ? rows[0] || null : rows, error: null };
         }, maybeSingle() { return this.execute(true); }, then(resolve, reject) { return this.execute().then(resolve, reject); },
@@ -164,10 +169,51 @@ async function fixture(overrides = {}) {
     }),
     confirm: (origin = 'https://jagdlatein.test',body={subscriptionId:ID},cookie=sessionToken) => load('app/api/paypal/confirm-subscription/route.js').POST(request(origin,body,cookie)),
     create: (body={},cookie=sessionToken) => load('app/api/paypal/create-subscription/route.js').POST(request('https://jagdlatein.test',body,cookie)),
+    recover: (body={},cookie=sessionToken) => load('app/api/paypal/checkout-status/route.js').POST(request('https://jagdlatein.test',body,cookie)),
     // Match Supabase JSON timestamps; PGlite's raw timestamp decoder returns Date objects.
     row: async () => (await pg.query('SELECT to_jsonb(s) AS data FROM public.paypal_subscriptions s WHERE subscription_id=$1', [ID])).rows[0]?.data,
   };
 }
+test('Reload after a lost approval callback recovers one exact trial through the real current-account ledger', async () => {
+  const ctx = await fixture({ newOffer: true });
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const response = await ctx.recover(); assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { subscriptionId: ID, status: 'ACTIVE', activated: true,
+      accessType: 'trial', trialUntil: iso(NOW + 2 * DAY) });
+  }
+  assert.ok(ctx.state.reads.every(call => call.options.method === 'GET' || call.url.pathname === '/v1/oauth2/token'));
+  assert.equal((await pg.query('SELECT count(*)::int AS count FROM public.paypal_subscriptions')).rows[0].count, 1);
+  assert.equal((await pg.query('SELECT count(*)::int AS count FROM public.paypal_subscription_payments')).rows[0].count, 0);
+  const row = await ctx.row(); assert.equal(row.account_generation, GENERATION); assert.equal(row.account_email, EMAIL);
+  assert.equal(new Date(row.trial_until).toISOString(), iso(NOW + 2 * DAY));
+});
+test('No current agreement recovers an empty status without provider calls or new contracts', async () => {
+  const ctx = await fixture({ newOffer: true, unknownContract: true });
+  const response = await ctx.recover(); assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { subscriptionId: null, status: null, activated: false, accessType: 'none', trialUntil: null });
+  assert.equal(ctx.state.reads.length, 0); assert.equal(ctx.state.rpcCalls, 0);
+});
+test('Pending buyer approval remains unpaid on recovery and a cancelled agreement returns its terminal status', async () => {
+  const ctx = await fixture({ newOffer: true, status: 'APPROVAL_PENDING' });
+  const response = await ctx.recover(); assert.equal(response.status, 200);
+  assert.equal((await response.json()).activated, false);
+  ctx.state.status = 'CANCELLED';
+  const cancelled = await ctx.recover(); assert.equal(cancelled.status, 200);
+  const result = await cancelled.json(); assert.equal(result.status, 'CANCELLED'); assert.equal(result.activated, false);
+  const row = await ctx.row(); assert.equal(row.status, 'CANCELLED'); assert.equal(row.paid_until, null);
+  assert.equal((await pg.query('SELECT is_premium FROM public.userprofile WHERE email=$1', [EMAIL])).rows[0].is_premium, false);
+});
+test('Ambiguous current-account recovery refuses to select a contract or create another purchase', async () => {
+  const ctx = await fixture({ newOffer: true });
+  await pg.query('INSERT INTO public.paypal_subscriptions(subscription_id,account_email,account_generation,plan_id,status,verified_at) VALUES($1,$2,$3,$4,\'ACTIVE\',$5)',
+    ['I-SECOND1234', EMAIL, GENERATION, PLAN, iso(NOW)]);
+  assert.equal((await ctx.recover()).status, 503); assert.equal(ctx.state.reads.length, 0); assert.equal(ctx.state.rpcCalls, 0);
+});
+test('A recovery provider outage keeps the original pending record and cannot grant learning access', async () => {
+  const ctx = await fixture({ newOffer: true, failProvider: true });
+  assert.equal((await ctx.recover()).status, 503); assert.equal(ctx.state.rpcCalls, 0);
+  const row = await ctx.row(); assert.equal(row.status, 'APPROVAL_PENDING'); assert.equal(row.paid_until, null); assert.equal(row.trial_until, null);
+});
 test('Simulated PayPal approval grants exact provider-bound 72-hour trial through the real SQL ledger', async () => {
   const ctx = await fixture(); const response = await ctx.confirm(); assert.equal(response.status, 200);
   const result = await response.json(); assert.equal(result.accessType, 'trial'); assert.equal(result.trialUntil, iso(NOW + 2 * DAY));

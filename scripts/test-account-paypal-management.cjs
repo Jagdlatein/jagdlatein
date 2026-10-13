@@ -174,3 +174,36 @@ test('Apple trial and cancellation show Apple management and never claim the Pay
     assert.doesNotMatch(html, /Abo bei PayPal verwalten|(?:5|10) € pro Monat|Testzugang beendet/);
   }
 });
+
+test('An unpaid approved or paused PayPal subscription leads to its existing checkout instead of a fresh offer', () => {
+  for(const subscriptionStatus of ['APPROVED','ACTIVE','SUSPENDED']) {
+    const html=renderAccount(LIVE,{paid:false,accessType:'none',accessProvider:'none',subscriptionStatus});
+    const checkout=html.match(/<section[^>]*aria-labelledby="account-checkout"[^>]*>([\s\S]*?)<\/section>/)[1];
+    assert.match(checkout,/Vorhandenes Abo prüfen/);
+    assert.match(checkout,/Ein weiterer Kauf ist dafür nicht nötig/);
+    assert.doesNotMatch(checkout,/Abo auswählen und bestätigen/);
+    assert.match(html,/Abo bei PayPal verwalten/);
+  }
+  const apple=renderAccount(LIVE,{paid:false,accessType:'none',accessProvider:'apple',subscriptionStatus:'ACTIVE'});
+  assert.match(apple,/Abo auswählen und bestätigen/);
+  assert.doesNotMatch(apple,/Vorhandenes Abo prüfen/);
+});
+
+test('Account access can be refreshed in place and privacy guidance covers both billing providers', () => {
+  const html=renderAccount(LIVE,{accessProvider:'apple'});
+  assert.match(html,/<button type="button" class="secondaryButton">Zugang und Abo aktualisieren<\/button>/);
+  assert.match(html,/Apple- oder PayPal-Abo nicht automatisch/);
+});
+
+test('Old payment return links verify account access instead of asserting a completed payment', () => {
+  const context=vm.createContext({URL});
+  const page=load('pages/success.js',{},context);
+  const headers={};
+  for(const [next,expected] of [['/lernen?thema=gams#quiz','/preise?next=%2Flernen%3Fthema%3Dgams%23quiz'],
+    ['/success','/preise'],['/preise?next=/success','/preise'],['//foreign.invalid','/preise'],[undefined,'/preise']]) {
+    const result=page.getServerSideProps({res:{setHeader:(name,value)=>headers[name]=value},query:{next}});
+    assert.equal(result.redirect.destination,expected); assert.equal(result.redirect.permanent,false);
+  }
+  assert.match(headers['Cache-Control'],/private, no-store/);
+  assert.equal(page.default(),null);
+});

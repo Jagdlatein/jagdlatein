@@ -505,6 +505,9 @@ final class AppleSubscriptionViewController: UIViewController {
     private func load() {
         guard !loading else { return }
         setLoading(true)
+        // A failed reload must not leave controls bound to a previous session.
+        context = nil
+        clearProducts()
         sandboxStorefrontBefore = nil
         sandboxStorefrontAfter = nil
         sandboxProductLoadState = "Nicht geladen"
@@ -763,8 +766,26 @@ final class AppleSubscriptionViewController: UIViewController {
         task = Task { [weak self] in
             guard let self = self else { return }
             defer { self.setLoading(false) }
-            do { self.status.text = try await self.manager.restore(expectedContext: context) }
-            catch { self.status.text = self.message(for: error) }
+            do {
+                let result = try await self.manager.restore(expectedContext: context)
+                let refreshed = try await self.manager.context()
+                guard refreshed.isSameConfiguredAccount(as: context) else { throw AppleSubscriptionError.accountChanged }
+                self.context = refreshed
+                if refreshed.paid == true || refreshed.purchaseAllowed != true {
+                    // Replace the old offer after access activation. The server
+                    // remains authoritative; a completed scan alone is not access.
+                    self.clearProducts()
+                    self.addCommonActions()
+                }
+                self.status.text = "Angemeldet als \(refreshed.email ?? "")\n" + result + (refreshed.paid == true
+                    ? "\nDein Lernzugang ist aktiv."
+                    : "\nEin aktiver Lernzugang wurde dabei nicht bestätigt.")
+            } catch {
+                self.context = nil
+                self.clearProducts()
+                self.status.text = self.message(for: error)
+                self.addCommonActions()
+            }
             self.refreshSandboxRestoreDiagnostic()
             UIAccessibility.post(notification: .announcement, argument: self.status.text)
         }

@@ -62,21 +62,38 @@ const deferred = () => { let resolve, reject; const promise = new Promise((yes, 
 const response = (body, status = 200) => ({ ok: status >= 200 && status < 300, json: async () => body });
 function harness(fetch, props = {}, query = { next: '/community?category=hundewesen' }) {
   const states = ['member@example.invalid', '123456', 'code', '', false], refs = [], effects = [], timers = new Map(), calls = [];
-  let cursor = 0, refCursor = 0, sequence = 0;
+  let cursor = 0, refCursor = 0, effectCursor = 0, sequence = 0, dirty = false;
+  let pendingEffects = [];
   let now = 1780000000000;
   class ClockDate extends Date { static now() { return now; } }
   const window = { location: { href: null } };
   const Component = load('pages/login.js', { react: { ...React,
-    useState(initial) { const i = cursor++; if (!(i in states)) states[i] = initial; return [states[i], value => { states[i] = value; }]; },
+    useState(initial) { const i = cursor++; if (!(i in states)) states[i] = initial; return [states[i], value => {
+      const next = typeof value === 'function' ? value(states[i]) : value;
+      if (!Object.is(next, states[i])) { states[i] = next; dirty = true; }
+    }]; },
     useRef(initial) { const i = refCursor++; return refs[i] ||= { current: initial }; },
-    useEffect(fn) { if (!effects.length) effects.push(fn()); },
+    useEffect(fn, deps) { const i = effectCursor++, previous = effects[i];
+      if (!previous || !deps || deps.some((value, index) => !Object.is(value, previous.deps[index]))) {
+        pendingEffects.push(() => { previous?.cleanup?.(); effects[i] = { deps, cleanup: fn() }; });
+      }
+    },
   }, 'next/router': { useRouter: () => ({ query }) } }, {
     fetch: async (...args) => { calls.push(args); return fetch(...args); }, window,
     Date: ClockDate,
     setTimeout: (fn, delay) => { timers.set(++sequence, { fn, delay, dueAt: now + delay }); return sequence; }, clearTimeout: id => timers.delete(id),
   }).default;
-  const render = () => { cursor = 0; refCursor = 0; return Component(props); };
-  return { states, calls, timers, window, render, unmount: () => effects.forEach(fn => fn?.()),
+  const render = changes => {
+    if (changes) props = { ...props, ...changes };
+    let tree;
+    do {
+      dirty = false; cursor = 0; refCursor = 0; effectCursor = 0; pendingEffects = [];
+      tree = Component(props);
+      pendingEffects.forEach(fn => fn());
+    } while (dirty);
+    return tree;
+  };
+  return { states, calls, timers, window, render, unmount: () => effects.forEach(effect => effect?.cleanup?.()),
     submit: tree => find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }),
     advance: elapsed => { now += elapsed; for (const [id, timer] of [...timers]) if (timer.dueAt <= now) { timers.delete(id); timer.fn(); } },
   };
@@ -119,10 +136,16 @@ test('Payment sign-in and registration keep the checkout context when switching 
     h.states[2] = 'email';
     const html = renderToStaticMarkup(h.render());
     assert.match(html, /Schritte zum Abo/);
-    assert.match(html, /Ich habe ein Konto/);
-    assert.match(html, /Konto kostenlos anlegen/);
+    if(registration) {
+      assert.match(html,/Mit E-Mail fortfahren/);
+      assert.match(html,/Dein bestehendes Konto bleibt erhalten/);
+      assert.doesNotMatch(html,/aria-label="Jagdlatein-Konto wählen"/);
+    } else {
+      assert.match(html, /Ich habe ein Konto/);
+      assert.match(html, /Konto kostenlos anlegen/);
+    }
     const links = [...html.matchAll(/href="(\/(?:login|registrieren)\?[^"]+)"/g)].map(match => new URL(match[1], 'https://jagdlatein.invalid'));
-    assert.equal(links.length, 2);
+    assert.equal(links.length, registration ? 0 : 2);
     for (const link of links) assert.equal(link.searchParams.get('next'), next);
     h.states[2] = 'code'; h.states[1] = '123456';
     assert.match(renderToStaticMarkup(h.render()), /Bestätigen und zum Abo/);
@@ -132,6 +155,61 @@ test('Payment sign-in and registration keep the checkout context when switching 
     assert.equal(h.window.location.href, next);
     h.unmount();
   }
+});
+
+test('Switching login and registration preserves the email, clears the former code, and keeps independent resend deadlines', async () => {
+  const h = harness(() => response({ success: true }), { allowRegistration: true });
+  h.states[2] = 'email';
+  await h.submit(h.render());
+  h.states[1] = '456789';
+  const switched = h.render({ registration: true });
+  assert.equal(h.states[0], 'member@example.invalid');
+  assert.equal(h.states[1], ''); assert.equal(h.states[2], 'email'); assert.equal(h.states[3], '');
+  assert.equal(find(switched, node => node.type === 'input').props.type, 'email');
+  assert.equal(h.calls.length, 1, 'Changing mode must not send mail automatically.');
+  await h.submit(switched);
+  assert.equal(h.calls.length, 2); assert.equal(h.calls[1][0], '/api/auth/register-request');
+  assert.equal(h.states[2], 'code');
+  h.render({ registration: false });
+  assert.equal(h.states[1], ''); assert.equal(h.states[2], 'email');
+  await h.submit(h.render());
+  assert.equal(h.calls.length, 2, 'Returning to login must honor its original deadline.');
+  assert.equal(h.states[2], 'code');
+  assert.match(h.states[3], /zuletzt angeforderten Code/);
+  h.unmount(); assert.equal(h.timers.size, 0);
+});
+
+test('An aborted old-mode response cannot overwrite or release a newer registration request', async () => {
+  const login = deferred(), registration = deferred();
+  const h = harness(url => url === '/api/auth/request-code' ? login.promise : registration.promise, { allowRegistration: true });
+  h.states[2] = 'email';
+  const oldRequest = h.submit(h.render());
+  const switched = h.render({ registration: true });
+  assert.equal(h.calls[0][1].signal.aborted, true);
+  assert.equal(h.timers.size, 0, 'Mode cleanup cancels the former timeout too.');
+  const newRequest = h.submit(switched);
+  login.resolve(response({ success: true, message: 'Old login message' }));
+  await oldRequest;
+  assert.equal(h.states[2], 'email'); assert.equal(h.states[3], ''); assert.equal(h.states[4], true);
+  await h.submit(h.render()); assert.equal(h.calls.length, 2, 'The newer request remains protected against double submit.');
+  registration.resolve(response({ success: true, message: 'Registration confirmation requested' }));
+  await newRequest;
+  assert.equal(h.states[2], 'code'); assert.equal(h.states[3], 'Registration confirmation requested');
+  assert.equal(h.states[4], false); assert.equal(h.window.location.href, null);
+  h.unmount(); assert.equal(h.timers.size, 0);
+});
+
+test('Changing mode cancels a completed verification redirect and ignores its old callback', async () => {
+  const h = harness(() => response({ success: true, paid: true }), { allowRegistration: true });
+  await h.submit(h.render());
+  const redirect = [...h.timers.values()].find(timer => timer.delay === 500);
+  assert.ok(redirect);
+  h.render({ registration: true });
+  assert.equal(h.states[0], 'member@example.invalid'); assert.equal(h.states[1], '');
+  assert.equal(h.states[2], 'email'); assert.equal(h.states[4], false);
+  assert.equal(h.timers.size, 0);
+  redirect.fn(); assert.equal(h.window.location.href, null);
+  h.unmount();
 });
 
 test('The registration link also preserves a selected free community thread for ordinary sign-in', () => {

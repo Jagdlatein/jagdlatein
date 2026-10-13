@@ -128,6 +128,8 @@ export default function AccountPage() {
   const endedTrial = !account?.admin && !account?.paid && trialUntil && (Date.parse(account.trialUntil) <= Date.now() || ["CANCELLED", "SUSPENDED", "EXPIRED"].includes(account.subscriptionStatus));
   const subscriptionLabels = { ACTIVE: "Aktiv", APPROVED: "Bestätigung wird verarbeitet", APPROVAL_PENDING: "Zustimmung ausstehend", CANCELLED: "Gekündigt", SUSPENDED: "Pausiert", EXPIRED: "Beendet", BILLING_RETRY: "Zahlung wird erneut versucht", BILLING_GRACE_PERIOD: "Zahlungsfrist", REVOKED: "Zugang widerrufen" };
   const subscriptionLabel = subscriptionLabels[account?.subscriptionStatus];
+  const paypalPending = !apple && ["APPROVED", "ACTIVE"].includes(account?.subscriptionStatus);
+  const paypalPaused = !apple && account?.subscriptionStatus === "SUSPENDED";
   const paypalManagementUrl = [
     "https://www.paypal.com/myaccount/autopay/",
     "https://www.sandbox.paypal.com/myaccount/autopay/",
@@ -141,11 +143,11 @@ export default function AccountPage() {
         <>
           {!accountDeleted && <>
           {!account.paid && !account.admin ? <section id="abo-und-zugang" className={`${styles.card} ${styles.checkoutCard}`} aria-labelledby="account-checkout">
-            <p className={styles.checkoutStep}>Angemeldet · Nächster Schritt: Abo auswählen</p>
-            <h2 id="account-checkout">Dein Konto ist bereit</h2>
-            <p>Du bist als <strong>{account.email}</strong> angemeldet. Wähle jetzt dein Monatsabo und bestätige es beim Zahlungsanbieter.</p>
-            <p className={styles.muted}>Den Preis und eine mögliche Probezeit siehst du vor der Bestätigung. In der iPhone-/iPad-App öffnet sich die Apple-Aboübersicht, auf der Website und unter Android der PayPal-Abschluss.</p>
-            <a href="/preise" className={styles.button}>Abo auswählen und bestätigen</a>
+            <p className={styles.checkoutStep}>Angemeldet · {paypalPending || paypalPaused ? "Vorhandenes Abo prüfen" : "Nächster Schritt: Abo auswählen"}</p>
+            <h2 id="account-checkout">{paypalPaused ? "Dein PayPal-Abo ist pausiert" : paypalPending ? "Dein Abo ist noch nicht freigeschaltet" : "Dein Konto ist bereit"}</h2>
+            <p>Du bist als <strong>{account.email}</strong> angemeldet. {paypalPending || paypalPaused ? "Prüfe zuerst dein vorhandenes Abo. Ein weiterer Kauf ist dafür nicht nötig." : "Wähle jetzt dein Monatsabo und bestätige es beim Zahlungsanbieter."}</p>
+            {!(paypalPending || paypalPaused) && <p className={styles.muted}>Den Preis und eine mögliche Probezeit siehst du vor der Bestätigung. In der iPhone-/iPad-App öffnet sich die Apple-Aboübersicht, auf der Website und unter Android der PayPal-Abschluss.</p>}
+            <a href="/preise" className={styles.button}>{paypalPending || paypalPaused ? "Vorhandenes Abo prüfen" : "Abo auswählen und bestätigen"}</a>
             <p><Link href="/hilfe#abo" className={styles.helpLink}>Hilfe zum Abo</Link></p>
           </section> : <section id="abo-und-zugang" className={`${styles.card} ${styles.accessCard}`} aria-labelledby="account-access">
             <p className={styles.accessBadge}>{account.admin ? "Adminzugang aktiv" : trial ? "Testzugang aktiv" : "Lernzugang aktiv"}</p>
@@ -166,6 +168,7 @@ export default function AccountPage() {
               {!account.admin && subscriptionLabel && <div><dt>{apple ? "Apple-Abo" : "PayPal-Abo"}</dt><dd>{subscriptionLabel}</dd></div>}
               <div><dt>Anmeldung</dt><dd>Mit einem Code per E-Mail</dd></div>
             </dl>
+            {!account.admin && <p><button type="button" className={styles.secondaryButton} onClick={reload}>Zugang und Abo aktualisieren</button></p>}
             {trial && account.paid && !trialStopped && !apple && <p className={styles.muted}>
               Nach den 3 kostenlosen Tagen verlängert sich dein Abo zu den beim Abschluss in PayPal bestätigten Bedingungen.
               Kündige vor dem oben angezeigten Termin bei PayPal, wenn du keine Abozahlung möchtest. Die Kündigung beendet deinen Testzugang.
@@ -207,7 +210,7 @@ export default function AccountPage() {
           </section>
           <section className={styles.card} aria-labelledby="account-privacy">
             <h2 id="account-privacy">Datenschutz und Kontohilfe</h2>
-            <p className={styles.muted}>Fragen zu deinen gespeicherten Daten oder eine Anfrage zu Auskunft, Berichtigung oder Löschung kannst du per E-Mail stellen. Eine Datenanfrage kündigt dein PayPal-Abo nicht automatisch.</p>
+            <p className={styles.muted}>Fragen zu deinen gespeicherten Daten oder eine Anfrage zu Auskunft, Berichtigung oder Löschung kannst du per E-Mail stellen. Eine Datenanfrage kündigt dein Apple- oder PayPal-Abo nicht automatisch.</p>
             <div className={styles.actions}>
               <Link href="/datenschutz" className={styles.secondaryButton}>Datenschutzhinweise lesen</Link>
               <a href="mailto:info@jagdlatein.de?subject=Anfrage%20zu%20meinen%20Kontodaten" className={styles.secondaryButton}>Kontohilfe per E-Mail</a>

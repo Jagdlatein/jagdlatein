@@ -40,22 +40,41 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const busy = useRef(false);
   const mounted = useRef(true);
   const request = useRef(null);
+  const requestTimer = useRef(null);
   const redirectTimer = useRef(null);
   const resendTimer = useRef(null);
   const resendDeadlines = useRef(new Map());
+  const authMode = useRef(registration);
 
   useEffect(() => {
     mounted.current = true;
+    // Both routes export this component, so Next can retain it when switching.
+    // A code belongs to one endpoint; only the address survives the switch.
+    if (authMode.current !== registration) {
+      authMode.current = registration;
+      setStep("email");
+      setCode("");
+      setMsg("");
+      setLoading(false);
+      updateResendWait(email);
+    }
     return () => {
       mounted.current = false;
       request.current?.abort();
+      request.current = null;
+      busy.current = false;
+      clearTimeout(requestTimer.current);
       clearTimeout(redirectTimer.current);
       clearTimeout(resendTimer.current);
     };
-  }, []);
+  }, [registration]);
+
+  function resendKey(cleanEmail) {
+    return `${registration ? "register" : "login"}:${cleanEmail}`;
+  }
 
   function remainingWait(cleanEmail) {
-    return Math.max(0, Math.ceil(((resendDeadlines.current.get(cleanEmail) || 0) - Date.now()) / 1000));
+    return Math.max(0, Math.ceil(((resendDeadlines.current.get(resendKey(cleanEmail)) || 0) - Date.now()) / 1000));
   }
 
   function updateResendWait(value) {
@@ -90,6 +109,8 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     const controller = new AbortController();
     request.current = controller;
     const timeout = setTimeout(() => controller.abort(), 18000);
+    requestTimer.current = timeout;
+    const isCurrentRequest = () => mounted.current && request.current === controller;
     let redirecting = false;
     try {
       const endpoint = registration
@@ -101,7 +122,8 @@ export default function LoginPage({ registration = false, allowRegistration = fa
         body: JSON.stringify(verify ? { email: cleanEmail, code } : { email: cleanEmail }),
       });
       const data = await response.json();
-      if (!mounted.current) return;
+      if (!isCurrentRequest()) return;
+      if (controller.signal.aborted) throw new Error("Anfrage abgelaufen.");
       if (!response.ok || data.success === false) {
         setMsg(data.message || (verify ? "Login-Code ist ungültig." : "Code konnte nicht versendet werden."));
         return;
@@ -110,12 +132,12 @@ export default function LoginPage({ registration = false, allowRegistration = fa
         redirecting = true;
         setMsg("Erfolgreich eingeloggt – Weiterleitung …");
         redirectTimer.current = setTimeout(() => {
-          if (mounted.current) window.location.href = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
+          if (isCurrentRequest()) window.location.href = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
         }, 500);
       } else {
         // Apply the same visible wait to every neutral success response. It
         // does not reveal whether the address has a registered account.
-        resendDeadlines.current.set(cleanEmail, Date.now() + 60000);
+        resendDeadlines.current.set(resendKey(cleanEmail), Date.now() + 60000);
         updateResendWait(cleanEmail);
         setEmail(cleanEmail);
         setCode("");
@@ -125,13 +147,14 @@ export default function LoginPage({ registration = false, allowRegistration = fa
           : "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet."));
       }
     } catch {
-      if (mounted.current) setMsg("Server nicht erreichbar. Bitte erneut versuchen.");
+      if (isCurrentRequest()) setMsg("Server nicht erreichbar. Bitte erneut versuchen.");
     } finally {
       clearTimeout(timeout);
-      request.current = null;
-      if (!redirecting) {
+      // A late result from the former route must not release a newer request.
+      if (isCurrentRequest() && !redirecting) {
+        request.current = null;
         busy.current = false;
-        if (mounted.current) setLoading(false);
+        setLoading(false);
       }
     }
   }
@@ -146,12 +169,12 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       {forSubscription && <ol className={authStyles.progress} aria-label="Schritte zum Abo">
         {["E-Mail", "Code bestätigen", "Abo wählen"].map((label, index) => <li key={label} aria-current={(step === "email" ? 0 : 1) === index ? "step" : undefined}><span aria-hidden="true">{index + 1}</span>{label}</li>)}
       </ol>}
-      {forSubscription && allowRegistration && step === "email" && <nav className={authStyles.accountChoice} aria-label="Jagdlatein-Konto wählen">
+      {forSubscription && allowRegistration && !registration && step === "email" && <nav className={authStyles.accountChoice} aria-label="Jagdlatein-Konto wählen">
         <Link href={loginHref} aria-current={!registration ? "page" : undefined}>Ich habe ein Konto</Link>
         <Link href={registrationHref} aria-current={registration ? "page" : undefined}>Konto kostenlos anlegen</Link>
       </nav>}
-      <h2 id="login-heading">{step === "email" ? (registration ? "Konto kostenlos anlegen" : "Mit E-Mail anmelden") : (registration ? "E-Mail bestätigen" : "Login-Code bestätigen")}</h2>
-      <p>{step === "email" ? (registration ? "Gib die E-Mail-Adresse für dein Jagdlatein-Konto ein. Die Registrierung löst keine Zahlung aus." : "Gib die E-Mail-Adresse deines Jagdlatein-Kontos ein.") : <>Code für <strong className={authStyles.emailAddress}>{email}</strong></>}</p>
+      <h2 id="login-heading">{step === "email" ? (forSubscription && registration ? "Mit E-Mail fortfahren" : registration ? "Konto kostenlos anlegen" : "Mit E-Mail anmelden") : (registration ? "E-Mail bestätigen" : "Login-Code bestätigen")}</h2>
+      <p>{step === "email" ? (forSubscription && registration ? "Mit deiner E-Mail anmelden oder kostenloses Konto anlegen. Dein bestehendes Konto bleibt erhalten. Dieser Schritt löst keine Zahlung aus." : registration ? "Gib die E-Mail-Adresse für dein Jagdlatein-Konto ein. Die Registrierung löst keine Zahlung aus." : "Gib die E-Mail-Adresse deines Jagdlatein-Kontos ein.") : <>Code für <strong className={authStyles.emailAddress}>{email}</strong></>}</p>
       {isTestMail && <p className={styles.note}>
         <strong>Testumgebung:</strong> {testMailMode === "tester-smtp"
           ? "Freigegebene Tester erhalten ihren Anmelde- oder Registrierungscode per E-Mail. Bitte prüfe auch den Spamordner."

@@ -79,4 +79,30 @@ final class AppleBillingPolicyTests: XCTestCase {
         XCTAssertFalse(context.accepts(transactionToken: nil, productID: "de.jagdlatein.premium.monthly"))
         XCTAssertFalse(context.accepts(transactionToken: context.appAccountToken, productID: "other.product"))
     }
+
+    func testRestoreRefreshAcceptsAnAccessChangeForTheSameAccountOnly() throws {
+        let source: [String: Any] = [
+            "enabled": true, "appAccountToken": "A0A7B598-7563-4420-81BD-C1AEF61B3D71",
+            "productIds": ["de.jagdlatein.premium.monthly"], "email": "test@example.invalid",
+            "paid": false, "purchaseAllowed": true, "environment": "Sandbox"
+        ]
+        func context(_ changes: [String: Any] = [:]) throws -> ApplePurchaseContext {
+            let value = source.merging(changes) { _, changed in changed }
+            return try JSONDecoder().decode(ApplePurchaseContext.self, from: JSONSerialization.data(withJSONObject: value))
+        }
+        let displayed = try context()
+        let restored = try context(["paid": true, "purchaseAllowed": false])
+        XCTAssertTrue(restored.isSameConfiguredAccount(as: displayed))
+        // A completed restore cannot transfer the offer or its controls to a
+        // newly signed-in account, the other backend, or an incomplete session.
+        for changed in [
+            try context(["appAccountToken": "B0A7B598-7563-4420-81BD-C1AEF61B3D72"]),
+            try context(["environment": "Production"]),
+            try context(["enabled": false]),
+            try context(["productIds": [] as [String]])
+        ] {
+            XCTAssertFalse(changed.isSameConfiguredAccount(as: displayed))
+        }
+        XCTAssertFalse(displayed.isSameConfiguredAccount(as: try context(["enabled": false])))
+    }
 }

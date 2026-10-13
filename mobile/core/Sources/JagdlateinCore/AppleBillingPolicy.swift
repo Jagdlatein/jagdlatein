@@ -27,6 +27,14 @@ public struct ApplePurchaseContext: Decodable {
         isConfigured && transactionToken != nil && transactionToken == appAccountToken &&
             productIds?.contains(productID) == true
     }
+
+    /// A refreshed access state may replace the displayed account only when it
+    /// still belongs to the same configured account and website environment.
+    /// Paid access may change during restoration; account ownership may not.
+    public func isSameConfiguredAccount(as previous: ApplePurchaseContext) -> Bool {
+        isConfigured && previous.isConfigured && appAccountToken == previous.appAccountToken &&
+            environment == previous.environment
+    }
 }
 
 public enum AppleBillingEndpoint: String {
