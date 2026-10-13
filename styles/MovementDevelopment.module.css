@@ -1,0 +1,37 @@
+.mapFigure { margin: 22px 0 16px; }
+.map { display: block; width: 100%; height: auto; max-height: 560px; border: 1px solid #dac9a6; border-radius: 14px; }
+.map text { fill: #465057; font: 15px system-ui, sans-serif; }
+.water { fill: #edf3f4; }
+.land { fill: #f2eddf; stroke: #a9aa99; stroke-width: 1; }
+.dachLand { fill: #e1e8cb; stroke: #a9aa99; stroke-width: 1; }
+.graticule { stroke: #64726a; stroke-width: .65; stroke-dasharray: 3 5; opacity: .45; }
+.pastPoint { fill: #91702e; stroke: #fff9ef; stroke-width: 1; }
+.futurePoint { fill: #b4bcc1; stroke: #f7f8f8; stroke-width: .8; }
+.currentPoint { fill: #443519; stroke: #ffdc7d; stroke-width: 3; }
+.mapFigure figcaption, .photoFigure figcaption { color: #625a4e; font-size: .9rem; line-height: 1.6; margin-top: 10px; }
+.timeline { display: grid; gap: 7px; color: #3e3629; margin: 16px 0; }
+.timeline input { display: block; width: 100%; min-height: 44px; accent-color: #846624; }
+.dataNote { padding: 13px 16px; background: #f5efe2; border-radius: 12px; overflow-wrap: anywhere; line-height: 1.6; }
+.factGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 26px 0; }
+.factGrid section { min-width: 0; border-top: 2px solid #c7ab6d; padding: 12px 0 0; }
+.factGrid h3 { font-size: 1.05rem; margin: 0 0 10px; }
+.factGrid p { line-height: 1.7; }
+.sourceLinks { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: .82rem; }
+.sourceLinks a { color: #775c27; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.question { border: 1px solid #d7c6a3; border-radius: 14px; padding: 16px; margin-top: 22px; }
+.question legend { font-weight: 750; padding: 0 7px; }
+.question label { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 10px 4px; line-height: 1.6; cursor: pointer; }
+.question input { accent-color: #846624; margin-top: 6px; flex: none; }
+.tableWrap { overflow-x: auto; max-width: 100%; }
+.tableWrap table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.tableWrap caption { padding: 10px 0; text-align: left; font-weight: 650; }
+.tableWrap th, .tableWrap td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e2d7bf; white-space: nowrap; }
+.photoFigure { margin: 20px 0; }
+.photoFrame { background: #f0ebdf; border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 12px; }
+.photo { width: auto; height: auto; max-width: 100%; max-height: 510px; object-fit: contain; border-radius: 9px; }
+.comparison { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+.comparison figure { margin: 0; min-width: 0; }
+.comparison img { width: 100%; height: 170px; object-fit: contain; background: #f0ebdf; border-radius: 9px; }
+.comparison figcaption { margin-top: 6px; font-size: .86rem; line-height: 1.5; }
+@media (max-width: 820px) { .factGrid { grid-template-columns: 1fr; } .comparison { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); } .photo { max-height: 440px; } .question { padding: 12px; } }

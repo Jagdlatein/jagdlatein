@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
+import WildMovementMap from "./WildMovementMap";
+import { wildMovementDatasets, getWildMovementDataset } from "../lib/wild-movement";
 import { formatResearchValue, getResearchDataset, researchDatasets, researchSources, selectResearchPoints } from "../lib/research-understanding";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/RevierKnowledge.module.css";
@@ -39,15 +41,16 @@ function DatasetView({ dataset }) {
 export default function ResearchUnderstanding() {
   const router = useRouter();
   const [selected, setSelected] = useState(researchDatasets[0].id);
-  useEffect(() => { if (router.isReady) setSelected(getResearchDataset(typeof router.query.datensatz === "string" ? router.query.datensatz : "").id); }, [router.isReady, router.query.datensatz]);
+  useEffect(() => { if (router.isReady) { const id = typeof router.query.datensatz === "string" ? router.query.datensatz : ""; setSelected(wildMovementDatasets.some(item => item.id === id) ? id : getResearchDataset(id).id); } }, [router.isReady, router.query.datensatz]);
+  const movement = wildMovementDatasets.some(item => item.id === selected) ? getWildMovementDataset(selected) : null;
   const dataset = getResearchDataset(selected);
   function select(id) {
-    if (!researchDatasets.some(item => item.id === id)) return;
+    if (![...researchDatasets, ...wildMovementDatasets].some(item => item.id === id)) return;
     setSelected(id);
     if (router.isReady) router.replace({ pathname: router.pathname, query: { ...router.query, datensatz: id } }, undefined, { shallow: true, scroll: false }).catch(() => {});
   }
   return <LearningToolLayout title="Forschung verstehen" description="Originaldaten aus DACH erkunden: genau lesen, passende Schlüsse ziehen und Grenzen erkennen." category="natur-revier" icon="stats" compact>
-    <section className={`${shared.panel} ${styles.selector}`} aria-label="Datensatz auswählen"><label className={shared.field}>Forschungsbeispiel<select value={dataset.id} onChange={event => select(event.target.value)}>{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</select></label></section>
-    <DatasetView key={dataset.id} dataset={dataset} />
+    <section className={`${shared.panel} ${styles.selector}`} aria-label="Datensatz auswählen"><label className={shared.field}>Forschungsbeispiel<select value={movement?.id || dataset.id} onChange={event => select(event.target.value)}><optgroup label="Messreihen und Diagramme">{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</optgroup><optgroup label="Wildbewegungen auf Karten">{wildMovementDatasets.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label></section>
+    {movement ? <WildMovementMap key={movement.id} selectedId={movement.id} hideSelector /> : <DatasetView key={dataset.id} dataset={dataset} />}
   </LearningToolLayout>;
 }

@@ -1,0 +1,7 @@
+.panel { border-top: 1px solid var(--border, #ddd1b9); margin-top: 14px; padding-top: 12px; }
+.panel summary { cursor: pointer; color: var(--accent-dark, #755b20); font-weight: 700; padding: 5px 0; }
+.content { font-size: 15px; line-height: 1.6; }
+.content figure { margin: 12px 0; }
+.content img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.content figcaption { font-size: 13px; color: #655d4c; }
+.content a { color: #755b20; text-underline-offset: 3px; }

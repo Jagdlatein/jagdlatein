@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-13",
+  "scope": "Integration of eight approved additions; no blanket certification of the app",
+  "soundSpectrograms": {
+    "originals": "37 existing attributed genuine MP3 recordings, all kept unchanged",
+    "methodSourcesRead": ["https://www.macaulaylibrary.org/2021/07/19/from-sound-to-images-part-1-a-deep-dive-on-spectrogram-creation/", "https://manual.audacityteam.org/man/spectrogram_view.html"],
+    "claims": ["Time/frequency axes and relative intensity", "STFT window tradeoff", "No calibrated sound pressure or automatic species certainty"],
+    "provenance": "public/lernen/klangbilder-2026/nachweise.json contains recording and graphic hashes, full durations, sampling and STFT parameters",
+    "generation": "scripts/generate-sound-spectrograms.py: channel power average, Hann 1024, hop256, peak relative -80..0dB, maximum aggregation above1000 columns",
+    "review": "Numerical generation plus visual chart inspection; not an independent biological rerecording"
+  },
+  "communityCases": {
+    "policy": "Reuses exact already checked quiz, claims, original photograph context and source IDs of five ecology profiles. No new biological claims or new check dates.",
+    "topics": ["spinnen", "koecherfliegenlarven", "bachflohkrebse", "amphibien", "streuabbau"],
+    "schedule": "Monday date boundary Europe/Zurich, five-case rotation, all cases selectable",
+    "discussion": "User writes and accepts rules; submission remains premoderated. No automatic publication or factual seal for learner replies."
+  },
+  "legacyCorrection": {
+    "file": "pages/jagdpraxis/nachsuche.js",
+    "claims": "Two Schwarzwild cases used Panseninhalt/Pansenschweiss. Corrected anatomy term to Magen-/Darminhalt; no newly inferred shooting diagnosis.",
+    "independentSources": ["https://www.ictvet.uzh.ch/US_Schwein/html/git1.htm", "https://literatur.thuenen.de/digbib_extern/bitv/dk037184.pdf"],
+    "reviewerEvidence": "body_parasite_expansion actually read sources and checked pig/boar comparison; further scans found no identical affected terms outside these cases"
+  }
+}

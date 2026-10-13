@@ -11,14 +11,17 @@ const css = new Proxy({}, { get: (_, key) => String(key) });
 
 function load(relative, overrides = {}) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8').replace(/^\uFEFF/, ''));
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} };
   const resolve = id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
+    if (id === 'next/router') return { useRouter: () => ({ isReady: false, query: {}, pathname: '', replace: async () => true }) };
+    if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head' || id === 'next/script') return ({ children }) => React.createElement(React.Fragment, null, children);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), overrides);
     return pr(id);
   };
   new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports);
@@ -128,6 +131,18 @@ test('All anatomy answers explain mistakes and rapid advance does not skip quest
   }
   assert.match(app.content(), /Runde abgeschlossen: 0 von 6 richtig/);
   app.click('Alle Fragen wiederholen'); assert.match(app.content(), /0 beantwortet · 0 richtig/);
+});
+
+test('The anatomy selector opens real-photo digestion content directly and retains museum questions', () => {
+  const app = setup('components/AnatomyExplorer.js');
+  const select = () => find(app.tree, node => node.type === 'select' && node.props.children?.some?.(child => child?.type === 'optgroup'));
+  assert.ok(select());
+  select().props.onChange({target: {value: 'schwarzwild-verdauung'}}); app.redraw();
+  const panel = find(app.tree, node => node.type?.name === 'DigestiveLearning');
+  assert.ok(panel); assert.equal(panel.props.selectedId, 'schwarzwild-verdauung'); assert.equal(panel.props.hideSelector, true);
+  select().props.onChange({target: {value: anatomy.anatomyModels[0].id}}); app.redraw();
+  assert.equal(find(app.tree, node => node.type?.name === 'DigestiveLearning'), null);
+  assert.ok(app.content().includes(anatomy.anatomyQuestions[0].question));
 });
 
 test('Direct search links select valid content and unknown IDs are ignored', () => {

@@ -1,0 +1,330 @@
+{
+  "id" : "94088477-583b-4b7c-896e-3213ce6f5398",
+  "uuid" : "94088477-583b-4b7c-896e-3213ce6f5398",
+  "name" : "Data from: Study \"LifeTrack White Stork SW Germany\" (2013-2019)",
+  "handle" : "10255/move.912",
+  "metadata" : {
+    "datacite.RelatedIdentifier.relatedIdentifierType" : [ {
+      "value" : "https://doi.org/10.1002/ece3.5395",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "datacite.RelatedIdentifier.relationType" : [ {
+      "value" : "Ecology and Evolution",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.contributor.author" : [ {
+      "value" : "Fiedler, Wolfgang",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    }, {
+      "value" : "Flack, Andrea",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 1
+    }, {
+      "value" : "Schäfle, Wolfgang",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 2
+    }, {
+      "value" : "Keeves, Brigitta",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 3
+    }, {
+      "value" : "Quetting, Michael",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 4
+    }, {
+      "value" : "Eid, Babette",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 5
+    }, {
+      "value" : "Schmid, Heidi",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 6
+    }, {
+      "value" : "Wikelski, Martin",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 7
+    } ],
+    "dc.date.accessioned" : [ {
+      "value" : "2019-07-23T19:35:26Z",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.date.available" : [ {
+      "value" : "2019-07-23T19:35:26Z",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.date.issued" : [ {
+      "value" : "2019-07-23",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.date.submitted" : [ {
+      "value" : "2019",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.description.abstract" : [ {
+      "value" : "Human-induced changes in climate and environment are challenging the existence of migratory species. Species with diverse and flexible migratory behaviour suffer less from population decline, as they are more capable to respond by altering migratory behaviour. At the individual-level, variations in migratory behaviour may lead to differences in fitness and subsequently influence demographic dynamics. Using lifetime GPS bio-logging data from 169 white storks (Ciconia ciconia), we answer whether their recently shortened migration has survival benefit during the juvenile stage, the riskiest life period for many migrants. We also explore how other variations in migratory decisions (i.e. time, destination), movement activity (measured by the overall body dynamic acceleration), and early life conditions influence juveniles’ survival. We observed that first autumn migration was the riskiest period for juvenile white storks. Individuals that migrated shorter distances and fledged earlier experienced lower mortality risk. In addition, higher movement activity and overwintering “closer-to-home” in Europe and North Africa (84.21% of tracked individuals adopted this new strategy) were associated with higher survival. Our study shows how avian migrants can change life history decisions linked to fitness over few decades and thus helps us to understand and predict how migrants respond to the changing world.",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.identifier.citation" : [ {
+      "value" : "Cheng Y, Fiedler W, Wikelski M, Flack A (2019) \"Closer-to-home\" strategy benefits juvenile survival in a long-distance migratory bird. Ecology and Evolution. doi:10.1002/ece3.5395",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.identifier.doi" : [ {
+      "value" : "doi:10.5441/001/1.ck04mn78",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.identifier.uri" : [ {
+      "value" : "https://datarepository.movebank.org/handle/10255/move.912",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.language.iso" : [ {
+      "value" : "eng",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.relation.haspart" : [ {
+      "value" : "doi:10.5441/001/1.ck04mn78/1",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    }, {
+      "value" : "doi:10.5441/001/1.ck04mn78/2",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 1
+    }, {
+      "value" : "doi:10.5441/001/1.ck04mn78/3",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 2
+    }, {
+      "value" : "doi:10.5441/001/1.ck04mn78/4",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 3
+    }, {
+      "value" : "doi:10.5441/001/1.ck04mn78/5",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 4
+    } ],
+    "dc.relation.isreferencedby" : [ {
+      "value" : "doi:10.1002/ece3.5395",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.rights" : [ {
+      "value" : "CC0 1.0 Universal",
+      "language" : "en",
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.rights.uri" : [ {
+      "value" : "http://creativecommons.org/publicdomain/zero/1.0/",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.subject" : [ {
+      "value" : "Ciconia ciconia",
+      "language" : null,
+      "authority" : "virtual::308",
+      "confidence" : -1,
+      "place" : 0
+    }, {
+      "value" : "animal migration",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 2
+    }, {
+      "value" : "animal movement",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 3
+    }, {
+      "value" : "animal tracking",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 4
+    }, {
+      "value" : "avian migration",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 5
+    }, {
+      "value" : "bio-logging",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 6
+    }, {
+      "value" : "Ciconia ciconia",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 7
+    }, {
+      "value" : "GPS logger",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 8
+    }, {
+      "value" : "GSM telemetry",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 9
+    }, {
+      "value" : "migration",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 10
+    }, {
+      "value" : "white stork",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 11
+    } ],
+    "dc.title" : [ {
+      "value" : "Data from: Study \"LifeTrack White Stork SW Germany\" (2013-2019)",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dc.type" : [ {
+      "value" : "Article",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dspace.entity.type" : [ {
+      "value" : "Datapackage",
+      "language" : null,
+      "authority" : null,
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "dwc.ScientificName" : [ {
+      "value" : "Ciconia ciconia",
+      "language" : null,
+      "authority" : "virtual::308",
+      "confidence" : -1,
+      "place" : 0
+    } ],
+    "relation.isTaxonOfDatapackage" : [ {
+      "value" : "e3910141-db6e-4f7d-9964-ca095b5fdbf8",
+      "language" : null,
+      "authority" : "virtual::308",
+      "confidence" : -1,
+      "place" : 0
+    } ]
+  },
+  "inArchive" : false,
+  "discoverable" : true,
+  "withdrawn" : false,
+  "lastModified" : "2023-05-03T06:47:32.705+00:00",
+  "citations" : [ ],
+  "entityType" : "Datapackage",
+  "type" : "item",
+  "_links" : {
+    "accessStatus" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/accessStatus"
+    },
+    "bundles" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/bundles"
+    },
+    "identifiers" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/identifiers"
+    },
+    "mappedCollections" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/mappedCollections"
+    },
+    "owningCollection" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/owningCollection"
+    },
+    "relationships" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/relationships"
+    },
+    "version" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/version"
+    },
+    "templateItemOf" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/templateItemOf"
+    },
+    "thumbnail" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/thumbnail"
+    },
+    "citations" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398/citations"
+    },
+    "self" : {
+      "href" : "https://datarepository.movebank.org/server/api/core/items/94088477-583b-4b7c-896e-3213ce6f5398"
+    }
+  }
+}

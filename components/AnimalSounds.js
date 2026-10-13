@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
+import SoundSpectrogram from "./SoundSpectrogram";
 import LearningToolLayout from "./LearningToolLayout";
 import { animalSounds, animalSoundById, shuffledSoundIds, soundFeedback } from "../lib/animal-sounds";
 import { filterAnimalSounds, soundGroups, soundRound, SOUND_PAGE_SIZE, SOUND_ROUND_SIZE } from "../lib/animal-sound-learning";
@@ -45,7 +46,8 @@ export function SoundPlayer({ sound, label, onPlay, reveal = true }) {
       <button type="button" className={experienceStyles.secondary} onClick={retry}>Noch einmal laden</button>
       <a href={sound.sourceUrl} target="_blank" rel="noreferrer">Bei der Originalquelle abspielen{!reveal && " (verrät die Art)"}</a>
     </div>}
-    <SoundCredit sound={sound} full={reveal} />
+      <SoundCredit sound={sound} full={reveal} />
+      {reveal && <SoundSpectrogram key={sound.id} sound={sound} />}
   </div>;
 }
 

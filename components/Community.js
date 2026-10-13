@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
+import CommunityWeeklyCase from "./CommunityWeeklyCase";
+import { communityWeeklyCases } from "../lib/community-weekly-case";
 import { communityCategories, communityRules } from "../lib/community-catalog";
 import styles from "../styles/Community.module.css";
 import learning from "../styles/LearningExperience.module.css";
@@ -144,6 +146,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   const [category, setCategory] = useState(initialCategory); const [query, setQuery] = useState(""); const [search, setSearch] = useState("");
   const [page, setPage] = useState(1); const [type, setType] = useState("all"); const [unanswered, setUnanswered] = useState(false); const [view, setView] = useState("posts");
   const [compose, setCompose] = useState(Boolean(context)); const [busy, setBusy] = useState(false); const [mutationError, setMutationError] = useState(null); const [notice, setNotice] = useState("");
+  const [discussionTitle, setDiscussionTitle] = useState(context ? `Frage zu ${context}`.slice(0, 140) : "");
   const [report, setReportState] = useState(null); const [reportReason, setReportReason] = useState(""); const [removal, setRemovalState] = useState(null);
   const [block, setBlockState] = useState(null);
   const [focusTarget, setFocusTarget] = useState(null);
@@ -172,8 +175,9 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     }
   }, [loading, data]);
   useEffect(() => { if (error) setFocusTarget("community-load-error"); }, [error]);
-  const initialQuery = new URLSearchParams({ ...(initialCategory !== "all" ? { category: initialCategory } : {}), ...(context ? { thema: context } : {}) }).toString();
-  const next = threadId ? `/community/${threadId}` : `/community${initialQuery ? `?${initialQuery}` : ""}`;
+  const requestedCase = communityWeeklyCases.some(item => item.id === router.query?.fall) ? router.query.fall : null;
+  const initialQuery = new URLSearchParams({ ...(initialCategory !== "all" ? { category: initialCategory } : {}), ...(context ? { thema: context } : {}), ...(requestedCase ? { fall: requestedCase } : {}) }).toString();
+  const next = threadId ? `/community/${threadId}` : `/community${initialQuery ? `?${initialQuery}` : ""}${requestedCase ? "#community-wochenfall" : ""}`;
   useEffect(() => { setCategory(initialCategory); setCompose(Boolean(context)); setPage(1); setReport(null); setRemoval(null); setBlock(null); setNotice(""); setMutationError(null); setFocusTarget(context ? "community-compose" : null); resultFocusRequested.current = false; }, [initialCategory, context, threadId]);
   async function mutate(body, method = "POST") {
     if (busy) return null;
@@ -212,22 +216,30 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     setNotice(""); setMutationError(null); setFocusTarget("community-view");
   }
   function startCompose() {
+    setDiscussionTitle(context ? `Frage zu ${context}`.slice(0, 140) : "");
     resultFocusRequested.current = false;
     setView("posts"); setPage(1); setCompose(true); setFocusTarget("community-compose");
     setMutationError(null); setNotice("");
   }
   function cancelCompose() { setCompose(false); setMutationError(null); setFocusTarget(threadId ? "community-replies" : "community-results"); }
+  function discussWeeklyCase(item) {
+    setDiscussionTitle(item.discussionTitle); setCategory(item.category);
+    resultFocusRequested.current = false;
+    setView("posts"); setPage(1); setCompose(true); setFocusTarget("community-compose");
+    setMutationError(null); setNotice("");
+  }
   const posts = data?.posts || []; const replies = data?.replies || []; const thread = data?.thread;
   const total = threadId ? data?.replyTotal || 0 : data?.total || 0; const size = data?.pageSize || (threadId || ["reports", "moderation", "submissions"].includes(view) ? 20 : 12);
   const pages = Math.max(1, Math.ceil(total / size));
   useEffect(() => { if (!loading && data && page > pages) setPage(pages); }, [loading, data, page, pages]);
   return <LearningToolLayout title={thread?.title || "Jagdlatein-Community"} description="Fragen finden, Wissen teilen und gemeinsam lernen." eyebrow="Gemeinsam lernen" icon="community" hideCommunity compact>
     {signedIn && <CommunityToolbar {...{ threadId, view, viewer, compose, loading, busy }} onView={changeView} onCompose={startCompose} onReload={reload} />}
+    {signedIn && !threadId && !compose && view === "posts" && <CommunityWeeklyCase canDiscuss={Boolean(viewer) && !busy && !sessionNeedsRenewal} onDiscuss={discussWeeklyCase} />}
     {!signedIn ? <section className={learning.panel}><h2>Hier lernst du mit anderen</h2><p>Ob Jagdhunde, Wildkunde, Natur oder Prüfungsvorbereitung: Tausche dich mit anderen Lernenden aus. Zum Lesen und Schreiben meldest du dich mit deinem Jagdlatein-Konto an. Die Community benötigt kein aktives Abo.</p><div className={styles.benefits}><span><AppIcon name="community" />Fragen und Antworten</span><span><AppIcon name="book" />Alle Lernkategorien</span><span><AppIcon name="shield" />Eigener Anzeigename</span></div><Link className={learning.primary} href={`/login?next=${encodeURIComponent(next)}`}>Anmelden und mitlernen<AppIcon name="arrow-right" size={18} /></Link></section> : <>
       {mutationError && <p id="community-error" tabIndex={-1} role="alert" className={`${styles.error} ${styles.errorFocus}`}>{mutationError}</p>}{notice && <p id="community-notice" tabIndex={-1} role="status" className={`${styles.notice} ${styles.confirmation}`}>{notice}</p>}
       {loading && (!viewer || (!compose && (threadId || view !== "posts"))) && <p role="status">Community wird geladen …</p>}{error && <section id="community-load-error" tabIndex={-1} className={`${styles.error} ${styles.errorFocus}`} role="alert"><h2>{error.setupRequired ? "Die Community wird vorbereitet" : "Community nicht erreichbar"}</h2><p>{error.message}</p>{error.code === "SESSION_RENEWAL_REQUIRED" || error.code === "AUTH_REQUIRED" ? <Link href={`/login?next=${encodeURIComponent(next)}`}>Erneut anmelden</Link> : <button className={learning.secondary} onClick={reload}>Erneut versuchen</button>}</section>}
       {compose && viewer?.profileRequired && <ProfileForm onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
-      {compose && canPost && <Compose key={threadId || `${initialCategory}:${context}`} initialCategory={category} initialTitle={context ? `Frage zu ${context}`.slice(0, 140) : ""} threadId={threadId} onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
+      {compose && canPost && <Compose key={threadId || `${initialCategory}:${discussionTitle}`} initialCategory={category} initialTitle={discussionTitle} threadId={threadId} onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
       {!error && (data || viewer) && <>
         {!compose && !threadId && ["moderation", "submissions"].includes(view) && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>{view === "moderation" ? "Neue Beiträge prüfen" : "Meine Einreichungen"}</h2><p>{view === "moderation" ? "Diese Warteschlange ist nur für die Moderation sichtbar. Prüfe auch den öffentlichen Lernnamen; Freigaben bestätigen die Community-Regeln, keine fachliche Richtigkeit." : "Hier siehst du deine noch nicht freigegebenen Themen und Antworten. Freigegebene Beiträge findest du in der Themenübersicht."}</p>{posts.map(post => <CommunitySubmission key={post.id} post={post} admin={view === "moderation" && admin} busy={busy} mutate={mutate} setRemoval={setRemoval} />)}{!loading && posts.length === 0 && <p>{view === "moderation" ? "Keine neuen Beiträge warten auf Prüfung." : "Du hast keine offenen oder abgelehnten Einreichungen."}</p>}</section>}
         {!compose && view === "blocks" && !threadId && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>Blockierte Nutzer</h2><p>Ihr seht die Beiträge des jeweils anderen nicht mehr und könnt nicht aufeinander antworten. Eine Blockierung kannst du hier aufheben. Für eine Prüfung durch die Moderation melde den betreffenden Beitrag zusätzlich.</p>{(data?.blocks || []).map(item => <article className={styles.post} key={item.id}><h3>{item.displayName}</h3><p>Blockiert am {displayDate(item.createdAt)}</p><button className={learning.secondary} disabled={busy} onClick={() => mutate({ action: "unblock", blockId: item.id }, "PATCH")}>Blockierung aufheben</button></article>)}{!loading && !(data?.blocks || []).length && <p>Du hast keine Nutzer blockiert.</p>}</section>}

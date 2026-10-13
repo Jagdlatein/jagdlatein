@@ -22,10 +22,10 @@ const scenarios = [
   },
   {
     "id": 2,
-    "title": "Keiler – dunkler Schweiß + Panseninhalt",
+    "title": "Keiler – dunkler Schweiß + Magen-/Darminhalt",
     "text": "Nachsuchenführer umgehend informieren und die passende Wartezeit mit ihm abstimmen?",
     "correct": true,
-    "explanation": "Panseninhalt melden. Eine starre Zeitregel ersetzt keine fachliche Einschätzung.",
+    "explanation": "Magen-/Darminhalt melden. Eine starre Zeitregel ersetzt keine fachliche Einschätzung.",
     "source": "https://www.bjv-ffb.de/jagdpraxis/nachsuche-und-leitfaden/",
     "country": "DE/AT/CH: Vorgehen mit örtlichem Nachsuchenführer abstimmen"
   },
@@ -94,7 +94,7 @@ const scenarios = [
   },
   {
     "id": 10,
-    "title": "Sau – Pansenschweiß – starker Wildbretgeruch",
+    "title": "Sau – Schweiß mit Magen-/Darminhalt – starker Wildbretgeruch",
     "text": "Umgehend Kontakt zum Nachsuchenführer aufnehmen und Wartezeit sowie Suche abstimmen?",
     "correct": true,
     "explanation": "Organisation beginnt unverzüglich; der tatsächliche Suchbeginn ist vom Einzelfall abhängig.",

@@ -1,0 +1,39 @@
+{
+  "reviewedOn": "2026-10-13",
+  "originalDoi": "https://doi.org/10.5441/001/1.ck04mn78",
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "originalDownload": "https://datarepository.movebank.org/server/api/core/bitstreams/ea18f8fd-5e0f-4271-85f3-f995eabfb724/content",
+  "originalArchiveSha256": "52a8d1539c96fe26d04ae4b521ce5bec447601abdc0c321e6eaee79a821ad2c7",
+  "originalArchiveBytes": 422473815,
+  "animalIdentifier": "Olea + / DER AN868 (eobs 3644)",
+  "tagIdentifier": "3644",
+  "requestedPeriod": [
+    "2014-08-23",
+    "2014-09-04"
+  ],
+  "matchingOriginalEvents": 65998,
+  "displayedEvents": 52,
+  "firstTimestamp": "2014-08-23 02:00:23.000",
+  "lastTimestamp": "2014-09-04 18:00:30.000",
+  "filter": "Only the first contiguous animal group Olea; inclusive dates 2014-08-23..2014-09-04, visible TRUE, sensor-type gps, eobs:status A, valid WGS84 coordinate range. Per published calendar day and target hour 00/06/12/18, select closest existing timestamp within 3 hours; ties lexical event ID. No mean position, interpolation, rounded stored coordinate, invented timestamp or connection.",
+  "timeBasis": "README: UTC or GPS time (a few leap seconds different); exact timestamp strings are retained; no claim of local clock time.",
+  "map": {
+    "producer": "Natural Earth",
+    "version": "5.1.2",
+    "resolution": "1:110 million",
+    "source": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_admin_0_countries.geojson",
+    "license": "Public domain",
+    "terms": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "sha256": "6866c877d39cba9c357620878839b336d569f8c662d3cfab4cb1dbe2d39c977f",
+    "modifications": "Select 10 European countries; retain exact polygon coordinates, omit unused metadata. Render a simplified overview in Mercator projection, not navigation boundaries."
+  },
+  "outputs": {
+    "weissstorch-originalausschnitt.csv": "bbe70d42d4bd344dda5e21bf6cd2dc4bef4e977a5357687310383a9c35598913",
+    "weissstorch-messpunkte.json": "842ec030569d2b48517f08dcb01a4eeb54370fcc8648969be13f6808d2b1df47",
+    "europa-natural-earth.json": "f57000ed45fc1de3f027cc946cdf87e22f14ff6f41e5cda9e021ca0779fe8b75",
+    "lifetrack-original-readme.txt": "bc3f763788e1db6728f2e5b192bcf4598277a43bc75434510c5b9c3f478fe4a8",
+    "lifetrack-original-reference.csv": "59ec9c744f6eb1fbe44fa574073cd709779a9f22a051e140daec63799c20afea",
+    "lifetrack-original-metadata.json": "40b7f00bc1f0f56512f70be4f79266d2bc62d69d52987c17d6b596995af6b048"
+  }
+}

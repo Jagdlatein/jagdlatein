@@ -26,7 +26,7 @@ test('Search covers courses, species, terms and all tools; results contain summa
   assert.deepEqual(foundTools, expectedTools);
   for (const [query, type] of [['Rehwild', 'course'], ['Rehwild', 'species'], ['Abschussplan', 'glossary'], ['Kühlkette', 'entry'], ['Ansitz', 'practice']]) assert.ok(searchLearning({ query, type }).total > 0, query + ':' + type);
   assert.deepEqual(searchLearning({ query: 'Münsterländer' }), searchLearning({ query: 'Muensterlaender' }));
-  for (const item of searchLearning({ type: 'entry' }).results) { assert.ok(!('text' in item) && !('questions' in item) && !('correct' in item)); assert.ok(item.href.startsWith('/lernen/')); }
+  for (const item of searchLearning({ type: 'entry' }).results) { assert.ok(!('text' in item) && !('questions' in item) && !('correct' in item)); assert.ok(item.href.startsWith('/lernen/') || /^\/community\?fall=[a-z-]+#community-wochenfall$/.test(item.href)); }
   assert.equal(searchLearning({ query: 'zzznichtvorhanden' }).total, 0);
   assert.throws(() => searchLearning({ category: 'fake' })); assert.throws(() => searchLearning({ page: -1 }));
 });

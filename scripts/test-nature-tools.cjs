@@ -11,15 +11,17 @@ const { renderToStaticMarkup } = pr('react-dom/server');
 const css = new Proxy({}, {get: (_, key) => String(key)});
 function load(relative, overrides = {}) {
   const filename = path.join(root, relative);
+  if(filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename,'utf8').replace(/^\uFEFF/,''));
   const {code} = swc.transformSync(fs.readFileSync(filename, 'utf8'), {filename, disableNextSsg:true, jsc:{parser:{syntax:'ecmascript',jsx:true},target:'es2022',transform:{react:{runtime:'automatic'}}},module:{type:'commonjs'}});
   const mod={exports:{}}; const req=createRequire(filename);
   function resolve(id) {
     if(Object.hasOwn(overrides,id)) return overrides[id];
+    if(id==='next/router') return {useRouter:()=>({isReady:false,query:{},pathname:'',replace:async()=>true})};
     if(id==='next/link') return ({href,children,...props})=>React.createElement('a',{href,...props},children);
     if(id==='next/head') return ({children})=>React.createElement(React.Fragment,null,children);
     if(id==='next/image') return ({priority,loading,sizes,...props})=>React.createElement('img',props);
     if(id.endsWith('.module.css')) return {__esModule:true,default:css};
-    if(id.startsWith('.')) return load(path.relative(root,path.resolve(path.dirname(filename),id+'.js')),overrides);
+    if(id.startsWith('.')) return load(path.relative(root,path.resolve(path.dirname(filename),path.extname(id)?id:id+'.js')),overrides);
     return req(id);
   }
   new Function('require','module','exports',code)(resolve,mod,mod.exports);
@@ -97,6 +99,15 @@ test('Result review and targeted practice include only incorrect entries',()=>{
 });
 test('All three tools use one layout, render one main region and usable form labels',()=>{
   for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.match(html,/href="\/lernen#lernen-suche"/);assert.match(html,/Lernbereich/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
+});
+
+test('The plant learning selector opens photo development directly and returns to the searchable atlas',()=>{
+  const s=setup('components/PlantAtlas.js');
+  const select=()=>find(s.tree,node=>node.type==='label'&&text(node).startsWith('Lernangebot'));
+  const choose=value=>{const control=find(select(),node=>node.type==='select');assert.ok(control);control.props.onChange({target:{value}});s.redraw();};
+  choose('entwicklung');assert.ok(find(s.tree,node=>node.type?.name==='DevelopmentPhotoSeries'));
+  choose('atlas');assert.equal(find(s.tree,node=>node.type?.name==='DevelopmentPhotoSeries'),null);assert.ok(find(s.tree,node=>node.type==='input'&&node.props.type==='search'));
+  choose('quiz');assert.ok(find(s.tree,node=>node.type?.name==='NatureQuestionRound'));
 });
 test('Valid direct entry parameters open the intended profiles; unknown values are ignored',()=>{
   const previous=global.window;try{

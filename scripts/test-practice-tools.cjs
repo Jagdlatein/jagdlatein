@@ -11,16 +11,17 @@ const { renderToStaticMarkup } = pr('react-dom/server');
 const css = new Proxy({}, { get: (_, key) => String(key) });
 function load(relative, overrides = {}) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8').replace(/^\uFEFF/, ''));
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} }, req = createRequire(filename);
   function resolve(id) {
-    if (id === 'next/router') return { useRouter: () => ({ query: {} }) };
     if (Object.hasOwn(overrides, id)) return overrides[id];
+    if (id === 'next/router') return { useRouter: () => ({ isReady: false, query: {}, pathname: '', replace: async () => true }) };
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
     if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), overrides);
     return req(id);
   }
   new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports); return mod.exports;
@@ -54,6 +55,18 @@ test('Hygiene feedback supports wrong answers, guards double submissions and rej
   wrong.props.onClick(); next.props.onClick(); s.redraw(); assert.ok(!s.html().includes('Fall 3 von 10'));
   for (let i = 1; i < 10; i++) { const item = meat.gameMeatCases[i]; s.click(item.choices[item.answer].text); s.click(i === 9 ? 'Runde auswerten' : 'Nächster Fall'); }
   assert.match(s.html(), /9 von 10/); s.click('Offene Fälle wiederholen'); assert.match(s.html(), /Fall 1 von 1/); wrong.props.onClick(); next.props.onClick(); s.redraw(); assert.equal(find(s.tree, n => n.props?.role === 'status'), null);
+});
+
+test('The single learning offer selector opens parasite cycles directly and returns to explainable hygiene cases', () => {
+  const s = setup('components/GameMeatCases.js');
+  s.field('Lernangebot', 'parasiten');
+  const panel = find(s.tree, node => node.type?.name === 'ParasiteLearning');
+  assert.ok(panel); assert.equal(panel.props.selectedId, 'trichinellen');
+  panel.props.onSelect('fuchsbandwurm'); s.redraw();
+  assert.equal(find(s.tree, node => node.type?.name === 'ParasiteLearning').props.selectedId, 'fuchsbandwurm');
+  s.field('Lernangebot', 'discover');
+  assert.match(s.html(), /Begründung/); assert.equal(find(s.tree, node => node.type?.name === 'ParasiteLearning'), null);
+  s.field('Lernangebot', 'practice'); assert.match(s.html(), /Fall 1 von 10/);
 });
 test('Journal backup validates schema, bounds, IDs, real dates and creates a round-trip without unknown properties', () => {
   const draft = { ...dogs.createDogJournalDraft(new Date('2026-10-04T12:00:00Z')), dog: 'Lotte', observation: 'Freiwillig auf die Decke gegangen.', nextStep: 'Eine kurze Wiederholung.' };

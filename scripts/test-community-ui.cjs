@@ -10,6 +10,7 @@ const React = pr('react');
 const { renderToStaticMarkup } = pr('react-dom/server');
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8').replace(/^\uFEFF/, ''));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} }; cache.set(filename, mod.exports);
   const expose = relative === 'components/Community.js' ? '\nexport { ProfileForm, Compose, PostContent, PostActions, CommunityToolbar, CommunitySearch, useCommunityData, focusSection };' : '';
@@ -18,9 +19,9 @@ function load(relative, overrides = {}, cache = new Map()) {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href: typeof href === 'string' ? href : href.pathname + (Object.keys(href.query || {}).length ? '?' + new URLSearchParams(href.query) : ''), ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
-    if (id === 'next/router') return { useRouter: () => ({ push() {} }) };
+    if (id === 'next/router') return { useRouter: () => ({ query: {}, isReady: false, push() {} }) };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, cache);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), /\.(js|json)$/.test(id) ? id : id + '.js')), overrides, cache);
     return pr(id);
   }, mod, mod.exports);
   cache.set(filename, mod.exports); return mod.exports;
@@ -134,7 +135,7 @@ test('A reading error keeps the active draft form mounted and expired sessions d
   function htmlFor(code) {
     const viewer = { displayName: 'Lernfuchs', profileRequired: false, canModerate: false };
     const selection = JSON.stringify([undefined, 'all', '', 1, 'all', false, 'posts']);
-    const values = ['all', '', '', 1, 'all', false, 'posts', true, false, null, '', null, '', null, null, null,
+    const values = ['all', '', '', 1, 'all', false, 'posts', true, false, null, '', '', null, '', null, null, null,
       { result: { viewer }, selection }, { code, message: 'Der Abruf ist fehlgeschlagen.' }, false, 0];
     let position = 0;
     const fakeReact = { ...React, useState: initial => [position < values.length ? values[position++] : initial, () => {}], useEffect() {}, useCallback: callback => callback, useRef: value => ({ current: value }) };
@@ -154,7 +155,7 @@ test('New typing cancels delayed result focus and a new post action clears older
   const viewer = { displayName: 'Lernfuchs', profileRequired: false, canModerate: false };
   const selection = JSON.stringify([undefined, 'all', '', 1, 'all', false, 'posts']);
   const post = { id: '11111111-1111-4111-8111-111111111111', body: 'Eine Lernfrage', title: 'Eine Lernfrage', category: 'allgemein', owned: false };
-  const values = ['all', '', '', 1, 'all', false, 'posts', false, false, null, 'Gespeichert.', null, '', null, null, null,
+  const values = ['all', '', '', 1, 'all', false, 'posts', false, false, null, 'Gespeichert.', '', null, '', null, null, null,
     { result: { viewer, posts: [post], total: 1 }, selection }, null, false, 0];
   const writes = []; const pendingFocus = { current: true }; let position = 0;
   const fakeReact = { ...React, useState: initial => { const index = position++; return [index < values.length ? values[index] : initial, value => writes.push([index, value])]; }, useEffect() {}, useCallback: callback => callback, useRef: () => pendingFocus };
@@ -171,7 +172,7 @@ test('New typing cancels delayed result focus and a new post action clears older
   find(tree, PostActions).props.setBlock({ postId: post.id, displayName: 'Waldlerner' });
   assert.ok(writes.some(([index, value]) => index === 10 && value === ''));
   assert.ok(writes.some(([index, value]) => index === 9 && value === null));
-  assert.ok(writes.some(([index, value]) => index === 14 && value.postId === post.id));
+  assert.ok(writes.some(([index, value]) => index === 15 && value.postId === post.id));
 });
 test('Forum pages validate route identifiers and keep signed identity pages private without querying payment access', () => {
   const landing = load('pages/community/index.js', { '../../lib/account-access': { readRequestAccountSession: () => null } });

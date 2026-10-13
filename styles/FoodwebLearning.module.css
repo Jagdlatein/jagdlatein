@@ -1,0 +1,32 @@
+.network { border: 0; padding: 0; margin: 24px 0 16px; min-width: 0; }
+.network legend { font-weight: 800; margin-bottom: 12px; }
+.diagram { position: relative; width: 100%; aspect-ratio: 900 / 460; background: #f7f1e5; border-radius: 20px; }
+.arrows { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.arrows path { fill: none; stroke-width: 3; }
+.arrows marker path { fill: #927033; stroke: none; }
+.arrows .activeArrow { stroke: #927033; stroke-width: 4; }
+.arrows .quietArrow { stroke: #b9ae9b; stroke-dasharray: 5 5; }
+.node { position: absolute; left: var(--node-left); top: var(--node-top); width: 22.22%; box-sizing: border-box; border: 2px solid #d7cbb5; border-radius: 14px; background: #fffdf7; padding: 8px; cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 6px; color: #443a29; opacity: .7; }
+.node.connected { opacity: 1; }
+.node.selected { border-color: #8b6c2e; background: #fff7e0; box-shadow: 0 0 0 3px #cdb27a55; }
+.node:focus-within { outline: 3px solid #766029; outline-offset: 4px; }
+.node input { position: absolute; right: 8px; top: 8px; width: 18px; height: 18px; z-index: 1; accent-color: #87692c; }
+.node span { font-weight: 750; font-size: clamp(.75rem, 1.25vw, 1rem); line-height: 1.25; }
+.photo { display: block; width: 100%; height: auto; aspect-ratio: 1.55; object-fit: contain; border-radius: 7px; background: #eee7d9; }
+.explanation { padding-top: 12px; scroll-margin-top: 100px; }
+.explanation h3 { margin-top: 0; }
+.relationships { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); }
+.relationships section { padding: 16px; background: #faf5e9; border: 1px solid #e0d3bc; border-radius: 14px; }
+.relationships h4 { margin: 0 0 10px; }
+.relationships p { margin: 0 0 12px; }
+.sources { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: .84rem; line-height: 1.5; }
+.sources a { color: #71551c; text-decoration: underline; text-underline-offset: 3px; }
+.sources a:focus-visible { outline: 3px solid #766029; outline-offset: 3px; }
+.context { margin-top: 24px; }
+@media (max-width: 580px) {
+  .diagram { aspect-ratio: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px; box-sizing: border-box; }
+  .arrows { display: none; }
+  .node { position: relative; inset: auto; width: 100%; padding: 7px; opacity: 1; }
+  .node span { font-size: .88rem; }
+  .node:last-child { grid-column: 1 / -1; width: calc(50% - 6px); justify-self: center; }
+}

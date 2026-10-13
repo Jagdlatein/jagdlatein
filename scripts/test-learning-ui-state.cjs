@@ -12,6 +12,7 @@ const ts = pr('typescript');
 const css = new Proxy({}, { get: (_, key) => String(key) });
 function load(relative, overrides = {}, expose = '') {
   let filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8').replace(/^\uFEFF/, ''));
   if (!fs.existsSync(filename) && filename.endsWith('.js') && fs.existsSync(filename.slice(0, -3) + '.jsx')) filename = filename.slice(0, -3) + '.jsx';
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} }, req = createRequire(filename);
@@ -22,7 +23,7 @@ function load(relative, overrides = {}, expose = '') {
     if (id === 'next/head') return ({ children }) => children;
     if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), /\.(js|json)$/.test(id) ? id : id + '.js')), overrides);
     return req(id);
   }
   new Function('require', 'module', 'exports', code + expose)(resolve, mod, mod.exports);
