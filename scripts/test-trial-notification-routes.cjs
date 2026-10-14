@@ -27,7 +27,8 @@ const env = { NODE_ENV: 'production', VERCEL_ENV: 'production', CRON_SECRET: key
 test('Scheduled retry fails closed outside the production project and requires its separate exact credential', () => {
   const req = { headers: headers({ authorization: `Bearer ${key}` }) };
   assert.equal(worker.isOperatorTrialWorkerAuthorized(req, env), true);
-  for (const override of [{ CRON_SECRET: '' }, { CRON_SECRET: 'short' }, { CRON_SECRET: key + '\n' },
+  assert.equal(worker.isOperatorTrialWorkerAuthorized(req, { ...env, CRON_SECRET: `\n${key}\n` }), true);
+  for (const override of [{ CRON_SECRET: '' }, { CRON_SECRET: 'short' }, { CRON_SECRET: key.slice(0, 10) + '\n' + key.slice(10) },
     { NODE_ENV: 'development' }, { VERCEL_ENV: 'preview' }, { VERCEL_ENV: undefined }, { JL_TEST_ENVIRONMENT: 'paypal-sandbox' }]) {
     assert.equal(worker.isOperatorTrialWorkerAuthorized(req, { ...env, ...override }), false);
   }
