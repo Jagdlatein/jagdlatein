@@ -90,6 +90,17 @@ function fakeDatabase({ email = EMAIL, generation = GENERATION, deleted = false,
   return { database, snapshots };
 }
 
+test('An operator-notification scheduling failure never changes a successful verified Apple purchase', async () => {
+  let alertCalls = 0;
+  const isolated = load('lib/apple-subscriptions.js', ENV, { './operator-trial-notifications': {
+    scheduleOperatorTrialNotification() { alertCalls++; throw new Error('Optional mail infrastructure unavailable'); },
+  } });
+  const data = fakeDatabase();
+  const result = await isolated.applyVerifiedAppleTransaction(JWS.device, EMAIL, GENERATION,
+    { database: data.database, config: CONFIG, nowMs: NOW, ...provider() });
+  assert.equal(alertCalls, 1); assert.equal(data.snapshots.length, 1); assert.equal(result.paid, true);
+});
+
 test('Apple feature is disabled by default; sandbox configuration cannot target production or unknown environments', () => {
   assert.equal(lib.appleSubscriptionConfig({}), null);
   assert.equal(lib.appleSubscriptionConfig({ ...ENV, APPLE_SUBSCRIPTIONS_ENABLED: 'false' }), null);

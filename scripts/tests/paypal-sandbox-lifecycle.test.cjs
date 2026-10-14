@@ -50,7 +50,8 @@ test.before(async () => {
     '20261004100000_ranked_quiz.sql', '20261004110000_subscription_access.sql',
     '20261004120000_secure_private_tables.sql', '20261004130000_subscription_trial.sql', '20261004190000_learning_community.sql',
     '20261007105000_account_registration.sql', '20261007110000_apple_subscriptions.sql', '20261007120000_account_deletion.sql',
-    '20261009210000_paypal_account_generation.sql', '20261009220000_complete_account_deletion.sql'])
+    '20261009210000_paypal_account_generation.sql', '20261009220000_complete_account_deletion.sql',
+    '20261014110000_operator_trial_notifications.sql'])
     await pg.exec(fs.readFileSync(path.join(root, 'supabase/migrations', file), 'utf8'));
 });
 test.after(async () => { await pg?.close(); });
@@ -150,6 +151,10 @@ async function fixture(overrides = {}) {
     const mod = { exports: {} }; cache.set(filename, mod);
     new Function('require', 'module', 'exports', 'process', 'fetch', code)(id => {
       if (id === '@supabase/supabase-js') return { createClient: () => database };
+      if (id === './operator-trial-notifications' && state.alertError) return {
+        scheduleOperatorTrialNotification() { state.alertCalls = (state.alertCalls || 0) + 1;
+          throw new Error('Optional mail infrastructure unavailable'); },
+      };
       if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)));
       return pr(id);
     }, mod, mod.exports, { env: fixtureEnv }, fakeFetch);
@@ -213,6 +218,15 @@ test('A recovery provider outage keeps the original pending record and cannot gr
   const ctx = await fixture({ newOffer: true, failProvider: true });
   assert.equal((await ctx.recover()).status, 503); assert.equal(ctx.state.rpcCalls, 0);
   const row = await ctx.row(); assert.equal(row.status, 'APPROVAL_PENDING'); assert.equal(row.paid_until, null); assert.equal(row.trial_until, null);
+});
+
+test('Optional operator-alert scheduling failure never changes a verified PayPal trial or account rights', async () => {
+  const ctx = await fixture({ alertError: true }); const response = await ctx.confirm();
+  assert.equal(response.status, 200); assert.equal((await response.json()).accessType, 'trial');
+  const row = await ctx.row(); assert.equal(row.status, 'ACTIVE'); assert.ok(row.trial_activated_at);
+  assert.equal(ctx.state.alertCalls, 1); assert.equal(row.paid_until, null);
+  assert.deepEqual((await pg.query('SELECT email,is_premium,is_admin FROM public.userprofile')).rows[0],
+    { email: EMAIL, is_premium: false, is_admin: false });
 });
 test('Simulated PayPal approval grants exact provider-bound 72-hour trial through the real SQL ledger', async () => {
   const ctx = await fixture(); const response = await ctx.confirm(); assert.equal(response.status, 200);

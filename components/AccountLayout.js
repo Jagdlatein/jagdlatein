@@ -3,9 +3,9 @@ import LearningToolLayout from "./LearningToolLayout";
 import AppIcon from "./AppIcon";
 import styles from "../styles/Account.module.css";
 
-export default function AccountLayout({ title, description, active, children }) {
+export default function AccountLayout({ title, description, active, children, hideCommunity = false }) {
   return (
-    <LearningToolLayout title={title} description={description} icon={active === "statistics" ? "chart" : active === "courses" ? "progress" : "account"} eyebrow="Dein persönlicher Lernbereich" robots="noindex, nofollow" compact>
+    <LearningToolLayout title={title} description={description} icon={active === "statistics" ? "chart" : active === "courses" ? "progress" : "account"} eyebrow="Dein persönlicher Lernbereich" robots="noindex, nofollow" hideCommunity={hideCommunity} compact>
         <div className={styles.wrap}>
           <nav className={styles.nav} aria-label="Kontomenü">
             <Link href="/konto" aria-current={active === "account" ? "page" : undefined}><AppIcon name="account" size={18} />Mein Konto</Link>

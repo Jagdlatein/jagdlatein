@@ -168,6 +168,7 @@ export default function AccountPage() {
               {!account.admin && subscriptionLabel && <div><dt>{apple ? "Apple-Abo" : "PayPal-Abo"}</dt><dd>{subscriptionLabel}</dd></div>}
               <div><dt>Anmeldung</dt><dd>Mit einem Code per E-Mail</dd></div>
             </dl>
+            {account.admin && <p><Link href="/admin/testabos" className={styles.secondaryButton}>Testabos und Abos</Link></p>}
             {!account.admin && <p><button type="button" className={styles.secondaryButton} onClick={reload}>Zugang und Abo aktualisieren</button></p>}
             {trial && account.paid && !trialStopped && !apple && <p className={styles.muted}>
               Nach den 3 kostenlosen Tagen verlängert sich dein Abo zu den beim Abschluss in PayPal bestätigten Bedingungen.
