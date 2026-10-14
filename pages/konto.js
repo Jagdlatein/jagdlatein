@@ -3,12 +3,18 @@ import { useEffect, useRef, useState } from "react";
 import AccountLayout, { AccountError, ProgressError } from "../components/AccountLayout";
 import useAccountOverview from "../hooks/useAccountOverview";
 import { getAccountPageProps } from "../lib/account-page";
-import { courses } from "../lib/course-catalog";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
 import styles from "../styles/Account.module.css";
 
-export const getServerSideProps = getAccountPageProps;
+export async function getServerSideProps(context) {
+  const result = getAccountPageProps(context);
+  if (!result.props) return result;
+  // The account summary needs only course names and destinations, not the
+  // complete learning curriculum in its browser bundle.
+  const { courses } = await import("../lib/course-catalog");
+  return { props: { ...result.props, courses: courses.map(({ id, title, href }) => ({ id, title, href })) } };
+}
 
 function accessDate(value) {
   if (typeof value !== "string" || !Number.isFinite(Date.parse(value))) return null;
@@ -111,7 +117,7 @@ function AccountDeletion({ onDeleted }) {
   </section>;
 }
 
-export default function AccountPage() {
+export default function AccountPage({ courses = [] } = {}) {
   const { account, progress, accountError, progressError, loading, progressLoading, reload } = useAccountOverview();
   const [accountDeleted, setAccountDeleted] = useState(false);
   const known = progress.filter((entry) => courses.some((course) => course.id === entry.course_id));

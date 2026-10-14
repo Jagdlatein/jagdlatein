@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 WIND-SZENARIEN – true = richtige Pirschrichtung
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("wind");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("wind") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – WIND & PIRSCH
 // ------------------------------------------------------------
-export default function WindPirsch() {
+export default function WindPirsch({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

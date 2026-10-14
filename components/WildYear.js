@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
-import { LearningPhotoCredit } from "./LearningMedia";
+import { LearningPhotoCredit } from "./LearningPhoto";
 import { wildlifePhotographs } from "../lib/wildlife-photographs";
 import { getWildYearProfile, wildYearMonths, wildYearSources, wildYearSpecies } from "../lib/wild-year";
 import styles from "../styles/WildYear.module.css";

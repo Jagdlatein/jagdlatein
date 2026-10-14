@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 WILDKUNDE-SZENARIEN – true = korrekt angesprochen, false = falsch
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("wild");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("wild") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // WILDKUNDE-SIMULATOR
 // ------------------------------------------------------------
-export default function Wildkunde() {
+export default function Wildkunde({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

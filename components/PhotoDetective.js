@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
-import { LearningPhotoCredit } from "./LearningMedia";
+import { LearningPhotoCredit } from "./LearningPhoto";
 import { photoDetectiveRounds, getPhotoDetectiveSummary } from "../lib/photo-detective";
 import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/PhotoDetective.module.css";

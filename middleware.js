@@ -11,6 +11,21 @@ const LEARNING_AUDIO = new Set(learningAudioPaths);
 const EXPERIENCE_ASSETS = new Set([...natureAssetPaths, ...mediaExperienceAssetPaths, ...knowledgeExpansionAssetPaths, "/lernen/offline-sw.js"]);
 const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png"]);
 
+// These exact Pages Router routes run getPaidPageProps before rendering any
+// protected content. Let that live server check own the request instead of
+// resolving the same account and subscriptions once in middleware and again in
+// getServerSideProps. Static lessons, files and unknown admin routes still need
+// the middleware check below; never broaden this to a path-prefix exception.
+const SERVER_GUARDED_PAGES = new Set([
+  "/ebook", "/protected/ebook", "/glossar",
+  "/admin", "/admin/glossar", "/admin/glossar-import", "/admin/import",
+  "/admin/push", "/admin/quiz", "/admin/testabos",
+]);
+
+function hasServerPageGuard(pathname) {
+  return SERVER_GUARDED_PAGES.has(pathname) || /^\/glossar\/[^/]+$/.test(pathname);
+}
+
 const PUBLIC_PATHS = [
   "/",
   "/news",
@@ -81,6 +96,12 @@ export async function middleware(req) {
 
   // gewünschte Zielseite merken (inkl. Query)
   const nextPathWithQuery = `${req.nextUrl.pathname}${req.nextUrl.search}`;
+
+  // Signed identity is only a hand-off, never an entitlement grant. Even stale
+  // unpaid/admin claims must reach the authoritative server guard so it can
+  // check current generation, role and coverage. Unsigned requests retain their
+  // existing payment/login redirects.
+  if (session && hasServerPageGuard(pathname)) return NextResponse.next();
 
   // Existing signed identity sessions are upgraded without losing account data.
   // Refresh permissions regularly so removed subscriptions do not last 40 days.

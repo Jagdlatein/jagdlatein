@@ -35,7 +35,7 @@ function harness() {
     return module.exports;
   }
   const session = load('lib/account-session.js'); const { middleware } = load('middleware.js');
-  return { requests, session, run: (pathname, token) => middleware(new NextRequest(`https://jagdlatein.test${pathname}`, {
+  return { requests, session, load, run: (pathname, token) => middleware(new NextRequest(`https://jagdlatein.test${pathname}`, {
     headers: token ? { cookie: `jl_account_session=${token}` } : {},
   })) };
 }
@@ -84,7 +84,20 @@ test('Protected learning pages still refresh expired permissions and fail closed
 
 test('An unpaid fresh session cannot use a learning page or gain an admin entitlement', async () => {
   const ctx = harness(); const token = ctx.session.createAccountSession('learner@example.invalid', Date.now(), { paid: false, admin: false });
-  for (const route of ['/lernen/wildkunde', '/admin']) assert.equal(new URL((await ctx.run(route, token)).headers.get('location')).pathname, '/preise');
+  const learning = await ctx.run('/lernen/wildkunde', token);
+  assert.equal(new URL(learning.headers.get('location')).pathname, '/preise');
+  // The admin page now owns its authoritative SSR guard. Middleware may hand
+  // over a signed identity without granting the private page or an admin role.
+  const admin = await ctx.run('/admin', token);
+  assert.equal(admin.headers.get('x-middleware-next'), '1');
+  const headers = {};
+  const result = await ctx.load('lib/account-access.js').getPaidPageProps({
+    req: new NextRequest('https://jagdlatein.test/admin', { headers: { cookie: `jl_account_session=${token}` } }),
+    res: { setHeader(name, value) { headers[name.toLowerCase()] = value; } }, resolvedUrl: '/admin',
+  }, { adminOnly: true });
+  assert.equal(result.props, undefined);
+  assert.equal(result.redirect.destination, '/konto');
+  assert.equal(headers['cache-control'], 'private, no-store, max-age=0');
   assert.equal(ctx.requests.length, 0);
 });
 

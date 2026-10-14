@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Wild richtig ansprechen (true = korrekt, false = falsch)
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("wildansprache");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("wildansprache") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – Wildansprache
 // ------------------------------------------------------------
-export default function Wildansprache() {
+export default function Wildansprache({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

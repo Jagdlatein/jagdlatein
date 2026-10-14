@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 VERHALTENS-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("verhalten");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("verhalten") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – WILDVERHALTEN
 // ------------------------------------------------------------
-export default function Wildverhalten() {
+export default function Wildverhalten({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

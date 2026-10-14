@@ -10,7 +10,7 @@ const pageSize = 12;
 const countryLabels = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz", DACH: "Deutschland · Österreich · Schweiz" };
 const emptyNews = { items: [], sources: [], generatedAt: null, latestPublishedAt: null, refreshSeconds: newsRefreshSeconds };
 
-export function useJagdNews(initialNews) {
+export function useJagdNews(initialNews, { refreshOnMount = false } = {}) {
   const [news, setNews] = useState(initialNews || emptyNews);
   const [refreshing, setRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState(false);
@@ -56,15 +56,18 @@ export function useJagdNews(initialNews) {
     mounted.current = true;
     const intervalMs = newsRefreshSeconds * 1000;
     const lastGenerated = Date.parse(currentNews.current.generatedAt);
-    const firstDelay = Number.isFinite(lastGenerated) ? Math.min(intervalMs, Math.max(1000, intervalMs - (Date.now() - lastGenerated))) : intervalMs;
+    const firstDelay = refreshOnMount ? 1000 : Number.isFinite(lastGenerated) ? Math.min(intervalMs, Math.max(1000, intervalMs - (Date.now() - lastGenerated))) : intervalMs;
+    const refreshIfVisible = () => {
+      if (document.visibilityState !== "hidden") refresh();
+    };
     let interval;
     const timeout = setTimeout(() => {
-      refresh();
-      interval = setInterval(refresh, intervalMs);
+      refreshIfVisible();
+      interval = setInterval(refreshIfVisible, intervalMs);
     }, firstDelay);
     const onVisibilityChange = () => {
       const generated = Date.parse(currentNews.current.generatedAt);
-      if (document.visibilityState === "visible" && (!Number.isFinite(generated) || Date.now() - generated >= intervalMs)) refresh();
+      if (document.visibilityState === "visible" && (currentNews.current.refreshPending || !Number.isFinite(generated) || Date.now() - generated >= intervalMs)) refresh();
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
     return () => {
@@ -74,7 +77,7 @@ export function useJagdNews(initialNews) {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       activeRequest.current?.abort();
     };
-  }, [refresh]);
+  }, [refresh, refreshOnMount]);
 
   return { news, refresh, refreshing, refreshError, refreshed };
 }
@@ -100,7 +103,7 @@ export function NewsRefreshStatus({ news, refreshing, refreshError, refreshed })
     {news.latestPublishedAt && <p><strong>Neueste Meldung:</strong> <time dateTime={news.latestPublishedAt}>{formatNewsDate(news.latestPublishedAt)}</time></p>}
     {news.generatedAt && <p>Übersicht zusammengestellt: <time dateTime={news.generatedAt}>{formatNewsDate(news.generatedAt, { withTime: true })}</time></p>}
     <p className={styles.refreshMessage} role="status" aria-live="polite">{refreshing ? "Meldungen werden abgerufen …" : refreshError ? "Der Abruf ist gerade nicht möglich. Bereits geladene Meldungen bleiben erhalten." : refreshed ? "Übersicht geladen. Veröffentlichungsdatum und Quellenabruf stehen bei den Meldungen und Quellen." : "Die Übersicht wird automatisch alle 30 Minuten abgerufen."}</p>
-    {unavailable.length > 0 && <p className={styles.notice}>{unavailable.map(source => source.label).join(", ")}: derzeit kein erfolgreicher neuer Abruf. Gespeicherte Meldungen können weiterhin angezeigt werden; den letzten erfolgreichen Quellenabruf findest du unter „Quellen und Abrufstand“.</p>}
+    {unavailable.length > 0 && <p className={styles.notice}>{news.refreshPending && !refreshError ? "Gespeicherte Meldungen sind bereits sichtbar. Die Quellen werden unabhängig von der Startseite aktualisiert; der letzte erfolgreiche Quellenabruf steht bei den Meldungen." : <>{unavailable.map(source => source.label).join(", ")}: derzeit kein erfolgreicher neuer Abruf. Gespeicherte Meldungen können weiterhin angezeigt werden; den letzten erfolgreichen Quellenabruf findest du unter „Quellen und Abrufstand“.</>}</p>}
     {sources.length === 0 && news.items.length === 0 && <p className={styles.notice}>Aktuell sind keine Meldungen verfügbar. Du kannst den Abruf erneut versuchen.</p>}
   </div>;
 }

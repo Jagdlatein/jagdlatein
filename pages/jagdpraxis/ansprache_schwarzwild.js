@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SCHWARZWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("ansprache_schwarzwild");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("ansprache_schwarzwild") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – SCHWARZWILD ANSPRECHEN
 // ------------------------------------------------------------
-export default function AnspracheSchwarzwild() {
+export default function AnspracheSchwarzwild({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

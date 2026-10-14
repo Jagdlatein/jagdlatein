@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/compat/router";
+import Link from "next/link";
 import AppIcon from "./AppIcon";
 import styles from "../styles/GlobalNavigation.module.css";
 
@@ -102,7 +103,18 @@ export default function GlobalHomeButton() {
 
     const previous = history[history.length - 1];
     writeHistory(history);
-    window.location.assign(previous || "/");
+    const target = previous || "/";
+    // Pages navigation reuses the loaded app shell. A hard navigation remains
+    // available in App Router and if a chunk cannot be loaded. A cancelled
+    // transition must not override a newer choice made by the learner.
+    if (router?.push) {
+      try {
+        const transition = router.push(target);
+        transition?.catch(error => { if (!error?.cancelled) window.location.assign(target); });
+        return;
+      } catch { /* Retry a failed client transition with a document navigation. */ }
+    }
+    window.location.assign(target);
   }
 
   const learningCurrent = inSection(pathname, "/lernen");
@@ -123,17 +135,17 @@ export default function GlobalHomeButton() {
       >
         <AppIcon name="arrow-left" size={18} /> Zurück
       </button>
-      <a href="/lernen" className={`${styles.button} ${styles.learning}`} aria-label="Zum Lernbereich" aria-current={learningCurrent ? "true" : undefined}>
+      <Link href="/lernen" prefetch={false} className={`${styles.button} ${styles.learning}`} aria-label="Zum Lernbereich" aria-current={learningCurrent ? "true" : undefined}>
         <AppIcon name="book" size={18} /> Lernen
-      </a>
-      <a href="/lernen#lernen-suche" className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</a>
+      </Link>
+      <Link href="/lernen#lernen-suche" prefetch={false} className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</Link>
       <details className={styles.more}>
         <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
         <div className={styles.moreLinks}>
-          <a href="/" aria-label="Zur Startseite"><AppIcon name="home" size={18} />Startseite</a>
-          <a href="/community" aria-label="Zur Community" aria-current={communityCurrent ? "true" : undefined}><AppIcon name="community" size={18} />Community</a>
-          <a href="/konto" aria-label="Konto und Abo öffnen" aria-current={accountCurrent ? "true" : undefined}><AppIcon name="account" size={18} />Konto & Abo</a>
-          <a href="/hilfe"><AppIcon name="help" size={18} />Hilfe & Kontakt</a>
+          <Link href="/" prefetch={false} aria-label="Zur Startseite"><AppIcon name="home" size={18} />Startseite</Link>
+          <Link href="/community" prefetch={false} aria-label="Zur Community" aria-current={communityCurrent ? "true" : undefined}><AppIcon name="community" size={18} />Community</Link>
+          <Link href="/konto" prefetch={false} aria-label="Konto und Abo öffnen" aria-current={accountCurrent ? "true" : undefined}><AppIcon name="account" size={18} />Konto & Abo</Link>
+          <Link href="/hilfe" prefetch={false}><AppIcon name="help" size={18} />Hilfe & Kontakt</Link>
         </div>
       </details>
     </nav>

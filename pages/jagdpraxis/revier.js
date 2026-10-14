@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Revierkunde: richtige Einschätzung? true = korrekt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("revier");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("revier") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – REVIERKUNDE
 // ------------------------------------------------------------
-export default function Revierkunde() {
+export default function Revierkunde({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

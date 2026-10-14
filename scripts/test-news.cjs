@@ -5,7 +5,7 @@ function load(file, overrides = {}, cache = new Map()) {
   const filename = path.join(root, file); if (cache.has(filename)) return cache.get(filename);
   if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
   const mod = { exports: {} }; cache.set(filename, mod.exports);
-  const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
+  const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   new Function('require', 'module', 'exports', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
@@ -94,4 +94,85 @@ test('Homepage shows three linked real headlines with separate publication dates
   const sources = load('lib/news-catalog.js').newsSources; const initialNews = { generatedAt: new Date(now).toISOString(), latestPublishedAt: new Date(now - 3600000).toISOString(), sources: sources.map(s => ({ ...s, status: 'ok', fetchedAt: new Date(now).toISOString() })), items: Array.from({ length: 5 }, (_, i) => ({ id: String(i), title: 'Wildtierforschung ' + i, url: sources[i].homepage, sourceLabel: sources[i].label, sourceId: sources[i].id, publishedAt: new Date(now - 3600000).toISOString(), topic: 'science' })) };
   const html = ssr.renderToStaticMarkup(React.createElement(HomeNews, { initialNews }));
   assert.equal((html.match(/<article/g) || []).length, 3); assert.match(html, /Veröffentlicht:/); assert.match(html, /Quelle abgerufen:/); assert.match(html, /href="\/news"/); assert.ok(!html.includes('Wildtierforschung 4'));
+});
+
+test('Homepage renders dated saved news without waiting for or invoking external source requests', async () => {
+  let fetches = 0;
+  const server = load('lib/jagd-news-server.js', {
+    'next/cache': { unstable_cache: fn => fn },
+    './jagd-news-feeds': { fetchNewsSource: () => { fetches++; return new Promise(() => {}); } },
+  });
+  const seed = server.getInitialJagdNews(now);
+  assert.equal(fetches, 0);
+  assert.equal(seed.refreshPending, true);
+  assert.equal(seed.items.length, 3);
+  assert.ok(seed.sources.some(snapshot => snapshot.fetchedAt && snapshot.status === 'fallback'));
+  for (const entry of seed.items) {
+    assert.ok(Date.parse(entry.publishedAt) <= now && Date.parse(entry.publishedAt) >= now - 366 * 86400000);
+    assert.notEqual(seed.sources.find(snapshot => snapshot.id === entry.sourceId).fetchedAt, seed.generatedAt);
+  }
+  assert.equal(server.getInitialJagdNews(Date.parse('2030-01-01T00:00:00Z')).items.length, 0);
+  const page = load('pages/index.js', {
+    'next/head': () => null, 'next/link': () => null,
+    '../lib/account-access': { readRequestAccountSession: req => req.testSession || null },
+    '../lib/jagd-news-server': { getInitialJagdNews: () => seed, getJagdNews: () => { throw new Error('Homepage must not request live feeds'); } },
+    '../components/AppIcon': () => null, '../components/HomeNews': () => null, '../components/Community': {},
+    '../lib/offline-learning': {}, '../lib/daily-review': {}, '@capacitor/core': {}, '@capacitor/push-notifications': {},
+  });
+  const signedOut = await page.getServerSideProps({ req: {} });
+  const signedIn = await page.getServerSideProps({ req: { testSession: { email: 'account@example.test' } } });
+  assert.equal(signedOut.props.loggedIn, false);
+  assert.equal(signedIn.props.loggedIn, true);
+  assert.equal(signedOut.props.initialNews, seed);
+  assert.equal(fetches, 0);
+  const React = pr('react');
+  const markup = pr('react-dom/server').renderToStaticMarkup(React.createElement(load('components/HomeNews.js', { 'next/link': { __esModule: true, default: ({ children, ...props }) => React.createElement('a', props, children) } }).default, { initialNews: seed }));
+  assert.match(markup, /Gespeicherte Meldungen sind bereits sichtbar/);
+  assert.doesNotMatch(markup, /derzeit kein erfolgreicher neuer Abruf/);
+});
+
+function newsHookHarness(initialNews, options) {
+  let cursor = 0; const slots = []; const pending = [];
+  const React = pr('react');
+  const changed = (old, deps) => !old || !deps || deps.some((dep, index) => !Object.is(dep, old.deps?.[index]));
+  const hooks = { ...React,
+    useState(initial) { const index = cursor++; if (!(index in slots)) slots[index] = initial; return [slots[index], value => { slots[index] = typeof value === 'function' ? value(slots[index]) : value; }]; },
+    useRef(initial) { const index = cursor++; if (!(index in slots)) slots[index] = { current: initial }; return slots[index]; },
+    useCallback(fn, deps) { const index = cursor++; if (changed(slots[index], deps)) slots[index] = { value: fn, deps }; return slots[index].value; },
+    useEffect(fn, deps) { const index = cursor++; const old = slots[index]; if (changed(old, deps)) { slots[index] = { deps, cleanup: old?.cleanup }; pending.push(() => { slots[index].cleanup?.(); slots[index].cleanup = fn(); }); } },
+  };
+  const hook = load('components/JagdNews.js', { react: hooks }).useJagdNews;
+  return {
+    render() { cursor = 0; const result = hook(initialNews, options); while (pending.length) pending.shift()(); return result; },
+    unmount() { for (const slot of slots) slot?.cleanup?.(); },
+  };
+}
+
+test('Homepage refreshes after first paint, skips hidden background work and aborts without erasing saved headlines', async () => {
+  const originals = { fetch: global.fetch, document: global.document, setTimeout: global.setTimeout, clearTimeout: global.clearTimeout, setInterval: global.setInterval, clearInterval: global.clearInterval };
+  const timeouts = new Map(); const intervals = new Map(); const listeners = new Map(); let sequence = 0; let requests = 0; let release; let signal;
+  global.document = { visibilityState: 'visible', addEventListener: (event, listener) => listeners.set(event, listener), removeEventListener: event => listeners.delete(event) };
+  global.setTimeout = (callback, delay) => { const id = ++sequence; timeouts.set(id, { callback, delay }); return id; };
+  global.clearTimeout = id => timeouts.delete(id);
+  global.setInterval = (callback, delay) => { const id = ++sequence; intervals.set(id, { callback, delay }); return id; };
+  global.clearInterval = id => intervals.delete(id);
+  global.fetch = (url, options) => { assert.equal(url, '/api/news'); requests++; signal = options.signal; return new Promise(resolve => { release = resolve; }); };
+  const initialNews = { generatedAt: new Date().toISOString(), refreshPending: true, sources: [], items: [{ id: 'saved' }] };
+  const harness = newsHookHarness(initialNews, { refreshOnMount: true });
+  try {
+    assert.equal(harness.render().news.items[0].id, 'saved');
+    assert.equal(requests, 0);
+    const scheduled = [...timeouts.values()].find(timer => timer.delay === 1000);
+    assert.ok(scheduled, 'Initial refresh must not wait 30 minutes');
+    global.document.visibilityState = 'hidden'; scheduled.callback(); assert.equal(requests, 0);
+    global.document.visibilityState = 'visible'; listeners.get('visibilitychange')(); assert.equal(requests, 1);
+    listeners.get('visibilitychange')(); assert.equal(requests, 1, 'Visibility events share one pending request');
+    release(new Response('unavailable', { status: 503 }));
+    await new Promise(resolve => setImmediate(resolve));
+    const failed = harness.render();
+    assert.equal(failed.refreshError, true); assert.equal(failed.news.items[0].id, 'saved');
+    listeners.get('visibilitychange')(); assert.equal(requests, 2);
+    harness.unmount(); assert.equal(signal.aborted, true); assert.equal(intervals.size, 0); assert.equal(listeners.size, 0);
+    release(new Response('{}')); await new Promise(resolve => setImmediate(resolve));
+  } finally { harness.unmount(); Object.assign(global, originals); }
 });

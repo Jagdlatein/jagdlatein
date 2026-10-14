@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 ZEICHENDEUTUNGS-SZENARIEN – true = richtig gedeutet
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("lauscher");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("lauscher") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – ZEICHENDEUTUNG
 // ------------------------------------------------------------
-export default function LauscherZeichen() {
+export default function LauscherZeichen({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

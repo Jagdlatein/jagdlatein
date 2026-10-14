@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – true = Einschätzung richtig
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("familienverbaende");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("familienverbaende") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – FAMILIENVERBÄNDE
 // ------------------------------------------------------------
-export default function Familienverbaende() {
+export default function Familienverbaende({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

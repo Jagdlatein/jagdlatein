@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 ROTWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("ansprache_rotwild");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("ansprache_rotwild") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – ROTWILD ANSPRECHEN
 // ------------------------------------------------------------
-export default function AnspracheRotwild() {
+export default function AnspracheRotwild({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

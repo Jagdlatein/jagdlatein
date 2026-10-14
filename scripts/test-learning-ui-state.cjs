@@ -203,7 +203,7 @@ test('Detailed courses show the legal scope of regional questions while retainin
   const progress = find(s.tree, node => node.type === 'progress'); assert.equal(progress.props.max, module.questions.length);
 });
 
-test('Every practice page and result uses one shared heading, browser title and learning navigation', () => {
+test('Every practice page and result uses one shared heading, browser title and learning navigation', async () => {
   const files = fs.readdirSync(path.join(root, 'pages/jagdpraxis')).filter(file => file.endsWith('.js'));
   assert.equal(files.length, 39);
   for (const filename of files) {
@@ -211,8 +211,10 @@ test('Every practice page and result uses one shared heading, browser title and 
     const source = fs.readFileSync(path.join(root, relative), 'utf8');
     assert.ok(source.includes('PracticeLayout'), filename);
     assert.doesNotMatch(source, /<main\b|<h1\b|<HomeButton/, filename + ': no duplicate legacy wrapper');
-    const Page = load(relative, { '../../hooks/useActivityResult': () => ({}) }).default;
-    const html = renderToStaticMarkup(React.createElement(Page));
+    const page = load(relative, { '../../hooks/useActivityResult': () => ({}) });
+    const Page = page.default;
+    const props = page.getStaticProps ? (await page.getStaticProps()).props : {};
+    const html = renderToStaticMarkup(React.createElement(Page, props));
     assert.equal((html.match(/<main\b/g) || []).length, 1, filename);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, filename);
     assert.match(html, /<title>.+ – Jagdlatein<\/title>/, filename);
@@ -222,7 +224,7 @@ test('Every practice page and result uses one shared heading, browser title and 
     if (!source.includes('step >= scenarios.length')) continue;
     let state = 0;
     const ResultPage = load(relative, { react: { ...React, useState(initial) { const [value, update] = React.useState(initial); return [state++ === 0 ? Number.MAX_SAFE_INTEGER : value, update]; } }, '../../hooks/useActivityResult': () => ({}) }).default;
-    const result = renderToStaticMarkup(React.createElement(ResultPage));
+    const result = renderToStaticMarkup(React.createElement(ResultPage, props));
     assert.equal((result.match(/<main\b/g) || []).length, 1, filename + ': result');
     assert.equal((result.match(/<h1\b/g) || []).length, 1, filename + ': result');
     assert.match(result, /<title>.+Ergebnis – Jagdlatein<\/title>/, filename + ': result title');

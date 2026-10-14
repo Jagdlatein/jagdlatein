@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 REHWILD-ANSPRECH-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("ansprache_rehwild");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("ansprache_rehwild") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – REHWILD ANSPRECHEN
 // ------------------------------------------------------------
-export default function AnspracheRehwild() {
+export default function AnspracheRehwild({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

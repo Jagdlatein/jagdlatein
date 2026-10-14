@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 TROPHÄEN-SZENARIEN – true = korrekt bewertet
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("trophaeen");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("trophaeen") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – TROPHÄENBEWERTUNG
 // ------------------------------------------------------------
-export default function Trophaeenbewertung() {
+export default function Trophaeenbewertung({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

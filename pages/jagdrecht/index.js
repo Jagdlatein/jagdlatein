@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AppIcon from "../../components/AppIcon";
 import LearningDiscovery from "../../components/LearningDiscovery";
+import { learningModules } from "../../lib/learning-curriculum";
 import styles from "../../styles/SectionMenu.module.css";
 
 const countries = [
@@ -9,7 +10,13 @@ const countries = [
   { id: "AT", slug: "at", title: "Österreichisches Jagdrecht", description: "Landesjagdgesetze, Verordnungen und Jagdkarten der Bundesländer." },
 ];
 
-export default function JagdrechtHome() {
+export function getStaticProps() {
+  const discoveryModules = learningModules.filter(module => module.category === "Jagdrecht").slice(0, 3)
+    .map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length }));
+  return { props: { discoveryModules } };
+}
+
+export default function JagdrechtHome({ discoveryModules }) {
   return (
     <main className={styles.main}>
       <nav className={styles.nav} aria-label="Lernmenü">
@@ -20,7 +27,7 @@ export default function JagdrechtHome() {
         <h1><span className={styles.headingIcon}><AppIcon name="law" size={30} /></span><span>Jagdrecht – Länderwahl</span></h1>
         <p className={styles.intro}>Wähle dein Land für die passenden Rechtsübersichten und regionalen Vorgaben.</p>
       </header>
-      <LearningDiscovery category="Jagdrecht" title="Jagdrecht Schritt für Schritt lernen" />
+      <LearningDiscovery category="Jagdrecht" modules={discoveryModules} title="Jagdrecht Schritt für Schritt lernen" />
       <section className={styles.section} aria-labelledby="legal-country-choice">
         <h2 id="legal-country-choice">Für welches Land möchtest du lernen?</h2>
         <div className={styles.countryGrid}>

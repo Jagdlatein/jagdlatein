@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SICHERHEITSSZENARIEN – true = sicher, false = NICHT sicher
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("beschuss");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("beschuss") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – SICHERHEIT
 // ------------------------------------------------------------
-export default function KugelfangSicherheit() {
+export default function KugelfangSicherheit({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

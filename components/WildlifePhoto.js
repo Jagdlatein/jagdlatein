@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { wildlifePhotographs } from "../lib/wildlife-photographs";
-import { LearningPhotoCredit } from "./LearningMedia";
+import { LearningPhotoCredit } from "./LearningPhoto";
 import styles from "../styles/LearningExperience.module.css";
 
 export default function WildlifePhoto({ slug }) {

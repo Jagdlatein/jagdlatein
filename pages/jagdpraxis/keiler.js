@@ -13,7 +13,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Keiler richtig erkennen (true = Keiler, false = kein Keiler)
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("keiler");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("keiler") } };
+}
 
 // ------------------------------------------------------------
 // SOFORT-RÜCKMELDUNG
@@ -42,7 +44,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR
 // ------------------------------------------------------------
-export default function KeilerErkennung() {
+export default function KeilerErkennung({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

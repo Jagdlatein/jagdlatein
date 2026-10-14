@@ -5,17 +5,14 @@ import LearningToolLayout from "./LearningToolLayout";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningSearch from "./LearningSearch";
-import { learningTools, legalLearningHubs } from "../lib/learning-tool-catalog";
-import { learningExperiences } from "../lib/learning-experiences";
-import { getLearningMedia } from "../lib/learning-media";
-import { LearningCover } from "./LearningMedia";
+import { LearningCover } from "./LearningPhoto";
 import styles from "../styles/LearningOverview.module.css";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
-function CourseCards({ modules, showCategory = false }) {
+function CourseCards({ modules, covers, showCategory = false }) {
   return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
-    <LearningCover media={getLearningMedia(module)} compact />
+    <LearningCover media={covers[module.coverIndex]} compact />
     <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
       <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span></span>
       <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>
@@ -45,15 +42,13 @@ function FeaturedLearning({ tools, media }) {
 }
 
 export default function LearningOverview({ data }) {
-  const { modules, counts, paths: learningPaths, categoryCounts, categoryInfo, featuredMedia = {} } = data;
-  const paths = learningPaths.filter(path => !categoryInfo || path.advanced).map(path => ({ ...path, modules: path.moduleIds.map(id => modules.find(module => module.id === id)).filter(Boolean) })).filter(path => path.modules.length);
-  const resources = categoryInfo ? [...learningExperiences, ...learningTools, ...(categoryInfo.slug === "jagdrecht" ? legalLearningHubs : [])]
-    .filter(tool => tool.categories.includes(categoryInfo.slug))
-    .filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index) : [];
+  const { modules, counts, paths: learningPaths, categoryCounts, categoryInfo, covers, categoryCovers, resources, featuredMedia = {} } = data;
+  const modulesById = new Map(modules.map(module => [module.id, module]));
+  const paths = learningPaths.map(path => ({ ...path, modules: path.moduleIds.map(id => modulesById.get(id)).filter(Boolean) }));
   const additionalResources = resources.filter(tool => !tool.featured);
 
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
-    {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} />}
+    {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
     <LearningSearch category={categoryInfo?.slug || "all"} />
     {!categoryInfo && <nav className={styles.quietNav} aria-label="Deine Kurse">
       <Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link>
@@ -63,7 +58,7 @@ export default function LearningOverview({ data }) {
       <FeaturedLearning tools={resources.filter(tool => tool.featured)} media={featuredMedia} />
       <section className={styles.section} aria-labelledby="learning-modules-heading">
         <div className={styles.sectionHeading}><h2 id="learning-modules-heading">Lerneinheiten</h2><p>{counts.modules} Kurse · {counts.lessons} Lektionen · {counts.questions} Übungsfragen</p></div>
-        <CourseCards modules={modules} />
+        <CourseCards modules={modules} covers={covers} />
       </section>
       {additionalResources.length > 0 && <section className={styles.section} aria-labelledby="learning-resources-heading">
         <h2 id="learning-resources-heading">Weitere Lernangebote</h2>
@@ -73,7 +68,7 @@ export default function LearningOverview({ data }) {
       </section>}
     </> : <details className={styles.directory}>
       <summary>Alle {counts.modules} Lerneinheiten im Überblick</summary>
-      <div className={styles.directoryContent}><CourseCards modules={modules} showCategory /></div>
+      <div className={styles.directoryContent}><CourseCards modules={modules} covers={covers} showCategory /></div>
     </details>}
     {paths.length > 0 && <details className={styles.directory}>
       <summary>Mit einem Lernpfad beginnen</summary>

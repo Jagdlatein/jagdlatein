@@ -72,7 +72,7 @@ function renderAccount(paypalManagementUrl, overrides = {}, overview = {}) {
     '../lib/course-catalog': { courses: overview.courses || [] },
     '../styles/Account.module.css': { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) },
   }, context).default;
-  return renderToStaticMarkup(React.createElement(Page));
+  return renderToStaticMarkup(React.createElement(Page, { courses: overview.courses || [] }));
 }
 
 test('Account API chooses the Sandbox administration target only from private test mode', async () => {

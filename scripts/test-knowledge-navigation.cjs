@@ -81,6 +81,78 @@ test('Overview photo summaries preserve exact delivered media and attribution wi
   }
 });
 
+test('Every overview photo keeps its delivered image, fitting and full visible credit while sharing repeated covers', () => {
+  const cache = new Map();
+  const { getLearningOverviewData } = load('lib/learning-overview-server.js', cache);
+  const { getLearningMedia } = load('lib/learning-media.js', cache);
+  const { learningCategoryDetails } = load('lib/learning-categories.js', cache);
+  const { learningPaths } = load('lib/learning-curriculum.js', cache);
+  const { learningExperiences } = load('lib/learning-experiences.js', cache);
+  const { learningTools, legalLearningHubs } = load('lib/learning-tool-catalog.js', cache);
+  const { LearningCover, LearningPhotoCredit } = load('components/LearningPhoto.js', cache);
+  const renderCover = media => renderToStaticMarkup(React.createElement(LearningCover, { media, compact: true }));
+  const renderCredit = media => renderToStaticMarkup(React.createElement(LearningPhotoCredit, { media }));
+  for (const slug of [undefined, ...learningCategoryDetails.map(category => category.slug)]) {
+    const data = getLearningOverviewData(slug);
+    assert.ok(data.covers.length < data.modules.length, slug || 'all');
+    assert.equal(new Set(data.covers.map(cover => JSON.stringify(cover))).size, data.covers.length);
+    for (const module of data.modules) {
+      assert.equal(renderCover(data.covers[module.coverIndex]), renderCover(getLearningMedia(module)), module.id);
+    }
+    for (const category of slug ? [] : learningCategoryDetails) {
+      assert.equal(renderCredit(data.covers[data.categoryCovers[category.slug]]), renderCredit(getLearningMedia({ category: category.title })), category.slug);
+    }
+    const selectedIds = new Set(data.modules.map(module => module.id));
+    const expectedPaths = learningPaths.filter(path => !slug || path.advanced)
+      .map(path => ({ ...path, moduleIds: path.moduleIds.filter(id => selectedIds.has(id)) })).filter(path => path.moduleIds.length);
+    assert.deepEqual(data.paths, expectedPaths);
+    const expectedResources = slug ? [...learningExperiences, ...learningTools, ...(slug === 'jagdrecht' ? legalLearningHubs : [])]
+      .filter(tool => tool.categories.includes(slug)).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
+      .map(({ href, icon, title, description, featured }) => ({ href, icon, title, description, ...(featured ? { featured: true } : {}) })) : [];
+    assert.deepEqual(data.resources, expectedResources);
+    assert.ok(data.covers.every(cover => !cover.pictures && !cover.diagram && !cover.caption && !cover.originalWidth && !cover.verification));
+    assert.doesNotThrow(() => JSON.stringify(data));
+  }
+  assert.equal(getLearningOverviewData('unknown-category'), null);
+});
+
+test('Rendering the overview and simple photo credits never imports complete media or learning catalogs into the browser', () => {
+  for (const entry of ['components/LearningOverview.js', 'components/LearningPhoto.js', 'components/WildlifePhoto.js']) {
+    const graph = new Map();
+    load(entry, graph);
+    for (const filename of graph.keys()) {
+      assert.doesNotMatch(filename.replaceAll('\\', '/'), /\/lib\/(?:learning-curriculum|learning-media|learning-wildlife-photos|learning-category-photos|dog-photographs|learning-experiences|learning-tool-catalog)\.js$/, entry);
+    }
+  }
+});
+
+test('Practice and law discovery cards retain their original three courses and counts with only server-prepared summaries', () => {
+  const cache = new Map();
+  const { learningModules } = load('lib/learning-curriculum.js', cache);
+  for (const [filename, category, title] of [
+    ['pages/jagdpraxis/index.js', 'Jagdpraxis', 'Vor den Simulatoren: Praxiswissen vertiefen'],
+    ['pages/jagdrecht/index.js', 'Jagdrecht', 'Jagdrecht Schritt für Schritt lernen'],
+  ]) {
+    const Page = load(filename, cache);
+    const props = Page.getStaticProps().props;
+    const original = learningModules.filter(module => module.category === category).slice(0, 3);
+    assert.deepEqual(props.discoveryModules, original.map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length })));
+    assert.ok(props.discoveryModules.every(module => Object.keys(module).sort().join(',') === 'id,lessonCount,questionCount,title'));
+    const html = renderToStaticMarkup(React.createElement(Page.default, props));
+    assert.ok(html.includes(title));
+    for (const module of original) {
+      assert.ok(html.includes(`href="/kurse/${module.id}"`));
+      assert.ok(html.includes(module.title));
+      assert.ok(html.includes(`${module.lessons.length} Lektionen · ${module.questions.length} Fragen`));
+    }
+    const categorySlug = category === 'Jagdrecht' ? 'jagdrecht' : 'jagdpraxis';
+    assert.ok(html.includes(`href="/lernen/${categorySlug}"`));
+  }
+  const graph = new Map();
+  load('components/LearningDiscovery.js', graph);
+  assert.ok([...graph.keys()].every(filename => !filename.replaceAll('\\', '/').endsWith('/lib/learning-curriculum.js')));
+});
+
 test('A lesson search link resolves to its actual lesson, including encoded IDs, while malformed links are ignored', () => {
   const navigation = load('lib/learning-lesson-navigation.js');
   const modules = load('lib/learning-curriculum.js').learningModules;

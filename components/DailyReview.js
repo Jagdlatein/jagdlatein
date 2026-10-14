@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
-import { LearningCover } from "./LearningMedia";
+import { LearningCover } from "./LearningPhoto";
 import { categoryPhotographs } from "../lib/learning-category-photos";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";

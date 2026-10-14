@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 MONDPHASEN-SZENARIEN – true = richtig beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("mond");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("mond") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – MONDPHASEN
 // ------------------------------------------------------------
-export default function Mondphasen() {
+export default function Mondphasen({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

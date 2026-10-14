@@ -3,7 +3,7 @@ import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import CourseProgressNotice from "./CourseProgressNotice";
 import useCourseProgress from "../hooks/useCourseProgress";
-import { LearningCover } from "./LearningMedia";
+import { LearningCover } from "./LearningPhoto";
 import styles from "../styles/LearningExperience.module.css";
 import miniStyles from "../styles/MiniCourse.module.css";
 

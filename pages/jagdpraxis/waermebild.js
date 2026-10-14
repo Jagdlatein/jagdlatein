@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 WÄRMEBILD-SZENARIEN – true = korrekt angesprochen
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("waermebild");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("waermebild") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – WÄRMEBILD
 // ------------------------------------------------------------
-export default function Waermebild() {
+export default function Waermebild({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

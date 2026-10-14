@@ -12,7 +12,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SCHUSSZEICHEN-SZENARIEN – TRUE = tödlicher Treffer, FALSE = nicht tödlich
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("schusszeichen");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("schusszeichen") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -41,7 +43,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // SCHUSSZEICHEN-SIMULATOR
 // ------------------------------------------------------------
-export default function Schusszeichen() {
+export default function Schusszeichen({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

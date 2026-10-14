@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 OPTIK-SZENARIEN – true = richtig gehandelt / beurteilt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("optik");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("optik") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – OPTIK NUTZEN
 // ------------------------------------------------------------
-export default function Optik() {
+export default function Optik({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

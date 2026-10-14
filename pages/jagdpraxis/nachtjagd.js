@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 NACHTJAGD-SZENARIEN – true = Schuss möglich, false = nicht möglich
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("nachtjagd");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("nachtjagd") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // NACHTJAGD SIMULATOR
 // ------------------------------------------------------------
-export default function Nachtjagd() {
+export default function Nachtjagd({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

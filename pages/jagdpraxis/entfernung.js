@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 ENTFERNUNGS-SZENARIEN – true = korrekt eingeschätzt
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("entfernung");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("entfernung") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – ENTFERNUNG
 // ------------------------------------------------------------
-export default function Entfernungsschaetzung() {
+export default function Entfernungsschaetzung({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

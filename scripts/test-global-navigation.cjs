@@ -9,20 +9,21 @@ const React = requireProject('react');
 const swc = requireProject('next/dist/build/swc');
 const { renderToStaticMarkup } = requireProject('react-dom/server');
 
-function setup(pathname = '/login', history = [], appRouter = false) {
+function setup(pathname = '/login', history = [], appRouter = false, navigation = null) {
   let editing = false;
   const effects = [], cleanups = [], listeners = new Map(), timers = new Map();
   let timerId = 0, stored = JSON.stringify(history), destination;
+  const clientNavigations = [], documentNavigations = [];
   const document = { activeElement: null,
     addEventListener(name, callback) { listeners.set(name, callback); },
     removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
   };
-  const window = { location: { pathname, search: '', hash: '', assign(value) { destination = value; } },
+  const window = { location: { pathname, search: '', hash: '', assign(value) { documentNavigations.push(value); destination = value; } },
     setTimeout(callback) { const id = ++timerId; timers.set(id, callback); return id; },
     clearTimeout(id) { timers.delete(id); },
   };
   const sessionStorage = { getItem: () => stored, setItem: (_key, value) => { stored = value; } };
-  const router = { asPath: pathname };
+  const router = { asPath: pathname, push(value) { clientNavigations.push(value); destination = value; return navigation ? navigation(value) : Promise.resolve(true); } };
   const filename = path.join(root, 'components/GlobalHomeButton.js');
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2020', transform: { react: { runtime: 'automatic' } } },
@@ -45,7 +46,7 @@ function setup(pathname = '/login', history = [], appRouter = false) {
     navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
     blur(element = null) { document.activeElement = element; listeners.get('focusout')?.(); timers.forEach(callback => callback()); timers.clear(); },
-    get destination() { return destination; }, get history() { return JSON.parse(stored); },
+    get destination() { return destination; }, get history() { return JSON.parse(stored); }, clientNavigations, documentNavigations,
     unmount() { cleanups.forEach(callback => callback?.()); },
   };
 }
@@ -62,6 +63,36 @@ test('Shared dock retains Back, learning, search, community and Start and adds a
   assert.match(html, /aria-label="Zum Lernbereich" aria-current="true"/);
   assert.doesNotMatch(html, /aria-label="Konto und Abo öffnen" aria-current/);
   assert.equal(setup('/').tree, null);
+});
+
+test('Dock links use client navigation without preloading private destinations on every page', () => {
+  const s = setup('/konto');
+  const children = s.tree.props.children;
+  const links = [children[1], children[2], ...children[3].props.children[1].props.children];
+  assert.equal(links.length, 6);
+  for (const link of links) {
+    assert.notEqual(link.type, 'a');
+    assert.equal(link.props.prefetch, false);
+  }
+  s.tree.props.children[0].props.onClick();
+  assert.deepEqual(s.clientNavigations, ['/']);
+  assert.deepEqual(s.documentNavigations, []);
+});
+
+test('Back falls back after a genuine router failure and never overrides a cancelled transition', async () => {
+  const rejected = setup('/konto', ['/lernen'], false, () => Promise.reject(new Error('Chunk failed')));
+  rejected.tree.props.children[0].props.onClick(); await Promise.resolve();
+  assert.deepEqual(rejected.documentNavigations, ['/lernen']);
+  const cancelled = setup('/konto', ['/lernen'], false, () => Promise.reject({ cancelled: true }));
+  cancelled.tree.props.children[0].props.onClick(); await Promise.resolve();
+  assert.deepEqual(cancelled.documentNavigations, []);
+  const synchronous = setup('/konto', ['/lernen'], false, () => { throw new Error('Router failed'); });
+  synchronous.tree.props.children[0].props.onClick();
+  assert.deepEqual(synchronous.documentNavigations, ['/lernen']);
+  const app = setup('/quiz-app', ['/lernen'], true);
+  app.tree.props.children[0].props.onClick();
+  assert.deepEqual(app.clientNavigations, []);
+  assert.deepEqual(app.documentNavigations, ['/lernen']);
 });
 
 test('Dock Back retains the selected lesson fragment instead of sending the learner to the first lesson', () => {

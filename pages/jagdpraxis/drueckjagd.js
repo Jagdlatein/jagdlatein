@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 DRÜCKJAGD-SZENARIEN – TRUE = schießen, FALSE = nicht schießen
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("drueckjagd");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("drueckjagd") } };
+}
 
 // ------------------------------------------------------------
 // SOFORT-RÜCKMELDUNG
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // DRÜCKJAGD-SIMULATOR
 // ------------------------------------------------------------
-export default function Drueckjagd() {
+export default function Drueckjagd({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

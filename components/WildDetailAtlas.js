@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
-import { LearningPhotoCredit } from "./LearningMedia";
+import { LearningPhotoCredit } from "./LearningPhoto";
 import { getWildDetailTopic, wildDetailPhotos, wildDetailSources, wildDetailTopics } from "../lib/wild-detail-atlas";
 import styles from "../styles/WildDetailAtlas.module.css";
 

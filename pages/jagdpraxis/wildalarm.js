@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 WILDALARM-SZENARIEN – true = richtige Entscheidung
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("wildalarm");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("wildalarm") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – WILDALARM
 // ------------------------------------------------------------
-export default function Wildalarm() {
+export default function Wildalarm({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

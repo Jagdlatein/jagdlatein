@@ -7,7 +7,7 @@ import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
 import HomeNews from "../components/HomeNews";
 import { CommunityInvite } from "../components/Community";
-import { getJagdNews } from "../lib/jagd-news-server";
+import { getInitialJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
 import { useEffect } from "react";
@@ -15,11 +15,10 @@ import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 
 export async function getServerSideProps({ req }) {
-  const initialNews = await getJagdNews();
   return {
     props: {
       loggedIn: Boolean(readRequestAccountSession(req)),
-      initialNews,
+      initialNews: getInitialJagdNews(),
     },
   };
 }

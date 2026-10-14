@@ -68,7 +68,7 @@ function fixture(options = {}) {
         let data;
         if (table === 'userprofile' && query.columns.includes('is_admin')) {
           actorReads++;
-          data = [options.revokeAdminAfterFirstRead && actorReads > 1 ? { ...actor, is_admin: false } : actor];
+          data = options.deletedAdmin ? [] : [options.revokeAdminAfterFirstRead && actorReads > 1 ? { ...actor, is_admin: false } : actor];
         } else if (table === 'userprofile') {
           profileReads++;
           data = options.deleteAfterInitialProfiles && profileReads > 1 ? [] : profileRows;
@@ -135,6 +135,8 @@ function fixture(options = {}) {
     const mod = { exports: {} }; cache.set(filename, mod);
     new Function('require', 'module', 'exports', code)(id => {
       if (id.endsWith('/course-progress-server')) return progress;
+      if (id.endsWith('/apple-review-login')) return { ReviewLoginError: class ReviewLoginError extends Error {},
+        requireReviewSessionIdentity: async () => {} };
       if (id.endsWith('/account-session')) return { normalizeAccountEmail: value => typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) ? value.trim().toLowerCase() : '' };
       if (id.endsWith('/test-environment')) return { isPayPalSandboxTestEnvironment: env => {
         if (env.JL_TEST_ENVIRONMENT && env.JL_TEST_ENVIRONMENT !== 'paypal-sandbox') throw Object.assign(new Error('Config'), { status: 503 });

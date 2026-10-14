@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Schussfeld sicher? true = sicher, false = nicht sicher
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("schussfeld");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("schussfeld") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK BOX
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // HAUPTSIMULATOR – SCHUSSFELD
 // ------------------------------------------------------------
-export default function SchussfeldBeurteilung() {
+export default function SchussfeldBeurteilung({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

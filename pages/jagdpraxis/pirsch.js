@@ -11,7 +11,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 PIRSCH-SZENARIEN — TRUE = Schuss, FALSE = kein Schuss
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("pirsch");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("pirsch") } };
+}
 
 // ------------------------------------------------------------
 // SOFORT-RÜCKMELDUNG
@@ -40,7 +42,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // PIRSCH-SIMULATOR
 // ------------------------------------------------------------
-export default function Pirsch() {
+export default function Pirsch({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

@@ -4,7 +4,7 @@ import { NewsCard, NewsRefreshStatus, useJagdNews } from "./JagdNews";
 import styles from "../styles/JagdNews.module.css";
 
 export default function HomeNews({ initialNews }) {
-  const { news, refresh, refreshing, refreshError, refreshed } = useJagdNews(initialNews);
+  const { news, refresh, refreshing, refreshError, refreshed } = useJagdNews(initialNews, { refreshOnMount: true });
   return <section className={styles.homeSection} aria-labelledby="home-news-title">
     <header className={styles.homeHeader}><span className={styles.homeIcon}><AppIcon name="book" size={30} /></span><div><p className={styles.eyebrow}>Deutschland · Österreich · Schweiz</p><h2 id="home-news-title">Jagdlatein – Wissen im Blick</h2><p><strong>Wissenschaft · Jagd · Natur</strong><br />Neue Forschung und Fachwissen – direkt von den Quellen.</p></div></header>
     <NewsRefreshStatus news={news} refreshing={refreshing} refreshError={refreshError} refreshed={refreshed} />

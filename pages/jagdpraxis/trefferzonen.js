@@ -13,7 +13,9 @@ import NavigationButton from "./components/NavigationButton";
 // ------------------------------------------------------------
 // 25 SZENARIEN – Trefferzone tödlich erreichbar? true = ja, false = nein
 // ------------------------------------------------------------
-const scenarios = getPracticeScenarios("trefferzonen");
+export function getStaticProps() {
+  return { props: { scenarios: getPracticeScenarios("trefferzonen") } };
+}
 
 // ------------------------------------------------------------
 // FEEDBACK
@@ -42,7 +44,7 @@ function InstantFeedback({ isCorrect , scenario }) {
 // ------------------------------------------------------------
 // TREFFERZONEN-SIMULATOR
 // ------------------------------------------------------------
-export default function Trefferzonen() {
+export default function Trefferzonen({ scenarios }) {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState(null);

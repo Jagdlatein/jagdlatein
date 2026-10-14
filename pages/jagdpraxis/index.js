@@ -3,14 +3,21 @@ import Link from "next/link";
 import AppIcon from "../../components/AppIcon";
 import LearningDiscovery from "../../components/LearningDiscovery";
 import PracticeLayout from "../../components/PracticeLayout";
+import { learningModules } from "../../lib/learning-curriculum";
 import styles from "../../styles/SectionMenu.module.css";
 
 const exercises = practiceCatalog;
 
-export default function Jagdpraxis() {
+export function getStaticProps() {
+  const discoveryModules = learningModules.filter(module => module.category === "Jagdpraxis").slice(0, 3)
+    .map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length }));
+  return { props: { discoveryModules } };
+}
+
+export default function Jagdpraxis({ discoveryModules }) {
   return (
     <PracticeLayout title="Jagdpraxis: Übungen & Ansitzsimulator" description="Wissen zu Ansprechen, Verhalten und Sicherheit üben. Die Aussageprüfungen greifen auf den geprüften Lernbestand zurück; der Ansitzsimulator beschreibt eigene Entscheidungsfälle.">
-      <LearningDiscovery category="Jagdpraxis" title="Vor den Simulatoren: Praxiswissen vertiefen" />
+      <LearningDiscovery category="Jagdpraxis" modules={discoveryModules} title="Vor den Simulatoren: Praxiswissen vertiefen" />
       <section className={styles.section} aria-labelledby="practice-exercises">
         <h2 id="practice-exercises">Wähle deine Übung</h2>
         <div className={styles.grid}>
