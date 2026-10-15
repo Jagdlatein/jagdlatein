@@ -1,0 +1,77 @@
+{
+  "id": "rehwild-fruehling",
+  "title": "Rehwild: Warum der Kalender allein nicht reicht",
+  "summary": "Ein früher grünes Revier bedeutet nicht überall entsprechend frühere Setztermine. Studien aus der Schweiz und Deutschland zeigen regionale Unterschiede; eine europäische Auswertung von 2025 ergänzt die Einordnung.",
+  "question": "Was bedeutet ein früher grünes Revier für die Setzzeit?",
+  "categories": ["wildkunde", "natur-revier", "jagdpraxis", "landwirtschaft-lebensraeume"],
+  "reviewedOn": "2026-10-15",
+  "publicationState": "Originalarbeiten fachlich abgeglichen; unterschiedliche regionale Ergebnisse und gemeinsame Datengrundlagen ausdrücklich berücksichtigt.",
+  "studyScope": "Schweizer Langzeitreihe 1971–2015, eigenständige Langzeitreihe aus Baden-Württemberg 1973–2019 und europäische Zusammenführung von 2025. Die Veröffentlichungsjahre sind nicht die Beobachtungsjahre; die Studien liefern keine aktuelle Vorhersage für ein bestimmtes Revier.",
+  "photoKey": "rehwild",
+  "photoContext": "Anschauungsfoto von Rehwild; keine Aufnahme aus den hier beschriebenen Untersuchungen.",
+  "findings": [
+    {
+      "id": "regionale-unterschiede",
+      "title": "Vegetation und Setzzeit laufen nicht überall im gleichen Takt",
+      "text": "In Schweizer Daten von 1971–2015 rückte der Beginn der Vegetationsperiode stärker vor als die Setztermine. Eine unabhängige Untersuchung aus Baden-Württemberg fand für 1973–2019 eine deutlich stärkere Vorverlegung der Setztermine als die Schweizer Arbeit. Die Ergebnisse sprechen gegen eine pauschale Aussage, Rehwild könne seine Setzzeit überhaupt nicht verändern. Ebenso wenig belegen sie eine überall ausreichende Anpassung an früheres Pflanzenwachstum.",
+      "sourceIds": ["rehnus-2020", "hagen-2021"]
+    },
+    {
+      "id": "lage-und-massstab",
+      "title": "Höhenlage und Region gehören zur Einordnung",
+      "text": "Die Schweizer Studie beschreibt Unterschiede zwischen tiefen und hohen Lagen beim zeitlichen Abstand von Vegetationsentwicklung und Setzzeit. In Baden-Württemberg war die Vorverlegung der Setztermine in höheren untersuchten Lagen besonders ausgeprägt. Eine europäische Auswertung von 2025 fand im räumlichen Vergleich überwiegend spätere Geburten in höheren Lagen. Eine langfristige Veränderung am selben Ort und der Vergleich verschiedener Orte sind unterschiedliche Fragen.",
+      "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"]
+    }
+  ],
+  "practice": {
+    "lead": "Redaktionelle Ableitung für die Praxis",
+    "steps": [
+      "Notiere Vegetationsentwicklung und tatsächlich beobachtete Setzereignisse getrennt nach Lage und Lebensraum, jeweils mit Datum und Beobachtungsbedingungen.",
+      "Vergleiche mehrere Jahre unter möglichst ähnlichen Beobachtungsbedingungen. Eine veränderte Suchzeit ist nicht automatisch eine veränderte Setzzeit.",
+      "Nutze allgemeine Kalender zur Orientierung. Leite daraus keinen sicheren Setztermin für eine bestimmte Fläche oder Ricke und keine Freigabe einer Fläche für die Mahd ab."
+    ]
+  },
+  "limits": [
+    "Die Langzeitreihen sind Beobachtungsstudien. Aus geschätztem Kitzalter zurückgerechnete Geburtsdaten und veränderte Suchbedingungen enthalten Unsicherheit.",
+    "Vegetationsbeginn, Blühtermine, Heuschnitt und satellitengestützte Begrünung sind unterschiedliche Näherungen; sie messen nicht unmittelbar jedes tatsächlich verfügbare Äsungsangebot.",
+    "Die europäische Arbeit von 2025 führt vorhandene Daten zusammen, darunter Schweizer Markierungsdaten. Sie ist keine dritte unabhängige Wiederholung der Schweizer Zeitreihe.",
+    "Regionale Zusammenhänge und großräumige Modelle liefern weder eine tägliche Revierprognose noch eine pauschale Vorhersage künftiger Rehwildbestände."
+  ],
+  "sources": [
+    {
+      "id": "rehnus-2020",
+      "organization": "WSL und Universidad Politécnica de Madrid; veröffentlicht in Ecosphere",
+      "title": "Advancing plant phenology causes an increasing trophic mismatch in an income breeder across a wide elevational range",
+      "url": "https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecs2.3144",
+      "publishedOn": "2020-06-29",
+      "kind": "Begutachtete Originalstudie",
+      "supports": "Schweizer Langzeitreihe 1971–2015: langsamere Vorverlegung der Setztermine gegenüber den untersuchten Vegetationsindikatoren, Höhenunterschiede und Grenzen der Erfassung.",
+      "independence": "Eigenständige Schweizer Datenreihe gegenüber der Untersuchung von Hagen und Kollegen aus Baden-Württemberg. Eine WSL-Pressemitteilung über diese Arbeit wäre kein zusätzlicher unabhängiger Beleg."
+    },
+    {
+      "id": "hagen-2021",
+      "organization": "Leibniz-Institut für Zoo- und Wildtierforschung und Wildforschungsstelle Baden-Württemberg; veröffentlicht in Ecosphere",
+      "title": "Advanced roe deer (Capreolus capreolus) parturition date in response to climate change",
+      "url": "https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.3819",
+      "publishedOn": "2021-11-10",
+      "kind": "Begutachtete Originalstudie",
+      "supports": "Baden-Württemberg 1973–2019: stärkere Vorverlegung der Setztermine als in der Schweizer Arbeit, besonders ausgeprägt in höheren untersuchten Lagen; Altersschätzung und Suchbedingungen als Grenzen.",
+      "independence": "Andere Forschungsgruppe und eigenständige baden-württembergische Markierungsdaten; regional abweichendes Ergebnis wird als solches dargestellt."
+    },
+    {
+      "id": "kauffert-2025",
+      "organization": "Technische Universität München und europäisches Forschungsteam im EURODEER-Verbund; veröffentlicht im Journal of Animal Ecology",
+      "title": "Synching with seasonality: Predicting roe deer parturition phenology across its distributional range",
+      "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2656.70148",
+      "publishedOn": "2025-10-03",
+      "kind": "Begutachtete Originalstudie mit zusammengeführten Daten",
+      "supports": "Räumlicher Vergleich aus Deutschland, Schweiz, Frankreich, Schweden und Norwegen: Höhenlage und langfristige saisonale Umweltbedingungen; Unsicherheit der Geburtsdaten, Suchverzerrungen und Grenzen großräumiger Modelle.",
+      "independence": "Neue vergleichende Analyse mit teils bereits verwendeten Datengrundlagen, darunter Schweizer Markierungsdaten; keine unabhängige Replikation der Schweizer Langzeitreihe."
+    }
+  ],
+  "related": [
+    { "href": "/kurse/wissen-rehwild-jahreslauf", "title": "Rehwild im Jahreslauf verstehen" },
+    { "href": "/wildkunde/rehwild", "title": "Rehwild im Artenporträt" },
+    { "href": "/lernen/wildjahr", "title": "Wildjahr: typische saisonale Vorgänge einordnen" }
+  ]
+}

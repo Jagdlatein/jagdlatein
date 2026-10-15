@@ -64,7 +64,7 @@ test('Category pages expose compact photographed practice before courses, with r
 test('Overview photo summaries preserve exact delivered media and attribution without transferring full lesson datasets', async () => {
   const summaries = load('lib/learning-featured-media.js').learningFeaturedMedia;
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
-  assert.equal(Object.keys(summaries).length, 7);
+  assert.equal(Object.keys(summaries).length, 8);
   assert.deepEqual(getData().featuredMedia, {});
   assert.ok(new Set(Object.values(summaries).map(photo => photo.src)).size >= 6);
   for (const [href, photo] of Object.entries(summaries)) {
@@ -162,10 +162,10 @@ test('A lesson search link resolves to its actual lesson, including encoded IDs,
   for (const hash of ['#lesson-%E0%A4%A', '#other', '#lesson-missing', null]) assert.equal(navigation.lessonIndexFromHash(lessons, hash), -1);
 });
 
-test('All seven extensions appear once in existing categories and deep searches address real content', () => {
+test('All eight extensions appear once in existing categories and deep searches address real content', () => {
   const extensions = load('lib/learning-experiences.js').learningExperiences.filter(item => item.featured);
-  assert.equal(extensions.length, 7);
-  assert.equal(new Set(extensions.map(item => item.href)).size, 7);
+  assert.equal(extensions.length, 8);
+  assert.equal(new Set(extensions.map(item => item.href)).size, 8);
   const categories = load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug);
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
   const Component = load('components/LearningOverview.js').default;

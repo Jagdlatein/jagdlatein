@@ -1,0 +1,84 @@
+{
+  "id": "wild-und-stoerung",
+  "title": "Wild verstehen: Wege, Ruhe und Tageszeit",
+  "summary": "Zwei deutsche Untersuchungen zeigen, wie Rotwild die Umgebung von Freizeitwegen unterschiedlich nutzt. Das hilft, Beobachtungen vorsichtiger einzuordnen und unnötige Störungen zu vermeiden.",
+  "question": "Warum sehe ich Wild zu anderen Zeiten an anderen Orten?",
+  "categories": ["wildkunde", "natur-revier", "jagdpraxis", "tierschutz-verantwortung"],
+  "reviewedOn": "2026-10-15",
+  "publicationState": "Geprüfter Grundlagenbeitrag mit Studien von 2017 und 2018; ergänzende Einordnung einer Veröffentlichung von 2026 außerhalb von DACH.",
+  "studyScope": "Rotwild im Kellerwald-Edersee und im Südschwarzwald. Die Untersuchungen betreffen bestimmte Populationen und Zeiträume; sie sind keine Vorhersage für einzelne Tiere oder alle Wildarten.",
+  "photoKey": "rotwild",
+  "photoContext": "Anschauungsfoto von Rotwild; keine Aufnahme aus den hier beschriebenen Untersuchungen.",
+  "findings": [
+    {
+      "id": "wege-und-tageszeit",
+      "title": "Wegenähe verändert sich mit der Tageszeit",
+      "text": "Beide deutschen Studien fanden beim untersuchten Rotwild eine unterschiedliche Nutzung der Umgebung von Freizeitwegen zwischen Tag und Nacht. Im Südschwarzwald wurden Wege und nahe Äsungsflächen tagsüber gemieden, nachts dagegen häufiger genutzt. Das beschreibt örtliche Muster, keinen festen Tagesplan jedes Hirsches.",
+      "sourceIds": ["coppes-2017", "westekemper-2018"]
+    },
+    {
+      "id": "wege-verlassen",
+      "title": "Direkte Annäherung ist etwas anderes als Vorbeigehen",
+      "text": "Im Kellerwald-Edersee löste die direkte Annäherung abseits der Wege bei den acht untersuchten Rotwildtieren in allen entsprechenden Versuchen Flucht aus. Bei den Versuchen auf Wegen blieben sie im Bereich ihres Ausgangsortes. Die Annäherungsdistanzen unterschieden sich ebenfalls: Daraus folgt weder, dass Wege grundsätzlich störungsfrei sind, noch ein allgemeiner Sicherheitsabstand.",
+      "sourceIds": ["westekemper-2018"]
+    },
+    {
+      "id": "jagd-und-freizeit",
+      "title": "Jagd und Freizeit getrennt betrachten",
+      "text": "Eine 2026 veröffentlichte Untersuchung aus den italienischen Ostalpen ergänzt die Einordnung außerhalb von DACH: Jagd und Freizeitnutzung hingen mit dem zeitlichen Auftreten von Rotwild zusammen. Freizeitwirkungen waren in bejagten Bereichen stärker. Die Kameras standen an Wegen und Forststraßen; der Befund lässt sich nicht auf die gesamte Landschaft übertragen.",
+      "sourceIds": ["boer-cueva-2026"]
+    }
+  ],
+  "practice": {
+    "lead": "Redaktionelle Ableitung für die Praxis",
+    "steps": [
+      "Notiere bei Beobachtungen Uhrzeit, Beobachtungsdauer und erkennbare Wegenutzung. Trenne sichtbares Verhalten von vermuteten Ursachen.",
+      "Plane Revierarbeiten möglichst störungsarm und vermeide unnötige direkte Annäherungen an ruhende Tiere. Eine Lernbeobachtung rechtfertigt kein Nachgehen in den Rückzugsbereich.",
+      "Vergleiche mehrere Termine unter ähnlichen Beobachtungsbedingungen. Wenige Sichtungen sind keine verlässliche Bestandszählung und ergeben keine sichere Vorhersage für den nächsten Besuch."
+    ]
+  },
+  "limits": [
+    "Die deutschen Arbeiten erschienen 2017 und 2018. Sie sind überprüfte Grundlagen, keine neu erschienenen Studien von 2026.",
+    "Kellerwald-Edersee: acht besenderte Rotwildtiere, Jahresdaten 2011 sowie Annäherungsversuche im Oktober und November 2011. Eine kleine örtliche Stichprobe; keine Messung physiologischen Stresses.",
+    "Südschwarzwald: 15 besenderte Rotwildtiere, 2007–2009. Ruhezonen, Jagdregelungen und Winterfütterung gehörten zum Gebietskontext; ihre Einzelwirkungen sind nicht vollständig isoliert.",
+    "Die italienische Studie erfasste 2020–2024 an 42 Kamerastandorten jeweils Teile von September bis November. Standortnutzung ist keine Bestandszahl; wegebasierte Stichproben können menschliche Einflüsse überbetonen.",
+    "Keine dieser Untersuchungen begründet eine allgemeine Fluchtdistanz oder eine Prognose für Jagderfolg. Ausbleibende Flucht beweist für sich allein keine Störungsfreiheit."
+  ],
+  "sources": [
+    {
+      "id": "coppes-2017",
+      "organization": "Forstliche Versuchs- und Forschungsanstalt Baden-Württemberg, Nationalpark Schwarzwald und Universität Bern; PLOS ONE",
+      "title": "Human recreation affects spatio-temporal habitat use patterns in red deer (Cervus elaphus)",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0175134",
+      "publishedOn": "2017-05-03",
+      "kind": "Begutachtete Originalstudie mit GPS-Telemetrie",
+      "supports": "Unterschiedliche Nutzung der Umgebung von Freizeitwegen zwischen Tag und Nacht im untersuchten Südschwarzwälder Rotwildgebiet.",
+      "independence": "Eigenständige Untersuchung und Autorengruppe, unabhängig von der Kellerwald-Studie. Die Messungen wurden nicht am selben Bestand wiederholt."
+    },
+    {
+      "id": "westekemper-2018",
+      "organization": "Universität Göttingen, Institut für Wildbiologie Göttingen und Dresden und TU Dresden; Wildlife Biology",
+      "title": "Stay on trails – effects of human recreation on the spatiotemporal behavior of red deer Cervus elaphus in a German national park",
+      "url": "https://nsojournals.onlinelibrary.wiley.com/doi/10.2981/wlb.00403",
+      "publishedOn": "2018-12-18",
+      "kind": "Begutachtete Originalstudie mit Annäherungsversuchen und GPS-Telemetrie",
+      "supports": "Tageszeitliche Wegenähe und Reaktionen auf die untersuchten Annäherungen auf beziehungsweise abseits von Wegen im Kellerwald-Edersee.",
+      "independence": "Eigenständige Untersuchung mit anderer Autorengruppe und anderem Untersuchungsgebiet als Coppes et al. Der konkrete Annäherungsversuch ist keine unabhängig wiederholte Messung der Schwarzwald-Studie."
+    },
+    {
+      "id": "boer-cueva-2026",
+      "organization": "MUSE Trento, Naturpark Paneveggio Pale di San Martino, Universitäten Madrid und Firenze sowie weitere Partner; Ecology and Evolution",
+      "title": "Hunting and Outdoor Recreation Affect Large Herbivore Activity Patterns More Than Natural Predators in a Human-Dominated Landscape",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/ece3.73033",
+      "publishedOn": "2026-02-15",
+      "kind": "Begutachtete Originalstudie mit Kamerafallen",
+      "supports": "Zusammenhänge von Jagd und Freizeitnutzung mit Rotwildaktivität im italienischen Untersuchungsgebiet sowie Grenzen der wegebasierten Stichprobe.",
+      "independence": "Eigenständige Autorengruppe und Datenerhebung in Italien. Ergänzt den regionalen Vergleich; bestätigt keine identischen Effekte in DACH."
+    }
+  ],
+  "related": [
+    {"href": "/kurse/rotwild", "title": "Rotwild: Lebensweise und Raumnutzung"},
+    {"href": "/lernen/beobachtungswerkstatt", "title": "Beobachtungen von Deutungen trennen"},
+    {"href": "/lernen/forschung-verstehen", "title": "Studien und ihre Grenzen verstehen"}
+  ]
+}

@@ -7,7 +7,7 @@ export default function LearningExperiences({ category }) {
   const experiences = learningExperiences.filter(tool => !category || tool.categories.includes(category));
   const groupDefinitions = [
     ["Gemeinsam lernen und Fragen klären", ["community"]],
-    ["Neues aus Wissenschaft und Revier", ["news", "forschung-verstehen"]],
+    ["Neues aus Wissenschaft und Revier", ["wissen-fuers-revier", "news", "forschung-verstehen"]],
     ["Wildtiere erkennen und beobachten", ["wildkunde", "wildjahr", "wildtier-details", "fotodetektiv", "tierstimmen", "spurenwerkstatt", "wildtier-videofaelle", "anatomie"]],
     ["Jagdrecht und Artenschutz nachschlagen", ["wildarten"]],
     ["Pflanzen und Lebensräume verstehen", ["pflanzenatlas", "lebensraum-werkstatt", "kleines-revierleben"]],

@@ -1,0 +1,83 @@
+{
+  "id": "wildkameras",
+  "title": "Wildkamera: Fotozahl ist keine Wildzählung",
+  "summary": "Eine volle Speicherkarte ist noch keine Bestandsaufnahme. Eine Untersuchung im bayerischen Alpenraum und unabhängige Methodenforschung helfen, Kameranachweise richtig einzuordnen.",
+  "question": "Was sagt eine volle Speicherkarte über meinen Wildbestand?",
+  "categories": ["wildkunde", "natur-revier", "jagdpraxis", "ausruestung-technik"],
+  "reviewedOn": "2026-10-15",
+  "publicationState": "Redaktionell geprüftes Dossier zu veröffentlichten Untersuchungen. Die Daten wurden nicht 2026 neu erhoben.",
+  "studyScope": "Die LWF untersuchte Reh-, Rot- und Gamswild mit 73 Fotofallen im Karwendel und Chiemgau von Juli 2018 bis Oktober 2020. Eine unabhängige Versuchsarbeit aus Großbritannien verglich Wildkameras mit durchgehender Videokontrolle bei Fuchs, Dachs und zwei Gehegeottern; sie bestätigt keine konkreten bayerischen Messwerte.",
+  "photoKey": "rehwild",
+  "photoContext": "Anschauungsfoto von Rehwild; keine Aufnahme aus den hier beschriebenen Untersuchungen.",
+  "findings": [
+    {
+      "id": "dateien-und-tiere",
+      "title": "Aufnahmeereignisse sind keine Individuenzahl",
+      "text": "Die LWF setzte zusammengefasste Aufnahmeereignisse zur tatsächlichen Kameralaufzeit ins Verhältnis. Der daraus berechnete Index bestimmt keine absolute Zahl einzelner Tiere. Unabhängige Methodenforschung erklärt zusätzlich, warum neben dem Vorkommen auch Tierverhalten und Kamerabedingungen die Erfassung beeinflussen.",
+      "sourceIds": ["lwf-bergwald", "hofmeester-methodik"]
+    },
+    {
+      "id": "fehlender-nachweis",
+      "title": "Kein Foto beweist keine Abwesenheit",
+      "text": "In Teilflächen der LWF-Untersuchung fehlten Rehwildfotos trotz Losungsnachweisen. Findlay und Kollegen zeigten mit Videokontrolle, dass vorbeilaufende Tiere nicht immer ein verwertbares Kamerabild erzeugen. Auslösung, tatsächliche Abbildung und ausreichende Bildqualität sind getrennte Schritte.",
+      "sourceIds": ["lwf-bergwald", "findlay-fehlnachweise"]
+    },
+    {
+      "id": "vergleichbare-bedingungen",
+      "title": "Ein Vergleich braucht mehr als dieselbe Kamera",
+      "text": "In der unabhängigen Versuchsarbeit unterschieden sich Erfassungsfehler nach Tierart, Kameramodell und Einstellung. Die Methodenübersicht von Hofmeester und Kollegen nennt unter anderem tatsächliche Betriebsdauer, Aufstellung und Vegetation als relevante Angaben für die Einordnung von Kameradaten.",
+      "sourceIds": ["findlay-fehlnachweise", "hofmeester-methodik"]
+    }
+  ],
+  "practice": {
+    "lead": "Redaktionelle Ableitung für die Praxis",
+    "steps": [
+      "Notiere neben den Nachweisen auch die tatsächliche Betriebsdauer und bekannte Ausfälle.",
+      "Prüfe bei auffälligen Unterschieden zuerst Standort, Einstellungen und veränderte Aufnahmebedingungen.",
+      "Beschreibe zunächst die aufgezeichneten Kontakte. Eine veränderte Fotozahl allein erklärt weder eine Bestandsänderung noch deren Ursache."
+    ]
+  },
+  "limits": [
+    "Die Alpenstudie betrifft zwei Untersuchungsgebiete und einen historischen Zeitraum; sie beschreibt keinen aktuellen Bestand in deinem Revier.",
+    "Die britische Versuchsarbeit untersuchte andere Arten und bestimmte Kameramodelle. Ihre konkreten Fehlerquoten werden hier nicht auf Schalenwild übertragen.",
+    "Keine der hier dargestellten Auswertungen liefert eine feste Umrechnung von Bilddateien in Revierbestand oder eine Vorhersage des Jagderfolgs.",
+    "Die Quellen betreffen die Datenauswertung. Ob und wie eine Wildkamera am konkreten Ort eingesetzt werden darf, wird damit nicht geklärt."
+  ],
+  "sources": [
+    {
+      "id": "lwf-bergwald",
+      "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft (LWF)",
+      "title": "Fotofallen zeigen saisonale Raumnutzung von Schalenwild im Bergwald – Edelhoff, Dachs und Peters, LWF aktuell 154",
+      "url": "https://lwf.bayern.de/wildtierbiologie/385464/index.php",
+      "publishedOn": "2025-09",
+      "kind": "Originaler Forschungsbericht einer amtlichen Forschungseinrichtung",
+      "supports": "Untersuchungsrahmen, Ereignisse im Verhältnis zur aktiven Kameralaufzeit, keine absolute Individuenzahl und fehlende Rehwildfotos trotz Losungsnachweisen.",
+      "independence": "Eigene bayerische Felddaten. Losungsfunde ergänzen deren Prüfung; sie sind keine unabhängige Wiederholung der gesamten Studie. Das Heftverzeichnis nennt September 2025 als Erscheinungsmonat."
+    },
+    {
+      "id": "findlay-fehlnachweise",
+      "organization": "Edinburgh Napier University; veröffentlicht in Mammal Research",
+      "title": "Component processes of detection probability in camera-trap studies: understanding the occurrence of false-negatives – Findlay, Briers und White",
+      "url": "https://link.springer.com/article/10.1007/s13364-020-00478-y",
+      "publishedOn": "2020-02-17",
+      "kind": "Begutachtete empirische Originalarbeit",
+      "supports": "Getrennte Erfassungsschritte und tatsächlich beobachtete Fehlnachweise mit Unterschieden zwischen Arten, Modellen und Einstellungen.",
+      "independence": "Eigenständiges Team und eigene britische Versuche mit Videokontrolle; keine Übernahme der LWF-Daten. Freilebende Füchse und Dachse sowie zwei Gehegeotter wurden 2017 untersucht."
+    },
+    {
+      "id": "hofmeester-methodik",
+      "organization": "Swedish University of Agricultural Sciences, Norwegian Institute for Nature Research und weitere Beteiligte; Ecology and Evolution",
+      "title": "Framing pictures: A conceptual framework to identify and correct for biases in detection probability of camera traps enabling multi-species comparison – Hofmeester und Kollegen",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4878",
+      "publishedOn": "2019-01-23",
+      "kind": "Begutachteter wissenschaftlicher Methodenreview",
+      "supports": "Einfluss von Tiermerkmalen, Kameratechnik, Aufstellung und Umweltbedingungen sowie erforderliche Angaben für vergleichbare Kameradaten.",
+      "independence": "Unabhängige methodische Synthese mit eigener Literaturauswertung; als Review eingeordnet, nicht als zusätzliches DACH-Feldexperiment."
+    }
+  ],
+  "related": [
+    { "href": "/kurse/wissen-ausbau-wildkameras", "title": "Wildkameras, Datenqualität und Privatsphäre" },
+    { "href": "/lernen/forschung-verstehen", "title": "Forschung verständlich" },
+    { "href": "/kurse/wissen-vertiefung-ansitz-entscheidungsprotokoll", "title": "Ansitz: Beobachtung und begründete Entscheidungen" }
+  ]
+}
