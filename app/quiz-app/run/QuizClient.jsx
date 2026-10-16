@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import AppIcon from "../../../components/AppIcon";
+import styles from "../../../styles/RankedQuiz.module.css";
 import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-scope";
 import { recordReviewAnswer } from "../../../lib/daily-review";
 
@@ -54,20 +56,15 @@ export default function QuizClient() {
   const startRequest = useRef(null);
   const pending = useRef(null);
   const currentRound = useRef(round);
-  const feedbackTimer = useRef(null);
-  const timerGeneration = useRef(0);
   const serverClock = useRef(null);
+  const questionHeading = useRef(null);
+  const focusedQuestion = useRef(null);
   currentRound.current = round;
   const storageKey = `jagd_quiz_round:${isCountryQuizTopic(topic) ? country : "COMMON"}:${topic}`;
   const returnUrl = quizLearningUrl("/quiz-app/run", country, topic);
   const setupUrl = quizLearningUrl("/quiz-app", country, topic);
   const nameUrl = quizLearningUrl("/quiz-app/username", country, topic);
 
-  function clearFeedbackTimer() {
-    timerGeneration.current += 1;
-    if (feedbackTimer.current !== null) clearTimeout(feedbackTimer.current);
-    feedbackTimer.current = null;
-  }
   function rememberRound(id) {
     try { window.sessionStorage.setItem(storageKey, id); } catch { /* The server remains authoritative without browser storage. */ }
   }
@@ -116,7 +113,6 @@ export default function QuizClient() {
       mounted.current = false;
       context.current?.controller.abort();
       pending.current?.controller?.abort();
-      clearFeedbackTimer();
     };
   }, []);
 
@@ -125,7 +121,6 @@ export default function QuizClient() {
     context.current = record;
     pending.current?.controller?.abort();
     pending.current = null;
-    clearFeedbackTimer();
     currentRound.current = null;
     setRound(null);
     setSelected(null);
@@ -172,7 +167,6 @@ export default function QuizClient() {
     void start();
     return () => {
       record.controller.abort();
-      clearFeedbackTimer();
     };
   }, [country, topic, reloadKey, router]);
 
@@ -218,21 +212,18 @@ export default function QuizClient() {
   }
   function next(rendered = round) {
     if (!mounted.current || pending.current || rendered !== currentRound.current || rendered?.phase !== "feedback") return;
-    clearFeedbackTimer();
     const operation = { kind: "next", context: context.current, payload: { roundId: rendered.roundId, requestId: globalThis.crypto.randomUUID() } };
     pending.current = operation;
     void execute(operation);
   }
   function synchronize() {
     if (!round || pending.current?.running) return;
-    clearFeedbackTimer();
     const operation = { kind: "sync", context: context.current, payload: { roundId: round.roundId } };
     pending.current = operation;
     void execute(operation);
   }
   function restart() {
     if (pending.current?.running) return;
-    clearFeedbackTimer();
     forgetRound();
     startRequest.current = { key: storageKey, id: null };
     setReloadKey(value => value + 1);
@@ -253,17 +244,11 @@ export default function QuizClient() {
   }, [round, busy, error]);
 
   useEffect(() => {
-    clearFeedbackTimer();
-    if (round?.phase !== "feedback" || busy || error) return;
-    const generation = timerGeneration.current;
-    const elapsed = Math.max(0, Date.parse(round.serverNow) - Date.parse(round.feedback.answeredAt));
-    feedbackTimer.current = setTimeout(() => {
-      if (!mounted.current || generation !== timerGeneration.current) return;
-      feedbackTimer.current = null;
-      next(round);
-    }, Math.max(0, 10000 - elapsed));
-    return clearFeedbackTimer;
-  }, [round, busy, error]);
+    if (!round) return;
+    const key = `${round.roundId}:${round.phase === "complete" ? "complete" : round.question?.id}`;
+    if (focusedQuestion.current && focusedQuestion.current !== key) questionHeading.current?.focus();
+    focusedQuestion.current = key;
+  }, [round?.roundId, round?.question?.id, round?.phase]);
 
   function errorNotice() {
     if (!error) return null;
@@ -292,44 +277,41 @@ export default function QuizClient() {
     </aside> : null;
   }
 
-  if (!round) return <div style={{ padding: 30, textAlign: "center" }}>
+  if (!round) return <main className={styles.main}><div className={styles.wrap}>
+    <header className={styles.header}><h1><AppIcon name="quiz" size={32} />Jagdquiz mit Rangliste</h1></header>
     {error ? errorNotice() : <p role="status">{busy === "profile" ? "Dein Quizname wird bestätigt …" : busy === "redirect" ? "Bitte wähle deinen Quiznamen …" : "Lade Quizrunde …"}</p>}
     {!error && <p><Link href={setupUrl}>Thema wählen</Link></p>}
-  </div>;
+  </div></main>;
 
-  if (round.phase === "complete") return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
-    <div className="quiz-finish-box fade-in">
-      <h1 className="quiz-finish-title">🎉 Quiz abgeschlossen!</h1>
-      <div className="quiz-score-badge">{round.points}</div>
+  if (round.phase === "complete") return <main className={styles.main}><div className={styles.wrap}>
+    <section className={styles.card} aria-labelledby="ranked-result-title">
+      <h1 id="ranked-result-title" tabIndex={-1} ref={questionHeading}><AppIcon name="trophy" size={36} />Quiz abgeschlossen</h1>
+      <p className={styles.resultPoints}>{round.points} <span>Punkte</span></p>
       <p>{round.correctAnswers} von {round.total} Fragen richtig</p>
       <p><Link href={setupUrl}>Thema wählen</Link></p>
       {savedNotice()}
-      <button type="button" onClick={() => router.push("/quiz-app/leaderboard")} className="quiz-end-btn">🏆 Rangliste ansehen</button>
-      <button type="button" onClick={restart} className="quiz-end-btn">🔄 Neues Quiz starten</button>
-    </div>
-  </div>;
+      <div className={styles.actions}><Link href="/quiz-app/leaderboard" className={styles.primary}>Rangliste ansehen<AppIcon name="trophy" size={20} /></Link><button type="button" onClick={restart} className={styles.secondary}>Neue Runde starten</button></div>
+    </section>
+  </div></main>;
 
   const question = round.question;
   const feedback = round.phase === "feedback" ? round.feedback : null;
   const locked = round.phase !== "asking" || !!busy || !!error || !!pending.current;
-  return <div style={{ maxWidth: 650, margin: "0 auto", padding: 20 }}>
-    <p style={{ margin: "0 0 18px" }}><Link href={setupUrl}>Thema wählen</Link></p>
-    <div className="progressbar"><div className="progressbar-fill" style={{ width: `${seconds / 30 * 100}%` }} /></div>
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
-      <div style={{ fontSize: 20, fontWeight: 700 }}>Frage {round.index + 1}/{round.total}</div>
-      <div style={{ fontSize: 22, fontWeight: 900, color: seconds <= 5 ? "red" : "#136f39" }}>⏱ {seconds}s</div>
+  return <main className={styles.main}><div className={styles.wrap}>
+    <nav className={styles.nav} aria-label="Quizmenü"><Link href={setupUrl}>Thema wählen</Link><Link href="/quiz-app/leaderboard">Rangliste</Link></nav>
+    <header className={styles.header}><p className={styles.eyebrow}>{isCountryQuizTopic(topic) ? `${{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[country]} · Recht` : topic === "Alle" ? "Alle Lernbereiche" : topic}</p><h1><AppIcon name="quiz" size={34} />Jagdquiz mit Rangliste</h1></header>
+    <progress className={styles.timebar} max={30} value={round.phase === "asking" ? seconds : 0} aria-label="Verbleibende Antwortzeit in Sekunden" />
+    <div className={styles.roundMeta}>
+      <span>Frage {round.index + 1} von {round.total}</span>
+      <span className={seconds <= 5 && round.phase === "asking" ? styles.timeLow : styles.time} role="timer" aria-live="off">{round.phase === "feedback" ? "Antwort ausgewertet" : `${seconds} Sekunden`}</span>
     </div>
-    <div style={{ fontSize: 18, marginTop: 12, opacity: 0.7 }}>Score: {round.points} · {username}</div>
-    <div className={`fade-in ${feedback ? feedback.correct ? "flash-correct" : "flash-wrong" : ""}`} style={{ padding: 18, background: "rgba(255,255,255,0.75)", borderRadius: 16, border: "1px solid rgba(0,0,0,0.1)", marginTop: 20 }}>
-      <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 16 }}>{question.q}</div>
-      {question.answers.map(option => <button type="button" disabled={locked} key={option.id} onClick={() => answer(option.id, round)} style={{
-        padding: "14px 16px", display: "block", width: "100%", font: "inherit", textAlign: "left", color: "inherit", borderRadius: 12,
-        border: "1px solid rgba(0,0,0,0.15)", background: selected === option.id ? feedback ? feedback.correct ? "#c6f6d5" : "#fed7d7" : "#e8edf2" : "#fff",
-        marginBottom: 12, fontSize: 18, cursor: locked ? "default" : "pointer",
-      }}>{option.text}</button>)}
-    </div>
+    <p className={styles.score}>{round.points} Punkte · {username}</p>
+    <section className={styles.card} aria-labelledby="ranked-question-title">
+      <h2 id="ranked-question-title" tabIndex={-1} ref={questionHeading}>{question.q}</h2>
+      <div className={styles.answers} role="group" aria-label="Eine Antwort wählen">{question.answers.map(option => <button type="button" disabled={locked} key={option.id} onClick={() => answer(option.id, round)} className={`${styles.answer}${feedback?.correctAnswerIds.includes(option.id) ? ` ${styles.correct}` : feedback && selected === option.id ? ` ${styles.wrong}` : selected === option.id ? ` ${styles.selected}` : ""}`}>{option.text}{feedback?.correctAnswerIds.includes(option.id) && <span>Richtige Antwort</span>}{feedback && selected === option.id && !feedback.correctAnswerIds.includes(option.id) && <span>Deine Antwort</span>}</button>)}</div>
+    </section>
     {busy === "answer" && <p role="status">Deine Antwort wird geprüft …</p>}
-    {feedback && <section role="status" aria-live="polite" style={{ marginTop: 18, padding: 18, borderRadius: 14, background: feedback.correct ? "#e5f6e9" : "#fff2f2", color: "#1f2937", lineHeight: 1.5 }}>
+    {feedback && <section role="status" aria-live="polite" className={styles.feedback}>
       <strong>{feedback.timedOut ? "Zeit abgelaufen." : feedback.correct ? "Richtig!" : "Leider falsch."}</strong>
       <p style={{ margin: "8px 0" }}><b>Richtige Antwort:</b>{" "}{question.answers.filter(option => feedback.correctAnswerIds.includes(option.id)).map(option => option.text).join("; ")}</p>
       {feedback.explain && <p style={{ margin: "8px 0" }}>{feedback.explain}</p>}
@@ -340,10 +322,10 @@ export default function QuizClient() {
       </div>}
       {!feedback.source && /^\/kurse\/[a-z0-9-]+$/.test(feedback.learningHref || "") && <p style={{ margin: "8px 0" }}><Link href={feedback.learningHref}>Lerneinheit und zugehörige Quellen öffnen</Link></p>}
       <p style={{ margin: "8px 0" }}><Link href="/lernen">Im Lernwissen nachlesen</Link></p>
-      <button type="button" disabled={!!busy || !!error} onClick={() => next(round)} className="quiz-end-btn" style={{ marginTop: 8 }}>{round.index === round.total - 1 ? "Ergebnis anzeigen" : "Weiter"}</button>
-      <p style={{ margin: "8px 0 0", fontSize: 14, color: "#4b5563" }}>{busy === "next" || busy === "sync" ? "Quizrunde wird geladen …" : "Automatisch weiter nach 10 Sekunden."}</p>
+      <button type="button" disabled={!!busy || !!error} onClick={() => next(round)} className={styles.primary}>{round.index === round.total - 1 ? "Ergebnis anzeigen" : "Weiter"}</button>
+      <p className={styles.note}>{busy === "next" || busy === "sync" ? "Quizrunde wird geladen …" : "Lies in Ruhe nach. Die nächste Antwortzeit beginnt erst mit Weiter."}</p>
     </section>}
     {errorNotice()}
     {savedNotice()}
-  </div>;
+  </div></main>;
 }

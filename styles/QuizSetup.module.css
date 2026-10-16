@@ -6,7 +6,7 @@
   font-family: system-ui, "Segoe UI", Arial, sans-serif;
 }
 
-.wrap { max-width: 780px; margin: 0 auto; min-width: 0; }
+.wrap { max-width: 920px; margin: 0 auto; min-width: 0; font-size: 18px; }
 .nav { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-bottom: 28px; }
 .nav a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 15px; border: 1px solid #e0c989; border-radius: 12px; background: #fffdf7; color: #796021; font-weight: 700; text-decoration: none; transition: background .15s ease, border-color .15s ease; }
 .nav a:hover { background: #f5e7bf; border-color: #caa53b; }
@@ -25,11 +25,13 @@
 .country strong { display: flex; align-items: center; gap: 8px; font-size: 16px; overflow-wrap: anywhere; }
 .country span { font-size: 13px; line-height: 1.4; }
 .country[aria-pressed="true"] { border-color: #caa53b; background: #f5e7bf; }
-.select { box-sizing: border-box; width: 100%; max-width: 100%; min-height: 50px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; background: #fffdf7; color: #3e321b; font: inherit; font-size: 16px; }
+.select { box-sizing: border-box; width: 100%; max-width: 100%; min-height: 58px; padding: 12px; border: 1px solid #e0c989; border-radius: 10px; background: #fffdf7; color: #3e321b; font: inherit; font-size: 18px; }
 .summary { margin: 24px 0; padding: 18px; border-radius: 12px; background: #fbf1d5; line-height: 1.55; }
 .summary strong { display: flex; align-items: center; gap: 9px; }
 .summary p { margin: 10px 0 0; }
-.start { display: inline-flex; align-items: center; justify-content: center; gap: 12px; box-sizing: border-box; padding: 14px 24px; border-radius: 10px; background: #caa53b; color: #3e321b; font-size: 18px; font-weight: 750; text-decoration: none; text-align: center; }
+.start { display: inline-flex; align-items: center; justify-content: center; gap: 12px; box-sizing: border-box; min-height: 56px; padding: 14px 24px; border-radius: 12px; background: #4d6536; color: #fff; font-size: 18px; font-weight: 750; text-decoration: none; text-align: center; }
+.start:hover { background: #3c5029; }
+.header h1 svg { flex-shrink: 0; }
 .country:focus-visible, .select:focus-visible, .start:focus-visible { outline: 3px solid #caa53b; outline-offset: 3px; }
 
 @media (max-width: 540px) {

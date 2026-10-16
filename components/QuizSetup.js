@@ -28,12 +28,13 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
       <div className={styles.wrap}>
         <nav className={styles.nav} aria-label="Quizmenü">
           <Link href="/lernen"><AppIcon name="book" size={20} />Lernbereich</Link>
+          <Link href="/quiz-app/leaderboard"><AppIcon name="trophy" size={20} />Rangliste</Link>
           <Link href="/auswertungen"><AppIcon name="stats" size={20} />Meine Auswertungen</Link>
         </nav>
         <header className={styles.header}>
           <p className={styles.eyebrow}>Wissen anwenden</p>
-          <h1><AppIcon name="quiz" size={34} />Jagdquiz</h1>
-          <p>Wähle dein Thema und übe gemeinsames Jagdwissen. Bei Rechtsfragen wählst du zusätzlich das passende Land.</p>
+          <h1><AppIcon name="trophy" size={36} />Jagdquiz mit Rangliste</h1>
+          <p>Wähle dein Thema und spiele eine gewertete Runde. Bei Rechtsfragen wählst du zusätzlich das passende Land.</p>
         </header>
         <section className={styles.card} aria-labelledby="quiz-setup-title">
           <h2 id="quiz-setup-title">Deine Quizrunde</h2>
@@ -58,6 +59,7 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
             <strong><AppIcon name={countryTopic ? "law" : "quiz"} size={22} />{countryTopic ? `${selectedCountry.name} · Recht` : activeTopic === "Alle" ? "Alle Lernbereiche" : activeTopic}</strong>
             <p>{questionsInRound} zufällig ausgewählte Fragen aus {available} verfügbaren Fragen.</p>
             <p>Du hast 30 Sekunden pro Frage. Nach jeder Antwort siehst du die Erklärung und kannst selbst weitergehen.</p>
+            <p>Deine beste vollständig abgeschlossene Runde zählt für die Gesamtrangliste. Beim ersten Start wählst du einmalig deinen öffentlichen Quiznamen.</p>
           </div>
           {available > 0 && <Link href={startUrl} className={styles.start}>Quiz starten<AppIcon name="arrow-right" size={20} /></Link>}
         </section>

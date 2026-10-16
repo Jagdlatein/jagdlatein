@@ -4,6 +4,7 @@ import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import { LearningPhotoCredit } from "./LearningPhoto";
 import ResearchQuestionRound from "./ResearchQuestionRound";
+import QuizLeagueEntry from "./QuizLeagueEntry";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/ResearchForPractice.module.css";
 
@@ -42,7 +43,7 @@ export default function ResearchForPractice({ topics, photos, questions = [] }) 
   return <LearningToolLayout title="Wissen fürs Revier" description="Forschung verstehen und mit abwechslungsreichen Praxisfragen anwenden – auch nach der Jägerprüfung." category="jagdpraxis" eyebrow="Weiterdenken nach der Jägerprüfung" icon="binoculars" compact className={styles.page}>
     <section className={`${shared.panel} ${styles.selector}`} aria-label="Praxisthema auswählen"><div className={styles.overviewLine}><span>{topics.length} Themen für dein Revier</span><span>{questions.length} Fragen mit Erklärungen</span></div><label className={shared.field}>Dein Thema<select value={topic.id} onChange={event => select(event.target.value)}>{topics.map(item => <option key={item.id} value={item.id}>{item.id === "wildkameras" ? "Wildkameras richtig auswerten" : item.id === "wild-und-stoerung" ? "Wild, Störungen und Tageszeit" : "Rehwild, Frühling und Setzzeit"}</option>)}</select></label><nav className={styles.sectionNav} aria-label="In diesem Thema"><a href="#revierwissen-inhalt">Wissen & Praxis</a><a href="#revierwissen-fragen">Direkt zu den Fragen ({selectedQuestions.length})</a></nav></section>
     <ResearchDossier key={topic.id} topic={topic} photo={photos[topic.photoKey]} />
-    <ResearchQuestionRound key={`questions-${topic.id}`} questions={selectedQuestions} sources={topic.sources} />
+    <div id="revierwissen-fragen"><QuizLeagueEntry practice /><ResearchQuestionRound key={`questions-${topic.id}`} questions={selectedQuestions} sources={topic.sources} /></div>
     <p className={styles.continue}>Weitere aktuelle Veröffentlichungen findest du unter <Link href="/news">Wissen im Blick</Link>. Dort stehen Veröffentlichungsdatum und Abrufstand; diese vertieften Dossiers haben einen eigenen Prüfstand.</p>
   </LearningToolLayout>;
 }

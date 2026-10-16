@@ -5,6 +5,7 @@ import LearningToolLayout from "./LearningToolLayout";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningSearch from "./LearningSearch";
+import QuizLeagueEntry from "./QuizLeagueEntry";
 import { LearningCover } from "./LearningPhoto";
 import styles from "../styles/LearningOverview.module.css";
 
@@ -54,6 +55,7 @@ export default function LearningOverview({ data }) {
       <Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link>
       <Link href="/kurse">Kursverzeichnis<AppIcon name="arrow-right" size={17} /></Link>
     </nav>}
+    {!categoryInfo && <QuizLeagueEntry />}
     {categoryInfo ? <>
       <FeaturedLearning tools={resources.filter(tool => tool.featured)} media={featuredMedia} />
       <section className={styles.section} aria-labelledby="learning-modules-heading">

@@ -4,7 +4,7 @@ const aliases = {
   jagdrecht: "law", "pruefung-sprache": "book", "wald-pflanzen": "tree",
   "landwirtschaft-lebensraeume": "wheat", "ausruestung-technik": "compass",
   "tierschutz-verantwortung": "shield", courses: "book", glossary: "book",
-  ebook: "book", quiz: "target", daily: "calendar", stats: "chart",
+  ebook: "book", quiz: "target", daily: "calendar", stats: "chart", leaderboard: "trophy",
 };
 
 export default function AppIcon({ name = "book", size = 24, className, style }) {
@@ -36,6 +36,7 @@ export default function AppIcon({ name = "book", size = 24, className, style }) 
     shield: <><path d="M12 3 4 6v6c0 4 3 7 8 9 5-2 8-5 8-9V6Z" /><path stroke={accent} d="M12 16s-5-3-5-6a2.8 2.8 0 0 1 5-1.5A2.8 2.8 0 0 1 17 10c0 3-5 6-5 6Z" /></>,
     calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18" /><path stroke={accent} d="m8 15 3 3 5-5" /></>,
     chart: <><path d="M3 3v18h18" /><path stroke={accent} d="M7 17v-6m5 6V7m5 10V4" /></>,
+    trophy: <><path d="M7 3h10v6a5 5 0 0 1-10 0ZM7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 14v6m-4 1h8" /><path stroke={accent} d="m10 7 1 1 3-3" /></>,
     progress: <><path d="M4 6h5m6 0h5M4 12h5m6 0h5M4 18h5m6 0h5" /><path stroke={accent} d="m10 5 2 2 3-4m-5 8 2 2 3-4m-5 8 2 2 3-4" /></>,
     home: <><path d="m3 10 9-8 9 8M5 9v12h14V9" /><path stroke={accent} d="M9 21v-8h6v8" /></>,
     account: <><circle cx="12" cy="7" r="4" /><path stroke={accent} d="M4 21v-2a8 8 0 0 1 16 0v2" /></>,

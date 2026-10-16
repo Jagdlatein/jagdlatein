@@ -17,13 +17,15 @@ function load(relative) {
   cache.set(filename, mod.exports); return mod.exports;
 }
 const { QUESTIONS } = load('data/questions-full.js');
+const { learningQuestions } = load('lib/learning-curriculum.js');
 const { legacyQuizEvidence } = load('lib/legacy-quiz-evidence.js');
 const byId = new Map(QUESTIONS.map(question=>[question.id,question]));
 const correctText = id => { const q=byId.get(id); return q.answers.filter(a=>q.correct.includes(a.id)).map(a=>a.text).join(' '); };
 
 test('All formerly unlinked legacy questions retain stable IDs, direct references and a fixed editorial date', () => {
   assert.equal(Object.keys(legacyQuizEvidence).length, 190);
-  assert.equal(QUESTIONS.length,963);
+  // The reviewed legacy pool stays fixed while detailed courses can add questions.
+  assert.equal(QUESTIONS.length, 231 + learningQuestions.length);
   for(const [id, evidence] of Object.entries(legacyQuizEvidence)) {
     const q = byId.get(id); assert.ok(q,id); assert.equal(q.source,evidence.source,id);
     assert.equal(new URL(q.source).protocol,'https:');

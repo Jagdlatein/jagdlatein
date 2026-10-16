@@ -9,7 +9,8 @@ export async function GET(req) {
   try {
     const account = await requirePaidAccount(req);
     const { data, error } = await quizDatabase(account).from("verified_quiz_scores")
-      .select("username,country,total_points").order("total_points", { ascending: false }).limit(100);
+      .select("username,country,total_points").order("total_points", { ascending: false })
+      .order("username", { ascending: true }).limit(100);
     if (error) throw error;
     return Response.json({ data: data || [] }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) { return quizFailure(error); }
