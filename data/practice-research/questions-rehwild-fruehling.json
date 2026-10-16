@@ -1,0 +1,166 @@
+[
+  {
+    "id": "reh-01", "topicId": "rehwild-fruehling", "format": "single", "skill": "Praxisfall",
+    "prompt": "Dein Revier wird dieses Jahr früher grün. Welche Notiz ist für das Thema Setzzeit zunächst fachlich sauber?",
+    "options": [{"id":"a","text":"Die Ricke setzt deshalb im gleichen Abstand früher."},{"id":"b","text":"Frühere Begrünung beobachtet; Setztermine noch offen."},{"id":"c","text":"Die Zeit mit möglichen Kitzen endet entsprechend früher."},{"id":"d","text":"Die Beobachtung widerlegt die langfristigen Geburtsdaten."}],
+    "correctIds": ["b"],
+    "explanation": "Begrünung und Setzzeit sind getrennte Beobachtungen. Die regionalen Studien zeigen keine überall gleiche Kopplung. Weder ein sicherer Geburtstermin noch das Ende einer sensiblen Phase oder die Widerlegung einer Zeitreihe folgen aus diesem einen Pflanzenbefund.",
+    "sourceIds": ["rehnus-2020", "hagen-2021"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-02", "topicId": "rehwild-fruehling", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Wie lässt sich der Vergleich zwischen Schweizer und baden-württembergischer Langzeitreihe am besten zusammenfassen?",
+    "options": [{"id":"a","text":"Die Vorverlegung der Setztermine fiel regional unterschiedlich aus."},{"id":"b","text":"Beide Reihen fanden im gleichen Zeitraum am gleichen Bestand statt."},{"id":"c","text":"Beide Reihen fanden unveränderte Setztermine in allen Höhenlagen."},{"id":"d","text":"Die jüngere Veröffentlichung macht die ältere Messreihe ungültig."}],
+    "correctIds": ["a"],
+    "explanation": "Die eigenständigen regionalen Reihen ergaben unterschiedlich starke Vorverlegungen. Sie betreffen verschiedene Gebiete und Zeiträume. Unterschiedliche Ergebnisse brauchen eine Einordnung; das Erscheinungsjahr allein entscheidet nicht über die Gültigkeit einer Messreihe.",
+    "sourceIds": ["rehnus-2020", "hagen-2021"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-03", "topicId": "rehwild-fruehling", "format": "single", "skill": "Fehler erkennen",
+    "prompt": "„In höheren Regionen liegen Geburten später. Also hat sich die Setzzeit dort über die Jahrzehnte nach hinten verschoben.“ Was wurde verwechselt?",
+    "options": [{"id":"a","text":"Geburtsdatum und Markierungsdatum."},{"id":"b","text":"Die Schweiz und Baden-Württemberg."},{"id":"c","text":"Beobachtungsjahr und Veröffentlichungsjahr."},{"id":"d","text":"Ein Ortsvergleich und ein Zeittrend."}],
+    "correctIds": ["d"],
+    "explanation": "Unterschiede zwischen hoch und tief gelegenen Orten sind eine räumliche Frage. Ob sich am selben Ort etwas über Jahre verschiebt, ist eine zeitliche Frage. Spätere Geburten in Hochlagen schließen eine dortige langfristige Vorverlegung nicht aus.",
+    "sourceIds": ["hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-04", "topicId": "rehwild-fruehling", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Warum zählt die europäische Arbeit von 2025 nicht als völlig unabhängige Wiederholung der Schweizer Langzeitreihe?",
+    "options": [{"id":"a","text":"Weil ein europäischer Vergleich keine Geburtsdaten verwenden kann."},{"id":"b","text":"Weil eine neue Auswertung vorhandener Daten keinen Erkenntniswert hat."},{"id":"c","text":"Weil sie teilweise auf bereits verwendeten Schweizer Daten aufbaut."},{"id":"d","text":"Weil alle drei Arbeiten dasselbe Untersuchungsgebiet auswerten."}],
+    "correctIds": ["c"],
+    "explanation": "Teils gemeinsam genutzte Daten begrenzen die Unabhängigkeit, nicht den Wert der neuen vergleichenden Analyse. Die Arbeit kombiniert mehrere Gebiete; sie ist weder eine vollständig neue Schweizer Erhebung noch bloß wegen der Datennachnutzung nutzlos.",
+    "sourceIds": ["rehnus-2020", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-05", "topicId": "rehwild-fruehling", "format": "single", "skill": "Daten lesen",
+    "context": "Erfundenes Lernbeispiel: Bei einer fachlich begleiteten Markierung am 20. Mai wird das Kitzalter auf vier Tage geschätzt. Gesucht ist das daraus zurückgerechnete Geburtsdatum, nicht ein sicher direkt beobachteter Geburtstag.",
+    "prompt": "Welches Datum ergibt diese Rechnung?",
+    "options": [{"id":"a","text":"16. Mai."},{"id":"b","text":"20. Mai."},{"id":"c","text":"24. Mai."},{"id":"d","text":"Vier Tage nach dem ersten Grünwerden."}],
+    "correctIds": ["a"],
+    "explanation": "Vom Markierungsdatum werden vier geschätzte Lebenstage abgezogen. Der 20. Mai ist das Erfassungsdatum, der 24. Mai hätte die falsche Rechenrichtung. Pflanzenentwicklung ist dafür kein Ersatz. Die Altersschätzung macht auch das errechnete Datum unsicher.",
+    "sourceIds": ["rehnus-2020", "hagen-2021"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-06", "topicId": "rehwild-fruehling", "format": "single", "skill": "Daten lesen",
+    "context": "Erfundenes Lernbeispiel: In drei aufeinanderfolgenden Jahren liegt der mittlere Erfassungstag bei Tag 145, 142 und 140 des Jahres. Methode und Suchzeit haben sich möglicherweise verändert.",
+    "prompt": "Was beschreibt diese Zahlenreihe zunächst?",
+    "options": [{"id":"a","text":"Eine Verschiebung um fünf Tage nach hinten."},{"id":"b","text":"Einen unveränderten mittleren Erfassungstag."},{"id":"c","text":"Die Geburtsdaten jeder einzelnen Ricke."},{"id":"d","text":"Im Mittel fünf Tage frühere Erfassung."}],
+    "correctIds": ["d"],
+    "explanation": "Von 145 auf 140 bedeutet fünf Tage früher. Der Mittelwert beschreibt nicht jedes Tier. Weil sich die Erfassung geändert haben könnte, ist die Zahlenreihe noch kein gesicherter Nachweis einer gleich großen Verschiebung der tatsächlichen Geburten.",
+    "sourceIds": ["hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-07", "topicId": "rehwild-fruehling", "format": "single", "skill": "Fehler erkennen",
+    "prompt": "In einem Beobachtungsjahr fehlen Kitzmeldungen. Warum darf die Tabelle dafür nicht einfach „keine Geburten“ zeigen?",
+    "options": [{"id":"a","text":"Weil die übrigen Meldejahre den fehlenden Jahreswert genau vorgeben."},{"id":"b","text":"Weil fehlende Werte durch den Vorjahreswert ersetzt werden müssen."},{"id":"c","text":"Weil eine fehlende Meldung keine Abwesenheit beweist."},{"id":"d","text":"Weil der regionale mittlere Setztermin den fehlenden Jahreswert ersetzt."}],
+    "correctIds": ["c"],
+    "explanation": "Ohne Erfassungsnachweis bleibt offen, ob Kitze übersehen, nicht gesucht oder nicht gemeldet wurden. Vorjahreswerte, Nachbarjahre und regionale Mittelwerte bestimmen den fehlenden Wert nicht. Sie als tatsächliche Beobachtungen einzusetzen würde die Datenlücke verdecken.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-08", "topicId": "rehwild-fruehling", "format": "single", "skill": "Praxisfall",
+    "context": "Erfundenes Lernbeispiel: Ein Helferteam beginnt dieses Jahr zwei Wochen früher mit den Beobachtungen und meldet früher die ersten Kitze.",
+    "prompt": "Welche Veränderung könnte den ersten Fund auch ohne entsprechend frühere Geburt vorverlegen?",
+    "options": [{"id":"a","text":"Ein größerer Abstand zwischen den Suchterminen."},{"id":"b","text":"Der frühere Beginn der Suche."},{"id":"c","text":"Eine spätere Meldung bereits gefundener Kitze."},{"id":"d","text":"Das Auslassen der frühen Beobachtungstermine."}],
+    "correctIds": ["b"],
+    "explanation": "Früheres Suchen kann einen früheren Fund ermöglichen, ohne die Geburt zu verändern. Größere Suchabstände, spätere Meldungen und ausgelassene frühe Termine erklären keine systematische Vorverlegung. Suchbeginn und tatsächliches Geburtsdatum gehören getrennt ins Protokoll.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-09", "topicId": "rehwild-fruehling", "format": "single", "skill": "Daten lesen",
+    "prompt": "Die Schweizer Arbeit erschien 2020 und untersuchte die Jahre 1971–2015. Welche Beschriftung trennt beide Angaben korrekt?",
+    "options": [{"id":"a","text":"Schweizer Felddaten von 2020; rückblickend bis 1971."},{"id":"b","text":"Schweizer Beobachtungen 1971–2015; Veröffentlichung 2020."},{"id":"c","text":"Schweizer Beobachtungen 1971–2020; Veröffentlichung 2015."},{"id":"d","text":"Schweizer Prognose 2015–2020; veröffentlicht 1971."}],
+    "correctIds": ["b"],
+    "explanation": "Die Jahre der Datenerhebung und der spätere Veröffentlichungstermin bleiben eigenständige Angaben. Die Arbeit verlängert ihre Messreihe nicht bis zum Erscheinungsjahr und ist dadurch keine Vorhersage für die Zeit danach.",
+    "sourceIds": ["rehnus-2020"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-10", "topicId": "rehwild-fruehling", "format": "single", "skill": "Praxisfall",
+    "prompt": "Eine großräumige Modellkarte nennt für deine Region einen mittleren Geburtstermin. Was lässt sich damit sinnvoll tun?",
+    "options": [{"id":"a","text":"Den Geburtstag der beobachteten Ricke festlegen."},{"id":"b","text":"Den Beginn der nächsten Mahd für eine Wiese freigeben."},{"id":"c","text":"Regionale Muster einordnen."},{"id":"d","text":"Den lokalen Kitzbestand für diesen Herbst berechnen."}],
+    "correctIds": ["c"],
+    "explanation": "Eine regionale Modellvorhersage hilft beim räumlichen Vergleich. Sie ersetzt weder den Einzelnachweis noch eine Prüfung der konkreten Fläche und sagt auch keinen Herbstbestand voraus. Der Maßstab der Karte passt nicht zu diesen Detailentscheidungen.",
+    "sourceIds": ["kauffert-2025", "rehnus-2020"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-11", "topicId": "rehwild-fruehling", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Was bedeutet es, wenn Blühtermine oder Satellitenbegrünung als Näherung für Pflanzenentwicklung dienen?",
+    "options": [{"id":"a","text":"Beide Messungen bestimmen dieselbe gefressene Pflanzenmenge."},{"id":"b","text":"Damit wird das Geburtsdatum jedes Kitzes direkt gemessen."},{"id":"c","text":"Jede grüne Pflanze wird als gleichwertige Äsung erfasst."},{"id":"d","text":"Ein Indikator beschreibt einen Vorgang näherungsweise."}],
+    "correctIds": ["d"],
+    "explanation": "Ein Indikator bildet einen Teil der Pflanzenentwicklung ab. Blüte, Begrünung und tatsächliches Äsungsangebot sind nicht dieselbe Größe. Die Messungen bestimmen weder die gefressene Menge noch unmittelbar das Geburtsdatum.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-12", "topicId": "rehwild-fruehling", "format": "single", "skill": "Daten lesen",
+    "context": "Erfundenes Lernbeispiel: Im ersten Jahr stammen die meisten Meldungen aus Tieflagen. Im zweiten Jahr sammeln neue Helfer vor allem in Hochlagen. Die zusammengefassten Daten zeigen später gefundene Kitze.",
+    "prompt": "Welcher nächste Vergleich passt zur veränderten Zusammensetzung?",
+    "options": [{"id":"a","text":"Ähnliche Höhenlagen und Suchbedingungen vergleichen."},{"id":"b","text":"Die Gesamtmittelwerte als reinen Jahreseffekt ausgeben."},{"id":"c","text":"Das zweite Jahr wegen der zusätzlichen Helfer höher gewichten."},{"id":"d","text":"Die früheren Meldungen vollständig aus der Reihe streichen."}],
+    "correctIds": ["a"],
+    "explanation": "Die räumliche Zusammensetzung der Meldungen hat sich geändert. Ein Vergleich ähnlicher Lagen und Erfassungsbedingungen macht diesen Einfluss prüfbar. Gesamtmittel allein trennen ihn nicht; bloßes Höhergewichten oder Streichen löst das Problem ebenfalls nicht.",
+    "sourceIds": ["hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-13", "topicId": "rehwild-fruehling", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Pflanzenindikatoren und Setztermine verändern sich in einer Beobachtungsreihe gemeinsam. Welche Formulierung wahrt die Grenze der Aussage?",
+    "options": [{"id":"a","text":"Das beweist, dass jede Ricke den Blühtermin zur Geburtsteuerung nutzt."},{"id":"b","text":"Damit sind andere Umweltbedingungen als Einfluss ausgeschlossen."},{"id":"c","text":"Es gibt einen Zusammenhang, noch keinen Ursachennachweis."},{"id":"d","text":"Damit ist die nächstjährige Setzzeit für jede Höhenlage festgelegt."}],
+    "correctIds": ["c"],
+    "explanation": "Ein Zusammenhang stützt eine fachliche Einordnung, belegt aber nicht automatisch den einzelnen Mechanismus. Individuelle Steuerung, ausgeschlossene Alternativen und genaue Zukunftstermine sind stärkere Aussagen, für die diese Beobachtung allein nicht genügt.",
+    "sourceIds": ["rehnus-2020", "hagen-2021"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-14", "topicId": "rehwild-fruehling", "format": "single", "skill": "Praxisfall",
+    "prompt": "Ein Nachbar fragt, ob eine Wiese nach dem üblichen Setzzeitfenster ohne weitere Prüfung gemäht werden kann. Was leisten die hier behandelten Studien dafür?",
+    "options": [{"id":"a","text":"Sie geben eine Freigabe, sobald der regionale Mittelwert überschritten ist."},{"id":"b","text":"Sie liefern keine Freigabe für die konkrete Fläche."},{"id":"c","text":"Sie ersetzen die Flächenprüfung durch die Höhenangabe."},{"id":"d","text":"Sie begrenzen mögliche Kitze auf den mittleren Geburtsmonat."}],
+    "correctIds": ["b"],
+    "explanation": "Mittelwerte und regionale Zusammenhänge schließen Kitze auf einer einzelnen Fläche nicht aus. Weder Höhenlage noch ein übliches Zeitfenster ersetzen die konkrete Prüfung. Die Studien sind keine Handlungsfreigabe für die Mahd.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-15", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Praxisfall",
+    "prompt": "Welche Angaben helfen bei einer langfristigen Dokumentation von Pflanzenentwicklung und Setzzeit?",
+    "options": [{"id":"a","text":"Datum und Ort der jeweiligen Beobachtung."},{"id":"b","text":"Eine Vermutung zum Geburtsdatum ohne Kennzeichnung als Schätzung."},{"id":"c","text":"Höhenlage, Lebensraum und Erfassungsbedingungen."},{"id":"d","text":"Getrennte Angaben zu Pflanzenentwicklung und Kitznachweis."},{"id":"e","text":"Nur die jeweils früheste Meldung des Jahres."}],
+    "correctIds": ["a", "c", "d"],
+    "explanation": "Diese Angaben halten beide Vorgänge und die Vergleichsbedingungen auseinander. Das ist eine redaktionelle Praxisableitung. Schätzungen brauchen eine Kennzeichnung; allein der früheste Fund hängt stark davon ab, wann und wie gesucht wurde.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-16", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Aussage prüfen",
+    "prompt": "Welche Aussagen passen zu den im Beitrag verglichenen Ergebnissen?",
+    "options": [{"id":"a","text":"Schweiz und Baden-Württemberg zeigen überall dieselbe Vorverlegung."},{"id":"b","text":"In Baden-Württemberg war die Vorverlegung in höheren untersuchten Lagen stärker."},{"id":"c","text":"Die europäische Auswertung ordnet überwiegend spätere Geburten höheren Lagen zu."},{"id":"d","text":"Ein räumlicher Höhenvergleich und ein langfristiger Zeittrend beantworten verschiedene Fragen."},{"id":"e","text":"Die Ergebnisse ergeben einen festen Kalender für jedes Revier."}],
+    "correctIds": ["b", "c", "d"],
+    "explanation": "Höhenunterschiede und zeitliche Veränderungen können nebeneinander bestehen. Die regionalen Reihen haben abweichende Ergebnisse und werden dadurch nicht zu einem einheitlichen Revierkalender. Räumliche und zeitliche Aussagen dürfen nicht gegeneinander ausgetauscht werden.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-17", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Fehler erkennen",
+    "prompt": "Welche Änderungen können den Vergleich von Kitzmeldungen verzerren, wenn sie unberücksichtigt bleiben?",
+    "options": [{"id":"a","text":"Der Beginn der Beobachtungen verschiebt sich."},{"id":"b","text":"Die Höhenlage wird weiterhin für jede Meldung festgehalten."},{"id":"c","text":"Neue Helfer erfassen überwiegend andere Lebensräume."},{"id":"d","text":"Unsichere Altersschätzungen werden als unsicher markiert."}],
+    "correctIds": ["a", "c"],
+    "explanation": "Eine andere Suchzeit oder räumliche Auswahl kann die Zusammensetzung der Meldungen ändern. Höhenangaben und kenntlich gemachte Unsicherheit sind dagegen Hilfen für die Prüfung, keine zusätzlichen Verzerrungen.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-18", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Aussage prüfen",
+    "prompt": "Welche Aussagen über unabhängige Belege sind richtig?",
+    "options": [{"id":"a","text":"Eine Pressemitteilung über eine Studie zählt als zweite eigenständige Messreihe."},{"id":"b","text":"Die baden-württembergische Reihe nutzt andere regionale Daten als die Schweizer Arbeit."},{"id":"c","text":"Eine neue Autorengruppe macht gemeinsam genutzte Daten automatisch unabhängig."},{"id":"d","text":"Die Datengrundlagen der europäischen Zusammenführung müssen mitbetrachtet werden."}],
+    "correctIds": ["b", "d"],
+    "explanation": "Die regional eigenständige Reihe und die Prüfung von Datennachnutzung sind hier entscheidend. Eine Pressemitteilung erzeugt keine neuen Beobachtungen; ein anderer Autorenkreis entfernt Überschneidungen im Datenbestand nicht.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-19", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Daten lesen",
+    "prompt": "Welche Arbeitsschritte helfen beim Einordnen einer großräumigen Karte zur Setzzeit?",
+    "options": [{"id":"a","text":"Messdaten, Schätzungen und Modellvorhersagen auseinanderhalten."},{"id":"b","text":"Den Mittelwert als genauen Termin jeder einzelnen Ricke übernehmen."},{"id":"c","text":"Räumlichen Maßstab und dargestellten Zeitraum nachlesen."},{"id":"d","text":"Aus dunkler gefärbten Datumsfeldern mehr vorhandene Kitze ableiten."},{"id":"e","text":"Benannte Unsicherheiten und Modellgrenzen berücksichtigen."}],
+    "correctIds": ["a", "c", "e"],
+    "explanation": "Datentyp, Maßstab, Zeitraum und Unsicherheit bestimmen, wofür eine Karte geeignet ist. Ein Mittelwert ist kein individueller Termin. Eine Datumsdarstellung misst zudem keine Kitzanzahl; ihre Farbstärke belegt keinen höheren Bestand.",
+    "sourceIds": ["kauffert-2025", "rehnus-2020"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "reh-20", "topicId": "rehwild-fruehling", "format": "multiple", "skill": "Aussage prüfen",
+    "prompt": "Welche Schlussfolgerungen lassen die unterschiedlichen regionalen Ergebnisse gerade nicht zu?",
+    "options": [{"id":"a","text":"Die Anpassung an frühere Pflanzenentwicklung ist überall ausreichend."},{"id":"b","text":"Die Einordnung sollte regionale Bedingungen berücksichtigen."},{"id":"c","text":"Rehwild kann seine Setztermine überhaupt nicht verändern."},{"id":"d","text":"Neue Vergleiche sollten ihre Erfassungsmethoden offenlegen."}],
+    "correctIds": ["a", "c"],
+    "explanation": "Weder überall ausreichende Anpassung noch völlige Unveränderlichkeit ist durch die verglichenen Arbeiten gedeckt. Regionale Einordnung und transparente Erfassung sind dagegen passende Konsequenzen. Ein differenziertes Ergebnis ist kein Beleg für eines der beiden Extreme.",
+    "sourceIds": ["rehnus-2020", "hagen-2021", "kauffert-2025"], "reviewedOn": "2026-10-16"
+  }
+]

@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -34,6 +35,7 @@ function KnowledgeCheck() {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [finished, setFinished] = useState(false);
+  const [answerSeed, setAnswerSeed] = useState(0);
   const answerLock = useRef({});
   const advanceLock = useRef(null);
   const cursorRef = useRef({ index: 0, run: 0 });
@@ -42,7 +44,7 @@ function KnowledgeCheck() {
   const selected = answers[question.id];
   const answered = selected !== undefined;
   const score = dogCompassChecks.filter(item => answers[item.id] === item.answer).length;
-  function restart() { cursorRef.current = { index: 0, run: cursorRef.current.run + 1 }; answerLock.current = {}; advanceLock.current = null; setIndex(0); setAnswers({}); setFinished(false); }
+  function restart() { setAnswerSeed(seed => newAnswerSeed(seed)); cursorRef.current = { index: 0, run: cursorRef.current.run + 1 }; answerLock.current = {}; advanceLock.current = null; setIndex(0); setAnswers({}); setFinished(false); }
   function chooseAnswer(optionIndex) {
     if (cursorRef.current.run !== run || cursorRef.current.index !== index || answerLock.current[question.id] !== undefined) return;
     answerLock.current[question.id] = optionIndex;
@@ -63,7 +65,7 @@ function KnowledgeCheck() {
     </div> : <>
       <p className={styles.muted}>Frage {index + 1} von {dogCompassChecks.length}</p>
       <h3>{question.question}</h3>
-      <div className={styles.answers}>{question.options.map((option, optionIndex) => <button type="button" key={option} disabled={answered} className={`${styles.answer} ${answered && optionIndex === question.answer ? styles.correct : ""} ${answered && optionIndex === selected && selected !== question.answer ? styles.incorrect : ""}`} onClick={() => chooseAnswer(optionIndex)}>{option}</button>)}</div>
+      <div className={styles.answers}>{answerOrder(question.options, question.id, answerSeed).map(optionIndex => <button type="button" key={optionIndex} disabled={answered} className={`${styles.answer} ${answered && optionIndex === question.answer ? styles.correct : ""} ${answered && optionIndex === selected && selected !== question.answer ? styles.incorrect : ""}`} onClick={() => chooseAnswer(optionIndex)}>{question.options[optionIndex]}</button>)}</div>
       {answered && <div className={styles.feedback} role="status"><strong>{selected === question.answer ? "Richtig beantwortet." : "Noch nicht richtig."}</strong><p><strong>Richtige Antwort:</strong> {question.options[question.answer]}</p><p>{question.explain}</p><button type="button" className={experienceStyles.primary} onClick={advance}>{index === dogCompassChecks.length - 1 ? "Ergebnis ansehen" : "Nächste Frage"}</button></div>}
     </>}
   </section>;

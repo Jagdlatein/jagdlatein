@@ -4,12 +4,12 @@ import AppIcon from "./AppIcon";
 import { getLearningCategory } from "../lib/learning-categories";
 import styles from "../styles/LearningExperience.module.css";
 
-export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, compact = false, headingOnly = false, searchHref, eyebrow = "Entdecken, üben und verstehen", robots, children }) {
+export default function LearningToolLayout({ title, description, icon = "book", category, stats = [], hideCommunity = false, compact = false, headingOnly = false, searchHref, eyebrow = "Entdecken, üben und verstehen", robots, className = "", children }) {
   const info = typeof category === "string" ? getLearningCategory(category) : category;
   const categoryHref = info?.href || (info?.slug ? `/lernen/${info.slug}` : null);
   return <>
     <Head><title>{`${title} – Jagdlatein`}</title><meta name="description" content={description} />{robots && <meta name="robots" content={robots} />}</Head>
-    <main className={styles.main}>
+    <main className={`${styles.main}${className ? ` ${className}` : ""}`}>
       <nav className={styles.nav} aria-label="Lernmenü">
         <Link href={headingOnly && !categoryHref ? "/" : "/lernen"}><AppIcon name="arrow-left" size={18} />{headingOnly && !categoryHref ? "Startseite" : "Lernbereich"}</Link>
         {headingOnly && <Link href={searchHref || "#lernen-suche"}><AppIcon name="search" size={18} />Suche</Link>}

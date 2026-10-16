@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -46,6 +47,7 @@ export default function PhotoDetective() {
   const [activeTrait, setActiveTrait] = useState(0);
   const [finished, setFinished] = useState(false);
   const [practice, setPractice] = useState(false);
+  const [answerSeed, setAnswerSeed] = useState(0);
   const [exploreId, setExploreId] = useState(photoDetectiveRounds[0].id);
   const nextGuard = useRef(null);
   const hintGuard = useRef(false);
@@ -61,6 +63,7 @@ export default function PhotoDetective() {
   const revealed = mode === "explore" || Boolean(answer) || hint;
 
   function start(ids = photoDetectiveRounds.map(item => item.id), isPractice = false) {
+    setAnswerSeed(seed => newAnswerSeed(seed));
     attemptGuard.current += 1;
     nextGuard.current = null;
     hintGuard.current = false;
@@ -108,7 +111,7 @@ export default function PhotoDetective() {
     </section> : <section className={styles.card} aria-labelledby="photo-question-heading">
       {mode === "explore" ? <><label className={styles.selectLabel} htmlFor="photo-species">Welche Art möchtest du ansehen?</label><select id="photo-species" className={styles.select} value={exploreId} onChange={event => changeExplore(event.target.value)}>{photoDetectiveRounds.map(item => <option key={item.id} value={item.id}>{item.name} · {item.group}</option>)}</select><h2 id="photo-question-heading">{round.name}: Merkmale im Bild</h2></> : <><div className={styles.progressLabel}><span>{practice ? "Wiederholung" : "Fotorunde"} · Foto {index + 1} von {rounds.length}</span><span>{summary.independent} richtig ohne Hilfe</span></div><progress className={styles.progress} max={rounds.length} value={summary.completed} aria-label="Beantwortete Fotos" /><h2 id="photo-question-heading">Welche Wildart zeigt das Foto?</h2></>}
       <PhotoEvidence key={round.id} round={round} revealed={revealed} activeTrait={activeTrait} onTrait={setActiveTrait} />
-      {mode === "quiz" && <><div className={styles.answerGrid} role="group" aria-label="Art auswählen">{round.options.map(choice => <button key={choice} type="button" disabled={Boolean(answer)} className={[styles.answer, answer && choice === round.name ? styles.correctAnswer : "", answer && choice === answer.choice && choice !== round.name ? styles.wrongAnswer : ""].filter(Boolean).join(" ")} onClick={() => choose(choice)}>{choice}{answer && choice === round.name && <span>Richtig</span>}{answer && choice === answer.choice && choice !== round.name && <span>Deine Antwort</span>}</button>)}</div>{!answer && <button type="button" className={styles.hintButton} aria-expanded={hint} onClick={showHint} disabled={hint}>{hint ? "Merkmals-Hilfe aktiv – diese Antwort wird als unterstützt gezählt" : "Merkmale als Hilfe anzeigen"}</button>}</>}
+      {mode === "quiz" && <><div className={styles.answerGrid} role="group" aria-label="Art auswählen">{answerOrder(round.options, round.id, answerSeed).map(index => { const choice = round.options[index]; return <button key={choice} type="button" disabled={Boolean(answer)} className={[styles.answer, answer && choice === round.name ? styles.correctAnswer : "", answer && choice === answer.choice && choice !== round.name ? styles.wrongAnswer : ""].filter(Boolean).join(" ")} onClick={() => choose(choice)}>{choice}{answer && choice === round.name && <span>Richtig</span>}{answer && choice === answer.choice && choice !== round.name && <span>Deine Antwort</span>}</button>; })}</div>{!answer && <button type="button" className={styles.hintButton} aria-expanded={hint} onClick={showHint} disabled={hint}>{hint ? "Merkmals-Hilfe aktiv – diese Antwort wird als unterstützt gezählt" : "Merkmale als Hilfe anzeigen"}</button>}</>}
       {answer && mode === "quiz" && <div className={[styles.feedback, answer.choice === round.name ? styles.feedbackCorrect : styles.feedbackWrong].join(" ")} role="status"><h3>{answer.choice === round.name ? "Richtig erkannt" : `Das ist ${round.name}`}</h3>{answer.choice !== round.name && <p><strong>Du hast {answer.choice} gewählt.</strong> {round.wrong[answer.choice]}</p>}<p>{round.explanation}</p>{answer.assisted && <small>Mit Merkmals-Hilfe beantwortet.{exploredThisRound.current.has(round.id) && " Die Art wurde in dieser Runde bereits nachgeschlagen."}</small>}</div>}
       {mode === "explore" && <p className={styles.explanation}>{round.explanation}</p>}
       {revealed && <EvidenceDetails round={round} activeTrait={activeTrait} onTrait={setActiveTrait} />}

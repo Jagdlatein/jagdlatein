@@ -59,13 +59,17 @@ test('Every dossier keeps original source roles, study scope, explicit practice 
   assert.match(data.topics.find(topic => topic.id === 'wild-und-stoerung').publicationState, /2017 und 2018/);
 });
 
-test('All dossiers render their actual evidence, practice and boundaries with one selector and no added action buttons', () => {
+test('All dossiers render their evidence with a large topic selector and direct access to the practice questions', () => {
   for (const topic of data.topics) {
     const router = { query: { thema: topic.id }, isReady: true };
     const Page = load('components/ResearchForPractice.js', { 'next/router': { useRouter: () => router } }).default;
     const html = renderToStaticMarkup(React.createElement(Page, data));
-    assert.equal((html.match(/<select/g) || []).length, 1);
-    assert.equal((html.match(/<button/g) || []).length, 0);
+    const dossier = html.slice(html.indexOf('<article'), html.indexOf('</article>'));
+    assert.equal((dossier.match(/<button/g) || []).length, 0);
+    assert.ok(html.includes('Dein Thema'));
+    assert.match(html, /href="#revierwissen-fragen"/);
+    assert.ok(html.includes('60 Fragen mit Erklärungen'));
+    assert.ok(html.includes('20 Fragen im Thema'));
     assert.equal((html.match(/<h1/g) || []).length, 1);
     assert.match(html, /id="revierwissen-inhalt"/);
     assert.ok(html.includes(topic.title));

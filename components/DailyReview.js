@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
@@ -50,7 +51,11 @@ export default function DailyReview({ pool }) {
           typeof question.href !== "string" || !question.href.startsWith("/kurse/");
       })) throw new Error("Die Fragenauswahl konnte nicht vollständig geladen werden. Bitte erneut versuchen.");
       if (version !== request.current || abort.signal.aborted || !mounted.current) return;
-      const questions = selectedQuestions.map(item => ({ ...details.get(item.id), reason: item.reason }));
+      const answerSeed = newAnswerSeed();
+      const questions = selectedQuestions.map(item => {
+        const question = details.get(item.id);
+        return { ...question, answers: answerOrder(question.answers, question.id, answerSeed).map(index => question.answers[index]), reason: item.reason };
+      });
       const next = { questions, index: 0, selected: null, score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
     } catch (failure) {

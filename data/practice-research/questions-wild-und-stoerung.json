@@ -1,0 +1,165 @@
+[
+  {
+    "id": "stoerung-01", "topicId": "wild-und-stoerung", "format": "single", "skill": "Praxisfall",
+    "prompt": "An derselben Äsungsfläche am Wanderweg siehst du nachts Rotwild, tagsüber selten. Welcher erste Vergleich hilft bei der Einordnung?",
+    "options": [{"id":"a","text":"Die Geweihstärken der nachts sichtbaren Hirsche."},{"id":"b","text":"Die Gesamtzahl aller Sichtungen im Landkreis."},{"id":"c","text":"Tageszeit und Wegenutzung am Beobachtungsort."},{"id":"d","text":"Die Weglängen im benachbarten Revier."}],
+    "correctIds": ["c"],
+    "explanation": "Tageszeit und örtliche Wegenutzung passen zur Beobachtungsfrage. Geweihstärken, Landkreiszahlen und benachbarte Weglängen prüfen dieses örtliche Tagesmuster nicht. Die Studien liefern Anhaltspunkte, noch keine Ursache für deinen Einzelfall.",
+    "sourceIds": ["coppes-2017", "westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-02", "topicId": "wild-und-stoerung", "format": "single", "skill": "Fehler erkennen",
+    "prompt": "Ein Vortrag erklärt die Kellerwald-Versuche so: „Nur das Verlassen des Weges war anders.“ Welche Korrektur ist nötig?",
+    "options": [{"id":"a","text":"Auch Annäherungsrichtung und Abstand unterschieden sich."},{"id":"b","text":"Es wurden zwei verschiedene Hirscharten verglichen."},{"id":"c","text":"Es wurden nur nächtliche Kamerabilder verglichen."},{"id":"d","text":"Die Wegversuche fanden in der Schweiz statt."}],
+    "correctIds": ["a"],
+    "explanation": "Abseits der Wege ging die Versuchsperson direkt auf die Tiere zu und kam ihnen näher. Der Versuchsvergleich umfasst damit mehrere Unterschiede. Die Alternativen verwechseln Tierart, Methode beziehungsweise Untersuchungsort.",
+    "sourceIds": ["westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-03", "topicId": "wild-und-stoerung", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Welche Formulierung trennt eine sichtbare Beobachtung von einer vermuteten Ursache?",
+    "options": [{"id":"a","text":"Die Wanderer vertrieben das Rotwild in den Wald."},{"id":"b","text":"Das Rotwild verließ die Wiese aus Angst vor Radfahrern."},{"id":"c","text":"Die Tiere kannten den Wanderer und blieben deshalb stehen."},{"id":"d","text":"Nach dem Vorbeigehen wechselten die Tiere in die Deckung."}],
+    "correctIds": ["d"],
+    "explanation": "Die zeitliche Abfolge und der Ortswechsel sind beobachtbar. Angst, Wiedererkennen und eine sicher benannte Ursache gehen darüber hinaus. Auch die richtige Notiz beweist nicht, warum die Tiere wechselten.",
+    "sourceIds": ["coppes-2017", "westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-04", "topicId": "wild-und-stoerung", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Rotwild flüchtet beim Vorbeigehen nicht. Welche Aussage beschreibt den Nachweis am genauesten?",
+    "options": [{"id":"a","text":"Die Tiere sind an Menschen gewöhnt."},{"id":"b","text":"Es wurde keine Flucht beobachtet."},{"id":"c","text":"Die Tiere hatten unveränderte Stresswerte."},{"id":"d","text":"Die Äsungsaufnahme blieb unbeeinflusst."}],
+    "correctIds": ["b"],
+    "explanation": "Ausbleibende Flucht ist zunächst ein Verhaltensbefund. Gewöhnung, physiologischer Stress und unveränderte Nahrungsaufnahme brauchen zusätzliche Nachweise. Die Kellerwald-Arbeit maß keine Stresshormone.",
+    "sourceIds": ["westekemper-2018", "coppes-2017"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-05", "topicId": "wild-und-stoerung", "format": "single", "skill": "Daten lesen",
+    "context": "Erfundenes Lernbeispiel: Am Samstag wurden bei vier Beobachtungsstunden acht Gruppen gesehen, am Dienstag bei einer Stunde drei Gruppen. Standort und Zählweise waren gleich; einzelne Tiere konnten wiederkehren.",
+    "prompt": "Welche Rechnung ist richtig, ohne daraus schon einen Bestandstrend abzuleiten?",
+    "options": [{"id":"a","text":"Samstag acht, Dienstag drei Gruppen je Stunde."},{"id":"b","text":"Samstag zwei, Dienstag drei Gruppen je Stunde."},{"id":"c","text":"Samstag vier, Dienstag eine Gruppe je Stunde."},{"id":"d","text":"Samstag zwei, Dienstag zwölf Gruppen je Stunde."}],
+    "correctIds": ["b"],
+    "explanation": "Acht geteilt durch vier ergibt zwei; drei geteilt durch eins ergibt drei. Die anderen Antworten verwechseln Summen, Aufwand oder Rechenrichtung. Die Kennzahl standardisiert nur die Beobachtungsdauer: Wiederkehrende Tiere, Sichtbarkeit und Tageszeit bleiben zu prüfen.",
+    "sourceIds": ["coppes-2017", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-06", "topicId": "wild-und-stoerung", "format": "single", "skill": "Daten lesen",
+    "prompt": "Eine Kamera an einer Forststraße zeigt nachmittags kaum Rotwild. Welche Frage lässt sich damit unmittelbar untersuchen?",
+    "options": [{"id":"a","text":"Wie viele Stücke im gesamten Wald leben."},{"id":"b","text":"Wie viel die Tiere in der Deckung äsen."},{"id":"c","text":"Welche Stresswerte die Tiere am Nachmittag haben."},{"id":"d","text":"Wann an diesem Kamerastandort Nachweise entstehen."}],
+    "correctIds": ["d"],
+    "explanation": "Die Aufnahmen dokumentieren zeitlich zuordenbare Nachweise am erfassten Ort. Bestand, Äsung außerhalb des Bildes und Stress sind andere Messgrößen. Eine wegebasierte Stichprobe deckt nicht die ganze Landschaft ab.",
+    "sourceIds": ["boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-07", "topicId": "wild-und-stoerung", "format": "single", "skill": "Daten lesen",
+    "prompt": "Die Schwarzwald-Arbeit erschien 2017; die besenderten Tiere wurden 2007–2009 untersucht. Was gehört als Zeitraum der Tierbeobachtungen in deine Zusammenfassung?",
+    "options": [{"id":"a","text":"2007–2009."},{"id":"b","text":"2017."},{"id":"c","text":"2007–2017."},{"id":"d","text":"Das Jahr des heutigen Abrufs."}],
+    "correctIds": ["a"],
+    "explanation": "Beobachtungszeit und Veröffentlichung sind getrennte Angaben. Der spätere Artikel und sein heutiger Abruf verlängern die Messreihe nicht. So wird aus einer geprüften Grundlagenarbeit keine angeblich aktuelle Datenerhebung.",
+    "sourceIds": ["coppes-2017"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-08", "topicId": "wild-und-stoerung", "format": "single", "skill": "Fehler erkennen",
+    "prompt": "Jemand zählt bei einem besenderten Tier 200 GPS-Ortungen und schreibt „200 unabhängig untersuchte Tiere“. Welcher Fehler liegt vor?",
+    "options": [{"id":"a","text":"Sommer- und Winterdaten wurden ohne getrennte Kennzeichnung zusammengelegt."},{"id":"b","text":"Der Abstand zum Weg wurde als zurückgelegte Bewegungsstrecke gelesen."},{"id":"c","text":"Viele Messungen desselben Tiers sind keine 200 Tiere."},{"id":"d","text":"Der Erfassungszeitraum wurde mit dem Veröffentlichungsjahr verwechselt."}],
+    "correctIds": ["c"],
+    "explanation": "Wiederholte Ortungen beschreiben ein Tier mehrfach, ohne die Zahl untersuchter Individuen zu erhöhen. Die deutschen Arbeiten berücksichtigten diese Datenstruktur. Für die alternativ genannten Fehler bei Jahreszeit, Streckenmessung oder Erfassungsjahr gibt das Beispiel keinen Hinweis.",
+    "sourceIds": ["coppes-2017", "westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-09", "topicId": "wild-und-stoerung", "format": "single", "skill": "Praxisfall",
+    "context": "Erfundenes Lernbeispiel: Seit einem neuen Wanderweg siehst du weniger Rotwild auf einer Wiese. Gleichzeitig wurde eine nahe Fläche abgeerntet und deine Ansitzzeit geändert.",
+    "prompt": "Was muss eine Erklärung berücksichtigen?",
+    "options": [{"id":"a","text":"Der neue Weg liefert bereits den vollständigen Ursachennachweis."},{"id":"b","text":"Nur die veränderte Ansitzzeit kann den Unterschied erklären."},{"id":"c","text":"Die Ernte ist durch den zeitgleichen Wegebau als Einfluss ausgeschlossen."},{"id":"d","text":"Mehrere Bedingungen änderten sich gleichzeitig."}],
+    "correctIds": ["d"],
+    "explanation": "Weg, Ressourcen und Beobachtungszeit änderten sich gemeinsam. Die Fallbeschreibung trennt ihre Beiträge nicht. Eine einzelne dieser Ursachen sicher festzulegen oder die Ernte auszuschließen, wäre mehr als die Angaben hergeben.",
+    "sourceIds": ["coppes-2017", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-10", "topicId": "wild-und-stoerung", "format": "single", "skill": "Praxisfall",
+    "prompt": "Du willst eine Beobachtung ergänzen, ohne den Ruheplatz aufzusuchen. Welche Vorgehensweise passt dazu?",
+    "options": [{"id":"a","text":"Vom vorhandenen Beobachtungsplatz erneut protokollieren."},{"id":"b","text":"Vom Weg aus in mehreren Bögen näher herangehen."},{"id":"c","text":"Dem Wechsel bis zum vermuteten Einstand folgen."},{"id":"d","text":"Mit einem kurzen Zuruf die Reaktion prüfen."}],
+    "correctIds": ["a"],
+    "explanation": "Das ist eine redaktionelle Praxisableitung: Wiederholte Beobachtung vom bestehenden Platz vermeidet ein zusätzliches Annäherungsexperiment. Die anderen Varianten verändern gerade das Verhalten, das du ungestört kennenlernen möchtest, und können Tiere zum Ausweichen bringen.",
+    "sourceIds": ["westekemper-2018", "coppes-2017"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-11", "topicId": "wild-und-stoerung", "format": "single", "skill": "Aussage prüfen",
+    "prompt": "Was haben die beiden deutschen Untersuchungen gemeinsam?",
+    "options": [{"id":"a","text":"Dasselbe besenderte Rotwildrudel."},{"id":"b","text":"Dieselben Jahre der Datenerhebung."},{"id":"c","text":"Eine unterschiedliche Wegenähe zwischen Tag und Nacht."},{"id":"d","text":"Eine direkte Messung der Stresshormone."}],
+    "correctIds": ["c"],
+    "explanation": "Ein übereinstimmendes Muster ist die tageszeitlich unterschiedliche Nutzung der Umgebung von Wegen. Populationen und Erhebungsjahre unterscheiden sich. Ein gemeinsamer physiologischer Stressnachweis war nicht der Gegenstand dieser Arbeiten.",
+    "sourceIds": ["coppes-2017", "westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-12", "topicId": "wild-und-stoerung", "format": "single", "skill": "Fehler erkennen",
+    "prompt": "Ein Artikel überträgt die Rotwild-Ergebnisse auf das Rebhuhn. Welcher Nachweis fehlt dafür zuerst?",
+    "options": [{"id":"a","text":"Mehr GPS-Ortungen derselben Rotwildtiere."},{"id":"b","text":"Passende Untersuchungen zur anderen Art."},{"id":"c","text":"Längere Kameralaufzeiten allein an den Rotwildstandorten."},{"id":"d","text":"Ein weiterer Jahresvergleich nur beim Rotwild."}],
+    "correctIds": ["b"],
+    "explanation": "Artwechsel erfordern passende fachliche Belege; ein Rotwildmuster beweist noch kein Rebhuhnmuster. Mehr und längere Messungen ausschließlich am Rotwild schließen diese Lücke zur anderen Art nicht.",
+    "sourceIds": ["coppes-2017", "westekemper-2018", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-13", "topicId": "wild-und-stoerung", "format": "single", "skill": "Daten lesen",
+    "prompt": "Die italienische Kamerauntersuchung ergänzte den DACH-Vergleich. Wo wurden ihre Daten erhoben?",
+    "options": [{"id":"a","text":"Im Kellerwald-Edersee."},{"id":"b","text":"In den italienischen Ostalpen."},{"id":"c","text":"Im südlichen Schwarzwald."},{"id":"d","text":"In mehreren Schweizer Rehwildgebieten."}],
+    "correctIds": ["b"],
+    "explanation": "Die Untersuchung stammt aus den italienischen Ostalpen. Die übrigen Orte gehören zu anderen Arbeiten im Wissensbereich. Ein geografisch benachbartes Gebiet bleibt ein eigener Untersuchungskontext; es ist keine zusätzliche DACH-Erhebung.",
+    "sourceIds": ["boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-14", "topicId": "wild-und-stoerung", "format": "single", "skill": "Praxisfall",
+    "prompt": "Nach mehreren Abenden ohne Sichtung möchtest du eine Notiz schreiben. Welche hält den offenen Punkt erkennbar?",
+    "options": [{"id":"a","text":"Kein Sichtkontakt an diesem Platz; Nutzung anderer Bereiche ungeklärt."},{"id":"b","text":"Der örtliche Bestand ist seit der letzten Sichtung deutlich gesunken."},{"id":"c","text":"Der Einstand wurde wegen des Wanderbetriebs endgültig aufgegeben."},{"id":"d","text":"Das Rotwild hat seinen gesamten Tagesrhythmus auf Nacht umgestellt."}],
+    "correctIds": ["a"],
+    "explanation": "Die richtige Notiz hält den fehlenden Nachweis fest und lässt andere Aufenthaltsorte offen. Bestandsrückgang, dauerhafte Aufgabe und ein vollständiger Rhythmuswechsel benötigen jeweils mehr Daten als ausbleibende Sichtungen an einem Platz.",
+    "sourceIds": ["coppes-2017", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-15", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Daten lesen",
+    "prompt": "Welche Angaben gehören in ein brauchbares Protokoll für den Vergleich von Sichtungen?",
+    "options": [{"id":"a","text":"Ort und Beobachtungszeit."},{"id":"b","text":"Eine vermutete Ursache als bereits bestätigte Tatsache."},{"id":"c","text":"Dauer und Sichtbedingungen."},{"id":"d","text":"Erkennbare Wegenutzung im selben Zeitfenster."},{"id":"e","text":"Nur die Termine mit besonders vielen Tieren."}],
+    "correctIds": ["a", "c", "d"],
+    "explanation": "Ort, Zeit, Aufwand, Sichtbedingungen und Wegenutzung machen Unterschiede prüfbar. Das ist eine methodische Praxisableitung aus den Studien. Vermutungen sollten als solche erscheinen; nur erfolgreiche Termine auszuwählen verzerrt den Vergleich.",
+    "sourceIds": ["coppes-2017", "westekemper-2018", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-16", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Praxisfall",
+    "prompt": "Welche Vorhaben passen zur redaktionellen Empfehlung, unnötige Störungen zu vermeiden?",
+    "options": [{"id":"a","text":"Für ein Lernfoto die Entfernung bis zur ersten Flucht verkürzen."},{"id":"b","text":"Vorhandene Beobachtungsplätze nutzen."},{"id":"c","text":"Nach jeder Sichtung dem Tier in die Deckung folgen."},{"id":"d","text":"Anstehende Arbeiten unter Berücksichtigung bekannter Ruhebereiche planen."}],
+    "correctIds": ["b", "d"],
+    "explanation": "Bestehende Plätze und die Planung unter Einbezug von Ruhebereichen vermeiden zusätzliche direkte Annäherung. Fluchtproben und Nachgehen erzeugen einen neuen Eingriff. Daraus folgt noch kein allgemeingültiger Abstand und keine Zusicherung völliger Störungsfreiheit.",
+    "sourceIds": ["westekemper-2018", "coppes-2017"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-17", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Fehler erkennen",
+    "prompt": "Welche Schlussfolgerungen gehen über die Kellerwald-Versuche hinaus?",
+    "options": [{"id":"a","text":"Aus den Versuchen lässt sich ein sicherer Abstand für jedes Revier ableiten."},{"id":"b","text":"Bei der Übertragung sind Untersuchungsort und Stichprobe zu beachten."},{"id":"c","text":"Ausbleibende Flucht belegt unveränderte physiologische Stresswerte."},{"id":"d","text":"Die beiden Annäherungsarten unterschieden sich auch im Abstand."}],
+    "correctIds": ["a", "c"],
+    "explanation": "Allgemeine Sicherheitsabstände und unveränderte Stresswerte wurden damit nicht nachgewiesen. Stichprobe und Ort zu beachten sowie den unterschiedlichen Abstand zu nennen, sind dagegen notwendige Einschränkungen der Interpretation.",
+    "sourceIds": ["westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-18", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Aussage prüfen",
+    "prompt": "Welche Hinweise sind bei der Einordnung der italienischen Untersuchung wichtig?",
+    "options": [{"id":"a","text":"Die Standorte erfassten alle Geländearten im gleichen Verhältnis."},{"id":"b","text":"Jagd und Freizeit wurden zusammen mit ihrer Wechselwirkung betrachtet."},{"id":"c","text":"Eine Kameraaufnahme entspricht einem eindeutig verschiedenen Tier."},{"id":"d","text":"Die Kameras standen an Wegen beziehungsweise Forststraßen."},{"id":"e","text":"Das Untersuchungsgebiet liegt außerhalb von DACH."}],
+    "correctIds": ["b", "d", "e"],
+    "explanation": "Wechselwirkung, Standortauswahl und Region begrenzen den übertragenen Schluss. Wegstandorte sind keine gleichmäßige Landschaftsstichprobe. Ereignisse an einer Kamera müssen außerdem nicht von verschiedenen Individuen stammen.",
+    "sourceIds": ["boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-19", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Aussage prüfen",
+    "prompt": "Was darfst du aus dem Vergleich der beiden deutschen Arbeiten mitnehmen?",
+    "options": [{"id":"a","text":"Ein ähnliches Muster wurde an verschiedenen Rotwildpopulationen untersucht."},{"id":"b","text":"Beide Veröffentlichungen beruhen auf derselben GPS-Messreihe."},{"id":"c","text":"Die Tag-Nacht-Unterscheidung ist für die Einordnung nützlich."},{"id":"d","text":"Beide Arbeiten lieferten denselben Fluchtversuch als unabhängige Wiederholung."}],
+    "correctIds": ["a", "c"],
+    "explanation": "Die Populationen und Datenerhebungen sind eigenständig; die tageszeitliche Einordnung wird gemeinsam gestützt. Der Kellerwald-Annäherungsversuch wurde in der Schwarzwald-Arbeit nicht in identischer Form wiederholt. Zwei passende Belege sind deshalb keine Verdoppelung jedes Einzelergebnisses.",
+    "sourceIds": ["coppes-2017", "westekemper-2018"], "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "stoerung-20", "topicId": "wild-und-stoerung", "format": "multiple", "skill": "Praxisfall",
+    "context": "Erfundenes Lernbeispiel: Du möchtest prüfen, ob sich die Wiesenbeobachtungen nach einer Wegeänderung verschoben haben. Es gibt Protokolle aus mehreren Wochen davor und danach.",
+    "prompt": "Welche Prüfungen verbessern den Vergleich, ohne schon eine Ursache zu behaupten?",
+    "options": [{"id":"a","text":"Nur Tage mit Sichtungen in die Tabelle übernehmen."},{"id":"b","text":"Ähnliche Beobachtungszeiten und Dauern vergleichen."},{"id":"c","text":"Jagd, Arbeiten und veränderte Äsungsbedingungen mitnotieren."},{"id":"d","text":"Alle Unterschiede allein dem neuen Weg zurechnen."},{"id":"e","text":"Auch Beobachtungstermine ohne Sichtung erhalten."}],
+    "correctIds": ["b", "c", "e"],
+    "explanation": "Vergleichbarer Aufwand, weitere Veränderungen und fehlende Sichtungen gehören zur Auswertung. Die Auswahl nur erfolgreicher Tage verzerrt das Bild. Ein Vorher-Nachher-Vergleich ohne weitere Absicherung trennt zeitgleiche Einflüsse nicht sicher voneinander.",
+    "sourceIds": ["coppes-2017", "boer-cueva-2026"], "reviewedOn": "2026-10-16"
+  }
+]

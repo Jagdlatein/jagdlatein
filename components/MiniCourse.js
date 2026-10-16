@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
@@ -7,7 +8,7 @@ import { LearningCover } from "./LearningPhoto";
 import styles from "../styles/LearningExperience.module.css";
 import miniStyles from "../styles/MiniCourse.module.css";
 
-const initialRun = () => ({ index: 0, selected: null, answers: [], score: 0, finished: false });
+const initialRun = (answerSeed = 0) => ({ answerSeed, index: 0, selected: null, answers: [], score: 0, finished: false });
 
 export default function MiniCourse({ courseId, questions, details, children }) {
   const [run, setRun] = useState(initialRun);
@@ -51,7 +52,7 @@ export default function MiniCourse({ courseId, questions, details, children }) {
   }
   function restart() {
     if (!mounted.current || currentRun.current !== run || !run.finished) return;
-    update(initialRun());
+    update(initialRun(newAnswerSeed(run.answerSeed)));
   }
 
   if (!details) return null;
@@ -75,9 +76,9 @@ export default function MiniCourse({ courseId, questions, details, children }) {
       <p className={miniStyles.status}>Frage {run.index + 1} von {questions.length} · {run.score} richtig beantwortet</p>
       <progress className={styles.progress} value={run.answers.length} max={questions.length} aria-label="Beantwortete Fragen" />
       <h2 ref={questionHeading} tabIndex={-1} id="mini-question-title" className={miniStyles.question}>{question.frage}</h2>
-      <div className={styles.choices}>{question.antworten.map((answer, index) => <button key={index} type="button" disabled={answered} aria-pressed={run.selected === index} onClick={() => choose(index)} className={`${styles.choice} ${answered && answer.richtig ? styles.correct : answered && run.selected === index ? styles.wrong : ""}`}>
+      <div className={styles.choices}>{answerOrder(question.antworten, `${courseId}:${run.index}`, run.answerSeed).map(index => { const answer = question.antworten[index]; return <button key={index} type="button" disabled={answered} aria-pressed={run.selected === index} onClick={() => choose(index)} className={`${styles.choice} ${answered && answer.richtig ? styles.correct : answered && run.selected === index ? styles.wrong : ""}`}>
         {answer.text}{answered && answer.richtig ? " · Richtige Lösung" : answered && run.selected === index ? " · Deine Antwort" : ""}
-      </button>)}</div>
+      </button>; })}</div>
       {answered && <div className={styles.feedback} role="status" aria-live="polite">
         <h3>{question.antworten[run.selected].richtig ? "Richtig beantwortet" : "Noch einmal nachlesen"}</h3>
         <p>Richtige Lösung: <strong>{correct.text}</strong></p>

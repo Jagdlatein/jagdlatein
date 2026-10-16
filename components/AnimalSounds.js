@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -64,6 +65,7 @@ export default function AnimalSounds() {
   const [heard, setHeard] = useState(false);
   const [results, setResults] = useState([]);
   const [finished, setFinished] = useState(false);
+  const [answerSeed, setAnswerSeed] = useState(0);
   const playing = useRef(null);
   useEffect(() => () => { playing.current?.pause(); }, []);
   useEffect(() => {
@@ -103,6 +105,7 @@ export default function AnimalSounds() {
   }
 
   function startQuiz(ids = filtered, repeat = false) {
+    setAnswerSeed(seed => newAnswerSeed(seed));
     const nextOrder = repeat ? shuffledSoundIds(ids) : soundRound(ids, roundSize === "all" ? "all" : SOUND_ROUND_SIZE);
     if (!nextOrder.length) return;
     pauseAudio();
@@ -178,7 +181,7 @@ export default function AnimalSounds() {
         <h2 id="sound-question">Welche Art hörst du im Vordergrund?</h2>
         <p>Starte die Aufnahme und höre sie bei Bedarf noch einmal. Wähle danach deine Antwort.</p>
         <SoundPlayer key={sound.id} sound={sound} label={`Quizaufnahme ${index + 1} abspielen`} onPlay={event => playAudio(event, true)} reveal={answer !== null} />
-        <div className={styles.answers} aria-label="Antwortmöglichkeiten">{sound.options.map(id => <button key={id} type="button" className={[styles.answer, answer !== null && id === sound.id ? styles.right : "", answer === id && id !== sound.id ? styles.wrong : ""].filter(Boolean).join(" ")} disabled={answer !== null || !heard} onClick={() => submitAnswer(id)}>{animalSoundById[id].name}{answer !== null && id === sound.id && <span>Richtige Antwort</span>}{answer === id && id !== sound.id && <span>Deine Antwort</span>}</button>)}</div>
+        <div className={styles.answers} aria-label="Antwortmöglichkeiten">{answerOrder(sound.options, sound.id, answerSeed).map(index => { const id = sound.options[index]; return <button key={id} type="button" className={[styles.answer, answer !== null && id === sound.id ? styles.right : "", answer === id && id !== sound.id ? styles.wrong : ""].filter(Boolean).join(" ")} disabled={answer !== null || !heard} onClick={() => submitAnswer(id)}>{animalSoundById[id].name}{answer !== null && id === sound.id && <span>Richtige Antwort</span>}{answer === id && id !== sound.id && <span>Deine Antwort</span>}</button>; })}</div>
         {answer === null && <><p className={styles.hint}>{heard ? "Welche Hörmerkmale passen? Deine Antwort wird anschließend erklärt." : "Die Antworten werden freigeschaltet, sobald die Wiedergabe startet."}</p><button type="button" className={styles.skip} onClick={() => submitAnswer(null)}>Ich weiß es noch nicht / Aufnahme überspringen</button></>}
         {answer !== null && <div className={styles.feedback} role="status" aria-live="polite">
           <h3>{answer === sound.id ? "Richtig erkannt" : answer === "skipped" ? "Gemeinsam nachhören" : `Es ist ${sound.name}`}</h3>

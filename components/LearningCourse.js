@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import { useEffect, useRef, useState } from "react";
@@ -13,8 +14,8 @@ import { recordReviewAnswer } from "../lib/daily-review";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
-function makeRun(questions, mode = "full") {
-  return { questions, mode, index: 0, answers: {}, score: 0, started: false, complete: false, showResult: false };
+function makeRun(questions, mode = "full", answerSeed = 0) {
+  return { questions, mode, answerSeed, index: 0, answers: {}, score: 0, started: false, complete: false, showResult: false };
 }
 
 export default function LearningCourse({ module }) {
@@ -82,7 +83,7 @@ function LearningContent({ module }) {
 
   function startRun(questions, mode) {
     if (currentRun.current !== run) return;
-    updateRun({ ...makeRun(questions, mode), started: true });
+    updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed)), started: true });
   }
 
   function answerQuestion(answerId) {
@@ -187,7 +188,8 @@ function LearningContent({ module }) {
                 {(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.countryNote}><strong>Geltungsbereich dieser Frage:</strong> {question.countries.map(item => countryNames[item] || item).join(" · ")}</p>}
                 <h3 id="current-question" className={styles.question}>{question.q}</h3>
                 <div className={styles.answers} role="group" aria-labelledby="current-question">
-                  {question.answers.map((answer) => {
+                  {answerOrder(question.answers, question.id, run.answerSeed).map(answerIndex => {
+                    const answer = question.answers[answerIndex];
                     const correct = selected !== undefined && question.correct.includes(answer.id);
                     const wrong = selected === answer.id && !correct;
                     return (

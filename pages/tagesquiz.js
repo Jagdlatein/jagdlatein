@@ -1,3 +1,4 @@
+import { answerOrder } from "../lib/answer-order";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -149,7 +150,7 @@ export default function Tagesquiz({
             </h2>
 
             <div style={styles.answers}>
-              {question.answers.map((answer) => (
+              {answerOrder(question.answers, `${displayDate}:${question.id}`).map((answerIndex, displayIndex) => { const answer = question.answers[answerIndex]; return (
                 <button
                   key={answer.id}
                   type="button"
@@ -163,14 +164,14 @@ export default function Tagesquiz({
                   style={answerStyle(answer)}
                 >
                   <span style={styles.answerLetter}>
-                    {answer.id.toUpperCase()}
+                    {String.fromCharCode(65 + displayIndex)}
                   </span>
 
                   <span>
                     {answer.text}
                   </span>
                 </button>
-              ))}
+              ); })}
             </div>
 
             {answered && (

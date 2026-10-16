@@ -1,0 +1,359 @@
+[
+  {
+    "id": "kamera-01",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Praxisfall",
+    "prompt": "Was kannst du aus dieser Bildserie zunächst sicher berichten?",
+    "context": "Erfundenes Lernbeispiel: Eine Kamera speichert 24 Rehwildbilder. Aufeinanderfolgende Bilder können dasselbe Tier zeigen; individuelle Merkmale sind nicht zuverlässig erkennbar.",
+    "options": [
+      { "id": "a", "text": "Am Standort leben mindestens 24 verschiedene Rehe." },
+      { "id": "b", "text": "Die Serie zeigt die Größe der dortigen Rehwildgruppe." },
+      { "id": "c", "text": "Es liegen 24 Bilder mit Rehwildnachweisen vor." },
+      { "id": "d", "text": "Die Bildzahl schätzt den Revierbestand ausreichend genau." }
+    ],
+    "correctIds": ["c"],
+    "explanation": "Die Dateizahl ist hier bekannt, die Zahl unterschiedlicher Tiere dagegen nicht. Wiederholte Bilder desselben Tiers können weder eine Mindestzahl von 24 Individuen noch eine Gruppengröße begründen. Für eine Bestandsschätzung fehlen ein geeignetes Untersuchungsdesign und die Berücksichtigung der Erfassung.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-02",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Fehler erkennen",
+    "prompt": "Welcher Wert gehört in die Berechnung einer Ereignisrate je aktivem Kameratag?",
+    "context": "Erfundenes Lernbeispiel: Eine Kamera hängt 30 Tage am Standort. Das Betriebsprotokoll belegt 20 aktive Tage; während der übrigen Tage war sie ausgefallen.",
+    "options": [
+      { "id": "a", "text": "Die 20 tatsächlich aktiven Tage der Kamera." },
+      { "id": "b", "text": "Die 30 Tage zwischen Montage und Abholung." },
+      { "id": "c", "text": "Die Tage mit mindestens einem fotografierten Tier." },
+      { "id": "d", "text": "Die Tage ohne eine dokumentierte Tieraufnahme." }
+    ],
+    "correctIds": ["a"],
+    "explanation": "Der Beobachtungsaufwand ist die belegte aktive Betriebsdauer. Auch ein aktiver Tag ohne Tierbild gehört dazu. Ausfalltage als aktive Tage mitzuzählen oder nur Tage mit Tiernachweisen auszuwählen, verändert den Nenner und damit die Aussage der Rate.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-03",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Daten lesen",
+    "prompt": "Wie unterscheiden sich die berechneten Ereignisraten?",
+    "context": "Erfundenes Lernbeispiel: Nach derselben Ereignisregel wurden bei Kamera A zwölf Ereignisse in 20 aktiven Tagen und bei Kamera B 18 Ereignisse in 30 aktiven Tagen gezählt. Gesucht ist jeweils die Rate je 100 aktive Kameratage, keine Tierzahl.",
+    "options": [
+      { "id": "a", "text": "A hat die höhere Rate, weil sie kürzer lief." },
+      { "id": "b", "text": "B hat die höhere Rate, weil mehr Ereignisse vorliegen." },
+      { "id": "c", "text": "A erreicht 12 und B 18 Ereignisse je 100 Tage." },
+      { "id": "d", "text": "Beide erreichen 60 Ereignisse je 100 aktive Tage." }
+    ],
+    "correctIds": ["d"],
+    "explanation": "Zwölf geteilt durch 20 und 18 geteilt durch 30 ergeben jeweils 0,6 Ereignisse pro aktivem Tag. Mit 100 multipliziert sind das jeweils 60. Weder die längere Laufzeit noch die größere Rohzahl macht die Rate höher. Gleiche Raten beweisen außerdem keine gleichen Tierbestände.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-04",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Aussage prüfen",
+    "prompt": "Welche Einordnung passt zu fehlenden Rehwildbildern trotz Losungsnachweisen?",
+    "options": [
+      { "id": "a", "text": "Die fehlenden Bilder widerlegen die Zuordnung der Losung." },
+      { "id": "b", "text": "Beide Befunde können trotz unvollständiger Kameraerfassung zusammenpassen." },
+      { "id": "c", "text": "Die Losungsfunde erlauben das Ergänzen einer festen Bildzahl." },
+      { "id": "d", "text": "Die Kamera grenzt damit einen unbewohnten Teil des Reviers ab." }
+    ],
+    "correctIds": ["b"],
+    "explanation": "Die LWF beschreibt gerade solche Unterschiede zwischen den Erfassungsmethoden. Ein ausgebliebenes Kamerabild schließt ein Vorkommen nicht aus. Aus Losung lässt sich hier weder eine fehlende Bildzahl ergänzen noch aus dem Kamerabefund eine sichere Abwesenheitsfläche ableiten; auch die Losungszuordnung wird dadurch nicht widerlegt.",
+    "sourceIds": ["lwf-bergwald", "findlay-fehlnachweise"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-05",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Fehler erkennen",
+    "prompt": "An welchem Erfassungsschritt scheitert in diesem Fall der Tiernachweis?",
+    "context": "Erfundenes Lernbeispiel: Eine unabhängige Videoaufzeichnung zeigt einen vorbeilaufenden Fuchs. Die Wildkamera löst aus, beginnt aber so spät mit der Aufnahme, dass der Fuchs bereits außerhalb ihres Bildausschnitts ist.",
+    "options": [
+      { "id": "a", "text": "Am Vorbeilaufen durch den möglichen Erfassungsbereich." },
+      { "id": "b", "text": "Am Ansprechen des Sensors auf den vorbeilaufenden Fuchs." },
+      { "id": "c", "text": "An der späteren Zuordnung eines sichtbaren Tiers zur Art." },
+      { "id": "d", "text": "An der tatsächlichen Abbildung des Tiers nach der Auslösung." }
+    ],
+    "correctIds": ["d"],
+    "explanation": "Vorbeilaufen und Auslösung sind im Beispiel belegt. Der Fuchs erscheint aber nicht in der gespeicherten Aufnahme: Die Abbildung nach der Auslösung, in der Studie als Registrierung bezeichnet, misslingt. Eine spätere Artbestimmung ist nicht die Ursache, weil auf dieser Aufnahme gar kein Tier zu bestimmen ist.",
+    "sourceIds": ["findlay-fehlnachweise", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-06",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Aussage prüfen",
+    "prompt": "Was darfst du aus der britischen Versuchsarbeit für das Dossier übernehmen?",
+    "options": [
+      { "id": "a", "text": "Ihre Fehleranteile als Korrekturwerte für bayerisches Schalenwild." },
+      { "id": "b", "text": "Die getrennte Betrachtung von Auslösung, Abbildung und Bildqualität." },
+      { "id": "c", "text": "Ihre Kameranachweise als aktuelle Bestandsangaben für den Chiemgau." },
+      { "id": "d", "text": "Die untersuchten Arten als Wiederholung des bayerischen Versuchs." }
+    ],
+    "correctIds": ["b"],
+    "explanation": "Die methodische Unterscheidung hilft auch beim Einordnen anderer Kameradaten. Untersucht wurden jedoch andere Arten, bestimmte Modelle und britische Versuchsorte. Die Arbeit wiederholt nicht die LWF-Felddaten; ihre Fehleranteile sind deshalb keine geprüften Korrekturwerte für dortiges Schalenwild und keine aktuellen Chiemgauer Bestandsangaben.",
+    "sourceIds": ["findlay-fehlnachweise", "lwf-bergwald"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-07",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Daten lesen",
+    "prompt": "Wie wird der zeitliche Geltungsbereich des LWF-Berichts richtig beschrieben?",
+    "options": [
+      { "id": "a", "text": "Der Bericht behandelt erhobene Daten aus Juli 2018 bis Oktober 2020." },
+      { "id": "b", "text": "Das Erscheinungsjahr beschreibt zugleich den Zeitraum aller Feldaufnahmen." },
+      { "id": "c", "text": "Die spätere Veröffentlichung macht daraus eine laufende Bestandserhebung." },
+      { "id": "d", "text": "Die saisonalen Muster gelten als Prognose für alle folgenden Jahre." }
+    ],
+    "correctIds": ["a"],
+    "explanation": "Erhebungszeitraum und Veröffentlichung sind verschiedene Zeitangaben. Die Feldaufnahmen stammen aus dem genannten historischen Zeitraum. Ein späterer Artikel setzt die Feldarbeit nicht fort; die untersuchten saisonalen Muster sind auch keine gesicherte Prognose für sämtliche Folgejahre.",
+    "sourceIds": ["lwf-bergwald"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-08",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Praxisfall",
+    "prompt": "Welche Vorgehensweise ist für die Deutung des Unterschieds angemessen?",
+    "context": "Erfundenes Lernbeispiel: Zwei Kameras desselben Modells laufen gleich lange. Vor einer Kamera verdeckt dichter Sommerbewuchs Teile des Bildausschnitts, vor der anderen bleibt die Sicht frei. Die Ereignisraten unterscheiden sich.",
+    "options": [
+      { "id": "a", "text": "Die höhere Rate ohne weitere Prüfung als genauere Bestandsangabe verwenden." },
+      { "id": "b", "text": "Die gleichen Laufzeiten als Ausgleich für unterschiedliche Bildausschnitte behandeln." },
+      { "id": "c", "text": "Die Auswirkungen der unterschiedlichen Erfassungsbedingungen auf den Vergleich prüfen." },
+      { "id": "d", "text": "Die niedrigere Rate ohne örtliche Kalibrierung auf den Mittelwert beider Raten anheben." }
+    ],
+    "correctIds": ["c"],
+    "explanation": "Dass Modell und Laufzeit übereinstimmen, gleicht unterschiedliche Sicht- und Erfassungsbedingungen nicht aus. Vegetation kann die Erfassung beeinflussen. Die höhere Rate ist deshalb nicht schon die genauere Bestandsangabe; eine pauschale Hochrechnung der niedrigeren Rate wäre ohne geprüfte Grundlage ebenfalls nicht gerechtfertigt.",
+    "sourceIds": ["hofmeester-methodik", "findlay-fehlnachweise"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-09",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Praxisfall",
+    "prompt": "Wie gehst du mit der Aufnahme in einer Auswertung nach Geschlecht um?",
+    "context": "Erfundenes Lernbeispiel: Auf einer Aufnahme ist die Wildart sicher erkennbar. Die für eine Geschlechtsbestimmung benötigten Merkmale sind verdeckt.",
+    "options": [
+      { "id": "a", "text": "Die Aufnahme der im Datensatz häufigeren Geschlechtsklasse zuordnen." },
+      { "id": "b", "text": "Den Artnachweis behalten und das Geschlecht als unbestimmt kennzeichnen." },
+      { "id": "c", "text": "Die Aufnahme trotz sicherer Artzuordnung als fehlenden Artnachweis behandeln." },
+      { "id": "d", "text": "Das Geschlecht aus der Aufnahmezeit und dem Standort ergänzen." }
+    ],
+    "correctIds": ["b"],
+    "explanation": "Die Verwendbarkeit hängt von der Auswertungsfrage ab: Ein sicherer Artnachweis kann vorliegen, obwohl die Merkmale für eine Geschlechtszuordnung fehlen. Häufigkeit, Uhrzeit und Standort ersetzen diese Merkmale nicht. Die Unsicherheit beim Geschlecht macht umgekehrt den gesicherten Artnachweis nicht rückgängig.",
+    "sourceIds": ["findlay-fehlnachweise", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-10",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Aussage prüfen",
+    "prompt": "Welche Aussage trennt Ergebnis und mögliche Erklärung am besten?",
+    "context": "Erfundenes Lernbeispiel: Im Herbst sinkt an einem überwachten Standort die Rate der Rotwildereignisse. Andere Flächen und mögliche Ursachen wurden nicht untersucht.",
+    "options": [
+      { "id": "a", "text": "Die sinkende Rate belegt eine entsprechende Abnahme im gesamten Revier." },
+      { "id": "b", "text": "Die Tiere haben den Standort wegen der örtlichen Jagdaktivität verlassen." },
+      { "id": "c", "text": "Der Herbstwert beschreibt den zu erwartenden Jagderfolg am Standort." },
+      { "id": "d", "text": "Die Rate sank dort; Ursache und Bestandsentwicklung bleiben damit offen." }
+    ],
+    "correctIds": ["d"],
+    "explanation": "Gemessen ist eine geringere Ereignisrate am beobachteten Standort. Veränderte Raumnutzung und Erfassung kommen ebenso als Erklärung in Betracht wie andere Einflüsse. Ein Reviertrend, eine bestimmte Ursache oder eine Vorhersage des Jagderfolgs folgt aus diesem Einzelbefund nicht.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-11",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Fehler erkennen",
+    "prompt": "Welcher Schritt behebt zunächst den Unterschied der Zähleinheiten?",
+    "context": "Erfundenes Lernbeispiel: Ein Revierbericht vergleicht im ersten Zeitraum jede gespeicherte Bilddatei mit im zweiten Zeitraum zusammengefassten Aufnahmeereignissen. Er bezeichnet die Differenz als Rückgang der Tierkontakte.",
+    "options": [
+      { "id": "a", "text": "Beide Zeiträume mit einer nachvollziehbar gleichen Ereignisregel auswerten." },
+      { "id": "b", "text": "Mit einer pauschal angenommenen Bildzahl pro Ereignis umrechnen." },
+      { "id": "c", "text": "Den ersten Zeitraum auf Aufnahmen besonders deutlich sichtbarer Tiere begrenzen." },
+      { "id": "d", "text": "Die verschiedenen Rohzahlen lediglich auf dieselbe aktive Laufzeit normieren." }
+    ],
+    "correctIds": ["a"],
+    "explanation": "Dateien und zusammengefasste Ereignisse sind unterschiedliche Zähleinheiten. Eine einheitliche, dokumentierte Ereignisregel ist deshalb Voraussetzung für diesen Vergleich. Eine angenommene Bildzahl pro Ereignis oder eine Auswahl besonders deutlicher Bilder löst den Einheitenfehler nicht. Auch die zusätzlich notwendige Berücksichtigung aktiver Laufzeiten ersetzt keine einheitliche Zählregel.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-12",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Aussage prüfen",
+    "prompt": "Wie müsste die vorgeschlagene Korrektur beurteilt werden?",
+    "context": "Erfundenes Lernbeispiel: Jemand möchte sämtliche Rehwildnachweise mit einem festen Zuschlag erhöhen. Als Begründung nennt er die in einer britischen Kamera-Versuchsarbeit gemessenen Erfassungsfehler bei anderen Arten und bestimmten Modellen.",
+    "options": [
+      { "id": "a", "text": "Der Zuschlag passt, sobald beide Auswertungen Säugetiere betreffen." },
+      { "id": "b", "text": "Der Zuschlag passt, wenn beide Geräte einen Infrarotsensor verwenden." },
+      { "id": "c", "text": "Die Übertragbarkeit des Zuschlags ist für diesen Fall nicht belegt." },
+      { "id": "d", "text": "Die britische Fehlerquote ersetzt die örtliche Prüfung der Laufzeiten." }
+    ],
+    "correctIds": ["c"],
+    "explanation": "Findlay und Kollegen fanden Unterschiede nach Art, Modell und Einstellung. Daraus folgt kein einheitlicher, für Rehwild geprüfter Zuschlag. Eine gemeinsame Tiergruppe oder Sensortechnik reicht als Übertragungsbegründung nicht aus; auch der tatsächliche örtliche Beobachtungsaufwand muss weiterhin bekannt sein.",
+    "sourceIds": ["findlay-fehlnachweise", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-13",
+    "topicId": "wildkameras",
+    "format": "single",
+    "skill": "Praxisfall",
+    "prompt": "Welche Forschungsfrage lässt sich mit dieser Aufstellung am unmittelbarsten bearbeiten?",
+    "context": "Erfundenes Lernbeispiel: Sämtliche Kameras überwachen ausgewählte Tierwechsel. Nicht an diesen Wechseln liegende Flächen werden nicht beprobt.",
+    "options": [
+      { "id": "a", "text": "Wie groß ist die mittlere Tierdichte auf sämtlichen Revierflächen?" },
+      { "id": "b", "text": "Welche Tiere werden wann an den überwachten Wechseln erfasst?" },
+      { "id": "c", "text": "Wie viele Tiere meiden alle vorhandenen Wege im Revier?" },
+      { "id": "d", "text": "Welcher Anteil aller Reviertiere nutzt ausschließlich diese Wechsel?" }
+    ],
+    "correctIds": ["b"],
+    "explanation": "Die Kameras beobachten ausgewählte Orte und Zeiten. Dort aufgezeichnete Arten und Zeitpunkte passen unmittelbar zur Aufstellung. Die übrigen Fragen erfordern zusätzliche Informationen über unüberwachte Flächen, nicht erfasste Tiere oder den gesamten Bestand; die gezielte Wechselaufstellung liefert diese Bezugsgrößen nicht.",
+    "sourceIds": ["hofmeester-methodik", "lwf-bergwald"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-14",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Praxisfall",
+    "prompt": "Welche Angaben helfen, Kameranachweise fachlich vergleichbar einzuordnen?",
+    "options": [
+      { "id": "a", "text": "Aktive Betriebsdauer und bekannte Geräteausfälle." },
+      { "id": "b", "text": "Die Dateizahl als angenommene Zahl verschiedener Tiere." },
+      { "id": "c", "text": "Kameramodell, Auslösemodus und verwendete Einstellungen." },
+      { "id": "d", "text": "Aufstellung, Bildausschnitt und veränderte Vegetation." },
+      { "id": "e", "text": "Eine fremde Erfassungsquote als feste Korrektur der eigenen Zahlen." }
+    ],
+    "correctIds": ["a", "c", "d"],
+    "explanation": "Betriebsdauer beschreibt den Erhebungsaufwand; Modell, Einstellungen und Aufstellung helfen, Unterschiede in der Erfassung zu beurteilen. Die Dateizahl ist keine gesicherte Zahl verschiedener Tiere. Auch eine fremde Erfassungsquote ist ohne Prüfung der Übertragbarkeit kein fester Korrekturwert für die eigene Untersuchung.",
+    "sourceIds": ["hofmeester-methodik", "lwf-bergwald", "findlay-fehlnachweise"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-15",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Aussage prüfen",
+    "prompt": "Welche Aussagen zum Ereignisindex sind fachlich begründet?",
+    "options": [
+      { "id": "a", "text": "Er gibt die Zahl aller einzelnen Tiere im Revier an." },
+      { "id": "b", "text": "Er setzt gezählte Ereignisse zur aktiven Kameralaufzeit ins Verhältnis." },
+      { "id": "c", "text": "Er gleicht Unterschiede im Tierverhalten bereits durch die Division aus." },
+      { "id": "d", "text": "Er kann bei passender Erfassung Hinweise auf räumliche Nutzung liefern." }
+    ],
+    "correctIds": ["b", "d"],
+    "explanation": "Der Index beschreibt Ereignisse relativ zum Beobachtungsaufwand und kann zur räumlichen Nutzung beitragen. Er ist keine unmittelbare Individuenzählung. Die Standardisierung auf Laufzeit korrigiert außerdem nicht von selbst Unterschiede in Bewegung, Aufstellung oder Erfassungswahrscheinlichkeit.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-16",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Aussage prüfen",
+    "prompt": "Welche Beschreibungen der Quellenrollen stimmen?",
+    "options": [
+      { "id": "a", "text": "Die britische Versuchsarbeit hat die bayerischen Feldmessungen wiederholt." },
+      { "id": "b", "text": "Der Methodenreview ist ein weiteres Feldexperiment im deutschen Alpenraum." },
+      { "id": "c", "text": "Die LWF liefert eigene Felddaten aus ihren bayerischen Untersuchungsgebieten." },
+      { "id": "d", "text": "Die britische Arbeit untersucht Erfassungsschritte mit eigener Videokontrolle." },
+      { "id": "e", "text": "Der Review ordnet Einflussfaktoren anhand wissenschaftlicher Literatur ein." }
+    ],
+    "correctIds": ["c", "d", "e"],
+    "explanation": "Eigenständige Felddaten, ein unabhängiger kontrollierter Versuch und ein Methodenreview erfüllen verschiedene Aufgaben. Sie ergänzen die Einordnung, sind aber keine drei Wiederholungen desselben Experiments. Insbesondere stammen die britischen Versuche nicht aus den LWF-Gebieten, und eine Literaturübersicht ist kein zusätzliches Alpen-Feldexperiment.",
+    "sourceIds": ["lwf-bergwald", "findlay-fehlnachweise", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-17",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Fehler erkennen",
+    "prompt": "Welche Möglichkeiten bleiben bei fehlenden Tierbildern methodisch zu prüfen?",
+    "options": [
+      { "id": "a", "text": "Die Kamera war während eines Teils des Zeitraums ausgefallen." },
+      { "id": "b", "text": "Vorbeilaufende Tiere lösten nichts aus oder wurden nicht abgebildet." },
+      { "id": "c", "text": "Das fehlende Bild datiert das Verschwinden der Art aus dem Gebiet." },
+      { "id": "d", "text": "Vorhandene Tiere passierten den überwachten Ausschnitt nicht." },
+      { "id": "e", "text": "Der Nullbefund belegt, dass das Gebiet als Lebensraum ungeeignet ist." }
+    ],
+    "correctIds": ["a", "b", "d"],
+    "explanation": "Ausfall, fehlender Kontakt mit dem überwachten Ausschnitt sowie misslungene Auslösung oder Abbildung sind mögliche Gründe für fehlende Bilder. Keine dieser Möglichkeiten ist damit bereits als tatsächliche Ursache bewiesen. Ohne weitere Daten lassen sich weder ein Verschwindezeitpunkt noch die Lebensraumeignung aus dem Nullbefund feststellen.",
+    "sourceIds": ["findlay-fehlnachweise", "lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-18",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Daten lesen",
+    "prompt": "Welche Schlussfolgerungen sind durch diese Zahlen gedeckt?",
+    "context": "Erfundenes Lernbeispiel: Nach derselben Zählregel hat Kamera A zehn Ereignisse in zehn aktiven Tagen, Kamera B 15 Ereignisse in 30 aktiven Tagen. Weitere Angaben zur Erfassung und zu Individuen fehlen.",
+    "options": [
+      { "id": "a", "text": "A erreicht 100, B 50 Ereignisse je 100 aktive Tage." },
+      { "id": "b", "text": "A hat die doppelte Ereignisrate, damit aber keine belegte doppelte Tierzahl." },
+      { "id": "c", "text": "B hat wegen der größeren Rohzahl auch die höhere Ereignisrate." },
+      { "id": "d", "text": "B hat mehr gezählte Ereignisse und zugleich die niedrigere berechnete Rate." },
+      { "id": "e", "text": "A beherbergt nach der Laufzeitkorrektur genau doppelt so viele Tiere." }
+    ],
+    "correctIds": ["a", "b", "d"],
+    "explanation": "Zehn geteilt durch zehn mal 100 ergibt 100, 15 geteilt durch 30 mal 100 ergibt 50. Damit ist die Rohzahl bei B größer, seine Rate aber kleiner. A hat die doppelte Ereignisrate; ohne Informationen zur Erfassung und zu Individuen wird daraus keine doppelte Tierzahl.",
+    "sourceIds": ["lwf-bergwald", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-19",
+    "topicId": "wildkameras",
+    "format": "multiple",
+    "skill": "Praxisfall",
+    "prompt": "Welche Schritte machen diese Auswertung nachvollziehbarer?",
+    "context": "Erfundenes Lernbeispiel: Zwischen zwei Beobachtungszeiträumen wurden der Kamerastandort und der Aufnahmemodus verändert. Danach steigt die Zahl der gespeicherten Tierbilder.",
+    "options": [
+      { "id": "a", "text": "Die erhöhte Rohzahl als Größenordnung des Bestandszuwachses übernehmen." },
+      { "id": "b", "text": "Standort- und Modusänderung mit den jeweiligen Zeiträumen dokumentieren." },
+      { "id": "c", "text": "Ereignisregel und aktive Betriebsdauer für beide Zeiträume überprüfen." },
+      { "id": "d", "text": "Den höheren Wert als Nachweis der besseren Standortrepräsentativität verwenden." },
+      { "id": "e", "text": "Den Einfluss veränderter Erfassung bei der Ergebnisdeutung offen benennen." }
+    ],
+    "correctIds": ["b", "c", "e"],
+    "explanation": "Dokumentierte Änderungen, eine nachvollziehbare Ereignisregel und die aktive Laufzeit helfen, den Vergleich zu beurteilen. Die begrenzte Vergleichbarkeit gehört ausdrücklich ins Ergebnis. Eine höhere Bildzahl belegt weder einen entsprechenden Bestandszuwachs noch, dass der neue Standort das gesamte Revier besser repräsentiert.",
+    "sourceIds": ["hofmeester-methodik", "findlay-fehlnachweise", "lwf-bergwald"],
+    "reviewedOn": "2026-10-16"
+  },
+  {
+    "id": "kamera-20",
+    "topicId": "wildkameras",
+    "format": "sequence",
+    "skill": "Vorgehen ordnen",
+    "prompt": "Ordne die Erfassungskette aus dem Modell von Findlay und Kollegen: vom vorbeilaufenden Tier bis zum für die Fragestellung brauchbaren Bild.",
+    "options": [
+      { "id": "a", "text": "Das Tier ist nach der Auslösung tatsächlich auf der Aufnahme sichtbar." },
+      { "id": "b", "text": "Das Tier passiert den möglichen Erfassungsbereich der Kamera." },
+      { "id": "c", "text": "Die sichtbaren Merkmale reichen für die gestellte Auswertungsfrage aus." },
+      { "id": "d", "text": "Der Sensor reagiert auf den Tierkontakt und löst die Kamera aus." }
+    ],
+    "expectedOrder": ["b", "d", "a", "c"],
+    "explanation": "Das Modell unterscheidet den Kontakt mit dem Erfassungsbereich, die Auslösung, die tatsächliche Abbildung und deren ausreichende Qualität. Ein Erfolg im früheren Schritt garantiert den nächsten nicht: Eine ausgelöste Kamera kann das Tier verpassen, und eine sichtbare Art kann für eine bestimmte Merkmalsauswertung unzureichend abgebildet sein.",
+    "sourceIds": ["findlay-fehlnachweise", "hofmeester-methodik"],
+    "reviewedOn": "2026-10-16"
+  }
+]

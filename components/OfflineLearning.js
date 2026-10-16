@@ -1,3 +1,4 @@
+import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
 import { readOfflinePack, saveOfflinePack, clearOfflineLearning, prepareOfflineCache, validateOfflinePack, readCachedRetiredPhoto, OFFLINE_MAX_COURSES } from "../lib/offline-learning";
@@ -58,7 +59,7 @@ function OfflineCourse({ course, expiresAt, onExpired }) {
   const legal = course.category === "Jagdrecht";
   const [country, setCountry] = useState(course.countries[0]);
   const [lesson, setLesson] = useState(0);
-  const [run, setRun] = useState({ index: 0, answers: {}, score: 0 });
+  const [run, setRun] = useState({ index: 0, answers: {}, score: 0, answerSeed: 0 });
   const active = useRef(run);
   const questions = legal ? course.questions.filter(question => question.countries.includes(country)) : course.questions;
   const question = questions[run.index]; const answer = question ? run.answers[question.id] : undefined;
@@ -68,13 +69,13 @@ function OfflineCourse({ course, expiresAt, onExpired }) {
   const current = course.lessons[lesson];
   return <>
     <section className={styles.panel}><h2>{course.title}</h2><p>{course.description}</p><h3>Das lernst du</h3><ul>{course.objectives.map(item => <li key={item}>{item}</li>)}</ul>
-      {legal ? <><label className={styles.field}>Land<select value={country} onChange={event => { if (!allowed()) return; setCountry(event.target.value); update({ index: 0, answers: {}, score: 0 }); }}>{course.countries.map(id => <option key={id} value={id}>{countryNames[id]}</option>)}</select></label><p className={styles.note}><strong>{countryNames[country]}:</strong> {course.countryNotes[country]}</p></> : <details><summary>Regionale Hinweise</summary>{course.countries.map(id => <p key={id}><strong>{countryNames[id]}:</strong> {course.countryNotes[id]}</p>)}</details>}
+      {legal ? <><label className={styles.field}>Land<select value={country} onChange={event => { if (!allowed()) return; setCountry(event.target.value); update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>{course.countries.map(id => <option key={id} value={id}>{countryNames[id]}</option>)}</select></label><p className={styles.note}><strong>{countryNames[country]}:</strong> {course.countryNotes[country]}</p></> : <details><summary>Regionale Hinweise</summary>{course.countries.map(id => <p key={id}><strong>{countryNames[id]}:</strong> {course.countryNotes[id]}</p>)}</details>}
       <label className={styles.field}>Lektion<select value={lesson} onChange={event => { if (allowed()) setLesson(Number(event.target.value)); }}>{course.lessons.map((item, index) => <option key={item.id} value={index}>{index + 1}. {item.title}</option>)}</select></label>
       <h3>{current.title}</h3>{current.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}<aside className={styles.note}><strong>Merke dir</strong><p>{current.takeaway}</p><strong>Zum Nachdenken</strong><p>{current.exercise}</p></aside>
     </section>
     {question && <section className={styles.panel}><h2>Offline-Wissenscheck</h2><p className={styles.muted}>Ergebnisse gelten für diese Übungsrunde. Ein Kursabschluss wird hier nicht im Konto gespeichert.</p><p>Frage {run.index + 1} von {questions.length} · {run.score} richtig</p>{(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.note}>Geltungsbereich dieser Frage: {question.countries.map(id => countryNames[id]).join(" · ")}</p>}<h3>{question.q}</h3>
-      <div className={styles.choices}>{question.answers.map(item => <button className={`${styles.choice} ${answer !== undefined && question.correct.includes(item.id) ? styles.correct : answer === item.id ? styles.wrong : ""}`} key={item.id} disabled={answer !== undefined} onClick={() => choose(item.id)}>{item.text}{answer !== undefined && question.correct.includes(item.id) && " ✓"}</button>)}</div>
-      {answer !== undefined && <div className={styles.feedback} role="status"><strong>{question.correct.includes(answer) ? "Richtig." : "Diese Antwort passt nicht."}</strong><p>{question.explain}</p>{run.index + 1 < questions.length ? <button className={styles.primary} onClick={() => { if (allowed() && active.current === run) update({ ...run, index: run.index + 1 }); }}>Nächste Frage</button> : <><p>{run.score} von {questions.length} richtig.</p><button className={styles.secondary} onClick={() => { if (allowed() && active.current === run) update({ index: 0, answers: {}, score: 0 }); }}>Noch einmal üben</button></>}</div>}
+      <div className={styles.choices}>{answerOrder(question.answers, question.id, run.answerSeed).map(answerIndex => { const item = question.answers[answerIndex]; return <button className={`${styles.choice} ${answer !== undefined && question.correct.includes(item.id) ? styles.correct : answer === item.id ? styles.wrong : ""}`} key={item.id} disabled={answer !== undefined} onClick={() => choose(item.id)}>{item.text}{answer !== undefined && question.correct.includes(item.id) && " ✓"}</button>; })}</div>
+      {answer !== undefined && <div className={styles.feedback} role="status"><strong>{question.correct.includes(answer) ? "Richtig." : "Diese Antwort passt nicht."}</strong><p>{question.explain}</p>{run.index + 1 < questions.length ? <button className={styles.primary} onClick={() => { if (allowed() && active.current === run) update({ ...run, index: run.index + 1 }); }}>Nächste Frage</button> : <><p>{run.score} von {questions.length} richtig.</p><button className={styles.secondary} onClick={() => { if (allowed() && active.current === run) update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>Noch einmal üben</button></>}</div>}
     </section>}
     <section className={styles.panel}><h2>Fachquellen</h2><p>Zum Öffnen der Originalquellen brauchst du eine Internetverbindung.</p><ul className={styles.sources}>{course.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section>
   </>;
