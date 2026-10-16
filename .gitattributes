@@ -1,0 +1,2 @@
+# PDF offsets and compressed streams must survive Windows/Mac checkouts byte-for-byte.
+*.pdf binary

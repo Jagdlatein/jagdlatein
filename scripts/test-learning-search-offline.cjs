@@ -246,7 +246,7 @@ test('All established learning shortcuts and legal country hubs are discoverable
   const { searchLearning } = load('lib/learning-search.js');
   const { learningTools, legalLearningHubs, learningToolCatalog } = load('lib/learning-tool-catalog.js');
   const validCategories = new Set(load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug));
-  assert.equal(learningTools.length, 9); assert.equal(legalLearningHubs.length, 3);
+  assert.equal(learningTools.length, 10); assert.equal(legalLearningHubs.length, 3);
   assert.equal(new Set(learningToolCatalog.map(item => item.href)).size, learningToolCatalog.length);
   for (const tool of learningToolCatalog) {
     const base = tool.href.split('?')[0];
@@ -259,6 +259,11 @@ test('All established learning shortcuts and legal country hubs are discoverable
   const first = searchLearning({ type: 'tool' });
   const all = Array.from({ length: first.pages }, (_, index) => searchLearning({ type: 'tool', page: index + 1 }).results).flat();
   assert.equal(all.filter(item => item.href === '/wildkunde').length, 1, 'The atlas shortcut and atlas experience share one result');
+  for (const query of ['Lernkarten', 'Karteikarten', 'Druckvorlage']) {
+    const results = searchLearning({ query, type: 'tool' }).results;
+    assert.equal(results.filter(item => item.href === '/lernen/lernkarten').length, 1, query);
+  }
+  assert.ok(!searchLearning({ query: 'Lernkarten', category: 'jagdrecht', type: 'tool' }).results.some(item => item.href === '/lernen/lernkarten'));
   for (const [country, href] of [['DE', '/jagdrecht/de'], ['AT', '/jagdrecht/at'], ['CH', '/jagdrecht/ch']]) {
     const results = searchLearning({ category: 'jagdrecht', country, type: 'tool' }).results;
     assert.ok(results.some(item => item.href === href));

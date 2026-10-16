@@ -53,6 +53,7 @@ export default function LearningOverview({ data }) {
     <LearningSearch category={categoryInfo?.slug || "all"} />
     {!categoryInfo && <nav className={styles.quietNav} aria-label="Deine Kurse">
       <Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link>
+      <Link href="/lernen/lernkarten">Lernkarten<AppIcon name="arrow-right" size={17} /></Link>
       <Link href="/kurse">Kursverzeichnis<AppIcon name="arrow-right" size={17} /></Link>
     </nav>}
     {!categoryInfo && <QuizLeagueEntry />}

@@ -79,6 +79,7 @@ for (const pathname of ['/impressum', '/datenschutz', '/robots.txt', '/sitemap.x
 test('Opening exact portraits and public documents never opens lessons, PDFs or unknown file paths', async () => {
   for (const pathname of ['/wildkunde/biber', '/wildkunde/private.jpg', '/wildkunde/biber.jpg/private', '/wildkunde/biber.json',
     '/wildkunde/BIBER.jpg', '/wildkunde/biber.jpg.bak', '/lernen/private.jpg', '/ebook.pdf', '/protected/ebook',
+    '/lernen/lernkarten', '/lernen/lernkarten-drucken', '/lernen/lernkarten/jagdlatein-lernkarten.pdf',
     '/datenschutz/private', '/impressum.pdf', '/robots.txt/private', '/sitemap.xml.bak']) {
     const response = await middleware(request(pathname)); const target = new URL(response.headers.get('location'));
     assert.equal(target.pathname, '/preise', pathname); assert.equal(target.searchParams.get('next'), pathname);

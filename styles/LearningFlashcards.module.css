@@ -1,0 +1,126 @@
+.page { max-width: 1120px; }
+.filters { display: grid; grid-template-columns: minmax(210px, .8fr) minmax(0, 1.2fr); gap: 16px; scroll-margin-top: 20px; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 16px; font-weight: 700; }
+.field select, .searchInput { min-height: 54px; width: 100%; border: 1px solid #cdbb91; border-radius: 12px; background: #fffdf7; color: #3e321b; }
+.field select { padding: 12px; font-size: 17px; }
+.searchInput { display: flex; align-items: center; gap: 9px; padding: 0 13px; }
+.searchInput svg { flex-shrink: 0; color: #796021; }
+.searchInput input { flex: 1; min-width: 0; width: 100%; border: 0; background: transparent; padding: 14px 0; font-size: 17px; }
+.summary { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 20px; margin: 18px 0 0; color: #6e6249; font-size: 15px; }
+.summary p { margin: 0; }
+.mode { display: inline-flex; align-items: center; min-height: 44px; gap: 9px; cursor: pointer; }
+.mode input { width: 19px; height: 19px; accent-color: #796021; }
+.status { min-height: 25px; margin: 0 0 8px; font-size: 15px; color: #58663b; }
+.card { border: 1px solid #d9c58f; border-radius: 22px; background: #fffdf7; padding: clamp(22px, 5vw, 42px); box-shadow: 0 8px 24px #3e321b08; }
+.cardTop { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; font-size: 14px; color: #796021; }
+.cardTop span:first-child { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.context { color: #6e6249; font-size: 17px; line-height: 1.6; margin: 0 0 13px; }
+.card h2 { margin: 0; font-size: clamp(25px, 4.3vw, 36px); line-height: 1.4; }
+.card h2:focus { outline: none; }
+.figure { margin: 24px 0 0; }
+.figure img { width: 100%; height: auto; max-height: 355px; object-fit: contain; display: block; background: #f1ecdd; border-radius: 14px; }
+.figure figcaption { font-size: 13px; line-height: 1.6; text-align: right; padding-top: 7px; color: #6e6249; }
+.figure figcaption a, .sources a { color: #73571a; text-underline-offset: 4px; }
+.revealArea { margin-top: 26px; }
+.revealArea p { font-size: 17px; color: #6e6249; margin: 0 0 16px; }
+.primary, .secondary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 15px 24px; border: 1px solid #796021; border-radius: 12px; font: inherit; font-size: 18px; font-weight: 700; line-height: 1.4; cursor: pointer; }
+.primary { color: #fffdf7; background: #796021; }
+.primary:hover:enabled { background: #614a18; }
+.secondary { background: #fffdf7; color: #73571a; border-color: #cdbb91; }
+.secondary:hover:enabled { background: #f8edd2; }
+.primary:disabled, .secondary:disabled { opacity: .65; cursor: default; }
+.back { border-top: 1px solid #e0d2af; margin-top: 26px; padding-top: 22px; }
+.answer { font-size: clamp(22px, 3.5vw, 29px); font-weight: 750; line-height: 1.5; color: #3c542d; margin: 0 0 16px; }
+.explanation { font-size: 19px; line-height: 1.8; margin: 0; }
+.rating { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 26px; }
+.sources { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0d2af; font-size: 15px; }
+.sources h3 { margin: 0 0 10px; font-size: 17px; }
+.sources ul { margin: 0; padding-left: 20px; }
+.sources li + li { margin-top: 8px; }
+.sources li a { display: inline-block; padding: 5px 0; }
+.sources p { margin: 12px 0 0; }
+.courseLink { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding-top: 12px; font-weight: 650; }
+.deviceNote { font-size: 14px; line-height: 1.7; margin: 18px 0 0; color: #6e6249; }
+.exportLinks { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; }
+.exportLinks a { display: inline-flex; align-items: center; min-height: 48px; gap: 8px; color: #73571a; text-underline-offset: 4px; font-weight: 650; font-size: 16px; }
+.empty { padding: 26px; border: 1px solid #ded1af; border-radius: 18px; background: #fffdf7; }
+.empty h2 { font-size: 25px; }
+.empty p { font-size: 18px; }
+.printToolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-bottom: 20px; }
+.printToolbar .field { flex: 1 1 210px; }
+.printInstructions { margin: 18px 0 22px; padding: 18px 22px; border: 1px solid #ded1af; border-radius: 12px; background: #fffdf7; font-size: 17px; }
+.printInstructions p { margin: 0; }
+.printInstructions p + p { margin-top: 8px; }
+.printList { display: grid; gap: 22px; }
+.printPair { display: grid; grid-template-columns: 1fr 1fr; border: 1px dashed #a18b61; background: #fff; break-inside: avoid; page-break-inside: avoid; }
+.printFace { min-width: 0; padding: 20px; overflow-wrap: anywhere; }
+.printFace + .printFace { border-left: 1px dashed #b7a47d; }
+.printMeta { display: flex; flex-wrap: wrap; gap: 5px 12px; color: #6e6249; font-size: 12px; margin: 0 0 12px; }
+.printContext { color: #444; font-size: 13px; line-height: 1.5; margin: 0 0 10px; }
+.printFace h2 { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+.printAnswer { font-size: 18px; font-weight: 700; margin: 0 0 12px; }
+.printExplanation { font-size: 15px; margin: 0 0 14px; line-height: 1.65; }
+.printFigure { margin: 12px 0 0; }
+.printFigure img { display: block; max-width: 100%; width: auto; height: 160px; object-fit: contain; margin: 0 auto; }
+.printFigure figcaption { font-size: 10px; line-height: 1.4; margin-top: 5px; }
+.printSources { font-size: 11px; line-height: 1.45; }
+.printSources p { margin: 7px 0 0; }
+.printSources a { color: #3e321b; overflow-wrap: anywhere; }
+.printReferences { display: inline; }
+.printReferences a { display: inline-block; padding: 2px 3px; }
+.printCourse { font-size: 11px; margin-top: 10px; }
+.printHeading { display: none; }
+.sourceAppendix { margin-top: 36px; padding-top: 24px; border-top: 1px solid #ded1af; }
+.sourceAppendix > p { font-size: 15px; }
+.sourceAppendix ol { margin: 20px 0 0; padding: 0; list-style: none; }
+.sourceAppendix li { display: flex; gap: 10px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; break-inside: avoid; page-break-inside: avoid; scroll-margin-top: 18px; }
+.sourceAppendix li > div { min-width: 0; }
+.appendixNumber { font-weight: 700; min-width: 30px; }
+.appendixUrl { display: block; color: #3e321b; overflow-wrap: anywhere; font-size: 12px; margin-top: 4px; }
+@media (max-width: 650px) {
+  .filters { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .filters .field { font-size: 15px; }
+  .filters .field select, .filters .searchInput { min-height: 48px; }
+  .filters .field select { font-size: 16px; padding: 10px; }
+  .filters .searchInput { padding: 0 10px; gap: 6px; }
+  .filters .searchInput input { font-size: 16px; padding: 12px 0; }
+  .card { border-radius: 18px; padding: 24px 18px; }
+  .cardTop { margin-bottom: 16px; }
+  .figure img { max-height: 240px; }
+  .rating { gap: 9px; }
+  .primary, .secondary { padding: 14px 16px; }
+  .printPair { grid-template-columns: 1fr; }
+  .printFace + .printFace { border-left: 0; border-top: 1px dashed #b7a47d; }
+}
+@media (prefers-reduced-motion: no-preference) { .primary, .secondary { transition: background-color 120ms ease; } }
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+  .printPage { max-width: none !important; margin: 0 !important; padding: 0 !important; color: #111 !important; background: #fff !important; }
+  .printPage > nav, .printPage > header, .printPage > footer, .printToolbar, .printInstructions, .exportLinks { display: none !important; }
+  .printPage ~ :global(nav[aria-label="Seitennavigation"]) { display: none !important; }
+  :global(body):has(.printPage) { padding-bottom: 0 !important; background: #fff !important; }
+  .printHeading { display: block; font-size: 10pt; line-height: 1.3; margin: 0 0 5mm; }
+  .printHeading h2 { font-size: 15pt; margin: 0 0 2mm; }
+  .printHeading p { margin: 0; font-size: 8pt; }
+  .printList { display: block; }
+  .printPair { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; min-height: 82mm; margin-bottom: 5mm; border: .25mm dashed #777; }
+  .printFace { padding: 4mm; }
+  .printFace + .printFace { border-top: 0; border-left: .25mm dashed #999; }
+  .printMeta { font-size: 7pt; margin-bottom: 3mm; }
+  .printContext { font-size: 8pt; line-height: 1.3; margin-bottom: 2mm; }
+  .printFace h2 { font-size: 11pt; line-height: 1.4; margin-bottom: 3mm; }
+  .printAnswer { font-size: 9.5pt; margin-bottom: 2mm; }
+  .printExplanation { font-size: 8.3pt; line-height: 1.4; margin-bottom: 2mm; }
+  .printFigure img { height: 34mm; max-width: 100%; }
+  .printFigure figcaption { font-size: 6.5pt; }
+  .printSources, .printSources p { font-size: 8pt; line-height: 1.4; }
+  .printReferences a { padding: 0 1mm 0 0; }
+  .printCourse { font-size: 7pt; line-height: 1.3; }
+  .printCourse { margin-top: 2mm; }
+  .sourceAppendix { break-before: page; page-break-before: always; border-top: 0; padding-top: 0; margin-top: 0; }
+  .sourceAppendix h2 { font-size: 15pt; margin: 0 0 4mm; }
+  .sourceAppendix > p { font-size: 8pt; line-height: 1.4; }
+  .sourceAppendix li { font-size: 8pt; line-height: 1.4; margin-bottom: 4mm; }
+  .appendixUrl { font-size: 7.5pt; line-height: 1.4; }
+  .printPage a { color: #111 !important; text-decoration: none; }
+}
