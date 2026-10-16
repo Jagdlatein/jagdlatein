@@ -1,6 +1,7 @@
 import Image from "next/image";
 import WildlifePortraitLayout from "./WildlifePortraitLayout";
 import { LearningPhotoCredit } from "./LearningPhoto";
+import ResearchQuestionRound from "./ResearchQuestionRound";
 import styles from "../styles/EuropeanWildlife.module.css";
 
 export default function EuropeanWildlifePortrait({ species }) {
@@ -14,6 +15,7 @@ export default function EuropeanWildlifePortrait({ species }) {
       <h2>{section.title}</h2>{section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
       <details className={styles.sources}><summary>Fachquellen zu diesem Abschnitt</summary><ul>{section.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.organization}: {source.title}</a><p>{Array.isArray(source.supports) ? source.supports.join(" ") : source.supports}</p></li>)}</ul></details>
     </section>)}
+    {species.questions?.length > 0 && <details className={styles.sources}><summary>Artenwissen mit kurzen Fragen prüfen</summary><ResearchQuestionRound key={species.slug} questions={species.questions} sources={species.biologySources} title="Dein Artencheck" sectionId={`artencheck-${species.slug}`} notice="Kurze Lernrunde zum Porträt. Lies nach jeder Antwort die Erklärung und die Fachquellen. Beim Verlassen beginnt die Runde neu." /></details>}
     <section className={styles.section}><h2>Geltungsbereich und offene Details</h2>{(Array.isArray(species.limits) ? species.limits : [species.limits]).filter(Boolean).map(limit => <p key={limit}>{limit}</p>)}<p className={styles.review}>Diese neuen biologischen Abschnitte wurden am {new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${species.reviewedOn}T00:00:00Z`))} mit den angegebenen Fachquellen abgeglichen.</p></section>
   </WildlifePortraitLayout>;
 }

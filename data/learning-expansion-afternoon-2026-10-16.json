@@ -1,0 +1,2192 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Zwölf neue Vertiefungskurse in bestehenden Kategorien. Geprüft sind ausschließlich die hier dokumentierten Wissensblöcke. Eigene Lernbeispiele sind als solche benannt. Biologie und Methodenwissen gelten ohne künstliche Ländertrennung; konkrete Rechtsfragen sind örtlich gekennzeichnet. Keine praktische Befähigungsbescheinigung, medizinische Diagnose oder neue Jagdfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-geweih-horn-gewebe-2026",
+      "title": "Geweih und Horn: Was unter der Oberfläche steckt",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Gewebe, Wachstum und Erneuerung auseinanderhalten, statt Kopfaufsätze nur nach ihrer Silhouette zu benennen.",
+      "minutes": 20,
+      "objectives": [
+        "Knochen und Keratinscheide unterscheiden",
+        "Bast, Rosenstock und Abwurf auseinanderhalten",
+        "Eine Beobachtung ohne unbelegte Alterszahl beschreiben"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "AT": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "CH": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Horns and Antlers: Sammlungsanatomie",
+          "url": "https://www.amnh.org/research/science-conservation/projects/case-studies/horns-and-antlers",
+          "organization": "American Museum of Natural History",
+          "supports": "Knochenkern und Keratinscheide der Hornträger; Geweihknochen, Rosenstock und versorgender Bast. Keine pauschale Aussage zum Abwurfmonat oder zur Lebensfähigkeit sämtlicher Geweihgewebe."
+        },
+        {
+          "label": "Horns versus Antlers",
+          "url": "https://www.nps.gov/articles/yell-horns-vs-antlers.htm",
+          "organization": "U.S. National Park Service",
+          "supports": "Unterschied zwischen knöchernem Geweih und Horn mit Knochenkern; periodischer Geweihabwurf gegenüber bleibendem Horn der Boviden. Nordamerikanische Kalendertage werden nicht übertragen."
+        },
+        {
+          "label": "Evolution of ruminant headgear · Davis, Brakora & Lee 2011",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3151718/",
+          "organization": "University of Oregon; University of California Berkeley; Midwestern University",
+          "supports": "Anatomische Übersicht mit Gewebeentwicklung: Geweih, Bast, Rosenstock sowie Hornkern und Keratinscheide. Entwicklungsunterschiede und Grenzen vereinfachter Bezeichnungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gewebe",
+          "title": "Ähnliche Form, verschiedener Aufbau",
+          "paragraphs": [
+            "Ein Geweih ist ein knöcherner Kopfaufsatz der Hirsche. Bei den Hornträgern liegt dagegen eine Hornscheide aus Keratin über einem knöchernen Kern. Keratin ist ein Strukturprotein; die äußere Scheide und der Knochen darunter sind verschiedene Gewebe. Die Unterscheidung betrifft deshalb den Aufbau und die Entwicklung, nicht bloß die Frage, ob ein Kopfaufsatz gebogen oder verzweigt aussieht. Ein einzelner umgangssprachlicher Name kann diese Unterschiede verdecken.",
+            "Für die heimische Artenkunde hilft ein gedanklicher Vergleich: Beim Rehbock sprichst du über ein Geweih, bei Gams und Alpensteinbock über Hörner. Du brauchst dafür keine unbekannten Teile eines lebenden Tieres anzufassen. Nutze ein anatomisch beschriftetes Museumspräparat oder eine fachlich erläuterte Darstellung, auf der Außenhülle und innerer Aufbau getrennt erkennbar sind. Eine bloße Silhouette zeigt die Gewebeschichten gerade nicht.",
+            "Lernbeispiel: Zwei Schilder nennen jeden Kopfaufsatz „Horn“. Verbessere die Beschriftung, indem du zuerst die Tiergruppe bestimmst und danach das Material benennst. Die Farbe eines alten Präparats ist dabei kein eigener Beweis für den Gewebetyp. Begründe deine Zuordnung mit dem beschriebenen Aufbau."
+          ],
+          "takeaway": "Geweih ist Knochen; das Horn der Hornträger umfasst Knochenkern und Keratinscheide.",
+          "exercise": "Erkläre den Unterschied an Reh und Gams, ohne aus der Form eine Alterszahl abzuleiten."
+        },
+        {
+          "id": "erneuerung",
+          "title": "Bastverlust ist nicht Geweihabwurf",
+          "paragraphs": [
+            "Das wachsende Geweih ist von Bast umgeben, einer behaarten, durchbluteten Haut. Diese Hülle versorgt das sich entwickelnde Gewebe. Sie gehört zu einer Wachstumsphase und ist keine Hornscheide aus Keratin. Das Geweih entsteht auf den Rosenstöcken am Schädel. Wenn später der Bast verloren geht, wird die knöcherne Oberfläche sichtbar; der Kopfaufsatz ist dadurch noch nicht abgeworfen.",
+            "Beim periodischen Geweihabwurf wird die Geweihstange vom bleibenden Rosenstock getrennt. Der erneute Aufbau eines Geweihs unterscheidet sich vom gewöhnlich bleibenden Horn der Hornträger. Diese Grundunterscheidung ist tragfähiger als ein Kalenderdatum: Aus allgemeinen Darstellungen anderer Hirscharten darfst du keinen für jede heimische Art gleichen Abwurfmonat ableiten. Für einen Vergleich werden Art und sichtbarer Entwicklungszustand gemeinsam benannt.",
+            "Lernbeispiel: Du vergleichst eine Aufnahme mit Bast und eine weitere mit freiliegendem Geweih. Notiere zunächst den sichtbaren Zustand. Behaupte daraus weder, beide Bilder zeigten dasselbe Tier, noch einen bewiesenen Abstand in Tagen. Eine gute Erklärung trennt Hautverlust, Knochenstruktur, späteren Abwurf und fehlende Informationen über die Aufnahmen."
+          ],
+          "takeaway": "Bastverlust, Abwurf der Stange und erneutes Wachstum sind verschiedene Vorgänge.",
+          "exercise": "Ordne die Begriffe Bast, Geweihstange und Rosenstock einem beschrifteten Schema zu."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "gewebe",
+          "q": "Was beschreibt das Horn eines Alpensteinbocks anatomisch?",
+          "options": [
+            "Eine Keratinscheide über einem knöchernen Kern.",
+            "Eine ausschließlich knöcherne Stange ohne Hornscheide.",
+            "Einen dauerhaften Rosenstock mit jährlich vollständig abgeworfener Stange.",
+            "Eine behaarte Bastschicht als dauerhafte Außenhülle."
+          ],
+          "answer": 0,
+          "explain": "Hornscheide und Knochenkern sind verschiedene Bestandteile des Horns der Boviden."
+        },
+        {
+          "id": "q2",
+          "lessonId": "gewebe",
+          "q": "Ein Präparat zeigt nur einen dunklen gebogenen Kopfaufsatz. Welche Zusatzinformation hilft bei der Materialzuordnung?",
+          "options": [
+            "Nur die gemessene Länge des Kopfaufsatzes.",
+            "Tiergruppe und anatomischer Aufbau.",
+            "Nur die Krümmung der äußeren Silhouette.",
+            "Nur die Zahl sichtbarer Spitzen."
+          ],
+          "answer": 1,
+          "explain": "Anatomie und Artzuordnung tragen die Erklärung; die äußere Farbe allein genügt nicht."
+        },
+        {
+          "id": "q3",
+          "lessonId": "gewebe",
+          "q": "Welche Zuordnung verbindet Fachwort und Aufbau richtig?",
+          "options": [
+            "Reh: Hornkern und Hornscheide; Gams: Geweihknochen.",
+            "Reh und Gams: gleicher Aufbau, nur unterschiedliche Außenform.",
+            "Reh: Geweihknochen; Gams: Hornkern mit Hornscheide.",
+            "Reh: Bast als dauerhafte Hornscheide; Gams: bloßgelegtes Geweih."
+          ],
+          "answer": 2,
+          "explain": "Die anatomische Trennung ist unabhängig davon, ob der Kopfaufsatz schlank oder kräftig erscheint."
+        },
+        {
+          "id": "q4",
+          "lessonId": "erneuerung",
+          "q": "Ein Hirsch verliert die behaarte Hülle seines Kopfaufsatzes. Welcher Vorgang ist damit beschrieben?",
+          "options": [
+            "Der vollständige Abwurf der Geweihstange zusammen mit ihrer Haut.",
+            "Das regelmäßige Abwerfen der Hornscheide eines Hornträgers.",
+            "Der normale Verlust des Rosenstocks vor der nächsten Stange.",
+            "Der Verlust des Basts; die Stange kann noch vorhanden sein."
+          ],
+          "answer": 3,
+          "explain": "Bast ist versorgende Haut des wachsenden Geweihs. Bastverlust und späterer Stangenabwurf sind zu trennen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "erneuerung",
+          "q": "Welche Struktur bleibt beim normalen Geweihabwurf am Schädel?",
+          "options": [
+            "Der Rosenstock.",
+            "Die alte Geweihstange unter einer neu gebildeten Außenschicht.",
+            "Eine bleibende Keratinscheide als Basis der nächsten Stange.",
+            "Die alte Bastdecke als tragender Stangenkern."
+          ],
+          "answer": 0,
+          "explain": "Die erneute Geweihbildung erfolgt auf den bleibenden Rosenstöcken."
+        },
+        {
+          "id": "q6",
+          "lessonId": "erneuerung",
+          "q": "Warum wird aus einem allgemeinen Geweihporträt kein genauer Abwurfmonat für alle heimischen Hirsche übernommen?",
+          "options": [
+            "Weil der äußere Bastzustand bereits für jede Art einen festen Monat festlegt.",
+            "Weil Arten und Wachstumsabläufe im konkreten Zusammenhang geprüft werden müssen.",
+            "Weil der nordamerikanische Kalender ohne weitere Prüfung auf Rehe übertragbar ist.",
+            "Weil der Bildzustand ohne Datum den genauen Abstand zum Abwurf belegt."
+          ],
+          "answer": 1,
+          "explain": "Die Quellen sichern den Grundvorgang; ein einheitlicher Monatskalender für alle Arten folgt daraus nicht."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-gehoerschutz-passform-2026",
+      "title": "Gehörschutz: Passform, Brille und Verständigung",
+      "category": "Waffen & Sicherheit",
+      "topic": "Waffen & Schuss",
+      "description": "Warum ein guter Verpackungswert den tatsächlichen Sitz nicht ersetzt und Verständigung vor dem Lärm organisiert wird.",
+      "minutes": 18,
+      "objectives": [
+        "Nennwert und individuellen Schutz unterscheiden",
+        "Gehörschutz mit Brille und Bekleidung prüfen",
+        "Verständigung ohne Schutzlücken planen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "AT": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "CH": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Provide Hearing Protection",
+          "url": "https://www.cdc.gov/niosh/noise/prevent/ppe.html",
+          "organization": "NIOSH / Centers for Disease Control and Prevention",
+          "supports": "Schutz hängt von Auswahl, Sitz und konsequentem Tragen ab; Brille und weitere Ausrüstung können Sitz beeinflussen; Schutz und Kommunikation gemeinsam planen. Keine Zahlenfreigabe für einen konkreten Schießstand."
+        },
+        {
+          "label": "Welche Kriterien muss man beim Gehörschutz beachten?",
+          "url": "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/laerm-und-vibrationen/gehoerschutz/wichtige-kriterien-bei-der-wahl-des-gehoerschutzes",
+          "organization": "Suva",
+          "supports": "Passform, Komfort, Kompatibilität und Verfügbarkeit; falsches Tragen vermindert Schutz; geprüfte Kommunikationslösungen. Arbeitslärmwerte werden nicht ungeprüft auf Schussknall übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "sitz",
+          "title": "Der Schutz entsteht am Ohr",
+          "paragraphs": [
+            "Die auf einer Verpackung angegebene Schalldämmung beschreibt keine garantierte Wirkung für jede Person. Auswahl, korrekter Sitz und konsequentes Tragen entscheiden mit darüber, welcher Schutz tatsächlich erreicht wird. Ein ungeeignetes oder falsch eingesetztes Produkt kann die erwartete Wirkung deutlich verfehlen. NIOSH empfiehlt eine individuelle Passformprüfung; Suva betont ebenfalls, dass fehlerhaftes Tragen den Schutz vermindert.",
+            "Zum Sitz gehört die übrige Ausrüstung. Brillenbügel, Kopfbedeckung und andere Schutzausrüstung dürfen nicht gedankenlos getrennt ausgewählt werden. Bei Kapseln ist die Kombination am Kopf zu prüfen; bei Stöpseln braucht die konkrete Bauform eine passende Einweisung. Ein angenehmer Sitz unterstützt das durchgehende Tragen, ersetzt aber keine Eignungsprüfung. Eine besonders hohe Zahl allein löst weder Passform- noch Kommunikationsprobleme.",
+            "Lernbeispiel: Ein neues Modell sitzt ohne Brille bequem, mit deiner Schutzbrille verändert sich jedoch die Auflage. Die sinnvolle Folgerung ist eine Prüfung dieser Kombination durch eine geeignete Fachperson vor der Lärmbelastung. Ein kurzer persönlicher Höreindruck kann keine zuverlässige Messung der Schutzwirkung gegen einen Knall ersetzen. Dieser Kurs nennt bewusst keinen universellen Dämmwert für einen konkreten Schießstand."
+          ],
+          "takeaway": "Geprüftes Produkt, richtiger Sitz und tatsächliche Kombination gehören zusammen.",
+          "exercise": "Besprich bei einer betreuten Einweisung deine vollständige Kombination aus Gehörschutz, Brille und Kopfbedeckung."
+        },
+        {
+          "id": "kommunikation",
+          "title": "Verständigung vorher lösen",
+          "paragraphs": [
+            "Gehörschutz muss nicht nur Schall mindern, sondern zur Tätigkeit und zur Verständigung passen. Suva und NIOSH nennen Kommunikationsanforderungen ausdrücklich als Auswahlkriterium. Ein Schutz, der ständig zum Zuhören abgenommen wird, schafft Lücken im vorgesehenen Schutz. Umgekehrt ist die Entscheidung für ein Kommunikationssystem kein Ersatz für die Prüfung seiner Eignung und korrekten Anwendung.",
+            "Vereinbare vor einem betreuten Standbesuch, wie Anweisungen aufgenommen und unklare Situationen angesprochen werden. Die örtliche Aufsicht erläutert den Ablauf. Änderungen an Geräten, Brille oder Bekleidung sind Anlass, die Kombination erneut zu prüfen. Gewöhnliche Unterhaltungskopfhörer mit Geräuschunterdrückung sind nicht schon wegen ihrer Elektronik geprüfter Gehörschutz. Produktzweck, Eignungsnachweis und Einweisung bleiben entscheidend.",
+            "Lernbeispiel: Während einer noch ruhigen Vorbereitung versteht eine Teilnehmerin eine Ansage mit ihrem Schutz nicht. Das Team klärt die Verständigung jetzt und fragt nach einer geeigneten Lösung. Es improvisiert keine Routine, bei jeder späteren Ansage eine Kapsel anzuheben. Die Lernaufgabe ist organisatorisch: Schutzlücken früh erkennen, Zuständigkeit klären und eine geeignete Kombination konsequent verwenden, ohne hier eine technische Waffenhandlung zu trainieren."
+          ],
+          "takeaway": "Verständigung wird mit dem Schutz geplant, bevor die Belastung beginnt.",
+          "exercise": "Formuliere eine Rückfrage an die Aufsicht, wenn du mit aufgesetztem Schutz eine Einweisung nicht verstehst."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "sitz",
+          "q": "Welche Aussage zur Dämmangabe auf der Verpackung ist richtig?",
+          "options": [
+            "Sie kann ohne Einweisung als individueller Messwert übernommen werden.",
+            "Mit demselben Produkt erzielen alle Personen denselben Schutz.",
+            "Der tatsächlich erreichte Schutz hängt auch vom Sitz ab.",
+            "Eine hohe Dämmangabe gleicht einen veränderten Sitz automatisch aus."
+          ],
+          "answer": 2,
+          "explain": "NIOSH und Suva unterscheiden Produktauswahl von richtiger individueller Anwendung."
+        },
+        {
+          "id": "q2",
+          "lessonId": "sitz",
+          "q": "Eine Kapsel liegt mit dicken Brillenbügeln anders auf. Was ist der nächste Schritt?",
+          "options": [
+            "Den Verpackungswert weiterhin als gemessenen persönlichen Schutz übernehmen.",
+            "Die Brille unverändert auflassen und nur auf einen angenehmen Höreindruck vertrauen.",
+            "Erst während der Belastung prüfen, ob die Kombination noch bequem wirkt.",
+            "Die vollständige Kombination vorab fachkundig prüfen lassen."
+          ],
+          "answer": 3,
+          "explain": "Kompatibilität mit anderer Schutzausrüstung gehört zur Auswahl; ein Knall ist kein Passformtest."
+        },
+        {
+          "id": "q3",
+          "lessonId": "sitz",
+          "q": "Warum ist Tragekomfort ein relevantes Kriterium?",
+          "options": [
+            "Weil ein passender bequemer Schutz das konsequente Tragen unterstützt.",
+            "Weil die bequemste Bauform ohne Eignungsnachweis die richtige ist.",
+            "Weil ein angenehmer Höreindruck bereits die tatsächliche Knalldämmung misst.",
+            "Weil hoher Komfort jede Prüfung der Verständigung ersetzt."
+          ],
+          "answer": 0,
+          "explain": "Komfort unterstützt Anwendungstreue, ist aber nur eines mehrerer notwendiger Auswahlkriterien."
+        },
+        {
+          "id": "q4",
+          "lessonId": "kommunikation",
+          "q": "Mit Gehörschutz wird die Einweisung schlecht verstanden. Was passt zur Vorbereitung?",
+          "options": [
+            "Bei jeder Ansage kurz eine Kapsel anheben.",
+            "Verständigung und geeignete Ausrüstung vor der Belastung mit der Aufsicht klären.",
+            "Nur eine Seite schützen, damit die andere besser zuhören kann.",
+            "Ohne Rückfrage dieselbe Einstellung wie die Nachbarperson übernehmen."
+          ],
+          "answer": 1,
+          "explain": "Kommunikationsanforderungen sollen bei Auswahl und Ablaufplanung berücksichtigt werden."
+        },
+        {
+          "id": "q5",
+          "lessonId": "kommunikation",
+          "q": "Ein Unterhaltungskopfhörer hat aktive Geräuschunterdrückung. Was belegt dies allein?",
+          "options": [
+            "Seine Eignung gegen jeden Knall, sofern Umgebungslärm leiser klingt.",
+            "Die gleiche Schutzwirkung wie ein geprüftes Gehörschutzprodukt.",
+            "Eine Elektronikfunktion, noch keinen passenden Gehörschutznachweis.",
+            "Einen persönlichen Passformnachweis, sobald Musik klar verständlich ist."
+          ],
+          "answer": 2,
+          "explain": "Geräuschunterdrückung und geprüfter Gehörschutz sind verschiedene Produktmerkmale."
+        },
+        {
+          "id": "q6",
+          "lessonId": "kommunikation",
+          "q": "Wann lohnt sich eine erneute Prüfung der Kombination?",
+          "options": [
+            "Nur wenn der Hersteller eine neue Dämmzahl aufdruckt.",
+            "Erst wenn eine Belastung subjektiv unangenehm war.",
+            "Nur beim vollständigen Wechsel von Stöpseln zu Kapseln.",
+            "Wenn etwa Brille, Kopfbedeckung oder Schutzgerät gewechselt werden."
+          ],
+          "answer": 3,
+          "explain": "Veränderte Bedingungen können Sitz und Verständigung beeinflussen."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-kamerastichprobe-2026",
+      "title": "Wildkameras: Mehr Bilder sind noch kein größerer Bestand",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Kamerafalle, Standort und Nachweisprozess als Stichprobe verstehen; brauchbare Vergleiche vorbereiten.",
+      "minutes": 20,
+      "objectives": [
+        "Fotohäufigkeit und Bestandsdichte trennen",
+        "Standortbedingte Nachweisverzerrung erkennen",
+        "Änderungen und Ausfallzeiten protokollieren"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "AT": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "CH": "Biologisches beziehungsweise methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Camera trap placement and the potential for bias · Kolowski & Forrester 2017",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0186679",
+          "organization": "Smithsonian Conservation Biology Institute · PLOS ONE",
+          "supports": "Originalstudie mit gepaarten Kamerastandorten: Wechsel und liegende Stämme können Nachweiswahrscheinlichkeit und Fotohäufigkeit beeinflussen. Keine Übertragung ihrer Effektgrößen auf DACH."
+        },
+        {
+          "label": "Mammal density estimation using camera traps · He 2026",
+          "url": "https://research.wur.nl/en/publications/mammal-density-estimation-using-camera-traps-new-perspectives/",
+          "organization": "Wageningen University & Research",
+          "supports": "Originaldissertation: Nachweise spiegeln Dichte nicht unmittelbar; Geometrie, Bewegungen und Nachweisprozess müssen bei Schlussfolgerungen berücksichtigt werden."
+        },
+        {
+          "label": "Estimating abundance of an unmarked, low-density species using camera traps · Loonam et al.",
+          "url": "https://www.usgs.gov/publications/estimating-abundance-unmarked-low-density-species-using-camera-traps",
+          "organization": "U.S. Geological Survey und beteiligte Universitäten",
+          "supports": "Unabhängige Vergleichsstudie: Stichprobengröße und nicht zufällige Kameraplatzierung begrenzen Dichteschätzungen. Keine Puma-Zahlen auf heimische Arten übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "nachweis",
+          "title": "Die Kamera beobachtet einen Ausschnitt",
+          "paragraphs": [
+            "Eine Kamerafalle misst nicht unmittelbar die Zahl der Tiere im Revier. Ihre Aufnahmen entstehen aus dem Zusammentreffen von Tieren mit einem begrenzten Erfassungsbereich. Platzierung, Erfassungsgeometrie und Bewegung der Tiere beeinflussen, was sichtbar wird. In einer Originalstudie mit gepaarten Kameras veränderten Wildwechsel und liegende Stämme die Nachweise gegenüber benachbarten Zufallsstandorten. Eine Dissertation aus Wageningen behandelt diesen Nachweisprozess ausdrücklich als Teil jeder Dichteschätzung.",
+            "Ein häufig genutzter Wechsel kann daher viele Aufnahmen liefern, ohne die durchschnittlichen Verhältnisse der ganzen Fläche abzubilden. Umgekehrt ist ein leeres Bildarchiv während eines begrenzten Einsatzes kein sicherer Beweis für Abwesenheit. Ein einzelnes Tier kann wiederholt erscheinen. Ohne geeignete individuelle Erkennung oder ein fachlich begründetes Schätzverfahren lassen sich Fotofolgen nicht einfach in eine Zahl verschiedener Tiere übersetzen.",
+            "Lernbeispiel: Eine Kamera am engen Durchlass liefert mehr Rehbilder als eine zweite auf einer offenen Vergleichsfläche. Die erste Aussage lautet: Die Kameras haben unter unterschiedlichen Bedingungen verschieden häufig ausgelöst und Tiere erfasst. Eine Behauptung über die Bestandsdichte ist ein weiterer, noch zu prüfender Schluss. Die veröffentlichten Studien liefern dafür Methodenwissen, keine direkt übertragbare Revierzählung."
+          ],
+          "takeaway": "Aufnahmen beschreiben zuerst Nachweise im Erfassungsbereich, nicht den gesamten Bestand.",
+          "exercise": "Formuliere eine Bildauswertung einmal als Beobachtung und einmal als ausdrücklich offene Bestandshypothese."
+        },
+        {
+          "id": "vergleich",
+          "title": "Einen Vergleich planen statt nachträglich passend machen",
+          "paragraphs": [
+            "Für eine auswertbare Kamerareihe müssen Fragestellung und Erhebung zusammenpassen. Die Forschung zeigt, dass nicht zufällige Platzierung und kleine Stichproben Schätzungen verzerren oder instabil machen können. Wird eine Kamera vom offenen Platz an einen Wechsel versetzt, verändert sich die Erhebung. Ein späterer Bildanstieg darf dann nicht ohne Weiteres als Zuwachs der Tiere interpretiert werden.",
+            "Halte deshalb Standort, Ausrichtung, Modell, Einstellungen und tatsächlich nutzbare Betriebszeiträume nachvollziehbar fest. Trenne eine Datenlücke durch leere Batterie von einem Zeitraum, in dem eine funktionierende Kamera kein Tier aufgenommen hat. Die Lernaufgabe ist keine Aufforderung zu beliebigen Montageversuchen: Eine abgestimmte wissenschaftliche Erhebung benötigt ein eigenes Design. Auch ein ordentliches privates Protokoll ersetzt nicht automatisch dessen Voraussetzungen.",
+            "Lernbeispiel: Zwei Monatsordner enthalten unterschiedlich viele Bilder. Vor der Bestandsdeutung vergleichst du Einsatzdauer, Ausfälle, Standortänderungen und Bildserien desselben Besuchs. Dokumentiere eine Umstellung als Bruch der Reihe, statt sie stillschweigend einzurechnen. Verwende keine universelle Minutengrenze, die jedes Foto automatisch zu einem neuen Tier macht. Ein fachlicher Vergleich beginnt mit den Bedingungen, unter denen die Daten überhaupt entstehen konnten."
+          ],
+          "takeaway": "Geänderte Erfassungsbedingungen können den Vergleich verändern; Ausfall ist kein Negativnachweis.",
+          "exercise": "Erstelle ein kurzes Kameraprotokoll mit Standortänderung, Betriebszeit und getrenntem Ausfallvermerk."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "nachweis",
+          "q": "Eine Kamera an einem Wechsel liefert besonders viele Bilder. Was ist zunächst belegt?",
+          "options": [
+            "Dass der Gesamtbestand proportional zur Bildzahl größer ist.",
+            "Dass jeder neue Zeitstempel ein anderes Tier kennzeichnet.",
+            "Dass dieser Standort den Durchschnitt der ganzen Fläche abbildet.",
+            "Dass unter diesen Standortbedingungen viele Nachweise entstanden."
+          ],
+          "answer": 3,
+          "explain": "Platzierung und Nachweisprozess beeinflussen Aufnahmen. Die Dichte folgt nicht direkt aus der Bildsumme."
+        },
+        {
+          "id": "q2",
+          "lessonId": "nachweis",
+          "q": "Was unterscheidet eine Bildserie von einer Individualzählung?",
+          "options": [
+            "Dass dasselbe Tier auf mehreren Bildern erscheinen kann.",
+            "Dass eine lange Bildserie automatisch mehr Individuen enthält als eine kurze.",
+            "Dass jede neue Aufnahme nach einem Ortswechsel ein neues Individuum belegt.",
+            "Dass bei gleicher Art jede Aufnahme unabhängig von den übrigen ausgewertet werden kann."
+          ],
+          "answer": 0,
+          "explain": "Wiederholte Nachweise müssen von verschiedenen Individuen unterschieden werden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "nachweis",
+          "q": "Warum sind Wechselkamera und Zufallsstandort nicht automatisch gleichwertige Stichproben?",
+          "options": [
+            "Weil die höhere Bildzahl schon die bessere Repräsentativität beweist.",
+            "Weil lokale Strukturen die Nachweiswahrscheinlichkeit beeinflussen können.",
+            "Weil gleicher Kameratyp alle Unterschiede der Platzierung ausgleicht.",
+            "Weil nur die Gesamtfläche, nicht aber der Erfassungsbereich zur Stichprobe gehört."
+          ],
+          "answer": 1,
+          "explain": "Die gepaarte Originalstudie zeigt konkrete Effekte lokaler Strukturen; deren Größen werden hier nicht übertragen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "vergleich",
+          "q": "Die Kamera wird versetzt und liefert danach mehr Aufnahmen. Welche Auswertung ist angemessen?",
+          "options": [
+            "Die zusätzlichen Aufnahmen ohne weitere Prüfung als Bestandszuwachs ausweisen.",
+            "Die neue Position weiterhin als unveränderten Vergleichsstandort führen.",
+            "Die Umstellung dokumentieren und ihre Wirkung vor einer Bestandsdeutung prüfen.",
+            "Nur die neuen und alten Dateisummen vergleichen, wenn die Monate gleich lang sind."
+          ],
+          "answer": 2,
+          "explain": "Eine veränderte Stichprobe kann den beobachteten Unterschied erzeugen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "vergleich",
+          "q": "Wie wird ein Zeitraum mit leerer Batterie erfasst?",
+          "options": [
+            "Als Zeitraum mit gesicherter Abwesenheit der Zielart.",
+            "Als reguläre Erfassung mit null Nachweisen in gleicher Qualität.",
+            "Als fehlende Bilder, die durch den Mittelwert der Nachbartage ersetzt werden können.",
+            "Als Datenlücke beziehungsweise Ausfallzeit."
+          ],
+          "answer": 3,
+          "explain": "Ohne funktionierende Erfassung liegt kein belastbarer Negativnachweis vor."
+        },
+        {
+          "id": "q6",
+          "lessonId": "vergleich",
+          "q": "Welche Ergänzung hilft beim Vergleich zweier Monatsordner besonders?",
+          "options": [
+            "Nutzbare Betriebszeit, Ausfälle, Standort und Einstellungen.",
+            "Nur die höchste Zahl gleichzeitig sichtbarer Tiere, ohne Standortangabe.",
+            "Die Zahl aller Dateien ohne Trennung von Serien und Betriebszeit.",
+            "Nur die Kalendermonate, auch wenn die Kameras unterschiedlich lange liefen."
+          ],
+          "answer": 0,
+          "explain": "Erfassungsaufwand und geänderte Bedingungen gehören vor die Interpretation der Bildzahlen."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-totholz-mikrohabitate-2026",
+      "title": "Totholz lesen: Lage, Zerfall und kleine Lebensräume",
+      "category": "Natur & Revier",
+      "topic": "Hege/Naturschutz",
+      "description": "Holzstrukturen als verschiedene Lebensräume erfassen und ihre zeitliche Entwicklung verstehen.",
+      "minutes": 20,
+      "objectives": [
+        "Totholzmenge von Strukturqualität unterscheiden",
+        "Mikrohabitate ohne Eingriff beschreiben",
+        "Entwicklung und Nachschub gemeinsam betrachten"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "AT": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "CH": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Ökologischer Wert von Totholz und Habitatbäumen",
+          "url": "https://totholz.wsl.ch/de/totholz/vielfaeltiger-lebensraum/oekologischer-wert/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "supports": "Baumart, Dimension, Mikroklima, Lage und Abbauphase beeinflussen Lebensgemeinschaften; viel kleines Holz ersetzt großes Substrat nicht für dieselben Arten."
+        },
+        {
+          "label": "Totholzmengen im Wald: ökologische Einordnung",
+          "url": "https://www.bfn.de/daten-und-fakten/totholzmengen-im-wald",
+          "organization": "Bundesamt für Naturschutz",
+          "supports": "Zersetzungsstadien bilden unterschiedliche Strukturen und Lebensräume; Erscheinungsform und räumliche Verteilung zählen neben der Menge. Historische Inventurzahlen werden nicht übernommen."
+        },
+        {
+          "label": "Mikrohabitate entstehen und vergehen",
+          "url": "https://totholz.wsl.ch/de/walddynamik/mikrohabitate-entstehen-und-vergehen/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "supports": "Entstehung, Veränderung und Verlust von Mikrohabitaten; kontinuierlicher Nachschub und räumliche Erreichbarkeit."
+        },
+        {
+          "label": "Waldnaturschutz: Ergebnisse der vierten Bundeswaldinventur",
+          "url": "https://www.lwf.bayern.de/forschungsfoerderung/377622/index.php",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "supports": "Verschiedene Zersetzungsphasen haben unterschiedliche Artengemeinschaften; Kontinuität und Nachlieferung sind wichtig. Keine Mengen-Zielwerte oder Inventurprozente übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "struktur",
+          "title": "Nicht jeder tote Stamm bietet dasselbe",
+          "paragraphs": [
+            "Totholz ist kein einheitliches Material. Baumart, Durchmesser, Zersetzungsgrad, Position und Mikroklima beeinflussen, welche Organismen es nutzen können. Ein stehender Stamm, ein liegender Stamm im Schatten und besonnte Kronenäste bieten unterschiedliche Bedingungen. Deshalb reicht eine reine Mengenangabe nicht aus, um ihre ökologische Funktion gleichzusetzen. Die WSL und das BfN beschreiben diese Vielfalt ausdrücklich als entscheidenden Teil des Lebensraums.",
+            "Auch gleiche Holzvolumina müssen nicht dieselben Artengemeinschaften beherbergen. Viele kleine Äste sind kein vollständiger Ersatz für einen starken Stamm. Die Unterscheidung ist nützlich, wenn du bei einer gemeinsamen Revierbegehung über Lebensraumstrukturen sprichst: Nenne zuerst, was vorhanden ist, statt aus „viel Holz“ bereits eine vollständige Bewertung abzuleiten. Ein genauer Artennachweis braucht zusätzlich geeignete Beobachtungen oder eine fachliche Erhebung.",
+            "Lernbeispiel: Zwei Flächen enthalten sichtbar ähnlich viel totes Holz. Auf der einen liegt überwiegend dünnes Astmaterial, auf der anderen stehen und liegen verschieden starke Stämme. Dein Protokoll erfasst diese Unterschiede mit Übersichtsfotos von sicheren Wegen. Du brichst keine Rinde ab und räumst keine Höhle aus, um vermeintlich nachzuweisen, dass dort Leben vorhanden ist."
+          ],
+          "takeaway": "Menge, Dimension, Lage und Zerfall sind verschiedene Merkmale der Lebensraumqualität.",
+          "exercise": "Beschreibe zwei Holzstrukturen mit denselben Merkmalen, ohne ihnen unbelegte Bewohner zuzuordnen."
+        },
+        {
+          "id": "zeit",
+          "title": "Lebensräume haben eine Entwicklungsgeschichte",
+          "paragraphs": [
+            "Mit dem Zerfall verändern sich Holz und die Bedingungen für seine Bewohner. Die Zusammensetzung der Lebensgemeinschaften wechselt zwischen Abbauphasen. Auch Baum-Mikrohabitate wie Höhlen, Spalten oder Rindenverletzungen entstehen, verändern sich und können verschwinden. Ein sichtbarer Zustand ist daher eine Momentaufnahme. Die WSL beschreibt das zeitliche Nachliefern von Mikrohabitaten; die LWF betont entsprechend die Bedeutung verschiedener Zersetzungsstadien und ihrer Kontinuität.",
+            "Ein alter Höhlenbaum und ein junger Baum mit einer Verletzung erfüllen nicht bereits dieselbe Funktion. Der jüngere kann eine künftige Entwicklung ermöglichen, ersetzt aber nicht sofort den vorhandenen Hohlraum. Für eine fachliche Bestandsbeschreibung lohnt sich deshalb die Trennung von aktuell sichtbarem Mikrohabitat, möglichem Entwicklungspotenzial und bloßer Vermutung über Besiedlung. Die genannten Forschungsquellen begründen keinen allgemeinen Auftrag, Bäume eigenmächtig zu verändern.",
+            "Lernbeispiel: In einer wiederholten Begehung wird eine zuvor dokumentierte Rindentasche anders vorgefunden. Halte die Veränderung am selben Baum fest und prüfe mit der zuständigen Fachperson den weiteren Beobachtungsplan. Ein neuer Asthaufen an anderer Stelle beweist nicht automatisch, dass alle bisherigen Habitatfunktionen ersetzt wurden. Zum Lernen reichen sichere Übersicht, nachvollziehbare Zuordnung und ein vorsichtiger Vergleich."
+          ],
+          "takeaway": "Ein neues Holzangebot ersetzt nicht sofort jeden alten Lebensraum; Entwicklung und Kontinuität zählen.",
+          "exercise": "Trenne in einer Beispielnotiz vorhandene Höhle, möglichen Entwicklungsbaum und unbekannte Besiedlung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "struktur",
+          "q": "Welche Angabe ergänzt eine Totholzmenge fachlich sinnvoll?",
+          "options": [
+            "Nur die Summe des sichtbaren Holzvolumens.",
+            "Baumart, Dimension, Lage und Zersetzungsgrad.",
+            "Nur die längste Stammabmessung, ohne weitere Strukturmerkmale.",
+            "Nur die Zahl frisch gefallener Äste, unabhängig von allem übrigen Holz."
+          ],
+          "answer": 1,
+          "explain": "Die Quellen nennen mehrere Strukturmerkmale, die verschiedene Lebensgemeinschaften mitbestimmen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "struktur",
+          "q": "Gleiches Volumen aus dünnen Ästen und starken Stämmen bedeutet ...",
+          "options": [
+            "Dass beide dieselbe Menge gleich geeigneter Mikrohabitate besitzen.",
+            "Dass die stärkeren Stämme durch dieselbe Menge Astholz funktional vollständig ersetzbar sind.",
+            "Nicht automatisch dieselben Lebensräume und Artengemeinschaften.",
+            "Dass Lage und Abbauphase bei diesem Vergleich keine zusätzliche Rolle spielen."
+          ],
+          "answer": 2,
+          "explain": "Substratdimension und weitere Eigenschaften können trotz gleicher Menge unterschiedliche Arten begünstigen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "struktur",
+          "q": "Wie wird ein vermuteter Hohlraum bei der Lernbegehung geprüft?",
+          "options": [
+            "Eine Rindentasche aufbiegen, bis die mögliche Besiedlung sichtbar wird.",
+            "Material aus der Höhle entnehmen, um den Nachweis zu vereinfachen.",
+            "Die aufgrund des Habitats erwarteten Arten bereits als nachgewiesen eintragen.",
+            "Sicher sichtbar dokumentieren; Besiedlung gegebenenfalls offenlassen."
+          ],
+          "answer": 3,
+          "explain": "Die Lernaufgabe braucht keinen Eingriff. Strukturbeobachtung und Artennachweis sind zu trennen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "zeit",
+          "q": "Warum ist die Zersetzungsphase für Artenkunde wichtig?",
+          "options": [
+            "Weil sich Bedingungen und Lebensgemeinschaften im Zerfall verändern.",
+            "Weil die am frischen Stamm gefundene Gemeinschaft jeden weiteren Zustand repräsentiert.",
+            "Weil gleiche Baumart unabhängig vom Zerfall dieselben Funktionen garantiert.",
+            "Weil fortgeschrittene Zersetzung nur Volumenverlust ohne Habitatänderung bedeutet."
+          ],
+          "answer": 0,
+          "explain": "WSL und LWF beschreiben unterschiedliche Artengemeinschaften in verschiedenen Abbauphasen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "zeit",
+          "q": "Ein junger Baum mit Verletzung wird neben einem alten Höhlenbaum erfasst. Welche Aussage passt?",
+          "options": [
+            "Die Verletzung als bereits vorhandene voll entwickelte Höhle mitzählen.",
+            "Sichtbares Habitat und mögliches Entwicklungspotenzial getrennt erfassen.",
+            "Beide Bäume allein wegen gleicher Baumart als funktional gleichwertig bewerten.",
+            "Den Entwicklungsbaum als sofortigen vollständigen Ersatz des alten Hohlraums eintragen."
+          ],
+          "answer": 1,
+          "explain": "Entstehung und Veränderung brauchen Zeit; Potenzial ist nicht mit aktuell vorhandener Struktur gleichzusetzen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "zeit",
+          "q": "Was verbessert eine wiederholte Mikrohabitat-Beobachtung?",
+          "options": [
+            "Bei jedem Termin einen möglichst ähnlichen anderen Baum als Fortsetzung wählen.",
+            "Nur noch die aktuelle Form erfassen und frühere Merkmale überschreiben.",
+            "Dasselbe Objekt zuordnen und Veränderungen nachvollziehbar dokumentieren.",
+            "Eine neue Holzablage ohne Strukturvergleich als gleichwertigen Ersatz erfassen."
+          ],
+          "answer": 2,
+          "explain": "Nur ein zuordenbarer Verlauf zeigt, welche Struktur sich tatsächlich verändert hat."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-hund-belohnungswert-2026",
+      "title": "Was der Hund wirklich belohnend findet",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Futter, Zuwendung und beobachtete Wahl unterscheiden; Forschungsbefunde nicht zu starren Trainingsrezepten machen.",
+      "minutes": 20,
+      "objectives": [
+        "Belohnungswert als individuelle Größe erklären",
+        "Beobachtetes Verhalten von Gefühlsdiagnosen trennen",
+        "Eine kleine faire Lernbeobachtung dokumentieren"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "AT": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "CH": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Incentive motivation in pet dogs · Bremhorst et al. 2018",
+          "url": "https://www.nature.com/articles/s41598-018-28079-5",
+          "organization": "Vetsuisse-Fakultät, Universität Bern",
+          "supports": "Originale Wahlversuche: individuelle Vorlieben bei konstanten oder wechselnden Futterbelohnungen; kein universeller Vorteil von Abwechslung. Belohnungswert hängt von Individuum und Kontext ab."
+        },
+        {
+          "label": "Most domestic dogs prefer food to petting · Feuerbacher & Wynne 2014",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/jeab.81/full",
+          "organization": "University of Florida; Arizona State University",
+          "supports": "Unabhängige Originalstudie: Wahl zwischen Futter und Streicheln wird durch Population, Kontext und Darbietung beeinflusst; Gruppenpräferenz ist keine ausnahmslose Individualregel."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "wert",
+          "title": "Gut gemeint ist noch nicht gleich wirksam",
+          "paragraphs": [
+            "Eine Konsequenz wirkt als Verstärker, wenn das Verhalten, auf das sie folgt, erhalten oder häufiger wird. Die Absicht der führenden Person allein entscheidet das nicht. Untersuchungen zur Belohnungswahl von Hunden zeigen individuelle und kontextabhängige Unterschiede: Futter, sozialer Kontakt und unterschiedliche Futterangebote haben keinen für jedes Tier identischen Wert. Eine Gruppenpräferenz ist deshalb keine Garantie für den einzelnen Jagdhund.",
+            "Die Berner Originalstudie verglich konstante mit wechselnden Futterbelohnungen und fand unterschiedliche individuelle Vorlieben, keinen ausnahmslosen Vorteil der Abwechslung. Eine davon unabhängige Wahlstudie zwischen Futter und Streicheln zeigt ebenfalls die Bedeutung von Kontext und Darbietung. Diese Befunde sind wertvoll, gerade weil sie einfache Sätze wie „Lob reicht immer“ oder „mehr Abwechslung ist immer besser“ nicht stützen.",
+            "Lernbeispiel: Bei einer bereits bekannten, unbelastenden Alltagsaufgabe beobachtest du, welche geeignete Konsequenz dein Hund freiwillig erneut aufsucht und wie sich die weitere Mitarbeit entwickelt. Notiere die Situation und vermeide es, aus einem einzigen Durchgang eine feste Rangliste aller Belohnungen zu machen. Erforderliche Versorgung wird dabei nicht entzogen. Die Aufgabe ersetzt keine fachliche Ausbildung für einen realen jagdlichen Einsatz."
+          ],
+          "takeaway": "Belohnungswert wird am Hund und am Verhalten geprüft, nicht allein am Plan der Person.",
+          "exercise": "Beschreibe eine beobachtete Wahl mit Kontext, ohne daraus eine allgemeine Rasseneigenschaft zu machen."
+        },
+        {
+          "id": "deutung",
+          "title": "Eine gemessene Wahl ist keine allgemeine Charaktereigenschaft",
+          "paragraphs": [
+            "Belohnungswahl wird in einem konkreten Versuchsaufbau erfasst. Die Berner Originalstudie verglich konstante und wechselnde Futterangebote, die unabhängige Studie von Feuerbacher und Wynne dagegen Futter und Streicheln unter verschiedenen Bedingungen. Beide Arbeiten zeigen, dass Gruppenbeschreibung, individuelle Vorliebe und konkrete Darbietung auseinandergehalten werden müssen. Die Befunde beantworten ihre jeweilige Frage; sie ergeben keine unveränderliche Rangliste für jeden Hund.",
+            "Auch das beobachtete Maß muss benannt werden. Die Wahl einer Option und die Zeit in der Nähe einer belohnenden Person beschreiben zunächst unterschiedliche Handlungen. Für dein Protokoll heißt das: Schreibe zuerst auf, was tatsächlich geschah. „Verlässt den Gegenstand nach dem Angebot“ ist eine andere Aussage als „will mich bestrafen“. Eine Absicht oder eine medizinische Ursache ist mit dieser Beobachtung allein nicht nachgewiesen.",
+            "Lernbeispiel: Nach einer Änderung der angebotenen Konsequenz wendet sich der Hund häufiger ab. Halte Angebot, Situation und Reaktion fest, statt daraus sofort eine feste Charakterbewertung abzuleiten. Wenn du die Lernaufgabe vereinfachst, dokumentiere auch diese Änderung. Die selbst erstellte Beobachtung ist keine wissenschaftliche Untersuchung. Aus den begrenzten Wahlstudien folgt weder ein fertiger Belohnungsplan für alle Rassen noch ein Nachweis der Einsatzfähigkeit bei jeder jagdlichen Spezialaufgabe."
+          ],
+          "takeaway": "Messbare Handlung, Interpretation und offene Ursache gehören in getrennte Sätze.",
+          "exercise": "Ersetze „Der Hund ist beleidigt“ durch eine beobachtbare Beschreibung und eine ausdrücklich offene Erklärung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "wert",
+          "q": "Wann wird eine Konsequenz fachlich als Verstärker bezeichnet?",
+          "options": [
+            "Wenn die führende Person sie als besonders freundlich beabsichtigt.",
+            "Wenn der Hund das Angebot einmal kurz betrachtet.",
+            "Wenn die gleiche Konsequenz bei anderen Hunden zuverlässig wirkt.",
+            "Wenn sie das vorausgehende Verhalten erhält oder häufiger werden lässt."
+          ],
+          "answer": 3,
+          "explain": "Entscheidend ist die beobachtete Wirkung auf Verhalten, nicht allein die menschliche Absicht."
+        },
+        {
+          "id": "q2",
+          "lessonId": "wert",
+          "q": "Was folgt aus individuellen Vorlieben in den Wahlstudien?",
+          "options": [
+            "Die passende Konsequenz muss im konkreten Zusammenhang beobachtet werden.",
+            "Die im Gruppenmittel bevorzugte Konsequenz ist für jedes Tier verbindlich.",
+            "Eine einmal beobachtete Vorliebe reicht als unveränderlicher Trainingsplan.",
+            "Die Rassezugehörigkeit ersetzt die Prüfung am Individuum."
+          ],
+          "answer": 0,
+          "explain": "Die Originalarbeiten zeigen Variation statt einer ausnahmslosen Rangliste."
+        },
+        {
+          "id": "q3",
+          "lessonId": "wert",
+          "q": "Ein Artikel behauptet: Wechselnde Futterangebote sind immer überlegen. Wie passt das zur Berner Studie?",
+          "options": [
+            "Genau: Die wechselnde Option wurde von jedem einzelnen Hund bevorzugt.",
+            "Nicht: Die Hunde zeigten unterschiedliche Vorlieben.",
+            "Die feste Lieblingsbelohnung war bei allen Hunden grundsätzlich wirkungslos.",
+            "Die Gruppenbeschreibung macht die individuellen Unterschiede für die Anwendung unwichtig."
+          ],
+          "answer": 1,
+          "explain": "Es gab keine allgemeine Gruppenpräferenz, die ein starres Rezept für jedes Tier rechtfertigt."
+        },
+        {
+          "id": "q4",
+          "lessonId": "deutung",
+          "q": "Welche Notiz trennt Handlung und Interpretation?",
+          "options": [
+            "Er ist beleidigt; das ist durch das Abwenden bewiesen.",
+            "Er verweigert absichtlich die Zusammenarbeit; weitere Beobachtung ist unnötig.",
+            "Er wandte sich nach dem Angebot ab; der Grund ist noch offen.",
+            "Er ist grundsätzlich ungeeignet; ein einzelner Durchgang genügt zur Beurteilung."
+          ],
+          "answer": 2,
+          "explain": "Die beschriebene Handlung ist beobachtbar; eine bestimmte Absicht ist dadurch allein nicht nachgewiesen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "deutung",
+          "q": "Warum werden Wahl einer Option und Verweildauer getrennt beschrieben?",
+          "options": [
+            "Weil beide Angaben austauschbare Namen derselben Handlung sind.",
+            "Weil aus einer langen Verweildauer die Absicht unmittelbar feststeht.",
+            "Weil die zunächst gewählte Option jede spätere Reaktion vollständig erklärt.",
+            "Weil unterschiedliche erkennbare Verhaltensmaße erfasst werden."
+          ],
+          "answer": 3,
+          "explain": "Die Wahl einer Option und die Zeit bei einer belohnenden Person sind unterschiedliche Beobachtungsmaße. Sie müssen als solche benannt werden."
+        },
+        {
+          "id": "q6",
+          "lessonId": "deutung",
+          "q": "Welche Grenze gilt bei der Übertragung der Studien auf Jagdhunde?",
+          "options": [
+            "Kleine Haushundstudien liefern kein vollständiges Rezept für jede Spezialaufgabe.",
+            "Ein bevorzugtes Futter belegt bereits Zuverlässigkeit bei jeder Ablenkung.",
+            "Eine günstige Gruppenwirkung ersetzt die Bewertung des konkreten Teams.",
+            "Das Studienergebnis kann unverändert auf alle Einsatzbedingungen übertragen werden."
+          ],
+          "answer": 0,
+          "explain": "Die Studien beantworten begrenzte Fragen zu Belohnungswahl und Verhalten, keine umfassende Einsatzprüfung."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-wildbret-kontaktwege-2026",
+      "title": "Kreuzkontamination: Die unsichtbaren Kontaktwege",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Vom Rohfleisch über Hände und Griffe bis zur fertigen Speise: Hygieneketten nachvollziehen und unterbrechen.",
+      "minutes": 18,
+      "objectives": [
+        "Direkte und indirekte Übertragung erklären",
+        "Griffe und Utensilien im Ablauf berücksichtigen",
+        "Saubere Lagerung und Übergänge planen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "AT": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert.",
+        "CH": "Fachliche Grundlagen und Lernbeispiele; örtliche Vorschriften und professionelle Abklärungen bleiben gesondert."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Lebensmittelinfektionen im Privathaushalt · FAQ 2024",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/lebensmittelinfektionen-im-privathaushalt-quellen-erkennen-risiken-vermeiden",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Direkte und indirekte Kreuzkontamination, auch über Griffe; getrennte Utensilien und Zwischenreinigung; auslaufende Verpackungen und Lebensmittelsaft vermeiden. Keine tierärztliche Freigabe oder neue Temperaturangabe."
+        },
+        {
+          "label": "Hygiene im Umgang mit Lebensmitteln",
+          "url": "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+          "supports": "Keimübertragung über Hände, Bretter, Utensilien und Lappen; Hände und Arbeitsmittel reinigen, rohe und verzehrfertige Speisen trennen."
+        },
+        {
+          "label": "Hygienischer Umgang mit rohem Fleisch",
+          "url": "https://www.blv.admin.ch/dam/blv/de/dokumente/lebensmittel-und-ernaehrung/lebensmittelsicherheit/krankheitserreger-und-hygiene/flyer-umgang-mit-rohem-fleisch.pdf.download.pdf/Hygiene%2BFlyer%2BDE.pdf",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+          "supports": "Rohfleisch so lagern, dass kein Fleischsaft andere Lebensmittel verunreinigt; saubere Hände und getrennte Handhabung. Zeit- und Temperaturwerte dieses älteren Merkblatts werden nicht übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "kontakt",
+          "title": "Nicht nur das Messer verbindet zwei Lebensmittel",
+          "paragraphs": [
+            "Kreuzkontamination bezeichnet die Übertragung von Mikroorganismen zwischen Lebensmitteln. Sie kann durch direkten Kontakt erfolgen, aber auch indirekt über Hände, Arbeitsflächen und Utensilien. BfR und BLV beschreiben diese Wege übereinstimmend. Darum gehört zur Küchenhygiene mehr als die Frage, ob Rohfleisch und eine fertige Speise auf demselben Brett liegen.",
+            "Ein möglicher Kontaktweg führt vom rohen Fleisch zur Hand, von dort zum Griff und später über eine andere Hand zu einem Lebensmittel. Das BfR nennt solche Griffflächen ausdrücklich. Die allgemeine BLV-Regel, Hände und Arbeitsmittel zwischen Verarbeitungsschritten zu reinigen, unterbricht denselben Übertragungsweg. Eine optisch ordentliche Fläche ist kein mikrobiologischer Befund. Ein ungereinigter Zwischenschritt wird nicht dadurch unbedenklich, dass das Messer inzwischen gewechselt wurde.",
+            "Lernbeispiel: Eine Person schneidet rohes Wildfleisch, stellt die Gewürzdose zurück und richtet anschließend Brot an. Zeichne die möglichen Berührungen als eigene Lernskizze. Daraus folgt keine Behauptung, in dieser Küche sei tatsächlich ein bestimmter Erreger nachgewiesen. Die Aufgabe zeigt einen möglichen Weg und macht sichtbar, wo Händereinigung, eine gereinigte Kontaktfläche oder eine getrennte Arbeitsfolge erforderlich ist."
+          ],
+          "takeaway": "Die Kontaktkette umfasst Hände und Griffe ebenso wie Brett und Messer.",
+          "exercise": "Zeichne einen möglichen Übertragungsweg und markiere die Stelle, an der du ihn hygienisch unterbrichst."
+        },
+        {
+          "id": "trennen",
+          "title": "Trennung muss bis zur fertigen Speise reichen",
+          "paragraphs": [
+            "Rohe und gegarte beziehungsweise unmittelbar verzehrfertige Lebensmittel sollen so behandelt werden, dass keine Keime übertragen werden. Dafür werden getrennte Arbeitsmittel oder eine ausreichende Zwischenreinigung benötigt. Ein Teller, auf dem rohes Fleisch lag, ist keine ungeprüfte Ablage für fertig zubereitete Speisen. Auch während der Lagerung darf austretender Fleischsaft andere Lebensmittel nicht erreichen.",
+            "Plane den Übergang zwischen den Arbeitsschritten bewusst. Stelle saubere Behälter und geeignete Utensilien bereit, bevor die Handhabung von Rohfleisch beginnt. Bei einem Wechsel zur fertigen Speise gehören Hände und beteiligte Flächen in die Prüfung. Die Empfehlungen von BfR und BLV betreffen den hygienischen Umgang mit Lebensmitteln; sie ersetzen weder die erforderliche Untersuchung eines Stücks Wild noch örtliche Abgabevorgaben.",
+            "Lernbeispiel: Beim gemeinsamen Essen soll gegartes Fleisch auf die bisherige Rohfleischplatte zurück. Die passende Korrektur ist ein sauberer separater Teller. Für den Kühlschrankvergleich zeichnest du geschlossene Behälter so ein, dass Saft nicht auf anderes Essen gelangen kann. Diese selbst erstellten Fälle prüfen Kontaktwege. Sie enthalten bewusst keine neuen Lagerfristen oder pauschalen Temperaturfreigaben, weil Prozess, Produkt und geltende Vorgaben gesondert stimmen müssen."
+          ],
+          "takeaway": "Ein sauberer Übergang schützt auch nach der Zubereitung vor erneuter Übertragung.",
+          "exercise": "Prüfe in einem Beispielablauf Rohfleischbehälter, Arbeitsmittel und die Ablage der fertigen Speise."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "kontakt",
+          "q": "Welcher Weg ist eine mögliche indirekte Kreuzkontamination?",
+          "options": [
+            "Fleisch → ungereinigte Hand → Griff → Hand → verzehrfertige Speise.",
+            "Nur direkter Kontakt zwischen rohem und gegartem Fleisch, andere Wege zählen nicht.",
+            "Nur gemeinsames Lagern ohne jeden Kontakt oder Saftaustritt.",
+            "Nur die Erhitzung einer Speise; spätere Berührungen sind kein Übertragungsweg."
+          ],
+          "answer": 0,
+          "explain": "Über Hände und Kontaktflächen kann eine Übertragung auch ohne direkten Kontakt beider Speisen erfolgen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "kontakt",
+          "q": "Das Messer wurde gewechselt, die zuvor berührte Gewürzdose nicht gereinigt. Was bleibt zu prüfen?",
+          "options": [
+            "Nur ob für die fertige Speise ein anderes Messer bereitliegt.",
+            "Der mögliche Kontaktweg über Hände und Griffstellen.",
+            "Nur ob der Griff vor Beginn optisch sauber aussah.",
+            "Nur ob die Dose während des Rohfleischkontakts geschlossen war."
+          ],
+          "answer": 1,
+          "explain": "Ein Messerwechsel unterbricht nicht automatisch jeden anderen Übertragungsweg."
+        },
+        {
+          "id": "q3",
+          "lessonId": "kontakt",
+          "q": "Was belegt eine sichtbar saubere Fläche allein?",
+          "options": [
+            "Dass kein Keimübertragungsweg mehr bestehen kann.",
+            "Dass alle später darauf bearbeiteten Lebensmittel sicher untersucht sind.",
+            "Ihr sichtbares Erscheinungsbild, keinen mikrobiologischen Laborbefund.",
+            "Dass nach einem Messerwechsel keine Handreinigung mehr nötig ist."
+          ],
+          "answer": 2,
+          "explain": "Die Lernaufgabe bewertet Kontaktwege; Sichtkontrolle ist kein Erregernachweis."
+        },
+        {
+          "id": "q4",
+          "lessonId": "trennen",
+          "q": "Gegartes Fleisch soll auf eine ungereinigte Rohfleischplatte. Was ist richtig?",
+          "options": [
+            "Die Rohfleischplatte nur trocken abwischen.",
+            "Den freien Rand derselben ungereinigten Platte benutzen.",
+            "Die Platte nur kurz verwenden, weil das Fleisch schon gegart ist.",
+            "Eine saubere getrennte Ablage verwenden."
+          ],
+          "answer": 3,
+          "explain": "Rohe und gegarte Speisen sollen getrennt bleiben, damit keine erneute Übertragung erfolgt."
+        },
+        {
+          "id": "q5",
+          "lessonId": "trennen",
+          "q": "Warum werden Rohfleischbehälter auslaufsicher aufbewahrt?",
+          "options": [
+            "Damit Fleischsaft andere Lebensmittel nicht verunreinigt.",
+            "Weil eine geschlossene Verpackung eine nötige Untersuchung ersetzt.",
+            "Weil Auslaufsicherheit jede weitere Lagerbedingung entbehrlich macht.",
+            "Weil nur tropfende, nicht aber berührte Utensilien Keime übertragen können."
+          ],
+          "answer": 0,
+          "explain": "Die Quellen nennen die Vermeidung austretenden Safts als Teil der Produkthygiene."
+        },
+        {
+          "id": "q6",
+          "lessonId": "trennen",
+          "q": "Welche Aussage beschreibt die Grenze dieser Lektion?",
+          "options": [
+            "Eine richtige Küchenreihenfolge genügt als vollständige Abgabeberechtigung.",
+            "Hygieneplanung ersetzt keine erforderliche Untersuchung oder örtliche Abgaberegel.",
+            "Eine saubere Ablage bestätigt rückwirkend die Unbedenklichkeit des rohen Stücks.",
+            "Nach einer Zwischenreinigung sind sämtliche vorgeschalteten Untersuchungen überflüssig."
+          ],
+          "answer": 1,
+          "explain": "Der Kurs behandelt Kontaktwege und macht daraus keine umfassende Freigabe eines Lebensmittels."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+      "title": "Rechtsquellen: Fassung, Datum und Zuständigkeit prüfen",
+      "category": "Jagdrecht",
+      "topic": "Recht",
+      "description": "Amtliche Texte und Erläuterungen zusammen lesen; österreichische Datenbankbegriffe und regionale Rechtsprüfung in DACH sauber trennen.",
+      "minutes": 22,
+      "objectives": [
+        "Kundmachung und konsolidierte Information unterscheiden",
+        "Geltungsdatum und Abrufdatum getrennt notieren",
+        "Örtliche Regeln mit ihrer zuständigen Ebene verbinden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Deutsche Frage zu Bund/Land ist mit DE gekennzeichnet. Örtliche Landesregeln sind vor einer realen Entscheidung gesondert zu prüfen.",
+        "AT": "RIS-Begriffe und Datumsauswahl werden am österreichischen Originalrecht und der amtlichen Hilfe erklärt; AT-Fragen sind entsprechend gekennzeichnet.",
+        "CH": "Die kantonale Zuständigkeit ist am JSG und der BAFU-Erläuterung geprüft. Keine konkrete kantonale Jagdzeit oder Berechtigung wird freigegeben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Bundesgesetzblattgesetz §§ 6–13 · Fassung am Prüftag",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20002988",
+          "organization": "Republik Österreich · Gesetzestext im RIS",
+          "supports": "RIS unterscheidet Verlautbarung und bloße Rechtsinformation; signierte Kundmachung, zeitlicher Geltungsbereich und nichtauthentische Informationsdaten. Keine örtliche Jagderlaubnis daraus abgeleitet."
+        },
+        {
+          "label": "RIS: Allgemeine Informationen und Dokumentationsgrenzen",
+          "url": "https://ris.bka.gv.at/UI/Info.aspx",
+          "organization": "Bundeskanzleramt Österreich · RIS",
+          "supports": "Amtliche Erläuterung: authentische Kundmachung und konsolidierte Dokumentation sind zu unterscheiden. Gemeinsam mit dem Gesetzestext Rechtsquellenpaar, keine zweite unabhängige Forschungsstudie."
+        },
+        {
+          "label": "RIS-Hilfe: Fassung vom",
+          "url": "https://ris.bka.gv.at/UI/Help.aspx?Abfrage=Landesnormen&Field=FassungVomField",
+          "organization": "Bundeskanzleramt Österreich · RIS",
+          "supports": "Tagesdatum kann verändert werden; historische und künftige Fassungen sind möglich; Übergangsregeln werden nicht vollständig durch das Suchfeld abgebildet."
+        },
+        {
+          "label": "Bundesjagdgesetz: § 1 Absatz 6 und § 22",
+          "url": "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+          "organization": "Bundesrepublik Deutschland · BMJ/BfJ",
+          "supports": "Bundesjagdrecht enthält Beschränkungen und verweist auf landesrechtliche Vorschriften; Jagdzeitbestimmungen stehen nicht isoliert. Keine konkrete Jagdzeit eines Bundeslands freigegeben."
+        },
+        {
+          "label": "Bundesjagdgesetz: Einordnung von Bund und Ländern",
+          "url": "https://www.bmel.de/DE/themen/tiere/jagd/aenderung-jagdrechtliche-vorschriften.html",
+          "organization": "Bundesministerium für Landwirtschaft, Ernährung und Heimat",
+          "supports": "Amtliche Erläuterung: Bundesregelungen und nähere beziehungsweise abweichende Landesregelungen sind gemeinsam zu berücksichtigen."
+        },
+        {
+          "label": "Jagdgesetz: Artikel 3 · amtlicher Volltext",
+          "url": "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/506_506_506/20250201/de/html/fedlex-data-admin-ch-eli-cc-1988-506_506_506-20250201-de-html.html",
+          "organization": "Schweizerische Eidgenossenschaft · Fedlex",
+          "supports": "Tatsächlich gelesener amtlicher Text, Stand 1. Februar 2025: Kantone regeln und planen die Jagd und bestimmen Jagdsystem, Jagdgebiet und Berechtigungsvoraussetzungen. Keine aktuelle kantonale Jagdzeit geprüft."
+        },
+        {
+          "label": "Jagd: Rahmen des Bundes und kantonale Umsetzung",
+          "url": "https://www.bafu.admin.ch/de/jagd",
+          "organization": "Bundesamt für Umwelt",
+          "supports": "Amtliche Erläuterung der kantonalen Regelung und Planung innerhalb des Bundesrahmens; zuständige kantonale Jagdverwaltungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "fassung",
+          "title": "Ein sichtbares Datum sagt noch nicht alles",
+          "paragraphs": [
+            "In Österreich dient das RIS sowohl der Kundmachung von Rechtsvorschriften als auch der Information über das Recht. Das Bundesgesetzblattgesetz unterscheidet diese Funktionen; die amtliche RIS-Erläuterung erklärt den Unterschied zwischen authentischer Kundmachung und konsolidierter Dokumentation. Eine konsolidierte Darstellung arbeitet Änderungen in einen lesbaren Text ein. Sie ist nicht schon deshalb selbst die authentische Veröffentlichung jeder Änderung.",
+            "Die RIS-Suche „Fassung vom“ erlaubt außerdem andere Daten als den heutigen Tag, darunter historische und bereits dokumentierte zukünftige Fassungen. Die Hilfe warnt, dass Übergangsregeln dadurch nicht vollständig abgebildet werden. Halte deshalb Fundstelle, ausgewähltes Fassungsdatum, einschlägiges Inkrafttreten und eigenes Abrufdatum auseinander. Diese österreichischen Portalbegriffe sind kein allgemeiner technischer Aufbau sämtlicher deutscher oder schweizerischer Rechtsdatenbanken.",
+            "Lernbeispiel: Zwei Personen lesen dieselbe Norm mit unterschiedlichen eingestellten Datumsfeldern und melden abweichende Texte. Vergleicht zuerst die Fassungen und die zugehörige Kundmachung. Ein neuerer Seitenaufruf beweist nicht, dass die gelesene Regel zum fraglichen Ereignistag gegolten hat. Aus dieser Quellenübung wird keine Erlaubnis zu einer konkreten Jagdhandlung abgeleitet; unklare Übergangsfragen gehören in die zuständige fachliche Klärung."
+          ],
+          "takeaway": "Kundmachung, ausgewählte Fassung, Inkrafttreten und Abruf sind unterschiedliche Angaben.",
+          "exercise": "Notiere an einem österreichischen amtlichen Beispiel diese Angaben getrennt, ohne eine örtliche Jagdfreigabe zu formulieren."
+        },
+        {
+          "id": "ort",
+          "title": "Eine richtige Bundesstelle ist noch kein örtlich vollständiger Fall",
+          "paragraphs": [
+            "Deutschland und die Schweiz zeigen auf unterschiedliche Weise, warum eine richtige Fundstelle noch keine vollständig geprüfte örtliche Jagdfrage beantwortet. Das deutsche Bundesjagdgesetz enthält Verweise und Spielräume für Landesrecht; das zuständige Bundesministerium erläutert, dass Länder nähere und in vielen Fällen abweichende Regeln treffen. Eine isolierte Bundesliste ersetzt daher nicht die Prüfung des betreffenden Bundeslands.",
+            "Für die Schweiz regelt Artikel 3 des Jagdgesetzes, dass die Kantone die Jagd regeln und planen sowie Jagdsystem, Jagdgebiet und Berechtigungsvoraussetzungen bestimmen. Die BAFU-Erläuterung ordnet dies in den Bundesrahmen ein. Hieraus folgt als Arbeitsmethode: Ort und Zeitpunkt konkretisieren und die zuständige kantonale Ebene hinzunehmen. Dieser Kurs prüft weder eine bestimmte kantonale Saison noch eine allgemeine DACH-Jagdzeit.",
+            "Lernbeispiel: Eine Nachricht enthält lediglich ein Bundeszitat und die Aussage „gilt überall gleich“. Schreibe eine präzise Rückfrage mit Land, Bundesland beziehungsweise Kanton, Datum, Tierart und konkretem Anliegen. Verlange die dazu passende amtliche Grundlage. Die Rückfrage ist eine selbst erstellte Arbeitshilfe, keine verbindliche Rechtsauskunft. Für Österreich wird entsprechend der konkrete örtliche Regelungsbereich bestimmt; die deutschen und schweizerischen Zuständigkeitsaussagen werden nicht auf Österreich übertragen."
+          ],
+          "takeaway": "Bundesgrundlage und örtlich einschlägige Vorschrift müssen zum selben Fall passen.",
+          "exercise": "Verfasse eine kurze Quellenanfrage mit Ort, Datum, Sachverhalt und noch offener zuständiger Stelle."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "fassung",
+          "q": "Österreich: Worin unterscheidet sich konsolidierte Information von authentischer Kundmachung?",
+          "options": [
+            "Die konsolidierte Textansicht ist automatisch die authentische Veröffentlichung jeder Änderung.",
+            "Ein konsolidierter Text entscheidet bereits jeden einzelnen Anwendungsfall verbindlich.",
+            "Konsolidierung macht Änderungen lesbar, ersetzt aber nicht die authentische Kundmachung.",
+            "Nur der Abruf am heutigen Tag macht eine beliebige Textansicht authentisch."
+          ],
+          "answer": 2,
+          "explain": "Bundesgesetzblattgesetz und RIS-Erläuterung trennen die beiden Funktionen.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q2",
+          "lessonId": "fassung",
+          "q": "Zwei Quellenabrufe zeigen unterschiedliche Fassungen. Was wird zuerst verglichen?",
+          "options": [
+            "Nur welches Dokument zuletzt im eigenen Browser geöffnet wurde.",
+            "Nur die in einer Nachricht genannte Jahreszahl.",
+            "Nur die Aktualisierung des Suchtreffers, ohne Geltungsprüfung.",
+            "Ausgewählte Fassung, Inkrafttreten und maßgeblicher Ereigniszeitpunkt."
+          ],
+          "answer": 3,
+          "explain": "Ein Abrufdatum allein bestimmt nicht die rechtliche Geltung einer Fassung."
+        },
+        {
+          "id": "q3",
+          "lessonId": "fassung",
+          "q": "Österreich: Was erlaubt die RIS-Suche „Fassung vom“?",
+          "options": [
+            "Auch historische oder bereits dokumentierte zukünftige Fassungen auszuwählen.",
+            "Nur den geltenden Text ohne Möglichkeit eines Datumswechsels anzuzeigen.",
+            "Alle Übergangsregeln für jeden Einzelfall automatisch abschließend zu entscheiden.",
+            "Mit dem ausgewählten Datum zugleich die örtliche Jagdberechtigung nachzuweisen."
+          ],
+          "answer": 0,
+          "explain": "Die RIS-Hilfe beschreibt die Datumsauswahl und ihre Grenzen ausdrücklich.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q4",
+          "lessonId": "ort",
+          "q": "Deutschland: Warum genügt ein Bundesjagdgesetz-Zitat für eine konkrete Landesfrage nicht immer?",
+          "options": [
+            "Weil die neueste private Übersicht die amtlichen Texte automatisch ersetzt.",
+            "Weil einschlägiges beziehungsweise abweichendes Landesrecht hinzukommen kann.",
+            "Weil eine Bundesliste zugleich alle örtlichen Einschränkungen abschließend nennt.",
+            "Weil eine Bundesregel in jedem Fall ohne zusätzliche Ortsprüfung vorrangig gilt."
+          ],
+          "answer": 1,
+          "explain": "Bundesgesetz und amtliche Ministeriumserläuterung verlangen die örtliche Einordnung.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q5",
+          "lessonId": "ort",
+          "q": "Schweiz: Welche Ebene regelt und plant die Jagd nach Artikel 3 JSG innerhalb des Bundesrahmens?",
+          "options": [
+            "Ausschließlich der Bund, ohne eigene kantonale Regelungsaufgabe.",
+            "Die Gemeinden unabhängig vom Bundes- und Kantonsrahmen.",
+            "Die Kantone.",
+            "Die Grundeigentümer jeweils ohne kantonale Zuständigkeit."
+          ],
+          "answer": 2,
+          "explain": "Artikel 3 JSG und BAFU beschreiben diese kantonalen Aufgaben.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q6",
+          "lessonId": "ort",
+          "q": "Welche Rückfrage macht ein pauschales „überall erlaubt“ überprüfbar?",
+          "options": [
+            "An welchem Tag wurde der Link weitergeleitet, ohne weitere Ortsangaben?",
+            "Welche Regel gilt im Nachbarland für eine ähnlich benannte Art?",
+            "Welche Liste wirkt vollständiger, unabhängig von Fassung und Geltungsbereich?",
+            "Für welchen Ort, Zeitpunkt und Sachverhalt gilt welche amtliche Vorschrift?"
+          ],
+          "answer": 3,
+          "explain": "Der konkrete Geltungsbereich gehört vor jede örtliche Rechtsentscheidung."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-antwortsicherheit-feedback-2026",
+      "title": "Richtig geraten? Antwortsicherheit und Fehlerkorrektur",
+      "category": "Prüfung & Sprache",
+      "topic": "Prüfungsvorbereitung",
+      "description": "Unsichere richtige Antworten erkennen und aus der Erklärung einen neuen Abrufversuch entwickeln.",
+      "minutes": 18,
+      "objectives": [
+        "Richtigkeit und subjektive Sicherheit trennen",
+        "Korrekturen auch bei geratenen Treffern nutzen",
+        "Falsche Auswahlmöglichkeiten gezielt auflösen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe.",
+        "AT": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe.",
+        "CH": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Correcting a metacognitive error · Butler, Karpicke & Roediger 2008",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/18605878/",
+          "organization": "Washington University in St. Louis · Originalstudie",
+          "supports": "Rückmeldung kann auch das Behalten unsicher gegebener richtiger Antworten verbessern. Antwortsicherheit ist getrennt von Richtigkeit zu betrachten; keine Prozentgarantie für Jagdprüfungen."
+        },
+        {
+          "label": "Receiving right/wrong feedback · Fazio et al. 2010",
+          "url": "https://scholars.duke.edu/publication/725340",
+          "organization": "Duke University · Originalexperimente",
+          "supports": "Richtig/falsch allein unterstützt Fehlerkorrektur weniger als korrekte Antwort oder erneute Materialprüfung; niedrig sichere richtige Antworten profitieren teilweise. Unabhängige Versuchsdaten gegenüber Butler et al."
+        },
+        {
+          "label": "Feedback enhances the positive effects of multiple-choice testing · Butler & Roediger 2008",
+          "url": "https://psychnet.wustl.edu/memory/wp-content/uploads/2018/04/Butler-Roediger-2008_MemCog.pdf",
+          "organization": "Washington University in St. Louis · Originalexperimente",
+          "supports": "Rückmeldung nach Auswahlfragen verbessert spätere richtige Antworten und vermindert Übernahme falscher Antwortalternativen. Keine Aussage, dass bloßes Anklicken Verständnis beweist."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "sicherheit",
+          "title": "Ein Treffer kann eine offene Lernlücke verdecken",
+          "paragraphs": [
+            "Richtigkeit und Antwortsicherheit sind verschiedene Informationen. Du kannst eine Antwort richtig auswählen und dir trotzdem unsicher sein. Originalexperimente zeigen, dass Rückmeldung auch solchen richtigen, aber wenig sicheren Antworten beim späteren Behalten helfen kann. Eine grüne Markierung allein sollte deshalb nicht darüber entscheiden, ob ein Begriff schon sicher erklärt werden kann.",
+            "Notiere nach einer Frage kurz, ob du die Lösung begründen konntest oder zwischen Alternativen geraten hast. Diese Selbsteinschätzung ist kein objektiver Leistungsnachweis, sondern eine zusätzliche Lerninformation. Vergleiche sie anschließend mit Antwort und Erklärung. Ein unsicherer Treffer verdient Aufmerksamkeit, ebenso eine überzeugte falsche Antwort. Die angeführten Experimente betreffen begrenzte Lernaufgaben und versprechen keinen bestimmten Jagdprüfungserfolg.",
+            "Lernbeispiel: Du wählst die richtige Erklärung für einen Fachbegriff, könntest sie ohne Auswahlmöglichkeiten aber nicht formulieren. Lies die Begründung und erkläre den Begriff später in eigenen Worten erneut. Das ist ein selbst erstellter Lernablauf, keine Diagnose über dein Gedächtnis. Entscheidend ist, die Unsicherheit sichtbar zu machen und beim nächsten Versuch zu prüfen, ob nun eine nachvollziehbare Erklärung statt bloßes Wiedererkennen gelingt."
+          ],
+          "takeaway": "Richtige Antwort und sichere eigene Erklärung sind nicht dasselbe.",
+          "exercise": "Kennzeichne bei drei Übungsfragen zusätzlich, ob du begründet geantwortet oder geraten hast."
+        },
+        {
+          "id": "korrektur",
+          "title": "Die richtige Erklärung muss die falsche Idee ersetzen",
+          "paragraphs": [
+            "Auswahlfragen zeigen neben der richtigen Antwort auch falsche Möglichkeiten. Solche Alternativen können im Gedächtnis bleiben. Originalexperimente zu Multiple-Choice-Lernen zeigen, dass Rückmeldung die Übernahme falscher Alternativen vermindern und späteres richtiges Antworten verbessern kann. Eine unabhängige Versuchsreihe der Duke University fand, dass eine bloße Richtig/Falsch-Meldung für Fehlerkorrektur weniger nützlich war als die korrekte Antwort oder die erneute Prüfung des Lernmaterials.",
+            "Ergänze nach einem Fehler deshalb die sachlich richtige Aussage und benenne den entscheidenden Unterschied zur gewählten Alternative. „War falsch“ sagt noch nicht, was künftig richtig erklärt werden soll. Die wissenschaftlichen Befunde begründen den Nutzen inhaltlicher Rückmeldung; sie beweisen nicht, dass jede beliebige lange Erklärung automatisch besser ist oder dass eine Wiederholung sofort alle Fehler dauerhaft beseitigt.",
+            "Lernbeispiel: Du verwechselst Geweihabwurf mit Bastverlust. Dein Korrektursatz lautet: „Beim Bastverlust verschwindet die Haut; die Geweihstange kann noch vorhanden sein.“ Prüfe diesen Satz später ohne sichtbare Antwortliste und mit einer veränderten Formulierung. Die Anatomie wird im zugehörigen Fachkurs belegt; hier dient sie ausschließlich als gekennzeichnetes Lernbeispiel für das Auflösen einer konkreten Verwechslung."
+          ],
+          "takeaway": "Korrigiere die falsche Vorstellung mit einer inhaltlich richtigen Aussage, nicht nur mit einem roten Kreuz.",
+          "exercise": "Schreibe zu einem Fehler einen Korrektursatz und prüfe ihn später ohne Auswahlvorlage."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "sicherheit",
+          "q": "Eine Antwort ist richtig, wurde aber geraten. Was ist sinnvoll?",
+          "options": [
+            "Die Erklärung trotzdem prüfen und später selbst formulieren.",
+            "Den Begriff allein wegen der grünen Markierung als sicher beherrscht abhaken.",
+            "Nur die Position der richtigen Option für den nächsten Versuch merken.",
+            "Die Erklärung auslassen, weil bei einem Treffer keine Lernlücke bestehen kann."
+          ],
+          "answer": 0,
+          "explain": "Rückmeldung kann auch unsichere richtige Antworten festigen; der Treffer allein beweist keine sichere Erklärung."
+        },
+        {
+          "id": "q2",
+          "lessonId": "sicherheit",
+          "q": "Welche beiden Angaben werden getrennt erfasst?",
+          "options": [
+            "Anzahl der gelesenen Seiten und gefühlte Lernzeit.",
+            "Richtigkeit und subjektive Antwortsicherheit.",
+            "Länge einer Erklärung und Anzahl der Optionen.",
+            "Tempo beim Anklicken und Position des Antwortfeldes."
+          ],
+          "answer": 1,
+          "explain": "Eine richtige Antwort kann unsicher, eine falsche überzeugend gegeben werden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "sicherheit",
+          "q": "Was kann eine eigene Sicherheitseinstufung leisten?",
+          "options": [
+            "Die objektive Richtigkeit unabhängig vom Antwortinhalt festlegen.",
+            "Den späteren Abruf allein aufgrund eines guten Gefühls garantieren.",
+            "Zusätzliche Hinweise für die nächste Wiederholung geben.",
+            "Einen unsicheren Treffer ohne weitere Prüfung als sicheren Wissensnachweis behandeln."
+          ],
+          "answer": 2,
+          "explain": "Selbsteinschätzung ist Lerninformation und wird am tatsächlichen Ergebnis überprüft."
+        },
+        {
+          "id": "q4",
+          "lessonId": "korrektur",
+          "q": "Welche Rückmeldung löst eine Verwechslung am besten auf?",
+          "options": [
+            "Nur die Meldung falsch, ohne die richtige Aussage zu nennen.",
+            "Nur die Gesamtpunktzahl mit Aufforderung zur Wiederholung.",
+            "Nur den Buchstaben der richtigen Option auswendig lernen lassen.",
+            "Die richtige Aussage mit dem entscheidenden Unterschied zur falschen Alternative."
+          ],
+          "answer": 3,
+          "explain": "Die Originalarbeiten stützen inhaltliche Korrektur gegenüber einer bloßen Richtig/Falsch-Meldung."
+        },
+        {
+          "id": "q5",
+          "lessonId": "korrektur",
+          "q": "Warum verdienen falsche Antwortmöglichkeiten Beachtung?",
+          "options": [
+            "Weil sie als Fehlinformation im Gedächtnis bleiben können.",
+            "Weil mehrfach sichtbare falsche Alternativen dadurch fachlich richtig werden.",
+            "Weil ihre Position eine zuverlässige Merkhilfe für die fachliche Begründung ist.",
+            "Weil bei einem richtigen Klick jede falsche Vorstellung bereits ausgeschlossen ist."
+          ],
+          "answer": 0,
+          "explain": "Korrekte Rückmeldung soll verhindern, dass eine falsche Alternative später als Wissen erinnert wird."
+        },
+        {
+          "id": "q6",
+          "lessonId": "korrektur",
+          "q": "Was prüft der nächste Versuch ohne Antwortliste zusätzlich?",
+          "options": [
+            "Nur ob die Position der früheren Lösung erinnert wird.",
+            "Ob die richtige Aussage selbst abgerufen und erklärt werden kann.",
+            "Nur ob dieselbe Antwortliste schneller durchgeklickt wird.",
+            "Ob die alte Erklärung beim Lesen sofort vertraut wirkt."
+          ],
+          "answer": 1,
+          "explain": "Der selbst erstellte Lernablauf prüft die erklärbare Korrektur statt bloß die Position einer Option."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-wald-phaenologie-2026",
+      "title": "Waldphänologie: Pflanzenphasen statt fixer Kalendertage",
+      "category": "Wald & Pflanzen",
+      "topic": "Ökologie",
+      "description": "Blattaustrieb und Blüte vergleichbar beobachten, Standortwechsel erkennen und Jahresereignisse von Klimatrends unterscheiden.",
+      "minutes": 20,
+      "objectives": [
+        "Eine Pflanzenphase präzise benennen",
+        "Vergleichbare Beobachtungsobjekte auswählen",
+        "Einzeljahr und langfristige Reihe trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe.",
+        "AT": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe.",
+        "CH": "Methodisches Lernwissen mit eigenen Beispielen; keine landesspezifische Jagdfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Phänologische Beobachtungsrichtlinien · Handbuch",
+          "url": "https://opendata.dwd.de/climate_environment/CDC/help/PH_Beobachtungskriterien_VuB_17_Handbuch.pdf",
+          "organization": "Deutscher Wetterdienst",
+          "supports": "Definierte Pflanzenphasen, möglichst gleiche Beobachtungsobjekte und vergleichbare Standorte; Sonderklima an Gebäuden beachten. Keine numerische Eintrittsschwelle in den Kurs übertragen."
+        },
+        {
+          "label": "Pflanzenreaktionen in Bezug zum Klimawandel · Phänologie-Journal 44",
+          "url": "https://www.dwd.de/DE/leistungen/phaenojournal/phaeno_journal_nr44.pdf?__blob=publicationFile&v=2",
+          "organization": "Justus-Liebig-Universität Gießen; Deutscher Wetterdienst",
+          "supports": "Statistische Auswertung langer phänologischer Datenreihen; Temperatur und weitere Umweltfaktoren beeinflussen Pflanzenentwicklung. Keine berechneten regionalen Trendwerte übernommen."
+        },
+        {
+          "label": "Vegetationsentwicklung und Frühlingsindex · Klimareport 2021",
+          "url": "https://www.meteoschweiz.admin.ch/dam/jcr%3A3140a517-1b1a-4af3-8330-b77b8df7a0dc/Klimareport_2021_de.pdf",
+          "organization": "MeteoSchweiz",
+          "supports": "Wiederkehrende Entwicklungsphasen, Abhängigkeit von Witterung und Höhenlage, Zusammenführung mehrerer Phasen und Stationen. Historischer Bericht als Methodenquelle, nicht als aktueller Jahresbericht."
+        },
+        {
+          "label": "Lange phänologische Beobachtungsreihen",
+          "url": "https://www.meteoschweiz.admin.ch/klima/klimawandel/vegetationsentwicklung/lange-phaenologische-beobachtungsreihen.html",
+          "organization": "MeteoSchweiz",
+          "supports": "Langfristige Reihen müssen Standort- und Objektveränderungen berücksichtigen; lokale Umgebung kann neben Klima die Entwicklung beeinflussen. Keine historischen Tageszahlen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "phase",
+          "title": "Blüte und Blattentfaltung sind verschiedene Ereignisse",
+          "paragraphs": [
+            "Phänologie beschreibt wiederkehrende Entwicklungserscheinungen im Jahreslauf, etwa Blüte, Blattentfaltung, Fruchtreife und Blattfall. Diese Phasen sind nicht untereinander austauschbar. Für brauchbare Beobachtungen muss erkennbar sein, welche Art und welche Entwicklung gemeint sind. Der DWD verwendet definierte Beobachtungskriterien; MeteoSchweiz erfasst ebenfalls bestimmte Pflanzenphasen an einem Netz von Standorten.",
+            "Eine Hasel mit offenen Blüten und eine Buche mit entfalteten Blättern zeigen unterschiedliche Ereignisse. Das Datum einer Phase hängt unter anderem vom Witterungsverlauf und vom Standort ab. Ein warmer geschützter Platz kann sich von einem anderen Beobachtungsort unterscheiden. Deshalb sind möglichst gleiche Objekte und dokumentierte Bedingungen wertvoller als die Suche nach dem frühesten spektakulären Fund. Ein fester Kalendertag wäre kein zuverlässiger Ersatz für den tatsächlichen Befund.",
+            "Lernbeispiel: Du notierst einmal „Baum grün“ und einmal „Blattentfaltung der bestimmten Baumart am markierten Beobachtungsobjekt“. Die zweite Notiz lässt sich gezielter nachprüfen. Ergänze Datum, Standort und den verwendeten Phasenbegriff. Wenn du die Art nicht sicher bestimmen kannst, bleibt diese Unsicherheit erhalten. Die Lernnotiz wird dadurch nicht automatisch Teil eines amtlichen Messnetzes."
+          ],
+          "takeaway": "Art, Phase und Beobachtungsobjekt müssen vor dem Datum eindeutig sein.",
+          "exercise": "Vergleiche zwei Notizen und verbessere die ungenaue Beschreibung einer Pflanzenphase."
+        },
+        {
+          "id": "reihe",
+          "title": "Ein frühes Blatt ist noch kein eigener Klimatrend",
+          "paragraphs": [
+            "Pflanzenentwicklung reagiert auf Witterung und Umweltbedingungen. Lange Datenreihen erlauben eine andere Auswertung als ein einzelner früher oder später Fund. Der DWD untersucht Zusammenhänge mit Temperatur anhand vieler Beobachtungen; MeteoSchweiz berücksichtigt ebenfalls Phasen und Standorte und weist bei langen Reihen auf Veränderungen des Beobachtungsobjekts und der Umgebung hin. Ein einzelnes Datum beweist weder einen dauerhaften Trend noch dessen alleinige Ursache.",
+            "Für einen eigenen Jahresvergleich ist ein Objektwechsel deshalb wichtig. Stirbt der bisherige Baum ab oder wird eine andere Stelle gewählt, muss dies dokumentiert werden. Ein neuer Baum an einer geschützten Wand ist nicht stillschweigend dieselbe Reihe wie ein früheres freistehendes Exemplar. Die methodische Folgerung lautet, Veränderungen sichtbar zu halten, statt nur die gewünschten Kalenderwerte nebeneinanderzustellen.",
+            "Lernbeispiel: Nach einem ungewöhnlich milden Abschnitt wird eine Phase früh beobachtet. Notiere diesen konkreten Befund und vergleiche ihn mit einer passenden längerfristigen amtlichen Reihe, ohne den Einzelbaum zum Beweis für die ganze Region zu erklären. Auch ein späterer Kälteeinbruch macht die vorherige Beobachtung nicht falsch. Beobachtung, Vergleichsmaßstab und weitergehende Erklärung sind drei getrennte Schritte, die gemeinsam eine nachvollziehbare Auswertung ergeben."
+          ],
+          "takeaway": "Jahresereignis, Beobachtungsreihe und Erklärung sind unterschiedliche Ebenen.",
+          "exercise": "Kennzeichne in einer Beispielreihe einen Baumwechsel und formuliere, welcher Vergleich dadurch eingeschränkt wird."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "phase",
+          "q": "Welche Notiz benennt eine auswertbare Pflanzenphase am klarsten?",
+          "options": [
+            "Der Wald ist an dieser Stelle schon weit.",
+            "Im Tal ist Frühling, ohne Art oder Phasenangabe.",
+            "Blattentfaltung der bestimmten Baumart am dokumentierten Beobachtungsobjekt.",
+            "Mehrere Gehölze sind grün, ohne Trennung der Entwicklungsschritte."
+          ],
+          "answer": 2,
+          "explain": "Eine definierte Phase und ein zuordenbares Objekt ermöglichen einen gezielten Vergleich."
+        },
+        {
+          "id": "q2",
+          "lessonId": "phase",
+          "q": "Warum sind Blüte der Hasel und Blattentfaltung der Buche nicht dieselbe Messgröße?",
+          "options": [
+            "Weil beide als gleichwertiger Termin derselben Pflanzenphase verrechnet werden können.",
+            "Weil der jeweilige Monatsname die unterschiedliche Phasendefinition ersetzt.",
+            "Weil jede frühe Pflanzenentwicklung unabhängig von der Art dieselbe Messgröße ist.",
+            "Weil unterschiedliche Arten und Entwicklungsphasen erfasst werden."
+          ],
+          "answer": 3,
+          "explain": "Phänologische Messreihen benennen ausdrücklich Art und Phase."
+        },
+        {
+          "id": "q3",
+          "lessonId": "phase",
+          "q": "Was kann den Phasentermin mitbeeinflussen?",
+          "options": [
+            "Witterungsverlauf und Standortbedingungen.",
+            "Nur der auf der Pflanzentafel genannte durchschnittliche Monat.",
+            "Nur das aktuelle Datum, unabhängig vom beobachteten Baum.",
+            "Eine für alle Standorte und Jahre identische Kalenderregel."
+          ],
+          "answer": 0,
+          "explain": "Die meteorologischen Quellen berücksichtigen Umwelt- und Standortabhängigkeit."
+        },
+        {
+          "id": "q4",
+          "lessonId": "reihe",
+          "q": "Ein einzelner Baum entfaltet früh Blätter. Was folgt daraus?",
+          "options": [
+            "Ein langfristiger Regionaltrend ist damit bereits sicher bestimmt.",
+            "Ein lokaler Jahresbefund; ein Trend braucht eine geeignete längere Reihe.",
+            "Der Standort muss für alle Bäume der Umgebung repräsentativ sein.",
+            "Die genaue Ursache des frühen Termins steht mit der Einzelbeobachtung fest."
+          ],
+          "answer": 1,
+          "explain": "Ein Einzelereignis und eine längerfristige statistische Entwicklung sind zu trennen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "reihe",
+          "q": "Der alte Beobachtungsbaum wird durch einen Baum an einer Hauswand ersetzt. Was ist wichtig?",
+          "options": [
+            "Die Termine ungekennzeichnet als unveränderte Reihe fortführen.",
+            "Nur die Baumart notieren, weil Standortunterschiede bei gleicher Art unerheblich sind.",
+            "Objekt- und Standortwechsel sichtbar vermerken.",
+            "Den früheren Baum nachträglich an den neuen Standort umtragen."
+          ],
+          "answer": 2,
+          "explain": "Andere lokale Bedingungen können die Vergleichbarkeit beeinflussen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "reihe",
+          "q": "Welche Aussage trennt Befund und Erklärung sauber?",
+          "options": [
+            "Der frühe Termin belegt die einzige Ursache unabhängig vom Standort.",
+            "Ein einzelner später Kältetag entscheidet über jeden langjährigen Trend.",
+            "Der erste gefundene Baum vertritt ohne Vergleich die gesamte Region.",
+            "Die Phase wurde hier früh beobachtet; die Einordnung erfolgt mit passenden Vergleichsdaten."
+          ],
+          "answer": 3,
+          "explain": "Eine nachvollziehbare Auswertung verbindet Beobachtung und Vergleich, ohne einen Einzelbefund zu überdehnen."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-feldflur-bluehkette-2026",
+      "title": "Blühende Feldflur: Nahrungslücken und Nistplätze erkennen",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Ökologie",
+      "description": "Eine blütenreiche Momentaufnahme von einem über die Saison nutzbaren Lebensraum für Wildbienen unterscheiden.",
+      "minutes": 20,
+      "objectives": [
+        "Blütenangebot und Nistressourcen getrennt bewerten",
+        "Blühkontinuität statt eines einzigen Höhepunkts prüfen",
+        "Beobachtung und abgestimmte Pflege verbinden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "AT": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "CH": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Maßnahmen zur Förderung der Bienengesundheit · Expertenbericht 2014",
+          "url": "https://www.agroscope.admin.ch/dam/agroscope/de/dokumente/themen/nutztiere/bienen/MassBienengesundheit.pdf.download.pdf/MassBienengesundheit.pdf",
+          "organization": "Agroscope und beteiligte Bestäuberfachleute",
+          "supports": "Blüten zur Nahrung und artspezifische Niststrukturen sind getrennte Ressourcen; saisonale Blühkontinuität und räumliche Nähe sind wichtig. Historische Gefährdungszahlen und Detaildistanzen nicht übernommen."
+        },
+        {
+          "label": "Wild und wertvoll: Wildbienen",
+          "url": "https://www.bafu.admin.ch/de/wildbienen",
+          "organization": "Bundesamt für Umwelt",
+          "supports": "Wildbienen sind keine verwilderten Honigbienen; verschiedene Arten benötigen passende Pollenpflanzen und Nistgelegenheiten. Keine Prozentzahlen übernommen."
+        },
+        {
+          "label": "Niststrukturen in der Landwirtschaft",
+          "url": "https://www.bienenfachstelle-zh.ch/infopool/niststrukturen-in-der-landwirtschaft/",
+          "organization": "Bienenfachstelle Kanton Zürich",
+          "supports": "Artspezifische Niststrukturen und ergänzende Blüten vor und nach der Blüte landwirtschaftlicher Kulturen in erreichbarer Nähe. Keine pauschalen Pflege- oder Eingriffstermine übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "ressourcen",
+          "title": "Blüten sind wichtig, aber nicht die ganze Wohnung",
+          "paragraphs": [
+            "Wildbienen brauchen Blüten als Nahrungsquelle und geeignete Strukturen für die Nestanlage. Diese Ressourcen erfüllen verschiedene Funktionen. Manche Arten sind bei ihrer Pollennahrung an bestimmte Pflanzen gebunden; auch die Nistweisen unterscheiden sich. Eine beliebige Blühmischung oder eine einzelne künstliche Nisthilfe kann daher nicht automatisch sämtliche Ansprüche der örtlichen Wildbienen ersetzen. Agroscope, BAFU und die Bienenfachstelle Zürich beschreiben diese funktionale Trennung.",
+            "Bei der Beurteilung einer Feldkante genügt es deshalb nicht, nur die Anzahl auffälliger Blüten zu nennen. Frage zusätzlich, welche Pflanzen tatsächlich vorhanden sind und welche geeigneten Niststrukturen in erreichbarer Nähe liegen. Offene Bodenstellen, Stängel oder vorhandene Hohlräume können je nach Art unterschiedliche Bedeutung haben. Ohne Artenkenntnis bleibt eine genaue Zuordnung offen; eine blütenbesuchende Biene ist noch kein Nachweis einer Nestanlage an derselben Stelle.",
+            "Lernbeispiel: Eine Fläche besitzt viele Blüten und daneben eine große dekorative Nisthilfe. Beschreibe zunächst beide Angebote getrennt und suche im fachlichen Austausch nach den Bedürfnissen der Zielarten. Behaupte nicht allein aus dem Foto, die ganze Fläche sei für alle Wildbienen optimal. Die Lernaufgabe ist eine Bestandsaufnahme, keine Aufforderung, Boden oder Nester eigenmächtig zu öffnen."
+          ],
+          "takeaway": "Nahrung und Nistplatz sind unterschiedliche, artspezifische Ressourcen.",
+          "exercise": "Beschreibe an einer Beispiel-Feldkante Blütenangebot, mögliche Niststruktur und noch offene Artenzuordnung."
+        },
+        {
+          "id": "saison",
+          "title": "Eine Blühkette statt eines einzigen schönen Termins",
+          "paragraphs": [
+            "Wildbienenarten sind zu unterschiedlichen Zeiten im Jahreslauf aktiv. Ein großes Angebot während einer kurzen Kulturblüte deckt deshalb nicht automatisch den übrigen Bedarf im Landschaftsraum. Der Agroscope-Bericht betont die Bedeutung eines kontinuierlichen Blütenangebots; die Bienenfachstelle Zürich nennt ergänzende Nahrung vor und nach der Blüte landwirtschaftlicher Kulturen ausdrücklich. Die Aussage betrifft die zeitliche Verfügbarkeit, nicht bloß die Fläche einer Ansaat.",
+            "Eine Lernkarte kann deshalb mehrere Beobachtungstermine miteinander verbinden: Was blüht bereits, was blüht jetzt, und welche Anschlussangebote sind fachlich belegt? Halte beobachtete Blüte und erwartete Blüte getrennt. Ein Samenetikett beweist noch nicht, dass die Pflanzen am konkreten Standort erfolgreich etabliert sind. Auch eine allgemeine Blütezeit aus einem Pflanzenführer ist kein exakter Termin für jede Höhenlage und jedes Jahr.",
+            "Lernbeispiel: Nach dem Ende einer auffälligen Kulturblüte wirkt die Feldflur blütenarm. Dokumentiere diese mögliche Lücke und besprich mit den Bewirtschaftenden und passenden Fachstellen, welche vorhandenen Flächen ergänzen könnten. Die Aufgabe legt weder einen pauschalen Schnitttermin noch eine bestimmte Saatmischung fest. So wird aus einer hübschen Einzelaufnahme eine nachvollziehbare Frage zur saisonalen Versorgung, die vor Ort weiter geprüft werden kann."
+          ],
+          "takeaway": "Eine kurze Massentracht ersetzt kein über die Aktivitätszeiten passendes Angebot.",
+          "exercise": "Erstelle eine kleine Zeitleiste mit beobachteter Blüte, vermuteter Lücke und noch zu prüfendem Anschlussangebot."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "ressourcen",
+          "q": "Was sind zwei verschiedene Grundressourcen für Wildbienen?",
+          "options": [
+            "Große Blütenfläche und möglichst einheitliche Blütezeit.",
+            "Blütennahrung und geeignete Niststrukturen.",
+            "Eine hohe Zahl Honigbienenvölker und nur künstliche Nisthilfen.",
+            "Ausschließlich die Blütenzahl auf einem einzelnen Sommerfoto."
+          ],
+          "answer": 1,
+          "explain": "Nahrungsgewinnung und Nestanlage benötigen unterschiedliche passende Ressourcen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "ressourcen",
+          "q": "Warum reicht ein beliebiges großes Insektenhotel nicht als Gesamtnachweis guter Eignung?",
+          "options": [
+            "Weil seine Größe allein alle artspezifischen Nistansprüche abdeckt.",
+            "Weil ein Nistangebot jedes fehlende Blütenangebot vollständig ersetzt.",
+            "Weil Arten unterschiedliche Nist- und Nahrungsvoraussetzungen besitzen.",
+            "Weil die bloße Anwesenheit einer Nisthilfe bereits örtlichen Fortpflanzungserfolg belegt."
+          ],
+          "answer": 2,
+          "explain": "Die Lektion bewertet Funktionen und vermeidet eine pauschale Ersatzbehauptung."
+        },
+        {
+          "id": "q3",
+          "lessonId": "ressourcen",
+          "q": "Eine Biene besucht eine Blüte. Was ist unmittelbar beobachtet?",
+          "options": [
+            "Die Lage des zugehörigen Nests unmittelbar neben der Blüte.",
+            "Ein erfolgreicher Abschluss der gesamten Fortpflanzung dieser Biene.",
+            "Die ganzjährige Eignung aller umliegenden Flächen.",
+            "Ein Blütenbesuch; Nestort und weitere Nutzung bleiben offen."
+          ],
+          "answer": 3,
+          "explain": "Beobachtung und weitergehende Zuordnung werden getrennt."
+        },
+        {
+          "id": "q4",
+          "lessonId": "saison",
+          "q": "Warum wird auch das Blütenangebot nach einer Kulturblüte betrachtet?",
+          "options": [
+            "Weil ein kurzer Nahrungshöhepunkt die weitere Saison nicht automatisch abdeckt.",
+            "Weil eine ausreichend große Blühfläche jedes spätere Defizit zwangsläufig ausgleicht.",
+            "Weil alle örtlichen Wildbienen während derselben Kulturblüte aktiv sein müssen.",
+            "Weil die Samenliste das tatsächlich spätere Nahrungsangebot bereits nachweist."
+          ],
+          "answer": 0,
+          "explain": "Die Fachquellen betonen ergänzende Nahrung und saisonale Kontinuität."
+        },
+        {
+          "id": "q5",
+          "lessonId": "saison",
+          "q": "Welche Notiz trennt Befund und Erwartung?",
+          "options": [
+            "Die Saatmischung beweist bereits die heutige Vollblüte aller enthaltenen Pflanzen.",
+            "Hier blüht die bestimmte Pflanze; das Anschlussangebot muss noch vor Ort geprüft werden.",
+            "Die allgemeine Blütezeit im Pflanzenführer ist der exakte Termin an jedem Standort.",
+            "Eine frühe Aufnahme genügt als Nachweis lückenloser Versorgung der ganzen Saison."
+          ],
+          "answer": 1,
+          "explain": "Beobachtete Entwicklung und geplantes Potenzial sind unterschiedliche Informationen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "saison",
+          "q": "Wie wird aus einer vermuteten Nahrungslücke eine sinnvolle nächste Aufgabe?",
+          "options": [
+            "Alle sichtbaren Feldränder ohne Rücksprache zur gleichen Zeit umgestalten.",
+            "Einen in der Nachbarregion verwendeten Schnitttermin ungeprüft überall übernehmen.",
+            "Lücke dokumentieren und Ergänzungen mit Bewirtschaftenden und Fachstellen abstimmen.",
+            "Nur eine zusätzliche Aufnahme während der Massentracht als Erfolgskontrolle verwenden."
+          ],
+          "answer": 2,
+          "explain": "Der ökologische Befund begründet eine örtliche fachliche Prüfung, keinen ungeprüften Maßnahmenplan."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-gnss-hoehenbezug-2026",
+      "title": "GPS und Höhenangaben: Was eine Zahl wirklich bedeutet",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "description": "Positionsfehler, Signalreflexion und unterschiedliche Höhenbezüge auseinanderhalten, bevor Zahlen verglichen werden.",
+      "minutes": 22,
+      "objectives": [
+        "Positionsanzeige und tatsächliche Genauigkeit trennen",
+        "Mehrwegeausbreitung erklären",
+        "Höhenangaben nur mit bekanntem Bezug vergleichen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "AT": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "CH": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "GPS Accuracy",
+          "url": "https://www.gps.gov/gps-accuracy-0",
+          "organization": "U.S. GPS National Coordination Office / NOAA",
+          "supports": "Empfänger, Satellitengeometrie, Abschattung und Mehrwegeausbreitung beeinflussen Position; Bäume und Bauwerke können die Genauigkeit verschlechtern. Keine pauschale Meterzahl übernommen."
+        },
+        {
+          "label": "Seeing the satnav for the trees",
+          "url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Seeing_the_satnav_for_the_trees",
+          "organization": "European Space Agency; Deutsches Zentrum für Luft- und Raumfahrt; Aalborg University",
+          "supports": "Original Forschungsprojekt zu Vegetation und Mehrwegeausbreitung: Bäume streuen Signale und können die Positionsbestimmung beeinflussen."
+        },
+        {
+          "label": "Ellipsoid, Koordinaten und Höhe",
+          "url": "https://www.bkg.bund.de/DE/Themen/Geodaesie-Vermessung/Referenzsysteme/Ellipsoid-Koordinaten-Hoehe/ellipsoid-koordinaten-hoehe_cont.html",
+          "organization": "Bundesamt für Kartographie und Geodäsie",
+          "supports": "GNSS liefert geometrische ellipsoidische Höhen; Umrechnung in physikalische Höhen benötigt einen passenden Höhenbezug und ein Geoid-/Quasigeoidmodell."
+        },
+        {
+          "label": "Geoid: Das Schweizer Geoidmodell",
+          "url": "https://www.swisstopo.admin.ch/de/geoid",
+          "organization": "Bundesamt für Landestopografie swisstopo",
+          "supports": "Unterscheidung ellipsoidischer und physikalischer Höhe sowie Modellumrechnung. Keine Modellgenauigkeit als Genauigkeit eines Mobiltelefons ausgegeben."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "position",
+          "title": "Der blaue Punkt ist ein Messergebnis",
+          "paragraphs": [
+            "Eine Satellitenposition entsteht aus empfangenen Signalen und ihrer Auswertung im Gerät. Die erreichbare Genauigkeit hängt unter anderem vom Empfänger, von der Satellitengeometrie und von der Umgebung ab. Bäume oder Bauwerke können Signale abschatten oder reflektieren. Bei Mehrwegeausbreitung erreicht ein Signal den Empfänger auf einem zusätzlichen reflektierten Weg; dies kann die berechnete Position verfälschen. GPS.gov und ein ESA-Forschungsprojekt zur Vegetation erklären diese Zusammenhänge.",
+            "Die angezeigte Position ist deshalb kein Beweis, dass du genau auf einer Kartengrenze oder einer eingezeichneten Linie stehst. Auch viele sichtbare Nachkommastellen sagen zunächst nur etwas über die Darstellung aus. Ein konkretes Gerät kann unter günstigen und schwierigen Bedingungen unterschiedliche Ergebnisse liefern. Eine allgemeine Meterzahl für alle Telefone, Wälder und Geländesituationen wäre daher irreführend.",
+            "Lernbeispiel: Im dichten Bestand springt eine gespeicherte Standortanzeige. Notiere Umgebung und Unsicherheit und vergleiche zusätzlich eindeutig erkennbare Karten- und Geländemerkmale. Aus einem einzelnen versetzten Punkt folgt weder ein neuer Grenzverlauf noch eine sichere Behauptung über den Standort eines anderen Menschen. Diese Lernaufgabe erklärt Messgrenzen; sie ist keine Vermessung und keine Begründung für einen riskanten Weg."
+          ],
+          "takeaway": "Nachkommastellen ersetzen keine Genauigkeitsprüfung; Umgebung und Signalweg zählen.",
+          "exercise": "Erkläre Mehrwegeausbreitung mit einer eigenen Skizze von direktem und reflektiertem Signal."
+        },
+        {
+          "id": "hoehe",
+          "title": "Höhe braucht eine Bezugsfläche",
+          "paragraphs": [
+            "Eine Höhenzahl ist nur mit ihrem Bezug sinnvoll vergleichbar. GNSS bestimmt zunächst eine geometrische Höhe bezogen auf ein mathematisches Ellipsoid. Übliche physikalische Höhen verwenden dagegen eine vom Erdschwerefeld abhängige Bezugsfläche. BKG und swisstopo erklären, dass für die Umrechnung ein passendes Geoid- oder Quasigeoidmodell benötigt wird. Diese Modellkorrektur ist eine andere Frage als der zufällige Messfehler eines Empfängers.",
+            "Zwei unterschiedlich beschriftete Höhenangaben dürfen deshalb nicht allein wegen ihrer Einheit Meter gleichgesetzt werden. Prüfe Datenquelle, Höhenart und verwendetes Modell. Umgekehrt darf die Genauigkeit eines amtlichen Geoidmodells nicht als persönliche Genauigkeit des Mobiltelefons ausgegeben werden. Das Modell behebt keinen beliebigen Empfangsfehler und macht aus einem privaten Wegpunkt keine amtliche Höhenmarke.",
+            "Lernbeispiel: Eine exportierte GNSS-Datei und eine Kartenbeschriftung liefern verschiedene Höhen. Vor dem Vorwurf, eine Quelle sei falsch, suchst du nach der Beschreibung des Höhenbezugs und der Geräteeinstellungen. Ist der Bezug unbekannt, bleibt der Vergleich eingeschränkt. Vermeide einen selbst erfundenen festen Korrekturwert für ganz DACH: Bezugssystem, Modell und Ort müssen zur jeweiligen Datengrundlage passen."
+          ],
+          "takeaway": "Vor dem Vergleich einer Höhenzahl werden Bezug, Quelle und Umrechnung geklärt.",
+          "exercise": "Vergleiche die Metadaten zweier Beispiel-Höhenangaben und kennzeichne einen unbekannten Bezug."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "position",
+          "q": "Was bedeutet Mehrwegeausbreitung bei GNSS?",
+          "options": [
+            "Dass mehrere Geräte wegen gleicher Karte zwangsläufig dieselbe wahre Position liefern.",
+            "Dass jede Signalwiederholung vom Gerät automatisch fehlerfrei verworfen wird.",
+            "Dass eine Position nur durch die Anzahl ihrer Nachkommastellen bestimmt wird.",
+            "Dass reflektierte Signalwege die Positionsberechnung beeinflussen können."
+          ],
+          "answer": 3,
+          "explain": "Das Signal kann Umwege nehmen; Reflexionen gehören zu den Fehlerquellen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "position",
+          "q": "Was garantieren viele Nachkommastellen einer Standortanzeige?",
+          "options": [
+            "Keine entsprechende tatsächliche Genauigkeit.",
+            "Dass die Position bis zur letzten Stelle im Gelände nachgewiesen ist.",
+            "Dass jeder angezeigte Grenzübertritt eine amtliche Grenzfeststellung ist.",
+            "Dass die Genauigkeit auch unter dichter Vegetation unverändert bleibt."
+          ],
+          "answer": 0,
+          "explain": "Anzeigegenauigkeit und Messgenauigkeit sind zu trennen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "position",
+          "q": "Warum kann derselbe Empfänger an zwei Orten anders abschneiden?",
+          "options": [
+            "Weil dieselbe Zahl sichtbarer Satelliten jede andere Einflussgröße ausschließt.",
+            "Weil Abschattung, Reflexionen und Satellitengeometrie verschieden sein können.",
+            "Weil eine geladene Offlinekarte sämtliche Empfangsfehler korrigiert.",
+            "Weil Wald grundsätzlich eine einzige feste Fehlerzahl erzeugt."
+          ],
+          "answer": 1,
+          "explain": "Die Quellen nennen mehrere vom Standort und Empfang abhängige Einflussgrößen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "hoehe",
+          "q": "Welche Zusatzangabe ist beim Vergleich zweier Höhenzahlen grundlegend?",
+          "options": [
+            "Nur dass beide Zahlen mehrere Nachkommastellen haben.",
+            "Nur dass beide Geräte am selben Kalendertag benutzt wurden.",
+            "Der jeweilige Höhenbezug.",
+            "Nur dass beide Angaben in Metern geschrieben sind."
+          ],
+          "answer": 2,
+          "explain": "Gleiche Einheit bedeutet nicht automatisch gleiche Bezugsfläche."
+        },
+        {
+          "id": "q5",
+          "lessonId": "hoehe",
+          "q": "Wozu dient ein Geoid- beziehungsweise Quasigeoidmodell?",
+          "options": [
+            "Zur Korrektur jedes Positionsfehlers, unabhängig vom Signalempfang.",
+            "Zum direkten Umwandeln der Handygenauigkeit in amtliche Modellgenauigkeit.",
+            "Zum Ersetzen einer unbekannten Bezugsfläche durch einen für ganz DACH festen Zuschlag.",
+            "Zur passenden Umrechnung zwischen geometrischer und physikalischer Höhe."
+          ],
+          "answer": 3,
+          "explain": "Das Modell verbindet Höhenarten; es ist keine allgemeine Fehlerkorrektur für jeden Empfang."
+        },
+        {
+          "id": "q6",
+          "lessonId": "hoehe",
+          "q": "Ein amtliches Höhenmodell besitzt eine sehr hohe Genauigkeit. Was folgt für eine Handyaufnahme?",
+          "options": [
+            "Die Modellgenauigkeit ist nicht automatisch die Messgenauigkeit des Handys.",
+            "Jeder mit dem Modell umgerechnete Handywegpunkt erhält automatisch dessen Genauigkeit.",
+            "Alle Empfangsfehler verschwinden, sobald die Höhe als Meterwert exportiert wird.",
+            "Nach einer Modellumrechnung ist der ursprüngliche Höhenbezug für den Vergleich unwichtig."
+          ],
+          "answer": 0,
+          "explain": "Modellqualität und konkrete Empfängermessung sind verschiedene Teile der Datengrundlage."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-vogelglas-praevention-2026",
+      "title": "Vogelschlag vermeiden: Glas aus Vogelsicht betrachten",
+      "category": "Tierschutz & Verantwortung",
+      "topic": "Hege/Naturschutz",
+      "description": "Durchsicht und Spiegelung als unterschiedliche Gefahren erkennen und geeignete vorbeugende Lösungen fachlich prüfen.",
+      "minutes": 18,
+      "objectives": [
+        "Durchsicht und Spiegelung unterscheiden",
+        "Flächige äußere Markierungen einordnen",
+        "Wirksamkeitsnachweise und eigene Beobachtung trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "AT": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben.",
+        "CH": "Fachwissen und selbst erstellte Lernbeispiele für DACH; Maßnahmen nur abgestimmt und unter Beachtung örtlicher Vorgaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Merkpunkte Glas",
+          "url": "https://vogelglas.vogelwarte.ch/de/hinweise/merkpunkte/",
+          "organization": "Schweizerische Vogelwarte Sempach",
+          "supports": "Durchsicht und Spiegelungen als Gefahren; flächige kontrastreiche außen angebrachte geprüfte Markierungen. Keine geometrischen Grenzwerte oder pauschale Ablehnung aller UV-Technik übernommen."
+        },
+        {
+          "label": "DIY Home Improvements to Save Birds",
+          "url": "https://www.birds.cornell.edu/home/these-diy-home-improvements-will-help-save-birds-this-spring/",
+          "organization": "Cornell Lab of Ornithology",
+          "supports": "Transparenz und Spiegelung können wie Lebensraum erscheinen; außenliegende, über die Fläche verteilte Muster erhöhen Erkennbarkeit. US-Artenzahlen und Zoll-Abstände nicht übertragen."
+        },
+        {
+          "label": "Window films: external compared with internal surfaces · Swaddle et al. 2023",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36751632/",
+          "organization": "William & Mary · Institute for Integrative Conservation",
+          "supports": "Unabhängige Originalversuche mit Zebrafinken und zwei Folien: Außenseite war entscheidend; bei innen angebrachten getesteten Folien kein nachgewiesener Vorteil. Begrenzte Versuchssituation, keine Wirksamkeitsgarantie für beliebige Fenster."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gefahr",
+          "title": "Offener Flugweg oder unsichtbare Barriere?",
+          "paragraphs": [
+            "Durchsichtige und spiegelnde Flächen können für Vögel wie erreichbarer Lebensraum wirken. Bei einer Durchsicht ist beispielsweise Landschaft hinter einer Scheibe erkennbar; bei einer Spiegelung erscheint die Umgebung auf der Glasoberfläche. Beide Situationen können zu Kollisionen führen. Schweizerische Vogelwarte und Cornell Lab erklären diese Wahrnehmungsprobleme und leiten daraus vorbeugende Gestaltungsaufgaben ab.",
+            "Eine Scheibe wird nicht allein dadurch sicher, dass ein Mensch den Rahmen erkennt. Entscheidend ist, ob die Fläche aus der Anflugrichtung als Hindernis wahrnehmbar wird. Transparente Eckverbindungen, Windschutzwände oder spiegelnde Fenster verdienen deshalb einen genauen Blick. Die eigene Betrachtung erfolgt von einer sicheren zugänglichen Stelle; sie ersetzt keine vollständige fachliche Risikobewertung eines Gebäudes.",
+            "Lernbeispiel: Vom Weg aus siehst du auf einem Fenster deutlich gespiegelte Bäume, an einer anderen Glaswand dagegen den Garten dahinter. Beschreibe zunächst diese zwei Situationen, statt beide pauschal als „dunkles Glas“ zu notieren. Ein einzelner Termin ohne beobachtete Kollision beweist keine dauerhafte Sicherheit. Eine brauchbare Meldung an die verantwortliche Stelle enthält Ort, sichtbare Situation und ein zuordenbares Übersichtsfoto."
+          ],
+          "takeaway": "Durchsicht und Spiegelung sind verschiedene Ursachen derselben unsichtbaren Barriere.",
+          "exercise": "Beschreibe in einer Beispielaufnahme, ob Landschaft durch das Glas oder als Spiegelbild erscheint."
+        },
+        {
+          "id": "loesung",
+          "title": "Markierung muss aus der Anflugrichtung erkennbar sein",
+          "paragraphs": [
+            "Für bestehende Glasflächen empfehlen die Fachstellen gut erkennbare, über die Fläche verteilte Markierungen auf der Außenseite. Ein einzelnes dekoratives Zeichen lässt große unmarkierte Bereiche offen. Die Lösung muss Sichtbarkeit und Kontrast unter den konkreten Bedingungen berücksichtigen; ein Produktname oder die bloße Bezeichnung „Vogelschutz“ belegt noch nicht die Wirksamkeit jeder Ausführung.",
+            "Ein unabhängiger Originalversuch mit Zebrafinken verglich zwei Folien auf Innen- und Außenseiten von Fenstern. Die außen angebrachten Behandlungen schnitten anders ab als dieselben innen angebrachten Produkte; innen wurde dort kein Schutzvorteil nachgewiesen. Das stützt die Bedeutung der Anbringungsseite, ist aber keine Garantie für alle Produkte, Vogelarten und Gebäude. Der Kurs überträgt weder Versuchseffektgrößen noch eine pauschale Aussage über sämtliche UV-Technik.",
+            "Lernbeispiel: Für ein Reviergebäude liegt ein Vorschlag mit wenigen innen aufgeklebten Silhouetten vor. Bitte um eine fachlich geprüfte flächige Lösung für die konkrete Außenansicht und um einen nachvollziehbaren Wirksamkeitsnachweis. Stimme Änderungen mit den Verantwortlichen ab. Eigene Flugversuche mit Vögeln gehören ausdrücklich nicht zur Lernaufgabe; Beobachtung und Prävention sollen gerade weitere Kollisionen vermeiden."
+          ],
+          "takeaway": "Geprüfte Muster, flächige Erkennbarkeit und Anbringungsseite gehören zusammen.",
+          "exercise": "Formuliere drei Prüffragen zu Muster, Außenseite und Wirksamkeitsnachweis eines vorgeschlagenen Produkts."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "gefahr",
+          "q": "Eine Scheibe zeigt ein Spiegelbild benachbarter Bäume. Welcher Mechanismus wird beschrieben?",
+          "options": [
+            "Eine ungehinderte Durchsicht durch zwei transparente Flächen.",
+            "Spiegelung scheinbar erreichbaren Lebensraums.",
+            "Eine bereits ausreichend sichtbare Barriere allein wegen ihrer dunklen Fläche.",
+            "Eine sichere Aufhebung des Risikos, weil der Fensterrahmen erkennbar ist."
+          ],
+          "answer": 1,
+          "explain": "Spiegelung und tatsächliche Landschaft hinter der Scheibe sind zu unterscheiden."
+        },
+        {
+          "id": "q2",
+          "lessonId": "gefahr",
+          "q": "Was belegt ein Besuch ohne beobachtete Kollision?",
+          "options": [
+            "Dauerhafte Sicherheit, wenn die Kontrolle bei Tageslicht erfolgte.",
+            "Einen ausreichenden Wirksamkeitsnachweis aller vorhandenen Markierungen.",
+            "Nur den Befund dieses Besuchs, keine dauerhafte Sicherheit.",
+            "Dass alle möglichen Anflugrichtungen während des Besuchs geprüft wurden."
+          ],
+          "answer": 2,
+          "explain": "Ein begrenzter Beobachtungszeitraum kann nicht alle Nutzungssituationen ausschließen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "gefahr",
+          "q": "Welche Meldung ist für eine fachliche Prüfung hilfreich?",
+          "options": [
+            "Nur der Hinweis dunkles Fenster ohne Beschreibung der Außenansicht.",
+            "Nur die bislang vermutete Vogelart als vollständige Risikobewertung.",
+            "Nur die Gebäudehöhe, unabhängig von Reflexionen und Durchsichten.",
+            "Ort, erkennbare Durchsicht oder Spiegelung und ein zuordenbares Übersichtsfoto."
+          ],
+          "answer": 3,
+          "explain": "Die konkrete Situation trägt die Bewertung besser als eine unbestimmte Vermutung."
+        },
+        {
+          "id": "q4",
+          "lessonId": "loesung",
+          "q": "Welche Eigenschaft gehört zu den empfohlenen Markierungen?",
+          "options": [
+            "Von außen erkennbare, über die relevante Fläche verteilte Muster.",
+            "Ein einzelnes kleines Zeichen an einer ansonsten unmarkierten Front.",
+            "Ein innen liegendes Muster als grundsätzlich gleichwertige Lösung bei Spiegelungen.",
+            "Ein Produktetikett Vogelschutz ohne Prüfung der konkreten Ausführung."
+          ],
+          "answer": 0,
+          "explain": "Fachstellen betonen flächige Erkennbarkeit und Außenanbringung."
+        },
+        {
+          "id": "q5",
+          "lessonId": "loesung",
+          "q": "Was zeigt der Versuch mit innen und außen angebrachten Folien?",
+          "options": [
+            "Dass dieselbe Folie auf beiden Seiten automatisch gleich wirkt.",
+            "Dass die Anbringungsseite für die getesteten Produkte einen entscheidenden Unterschied machte.",
+            "Dass ein kleiner innenliegender Aufkleber jede spiegelnde Fläche absichert.",
+            "Dass jedes am Markt angebotene Produkt damit geprüft ist."
+          ],
+          "answer": 1,
+          "explain": "Der Originalversuch stützt eine begrenzte konkrete Aussage; daraus wird keine allgemeine Produktgarantie."
+        },
+        {
+          "id": "q6",
+          "lessonId": "loesung",
+          "q": "Wie wird ein neuer Produktvorschlag sinnvoll beurteilt?",
+          "options": [
+            "Nur nach dem Werbewort Vogelschutz, unabhängig vom geprüften Muster.",
+            "Nur nach der Sichtbarkeit aus dem Innenraum.",
+            "Nach geprüftem Muster, passender Anbringung und dokumentierter Wirksamkeit im relevanten Einsatz.",
+            "Nach der Annahme, jede beliebige Folie wirke auf jeder Anbringungsseite gleich."
+          ],
+          "answer": 2,
+          "explain": "Wirksamkeitsnachweis und tatsächliche Anwendung müssen zusammenpassen."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-geweih-horn-gewebe-2026",
+      "lessonId": "gewebe",
+      "claims": [
+        {
+          "claim": "Geweih besteht aus Knochen; das Horn der Boviden aus Knochenkern und Keratinscheide.",
+          "sourceUrls": [
+            "https://www.amnh.org/research/science-conservation/projects/case-studies/horns-and-antlers",
+            "https://www.nps.gov/articles/yell-horns-vs-antlers.htm",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3151718/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-geweih-horn-gewebe-2026",
+      "lessonId": "erneuerung",
+      "claims": [
+        {
+          "claim": "Bast ist die versorgende Haut des wachsenden Geweihs; Bastverlust und periodischer Stangenabwurf sind unterschiedliche Vorgänge.",
+          "sourceUrls": [
+            "https://www.amnh.org/research/science-conservation/projects/case-studies/horns-and-antlers",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3151718/"
+          ]
+        },
+        {
+          "claim": "Rosenstöcke bleiben bestehen; das Bovidenhorn wird nicht wie ein Geweih regelmäßig vollständig abgeworfen.",
+          "sourceUrls": [
+            "https://www.nps.gov/articles/yell-horns-vs-antlers.htm",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3151718/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gehoerschutz-passform-2026",
+      "lessonId": "sitz",
+      "claims": [
+        {
+          "claim": "Schutzwirkung hängt von Auswahl, korrektem Sitz und konsequentem Tragen ab; individuelle Passform und Kompatibilität sind zu prüfen.",
+          "sourceUrls": [
+            "https://www.cdc.gov/niosh/noise/prevent/ppe.html",
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/laerm-und-vibrationen/gehoerschutz/wichtige-kriterien-bei-der-wahl-des-gehoerschutzes"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gehoerschutz-passform-2026",
+      "lessonId": "kommunikation",
+      "claims": [
+        {
+          "claim": "Komfort, Kompatibilität und Kommunikation gehören zur Schutzauswahl; Verständigung darf nicht durch regelmäßiges Abnehmen erkauft werden.",
+          "sourceUrls": [
+            "https://www.cdc.gov/niosh/noise/prevent/ppe.html",
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/laerm-und-vibrationen/gehoerschutz/wichtige-kriterien-bei-der-wahl-des-gehoerschutzes"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kamerastichprobe-2026",
+      "lessonId": "nachweis",
+      "claims": [
+        {
+          "claim": "Kameranachweise sind von Platzierung, lokalen Strukturen und Erfassungsprozess abhängig und nicht unmittelbar Tierdichte.",
+          "sourceUrls": [
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0186679",
+            "https://research.wur.nl/en/publications/mammal-density-estimation-using-camera-traps-new-perspectives/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kamerastichprobe-2026",
+      "lessonId": "vergleich",
+      "claims": [
+        {
+          "claim": "Nicht zufällige Platzierung und kleine Stichproben begrenzen Dichteschätzungen; ein Methodenwechsel braucht eine gesonderte Einordnung.",
+          "sourceUrls": [
+            "https://www.usgs.gov/publications/estimating-abundance-unmarked-low-density-species-using-camera-traps",
+            "https://research.wur.nl/en/publications/mammal-density-estimation-using-camera-traps-new-perspectives/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0186679"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-totholz-mikrohabitate-2026",
+      "lessonId": "struktur",
+      "claims": [
+        {
+          "claim": "Totholzfunktion hängt neben Menge von Baumart, Dimension, Position und Zerfallsstadium ab.",
+          "sourceUrls": [
+            "https://totholz.wsl.ch/de/totholz/vielfaeltiger-lebensraum/oekologischer-wert/",
+            "https://www.bfn.de/daten-und-fakten/totholzmengen-im-wald"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-totholz-mikrohabitate-2026",
+      "lessonId": "zeit",
+      "claims": [
+        {
+          "claim": "Abbauphasen verändern Lebensgemeinschaften; Mikrohabitate benötigen zeitlichen Nachschub und Kontinuität.",
+          "sourceUrls": [
+            "https://totholz.wsl.ch/de/walddynamik/mikrohabitate-entstehen-und-vergehen/",
+            "https://www.lwf.bayern.de/forschungsfoerderung/377622/index.php",
+            "https://totholz.wsl.ch/de/totholz/vielfaeltiger-lebensraum/oekologischer-wert/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-belohnungswert-2026",
+      "lessonId": "wert",
+      "claims": [
+        {
+          "claim": "Verstärkung ist an Verhaltenswirkung zu bestimmen; Vorlieben für Belohnungen sind individuell und kontextabhängig.",
+          "sourceUrls": [
+            "https://www.nature.com/articles/s41598-018-28079-5",
+            "https://onlinelibrary.wiley.com/doi/10.1002/jeab.81/full"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-belohnungswert-2026",
+      "lessonId": "deutung",
+      "claims": [
+        {
+          "claim": "Wahlversuche erfassen kontextgebundenes Verhalten; Gruppenmittel, individuelle Vorlieben und Darbietung sind zu unterscheiden. Beobachtete Wahl ist kein vollständiger Nachweis für Ausbildung oder Absicht.",
+          "sourceUrls": [
+            "https://www.nature.com/articles/s41598-018-28079-5",
+            "https://onlinelibrary.wiley.com/doi/10.1002/jeab.81/full"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wildbret-kontaktwege-2026",
+      "lessonId": "kontakt",
+      "claims": [
+        {
+          "claim": "Kreuzkontamination kann direkt oder über Hände, Utensilien und Kontaktflächen erfolgen; Reinigung unterbricht solche Wege.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/lebensmittelinfektionen-im-privathaushalt-quellen-erkennen-risiken-vermeiden",
+            "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wildbret-kontaktwege-2026",
+      "lessonId": "trennen",
+      "claims": [
+        {
+          "claim": "Rohe und fertige Speisen sowie ihre Utensilien sind getrennt zu behandeln; Fleischsaft darf andere Lebensmittel nicht verunreinigen.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/lebensmittelinfektionen-im-privathaushalt-quellen-erkennen-risiken-vermeiden",
+            "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln",
+            "https://www.blv.admin.ch/dam/blv/de/dokumente/lebensmittel-und-ernaehrung/lebensmittelsicherheit/krankheitserreger-und-hygiene/flyer-umgang-mit-rohem-fleisch.pdf.download.pdf/Hygiene%2BFlyer%2BDE.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+      "lessonId": "fassung",
+      "claims": [
+        {
+          "claim": "Österreich: RIS unterscheidet authentische Verlautbarung und bloße Rechtsinformation; Fassungsdatum und zeitliche Geltung sind getrennt zu prüfen.",
+          "sourceUrls": [
+            "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20002988",
+            "https://ris.bka.gv.at/UI/Info.aspx",
+            "https://ris.bka.gv.at/UI/Help.aspx?Abfrage=Landesnormen&Field=FassungVomField"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+      "lessonId": "ort",
+      "claims": [
+        {
+          "claim": "Deutschland: Bundesjagdrecht und einschlägiges Landesrecht sind gemeinsam zu prüfen.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.bmel.de/DE/themen/tiere/jagd/aenderung-jagdrechtliche-vorschriften.html"
+          ]
+        },
+        {
+          "claim": "Schweiz: Artikel 3 JSG weist Regelung und Planung der Jagd sowie weitere Aufgaben den Kantonen zu.",
+          "sourceUrls": [
+            "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/506_506_506/20250201/de/html/fedlex-data-admin-ch-eli-cc-1988-506_506_506-20250201-de-html.html",
+            "https://www.bafu.admin.ch/de/jagd"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-antwortsicherheit-feedback-2026",
+      "lessonId": "sicherheit",
+      "claims": [
+        {
+          "claim": "Antwortsicherheit und Richtigkeit sind getrennte Größen; Rückmeldung kann niedrig sichere richtige Antworten beim Behalten unterstützen.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/18605878/",
+            "https://scholars.duke.edu/publication/725340"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-antwortsicherheit-feedback-2026",
+      "lessonId": "korrektur",
+      "claims": [
+        {
+          "claim": "Inhaltliche Antwortkorrektur beziehungsweise erneute Materialprüfung ist für Fehlerkorrektur hilfreicher als bloße Richtig/Falsch-Information.",
+          "sourceUrls": [
+            "https://scholars.duke.edu/publication/725340",
+            "https://psychnet.wustl.edu/memory/wp-content/uploads/2018/04/Butler-Roediger-2008_MemCog.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wald-phaenologie-2026",
+      "lessonId": "phase",
+      "claims": [
+        {
+          "claim": "Phänologie erfasst definierte wiederkehrende Pflanzenphasen; Witterung und Standort beeinflussen deren Termin.",
+          "sourceUrls": [
+            "https://opendata.dwd.de/climate_environment/CDC/help/PH_Beobachtungskriterien_VuB_17_Handbuch.pdf",
+            "https://www.meteoschweiz.admin.ch/dam/jcr%3A3140a517-1b1a-4af3-8330-b77b8df7a0dc/Klimareport_2021_de.pdf",
+            "https://www.dwd.de/DE/leistungen/phaenojournal/phaeno_journal_nr44.pdf?__blob=publicationFile&v=2"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wald-phaenologie-2026",
+      "lessonId": "reihe",
+      "claims": [
+        {
+          "claim": "Langfristige Bewertung braucht geeignete Reihen; Standort- und Objektänderungen sind bei Vergleichen zu berücksichtigen.",
+          "sourceUrls": [
+            "https://opendata.dwd.de/climate_environment/CDC/help/PH_Beobachtungskriterien_VuB_17_Handbuch.pdf",
+            "https://www.dwd.de/DE/leistungen/phaenojournal/phaeno_journal_nr44.pdf?__blob=publicationFile&v=2",
+            "https://www.meteoschweiz.admin.ch/klima/klimawandel/vegetationsentwicklung/lange-phaenologische-beobachtungsreihen.html",
+            "https://www.meteoschweiz.admin.ch/dam/jcr%3A3140a517-1b1a-4af3-8330-b77b8df7a0dc/Klimareport_2021_de.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-feldflur-bluehkette-2026",
+      "lessonId": "ressourcen",
+      "claims": [
+        {
+          "claim": "Wildbienen benötigen geeignete Blütennahrung und artspezifische Nistressourcen; beide Funktionen sind getrennt zu betrachten.",
+          "sourceUrls": [
+            "https://www.agroscope.admin.ch/dam/agroscope/de/dokumente/themen/nutztiere/bienen/MassBienengesundheit.pdf.download.pdf/MassBienengesundheit.pdf",
+            "https://www.bafu.admin.ch/de/wildbienen",
+            "https://www.bienenfachstelle-zh.ch/infopool/niststrukturen-in-der-landwirtschaft/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-feldflur-bluehkette-2026",
+      "lessonId": "saison",
+      "claims": [
+        {
+          "claim": "Saisonale Blühkontinuität und ergänzende Nahrung vor beziehungsweise nach Kulturblüten sind wichtig.",
+          "sourceUrls": [
+            "https://www.agroscope.admin.ch/dam/agroscope/de/dokumente/themen/nutztiere/bienen/MassBienengesundheit.pdf.download.pdf/MassBienengesundheit.pdf",
+            "https://www.bienenfachstelle-zh.ch/infopool/niststrukturen-in-der-landwirtschaft/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gnss-hoehenbezug-2026",
+      "lessonId": "position",
+      "claims": [
+        {
+          "claim": "GNSS-Positionen hängen von Empfang, Geometrie und Umgebung ab; Vegetation und Mehrwegeausbreitung können Fehler verursachen.",
+          "sourceUrls": [
+            "https://www.gps.gov/gps-accuracy-0",
+            "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Seeing_the_satnav_for_the_trees"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gnss-hoehenbezug-2026",
+      "lessonId": "hoehe",
+      "claims": [
+        {
+          "claim": "Ellipsoidische GNSS-Höhen unterscheiden sich von physikalischen Höhen; passende Bezugsmodelle dienen der Umrechnung.",
+          "sourceUrls": [
+            "https://www.bkg.bund.de/DE/Themen/Geodaesie-Vermessung/Referenzsysteme/Ellipsoid-Koordinaten-Hoehe/ellipsoid-koordinaten-hoehe_cont.html",
+            "https://www.swisstopo.admin.ch/de/geoid"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-vogelglas-praevention-2026",
+      "lessonId": "gefahr",
+      "claims": [
+        {
+          "claim": "Transparenz und Spiegelung können für Vögel wie durchfliegbarer Lebensraum wirken; die Situationen sind getrennt zu analysieren.",
+          "sourceUrls": [
+            "https://vogelglas.vogelwarte.ch/de/hinweise/merkpunkte/",
+            "https://www.birds.cornell.edu/home/these-diy-home-improvements-will-help-save-birds-this-spring/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-vogelglas-praevention-2026",
+      "lessonId": "loesung",
+      "claims": [
+        {
+          "claim": "Gut erkennbare Außenmarkierungen werden empfohlen; die Anbringungsseite beeinflusste in Originalversuchen die Wirkung getesteter Folien.",
+          "sourceUrls": [
+            "https://vogelglas.vogelwarte.ch/de/hinweise/merkpunkte/",
+            "https://www.birds.cornell.edu/home/these-diy-home-improvements-will-help-save-birds-this-spring/",
+            "https://pubmed.ncbi.nlm.nih.gov/36751632/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Universelle Kalendertage, Zahlen und Leistungsversprechen",
+      "reason": "Keine einheitlichen Geweih-Abwurfmonate, Gerätemeterwerte, Pausen- oder Belohnungsrezepte, Lagerfristen, Erfolgsquoten oder Prüfungsgarantien aus regionalen beziehungsweise begrenzten Quellen übernommen."
+    },
+    {
+      "topic": "Aktuelle örtliche Jagdfreigabe",
+      "reason": "Der Rechtskurs erläutert Quellenfunktionen und Zuständigkeit. Keine bestimmte Saison, Artfreigabe, Ausnahme oder örtliche Berechtigung geprüft; dafür sind konkrete aktuelle Ortsvorschriften und gegebenenfalls behördliche Klärung erforderlich."
+    },
+    {
+      "topic": "Vogelschutzprodukte und UV-Technik allgemein",
+      "reason": "Originalversuche betreffen bestimmte Folien, Arten und Bedingungen. Keine Garantie für sämtliche Produkte, keine pauschale Aussage, jede UV-Technik sei wirksam oder unwirksam."
+    },
+    {
+      "topic": "Nachweise über die hier benannten Grundlagen hinaus",
+      "reason": "Institutionelle Erklärungen sind keine unabhängige Wiederholung derselben Feldmessung. Originalarbeiten zu Kamera- und Hundeverhalten werden mit ihren jeweiligen Versuchsgrenzen eingeordnet; keine lokalen DACH-Populationszahlen oder allgemeinen Einsatzfähigkeiten daraus abgeleitet."
+    }
+  ]
+}

@@ -1,0 +1,683 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Zwei ergänzende biologische Artenporträts für Europa. Die Verbreitung einer Art ist keine Aussage über ihre Jagdbarkeit. Keine Jagdzeiten, Rechtsfreigaben oder aktuellen Bestandszahlen; regionale Studien werden räumlich eingeordnet.",
+  "sources": [
+    {
+      "id": "mammals-kegelrobbe-fao",
+      "organization": "Food and Agriculture Organization of the United Nations / UNEP",
+      "authorityGroup": "Jefferson, Leatherwood und Webber · FAO-Artenführer 1993",
+      "title": "Marine Mammals of the World · Halichoerus grypus, Seiten 272–273",
+      "url": "https://www.fao.org/4/t0725e/t0725e40.pdf",
+      "supports": [
+        "Lange Schnauze, Geschlechts- und Fellunterschiede",
+        "Nordatlantik und Ostsee; Küsten und Liegeplätze; Ansammlungen bei Fortpflanzung und Fellwechsel",
+        "Vielseitige Fischnahrung und Wirbellose",
+        "Erwachsenengebiss mit variabler oberer Backenzahnzahl: I 3/2, C 1/1, PC 5–6/5"
+      ],
+      "limits": "Gelesen wurden die beiden Kegelrobben-Seiten; das PDF enthält daneben andere Arten. Ältere Bestands-, Schutzstatus- und Unterartbezeichnungen werden nicht übernommen. Kopien des FAO-Textes bei anderen Anbietern sind keine zusätzlichen unabhängigen Quellen. PC fasst Vorbacken- und Mahlzähne zusammen."
+    },
+    {
+      "id": "mammals-kegelrobbe-noaa",
+      "organization": "NOAA Fisheries",
+      "authorityGroup": "NOAA Fisheries",
+      "title": "Gray Seal · Species overview",
+      "url": "https://www.fisheries.noaa.gov/species/gray-seal",
+      "supports": [
+        "Hundsrobbe ohne äußere Ohrmuscheln; Fellvariation und längere Nase der Männchen",
+        "Drei Bestandsräume im Nordatlantik und in der Ostsee; wechselnde Gruppengröße",
+        "Fische und Wirbellose; Nahrung variiert mit Region und Jahreszeit",
+        "Ein Jungtier, weißes Jugendfell und kurze Säugezeit; regionale Geburtstermine",
+        "Verfangen in Netzen; Abstand zu ruhenden Robben"
+      ],
+      "limits": "US-amerikanische Fachbehörde mit starkem nordwestatlantischem Schwerpunkt. Größenrekorde, Tagesrationen, US-Recht und die vereinfachte Angabe September–November für den gesamten Ostatlantik werden nicht verallgemeinert. Deutsche Wintergeburten werden anhand örtlicher Quellen erklärt."
+    },
+    {
+      "id": "mammals-kegelrobbe-wattenmeer-2026",
+      "organization": "Nationalparkverwaltungen Wattenmeer Niedersachsen, Hamburg und Schleswig-Holstein; Schutzstation Wattenmeer",
+      "authorityGroup": "Nationalparkverwaltungen Wattenmeer / R. Borcherding",
+      "title": "Seehunde und Kegelrobben · Stand Februar 2026, insbesondere Seiten 7–10 und 17–18",
+      "url": "https://www.nationalpark-wattenmeer.de/wp-content/uploads/2026/04/bro_robben_202602_web.pdf",
+      "supports": [
+        "Kegelrobbe und Seehund als unterschiedliche Hundsrobben; lange Schnauze, variable Fellzeichnung",
+        "Kegelrobben fressen hauptsächlich Fisch",
+        "Winterliche Geburt im Wattenmeer, weißes Lanugofell, zwei bis drei Wochen Säugezeit",
+        "Hochwassersichere Wurfplätze; Abstand halten, Jungtiere nicht berühren oder ins Wasser treiben"
+      ],
+      "limits": "Die beiden Arten stehen teilweise nebeneinander auf einer Seite. Nur eindeutig auf Kegelrobben bezogene Angaben werden übernommen. Geburtskalender und Ortsangaben betreffen das Wattenmeer; keine Übertragung auf die Ostsee. Keine Bestandszahl, Futtermenge oder allgemeine Tauchhöchstleistung übernommen."
+    },
+    {
+      "id": "mammals-kegelrobbe-bfn",
+      "organization": "Bundesamt für Naturschutz",
+      "authorityGroup": "Bundesamt für Naturschutz / Abt 2004",
+      "title": "Halichoerus grypus – Kegelrobbe · Beschreibung, Fortpflanzung und Gefährdung",
+      "url": "https://www.bfn.de/artenportraits/halichoerus-grypus",
+      "supports": [
+        "Große Robbe mit langer Schnauze",
+        "Bei Amrum Geburt von Mitte November bis Anfang Januar; kurze Säugezeit",
+        "Gefahren durch fehlende Wurfplätze, Gewässerverschmutzung und Verfangen in Netzen",
+        "Bedeutung hochwassersicherer Fortpflanzungsplätze"
+      ],
+      "limits": "Überarbeitete Darstellung nach einem Grundlagenbeitrag von 2004; einzelne Verbreitungs- und Gefährdungsangaben können ältere Zustände abbilden. Verwendet werden nur grundlegende Biologie und ausdrücklich lokal bezeichnete Geburtstermine. Keine rechtliche Einstufung übernommen."
+    },
+    {
+      "id": "mammals-kegelrobbe-kierdorf-2019",
+      "organization": "Universität Hildesheim; Natural History Museum of Denmark / University of Copenhagen · PLOS ONE",
+      "authorityGroup": "Kierdorf et al. 2019 · anatomische Originaluntersuchung und ausgewiesene biologische Einführung",
+      "title": "Dental pulp exposure, periapical inflammation and suppurative osteomyelitis of the jaws in juvenile Baltic grey seals … · 2019",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0215401",
+      "supports": [
+        "Leben zwischen Wasser und Land; Fortpflanzung und Fellwechsel an Land",
+        "Drei geographische Populationen; Ostsee-Geburtsmaximum Ende Februar bis Anfang März",
+        "Erwachsenengebiss I 3/2, C 1/1, P 4/4, M 1–2/1; 34–36 Zähne und unterschiedliche obere Mahlzahnzahl"
+      ],
+      "limits": "Die eigentliche Pathologiestudie betrifft historische Ostsee-Schädel. Ihre Krankheitsbefunde werden nicht auf heutige Tiere oder alle Populationen übertragen. Allgemeine Biologie steht in der referenzierten Einführung; die FAO liefert den unabhängigen Abgleich der variablen Zahnzahl."
+    },
+    {
+      "id": "mammals-hase-uevora-guide-2022",
+      "organization": "Universidade de Évora / MED – Mediterranean Institute for Agriculture, Environment and Development",
+      "authorityGroup": "Celeste Santos e Silva, Rita Azedo und Rogério Louro · Universidade de Évora",
+      "title": "A Fauna do Parque Natural da Serra de S. Mamede · 2022, Seite 135",
+      "url": "https://www.uevora.pt/en/content/download/9671/117903/file/Guia%20PNSM%20-%20FAUNA.pdf",
+      "supports": [
+        "Lepus granatensis: lange schwarzspitzige Ohren, braun-gelber Rücken, weißer Bauch, kräftige Hinterläufe und zweifarbiger Schwanz",
+        "Offene Kräuterflächen, Agrarland, Weiden und lichte mediterrane Eichenlandschaften",
+        "Ruhe in flachen Bodenmulden, Deckung durch Vegetation, dämmerungs- und nachtaktive Lebensweise",
+        "Gräser, Leguminosen und kleine Sträucher als Nahrung"
+      ],
+      "limits": "Der öffentlich abrufbare PDF-Text wurde lokal gelesen, einschließlich Titel, Autoren und Artseite. Regionaler Naturparkführer; keine Gewichts-, Längen-, Gefährdungs- oder landesweiten Häufigkeitsangaben werden aus ihm abgeleitet. Das Buch ist keine Fotolizenz für die App."
+    },
+    {
+      "id": "mammals-hase-miteco",
+      "organization": "Ministerio de Medio Ambiente · Spanischer Säugetieratlas",
+      "authorityGroup": "Francisco Carro und Ramón C. Soriguer · Säugetieratlas 2007",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España · Lepus granatensis, Seiten 476–478",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/ieet_mami_lepus_granatensis_tcm30-99815.pdf",
+      "supports": [
+        "Merkmale und Verbreitung auf einem großen Teil Iberiens",
+        "Offene Agrarlandschaften, lückige Gebüsche und Weiden; vielseitige Lebensräume",
+        "Überwiegend Gräser, ergänzend Pflanzentriebe und Rinde",
+        "Meist einzelgängerisch; Ruhe in Sassen und mögliche Gruppen bei der Nahrungssuche"
+      ],
+      "limits": "Älterer Atlasstand; keine vollständige heutige Verbreitungskarte und keine aktuellen Bestände. Der fehleranfällige Satz zu fehlender elterlicher Fürsorge sowie pauschale Nahrungsprozente werden nicht übernommen. Überschneidungen mit den im CSIC-Porträt zitierten Arbeiten sind keine zweite Feldstudie. Für Merkmale, Nahrung und Verhalten wird deshalb zusätzlich der unabhängig verfasste Évora-Naturparkführer herangezogen."
+    },
+    {
+      "id": "mammals-hase-csic-dentition",
+      "organization": "Museo Nacional de Ciencias Naturales · CSIC; Autor Universität León",
+      "authorityGroup": "Francisco J. Purroy / CSIC · Artbeschreibung nach Cabrera 1914",
+      "title": "Liebre ibérica – Lepus granatensis · Identificación, Fassung 2017",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/lepgraid.html",
+      "supports": [
+        "Artspezifische Zahnformel I 2/1, C 0/0, P 3/2, M 3/3 mit insgesamt 28 Zähnen"
+      ],
+      "limits": "Die konkrete Artformel wird dort Cabrera 1914 zugeschrieben. Der unabhängige zweite Abgleich durch Kraatz et al. betrifft die Familie Leporidae; er wird ausdrücklich als Familienabgleich ausgewiesen und nicht als zweite Untersuchung an Lepus granatensis ausgegeben."
+    },
+    {
+      "id": "mammals-hase-kraatz-2021",
+      "organization": "Internationales Forschungsteam unter Beteiligung von Western University of Health Sciences und Senckenberg · Frontiers in Ecology and Evolution",
+      "authorityGroup": "Kraatz et al. 2021 · unabhängiger morphologischer Review",
+      "title": "Lagomorpha as a Model Morphological System · 2021",
+      "url": "https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2021.636402/full",
+      "supports": [
+        "Leporidae: I 2/1, C 0/0, P 3/2, M 3/3 = 28; zusätzlicher kleiner oberer Schneidezahnsatz unterscheidet Hasenartige von Nagetieren"
+      ],
+      "limits": "Familienbezogener anatomischer Vergleich; keine neue artspezifische Stichprobe am Iberischen Hasen. Die 26 Zähne der Pfeifhasen dürfen nicht mit der Leporidae-Formel vermischt werden. Entwicklungsbiologische Sonderfragen des Milchgebisses sind nicht Gegenstand des Porträts."
+    },
+    {
+      "id": "mammals-hase-porto-reproduktion-2002",
+      "organization": "Universidade do Porto · Mammalian Biology",
+      "authorityGroup": "Alves, Gonçalves, Santos und Rocha 2002 · Freilandstichproben Südportugal",
+      "title": "Reproductive biology of the Iberian hare, Lepus granatensis, in Portugal · 2002",
+      "url": "https://sigarra.up.pt/icbas/pt/pub_geral.pub_view?pi_pub_base_id=98982",
+      "supports": [
+        "Eigenständig untersuchte Art Lepus granatensis; Vorkommen auf einem großen Teil der Iberischen Halbinsel",
+        "In allen Probenzeiträumen sexuell aktive Männchen und trächtige Weibchen; Fortpflanzung über das Jahr",
+        "Kleine Würfe und daraus berechnetes jährliches Nachwuchspotenzial"
+      ],
+      "limits": "Ausgewertet wurde der vollständige Originalabstract im Hochschul-Publikationsverzeichnis, DOI 10.1078/1616-5047-00051. Proben aus Südportugal 1997–1999; keine universelle Nachwuchsleistung und kein verbindlicher Monatskalender. Das statistische Nachwuchspotenzial ist keine beobachtete Überlebenszahl."
+    },
+    {
+      "id": "mammals-hase-malaga-reproduktion-2004",
+      "organization": "Universidad de Málaga · Acta Theriologica",
+      "authorityGroup": "Farfán, Vargas, Real, Palomo und Duarte 2004 · unabhängige südspanische Stichprobe",
+      "title": "Population parameters and reproductive biology of the Iberian hare Lepus granatensis in southern Iberia · 2004",
+      "url": "https://www.researchgate.net/publication/225553602_Population_parameters_and_reproductive_biology_of_the_Iberian_hareLepus_granatensis_in_southern_Iberia",
+      "supports": [
+        "Monatliche Stichprobe von 498 Hasen 1998–1999; Geburten über das Jahr und jahreszeitliche Schwerpunkte",
+        "Meist ein oder zwei Föten pro Trächtigkeit; mehrere Würfe pro Jahr im berechneten Mittel"
+      ],
+      "limits": "Gelesen wurde der vollständige Originalabstract im vom Autor bereitgestellten Forschungseintrag, DOI 10.1007/BF03192531. Fortpflanzungsaktivität war nicht in jeder Teilgruppe in jedem Monat gleich. Keine Jagdempfehlung, Überlebensrate oder regional berechnete Jahresleistung übernommen."
+    }
+  ],
+  "species": [
+    {
+      "slug": "kegelrobbe",
+      "name": "Kegelrobbe",
+      "scientificName": "Halichoerus grypus",
+      "group": "Weitere Säugetiere",
+      "identification": "Hundsrobbe mit langer Schnauze und individuell unterschiedlicher Fleckenzeichnung. Erwachsene Männchen sind meist deutlich kräftiger als Weibchen.",
+      "habitat": "Küsten des Nordatlantiks einschließlich Nordsee und Ostsee; Nahrungsräume im Meer und geeignete Liege- und Wurfplätze an Land oder regional auf Eis.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Lange Schnauze und viele Fellvarianten",
+          "paragraphs": [
+            "Kegelrobben gehören zu den Hundsrobben und haben keine äußeren Ohrmuscheln. Die lange Schnauze fällt besonders bei erwachsenen Männchen auf. Ihr Kopf und Hals wirken kräftiger als bei Weibchen.",
+            "Das Fell kann hell mit dunklen Flecken oder dunkel mit helleren Flecken erscheinen. Farbe allein genügt deshalb nicht zur Bestimmung. Kopfform und Zeichnung gemeinsam betrachten; Alter und Geschlecht lassen sich aus einem einzelnen Foto nicht immer sicher ableiten."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-noaa",
+            "mammals-kegelrobbe-wattenmeer-2026"
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Drei Bestandsräume zwischen Atlantik und Ostsee",
+          "paragraphs": [
+            "Die Art lebt im westlichen und östlichen Nordatlantik sowie in der Ostsee. Diese drei Bestandsräume unterscheiden sich unter anderem im Jahresablauf. Eine Beobachtung an einer Nordseeküste beschreibt deshalb nicht automatisch die Bedingungen in der Ostsee.",
+            "Strände, Felsküsten, Inseln und Sandbänke dienen als Liegeplätze. Zur Fortpflanzung und zum Fellwechsel benötigen die Tiere neben geeigneten Meeresgebieten auch zugängliche Ruheplätze; in eisgebundenen Vorkommen kann Eis eine Rolle spielen."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-noaa",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Fischfresser mit flexiblem Speiseplan",
+          "paragraphs": [
+            "Kegelrobben fressen hauptsächlich Fische verschiedener Arten. Dazu kommen je nach Gebiet auch wirbellose Meerestiere. Sie nutzen Nahrung am Meeresboden ebenso wie Fische im freien Wasser.",
+            "Der Speiseplan ist kein überall gleiches Rezept: Beuteangebot, Region und Jahreszeit beeinflussen ihn. Aus der Beobachtung einer Robbe lässt sich daher nicht ablesen, welche Fischart vor Ort ihren gesamten Nahrungsbedarf deckt."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-noaa",
+            "mammals-kegelrobbe-wattenmeer-2026"
+          ]
+        },
+        {
+          "id": "verhalten",
+          "title": "Gemeinsam ruhen, zeitweise weit auseinander",
+          "paragraphs": [
+            "Zur Fortpflanzung und zum Fellwechsel können sich viele Kegelrobben versammeln. Außerhalb dieser Zeiten kommen einzelne Tiere, kleine Gruppen und größere Ansammlungen vor. Eine Liegekolonie ist daher kein Beleg dafür, dass die Tiere dauerhaft als feste Gruppe unterwegs sind.",
+            "Das Leben wechselt zwischen Wasser und trockenen beziehungsweise eisbedeckten Liegeflächen. An Land zu liegen gehört zu ihrer normalen Lebensweise und ist für sich genommen kein Krankheitszeichen."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-noaa",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "nachwuchs",
+          "title": "Weißes Jugendfell und regionale Geburtstermine",
+          "paragraphs": [
+            "Das Jungtier trägt zunächst ein helles, langhaariges Lanugofell und wird nur wenige Wochen gesäugt. Im Verlauf der ersten Lebenswochen wird dieses erste Fell gewechselt; die genaue Dauer wird in den Quellen und Populationen unterschiedlich angegeben.",
+            "An der deutschen Nordseeküste liegt die Wurfzeit im Winter. Für Amrum nennt das BfN Mitte November bis Anfang Januar. In der Ostsee liegt das Geburtsmaximum dagegen im späten Winter bis frühen Frühjahr. Ein einziger Geburtsmonat für alle Kegelrobben wäre irreführend."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-noaa",
+            "mammals-kegelrobbe-wattenmeer-2026",
+            "mammals-kegelrobbe-bfn",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "gebiss",
+          "title": "Das Erwachsenengebiss hat eine echte Zahlenvariante",
+          "paragraphs": [
+            "Das vollständige Erwachsenengebiss umfasst 34 bis 36 Zähne. Vor allem die obere Mahlzahnzahl ist variabel, daher ist „immer 34“ zu eng. Die Gebissübersicht zeigt die getrennten Zahlen für Ober- und Unterkiefer je Körperseite; die Summe beider Seiten ergibt die Gesamtzahl.",
+            "Ältere Bestimmungswerke fassen Vorbacken- und Mahlzähne oft als PC, also Postcaninen, zusammen. Die FAO nennt PC 5–6/5. Diese Schreibweise widerspricht der aufgeteilten Formel nicht. Eine Zahnformel beschreibt die Ausstattung des vollständigen Gebisses und ist kein Altersnachweis aus einem Foto."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "beobachten",
+          "title": "Ruheplätze schützen und Jungtiere in Ruhe lassen",
+          "paragraphs": [
+            "Kegelrobben brauchen geeignete, möglichst hochwassersichere Wurfplätze. Verlorene Lebensräume, Verschmutzung und das Verfangen in Fischereigerät können sie gefährden. Die Bedeutung einzelner Belastungen unterscheidet sich nach Gebiet.",
+            "Am Strand Abstand halten, Hunde fernhalten und Tiere weder berühren noch ins Wasser treiben. Ein allein liegendes Jungtier braucht nicht automatisch Hilfe. Bei einer erkennbaren Verletzung oder auffälliger Schwäche sind die örtlich zuständigen Fachstellen die richtigen Ansprechpartner."
+          ],
+          "sourceIds": [
+            "mammals-kegelrobbe-bfn",
+            "mammals-kegelrobbe-wattenmeer-2026",
+            "mammals-kegelrobbe-noaa"
+          ]
+        }
+      ],
+      "limits": [
+        "Nordsee-, Ostsee- und nordwestatlantische Befunde sind nicht beliebig austauschbar. Das Porträt nennt keinen europaweit einheitlichen Geburtskalender.",
+        "Keine aus älteren Quellen übernommene aktuelle Bestandszahl, keine pauschale Tauchhöchstleistung und keine feste Tagesration.",
+        "Das Foto dokumentiert eine Kegelrobbe mit Jungtier; das genaue Alter des Jungtiers wird trotz der detaillierten Fotografenbeschreibung nicht als unabhängiger biologischer Befund verwendet.",
+        "Die Gebissangaben betreffen das vollständige Erwachsenengebiss. Fehlende, zusätzliche oder pathologisch veränderte Zähne am einzelnen Tier erfordern eine Untersuchung."
+      ],
+      "sourceIds": [
+        "mammals-kegelrobbe-fao",
+        "mammals-kegelrobbe-noaa",
+        "mammals-kegelrobbe-wattenmeer-2026",
+        "mammals-kegelrobbe-bfn",
+        "mammals-kegelrobbe-kierdorf-2019"
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/kegelrobbe.jpg",
+        "width": 1280,
+        "height": 640,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Focas_grises_(Halichoerus_grypus),_playa_de_Horsey,_Norfolk,_Inglaterra,_2022-11-20,_DD_11.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Focas_grises_(Halichoerus_grypus),_playa_de_Horsey,_Norfolk,_Inglaterra,_2022-11-20,_DD_11.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Focas_grises_(Halichoerus_grypus),_playa_de_Horsey,_Norfolk,_Inglaterra,_2022-11-20,_DD_11.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Focas_grises_%28Halichoerus_grypus%29%2C_playa_de_Horsey%2C_Norfolk%2C_Inglaterra%2C_2022-11-20%2C_DD_11.jpg",
+        "previewUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Focas_grises_%28Halichoerus_grypus%29%2C_playa_de_Horsey%2C_Norfolk%2C_Inglaterra%2C_2022-11-20%2C_DD_11.jpg/1280px-Focas_grises_%28Halichoerus_grypus%29%2C_playa_de_Horsey%2C_Norfolk%2C_Inglaterra%2C_2022-11-20%2C_DD_11.jpg",
+        "author": "Diego Delso",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "credit": "Diego Delso / Wikimedia Commons · CC BY-SA 4.0",
+        "modifications": "Von Wikimedia bereitgestellte proportionale JPEG-Vorschau heruntergeladen; keine weitere Bildbearbeitung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "e33a293fc663723fc780db8d0e405e8c920a1ce9138ccd2062277c5249cae4fb",
+        "aiGenerated": false,
+        "caption": "Kegelrobbe mit Jungtier am Strand von Horsey in Norfolk, England. Aufnahme vom 20. November 2022.",
+        "alt": "Kegelrobbe und weißes Jungtier liegen mit einander zugewandten Köpfen auf einem Sandstrand.",
+        "evidence": {
+          "fileTitle": "File:Focas grises (Halichoerus grypus), playa de Horsey, Norfolk, Inglaterra, 2022-11-20, DD 11.jpg",
+          "sourceDescription": "Mother grey seal (Halichoerus grypus atlantica) with her one-day-old pup, Horsey Beach, Norfolk, England.",
+          "categories": "Taken with Canon EOS 5DS R|Images with annotations|Self-published work|Featured pictures on Wikipedia, English|Images of the United Kingdom by User:Poco a poco|Featured pictures by User:Poco a poco|Images by User:Poco a poco|United Kingdom photographs taken on 2022-11-20|Featured pictures of the United Kingdom by User:Poco a poco|Featured pictures on Commons by User:Poco a poco|Featured pictures of wildlife by User:Poco a poco|Featured pictures of Pinnipedia|Featured pictures of animals in the United Kingdom|Images by User:Poco a poco taken in 2022|Seals at Horsey|Halichoerus grypus atlantica in England|Halichoerus grypus (pups)",
+          "photographedAt": "2022-11-20 11:48:39",
+          "visuallyChecked": true,
+          "visibleMotif": "Eine große gefleckte Kegelrobbe und ein weißes Jungtier liegen nebeneinander am Sandstrand; ihre Schnauzen berühren sich."
+        }
+      },
+      "questions": [
+        {
+          "id": "kegelrobbe-jahreslauf",
+          "format": "single",
+          "skill": "Regionale Befunde einordnen",
+          "prompt": "Warum braucht die Kegelrobbe im Artenporträt mehr als einen Geburtstermin?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Nordsee- und Ostsee-Populationen unterscheiden sich im Jahresablauf."
+            },
+            {
+              "id": "b",
+              "text": "Die an einer deutschen Nordseeküste belegte Winterwurfzeit gilt als Kalender für sämtliche Populationen."
+            },
+            {
+              "id": "c",
+              "text": "Aus dem weißen Jugendfell lässt sich für jede Region derselbe Geburtsmonat ableiten."
+            },
+            {
+              "id": "d",
+              "text": "Die Fellzeichnung bestimmt unabhängig von der Population den Geburtsmonat."
+            }
+          ],
+          "correctIds": [
+            "a"
+          ],
+          "explanation": "Für die deutsche Nordsee sind Wintergeburten belegt, während das Ostsee-Maximum später liegt. Ein regionaler Kalender darf nicht für alle Populationen gelten.",
+          "sourceIds": [
+            "mammals-kegelrobbe-bfn",
+            "mammals-kegelrobbe-wattenmeer-2026",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "kegelrobbe-nahrung",
+          "format": "single",
+          "skill": "Nahrungsökologie verstehen",
+          "prompt": "Welche Beschreibung passt zum Speiseplan der Kegelrobbe?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Sie ernährt sich ausschließlich von Dorsch, unabhängig vom örtlichen Angebot."
+            },
+            {
+              "id": "b",
+              "text": "Sie frisst vor allem verschiedene Fische; das Angebot unterscheidet sich nach Region und Jahreszeit."
+            },
+            {
+              "id": "c",
+              "text": "Sie ernährt sich überwiegend von Strandkrebsen und nutzt Fische nur ausnahmsweise."
+            },
+            {
+              "id": "d",
+              "text": "Sie nimmt nur bodenlebende Fische auf und nutzt keine Beute im freien Wasser."
+            }
+          ],
+          "correctIds": [
+            "b"
+          ],
+          "explanation": "Kegelrobben nutzen unterschiedliche Fischarten und auch wirbellose Beute. Ein überall gleicher Speiseplan ist nicht belegt.",
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-noaa"
+          ]
+        },
+        {
+          "id": "kegelrobbe-zahnformel",
+          "format": "single",
+          "skill": "Zahnformeln lesen",
+          "prompt": "Was bedeutet M 1–2/1 in der Erwachsenenzahnformel der Kegelrobbe?",
+          "options": [
+            {
+              "id": "a",
+              "text": "M bezeichnet hier sämtliche Vorbacken- und Mahlzähne zusammen."
+            },
+            {
+              "id": "b",
+              "text": "Die Zahlen beziehen sich auf beide Körperseiten zusammen."
+            },
+            {
+              "id": "c",
+              "text": "Die obere Mahlzahnzahl je Seite kann variieren; unten steht in dieser Formel ein Mahlzahn je Seite."
+            },
+            {
+              "id": "d",
+              "text": "Die Angabe 1–2 bezeichnet das Alter, in dem die Mahlzähne gezählt werden."
+            }
+          ],
+          "correctIds": [
+            "c"
+          ],
+          "explanation": "Die Formel trennt Ober- und Unterkiefer je Körperseite. Die obere Backenzahnzahl ist variabel; die FAO bestätigt dies mit PC 5–6/5.",
+          "sourceIds": [
+            "mammals-kegelrobbe-fao",
+            "mammals-kegelrobbe-kierdorf-2019"
+          ]
+        },
+        {
+          "id": "kegelrobbe-liegeplatz",
+          "format": "single",
+          "skill": "Beobachtungen richtig bewerten",
+          "prompt": "Eine Kegelrobbe liegt ruhig am Strand. Welche Folgerung ist angemessen?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ein Jungtier sollte ins Wasser getrieben werden, damit es möglichst schnell selbst Nahrung sucht."
+            },
+            {
+              "id": "b",
+              "text": "Eine fehlende sofortige Fluchtreaktion beweist, dass das Tier Hilfe braucht."
+            },
+            {
+              "id": "c",
+              "text": "Ein allein liegendes weißes Jungtier ist grundsätzlich dauerhaft verlassen."
+            },
+            {
+              "id": "d",
+              "text": "An Land zu liegen gehört zur Lebensweise; Abstand halten und das Tier nicht ins Wasser treiben."
+            }
+          ],
+          "correctIds": [
+            "d"
+          ],
+          "explanation": "Robben nutzen trockene Liegeplätze. Die Nationalparkverwaltungen und NOAA empfehlen Abstand; allein die Lage am Strand beweist keinen Hilfebedarf.",
+          "sourceIds": [
+            "mammals-kegelrobbe-wattenmeer-2026",
+            "mammals-kegelrobbe-noaa"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "iberischer-hase",
+      "name": "Iberischer Hase",
+      "scientificName": "Lepus granatensis",
+      "group": "Hasenartige und Nagetiere",
+      "identification": "Hase mit langen, schwarzspitzigen Ohren, kräftigen Hinterläufen und heller Unterseite. Die wissenschaftliche Artbezeichnung verhindert eine Verwechslung mit Feldhase und anderen iberischen Hasenarten.",
+      "habitat": "Ein großer Teil der Iberischen Halbinsel; bevorzugt offene Agrar- und Weidelandschaften sowie lückiges Gebüsch. Auch lichte Eichenlandschaften und andere regional geeignete Lebensräume werden genutzt.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Ohren, Hinterläufe und heller Bauch",
+          "paragraphs": [
+            "Die langen Ohren tragen schwarze Spitzen. Zum braun-gelblichen Rücken steht die weiße Unterseite im Kontrast; auch der Schwanz zeigt helle und dunkle Partien. Die Hinterläufe sind kräftig und länger als die Vorderläufe.",
+            "Die Art lebt auf einem großen Teil der Iberischen Halbinsel. Dort kommen auch andere Hasenarten vor. Deshalb ist „Hase in Spanien“ noch keine sichere Artbestimmung; wissenschaftlicher Name, Fundregion und mehrere Körpermerkmale müssen zusammenpassen."
+          ],
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco",
+            "mammals-hase-porto-reproduktion-2002"
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Offene Flächen und Deckung gehören zusammen",
+          "paragraphs": [
+            "Iberische Hasen nutzen offene Flächen mit krautiger Vegetation, Weiden, Ackerlandschaften und lückige Sträucher. Mediterrane Eichenlandschaften können ebenfalls Lebensraum sein. Die Art ist deshalb weder auf reine Getreidefelder noch auf trockenes Buschland beschränkt.",
+            "Ruheplätze liegen häufig in Vegetationsdeckung. Nahrungssuche auf offenen Flächen und ein geschützter Tagesliegeplatz erfüllen unterschiedliche Bedürfnisse; aus einer einzelnen Beobachtung lässt sich der gesamte Lebensraum nicht ablesen."
+          ],
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Gräser als Grundlage, weitere Pflanzen als Ergänzung",
+          "paragraphs": [
+            "Gräser bilden einen wichtigen Bestandteil der Nahrung. Daneben werden weitere Kräuter und Teile kleiner Gehölze genutzt. Die Art ist ein Pflanzenfresser mit einem breiteren Speiseplan als nur einer einzigen Kulturpflanze.",
+            "Welche Pflanzen tatsächlich gefressen werden, hängt vom erreichbaren Angebot ab. Die Liste der Nahrungspflanzen ist deshalb keine Anleitung zum Füttern, und ein in einer Region gemessener Gräseranteil ist kein fester Wert für die gesamte Art."
+          ],
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "verhalten",
+          "title": "Sasse statt Bau und viel Aktivität im Dunkeln",
+          "paragraphs": [
+            "Als Ruheplatz dient eine flache Bodenmulde, die Sasse, häufig zwischen schützender Vegetation. Der Iberische Hase wird überwiegend als dämmerungs- und nachtaktiv beschrieben. Ein starrer Stundenplan für jede Jahreszeit und jeden Ort folgt daraus nicht.",
+            "Meist leben die Tiere einzeln. Bei der Nahrungssuche können dennoch mehrere Hasen zusammenkommen. Eine vorübergehende Ansammlung ist daher kein Widerspruch zur überwiegend einzelgängerischen Lebensweise."
+          ],
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Ein langer Fortpflanzungszeitraum mit regionalen Unterschieden",
+          "paragraphs": [
+            "Unabhängige Untersuchungen aus Südportugal und Südspanien belegen Fortpflanzung über einen großen Teil beziehungsweise das ganze Jahr. Ein auf das Frühjahr begrenzter Kalender würde diese Befunde nicht abbilden. Häufigkeit und Intensität bleiben dennoch jahreszeitlich und regional unterschiedlich.",
+            "Die Untersuchungen zeigen überwiegend kleine Würfe und mehrere Würfe innerhalb eines Jahres. Berechnete Jahresleistungen unterscheiden sich zwischen den Studien. Sie sind weder eine Garantie für jedes Weibchen noch die Zahl der Jungtiere, die bis zum nächsten Jahr überleben."
+          ],
+          "sourceIds": [
+            "mammals-hase-porto-reproduktion-2002",
+            "mammals-hase-malaga-reproduktion-2004"
+          ]
+        },
+        {
+          "id": "gebiss",
+          "title": "28 Zähne und ein zweites oberes Schneidezahnpaar",
+          "paragraphs": [
+            "Die artspezifische Beschreibung nennt insgesamt 28 Zähne für das vollständige Erwachsenengebiss. Die Zahlen der Gebissübersicht gelten je Körperseite: oben stehen zwei Schneidezähne, unten einer; Eckzähne fehlen. Erst beide Seiten zusammen ergeben die Gesamtzahl.",
+            "Der unabhängige anatomische Review bestätigt diese Formel für die Familie der Hasen und Kaninchen, Leporidae. Er ist ein Familienabgleich, keine zweite Einzeluntersuchung dieser Art. Das zusätzliche kleine obere Schneidezahnpaar ist ein wesentliches Unterscheidungsmerkmal der Hasenartigen gegenüber Nagetieren."
+          ],
+          "sourceIds": [
+            "mammals-hase-csic-dentition",
+            "mammals-hase-kraatz-2021"
+          ]
+        }
+      ],
+      "limits": [
+        "Das Porträt beschreibt Lepus granatensis, nicht pauschal alle Hasen Iberiens. Es liefert keine lückenlose heutige Verbreitungskarte.",
+        "Keine starren Körpermaße, Wurfgrößen oder Jahresleistungen aus regionalen Stichproben; keine behauptete allgemeine Tagesinaktivität.",
+        "Die beiden Fortpflanzungsstudien wurden für die hier genannten Kernaussagen anhand ihrer Originalabstracts gelesen. Zahlen und Methoden, die daraus nicht abgesichert ableitbar sind, bleiben ausgespart.",
+        "Die Erwachsenenzahnformel besitzt einen konkreten Artbeleg und einen ausdrücklich gekennzeichneten unabhängigen Familienabgleich. Kein ergänzter Milchzahnkalender oder Altersnachweis.",
+        "Das Foto zeigt einen laufenden beziehungsweise springenden Hasen. Ein Fluchtgrund, Alter oder Geschlecht des fotografierten Tieres ist nicht belegt."
+      ],
+      "sourceIds": [
+        "mammals-hase-uevora-guide-2022",
+        "mammals-hase-miteco",
+        "mammals-hase-csic-dentition",
+        "mammals-hase-kraatz-2021",
+        "mammals-hase-porto-reproduktion-2002",
+        "mammals-hase-malaga-reproduktion-2004"
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/iberischer-hase.jpg",
+        "width": 1280,
+        "height": 853,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Liebre_LaCa%C3%B1ada_2012-05-26.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Liebre_LaCa%C3%B1ada_2012-05-26.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Liebre_LaCa%C3%B1ada_2012-05-26.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Liebre_LaCa%C3%B1ada_2012-05-26.jpg",
+        "previewUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Liebre_LaCa%C3%B1ada_2012-05-26.jpg/1280px-Liebre_LaCa%C3%B1ada_2012-05-26.jpg",
+        "author": "Juan Lacruz",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "credit": "Juan Lacruz / Wikimedia Commons · CC BY-SA 3.0",
+        "modifications": "Von Wikimedia bereitgestellte proportionale JPEG-Vorschau heruntergeladen; keine weitere Bildbearbeitung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "e1f181d1dbaaf3a8989e52bf0f2166d607c41e2150af47a793476d0430d60076",
+        "aiGenerated": false,
+        "caption": "Iberischer Hase (Lepus granatensis) im Sprung. Aufnahme vom 26. Mai 2012; Alter, Geschlecht und Anlass der Bewegung sind nicht belegt.",
+        "alt": "Iberischer Hase mit langen schwarzspitzigen Ohren und heller Bauchseite im Sprung über niedrige Vegetation.",
+        "evidence": {
+          "fileTitle": "File:Liebre LaCañada 2012-05-26.jpg",
+          "sourceDescription": "Jumping granada hare",
+          "categories": "Lepus granatensis|Mammals of Spain|Taken with Canon EOS-1D Mark IV|Self-published work|Images with extracted images",
+          "photographedAt": "2012-05-26",
+          "visuallyChecked": true,
+          "visibleMotif": "Ein Hase im Sprung mit vollständig sichtbarem Körper, langen schwarzspitzigen Ohren, heller Unterseite und gestreckten Hinterläufen."
+        }
+      },
+      "questions": [
+        {
+          "id": "iberischer-hase-sasse",
+          "format": "single",
+          "skill": "Lebensweise unterscheiden",
+          "prompt": "Welcher Ruheplatz passt zum Iberischen Hasen?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ein verzweigter unterirdischer Bau, wie er für Wildkaninchen typisch ist."
+            },
+            {
+              "id": "b",
+              "text": "Eine flache Bodenmulde, häufig zwischen schützender Vegetation."
+            },
+            {
+              "id": "c",
+              "text": "Eine stets erhöhte, vegetationsfreie Stelle ohne Bodenmulde."
+            },
+            {
+              "id": "d",
+              "text": "Ein gepolstertes, geschlossenes Nest für eine überwiegend unterirdische Lebensweise."
+            }
+          ],
+          "correctIds": [
+            "b"
+          ],
+          "explanation": "Die Quellen beschreiben flache Ruheplätze am Boden, die Sassen. Daraus folgt keine Lebensweise im Kaninchenbau.",
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "iberischer-hase-bestimmung",
+          "format": "single",
+          "skill": "Artbestimmung einordnen",
+          "prompt": "Ein Foto zeigt einen Hasen in Spanien. Was macht die Bestimmung als Iberischer Hase belastbarer?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Allein die Tatsache, dass das Foto in Spanien entstand."
+            },
+            {
+              "id": "b",
+              "text": "Schwarze Ohrspitzen als einziges Merkmal, unabhängig von Fundregion und Körperzeichnung."
+            },
+            {
+              "id": "c",
+              "text": "Mehrere Körpermerkmale zusammen mit Fundregion und genauer Artbezeichnung."
+            },
+            {
+              "id": "d",
+              "text": "Eine helle Bauchseite als einziges Merkmal; alle anderen Hasenarten haben einen dunklen Bauch."
+            }
+          ],
+          "correctIds": [
+            "c"
+          ],
+          "explanation": "Auf der Iberischen Halbinsel leben verschiedene Hasenarten. Fundort und Merkmalskombination sind aussagekräftiger als ein einzelner allgemeiner Eindruck.",
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "iberischer-hase-nahrung",
+          "format": "single",
+          "skill": "Nahrungsökologie verstehen",
+          "prompt": "Welche Aussage zur Nahrung des Iberischen Hasen trifft zu?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gräser sind wichtig; weitere krautige Pflanzen und Gehölzteile ergänzen die Nahrung."
+            },
+            {
+              "id": "b",
+              "text": "Er frisst ganzjährig ausschließlich Gräser und nutzt keine weiteren Pflanzenteile."
+            },
+            {
+              "id": "c",
+              "text": "Er ernährt sich hauptsächlich von Gehölzrinde; Gräser sind generell unbedeutend."
+            },
+            {
+              "id": "d",
+              "text": "Sein Speiseplan besteht hauptsächlich aus Samen und Körnern; grüne Pflanzenteile sind nebensächlich."
+            }
+          ],
+          "correctIds": [
+            "a"
+          ],
+          "explanation": "Die unabhängigen Darstellungen bestätigen pflanzliche Nahrung mit wichtigen Gräseranteilen und weiteren Pflanzen. Ein einziger starrer Speiseplan passt nicht dazu.",
+          "sourceIds": [
+            "mammals-hase-uevora-guide-2022",
+            "mammals-hase-miteco"
+          ]
+        },
+        {
+          "id": "iberischer-hase-fortpflanzung",
+          "format": "single",
+          "skill": "Studienergebnisse richtig lesen",
+          "prompt": "Was folgt aus den Untersuchungen zur Fortpflanzung in Südportugal und Südspanien?",
+          "options": [
+            {
+              "id": "a",
+              "text": "In sämtlichen Regionen ist Fortpflanzung auf die Monate Februar bis Juni begrenzt."
+            },
+            {
+              "id": "b",
+              "text": "Die Ergebnisse einer südportugiesischen Stichprobe lassen sich unverändert auf jedes Weibchen der Art übertragen."
+            },
+            {
+              "id": "c",
+              "text": "Die berechnete Nachwuchsleistung entspricht immer der Zahl überlebender Jungtiere."
+            },
+            {
+              "id": "d",
+              "text": "Fortpflanzung ist nicht nur auf das Frühjahr beschränkt; die Intensität kann regional und saisonal variieren."
+            }
+          ],
+          "correctIds": [
+            "d"
+          ],
+          "explanation": "Beide Studien zeigen einen ausgedehnten Fortpflanzungszeitraum. Unterschiede zwischen Monatsproben und regionalen Jahresleistungen verbieten einen starren Kalender oder eine Überlebensgarantie.",
+          "sourceIds": [
+            "mammals-hase-porto-reproduktion-2002",
+            "mammals-hase-malaga-reproduktion-2004"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": []
+}

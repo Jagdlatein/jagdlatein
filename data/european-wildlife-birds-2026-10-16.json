@@ -1,0 +1,1145 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Drei zusätzliche biologische Vogelporträts für Europa. Regionale Feldbefunde bleiben als solche gekennzeichnet. Die Artenauswahl ist kein vollständiges Verzeichnis; Jagdstatus, Jagdzeiten und örtliches Recht werden hier nicht beurteilt. Die Artabgrenzung folgt AviList v2025b (2026).",
+  "sources": [
+    {
+      "id": "vogel-avilist-2025b",
+      "organization": "AviList Core Team",
+      "authorityGroup": "AviList/Clements · gemeinsame taxonomische Entscheidungsgrundlage",
+      "title": "AviList: The Global Avian Checklist v2025b · 11. Juni 2026; Artenzeilen Alectoris rufa, Alectoris chukar, Lagopus lagopus und Lagopus scotica",
+      "url": "https://www.avilist.org/checklist/v2025b/",
+      "supports": [
+        "Alectoris rufa und Alectoris chukar werden als eigene Arten geführt",
+        "Lagopus scotica wird getrennt von Lagopus lagopus geführt; die Entscheidung berücksichtigt Gefieder, Mauser und Genomdaten"
+      ],
+      "limits": "Die tatsächlich heruntergeladene kurze XLSX-Fassung wurde einschließlich der taxonomischen Entscheidungsnotiz gelesen. Clements übernimmt diese Entscheidung und zählt deshalb nicht als zweite unabhängige Untersuchung. Die Liste ist eine taxonomische Konvention, kein Nachweis einer Jagdberechtigung."
+    },
+    {
+      "id": "rothuhn-ofb",
+      "organization": "Office français de la biodiversité",
+      "authorityGroup": "Office français de la biodiversité",
+      "title": "Perdrix rouge (Alectoris rufa) · Morphologie, Habitat, Cycle de vie, Comportement",
+      "url": "https://ofb.gouv.fr/especes/perdrix-rouge-alectoris-rufa",
+      "supports": [
+        "Weiße Kehle mit schwarzer Begrenzung und anschließendem Fleckenlatz; gebänderte Flanken; rote Läufe und roter Schnabel; geringe äußere Geschlechtsunterschiede",
+        "Südwesteuropäische Herkunft; trockene, offene Lebensraummosaike mit Nahrung und Deckung",
+        "Überwiegend pflanzliche Erwachsenenkost; Wirbellose für kleine Küken; Bodenbrut und früh bewegliche Junge",
+        "Gruppen außerhalb der Paarungszeit und überwiegende Standorttreue"
+      ],
+      "limits": "Französisches Behördenporträt. Der vollständige HTML-Text wurde direkt abgerufen, nachdem der Recherchebrowser zeitweise 403 meldete. Französische Monatsangaben, Überlebensraten, Jagdrecht und pauschale Geschlechtsbestimmung anhand von Sporen werden nicht übernommen."
+    },
+    {
+      "id": "rothuhn-seo",
+      "organization": "SEO/BirdLife · Sociedad Española de Ornitología",
+      "authorityGroup": "SEO/BirdLife · spanische Artenkunde",
+      "title": "Perdiz roja · Alectoris rufa",
+      "url": "https://seo.org/ave/perdiz-roja/",
+      "supports": [
+        "Rothuhnmerkmale und ähnliche Färbung beider Geschlechter",
+        "Natürliches Areal in Südwesteuropa; Einführung in Großbritannien",
+        "Offenes Grünland, Ackerflächen und lockeres Gebüsch; Samen, Blätter und frühe Insektenkost der Küken",
+        "Geselligkeit außerhalb der Brutzeit; Bodenmulde und Nestflüchter; regionale Höhenbewegungen statt Fernzug"
+      ],
+      "limits": "Spanischer Schwerpunkt. Aktuelle Bestandszahlen, Gefährdungsbewertungen und Forderungen zu Bewirtschaftung oder Politik werden nicht übernommen. Lebensraum- und Bruttermine werden nicht als einheitlicher Europakalender dargestellt."
+    },
+    {
+      "id": "rothuhn-bto",
+      "organization": "British Trust for Ornithology",
+      "authorityGroup": "BTO · BirdFacts und britische Nestaufzeichnungen",
+      "title": "Red-legged Partridge · BirdFacts",
+      "url": "https://www.bto.org/learn/about-birds/birdfacts/red-legged-partridge",
+      "supports": [
+        "Rote Läufe und auffällige schwarze Fleckenzeichnung am Hals",
+        "Eingeführtes britisches Vorkommen und Nutzung offenen Agrarlandes",
+        "Nestflüchter; Brutpflege kann Weibchen oder Männchen einschließen"
+      ],
+      "limits": "Britische Daten und fachlich kuratierte Zusammenstellung; keine eigenständige Wiederholung aller darin zitierten Brutstudien. BTO und RSPB teilen bestimmte Monitoringprogramme, die hier nicht als zwei unabhängige Bestandszählungen verwendet werden."
+    },
+    {
+      "id": "rothuhn-rspb",
+      "organization": "Royal Society for the Protection of Birds",
+      "authorityGroup": "RSPB · britische Artenkunde",
+      "title": "Red-legged Partridge · How to identify",
+      "url": "https://www.rspb.org.uk/birds-and-wildlife/red-legged-partridge",
+      "supports": [
+        "Weiße Kehle mit schwarzem Rand; markante dunkle Flankenstreifen",
+        "Das britische Vorkommen geht auf Einführungen aus Kontinentaleuropa zurück"
+      ],
+      "limits": "Nur die tatsächlich sichtbaren Bestimmungs- und Herkunftsangaben werden genutzt. Gemeinsam mit BTO erhobene britische Monitoringdaten zählen nicht als unabhängige Wiederholung."
+    },
+    {
+      "id": "chukar-adw",
+      "organization": "University of Michigan, Museum of Zoology · Animal Diversity Web",
+      "authorityGroup": "Christensen/Handbook-Grundlagen · ADW und Cornell teilweise gemeinsame Literatur",
+      "title": "Alectoris chukar · Lara Peterson, 2001",
+      "url": "https://animaldiversity.org/accounts/Alectoris_chukar/",
+      "supports": [
+        "Graubraune Oberseite, helle Kehle mit geschlossenem dunklem Band, Flankenbänder und rote unbefiederte Läufe",
+        "Eurasisches Areal mit südosteuropäischem Rand; Pflanzenkost, Bodenleben, Familiengruppen und Bodenbrut",
+        "Ähnliche Geschlechter; Angaben zur Beteiligung des Männchens an der Jungenführung sind uneinheitlich"
+      ],
+      "limits": "Ältere Synthese, wesentlich gestützt auf Christensen 1996 und Handbook-Literatur. ADW und Cornells Chukar-Lebensgeschichte zählen für gemeinsame Angaben nicht als unabhängige Bestätigungen. Nordamerikanische Pflanzenlisten und Brutkalender werden nicht auf Europa übertragen."
+    },
+    {
+      "id": "chukar-cornell",
+      "organization": "Cornell Lab of Ornithology",
+      "authorityGroup": "Christensen/Handbook-Grundlagen · ADW und Cornell teilweise gemeinsame Literatur",
+      "title": "Chukar Life History · auf Grundlage von Christensen 1996",
+      "url": "https://www.allaboutbirds.org/guide/Chukar/lifehistory",
+      "supports": [
+        "Samen und grüne Pflanzenteile; Insekten als frühe Kükennahrung",
+        "Bodenmulde unter Deckung; entwickelte, früh das Nest verlassende Küken",
+        "Gruppen außerhalb der Fortpflanzung; Bewegung überwiegend am Boden"
+      ],
+      "limits": "Nordamerikanischer Schwerpunkt; bestätigt allgemeine Artbiologie, keine europäischen Anteile, Höhenobergrenzen oder Monatsangaben. Quellenabhängigkeit mit ADW ist ausdrücklich berücksichtigt."
+    },
+    {
+      "id": "chukar-audubon",
+      "organization": "National Audubon Society · Kenn Kaufman",
+      "authorityGroup": "Kenn Kaufman · Lives of North American Birds, 1996",
+      "title": "Chukar · Range & Identification, Behavior",
+      "url": "https://www.audubon.org/field-guide/bird/chukar",
+      "supports": [
+        "Kopf- und Flankenzeichnung, rote Läufe, Schnabel und Augenring; ähnliche Geschlechter",
+        "Pflanzliche Nahrung und saisonaler Wechsel; Bodenmulde unter Busch oder Fels",
+        "Früh mobile Küken und Grenzen der Angaben zur männlichen Jungenpflege"
+      ],
+      "limits": "Unabhängig verfasstes Kaufman-Artenporträt, keine neue Feldstudie. Der Schwerpunkt liegt auf eingeführten nordamerikanischen Beständen. Pflanzenarten, Mengen und dortige Bruttermine werden nicht als europäischer Standard ausgegeben."
+    },
+    {
+      "id": "chukar-cyprus",
+      "organization": "BirdLife Cyprus",
+      "authorityGroup": "BirdLife Cyprus · zyprische Artenkunde",
+      "title": "Chukar Partridge · Alectoris chukar",
+      "url": "https://birdlifecyprus.org/chukar-partridge/",
+      "supports": [
+        "Ganzjähriger Brutvogel auf Zypern von Küsten- bis Berglebensräumen; Samen als Nahrung",
+        "Bodenbrut, sofort laufende Küken und Familiengruppen",
+        "Laut wiederholter Chuk-Ruf"
+      ],
+      "limits": "Regionaler Befund für Zypern. BirdLife Internationals Europaübersicht verwendet zum Teil zyprische Partnerdaten und zählt dafür nicht als unabhängige zweite Bestandsaufnahme."
+    },
+    {
+      "id": "chukar-akamas",
+      "organization": "Akamas Visitor Centre, Kathikas",
+      "authorityGroup": "Akamas Visitor Centre · regionale Naturvermittlung",
+      "title": "Alectoris chukar · regionales Artenporträt für Zypern",
+      "url": "https://akamasvisitorcentre.com/alectoris-chukar/",
+      "supports": [
+        "Zyprische Vorkommen von Küste bis Troodos; rasches Laufen und kurzer Fluchtflug",
+        "Paare zur Fortpflanzung, Familiengruppen und anschließende Zusammenschlüsse",
+        "Auffällige wiederholte Rufe"
+      ],
+      "limits": "Lokale Bildungseinrichtung, keine eigene veröffentlichte Datenerhebung. Wird zur regionalen Plausibilisierung zusammen mit Fachliteratur genutzt, nicht als alleiniger Nachweis von Messwerten."
+    },
+    {
+      "id": "chukar-europa",
+      "organization": "BirdLife International · European Red List of Birds",
+      "authorityGroup": "Europäische Länderberichte 2019–2020 · teils BirdLife-Partnerdaten",
+      "title": "Alectoris chukar · European Red List of Birds 2021, Supplementary Material",
+      "url": "https://birdlifedata.blob.core.windows.net/sub-global/140_alectoris_chukar.pdf",
+      "supports": [
+        "Dokumentierte Brutvorkommen unter anderem in Bulgarien, Griechenland und Zypern",
+        "Die Übersicht unterscheidet bei einzelnen Ländern ausdrücklich nichtheimische Populationen"
+      ],
+      "limits": "Zur geografischen Einordnung, nicht als aktuelle Bestandszählung oder Jagdstatusquelle. Länderberichte besitzen unterschiedliche Qualität. Zyprische Angaben überschneiden sich mit BirdLife Cyprus und dem Game & Fauna Service."
+    },
+    {
+      "id": "chukar-usfs",
+      "organization": "U.S. Department of Agriculture, Forest Service",
+      "authorityGroup": "FEIS-Synthese · Bohl 1957, Johnsgard und Christensen 1970 teils gemeinsame Grundlagen",
+      "title": "Sullivan 1994 · Alectoris chukar, Fire Effects Information System",
+      "url": "https://research.fs.usda.gov/feis/species-reviews/alch",
+      "supports": [
+        "Artbezogene Nachweise für Samen, grüne Pflanzenteile und stärkere Insektennutzung junger Küken",
+        "Nestflüchter und Gruppen aus einer oder mehreren Familien"
+      ],
+      "limits": "Der Text erklärt ausdrücklich, dass sämtliche Ökologieangaben nordamerikanische Populationen betreffen. Nur der grundlegende Futter- und Entwicklungswechsel wird mit europäischen Angaben abgeglichen. Keine Übernahme nordamerikanischer Pflanzenbindung, Bestandssteuerung oder Feuerempfehlungen. Teilweise gemeinsame ältere Literatur mit Cornell."
+    },
+    {
+      "id": "chukar-guerrini-2007",
+      "organization": "Universität Pisa und Cypriot Game Fund Service · Animal Biodiversity and Conservation",
+      "authorityGroup": "Guerrini, Panayides, Hadjigerou, Taglioli, Dini und Barbanera · Originalstudie 2007",
+      "title": "Lack of genetic structure of Cypriot Alectoris chukar populations as inferred from mtDNA sequencing data",
+      "url": "https://www.moi.gov.cy/moi/wildlife/wildlife_new.nsf/web34_gr/76C5D0901B1A27B6C225789C0029274C/$file/Lack%20of%20Genetic%20structure%20Alectoris%20chukar.pdf",
+      "supports": [
+        "Zyprische Chukars nutzen felsige Lebensräume mit Macchie beziehungsweise niedriger mediterraner Strauchvegetation zwischen Küste und Troodos",
+        "Die untersuchten Chukars stammen aus Zypern, Kreta und Israel; geografische Bezeichnungen ersetzen keine artbezogene Untersuchung"
+      ],
+      "limits": "Die genetische Untersuchung betrifft bestimmte Proben und mitochondriale Linien. Daraus wird weder Reinheit sämtlicher Vögel noch eine allgemeine Aussage über Hybriden in Europa abgeleitet. Genetische Einzelresultate werden im Lerntext nicht verallgemeinert."
+    },
+    {
+      "id": "moor-cornell-id",
+      "organization": "Cornell Lab of Ornithology",
+      "authorityGroup": "Cornell Lab · All About Birds / Hannon, Eason und Martin",
+      "title": "Willow Ptarmigan Identification",
+      "url": "https://www.allaboutbirds.org/guide/Willow_Ptarmigan/id",
+      "supports": [
+        "Gedrungene Gestalt, kurzer kräftiger Schnabel und befiederte Füße",
+        "Weiße Winterfärbung; braun gesprenkelte Hennen und zeitweise kastanienbrauner Kopf und Hals der Hähne",
+        "Pflanzliche Nahrung und winterliche Gruppen"
+      ],
+      "limits": "Abgebildete nordamerikanische Individuen bestätigen sichtbare Artmerkmale, aber keine festen europäischen Mausertermine. Cornells weitere Artseiten bilden keine unabhängige zweite Quelle."
+    },
+    {
+      "id": "moor-cornell-life",
+      "organization": "Cornell Lab of Ornithology",
+      "authorityGroup": "Cornell Lab · All About Birds / Hannon, Eason und Martin",
+      "title": "Willow Ptarmigan Life History · Hannon, Eason und Martin, 1998",
+      "url": "https://www.allaboutbirds.org/guide/Willow_Ptarmigan/lifehistory",
+      "supports": [
+        "Strauchreiche offene Lebensräume; Knospen, Blätter, Beeren und saisonaler Nahrungswechsel",
+        "Bodenmulde in Vegetationsdeckung; Henne brütet, Hahn beteiligt sich am Schutz der Familie",
+        "Nestflüchter bleiben auf elterlichen Schutz angewiesen; Reviere während der Fortpflanzung"
+      ],
+      "limits": "Grundlagenporträt mit nordamerikanischem Schwerpunkt und derselben Quellenfamilie wie die Cornell-Bestimmungsseite. Entfernungen, Gelegegrößen und Termine werden nicht auf Nordeuropa übertragen."
+    },
+    {
+      "id": "moor-alaska",
+      "organization": "Alaska Department of Fish and Game",
+      "authorityGroup": "Alaska Department of Fish and Game",
+      "title": "Willow Ptarmigan · Species Profile",
+      "url": "https://www.adfg.alaska.gov/index.cfm?adfg=willowptarmigan.main",
+      "supports": [
+        "Kräftiger Schnabel, befiederte Füße und weißes Wintergefieder mit schwarzen Schwanzfedern",
+        "Weiden als Nahrung; je nach Jahreszeit Blätter, Knospen, Zweige und Beeren",
+        "Bodenbrut, territoriale Hähne, Beteiligung beider Eltern am Familienschutz und Gruppen außerhalb der Brutzeit"
+      ],
+      "limits": "Alaska-spezifische Kalender, Nahrungsanteile und Wanderstrecken werden nicht auf Europa übertragen. Der ältere Verbreitungstext nennt noch Schottland unter Lagopus lagopus; diese überholte Artabgrenzung wird ausdrücklich nicht übernommen."
+    },
+    {
+      "id": "moor-artsdatabanken",
+      "organization": "Artsdatabanken · norwegisches Vogel-Expertenkomitee",
+      "authorityGroup": "Artsdatabanken · nationale norwegische Artenbewertung",
+      "title": "Stokke et al. 2021 · Lirype Lagopus lagopus: Utbredelse og økologi",
+      "url": "https://lister.artsdatabanken.no/rodlisteforarter/2021/31755",
+      "supports": [
+        "Norwegische Brutlebensräume im Gebirge und in Gebirgsbirkenwäldern, regional bis zur Küste",
+        "Überwiegend pflanzliche Nahrung und ganzjähriges regionales Vorkommen",
+        "Weißes Wintergefieder bedeutet bei fehlender Schneedecke keine verlässliche Tarnung"
+      ],
+      "limits": "Bewertung von 2021 für Norwegen; keine aktuelle europaweite Bestandszahl. Eigene Bestandszyklen, Jagdrecht und Gefährdungskategorien werden hier nicht fortgeschrieben. Der Begriff Standvogel schließt regionale saisonale Bewegungen nicht aus."
+    },
+    {
+      "id": "moor-finnatlas",
+      "organization": "Finnisches Naturkundemuseum, Universität Helsinki / Finnischer Brutvogelatlas",
+      "authorityGroup": "Finnischer Brutvogelatlas · Aleksi Lehikoinen",
+      "title": "Suomen III Lintuatlas · Riekko; Arttext von Aleksi Lehikoinen, PDF-Seite 70",
+      "url": "https://cdn.laji.fi/files/birdatlas/suomen_lintuatlas_3.pdf",
+      "supports": [
+        "Nordeuropäisches Vorkommen und finnische Brutlebensräume mit Birken, Weiden und offenen Moor- oder Gehölzrändern",
+        "Weißes Winterkleid; fehlender Schnee kann den Tarnungsvorteil aufheben"
+      ],
+      "limits": "Historischer Atlas 2006–2010, dessen tatsächlich heruntergeladener PDF-Arttext gelesen wurde. Nur grundlegende Habitat- und Gefiederangaben werden verwendet; die damaligen Bestandszahlen und die damalige Rote Liste sind kein Stand von 2026."
+    },
+    {
+      "id": "moor-ingvaldsen-2024",
+      "organization": "Nord University und Norsk institutt for naturforskning · Royal Society Open Science",
+      "authorityGroup": "NINA/Nord/NTNU · norwegischer Forschungsverbund, Lierne und Dovrefjell",
+      "title": "Ingvaldsen et al. 2024 · Fecal DNA metabarcoding reveals seasonal and annual variation in willow ptarmigan diet",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10898975/",
+      "supports": [
+        "Originaldaten norwegischer Lagopus l. lagopus: Nahrung aus Bäumen und Zwergsträuchern, darunter Birken und Heidelbeer-Verwandte",
+        "Die pflanzliche Zusammensetzung verändert sich zwischen Winter und Frühsommer sowie zwischen Jahren"
+      ],
+      "limits": "Volltext direkt abgerufen. DNA-Nachweise im Kot sind keine gewogenen Futteranteile; die Studie ist keine europaweite Stichprobe. Mit weiteren Meldungen dieses norwegischen Verbunds wird keine zusätzliche unabhängige Wiederholung behauptet."
+    },
+    {
+      "id": "moor-eriksen-2023",
+      "organization": "NTNU, NINA und Nord University · Royal Society Open Science",
+      "authorityGroup": "NINA/Nord/NTNU · norwegischer Forschungsverbund, Lierne und Dovrefjell",
+      "title": "Eriksen et al. 2023 · Climatic forcing and individual heterogeneity in a resident mountain bird",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10206478/",
+      "supports": [
+        "Norwegische Originaldaten zur Fortpflanzung; keine einheitlichen Gelegegrößen oder festen Bruttermine",
+        "Nestflüchter benötigen weiterhin Wärmen und Schutz durch die Henne; Hahn vor allem am Schutz beteiligt",
+        "Knospige Winterkost und frische Feldschicht im Frühjahr"
+      ],
+      "limits": "Originaldatensatz aus Dovrefjell 1978–1994; Zusammenhänge sind kein universelles Vorhersagemodell. Wiederverwendete Daten und Mitteilungen des Forschungsverbunds zählen nicht mehrfach als unabhängige Bestätigung."
+    },
+    {
+      "id": "moor-nina-bewegung",
+      "organization": "Norsk institutt for naturforskning",
+      "authorityGroup": "NINA/Nord/NTNU · norwegischer Forschungsverbund, Lierne und Dovrefjell",
+      "title": "Lasse Frost Eriksen disputerer med oppgave om lirype · 15. März 2024",
+      "url": "https://www.nina.no/aktuelt/alle-artikler-og-nyheter/lasse-frost-eriksen-disputerer-med-oppgave-om-lirype",
+      "supports": [
+        "Die untersuchte Population von Lierne ist teilweise zwischen Sommer- und Winterräumen unterwegs",
+        "Artweite Aussagen wie immer ortsfest sind zu weitgehend"
+      ],
+      "limits": "Institutionelle Darstellung einer Dissertation, keine zusätzliche unabhängige Studie neben demselben Forschungsprogramm. Keine Übertragung der dortigen Einflussgrößen auf alle europäischen Populationen."
+    },
+    {
+      "id": "moor-clements-2025",
+      "organization": "Cornell Lab of Ornithology · Clements Checklist",
+      "authorityGroup": "AviList/Clements · gemeinsame taxonomische Entscheidungsgrundlage",
+      "title": "Updates and Corrections · October 2025: Red Grouse split",
+      "url": "https://www.birds.cornell.edu/clementschecklist/updates-and-corrections-october-2025/",
+      "supports": [
+        "Trennung von Lagopus scotica und Lagopus lagopus; abweichende ältere Bezeichnungen sind dokumentiert",
+        "Britisch-irische Red Grouse besitzen dunkle Flügel und keine weiße Wintermauser"
+      ],
+      "limits": "Übernimmt die AviList-Entscheidungsgrundlage; kein zweiter unabhängiger genetischer Datensatz. Die Unterartbehandlung hibernica ist zwischen Listen weiterhin unterschiedlich und wird hier nicht aufgelöst."
+    },
+    {
+      "id": "moor-kozma-2019",
+      "organization": "Universität Uppsala · Scientific Reports",
+      "authorityGroup": "Kozma, Rödin-Mörch und Höglund · Originale Genomstudie 2019",
+      "title": "Genomic regions of speciation and adaptation among three species of grouse",
+      "url": "https://www.nature.com/articles/s41598-018-36880-5",
+      "supports": [
+        "Die untersuchten Willow und Red Grouse unterscheiden sich genomisch; diese Studie gehört zu den Grundlagen der späteren taxonomischen Trennung",
+        "Befunde zu Gefieder und Lebensraumschwerpunkten betreffen benannte Lagopus-Taxa, nicht austauschbar alle Schneehühner"
+      ],
+      "limits": "Die Arbeit benutzte 2019 noch die ältere Unterartbezeichnung Lagopus lagopus scoticus. Sie dokumentiert genetische Unterschiede, während die hier verwendete Rangentscheidung aus AviList v2025b stammt. Keine pauschale genetische Bestimmung eines fotografierten Vogels."
+    }
+  ],
+  "species": [
+    {
+      "slug": "rothuhn",
+      "name": "Rothuhn",
+      "scientificName": "Alectoris rufa",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Gedrungenes Bodenhuhn mit roten Läufen, heller Kehle, schwarzem Halsrand und darunter auffälliger schwarzer Fleckenzeichnung; die Flanken sind gebändert.",
+      "habitat": "Offene, häufig trockene Landschaftsmosaike Südwesteuropas mit Acker- und Grasflächen sowie lockeren Sträuchern als Deckung.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Kopfzeichnung und Flanken gemeinsam betrachten",
+          "paragraphs": [
+            "Die helle Kehle wird schwarz eingefasst. Unterhalb dieses Randes setzt sich die dunkle Zeichnung als Fleckenlatz auf dem oberen Brustbereich fort. An den Körperseiten wechseln helle, schwarze und braune Bänder. Diese Kombination hilft mehr als die rote Farbe der Läufe allein.",
+            "Schnabel, Augenring und Läufe sind rot. Henne und Hahn sehen sich im Gefieder sehr ähnlich; die Aufnahme eines einzelnen Vogels erlaubt deshalb keine verlässliche Geschlechtszuordnung."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo",
+            "rothuhn-bto",
+            "rothuhn-rspb"
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Südwesteuropa: offenes Land mit Deckung",
+          "paragraphs": [
+            "Das natürliche europäische Verbreitungsgebiet liegt im Südwesten: besonders auf der Iberischen Halbinsel, in Frankreich und im nordwestlichen Italien. Britische Vorkommen gehen auf Einführungen zurück; Beobachtungsort und ursprüngliche Verbreitung sind deshalb auseinanderzuhalten.",
+            "Genutzt werden offene Gras- und Ackerflächen sowie lockeres Gebüsch. Ein Mosaik bietet sowohl Stellen zur Nahrungssuche am Boden als auch schützende Vegetation. Eine geschlossene Waldfläche beschreibt diesen Lebensraumschwerpunkt nicht."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo",
+            "rothuhn-bto",
+            "rothuhn-rspb"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Erwachsene und Küken fressen unterschiedlich",
+          "paragraphs": [
+            "Bei erwachsenen Rothühnern überwiegt pflanzliche Nahrung, darunter Samen und grüne Pflanzenteile. Was aufgenommen wird, hängt vom vorhandenen Angebot ab. Das Rothuhn ist damit kein ausschließlich auf Getreide festgelegter Vogel.",
+            "In den ersten Lebenswochen haben Wirbellose für die Küken eine wesentlich größere Bedeutung. Die Nahrung kleiner Küken lässt sich deshalb nicht einfach aus der überwiegend pflanzlichen Erwachsenenkost ableiten."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo"
+          ]
+        },
+        {
+          "id": "jahreslauf",
+          "title": "Von Gruppen zu Paaren und wieder zurück",
+          "paragraphs": [
+            "Außerhalb der Fortpflanzungszeit leben Rothühner häufig in Gruppen. Zur Fortpflanzung bilden sich Paare; nach der Jungenaufzucht können wieder Familien und größere Verbände zusammenkommen.",
+            "Rothühner sind überwiegend standorttreu. Das bedeutet nicht, dass jeder Vogel ganzjährig auf derselben Stelle bleibt: In Gebirgsgebieten sind jahreszeitliche Höhenbewegungen beschrieben. Ein fester Fernzug gehört nicht zum hier belegten Grundmuster."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo",
+            "rothuhn-bto"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Bodenbrut und früh bewegliche Junge",
+          "paragraphs": [
+            "Das Nest liegt als flache, ausgekleidete Mulde am Boden in schützender Vegetation. Die Küken sind Nestflüchter: Sie verlassen das Nest sehr bald nach dem Schlüpfen. Frühe Beweglichkeit ist ein Entwicklungsmerkmal und bedeutet noch keine Unabhängigkeit von der Familie.",
+            "Auch Männchen können Brutaufgaben übernehmen. Die genaue Aufgabenverteilung und der Ablauf lassen sich nicht auf einen einzigen europäischen Monat oder auf das starre Schema nur die Henne brütet reduzieren."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo",
+            "rothuhn-bto"
+          ]
+        },
+        {
+          "id": "vergleich-grenzen",
+          "title": "Rote Läufe sind keine sichere Artbestimmung",
+          "paragraphs": [
+            "Auch das Chukarhuhn besitzt rote Läufe und gebänderte Flanken. Beim Rothuhn ist der dunkle Fleckenlatz unter der Kehlbegrenzung besonders hilfreich; beim Chukar fällt die geschlossen wirkende dunkle Kehlumrandung auf. Kopf, Brust, Seitenzeichnung und Herkunft sollten gemeinsam betrachtet werden.",
+            "Dieses Porträt beschreibt typische Merkmale. Es ersetzt keine Prüfung eines schlecht sichtbaren Vogels und erlaubt keine sichere Aussage über Geschlecht, Herkunft oder genetische Abstammung allein anhand eines Fotos."
+          ],
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-bto",
+            "chukar-adw",
+            "chukar-audubon"
+          ]
+        }
+      ],
+      "limits": [
+        "Natürliches Areal und eingeführte Vorkommen werden unterschieden; keine flächendeckende aktuelle Verbreitungskarte.",
+        "Keine festen europäischen Brutmonate, Gelegezahlen, Überlebensraten oder Geschlechtsgarantien aus Einzelfotos.",
+        "Die Unterschiede zum Chukar sind eine Merkmalskombination und keine genetische Diagnose."
+      ],
+      "sourceIds": [
+        "vogel-avilist-2025b",
+        "rothuhn-ofb",
+        "rothuhn-seo",
+        "rothuhn-bto",
+        "rothuhn-rspb",
+        "chukar-adw",
+        "chukar-audubon"
+      ],
+      "questions": [
+        {
+          "id": "rothuhn-kopfzeichnung",
+          "format": "single",
+          "skill": "Merkmale verstehen",
+          "prompt": "Du erkennst rote Läufe und eine helle Kehle. Welches zusätzliche Merkmal passt besonders zum Rothuhn?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ein im Winter weitgehend weißes Körpergefieder"
+            },
+            {
+              "id": "b",
+              "text": "Ein dunkler Fleckenlatz unter dem schwarzen Kehlrand"
+            },
+            {
+              "id": "c",
+              "text": "Dicht befiederte Zehen"
+            },
+            {
+              "id": "d",
+              "text": "Ein einfarbig heller Hals ohne dunkle Zeichnung"
+            }
+          ],
+          "correctIds": [
+            "b"
+          ],
+          "explanation": "Beim Rothuhn reicht die schwarze Zeichnung unterhalb der Kehlbegrenzung als Fleckenlatz weiter. Rote Läufe allein unterscheiden es nicht vom Chukar.",
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-bto",
+            "chukar-audubon"
+          ]
+        },
+        {
+          "id": "rothuhn-kuekennahrung",
+          "format": "single",
+          "skill": "Lebensphasen vergleichen",
+          "prompt": "Warum beschreibt überwiegend pflanzliche Nahrung die Ernährung des Rothuhns nicht für jedes Lebensalter gleich gut?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Weil Erwachsene im Frühjahr vollständig auf tierische Nahrung wechseln"
+            },
+            {
+              "id": "b",
+              "text": "Weil die Zusammensetzung nur vom Ort abhängt und das Alter keine Rolle spielt"
+            },
+            {
+              "id": "c",
+              "text": "Weil Küken dieselbe Pflanzenkost lediglich in kleineren Mengen aufnehmen"
+            },
+            {
+              "id": "d",
+              "text": "Weil kleine Küken stärker auf Wirbellose angewiesen sind"
+            }
+          ],
+          "correctIds": [
+            "d"
+          ],
+          "explanation": "Samen und grüne Pflanzenteile prägen die Erwachsenenkost. Bei kleinen Küken haben Wirbellose eine deutlich größere Bedeutung.",
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo"
+          ]
+        },
+        {
+          "id": "rothuhn-europa",
+          "format": "single",
+          "skill": "Verbreitung einordnen",
+          "prompt": "Eine Rothuhnbeobachtung in Großbritannien belegt vor allem was?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ein heutiges Vorkommen; die dortige Besiedlung geht auf Einführungen zurück"
+            },
+            {
+              "id": "b",
+              "text": "Dass Großbritannien zum natürlichen südwesteuropäischen Ursprungsareal gehört"
+            },
+            {
+              "id": "c",
+              "text": "Einen regelmäßigen Fernzug aus der Arktis"
+            },
+            {
+              "id": "d",
+              "text": "Dass Rothühner nur auf Inseln leben"
+            }
+          ],
+          "correctIds": [
+            "a"
+          ],
+          "explanation": "Vorkommen und ursprüngliches Verbreitungsgebiet sind verschiedene Aussagen. Für Großbritannien ist die Einführung dokumentiert.",
+          "sourceIds": [
+            "rothuhn-bto",
+            "rothuhn-rspb",
+            "rothuhn-seo"
+          ]
+        },
+        {
+          "id": "rothuhn-nestfluechter",
+          "format": "single",
+          "skill": "Entwicklung einordnen",
+          "prompt": "Was bedeutet Nestflüchter beim Rothuhn?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Die Eltern verlassen jedes Gelege vor dem Schlüpfen"
+            },
+            {
+              "id": "b",
+              "text": "Die Jungen verlassen nach dem Schlüpfen sofort Europa"
+            },
+            {
+              "id": "c",
+              "text": "Die Küken können das Nest bald nach dem Schlüpfen verlassen"
+            },
+            {
+              "id": "d",
+              "text": "Die Jungen bleiben bis zur vollen Körpergröße im Nest"
+            }
+          ],
+          "correctIds": [
+            "c"
+          ],
+          "explanation": "Rothuhnküken sind schon früh beweglich. Nestflüchter beschreibt diesen Entwicklungszustand und setzt ihn nicht mit vollständiger Selbstständigkeit gleich.",
+          "sourceIds": [
+            "rothuhn-ofb",
+            "rothuhn-seo",
+            "rothuhn-bto"
+          ]
+        }
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/rothuhn.jpg",
+        "width": 1600,
+        "height": 1066,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Perdrix_rouge.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Perdrix_rouge.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Perdrix_rouge.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Perdrix_rouge.jpg",
+        "previewUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Perdrix_rouge.jpg/1280px-Perdrix_rouge.jpg",
+        "author": "Pierre Dalous",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "credit": "Pierre Dalous / Wikimedia Commons · CC BY-SA 3.0",
+        "modifications": "Aus dem Original proportional auf 1600 × 1066 Pixel verkleinert und als JPEG mit Qualität 85 gespeichert; kein Ausschnitt und keine Motivänderung. Die abgeleitete Aufnahme bleibt CC BY-SA 3.0.",
+        "checkedAt": "2026-10-16",
+        "sha256": "b5b7bd4b5612059e1175fe36daa5c3faa86939098c319d4f301a77df98ab018d",
+        "aiGenerated": false,
+        "caption": "Rothuhn (Alectoris rufa): Kehlrand, Fleckenlatz und Flankenbänder sind erkennbar. Geschlecht und genaues Alter werden nicht bestimmt.",
+        "alt": "Rothuhn in Seitenansicht auf offenem Boden mit roten Läufen und schwarzer Fleckenzeichnung unter der hellen Kehle.",
+        "evidence": {
+          "fileTitle": "File:Perdrix rouge.jpg",
+          "sourceDescription": "Red-legged Partridge; Eigenaufnahme von Pierre Dalous.",
+          "categories": "Alectoris rufa; Phasianidae in France; Featured pictures of Tarn; March 2013",
+          "photographedAt": "2013-03-03",
+          "visuallyChecked": true,
+          "visibleMotif": "Lebender Vogel in Seitenansicht; helle Kehle mit schwarzem Rand und deutlichen Flecken darunter; gebänderte Flanken, roter Schnabel und rote Läufe. Bilddatei nach Größenanpassung angesehen."
+        }
+      }
+    },
+    {
+      "slug": "chukarhuhn",
+      "name": "Chukarhuhn",
+      "scientificName": "Alectoris chukar",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Graubraunes Bodenhuhn mit heller Kehle in dunkler Umrandung, kräftigen Flankenbändern sowie roten Läufen und rotem Schnabel.",
+      "habitat": "Südosteuropäischer Teil eines weit nach Asien reichenden Areals; unter anderem felsige, grasige und strauchreiche Landschaften Griechenlands und Zyperns.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Die dunkle Kehlumrandung als Blickfang",
+          "paragraphs": [
+            "Eine kräftige dunkle Linie verläuft von der Stirn durch die Augen und umschließt die helle Kehle. Rücken und Brust wirken grau bis graubraun, während die Flanken mit schwarzen, hellen und kastanienbraunen Bändern deutlich gezeichnet sind.",
+            "Schnabel, Augenring und unbefiederte Läufe sind rötlich. Die Geschlechter ähneln sich; ein Größenunterschied allein ist an einem einzelnen Foto keine verlässliche Bestimmung von Hahn oder Henne."
+          ],
+          "sourceIds": [
+            "chukar-adw",
+            "chukar-audubon"
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Europäischer Schwerpunkt im Südosten",
+          "paragraphs": [
+            "Das Chukarhuhn ist eine eurasische Art. Europäische Brutvorkommen sind unter anderem für Bulgarien, Griechenland und Zypern dokumentiert. Solche Länderangaben bedeuten keine lückenlose Verbreitung im gesamten Land.",
+            "Auf Zypern nutzt die Art Lebensräume von der Küste bis ins Troodos-Gebirge. Dazu gehören felsige Flächen mit niedriger mediterraner Strauchvegetation. Diese regionale Vielfalt passt nicht zum verkürzten Bild eines Vogels, der ausschließlich auf kahlen Hochgebirgsfelsen lebt."
+          ],
+          "sourceIds": [
+            "chukar-adw",
+            "chukar-europa",
+            "chukar-cyprus",
+            "chukar-guerrini-2007"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Samen, Grünpflanzen und der Wechsel im Kükenalter",
+          "paragraphs": [
+            "Chukars suchen überwiegend am Boden nach Nahrung. Samen und grüne Pflanzenteile sind wichtige Bestandteile der Erwachsenenkost. Die einzelnen Pflanzenarten und ihr Anteil wechseln mit Region und Jahreszeit; nordamerikanische Futterpflanzenlisten sind keine Speisekarte für Zypern.",
+            "Für junge Küken sind Insekten wichtig. Diese frühe tierische Nahrung und die stärker pflanzenbetonte Erwachsenenkost dürfen nicht zu einer einzigen unveränderlichen Ernährung zusammengezogen werden."
+          ],
+          "sourceIds": [
+            "chukar-cyprus",
+            "chukar-cornell",
+            "chukar-audubon",
+            "chukar-usfs"
+          ]
+        },
+        {
+          "id": "sozial-jahreslauf",
+          "title": "Paare, Familien und Gruppen",
+          "paragraphs": [
+            "Außerhalb der Fortpflanzungszeit sind Chukars oft in Gruppen unterwegs. Zur Brutzeit bilden sich Paare. Anschließend können die Familien wieder gemeinsam auftreten und sich mit weiteren Familien zusammenschließen.",
+            "Auf Zypern ist das Chukarhuhn ganzjährig anwesend. Es läuft flink über den Boden und kann bei Störung rasch auffliegen. Häufig fallen zunächst die laut wiederholten Chuk-Rufe auf, bevor der Vogel selbst zu sehen ist."
+          ],
+          "sourceIds": [
+            "chukar-akamas",
+            "chukar-cyprus",
+            "chukar-adw",
+            "chukar-audubon"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Bodenmulde statt Baumhöhle",
+          "paragraphs": [
+            "Das Nest wird am Boden angelegt, häufig in Deckung von Sträuchern oder Felsen. Es ist eine ausgekleidete Mulde. Die Küken schlüpfen bereits weit entwickelt und können das Nest bald verlassen.",
+            "Die frühe Beweglichkeit macht sie nicht sofort unabhängig. Familiengruppen bleiben erkennbar zusammen. Zur genauen Beteiligung der Männchen an Brut und Jungenführung sind die Grundlagenquellen uneinheitlich; hier wird daraus keine allgemeine feste Rollenregel gemacht."
+          ],
+          "sourceIds": [
+            "chukar-cyprus",
+            "chukar-cornell",
+            "chukar-audubon",
+            "chukar-adw"
+          ]
+        },
+        {
+          "id": "vergleich-grenzen",
+          "title": "Chukar ist nicht einfach ein anderer Name für Rothuhn",
+          "paragraphs": [
+            "Alectoris chukar und Alectoris rufa sind getrennte Arten. Beide besitzen rote Läufe und markante Flankenbänder. Beim typischen Rothuhn setzt sich die dunkle Halszeichnung in einem Fleckenlatz fort; das Chukar zeigt eine klar umgrenzte helle Kehle.",
+            "Für eine Beobachtung sollten deshalb Kopf- und Brustzeichnung mit den Flanken und dem Ort abgeglichen werden. Ein einzelnes Merkmal oder der Sammelname Steinhuhn genügt nicht, um jedes Alectoris-Foto einer Art zuzuordnen."
+          ],
+          "sourceIds": [
+            "vogel-avilist-2025b",
+            "chukar-adw",
+            "chukar-audubon",
+            "rothuhn-ofb",
+            "rothuhn-bto"
+          ]
+        }
+      ],
+      "limits": [
+        "Zypern-Beispiele sind ausdrücklich regional; keine pauschale Verbreitung oder Lebensraumhöhe für ganz Europa.",
+        "Grundlegende Nahrung und Entwicklung sind mit europäischen Angaben und eigenständigen Fachsynthesen abgeglichen; nordamerikanische Mengen, Artenlisten und Kalender werden nicht übertragen.",
+        "ADW und Cornell stützen sich teilweise auf dieselbe Christensen-Literatur und werden nicht doppelt als unabhängige Forschung gezählt.",
+        "Keine Festlegung der männlichen Jungenpflege, keine genetische Reinheitsaussage und keine Gleichsetzung mit Alectoris graeca."
+      ],
+      "sourceIds": [
+        "vogel-avilist-2025b",
+        "chukar-adw",
+        "chukar-cornell",
+        "chukar-audubon",
+        "chukar-cyprus",
+        "chukar-akamas",
+        "chukar-europa",
+        "chukar-usfs",
+        "chukar-guerrini-2007",
+        "rothuhn-ofb",
+        "rothuhn-bto"
+      ],
+      "questions": [
+        {
+          "id": "chukar-stimme",
+          "format": "single",
+          "skill": "Beobachtung einordnen",
+          "prompt": "Du hörst auf Zypern wiederholte laute Chuk-Rufe, bevor du einen Vogel siehst. Welche Aussage passt zum Chukarhuhn?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Die Art ist ausschließlich in der Nacht hörbar"
+            },
+            {
+              "id": "b",
+              "text": "Ein solcher Ruf belegt bereits ein bestimmtes Alter"
+            },
+            {
+              "id": "c",
+              "text": "Auffällige wiederholte Rufe gehören zum Artenporträt"
+            },
+            {
+              "id": "d",
+              "text": "Chukars sind außerhalb des Nestes grundsätzlich stumm"
+            }
+          ],
+          "correctIds": [
+            "c"
+          ],
+          "explanation": "BirdLife Cyprus und die regionale Akamas-Artenkunde beschreiben die auffälligen wiederholten Rufe. Der Ruf allein legt Alter oder Geschlecht hier nicht fest.",
+          "sourceIds": [
+            "chukar-cyprus",
+            "chukar-akamas",
+            "chukar-audubon"
+          ]
+        },
+        {
+          "id": "chukar-brutort",
+          "format": "single",
+          "skill": "Fortpflanzung verstehen",
+          "prompt": "Welcher Brutplatz entspricht dem hier belegten Grundmuster des Chukarhuhns?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Eine geschützte Mulde am Boden"
+            },
+            {
+              "id": "b",
+              "text": "Eine tiefe Baumhöhle"
+            },
+            {
+              "id": "c",
+              "text": "Ein schwimmendes Nest mitten auf offenem Wasser"
+            },
+            {
+              "id": "d",
+              "text": "Ein hängendes Nest am Astende"
+            }
+          ],
+          "correctIds": [
+            "a"
+          ],
+          "explanation": "Chukars brüten am Boden. Deckung kann ein Strauch oder ein Fels bieten; die Küken verlassen das Nest bald nach dem Schlüpfen.",
+          "sourceIds": [
+            "chukar-cyprus",
+            "chukar-cornell",
+            "chukar-audubon"
+          ]
+        },
+        {
+          "id": "chukar-lebensraum",
+          "format": "single",
+          "skill": "Verallgemeinerungen prüfen",
+          "prompt": "Was spricht gegen die Aussage Chukars leben ausschließlich auf kahlen Hochgebirgsfelsen?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dass niedrig gelegene Strauchflächen ausschließlich außerhalb der Brutzeit genutzt werden"
+            },
+            {
+              "id": "b",
+              "text": "Dass Vorkommen unterhalb der Baumgrenze ausnahmslos auf Aussetzungen zurückgehen"
+            },
+            {
+              "id": "c",
+              "text": "Dass Küstenbeobachtungen grundsätzlich nur durchziehende Vögel betreffen"
+            },
+            {
+              "id": "d",
+              "text": "Die dokumentierten zyprischen Lebensräume von der Küste bis ins Gebirge"
+            }
+          ],
+          "correctIds": [
+            "d"
+          ],
+          "explanation": "Das zyprische Vorkommen umfasst eine breite Landschaftsspanne und auch felsige Flächen mit Sträuchern. Daraus folgt keine lückenlose Verbreitung überall in Europa.",
+          "sourceIds": [
+            "chukar-cyprus",
+            "chukar-akamas",
+            "chukar-guerrini-2007"
+          ]
+        },
+        {
+          "id": "chukar-verwechslung",
+          "format": "single",
+          "skill": "Merkmale kombinieren",
+          "prompt": "Ein Vogel hat rote Läufe und gebänderte Flanken. Was ist der bessere nächste Bestimmungsschritt?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ohne weitere Merkmale sicher Rothuhn sagen"
+            },
+            {
+              "id": "b",
+              "text": "Kehlrand und Brustzeichnung zusätzlich vergleichen"
+            },
+            {
+              "id": "c",
+              "text": "Aus den roten Läufen sofort das Geschlecht ableiten"
+            },
+            {
+              "id": "d",
+              "text": "Den Beobachtungsort grundsätzlich ignorieren"
+            }
+          ],
+          "correctIds": [
+            "b"
+          ],
+          "explanation": "Rote Läufe und Flankenbänder teilen Rothuhn und Chukar. Die Kopf- und Brustzeichnung sowie der Ort helfen bei der weiteren Einordnung.",
+          "sourceIds": [
+            "chukar-adw",
+            "chukar-audubon",
+            "rothuhn-ofb",
+            "rothuhn-bto"
+          ]
+        }
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/chukarhuhn.jpg",
+        "width": 1600,
+        "height": 1067,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg",
+        "previewUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg/1280px-Aziatische_steenpatrijs_-_Chukar_-_Alectoris_chukar_08.jpg",
+        "author": "Bouke ten Cate",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "credit": "Bouke ten Cate / Wikimedia Commons · CC BY 4.0",
+        "modifications": "Aus dem Original proportional auf 1600 × 1067 Pixel verkleinert und als JPEG mit Qualität 85 gespeichert; kein Ausschnitt und keine Motivänderung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "a64c8d5fd7af237babcd8928cd0d1c8356902cce04d3ad5f7226112d480010ae",
+        "aiGenerated": false,
+        "caption": "Chukarhuhn (Alectoris chukar) bei Kap Sounion in Griechenland, Aufnahme von 2025. Kehlumrandung und Flankenbänder sind sichtbar.",
+        "alt": "Chukarhuhn auf einem Stein zwischen Gras und Sträuchern; helle Kehle mit dunkler Umrandung und deutlich gebänderte Seiten.",
+        "evidence": {
+          "fileTitle": "File:Aziatische steenpatrijs - Chukar - Alectoris chukar 08.jpg",
+          "sourceDescription": "Als Alectoris chukar bezeichnete Eigenaufnahme am Poseidontempel auf der Halbinsel Sounion, Griechenland.",
+          "categories": "Alectoris chukar; Animals of Attica; Nature at Cape Sounion; Self-published work",
+          "photographedAt": "2025-05-01",
+          "visuallyChecked": true,
+          "visibleMotif": "Lebender Vogel in freier Vegetation; rote unbefiederte Läufe, roter Schnabel, helle Kehle mit geschlossenem dunklem Rand und markante Flankenbänder. Keine Alters- oder Geschlechtsbehauptung. Bilddatei nach Größenanpassung angesehen."
+        }
+      }
+    },
+    {
+      "slug": "moorschneehuhn",
+      "name": "Moorschneehuhn",
+      "scientificName": "Lagopus lagopus",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Gedrungenes Raufußhuhn mit kräftigem kurzem Schnabel und befiederten Füßen; im Winter überwiegend weiß mit schwarzen Schwanzfedern, im Sommer stärker braun gezeichnet.",
+      "habitat": "Nordeuropäische offene und halboffene Landschaften mit Sträuchern, Weiden und Birken; unter anderem Gebirgsbirkenwälder und Moorränder Fennoskandiens.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Befiederte Füße und kräftiger Schnabel",
+          "paragraphs": [
+            "Moorschneehühner wirken gedrungen, mit kurzem Schwanz, kurzem kräftigem Schnabel und befiederten Füßen. Im Winter ist der Körper überwiegend weiß; die Schwanzfedern bleiben schwarz. Ein weißer Vogel ist dennoch nicht automatisch sicher bestimmt.",
+            "Zur Fortpflanzungszeit können Hähne kastanienbraune Bereiche an Kopf und Hals zeigen. Hennen sind dann braun, dunkel und hell gesprenkelt. Zwischen den Gefiederzuständen gibt es Übergänge; ein einzelnes Kalenderdatum garantiert kein bestimmtes Kleid."
+          ],
+          "sourceIds": [
+            "moor-cornell-id",
+            "moor-alaska",
+            "moor-kozma-2019"
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Sträucher und Birken statt nur kahler Gipfel",
+          "paragraphs": [
+            "Im europäischen Norden gehören offene und halboffene Flächen mit Sträuchern zum Lebensraum. Norwegische Vorkommen liegen auch in Gebirgsbirkenwäldern; die finnische Artenkunde nennt Birken- und Weidenbestände sowie Moorränder.",
+            "Das Moorschneehuhn ist deshalb kein ausschließlich an kahle Felsgipfel gebundener Vogel. Regionale Verbreitung hängt vom geeigneten Lebensraum ab; aus einem Fund in Fennoskandien lässt sich kein Vorkommen an jedem Moor Europas ableiten."
+          ],
+          "sourceIds": [
+            "moor-artsdatabanken",
+            "moor-finnatlas",
+            "moor-cornell-life",
+            "moor-kozma-2019"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Pflanzliche Kost verändert sich im Jahreslauf",
+          "paragraphs": [
+            "Die Nahrung ist überwiegend pflanzlich. Knospen und Zweige spielen im Winter eine wichtige Rolle; in der Vegetationszeit kommen frische Blätter und andere Pflanzenteile hinzu. Beeren gehören ebenfalls zum Nahrungsspektrum.",
+            "Norwegische Untersuchungen zeigen, dass die Zusammensetzung zwischen Jahreszeiten und Jahren wechselt. Daher wird hier weder ein fester europaweiter Weidenanteil noch eine ausschließliche Bindung an eine einzelne Futterpflanze angegeben."
+          ],
+          "sourceIds": [
+            "moor-artsdatabanken",
+            "moor-cornell-life",
+            "moor-alaska",
+            "moor-ingvaldsen-2024",
+            "moor-eriksen-2023"
+          ]
+        },
+        {
+          "id": "sozial-jahreslauf",
+          "title": "Reviere, Familien und Wintergruppen",
+          "paragraphs": [
+            "Während der Fortpflanzung verteidigen Hähne Reviere. Nach der Jungenzeit können sich Familien zu Gruppen zusammenschließen. Das Auftreten als Paar oder Gruppe gehört somit zu unterschiedlichen Abschnitten des Jahreslaufs.",
+            "Moorschneehühner bleiben regional ganzjährig anwesend, können aber zwischen Sommer- und Winterräumen wechseln. Eine norwegische Studie beschreibt eine teilweise wandernde Population. Standvogel bedeutet hier deshalb nicht immer am exakt gleichen Ort."
+          ],
+          "sourceIds": [
+            "moor-cornell-life",
+            "moor-cornell-id",
+            "moor-alaska",
+            "moor-artsdatabanken",
+            "moor-nina-bewegung"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Nestflüchter brauchen trotzdem Fürsorge",
+          "paragraphs": [
+            "Die Henne brütet in einer geschützten Bodenmulde. Die Küken können das Nest früh verlassen, benötigen aber weiterhin Schutz und Wärmen. Nestflüchter beschreibt ihre frühe Beweglichkeit und bedeutet keine sofortige Selbstständigkeit.",
+            "Der Hahn kann am Schutz der Henne und der Jungen beteiligt sein. Fortpflanzung ist damit mehr als Eiablage und Schlüpfen; die frühe Familienphase gehört dazu. Ein fester europäischer Brutmonat wird aus den regionalen Beobachtungen nicht abgeleitet."
+          ],
+          "sourceIds": [
+            "moor-cornell-life",
+            "moor-alaska",
+            "moor-eriksen-2023"
+          ]
+        },
+        {
+          "id": "winter-tarnung",
+          "title": "Weißes Gefieder wirkt nur im passenden Hintergrund",
+          "paragraphs": [
+            "Das weiße Winterkleid kann den Vogel vor hellem Schnee weniger auffällig machen. Bei fehlender Schneedecke kehrt sich dieser Vorteil um: Ein heller Körper kann sich dann deutlich vom dunklen Boden abheben.",
+            "Farbe und Umgebung müssen deshalb gemeinsam betrachtet werden. Die Bezeichnung Winterkleid ist keine Zusage, dass der Vogel in jeder Wintersituation gut getarnt ist."
+          ],
+          "sourceIds": [
+            "moor-cornell-id",
+            "moor-artsdatabanken",
+            "moor-finnatlas"
+          ]
+        },
+        {
+          "id": "taxonomie-grenzen",
+          "title": "Moorschneehuhn und Red Grouse heute unterscheiden",
+          "paragraphs": [
+            "Dieses Porträt folgt AviList v2025b: Das britisch-irische Red Grouse wird als eigene Art Lagopus scotica vom Moorschneehuhn Lagopus lagopus getrennt. Ältere Bücher und manche Webseiten führen es noch als Unterart des Moorschneehuhns.",
+            "Die Red-Grouse-Formen besitzen dunkle Flügel und wechseln nicht in ein weißes Winterkleid. Diese Besonderheit wird nicht auf das nordeuropäische Moorschneehuhn übertragen. Die aktuelle Trennung stützt sich auf Gefieder, Mauser und genetische Untersuchungen; Unterartfragen bleiben teilweise offen."
+          ],
+          "sourceIds": [
+            "vogel-avilist-2025b",
+            "moor-clements-2025",
+            "moor-kozma-2019"
+          ]
+        }
+      ],
+      "limits": [
+        "Artbegriff nach AviList v2025b (2026): Lagopus scotica wird separat geführt. Alte britisch-irische Biologie wird nicht auf Lagopus lagopus übertragen.",
+        "Kein allgemeines schneeweißes Vollgefieder ohne schwarze Schwanzfedern; regionale Mauserunterschiede und Übergangskleider bleiben möglich.",
+        "Nordamerikanische Daten dienen nur zum Abgleich allgemeiner Artbiologie. Keine Übernahme fester Mengen, Entfernungen, Monatsangaben oder Bestandszyklen auf Europa.",
+        "Norwegische Studien des NINA/Nord/NTNU-Verbunds sind als teilweise gemeinsame Forschungsgrundlage kenntlich gemacht; sie ersetzen keine europaweite Erhebung.",
+        "Nicht mit dem Alpenschneehuhn Lagopus muta gleichsetzen; ein Foto alleine belegt weder die vollständige Abstammung noch den Gesundheitszustand."
+      ],
+      "sourceIds": [
+        "vogel-avilist-2025b",
+        "moor-cornell-id",
+        "moor-cornell-life",
+        "moor-alaska",
+        "moor-artsdatabanken",
+        "moor-finnatlas",
+        "moor-ingvaldsen-2024",
+        "moor-eriksen-2023",
+        "moor-nina-bewegung",
+        "moor-clements-2025",
+        "moor-kozma-2019"
+      ],
+      "questions": [
+        {
+          "id": "moor-wintertarnung",
+          "format": "single",
+          "skill": "Zusammenhänge verstehen",
+          "prompt": "Ein überwiegend weißes Moorschneehuhn steht auf dunklem, schneefreiem Boden. Welche Schlussfolgerung passt?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Weißes Gefieder tarnt unabhängig vom Hintergrund gleich gut"
+            },
+            {
+              "id": "b",
+              "text": "Winterkleid bedeutet, dass zwingend Schnee liegen muss"
+            },
+            {
+              "id": "c",
+              "text": "Das Tier muss deshalb eine andere Vogelart sein"
+            },
+            {
+              "id": "d",
+              "text": "Der Tarnungsvorteil hängt auch vom Hintergrund ab"
+            }
+          ],
+          "correctIds": [
+            "d"
+          ],
+          "explanation": "Weiß kann vor Schnee unauffällig wirken. Auf dunklem Boden fehlt dieser Hintergrund, und der helle Vogel kann stärker auffallen.",
+          "sourceIds": [
+            "moor-cornell-id",
+            "moor-artsdatabanken",
+            "moor-finnatlas"
+          ]
+        },
+        {
+          "id": "moor-standvogel",
+          "format": "single",
+          "skill": "Begriffe präzise nutzen",
+          "prompt": "Was darf aus der Bezeichnung Standvogel beim Moorschneehuhn nicht gefolgert werden?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dass es regionale ganzjährige Vorkommen gibt"
+            },
+            {
+              "id": "b",
+              "text": "Dass jeder Vogel Sommer und Winter am exakt gleichen Ort bleibt"
+            },
+            {
+              "id": "c",
+              "text": "Dass geeignete Lebensräume eine Rolle spielen"
+            },
+            {
+              "id": "d",
+              "text": "Dass regionale saisonale Bewegungen gesondert betrachtet werden müssen"
+            }
+          ],
+          "correctIds": [
+            "b"
+          ],
+          "explanation": "Regionale Anwesenheit schließt einen Wechsel zwischen Sommer- und Winterräumen nicht aus. Solche Bewegungen sind unter anderem aus Norwegen dokumentiert.",
+          "sourceIds": [
+            "moor-artsdatabanken",
+            "moor-nina-bewegung",
+            "moor-alaska"
+          ]
+        },
+        {
+          "id": "moor-taxonomie",
+          "format": "single",
+          "skill": "Quellenstände unterscheiden",
+          "prompt": "Ein älteres Buch nennt Red Grouse eine Unterart von Lagopus lagopus. Wie wird es in diesem Porträt nach AviList v2025b behandelt?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als eigene Art Lagopus scotica"
+            },
+            {
+              "id": "b",
+              "text": "Weiterhin ausschließlich als Unterart von Lagopus lagopus"
+            },
+            {
+              "id": "c",
+              "text": "Als Unterart des Alpenschneehuhns Lagopus muta"
+            },
+            {
+              "id": "d",
+              "text": "Als Bezeichnung für eine Mauserphase ohne eigene Artabgrenzung"
+            }
+          ],
+          "correctIds": [
+            "a"
+          ],
+          "explanation": "Die verwendete aktuelle Liste trennt Lagopus scotica und Lagopus lagopus. Die genetische Studie dokumentiert Unterschiede; die Rangentscheidung selbst stammt aus der benannten Checkliste.",
+          "sourceIds": [
+            "vogel-avilist-2025b",
+            "moor-clements-2025",
+            "moor-kozma-2019"
+          ]
+        },
+        {
+          "id": "moor-familienphase",
+          "format": "single",
+          "skill": "Lebensphasen verstehen",
+          "prompt": "Ein Moorschneehuhnküken hat das Nest bereits verlassen. Welche Aussage ist trotzdem richtig?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Frühe eigene Nahrungssuche ersetzt den Schutz der Eltern vollständig"
+            },
+            {
+              "id": "b",
+              "text": "Nach dem Verlassen des Nestes reguliert es seine Körperwärme bereits wie ein erwachsener Vogel"
+            },
+            {
+              "id": "c",
+              "text": "Es benötigt weiterhin Schutz und Wärmen"
+            },
+            {
+              "id": "d",
+              "text": "Nestflüchter bezeichnet ausschließlich die früh entwickelte Flugfähigkeit"
+            }
+          ],
+          "correctIds": [
+            "c"
+          ],
+          "explanation": "Früh bewegliche Nestflüchter bleiben in ihrer ersten Lebensphase auf Schutz und Wärmen angewiesen. Die frühe Mobilität ist keine vollständige Unabhängigkeit.",
+          "sourceIds": [
+            "moor-cornell-life",
+            "moor-alaska",
+            "moor-eriksen-2023"
+          ]
+        }
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/moorschneehuhn.jpg",
+        "width": 1600,
+        "height": 1200,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg",
+        "previewUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg/1280px-Lagop%C3%A8de_des_saules_-_Abiskojaure_13.jpg",
+        "author": "Djiboun",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "credit": "Djiboun / Wikimedia Commons · CC BY-SA 4.0",
+        "modifications": "Aus dem Original proportional auf 1600 × 1200 Pixel verkleinert und als JPEG mit Qualität 85 gespeichert; kein Ausschnitt und keine Motivänderung. Die abgeleitete Aufnahme bleibt CC BY-SA 4.0.",
+        "checkedAt": "2026-10-16",
+        "sha256": "1ffc561d8938cdd55f5c12c8f36b0756c8fae2f94f443fc1f7a43ade707f492d",
+        "aiGenerated": false,
+        "caption": "Moorschneehuhn (Lagopus lagopus) im braun gezeichneten Gefieder bei Abiskojaure in Nordschweden, Aufnahme von 2019. Geschlecht und genaues Alter werden hier nicht bestimmt.",
+        "alt": "Braun und hell gemustertes Moorschneehuhn zwischen niedrigen Birkenzweigen und Zwergsträuchern; kräftiger Schnabel und befiederte Füße sind erkennbar.",
+        "evidence": {
+          "fileTitle": "File:Lagopède des saules - Abiskojaure 13.jpg",
+          "sourceDescription": "Als Lagopus lagopus lagopus im Sommergefieder bezeichnete Eigenaufnahme nahe Abiskojaure am Kungsleden.",
+          "categories": "Lagopus lagopus lagopus; Abisko National Park; Self-published work",
+          "photographedAt": "2019-08-23",
+          "visuallyChecked": true,
+          "visibleMotif": "Gut sichtbarer lebender Vogel zwischen niedrigen Birkenzweigen und Zwergsträuchern; kräftiger kurzer Schnabel, braun-helle Gefiederzeichnung und befiederte Füße. Taxon und Ort sind durch Commons-Metadaten gestützt. Die Geschlechtsangabe der Quelle wird nicht als eigene Fotodiagnose übernommen. Bilddatei nach Größenanpassung angesehen."
+        }
+      }
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Jagdstatus und Jagdzeiten",
+      "reason": "Die biologischen Quellen belegen keine europaweit einheitlichen Rechtsverhältnisse. Daraus werden keine jagdrechtlichen Aussagen abgeleitet."
+    },
+    {
+      "topic": "Feste Brutkalender, Gelegegrößen, Futteranteile und Bestandszahlen",
+      "reason": "Regionen und Untersuchungen unterscheiden sich. Ohne passende mehrfache Bestätigung wird keine Zahl als artweiter europäischer Standard veröffentlicht."
+    },
+    {
+      "topic": "Unveränderte Gleichsetzung von Red Grouse und Moorschneehuhn",
+      "reason": "Aktuelle AviList- und Clements-Fassungen trennen Lagopus scotica von Lagopus lagopus. Ältere Schottland-Angaben bei ADF&G und anderen Artenseiten werden nicht übernommen; offene Unterartfragen werden nicht eigenständig entschieden."
+    },
+    {
+      "topic": "Genetische Reinheit und männliche Jungenpflege bei Chukars",
+      "reason": "Begrenzte mtDNA-Stichproben sind kein Beweis für alle Individuen; die Grundlagenquellen geben die männliche Beteiligung teilweise unterschiedlich wieder. Keine universelle Rollen- oder Abstammungsbehauptung."
+    }
+  ]
+}

@@ -15,7 +15,7 @@ function CourseCards({ modules, covers, showCategory = false }) {
   return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
     <LearningCover media={covers[module.coverIndex]} compact />
     <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
-      <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span></span>
+      <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span>{module.contentAddedOn && <span>Ergänzt: {new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</span>}</span>
       <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>
       <p className={styles.muted}>{module.description}</p>
       {getLearningCategoryByTitle(module.category)?.slug === "jagdrecht" && <p className={styles.countries}>{module.countries.map(item => countryNames[item] || item).join(" · ")}</p>}

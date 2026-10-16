@@ -2,8 +2,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "../../components/LearningToolLayout";
 import AppIcon from "../../components/AppIcon";
-import { europeanWildlife, europeanWildlifeGroups, filterEuropeanWildlife } from "../../lib/european-wildlife";
+import { europeanWildlife, europeanWildlifeGroups, filterEuropeanWildlife } from "../../lib/european-wildlife-discovery";
 import { dentitionBySlug } from "../../lib/wildlife-dentition";
+import { matchWildlifeSection } from "../../lib/wildlife-section-match";
 import { animalSounds } from "../../lib/animal-sounds";
 import styles from "../../styles/LearningExperience.module.css";
 
@@ -26,10 +27,10 @@ export default function WildkundeIndex() {
       <div className={styles.toolbar}><label className={styles.field}>Artengruppe<select value={group} onChange={event => {setGroup(event.target.value); setPage(0);}}><option value="all">Alle Gruppen</option>{europeanWildlifeGroups.map(value => <option key={value}>{value}</option>)}</select></label><label className={styles.field}>Stimmenbibliothek<select value={media} onChange={event => {setMedia(event.target.value);setPage(0);}}><option value="all">Alle Arten</option><option value="sound">Mit geprüfter Originalaufnahme</option><option value="missing">Noch ohne Originalaufnahme</option></select></label>{(query || group !== "all" || media !== "all") && <button className={styles.secondary} onClick={reset}>Filter zurücksetzen</button>}</div>
       <p className={styles.muted} role="status">{matches.length} Treffer · Seite {safePage + 1} von {Math.max(1, Math.ceil(matches.length / pageSize))}</p>
     </section>
-    <div className={styles.gridThree}>{visible.map(species => {const sounds = soundsBySpecies[species.slug]; return <article key={species.slug} className={styles.card}>
+    <div className={styles.gridThree}>{visible.map(species => {const sounds = soundsBySpecies[species.slug]; const destination = matchWildlifeSection(species, query); return <article key={species.slug} className={styles.card}>
       <p className={styles.eyebrow}>{species.group}</p><h2>{species.name}</h2><p className={styles.muted}><i>{species.scientificName}</i>{species.slug === "rackelwild" ? " · Hybrid, keine eigene Art" : ""}</p><p>{species.identification}</p>
-      <div className={styles.tags}>{sounds.length > 0 && <span>{sounds.length} Originalaufnahme{sounds.length === 1 ? "" : "n"}</span>}{dentitionBySlug[species.slug] && <span>Gebiss-Vollformel · {dentitionBySlug[species.slug].total} Zähne</span>}{species.europeanOnly && <span>Europa · Biologie</span>}</div>
-      <div className={styles.actions}><Link className={styles.primary} href={`/wildkunde/${species.slug}`}>Art kennenlernen<AppIcon name="arrow-right" size={18} /></Link>{sounds.length > 0 && <Link className={styles.secondary} href={`/lernen/tierstimmen?stimme=${encodeURIComponent(sounds[0].id)}`}><AppIcon name="sound" size={18} />Stimme hören</Link>}</div>
+      <div className={styles.tags}>{sounds.length > 0 && <span>{sounds.length} Originalaufnahme{sounds.length === 1 ? "" : "n"}</span>}{dentitionBySlug[species.slug] && <span>{dentitionBySlug[species.slug].variants?.length ? "Gebiss-Grundform" : "Gebiss-Vollformel"} · {dentitionBySlug[species.slug].total} Zähne</span>}{species.europeanOnly && <span>Europa · Biologie</span>}</div>
+      <div className={styles.actions}><Link className={styles.primary} href={destination?.href || `/wildkunde/${species.slug}`}>{destination?.sectionTitle || "Art kennenlernen"}<AppIcon name="arrow-right" size={18} /></Link>{sounds.length > 0 && !destination && <Link className={styles.secondary} href={`/lernen/tierstimmen?stimme=${encodeURIComponent(sounds[0].id)}`}><AppIcon name="sound" size={18} />Stimme hören</Link>}</div>
     </article>;})}</div>
     {matches.length === 0 && <p className={styles.empty}>Keine Wildart passt zu diesen Filtern. Versuche einen kürzeren Suchbegriff oder setze die Filter zurück.</p>}
     {matches.length > pageSize && <nav className={styles.actions} aria-label="Artenübersicht Seiten"><button className={styles.secondary} disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Zurück</button><span>Seite {safePage + 1} von {Math.ceil(matches.length / pageSize)}</span><button className={styles.primary} disabled={(safePage + 1) * pageSize >= matches.length} onClick={() => setPage(safePage + 1)}>Weitere Arten</button></nav>}

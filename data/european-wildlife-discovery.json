@@ -1,0 +1,493 @@
+{
+  "species": [
+    {
+      "slug": "rentier",
+      "name": "Rentier",
+      "scientificName": "Rangifer tarandus",
+      "group": "Schalenwild",
+      "identification": "Hirschart des Nordens mit breiten Hufen und dichtem Fell. Auch weibliche Tiere können ein Geweih tragen.",
+      "habitat": "Tundra, Gebirge und boreale Wälder Nordeuropas; die Lebensweise unterscheidet sich deutlich zwischen regionalen Populationen.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Geweih, Hufe und Winterfell",
+          "paragraphs": [
+            "Bei Rentieren tragen regelmäßig beide Geschlechter ein Geweih. Erwachsene männliche Tiere sind meist kräftiger und tragen größere Geweihe. Männliche Tiere werfen gewöhnlich früher ab; weibliche behalten ihr Geweih häufig durch den Winter. Deshalb ist ein Geweih allein kein sicherer Geschlechtsnachweis.",
+            "Breite Hufe und ein dichtes Fell gehören zu den auffälligen Anpassungen an kalte, schneereiche Lebensräume. Körpergröße und Fellfarbe variieren zwischen Regionen und Jahreszeiten."
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Europa: Waldlandschaften und arktische Inseln",
+          "paragraphs": [
+            "Rentiere nutzen sowohl Tundren als auch boreale Waldlandschaften. In Finnland werden wildlebende Waldrene wissenschaftlich untersucht. Auch auf Spitzbergen leben Rentiere. Diese Vorkommen stehen für unterschiedliche regionale Lebensbedingungen.",
+            "Rentierwissen lässt sich deshalb nicht auf eine einzige Landschaft reduzieren. Frei umherlaufende Tiere auf einem Foto erlauben außerdem keine sichere Aussage über ihren Haltungsstatus."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Flechten sind ein Teil des Speiseplans",
+          "paragraphs": [
+            "Rentiere nutzen Gräser, Seggen, Kräuter und Blätter von Sträuchern. Flechten können besonders im Winter wichtig sein; sie sind aber keine ausschließliche Nahrung. Welche Pflanzen erreichbar sind, hängt unter anderem von Jahreszeit und Schneelage ab."
+          ]
+        },
+        {
+          "id": "verdauung",
+          "title": "Verdauung mit Hilfe des Pansens",
+          "paragraphs": [
+            "Rentiere sind Wiederkäuer. Im Pansen helfen Mikroorganismen, pflanzliche Nahrung aufzuschließen. Zwei unabhängig durchgeführte Untersuchungen von Panseninhalten belegen diese Verdauungseinordnung; aus ihren kleinen Stichproben folgt kein allgemeiner Futterplan für Wildrentiere."
+          ]
+        },
+        {
+          "id": "jahreslauf",
+          "title": "Gruppen und Bewegungen richtig einordnen",
+          "paragraphs": [
+            "Norwegische Gebirgsrentiere bilden häufig getrennte Gruppen männlicher Tiere sowie weiblicher Tiere mit Nachwuchs und kommen zur Brunft zusammen. Ihre Äsungsräume wechseln saisonal. Spitzbergen-Rentiere sind dagegen überwiegend ortstreu; Wanderleistungen anderer Rentierpopulationen dürfen ihnen nicht pauschal zugeschrieben werden."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Vom Herbst zur Kalbung",
+          "paragraphs": [
+            "Die Brunft liegt im Herbst. Gewöhnlich wird ein Kalb im Frühjahr oder frühen Sommer geboren. Es kann seiner Mutter bald folgen. Ernährungszustand und regionale Bedingungen beeinflussen den Fortpflanzungserfolg; genaue Termine aus einer Population sind kein Kalender für alle Rentiere."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pyrenaeengaemse",
+      "name": "Pyrenäengämse",
+      "scientificName": "Rupicapra pyrenaica",
+      "group": "Schalenwild",
+      "identification": "Schlanker Hornträger mit dunkler Gesichtszeichnung und hakenförmigen Hörnern bei beiden Geschlechtern. Das Fell verändert sich mit der Jahreszeit.",
+      "habitat": "Gebirgsrasen, Felsen und angrenzende Wälder im Südwesten Europas; zur Art werden auch die kantabrischen und Apennin-Formen gestellt.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Gesicht und Hörner gemeinsam betrachten",
+          "paragraphs": [
+            "Die schlanke Gestalt und die an den Spitzen hakenförmig gebogenen Hörner unterscheiden Gämsen von den meist kräftigeren Steinböcken. Beide Geschlechter tragen Hörner. Helle Kopfpartien und eine dunkle Zeichnung im Augenbereich sind hilfreich; die Winterzeichnung ist stärker kontrastiert.",
+            "Ein einzelnes Merkmal reicht für Geschlecht oder Alter nicht aus. Gerade junge Tiere lassen sich im Gelände oft nicht sicher nach dem Geschlecht unterscheiden."
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Pyrenäen und weitere südliche Gamsformen",
+          "paragraphs": [
+            "Die Pyrenäenform wird als Rupicapra pyrenaica pyrenaica geführt. Zur Art gehören außerdem die kantabrische Form im Norden Spaniens und die Apennin-Gams Rupicapra pyrenaica ornata in Mittelitalien. Sie ist von der Alpengams Rupicapra rupicapra zu unterscheiden."
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Zwischen Gebirgsrasen und Wintereinstand",
+          "paragraphs": [
+            "Gämsen dieser Art nutzen offene Gebirgsrasen nahe steiler Felsen. Waldgrenzen und Wälder gehören ebenfalls zum Lebensraum. Wenn Schnee den Zugang zur Äsung begrenzt, können tiefer gelegene oder schneeärmere Bereiche wichtig werden. Eine starre Höhenzahl beschreibt diese saisonale Raumwahl nicht."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Pflanzenkost im Jahreslauf",
+          "paragraphs": [
+            "Gräser und andere krautige Pflanzen sind wichtige Nahrung. Im Winter steigt bei eingeschränktem Angebot der Anteil verholzter Pflanzen, etwa von Sträuchern und deren Trieben. Der Wechsel folgt dem örtlich erreichbaren Angebot; daraus lässt sich kein europaweit identischer Speiseplan ableiten."
+          ]
+        },
+        {
+          "id": "sozialverhalten",
+          "title": "Mutter, Kitz und wechselnde Gruppen",
+          "paragraphs": [
+            "Die Bindung zwischen Geiß und Kitz ist der Kern der Sozialstruktur. Zusammensetzung und Größe der Gruppen wechseln. Erwachsene Böcke leben außerhalb der Brunft häufig von den weiblichen Tieren getrennt; eine Beobachtung allein beschreibt deshalb nicht die ganzjährige Gruppenzusammensetzung."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Herbstbrunft und ein Kitz",
+          "paragraphs": [
+            "Die Brunft liegt im Herbst; die Geiß setzt gewöhnlich ein Kitz im Frühjahr oder frühen Sommer. Schnee, Nahrungsangebot und andere regionale Bedingungen beeinflussen Überleben und Fortpflanzungserfolg. Exakte Monatstermine oder Reifealter werden hier nicht als für alle Teilpopulationen gleich dargestellt."
+          ]
+        },
+        {
+          "id": "zaehne",
+          "title": "Zahnwechsel hilft nur bei geeigneter Untersuchung",
+          "paragraphs": [
+            "Der Wechsel von Milchzähnen zu bleibenden unteren Schneidezähnen kann zur Altersbeurteilung beitragen. Dafür muss das Gebiss fachkundig untersucht werden. Die Altersschätzung am lebenden Tier aus der Entfernung bleibt wesentlich gröber; ein Foto liefert keinen verlässlichen Zahnwechselbefund."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "iberiensteinbock",
+      "name": "Iberiensteinbock",
+      "scientificName": "Capra pyrenaica",
+      "group": "Schalenwild",
+      "identification": "Kräftiger Hornträger felsiger Landschaften. Böcke tragen deutlich größere, oft weit ausladende und gebogene Hörner; Geißen kleinere Hörner.",
+      "habitat": "Felsige Berglandschaften der Iberischen Halbinsel; durch Wiederansiedlung auch wieder auf der französischen Seite der Pyrenäen.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Hornform und Körperbau",
+          "paragraphs": [
+            "Erwachsene Böcke sind kräftiger als Geißen und tragen größere, stärker gebogene Hörner. Die Hornform ist variabel und häufig leierartig ausladend. Die kleineren Hörner der Geißen dürfen deshalb nicht mit denen eines jungen Bocks gleichgesetzt werden.",
+            "Fellzeichnung und die dunklen Körperpartien männlicher Tiere verändern sich mit Alter und Jahreszeit. Hornlänge oder Fellfarbe allein liefern kein genaues Alter."
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Iberische Art mit Rückkehr in die Pyrenäen",
+          "paragraphs": [
+            "Capra pyrenaica ist die iberische Steinbockart und vom Alpensteinbock Capra ibex zu unterscheiden. Die heutigen Wiederansiedlungen in den französischen Pyrenäen betreffen Iberiensteinböcke. Sie sind nicht gleichbedeutend mit einer Rückkehr der ausgestorbenen ursprünglichen Unterart Capra pyrenaica pyrenaica, des Bucardo."
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Fels ist wichtiger als eine feste Höhenlage",
+          "paragraphs": [
+            "Felswände, steile Hänge und offene Bereiche sind charakteristisch. Die Art nutzt unterschiedliche Gebirgslandschaften und Klimabedingungen. Jahreszeitliche Bewegungen verbinden höher gelegene Sommerbereiche mit tieferen, im Winter besser zugänglichen Räumen. Nicht jeder Bestand folgt dabei demselben Höhenmuster."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Gräser, Kräuter und Gehölze",
+          "paragraphs": [
+            "Iberiensteinböcke sind pflanzenfressende Wiederkäuer. Sie nutzen sowohl krautige als auch verholzte Pflanzen. Welche Nahrung überwiegt, hängt vom erreichbaren Angebot und von der Jahreszeit ab. Ein in einem südspanischen Bestand beobachtetes Verhalten ist daher kein fester Speiseplan für alle Tiere der Art."
+          ]
+        },
+        {
+          "id": "sozialverhalten",
+          "title": "Gruppen verändern sich im Jahreslauf",
+          "paragraphs": [
+            "Außerhalb der Brunft leben Böcke und Geißen häufig in getrennten Gruppen; Geißen sind mit Jungtieren verbunden. Während der Fortpflanzungszeit kommen die Geschlechter zusammen. Dann konkurrieren Böcke um Zugang zu weiblichen Tieren. Gruppengröße und Zusammensetzung sind saisonal veränderlich."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Nachwuchs im Frühjahr",
+          "paragraphs": [
+            "Auf die Brunft im Herbst beziehungsweise frühen Winter folgt die Geburt meist eines Jungtiers im Frühjahr; gelegentlich sind es zwei. Mutter und Jungtier schließen sich wieder einem Verband an. Präzise Geburtstermine einzelner Regionen werden nicht als unveränderliche Regel für die gesamte Art verwendet."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "rothuhn",
+      "name": "Rothuhn",
+      "scientificName": "Alectoris rufa",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Gedrungenes Bodenhuhn mit roten Läufen, heller Kehle, schwarzem Halsrand und darunter auffälliger schwarzer Fleckenzeichnung; die Flanken sind gebändert.",
+      "habitat": "Offene, häufig trockene Landschaftsmosaike Südwesteuropas mit Acker- und Grasflächen sowie lockeren Sträuchern als Deckung.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Kopfzeichnung und Flanken gemeinsam betrachten",
+          "paragraphs": [
+            "Die helle Kehle wird schwarz eingefasst. Unterhalb dieses Randes setzt sich die dunkle Zeichnung als Fleckenlatz auf dem oberen Brustbereich fort. An den Körperseiten wechseln helle, schwarze und braune Bänder. Diese Kombination hilft mehr als die rote Farbe der Läufe allein.",
+            "Schnabel, Augenring und Läufe sind rot. Henne und Hahn sehen sich im Gefieder sehr ähnlich; die Aufnahme eines einzelnen Vogels erlaubt deshalb keine verlässliche Geschlechtszuordnung."
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Südwesteuropa: offenes Land mit Deckung",
+          "paragraphs": [
+            "Das natürliche europäische Verbreitungsgebiet liegt im Südwesten: besonders auf der Iberischen Halbinsel, in Frankreich und im nordwestlichen Italien. Britische Vorkommen gehen auf Einführungen zurück; Beobachtungsort und ursprüngliche Verbreitung sind deshalb auseinanderzuhalten.",
+            "Genutzt werden offene Gras- und Ackerflächen sowie lockeres Gebüsch. Ein Mosaik bietet sowohl Stellen zur Nahrungssuche am Boden als auch schützende Vegetation. Eine geschlossene Waldfläche beschreibt diesen Lebensraumschwerpunkt nicht."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Erwachsene und Küken fressen unterschiedlich",
+          "paragraphs": [
+            "Bei erwachsenen Rothühnern überwiegt pflanzliche Nahrung, darunter Samen und grüne Pflanzenteile. Was aufgenommen wird, hängt vom vorhandenen Angebot ab. Das Rothuhn ist damit kein ausschließlich auf Getreide festgelegter Vogel.",
+            "In den ersten Lebenswochen haben Wirbellose für die Küken eine wesentlich größere Bedeutung. Die Nahrung kleiner Küken lässt sich deshalb nicht einfach aus der überwiegend pflanzlichen Erwachsenenkost ableiten."
+          ]
+        },
+        {
+          "id": "jahreslauf",
+          "title": "Von Gruppen zu Paaren und wieder zurück",
+          "paragraphs": [
+            "Außerhalb der Fortpflanzungszeit leben Rothühner häufig in Gruppen. Zur Fortpflanzung bilden sich Paare; nach der Jungenaufzucht können wieder Familien und größere Verbände zusammenkommen.",
+            "Rothühner sind überwiegend standorttreu. Das bedeutet nicht, dass jeder Vogel ganzjährig auf derselben Stelle bleibt: In Gebirgsgebieten sind jahreszeitliche Höhenbewegungen beschrieben. Ein fester Fernzug gehört nicht zum hier belegten Grundmuster."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Bodenbrut und früh bewegliche Junge",
+          "paragraphs": [
+            "Das Nest liegt als flache, ausgekleidete Mulde am Boden in schützender Vegetation. Die Küken sind Nestflüchter: Sie verlassen das Nest sehr bald nach dem Schlüpfen. Frühe Beweglichkeit ist ein Entwicklungsmerkmal und bedeutet noch keine Unabhängigkeit von der Familie.",
+            "Auch Männchen können Brutaufgaben übernehmen. Die genaue Aufgabenverteilung und der Ablauf lassen sich nicht auf einen einzigen europäischen Monat oder auf das starre Schema nur die Henne brütet reduzieren."
+          ]
+        },
+        {
+          "id": "vergleich-grenzen",
+          "title": "Rote Läufe sind keine sichere Artbestimmung",
+          "paragraphs": [
+            "Auch das Chukarhuhn besitzt rote Läufe und gebänderte Flanken. Beim Rothuhn ist der dunkle Fleckenlatz unter der Kehlbegrenzung besonders hilfreich; beim Chukar fällt die geschlossen wirkende dunkle Kehlumrandung auf. Kopf, Brust, Seitenzeichnung und Herkunft sollten gemeinsam betrachtet werden.",
+            "Dieses Porträt beschreibt typische Merkmale. Es ersetzt keine Prüfung eines schlecht sichtbaren Vogels und erlaubt keine sichere Aussage über Geschlecht, Herkunft oder genetische Abstammung allein anhand eines Fotos."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chukarhuhn",
+      "name": "Chukarhuhn",
+      "scientificName": "Alectoris chukar",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Graubraunes Bodenhuhn mit heller Kehle in dunkler Umrandung, kräftigen Flankenbändern sowie roten Läufen und rotem Schnabel.",
+      "habitat": "Südosteuropäischer Teil eines weit nach Asien reichenden Areals; unter anderem felsige, grasige und strauchreiche Landschaften Griechenlands und Zyperns.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Die dunkle Kehlumrandung als Blickfang",
+          "paragraphs": [
+            "Eine kräftige dunkle Linie verläuft von der Stirn durch die Augen und umschließt die helle Kehle. Rücken und Brust wirken grau bis graubraun, während die Flanken mit schwarzen, hellen und kastanienbraunen Bändern deutlich gezeichnet sind.",
+            "Schnabel, Augenring und unbefiederte Läufe sind rötlich. Die Geschlechter ähneln sich; ein Größenunterschied allein ist an einem einzelnen Foto keine verlässliche Bestimmung von Hahn oder Henne."
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Europäischer Schwerpunkt im Südosten",
+          "paragraphs": [
+            "Das Chukarhuhn ist eine eurasische Art. Europäische Brutvorkommen sind unter anderem für Bulgarien, Griechenland und Zypern dokumentiert. Solche Länderangaben bedeuten keine lückenlose Verbreitung im gesamten Land.",
+            "Auf Zypern nutzt die Art Lebensräume von der Küste bis ins Troodos-Gebirge. Dazu gehören felsige Flächen mit niedriger mediterraner Strauchvegetation. Diese regionale Vielfalt passt nicht zum verkürzten Bild eines Vogels, der ausschließlich auf kahlen Hochgebirgsfelsen lebt."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Samen, Grünpflanzen und der Wechsel im Kükenalter",
+          "paragraphs": [
+            "Chukars suchen überwiegend am Boden nach Nahrung. Samen und grüne Pflanzenteile sind wichtige Bestandteile der Erwachsenenkost. Die einzelnen Pflanzenarten und ihr Anteil wechseln mit Region und Jahreszeit; nordamerikanische Futterpflanzenlisten sind keine Speisekarte für Zypern.",
+            "Für junge Küken sind Insekten wichtig. Diese frühe tierische Nahrung und die stärker pflanzenbetonte Erwachsenenkost dürfen nicht zu einer einzigen unveränderlichen Ernährung zusammengezogen werden."
+          ]
+        },
+        {
+          "id": "sozial-jahreslauf",
+          "title": "Paare, Familien und Gruppen",
+          "paragraphs": [
+            "Außerhalb der Fortpflanzungszeit sind Chukars oft in Gruppen unterwegs. Zur Brutzeit bilden sich Paare. Anschließend können die Familien wieder gemeinsam auftreten und sich mit weiteren Familien zusammenschließen.",
+            "Auf Zypern ist das Chukarhuhn ganzjährig anwesend. Es läuft flink über den Boden und kann bei Störung rasch auffliegen. Häufig fallen zunächst die laut wiederholten Chuk-Rufe auf, bevor der Vogel selbst zu sehen ist."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Bodenmulde statt Baumhöhle",
+          "paragraphs": [
+            "Das Nest wird am Boden angelegt, häufig in Deckung von Sträuchern oder Felsen. Es ist eine ausgekleidete Mulde. Die Küken schlüpfen bereits weit entwickelt und können das Nest bald verlassen.",
+            "Die frühe Beweglichkeit macht sie nicht sofort unabhängig. Familiengruppen bleiben erkennbar zusammen. Zur genauen Beteiligung der Männchen an Brut und Jungenführung sind die Grundlagenquellen uneinheitlich; hier wird daraus keine allgemeine feste Rollenregel gemacht."
+          ]
+        },
+        {
+          "id": "vergleich-grenzen",
+          "title": "Chukar ist nicht einfach ein anderer Name für Rothuhn",
+          "paragraphs": [
+            "Alectoris chukar und Alectoris rufa sind getrennte Arten. Beide besitzen rote Läufe und markante Flankenbänder. Beim typischen Rothuhn setzt sich die dunkle Halszeichnung in einem Fleckenlatz fort; das Chukar zeigt eine klar umgrenzte helle Kehle.",
+            "Für eine Beobachtung sollten deshalb Kopf- und Brustzeichnung mit den Flanken und dem Ort abgeglichen werden. Ein einzelnes Merkmal oder der Sammelname Steinhuhn genügt nicht, um jedes Alectoris-Foto einer Art zuzuordnen."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "moorschneehuhn",
+      "name": "Moorschneehuhn",
+      "scientificName": "Lagopus lagopus",
+      "group": "Hühner und Raufußhühner",
+      "identification": "Gedrungenes Raufußhuhn mit kräftigem kurzem Schnabel und befiederten Füßen; im Winter überwiegend weiß mit schwarzen Schwanzfedern, im Sommer stärker braun gezeichnet.",
+      "habitat": "Nordeuropäische offene und halboffene Landschaften mit Sträuchern, Weiden und Birken; unter anderem Gebirgsbirkenwälder und Moorränder Fennoskandiens.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Befiederte Füße und kräftiger Schnabel",
+          "paragraphs": [
+            "Moorschneehühner wirken gedrungen, mit kurzem Schwanz, kurzem kräftigem Schnabel und befiederten Füßen. Im Winter ist der Körper überwiegend weiß; die Schwanzfedern bleiben schwarz. Ein weißer Vogel ist dennoch nicht automatisch sicher bestimmt.",
+            "Zur Fortpflanzungszeit können Hähne kastanienbraune Bereiche an Kopf und Hals zeigen. Hennen sind dann braun, dunkel und hell gesprenkelt. Zwischen den Gefiederzuständen gibt es Übergänge; ein einzelnes Kalenderdatum garantiert kein bestimmtes Kleid."
+          ]
+        },
+        {
+          "id": "europa-lebensraum",
+          "title": "Sträucher und Birken statt nur kahler Gipfel",
+          "paragraphs": [
+            "Im europäischen Norden gehören offene und halboffene Flächen mit Sträuchern zum Lebensraum. Norwegische Vorkommen liegen auch in Gebirgsbirkenwäldern; die finnische Artenkunde nennt Birken- und Weidenbestände sowie Moorränder.",
+            "Das Moorschneehuhn ist deshalb kein ausschließlich an kahle Felsgipfel gebundener Vogel. Regionale Verbreitung hängt vom geeigneten Lebensraum ab; aus einem Fund in Fennoskandien lässt sich kein Vorkommen an jedem Moor Europas ableiten."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Pflanzliche Kost verändert sich im Jahreslauf",
+          "paragraphs": [
+            "Die Nahrung ist überwiegend pflanzlich. Knospen und Zweige spielen im Winter eine wichtige Rolle; in der Vegetationszeit kommen frische Blätter und andere Pflanzenteile hinzu. Beeren gehören ebenfalls zum Nahrungsspektrum.",
+            "Norwegische Untersuchungen zeigen, dass die Zusammensetzung zwischen Jahreszeiten und Jahren wechselt. Daher wird hier weder ein fester europaweiter Weidenanteil noch eine ausschließliche Bindung an eine einzelne Futterpflanze angegeben."
+          ]
+        },
+        {
+          "id": "sozial-jahreslauf",
+          "title": "Reviere, Familien und Wintergruppen",
+          "paragraphs": [
+            "Während der Fortpflanzung verteidigen Hähne Reviere. Nach der Jungenzeit können sich Familien zu Gruppen zusammenschließen. Das Auftreten als Paar oder Gruppe gehört somit zu unterschiedlichen Abschnitten des Jahreslaufs.",
+            "Moorschneehühner bleiben regional ganzjährig anwesend, können aber zwischen Sommer- und Winterräumen wechseln. Eine norwegische Studie beschreibt eine teilweise wandernde Population. Standvogel bedeutet hier deshalb nicht immer am exakt gleichen Ort."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Nestflüchter brauchen trotzdem Fürsorge",
+          "paragraphs": [
+            "Die Henne brütet in einer geschützten Bodenmulde. Die Küken können das Nest früh verlassen, benötigen aber weiterhin Schutz und Wärmen. Nestflüchter beschreibt ihre frühe Beweglichkeit und bedeutet keine sofortige Selbstständigkeit.",
+            "Der Hahn kann am Schutz der Henne und der Jungen beteiligt sein. Fortpflanzung ist damit mehr als Eiablage und Schlüpfen; die frühe Familienphase gehört dazu. Ein fester europäischer Brutmonat wird aus den regionalen Beobachtungen nicht abgeleitet."
+          ]
+        },
+        {
+          "id": "winter-tarnung",
+          "title": "Weißes Gefieder wirkt nur im passenden Hintergrund",
+          "paragraphs": [
+            "Das weiße Winterkleid kann den Vogel vor hellem Schnee weniger auffällig machen. Bei fehlender Schneedecke kehrt sich dieser Vorteil um: Ein heller Körper kann sich dann deutlich vom dunklen Boden abheben.",
+            "Farbe und Umgebung müssen deshalb gemeinsam betrachtet werden. Die Bezeichnung Winterkleid ist keine Zusage, dass der Vogel in jeder Wintersituation gut getarnt ist."
+          ]
+        },
+        {
+          "id": "taxonomie-grenzen",
+          "title": "Moorschneehuhn und Red Grouse heute unterscheiden",
+          "paragraphs": [
+            "Dieses Porträt folgt AviList v2025b: Das britisch-irische Red Grouse wird als eigene Art Lagopus scotica vom Moorschneehuhn Lagopus lagopus getrennt. Ältere Bücher und manche Webseiten führen es noch als Unterart des Moorschneehuhns.",
+            "Die Red-Grouse-Formen besitzen dunkle Flügel und wechseln nicht in ein weißes Winterkleid. Diese Besonderheit wird nicht auf das nordeuropäische Moorschneehuhn übertragen. Die aktuelle Trennung stützt sich auf Gefieder, Mauser und genetische Untersuchungen; Unterartfragen bleiben teilweise offen."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kegelrobbe",
+      "name": "Kegelrobbe",
+      "scientificName": "Halichoerus grypus",
+      "group": "Weitere Säugetiere",
+      "identification": "Hundsrobbe mit langer Schnauze und individuell unterschiedlicher Fleckenzeichnung. Erwachsene Männchen sind meist deutlich kräftiger als Weibchen.",
+      "habitat": "Küsten des Nordatlantiks einschließlich Nordsee und Ostsee; Nahrungsräume im Meer und geeignete Liege- und Wurfplätze an Land oder regional auf Eis.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Lange Schnauze und viele Fellvarianten",
+          "paragraphs": [
+            "Kegelrobben gehören zu den Hundsrobben und haben keine äußeren Ohrmuscheln. Die lange Schnauze fällt besonders bei erwachsenen Männchen auf. Ihr Kopf und Hals wirken kräftiger als bei Weibchen.",
+            "Das Fell kann hell mit dunklen Flecken oder dunkel mit helleren Flecken erscheinen. Farbe allein genügt deshalb nicht zur Bestimmung. Kopfform und Zeichnung gemeinsam betrachten; Alter und Geschlecht lassen sich aus einem einzelnen Foto nicht immer sicher ableiten."
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Drei Bestandsräume zwischen Atlantik und Ostsee",
+          "paragraphs": [
+            "Die Art lebt im westlichen und östlichen Nordatlantik sowie in der Ostsee. Diese drei Bestandsräume unterscheiden sich unter anderem im Jahresablauf. Eine Beobachtung an einer Nordseeküste beschreibt deshalb nicht automatisch die Bedingungen in der Ostsee.",
+            "Strände, Felsküsten, Inseln und Sandbänke dienen als Liegeplätze. Zur Fortpflanzung und zum Fellwechsel benötigen die Tiere neben geeigneten Meeresgebieten auch zugängliche Ruheplätze; in eisgebundenen Vorkommen kann Eis eine Rolle spielen."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Fischfresser mit flexiblem Speiseplan",
+          "paragraphs": [
+            "Kegelrobben fressen hauptsächlich Fische verschiedener Arten. Dazu kommen je nach Gebiet auch wirbellose Meerestiere. Sie nutzen Nahrung am Meeresboden ebenso wie Fische im freien Wasser.",
+            "Der Speiseplan ist kein überall gleiches Rezept: Beuteangebot, Region und Jahreszeit beeinflussen ihn. Aus der Beobachtung einer Robbe lässt sich daher nicht ablesen, welche Fischart vor Ort ihren gesamten Nahrungsbedarf deckt."
+          ]
+        },
+        {
+          "id": "verhalten",
+          "title": "Gemeinsam ruhen, zeitweise weit auseinander",
+          "paragraphs": [
+            "Zur Fortpflanzung und zum Fellwechsel können sich viele Kegelrobben versammeln. Außerhalb dieser Zeiten kommen einzelne Tiere, kleine Gruppen und größere Ansammlungen vor. Eine Liegekolonie ist daher kein Beleg dafür, dass die Tiere dauerhaft als feste Gruppe unterwegs sind.",
+            "Das Leben wechselt zwischen Wasser und trockenen beziehungsweise eisbedeckten Liegeflächen. An Land zu liegen gehört zu ihrer normalen Lebensweise und ist für sich genommen kein Krankheitszeichen."
+          ]
+        },
+        {
+          "id": "nachwuchs",
+          "title": "Weißes Jugendfell und regionale Geburtstermine",
+          "paragraphs": [
+            "Das Jungtier trägt zunächst ein helles, langhaariges Lanugofell und wird nur wenige Wochen gesäugt. Im Verlauf der ersten Lebenswochen wird dieses erste Fell gewechselt; die genaue Dauer wird in den Quellen und Populationen unterschiedlich angegeben.",
+            "An der deutschen Nordseeküste liegt die Wurfzeit im Winter. Für Amrum nennt das BfN Mitte November bis Anfang Januar. In der Ostsee liegt das Geburtsmaximum dagegen im späten Winter bis frühen Frühjahr. Ein einziger Geburtsmonat für alle Kegelrobben wäre irreführend."
+          ]
+        },
+        {
+          "id": "gebiss",
+          "title": "Das Erwachsenengebiss hat eine echte Zahlenvariante",
+          "paragraphs": [
+            "Das vollständige Erwachsenengebiss umfasst 34 bis 36 Zähne. Vor allem die obere Mahlzahnzahl ist variabel, daher ist „immer 34“ zu eng. Die Gebissübersicht zeigt die getrennten Zahlen für Ober- und Unterkiefer je Körperseite; die Summe beider Seiten ergibt die Gesamtzahl.",
+            "Ältere Bestimmungswerke fassen Vorbacken- und Mahlzähne oft als PC, also Postcaninen, zusammen. Die FAO nennt PC 5–6/5. Diese Schreibweise widerspricht der aufgeteilten Formel nicht. Eine Zahnformel beschreibt die Ausstattung des vollständigen Gebisses und ist kein Altersnachweis aus einem Foto."
+          ]
+        },
+        {
+          "id": "beobachten",
+          "title": "Ruheplätze schützen und Jungtiere in Ruhe lassen",
+          "paragraphs": [
+            "Kegelrobben brauchen geeignete, möglichst hochwassersichere Wurfplätze. Verlorene Lebensräume, Verschmutzung und das Verfangen in Fischereigerät können sie gefährden. Die Bedeutung einzelner Belastungen unterscheidet sich nach Gebiet.",
+            "Am Strand Abstand halten, Hunde fernhalten und Tiere weder berühren noch ins Wasser treiben. Ein allein liegendes Jungtier braucht nicht automatisch Hilfe. Bei einer erkennbaren Verletzung oder auffälliger Schwäche sind die örtlich zuständigen Fachstellen die richtigen Ansprechpartner."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "iberischer-hase",
+      "name": "Iberischer Hase",
+      "scientificName": "Lepus granatensis",
+      "group": "Hasenartige und Nagetiere",
+      "identification": "Hase mit langen, schwarzspitzigen Ohren, kräftigen Hinterläufen und heller Unterseite. Die wissenschaftliche Artbezeichnung verhindert eine Verwechslung mit Feldhase und anderen iberischen Hasenarten.",
+      "habitat": "Ein großer Teil der Iberischen Halbinsel; bevorzugt offene Agrar- und Weidelandschaften sowie lückiges Gebüsch. Auch lichte Eichenlandschaften und andere regional geeignete Lebensräume werden genutzt.",
+      "aliases": [],
+      "europeanOnly": true,
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Ohren, Hinterläufe und heller Bauch",
+          "paragraphs": [
+            "Die langen Ohren tragen schwarze Spitzen. Zum braun-gelblichen Rücken steht die weiße Unterseite im Kontrast; auch der Schwanz zeigt helle und dunkle Partien. Die Hinterläufe sind kräftig und länger als die Vorderläufe.",
+            "Die Art lebt auf einem großen Teil der Iberischen Halbinsel. Dort kommen auch andere Hasenarten vor. Deshalb ist „Hase in Spanien“ noch keine sichere Artbestimmung; wissenschaftlicher Name, Fundregion und mehrere Körpermerkmale müssen zusammenpassen."
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Offene Flächen und Deckung gehören zusammen",
+          "paragraphs": [
+            "Iberische Hasen nutzen offene Flächen mit krautiger Vegetation, Weiden, Ackerlandschaften und lückige Sträucher. Mediterrane Eichenlandschaften können ebenfalls Lebensraum sein. Die Art ist deshalb weder auf reine Getreidefelder noch auf trockenes Buschland beschränkt.",
+            "Ruheplätze liegen häufig in Vegetationsdeckung. Nahrungssuche auf offenen Flächen und ein geschützter Tagesliegeplatz erfüllen unterschiedliche Bedürfnisse; aus einer einzelnen Beobachtung lässt sich der gesamte Lebensraum nicht ablesen."
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Gräser als Grundlage, weitere Pflanzen als Ergänzung",
+          "paragraphs": [
+            "Gräser bilden einen wichtigen Bestandteil der Nahrung. Daneben werden weitere Kräuter und Teile kleiner Gehölze genutzt. Die Art ist ein Pflanzenfresser mit einem breiteren Speiseplan als nur einer einzigen Kulturpflanze.",
+            "Welche Pflanzen tatsächlich gefressen werden, hängt vom erreichbaren Angebot ab. Die Liste der Nahrungspflanzen ist deshalb keine Anleitung zum Füttern, und ein in einer Region gemessener Gräseranteil ist kein fester Wert für die gesamte Art."
+          ]
+        },
+        {
+          "id": "verhalten",
+          "title": "Sasse statt Bau und viel Aktivität im Dunkeln",
+          "paragraphs": [
+            "Als Ruheplatz dient eine flache Bodenmulde, die Sasse, häufig zwischen schützender Vegetation. Der Iberische Hase wird überwiegend als dämmerungs- und nachtaktiv beschrieben. Ein starrer Stundenplan für jede Jahreszeit und jeden Ort folgt daraus nicht.",
+            "Meist leben die Tiere einzeln. Bei der Nahrungssuche können dennoch mehrere Hasen zusammenkommen. Eine vorübergehende Ansammlung ist daher kein Widerspruch zur überwiegend einzelgängerischen Lebensweise."
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Ein langer Fortpflanzungszeitraum mit regionalen Unterschieden",
+          "paragraphs": [
+            "Unabhängige Untersuchungen aus Südportugal und Südspanien belegen Fortpflanzung über einen großen Teil beziehungsweise das ganze Jahr. Ein auf das Frühjahr begrenzter Kalender würde diese Befunde nicht abbilden. Häufigkeit und Intensität bleiben dennoch jahreszeitlich und regional unterschiedlich.",
+            "Die Untersuchungen zeigen überwiegend kleine Würfe und mehrere Würfe innerhalb eines Jahres. Berechnete Jahresleistungen unterscheiden sich zwischen den Studien. Sie sind weder eine Garantie für jedes Weibchen noch die Zahl der Jungtiere, die bis zum nächsten Jahr überleben."
+          ]
+        },
+        {
+          "id": "gebiss",
+          "title": "28 Zähne und ein zweites oberes Schneidezahnpaar",
+          "paragraphs": [
+            "Die artspezifische Beschreibung nennt insgesamt 28 Zähne für das vollständige Erwachsenengebiss. Die Zahlen der Gebissübersicht gelten je Körperseite: oben stehen zwei Schneidezähne, unten einer; Eckzähne fehlen. Erst beide Seiten zusammen ergeben die Gesamtzahl.",
+            "Der unabhängige anatomische Review bestätigt diese Formel für die Familie der Hasen und Kaninchen, Leporidae. Er ist ein Familienabgleich, keine zweite Einzeluntersuchung dieser Art. Das zusätzliche kleine obere Schneidezahnpaar ist ein wesentliches Unterscheidungsmerkmal der Hasenartigen gegenüber Nagetieren."
+          ]
+        }
+      ]
+    }
+  ]
+}

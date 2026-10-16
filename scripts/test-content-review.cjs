@@ -9,10 +9,11 @@ const swc = pr('next/dist/build/swc');
 const cache = new Map();
 function load(relative) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} }; cache.set(filename, mod.exports);
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022' }, module: { type: 'commonjs' } });
-  new Function('require', 'module', 'exports', code)(id => id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), id + '.js'))) : pr(id), mod, mod.exports);
+  new Function('require', 'module', 'exports', code)(id => id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js'))) : pr(id), mod, mod.exports);
   cache.set(filename, mod.exports); return mod.exports;
 }
 const { QUESTIONS, filterQuestions } = load('data/questions-full.js');
@@ -42,8 +43,14 @@ test('The active quiz preserves unique stable IDs and complete, resolvable answe
 });
 
 test('All detailed questions link to existing lessons, courses and country notes', () => {
-  assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(learningModules.length, 84);
-  assert.equal(learningCounts.lessons, 431); assert.equal(learningQuestions.length, 850);
+  const added = load('lib/learning-afternoon-expansion.js').afternoonModules;
+  const addedIds = new Set(added.map(module => module.id));
+  const existing = learningModules.filter(module => !addedIds.has(module.id));
+  assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(existing.length, 84);
+  assert.equal(existing.reduce((sum, module) => sum + module.lessons.length, 0), 431);
+  assert.equal(existing.reduce((sum, module) => sum + module.questions.length, 0), 850);
+  assert.equal(learningCounts.lessons, 431 + added.reduce((sum, module) => sum + module.lessons.length, 0));
+  assert.equal(learningQuestions.length, 850 + added.reduce((sum, module) => sum + module.questions.length, 0));
   assert.equal(new Set(courses.map(course => course.id)).size, courses.length);
   for (const module of learningModules) {
     const lessons = new Set(module.lessons.map(lesson => lesson.id));

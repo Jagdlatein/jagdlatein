@@ -1,0 +1,181 @@
+{
+  "reviewedOn": "2026-10-16",
+  "sources": [
+    {
+      "id": "exp_sika_feldhamer_1980",
+      "organization": "American Society of Mammalogists / University of Maryland",
+      "title": "George A. Feldhamer (1980): Cervus nippon, Mammalian Species 128, S. 1–7",
+      "url": "https://doi.org/10.2307/3504044",
+      "supports": "Originalartmonographie, vollständiger Autorenvolltext über ResearchGate gelesen: I 0/3, C 1/1, P 3/3, M 3/3, insgesamt 34. Der ADW-Text, der diese Monographie übernimmt, wird ausdrücklich nicht als unabhängiger Zweitbeleg gezählt."
+    },
+    {
+      "id": "exp_sika_kuroda_1965",
+      "organization": "Hokuryūkan, zoologisches Fachwerk; archiviert beim japanischen Ministerium für Land, Infrastruktur, Verkehr und Tourismus (MLIT)",
+      "title": "Nagamichi Kuroda: ニホンジカ (Cervus nippon), aus 新日本動物図鑑 下 (1965), reproduziert auf S. 67 der MLIT-Unterlage",
+      "url": "https://www.kkr.mlit.go.jp/river/yodoriver_old/kaigi/ina/7th/pdf/inabu_7th_2-2/inabu_7th_2-2-08.pdf",
+      "supports": "PDF-Seite 2, gedruckte S. 67, visuell gelesen: artbezogen 0133/3133 = 34, ausdrücklich Cervus nippon; Bezug auf Honshū-Tiere. Textverfasser Kuroda und ursprüngliches Fachwerk werden auf der Seite genannt. Die Ausgabe 1965 wurde zusätzlich im Katalog der japanischen Nationalbibliothek abgeglichen; sie liegt vor Feldhamer 1980."
+    },
+    {
+      "id": "exp_rentier_miller_1982",
+      "organization": "Johns Hopkins University Press; Fachkapitel im ARLIS-Archiv",
+      "title": "Frank L. Miller (1982): Caribou (Rangifer tarandus), in Wild Mammals of North America, Kap. 47, S. 926",
+      "url": "https://www.arlis.org/docs/vol2/Susitna-temp/APA/22/APA2249.pdf",
+      "supports": "Abschnitt Skull and Dentition: vollständiges bleibendes Gebiss mit I 0/3, C 1/1, P 3/3, M 3/3 = 34; ausdrücklich Rangifer tarandus. PDF-Seite 5 der archivierten Kapitelkopie tatsächlich gelesen."
+    },
+    {
+      "id": "exp_rentier_alaska_2005",
+      "organization": "Alaska Department of Fish and Game, Division of Wildlife Conservation",
+      "title": "Skulls of Alaskan Mammals: A Teacher’s Guide (2005), S. 57: Rangifer tarandus",
+      "url": "https://www.adfg.alaska.gov/static/education/educators/wildwonders/pdfs/wild_wonders_issue_12_teacher_guide.pdf",
+      "supports": "Artbezogene Formel I 0/3, C 1/1, P 3/3, M 3/3 = 34. Die Formel wurde in der identischen, von der University of Arizona bereitgestellten PDF-Fassung zusätzlich visuell geprüft. Eigenständig verfasste behördliche Unterrichtshilfe; ein zweiter Hostingort zählt nicht als zusätzliche Quelle."
+    },
+    {
+      "id": "exp_pyrenaeengams_csic",
+      "organization": "CSIC, Museo Nacional de Ciencias Naturales",
+      "title": "Francisco Javier Pérez-Barbería: Rebeco – Rupicapra pyrenaica, Descripción",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/ruppyrid.html",
+      "supports": "Artbezogen und mit beiden Seiten ausgeschrieben: I (0–0)/(3–3), C (0–0)/(1–1), P (3–3)/(3–3), M (3–3)/(3–3) = 32. Die hier verwendeten Arrays geben jeweils nur eine Seite wieder."
+    },
+    {
+      "id": "exp_pyrenaeengams_miteco",
+      "organization": "Spanisches Umweltministerium / SECEM",
+      "title": "García-González & Herrero: Atlas y Libro Rojo de los Mamíferos Terrestres de España, Rupicapra pyrenaica, S. 362",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/ieet_mami_rupicapra_pyrenaica_tcm30-99875.pdf",
+      "supports": "Unabhängig verfasstes Artporträt mit der abweichenden Schreibweise 0.0.3.3/4.0.3.3. Diese ergibt ebenfalls 32, zählt aber die vier unteren Vorderzähne anders als die CSIC-Artbeschreibung. Nicht als wörtlich übereinstimmender Beleg für die Trennung I3/C1 ausgegeben."
+    },
+    {
+      "id": "exp_bovidae_zaragoza_2011",
+      "organization": "Universidad de Zaragoza, Departamento de Ciencias de la Tierra",
+      "title": "María Andrés Rodrigo (2011): Los bóvidos Villafranquienses de La Puebla de Valverde y Villarroya: sistemática, filogenia y paleobiología, S. 3",
+      "url": "https://zaguan.unizar.es/record/59988/files/TUZ_0977_andres_bovidos.pdf",
+      "supports": "Vergleichende Beschreibung der Familie Bovidae: I 0/3, C 0/1, P 3/3, M 3/3. Nur ein offengelegter Familienabgleich der anatomischen Zahnzuordnung; kein eigenständiger artbezogener Nachweis für Rupicapra pyrenaica oder Bison bonasus."
+    },
+    {
+      "id": "exp_capra_secem",
+      "organization": "Spanisches Umweltministerium / SECEM",
+      "title": "Granados, Soriguer, Pérez, Fandos & García-Santiago: Atlas y Libro Rojo de los Mamíferos Terrestres de España, Capra pyrenaica, S. 366",
+      "url": "https://secem.es/sites/default/files/2023-04/79.%20Capra%20pyrenaica.pdf",
+      "supports": "Ausdrücklich Capra pyrenaica: Formel 0.0.3.3/3.1.3.3; daraus 32 Zähne. Die vollständige Original-Atlasfassung wurde gelesen."
+    },
+    {
+      "id": "exp_capra_vigal_machordom_1987",
+      "organization": "Comunidad Autónoma de Madrid, Unidad de Zoología Aplicada / Zeitschrift für Säugetierkunde",
+      "title": "Vigal & Machordom (1987): Dental and skull anomalies in the Spanish wild goat, Capra pyrenaica Schinz, 1838, S. 39",
+      "url": "https://www.zobodat.at/pdf/Zeitschrift-Saeugetierkunde_52_0038-0050.pdf",
+      "supports": "Originaluntersuchung an 186 Schädeln; der normale bleibende Zahnsatz wird ausdrücklich als I 0/3, C 0/1, P 3/3, M 3/3 = 32 angegeben. Formel zusätzlich visuell geprüft. Zahnabweichungen werden von diesem Referenzbauplan getrennt untersucht."
+    },
+    {
+      "id": "exp_kegelrobbe_kierdorf_2019",
+      "organization": "Universität Hildesheim / Natural History Museum of Denmark, Universität Kopenhagen",
+      "title": "Kierdorf et al. (2019): Dental pulp exposure, periapical inflammation and suppurative osteomyelitis of the jaws in juvenile Baltic grey seals, PLOS ONE 14: e0215401",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0215401",
+      "supports": "Einleitung und Abb. 1 erläutern das vollständige bleibende Gebiss: I 3/2, C 1/1, P 4/4, M 1–2/1, insgesamt 34–36. Ein zweiter oberer Molar kann ein- oder beidseitig vorkommen; deshalb kann ein individuelles Gebiss auch 35 Zähne haben. Verwendet werden ausschließlich die anatomische Formel und ihre Variation."
+    },
+    {
+      "id": "exp_kegelrobbe_fao_1993",
+      "organization": "Food and Agriculture Organization of the United Nations (FAO)",
+      "title": "Jefferson, Leatherwood & Webber (1993): Marine Mammals of the World, S. 272: Halichoerus grypus",
+      "url": "https://www.fao.org/4/t0725e/t0725e40.pdf",
+      "supports": "Konkrete Erwachsenenformel I 3/2, C 1/1, PC 5–6/5. PC fasst Prämolaren und Molaren zusammen; bestätigt unabhängig die variable Gesamtzahl der hinteren Zähne und damit 34–36, trennt P und M aber nicht selbst auf. Duke- und Naturalis-Abschriften dieser FAO-Beschreibung werden nicht als weitere Quellen gezählt."
+    },
+    {
+      "id": "exp_kegelrobbe_flower_lydekker_1891",
+      "organization": "Zoologische Fachautoren William Henry Flower, British Museum, und Richard Lydekker",
+      "title": "Flower & Lydekker (1891): An Introduction to the Study of Mammals Living and Extinct, S. 601: Halichœrus",
+      "url": "https://www.gutenberg.org/cache/epub/75947/pg75947-images.html",
+      "supports": "Historischer anatomischer Vergleichstext: I 3/2, C 1/1, P 4/4, M 1/1 = 34; nennt Halichoerus grypus ausdrücklich als einzige Art der beschriebenen Gattung. Dient nur als unabhängiger Abgleich der Grundform und P/M-Trennung, nicht als Nachweis einer starren Zahnzahl; die zusätzliche Variation wird mit modernen Fachquellen ausgewiesen."
+    },
+    {
+      "id": "exp_iberhase_csic",
+      "organization": "Universidad de León / CSIC, Museo Nacional de Ciencias Naturales",
+      "title": "Francisco J. Purroy (2017): Liebre ibérica – Lepus granatensis, Descripción",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/lepgraid.html",
+      "supports": "Artbezogene Formel I 2/1, C 0/0, P 3/2, M 3/3 = 28, unter Verweis auf Cabrera 1914. Nicht mit Feldhase Lepus europaeus verwechselt."
+    },
+    {
+      "id": "exp_leporidae_kraatz_2021",
+      "organization": "Internationales zoologisches Forschungsteam, unter anderem Senckenberg und Western University of Health Sciences",
+      "title": "Kraatz et al. (2021): Lagomorpha as a Model Morphological System, Frontiers in Ecology and Evolution 9:636402",
+      "url": "https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2021.636402/full",
+      "supports": "Unabhängig verfasste vergleichende Morphologie: Leporidae I 2/1, C 0/0, P 3/2, M 3/3 mit 28 Zähnen. Wird ausdrücklich als Familienabgleich zum artbezogenen Lepus-granatensis-Porträt verwendet, nicht als zweite Einzelartuntersuchung."
+    }
+  ],
+  "profiles": [
+    {
+      "slug": "sikawild",
+      "formula": { "I": [0, 3], "C": [1, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 34,
+      "scope": "Regelform des vollständigen bleibenden Gebisses von Cervus nippon; keine Aussage über die tatsächliche Vollständigkeit jedes einzelnen Gebisses.",
+      "note": "Die oberen Eckzähne sind in den 34 Zähnen bereits enthalten. Der unabhängige japanische Artbeleg bezieht sich auf Honshū-Sikahirsche; die übergreifende Artmonographie nennt dieselbe Formel.",
+      "sourceIds": ["exp_sika_feldhamer_1980", "exp_sika_kuroda_1965"]
+    },
+    {
+      "slug": "rentier",
+      "formula": { "I": [0, 3], "C": [1, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 34,
+      "scope": "Vollständiges bleibendes Referenzgebiss von Rangifer tarandus, mit einem oberen Eckzahn je Seite.",
+      "note": "Die beiden verwendeten Artquellen behandeln nordamerikanische Karibus unter dem Namen Rangifer tarandus. Diese Zuordnung wird offengelegt; die Formel ist kein allgemeiner Bauplan sämtlicher Hirscharten.",
+      "sourceIds": ["exp_rentier_miller_1982", "exp_rentier_alaska_2005"]
+    },
+    {
+      "slug": "pyrenaeengaemse",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Vollständiges bleibendes Gebiss von Rupicapra pyrenaica in der anatomischen Zahnzuordnung der CSIC-Artbeschreibung; zusätzlich unabhängig mit der Bovidae-Familienformel abgeglichen.",
+      "note": "Die Quellen verwenden verschiedene Bezeichnungen für die unteren Vorderzähne: CSIC schreibt je Seite drei Schneidezähne plus einen Eckzahn; der spanische Atlas schreibt vier Schneidezähne und keinen Eckzahn. Beide Verteilungen ergeben 32 Zähne. Hier bleibt der untere Eckzahn als C gesondert erkennbar; die abweichende Atlasnotation wird nicht als identische Formel ausgegeben.",
+      "sourceIds": ["exp_pyrenaeengams_csic", "exp_pyrenaeengams_miteco", "exp_bovidae_zaragoza_2011"]
+    },
+    {
+      "slug": "iberiensteinbock",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Normaler vollständiger bleibender Zahnsatz von Capra pyrenaica; ein Referenzbauplan, keine individuelle Vollständigkeitsgarantie.",
+      "note": "Die wissenschaftliche Untersuchung unterscheidet ausdrücklich die normale 32-Zähne-Formel von Zahnabweichungen. Die Formel gilt hier für den Iberiensteinbock und wurde nicht allein vom Alpensteinbock übertragen.",
+      "sourceIds": ["exp_capra_secem", "exp_capra_vigal_machordom_1987"]
+    },
+    {
+      "slug": "kegelrobbe",
+      "formula": { "I": [3, 2], "C": [1, 1], "P": [4, 4], "M": [1, 1] },
+      "total": 34,
+      "scope": "Bleibendes Gebiss von Halichoerus grypus: dargestellte Grundform mit 34 Zähnen; die fachlich beschriebene Gesamtzahl liegt bei 34–36.",
+      "note": "Ein zweiter oberer Molar kann auf einer oder auf beiden Seiten hinzukommen: dann sind es 35 beziehungsweise 36 Zähne. Die symmetrische Formel zeigt entweder 34 oder 36; die asymmetrische 35-Zähne-Variante lässt sich nicht durch einfaches Verdoppeln einer einzigen Kieferseite darstellen. FAO verwendet für Prämolaren und Molaren gemeinsam die Abkürzung PC.",
+      "variants": [
+        {
+          "formula": { "I": [3, 2], "C": [1, 1], "P": [4, 4], "M": [2, 1] },
+          "total": 36,
+          "label": "Mit zweitem oberen Molar auf beiden Seiten"
+        }
+      ],
+      "sourceIds": ["exp_kegelrobbe_kierdorf_2019", "exp_kegelrobbe_fao_1993", "exp_kegelrobbe_flower_lydekker_1891"]
+    },
+    {
+      "slug": "iberischer-hase",
+      "formula": { "I": [2, 1], "C": [0, 0], "P": [3, 2], "M": [3, 3] },
+      "total": 28,
+      "scope": "Vollständiges bleibendes Referenzgebiss von Lepus granatensis.",
+      "note": "Die konkrete Artformel aus dem CSIC-Porträt wurde unabhängig mit der Leporidae-Formel der aktuellen vergleichenden Fachliteratur abgeglichen. Der zweite Beleg ist ein Familienabgleich und keine gesonderte Studie an dieser Einzelart.",
+      "sourceIds": ["exp_iberhase_csic", "exp_leporidae_kraatz_2021"]
+    }
+  ],
+  "withheld": [
+    {
+      "slug": "wisent",
+      "reason": "Die Originaluntersuchung von Węgrzyn & Serwatka (1984) beschreibt die Zahnarten und ihren Wechsel konkret für Bison bonasus; die unabhängige Arbeit von Wilkus (1957) bestätigt drei Prämolaren und drei Molaren je Kieferseite an untersuchten Wisentschädeln. Für die vollständige artbezogene Trennung aller Vorderzähne fehlt aber weiterhin der unabhängige zweite konkrete Nachweis. Ein Familienbauplan oder der Austausch gegen Bison bison würde diese Lücke nur verdecken; deshalb noch kein vollständiges Formelprofil.",
+      "foundSources": [
+        "https://rcin.org.pl/Content/11117",
+        "https://www.rcin.org.pl/ibs/Content/8963/BI002_2613_Cz-40-2_Acta-T1-nr7-183-308_o.pdf",
+        "https://www.wwf.de/themen-projekte/artenlexikon/wisent-europaeisches-bison/",
+        "https://zaguan.unizar.es/record/59988/files/TUZ_0977_andres_bovidos.pdf"
+      ]
+    },
+    {
+      "slug": "maehnenschaf",
+      "reason": "Ungeklärter Widerspruch zwischen konkreten institutionellen Artquellen: Texas Tech nennt I 0/3, C 0/0, P 3/3, M 3/3 = 30; das CSIC-Artporträt nennt I 0/3, C 0/1, P 3/3, M 3/3 = 32. Die ebenfalls gefundene amtliche Murcia-Beschreibung wiederholt weitgehend den CSIC-Text und wird nicht als unabhängige Auflösung gezählt. Ohne Klärung der unteren Eckzähne wird keine der beiden Formeln als gesichert veröffentlicht.",
+      "foundSources": [
+        "https://www.depts.ttu.edu/nsrl/mammals-of-texas-online-edition/Accounts_Introduced_Artiodactyla/Ammotragus_lervia.php",
+        "https://www.vertebradosibericos.org/mamiferos/identificacion/ammlerid.html",
+        "https://cazaypesca.carm.es/documents/61643/116261/Manual%20del%20cazador.pdf/6a0fb7ab-3d13-dd7a-6500-b3802b2bcf06?t=1764759003574"
+      ]
+    }
+  ]
+}

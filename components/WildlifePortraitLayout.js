@@ -2,7 +2,7 @@ import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import { SoundPlayer } from "./AnimalSounds";
 import { animalSounds } from "../lib/animal-sounds";
-import { europeanWildlifeBySlug } from "../lib/european-wildlife";
+import { europeanWildlifeBySlug } from "../lib/european-wildlife-discovery";
 import { birdDentitionSlugs, dentitionBySlug, dentitionWithheld } from "../lib/wildlife-dentition";
 import WildlifeDentition from "./WildlifeDentition";
 import WildlifeDepth from "./WildlifeDepth";

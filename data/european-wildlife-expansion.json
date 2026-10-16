@@ -339,7 +339,7 @@
       "limits": [
         "Regionale Formen unterscheiden sich; Spitzbergen-Befunde sind ausdrücklich als solche zu lesen.",
         "Das Foto belegt weder Alter noch Geschlecht noch einen wilden oder halbdomestizierten Status des einzelnen Tiers.",
-        "Zahnzahl und artspezifischer Zahnwechsel werden hier erst nach gesondertem Quellenabgleich ergänzt."
+        "Die gesondert belegte Zahnzahl und Referenzformel stehen im Gebissabschnitt dieses Porträts. Ein artspezifischer Zahnwechselkalender ist hier weiterhin nicht freigegeben."
       ],
       "sourceIds": [
         "rentier-adw",
@@ -475,7 +475,7 @@
       "limits": [
         "Die zoologische Art umfasst mehrere geografische Formen. Die Angaben der OFB-Artenseite betreffen ausdrücklich die Pyrenäenform.",
         "Verwandtschaftsanalysen unterscheiden sich teils nach untersuchtem Erbgut; die hier verwendete Zweiteilung ist die benannte Arbeitsklassifikation, keine Behauptung einer abgeschlossenen taxonomischen Debatte.",
-        "Exakte Zahnformel und monatsgenauer Zahnwechselkalender sind in dieser Erweiterung nicht freigegeben."
+        "Die Zahnformel und die unterschiedlichen Bezeichnungen der unteren Vorderzähne werden im Gebissabschnitt erklärt. Ein monatsgenauer Zahnwechselkalender ist hier weiterhin nicht freigegeben."
       ],
       "sourceIds": [
         "gams-csic",
@@ -598,7 +598,7 @@
         "Geografische Formen und einzelne Tiere unterscheiden sich in Körpergröße, Fell und Hornform.",
         "Der Name Iberiensteinbock meint die Art Capra pyrenaica; der ausgestorbene Bucardo ist eine bestimmte Unterart, nicht die gesamte Art.",
         "Das Foto ist als männlicher Iberiensteinbock dokumentiert; ein genaues Alter lässt sich daraus nicht ableiten.",
-        "Zahnformel und artspezifischer Zahnwechsel werden erst nach gesonderter unabhängiger Prüfung ergänzt."
+        "Die gesondert belegte Referenzformel steht im Gebissabschnitt dieses Porträts. Ein artspezifischer Zahnwechselkalender ist hier weiterhin nicht freigegeben."
       ],
       "sourceIds": [
         "ibex-csic",
@@ -640,8 +640,8 @@
   ],
   "withheld": [
     {
-      "topic": "Zahnzahlen und Zahnwechselkalender der drei Arten",
-      "reason": "In dieser Erweiterung nicht für jede Art gegen zwei unabhängige geeignete Belege geprüft. Keine Werte aus Alpengams oder Alpensteinbock ungeprüft übertragen. Für Rupicapra pyrenaica ist nur der allgemeine Nutzen einer fachkundigen Zahnwechseluntersuchung freigegeben."
+      "topic": "Artspezifische Zahnwechselkalender der drei Arten",
+      "reason": "Die bleibenden Referenzgebisse sind in der gesonderten Gebisserweiterung abgeglichen und mit ihren jeweiligen Beleggrenzen veröffentlicht. Daraus folgt kein monatsgenauer Zahnwechselkalender. Solche Kalender bleiben hier mangels ausreichenden artspezifischen Abgleichs offen; keine Werte aus Alpengams oder Alpensteinbock ungeprüft übertragen."
     },
     {
       "topic": "Europaweite Jagdbarkeit, Schonzeiten und Jagdmethoden",

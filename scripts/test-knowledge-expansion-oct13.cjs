@@ -119,7 +119,10 @@ test('All eight additions are reachable through existing tools and exact media p
   for (const prefix of ['verdauung-', 'parasiten-', 'revierleben:nahrungsnetz', 'bewegung:', 'entwicklung:', 'community-fall:']) {
     assert.ok(entries.some(entry => entry.id.startsWith(prefix)), prefix);
   }
-  assert.equal(load('lib/learning-experiences.js').learningExperiences.length, 24);
+  const experiences = load('lib/learning-experiences.js').learningExperiences;
+  // The later research release adds Wissen fürs Revier; preserve
+  // the 24-entry baseline checked by this October 13 regression suite.
+  assert.equal(experiences.filter(item => item.href !== '/lernen/wissen-fuers-revier').length, 24);
 });
 test('Confirmed Schwarzwild anatomy contradiction is corrected in both existing pursuit cases', () => {
   const text = fs.readFileSync(path.join(root, 'pages/jagdpraxis/nachsuche.js'), 'utf8');

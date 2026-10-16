@@ -9,11 +9,12 @@ const swc = pr('next/dist/build/swc');
 const cache = new Map();
 function load(relative) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} };
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022' }, module: { type: 'commonjs' } });
-  new Function('require','module','exports',code)(id => id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), id + '.js'))) : pr(id), mod, mod.exports);
+  new Function('require','module','exports',code)(id => id.startsWith('.') ? load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js'))) : pr(id), mod, mod.exports);
   cache.set(filename, mod.exports); return mod.exports;
 }
 const { QUESTIONS } = load('data/questions-full.js');

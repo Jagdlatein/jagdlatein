@@ -57,6 +57,7 @@ function fixture(overrides = {}) {
   };
   function load(relative) {
     const filename = path.join(root, relative);
+    if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
     if (cache.has(filename)) return cache.get(filename).exports;
     const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
       jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022' }, module: { type: 'commonjs' } });
@@ -66,7 +67,7 @@ function fixture(overrides = {}) {
         calls.push({ clientOptions: options }); return database;
       } };
       if (id.startsWith('.')) {
-        const target = path.relative(root, path.resolve(path.dirname(filename), id + '.js'));
+        const target = path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js'));
         if (target === path.join('lib', 'subscription-access.js')) return {
           async resolveSubscriptionAccess(db, email) {
             calls.push({ entitlement: email }); assert.equal(db, database);

@@ -158,6 +158,7 @@ const reviewedIntroductions = {
 };
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
   if (cache.has(filename)) return cache.get(filename);
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} }; cache.set(filename, mod.exports);
@@ -167,7 +168,7 @@ function load(relative, overrides = {}, cache = new Map()) {
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href: typeof href === 'string' ? href : href.pathname, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), id + '.js')), overrides, cache);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), overrides, cache);
     return req(id);
   }
   new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports);

@@ -3,7 +3,7 @@ import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { canGradeResearchQuestion, createResearchRound, currentResearchQuestion, researchRoundReducer } from "../lib/research-question-round";
 import styles from "../styles/ResearchForPractice.module.css";
 
-export default function ResearchQuestionRound({ questions, sources, daily = false }) {
+export default function ResearchQuestionRound({ questions, sources, daily = false, title, sectionId, notice }) {
   const [state, dispatch] = useReducer(researchRoundReducer, questions, createResearchRound);
   const question = currentResearchQuestion(state);
   const heading = useRef(null);
@@ -31,9 +31,9 @@ export default function ResearchQuestionRound({ questions, sources, daily = fals
   }
   const orderedOptions = answerOrder(question.options, question.id, state.seed).map(index => question.options[index]);
   const expectedIds = question.format === "sequence" ? question.expectedOrder : question.correctIds;
-  const titleId = daily ? "revierwissen-tagesfall-title" : "revierwissen-quiz-title";
-  return <section className={styles.quiz} id={daily ? "revierwissen-tagesfall" : "revierwissen-praxischeck"} aria-labelledby={titleId}>
-    <div className={styles.sectionHeading}><div><p className={styles.kicker}>Wissen anwenden</p><h2 id={titleId}>{daily ? "Dein Fall des Tages" : "Dein Praxischeck"}</h2></div>{!daily && <p>{questions.length} Fragen im Thema · kurze Runden mit bis zu 8 Fragen</p>}</div>
+  const titleId = sectionId ? `${sectionId}-title` : daily ? "revierwissen-tagesfall-title" : "revierwissen-quiz-title";
+  return <section className={styles.quiz} id={sectionId || (daily ? "revierwissen-tagesfall" : "revierwissen-praxischeck")} aria-labelledby={titleId}>
+    <div className={styles.sectionHeading}><div><p className={styles.kicker}>Wissen anwenden</p><h2 id={titleId}>{title || (daily ? "Dein Fall des Tages" : "Dein Praxischeck")}</h2></div>{!daily && <p>{questions.length} Fragen im Thema · kurze Runden mit bis zu 8 Fragen</p>}</div>
     {state.finished ? <div className={styles.result} role="status"><h3 tabIndex={-1} ref={heading}>{correctCount} von {state.ids.length} richtig</h3><p>Du hast diese Runde abgeschlossen. {state.remaining.length ? `${state.remaining.length} bisher nicht bearbeitete Fragen warten noch in diesem Thema.` : "Du hast den Fragenvorrat dieses Themas durchgearbeitet."} Die Auswertung gilt für diese Runde.</p><div className={styles.quizActions}><button type="button" className={styles.primaryAction} onClick={() => send(state.remaining.length ? "continue" : "restart", { seed: newAnswerSeed(state.seed) })}>{state.remaining.length ? "Weitere Fragen" : "Neu gemischt üben"}</button>{needsReview.length > 0 && <button type="button" className={styles.textAction} onClick={() => send("retry", { seed: newAnswerSeed(state.seed) })}>Unsichere Fragen wiederholen ({needsReview.length})</button>}</div>{state.ids.map(id => { const item = questions.find(value => value.id === id); return <details key={id} className={styles.reviewQuestion}><summary>{state.answers[id].correct ? "Richtig" : "Noch üben"} · {item.prompt}</summary><p>{item.explanation}</p></details>; })}</div> : <>
       {!daily && <><p className={styles.roundProgress}>Frage {state.index + 1} von {state.ids.length} <span>{question.skill}</span></p><progress max={state.ids.length} value={Object.keys(state.answers).length} aria-label="Beantwortete Fragen dieser Runde" /></>}
       <div className={styles.quizQuestion} key={`${state.generation}-${question.id}`}><h3 tabIndex={-1} ref={heading}>{question.prompt}</h3>{question.context && <p className={styles.caseContext}>{question.context}</p>}
@@ -42,6 +42,6 @@ export default function ResearchQuestionRound({ questions, sources, daily = fals
       {result ? <div className={styles.quizFeedback} role="status"><h4>{result.correct ? "Richtig eingeordnet" : result.skipped ? "Zum Nachlesen und Wiederholen" : "Das schauen wir genauer an"}</h4>{question.format === "sequence" && <ol>{expectedIds.map(id => <li key={id}>{question.options.find(option => option.id === id).text}</li>)}</ol>}<p>{question.explanation}</p><p className={styles.quizSources}>{question.sourceIds.map(id => sourceById.get(id)).filter(Boolean).map(source => <a key={source.id} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>)}</p>{daily && <p><strong>Für heute bearbeitet.</strong></p>}</div> : null}
       {(!daily || !result) && <div className={styles.quizActions}>{result ? <button type="button" className={styles.primaryAction} onClick={next}>{state.index + 1 === state.ids.length ? "Runde auswerten" : "Nächste Frage"}</button> : <>{question.format !== "single" && <button type="button" className={styles.primaryAction} disabled={!canGradeResearchQuestion(question, state.selection)} onClick={() => send("answer")}>Antwort prüfen</button>}<button type="button" className={styles.textAction} onClick={() => send("skip")}>Weiß ich noch nicht</button></>}</div>}
     </>}
-    <p className={styles.localNotice}>{daily ? "Ein Lernfall, keine Ranglistenpunkte. Deine Antwort wird nicht dauerhaft gespeichert. Beim Neuladen beginnt der heutige Fall erneut." : "Lernübung auf diesem Gerät. Keine Prüfung und keine Prognose für dein Revier. Beim Verlassen der Seite beginnt die Runde neu."}</p>
+    <p className={styles.localNotice}>{notice || (daily ? "Ein Lernfall, keine Ranglistenpunkte. Deine Antwort wird nicht dauerhaft gespeichert. Beim Neuladen beginnt der heutige Fall erneut." : "Lernübung auf diesem Gerät. Keine Prüfung und keine Prognose für dein Revier. Beim Verlassen der Seite beginnt die Runde neu.")}</p>
   </section>;
 }

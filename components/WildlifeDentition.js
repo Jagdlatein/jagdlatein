@@ -1,5 +1,7 @@
 import { birdDentition, birdDentitionSlugs, dentalCount, dentalNotationSources, dentitionBySlug, dentitionWithheld, toothTypes } from "../lib/wildlife-dentition";
 import styles from "../styles/WildlifeDentition.module.css";
+import ResearchQuestionRound from "./ResearchQuestionRound";
+import { makeDentitionQuestions } from "../lib/dentition-questions";
 
 function Formula({ formula, label }) {
   const count = dentalCount(formula);
@@ -29,12 +31,13 @@ export default function WildlifeDentition({ slug, name }) {
   const withheld = dentitionWithheld.find(record => record.slug === slug);
   if (!profile && !withheld) return null;
   return <section id="gebiss" className={styles.panel} aria-labelledby="gebiss-title">
-    <p className={styles.eyebrow}>Biologie im Detail</p><h2 id="gebiss-title">Gebiss{profile ? ` · Vollformel: ${profile.total} Zähne` : ` von ${name}`}</h2>
+    <p className={styles.eyebrow}>Biologie im Detail</p><h2 id="gebiss-title">Gebiss{profile ? ` · ${profile.variants?.length ? "Grundform" : "Vollformel"}: ${profile.total} Zähne` : ` von ${name}`}</h2>
     {profile ? <>
       <p className={styles.scope}>{profile.scope}</p>
       <Formula formula={profile.formula} />
       {profile.note && <p className={styles.note}>{profile.note}</p>}
       {profile.variants?.map(variant => <Formula key={variant.label} {...variant} />)}
+      <details className={styles.details}><summary>Zahnformel mit drei Fragen üben</summary><div className={styles.quizWrap}><ResearchQuestionRound key={profile.slug} questions={makeDentitionQuestions(profile)} sources={profile.sources} title="Dein Gebisscheck" sectionId={`gebisscheck-${profile.slug}`} notice="Du übst die oben gezeigte Referenzformel. Diese Zählübung beurteilt kein individuelles Tier und ersetzt keine Altersbestimmung. Beim Verlassen beginnt die Runde neu." /></div></details>
       <details className={styles.details}><summary>Zahnformeln richtig lesen</summary>
         <p>Die Zahlen beschreiben jeweils <strong>eine</strong> Kieferseite. Oben steht die Zahl im Oberkiefer, darunter die im Unterkiefer. Für die linke und rechte Seite zusammen wird die Summe verdoppelt.</p>
         <p>I bezeichnet Schneidezähne, C Eckzähne, P Prämolaren und M Molaren. Die Formel hier beschreibt das bleibende Gebiss. Milchgebiss und Zahnwechsel sind davon getrennt zu betrachten; dafür wird hier keine ungeprüfte Formel angegeben.</p>
@@ -44,6 +47,6 @@ export default function WildlifeDentition({ slug, name }) {
       <details className={styles.details}><summary>Belege zur Zahnformel</summary><p>Dieser Gebissabschnitt wurde am {new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${profile.reviewedOn}T00:00:00Z`))} inhaltlich abgeglichen. Das Datum gilt für diesen Abschnitt.</p>
         <ul>{profile.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.organization}: {source.title}</a><p>{Array.isArray(source.supports) ? source.supports.join(" ") : source.supports}</p></li>)}</ul>
       </details>
-    </> : <p>Für diese Art veröffentlichen wir hier noch keine neue Zahnformel. Die genaue Formel einschließlich ihrer möglichen Abweichungen ist noch nicht ausreichend durch unabhängige Fachquellen abgeglichen.</p>}
+    </> : <><p>Für diese Art veröffentlichen wir hier noch keine neue Zahnformel. Die genaue Formel einschließlich ihrer möglichen Abweichungen ist noch nicht ausreichend durch unabhängige Fachquellen abgeglichen.</p><details className={styles.details}><summary>Warum die Formel noch offen ist</summary><p>{withheld.reason}</p>{withheld.foundSources?.length > 0 && <ul>{withheld.foundSources.map(url => <li key={url}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>)}</ul>}</details></>}
   </section>;
 }

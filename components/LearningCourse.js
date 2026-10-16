@@ -11,6 +11,7 @@ import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
 import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
 import { recordReviewAnswer } from "../lib/daily-review";
+import LessonEvidence from "./LessonEvidence";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -113,7 +114,7 @@ function LearningContent({ module }) {
   }
 
   return (
-    <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} stats={[{ value: module.lessons.length, label: "Lektionen" }, { value: module.questions.length, label: "Fragen" }, { value: module.minutes, label: "Minuten" }, { value: module.level, label: "Lernstufe" }]}>
+    <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} className={styles.course} compact stats={[{ value: module.lessons.length, label: "Lektionen" }, { value: module.questions.length, label: "Fragen" }, { value: module.minutes, label: "Minuten" }, { value: module.level, label: "Lernstufe" }]}>
           <nav className={styles.topNav} aria-label="Kursübersicht">
             <Link href="/meine-kurse">Meine Kurse</Link>
           </nav>
@@ -152,6 +153,7 @@ function LearningContent({ module }) {
               <div className={styles.lessonText}>{lesson.paragraphs.map((paragraph, index) => <p key={`${lesson.id}:${index}`}>{paragraph}</p>)}</div>
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>
+              <LessonEvidence lesson={lesson} reviewedOn={module.reviewedOn} />
               <div className={styles.actions}>
                 {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => selectLesson(lessonIndex - 1)}>Vorherige Lektion</button>}
                 {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => selectLesson(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" className={styles.button}>Zum Wissenscheck</a>}

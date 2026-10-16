@@ -31,6 +31,7 @@ test('Adult formulas count both sides, reject incomplete/fractional inputs and r
     const upper = ['I', 'C', 'P', 'M'].reduce((sum, key) => sum + profile.formula[key][0], 0);
     const lower = ['I', 'C', 'P', 'M'].reduce((sum, key) => sum + profile.formula[key][1], 0);
     assert.equal(profile.total, 2 * (upper + lower), profile.slug);
+    for (const variant of profile.variants || []) assert.equal(data.dentalCount(variant.formula)?.total, variant.total, `${profile.slug}: ${variant.label}`);
     assert.ok(profile.scope && profile.note && profile.reviewedOn === '2026-10-16', profile.slug);
     assert.ok(new Set(profile.sources.map(source => source.organization)).size >= 2, profile.slug);
     for (const source of profile.sources) assert.ok(source.title && /^https:\/\//.test(source.url) && source.supports?.length, `${profile.slug}:${source.id}`);
@@ -46,7 +47,7 @@ test('European biological portraits extend discovery without fabricating DACH le
   const data = load('lib/european-wildlife.js');
   const dach = load('lib/dach-wildlife.js');
   assert.equal(data.europeanWildlife.length, dach.dachWildlife.length + data.europeanExpansion.length);
-  assert.equal(data.europeanExpansion.length, 3);
+  assert.deepEqual(data.europeanExpansion.map(item => item.slug).sort(), ['rentier', 'pyrenaeengaemse', 'iberiensteinbock', 'rothuhn', 'chukarhuhn', 'moorschneehuhn', 'kegelrobbe', 'iberischer-hase'].sort());
   assert.equal(new Set(data.europeanWildlife.map(item => item.slug)).size, data.europeanWildlife.length);
   for (const species of data.europeanExpansion) {
     assert.equal(species.europeanOnly, true);

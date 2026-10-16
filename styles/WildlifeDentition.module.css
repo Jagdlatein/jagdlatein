@@ -25,4 +25,5 @@
 .details a { color: #72541d; text-underline-offset: 4px; }
 .details li + li { margin-top: 14px; }
 .details :focus-visible { outline: 3px solid #537b48; outline-offset: 4px; }
+.quizWrap p { font-size: 18px; }
 @media (max-width: 620px) { .panel { font-size: 18px; } .formula { padding: 18px 12px; gap: 16px; } .tooth { font-size: 23px; gap: 7px; } .table { font-size: 16px; } .table th, .table td { padding: 12px 4px; } }
