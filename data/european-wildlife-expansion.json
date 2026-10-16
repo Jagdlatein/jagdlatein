@@ -1,0 +1,659 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Drei ergänzende biologische Artenporträts für Europa. Keine Aussage über Jagdbarkeit, Jagdzeiten oder örtliches Recht; kein Vollständigkeitsanspruch für Europas Tierwelt.",
+  "sources": [
+    {
+      "id": "rentier-adw",
+      "organization": "University of Michigan, Museum of Zoology · Animal Diversity Web",
+      "authorityGroup": "University of Michigan",
+      "title": "Rangifer tarandus · Joly und Shefferly, 2000",
+      "url": "https://animaldiversity.org/accounts/Rangifer_tarandus/",
+      "supports": [
+        "Hirschfamilie; Geweih bei beiden Geschlechtern; Größen- und Fellvariation; breite Hufe",
+        "Tundra und boreale Wälder; verschiedene pflanzliche Nahrung und Flechten als Teil der Winterkost",
+        "Herbstbrunft; gewöhnlich ein Kalb; frühe Beweglichkeit; Ernährung beeinflusst Fortpflanzung"
+      ],
+      "limits": "Älteres Grundlagenporträt. Historische Bestandszahlen, damalige Gefährdungsbewertung und nordamerikanische Wanderrekorde werden nicht als aktuelles Europawissen übernommen."
+    },
+    {
+      "id": "rentier-villrein",
+      "organization": "Norsk villreinsenter · Norwegisches Wildrentierzentrum",
+      "authorityGroup": "Norsk villreinsenter",
+      "title": "Wild Reindeer · Biology and use of habitat",
+      "url": "https://villrein.no/wildreindeer/",
+      "supports": [
+        "Geweihzyklus beider Geschlechter; dichtes Fell und breite Hufe",
+        "Vielseitige saisonale Äsung; Flechten sind keine ausschließliche Nahrung",
+        "Norwegische Wildrentiere: saisonale Raumwahl, getrennte männliche und weibliche Gruppen, Brunft und Kalbung"
+      ],
+      "limits": "Der räumliche und soziale Schwerpunkt liegt auf norwegischen Gebirgsrentiere; diese Angaben sind kein Schema für alle Rangifer-Populationen."
+    },
+    {
+      "id": "rentier-polarinstitut",
+      "organization": "Norsk Polarinstitutt · Norwegisches Polarinstitut",
+      "authorityGroup": "Norsk Polarinstitutt",
+      "title": "Svalbard reindeer",
+      "url": "https://npolar.no/en/species/svalbard-reindeer/",
+      "supports": [
+        "Spitzbergen-Rentier als regional besondere Form; kurze Beine, dichtes Fell, Größenunterschiede der Geschlechter",
+        "Spitzbergen: überwiegend kleine Gruppen und geringe Wanderneigung",
+        "Saisonaler Nahrungszugang; Herbstbrunft und ein Kalb"
+      ],
+      "limits": "Aussagen zu Ökologie und Zeitablauf betreffen ausdrücklich Spitzbergen. Die teils älteren Monitoringzahlen der Seite werden nicht übernommen."
+    },
+    {
+      "id": "rentier-metsa",
+      "organization": "Metsähallitus · Parks & Wildlife Finland",
+      "authorityGroup": "Metsähallitus",
+      "title": "Significant EU funding for the conservation of wild forest reindeer in Finland · 2. Juli 2025",
+      "url": "https://www.metsa.fi/en/press-releases/significant-eu-funding-for-the-conservation-of-wild-forest-reindeer-in-finland/",
+      "supports": [
+        "Waldren Rangifer tarandus fennicus; Vorkommen in Finnland und im nordwestlichen Russland",
+        "Unterscheidung der Waldform von einer pauschalen Beschreibung als reines Tundratier"
+      ],
+      "limits": "Nur Verbreitung und benannte Waldform werden verwendet; keine Projektfinanzierung, Bestandszahl oder Zukunftsmaßnahme wird als abgeschlossener Erfolg dargestellt."
+    },
+    {
+      "id": "rentier-luke",
+      "organization": "Luonnonvarakeskus · Natural Resources Institute Finland",
+      "authorityGroup": "Natural Resources Institute Finland",
+      "title": "Game animal research platform",
+      "url": "https://www.luke.fi/en/research/research-infrastructures/research-environment-for-wild-animals/game-animal-research-platform",
+      "supports": [
+        "Finnische Feldforschung zu Vorkommen, Dichte und Bewegungen wildlebender Waldrene"
+      ],
+      "limits": "Bestätigt das finnische Forschungsvorkommen; liefert hier keine unabhängige zweite Bestandszählung."
+    },
+    {
+      "id": "rentier-pansen-2021",
+      "organization": "University of Edinburgh, Roslin Institute; University of Aberdeen · Scientific Reports",
+      "authorityGroup": "Glendinning et al. 2021, eigene Pansenproben",
+      "title": "Metagenomic analysis of the cow, sheep, reindeer and red deer rumen · Glendinning et al., 2021",
+      "url": "https://www.nature.com/articles/s41598-021-81668-9",
+      "supports": [
+        "Rentier als Wiederkäuer; Mikroorganismen im Pansen bauen pflanzliche Kohlenhydrate ab"
+      ],
+      "limits": "Kleine Stichprobe; keine allgemeinen Häufigkeiten einzelner Mikroben und keine Ernährungsanweisung für Wildtiere werden abgeleitet."
+    },
+    {
+      "id": "rentier-pansen-2016",
+      "organization": "UiT The Arctic University of Norway und beteiligte Forschungsinstitutionen · PLOS ONE",
+      "authorityGroup": "Salgado-Flores et al. 2016, getrennte Fütterungsstudie",
+      "title": "Rumen and Cecum Microbiomes in Reindeer Are Changed in Response to a Lichen Diet · Salgado-Flores et al., 2016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4861291/",
+      "supports": [
+        "Rentier als Wiederkäuer; Beteiligung der Pansenmikroben an der Nutzung seiner Nahrung",
+        "Flechtenanteile verändern die untersuchte mikrobielle Gemeinschaft"
+      ],
+      "limits": "Versuch mit sieben Rentieren und zwei Futtervarianten; die App übernimmt nur die grundlegende Verdauungseinordnung."
+    },
+    {
+      "id": "rentier-spitzbergen-studie",
+      "organization": "Veterinärmedizinische Universität Wien; NMBU; James Hutton Institute; NINA · Scientific Reports",
+      "authorityGroup": "Arnold et al. 2018, Freilandstudie",
+      "title": "Circadian rhythmicity persists through the Polar night and midnight sun in Svalbard reindeer · Arnold et al., 2018",
+      "url": "https://www.nature.com/articles/s41598-018-32778-4",
+      "supports": [
+        "Spitzbergen-Rentiere als weitgehend ortstreue Population; lokale Bewegungen bei erschwertem Nahrungszugang",
+        "Starke jahreszeitliche Unterschiede in Verhalten und Physiologie"
+      ],
+      "limits": "Freilandbefunde für Spitzbergen; kein allgemeiner Tagesstundenplan für europäische Rentiere."
+    },
+    {
+      "id": "gams-csic",
+      "organization": "Museo Nacional de Ciencias Naturales · CSIC",
+      "authorityGroup": "CSIC · Pérez-Barbería, García-González und Palacios",
+      "title": "Rebeco – Rupicapra pyrenaica · Fassung 10. August 2017",
+      "url": "https://www.vertebradosibericos.org/mamiferos/ruppyr.html",
+      "supports": [
+        "Schlanke Gestalt, Hakenhörner beider Geschlechter, Gesichtszeichnung",
+        "Kantabrisches Gebirge und Pyrenäen; Lebensräume am Übergang von Wald und Gebirgsrasen",
+        "Saisonale Pflanzenkost; soziale Gruppen und Mutter-Kitz-Bindung; gewöhnlich ein Junges"
+      ],
+      "limits": "Ältere Bestandszahlen, Gefährdungseinstufungen, Krankheitsstände und Jagdempfehlungen werden nicht übernommen."
+    },
+    {
+      "id": "gams-csic-merkmale",
+      "organization": "Museo Nacional de Ciencias Naturales · CSIC",
+      "authorityGroup": "CSIC · Pérez-Barbería, García-González und Palacios",
+      "title": "Rebeco – Rupicapra pyrenaica · Identificación",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/ruppyrid.html",
+      "supports": [
+        "Unterscheidung von Rupicapra pyrenaica und Rupicapra rupicapra; Zuordnung der kantabrischen, pyrenäischen und Apennin-Populationen",
+        "Altersansprache am lebenden Tier ist nur grob; Zahnwechsel und Hornmerkmale erfordern geeignete Untersuchung"
+      ],
+      "limits": "Mit dem CSIC-Hauptporträt eine gemeinsame Quellenfamilie, keine zweite unabhängige Bestätigung. Genetische Einzelstudien zeigen teils unterschiedliche Verwandtschaftsmuster; keine einzig endgültige Unterartenliste wird behauptet."
+    },
+    {
+      "id": "gams-ofb",
+      "organization": "Office français de la biodiversité",
+      "authorityGroup": "Office français de la biodiversité",
+      "title": "Isard (Rupicapra pyrenaica pyrenaica) · Dezember 2024",
+      "url": "https://ofb.gouv.fr/especes/isard-rupicapra-pyrenaica-pyrenaica",
+      "supports": [
+        "Pyrenäenform: saisonales Fell; begrenzte sichere Geschlechtsansprache am jungen Tier",
+        "Offene Gebirgshabitate und winterliche Waldnutzung; saisonale Pflanzenkost",
+        "Sozialverbände der Geißen und Kitze; Herbstbrunft; in der Regel ein Kitz",
+        "Zahnwechsel der unteren Schneidezähne als Untersuchungsmerkmal; kein genauer Altersbeweis aus einem Distanzfoto"
+      ],
+      "limits": "Die Seite betrifft die Pyrenäen-Unterart. Rechtliche Angaben und örtliche Jagdaussagen werden vollständig ausgespart."
+    },
+    {
+      "id": "gams-pnp",
+      "organization": "Parc national des Pyrénées",
+      "authorityGroup": "Parc national des Pyrénées",
+      "title": "Fiche Espèce – Isard des Pyrénées",
+      "url": "https://observatoire.pyrenees-parcnational.fr/fiche-espece-isard-des-pyrenees",
+      "supports": [
+        "Saisonale Fellzeichnung und Nähe zur Alpengams",
+        "Gebirgsrasen, Fels und winterlicher Wald; saisonale Äsung",
+        "Mutter-Kitz-Gruppe; Herbstbrunft und gewöhnlich ein Junges"
+      ],
+      "limits": "Keine exakten Reifealter, Lebensdauern, Bestandszahlen oder pauschalen Aussagen zur Gefährdung aus der vereinfachten Übersicht übernommen."
+    },
+    {
+      "id": "gams-abruzzo",
+      "organization": "Parco Nazionale d'Abruzzo, Lazio e Molise",
+      "authorityGroup": "Parco Nazionale d'Abruzzo, Lazio e Molise",
+      "title": "Camoscio appenninico – Rupicapra pyrenaica ornata · Oktober 2018",
+      "url": "https://www.parcoabruzzo.it/fauna.schede.dettaglio.php?id=20",
+      "supports": [
+        "Apennin-Gams als Rupicapra pyrenaica ornata; Vorkommen im zentralen Apennin",
+        "Hörner bei beiden Geschlechtern; saisonal kontrastreiches Fell",
+        "Gebirgsrasen und steile Hänge; winterlicher Abstieg; ein Junges"
+      ],
+      "limits": "Angaben zum Apennin werden als regionale Form benannt; keine aktuellen Bestandszahlen."
+    },
+    {
+      "id": "gams-miteco-atlas",
+      "organization": "Ministerio de Medio Ambiente · Spanischer Säugetieratlas",
+      "authorityGroup": "Spanischer Säugetieratlas; Autoren García-González und Herrero",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España – Rupicapra pyrenaica",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/ieet_mami_rupicapra_pyrenaica_tcm30-99875.pdf",
+      "supports": [
+        "Getrennte kantabrische und pyrenäische Vorkommen",
+        "Hakenhörner beider Geschlechter; saisonale Nahrung und Gruppenzusammensetzung"
+      ],
+      "limits": "Teilweise Autorenüberschneidung mit dem CSIC-Porträt; nicht als unabhängige Wiederholung derselben Feldstudien gezählt. Die im Text vermischte weite Verbreitungsbeschreibung der Gattung wird nicht der Art zugeschrieben."
+    },
+    {
+      "id": "ibex-csic",
+      "organization": "Museo Nacional de Ciencias Naturales · CSIC",
+      "authorityGroup": "CSIC · Alados und Escós",
+      "title": "Cabra montés – Capra pyrenaica · Fassung 3. August 2017",
+      "url": "https://www.vertebradosibericos.org/mamiferos/cappyr.html",
+      "supports": [
+        "Geschlechtsunterschiede in Körper, Fell und Hornstärke",
+        "Felsige Lebensräume Iberiens; jahreszeitliche Höhenbewegungen",
+        "Kräuter- und Gehölznahrung; saisonal getrennte Gruppen; gewöhnlich ein Junges, gelegentlich zwei"
+      ],
+      "limits": "Die historische Formulierung zum Verschwinden in den Pyrenäen wird durch neuere Quellen zur Wiederansiedlung ergänzt; alte Verbreitungsstände und Gefährdungsbewertungen werden nicht übernommen."
+    },
+    {
+      "id": "ibex-csic-merkmale",
+      "organization": "Museo Nacional de Ciencias Naturales · CSIC",
+      "authorityGroup": "CSIC · Alados und Escós",
+      "title": "Cabra montés – Capra pyrenaica · Identificación",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/cappyrid.html",
+      "supports": [
+        "Horn- und Fellvariation zwischen Geschlecht, Alter, Individuen und Jahreszeit",
+        "Größere und stärker gebogene Hörner der Böcke; Variation begrenzt Bestimmung anhand einzelner Merkmale",
+        "Ausgestorbener Bucardo Capra pyrenaica pyrenaica ist nicht mit allen lebenden Iberiensteinböcken gleichzusetzen"
+      ],
+      "limits": "Mit dem CSIC-Hauptporträt eine Quellenfamilie. Keine pauschale exakte Altersbestimmung über Hornlänge und kein ungeprüfter Zahnwechselkalender."
+    },
+    {
+      "id": "ibex-pnp",
+      "organization": "Parc national des Pyrénées",
+      "authorityGroup": "Parc national des Pyrénées",
+      "title": "Fiche Espèce – Bouquetin ibérique",
+      "url": "https://observatoire.pyrenees-parcnational.fr/fiche-espece-bouquetin-des-pyrenees",
+      "supports": [
+        "Robuster Körper und deutlich unterschiedliche Hörner der Geschlechter; variable leierartige Hornform",
+        "Felsige offene Lebensräume und saisonale Höhenbewegungen",
+        "Herbstbrunft; ein oder zwei Jungtiere; Wiederansiedlung auf der französischen Pyrenäenseite",
+        "Art Capra pyrenaica und ausgestorbene ursprüngliche Pyrenäen-Unterart unterscheiden"
+      ],
+      "limits": "Keine genauen Körpermaße, Bestandszahlen oder Behauptung, es gebe keine natürlichen Feinde. Unterschiedliche Zahlen und stark vereinfachte Aussagen der Seite werden nicht verallgemeinert."
+    },
+    {
+      "id": "ibex-pnp-fachbericht",
+      "organization": "Parc national des Pyrénées",
+      "authorityGroup": "Parc national des Pyrénées",
+      "title": "Réintroduction du bouquetin ibérique dans le Parc national des Pyrénées · Biologie, taxonomie et histoire",
+      "url": "https://www.pyrenees-parcnational.fr/sites/pyrenees-parcnational.fr/files/documents/downloads/231012_rapport_du_bouquetin_bd.pdf",
+      "supports": [
+        "Herbivorer Wiederkäuer; Nutzung zahlreicher krautiger und verholzter Pflanzen je nach Angebot",
+        "Saisonale Höhenbewegungen und regional verschiedene Nahrung"
+      ],
+      "limits": "Mit der PNP-Artenseite eine institutionelle Quellenfamilie; keine zweite unabhängige Organisation. Regionale Beispiele sind keine vollständigen Speisepläne aller Populationen."
+    },
+    {
+      "id": "ibex-miteco",
+      "organization": "Ministerio para la Transición Ecológica y el Reto Demográfico · OAPN",
+      "authorityGroup": "MITECO · Parque Nacional Sierra de las Nieves",
+      "title": "Cabra montés (Capra pyrenaica hispanica) – Parque Nacional Sierra de las Nieves",
+      "url": "https://www.miteco.gob.es/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/sierra-de-las-nieves/visita-virtual/fauna/cabra-montes-sierra-nieves.html",
+      "supports": [
+        "Robuster Felsbewohner mit gebogenen Hörnern; Pflanzenfresser und Wiederkäuer",
+        "Häufig getrennte Gruppen von Böcken sowie Geißen mit Jungtieren; Zusammenkommen in der Brunft",
+        "Winterlicher Abstieg und Geburt eines Jungtiers im Frühjahr"
+      ],
+      "limits": "Regionalporträt der südspanischen Form; genaue Uhrzeiten, Monate und Trinkverhalten werden nicht auf alle Bestände übertragen."
+    },
+    {
+      "id": "ibex-miteco-rueckkehr",
+      "organization": "Ministerio para la Transición Ecológica",
+      "authorityGroup": "MITECO",
+      "title": "España y Francia avanzan en la coordinación de acciones para conservar la biodiversidad pirenaica · 17. Mai 2019",
+      "url": "https://www.miteco.gob.es/eu/prensa/ultimas-noticias/2019/05/espana_y_franciaavanzanenlacoordinaciondeaccionesparaconservarla.html",
+      "supports": [
+        "Durchgeführtes Wiederansiedlungsprogramm für Capra pyrenaica in den französischen Pyrenäen"
+      ],
+      "limits": "Verwendet wird ausschließlich die biologische Rückkehr durch Wiederansiedlung; keine politischen Inhalte, keine behauptete neue unabhängige Populationszählung."
+    }
+  ],
+  "species": [
+    {
+      "slug": "rentier",
+      "name": "Rentier",
+      "scientificName": "Rangifer tarandus",
+      "group": "Schalenwild",
+      "identification": "Hirschart des Nordens mit breiten Hufen und dichtem Fell. Auch weibliche Tiere können ein Geweih tragen.",
+      "habitat": "Tundra, Gebirge und boreale Wälder Nordeuropas; die Lebensweise unterscheidet sich deutlich zwischen regionalen Populationen.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Geweih, Hufe und Winterfell",
+          "paragraphs": [
+            "Bei Rentieren tragen regelmäßig beide Geschlechter ein Geweih. Erwachsene männliche Tiere sind meist kräftiger und tragen größere Geweihe. Männliche Tiere werfen gewöhnlich früher ab; weibliche behalten ihr Geweih häufig durch den Winter. Deshalb ist ein Geweih allein kein sicherer Geschlechtsnachweis.",
+            "Breite Hufe und ein dichtes Fell gehören zu den auffälligen Anpassungen an kalte, schneereiche Lebensräume. Körpergröße und Fellfarbe variieren zwischen Regionen und Jahreszeiten."
+          ],
+          "sourceIds": [
+            "rentier-adw",
+            "rentier-villrein",
+            "rentier-polarinstitut"
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Europa: Waldlandschaften und arktische Inseln",
+          "paragraphs": [
+            "Rentiere nutzen sowohl Tundren als auch boreale Waldlandschaften. In Finnland werden wildlebende Waldrene wissenschaftlich untersucht. Auch auf Spitzbergen leben Rentiere. Diese Vorkommen stehen für unterschiedliche regionale Lebensbedingungen.",
+            "Rentierwissen lässt sich deshalb nicht auf eine einzige Landschaft reduzieren. Frei umherlaufende Tiere auf einem Foto erlauben außerdem keine sichere Aussage über ihren Haltungsstatus."
+          ],
+          "sourceIds": [
+            "rentier-adw",
+            "rentier-metsa",
+            "rentier-luke",
+            "rentier-polarinstitut"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Flechten sind ein Teil des Speiseplans",
+          "paragraphs": [
+            "Rentiere nutzen Gräser, Seggen, Kräuter und Blätter von Sträuchern. Flechten können besonders im Winter wichtig sein; sie sind aber keine ausschließliche Nahrung. Welche Pflanzen erreichbar sind, hängt unter anderem von Jahreszeit und Schneelage ab."
+          ],
+          "sourceIds": [
+            "rentier-adw",
+            "rentier-villrein"
+          ]
+        },
+        {
+          "id": "verdauung",
+          "title": "Verdauung mit Hilfe des Pansens",
+          "paragraphs": [
+            "Rentiere sind Wiederkäuer. Im Pansen helfen Mikroorganismen, pflanzliche Nahrung aufzuschließen. Zwei unabhängig durchgeführte Untersuchungen von Panseninhalten belegen diese Verdauungseinordnung; aus ihren kleinen Stichproben folgt kein allgemeiner Futterplan für Wildrentiere."
+          ],
+          "sourceIds": [
+            "rentier-pansen-2021",
+            "rentier-pansen-2016"
+          ]
+        },
+        {
+          "id": "jahreslauf",
+          "title": "Gruppen und Bewegungen richtig einordnen",
+          "paragraphs": [
+            "Norwegische Gebirgsrentiere bilden häufig getrennte Gruppen männlicher Tiere sowie weiblicher Tiere mit Nachwuchs und kommen zur Brunft zusammen. Ihre Äsungsräume wechseln saisonal. Spitzbergen-Rentiere sind dagegen überwiegend ortstreu; Wanderleistungen anderer Rentierpopulationen dürfen ihnen nicht pauschal zugeschrieben werden."
+          ],
+          "sourceIds": [
+            "rentier-villrein",
+            "rentier-adw",
+            "rentier-polarinstitut",
+            "rentier-spitzbergen-studie"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Vom Herbst zur Kalbung",
+          "paragraphs": [
+            "Die Brunft liegt im Herbst. Gewöhnlich wird ein Kalb im Frühjahr oder frühen Sommer geboren. Es kann seiner Mutter bald folgen. Ernährungszustand und regionale Bedingungen beeinflussen den Fortpflanzungserfolg; genaue Termine aus einer Population sind kein Kalender für alle Rentiere."
+          ],
+          "sourceIds": [
+            "rentier-adw",
+            "rentier-polarinstitut"
+          ]
+        }
+      ],
+      "limits": [
+        "Regionale Formen unterscheiden sich; Spitzbergen-Befunde sind ausdrücklich als solche zu lesen.",
+        "Das Foto belegt weder Alter noch Geschlecht noch einen wilden oder halbdomestizierten Status des einzelnen Tiers.",
+        "Zahnzahl und artspezifischer Zahnwechsel werden hier erst nach gesondertem Quellenabgleich ergänzt."
+      ],
+      "sourceIds": [
+        "rentier-adw",
+        "rentier-villrein",
+        "rentier-polarinstitut",
+        "rentier-metsa",
+        "rentier-luke",
+        "rentier-pansen-2021",
+        "rentier-pansen-2016",
+        "rentier-spitzbergen-studie"
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/rentier.jpg",
+        "width": 1280,
+        "height": 853,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Reno_(Rangifer_tarandus),_Honningsv%C3%A5g,_Noruega,_2019-09-03,_DD_36.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Reno_(Rangifer_tarandus),_Honningsv%C3%A5g,_Noruega,_2019-09-03,_DD_36.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Reno_(Rangifer_tarandus),_Honningsv%C3%A5g,_Noruega,_2019-09-03,_DD_36.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Reno_%28Rangifer_tarandus%29%2C_Honningsv%C3%A5g%2C_Noruega%2C_2019-09-03%2C_DD_36.jpg",
+        "previewUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Reno_%28Rangifer_tarandus%29%2C_Honningsv%C3%A5g%2C_Noruega%2C_2019-09-03%2C_DD_36.jpg/1280px-Reno_%28Rangifer_tarandus%29%2C_Honningsv%C3%A5g%2C_Noruega%2C_2019-09-03%2C_DD_36.jpg",
+        "author": "Diego Delso",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "credit": "Diego Delso / Wikimedia Commons · CC BY-SA 4.0",
+        "modifications": "Von Wikimedia bereitgestellte proportionale JPEG-Vorschau heruntergeladen; keine weitere Bildbearbeitung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "11d100407db5b9e886001cbabcfedf82fbcce01dbb463fd6af956c11001a169c",
+        "aiGenerated": false,
+        "caption": "Rentier bei Honningsvåg in Norwegen. Haltungsstatus, Alter und Geschlecht sind für diese Aufnahme nicht belegt.",
+        "alt": "Rentier mit Geweih auf grasigem Ufer vor blauem Wasser bei Honningsvåg",
+        "evidence": {
+          "fileTitle": "File:Reno (Rangifer tarandus), Honningsvåg, Noruega, 2019-09-03, DD 36.jpg",
+          "sourceDescription": "Caribou (Rangifer tarandus), Honningsvåg, Norway",
+          "categories": "Taken with Canon EOS 5DS R|Images of Norway by User:Poco a poco|Images by User:Poco a poco|Rangifer tarandus in Norway|Norway photographs taken on 2019-09-03|Nature in Honningsvåg|Images by User:Poco a poco taken in 2019",
+          "photographedAt": "2019-09-03 16:44:32",
+          "visuallyChecked": true,
+          "visibleMotif": "Ein Rentier mit Geweih auf einer grasigen Uferfläche; Körper und Kopf erkennbar."
+        }
+      }
+    },
+    {
+      "slug": "pyrenaeengaemse",
+      "name": "Pyrenäengämse",
+      "scientificName": "Rupicapra pyrenaica",
+      "group": "Schalenwild",
+      "identification": "Schlanker Hornträger mit dunkler Gesichtszeichnung und hakenförmigen Hörnern bei beiden Geschlechtern. Das Fell verändert sich mit der Jahreszeit.",
+      "habitat": "Gebirgsrasen, Felsen und angrenzende Wälder im Südwesten Europas; zur Art werden auch die kantabrischen und Apennin-Formen gestellt.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Gesicht und Hörner gemeinsam betrachten",
+          "paragraphs": [
+            "Die schlanke Gestalt und die an den Spitzen hakenförmig gebogenen Hörner unterscheiden Gämsen von den meist kräftigeren Steinböcken. Beide Geschlechter tragen Hörner. Helle Kopfpartien und eine dunkle Zeichnung im Augenbereich sind hilfreich; die Winterzeichnung ist stärker kontrastiert.",
+            "Ein einzelnes Merkmal reicht für Geschlecht oder Alter nicht aus. Gerade junge Tiere lassen sich im Gelände oft nicht sicher nach dem Geschlecht unterscheiden."
+          ],
+          "sourceIds": [
+            "gams-csic-merkmale",
+            "gams-ofb",
+            "gams-pnp",
+            "gams-abruzzo"
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Pyrenäen und weitere südliche Gamsformen",
+          "paragraphs": [
+            "Die Pyrenäenform wird als Rupicapra pyrenaica pyrenaica geführt. Zur Art gehören außerdem die kantabrische Form im Norden Spaniens und die Apennin-Gams Rupicapra pyrenaica ornata in Mittelitalien. Sie ist von der Alpengams Rupicapra rupicapra zu unterscheiden."
+          ],
+          "sourceIds": [
+            "gams-csic-merkmale",
+            "gams-abruzzo",
+            "gams-miteco-atlas"
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Zwischen Gebirgsrasen und Wintereinstand",
+          "paragraphs": [
+            "Gämsen dieser Art nutzen offene Gebirgsrasen nahe steiler Felsen. Waldgrenzen und Wälder gehören ebenfalls zum Lebensraum. Wenn Schnee den Zugang zur Äsung begrenzt, können tiefer gelegene oder schneeärmere Bereiche wichtig werden. Eine starre Höhenzahl beschreibt diese saisonale Raumwahl nicht."
+          ],
+          "sourceIds": [
+            "gams-csic",
+            "gams-pnp",
+            "gams-abruzzo"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Pflanzenkost im Jahreslauf",
+          "paragraphs": [
+            "Gräser und andere krautige Pflanzen sind wichtige Nahrung. Im Winter steigt bei eingeschränktem Angebot der Anteil verholzter Pflanzen, etwa von Sträuchern und deren Trieben. Der Wechsel folgt dem örtlich erreichbaren Angebot; daraus lässt sich kein europaweit identischer Speiseplan ableiten."
+          ],
+          "sourceIds": [
+            "gams-csic",
+            "gams-ofb"
+          ]
+        },
+        {
+          "id": "sozialverhalten",
+          "title": "Mutter, Kitz und wechselnde Gruppen",
+          "paragraphs": [
+            "Die Bindung zwischen Geiß und Kitz ist der Kern der Sozialstruktur. Zusammensetzung und Größe der Gruppen wechseln. Erwachsene Böcke leben außerhalb der Brunft häufig von den weiblichen Tieren getrennt; eine Beobachtung allein beschreibt deshalb nicht die ganzjährige Gruppenzusammensetzung."
+          ],
+          "sourceIds": [
+            "gams-csic",
+            "gams-ofb"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Herbstbrunft und ein Kitz",
+          "paragraphs": [
+            "Die Brunft liegt im Herbst; die Geiß setzt gewöhnlich ein Kitz im Frühjahr oder frühen Sommer. Schnee, Nahrungsangebot und andere regionale Bedingungen beeinflussen Überleben und Fortpflanzungserfolg. Exakte Monatstermine oder Reifealter werden hier nicht als für alle Teilpopulationen gleich dargestellt."
+          ],
+          "sourceIds": [
+            "gams-csic",
+            "gams-pnp",
+            "gams-abruzzo"
+          ]
+        },
+        {
+          "id": "zaehne",
+          "title": "Zahnwechsel hilft nur bei geeigneter Untersuchung",
+          "paragraphs": [
+            "Der Wechsel von Milchzähnen zu bleibenden unteren Schneidezähnen kann zur Altersbeurteilung beitragen. Dafür muss das Gebiss fachkundig untersucht werden. Die Altersschätzung am lebenden Tier aus der Entfernung bleibt wesentlich gröber; ein Foto liefert keinen verlässlichen Zahnwechselbefund."
+          ],
+          "sourceIds": [
+            "gams-csic-merkmale",
+            "gams-ofb"
+          ]
+        }
+      ],
+      "limits": [
+        "Die zoologische Art umfasst mehrere geografische Formen. Die Angaben der OFB-Artenseite betreffen ausdrücklich die Pyrenäenform.",
+        "Verwandtschaftsanalysen unterscheiden sich teils nach untersuchtem Erbgut; die hier verwendete Zweiteilung ist die benannte Arbeitsklassifikation, keine Behauptung einer abgeschlossenen taxonomischen Debatte.",
+        "Exakte Zahnformel und monatsgenauer Zahnwechselkalender sind in dieser Erweiterung nicht freigegeben."
+      ],
+      "sourceIds": [
+        "gams-csic",
+        "gams-csic-merkmale",
+        "gams-ofb",
+        "gams-pnp",
+        "gams-abruzzo",
+        "gams-miteco-atlas"
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/pyrenaeengaemse.jpg",
+        "width": 1280,
+        "height": 847,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg",
+        "previewUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg/1280px-WLE_-_2020_-_Parque_nacional_de_Ordesa_y_Monte_Perdido_-_03.jpg",
+        "author": "Moahim",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "credit": "Moahim / Wikimedia Commons · CC BY-SA 4.0",
+        "modifications": "Von Wikimedia bereitgestellte proportionale JPEG-Vorschau heruntergeladen; keine weitere Bildbearbeitung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "646dc5cec4975e100f6f2b2ece12771814854ccc50912c67bf47bbde76b86649",
+        "aiGenerated": false,
+        "caption": "Zwei Pyrenäengämsen im Nationalpark Ordesa y Monte Perdido, Spanien. Alter und Geschlecht werden nicht aus dem Foto abgeleitet.",
+        "alt": "Zwei Pyrenäengämsen zwischen Gras und Felsen in Ordesa y Monte Perdido",
+        "evidence": {
+          "fileTitle": "File:WLE - 2020 - Parque nacional de Ordesa y Monte Perdido - 03.jpg",
+          "sourceDescription": "The Pyrenean chamois, Ordesa y Monte Perdido National Park, Aragon, Spain.",
+          "categories": "Rupicapra pyrenaica pyrenaica|2019 in Spain|Self-published work|Mammals of Aragon|Uploaded via Campaign:wle-es|Images from Wiki Loves Earth 2020|Images from Wiki Loves Earth 2020 in Spain|Caprinae in Spain|Special Areas of Conservation in Spain with known IDs|2 mammals in Spain|Images from Wiki Loves Earth missing SDC location of creation|All media supported by Wikimedia España in 2020|Animals in Parque Nacional de Ordesa y Monte Perdido",
+          "photographedAt": "2019-10-21 10:56:19",
+          "visuallyChecked": true,
+          "visibleMotif": "Zwei Gämsen auf steinigem Grasland; hakenförmige Hörner und Gesichtszeichnung sichtbar."
+        }
+      }
+    },
+    {
+      "slug": "iberiensteinbock",
+      "name": "Iberiensteinbock",
+      "scientificName": "Capra pyrenaica",
+      "group": "Schalenwild",
+      "identification": "Kräftiger Hornträger felsiger Landschaften. Böcke tragen deutlich größere, oft weit ausladende und gebogene Hörner; Geißen kleinere Hörner.",
+      "habitat": "Felsige Berglandschaften der Iberischen Halbinsel; durch Wiederansiedlung auch wieder auf der französischen Seite der Pyrenäen.",
+      "sections": [
+        {
+          "id": "merkmale",
+          "title": "Hornform und Körperbau",
+          "paragraphs": [
+            "Erwachsene Böcke sind kräftiger als Geißen und tragen größere, stärker gebogene Hörner. Die Hornform ist variabel und häufig leierartig ausladend. Die kleineren Hörner der Geißen dürfen deshalb nicht mit denen eines jungen Bocks gleichgesetzt werden.",
+            "Fellzeichnung und die dunklen Körperpartien männlicher Tiere verändern sich mit Alter und Jahreszeit. Hornlänge oder Fellfarbe allein liefern kein genaues Alter."
+          ],
+          "sourceIds": [
+            "ibex-csic-merkmale",
+            "ibex-pnp"
+          ]
+        },
+        {
+          "id": "europa",
+          "title": "Iberische Art mit Rückkehr in die Pyrenäen",
+          "paragraphs": [
+            "Capra pyrenaica ist die iberische Steinbockart und vom Alpensteinbock Capra ibex zu unterscheiden. Die heutigen Wiederansiedlungen in den französischen Pyrenäen betreffen Iberiensteinböcke. Sie sind nicht gleichbedeutend mit einer Rückkehr der ausgestorbenen ursprünglichen Unterart Capra pyrenaica pyrenaica, des Bucardo."
+          ],
+          "sourceIds": [
+            "ibex-csic-merkmale",
+            "ibex-pnp",
+            "ibex-miteco-rueckkehr"
+          ]
+        },
+        {
+          "id": "lebensraum",
+          "title": "Fels ist wichtiger als eine feste Höhenlage",
+          "paragraphs": [
+            "Felswände, steile Hänge und offene Bereiche sind charakteristisch. Die Art nutzt unterschiedliche Gebirgslandschaften und Klimabedingungen. Jahreszeitliche Bewegungen verbinden höher gelegene Sommerbereiche mit tieferen, im Winter besser zugänglichen Räumen. Nicht jeder Bestand folgt dabei demselben Höhenmuster."
+          ],
+          "sourceIds": [
+            "ibex-csic",
+            "ibex-pnp",
+            "ibex-miteco"
+          ]
+        },
+        {
+          "id": "nahrung",
+          "title": "Gräser, Kräuter und Gehölze",
+          "paragraphs": [
+            "Iberiensteinböcke sind pflanzenfressende Wiederkäuer. Sie nutzen sowohl krautige als auch verholzte Pflanzen. Welche Nahrung überwiegt, hängt vom erreichbaren Angebot und von der Jahreszeit ab. Ein in einem südspanischen Bestand beobachtetes Verhalten ist daher kein fester Speiseplan für alle Tiere der Art."
+          ],
+          "sourceIds": [
+            "ibex-csic",
+            "ibex-pnp-fachbericht",
+            "ibex-miteco"
+          ]
+        },
+        {
+          "id": "sozialverhalten",
+          "title": "Gruppen verändern sich im Jahreslauf",
+          "paragraphs": [
+            "Außerhalb der Brunft leben Böcke und Geißen häufig in getrennten Gruppen; Geißen sind mit Jungtieren verbunden. Während der Fortpflanzungszeit kommen die Geschlechter zusammen. Dann konkurrieren Böcke um Zugang zu weiblichen Tieren. Gruppengröße und Zusammensetzung sind saisonal veränderlich."
+          ],
+          "sourceIds": [
+            "ibex-csic",
+            "ibex-miteco"
+          ]
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Nachwuchs im Frühjahr",
+          "paragraphs": [
+            "Auf die Brunft im Herbst beziehungsweise frühen Winter folgt die Geburt meist eines Jungtiers im Frühjahr; gelegentlich sind es zwei. Mutter und Jungtier schließen sich wieder einem Verband an. Präzise Geburtstermine einzelner Regionen werden nicht als unveränderliche Regel für die gesamte Art verwendet."
+          ],
+          "sourceIds": [
+            "ibex-csic",
+            "ibex-pnp",
+            "ibex-miteco"
+          ]
+        }
+      ],
+      "limits": [
+        "Geografische Formen und einzelne Tiere unterscheiden sich in Körpergröße, Fell und Hornform.",
+        "Der Name Iberiensteinbock meint die Art Capra pyrenaica; der ausgestorbene Bucardo ist eine bestimmte Unterart, nicht die gesamte Art.",
+        "Das Foto ist als männlicher Iberiensteinbock dokumentiert; ein genaues Alter lässt sich daraus nicht ableiten.",
+        "Zahnformel und artspezifischer Zahnwechsel werden erst nach gesonderter unabhängiger Prüfung ergänzt."
+      ],
+      "sourceIds": [
+        "ibex-csic",
+        "ibex-csic-merkmale",
+        "ibex-pnp",
+        "ibex-pnp-fachbericht",
+        "ibex-miteco",
+        "ibex-miteco-rueckkehr"
+      ],
+      "photo": {
+        "src": "/lernen/europa-2026/iberiensteinbock.jpg",
+        "width": 1600,
+        "height": 1066,
+        "commonsPage": "https://commons.wikimedia.org/wiki/File:Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg",
+        "previewUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg/1280px-Capra_pyrenaica_in_Sierra_de_Guadarrama.jpg",
+        "author": "Thomas Holbach",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "credit": "Thomas Holbach / Wikimedia Commons · CC BY-SA 4.0",
+        "modifications": "Proportional auf 1600 Pixel maximale Kantenlänge verkleinert und als JPEG mit Qualität 85 gespeichert; keine Motivänderung.",
+        "checkedAt": "2026-10-16",
+        "sha256": "555cb539b0864e078c4b18eb4f9e55e441866a9ad45f13b071c20193261b602a",
+        "aiGenerated": false,
+        "caption": "Männlicher Iberiensteinbock in La Pedriza im Nationalpark Sierra de Guadarrama, Spanien.",
+        "alt": "Männlicher Iberiensteinbock mit gebogenen Hörnern und dunklen Körperpartien auf Felsen",
+        "evidence": {
+          "fileTitle": "File:Capra pyrenaica in Sierra de Guadarrama.jpg",
+          "sourceDescription": "Male Iberian Ibex (\"Capra pyrenaica victoriae\") in la Pedriza, in the Sierra de Guadarrama National Park, Spain.",
+          "categories": "Self-published work|Images with extracted images|Files with coordinates missing SDC location of creation|Animals in national parks of Spain|Capra pyrenaica in La Pedriza|December 2021 in the Community of Madrid",
+          "photographedAt": "2021-12-18 10:42:58",
+          "visuallyChecked": true,
+          "visibleMotif": "Ein Steinbock mit gebogenen, ausladenden Hörnern und dunklen Körperpartien zwischen Felsen; Motiv passt zur männlichen Artbeschreibung."
+        }
+      }
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Zahnzahlen und Zahnwechselkalender der drei Arten",
+      "reason": "In dieser Erweiterung nicht für jede Art gegen zwei unabhängige geeignete Belege geprüft. Keine Werte aus Alpengams oder Alpensteinbock ungeprüft übertragen. Für Rupicapra pyrenaica ist nur der allgemeine Nutzen einer fachkundigen Zahnwechseluntersuchung freigegeben."
+    },
+    {
+      "topic": "Europaweite Jagdbarkeit, Schonzeiten und Jagdmethoden",
+      "reason": "Biologischer Artennachweis ist kein Rechtsnachweis. Diese Porträts enthalten keine Jagdstatusaussagen."
+    },
+    {
+      "topic": "Aktuelle Bestandszahlen, Gefährdungsstufen und genaue Monatsangaben",
+      "reason": "Mehrere Artenübersichten enthalten ältere, regionale oder widersprüchlich vereinfachte Werte. Hier nicht als aktuelle europaweite Regeln übernommen."
+    },
+    {
+      "topic": "Rentier: genaue Unterart-Verbreitung bis Nordwestrussland und kurzbeiniger Spitzbergen-Körperbau",
+      "reason": "In der Schlussprüfung war für diese feinen Details jeweils nur ein konkreter Beleg zugeordnet; die Aussagen wurden vor Veröffentlichung gekürzt."
+    }
+  ]
+}

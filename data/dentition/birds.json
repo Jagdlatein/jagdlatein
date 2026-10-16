@@ -1,0 +1,22 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Heutige Vogelarten des Artenatlas, einschließlich der aufgeführten Hybrid- und Sammelformen; keine Aussage über fossile Vögel.",
+  "total": 0,
+  "text": "Die hier vorgestellten heutigen Vögel haben keine echten Zähne. Ihre Zahnzahl ist daher null; eine Säugetier-Zahnformel mit Schneide-, Eck- und Backenzähnen ist für sie nicht sinnvoll.",
+  "sources": [
+    {
+      "id": "bird-nhm-teeth",
+      "organization": "Natural History Museum, London",
+      "title": "What were the first birds like? – Abschnitt What is a bird?",
+      "url": "https://www.nhm.ac.uk/discover/what-were-the-first-birds-like.html",
+      "supports": "Der Museumsbeitrag unterscheidet heutige Vögel ohne Zähne von ihren teils bezahnten fossilen Verwandten. Verwendet wird nur die Aussage über heutige Vögel."
+    },
+    {
+      "id": "bird-meredith-2014",
+      "organization": "Montclair State University, University of California Riverside, Duke University und beteiligte Forschungsinstitutionen",
+      "title": "Meredith et al. (2014): Evidence for a single loss of mineralized teeth in the common avian ancestor",
+      "url": "https://dukespace.lib.duke.edu/server/api/core/bitstreams/53845ff4-0610-48bb-b88a-38cd86943dde/content",
+      "supports": "Originalarbeit in Science 346, DOI 10.1126/science.1254390; die Einleitung beschreibt die Zahnlosigkeit heutiger Vögel. Die Genomuntersuchung und ihre Zeitabschätzung werden hier nicht als eigenes Messresultat oder als zusätzliche artspezifische Untersuchung dargestellt."
+    }
+  ]
+}

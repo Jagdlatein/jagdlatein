@@ -88,6 +88,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
   const { learningCategoryDetails } = load('lib/learning-categories.js', cache);
   const { learningPaths } = load('lib/learning-curriculum.js', cache);
   const { learningExperiences } = load('lib/learning-experiences.js', cache);
+  const { practiceHighlights } = load('lib/practice-catalog.js', cache);
   const { learningTools, legalLearningHubs } = load('lib/learning-tool-catalog.js', cache);
   const { LearningCover, LearningPhotoCredit } = load('components/LearningPhoto.js', cache);
   const renderCover = media => renderToStaticMarkup(React.createElement(LearningCover, { media, compact: true }));
@@ -106,7 +107,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
     const expectedPaths = learningPaths.filter(path => !slug || path.advanced)
       .map(path => ({ ...path, moduleIds: path.moduleIds.filter(id => selectedIds.has(id)) })).filter(path => path.moduleIds.length);
     assert.deepEqual(data.paths, expectedPaths);
-    const expectedResources = slug ? [...learningExperiences, ...learningTools, ...(slug === 'jagdrecht' ? legalLearningHubs : [])]
+    const expectedResources = slug ? [...practiceHighlights, ...learningExperiences, ...learningTools, ...(slug === 'jagdrecht' ? legalLearningHubs : [])]
       .filter(tool => tool.categories.includes(slug)).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
       .map(({ href, icon, title, description, featured }) => ({ href, icon, title, description, ...(featured ? { featured: true } : {}) })) : [];
     assert.deepEqual(data.resources, expectedResources);

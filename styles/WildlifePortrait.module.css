@@ -21,3 +21,15 @@
 .depthCourses a { display: block; min-height: 44px; padding: 10px 0; font-weight: 600; line-height: 1.6; }
 @media (max-width: 620px) { .depth { padding: 20px 16px; } .depthGrid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 620px) { .body section { padding: 20px 16px; } }
+/* Larger species portraits, including older pages with inline font sizes. */
+.page { max-width: 1280px; font-size: 19px; }
+.page h1 { font-size: clamp(32px, 5vw, 46px); }
+.body { max-width: 1120px; }
+.body :where(p, li) { font-size: 19px !important; line-height: 1.8 !important; }
+.body :where(h2) { font-size: clamp(26px, 3.6vw, 32px) !important; line-height: 1.4 !important; }
+.body :where(h3) { font-size: 23px !important; }
+.body button { font-size: 18px !important; min-height: 56px; line-height: 1.6; }
+.depth h2 { font-size: clamp(27px, 3.5vw, 33px); }
+.depth h3 { font-size: 23px; }
+.depthSources p { font-size: 16px; }
+.quietLinks a { font-size: 18px; }

@@ -83,13 +83,7 @@ export default function Luchs() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 2/2 · M 1/1 = 28</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/102683/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.kora.ch/de/arten/luchs/nachweise-im-feld" target="_blank" rel="noopener noreferrer">KORA: Nachweise im Feld</a> · <a href="https://www.lifelynx.eu/biology/" target="_blank" rel="noopener noreferrer">LIFE Lynx: Biologie</a> · <a href="https://www.bfn.de/artenportraits/lynx-lynx" target="_blank" rel="noopener noreferrer">Bundesamt für Naturschutz: Luchs und Schutzstatus</a></p>

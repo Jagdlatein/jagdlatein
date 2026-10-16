@@ -68,10 +68,8 @@ export default function Muffelwild() {
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
+          <h2 style={styles.sectionTitle}>Zahnabnutzung</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 0/3 · C 0/1 · P 3/3 · M 3/3 = 32</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
             <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>

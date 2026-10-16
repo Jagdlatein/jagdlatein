@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import WildlifePortraitLayout from "../../components/WildlifePortraitLayout";
 import { dachWildlife, dachWildlifeBySlug, legacyWildlifeSlugs } from "../../lib/dach-wildlife";
+import { europeanWildlife, europeanWildlifeBySlug } from "../../lib/european-wildlife";
+import EuropeanWildlifePortrait from "../../components/EuropeanWildlifePortrait";
 import styles from "../../styles/LearningExperience.module.css";
 
 const comparisonSlugs = {
@@ -15,6 +17,7 @@ const comparisonSlugs = {
 };
 
 export default function ExpandedWildlifePortrait({ species }) {
+  if (species.europeanOnly) return <EuropeanWildlifePortrait key={species.slug} species={species} />;
   return <WildlifePortraitContent key={species.slug} species={species} />;
 }
 
@@ -42,5 +45,5 @@ function WildlifePortraitContent({ species }) {
   </WildlifePortraitLayout>;
 }
 
-export function getStaticPaths() {return {paths:dachWildlife.filter(species => !legacyWildlifeSlugs.includes(species.slug)).map(species => ({params:{art:species.slug}})),fallback:false};}
-export function getStaticProps({params}) {const species=dachWildlifeBySlug[params.art];return species && !legacyWildlifeSlugs.includes(species.slug) ? {props:{species}} : {notFound:true};}
+export function getStaticPaths() {return {paths:europeanWildlife.filter(species => !legacyWildlifeSlugs.includes(species.slug)).map(species => ({params:{art:species.slug}})),fallback:false};}
+export function getStaticProps({params}) {const species=europeanWildlifeBySlug[params.art];return species && !legacyWildlifeSlugs.includes(species.slug) ? {props:{species}} : {notFound:true};}

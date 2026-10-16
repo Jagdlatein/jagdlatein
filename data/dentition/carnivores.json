@@ -1,0 +1,748 @@
+{
+  "reviewedOn": "2026-10-16",
+  "sources": [
+    {
+      "id": "carn-uzh-raubtiere-2024",
+      "organization": "Universität Zürich, Naturhistorisches Museum",
+      "title": "Einheimische Raubtiere – Grundlagen (Unterrichtshilfe, 2024)",
+      "url": "https://www.nmz.uzh.ch/dam/jcr:2be9f6f0-f25d-44df-9b71-eea84f55e0cd/2024_Raubtiere_Grundlagen.pdf",
+      "supports": [
+        "Artbezogene Dauergebissformeln: Waschbär S. 4; Baummarder S. 6; Steinmarder S. 7; Hermelin S. 8; Mauswiesel S. 9; Iltis S. 10; Dachs S. 11; Fischotter S. 12; Wolf S. 14; Rotfuchs S. 15; Wildkatze S. 17; Eurasischer Luchs S. 18.",
+        "Beim Dachs ist die Prämolarenzahl ausdrücklich variabel; beim Luchs werden zusätzliche obere Prämolaren berücksichtigt. Übernommen werden ausschließlich die Zahnformeln, keine übrigen Angaben der Unterrichtshilfe."
+      ]
+    },
+    {
+      "id": "carn-asm-martes-martes-2022",
+      "organization": "American Society of Mammalogists, Mammalian Species",
+      "title": "Martes martes (Carnivora: Mustelidae), 2022",
+      "url": "https://academic.oup.com/mspecies/article/54/1022/seac007/6754854",
+      "supports": [
+        "Abschnitt Form and Function: artspezifische Dauergebissformel des Baummarders I3/3 C1/1 P4/4 M1/2; Gesamtzahl 38."
+      ]
+    },
+    {
+      "id": "carn-adw-martes-foina",
+      "organization": "University of Michigan, Animal Diversity Web",
+      "title": "Martes foina – Beech marten",
+      "url": "https://animaldiversity.org/accounts/Martes_foina/",
+      "supports": [
+        "Abschnitt Physical Description: Zahnformel I3/3 C1/1 P4/4 M1/2, insgesamt 38 Zähne; ausdrücklich im Artenprofil des Steinmarders."
+      ]
+    },
+    {
+      "id": "carn-adw-meles-meles",
+      "organization": "University of Michigan, Animal Diversity Web",
+      "title": "Meles meles – Eurasian badger",
+      "url": "https://animaldiversity.org/accounts/Meles_meles/",
+      "supports": [
+        "Abschnitt Physical Description: Vollformel des Dachsgebisses I3/3 C1/1 P4/4 M1/2, rechnerisch 38. Diese vereinfachte Formel wird hier mit den gesondert belegten Einschränkungen zur P1-Variabilität verwendet."
+      ]
+    },
+    {
+      "id": "carn-amsterdam-badger-premolars-1998",
+      "organization": "Universität Amsterdam, Zoologisches Museum; Naturalis-Repositorium",
+      "title": "Erste Prämolaren in Dachsschädeln – Harmsen und van Bree (1998)",
+      "url": "https://repository.naturalis.nl/document/548718",
+      "supports": [
+        "Originaluntersuchung in Beaufortia 48(8), S. 163–171: Vorhandensein der kleinen ersten Prämolaren variiert zwischen Individuen und Populationen. Die Autoren erklären damit abweichende Formeln mit drei oder vier Prämolaren."
+      ]
+    },
+    {
+      "id": "carn-fhsu-vulpes-vulpes",
+      "organization": "Fort Hays State University, Sternberg Museum of Natural History",
+      "title": "Kansas Mammal Atlas – Red Fox",
+      "url": "https://webapps.fhsu.edu/ksmammal/account.aspx?o=31&t=152",
+      "supports": [
+        "Artprofil Vulpes vulpes, Abschnitt Description: I3/3 C1/1 P4/4 M2/3. Die Formel bezieht sich auf das erwachsene Gebiss; die Gesamtzahl 42 ergibt sich aus beiden Seiten."
+      ]
+    },
+    {
+      "id": "carn-utexas-nyctereutes",
+      "organization": "University of Texas at Austin, Digital Morphology",
+      "title": "Digimorph – Nyctereutes procyonoides",
+      "url": "https://www2.geo.utexas.edu/specimens/Nyctereutes_procyonoides/female/",
+      "supports": [
+        "Artenbeschreibung am CT-Schädel des Marderhunds: I3/3 C1/1 P4/4 M2/3."
+      ]
+    },
+    {
+      "id": "carn-lithuania-nyctereutes-2025",
+      "organization": "Lithuanian University of Health Sciences und mitwirkende Forschungsinstitutionen",
+      "title": "Morphometric Analysis of the Common Raccoon Dog Teeth in Lithuania (Jurgelėnas et al., 2025)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12030794/",
+      "supports": [
+        "Originalstudie in Veterinary Sciences 12:338, Einleitung: normale Dauergebissformel I3/3 C1/1 P4/4 M2/3. Untere dritte Molaren können nicht durchbrechen; die tatsächliche Zahnzahl einzelner Tiere kann abweichen."
+      ]
+    },
+    {
+      "id": "carn-ttu-procyon-lotor",
+      "organization": "Texas Tech University, Natural Science Research Laboratory",
+      "title": "Mammals of Texas – Northern Raccoon",
+      "url": "https://www.depts.ttu.edu/nsrl/mammals-of-texas-online-edition/Accounts_Carnivora/Procyon_lotor.php",
+      "supports": [
+        "Artprofil Procyon lotor, Abschnitt Description: I3/3 C1/1 P4/4 M2/2; insgesamt 40."
+      ]
+    },
+    {
+      "id": "carn-duesseldorf-wildkatze",
+      "organization": "Landeshauptstadt Düsseldorf, Gartenamt",
+      "title": "Arbeitsblatt Zähne zeigen – Wildkatze",
+      "url": "https://www.duesseldorf.de/fileadmin/Amt68/gartenamt/pdf/wald/lb_zaehnezeigen.pdf",
+      "supports": [
+        "Aufgabe A2: vollständige Wildkatzenformel 3-1-3-1 oben und 3-1-2-1 unten, jeweils für eine Kieferhälfte; beide Seiten ergeben 30."
+      ]
+    },
+    {
+      "id": "carn-bern-lynx-2018",
+      "organization": "Universität Bern, Centre for Fish and Wildlife Health",
+      "title": "A tooth wear scoring scheme for age estimation of the Eurasian lynx under field conditions (2018)",
+      "url": "https://link.springer.com/article/10.1007/s10344-018-1198-6",
+      "supports": [
+        "Originalstudie von Marti und Ryser-Degiorgis, Abschnitt Lynx dentition and tooth wear scoring: Grundformel des Dauergebisses I3/3 C1/1 P2/2 M1/1 = 28. Zusätzliche obere zweite Prämolaren und untere zweite Molaren werden als Abweichungen beschrieben."
+      ]
+    },
+    {
+      "id": "carn-alaska-skulls-ermine",
+      "organization": "Alaska Department of Fish and Game",
+      "title": "Skulls of Alaskan Mammals – A Teacher's Guide, Hermelin",
+      "url": "https://www.adfg.alaska.gov/static-f/education/educators/curricula/pdfs/skulls.pdf",
+      "supports": [
+        "Artbezogenes Schädelblatt Mustela erminea: I3/3 C1/1 P3/3 M1/2 = 34. Es wird keine Formel eines anderen amerikanischen Wiesels auf das Hermelin übertragen."
+      ]
+    },
+    {
+      "id": "carn-sfepm-putorius",
+      "organization": "SFEPM, Observatoire National des Mammifères",
+      "title": "Putois d'Europe – Mustela putorius",
+      "url": "https://www.observatoire-mammiferes.fr/espece/60731",
+      "supports": [
+        "Arteninformation zum Europäischen Iltis: I3/3 C1/1 PM3/3 M1/2; insgesamt 34 Zähne."
+      ]
+    },
+    {
+      "id": "carn-fhsu-mustela-nivalis",
+      "organization": "Fort Hays State University, Sternberg Museum of Natural History",
+      "title": "Kansas Mammal Atlas – Least Weasel",
+      "url": "https://webapps.fhsu.edu/ksmammal/account.aspx?o=31&t=162",
+      "supports": [
+        "Artprofil Mustela nivalis, erwachsene Tiere: I3/3 C1/1 P3/3 M1/2; beide Seiten ergeben 34."
+      ]
+    },
+    {
+      "id": "carn-madrid-wolf-2020",
+      "organization": "Universidad Complutense de Madrid, Universidad de Alcalá und mitwirkende Forschungsinstitutionen",
+      "title": "A Morphological and Morphometric Dental Analysis as a Forensic Tool to Identify the Iberian Wolf (2020)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7341320/",
+      "supports": [
+        "Originaluntersuchung ausgewachsener Iberischer Wölfe aus einer Museumssammlung, Abschnitt 3.1.1: 42 bleibende Zähne, I3/3 C1/1 PM4/4 M2/3. Ober-/Unterkiefer und Verdopplung für beide Körperseiten werden ausdrücklich erklärt."
+      ]
+    },
+    {
+      "id": "carn-zowiac-goldschakal",
+      "organization": "ZOWIAC-Forschungsprojekt, Goethe-Universität Frankfurt und Senckenberg",
+      "title": "Goldschakal – Gebissdarstellung",
+      "url": "https://zowiac.eu/karnivor/goldschakal/",
+      "supports": [
+        "Artbezogene Darstellung von Ober- und Unterkiefer mit ausgewiesener Zahnformel 3142/3143; daraus ergeben sich 42 Zähne des vollständigen Dauergebisses."
+      ]
+    },
+    {
+      "id": "carn-asm-canis-aureus-2018",
+      "organization": "American Society of Mammalogists, Mammalian Species",
+      "title": "Canis aureus – Moehlman und Hayssen (2018)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7149464/",
+      "supports": [
+        "Abschnitt Form and Function: I3/3 C1/1 P4/4 M2/3; insgesamt 42. Verwendet wird ausschließlich die Zahnformel für Canis aureus, keine überholte Gleichsetzung mit afrikanischen Canis-Arten."
+      ]
+    },
+    {
+      "id": "carn-fhsu-mink",
+      "organization": "Fort Hays State University, Sternberg Museum of Natural History",
+      "title": "Kansas Mammal Atlas – Mink",
+      "url": "https://webapps.fhsu.edu/ksmammal/account.aspx?o=31&t=163",
+      "supports": [
+        "Amerikanischer Nerz, dort Neovison vison: I3/3 C1/1 P3/3 M1/2."
+      ]
+    },
+    {
+      "id": "carn-purdue-mink",
+      "organization": "Purdue University, Department of Forestry and Natural Resources",
+      "title": "Purdue Extension – American Mink",
+      "url": "https://www.extension.purdue.edu/extmedia/fnr/fnr-413-w.pdf",
+      "supports": [
+        "Artenblatt des Amerikanischen Nerzes, dort Mustela vison: I3/3 C1/1 P3/3 M1/2 = 34."
+      ]
+    },
+    {
+      "id": "carn-sfepm-lutra-lutra",
+      "organization": "SFEPM, Observatoire National des Mammifères",
+      "title": "Loutre d'Europe – Lutra lutra",
+      "url": "https://observatoire-mammiferes.fr/espece/60630",
+      "supports": [
+        "Artbezogene Gebissformel des Eurasischen Fischotters I3/3 C1/1 PM4/3 M1/2 = 36."
+      ]
+    },
+    {
+      "id": "carn-ttu-ursus-arctos",
+      "organization": "Texas Tech University, Natural Science Research Laboratory",
+      "title": "Mammals of Texas – Grizzly or Brown Bear",
+      "url": "https://www.depts.ttu.edu/nsrl/mammals-of-texas-online-edition/Accounts_Extinct_Carnivora/Ursus_arctos.php",
+      "supports": [
+        "Artprofil Ursus arctos: vollständige Zahnformel I3/3 C1/1 P4/4 M2/3 = 42."
+      ]
+    },
+    {
+      "id": "carn-ucdavis-brown-bear-2017",
+      "organization": "University of California, Davis, School of Veterinary Medicine",
+      "title": "Dental and Temporomandibular Joint Pathology of the North American Brown Bear (Winer et al., 2017)",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0021997517301366",
+      "supports": [
+        "Originalstudie an Ursus-arctos-Schädeln: Einleitung nennt I3/3 C1/1 P4/4 M2/3. Dokumentierte angeborene und erworbene Zahnverluste begrenzen die Aussage über die Zahnzahl eines einzelnen Tiers."
+      ]
+    },
+    {
+      "id": "carn-hildesheim-harbour-seal-2018",
+      "organization": "Universität Hildesheim, Institut für Biologie",
+      "title": "Dental anomalies and lesions in Eastern Atlantic harbor seals from the German North Sea (Kahle et al., 2018)",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0204079",
+      "supports": [
+        "Originaluntersuchung an Seehunden aus der deutschen Nordsee: I3/2 C1/1 P4/4 M1/1 = 34 bleibende Zähne. Fehlende und überzählige Zähne sind als individuelle Abweichungen dokumentiert."
+      ]
+    },
+    {
+      "id": "carn-ucdavis-harbour-seal-2015",
+      "organization": "University of California, Davis, School of Veterinary Medicine",
+      "title": "Dental and Temporomandibular Joint Pathology of the Eastern Pacific Harbour Seal (Aalderink et al., 2015)",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0021997515000341",
+      "supports": [
+        "Unabhängige Originalstudie an Phoca vitulina richardii: vollständiges Dauergebiss mit 34 Zähnen, I3/2 C1/1 P4/4 M1/1. Die deutsche Nordsee-Population ist zusätzlich unmittelbar durch die Hildesheimer Studie belegt."
+      ]
+    },
+    {
+      "id": "carn-lmu-cat-2004",
+      "organization": "Ludwig-Maximilians-Universität München, Tierärztliche Fakultät",
+      "title": "Zahngesundheit bei der Katze – Dissertation von Katrin Elsbett (2004)",
+      "url": "https://edoc.ub.uni-muenchen.de/2786/1/Elsbett_Katrin.pdf",
+      "supports": [
+        "Abschnitt 1.3.1, S. 10: Dauergebiss der ausgewachsenen Hauskatze mit I3/3 C1/1 P3/2 M1/1 = 30. Die Dissertation behandelt Hauskatzen; die Formel wird nicht auf den Luchs übertragen."
+      ]
+    },
+    {
+      "id": "carn-wikivet-cat",
+      "organization": "WikiVet, veterinärmedizinische Lehrplattform; fachlich geprüft von Lisa Milella, DipEVDC",
+      "title": "Dental Formula – Cat",
+      "url": "https://en.wikivet.net/Dental_Formula_-_Cat",
+      "supports": [
+        "Abschnitt Permanent teeth: I3/3 C1/1 P3/2 M1/1. Zusätzlich wird jede Zahnklasse getrennt pro Kieferhälfte erläutert; hier wird nur das bleibende Gebiss übernommen."
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "slug": "baummarder",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 38,
+      "scope": "Baummarder (Martes martes): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Baum- und Steinmarder teilen diese Grundformel. Die Formel allein unterscheidet die beiden Arten nicht.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-asm-martes-martes-2022"
+      ]
+    },
+    {
+      "slug": "steinmarder",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 38,
+      "scope": "Steinmarder (Martes foina): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Baum- und Steinmarder teilen diese Grundformel. Die Formel allein unterscheidet die beiden Arten nicht.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-adw-martes-foina"
+      ]
+    },
+    {
+      "slug": "dachs",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 38,
+      "scope": "Europäischer Dachs (Meles meles): Vollformel des bleibenden Gebisses bei vorhandenen ersten Prämolaren.",
+      "note": "Die kleinen ersten Prämolaren P1 sind nicht bei jedem Dachs vorhanden. Ihre variable Anlage erklärt Formeln mit drei oder vier Prämolaren. 38 ist deshalb keine pauschale Zahnzahl für jeden Dachs.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-adw-meles-meles",
+        "carn-amsterdam-badger-premolars-1998"
+      ]
+    },
+    {
+      "slug": "fuchs",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          3
+        ]
+      },
+      "total": 42,
+      "scope": "Rotfuchs (Vulpes vulpes): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Im Unterkiefer gibt es in der Grundformel pro Seite einen Molar mehr als oben.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-fhsu-vulpes-vulpes"
+      ]
+    },
+    {
+      "slug": "marderhund",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          3
+        ]
+      },
+      "total": 42,
+      "scope": "Marderhund (Nyctereutes procyonoides): vollständiges bleibendes Gebiss nach der Normalformel.",
+      "note": "Die Normalformel enthält pro Seite zwei obere und drei untere Molaren; daraus ergeben sich 42 Zähne im vollständigen bleibenden Gebiss.",
+      "sourceIds": [
+        "carn-utexas-nyctereutes",
+        "carn-lithuania-nyctereutes-2025"
+      ]
+    },
+    {
+      "slug": "waschbaer",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          2
+        ]
+      },
+      "total": 40,
+      "scope": "Waschbär (Procyon lotor): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Grundformel enthält oben und unten jeweils zwei Molaren pro Seite.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-ttu-procyon-lotor"
+      ]
+    },
+    {
+      "slug": "wildkatze",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          2
+        ],
+        "M": [
+          1,
+          1
+        ]
+      },
+      "total": 30,
+      "scope": "Europäische Wildkatze (Felis silvestris): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Wildkatzen-Grundformel ergibt 30 Zähne. Die Luchs-Grundformel mit 28 Zähnen darf hier nicht übernommen werden.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-duesseldorf-wildkatze"
+      ]
+    },
+    {
+      "slug": "luchs",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          2,
+          2
+        ],
+        "M": [
+          1,
+          1
+        ]
+      },
+      "total": 28,
+      "scope": "Eurasischer Luchs (Lynx lynx): Grundformel des vollständigen bleibenden Gebisses.",
+      "note": "28 ist die Grundzahl. Zusätzliche Zähne kommen vor, unter anderem obere zweite Prämolaren oder untere zweite Molaren; einzelne Gebisse können deshalb mehr Zähne besitzen.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-bern-lynx-2018"
+      ]
+    },
+    {
+      "slug": "hermelin",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          3
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 34,
+      "scope": "Hermelin (Mustela erminea): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Formel umfasst drei Prämolaren oben und unten pro Seite; die Molarenzahl ist oben und unten verschieden.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-alaska-skulls-ermine"
+      ]
+    },
+    {
+      "slug": "iltis",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          3
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 34,
+      "scope": "Europäischer Iltis (Mustela putorius): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Formel gilt hier für den Europäischen Iltis. Oben wird ein Molar, unten werden zwei Molaren pro Seite gezählt.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-sfepm-putorius"
+      ]
+    },
+    {
+      "slug": "mauswiesel",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          3
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 34,
+      "scope": "Mauswiesel (Mustela nivalis): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Grundformel entspricht der des Hermelins. Die gleiche Zahnzahl unterscheidet diese Arten daher nicht.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-fhsu-mustela-nivalis"
+      ]
+    },
+    {
+      "slug": "wolf",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          3
+        ]
+      },
+      "total": 42,
+      "scope": "Wolf (Canis lupus): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Die Grundformel entspricht der des Rotfuchses. Die Formel allein ist deshalb keine Unterscheidung der beiden Arten.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-madrid-wolf-2020"
+      ]
+    },
+    {
+      "slug": "goldschakal",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          3
+        ]
+      },
+      "total": 42,
+      "scope": "Goldschakal (Canis aureus): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "In der Grundformel stehen pro Seite zwei obere und drei untere Molaren.",
+      "sourceIds": [
+        "carn-zowiac-goldschakal",
+        "carn-asm-canis-aureus-2018"
+      ]
+    },
+    {
+      "slug": "mink",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          3
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 34,
+      "scope": "Mink, Amerikanischer Nerz (Neogale vison): vollständiges bleibendes Gebiss.",
+      "note": "Die hier verwendeten Quellen führen dieselbe Art unter den älteren Namen Neovison vison beziehungsweise Mustela vison. Gemeint ist der Amerikanische Nerz.",
+      "sourceIds": [
+        "carn-fhsu-mink",
+        "carn-purdue-mink"
+      ]
+    },
+    {
+      "slug": "fischotter",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          3
+        ],
+        "M": [
+          1,
+          2
+        ]
+      },
+      "total": 36,
+      "scope": "Eurasischer Fischotter (Lutra lutra): vollständiges bleibendes Gebiss, je Körperseite Ober-/Unterkiefer.",
+      "note": "Vier obere und drei untere Prämolaren pro Seite ergeben in dieser Grundformel zusammen mit den übrigen Zahnklassen 36 Zähne.",
+      "sourceIds": [
+        "carn-uzh-raubtiere-2024",
+        "carn-sfepm-lutra-lutra"
+      ]
+    },
+    {
+      "slug": "braunbaer",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          2,
+          3
+        ]
+      },
+      "total": 42,
+      "scope": "Braunbär (Ursus arctos): vollständiges bleibendes Gebiss nach der Vollformel.",
+      "note": "Die Vollformel enthält pro Seite zwei obere und drei untere Molaren und ergibt insgesamt 42 Zähne.",
+      "sourceIds": [
+        "carn-ttu-ursus-arctos",
+        "carn-ucdavis-brown-bear-2017"
+      ]
+    },
+    {
+      "slug": "seehund",
+      "formula": {
+        "I": [
+          3,
+          2
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          4,
+          4
+        ],
+        "M": [
+          1,
+          1
+        ]
+      },
+      "total": 34,
+      "scope": "Seehund (Phoca vitulina): vollständiges bleibendes Gebiss nach der Normalformel; unmittelbar auch an Nordseetieren belegt.",
+      "note": "Oben werden drei, unten zwei Schneidezähne pro Seite gezählt. Die Normalformel ergibt insgesamt 34 Zähne.",
+      "sourceIds": [
+        "carn-hildesheim-harbour-seal-2018",
+        "carn-ucdavis-harbour-seal-2015"
+      ]
+    },
+    {
+      "slug": "verwilderte-hauskatze",
+      "formula": {
+        "I": [
+          3,
+          3
+        ],
+        "C": [
+          1,
+          1
+        ],
+        "P": [
+          3,
+          2
+        ],
+        "M": [
+          1,
+          1
+        ]
+      },
+      "total": 30,
+      "scope": "Hauskatze (Felis catus): vollständiges bleibendes Gebiss; die hier geführte verwilderte Hauskatze gehört zu dieser Art.",
+      "note": "Die Formel beschreibt die Bezahnung der Hauskatze. Sie bestimmt weder Verwilderung noch Besitzlosigkeit oder rechtlichen Status eines Tiers.",
+      "sourceIds": [
+        "carn-lmu-cat-2004",
+        "carn-wikivet-cat"
+      ]
+    }
+  ],
+  "withheld": []
+}

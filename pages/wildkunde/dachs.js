@@ -15,7 +15,7 @@ export default function Dachs() {
       correct: 1,
     },
     {
-      q: "Wie lautet die Zahnformel des Dachses?",
+      q: "Welche Zahnformel gilt beim bleibenden Dachsgebiss, wenn alle vier Prämolaren je Kieferseite vorhanden sind?",
       a: ["I 3/3 · C 1/1 · P 4/4 · M 1/2", "I 3/3 · C 1/1 · P 4/3 · M 2/2", "I 2/2 · C 1/1 · P 3/3 · M 3/3"],
       correct: 0,
     },
@@ -75,13 +75,7 @@ export default function Dachs() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101575/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://animaldiversity.org/accounts/Meles_meles/" target="_blank" rel="noopener noreferrer">University of Michigan: Dachsbiologie und Gebiss</a> · <a href="https://www.baysf.de/fileadmin/user_upload/news/BaySF_Magazin10_Waldjagd.pdf" target="_blank" rel="noopener noreferrer">Bayerische Staatsforsten: Waldjagd und Fachbegriffe</a></p>

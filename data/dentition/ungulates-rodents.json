@@ -1,0 +1,314 @@
+{
+  "reviewedOn": "2026-10-16",
+  "sources": [
+    {
+      "id": "ur_trento_2010",
+      "organization": "Provincia Autonoma di Trento, Servizio Foreste e Fauna",
+      "title": "Manuale per la formazione dell’aspirante cacciatore (2010), S. 27, 31, 35, 38, 41 und 43",
+      "url": "https://forestefauna.provincia.tn.it/content/download/12988/232460/file/Testo_manuale.pdf",
+      "supports": "Artbezogene Tabellen des vollständigen bleibenden Gebisses: Rotwild 34, Rehwild 32, Gams 32, Mufflon 32, Alpensteinbock 32 und Wildschwein 44. Die spiegelbildlichen Tabellen wurden als eine Ober- und Unterkieferhälfte gelesen; Milchgebisstabellen wurden nicht übernommen."
+    },
+    {
+      "id": "ur_iepnb_reh",
+      "organization": "Spanisches Umweltministerium, Inventario Español del Patrimonio Natural y de la Biodiversidad",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España: Capreolus capreolus",
+      "url": "https://iepnb.gob.es/areas-tematicas/especies-silvestres/eidos/10961",
+      "supports": "Rehwild: vollständige Formel I 0/3, C 0/1, P 3/3, M 3/3; daraus 32 Zähne."
+    },
+    {
+      "id": "ur_miteco_rot",
+      "organization": "Spanisches Umweltministerium / SECEM",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España: Cervus elaphus, S. 352",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/ieet_mami_cervus_elaphus_tcm30-99791.pdf",
+      "supports": "Rotwild: I 0/3, C 1/1, P 3/3, M 3/3; die unteren Eckzähne werden gesondert als Eckzähne gezählt. Daraus 34 Zähne."
+    },
+    {
+      "id": "ur_chapman_dama_1970",
+      "organization": "Polnische Akademie der Wissenschaften, Mammal Research Institute / Acta Theriologica",
+      "title": "Chapman & Chapman (1970): Development of the Teeth and Mandibles of Fallow Deer, S. 114",
+      "url": "https://rcin.org.pl/Content/11403",
+      "supports": "Damwild: ausdrücklich als normal bezeichnetes bleibendes Gebiss I 0/3, C 0/1, P 3/3, M 3/3 = 32. Die Originalabbildung der Formel wurde zusätzlich visuell geprüft."
+    },
+    {
+      "id": "ur_iepnb_dama",
+      "organization": "Spanisches Umweltministerium, Inventario Español del Patrimonio Natural y de la Biodiversidad",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España: Dama dama",
+      "url": "https://iepnb.gob.es/areas-tematicas/especies-silvestres/eidos/11129/nulo",
+      "supports": "Damwild: I 0/3, C 0/1, P 3/3, M 3/3; daraus 32 Zähne. Unabhängiger Abgleich zur Untersuchung von Chapman & Chapman."
+    },
+    {
+      "id": "ur_zaragoza_bovidae_2011",
+      "organization": "Universidad de Zaragoza, Departamento de Ciencias de la Tierra",
+      "title": "María Andrés Rodrigo (2011): Los bóvidos Villafranquienses de La Puebla de Valverde y Villarroya: sistemática, filogenia y paleobiología, S. 3",
+      "url": "https://zaguan.unizar.es/record/59988/files/TUZ_0977_andres_bovidos.pdf",
+      "supports": "Unabhängige vergleichende Familienbeschreibung der Bovidae mit I 0/3, C 0/1, P 3/3, M 3/3. Als Familienabgleich zur artbezogenen Gams- und Steinbocktabelle in Trento verwendet; Capra ibex ist auch ausdrücklich abgebildet. Keine eigenständige Bestätigung aller einzelnen Bovidenspezies."
+    },
+    {
+      "id": "ur_ispra_exotics_2001",
+      "organization": "Italienisches Umweltministerium / Istituto Nazionale per la Fauna Selvatica, heute ISPRA",
+      "title": "Mammiferi e uccelli esotici in Italia: analisi del fenomeno, impatto sulla biodiversità e linee guida gestionali (2001), S. 47 und 83",
+      "url": "https://www.isprambiente.gov.it/contentfiles/00006600/6686-2-qcn-biodiversita.pdf",
+      "supports": "Artporträts: Oryctolagus cuniculus mit I 2/1, C 0/0, P 3/2, M 3/3 = 28; Muflone Ovis [orientalis] musimon mit I 0/3, C 0/1, P 3/3, M 3/3 = 32."
+    },
+    {
+      "id": "ur_umich_sus",
+      "organization": "University of Michigan, Museum of Zoology",
+      "title": "Animal Diversity Web: Sus scrofa, Physical Description",
+      "url": "https://animaldiversity.org/accounts/Sus_scrofa/",
+      "supports": "Wildschwein: I 3/3, C 1/1, P 4/4, M 3/3 = 44; ausdrücklich Sus scrofa."
+    },
+    {
+      "id": "ur_umich_alces",
+      "organization": "University of Michigan, Museum of Zoology",
+      "title": "Animal Diversity Web: Alces alces, Physical Description",
+      "url": "https://animaldiversity.org/accounts/Alces_alces/",
+      "supports": "Elch: I 0/3, C 0/1, P 3/3, M 3/3 = 32; obere Schneide- und Eckzähne fehlen in der Referenzformel."
+    },
+    {
+      "id": "ur_alaska_skulls_2005",
+      "organization": "Alaska Department of Fish and Game, Division of Wildlife Conservation",
+      "title": "Skulls of Alaskan Mammals: A Teacher’s Guide (2005), S. 58: Alces alces",
+      "url": "https://extension.arizona.edu/sites/extension.arizona.edu/files/attachment/Skulls%20of%20Alaskan%20Mammals%20Teacher%20Guide.pdf",
+      "supports": "Elch: Formel I 0/3, C 0/1, P 3/3, M 3/3 und 32 Zähne; Bruchanordnung im PDF zusätzlich visuell geprüft. Unabhängiger behördlicher Lehrtext, gehostet von der University of Arizona."
+    },
+    {
+      "id": "ur_miteco_lepus_europaeus",
+      "organization": "Spanisches Umweltministerium / SECEM",
+      "title": "Atlas y Libro Rojo de los Mamíferos Terrestres de España: Lepus europaeus, S. 473",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/ieet_mami_lepus%20europaeus_tcm30-99814.pdf",
+      "supports": "Feldhase Lepus europaeus: I 2/1, C 0/0, P 3/2, M 3/3; Zuordnung zur Familie Leporidae; daraus 28 Zähne."
+    },
+    {
+      "id": "ur_wtamu_lab10",
+      "organization": "West Texas A&M University, Mammalogy",
+      "title": "Lab 10: Skulls of Didelphimorphia, Insectivora, Lagomorpha, and Rodentia in Texas",
+      "url": "https://www.wtamu.edu/~rmatlack/Mammalogy/LAB10.html",
+      "supports": "Unabhängiger Familienabgleich: Leporidae I 2/1, C 0/0, P 3/2, M 3/3 = 28, einschließlich Gattung Lepus. Unabhängiger Gattungsabgleich: Marmota I 1/1, C 0/0, P 2/1, M 3/3 = 22. Keine Übertragung auf sämtliche Hörnchenarten."
+    },
+    {
+      "id": "ur_angerbjorn_flux_1995",
+      "organization": "American Society of Mammalogists, Mammalian Species",
+      "title": "Angerbjörn & Flux (1995): Lepus timidus, Mammalian Species 495",
+      "url": "https://www.researchgate.net/publication/275737416_Lepus_timidus",
+      "supports": "Volltext der Originalartmonographie: Schneehase I 2/1, C 0/0, P 3/2, M 3/3 = 28. Über ResearchGate gelesene Fassung der wissenschaftlichen Originalpublikation."
+    },
+    {
+      "id": "ur_mspca_rabbit",
+      "organization": "MSPCA-Angell, Angell Animal Medical Center",
+      "title": "Brendan Noonan: Dental Anatomy and Disease of the Domestic Rabbit (Oryctolagus cuniculus)",
+      "url": "https://www.mspca.org/clinical/dental-anatomy-and-disease-of-the-domestic-rabbit-oryctolagus-cuniculus/",
+      "supports": "Tierärztliche Beschreibung des bleibenden Gebisses von Oryctolagus cuniculus: I 2/1, C 0/0, P 3/2, M 3/3 = 28. Bespricht die domestizierte Form derselben Art; Abgleich mit dem ausdrücklichen Wildkaninchenporträt der italienischen Fachbehörde."
+    },
+    {
+      "id": "ur_lux_biber_2022",
+      "organization": "Luxemburgische Naturverwaltung ANF / Nationalmuseum für Naturgeschichte MNHNL",
+      "title": "Europäische Biber in Luxemburg, 2. Auflage (2022), S. 14",
+      "url": "https://environnement.public.lu/dam-assets/fr/conserv_nature/publications/2022/anf-europaische-biber-web.pdf",
+      "supports": "Europäischer Biber Castor fiber: I 1/1, C 0/0, P 1/1, M 3/3 = 20; Formel und Zahnartenlegende im Gebissdiagramm."
+    },
+    {
+      "id": "ur_lutra_beaver",
+      "organization": "Lutra Institute for Conservation of Natural Heritage, LIFE BOBER",
+      "title": "Beaver identity card: European beaver, Castor fiber",
+      "url": "https://life-beaver.eu/en/about-beaver/beaver-identity-card/",
+      "supports": "Europäischer Biber: beide Kieferhälften mit jeweils einem Schneidezahn, keinem Eckzahn, einem Prämolaren und drei Molaren; daraus 20 Zähne."
+    },
+    {
+      "id": "ur_ttu_nutria",
+      "organization": "Texas Tech University, Museum / Natural Science Research Laboratory",
+      "title": "Schmidly & Bradley: Mammals of Texas, Species account of the Nutria",
+      "url": "https://www.depts.ttu.edu/nsrl/mammals-of-texas-online-edition/Accounts_Introduced_Rodentia/Myocastor_coypus.php",
+      "supports": "Myocastor coypus: I 1/1, C 0/0, P 1/1, M 3/3 = 20."
+    },
+    {
+      "id": "ur_pms_nutria_2009",
+      "organization": "Slovenian Museum of Natural History / Prirodoslovni muzej Slovenije",
+      "title": "Kryštufek & Vohralík (2009): Mammals of Turkey and Cyprus, S. 300: Myocastor coypus",
+      "url": "https://www.pms-lj.si/app/uploads/2022/11/Mammals-of-Turkey-and-Cyprus-2009.pdf",
+      "supports": "Artmonographie und unmittelbar vorangestellte Beschreibung der damals monospezifischen Myocastoridae: I 1/1, C 0/0, P 1/1, M 3/3 = 20; das folgende Artkapitel benennt Myocastor coypus ausdrücklich."
+    },
+    {
+      "id": "ur_ttu_bisam",
+      "organization": "Texas Tech University, Museum / Natural Science Research Laboratory",
+      "title": "Schmidly & Bradley: Mammals of Texas, Species account of the Common Muskrat",
+      "url": "https://www.depts.ttu.edu/nsrl/mammals-of-texas-online-edition/Accounts_Rodentia/Ondatra_zibethicus.php",
+      "supports": "Ondatra zibethicus: I 1/1, C 0/0, P 0/0, M 3/3 = 16."
+    },
+    {
+      "id": "ur_face_bisam",
+      "organization": "FACE, European Federation for Hunting and Conservation",
+      "title": "Ondatra zibethicus, Arten- und Bestimmungsabschnitt des europäischen Leitfadens",
+      "url": "https://www.face.eu/sites/default/files/attachments/trapping_guidelines_-_ondatra_zibethicus.pdf",
+      "supports": "Nur anatomischer Bestimmungsabschnitt verwendet: Bisam-Zahnformel 1/1 + 0/0 + 0/0 + 3/3, unter Verweis auf Leskovic 2012; daraus 16. Keine Fangmethoden übernommen."
+    },
+    {
+      "id": "ur_csic_sciurus_2017",
+      "organization": "CSIC, Museo Nacional de Ciencias Naturales",
+      "title": "Francisco J. Purroy: Ardilla roja – Sciurus vulgaris, Descripción",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/scivulid.html",
+      "supports": "Europäisches Eichhörnchen Sciurus vulgaris: I 1/1, C 0/0, P 2/1, M 3/3; daraus 22 Zähne."
+    },
+    {
+      "id": "ur_zsl_sciurus_2004",
+      "organization": "Zoological Society of London, Institute of Zoology / Journal of Wildlife Diseases",
+      "title": "Sainsbury et al. (2004): Oral disease in free-living red squirrels (Sciurus vulgaris) in the United Kingdom",
+      "url": "https://doi.org/10.7589/0090-3558-40.2.185",
+      "supports": "Originalstudie, Volltext über ResearchGate gelesen: anatomische Referenzformel I 1/1, C 0/0, P 2/1, M 3/3 = 22; der kleine erste obere Prämolar wird mitgezählt."
+    },
+    {
+      "id": "ur_csic_marmota_2017",
+      "organization": "CSIC, Instituto Pirenaico de Ecología / Museo Nacional de Ciencias Naturales",
+      "title": "García-González, Herrero & García-Serrano: Marmota alpina – Marmota marmota, Descripción",
+      "url": "https://www.vertebradosibericos.org/mamiferos/identificacion/marmarid.html",
+      "supports": "Alpenmurmeltier Marmota marmota: I 1/1, C 0/0, P 2/1, M 3/3; ausdrückliche Zuordnung zu Marmota und Abbildung eines Sammlungspräparats; daraus 22 Zähne."
+    }
+  ],
+  "profiles": [
+    {
+      "slug": "rehwild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Regelform des vollständigen bleibenden Gebisses von Capreolus capreolus; keine Milchzahn- oder Altersformel.",
+      "note": "I 0/3 und C 0/1 getrennt lesen: Der untere Eckzahn ist bereits mitgezählt. Die Regelformel beschreibt keine garantierte Zahnzahl jedes einzelnen Tieres.",
+      "sourceIds": ["ur_trento_2010", "ur_iepnb_reh"]
+    },
+    {
+      "slug": "rotwild",
+      "formula": { "I": [0, 3], "C": [1, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 34,
+      "scope": "Regelform des vollständigen bleibenden Gebisses von Cervus elaphus, mit einem oberen Eckzahn je Seite.",
+      "note": "Die beiden oberen Eckzähne sind in den 34 Zähnen enthalten. Diese Formel darf nicht pauschal für alle Hirscharten verwendet werden.",
+      "sourceIds": ["ur_trento_2010", "ur_miteco_rot"]
+    },
+    {
+      "slug": "damwild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Normales vollständiges bleibendes Gebiss von Dama dama; die Originalstudie unterscheidet ausdrücklich Normalform und Abweichungen.",
+      "note": "Die Referenzformel enthält keine oberen Eckzähne. Eine individuelle Abweichung wird nicht als eigene allgemeingültige Formel dargestellt.",
+      "sourceIds": ["ur_chapman_dama_1970", "ur_iepnb_dama"]
+    },
+    {
+      "slug": "gamswild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Vollständiges bleibendes Gebiss der Alpengams Rupicapra rupicapra.",
+      "note": "Die artbezogene Trienter Formel wurde unabhängig mit der vergleichenden Bovidae-Formel der Universität Zaragoza abgeglichen. I und C im Unterkiefer werden getrennt gezählt.",
+      "sourceIds": ["ur_trento_2010", "ur_zaragoza_bovidae_2011"]
+    },
+    {
+      "slug": "steinwild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Vollständiges bleibendes Gebiss des Alpensteinbocks Capra ibex; keine pauschale Aussage zu jeder Steinbockart.",
+      "note": "Die artbezogene Trienter Formel wurde unabhängig mit der Bovidae-Formel der Universität Zaragoza abgeglichen; dort ist Capra ibex ausdrücklich zugeordnet.",
+      "sourceIds": ["ur_trento_2010", "ur_zaragoza_bovidae_2011"]
+    },
+    {
+      "slug": "muffelwild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Vollständiges bleibendes Gebiss des europäischen Mufflons, in den Quellen als Ovis musimon beziehungsweise Ovis [orientalis] musimon bezeichnet.",
+      "note": "Die oberen Schneide- und Eckzähne sind in beiden artbezogenen Quellen mit null angegeben; der untere Eckzahn zählt gesondert als C.",
+      "sourceIds": ["ur_trento_2010", "ur_ispra_exotics_2001"]
+    },
+    {
+      "slug": "schwarzwild",
+      "formula": { "I": [3, 3], "C": [1, 1], "P": [4, 4], "M": [3, 3] },
+      "total": 44,
+      "scope": "Vollständige bleibende Referenzbezahnung von Sus scrofa; keine Garantie, dass bei einem individuellen Tier alle Zähne vorhanden sind.",
+      "note": "Vier Prämolaren und drei Molaren pro Kieferseite getrennt zählen. Die Formel ist keine Anleitung zur Altersbestimmung.",
+      "sourceIds": ["ur_trento_2010", "ur_umich_sus"]
+    },
+    {
+      "slug": "elchwild",
+      "formula": { "I": [0, 3], "C": [0, 1], "P": [3, 3], "M": [3, 3] },
+      "total": 32,
+      "scope": "Vollständiges bleibendes Referenzgebiss des in beiden Quellen als Alces alces bezeichneten Elchs.",
+      "note": "Die Formeln beider institutioneller Quellen stimmen überein: keine oberen Schneide- und Eckzähne; ein unterer Eckzahn je Seite.",
+      "sourceIds": ["ur_umich_alces", "ur_alaska_skulls_2005"]
+    },
+    {
+      "slug": "feldhase",
+      "formula": { "I": [2, 1], "C": [0, 0], "P": [3, 2], "M": [3, 3] },
+      "total": 28,
+      "scope": "Vollständiges bleibendes Gebiss des Feldhasen Lepus europaeus.",
+      "note": "Artformel des spanischen Säugetieratlas; unabhängiger Abgleich mit Leporidae einschließlich Lepus im Universitätsschlüssel. I 2/1 bedeutet je Seite zwei obere und einen unteren Schneidezahn.",
+      "sourceIds": ["ur_miteco_lepus_europaeus", "ur_wtamu_lab10"]
+    },
+    {
+      "slug": "schneehase",
+      "formula": { "I": [2, 1], "C": [0, 0], "P": [3, 2], "M": [3, 3] },
+      "total": 28,
+      "scope": "Vollständiges bleibendes Gebiss des Schneehasen Lepus timidus.",
+      "note": "Artmonographie und unabhängig verfasster Leporidae-Schlüssel für die Gattung Lepus bestätigen dieselbe Formel. Eckzähne sind in beiden Kiefern mit null angegeben.",
+      "sourceIds": ["ur_angerbjorn_flux_1995", "ur_wtamu_lab10"]
+    },
+    {
+      "slug": "wildkaninchen",
+      "formula": { "I": [2, 1], "C": [0, 0], "P": [3, 2], "M": [3, 3] },
+      "total": 28,
+      "scope": "Vollständiges bleibendes Gebiss von Oryctolagus cuniculus.",
+      "note": "Der Wildkaninchen-Steckbrief der Fachbehörde und die tierärztliche Anatomie der domestizierten Form derselben Art geben übereinstimmend 28 Zähne an.",
+      "sourceIds": ["ur_ispra_exotics_2001", "ur_mspca_rabbit"]
+    },
+    {
+      "slug": "biber",
+      "formula": { "I": [1, 1], "C": [0, 0], "P": [1, 1], "M": [3, 3] },
+      "total": 20,
+      "scope": "Vollständiges bleibendes Gebiss des Europäischen Bibers Castor fiber.",
+      "note": "Pro Kieferhälfte fünf Zähne: ein Schneidezahn, ein Prämolar und drei Molaren. Vier Kieferhälften ergeben 20.",
+      "sourceIds": ["ur_lux_biber_2022", "ur_lutra_beaver"]
+    },
+    {
+      "slug": "nutria",
+      "formula": { "I": [1, 1], "C": [0, 0], "P": [1, 1], "M": [3, 3] },
+      "total": 20,
+      "scope": "Vollständiges bleibendes Gebiss der Nutria Myocastor coypus.",
+      "note": "Die unabhängig verfassten Museumsquellen stimmen in allen vier Zahnarten und in der Gesamtsumme überein.",
+      "sourceIds": ["ur_ttu_nutria", "ur_pms_nutria_2009"]
+    },
+    {
+      "slug": "bisam",
+      "formula": { "I": [1, 1], "C": [0, 0], "P": [0, 0], "M": [3, 3] },
+      "total": 16,
+      "scope": "Vollständiges bleibendes Gebiss des Bisams Ondatra zibethicus.",
+      "note": "Keine Eckzähne und keine Prämolaren: Ein Schneidezahn und drei Molaren je Kieferhälfte ergeben insgesamt 16 Zähne.",
+      "sourceIds": ["ur_ttu_bisam", "ur_face_bisam"]
+    },
+    {
+      "slug": "eichhoernchen",
+      "formula": { "I": [1, 1], "C": [0, 0], "P": [2, 1], "M": [3, 3] },
+      "total": 22,
+      "scope": "Vollständiges bleibendes Gebiss des Europäischen Eichhörnchens Sciurus vulgaris; keine Formel für alle Hörnchenarten.",
+      "note": "Oben werden je Seite zwei, unten nur ein Prämolar gezählt. Beide oberen Prämolarenpositionen sind in der Gesamtsumme von 22 Zähnen bereits enthalten.",
+      "sourceIds": ["ur_csic_sciurus_2017", "ur_zsl_sciurus_2004"]
+    },
+    {
+      "slug": "murmeltier",
+      "formula": { "I": [1, 1], "C": [0, 0], "P": [2, 1], "M": [3, 3] },
+      "total": 22,
+      "scope": "Vollständiges bleibendes Gebiss des Alpenmurmeltiers Marmota marmota.",
+      "note": "Die artbezogene CSIC-Beschreibung wurde mit dem unabhängig verfassten Universitätsschlüssel für die Gattung Marmota abgeglichen. Beide geben dieselbe Zahnartenverteilung an.",
+      "sourceIds": ["ur_csic_marmota_2017", "ur_wtamu_lab10"]
+    }
+  ],
+  "withheld": [
+    {
+      "slug": "sikawild",
+      "reason": "Die Artmonographie von Feldhamer und der darauf ausdrücklich beruhende ADW-Text sind keine zwei unabhängigen Belege. Eine weitere wissenschaftliche Artbeschreibung bestätigt 34 Zähne und obere Eckzähne, aber nicht alle vier Formelglieder eigenständig. Die vollständige Formel bleibt bis zu einem weiteren unabhängigen konkreten Abgleich unveröffentlicht.",
+      "foundSources": [
+        "https://animaldiversity.org/accounts/Cervus_nippon/",
+        "https://zenodo.org/records/6514499"
+      ]
+    },
+    {
+      "slug": "wisent",
+      "reason": "Die Gesamtzahl 32 ist in einem institutionellen Wisent-Porträt belegt. Ein unabhängiger anatomischer Text liefert bislang nur die Familienformel der Bovidae. Ein zweiter konkreter Abgleich der vollständigen artbezogenen Formel fehlt; eine aufgefundene ältere Lehrunterlage enthält zudem einen Widerspruch bei der Aufteilung der unteren Vorderzähne.",
+      "foundSources": [
+        "https://www.wwf.de/themen-projekte/artenlexikon/wisent-europaeisches-bison/",
+        "https://zaguan.unizar.es/record/59988/files/TUZ_0977_andres_bovidos.pdf"
+      ]
+    }
+  ]
+}

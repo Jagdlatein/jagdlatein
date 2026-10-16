@@ -1,0 +1,28 @@
+.panel { margin: 0 auto 28px; border: 1px solid #d8c59b; border-radius: 22px; padding: clamp(20px, 4vw, 36px); background: #fffdf7; color: #263c29; max-width: 1120px; font-size: 19px; line-height: 1.8; scroll-margin-top: 24px; }
+.panel h2 { font-size: clamp(28px, 4vw, 36px); line-height: 1.3; margin: 0 0 12px; }
+.panel h3 { font-size: 24px; }
+.eyebrow { margin: 0 0 8px; color: #75602c; font-size: 15px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.scope { margin: 0 0 24px; }
+.formula { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(12px, 3vw, 32px); background: #edf3e8; padding: 22px; border-radius: 16px; margin-bottom: 24px; }
+.tooth { display: flex; align-items: center; gap: 12px; font-size: 26px; }
+.fraction { display: grid; text-align: center; min-width: 28px; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.fraction span:first-child { border-bottom: 2px solid #63805d; }
+.multiply { font-size: 23px; }
+.total { font-size: 32px; color: #365d32; }
+.table { width: 100%; border-collapse: collapse; font-size: 18px; }
+.table caption { text-align: left; font-size: 18px; font-weight: 700; padding-bottom: 10px; }
+.table th, .table td { border-bottom: 1px solid #d8dfd1; padding: 12px 8px; }
+.table th { text-align: left; font-weight: 550; }
+.table td, .table thead th:not(:first-child) { text-align: center; font-variant-numeric: tabular-nums; width: 20%; }
+.table small { display: block; font-size: 15px; color: #596650; }
+.table tfoot { background: #f0f4eb; }
+.table tfoot th { font-weight: 750; }
+.math { font-size: 19px; }
+.note { border-left: 4px solid #9b7f36; background: #f6f1df; padding: 14px 20px; }
+.details { margin-top: 14px; border-top: 1px solid #ded8c5; }
+.details summary { cursor: pointer; padding: 16px 0; min-height: 56px; font-size: 18px; font-weight: 700; }
+.details p, .details li { font-size: 17px; overflow-wrap: anywhere; }
+.details a { color: #72541d; text-underline-offset: 4px; }
+.details li + li { margin-top: 14px; }
+.details :focus-visible { outline: 3px solid #537b48; outline-offset: 4px; }
+@media (max-width: 620px) { .panel { font-size: 18px; } .formula { padding: 18px 12px; gap: 16px; } .tooth { font-size: 23px; gap: 7px; } .table { font-size: 16px; } .table th, .table td { padding: 12px 4px; } }

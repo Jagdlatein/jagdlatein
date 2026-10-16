@@ -1,0 +1,11 @@
+.photo { margin: 0 0 28px; }
+.photo img { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 18px; background: #e8eadf; }
+.photo figcaption { line-height: 1.6; padding: 12px 4px; color: #5c644f; }
+.photo figcaption p { margin: 0 0 8px; }
+.scope { border-left: 4px solid #9b7c32; padding: 16px 22px; background: #f5eedb; }
+.section { margin-bottom: 28px; scroll-margin-top: 24px; }
+.sources { border-top: 1px solid #dcd6bf; }
+.sources summary { cursor: pointer; min-height: 56px; padding: 16px 0; font-size: 17px; font-weight: 700; }
+.sources a { overflow-wrap: anywhere; }
+.sources li p, .review { color: #5d654f; }
+.sources :focus-visible { outline: 3px solid #527d46; outline-offset: 4px; }

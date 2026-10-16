@@ -19,11 +19,11 @@ export default function Hermelin() {
       correct: 2,
     },
     {
-      q: "Welche Zahnformel besitzt das Hermelin?",
+      q: "Welche Formel beschreibt das typische vollständige bleibende Hermelingebiss (je Kieferseite, Gesamtzahl für beide Seiten)?",
       a: [
-        "I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40",
-        "I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34",
-        "I 3/3 · C 1/1 · P 4/4 · M 1/2 = 38"
+        "(I 3/3 · C 1/1 · P 4/4 · M 2/2) × 2 = 40",
+        "(I 3/3 · C 1/1 · P 3/3 · M 1/2) × 2 = 34",
+        "(I 3/3 · C 1/1 · P 4/4 · M 1/2) × 2 = 38"
       ],
       correct: 1,
     },
@@ -82,13 +82,7 @@ export default function Hermelin() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101466/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://observatoire-mammiferes.fr/espece/60686" target="_blank" rel="noopener noreferrer">MNHN/SFEPM: Hermelin</a></p>

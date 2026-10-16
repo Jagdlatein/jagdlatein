@@ -1,0 +1,23 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Neue Gebissabschnitte, drei biologische Europa-Porträts und die davon betroffenen alten Formelblöcke und Quizfragen. Keine vollständige Neuprüfung der App und kein europaweites Jagdartenverzeichnis.",
+  "evidenceFiles": ["data/dentition/ungulates-rodents.json", "data/dentition/carnivores.json", "data/dentition/birds.json", "data/european-wildlife-expansion.json"],
+  "dentition": {
+    "publishedMammalProfiles": 34,
+    "scope": "Bleibendes Referenzgebiss; I/C/P/M je eine Ober- und Unterkieferseite, Gesamtzahl für beide Seiten. Milchgebiss und Zahnwechselkalender werden nicht ergänzt, solange der konkrete unabhängige Abgleich fehlt.",
+    "sourceDistinction": "Artbeschreibungen werden teils durch unabhängige Artstudien, teils durch ausdrücklich offengelegte Gattungs- oder Familienschlüssel abgeglichen. Zwei Kopien derselben Originalquelle zählen nicht als unabhängig.",
+    "withheldMammals": ["sikawild", "wisent"],
+    "replacedLegacyFormulaBlocks": 22,
+    "preserved": "Bestehende Angaben zu Zahnwachstum und grober Altersschätzung bleiben getrennt erhalten; frühere Prüfdateien werden als Historie nicht rückdatiert.",
+    "quizChanges": ["Dachsfrage auf vorhandene erste Prämolaren begrenzt", "Iltis-, Hermelin- und Rotwildformeln rechnen ausdrücklich beide Seiten mit ×2"],
+    "birds": "Zahnlosigkeit heutiger Vögel als eigener biologischer Hinweis, keine scheinbare Säugetierformel. Unabhängiger Museumsbeitrag und Originalpublikation gelesen."
+  },
+  "europe": {
+    "species": ["rentier", "pyrenaeengaemse", "iberiensteinbock"],
+    "sections": 19,
+    "law": "Keine neuen Rechtsfelder; DACH-Rechtskatalog bleibt getrennt und unverändert.",
+    "secondReview": "Zwei bei Rentier nur einzeln gestützte Details (Unterart mit Verbreitung bis Nordwestrussland sowie besonders kurzbeinige Spitzbergenform) vor Veröffentlichung entfernt. Allgemeine regionale Unterschiede bleiben mit passenden Belegen erklärt.",
+    "media": "Drei echte, visuell geprüfte CC-BY-SA-4.0-Fotos; Quellen, Urheber, exaktes Motiv, Bearbeitung und Dateihashes stehen in den Artenrecords. Kein Foto belegt allein Alter, Geschlecht oder Haltungsstatus."
+  },
+  "technicalChecksAreNotContentCertification": true
+}

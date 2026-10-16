@@ -76,13 +76,7 @@ export default function Mauswiesel() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101647/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://courses.ecampus.oregonstate.edu/wildlife/species.php?id=358" target="_blank" rel="noopener noreferrer">Oregon State University: Mustela nivalis</a></p>

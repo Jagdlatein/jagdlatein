@@ -23,8 +23,8 @@ export default function Iltis() {
       correct: 1,
     },
     {
-      q: "Wie lautet die Zahnformel des Iltis?",
-      a: ["I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34","I 3/3 · C 1/1 · P 4/4 · M 2/2 = 40","I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42"],
+      q: "Wie lautet die Formel des typischen vollständigen bleibenden Iltisgebisses (je Kieferseite, Gesamtzahl für beide Seiten)?",
+      a: ["(I 3/3 · C 1/1 · P 3/3 · M 1/2) × 2 = 34","(I 3/3 · C 1/1 · P 4/4 · M 2/2) × 2 = 40","(I 3/3 · C 1/1 · P 4/4 · M 2/3) × 2 = 42"],
       correct: 0,
     },
   ];
@@ -76,13 +76,7 @@ export default function Iltis() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 3/3 · M 1/2 = 34</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/101494/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.sciencedirect.com/science/article/abs/pii/S0021997520300190" target="_blank" rel="noopener noreferrer">Anatomische Studie zum Iltisgebiss (2020)</a></p>

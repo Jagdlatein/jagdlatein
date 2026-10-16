@@ -74,10 +74,8 @@ export default function Bisam() {
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
+          <h2 style={styles.sectionTitle}>Zahnwachstum</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 1/1 · C 0/0 · P 0/0 · M 3/3 = 16</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
             <li>Schneidezähne wachsen kontinuierlich nach</li>
           </ul>
         </section>

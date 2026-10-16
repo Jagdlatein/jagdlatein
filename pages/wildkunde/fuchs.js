@@ -105,13 +105,7 @@ export default function Fuchs() {
           </ul>
         </section>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
-          <ul style={styles.list}>
-            <li>Zahnformel: I 3/3 · C 1/1 · P 4/4 · M 2/3 = 42</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
-          </ul>
-        </section>
+
 
         <section style={styles.section}>
           <p style={styles.subtitle}>Biologiequellen (geprüft am 4. Oktober 2026): <a href="https://www.wildtierportal.bayern.de/wildtiere_bayern/085227/index.php" target="_blank" rel="noopener noreferrer">Wildtierportal Bayern: Biologie</a> · <a href="https://www.rki.de/SharedDocs/FAQs/DE/Tollwut/FAQ_Liste.html?nn=16907352" target="_blank" rel="noopener noreferrer">RKI: Tollwut</a> · <a href="https://jagdverband.it/fuchs-2/" target="_blank" rel="noopener noreferrer">Südtiroler Jagdverband: Fuchsmerkmale</a> · <a href="https://fuchsratgeber.ch/u6.html" target="_blank" rel="noopener noreferrer">SWILD/INFOX: Fuchslosung erkennen</a> · <a href="https://www.fli.de/de/aktuelles/kurznachrichten/neues-einzelansicht/aktuelles-zur-tollwut-in-deutschland/" target="_blank" rel="noopener noreferrer">FLI: Tollwut in Deutschland, 20. Februar 2026</a> · <a href="https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/27_26.pdf?__blob=publicationFile&amp;v=3" target="_blank" rel="noopener noreferrer">RKI: Tollwut, Epidemiologisches Bulletin 27/2026</a> · <a href="https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/5__Aus-_und_Fortbildung/Pr%C3%BCfungsfragen/Gesamtkatalog_mit_Lsg/Fach_1_Stand_29.03.2018_mit_L%C3%B6sung.pdf" target="_blank" rel="noopener noreferrer">Landesjagdverband Baden-Württemberg: Fachgebiet Tierarten (Biologie, 2018)</a></p>

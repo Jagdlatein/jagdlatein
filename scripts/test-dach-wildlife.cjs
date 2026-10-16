@@ -22,7 +22,9 @@ test('Canonical DACH catalog is unique, preserves every legacy portrait and prov
   assert.ok(dachWildlife.length >= 100);
   assert.equal(new Set(dachWildlife.map(species => species.slug)).size, dachWildlife.length);
   const catalogSlugs = load('lib/wildlife-catalog.js').wildlifeCategories.flatMap(group => group.items.map(species => species.slug));
-  assert.deepEqual([...catalogSlugs].sort(), dachWildlife.map(species => species.slug).sort());
+  const european = load('lib/european-wildlife.js').europeanWildlife;
+  assert.deepEqual([...catalogSlugs].sort(), european.map(species => species.slug).sort());
+  for (const species of dachWildlife) assert.ok(catalogSlugs.includes(species.slug));
   assert.equal(legacyWildlifeSlugs.length, 47);
   for (const slug of legacyWildlifeSlugs) {
     assert.ok(dachWildlifeBySlug[slug]);
@@ -60,7 +62,7 @@ test('Every recorded species and new portrait resolves, including regional game 
   for (const sound of load('lib/animal-sounds.js').animalSounds) assert.ok(data.dachWildlifeBySlug[sound.speciesSlug], `${sound.name} links to ${sound.speciesSlug}`);
   const { getStaticPaths, getStaticProps } = load('pages/wildkunde/[art].js');
   const { paths, fallback } = await getStaticPaths(); assert.equal(fallback, false);
-  const newSlugs = data.dachWildlife.filter(species => !data.legacyWildlifeSlugs.includes(species.slug)).map(species => species.slug);
+  const newSlugs = load('lib/european-wildlife.js').europeanWildlife.filter(species => !data.legacyWildlifeSlugs.includes(species.slug)).map(species => species.slug);
   assert.deepEqual(paths.map(item => item.params.art).sort(), newSlugs.sort());
   for (const slug of newSlugs) { const result = await getStaticProps({ params: { art: slug } }); assert.ok(result.props, slug); }
   assert.equal((await getStaticProps({ params: { art: 'erfundene-art' } })).notFound, true);

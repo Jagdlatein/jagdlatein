@@ -15,10 +15,10 @@ export default function Rotwild() {
       correct: 0,
     },
     {
-      q: "Wie lautet die Zahnformel?",
+      q: "Welche Zahnformel beschreibt das vollständige bleibende Rotwildgebiss (Angaben je Kieferseite, Gesamtzahl für beide Seiten)?",
       a: [
-        "I 0/3 · C 1/1 · P 3/3 · M 3/3 = 34",
-        "I 3/3 · C 1/1 · P 4/4 · M 3/3 = 44",
+        "(I 0/3 · C 1/1 · P 3/3 · M 3/3) × 2 = 34",
+        "(I 3/3 · C 1/1 · P 4/4 · M 3/3) × 2 = 44",
       ],
       correct: 0,
     },
@@ -77,10 +77,8 @@ export default function Rotwild() {
         </section>
 
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Gebiss</h2>
+          <h2 style={styles.sectionTitle}>Zahnabnutzung</h2>
           <ul style={styles.list}>
-            <li>Zahnformel: I 0/3 · C 1/1 · P 3/3 · M 3/3 = 34</li>
-            <li>Formel für das typische vollständige bleibende Gebiss; individuelle Zahnverluste sind möglich</li>
             <li>Zahnabnutzung liefert nur eine ungefähre Altersschätzung</li>
           </ul>
         </section>
