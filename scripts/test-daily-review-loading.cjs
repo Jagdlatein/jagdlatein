@@ -30,19 +30,21 @@ function engine() {
   const hooks = { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; writes++; }]; },
     useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
+    useMemo(fn, deps) { const i = cursor++, old = slots[i]; if (!old || deps.some((dep, j) => !Object.is(dep, old.deps[j]))) slots[i] = { deps, value: fn() }; return slots[i].value; },
     useEffect(fn, deps) { const i = cursor++, old = slots[i]; if (!old || !deps || deps.some((dep, j) => !Object.is(dep, old.deps[j]))) { slots[i] = { deps, cleanup: old?.cleanup }; effects.push(() => { slots[i].cleanup?.(); slots[i].cleanup = fn(); }); } },
   };
   return { hooks, get writes() { return writes; }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects; effects = []; pending.forEach(fn => fn()); }, unmount() { slots.forEach(slot => slot?.cleanup?.()); } };
 }
 function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(''); return typeof node === 'object' ? words(node.props?.children) : String(node); }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
-function setup(pool, history = { version: 1, entries: {} }) {
+function setup(pool, history = { version: 1, entries: {} }, props = {}) {
   const e = engine(), records = [], review = load('lib/daily-review.js');
   const Component = load('components/DailyReview.js', { react: e.hooks, '../lib/daily-review': { ...review, readReviewHistory: () => history, recordReviewAnswer: (...args) => { records.push(args); return true; }, clearReviewHistory: () => true } }).default;
-  let tree; const render = () => tree = e.render(() => Component({ pool })); render();
+  let tree; const render = () => tree = e.render(() => Component({ pool, ...props })); render();
   return { e, records, render, get tree() { return tree; }, start() { e.flush(); render(); }, category(value) { find(tree, node => node.type === 'select').props.onChange({ target: { value } }); render(); }, button(label) { const found = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(found, label); return found; }, html() { return renderToStaticMarkup(tree); } };
 }
 const maintained = load('lib/daily-review-pool.js');
+const compact = load('lib/daily-review-catalog.js');
 const fixture = [['wissen-fixture-wild-a', 'wildkunde'], ['wissen-fixture-wild-b', 'wildkunde'], ['wissen-fixture-dog', 'hundewesen']].map(([id, category]) => ({ id, category, q: `Frage ${id}`, answers: ['a', 'b', 'c', 'd'].map(id => ({ id, text: `Antwort ${id}` })), correct: ['a'], explain: `Erklärung ${id}`, courseTitle: 'Fiktiver Testkurs', href: '/kurse/wissen-fixture#lesson-demo', sources: [{ label: 'Testquelle', url: 'https://example.test/' }] }));
 const fixtureCatalog = fixture.map(({ id, category }) => ({ id, category }));
 const settle = () => new Promise(resolve => setImmediate(resolve));
@@ -56,12 +58,15 @@ function responseRecorder() {
   return res;
 }
 
-test('Static page data is under 128 KiB and never embeds maintained question text or solutions', () => {
+test('Static page metadata stays under 64 KiB, roundtrips every ID/category and never embeds private details', () => {
   const page = load('pages/lernen/fuenf-minuten.js', { '../../components/DailyReview': { __esModule: true, default: () => null } });
   const result = page.getStaticProps(); const bytes = Buffer.byteLength(JSON.stringify(result.props));
-  assert.ok(bytes < 128 * 1024, `Static payload ${bytes} bytes`); assert.ok(result.props.pool.length > 600);
-  for (const item of result.props.pool) assert.deepEqual(Object.keys(item).sort(), ['category', 'id']);
-  assert.equal(result.props.pool.length, maintained.getDailyReviewPool().length);
+  assert.ok(bytes < 64 * 1024, `Static payload ${bytes} bytes`);
+  assert.deepEqual(Object.keys(result.props), ['catalog']);
+  const pool = compact.unpackDailyReviewCatalog(result.props.catalog);
+  assert.ok(pool.length > 600); assert.deepEqual(pool, maintained.getDailyReviewCatalog());
+  for (const item of pool) assert.deepEqual(Object.keys(item).sort(), ['category', 'id']);
+  assert.equal(pool.length, maintained.getDailyReviewPool().length);
   assert.ok(!JSON.stringify(result.props).includes(maintained.getDailyReviewPool()[0].explain));
 });
 test('Server question retrieval preserves requested order and never serves legal, regional, unknown or excess IDs', () => {
@@ -100,6 +105,32 @@ test('Client selection sends only IDs, leaves history local and never shows an e
     await network.answer(0); s.render(); assert.match(words(s.tree), /Neu entdecken/); assert.ok(s.button('Antwort a'));
     const selectedIds = params.get('ids').split(','); assert.match(words(s.tree), new RegExp(`Frage ${selectedIds[0]}`));
     assert.equal(s.records.length, 0); assert.equal((s.html().match(/href="\/lernen#lernen-suche"/g) || []).length, 1);
+  } finally { network.restore(); }
+});
+test('Packed metadata keeps local due selection, category changes and stale-response protection identical', async () => {
+  const network = requests();
+  try {
+    const history = { version: 1, entries: { [fixture[2].id]: { seen: 1, mistakes: 1, streak: 0, lastSeen: 0, due: 600000, lastEvent: 'fixture-event' } } };
+    const s = setup(undefined, history, { catalog: JSON.parse(JSON.stringify(compact.packDailyReviewCatalog(fixtureCatalog))) });
+    s.start();
+    const firstIds = new URL(network.pending[0].url, 'https://example.test').searchParams.get('ids').split(',');
+    assert.equal(firstIds[0], fixture[2].id); assert.match(words(s.tree), /Fragen werden geladen/);
+    s.category('wildkunde'); assert.equal(network.pending[0].options.signal.aborted, true);
+    assert.ok(new URL(network.pending[1].url, 'https://example.test').searchParams.get('ids').split(',').every(id => id.includes('-wild-')));
+    await network.answer(1); s.render(); assert.match(words(s.tree), /wissen-fixture-wild/);
+    await network.answer(0); s.render(); assert.match(words(s.tree), /wissen-fixture-wild/);
+    assert.doesNotMatch(words(s.tree), /Frage wissen-fixture-dog/); assert.equal(s.records.length, 0);
+    s.button('Antwort a').props.onClick(); s.render(); assert.equal(s.records.length, 1);
+    assert.ok(s.records[0][0].includes('-wild-')); s.e.unmount();
+  } finally { network.restore(); }
+});
+test('Legacy pool props still take precedence and malformed packed data never requests a fallback deck', () => {
+  const network = requests();
+  try {
+    const legacy = setup(fixtureCatalog, undefined, { catalog: compact.packDailyReviewCatalog([]) }); legacy.start();
+    assert.equal(network.pending.length, 1); legacy.e.unmount();
+    const invalid = setup(undefined, undefined, { catalog: { version: 1, categories: ['wildkunde'], rows: [[1, 'not-valid-without-prefix', 0]] } });
+    invalid.start(); assert.equal(network.pending.length, 1); assert.match(words(invalid.tree), /keine Fragen/); invalid.e.unmount();
   } finally { network.restore(); }
 });
 test('Slow previous category responses, including failed ones, cannot replace a new selected category', async () => {

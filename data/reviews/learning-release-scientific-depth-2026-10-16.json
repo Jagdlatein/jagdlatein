@@ -1,0 +1,40 @@
+{
+  "checkedOn": "2026-10-16",
+  "status": "Validated for publication; deployment and browser evidence are recorded in the accompanying task after the commit.",
+  "objectiveStatus": "active, not achieved",
+  "inventory": "data/reviews/learning-inventory-scientific-depth-2026-10-16.json",
+  "benchmark": "data/reviews/content-scale-benchmark-2026-10-16.json",
+  "content": {
+    "newCourses": 18,
+    "newLessons": 72,
+    "newExplainedQuestions": 576,
+    "reviewScope": "Three author packages with lesson-level source mapping, complete peer reading of questions/options/keys/explanations and documented additional primary-source checks. This is not a certification of all existing app content.",
+    "peerReports": [
+      "data/reviews/science-peer-review-biology-2026-10-16.md",
+      "data/reviews/science-peer-review-nature-2026-10-16.md",
+      "data/reviews/science-peer-review-applied-2026-10-16.md"
+    ],
+    "legacyCorrection": "data/reviews/roe-diapause-question-2026-10-16.md",
+    "media": "No new media imported; existing licensed category photographs remain contextual covers."
+  },
+  "navigation": [
+    "A lesson links directly to its actually available cards; course and lesson scope remain exact through printing and the return link.",
+    "Small lesson decks are complete on first server render; global decks retain a small initial seed and a separately guarded full-bank request.",
+    "SSR uses the existing paid-account guard and private/no-store headers; only the two exact guarded page routes bypass a redundant middleware lookup.",
+    "Malformed or unknown selections never fall back to a different course or the full bank. Old fetches and old errors cannot replace a new selection."
+  ],
+  "technicalValidation": {
+    "targetedReleaseTestsPassed": 294,
+    "failed": 0,
+    "nextProductionBuild": "success, 381 static pages",
+    "dailyReviewMetadataBeforeBytes": 151774,
+    "dailyReviewMetadataAfterBytes": 25520,
+    "dailyReviewEntriesPreserved": 1661,
+    "qualification": "Technical tests verify structure, integration, state, access and transport. They do not prove scientific correctness. Byte reduction concerns this metadata payload, not total app loading speed."
+  },
+  "nextWork": [
+    "Continue the active content goal with genuinely different, source-checked learning objectives in the existing categories.",
+    "Introduce paged flashcard delivery before a growing full-bank response approaches the hosting response-size limit; retain all course/lesson scope and integrity checks.",
+    "Keep counts reproducible. Central course questions and their derived cards are not additional independent facts, and lower-bound competitor claims are not exact inventories."
+  ]
+}

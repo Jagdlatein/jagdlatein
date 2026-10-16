@@ -1,6 +1,7 @@
 import { getSignedAccountAccess } from "../../../../lib/account-access";
 import { getFlashcardExport } from "../../../../lib/learning-flashcards";
 import { packFlashcards } from "../../../../lib/flashcard-payload";
+import { readFlashcardSelection } from "../../../../lib/flashcard-selection";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,6 +11,8 @@ export async function GET(req) {
     const account = await getSignedAccountAccess(req);
     if (!account) return response({ message: "Bitte anmelden, um alle Lernkarten zu laden." }, 401);
     if (!account.paid && !account.admin) return response({ message: "Für die Lernkarten ist ein aktiver Zugang erforderlich." }, 403);
-    return response(packFlashcards(getFlashcardExport()));
+    const selection = readFlashcardSelection(new URL(req.url).searchParams);
+    if (selection?.invalid) return response({ message: "Die Lernkartenauswahl ist ungültig." }, 400);
+    return response(packFlashcards(getFlashcardExport(selection)));
   } catch { return response({ message: "Die Lernkarten sind vorübergehend nicht verfügbar." }, 503); }
 }

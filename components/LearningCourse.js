@@ -19,11 +19,11 @@ function makeRun(questions, mode = "full", answerSeed = 0) {
   return { questions, mode, answerSeed, index: 0, answers: {}, score: 0, started: false, complete: false, showResult: false };
 }
 
-export default function LearningCourse({ module }) {
-  return <LearningContent key={module.id} module={module} />;
+export default function LearningCourse({ module, flashcards }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} />;
 }
 
-function LearningContent({ module }) {
+function LearningContent({ module, flashcards }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
@@ -154,6 +154,7 @@ function LearningContent({ module }) {
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>
               <LessonEvidence lesson={lesson} reviewedOn={module.reviewedOn} />
+              {flashcards?.lessons?.[lesson.id] > 0 && <p className={styles.lessonCards}><Link href={{ pathname: "/lernen/lernkarten", query: { kurs: module.id, lektion: lesson.id } }} prefetch={false}>Diese Lektion mit {flashcards.lessons[lesson.id]} Lernkarten wiederholen</Link></p>}
               <div className={styles.actions}>
                 {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => selectLesson(lessonIndex - 1)}>Vorherige Lektion</button>}
                 {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => selectLesson(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" className={styles.button}>Zum Wissenscheck</a>}

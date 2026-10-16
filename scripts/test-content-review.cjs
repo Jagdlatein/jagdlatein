@@ -43,7 +43,9 @@ test('The active quiz preserves unique stable IDs and complete, resolvable answe
 });
 
 test('All detailed questions link to existing lessons, courses and country notes', () => {
-  const added = load('lib/learning-afternoon-expansion.js').afternoonModules;
+  const added = [...load('lib/learning-afternoon-expansion.js').afternoonModules,
+    ...load('lib/learning-knowledge-growth.js').knowledgeGrowthModules,
+    ...load('lib/learning-science-expansion.js').scienceExpansionModules];
   const addedIds = new Set(added.map(module => module.id));
   const existing = learningModules.filter(module => !addedIds.has(module.id));
   assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(existing.length, 84);

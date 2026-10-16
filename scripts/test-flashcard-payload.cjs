@@ -49,7 +49,8 @@ test('Both page props use a small immediate seed; the separately loaded complete
   console.log(`Lernkarten-Daten: ${seedBytes} Bytes sofort; Gesamtbestand ${rawBytes} → ${packedBytes} Bytes (${Math.round((1 - packedBytes / rawBytes) * 100)} % weniger)`);
   for (const file of ['pages/lernen/lernkarten.js', 'pages/lernen/lernkarten-drucken.js']) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
-    assert.match(source, /props:\s*getFlashcardPageData\(\)/);
+    assert.match(source, /getServerSideProps\(context\)/);
+    assert.match(source, /props:\s*getFlashcardPageData\(readFlashcardSelection\(context.query\)\)/);
     assert.match(source, /useFlashcardDeck/);
   }
   const pure = fs.readFileSync(path.join(root, 'lib/flashcard-payload.js'), 'utf8');

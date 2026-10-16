@@ -1,14 +1,16 @@
 import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
 import { LearningCover } from "./LearningPhoto";
 import { categoryPhotographs } from "../lib/learning-category-photos";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
+import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
 import styles from "../styles/LearningExperience.module.css";
 
-export default function DailyReview({ pool }) {
+export default function DailyReview({ pool: suppliedPool, catalog }) {
+  const pool = useMemo(() => Array.isArray(suppliedPool) ? suppliedPool : unpackDailyReviewCatalog(catalog), [suppliedPool, catalog]);
   const [category, setCategory] = useState("");
   const [round, setRound] = useState(null);
   const [load, setLoad] = useState({ phase: "loading", message: "", status: 0 });

@@ -18,6 +18,7 @@ const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.pn
 // the middleware check below; never broaden this to a path-prefix exception.
 const SERVER_GUARDED_PAGES = new Set([
   "/ebook", "/protected/ebook", "/glossar",
+  "/lernen/lernkarten", "/lernen/lernkarten-drucken",
   "/admin", "/admin/glossar", "/admin/glossar-import", "/admin/import",
   "/admin/push", "/admin/quiz", "/admin/testabos",
 ]);

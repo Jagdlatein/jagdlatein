@@ -1,0 +1,3654 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Sechs fachlich eingegrenzte Vertiefungen mit eigenen Rechen- und Fallbeispielen. Konkrete Claims und Grenzen sind je Lektion belegt. Diese Prüfung betrifft das neue Paket, nicht sämtliche App-Inhalte. Keine praktische Befähigung, medizinische Einzelfallbewertung oder pauschale rechtliche Einsatzfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-anwendung-kartenprofile-2026",
+      "title": "Kartenprofile: Gelände rechnen und lesen",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Höhenintervalle, Maßstabswechsel und eigene Profilrechnungen sicher auseinanderhalten.",
+      "minutes": 50,
+      "objectives": [
+        "Maßstabsrechnungen in beide Richtungen lösen",
+        "Konturen und Intervalle richtig zählen",
+        "Nettohöhe und Anstieg getrennt berechnen",
+        "Signaturen dem konkreten Kartenwerk zuordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Kartographische Grundlagen und ausdrücklich eigene Rechenfälle; länderspezifische Signaturen werden nur mit benannter Legende verwendet.",
+        "AT": "Kartographische Grundlagen und ausdrücklich eigene Rechenfälle; länderspezifische Signaturen werden nur mit benannter Legende verwendet.",
+        "CH": "Kartographische Grundlagen und ausdrücklich eigene Rechenfälle; länderspezifische Signaturen werden nur mit benannter Legende verwendet."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "swisstopo · Höhenlinien und Äquidistanz",
+          "url": "https://www.swisstopo.admin.ch/de/hoehenlinien",
+          "organization": "Bundesamt für Landestopografie swisstopo",
+          "supports": "Gleiche Höhe, Konturabstände und Geländeformen; kartenspezifische Äquidistanz und Legende, keine universelle Höhenstufe aus dem Maßstab."
+        },
+        {
+          "label": "Ordnance Survey · Map reading made easy",
+          "url": "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf",
+          "organization": "Ordnance Survey",
+          "supports": "Maßstabsverhältnis, Zeichenerklärung, Streckenmessung und Höhenkonturen. Britisches Gitternetz und britische Höhenstufen werden nicht auf DACH übertragen."
+        },
+        {
+          "label": "USGS · Cartographic Specifications – Elevation",
+          "url": "https://www.usgs.gov/ngp-standards-and-specifications/us-topo-cartographic-specifications-elevation",
+          "organization": "U.S. Geological Survey",
+          "supports": "Index-, Zwischen- und Hilfskonturen und Vertiefungskennzeichnung als kartographische Originaldefinitionen; spezifische US-Zeichen oder jede fünfte Indexlinie werden nicht zur DACH-Norm verallgemeinert."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "massstabsrechnung",
+          "title": "Maßstab rückwärts lesen und Darstellungen vergleichen",
+          "paragraphs": [
+            "Der Maßstab 1:n vergleicht Kartenlänge und zugehörige horizontale Geländelänge in derselben Einheit. Wer vom Gelände zur Karte zurückrechnet, dividiert durch n; wer von der Karte ins Gelände rechnet, multipliziert. Eine größere Maßstabszahl im Nenner bedeutet stärkere Verkleinerung. Die Zahlenangabe gilt für die vorgesehene Darstellung: Eine vergrößerte Kopie ändert den Maßstab, während ein mitvergrößerter Maßstabsbalken als Vergleich weiter verwendbar bleibt.",
+            "Eigene Rechenfälle: 1,2 Kilometer sind 120000 Zentimeter und ergeben bei 1:30000 vier Zentimeter auf der Karte. Wird dieser Ausdruck in beiden Richtungen auf das Doppelte vergrößert, entsprechen acht Zentimeter derselben Geländelänge; der neue Zahlenmaßstab ist 1:15000. Eine gekrümmte Weglinie wird entlang ihres Verlaufs gemessen. Ihre Kartenlänge und die Luftlinie zwischen den Endpunkten beantworten verschiedene Fragen. Keine dieser zweidimensionalen Messungen enthält automatisch die zusätzlichen Höhenmeter einer Hangstrecke."
+          ],
+          "takeaway": "Zuerst gleiche Einheiten herstellen, dann Richtung der Umrechnung prüfen.",
+          "exercise": "Rechne 900 Meter bei 1:15000 in Zentimeter um und beschreibe anschließend, was eine Verkleinerung des Ausdrucks verändert."
+        },
+        {
+          "id": "hoehenintervalle",
+          "title": "Höhenunterschiede ohne Zählfehler",
+          "paragraphs": [
+            "Höhenlinien verbinden Punkte gleicher Höhe. Die Äquidistanz bezeichnet den Höhenunterschied aufeinanderfolgender regulärer Konturen. Sie steht in den Angaben der konkreten Karte; aus dem Maßstab allein lässt sie sich nicht weltweit bestimmen. Eine kräftiger gezeichnete und beschriftete Indexlinie bleibt eine Höhenlinie. Ihre Strichstärke fügt keinen zusätzlichen Höhenabschnitt ein. Hilfs- oder Ergänzungskonturen sind nach der jeweiligen Legende zu behandeln.",
+            "Eigene Rechenfälle: Fünf nacheinander aufsteigende reguläre Konturen bei 600, 620, 640, 660 und 680 Metern begrenzen vier Intervalle und 80 Meter Höhenunterschied. Von 720 nach 780 Metern sind es bei 20 Metern Äquidistanz drei Intervalle. Wer nur Start- und Zielhöhe kennt, kennt zunächst den Nettohöhenunterschied. Ein Weg mit Zwischenabstieg kann deutlich mehr aufsummierten Anstieg enthalten. In den Aufgaben sind Konturtypen, Höhen und Reihenfolge ausdrücklich vorgegeben; unbeschriftete Linien werden nicht blind gezählt."
+          ],
+          "takeaway": "Zwischen fünf aufeinanderfolgenden Konturen liegen vier Höhenintervalle.",
+          "exercise": "Schreibe zu sechs steigenden Konturen mit 10 Metern Äquidistanz eine Zahlenfolge und bestimme die Höhendifferenz."
+        },
+        {
+          "id": "hoehenprofil",
+          "title": "Aus Höhenpunkten ein Geländeprofil bauen",
+          "paragraphs": [
+            "Ein Höhenprofil stellt entlang einer festgelegten Strecke die Höhe gegen die horizontale Entfernung dar. Die Konturfolge liefert Stützpunkte, aber nicht jeden kleinen Geländeabsatz zwischen ihnen. Bei gleichem Maßstab und gleicher Äquidistanz zeigen engere Konturabstände steileres Gelände. Für eine mittlere Steigung wird der Höhenunterschied auf die horizontale Strecke bezogen: 30 Meter auf 300 Meter sind im eigenen Beispiel zehn Prozent, nicht zehn Grad.",
+            "Eigene Profilübung: Entlang einer gedachten Linie liegen bei 0, 100, 200 und 300 Metern die Höhen 500, 520, 510 und 540 Meter. Die Nettohöhe beträgt 40 Meter; die beiden Anstiege summieren sich zu 50 Metern, der Abstieg zu zehn Metern. Die Höhe steigt also nicht durchgehend. Eine geschlossene Konturgruppe mit nach innen zunehmenden Zahlen beschreibt eine Erhebung; nach innen abnehmende, entsprechend bezeichnete Konturen beschreiben eine Vertiefung. Geschlossene Ringe allein legen die Richtung noch nicht fest. Ein Profil ist eine Geländeinformation und keine Zusage über Begehbarkeit."
+          ],
+          "takeaway": "Ein Profil trennt Verlauf, Nettohöhe und aufsummierten Anstieg.",
+          "exercise": "Zeichne die vier angegebenen Stützpunkte auf Papier und markiere die getrennten Auf- und Abstiegsabschnitte."
+        },
+        {
+          "id": "legende",
+          "title": "Legende, Höhenpunkt und Kartenausschnitt zusammenlesen",
+          "paragraphs": [
+            "Die Zeichenerklärung übersetzt Farben, Flächen, Linien und Punktsymbole in die Bedeutung des konkreten Kartenwerks. Eine flächige Waldsignatur ist eine andere Darstellungsart als ein einzelner Höhenpunkt mit Zahl. Die Punktzahl beschreibt diesen Ort; sie ist keine Äquidistanz und keine Angabe der Baumhöhe. Karten verschiedener Herausgeber können andere Zeichen und Farben verwenden. Deshalb wird ein bekannt wirkendes Symbol nicht ohne seine Legende auf ein anderes Produkt übertragen.",
+            "Eigene Auswerteaufgabe: Auf einem gedachten Blatt steht im Kartenrand „Höhen in Metern, Äquidistanz 20 Meter“. Ein Punkt ist mit 743 beschriftet; die benachbarte Kontur trägt 740. Damit ist der Punkt drei Meter höher als diese Kontur. Die Skizze sagt ohne weitere Messung nichts über den Abstand beider Stellen. Wird der Ausschnitt am Bildschirm größer gezogen, erscheinen vorhandene Zeichen größer; daraus entsteht keine neue Geländemessung. Bei der Nutzung echter Karten sind Ausgabe, Legende und erkennbarer Datenstand zusammen mit dem Ausschnitt aufzubewahren."
+          ],
+          "takeaway": "Eine Höhenzahl, eine Entfernung und eine Symbolbedeutung sind getrennte Informationen.",
+          "exercise": "Notiere an einer vorhandenen Karte Herausgeber, Maßstab, Höhenintervall und die Erklärung eines bisher unbekannten Zeichens."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "massstabsrechnung",
+          "q": "Eigener Rechenfall: 1,2 km Gelände bei 1:30000 entsprechen welcher Kartenlänge?",
+          "options": [
+            "4 cm",
+            "2 cm",
+            "6 cm",
+            "8 cm"
+          ],
+          "answer": 0,
+          "explain": "120000 cm geteilt durch 30000 ergeben 4 cm Kartenlänge."
+        },
+        {
+          "id": "q2",
+          "lessonId": "massstabsrechnung",
+          "q": "Eigener Rechenfall: 900 m bei 1:15000 entsprechen welcher Kartenlänge?",
+          "options": [
+            "3 cm",
+            "9 cm",
+            "6 cm",
+            "12 cm"
+          ],
+          "answer": 2,
+          "explain": "90000 cm geteilt durch 15000 ergeben 6 cm."
+        },
+        {
+          "id": "q3",
+          "lessonId": "massstabsrechnung",
+          "q": "Eine Karte 1:40000 wird linear auf 200 Prozent vergrößert. Welcher Zahlenmaßstab gilt danach?",
+          "options": [
+            "1:80000",
+            "1:20000",
+            "1:40000",
+            "1:160000"
+          ],
+          "answer": 1,
+          "explain": "Verdoppelte Längen halbieren den Nenner: Aus 1:40000 wird 1:20000."
+        },
+        {
+          "id": "q4",
+          "lessonId": "massstabsrechnung",
+          "q": "Welche Größe bleibt beim gemeinsamen Vergrößern von Karte und Maßstabsbalken zuverlässig vergleichbar?",
+          "options": [
+            "Die ursprüngliche Zentimeterangabe",
+            "Die ursprüngliche Blattbreite",
+            "Die Anzahl gedruckter Seiten",
+            "Das Verhältnis von Strecke zu Balken"
+          ],
+          "answer": 3,
+          "explain": "Strecke und Balken wachsen im gleichen Verhältnis. Der mitvergrößerte Balken bleibt deshalb brauchbar."
+        },
+        {
+          "id": "q5",
+          "lessonId": "massstabsrechnung",
+          "q": "Eigener Rechenfall: 1 cm entspricht 400 m. Welcher Zahlenmaßstab ist das?",
+          "options": [
+            "1:4000",
+            "1:400000",
+            "1:40000",
+            "1:400"
+          ],
+          "answer": 2,
+          "explain": "400 m sind 40000 cm; eine Karteneinheit entspricht somit 40000 gleichen Geländeeinheiten."
+        },
+        {
+          "id": "q6",
+          "lessonId": "massstabsrechnung",
+          "q": "Welche Messung bildet einen gebogenen Weg in der Kartenebene ab?",
+          "options": [
+            "Die Länge entlang seiner Weglinie",
+            "Der Abstand seiner Endpunkte",
+            "Die Höhe seines höchsten Punkts",
+            "Die Breite der benutzten Signatur"
+          ],
+          "answer": 0,
+          "explain": "Die Messung muss dem gezeichneten Verlauf folgen. Der Endpunktabstand beschreibt die Luftlinie."
+        },
+        {
+          "id": "q7",
+          "lessonId": "massstabsrechnung",
+          "q": "Welcher Nenner bedeutet bei gleicher Blattgröße den größeren Kartenmaßstab?",
+          "options": [
+            "25000 bei 1:25000",
+            "50000 bei 1:50000",
+            "100000 bei 1:100000",
+            "10000 bei 1:10000"
+          ],
+          "answer": 3,
+          "explain": "Ein kleinerer Nenner bedeutet eine geringere Verkleinerung und damit einen größeren Maßstab."
+        },
+        {
+          "id": "q8",
+          "lessonId": "massstabsrechnung",
+          "q": "Welche Strecke erhält man unmittelbar aus einer üblichen topographischen Kartenmessung?",
+          "options": [
+            "Die vollständig abgewickelte Hangstrecke",
+            "Die Strecke in horizontaler Projektion",
+            "Die Summe aller Anstiegsabschnitte",
+            "Die mit Gehzeit gewichtete Strecke"
+          ],
+          "answer": 1,
+          "explain": "Die Karte bildet die Landschaft in der Ebene ab. Höhenunterschiede sind für Hanglängen gesondert zu berücksichtigen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "hoehenintervalle",
+          "q": "Wie viele Intervalle begrenzen die fünf Konturen 600, 620, 640, 660 und 680 m?",
+          "options": [
+            "Vier Höhenintervalle",
+            "Fünf Höhenintervalle",
+            "Drei Höhenintervalle",
+            "Sechs Höhenintervalle"
+          ],
+          "answer": 0,
+          "explain": "Zwischen fünf aufeinanderfolgenden Konturen liegen vier Zwischenräume mit jeweils 20 m Höhe."
+        },
+        {
+          "id": "q10",
+          "lessonId": "hoehenintervalle",
+          "q": "Eigener Rechenfall: Welche Höhendifferenz liegt zwischen 600 und 680 m?",
+          "options": [
+            "60 m",
+            "100 m",
+            "80 m",
+            "120 m"
+          ],
+          "answer": 2,
+          "explain": "680 m minus 600 m ergeben 80 m Höhenunterschied."
+        },
+        {
+          "id": "q11",
+          "lessonId": "hoehenintervalle",
+          "q": "Welche Kartenangabe liefert den Abstand regulärer Höhenlinien in der Höhe?",
+          "options": [
+            "Die Breite des Kartenrahmens",
+            "Die angegebene Äquidistanz",
+            "Die Länge des Nordpfeils",
+            "Die Größe der Ortsbeschriftung"
+          ],
+          "answer": 1,
+          "explain": "Die Äquidistanz benennt die Höhenstufe der regulären Konturen des jeweiligen Kartenwerks."
+        },
+        {
+          "id": "q12",
+          "lessonId": "hoehenintervalle",
+          "q": "Eigener Rechenfall: 720 bis 780 m bei 20 m Äquidistanz sind wie viele Intervalle?",
+          "options": [
+            "Zwei Intervalle",
+            "Vier Intervalle",
+            "Sechs Intervalle",
+            "Drei Intervalle"
+          ],
+          "answer": 3,
+          "explain": "Die Höhendifferenz beträgt 60 m. Geteilt durch 20 m ergibt das drei Intervalle."
+        },
+        {
+          "id": "q13",
+          "lessonId": "hoehenintervalle",
+          "q": "Wofür steht die kräftigere Index-Höhenlinie im hier beschriebenen Kartensystem?",
+          "options": [
+            "Ein zusätzliches doppeltes Höhenintervall",
+            "Ein Weg mit stärkerer Befestigung",
+            "Eine hervorgehobene reguläre Höhenlinie",
+            "Ein nur ungefähr geschätzter Höhenwert"
+          ],
+          "answer": 2,
+          "explain": "Die Indexlinie erleichtert das Lesen und Beschriften. Die Strichstärke fügt keine Höhenstufe hinzu."
+        },
+        {
+          "id": "q14",
+          "lessonId": "hoehenintervalle",
+          "q": "Was muss bei einer ergänzenden Hilfskontur zuerst geklärt werden?",
+          "options": [
+            "Ihre Bedeutung in der Kartenlegende",
+            "Ihre Entfernung zum nächsten Ortsnamen",
+            "Ihre Breite gegenüber dem Kartenrahmen",
+            "Ihre Ähnlichkeit mit einer Grundstücksgrenze"
+          ],
+          "answer": 0,
+          "explain": "Hilfskonturen können zwischen regulären Höhenstufen liegen. Die Legende bestimmt ihre Auswertung."
+        },
+        {
+          "id": "q15",
+          "lessonId": "hoehenintervalle",
+          "q": "Eigener Rechenfall: Sechs fortlaufend steigende Konturen mit 10 m Stufe ergeben welche Differenz?",
+          "options": [
+            "40 m",
+            "60 m",
+            "70 m",
+            "50 m"
+          ],
+          "answer": 3,
+          "explain": "Sechs Konturen begrenzen fünf Intervalle; fünf mal 10 m ergeben 50 m."
+        },
+        {
+          "id": "q16",
+          "lessonId": "hoehenintervalle",
+          "q": "Welche Größe liefert Zielhöhe minus Starthöhe?",
+          "options": [
+            "Die Summe aller Anstiegsmeter",
+            "Den Nettohöhenunterschied",
+            "Die Gesamtlänge des Wegverlaufs",
+            "Die größte einzelne Hangneigung"
+          ],
+          "answer": 1,
+          "explain": "Der Nettohöhenunterschied berücksichtigt nur Anfang und Ende, nicht zwischenzeitliche Auf- und Abstiege."
+        },
+        {
+          "id": "q17",
+          "lessonId": "hoehenprofil",
+          "q": "Eigener Rechenfall: Das Profil 500–520–510–540 m enthält wie viel aufsummierten Anstieg?",
+          "options": [
+            "50 m",
+            "40 m",
+            "60 m",
+            "70 m"
+          ],
+          "answer": 0,
+          "explain": "Die positiven Abschnitte sind 20 m und 30 m. Zusammen ergeben sie 50 m Anstieg."
+        },
+        {
+          "id": "q18",
+          "lessonId": "hoehenprofil",
+          "q": "Eigener Rechenfall: Welchen Abstieg enthält das Profil 500–520–510–540 m?",
+          "options": [
+            "20 m",
+            "30 m",
+            "10 m",
+            "40 m"
+          ],
+          "answer": 2,
+          "explain": "Der einzige Abstieg verläuft von 520 auf 510 m und beträgt 10 m."
+        },
+        {
+          "id": "q19",
+          "lessonId": "hoehenprofil",
+          "q": "Was zeigt die waagerechte Achse des hier beschriebenen Höhenprofils?",
+          "options": [
+            "Die Temperatur entlang der Profillinie",
+            "Die Entfernung entlang der Profillinie",
+            "Die Dichte aller Höhenbeschriftungen",
+            "Die Anzahl der betretenen Grundstücke"
+          ],
+          "answer": 1,
+          "explain": "Die Höhe wird gegen die horizontale Entfernung entlang einer festgelegten Linie aufgetragen."
+        },
+        {
+          "id": "q20",
+          "lessonId": "hoehenprofil",
+          "q": "Was bedeuten engere reguläre Konturabstände bei gleichem Maßstab und gleicher Äquidistanz?",
+          "options": [
+            "Eine geringere Hangneigung",
+            "Eine geringere absolute Höhenlage",
+            "Eine größere Breite der Vegetation",
+            "Eine größere Hangneigung"
+          ],
+          "answer": 3,
+          "explain": "Derselbe Höhenunterschied wird auf kürzerer horizontaler Strecke erreicht; der Hang ist steiler."
+        },
+        {
+          "id": "q21",
+          "lessonId": "hoehenprofil",
+          "q": "Eigener Rechenfall: 30 m Höhe auf 300 m horizontaler Strecke bedeuten welche mittlere Steigung?",
+          "options": [
+            "10 Grad",
+            "30 Prozent",
+            "10 Prozent",
+            "30 Grad"
+          ],
+          "answer": 2,
+          "explain": "30 geteilt durch 300 mal 100 ergeben 10 Prozent. Prozentsteigung und Winkel sind verschiedene Größen."
+        },
+        {
+          "id": "q22",
+          "lessonId": "hoehenprofil",
+          "q": "Welche Konturgruppe beschreibt anhand ihrer Zahlen eine Erhebung?",
+          "options": [
+            "Geschlossene Linien mit nach innen steigender Höhe",
+            "Geschlossene Linien mit nach innen sinkender Höhe",
+            "Parallele Linien mit überall gleicher Höhe",
+            "Offene Linien ohne zugeordnete Höhenangabe"
+          ],
+          "answer": 0,
+          "explain": "Die nach innen zunehmenden Konturwerte zeigen einen höher liegenden Innenbereich."
+        },
+        {
+          "id": "q23",
+          "lessonId": "hoehenprofil",
+          "q": "Welche Zusatzinformation trennt Erhebung und Vertiefung bei geschlossenen Konturen?",
+          "options": [
+            "Die Schriftgröße des nächsten Ortsnamens",
+            "Die Blattnummer der angrenzenden Karte",
+            "Die Farbe des umgebenden Kartenrahmens",
+            "Die Richtung der Höhenwerte und die Legende"
+          ],
+          "answer": 3,
+          "explain": "Höhenzahlen und gegebenenfalls die in der Legende erläuterte Senkenkennzeichnung zeigen die Höhenrichtung."
+        },
+        {
+          "id": "q24",
+          "lessonId": "hoehenprofil",
+          "q": "Welche Grenze hat ein aus wenigen Konturpunkten konstruiertes Profil?",
+          "options": [
+            "Jeder Zwischenpunkt ist millimetergenau bestimmt",
+            "Kleine Zwischenformen können unaufgelöst bleiben",
+            "Alle Oberflächenhindernisse sind enthalten",
+            "Die Begehbarkeit ist für jeden Abschnitt belegt"
+          ],
+          "answer": 1,
+          "explain": "Konturen liefern Stützpunkte. Zwischen ihnen können kleinere Geländeformen liegen, die der Maßstab nicht auflöst."
+        },
+        {
+          "id": "q25",
+          "lessonId": "legende",
+          "q": "Wo wird ein unbekanntes Punktsymbol einer Karte nachgeschlagen?",
+          "options": [
+            "In der Zeichenerklärung dieses Kartenwerks",
+            "Im ähnlichsten Symbol eines anderen Kartenwerks",
+            "In der Farbe des nächstgelegenen Schriftzugs",
+            "Im bloßen Vergrößerungsfaktor des Bildschirms"
+          ],
+          "answer": 0,
+          "explain": "Die Legende des konkreten Produkts erklärt dessen Zeichen und Farben."
+        },
+        {
+          "id": "q26",
+          "lessonId": "legende",
+          "q": "Welche Information bezeichnet die Zahl 743 an einem ausdrücklich markierten Höhenpunkt?",
+          "options": [
+            "Die Äquidistanz sämtlicher Konturen des Blattes",
+            "Die horizontale Entfernung zum nächsten Weg",
+            "Die Höhe dieses Punktes in der angegebenen Einheit",
+            "Die durchschnittliche Baumhöhe der Umgebung"
+          ],
+          "answer": 2,
+          "explain": "Die Höhenpunktzahl gehört zu einem bestimmten Ort. Einheit und Bezug sind den Kartenangaben zu entnehmen."
+        },
+        {
+          "id": "q27",
+          "lessonId": "legende",
+          "q": "Eigener Rechenfall: Ein Höhenpunkt liegt bei 743 m, die Kontur bei 740 m. Wie groß ist die Höhendifferenz?",
+          "options": [
+            "7 m",
+            "3 m",
+            "13 m",
+            "43 m"
+          ],
+          "answer": 1,
+          "explain": "743 m minus 740 m ergeben eine Höhendifferenz von 3 m."
+        },
+        {
+          "id": "q28",
+          "lessonId": "legende",
+          "q": "Welche Angabe fehlt zur horizontalen Entfernung zwischen Höhenpunkt und Kontur?",
+          "options": [
+            "Die bloße Differenz beider Höhenzahlen",
+            "Die Anzahl ihrer gedruckten Ziffern",
+            "Die Strichstärke der Konturbeschriftung",
+            "Die gemessene Kartenstrecke samt Maßstab"
+          ],
+          "answer": 3,
+          "explain": "Höhenwerte liefern vertikale Unterschiede. Für horizontale Entfernung braucht man eine Streckenmessung und den Maßstab."
+        },
+        {
+          "id": "q29",
+          "lessonId": "legende",
+          "q": "Was bewirkt bloßes Vergrößern eines unveränderten Kartenbildes?",
+          "options": [
+            "Zusätzliche Höhenmessungen entstehen",
+            "Ungemessene Geländestufen werden ergänzt",
+            "Vorhandene Zeichen erscheinen größer",
+            "Der Aufnahmezeitpunkt wird aktualisiert"
+          ],
+          "answer": 2,
+          "explain": "Eine Bildvergrößerung skaliert vorhandene Information; sie erzeugt keine neue Vermessung."
+        },
+        {
+          "id": "q30",
+          "lessonId": "legende",
+          "q": "Welche Dokumentation macht einen gespeicherten Kartenausschnitt nachvollziehbarer?",
+          "options": [
+            "Herausgeber, Ausgabe, Maßstab und Legende",
+            "Nur die Anzahl der sichtbaren Wege",
+            "Nur die Farbe des Außenrahmens",
+            "Nur der Name der betrachtenden Person"
+          ],
+          "answer": 0,
+          "explain": "Diese Angaben ermöglichen das Einordnen von Zeichensystem, Auflösung und erkennbarem Datenstand."
+        },
+        {
+          "id": "q31",
+          "lessonId": "legende",
+          "q": "Was unterscheidet die im Text beschriebene Wald-Flächensignatur von einem einzelnen Höhenpunkt?",
+          "options": [
+            "Sie beziffert die Höhe eines einzelnen Punktes.",
+            "Sie gibt die Stufe zwischen zwei Höhenlinien an.",
+            "Sie beziffert die Entfernung zum nächsten Weg.",
+            "Sie bezeichnet einen räumlich ausgedehnten Bereich."
+          ],
+          "answer": 3,
+          "explain": "Eine Flächensignatur beschreibt einen Bereich. Ein Höhenpunkt mit Zahl bezieht die angegebene Höhe auf eine einzelne Stelle."
+        },
+        {
+          "id": "q32",
+          "lessonId": "legende",
+          "q": "Wie werden Karten verschiedener Herausgeber fachlich verglichen?",
+          "options": [
+            "Mit einer gemeinsamen vermuteten Farbregel",
+            "Jeweils mit ihrer eigenen Legende",
+            "Allein anhand der Bildhelligkeit",
+            "Allein anhand der Anzahl Ortsnamen"
+          ],
+          "answer": 1,
+          "explain": "Zeichensysteme können sich unterscheiden. Jede Karte wird anhand ihrer eigenen Erklärung gelesen."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "title": "Muskelbiologie: Wie aus Muskel Fleisch wird",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbret & Gesundheit",
+      "description": "Faseraufbau, Glykogen, pH, Totenstarre und Reifung verständlich verbinden.",
+      "minutes": 55,
+      "objectives": [
+        "Muskelaufbau bis zum Sarkomer ordnen",
+        "Glykogen und pH-Verlauf erklären",
+        "Rigor und Proteolyse unterscheiden",
+        "Wasserhaltung und Lebensmittelsicherheit trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologische Grundlagen; keine festen Reifezeiten, Verzehrsfreigaben oder länderübergreifenden Hygienevorschriften.",
+        "AT": "Biologische Grundlagen; keine festen Reifezeiten, Verzehrsfreigaben oder länderübergreifenden Hygienevorschriften.",
+        "CH": "Biologische Grundlagen; keine festen Reifezeiten, Verzehrsfreigaben oder länderübergreifenden Hygienevorschriften."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Texas A&M · Structure and Composition of Muscle",
+          "url": "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/structure-and-composition-of-muscle/",
+          "organization": "Texas A&M University",
+          "supports": "Muskelfaser, Myofibrille, Sarkomer, Aktin/Myosin und Bindegewebshüllen."
+        },
+        {
+          "label": "OpenStax · Skeletal Muscle",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle",
+          "organization": "Rice University / OpenStax",
+          "supports": "Unabhängige anatomische Erklärung der Faser-/Bündelhierarchie, Sarkomere und Hüllen; keine Übernahme menschlicher Größenwerte auf Wildtiere."
+        },
+        {
+          "label": "Texas A&M · Conversion of Muscle to Meat",
+          "url": "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/conversion-of-muscle-to-meat/",
+          "organization": "Texas A&M University",
+          "supports": "Glykogen, Lactat und pH; ATP-Mangel und Rigor; Proteolyse sowie Wasserhaltevermögen. Keine Übernahme starrer pH-/Zeitwerte oder praktischer US-Verfahrensempfehlungen."
+        },
+        {
+          "label": "FAO · Meat production and quality",
+          "url": "https://www.fao.org/4/T0562E/T0562E02.htm",
+          "organization": "Food and Agriculture Organization of the United Nations",
+          "supports": "Grundlegende biochemische Abläufe und Qualitätsunterschiede; ältere Zahlenwerte und pauschale Verzehrsfreigaben werden ausdrücklich nicht übernommen."
+        },
+        {
+          "label": "BfR · Fragen und Antworten zu verdorbenem Fleisch",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Abgrenzung erwünschter enzymatischer Reifung, Verderb und möglichen Krankheitserregern; Zartheit oder Sensorik allein sind kein Sicherheitsnachweis."
+        },
+        {
+          "label": "OpenStax · Muscle Fiber Contraction and Relaxation",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation",
+          "organization": "Rice University / OpenStax",
+          "supports": "ATP-Bindung löst den Aktin-Myosin-Querbrückenkontakt; Abgleich des biologischen Mechanismus, keine Übernahme von Figuren oder Übungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "muskelaufbau",
+          "title": "Von der Muskelfaser zum ganzen Muskel",
+          "paragraphs": [
+            "Eine Skelettmuskelfaser ist eine spezialisierte, langgestreckte Muskelzelle. In ihr liegen Myofibrillen; diese enthalten hintereinander angeordnete Sarkomere als funktionelle Kontraktionseinheiten. Die dünnen Filamente enthalten vor allem Aktin, die dicken vor allem Myosin. Eine Muskelfaser ist also weder mit einem ganzen sichtbaren Fleischstück noch mit einem einzelnen Filament gleichzusetzen. Die Hülle der Zellmembran heißt Sarkolemm.",
+            "Mehrere Fasern bilden ein Bündel. Bindegewebe umgibt die einzelne Faser als Endomysium, ein Faserbündel als Perimysium und den ganzen Muskel als Epimysium. Diese Hüllen enthalten unter anderem kollagene Strukturen und sind keine zusätzlichen Muskelfasern. Eigene Zuordnungsübung: Beschrifte eine gedachte Vergrößerungsfolge „Muskel – Bündel – Faser – Myofibrille – Sarkomer“. Eine makroskopische Faserung auf einem Foto lässt nicht alle mikroskopischen Grenzen erkennen; die Begriffe erklären den Bau, ohne dem Foto ein unsichtbares Detail zuzuschreiben."
+          ],
+          "takeaway": "Faser, Bündel, Myofibrille und Sarkomer bezeichnen unterschiedliche Organisationsebenen.",
+          "exercise": "Zeichne die fünf Ebenen und ordne die drei Bindegewebshüllen richtig zu."
+        },
+        {
+          "id": "glykogen",
+          "title": "Energiereserve, Lactat und pH-Verlauf",
+          "paragraphs": [
+            "Glykogen ist eine aus Glucosebausteinen aufgebaute Kohlenhydratreserve des Muskels. Nach dem Tod endet die Sauerstoffversorgung durch den Kreislauf; vorhandene Stoffwechselvorgänge laufen zunächst mit verbleibenden Reserven weiter. Der anaerobe Abbau von Glykogen liefert zeitweise ATP und führt zur Lactatbildung. Mit den postmortalen Veränderungen fällt der pH des Muskels gewöhnlich ab. Der pH beschreibt den Säurezustand und wird nicht mit der Menge an Glykogen gleichgesetzt.",
+            "Stark verbrauchte Glykogenreserven können die nachfolgende Ansäuerung begrenzen. Fleisch mit höher bleibendem pH kann dunkler erscheinen und ungünstigere Bedingungen für die Haltbarkeit besitzen. Das ist ein biologischer Zusammenhang, keine automatische Diagnose bei jedem dunklen Stück Wildbret. Muskeltyp, Verlauf und Messzeitpunkt sind wichtig. Eigene Auswerteübung: Zwei Messreihen sind nur vergleichbar, wenn klar ist, welches Gewebe zu welchem Zeitpunkt und unter welchen Bedingungen gemessen wurde. Ein einzelner pH-Wert beweist weder eine bestimmte Vorgeschichte noch die gesundheitliche Unbedenklichkeit."
+          ],
+          "takeaway": "Glykogenabbau und pH-Verlauf hängen zusammen; ein Einzelwert erklärt nicht die gesamte Qualität.",
+          "exercise": "Erkläre die Folge Glykogen – anaerober Abbau – Lactatbildung und trenne sie von einer lebensmittelhygienischen Freigabe."
+        },
+        {
+          "id": "rigor",
+          "title": "Totenstarre und enzymatische Reifung",
+          "paragraphs": [
+            "ATP ist für den geordneten Wechsel der Wechselwirkungen von Aktin und Myosin notwendig; dazu gehört das Lösen der Verbindung am Myosinkopf. Wenn nach dem Tod die ATP-Bereitstellung erschöpft ist, bilden sich stabile Bindungen zwischen den Filamenten und die Dehnbarkeit nimmt ab. Dieser Zustand heißt Rigor mortis oder Totenstarre. Er ist ein Vorgang im Muskel und kein Nachweis einer Infektion. Beginn und Verlauf sind nicht bei allen Tierarten, Muskeln und Bedingungen gleich.",
+            "Bei der Fleischreifung verändern körpereigene proteinspaltende Enzyme Strukturen des Muskels. Diese Proteolyse kann die Zartheit erhöhen. Reifung bedeutet nicht, dass der Muskel wieder lebt oder der Kreislauf zurückkehrt. Sie ist auch nicht dasselbe wie mikrobieller Verderb. Die erwünschte Strukturveränderung ersetzt keine kontrollierte Lebensmittelhygiene. Eigener Vergleich: Beschreibe getrennt, was „weniger dehnbar durch Rigor“ und „zarter durch strukturelle Proteolyse“ bedeuten. Dauer und Bedingungen der Reifung hängen vom Produkt und Prozess ab. Auffälliges Fleisch wird durch bloße Lagerung nicht zu geeigneter Reifeware."
+          ],
+          "takeaway": "Totenstarre erklärt Bindungen bei ATP-Mangel; Reifung erklärt nachfolgende enzymatische Strukturveränderungen.",
+          "exercise": "Definiere Rigor und Proteolyse jeweils in einem Satz, ohne eine feste Stundenzahl zu nennen."
+        },
+        {
+          "id": "wasserhaltevermoegen",
+          "title": "Wasserbindung, Tropfsaft und Qualitätsgrenzen",
+          "paragraphs": [
+            "Das Wasserhaltevermögen beschreibt, wie gut Fleisch sein Wasser unter bestimmten Bedingungen zurückhält. Es hängt unter anderem vom Zustand der Muskelproteine und vom pH ab. Wasser ist im Muskel nicht nur als frei sichtbare Flüssigkeit vorhanden; ein Teil steht in enger Beziehung zu den Proteinstrukturen. Austretender Tropfsaft ist daher ein Merkmal des Wasserverlusts und kein direktes Messgerät für Keime. Veränderungen der Proteine können sowohl Wasserhaltung als auch Textur beeinflussen.",
+            "PSE bezeichnet ein Qualitätsbild mit blassem, weichem und stärker saftabgebendem Fleisch; die klassischen Erläuterungen stammen besonders aus der Schweinefleischkunde. DFD steht für dunkel, fest und oberflächlich trocken; die scheinbar trockene Oberfläche kann mit hoher Wasserhaltung im Inneren zusammengehen. Diese Beschreibungen dürfen nicht als Ferndiagnose beliebiger Wildfotos dienen. Eigener Vergleichsfall: Eine Probe mit wenig Tropfsaft ist dadurch nicht automatisch länger sicher haltbar. pH, Temperaturverlauf, Hygiene und mikrobiologische Risiken beantworten unterschiedliche Teilfragen. Zartheit und Sicherheit bleiben getrennte Beurteilungen."
+          ],
+          "takeaway": "Saftverlust und Zartheit sind Qualitätsmerkmale, keine alleinigen Gesundheitsfreigaben.",
+          "exercise": "Erkläre, warum „trocken“ bei DFD nicht einfach einen geringen Gesamtwassergehalt bedeutet."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "muskelaufbau",
+          "q": "Welche Organisationsebene bezeichnet die Skelettmuskelfaser?",
+          "options": [
+            "Ein Bündel mehrerer Muskeln",
+            "Eine spezialisierte Muskelzelle",
+            "Eine einzelne Kollagenfaser",
+            "Ein vollständiges Gliedmaßensegment"
+          ],
+          "answer": 1,
+          "explain": "Die Skelettmuskelfaser ist eine langgestreckte Muskelzelle und enthält viele kleinere Strukturen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "muskelaufbau",
+          "q": "Was enthält eine Myofibrille in Längsrichtung?",
+          "options": [
+            "Hintereinander angeordnete Knochen",
+            "Hintereinander angeordnete Lymphknoten",
+            "Hintereinander angeordnete Haarfollikel",
+            "Hintereinander angeordnete Sarkomere"
+          ],
+          "answer": 3,
+          "explain": "Sarkomere sind die wiederkehrenden Kontraktionseinheiten innerhalb der Myofibrille."
+        },
+        {
+          "id": "q3",
+          "lessonId": "muskelaufbau",
+          "q": "Welches Protein ist ein Hauptbestandteil dünner kontraktiler Filamente?",
+          "options": [
+            "Aktin",
+            "Kollagen",
+            "Keratin",
+            "Elastin"
+          ],
+          "answer": 0,
+          "explain": "Die dünnen Filamente enthalten vor allem Aktin sowie weitere regulatorische Proteine."
+        },
+        {
+          "id": "q4",
+          "lessonId": "muskelaufbau",
+          "q": "Welches Protein bildet den Hauptbestandteil dicker kontraktiler Filamente?",
+          "options": [
+            "Myoglobin",
+            "Hämoglobin",
+            "Myosin",
+            "Fibrinogen"
+          ],
+          "answer": 2,
+          "explain": "Myosin ist das wesentliche Motorprotein der dicken Filamente im Sarkomer."
+        },
+        {
+          "id": "q5",
+          "lessonId": "muskelaufbau",
+          "q": "Welche Hülle umgibt die einzelne Muskelfaser als Bindegewebe?",
+          "options": [
+            "Perimysium",
+            "Epimysium",
+            "Periost",
+            "Endomysium"
+          ],
+          "answer": 3,
+          "explain": "Das Endomysium liegt als feine Bindegewebsschicht um einzelne Muskelfasern."
+        },
+        {
+          "id": "q6",
+          "lessonId": "muskelaufbau",
+          "q": "Welche Bindegewebshülle ordnet mehrere Muskelfasern zu einem Bündel?",
+          "options": [
+            "Endomysium",
+            "Perimysium",
+            "Epimysium",
+            "Sarkolemm"
+          ],
+          "answer": 1,
+          "explain": "Das Perimysium umgibt Faserbündel. Es gehört zum Bindegewebe des Muskels."
+        },
+        {
+          "id": "q7",
+          "lessonId": "muskelaufbau",
+          "q": "Welche Hülle umfasst den ganzen Skelettmuskel?",
+          "options": [
+            "Endomysium",
+            "Perimysium",
+            "Epimysium",
+            "Sarkolemm"
+          ],
+          "answer": 2,
+          "explain": "Das Epimysium ist die äußere Bindegewebshülle des gesamten Muskels."
+        },
+        {
+          "id": "q8",
+          "lessonId": "muskelaufbau",
+          "q": "Wie heißt die Zellmembran einer Muskelfaser?",
+          "options": [
+            "Sarkolemm",
+            "Sarkomer",
+            "Sarkoplasma",
+            "Perimysium"
+          ],
+          "answer": 0,
+          "explain": "Sarkolemm bezeichnet die Zellmembran. Sarkoplasma ist das Zellinnere der Muskelfaser."
+        },
+        {
+          "id": "q9",
+          "lessonId": "glykogen",
+          "q": "Welche Stoffklasse bildet die Muskelreserve Glykogen?",
+          "options": [
+            "Ein Fett aus Fettsäurebausteinen",
+            "Ein Kohlenhydrat aus Glucosebausteinen",
+            "Ein Protein aus Aminosäurebausteinen",
+            "Ein Mineral aus Calciumsalzbausteinen"
+          ],
+          "answer": 1,
+          "explain": "Glykogen ist ein verzweigter Glucosespeicher und gehört zu den Kohlenhydraten."
+        },
+        {
+          "id": "q10",
+          "lessonId": "glykogen",
+          "q": "Welcher Vorgang erklärt die nach dem Tod noch kurz mögliche ATP-Bildung aus Muskelreserven?",
+          "options": [
+            "Neubildung eines funktionsfähigen Kreislaufs",
+            "Photosynthese in den Muskelzellkernen",
+            "Einwanderung sauerstoffbildender Blutzellen",
+            "Anaerober Abbau vorhandener Kohlenhydrate"
+          ],
+          "answer": 3,
+          "explain": "Verbleibende Reserven ermöglichen zunächst anaerobe Stoffwechselvorgänge, obwohl die Kreislaufversorgung endet."
+        },
+        {
+          "id": "q11",
+          "lessonId": "glykogen",
+          "q": "Welches Produkt gehört zum anaeroben Abbau im hier beschriebenen postmortalen Muskel?",
+          "options": [
+            "Lactat",
+            "Cellulose",
+            "Keratin",
+            "Gallenfarbstoff"
+          ],
+          "answer": 0,
+          "explain": "Lactat entsteht beim anaeroben Kohlenhydratstoffwechsel und gehört zum postmortalen Stoffwechselverlauf."
+        },
+        {
+          "id": "q12",
+          "lessonId": "glykogen",
+          "q": "Welche Messgröße beschreibt den Säurezustand des Muskels?",
+          "options": [
+            "Die Länge der Muskelfasern",
+            "Die Zahl der Muskelbündel",
+            "Der pH-Wert",
+            "Die Dichte der Knochenrinde"
+          ],
+          "answer": 2,
+          "explain": "Der pH-Wert beschreibt den Säurezustand; er ist keine direkte Mengenangabe für Glykogen."
+        },
+        {
+          "id": "q13",
+          "lessonId": "glykogen",
+          "q": "Wie kann stark verbrauchtes Muskelglykogen den späteren Verlauf beeinflussen?",
+          "options": [
+            "Die postmortale Ansäuerung muss stets stärker ausfallen",
+            "Der Muskel baut nach dem Tod neue Vorratsorgane auf",
+            "Die Kreislaufversorgung hält dadurch dauerhaft an",
+            "Die postmortale Ansäuerung kann geringer ausfallen"
+          ],
+          "answer": 3,
+          "explain": "Weniger verfügbare Kohlenhydratreserve kann die Lactatbildung und den üblichen pH-Abfall begrenzen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "glykogen",
+          "q": "Welche Angabe ist für den Vergleich zweier Fleisch-pH-Messungen besonders wichtig?",
+          "options": [
+            "Tierfoto und Farbe des Dateirahmens",
+            "Muskel und Zeitpunkt der jeweiligen Messung",
+            "Name der verwendeten Kochrezeptur",
+            "Anzahl der abgebildeten Geweihenden"
+          ],
+          "answer": 1,
+          "explain": "pH verändert sich im Verlauf und kann zwischen Muskeln abweichen. Gewebe und Messzeit müssen zugeordnet sein."
+        },
+        {
+          "id": "q15",
+          "lessonId": "glykogen",
+          "q": "Was kann ein höher bleibender Fleisch-pH im Zusammenhang mit Haltbarkeit bedeuten?",
+          "options": [
+            "Einen verlässlichen Nachweis völliger Keimfreiheit",
+            "Eine garantierte Konservierung über längere Zeit",
+            "Günstigere Wachstumsbedingungen für manche Bakterien",
+            "Eine vollständige Inaktivierung aller Parasiten"
+          ],
+          "answer": 2,
+          "explain": "Geringere Ansäuerung kann mikrobielles Wachstum begünstigen. Daraus folgt keine exakte Haltbarkeitsfrist."
+        },
+        {
+          "id": "q16",
+          "lessonId": "glykogen",
+          "q": "Wie wird dunkles Fleisch fachlich eingeordnet?",
+          "options": [
+            "Als Merkmal mit mehreren möglichen Einflussgrößen",
+            "Als alleiniger Beweis einer bestimmten Infektion",
+            "Als alleiniger Beweis einer falschen Tierbestimmung",
+            "Als alleiniger Beweis ausreichender Kühlung"
+          ],
+          "answer": 0,
+          "explain": "Farbe hängt von mehreren biologischen und physikalischen Bedingungen ab. Sie erlaubt keine eindeutige Ferndiagnose der Vorgeschichte."
+        },
+        {
+          "id": "q17",
+          "lessonId": "rigor",
+          "q": "Welche Rolle hat ATP beim Aktin-Myosin-System unter anderem?",
+          "options": [
+            "Es ersetzt sämtliche kontraktilen Proteinfilamente",
+            "Es ermöglicht das Lösen der Myosin-Aktin-Verbindung",
+            "Es verwandelt Muskelgewebe unmittelbar in Knochen",
+            "Es bildet die äußere Bindegewebshülle des Muskels"
+          ],
+          "answer": 1,
+          "explain": "ATP-Bindung ermöglicht das Lösen des Myosinkopfs vom Aktin und ist Teil des regulären Querbrückenzyklus."
+        },
+        {
+          "id": "q18",
+          "lessonId": "rigor",
+          "q": "Welcher biochemische Zustand trägt zur Totenstarre bei?",
+          "options": [
+            "Neu einsetzende Sauerstoffversorgung im Muskel",
+            "Vollständige Neubildung aller Zellmembranen",
+            "Ansteigende Bildung funktionsfähiger Nervenzellen",
+            "Erschöpfte ATP-Bereitstellung im Muskel"
+          ],
+          "answer": 3,
+          "explain": "Bei ATP-Mangel bleiben stabile Aktin-Myosin-Bindungen bestehen; die Dehnbarkeit nimmt ab."
+        },
+        {
+          "id": "q19",
+          "lessonId": "rigor",
+          "q": "Was bedeutet der Fachausdruck Rigor mortis?",
+          "options": [
+            "Totenstarre",
+            "Fleischfaserbündel",
+            "Bindegewebshülle",
+            "Glykogenspeicher"
+          ],
+          "answer": 0,
+          "explain": "Rigor mortis ist die nach dem Tod eintretende Starre der Muskulatur."
+        },
+        {
+          "id": "q20",
+          "lessonId": "rigor",
+          "q": "Welche Eigenschaft nimmt beim Aufbau von Rigorbindungen typischerweise ab?",
+          "options": [
+            "Die Anzahl vorhandener Knochen",
+            "Die Länge des genetischen Codes",
+            "Die Dehnbarkeit des Muskels",
+            "Die Anzahl äußerer Körperöffnungen"
+          ],
+          "answer": 2,
+          "explain": "Stabile Bindungen zwischen den kontraktilen Filamenten begrenzen die Dehnbarkeit."
+        },
+        {
+          "id": "q21",
+          "lessonId": "rigor",
+          "q": "Was bedeutet Proteolyse in der Fleischreifung?",
+          "options": [
+            "Mechanische Neubildung von Knochen",
+            "Lichtabhängige Bildung von Glykogen",
+            "Elektrische Wiedereinschaltung des Kreislaufs",
+            "Enzymatische Spaltung von Proteinen"
+          ],
+          "answer": 3,
+          "explain": "Proteinspaltende Enzyme verändern während der Reifung bestimmte Muskelstrukturen."
+        },
+        {
+          "id": "q22",
+          "lessonId": "rigor",
+          "q": "Welches Ergebnis kann die strukturelle Proteolyse während kontrollierter Reifung haben?",
+          "options": [
+            "Eine Wiederbelebung des Muskels",
+            "Eine Zunahme der Zartheit",
+            "Eine Neubildung des Blutkreislaufs",
+            "Eine garantierte Sterilität des Fleischs"
+          ],
+          "answer": 1,
+          "explain": "Der enzymatische Strukturabbau kann Fleisch zarter machen. Er ist keine Sterilisierung."
+        },
+        {
+          "id": "q23",
+          "lessonId": "rigor",
+          "q": "Welche Unterscheidung trifft auf Reifung und Verderb zu?",
+          "options": [
+            "Jede enzymatische Veränderung ist bereits ein sicherer Verderbnachweis",
+            "Jede zunehmende Zartheit beweist das Fehlen von Krankheitserregern",
+            "Erwünschte Enzymwirkung und unerwünschter Verderb sind getrennt zu bewerten",
+            "Jede Reifung stellt die vollständige Funktion lebender Muskelzellen wieder her"
+          ],
+          "answer": 2,
+          "explain": "Kontrollierte Reifung verändert die Struktur. Mikrobiologische Sicherheit muss zusätzlich beurteilt werden."
+        },
+        {
+          "id": "q24",
+          "lessonId": "rigor",
+          "q": "Warum wird hier kein universeller Zeitpunkt für vollständige Totenstarre genannt?",
+          "options": [
+            "Art, Muskel und Bedingungen beeinflussen den Verlauf",
+            "Alle Muskeln erreichen ihn grundsätzlich gleichzeitig",
+            "Der Begriff bezeichnet ausschließlich eine Farbe",
+            "Die Zahl der Knochen bestimmt allein den Verlauf"
+          ],
+          "answer": 0,
+          "explain": "Postmortale Abläufe hängen von mehreren Faktoren ab. Ein fester Wert für jedes Wildstück wäre irreführend."
+        },
+        {
+          "id": "q25",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Was beschreibt das Wasserhaltevermögen von Fleisch?",
+          "options": [
+            "Die Fähigkeit, sämtliche Bakterien im Wasser zu beseitigen",
+            "Die Fähigkeit, Wasser unter bestimmten Bedingungen zurückzuhalten",
+            "Die Anzahl wassergefüllter Blutgefäße im ganzen Tier",
+            "Die mit einem Gefäß gemessene äußere Fleischgröße"
+          ],
+          "answer": 1,
+          "explain": "Wasserhaltevermögen ist ein technologisches Qualitätsmerkmal und bezieht sich auf das Zurückhalten von Wasser."
+        },
+        {
+          "id": "q26",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Welche Struktur steht besonders eng mit der Wasserhaltung des Muskels in Beziehung?",
+          "options": [
+            "Die Geweihoberfläche",
+            "Die Haarfollikel",
+            "Die Hornschicht",
+            "Die Muskelproteine"
+          ],
+          "answer": 3,
+          "explain": "Zustand und Ladungsverhältnisse von Muskelproteinen beeinflussen die Wasserhaltung."
+        },
+        {
+          "id": "q27",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Welche Beobachtung erfasst unmittelbar einen sichtbaren Wasserverlust?",
+          "options": [
+            "Tropfsaft, der aus dem Fleisch austritt",
+            "Die Zahl der sichtbaren Knochenenden",
+            "Der Durchmesser des Kameragehäuses",
+            "Die Anzahl der beschriebenen Muskelhüllen"
+          ],
+          "answer": 0,
+          "explain": "Tropfsaft zeigt austretende Flüssigkeit. Er ist keine direkte Keimzählung."
+        },
+        {
+          "id": "q28",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Wofür steht das E im klassischen Qualitätskürzel PSE?",
+          "options": [
+            "Elastisch, also stets vollständig rückfedernd",
+            "Enzymfrei, also ohne proteinspaltende Stoffe",
+            "Exudativ, also stärker saftabgebend",
+            "Entkeimt, also frei von Krankheitserregern"
+          ],
+          "answer": 2,
+          "explain": "PSE steht für pale, soft, exudative: blass, weich und saftabgebend."
+        },
+        {
+          "id": "q29",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Wie lässt sich eine oberflächlich trockene DFD-Erscheinung mit Wasserhaltung vereinbaren?",
+          "options": [
+            "Das Fleisch muss vollständig wasserfrei geworden sein",
+            "Die Muskelproteine müssen vollständig verschwunden sein",
+            "Die Oberfläche muss einen Keimfreiheitstest bestanden haben",
+            "Wasser kann im Inneren stärker zurückgehalten werden"
+          ],
+          "answer": 3,
+          "explain": "Die DFD-Beschreibung der Oberfläche bedeutet nicht zwangsläufig wenig Gesamtwasser; die Wasserhaltung kann hoch sein."
+        },
+        {
+          "id": "q30",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Welche Angabe passt zum DFD-Kürzel?",
+          "options": [
+            "Dünn, feucht und durchscheinend",
+            "Dunkel, fest und oberflächlich trocken",
+            "Drucklos, faserfrei und desinfiziert",
+            "Durchgegart, fettfrei und dauerhaft haltbar"
+          ],
+          "answer": 1,
+          "explain": "DFD beschreibt dark, firm, dry als Qualitätsbild. Es ist keine hygienische Freigabe."
+        },
+        {
+          "id": "q31",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Welche Bewertung ist bei wenig Tropfsaft zusätzlich erforderlich?",
+          "options": [
+            "Eine automatische längere Verzehrsfreigabe",
+            "Eine automatische Bestätigung fehlender Parasiten",
+            "Eine eigenständige hygienische Beurteilung",
+            "Eine automatische Bestimmung der Jagdart"
+          ],
+          "answer": 2,
+          "explain": "Wenig Tropfsaft allein sagt weder die Keimzahl noch die verbleibende sichere Haltbarkeit voraus."
+        },
+        {
+          "id": "q32",
+          "lessonId": "wasserhaltevermoegen",
+          "q": "Welche zwei Fragen sind bei Wildbret fachlich getrennt zu beantworten?",
+          "options": [
+            "Wie zart es ist und ob es gesundheitlich unbedenklich ist",
+            "Wie viele Wörter und wie viele Absätze der Befund hat",
+            "Wie hell das Foto und wie groß dessen Rahmen ist",
+            "Wie ähnlich zwei Rezepte und ihre Namen klingen"
+          ],
+          "answer": 0,
+          "explain": "Zartheit betrifft eine sensorische bzw. strukturelle Eigenschaft. Sicherheit erfordert andere Informationen und Prüfungen."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-anwendung-trichinellenlabor-2026",
+      "title": "Trichinellenlabor: Von der Probe zum Befund",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbret & Gesundheit",
+      "description": "Muskelprobe, Sammeluntersuchung, Ringversuche und die Grenzen eines spezifischen Befunds verstehen.",
+      "minutes": 55,
+      "objectives": [
+        "Zielmatrix und Probenidentität erklären",
+        "Pool- und Einzelbefund auseinanderhalten",
+        "Qualitative und quantitative Laborleistung unterscheiden",
+        "Negative und ausstehende Befunde korrekt einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Untersuchungsprinzip und Befundverständnis; örtliche Entnahmeberechtigung, Probenstelle, Menge und Freigabe sind mit der zuständigen Stelle zu klären.",
+        "AT": "Untersuchungsprinzip und Befundverständnis; örtliche Entnahmeberechtigung, Probenstelle, Menge und Freigabe sind mit der zuständigen Stelle zu klären.",
+        "CH": "Untersuchungsprinzip und Befundverständnis; örtliche Entnahmeberechtigung, Probenstelle, Menge und Freigabe sind mit der zuständigen Stelle zu klären."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "CDC · DPDx Trichinellosis",
+          "url": "https://www.cdc.gov/dpdx/trichinellosis/",
+          "organization": "Centers for Disease Control and Prevention",
+          "supports": "Stadium in der Muskulatur und Unterschied zur klinischen Diagnostik am Menschen; keine aktuelle Verbreitungsschätzung aus dem älteren Übersichtsstand."
+        },
+        {
+          "label": "BfR · Trichinen",
+          "url": "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/parasiten-in-lebensmitteln/trichinen-trichinella/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Lebensmittelbedingte Übertragung und gezielte Untersuchung auf Trichinellen; kein Test auf sämtliche Krankheitserreger."
+        },
+        {
+          "label": "Österreichisches Gesundheitsressort · Trichinellose",
+          "url": "https://www.verbrauchergesundheit.gv.at/tiere/zoonosen/Trichinellose.html",
+          "organization": "Bundesministerium für Arbeit, Soziales, Gesundheit, Pflege und Konsumentenschutz Österreich",
+          "supports": "Anatomisch definierte Muskelprobe, künstliche Verdauung und mikroskopischer Larvennachweis. Regionale Pflichten und Mengen werden hier nicht übernommen."
+        },
+        {
+          "label": "ICT · Quality assurance in digestion testing",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7033998/",
+          "organization": "International Commission on Trichinellosis, Qualitätsausschuss; Fachpublikation 2019",
+          "supports": "Probenidentität, Eignung, Rückverfolgbarkeit, Poolauflösung, Schulung und systematische Auswertung. Beteiligung von BfR-Autoren wird nicht als zusätzliche unabhängige BfR-Bestätigung gezählt."
+        },
+        {
+          "label": "BfR · Originalbericht Ringversuch 2014",
+          "url": "https://www.bfr.bund.de/cm/343/ringversuch-zum-nachweis-von-trichinellen-in-fleisch-2014.pdf",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Codierte positive und negative Testproben; qualitative/quantitative Auswertung, falsch-positive und falsch-negative Ergebnisse. Historisches Methodenbeispiel, keine Aussage über die aktuelle Leistung aller Labore."
+        },
+        {
+          "label": "Polnisches NRL · Validation parameters from proficiency tests",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9655762/",
+          "organization": "National Veterinary Research Institute, Puławy; Originalstudie 2022",
+          "supports": "Unabhängige Ringversuchsdaten aus Pferdefleisch-Matrix, Methodenabhängigkeit, Probenkennungsfehler und qualitative/quantitative Ergebnisgrenzen. Zahlenwerte werden nicht auf Wildschweine oder heutige Labore übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "probe-und-ziel",
+          "title": "Warum die passende Muskelprobe entscheidend ist",
+          "paragraphs": [
+            "Die lebensmittelbezogene Trichinellenuntersuchung sucht Larven in Muskelgewebe. Der biologische Grund liegt im Lebenszyklus: Nach der Entwicklung der erwachsenen Würmer im Darm gelangen neu gebildete Larven in quergestreifte Muskulatur. Eine Fleischuntersuchung und eine ärztliche Untersuchung eines Menschen beantworten deshalb verschiedene Fragen. Ein Blutbefund eines Menschen oder eine äußere Betrachtung des Wildkörpers ersetzt die vorgesehene Fleischprobe nicht.",
+            "Für die Untersuchung gehören Tierkörper, Probenkennzeichnung und begleitende Angaben eindeutig zusammen. Anatomische Entnahmestelle und verwertbare Muskelmenge beeinflussen die Aussage; Fett und Sehnen sind nicht einfach gleichwertige Muskelprobe. Die zuständige Stelle legt das örtlich gültige Vorgehen fest. Eigener Dokumentationsfall: Die Kennung auf dem Beutel und auf dem Auftrag unterscheiden sich. Selbst ein technisch gut ausgeführter Test kann dann nicht verlässlich dem richtigen Tier zugeordnet werden. Die Abweichung wird vor der weiteren Verwendung mit der Untersuchungsstelle geklärt; eine Kennung wird nicht aus Vermutung ersetzt."
+          ],
+          "takeaway": "Ein Befund braucht eine geeignete Probe und eine gesicherte Zuordnung zum Tierkörper.",
+          "exercise": "Formuliere die drei getrennten Angaben Tierkörperkennung, Probenkennung und anatomische Entnahmestelle."
+        },
+        {
+          "id": "verdauung-und-pool",
+          "title": "Was Verdauung und Sammelprobe bedeuten",
+          "paragraphs": [
+            "Bei der künstlichen Verdauung wird geeignetes Muskelmaterial im Labor aufgeschlossen, damit darin vorhandene Larven aus dem Gewebe freigesetzt und in der aufbereiteten Fraktion mikroskopisch gesucht werden können. Das ist ein direkter Erregernachweis. Die abschließende Auswertung benötigt ausreichend klares Material und eine systematische Betrachtung, damit ein übersehener Bereich nicht mit einem tatsächlich unauffälligen Bereich verwechselt wird.",
+            "Eine Sammelprobe beziehungsweise ein Pool vereint definierte Anteile mehrerer eindeutig gekennzeichneter Proben in einem Untersuchungsansatz. Der Pool spart Untersuchungsansätze, verlangt aber lückenlose Zuordnung. Bei verdächtigem oder positivem Ergebnis muss das Labor den Herkunftstierkörper durch sein geregeltes Folgeuntersuchungsverfahren ermitteln. Aus einem positiven Pool folgt nicht, dass jedes beteiligte Tier positiv ist. Ebenso darf ein Poolbefund nicht ohne Nachverfolgung einem beliebigen Tier zugeschrieben werden. Auffällige Strukturen werden fachlich bestätigt; ein ungefähr ähnliches Bild ist keine ausreichende Artbestimmung."
+          ],
+          "takeaway": "Poolergebnis und Einzelbefund sind unterschiedliche Ebenen.",
+          "exercise": "Erkläre an den gedachten Tierkennungen A, B und C, warum ein positiver gemeinsamer Ansatz noch keinen einzelnen Herkunftstierkörper benennt."
+        },
+        {
+          "id": "qualitaetskontrolle",
+          "title": "Wie Labore ihre Nachweisleistung prüfen",
+          "paragraphs": [
+            "Qualitätssicherung umfasst ein geeignetes validiertes Verfahren, geschultes Personal, gepflegte und überprüfte Geräte sowie dokumentierte Arbeitsschritte. In Ringversuchen bearbeiten Labore codierte Proben mit bekanntem Sollstatus, der ihnen bei der Auswertung nicht offengelegt wird. Positive und negative Proben prüfen unterschiedliche Fehler: Eine positive Probe als negativ zu melden ist falsch-negativ; Larven in einer tatsächlich negativen Probe zu melden ist falsch-positiv. Beides lässt sich mit reinem Vertrauen in ein Gerät nicht ausschließen.",
+            "Qualitative Bewertung fragt, ob Larven nachgewiesen wurden. Quantitative Bewertung vergleicht zusätzlich die zurückgewonnene Zahl mit dem bekannten Material. In einem eigenen Lernbeispiel mit fünf zugesetzten und einer gefundenen Larve ist der Nachweis qualitativ positiv; die vollständige Wiederfindung ist damit nicht gezeigt. Originalberichte des BfR und des polnischen Referenzlabors zeigen, dass solche Leistungsaspekte getrennt bewertet werden. Diese Ringversuchsdaten werden nicht als aktuelle Fehlerwahrscheinlichkeit jedes Labors ausgegeben. Auch eine vertauschte Probenkennung kann ein richtig beobachtetes Ergebnis falsch zuordnen."
+          ],
+          "takeaway": "Erkennen, Zählen und richtig Zuordnen sind drei getrennte Qualitätsleistungen.",
+          "exercise": "Ordne vier gedachte Meldungen richtig-positiv, richtig-negativ, falsch-positiv oder falsch-negativ zu."
+        },
+        {
+          "id": "befundgrenzen",
+          "title": "Einen Befund mit seinem Geltungsbereich lesen",
+          "paragraphs": [
+            "Ein Untersuchungsbericht muss im Zusammenhang mit der angegebenen Probe, dem Untersuchungsziel und dem verwendeten Verfahren gelesen werden. „Nicht nachgewiesen“ bezieht sich auf den geprüften Erreger in diesem Untersuchungsrahmen. Es ist kein Test auf sämtliche Viren, Bakterien oder chemischen Rückstände und keine Aufhebung anderer Hygieneanforderungen. Ein positiver Nachweis und eine noch unklare verdächtige Struktur sind ebenfalls unterschiedliche Berichtsstufen. Über deren weitere Behandlung entscheidet die dafür zuständige Fachstelle.",
+            "Eigene Leseübung: Ein Dokument nennt „Probe A, Trichinella-Larven nicht nachgewiesen“. Daraus wird kein Befund für einen zweiten, nicht zugeordneten Tierkörper B. Fehlen Kennung, eindeutiges Ergebnis oder bestätigte Zuordnung, ist der Widerspruch mit der Untersuchungsstelle zu klären; eine ausstehende Untersuchung ist noch kein negatives Ergebnis. Nachweisgrenzen, Probenqualität und fehlerfreie Durchführung gehören zur Interpretation. Örtliche Probenmenge, Entnahmeberechtigung und Freigabe richten sich nach den geltenden Vorgaben der zuständigen Stelle."
+          ],
+          "takeaway": "Ein spezifischer Befund beantwortet eine genau begrenzte Frage.",
+          "exercise": "Schreibe zu einem gedachten Bericht auf: Welche Probe, welches Ziel, welches Ergebnis und welche Frage bleibt offen?"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "probe-und-ziel",
+          "q": "Welche Information verbindet eine Muskelprobe verlässlich mit ihrem Herkunftstierkörper?",
+          "options": [
+            "Das gemeinsame Eingangsdatum mehrerer Muskelproben",
+            "Die gleiche notierte Gesamtmasse mehrerer Beutel",
+            "Eine durchgängig eindeutige Tier- und Probenkennung",
+            "Die wechselnde Reihenfolge beim Entleeren einer Probenbox"
+          ],
+          "answer": 2,
+          "explain": "Die dokumentierte Kennung sichert die Zuordnung entlang der Proben- und Befundkette."
+        },
+        {
+          "id": "q2",
+          "lessonId": "probe-und-ziel",
+          "q": "Welches Gewebe ist das Ziel der hier erklärten lebensmittelbezogenen Trichinellensuche?",
+          "options": [
+            "Geeignete quergestreifte Muskulatur",
+            "Beliebiges Unterhautfett gleicher Masse",
+            "Beliebige Knochenrinde gleicher Masse",
+            "Beliebiges Hornmaterial gleicher Masse"
+          ],
+          "answer": 0,
+          "explain": "Gesucht werden Larven im Muskelgewebe; andere Materialien sind nicht einfach gleichwertig."
+        },
+        {
+          "id": "q3",
+          "lessonId": "probe-und-ziel",
+          "q": "Welche Angabe beschreibt die Herkunft einer Muskelprobe anatomisch?",
+          "options": [
+            "Das Datum der Anlieferung im Untersuchungsbetrieb",
+            "Die vermerkte Gesamtmasse des verschlossenen Beutels",
+            "Die Altersklasse des zugehörigen Herkunftstieres",
+            "Die benannte Entnahmestelle am Tierkörper"
+          ],
+          "answer": 3,
+          "explain": "Die Entnahmestelle ist ein für die Probenqualität wesentlicher anatomischer Bezug."
+        },
+        {
+          "id": "q4",
+          "lessonId": "probe-und-ziel",
+          "q": "Warum ist Fettmasse nicht einfach als Muskelprobenmasse anzurechnen?",
+          "options": [
+            "Die Gesamtbeutelmasse bestimmt allein die Eignung",
+            "Das vorgesehene Nachweismaterial ist Muskelgewebe",
+            "Jedes Körpergewebe enthält stets gleich viele Larven",
+            "Fett verwandelt sich beim Beschriften in Muskulatur"
+          ],
+          "answer": 1,
+          "explain": "Für die Untersuchung zählt die geeignete Gewebeart; Nichtmuskelanteile sind nicht gleichwertige Zielmatrix."
+        },
+        {
+          "id": "q5",
+          "lessonId": "probe-und-ziel",
+          "q": "Welche Untersuchung beantwortet eine andere Frage als die Trichinellensuche in Fleisch?",
+          "options": [
+            "Die ärztliche Diagnostik beim erkrankten Menschen",
+            "Der gezielte Larvennachweis in der Muskelprobe",
+            "Die geregelte Auswertung des Fleischprobenansatzes",
+            "Die Zuordnung des Fleischbefundes zur Tierkennung"
+          ],
+          "answer": 0,
+          "explain": "Klinische Diagnostik beurteilt einen Menschen und nutzt dafür passende Verfahren. Sie ersetzt keine Fleischprobe."
+        },
+        {
+          "id": "q6",
+          "lessonId": "probe-und-ziel",
+          "q": "Bei widersprüchlichen Kennungen auf Beutel und Auftrag ist welcher Schritt erforderlich?",
+          "options": [
+            "Die Zuordnung nur aus der Eingangsreihenfolge ableiten",
+            "Den ähnlichsten früheren Befund als aktuelle Zuordnung verwenden",
+            "Die Zuordnung mit der Untersuchungsstelle klären",
+            "Die Kennung nur aus Gewicht und Entnahmedatum rekonstruieren"
+          ],
+          "answer": 2,
+          "explain": "Ein Widerspruch in der Identität betrifft die Aussage des ganzen Befundes und muss fachlich aufgeklärt werden."
+        },
+        {
+          "id": "q7",
+          "lessonId": "probe-und-ziel",
+          "q": "Wo sind die örtlich gültigen Vorgaben zur Muskelprobe zu klären?",
+          "options": [
+            "Allein anhand eines früheren Befunds aus einer anderen Region.",
+            "Bei der zuständigen Untersuchungs- oder Fachstelle.",
+            "Anhand einer nicht örtlich geprüften allgemeinen Mustertabelle.",
+            "Allein anhand des üblichen Preises pro Untersuchungsansatz."
+          ],
+          "answer": 1,
+          "explain": "Die zuständige Untersuchungs- oder Fachstelle kann die geltenden örtlichen Vorgaben und Zuständigkeiten klären. Ein Labor setzt dadurch nicht selbst das Recht."
+        },
+        {
+          "id": "q8",
+          "lessonId": "probe-und-ziel",
+          "q": "Welche Kombination gehört zu einem nachvollziehbaren Probenauftrag?",
+          "options": [
+            "Nur Einlieferungsdatum, Beutelgesamtmasse und Kühlort",
+            "Nur Tierart, ungefähre Altersklasse und Probenfarbe",
+            "Nur Name des Abgebenden, Beutelgröße und Transportdauer",
+            "Kennung, Herkunft und vorgesehener Untersuchungszweck"
+          ],
+          "answer": 3,
+          "explain": "Ein Auftrag braucht eine eindeutige Zuordnung und den benannten Untersuchungszweck; äußere Ähnlichkeit genügt nicht."
+        },
+        {
+          "id": "q9",
+          "lessonId": "verdauung-und-pool",
+          "q": "Welchen Zweck hat der Gewebeaufschluss bei der künstlichen Verdauung?",
+          "options": [
+            "Alle Erregerarten gleichzeitig zu bestimmen",
+            "Den Tierkörper durch Geruch zu identifizieren",
+            "Larven aus dem Muskelmaterial freizusetzen",
+            "Den pH-Wert aller übrigen Fleischstücke zu messen"
+          ],
+          "answer": 2,
+          "explain": "Der Aufschluss ermöglicht, im Material vorhandene Larven aus der Muskelmatrix zu gewinnen und zu suchen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "verdauung-und-pool",
+          "q": "Was bedeutet ein direkter Nachweis in diesem Untersuchungsprinzip?",
+          "options": [
+            "Gesuchte Larven werden im aufbereiteten Material festgestellt",
+            "Die Abwehrreaktion des Menschen wird stellvertretend gemessen",
+            "Die Fleischqualität wird aus einer Tieraufnahme errechnet",
+            "Die Entnahmestelle wird aus dem Körpergewicht geschätzt"
+          ],
+          "answer": 0,
+          "explain": "Direkter Erregernachweis sucht den Erreger beziehungsweise sein Stadium im untersuchten Material."
+        },
+        {
+          "id": "q11",
+          "lessonId": "verdauung-und-pool",
+          "q": "Worauf richtet sich die mikroskopische Auswertung nach der Aufbereitung?",
+          "options": [
+            "Auf die Größe des zugehörigen Geweihs im Tierfoto",
+            "Auf die genaue Jagdzeit anhand der Probenfarbe",
+            "Auf die Lebensdauer der Verpackung des Beutels",
+            "Auf larvenverdächtige Strukturen in der Untersuchungsfraktion"
+          ],
+          "answer": 3,
+          "explain": "Der aufbereitete Anteil wird systematisch auf Larven untersucht; Auffälligkeiten benötigen fachliche Beurteilung."
+        },
+        {
+          "id": "q12",
+          "lessonId": "verdauung-und-pool",
+          "q": "Warum muss das auszuwertende Material ausreichend durchsichtig sein?",
+          "options": [
+            "Damit eine Kennzeichnung überflüssig wird",
+            "Damit relevante Strukturen erkennbar bleiben",
+            "Damit alle Körperteile gleich befallen sind",
+            "Damit das Labor die Tierart erraten kann"
+          ],
+          "answer": 1,
+          "explain": "Verdeckte Strukturen können übersehen werden. Auswertbarkeit gehört zur Verfahrensqualität."
+        },
+        {
+          "id": "q13",
+          "lessonId": "verdauung-und-pool",
+          "q": "Was bezeichnet ein Pool bei der beschriebenen Untersuchung?",
+          "options": [
+            "Einen gemeinsamen Ansatz definierter Probenanteile",
+            "Ein beliebiges Foto mehrerer äußerlich ähnlicher Tiere",
+            "Einen vollständig ungekennzeichneten Sammelbehälter",
+            "Einen bloßen Mittelwert mehrerer Fleischfarben"
+          ],
+          "answer": 0,
+          "explain": "Ein Pool vereint nachvollziehbare Anteile mehrerer Proben; seine Zusammensetzung muss dokumentiert sein."
+        },
+        {
+          "id": "q14",
+          "lessonId": "verdauung-und-pool",
+          "q": "Was folgt fachlich aus einem positiven Pool mehrerer Tierproben?",
+          "options": [
+            "Jeder beteiligte Tierkörper ist damit einzeln positiv",
+            "Jeder unbeteiligte Tierkörper ist damit einzeln negativ",
+            "Die Herkunft des Nachweises muss weiter eingegrenzt werden",
+            "Die Reihenfolge der Tierkennungen bestimmt den Befund"
+          ],
+          "answer": 2,
+          "explain": "Ein gemeinsamer Nachweis benennt noch nicht den einzelnen Ursprung. Das Labor nutzt geregelte Folgeuntersuchungen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "verdauung-und-pool",
+          "q": "Welche Dokumentation ermöglicht die Auflösung eines auffälligen Pools?",
+          "options": [
+            "Die gemeinsame Farbe aller verwendeten Beutel",
+            "Die vollständige Zuordnung der enthaltenen Einzelproben",
+            "Die Alphabetfolge aller betrachteten Tierarten",
+            "Die Länge des ausgedruckten Untersuchungsberichts"
+          ],
+          "answer": 1,
+          "explain": "Nur mit dokumentierter Poolzusammensetzung lassen sich zugehörige Einzelproben gezielt nachverfolgen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "verdauung-und-pool",
+          "q": "Wie wird eine larvenähnliche Struktur fachlich behandelt?",
+          "options": [
+            "Sie wird wegen bloßer Ähnlichkeit als sichere Art benannt",
+            "Sie wird allein anhand des Beutelgewichts bestimmt",
+            "Sie wird durch einen zusätzlichen Tiernamen bestätigt",
+            "Sie wird im vorgesehenen Bestätigungsverfahren geprüft"
+          ],
+          "answer": 3,
+          "explain": "Morphologische Ähnlichkeit allein ersetzt die erforderliche fachliche Bestätigung nicht."
+        },
+        {
+          "id": "q17",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Was ist der Zweck codierter Ringversuchsproben?",
+          "options": [
+            "Die Befunde allein nach der Reihenfolge zu vergeben",
+            "Die gewöhnliche Dokumentation vollständig zu ersetzen",
+            "Die Nachweisleistung ohne offengelegten Sollstatus zu prüfen",
+            "Die Herkunft sämtlicher Wildtiere einer Region zu zählen"
+          ],
+          "answer": 2,
+          "explain": "Unbekannter Sollstatus ermöglicht eine sachliche Prüfung, ob das Labor die Proben korrekt beurteilt."
+        },
+        {
+          "id": "q18",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Eine positive Kontrollprobe wird als negativ gemeldet. Wie heißt dieser Fehler?",
+          "options": [
+            "Falsch-negativ",
+            "Falsch-positiv",
+            "Richtig-negativ",
+            "Richtig-positiv"
+          ],
+          "answer": 0,
+          "explain": "Falsch-negativ bedeutet, dass ein tatsächlich vorhandener gesuchter Befund übersehen oder negativ gemeldet wird."
+        },
+        {
+          "id": "q19",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Eine larvenfreie Kontrollprobe wird als positiv gemeldet. Wie heißt dieser Fehler?",
+          "options": [
+            "Falsch-negativ",
+            "Richtig-positiv",
+            "Richtig-negativ",
+            "Falsch-positiv"
+          ],
+          "answer": 3,
+          "explain": "Falsch-positiv ist ein positiver Befund bei tatsächlich fehlendem Zielbefund in der Kontrollprobe."
+        },
+        {
+          "id": "q20",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Welche Frage beantwortet die qualitative Auswertung?",
+          "options": [
+            "Wie viele Larven exakt zurückgewonnen wurden",
+            "Ob die gesuchten Larven nachgewiesen wurden",
+            "Wie viele Tage das Tier gelebt hat",
+            "Wie lang jede einzelne Muskelzelle ist"
+          ],
+          "answer": 1,
+          "explain": "Qualitative Auswertung unterscheidet Nachweis und Nichtnachweis im definierten Verfahren."
+        },
+        {
+          "id": "q21",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Welche Frage kommt bei einer quantitativen Ringversuchsauswertung hinzu?",
+          "options": [
+            "Wie viele Larven gegenüber dem Sollwert gefunden wurden",
+            "Wie ähnlich der Schriftstil zweier Berichte ausfällt",
+            "Wie viele Tierbilder im gleichen Ordner liegen",
+            "Wie hoch der spätere Verkaufspreis sein wird"
+          ],
+          "answer": 0,
+          "explain": "Die quantitative Auswertung prüft die Zahl der gefundenen Larven im Verhältnis zur bekannten Testprobe."
+        },
+        {
+          "id": "q22",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Eigener Lernfall: Von fünf zugesetzten Larven wird eine gefunden. Wie lautet die qualitative Einordnung?",
+          "options": [
+            "Ein negativer Nachweis liegt vor",
+            "Eine vollständige Wiederfindung liegt vor",
+            "Ein positiver Nachweis liegt vor",
+            "Ein fehlender Probenansatz liegt vor"
+          ],
+          "answer": 2,
+          "explain": "Eine gefundene Larve ergibt einen positiven Nachweis. Das sagt noch nichts über vollständige Wiederfindung aus."
+        },
+        {
+          "id": "q23",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Welche Maßnahme gehört neben Schulung zur Qualitätssicherung?",
+          "options": [
+            "Verzicht auf die Kennzeichnung ähnlicher Proben",
+            "Überprüfung und Pflege der verwendeten Geräte",
+            "Austausch des Befundes durch ein Fleischfoto",
+            "Vergabe des Sollwerts nach dem Beutelpreis"
+          ],
+          "answer": 1,
+          "explain": "Geschultes Personal, geeignete Verfahren, Gerätewartung und Dokumentation ergänzen sich."
+        },
+        {
+          "id": "q24",
+          "lessonId": "qualitaetskontrolle",
+          "q": "Welche Fehlerart kann trotz richtig beobachteter Larve einen falschen Tierbefund erzeugen?",
+          "options": [
+            "Eine korrekt dokumentierte Poolliste",
+            "Eine fachlich bestätigte Zielstruktur",
+            "Eine ausreichend transparente Untersuchungsfraktion",
+            "Eine vertauschte Probenkennung"
+          ],
+          "answer": 3,
+          "explain": "Ein richtiges Beobachtungsergebnis ist nur mit korrekter Kennung dem richtigen Tierkörper zugeordnet."
+        },
+        {
+          "id": "q25",
+          "lessonId": "befundgrenzen",
+          "q": "Auf welchen Bereich bezieht sich „Trichinella-Larven nicht nachgewiesen“?",
+          "options": [
+            "Auf sämtliche denkbaren Keime in jedem Fleischstück",
+            "Auf alle Körper gleichzeitig erlegter Tiere",
+            "Auf das Untersuchungsziel im angegebenen Probenrahmen",
+            "Auf die dauerhafte Haltbarkeit ohne Kühlung"
+          ],
+          "answer": 2,
+          "explain": "Der negative Befund betrifft Ziel und Rahmen der konkreten Untersuchung und ist keine allgemeine Unbedenklichkeitsgarantie."
+        },
+        {
+          "id": "q26",
+          "lessonId": "befundgrenzen",
+          "q": "Welche Angabe sollte bei der Lektüre zuerst mit dem Tierkörper abgeglichen werden?",
+          "options": [
+            "Die eindeutige Proben- und Tierkennung",
+            "Die Zahl der verwendeten Schriftarten",
+            "Die Farbe des äußeren Dokumentrahmens",
+            "Die Position des Dateisymbols im Ordner"
+          ],
+          "answer": 0,
+          "explain": "Ohne passende Kennung kann der Befund nicht sicher dem betreffenden Tierkörper zugeordnet werden."
+        },
+        {
+          "id": "q27",
+          "lessonId": "befundgrenzen",
+          "q": "Welches Ergebnis ist bei einer noch ausstehenden Untersuchung sachlich dokumentierbar?",
+          "options": [
+            "Ein negativer Befund ist bereits bestätigt",
+            "Alle nicht genannten Erreger sind ausgeschlossen",
+            "Die zuständige Stelle hat jede Verwendung freigegeben",
+            "Die Untersuchung beziehungsweise das Ergebnis steht noch aus"
+          ],
+          "answer": 3,
+          "explain": "Ein fehlendes Ergebnis ist ein offener Status und darf nicht in einen negativen Befund umgedeutet werden."
+        },
+        {
+          "id": "q28",
+          "lessonId": "befundgrenzen",
+          "q": "Ein Bericht nennt Probe A. Welche Zuordnung ist ohne weitere Angaben zulässig?",
+          "options": [
+            "Die Zuordnung zu jedem Tier derselben Größenklasse",
+            "Die Zuordnung zum dokumentierten Herkunftskörper von A",
+            "Die Zuordnung zu jedem Beutel im gleichen Kühlschrank",
+            "Die Zuordnung zu jedem Tier derselben Jagdgruppe"
+          ],
+          "answer": 1,
+          "explain": "Der Bericht gilt nur in seiner nachvollziehbaren Zuordnung; räumliche oder äußere Ähnlichkeit überträgt ihn nicht."
+        },
+        {
+          "id": "q29",
+          "lessonId": "befundgrenzen",
+          "q": "Welches Merkmal begrenzt die Interpretation eines Untersuchungsberichts?",
+          "options": [
+            "Das tatsächlich verwendete Nachweisverfahren",
+            "Die Schriftgröße seiner Überschrift",
+            "Die Farbe seiner Seitenzahl",
+            "Die Anzahl der Namen in einem Fotoordner"
+          ],
+          "answer": 0,
+          "explain": "Verfahren, Probe und Untersuchungsziel legen den fachlichen Geltungsbereich des Ergebnisses fest."
+        },
+        {
+          "id": "q30",
+          "lessonId": "befundgrenzen",
+          "q": "Worin unterscheiden sich ein Verdacht und ein bestätigter positiver Nachweis?",
+          "options": [
+            "Nur in der Länge des geschriebenen Wortes",
+            "Nur im Datum der Beutelbeschaffung",
+            "Im Stand der fachlichen Abklärung",
+            "Nur in der Anzahl der Tierfotos"
+          ],
+          "answer": 2,
+          "explain": "Ein Verdacht braucht Klärung im vorgesehenen Bestätigungsverfahren; ein bestätigter Nachweis ist bereits entsprechend beurteilt."
+        },
+        {
+          "id": "q31",
+          "lessonId": "befundgrenzen",
+          "q": "Was bleibt trotz spezifischem negativem Trichinellenbefund erforderlich?",
+          "options": [
+            "Die automatische Aufhebung sämtlicher Kühlanforderungen",
+            "Die Einhaltung anderer einschlägiger Hygieneanforderungen",
+            "Die automatische Freigabe jedes nicht untersuchten Tierkörpers",
+            "Die automatische Bestätigung fehlender chemischer Rückstände"
+          ],
+          "answer": 1,
+          "explain": "Die Untersuchung ist spezifisch. Andere Gefahren und hygienische Anforderungen werden dadurch nicht mitgeprüft."
+        },
+        {
+          "id": "q32",
+          "lessonId": "befundgrenzen",
+          "q": "Wie werden historische Ringversuchsdaten korrekt genutzt?",
+          "options": [
+            "Als exakte heutige Fehlerquote jedes einzelnen Labors",
+            "Als Ersatz für die Zuordnung jeder aktuellen Muskelprobe",
+            "Als aktueller landesweiter Verbreitungswert bei Wildtieren",
+            "Als Beleg, welche Qualitätsaspekte überprüft werden können"
+          ],
+          "answer": 3,
+          "explain": "Historische kontrollierte Testdaten illustrieren die Methodik; sie sind keine aktuelle pauschale Fehler- oder Befallswahrscheinlichkeit."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-anwendung-sicherheitszeichen-2026",
+      "title": "Sicherheitszeichen und Produktkennzeichnung verstehen",
+      "category": "Waffen & Sicherheit",
+      "topic": "Waffen & Schuss",
+      "description": "Warnung, Verbot, Gebot, Hilfe und CE sauber unterscheiden – ohne Schießanleitung.",
+      "minutes": 50,
+      "objectives": [
+        "Zeichen nach Form, Farbe und Aussage ordnen",
+        "Schutzgebot und Schutzmitteleignung trennen",
+        "Rettungs- und Brandschutzinformation erkennen",
+        "CE, Prüfzeichen und Herkunft auseinanderhalten"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Zeichenkunde anhand ASR A1.3; konkrete Pflichten richten sich nach Arbeitsstätte, Gefährdung und anwendbarem Recht.",
+        "AT": "Zeichenkunde anhand der KennV und Arbeitsinspektion; konkrete Pflichten sind im jeweiligen Geltungsbereich zu prüfen.",
+        "CH": "Die Zeichenkunde erklärt eine international verwendete Systematik. Deutsche/österreichische Vorschriften und CE-Marktzugang werden nicht als allgemeine Schweizer Pflicht dargestellt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "BAuA · ASR A1.3 Sicherheits- und Gesundheitsschutzkennzeichnung",
+          "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile&v=3",
+          "organization": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin / Ausschuss für Arbeitsstätten",
+          "supports": "Bedeutung, Gestaltung und Kombination von Sicherheitszeichen; deutsche Arbeitsstättenregel, keine allgemeine DACH-Pflichtenliste."
+        },
+        {
+          "label": "Arbeitsinspektion Österreich · Sicherheitskennzeichnung",
+          "url": "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/allgemeines/sicherheits_gesundheitsschutz_kennzeichnung.html",
+          "organization": "Zentral-Arbeitsinspektorat Österreich",
+          "supports": "KennV-Geltungsbereich, eindeutige Aussagen und Unterweisung; international genutzte Zeichensystematik."
+        },
+        {
+          "label": "RIS · KennV Anhang 1 Schilder",
+          "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40172680/II_101_1997_Anlage_1.pdf",
+          "organization": "Rechtsinformationssystem des Bundes Österreich",
+          "supports": "Formen, Farben und grundlegende Warn-, Verbots-, Gebots-, Rettungs- und Brandschutzzeichen; in der aktuell eingesehenen Arbeitsinspektionsinformation verlinkte Anlage."
+        },
+        {
+          "label": "DGUV · Arten von Sicherheitskennzeichen",
+          "url": "https://aug.dguv.de/arbeitssicherheit/arten-von-sicherheitskennzeichen/",
+          "organization": "Deutsche Gesetzliche Unfallversicherung",
+          "supports": "Zeichen ersetzen keine technischen/organisatorischen Schutzmaßnahmen; einzelne Aussage, Kombination und Erkennbarkeit."
+        },
+        {
+          "label": "Europäische Kommission · CE marking",
+          "url": "https://single-market-economy.ec.europa.eu/single-market/goods/ce-marking_en",
+          "organization": "Europäische Kommission, DG GROW",
+          "supports": "Herstellerverantwortung, anwendbare Harmonisierungsregeln, Konformitätserklärung; CE ist weder Herkunftsangabe noch behördliche Sicherheitszulassung."
+        },
+        {
+          "label": "BAuA · GS-Zeichen",
+          "url": "https://www.baua.de/DE/Die-BAuA/Aufgaben/Gesetzliche-und-hoheitliche-Aufgaben/Produktsicherheitsgesetz/GS-Zeichen",
+          "organization": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin",
+          "supports": "GS als gesondertes Prüfzeichen im Unterschied zu CE; kein umfassendes Qualitäts-/Lebensdauersiegel. Waffen werden nicht als pauschal GS-fähig dargestellt."
+        },
+        {
+          "label": "SECO · Konformitätsbewertung und Akkreditierung",
+          "url": "https://www.seco.admin.ch/de/konformitaetsbewertung-und-akkreditierung",
+          "organization": "Staatssekretariat für Wirtschaft SECO",
+          "supports": "Konformitätsprüfung nach einschlägigen technischen Vorschriften, je Produktart Herstellererklärung oder Dritte; Unterschied zur behördlichen Zulassung. Keine pauschale Schweizer CE-Pflicht."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "warnung-verbot",
+          "title": "Warnung und Verbot unterscheiden",
+          "paragraphs": [
+            "Im behandelten Sicherheitszeichensystem haben Form, Grundfarbe und Piktogramm gemeinsam Bedeutung. Warnzeichen sind dreieckig mit schwarzem Bildzeichen auf gelbem Grund. Sie benennen ein Risiko, etwa elektrische Spannung, schwebende Last oder Rutschgefahr. Verbotszeichen sind rund mit rotem Rand und rotem Querbalken; sie untersagen ein dargestelltes Verhalten. Eine Warnung vor einer Gefahr und das Verbot einer Tätigkeit sind verschiedene Sicherheitsinformationen.",
+            "Ein Blitz im gelben Dreieck warnt vor elektrischer Spannung; eine durchgestrichene Zigarette untersagt das Rauchen. Das Zeichen „Kein Trinkwasser“ betrifft das Trinken und sagt nicht, das Wasser sei untersucht und trinkbar. Ein allgemeines Warnzeichen benötigt die konkrete Erläuterung des Risikos. Eigener Vergleich: Ein Lagerraum kann gleichzeitig ein Warnzeichen und ein Verbotszeichen benötigen, weil Gefahr und unzulässiges Verhalten getrennt erklärt werden. Die Darstellung in BAuA-ASR und österreichischer KennV bestätigt diese Systematik; daraus wird keine identische gesetzliche Ausstattungsanforderung für jede private Jagdhütte in DACH abgeleitet."
+          ],
+          "takeaway": "Warnung beschreibt ein Risiko; Verbot untersagt ein Verhalten.",
+          "exercise": "Schreibe zu einem Warn- und einem Verbotszeichen jeweils die konkrete Sicherheitsaussage auf."
+        },
+        {
+          "id": "gebot",
+          "title": "Gebotszeichen benennen eine Schutzhandlung",
+          "paragraphs": [
+            "Gebotszeichen erscheinen im beschriebenen System rund mit weißem Piktogramm auf blauem Grund. Sie fordern eine bestimmte Handlung, etwa Gehörschutz, Augenschutz, Kopfschutz oder Handschutz zu benutzen. Das Piktogramm zeigt die Handlungskategorie; die Auswahl eines tatsächlich geeigneten Schutzmittels hängt von der Gefährdung, den Produktangaben und der örtlichen Unterweisung ab. Ein abgebildeter Handschuh ist deshalb keine Aussage, dass jeder beliebige Handschuh gegen jede Gefahr wirkt.",
+            "„Anleitung beachten“ lenkt auf die zugehörigen Hersteller- und Betriebsinformationen. Ein allgemeines Gebot braucht einen erklärenden Zusatz. Mehrere Zeichen können nebeneinander unterschiedliche Pflichten beschreiben, beispielsweise Augen- und Gehörschutz. Die DGUV betont, dass Sicherheitszeichen technische und organisatorische Schutzmaßnahmen ergänzen; sie ersetzen diese nicht. Eigener Lernfall: Vor einem Arbeitsbereich hängen zwei Gebotszeichen. Formuliere beide Handlungen getrennt und kläre unverständliche Anforderungen vor Tätigkeitsbeginn mit der zuständigen Person."
+          ],
+          "takeaway": "Das Gebot benennt eine Handlung; ihre fachgerechte Umsetzung braucht die passende Unterweisung.",
+          "exercise": "Unterscheide mit eigenen Worten Augenschutz, Gesichtsschutz und die Pflicht, eine Anleitung zu beachten."
+        },
+        {
+          "id": "rettung-brandschutz",
+          "title": "Hilfe und Löscheinrichtung schnell zuordnen",
+          "paragraphs": [
+            "Rettungszeichen haben im behandelten System weiße Piktogramme auf grünem rechteckigem oder quadratischem Grund. Sie kennzeichnen beispielsweise einen Notausgang oder eine Erste-Hilfe-Einrichtung. Brandschutzzeichen zeigen weiße Piktogramme auf rotem rechteckigem oder quadratischem Grund und weisen auf Einrichtungen zur Brandbekämpfung hin. Die gleiche Farbe Rot kann also im runden Verbotszeichen und im rechteckigen Brandschutzzeichen verschiedene Funktionen haben. Erst Form und Piktogramm machen die Aussage eindeutig.",
+            "Ein Richtungszeichen wird zusammen mit der betreffenden Sicherheitsaussage gelesen: Ein Pfeil allein verrät noch nicht, ob er zum Notausgang oder zum Feuerlöscher führt. Zeichen müssen sichtbar, passend platziert und verständlich sein; ein verdecktes Schild verliert seinen Orientierungsnutzen. Ein Flucht- und Rettungsplan verbindet Grundriss, Standort und Wege. Eigener Fall: Ein abgestellter Karton verdeckt ein grünes Erste-Hilfe-Zeichen. Das Problem ist die unterbrochene Erkennbarkeit, auch wenn das Schild korrekt gedruckt wurde."
+          ],
+          "takeaway": "Rettungs- und Brandschutzzeichen zeigen verschiedene Arten von Hilfe oder Einrichtungen.",
+          "exercise": "Suche in einem bekannten öffentlich zugänglichen Gebäude ohne Türen zu öffnen ein Rettungszeichen und beschreibe seine Aussage."
+        },
+        {
+          "id": "ce-konformitaet",
+          "title": "CE erklärt Konformität, nicht beliebige Eignung",
+          "paragraphs": [
+            "Bei CE geht es um Produkte im europäischen Harmonisierungsrecht. Der Hersteller übernimmt Verantwortung für das vorgesehene Konformitätsbewertungsverfahren, die technischen Unterlagen, die erforderliche Konformitätserklärung und die Kennzeichnung. CE ist nur für Produkte vorgesehen, deren einschlägige Vorschriften dies verlangen. Es ist keine Angabe, dass das Produkt in Europa hergestellt wurde, und kein Nachweis, dass eine EU-Behörde jedes einzelne Exemplar als sicher zugelassen hat.",
+            "Ob eine unabhängige Prüfstelle beteiligt sein muss, hängt von den anwendbaren Produktregeln ab. Die SECO-Erläuterung bestätigt den Unterschied zwischen Herstellererklärung, Bewertung durch Dritte und behördlicher Zulassung als verschiedenen Verfahren. GS ist ein gesondertes deutsches Prüfzeichen; auch dieses ist kein allumfassendes Güte- oder Haltbarkeitssiegel. Eigene Kaufprüfung: Zu einem konkret benannten Produkt passen Modell, vorgesehene Verwendung, Kennzeichnung und Unterlagen zusammen. Eine CE-Aufschrift ersetzt weder eine passende Anleitung noch die Prüfung, ob das Produkt für den beabsichtigten Einsatz geeignet ist. Schweizer Marktzugangsregeln sind gesondert zu prüfen."
+          ],
+          "takeaway": "CE, GS, Herkunft und konkrete Einsatzeignung sind unterschiedliche Aussagen.",
+          "exercise": "Erkläre anhand einer Produktbeschreibung den Unterschied zwischen Herstellererklärung und behördlicher Einzelzulassung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "warnung-verbot",
+          "q": "Welche Grundgestaltung kennzeichnet ein Warnzeichen im behandelten System?",
+          "options": [
+            "Blauer Kreis mit weißem Piktogramm",
+            "Grünes Quadrat mit weißem Piktogramm",
+            "Roter Kreis mit weißem Textfeld",
+            "Gelbes Dreieck mit schwarzem Piktogramm"
+          ],
+          "answer": 3,
+          "explain": "Warnzeichen verwenden die dreieckige gelb-schwarze Grundgestaltung; das Bildzeichen konkretisiert das Risiko."
+        },
+        {
+          "id": "q2",
+          "lessonId": "warnung-verbot",
+          "q": "Welche Grundgestaltung kennzeichnet ein Verbotszeichen?",
+          "options": [
+            "Runder blauer Grund mit weißem Bildzeichen",
+            "Runder roter Rand mit rotem Querbalken",
+            "Grüner rechteckiger Grund mit weißem Pfeil",
+            "Gelber dreieckiger Grund mit schwarzem Rand"
+          ],
+          "answer": 1,
+          "explain": "Rand und Querbalken machen zusammen mit dem Piktogramm ein untersagtes Verhalten erkennbar."
+        },
+        {
+          "id": "q3",
+          "lessonId": "warnung-verbot",
+          "q": "Was besagt ein Warnzeichen grundsätzlich?",
+          "options": [
+            "Es bestätigt eine bestandene Geräteprüfung",
+            "Es benennt immer den kürzesten Fluchtweg",
+            "Es weist auf eine bestimmte Gefahr hin",
+            "Es erlaubt jede Tätigkeit in seinem Umfeld"
+          ],
+          "answer": 2,
+          "explain": "Die Warnung informiert über ein Risiko. Eine konkrete Handlungsanweisung kann zusätzlich erforderlich sein."
+        },
+        {
+          "id": "q4",
+          "lessonId": "warnung-verbot",
+          "q": "Welche Gefahr bezeichnet ein Blitz im gelben Warn-Dreieck?",
+          "options": [
+            "Elektrische Spannung",
+            "Schwebende Last",
+            "Rutschige Fläche",
+            "Feuerlöschgerät"
+          ],
+          "answer": 0,
+          "explain": "Das Blitzpiktogramm im Warnzeichen kennzeichnet die Gefahr durch elektrische Spannung."
+        },
+        {
+          "id": "q5",
+          "lessonId": "warnung-verbot",
+          "q": "Welche Aussage trifft die durchgestrichene Zigarette als Verbotszeichen?",
+          "options": [
+            "Gehörschutz ist vorgeschrieben",
+            "Rauchen ist untersagt",
+            "Ein Notausgang ist vorhanden",
+            "Eine heiße Oberfläche ist vorhanden"
+          ],
+          "answer": 1,
+          "explain": "Das Piktogramm benennt das Verhalten, der rote Balken dessen Verbot."
+        },
+        {
+          "id": "q6",
+          "lessonId": "warnung-verbot",
+          "q": "Wie wird ein allgemeines Warnzeichen mit Ausrufezeichen konkretisiert?",
+          "options": [
+            "Durch eine beliebige zweite Hintergrundfarbe",
+            "Durch das Weglassen des Bezuges zur Gefahrenstelle",
+            "Durch einen größeren Abstand vom betroffenen Bereich",
+            "Durch eine verständliche zusätzliche Gefahrangabe"
+          ],
+          "answer": 3,
+          "explain": "Eine zusätzliche Erläuterung macht deutlich, auf welches konkrete Risiko sich die allgemeine Warnung bezieht."
+        },
+        {
+          "id": "q7",
+          "lessonId": "warnung-verbot",
+          "q": "Worin unterscheiden sich Warn- und Verbotszeichen?",
+          "options": [
+            "In der Mitteilung von Risiko beziehungsweise untersagtem Verhalten",
+            "Nur in der Größe der verwendeten Befestigung",
+            "Nur in der Sprache des nächsten Ortsnamens",
+            "Nur in der Lebensdauer des Schildmaterials"
+          ],
+          "answer": 0,
+          "explain": "Ein Warnzeichen benennt die Gefahr, ein Verbotszeichen untersagt ein Verhalten; beide Aussagen können sich ergänzen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "warnung-verbot",
+          "q": "Welches Verhalten untersagt das Zeichen „Kein Trinkwasser“?",
+          "options": [
+            "Das Auffinden einer Erste-Hilfe-Stelle",
+            "Das Beachten einer Gebrauchsanleitung",
+            "Das Trinken des so bezeichneten Wassers",
+            "Das Benutzen vorgeschriebenen Gehörschutzes"
+          ],
+          "answer": 2,
+          "explain": "Das Zeichen warnt nicht bloß allgemein, sondern untersagt die Verwendung als Trinkwasser."
+        },
+        {
+          "id": "q9",
+          "lessonId": "gebot",
+          "q": "Welche Grundgestaltung haben Gebotszeichen im behandelten System?",
+          "options": [
+            "Gelbes Dreieck mit schwarzem Piktogramm",
+            "Grünes Rechteck mit weißem Piktogramm",
+            "Weißer Kreis mit rotem Querbalken",
+            "Blauer Kreis mit weißem Piktogramm"
+          ],
+          "answer": 3,
+          "explain": "Der blaue Kreis steht im beschriebenen System für ein Gebot."
+        },
+        {
+          "id": "q10",
+          "lessonId": "gebot",
+          "q": "Welche Aussage hat ein Gebotszeichen grundsätzlich?",
+          "options": [
+            "Es stellt ein bestehendes Risiko nur bildlich dar",
+            "Es schreibt eine bestimmte Handlung vor",
+            "Es bescheinigt den Ursprung eines Produkts",
+            "Es benennt den Preis einer Schutzausrüstung"
+          ],
+          "answer": 1,
+          "explain": "Gebotszeichen fordern eine konkrete Handlung, die durch das Piktogramm beschrieben wird."
+        },
+        {
+          "id": "q11",
+          "lessonId": "gebot",
+          "q": "Welche Handlung fordert das Gehörschutz-Gebotszeichen?",
+          "options": [
+            "Nur vorhandene Ohrhörer für Musik einsetzen",
+            "Nur die Lautstärke am Handy vermindern",
+            "Vorgesehenen geeigneten Gehörschutz benutzen",
+            "Nur die Dauer der Tätigkeit aufschreiben"
+          ],
+          "answer": 2,
+          "explain": "Das Gebot betrifft geeigneten Gehörschutz. Die richtige Auswahl folgt aus Gefährdung und Unterweisung."
+        },
+        {
+          "id": "q12",
+          "lessonId": "gebot",
+          "q": "Welche Handlung fordert das Augenschutz-Gebotszeichen?",
+          "options": [
+            "Geeigneten Augenschutz benutzen",
+            "Beliebige dunkle Gläser als ausreichend ansehen",
+            "Nur die Augen kurzzeitig geschlossen halten",
+            "Nur die Beleuchtungsstärke im Raum notieren"
+          ],
+          "answer": 0,
+          "explain": "Gefordert ist der für das Risiko geeignete Augenschutz; eine Tönung allein beschreibt dessen Schutzleistung nicht."
+        },
+        {
+          "id": "q13",
+          "lessonId": "gebot",
+          "q": "Welche Information liefert ein Handschutz-Gebotszeichen unmittelbar?",
+          "options": [
+            "Dass jeder Haushaltshandschuh alle Gefahren abdeckt",
+            "Dass geeigneter Handschutz zu benutzen ist",
+            "Dass eine Handverletzung bereits sicher eingetreten ist",
+            "Dass die Tätigkeit ohne weitere Unterweisung möglich ist"
+          ],
+          "answer": 1,
+          "explain": "Das Zeichen benennt die Schutzhandlung. Material und Schutzklasse müssen zur Gefährdung passen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "gebot",
+          "q": "Wozu fordert das Gebotszeichen „Anleitung beachten“ auf?",
+          "options": [
+            "Alle Warnzeichen durch Produktwerbung zu ersetzen",
+            "Nur die Form des Verpackungskartons zu prüfen",
+            "Alle Produktangaben als freiwillige Dekoration zu behandeln",
+            "Die zugehörigen Anweisungen und Informationen zu beachten"
+          ],
+          "answer": 3,
+          "explain": "Das Gebot verweist auf konkrete Anweisungen, die für die Verwendung wichtig sind."
+        },
+        {
+          "id": "q15",
+          "lessonId": "gebot",
+          "q": "Wie wirken Sicherheitszeichen mit technischen Schutzmaßnahmen zusammen?",
+          "options": [
+            "Sie ergänzen die erforderlichen Schutzmaßnahmen",
+            "Sie ersetzen jede technische Gefahrenbegrenzung",
+            "Sie erlauben den Ausbau aller Schutzvorrichtungen",
+            "Sie machen jede Gefährdungsbeurteilung überflüssig"
+          ],
+          "answer": 0,
+          "explain": "Sicherheitszeichen sind ein ergänzendes Mittel. Gefahren sollen durch geeignete technische und organisatorische Maßnahmen begrenzt werden."
+        },
+        {
+          "id": "q16",
+          "lessonId": "gebot",
+          "q": "Was ist bei einem unverständlichen Gebotszeichen vor der Tätigkeit sinnvoll?",
+          "options": [
+            "Die Bedeutung anhand der Lieblingsfarbe bestimmen",
+            "Die Anforderung durch eine Preisangabe ersetzen",
+            "Die konkrete Bedeutung und Umsetzung klären",
+            "Die Unterweisung durch das bloße Fotografieren ersetzen"
+          ],
+          "answer": 2,
+          "explain": "Eine verständliche Unterweisung verbindet Zeichen und erforderliche Maßnahme am konkreten Ort."
+        },
+        {
+          "id": "q17",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welche Grundgestaltung kennzeichnet Rettungszeichen?",
+          "options": [
+            "Schwarzes Piktogramm auf gelbem Dreieck",
+            "Weißes Piktogramm auf blauem Kreis",
+            "Schwarzes Piktogramm im roten Verbotsring",
+            "Weißes Piktogramm auf grünem Rechteck oder Quadrat"
+          ],
+          "answer": 3,
+          "explain": "Grüne Rettungszeichen weisen auf Rettungswege, Notausgänge oder Erste-Hilfe-Einrichtungen hin."
+        },
+        {
+          "id": "q18",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welche Grundgestaltung kennzeichnet Brandschutzzeichen?",
+          "options": [
+            "Schwarzes Piktogramm auf weißem Verbotskreis",
+            "Weißes Piktogramm auf rotem Rechteck oder Quadrat",
+            "Weißes Piktogramm auf blauem Gebotskreis",
+            "Schwarzes Piktogramm auf gelbem Warndreieck"
+          ],
+          "answer": 1,
+          "explain": "Die rechteckige oder quadratische rote Gestaltung weist auf Brandschutzeinrichtungen hin."
+        },
+        {
+          "id": "q19",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welcher Zeichenart gehört das grüne Erste-Hilfe-Zeichen an?",
+          "options": [
+            "Gebotszeichen",
+            "Verbotszeichen",
+            "Rettungszeichen",
+            "Warnzeichen"
+          ],
+          "answer": 2,
+          "explain": "Das Erste-Hilfe-Zeichen kennzeichnet eine Hilfseinrichtung und gehört zu den Rettungszeichen."
+        },
+        {
+          "id": "q20",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welchen Standort kennzeichnet ein entsprechendes rotes Feuerlöscher-Piktogramm?",
+          "options": [
+            "Den Standort eines Feuerlöschgeräts",
+            "Den Standort einer Augenschutzprüfung",
+            "Den Standort einer Trinkwasserstelle",
+            "Den Standort eines privaten Kamerageräts"
+          ],
+          "answer": 0,
+          "explain": "Das Brandschutzzeichen hilft, die bezeichnete Einrichtung zu finden; es ist keine Bedienbefähigung."
+        },
+        {
+          "id": "q21",
+          "lessonId": "rettung-brandschutz",
+          "q": "Womit muss ein Richtungspfeil für die Orientierung verbunden werden?",
+          "options": [
+            "Mit einer beliebigen Produktpreisangabe",
+            "Mit dem Zeichen der betreffenden Einrichtung oder Route",
+            "Mit der Farbe der nächsten Außenwand",
+            "Mit einer vermuteten allgemeinen Raumrichtung"
+          ],
+          "answer": 1,
+          "explain": "Der Pfeil konkretisiert die Richtung zu dem zugehörigen Ziel. Ohne Bezug bleibt seine Aussage unvollständig."
+        },
+        {
+          "id": "q22",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welche Wirkung hat ein korrektes, aber durch Kisten verdecktes Sicherheitszeichen?",
+          "options": [
+            "Seine Schutzwirkung wird durch die Kisten automatisch erhöht",
+            "Seine Sicherheitsaussage geht auf jedes andere Schild über",
+            "Seine Einordnung wechselt dadurch in ein Produktprüfzeichen",
+            "Seine Erkennbarkeit und Orientierungswirkung sind beeinträchtigt"
+          ],
+          "answer": 3,
+          "explain": "Die Information muss sichtbar sein. Korrekte Gestaltung allein genügt bei verdeckter Anbringung nicht."
+        },
+        {
+          "id": "q23",
+          "lessonId": "rettung-brandschutz",
+          "q": "Welche Information verbindet ein Flucht- und Rettungsplan mit Wegen und Einrichtungen?",
+          "options": [
+            "Den Standort der betrachtenden Person",
+            "Den Verkaufspreis des Gebäudes",
+            "Den Hersteller jeder vorhandenen Jacke",
+            "Die Körpergröße sämtlicher Besucher"
+          ],
+          "answer": 0,
+          "explain": "Der markierte Standort hilft, die eigene Lage im Grundriss und die zugehörigen Wege einzuordnen."
+        },
+        {
+          "id": "q24",
+          "lessonId": "rettung-brandschutz",
+          "q": "Warum reicht die Farbe Rot allein zur Einordnung eines Sicherheitszeichens nicht aus?",
+          "options": [
+            "Jedes rote Zeichen bezeichnet ausschließlich einen Ausgang",
+            "Jedes rote Zeichen bescheinigt eine bestandene Produktprüfung",
+            "Form und Piktogramm unterscheiden Verbot und Brandschutz",
+            "Die Farbe Rot hat im Zeichensystem keinerlei Bedeutung"
+          ],
+          "answer": 2,
+          "explain": "Rot kann im Verbotsring und auf dem Brandschutzrechteck vorkommen. Die gesamte Gestaltung bestimmt die Aussage."
+        },
+        {
+          "id": "q25",
+          "lessonId": "ce-konformitaet",
+          "q": "Wer übernimmt im CE-System grundsätzlich die Verantwortung für die Produktkonformität?",
+          "options": [
+            "Die EU als Prüfer jedes Einzelstücks",
+            "Die beliebige Person im nächsten Geschäft",
+            "Die Betreiberin jeder beliebigen Bewertungsseite",
+            "Der verantwortliche Hersteller"
+          ],
+          "answer": 3,
+          "explain": "Der Hersteller organisiert das vorgeschriebene Verfahren und erklärt die Einhaltung der einschlägigen Anforderungen."
+        },
+        {
+          "id": "q26",
+          "lessonId": "ce-konformitaet",
+          "q": "Welche Aussage macht CE über das Herstellungsland?",
+          "options": [
+            "CE bedeutet Herstellung ausschließlich in der EU",
+            "CE ist keine Herkunftskennzeichnung",
+            "CE bedeutet Herstellung ausschließlich in der Schweiz",
+            "CE bedeutet Herstellung ausschließlich im Absatzland"
+          ],
+          "answer": 1,
+          "explain": "Die CE-Kennzeichnung betrifft Konformität nach anwendbaren EU-Produktregeln und nicht die geographische Herkunft."
+        },
+        {
+          "id": "q27",
+          "lessonId": "ce-konformitaet",
+          "q": "Für welche Produktgruppe ist eine CE-Kennzeichnung vorgesehen?",
+          "options": [
+            "Für jedes beliebige Produkt unabhängig von seinen Vorschriften",
+            "Nur für sämtliche im Wald benutzten Naturmaterialien",
+            "Für Produkte mit entsprechend anwendbaren Harmonisierungsregeln",
+            "Nur für alle handgefertigten Produkte ohne technische Regeln"
+          ],
+          "answer": 2,
+          "explain": "CE darf nicht beliebig auf jede Ware gesetzt werden. Die einschlägigen Produktregeln bestimmen seine Anwendung."
+        },
+        {
+          "id": "q28",
+          "lessonId": "ce-konformitaet",
+          "q": "Welches Dokument gehört im erläuterten CE-Verfahren zur Herstellerverantwortung?",
+          "options": [
+            "Die erforderliche EU-Konformitätserklärung",
+            "Die persönliche Jagdeinladung der kaufenden Person",
+            "Die beliebige Bewertung einer privaten Fotoaufnahme",
+            "Die Liste aller früheren Aufenthaltsorte des Produkts"
+          ],
+          "answer": 0,
+          "explain": "Die Konformitätserklärung dokumentiert die erklärte Erfüllung der einschlägigen Anforderungen für das konkrete Produkt."
+        },
+        {
+          "id": "q29",
+          "lessonId": "ce-konformitaet",
+          "q": "Wovon hängt die Beteiligung einer unabhängigen Stelle im Konformitätsverfahren ab?",
+          "options": [
+            "Allein von der Lieblingsfarbe des Herstellers",
+            "Von den anwendbaren Produktvorschriften",
+            "Allein von der Zahl der Produktfotos",
+            "Allein vom Namen des Verkaufsorts"
+          ],
+          "answer": 1,
+          "explain": "Je nach Produkt und Verfahren kann eine unabhängige Stelle erforderlich sein; CE allein beantwortet diese Frage nicht."
+        },
+        {
+          "id": "q30",
+          "lessonId": "ce-konformitaet",
+          "q": "Wie wird GS gegenüber CE eingeordnet?",
+          "options": [
+            "Als bloße Übersetzung derselben Herstellerkennzeichnung",
+            "Als allgemeiner Herkunftscode aller europäischen Produkte",
+            "Als pauschale Prüfung jeder Schusswaffe und jeder Munition",
+            "Als gesondertes deutsches Prüfzeichen mit eigenem Verfahren"
+          ],
+          "answer": 3,
+          "explain": "GS ist ein gesondertes Prüfzeichen. Es ist weder ein umfassendes Qualitätssiegel noch pauschal auf alle Produkte anwendbar."
+        },
+        {
+          "id": "q31",
+          "lessonId": "ce-konformitaet",
+          "q": "Welche Prüfung bleibt bei einer CE-gekennzeichneten Ausrüstung für den konkreten Einsatz wichtig?",
+          "options": [
+            "Modell, Anleitung und vorgesehene Verwendung abgleichen",
+            "Die Aufschrift als universelle Verwendungserlaubnis ansehen",
+            "Die Anleitung durch den bloßen Verkaufspreis ersetzen",
+            "Die vorgesehenen Einsatzgrenzen durch Werbung ersetzen"
+          ],
+          "answer": 0,
+          "explain": "Konformität, vorgesehene Verwendung und tatsächliche Einsatzeignung müssen zusammenpassen."
+        },
+        {
+          "id": "q32",
+          "lessonId": "ce-konformitaet",
+          "q": "Wie unterscheidet SECO grundsätzlich Herstellererklärung und behördliche Zulassung?",
+          "options": [
+            "Als immer identische Namen derselben Einzelprüfung",
+            "Als stets frei wählbare Ersatzhandlung der kaufenden Person",
+            "Als unterschiedliche Verfahren mit produktabhängigen Voraussetzungen",
+            "Als ausschließliche Aussage über die Herkunft der Verpackung"
+          ],
+          "answer": 2,
+          "explain": "Eine Konformitätsbewertung kann je nach Produkt durch Hersteller oder Dritte erfolgen; eine behördliche Zulassung ist eine andere Verfahrensart."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-anwendung-biologische-ebenen-2026",
+      "title": "Biologie verstehen: Zelle, Gewebe, Organ und Stoffwechsel",
+      "category": "Prüfung & Sprache",
+      "topic": "Prüfung",
+      "description": "Fachbegriffe verbinden, statt biologische Ebenen und Funktionen zu verwechseln.",
+      "minutes": 50,
+      "objectives": [
+        "Zellstrukturen ihren Aufgaben zuordnen",
+        "Vier Grundgewebe unterscheiden",
+        "Organ, System und Organismus trennen",
+        "Aufbau, Abbau und Homöostase erklären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame biologische Grundbegriffe; keine Übertragung menschlicher Organzahlen oder physiologischer Sollwerte auf Wildarten.",
+        "AT": "Gemeinsame biologische Grundbegriffe; keine Übertragung menschlicher Organzahlen oder physiologischer Sollwerte auf Wildarten.",
+        "CH": "Gemeinsame biologische Grundbegriffe; keine Übertragung menschlicher Organzahlen oder physiologischer Sollwerte auf Wildarten."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "NIH/NCI · Cell Structure",
+          "url": "https://training.seer.cancer.gov/anatomy/cells_tissues_membranes/cells/structure.html",
+          "organization": "National Institutes of Health / National Cancer Institute",
+          "supports": "Zellmembran, Cytoplasma und Zellkern als Grundbestandteile der typischen kernhaltigen tierischen Zelle."
+        },
+        {
+          "label": "OpenStax · Eukaryotic Cells",
+          "url": "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+          "organization": "Rice University / OpenStax",
+          "supports": "Fachlicher Abgleich von Zellkompartimenten, Ribosomen und Mitochondrien; keine Übernahme von Texten, Bildern oder Übungen."
+        },
+        {
+          "label": "University of Leeds · Organelles",
+          "url": "https://histology.leeds.ac.uk/home/cell/cell_organelles/",
+          "organization": "University of Leeds, Histology Guide",
+          "supports": "Zellorganellen und ihre Funktionen als unabhängiger zellbiologischer Abgleich."
+        },
+        {
+          "label": "NIH/NCI · Body Tissues",
+          "url": "https://training.seer.cancer.gov/anatomy/cells_tissues_membranes/tissues/",
+          "organization": "National Institutes of Health / National Cancer Institute",
+          "supports": "Vier Grundgewebe und Zellen samt Interzellularsubstanz."
+        },
+        {
+          "label": "University of Leeds · Basic Tissue Types",
+          "url": "https://histology.leeds.ac.uk/home/tissue_types/",
+          "organization": "University of Leeds, Histology Guide",
+          "supports": "Epithel, Bindegewebe, Muskel- und Nervengewebe; Zusammenarbeit im Organ."
+        },
+        {
+          "label": "NIH/NCI · Introduction to the Human Body",
+          "url": "https://training.seer.cancer.gov/anatomy/body/?view=searchengine",
+          "organization": "National Institutes of Health / National Cancer Institute",
+          "supports": "Hierarchie von Zelle, Gewebe, Organ und System; Magen als Beispiel mehrerer Gewebe. Menschliche Organzahlen werden nicht auf Wildtiere übertragen."
+        },
+        {
+          "label": "OpenStax · Structural Organization",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body",
+          "organization": "Rice University / OpenStax",
+          "supports": "Fachlicher Abgleich der Organisationsebenen und gemeinsamer Organfunktionen, keine Reproduktion der Lehrbuchdarstellung."
+        },
+        {
+          "label": "NIH/NCI · Body Functions and Life Process",
+          "url": "https://training.seer.cancer.gov/anatomy/body/functions.html",
+          "organization": "National Institutes of Health / National Cancer Institute",
+          "supports": "Stoffwechsel, Abbau, Differenzierung, Verdauung, zelluläre Vorgänge und dynamische Homöostase."
+        },
+        {
+          "label": "OpenStax · Energy and Metabolism",
+          "url": "https://openstax.org/books/biology-2e/pages/6-1-energy-and-metabolism",
+          "organization": "Rice University / OpenStax",
+          "supports": "Anabolismus, Katabolismus und verknüpfte Stoffwechselwege als fachlicher Abgleich."
+        },
+        {
+          "label": "OpenStax · Enzymes",
+          "url": "https://openstax.org/books/biology-2e/pages/6-5-enzymes",
+          "organization": "Rice University / OpenStax",
+          "supports": "Enzyme als Katalysatoren mit spezifischen Wirkungen; keine medizinischen Dosis- oder Temperaturanleitungen."
+        },
+        {
+          "label": "OpenStax · ATP",
+          "url": "https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate",
+          "organization": "Rice University / OpenStax",
+          "supports": "ATP als Energieträger zur Kopplung zellulärer Prozesse; kein Ersatz für Nährstoffreserven."
+        },
+        {
+          "label": "OpenStax · Homeostasis",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+          "organization": "Rice University / OpenStax",
+          "supports": "Relative Konstanz durch laufende Regelung und negative Rückkopplung; keine Übernahme menschlicher Sollwerte oder konkreter hormoneller Einzeldarstellungen."
+        },
+        {
+          "label": "NCI · Definition of enzyme",
+          "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/enzyme",
+          "organization": "National Cancer Institute, NIH",
+          "supports": "Enzyme beschleunigen spezifische chemische Reaktionen als Katalysatoren; unabhängiger Abgleich zur OpenStax-Erklärung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "zelle",
+          "title": "Zellbauteile ohne Größenverwechslung",
+          "paragraphs": [
+            "Die Zelle ist die grundlegende funktionelle Organisationseinheit eines Tierkörpers. Ihre Zellmembran grenzt sie ab und wirkt am kontrollierten Austausch mit der Umgebung mit. Im Cytoplasma liegen verschiedene Zellstrukturen. Der Zellkern enthält bei einer typischen kernhaltigen Tierzelle einen großen Teil der Erbinformation. Diese Formulierung ist bewusst enger als „jede Tierzelle hat einen Kern“: Spezialisierte Zelltypen können davon abweichen.",
+            "Ribosomen dienen der Proteinsynthese. Mitochondrien sind Organellen mit wichtigen Aufgaben bei der ATP-Bereitstellung im oxidativen Stoffwechsel. Ein Organell ist eine Struktur innerhalb einer Zelle; es ist kein kleines selbständiges Körperorgan. Eigene Begriffsübung: Ordne einer gedachten Leberzelle Membran, Cytoplasma, Kern, Ribosom und Mitochondrium zu. Bezeichnungen erklären Funktionsbereiche, aber keine aus einem Tierfoto erkennbare Diagnose. Tierzellen werden hier biologisch gemeinsam behandelt; Landesgrenzen verändern diese Grundbegriffe nicht."
+          ],
+          "takeaway": "Zelle und Organell sind verschiedene Ebenen; einzelne Zellbestandteile haben unterschiedliche Aufgaben.",
+          "exercise": "Erkläre Membran, Zellkern und Mitochondrium jeweils in einem eigenen Satz."
+        },
+        {
+          "id": "gewebe",
+          "title": "Vier Grundgewebe und ihre Aufgaben",
+          "paragraphs": [
+            "Ein Gewebe umfasst zusammenwirkende Zellen und je nach Typ unterschiedlich viel Material zwischen ihnen. Vier Grundgewebe helfen beim Ordnen tierischer Körperstrukturen: Epithelgewebe, Binde- und Stützgewebe, Muskelgewebe sowie Nervengewebe. Epithelien bedecken Oberflächen, kleiden innere Räume aus oder bilden Drüsen. Bindegewebe verbindet und stützt; seine extrazelluläre Matrix besteht aus Material außerhalb der Zellen und ist nicht mit dem Cytoplasma gleichzusetzen.",
+            "Muskelgewebe kann durch Kontraktion Kraft erzeugen. Nervengewebe ermöglicht die Aufnahme, Verarbeitung und Weiterleitung von Information; es besteht nicht nur aus den langen Fortsätzen, die im Alltag als „Nerven“ bezeichnet werden. Knochen und Knorpel werden dem spezialisierten Binde- und Stützgewebe zugeordnet. Eigene Sortieraufgabe: Stelle Oberfläche, mechanische Stütze, Kontraktion und Informationsleitung jeweils einer Gewebegruppe gegenüber. Ein Organ enthält gewöhnlich mehrere dieser Gruppen. Die Grundtypen sind Lernkategorien und keine Behauptung, jedes Organ bestehe nur aus einer einzigen Zellart."
+          ],
+          "takeaway": "Gewebe werden nach Bau und Funktion geordnet, nicht nur nach ihrem Aussehen auf einem Foto.",
+          "exercise": "Ordne Darmepithel, Knorpel, Muskelwand und Nervengewebe jeweils einer Grundgruppe zu."
+        },
+        {
+          "id": "organ-system",
+          "title": "Vom Gewebe zum Organsystem",
+          "paragraphs": [
+            "Ein Organ ist eine abgrenzbare Körperstruktur, in der mehrere Gewebe zu einer Funktion zusammenarbeiten. Die Magenwand beispielsweise enthält nicht nur Muskelgewebe, sondern auch auskleidende Epithelien, Bindegewebe und nervöse Strukturen. Ein Organ wird deshalb nicht durch das häufigste Gewebe vollständig erklärt. Mehrere zusammenarbeitende Organe bilden ein Organsystem, das wiederum Teil des ganzen Organismus ist.",
+            "Anatomie beschreibt vor allem Bau und Lage von Strukturen, Physiologie ihre Funktionen und Abläufe. Histologie untersucht Gewebe auf mikroskopischer Ebene. Das Wort „Differenzierung“ bezeichnet die Entwicklung von Zellen zu spezialisierten Bau- und Funktionsformen. Eigene Denkaufgabe: Gliedere „tierischer Körper – Verdauungssystem – Magen – Muskelgewebe – Muskelzelle“ nach abnehmender Organisationsebene. Diese Begriffsfolge ist ein Strukturmodell; sie ist keine artspezifische Zahlentabelle über Magenkammern, Körpertemperatur oder Organmassen. Solche speziellen Merkmale brauchen jeweils eigene Artenbelege."
+          ],
+          "takeaway": "Organ, Organsystem und Organismus dürfen nicht gleichgesetzt werden.",
+          "exercise": "Beschreibe an einem selbst gewählten Organ eine anatomische und eine physiologische Frage."
+        },
+        {
+          "id": "stoffwechsel",
+          "title": "Aufbau, Abbau und dynamisches Gleichgewicht",
+          "paragraphs": [
+            "Stoffwechsel oder Metabolismus umfasst die chemischen Umsetzungen im Organismus. Katabolische Vorgänge zerlegen komplexere Stoffe und können dabei nutzbare Energie bereitstellen; anabolische Vorgänge bauen körpereigene Stoffe auf und benötigen Energie. Verdauung ist ein Teilbereich der Nährstofferschließung, aber nicht mit dem gesamten Stoffwechsel gleichzusetzen. Enzyme beschleunigen bestimmte chemische Reaktionen als Katalysatoren. Dabei werden sie nicht wie ein verbrauchter Baustoff in jedes Reaktionsprodukt eingebaut.",
+            "ATP vermittelt die Kopplung vieler energieliefernder und energieverbrauchender Vorgänge. Es ist ein kurzfristig nutzbarer Energieträger und kein Synonym für den gesamten Fett- oder Glykogenvorrat. Homöostase bedeutet die laufend geregelte relative Stabilität innerer Bedingungen. Negative Rückkopplung wirkt einer Abweichung entgegen; das System bleibt dabei aktiv und veränderlich. Eigene Anwendung: Unterscheide den Aufbau eines Proteins, seinen Abbau und eine Regelung des inneren Milieus."
+          ],
+          "takeaway": "Stoffwechsel verändert Stoffe; Homöostase hält innere Bedingungen durch fortlaufende Regulation in einem geeigneten Bereich.",
+          "exercise": "Formuliere je ein Beispiel für Aufbau, Abbau und die allgemeine Idee negativer Rückkopplung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "zelle",
+          "q": "Welche Einheit ist die grundlegende funktionelle Baueinheit eines Tierkörpers?",
+          "options": [
+            "Die Zelle",
+            "Das Organ",
+            "Das Organsystem",
+            "Der Gesamtorganismus"
+          ],
+          "answer": 0,
+          "explain": "Zellen sind die grundlegenden lebenden Funktionseinheiten, aus denen tierische Gewebe aufgebaut sind."
+        },
+        {
+          "id": "q2",
+          "lessonId": "zelle",
+          "q": "Welche Aufgabe hat die Zellmembran unter anderem?",
+          "options": [
+            "Bildung sämtlicher Knochen des Körpers",
+            "Speicherung aller sichtbaren Körperorgane",
+            "Unbegrenztes Durchlassen jedes Stoffes",
+            "Abgrenzung und geregelter Stoffaustausch"
+          ],
+          "answer": 3,
+          "explain": "Die Membran grenzt die Zelle ab und wirkt selektiv am Austausch mit ihrer Umgebung mit."
+        },
+        {
+          "id": "q3",
+          "lessonId": "zelle",
+          "q": "Welcher Begriff bezeichnet das Zellinnere außerhalb des Kerns?",
+          "options": [
+            "Epimysium",
+            "Cytoplasma",
+            "Periost",
+            "Darmlumen"
+          ],
+          "answer": 1,
+          "explain": "Cytoplasma bezeichnet den Bereich innerhalb der Zellmembran außerhalb des Zellkerns einschließlich seiner Strukturen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "zelle",
+          "q": "Wo liegt bei der typischen kernhaltigen Tierzelle ein großer Teil der Erbinformation?",
+          "options": [
+            "Im Darmlumen",
+            "Im Gelenkspalt",
+            "Im Zellkern",
+            "Im Zwischenwirbelraum"
+          ],
+          "answer": 2,
+          "explain": "Der Zellkern enthält einen großen Teil der genetischen Information einer kernhaltigen Tierzelle."
+        },
+        {
+          "id": "q5",
+          "lessonId": "zelle",
+          "q": "Welche Zellstruktur ist unmittelbar an der Proteinsynthese beteiligt?",
+          "options": [
+            "Das Gelenk",
+            "Das Ribosom",
+            "Der Haarbalg",
+            "Der Lymphknoten"
+          ],
+          "answer": 1,
+          "explain": "Ribosomen setzen Aminosäuren nach der zugrunde liegenden Information zu Proteinen zusammen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "zelle",
+          "q": "Welche Funktion ist eng mit Mitochondrien verbunden?",
+          "options": [
+            "ATP-Bereitstellung im oxidativen Stoffwechsel",
+            "Bildung einer äußeren tierischen Zellwand",
+            "Speicherung ganzer Organe innerhalb der Zelle",
+            "Weiterleitung der Nahrung durch den Darm"
+          ],
+          "answer": 0,
+          "explain": "Mitochondrien sind wichtige Orte oxidativer Energieumsetzung und ATP-Bildung."
+        },
+        {
+          "id": "q7",
+          "lessonId": "zelle",
+          "q": "Was bezeichnet ein Organell?",
+          "options": [
+            "Ein eigenständiges Körperorgan aus mehreren Geweben",
+            "Ein vollständiges Organsystem des Tieres",
+            "Eine funktionelle Struktur innerhalb einer Zelle",
+            "Eine Gruppe mehrerer unabhängiger Tiere"
+          ],
+          "answer": 2,
+          "explain": "Organellen gehören zur inneren Organisation einer Zelle und sind von Körperorganen zu unterscheiden."
+        },
+        {
+          "id": "q8",
+          "lessonId": "zelle",
+          "q": "Warum lautet die Formulierung „typische kernhaltige Tierzelle“ bewusst genau?",
+          "options": [
+            "Jede Tierzelle hat grundsätzlich mehrere Körperorgane",
+            "Alle Tierzellen sind identische unveränderliche Kugeln",
+            "Tierische Zellkerne sind nur im Winter vorhanden",
+            "Spezialisierte Zelltypen können vom Grundmodell abweichen"
+          ],
+          "answer": 3,
+          "explain": "Ein vereinfachtes Zellmodell beschreibt typische Strukturen, ohne Ausnahmen spezialisierter Zelltypen auszuschließen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "gewebe",
+          "q": "Was gehört außer Zellen je nach Gewebe zu dessen Aufbau?",
+          "options": [
+            "Unterschiedlich viel extrazelluläres Material",
+            "Ein vollständiges zweites Verdauungssystem",
+            "Ein ausschließlich luftgefüllter Außenraum",
+            "Ein zusätzliches unabhängiges Tier"
+          ],
+          "answer": 0,
+          "explain": "Gewebe umfassen zusammenwirkende Zellen und eine unterschiedlich ausgeprägte Zwischenzellsubstanz."
+        },
+        {
+          "id": "q10",
+          "lessonId": "gewebe",
+          "q": "Welche Kombination nennt die vier Grundgewebe korrekt?",
+          "options": [
+            "Knochen-, Horn-, Haar- und Zahngewebe allein",
+            "Leber-, Magen-, Nieren- und Lungengewebe als Grundtypen",
+            "Kopf-, Rumpf-, Bein- und Schwanzgewebe als Grundtypen",
+            "Epithel-, Binde-, Muskel- und Nervengewebe"
+          ],
+          "answer": 3,
+          "explain": "Die histologische Grundgliederung unterscheidet Epithel-, Binde-/Stütz-, Muskel- und Nervengewebe."
+        },
+        {
+          "id": "q11",
+          "lessonId": "gewebe",
+          "q": "Welche Funktion ist besonders typisch für Epithelgewebe?",
+          "options": [
+            "Kraft ausschließlich durch Sarkomere erzeugen",
+            "Oberflächen bedecken und Räume auskleiden",
+            "Elektrische Impulse ausschließlich über Axone leiten",
+            "Mineralisierte Stütze ausschließlich im Knochen bilden"
+          ],
+          "answer": 1,
+          "explain": "Epithelien bedecken und kleiden aus; viele Drüsen bestehen ebenfalls aus epithelialen Strukturen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "gewebe",
+          "q": "Was bedeutet „extrazellulär“?",
+          "options": [
+            "Innerhalb des Zellkerns gelegen",
+            "Ausschließlich innerhalb von Ribosomen",
+            "Außerhalb der Zellen gelegen",
+            "Ausschließlich innerhalb von Mitochondrien"
+          ],
+          "answer": 2,
+          "explain": "Das Präfix extra bezeichnet die Lage außerhalb der Zelle, beispielsweise bei der extrazellulären Matrix."
+        },
+        {
+          "id": "q13",
+          "lessonId": "gewebe",
+          "q": "Welche Fähigkeit kennzeichnet Muskelgewebe besonders?",
+          "options": [
+            "Ausschließliche Bildung einer äußeren Schutzschicht",
+            "Kontraktion zur Krafterzeugung",
+            "Ausschließliche Speicherung genetischer Information",
+            "Ausschließliche Bildung von Gelenkknorpel"
+          ],
+          "answer": 1,
+          "explain": "Muskelzellen können sich funktionell zusammenziehen und damit Kraft erzeugen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "gewebe",
+          "q": "Welche Aufgabe gehört zum Nervengewebe?",
+          "options": [
+            "Information aufnehmen, verarbeiten und weiterleiten",
+            "Allein die harte mineralische Stütze aufbauen",
+            "Ausschließlich Nahrung im Darmlumen speichern",
+            "Ausschließlich die äußere Hornschicht bilden"
+          ],
+          "answer": 0,
+          "explain": "Nervengewebe ist auf Informationsverarbeitung und Signalübertragung spezialisiert und umfasst mehrere Zelltypen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "gewebe",
+          "q": "Welcher Grundgruppe wird Knorpel zugeordnet?",
+          "options": [
+            "Epithelgewebe",
+            "Nervengewebe",
+            "Binde- und Stützgewebe",
+            "Muskelgewebe"
+          ],
+          "answer": 2,
+          "explain": "Knorpel ist eine spezialisierte Form des Binde- und Stützgewebes mit charakteristischer Matrix."
+        },
+        {
+          "id": "q16",
+          "lessonId": "gewebe",
+          "q": "Was trifft auf die Gewebezusammensetzung eines Organs typischerweise zu?",
+          "options": [
+            "Eine einzige Zellart bildet immer das ganze Organ",
+            "Jedes Organ besteht ausschließlich aus Nervengewebe",
+            "Nur die Oberfläche enthält überhaupt Zellen",
+            "Mehrere Gewebearten arbeiten zusammen"
+          ],
+          "answer": 3,
+          "explain": "Die Organfunktion entsteht gewöhnlich durch das Zusammenwirken verschiedener Gewebearten."
+        },
+        {
+          "id": "q17",
+          "lessonId": "organ-system",
+          "q": "Welche Definition beschreibt ein Organ?",
+          "options": [
+            "Eine abgegrenzte Struktur mit mehreren zusammenwirkenden Geweben",
+            "Eine einzelne Reaktion ohne räumliche Struktur",
+            "Ein einzelnes Molekül mit mehreren Atomen",
+            "Eine Gruppe räumlich getrennter Tierindividuen"
+          ],
+          "answer": 0,
+          "explain": "Ein Organ vereint mehrere Gewebe in einer räumlich und funktionell zusammenhängenden Struktur."
+        },
+        {
+          "id": "q18",
+          "lessonId": "organ-system",
+          "q": "Welche Definition beschreibt ein Organsystem?",
+          "options": [
+            "Mehrere beliebige Moleküle eines einzigen Proteins",
+            "Mehrere unverbundene Populationen einer Tierart",
+            "Mehrere gleichlautende Namen eines einzelnen Organs",
+            "Mehrere funktionell zusammenarbeitende Organe"
+          ],
+          "answer": 3,
+          "explain": "Organsysteme umfassen Organe, die gemeinsam größere Körperfunktionen erfüllen."
+        },
+        {
+          "id": "q19",
+          "lessonId": "organ-system",
+          "q": "Welche Folge ordnet die genannten Ebenen vom Kleineren zum Größeren?",
+          "options": [
+            "Gewebe – Organ – Zelle – Organsystem",
+            "Zelle – Gewebe – Organ – Organsystem",
+            "Organ – Zelle – Organsystem – Gewebe",
+            "Organsystem – Gewebe – Zelle – Organ"
+          ],
+          "answer": 1,
+          "explain": "Zellen bilden Gewebe; verschiedene Gewebe wirken in Organen und Organsystemen zusammen."
+        },
+        {
+          "id": "q20",
+          "lessonId": "organ-system",
+          "q": "Welche Frage gehört vor allem zur Anatomie?",
+          "options": [
+            "Wie schnell läuft eine konkrete Stoffwechselreaktion ab?",
+            "Wie verändert ein Hormon eine aktuelle Organfunktion?",
+            "Wo liegt eine Struktur und wie ist sie gebaut?",
+            "Wie wird die Leistung eines Regelkreises angepasst?"
+          ],
+          "answer": 2,
+          "explain": "Anatomie behandelt Bau und Lage. Funktionsabläufe sind Gegenstand der Physiologie."
+        },
+        {
+          "id": "q21",
+          "lessonId": "organ-system",
+          "q": "Welche Frage gehört vor allem zur Physiologie?",
+          "options": [
+            "Welche äußere Form besitzt eine knöcherne Struktur?",
+            "Wie erfüllt ein Organ seine Funktion?",
+            "Wo befindet sich die beschriebene Körperregion?",
+            "Wie heißt der Lagebezug zweier Körperteile?"
+          ],
+          "answer": 1,
+          "explain": "Physiologie befasst sich mit Funktionen und Abläufen im lebenden Organismus."
+        },
+        {
+          "id": "q22",
+          "lessonId": "organ-system",
+          "q": "Womit befasst sich die Histologie?",
+          "options": [
+            "Mit dem mikroskopischen Aufbau von Geweben",
+            "Mit dem Maßstab topographischer Karten",
+            "Mit der Zulassung technischer Produkte",
+            "Mit dem Verlauf von Grundstücksgrenzen"
+          ],
+          "answer": 0,
+          "explain": "Histologie ist Gewebelehre und untersucht deren mikroskopische Organisation."
+        },
+        {
+          "id": "q23",
+          "lessonId": "organ-system",
+          "q": "Was bezeichnet zelluläre Differenzierung?",
+          "options": [
+            "Die bloße Verschiebung eines Organs im Körper",
+            "Die Umbenennung eines Gewebes ohne Veränderung",
+            "Die Entwicklung spezialisierter Zellformen und Funktionen",
+            "Die Vergrößerung eines Fotos auf dem Bildschirm"
+          ],
+          "answer": 2,
+          "explain": "Bei Differenzierung entstehen aus weniger spezialisierten Zellen charakteristische Bau- und Funktionsformen."
+        },
+        {
+          "id": "q24",
+          "lessonId": "organ-system",
+          "q": "Warum erklärt „Muskel“ allein nicht den vollständigen Aufbau des Magens?",
+          "options": [
+            "Der Magen besteht ausschließlich aus Knochenrinde",
+            "Der Magen besitzt grundsätzlich keine lebenden Zellen",
+            "Der Magen ist ein einzelnes Zellorganell",
+            "Auch Epithel-, Binde- und Nervengewebe wirken dort mit"
+          ],
+          "answer": 3,
+          "explain": "Die Magenfunktion benötigt mehrere Gewebearten; die Muskelwand ist nur ein Teil davon."
+        },
+        {
+          "id": "q25",
+          "lessonId": "stoffwechsel",
+          "q": "Was bezeichnet Metabolismus?",
+          "options": [
+            "Die Gesamtheit chemischer Stoffwechselvorgänge",
+            "Nur das Kauen vor dem Abschlucken",
+            "Nur die äußere Bewegung der Gliedmaßen",
+            "Nur die räumliche Lage der inneren Organe"
+          ],
+          "answer": 0,
+          "explain": "Metabolismus ist der Fachausdruck für Stoffwechsel und umfasst auf- und abbauende chemische Vorgänge."
+        },
+        {
+          "id": "q26",
+          "lessonId": "stoffwechsel",
+          "q": "Welche Beschreibung passt zum Katabolismus?",
+          "options": [
+            "Körpereigene Stoffe werden ausschließlich neu aufgebaut",
+            "Nur äußere Körperoberflächen werden vermessen",
+            "Nur Organe werden in anatomische Lage gebracht",
+            "Komplexere Stoffe werden in einfachere zerlegt"
+          ],
+          "answer": 3,
+          "explain": "Katabolische Vorgänge bauen Stoffe ab und können dabei nutzbare Energie bereitstellen."
+        },
+        {
+          "id": "q27",
+          "lessonId": "stoffwechsel",
+          "q": "Welche Beschreibung passt zum Anabolismus?",
+          "options": [
+            "Sämtliche komplexen Stoffe werden nur zerlegt",
+            "Körpereigene Stoffe werden unter Energiebedarf aufgebaut",
+            "Alle inneren Bedingungen bleiben ohne Aufwand unverändert",
+            "Alle Zellmembranen werden in jedem Vorgang vollständig zerstört"
+          ],
+          "answer": 1,
+          "explain": "Anabolische Vorgänge dienen dem Aufbau körpereigener Stoffe und benötigen Energie."
+        },
+        {
+          "id": "q28",
+          "lessonId": "stoffwechsel",
+          "q": "Welche Rolle haben Enzyme im Stoffwechsel?",
+          "options": [
+            "Sie ersetzen sämtliche Ausgangsstoffe einer Reaktion",
+            "Sie dienen ausschließlich als äußere Wärmedämmung",
+            "Sie katalysieren bestimmte chemische Reaktionen",
+            "Sie bilden grundsätzlich die gesamte Energiequelle"
+          ],
+          "answer": 2,
+          "explain": "Enzyme wirken als Katalysatoren, beschleunigen passende Reaktionen und werden dabei nicht wie ein gewöhnlicher Baustoff verbraucht."
+        },
+        {
+          "id": "q29",
+          "lessonId": "stoffwechsel",
+          "q": "Welche Funktion beschreibt ATP hier?",
+          "options": [
+            "Dauerhafte Speicherung aller Fettvorräte des Körpers",
+            "Kurzfristige Energiekopplung zellulärer Vorgänge",
+            "Ausschließliche Mineralisierung von Geweihmaterial",
+            "Vollständiger Ersatz der Zellmembran jeder Tierzelle"
+          ],
+          "answer": 1,
+          "explain": "ATP vermittelt viele energieabhängige Zellvorgänge; es ist nicht mit sämtlichen Nährstoffreserven gleichzusetzen."
+        },
+        {
+          "id": "q30",
+          "lessonId": "stoffwechsel",
+          "q": "Was bedeutet Homöostase?",
+          "options": [
+            "Laufend geregelte relative Stabilität innerer Bedingungen",
+            "Vollständiger Stillstand aller inneren Stoffwechselvorgänge",
+            "Gleiche absolute Körperwerte bei jeder europäischen Tierart",
+            "Ausschließliche unveränderliche Größe aller Zellkerne"
+          ],
+          "answer": 0,
+          "explain": "Homöostase ist ein dynamisch aufrechterhaltener Zustand, kein starres Ende aller Veränderung."
+        },
+        {
+          "id": "q31",
+          "lessonId": "stoffwechsel",
+          "q": "Was kennzeichnet negative Rückkopplung?",
+          "options": [
+            "Eine Abweichung wird grundsätzlich beliebig verstärkt",
+            "Eine Reaktion findet ohne jede Information statt",
+            "Eine Reaktion wirkt einer erfassten Abweichung entgegen",
+            "Eine vorhandene Regelgröße wird vollständig abgeschafft"
+          ],
+          "answer": 2,
+          "explain": "Negative Rückkopplung wirkt der Abweichung entgegen und unterstützt Stabilität innerhalb eines Bereichs."
+        },
+        {
+          "id": "q32",
+          "lessonId": "stoffwechsel",
+          "q": "Wie stehen Verdauung und Stoffwechsel zueinander?",
+          "options": [
+            "Verdauung umfasst ausschließlich jede chemische Körperreaktion",
+            "Verdauung beschreibt ausschließlich den Aufbau des Nervengewebes",
+            "Verdauung und Stoffwechsel sind grundsätzlich unverbundene Vorgänge",
+            "Verdauung erschließt Nährstoffe und ist nicht der gesamte Stoffwechsel"
+          ],
+          "answer": 3,
+          "explain": "Verdauung macht Nahrung für die Aufnahme nutzbar. Weitere chemische Umsetzungen laufen anschließend und in anderen Zusammenhängen ab."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-anwendung-wildkamera-datenschutz-2026",
+      "title": "Wildkameras: Personendaten in Deutschland, Österreich und der Schweiz",
+      "category": "Jagdrecht",
+      "topic": "Recht",
+      "description": "Originalnormen und Behördenhinweise auf klar abgegrenzte private Kamerafälle anwenden.",
+      "minutes": 60,
+      "objectives": [
+        "Personenbezug und Verantwortlichkeit erkennen",
+        "DSGVO-Anforderungen in DE/AT getrennt prüfen",
+        "Österreichische Richtwerte von Gesetzesfristen unterscheiden",
+        "Schweizer private und kantonale Fallgruppen auseinanderhalten"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "DSGVO und DSK-Orientierung, insbesondere 5.8; private Betreiber mit möglichen Personenaufnahmen im öffentlich zugänglichen Wald. Keine Standortfreigabe.",
+        "AT": "DSGVO, § 1 DSG und DSB-Foto-/Video-FAQ; 72 h keine pauschale Waldkamera-Frist. Keine Übertragung von Hausfassaden-Ausnahmen auf Wildkameras.",
+        "CH": "Privater Betreiber: Bundes-DSG und EDÖB-Fotofallenhinweis; nichtpersonenbezogener Zweck nach Art. 31 Abs. 2 lit. e nur mit Voraussetzungen. Kantonale Betreiber und Spezial-Jagdrecht gesondert."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "DSGVO · Amtlicher Abdruck bei der BfDI",
+          "url": "https://www.bfdi.bund.de/SharedDocs/Downloads/DE/Broschueren/INFO1.pdf?__blob=publicationFile&v=61",
+          "organization": "Gesetzgeber der Europäischen Union; amtlicher Abdruck der Bundesbeauftragten für den Datenschutz und die Informationsfreiheit",
+          "supports": "Gelesener Originalnormtext Art. 4 Nr. 1/7, Art. 5, Art. 6 Abs. 1 lit. f, Art. 13 und Art. 32; kein Ersetzen der Norm durch eine reine Behördenmeinung."
+        },
+        {
+          "label": "DSK · Orientierungshilfe Videoüberwachung, insbesondere 5.8 Wildkameras",
+          "url": "https://www.baden-wuerttemberg.datenschutz.de/orientierungshilfe-videoueberwachung-nicht-oeffentlich/",
+          "organization": "Konferenz der unabhängigen Datenschutzaufsichtsbehörden des Bundes und der Länder; LfDI Baden-Württemberg",
+          "supports": "Deutsche Auslegung für nichtöffentliche Betreiber, Publikumsverkehr im Wald, Interessenabwägung, mildere Mittel und Hinweise. Stand 17.07.2020; aktuell zugängliche Behördenpublikation, keine pauschale Montagefreigabe."
+        },
+        {
+          "label": "DSB Österreich · Foto und Video",
+          "url": "https://dsb.gv.at/faqs/foto-video",
+          "organization": "Österreichische Datenschutzbehörde",
+          "supports": "Vorprüfung durch Verantwortliche, Erforderlichkeit, räumlich/zeitliche Begrenzung, Information, Speicherbegrenzung, Liveübertragung und Weitergabe. 72 h nur behördlicher Richtwert, kein universelles Gesetzesmaximum."
+        },
+        {
+          "label": "RIS · Datenschutzgesetz, geltende Fassung",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001597",
+          "organization": "Österreichischer Bundesgesetzgeber; Rechtsinformationssystem des Bundes",
+          "supports": "Am 16.10.2026 gelesene konsolidierte Fassung; § 1 Geheimhaltung und gelindeste zum Ziel führende Eingriffsart. Keine pauschale Berufung auf ältere Kamera-Spezialregeln."
+        },
+        {
+          "label": "Fedlex · Bundesgesetz über den Datenschutz",
+          "url": "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20250707/de/pdf-a/fedlex-data-admin-ch-eli-cc-2022-491-20250707-de-pdf-a.pdf",
+          "organization": "Schweizerische Bundesversammlung; Bundeskanzlei Fedlex",
+          "supports": "Originalnormtext SR 235.1, Stand 7.07.2025; Art. 2/5/6/7/8/19/31 gelesen und mit der aktuell eingesehenen EDÖB-Auslegung abgeglichen. Keine vollständige Prüfung sämtlicher kantonaler Spezialnormen."
+        },
+        {
+          "label": "EDÖB · Fotofallen und Wildtierkameras",
+          "url": "https://www.edoeb.admin.ch/de/fotofallen-und-wildtierkameras",
+          "organization": "Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter",
+          "supports": "Private vs kantonale Betreiber, zufällige Personenbilder, Art. 6/19/31 Abs. 2 lit. e DSG, unverzügliche Vernichtung/Anonymisierung erkennbarer Personenbilder im beschriebenen nichtpersonenbezogenen Zweck; zusätzliches kantonales Jagdrecht vorbehalten."
+        },
+        {
+          "label": "Bundesamt für Justiz · Neues Datenschutzrecht",
+          "url": "https://www.bj.admin.ch/de/neues-datenschutzrecht",
+          "organization": "Bundesamt für Justiz Schweiz",
+          "supports": "Aktuelle amtliche Einordnung des revidierten DSG und eigenständiger Schweizer Rechtsrahmen; Veröffentlichungsstand 18.03.2026. Keine Behauptung, DSGVO könne nie grenzüberschreitend anwendbar sein."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "eu-grundlagen",
+          "title": "Deutschland und Österreich: Personenbezug zuerst prüfen",
+          "paragraphs": [
+            "Für den hier behandelten Fall privater Wildkamerabetreiber in Deutschland oder Österreich, die Personen in öffentlich zugänglicher Umgebung erfassen, ist die DSGVO der gemeinsame Ausgangspunkt. Nach Art. 4 Nr. 1 reichen Informationen über identifizierte oder identifizierbare natürliche Personen; ein ausgeschriebener Name auf dem Bild ist nicht notwendig. Auch Kleidung, Begleitumstände, Ort und Zeit können die Identifizierung ermöglichen. Verantwortlich ist nach Art. 4 Nr. 7, wer über Zwecke und Mittel der Verarbeitung entscheidet, nicht automatisch der Hersteller des Geräts.",
+            "Art. 5 verlangt unter anderem Zweckbindung, Datenminimierung, Speicherbegrenzung und angemessenen Schutz. Bei einer Berufung auf berechtigte Interessen nach Art. 6 Abs. 1 lit. f sind legitimes Interesse, Erforderlichkeit und die Interessen der Betroffenen zusammen zu prüfen. Ein Hinweisschild ersetzt diese Grundlage nicht. Art. 13 regelt Informationen bei der Erhebung, darunter Verantwortlicher, Kontakt, Zweck und Rechtsgrundlage; Art. 32 betrifft angemessene technische und organisatorische Sicherheit. Eigener Fall: Eine Tieraufnahme mit klar erkennbarem Spaziergänger wird nicht allein durch die Bezeichnung „Wildfoto“ zu einer Aufnahme ohne Personenbezug."
+          ],
+          "takeaway": "Personenbezug hängt von Identifizierbarkeit ab; Zweck, Erforderlichkeit, Information und Schutz sind getrennte Anforderungen.",
+          "exercise": "Beschreibe an einem eigenen Kamerafall Verantwortlichen, Zweck und mögliche personenbezogene Angaben."
+        },
+        {
+          "id": "de-wald",
+          "title": "Deutschland: Waldbesucher und mildere Mittel",
+          "paragraphs": [
+            "Die deutsche Datenschutzkonferenz behandelt Wildkameras ausdrücklich in Abschnitt 5.8 ihrer Orientierungshilfe zur Videoüberwachung. Ein öffentlich zugänglicher Wald ist kein abgeschlossener häuslicher Privatbereich allein deshalb, weil die Fläche privat gehört. Erholungssuchende müssen nach der Behördeneinordnung nicht mit einer versteckten Kameraüberwachung rechnen. Ihr Interesse an unbeobachteter Freizeit wiegt deshalb in der Prüfung nach Art. 6 Abs. 1 lit. f DSGVO erheblich. Ein jagdliches Interesse allein ist keine pauschale Erlaubnis, vorbeigehende Personen aufzuzeichnen.",
+            "Die DSK verlangt die Prüfung milderer Mittel und beschreibt eine Gestaltung, die Personenaufnahmen mit allen verfügbaren Mitteln ausschließt beziehungsweise äußerst unwahrscheinlich macht. Aufnahmebereich und Betriebszeiten sind auf den konkreten Zweck zu begrenzen; Hinweise auf die Kamera und den Verantwortlichen bleiben wichtig. Einzelne Höhen- oder Winkelbeispiele aus der Orientierungshilfe sind keine universelle Freigabe für jeden Standort. Eigener Vergleich: Eine Erfassung des stark benutzten Waldwegs lässt sich nicht damit rechtfertigen, dass nur das Tier im Vordergrund interessant sei. Die tatsächliche Aufnahme und der weniger eingreifende mögliche Standort sind entscheidend."
+          ],
+          "takeaway": "Grundstückseigentum und jagdlicher Zweck ersetzen die konkrete Datenschutzprüfung nicht.",
+          "exercise": "Prüfe gedanklich einen Standort mit regelmäßigem Besucherverkehr und einen alternativen engen Bildausschnitt ohne Weg."
+        },
+        {
+          "id": "at-vorpruefung",
+          "title": "Österreich: Geheimhaltung, Aufnahmeumfang und Speicherzweck",
+          "paragraphs": [
+            "Neben der DSGVO schützt § 1 des österreichischen Datenschutzgesetzes die Geheimhaltung personenbezogener Daten bei schutzwürdigem Interesse. Zulässige Eingriffe müssen in der gelindesten zum Ziel führenden Art erfolgen. Die Datenschutzbehörde erläutert für private Videoüberwachung, dass der Verantwortliche die Zulässigkeit vor Inbetriebnahme prüfen muss. Eine automatische allgemeine Kameragenehmigung durch die DSB gibt es nicht. Eine Liveübertragung ohne Speicherung ist ebenfalls Verarbeitung personenbezogener Bilddaten; das Abschalten der Speicherkarte beseitigt die Prüfung daher nicht.",
+            "Nach der DSB sind Aufnahmebereich und Dauer auf das Erforderliche zu begrenzen. Technische Maskierung, räumliche Ausrichtung und passende Betriebszeiten können den Eingriff reduzieren; sie ersetzen keine passende Rechtsgrundlage. Für die Speicherdauer nennt die Behörde 72 Stunden als grundsätzlichen Richtwert, während sie ausdrücklich festhält, dass DSGVO und DSG keine allgemeine ausdrückliche Speicherdauer festlegen. Daraus entsteht weder eine garantierte 72-Stunden-Erlaubnis noch eine pauschale Waldkamera-Frist. Hinweise müssen vor Betreten des erfassten Bereichs erkennbar sein; Zugriffsrechte sind festzulegen. Eine zulässige Aufnahme erlaubt nicht automatisch Veröffentlichung oder private Personenfahndung."
+          ],
+          "takeaway": "Erforderlichkeit wird vor dem Betrieb geprüft; Livebild, Speicherzeit und Weitergabe brauchen jeweils eine tragfähige Einordnung.",
+          "exercise": "Erkläre, warum 72 Stunden ein Behördenrichtwert und keine allgemeine Erlaubnis für jede Aufnahme sind."
+        },
+        {
+          "id": "ch-privat",
+          "title": "Schweiz: Private Fotofalle nach DSG",
+          "paragraphs": [
+            "Für private Wildkamerabetreiber in der Schweiz ist das Bundesgesetz über den Datenschutz der hier behandelte Rahmen. Art. 5 lit. a knüpft Personendaten an eine bestimmte oder bestimmbare natürliche Person; Art. 6 enthält Rechtmäßigkeit, Verhältnismäßigkeit, erkennbaren Zweck und Vernichtung oder Anonymisierung, sobald Daten nicht mehr benötigt werden. Der EDÖB stellt klar: Auch zufällig erfasste Menschen lösen Datenschutzanforderungen aus. Kameras kantonaler Behörden oder kantonaler Universitäten sind dagegen anhand des einschlägigen kantonalen Datenschutzrechts zu prüfen; sie werden hier nicht wie private Betreiber behandelt.",
+            "Für einen nichtpersonenbezogenen Zweck wie eine Faunabeobachtung kann nach der EDÖB-Erläuterung Art. 31 Abs. 2 lit. e DSG als Rechtfertigung in Betracht kommen, sofern seine Voraussetzungen eingehalten werden. In diesem beschriebenen Fall sind erkennbare Personenaufnahmen sofort zu vernichten oder zu anonymisieren; sie werden nicht als Personenarchiv weitergegeben oder veröffentlicht. Nach Art. 19 sind angemessene Informationen über Betreiberidentität, Kontakt und Zweck erforderlich. Eigener Fall: Ein Forschungsbericht zeigt nur ausreichend anonymisierte Ergebnisse und gibt keine bestimmbaren Personen preis. Zusätzliches kantonales Jagdrecht kann den Kameraeinsatz beschränken. Diese Lektion bestätigt keine konkrete Kamera an einem bestimmten Ort."
+          ],
+          "takeaway": "Nichtpersonenbezogener Forschungszweck bedeutet weder fehlenden Personenbezug noch freie Veröffentlichung von Personenbildern.",
+          "exercise": "Trenne für einen Schweizer Fall Betreiberart, Personenbezug, Bearbeitungszweck und zusätzliche kantonale Vorschriften."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Wovon hängt der Personenbezug eines Wildkamerabildes nach Art. 4 DSGVO ab?",
+          "options": [
+            "Nur von einem ausgeschriebenen Namen am unteren Bildrand",
+            "Von der direkten oder indirekten Identifizierbarkeit einer Person",
+            "Nur davon, ob die Kamera ein Video statt ein Einzelbild erzeugt",
+            "Nur davon, ob der Betreiber selbst auf dem Bild zu sehen ist"
+          ],
+          "answer": 1,
+          "explain": "Art. 4 Nr. 1 erfasst identifizierte oder identifizierbare natürliche Personen. Ein Name ist nicht erforderlich.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q2",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Wer ist beim privaten Kamerabetrieb grundsätzlich Verantwortlicher nach Art. 4 Nr. 7 DSGVO?",
+          "options": [
+            "Immer ausschließlich der Hersteller der Kameraelektronik",
+            "Immer ausschließlich der Händler der eingesetzten Batterien",
+            "Wer über Zwecke und Mittel der Verarbeitung entscheidet",
+            "Immer ausschließlich die zufällig fotografierte Person"
+          ],
+          "answer": 2,
+          "explain": "Die Entscheidung über Zwecke und Mittel ist das rechtliche Zuordnungskriterium der Verantwortlichkeit.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q3",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Welcher Grundsatz aus Art. 5 DSGVO betrifft einen auf das Nötige beschränkten Aufnahmeumfang?",
+          "options": [
+            "Datenminimierung",
+            "Richtigkeit der Produktwerbung",
+            "Freie Veröffentlichung",
+            "Unbegrenzte Vorratshaltung"
+          ],
+          "answer": 0,
+          "explain": "Datenminimierung beschränkt personenbezogene Daten auf das für den Zweck notwendige Maß.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q4",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Welche drei Punkte gehören zur Prüfung nach Art. 6 Abs. 1 lit. f DSGVO?",
+          "options": [
+            "Kamerapreis, Akkukapazität und gewünschte Bildschärfe",
+            "Speicherkartenmarke, Wetterlage und Gehäusefarbe",
+            "Grundstücksgröße, Kaufdatum und Zahl der Tierbilder",
+            "Berechtigtes Interesse, Erforderlichkeit und Interessenabwägung"
+          ],
+          "answer": 3,
+          "explain": "Ein berechtigtes Interesse allein reicht nicht. Verarbeitung muss erforderlich sein und die Rechte der Betroffenen berücksichtigen.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q5",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Welche Funktion hat Art. 13 DSGVO bei der Datenerhebung?",
+          "options": [
+            "Er ersetzt jede Prüfung der rechtlichen Verarbeitungsgrundlage",
+            "Er erlaubt jede private Aufnahme bei ausreichender Bildschärfe",
+            "Er regelt erforderliche Informationen an betroffene Personen",
+            "Er regelt ausschließlich die Auflösung des Bildsensors"
+          ],
+          "answer": 2,
+          "explain": "Art. 13 betrifft Informationen wie Verantwortlicher, Kontakt, Zweck und Rechtsgrundlage zum Zeitpunkt der Erhebung.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q6",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Welcher Artikel behandelt angemessene technische und organisatorische Datensicherheit?",
+          "options": [
+            "Art. 4 Nr. 1 DSGVO",
+            "Art. 32 DSGVO",
+            "Art. 6 Abs. 1 lit. f DSGVO",
+            "Art. 13 Abs. 1 lit. a DSGVO"
+          ],
+          "answer": 1,
+          "explain": "Art. 32 verlangt risikogerechte Schutzmaßnahmen.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q7",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Eine Aufnahme zeigt ein Tier und eine klar erkennbare Person. Wie wird der Datenbezug beurteilt?",
+          "options": [
+            "Die Tieraufnahme hebt jeden Personenbezug automatisch auf",
+            "Nur die Bildüberschrift entscheidet über Personenbezug",
+            "Nur die Zahl der Tiere entscheidet über Personenbezug",
+            "Die erkennbare Person begründet auch im Tierbild Personenbezug"
+          ],
+          "answer": 3,
+          "explain": "Der erklärte Zweck „Tierbeobachtung“ beseitigt die Identifizierbarkeit der mit aufgenommenen Person nicht.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q8",
+          "lessonId": "eu-grundlagen",
+          "q": "DE/AT: Was verlangt der Grundsatz der Speicherbegrenzung aus Art. 5 DSGVO grundsätzlich?",
+          "options": [
+            "Personenbezogene Daten nur zweckgebunden so lange nötig halten",
+            "Alle Aufnahmen für jede denkbare spätere Verwendung aufheben",
+            "Jedes Bild unabhängig vom Zweck bis zum Gerätewechsel speichern",
+            "Personenbilder nach bloßer Umbenennung unbefristet behalten"
+          ],
+          "answer": 0,
+          "explain": "Die erforderliche Speicherdauer folgt aus dem Zweck und den rechtlichen Voraussetzungen, nicht aus freiem Speicherplatz.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q9",
+          "lessonId": "de-wald",
+          "q": "DE: Wie ist ein privat gehörender, öffentlich zugänglicher Wald bei der Kameraprüfung einzuordnen?",
+          "options": [
+            "Automatisch als ausschließlich häuslicher Privatbereich",
+            "Als Bereich mit möglichen schutzwürdigen Waldbesuchern",
+            "Automatisch als für Erholungssuchende gesperrte Fläche",
+            "Automatisch als von der DSGVO ausgenommener Tierbereich"
+          ],
+          "answer": 1,
+          "explain": "Eigentum allein beseitigt weder den Besucherverkehr noch die Persönlichkeitsrechte erfasster Personen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q10",
+          "lessonId": "de-wald",
+          "q": "DE: Welche Erwartung von Waldbesuchern betont die DSK bei Wildkameras?",
+          "options": [
+            "Allgemeine Zustimmung zu jeder versteckten Aufnahme",
+            "Pflicht zur ständigen Identifikation gegenüber Privatkameras",
+            "Erholung ohne erwartete heimliche Kameraüberwachung",
+            "Einwilligung in Internetveröffentlichung durch bloßes Betreten"
+          ],
+          "answer": 2,
+          "explain": "Die DSK misst unbeobachteter Freizeit im Wald bei der Interessenabwägung hohen Stellenwert bei.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q11",
+          "lessonId": "de-wald",
+          "q": "DE: Was ist vor dem Wildkameraeinsatz nach der DSK besonders zu prüfen?",
+          "options": [
+            "Gleich geeignete mildere Mittel mit geringerem Eingriff",
+            "Nur die höchstmögliche technische Bildauflösung",
+            "Nur die monatlichen Gebühren des Mobilfunkvertrags",
+            "Nur die Ähnlichkeit des Standorts mit Werbefotos"
+          ],
+          "answer": 0,
+          "explain": "Erforderlichkeit verlangt die Betrachtung zumutbarer, weniger eingreifender Alternativen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q12",
+          "lessonId": "de-wald",
+          "q": "DE: Welche Einstellung entspricht dem Prinzip eines eng begrenzten Tierbeobachtungszwecks?",
+          "options": [
+            "Stets alle Wege der Umgebung rund um die Uhr aufnehmen",
+            "Zur Sicherheit jede erreichbare Fläche vollständig speichern",
+            "Personenbilder für spätere freie Zwecke zusätzlich sammeln",
+            "Den tatsächlich nötigen Bereich und die nötigen Zeiten erfassen"
+          ],
+          "answer": 3,
+          "explain": "Zweckbindung und Datenminimierung verlangen eine auf den konkreten Zweck zugeschnittene Erfassung.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q13",
+          "lessonId": "de-wald",
+          "q": "DE: Welche Wirkung hat ein Hinweisschild auf die Verarbeitungsgrundlage?",
+          "options": [
+            "Es macht jede beliebige Personenaufnahme automatisch rechtmäßig",
+            "Es ersetzt die gesamte Abwägung nach Art. 6 Abs. 1 lit. f",
+            "Es erfüllt Informationszwecke, ersetzt aber keine Rechtsgrundlage",
+            "Es erlaubt nachträglich jede Weitergabe sämtlicher Personenbilder"
+          ],
+          "answer": 2,
+          "explain": "Transparenz und Rechtmäßigkeit sind getrennte Anforderungen; ein Schild kann eine unzulässige Erfassung nicht heilen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q14",
+          "lessonId": "de-wald",
+          "q": "DE: Wie sind Montagehöhen aus einem Behördenbeispiel zu verstehen?",
+          "options": [
+            "Als universelle Kamerafreigabe für jeden beliebigen Waldweg",
+            "Als Teil einer konkreten risikomindernden Gestaltung",
+            "Als allgemeiner Ersatz für Informationspflichten und Abwägung",
+            "Als Aussage, dass Personen unter dieser Höhe nie erkennbar sind"
+          ],
+          "answer": 1,
+          "explain": "Die Gesamtumstände und tatsächliche Personenaufnahme entscheiden. Eine einzelne Höhe ist keine pauschale Erlaubnis.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q15",
+          "lessonId": "de-wald",
+          "q": "DE: Welche Standortänderung setzt Datenminimierung bei einem regelmäßig benutzten Waldweg eher um?",
+          "options": [
+            "Den Weg bei gleicher Erfassung nur anders benennen",
+            "Die Personenaufnahmen lediglich in einen Tierordner verschieben",
+            "Den Datenträger bei gleicher Aufnahme häufiger wechseln",
+            "Den Weg wirksam aus dem Aufnahmebereich herausnehmen"
+          ],
+          "answer": 3,
+          "explain": "Ein nicht benötigter Personenbereich soll gar nicht erfasst werden. Ordnername oder Kartentausch ändern den Aufnahmeumfang nicht.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q16",
+          "lessonId": "de-wald",
+          "q": "DE: Welche Information kann trotz verdecktem Gesicht eine Person identifizierbar machen?",
+          "options": [
+            "Eine hinreichende Kombination aus Ort, Zeit und besonderen Merkmalen",
+            "Ausschließlich die Anzahl der Pixel des leeren Bildrands",
+            "Ausschließlich die Farbe einer nicht sichtbaren Kamera",
+            "Ausschließlich das Fehlen eines eingeblendeten Produktlogos"
+          ],
+          "answer": 0,
+          "explain": "Identifizierbarkeit kann aus Begleitumständen entstehen. Ein verdecktes Gesicht schließt Personenbezug nicht automatisch aus.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q17",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Welches Recht schützt § 1 DSG bei bestehendem schutzwürdigem Interesse?",
+          "options": [
+            "Unbeschränkte Veröffentlichung sämtlicher fremder Aufnahmen",
+            "Geheimhaltung der betreffenden personenbezogenen Daten",
+            "Automatische Nutzung jedes erreichbaren Cloudspeichers",
+            "Beliebige Umwidmung bereits gesammelter Personendaten"
+          ],
+          "answer": 1,
+          "explain": "§ 1 DSG verankert das Grundrecht auf Datenschutz einschließlich des Geheimhaltungsanspruchs.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q18",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Welche Art eines zulässigen Eingriffs verlangt § 1 Abs. 2 DSG?",
+          "options": [
+            "Die technisch aufwendigste verfügbare Art",
+            "Die für den Betreiber unsichtbarste Art",
+            "Die gelindeste zum Ziel führende Art",
+            "Die für Werbung am besten verwendbare Art"
+          ],
+          "answer": 2,
+          "explain": "Auch zulässige Eingriffe sollen so schonend erfolgen, wie es zur Zielerreichung möglich ist.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q19",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Wer muss die Zulässigkeit privater Videoüberwachung vor dem Betrieb prüfen?",
+          "options": [
+            "Der Verantwortliche des konkreten Betriebs",
+            "Stets ausschließlich die verkaufende Person",
+            "Stets ausschließlich der Batterielieferant",
+            "Stets ausschließlich die erste fotografierte Person"
+          ],
+          "answer": 0,
+          "explain": "Die DSB erläutert die Vorprüfungspflicht des Verantwortlichen. Es gibt keine automatische pauschale Kameragenehmigung.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q20",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Wie wird eine Liveübertragung erkennbarer Personen ohne Speicherung datenschutzrechtlich behandelt?",
+          "options": [
+            "Sie liegt grundsätzlich außerhalb jeder Datenschutzprüfung",
+            "Sie gilt automatisch als vollständig anonymisierte Statistik",
+            "Sie erlaubt jede Veröffentlichung ohne weiteren Zweck",
+            "Auch sie ist Verarbeitung personenbezogener Bilddaten"
+          ],
+          "answer": 3,
+          "explain": "Nach der DSB bleiben Anforderungen auch bei bloßer Echtzeitübertragung zu beachten.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q21",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Wie ordnet die DSB die häufig genannten 72 Stunden ein?",
+          "options": [
+            "Als ausdrückliche universelle Gesetzesfrist für jede Kamera",
+            "Als Freigabe aller Personenbilder unabhängig vom Aufnahmegrund",
+            "Als grundsätzlichen Richtwert mit zweckbezogener Prüfung",
+            "Als Mindestaufbewahrung auch für erkennbar unnötige Daten"
+          ],
+          "answer": 2,
+          "explain": "DSB nennt einen Richtwert und betont das Fehlen einer allgemeinen ausdrücklichen Dauer in DSGVO und DSG.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q22",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Wann sollen Hinweise auf eine erfasste Kameraumgebung erkennbar sein?",
+          "options": [
+            "Erst nach Veröffentlichung einer Aufnahme im Internet",
+            "Bevor die betroffene Person den überwachten Bereich betritt",
+            "Erst beim Öffnen der Speicherkarte durch den Betreiber",
+            "Erst beim jährlichen Austausch der Kamera"
+          ],
+          "answer": 1,
+          "explain": "Die DSB fordert gut erkennbare Hinweise vor dem Betreten des erfassten Bereichs.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q23",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Welche organisatorische Festlegung gehört zum Umgang mit Aufzeichnungen?",
+          "options": [
+            "Dass jede interessierte Person alle Bilder erhalten darf",
+            "Dass jeder neue Speicherordner eine Rechtsgrundlage ersetzt",
+            "Dass technische Bildschärfe über die Zugriffsbefugnis entscheidet",
+            "Welche Personen zum Zugriff berechtigt sind"
+          ],
+          "answer": 3,
+          "explain": "Ein Berechtigungssystem beschränkt den Zugriff auf zuständige Personen und ergänzt den rechtmäßigen Verarbeitungszweck.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q24",
+          "lessonId": "at-vorpruefung",
+          "q": "AT: Was folgt aus einer im Einzelfall zulässigen Aufnahme für deren Veröffentlichung?",
+          "options": [
+            "Die Weitergabe und Veröffentlichung sind gesondert zu prüfen",
+            "Jede beliebige Veröffentlichung wird automatisch erlaubt",
+            "Eine private öffentliche Personenfahndung ist immer abgedeckt",
+            "Der ursprüngliche Zweck ist für jede weitere Nutzung bedeutungslos"
+          ],
+          "answer": 0,
+          "explain": "Eine rechtmäßige Erhebung erlaubt nicht automatisch jede neue Verwendung oder Veröffentlichung.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q25",
+          "lessonId": "ch-privat",
+          "q": "CH: Welcher Rechtsrahmen ist hier für den privaten Schweizer Fotofallenbetreiber maßgeblich?",
+          "options": [
+            "Ausschließlich das deutsche Bundesdatenschutzgesetz",
+            "Das Bundesgesetz über den Datenschutz im behandelten Fall",
+            "Ausschließlich die österreichische Kennzeichnungsverordnung",
+            "Ausschließlich die Nutzungsanleitung der Kamera"
+          ],
+          "answer": 1,
+          "explain": "Für private Schweizer Betreiber erläutert der EDÖB das Bundes-DSG. Weitere einschlägige Regeln können hinzukommen.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q26",
+          "lessonId": "ch-privat",
+          "q": "CH: Welche Einordnung nennt der EDÖB für Kameras kantonaler Behörden oder kantonaler Universitäten?",
+          "options": [
+            "Sie stets wie rein private Betreiber nach dem Bundes-DSG behandeln",
+            "Ihre Aufnahmen generell als nichtpersonenbezogen einstufen",
+            "Das einschlägige kantonale Datenschutzrecht prüfen",
+            "Ihre Veröffentlichung allein aus der Gerätebezeichnung erlauben"
+          ],
+          "answer": 2,
+          "explain": "Betreiberart und Zuständigkeit sind zu unterscheiden. Die private Fallgruppe wird nicht unverändert auf kantonale Stellen übertragen.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q27",
+          "lessonId": "ch-privat",
+          "q": "CH: Welche Voraussetzung beschreibt Personendaten nach Art. 5 lit. a DSG?",
+          "options": [
+            "Bezug zu einer bestimmten oder bestimmbaren natürlichen Person",
+            "Bezug ausschließlich zu einem ausgeschriebenen Bilddateinamen",
+            "Bezug ausschließlich zu einer am Gerät registrierten Firma",
+            "Bezug ausschließlich zu einem vollständig sichtbaren Gesicht"
+          ],
+          "answer": 0,
+          "explain": "Auch indirekte Bestimmbarkeit kann Personenbezug begründen; zufällige Erfassung beseitigt ihn nicht.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q28",
+          "lessonId": "ch-privat",
+          "q": "CH: Welche Pflichten ordnet Art. 6 DSG grundsätzlich zu?",
+          "options": [
+            "Unbegrenzte Vorratsspeicherung aus bloßem technischem Interesse",
+            "Automatische Veröffentlichung aller im Wald aufgenommenen Bilder",
+            "Freie Weiterverwendung allein aufgrund privaten Grundeigentums",
+            "Rechtmäßigkeit, erkennbarer Zweck und Verhältnismäßigkeit"
+          ],
+          "answer": 3,
+          "explain": "Art. 6 enthält die Grundsätze der Datenbearbeitung einschließlich Zweckbindung und Verhältnismäßigkeit.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q29",
+          "lessonId": "ch-privat",
+          "q": "CH: Welcher Artikel regelt die hier beschriebene Informationspflicht?",
+          "options": [
+            "Art. 5 lit. a DSG",
+            "Art. 31 Abs. 2 lit. e DSG",
+            "Art. 19 DSG",
+            "Art. 2 Abs. 1 DSG"
+          ],
+          "answer": 2,
+          "explain": "Art. 19 betrifft angemessene Information über die Datenbeschaffung, insbesondere Identität, Kontakt und Zweck.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q30",
+          "lessonId": "ch-privat",
+          "q": "CH: Wie sind erkennbare Personenbilder im vom EDÖB beschriebenen nichtpersonenbezogenen Fotofallenfall zu behandeln?",
+          "options": [
+            "Als unverändertes Personenarchiv dauerhaft aufheben",
+            "Sofort vernichten oder wirksam anonymisieren",
+            "Ohne weitere Prüfung an eine offene Gruppe weiterleiten",
+            "Mit Namen im öffentlichen Forschungsbericht abbilden"
+          ],
+          "answer": 1,
+          "explain": "Für die beschriebene Rechtfertigung nach Art. 31 Abs. 2 lit. e verlangt der EDÖB sofortige Vernichtung oder Anonymisierung erkennbarer Personenaufnahmen.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q31",
+          "lessonId": "ch-privat",
+          "q": "CH: Wie dürfen Ergebnisse im beschriebenen nichtpersonenbezogenen Forschungsfall veröffentlicht werden?",
+          "options": [
+            "Mit bestimmbaren Personen zur leichteren Ortszuordnung",
+            "Mit Personenmerkmalen zur nachträglichen Besucherstatistik",
+            "Mit allen Originalbildern unabhängig von Personenbezug",
+            "So, dass betroffene Personen nicht bestimmbar sind"
+          ],
+          "answer": 3,
+          "explain": "Art. 31 Abs. 2 lit. e DSG und die EDÖB-Erläuterung verlangen die Wahrung der Nichtbestimmbarkeit in den veröffentlichten Ergebnissen.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q32",
+          "lessonId": "ch-privat",
+          "q": "CH: Welche weitere Prüfung bleibt neben dem Datenschutz für eine Jagd-Fotofalle erforderlich?",
+          "options": [
+            "Zusätzliche kantonale jagdrechtliche Spezialregeln beachten",
+            "Aus DSG-Grundsätzen automatisch jede Jagdnutzung freigeben",
+            "Die Datenschutzinformation als Ersatz aller Standortrechte nutzen",
+            "Die Kameramarke als abschließende Rechtsquelle behandeln"
+          ],
+          "answer": 0,
+          "explain": "Datenschutzrecht und kantonale jagdrechtliche Zulässigkeit sind verschiedene Prüfbereiche. Der Kurs bestätigt keinen konkreten Standort.",
+          "countries": [
+            "CH"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-anwendung-kartenprofile-2026",
+      "lessonId": "massstabsrechnung",
+      "claims": [
+        {
+          "claim": "Maßstab als Verhältnis gleicher Längeneinheiten, Balkenmessung und Verlaufsmessung. Zahlenfälle sind eigene, nachgerechnete Anwendungen, keine zitierten Geländeangaben.",
+          "sourceUrls": [
+            "https://www.swisstopo.admin.ch/de/hoehenlinien",
+            "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-kartenprofile-2026",
+      "lessonId": "hoehenintervalle",
+      "claims": [
+        {
+          "claim": "Gleichhöhe der Konturen, kartenspezifisches Höhenintervall und hervorgehobene Indexlinien. Eigene Zahlenfolgen geben reguläre, fortlaufende Konturen ausdrücklich vor.",
+          "sourceUrls": [
+            "https://www.swisstopo.admin.ch/de/hoehenlinien",
+            "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf",
+            "https://www.usgs.gov/ngp-standards-and-specifications/us-topo-cartographic-specifications-elevation"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-kartenprofile-2026",
+      "lessonId": "hoehenprofil",
+      "claims": [
+        {
+          "claim": "Konturabstand und Hangneigung unter gleichen Darstellungsbedingungen; Höhenpunkte und Konturformen als Profilinformation. Aufsummierung und Prozentrechnung sind eigene elementare Rechenbeispiele.",
+          "sourceUrls": [
+            "https://www.swisstopo.admin.ch/de/hoehenlinien",
+            "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf",
+            "https://www.usgs.gov/ngp-standards-and-specifications/us-topo-cartographic-specifications-elevation"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-kartenprofile-2026",
+      "lessonId": "legende",
+      "claims": [
+        {
+          "claim": "Zeichenerklärung bestimmt kartenspezifische Symbolik; Höhenpunkt und Kontur beschreiben unterschiedliche Darstellungen von Höhe. Vergrößerung ist keine neue Messung.",
+          "sourceUrls": [
+            "https://www.swisstopo.admin.ch/de/hoehenlinien",
+            "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "muskelaufbau",
+      "claims": [
+        {
+          "claim": "Muskelzelle, Myofibrille, Sarkomer, Aktin/Myosin und Endo-/Peri-/Epimysium; anatomische Ebenen statt Foto-Ferndiagnose.",
+          "sourceUrls": [
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/structure-and-composition-of-muscle/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "glykogen",
+      "claims": [
+        {
+          "claim": "Muskelglykogen als Reserve, anaerober Abbau, Lactat und postmortaler pH-Verlauf; begrenzte Ansäuerung bei geringen Reserven. Keine pH-Grenzwerte oder universelle Stressdiagnose.",
+          "sourceUrls": [
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/conversion-of-muscle-to-meat/",
+            "https://www.fao.org/4/T0562E/T0562E02.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "rigor",
+      "claims": [
+        {
+          "claim": "ATP-Abhängigkeit des Querbrückenzyklus, Rigorbindungen und enzymatische Strukturveränderung bei Reifung; kein starrer Zeitplan oder Keimfreiheitsversprechen.",
+          "sourceUrls": [
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/conversion-of-muscle-to-meat/",
+            "https://www.fao.org/4/T0562E/T0562E02.htm",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "wasserhaltevermoegen",
+      "claims": [
+        {
+          "claim": "Protein-/pH-abhängige Wasserhaltung, Tropfsaft und PSE/DFD als Qualitätsbeschreibungen; Zartheit und Wasserhaltung sind keine hygienische Freigabe.",
+          "sourceUrls": [
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/conversion-of-muscle-to-meat/",
+            "https://www.fao.org/4/T0562E/T0562E02.htm",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-trichinellenlabor-2026",
+      "lessonId": "probe-und-ziel",
+      "claims": [
+        {
+          "claim": "Muskellarven als Ziel der Fleischprobe; passende Matrix, Entnahmestelle und Kennung. Keine klinische Ersatzdiagnostik, universellen Mengen oder Entnahmeberechtigungen.",
+          "sourceUrls": [
+            "https://www.cdc.gov/dpdx/trichinellosis/",
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/parasiten-in-lebensmitteln/trichinen-trichinella/",
+            "https://www.verbrauchergesundheit.gv.at/tiere/zoonosen/Trichinellose.html",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7033998/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9655762/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-trichinellenlabor-2026",
+      "lessonId": "verdauung-und-pool",
+      "claims": [
+        {
+          "claim": "Künstlicher Gewebeaufschluss, mikroskopischer Nachweis und geregelte Poolrückverfolgung; technische Auswertbarkeit statt privater Laboranleitung.",
+          "sourceUrls": [
+            "https://www.verbrauchergesundheit.gv.at/tiere/zoonosen/Trichinellose.html",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7033998/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9655762/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-trichinellenlabor-2026",
+      "lessonId": "qualitaetskontrolle",
+      "claims": [
+        {
+          "claim": "Codierte Kontrollproben, Qualitätsmanagement, falsch-positive/negative Befunde sowie getrennte qualitative und quantitative Bewertung. BfR 2014 und polnische Originaldaten 2014–2019 sind unabhängige Programme; keine Übertragung ihrer Quoten.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7033998/",
+            "https://www.bfr.bund.de/cm/343/ringversuch-zum-nachweis-von-trichinellen-in-fleisch-2014.pdf",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9655762/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-trichinellenlabor-2026",
+      "lessonId": "befundgrenzen",
+      "claims": [
+        {
+          "claim": "Ziel-/Proben-/Verfahrensbindung des Befundes, Identitätsfehler und Nachweisgrenzen; ein gezielter Parasitenbefund ist keine Untersuchung auf sämtliche Gefahren.",
+          "sourceUrls": [
+            "https://www.cdc.gov/dpdx/trichinellosis/",
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/parasiten-in-lebensmitteln/trichinen-trichinella/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7033998/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9655762/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-sicherheitszeichen-2026",
+      "lessonId": "warnung-verbot",
+      "claims": [
+        {
+          "claim": "Warn-, Verbotszeichen, Grundgestaltung und getrennte Sicherheitsaussagen; allgemeine Warnung braucht konkretisierende Erläuterung.",
+          "sourceUrls": [
+            "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile&v=3",
+            "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40172680/II_101_1997_Anlage_1.pdf",
+            "https://aug.dguv.de/arbeitssicherheit/arten-von-sicherheitskennzeichen/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-sicherheitszeichen-2026",
+      "lessonId": "gebot",
+      "claims": [
+        {
+          "claim": "Blaue Gebotszeichen, Schutzhandlung, verständliche Unterweisung und Ergänzung statt Ersatz technischer/organisatorischer Schutzmaßnahmen.",
+          "sourceUrls": [
+            "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile&v=3",
+            "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/allgemeines/sicherheits_gesundheitsschutz_kennzeichnung.html",
+            "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40172680/II_101_1997_Anlage_1.pdf",
+            "https://aug.dguv.de/arbeitssicherheit/arten-von-sicherheitskennzeichen/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-sicherheitszeichen-2026",
+      "lessonId": "rettung-brandschutz",
+      "claims": [
+        {
+          "claim": "Grüne Rettungs-/rote Brandschutzzeichen mit unterschiedlicher Form zu Verboten, Richtungskombination und freie Erkennbarkeit; Planstandort.",
+          "sourceUrls": [
+            "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile&v=3",
+            "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40172680/II_101_1997_Anlage_1.pdf",
+            "https://aug.dguv.de/arbeitssicherheit/arten-von-sicherheitskennzeichen/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-sicherheitszeichen-2026",
+      "lessonId": "ce-konformitaet",
+      "claims": [
+        {
+          "claim": "CE-Herstellerverantwortung und Geltung nur nach einschlägigen Produktregeln; keine Herkunft/behördliche Einzelzulassung. Konformitätsverfahren und GS-Abgrenzung; keine pauschale CH-CE-Pflicht.",
+          "sourceUrls": [
+            "https://single-market-economy.ec.europa.eu/single-market/goods/ce-marking_en",
+            "https://www.baua.de/DE/Die-BAuA/Aufgaben/Gesetzliche-und-hoheitliche-Aufgaben/Produktsicherheitsgesetz/GS-Zeichen",
+            "https://www.seco.admin.ch/de/konformitaetsbewertung-und-akkreditierung"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-biologische-ebenen-2026",
+      "lessonId": "zelle",
+      "claims": [
+        {
+          "claim": "Zelle, Membran, Cytoplasma, typische kernhaltige Zelle, Ribosom und Mitochondrium. Keine universelle Kernbehauptung oder menschlichen Größenwerte.",
+          "sourceUrls": [
+            "https://training.seer.cancer.gov/anatomy/cells_tissues_membranes/cells/structure.html",
+            "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+            "https://histology.leeds.ac.uk/home/cell/cell_organelles/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-biologische-ebenen-2026",
+      "lessonId": "gewebe",
+      "claims": [
+        {
+          "claim": "Vier Grundgewebe, extrazelluläre Matrix, Epithel-/Stütz-/Kontraktions-/Informationsfunktion; Knorpel als Binde-/Stützgewebe.",
+          "sourceUrls": [
+            "https://training.seer.cancer.gov/anatomy/cells_tissues_membranes/tissues/",
+            "https://histology.leeds.ac.uk/home/tissue_types/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-biologische-ebenen-2026",
+      "lessonId": "organ-system",
+      "claims": [
+        {
+          "claim": "Gewebe, Organ und System; Magen aus mehreren Gewebetypen; Anatomie/Physiologie/Histologie und Differenzierung. Keine artspezifischen Organzahlen.",
+          "sourceUrls": [
+            "https://histology.leeds.ac.uk/home/tissue_types/",
+            "https://training.seer.cancer.gov/anatomy/body/?view=searchengine",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body",
+            "https://training.seer.cancer.gov/anatomy/body/functions.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-biologische-ebenen-2026",
+      "lessonId": "stoffwechsel",
+      "claims": [
+        {
+          "claim": "Stoffwechsel umfasst Aufbau und Abbau; Enzymkatalyse und ATP-Kopplung; Homöostase ist dynamisch, negative Rückkopplung wirkt Abweichungen entgegen.",
+          "sourceUrls": [
+            "https://training.seer.cancer.gov/anatomy/body/functions.html",
+            "https://openstax.org/books/biology-2e/pages/6-1-energy-and-metabolism",
+            "https://openstax.org/books/biology-2e/pages/6-5-enzymes",
+            "https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+            "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/enzyme",
+            "https://histology.leeds.ac.uk/home/cell/cell_organelles/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-wildkamera-datenschutz-2026",
+      "lessonId": "eu-grundlagen",
+      "claims": [
+        {
+          "claim": "DE/AT: DSGVO Art. 4 Nr. 1/7 Personenbezug und Verantwortlicher; Art. 5 Grundsätze, Art. 6 Abs. 1 lit. f Dreischritt, Art. 13 Information und Art. 32 Sicherheit. Fallgruppe ausdrücklich nicht rein häusliche Personenaufnahme.",
+          "sourceUrls": [
+            "https://www.bfdi.bund.de/SharedDocs/Downloads/DE/Broschueren/INFO1.pdf?__blob=publicationFile&v=61",
+            "https://www.baden-wuerttemberg.datenschutz.de/orientierungshilfe-videoueberwachung-nicht-oeffentlich/",
+            "https://dsb.gv.at/faqs/foto-video"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-wildkamera-datenschutz-2026",
+      "lessonId": "de-wald",
+      "claims": [
+        {
+          "claim": "DE: DSK 5.8 Wildkameras im öffentlich zugänglichen Wald, Waldbesucherinteressen, mildere Mittel und möglichst ausgeschlossene Personenaufnahme; Hinweise ersetzen keine Art. 6-Grundlage. Keine universelle Montagehöhe.",
+          "sourceUrls": [
+            "https://www.bfdi.bund.de/SharedDocs/Downloads/DE/Broschueren/INFO1.pdf?__blob=publicationFile&v=61",
+            "https://www.baden-wuerttemberg.datenschutz.de/orientierungshilfe-videoueberwachung-nicht-oeffentlich/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-wildkamera-datenschutz-2026",
+      "lessonId": "at-vorpruefung",
+      "claims": [
+        {
+          "claim": "AT: § 1 DSG Geheimhaltung und gelindester Eingriff; DSGVO und DSB-Vorprüfung, Livebild, Transparenz, Zugriff und zweckbezogene Speicherung.72 h als Richtwert, nicht als allgemeine Gesetzesfrist oder Erlaubnis.",
+          "sourceUrls": [
+            "https://www.bfdi.bund.de/SharedDocs/Downloads/DE/Broschueren/INFO1.pdf?__blob=publicationFile&v=61",
+            "https://dsb.gv.at/faqs/foto-video",
+            "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001597"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-wildkamera-datenschutz-2026",
+      "lessonId": "ch-privat",
+      "claims": [
+        {
+          "claim": "CH: Bundes-DSGArt. 2/5/6/19/31 Abs. 2 lit. e und aktuelle EDÖB-Fotofalleneinordnung, private/kantonale Betreiber und begrenzte nichtpersonenbezogene Rechtfertigung; sofortige Vernichtung/Anonymisierung erkennbarer Personenbilder in dieser Fallgruppe. Keine Prüfung sämtlicher kantonaler Jagdregelungen.",
+          "sourceUrls": [
+            "https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20250707/de/pdf-a/fedlex-data-admin-ch-eli-cc-2022-491-20250707-de-pdf-a.pdf",
+            "https://www.edoeb.admin.ch/de/fotofallen-und-wildtierkameras",
+            "https://www.bj.admin.ch/de/neues-datenschutzrecht"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Feste Reifetage, pH-Verzehrgrenzen und tierartübergreifende Muskelgrößen",
+      "reason": "Biologische Abläufe bestätigt, aber keine universelle Hygiene- oder Verzehrsfreigabe. Kontextabhängige Werte nicht verallgemeinert."
+    },
+    {
+      "topic": "Trichinellen-Probenmengen, Entnahmeberechtigung, Laborrezept und pauschale DACH-Freigabe",
+      "reason": "Nur Prinzip und Ergebnisverständnis; örtliche aktuelle Zuständigkeit und Vorgaben bleiben bei der Fachstelle. Keine praktische Laborausführung."
+    },
+    {
+      "topic": "Pauschale Schweizer CE-Pflicht oder jede Waffe als GS-fähig",
+      "reason": "Produktvorschriften sind unterschiedlich. Kennzeichnung erklärt keine universelle Vermarktungs- oder Verwendungserlaubnis."
+    },
+    {
+      "topic": "Kameramontage als sichere Rechtsfreigabe und vollständige kantonale Jagdverbote",
+      "reason": "Länderspezifische Normen und Behördenauslegung geprüft; keine komplette Standort-/Kantonalfreigabe, keine universelle Montagehöhe oder 72-h-Frist."
+    },
+    {
+      "topic": "Übernahme fremder Lehrbuchtexte, Abbildungen oder Prüfungsaufgaben",
+      "reason": "Ausschließlich eigene Formulierungen, Lernfälle und Fragen. Quellen dienen fachlichem Abgleich; insbesondere OpenStax wird nicht als kommerziell frei nachdruckbares Material behandelt."
+    }
+  ]
+}

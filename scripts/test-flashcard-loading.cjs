@@ -150,11 +150,13 @@ function assertPrivate(response) {
   assert.equal(response.headers.get('vary'), 'Cookie');
 }
 
-test('Real SSR page data contain at most 24 cards and remain below the 128 KB page budget', () => {
+test('Real SSR page data contain at most 24 cards and remain below the 128 KB page budget', async () => {
   const actual = load('lib/learning-flashcards.js').getFlashcardExport();
   assert.ok(actual.cards.length > 24, 'the real expanded bank exercises incremental loading');
   for (const file of ['pages/lernen/lernkarten.js', 'pages/lernen/lernkarten-drucken.js']) {
-    const { props } = load(file).getStaticProps();
+    const headers = {};
+    const { props } = await load(file, { '../../lib/account-access': { getPaidPageProps: async context => { context.res.setHeader('Cache-Control', 'private, no-store, max-age=0'); return { props: {} }; } } }).getServerSideProps({ req: {}, res: { setHeader: (key, value) => headers[key] = value }, resolvedUrl: '/lernen/lernkarten', query: {} });
+    assert.match(headers['Cache-Control'], /private, no-store/);
     assert.ok(Buffer.byteLength(JSON.stringify(props)) < 128 * 1024, `${file}: SSR payload too large`);
     const seed = unpackFlashcards(props.deck);
     assert.equal(seed.cards.length, 24);

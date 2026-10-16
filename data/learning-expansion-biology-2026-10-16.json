@@ -1,0 +1,3828 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Sechs vertiefende Biologiekurse mit 24 Lektionen und 192 eigenständig beantwortbaren Fragen. Dokumentiert sind konkret abgeglichene Anatomie- und Physiologieblöcke, benannte Referenzarten, Originalbefunde und eigene unmittelbare Rechenableitungen der Zahnformeln. Keine vollständige Neuprüfung des Altbestands, keine Diagnose-, Behandlungs-, Fütterungs- oder Eingriffsanleitung; keine Konkurrenz- oder Vollständigkeitsbehauptung.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-biologie-wiederkaeuer-2026",
+      "title": "Wiederkäuer: Aus Pflanzenfasern werden Nährstoffe",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Fermentation, Energie, mikrobielles Protein und die Entwicklung des Vormagensystems verständlich verbinden.",
+      "minutes": 36,
+      "objectives": [
+        "Fermentationsprodukte und ihre Aufnahme erklären",
+        "Mikrobenprotein von Pflanzenprotein unterscheiden",
+        "Wiederkauen und Gasabgabe auseinanderhalten",
+        "Milchphase und entwickelten Pansen vergleichen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches Lernwissen. Benannte Referenzarten und Entwicklungsphasen beachten; keine Fütterungs-, Behandlungs- oder Eingriffsanleitung.",
+        "AT": "Gemeinsames biologisches Lernwissen. Benannte Referenzarten und Entwicklungsphasen beachten; keine Fütterungs-, Behandlungs- oder Eingriffsanleitung.",
+        "CH": "Gemeinsames biologisches Lernwissen. Benannte Referenzarten und Entwicklungsphasen beachten; keine Fütterungs-, Behandlungs- oder Eingriffsanleitung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Minnesota: Fermentation",
+          "url": "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+          "organization": "University of Minnesota, Erin Malone",
+          "supports": "Mikrobielle Zellwandfermentation, flüchtige Fettsäuren und mikrobielles Protein; Rind als benanntes Referenztier."
+        },
+        {
+          "label": "Minnesota: Forestomach motility and function",
+          "url": "https://open.lib.umn.edu/vetphysioapplied/chapter/forestomach-motility-and-function/",
+          "organization": "University of Minnesota, Erin Malone",
+          "supports": "Wiederkauphasen, Teilchentransport, Speichel und Entwicklung des Jungtiermagens."
+        },
+        {
+          "label": "Colorado State: Digestive physiology of herbivores",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Ort der Fermentation; Mikroben, Substrate und Produkte; Vorder- und Hinterdarmvergärer."
+        },
+        {
+          "label": "Colorado State: Rumination",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/rumination.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Hochwürgen, Wiederkauen, Einspeicheln und Abschlucken; Teilchenzerkleinerung, Speichel und Gasabgabe."
+        },
+        {
+          "label": "Warum können Rinder von Gras leben?",
+          "url": "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben",
+          "organization": "Bundesinformationszentrum Landwirtschaft / BLE",
+          "supports": "Rinder: mikrobielle Zellwandverdauung, Fettsäurenaufnahme, Labmagen und Entwicklung vom Milch- zum Pflanzenfresser; Stand 22.08.2025."
+        },
+        {
+          "label": "The digestive system of beef cattle",
+          "url": "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle",
+          "organization": "Merck Veterinary Manual; Texas A&M University; Michigan State University",
+          "supports": "Gegenprüfung von Pansenpapillen, Fermentationsprodukten, mikrobiellem Protein und Enzymverdauung; aktualisiert Juli 2026."
+        },
+        {
+          "label": "From feed to milk: Understanding rumen function",
+          "url": "https://extension.psu.edu/from-feed-to-milk-understanding-rumen-function",
+          "organization": "Penn State Extension",
+          "supports": "Speichelpuffer, Wiederkauvorgänge, mikrobielles und nicht im Pansen abgebautes Nahrungsprotein; Rindermodell."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "fermentation",
+          "title": "Die mikrobielle Fabrik im Pansen",
+          "paragraphs": [
+            "Reh, Rotwild und Gams gehören zu den Wiederkäuern. Für den hier vertieften Stoffweg dient das wissenschaftlich gut beschriebene Rind als Referenz: Im Pansen arbeiten unter sauerstoffarmen Bedingungen Mikroorganismen, darunter Bakterien, Protozoen und Pilze. Ihr Enzymwerkzeug erschließt Bestandteile pflanzlicher Zellwände. Das Tier produziert die für den Celluloseabbau benötigten Cellulasen nicht selbst. Es stellt den Mikroorganismen einen durchmischten Lebensraum bereit und nutzt deren Stoffwechselprodukte.",
+            "Bei der Gärung entstehen unter anderem Acetat, Propionat und Butyrat, also kurzkettige beziehungsweise flüchtige Fettsäuren. Diese können durch die Pansenwand aufgenommen werden; ihre Papillen vergrößern die Austauschfläche. Propionat dient der Leber als Ausgangsstoff für die Glucosebildung. Das ist ein anderer Weg als die unmittelbare Aufnahme von Glucose aus dem Darm. Die Anteile der Gärprodukte hängen von Nahrung und Bedingungen ab: Rinderwerte sind keine festen Prozentangaben für Reh oder Gams."
+          ],
+          "takeaway": "Mikroben erschließen Pflanzenfasern; das Tier nutzt unter anderem ihre aufgenommenen Fettsäuren.",
+          "exercise": "Zeichne den Weg Pflanzenzellwand → Mikroben → Fettsäuren → Pansenwand."
+        },
+        {
+          "id": "protein",
+          "title": "Die Mikroben werden selbst zur Proteinquelle",
+          "paragraphs": [
+            "Pansenmikroben nutzen Stickstoffverbindungen und Energie zum Aufbau eigener Zellbestandteile. Damit entsteht mikrobielle Biomasse, die auch Protein enthält. Ein Teil der Mikroorganismen verlässt den Vormagenraum mit dem weitertransportierten Inhalt. Das erklärt einen entscheidenden Unterschied zwischen einer Fermentation vor und einer Fermentation hinter dem Dünndarm: Beim Wiederkäuer liegen Labmagen und Dünndarm auf dem anschließenden Weg dieser mikrobiellen Biomasse.",
+            "Im Labmagen wirken Säure und proteolytische Enzyme. Im Dünndarm folgen weitere enzymatische Schritte und die Aufnahme von Aminosäuren. Neben mikrobiellem Protein kann auch Nahrungsprotein, das den Pansen unzerlegt verlassen hat, beitragen. Die Aussage „Der Wiederkäuer lebt nur von Mikroben“ wäre deshalb zu eng. Fettsäureaufnahme durch die Pansenwand und Aminosäureaufnahme im Dünndarm sind zwei unterschiedliche Stoffwege, die sich ergänzen."
+          ],
+          "takeaway": "Mikrobenprotein gelangt nach dem Vormagen in die weitere enzymatische Verdauung.",
+          "exercise": "Markiere getrennt den Aufnahmeort der Pansenfettsäuren und der Aminosäuren."
+        },
+        {
+          "id": "wiederkauen",
+          "title": "Wiederkauen ist ein Arbeitszyklus",
+          "paragraphs": [
+            "Beim Wiederkauen wird bereits geschluckter Inhalt wieder ins Maul gebracht, erneut gekaut, mit Speichel vermischt und wieder abgeschluckt. Die erneute Zerkleinerung schafft mehr zugängliche Oberfläche für mikrobielle Bearbeitung. Der Speichel liefert Flüssigkeit und Puffersubstanzen, darunter Bicarbonat. Pansen und Netzmagen arbeiten dabei als funktionell verbundener Raum; ihre Bewegungen durchmischen den Inhalt und wirken am Weitertransport mit.",
+            "Die Abgabe von Gärgas durch Aufstoßen ist ein anderer Vorgang als das Hochbringen eines Wiederkaubissens. Beides betrifft den Vormagen, transportiert aber unterschiedliches Material. Auch folgt nicht jedes Teilchen einem gleichmäßig getakteten Förderband: Größe und Eigenschaften beeinflussen Rückhalt und Passage. Im anschließenden Blättermagen werden unter anderem Wasser und gelöste Stoffe aufgenommen."
+          ],
+          "takeaway": "Wiederkauen bearbeitet Futterteilchen; Aufstoßen entfernt Gärgas.",
+          "exercise": "Ordne Hochwürgen, Kauen, Einspeicheln und Abschlucken als Kreislauf an."
+        },
+        {
+          "id": "jungtier",
+          "title": "Vom Milchtrinker zum funktionellen Wiederkäuer",
+          "paragraphs": [
+            "Das Neugeborene eines Wiederkäuers ist noch nicht einfach ein kleiner ausgewachsener Pansenverdauer. Am ausdrücklich benannten Kälbermodell ist der Labmagen während der Milchphase besonders wichtig. Der Schlundrinnenreflex leitet getrunkene Milch am großen Vormagen-Gärraum vorbei in Richtung Labmagen. So gelangen Milchbestandteile in einen auf Säure und Enzyme ausgerichteten Verdauungsweg. Das Prinzip ist von der späteren Faserfermentation zu unterscheiden.",
+            "Mit der Entwicklung verändern sich Magenabschnitte, Schleimhaut und mikrobielle Gemeinschaft. Die Nutzung fester Nahrung und deren Fermentation begleiten die funktionelle Entwicklung des Pansens; auch Papillen und Aufnahmeleistung entwickeln sich. Die funktionelle Reife des Pansens ist kein für alle Wildwiederkäuer identischer Kalendertag. Die Biologie erklärt einen Übergang, dessen Tempo und Bedingungen artspezifisch und individuell sind."
+          ],
+          "takeaway": "Die Milchphase nutzt einen anderen Schwerpunkt des Verdauungssystems als die spätere Faserfermentation.",
+          "exercise": "Vergleiche Milchweg und Pflanzenfaserweg mit je drei Stationen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "fermentation-q1",
+          "lessonId": "fermentation",
+          "q": "Welche Enzymquelle ermöglicht den Celluloseabbau im Pansen?",
+          "options": [
+            "Enzyme der dort lebenden Mikroorganismen.",
+            "Enzyme aus den Speicheldrüsen des Tieres.",
+            "Enzyme aus den Drüsen des Labmagens.",
+            "Enzyme aus der Bauchspeicheldrüse des Tieres."
+          ],
+          "answer": 0,
+          "explain": "Cellulasen der Mikroorganismen erschließen Cellulose; das Wiederkäuertier bildet diese nicht selbst."
+        },
+        {
+          "id": "fermentation-q2",
+          "lessonId": "fermentation",
+          "q": "Welche Stoffgruppe umfasst Acetat, Propionat und Butyrat?",
+          "options": [
+            "Aminosäuren.",
+            "Strukturpolysaccharide.",
+            "Kurzkettige Fettsäuren.",
+            "Gallensäuren."
+          ],
+          "answer": 2,
+          "explain": "Diese Fettsäuren entstehen unter anderem bei der mikrobiellen Gärung."
+        },
+        {
+          "id": "fermentation-q3",
+          "lessonId": "fermentation",
+          "q": "Welche Struktur vergrößert die Aufnahmefläche der Pansenwand?",
+          "options": [
+            "Die Falten des Blättermagens.",
+            "Die Pansenpapillen.",
+            "Die Zotten des Dünndarms.",
+            "Die Magendrüsen des Labmagens."
+          ],
+          "answer": 1,
+          "explain": "Pansenpapillen vergrößern die Oberfläche für den Stoffaustausch."
+        },
+        {
+          "id": "fermentation-q4",
+          "lessonId": "fermentation",
+          "q": "Welche Verbindung kann die Rinderleber aus Propionat bilden?",
+          "options": [
+            "Cellulose.",
+            "Keratin.",
+            "Chlorophyll.",
+            "Glucose."
+          ],
+          "answer": 3,
+          "explain": "Propionat ist ein wichtiger Ausgangsstoff der Glucosebildung bei Wiederkäuern."
+        },
+        {
+          "id": "fermentation-q5",
+          "lessonId": "fermentation",
+          "q": "Welches Milieu kennzeichnet die normale mikrobielle Pansengärung?",
+          "options": [
+            "Ein ständig sauerstoffreich belüfteter Raum.",
+            "Ein durch Magensäure sterilisierter Raum.",
+            "Ein weitgehend sauerstoffarmes Milieu.",
+            "Ein im Normalzustand völlig trockener Hohlraum."
+          ],
+          "answer": 2,
+          "explain": "Die Pansengärung erfolgt überwiegend anaerob in einer flüssigkeitsreichen Gemeinschaft."
+        },
+        {
+          "id": "fermentation-q6",
+          "lessonId": "fermentation",
+          "q": "Welcher Stoffweg beschreibt die energetische Nutzung der Pansengärung?",
+          "options": [
+            "Pflanzenbestandteile → Mikroben → Fettsäuren → Aufnahme.",
+            "Pflanzenbestandteile → Galle → Glucose → Pansenwand.",
+            "Pflanzenbestandteile → Labmagensäure → Cellulose → Pansenwand.",
+            "Pflanzenbestandteile → Speichelamylase → Aminosäuren → Pansenwand."
+          ],
+          "answer": 0,
+          "explain": "Mikrobielle Umsetzung liefert aufnehmbare Gärprodukte."
+        },
+        {
+          "id": "fermentation-q7",
+          "lessonId": "fermentation",
+          "q": "Welche Zellwandkomponente wird durch mikrobielle Cellulasen erschlossen?",
+          "options": [
+            "Stärke.",
+            "Glykogen.",
+            "Keratin.",
+            "Cellulose."
+          ],
+          "answer": 3,
+          "explain": "Cellulose ist ein strukturelles Kohlenhydrat der pflanzlichen Zellwand."
+        },
+        {
+          "id": "fermentation-q8",
+          "lessonId": "fermentation",
+          "q": "Wodurch kann sich das Verhältnis der Pansengärprodukte verändern?",
+          "options": [
+            "Eine bei allen Rationen unveränderte anatomische Quote.",
+            "Durch Nahrung und Fermentationsbedingungen.",
+            "Allein die feststehende Zahl der Magenabschnitte.",
+            "Ein für jedes Wiederkäueralter identisches Mischungsverhältnis."
+          ],
+          "answer": 1,
+          "explain": "Die Fermentation ist vom Substrat und den Bedingungen abhängig; ein Zahlenverhältnis gilt nicht universell."
+        },
+        {
+          "id": "protein-q1",
+          "lessonId": "protein",
+          "q": "Was ist mit mikrobiellem Protein im Pansen gemeint?",
+          "options": [
+            "Protein aus aufgebauter Mikrobenbiomasse.",
+            "Protein ausschließlich aus den Muskeln der Pansenwand.",
+            "Unverändertes Pflanzenprotein ohne mikrobielle Beteiligung.",
+            "Nur Stickstoffgas zwischen den Futterteilchen."
+          ],
+          "answer": 0,
+          "explain": "Mikroorganismen bauen eigene Zellen und damit Protein auf."
+        },
+        {
+          "id": "protein-q2",
+          "lessonId": "protein",
+          "q": "In welche Richtung gelangt Mikrobenbiomasse nach dem Vormagen?",
+          "options": [
+            "Unmittelbar durch die Pansenwand als ganze Mikrobenzellen.",
+            "Direkt zum Dickdarm unter Umgehung von Labmagen und Dünndarm.",
+            "Zum Labmagen und weiter zum Dünndarm.",
+            "Zur Gallenblase vor jedem Dünndarmkontakt."
+          ],
+          "answer": 2,
+          "explain": "Die Biomasse folgt dem Verdauungskanal und wird enzymatisch aufgeschlossen."
+        },
+        {
+          "id": "protein-q3",
+          "lessonId": "protein",
+          "q": "Welcher Abschnitt verbindet Drüsensekretion, Säure und Proteinverdauung?",
+          "options": [
+            "Der Pansen.",
+            "Der Labmagen.",
+            "Der Netzmagen.",
+            "Der Blättermagen."
+          ],
+          "answer": 1,
+          "explain": "Der Labmagen ist der Drüsenmagen des Wiederkäuers."
+        },
+        {
+          "id": "protein-q4",
+          "lessonId": "protein",
+          "q": "In welcher Form werden die Proteinbausteine im Dünndarm aufgenommen?",
+          "options": [
+            "Als unveränderte vollständige Nahrungsproteine.",
+            "Als ganze mikrobielle Zellverbände.",
+            "Als unveränderte lange Celluloseketten.",
+            "Als Aminosäuren und entsprechende kleine Spaltprodukte."
+          ],
+          "answer": 3,
+          "explain": "Proteinverdauung liefert kleine aufnehmbare Bausteine."
+        },
+        {
+          "id": "protein-q5",
+          "lessonId": "protein",
+          "q": "Welche zweite Proteinquelle ergänzt das Mikrobenprotein?",
+          "options": [
+            "Ausschließlich neu gebildete Galle.",
+            "Unveränderte mineralische Bestandteile der Nahrung.",
+            "Nahrungsprotein, das dem Pansenabbau entgangen ist.",
+            "Cellulose, die ohne Abbau bereits Protein wäre."
+          ],
+          "answer": 2,
+          "explain": "Nicht im Pansen abgebautes Nahrungsprotein kann anschließend enzymatisch verdaut werden."
+        },
+        {
+          "id": "protein-q6",
+          "lessonId": "protein",
+          "q": "Welche räumliche Lage begünstigt die Nutzung von Pansenmikroben als Proteinquelle?",
+          "options": [
+            "Die Fermentation liegt vor Labmagen und Dünndarm.",
+            "Die Fermentation liegt erst hinter dem Dünndarm.",
+            "Die Fermentation liegt nach dem Enddarm.",
+            "Die Fermentation ersetzt Labmagen und Dünndarm vollständig."
+          ],
+          "answer": 0,
+          "explain": "Mikroben folgen nach der Fermentation dem noch vor ihnen liegenden enzymatischen Verdauungsweg."
+        },
+        {
+          "id": "protein-q7",
+          "lessonId": "protein",
+          "q": "Welcher Aufnahmeweg gehört zu den Produkten der Proteindigestion?",
+          "options": [
+            "Ganze Mikrobenzellen unmittelbar durch die Pansenwand.",
+            "Unveränderte Pflanzenproteine durch die Speiseröhrenwand.",
+            "Lange Proteinfasern ohne Spaltung durch den Blättermagen.",
+            "Aminosäuren durch die Dünndarmwand."
+          ],
+          "answer": 3,
+          "explain": "Im Dünndarm werden die kleinen Produkte des Proteinabbaus aufgenommen."
+        },
+        {
+          "id": "protein-q8",
+          "lessonId": "protein",
+          "q": "Was benötigen Pansenmikroben für den Aufbau eigener Biomasse?",
+          "options": [
+            "Nur Mineralsalze ohne verfügbare Energie.",
+            "Verfügbare Stickstoffverbindungen und Energie.",
+            "Nur Wasser ohne verfügbare Stickstoffquelle.",
+            "Nur Luftsauerstoff ohne geeignete Nährstoffquelle."
+          ],
+          "answer": 1,
+          "explain": "Mikrobenwachstum benötigt Baustoffe und Energie; daraus folgt keine Fütterungsanweisung."
+        },
+        {
+          "id": "wiederkauen-q1",
+          "lessonId": "wiederkauen",
+          "q": "Wie beginnt der typische Wiederkauzyklus?",
+          "options": [
+            "Mit dem Hochbringen eines zuvor geschluckten Bissens.",
+            "Mit dem Weitertransport eines Bissens aus dem Labmagen in den Darm.",
+            "Mit der Abgabe gasförmiger Gärprodukte allein.",
+            "Mit der Aufnahme von Wasser durch den Blättermagen."
+          ],
+          "answer": 0,
+          "explain": "Regurgitation bringt Vormageninhalt erneut ins Maul."
+        },
+        {
+          "id": "wiederkauen-q2",
+          "lessonId": "wiederkauen",
+          "q": "Welchen mechanischen Nutzen hat erneutes Kauen?",
+          "options": [
+            "Es ersetzt den chemischen Abbau von Cellulose durch das Tier selbst.",
+            "Es wandelt alle Fasern bereits im Maul in Aminosäuren um.",
+            "Es zerkleinert Teilchen und vergrößert die zugängliche Oberfläche.",
+            "Es hält die Teilchen für die Mikroben dauerhaft unzugänglich."
+          ],
+          "answer": 2,
+          "explain": "Kleinere Partikel bieten mikrobiellem Angriff mehr zugängliche Oberfläche."
+        },
+        {
+          "id": "wiederkauen-q3",
+          "lessonId": "wiederkauen",
+          "q": "Welche Puffersubstanz liefert Wiederkäuerspeichel unter anderem?",
+          "options": [
+            "Salzsäure.",
+            "Bicarbonat.",
+            "Pepsin.",
+            "Galle."
+          ],
+          "answer": 1,
+          "explain": "Speichel trägt mit Puffern zum Milieu des Vormagens bei."
+        },
+        {
+          "id": "wiederkauen-q4",
+          "lessonId": "wiederkauen",
+          "q": "Welches Material wird beim Aufstoßen aus dem Vormagen abgegeben?",
+          "options": [
+            "Ein fester Wiederkaubissen als alleiniger Inhalt.",
+            "Der gesamte flüssige Panseninhalt.",
+            "Unmittelbar aus dem Dickdarm kommende Faserreste.",
+            "Gärgas."
+          ],
+          "answer": 3,
+          "explain": "Eruktation bezeichnet die Abgabe von Gas und unterscheidet sich vom Wiederkaubissen."
+        },
+        {
+          "id": "wiederkauen-q5",
+          "lessonId": "wiederkauen",
+          "q": "Welche beiden Abschnitte bilden den funktionellen Retikulorumenraum?",
+          "options": [
+            "Labmagen und Blättermagen.",
+            "Netzmagen und Dünndarm.",
+            "Pansen und Netzmagen.",
+            "Blättermagen und Blinddarm."
+          ],
+          "answer": 2,
+          "explain": "Pansen und Netzmagen arbeiten bei Mischung und Transport eng zusammen."
+        },
+        {
+          "id": "wiederkauen-q6",
+          "lessonId": "wiederkauen",
+          "q": "Was beeinflusst, wie lange Futterteilchen im Vormagen zurückbleiben?",
+          "options": [
+            "Unter anderem ihre Größe und physikalischen Eigenschaften.",
+            "Eine für jedes Teilchen identische feste Verweildauer.",
+            "Allein die unveränderliche Zahl der Pansenpapillen.",
+            "Die Reihenfolge, in der die Teilchen am Maul zuerst sichtbar waren."
+          ],
+          "answer": 0,
+          "explain": "Rückhalt und Passage sind keine für alle Partikel identischen Zeitabläufe."
+        },
+        {
+          "id": "wiederkauen-q7",
+          "lessonId": "wiederkauen",
+          "q": "Welche Funktion hat der Blättermagen unter anderem?",
+          "options": [
+            "Die Abgabe großer Mengen Salzsäure wie im Labmagen.",
+            "Die Bildung von Galle wie in der Leber.",
+            "Der Rücktransport des gesamten Dickdarminhalts ins Maul.",
+            "Die Aufnahme von Wasser und gelösten Stoffen."
+          ],
+          "answer": 3,
+          "explain": "Der Blättermagen wirkt an der Rückgewinnung von Flüssigkeit mit."
+        },
+        {
+          "id": "wiederkauen-q8",
+          "lessonId": "wiederkauen",
+          "q": "Welcher Vorgang folgt im Wiederkauzyklus auf das erneute Kauen und Einspeicheln?",
+          "options": [
+            "Die unmittelbare Abgabe des Bissens mit dem Kot.",
+            "Das erneute Abschlucken.",
+            "Die Umleitung des Bissens in die Luftröhre.",
+            "Die Übertragung des ganzen Bissens durch die Pansenwand."
+          ],
+          "answer": 1,
+          "explain": "Der wiederbearbeitete Bissen gelangt erneut in den Vormagen."
+        },
+        {
+          "id": "jungtier-q1",
+          "lessonId": "jungtier",
+          "q": "Welcher Magenabschnitt spielt beim milchtrinkenden Kalb eine zentrale Rolle?",
+          "options": [
+            "Der Labmagen.",
+            "Der schon voll leistungsfähige Faserpansen.",
+            "Der Dickdarm als Ersatz des gesamten Magens.",
+            "Der Blättermagen als alleiniger Säureproduzent."
+          ],
+          "answer": 0,
+          "explain": "Das Kälbermodell zeigt während der Milchphase den Schwerpunkt der enzymatischen Labmagenverdauung."
+        },
+        {
+          "id": "jungtier-q2",
+          "lessonId": "jungtier",
+          "q": "Was bewirkt die funktionell geschlossene Schlundrinne beim Trinken?",
+          "options": [
+            "Sie hält Milch vor jeder Enzymverdauung im Pansen fest.",
+            "Sie führt Milch direkt vom Maul in den Blinddarm.",
+            "Sie leitet Milch am Vormagen-Gärraum vorbei.",
+            "Sie leitet Milch an allen Magenabschnitten vorbei in den Dickdarm."
+          ],
+          "answer": 2,
+          "explain": "Der Schlundrinnenreflex verändert den Weg der Flüssigkeit in Richtung Labmagen."
+        },
+        {
+          "id": "jungtier-q3",
+          "lessonId": "jungtier",
+          "q": "Welcher Vorgang gewinnt beim Übergang zu fester Pflanzennahrung an Bedeutung?",
+          "options": [
+            "Ausschließliche Säureverdauung von Cellulose im Labmagen.",
+            "Mikrobielle Fermentation im sich entwickelnden Pansen.",
+            "Vollständiger Ersatz der Mikroben durch Speichelamylase.",
+            "Unveränderte Weiterleitung aller Pflanzenfasern ohne Fermentation."
+          ],
+          "answer": 1,
+          "explain": "Mit dem entwickelten Vormagen nimmt die Nutzung mikrobieller Gärung zu."
+        },
+        {
+          "id": "jungtier-q4",
+          "lessonId": "jungtier",
+          "q": "Welche Struktur entwickelt sich im Zusammenhang mit der Aufnahme von Pansengärprodukten?",
+          "options": [
+            "Die Salzsäure erzeugenden Drüsen des Labmagens.",
+            "Die Darmzotten des Enddarms.",
+            "Die Schleimhautfalten der Speiseröhre.",
+            "Die Pansenpapillen."
+          ],
+          "answer": 3,
+          "explain": "Die Schleimhautentwicklung umfasst die Oberflächenstrukturen für Stoffaufnahme."
+        },
+        {
+          "id": "jungtier-q5",
+          "lessonId": "jungtier",
+          "q": "Welche zwei Wege unterscheidet der Vergleich von Kalb und erwachsenem Rind?",
+          "options": [
+            "Milchgärung im Blinddarm und Faseraufnahme durch die Speiseröhre.",
+            "Milchspeicherung im Blättermagen und reine Faserverdauung im Maul.",
+            "Milchverdauung im Labmagen und Faserfermentation im Vormagen.",
+            "Ausschließliche Galleverdauung und ausschließliche Speichelverdauung."
+          ],
+          "answer": 2,
+          "explain": "Es handelt sich um veränderte funktionelle Schwerpunkte desselben Verdauungssystems."
+        },
+        {
+          "id": "jungtier-q6",
+          "lessonId": "jungtier",
+          "q": "Welche Lebensgemeinschaft verändert sich während der Pansenentwicklung?",
+          "options": [
+            "Die dort ansässige mikrobielle Gemeinschaft.",
+            "Die Gemeinschaft der ausschließlich im Labmagen festgehaltenen Mikroben.",
+            "Die ausschließlich im Maul verbleibende Pflanzenflora.",
+            "Die mikrobielle Gemeinschaft eines vollständig keimfreien Organs."
+          ],
+          "answer": 0,
+          "explain": "Die funktionelle Entwicklung betrifft Gewebe und Mikroorganismen."
+        },
+        {
+          "id": "jungtier-q7",
+          "lessonId": "jungtier",
+          "q": "Welches Referenztier erklärt in dieser Lektion den Milchweg besonders gut?",
+          "options": [
+            "Der ausgewachsene Feldhase als vermeintlicher Vormagenwiederkäuer.",
+            "Das ausgewachsene Wildschwein mit einhöhligem Magen.",
+            "Die Stockente mit ihrem Drüsen- und Muskelmagen.",
+            "Das wissenschaftlich beschriebene Kalb."
+          ],
+          "answer": 3,
+          "explain": "Das Kalb ist das benannte Untersuchungs- und Lehrmodell; Alterswerte werden nicht auf Wildarten übertragen."
+        },
+        {
+          "id": "jungtier-q8",
+          "lessonId": "jungtier",
+          "q": "Welche Aussage beschreibt die Entwicklung des Pansens angemessen?",
+          "options": [
+            "Nur das Volumen nimmt zu; die Funktion ist von Geburt an unverändert fertig.",
+            "Gewebe, Mikroben und Nahrungsnutzung verändern sich gemeinsam.",
+            "Alle Wildwiederkäuer erreichen dieselbe Funktion an einem festen Lebenstag.",
+            "Die mikrobielle Besiedlung ist erst nach völliger Gewebereife von Bedeutung."
+          ],
+          "answer": 1,
+          "explain": "Anatomisches Vorhandensein und ausgereifte Verdauungsfunktion sind unterschiedliche Dinge."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "title": "Hase, Schwarzwild und Vogel: Drei Verdauungswege",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Blinddarmgärung, Caecotrophie, Schweinemagen und die Arbeitsteilung des Vogelmagens im Vergleich.",
+      "minutes": 36,
+      "objectives": [
+        "Den Blinddarm als Gärraum verorten",
+        "Caecotrophie als zweiten Nährstoffdurchgang erklären",
+        "Schweinemagen und Verdauungsdrüsen unterscheiden",
+        "Kropf, Drüsenmagen und Muskelmagen funktionell trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches Lernwissen. Referenzarten und Artunterschiede sind ausdrücklich benannt; keine Fütterungs- oder Behandlungsanleitung.",
+        "AT": "Gemeinsames biologisches Lernwissen. Referenzarten und Artunterschiede sind ausdrücklich benannt; keine Fütterungs- oder Behandlungsanleitung.",
+        "CH": "Gemeinsames biologisches Lernwissen. Referenzarten und Artunterschiede sind ausdrücklich benannt; keine Fütterungs- oder Behandlungsanleitung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Kuijper, van Wieren und Bakker 2004: Digestive strategies in European hare and rabbit",
+          "url": "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+          "organization": "University of Groningen; Wageningen University; Journal of Zoology",
+          "supports": "Originalvergleich von Lepus europaeus und Oryctolagus cuniculus: Blinddarmfermentation, Caecotrophie und unterschiedliche Verdauungsstrategien; keine pauschalen Organquotienten."
+        },
+        {
+          "label": "Miśta und andere 2018: Caecal fermentation in brown hares and rabbits",
+          "url": "https://link.springer.com/article/10.1007/s13364-018-0357-1",
+          "organization": "Wrocław University of Environmental and Life Sciences und Mitautoren; Mammal Research",
+          "supports": "Unabhängiger Originalvergleich: Blinddarm, kurzkettige Fettsäuren, Caecotrophie. Keine Generalisierung der gemessenen Organproportionen."
+        },
+        {
+          "label": "Colorado State: Digestive physiology of herbivores",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Ort der Fermentation; Mikroben, Substrate und Produkte; Vorder- und Hinterdarmvergärer."
+        },
+        {
+          "label": "Anatomie des Digestitionsapparates des Schweines",
+          "url": "https://www.ictvet.uzh.ch/US_Schwein/html/git1.htm",
+          "organization": "Universität Zürich, Veterinärmedizin",
+          "supports": "Allesfresser; einhöhlig zusammengesetzter Magen mit verschiedenartigen Schleimhautzonen. Keine Volumenwerte übertragen."
+        },
+        {
+          "label": "Abdomen 1: Equine and Porcine",
+          "url": "https://pressbooks.umn.edu/largeanimalanatomy/chapter/abdomen-1/",
+          "organization": "University of Minnesota College of Veterinary Medicine",
+          "supports": "Eigenes Anatomielehrmaterial zu Schweinemagen, Duodenum, Dünn- und Dickdarm; benanntes Hausschweinmodell."
+        },
+        {
+          "label": "The digestive system in animals",
+          "url": "https://www.merckvetmanual.com/digestive-system/digestive-system-introduction/the-digestive-system-in-animals",
+          "organization": "Merck Veterinary Manual",
+          "supports": "Motorik, Sekretion, enzymatische Verdauung, Dünndarmresorption und mikrobielle Dickdarmvorgänge beim Schwein; aktualisiert April 2026."
+        },
+        {
+          "label": "Colorado State: Exocrine secretions of the pancreas",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/pancreas/exocrine.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Allgemeine Säugetierphysiologie: Proteasen, Lipase, Amylase und Bicarbonat; keine Dosierungen oder klinischen Eingriffe."
+        },
+        {
+          "label": "Colorado State: Secretion of bile and bile acids",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bile.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Leber bildet Galle, Gallenblase speichert; Gallensäuren unterstützen Emulgierung und Fettaufnahme. Keine menschlichen Mengenangaben übertragen."
+        },
+        {
+          "label": "Merck: Physiology of malabsorption – normal digestion",
+          "url": "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals",
+          "organization": "Merck Veterinary Manual; University of Guelph; Iowa State University",
+          "supports": "Nur der allgemeine physiologische Abschnitt zu pankreatischen Enzymen, Gallensalzen und Dünndarmaufnahme; keine klinischen Diagnosen oder Therapien auf Wildarten übertragen."
+        },
+        {
+          "label": "Colorado State: Avian digestive system",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/birds.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Kropf ist keine universelle Vogelstruktur; Drüsen- und Muskelmagen, Darm und Kloake."
+        },
+        {
+          "label": "PoultryHub: Digestive system",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/digestive-system",
+          "organization": "PoultryHub Australia, University of New England",
+          "supports": "Huhn als Referenztier für Drüsen-/Muskelmagen, Kropf, Duodenum und Kloake."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "blinddarm",
+          "title": "Der Feldhase vergärt hinter dem Dünndarm",
+          "paragraphs": [
+            "Der Feldhase besitzt keinen Wiederkäuerpansen. Für seine pflanzliche Nahrung ist ein anderer Gärraum bedeutend: der Blinddarm, der am Übergangsbereich vom Dünn- zum Dickdarm liegt. Seine Mikroorganismen setzen pflanzliche Bestandteile um und bilden unter anderem kurzkettige Fettsäuren. In Originalvergleichen von Feldhase und Wildkaninchen werden solche Produkte, darunter Acetat, Propionat und Butyrat, untersucht. Die Gärung liefert verwertbare Stoffe; sie ist mehr als bloß das mechanische Zerkleinern von Halmen.",
+            "Die Lage macht den Unterschied: Beim ersten Durchgang liegt die mikrobielle Blinddarmgärung hinter dem wichtigsten enzymatischen Verdauungs- und Aufnahmeabschnitt, dem Dünndarm. Beim Wiederkäuer liegt der große Gärraum davor. Beide Systeme nutzen Mikroorganismen, verbinden sie aber anders mit dem übrigen Verdauungsweg. Feldhase und Wildkaninchen haben außerdem unterschiedliche Verdauungsstrategien. Aus einzelnen Versuchsgruppen lassen sich keine festen, für alle Tiere gültigen Organproportionen oder Passagezeiten ableiten."
+          ],
+          "takeaway": "Hinterdarmgärung nutzt Mikroben nach dem ersten Dünndarmdurchgang.",
+          "exercise": "Zeichne Magen, Dünndarm und Blinddarm und vergleiche die Lage des Pansens."
+        },
+        {
+          "id": "caecotrophie",
+          "title": "Weichkot ermöglicht einen zweiten Nährstoffdurchgang",
+          "paragraphs": [
+            "Caecotrophie bedeutet die erneute Aufnahme speziell gebildeten, weichen Blinddarmmaterials. Feldhase und Wildkaninchen nutzen diesen Vorgang. Er unterscheidet sich vom normalen Absetzen der festeren Kotkügelchen und vom Wiederkauen eines Vormagenbissens. Mit dem erneut geschluckten Material erreichen mikrobielle Bestandteile einen weiteren Durchgang durch Magen und Dünndarm. So wird die hinter dem Dünndarm gelegene Fermentation mit einer erneuten enzymatischen Nutzung verbunden.",
+            "Die beiden Kotfraktionen sind deshalb funktionell verschieden: Härteres, faserreicheres Material und weiches, mikrobiell geprägtes Material haben im Verdauungsablauf unterschiedliche Rollen. Der Vorgang macht den Hasen nicht zum Wiederkäuer und ist nicht mit der Aufnahme irgendeines beliebigen Kots gleichzusetzen. Die Originalstudien betreffen bestimmte Tiergruppen und Haltungs- beziehungsweise Versuchsbedingungen."
+          ],
+          "takeaway": "Caecotrophie führt mikrobiell bearbeitetes Material erneut durch Magen und Dünndarm.",
+          "exercise": "Vergleiche den zweiten Durchgang bei Caecotrophie mit dem Wiederkaubissen."
+        },
+        {
+          "id": "schweinemagen",
+          "title": "Schweinemagen und Verdauungsdrüsen arbeiten zusammen",
+          "paragraphs": [
+            "Beim Hausschwein als anatomischem Referenztier für Sus scrofa ist der Magen einhöhlig, seine Auskleidung aber nicht überall gleich. Eine kleinere drüsenlose Region liegt am Speiseröhreneingang; der große übrige Anteil besitzt unterschiedliche Drüsenzonen. Der kapuzenartige Magenblindsack heißt Diverticulum ventriculi. Diese Unterteilung innerhalb eines Magens ist nicht mit den vier Magenabschnitten eines Wiederkäuers gleichzusetzen.",
+            "Nach dem Magen folgt als erster Dünndarmabschnitt das Duodenum. Die Bauchspeicheldrüse liefert Verdauungsenzyme: Proteasen für Proteinabbau, Lipase für Fettabbau und Amylase für Stärkeabbau. Die Leber bildet Galle, die beim Schwein in der Gallenblase gespeichert werden kann. Gallensäuren helfen, Fette im wässrigen Darminhalt für Verdauung und Aufnahme zugänglich zu machen. Dickdarmmikroben ergänzen den Stoffumsatz; das Schwein besitzt trotz seiner Enzymverdauung eine Hinterdarmfermentation."
+          ],
+          "takeaway": "Ein einhöhliger Schweinemagen arbeitet mit Darm, Enzymdrüse, Galle und Hinterdarmmikroben zusammen.",
+          "exercise": "Verbinde Protease, Lipase und Amylase jeweils mit ihrer Substratgruppe."
+        },
+        {
+          "id": "vogelmagen",
+          "title": "Vögel trennen chemische und mechanische Magenarbeit",
+          "paragraphs": [
+            "Vögel besitzen keine Zähne wie Säugetiere. Bei vielen Arten kann ein Kropf als Erweiterung der Speiseröhre Nahrung vorübergehend aufnehmen; er ist jedoch nicht bei allen Arten gleich ausgebildet oder überhaupt vorhanden. Im Drüsenmagen werden Säure und Vorstufen eiweißspaltender Enzyme abgegeben. Der anschließende kräftige Muskelmagen bearbeitet Nahrung mechanisch. Beim Huhn und zahlreichen körnerfressenden Vögeln können aufgenommene kleine Steinchen diese Arbeit unterstützen.",
+            "Danach übernimmt der Dünndarm weitere Verdauung und Nährstoffaufnahme, unterstützt durch Sekrete von Bauchspeicheldrüse und Leber. Am Ende liegt die Kloake als gemeinsamer Ausmündungsraum von Verdauungs-, Harn- und Geschlechtswegen. Der Vergleich zeigt funktionsgleiche Aufgaben in anders gebauter Anatomie: Ein Kropf ist kein Pansen und ein Muskelmagen kein Blinddarm. Das Huhn erklärt hier den Grundbauplan; Steinchenbedarf, Kropfform oder Blinddarmgröße werden nicht auf sämtliche Wildvögel vereinheitlicht."
+          ],
+          "takeaway": "Drüsenmagen und Muskelmagen erfüllen unterschiedliche, aufeinanderfolgende Aufgaben.",
+          "exercise": "Ordne Speiseröhre/Kropf, Drüsenmagen, Muskelmagen, Dünndarm und Kloake."
+        }
+      ],
+      "questions": [
+        {
+          "id": "blinddarm-q1",
+          "lessonId": "blinddarm",
+          "q": "Wo liegt der wichtige mikrobielle Gärraum des Feldhasen?",
+          "options": [
+            "Im Blinddarm.",
+            "Im Pansen.",
+            "Im Drüsenmagen.",
+            "In der Speiseröhre."
+          ],
+          "answer": 0,
+          "explain": "Der Feldhase nutzt Hinterdarmfermentation im Blinddarm."
+        },
+        {
+          "id": "blinddarm-q2",
+          "lessonId": "blinddarm",
+          "q": "Welche Reihenfolge beschreibt die Lage des Blinddarms im Verdauungsweg?",
+          "options": [
+            "Magen → Blinddarm → Dünndarm.",
+            "Blinddarm → Magen → Dünndarm.",
+            "Magen → Dünndarm → Blinddarm-/Dickdarmbereich.",
+            "Dünndarm → Magen → Blinddarm."
+          ],
+          "answer": 2,
+          "explain": "Der Blinddarm liegt hinter dem ersten Dünndarmdurchgang."
+        },
+        {
+          "id": "blinddarm-q3",
+          "lessonId": "blinddarm",
+          "q": "Welche Organismengruppe bewirkt die Gärung im Hasenblinddarm?",
+          "options": [
+            "Die Magendrüsenzellen allein.",
+            "Die dortige mikrobielle Gemeinschaft.",
+            "Die Speicheldrüsenzellen allein.",
+            "Die Muskelzellen der Darmwand allein."
+          ],
+          "answer": 1,
+          "explain": "Mikroorganismen setzen geeignete Nahrungsbestandteile um."
+        },
+        {
+          "id": "blinddarm-q4",
+          "lessonId": "blinddarm",
+          "q": "Welche Produkte werden bei der Blinddarmgärung unter anderem gebildet?",
+          "options": [
+            "Ausschließlich unveränderte lange Celluloseketten.",
+            "Ausschließlich unveränderte Pflanzenzellwände.",
+            "Ausschließlich neu gebildete Gallensalze.",
+            "Kurzkettige Fettsäuren."
+          ],
+          "answer": 3,
+          "explain": "Acetat, Propionat und Butyrat gehören zu den untersuchten Gärprodukten."
+        },
+        {
+          "id": "blinddarm-q5",
+          "lessonId": "blinddarm",
+          "q": "Welcher Begriff beschreibt die mikrobielle Umsetzung von Nahrung?",
+          "options": [
+            "Ossifikation.",
+            "Ovulation.",
+            "Fermentation.",
+            "Akkommodation."
+          ],
+          "answer": 2,
+          "explain": "Fermentation ist eine Stoffwechselumsetzung; sie unterscheidet sich vom bloßen Zermahlen."
+        },
+        {
+          "id": "blinddarm-q6",
+          "lessonId": "blinddarm",
+          "q": "Welcher Energie gewinnende Verdauungsweg verbindet Hase und Wiederkäuer?",
+          "options": [
+            "Die Nutzung mikrobieller Gärprodukte.",
+            "Die vollständige Cellulosespaltung allein durch tierische Speichelenzyme.",
+            "Die ausschließlich mechanische Zermahlung ohne mikrobiellen Stoffwechsel.",
+            "Die unmittelbare Aufnahme ganzer Pflanzenzellen durch die Darmwand."
+          ],
+          "answer": 0,
+          "explain": "Die Gärorte unterscheiden sich, die Nutzung mikrobieller Stoffwechselprodukte verbindet beide."
+        },
+        {
+          "id": "blinddarm-q7",
+          "lessonId": "blinddarm",
+          "q": "Welches Organ liegt beim Wiederkäuer als großer Gärraum vor dem Dünndarm?",
+          "options": [
+            "Der Blinddarm.",
+            "Das Colon.",
+            "Der Enddarm.",
+            "Der Pansen."
+          ],
+          "answer": 3,
+          "explain": "Die Vormagengärung liegt räumlich vor dem enzymatischen Verdauungsweg."
+        },
+        {
+          "id": "blinddarm-q8",
+          "lessonId": "blinddarm",
+          "q": "Welche Bezugsangabe gehört zu einem gemessenen Blinddarm-Größenverhältnis?",
+          "options": [
+            "Nur die Artbezeichnung, ohne Tiere oder Methode.",
+            "Die untersuchten Arten, Tiere und Versuchsbedingungen.",
+            "Nur die Körperfarbe des untersuchten Tiers.",
+            "Die Annahme eines unveränderlichen Wertes für sämtliche Hasenartigen."
+          ],
+          "answer": 1,
+          "explain": "Organmessungen einzelner Gruppen sind keine unveränderlichen Artkonstanten."
+        },
+        {
+          "id": "caecotrophie-q1",
+          "lessonId": "caecotrophie",
+          "q": "Was wird bei der Caecotrophie erneut aufgenommen?",
+          "options": [
+            "Speziell gebildetes weiches Blinddarmmaterial.",
+            "Ein aus dem Pansen hochgewürgter Wiederkaubissen.",
+            "Ausschließlich frisch abgekniffenes Gras.",
+            "Ausschließlich mineralischer Boden vom Ruheplatz."
+          ],
+          "answer": 0,
+          "explain": "Die erneute Aufnahme betrifft die besondere weiche Kotfraktion."
+        },
+        {
+          "id": "caecotrophie-q2",
+          "lessonId": "caecotrophie",
+          "q": "Welchen Verdauungsabschnitt erreicht das Material nach erneutem Schlucken wieder?",
+          "options": [
+            "Nur den Dickdarm, unter Umgehung des übrigen Verdauungswegs.",
+            "Nur die Speiseröhre mit anschließender Ausleitung ohne Magenkontakt.",
+            "Magen und Dünndarm.",
+            "Unmittelbar den Blinddarm, ohne erneuten Magen- und Dünndarmdurchgang."
+          ],
+          "answer": 2,
+          "explain": "Ein weiterer Durchgang eröffnet die enzymatische Nutzung mikrobieller Bestandteile."
+        },
+        {
+          "id": "caecotrophie-q3",
+          "lessonId": "caecotrophie",
+          "q": "Welche zwei Arten nutzen beide Caecotrophie?",
+          "options": [
+            "Rotwild und Rehwild als Vormagenwiederkäuer.",
+            "Feldhase und Wildkaninchen.",
+            "Gams und Steinbock als Vormagenwiederkäuer.",
+            "Mufflon und Damwild als Vormagenwiederkäuer."
+          ],
+          "answer": 1,
+          "explain": "Für beide Hasenartigen ist der Vorgang beschrieben, mit artspezifischen Unterschieden."
+        },
+        {
+          "id": "caecotrophie-q4",
+          "lessonId": "caecotrophie",
+          "q": "Wie unterscheidet sich Caecotrophie vom Wiederkauen?",
+          "options": [
+            "Es wird unverändert aus einem Pansen hochgewürgt.",
+            "Es wird nur im Maul zerkleinert, bevor es erstmals geschluckt wird.",
+            "Es wird unmittelbar durch die Bauchhaut aufgenommen.",
+            "Material wird ausgeschieden und wieder aufgenommen statt aus dem Vormagen hochgebracht."
+          ],
+          "answer": 3,
+          "explain": "Caecotrophie und Regurgitation haben unterschiedliche Wege."
+        },
+        {
+          "id": "caecotrophie-q5",
+          "lessonId": "caecotrophie",
+          "q": "Welche Fraktion ist bei Hasenartigen typischerweise stärker mit groben Faserresten verbunden?",
+          "options": [
+            "Die spezielle weichere Blinddarmfraktion.",
+            "Das enzymhaltige Pankreassekret.",
+            "Die festere Kotfraktion.",
+            "Die aus der Leber stammende Galle."
+          ],
+          "answer": 2,
+          "explain": "Die Trennung der Fraktionen gehört zur spezialisierten Verdauungsstrategie."
+        },
+        {
+          "id": "caecotrophie-q6",
+          "lessonId": "caecotrophie",
+          "q": "Welcher Nutzen entsteht durch den zweiten Durchgang mikrobiell geprägten Materials?",
+          "options": [
+            "Weitere enzymatische Nutzung enthaltener Nährstoffe.",
+            "Die Umwandlung des Blinddarms in einen Wiederkäuerpansen.",
+            "Die vollständige Umgehung des Dünndarms bei jeder Mahlzeit.",
+            "Die weitere Nutzung ausschließlich durch mechanisches Kauen ohne Enzyme."
+          ],
+          "answer": 0,
+          "explain": "Der zweite Durchgang verbindet Hinterdarmgärung mit erneuter Verdauung und Aufnahme."
+        },
+        {
+          "id": "caecotrophie-q7",
+          "lessonId": "caecotrophie",
+          "q": "Welcher Verdauungstyp bleibt der Feldhase trotz Caecotrophie?",
+          "options": [
+            "Ein Vormagenfermentierer mit Wiederkäuermagen.",
+            "Ein Pflanzenfresser ausschließlich ohne mikrobielle Verdauung.",
+            "Ein ausschließlich im Drüsenmagen fermentierendes Tier.",
+            "Ein Hinterdarmfermentierer."
+          ],
+          "answer": 3,
+          "explain": "Der Gärraum bleibt im Hinterdarm; der zweite Durchgang ändert dessen Lage nicht."
+        },
+        {
+          "id": "caecotrophie-q8",
+          "lessonId": "caecotrophie",
+          "q": "Welche Beschreibung grenzt Caecotrophie fachlich ein?",
+          "options": [
+            "Ein Synonym für jede beliebige Aufnahme fremden Kots.",
+            "Ein spezialisierter Teil des normalen Verdauungsablaufs.",
+            "Ein anderer Name für das Hochwürgen eines Pansenbissens.",
+            "Eine Bezeichnung für das erstmalige Kauen frischer Nahrung."
+          ],
+          "answer": 1,
+          "explain": "Der Begriff bezeichnet den besonderen Zusammenhang von Blinddarmmaterial und Wiederaufnahme."
+        },
+        {
+          "id": "schweinemagen-q1",
+          "lessonId": "schweinemagen",
+          "q": "Wie ist der normale Schweinemagen gegliedert?",
+          "options": [
+            "Ein Magenhohlraum mit unterschiedlichen Schleimhautregionen.",
+            "Vier getrennte Magenabschnitte wie beim Rind.",
+            "Ein ausschließlich drüsenloser Gärsack ohne Ausgang.",
+            "Zwei Muskelmägen und ein Kropf."
+          ],
+          "answer": 0,
+          "explain": "Einhöhlig und zusammengesetzte Schleimhaut beschreiben unterschiedliche Eigenschaften."
+        },
+        {
+          "id": "schweinemagen-q2",
+          "lessonId": "schweinemagen",
+          "q": "Wo liegt die kleinere drüsenlose Schleimhautregion des Schweinemagens?",
+          "options": [
+            "Ausschließlich im Blinddarm.",
+            "Ausschließlich in der Gallenblase.",
+            "Nahe dem Eintritt der Speiseröhre.",
+            "In den Dünndarmzotten."
+          ],
+          "answer": 2,
+          "explain": "Die Pars nonglandularis liegt am Magenanfang nahe der Kardia."
+        },
+        {
+          "id": "schweinemagen-q3",
+          "lessonId": "schweinemagen",
+          "q": "Was bezeichnet Diverticulum ventriculi beim Schwein?",
+          "options": [
+            "Den ringförmigen Magenausgangsmuskel allein.",
+            "Den kapuzenartigen Magenblindsack.",
+            "Die Mündung der Speiseröhre ohne Magenanteil.",
+            "Die gesamte drüsenlose Eingangsregion als eigene Magenkammer."
+          ],
+          "answer": 1,
+          "explain": "Das Divertikel ist eine charakteristische Ausbuchtung des Schweinemagens."
+        },
+        {
+          "id": "schweinemagen-q4",
+          "lessonId": "schweinemagen",
+          "q": "Welcher Dünndarmabschnitt schließt sich an den Magen an?",
+          "options": [
+            "Das Jejunum als erster Abschnitt.",
+            "Das Ileum als erster Abschnitt.",
+            "Das Colon als erster Dünndarmabschnitt.",
+            "Das Duodenum."
+          ],
+          "answer": 3,
+          "explain": "Der Zwölffingerdarm ist der erste Abschnitt des Dünndarms."
+        },
+        {
+          "id": "schweinemagen-q5",
+          "lessonId": "schweinemagen",
+          "q": "Welche Substratgruppe spalten Proteasen?",
+          "options": [
+            "Fette.",
+            "Stärke.",
+            "Proteine.",
+            "Mineralsalze."
+          ],
+          "answer": 2,
+          "explain": "Proteasen spalten Peptidbindungen im Proteinverdauungsweg."
+        },
+        {
+          "id": "schweinemagen-q6",
+          "lessonId": "schweinemagen",
+          "q": "Welche Zuordnung passt zu Lipase und Amylase?",
+          "options": [
+            "Lipase: Fett; Amylase: Stärke.",
+            "Lipase: Stärke; Amylase: Fett.",
+            "Lipase: Protein; Amylase: Fett.",
+            "Lipase: Stärke; Amylase: Protein."
+          ],
+          "answer": 0,
+          "explain": "Pankreasenzyme übernehmen unterschiedliche chemische Aufgaben."
+        },
+        {
+          "id": "schweinemagen-q7",
+          "lessonId": "schweinemagen",
+          "q": "Welche Arbeitsteilung gilt für Leber und Gallenblase beim Schwein?",
+          "options": [
+            "Die Gallenblase bildet Galle; die Leber speichert sie nur.",
+            "Das Pankreas bildet Galle; der Magen speichert sie.",
+            "Der Magen bildet Galle; das Pankreas konzentriert sie.",
+            "Die Leber bildet Galle; die Gallenblase speichert sie."
+          ],
+          "answer": 3,
+          "explain": "Bildung und Speicherung von Galle sind verschiedene Organfunktionen."
+        },
+        {
+          "id": "schweinemagen-q8",
+          "lessonId": "schweinemagen",
+          "q": "Wo ergänzen Mikroorganismen die Verdauung des Schweines besonders als Gärgemeinschaft?",
+          "options": [
+            "In einem vorgeschalteten Pansen mit drei weiteren Magenabschnitten.",
+            "Im Blind- und Dickdarmbereich.",
+            "Ausschließlich in der Speiseröhre vor dem Magen.",
+            "Ausschließlich in der Gallenblase vor dem Dünndarm."
+          ],
+          "answer": 1,
+          "explain": "Das Schwein nutzt neben Enzymverdauung Hinterdarmfermentation."
+        },
+        {
+          "id": "vogelmagen-q1",
+          "lessonId": "vogelmagen",
+          "q": "Aus welchem Abschnitt entsteht der Kropf eines Vogels?",
+          "options": [
+            "Aus einer Erweiterung der Speiseröhre.",
+            "Aus einer Erweiterung der Luftröhre.",
+            "Aus einer Ausstülpung des Muskelmagens.",
+            "Aus dem Anfangsabschnitt des Dünndarms."
+          ],
+          "answer": 0,
+          "explain": "Der Kropf gehört zum Speiseweg und kann Nahrung speichern."
+        },
+        {
+          "id": "vogelmagen-q2",
+          "lessonId": "vogelmagen",
+          "q": "Welche Aufgabe kennzeichnet den Drüsenmagen?",
+          "options": [
+            "Ausschließlich kräftiges mechanisches Mahlen.",
+            "Vor allem die vorübergehende Speicherung im Speiseröhrenabschnitt.",
+            "Die Abgabe von Säure und Verdauungssekreten.",
+            "Die gemeinsame Endausmündung von Harn- und Darmwegen."
+          ],
+          "answer": 2,
+          "explain": "Der Proventriculus ist der sekretorische Abschnitt vor dem Muskelmagen."
+        },
+        {
+          "id": "vogelmagen-q3",
+          "lessonId": "vogelmagen",
+          "q": "Welcher Abschnitt übernimmt beim Vogel besonders kräftige mechanische Magenarbeit?",
+          "options": [
+            "Der Kropf.",
+            "Der Muskelmagen.",
+            "Der Drüsenmagen.",
+            "Die Kloake."
+          ],
+          "answer": 1,
+          "explain": "Die muskulöse Magenwand zerkleinert und bearbeitet Nahrung."
+        },
+        {
+          "id": "vogelmagen-q4",
+          "lessonId": "vogelmagen",
+          "q": "Was kann die mechanische Arbeit bei zahlreichen körnerfressenden Vögeln unterstützen?",
+          "options": [
+            "Große Zähne im Drüsenmagen.",
+            "Verknöcherte Papillen im Kropf.",
+            "Harte Steine in der Gallenblase.",
+            "Aufgenommenes kleines Steinmaterial im Muskelmagen."
+          ],
+          "answer": 3,
+          "explain": "Grit unterstützt bei entsprechenden Arten die Zerkleinerung; das ist keine universelle Vorgabe für jeden Vogel."
+        },
+        {
+          "id": "vogelmagen-q5",
+          "lessonId": "vogelmagen",
+          "q": "Welche Reihenfolge liegt im typischen zweigeteilten Vogelmagen vor?",
+          "options": [
+            "Muskelmagen vor Drüsenmagen.",
+            "Drüsenmagen erst hinter dem Dünndarm.",
+            "Drüsenmagen vor Muskelmagen.",
+            "Muskelmagen erst hinter der Kloake."
+          ],
+          "answer": 2,
+          "explain": "Sekretorische und mechanische Magenarbeit liegen in dieser Reihenfolge."
+        },
+        {
+          "id": "vogelmagen-q6",
+          "lessonId": "vogelmagen",
+          "q": "Welche Wege münden bei Vögeln in die Kloake?",
+          "options": [
+            "Verdauungs-, Harn- und Geschlechtswege.",
+            "Speiseröhre, Luftröhre und Tränengang.",
+            "Nur Darm und Atemwege.",
+            "Nur Gallengang und Pankreasgang."
+          ],
+          "answer": 0,
+          "explain": "Die Kloake ist ein gemeinsamer Ausmündungsraum mehrerer Systeme."
+        },
+        {
+          "id": "vogelmagen-q7",
+          "lessonId": "vogelmagen",
+          "q": "Welche Organe unterstützen die weitere Verdauung im Vogel-Dünndarm durch Sekrete?",
+          "options": [
+            "Milz und Niere.",
+            "Kropf und Luftsäcke.",
+            "Herz und Schilddrüse.",
+            "Bauchspeicheldrüse und Leber."
+          ],
+          "answer": 3,
+          "explain": "Pankreassekret und Galle ergänzen die Verdauung im Darm."
+        },
+        {
+          "id": "vogelmagen-q8",
+          "lessonId": "vogelmagen",
+          "q": "Welche Aussage beschreibt die Kropfausprägung bei Vögeln?",
+          "options": [
+            "Sie ist bei allen Arten gleich groß und gleich geformt.",
+            "Sie ist artspezifisch und fehlt bei manchen Arten.",
+            "Sie ist grundsätzlich der zweite Muskelmagen jedes Vogels.",
+            "Sie gehört bei allen Arten ausschließlich zum Atemweg."
+          ],
+          "answer": 1,
+          "explain": "Der Grundbauplan enthält Variationen; das Huhn ist kein identisches Modell für jeden Wildvogel."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "title": "Vogelkörper: Skelett, Atemwege und Stimme",
+      "category": "Wildkunde",
+      "topic": "Federwild",
+      "imageKey": "wildkunde",
+      "description": "Flügelmuskeln, Luftsäcke, Lungenkapillaren und Syrinx als zusammenhängende Anatomie verstehen.",
+      "minutes": 36,
+      "objectives": [
+        "Flügelknochen und Brustmuskeln zuordnen",
+        "Luftsack und gaswechselnde Lunge unterscheiden",
+        "Den Weg des Sauerstoffs ins Blut erklären",
+        "Stimme und mechanisch erzeugte Laute trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Vogelanatomie mit ausdrücklich benannten Artunterschieden. Huhn als Referenz, keine pauschalen Zahlen für sämtliche Wildvögel.",
+        "AT": "Gemeinsame Vogelanatomie mit ausdrücklich benannten Artunterschieden. Huhn als Referenz, keine pauschalen Zahlen für sämtliche Wildvögel.",
+        "CH": "Gemeinsame Vogelanatomie mit ausdrücklich benannten Artunterschieden. Huhn als Referenz, keine pauschalen Zahlen für sämtliche Wildvögel."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "PoultryHub: Skeletal system",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/skeletal-system",
+          "organization": "PoultryHub Australia, University of New England",
+          "supports": "Vogelskelett am Huhn: Oberarm/Unterarm, Schultergürtel, Furcula, Brustbein und Verwachsungen."
+        },
+        {
+          "label": "Birds – Biology",
+          "url": "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/",
+          "organization": "University of Hawaiʻi; OpenStax Biology",
+          "supports": "Unabhängige universitäre Darstellung von Vogelskelett, Flugmuskulatur, Lunge und Luftsäcken; keine eigenen Beobachtungsdaten."
+        },
+        {
+          "label": "Bird dissection – anatomical teaching collection",
+          "url": "https://www.pugetsound.edu/puget-sound-museum-natural-history/biodiversity-resources/birds/bird-dissection",
+          "organization": "University of Puget Sound Museum of Natural History",
+          "supports": "Anatomische Lage und Funktion von Brust-/Flügelmuskeln und Syrinx. Keine Präparationsanleitung übernommen."
+        },
+        {
+          "label": "PoultryHub: Respiratory system and thermoregulation",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+          "organization": "PoultryHub Australia, University of New England",
+          "supports": "Huhn: Bronchien, Parabronchien, Luft-/Blutkapillaren, Luftsäcke und Syrinx; fragliche Nebenformulierungen ausgeschlossen."
+        },
+        {
+          "label": "UConn: Respiration and circulation",
+          "url": "https://rubegalab.uconn.edu/2016/03/07/lecture-notes-respiration-and-circulation/",
+          "organization": "University of Connecticut, Rubega Lab",
+          "supports": "Starre Vogellunge und Luftsackventilation; Anatomie von Luftwegen und Gaswechsel."
+        },
+        {
+          "label": "UConn: Visual and vocal communication",
+          "url": "https://rubegalab.uconn.edu/eeb-4260-visual-and-vocal-communication/",
+          "organization": "University of Connecticut, Rubega Lab",
+          "supports": "Syrinx, vibrierende Gewebe, Luftstrom und Muskelkontrolle; Variation und nichtvokale Vogellaute."
+        },
+        {
+          "label": "Bird Academy's A-to-Z glossary of bird terms",
+          "url": "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
+          "organization": "Cornell Lab of Ornithology",
+          "supports": "Gegenprüfung der anatomischen Begriffe Luftsack, Parabronchien und Lautapparat; Begriffswerk, keine Messreihe."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "skelett",
+          "title": "Flügel und Schultergürtel tragen die Flugmuskeln",
+          "paragraphs": [
+            "Der Vogelflügel ist eine umgestaltete Vordergliedmaße. Auf den Oberarmknochen Humerus folgen Radius und Ulna im Unterarm; die weiter außen liegenden Handabschnitte sind gegenüber dem ursprünglichen Wirbeltierbauplan umgestaltet und teilweise verwachsen. Der Schultergürtel verbindet Flügel und Rumpf. Zur Furcula sind die beiden Schlüsselbeine vereinigt. Brustbein und bei vielen flugfähigen Vögeln sein Kiel bieten Ansatzflächen für kräftige Flugmuskeln.",
+            "Der große Brustmuskel Pectoralis bewirkt vor allem den Abschlag. Der darunter liegende Supracoracoideus hebt den Flügel über eine umgelenkte Sehne an. Beide liegen damit überwiegend auf der Brustseite, obwohl ihre Wirkungsrichtungen verschieden sind. Verwachsungen stabilisieren Teile des Rumpfs, während die Halsregion beweglich bleibt. Manche Knochen können lufthaltig sein; die Aussage „Alle Vogelknochen sind hohl“ wäre falsch. Weder Skelett noch Muskulatur sind bei allen Arten identisch spezialisiert."
+          ],
+          "takeaway": "Knochen, Sehnenführung und Muskelansatz erklären die Flügelbewegung.",
+          "exercise": "Beschrifte Oberarm, Unterarm, Schultergürtel und Brustbein an einer eigenen vereinfachten Skizze."
+        },
+        {
+          "id": "luftsaecke",
+          "title": "Luftsäcke belüften die relativ starre Lunge",
+          "paragraphs": [
+            "Die Vogellunge folgt einem anderen Bauprinzip als die sich stark ausdehnende Säugetierlunge. Sie liegt relativ starr an der Rückenseite des Brustkorbs. Zugehörige dünnwandige Luftsäcke wirken als Ventilationsräume: Ihre Volumenänderung bewegt Luft durch das System. Der wesentliche Gaswechsel geschieht im Lungengewebe, nicht in den Luftsäcken. Luftsack und Lunge erfüllen somit verschiedene Aufgaben innerhalb derselben Atmung.",
+            "Ein muskuläres Zwerchfell wie beim Hund besitzt der Vogel nicht. Bewegungen von Rippen und Brustbein wirken an der Belüftung mit. Die Luftröhre führt über Bronchien zur Lunge und den angeschlossenen Räumen. In Verbindung mit dem Luftsacksystem kann die Lunge auch während der Ausatmungsphase mit Luft durchströmt werden. Die vereinfachte Darstellung ist keine Zählregel: Zahl, Größe und Verbindungen der Luftsäcke unterscheiden sich zwischen Arten; hier wird keine starre Neunerformel gelehrt."
+          ],
+          "takeaway": "Die Luftsäcke übernehmen die Ventilation, die Lunge den eigentlichen Gaswechsel.",
+          "exercise": "Beschrifte eine Skizze getrennt mit „Luft bewegen“ und „Gase austauschen“."
+        },
+        {
+          "id": "gaswechsel",
+          "title": "Parabronchien verbinden Luftstrom und Kapillarnetz",
+          "paragraphs": [
+            "In der Vogellunge verzweigt sich das Luftwegsystem zu Röhren, den Parabronchien. Von diesem System gehen sehr feine Luftkapillaren aus. Ihnen liegt ein dichtes Netz von Blutkapillaren gegenüber. Eine Luftkapillare ist trotz ihres Namens kein Blutgefäß. Die räumliche Nähe und die dünne Trennstrecke ermöglichen den Austausch zwischen eingeatmeter Luft und Blut; diese innere Bauweise unterscheidet sich von den Lungenbläschen der Säugetiere.",
+            "Sauerstoff gelangt aus der Luftseite ins Blut, Kohlendioxid in die Gegenrichtung. Die Austauschbewegung beruht auf Diffusion entlang der jeweiligen Gasteildruckunterschiede. Lufttransport und Bluttransport bleiben dabei unterscheidbare Systeme. Die luftbewegenden Säcke müssen deshalb nicht selbst den gesamten Gasaustausch leisten. Für das Verständnis sind Röhren, Luftkapillaren, Blutkapillaren und Austauschbarriere entscheidender als eine pauschale Behauptung, Vögel seien in jeder Situation um einen bestimmten Faktor leistungsfähiger."
+          ],
+          "takeaway": "Feine Luft- und Blutkapillaren liegen eng zusammen, bleiben aber verschiedene Räume.",
+          "exercise": "Zeichne zwei getrennte Bahnen für Luft und Blut und Pfeile für Sauerstoff und Kohlendioxid."
+        },
+        {
+          "id": "syrinx",
+          "title": "Der Laut entsteht an der Syrinx",
+          "paragraphs": [
+            "Die Syrinx sitzt im unteren Bereich der Luftröhre am Übergang zu den beiden Hauptbronchien. Luftstrom kann dort Gewebe in Schwingung versetzen; zugehörige Muskeln verändern dessen Spannung und damit die Lautbildung. Diese Lage unterscheidet den vogeltypischen Stimmapparat vom vorwiegend am Kehlkopf arbeitenden Säugetier-Stimmapparat. Atmung und Lautproduktion sind dadurch eng verbunden, bleiben aber unterschiedliche Funktionen.",
+            "Bau und Steuerungsmöglichkeiten der Syrinx variieren. Bei manchen Vogelgruppen können beide Seiten differenziert eingesetzt werden; daraus folgt nicht, dass jeder Vogel immer zwei unabhängige Töne gleichzeitig erzeugt. Ebenso ist nicht jeder hörbare Vogellaut eine Stimme aus der Syrinx. Das Trommeln eines Spechts entsteht mechanisch am Untergrund; andere Arten können mit Federn Geräusche erzeugen. Für Tierstimmenwissen lohnt sich daher zuerst die Frage, ob ein Ton vokal oder mechanisch hervorgebracht wird."
+          ],
+          "takeaway": "Syrinxstimme nutzt Atemluft und schwingendes Gewebe; mechanische Laute haben andere Quellen.",
+          "exercise": "Ordne einen Entenruf und Spechttrommeln nach ihrer Lautquelle."
+        }
+      ],
+      "questions": [
+        {
+          "id": "skelett-q1",
+          "lessonId": "skelett",
+          "q": "Welcher Knochen entspricht dem Oberarm des Vogelflügels?",
+          "options": [
+            "Der Humerus.",
+            "Die Ulna.",
+            "Der Radius.",
+            "Das Coracoid."
+          ],
+          "answer": 0,
+          "explain": "Der Humerus bildet den Oberarm zwischen Schulter und Ellenbogen."
+        },
+        {
+          "id": "skelett-q2",
+          "lessonId": "skelett",
+          "q": "Welches Knochenpaar liegt im Unterarm des Vogelflügels?",
+          "options": [
+            "Femur und Tibia.",
+            "Scapula und Coracoid.",
+            "Radius und Ulna.",
+            "Sternum und Furcula."
+          ],
+          "answer": 2,
+          "explain": "Speiche und Elle gehören zum Unterarm der umgestalteten Vordergliedmaße."
+        },
+        {
+          "id": "skelett-q3",
+          "lessonId": "skelett",
+          "q": "Aus welchen Elementen entsteht die Furcula?",
+          "options": [
+            "Aus den beiden Schulterblättern.",
+            "Aus den beiden Schlüsselbeinen.",
+            "Aus den beiden Oberarmknochen.",
+            "Aus den beiden ersten Halswirbeln."
+          ],
+          "answer": 1,
+          "explain": "Die Furcula ist das vereinigte Schlüsselbeinpaar."
+        },
+        {
+          "id": "skelett-q4",
+          "lessonId": "skelett",
+          "q": "Welche Struktur bietet bei vielen flugfähigen Vögeln eine große Ansatzfläche für Brustmuskeln?",
+          "options": [
+            "Die Gelenkfläche des Schulterblatts allein.",
+            "Die Gelenkrolle am Ellenbogen.",
+            "Die Spitze des Oberarmknochens allein.",
+            "Der Kiel des Brustbeins."
+          ],
+          "answer": 3,
+          "explain": "Der Brustbeinkiel vergrößert die Ansatzfläche für Flugmuskulatur."
+        },
+        {
+          "id": "skelett-q5",
+          "lessonId": "skelett",
+          "q": "Welcher Muskel ist vor allem für den Flügelabschlag zuständig?",
+          "options": [
+            "Der Supracoracoideus.",
+            "Der Unterarmstrecker allein.",
+            "Der Pectoralis.",
+            "Der zweiköpfige Oberarmmuskel allein."
+          ],
+          "answer": 2,
+          "explain": "Der große Brustmuskel zieht den Flügel beim Abschlag nach unten."
+        },
+        {
+          "id": "skelett-q6",
+          "lessonId": "skelett",
+          "q": "Wie kann ein auf der Brustseite liegender Supracoracoideus den Flügel anheben?",
+          "options": [
+            "Durch die umgelenkte Führung seiner Sehne.",
+            "Durch direkte Verlagerung seines Muskelbauchs oberhalb des Flügels.",
+            "Durch eine Zugverbindung zum gegenüberliegenden Hüftgelenk.",
+            "Durch einen ständig im Knochen aufgebauten Luftüberdruck."
+          ],
+          "answer": 0,
+          "explain": "Die Sehne überträgt die Zugrichtung so, dass der Flügel angehoben wird."
+        },
+        {
+          "id": "skelett-q7",
+          "lessonId": "skelett",
+          "q": "Was bedeutet Pneumatisierung bei einem Vogelknochen?",
+          "options": [
+            "Dass der Knochen ausschließlich massives Gewebe ohne Hohlraum enthält.",
+            "Dass die Knochenmatrix vollständig durch Horn ersetzt ist.",
+            "Dass jeder Vogelknochen im Inneren genau gleich aufgebaut ist.",
+            "Dass der Knochen lufthaltige Räume besitzt."
+          ],
+          "answer": 3,
+          "explain": "Lufthaltigkeit betrifft bestimmte Knochen und ist keine Aussage über alle Skelettelemente."
+        },
+        {
+          "id": "skelett-q8",
+          "lessonId": "skelett",
+          "q": "Welcher Rumpfbau ist für den Vogelgrundbauplan kennzeichnend?",
+          "options": [
+            "Durchgehend gleich bewegliche Wirbel vom Hals bis zum Becken.",
+            "Stabilisierte, teilweise verwachsene Rumpfabschnitte bei beweglichem Hals.",
+            "Ein völlig unbeweglicher Hals bei durchgehend frei gelenkigem Rumpf.",
+            "Ein vollständiger Verzicht auf knöcherne Schultergürtelverbindungen."
+          ],
+          "answer": 1,
+          "explain": "Beweglichkeit und Stabilität sind im Vogelskelett räumlich unterschiedlich verteilt."
+        },
+        {
+          "id": "luftsaecke-q1",
+          "lessonId": "luftsaecke",
+          "q": "Welche Aufgabe haben die Luftsäcke hauptsächlich im Vogel-Atemsystem?",
+          "options": [
+            "Sie bewegen als Volumenräume die Atemluft.",
+            "Sie sind alleiniger Hauptgaswechselort anstelle der Lunge.",
+            "Sie nehmen hauptsächlich Nährstoffe aus der Nahrung auf.",
+            "Sie bilden als Hauptfunktion neue Blutkapillaren außerhalb der Lunge."
+          ],
+          "answer": 0,
+          "explain": "Luftsäcke wirken als Ventilationsräume und sind von der gaswechselnden Lunge zu unterscheiden."
+        },
+        {
+          "id": "luftsaecke-q2",
+          "lessonId": "luftsaecke",
+          "q": "Wo findet der wesentliche Gaswechsel eines Vogels statt?",
+          "options": [
+            "In der Wand des Kropfes.",
+            "In den Luftsäcken anstelle der Lunge.",
+            "Im Lungengewebe.",
+            "In der Höhle des Oberarms anstelle der Lunge."
+          ],
+          "answer": 2,
+          "explain": "Die feinen Lungenstrukturen bringen Luft und Blut für den Gasaustausch zusammen."
+        },
+        {
+          "id": "luftsaecke-q3",
+          "lessonId": "luftsaecke",
+          "q": "Wie ist die Vogellunge im Vergleich zur typischen Säugetierlunge charakterisiert?",
+          "options": [
+            "Ein einzelner stark dehnbarer Sack ohne innere Verzweigungen.",
+            "Relativ starr und wenig ausdehnbar.",
+            "Ein bei jedem Atemzug weit expandierendes Alveolensystem wie beim Hund.",
+            "Ein nur bei Ausatmung mit der Luftröhre verbundenes Organ."
+          ],
+          "answer": 1,
+          "explain": "Die Volumenänderung der Luftsäcke ergänzt die relativ starre Lunge."
+        },
+        {
+          "id": "luftsaecke-q4",
+          "lessonId": "luftsaecke",
+          "q": "Welche Bewegungen wirken bei Vögeln an der Belüftung mit?",
+          "options": [
+            "Ausschließlich ein muskuläres Zwerchfell wie beim Hund.",
+            "Ausschließlich Verformungen des Schnabels ohne Brustkorbbewegung.",
+            "Ausschließlich Zugbewegungen der Speiseröhrenwand.",
+            "Bewegungen von Rippen und Brustbein."
+          ],
+          "answer": 3,
+          "explain": "Vögel besitzen kein Säugetier-Zwerchfell; der Brustkorb wirkt an der Ventilation mit."
+        },
+        {
+          "id": "luftsaecke-q5",
+          "lessonId": "luftsaecke",
+          "q": "Welcher Atemweg verbindet den Hals mit den Bronchien?",
+          "options": [
+            "Die Speiseröhre.",
+            "Die Ohrtrompete.",
+            "Die Luftröhre.",
+            "Der Kropfgang."
+          ],
+          "answer": 2,
+          "explain": "Die Trachea leitet Atemluft; die Speiseröhre leitet Nahrung."
+        },
+        {
+          "id": "luftsaecke-q6",
+          "lessonId": "luftsaecke",
+          "q": "Was gilt für die Ausatmungsphase im Vogel-Atemsystem?",
+          "options": [
+            "Auch dann kann Luft durch die Lunge strömen.",
+            "Dann ist das gesamte Lungengewebe immer vom Luftstrom abgetrennt.",
+            "Dann muss die Lunge als Ganzes vollständig zusammenfallen.",
+            "Dann findet Gaswechsel ausschließlich im Kropf statt."
+          ],
+          "answer": 0,
+          "explain": "Das Zusammenspiel der Luftsäcke ermöglicht Luftstrom durch die Lunge über beide Atemphasen."
+        },
+        {
+          "id": "luftsaecke-q7",
+          "lessonId": "luftsaecke",
+          "q": "Welche Struktur fehlt dem Vogel als typischer Säugetier-Atemmuskel?",
+          "options": [
+            "Die Luftröhre.",
+            "Das Brustbein.",
+            "Die Bronchien.",
+            "Das muskuläre Zwerchfell."
+          ],
+          "answer": 3,
+          "explain": "Vögel belüften ihre Lunge mit einem anderen mechanischen System."
+        },
+        {
+          "id": "luftsaecke-q8",
+          "lessonId": "luftsaecke",
+          "q": "Wie lässt sich die Luftsackanatomie zwischen Vogelarten einordnen?",
+          "options": [
+            "Alle Arten besitzen identische Zahl und Größe jedes Luftsacks.",
+            "Mit artspezifischen Unterschieden in Zahl und Ausprägung.",
+            "Alle Luftsäcke sind bei jeder Art völlig ohne Verbindung zur Lunge.",
+            "Ihre Ausprägung ist bei jedem Vogel unabhängig von der Art identisch."
+          ],
+          "answer": 1,
+          "explain": "Der gemeinsame Grundbauplan bedeutet keine identische Anzahl oder Form aller Luftsäcke."
+        },
+        {
+          "id": "gaswechsel-q1",
+          "lessonId": "gaswechsel",
+          "q": "Was sind Parabronchien in der Vogellunge?",
+          "options": [
+            "Feine Röhren des Luftwegsystems.",
+            "Feine blutführende Venen der Lunge.",
+            "Drüsengänge der Bronchialschleimhaut.",
+            "Bindegewebsbänder an den Luftsäcken."
+          ],
+          "answer": 0,
+          "explain": "Parabronchien gehören zum röhrenförmigen inneren Luftsystem der Lunge."
+        },
+        {
+          "id": "gaswechsel-q2",
+          "lessonId": "gaswechsel",
+          "q": "Welche Strukturen liegen den Luftkapillaren für den Gaswechsel besonders nahe?",
+          "options": [
+            "Derbes Sehnengewebe.",
+            "Drüsengänge des Kropfes.",
+            "Blutkapillaren.",
+            "Knorpelringe der Luftröhre ohne Gefäßnetz."
+          ],
+          "answer": 2,
+          "explain": "Das Blutkapillarnetz nimmt Sauerstoff auf und liefert Kohlendioxid an die Luftseite."
+        },
+        {
+          "id": "gaswechsel-q3",
+          "lessonId": "gaswechsel",
+          "q": "Worin unterscheiden sich Luftkapillaren und Blutkapillaren?",
+          "options": [
+            "Beide führen ausschließlich Blut unter verschiedenen Namen.",
+            "Die einen führen Luft, die anderen Blut.",
+            "Beide führen ausschließlich Luft ohne Blutkontakt.",
+            "Die einen gehören zum Darm, die anderen zum Ohr."
+          ],
+          "answer": 1,
+          "explain": "Der ähnliche Name bezeichnet kleine Dimensionen, nicht denselben Inhalt."
+        },
+        {
+          "id": "gaswechsel-q4",
+          "lessonId": "gaswechsel",
+          "q": "In welche Richtung gelangt Sauerstoff beim Lungen-Gaswechsel?",
+          "options": [
+            "Vom Blut als Ziel der Sauerstoffabgabe zur Luftseite.",
+            "Aus dem Luftsack direkt in den Kropfinhalt.",
+            "Vom Bronchienknorpel direkt in die Speiseröhre.",
+            "Von der Luftseite ins Blut."
+          ],
+          "answer": 3,
+          "explain": "Die Austauschbarriere ermöglicht die Aufnahme von Sauerstoff in das Blut."
+        },
+        {
+          "id": "gaswechsel-q5",
+          "lessonId": "gaswechsel",
+          "q": "In welche Richtung wird Kohlendioxid bei der äußeren Atmung abgegeben?",
+          "options": [
+            "Von der Luftseite als regulärer Aufnahmeweg ins Blut.",
+            "Aus dem Muskelmagen direkt durch die Luftsackwand.",
+            "Vom Blut zur Luftseite.",
+            "Vom Blut ausschließlich in die Schalenhaut eines Eies."
+          ],
+          "answer": 2,
+          "explain": "Kohlendioxid wird aus dem Blut an die Luft abgegeben und ausgeatmet."
+        },
+        {
+          "id": "gaswechsel-q6",
+          "lessonId": "gaswechsel",
+          "q": "Welcher Vorgang bewirkt den Austausch der Atemgase über die dünne Barriere?",
+          "options": [
+            "Diffusion entlang der Gasteildruckunterschiede.",
+            "Mechanisches Pumpen einzelner Gasmoleküle durch die Knorpelringe.",
+            "Gerinnung der Atemgase in den Blutkapillaren.",
+            "Enzymatische Umwandlung von Sauerstoff in Blutplasma."
+          ],
+          "answer": 0,
+          "explain": "Jedes Atemgas diffundiert gemäß seinem eigenen Teildruckgefälle."
+        },
+        {
+          "id": "gaswechsel-q7",
+          "lessonId": "gaswechsel",
+          "q": "Welche Bauweise begünstigt den Austausch zwischen Luft und Blut?",
+          "options": [
+            "Eine dicke, wenig durchlässige Hornschicht dazwischen.",
+            "Möglichst großer Abstand zwischen Luft- und Blutkapillaren.",
+            "Eine Austauschfläche ganz ohne Blutgefäßnähe.",
+            "Große Kontaktfläche und eine kurze dünne Trennstrecke."
+          ],
+          "answer": 3,
+          "explain": "Feine Verzweigung und geringe Diffusionsstrecke unterstützen den Gaswechsel."
+        },
+        {
+          "id": "gaswechsel-q8",
+          "lessonId": "gaswechsel",
+          "q": "Welche Struktur kennzeichnet den üblichen Säugetier-Gaswechsel statt der Vogel-Parabronchien?",
+          "options": [
+            "Der abdominale Luftsack.",
+            "Die Lungenalveole.",
+            "Der Drüsenmagen.",
+            "Die Syrinx."
+          ],
+          "answer": 1,
+          "explain": "Säugetiere und Vögel nutzen unterschiedlich aufgebaute gaswechselnde Lungenstrukturen."
+        },
+        {
+          "id": "syrinx-q1",
+          "lessonId": "syrinx",
+          "q": "Wo liegt die Syrinx im Vogel-Atemweg?",
+          "options": [
+            "Am unteren Luftröhrenende beim Übergang zu den Hauptbronchien.",
+            "Am oberen Kehlkopfeingang neben dem Zungengrund.",
+            "Am Übergang von Speiseröhre und Kropf.",
+            "Im hinteren Abschnitt der Nasenhöhle."
+          ],
+          "answer": 0,
+          "explain": "Die Lage verbindet den Stimmapparat mit dem verzweigten Atemweg."
+        },
+        {
+          "id": "syrinx-q2",
+          "lessonId": "syrinx",
+          "q": "Welcher physikalische Vorgang trägt zur Stimme aus der Syrinx bei?",
+          "options": [
+            "Das mechanische Anschlagen des Schnabels an Holz.",
+            "Die Reibung bewegter Federn aneinander.",
+            "Luftstrom versetzt Gewebe in Schwingung.",
+            "Das Mahlen von Steinchen im Muskelmagen."
+          ],
+          "answer": 2,
+          "explain": "Vokale Lautbildung beruht auf schwingendem Gewebe im Atemluftstrom."
+        },
+        {
+          "id": "syrinx-q3",
+          "lessonId": "syrinx",
+          "q": "Wie wirken Syrinxmuskeln an der Lautbildung mit?",
+          "options": [
+            "Sie bestimmen ausschließlich die Nahrungspassage durch den Kropf.",
+            "Sie beeinflussen die Spannung schwingender Strukturen.",
+            "Sie verschließen ausschließlich den Dünndarm beim Rufen.",
+            "Sie stellen nur die Gefäßweite der Lungenarterien ein."
+          ],
+          "answer": 1,
+          "explain": "Gewebespannung ist ein steuerbarer Teil des Lautapparates."
+        },
+        {
+          "id": "syrinx-q4",
+          "lessonId": "syrinx",
+          "q": "Welcher Apparat bildet bei Säugetieren typischerweise die Stimme?",
+          "options": [
+            "Die Nasenscheidewand als alleiniger Lauterzeuger.",
+            "Die Gallenblase mit ihrer Wandmuskulatur.",
+            "Die Speiseröhre als regelhafter Hauptstimmapparat.",
+            "Der Kehlkopf mit seinen Stimmlippen."
+          ],
+          "answer": 3,
+          "explain": "Die typische Quelle der Säugetierstimme liegt am Kehlkopf, beim Vogel an der Syrinx."
+        },
+        {
+          "id": "syrinx-q5",
+          "lessonId": "syrinx",
+          "q": "Welche Körperfunktion liefert den Luftstrom für Syrinxlaute?",
+          "options": [
+            "Die Schluckbewegung des Speisewegs.",
+            "Die Darmperistaltik.",
+            "Die Atmung.",
+            "Die reine Durchblutung des Schnabelhorns."
+          ],
+          "answer": 2,
+          "explain": "Das Atemsystem versorgt den Stimmapparat mit Luftbewegung."
+        },
+        {
+          "id": "syrinx-q6",
+          "lessonId": "syrinx",
+          "q": "Wie wird Spechttrommeln hauptsächlich erzeugt?",
+          "options": [
+            "Durch mechanische Schläge des Schnabels auf einen Untergrund.",
+            "Durch alleinige Schwingungen der Syrinx ohne Schnabelkontakt.",
+            "Durch Luftstrom über Halsfedern ohne Schnabelkontakt.",
+            "Durch den Muskelmagen als knöchernen Resonanzraum."
+          ],
+          "answer": 0,
+          "explain": "Trommeln ist ein nichtvokales Signal und unterscheidet sich von der Stimme."
+        },
+        {
+          "id": "syrinx-q7",
+          "lessonId": "syrinx",
+          "q": "Welche Aussage beschreibt die Steuerung beider Syrinxseiten zutreffend?",
+          "options": [
+            "Jeder Vogel erzeugt bei jedem Ruf zwingend zwei unabhängige Töne.",
+            "Alle Vogelarten besitzen genau dieselbe beidseitige Stimmkontrolle.",
+            "Beide Seiten können grundsätzlich bei keiner Art differenziert arbeiten.",
+            "Ihre Möglichkeiten unterscheiden sich zwischen Vogelgruppen."
+          ],
+          "answer": 3,
+          "explain": "Die anatomische und funktionelle Vielfalt erlaubt keine einheitliche Zweitonregel."
+        },
+        {
+          "id": "syrinx-q8",
+          "lessonId": "syrinx",
+          "q": "Zu welcher Lautkategorie gehört ein durch Federschwingung erzeugtes Geräusch?",
+          "options": [
+            "Zu den ausschließlich im Syrinxgewebe gebildeten Stimmen.",
+            "Zu den mechanisch erzeugten Lauten.",
+            "Zu den ausschließlich im Kehlkopf gebildeten Stimmen.",
+            "Zu den im Kropf durch Speiseröhrenschwingung gebildeten Stimmen."
+          ],
+          "answer": 1,
+          "explain": "Die Schallquelle liegt hier an bewegten Federn und nicht an schwingendem Syrinxgewebe."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "title": "Fortpflanzung: Keimruhe, Plazenta und Vogelei",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Artspezifische frühe Entwicklung, mütterlich-fetale Kontaktflächen und den Aufbau eines Vogeleies genauer verstehen.",
+      "minutes": 36,
+      "objectives": [
+        "Rehdiapause als verlangsamte Entwicklung erklären",
+        "Fetale und mütterliche Plazentaanteile trennen",
+        "Schalen, Eiklar und Dotter funktionell zuordnen",
+        "Eibildung im Hühner-Referenzmodell verfolgen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches Lernwissen mit getrennten Artbezügen: Europäisches Reh, Rinderpräparat, Schwein, Hund und Huhn. Keine Zucht-, Eingriffs- oder Behandlungsvorgaben.",
+        "AT": "Biologisches Lernwissen mit getrennten Artbezügen: Europäisches Reh, Rinderpräparat, Schwein, Hund und Huhn. Keine Zucht-, Eingriffs- oder Behandlungsvorgaben.",
+        "CH": "Biologisches Lernwissen mit getrennten Artbezügen: Europäisches Reh, Rinderpräparat, Schwein, Hund und Huhn. Keine Zucht-, Eingriffs- oder Behandlungsvorgaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Rüegg und andere 2024: Developmental progression continues during embryonic diapause in the roe deer",
+          "url": "https://www.nature.com/articles/s42003-024-05944-w",
+          "organization": "ETH Zürich und Mitautoren; Communications Biology",
+          "supports": "Originaldaten: langsame fortlaufende Proliferation und Differenzierung während Rehdiapause; deutliche Beschleunigung bei Elongation. Keine Übertragung auf alle Diapausearten."
+        },
+        {
+          "label": "Aitken 1975: Ultrastructure of blastocyst and endometrium during delayed implantation",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1231599/",
+          "organization": "University of Cambridge; Journal of Anatomy",
+          "supports": "Unabhängige ältere Originaluntersuchung: progressive Vergrößerung und zelluläre Veränderungen der Rehblastozyste während verzögerter Implantation."
+        },
+        {
+          "label": "ETH: Embryonic diapause",
+          "url": "https://ap.ethz.ch/research/repro/diapause.html",
+          "organization": "ETH Zürich, Animal Physiology",
+          "supports": "Artspezifischer Ablauf: Sommerpaarung, verzögerte frühe Entwicklung im Uterus, spätere Implantation; Forschungszusammenfassung derselben Gruppe wie Rüegg, keine unabhängige Replikation."
+        },
+        {
+          "label": "Colorado State: Comparative placentation",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/reprod/placenta/",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Plazenta als mütterlich-fetale Kontaktfläche; Artvergleich diffus, kotyledonär, gürtelförmig."
+        },
+        {
+          "label": "Colorado State: Ruminant placenta",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/reprod/placenta/ruminants.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Fetales Kotyledon und mütterliche Karunkel bilden Plazentom; keine universellen Zahlen."
+        },
+        {
+          "label": "The Drost Project: Normal bovine placenta",
+          "url": "https://visgar.vetmed.ufl.edu/en_bovrep/normal-placenta/normal-placenta.html",
+          "organization": "University of Florida College of Veterinary Medicine, Drost Project",
+          "supports": "Originalpräparate des Rindes: fetales Kotyledon, mütterliche Karunkel, Plazentom und getrennt dargestellte Gefäßsysteme."
+        },
+        {
+          "label": "Comparative placentation: placental forms",
+          "url": "https://placentation.ucsd.edu/placenta.html",
+          "organization": "University of California San Diego, Kurt Benirschke",
+          "supports": "Eigenständige vergleichende Pathologie/Präparatesammlung: Schwein diffus, Hund zonär, Wiederkäuer kotyledonär. Keine Zahlen aus Einzelfällen verallgemeinert."
+        },
+        {
+          "label": "PoultryHub: The avian egg",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/the-avian-egg",
+          "organization": "PoultryHub Australia, University of New England",
+          "supports": "Huhn: Dotter, Eiklar, Schalen, Poren und Gasaustausch; keine universellen Prozent-/Zeitwerte."
+        },
+        {
+          "label": "PoultryHub: Reproductive system",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/reproductive-system",
+          "organization": "PoultryHub Australia, University of New England",
+          "supports": "Huhn als Referenztier: Dotterbildung im Ovar, Ovulation und Abschnitte des Eileiters; keine universellen Legezeiten."
+        },
+        {
+          "label": "Jacquie Jacob: Avian reproductive system, ASC-201",
+          "url": "https://www2.ca.uky.edu/agc/pubs/ASC/ASC201/ASC201.pdf",
+          "organization": "University of Kentucky Cooperative Extension",
+          "supports": "Huhn: Eileiterabschnitte, Befruchtungsort, Eiklar, Hagelschnüre, Schalenhäute und Schale."
+        },
+        {
+          "label": "The egg and I – teaching material",
+          "url": "https://afs.mgcafe.uky.edu/files/eggandi.pdf",
+          "organization": "University of Kentucky, Poultry Extension",
+          "supports": "Dotterhaut, Hagelschnüre, Luftkammer zwischen Schalenhäuten und poröse Kalkschale; dieselbe Institution wie ASC-201."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "rehdiapause",
+          "title": "Beim Reh verlangsamt sich die Entwicklung, sie steht nicht völlig still",
+          "paragraphs": [
+            "Beim Europäischen Reh kann die Befruchtung auf die sommerliche Paarung folgen, während die Anheftung des frühen Embryos an die Gebärmutter erst deutlich später erfolgt. Das frühe Stadium heißt Blastozyste. Sie befindet sich während der Diapause im Uterus. „Verzögerte Implantation“ bedeutet deshalb nicht, dass die Befruchtung monatelang aufgeschoben wird. Die zeitliche Trennung von Paarung und späterer intensiver Entwicklung gehört zur besonderen Fortpflanzungsbiologie dieser Art.",
+            "Neuere Originaluntersuchungen zeigen während der Rehdiapause fortlaufende, sehr langsame Zellvermehrung und Entwicklungsveränderungen. Bereits eine unabhängige ältere ultrastrukturelle Untersuchung beschrieb eine progressive Vergrößerung und Veränderungen an Zellen der Blastozyste. Nach der Reaktivierung beschleunigt sich die Entwicklung; die zunächst annähernd kugelige Form geht in eine Elongation über. Das Wort Keimruhe bleibt gebräuchlich, darf hier aber nicht als vollständige Zellteilungsruhe erklärt werden. Das Reh ist auch kein Beleg, dass jede andere Säugetierart ihre Diapause genau so durchläuft."
+          ],
+          "takeaway": "Rehdiapause ist eine starke Verlangsamung früher Entwicklung vor späterer Implantation.",
+          "exercise": "Trenne auf einer Zeitleiste Befruchtung, Diapause, Elongation und Implantation ohne feste Tageszahlen."
+        },
+        {
+          "id": "plazenta",
+          "title": "Die Plazenta hat mütterliche und fetale Anteile",
+          "paragraphs": [
+            "Die Plazenta bildet eine spezialisierte Kontakt- und Austauschfläche zwischen mütterlichem Organismus und Fetus. Ihr Aufbau ist artspezifisch. Bei Wiederkäuern werden die fetalen Kontaktbezirke Kotyledonen genannt; ihnen stehen mütterliche Karunkeln der Gebärmutter gegenüber. Das zusammengehörige Paar bildet ein Plazentom. Ein Rinderpräparat kann diese Anteile verdeutlichen, seine Anzahl an Plazentomen ist aber kein festes Zählmaß für Reh oder Rotwild.",
+            "Im vergleichenden Überblick besitzt das Schwein eine diffuse, der Hund eine gürtelförmige beziehungsweise zonäre Plazenta. Diese Formbegriffe beschreiben die Verteilung der Kontaktfläche. Sie sind nicht mit Kotyledon, Karunkel und Plazentom austauschbar. Mütterliche und fetale Gefäßsysteme stehen über die Austauschbarriere in enger Beziehung, ohne dass die einfache Vorstellung eines gemeinsamen offenen Blutbeckens die Anatomie zutreffend wiedergibt. Für Artenvergleiche werden deshalb Form, Gewebeschichten und Gefäßbeziehungen getrennt benannt."
+          ],
+          "takeaway": "Kotyledon plus Karunkel bildet das Plazentom; Plazentaformen unterscheiden sich zwischen Arten.",
+          "exercise": "Beschrifte an einem Schema fetale Seite, mütterliche Seite und Kontaktfläche."
+        },
+        {
+          "id": "eiaufbau",
+          "title": "Das Vogelei ist ein System aus Hüllen und Vorräten",
+          "paragraphs": [
+            "Am Hühnerei lassen sich die Aufgaben der Eiabschnitte gut trennen. Der Dotter liefert Nährstoffvorräte und ist von einer Dotterhaut umgeben. Das Eiklar ist reich an Wasser und Protein. Gedrehte Eiklarstränge, die Hagelschnüre beziehungsweise Chalazen, helfen, den Dotter im Ei zu positionieren. Diese Stränge sind nicht der Embryo. Der Anlagenbereich für die frühe Entwicklung liegt an der Keimscheibe auf dem Dotter.",
+            "Unter der mineralischen Schale liegen Schalenhäute. Zwischen ihnen kann sich am stumpfen Ende die Luftkammer bilden. Die Schale besteht überwiegend aus Calciumcarbonat und enthält Poren. Sie ist Schutz und zugleich keine gasdichte Versiegelung: Durch das poröse System können Sauerstoff und Kohlendioxid ausgetauscht werden, außerdem tritt Wasserdampf durch. Ein Ei ist daher kein bloßer Vorratsbehälter. Die Funktionen wirken während der Entwicklung zusammen; starre Größen-, Prozent- oder Brutzeitwerte werden hier nicht auf alle Vogelarten übertragen."
+          ],
+          "takeaway": "Dotter, Eiklar, Hagelschnüre, Häute und poröse Schale erfüllen verschiedene Aufgaben.",
+          "exercise": "Zeichne einen Eiquerschnitt mit Dotterhaut, Eiklar, Schalenhäuten und Luftkammer."
+        },
+        {
+          "id": "eibildung",
+          "title": "Eileiterabschnitte ergänzen das Ei nacheinander",
+          "paragraphs": [
+            "Beim Huhn reift der Dotter mit der Eizelle im Eierstock heran. Die Ovulation setzt die Eizelle mit ihrem Dotter frei. Der trichterförmige Anfang des Eileiters, das Infundibulum, nimmt sie auf; hier liegt auch der typische Ort der Befruchtung. Die Befruchtung geht somit der vollständigen Ausbildung von Eiklar und Schale voraus. Eine nach dem Legen von außen befruchtete Kalkschale gehört nicht zu diesem Fortpflanzungsweg.",
+            "Auf dem weiteren Weg ergänzt das Magnum den großen Eiklaranteil. Im Isthmus entstehen die Schalenhäute, anschließend bildet die Schalendrüse den wesentlichen mineralischen Schalenanteil. Die Vagina dient dem letzten Durchtritt zum Ausmündungsbereich und zur Eiablage über die Kloake. Diese anatomische Abfolge erklärt, warum die Bestandteile nicht alle gleichzeitig im Eierstock vorliegen. Das Huhn ist hier ein klar benanntes Lehrmodell; aus ihm werden keine identischen Stundenpläne oder Legeleistungen für Enten, Gänse oder andere Wildvögel abgeleitet."
+          ],
+          "takeaway": "Ovar und aufeinanderfolgende Eileiterabschnitte bilden verschiedene Bestandteile des Eies.",
+          "exercise": "Ordne Ovar, Infundibulum, Magnum, Isthmus, Schalendrüse und Vagina."
+        }
+      ],
+      "questions": [
+        {
+          "id": "rehdiapause-q1",
+          "lessonId": "rehdiapause",
+          "q": "Welches frühe Entwicklungsstadium wird bei der Rehdiapause untersucht?",
+          "options": [
+            "Die Blastozyste.",
+            "Der unbefruchtete Primärfollikel.",
+            "Der bereits weit entwickelte geburtsreife Fetus.",
+            "Der einzelne noch nicht befruchtete Gamet."
+          ],
+          "answer": 0,
+          "explain": "Die Diapause betrifft den frühen Embryo vor der späteren Implantation."
+        },
+        {
+          "id": "rehdiapause-q2",
+          "lessonId": "rehdiapause",
+          "q": "In welchem Organ befindet sich die Rehblastozyste während dieser Verzögerungsphase?",
+          "options": [
+            "Im Eierstock vor dem Eisprung.",
+            "In einem noch nicht geöffneten Ovarialfollikel.",
+            "Im Uterus.",
+            "Im Eileiter vor der Befruchtung."
+          ],
+          "answer": 2,
+          "explain": "Die Blastozyste entwickelt sich langsam in der Gebärmutter."
+        },
+        {
+          "id": "rehdiapause-q3",
+          "lessonId": "rehdiapause",
+          "q": "Welcher Vorgang ist mit verzögerter Implantation gemeint?",
+          "options": [
+            "Die monatelang aufgeschobene Verschmelzung von Eizelle und Spermium.",
+            "Die zeitlich spätere Anheftung an die Gebärmutter.",
+            "Eine erst nach der Geburt erfolgende Ovulation.",
+            "Die verspätete Anlage des mütterlichen Eierstocks."
+          ],
+          "answer": 1,
+          "explain": "Implantation betrifft die Beziehung zwischen frühem Embryo und mütterlichem Uterus."
+        },
+        {
+          "id": "rehdiapause-q4",
+          "lessonId": "rehdiapause",
+          "q": "Wie verläuft die Zellvermehrung während der Diapause beim Europäischen Reh?",
+          "options": [
+            "Sie ist während der gesamten Phase vollständig und unveränderlich beendet.",
+            "Sie erfolgt während der gesamten Phase bereits im gleichen Tempo wie nach Elongation.",
+            "Sie beginnt grundsätzlich erst nach der Geburt.",
+            "Sie geht sehr langsam weiter."
+          ],
+          "answer": 3,
+          "explain": "Die Originaldaten zeigen fortlaufende langsame Proliferation statt vollständigen Stillstands."
+        },
+        {
+          "id": "rehdiapause-q5",
+          "lessonId": "rehdiapause",
+          "q": "Was beschreibt Elongation beim reaktivierten Rehembryo?",
+          "options": [
+            "Das vollständige Zurückbilden der Blastozyste zum unbefruchteten Ei.",
+            "Die Verlagerung des Embryos aus dem Uterus in den Eierstock.",
+            "Die Entwicklung zu einer gestreckten Form.",
+            "Die ausschließliche Verkürzung mütterlicher Gebärmuttermuskeln."
+          ],
+          "answer": 2,
+          "explain": "Mit Reaktivierung und beschleunigter Entwicklung verändert sich die frühe Embryoform."
+        },
+        {
+          "id": "rehdiapause-q6",
+          "lessonId": "rehdiapause",
+          "q": "Welche Untersuchungen liefern in den zitierten Arbeiten direkte Angaben zur frühen Rehentwicklung?",
+          "options": [
+            "Untersuchungen von Embryogewebe und Entwicklungsmerkmalen.",
+            "Ausschließlich die Beobachtung erwachsener Böcke während der Blattzeit.",
+            "Ausschließlich die Messung der Körperhöhe geborener Kitze.",
+            "Ausschließlich die Zählung erwachsener Tiere im Winter."
+          ],
+          "answer": 0,
+          "explain": "Ultrastruktur sowie Zell- und Entwicklungsmerkmale des Embryos liefern direkte Befunde zur frühen Entwicklung."
+        },
+        {
+          "id": "rehdiapause-q7",
+          "lessonId": "rehdiapause",
+          "q": "Welche Beobachtung passt zur langsamen Weiterentwicklung während Rehdiapause?",
+          "options": [
+            "Eine unveränderte Zellzahl bei vollständig gleicher Zellgestalt während der gesamten Phase.",
+            "Ein monatelang als unbefruchtete Eizelle im Follikel verbleibendes Stadium.",
+            "Ein erst nach dem folgenden Frühjahr stattfindender Eisprung ohne vorherigen Embryo.",
+            "Allmähliche Vergrößerung und zelluläre Veränderungen der Blastozyste."
+          ],
+          "answer": 3,
+          "explain": "Ältere Ultrastruktur und neuere Zell-/Entwicklungsdaten belegen Veränderungen während der Verzögerung."
+        },
+        {
+          "id": "rehdiapause-q8",
+          "lessonId": "rehdiapause",
+          "q": "Welche Abfolge beschreibt die frühe Rehentwicklung im hier erläuterten Grundablauf?",
+          "options": [
+            "Diapause der unbefruchteten Eizelle → Geburt → Befruchtung.",
+            "Befruchtung → Blastozyste mit Diapause → beschleunigte Entwicklung/Implantation.",
+            "Implantation → Ovulation → Diapause des unbefruchteten Eies.",
+            "Geburt → Blastozyste → Befruchtung → Diapause."
+          ],
+          "answer": 1,
+          "explain": "Die Verzögerung betrifft einen bereits vorhandenen frühen Embryo vor späterer beschleunigter Entwicklung und Implantation."
+        },
+        {
+          "id": "plazenta-q1",
+          "lessonId": "plazenta",
+          "q": "Was bezeichnet Kotyledon an der Wiederkäuerplazenta?",
+          "options": [
+            "Einen fetalen Kontaktbezirk.",
+            "Den zugehörigen mütterlichen Gebärmutterbezirk.",
+            "Das gesamte Paar aus mütterlichem und fetalem Bezirk.",
+            "Die äußere Muskelschicht der Gebärmutter."
+          ],
+          "answer": 0,
+          "explain": "Das Kotyledon gehört zur fetalen Seite der Kontaktfläche."
+        },
+        {
+          "id": "plazenta-q2",
+          "lessonId": "plazenta",
+          "q": "Was bezeichnet Karunkel bei einem trächtigen Wiederkäuer?",
+          "options": [
+            "Den fetalen Kontaktbezirk.",
+            "Das gesamte Paar beider Kontaktbezirke.",
+            "Den mütterlichen Kontaktbezirk der Gebärmutter.",
+            "Die gesamte fetale Nabelschnur."
+          ],
+          "answer": 2,
+          "explain": "Die Karunkel ist der mütterliche Partner des fetalen Kotyledons."
+        },
+        {
+          "id": "plazenta-q3",
+          "lessonId": "plazenta",
+          "q": "Welche Einheit entsteht aus Kotyledon und Karunkel zusammen?",
+          "options": [
+            "Ein Kotyledon ohne mütterlichen Anteil.",
+            "Ein Plazentom.",
+            "Eine Karunkel ohne fetalen Anteil.",
+            "Ein Ovarialfollikel."
+          ],
+          "answer": 1,
+          "explain": "Das Plazentom enthält beide zugehörigen Kontaktanteile."
+        },
+        {
+          "id": "plazenta-q4",
+          "lessonId": "plazenta",
+          "q": "Welche Hauptfunktion verbindet Plazenten trotz unterschiedlicher Formen?",
+          "options": [
+            "Der unmittelbare Transport von Muttermilch durch die Nabelschnur.",
+            "Die Verdauung pflanzlicher Nahrung im fetalen Magen.",
+            "Die vollständige Vermischung beider Kreisläufe ohne Gewebegrenze.",
+            "Austausch zwischen mütterlichem Organismus und Fetus."
+          ],
+          "answer": 3,
+          "explain": "Plazenten stellen die spezialisierte mütterlich-fetale Beziehung für die Versorgung her."
+        },
+        {
+          "id": "plazenta-q5",
+          "lessonId": "plazenta",
+          "q": "Welche Form wird für die Schweineplazenta beschrieben?",
+          "options": [
+            "Zonär beziehungsweise gürtelförmig.",
+            "Kotyledonär mit typischen Wiederkäuer-Plazentomen.",
+            "Diffus.",
+            "Als einzelne frei liegende Kalkschale."
+          ],
+          "answer": 2,
+          "explain": "Die Kontaktfläche ist beim Schwein diffus über die entsprechenden Membranbereiche verteilt."
+        },
+        {
+          "id": "plazenta-q6",
+          "lessonId": "plazenta",
+          "q": "Welche Form wird für die Hundeplazenta beschrieben?",
+          "options": [
+            "Zonär beziehungsweise gürtelförmig.",
+            "Kotyledonär wie beim Rind.",
+            "Diffus wie beim Schwein.",
+            "Als einzelne harte Eischale außerhalb des Uterus."
+          ],
+          "answer": 0,
+          "explain": "Die ring- beziehungsweise gürtelförmige Kontaktzone kennzeichnet die Hundeplazenta."
+        },
+        {
+          "id": "plazenta-q7",
+          "lessonId": "plazenta",
+          "q": "Wie sind mütterliches und fetales Blut an der Plazenta grundsätzlich einzuordnen?",
+          "options": [
+            "Ein einziger gemeinsamer offener Kreislauf ohne Gewebegrenze.",
+            "Zwei Systeme ohne jede Austauschmöglichkeit.",
+            "Nur mütterliches Blut, da der Fetus grundsätzlich keine Gefäße besitzt.",
+            "Als unterschiedliche Kreisläufe mit einer Austauschbarriere."
+          ],
+          "answer": 3,
+          "explain": "Die Nähe der Gefäße erlaubt Austausch, bedeutet aber nicht einen einzigen gemeinsamen offenen Kreislauf."
+        },
+        {
+          "id": "plazenta-q8",
+          "lessonId": "plazenta",
+          "q": "Worauf beziehen sich Formbegriffe wie diffus, zonär und kotyledonär?",
+          "options": [
+            "Auf die Dauer der Trächtigkeit in Tagen.",
+            "Auf die räumliche Verteilung der plazentaren Kontaktfläche.",
+            "Auf die bloße Zahl der Embryonalzellen.",
+            "Auf das Alter des Muttertiers."
+          ],
+          "answer": 1,
+          "explain": "Die Begriffe beschreiben unterschiedliche Verteilungsmuster der mütterlich-fetalen Kontaktfläche."
+        },
+        {
+          "id": "eiaufbau-q1",
+          "lessonId": "eiaufbau",
+          "q": "Welche Hauptaufgabe hat der Dotter im Vogelei?",
+          "options": [
+            "Er stellt Nährstoffvorräte bereit.",
+            "Er bildet die äußere mineralische Schutzschale.",
+            "Er bildet die Luftkammer zwischen den Schalenhäuten.",
+            "Er führt als Schlauch Nahrung direkt aus dem Mutterdarm zu."
+          ],
+          "answer": 0,
+          "explain": "Der Dotter ist ein wichtiger Vorrat für die Embryonalentwicklung."
+        },
+        {
+          "id": "eiaufbau-q2",
+          "lessonId": "eiaufbau",
+          "q": "Welche Hülle umgibt den Dotter unmittelbar?",
+          "options": [
+            "Die äußere Schalenhaut.",
+            "Die innere Schalenhaut.",
+            "Die Dotterhaut.",
+            "Die mineralische Kalkschale."
+          ],
+          "answer": 2,
+          "explain": "Die Dotterhaut trennt den Dotter vom umgebenden Eiklar."
+        },
+        {
+          "id": "eiaufbau-q3",
+          "lessonId": "eiaufbau",
+          "q": "Welche Stoffgruppen kennzeichnen das Eiklar besonders?",
+          "options": [
+            "Vor allem Calciumcarbonat und Phosphat als feste Matrix.",
+            "Wasser und Proteine.",
+            "Vor allem Luft und Wasserdampf ohne Proteine.",
+            "Vor allem Cellulose und Lignin."
+          ],
+          "answer": 1,
+          "explain": "Eiklar ist ein wasser- und proteinreicher Bestandteil des Eies."
+        },
+        {
+          "id": "eiaufbau-q4",
+          "lessonId": "eiaufbau",
+          "q": "Welche Funktion haben die Hagelschnüre?",
+          "options": [
+            "Sie sind als Stränge bereits der fertige Embryo.",
+            "Sie bilden als Schläuche die Blutverbindung zur Mutter.",
+            "Sie verschließen die Poren gasdicht.",
+            "Sie unterstützen die Positionierung des Dotters."
+          ],
+          "answer": 3,
+          "explain": "Chalazen sind gedrehte Eiklarstränge und keine fertigen Embryonen."
+        },
+        {
+          "id": "eiaufbau-q5",
+          "lessonId": "eiaufbau",
+          "q": "Wo liegt die Keimscheibe des Hühnereies?",
+          "options": [
+            "Außen auf der Kalkschale.",
+            "Zwischen den beiden Schalenhäuten.",
+            "An der Oberfläche des Dotters.",
+            "Im Inneren der Luftkammer."
+          ],
+          "answer": 2,
+          "explain": "Die Keimscheibe ist der Anlagenbereich der frühen Entwicklung am Dotter."
+        },
+        {
+          "id": "eiaufbau-q6",
+          "lessonId": "eiaufbau",
+          "q": "Zwischen welchen Strukturen liegt die Luftkammer des Hühnereies?",
+          "options": [
+            "Zwischen den Schalenhäuten.",
+            "Zwischen Dotter und Dotterhaut.",
+            "Im Inneren einer Hagelschnur.",
+            "Zwischen Dotterhaut und Keimscheibe."
+          ],
+          "answer": 0,
+          "explain": "Die Luftkammer bildet sich unter der Schale zwischen den Membranen, meist am stumpfen Ende."
+        },
+        {
+          "id": "eiaufbau-q7",
+          "lessonId": "eiaufbau",
+          "q": "Welcher Stoff bildet den wesentlichen mineralischen Anteil der Kalkschale?",
+          "options": [
+            "Natriumchlorid.",
+            "Calciumcitrat als Hauptmineral.",
+            "Cellulose.",
+            "Calciumcarbonat."
+          ],
+          "answer": 3,
+          "explain": "Die Schale enthält überwiegend Calciumcarbonat und ist zugleich porös."
+        },
+        {
+          "id": "eiaufbau-q8",
+          "lessonId": "eiaufbau",
+          "q": "Welche Aufgabe erfüllen die Poren der Eischale?",
+          "options": [
+            "Sie schließen den Entwicklungsraum dauerhaft gasdicht ab.",
+            "Sie ermöglichen Gas- und Wasserdampfaustausch.",
+            "Sie ersetzen die Dotterhaut als einzigen Nährstoffvorrat.",
+            "Sie führen als offene Blutgefäße direkt zur Mutter."
+          ],
+          "answer": 1,
+          "explain": "Durch das Schalensystem können Atemgase und Wasserdampf passieren."
+        },
+        {
+          "id": "eibildung-q1",
+          "lessonId": "eibildung",
+          "q": "In welchem Organ reift beim Huhn der Dotter mit der Eizelle heran?",
+          "options": [
+            "Im Eierstock.",
+            "In der Schalendrüse.",
+            "Im Magnum.",
+            "Im Isthmus."
+          ],
+          "answer": 0,
+          "explain": "Das Ovar ist der Ausgangsort von Eizelle und Dotterreifung."
+        },
+        {
+          "id": "eibildung-q2",
+          "lessonId": "eibildung",
+          "q": "Was bezeichnet Ovulation?",
+          "options": [
+            "Die Verschmelzung von Eizelle und Spermium.",
+            "Die Ablage des vollständig beschalten Eies.",
+            "Die Freisetzung der gereiften Eizelle aus dem Eierstock.",
+            "Die Bildung der Schalenhäute im Isthmus."
+          ],
+          "answer": 2,
+          "explain": "Ovulation ist von Befruchtung und Eiablage zu unterscheiden."
+        },
+        {
+          "id": "eibildung-q3",
+          "lessonId": "eibildung",
+          "q": "Welcher Eileiterabschnitt nimmt die freigesetzte Eizelle beim Huhn zuerst auf?",
+          "options": [
+            "Das Magnum.",
+            "Das Infundibulum.",
+            "Der Isthmus.",
+            "Die Vagina."
+          ],
+          "answer": 1,
+          "explain": "Der trichterförmige Anfang liegt vor den übrigen Eileiterabschnitten."
+        },
+        {
+          "id": "eibildung-q4",
+          "lessonId": "eibildung",
+          "q": "Wo findet beim Huhn die Befruchtung typischerweise statt?",
+          "options": [
+            "Im Magnum nach vollständiger Eiklarbildung.",
+            "In der Schalendrüse erst nach dem Verschluss der Kalkschale.",
+            "Erst auf dem gelegten Ei außerhalb der Henne.",
+            "Im Infundibulum."
+          ],
+          "answer": 3,
+          "explain": "Die Befruchtung erfolgt innen vor der vollständigen Ausbildung der späteren Eihüllen."
+        },
+        {
+          "id": "eibildung-q5",
+          "lessonId": "eibildung",
+          "q": "Welcher Abschnitt bildet den großen Eiklaranteil?",
+          "options": [
+            "Der Isthmus.",
+            "Die Schalendrüse.",
+            "Das Magnum.",
+            "Das Ovar allein."
+          ],
+          "answer": 2,
+          "explain": "Das Magnum ergänzt den wesentlichen Eiklaranteil auf dem Weg durch den Eileiter."
+        },
+        {
+          "id": "eibildung-q6",
+          "lessonId": "eibildung",
+          "q": "Wo entstehen beim Huhn die Schalenhäute?",
+          "options": [
+            "Im Isthmus.",
+            "Im Magnum.",
+            "In der Vagina.",
+            "Im Eierstock."
+          ],
+          "answer": 0,
+          "explain": "Der Isthmus folgt auf das Magnum und bildet die Schalenmembranen."
+        },
+        {
+          "id": "eibildung-q7",
+          "lessonId": "eibildung",
+          "q": "Welcher Abschnitt erzeugt den wesentlichen mineralischen Schalenanteil?",
+          "options": [
+            "Das Magnum.",
+            "Das Infundibulum.",
+            "Der Eierstock.",
+            "Die Schalendrüse."
+          ],
+          "answer": 3,
+          "explain": "Die Schalendrüse ergänzt den calciumcarbonatreichen Schalenanteil."
+        },
+        {
+          "id": "eibildung-q8",
+          "lessonId": "eibildung",
+          "q": "Welche Reihenfolge beschreibt den abschließenden Ablageweg des Eies?",
+          "options": [
+            "Magnum → Infundibulum → Eierstock.",
+            "Schalendrüse → Vagina → Kloake.",
+            "Kloake → Schalendrüse → Isthmus.",
+            "Vagina → Magnum → Infundibulum."
+          ],
+          "answer": 1,
+          "explain": "Das fertig ergänzte Ei passiert den letzten Eileiterabschnitt zur Kloake."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-biologie-hundegebiss-2026",
+      "title": "Hundegebiss: Zahnformel, Wechsel und Gewebe",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Die normale Zahnzahl selbst herleiten, Milch- und Dauergebiss unterscheiden und die Zahnanatomie verstehen.",
+      "minutes": 36,
+      "objectives": [
+        "Die Dauergebissformel sicher lesen und berechnen",
+        "Milchgebiss und Gebisswechsel anatomisch erklären",
+        "Hartgewebe und Zahnhalteapparat zuordnen",
+        "Reißzähne und anatomische Richtungsbegriffe unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Hundeanatomie. Zahnzahlen bezeichnen die normale vollständige Formel; individuelle Abweichungen benötigen fachliche Beurteilung, keine Eigenbehandlung.",
+        "AT": "Gemeinsame Hundeanatomie. Zahnzahlen bezeichnen die normale vollständige Formel; individuelle Abweichungen benötigen fachliche Beurteilung, keine Eigenbehandlung.",
+        "CH": "Gemeinsame Hundeanatomie. Zahnzahlen bezeichnen die normale vollständige Formel; individuelle Abweichungen benötigen fachliche Beurteilung, keine Eigenbehandlung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Dental development of dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/digestive-disorders-of-dogs/dental-development-of-dogs",
+          "organization": "Merck Veterinary Manual, Sofie Muylle, Ghent University",
+          "supports": "28 Milchzähne und 42 bleibende Zähne als normale Formeln; keine Individualdiagnose nach Kalender."
+        },
+        {
+          "label": "Dental development in animals – canine formula and succession",
+          "url": "https://www.msdvetmanual.com/digestive-system/dental-development-and-anatomy/dental-development-in-animals",
+          "organization": "MSD Veterinary Manual, Sofie Muylle, Ghent University",
+          "supports": "Gebissfolge und Formeln: bleibende Molaren und erster Prämolar ohne Milchzahnvorgänger. Merck/MSD ist dieselbe Quellenfamilie, keine zusätzliche unabhängige Bestätigung."
+        },
+        {
+          "label": "Dental formula – Dog",
+          "url": "https://en.wikivet.net/Dental_Formula_-_Dog",
+          "organization": "WikiVet, veterinärmedizinisches Hochschulprojekt",
+          "supports": "Milch- und Dauergebissformeln sowie Zahngruppen; gegen Merck, CSU und Open University abgeglichen."
+        },
+        {
+          "label": "Colorado State: Dental anatomy",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/pregastric/dentalanat.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "Hund: Dauergebissformel; Schneide-, Eck-, Vorbacken-/Backenzähne und Gewebegrundlagen."
+        },
+        {
+          "label": "OpenLearn: Carnivora",
+          "url": "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2225&section=2.2",
+          "organization": "The Open University",
+          "supports": "Hund mit 42 bleibenden Zähnen; Reißzahnpaar oberer P4/unterer M1 und Scherwirkung. Fehlerhafte benachbarte Katzenformel ausdrücklich nicht übernommen."
+        },
+        {
+          "label": "AVDC nomenclature",
+          "url": "https://avdc.org/avdc-nomenclature/",
+          "organization": "American Veterinary Dental College",
+          "supports": "Zahnkrone/-wurzel, Pulpa, Gewebenomenklatur, Zahngruppen, Gebisswechsel und anatomische Richtungen."
+        },
+        {
+          "label": "AAHA Dental Care Guidelines: Anatomy and pathology",
+          "url": "https://www.aaha.org/resources/2019-aaha-dental-care-guidelines-for-dogs-and-cats/anatomy-pathology-2/",
+          "organization": "American Animal Hospital Association",
+          "supports": "Zahnhartgewebe, Pulpa sowie Gingiva, Wurzelzement, Desmodont und Alveolarknochen; keine Therapie übernommen."
+        },
+        {
+          "label": "Dental anatomy – veterinary skills handbook",
+          "url": "https://ohiostate.pressbooks.pub/osuvcpslhandbook/chapter/saclin_oraldentalone_charting_dental-anatomy/",
+          "organization": "The Ohio State University College of Veterinary Medicine",
+          "supports": "Eigenes Lehrkapitel: Zahngewebe, Halteapparat und bukkal/labial/palatinal/lingual; unterstützt die präzise Richtungsbeschreibung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "dauerformel",
+          "title": "Die Zahnformel beschreibt eine halbe Seite beider Kiefer",
+          "paragraphs": [
+            "Die vollständige normale Dauergebissformel des Hundes lautet 2 × (I 3/3, C 1/1, P 4/4, M 2/3) = 42. I steht für Schneidezähne, C für Eckzähne, P für Prämolaren und M für Molaren. Der obere Zahlenwert einer Gruppe bezieht sich auf eine Oberkieferhälfte, der untere auf die entsprechende Unterkieferhälfte. Der Faktor zwei ergänzt die andere Körperseite. Die Formel ist damit eine anatomische Zählanleitung und keine Angabe für nur einen einzigen Kiefer.",
+            "Aus ihr folgen für das vollständige Dauergebiss 20 Zähne im Oberkiefer und 22 im Unterkiefer. Insgesamt ergeben sich zwölf Schneidezähne, vier Eckzähne, sechzehn Prämolaren und zehn Molaren. Der Unterschied der Kieferzahlen liegt bei den Molaren: oben zwei, unten drei je Seite. Dies sind rechnerische Werte der normalen vollständigen Formel. Die normale vollständige Formel ist der anatomische Referenzwert; einzelne Hunde können davon abweichen."
+          ],
+          "takeaway": "Die Formel wird pro Kieferhälfte gelesen und anschließend für beide Körperseiten verdoppelt.",
+          "exercise": "Berechne Oberkiefer-, Unterkiefer- und Gesamtzahl aus den vier Zahngruppen."
+        },
+        {
+          "id": "milchwechsel",
+          "title": "Milchgebiss und Dauergebiss sind nicht einfach gleich viele Zähne",
+          "paragraphs": [
+            "Das normale vollständige Milchgebiss des Hundes umfasst 28 Zähne: 2 × (i 3/3, c 1/1, p 3/3). Die Kleinschreibung kann die erste Zahngeneration kennzeichnen. Es gibt Milchschneidezähne, Milcheckzähne und Milchprämolaren, aber keine Milchmolaren. Damit entfallen bei voller Formel 14 Milchzähne auf jeden Kiefer. Die zweite Generation enthält zusätzliche Zahngruppenelemente und erreicht normalerweise 42 Zähne.",
+            "Diphyodont bedeutet, dass zwei Zahngenerationen auftreten. Während des Wechsels können Milchzähne und bereits durchgebrochene bleibende Zähne gleichzeitig vorhanden sein; das wird Wechselgebiss genannt. Der bleibende erste Prämolar und die Molaren haben keinen Milchzahnvorgänger, den sie an derselben Stelle ersetzen. Deshalb ist die Vorstellung „Jeder Dauerzahn ersetzt genau einen Milchzahn“ falsch."
+          ],
+          "takeaway": "28 Milchzähne und 42 Dauerzähne entstehen durch Ersatz und zusätzliche bleibende Elemente.",
+          "exercise": "Markiere in der Dauergebissformel die Zähne ohne Milchzahnvorgänger."
+        },
+        {
+          "id": "zahngewebe",
+          "title": "Hartgewebe, Pulpa und Zahnhalteapparat",
+          "paragraphs": [
+            "Die anatomische Zahnkrone ist der schmelzbedeckte Anteil oberhalb der Schmelz-Zement-Grenze; die Wurzel liegt darunter. Der Schmelz bildet die äußere harte Kronenschicht. Den größten Gewebeanteil des Zahnes macht das Dentin aus. Im Inneren liegt die Pulpa mit Bindegewebe, Blutgefäßen und Nerven. Ihr Raum setzt sich von der Pulpakammer der Krone in die Wurzelkanäle fort. Ein Zahn ist damit keine durchgehend tote, gleichartige Kalkstruktur.",
+            "Der Zahnhalteapparat verbindet den Zahn mit dem Kiefer und seiner Umgebung. Zement bedeckt die Wurzeloberfläche. Das Desmodont beziehungsweise die Wurzelhaut enthält Fasern zwischen Wurzelzement und Alveolarknochen. Die Alveole ist das knöcherne Zahnfach; die Gingiva das umgebende Zahnfleisch. Die anatomische Krone und die gerade oberhalb des Zahnfleischs sichtbare klinische Krone sind zudem nicht in jeder Situation gleich groß."
+          ],
+          "takeaway": "Der Zahn besteht aus mehreren Geweben und ist über einen eigenen Halteapparat im Knochen verankert.",
+          "exercise": "Zeichne einen Zahnquerschnitt mit Schmelz, Dentin, Pulpa, Zement, Desmodont und Knochen."
+        },
+        {
+          "id": "gruppen",
+          "title": "Reißzahn ist nicht gleich Eckzahn",
+          "paragraphs": [
+            "Schneidezähne liegen am vorderen Kieferrand; hinter ihnen folgen die kräftigen Eckzähne. Prämolaren und Molaren bilden den seitlichen Backenzahnbereich. Beim Hund entsteht auf jeder Seite ein besonderes Reißzahnpaar aus dem oberen vierten Prämolaren P4 und dem unteren ersten Molaren M1. Diese wirken beim Schließen scherend gegeneinander. Der umgangssprachliche Fangzahn meint dagegen den Eckzahn und ist nicht dasselbe wie dieses Reißzahnpaar.",
+            "Für eine genaue Beschreibung werden Zähne von der Mitte aus innerhalb ihrer Gruppe nummeriert. Mesial bedeutet zur Mittellinie beziehungsweise zum ersten Schneidezahn hin, distal davon weg. Die zur Wange gerichtete Seite heißt bukkal, die zur Zunge gerichtete lingual; an oberen Zähnen kann die zum Gaumen gerichtete Seite palatinal heißen. Diese Richtungen machen eine Beschreibung unabhängig davon, von welcher Seite jemand auf eine Zeichnung schaut."
+          ],
+          "takeaway": "Das Reißzahnpaar besteht aus oberem P4 und unterem M1; Richtungsbegriffe machen Beschreibungen eindeutig.",
+          "exercise": "Markiere am Gebissschema das Reißzahnpaar und beschrifte Wangen-, Zungen- und Gaumenseite."
+        }
+      ],
+      "questions": [
+        {
+          "id": "dauerformel-q1",
+          "lessonId": "dauerformel",
+          "q": "Welche normale Zahnformel gilt für das vollständige Dauergebiss des Hundes?",
+          "options": [
+            "2 × (I 3/3, C 1/1, P 4/4, M 2/3).",
+            "2 × (I 3/3, C 1/1, P 3/3, M 0/0).",
+            "2 × (I 3/3, C 1/1, P 4/4, M 3/2).",
+            "2 × (I 3/3, C 1/1, P 3/4, M 2/2)."
+          ],
+          "answer": 0,
+          "explain": "Die Formel enthält je Seite zwei obere und drei untere Molaren."
+        },
+        {
+          "id": "dauerformel-q2",
+          "lessonId": "dauerformel",
+          "q": "Was bezeichnet die obere Zahl einer Zahngruppe in der Zahnformel?",
+          "options": [
+            "Die Zahl dieser Gruppe im gesamten Oberkiefer.",
+            "Die Zahl dieser Gruppe in einer Unterkieferhälfte.",
+            "Die Zahl dieser Gruppe in einer Oberkieferhälfte.",
+            "Die Summe beider Kiefer einschließlich Milchzähnen."
+          ],
+          "answer": 2,
+          "explain": "Die Zählung bezieht sich auf eine Seite; der Faktor zwei ergänzt die andere."
+        },
+        {
+          "id": "dauerformel-q3",
+          "lessonId": "dauerformel",
+          "q": "Wie viele Zähne umfasst das normale vollständige Dauergebiss des Hundes?",
+          "options": [
+            "28.",
+            "42.",
+            "40.",
+            "44."
+          ],
+          "answer": 1,
+          "explain": "Die Addition der halben Kieferzahlen und Verdopplung ergibt 42."
+        },
+        {
+          "id": "dauerformel-q4",
+          "lessonId": "dauerformel",
+          "q": "Wie viele Zähne ergeben sich im vollständigen Dauergebiss für den Oberkiefer?",
+          "options": [
+            "14.",
+            "21.",
+            "22.",
+            "20."
+          ],
+          "answer": 3,
+          "explain": "Je Oberkieferhälfte sind es 3 + 1 + 4 + 2 = 10, beidseits 20."
+        },
+        {
+          "id": "dauerformel-q5",
+          "lessonId": "dauerformel",
+          "q": "Wie viele Zähne ergeben sich im vollständigen Dauergebiss für den Unterkiefer?",
+          "options": [
+            "14.",
+            "20.",
+            "22.",
+            "24."
+          ],
+          "answer": 2,
+          "explain": "Je Unterkieferhälfte sind es 3 + 1 + 4 + 3 = 11, beidseits 22."
+        },
+        {
+          "id": "dauerformel-q6",
+          "lessonId": "dauerformel",
+          "q": "Wie viele bleibende Eckzähne zählt die normale Hundeformel insgesamt?",
+          "options": [
+            "Vier.",
+            "Zwei.",
+            "Sechs.",
+            "Acht."
+          ],
+          "answer": 0,
+          "explain": "Ein Eckzahn pro Kieferhälfte ergibt vier im gesamten Gebiss."
+        },
+        {
+          "id": "dauerformel-q7",
+          "lessonId": "dauerformel",
+          "q": "Wie viele bleibende Prämolaren zählt die normale Hundeformel insgesamt?",
+          "options": [
+            "Zwölf.",
+            "Vierzehn.",
+            "Achtzehn.",
+            "Sechzehn."
+          ],
+          "answer": 3,
+          "explain": "Vier Prämolaren in jeder der vier Kieferhälften ergeben sechzehn."
+        },
+        {
+          "id": "dauerformel-q8",
+          "lessonId": "dauerformel",
+          "q": "Welche Zahngruppe erklärt den Unterschied zwischen oberer und unterer Dauerzahnzahl?",
+          "options": [
+            "Die Schneidezähne mit drei oben und drei unten je Seite.",
+            "Die Molaren mit zwei oben und drei unten je Seite.",
+            "Die Eckzähne mit einem oben und einem unten je Seite.",
+            "Die Prämolaren mit vier oben und vier unten je Seite."
+          ],
+          "answer": 1,
+          "explain": "Nur die Molarenzahl unterscheidet sich in dieser normalen Formel zwischen den Kiefern."
+        },
+        {
+          "id": "milchwechsel-q1",
+          "lessonId": "milchwechsel",
+          "q": "Wie viele Zähne umfasst das normale vollständige Hundemilchgebiss?",
+          "options": [
+            "28.",
+            "26.",
+            "30.",
+            "42."
+          ],
+          "answer": 0,
+          "explain": "Die Milchgebissformel ergibt sieben Zähne je Kieferhälfte und insgesamt 28."
+        },
+        {
+          "id": "milchwechsel-q2",
+          "lessonId": "milchwechsel",
+          "q": "Welche normale Milchgebissformel gilt für den Hund?",
+          "options": [
+            "2 × (i 3/3, c 1/1, p 4/4).",
+            "2 × (i 2/3, c 1/1, p 3/3).",
+            "2 × (i 3/3, c 1/1, p 3/3).",
+            "2 × (i 3/3, c 0/0, p 4/4)."
+          ],
+          "answer": 2,
+          "explain": "Die erste Zahngeneration enthält je Kieferhälfte drei Schneide-, einen Eck- und drei Prämolaren."
+        },
+        {
+          "id": "milchwechsel-q3",
+          "lessonId": "milchwechsel",
+          "q": "Welche Zahngruppe fehlt im normalen Hundemilchgebiss?",
+          "options": [
+            "Die Schneidezähne.",
+            "Die Molaren.",
+            "Die Eckzähne.",
+            "Die Prämolaren."
+          ],
+          "answer": 1,
+          "explain": "Molaren erscheinen erst im bleibenden Gebiss."
+        },
+        {
+          "id": "milchwechsel-q4",
+          "lessonId": "milchwechsel",
+          "q": "Was bedeutet diphyodont beim Hundegebiss?",
+          "options": [
+            "Jeder Zahn hat zwei Wurzeln.",
+            "Beide Kiefer tragen die gleiche Gesamtzahnzahl.",
+            "Alle Zähne werden lebenslang beliebig oft ersetzt.",
+            "Es gibt zwei Zahngenerationen."
+          ],
+          "answer": 3,
+          "explain": "Milch- und Dauergebiss bilden die zwei Zahngenerationen."
+        },
+        {
+          "id": "milchwechsel-q5",
+          "lessonId": "milchwechsel",
+          "q": "Was kennzeichnet ein Wechselgebiss?",
+          "options": [
+            "Es sind ausschließlich Milchzähne vorhanden.",
+            "Es sind ausschließlich vollständig durchgebrochene Dauerzähne vorhanden.",
+            "Milchzähne und bleibende Zähne sind gleichzeitig vorhanden.",
+            "Alle Zähne gehören bereits derselben fertigen zweiten Generation an."
+          ],
+          "answer": 2,
+          "explain": "Das Wechselgebiss beschreibt die Übergangsphase zwischen beiden Generationen."
+        },
+        {
+          "id": "milchwechsel-q6",
+          "lessonId": "milchwechsel",
+          "q": "Welcher bleibende Prämolar besitzt beim Hund keinen Milchzahnvorgänger?",
+          "options": [
+            "Der erste Prämolar P1.",
+            "Der zweite Prämolar P2.",
+            "Der dritte Prämolar P3.",
+            "Der vierte Prämolar P4."
+          ],
+          "answer": 0,
+          "explain": "P1 gehört zu den zusätzlich auftretenden bleibenden Elementen."
+        },
+        {
+          "id": "milchwechsel-q7",
+          "lessonId": "milchwechsel",
+          "q": "Wie entstehen die bleibenden Molaren im Verhältnis zum Milchgebiss?",
+          "options": [
+            "Sie ersetzen die zuvor vorhandenen Milchmolaren.",
+            "Sie ersetzen ausschließlich die Milchschneidezähne.",
+            "Sie entstehen durch Verschmelzung aller Milcheckzähne.",
+            "Sie kommen ohne Milchmolaren als Vorgänger hinzu."
+          ],
+          "answer": 3,
+          "explain": "Es gibt keine erste Molargeneration, die ein bleibender Molar an derselben Position ablöst."
+        },
+        {
+          "id": "milchwechsel-q8",
+          "lessonId": "milchwechsel",
+          "q": "Wie viele Milchzähne enthält jeder Kiefer bei vollständiger normaler Formel?",
+          "options": [
+            "Zwölf.",
+            "Vierzehn.",
+            "Sechzehn.",
+            "Einundzwanzig."
+          ],
+          "answer": 1,
+          "explain": "Zwei Kieferhälften mit jeweils sieben Milchzähnen ergeben vierzehn."
+        },
+        {
+          "id": "zahngewebe-q1",
+          "lessonId": "zahngewebe",
+          "q": "Welches Gewebe bedeckt die anatomische Zahnkrone außen?",
+          "options": [
+            "Zahnschmelz.",
+            "Wurzelzement.",
+            "Pulpa.",
+            "Desmodont."
+          ],
+          "answer": 0,
+          "explain": "Schmelz ist die äußere Hartschicht der anatomischen Krone."
+        },
+        {
+          "id": "zahngewebe-q2",
+          "lessonId": "zahngewebe",
+          "q": "Welches Gewebe bildet den größten Anteil des Zahnes?",
+          "options": [
+            "Pulpa.",
+            "Gingiva.",
+            "Dentin.",
+            "Desmodont."
+          ],
+          "answer": 2,
+          "explain": "Dentin liegt unter dem Schmelz beziehungsweise Zement und bildet die Hauptmasse."
+        },
+        {
+          "id": "zahngewebe-q3",
+          "lessonId": "zahngewebe",
+          "q": "Welche Bestandteile enthält die Zahnpulpa unter anderem?",
+          "options": [
+            "Nur mineralische Schmelzprismen.",
+            "Blutgefäße, Nerven und Bindegewebe.",
+            "Nur Fasern des äußeren Zahnhalteapparats.",
+            "Nur Zellen des Wurzelzements."
+          ],
+          "answer": 1,
+          "explain": "Die Pulpa ist lebendes Gewebe im Inneren des Zahnes."
+        },
+        {
+          "id": "zahngewebe-q4",
+          "lessonId": "zahngewebe",
+          "q": "Wohin setzt sich der Pulparaum in der Zahnwurzel fort?",
+          "options": [
+            "In die äußere Schmelzschicht.",
+            "In den Gingivalsaum.",
+            "In den Zwischenraum zwischen Zement und Knochen.",
+            "In die Wurzelkanäle."
+          ],
+          "answer": 3,
+          "explain": "Pulpakammer und Wurzelkanäle bilden zusammen den inneren Pulparaum."
+        },
+        {
+          "id": "zahngewebe-q5",
+          "lessonId": "zahngewebe",
+          "q": "Welches Gewebe bedeckt die Wurzeloberfläche?",
+          "options": [
+            "Schmelz.",
+            "Gingiva.",
+            "Zement.",
+            "Pulpa."
+          ],
+          "answer": 2,
+          "explain": "Das Wurzelzement gehört zum Zahnhalteapparat."
+        },
+        {
+          "id": "zahngewebe-q6",
+          "lessonId": "zahngewebe",
+          "q": "Welche Struktur verbindet Wurzelzement und Alveolarknochen durch Fasern?",
+          "options": [
+            "Das Desmodont.",
+            "Die Pulpa.",
+            "Der Zahnschmelz.",
+            "Die Zungenpapille."
+          ],
+          "answer": 0,
+          "explain": "Das periodontale Ligament verankert den Zahn im knöchernen Zahnfach."
+        },
+        {
+          "id": "zahngewebe-q7",
+          "lessonId": "zahngewebe",
+          "q": "Was bezeichnet Alveole in der Zahnanatomie?",
+          "options": [
+            "Die Schmelz-Zement-Grenze.",
+            "Die Pulpakammer.",
+            "Der freie Gingivalsaum.",
+            "Das knöcherne Zahnfach."
+          ],
+          "answer": 3,
+          "explain": "Die Alveole liegt im Kieferknochen und nimmt die Zahnwurzel auf."
+        },
+        {
+          "id": "zahngewebe-q8",
+          "lessonId": "zahngewebe",
+          "q": "Welcher Begriff bezeichnet das Zahnfleisch?",
+          "options": [
+            "Dentin.",
+            "Gingiva.",
+            "Pulpa.",
+            "Zement."
+          ],
+          "answer": 1,
+          "explain": "Die Gingiva umgibt die Zähne als Teil des Zahnhalteapparates."
+        },
+        {
+          "id": "gruppen-q1",
+          "lessonId": "gruppen",
+          "q": "Welche Zähne liegen ganz vorn am Kieferrand?",
+          "options": [
+            "Die Schneidezähne.",
+            "Die Molaren.",
+            "Die vierten Prämolaren.",
+            "Die dritten Unterkiefermolaren."
+          ],
+          "answer": 0,
+          "explain": "Die Incisivi bilden die vordere Zahngruppe an der Mittellinie."
+        },
+        {
+          "id": "gruppen-q2",
+          "lessonId": "gruppen",
+          "q": "Welcher Zahn ist mit Fangzahn im üblichen Sprachgebrauch gemeint?",
+          "options": [
+            "Der obere vierte Prämolar.",
+            "Der untere erste Molar.",
+            "Der Eckzahn.",
+            "Der hinterste obere Molar."
+          ],
+          "answer": 2,
+          "explain": "Eckzahn und Reißzahn sind keine austauschbaren Bezeichnungen."
+        },
+        {
+          "id": "gruppen-q3",
+          "lessonId": "gruppen",
+          "q": "Welche beiden Zähne bilden auf einer Hundeseite das Reißzahnpaar?",
+          "options": [
+            "Oberer C1 und unterer C1.",
+            "Oberer P4 und unterer M1.",
+            "Oberer M2 und unterer M3.",
+            "Oberer I3 und unterer P1."
+          ],
+          "answer": 1,
+          "explain": "Das anatomische Reißzahnpaar verbindet zwei unterschiedliche Backenzahngruppen."
+        },
+        {
+          "id": "gruppen-q4",
+          "lessonId": "gruppen",
+          "q": "Welche Wirkung kennzeichnet das Hundereißzahnpaar besonders?",
+          "options": [
+            "Gegeneinanderpressen ausschließlich flacher Mahlflächen.",
+            "Dauerhafte knöcherne Verwachsung beider Kiefer.",
+            "Ein unbeweglicher Kontakt ohne Vorbeigleiten.",
+            "Scherendes Vorbeigleiten gegeneinander."
+          ],
+          "answer": 3,
+          "explain": "Die aneinander vorbeigleitenden Flächen erzeugen eine Scherwirkung."
+        },
+        {
+          "id": "gruppen-q5",
+          "lessonId": "gruppen",
+          "q": "Was bedeutet die Bezeichnung P4?",
+          "options": [
+            "Vierter Zahn des gesamten Gebisses unabhängig von Gruppen.",
+            "Vierter Milchmolar im Oberkiefer.",
+            "Vierter Prämolar innerhalb der entsprechenden Kieferhälfte.",
+            "Vierter Eckzahn auf einer Seite."
+          ],
+          "answer": 2,
+          "explain": "Die Zahl gehört zur Zahngruppe, nicht zu einer beliebigen Gesamtzählung."
+        },
+        {
+          "id": "gruppen-q6",
+          "lessonId": "gruppen",
+          "q": "Welche Richtung bezeichnet mesial am Zahn?",
+          "options": [
+            "Zur Mittellinie beziehungsweise zum ersten Schneidezahn hin.",
+            "Vom vorderen Gebiss nach hinten weg.",
+            "Ausschließlich zur Wange hin.",
+            "Ausschließlich zum Gaumen hin."
+          ],
+          "answer": 0,
+          "explain": "Mesial und distal beschreiben entgegengesetzte Richtungen entlang des Zahnbogens."
+        },
+        {
+          "id": "gruppen-q7",
+          "lessonId": "gruppen",
+          "q": "Welche Zahnfläche wird als lingual bezeichnet?",
+          "options": [
+            "Die zur Wange gerichtete Fläche.",
+            "Die gesamte Schmelz-Zement-Grenze.",
+            "Die ausschließlich zum Kieferknochen gerichtete Wurzelspitze.",
+            "Die zur Zunge gerichtete Fläche."
+          ],
+          "answer": 3,
+          "explain": "Lingual bezieht sich auf die Zungenseite."
+        },
+        {
+          "id": "gruppen-q8",
+          "lessonId": "gruppen",
+          "q": "Was bedeutet palatinal bei einem Oberkieferzahn?",
+          "options": [
+            "Zur Wange gerichtet.",
+            "Zum Gaumen gerichtet.",
+            "Zur Unterlippe gerichtet.",
+            "Zur Nasenspitze entlang der Zahnreihe gerichtet."
+          ],
+          "answer": 1,
+          "explain": "Der Gaumenbezug wird an oberen Zähnen als palatinal beschrieben."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-biologie-hundesinne-2026",
+      "title": "Hundesinne: Riechgewebe, Auge, Ohr und Tastsinn",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Sinnesleistungen aus konkreten Organstrukturen erklären, ohne pauschale Überlegenheitszahlen oder Rasseversprechen.",
+      "minutes": 36,
+      "objectives": [
+        "Den Weg von Geruchsstoff und Nervensignal unterscheiden",
+        "Augenteile und dichromatisches Farbsehen erklären",
+        "Schallübertragung und Gleichgewichtsorgan trennen",
+        "Tasthaare und mechanosensible Hautstrukturen zuordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Hundeanatomie und klar begrenzte Forschungsbefunde. Keine Diagnosen, Behandlungen, Rasse-Ranglisten oder Sinnesleistungsversprechen.",
+        "AT": "Gemeinsame Hundeanatomie und klar begrenzte Forschungsbefunde. Keine Diagnosen, Behandlungen, Rasse-Ranglisten oder Sinnesleistungsversprechen.",
+        "CH": "Gemeinsame Hundeanatomie und klar begrenzte Forschungsbefunde. Keine Diagnosen, Behandlungen, Rasse-Ranglisten oder Sinnesleistungsversprechen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Craven, Paterson und Settles 2010: The fluid dynamics of canine olfaction",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871809/",
+          "organization": "Pennsylvania State University; Journal of the Royal Society Interface",
+          "supports": "Originalstudie mit MRT-basiertem Strömungsmodell: Nasenmuscheln, Riechregion und Luftwege beim Schnüffeln; keine allgemeine Leistungszahl."
+        },
+        {
+          "label": "Kavoi und andere 2010: Canine and ovine olfactory mucosa",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20801626/",
+          "organization": "University of Nairobi und Mitautoren; Annals of Anatomy",
+          "supports": "Unabhängige Originalmikroskopie: Riech-, Stütz- und Basalzellen, Riechhärchen, Drüsen und Nervenbündel; keine universellen Zellzahlquotienten."
+        },
+        {
+          "label": "Jenkins und andere 2018: When the nose doesn't know",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2018.00056/full",
+          "organization": "University of Tennessee; Frontiers in Veterinary Science",
+          "supports": "Eigenständige veterinärmedizinische Übersicht zur Riechschleimhaut und Signalweiterleitung; keine Krankheitsdiagnose oder Zellzahlversprechen."
+        },
+        {
+          "label": "Neitz, Geist und Jacobs 1989: Color vision in the dog",
+          "url": "https://doi.org/10.1017/S0952523800004430",
+          "organization": "University of California Santa Barbara; Visual Neuroscience",
+          "supports": "Originalverhaltensversuche: zwei funktionelle Zapfenklassen und dichromatisches Farbsehen; begrenzte Versuchstierzahl."
+        },
+        {
+          "label": "Siniscalchi und andere 2017: Are dogs red-green colour blind?",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5717654/",
+          "organization": "University of Bari; Royal Society Open Science",
+          "supports": "Unabhängige Originalversuche zur Rot-Grün-Unterscheidung, konsistent mit Dichromatie; keine Leistungsrangliste von Rassen."
+        },
+        {
+          "label": "Eye structure and function in dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/eye-disorders-of-dogs/eye-structure-and-function-in-dogs",
+          "organization": "Merck Veterinary Manual, Kirk Gelatt, University of Florida",
+          "supports": "Hornhaut, Iris/Pupille, Linse, Netzhaut und Sehnerv; Stäbchen/Zapfen."
+        },
+        {
+          "label": "Minnesota: Visual system – veterinary neuroanatomy",
+          "url": "https://vanat.ahc.umn.edu/NeuroLectPDFs/LectVisualSys.pdf",
+          "organization": "University of Minnesota, Veterinary Anatomy",
+          "supports": "Gelesen: Augenquerschnitt/Netzhaut S.94–95 sowie Farbsehen/Pupillenweg S.98–99 der Lehrzählung. Nur gegenbestätigte Hundeanatomie, keine pauschalen Aussagen zu nachtaktiven Tierarten."
+        },
+        {
+          "label": "Cornell: Progressive retinal atrophy – retinal cell functions",
+          "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/progressive-retinal-atrophy",
+          "organization": "Cornell University College of Veterinary Medicine",
+          "supports": "Nur anatomischer Grundabschnitt: Netzhaut, Stäbchen für Dämmerungssehen, Zapfen für Farb-/Tagessehen; keine Diagnose-/Behandlungsaussage übernommen."
+        },
+        {
+          "label": "Cole 2010: Anatomy and physiology of the canine ear",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20230592/",
+          "organization": "The Ohio State University; Veterinary Dermatology",
+          "supports": "Originalfachdarstellung des Hundeohres: äußerer Gehörgang, Trommelfell, Gehörknöchelchen, Ohrtrompete, Cochlea und Gleichgewichtsapparat."
+        },
+        {
+          "label": "Ear structure and function in dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/ear-disorders-of-dogs/ear-structure-and-function-in-dogs",
+          "organization": "Merck Veterinary Manual",
+          "supports": "Unabhängige Gegenprüfung der äußeren, mittleren und inneren Ohranteile; keine pauschalen Hörleistungsfaktoren."
+        },
+        {
+          "label": "Döring und andere 2025: Canine vibrissae",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11914073/",
+          "organization": "Ludwig-Maximilians-Universität München; Scientific Reports",
+          "supports": "Originalbeobachtung und Mikroskopie zu Vibrissen und Follikel-Sinus-Komplexen; begrenzte Stichprobe, keine universelle Verhaltensquote."
+        },
+        {
+          "label": "Ramírez und andere 2016: Merkel cells in canine skin and mucosa",
+          "url": "https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.23387",
+          "organization": "Universidad de Las Palmas de Gran Canaria; The Anatomical Record",
+          "supports": "Unabhängige Originalhistologie zu Merkelzellen und Nervenbeziehungen in Hundehaut einschließlich Tasthaarregionen."
+        },
+        {
+          "label": "Müller und andere 2026: Histomorphological analysis of canine follicle-sinus complexes",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0355554",
+          "organization": "LMU München mit Vetmeduni Wien und Tierärztlicher Hochschule Hannover; PLOS ONE",
+          "supports": "Originalhistologie mit Follikeln verschiedener Gesichtsregionen, Bluträumen und Mechanorezeptoren. Überlappt Autorengruppe mit 2025; nicht als unabhängige Replikation gezählt."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "riechen",
+          "title": "Riechschleimhaut: Sinneszellen im spezialisierten Epithel",
+          "paragraphs": [
+            "In der Hundenase formen Nasenmuscheln eine stark gefaltete innere Oberfläche. Die spezialisierte Riechschleimhaut liegt besonders im hinteren, oberen Nasenbereich. Sie enthält Riechsinneszellen neben Stütz- und Basalzellen. Die Sinneszellen tragen feine Fortsätze beziehungsweise Riechhärchen, an denen die Wechselwirkung mit Geruchsstoffen beginnt. Drüsen in der darunter liegenden Gewebeschicht tragen zum Schleimfilm bei. Schleimhaut, Luftweg und Nervenzelle sind damit verschiedene Bestandteile desselben Organs.",
+            "Die Axone der Riechsinneszellen leiten Signale zum Riechkolben des Gehirns. Ein Geruchsstoff muss also nicht als ganzer Stoffstrom durch einen Nerv ins Gehirn wandern. Originaluntersuchungen der Schleimhaut und ein MRT-basiertes Strömungsmodell ergänzen sich: Das Modell zeigt, wie die Nasengeometrie beim Schnüffeln unterschiedliche Luftwege ermöglicht; die Mikroskopie beschreibt das empfangende Gewebe."
+          ],
+          "takeaway": "Luft bringt Geruchsstoffe zum Riechgewebe; Nerven leiten anschließend Signale weiter.",
+          "exercise": "Zeichne getrennte Pfeile für Luftstrom, Geruchskontakt und Nervensignal."
+        },
+        {
+          "id": "sehen",
+          "title": "Sehen beginnt mit Optik und endet nicht an der Netzhaut",
+          "paragraphs": [
+            "Die klare Hornhaut bildet den vorderen lichtdurchlässigen Abschluss des Hundeauges und wirkt an der Lichtbrechung mit. Die Iris umgibt die Pupille und verändert deren Weite, um die eintretende Lichtmenge zu beeinflussen. Die dahinter liegende Linse trägt zur Scharfstellung auf der Netzhaut bei. In der Retina setzen Photorezeptoren Lichtreize in einen neuronalen Verarbeitungsweg um. Über weitere Netzhautzellen und den Sehnerv gelangt Information ins Gehirn.",
+            "Stäbchen unterstützen das Sehen bei geringer Helligkeit, Zapfen das Tages- und Farbsehen. Hunde besitzen zwei funktionelle Zapfenklassen und sehen dichromatisch. Unabhängige Verhaltensversuche stützen eingeschränkte Rot-Grün-Unterscheidung; das bedeutet nicht, dass ihre Welt ausschließlich schwarzweiß wäre. Ein farbiger Gegenstand muss außerdem nicht allein an seinem Farbton erkannt werden: Helligkeit, Form und Hintergrund können zum Eindruck beitragen."
+          ],
+          "takeaway": "Optik, Netzhaut und Gehirn wirken zusammen; Hunde sehen Farben mit zwei Zapfenklassen.",
+          "exercise": "Ordne Hornhaut, Pupille, Linse, Netzhaut und Sehnerv zum Weg einer Lichtinformation."
+        },
+        {
+          "id": "hoeren",
+          "title": "Das Ohr leitet Schwingungen und enthält ein Gleichgewichtsorgan",
+          "paragraphs": [
+            "Zum äußeren Hundeohr gehören Ohrmuschel und äußerer Gehörgang. Das Trommelfell bildet die Grenze zum Mittelohr und reagiert auf die ankommenden Schalldruckschwingungen. Im luftgefüllten Mittelohr liegen Hammer, Amboss und Steigbügel. Diese Knöchelchenkette überträgt mechanische Schwingungen weiter; der Steigbügel koppelt an das ovale Fenster des Innenohrs. Es handelt sich um eine Folge verschiedener Strukturen, nicht um einen einzigen offenen Luftkanal bis ins Gehirn.",
+            "Die Cochlea, auch Hörschnecke genannt, gehört zum hörenden Anteil des Innenohrs. Dessen vestibulärer Anteil dient dagegen der Wahrnehmung von Lage und Bewegung für das Gleichgewicht. Über die Ohrtrompete besteht eine Verbindung zwischen Mittelohr und Rachenraum. Die anatomische Unterscheidung erklärt, warum Hören und Gleichgewicht räumlich nahe liegen und dennoch verschiedene Sinnesfunktionen sind. Eine Hörleistung wird anhand definierter Reize und Messbedingungen beschrieben."
+          ],
+          "takeaway": "Schallweg und Gleichgewichtsapparat liegen im selben Organ, haben aber unterschiedliche Aufgaben.",
+          "exercise": "Zeichne Trommelfell → Hammer → Amboss → Steigbügel → Innenohr."
+        },
+        {
+          "id": "tasten",
+          "title": "Tasthaare und Hautrezeptoren bilden ein empfindliches System",
+          "paragraphs": [
+            "Vibrissen sind spezialisierte Tasthaare. Ihre Bewegung kann mechanische Reize an den in der Haut liegenden, stark innervierten Follikelapparat übertragen. Der sichtbare Haarschaft ist deshalb nicht mit dem eigentlichen nervösen Empfangsgewebe gleichzusetzen. An Hunden beschreiben Originaluntersuchungen Tasthaarregionen an Schnauze und Augenbrauenbereich sowie weitere Gesichtsregionen. Neuere Histologie zeigt eine komplexe mechanosensorische Architektur der Follikel-Sinus-Komplexe. Dabei bezeichnet Sinus einen blutgefüllten Raum und keinen Luftsack.",
+            "Zum taktilen System gehören auch Merkelzellen und ihre Beziehungen zu Nervenendigungen. Eine unabhängige Hautkartierung fand diese Zellen in verschiedenen Haut- und Schleimhautbezirken, besonders ausgeprägt im Gesicht, in der Maulregion und an Ballen. Die histologische Lage einer Sinneszelle und die im Alltag beobachtete Reaktion sind unterschiedliche Nachweise. Individuelle Zellzahlen werden daher nicht in Ranglisten guter Jagdhunde umgerechnet."
+          ],
+          "takeaway": "Tastinformation entsteht im innervierten Haut- und Follikelapparat, nicht durch Nerven im frei sichtbaren Haarschaft.",
+          "exercise": "Trenne an einer Skizze sichtbaren Haarschaft, Follikelgewebe und Nervenleitung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "riechen-q1",
+          "lessonId": "riechen",
+          "q": "Welche Struktur vergrößert die innere Oberfläche der Hundenase durch Faltung?",
+          "options": [
+            "Die Nasenmuscheln.",
+            "Die Nasenknorpel am äußeren Nasenspiegel allein.",
+            "Die glatte Fläche des harten Gaumens.",
+            "Die reine Weite der Nasenlöcher ohne innere Strukturen."
+          ],
+          "answer": 0,
+          "explain": "Die knöchernen Nasenmuscheln tragen Schleimhaut und prägen die inneren Luftwege."
+        },
+        {
+          "id": "riechen-q2",
+          "lessonId": "riechen",
+          "q": "Wo liegt ein wichtiger Teil der Riechschleimhaut beim Hund?",
+          "options": [
+            "Nur auf der freien äußeren Nasenspiegelhaut.",
+            "Ausschließlich in der Mundhöhlenschleimhaut.",
+            "Im hinteren, oberen Nasenbereich.",
+            "Ausschließlich in der Schleimhaut des Kehlkopfs."
+          ],
+          "answer": 2,
+          "explain": "Die spezialisierte Riechregion liegt im Inneren der Nase und unterscheidet sich vom äußeren Nasenspiegel."
+        },
+        {
+          "id": "riechen-q3",
+          "lessonId": "riechen",
+          "q": "Welche Zellart nimmt Geruchsinformation in der Riechschleimhaut auf?",
+          "options": [
+            "Die schleimproduzierende Drüsenzelle allein.",
+            "Die Riechsinneszelle.",
+            "Die knorpelbildende Zelle der Nasenwand.",
+            "Die rote Blutzelle in den Schleimhautgefäßen."
+          ],
+          "answer": 1,
+          "explain": "Riechsinneszellen sind spezialisierte Nervenzellen im sensorischen Epithel."
+        },
+        {
+          "id": "riechen-q4",
+          "lessonId": "riechen",
+          "q": "An welchen feinen Fortsätzen der Riechsinneszellen beginnt die Geruchsstoff-Wechselwirkung?",
+          "options": [
+            "An den Wurzelfasern der äußeren Fellhaare.",
+            "An den freien Kanten des Nasenknorpels.",
+            "An den mineralisierten Wänden der Nasenmuscheln ohne Schleimhaut.",
+            "An den Riechhärchen beziehungsweise Zilien."
+          ],
+          "answer": 3,
+          "explain": "Die Zilien gehören zum aufnehmenden Ende der Riechsinneszelle."
+        },
+        {
+          "id": "riechen-q5",
+          "lessonId": "riechen",
+          "q": "Welche weiteren Zelltypen gehören neben Riechsinneszellen zum Riechepithel?",
+          "options": [
+            "Nur knorpelbildende und knochenabbauende Zellen.",
+            "Nur rote und weiße Blutzellen.",
+            "Stütz- und Basalzellen.",
+            "Nur quer gestreifte Muskelzellen."
+          ],
+          "answer": 2,
+          "explain": "Das Riechepithel enthält mehrere spezialisierte Zelltypen und nicht nur Rezeptorneuronen."
+        },
+        {
+          "id": "riechen-q6",
+          "lessonId": "riechen",
+          "q": "Welche Strukturen tragen zum Schleimfilm der Riechregion bei?",
+          "options": [
+            "Drüsen in der darunter liegenden Gewebeschicht.",
+            "Die knöchernen Nasenmuscheln selbst als Flüssigkeitsquelle.",
+            "Die verhornten Nasenhaarspitzen als Sekretquelle.",
+            "Die Nasenknorpel ohne Drüsengewebe."
+          ],
+          "answer": 0,
+          "explain": "Bowman-Drüsen sind Bestandteil der Riechschleimhautregion."
+        },
+        {
+          "id": "riechen-q7",
+          "lessonId": "riechen",
+          "q": "Wohin leiten die Axone der Riechsinneszellen zunächst ihre Information?",
+          "options": [
+            "Zum Mittelohr.",
+            "Zum harten Gaumen.",
+            "Zur Gallenblase.",
+            "Zum Riechkolben."
+          ],
+          "answer": 3,
+          "explain": "Die Nervenfasern verbinden das Riechepithel mit dem olfaktorischen Bulbus."
+        },
+        {
+          "id": "riechen-q8",
+          "lessonId": "riechen",
+          "q": "Welche Frage beantwortet ein MRT-basiertes Strömungsmodell der Hundenase besonders?",
+          "options": [
+            "Welche Erinnerung ein bestimmter Hund mit einem Geruch verbindet.",
+            "Wie die Nasengeometrie den Luftstrom beim Schnüffeln lenkt.",
+            "Wie hoch die garantierte Trefferquote jeder Hunderasse ist.",
+            "Welche subjektive Bedeutung ein Duftstoff für jeden Hund hat."
+          ],
+          "answer": 1,
+          "explain": "Das Modell untersucht die Luftbewegung; es ist keine direkte Messung einer universellen Suchleistung."
+        },
+        {
+          "id": "sehen-q1",
+          "lessonId": "sehen",
+          "q": "Welche klare Struktur begrenzt das Hundeauge nach vorn und bricht einfallendes Licht mit?",
+          "options": [
+            "Die Hornhaut.",
+            "Die Netzhaut.",
+            "Der Sehnerv.",
+            "Die Aderhaut."
+          ],
+          "answer": 0,
+          "explain": "Die Cornea liegt an der Vorderseite des Auges und gehört zu dessen optischem System."
+        },
+        {
+          "id": "sehen-q2",
+          "lessonId": "sehen",
+          "q": "Wie beeinflusst die Iris die eintretende Lichtmenge?",
+          "options": [
+            "Durch Verschließen des Sehnervs.",
+            "Durch Neubildung des Glaskörpers bei jedem Blick.",
+            "Durch Veränderung der Pupillenweite.",
+            "Durch Verlagerung der Netzhaut vor die Hornhaut."
+          ],
+          "answer": 2,
+          "explain": "Die Iris steuert die Öffnung, durch die Licht in das Auge gelangt."
+        },
+        {
+          "id": "sehen-q3",
+          "lessonId": "sehen",
+          "q": "Welche Struktur hinter der Iris trägt zur Scharfstellung auf der Netzhaut bei?",
+          "options": [
+            "Die Bindehaut.",
+            "Die Linse.",
+            "Der Sehnerv.",
+            "Die äußere Lederhaut."
+          ],
+          "answer": 1,
+          "explain": "Die Linse ist Teil des lichtbrechenden Systems."
+        },
+        {
+          "id": "sehen-q4",
+          "lessonId": "sehen",
+          "q": "Wo liegen die Photorezeptoren des Hundeauges?",
+          "options": [
+            "In der Hornhaut.",
+            "In der Iris.",
+            "In der Linse.",
+            "In der Netzhaut."
+          ],
+          "answer": 3,
+          "explain": "Die Retina enthält die lichtempfindlichen Stäbchen und Zapfen."
+        },
+        {
+          "id": "sehen-q5",
+          "lessonId": "sehen",
+          "q": "Welche Struktur leitet Netzhautinformation in Richtung Gehirn?",
+          "options": [
+            "Die Linse.",
+            "Die Pupille.",
+            "Der Sehnerv.",
+            "Die Hornhaut."
+          ],
+          "answer": 2,
+          "explain": "Die axonale Weiterleitung verbindet Auge und zentrale Verarbeitung."
+        },
+        {
+          "id": "sehen-q6",
+          "lessonId": "sehen",
+          "q": "Welche Rezeptorgruppe unterstützt besonders das Sehen bei geringer Helligkeit?",
+          "options": [
+            "Die Stäbchen.",
+            "Die Zapfen allein.",
+            "Die Ganglienzellen als lichtaufnehmender Ersatz aller Rezeptoren.",
+            "Die Merkelzellen der Haut."
+          ],
+          "answer": 0,
+          "explain": "Stäbchen sind für lichtarme Bedingungen spezialisiert; vollständige Dunkelheit bietet auch ihnen keinen Lichtreiz."
+        },
+        {
+          "id": "sehen-q7",
+          "lessonId": "sehen",
+          "q": "Wie viele funktionelle Zapfenklassen kennzeichnen das normale Hunde-Farbsehen?",
+          "options": [
+            "Eine.",
+            "Drei.",
+            "Vier.",
+            "Zwei."
+          ],
+          "answer": 3,
+          "explain": "Die zwei Klassen bilden die Grundlage der Dichromatie."
+        },
+        {
+          "id": "sehen-q8",
+          "lessonId": "sehen",
+          "q": "Was beschreibt Dichromatie beim Hund angemessen?",
+          "options": [
+            "Ausschließliches Schwarzweißsehen ohne jede Farbinformation.",
+            "Farbsehen mit zwei Zapfenklassen und eingeschränkter Rot-Grün-Unterscheidung.",
+            "Dasselbe dreiklassige Farbsehen wie beim normal trichromatischen Menschen.",
+            "Farbsehen mit vier funktionellen Zapfenklassen."
+          ],
+          "answer": 1,
+          "explain": "Mehrere unabhängige Verhaltensarbeiten stützen dichromatisches und nicht rein schwarzweißes Sehen."
+        },
+        {
+          "id": "hoeren-q1",
+          "lessonId": "hoeren",
+          "q": "Welche Strukturen gehören zum äußeren Hundeohr?",
+          "options": [
+            "Ohrmuschel und äußerer Gehörgang.",
+            "Cochlea und Bogengänge.",
+            "Hammer und Steigbügel.",
+            "Ohrtrompete und Nasenrachen allein."
+          ],
+          "answer": 0,
+          "explain": "Das äußere Ohr sammelt und leitet Schall zum Trommelfell."
+        },
+        {
+          "id": "hoeren-q2",
+          "lessonId": "hoeren",
+          "q": "Welche Struktur trennt den äußeren Gehörgang vom Mittelohr?",
+          "options": [
+            "Das ovale Fenster.",
+            "Die Ohrtrompete.",
+            "Das Trommelfell.",
+            "Die Wand der Cochlea."
+          ],
+          "answer": 2,
+          "explain": "Die Membran bildet die anatomische Grenze und schwingt mit dem eintreffenden Schall."
+        },
+        {
+          "id": "hoeren-q3",
+          "lessonId": "hoeren",
+          "q": "In welchem Ohrabschnitt liegt die Gehörknöchelchenkette?",
+          "options": [
+            "Im äußeren Gehörgang vor dem Trommelfell.",
+            "Im Mittelohr.",
+            "In der Cochlea des Innenohrs.",
+            "In den Bogengängen des Innenohrs."
+          ],
+          "answer": 1,
+          "explain": "Hammer, Amboss und Steigbügel liegen in der Mittelohrhöhle."
+        },
+        {
+          "id": "hoeren-q4",
+          "lessonId": "hoeren",
+          "q": "Welche drei Knochen bilden diese Gehörknöchelchenkette?",
+          "options": [
+            "Hammer, Amboss und Cochlea.",
+            "Hammer, Steigbügel und Trommelfell.",
+            "Amboss, Cochlea und Ohrtrompete.",
+            "Hammer, Amboss und Steigbügel."
+          ],
+          "answer": 3,
+          "explain": "Die drei kleinen Knochen übertragen mechanische Schwingungen."
+        },
+        {
+          "id": "hoeren-q5",
+          "lessonId": "hoeren",
+          "q": "An welche Struktur koppelt der Steigbügel den Schallweg des Mittelohrs?",
+          "options": [
+            "An die äußere Ohrmuschel.",
+            "An den Eingang der Ohrtrompete.",
+            "An das ovale Fenster.",
+            "Direkt an die Hornhaut des Auges."
+          ],
+          "answer": 2,
+          "explain": "Über das ovale Fenster wird die Schwingung in das Innenohr übertragen."
+        },
+        {
+          "id": "hoeren-q6",
+          "lessonId": "hoeren",
+          "q": "Welcher Innenohranteil gehört hauptsächlich zum Hören?",
+          "options": [
+            "Die Cochlea.",
+            "Der vestibuläre Apparat als Lage-/Bewegungssensor.",
+            "Die Ohrtrompete.",
+            "Die äußere Ohrmuschel."
+          ],
+          "answer": 0,
+          "explain": "Die Hörschnecke gehört zum auditorischen Sinnesapparat."
+        },
+        {
+          "id": "hoeren-q7",
+          "lessonId": "hoeren",
+          "q": "Welche Aufgabe hat der vestibuläre Anteil des Innenohrs?",
+          "options": [
+            "Die Weiterleitung von Geruchsinformation zum Riechkolben.",
+            "Die Einstellung der Brechkraft der Linse.",
+            "Die Regulierung der Pupillenweite bei Lichteinfall.",
+            "Die Wahrnehmung von Lage und Bewegung für das Gleichgewicht."
+          ],
+          "answer": 3,
+          "explain": "Der Gleichgewichtsapparat ist von der Cochlea funktionell zu unterscheiden."
+        },
+        {
+          "id": "hoeren-q8",
+          "lessonId": "hoeren",
+          "q": "Welche Verbindung stellt die Ohrtrompete her?",
+          "options": [
+            "Zwischen äußerem Gehörgang und hinterer Nasenhöhle ohne Mittelohrkontakt.",
+            "Zwischen Mittelohr und Rachenraum.",
+            "Zwischen Cochlea und Mundhöhle als offener Luftkanal.",
+            "Zwischen Ohrmuschel und Schädeloberfläche."
+          ],
+          "answer": 1,
+          "explain": "Die Tuba auditiva verbindet die Mittelohrhöhle mit dem Nasen-/Rachenbereich."
+        },
+        {
+          "id": "tasten-q1",
+          "lessonId": "tasten",
+          "q": "Welche Reizart ist für die Funktion eines Tasthaares besonders wichtig?",
+          "options": [
+            "Mechanische Auslenkung.",
+            "Chemische Spaltung eines Duftstoffs.",
+            "Absorption eines Lichtphotons.",
+            "Aufnahme von Luftsauerstoff ins Blut."
+          ],
+          "answer": 0,
+          "explain": "Die mechanische Bewegung wird über den Follikelapparat sensorisch wirksam."
+        },
+        {
+          "id": "tasten-q2",
+          "lessonId": "tasten",
+          "q": "Wo liegt das entscheidende innervierte Empfangsgewebe eines Tasthaares?",
+          "options": [
+            "Im frei sichtbaren Ende des Haarschafts allein.",
+            "Ausschließlich in den Hornschichten der freien Haarspitze.",
+            "Im Haut- und Follikelapparat.",
+            "Im luftgefüllten Außenraum um den Haarschaft."
+          ],
+          "answer": 2,
+          "explain": "Der Haarschaft überträgt Bewegung an das sensorisch ausgestattete Gewebe."
+        },
+        {
+          "id": "tasten-q3",
+          "lessonId": "tasten",
+          "q": "Welche Zellen sind an taktilen Rezeptor-Nerven-Komplexen beteiligt?",
+          "options": [
+            "Melanozyten als alleinige Tastneuronen.",
+            "Merkelzellen.",
+            "Stäbchen der Netzhaut.",
+            "Riechsinneszellen des Nasenepithels."
+          ],
+          "answer": 1,
+          "explain": "Merkelzell-Nerven-Beziehungen gehören zu den mechanosensiblen Hautstrukturen."
+        },
+        {
+          "id": "tasten-q4",
+          "lessonId": "tasten",
+          "q": "Welche Gesichtsbereiche tragen beim Hund Tasthaarregionen?",
+          "options": [
+            "Ausschließlich die Haut im Gehörgang.",
+            "Ausschließlich die Hornhaut des Auges.",
+            "Ausschließlich die Zungenspitze.",
+            "Unter anderem Schnauze und Bereich oberhalb der Augen."
+          ],
+          "answer": 3,
+          "explain": "Die beschriebenen Vibrissenfelder liegen an mehreren Gesichtsstellen."
+        },
+        {
+          "id": "tasten-q5",
+          "lessonId": "tasten",
+          "q": "Was bedeutet Sinus im Begriff Follikel-Sinus-Komplex?",
+          "options": [
+            "Ein luftgefüllter Hohlraum in der Nasenmuschel.",
+            "Ein Sekretgang der Talgdrüse.",
+            "Ein blutgefüllter Raum im Follikelapparat.",
+            "Ein Hohlraum ohne Gewebe- oder Blutbezug."
+          ],
+          "answer": 2,
+          "explain": "Der anatomische Begriff bezeichnet hier Bluträume, nicht Nasennebenhöhlen oder Atemluftkammern."
+        },
+        {
+          "id": "tasten-q6",
+          "lessonId": "tasten",
+          "q": "Welche Untersuchungsmethode zeigt Lage und Nervenbeziehungen von Merkelzellen im Gewebe?",
+          "options": [
+            "Histologie mit geeigneter immunhistochemischer Markierung.",
+            "Eine ausschließliche Messung der Haarlänge.",
+            "Eine alleinige Messung der mechanischen Zugfestigkeit des Haarschafts.",
+            "Eine alleinige Videozählung äußerer Berührungen."
+          ],
+          "answer": 0,
+          "explain": "Gewebeschnitte und Marker machen Zell- und Nervenstrukturen sichtbar; sie ersetzen keine Verhaltensmessung."
+        },
+        {
+          "id": "tasten-q7",
+          "lessonId": "tasten",
+          "q": "In welchen Bezirken fand eine Hundehaut-Kartierung besonders ausgeprägte Merkelzellvorkommen?",
+          "options": [
+            "Ausschließlich die freie Haarspitze.",
+            "Ausschließlich die äußere Krallenspitze.",
+            "Ausschließlich die Schmelzoberfläche der Zähne.",
+            "Gesichts-/Maulregion und Ballen."
+          ],
+          "answer": 3,
+          "explain": "Die Originalkartierung beschreibt eine regionale und individuell variable Verteilung."
+        },
+        {
+          "id": "tasten-q8",
+          "lessonId": "tasten",
+          "q": "Welche zwei Nachweise ergänzen sich bei der Erforschung des Tastsinns?",
+          "options": [
+            "Fellfarbe und daraus automatisch berechneter Jagderfolg.",
+            "Gewebeanatomie und beobachtete Verhaltensreaktion.",
+            "Haarlänge und daraus garantierte Tastempfindlichkeit.",
+            "Körperhöhe und daraus festgelegte Nervenanzahl."
+          ],
+          "answer": 1,
+          "explain": "Anatomie zeigt Strukturen; Verhalten untersucht deren Nutzung unter bestimmten Bedingungen."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-biologie-wiederkaeuer-2026",
+      "lessonId": "fermentation",
+      "claims": [
+        {
+          "claim": "Mikroorganismen fermentieren Pflanzenzellwände; tierische eigene Enzyme spalten Cellulose nicht entsprechend. Bakterien, Protozoen und Pilze wirken im sauerstoffarmen Pansen.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html",
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle"
+          ]
+        },
+        {
+          "claim": "Acetat, Propionat und Butyrat sind wesentliche Fermentationsprodukte. Aufnahme über Pansenwand/Papillen; Propionat kann zur Glucosebildung in der Leber dienen. Rindermodell, keine Wildartenquoten.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle",
+            "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-wiederkaeuer-2026",
+      "lessonId": "protein",
+      "claims": [
+        {
+          "claim": "Pansenmikroben bilden Protein und werden mit dem Inhalt in Labmagen und Dünndarm weitergeführt. Auch im Pansen nicht abgebautes Nahrungsprotein trägt bei.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://extension.psu.edu/from-feed-to-milk-understanding-rumen-function",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle"
+          ]
+        },
+        {
+          "claim": "Säure-/Enzymverdauung im Labmagen und weitere Verdauung sowie Aminosäureaufnahme im Dünndarm unterscheiden sich von Fettsäureaufnahme durch die Pansenwand.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle",
+            "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-wiederkaeuer-2026",
+      "lessonId": "wiederkauen",
+      "claims": [
+        {
+          "claim": "Wiederkauen umfasst Regurgitation, erneutes Kauen, Speichelbeimischung und Abschlucken. Zerkleinerung und Speichelpuffer unterstützen Fermentation.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/rumination.html",
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/forestomach-motility-and-function/",
+            "https://extension.psu.edu/from-feed-to-milk-understanding-rumen-function"
+          ]
+        },
+        {
+          "claim": "Retikulorumen-Motorik mischt und transportiert; Gasabgabe ist vom Wiederkaubissen verschieden. Teilchengröße beeinflusst Passage; Blättermagen nimmt Wasser auf.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/forestomach-motility-and-function/",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html",
+            "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-wiederkaeuer-2026",
+      "lessonId": "jungtier",
+      "claims": [
+        {
+          "claim": "Beim jungen Kalb führt die Schlundrinne Milch am Vormagen-Gärraum vorbei in Richtung Labmagen; der Pansen ist funktionell noch nicht wie beim erwachsenen Rind entwickelt.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/forestomach-motility-and-function/",
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben"
+          ]
+        },
+        {
+          "claim": "Mikroben, feste Nahrung und Fermentation begleiten die Entwicklung des funktionellen Pansens und seiner Schleimhaut. Keine festen Alters-/Futterwerte für Wildarten abgeleitet.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/vetphysioapplied/chapter/fermentation/",
+            "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-beef-cattle/the-digestive-system-of-beef-cattle"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "blinddarm",
+      "claims": [
+        {
+          "claim": "Lepus europaeus und Oryctolagus cuniculus nutzen Blinddarmfermentation mit mikrobieller Bildung kurzkettiger Fettsäuren einschließlich Acetat, Propionat und Butyrat.",
+          "sourceUrls": [
+            "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+            "https://link.springer.com/article/10.1007/s13364-018-0357-1"
+          ]
+        },
+        {
+          "claim": "Beim Hasenartigen liegt der Blinddarm hinter dem Dünndarm, beim Wiederkäuer die Vormagengärung davor; keine universellen Organquotienten oder Passagezeiten.",
+          "sourceUrls": [
+            "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+            "https://link.springer.com/article/10.1007/s13364-018-0357-1",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "caecotrophie",
+      "claims": [
+        {
+          "claim": "Feldhase und Kaninchen betreiben Caecotrophie: Aufnahme weicheren Blinddarmmaterials; feste und weiche Kotfraktionen unterscheiden sich funktionell.",
+          "sourceUrls": [
+            "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+            "https://link.springer.com/article/10.1007/s13364-018-0357-1"
+          ]
+        },
+        {
+          "claim": "Erneute Aufnahme ermöglicht weitere Nutzung mikrobieller Nährstoffe im Magen-/Dünndarmweg; dies ist keine Vormagen-Regurgitation. Art- und Versuchsgrenzen bleiben bestehen.",
+          "sourceUrls": [
+            "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+            "https://link.springer.com/article/10.1007/s13364-018-0357-1",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/herbivores/overview.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "schweinemagen",
+      "claims": [
+        {
+          "claim": "Schwein: einhöhliger Magen mit drüsenloser Eingangsregion, Drüsenzonen und Diverticulum ventriculi; Referenzmodell Sus scrofa domestica, keine Volumenwerte.",
+          "sourceUrls": [
+            "https://www.ictvet.uzh.ch/US_Schwein/html/git1.htm",
+            "https://pressbooks.umn.edu/largeanimalanatomy/chapter/abdomen-1/"
+          ]
+        },
+        {
+          "claim": "Duodenum als erster Dünndarm; Pankreasenzyme Proteasen/Lipase/Amylase; Lebergalle unterstützt Fettverdauung, Gallenblase vorhanden; Dickdarmfermentation beim Schwein.",
+          "sourceUrls": [
+            "https://pressbooks.umn.edu/largeanimalanatomy/chapter/abdomen-1/",
+            "https://www.merckvetmanual.com/digestive-system/digestive-system-introduction/the-digestive-system-in-animals",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/pancreas/exocrine.html",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bile.html",
+            "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "vogelmagen",
+      "claims": [
+        {
+          "claim": "Vögel ohne Säugetierzähne; Kropf ist eine variable Speiseröhrenerweiterung. Drüsenmagen liefert Säure/Pepsinogen; Muskelmagen arbeitet mechanisch.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/birds.html",
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/digestive-system"
+          ]
+        },
+        {
+          "claim": "Dünndarm mit Pankreas-/Lebersekreten; Kloake als gemeinsamer Endraum. Grit und Kropfausprägung artspezifisch, Huhn ausdrücklich Referenz.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/birds.html",
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/digestive-system"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "skelett",
+      "claims": [
+        {
+          "claim": "Vogelflügel als Vordergliedmaße mit Humerus, Radius/Ulna und modifizierter Hand; Furcula aus Schlüsselbeinen; Brustbein/Kiel als Muskelansatz, teils verschmolzene Rumpfstrukturen und einige pneumatisierte Knochen.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/skeletal-system",
+            "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/"
+          ]
+        },
+        {
+          "claim": "Pectoralis vor allem Abschlag; Supracoracoideus unter ihm mit umgelenkter Sehne für Aufschlag. Keine Universalbehauptung identischer Spezialisierung aller Vogelarten.",
+          "sourceUrls": [
+            "https://www.pugetsound.edu/puget-sound-museum-natural-history/biodiversity-resources/birds/bird-dissection",
+            "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "luftsaecke",
+      "claims": [
+        {
+          "claim": "Relativ starre Vogellunge mit ventilierenden Luftsäcken; Luftsäcke sind nicht der Hauptort des Gasaustauschs.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+            "https://rubegalab.uconn.edu/2016/03/07/lecture-notes-respiration-and-circulation/",
+            "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/"
+          ]
+        },
+        {
+          "claim": "Kein muskuläres Säugetier-Zwerchfell; Rippen-/Brustbeinbewegung, Luftröhre und Bronchien; Lungenbelüftung über Ein-/Ausatmungsphasen. Keine universelle Luftsackzahl.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+            "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/",
+            "https://rubegalab.uconn.edu/2016/03/07/lecture-notes-respiration-and-circulation/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "gaswechsel",
+      "claims": [
+        {
+          "claim": "Parabronchien und davon ausgehende Luftkapillaren liegen einem Blutkapillarnetz gegenüber; sie sind keine Säugetieralveolen und keine gemeinsamen Luft-Blut-Gefäße.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+            "https://rubegalab.uconn.edu/2016/03/07/lecture-notes-respiration-and-circulation/",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
+          ]
+        },
+        {
+          "claim": "Sauerstoff und Kohlendioxid diffundieren über eine dünne Austauschbarriere gemäß Gasteildruckgefälle; Gaswechsel ist vom Luftsacktransport zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+            "https://pressbooks-dev.oer.hawaii.edu/biology/chapter/birds/",
+            "https://rubegalab.uconn.edu/2016/03/07/lecture-notes-respiration-and-circulation/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "syrinx",
+      "claims": [
+        {
+          "claim": "Syrinx liegt am kaudalen Trachea-/Bronchienübergang; Luftstrom versetzt Gewebe in Schwingung, Muskeln steuern Spannung. Abgrenzung vom Säugetierkehlkopf.",
+          "sourceUrls": [
+            "https://rubegalab.uconn.edu/eeb-4260-visual-and-vocal-communication/",
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/respiratory-system-thermoregulation",
+            "https://www.pugetsound.edu/puget-sound-museum-natural-history/biodiversity-resources/birds/bird-dissection"
+          ]
+        },
+        {
+          "claim": "Syrinx-Ausprägung und beidseitige Steuerung variieren; Spechttrommeln sowie bestimmte Federgeräusche sind mechanisch und keine Syrinxstimme.",
+          "sourceUrls": [
+            "https://rubegalab.uconn.edu/eeb-4260-visual-and-vocal-communication/",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "lessonId": "rehdiapause",
+      "claims": [
+        {
+          "claim": "Beim Europäischen Reh folgt auf Sommerpaarung frühe Entwicklung zur Blastozyste im Uterus, bevor später Implantation erfolgt. Verzögerte Implantation ist nicht verzögerte Befruchtung.",
+          "sourceUrls": [
+            "https://ap.ethz.ch/research/repro/diapause.html",
+            "https://www.nature.com/articles/s42003-024-05944-w",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC1231599/"
+          ]
+        },
+        {
+          "claim": "Während Rehdiapause bestehen langsame Proliferation und Entwicklungsveränderungen; ältere unabhängige Ultrastrukturarbeit zeigt progressive Vergrößerung/Zellveränderungen. Elongation begleitet beschleunigte Entwicklung nach Reaktivierung.",
+          "sourceUrls": [
+            "https://www.nature.com/articles/s42003-024-05944-w",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC1231599/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "lessonId": "plazenta",
+      "claims": [
+        {
+          "claim": "Plazenta als mütterlich-fetale Austauschfläche; beim Wiederkäuer bilden fetales Kotyledon und mütterliche Karunkel ein Plazentom; keine universellen Stückzahlen.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/reprod/placenta/ruminants.html",
+            "https://visgar.vetmed.ufl.edu/en_bovrep/normal-placenta/normal-placenta.html"
+          ]
+        },
+        {
+          "claim": "Schwein diffuse, Hund zonäre Plazenta; Formbezeichnung und Gewebebarriere getrennt. Mütterliche und fetale Kreisläufe liegen über eine Austauschbarriere aneinander.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/reprod/placenta/",
+            "https://placentation.ucsd.edu/placenta.html",
+            "https://visgar.vetmed.ufl.edu/en_bovrep/normal-placenta/normal-placenta.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "lessonId": "eiaufbau",
+      "claims": [
+        {
+          "claim": "Huhn als Modell: Dotter als Vorrat, Dotterhaut, wasser-/proteinreiches Eiklar, Chalazen zur Dotterpositionierung und Keimscheibe; Chalazen sind nicht der Embryo.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/the-avian-egg",
+            "https://www2.ca.uky.edu/agc/pubs/ASC/ASC201/ASC201.pdf",
+            "https://afs.mgcafe.uky.edu/files/eggandi.pdf"
+          ]
+        },
+        {
+          "claim": "Calciumcarbonatreiche poröse Schale, Schalenhäute und Luftkammer; Gase und Wasserdampf passieren das Schalensystem. Keine artenübergreifenden Zahlenwerte.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/the-avian-egg",
+            "https://afs.mgcafe.uky.edu/files/eggandi.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "lessonId": "eibildung",
+      "claims": [
+        {
+          "claim": "Huhn: Dotter/Eizelle im Ovar, Ovulation und Aufnahme im Infundibulum; dort typische Befruchtung vor Eiklar-/Schalenergänzung.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/reproductive-system",
+            "https://www2.ca.uky.edu/agc/pubs/ASC/ASC201/ASC201.pdf"
+          ]
+        },
+        {
+          "claim": "Magnum liefert Eiklar; Isthmus Schalenhäute; Schalendrüse mineralische Schale; Vagina und Kloake gehören zum Ablageweg. Kein universeller Legezeitplan.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/reproductive-system",
+            "https://www2.ca.uky.edu/agc/pubs/ASC/ASC201/ASC201.pdf",
+            "https://www.poultryhub.org/anatomy-and-physiology/the-avian-egg"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundegebiss-2026",
+      "lessonId": "dauerformel",
+      "claims": [
+        {
+          "claim": "Normales vollständiges Hunde-Dauergebiss 2×(I3/3 C1/1 P4/4 M2/3)=42; Formel pro halber Ober-/Unterkiefer und Faktor für andere Seite.",
+          "sourceUrls": [
+            "https://en.wikivet.net/Dental_Formula_-_Dog",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/pregastric/dentalanat.html",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2225&section=2.2",
+            "https://www.merckvetmanual.com/dog-owners/digestive-disorders-of-dogs/dental-development-of-dogs"
+          ]
+        },
+        {
+          "claim": "20 oben, 22 unten; insgesamt 12 I, 4 C, 16 P, 10 M sind eigene unmittelbare Rechenableitungen der belegten Formel, keine universelle Einzelhunddiagnose.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/pregastric/dentalanat.html",
+            "https://en.wikivet.net/Dental_Formula_-_Dog",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2225&section=2.2"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundegebiss-2026",
+      "lessonId": "milchwechsel",
+      "claims": [
+        {
+          "claim": "Normales Milchgebiss 2×(i3/3 c1/1 p3/3)=28, keine Milchmolaren; 14 je Kiefer als eigene Rechenableitung.",
+          "sourceUrls": [
+            "https://en.wikivet.net/Dental_Formula_-_Dog",
+            "https://www.merckvetmanual.com/dog-owners/digestive-disorders-of-dogs/dental-development-of-dogs",
+            "https://www.msdvetmanual.com/digestive-system/dental-development-and-anatomy/dental-development-in-animals"
+          ]
+        },
+        {
+          "claim": "Zwei Generationen/diphyodont, Wechselgebiss mit beiden Generationen; bleibender P1 und Molaren ohne Milchvorgänger.",
+          "sourceUrls": [
+            "https://avdc.org/avdc-nomenclature/",
+            "https://www.msdvetmanual.com/digestive-system/dental-development-and-anatomy/dental-development-in-animals",
+            "https://en.wikivet.net/Dental_Formula_-_Dog"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundegebiss-2026",
+      "lessonId": "zahngewebe",
+      "claims": [
+        {
+          "claim": "Anatomische Krone/Wurzel, Schmelz außen, Dentin als Hauptmasse und Pulpa mit Nerven/Gefäßen; Pulpakammer und Wurzelkanäle.",
+          "sourceUrls": [
+            "https://avdc.org/avdc-nomenclature/",
+            "https://www.aaha.org/resources/2019-aaha-dental-care-guidelines-for-dogs-and-cats/anatomy-pathology-2/",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/pregastric/dentalanat.html"
+          ]
+        },
+        {
+          "claim": "Periodontium mit Gingiva, Zement, periodontalem Ligament/Desmodont und Alveolarknochen; anatomische versus klinische Krone unterscheiden.",
+          "sourceUrls": [
+            "https://avdc.org/avdc-nomenclature/",
+            "https://www.aaha.org/resources/2019-aaha-dental-care-guidelines-for-dogs-and-cats/anatomy-pathology-2/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundegebiss-2026",
+      "lessonId": "gruppen",
+      "claims": [
+        {
+          "claim": "Zahngruppenlage und Hundereißzahnpaar oberer P4/unterer M1 mit Scherfunktion; Eckzahn ist andere Zahngruppe.",
+          "sourceUrls": [
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2225&section=2.2",
+            "https://en.wikivet.net/Dental_Formula_-_Dog",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/pregastric/dentalanat.html"
+          ]
+        },
+        {
+          "claim": "Gruppennummerierung und Richtungen mesial/distal, bukkal, lingual, palatinal gemäß Fachnomenklatur.",
+          "sourceUrls": [
+            "https://avdc.org/avdc-nomenclature/",
+            "https://ohiostate.pressbooks.pub/osuvcpslhandbook/chapter/saclin_oraldentalone_charting_dental-anatomy/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundesinne-2026",
+      "lessonId": "riechen",
+      "claims": [
+        {
+          "claim": "Nasenmuscheln und hintere/obere Riechregion; Riech-, Stütz- und Basalzellen mit Riechhärchen sowie Schleimdrüsen in der Gewebeschicht.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/20801626/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2018.00056/full",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871809/"
+          ]
+        },
+        {
+          "claim": "Riechsinneszellaxone zum Riechkolben. MRT-Strömungsmodell und unabhängige Schleimhautmikroskopie liefern unterschiedliche Nachweise; keine Leistungsquoten.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871809/",
+            "https://pubmed.ncbi.nlm.nih.gov/20801626/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2018.00056/full"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundesinne-2026",
+      "lessonId": "sehen",
+      "claims": [
+        {
+          "claim": "Hornhaut, Iris/Pupille, Linse, Netzhaut und Sehnerv haben verschiedene Funktionen in Optik und Signalverarbeitung; Stäbchen und Zapfen unterscheiden sich funktionell.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/eye-disorders-of-dogs/eye-structure-and-function-in-dogs",
+            "https://vanat.ahc.umn.edu/NeuroLectPDFs/LectVisualSys.pdf",
+            "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/progressive-retinal-atrophy"
+          ]
+        },
+        {
+          "claim": "Hund ist dichromatisch mit zwei funktionellen Zapfenklassen; Rot-Grün-Unterscheidung eingeschränkt, nicht ausschließlich Schwarzweißsehen. Originalversuche berücksichtigen Verhaltens-/Helligkeitsbedingungen.",
+          "sourceUrls": [
+            "https://doi.org/10.1017/S0952523800004430",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5717654/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundesinne-2026",
+      "lessonId": "hoeren",
+      "claims": [
+        {
+          "claim": "Äußeres Ohr mit Pinna/Gehörgang, Trommelfellgrenze, luftgefülltes Mittelohr mit Hammer/Amboss/Steigbügel und Übertragung zum ovalen Fenster.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/20230592/",
+            "https://www.merckvetmanual.com/dog-owners/ear-disorders-of-dogs/ear-structure-and-function-in-dogs"
+          ]
+        },
+        {
+          "claim": "Cochlea für Hören, vestibulärer Apparat für Gleichgewicht; Ohrtrompete verbindet Mittelohr mit Nasen-/Rachenraum. Keine Hörfaktoren oder Behandlungsanleitung.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/20230592/",
+            "https://www.merckvetmanual.com/dog-owners/ear-disorders-of-dogs/ear-structure-and-function-in-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundesinne-2026",
+      "lessonId": "tasten",
+      "claims": [
+        {
+          "claim": "Vibrissen als spezialisierte Tasthaare mit stark innerviertem Follikelapparat; Gesichtsregionen und Bluträume/Mechanorezeptoren der Follikel-Sinus-Komplexe.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11914073/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0355554",
+            "https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.23387"
+          ]
+        },
+        {
+          "claim": "Merkelzellen mit Nervenbeziehungen in Hundehaut/-schleimhaut; regionale Verteilung und starke individuelle Variation. Originalkartierung und neuere Follikelhistologie ergänzen sich, ohne universelle Verhaltensleistung zu beweisen.",
+          "sourceUrls": [
+            "https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.23387",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0355554",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11914073/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Allgemeine Rinderwerte für Wildwiederkäuer",
+      "reason": "Keine Übertragung von Litern, pH-Bereichen, Faserquoten, Passagezeiten oder Entwicklungsmonaten auf Reh/Gams/Rotwild."
+    },
+    {
+      "topic": "Universelle Blinddarmproportionen von Feldhase und Kaninchen",
+      "reason": "Die verglichenen Originalarbeiten und Versuchsgruppen erlauben keinen unveränderlichen Größenquotienten. Caecotrophie und Ort der Fermentation sind stattdessen konkret belegt."
+    },
+    {
+      "topic": "Absolute Entwicklungsruhe beim Reh",
+      "reason": "Verworfen. Unabhängige ältere Ultrastrukturdaten und aktuelle Originaldaten zeigen Veränderungen während der Diapause; heutiger Text benennt stark verlangsamte fortlaufende Entwicklung."
+    },
+    {
+      "topic": "Vogel-Universalzahlen und fehlerhafte Nebenpassagen",
+      "reason": "Keine feste Luftsackzahl für alle Vögel, keine durchgehend hohlen Knochen, keine universellen Brut-/Legezeiten, keine unbestätigten Gewebe- oder Effizienzangaben."
+    },
+    {
+      "topic": "Individuelle Zahn- und Sinnesdiagnosen",
+      "reason": "Zahnformeln beschreiben das normale vollständige Gebiss. Keine starre Durchbruchsfrist, kein Eingriff, kein Hör-/Riechleistungsfaktor und keine Zellzahl-Rasse-Rangliste."
+    },
+    {
+      "topic": "Nicht verwendete Aussagen in eingesehenen Quellen",
+      "reason": "Unter anderem benachbarte fehlerhafte Katzenzahnformel bei OpenLearn, pauschale Nachtaktivitäts-Farbsehbehauptungen im Minnesota-PDF, fragliche Zähl-/Nebenformulierungen einzelner Vogellehrseiten und klinische Behandlungspassagen nicht übernommen."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine neuen Medien. Bestehende lizenzierte Kategorie-Fotofallbacks Wildkunde/Hundewesen verwenden. Kein Kategoriefoto als Beweis einer inneren Organstruktur oder individuellen Sinnesleistung beschriftet."
+  }
+}

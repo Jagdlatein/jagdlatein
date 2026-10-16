@@ -4,14 +4,23 @@ import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards } from "../lib/flashcard-review";
+import { flashcardSelectionQuery, matchesFlashcardSelection } from "../lib/flashcard-selection";
 import styles from "../styles/LearningFlashcards.module.css";
 
 const EMPTY_REVIEW = { version: 1, cards: {} };
 const cleanQuery = value => typeof value === "string" ? value.slice(0, 160) : "";
 export const normalizeFlashcardSearch = value => String(value || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ß/g, "ss").replace(/[^a-z0-9]+/g, " ").trim();
-export function filterFlashcards(cards, category = "all", query = "") {
+export function filterFlashcards(cards, category = "all", query = "", selection = null) {
   const terms = normalizeFlashcardSearch(query).split(" ").filter(Boolean);
-  return cards.filter(card => (category === "all" || card.categoryId === category) && terms.every(term => normalizeFlashcardSearch([card.question, card.answer, card.explanation, card.categoryTitle, card.moduleTitle, card.context, card.lessonTitle].join(" ")).includes(term)));
+  return cards.filter(card => matchesFlashcardSelection(card, selection) && (category === "all" || card.categoryId === category) && terms.every(term => normalizeFlashcardSearch([card.question, card.answer, card.explanation, card.categoryTitle, card.moduleTitle, card.context, card.lessonTitle].join(" ")).includes(term)));
+}
+export function FlashcardSelectionNotice({ selection }) {
+  if (!selection) return null;
+  return <aside className={styles.selectionNotice} aria-label="Gewählte Lernkartenauswahl">
+    <strong>{selection.invalid ? "Diese Lernkartenauswahl wurde nicht gefunden." : selection.title}</strong>
+    {selection.lessonTitle && <p>{selection.lessonTitle}</p>}
+    <div>{selection.returnHref && <Link href={selection.returnHref} prefetch={false}>Zur Lektion</Link>}<Link href="/lernen/lernkarten" prefetch={false}>Alle Lernkarten</Link></div>
+  </aside>;
 }
 export function formatFlashcardDate(value) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return null;
@@ -32,10 +41,10 @@ function pendingCards(cards, review, now, againIds = []) {
   return cards.filter(card => !Object.hasOwn(ratings, card.id) || due.has(card.id) || again.has(card.id));
 }
 
-export default function LearningFlashcards({ cards = [], categories = [], totalCount = cards.length, loading = false, incomplete = false, loadError = "", onReload }) {
+export default function LearningFlashcards({ cards = [], categories = [], selection = null, totalCount = cards.length, loading = false, incomplete = false, loadError = "", onReload }) {
   const router = useRouter();
-  const [category, setCategory] = useState("all");
-  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState(() => !selection && categories.some(item => item.id === (router.query?.kategorie || router.query?.category)) ? (router.query.kategorie || router.query.category) : "all");
+  const [query, setQuery] = useState(() => cleanQuery(router.query?.q));
   const [mode, setMode] = useState("pending");
   const [review, setReview] = useState(EMPTY_REVIEW);
   const [loaded, setLoaded] = useState(false);
@@ -74,9 +83,9 @@ export default function LearningFlashcards({ cards = [], categories = [], totalC
     generation.current++;
     active.current = { id: null, revealed: false };
     setOpenId(null); setCurrentId(null);
-    setCategory(categories.some(item => item.id === requested) ? requested : "all");
+    setCategory(!selection && categories.some(item => item.id === requested) ? requested : "all");
     setQuery(cleanQuery(router.query?.q));
-  }, [router.isReady, router.query?.kategorie, router.query?.category, router.query?.q, categories]);
+  }, [router.isReady, router.query?.kategorie, router.query?.category, router.query?.q, selection?.courseId, selection?.lessonId, selection?.invalid, categories]);
 
   useEffect(() => {
     if (!loaded || !canSave || typeof window === "undefined") return;
@@ -84,13 +93,13 @@ export default function LearningFlashcards({ cards = [], categories = [], totalC
     catch { setCanSave(false); }
   }, [review, loaded, canSave]);
 
-  const filtered = useMemo(() => filterFlashcards(cards, category, query), [cards, category, query]);
+  const filtered = useMemo(() => filterFlashcards(cards, category, query, selection), [cards, category, query, selection]);
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const current = available.find(card => card.id === currentId) || available[0] || null;
   const revealed = Boolean(current && openId === current.id);
   const token = generation.current;
   active.current = { id: current?.id || null, revealed };
-  const printQuery = { ...(category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}) };
+  const printQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}) };
   const printHref = { pathname: "/lernen/lernkarten-drucken", query: printQuery };
 
   function changeFilter(change) {
@@ -127,8 +136,9 @@ export default function LearningFlashcards({ cards = [], categories = [], totalC
   }
 
   return <LearningToolLayout title="Lernkarten" description="Wildwissen mit Frage und Antwort wiederholen, auf diesem Gerät vormerken oder als Lernkarten ausdrucken." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-suche" hideCommunity className={styles.page}>
-    <div className={styles.filters} id="lernkarten-suche">
-      <label className={styles.field}>Kategorie<select value={category} onChange={event => changeFilter(() => setCategory(event.target.value))}><option value="all">Alle Kategorien</option>{categories.map(item => <option key={item.id} value={item.id}>{item.title} ({item.count})</option>)}</select></label>
+    <FlashcardSelectionNotice selection={selection} />
+    <div className={`${styles.filters} ${selection ? styles.scopedFilters : ""}`} id="lernkarten-suche">
+      {!selection && <label className={styles.field}>Kategorie<select value={category} onChange={event => changeFilter(() => setCategory(event.target.value))}><option value="all">Alle Kategorien</option>{categories.map(item => <option key={item.id} value={item.id}>{item.title} ({item.count})</option>)}</select></label>}
       <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={query} onChange={event => changeFilter(() => setQuery(event.target.value.slice(0, 160)))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" /></div></label>
     </div>
     <div className={styles.summary}>
@@ -138,7 +148,7 @@ export default function LearningFlashcards({ cards = [], categories = [], totalC
     <div className={styles.status} role="status" aria-live="polite">{loadError || (loading ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
       <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>{revealed ? "Antwort" : "Frage"}</span></div>
-      {current.context && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
+      {current.context && (!selection?.lessonId || selection.lessonId !== current.lessonId) && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
       <FlashcardImage image={current.image} />
       {!revealed ? <div className={styles.revealArea}><p>Antworte erst für dich selbst.</p><button type="button" onClick={reveal} className={styles.primary}><AppIcon name="eye" size={23} />Antwort zeigen</button></div>
@@ -156,6 +166,6 @@ export default function LearningFlashcards({ cards = [], categories = [], totalC
         </div>}
     </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Schalte den Filter oben aus, wenn du alle passenden Karten erneut ansehen möchtest." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
-    <div className={styles.exportLinks}><Link href={printHref}><AppIcon name="book" size={21} />Diese Auswahl drucken</Link><a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={21} />Starterset als PDF</a></div>
+    <div className={styles.exportLinks}>{!selection?.invalid && <Link href={printHref}><AppIcon name="book" size={21} />Diese Auswahl drucken</Link>}<a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={21} />Starterset als PDF</a></div>
   </LearningToolLayout>;
 }

@@ -93,8 +93,17 @@ function fixture(options = {}) {
   return { calls, state, database, ReviewLoginError, request, middleware, server, load, token };
 }
 
-const guardedPages = ['/ebook', '/protected/ebook', '/glossar', '/glossar/windkante', '/admin',
+const guardedPages = ['/ebook', '/protected/ebook', '/glossar', '/glossar/windkante', '/lernen/lernkarten', '/lernen/lernkarten-drucken', '/admin',
   '/admin/glossar', '/admin/glossar-import', '/admin/import', '/admin/push', '/admin/quiz', '/admin/testabos'];
+
+for (const pathname of ['/lernen/lernkarten', '/lernen/lernkarten-drucken']) test(`Scoped cards at ${pathname} retain paid access checks and their selected return route`, async () => {
+  const f = fixture({ claimPaid: true, failMiddleware: true });
+  const url = `${pathname}?kurs=wissen-beispiel&lektion=erste-lektion`;
+  assert.equal((await f.middleware(f.request(url))).headers.get('x-middleware-next'), '1');
+  assert.equal((await f.server(url)).result.redirect.destination, `/preise?next=${encodeURIComponent(url)}`);
+  f.state.deleted = true;
+  assert.equal((await f.server(url)).result.redirect.destination, `/login?next=${encodeURIComponent(url)}`);
+});
 
 for (const pathname of guardedPages) test(`Server guard owns ${pathname} without a duplicate middleware status request`, async () => {
   const f = fixture({ paid: true, profile: { is_admin: true }, failMiddleware: true });
@@ -163,7 +172,7 @@ test('Unauthenticated and forged requests retain the payment redirect and select
   assert.equal(f.calls.middleware, 0);
 });
 
-for (const pathname of ['/lernen/wildkunde', '/ebook.pdf', '/admin/not-a-reviewed-route', '/admin/testabos/private', '/glossar/windkante/private'])
+for (const pathname of ['/lernen/wildkunde', '/lernen/lernkarten/private', '/lernen/lernkarten-drucken/private', '/lernen/lernkarten/jagdlatein-lernkarten.pdf', '/ebook.pdf', '/admin/not-a-reviewed-route', '/admin/testabos/private', '/glossar/windkante/private'])
   test(`Protected route ${pathname} still resolves current middleware access`, async () => {
     const f = fixture({ claimPaid: true });
     const response = await f.middleware(f.request(`${pathname}?weiter=1`));

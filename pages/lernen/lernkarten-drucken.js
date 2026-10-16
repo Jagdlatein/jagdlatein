@@ -3,13 +3,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "../../components/LearningToolLayout";
 import AppIcon from "../../components/AppIcon";
-import { filterFlashcards, formatFlashcardDate, FlashcardImage } from "../../components/LearningFlashcards";
+import { filterFlashcards, formatFlashcardDate, FlashcardImage, FlashcardSelectionNotice } from "../../components/LearningFlashcards";
 import useFlashcardDeck from "../../components/useFlashcardDeck";
 import { getFlashcardPageData } from "../../lib/flashcard-page-data";
+import { getPaidPageProps } from "../../lib/account-access";
+import { flashcardSelectionQuery, readFlashcardSelection } from "../../lib/flashcard-selection";
 import styles from "../../styles/LearningFlashcards.module.css";
 
-export function getStaticProps() {
-  return { props: getFlashcardPageData() };
+export async function getServerSideProps(context) {
+  const access = await getPaidPageProps(context);
+  return access.props ? { props: getFlashcardPageData(readFlashcardSelection(context.query)) } : access;
 }
 
 export function getPrintSourceIndex(cards) {
@@ -40,23 +43,24 @@ function SourceReference({ source }) {
 }
 
 export default function PrintableFlashcards(props) {
-  const { cards, categories, incomplete, loading, loadError, onReload } = useFlashcardDeck(props);
+  const { cards, categories, selection, incomplete, loading, loadError, onReload } = useFlashcardDeck(props);
   const router = useRouter();
-  const [category, setCategory] = useState("all");
-  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState(() => !selection && categories.some(item => item.id === (router.query?.kategorie || router.query?.category)) ? (router.query.kategorie || router.query.category) : "all");
+  const [query, setQuery] = useState(() => typeof router.query?.q === "string" ? router.query.q.slice(0, 160) : "");
   useEffect(() => {
     if (router.isReady === false) return;
     const value = router.query?.kategorie || router.query?.category;
-    setCategory(categories.some(item => item.id === value) ? value : "all");
+    setCategory(!selection && categories.some(item => item.id === value) ? value : "all");
     setQuery(typeof router.query?.q === "string" ? router.query.q.slice(0, 160) : "");
-  }, [router.isReady, router.query?.kategorie, router.query?.category, router.query?.q, categories]);
-  const filtered = filterFlashcards(cards, category, query);
+  }, [router.isReady, router.query?.kategorie, router.query?.category, router.query?.q, selection?.courseId, selection?.lessonId, selection?.invalid, categories]);
+  const filtered = filterFlashcards(cards, category, query, selection);
   const { sourceList, sourceByUrl } = getPrintSourceIndex(filtered);
-  const selectedCategory = categories.find(item => item.id === category)?.title || "Alle Kategorien";
-  const backQuery = { ...(category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}) };
+  const selectedCategory = selection?.title ? [selection.title, selection.lessonTitle].filter(Boolean).join(" · ") : categories.find(item => item.id === category)?.title || "Alle Kategorien";
+  const backQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}) };
   return <LearningToolLayout title="Lernkarten drucken" description="Frage und Antwort nebeneinander auf A4 drucken, ausschneiden und zu einer Karte zusammenfalten." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-druckauswahl" hideCommunity robots="noindex,follow" className={styles.printPage}>
+    <FlashcardSelectionNotice selection={selection} />
     <div className={styles.printToolbar} id="lernkarten-druckauswahl">
-      <label className={styles.field}>Kategorie<select value={category} onChange={event => setCategory(event.target.value)}><option value="all">Alle Kategorien</option>{categories.map(item => <option value={item.id} key={item.id}>{item.title} ({item.count})</option>)}</select></label>
+      {!selection && <label className={styles.field}>Kategorie<select value={category} onChange={event => setCategory(event.target.value)}><option value="all">Alle Kategorien</option>{categories.map(item => <option value={item.id} key={item.id}>{item.title} ({item.count})</option>)}</select></label>}
       <label className={styles.field}>Karten suchen<input type="search" value={query} placeholder="Thema eingrenzen" onChange={event => setQuery(event.target.value.slice(0, 160))} /></label>
       <button type="button" className={styles.primary} onClick={() => window.print()} disabled={!filtered.length || incomplete}><AppIcon name="book" size={22} />{incomplete ? "Druckauswahl wird geladen" : `${filtered.length} ${filtered.length === 1 ? "Karte" : "Karten"} drucken`}</button>
     </div>
