@@ -4,6 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
 const { createRequire } = require('node:module');
 const root = path.resolve(__dirname, '..');
 const localRequire = createRequire(path.join(root, 'package.json'));
@@ -22,15 +23,19 @@ function load(relative) {
   return mod.exports;
 }
 
-test('A compact deck reuses 110 course questions and six documented photos across eleven non-legal categories', () => {
+test('The growing deck preserves all starter IDs and reuses documented questions across eleven non-legal categories', () => {
   const { getFlashcards, getFlashcardExport, flashcardCategories } = load('lib/learning-flashcards.js');
   const cards = getFlashcards();
-  assert.equal(cards.length, 116);
+  assert.ok(cards.length > 116);
+  // Persistent local review schedules and the existing PDF depend on these IDs.
+  // Recorded from the published 116-card deck before the expansion was added.
+  assert.equal(createHash('sha256').update(JSON.stringify(cards.slice(0, 116).map(card => card.id))).digest('hex'), '50d2ee58ed914e7d2b7b5c9942234b164154ff7058cc5ae49821e8809ad8ad83');
   assert.equal(cards.filter(card => card.kind === 'photo').length, 6);
   assert.equal(flashcardCategories.length, 11);
   assert.ok(!flashcardCategories.some(category => category.id === 'jagdrecht'));
   assert.equal(new Set(cards.map(card => card.id)).size, cards.length);
-  for (const category of flashcardCategories) assert.equal(category.count, category.id === 'wildkunde' ? 16 : 10);
+  for (const category of flashcardCategories) assert.ok(category.count >= (category.id === 'wildkunde' ? 16 : 10));
+  assert.equal(flashcardCategories.reduce((sum, category) => sum + category.count, 0), cards.length);
   assert.deepEqual(JSON.parse(JSON.stringify(getFlashcardExport())).cards, cards);
   for (const card of cards) {
     assert.match(card.id, /^[a-z][a-z0-9-]{1,159}$/);
@@ -89,7 +94,7 @@ test('Explanations do not refer to omitted multiple-choice options; the original
   assert.match(question.explain, /Die drei anderen Paare/);
   const cards = load('lib/learning-flashcards.js').getFlashcards();
   assert.ok(!cards.some(card => card.id === `flash-${question.id}`));
-  assert.equal(cards.length, 116, 'another existing card fills the category place');
+  assert.equal(cards.slice(0, 116).filter(card => card.kind !== 'photo').length, 110, 'the existing starter selection stays complete');
   for (const card of cards) assert.doesNotMatch(card.explanation, /\b(?:die\s+(?:(?:zwei|drei|vier)\s+)?(?:anderen|übrigen)\b|(?:erste|zweite|dritte|vierte)\s+(?:Antwort|Option)|(?:Antwort|Option)\s+[A-D]\b)/i);
 });
 
@@ -140,4 +145,39 @@ test('Due selection excludes unseen and future cards, includes the exact due ins
   assert.deepEqual(rateFlashcardReview(state, 'invalid id', 'known', 3000), state);
   for (const invalidId of [undefined, null, {}, []]) assert.deepEqual(rateFlashcardReview(state, invalidId, 'known', 3000), state);
   assert.deepEqual(rateFlashcardReview(state, 'flash-first', 'other', 3000), state);
+});
+
+test('A five-figure review history retains old learning progress while oversized state remains bounded', () => {
+  const { parseFlashcardReview, rateFlashcardReview, getDueCards } = load('lib/flashcard-review.js');
+  const entries = Array.from({ length: 12000 }, (_, index) => [`flash-scale-${index}`, { rating: 'known', reviewedAt: 1000 + index, dueAt: 86401000 + index, intervalDays: 1 }]);
+  const raw = JSON.stringify({ version: 1, cards: Object.fromEntries(entries) });
+  const parsed = parseFlashcardReview(raw);
+  assert.equal(Object.keys(parsed.cards).length, 12000);
+  const rated = rateFlashcardReview(parsed, 'flash-scale-next', 'known', 50000);
+  assert.equal(Object.keys(rated.cards).length, 12001);
+  assert.deepEqual(rated.cards['flash-scale-0'], entries[0][1]);
+  assert.equal(getDueCards([{ id: 'flash-scale-0' }], rated, 86401000).length, 1);
+  const oversized = JSON.stringify({ version: 1, cards: Object.fromEntries(entries), ignored: 'x'.repeat(4 * 1024 * 1024) });
+  assert.deepEqual(parseFlashcardReview(oversized), { version: 1, cards: {} });
+  const bounded = parseFlashcardReview({ version: 1, cards: Object.fromEntries(Array.from({ length: 20001 }, (_, index) => [`flash-limit-${index}`, entries[0][1]])) });
+  assert.equal(Object.keys(bounded.cards).length, 20000);
+  const longIds = Object.fromEntries(Array.from({ length: 20000 }, (_, index) => [`flash-${'x'.repeat(145)}-${index}`, entries[0][1]]));
+  const sizeBounded = rateFlashcardReview({ version: 1, cards: longIds }, 'flash-most-recent', 'known', 50000);
+  const encoded = JSON.stringify(sizeBounded);
+  assert.ok(encoded.length <= 4 * 1024 * 1024);
+  assert.ok(sizeBounded.cards['flash-most-recent']);
+  assert.deepEqual(parseFlashcardReview(encoded), sizeBounded, 'a saved bounded history survives the next read');
+});
+
+test('New recall cards omit negatively framed false inferences while preserving the explained source quiz', () => {
+  const { getFlashcards } = load('lib/learning-flashcards.js');
+  const { learningModules } = load('lib/learning-curriculum.js');
+  const extras = getFlashcards().slice(116);
+  for (const card of extras) assert.doesNotMatch(card.question, /(?:^|[^\p{L}])(?:nicht|unzulässig|überschreitet)(?=$|[^\p{L}])/iu);
+  for (const [courseId, tail] of [['wissen-ausbau-gewaesser-sauerstoff-2026', 'q14'], ['wissen-ausbau-bodenporen-verdichtung-2026', 'q11'], ['wissen-ausbau-hepatitis-e-2026', 'q3']]) {
+    const course = learningModules.find(item => item.id === courseId);
+    const question = course.questions.find(item => item.id.endsWith(`-${tail}`));
+    assert.ok(question && question.explain);
+    assert.ok(!getFlashcards().some(card => card.id === `flash-${question.id}`));
+  }
 });

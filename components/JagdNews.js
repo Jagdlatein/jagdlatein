@@ -3,6 +3,7 @@ import Link from "next/link";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import { filterNewsItems, formatNewsDate, newsRefreshSeconds, newsSources, newsTopics } from "../lib/news-catalog";
+import { newsDiscussionHref } from "../lib/news-community-link";
 import styles from "../styles/JagdNews.module.css";
 import learning from "../styles/LearningExperience.module.css";
 
@@ -87,12 +88,13 @@ export function NewsCard({ item, compact = false, sourceSnapshot }) {
   const source = newsSources.find(value => value.id === item.sourceId);
   return <article className={`${styles.card} ${compact ? styles.compactCard : ""}`}>
     <p className={styles.topic}><AppIcon name={topic?.icon || "book"} size={17} />{topic?.label || "Jagdwissen"}</p>
+    {source?.sourceType === "manufacturer" && <p className={styles.manufacturer}>Herstellermeldung · Produktinformation</p>}
     <h3><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<AppIcon name="arrow-right" size={19} /></a></h3>
     <p className={styles.meta}><span>{item.sourceLabel}</span>{source?.country && <span className={styles.country}>{countryLabels[source.country] || source.country}</span>}</p>
     <p className={styles.date}><AppIcon name="calendar" size={15} /><span>Veröffentlicht: <time dateTime={item.publishedAt}>{formatNewsDate(item.publishedAt)}</time></span></p>
     {sourceSnapshot && <p className={styles.sourceFetched}>{sourceSnapshot.fetchedAt ? <>{sourceSnapshot.status === "ok" && !sourceSnapshot.stale ? "Quelle abgerufen: " : "Gespeicherter Quellenabruf: "}<time dateTime={sourceSnapshot.fetchedAt}>{formatNewsDate(sourceSnapshot.fetchedAt, { withTime: true })}</time></> : "Noch kein erfolgreicher Quellenabruf."}</p>}
-    {!compact && topic?.description && <p className={styles.topicDescription}>{topic.description}</p>}
-    <a className={styles.articleLink} href={item.url} target="_blank" rel="noopener noreferrer">Bei der Quelle lesen<AppIcon name="arrow-right" size={17} /></a>
+    {!compact && source?.sourceType === "manufacturer" ? <p className={styles.topicDescription}>Die Produktangaben stammen vom Hersteller.</p> : !compact && topic?.description && <p className={styles.topicDescription}>{topic.description}</p>}
+    <Link className={styles.articleLink} href={newsDiscussionHref(item)}>In der Community besprechen<AppIcon name="community" size={17} /></Link>
   </article>;
 }
 
@@ -119,9 +121,9 @@ export default function JagdNews({ initialNews }) {
   const sourceSnapshots = news.sources || [];
   function reset() { setQuery(""); setTopic("all"); setSource("all"); setPage(0); }
 
-  return <LearningToolLayout title="Jagdlatein – Wissen im Blick" description="Neue Forschung und Fachwissen zu Wissenschaft, Jagd und Natur aus Deutschland, Österreich und der Schweiz – mit direktem Link zur Originalquelle." icon="book" stats={[{ value: news.items.length, label: "Meldungen" }, { value: sourceSnapshots.length, label: "Quellen" }, { value: "30 Minuten", label: "Abrufintervall" }]}>
+  return <LearningToolLayout title="Jagdlatein – Wissen im Blick" description="Wissenschaft, Jagd, Natur sowie Ausrüstung und Technik aus DACH – mit Originalquellen und Austausch in der Community." icon="book" stats={[{ value: news.items.length, label: "Meldungen" }, { value: sourceSnapshots.length, label: "Quellen" }, { value: "30 Minuten", label: "Abrufintervall" }]}>
     <div className={learning.actions}><Link href="/" className={learning.secondary}><AppIcon name="home" size={19} />Zur Startseite</Link><button type="button" className={learning.primary} onClick={refresh} disabled={refreshing}><AppIcon name="calendar" size={19} />{refreshing ? "Wird geladen …" : "Meldungen aktualisieren"}</button></div>
-    <section className={styles.intro} aria-labelledby="news-stand"><p className={styles.eyebrow}>Deutschland · Österreich · Schweiz</p><h2 id="news-stand">Wissenschaft · Jagd · Natur</h2><p>Wildtierforschung, Jagdwissen und neue Erkenntnisse über Lebensräume übersichtlich an einem Ort. Neue Fachmeldungen erscheinen beim nächsten automatischen Abruf, nachdem die eingebundenen Quellen sie bereitgestellt haben.</p><NewsRefreshStatus news={news} refreshing={refreshing} refreshError={refreshError} refreshed={refreshed} /></section>
+    <section className={styles.intro} aria-labelledby="news-stand"><p className={styles.eyebrow}>Deutschland · Österreich · Schweiz</p><h2 id="news-stand">Jagd · Wissenschaft · Natur · Ausrüstung</h2><p>Fachmeldungen, neue Technik und Wissen für die Revierpraxis. Über „In der Community besprechen“ öffnest du eine eigene Frage mit dem Quellenlink. Neue Meldungen erscheinen beim automatischen Abruf, sobald die eingebundenen Quellen sie bereitstellen.</p><NewsRefreshStatus news={news} refreshing={refreshing} refreshError={refreshError} refreshed={refreshed} /></section>
     <section className={styles.filters} aria-labelledby="news-filter"><h2 id="news-filter">Meldungen finden</h2>
       <label className={styles.field}>News suchen<input type="search" maxLength={160} value={query} placeholder="Zum Beispiel Gams, Wildkrankheiten oder Lebensraum" onChange={event => { setQuery(event.target.value); setPage(0); }} /></label>
       <div className={styles.filterRow}><label className={styles.field}>Thema<select value={topic} onChange={event => { setTopic(event.target.value); setPage(0); }}><option value="all">Alle Themen</option>{newsTopics.map(value => <option key={value.id} value={value.id}>{value.label}</option>)}</select></label><label className={styles.field}>Quelle<select value={source} onChange={event => { setSource(event.target.value); setPage(0); }}><option value="all">Alle Quellen</option>{newsSources.map(value => <option key={value.id} value={value.id}>{value.label}</option>)}</select></label><button type="button" className={learning.secondary} onClick={reset}>Filter zurücksetzen</button></div>

@@ -2,6 +2,24 @@
   "lwf": {
     "items": [
       {
+        "id": "9a8796ae285b6bb15d5a",
+        "title": "Waldzukunft zum Anfassen - LWF organisiert zentrale Sonderschau der INTERFORST",
+        "url": "https://www.lwf.bayern.de/cms04/service/presse/407522/index.php",
+        "publishedAt": "2026-10-15T15:06:55.000Z",
+        "sourceId": "lwf",
+        "sourceLabel": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+        "topic": "science"
+      },
+      {
+        "id": "7c48fea4f38aa31736a6",
+        "title": "100 Jahre Kiefern-Herkunftsversuch Schwabach",
+        "url": "https://www.lwf.bayern.de/cms04/service/presse/407317/index.php",
+        "publishedAt": "2026-10-13T11:13:10.000Z",
+        "sourceId": "lwf",
+        "sourceLabel": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+        "topic": "science"
+      },
+      {
         "id": "2ceb12d8b28abfcf755e",
         "title": "Käfer mit Geweih gefunden! Mehr als 2.300 Hirschkäfer gemeldet",
         "url": "https://www.lwf.bayern.de/cms04/service/presse/405781/index.php",
@@ -99,32 +117,13 @@
         "sourceId": "lwf",
         "sourceLabel": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
         "topic": "science"
-      },
-      {
-        "id": "6d20cd8992047bd71a0b",
-        "title": "Moorschutz braucht Moorwald - Neues LWF-Merkblatt zeigt Wege für Waldbesitzende",
-        "url": "https://www.lwf.bayern.de/cms04/service/presse/398495/index.php",
-        "publishedAt": "2026-05-12T09:08:42.000Z",
-        "sourceId": "lwf",
-        "sourceLabel": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
-        "topic": "nature"
       }
     ],
-    "fetchedAt": "2026-10-04T16:16:47.699Z"
+    "fetchedAt": "2026-10-16T15:15:36.210Z"
   },
   "bfw": {
-    "items": [
-      {
-        "id": "972e7d318a264bb046db",
-        "title": "AquaSilva: Wie Wälder Wasser speichern und Hochwasserrisiken reduzieren können",
-        "url": "https://www.bfw.gv.at/aquasilva-wie-waelder-wasser-speichern-und-hochwasserrisiken-reduzieren-koennen/",
-        "publishedAt": "2026-09-24T11:11:23.000Z",
-        "sourceId": "bfw",
-        "sourceLabel": "Bundesforschungszentrum für Wald",
-        "topic": "science"
-      }
-    ],
-    "fetchedAt": "2026-10-04T16:16:48.136Z"
+    "items": [],
+    "fetchedAt": "2026-10-16T15:15:36.800Z"
   },
   "vogelwarte": {
     "items": [
@@ -219,10 +218,37 @@
         "topic": "nature"
       }
     ],
-    "fetchedAt": "2026-10-04T16:16:48.514Z"
+    "fetchedAt": "2026-10-16T15:15:37.170Z"
   },
   "waldwissen": {
     "items": [
+      {
+        "id": "136125a5c9d4f12c1518",
+        "title": "Rotwild in Bayern: Populationsstrukturen und genetische Vielfalt",
+        "url": "https://www.waldwissen.net/de/lebensraum-wald/wald-und-wild/wildoekologie/rotwild-in-bayern-populationsstrukturen-und-genetische-vielfalt",
+        "publishedAt": "2026-10-14T14:21:00.000Z",
+        "sourceId": "waldwissen",
+        "sourceLabel": "Waldwissen.net · WSL, BFW, LWF und FVA",
+        "topic": "science"
+      },
+      {
+        "id": "f9c5a2d842a2ab1ce6ca",
+        "title": "Der Wolf im Kopf und der Wolf im Wald",
+        "url": "https://www.waldwissen.net/de/lebensraum-wald/wald-und-wild/wildtiermanagement/der-wolf-im-kopf-und-der-wolf-im-wald",
+        "publishedAt": "2026-10-07T14:00:00.000Z",
+        "sourceId": "waldwissen",
+        "sourceLabel": "Waldwissen.net · WSL, BFW, LWF und FVA",
+        "topic": "nature"
+      },
+      {
+        "id": "bedb53fbdc622fb96ae0",
+        "title": "Dürre im Wald: Wenn Wasser und Reserven knapp werden",
+        "url": "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/trockenheit/duerre-im-wald-2026",
+        "publishedAt": "2026-10-05T09:31:04.000Z",
+        "sourceId": "waldwissen",
+        "sourceLabel": "Waldwissen.net · WSL, BFW, LWF und FVA",
+        "topic": "nature"
+      },
       {
         "id": "de8a9ff9137ca289c30c",
         "title": "Forstcast – 35 Jahre WKS: Was die Walddaten verraten",
@@ -276,21 +302,21 @@
         "sourceId": "waldwissen",
         "sourceLabel": "Waldwissen.net · WSL, BFW, LWF und FVA",
         "topic": "nature"
-      },
-      {
-        "id": "80971a3e2e2f3fb25f9a",
-        "title": "Wasser aus Rückegassen ableiten",
-        "url": "https://www.waldwissen.net/de/technik-und-planung/forsttechnik-und-holzernte/bodenschutz/wasserableitung-von-rueckegassen",
-        "publishedAt": "2026-09-18T13:07:13.000Z",
-        "sourceId": "waldwissen",
-        "sourceLabel": "Waldwissen.net · WSL, BFW, LWF und FVA",
-        "topic": "nature"
       }
     ],
-    "fetchedAt": "2026-10-04T16:16:47.780Z"
+    "fetchedAt": "2026-10-16T15:15:36.344Z"
   },
   "izw": {
     "items": [
+      {
+        "id": "3d7a140d9508ce2a95ea",
+        "title": "Wildvögel schreiben die Regeln der Fortbewegung neu: Segelflug kann die effizienteste Bewegungsart für Tiere sein",
+        "url": "https://www.izw-berlin.de/de/pressemitteilung/wildvoegel-schreiben-die-regeln-der-fortbewegung-neu-segelflug-kann-die-effizienteste-bewegungsart-fuer-tiere-sein.html",
+        "publishedAt": "2026-10-15T18:00:00.000Z",
+        "sourceId": "izw",
+        "sourceLabel": "Leibniz-Institut für Zoo- und Wildtierforschung",
+        "topic": "science"
+      },
       {
         "id": "5efd4f3f54ae55067b50",
         "title": "100 Jahre Gesellschaft für Säugetierkunde: von der Feldbeobachtung zur Genomanalyse",
@@ -328,20 +354,88 @@
         "topic": "science"
       }
     ],
-    "fetchedAt": "2026-10-04T16:16:47.677Z"
+    "fetchedAt": "2026-10-16T15:22:38.199Z"
   },
   "vetmed": {
+    "items": [],
+    "fetchedAt": "2026-10-16T15:15:36.437Z"
+  },
+  "swarovski": {
     "items": [
       {
-        "id": "911ab5d00fca8601eeae",
-        "title": "Wildtiere sicher immobilisieren: Etorphin im Check",
-        "url": "https://www.vetmeduni.ac.at/universitaet/infoservice/presseinformationen/presse/wildtiere-sicher-immobilisieren-etorphin-im-check",
-        "publishedAt": "2026-09-17T00:00:00.000Z",
-        "sourceId": "vetmed",
-        "sourceLabel": "Veterinärmedizinische Universität Wien",
-        "topic": "science"
+        "id": "05cb31968af372352d58",
+        "title": "SWAROVSKI OPTIK präsentiert ein neues, leichtes 75-er Teleskop Neu: Teleskop AT Endura 21- 65x75",
+        "url": "https://www.swarovskioptik.com/at/de/jagd/press-releases/neu-teleskop-at-endura-21-65x75-10-07-2026",
+        "publishedAt": "2026-07-10T12:00:00.000Z",
+        "sourceId": "swarovski",
+        "sourceLabel": "SWAROVSKI OPTIK · Presse",
+        "topic": "equipment"
+      },
+      {
+        "id": "4fcf3f881ef2ddf71297",
+        "title": "SWAROVSKI OPTIK präsentiert das neue CL Companion Auge in Auge mit der Natur",
+        "url": "https://www.swarovskioptik.com/at/de/jagd/press-releases/auge-in-auge-mit-der-natur-26-03-2026",
+        "publishedAt": "2026-03-26T12:00:00.000Z",
+        "sourceId": "swarovski",
+        "sourceLabel": "SWAROVSKI OPTIK · Presse",
+        "topic": "equipment"
+      },
+      {
+        "id": "1678308b15a5823d3d0e",
+        "title": "Wenn Innovation auf Vertrauen trifft SWAROVSKI OPTIK: Neue Zielfernrohre für jede Jagdart",
+        "url": "https://www.swarovskioptik.com/at/de/jagd/press-releases/swarovski-optik-neue-zielfernrohre-fuer-jede-jagdart-20-01-2026",
+        "publishedAt": "2026-01-20T12:00:00.000Z",
+        "sourceId": "swarovski",
+        "sourceLabel": "SWAROVSKI OPTIK · Presse",
+        "topic": "equipment"
+      },
+      {
+        "id": "0cafc2ff47b3fce6074a",
+        "title": "Neues Premium-Teleskop mit Bildstabilisierung SWAROVSKI OPTIK AT/ST Balance",
+        "url": "https://www.swarovskioptik.com/at/de/jagd/press-releases/swarovski-optik-at-st-balance-25-11-2025",
+        "publishedAt": "2025-11-25T12:00:00.000Z",
+        "sourceId": "swarovski",
+        "sourceLabel": "SWAROVSKI OPTIK · Presse",
+        "topic": "equipment"
       }
     ],
-    "fetchedAt": "2026-10-04T16:16:47.880Z"
+    "fetchedAt": "2026-10-16T15:09:13.271Z"
+  },
+  "waldkauz": {
+    "items": [
+      {
+        "id": "df904a7b9155f4460a2f",
+        "title": "Regenspaziergang mit der Lodenjacke „Kragenhuber“",
+        "url": "https://www.waldkauz.net/aktuelles/regenspaziergang-mit-der-lodenjacke-kragenhuber/",
+        "publishedAt": "2026-10-14T08:51:53.000Z",
+        "sourceId": "waldkauz",
+        "sourceLabel": "WALDKAUZ · Aktuelles",
+        "topic": "equipment"
+      },
+      {
+        "id": "f5d1dfc2dde003eb318e",
+        "title": "Jagdrucksack „Optikauz“ feiert Geburtstag",
+        "url": "https://www.waldkauz.net/allgemein/jagdrucksack-fuer-moderne-jagdtechnik/",
+        "publishedAt": "2026-04-27T09:49:18.000Z",
+        "sourceId": "waldkauz",
+        "sourceLabel": "WALDKAUZ · Aktuelles",
+        "topic": "equipment"
+      }
+    ],
+    "fetchedAt": "2026-10-16T15:09:13.393Z"
+  },
+  "leica": {
+    "items": [
+      {
+        "id": "ee97e3021d4601decdcf",
+        "title": "A Century of Vision: Leica Binocular Excellence Since 1907",
+        "url": "https://leica-hunting-blog.com/a-century-of-vision-leica-binocular-excellence-since-1907/",
+        "publishedAt": "2026-06-03T14:15:48.000Z",
+        "sourceId": "leica",
+        "sourceLabel": "Leica Sport Optics · Hunting Blog",
+        "topic": "equipment"
+      }
+    ],
+    "fetchedAt": "2026-10-16T15:09:13.993Z"
   }
 }

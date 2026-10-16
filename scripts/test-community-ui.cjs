@@ -177,7 +177,7 @@ test('New typing cancels delayed result focus and a new post action clears older
 test('Forum pages validate route identifiers and keep signed identity pages private without querying payment access', () => {
   const landing = load('pages/community/index.js', { '../../lib/account-access': { readRequestAccountSession: () => null } });
   const headers = {}; const result = landing.getServerSideProps({ req: {}, res: { setHeader: (key, value) => headers[key] = value }, query: { category: 'not-a-category', thema: ['ignored', 'array'] } });
-  assert.deepEqual(result.props, { signedIn: false, initialCategory: 'all', context: '' });
+  assert.deepEqual(result.props, { signedIn: false, initialCategory: 'all', context: '', sourceContext: '' });
   assert.match(headers['Cache-Control'], /private, no-store/);
   const page = load('pages/community/[id].js', { '../../lib/account-page': { getAccountPageProps: () => ({ redirect: { destination: '/login' } }) } });
   assert.deepEqual(page.getServerSideProps({ params: { id: 'invalid' } }), { notFound: true });

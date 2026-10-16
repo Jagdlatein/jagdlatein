@@ -1,0 +1,2263 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Sechs eigenständige Vertiefungskurse in Wildkunde und Hundewesen, 24 Lektionen und 96 Fragen. Geprüft sind die ausdrücklich dokumentierten Aussageblöcke. Eigene Skizzen-, Planungs- und Rechenfälle sind als solche bezeichnet. Die Erweiterung ist keine Neuprüfung aller App-Inhalte, keine individuelle tiermedizinische Verordnung und keine Jagdfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-wildtiergenetik-2026",
+      "title": "Wildtiergenetik: Was eine DNA-Spur wirklich verrät",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Art, Individuum, Wiederfund und Hybridisierung anhand nachvollziehbarer Laborfragen auseinanderhalten.",
+      "minutes": 28,
+      "objectives": [
+        "Umweltspur und Tierbeobachtung unterscheiden",
+        "Art- und Individualnachweis getrennt lesen",
+        "Kontrollen und negative Befunde einordnen",
+        "Hybridisierung ohne Foto-Diagnose erklären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches und methodisches Lernwissen. Genetische Untersuchungen mit der zuständigen Fachstelle abstimmen; keine örtliche Jagd- oder Eingriffsfreigabe.",
+        "AT": "Gemeinsames biologisches und methodisches Lernwissen. Genetische Untersuchungen mit der zuständigen Fachstelle abstimmen; keine örtliche Jagd- oder Eingriffsfreigabe.",
+        "CH": "Gemeinsames biologisches und methodisches Lernwissen. Genetische Untersuchungen mit der zuständigen Fachstelle abstimmen; keine örtliche Jagd- oder Eingriffsfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Zentrum für Wildtiergenetik: Methoden und Analysen",
+          "url": "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/",
+          "organization": "Senckenberg – Leibniz Institution for Biodiversity and Earth System Research",
+          "supports": "Methodisch getrennte Art-, Individual-, Verwandtschafts- und Hybridisierungsanalysen; niedriger DNA-Gehalt und Kontaminationsschutz; keine pauschale Bestandszählung aus Probenzahlen."
+        },
+        {
+          "label": "Umwelt-DNA: Verfahren und Grenzen",
+          "url": "https://genetic-expo.wsl.ch/de/methoden/edna/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "supports": "DNA aus Umweltspuren, Referenzvergleich, sorgfältige Probenahme und Kontaminationsschutz; klassische Beobachtung bleibt ergänzend erforderlich."
+        },
+        {
+          "label": "Schneehasen: Individuen aus Kotproben unterscheiden",
+          "url": "https://genetic-expo.wsl.ch/de/fauna/schneehase/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "supports": "Konkretes Schweizer Projekt: wiederholte genetische Individualnachweise aus Kotproben; Untersuchungsgebiet und Methode sind begrenzt."
+        },
+        {
+          "label": "Schottische Hirscharten: Hybridisierung",
+          "url": "https://www.nature.scot/doc/deer-management-scotland-frequently-asked-questions-faqs",
+          "organization": "NatureScot",
+          "supports": "Rot- und Sikawild können fruchtbare Nachkommen bilden; spätere Kreuzungsgenerationen sind äußerlich schwierig zu beurteilen. Keine Häufigkeit für DACH."
+        },
+        {
+          "label": "Barton, Abernethy und Pemberton: Rot-Sika-Hybridzone in Argyll",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1460577/",
+          "organization": "University of Edinburgh",
+          "supports": "Originaluntersuchung in Argyll mit Kern-DNA-Markern und mitochondrialer DNA; äußerer Phänotyp und genetische Beimischung können auseinanderfallen. Kein DACH-Bestandswert."
+        },
+        {
+          "label": "Štohlová Putnová und andere 2021: Rot-Sika-Hybridisierung",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34200330/",
+          "organization": "Mendel University in Brno; Brno University of Technology",
+          "supports": "Unabhängige Originaluntersuchung in Westböhmen: genetische Beimischung kann bei rot- oder sikaähnlichen Tieren auftreten; äußere Zuordnung allein unzureichend. Zahlen werden nicht auf DACH übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "umweltspur",
+          "title": "Vom Tier zur Spur und vom Fund zum Nachweis",
+          "paragraphs": [
+            "Ein Tier kann Erbmaterial in Haaren, Kot oder anderen Umweltspuren hinterlassen. Das eröffnet Nachweise, ohne das Tier für jede Untersuchung unmittelbar sehen oder fangen zu müssen. Eine solche Spur und die Sichtbeobachtung sind aber verschiedene Datenarten. WSL und Senckenberg beschreiben spezialisierte Verfahren für Umweltmaterial; der Befund hängt von der untersuchten Probe und der gestellten Laborfrage ab. „DNA untersucht“ ist deshalb noch kein vollständiger Ergebnissatz.",
+            "Eigener Lernfall: Auf einer Karte liegen drei Probenpunkte und eine Fotobeobachtung. Beschrifte jeden Punkt zunächst mit Material, Fundort, Datum und Probennummer. Ergänze danach, ob eine Artbestimmung oder ein individuelles Profil vorliegt. Die Farbe der Kartensymbole soll die Belegart zeigen, keine behauptete Tierzahl. Füge einen leeren Datensatz für eine unbrauchbare Probe hinzu. So bleibt erkennbar, wo Informationen fehlen, statt fehlende Laborangaben durch eine Vermutung über das Tier zu ersetzen."
+          ],
+          "takeaway": "Eine Umweltspur liefert erst zusammen mit Probe, Methode und Laborfrage einen verständlichen Nachweis.",
+          "exercise": "Formuliere zu einer gedachten Kotprobe eine Artfrage und eine davon verschiedene Individualfrage."
+        },
+        {
+          "id": "individuen",
+          "title": "Fünf Proben sind nicht automatisch fünf Tiere",
+          "paragraphs": [
+            "Ein genetisches Individualprofil kann wiederholte Proben desselben Tieres miteinander verbinden. Im Schneehasenprojekt am Munt la Schera nutzt die WSL solche Wiederfunde; Senckenberg beschreibt entsprechende Individualanalysen für verschiedene Säugetiere. Die Probenzahl und die Zahl unterschiedener Profile beantworten deshalb verschiedene Fragen. Ein mehrfach gefundenes Profil ist zunächst ein mehrfach belegtes Individuum innerhalb der untersuchten Daten, keine zusätzliche Geburt bei jedem Fund.",
+            "Eigene Papierübung: Fünf Proben tragen die erfolgreich bestimmten Profile A, B, A, C und B. In dieser Liste stehen drei verschiedene Profile und fünf Nachweise. Zeichne Wiederverbindungen ein und lasse Lücken zwischen den Fundorten als unbekannte Wege stehen. Aus der Liste folgt weder der vollständige Bestand des Gebiets noch die genaue Route zwischen zwei Punkten. Formuliere abschließend getrennt, was nachgewiesen wurde und welche Erfassungsfrage für eine Populationsschätzung noch zu lösen wäre."
+          ],
+          "takeaway": "Wiederholte Individualnachweise und Gesamtbestand sind verschiedene Größen.",
+          "exercise": "Zeichne die Folge A–B–A–C–B und beschrifte Probenzahl, Profilzahl und offene Erfassungsgrenzen."
+        },
+        {
+          "id": "qualitaet",
+          "title": "Geringe DNA-Mengen verlangen saubere Kontrollen",
+          "paragraphs": [
+            "Umweltmaterial kann wenig oder verändertes Erbmaterial enthalten. Beide Forschungsinstitutionen betonen deshalb sorgfältiges Arbeiten und den Schutz vor Verunreinigung. Fremde DNA, die beim Umgang mit einer Probe hinzukommt, ist keine zusätzliche Wildtierbeobachtung. Wiederholungen, geeignete Kontrollen und die Prüfung des gesamten Verfahrens gehören zur Qualitätssicherung. Daraus folgt kein privates Universalrezept: Probensammlung und Versand werden mit der zuständigen Untersuchungsstelle abgestimmt.",
+            "Eigener Lernfall: Auf dem Befundbogen stehen eine Probennummer, die verwendete Methode, ein Ergebnis und ein Hinweis auf eingeschränkte Qualität. Übernimm den Hinweis auch in die Zusammenfassung. Schreibe bei einer nicht gelungenen Zuordnung nicht „Art im ganzen Revier abwesend“. Stelle stattdessen die begrenzte Frage, ob die vorliegende Probe unter dem verwendeten Verfahren einen verwertbaren Nachweis erbrachte. Diese Formulierung schützt vor einer Schlussfolgerung, die weit mehr Raum und Zeit umfasst als die tatsächliche Untersuchung."
+          ],
+          "takeaway": "Ein negatives oder eingeschränktes Probenergebnis ist keine vollständige Abwesenheitskarte.",
+          "exercise": "Verbessere den Satz „Kein DNA-Ergebnis, also gibt es diese Art hier nicht“ anhand der tatsächlich untersuchten Einheit."
+        },
+        {
+          "id": "hybridisierung",
+          "title": "Äußere Erscheinung und genetische Herkunft",
+          "paragraphs": [
+            "Hybridisierung bezeichnet Fortpflanzung zwischen unterschiedlichen Arten oder genetisch unterscheidbaren Linien im jeweiligen Untersuchungszusammenhang. Für Rot- und Sikawild beschreiben NatureScot und die Edinburgher Originaluntersuchung fruchtbare Kreuzungsnachkommen beziehungsweise genetische Beimischung. Spätere Generationen müssen äußerlich nicht wie ein gut sichtbarer „Mitteltyp“ aussehen. Eine Fellzeichnung ersetzt daher keine geeignete genetische Untersuchung, wenn gerade die Abstammungsmischung die Frage ist.",
+            "Eigener Lernfall: Ein Hirsch sieht auf dem Foto rotwildähnlich aus. Im fachlichen Bericht wird ein genetischer Befund aus einer schottischen Kontaktzone erläutert. Trenne beide Aussagen: Das Foto zeigt einen äußeren Eindruck; der Laborbefund betrifft bestimmte Marker und eine definierte Population. Übertrage daraus weder eine Häufigkeit auf DACH noch eine sichere Herkunft auf andere fotografierte Tiere. Frage bei einer lokalen Behauptung nach Proben, Referenzen und der tatsächlich untersuchten Population."
+          ],
+          "takeaway": "Ein rotwildähnliches Aussehen schließt eine genetische Beimischung nicht sicher aus.",
+          "exercise": "Schreibe eine Bildbeschreibung und eine getrennte Frage an einen genetischen Bericht."
+        }
+      ],
+      "questions": [
+        {
+          "id": "umweltspur-q1",
+          "lessonId": "umweltspur",
+          "q": "Eine Probe bestätigt die Art Schneehase. Welche Frage bleibt damit zunächst offen?",
+          "options": [
+            "Welches einzelne Tier die Probe hinterlassen hat.",
+            "Ob die Probe einer biologischen Art zugeordnet wurde.",
+            "Ob ein Laborergebnis zur Artfrage vorliegt.",
+            "Ob die Probennummer im Protokoll genannt werden kann."
+          ],
+          "answer": 0,
+          "explain": "Artzuordnung und individuelle Identifizierung sind verschiedene Untersuchungsfragen."
+        },
+        {
+          "id": "umweltspur-q2",
+          "lessonId": "umweltspur",
+          "q": "Welche Beschriftung macht einen Umweltfund nachvollziehbar?",
+          "options": [
+            "Fundmaterial und vermutete Art, ohne Zuordnung zu einem Termin.",
+            "Material, Ort, Datum und eindeutige Probennummer.",
+            "Nur die spätere Laborlaufnummer, ohne ursprünglichen Fundort.",
+            "Nur die Fundregion, ohne Verbindung zur einzelnen Probe."
+          ],
+          "answer": 1,
+          "explain": "Diese Metadaten verbinden den Fund mit der später untersuchten Probe."
+        },
+        {
+          "id": "umweltspur-q3",
+          "lessonId": "umweltspur",
+          "q": "Wozu ergänzt du auf einer Lernkarte die Belegart eines Fundes?",
+          "options": [
+            "Damit alle Punkte automatisch verschiedene Tiere bedeuten.",
+            "Damit eine fehlende Laborfrage nachträglich unwichtig wird.",
+            "Damit Foto, Sichtung und DNA-Probe unterscheidbar bleiben.",
+            "Damit die Zahl der Symbole direkt den Bestand darstellt."
+          ],
+          "answer": 2,
+          "explain": "Verschiedene Nachweismethoden liefern unterschiedliche Informationen."
+        },
+        {
+          "id": "umweltspur-q4",
+          "lessonId": "umweltspur",
+          "q": "Welche Aussage passt zu einer Probe ohne verwertbares Analyseergebnis?",
+          "options": [
+            "Die seltenste Art wird ersatzweise als bestätigt eingetragen.",
+            "Der Punkt wird ohne Hinweis als vollständiger Individualnachweis gezählt.",
+            "Ein beliebiges benachbartes Foto ersetzt die Zuordnung der Probe.",
+            "Der Fund bleibt dokumentiert, die genetische Zuordnung bleibt offen."
+          ],
+          "answer": 3,
+          "explain": "Ein dokumentierter Fund und ein erfolgreicher genetischer Nachweis dürfen nicht gleichgesetzt werden."
+        },
+        {
+          "id": "individuen-q1",
+          "lessonId": "individuen",
+          "q": "Fünf erfolgreich zugeordnete Proben ergeben A, B, A, C und B. Wie viele verschiedene Profile enthält die Liste?",
+          "options": [
+            "Zwei.",
+            "Drei.",
+            "Vier.",
+            "Fünf."
+          ],
+          "answer": 1,
+          "explain": "In der eigenen Papierübung kommen die Bezeichnungen A, B und C vor."
+        },
+        {
+          "id": "individuen-q2",
+          "lessonId": "individuen",
+          "q": "Profil A wird an zwei Orten gefunden. Was ist unmittelbar belegt?",
+          "options": [
+            "Der lückenlos bekannte Weg zwischen den Orten.",
+            "Zwei verschiedene Tiere allein wegen zweier Fundorte.",
+            "Zwei örtlich dokumentierte Nachweise desselben zugeordneten Individuums.",
+            "Eine Geburt zwischen den beiden Probenahmen."
+          ],
+          "answer": 2,
+          "explain": "Wiederfunde verbinden Nachweise; die unbeobachtete Bewegung dazwischen bleibt offen."
+        },
+        {
+          "id": "individuen-q3",
+          "lessonId": "individuen",
+          "q": "Welche Angabe fehlt, wenn aus wenigen Profilen ein vollständiger Bestand behauptet wird?",
+          "options": [
+            "Ob mehrere Proben nachträglich zusammengezählt wurden.",
+            "Ob die Profile alphabetisch oder nach Funddatum sortiert sind.",
+            "Ob alle Probenbehälter dieselbe Größe besaßen.",
+            "Wie das Gebiet erfasst wurde und welche Tiere der Erfassung entgehen können."
+          ],
+          "answer": 3,
+          "explain": "Die Aussage über einen Gesamtbestand benötigt ein passendes Erfassungs- und Auswertungsdesign."
+        },
+        {
+          "id": "individuen-q4",
+          "lessonId": "individuen",
+          "q": "Warum werden Probendatum und Fundort auch bei bekannten Profilen aufbewahrt?",
+          "options": [
+            "Sie machen den räumlichen und zeitlichen Wiederfund nachvollziehbar.",
+            "Sie ersetzen automatisch alle genetischen Kontrollen.",
+            "Sie machen aus jeder Probe ein neues Individuum.",
+            "Sie beweisen ohne weitere Beobachtung eine Paarung."
+          ],
+          "answer": 0,
+          "explain": "Individualprofil und Fundmetadaten beantworten gemeinsam die Frage, wann und wo ein Nachweis gelang."
+        },
+        {
+          "id": "qualitaet-q1",
+          "lessonId": "qualitaet",
+          "q": "Was bedeutet Kontamination im Zusammenhang mit einer DNA-Probe?",
+          "options": [
+            "Die Probe enthält zu wenig auswertbare DNA.",
+            "Die DNA der Probe wurde während der Lagerung stark abgebaut.",
+            "Unerwünschtes Erbmaterial gelangt zusätzlich in die Probe oder Analyse.",
+            "Zwei Spuren desselben Tieres werden als Wiederfunde erkannt."
+          ],
+          "answer": 2,
+          "explain": "Fremdmaterial kann die Zuordnung stören und muss durch geeignete Verfahren kontrolliert werden."
+        },
+        {
+          "id": "qualitaet-q2",
+          "lessonId": "qualitaet",
+          "q": "Ein Bericht nennt eingeschränkte Probenqualität. Wie gehst du damit um?",
+          "options": [
+            "Die Einschränkung für eine klarere Karte weglassen.",
+            "Ein beliebiges sicheres Ergebnis ergänzen.",
+            "Die Probe automatisch einer anderen Art zuordnen.",
+            "Die Einschränkung auch in der Zusammenfassung nennen."
+          ],
+          "answer": 3,
+          "explain": "Die Aussagekraft hängt auch von Qualität und Verfahren ab."
+        },
+        {
+          "id": "qualitaet-q3",
+          "lessonId": "qualitaet",
+          "q": "Wer legt die passende Gewinnung und Einsendung einer Forschungsprobe fest?",
+          "options": [
+            "Die zuständige Untersuchungsstelle im abgestimmten Verfahren.",
+            "Die Person mit dem größten Behälter.",
+            "Ein beliebiger Bildbeitrag ohne Laborbezug.",
+            "Allein die gewünschte Antwort des Auftraggebers."
+          ],
+          "answer": 0,
+          "explain": "Unterschiedliche Materialien und Analysefragen benötigen passende Vorgaben."
+        },
+        {
+          "id": "qualitaet-q4",
+          "lessonId": "qualitaet",
+          "q": "Welche Formulierung bleibt bei erfolgloser Zuordnung korrekt?",
+          "options": [
+            "Die Art fehlt sicher im gesamten Tal.",
+            "Aus dieser Probe gelang unter diesem Verfahren kein verwertbarer Nachweis.",
+            "Alle Beobachtungen der Art sind dadurch widerlegt.",
+            "Das ganze Gebiet enthält keine Wildtiere."
+          ],
+          "answer": 1,
+          "explain": "Das Ergebnis betrifft zunächst die konkrete Probe und ihren Analyseweg."
+        },
+        {
+          "id": "hybridisierung-q1",
+          "lessonId": "hybridisierung",
+          "q": "Welche zusätzliche Untersuchung passt zur Frage nach genetischer Beimischung bei einem Hirsch?",
+          "options": [
+            "Nur eine hellere Bearbeitung desselben Fotos.",
+            "Nur die Länge des Bildausschnitts.",
+            "Ein Rückschluss allein aus dem Aufnahmemonat.",
+            "Eine dafür geeignete genetische Markeranalyse mit passenden Referenzen."
+          ],
+          "answer": 3,
+          "explain": "Genetische Herkunft und äußerer Phänotyp sind verschiedene Untersuchungsebenen."
+        },
+        {
+          "id": "hybridisierung-q2",
+          "lessonId": "hybridisierung",
+          "q": "Was darf aus einer schottischen Rot-Sika-Untersuchung nicht ohne lokale Daten übernommen werden?",
+          "options": [
+            "Die Häufigkeit genetischer Beimischung in einem bestimmten DACH-Revier.",
+            "Dass die Studie ein definiertes Untersuchungsgebiet hat.",
+            "Dass ein wissenschaftlicher Befund eine Methode benötigt.",
+            "Dass äußere Beschreibung und genetische Frage getrennt werden können."
+          ],
+          "answer": 0,
+          "explain": "Ein regionaler Nachweis liefert keinen automatisch gültigen DACH-Prozentwert."
+        },
+        {
+          "id": "hybridisierung-q3",
+          "lessonId": "hybridisierung",
+          "q": "Ein Tier wirkt rotwildähnlich. Welche Formulierung wahrt die Beweisgrenze?",
+          "options": [
+            "Die vollständige Abstammung ist durch das Foto bewiesen.",
+            "Die äußere Erscheinung ist beschrieben; genetische Beimischung bleibt damit ungeklärt.",
+            "Das Tier kann prinzipiell nie Kreuzungsvorfahren haben.",
+            "Der Bildausschnitt bestimmt alle untersuchten DNA-Marker."
+          ],
+          "answer": 1,
+          "explain": "Ein Foto kann sichtbare Merkmale dokumentieren, aber keine vollständige genetische Herkunft beweisen."
+        },
+        {
+          "id": "hybridisierung-q4",
+          "lessonId": "hybridisierung",
+          "q": "Was muss ein Bericht neben der Hybridisierungsfrage nennen?",
+          "options": [
+            "Nur die äußerlich vermutete Art jeder eingesandten Probe.",
+            "Nur die Anzahl gegebener Marker, ohne Referenzpopulation.",
+            "Untersuchtes Material, Verfahren, Referenzen und Population.",
+            "Nur die größte gefundene Beimischung, ohne Auswahl der Proben."
+          ],
+          "answer": 2,
+          "explain": "Der Geltungsbereich eines genetischen Befunds hängt von Daten und Methode ab."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-federaufbau-funktion-2026",
+      "title": "Vogelgefieder: Feinbau, Wärme und Farbe",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Was Federäste verbinden, Luftpolster leisten und schillernde Farben über die Beobachtung verraten.",
+      "minutes": 28,
+      "objectives": [
+        "Schaft, Äste und Strahlen auseinanderhalten",
+        "Geschlossene Fahne und Dunenfunktion vergleichen",
+        "Pigment- von Strukturfarbe unterscheiden",
+        "Gefiederpflege und Ersatz sachlich erklären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "AT": "Biologisches und methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe.",
+        "CH": "Biologisches und methodisches Lernwissen; keine örtliche Jagd- oder Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "All About Feathers: Aufbau und Funktionen",
+          "url": "https://academy.allaboutbirds.org/feathers-article/",
+          "organization": "Cornell Lab of Ornithology",
+          "supports": "Schaft, Äste und Strahlen, feste Fahne und lockere Dunenstruktur; Flug, Isolation, Pflege und Erneuerung. Kein universeller Mauserkalender."
+        },
+        {
+          "label": "Moult in Birds · Ginn und Melville, 1983/1995",
+          "url": "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+          "organization": "British Trust for Ornithology",
+          "supports": "Grundlagenkapitel S. 7–16: Federaufbau, Verhakung, Funktionen, Abnutzung und Ersatz. Historisches Werk nur für gegenbestätigte Anatomie; evolutionäre und aktuelle Bestandsaussagen nicht übernommen."
+        },
+        {
+          "label": "Wintergefieder: Luftpolster und Gefiederpflege",
+          "url": "https://www.bto.org/our-work/news/blog/garden-birds-winter",
+          "organization": "British Trust for Ornithology",
+          "supports": "Lockere Federn halten isolierende Luft; überlappende Körperfedern und Pflege tragen zum Schutz bei. Keine Übernahme artspezifischer Prozentwerte."
+        },
+        {
+          "label": "Wie Vogelfarben entstehen",
+          "url": "https://academy.allaboutbirds.org/how-birds-make-colorful-feathers/",
+          "organization": "Cornell Lab of Ornithology",
+          "supports": "Pigment- und Strukturfarben können zusammenwirken; Schillern kann sich mit dem Blickwinkel ändern."
+        },
+        {
+          "label": "McCoy und andere 2018: Mikrostruktur und Lichtabsorption",
+          "url": "https://profiles.si.edu/display/sro_145223",
+          "organization": "Smithsonian Institution; Forschungsarbeit von McCoy, Feo, Harvey und Prum",
+          "supports": "Originalarbeit an Paradiesvögeln belegt optische Wirkung der Federfeinstruktur. Wird als Mechanismusbeleg und ausdrücklich nicht als Untersuchung heimischer Jagdvögel verwendet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "feinbau",
+          "title": "Eine Fahne aus verbundenen Einzelteilen",
+          "paragraphs": [
+            "Eine typische Feder mit geschlossener Fahne besitzt einen Schaft, davon abgehende Äste und feinere Strahlen. Bei den entsprechenden Strukturen greifen kleine Häkchen und Gegenstrukturen ineinander. So entsteht eine zusammenhängende, zugleich bewegliche Fläche. Cornell und das BTO-Grundlagenwerk beschreiben diesen verzweigten Aufbau. Eine Feder ist deshalb weder eine feste Kunststoffplatte noch eine lose Ansammlung gleichartiger Haare. Dunen besitzen dagegen eine lockere Struktur ohne vergleichbar geschlossene Fahne.",
+            "Eigene Lernskizze: Zeichne einen langen Schaft, daran mehrere Äste und an einem vergrößerten Ast die feineren Verzweigungen. Verwende eine zweite Skizze für lockere Dunen und beschrifte deren offene Zwischenräume. Stelle die beiden Zeichnungen nebeneinander, ohne eine vermeintliche Art daraus abzulesen. Die Skizze erklärt einen Bauplan; sie ist keine maßstäbliche Bestimmungsvorlage. Für ein vorhandenes Federfoto notierst du zusätzlich, welche Verzweigungsstufen wirklich erkennbar sind und welche nur im erläuternden Schema stehen."
+          ],
+          "takeaway": "Die feste Fahne entsteht durch geordnet verbundene Verzweigungen; Dunen bleiben locker.",
+          "exercise": "Beschrifte an einer eigenen Skizze Schaft, Ast, Strahl und geschlossene Fahne."
+        },
+        {
+          "id": "waerme",
+          "title": "Luft festhalten statt selbst Wärme erzeugen",
+          "paragraphs": [
+            "Lockere, körpernahe Federn halten Luft zwischen ihren Verzweigungen fest. Diese Luftschicht begrenzt Wärmeverlust; sie ist keine Heizung, die unabhängig vom Tier Energie erzeugt. Darüber können überlappende Körperfedern eine schützende Außenlage bilden. BTO und Cornell erläutern die unterschiedlichen Funktionen. Wärmeisolation und eine geschlossene Außenfläche sind somit ergänzende Eigenschaften des Gefieders, keine konkurrierenden Erklärungen.",
+            "Eigener Vergleich: In einer Zeichnung trägt ein Vogel glattes Gefieder, in einer zweiten ist es aufgeplustert. Markiere die veränderte räumliche Anordnung und die möglichen Luftzwischenräume. Nenne anschließend die Beobachtungsgrenze: Ein aufgeplusterter Vogel ist durch diese Form allein weder sicher gesund noch sicher krank. Ein einzelner Zustand beweist auch keine bestimmte Außentemperatur. Die biologische Funktion erklärt eine Möglichkeit; für die Beurteilung einer konkreten Situation gehören Verhalten, Dauer und Umgebung dazu."
+          ],
+          "takeaway": "Gefiederisolierung beruht wesentlich auf gehaltenen Luftschichten und ihrer Anordnung.",
+          "exercise": "Erkläre mit einer Skizze, weshalb lockere Dunen und überlappende Außenfedern verschiedene Beiträge leisten."
+        },
+        {
+          "id": "farbe",
+          "title": "Pigment, Mikrostruktur und Blickwinkel",
+          "paragraphs": [
+            "Federfarben können durch Pigmente, durch die Wechselwirkung von Licht mit feinen Strukturen oder durch beides entstehen. Cornell erklärt diese Mechanismen; die Smithsonian-Forschungsdarstellung zeigt an einer Originalarbeit, dass auch die Oberflächenstruktur die Lichtwirkung verändern kann. Dieser Mechanismusbeleg an Paradiesvögeln ist keine Untersuchung jeder heimischen Wildart. Bei schillernden Federn kann sich der Farbeindruck mit Beleuchtung und Blickwinkel ändern.",
+            "Eigener Beobachtungsfall: Zwei Aufnahmen desselben dokumentierten Vogels wirken unterschiedlich farbig. Halte zunächst Licht, Blickrichtung und Kameraeinstellung als mögliche Einflussgrößen fest. Behaupte nicht sofort eine andere Art, einen Alterswechsel oder eine Erkrankung. Vergleiche zusätzlich Form, Zeichnung und verlässliche Herkunft der Bilder. Eine Farbe ist ein nützliches Merkmal; die Erklärung ihres Eindrucks ist jedoch etwas anderes als ein genetischer oder gesundheitlicher Befund. Auch eine nachträgliche Farbkorrektur muss bei einem Lehrbild erkennbar berücksichtigt werden."
+          ],
+          "takeaway": "Ein Farbeindruck entsteht aus Feder und Licht; er ist kein alleiniger Herkunfts- oder Gesundheitsnachweis.",
+          "exercise": "Nenne zu zwei unterschiedlich beleuchteten Gefiederbildern drei Angaben, die einen fairen Vergleich ermöglichen."
+        },
+        {
+          "id": "pflege",
+          "title": "Ordnen, abnutzen und ersetzen",
+          "paragraphs": [
+            "Gefiederpflege hilft, die Federstruktur zu ordnen und funktionsfähig zu halten. Sie ist von der Mauser zu unterscheiden, bei der alte Federn durch neue ersetzt werden. Das BTO-Grundlagenwerk und Cornell beschreiben Abnutzung und Erneuerung als verschiedene Vorgänge. Pflege ordnet vorhandene Strukturen; eine abgebrochene reife Federspitze wächst dadurch nicht einfach wieder in ursprünglicher Länge aus. Ersatz erfolgt über neu wachsende Federn.",
+            "Eigene Papierübung: Ordne drei Beschreibungen: Ein Vogel zieht eine vorhandene Feder durch den Schnabel; eine Federspitze ist sichtbar abgenutzt; eine neue Feder wächst nach. Halte Handlung, Zustand und Entwicklung getrennt. Ein einzelnes Foto kann den nachfolgenden Vorgang nicht beweisen. Für den Jahresvergleich ergänzst du Art, Datum und den beschriebenen Federbereich, ohne allen Vogelarten denselben Mausertermin zuzuteilen. Bereits vorhandene Museumsbilder genügen für diese Übung; Wildvögel müssen dafür nicht gefangen oder zur Bewegung gedrängt werden."
+          ],
+          "takeaway": "Gefiederpflege ordnet vorhandene Federn; Mauser erneuert sie.",
+          "exercise": "Erstelle drei Karten für Pflegehandlung, Abnutzungszustand und Federersatz."
+        }
+      ],
+      "questions": [
+        {
+          "id": "feinbau-q1",
+          "lessonId": "feinbau",
+          "q": "Welche Reihenfolge beschreibt den verzweigten Aufbau einer Fahnenfeder?",
+          "options": [
+            "Schaft, Äste, feinere Strahlen.",
+            "Schaft, Strahlen, daraus hervorgehende Äste.",
+            "Äste, Schaft, daraus hervorgehende Strahlen.",
+            "Strahlen, Äste, daraus hervorgehender Schaft."
+          ],
+          "answer": 0,
+          "explain": "Die Verzweigung wird vom zentralen Schaft zu immer feineren Federteilen beschrieben."
+        },
+        {
+          "id": "feinbau-q2",
+          "lessonId": "feinbau",
+          "q": "Wodurch wird eine geschlossene Federfahne zusammengehalten?",
+          "options": [
+            "Durch eine durchgehende Knochenplatte.",
+            "Durch ineinandergreifende Feinstrukturen benachbarter Verzweigungen.",
+            "Durch aneinandergewachsene Muskelstränge.",
+            "Durch eine geschlossene äußere Haut über allen Ästen."
+          ],
+          "answer": 1,
+          "explain": "Die verbundenen Strahlen bilden eine Fläche, obwohl die Feder aus vielen verzweigten Teilen besteht."
+        },
+        {
+          "id": "feinbau-q3",
+          "lessonId": "feinbau",
+          "q": "Was unterscheidet eine typische Dune von einer geschlossenen Fahnenfeder?",
+          "options": [
+            "Eine stets vollständig ungeteilte, geschlossene Außenfläche.",
+            "Eine durchgehend fest verhakte Fahne mit kräftigem Schaft.",
+            "Die lockere, nicht zu einer vergleichbar geschlossenen Fahne verbundene Struktur.",
+            "Die ausschließlich auf Flügelfedern beschränkte Verzweigung."
+          ],
+          "answer": 2,
+          "explain": "Die lockere Verzweigung passt zu einer anderen Funktion als die geschlossene Fahne."
+        },
+        {
+          "id": "feinbau-q4",
+          "lessonId": "feinbau",
+          "q": "Ein Foto zeigt Schaft und Äste einer Feder, löst aber keine feinen Strahlen auf. Welche Aussage bleibt damit unbelegt?",
+          "options": [
+            "Dass ein Schaft als tragende Längsstruktur erkennbar ist.",
+            "Dass seitliche Äste im Bild sichtbar sind.",
+            "Dass die Aufnahme die Feder nur bis zu ihrer Auflösungsgrenze zeigt.",
+            "Dass mikroskopische Häkchen auf dieser Aufnahme tatsächlich nachgewiesen sind."
+          ],
+          "answer": 3,
+          "explain": "Die sichtbaren größeren Strukturen sind belegt. Mikroskopische Häkchen werden durch eine allgemeine Beschreibung allein nicht im konkreten Foto sichtbar."
+        },
+        {
+          "id": "waerme-q1",
+          "lessonId": "waerme",
+          "q": "Was leistet die Luft zwischen lockeren Federn?",
+          "options": [
+            "Sie erzeugt ohne Energiezufuhr fortlaufend Wärme.",
+            "Sie trägt zur Begrenzung des Wärmeverlusts bei.",
+            "Sie ersetzt den Stoffwechsel vollständig.",
+            "Sie macht jede Vogelart dauerhaft unempfindlich gegen Kälte."
+          ],
+          "answer": 1,
+          "explain": "Die gehaltene Luftschicht isoliert; Wärme stammt weiterhin aus dem Körperhaushalt des Vogels."
+        },
+        {
+          "id": "waerme-q2",
+          "lessonId": "waerme",
+          "q": "Welche Erklärung verbindet äußere Körperfedern und Dunen richtig?",
+          "options": [
+            "Jede Feder hat ausschließlich dieselbe Aufgabe.",
+            "Dunen bilden grundsätzlich eine geschlossene Knochenfläche.",
+            "Schützende Außenlage und lockere Isolation können zusammenwirken.",
+            "Die Außenlage macht jede körpernahe Luftschicht überflüssig."
+          ],
+          "answer": 2,
+          "explain": "Verschiedene Strukturen des Gefieders ergänzen sich funktionell."
+        },
+        {
+          "id": "waerme-q3",
+          "lessonId": "waerme",
+          "q": "Ein Vogel erscheint aufgeplustert. Was ist durch diesen Eindruck allein nicht bewiesen?",
+          "options": [
+            "Eine veränderte sichtbare Gefiederform.",
+            "Ein Unterschied zu einer glatt anliegenden Silhouette.",
+            "Dass ein äußerer Zustand beobachtet wurde.",
+            "Eine eindeutige Gesundheitsdiagnose."
+          ],
+          "answer": 3,
+          "explain": "Die Form allein erklärt weder Ursache noch Gesundheitszustand des einzelnen Tieres."
+        },
+        {
+          "id": "waerme-q4",
+          "lessonId": "waerme",
+          "q": "Welche Beschriftung passt zu einer Wärmeschutzskizze?",
+          "options": [
+            "Körpernahe Luftschicht begrenzt den Wärmeverlust.",
+            "Feder erzeugt unbegrenzt neue Energie.",
+            "Jede Lufttasche beweist einen bestimmten Frostwert.",
+            "Dunen ersetzen sämtliche Körperfunktionen."
+          ],
+          "answer": 0,
+          "explain": "Die Skizze stellt eine Funktion dar, keinen universellen Temperatur- oder Gesundheitsnachweis."
+        },
+        {
+          "id": "farbe-q1",
+          "lessonId": "farbe",
+          "q": "Welche Faktoren können an einer Federfarbe beteiligt sein?",
+          "options": [
+            "Ausschließlich Farbstoffe, unabhängig von jeder Mikrostruktur.",
+            "Ausschließlich die äußere Form, ohne optische Wechselwirkung.",
+            "Pigmente und die Wechselwirkung von Licht mit Feinstrukturen.",
+            "Nur ein gleichbleibender Farbeindruck unabhängig vom Licht."
+          ],
+          "answer": 2,
+          "explain": "Farbwirkung kann pigmentär, strukturell oder durch Zusammenwirken entstehen."
+        },
+        {
+          "id": "farbe-q2",
+          "lessonId": "farbe",
+          "q": "Zwei dokumentierte Fotos desselben Vogels zeigen anderen Glanz. Was prüfst du zuerst mit?",
+          "options": [
+            "Ob der Vogel zwischen den Bildern zwingend die Art wechselte.",
+            "Ob eine neue Federfarbe automatisch eine Krankheit beweist.",
+            "Ob jeder Glanzeffekt das gleiche Geschlecht garantiert.",
+            "Beleuchtung, Blickwinkel und Bildbearbeitung."
+          ],
+          "answer": 3,
+          "explain": "Optische Bedingungen können den sichtbaren Eindruck erheblich verändern."
+        },
+        {
+          "id": "farbe-q3",
+          "lessonId": "farbe",
+          "q": "Was zeigt die genannte Paradiesvogelarbeit für diesen Kurs?",
+          "options": [
+            "Einen untersuchten Mechanismus der Lichtwirkung durch Federfeinstruktur.",
+            "Die genaue Farbbildung aller jagdbaren Vögel in DACH.",
+            "Eine Altersformel für jede Stockente.",
+            "Die sichere Bestimmung eines unbekannten Federfotos."
+          ],
+          "answer": 0,
+          "explain": "Eine Untersuchung einer Tiergruppe wird nicht als vollständige Untersuchung anderer Gruppen ausgegeben."
+        },
+        {
+          "id": "farbe-q4",
+          "lessonId": "farbe",
+          "q": "Welche Aussage ist bei einem einzelnen schillernden Gefiederfoto angemessen?",
+          "options": [
+            "Die Farbe beweist allein die vollständige Abstammung.",
+            "Der sichtbare Farbeindruck wird mit Licht und weiteren Merkmalen beschrieben.",
+            "Das Foto legt ohne Kontext das genaue Lebensalter fest.",
+            "Der Glanz ersetzt sämtliche Artmerkmale."
+          ],
+          "answer": 1,
+          "explain": "Ein optisches Merkmal trägt zur Beschreibung bei, ist aber kein umfassender biologischer Befund."
+        },
+        {
+          "id": "pflege-q1",
+          "lessonId": "pflege",
+          "q": "Welcher Vorgang bezeichnet den Ersatz alter durch neue Federn?",
+          "options": [
+            "Gefiederpflege.",
+            "Federabrieb.",
+            "Aufplustern.",
+            "Mauser."
+          ],
+          "answer": 3,
+          "explain": "Mauser erneuert das Gefieder durch neu wachsende Federn."
+        },
+        {
+          "id": "pflege-q2",
+          "lessonId": "pflege",
+          "q": "Eine vorhandene Feder wird mit dem Schnabel geordnet. Was ist damit zunächst beobachtet?",
+          "options": [
+            "Eine Pflegehandlung am vorhandenen Gefieder.",
+            "Der vollständige Ersatz aller Schwungfedern.",
+            "Eine bewiesene Krankheit des Vogels.",
+            "Ein sicherer Beginn der Brutzeit."
+          ],
+          "answer": 0,
+          "explain": "Die beobachtete Handlung ist von einer späteren Entwicklung zu unterscheiden."
+        },
+        {
+          "id": "pflege-q3",
+          "lessonId": "pflege",
+          "q": "Warum wird kein fester gemeinsamer Mausertag für alle Wildvögel angegeben?",
+          "options": [
+            "Weil jede Pflegebewegung exakt denselben Kalenderwert hat.",
+            "Art und Jahreszusammenhang unterscheiden sich.",
+            "Weil Vogelarten immer gleichzeitig alle Federn verlieren.",
+            "Weil das Aufnahmedatum den Federbereich ersetzt."
+          ],
+          "answer": 1,
+          "explain": "Mauser ist ein artspezifisch und jahreszeitlich einzuordnender Vorgang."
+        },
+        {
+          "id": "pflege-q4",
+          "lessonId": "pflege",
+          "q": "Eine reife Feder hat eine abgebrochene Spitze. Was erklärt die Erneuerung korrekt?",
+          "options": [
+            "Die Spitze wächst durch Streichen sofort wieder an.",
+            "Jede Pflegebewegung erzeugt einen neuen Schaft.",
+            "Neue Federbildung beim Ersatz ist von bloßer Pflege zu unterscheiden.",
+            "Der Bruch bestimmt ohne Zusatzmerkmale ein genaues Lebensalter."
+          ],
+          "answer": 2,
+          "explain": "Ein Verlust an der ausgebildeten Feder wird nicht durch einfaches Ordnen wiederhergestellt."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-zahnalter-beweisgrenzen-2026",
+      "title": "Zahnalter: Entwicklung, Abrieb und Schätzfehler",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Warum ein Kiefer wertvolle Hinweise liefert und trotzdem nicht jede Alterszahl gleich zuverlässig ist.",
+      "minutes": 30,
+      "objectives": [
+        "Zahnentwicklung und Verschleiß unterscheiden",
+        "Bekanntes Alter von geschätztem Alter trennen",
+        "Kalibrierung und Übertragung einer Methode prüfen",
+        "Unsicherheit verständlich dokumentieren"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Methodenwissen zur Altersansprache; biologische Studien bleiben auf Art und untersuchte Population begrenzt. Keine örtliche Jagdfreigabe.",
+        "AT": "Methodenwissen zur Altersansprache; biologische Studien bleiben auf Art und untersuchte Population begrenzt. Keine örtliche Jagdfreigabe.",
+        "CH": "Methodenwissen zur Altersansprache; biologische Studien bleiben auf Art und untersuchte Population begrenzt. Keine örtliche Jagdfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Høye 2006: Zahnalter bei Rehen bekannten Alters",
+          "url": "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+          "organization": "University of Copenhagen",
+          "supports": "Primärarbeit: Zahndurchbruch und definierte Abriebmerkmale; sinkende Genauigkeit bei älteren Tieren, Geschlechtsunterschiede. Zwei dänische Populationen zeigten dort keinen Unterschied der Abriebrate; keine universelle Habitatregel."
+        },
+        {
+          "label": "Loe und andere 2003: Zahnabrieb norwegischer Rothirsche",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/12721823/",
+          "organization": "University of Oslo",
+          "supports": "Primärarbeit: Abriebrate geschlechtsabhängig und mit Alter nicht konstant; Ausgangszahngröße beeinflusst Höhenvergleiche. Befunde aus norwegischer Population."
+        },
+        {
+          "label": "Kohut und andere 2024: Prüfung visueller Zahnaltermethoden",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0301408",
+          "organization": "University of Saskatchewan; University of Alberta; University of Calgary; Canadian Museum of Nature",
+          "supports": "Primärarbeit zu visuellen Zahnaltermethoden bei Rentieren/Karibus. Bei erwachsenen Tieren beruhen Referenzalter auf Zementannulation und besitzen eigene Unsicherheit. Fehler, Verzerrung, Protokollklarheit und Übertragungsgrenzen; keine durch Geburtsdaten vollständig gesicherte Altersstichprobe behauptet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "entwicklung",
+          "title": "Durchbruch und Wechsel sind nicht dasselbe wie Abrieb",
+          "paragraphs": [
+            "Bei einer Altersansprache über Zähne werden Entwicklungsmerkmale wie Durchbruch und Zahnwechsel von späteren Abnutzungsmerkmalen getrennt. Die Rehstudie von Høye kombiniert definierte Merkmale; die unabhängige Karibuuntersuchung prüft ebenfalls Durchbruch, Wechsel und Verschleiß nach vorgegebenen Verfahren. Ein durchbrechender Zahn und eine abgeflachte Kaufläche beschreiben verschiedene Prozesse. Die Merkmale müssen zuerst dem richtigen Zahn und der richtigen Art zugeordnet werden.",
+            "Eigene Museumsübung: Ein Blatt zeigt einen vollständig bezeichneten Kiefer, ein zweites nur einen Ausschnitt. Übertrage aus dem ersten Blatt die Orientierung und markiere im Ausschnitt ausschließlich sicher sichtbare Zahnpositionen. Schreibe separat auf, ob eine Entwicklungsstufe oder die Form der Kaufläche beurteilt wird. Wenn ein entscheidender Bereich verdeckt ist, bleibt das Merkmal offen. Diese Übung verbessert die Beschreibung, ohne eine nicht vorliegende Altersreihe zu ersetzen oder eine exakte Monatsangabe zu erfinden."
+          ],
+          "takeaway": "Zahnentwicklung und Zahnverschleiß liefern unterschiedliche Hinweise und benötigen passende Vergleichsdaten.",
+          "exercise": "Teile fünf gedachte Kiefermerkmale in Entwicklung, Abrieb und nicht beurteilbar ein."
+        },
+        {
+          "id": "kalibrierung",
+          "title": "Referenzalter und Unsicherheit als Prüfmaßstab",
+          "paragraphs": [
+            "Eine Zahnaltermethode wird geprüft, indem ihre Schätzwerte mit unabhängig gewonnenen Referenzaltern verglichen werden. Dabei muss die Herkunft der Referenz bekannt sein. Die dänische Rehstudie untersuchte Tiere bekannten Alters. Die kanadische Karibuuntersuchung nutzte bei erwachsenen Tieren dagegen mittels Zementannulation bestimmte Referenzalter; auch dieses Verfahren hat Unsicherheit. Ein methodisch bestimmter Vergleichswert ist kein durch ein bekanntes Geburtsdatum sicher belegtes Lebensalter. Die Leistung wird zusätzlich nach Altersgruppen betrachtet, weil Fehler bei jüngeren und älteren Tieren unterschiedlich ausfallen können.",
+            "Eigene Papierübung: Drei Präparate sind mit verlässlich bekanntem Alter von zwei, vier und sechs Jahren bezeichnet. Gedachte Schätzungen lauten zwei, fünf und vier Jahre. Notiere Abweichung und Richtung für jedes Präparat, bevor du einen Mittelwert bildest. Ein positiver und ein negativer Fehler können sich rechnerisch teilweise ausgleichen, obwohl die Einzelwerte ungenau bleiben. Die Zahlen sind ein eigenes Rechenbeispiel und keine Messergebnisse an einer Wildpopulation."
+          ],
+          "takeaway": "Herkunft und Unsicherheit des Referenzalters gehören zur Prüfung einer Altersmethode.",
+          "exercise": "Berechne die drei Abweichungen der Papierübung und erkläre, weshalb ein Mittelwert allein die Einzelgenauigkeit nicht zeigt."
+        },
+        {
+          "id": "uebertragung",
+          "title": "Keine allgemeine Millimeter-pro-Jahr-Regel",
+          "paragraphs": [
+            "Die norwegische Rothirschstudie beschreibt eine mit Alter und Geschlecht veränderliche Abriebrate. Høye fand bei seinen dänischen Rehen ebenfalls Geschlechtsunterschiede; zwischen den dort verglichenen Populationen zeigte sich jedoch kein Unterschied der Abriebrate. Damit wäre die pauschale Aussage „jeder Lebensraum verursacht zwingend einen anderen Abrieb“ genauso falsch wie eine weltweit identische lineare Abriebsuhr. Prüfe zuerst, was die konkrete Untersuchung tatsächlich verglichen hat.",
+            "Eigener Lernfall: Zwei Unterkiefer besitzen unterschiedlich hohe Backenzahnkronen. Auf dem Etikett fehlen Tierart, Geschlecht und Ausgangsmaß. Schreibe deshalb keine feste Jahresdifferenz an den niedrigeren Zahn. Die norwegische Untersuchung zeigt zusätzlich die Bedeutung der ursprünglichen Zahngröße für Höhenvergleiche. Verlange ein passendes Verfahren und eine geeignete Referenz. Der kanadische Methodenvergleich illustriert die Übertragungsfrage an Rangifer; dessen Diagramme werden dadurch keine Reh- oder Rotwildtafeln."
+          ],
+          "takeaway": "Zahnhöhe ist kein universelles Lineal für Lebensjahre.",
+          "exercise": "Formuliere drei Rückfragen, bevor du eine fremde Abriebtabelle auf einen anderen Bestand überträgst."
+        },
+        {
+          "id": "protokoll",
+          "title": "Ein nachvollziehbarer Altersbefund",
+          "paragraphs": [
+            "Ein nachvollziehbarer Zahnalterbefund nennt Art, untersuchte Zahnpositionen, verwendetes Verfahren und die passende Ergebnisform. Die untersuchten Methoden arbeiten teilweise mit Stufen oder Altersbereichen; fehlende oder beschädigte Strukturen können die Bewertung begrenzen. Die Primärarbeiten zu Rehen und Karibus zeigen, weshalb konkrete Merkmalsregeln wichtiger sind als ein erfahrungsstarker Ton. Unabhängig bekanntes Alter, methodische Schätzung und grobe Altersklasse werden im Protokoll deutlich getrennt.",
+            "Eigener Abschlussfall: Eine Präparatkarte enthält nur „sicher siebenjährig“. Erstelle eine zweite, verbesserte Karte mit Feldern für Herkunft, Zahnbefund, Vergleichsschema, geschätzten Bereich und offene Merkmale. Ein leeres Feld bleibt leer, bis geeignete Daten vorliegen. Eine breitere begründete Altersspanne kann informativer sein als eine enge unbegründete Jahreszahl. Zum Lernen wird die eigene Einschätzung vor der Auflösung notiert und anschließend anhand derselben Merkmalsregeln besprochen, statt nur den später sichtbaren Lösungswert zu übernehmen."
+          ],
+          "takeaway": "Methode und Unsicherheit gehören zum Ergebnis, nicht nur in eine Fußnote.",
+          "exercise": "Entwirf eine kurze Präparatkarte, die bekannte Daten und Schätzung getrennt ausweist."
+        }
+      ],
+      "questions": [
+        {
+          "id": "entwicklung-q1",
+          "lessonId": "entwicklung",
+          "q": "Was beschreibt eine teilweise hervorgetretene Zahnkrone zuerst?",
+          "options": [
+            "Ein Entwicklungsmerkmal des Zahndurchbruchs.",
+            "Den bereits erreichten Abrieb aller Backenzähne.",
+            "Den vollständig bestätigten Gesundheitszustand.",
+            "Eine direkt gemessene Lebensdauer des Tieres."
+          ],
+          "answer": 0,
+          "explain": "Durchbruch und Abnutzung sind verschiedene Merkmalsgruppen."
+        },
+        {
+          "id": "entwicklung-q2",
+          "lessonId": "entwicklung",
+          "q": "Was gehört vor den Vergleich einer Kaufläche mit einem Altersschema?",
+          "options": [
+            "Zunächst jede Kaufläche nur nach ihrer absoluten Breite sortieren.",
+            "Zahnposition, Tierart und Orientierung klären.",
+            "Die niedrigste sichtbare Zahnkrone als alleinige Referenz wählen.",
+            "Verdeckte Bereiche aus der Nachbarposition ergänzen."
+          ],
+          "answer": 1,
+          "explain": "Eine Vergleichstabelle ist nur sinnvoll, wenn die untersuchte Struktur richtig zugeordnet ist."
+        },
+        {
+          "id": "entwicklung-q3",
+          "lessonId": "entwicklung",
+          "q": "Ein Kieferbild verdeckt die entscheidende Zahnposition. Welche Eintragung ist sauber?",
+          "options": [
+            "Entsprechend der benachbarten Position bestätigt.",
+            "Als durchschnittlicher Wert ohne Kennzeichnung ergänzt.",
+            "Für diese Position nicht beurteilbar.",
+            "Als vollständig fehlender Zahn gewertet."
+          ],
+          "answer": 2,
+          "explain": "Unsichtbarkeit ist kein Nachweis für Fehlen oder einen bestimmten Zustand."
+        },
+        {
+          "id": "entwicklung-q4",
+          "lessonId": "entwicklung",
+          "q": "Welche Angabe bezeichnet vor allem Abrieb?",
+          "options": [
+            "Das erstmalige Hervortreten einer Krone.",
+            "Der Austausch eines Milchzahns.",
+            "Die Identifizierung einer Zahnposition im Schema.",
+            "Die dokumentierte Veränderung der Kauflächenform."
+          ],
+          "answer": 3,
+          "explain": "Verschleißmerkmale betreffen Veränderungen am gebrauchten Zahn."
+        },
+        {
+          "id": "kalibrierung-q1",
+          "lessonId": "kalibrierung",
+          "q": "Welche Vergleichsgrundlage muss bei der Prüfung einer Zahnaltermethode dokumentiert sein?",
+          "options": [
+            "Weitere Schätzungen ohne bekannte Vergleichswerte.",
+            "Unabhängig ermittelte Referenzalter mit dokumentierter Herkunft und Unsicherheit.",
+            "Nur die Zahl veröffentlichter Kieferbilder.",
+            "Ein einheitlicher Bildhintergrund aller Präparate."
+          ],
+          "answer": 1,
+          "explain": "Verglichen wird mit einem unabhängigen Referenzwert. Stammt dieser selbst aus Zementannulation, muss auch dessen Fehler berücksichtigt werden."
+        },
+        {
+          "id": "kalibrierung-q2",
+          "lessonId": "kalibrierung",
+          "q": "Ein vierjähriges Präparat wird im eigenen Beispiel auf fünf Jahre geschätzt. Welche Abweichung liegt vor?",
+          "options": [
+            "Eine Unterschätzung um ein Jahr.",
+            "Eine genaue Übereinstimmung.",
+            "Eine Überschätzung um ein Jahr.",
+            "Eine Überschätzung um fünf Jahre."
+          ],
+          "answer": 2,
+          "explain": "Fünf minus vier ergibt im ausdrücklich gedachten Beispiel ein Jahr nach oben."
+        },
+        {
+          "id": "kalibrierung-q3",
+          "lessonId": "kalibrierung",
+          "q": "Warum genügt ein mittlerer Fehler nahe null nicht als einziger Genauigkeitsnachweis?",
+          "options": [
+            "Weil jede Schätzung dann zwingend exakt sein muss.",
+            "Weil positive Abweichungen nicht zu berücksichtigen sind.",
+            "Weil die größte Altersgruppe alle Einzelwerte ersetzt.",
+            "Über- und Unterschätzungen können sich gegenseitig ausgleichen."
+          ],
+          "answer": 3,
+          "explain": "Die Richtung des mittleren Fehlers beschreibt nicht allein die Streuung der Einzelfehler."
+        },
+        {
+          "id": "kalibrierung-q4",
+          "lessonId": "kalibrierung",
+          "q": "Ein Verfahren trifft junge Tiere häufiger als alte. Wie wird das berichtet?",
+          "options": [
+            "Mit getrennten Angaben zur Leistung in den Altersgruppen.",
+            "Mit einer sicheren Jahreszahl für jedes ältere Tier.",
+            "Mit Ausschluss aller jungen Tiere aus dem Ergebnis.",
+            "Als Beweis, dass Zähne keinerlei Altersinformation tragen."
+          ],
+          "answer": 0,
+          "explain": "Methodische Leistungsgrenzen gehören zur beschriebenen Altersgruppe."
+        },
+        {
+          "id": "uebertragung-q1",
+          "lessonId": "uebertragung",
+          "q": "Warum wird keine feste allgemeine Abriebsstrecke pro Lebensjahr angegeben?",
+          "options": [
+            "Weil die Anfangshöhe aller Backenzähne bei allen Arten identisch ist.",
+            "Weil sich der gesamte Abrieb auf einen festen Entwicklungstag beschränkt.",
+            "Abriebrate und Ausgangsbedingungen sind nicht überall konstant.",
+            "Weil Geschlecht und Zahnposition bei jedem Verfahren entfallen können."
+          ],
+          "answer": 2,
+          "explain": "Die Studien stützen eine kontextabhängige statt universell lineare Auswertung."
+        },
+        {
+          "id": "uebertragung-q2",
+          "lessonId": "uebertragung",
+          "q": "Welche Aussage trifft Høyes Rehstudie in ihrem tatsächlichen Umfang?",
+          "options": [
+            "Dort wurde für jeden europäischen Lebensraum eine eigene Rate bewiesen.",
+            "Dort wurden norwegische Rothirsche statt Rehe verglichen.",
+            "Dort wurde für alle Altersgruppen völlige Fehlerfreiheit festgestellt.",
+            "Dort wurden Geschlechtsunterschiede, aber kein Populationsunterschied der Abriebrate gefunden."
+          ],
+          "answer": 3,
+          "explain": "Ein konkreter negativer Populationsvergleich darf nicht in eine allgemeine Habitatbehauptung umgeschrieben werden."
+        },
+        {
+          "id": "uebertragung-q3",
+          "lessonId": "uebertragung",
+          "q": "Zwei Zahnkronen sind unterschiedlich hoch. Welche Zusatzinformation ist beim Altersvergleich wichtig?",
+          "options": [
+            "Ob Zahnposition, Ausgangsgröße und Vergleichsverfahren passen.",
+            "Ob nur der jeweils am stärksten abgenutzte Zahn verglichen wurde.",
+            "Ob die gemessene Krone ohne Artzuordnung bewertet wurde.",
+            "Ob die Rohhöhe bereits als feste Jahreszahl ausgegeben wurde."
+          ],
+          "answer": 0,
+          "explain": "Gemessene Höhe wird durch Ausgangsmerkmale und Abrieb beeinflusst."
+        },
+        {
+          "id": "uebertragung-q4",
+          "lessonId": "uebertragung",
+          "q": "Eine Karibu-Alterstafel liegt vor. Was ist vor ihrer Nutzung für Rotwild zu klären?",
+          "options": [
+            "Ob sie eine besonders große Zahl von Altersklassen anbietet.",
+            "Ob überhaupt eine geeignete artspezifische Validierung vorliegt.",
+            "Ob ihre Zeichnungen deutlicher als vorhandene Rotwildbilder sind.",
+            "Ob ihre jüngste Kategorie mit demselben Monat bezeichnet ist."
+          ],
+          "answer": 1,
+          "explain": "Eine Methodenstudie an Rangifer begründet keine automatische Übernahme der konkreten Alterswerte auf Cervus."
+        },
+        {
+          "id": "protokoll-q1",
+          "lessonId": "protokoll",
+          "q": "Welche Präparatkarte ist fachlich nachvollziehbarer?",
+          "options": [
+            "Eine mit nur einer sicheren Jahreszahl ohne Merkmale.",
+            "Eine mit nur dem Namen der schätzenden Person.",
+            "Eine mit einer aus der Fotoqualität abgeleiteten Lebensdauer.",
+            "Eine mit Zahnposition, Methode, geschätztem Bereich und Einschränkungen."
+          ],
+          "answer": 3,
+          "explain": "Die Begründung macht überprüfbar, wie aus dem Befund eine Schätzung wurde."
+        },
+        {
+          "id": "protokoll-q2",
+          "lessonId": "protokoll",
+          "q": "Woran erkennst du den Unterschied zwischen Referenzalter und Schätzung?",
+          "options": [
+            "Ob Geburtsdaten oder ein unabhängig angewendetes Referenzverfahren vorliegen und wie unsicher der Wert ist.",
+            "Beide stehen grundsätzlich ohne Kennzeichnung in derselben Spalte.",
+            "Ein präzise gedruckter Wert ist immer unabhängig bekannt.",
+            "Eine spätere Veröffentlichung macht jede Schätzung zum Geburtsnachweis."
+          ],
+          "answer": 0,
+          "explain": "Ein Geburtsdatum und ein methodisch geschätzter Referenzwert haben unterschiedliche Voraussetzungen. Herkunft und mögliche Fehler werden deshalb ausdrücklich benannt."
+        },
+        {
+          "id": "protokoll-q3",
+          "lessonId": "protokoll",
+          "q": "Warum wird die eigene Einschätzung vor der Auflösung notiert?",
+          "options": [
+            "Damit der Lösungswert die eigene Beobachtung rückwirkend ersetzt.",
+            "Damit der anschließende Vergleich den ursprünglichen Gedankengang prüfen kann.",
+            "Damit eine abweichende Lösung nicht mehr besprochen werden muss.",
+            "Damit jede Altersklasse unabhängig von Merkmalen gleich richtig wird."
+          ],
+          "answer": 1,
+          "explain": "Die eigene Lernmethode trennt Erstbeobachtung und spätere Rückmeldung."
+        },
+        {
+          "id": "protokoll-q4",
+          "lessonId": "protokoll",
+          "q": "Ein beschädigter Zahn verhindert die Bewertung eines Merkmals. Was gehört in den Befund?",
+          "options": [
+            "Ein ergänzter Durchschnittswert ohne Kennzeichnung.",
+            "Die sichere Annahme, dass das Merkmal unverändert war.",
+            "Die Beschädigung und ihre Auswirkung auf die Beurteilbarkeit.",
+            "Nur eine Jahreszahl mit zusätzlicher Nachkommastelle."
+          ],
+          "answer": 2,
+          "explain": "Fehlende Information muss als Einschränkung sichtbar bleiben."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-hund-koerpersprache-2026",
+      "title": "Hundekörpersprache: Signale im Zusammenhang lesen",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Haltung, Situation und Veränderung verbinden, ohne ein Wedeln oder Gähnen zur fertigen Diagnose zu machen.",
+      "minutes": 28,
+      "objectives": [
+        "Den ganzen Hund statt nur die Rute beobachten",
+        "Gleiche Bewegung in verschiedenen Situationen einordnen",
+        "Abstandsbedarf früh berücksichtigen",
+        "Verhaltensänderungen ohne Ferndiagnose dokumentieren"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches und methodisches Hundewissen. Gesundheit und Verhaltensänderungen individuell tierärztlich abklären; keine pauschale Einsatzfreigabe.",
+        "AT": "Gemeinsames biologisches und methodisches Hundewissen. Gesundheit und Verhaltensänderungen individuell tierärztlich abklären; keine pauschale Einsatzfreigabe.",
+        "CH": "Gemeinsames biologisches und methodisches Hundewissen. Gesundheit und Verhaltensänderungen individuell tierärztlich abklären; keine pauschale Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Körpersprache im Gesamtzusammenhang",
+          "url": "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+          "organization": "Dogs Trust – Behaviour Team",
+          "supports": "Ganzkörper, Kontext, Individualunterschiede, Rückzug, Gesundheitsveränderungen; kein einzelnes Signal als sichere Diagnose."
+        },
+        {
+          "label": "Aggressionsverhalten und Warnsignale",
+          "url": "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/aggression",
+          "organization": "Royal Society for the Prevention of Cruelty to Animals",
+          "supports": "Wegsehen, Erstarren, Knurren und Abstandsbedarf; Schwanzwedeln beweist keine freundliche Absicht. Körpersignale nicht als starre Eskalationsleiter behandeln."
+        },
+        {
+          "label": "Hilfe bei Angst und starken Emotionen",
+          "url": "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/signs-your-dog-may-be-stressed",
+          "organization": "Dogs Trust – Behaviour Team",
+          "supports": "Kontextabhängige subtile Stressanzeichen; Distanz und Erholung. Keine festen Stresshormon-Abbauzeiten."
+        },
+        {
+          "label": "Hundeverhalten erkennen und Veränderungen abklären",
+          "url": "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/understanding",
+          "organization": "Royal Society for the Prevention of Cruelty to Animals",
+          "supports": "Kombinationen von Haltung und Gesichtsausdruck; tierärztliche Abklärung bei Verhaltenssorgen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gesamtbild",
+          "title": "Rute, Gesicht und Körper gemeinsam betrachten",
+          "paragraphs": [
+            "Ein wedelnder Hund ist nicht automatisch freundlich oder entspannt. Dogs Trust und RSPCA betonen das Gesamtbild: Körperhaltung, Spannung, Gesicht, Ohren, Rute und Bewegungsverlauf gehören zusammen. Ein steifer Körper bei Bewegung der Rute kann anders einzuordnen sein als lockere Bewegungen des gesamten Hundes. Das ist kein Wörterbuch, in dem jede einzelne Stellung immer dieselbe Bedeutung hat. Der bekannte individuelle Hund und die Situation liefern wichtige Zusatzinformationen.",
+            "Eigene Beobachtungsübung: Beschreibe einen vorhandenen kurzen Alltagsfilm zuerst ohne Gefühlswort. Notiere „Körper steif“, „Kopf abgewendet“ oder „entfernt sich“, soweit dies sichtbar ist. Erst in einer zweiten Spalte stehen mögliche Deutungen und fehlender Kontext. Vergleiche den Beginn mit dem Ende der Sequenz. Ein Standbild kann einen Übergang verbergen. Für diese Übung wird keine Begegnung hergestellt und kein Hund bedrängt; eine bereits vorhandene ruhige Alltagsszene reicht aus."
+          ],
+          "takeaway": "Ein einzelnes Signal wird erst im Gesamtbild verständlicher.",
+          "exercise": "Trenne bei einer vorhandenen Szene sichtbare Bewegung, mögliche Deutung und fehlende Information."
+        },
+        {
+          "id": "kontext",
+          "title": "Dasselbe Verhalten kann verschiedene Anlässe haben",
+          "paragraphs": [
+            "Lippenlecken beim Bereitstellen von Futter ist anders zu beurteilen als Lippenlecken zusammen mit Abwenden bei einer unangenehmen Annäherung. Gähnen kann Müdigkeit begleiten, aber in anderem Zusammenhang auch bei Anspannung auftreten. Die beiden Verhaltensfachstellen beschreiben solche Mehrdeutigkeit. Ein einzelnes Gähnen beweist weder Angst noch einen bestimmten Hormonwert. Benenne deshalb, was unmittelbar davor und danach geschah.",
+            "Eigener Vergleich: In Szene A wird Futter vorbereitet; in Szene B beugt sich eine unbekannte Person über den Hund. In beiden Szenen leckt der Hund über die Lippen. Sammle die Unterschiede, ohne allein aus dieser Bewegung den inneren Zustand festzuschreiben. Wenn in B zusätzlich Wegdrehen und Ausweichen sichtbar werden, verdient dieser Abstandsversuch Beachtung. Ein Leckerli ist kein Beweis, dass der Hund die Annäherung angenehm findet. Die Übung schult das Lesen vorhandener Information, nicht das absichtliche Auslösen solcher Situationen."
+          ],
+          "takeaway": "Eine Bewegung hat keinen vom Anlass unabhängigen festen Gefühlswert.",
+          "exercise": "Beschreibe Lippenlecken einmal im Futterkontext und einmal zusammen mit einem Ausweichversuch."
+        },
+        {
+          "id": "abstand",
+          "title": "Ausweichen ist eine Information für das Team",
+          "paragraphs": [
+            "Wegdrehen, Rückzug, Erstarren oder Knurren können anzeigen, dass eine Begegnung für den Hund unangenehm ist und er Abstand benötigt. RSPCA und Dogs Trust raten, solche Signale ernst zu nehmen. Nicht jeder Hund zeigt sie in einer festen Reihenfolge. Deshalb ist eine gezeichnete Eskalationsleiter keine Garantie, dass vorher jede Stufe sichtbar durchlaufen wird. Ein fehlendes leises Signal beweist nicht, dass eine weitere Annäherung sicher wäre.",
+            "Eigener Planungsfall: Ein Hund wird an einer engen Tür begrüßt und kann kaum ausweichen. Entwirf auf Papier einen Ablauf mit weniger Gedränge, freiwilligem Abstand und einem getrennten Ruhebereich. Der Plan soll die Situation verändern, bevor eine Wiederholung verlangt wird. Für die Bewertung brauchst du kein Knurren absichtlich auszulösen. Ein angespanntes Team beendet die Interaktion und schafft Raum. Wiederkehrende Schwierigkeiten werden mit qualifizierter Unterstützung bearbeitet, statt eine unklare Szene als Gehorsamsprobe zu verwenden."
+          ],
+          "takeaway": "Abstandsversuche beachten; auf eine angeblich sichere Reihenfolge von Warnzeichen ist kein Verlass.",
+          "exercise": "Verbessere eine gedachte Begrüßung an einer engen Tür, ohne den Hund zu bedrängen."
+        },
+        {
+          "id": "veraenderung",
+          "title": "Plötzliche Veränderung ist keine Charakterdiagnose",
+          "paragraphs": [
+            "Gesundheit und Verhalten können zusammenhängen. Dogs Trust nennt Schmerzen und andere medizinische Probleme als mögliche Einflüsse; RSPCA empfiehlt bei Verhaltenssorgen zunächst tierärztliche Abklärung. Wenn ein sonst kontaktfreudiger Hund plötzlich Berührung meidet, ist damit weder eine bestimmte Krankheit bewiesen noch eine dauerhafte Wesensänderung. Ein fachlicher Befund beginnt mit dem beschriebenen Unterschied zum bisherigen Verhalten.",
+            "Eigener Übergabefall: Nach einem Reviertag fällt auf, dass ein Hund beim Hinlegen zögert und Berührung an einer Körperregion meidet. Notiere Beginn, beobachtete Bewegungen, Zusammenhang und bereits bekannte Vorerkrankungen, ohne den Bereich wiederholt zum Test zu reizen. Gib diese Angaben an die Tierpraxis weiter. Die App liefert keine Freigabe für weiteres Arbeiten. Die sachliche Dokumentation soll den individuellen Termin vorbereiten und verhindert, dass Unwohlsein vorschnell als Ungehorsam behandelt wird."
+          ],
+          "takeaway": "Neue Verhaltensänderungen beschreiben und bei Gesundheitsverdacht abklären, statt Absicht zu unterstellen.",
+          "exercise": "Schreibe eine kurze tierärztliche Übergabenotiz mit Beobachtungen und offenen Fragen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "gesamtbild-q1",
+          "lessonId": "gesamtbild",
+          "q": "Ein Hund wedelt, während sein Körper steif bleibt. Welche Einordnung passt?",
+          "options": [
+            "Weitere Signale und die Situation mitbeurteilen.",
+            "Wedeln allein als sichere Kontaktaufforderung lesen.",
+            "Nur die Geschwindigkeit der Rute als vollständigen Befund verwenden.",
+            "Den steifen Körper aus der Beobachtung streichen."
+          ],
+          "answer": 0,
+          "explain": "Rutenbewegung besitzt keine für sich allein eindeutige Bedeutung."
+        },
+        {
+          "id": "gesamtbild-q2",
+          "lessonId": "gesamtbild",
+          "q": "Welche Notiz trennt Beobachtung von Deutung?",
+          "options": [
+            "Der Hund plant sicher einen Angriff in wenigen Sekunden.",
+            "Kopf abgewendet und Körper angespannt; Anlass noch unklar.",
+            "Die Rutenbewegung beweist seine dauerhafte Freundlichkeit.",
+            "Die Aufnahme bestätigt ohne Vorgeschichte seine gesamte Persönlichkeit."
+          ],
+          "answer": 1,
+          "explain": "Sichtbare Bewegungen lassen sich beschreiben, während Absicht und Ursache offenbleiben können."
+        },
+        {
+          "id": "gesamtbild-q3",
+          "lessonId": "gesamtbild",
+          "q": "Warum kann eine kurze Sequenz gegenüber einem Standbild helfen?",
+          "options": [
+            "Jeder Film zeigt automatisch die vollständige Vorgeschichte.",
+            "Die Kameradauer ersetzt die Beobachtung der Körperhaltung.",
+            "Der Verlauf von Annäherung, Spannung und Rückzug wird sichtbar.",
+            "Bewegte Bilder beweisen eine medizinische Diagnose."
+          ],
+          "answer": 2,
+          "explain": "Zeitlicher Verlauf liefert Kontext, den ein einzelner Ausschnitt nicht zeigt."
+        },
+        {
+          "id": "gesamtbild-q4",
+          "lessonId": "gesamtbild",
+          "q": "Was gehört neben der Rute zur Körpersprachebeobachtung?",
+          "options": [
+            "Nur die Lautstärke, unabhängig von Haltung und Situation.",
+            "Nur die nächste bekannte Trainingsaufgabe.",
+            "Ausschließlich das bisher übliche Verhalten ohne aktuelle Szene.",
+            "Gesicht, Haltung, Spannung und Bewegungsverlauf."
+          ],
+          "answer": 3,
+          "explain": "Die gemeinsame Betrachtung mehrerer Körperbereiche verbessert die Beschreibung."
+        },
+        {
+          "id": "kontext-q1",
+          "lessonId": "kontext",
+          "q": "Warum wird Lippenlecken vor dem Fressen nicht gleich wie Lippenlecken beim Ausweichen bewertet?",
+          "options": [
+            "Lippenlecken besitzt grundsätzlich keine beobachtbare Form.",
+            "Der Anlass und die begleitenden Signale unterscheiden sich.",
+            "Futter macht jede gleichzeitig auftretende Bewegung bedeutungslos.",
+            "Nur die Felllänge bestimmt den inneren Zustand."
+          ],
+          "answer": 1,
+          "explain": "Dasselbe sichtbare Verhalten wird mit seiner Situation und weiteren Merkmalen eingeordnet."
+        },
+        {
+          "id": "kontext-q2",
+          "lessonId": "kontext",
+          "q": "Ein Hund gähnt einmal. Welche Schlussfolgerung ist zu weitgehend?",
+          "options": [
+            "Das Gähnen ist als Bewegung beobachtet.",
+            "Der vorherige Ablauf kann zusätzlich notiert werden.",
+            "Damit ist sein Angstzustand sicher diagnostiziert.",
+            "Müdigkeit und andere Anlässe bleiben zu prüfen."
+          ],
+          "answer": 2,
+          "explain": "Ein einzelnes mehrdeutiges Signal erlaubt keine sichere Diagnose."
+        },
+        {
+          "id": "kontext-q3",
+          "lessonId": "kontext",
+          "q": "Ein Hund nimmt ein Leckerli, weicht der Hand aber aus. Welche Beobachtung bleibt wichtig?",
+          "options": [
+            "Nur die Tatsache, dass Futter vorhanden ist.",
+            "Nur der Name der Person mit der Hand.",
+            "Die Annahme, dass Fressen jeden Abstandsbedarf ausschließt.",
+            "Das Ausweichen trotz Futteraufnahme."
+          ],
+          "answer": 3,
+          "explain": "Mehrere gleichzeitig auftretende Signale dürfen nicht zugunsten eines angenehmen Eindrucks ausgelassen werden."
+        },
+        {
+          "id": "kontext-q4",
+          "lessonId": "kontext",
+          "q": "Welche Ergänzung verbessert eine Verhaltensnotiz?",
+          "options": [
+            "Was vor der Bewegung geschah und wie der Hund danach reagierte.",
+            "Eine feste Diagnose aus einem einzelnen Gesichtsausschnitt.",
+            "Ein erfundener exakter Hormonspiegel.",
+            "Eine allgemeine Rasseeigenschaft anstelle der Szene."
+          ],
+          "answer": 0,
+          "explain": "Vorheriger Ablauf und Folgehandlung helfen, den Kontext zu verstehen."
+        },
+        {
+          "id": "abstand-q1",
+          "lessonId": "abstand",
+          "q": "Ein Hund weicht einer begrüßenden Person wiederholt aus. Was passt als nächster Schritt?",
+          "options": [
+            "Die Person soll näher treten, bis der Hund stillhält.",
+            "Das Ausweichen als sicheren Wunsch nach Streicheln deuten.",
+            "Annäherung beenden und mehr Abstand ermöglichen.",
+            "Die Bewegung ignorieren, solange die Rute zu sehen ist."
+          ],
+          "answer": 2,
+          "explain": "Ein Ausweichversuch ist relevante Information über die aktuelle Begegnung."
+        },
+        {
+          "id": "abstand-q2",
+          "lessonId": "abstand",
+          "q": "Warum garantiert eine gezeichnete Warnsignal-Leiter keine sichere Annäherung?",
+          "options": [
+            "Weil jedes Tier zwingend alle gezeichneten Stufen zeigen muss.",
+            "Weil sichtbare Warnzeichen grundsätzlich bedeutungslos sind.",
+            "Weil ein fehlendes Knurren jede Gefahr ausschließt.",
+            "Hunde zeigen Signale nicht immer in derselben Reihenfolge."
+          ],
+          "answer": 3,
+          "explain": "Verlauf und Sichtbarkeit der Kommunikation unterscheiden sich individuell."
+        },
+        {
+          "id": "abstand-q3",
+          "lessonId": "abstand",
+          "q": "Was verbessert die gedachte Türsituation?",
+          "options": [
+            "Mehr Raum, weniger Gedränge und eine Rückzugsmöglichkeit.",
+            "Eine engere Begrüßungsgruppe direkt am Hund.",
+            "Mehr Hände am Kopf zur gleichen Zeit.",
+            "Eine Wiederholung ohne Ausweichmöglichkeit."
+          ],
+          "answer": 0,
+          "explain": "Die Gestaltung der Begegnung kann Belastung verringern, statt sie zu provozieren."
+        },
+        {
+          "id": "abstand-q4",
+          "lessonId": "abstand",
+          "q": "Ein Hund erstarrt bei Annäherung. Welche Reaktion berücksichtigt das Signal?",
+          "options": [
+            "Die Reglosigkeit als sicheren Einverständnisbeweis verwenden.",
+            "Die Interaktion unterbrechen und ruhig Raum schaffen.",
+            "Sofort noch näher über den Kopf greifen.",
+            "Erst handeln, wenn jede andere Warnstufe sichtbar war."
+          ],
+          "answer": 1,
+          "explain": "Auch Stillwerden kann im Kontext ein relevantes Warnzeichen sein."
+        },
+        {
+          "id": "veraenderung-q1",
+          "lessonId": "veraenderung",
+          "q": "Ein sonst berührungsfreudiger Hund meidet plötzlich Kontakt. Was ist angemessen?",
+          "options": [
+            "Eine dauerhafte Charakteränderung als gesichert eintragen.",
+            "Wiederholt dieselbe Berührung zur Gehorsamsprüfung erzwingen.",
+            "Alle Gesundheitsfragen allein wegen der Rasse ausschließen.",
+            "Die Veränderung dokumentieren und mögliche medizinische Ursachen abklären."
+          ],
+          "answer": 3,
+          "explain": "Eine neue Veränderung kann verschiedene Ursachen haben und benötigt individuelle Abklärung."
+        },
+        {
+          "id": "veraenderung-q2",
+          "lessonId": "veraenderung",
+          "q": "Welche Information hilft der Tierpraxis in einer Übergabe?",
+          "options": [
+            "Seit wann welche Bewegung oder Berührung auffällig ist.",
+            "Eine allgemeine Charakterbewertung ohne zeitlichen Verlauf.",
+            "Nur die Zahl ausgelassener Übungen seit der Auffälligkeit.",
+            "Eine bereits festgelegte Diagnose ohne beobachtete Einzelmerkmale."
+          ],
+          "answer": 0,
+          "explain": "Konkreter Beginn und beobachteter Verlauf sind informativer als ein wertendes Etikett."
+        },
+        {
+          "id": "veraenderung-q3",
+          "lessonId": "veraenderung",
+          "q": "Warum wird eine unangenehme Berührung nicht wiederholt als Test erzwungen?",
+          "options": [
+            "Weil jede ausweichende Bewegung ein Ausbildungsabschluss ist.",
+            "Die Beobachtung soll ohne zusätzliche Provokation weitergegeben werden.",
+            "Weil sich eine Krankheit durch Wiederholung sicher ausschließen lässt.",
+            "Weil die Zahl der Berührungen das Lebensalter bestimmt."
+          ],
+          "answer": 1,
+          "explain": "Der Lernfall zielt auf Entlastung und fachliche Untersuchung statt erzwungene Bestätigung."
+        },
+        {
+          "id": "veraenderung-q4",
+          "lessonId": "veraenderung",
+          "q": "Was kann diese Lektion bei einer neuen Auffälligkeit leisten?",
+          "options": [
+            "Die individuelle medizinische Untersuchung ersetzen.",
+            "Eine sichere Diagnose aus einem Körperwort bestimmen.",
+            "Eine geordnete Beobachtung und Vorbereitung der fachlichen Abklärung.",
+            "Eine pauschale Freigabe für den nächsten Einsatz erteilen."
+          ],
+          "answer": 2,
+          "explain": "Wissensvermittlung unterstützt die Übergabe, entscheidet aber nicht über den individuellen Gesundheitsbefund."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "title": "Ruhe und Schlaf: Erholung im Jagdhundealltag",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Ruheplätze, Tagesablauf, Messgrenzen und Veränderungen älterer Hunde gemeinsam betrachten.",
+      "minutes": 28,
+      "objectives": [
+        "Ruheplatz von einem Durchgangsort unterscheiden",
+        "Sichtbare Ruhe und gemessene Schlafstadien trennen",
+        "Aktivität und Rückzug gemeinsam planen",
+        "Veränderten Schlaf ohne Ferndiagnose dokumentieren"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames Haltungs- und Methodenwissen. Individuellen Schlaf- und Gesundheitsverlauf tierärztlich besprechen; keine feste Erholungs- oder Einsatzfreigabe.",
+        "AT": "Gemeinsames Haltungs- und Methodenwissen. Individuellen Schlaf- und Gesundheitsverlauf tierärztlich besprechen; keine feste Erholungs- oder Einsatzfreigabe.",
+        "CH": "Gemeinsames Haltungs- und Methodenwissen. Individuellen Schlaf- und Gesundheitsverlauf tierärztlich besprechen; keine feste Erholungs- oder Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Binder und andere 2021: Enrichment und Ruhebereiche",
+          "url": "https://www.vetmeduni.ac.at/fileadmin/v/vetrecht/Enrichment_Hunde_WTM_2021.pdf",
+          "organization": "Veterinärmedizinische Universität Wien",
+          "supports": "S. 277: störungsarme, saubere, trockene Ruheflächen, Wahlmöglichkeit und Trennung von Aktivitätsbereichen. Ausgangskontext Versuchshundehaltung wird ausdrücklich begrenzt; keine festen Schlafstunden übernommen."
+        },
+        {
+          "label": "Eine passende Umgebung für Hunde",
+          "url": "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/environment",
+          "organization": "Royal Society for the Prevention of Cruelty to Animals",
+          "supports": "Bequemer sauberer ruhiger ungestörter Ruheort, Rückzug, ausreichende Ressourcen mehrerer Hunde und Beschäftigung. Britische Rechtsangaben nicht übernommen."
+        },
+        {
+          "label": "Mondino und andere 2023: Schlaf und Kognition älterer Hunde",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1151266/full",
+          "organization": "North Carolina State University; Instituto de Matemática Aplicada del Litoral; Research Centre for Natural Sciences",
+          "supports": "Originalarbeit: nichtinvasive Polysomnographie älterer Hunde, Korrelation von Schlafmustern und kognitiven Merkmalen; keine Kausalitäts- oder App-Diagnosebehauptung."
+        },
+        {
+          "label": "Ältere Hunde: Ruhe und Verhaltensänderungen",
+          "url": "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/seniordogs",
+          "organization": "Royal Society for the Prevention of Cruelty to Animals",
+          "supports": "Individuelle Altersentwicklung, ungestörtes Ruhen, Schlafänderungen tierärztlich abklären; keine pauschale Inaktivität."
+        },
+        {
+          "label": "Schlafendes Hundegehirn: nichtinvasive EEG-Untersuchung",
+          "url": "https://elte.hu/en/how-age-and-sex-are-reflected-in-the-sleeping-dogs-brain",
+          "organization": "Eötvös Loránd University",
+          "supports": "Eigene Forschungsdarstellung von Schlaf-EEG und Alters-/Geschlechtszusammenhängen; erklärt Messverfahren, keine Diagnose aus Liegehaltung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "ruheplatz",
+          "title": "Ein Schlafplatz braucht mehr als eine freie Ecke",
+          "paragraphs": [
+            "Ein geeigneter Ruheort ist bequem, sauber, trocken und möglichst frei von Störungen. RSPCA beschreibt diese Grundbedürfnisse; die Vetmeduni-Übersicht behandelt zusätzlich Wahlmöglichkeiten und die Trennung von Ruhe- und Aktivitätsbereichen. Ihr Ausgangskontext sind Forschungseinrichtungen. Hier werden nur die unabhängig bestätigten allgemeinen Bedürfnisse übernommen, keine dortigen Platzvorgaben als privates Haltungsgesetz. Ein Korb direkt im engen Durchgang kann äußerlich ein Bett sein, ohne dieselbe Rückzugsmöglichkeit wie ein ruhiger Standort zu bieten.",
+            "Eigener Grundrissfall: Küche, Haustür und Kinderzimmer liegen an einem Flur. Zeichne für den Hund einen Ruheort ein, der nicht bei jeder Bewegung durchquert wird. Markiere außerdem, welche Personen für ungestörtes Ruhen verantwortlich sind und wie andere Tiere Abstand halten können. Vergleiche den Ort morgens und abends. Ein hübsches Möbelstück allein beantwortet weder die Frage nach Störungen noch nach der freiwilligen Nutzbarkeit. Die Übung plant die Umgebung; sie misst keine Schlafqualität."
+          ],
+          "takeaway": "Ruheort, Zugänglichkeit und tatsächliche Störungen werden gemeinsam beurteilt.",
+          "exercise": "Verbessere einen gedachten Grundriss um einen sauberen, trockenen und wenig gestörten Rückzugsort."
+        },
+        {
+          "id": "messung",
+          "title": "Liegen ist noch keine Schlafstadienmessung",
+          "paragraphs": [
+            "Schlafstudien an Hunden verwenden unter anderem nichtinvasive elektrische Ableitungen, um Zustände wie Wachsein, Dösen, NREM- und REM-Schlaf zu unterscheiden. Die NC-State-Originalarbeit und die ELTE-Forschungsdarstellung zeigen solche Messansätze. Beide Forschungsrichtungen sind personell teilweise verbunden; sie werden hier nicht als unabhängige Wiederholung desselben Datensatzes ausgegeben. Der gesicherte gemeinsame Punkt ist die methodische Unterscheidung zwischen äußerer Beobachtung und physiologischer Messung.",
+            "Eigener Vergleich: Ein Alltagstagebuch enthält „lag von 14 bis 15 Uhr auf der Decke“. Schreibe daneben, was es tatsächlich dokumentiert: sichtbaren Ort und beobachtete Ruhezeit. Welche Schlafstadien in dieser Stunde auftraten, lässt sich aus diesem Satz nicht feststellen. Auch ein kurzes Zucken oder geschlossene Augen bestimmen nicht den Inhalt eines Traums. Das Tagebuch bleibt nützlich, solange es nicht mehr behauptet als beobachtet wurde. Eine genaue Stundenpflicht für alle Jagdhunde wird aus Laborbefunden nicht abgeleitet."
+          ],
+          "takeaway": "Ruhebeobachtung und physiologisch bestimmte Schlafstadien sind unterschiedliche Daten.",
+          "exercise": "Übersetze drei Alltagssätze in eine reine Beobachtung und eine damit noch unbeantwortete Messfrage."
+        },
+        {
+          "id": "tagesablauf",
+          "title": "Aktivität und Rückzug zusammen planen",
+          "paragraphs": [
+            "Ruhebedarf und Beschäftigungsbedarf stehen nebeneinander. Die Vetmeduni-Übersicht warnt davor, häufiges Ruhen als Anlass zu nehmen, Bewegung und soziale Anregung zu unterschätzen; RSPCA nennt beides als Bestandteile einer geeigneten Umgebung. Ein guter Tagesplan besteht deshalb nicht nur aus Übungen, aber auch nicht aus möglichst langer Untätigkeit. Unterschiedliche Hunde und Lebenslagen benötigen individuell passende Abläufe. Eine starre App-Zahl ersetzt diese Beurteilung nicht.",
+            "Eigener Planungsfall: Nach Transport, vielen Begegnungen und einer Übung bleibt am Abend erneut Besuch. Zeichne die Ereignisse in eine Zeitleiste und markiere tatsächlich ungestörte Abschnitte. Prüfe, ob der nominelle Pausenblock ständig durch Ansprache unterbrochen wird. Plane eine ruhigere Alternative, ohne aus der Zeitleiste einen medizinischen Erholungswert zu berechnen. Notiere am Folgetag nur sichtbare Veränderungen. Der Vergleich soll den Alltag verständlicher machen; er ist kein Belastungstest und keine Verpflichtung, Müdigkeit hervorzurufen."
+          ],
+          "takeaway": "Pausen werden an ihrer tatsächlichen Ungestörtheit geplant; Aktivität bleibt ebenfalls ein Bedürfnis.",
+          "exercise": "Überarbeite eine gedachte Tagesplanung mit Aktivität, Transport und Besuch um real nutzbare Ruheabschnitte."
+        },
+        {
+          "id": "alter",
+          "title": "Nächtliche Veränderungen bei älteren Hunden",
+          "paragraphs": [
+            "Bei älteren Hunden können sich Ruhe und Schlaf verändern. RSPCA rät, auffällige Veränderungen medizinisch abklären zu lassen. Die NC-State-Studie fand bei ihren untersuchten älteren Hunden Zusammenhänge zwischen kognitiven Merkmalen und Schlafmustern. Ein Zusammenhang in dieser Stichprobe bedeutet nicht, dass jedes nächtliche Umhergehen eine Demenz beweist oder dass unruhiger Schlaf allein deren Ursache ist. Die Studie ist ein Befund zu einer definierten Gruppe, keine Ferndiagnose für einen einzelnen Jagdhund.",
+            "Eigener Übergabefall: Ein bisher nachts ruhiger älterer Hund steht neuerdings mehrfach auf. Halte Beginn, Häufigkeit, Ortswechsel, Trinken, Lösemöglichkeiten und weitere sichtbare Veränderungen fest. Kontaktiere die Tierpraxis, statt den Hund durch zusätzlich anstrengende Aufgaben „müde zu machen“. Eine ruhige, bequem erreichbare Liegestelle kann den Alltag erleichtern, beantwortet aber die Ursache nicht. Das Protokoll unterstützt die Untersuchung. Über Medikamente, weitere Diagnostik und individuelle Belastbarkeit entscheidet die behandelnde Fachperson."
+          ],
+          "takeaway": "Veränderter Schlaf im Alter ist ein Anlass zur Abklärung, keine fertige Diagnose.",
+          "exercise": "Erstelle eine sachliche Notiz über eine neue nächtliche Veränderung mit Beginn und Begleitbeobachtungen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "ruheplatz-q1",
+          "lessonId": "ruheplatz",
+          "q": "Welcher Ort passt besser als verlässlicher Rückzugsplatz?",
+          "options": [
+            "Ein bequemes trockenes Lager abseits ständiger Durchgänge.",
+            "Ein gleich bequemes Lager mitten im häufig genutzten Türbereich.",
+            "Ein nur für Fotos zugängliches Lager im abgeschlossenen Raum.",
+            "Eine Liegestelle, die andere Tiere fortwährend beanspruchen."
+          ],
+          "answer": 0,
+          "explain": "Ausstattung und tatsächliche Möglichkeit zum ungestörten Ruhen gehören zusammen."
+        },
+        {
+          "id": "ruheplatz-q2",
+          "lessonId": "ruheplatz",
+          "q": "Was wird bei der Übertragung der Vetmeduni-Übersicht ausdrücklich begrenzt?",
+          "options": [
+            "Ein im Artikel genannter Mittelwert wird als Pflichtwert für alle Hunde übernommen.",
+            "Ihr institutioneller Ausgangskontext ersetzt keine örtliche private Haltungsvorschrift.",
+            "Spezielle institutionelle Flächenwerte gelten automatisch für jedes private Zuhause.",
+            "Die Quelle liefert für jeden Hund nach einer Ruhephase dieselbe Belastbarkeit."
+          ],
+          "answer": 1,
+          "explain": "Allgemein bestätigtes Bedürfniswissen wird von speziellen Forschungs- und Rechtskontexten getrennt."
+        },
+        {
+          "id": "ruheplatz-q3",
+          "lessonId": "ruheplatz",
+          "q": "Warum wird ein Ruheort zu verschiedenen Tageszeiten betrachtet?",
+          "options": [
+            "Weil die Länge des ersten Liegeintervalls sämtliche weiteren Zeiten abdeckt.",
+            "Weil die Anzahl vorhandener Betten jede Störung automatisch ausschließt.",
+            "Die tatsächlichen Störungen können sich im Tagesablauf ändern.",
+            "Weil die einmalige Möblierung allein die spätere Nutzung beweist."
+          ],
+          "answer": 2,
+          "explain": "Ein am Vormittag ruhiger Ort kann zu anderen Zeiten zum Durchgang werden."
+        },
+        {
+          "id": "ruheplatz-q4",
+          "lessonId": "ruheplatz",
+          "q": "Welche Beobachtung beschreibt die Nutzbarkeit eines Ruheplatzes?",
+          "options": [
+            "Ob ein Bett vorhanden ist, ohne den Zugang des Hundes zu prüfen.",
+            "Ob einmal eine kurze Liegeaufnahme an diesem Ort möglich war.",
+            "Ob die Unterlage nominell für diese Körpergröße verkauft wurde.",
+            "Ob der Hund ihn erreichen und dort ohne häufige Unterbrechung bleiben kann."
+          ],
+          "answer": 3,
+          "explain": "Funktion wird an Zugänglichkeit und realer Nutzung beurteilt."
+        },
+        {
+          "id": "messung-q1",
+          "lessonId": "messung",
+          "q": "Was belegt der Tagebuchsatz „lag eine Stunde auf der Decke“ unmittelbar?",
+          "options": [
+            "Eine Stunde ausschließlich REM-Schlaf.",
+            "Eine beobachtete Liegephase an diesem Ort.",
+            "Eine vollständig gemessene Schlafarchitektur.",
+            "Den Inhalt eines durchgehenden Traums."
+          ],
+          "answer": 1,
+          "explain": "Der Satz dokumentiert Verhalten und Ort, keine physiologisch bestimmten Schlafstadien."
+        },
+        {
+          "id": "messung-q2",
+          "lessonId": "messung",
+          "q": "Welche Datenerhebung liefert Informationen zur elektrischen Hirnaktivität bei der Untersuchung des Hundeschlafs?",
+          "options": [
+            "Eine Videoaufnahme von Liegeposition und sichtbaren Bewegungen.",
+            "Ein Tagebuch über Ruhezeiten und beobachtetes Verhalten.",
+            "Ein Schlaf-EEG mit ergänzenden elektrischen Ableitungen.",
+            "Eine Bewegungsaufzeichnung durch einen Sensor am Halsband."
+          ],
+          "answer": 2,
+          "explain": "Schlaf-EEG und ergänzende Ableitungen liefern Informationen, die eine reine Liegenotiz nicht enthält."
+        },
+        {
+          "id": "messung-q3",
+          "lessonId": "messung",
+          "q": "Warum werden die beiden Forschungsdarstellungen nicht als völlig unabhängige Datensatzwiederholung bezeichnet?",
+          "options": [
+            "Weil jede physiologische Messung dasselbe Tier enthalten muss.",
+            "Weil eine Universitätsseite grundsätzlich keine Methode beschreiben kann.",
+            "Weil zwei unterschiedliche Untersuchungen stets identische Ergebnisse besitzen.",
+            "Weil personelle Verbindungen und unterschiedliche Forschungsfragen berücksichtigt werden."
+          ],
+          "answer": 3,
+          "explain": "Quellenunabhängigkeit wird nicht allein aus zwei unterschiedlichen Webseitenadressen abgeleitet."
+        },
+        {
+          "id": "messung-q4",
+          "lessonId": "messung",
+          "q": "Ein Hund zuckt kurz im Schlaf. Welche Aussage ist zu weitgehend?",
+          "options": [
+            "Damit ist der genaue Inhalt seines Traums festgestellt.",
+            "Die sichtbare Bewegung kann beschrieben werden.",
+            "Dauer und Zeitpunkt der Bewegung können notiert werden.",
+            "Ein einzelner Ausschnitt erklärt nicht den ganzen Schlafverlauf."
+          ],
+          "answer": 0,
+          "explain": "Beobachtete Bewegung und nachgewiesener Trauminhalt sind verschiedene Behauptungen."
+        },
+        {
+          "id": "tagesablauf-q1",
+          "lessonId": "tagesablauf",
+          "q": "Was fehlt in einem Plan, der nur möglichst lange Untätigkeit vorsieht?",
+          "options": [
+            "Ein Nachweis, dass jeder Hund denselben Tagesablauf hat.",
+            "Eine automatische Zuordnung zu einem bestimmten Schlafstadium.",
+            "Passende Bewegung und Beschäftigung als weitere Bedürfnisse.",
+            "Die Annahme, dass Ruheorte grundsätzlich überflüssig sind."
+          ],
+          "answer": 2,
+          "explain": "Die Quellen behandeln Aktivität und Rückzug als ergänzende Bedürfnisse."
+        },
+        {
+          "id": "tagesablauf-q2",
+          "lessonId": "tagesablauf",
+          "q": "Eine Pause wird ständig durch Besuch und Ansprache unterbrochen. Was ist daran zu prüfen?",
+          "options": [
+            "Ob die Überschrift Pause allein das Bedürfnis bereits erfüllt.",
+            "Ob jede Unterbrechung automatisch zehn Minuten REM-Schlaf erzeugt.",
+            "Ob ein gefüllter Kalender die Beobachtung des Hundes ersetzt.",
+            "Ob überhaupt ein nutzbarer ungestörter Ruheabschnitt besteht."
+          ],
+          "answer": 3,
+          "explain": "Eine eingeplante Zeitspanne ist nicht gleichbedeutend mit tatsächlich ungestörter Nutzung."
+        },
+        {
+          "id": "tagesablauf-q3",
+          "lessonId": "tagesablauf",
+          "q": "Was kann eine Ereignis-Zeitleiste leisten?",
+          "options": [
+            "Belastende und ruhige Abschnitte des Alltags sichtbar machen.",
+            "Die vollständige Schlafarchitektur ohne Messung berechnen.",
+            "Die individuelle tierärztliche Einsatzfreigabe ersetzen.",
+            "Aus jedem Termin einen festen Hormonwert bestimmen."
+          ],
+          "answer": 0,
+          "explain": "Die eigene Planungshilfe ordnet Ereignisse, ohne physiologische Messungen vorzutäuschen."
+        },
+        {
+          "id": "tagesablauf-q4",
+          "lessonId": "tagesablauf",
+          "q": "Wie wird der Tagesplan an unterschiedliche Hunde angepasst?",
+          "options": [
+            "Nur über die gleiche Rassebezeichnung für alle Tiere.",
+            "Mit Blick auf Individuum, Lebenslage und beobachteten Verlauf.",
+            "Über eine fixe Zeitvorgabe unabhängig vom beobachteten Verlauf.",
+            "Durch gleichmäßige Verteilung aller Termine ohne Rückzugsmöglichkeit."
+          ],
+          "answer": 1,
+          "explain": "Bedürfnisgerechte Gestaltung erfordert eine individuelle Betrachtung."
+        },
+        {
+          "id": "alter-q1",
+          "lessonId": "alter",
+          "q": "Ein älterer Hund wandert neuerdings nachts. Welche Aussage ist angemessen?",
+          "options": [
+            "Demenz allein aus dem Umhergehen als sicher feststellen.",
+            "Mehr Belastung ohne Abklärung als einzige Lösung festlegen.",
+            "Das Verhalten ohne Beschreibung nur als Ungehorsam eintragen.",
+            "Veränderung dokumentieren und medizinisch abklären lassen."
+          ],
+          "answer": 3,
+          "explain": "Nächtliche Veränderung hat mögliche unterschiedliche Ursachen und benötigt individuelle Untersuchung."
+        },
+        {
+          "id": "alter-q2",
+          "lessonId": "alter",
+          "q": "Was bedeutet eine statistische Beziehung in einer Studie?",
+          "options": [
+            "Zwei Merkmale hängen im untersuchten Datensatz zusammen.",
+            "Das eine Merkmal ist dadurch für jedes Tier sicher die Ursache des anderen.",
+            "Die App kann jeden älteren Hund ohne Untersuchung diagnostizieren.",
+            "Ein Einzelfoto liefert denselben Beleg wie das Studienprotokoll."
+          ],
+          "answer": 0,
+          "explain": "Zusammenhang und Kausalnachweis sind nicht gleichbedeutend."
+        },
+        {
+          "id": "alter-q3",
+          "lessonId": "alter",
+          "q": "Welche Notiz hilft beim Gespräch über neue nächtliche Unruhe?",
+          "options": [
+            "Nur die Vermutung, der Hund wolle Aufmerksamkeit erzwingen.",
+            "Beginn, Häufigkeit und begleitende sichtbare Veränderungen.",
+            "Nur das Alter als pauschale Erklärung für alle Beschwerden.",
+            "Eine feste Diagnose ohne Untersuchung."
+          ],
+          "answer": 1,
+          "explain": "Ein zeitlicher Verlauf und Begleitbeobachtungen unterstützen die individuelle Abklärung."
+        },
+        {
+          "id": "alter-q4",
+          "lessonId": "alter",
+          "q": "Was kann ein bequemer ruhiger Liegeplatz bei neuer Schlafunruhe leisten?",
+          "options": [
+            "Alle möglichen medizinischen Ursachen sicher ausschließen.",
+            "Die Wirkungsweise eines Medikaments vorhersagen.",
+            "Den Alltag unterstützen, während die Ursache weiter abgeklärt wird.",
+            "Eine allgemeine Freigabe für volle Arbeitsbelastung erteilen."
+          ],
+          "answer": 2,
+          "explain": "Eine Verbesserung der Umgebung ersetzt bei neuer Auffälligkeit keine Untersuchung."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-hund-ration-koerperkondition-2026",
+      "title": "Jagdhund füttern: Ration, Belohnungen und Körperkondition",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Gewicht, Fettreserven, Muskeln und tatsächliche Futteraufnahme getrennt erfassen und verständlich zusammenführen.",
+      "minutes": 30,
+      "objectives": [
+        "BCS und MCS unterscheiden",
+        "Eine vollständige Futtergeschichte erstellen",
+        "Zusätzliche Belohnungsenergie mitrechnen",
+        "Richtwerte am individuellen Verlauf prüfen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Allgemeines tiermedizinisches Ernährungswissen; keine individuelle Diät, Mengenverordnung oder Herstellerfreigabe. Individuelle Ration mit der Tierpraxis abstimmen.",
+        "AT": "Allgemeines tiermedizinisches Ernährungswissen; keine individuelle Diät, Mengenverordnung oder Herstellerfreigabe. Individuelle Ration mit der Tierpraxis abstimmen.",
+        "CH": "Allgemeines tiermedizinisches Ernährungswissen; keine individuelle Diät, Mengenverordnung oder Herstellerfreigabe. Individuelle Ration mit der Tierpraxis abstimmen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Ernährungsleitlinien und Untersuchungswerkzeuge",
+          "url": "https://wsava.org/global-guidelines/global-nutrition-guidelines/",
+          "organization": "World Small Animal Veterinary Association",
+          "supports": "Getrennte Bewertung von Fettreserven und Muskelzustand, Ernährungsgeschichte und individuelle Ausgangsrichtwerte; keine Markenfreigabe."
+        },
+        {
+          "label": "Ernährungs-Screening",
+          "url": "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/screening-evaluation/",
+          "organization": "American Animal Hospital Association",
+          "supports": "Gewicht, BCS, MCS, Aktivität und vollständige Futtergeschichte einschließlich Belohnungen; Muskelverlust ist bei Übergewicht möglich."
+        },
+        {
+          "label": "Fütterungspläne für gesunde Tiere",
+          "url": "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
+          "organization": "American Animal Hospital Association",
+          "supports": "Gesamtkalorien aus allen Futterquellen, bedarfsgerechte vollständige Ration und Verlaufskontrolle; keine US-Kennzeichnungsregel für DACH übernommen."
+        },
+        {
+          "label": "Tierärztliche Ernährungsberatung",
+          "url": "https://vet.tufts.edu/foster-hospital-small-animals/specialty-services/nutrition",
+          "organization": "Tufts University – Cummings School of Veterinary Medicine",
+          "supports": "Individuelle fachärztliche Ernährungsplanung bei Gesunderhaltung und Erkrankungen; keine automatische Ration aus Rassenamen."
+        },
+        {
+          "label": "Tierärztliche Grundlagen zur Hunderation",
+          "url": "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/your-dogs-diet",
+          "organization": "People's Dispensary for Sick Animals – Veterinary Team",
+          "supports": "Vollständige bedarfsgerechte Ration, Lebensphase, abgemessene Mengen und Anpassung an den Verlauf; keine britischen Marken- oder Rechtsvorgaben übernommen."
+        },
+        {
+          "label": "Belohnungen gehören zur Tagesration",
+          "url": "https://www.pdsa.org.uk/get-involved/our-campaigns/weigh-up/your-dog/your-dogs-body-shape/how-to-treat-your-dog",
+          "organization": "People's Dispensary for Sick Animals – Veterinary Team",
+          "supports": "Zusätzliches Futter trägt zur Energieaufnahme bei; Belohnungsanteile im Tagesplan berücksichtigen. Keine pauschale Gramm- oder Kalorienration."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "kondition",
+          "title": "Körpergewicht, Fettreserven und Muskeln",
+          "paragraphs": [
+            "Ein Gewichtswert beschreibt nicht allein die Körperzusammensetzung. Body Condition Score, kurz BCS, beurteilt Fettreserven; Muscle Condition Score, kurz MCS, richtet den Blick auf den Muskelzustand. WSAVA und AAHA erläutern die getrennte Bewertung: Ein Hund kann übergewichtig sein und gleichzeitig Muskeln verlieren. Eine volle äußere Silhouette ist daher kein Beweis guter Muskulatur. Die Einordnung verbindet Anschauen und fachgerecht erlerntes Abtasten, nicht bloß die Waagenzahl.",
+            "Eigener Vergleichsfall: Zwei Hunde haben auf einer Liste dasselbe Gewicht, aber unterschiedliche Körperformen und Untersuchungsergebnisse. Lege getrennte Spalten für Gewicht, Fettkondition, Muskelzustand und Datum an. Gib nicht jedem gleich schweren Hund dieselbe Ration. Lasse dir die Beurteilung am eigenen Tier in der Tierpraxis zeigen und den Ausgangsbefund bestätigen. Bei längerem Fell reicht ein Seitenfoto besonders wenig aus, um darunterliegende Körperbereiche verlässlich einzuschätzen. Das Lernziel ist ein verständlicher Verlauf, keine Ferndiagnose oder selbst erfundene Zielzahl."
+          ],
+          "takeaway": "Gewicht, Fettkondition und Muskelzustand sind drei ergänzende Angaben.",
+          "exercise": "Entwirf eine Verlaufstabelle mit getrennten Spalten für Gewicht, BCS und MCS."
+        },
+        {
+          "id": "futtergeschichte",
+          "title": "Alles notieren, was tatsächlich gefüttert wird",
+          "paragraphs": [
+            "Eine Futtergeschichte enthält mehr als den Inhalt des Hauptnapfs. Trainingsbelohnungen, Kauartikel, Tischreste, Ergänzungen und Futter zur Medikamentengabe können zur Aufnahme beitragen. Die AAHA-Erhebung und WSAVA-Werkzeuge verlangen deshalb einen vollständigen Überblick; PDSA weist ebenfalls auf zusätzliche Futtergaben hin. Auch mehrere betreuende Personen müssen im selben Plan erfasst werden. Sonst kann eine scheinbar unveränderte Hauptportion mit einer deutlich veränderten Gesamtration zusammentreffen.",
+            "Eigener Übergabefall: Morgens füttert eine Person, tagsüber übernimmt eine zweite das Training, abends gibt eine dritte einen Kauartikel. Schreibe Zeitpunkt, Produkt und tatsächlich gegebene Menge in eine gemeinsame Liste. Trenne angebotene von übrig gebliebener Menge, soweit dies bekannt ist. Eine Lücke wird gekennzeichnet statt als null eingetragen. Die Liste dient der Ernährungsberatung und macht den Ablauf nachvollziehbar. Sie soll keine Medikamente verändern; deren Gabe bleibt mit der Tierpraxis abgestimmt."
+          ],
+          "takeaway": "Für eine Rationsbewertung zählt die gesamte tatsächliche Futteraufnahme.",
+          "exercise": "Erstelle eine gemeinsame Tagesliste für Hauptfutter, Training, Kauartikel und weitere Gaben."
+        },
+        {
+          "id": "energiebilanz",
+          "title": "Belohnung aus dem Tagesplan statt zusätzlich dazu",
+          "paragraphs": [
+            "Futterbelohnungen sind Bestandteil der Ration und keine energiefreie Ausnahme. AAHA und PDSA beschreiben, dass zusätzliche Snacks bei der Tagesplanung berücksichtigt werden müssen. Eine mögliche Organisationshilfe ist, geeignete Anteile der vorgesehenen Ration für das Training zurückzulegen. Das ist eine Planungsfrage, keine Pflicht, jedes Futter in jedem Trainingskontext zu verwenden. Welche Ration und welcher Belohnungsanteil zum individuellen Hund passen, wird fachlich abgestimmt.",
+            "Eigenes Rechenbeispiel ohne Fütterungsempfehlung: Ein rein gedachter Tagesplan enthält 100 Energieeinheiten. Sind davon bereits 8 für zusätzliche Belohnungen vorgesehen, bleiben rechnerisch 92 für den anderen Teil. Wird derselbe Belohnungsanteil dagegen auf den bereits vollständig ausgegebenen Plan gelegt, sind es insgesamt 108. Die Einheiten sind keine Kilokalorienration eines echten Hundes. Bei einem Produktwechsel darf eine gleiche Grammmenge außerdem nicht ohne Kenntnis des Energiegehalts als gleichwertig eingesetzt werden."
+          ],
+          "takeaway": "Zusätzliche Futterenergie bleibt zusätzliche Futterenergie, auch wenn sie im Training gegeben wird.",
+          "exercise": "Rechne den gedachten 100-Einheiten-Plan einmal mit enthaltenen und einmal mit zusätzlich gegebenen Belohnungen."
+        },
+        {
+          "id": "verlauf",
+          "title": "Bedarf an Lebensphase und Verlauf anpassen",
+          "paragraphs": [
+            "Eine geeignete Ration soll Nährstoffe vollständig und passend zum Tier liefern. Lebensphase, Aktivität, Erkrankungen und Körperkondition werden gemeinsam berücksichtigt. AAHA und PDSA beschreiben eine individuelle Planung mit Verlaufskontrollen. Eine Packungsempfehlung ist ein Ausgangspunkt, keine Garantie für jeden Hund. Weder die Bezeichnung Jagdhund noch ein einzelner bewegungsreicher Tag bestimmt allein die dauerhaft passende Menge. Unbeabsichtigte Veränderungen werden anhand des Verlaufs besprochen.",
+            "Eigener Saisonfall: Ein erwachsener Hund hat mehrere Wochen weniger Aktivität als zuvor. Dokumentiere die veränderten Bedingungen, die tatsächliche Ration und den Verlauf von Gewicht und Kondition. Besprich eine nötige Anpassung mit der Tierpraxis, statt ohne Prüfung einen großen pauschalen Zuschlag für „Leistung“ beizubehalten. Auch ein Hund mit unverändertem Gewicht kann eine ungünstige Nährstoffzusammensetzung erhalten; Gewicht und vollständige Nährstoffversorgung beantworten unterschiedliche Fragen. Selbst zusammengestellte Rationen benötigen dafür fachkundige Berechnung."
+          ],
+          "takeaway": "Die passende Ration wird durch individuellen Bedarf und Verlauf geprüft, nicht durch ein einziges Etikett.",
+          "exercise": "Formuliere drei Fragen für eine Ernährungsberatung bei veränderter Aktivität."
+        }
+      ],
+      "questions": [
+        {
+          "id": "kondition-q1",
+          "lessonId": "kondition",
+          "q": "Worauf richtet sich der Body Condition Score vor allem?",
+          "options": [
+            "Auf die Körperfettreserven.",
+            "Auf die ausschließlich gemessene Muskelkraft.",
+            "Auf die Zahl der täglichen Lernaufgaben.",
+            "Auf das kalendarische Alter allein."
+          ],
+          "answer": 0,
+          "explain": "BCS und MCS beschreiben unterschiedliche Aspekte der Körperzusammensetzung."
+        },
+        {
+          "id": "kondition-q2",
+          "lessonId": "kondition",
+          "q": "Worauf richtet sich der Muscle Condition Score?",
+          "options": [
+            "Auf den Umfang der Fettreserve allein.",
+            "Auf den Zustand der Muskulatur.",
+            "Auf die absolute Körpermasse ohne Zusammensetzung.",
+            "Auf das Verhältnis zwischen Tagesfutter und Packungsgröße."
+          ],
+          "answer": 1,
+          "explain": "Der Muskelzustand wird getrennt von Fettkondition und Gewicht beurteilt."
+        },
+        {
+          "id": "kondition-q3",
+          "lessonId": "kondition",
+          "q": "Ein Hund ist übergewichtig. Welche Zusatzfrage bleibt sinnvoll?",
+          "options": [
+            "Ob Muskelverlust damit sicher ausgeschlossen ist.",
+            "Ob die Waage sämtliche Körperbereiche unterscheidet.",
+            "Ob gleichzeitig Muskelverlust vorliegt.",
+            "Ob das Gewicht allein eine vollständige Ration vorgibt."
+          ],
+          "answer": 2,
+          "explain": "Übergewicht verhindert nicht, dass gleichzeitig Muskulatur verloren geht."
+        },
+        {
+          "id": "kondition-q4",
+          "lessonId": "kondition",
+          "q": "Zwei Hunde wiegen gleich viel. Was folgt für die Fütterungsplanung?",
+          "options": [
+            "Beide benötigen zwangsläufig dieselbe Menge desselben Futters.",
+            "Unterschiedliche Lebensphasen spielen keine Rolle mehr.",
+            "Die Gewichtszahl ersetzt jede weitere Verlaufsbeobachtung.",
+            "Kondition, Muskelzustand und individueller Bedarf bleiben zu prüfen."
+          ],
+          "answer": 3,
+          "explain": "Eine gleiche Masse bedeutet nicht gleiche Körperzusammensetzung oder gleichen Energiebedarf."
+        },
+        {
+          "id": "futtergeschichte-q1",
+          "lessonId": "futtergeschichte",
+          "q": "Welche Angabe gehört zusätzlich zum Hauptfutter in die Ernährungsgeschichte?",
+          "options": [
+            "Nur die Anzahl angebotener Mahlzeiten, ohne zusätzliche Gaben.",
+            "Trainingsbelohnungen und Kauartikel.",
+            "Nur die geschätzte Hauptportion, unabhängig von übrig gebliebenem Futter.",
+            "Die Futteraufnahme ausschließlich an Tagen ohne Training."
+          ],
+          "answer": 1,
+          "explain": "Zusätzliche Futterquellen können die Gesamtration beeinflussen."
+        },
+        {
+          "id": "futtergeschichte-q2",
+          "lessonId": "futtergeschichte",
+          "q": "Drei Personen betreuen denselben Hund. Wie wird die Liste vollständiger?",
+          "options": [
+            "Nur die erste Mahlzeit wird erfasst.",
+            "Training wird grundsätzlich als futterfrei eingetragen.",
+            "Alle tragen ihre tatsächlich gegebenen Futteranteile ein.",
+            "Jede Person nimmt an, die anderen gaben nichts."
+          ],
+          "answer": 2,
+          "explain": "Ein gemeinsamer Plan verhindert übersehene zusätzliche Gaben."
+        },
+        {
+          "id": "futtergeschichte-q3",
+          "lessonId": "futtergeschichte",
+          "q": "Die Menge eines Kauartikels ist unbekannt. Welche Eintragung ist sauber?",
+          "options": [
+            "Null Gramm ohne weiteren Hinweis.",
+            "Den Hauptnapfwert als Kauartikelmenge kopieren.",
+            "Ein beliebiges Durchschnittsgewicht als gemessen ausgeben.",
+            "Menge unbekannt, Produkt soweit bekannt notieren."
+          ],
+          "answer": 3,
+          "explain": "Eine unbekannte Menge ist keine gemessene Null."
+        },
+        {
+          "id": "futtergeschichte-q4",
+          "lessonId": "futtergeschichte",
+          "q": "Warum werden Futter zur Medikamentengabe und Ergänzungen mitgenannt?",
+          "options": [
+            "Sie gehören zum vollständigen Überblick über die tatsächlichen Gaben.",
+            "Sie ersetzen automatisch die tierärztliche Dosierung.",
+            "Sie zählen grundsätzlich nie zur Rationsbetrachtung.",
+            "Sie machen die Hauptfuttermenge ohne Prüfung überflüssig."
+          ],
+          "answer": 0,
+          "explain": "Vollständige Angaben unterstützen die Ernährungsbewertung, ohne eine Behandlung eigenmächtig zu ändern."
+        },
+        {
+          "id": "energiebilanz-q1",
+          "lessonId": "energiebilanz",
+          "q": "Ein gedachter 100-Einheiten-Plan enthält bereits 8 Einheiten Belohnung. Was bleibt rechnerisch für den anderen Anteil?",
+          "options": [
+            "100 Einheiten.",
+            "108 Einheiten.",
+            "92 Einheiten.",
+            "8 Einheiten."
+          ],
+          "answer": 2,
+          "explain": "Das eigene Rechenbeispiel teilt eine vorgegebene Gesamtmenge auf: 100 minus 8 ergibt 92."
+        },
+        {
+          "id": "energiebilanz-q2",
+          "lessonId": "energiebilanz",
+          "q": "Zu vollständig gegebenen 100 Energieeinheiten kommen weitere 8 hinzu. Welche Summe ergibt das?",
+          "options": [
+            "92 Einheiten.",
+            "100 Einheiten.",
+            "8 Einheiten.",
+            "108 Einheiten."
+          ],
+          "answer": 3,
+          "explain": "Zusätzlich gegebenes Futter wird in der Gesamtsumme mitgerechnet."
+        },
+        {
+          "id": "energiebilanz-q3",
+          "lessonId": "energiebilanz",
+          "q": "Warum ist dieselbe Grammmenge zweier Produkte nicht automatisch energetisch gleichwertig?",
+          "options": [
+            "Ihr Energiegehalt pro Menge kann sich unterscheiden.",
+            "Weil jede Grammangabe grundsätzlich unbrauchbar ist.",
+            "Weil nur der Produktname über den Bedarf entscheidet.",
+            "Weil Kauartikel per Definition keine Energie enthalten."
+          ],
+          "answer": 0,
+          "explain": "Eine Masseangabe und ihr Energiegehalt beantworten unterschiedliche Fragen."
+        },
+        {
+          "id": "energiebilanz-q4",
+          "lessonId": "energiebilanz",
+          "q": "Was ist der Zweck des gedachten Energiebeispiels?",
+          "options": [
+            "Eine reale Tagesration für jeden Jagdhund festlegen.",
+            "Das Verhältnis von enthaltenen und zusätzlichen Anteilen verstehen.",
+            "Eine tierärztliche Diät ohne weitere Daten ersetzen.",
+            "Einen bestimmten Futtermittelhersteller freigeben."
+          ],
+          "answer": 1,
+          "explain": "Die Rechnung vermittelt Bilanzverständnis und wird ausdrücklich nicht als Fütterungsmenge veröffentlicht."
+        },
+        {
+          "id": "verlauf-q1",
+          "lessonId": "verlauf",
+          "q": "Welche Angaben gehören zur individuellen Rationsplanung?",
+          "options": [
+            "Nur die frühere Ration bei maximaler saisonaler Aktivität.",
+            "Nur die Herstellerempfehlung ohne Rückmeldung zum Verlauf.",
+            "Nur das aktuelle Gewicht ohne Lebensphase oder Körperkondition.",
+            "Lebensphase, Aktivität, Gesundheit und Körperkondition."
+          ],
+          "answer": 3,
+          "explain": "Individuelle Bedingungen werden gemeinsam mit dem tatsächlichen Verlauf betrachtet."
+        },
+        {
+          "id": "verlauf-q2",
+          "lessonId": "verlauf",
+          "q": "Welche Rolle hat eine allgemeine Packungsempfehlung?",
+          "options": [
+            "Sie ist ein Ausgangspunkt, der am individuellen Verlauf geprüft wird.",
+            "Sie garantiert für jeden Hund dauerhaft dieselbe Menge.",
+            "Sie ersetzt alle Angaben zur tatsächlichen Futteraufnahme.",
+            "Sie macht die Lebensphase grundsätzlich unwichtig."
+          ],
+          "answer": 0,
+          "explain": "Richtwerte müssen zur Entwicklung des einzelnen Tieres passen."
+        },
+        {
+          "id": "verlauf-q3",
+          "lessonId": "verlauf",
+          "q": "Ein Hund hält sein Gewicht. Was ist dadurch nicht allein belegt?",
+          "options": [
+            "Dass ein Gewichtswert dokumentiert werden kann.",
+            "Eine vollständige ausgewogene Nährstoffversorgung.",
+            "Dass der Verlauf mit früheren Werten vergleichbar sein könnte.",
+            "Dass weitere Rationsangaben sinnvoll bleiben."
+          ],
+          "answer": 1,
+          "explain": "Körpergewicht und Nährstoffzusammensetzung sind unterschiedliche Aspekte."
+        },
+        {
+          "id": "verlauf-q4",
+          "lessonId": "verlauf",
+          "q": "Die Aktivität sinkt über mehrere Wochen. Was ist für die Beratung sinnvoll?",
+          "options": [
+            "Den früheren Leistungszuschlag unabhängig vom Verlauf unverändert begründen.",
+            "Eine einmalige Bewegungsphase als vollständige Dauerbedarfsberechnung verwenden.",
+            "Aktivität, tatsächliche Aufnahme und Konditionsverlauf gemeinsam vorlegen.",
+            "Die Futtergeschichte wegen gleicher Rassebezeichnung auslassen."
+          ],
+          "answer": 2,
+          "explain": "Eine beobachtete Änderung bietet Anlass, den individuellen Plan nachvollziehbar zu überprüfen."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-wildtiergenetik-2026",
+      "lessonId": "umweltspur",
+      "claims": [
+        {
+          "claim": "Wildtiere können anhand nichtinvasiv gewonnener Umweltproben untersucht werden; Material und gestellte Analysefrage begrenzen den Nachweis.",
+          "sourceUrls": [
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/",
+            "https://genetic-expo.wsl.ch/de/methoden/edna/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wildtiergenetik-2026",
+      "lessonId": "individuen",
+      "claims": [
+        {
+          "claim": "Genetische Profile erlauben individuelle Wiederfunde; mehrere Proben können vom selben Tier stammen.",
+          "sourceUrls": [
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/",
+            "https://genetic-expo.wsl.ch/de/fauna/schneehase/"
+          ]
+        },
+        {
+          "claim": "Die räumlich-zeitliche Dokumentation ergänzt genetische Individualnachweise; der konkret benannte Schneehasendatensatz gehört zum Schweizer Untersuchungsprojekt.",
+          "sourceUrls": [
+            "https://genetic-expo.wsl.ch/de/fauna/schneehase/",
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/"
+          ],
+          "sourceRoles": {
+            "https://genetic-expo.wsl.ch/de/fauna/schneehase/": "Originalprojekt und Fundmetadaten; keine unabhängige Wiederholung des Projekts behauptet.",
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/": "Unabhängige Bestätigung der Methode Individualanalyse/Wiederfund; kein zweiter Messdatensatz des Schweizer Projekts."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wildtiergenetik-2026",
+      "lessonId": "qualitaet",
+      "claims": [
+        {
+          "claim": "Kontaminationsvermeidung ist bei DNA-armen Umweltproben ein wesentlicher Bestandteil verlässlicher Analyse.",
+          "sourceUrls": [
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/",
+            "https://genetic-expo.wsl.ch/de/methoden/edna/"
+          ]
+        },
+        {
+          "claim": "Aussagen sind auf die untersuchte Probe und das Verfahren zu begrenzen; Umwelt-DNA ergänzt klassische Erfassung.",
+          "sourceUrls": [
+            "https://genetic-expo.wsl.ch/de/methoden/edna/",
+            "https://www.senckenberg.de/en/research/institutes-overview/sf/ffm-dept-river-ecology-conservation/center-for-wildlife-genetics/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wildtiergenetik-2026",
+      "lessonId": "hybridisierung",
+      "claims": [
+        {
+          "claim": "Rot- und Sikawild können sich kreuzen; genetische Beimischung ist bei späteren Generationen nicht zuverlässig allein am äußeren Erscheinungsbild zu erkennen.",
+          "sourceUrls": [
+            "https://www.nature.scot/doc/deer-management-scotland-frequently-asked-questions-faqs",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC1460577/",
+            "https://pubmed.ncbi.nlm.nih.gov/34200330/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "feinbau",
+      "claims": [
+        {
+          "claim": "Eine typische Fahnenfeder besitzt verzweigte Äste und Strahlen mit verbindenden Feinstrukturen; Dunen sind locker aufgebaut.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "waerme",
+      "claims": [
+        {
+          "claim": "Lockere Federn halten isolierende Luft; überlappende Körperfedern und Pflege ergänzen den Schutz.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.bto.org/our-work/news/blog/garden-birds-winter"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "farbe",
+      "claims": [
+        {
+          "claim": "Pigmente und Federfeinstrukturen können die optische Wirkung bestimmen; strukturbedingtes Schillern kann winkelabhängig sein.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/how-birds-make-colorful-feathers/",
+            "https://profiles.si.edu/display/sro_145223"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "pflege",
+      "claims": [
+        {
+          "claim": "Pflege erhält die Ordnung vorhandener Federn; Abnutzung und Ersatz durch Mauser sind verschiedene Vorgänge.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf"
+          ]
+        },
+        {
+          "claim": "Mausermuster unterscheiden sich nach Art und Jahreszusammenhang; kein gemeinsamer exakter Termin wird behauptet.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahnalter-beweisgrenzen-2026",
+      "lessonId": "entwicklung",
+      "claims": [
+        {
+          "claim": "Visuelle Altersverfahren unterscheiden Zahnwechsel/Durchbruch und definierte Abriebstadien; Zuordnung und Protokoll sind wesentlich.",
+          "sourceUrls": [
+            "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0301408"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahnalter-beweisgrenzen-2026",
+      "lessonId": "kalibrierung",
+      "claims": [
+        {
+          "claim": "Validierung gegen unabhängig gewonnene Referenzalter ermöglicht die Prüfung von Schätzfehlern; Herkunft und Unsicherheit des Referenzverfahrens werden offengelegt. Kohut verwendete bei erwachsenen Karibus Zementannulation als selbst fehlerbehaftete Referenz.",
+          "sourceUrls": [
+            "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0301408"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahnalter-beweisgrenzen-2026",
+      "lessonId": "uebertragung",
+      "claims": [
+        {
+          "claim": "Geschlecht und Alter können mit unterschiedlichen Abriebraten zusammenhängen; eine konstante universelle Abriebsrate ist nicht belegt.",
+          "sourceUrls": [
+            "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+            "https://pubmed.ncbi.nlm.nih.gov/12721823/"
+          ]
+        },
+        {
+          "claim": "Methoden und Bezugspopulationen müssen auf Übertragbarkeit geprüft werden; Befunde einer Art werden nicht als Alterswerte einer anderen ausgegeben.",
+          "sourceUrls": [
+            "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0301408"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahnalter-beweisgrenzen-2026",
+      "lessonId": "protokoll",
+      "claims": [
+        {
+          "claim": "Verfahren unterscheiden sich in verwendeten Merkmalen, Ergebnisform und Fehlern; Protokollklarheit und geeignete Referenzen sind Teil ihrer Prüfung.",
+          "sourceUrls": [
+            "https://researchprofiles.ku.dk/en/publications/age-determination-in-roe-deer-a-new-approach-to-tooth-wear-evalua/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0301408"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-koerpersprache-2026",
+      "lessonId": "gesamtbild",
+      "claims": [
+        {
+          "claim": "Hundesignale sind als Kombination und im Kontext zu betrachten; Schwanzwedeln allein bedeutet nicht sicher freundliche Absicht.",
+          "sourceUrls": [
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/aggression"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-koerpersprache-2026",
+      "lessonId": "kontext",
+      "claims": [
+        {
+          "claim": "Lippenlecken, Gähnen und Abwenden können unterschiedliche Anlässe haben; Kontext und Kombination sind zu berücksichtigen.",
+          "sourceUrls": [
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/aggression",
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/signs-your-dog-may-be-stressed"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-koerpersprache-2026",
+      "lessonId": "abstand",
+      "claims": [
+        {
+          "claim": "Abwenden, Rückzug, Erstarren und Knurren können Abstandsbedarf anzeigen; eine feste Eskalationsreihenfolge gilt nicht für jeden Hund.",
+          "sourceUrls": [
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/aggression"
+          ]
+        },
+        {
+          "claim": "Die Situation durch Abstand und Entlastung verändern und wiederkehrende Probleme fachlich abklären.",
+          "sourceUrls": [
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/understanding"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-koerpersprache-2026",
+      "lessonId": "veraenderung",
+      "claims": [
+        {
+          "claim": "Schmerz und Erkrankung können Verhalten und Körperhaltung beeinflussen; neue Verhaltensprobleme sind tierärztlich abzuklären.",
+          "sourceUrls": [
+            "https://www.dogstrust.org.uk/dog-advice/understanding-your-dog/body-language",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/understanding"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "lessonId": "ruheplatz",
+      "claims": [
+        {
+          "claim": "Hunde benötigen einen geeigneten ungestörten Ruhebereich; Sauberkeit, Trockenheit, Komfort und Wahlmöglichkeiten sind relevante Gestaltungsmerkmale.",
+          "sourceUrls": [
+            "https://www.vetmeduni.ac.at/fileadmin/v/vetrecht/Enrichment_Hunde_WTM_2021.pdf",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/environment"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "lessonId": "messung",
+      "claims": [
+        {
+          "claim": "Nichtinvasive Schlaf-EEG-Verfahren untersuchen physiologische Schlafmerkmale; bloßes Liegen ist keine entsprechende Messung.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1151266/full",
+            "https://elte.hu/en/how-age-and-sex-are-reflected-in-the-sleeping-dogs-brain"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "lessonId": "tagesablauf",
+      "claims": [
+        {
+          "claim": "Passende Bewegung und soziale beziehungsweise geistige Beschäftigung bleiben neben ungestörter Ruhe wichtig; Tagesgestaltung soll beide Bedürfnisse berücksichtigen.",
+          "sourceUrls": [
+            "https://www.vetmeduni.ac.at/fileadmin/v/vetrecht/Enrichment_Hunde_WTM_2021.pdf",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/environment"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "lessonId": "alter",
+      "claims": [
+        {
+          "claim": "Schlafveränderungen im Alter können mit Gesundheits- und kognitiven Veränderungen zusammenhängen; sie benötigen individuelle Abklärung und beweisen allein keine Diagnose.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1151266/full",
+            "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/seniordogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ration-koerperkondition-2026",
+      "lessonId": "kondition",
+      "claims": [
+        {
+          "claim": "BCS bewertet Fettreserven, MCS Muskelzustand; Übergewicht und Muskelverlust können gleichzeitig bestehen.",
+          "sourceUrls": [
+            "https://wsava.org/global-guidelines/global-nutrition-guidelines/",
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/screening-evaluation/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ration-koerperkondition-2026",
+      "lessonId": "futtergeschichte",
+      "claims": [
+        {
+          "claim": "Eine Ernährungsanamnese erfasst Hauptfutter und zusätzliche Gaben einschließlich Belohnungen; alle betreuenden Personen und die tatsächlichen Mengen sind relevant.",
+          "sourceUrls": [
+            "https://wsava.org/global-guidelines/global-nutrition-guidelines/",
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/screening-evaluation/",
+            "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/your-dogs-diet"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ration-koerperkondition-2026",
+      "lessonId": "energiebilanz",
+      "claims": [
+        {
+          "claim": "Belohnungen und weitere Futterquellen sind in der gesamten Energieaufnahme zu berücksichtigen; Produktmenge und Energiegehalt sind verschiedene Angaben.",
+          "sourceUrls": [
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
+            "https://www.pdsa.org.uk/get-involved/our-campaigns/weigh-up/your-dog/your-dogs-body-shape/how-to-treat-your-dog"
+          ]
+        },
+        {
+          "claim": "Das 100-Einheiten-Beispiel ist eine eigene Rechenübung und keine konkrete Tagesration.",
+          "sourceUrls": [
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
+            "https://www.pdsa.org.uk/get-involved/our-campaigns/weigh-up/your-dog/your-dogs-body-shape/how-to-treat-your-dog"
+          ],
+          "sourceRoles": {
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/": "Fachliche Grundlage zur Bilanz aller Futterquellen; Zahlen 100, 12, 88 und 112 sind ausschließlich eigenes Rechenbeispiel.",
+            "https://www.pdsa.org.uk/get-involved/our-campaigns/weigh-up/your-dog/your-dogs-body-shape/how-to-treat-your-dog": "Fachliche Grundlage zur Bilanz aller Futterquellen; Zahlen 100, 12, 88 und 112 sind ausschließlich eigenes Rechenbeispiel."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ration-koerperkondition-2026",
+      "lessonId": "verlauf",
+      "claims": [
+        {
+          "claim": "Rationen sollen vollständig, ausgewogen und an Lebensphase, Aktivität und individuelle Bedingungen angepasst sein; Verlaufskontrolle ergänzt Richtwerte.",
+          "sourceUrls": [
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
+            "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/your-dogs-diet",
+            "https://vet.tufts.edu/foster-hospital-small-animals/specialty-services/nutrition"
+          ]
+        },
+        {
+          "claim": "Unverändertes Gewicht beweist nicht allein eine vollständige Nährstoffversorgung; selbst zusammengestellte Rationen benötigen fachliche Planung.",
+          "sourceUrls": [
+            "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
+            "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/your-dogs-diet"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Unbelegte Vollständigkeit und Konkurrenzbehauptungen",
+      "reason": "Keine Behauptung, mit dieser Erweiterung den gesamten Umfang oder die Qualität eines Mitbewerbers übertroffen zu haben."
+    },
+    {
+      "topic": "Exakte Alters-, Schlaf- und Futtervorgaben",
+      "reason": "Keine universellen Monatswerte aus Kieferbildern, Schlafstunden für alle Hunde, Rationsgramm oder Einsatzfreigaben."
+    },
+    {
+      "topic": "Regionale Häufigkeiten genetischer Beimischung",
+      "reason": "Keine Übertragung schottischer Befunde oder Markeranteile auf DACH ohne lokale Daten."
+    },
+    {
+      "topic": "Historische Evolutionsdarstellung des BTO-Buchs",
+      "reason": "Nur gegenbestätigte Anatomie-/Mausergrundlagen verwendet; historische Evolutionspassagen sind ausdrücklich nicht Kursinhalt."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine neuen Medien importiert. Bestehende Kategorie-Fotofallbacks Wildkunde/Hundewesen verwenden; daraus keine Alters-/Rasse-/Gesundheitsdiagnose ableiten."
+  }
+}

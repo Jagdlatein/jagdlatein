@@ -6,6 +6,8 @@ import Link from "next/link";
 import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
 import HomeNews from "../components/HomeNews";
+import HomeKnowledgeNavigation from "../components/HomeKnowledgeNavigation";
+import JagdakademiePromotion from "../components/JagdakademiePromotion";
 import RevierMomentEntry from "../components/RevierMomentEntry";
 import { getRevierMoment, getRevierMomentPreview } from "../lib/revier-moment-server";
 import { CommunityInvite } from "../components/Community";
@@ -128,10 +130,10 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
 
           <div className={home.btnRow}>
             <Link
-              href="/preise"
+              href={loggedIn ? "/lernen" : "/preise"}
               className={home.btnPrimary}
             >
-              Jetzt freischalten
+              {loggedIn ? "Weiterlernen" : "Jetzt freischalten"}
             </Link>
 
             {loggedIn ? (
@@ -212,21 +214,12 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
             </a>
           </div>
 
+          <HomeKnowledgeNavigation />
           <RevierMomentEntry preview={revierMoment} />
-
-          <Link href="/lernen" className={home.learningCard}>
-            <span className={home.learningIcon}><AppIcon name="book" size={42} /></span>
-            <span className={home.learningContent}>
-              <span className={home.learningLabel}>Alles für deinen Lernerfolg</span>
-              <strong>Lernbereich</strong>
-              <span>Alle Kategorien, Lernpfade, Kurse, Quiz und Praxisübungen an einem Ort.</span>
-              <span className={home.learningAction}>Lernbereich öffnen <AppIcon name="arrow-right" size={20} /></span>
-            </span>
-          </Link>
-          <p className={home.learningHint}>Gemeinsames Jagdwissen für Deutschland, Österreich und die Schweiz. Die Länderwahl findest du dort, wo sich die rechtlichen Regeln unterscheiden.</p>
 
           <CommunityInvite />
           <HomeNews initialNews={initialNews} />
+          <JagdakademiePromotion />
 
         </div>
       </main>

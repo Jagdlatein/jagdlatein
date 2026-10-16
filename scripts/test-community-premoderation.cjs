@@ -161,6 +161,7 @@ test('Existing moderator reports remain available independently of private pendi
 
 function load(relative, overrides={}, cache=new Map()) {
   const filename=path.join(root,relative); if(cache.has(filename)) return cache.get(filename).exports;
+  if(filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename,'utf8').replace(/^\uFEFF/,''));
   const mod={exports:{}}; cache.set(filename,mod);
   const {code}=swc.transformSync(fs.readFileSync(filename,'utf8'),{filename,disableNextSsg:true,jsc:{parser:{syntax:'ecmascript',jsx:true},target:'es2022',transform:{react:{runtime:'automatic'}}},module:{type:'commonjs'}});
   new Function('require','module','exports',code)(id=>{
@@ -169,7 +170,7 @@ function load(relative, overrides={}, cache=new Map()) {
     if(id==='next/link') return ({href,children,...props})=>React.createElement('a',{href:typeof href==='string'?href:href.pathname,...props},children);
     if(id==='next/head') return ({children})=>React.createElement(React.Fragment,null,children);
     if(id.endsWith('.module.css')) return {__esModule:true,default:new Proxy({},{get:(_,key)=>String(key)})};
-    if(id.startsWith('.')) return load(path.relative(root,path.resolve(path.dirname(filename),id+'.js')),overrides,cache);
+    if(id.startsWith('.')) return load(path.relative(root,path.resolve(path.dirname(filename),path.extname(id)?id:id+'.js')),overrides,cache);
     return pr(id);
   },mod,mod.exports); return mod.exports;
 }

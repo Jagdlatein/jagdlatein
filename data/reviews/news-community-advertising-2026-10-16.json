@@ -1,0 +1,46 @@
+{
+  "checkedOn": "2026-10-16",
+  "scope": "Verified publication sources, bounded parsing, attribution and user-initiated discussion links. News headlines are not independently confirmed scientific teaching claims.",
+  "manufacturerSources": [
+    {
+      "id": "swarovski",
+      "publisher": "SWAROVSKI OPTIK",
+      "publicationPage": "https://www.swarovskioptik.com/at/de/jagd/press-releases",
+      "checked": "German article cards carry visible original publication dates. The actual parser returned four dated optics articles within 366 days. Navigation and undated cards are rejected."
+    },
+    {
+      "id": "waldkauz",
+      "publisher": "Waldkauz GmbH & Co. KG, Neuss, Germany",
+      "publisherEvidence": "https://www.waldkauz.net/impressum/",
+      "feed": "https://www.waldkauz.net/feed/",
+      "checked": "Official homepage links its RSS feed. Feed retrieval without redirects succeeded. Two dated equipment headlines passed the title filter."
+    },
+    {
+      "id": "leica",
+      "publisher": "Leica Sport Optics / Leica Camera AG, Wetzlar, Germany",
+      "publisherEvidence": "https://leica-camera.com/de-CH/imprint",
+      "publicationPage": "https://leica-hunting-blog.com/blog/",
+      "feed": "https://leica-hunting-blog.com/feed/",
+      "checked": "Blog footer identifies Leica Sport Optics and the Wetzlar address. The current manufacturer's imprint confirms Leica Camera AG at that address. Direct RSS retrieval succeeded; the binocular article passed, the Andalusia travel report did not."
+    }
+  ],
+  "presentation": {
+    "label": "Herstellermeldung · Produktinformation",
+    "scope": "Product statements are attributed to the manufacturer. No independent product-test claim or sponsorship is invented. Country badges identify the publisher's country.",
+    "media": "No third-party photographs, videos or logos copied into news cards.",
+    "filterLimits": "Keyword filters reduce political, administrative, travel and unrelated shop entries; they do not certify every future headline. Only configured HTTPS sources, original dates and bounded payloads are accepted.",
+    "dates": "Article publication dates and successful retrieval dates remain distinct. A failed refresh retains the old successful retrieval date.",
+    "discussion": "A member opens a draft with the source link, writes their own question and explicitly submits it. Nothing is posted automatically; existing premoderation remains active."
+  },
+  "deutscheJagdakademieAdvertisement": {
+    "authorizedDestination": "https://deutsche-jagdakademie.com/",
+    "label": "Werbung · Externer Anbieter",
+    "verifiedOfferPages": [
+      "https://deutsche-jagdakademie.com/dja-jagdschein-kurs/",
+      "https://deutsche-jagdakademie.com/dja-jagdwirt/",
+      "https://deutsche-jagdakademie.com/dja-bergjagd/",
+      "https://deutsche-jagdakademie.com/dja-jagdschule-guetesiegel/"
+    ],
+    "copyScope": "Brief descriptions written for Jagdlatein from the official offer pages. No claimed partnership, transferred logo, copied course materials, price promise or availability guarantee. External links use sponsored/noopener/noreferrer; no third-party tracking is loaded."
+  }
+}

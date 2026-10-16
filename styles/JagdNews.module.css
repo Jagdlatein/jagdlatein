@@ -57,3 +57,4 @@
 .sourceList .sourceNotice { color: #8a5b24; font-weight: 700; }
 @media (max-width: 850px) { .homeGrid { grid-template-columns: minmax(0, 1fr); } .filterRow { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filterRow button { grid-column: 1 / -1; justify-self: start; margin-top: 5px; } }
 @media (max-width: 620px) { .homeSection { border-radius: 18px; padding: 22px 16px; margin-top: 28px; } .homeHeader { gap: 12px; } .homeIcon { flex-basis: 43px; width: 43px; height: 43px; border-radius: 12px; } .homeIcon svg { width: 25px; height: 25px; } .homeHeader h2 { font-size: 24px; } .homeHeader p:last-child { font-size: 14px; } .grid, .filterRow, .sourceList { grid-template-columns: minmax(0, 1fr); } .intro, .filters, .sourcesPanel, .card { padding: 20px 16px; } .card h3 { font-size: 19px; } .homeActions > * { flex: 1 1 auto; } .sourceList li { padding: 15px; } }
+.manufacturer { color: #765a23; font-size: 13px; font-weight: 700; margin: 0 0 10px; }

@@ -29,6 +29,7 @@ test('Politics, association positions, administration and distant subjects are e
   const { classifyNews } = load('lib/jagd-news-feeds.js');
   for (const title of ['Jagdpolitik im Wald', 'Ministerin besucht die Wald-Forschung', 'Neue Jagdgesetz-Novelle', 'Partei fordert mehr Jagd', 'Neue Waldschutzverordnung', 'Verbandsposition zur Natur', 'Stellenangebot: Wildtierforschung', 'Korea: Waldwissen', 'Geparden und genetische Forschung']) assert.equal(classifyNews(title), null, title);
   assert.equal(classifyNews('Wildtiere beobachten', 'Die Regierung fordert neue Maßnahmen.'), null);
+  assert.equal(classifyNews('Tagesspiegel zählt Thomas Hildebrandt zu den 100 wichtigsten Köpfen der Berliner Wissenschaft', 'Wildtierforschung an Arten und Lebensräumen', 'science'), null);
   for (const title of ['Forstministerin stellt neue Waldstrategie vor', 'Bundesregierung beschließt mehr Schutz für Wildtiere', 'Bundesministerin besucht Wildtierforschung']) assert.equal(classifyNews(title), null, title);
   assert.equal(classifyNews('Studie zu Wildtieren und ihren Lebensräumen'), 'science');
   assert.equal(classifyNews('Gamswild erkennen'), 'hunting'); assert.equal(classifyNews('Waldränder aufwerten'), 'nature');

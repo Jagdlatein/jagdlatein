@@ -86,7 +86,7 @@ test('Opening exact portraits and public documents never opens lessons, PDFs or 
   }
 });
 
-for (const relative of ['account', 'community', 'lernen/offline', 'lernen/suche']) test(`Public media exceptions do not grant anonymous access to /api/${relative}`, async () => {
+for (const relative of ['account', 'community', 'lernen/offline', 'lernen/suche', 'lernen/lernkarten']) test(`Public media exceptions do not grant anonymous access to /api/${relative}`, async () => {
   // APIs use their own account guard, independent of static middleware exceptions.
   const response = await load(`app/api/${relative}/route.js`).GET(request(`/api/${relative}`));
   assert.equal(response.status, 401); assert.match(response.headers.get('cache-control'), /no-store/);

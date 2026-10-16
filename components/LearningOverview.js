@@ -6,6 +6,7 @@ import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningSearch from "./LearningSearch";
 import QuizLeagueEntry from "./QuizLeagueEntry";
+import JagdakademiePromotion from "./JagdakademiePromotion";
 import { LearningCover } from "./LearningPhoto";
 import styles from "../styles/LearningOverview.module.css";
 
@@ -81,5 +82,6 @@ export default function LearningOverview({ data }) {
       </article>)}</div>
     </details>}
     {categoryInfo && <nav className={styles.quietNav} aria-label="Deine Kurse"><Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link></nav>}
+    {(!categoryInfo || categoryInfo.slug === "pruefung-sprache") && <JagdakademiePromotion />}
   </LearningToolLayout>;
 }

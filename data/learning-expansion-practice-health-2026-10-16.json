@@ -1,0 +1,2332 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Sechs neue Vertiefungskurse mit 24 Wissensblöcken und 96 eigenen Lernfragen in Jagdpraxis, Wildbret & Gesundheit, Waffen & Sicherheit und Jagdrecht. Prüfung nur der hier dokumentierten Aussagen; keine pauschale Neuprüfung anderer App-Inhalte. Lernbeispiele sind selbst erstellt. Medizinische, praktische und örtliche rechtliche Einzelfreigaben werden nicht erteilt.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-daemmerungssehen-2026",
+      "title": "Dämmerungssehen: Farbe, Kontrast und Blendung",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Verstehen, warum Sehen bei wenig Licht anders funktioniert und eine erkannte Bewegung noch keine sichere Bestimmung bedeutet.",
+      "minutes": 35,
+      "objectives": [
+        "Stäbchen und Zapfen unterscheiden",
+        "Anpassung und Detailerkennen trennen",
+        "Lichtabhängige Beobachtungsgrenzen beschreiben",
+        "Neue Sehbeschwerden fachlich klären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe.",
+        "AT": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe.",
+        "CH": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "National Eye Institute · Anpassung an Dunkelheit",
+          "url": "https://www.nei.nih.gov/research-and-training/research-news/scientists-shine-light-how-eyes-adapt-dark",
+          "organization": "National Eye Institute",
+          "supports": "Stäbchen und Zapfen arbeiten bei unterschiedlichen Lichtverhältnissen; mechanistische Ergebnisse der dargestellten Originalstudie betreffen Mäuse und werden nicht als menschlicher Zeitplan verwendet."
+        },
+        {
+          "label": "BVA · Wenn das Licht schwindet",
+          "url": "https://www.augeninfo.de/offen/pressetext.php?meldung=156",
+          "organization": "Berufsverband der Augenärztinnen und Augenärzte Deutschlands",
+          "supports": "Farb- und Kontrastwahrnehmung bei Dämmerung, stärkere Auswirkungen kleiner Sehfehler und fachliche Untersuchung bei Beschwerden."
+        },
+        {
+          "label": "Purves et al. · Functional Specialization of the Rod and Cone Systems",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10850/",
+          "organization": "Duke University; Neuroscience, 2nd edition",
+          "supports": "Empfindlichkeit, geringere räumliche Auflösung des Stäbchensystems und unterschiedliche Leistungen von Stäbchen und Zapfen."
+        },
+        {
+          "label": "National Eye Institute · Cataracts",
+          "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts",
+          "organization": "National Eye Institute",
+          "supports": "Nachtsehprobleme, Blendung und Halos als mögliche Beschwerden; Symptome können andere Ursachen haben und gehören fachlich untersucht."
+        },
+        {
+          "label": "NHS · Cataracts in adults",
+          "url": "https://www.nhs.uk/conditions/cataracts/",
+          "organization": "National Health Service",
+          "supports": "Nachtsehprobleme, Blendung, Halos und Empfehlung fachlicher Abklärung; keine Ferndiagnose."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "rezeptoren",
+          "title": "Zwei Systeme, verschiedene Leistungen",
+          "paragraphs": [
+            "Die Netzhaut enthält Stäbchen und Zapfen. Stäbchen ermöglichen Wahrnehmung bei schwachem Licht; Zapfen tragen bei ausreichendem Licht zum Farbsehen und zur feinen Detailwahrnehmung bei. Der Wechsel zur Dämmerung ist deshalb nicht bloß eine dunklere Version derselben Wahrnehmung. Empfindlichkeit, Farbinformation und räumliche Auflösung sind unterschiedliche Leistungen.",
+            "Eigenes Lernbeispiel: Im dämmrigen Waldrand erkennst du eine bewegte dunkle Form, aber keine belastbare Fellzeichnung. Notiere getrennt Bewegung, groben Umriss und fehlende Details. Die richtige Fachantwort nennt die Wahrnehmungsgrenze, statt die Lücke mit einer erwarteten Tierart zu füllen. Wiederhole die Übung mit einem beschrifteten Foto bei normalen Lichtverhältnissen; du brauchst dafür weder Tiere anzuleuchten noch dich im Dunkeln in unsicheres Gelände zu begeben."
+          ],
+          "takeaway": "Eine sichtbare Bewegung ist noch kein sicher erkanntes Farb- oder Artmerkmal.",
+          "exercise": "Erkläre an einem eigenen Beobachtungssatz den Unterschied zwischen Entdecken und Bestimmen."
+        },
+        {
+          "id": "anpassung",
+          "title": "Dunkeladaptation ist ein Vorgang",
+          "paragraphs": [
+            "Nach einem Wechsel der Beleuchtung passt sich die Empfindlichkeit des Sehsystems an. Dunkeladaptation ist mehr als eine reine Pupillenbewegung: Auch Vorgänge in den lichtempfindlichen Zellen tragen dazu bei. Die NEI-Originalarbeit erläutert einen Mechanismus an Mäusen; daraus wird hier keine feste Wartezeit für jeden Menschen abgeleitet.",
+            "Eigenes Lernbeispiel: Zwei Personen wechseln aus einem hellen Raum auf einen sicheren, bekannten und beleuchtbar bleibenden Außenbereich. Ihr Eindruck kann sich mit der Zeit ändern. Protokolliere nur den beschriebenen Übergang und mögliche Schwierigkeiten. Aus der Tatsache, dass schon ein Wegumriss wahrgenommen wird, folgt keine vollständige Anpassung oder Freigabe für riskante Aufgaben. Ein Quiz prüft den Begriff; ein selbst erfundener Sehtest ersetzt keine Untersuchung."
+          ],
+          "takeaway": "Eine Anpassung an wenig Licht ist kein universeller Minutenzähler und kein Eignungsnachweis.",
+          "exercise": "Erkläre, warum sich aus einer Mäusestudie keine persönliche Wartezeit ableiten lässt."
+        },
+        {
+          "id": "kontrast",
+          "title": "Farbe und Kontrast nicht verwechseln",
+          "paragraphs": [
+            "Bei sehr schwachem Licht ist Farbunterscheidung eingeschränkt; die Wahrnehmung stützt sich stärker auf Helligkeitsunterschiede. Das Stäbchensystem ist empfindlich, hat aber eine geringere räumliche Auflösung als das Zapfensystem. Ein gut sichtbarer Umriss und eine sicher erkennbare feine Zeichnung sind deshalb keine austauschbaren Beobachtungen.",
+            "Eigenes Lernbeispiel: Zwei graue Silhouetten heben sich unterschiedlich stark vom Hintergrund ab. Formuliere zunächst, welche Kante erkennbar bleibt. Ergänze anschließend die Information, die für eine Artzuordnung fehlt, statt eine Farbe zu erraten. Vergleiche dein Ergebnis mit dem unveränderten beschrifteten Ausgangsfoto im Hellen. Diese Übung dient der Sprache über Beobachtungsgrenzen; sie behauptet keine realistische Nachbildung des menschlichen Nachtsehens auf einem Bildschirm."
+          ],
+          "takeaway": "Kontrast kann einen Umriss sichtbar machen, ohne dessen Farbe oder feine Zeichnung zu sichern.",
+          "exercise": "Beschreibe eine Silhouette mit zwei sicheren und zwei ausdrücklich offenen Merkmalen."
+        },
+        {
+          "id": "beschwerden",
+          "title": "Blendung und neue Beschwerden ernst nehmen",
+          "paragraphs": [
+            "Unscharfes Sehen, störende Lichtkränze und zunehmende Blendempfindlichkeit können verschiedene Ursachen haben. BVA, NEI und NHS nennen unter anderem Sehfehler oder Linsentrübungen als mögliche Zusammenhänge. Aus einem einzelnen Symptom wird hier keine Diagnose gestellt. Beschwerden gehören fachlich abgeklärt, insbesondere wenn sie neu sind oder Aufgaben unsicher machen.",
+            "Eigenes Lernbeispiel: Eine Person berichtet, dass sie seit einiger Zeit bei Gegenlicht deutlich schlechter erkennt. Eine brauchbare Gesprächsnotiz enthält Veränderung, Situation und Auswirkung. Sie enthält weder die Behauptung „nur Gewöhnung“ noch eine eigenmächtig verordnete Brille. Unsichere Tätigkeiten werden nicht als Test fortgesetzt. Für die weitere Planung ist die fachliche Untersuchung entscheidend; die App vermittelt Begriffe und Gesprächsvorbereitung."
+          ],
+          "takeaway": "Neue Sehprobleme werden beschrieben und untersucht, nicht im Revier diagnostiziert.",
+          "exercise": "Schreibe eine kurze Beschreibung für eine fachliche Abklärung ohne eine Krankheit zu behaupten."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "rezeptoren",
+          "q": "Welche Leistung wird vor allem mit den Zapfen bei ausreichendem Licht verbunden?",
+          "options": [
+            "Farbsehen und feine Detailwahrnehmung.",
+            "Vor allem lichtempfindliche Wahrnehmung ohne verlässliche Farbinformation.",
+            "Ausschließlich die Änderung der Pupillenweite.",
+            "Nur grobe Umrisse bei sehr schwachem Licht."
+          ],
+          "answer": 0,
+          "explain": "Zapfen leisten bei ausreichendem Licht Farb- und Detailsehen; Sehen benötigt verfügbares Licht."
+        },
+        {
+          "id": "q2",
+          "lessonId": "rezeptoren",
+          "q": "Du bemerkst im Halbdunkel eine Bewegung ohne erkennbare Zeichnung. Welche Aussage ist gedeckt?",
+          "options": [
+            "Die erwartete Art ist damit bestätigt.",
+            "Die Fellfarbe ist sicher unverändert erkennbar.",
+            "Eine Bewegung wurde erkannt; die Bestimmung bleibt offen.",
+            "Die Bewegung beweist ein bestimmtes Alter."
+          ],
+          "answer": 2,
+          "explain": "Entdecken und Bestimmen verlangen unterschiedliche Informationen. Ein Bewegungseindruck liefert keine fehlenden Artmerkmale."
+        },
+        {
+          "id": "q3",
+          "lessonId": "rezeptoren",
+          "q": "Was leisten Stäbchen besonders bei schwacher Beleuchtung?",
+          "options": [
+            "Sie liefern bei wenig Licht dieselbe Farbinformation wie Zapfen am Tag.",
+            "Sie tragen zur lichtempfindlichen Wahrnehmung bei.",
+            "Sie verbinden hohe Empfindlichkeit mit der höchsten Detailauflösung.",
+            "Sie reagieren erst bei stärkerem Licht als Zapfen."
+          ],
+          "answer": 1,
+          "explain": "Das Stäbchensystem ist lichtempfindlich. Daraus folgt keine uneingeschränkte Farb- und Detailerkennung."
+        },
+        {
+          "id": "q4",
+          "lessonId": "rezeptoren",
+          "q": "Welche Trennung verbessert einen Bericht aus der Dämmerung?",
+          "options": [
+            "Vermuteten Artnamen und sichtbare Merkmale gleichsetzen.",
+            "Eine fehlende Farbe aus der erwarteten Art ergänzen.",
+            "Die subjektive Sicherheit anstelle der sichtbaren Merkmale nennen.",
+            "Sichtbare Form, Bewegung und nicht erkennbare Merkmale getrennt nennen."
+          ],
+          "answer": 3,
+          "explain": "Eine genaue Beschreibung hält fest, welche Information tatsächlich vorlag und welche für eine Bestimmung fehlte."
+        },
+        {
+          "id": "q5",
+          "lessonId": "anpassung",
+          "q": "Was beschreibt Dunkeladaptation?",
+          "options": [
+            "Die reine Vergrößerung der Pupille ohne weitere Anpassung.",
+            "Die Anpassung des Sehsystems an geringere Beleuchtung.",
+            "Die Korrektur einer Fehlsichtigkeit durch längeres Warten.",
+            "Den Wechsel der Augenfarbe bei sinkender Beleuchtung."
+          ],
+          "answer": 1,
+          "explain": "Dunkeladaptation bezeichnet eine Änderung der Empfindlichkeit unter veränderten Lichtbedingungen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "anpassung",
+          "q": "Warum genügt die Aussage „Die Pupille ist weit“ nicht als vollständige Erklärung?",
+          "options": [
+            "Die Rezeptoren arbeiten bei jeder Beleuchtung unverändert.",
+            "Pupillenweite belegt zugleich ausreichende Farb- und Detailerkennung.",
+            "Nur die Scharfstellung durch die Linse verändert die Lichtempfindlichkeit.",
+            "Auch Vorgänge in den lichtempfindlichen Zellen sind beteiligt."
+          ],
+          "answer": 3,
+          "explain": "Lichtanpassung umfasst neben dem Lichteinfall auch die Verarbeitung in den Rezeptoren."
+        },
+        {
+          "id": "q7",
+          "lessonId": "anpassung",
+          "q": "Was darf aus dem im Kurs beschriebenen NEI-Mausversuch nicht abgeleitet werden?",
+          "options": [
+            "Eine feste Wartezeit, nach der jeder Mensch sicher sehen kann.",
+            "Dass eine Originalarbeit ein bestimmtes Versuchsmodell nutzt.",
+            "Dass Rezeptorvorgänge wissenschaftlich untersucht werden.",
+            "Dass der Geltungsbereich eines Versuchs benannt werden muss."
+          ],
+          "answer": 0,
+          "explain": "Ein Mechanismus aus einem Tiermodell begründet keine universelle menschliche Zeit- oder Sicherheitsvorgabe."
+        },
+        {
+          "id": "q8",
+          "lessonId": "anpassung",
+          "q": "Eine Person erkennt nach dem Helligkeitswechsel schon einen Wegumriss. Was bleibt getrennt zu prüfen?",
+          "options": [
+            "Mit dem ersten Umriss sind zugleich alle Sehbeschwerden ausgeschlossen.",
+            "Der Eindruck einer Person beweist dieselbe Sehleistung bei allen Beteiligten.",
+            "Ob die für die konkrete Aufgabe nötigen Details verlässlich erkannt werden.",
+            "Ein einheitlicher Minutenwert reicht unabhängig von Aufgabe und Person aus."
+          ],
+          "answer": 2,
+          "explain": "Grobe Orientierung und ausreichende Detailerkennung sind unterschiedliche Anforderungen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "kontrast",
+          "q": "Was bedeutet ein gut erkennbarer Umriss bei sehr wenig Licht?",
+          "options": [
+            "Die Fellfarbe ist dadurch eindeutig.",
+            "Die biologische Art steht allein durch die Kante fest.",
+            "Die Kante ist sichtbar; Farbe und feine Zeichnung können trotzdem fehlen.",
+            "Die Beobachtung enthält automatisch alle Tageslichtdetails."
+          ],
+          "answer": 2,
+          "explain": "Eine wahrnehmbare Helligkeitskante enthält nicht dieselbe Information wie eine aufgelöste Farbzeichnung."
+        },
+        {
+          "id": "q10",
+          "lessonId": "kontrast",
+          "q": "Welche Aussage trennt Lichtempfindlichkeit und Auflösung richtig?",
+          "options": [
+            "Ein empfindliches System muss nicht die feinsten räumlichen Details liefern.",
+            "Höhere Lichtempfindlichkeit liefert stets auch die feinsten Details.",
+            "Empfindlichkeit und räumliche Auflösung bezeichnen dieselbe Leistung.",
+            "Räumliche Auflösung beschreibt allein, wie viel Licht die Pupille einlässt."
+          ],
+          "answer": 0,
+          "explain": "Das Stäbchensystem verbindet hohe Lichtempfindlichkeit mit geringerer räumlicher Auflösung als das Zapfensystem."
+        },
+        {
+          "id": "q11",
+          "lessonId": "kontrast",
+          "q": "Warum zeigt ein abgedunkeltes Bildschirmfoto keinen individuellen Nachtsichttest?",
+          "options": [
+            "Jede Displayhelligkeit bildet eine bestimmte Beleuchtung im Wald exakt ab.",
+            "Das Foto prüft die Dunkeladaptation jedes Menschen standardisiert.",
+            "Ein scharfes Bildschirmbild schließt individuelle Sehfehler aus.",
+            "Die Darstellung bildet die tatsächliche Sehleistung einer Person nicht vollständig ab."
+          ],
+          "answer": 3,
+          "explain": "Eine Lernabbildung illustriert einen Unterschied. Sie ist keine standardisierte fachliche Untersuchung der individuellen Sehfunktion."
+        },
+        {
+          "id": "q12",
+          "lessonId": "kontrast",
+          "q": "Welche Notiz ist bei fehlender Farbinformation sachlich?",
+          "options": [
+            "Grau gesehen bedeutet sicher graues Fell.",
+            "Dunkler Umriss erkennbar; Fellfarbe unter diesen Bedingungen nicht sicher beurteilt.",
+            "Die erwartete Farbe wurde als gemessen eingetragen.",
+            "Die unerkannte Zeichnung wurde aus dem Artnamen ergänzt."
+          ],
+          "answer": 1,
+          "explain": "Die Notiz bewahrt die tatsächliche Wahrnehmungsgrenze und ergänzt keine unbeobachteten Merkmale."
+        },
+        {
+          "id": "q13",
+          "lessonId": "beschwerden",
+          "q": "Welche Schlussfolgerung passt bei neuer starker Blendempfindlichkeit?",
+          "options": [
+            "Die Ursache allein aus einem App-Quiz festlegen.",
+            "Jede Schwierigkeit als normale Gewöhnung abtun.",
+            "Eine riskante Aufgabe zur Selbstprüfung verlängern.",
+            "Die Veränderung fachlich abklären lassen."
+          ],
+          "answer": 3,
+          "explain": "Blendung kann unterschiedliche Ursachen haben. Eine Untersuchung klärt die individuelle Sehfunktion."
+        },
+        {
+          "id": "q14",
+          "lessonId": "beschwerden",
+          "q": "Was ist für das Gespräch über neue Sehprobleme hilfreich?",
+          "options": [
+            "Nur eine selbst gestellte Diagnose nennen.",
+            "Situation, Veränderung und Auswirkung konkret beschreiben.",
+            "Beschwerden auslassen, wenn die Fernsicht am Tag gut ist.",
+            "Alle Veränderungen einer einzelnen Lampe zuschreiben."
+          ],
+          "answer": 1,
+          "explain": "Konkrete Angaben helfen bei der fachlichen Beurteilung, ohne eine Ursache vorwegzunehmen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "beschwerden",
+          "q": "Ein Lichtkranz wird wahrgenommen. Was beweist diese Beobachtung allein?",
+          "options": [
+            "Eine bestimmte Linsenerkrankung zweifelsfrei.",
+            "Dass keine Untersuchung erforderlich sein kann.",
+            "Dass ein entsprechender Seheindruck besteht, nicht dessen medizinische Ursache.",
+            "Eine sichere Eignung für jede Tätigkeit im Dunkeln."
+          ],
+          "answer": 2,
+          "explain": "Ein Symptom kann verschiedene Ursachen haben. Der Eindruck und seine Diagnose sind getrennte Aussagen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "beschwerden",
+          "q": "Welche Rolle hat dieser Kurs bei individuellen Sehbeschwerden?",
+          "options": [
+            "Begriffe vermitteln und eine genaue Beschreibung vorbereiten.",
+            "Die individuelle Sehfunktion standardisiert prüfen.",
+            "Die Ursache neuer Blendempfindlichkeit allein aus Textantworten feststellen.",
+            "Eine persönliche Eignung für Aufgaben im Dunkeln bestätigen."
+          ],
+          "answer": 0,
+          "explain": "Theoretisches Wissen unterstützt Verständigung; es liefert keinen individuellen medizinischen oder praktischen Eignungsnachweis."
+        }
+      ],
+      "imageKey": "jagdpraxis"
+    },
+    {
+      "id": "wissen-ausbau-notruf-revier-2026",
+      "title": "Notruf im Revier: Ort nennen, Rückfragen beantworten",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Die Alarmierung vorab vorbereiten und im Notfall mit der Leitstelle verständlich zusammenarbeiten.",
+      "minutes": 35,
+      "objectives": [
+        "Notfallort für Ortsfremde beschreiben",
+        "Zahlen und Koordinaten verständlich übermitteln",
+        "Den Leitstellendialog führen lassen",
+        "App-Unterstützung und Erreichbarkeit unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe.",
+        "AT": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe.",
+        "CH": "Grundlagen und eigene Lernbeispiele; keine praktische Befähigung oder örtliche Einsatzfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "DRK · Notruf 112",
+          "url": "https://www.drk.de/hilfe-in-deutschland/erste-hilfe/notruf-112/",
+          "organization": "Deutsches Rotes Kreuz",
+          "supports": "Früh alarmieren, Ort möglichst genau beschreiben, Fragen beantworten und Gespräch erst nach Abschluss durch die Leitstelle beenden."
+        },
+        {
+          "label": "Österreichisches Rotes Kreuz · Notruf",
+          "url": "https://www.roteskreuz.at/erste-hilfe-videos/notruf",
+          "organization": "Österreichisches Rotes Kreuz",
+          "supports": "Frühzeitige Alarmierung medizinischer Notfälle über 144 in Österreich, Leitstellenfragen und telefonische Unterstützung; keine stille Alarmprobe."
+        },
+        {
+          "label": "Rega · Alarmnummern und Alarmierung",
+          "url": "https://www.rega.ch/ueber-uns/alarmnummern",
+          "organization": "Schweizerische Rettungsflugwacht Rega",
+          "supports": "Ortsangaben, Koordinaten, Wetter und Hindernisse helfen bei Rettung; Ortswissen und Vorbereitung bleiben neben Ortung wichtig. Schweizer Nummern nicht als DACH-Einheitsnummer verwendet."
+        },
+        {
+          "label": "Rega · App",
+          "url": "https://www.rega.ch/im-einsatz/so-helfen-wir-ihnen/rega-app",
+          "organization": "Schweizerische Rettungsflugwacht Rega",
+          "supports": "Koordinatenübermittlung und anschließende Sprechverbindung; ausreichende Verbindung und Gerätekonfiguration erforderlich. Funktionsweise betrifft dieses Produkt."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "ort",
+          "title": "Ein Reviername reicht Ortsfremden oft nicht",
+          "paragraphs": [
+            "Rettungsorganisationen benötigen eine möglichst genaue Beschreibung des Notfallorts. Gemeinde, bekannter Weg, Zugang und gegebenenfalls Koordinaten ergänzen sich. Rega fragt im Gelände zusätzlich nach Bedingungen wie Sicht und Hindernissen. Eine nur im Jagdteam geläufige Bezeichnung ist für eine fremde Leitstelle nicht automatisch eindeutig.",
+            "Eigenes Lernbeispiel: Ein Team nennt einen Platz intern „beim alten Sitz“. Ergänze für eine Papierübung Ortschaft, eindeutig auffindbaren Weg und einen geeigneten Zugang. Unterscheide den Ort der verletzten Person vom Standort der anrufenden Person. Nutze ein erfundenes Szenario und wähle dafür niemals einen echten Notruf. Bei einem wirklichen Ereignis beginnt die Alarmierung frühzeitig; die Sammlung einer perfekten Beschreibung darf sie nicht verzögern."
+          ],
+          "takeaway": "Der Notfallort wird so beschrieben, dass auch Ortsfremde ihn zuordnen können.",
+          "exercise": "Übersetze einen internen Reviernamen in eine eindeutige Ortsbeschreibung für eine Papierübung."
+        },
+        {
+          "id": "koordinaten",
+          "title": "Zahlen brauchen Format und Bezug",
+          "paragraphs": [
+            "Koordinaten sind eine nützliche Ergänzung zu Ortsnamen. Sie müssen im tatsächlich angezeigten Format verständlich übermittelt werden. Rega weist darauf hin, die Koordinatenanzeige schon vorab zu kennen und Zahlendreher unter Stress zu vermeiden. Der Standort der anrufenden Person ist dabei nicht automatisch der Notfallpunkt.",
+            "Eigenes Lernbeispiel: Auf zwei Geräten stehen unterschiedliche Koordinatenschreibweisen. Beschreibe das Format und lies die Zahlen langsam ab, statt Stellen zu ergänzen oder ungeprüft umzurechnen. Wiederhole in der Papierübung, welcher Punkt gemeint ist. Die Lektion verlangt keine Umrechnung zwischen Bezugssystemen. Wenn Angaben unklar sind, werden sie gegenüber der Leitstelle als unklar bezeichnet und mit Orts- oder Wegeangaben ergänzt."
+          ],
+          "takeaway": "Koordinaten unterstützen die Ortung, wenn Punkt, Format und Zahlen eindeutig bleiben.",
+          "exercise": "Notiere in einer Lernskizze getrennte Felder für Notfallpunkt, Format und Rücklesekontrolle."
+        },
+        {
+          "id": "dialog",
+          "title": "Die Leitstelle führt durch die Fragen",
+          "paragraphs": [
+            "Beim Notruf werden relevante Angaben gezielt erfragt: Was ist passiert, wie viele Menschen sind betroffen und welcher Zustand ist erkennbar? Das DRK betont, auf Rückfragen zu warten. Das Österreichische Rote Kreuz beschreibt auch die telefonische Anleitung durch die Leitstelle. Eine auswendig gelernte Reihenfolge ist keine Voraussetzung, um Hilfe anzufordern.",
+            "Eigenes Lernbeispiel: Im Rollenspiel fragt die Leitstelle früher nach der Atmung als nach dem Namen. Antworte auf die tatsächliche Frage, statt dein vorbereitetes Formular weiter aufzusagen. Beschreibe Beobachtetes und kennzeichne Unbekanntes. Die Gesprächsverbindung wird nicht beendet, nur weil ein eigener Merkzettel abgearbeitet ist. Konkrete Erste-Hilfe-Anleitungen werden im wirklichen Ereignis durch die Leitstelle und die vorhandene Ausbildung geleitet."
+          ],
+          "takeaway": "Auf konkrete Fragen antworten und auf Rückfragen warten.",
+          "exercise": "Übe einen kurzen Dialog, in dem die fragende Person die Reihenfolge verändert."
+        },
+        {
+          "id": "app",
+          "title": "Positionsübermittlung ist noch keine Sprechverbindung",
+          "paragraphs": [
+            "Eine Notfall-App kann die Alarmierung unterstützen. Bei der Rega-App werden Standortdaten übermittelt und eine Sprechverbindung hergestellt; dafür müssen die jeweiligen technischen Voraussetzungen vorliegen. Eine installierte App allein beweist keine Erreichbarkeit. Vor einem Aufenthalt werden deshalb die örtlichen Notrufmöglichkeiten und das konkrete Produkt verstanden.",
+            "Eigenes Lernbeispiel: Im Team sind Karte, Notfallkontakt und Gerätefunktion bekannt, doch eine Person verwechselt den Kartenpunkt mit einem schon abgesetzten Alarm. Trenne im Übungsprotokoll Standortanzeige, Verbindungsaufbau und bestätigten Kontakt. Beschreibe bei einem wirklichen Ereignis die tatsächlich verfügbare Verbindung und folge den Leitstellenhinweisen. Produktfunktionen und Nummern sind landesbezogen; die Schweizer Rega-Nummer wird nicht als allgemeine Nummer für Deutschland und Österreich ausgegeben."
+          ],
+          "takeaway": "Installiert, geortet und verbunden sind verschiedene Zustände.",
+          "exercise": "Erstelle einen Papierablauf mit den Zuständen Standort sichtbar, Kontakt hergestellt und Rückfragen beantwortet."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "ort",
+          "q": "Welche Ortsangabe hilft einer fremden Leitstelle am meisten?",
+          "options": [
+            "Nur der im Team geläufige Name des Ansitzes.",
+            "Ortschaft, auffindbarer Weg und genauer Notfallpunkt.",
+            "Nur die ungefähre Dauer des bisherigen Fußwegs.",
+            "Nur die Entfernung vom eigenen Wohnort."
+          ],
+          "answer": 1,
+          "explain": "Eine nachvollziehbare Ortsbeschreibung erleichtert die Zuordnung des Notfalls."
+        },
+        {
+          "id": "q2",
+          "lessonId": "ort",
+          "q": "Anrufende und verletzte Person befinden sich nicht am selben Punkt. Was wird ausdrücklich genannt?",
+          "options": [
+            "Dass der eigene Telefonstandort ohne Prüfung als Notfallort gilt.",
+            "Nur die Koordinate des letzten Parkplatzes.",
+            "Die eigene Ortsangabe ohne Bezug zur betroffenen Person.",
+            "Welcher Standort zu welcher Person gehört."
+          ],
+          "answer": 3,
+          "explain": "Die Rettung benötigt den Ort der betroffenen Person. Der Anrufstandort kann davon abweichen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "ort",
+          "q": "Du hast noch nicht alle Ortsdetails zusammengestellt. Was gilt bei einem wirklichen medizinischen Notfall?",
+          "options": [
+            "Früh alarmieren und vorhandene Angaben im Dialog ergänzen.",
+            "Bis zur vollständigen Vermessung des Notfallpunkts warten.",
+            "Zuerst sämtliche Fotos und Unterlagen der Tour sortieren.",
+            "Eine private Nachricht ohne bestätigten Leitstellenkontakt als ausreichende Alarmierung werten."
+          ],
+          "answer": 0,
+          "explain": "Frühzeitige Alarmierung und gezielte Rückfragen sind wichtiger als ein vorab perfekter Bericht."
+        },
+        {
+          "id": "q4",
+          "lessonId": "ort",
+          "q": "Wie wird eine Notrufübung dieses Kurses durchgeführt?",
+          "options": [
+            "Durch einen unangekündigten echten Anruf mit erfundenem Notfall.",
+            "Durch probeweises Auslösen eines realen App-Alarms.",
+            "Als Rollenspiel ohne Verbindung zu einer echten Notrufstelle.",
+            "Durch wiederholtes Anwählen, um Antwortzeiten zu vergleichen."
+          ],
+          "answer": 2,
+          "explain": "Ein Lernrollenspiel darf keine realen Notrufressourcen binden."
+        },
+        {
+          "id": "q5",
+          "lessonId": "koordinaten",
+          "q": "Welche Information gehört zu einer mündlich übermittelten Koordinate?",
+          "options": [
+            "Nur eine Zahlenfolge ohne Format und Punktbezug.",
+            "Eine fehlende Stelle aus dem Gedächtnis ergänzen.",
+            "Das verwendete Format und der damit bezeichnete Punkt.",
+            "Die Zahlen verschiedener Geräte zu einem Mittelwert verbinden."
+          ],
+          "answer": 2,
+          "explain": "Format und Punktbezug machen eine Zahlenfolge interpretierbar."
+        },
+        {
+          "id": "q6",
+          "lessonId": "koordinaten",
+          "q": "Zwei Geräte zeigen verschiedene Schreibweisen. Was wird vermieden?",
+          "options": [
+            "Ungeprüftes Umrechnen oder Vermischen der Zahlen.",
+            "Das tatsächliche Format ausdrücklich benennen.",
+            "Vorhandene Ortsnamen zusätzlich mitteilen.",
+            "Ableseunsicherheit offen ansprechen."
+          ],
+          "answer": 0,
+          "explain": "Gemischte Formate können einen falschen Punkt ergeben. Unklare Angaben werden geklärt."
+        },
+        {
+          "id": "q7",
+          "lessonId": "koordinaten",
+          "q": "Welche Vorbereitung empfiehlt sich für eine Koordinatenanzeige?",
+          "options": [
+            "Das Koordinatenmenü erstmals während der Alarmierung suchen.",
+            "Nur einen alten Kartenpunkt auswendig lernen.",
+            "Die Geräteanzeige grundsätzlich als fehlerfrei behandeln.",
+            "Vorab wissen, wo das eigene Gerät den Standort und das Format anzeigt."
+          ],
+          "answer": 3,
+          "explain": "Vertrautheit mit der Anzeige unterstützt korrektes Übermitteln, ohne Genauigkeit zu garantieren."
+        },
+        {
+          "id": "q8",
+          "lessonId": "koordinaten",
+          "q": "Was folgt aus einer angezeigten eigenen Position nicht automatisch?",
+          "options": [
+            "Dass die Position im Gespräch zugeordnet werden sollte.",
+            "Dass dort auch die hilfsbedürftige Person liegt.",
+            "Dass eine Ortsbeschreibung weiter nützlich sein kann.",
+            "Dass der Punktbezug ausdrücklich genannt werden kann."
+          ],
+          "answer": 1,
+          "explain": "Anrufort und Notfallort können auseinanderliegen und müssen getrennt benannt werden."
+        },
+        {
+          "id": "q9",
+          "lessonId": "dialog",
+          "q": "Was ist beim Notruf wichtiger als ein vollständig aufgesagter Merkspruch?",
+          "options": [
+            "Die tatsächlichen Fragen der Leitstelle beantworten.",
+            "Die vorbereitete Reihenfolge trotz Rückfragen vollständig aufsagen.",
+            "Zuerst jede kleine Einzelheit der Vorgeschichte erzählen.",
+            "Unbekannte Zustandsangaben als gesicherte Befunde darstellen."
+          ],
+          "answer": 0,
+          "explain": "Die Leitstelle erfragt die für das Ereignis benötigten Angaben."
+        },
+        {
+          "id": "q10",
+          "lessonId": "dialog",
+          "q": "Du kennst eine erfragte Information nicht sicher. Welche Antwort ist passend?",
+          "options": [
+            "Eine plausible Zahl erfinden.",
+            "Die Frage kommentarlos übergehen.",
+            "Die Unsicherheit offen nennen und Beobachtetes beschreiben.",
+            "Die Unsicherheit durch eine Diagnose ersetzen."
+          ],
+          "answer": 2,
+          "explain": "Eine klare Unbekannt-Angabe ist verlässlicher als ein erfundener Befund."
+        },
+        {
+          "id": "q11",
+          "lessonId": "dialog",
+          "q": "Der eigene Merkzettel ist vollständig vorgelesen. Was folgt für das Telefonat?",
+          "options": [
+            "Auflegen, sobald die eigene Beschreibung beendet ist.",
+            "Auf weitere Fragen warten und die Hinweise der Leitstelle beachten.",
+            "Die Verbindung offen lassen, aber Rückfragen nicht mehr anhören.",
+            "Die Leitung für einen privaten Rückruf sofort beenden."
+          ],
+          "answer": 1,
+          "explain": "Das Gespräch endet nicht automatisch mit dem eigenen Merkzettel."
+        },
+        {
+          "id": "q12",
+          "lessonId": "dialog",
+          "q": "Welche Aufgabe kann die Leitstelle neben der Alarmierung übernehmen?",
+          "options": [
+            "Jede örtliche Gefahr durch eine telefonische Einschätzung ausschließen.",
+            "Die Lage ohne Rückfragen allein anhand des Anrufstandorts beurteilen.",
+            "Eine praktische Erste-Hilfe-Ausbildung vollständig ersetzen.",
+            "Telefonisch bei notwendigen Erste-Hilfe-Schritten unterstützen."
+          ],
+          "answer": 3,
+          "explain": "Telefonische Anleitung unterstützt die Hilfe; sie beseitigt nicht sämtliche Grenzen der Situation."
+        },
+        {
+          "id": "q13",
+          "lessonId": "app",
+          "q": "Was beweist eine installierte Notfall-App allein?",
+          "options": [
+            "Dass immer Mobilfunkempfang besteht.",
+            "Dass alle Fragen der Leitstelle beantwortet sind.",
+            "Dass Rettungskräfte bereits unterwegs sind.",
+            "Dass die Software vorhanden ist, nicht dass gerade ein Notruf verbunden wurde."
+          ],
+          "answer": 3,
+          "explain": "Installation, Datenübertragung und Sprechkontakt sind unterschiedliche Zustände."
+        },
+        {
+          "id": "q14",
+          "lessonId": "app",
+          "q": "Eine Karte zeigt den eigenen Standort. Welche Aussage bleibt offen?",
+          "options": [
+            "Ob die Karte auf dem Bildschirm sichtbar ist.",
+            "Ob bereits Kontakt mit einer Notrufleitstelle hergestellt wurde.",
+            "Ob eine Positionsanzeige grundsätzlich vorliegt.",
+            "Ob es sich um eine eigene Beobachtung handelt."
+          ],
+          "answer": 1,
+          "explain": "Eine Standortanzeige ist kein Nachweis einer Alarmierung."
+        },
+        {
+          "id": "q15",
+          "lessonId": "app",
+          "q": "Warum werden Schweizer Rega-Angaben nicht als allgemeine DACH-Regel gelernt?",
+          "options": [
+            "Zuständige Dienste, Nummern und Produktfunktionen sind örtlich zu prüfen.",
+            "Weil jede Rega-Funktion in ganz DACH dieselbe Zuständigkeit hat.",
+            "Weil Spezialnummern in allen Ländern gleich zugeteilt sind.",
+            "Weil der Aufenthaltsort bei App-Alarmierung grundsätzlich unwichtig ist."
+          ],
+          "answer": 0,
+          "explain": "Örtliche Zuständigkeit bleibt wichtig; ein Produktbeispiel erteilt keine allgemeine Nummernregel."
+        },
+        {
+          "id": "q16",
+          "lessonId": "app",
+          "q": "Welche Vorbereitung ist für einen Aufenthalt in einem anderen Land sinnvoll?",
+          "options": [
+            "Nur die private Nummer einer einzelnen Begleitperson speichern.",
+            "Eine bekannte Spezialnummer ungeprüft aus dem Heimatland übernehmen.",
+            "Die dortigen Notrufmöglichkeiten und die eigenen Gerätefunktionen vorab kennen.",
+            "Die technische Vorbereitung vollständig auf den Notfall verschieben."
+          ],
+          "answer": 2,
+          "explain": "Die Vorbereitung vermindert vermeidbare Bedien- und Zuständigkeitsfragen im Notfall."
+        }
+      ],
+      "imageKey": "jagdpraxis"
+    },
+    {
+      "id": "wissen-ausbau-gefrieren-auftauen-2026",
+      "title": "Gefrieren und Auftauen: Mikroben und Fleischqualität",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Warum Gefrieren weder Sterilisation noch ein neuer Anfang für unbekannte Lagerware ist und wie Auftauen nachvollziehbar geplant wird.",
+      "minutes": 35,
+      "objectives": [
+        "Gefrierlagerung und Keimabtötung unterscheiden",
+        "Eiskristalle und Saftverlust einordnen",
+        "Auftauflüssigkeit von verzehrfertigen Lebensmitteln trennen",
+        "Lagerverlauf und Produktvorgaben berücksichtigen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen.",
+        "AT": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen.",
+        "CH": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "USDA FSIS · Freezing and Food Safety",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/freezing-and-food-safety",
+          "organization": "US Department of Agriculture, Food Safety and Inspection Service",
+          "supports": "Gefrieren ist keine Sterilisation; Eiskristalle und Saftverlust; geeignete Verpackung und Gefrierbrand. US-Zeit-/Temperaturwerte werden nicht als DACH-Vorschrift übernommen."
+        },
+        {
+          "label": "BfR · Korrektes Kühlen von Lebensmitteln im Privathaushalt",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/korrektes-kuehlen-von-lebensmitteln-im-privathaushalt/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Kühl auftauen, Flüssigkeit auffangen und Kreuzkontamination vermeiden; Haushaltskontext, keine gewerbliche Wildbretfreigabe."
+        },
+        {
+          "label": "EFSA · Defrosting food safely",
+          "url": "https://www.efsa.europa.eu/en/infographics/defrosting-food-safely",
+          "organization": "European Food Safety Authority",
+          "supports": "Bakterien können nach Auftauen wachsen; niedrige Auftautemperatur, Schale, saubere Hände/Geräte und passende Herstellerhinweise."
+        },
+        {
+          "label": "EFSA BIOHAZ · Guidance on date marking and related food information, Part 2 (2021), S. 29",
+          "url": "https://www.efsa.europa.eu/sites/default/files/2021-04/6510.pdf",
+          "organization": "European Food Safety Authority",
+          "supports": "Gefriergeschwindigkeit beeinflusst Eiskristallgröße und Zellschäden; Qualitätsänderung und mikrobielle Sicherheit sind zu trennen."
+        },
+        {
+          "label": "BfR · Fragen und Antworten zu verdorbenem Fleisch",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Gefrierlagerung beseitigt Mikroorganismen nicht vollständig; Haltbarkeit hängt von Lagerbedingungen und Produkt ab. Alte pauschale Zahlen nicht übernommen."
+        },
+        {
+          "label": "BLV · Hygiene im Umgang mit Lebensmitteln",
+          "url": "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+          "supports": "Hände und Geräte reinigen, rohe und verzehrfertige Lebensmittel trennen und kühl lagern; keine gewerbliche Wildbretfreigabe."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "mikroben",
+          "title": "Gefroren bedeutet nicht steril",
+          "paragraphs": [
+            "Gefrieren hemmt mikrobielle Aktivität, beseitigt aber nicht alle Mikroorganismen. Überlebende Keime können nach dem Auftauen unter geeigneten Bedingungen wieder aktiv werden und sich vermehren. Die EFSA-Auftauhinweise und die USDA-Information trennen deshalb Gefrierlagerung von einer vollständigen Keimabtötung. Notwendige Untersuchungen werden durch das Gefrierfach nicht ersetzt.",
+            "Eigenes Lernbeispiel: Zwei Portionen sind gleich hart gefroren. Für eine ist der lückenlose Lagerverlauf bekannt, für die andere nicht. Die gemeinsame Härte beantwortet nur den gegenwärtigen Zustand, nicht die unbekannte Vorgeschichte. Lege die Unterlagen getrennt nebeneinander und benenne die offene Frage. Vergib keinen neuen Sicherheitsstatus allein aufgrund des Gefrierens; für eine reale unklare Partie ist eine passende fachliche Bewertung erforderlich."
+          ],
+          "takeaway": "Gefrieren konserviert innerhalb eines geeigneten Prozesses; es sterilisiert nicht.",
+          "exercise": "Erkläre, warum zwei gleich gefrorene Portionen unterschiedliche offene Fragen haben können."
+        },
+        {
+          "id": "qualitaet",
+          "title": "Eiskristalle und Saftverlust",
+          "paragraphs": [
+            "Beim Gefrieren bilden sich Eiskristalle. Langsameres Gefrieren kann größere Kristalle begünstigen, die Gewebestrukturen beeinträchtigen; beim Auftauen kann mehr Flüssigkeit austreten. USDA und die EFSA-Fachbewertung beschreiben diesen Zusammenhang als Qualitätsaspekt. Daraus lässt sich keine pauschale mikrobielle Freigabe oder genaue Lagerdauer einer Wildart ableiten.",
+            "Eigenes Lernbeispiel: Eine aufgetaute Portion hat mehr Flüssigkeit verloren als eine andere. Beschreibe zuerst die beobachtete Menge und den bekannten Prozess, ohne aus dem Saftverlust eine Krankheit oder einen sicheren Verderb abzulesen. Vergleichbar werden die Proben erst mit Angaben zu Stückgröße, Verpackung und Gefrierverlauf. Eine einzelne Küchenbeobachtung ist kein kontrollierter Versuch zur Berechnung des Alters oder der ursprünglichen Qualität eines Wildkörpers."
+          ],
+          "takeaway": "Saftverlust kann mit Gefrierprozessen zusammenhängen; er ist kein alleiniger Sicherheitsnachweis.",
+          "exercise": "Trenne bei einer gedachten Portion die Felder Qualitätsbeobachtung und Lebensmittelsicherheit."
+        },
+        {
+          "id": "auftauen",
+          "title": "Kühl auftauen und Flüssigkeit auffangen",
+          "paragraphs": [
+            "BfR und EFSA empfehlen für rohes Fleisch ein Auftauen im Kühlschrank und eine geeignete Schale beziehungsweise ein Gefäß gegen Verunreinigungen anderer Lebensmittel. Auftauflüssigkeit wird als möglicher Übertragungsweg behandelt. Hände, Geräte und Kontaktflächen werden nach dem Umgang mit rohem Fleisch sauber gehalten; verzehrfertige Speisen bleiben getrennt.",
+            "Eigenes Lernbeispiel: Für die Küche sind eine verschlossene rohe Portion, eine Auffangschale und ein fertig zubereiteter Salat vorgesehen. Zeichne den Ablauf vom Einlagern bis zur Reinigung und markiere jeden möglichen Kontakt der Flüssigkeit. Stelle nur die tatsächlich benötigte Menge zum Auftauen bereit und plane genügend Zeit. Die Lernskizze gibt keine universelle Auftaudauer vor; Verpackungs- und Zubereitungshinweise des konkreten Produkts werden berücksichtigt."
+          ],
+          "takeaway": "Auftauen ist ein geplanter Hygieneschritt, kein bloßes Warten auf weiches Fleisch.",
+          "exercise": "Zeichne einen Ablauf, in dem Auftauflüssigkeit keinen Kontakt zu einem fertigen Salat bekommt."
+        },
+        {
+          "id": "lagerfragen",
+          "title": "Gefrierbrand und unklarer Verlauf",
+          "paragraphs": [
+            "Gefrierbrand bezeichnet vor allem eine Austrocknungs- und Qualitätsveränderung. Geeignete Verpackung begrenzt Wasserverlust. Zugleich ist eine optische Qualitätsveränderung kein vollständiger Bericht über Zeit und Temperatur. Die Grundfrage bei unterbrochener Lagerung lautet deshalb nicht nur, wie das Fleisch jetzt aussieht, sondern welche belastbaren Informationen zum Verlauf vorliegen.",
+            "Eigenes Lernbeispiel: Nach einer Störung findest du veränderte Verpackungen und unklare Zeitangaben. Dokumentiere den bekannten Zustand, die fehlenden Angaben und die betroffenen Portionen. Eine pauschale Freigabe zum Wiedereinfrieren wird daraus nicht konstruiert. Die Quellen geben teils unterschiedlich vorsichtige Haushaltsempfehlungen zum erneuten Einfrieren; dieser Kurs vermittelt deshalb keine allgemeine Ausnahme, sondern verweist auf die konkrete Fachbewertung und Produktanweisung."
+          ],
+          "takeaway": "Ein Qualitätsfehler, ein unklarer Verlauf und eine Sicherheitsentscheidung werden getrennt dokumentiert.",
+          "exercise": "Erstelle für eine gedachte Gerätestörung eine Liste aus bekannt, unbekannt und fachlich zu klären."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "mikroben",
+          "q": "Welche Aussage über tiefgefrorenes Fleisch ist richtig?",
+          "options": [
+            "Es ist unabhängig von seiner Vorgeschichte steril.",
+            "Es benötigt nach dem Auftauen keine Hygiene mehr.",
+            "Es kann weiterhin lebensfähige Mikroorganismen enthalten.",
+            "Jede erforderliche Untersuchung ist dadurch ersetzt."
+          ],
+          "answer": 2,
+          "explain": "Gefrieren tötet nicht sämtliche Keime ab; nach dem Auftauen bleiben hygienische Anforderungen bestehen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "mikroben",
+          "q": "Was kann mit überlebenden Keimen nach dem Auftauen geschehen?",
+          "options": [
+            "Sie können bei geeigneten Bedingungen wieder aktiv werden und wachsen.",
+            "Sie bleiben nach jedem Gefrierprozess dauerhaft vermehrungsunfähig.",
+            "Ihre Anzahl sinkt beim Auftauen zwingend weiter.",
+            "Sie werden allein durch die Dauer der vorherigen Gefrierlagerung ungefährlich."
+          ],
+          "answer": 0,
+          "explain": "Das Überleben im Gefriergut ist mit erneuter Aktivität nach dem Auftauen vereinbar."
+        },
+        {
+          "id": "q3",
+          "lessonId": "mikroben",
+          "q": "Eine Portion mit unbekanntem Lagerverlauf ist wieder hart gefroren. Welche Frage bleibt offen?",
+          "options": [
+            "Ob der gegenwärtige Gefrierzustand sichtbar ist.",
+            "Ob jede frühere Belastung dadurch sicher beseitigt wurde.",
+            "Ob ein neuer Aufkleber den Verlauf nachträglich beweist.",
+            "Welche Bedingungen vor dem erneuten Gefrieren vorlagen."
+          ],
+          "answer": 3,
+          "explain": "Der aktuelle Zustand rekonstruiert keine fehlende Temperatur- und Prozessgeschichte."
+        },
+        {
+          "id": "q4",
+          "lessonId": "mikroben",
+          "q": "Was unterscheidet Gefrierlagerung von Sterilisation?",
+          "options": [
+            "Gefrieren tötet sämtliche Keime ab, Sterilisation hemmt dagegen nur ihre Vermehrung.",
+            "Gefrierlagerung gewährleistet keine vollständige Keimfreiheit.",
+            "Beide Verfahren hemmen nur das Wachstum, ohne vermehrungsfähige Keime zu beseitigen.",
+            "Gefrieren macht Fleisch unabhängig vom bisherigen Lagerverlauf hygienisch sicher."
+          ],
+          "answer": 1,
+          "explain": "Das Konservierungsverfahren und vollständige Keimbeseitigung sind unterschiedliche Aussagen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "qualitaet",
+          "q": "Welcher Zusammenhang wird bei langsamerem Gefrieren beschrieben?",
+          "options": [
+            "Größere Kristalle entstehen ausschließlich während des Auftauens.",
+            "Größere Eiskristalle können Gewebestrukturen stärker beeinträchtigen.",
+            "Langsames Gefrieren ist zugleich ein verlässlicher Sterilisationsschritt.",
+            "Die Kristallgröße hängt nie von der Gefriergeschwindigkeit ab."
+          ],
+          "answer": 1,
+          "explain": "Die Kristallbildung hängt unter anderem vom Gefrierprozess ab und kann die Struktur beeinflussen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "qualitaet",
+          "q": "Mehr Flüssigkeit tritt nach dem Auftauen aus. Was beweist das allein nicht?",
+          "options": [
+            "Dass eine Flüssigkeitsmenge beobachtet wurde.",
+            "Dass die Beobachtung dokumentiert werden kann.",
+            "Dass Qualitätsfragen geprüft werden können.",
+            "Den vollständigen mikrobiellen Sicherheitsstatus der Portion."
+          ],
+          "answer": 3,
+          "explain": "Flüssigkeitsverlust ist eine Qualitätsbeobachtung und kein umfassender Keimnachweis."
+        },
+        {
+          "id": "q7",
+          "lessonId": "qualitaet",
+          "q": "Welche Angaben helfen, zwei Gefrierversuche im Lernbeispiel zu vergleichen?",
+          "options": [
+            "Stückgröße, Verpackung und bekannter Gefrierverlauf.",
+            "Nur die Farbe der Portion auf dem fertigen Foto.",
+            "Nur das nachträglich notierte Entnahmedatum.",
+            "Eine geschätzte Temperaturreihe ohne tatsächliche Messungen."
+          ],
+          "answer": 0,
+          "explain": "Vergleichsbedingungen müssen beschrieben werden, bevor Unterschiede einem Verfahren zugeschrieben werden."
+        },
+        {
+          "id": "q8",
+          "lessonId": "qualitaet",
+          "q": "Welche Aussage trennt Qualität und Sicherheit?",
+          "options": [
+            "Saftiges Fleisch ist immer frei von Erregern.",
+            "Geringer Saftverlust ersetzt jede Untersuchung.",
+            "Saftigkeit und Keimstatus beantworten verschiedene Fragen.",
+            "Mehr Saftverlust beweist immer eine Tierkrankheit."
+          ],
+          "answer": 2,
+          "explain": "Sensorische oder physikalische Qualität ist kein Ersatz für die Bewertung mikrobieller Gefahren."
+        },
+        {
+          "id": "q9",
+          "lessonId": "auftauen",
+          "q": "Welche Kombination entspricht den behandelten Auftaugrundsätzen?",
+          "options": [
+            "Raumtemperatur und direkte Ablage über verzehrfertigen Speisen.",
+            "Beschleunigung durch unbekannte Wärmezufuhr ohne Produktbezug.",
+            "Gemeinsame Kontaktfläche für Rohware und fertige Speisen.",
+            "Kühlschrank, geeignetes Auffanggefäß und Trennung von verzehrfertigen Speisen."
+          ],
+          "answer": 3,
+          "explain": "Kühle Bedingungen und Kontakttrennung begrenzen vermeidbare Vermehrung und Übertragung von Keimen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "auftauen",
+          "q": "Warum wird Auftauflüssigkeit aufgefangen?",
+          "options": [
+            "Weil ihr Auffangen alle Keime im Fleisch entfernt.",
+            "Damit sie andere Lebensmittel und Flächen nicht verunreinigt.",
+            "Weil ihre Farbe die sichere Resthaltbarkeit zeigt.",
+            "Weil sie bei tiefgefrorener Herkunft grundsätzlich keimfrei ist."
+          ],
+          "answer": 1,
+          "explain": "Die Flüssigkeit kann Keime verbreiten und wird hygienisch gehandhabt."
+        },
+        {
+          "id": "q11",
+          "lessonId": "auftauen",
+          "q": "Ein Schneidbrett hatte Kontakt mit rohem Fleischsaft. Was ist vor einer anderen Verwendung erforderlich?",
+          "options": [
+            "Nur sichtbare Flüssigkeit abtupfen und sofort weiterverwenden.",
+            "Abwarten, bis die Fläche trocken aussieht.",
+            "Gründliche Reinigung entsprechend dem vorgesehenen Hygieneverfahren.",
+            "Nur die Seite mit den sichtbaren Flecken mit einem trockenen Tuch abreiben."
+          ],
+          "answer": 2,
+          "explain": "Kontaktflächen dürfen Keime nicht auf weitere Lebensmittel übertragen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "auftauen",
+          "q": "Warum nennt der Kurs keine einzige Auftaudauer für alle Portionen?",
+          "options": [
+            "Produkt, Größe, Verpackung und Bedingungen unterscheiden sich.",
+            "Weil Auftauen bei jeder Größe gleich lange dauert.",
+            "Weil die Kerntemperatur immer der Lufttemperatur entspricht.",
+            "Weil Verpackungs- und Zubereitungshinweise nach dem Gefrieren entfallen."
+          ],
+          "answer": 0,
+          "explain": "Der konkrete Prozess wird passend geplant; ein pauschaler Stundenwert würde unterschiedliche Bedingungen verdecken."
+        },
+        {
+          "id": "q13",
+          "lessonId": "lagerfragen",
+          "q": "Was beschreibt Gefrierbrand in erster Linie?",
+          "options": [
+            "Eine Austrocknungs- und Qualitätsveränderung des Gefrierguts.",
+            "Eine zuverlässige Anzeige, wie lange das Gerät stromlos war.",
+            "Einen eindeutigen Nachweis krankmachender Bakterien.",
+            "Eine vollständige Beurteilung der bisherigen Kühlkette."
+          ],
+          "answer": 0,
+          "explain": "Gefrierbrand ist eine Qualitätsbeschreibung und keine vollständige Prozess- oder Erregerdiagnose."
+        },
+        {
+          "id": "q14",
+          "lessonId": "lagerfragen",
+          "q": "Was hilft gegen Wasserverlust während geeigneter Gefrierlagerung?",
+          "options": [
+            "Ein neuer Lagerbeginn auf dem Etikett.",
+            "Ausschließlich ein möglichst tiefer Lagerplatz ohne geeignete Hülle.",
+            "Eine für den Zweck geeignete Verpackung.",
+            "Offenes Lagern unabhängig von Feuchtigkeit und Dauer."
+          ],
+          "answer": 2,
+          "explain": "Verpackung ist ein Faktor der Qualitätserhaltung; sie ersetzt keine fehlende Hygienevorgeschichte."
+        },
+        {
+          "id": "q15",
+          "lessonId": "lagerfragen",
+          "q": "Nach einer Gerätestörung ist der Zeitverlauf unbekannt. Was ist sachlich?",
+          "options": [
+            "Den Verlauf nach der günstigsten vermuteten Zeit rekonstruieren.",
+            "Bekannte und unbekannte Bedingungen dokumentieren und die Verwendung fachlich klären.",
+            "Die ganze Partie durch erneutes Gefrieren pauschal freigeben.",
+            "Die Entscheidung ausschließlich durch rohes Probieren treffen."
+          ],
+          "answer": 1,
+          "explain": "Unbekannte Bedingungen dürfen nicht als günstiger Verlauf ausgegeben werden."
+        },
+        {
+          "id": "q16",
+          "lessonId": "lagerfragen",
+          "q": "Was lehrt der Kurs zum erneuten Einfrieren nach unklarer Unterbrechung?",
+          "options": [
+            "Jede aufgetaute Portion darf ohne Rücksicht auf den Verlauf wieder eingefroren werden.",
+            "Ein neuer Beutel setzt den mikrobiellen Verlauf zurück.",
+            "Ein einziger allgemeiner Stundenwert ersetzt die Produkt- und Prozessprüfung.",
+            "Keine pauschale Freigabe; den konkreten Verlauf und passende Fachhinweise prüfen."
+          ],
+          "answer": 3,
+          "explain": "Unterschiedliche Produkte und Quellenbedingungen erlauben keine universelle Entscheidung für eine unklare Partie."
+        }
+      ],
+      "imageKey": "wildbret-gesundheit"
+    },
+    {
+      "id": "wissen-ausbau-hepatitis-e-2026",
+      "title": "Hepatitis E: unsichtbares Risiko verstehen",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Virus, Tierkontakt und Lebensmittelweg getrennt betrachten und die Grenzen einer Blickkontrolle verstehen.",
+      "minutes": 35,
+      "objectives": [
+        "Virus und Parasitenuntersuchung unterscheiden",
+        "Europäischen Reservoirbezug einordnen",
+        "Kontakt- und Verzehrweg trennen",
+        "Schutzmaßnahmen und Untersuchungsgrenzen erklären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen.",
+        "AT": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen.",
+        "CH": "Lebensmittelbiologische Grundlagen im Haushaltskontext; vorgeschriebene Untersuchungen und gewerbliche Anforderungen bleiben gesondert zu prüfen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "BfR · Hepatitis E: Übertragung durch Haus- und Wildschweine vermeiden, FAQ 03.03.2025",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Virus, Reservoir Haus-/Wildschwein, unauffällige Tiere, Kontakt und Lebensmittel als Übertragungswege, Schutzmaßnahmen und Grenzen."
+        },
+        {
+          "label": "BfR · HEV-FAQ 03.03.2025, vollständiges Dokument",
+          "url": "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_deutsch/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden.pdf",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Vollständige Fragen zu Schutzkleidung, gründlichem Erhitzen und begrenzter Aussage spezieller Verarbeitungsweisen; identische Publikation zur FAQ-Seite, keine zusätzliche unabhängige Bestätigung."
+        },
+        {
+          "label": "ECDC · Disease information about hepatitis E",
+          "url": "https://www.ecdc.europa.eu/en/hepatitis-e/facts",
+          "organization": "European Centre for Disease Prevention and Control",
+          "supports": "Europäischer zoonotischer Übertragungszusammenhang, Schwein/Wildschwein als Reservoir; Lebensmittel-/Kontaktrisiken und besonders gefährdete Personen. Alte Fallzahlen nicht als aktueller Stand benutzt."
+        },
+        {
+          "label": "EFSA · Hepatitis E: raw pork is main cause of infection in EU",
+          "url": "https://www.efsa.europa.eu/en/press/news/170711",
+          "organization": "European Food Safety Authority",
+          "supports": "Wildschweine können HEV tragen; rohes/unzureichend gegartes Schweinefleisch und Leber sind Lebensmittelrisiken; vollständige Erhitzung. Mitteilung von 2017, keine aktuellen Häufigkeiten."
+        },
+        {
+          "label": "EFSA BIOHAZ · Public health risks associated with HEV as a food-borne pathogen (2017), Abschnitte 3.8–3.9",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7010180/",
+          "organization": "European Food Safety Authority",
+          "supports": "Schutzbarrieren bei Wildkörperarbeit, getrennte Geräte/Händehygiene und ausreichende Erhitzung; keine konkreten Effektprozente oder universellen Temperaturrezepte übertragen."
+        },
+        {
+          "label": "BLV · Viren in Lebensmitteln",
+          "url": "https://www.blv.admin.ch/de/viren-in-lebensmitteln",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+          "supports": "HEV als Ursache einer Leberentzündung, Lebensmittelbezug einschließlich roher Schweineleber, vollständiges Durchgaren. Risikogruppen nicht ungeprüft mit Genotypaussagen anderer Regionen vermischt."
+        },
+        {
+          "label": "BLV · Hygiene im Umgang mit Lebensmitteln",
+          "url": "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen",
+          "supports": "Hände und Geräte reinigen, rohe und verzehrfertige Lebensmittel trennen und kühl lagern; keine gewerbliche Wildbretfreigabe."
+        },
+        {
+          "label": "Singapore Food Agency · Hepatitis E virus and food safety",
+          "url": "https://www.sfa.gov.sg/food-safety-tips/food-risk-concerns/risk-at-a-glance/hepatitis-e",
+          "organization": "Singapore Food Agency",
+          "supports": "Schwein und Wildschwein können trotz HEV-Infektion äußerlich unauffällig sein. Ausschließlich dieser biologische Zusammenhang wird übernommen; keine regionalen Häufigkeiten oder Rechtsregeln für DACH."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "virus",
+          "title": "Ein Virus ist kein Muskelwurm",
+          "paragraphs": [
+            "Hepatitis E ist eine durch HEV verursachte Leberentzündung. In Europa spielen zoonotische Übertragungswege mit Haus- und Wildschweinen eine wichtige Rolle. Das ist ein anderer Erregerzusammenhang als bei Trichinellen. Eine Untersuchung auf einen bestimmten Parasiten untersucht nicht automatisch ein Virus oder jede weitere Gefahr.",
+            "Eigenes Lernbeispiel: Auf einem Übergabeblatt steht ein unauffälliges Ergebnis einer speziellen Untersuchung. Ordne dem Ergebnis genau die geprüfte Frage zu. Ergänze die gesonderten Felder Kühlverlauf, Hygiene und weitere offene Anforderungen. Die Übung verlangt keine zusätzliche Untersuchung nach eigener Wahl; sie verhindert lediglich, dass ein begrenzter Nachweis als umfassende Lebensmittelsicherheitsbescheinigung gelesen wird."
+          ],
+          "takeaway": "HEV und Trichinellen sind verschiedene Erreger; ein spezifischer Nachweis hat einen bestimmten Umfang.",
+          "exercise": "Erkläre in einem Satz, warum ein Parasitenbefund keine Aussage zu allen Viren ist."
+        },
+        {
+          "id": "unauffaellig",
+          "title": "Ein unauffälliges Tier ist kein Virentest",
+          "paragraphs": [
+            "Mit HEV infizierte Haus- und Wildschweine können ohne erkennbare Krankheitszeichen bleiben. Das BfR beschreibt ausdrücklich, dass die Infektion nicht durch bloßes Betrachten erkannt wird. Auch beim Menschen sind symptomarme oder unbemerkte Infektionen möglich. Diese Aussagen beschreiben unterschiedliche Wirte und ersetzen keine konkrete Untersuchung.",
+            "Eigenes Lernbeispiel: Ein Foto zeigt ein äußerlich normales Wildschwein. Die korrekte Bildbeschreibung nennt sichtbare Merkmale und verzichtet auf „HEV-frei“. Trenne außerdem einen gemeldeten regionalen Studienwert vom Status des fotografierten Tiers. Aus einer fremden Untersuchungsregion wird weder ein Prozentsatz für dein Revier noch eine sichere Freigabe für ein einzelnes Stück berechnet."
+          ],
+          "takeaway": "Äußere Unauffälligkeit beweist keine Freiheit von HEV.",
+          "exercise": "Verbessere die Bildunterschrift „gesund und virenfrei“ zu einer rein beobachtbaren Aussage."
+        },
+        {
+          "id": "wege",
+          "title": "Kontakt und Verzehr sind verschiedene Wege",
+          "paragraphs": [
+            "HEV kann beim Umgang mit infizierten Tieren und über daraus gewonnene Lebensmittel relevant werden. Für Wildkörperarbeiten empfehlen BfR und EFSA geeignete Schutzbarrieren wie Schutzhandschuhe sowie gute Hygiene. Rohes oder unzureichend durchgegartes Schweine- und Wildschweinfleisch, besonders entsprechende Leberprodukte, gehört zu den beschriebenen Lebensmittelrisiken.",
+            "Eigenes Lernbeispiel: Zeichne zwei getrennte Abläufe: Wildkörperarbeit und Küchenzubereitung. Trage jeweils mögliche Kontakte von Händen, Geräten und Lebensmitteln ein. Ein Paar Handschuhe ist keine Erlaubnis, mit denselben verschmutzten Handschuhen eine fertige Speise anzufassen. Die Bearbeitung bleibt Aufgabe der dazu ausgebildeten und berechtigten Personen; die Lernzeichnung erklärt Kontakttrennung und ist keine praktische Zerlegeanleitung."
+          ],
+          "takeaway": "Schutz beim Tierkontakt und sichere Lebensmittelzubereitung ergänzen sich.",
+          "exercise": "Markiere in einer eigenen Ablaufskizze einen Kontaktweg und einen Verzehrweg."
+        },
+        {
+          "id": "praevention",
+          "title": "Durchgaren und besondere Empfindlichkeit",
+          "paragraphs": [
+            "Die Quellen empfehlen vollständiges, gleichmäßiges Durchgaren entsprechender Fleisch- und Leberprodukte zur Risikoverringerung. Für Menschen mit stark geschwächtem Immunsystem oder vorgeschädigter Leber können HEV-Infektionen besonders problematisch sein. Ein standardmäßiger Tierfoto-Eindruck, eine reine Reifeangabe oder eine neue Verpackung beantwortet diese Fragen nicht.",
+            "Eigenes Lernbeispiel: Für ein gemeinsames Essen ist ein rohes Wildschweinprodukt geplant. Die zuständige Person klärt das Produkt und die fachlichen Zubereitungshinweise, statt eine erdachte Erhitzungszeit zu verwenden. Persönliche gesundheitliche Fragen werden medizinisch besprochen. Hier werden weder Behandlung noch eine pauschale Zeit-Temperatur-Kombination vermittelt. Die Empfehlung zur ausreichenden Erhitzung ersetzt außerdem keine erforderliche Untersuchung oder Freigabe des Ausgangsprodukts."
+          ],
+          "takeaway": "Eine sichere Zubereitung wird produktspezifisch geplant; medizinische Risiken werden fachlich besprochen.",
+          "exercise": "Erkläre den Unterschied zwischen Produktfreigabe, Zubereitung und individueller medizinischer Beratung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "virus",
+          "q": "Welcher Erreger verursacht Hepatitis E?",
+          "options": [
+            "Ein Fadenwurm der Gattung Trichinella.",
+            "Das Hepatitis-E-Virus.",
+            "Ein Leberparasit aus der Gruppe der Saugwürmer.",
+            "Ein Bakterium, das ausschließlich Fleischverderb verursacht."
+          ],
+          "answer": 1,
+          "explain": "Hepatitis E ist eine Virusinfektion und nicht mit den genannten Parasiten gleichzusetzen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "virus",
+          "q": "Welche Bedeutung haben Haus- und Wildschweine im europäischen HEV-Zusammenhang?",
+          "options": [
+            "Sie erkranken bei jeder Infektion sofort sichtbar.",
+            "Nur Tiere mit auffälliger Leber können als Reservoir gelten.",
+            "Die Reservoirfunktion belegt die Infektion jedes einzelnen Stücks.",
+            "Sie sind wichtige tierische Reservoirs."
+          ],
+          "answer": 3,
+          "explain": "Eine Reservoirfunktion beschreibt den Erregerzusammenhang, nicht den nachgewiesenen Status jedes Tieres."
+        },
+        {
+          "id": "q3",
+          "lessonId": "virus",
+          "q": "Was folgt aus einem unauffälligen speziellen Parasitenbefund nicht?",
+          "options": [
+            "Dass auch sämtliche Viren und andere Gefahren ausgeschlossen sind.",
+            "Dass das Ergebnis einer bestimmten Untersuchungsfrage zugeordnet werden sollte.",
+            "Dass die Probenidentität wichtig bleibt.",
+            "Dass der geprüfte Umfang benannt werden kann."
+          ],
+          "answer": 0,
+          "explain": "Eine spezifische Untersuchung beantwortet ihre eigene Fragestellung und keine umfassende Erregerfrage."
+        },
+        {
+          "id": "q4",
+          "lessonId": "virus",
+          "q": "Welches Organ steht im Namen der Erkrankung Hepatitis E im Vordergrund?",
+          "options": [
+            "Die Muskulatur als einziger Ort einer Erkrankung.",
+            "Der Darm, weil HEV zu den erwachsenen Darmwürmern gehört.",
+            "Die Leber.",
+            "Die Lunge als namensgebendes Zielorgan."
+          ],
+          "answer": 2,
+          "explain": "Hepatitis bezeichnet eine Leberentzündung; der Kurs liefert daraus keine individuelle Diagnose."
+        },
+        {
+          "id": "q5",
+          "lessonId": "unauffaellig",
+          "q": "Ein Wildschwein wirkt äußerlich unauffällig. Welche Aussage ist begründet?",
+          "options": [
+            "HEV ist durch unauffälliges Verhalten sicher ausgeschlossen.",
+            "Für HEV genügt eine genaue Betrachtung der Körperoberfläche.",
+            "Eine HEV-Infektion ist dadurch nicht ausgeschlossen.",
+            "Äußere Unauffälligkeit beweist Eignung für jede rohe Verwendung."
+          ],
+          "answer": 2,
+          "explain": "Eine Infektion kann ohne erkennbare Krankheitszeichen vorliegen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "unauffaellig",
+          "q": "Welche Bildunterschrift bleibt bei sichtbaren Merkmalen?",
+          "options": [
+            "Äußerlich unauffälliges Wildschwein; Erregerstatus nicht durch das Foto bestimmt.",
+            "HEV-frei aufgrund unauffälligen Verhaltens.",
+            "Virologisch unauffällig allein nach äußerer Betrachtung.",
+            "Für Rohverzehr geeignet aufgrund der Bildkontrolle."
+          ],
+          "answer": 0,
+          "explain": "Ein Foto ist kein virologisches Untersuchungsverfahren."
+        },
+        {
+          "id": "q7",
+          "lessonId": "unauffaellig",
+          "q": "Ein Studienwert stammt aus einer anderen Region. Was beweist er für ein einzelnes Tier im eigenen Revier?",
+          "options": [
+            "Eine sichere negative Untersuchung.",
+            "Eine exakt gleiche örtliche Häufigkeit.",
+            "Die Nutzlosigkeit jeder weiteren Betrachtung.",
+            "Keinen individuellen HEV-Status."
+          ],
+          "answer": 3,
+          "explain": "Untersuchungsgebiet, Stichprobe und Einzelbefund sind unterschiedliche Ebenen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "unauffaellig",
+          "q": "Was ist bei einem unbemerkten menschlichen Infektionsverlauf möglich?",
+          "options": [
+            "Dass damit der konkrete Übertragungsweg sicher feststeht.",
+            "Eine Infektion ohne deutlich wahrgenommene Erkrankungssymptome.",
+            "Dass persönliches Wohlbefinden einen Erregernachweis ersetzt.",
+            "Dass schwere Verläufe bei anderen Personen ausgeschlossen sind."
+          ],
+          "answer": 1,
+          "explain": "Milde oder unbemerkte Verläufe ändern nichts am Erregernachweis oder an möglichen Risiken anderer Personen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "wege",
+          "q": "Welche beiden Wege werden im Kurs unterschieden?",
+          "options": [
+            "Kontakt beim Umgang mit infizierten Tieren und Verzehr belasteter Lebensmittel.",
+            "Nur den Verzehrweg; beim Umgang mit Tieren wird Kontakt ausgeschlossen.",
+            "Nur den direkten Tierkontakt; Lebensmittel spielen keine Rolle.",
+            "Eine erkennbare Tiererkrankung als zwingende Voraussetzung jeder Übertragung."
+          ],
+          "answer": 0,
+          "explain": "Kontakt- und Verzehrweg verlangen unterschiedliche, ergänzende Schutzüberlegungen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "wege",
+          "q": "Warum sind verschmutzte Handschuhe kein Freibrief für den Umgang mit fertigen Speisen?",
+          "options": [
+            "Handschuhe reinigen jede berührte Fläche automatisch.",
+            "Mit Handschuhen entfällt jede Kontakttrennung.",
+            "Auch über ihre Oberfläche können Verunreinigungen weitergetragen werden.",
+            "Ein Handschuh beweist einen negativen HEV-Befund."
+          ],
+          "answer": 2,
+          "explain": "Schutzbarrieren und saubere Arbeitsabläufe müssen zusammenpassen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "wege",
+          "q": "Welche konkrete Fleischproduktgruppe nennt der Kurs als HEV-Risiko?",
+          "options": [
+            "Eine ausreichend lange optische Kontrolle der rohen Leber.",
+            "Rohe oder unzureichend gegarte Produkte aus Schwein oder Wildschwein.",
+            "Nur Fleischprodukte, deren Tier schon äußerlich erkrankt wirkte.",
+            "Ein unauffälliger Parasitenbefund als Ersatz jeder weiteren Risikoüberlegung."
+          ],
+          "answer": 1,
+          "explain": "HEV kann über entsprechende belastete Lebensmittel auf Menschen übertragen werden."
+        },
+        {
+          "id": "q12",
+          "lessonId": "wege",
+          "q": "Welche Aussage zu Schutzhandschuhen trifft den Kursinhalt?",
+          "options": [
+            "Sie ersetzen jeden weiteren Hygieneschritt.",
+            "Sie beweisen, dass das bearbeitete Tier nicht infiziert ist.",
+            "Sie machen jede Person ohne Ausbildung zur fachkundigen Person.",
+            "Sie sind eine empfohlene Schutzbarriere bei geeigneter Wildkörperarbeit, zusammen mit guter Hygiene."
+          ],
+          "answer": 3,
+          "explain": "Eine Schutzbarriere begrenzt Exposition; sie ist weder Erregernachweis noch Befähigung."
+        },
+        {
+          "id": "q13",
+          "lessonId": "praevention",
+          "q": "Welche Zubereitungsrichtung wird zur HEV-Risikoverringerung beschrieben?",
+          "options": [
+            "Rohware nur durch eine längere Reifeangabe als erhitzt betrachten.",
+            "Den äußeren Farbeindruck als einzigen Garmaßstab nutzen.",
+            "Ein Produkt allein wegen einer neuen Verpackung als ausreichend behandelt ansehen.",
+            "Entsprechende Fleisch- und Leberprodukte vollständig und gleichmäßig durchgaren."
+          ],
+          "answer": 3,
+          "explain": "Ausreichende Erhitzung ist eine wichtige Maßnahme gegen lebensmittelbedingte Übertragung."
+        },
+        {
+          "id": "q14",
+          "lessonId": "praevention",
+          "q": "Welche Personengruppe wird hinsichtlich schwerer HEV-Verläufe besonders berücksichtigt?",
+          "options": [
+            "Ausschließlich Menschen ohne vorbestehende Erkrankung.",
+            "Menschen mit stark geschwächtem Immunsystem oder Lebervorschädigung.",
+            "Nur Personen, die das betroffene Lebensmittel noch nie gegessen haben.",
+            "Ausschließlich Menschen, deren letzte Mahlzeit symptomfrei blieb."
+          ],
+          "answer": 1,
+          "explain": "Immunsuppression und Lebervorschädigungen können den Verlauf problematischer machen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "praevention",
+          "q": "Warum gibt der Kurs keine einheitliche Garzeit für jedes Wildbretprodukt an?",
+          "options": [
+            "Weil jede äußere Bräunung eine ausreichende Kernerhitzung beweist.",
+            "Weil das Wort Wildbret alle Prozessunterschiede aufhebt.",
+            "Produkt und Erhitzungsverfahren verlangen passende fachliche Vorgaben.",
+            "Weil notwendige Untersuchungen durch ein Kochwort entfallen."
+          ],
+          "answer": 2,
+          "explain": "Eine pauschale Dauer ohne Produkt- und Prozessbezug wäre keine belastbare Sicherheitsanweisung."
+        },
+        {
+          "id": "q16",
+          "lessonId": "praevention",
+          "q": "Welche drei Fragen bleiben getrennt?",
+          "options": [
+            "Ausgangsprodukt-Freigabe, sichere Zubereitung und individuelle medizinische Beratung.",
+            "Nur äußerer Eindruck und Produktname als vollständige Sicherheitsprüfung.",
+            "Nur eine spezielle Parasitenuntersuchung für alle Erregerfragen.",
+            "Nur die Lebensmittelzubereitung als Ersatz auch für individuelle Gesundheitsfragen."
+          ],
+          "answer": 0,
+          "explain": "Die Fragen betreffen verschiedene Zuständigkeiten und Nachweise."
+        }
+      ],
+      "imageKey": "wildbret-gesundheit"
+    },
+    {
+      "id": "wissen-ausbau-augenschutz-2026",
+      "title": "Augenschutz: Gefährdung, Passform und Sichtprüfung",
+      "category": "Waffen & Sicherheit",
+      "topic": "Waffen & Schuss",
+      "description": "Schutzbrillen passend beurteilen, mit Sehhilfe und Gehörschutz abstimmen und Schäden rechtzeitig erkennen.",
+      "minutes": 35,
+      "objectives": [
+        "Gefährdung und Schutzfunktion zuordnen",
+        "Sehhilfe und Schutzbrille unterscheiden",
+        "Ausrüstung gemeinsam auf passenden Sitz prüfen",
+        "Beschädigungen und fehlende Sicht ernst nehmen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gefahrenbezogene Grundlagen der Schutzorganisation; keine praktische Waffenanweisung und keine Freigabe einer konkreten Ausrüstung.",
+        "AT": "Gefahrenbezogene Grundlagen der Schutzorganisation; keine praktische Waffenanweisung und keine Freigabe einer konkreten Ausrüstung.",
+        "CH": "Gefahrenbezogene Grundlagen der Schutzorganisation; keine praktische Waffenanweisung und keine Freigabe einer konkreten Ausrüstung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "DGUV · Sachgebiet Augenschutz, FAQ",
+          "url": "https://www.dguv.de/fb-psa/sachgebiete/sachgebiet-augenschutz/faq-zum-sachgebiet/index.jsp",
+          "organization": "Deutsche Gesetzliche Unfallversicherung",
+          "supports": "Gefährdungsbeurteilung, Korrektionsschutzbrille, Kompatibilität und Sichtprüfung vor Benutzung. Keine pauschale Brillenfreigabe für Schussbelastung."
+        },
+        {
+          "label": "DGUV · Sonnenbrillen als PSA regelmäßig austauschen?",
+          "url": "https://aug.dguv.de/ihre-fragen/sonnenbrillen-austauschen/",
+          "organization": "Deutsche Gesetzliche Unfallversicherung",
+          "supports": "Beschädigte Sichtscheiben/Gestelle und fehlende Schutzwirkung erfordern Instandsetzung oder Ersatz. Keine feste universelle Jahresfrist."
+        },
+        {
+          "label": "IFA/DGUV · Kombinationen persönlicher Schutzausrüstung",
+          "url": "https://dguv.de/ifa/praxishilfen/practical-solutions-for-personal-protective-equipment/combinations-of-personal-protective-equipment/index.jsp",
+          "organization": "Institut für Arbeitsschutz der Deutschen Gesetzlichen Unfallversicherung",
+          "supports": "Gleichzeitig getragene Ausrüstung darf Schutzfunktionen nicht beeinträchtigen; Augenschutz mit Gehörschutz als Beispiel."
+        },
+        {
+          "label": "Suva · Augen- und Gesichtsschutz bei der Arbeit",
+          "url": "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit",
+          "organization": "Suva",
+          "supports": "Gefahrenbezogene Auswahl, Komfort und Unterschied zu gewöhnlichen Sehhilfen."
+        },
+        {
+          "label": "Suva · Arten des Augen- und Gesichtsschutzes",
+          "url": "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/welche-arten-von-augenschutz-und-gesichtsschutz-gibt-es",
+          "organization": "Suva",
+          "supports": "Bügelbrillen, Korbbrillen und Gesichtsschutz decken verschiedene Anforderungen ab; Filter sind gefahrenbezogen."
+        },
+        {
+          "label": "Suva · Kriterien bei der Wahl des Augen- und Gesichtsschutzes",
+          "url": "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/wichtige-kriterien-bei-der-wahl-des-augenschutzes-und-gesichtsschutzes",
+          "organization": "Suva",
+          "supports": "Individueller Sitz, Kompatibilität, Sicht und Pflege als Auswahlkriterien."
+        },
+        {
+          "label": "Suva · Checkliste Persönliche Schutzausrüstungen, Ausgabe 05.09.2024",
+          "url": "https://www.suva.ch/de-ch/download/checklisten/checkliste--persoenliche-schutzausruestungen--psa/checkliste--persoenliche-schutzausruestungen--psa--67091.D",
+          "organization": "Suva",
+          "supports": "Anforderungsgerechte Auswahl, Wartung, Instruktion und konsequentes Tragen; keine universelle Austauschfrist."
+        },
+        {
+          "label": "Österreichische Arbeitsinspektion · Augen- und Gesichtsschutz",
+          "url": "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/persoenliche_schutzausruestung/Arten/augen_gesicht_schutz.html",
+          "organization": "Österreichische Arbeitsinspektion",
+          "supports": "Gefährdungsarten, Einsatzbedingungen, Trageeigenschaften und Auswahl von Augen-/Gesichtsschutz. Österreichischer Arbeitsschutzrahmen nicht als Jagdfreigabe für DACH übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gefaehrdung",
+          "title": "Die Aufgabe bestimmt die Schutzanforderung",
+          "paragraphs": [
+            "Mechanische Partikel, chemische Einwirkungen und schädliche Strahlung sind unterschiedliche Gefährdungen der Augen. Die Auswahl des Schutzes beginnt deshalb mit der konkreten Tätigkeit und deren Bedingungen. Eine dunkel getönte Scheibe beweist weder passenden mechanischen Schutz noch Eignung für jede andere Gefahr. Arbeitsinspektion und Suva unterscheiden entsprechend verschiedene Schutzanforderungen.",
+            "Eigenes Lernbeispiel: Für drei theoretische Arbeitsplätze stehen Staub, Spritzer und intensive Strahlung auf den Karten. Ordne erst die Gefährdungsart zu und formuliere danach eine Frage an die zuständige Sicherheitsfachperson. Wähle kein bestimmtes Produkt allein anhand eines Fotos. Auch ein vorhandenes Prüfzeichen ersetzt nicht die Prüfung seines tatsächlichen Geltungsbereichs, der Herstellerangaben und der örtlichen Vorgaben. Die Übung enthält keine Waffenhandlung und keinen Belastungstest."
+          ],
+          "takeaway": "Augenschutz wird für eine bestimmte Gefährdung ausgewählt.",
+          "exercise": "Ordne drei gedachte Gefahren zu und schreibe die jeweils offene Auswahlfrage auf."
+        },
+        {
+          "id": "sehkorrektur",
+          "title": "Sehkorrektur und Schutz sind zwei Aufgaben",
+          "paragraphs": [
+            "Eine gewöhnliche Korrekturbrille gleicht Fehlsichtigkeit aus; damit ist sie nicht automatisch eine geeignete Schutzbrille. Korrektionsschutzbrillen verbinden beide Aufgaben. Auch Überbrillen müssen für ihren vorgesehenen Einsatz passen. Die Eignung hängt von Schutzanforderung, Sicht und der konkreten Kombination ab, nicht allein davon, ob zwei Gestelle übereinander getragen werden können.",
+            "Eigenes Lernbeispiel: Eine Person erkennt die Beschriftung erst mit ihrer Sehhilfe, benötigt für eine betreute Tätigkeit aber zusätzlichen Augenschutz. Liste die beiden Anforderungen getrennt auf. Die zuständige Fachperson klärt eine passende Lösung; eine improvisierte Stapelung wird nicht als geprüft bezeichnet. Ein Lernfoto kann die Bauform zeigen, aber weder den individuellen Sitz noch die ausreichende Schutzleistung dieser konkreten Kombination bestätigen."
+          ],
+          "takeaway": "Gutes Sehen und passender Schutz müssen gleichzeitig gesichert sein.",
+          "exercise": "Formuliere für eine gedachte Sehhilfenträgerin zwei getrennte Anforderungen an die Auswahl."
+        },
+        {
+          "id": "kombination",
+          "title": "Ausrüstung gemeinsam prüfen",
+          "paragraphs": [
+            "Gleichzeitig getragene Schutzausrüstung darf sich in ihrer Wirkung nicht beeinträchtigen. IFA/DGUV nennt beispielsweise Augenschutz zusammen mit Kapselgehörschutz. Passform, Sichtfeld und Komfort gehören zur Auswahl; eine für sich passende Brille wird deshalb auch mit der tatsächlich benötigten weiteren Ausrüstung betrachtet.",
+            "Eigenes Lernbeispiel: Bei der ruhigen Anprobe drückt ein Bügel unter einer Gehörschutzkapsel. Die Person meldet den Konflikt und lässt eine geeignete Kombination klären. Sie entfernt für die spätere Tätigkeit nicht einfach einen Schutzbestandteil. Die Übung endet mit einer dokumentierten offenen Frage, solange die Eignung ungeklärt ist. Produktänderungen oder eigenmächtige Umbauten werden nicht als einfache Lösung vorgeschlagen."
+          ],
+          "takeaway": "Die Eignung einzelner Teile beweist noch nicht die Eignung ihrer Kombination.",
+          "exercise": "Beschreibe einen Sitzkonflikt ohne eine ungeprüfte Umbauanweisung zu geben."
+        },
+        {
+          "id": "zustand",
+          "title": "Sichtprüfung, Pflege und Ersatz",
+          "paragraphs": [
+            "Augen- und Gesichtsschutz wird vor der Benutzung auf ordnungsgemäßen Zustand geprüft. Stark verkratzte Sichtbereiche, ein beschädigtes Gestell oder fehlende Schutzwirkung werden nicht durch Gewöhnung behoben. Reinigung und Wartung richten sich nach den Herstellerangaben und dem vorgesehenen Verfahren. Eine universelle Austauschfrist für sämtliche Brillen wird hier nicht behauptet.",
+            "Eigenes Lernbeispiel: Im Lernfall wird eine Scheibe mit beeinträchtigter Durchsicht gefunden. Beschreibe den Schaden, nimm das Teil nicht als geprüft in die nächste Tätigkeit mit und kläre geeigneten Ersatz oder fachgerechte Instandsetzung. Die Dokumentation benennt Zustand und Entscheidung, ohne das Material selbst zu testen. Eine saubere Außenseite und eine unbeschädigte Schutzfunktion sind zwei verschiedene Prüfpunkte."
+          ],
+          "takeaway": "Sauber, durchsichtig und funktionsfähig sind getrennte Zustandsfragen.",
+          "exercise": "Erstelle eine kurze Zustandsnotiz mit Schaden, Nichtverwendung und zuständiger Klärung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "gefaehrdung",
+          "q": "Was steht am Anfang einer sachlichen Augenschutz-Auswahl?",
+          "options": [
+            "Eine äußerlich möglichst breite Scheibe ohne weitere Produktangaben.",
+            "Der höchste erreichbare Verkaufspreis.",
+            "Die konkrete Gefährdung und die Einsatzbedingungen.",
+            "Die auf einem Foto bewährte Gestellform einer anderen Person."
+          ],
+          "answer": 2,
+          "explain": "Die Schutzfunktion muss zur Tätigkeit und ihren Gefahren passen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "gefaehrdung",
+          "q": "Was beweist eine dunkle Tönung allein nicht?",
+          "options": [
+            "Eignung gegen jede mechanische, chemische und optische Gefahr.",
+            "Dass die Scheibe getönt erscheint.",
+            "Dass die Farbe beschrieben werden kann.",
+            "Dass zusätzliche Produktinformationen nötig sein können."
+          ],
+          "answer": 0,
+          "explain": "Tönung ist kein universeller Nachweis verschiedener Schutzleistungen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "gefaehrdung",
+          "q": "Welche Gruppe enthält unterschiedliche Gefährdungsarten?",
+          "options": [
+            "Bügelbrille, Überbrille und Korrektionsschutzbrille als Gefährdungsarten.",
+            "Tönung, Gestellfarbe und Verpackungsform als vollständige Gefährdungsbeurteilung.",
+            "Marke, Kaufdatum und Besitzdauer als Arten äußerer Einwirkung.",
+            "Partikel, chemische Spritzer und schädliche Strahlung."
+          ],
+          "answer": 3,
+          "explain": "Die Arten der Einwirkung unterscheiden sich und bestimmen passende Schutzanforderungen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "gefaehrdung",
+          "q": "Welche Frage gehört vor dem Einsatz einer vorhandenen Brille zur Prüfung?",
+          "options": [
+            "Ob die Form bei einem anderen Nutzer gut aussieht.",
+            "Ob ihre dokumentierte Schutzfunktion die tatsächliche Aufgabe abdeckt.",
+            "Ob ihre dunkle Scheibe jeden weiteren Nachweis ersetzt.",
+            "Ob die Brille zusammen mit dem Werkzeug gekauft wurde."
+          ],
+          "answer": 1,
+          "explain": "Ein Produkt wird anhand seiner vorgesehenen Funktion und der konkreten Gefährdung eingeordnet."
+        },
+        {
+          "id": "q5",
+          "lessonId": "sehkorrektur",
+          "q": "Welche Aussage über eine gewöhnliche Korrekturbrille ist richtig?",
+          "options": [
+            "Sie erfüllt automatisch jede Schutzanforderung.",
+            "Die Sehkorrektur allein beweist keine geeignete Schutzfunktion.",
+            "Sie ist grundsätzlich mit jeder Ausrüstung geprüft.",
+            "Sie ersetzt jede Gefährdungsbeurteilung."
+          ],
+          "answer": 1,
+          "explain": "Sehkorrektur und Schutz sind unterschiedliche Funktionen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "sehkorrektur",
+          "q": "Was verbindet eine Korrektionsschutzbrille?",
+          "options": [
+            "Nur Sehkorrektur ohne dokumentierte Schutzfunktion.",
+            "Nur eine zusätzliche dunkle Tönung über einer Sehhilfe.",
+            "Eine Standardsehstärke unabhängig von der Person.",
+            "Ausgleich einer Fehlsichtigkeit und eine vorgesehene Augenschutzfunktion."
+          ],
+          "answer": 3,
+          "explain": "Die kombinierte Funktion muss weiterhin zum vorgesehenen Einsatz passen."
+        },
+        {
+          "id": "q7",
+          "lessonId": "sehkorrektur",
+          "q": "Zwei Brillen lassen sich übereinander aufsetzen. Was ist damit noch nicht belegt?",
+          "options": [
+            "Dass Sicht, Sitz und Schutzfunktion dieser Kombination geeignet sind.",
+            "Dass zwei Gestelle vorhanden sind.",
+            "Dass eine Anprobe stattgefunden hat.",
+            "Dass Fragen an eine Fachperson möglich sind."
+          ],
+          "answer": 0,
+          "explain": "Bloße mechanische Tragbarkeit ist kein Nachweis einer passenden Schutzkombination."
+        },
+        {
+          "id": "q8",
+          "lessonId": "sehkorrektur",
+          "q": "Was kann ein Foto einer Überbrille zuverlässig leisten?",
+          "options": [
+            "Den individuellen Sitz bei jeder Person bescheinigen.",
+            "Die konkrete Schutzwirkung jeder Kombination nachweisen.",
+            "Die abgebildete Bauform zeigen.",
+            "Eine benötigte Sehstärke ermitteln."
+          ],
+          "answer": 2,
+          "explain": "Bauform und individuelle Eignung sind unterschiedliche Aussagen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "kombination",
+          "q": "Warum wird Augenschutz mit weiterer benötigter Ausrüstung gemeinsam betrachtet?",
+          "options": [
+            "Weil die Teile sich gegenseitig in Sitz oder Schutzwirkung beeinflussen können.",
+            "Weil jede Schutzwirkung durch zusätzliche Teile automatisch steigt.",
+            "Weil getrennt passende Produkte immer auch gemeinsam passen.",
+            "Weil Schutzwerte verschiedener Teile ohne Prüfung addiert werden können."
+          ],
+          "answer": 0,
+          "explain": "Gleichzeitige Verwendung verlangt eine passende, verträgliche Kombination."
+        },
+        {
+          "id": "q10",
+          "lessonId": "kombination",
+          "q": "Bei einer ruhigen Anprobe drückt ein Brillenbügel unter einer Kapsel. Was ist der nächste sachliche Schritt?",
+          "options": [
+            "Für die spätere Tätigkeit pauschal einen Schutz weglassen.",
+            "Den Bügel ohne Vorgabe selbst kürzen.",
+            "Den Konflikt melden und eine geeignete Kombination klären.",
+            "Den Druck als Beweis zusätzlicher Sicherheit werten."
+          ],
+          "answer": 2,
+          "explain": "Ein Konflikt wird vor dem Einsatz gelöst und nicht durch eine neue Schutzlücke ersetzt."
+        },
+        {
+          "id": "q11",
+          "lessonId": "kombination",
+          "q": "Welche Merkmale gehören zur Auswahl neben der vorgesehenen Schutzfunktion?",
+          "options": [
+            "Nur die Lichtdurchlässigkeit ohne Bezug zur Tätigkeit.",
+            "Passform, Sichtfeld und Tragekomfort.",
+            "Nur die Schutzangabe ohne Rücksicht auf Sichtfeld und Sitz.",
+            "Nur das Gestellgewicht unabhängig von den übrigen Anforderungen."
+          ],
+          "answer": 1,
+          "explain": "Die Ausrüstung muss auch für die Person und ihre Tätigkeit geeignet sein."
+        },
+        {
+          "id": "q12",
+          "lessonId": "kombination",
+          "q": "Einzelne Produkte sind jeweils vorgesehen, ihre Kombination aber ungeklärt. Was gilt?",
+          "options": [
+            "Die Eignung folgt automatisch aus der Anzahl der Teile.",
+            "Die Trägerin kann jeden Konflikt durch Umbau selbst freigeben.",
+            "Ein Produktfoto ersetzt die Prüfung am tatsächlichen Team.",
+            "Die Kombination bleibt eine eigene offene Eignungsfrage."
+          ],
+          "answer": 3,
+          "explain": "Verträglichkeit folgt nicht automatisch aus getrennten Produktangaben."
+        },
+        {
+          "id": "q13",
+          "lessonId": "zustand",
+          "q": "Wann gehört eine Sichtprüfung zum behandelten Ablauf?",
+          "options": [
+            "Erst, wenn eine sichtbare Verletzung aufgetreten ist.",
+            "Nur beim ersten Auspacken des Produkts.",
+            "Ausschließlich nach Ablauf einer allgemeinen Jahresfrist.",
+            "Vor der Benutzung."
+          ],
+          "answer": 3,
+          "explain": "Der aktuelle Zustand wird vor dem Gebrauch betrachtet."
+        },
+        {
+          "id": "q14",
+          "lessonId": "zustand",
+          "q": "Eine Sichtscheibe ist im Sichtbereich stark verkratzt. Was ist sachlich?",
+          "options": [
+            "Die Scheibe reinigen und anschließend ohne weitere Schadensprüfung verwenden.",
+            "Benutzung aussetzen; Ersatz oder fachgerechte Instandsetzung klären.",
+            "Die Brille weiterverwenden, wenn die Tätigkeit bei gutem Tageslicht stattfindet.",
+            "Allein aus dem Kaufdatum eine verbleibende sichere Nutzungsdauer ableiten."
+          ],
+          "answer": 1,
+          "explain": "Eine beeinträchtigte Scheibe kann Sichtanforderungen und Schutz beeinträchtigen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "zustand",
+          "q": "Welche Aussage über Reinigung ist richtig?",
+          "options": [
+            "Sie stellt die mechanische Schutzwirkung jedes gerissenen Teils wieder her.",
+            "Sie macht eine zuvor ungeeignete Schutzklasse für andere Gefahren passend.",
+            "Sie erfolgt passend zu Herstellerangaben und ersetzt keine Schadensbeurteilung.",
+            "Sie ersetzt die Sichtprüfung auf bleibende Schäden."
+          ],
+          "answer": 2,
+          "explain": "Pflege, ordnungsgemäßer Zustand und Auswahl sind unterschiedliche Aufgaben."
+        },
+        {
+          "id": "q16",
+          "lessonId": "zustand",
+          "q": "Warum nennt der Kurs keine feste Austauschfrist für jede Schutzbrille?",
+          "options": [
+            "Produkt, Zustand, Nutzung und Herstellerangaben unterscheiden sich.",
+            "Weil äußerlich saubere Brillen grundsätzlich unbegrenzt nutzbar sind.",
+            "Weil nur das Kaufjahr und nie der Zustand berücksichtigt wird.",
+            "Weil die Sichtprüfung nach einer festen Nutzungsdauer entfällt."
+          ],
+          "answer": 0,
+          "explain": "Eine pauschale Lebensdauer würde den konkreten Zustand und die Produktvorgaben übergehen."
+        }
+      ],
+      "imageKey": "waffen-sicherheit"
+    },
+    {
+      "id": "wissen-ausbau-schutzgebietspruefung-2026",
+      "title": "Schutzgebiete: Karte, Verordnung und eigene Aktivität",
+      "category": "Jagdrecht",
+      "topic": "Recht",
+      "description": "Schutzstatus, örtliche Vorschriften und Karteninformationen anhand klar getrennter Beispiele aus Deutschland, Tirol und der Schweiz lesen.",
+      "minutes": 35,
+      "objectives": [
+        "Schutzgebietsnamen und konkrete Regel unterscheiden",
+        "Deutsches Naturschutzgebietsrecht mit örtlichen Vorgaben zusammen lesen",
+        "Tiroler Beispiel nicht auf ganz Österreich übertragen",
+        "Empfohlene und rechtsverbindliche Schweizer Wildruhezonen unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Beispiel § 23 BNatSchG: näher bestimmte Verbote und abweichendes Landesrecht beachten. Der konkrete Schutzbeschluss, seine Karten und die örtlichen Vorschriften werden nicht durch diesen Kurs ersetzt.",
+        "AT": "Das Rechtsbeispiel betrifft ausdrücklich Tirol, § 21 TNSchG 2005 und Schutzgebietsverordnungen. Keine Übertragung auf andere österreichische Bundesländer; keine einzelne Aktivität oder Jagdausübung freigegeben.",
+        "CH": "Empfohlene und rechtsverbindliche Wildruhezonen unterscheiden. Aktuellen kantonalen/örtlichen Beschluss mit Geltungszeit und erlaubten Routen prüfen; das Markierungshandbuch von 2016 dient nur der Begriffserklärung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "sources": [
+        {
+          "label": "Deutschland · § 23 Bundesnaturschutzgesetz",
+          "url": "https://www.gesetze-im-internet.de/bnatschg_2009/__23.html",
+          "organization": "Bundesministerium der Justiz und für Verbraucherschutz; Bundesamt für Justiz",
+          "supports": "Originalnorm: Schutzgebiete und näher bestimmte Verbote; enthält Verweise auf abweichendes Landesrecht. Keine bestimmte örtliche Betretens- oder Jagdfreigabe."
+        },
+        {
+          "label": "BfN · Naturschutzgebiete",
+          "url": "https://www.bfn.de/naturschutzgebiete",
+          "organization": "Bundesamt für Naturschutz",
+          "supports": "Amtliche Einordnung der deutschen Schutzgebietskategorie und amtlicher Kartenzugang. Erläuterung des Rechtsrahmens, keine zweite unabhängige Rechtsnorm."
+        },
+        {
+          "label": "Land Tirol · Naturschutzrecht",
+          "url": "https://www.tirol.gv.at/umwelt/umweltrecht/naturschutzrecht/",
+          "organization": "Amt der Tiroler Landesregierung",
+          "supports": "Schutzgebietsverordnungen zusammen mit TNSchG lesen; Gebietsbezogene amtliche Verordnungssammlung. Gilt als Beispiel Tirol, nicht ganz Österreich."
+        },
+        {
+          "label": "Tirol · § 21 TNSchG 2005, konsolidierte Fassung",
+          "url": "https://www.ris.bka.gv.at/geltendefassung.wxe?abfrage=lrt&gesetzesnummer=20000252",
+          "organization": "Rechtsinformationssystem des Bundes; Landesrecht Tirol",
+          "supports": "Originalgesetz in amtlicher konsolidierter Dokumentation: Erklärung durch Verordnung, Schutzzweck und gebietsbezogene Verbote. Fassung am Prüftag eingesehen."
+        },
+        {
+          "label": "BAFU · Tourismus, Sport und Freizeit in der Natur",
+          "url": "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur",
+          "organization": "Bundesamt für Umwelt",
+          "supports": "Kantone und Wildruhezonen; örtlich/zeitlich begrenzter Schutz vor Störungen."
+        },
+        {
+          "label": "BAFU · Wildruhezonen: Markierungshandbuch 2016, S. 7–8",
+          "url": "https://www.bafu.admin.ch/dam/it/sd-web/Sn-yWdJkjK2V/wildruhezonen_markierungshandbuch.pdf",
+          "organization": "Bundesamt für Umwelt",
+          "supports": "Rechtsverbindliche und empfohlene Zonen unterscheiden; Handbuch ist Vollzugshilfe, kein örtlicher Schutzbeschluss."
+        },
+        {
+          "label": "swisstopo · Schutzgebiete und Wildtiere",
+          "url": "https://www.swisstopo.admin.ch/de/schutzgebiete-und-wildtiere",
+          "organization": "Bundesamt für Landestopografie swisstopo",
+          "supports": "Amtlicher Verweis auf aktuelle Wildruhezoneninformationen und Kartenviewer; Karte und Information zusammen lesen."
+        },
+        {
+          "label": "SAC · Bergsport und Schutzgebiete",
+          "url": "https://www.sac-cas.ch/de/umwelt/freier-zugang/bergsport-und-schutzgebiete/",
+          "organization": "Schweizer Alpen-Club SAC",
+          "supports": "Rechtsverbindliche und empfohlene Wildruhezonen unterscheiden und gebietsbezogene Regeln für die konkrete Aktivität prüfen; fachliche Praxiserläuterung, kein Ersatz für Schutzbeschluss."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "deutschland",
+          "title": "Deutschland: § 23 ist der Rahmen, nicht die ganze Ortsprüfung",
+          "paragraphs": [
+            "§ 23 BNatSchG beschreibt Naturschutzgebiete und Verbote nach näheren Bestimmungen. Das BfN erläutert die Schutzgebietskategorie und bietet Kartenzugänge. Für einen konkreten Aufenthalt reichen deshalb weder der Kategoriename noch eine allgemeine Beschreibung. Landesrecht, maßgebliche Schutzbestimmungen und die konkrete Aktivität gehören zusammen gelesen; die amtliche Norm weist auch auf abweichendes Landesrecht hin.",
+            "Eigenes Lernbeispiel: Zwei Gebiete heißen Naturschutzgebiet, doch eine Person möchte daraus dieselbe Wege- oder Fahrzeugregel ableiten. Stelle stattdessen eine örtliche Prüfakte mit Gebietsnamen, Bundesland, maßgeblichem Text und geplanter Tätigkeit zusammen. Eine fehlende Textstelle wird als offen markiert. Der Kurs beantwortet nicht, ob eine bestimmte Jagd, Fahrt oder Beobachtungsroute dort erlaubt ist; diese Entscheidung braucht die vollständige aktuelle Ortsgrundlage."
+          ],
+          "takeaway": "Eine bundesweite Kategorie ersetzt keine örtlichen Schutzbestimmungen.",
+          "exercise": "Formuliere eine konkrete Rückfrage zu Gebiet, Bundesland, Aktivität und einschlägiger Bestimmung."
+        },
+        {
+          "id": "tirol",
+          "title": "Österreich: ein genau benanntes Landesbeispiel",
+          "paragraphs": [
+            "Das Tiroler Beispiel ist bewusst regional: § 21 TNSchG 2005 behandelt Naturschutzgebiete, ihre Erklärung durch Verordnung und gebietsbezogene Schutzbestimmungen. Das Land Tirol weist ausdrücklich darauf hin, Schutzgebietsverordnungen zusammen mit dem Naturschutzgesetz in geltender Fassung zu lesen. Das ist keine Aussage, dass jedes österreichische Bundesland dieselben Paragraphen oder Einzelregeln hat.",
+            "Eigenes Lernbeispiel: In einer Nachricht steht nur „in Österreich erlaubt“. Präzisiere Bundesland, Gebiet und Aktivität. Für das Tiroler Beispiel wird der passende Verordnungstext aus dem Landesportal zusammen mit der aktuellen Gesetzesfassung gesucht. Ein vermeintlicher Ausnahmesatz wird nicht aus seinem Schutzzweck und Zusammenhang herausgelöst. Der Kurs legt keine bestimmte Ausnahmebewilligung aus und erteilt keine eigene Jagd- oder Betretensfreigabe."
+          ],
+          "takeaway": "Tirol ist ein benanntes Beispiel, keine österreichweite Schablone.",
+          "exercise": "Schreibe eine Antwort auf „in Österreich erlaubt“, die die fehlenden Ortsangaben erfragt."
+        },
+        {
+          "id": "schweiz",
+          "title": "Schweiz: empfohlen und rechtsverbindlich unterscheiden",
+          "paragraphs": [
+            "Für Schweizer Wildruhezonen unterscheiden die amtlichen Informationen empfohlene und rechtsverbindliche Gebiete. Der SAC erläutert dieselbe Unterscheidung für die Praxis. Aktuelle Gebietsangaben betreffen den konkreten Raum, die betroffene Zeit und erlaubte Routen. Das BAFU-Markierungshandbuch von 2016 hilft bei den Begriffen, ist aber nicht der aktuelle örtliche Schutzbeschluss.",
+            "Eigenes Lernbeispiel: Eine Karte und eine Tafel nennen eine Wildruhezone. Notiere den angegebenen Status und suche die aktuelle Information des zuständigen Kantons beziehungsweise Gebiets. Lies nicht nur die Farbe einer Fläche, sondern auch Zeitraum, Legende und zur Tätigkeit passende Regel. Der Kurs setzt weder alle Zonen gleich noch erklärt er empfohlene Rücksichtnahme für ökologisch unwichtig. Eine konkrete Rechtsfolge wird erst aus der tatsächlich geltenden Grundlage geklärt."
+          ],
+          "takeaway": "Status, Ort und Geltungszeit gehören zusammen; ein altes Handbuch ist kein örtlicher Beschluss.",
+          "exercise": "Erstelle eine Vergleichsliste für Status, Zeitraum, Route und amtliche Fundstelle."
+        },
+        {
+          "id": "fallakte",
+          "title": "Eine kleine Prüfakte statt einer pauschalen Antwort",
+          "paragraphs": [
+            "Die drei Beispiele zeigen unterschiedliche Quellenketten: Bundesrahmen und örtliche Bestimmungen in Deutschland, Gesetz und Verordnung im benannten Tiroler Beispiel sowie Status und Gebietsgrundlage bei Schweizer Wildruhezonen. Eine Karte erleichtert die räumliche Zuordnung. Sie macht aus allgemeinen Gebietsinformationen keine persönliche Berechtigung für eine konkrete Aktivität.",
+            "Eigenes Lernbeispiel: Für einen Aufenthalt erstellt das Team eine einseitige Akte mit Land, Region, Gebiet, Datum, Aktivität und amtlicher Fundstelle. Daneben stehen offene Fragen und die zuständige Rückfrage. Wird der Ort oder die Aktivität geändert, werden die dafür relevanten Felder erneut betrachtet. Eine Unterschrift des Lernteams ist kein amtlicher Entscheid. Das Ziel ist eine überprüfbare Frage und eine passende Grundlage, nicht das Erfinden einer möglichst einfachen Erlaubnis."
+          ],
+          "takeaway": "Eine gute Rechtsfrage ist örtlich, zeitlich und sachlich konkret.",
+          "exercise": "Fülle für einen frei erfundenen Fall die Felder Land, Region, Gebiet, Datum, Aktivität und Quelle aus."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "deutschland",
+          "q": "Welche Unterlagen gehören bei einem konkreten deutschen Naturschutzgebiet zusätzlich zur allgemeinen Kategorie?",
+          "options": [
+            "Nur ein Foto eines Schilds ohne zugehörige aktuelle Bestimmungen.",
+            "Die maßgeblichen örtlichen Schutzbestimmungen und das einschlägige Landesrecht.",
+            "Nur die Verordnung eines gleichnamigen Gebiets in einer anderen Region.",
+            "Nur eine allgemeine Artenliste des Schutzgebietstyps."
+          ],
+          "answer": 1,
+          "explain": "§ 23 BNatSchG verweist auf nähere Bestimmungen; die konkrete Ortsprüfung bleibt erforderlich.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q2",
+          "lessonId": "deutschland",
+          "q": "Zwei Flächen tragen dieselbe Schutzgebietskategorie. Was folgt daraus nicht automatisch?",
+          "options": [
+            "Dass die Kategorie benannt werden kann.",
+            "Dass der genaue Ort relevant bleibt.",
+            "Dass amtliche Texte geprüft werden können.",
+            "Dass für jede Aktivität identische örtliche Regeln gelten."
+          ],
+          "answer": 3,
+          "explain": "Gleiche Kategorienamen ersetzen keinen Vergleich der geltenden gebietsbezogenen Regelungen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q3",
+          "lessonId": "deutschland",
+          "q": "Welche Rolle hat die BfN-Karte in der Lernprüfung?",
+          "options": [
+            "Sie unterstützt die Zuordnung eines Schutzgebiets; konkrete Bestimmungen bleiben zu lesen.",
+            "Sie ersetzt den vollständigen Schutzgebiets- und Verordnungstext.",
+            "Sie bestätigt automatisch eine persönliche Jagdberechtigung.",
+            "Sie entscheidet jede Frage zur konkreten Fahrzeugnutzung."
+          ],
+          "answer": 0,
+          "explain": "Karteninformation und rechtliche Erlaubnis für eine Aktivität sind unterschiedliche Dinge.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q4",
+          "lessonId": "deutschland",
+          "q": "Was wird bei fehlender eindeutiger Ortsgrundlage in die Lernakte geschrieben?",
+          "options": [
+            "Eine angenommene Freigabe nach dem günstigsten Beispiel.",
+            "Eine Regel aus einem anderen Bundesland als sichere Ortsregel.",
+            "Die konkrete Frage bleibt offen und wird zuständig geklärt.",
+            "Eine pauschale Erlaubnis aus dem Gebietsbild."
+          ],
+          "answer": 2,
+          "explain": "Die Methode hält die Beleglücke sichtbar, statt sie durch eine Vermutung zu ersetzen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q5",
+          "lessonId": "tirol",
+          "q": "Auf welchen örtlichen Rechtsbereich bezieht sich das Beispiel mit § 21 TNSchG 2005?",
+          "options": [
+            "Auf sämtliche DACH-Länder.",
+            "Auf jeden Schweizer Kanton.",
+            "Auf Tirol.",
+            "Auf alle österreichischen Bundesländer mit identischem Wortlaut."
+          ],
+          "answer": 2,
+          "explain": "Das Beispiel ist ausdrücklich Tirol zugeordnet.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q6",
+          "lessonId": "tirol",
+          "q": "Welche Texte werden im Tiroler Schutzgebietsbeispiel zusammen gelesen?",
+          "options": [
+            "Die betreffende Schutzgebietsverordnung und das geltende Tiroler Naturschutzgesetz.",
+            "Die Schutzgebietsverordnung und das Naturschutzgesetz eines benachbarten Bundeslands.",
+            "Das Tiroler Naturschutzgesetz und eine allgemeine Gebietskarte ohne Verordnungstext.",
+            "Eine amtliche Artenliste und die historische Erstverordnung ohne Prüfung späterer Änderungen."
+          ],
+          "answer": 0,
+          "explain": "Das Landesportal weist auf die Zusammenschau von Verordnung und Gesetz hin.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q7",
+          "lessonId": "tirol",
+          "q": "Eine Nachricht sagt nur „in Österreich erlaubt“. Welche Angabe fehlt für die Quellenprüfung besonders?",
+          "options": [
+            "Nur das Kalenderjahr der ersten Bekanntmachung.",
+            "Nur die Unterschrift unter einer privaten Zusammenfassung.",
+            "Nur ein Vergleich mit einer ähnlich klingenden Schutzgebietsbezeichnung.",
+            "Das zuständige Bundesland und das konkrete Gebiet samt Aktivität."
+          ],
+          "answer": 3,
+          "explain": "Örtlicher Regelungsbereich und konkrete Handlung bestimmen die relevante Rechtsfrage.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q8",
+          "lessonId": "tirol",
+          "q": "Warum wird ein einzelner Ausnahmesatz nicht isoliert übernommen?",
+          "options": [
+            "Weil eine Ausnahme ungeachtet ihrer Voraussetzungen immer allgemein gilt.",
+            "Sein Geltungsbereich und seine Voraussetzungen gehören zum rechtlichen Zusammenhang.",
+            "Weil eine private Kurzfassung den Originaltext ersetzt.",
+            "Weil für Ausnahmebestimmungen der Ort keine Rolle mehr spielt."
+          ],
+          "answer": 1,
+          "explain": "Ein Ausnahmetext ist nur im vollständigen örtlichen Regelungszusammenhang verständlich.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q9",
+          "lessonId": "schweiz",
+          "q": "Welche Unterscheidung ist bei Schweizer Wildruhezonen wesentlich?",
+          "options": [
+            "Empfohlene und rechtsverbindliche Zonen.",
+            "Nur ganzjährig und im Winter sichtbare Kartenfarben.",
+            "Nur große und kleine Schutzflächen unabhängig vom Status.",
+            "Nur Flächen mit und ohne erkennbares Wild auf dem Kartenbild."
+          ],
+          "answer": 0,
+          "explain": "Der Status ist eine eigene Information und wird nicht aus einer bloßen Flächenfarbe erraten.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q10",
+          "lessonId": "schweiz",
+          "q": "Was wird neben dem räumlichen Verlauf einer Zone geprüft?",
+          "options": [
+            "Nur die räumliche Fläche ohne Blick auf Zeitraum und Legende.",
+            "Nur das Erstellungsdatum eines privaten Screenshots.",
+            "Geltungszeit, Status und die für die konkrete Aktivität relevante Regel.",
+            "Nur die Zahl der benachbarten Routen."
+          ],
+          "answer": 2,
+          "explain": "Gebietsbezogene Angaben sind ohne Zeitraum und Regelinhalt unvollständig.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q11",
+          "lessonId": "schweiz",
+          "q": "Welche Rolle hat das BAFU-Markierungshandbuch von 2016 hier?",
+          "options": [
+            "Den aktuellen kantonalen Schutzbeschluss für jeden Ort verbindlich ersetzen.",
+            "Begriffe und Markierung erklären, ohne einen aktuellen örtlichen Beschluss zu ersetzen.",
+            "Eine persönliche Ausnahmebewilligung für den Aufenthalt erteilen.",
+            "Sämtliche heutigen Bundes- und Kantonsregeln vollständig wiedergeben."
+          ],
+          "answer": 1,
+          "explain": "Die historische Vollzugshilfe und die konkrete aktuelle Rechtsgrundlage erfüllen verschiedene Aufgaben.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q12",
+          "lessonId": "schweiz",
+          "q": "Eine empfohlene Zone ist auf der Karte erkennbar. Welche Aussage passt zur Lektion?",
+          "options": [
+            "Der Begriff empfohlen belegt, dass Wildtierruhe unwichtig ist.",
+            "Jede Empfehlung ist automatisch dieselbe Rechtsnorm wie ein Schutzbeschluss.",
+            "Der Status macht eine Ortsprüfung grundsätzlich überflüssig.",
+            "Die Empfehlung sachlich berücksichtigen und ihren Status von einer verbindlichen Regel unterscheiden."
+          ],
+          "answer": 3,
+          "explain": "Fachliche Rücksichtnahme und rechtlicher Status werden getrennt erklärt.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q13",
+          "lessonId": "fallakte",
+          "q": "Welche vollständige Felderkombination macht die gedachte Schutzgebietsfrage überprüfbar?",
+          "options": [
+            "Nur ein Gebietsname und eine allgemeine DACH-Überschrift.",
+            "Nur eine Route ohne Datum und konkrete Aktivität.",
+            "Nur eine private Zustimmung ohne einschlägige Grundlage.",
+            "Land, Region, Gebiet, Datum, Aktivität und amtliche Fundstelle."
+          ],
+          "answer": 3,
+          "explain": "Die Felder konkretisieren Geltungsbereich und Gegenstand der Prüfung."
+        },
+        {
+          "id": "q14",
+          "lessonId": "fallakte",
+          "q": "Das Team ändert die geplante Aktivität. Was wird mit der bisherigen Prüfakte getan?",
+          "options": [
+            "Sie wird unverändert als Freigabe für die neue Tätigkeit verwendet.",
+            "Die dafür relevanten Grundlagen werden erneut betrachtet.",
+            "Die Quellen entfallen, wenn das Gebiet bereits bekannt ist.",
+            "Nur der Aktivitätsname wird ohne erneute Prüfung ausgetauscht."
+          ],
+          "answer": 1,
+          "explain": "Eine Prüfung gilt für ihren tatsächlichen Sachverhalt und ist bei relevanter Änderung neu abzugleichen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "fallakte",
+          "q": "Welche Aussage über Karten ist hier richtig?",
+          "options": [
+            "Jeder Kartenpunkt erteilt automatisch eine Jagderlaubnis.",
+            "Ein Screenshot ersetzt alle aktuellen Bestimmungen.",
+            "Sie helfen bei der räumlichen Zuordnung und ersetzen keine individuelle Berechtigung.",
+            "Eine eingezeichnete Route beantwortet jede Rechtsfrage."
+          ],
+          "answer": 2,
+          "explain": "Rauminformation und rechtliche Voraussetzungen sind getrennte Ebenen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "fallakte",
+          "q": "Was ist das Ergebnis einer Akte mit noch offener maßgeblicher Frage?",
+          "options": [
+            "Eine konkrete zuständige Rückfrage, keine erfundene Freigabe.",
+            "Eine automatische Erlaubnis durch Unterzeichnung des Lernteams.",
+            "Eine auf alle DACH-Regionen übertragbare Ausnahme.",
+            "Ein Ersatz für den noch fehlenden zuständigen Entscheid."
+          ],
+          "answer": 0,
+          "explain": "Die Akte dokumentiert, was geprüft ist und welche Frage vor einer Entscheidung geklärt werden muss."
+        }
+      ],
+      "imageKey": "jagdrecht"
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-daemmerungssehen-2026",
+      "lessonId": "rezeptoren",
+      "claims": [
+        {
+          "claim": "Stäbchen und Zapfen unterscheiden sich in Lichtempfindlichkeit, Farb- und Detailleistungen; schwache Beleuchtung begrenzt die Merkmalsbestimmung.",
+          "sourceUrls": [
+            "https://www.ncbi.nlm.nih.gov/books/NBK10850/",
+            "https://www.augeninfo.de/offen/pressetext.php?meldung=156",
+            "https://www.nei.nih.gov/research-and-training/research-news/scientists-shine-light-how-eyes-adapt-dark"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-daemmerungssehen-2026",
+      "lessonId": "anpassung",
+      "claims": [
+        {
+          "claim": "Die Empfindlichkeit passt sich nach Beleuchtungswechseln an; Dunkeladaptation umfasst Rezeptorvorgänge. Die genannte NEI-Studie ist mechanistische Mausforschung, keine menschliche Zeitvorgabe.",
+          "sourceUrls": [
+            "https://www.nei.nih.gov/research-and-training/research-news/scientists-shine-light-how-eyes-adapt-dark",
+            "https://www.augeninfo.de/offen/pressetext.php?meldung=156",
+            "https://www.ncbi.nlm.nih.gov/books/NBK10850/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-daemmerungssehen-2026",
+      "lessonId": "kontrast",
+      "claims": [
+        {
+          "claim": "Mit sinkender Beleuchtung ändern sich Farb- und Detailleistungen; Lichtempfindlichkeit und räumliche Auflösung sind nicht dasselbe.",
+          "sourceUrls": [
+            "https://www.ncbi.nlm.nih.gov/books/NBK10850/",
+            "https://www.augeninfo.de/offen/pressetext.php?meldung=156"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-daemmerungssehen-2026",
+      "lessonId": "beschwerden",
+      "claims": [
+        {
+          "claim": "Nachtsehprobleme und Blendung können bei unterschiedlichen Augenproblemen auftreten; fachliche Untersuchung ist nötig, Symptome allein sind keine Diagnose.",
+          "sourceUrls": [
+            "https://www.augeninfo.de/offen/pressetext.php?meldung=156",
+            "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts",
+            "https://www.nhs.uk/conditions/cataracts/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-notruf-revier-2026",
+      "lessonId": "ort",
+      "claims": [
+        {
+          "claim": "Genauer Notfallort, Ortsbezeichnungen und Zugangs-/Geländeinformationen unterstützen Rettung; die frühe Alarmierung wird nicht für vollständige Unterlagen verzögert.",
+          "sourceUrls": [
+            "https://www.drk.de/hilfe-in-deutschland/erste-hilfe/notruf-112/",
+            "https://www.rega.ch/ueber-uns/alarmnummern",
+            "https://www.roteskreuz.at/erste-hilfe-videos/notruf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-notruf-revier-2026",
+      "lessonId": "koordinaten",
+      "claims": [
+        {
+          "claim": "Koordinaten unterstützen Rettung; vorbereitete Anzeige, korrektes Ablesen und Ergänzung durch Ortsangaben vermeiden Missverständnisse.",
+          "sourceUrls": [
+            "https://www.rega.ch/ueber-uns/alarmnummern",
+            "https://www.drk.de/hilfe-in-deutschland/erste-hilfe/notruf-112/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-notruf-revier-2026",
+      "lessonId": "dialog",
+      "claims": [
+        {
+          "claim": "Leitstellen fragen relevante Angaben ab und können anleiten; Fragen beantworten und auf Rückfragen warten ist wichtiger als eine starre Merkspruch-Reihenfolge.",
+          "sourceUrls": [
+            "https://www.drk.de/hilfe-in-deutschland/erste-hilfe/notruf-112/",
+            "https://www.roteskreuz.at/erste-hilfe-videos/notruf",
+            "https://www.rega.ch/ueber-uns/alarmnummern"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-notruf-revier-2026",
+      "lessonId": "app",
+      "claims": [
+        {
+          "claim": "App-Unterstützung benötigt technische Voraussetzungen; Koordinatenübermittlung, Verbindung und Leitstellendialog sind getrennte Schritte. Örtliche Notrufnummern vorab kennen.",
+          "sourceUrls": [
+            "https://www.rega.ch/im-einsatz/so-helfen-wir-ihnen/rega-app",
+            "https://www.rega.ch/ueber-uns/alarmnummern",
+            "https://www.drk.de/hilfe-in-deutschland/erste-hilfe/notruf-112/",
+            "https://www.roteskreuz.at/erste-hilfe-videos/notruf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gefrieren-auftauen-2026",
+      "lessonId": "mikroben",
+      "claims": [
+        {
+          "claim": "Gefrieren beseitigt Mikroorganismen nicht vollständig; überlebende Keime können nach Auftauen wieder wachsen. Gefrierzustand ersetzt keinen Nachweis des vorangegangenen Prozesses.",
+          "sourceUrls": [
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/freezing-and-food-safety",
+            "https://www.efsa.europa.eu/en/infographics/defrosting-food-safely",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gefrieren-auftauen-2026",
+      "lessonId": "qualitaet",
+      "claims": [
+        {
+          "claim": "Gefriergeschwindigkeit beeinflusst Eiskristallgröße; Kristallbildung kann Gewebe beeinträchtigen und Flüssigkeitsverlust beim Auftauen begünstigen. Qualitätsbeobachtung und mikrobieller Status sind zu trennen.",
+          "sourceUrls": [
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/freezing-and-food-safety",
+            "https://www.efsa.europa.eu/sites/default/files/2021-04/6510.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gefrieren-auftauen-2026",
+      "lessonId": "auftauen",
+      "claims": [
+        {
+          "claim": "Kühles Auftauen, geeignete Auffanggefäße und saubere Hände/Geräte begrenzen Keimwachstum und Kreuzkontamination; produktspezifische Hinweise beachten.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/korrektes-kuehlen-von-lebensmitteln-im-privathaushalt/",
+            "https://www.efsa.europa.eu/en/infographics/defrosting-food-safely",
+            "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gefrieren-auftauen-2026",
+      "lessonId": "lagerfragen",
+      "claims": [
+        {
+          "claim": "Austrocknung/Gefrierbrand betrifft Qualität; Verpackung und Lagerbedingungen sind relevant. Empfehlungen zum Wiedereinfrieren unterscheiden sich, deshalb keine allgemeine Freigabe übernommen.",
+          "sourceUrls": [
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/freezing-and-food-safety",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/korrektes-kuehlen-von-lebensmitteln-im-privathaushalt/",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+            "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hepatitis-e-2026",
+      "lessonId": "virus",
+      "claims": [
+        {
+          "claim": "HEV verursacht Hepatitis E; europäische zoonotische Zusammenhänge umfassen Haus-/Wildschweine. Virus und Parasiten sind verschiedene Erregergruppen; spezifische Untersuchungen haben einen begrenzten Prüfgegenstand.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden/",
+            "https://www.ecdc.europa.eu/en/hepatitis-e/facts",
+            "https://www.blv.admin.ch/de/viren-in-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hepatitis-e-2026",
+      "lessonId": "unauffaellig",
+      "claims": [
+        {
+          "claim": "Infizierte Schweine/Wildschweine können ohne erkennbare Symptome bleiben; klinische Unauffälligkeit ist kein HEV-Nachweis. Populationsergebnisse beweisen keinen Einzelstatus.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden/",
+            "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_deutsch/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden.pdf",
+            "https://www.ecdc.europa.eu/en/hepatitis-e/facts",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7010180/",
+            "https://www.sfa.gov.sg/food-safety-tips/food-risk-concerns/risk-at-a-glance/hepatitis-e"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hepatitis-e-2026",
+      "lessonId": "wege",
+      "claims": [
+        {
+          "claim": "Tierkontakt und Lebensmittelverzehr sind unterschiedliche HEV-Expositionen; geeignete Schutzhandschuhe und Hygiene werden empfohlen, rohe/unzureichend gegarte Schweine-/Wildschweinprodukte sind relevante Lebensmittelrisiken.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_deutsch/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden.pdf",
+            "https://www.ecdc.europa.eu/en/hepatitis-e/facts",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7010180/",
+            "https://www.efsa.europa.eu/en/press/news/170711",
+            "https://www.blv.admin.ch/de/hygiene-im-umgang-mit-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hepatitis-e-2026",
+      "lessonId": "praevention",
+      "claims": [
+        {
+          "claim": "Ausreichendes Durchgaren reduziert das lebensmittelbedingte HEV-Risiko; Immunsuppression und Lebervorschädigung sind relevante Faktoren für schwere Verläufe. Keine universelle Erhitzungsdauer oder Therapie abgeleitet.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_deutsch/hepatitis-e-virus-uebertragung-durch-haus-und-wildschweine-und-daraus-gewonnene-lebensmittel-vermeiden.pdf",
+            "https://www.ecdc.europa.eu/en/hepatitis-e/facts",
+            "https://www.efsa.europa.eu/en/press/news/170711",
+            "https://www.blv.admin.ch/de/viren-in-lebensmitteln"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-augenschutz-2026",
+      "lessonId": "gefaehrdung",
+      "claims": [
+        {
+          "claim": "Mechanische, chemische und optische Gefährdungen erfordern passende Auswahl nach Einsatzbedingungen; äußere Tönung beweist keine allgemeine Schutzfunktion.",
+          "sourceUrls": [
+            "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/persoenliche_schutzausruestung/Arten/augen_gesicht_schutz.html",
+            "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit",
+            "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/welche-arten-von-augenschutz-und-gesichtsschutz-gibt-es",
+            "https://www.dguv.de/fb-psa/sachgebiete/sachgebiet-augenschutz/faq-zum-sachgebiet/index.jsp"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-augenschutz-2026",
+      "lessonId": "sehkorrektur",
+      "claims": [
+        {
+          "claim": "Gewöhnliche Korrektionsbrille ist kein automatisch geeigneter Augenschutz; Korrektionsschutzbrille verbindet Sehkorrektur und Schutz, Überbrillen brauchen passende Einsatzprüfung.",
+          "sourceUrls": [
+            "https://www.dguv.de/fb-psa/sachgebiete/sachgebiet-augenschutz/faq-zum-sachgebiet/index.jsp",
+            "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/wichtige-kriterien-bei-der-wahl-des-augenschutzes-und-gesichtsschutzes",
+            "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/welche-arten-von-augenschutz-und-gesichtsschutz-gibt-es",
+            "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/persoenliche_schutzausruestung/Arten/augen_gesicht_schutz.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-augenschutz-2026",
+      "lessonId": "kombination",
+      "claims": [
+        {
+          "claim": "PSA-Kombinationen können sich beeinträchtigen; Passform, Sicht und Komfort werden zusammen mit weiterer benötigter Ausrüstung geprüft.",
+          "sourceUrls": [
+            "https://dguv.de/ifa/praxishilfen/practical-solutions-for-personal-protective-equipment/combinations-of-personal-protective-equipment/index.jsp",
+            "https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/wichtige-kriterien-bei-der-wahl-des-augenschutzes-und-gesichtsschutzes",
+            "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/persoenliche_schutzausruestung/Arten/augen_gesicht_schutz.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-augenschutz-2026",
+      "lessonId": "zustand",
+      "claims": [
+        {
+          "claim": "Sichtprüfung vor Gebrauch, ausreichende Sicht und Schutzfunktion sowie Pflege/Wartung sind erforderlich; beschädigte oder unzureichende PSA nicht weiterbenutzen.",
+          "sourceUrls": [
+            "https://www.dguv.de/fb-psa/sachgebiete/sachgebiet-augenschutz/faq-zum-sachgebiet/index.jsp",
+            "https://aug.dguv.de/ihre-fragen/sonnenbrillen-austauschen/",
+            "https://www.suva.ch/de-ch/download/checklisten/checkliste--persoenliche-schutzausruestungen--psa/checkliste--persoenliche-schutzausruestungen--psa--67091.D",
+            "https://www.arbeitsinspektion.gv.at/arbeitsschutz/arbeitsstaette_baustelle/persoenliche_schutzausruestung/Arten/augen_gesicht_schutz.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-schutzgebietspruefung-2026",
+      "lessonId": "deutschland",
+      "claims": [
+        {
+          "claim": "Deutschland: § 23 BNatSchG ist Schutzgebietsrahmen mit näheren Bestimmungen und Landesrechtsbezug; BfN erläutert die Kategorie. Keine örtliche Freigabe allein aus dem Kategorienamen.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bnatschg_2009/__23.html",
+            "https://www.bfn.de/naturschutzgebiete"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-schutzgebietspruefung-2026",
+      "lessonId": "tirol",
+      "claims": [
+        {
+          "claim": "Tirol: § 21 TNSchG und gebietsbezogene Verordnung gemeinsam prüfen; Land Tirol verlangt Zusammenschau. Diese Regelbeispiele nicht auf andere Bundesländer übertragen.",
+          "sourceUrls": [
+            "https://www.ris.bka.gv.at/geltendefassung.wxe?abfrage=lrt&gesetzesnummer=20000252",
+            "https://www.tirol.gv.at/umwelt/umweltrecht/naturschutzrecht/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-schutzgebietspruefung-2026",
+      "lessonId": "schweiz",
+      "claims": [
+        {
+          "claim": "Schweizer Wildruhezonen können empfohlen oder rechtsverbindlich sein. Status und gebiets-/zeitbezogene Angaben sind zu prüfen; alte allgemeine Markierungshilfe ersetzt keinen aktuellen örtlichen Beschluss.",
+          "sourceUrls": [
+            "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur",
+            "https://www.bafu.admin.ch/dam/it/sd-web/Sn-yWdJkjK2V/wildruhezonen_markierungshandbuch.pdf",
+            "https://www.swisstopo.admin.ch/de/schutzgebiete-und-wildtiere",
+            "https://www.sac-cas.ch/de/umwelt/freier-zugang/bergsport-und-schutzgebiete/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-schutzgebietspruefung-2026",
+      "lessonId": "fallakte",
+      "claims": [
+        {
+          "claim": "Gebietsregeln brauchen Orts-, Zeit- und Aktivitätsbezug; Karten sind eine Zuordnungshilfe. Die drei benannten Rechts-/Fachquellenketten sind nicht austauschbar und enthalten keine individuelle Erlaubnis.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bnatschg_2009/__23.html",
+            "https://www.bfn.de/naturschutzgebiete",
+            "https://www.ris.bka.gv.at/geltendefassung.wxe?abfrage=lrt&gesetzesnummer=20000252",
+            "https://www.tirol.gv.at/umwelt/umweltrecht/naturschutzrecht/",
+            "https://www.bafu.admin.ch/de/tourismus-sport-und-freizeit-in-der-natur",
+            "https://www.swisstopo.admin.ch/de/schutzgebiete-und-wildtiere",
+            "https://www.sac-cas.ch/de/umwelt/freier-zugang/bergsport-und-schutzgebiete/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Generelle Nachtseh-Fristen und Selbstdiagnose",
+      "reason": "Keine menschliche Dunkeladaptationsdauer aus Mäusestudien, keine persönliche Diagnose oder Waffen-Eignung aus Symptomen oder einer Bildschirmübung."
+    },
+    {
+      "topic": "Generelle Lagerfristen, Wiedergefrier-Freigaben und Garrezepte",
+      "reason": "BfR/EFSA/BLV und USDA formulieren zum Wiedergefrieren unterschiedliche konservative Haushaltshinweise beziehungsweise Bedingungen. Keine pauschale Freigabe; keine US-Werte als DACH-Rechtsregel und keine universelle Dauer-/Temperaturkombination."
+    },
+    {
+      "topic": "Aktuelle HEV-Häufigkeiten oder individuelle Erregerdiagnose",
+      "reason": "Historische Studien-/Meldezahlen, regionale Prävalenz und Effektprozente nicht als heutige DACH-Häufigkeit oder Einzelstatus übernommen; keine Diagnose oder Therapie."
+    },
+    {
+      "topic": "Konkrete Brillen- und Waffenfreigabe",
+      "reason": "Keine Produktfreigabe gegen Schussbelastung, keine Belastungsversuche, praktische Waffenhandlungen oder unbegleitete Umbauten. Schutzorganisation und Unfallprävention im Mittelpunkt."
+    },
+    {
+      "topic": "Allgemeine Rechtsregel für alle Schutzgebiete",
+      "reason": "Keine örtliche Jagd-/Fahr-/Betretensfreigabe, keine universellen Saison- oder Sanktionenangaben. § 21 TNSchG ausdrücklich Tirol; § 23 BNatSchG mit Landes-/Ortsbezug. Historische Artikelnummern des BAFU-Handbuchs nicht als aktuelles Schweizer Recht übernommen."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "checkedOn": "2026-10-16",
+  "purpose": "Internal planning for the operator's goal of twice Waidwissen's content. Not a public claim that the goal has been achieved.",
+  "comparisonSource": "https://waidwissen.com/shop",
+  "providerReportedLowerBounds": {
+    "questionRecords": 15000,
+    "flashcards": 5000,
+    "videos": 110,
+    "audioHours": 30
+  },
+  "minimumPlanningTargets": {
+    "questionRecords": 30000,
+    "flashcards": 10000,
+    "videos": 220,
+    "audioHours": 60
+  },
+  "qualification": "The provider advertises these as 15000+, 5000+, 110+ and 30+; the exact underlying totals and semantic duplication are unknown. Twice the advertised lower bounds is a minimum planning target, not proof of twice the actual content. Course counts, species portraits, recordings, hours and question records are different measures and must not be added together.",
+  "publicationStandard": "Original substantive questions with explanations, claim-level independent sources, deliberate legal scope and real licensed media. Do not inflate totals by counting shuffled answers or wording variants as new knowledge. Never import official or commercial question catalogs without resolving reuse rights and answer-format requirements.",
+  "officialCatalogResearch": {
+    "Bayern": { "numberedEntries": 1351, "version": "2026-05-12", "source": "https://lmg.bayern.de/aufgaben_leistungen/jaegerpruefung/index.html", "status": "Reuse rights need clarification; no questions imported." },
+    "Niedersachsen": { "numberedEntries": 2504, "version": "2022-07", "source": "https://www.ml.niedersachsen.de/startseite/themen/wald_holz_jagd/jagd_in_niedersachsen/jaegerpruefung-in-niedersachsen-5226.html", "status": "Reuse rights need clarification; no questions imported." },
+    "NRW": { "numberedEntries": 500, "version": "No explicit current catalog version established", "source": "https://www.mlv.nrw.de/themen/jagd-und-fischerei/jagd/jaegerpruefung/", "status": "Reuse rights need clarification; PDF contains stems without answer keys. No questions imported." }
+  }
+}

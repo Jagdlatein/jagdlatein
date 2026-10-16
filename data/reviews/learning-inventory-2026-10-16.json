@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-10-16T15:19:48.272Z",
+  "courses": 114,
+  "lessons": 527,
+  "courseQuestions": 1210,
+  "centralQuizRecords": 1441,
+  "distinctCentralStems": 1428,
+  "flashcards": 378,
+  "speciesPortraits": 114,
+  "animalSoundRecordings": 37,
+  "added": {
+    "courses": 18,
+    "lessons": 72,
+    "questions": 288
+  },
+  "categories": {
+    "Wildkunde": {
+      "courses": 19,
+      "newQuestions": 48
+    },
+    "Natur & Revier": {
+      "courses": 11,
+      "newQuestions": 16
+    },
+    "Hundewesen": {
+      "courses": 16,
+      "newQuestions": 48
+    },
+    "Waffen & Sicherheit": {
+      "courses": 9,
+      "newQuestions": 16
+    },
+    "Prüfung & Sprache": {
+      "courses": 8,
+      "newQuestions": 16
+    },
+    "Jagdrecht": {
+      "courses": 9,
+      "newQuestions": 16
+    },
+    "Jagdpraxis": {
+      "courses": 9,
+      "newQuestions": 32
+    },
+    "Wildbret & Gesundheit": {
+      "courses": 9,
+      "newQuestions": 32
+    },
+    "Wald & Pflanzen": {
+      "courses": 6,
+      "newQuestions": 16
+    },
+    "Landwirtschaft & Lebensräume": {
+      "courses": 6,
+      "newQuestions": 16
+    },
+    "Ausrüstung & Technik": {
+      "courses": 6,
+      "newQuestions": 16
+    },
+    "Tierschutz & Verantwortung": {
+      "courses": 6,
+      "newQuestions": 16
+    }
+  },
+  "scope": "Course questions are already included in the central pool. Flashcards reuse existing questions. Counts do not mean distinct facts, official examination questions, or complete scientific verification."
+}

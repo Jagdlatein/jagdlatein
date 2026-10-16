@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
-import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards, getFlashcardRating } from "../lib/flashcard-review";
+import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards } from "../lib/flashcard-review";
 import styles from "../styles/LearningFlashcards.module.css";
 
 const EMPTY_REVIEW = { version: 1, cards: {} };
@@ -26,12 +26,13 @@ export function FlashcardImage({ image, printing = false }) {
   </figure>;
 }
 function pendingCards(cards, review, now, againIds = []) {
+  const ratings = parseFlashcardReview(review).cards;
   const due = new Set(getDueCards(cards, review, now).map(card => card.id));
   const again = new Set(againIds);
-  return cards.filter(card => !getFlashcardRating(review, card.id) || due.has(card.id) || again.has(card.id));
+  return cards.filter(card => !Object.hasOwn(ratings, card.id) || due.has(card.id) || again.has(card.id));
 }
 
-export default function LearningFlashcards({ cards = [], categories = [] }) {
+export default function LearningFlashcards({ cards = [], categories = [], totalCount = cards.length, loading = false, incomplete = false, loadError = "", onReload }) {
   const router = useRouter();
   const [category, setCategory] = useState("all");
   const [query, setQuery] = useState("");
@@ -83,7 +84,7 @@ export default function LearningFlashcards({ cards = [], categories = [] }) {
     catch { setCanSave(false); }
   }, [review, loaded, canSave]);
 
-  const filtered = filterFlashcards(cards, category, query);
+  const filtered = useMemo(() => filterFlashcards(cards, category, query), [cards, category, query]);
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const current = available.find(card => card.id === currentId) || available[0] || null;
   const revealed = Boolean(current && openId === current.id);
@@ -131,10 +132,10 @@ export default function LearningFlashcards({ cards = [], categories = [] }) {
       <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={query} onChange={event => changeFilter(() => setQuery(event.target.value.slice(0, 160)))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" /></div></label>
     </div>
     <div className={styles.summary}>
-      <p>{available.length} {available.length === 1 ? "Karte" : "Karten"}{mode === "pending" ? " offen oder fällig" : " in deiner Auswahl"}{rated > 0 ? ` · ${rated} in dieser Sitzung bewertet` : ""}</p>
+      <p>{incomplete ? `${cards.length} von ${totalCount} Karten geladen` : `${available.length} ${available.length === 1 ? "Karte" : "Karten"}${mode === "pending" ? " offen oder fällig" : " in deiner Auswahl"}`}{rated > 0 ? ` · ${rated} in dieser Sitzung bewertet` : ""}</p>
       <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} onChange={event => changeFilter(() => setMode(event.target.checked ? "pending" : "all"))} />Nur offene und fällige Karten</label>
     </div>
-    <div className={styles.status} role="status" aria-live="polite">{message}</div>
+    <div className={styles.status} role="status" aria-live="polite">{loadError || (loading ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
       <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>{revealed ? "Antwort" : "Frage"}</span></div>
       {current.context && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
@@ -153,7 +154,7 @@ export default function LearningFlashcards({ cards = [], categories = [] }) {
             <Link href={current.courseHref} className={styles.courseLink}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
           </div>
         </div>}
-    </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Schalte den Filter oben aus, wenn du alle passenden Karten erneut ansehen möchtest." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
+    </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Schalte den Filter oben aus, wenn du alle passenden Karten erneut ansehen möchtest." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
     <div className={styles.exportLinks}><Link href={printHref}><AppIcon name="book" size={21} />Diese Auswahl drucken</Link><a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={21} />Starterset als PDF</a></div>
   </LearningToolLayout>;

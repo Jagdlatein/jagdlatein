@@ -50,9 +50,11 @@ test('Search recovers clear spelling mistakes without broadening a valid or unre
     assert.ok(result.results.some(item => item.id === id), query);
   }
   assert.equal(searchLearning({ query: 'Rehwild' }).suggestion, undefined);
-  for (const query of ['zzznichtvorhanden', 'Gams Drahthaar', 'abc']) {
+  for (const query of ['zzznichtvorhanden', 'Gams Drahthaar', 'abc', 'xyzq']) {
     const result = searchLearning({ query }); assert.equal(result.total, 0, query); assert.equal(result.suggestion, undefined, query);
   }
+  assert.ok(searchLearning({ query: 'Reh' }).results.some(item => item.id === 'species:rehwild'));
+  assert.ok(searchLearning({ query: 'HEV' }).results.some(item => item.id === 'course:wissen-ausbau-hepatitis-e-2026'));
   assert.equal(searchLearning({ query: 'Rehwidl', category: 'hundewesen' }).total, 0, 'A spelling suggestion cannot escape category selection');
   assert.throws(() => searchLearning({ type: '__proto__' }), /Ungültige/);
 });

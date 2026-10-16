@@ -34,18 +34,23 @@ test('Packed real deck restores every card, label, image, editorial date and sou
   }
 });
 
-test('Both page props stay below 128 KB and materially smaller than duplicate-rich input', () => {
+test('Both page props use a small immediate seed; the separately loaded complete bank remains compressed', () => {
   const actual = load('lib/learning-flashcards.js').getFlashcardExport();
   const { packFlashcards } = load('lib/flashcard-payload.js');
   const rawBytes = Buffer.byteLength(JSON.stringify({ cards: actual.cards, categories: actual.categories }));
   const packedBytes = Buffer.byteLength(JSON.stringify({ deck: packFlashcards(actual) }));
-  assert.ok(packedBytes <= 128 * 1024, `${packedBytes} bytes`);
+  const seed = load('lib/flashcard-page-data.js').getFlashcardPageData();
+  const seedBytes = Buffer.byteLength(JSON.stringify(seed));
+  assert.ok(seedBytes <= 64 * 1024, `${seedBytes} initial bytes`);
+  assert.equal(seed.totalCount, actual.cards.length);
+  assert.equal(seed.remote, true);
+  assert.equal(seed.deck.cards.length, 24);
   assert.ok(packedBytes < rawBytes * 0.75, `${rawBytes} → ${packedBytes} bytes`);
-  console.log(`Lernkarten-Daten: ${rawBytes} → ${packedBytes} Bytes (${Math.round((1 - packedBytes / rawBytes) * 100)} % weniger)`);
+  console.log(`Lernkarten-Daten: ${seedBytes} Bytes sofort; Gesamtbestand ${rawBytes} → ${packedBytes} Bytes (${Math.round((1 - packedBytes / rawBytes) * 100)} % weniger)`);
   for (const file of ['pages/lernen/lernkarten.js', 'pages/lernen/lernkarten-drucken.js']) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
-    assert.match(source, /props:\s*\{\s*deck:\s*packFlashcards\(getFlashcardExport\(\)\)/);
-    assert.match(source, /unpackFlashcards\(deck\)/);
+    assert.match(source, /props:\s*getFlashcardPageData\(\)/);
+    assert.match(source, /useFlashcardDeck/);
   }
   const pure = fs.readFileSync(path.join(root, 'lib/flashcard-payload.js'), 'utf8');
   assert.doesNotMatch(pure, /\bimport\s/);

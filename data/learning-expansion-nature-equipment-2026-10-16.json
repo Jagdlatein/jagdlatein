@@ -1,0 +1,2299 @@
+{
+  "reviewedOn": "2026-10-16",
+  "scope": "Sechs eigenständig geschriebene Vertiefungskurse in bestehenden Kategorien. Sachgrundlagen wurden anhand der dokumentierten unabhängigen Fachquellen abgeglichen. Sämtliche Rechen- und Plansituationen sind ausdrücklich eigene Lernbeispiele, keine erhobenen Revierdaten. Die Prüfung gilt nur für diese 24 Lektionen und 96 Fragen; keine vollständige Zertifizierung der App, kein amtlicher Prüfungsfragenkatalog und keine Einsatz-, Rechts-, Gesundheits- oder Sicherheitsfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "title": "Gewässer verstehen: Sauerstoff, Schichtung und Nährstoffe",
+      "category": "Natur & Revier",
+      "topic": "Hege/Naturschutz",
+      "description": "Warum eine grüne Wasseroberfläche und ein kaltes Tiefenwasser noch nichts über die Sauerstoffversorgung im ganzen Gewässer beweisen.",
+      "minutes": 35,
+      "objectives": [
+        "Gelösten Sauerstoff von Wasserbestandteilen unterscheiden",
+        "Schichtung und Austausch erklären",
+        "Nährstoffzufuhr, Produktion und Abbau verknüpfen",
+        "Eine Messung nach Ort, Tiefe und Zeit beurteilen"
+      ],
+      "sources": [
+        {
+          "label": "Thermische Regime von Seen und Fliessgewässern",
+          "url": "https://thermdis.eawag.ch/de/lakes-rivers",
+          "organization": "Eawag",
+          "supports": "Temperaturbedingte Schichtung und wind-/abkühlungsbedingte Mischung; Sauerstoffnachführung ins Tiefenwasser. Keine Übernahme der dortigen Beispieltiefen auf alle Gewässer."
+        },
+        {
+          "label": "Wie verbessern wir den Zustand unserer Seen?",
+          "url": "https://www.umweltbundesamt.de/themen/wasser/seen/nutzung-belastungen/wie-verbessern-wir-den-zustand-unserer-seen",
+          "organization": "Umweltbundesamt",
+          "supports": "Nährstoffeinträge, Algenproduktion, Sauerstoffmangel und fachliche Zustandsanalyse; keine Anleitung zur eigenständigen Seesanierung."
+        },
+        {
+          "label": "Dissolved Oxygen and Water",
+          "url": "https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water",
+          "organization": "U.S. Geological Survey",
+          "supports": "Gelöster molekularer Sauerstoff, Atmung, Photosynthese, Temperaturabhängigkeit der Löslichkeit und Messung. Keine Übernahme mariner Schwellenwerte."
+        },
+        {
+          "label": "Biomassenproduktion in Seen wird einfacher bestimmbar",
+          "url": "https://www.eawag.ch/de/info/portal/aktuelles/newsarchiv/archiv-detail/biomassenproduktion-in-seen-wird-einfacher-bestimmbar/",
+          "organization": "Eawag",
+          "supports": "Abbau abgesunkener Biomasse und Sauerstoffzehrung im Tiefenwasser beziehungsweise Sediment."
+        },
+        {
+          "label": "Water Quality Conditions in Upper Klamath and Agency Lakes, Oregon, 2005: Stratification",
+          "url": "https://pubs.usgs.gov/sir/2008/5026/section7.html",
+          "organization": "U.S. Geological Survey",
+          "supports": "Originalmessungen mit Sonden in unterschiedlichen Tiefen; Zusammenhang von Dichte, Mischung und räumlich/zeitlich unterschiedlichem Sauerstoff. Keine örtlichen Messzahlen nach DACH übertragen."
+        },
+        {
+          "label": "Wassertemperatur von Seen: physikalische Einordnung",
+          "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/wasserhaushalt/ww-i-8/indikator",
+          "organization": "Umweltbundesamt",
+          "supports": "Gase wie Sauerstoff lösen sich in wärmerem Wasser schlechter. Keine Übernahme einer Zeitreihe oder eines Trendwerts."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "geloest",
+          "title": "Der Sauerstoff im Wasser ist ein eigener Vorrat",
+          "paragraphs": [
+            "Fische und viele andere Wasserorganismen nutzen gelösten molekularen Sauerstoff. Damit ist nicht das chemisch gebundene Sauerstoffatom im Wassermolekül gemeint. Sauerstoff gelangt unter anderem über den Austausch mit der Atmosphäre und durch Photosynthese in das Gewässer; Atmung und aerober Abbau verbrauchen ihn. Produktion und Verbrauch wirken gleichzeitig und können sich im Tageslauf verändern.",
+            "Bei sonst vergleichbaren Bedingungen kann kaltes Wasser mehr Sauerstoff lösen als warmes. Daraus folgt keine Garantie, dass jedes kalte Gewässer tatsächlich reich an Sauerstoff ist: Eintrag, Verbrauch und Wasseraustausch entscheiden mit. Temperatur und Sauerstoffkonzentration sind deshalb zwei getrennte Messgrößen. Auch klares Wasser ist kein Messgerät.",
+            "Lernbeispiel: Zwei Proben sind gleich kühl, stammen aber aus unterschiedlichen Tiefen. Beschreibe zunächst Herkunft, Uhrzeit und gemessenen Sauerstoff, bevor du die Bedingungen vergleichst. Die Temperatur allein erklärt nicht, ob genug Sauerstoff nachgeliefert wurde oder viel organisches Material abgebaut wird."
+          ],
+          "takeaway": "Löslichkeit, tatsächlicher Sauerstoffgehalt und Sauerstoffverbrauch sind verschiedene Größen.",
+          "exercise": "Erkläre, warum kaltes, klares Wasser keine vollständige Sauerstoffdiagnose erlaubt."
+        },
+        {
+          "id": "schichtung",
+          "title": "Warum der See nicht überall gleich durchmischt ist",
+          "paragraphs": [
+            "Erwärmt sich die Oberfläche eines tiefen Sees, kann sich wärmeres, weniger dichtes Wasser über kälterem Wasser anordnen. Die entstehende Schichtung begrenzt den vertikalen Austausch. Ob und wie lange sie besteht, hängt vom Gewässer und den Wetterbedingungen ab. Ein flacher Teich darf deshalb nicht einfach mit dem Schema eines tiefen Voralpensees erklärt werden.",
+            "Wind liefert Mischungsenergie; Abkühlung der Oberfläche kann ebenfalls die Durchmischung begünstigen. Wenn ein See vollständig umgewälzt wird, kann Sauerstoff aus oberflächennäherem Wasser in tiefere Bereiche gelangen. Das ist ein Transportvorgang. Es entsteht dabei nicht automatisch eine neue Nährstoff- oder Sauerstoffquelle ohne Bilanz.",
+            "Lernbeispiel: Oben ist viel Sauerstoff gemessen, unten wenig. Eine anhaltende Schichtung ist eine plausible Erklärung für begrenzte Nachlieferung; sie ist anhand von Temperaturprofilen und weiteren Daten zu prüfen. Eine einzelne Oberflächenprobe darf nicht als Durchschnitt des ganzen Wasserkörpers ausgegeben werden."
+          ],
+          "takeaway": "Schichtung begrenzt Austausch; Durchmischung kann Sauerstoff in die Tiefe transportieren.",
+          "exercise": "Skizziere zwei Wasserschichten und ergänze, welche Messung die vermutete Schichtung prüfen würde."
+        },
+        {
+          "id": "naehrstoffkette",
+          "title": "Mehr Algen können später mehr Sauerstoff kosten",
+          "paragraphs": [
+            "Ein erhöhtes Nährstoffangebot kann die Produktion von Algen und anderem pflanzlichem Plankton fördern. Die entstehende Biomasse ist zunächst ein Ergebnis von Wachstum. Wenn ein Teil abstirbt und absinkt, wird organisches Material abgebaut. Dabei können Mikroorganismen Sauerstoff verbrauchen. Deshalb widersprechen sich eine produktive Oberfläche und sauerstoffarmes Tiefenwasser nicht.",
+            "Der Sauerstoffhaushalt hängt nicht allein von der gerade sichtbaren Algenmenge ab. Auch früher abgelagertes organisches Material und Prozesse am Sediment können weiterhin zur Zehrung beitragen. Nach geringeren Nährstoffeinträgen muss sich daher nicht jeder Sauerstoffwert sofort verbessern. Die zeitliche Entwicklung verlangt wiederholte, fachlich geplante Untersuchungen.",
+            "Lernbeispiel: Nach einem grünen Sommer sinken die Nährstoffeinträge, doch im folgenden Messzeitraum bleibt das Tiefenwasser belastet. Prüfe die Kette aus Eintrag, Produktion, Ablagerung, Abbau und Nachlieferung. Leite daraus keine eigenständige Belüftung oder Stoffzugabe ab; Maßnahmen benötigen eine Untersuchung des Gewässers und seines Einzugsgebiets."
+          ],
+          "takeaway": "Nährstoffe können über Biomasseproduktion und späteren Abbau den Sauerstoffbedarf erhöhen.",
+          "exercise": "Erkläre die Wirkungskette vom Nährstoffeintrag bis zur Sauerstoffzehrung in fünf Schritten."
+        },
+        {
+          "id": "messprofil",
+          "title": "Eine Messzahl braucht ihren Platz im Gewässer",
+          "paragraphs": [
+            "Ein Sauerstoffwert beschreibt eine Probe oder einen Messpunkt. Tiefe, Zeitpunkt und Position gehören deshalb zum Ergebnis. Messungen an der Oberfläche und nahe dem Grund können unterschiedliche Bedingungen zeigen; auch zeitliche Änderungen bleiben bei einem einzelnen Termin verborgen. Geräte benötigen geeignete Kalibrierung und eine zur Messgröße passende Anwendung.",
+            "Vergleiche nur Werte mit verständlichen Einheiten und Begleitangaben. Ein Temperaturprofil und ein Sauerstoffprofil ergänzen sich, sind aber nicht dasselbe. Bei einem Bericht interessiert außerdem, ob an einer Stelle wiederholt gemessen oder aus vielen Bereichen eine räumliche Aussage abgeleitet wurde. Fehlende Angaben lassen sich nicht durch eine besonders genaue Dezimalstelle ersetzen.",
+            "Lernbeispiel: Ein Protokoll nennt nur „Sauerstoff gut“, ein anderes dokumentiert Messort, Tiefe, Uhrzeit, Gerät und Temperatur. Das zweite erlaubt nachvollziehbare Rückfragen. Für diese Übung reichen veröffentlichte Profile; es ist nicht nötig, Uferbereiche zu betreten, Tiere zu stören oder selbst vom Boot zu messen."
+          ],
+          "takeaway": "Ort, Tiefe, Zeit, Einheit und Messverfahren machen einen Sauerstoffwert verständlich.",
+          "exercise": "Ergänze ein fiktives Messprotokoll um die Angaben, die für einen Vergleich zweier Termine fehlen."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "geloest",
+          "q": "Welchen Sauerstoff nutzen Fische bei der Atmung im Wasser?",
+          "options": [
+            "Den chemisch gebundenen Sauerstoff aus jedem Wassermolekül.",
+            "Ausschließlich Sauerstoff in sichtbaren Luftblasen.",
+            "Gelösten molekularen Sauerstoff.",
+            "Nur den in festen Pflanzenresten gebundenen Sauerstoff."
+          ],
+          "answer": 2,
+          "explain": "Gelöster molekularer Sauerstoff ist ein eigener Bestandteil des Wassers und wird über die Atmung aufgenommen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "geloest",
+          "q": "Welche Aussage zur Temperatur ist unter sonst gleichen Bedingungen richtig?",
+          "options": [
+            "Kaltes Wasser kann mehr Sauerstoff lösen als warmes.",
+            "Warmes Wasser kann grundsätzlich mehr Sauerstoff lösen als kaltes.",
+            "Die Temperatur beeinflusst die Sauerstofflöslichkeit nicht.",
+            "Kaltes Wasser enthält unabhängig von Verbrauch immer genug Sauerstoff."
+          ],
+          "answer": 0,
+          "explain": "Die Löslichkeit steigt bei Abkühlung. Der tatsächlich vorhandene Gehalt hängt zusätzlich von Eintrag und Verbrauch ab."
+        },
+        {
+          "id": "q3",
+          "lessonId": "geloest",
+          "q": "Ein Gewässer wirkt klar. Welche Information fehlt für eine Aussage zum Sauerstoff?",
+          "options": [
+            "Eine zusätzliche Aufnahme der klaren Oberfläche.",
+            "Die Sichttiefe ohne Sauerstoffmessung.",
+            "Die Gewässertiefe ohne Angaben zum Sauerstoff.",
+            "Eine geeignete Sauerstoffmessung mit Ort, Tiefe und Zeit."
+          ],
+          "answer": 3,
+          "explain": "Optische Klarheit bestimmt weder den gelösten Sauerstoffgehalt noch seine Verteilung über die Tiefe."
+        },
+        {
+          "id": "q4",
+          "lessonId": "geloest",
+          "q": "Welcher Prozess kann den gelösten Sauerstoffvorrat vermindern?",
+          "options": [
+            "Photosynthese als unmittelbare Sauerstoffproduktion.",
+            "Aerober Abbau organischen Materials.",
+            "Nachlieferung von Sauerstoff durch Oberflächenaustausch.",
+            "Ein geringerer Abbau bei unveränderter Nachlieferung."
+          ],
+          "answer": 1,
+          "explain": "Mikrobieller aerober Abbau verbraucht Sauerstoff; seine Wirkung muss mit Nachlieferung und Produktion zusammen betrachtet werden."
+        },
+        {
+          "id": "q5",
+          "lessonId": "schichtung",
+          "q": "Was kann eine thermische Schichtung in einem tiefen See bewirken?",
+          "options": [
+            "Den Sauerstoffgehalt aller Tiefen sofort angleichen.",
+            "Den Austausch zwischen Oberfläche und Tiefenwasser begrenzen.",
+            "Den gesamten See in jedem Sommer vollständig durchmischen.",
+            "Die Temperaturmessung in verschiedenen Tiefen überflüssig machen."
+          ],
+          "answer": 1,
+          "explain": "Stabile Dichteunterschiede erschweren den vertikalen Austausch; ihre Ausprägung wird am konkreten Gewässer untersucht."
+        },
+        {
+          "id": "q6",
+          "lessonId": "schichtung",
+          "q": "Welche Beobachtung hilft, eine vermutete thermische Schichtung zu prüfen?",
+          "options": [
+            "Die Lufttemperatur an einem einzigen Termin.",
+            "Eine Messung nur an der warmen Oberfläche.",
+            "Die Farbe des Wassers aus einer Uferaufnahme.",
+            "Ein Temperaturprofil über mehrere Wassertiefen."
+          ],
+          "answer": 3,
+          "explain": "Ein vertikales Temperaturprofil zeigt die Verteilung im Wasserkörper und unterstützt die Prüfung temperaturbedingter Schichtung."
+        },
+        {
+          "id": "q7",
+          "lessonId": "schichtung",
+          "q": "Welcher Vorgang kann die Durchmischung eines Sees fördern?",
+          "options": [
+            "Abkühlung der Oberfläche zusammen mit geeigneten Windbedingungen.",
+            "Anhaltende Erwärmung nur der Oberfläche.",
+            "Eine Oberflächenprobe mit hohem Sauerstoffwert.",
+            "Ein unveränderter Temperaturunterschied ohne Mischungsenergie."
+          ],
+          "answer": 0,
+          "explain": "Abkühlung und Wind können vertikalen Austausch fördern. Umfang und Zeitpunkt bleiben gewässerspezifisch."
+        },
+        {
+          "id": "q8",
+          "lessonId": "schichtung",
+          "q": "Oben wird viel Sauerstoff gemessen, unten wenig. Welche Deutung ist fachlich passend?",
+          "options": [
+            "Der obere Wert widerlegt grundsätzlich den unteren.",
+            "Das gesamte Gewässer hat sicher den Mittelwert beider Proben.",
+            "Nachlieferung und Verbrauch können sich zwischen den Tiefen unterscheiden.",
+            "Die Oberflächenmessung ist allein für jede Tiefe gültig."
+          ],
+          "answer": 2,
+          "explain": "Schichtung und unterschiedliche Verbrauchsprozesse können vertikale Unterschiede erzeugen; beide Tiefen sind als eigene Messorte zu dokumentieren."
+        },
+        {
+          "id": "q9",
+          "lessonId": "naehrstoffkette",
+          "q": "Welche Kette erklärt einen möglichen Sauerstoffmangel nach hoher Algenproduktion?",
+          "options": [
+            "Nährstoffe → abgestorbene Biomasse → Sauerstoffproduktion durch ihren aeroben Abbau.",
+            "Algenwachstum → keine organischen Ablagerungen → kein Abbaubedarf.",
+            "Absterben → sofortige Mineralisierung ohne Sauerstoffverbrauch.",
+            "Nährstoffe → Biomasse → Absterben und Abbau → Sauerstoffverbrauch."
+          ],
+          "answer": 3,
+          "explain": "Die mikrobielle Zersetzung der entstandenen organischen Substanz kann den Sauerstoffvorrat belasten."
+        },
+        {
+          "id": "q10",
+          "lessonId": "naehrstoffkette",
+          "q": "Warum können geringere Nährstoffeinträge zeitlich verzögert wirken?",
+          "options": [
+            "Frühere Ablagerungen hätten nach ihrem Absinken grundsätzlich keine Wirkung.",
+            "Früher abgelagertes Material kann weiter abgebaut werden.",
+            "Die Oberflächenfarbe bestimme sofort den Sauerstoff jeder Tiefe.",
+            "Eine geringere Zufuhr müsse alle internen Stoffumsätze unmittelbar beenden."
+          ],
+          "answer": 1,
+          "explain": "Abbau und Sedimentprozesse können nachwirken. Der Zustand wird über geeignete Messreihen beurteilt."
+        },
+        {
+          "id": "q11",
+          "lessonId": "naehrstoffkette",
+          "q": "Welche Information lässt sich aus einer Aufnahme der grün gefärbten Wasseroberfläche allein nicht bestimmen?",
+          "options": [
+            "Der sichtbare Farbton der Oberfläche am Aufnahmeort.",
+            "Die im Bild erkennbare Ausdehnung der grünen Färbung.",
+            "Die Sauerstoffzehrung im Tiefenwasser und Sediment.",
+            "Die sichtbare Abgrenzung grüner und anders gefärbter Oberflächenbereiche."
+          ],
+          "answer": 2,
+          "explain": "Eine Oberflächenfarbe beschreibt kein vollständiges Tiefenprofil und keine Bilanz des laufenden Abbaus."
+        },
+        {
+          "id": "q12",
+          "lessonId": "naehrstoffkette",
+          "q": "Was gehört vor eine fachliche Gewässermaßnahme?",
+          "options": [
+            "Eine Zustandsanalyse einschließlich Gewässer und Einzugsgebiet.",
+            "Eine Stoffzugabe allein nach Wasserfarbe.",
+            "Eine überall gleiche Belüftungsdauer nach einem Foto.",
+            "Die ungeprüfte Übernahme eines fremden Seeprofils."
+          ],
+          "answer": 0,
+          "explain": "Ursachen und Stoffhaushalt müssen am konkreten Gewässer untersucht werden; ein Lernschema ersetzt keine Maßnahmenplanung."
+        },
+        {
+          "id": "q13",
+          "lessonId": "messprofil",
+          "q": "Welche Angabe macht zwei Sauerstoffwerte besser vergleichbar?",
+          "options": [
+            "Messort, Tiefe, Zeitpunkt, Einheit und Messverfahren.",
+            "Nur ein einheitenloser Mittelwert aller Proben.",
+            "Nur der höchste Messwert des Tages.",
+            "Nur die Gewässertiefe ohne Messort und Uhrzeit."
+          ],
+          "answer": 0,
+          "explain": "Messwerte erhalten ihren Geltungsbereich durch Raum, Zeit, Einheit und Methode."
+        },
+        {
+          "id": "q14",
+          "lessonId": "messprofil",
+          "q": "Ein Bericht nennt nur eine Oberflächenprobe. Welche Aussage überschreitet den Nachweis?",
+          "options": [
+            "Der Bericht habe einen oberflächennahen Messpunkt.",
+            "Die Probe gehöre zu einem bestimmten Termin.",
+            "Der Sauerstoffzustand sei damit für jede Tiefe bestimmt.",
+            "Für Tiefenvergleiche fehlten zusätzliche Messungen."
+          ],
+          "answer": 2,
+          "explain": "Ein Messpunkt darf ohne entsprechendes Erhebungsdesign nicht auf den gesamten Wasserkörper übertragen werden."
+        },
+        {
+          "id": "q15",
+          "lessonId": "messprofil",
+          "q": "Warum wird die Wassertemperatur beim Sauerstoffprofil mit dokumentiert?",
+          "options": [
+            "Sie ersetzt bei bekannter Lufttemperatur die Sauerstoffmessung.",
+            "Sie beeinflusst Löslichkeit und hilft bei der Einordnung von Schichtung.",
+            "Sie bestimmt allein den Nährstoffeintrag des Einzugsgebiets.",
+            "Sie macht unterschiedliche Probenorte automatisch vergleichbar."
+          ],
+          "answer": 1,
+          "explain": "Temperatur und Sauerstoff sind verschiedene Größen, deren Zusammenhang bei der Interpretation wichtig ist."
+        },
+        {
+          "id": "q16",
+          "lessonId": "messprofil",
+          "q": "Zwei Profile stammen aus verschiedenen Tiefen und Uhrzeiten. Was ist der erste Schritt?",
+          "options": [
+            "Alle Werte ohne Kennzeichnung mitteln.",
+            "Den höchsten Wert als Zustand des ganzen Sees verwenden.",
+            "Beide Profile allein wegen derselben Einheit gleichsetzen.",
+            "Die Erfassungsbedingungen getrennt festhalten und den Vergleich darauf begrenzen."
+          ],
+          "answer": 3,
+          "explain": "Gleiche Einheiten machen unterschiedliche Messsituationen nicht automatisch gleich; ihre Herkunft bleibt sichtbar."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-pilze-lebensweisen-2026",
+      "title": "Pilze im Wald: Geflecht, Partnerschaft und Holzabbau",
+      "category": "Wald & Pflanzen",
+      "topic": "Hege/Naturschutz",
+      "minutes": 35,
+      "description": "Den sichtbaren Fruchtkörper vom Pilzgeflecht trennen und Mykorrhiza, Wurzelfunktionen und unterschiedliche Holzfäulen biologisch erklären.",
+      "objectives": [
+        "Hyphen, Myzel und Fruchtkörper zuordnen",
+        "Stoffaustausch zwischen Pflanze und Pilz erklären",
+        "Feinwurzeln und Rhizosphäre unterscheiden",
+        "Braunfäule und Weißfäule ohne Art- oder Sicherheitsdiagnose einordnen"
+      ],
+      "sources": [
+        {
+          "label": "Die Pilzflora der Bayerischen Naturwaldreservate, Seiten 5–7",
+          "url": "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "supports": "Myzel und Fruchtkörper, heterotrophe Lebensweise, Grundbau der Mykorrhiza und Holzabbau. Historische Pauschalaussagen zu Pilzzucht und gerichteter Baumhilfe werden ausdrücklich nicht übernommen."
+        },
+        {
+          "label": "Was ist die Mykorrhiza?",
+          "url": "https://lwf.bayern.de/wissenstransfer/forstcastnet/234240/index.php",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "supports": "Eigenes Reich der Pilze, unterirdisches Geflecht, Austausch zwischen Pilz und Feinwurzel. Keine pauschale Überlebensgarantie durch Mykorrhiza."
+        },
+        {
+          "label": "Wurzeln und Rhizosphäre",
+          "url": "https://www.wsl.ch/de/wald/boden-und-kreislaeufe/wurzeln-und-rhizosphaere/",
+          "organization": "Eidg. Forschungsanstalt WSL",
+          "supports": "Wasser- und Nährstoffaufnahme der Feinwurzeln; Kohlenstoffverbindungen und wurzelbeeinflusste Rhizosphäre; Hyphennetz erschließt Boden."
+        },
+        {
+          "label": "Mykorrhiza: Genetic Expo",
+          "url": "https://genetic-expo.wsl.ch/de/funga/mykorrhiza/",
+          "organization": "Eidg. Forschungsanstalt WSL",
+          "supports": "Hyphen/Myzel, Wasser-/Nährstoffaustausch gegen Photosyntheseprodukte; Aufbau der Ektomykorrhiza."
+        },
+        {
+          "label": "Holzfäulen: Braunfäule, Weissfäule und Moderfäule",
+          "url": "https://totholz.wsl.ch/de/totholz/abbau-von-holz/holzfaeulen/",
+          "organization": "Eidg. Forschungsanstalt WSL",
+          "supports": "Cellulose-, Hemicellulose- und Ligninabbau; unterschiedliche Holzstrukturen und begrenzte Aussage eines äußeren Fäulebildes."
+        },
+        {
+          "label": "Potential von Holz-Presswasser für die Bioökonomie",
+          "url": "https://www.lwf.bayern.de/forsttechnik-holz/holzverwendung/343177/index.php",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "supports": "Unterschiedliche enzymatische Fähigkeiten von Weißfäule- und Braunfäulepilzen, insbesondere Ligninabbau."
+        },
+        {
+          "label": "Mikrobiologie der Rhizosphäre und des Bodens",
+          "url": "https://www.boden.uni-bonn.de/rhizosphaere-1/de/forschung/mikrobiologie-der-rhizosphaere-und-des-bodens",
+          "organization": "Universität Bonn, Institut für Nutzpflanzenwissenschaften und Ressourcenschutz",
+          "supports": "Rhizosphäre als wurzelbeeinflusster Bodenraum; mikrobielle Kohlenstoffumsätze und Nährstoffverfügbarkeit. Keine Übernahme eigener Messresultate."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "geflecht",
+          "title": "Der Fruchtkörper ist nur ein Teil des Pilzes",
+          "paragraphs": [
+            "Bei vielen Waldpilzen fällt zuerst der Fruchtkörper auf. Das übrige Geflecht kann im Boden, in Streu oder im Holz verborgen sein. Die einzelnen fadenförmigen Strukturen heißen Hyphen; ihr Geflecht wird als Myzel bezeichnet. Der sichtbare Hut ist deshalb nicht mit dem gesamten Organismus gleichzusetzen. Viele Fruchtkörper dienen der Bildung und Verbreitung von Sporen.",
+            "Pilze bilden ein eigenes Reich und betreiben keine pflanzliche Photosynthese. Ihre organischen Nährstoffe stammen aus anderen Organismen oder deren Resten. Daraus entstehen unterschiedliche Lebensweisen: Stoffaustausch mit Pflanzen, Zersetzung abgestorbenen Materials oder Nutzung lebender Wirte. Ein Fruchtkörper an einem Stamm beweist allein noch nicht, welche Folgen der Befall für genau diesen Baum hat.",
+            "Lernbeispiel: Auf einem Rundgang sind heute keine Hüte zu sehen. Das erlaubt nicht die Aussage, die Bodenstelle sei pilzfrei. Beschreibe nur, dass beim gewählten Termin keine Fruchtkörper festgestellt wurden. Ein Lehrschema oder ein fachlich bestimmtes Präparat kann den verborgenen Aufbau zeigen, ohne den Waldboden aufzureißen."
+          ],
+          "takeaway": "Hyphen bilden das Myzel; ein sichtbarer Fruchtkörper ist nicht der ganze Pilz.",
+          "exercise": "Beschrifte ein Schema mit Hyphen, Myzel und Fruchtkörper und benenne die Beobachtungsgrenze einer Hutsuche."
+        },
+        {
+          "id": "partnerschaft",
+          "title": "Mykorrhiza ist ein Austausch verschiedener Leistungen",
+          "paragraphs": [
+            "Mykorrhiza bezeichnet eine enge Lebensgemeinschaft von Pilz und Pflanzenwurzel. Pilzhyphen können Bodenbereiche erschließen und zur Versorgung der Pflanze mit Wasser und mineralischen Nährstoffen beitragen. Die Pflanze liefert dem Pilz organische Kohlenstoffverbindungen aus ihrer Photosynthese. Wasser, Mineralsalze und Zucker sind dabei verschiedene Stoffgruppen und werden nicht gegeneinander begrifflich ausgetauscht.",
+            "Bei der Ektomykorrhiza umgibt ein Pilzmantel die Feinwurzelspitze. Zwischen Wurzelzellen liegt ein Austauschbereich, das Hartigsche Netz. Das ist von einer bloßen äußerlichen Nachbarschaft eines Pilzhutes zu einem Baum zu unterscheiden. Zur Mykorrhiza gehören funktioneller Kontakt und Stoffaustausch; die genaue Beziehung wird nicht allein anhand der Entfernung eines Fruchtkörpers zum Stamm bewiesen.",
+            "Lernbeispiel: Ein beschriftetes Wurzelschema zeigt Mantel und Zwischenzellräume. Erkläre die Beiträge beider Partner. Behaupte daraus weder, jede Pilzart passe zu jeder Baumart, noch, ein Pilzpartner verhindere unter allen Bedingungen Trockenstress. Die Grundfunktion ist belastbar, eine allgemeine Leistungs- oder Überlebensgarantie wäre es nicht."
+          ],
+          "takeaway": "Mykorrhiza verbindet pilzliche Bodenerschließung mit pflanzlichen Photosyntheseprodukten.",
+          "exercise": "Zeichne zwei Pfeile zwischen Baum und Pilz und beschrifte die jeweils transportierten Stoffgruppen."
+        },
+        {
+          "id": "wurzelraum",
+          "title": "Feinwurzel, Pilzfaden und Rhizosphäre",
+          "paragraphs": [
+            "Feinwurzeln nehmen Wasser und Nährstoffe auf; kräftigere Wurzeln erfüllen unter anderem Verankerungsfunktionen. Pilzhyphen sind keine Feinwurzeln, auch wenn beide gemeinsam Boden erschließen. Der Boden unmittelbar an einer aktiven Wurzel wird durch Aufnahme und Abgabe von Stoffen verändert. Dieser wurzelbeeinflusste Bereich heißt Rhizosphäre.",
+            "Eine Wurzel nimmt Stoffe nicht nur auf. Sie gibt auch organische Verbindungen in ihre Umgebung ab. Solche Exsudate können mikrobielle Aktivität und Nährstoffverfügbarkeit beeinflussen. In einer Mykorrhiza kommt der strukturierte Kontakt mit dem Pilz hinzu. Die Begriffe Rhizosphäre und Mykorrhiza sind deshalb verwandt, aber nicht gleichbedeutend: Der eine bezeichnet einen beeinflussten Bodenraum, der andere eine Lebensgemeinschaft.",
+            "Lernbeispiel: Du erläuterst ein Schema mit Stamm, Grobwurzel, Feinwurzel und feinen Pilzhyphen. Markiere danach die Zone des wurzelbeeinflussten Bodens. Aus dem Schema wird keine gemessene Reichweite in Metern abgelesen. Entscheidend ist die funktionelle Zuordnung, die Boden und oberirdische Pflanze über Stoffflüsse verbindet."
+          ],
+          "takeaway": "Rhizosphäre ist wurzelbeeinflusster Boden; Mykorrhiza ist eine Pilz-Wurzel-Lebensgemeinschaft.",
+          "exercise": "Erkläre die beiden Begriffe an einer beschrifteten Feinwurzel, ohne sie als Synonyme zu verwenden."
+        },
+        {
+          "id": "holzabbau",
+          "title": "Braunfäule und Weißfäule betreffen verschiedene Holzstoffe",
+          "paragraphs": [
+            "Holz enthält unter anderem Cellulose, Hemicellulosen und Lignin. Holzabbauende Pilze können diese Bestandteile unterschiedlich nutzen. Bei Braunfäule werden besonders Cellulose und Hemicellulosen abgebaut; verändertes Lignin bleibt stärker zurück. Das Holz kann braun und würfelig rissig erscheinen. Bei Weißfäule wird auch Lignin angegriffen; je nach Abbauform kann das Holz aufhellen und faserig werden.",
+            "Diese Gruppen beschreiben Abbauprozesse, keine einzelne Pilzart. Mehrere Arten können ähnliche Fäulebilder erzeugen. Mischungen, Entwicklungszustand und Holzbedingungen erschweren die Einordnung eines Fundstücks zusätzlich. Eine Farbe allein liefert weder eine sichere Artbestimmung noch eine Aussage zur Tragfähigkeit eines stehenden Baums oder einer hölzernen Einrichtung.",
+            "Lernbeispiel: Zwei fachlich bezeichnete Lehrstücke zeigen einen braunen Würfelbruch und eine aufgehellte Faserstruktur. Verknüpfe das Erscheinungsbild mit dem unterschiedlichen Stoffabbau. Lasse einen unsicheren realen Fund bei der Beobachtung stehen. Ein biologischer Lernvergleich ist keine Belastungsprüfung; Baum- und Bauwerksicherheit beurteilen dafür zuständige Fachpersonen."
+          ],
+          "takeaway": "Fäuletypen beschreiben Stoffabbau und sind weder Pilzart noch Sicherheitszertifikat.",
+          "exercise": "Ordne Cellulose und Lignin den beiden Abbauformen zu und benenne die Grenze einer Fotobestimmung."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "geflecht",
+          "q": "Was bezeichnet bei einem typischen fadenförmigen Waldpilz das Myzel?",
+          "options": [
+            "Nur den sichtbaren Fruchtkörper.",
+            "Das Geflecht aus Pilzfäden.",
+            "Die Gesamtheit der gebildeten Sporen.",
+            "Die Feinwurzeln des Partnerbaums."
+          ],
+          "answer": 1,
+          "explain": "Die einzelnen Fäden heißen Hyphen; das daraus aufgebaute Geflecht heißt Myzel."
+        },
+        {
+          "id": "q2",
+          "lessonId": "geflecht",
+          "q": "Welche Zuordnung ist richtig?",
+          "options": [
+            "Hyphe: einzelne Spore; Myzel: Fruchtkörper.",
+            "Hyphe: Feinwurzel; Myzel: Wurzelsystem.",
+            "Hyphe: Fruchtkörper; Myzel: Sporenpulver.",
+            "Hyphe: einzelner Pilzfaden; Myzel: Geflecht aus Hyphen."
+          ],
+          "answer": 3,
+          "explain": "Hyphen und Myzel beschreiben verschiedene Organisationsebenen desselben Pilzgeflechts."
+        },
+        {
+          "id": "q3",
+          "lessonId": "geflecht",
+          "q": "Heute fehlen sichtbare Fruchtkörper. Welche Aussage ist dadurch gedeckt?",
+          "options": [
+            "Bei diesem Termin wurden keine Fruchtkörper festgestellt.",
+            "Der ganze Boden enthält sicher keine Pilze.",
+            "Alle Pilzgeflechte sind an dieser Stelle abgestorben.",
+            "Die Baumwurzeln können dort keine Pilzpartner haben."
+          ],
+          "answer": 0,
+          "explain": "Fruchtkörperfunde und vorhandenes, oft verborgenes Myzel sind unterschiedliche Nachweise."
+        },
+        {
+          "id": "q4",
+          "lessonId": "geflecht",
+          "q": "Woher beziehen Pilze organische Nahrung?",
+          "options": [
+            "Durch eigene Photosynthese wie grüne Pflanzen.",
+            "Ausschließlich aus mineralischen Salzen ohne organische Kohlenstoffquelle.",
+            "Aus anderen Organismen oder deren organischem Material.",
+            "Bei jeder Art ausschließlich aus abgestorbenem Holz."
+          ],
+          "answer": 2,
+          "explain": "Pilze leben heterotroph. Ihre Lebensweisen unterscheiden sich darin, wie und aus welchen Quellen sie organisches Material erhalten."
+        },
+        {
+          "id": "q5",
+          "lessonId": "partnerschaft",
+          "q": "Welche Stoffgruppe erhält ein Mykorrhizapilz von seiner grünen Partnerpflanze?",
+          "options": [
+            "Sämtliche mineralischen Nährstoffe als alleinige Kohlenstoffquelle.",
+            "Ausschließlich Wasser ohne organische Verbindungen.",
+            "Die mineralischen Bestandteile des Wurzelbodens als Zuckerersatz.",
+            "Organische Kohlenstoffverbindungen aus der Photosynthese."
+          ],
+          "answer": 3,
+          "explain": "Die Pflanze stellt organische Photosyntheseprodukte bereit; der Pilz trägt unter anderem zur Wasser- und Mineralstoffversorgung bei."
+        },
+        {
+          "id": "q6",
+          "lessonId": "partnerschaft",
+          "q": "Was ist ein wesentlicher Beitrag des Pilzpartners?",
+          "options": [
+            "Die Photosynthese des Baums durch Photosynthese im Pilz ersetzen.",
+            "Mit Hyphen Boden für Wasser- und Nährstoffaufnahme erschließen.",
+            "Organische Baumprodukte grundsätzlich ohne Austausch verbrauchen.",
+            "Nur eine äußere Schutzfarbe am Stamm bilden, ohne Bezug zur Wurzel."
+          ],
+          "answer": 1,
+          "explain": "Feine Pilzfäden erweitern den erschlossenen Bodenraum. Die Wirkung bleibt von Partnern und Bedingungen abhängig."
+        },
+        {
+          "id": "q7",
+          "lessonId": "partnerschaft",
+          "q": "Wo liegt das Hartigsche Netz einer Ektomykorrhiza?",
+          "options": [
+            "Als ausschließlich äußere Sporenlage am Pilzhut.",
+            "Im Inneren jeder lebenden Wurzelzelle als arbuskuläre Struktur.",
+            "Zwischen Zellen des Wurzelgewebes.",
+            "Im zentralen Holzteil des Stamms unter der Borke."
+          ],
+          "answer": 2,
+          "explain": "Der Austauschbereich liegt zwischen den Wurzelzellen und ist Teil des anatomischen Kontakts von Pilz und Feinwurzel."
+        },
+        {
+          "id": "q8",
+          "lessonId": "partnerschaft",
+          "q": "Welche Aussage überschreitet die belegte Grundfunktion der Mykorrhiza?",
+          "options": [
+            "Ein Pilzpartner garantiere unter allen Bedingungen das Überleben des Baums.",
+            "Pilzhyphen können zusätzliche Bodenbereiche erschließen.",
+            "Pflanzen liefern organische Kohlenstoffverbindungen.",
+            "Ein anatomischer Kontakt ist mehr als räumliche Nachbarschaft."
+          ],
+          "answer": 0,
+          "explain": "Eine unterstützende Wasser- und Nährstofffunktion ist keine uneingeschränkte Garantie gegen Trockenheit oder andere Belastungen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "wurzelraum",
+          "q": "Was ist die Rhizosphäre?",
+          "options": [
+            "Der durch Wurzelaktivität beeinflusste Boden in unmittelbarer Wurzelnähe.",
+            "Ausschließlich das Innere der Wurzelzellen.",
+            "Das gesamte Myzel unabhängig von jeder Wurzel.",
+            "Den gesamten Waldoberboden unabhängig von Wurzeleinflüssen."
+          ],
+          "answer": 0,
+          "explain": "Die Rhizosphäre wird durch Aufnahme, Abgabe und weitere Aktivitäten der Wurzel beeinflusst."
+        },
+        {
+          "id": "q10",
+          "lessonId": "wurzelraum",
+          "q": "Welche Unterscheidung trifft zu?",
+          "options": [
+            "Feinwurzel und Pilzhyphe sind Synonyme für dasselbe Pflanzenorgan.",
+            "Pilzhyphen sind ausschließlich umgeformte Wurzelhaare.",
+            "Feinwurzel ist Pflanzengewebe; Pilzhyphe gehört zum Pilz.",
+            "Eine mit Pilz verbundene Feinwurzel besteht nur noch aus Pilzgewebe."
+          ],
+          "answer": 2,
+          "explain": "Pflanze und Pilz sind verschiedene Organismen, deren Strukturen bei der Mykorrhiza funktionell zusammenwirken."
+        },
+        {
+          "id": "q11",
+          "lessonId": "wurzelraum",
+          "q": "Was sind Wurzelexsudate im hier behandelten Zusammenhang?",
+          "options": [
+            "Vom Pilzhut verbreitete Sporen.",
+            "Von Wurzeln in die Umgebung abgegebene organische Stoffe.",
+            "Nur abgestorbene, bereits abgefallene Wurzelteile.",
+            "Ausschließlich aus dem Boden in die Wurzel aufgenommene Mineralsalze."
+          ],
+          "answer": 1,
+          "explain": "Wurzelausscheidungen beeinflussen die unmittelbare Boden- und Mikrobenumgebung."
+        },
+        {
+          "id": "q12",
+          "lessonId": "wurzelraum",
+          "q": "Welche Gegenüberstellung ist richtig?",
+          "options": [
+            "Rhizosphäre: Mykorrhizapilz; Mykorrhiza: jedes Bodengefüge.",
+            "Rhizosphäre: inneres Wurzelholz; Mykorrhiza: ausschließlich der Pilzhut.",
+            "Beide Begriffe bezeichnen genau denselben anatomischen Pilzmantel.",
+            "Rhizosphäre: beeinflusster Bodenraum; Mykorrhiza: Pilz-Wurzel-Lebensgemeinschaft."
+          ],
+          "answer": 3,
+          "explain": "Die Begriffe haben unterschiedliche Bezugsebenen und werden beim Erklären getrennt verwendet."
+        },
+        {
+          "id": "q13",
+          "lessonId": "holzabbau",
+          "q": "Welcher Stoff bleibt bei Braunfäule im Verhältnis stärker zurück?",
+          "options": [
+            "Cellulose nach vorrangigem vollständigem Ligninabbau.",
+            "Unveränderte Hemicellulose nach alleiniger Wasserabgabe.",
+            "Verändertes Lignin.",
+            "Alle Holzstoffe im unveränderten ursprünglichen Verhältnis."
+          ],
+          "answer": 2,
+          "explain": "Braunfäule greift besonders Cellulose und Hemicellulosen an; der ligninreiche Rest trägt zum braunen Erscheinungsbild bei."
+        },
+        {
+          "id": "q14",
+          "lessonId": "holzabbau",
+          "q": "Welche Fähigkeit kennzeichnet Weißfäulepilze?",
+          "options": [
+            "Sie können neben anderen Holzstoffen auch Lignin abbauen.",
+            "Sie entfernen lediglich Wasser und verändern keine Holzpolymere.",
+            "Sie bauen ausschließlich Cellulose ab und lassen Lignin grundsätzlich unangetastet.",
+            "Sie sind auf die Aufnahme bereits gelöster Mineralsalze beschränkt."
+          ],
+          "answer": 0,
+          "explain": "Der Ligninabbau unterscheidet Weißfäule wesentlich von der vereinfachten Grundbeschreibung der Braunfäule."
+        },
+        {
+          "id": "q15",
+          "lessonId": "holzabbau",
+          "q": "Ein Fundstück zeigt Würfelbruch. Was folgt daraus noch nicht?",
+          "options": [
+            "Dass eine Fäulestruktur beschrieben werden kann.",
+            "Dass Holzbestandteile unterschiedlich abgebaut werden können.",
+            "Dass die weitere Untersuchung sinnvoll sein kann.",
+            "Die sichere Identität einer einzigen Pilzart."
+          ],
+          "answer": 3,
+          "explain": "Fäulebilder können durch verschiedene Arten entstehen und müssen im Zusammenhang beurteilt werden."
+        },
+        {
+          "id": "q16",
+          "lessonId": "holzabbau",
+          "q": "Was kann eine biologische Fotolektion über Holzfäule nicht ersetzen?",
+          "options": [
+            "Das Lernen der Begriffe Cellulose und Lignin.",
+            "Eine fachliche Tragfähigkeits- oder Sicherheitsbeurteilung vor Ort.",
+            "Die Unterscheidung eines Lehrstücks nach beschriebenem Abbau.",
+            "Das Formulieren einer begrenzten Beobachtung."
+          ],
+          "answer": 1,
+          "explain": "Farbe und Oberfläche sind kein Belastungsnachweis für stehende Bäume, Sitze oder Bauteile."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-bodenporen-verdichtung-2026",
+      "title": "Boden als Lebensraum: Poren, Wasser und Verdichtung",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Ökologie",
+      "minutes": 35,
+      "description": "Das unsichtbare Porensystem unter einer Fläche verstehen und Befahrungsspuren, Wasseransammlungen und Messungen sachlich einordnen.",
+      "objectives": [
+        "Bodenart und Bodengefüge trennen",
+        "Poren als Wasser- und Luftwege erklären",
+        "Feuchte, Radlast und Überfahrten gemeinsam betrachten",
+        "Beobachtungszeichen von einer fachlichen Diagnose unterscheiden"
+      ],
+      "sources": [
+        {
+          "label": "Physikalische Untersuchungen der Nationalen Bodenbeobachtung",
+          "url": "https://www.agroscope.admin.ch/de/physikalische-untersuchungen",
+          "organization": "Agroscope",
+          "supports": "Porosität, Porenkontinuität, Wasser-/Luftführung, Folgen von Verdichtung sowie Feuchteeinfluss auf Eindringwiderstand."
+        },
+        {
+          "label": "Bodenverdichtung: Vorgänge, Wirkungen und Ermittlung",
+          "url": "https://www.umweltbundesamt.de/themen/boden-flaeche/bodenbelastungen/verdichtung",
+          "organization": "Umweltbundesamt",
+          "supports": "Bodengefüge und Poren, feuchteabhängige Stabilität, Radlast/Kontaktflächendruck/Überfahrten, oberflächiger Abfluss und notwendige Ortsdiagnose. Keine nationalen Häufigkeitszahlen oder Rechtsaussagen übernommen."
+        },
+        {
+          "label": "Bodenerosion, Bodenverdichtung, Bodenwasserhaushalt",
+          "url": "https://www.lfl.bayern.de/bodenerosion",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft",
+          "supports": "Struktur, Wasseraufnahme, Erosionsfolgen, bodenschonende Arbeitsplanung und Spatendiagnose."
+        },
+        {
+          "label": "Bodenverdichtung: Wenig Druck dem Boden zuliebe",
+          "url": "https://www.lfl.bayern.de/mam/cms07/ilt/dateien/ilt1_bodenfruchtbarkeit_themenblatt_bodenverdichtung.pdf",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft",
+          "supports": "Porenschädigung als beeinträchtigte Sauerstoff- und Wasserwege; Zusammenhang von Belastung, Feuchtezustand und Bodenreaktion."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "poren",
+          "title": "Boden besteht auch aus miteinander verbundenen Hohlräumen",
+          "paragraphs": [
+            "Boden ist kein dichter Block. Zwischen Teilchen und ihren Verbänden liegen Poren, die Wasser oder Luft enthalten. Für die Funktionen zählt sowohl das vorhandene Porenvolumen als auch die Verbindung der Hohlräume. Niederschlagswasser muss in den Boden gelangen und sich darin bewegen können; Gasaustausch braucht ebenfalls durchgängige Wege.",
+            "Bodenart und Bodengefüge beschreiben verschiedene Eigenschaften. Die Bodenart betrifft die Korngrößenzusammensetzung, etwa Sand, Schluff und Ton. Das Gefüge beschreibt die räumliche Anordnung und Verbindung der Teilchen. Zwei Flächen ähnlicher Bodenart können unterschiedlich strukturiert sein. Eine Angabe wie „lehmig“ ersetzt deshalb keine Beschreibung des aktuellen Gefüges.",
+            "Lernbeispiel: Zwei gedachte Proben haben dieselbe Korngrößenzusammensetzung. Bei einer sind Poren und Aggregate erhalten, bei der anderen durch Belastung verändert. Ihre Wasser- und Luftführung kann sich unterscheiden. Das ist ein Strukturvergleich, keine Behauptung, eine Bodenart sei an jedem Standort automatisch gut oder schlecht."
+          ],
+          "takeaway": "Korngrößen beschreiben die Bodenart; Teilchenanordnung und Poren beschreiben das Gefüge.",
+          "exercise": "Erkläre den Unterschied zwischen Bodenart und Bodengefüge und zeichne verbundene sowie unterbrochene Poren."
+        },
+        {
+          "id": "belastung",
+          "title": "Verdichtung hängt nicht nur vom Fahrzeugnamen ab",
+          "paragraphs": [
+            "Wird ein Boden mechanisch stärker belastet, als sein Gefüge tragen kann, können Teilchen enger zusammenrücken und Poren geschädigt werden. Der Wassergehalt beeinflusst dabei die Empfindlichkeit. Nasse beziehungsweise sehr feuchte Bedingungen sind deshalb ein wichtiger Grund, eine geplante Befahrung mit den Verantwortlichen neu zu beurteilen.",
+            "Für die Belastung wirken Radlast, Kontaktfläche, Reifenbedingungen und Zahl der Überfahrten zusammen. Kontaktflächendruck betrifft besonders den oberflächennahen Bereich; hohe Radlasten können auch tiefer wirken. Ein breiter Reifen allein ist darum kein Beweis, dass jede Fahrt folgenlos bleibt. Ebenso ist ein trockener Oberflächeneindruck kein vollständiges Profil des Unterbodens.",
+            "Lernbeispiel: Für eine Materialfahrt ins Revier steht nach Regen dieselbe Strecke wie bei einem früheren trockenen Termin zur Diskussion. Kläre Wege, Bodenverhältnisse und eine mögliche Verschiebung mit der zuständigen Bewirtschaftung. Der Lerninhalt erklärt den Zusammenhang; er nennt bewusst keine universelle zulässige Tonnage, Reifenfüllung oder Befahrungsfreigabe."
+          ],
+          "takeaway": "Belastung und Tragfähigkeit müssen zusammenpassen; Feuchte und wiederholte Überfahrten gehören zur Bewertung.",
+          "exercise": "Nenne vier Angaben, die bei einer geplanten Befahrung zusätzlich zur Fahrzeugbezeichnung benötigt werden."
+        },
+        {
+          "id": "wasserwege",
+          "title": "Eine Fahrspur kann über die Spur hinaus wirken",
+          "paragraphs": [
+            "Wird das Porensystem geschädigt, können Belüftung und Wassertransport leiden. Das beeinflusst Wurzeln und Bodenorganismen, die den Boden als Lebensraum nutzen. Oberflächlich erkennbare Spuren sind deshalb nur ein Teil der möglichen Veränderung. Besonders Schäden im Unterboden können lange bestehen bleiben und sind nicht durch bloßes Einebnen der Oberfläche beseitigt.",
+            "Wenn Regenwasser schlechter in den Boden eindringt, kann mehr Wasser oberflächlich abfließen. Unter passenden Bedingungen werden Bodenmaterial und darin enthaltene Stoffe mitgenommen und in Gräben oder Gewässer transportiert. Verdichtung und Erosion sind dabei verschiedene Vorgänge: Verdichtung verändert das Gefüge; Erosion verlagert Material. Sie können miteinander verbunden sein, sind aber nicht synonym.",
+            "Lernbeispiel: Nach Regen stehen in einer Spur Pfützen, daneben läuft trübes Wasser zum Graben. Dokumentiere beides als Beobachtung und melde es der zuständigen Flächenbewirtschaftung. Eine Pfütze allein bestimmt weder die betroffene Bodentiefe noch sämtliche Ursachen. Vermeide eine pauschale Ursachenzuschreibung nur anhand eines Fotos."
+          ],
+          "takeaway": "Verdichtung verändert Poren; Erosion transportiert Boden. Beides kann zusammenhängen.",
+          "exercise": "Ordne einem fiktiven Protokoll die Begriffe Strukturänderung, Wasseransammlung und Materialtransport zu."
+        },
+        {
+          "id": "diagnose",
+          "title": "Ein Messwert braucht einen vergleichbaren Feuchtezustand",
+          "paragraphs": [
+            "Zur fachlichen Untersuchung gehören unterschiedliche Informationen: sichtbares Gefüge, Wassergehalt, Lagerungsdichte, Porenverteilung oder Eindringwiderstand. Keine einzelne Zahl beschreibt alle Bodenfunktionen. Agroscope erfasst Begleitgrößen gezielt gemeinsam, weil insbesondere die Bodenfeuchte den gemessenen Eindringwiderstand stark beeinflusst.",
+            "Eine Spatendiagnose macht Strukturmerkmale in einer Probe sichtbar; sie ersetzt nicht jede weitere physikalische Messung. Um zwei Termine zu vergleichen, müssen Probentiefe, Standort und Feuchtezustand dokumentiert sein. Unterschiedliche Wassergehalte können Messunterschiede mit verursachen. Ein höherer Widerstand darf nicht ohne Prüfung sofort als neu entstandene Verdichtung verbucht werden.",
+            "Lernbeispiel: Eine Probe stammt aus trockenem, die andere aus feuchtem Boden. Die Widerstandswerte unterscheiden sich. Formuliere zunächst die methodische Rückfrage nach Begleitdaten, bevor du eine zeitliche Verschlechterung behauptest. Für den Kurs genügen vorhandene Untersuchungsergebnisse; eigenständige Grabungen oder Geräteeinsätze auf fremden Flächen sind keine Voraussetzung."
+          ],
+          "takeaway": "Bodenmessungen werden mit Tiefe, Feuchte, Methode und weiteren Strukturangaben interpretiert.",
+          "exercise": "Formuliere eine faire Vergleichsfrage für zwei Widerstandsmessungen aus verschiedenen Feuchtezuständen."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "poren",
+          "q": "Welche Eigenschaft beschreibt das Bodengefüge?",
+          "options": [
+            "Ausschließlich den Anteil von Sand, Schluff und Ton.",
+            "Ausschließlich die chemischen Nährstoffkonzentrationen.",
+            "Nur den Wassergehalt zu einem einzelnen Termin.",
+            "Die räumliche Anordnung der Teilchen und ihrer Verbände."
+          ],
+          "answer": 3,
+          "explain": "Das Gefüge betrifft die Struktur. Die Korngrößenzusammensetzung wird als Bodenart beschrieben."
+        },
+        {
+          "id": "q2",
+          "lessonId": "poren",
+          "q": "Was kann sich in Bodenporen befinden?",
+          "options": [
+            "Nur Wasser, unabhängig vom Feuchtezustand.",
+            "Wasser oder Luft.",
+            "Nur Luft, unabhängig vom Wassergehalt.",
+            "Die Poren seien vollständig mit festen Bodenpartikeln gefüllt."
+          ],
+          "answer": 1,
+          "explain": "Poren sind Hohlräume des Bodens und dienen je nach Füllung und Verbindung als Wasser- oder Luftwege."
+        },
+        {
+          "id": "q3",
+          "lessonId": "poren",
+          "q": "Warum reicht das gesamte Porenvolumen allein nicht zur Beurteilung des Wassertransports?",
+          "options": [
+            "Weil alle Poren unabhängig von ihrer Verbindung immer gleich gut leiten.",
+            "Weil allein die Korngrößenbezeichnung jede Transportmessung ersetzt.",
+            "Auch die Verbindung der Poren ist wichtig.",
+            "Weil das Porenvolumen ausschließlich die Nährstoffkonzentration beschreibt."
+          ],
+          "answer": 2,
+          "explain": "Porenkontinuität beschreibt, wie Hohlräume miteinander verbunden sind und als Transportwege wirken können."
+        },
+        {
+          "id": "q4",
+          "lessonId": "poren",
+          "q": "Zwei Böden haben die gleiche Korngrößenzusammensetzung. Was kann trotzdem verschieden sein?",
+          "options": [
+            "Ihre aktuelle Struktur und damit Wasser- und Luftführung.",
+            "Die Korngrößenanteile müssten trotzdem zwangsläufig verschieden sein.",
+            "Die Porenverbindungen müssten unabhängig von Belastung identisch sein.",
+            "Die gleiche Bodenart garantiere dieselbe aktuelle Lagerungsdichte."
+          ],
+          "answer": 0,
+          "explain": "Ähnliche Bodenart garantiert kein identisches Bodengefüge; Belastung und Entwicklung beeinflussen die Struktur."
+        },
+        {
+          "id": "q5",
+          "lessonId": "belastung",
+          "q": "Warum wird eine geplante Befahrung nach Regen neu beurteilt?",
+          "options": [
+            "Der Wassergehalt verändert die Stabilität und Verdichtungsempfindlichkeit.",
+            "Die ältere trockene Befahrung sei bereits eine ausreichende aktuelle Prüfung.",
+            "Feuchte erhöhe grundsätzlich immer die Tragfähigkeit.",
+            "Der Wassergehalt betreffe nur die Farbe, nicht die Bodenmechanik."
+          ],
+          "answer": 0,
+          "explain": "Die aktuelle Bodenfeuchte ist ein wesentlicher Teil der Tragfähigkeitsbeurteilung."
+        },
+        {
+          "id": "q6",
+          "lessonId": "belastung",
+          "q": "Welche Größe beeinflusst besonders die Tiefenwirkung einer Fahrzeugbelastung?",
+          "options": [
+            "Nur die Zahl der Überfahrten, unabhängig von der Last.",
+            "Nur der Reifeninnendruck, unabhängig von der Radlast.",
+            "Die Radlast.",
+            "Nur die sichtbare Spurtiefe an der Oberfläche."
+          ],
+          "answer": 2,
+          "explain": "Radlast bezeichnet die über ein Rad abgestützte Last und ist für die Tiefenwirkung wichtig."
+        },
+        {
+          "id": "q7",
+          "lessonId": "belastung",
+          "q": "Was beweist ein breiter Reifen für sich allein nicht?",
+          "options": [
+            "Dass eine Kontaktfläche vorhanden ist.",
+            "Dass jede Befahrung bei jedem Feuchtezustand unschädlich ist.",
+            "Dass Reifeneigenschaften zu den Einflussfaktoren gehören.",
+            "Dass die Bodensituation zusätzlich geprüft werden muss."
+          ],
+          "answer": 1,
+          "explain": "Kontaktfläche ist nur ein Faktor; Last, Feuchte, Bodenstruktur und Überrollungen bleiben relevant."
+        },
+        {
+          "id": "q8",
+          "lessonId": "belastung",
+          "q": "Welche Planung berücksichtigt den Boden am besten?",
+          "options": [
+            "Nur die Reifenbreite als vollständige Freigabe verwenden.",
+            "Nur den früheren trockenen Termin auf die jetzige Situation übertragen.",
+            "Nur die oberflächliche Pfützenfreiheit als Nachweis jeder Bodentiefe verwenden.",
+            "Aktuelle Verhältnisse, Lasten, Fahrweg und Überfahrten gemeinsam prüfen."
+          ],
+          "answer": 3,
+          "explain": "Bodenschonende Planung verbindet Belastung und Empfindlichkeit des konkreten Standorts."
+        },
+        {
+          "id": "q9",
+          "lessonId": "wasserwege",
+          "q": "Was unterscheidet Verdichtung von Erosion?",
+          "options": [
+            "Verdichtung entfernt Bodenmaterial; Erosion verkleinert nur die Poren.",
+            "Verdichtung betrifft ausschließlich den Oberboden; Erosion ausschließlich den Unterboden.",
+            "Verdichtung verändert das Gefüge; Erosion verlagert Bodenmaterial.",
+            "Verdichtung wird durch Wasserbewegung definiert; Erosion durch aufgebrachte Radlast."
+          ],
+          "answer": 2,
+          "explain": "Die Prozesse sind verschieden, können aber über veränderte Wasserwege miteinander verbunden sein."
+        },
+        {
+          "id": "q10",
+          "lessonId": "wasserwege",
+          "q": "Welche Folge ist bei geschädigtem Porensystem möglich?",
+          "options": [
+            "Eingeschränkter Wasser- und Lufttransport.",
+            "Grundsätzlich unbegrenzte Durchlüftung jeder Bodentiefe.",
+            "Automatisch bessere Wasseraufnahme bei jedem Regen.",
+            "Vollständiges Verschwinden aller Feststoffteilchen."
+          ],
+          "answer": 0,
+          "explain": "Verdichtungsbedingte Porenveränderungen können Transportwege beeinträchtigen und Wurzeln sowie Bodenorganismen betreffen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "wasserwege",
+          "q": "Eine Fahrspur wurde oberflächlich eingeebnet. Welche Folgerung ist unzulässig?",
+          "options": [
+            "Die sichtbare Oberfläche sei verändert worden.",
+            "Über tiefere Schichten fehlten gegebenenfalls Angaben.",
+            "Eine fachliche Beurteilung könne weitere Daten benötigen.",
+            "Eine mögliche Unterbodenverdichtung sei damit sicher beseitigt."
+          ],
+          "answer": 3,
+          "explain": "Oberflächengestaltung und physikalischer Zustand tieferer Schichten sind unterschiedliche Dinge."
+        },
+        {
+          "id": "q12",
+          "lessonId": "wasserwege",
+          "q": "Nach Regen steht Wasser in einer Spur. Was lässt sich allein daraus nicht bestimmen?",
+          "options": [
+            "Dass dort Wasser sichtbar ist.",
+            "Die genaue Ursache und betroffene Tiefe der Bodenveränderung.",
+            "Dass die Beobachtung einen Termin hat.",
+            "Dass ein Lagefoto dokumentiert werden kann."
+          ],
+          "answer": 1,
+          "explain": "Wasseransammlungen sind ein mögliches Hinweiszeichen. Eine vollständige Diagnose braucht weitere Standortinformationen."
+        },
+        {
+          "id": "q13",
+          "lessonId": "diagnose",
+          "q": "Welche Begleitgröße ist beim Vergleich des Eindringwiderstands besonders wichtig?",
+          "options": [
+            "Nur die Lufttemperatur ohne Bodenwasserangabe.",
+            "Der Wassergehalt des Bodens.",
+            "Nur die Korngrößenbezeichnung ohne Feuchte.",
+            "Nur die Zahl der Nachkommastellen des Messgeräts."
+          ],
+          "answer": 1,
+          "explain": "Bodenfeuchte beeinflusst den Eindringwiderstand und wird deshalb mit erfasst."
+        },
+        {
+          "id": "q14",
+          "lessonId": "diagnose",
+          "q": "Was leistet eine Spatendiagnose?",
+          "options": [
+            "Sie ersetzt automatisch jede Messung von Wasser- und Luftführung.",
+            "Sie liefert allein ohne Begleitdaten eine exakte zulässige Radlast.",
+            "Sie beschreibt grundsätzlich alle Bodentiefen, auch wenn nur oben beprobt wurde.",
+            "Sie macht Strukturmerkmale einer Bodenprobe sichtbar."
+          ],
+          "answer": 3,
+          "explain": "Die visuelle Gefügebeurteilung ist ein Bestandteil der Diagnose und wird mit weiteren Informationen verbunden."
+        },
+        {
+          "id": "q15",
+          "lessonId": "diagnose",
+          "q": "Ein trockener Termin zeigt höheren Widerstand als ein feuchter. Was ist zuerst zu prüfen?",
+          "options": [
+            "Ob der unterschiedliche Wassergehalt zum Messunterschied beiträgt.",
+            "Ob damit bereits jede Bodenfunktion vollständig bestimmt ist.",
+            "Ob die höhere Zahl automatisch eine neue Schädigung beweist.",
+            "Ob Probentiefe und Methode grundsätzlich unwichtig sind."
+          ],
+          "answer": 0,
+          "explain": "Ein Vergleich darf den Einfluss der Erfassungsbedingungen nicht mit einer bestätigten Strukturänderung verwechseln."
+        },
+        {
+          "id": "q16",
+          "lessonId": "diagnose",
+          "q": "Welche Aussage ist für einen Bodenbericht am brauchbarsten?",
+          "options": [
+            "Eine Einzelzahl gilt ohne Kontext für jede Tiefe.",
+            "Der höchste Widerstand beschreibt automatisch das gesamte Revier.",
+            "Wert, Tiefe, Ort, Feuchte und Verfahren sind dokumentiert.",
+            "Ein Oberflächenfoto ersetzt das gesamte Probenprofil."
+          ],
+          "answer": 2,
+          "explain": "Die dokumentierten Bedingungen machen nachvollziehbar, worauf sich ein Befund bezieht und welche Vergleiche möglich sind."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-wetterdaten-verstehen-2026",
+      "title": "Wetterdaten im Revier: Messung, Radar, Satellit und Ensemble",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "minutes": 35,
+      "description": "In Wetter-Apps erkennen, was beobachtet, abgeleitet oder vorhergesagt wird und warum eine animierte Karte keine Garantie für den eigenen Standort ist.",
+      "objectives": [
+        "Messzeit und Vorhersagezeit unterscheiden",
+        "Radarbild und Satellitenbild auseinanderhalten",
+        "Datenlücken von fehlendem Niederschlag trennen",
+        "Ensembles als Darstellung möglicher Entwicklungen erklären"
+      ],
+      "sources": [
+        {
+          "label": "Dem Wetter einen Schritt voraus: von der Messung bis zur Prognose, Grundlagen der Messsysteme",
+          "url": "https://www.meteoschweiz.admin.ch/dam/jcr%3Af01cd53a-7a00-4089-8c3c-c86d7f3b530b/Wetterprognose_D_web.pdf",
+          "organization": "MeteoSchweiz",
+          "supports": "Bodenmessung, Radar und Satelliten als verschiedene Messsysteme; Modellvorhersagen, sichtbare und infrarote Satellitenkanäle. Aus der älteren Broschüre keine aktuellen Stationszahlen, Modellnamen, Frequenzen oder Prognoseleistungen übernommen."
+        },
+        {
+          "label": "Ein Blick auf das Satelliten- und Radarbild",
+          "url": "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/04/ein-blick-auf-das-satelliten-und-radarbild.html",
+          "organization": "MeteoSchweiz",
+          "supports": "Unterschied von sichtbarer Bewölkung und Radar-Niederschlag; im Beispiel ausdrücklich gekennzeichnete Lücke der Radar-Abdeckung. Keine Übernahme des damaligen Wetters."
+        },
+        {
+          "label": "How do we measure the weather?",
+          "url": "https://weather.metoffice.gov.uk/learn-about/met-office-for-schools/other-content/other-resources/how-to-measure-the-weather",
+          "organization": "Met Office",
+          "supports": "Messsysteme und Radarechos als Grundlage der Ortung von Niederschlag; Messungen sind keine vollständige Zukunftsaussage."
+        },
+        {
+          "label": "Basic Satellite Imagery Interpretation",
+          "url": "https://training.tools.eumetsat.int/asmet/asmet10/en/comet/asmet/asmet10/print.php.htm",
+          "organization": "EUMETSAT / COMET",
+          "supports": "Sichtbare und infrarote Kanäle haben unterschiedliche Informationsgehalte; sichtbares reflektiertes Sonnenlicht ist nachts nicht verfügbar, thermisches Infrarot schon. Keine Auflösungs- oder Gerätegeneration auf heutige Produkte übertragen."
+        },
+        {
+          "label": "What is an ensemble forecast?",
+          "url": "https://www.metoffice.gov.uk/research/weather/ensemble-forecasting/what-is-an-ensemble-forecast",
+          "organization": "Met Office",
+          "supports": "Beobachteter Ausgangszustand, numerische Prognose, leicht verschiedene Anfangszustände und Streuung möglicher Entwicklungen."
+        },
+        {
+          "label": "Ensemble-Datenassimilation",
+          "url": "https://www.meteoschweiz.admin.ch/wetter/warn-und-prognosesysteme/icon-prognosesysteme/ensemble-datenassimilation.html",
+          "organization": "MeteoSchweiz",
+          "supports": "Verbindung von Messungen und Modellzuständen mit Unsicherheiten; Schar leicht abweichender Analysen. Keine aktuellen Laufzeiten oder Mitgliedszahlen genannt."
+        },
+        {
+          "label": "Statistik für Dummies: Ensembles und probabilistische Produkte",
+          "url": "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/07/statistik-fuer-dummies.html",
+          "organization": "MeteoSchweiz",
+          "supports": "Messdaten als Ausgangszustand; Ensemble-Streuung als Unsicherheitsinformation, Grenzen zusammengefasster Werte."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "zeitbezug",
+          "title": "Was ist schon gemessen, was wird noch erwartet?",
+          "paragraphs": [
+            "Eine Wetter-App kann Messwerte und Vorhersagen unmittelbar nebeneinander zeigen. Ein Messwert gehört zu einem vergangenen oder gegenwärtigen Beobachtungstermin. Eine Prognose beschreibt einen noch erwarteten Zustand. Wettermodelle verwenden Beobachtungen für die Schätzung des Ausgangszustands und berechnen seine weitere Entwicklung. Diese beiden Informationsarten bleiben auch auf derselben Karte verschieden.",
+            "Achte auf Datenzeit, Gültigkeitszeit und Legende. Ein zuletzt geladenes Bild ist nicht allein deshalb aktuell, weil es gerade auf dem Display erscheint. In einer Animation kann die Zeitleiste von Beobachtungen in eine Vorhersage übergehen. Auch eine aus Messbildern abgeleitete Fortschreibung ist ab ihrem Start in die Zukunft eine Prognose und keine nachträgliche Messung.",
+            "Lernbeispiel: Du vergleichst eine Niederschlagskarte von vorhin mit der Anzeige für später. Benenne zunächst, welche Zeit jede Darstellung meint und ob das Produkt gemessen oder berechnet ist. Die Aufgabe ist das Lesen von Daten; daraus entsteht keine Zusage, dass an einem bestimmten Wegstück zu einer bestimmten Minute trockenes Wetter herrscht."
+          ],
+          "takeaway": "Datenzeit, Gültigkeitszeit und Produkttyp werden getrennt gelesen.",
+          "exercise": "Suche in einer veröffentlichten Wetterdarstellung Legende und Zeitangaben und kennzeichne Beobachtung sowie Prognose."
+        },
+        {
+          "id": "radar",
+          "title": "Radar zeigt Niederschlag, keine vollständige Wetterwelt",
+          "paragraphs": [
+            "Ein Wetterradar sendet elektromagnetische Signale und wertet zurückkehrende Echos aus. Daraus werden Informationen über Niederschlag abgeleitet. Die bekannte farbige Karte ist bereits ein verarbeitetes Produkt: Ihre Legende erklärt, ob etwa eine Niederschlagsintensität oder eine andere Größe dargestellt ist. Sie ist keine gewöhnliche Fotoaufnahme des Himmels.",
+            "Ein Radarverbund erweitert die räumliche Übersicht, hat aber eine bestimmte Abdeckung und Datenqualität. Wo Daten fehlen, darf eine farblose Fläche nicht als sicher niederschlagsfrei verstanden werden. Ein Produkt kann fehlende Messungen eigens markieren; diese Kennzeichnung muss mitgelesen werden. Auch Wolken ohne dargestellten Niederschlag sind mit einem Niederschlagsradar nicht vollständig beschrieben.",
+            "Lernbeispiel: Eine Karte zeigt einen Schauer am Rand des erfassten Gebiets. Prüfe Zeit und Abdeckung, bevor du aus dem leeren Bereich dahinter einen trockenen Korridor ableitest. Für die weitere Wetterlage ergänzen sich Radar, andere Messsysteme, Prognose und aktuelle amtliche Hinweise; kein einzelnes Bild übernimmt alle Aufgaben."
+          ],
+          "takeaway": "Farblos kann kein dargestellter Niederschlag oder fehlende Information bedeuten; die Legende entscheidet.",
+          "exercise": "Erkläre den Unterschied zwischen „kein Niederschlag dargestellt“ und „hier liegen keine Radardaten vor“."
+        },
+        {
+          "id": "satellit",
+          "title": "Wolkenbild ist nicht gleich Regenkarte",
+          "paragraphs": [
+            "Wettersatelliten erfassen Strahlung in verschiedenen Spektralbereichen. Sichtbare Kanäle nutzen reflektiertes Sonnenlicht; thermische Infrarotkanäle enthalten andere Informationen und sind auch nachts nutzbar. Deshalb muss bei einem Satellitenbild bekannt sein, welcher Kanal oder welche Kombination gezeigt wird. Die Farben können eine aufbereitete Darstellung sein und müssen keine natürlichen Augenfarben abbilden.",
+            "Ein Wolkenfeld ist noch keine Messung der an deinem Standort ankommenden Regenmenge. Radar- und Satellitenbilder können daher unterschiedliche Dinge zeigen, ohne sich zu widersprechen. Der sichtbare Kanal kann Wolkenstrukturen verdeutlichen, während eine Radarkarte den erfassten Niederschlag einordnet. Unterschiede werden über Messprinzip, Produkt und Zeitpunkt erklärt.",
+            "Lernbeispiel: Auf dem Satellitenbild ist Bewölkung erkennbar, im Radar am betrachteten Ort kein Niederschlag dargestellt. Die richtige Rückfrage lautet, was beide Produkte jeweils messen und wie aktuell sie sind. Behaupte nicht, eines müsse allein deshalb falsch sein. Eine Darstellung ohne Sonnenlicht wird zudem nicht wie ein normales Tagesfoto gelesen."
+          ],
+          "takeaway": "Satellitenkanal und Radarprodukt beantworten unterschiedliche Fragen.",
+          "exercise": "Erkläre an einem gedachten Wolkenfeld, warum Wolkennachweis und Niederschlagsnachweis verschieden sind."
+        },
+        {
+          "id": "ensemble",
+          "title": "Mehrere Rechenläufe machen Unsicherheit sichtbar",
+          "paragraphs": [
+            "Ein Ensemble besteht aus mehreren Modellvorhersagen mit leicht unterschiedlichen Ausgangsbedingungen beziehungsweise Modellvarianten. Die Atmosphäre wird nie vollständig fehlerfrei vermessen. Kleine Unterschiede können sich im weiteren Verlauf verstärken. Mehrere Rechenläufe helfen deshalb, mögliche Entwicklungen und deren Streuung einzuschätzen, statt nur eine einzelne Linie zu betrachten.",
+            "Liegen vergleichbare Ensembleverläufe weit auseinander, weist das auf größere Unsicherheit für die betrachtete Größe und Zeit hin. Eng beieinanderliegende Linien bedeuten höhere Übereinstimmung innerhalb dieses Ensembles, aber keine absolute Garantie. Modellgrenzen bleiben bestehen. Die Streuung wird immer auf dieselbe Variable, denselben Ort und dieselbe Gültigkeitszeit bezogen.",
+            "Lernbeispiel: Für einen späteren Termin liefern die Rechenläufe deutlich unterschiedliche Niederschlagsentwicklungen. Ein einzelner trockener Lauf rechtfertigt keine sichere Trockenprognose. Formuliere die Bandbreite und prüfe eine aktualisierte amtliche Vorhersage näher am Termin. Dieser Kurs trainiert die Interpretation; er gibt weder feste Warnschwellen noch eine Freigabe für eine konkrete Unternehmung."
+          ],
+          "takeaway": "Ensembles zeigen eine Bandbreite; Übereinstimmung ist keine Gewissheit.",
+          "exercise": "Beschreibe zwei gedachte Kurvenscharen mit enger beziehungsweise großer Streuung, ohne einen garantierten Verlauf zu behaupten."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "zeitbezug",
+          "q": "Was unterscheidet eine Prognose von einem Messwert?",
+          "options": [
+            "Sie beschreibt einen erwarteten Zustand für eine Gültigkeitszeit.",
+            "Sie ist grundsätzlich eine schon erfolgte Messung am Zielort.",
+            "Sie hat keinen Zeitbezug.",
+            "Sie benötigt zur Einordnung keine Produktbeschreibung."
+          ],
+          "answer": 0,
+          "explain": "Eine Prognose ist eine berechnete beziehungsweise fachlich abgeleitete Zukunftsaussage; ein Messwert gehört zum Beobachtungstermin."
+        },
+        {
+          "id": "q2",
+          "lessonId": "zeitbezug",
+          "q": "Eine Karte ist gerade auf dem Bildschirm erschienen. Was ist zusätzlich zu prüfen?",
+          "options": [
+            "Nur die sichtbare räumliche Auflösung.",
+            "Nur den gewählten Zoom ohne Produktzeit.",
+            "Die Daten- und Gültigkeitszeit des dargestellten Produkts.",
+            "Nur die Animationsgeschwindigkeit."
+          ],
+          "answer": 2,
+          "explain": "Ladezeit und Zeitpunkt des dargestellten Wetterzustands sind nicht dasselbe."
+        },
+        {
+          "id": "q3",
+          "lessonId": "zeitbezug",
+          "q": "Eine Radarfolge wird in die Zukunft fortgeschrieben. Wie wird der zukünftige Teil eingeordnet?",
+          "options": [
+            "Als bereits erfolgte Messung der Zukunft.",
+            "Als Prognose auf Grundlage bisheriger Beobachtungen.",
+            "Als zeitloser Nachweis für jeden Standort.",
+            "Als Ersatz für die Angabe der Gültigkeitszeit."
+          ],
+          "answer": 1,
+          "explain": "Eine Fortschreibung wird zur Zukunftsaussage, sobald sie über den Beobachtungszeitpunkt hinausgeht."
+        },
+        {
+          "id": "q4",
+          "lessonId": "zeitbezug",
+          "q": "Was liefert eine einzelne präzise Uhrzeit in einer Wetter-App nicht automatisch?",
+          "options": [
+            "Eine zeitliche Zuordnung der angezeigten Prognose.",
+            "Eine Gültigkeitsangabe, die zusammen mit dem Produkttyp gelesen werden kann.",
+            "Einen Bezugspunkt für den Vergleich verschiedener Aktualisierungen.",
+            "Eine Garantie für die tatsächliche Entwicklung am eigenen Wegstück."
+          ],
+          "answer": 3,
+          "explain": "Die Genauigkeit einer Anzeige ist nicht mit sicherem Wissen über jede örtliche Entwicklung gleichzusetzen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "radar",
+          "q": "Welche Größe ist ein typischer Gegenstand des Wetterradars?",
+          "options": [
+            "Die vollständige Bewölkung ohne Niederschlagsbezug.",
+            "Die exakte Lufttemperatur an jedem Bodenpunkt.",
+            "Die Verteilung von Niederschlag.",
+            "Die allein aus dem Bild garantierte Niederschlagsmenge der nächsten Woche."
+          ],
+          "answer": 2,
+          "explain": "Niederschlagsradare liefern aus Echos abgeleitete Informationen, beispielsweise zu Regen, Schnee oder Hagel."
+        },
+        {
+          "id": "q6",
+          "lessonId": "radar",
+          "q": "Ein Kartenbereich ist ausdrücklich als ohne Radardaten markiert. Was bedeutet das?",
+          "options": [
+            "Dort fehlt in diesem Produkt die entsprechende Beobachtungsinformation.",
+            "Dort ist Niederschlag sicher ausgeschlossen.",
+            "Dort herrscht immer wolkenloses Wetter.",
+            "Dort gilt automatisch der Wert der nächsten farbigen Zelle."
+          ],
+          "answer": 0,
+          "explain": "Eine Messlücke ist kein Nullwert. Die fehlende Information muss bei der Interpretation sichtbar bleiben."
+        },
+        {
+          "id": "q7",
+          "lessonId": "radar",
+          "q": "Was erklärt die Farbskala einer Radarkarte?",
+          "options": [
+            "Eine unabhängig vom Produkt geltende Gefahrenstufe.",
+            "Die natürliche sichtbare Farbe der Wolken.",
+            "Eine für jeden Zeitpunkt identische Regenmenge ohne Zeitbezug.",
+            "Welche Produktgröße und Wertebereiche die Farben bedeuten."
+          ],
+          "answer": 3,
+          "explain": "Die Legende ordnet Farben einer definierten Mess- oder Produktgröße zu."
+        },
+        {
+          "id": "q8",
+          "lessonId": "radar",
+          "q": "Warum wird ein Niederschlagsradar durch weitere Wetterinformationen ergänzt?",
+          "options": [
+            "Weil jede Radaraufnahme ausschließlich Bewölkung und niemals Niederschlag zeigt.",
+            "Es beschreibt nicht sämtliche Wolken und die gesamte künftige Wetterlage.",
+            "Weil eine Niederschlagskarte die Lufttemperatur grundsätzlich direkt misst.",
+            "Weil eine Radarmessung schon eine garantierte langfristige Vorhersage wäre."
+          ],
+          "answer": 1,
+          "explain": "Radar ist ein wichtiges, aber auf bestimmte Beobachtungen und Ableitungen begrenztes Messsystem."
+        },
+        {
+          "id": "q9",
+          "lessonId": "satellit",
+          "q": "Warum sind gewöhnliche sichtbare Satellitenkanäle nachts eingeschränkt?",
+          "options": [
+            "Weil thermische Infrarotstrahlung nachts ebenfalls vollständig fehlt.",
+            "Für diese Darstellung fehlt reflektiertes Sonnenlicht.",
+            "Weil sichtbare und thermische Kanäle immer nur bei Sonne arbeiten.",
+            "Weil Satelliten ihre Bewölkungsdaten grundsätzlich nur aus Regenradar erhalten."
+          ],
+          "answer": 1,
+          "explain": "Der sichtbare Kanal nutzt Sonnenlicht. Thermische Infrarotkanäle können andere Beobachtungen auch nachts liefern."
+        },
+        {
+          "id": "q10",
+          "lessonId": "satellit",
+          "q": "Welcher Kanal ist grundsätzlich auch ohne Tageslicht nutzbar?",
+          "options": [
+            "Ausschließlich ein auf reflektiertem Sonnenlicht beruhender sichtbarer Kanal.",
+            "Nur ein normales Tagesfoto der Landschaft.",
+            "Kein meteorologischer Satellitenkanal.",
+            "Ein thermischer Infrarotkanal."
+          ],
+          "answer": 3,
+          "explain": "Thermische Infrarotmessungen sind nicht auf die Beleuchtung durch die Sonne angewiesen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "satellit",
+          "q": "Satellit zeigt Wolken, Radar zeigt am Ort keinen Niederschlag. Was folgt daraus?",
+          "options": [
+            "Die Produkte können verschiedene Größen beschreiben und müssen sich nicht widersprechen.",
+            "Jedes Wolkenfeld muss dort sofort messbaren Regen erzeugen.",
+            "Eines der beiden Produkte ist zwingend defekt.",
+            "Ein Wolkenbild beweist die genaue Regenmenge am Boden."
+          ],
+          "answer": 0,
+          "explain": "Bewölkung und radarerfasster Niederschlag sind verschiedene Informationen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "satellit",
+          "q": "Warum muss die Kanal- oder Produktbeschreibung eines Satellitenbildes gelesen werden?",
+          "options": [
+            "Weil alle Kanäle stets denselben Informationsgehalt haben.",
+            "Weil jede Falschfarbe direkt einer natürlichen Wolkenfarbe entspricht.",
+            "Weil Strahlungsbereich und Aufbereitung den Informationsgehalt bestimmen.",
+            "Weil bei Satelliten die Aufbereitung keinen Einfluss auf die Interpretation hat."
+          ],
+          "answer": 2,
+          "explain": "Sichtbare, infrarote und kombinierte Produkte haben unterschiedliche Eigenschaften und Anwendungsgrenzen."
+        },
+        {
+          "id": "q13",
+          "lessonId": "ensemble",
+          "q": "Was bezeichnet ein Ensemble bei Wettervorhersagen?",
+          "options": [
+            "Eine einzelne Modellvorhersage mit nur mehr Nachkommastellen.",
+            "Eine Reihe vergangener Temperaturmessungen ohne Modellläufe.",
+            "Eine bloße Sammlung identischer Wiederholungen desselben Modelllaufs.",
+            "Eine Schar mehrerer Modellvorhersagen mit leicht unterschiedlichen Bedingungen."
+          ],
+          "answer": 3,
+          "explain": "Ensembleläufe untersuchen, wie plausible Unterschiede den zukünftigen Verlauf beeinflussen können."
+        },
+        {
+          "id": "q14",
+          "lessonId": "ensemble",
+          "q": "Viele vergleichbare Vorhersagelinien liegen weit auseinander. Wie wird das eingeordnet?",
+          "options": [
+            "Als Beweis, dass jeder Lauf zugleich eintreten muss.",
+            "Als größere Streuung und Hinweis auf Unsicherheit der betrachteten Entwicklung.",
+            "Als Garantie, dass allein der trockenste Lauf richtig ist.",
+            "Als bedeutungslos, weil nur eine Linie verwendet werden dürfte."
+          ],
+          "answer": 1,
+          "explain": "Die Bandbreite ist eine wichtige Information; sie wird mit Variable, Ort und Zeit gelesen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "ensemble",
+          "q": "Was beweisen eng gebündelte Ensemblelinien nicht?",
+          "options": [
+            "Dass die Läufe bei dieser Größe ähnlich ausfallen.",
+            "Dass innerhalb des Ensembles eine geringere Streuung vorliegt.",
+            "Dass jedes Modellproblem ausgeschlossen und der Verlauf garantiert ist.",
+            "Dass sich die betrachtete Zeit angeben lässt."
+          ],
+          "answer": 2,
+          "explain": "Übereinstimmung erhöht innerhalb der Methode das Vertrauen, beseitigt aber nicht alle Modell- und Beobachtungsgrenzen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "ensemble",
+          "q": "Ein Lauf ist trocken, viele andere zeigen Niederschlag. Welche Aussage ist angemessen?",
+          "options": [
+            "Der einzelne trockene Lauf ist keine sichere Trockenprognose.",
+            "Der trockenste Lauf ist grundsätzlich verbindlich.",
+            "Alle feuchten Läufe dürfen ohne Begründung gelöscht werden.",
+            "Das Ensemble belegt sicher keinen Niederschlag."
+          ],
+          "answer": 0,
+          "explain": "Die Auswahl eines gewünschten Einzellaufs blendet die vorhandene Unsicherheitsinformation aus."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-nachtlebensraum-licht-2026",
+      "title": "Die dunkle Hälfte des Reviers: Licht und Nachtlebensräume",
+      "category": "Tierschutz & Verantwortung",
+      "topic": "Hege/Naturschutz",
+      "minutes": 35,
+      "description": "Warum gute Lebensraumverbindungen auch Dunkelheit brauchen und eine insektensammelnde Lampe kein Beweis für gelungenen Artenschutz ist.",
+      "objectives": [
+        "Dunkelheit als Teil des Lebensraums einordnen",
+        "Anlockung von Insekten von Förderung unterscheiden",
+        "Unterschiedliche Reaktionen von Fledermäusen erklären",
+        "Notwendigkeit, Richtung und Dauer von Beleuchtung gemeinsam betrachten"
+      ],
+      "sources": [
+        {
+          "label": "Empfehlungen zur Vermeidung von Lichtemissionen, Grundlagen und 7-Punkte-Plan",
+          "url": "https://www.bafu.admin.ch/dam/de/sd-web/aQ6zvI4B09xl/empfehlungen-zur-vermeidung-von-lichtemissionen.pdf",
+          "organization": "Bundesamt für Umwelt BAFU",
+          "supports": "Dunkle Lebensräume, artspezifische Reaktionen, Flugkorridore, Insektenanlockung und planerische Begrenzung unnötigen Lichts. Keine Rechtsvorgaben oder universellen Intensitätsgrenzen übernommen."
+        },
+        {
+          "label": "Artenschutz durch umweltverträgliche Beleuchtung",
+          "url": "https://www.bfn.de/projektsteckbriefe/artenschutz-durch-umweltvertraegliche-beleuchtung",
+          "organization": "Bundesamt für Naturschutz",
+          "supports": "Anlockung nachtaktiver Insekten, mögliche Barrierewirkung, Bedeutung von Abstrahlungsgeometrie, Lichtfarbe und Beleuchtungsstärke."
+        },
+        {
+          "label": "Lichtverschmutzung: WSL-Versuch zur Insekten- und Fledermausaktivität",
+          "url": "https://lwf.wsl.ch/de/lwf-demoflaeche/20-vegetation-und-biodiversitaet/37-lichtverschmutzung/",
+          "organization": "Eidg. Forschungsanstalt WSL",
+          "supports": "Versuch zu Lichtfarbe und Abstrahlung; Reaktionen von Insekten und Fledermäusen. Keine universelle Rangfolge aller Leuchten oder Erfolgsgarantie."
+        },
+        {
+          "label": "Zurich home to many bats thanks to connected green areas",
+          "url": "https://www.wsl.ch/en/news/zurich-home-to-many-bats-thanks-to-connected-green-areas/",
+          "organization": "Eidg. Forschungsanstalt WSL",
+          "supports": "Originalstudie zu urbanen Grünräumen; unterschiedliche Fledermausgruppen, Lichttoleranz und Zusammenhang von Vernetzung und nächtlicher Biodiversität. Keine Übertragung städtischer Messzahlen auf jedes Revier."
+        },
+        {
+          "label": "Guidelines for consideration of bats in lighting projects (2018), Grundlagenkapitel",
+          "url": "https://www.eurobats.org/sites/default/files/documents/publications/publication_series/WEB_EUROBATS_08_ENGL_NVK_19092018.pdf",
+          "organization": "UNEP/EUROBATS",
+          "supports": "Lichtmeidende und opportunistisch jagende Arten; funktionelle Verbindung von Quartier, Flugroute und Jagdraum. Nur biologische Grundlagen, keine Rechts-/Planungsfreigabe oder Übernahme von Abbildungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "dunkelverbund",
+          "title": "Ein Lebensraum hat auch eine Nachtseite",
+          "paragraphs": [
+            "Ein Gehölzstreifen kann am Tag wie eine durchgehende Verbindung aussehen und nachts durch Beleuchtung anders nutzbar sein. Für manche nachtaktive Tiere gehören dunkle Wege zwischen Rückzugsort, Nahrung und Wasser zur Funktion des Lebensraums. Künstliches Licht verändert daher nicht nur das Aussehen einer Landschaft, sondern kann ihre Durchlässigkeit beeinflussen.",
+            "Die Wirkung ist von Art, Tätigkeit, Umgebung und Beleuchtung abhängig. Ein helles Band entlang einer sonst geeigneten Hecke ist deshalb fachlich anders zu betrachten als eine nur kurz und gezielt beleuchtete Arbeitsfläche. Aus dem Umstand, dass Menschen eine Stelle besser sehen, folgt nicht, dass Tiere die Verbindung besser nutzen können.",
+            "Lernbeispiel: Auf einer Planskizze verbinden zwei Hecken einen Wald mit einem Gewässer. Ergänze nun Lichtquellen und beleuchtete Bereiche. Die Skizze zeigt eine mögliche Konfliktstelle, keine nachgewiesene Barriere für jede Art. Für eine reale Planung braucht es örtliche Fachkenntnis; die Beobachtung soll keine zusätzliche nächtliche Störung verursachen."
+          ],
+          "takeaway": "Räumliche Vernetzung und nutzbare Dunkelheit werden gemeinsam betrachtet.",
+          "exercise": "Markiere in einem fiktiven Lageplan Quartier, Nahrung, Verbindung und mögliche Aufhellung."
+        },
+        {
+          "id": "insekten",
+          "title": "Viele Insekten an der Lampe sind kein Förderungsbeweis",
+          "paragraphs": [
+            "Künstliche Lichtquellen können nachtaktive Fluginsekten anziehen. Die Ansammlung an einer Leuchte bedeutet zunächst eine veränderte räumliche Verteilung. Tiere können ihrem ursprünglichen Lebensraum entzogen werden; bei benachbarten Lichtquellen sind auch Barrierewirkungen möglich. Eine hohe Fang- oder Sichtungszahl an der Lampe ist deshalb nicht automatisch eine hohe Vielfalt im ungestörten Umfeld.",
+            "Abstrahlungsrichtung, Intensität, Spektrum und Dauer beeinflussen die Wirkung. Untersuchungen vergleichen dafür definierte Leuchten und Bedingungen. Aus einem einzelnen Vergleich folgt keine Garantie, jede warm erscheinende Lampe sei unschädlich. Auch eine sparsame LED kann bei ungünstigem Ort oder Dauer unnötig in einen Lebensraum strahlen.",
+            "Lernbeispiel: An einer neuen Hofleuchte werden viele Falter gesehen. Formuliere den Befund als Anlockung beziehungsweise Konzentration am Licht, ohne daraus einen Bestandszuwachs abzuleiten. Für einen Wirkungsvergleich müssten passende Zeiträume und Vergleichssituationen betrachtet werden. Für das Lernen wird keine zusätzliche Lichtfalle aufgestellt."
+          ],
+          "takeaway": "Anlockung zählt keine neu entstandenen Tiere und beweist keine Förderung.",
+          "exercise": "Formuliere eine Beobachtung an einer Lampe so, dass Konzentration und möglicher Bestandszuwachs getrennt bleiben."
+        },
+        {
+          "id": "fledermausgruppen",
+          "title": "Nicht jede jagende Fledermaus reagiert gleich",
+          "paragraphs": [
+            "Einige Fledermausarten nutzen die an Licht konzentrierten Insekten als Beute. Andere meiden beleuchtete Bereiche. Das Auftreten einzelner jagender Tiere an einer Lampe ist deshalb kein Beleg, dass die Beleuchtung der gesamten Fledermausgemeinschaft nützt. Die Artengruppen und ihre unterschiedlichen Flug- und Jagdräume müssen getrennt betrachtet werden.",
+            "Zu einem funktionellen Fledermauslebensraum gehören Quartiere, Verbindungsrouten und Jagdgebiete. Die Aufhellung einer Route oder eines Quartierausflugs kann auch dann problematisch sein, wenn anderswo noch Nahrung vorhanden ist. Ein günstiges Teilstück hebt eine Beeinträchtigung eines anderen Abschnitts nicht automatisch auf.",
+            "Lernbeispiel: Unter einer Leuchte jagt eine Fledermaus, gleichzeitig führt ein heller Abschnitt durch eine Gehölzverbindung. Die Sichtung zeigt Nutzung durch dieses beobachtete Tier. Sie beweist keine ungestörte Passage lichtmeidender Arten. Bestimme Arten nicht allein aus einem kurzen Schattenbild; Fachkartierung kann zusätzliche Methoden erfordern."
+          ],
+          "takeaway": "Nutzung durch eine lichttolerante Art beweist keinen Nutzen für lichtmeidende Arten.",
+          "exercise": "Erkläre Quartier, Flugroute und Jagdraum als drei miteinander verbundene Funktionen."
+        },
+        {
+          "id": "lichtplanung",
+          "title": "Zuerst den Zweck klären, dann die Leuchte wählen",
+          "paragraphs": [
+            "Eine naturbewusste Beleuchtungsplanung beginnt mit der Frage, welches Licht für welchen Zweck erforderlich ist. Danach werden beleuchtete Fläche, Richtung, Intensität, Spektrum und Betriebsdauer zusammen abgestimmt. Licht auf der benötigten Arbeitsfläche ist von seitlichem Streulicht in Hecken, Baumkronen oder Gewässerränder zu unterscheiden.",
+            "Abschirmung und eine bedarfsgerechte zeitliche Steuerung können unnötige Emissionen begrenzen. Eine Änderung der Lichtfarbe allein löst nicht jedes Problem einer zu hellen oder dauernd eingeschalteten Anlage. Bei einer realen Planung werden menschliche Sicherheitsanforderungen und die örtlichen Lebensraumfunktionen gemeinsam fachlich bewertet; dieser Kurs legt keine überall gültige Betriebszeit fest.",
+            "Lernbeispiel: Eine Hofleuchte beleuchtet außer dem Zugang auch einen Gewässerrand. Sammle Fragen für eine Fachplanung: Ist die gesamte Nacht erforderlich, welche Fläche wird gebraucht und wohin gelangt seitliches Licht? Die Prüfung beginnt mit der Aufgabe und dem Standort, bevor ein Produkt gekauft wird. Ein Foto des Lampengehäuses genügt dafür nicht."
+          ],
+          "takeaway": "Notwendigkeit, Raum, Richtung, Stärke, Spektrum und Zeit gehören in dieselbe Planung.",
+          "exercise": "Erstelle eine kurze Frageliste für eine Hofbeleuchtung neben einer Hecke."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "dunkelverbund",
+          "q": "Warum wird eine Heckenverbindung auch nachts beurteilt?",
+          "options": [
+            "Eine tagsüber verbundene Struktur ist nachts für jede Art gleich nutzbar.",
+            "Alle nachtaktiven Arten benötigen dauerhaft beleuchtete Flugwege.",
+            "Beleuchtung kann ihre Nutzbarkeit für lichtmeidende Tiere verändern.",
+            "Nur die Pflanzenhöhe entscheidet, Licht hat keine Bedeutung."
+          ],
+          "answer": 2,
+          "explain": "Lebensraumfunktion umfasst auch die Bedingungen zur tatsächlichen Aktivitätszeit der betreffenden Tiere."
+        },
+        {
+          "id": "q2",
+          "lessonId": "dunkelverbund",
+          "q": "Welche Aussage berücksichtigt artspezifische Unterschiede?",
+          "options": [
+            "Die Wirkung derselben Beleuchtung kann je nach Art und Tätigkeit verschieden sein.",
+            "Jede Fledermaus reagiert gleich stark und in gleicher Richtung.",
+            "Jede helle Fläche ist für sämtliche Nachtarten gleich günstig.",
+            "Das Wort nachtaktiv beweist vollständige Lichtunempfindlichkeit."
+          ],
+          "answer": 0,
+          "explain": "Anlockung, Meidung und andere Reaktionen sind nicht für alle Arten gleich."
+        },
+        {
+          "id": "q3",
+          "lessonId": "dunkelverbund",
+          "q": "Was zeigt eine Planskizze mit Hecke und Lichtband zunächst?",
+          "options": [
+            "Den sicheren Verlust jedes nachtaktiven Tiers.",
+            "Eine vollständige Messung aller Flugrouten.",
+            "Die Garantie eines ungestörten Durchgangs für alle Arten.",
+            "Eine mögliche Konfliktstelle, die örtlich und artspezifisch zu prüfen ist."
+          ],
+          "answer": 3,
+          "explain": "Eine Skizze unterstützt die Fragestellung, ersetzt aber keinen Nachweis der tatsächlichen Nutzung und Wirkung."
+        },
+        {
+          "id": "q4",
+          "lessonId": "dunkelverbund",
+          "q": "Welche Ergänzung gehört zu einer Lebensraumkarte für die Nacht?",
+          "options": [
+            "Nur die Pflanzenhöhe aus einer Tagesaufnahme.",
+            "Lage und räumliche Wirkung vorhandener Lichtquellen.",
+            "Nur die Flächenumrisse ohne Beleuchtungsbezug.",
+            "Nur die Leuchtenanzahl ohne Lage und räumliche Wirkung."
+          ],
+          "answer": 1,
+          "explain": "Aufhellung kann die Funktion einer ansonsten zusammenhängenden Struktur verändern."
+        },
+        {
+          "id": "q5",
+          "lessonId": "insekten",
+          "q": "An einer Lampe sind plötzlich viele Falter sichtbar. Was ist unmittelbar belegt?",
+          "options": [
+            "Ein sicherer Zuwachs der gesamten regionalen Population.",
+            "Eine Ansammlung beziehungsweise Beobachtung am Licht.",
+            "Ein vollständiger Nachweis der Artenvielfalt des Reviers.",
+            "Die Unschädlichkeit der Leuchte für jede Art."
+          ],
+          "answer": 1,
+          "explain": "Licht kann Tiere räumlich konzentrieren. Eine Konzentration ist keine Bestandsbilanz."
+        },
+        {
+          "id": "q6",
+          "lessonId": "insekten",
+          "q": "Welche Merkmale werden bei der Wirkung einer Leuchte gemeinsam betrachtet?",
+          "options": [
+            "Nur der Stromverbrauch pro Stunde.",
+            "Nur die Lichtfarbe ohne Intensität und Dauer.",
+            "Nur die Nennleistung ohne Richtung der Abstrahlung.",
+            "Richtung, Intensität, Spektrum und Dauer."
+          ],
+          "answer": 3,
+          "explain": "Die ökologische Wirkung hängt nicht an einer einzigen Verpackungsangabe."
+        },
+        {
+          "id": "q7",
+          "lessonId": "insekten",
+          "q": "Warum ist eine LED nicht automatisch naturverträglich?",
+          "options": [
+            "Ort, Abstrahlung und Betriebsdauer können trotz sparsamer Technik ungünstig sein.",
+            "Weil alle LEDs zwingend dasselbe Spektrum und dieselbe Richtung haben.",
+            "Weil geringer Stromverbrauch sämtliche Lichtwirkungen ausschließt.",
+            "Weil jede LED grundsätzlich nur unsichtbares Licht abgibt."
+          ],
+          "answer": 0,
+          "explain": "Energieeffizienz und Wirkung der ausgesandten Strahlung auf Tiere sind unterschiedliche Beurteilungsfragen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "insekten",
+          "q": "Was wäre für einen Vergleich zweier Beleuchtungen wichtig?",
+          "options": [
+            "Nur die größte Insektenansammlung auswählen.",
+            "Jede Beobachtung an verschiedenen Jahreszeiten direkt gleichsetzen.",
+            "Vergleichbare Bedingungen und dokumentierte Zeiträume.",
+            "Beleuchtungsdauer und Umfeld grundsätzlich weglassen."
+          ],
+          "answer": 2,
+          "explain": "Ein Vergleich muss erkennbare Begleitbedingungen berücksichtigen und darf Anlockung nicht mit Förderung gleichsetzen."
+        },
+        {
+          "id": "q9",
+          "lessonId": "fledermausgruppen",
+          "q": "Eine Fledermaus jagt an einer Leuchte. Welche Schlussfolgerung ist zu weitgehend?",
+          "options": [
+            "Das beobachtete Tier nutze dort eine Jagdsituation.",
+            "Es gebe unterschiedliche Reaktionen auf Licht.",
+            "Weitere Arten könnten anders auf die Beleuchtung reagieren.",
+            "Die Leuchte fördere deshalb alle örtlichen Fledermausarten."
+          ],
+          "answer": 3,
+          "explain": "Opportunistische Nutzung durch ein Tier oder eine Art beschreibt nicht die Wirkung auf die gesamte Artengemeinschaft."
+        },
+        {
+          "id": "q10",
+          "lessonId": "fledermausgruppen",
+          "q": "Welche drei Bereiche werden funktionell zusammen betrachtet?",
+          "options": [
+            "Nur die Jagdfläche unabhängig von Quartieren und Wegen.",
+            "Quartier, Verbindungsroute und Jagdgebiet.",
+            "Nur der Quartierpunkt ohne Zugänglichkeit der Nahrung.",
+            "Nur die beleuchtete Stelle mit gerade sichtbarer Beute."
+          ],
+          "answer": 1,
+          "explain": "Lebensraumfunktionen sind über Wege miteinander verbunden; die Bewertung eines Einzelpunkts reicht nicht immer aus."
+        },
+        {
+          "id": "q11",
+          "lessonId": "fledermausgruppen",
+          "q": "Warum kann ein beleuchteter Abschnitt einer Gehölzlinie bedeutsam sein?",
+          "options": [
+            "Jede Fledermaus benötigt diesen Abschnitt zwingend als Leuchtmarke.",
+            "Ein einzelnes dunkles Quartier macht jede andere Beleuchtung wirkungslos.",
+            "Er kann eine Route lichtmeidender Arten beeinträchtigen.",
+            "Licht wirkt grundsätzlich nur direkt im Lampengehäuse."
+          ],
+          "answer": 2,
+          "explain": "Räumliche Verbindung und artspezifische Lichtreaktion bestimmen mit, ob ein Weg nutzbar bleibt."
+        },
+        {
+          "id": "q12",
+          "lessonId": "fledermausgruppen",
+          "q": "Was belegt ein kurzer Fledermausschatten an einer Lampe noch nicht?",
+          "options": [
+            "Eine sichere Artbestimmung und vollständige Bewertung der Gemeinschaft.",
+            "Eine beobachtete Bewegung am betreffenden Ort.",
+            "Dass die Beobachtung dokumentiert werden kann.",
+            "Dass weitere Untersuchung neue Informationen liefern kann."
+          ],
+          "answer": 0,
+          "explain": "Artzuordnung und ökologische Gesamtbewertung benötigen geeignete Merkmale und Methoden."
+        },
+        {
+          "id": "q13",
+          "lessonId": "lichtplanung",
+          "q": "Welche Frage steht am Anfang einer Beleuchtungsplanung?",
+          "options": [
+            "Welcher Beleuchtungszweck ist am konkreten Ort erforderlich?",
+            "Welches Modell hat unabhängig vom Ort die größte Leistung?",
+            "Welche Lichtfarbe ersetzt jede Prüfung der Dauer?",
+            "Wie lässt sich die gesamte Umgebung pausenlos ausleuchten?"
+          ],
+          "answer": 0,
+          "explain": "Zweck und örtliche Anforderungen bestimmen den Bedarf; technische Auswahl folgt daraus."
+        },
+        {
+          "id": "q14",
+          "lessonId": "lichtplanung",
+          "q": "Eine warme Lichtfarbe wurde gewählt. Welche weitere Prüfung bleibt erforderlich?",
+          "options": [
+            "Keine weiteren Angaben, denn warmes Licht ersetze die gesamte Planung.",
+            "Nur die Energieeffizienz ohne Lebensraumbezug.",
+            "Richtung, Intensität, beleuchtete Fläche und Betriebsdauer.",
+            "Nur der Leuchtenpreis als Maßstab der Naturverträglichkeit."
+          ],
+          "answer": 2,
+          "explain": "Lichtfarbe ist ein Faktor und ersetzt keine räumliche und zeitliche Begrenzung."
+        },
+        {
+          "id": "q15",
+          "lessonId": "lichtplanung",
+          "q": "Was ist das Ziel einer geeigneten Abschirmung?",
+          "options": [
+            "Die gesamte Nachbarschaft heller als die Arbeitsfläche machen.",
+            "Unnötiges seitliches oder nach oben gerichtetes Licht begrenzen.",
+            "Die Betriebsdauer unabhängig vom Bedarf verlängern.",
+            "Die Lichtwirkung nur anhand des Stromzählers beurteilen."
+          ],
+          "answer": 1,
+          "explain": "Abschirmung und Ausrichtung helfen, Licht auf die tatsächlich benötigte Fläche zu lenken."
+        },
+        {
+          "id": "q16",
+          "lessonId": "lichtplanung",
+          "q": "Warum wird keine feste Abschaltzeit für jedes Revier genannt?",
+          "options": [
+            "Weil die Beleuchtungsdauer keine Rolle spiele.",
+            "Weil jede Anlage dieselben Bedingungen habe.",
+            "Weil die hellste Einstellung immer die beste sei.",
+            "Bedarf, Ort, Sicherheit und Lebensraumfunktionen müssen konkret bewertet werden."
+          ],
+          "answer": 3,
+          "explain": "Eine universelle Zeitangabe würde die unterschiedlichen Aufgaben und örtlichen Bedingungen ausblenden."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-zahlen-diagramme-pruefung-2026",
+      "title": "Zahlen sicher lesen: Anteile, Prozentpunkte und Diagramme",
+      "category": "Prüfung & Sprache",
+      "topic": "Prüfungsvorbereitung",
+      "minutes": 35,
+      "description": "Erfundene Revier- und Lernbeispiele durchrechnen, Bezugsgrößen offenlegen und Daten verständlich erklären, ohne Zahlen mit Fachgewissheit zu verwechseln.",
+      "objectives": [
+        "Anteile mit dem richtigen Nenner berechnen",
+        "Prozentänderung und Prozentpunkte unterscheiden",
+        "Zeitverläufe und Gruppenvergleiche passend darstellen",
+        "Mittelwert und Median berechnen und begrenzen"
+      ],
+      "sources": [
+        {
+          "label": "Using basic statistical techniques: Percentages",
+          "url": "https://www150.statcan.gc.ca/n1/pub/11-533-x/2005001/using-utiliser/4072242-eng.htm",
+          "organization": "Statistics Canada",
+          "supports": "Prozent als Anteil von hundert, Grundwert und Anteilrechnung. Archivierte Lehrgrundlage; keine aktuellen kanadischen Daten übernommen. Primärtext im Suchindex eingesehen, direkter Abruf lief in Timeout."
+        },
+        {
+          "label": "Solve Proportions and their Applications",
+          "url": "https://openstax.org/books/prealgebra-2e/pages/6-5-solve-proportions-and-their-applications",
+          "organization": "OpenStax, Rice University",
+          "supports": "Verhältnis von Anteil und Grundwert sowie Prozentgleichung. Sämtliche Revierzahlen sind eigene Rechenbeispiele."
+        },
+        {
+          "label": "Percentages and percentage points",
+          "url": "https://service-manual.ons.gov.uk/content/numbers/percentages",
+          "organization": "Office for National Statistics",
+          "supports": "Unterscheidung prozentualer Änderung und Differenz in Prozentpunkten."
+        },
+        {
+          "label": "Glossary: Percentage point",
+          "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Percentage_point",
+          "organization": "Eurostat",
+          "supports": "Prozentpunkte als Differenz zweier Prozentsätze; relative Prozentänderung hat einen Grundwert."
+        },
+        {
+          "label": "Data Visualization: An introduction",
+          "url": "https://www.statcan.gc.ca/en/wtc/data-literacy/catalogue/892000062020014",
+          "organization": "Statistics Canada",
+          "supports": "Linien für Zeitverläufe, Balken für Gruppen, Kreisanteile als Teile eines Ganzen; Tabellen für genaue Zahlen."
+        },
+        {
+          "label": "Grafiktypen: Zeitverläufe",
+          "url": "https://service.destatis.de/eLearning/modul13/lm_pg_3055.html",
+          "organization": "Statistisches Bundesamt",
+          "supports": "Liniendiagramme für Zeitverläufe, Balken bei im Vordergrund stehenden einzelnen Häufigkeiten. Keine ausschließliche Bindung eines Diagrammtyps behauptet."
+        },
+        {
+          "label": "Measures of the Center of the Data",
+          "url": "https://openstax.org/books/statistics/pages/2-5-measures-of-the-center-of-the-data",
+          "organization": "OpenStax, Rice University",
+          "supports": "Arithmetisches Mittel, Median, Sortierung und geringere Empfindlichkeit des Medians gegenüber extremen Größen."
+        },
+        {
+          "label": "Mittelwerte und Durchschnitte: Median",
+          "url": "https://service.destatis.de/eLearning/modul14/lm_pg_821.html",
+          "organization": "Statistisches Bundesamt",
+          "supports": "Median der sortierten Werte und Abgrenzung vom ausreißerempfindlichen arithmetischen Mittel."
+        },
+        {
+          "label": "Median bei gerader und ungerader Beobachtungszahl",
+          "url": "https://service.destatis.de/eLearning/modul14/lm_pg_823.html",
+          "organization": "Statistisches Bundesamt",
+          "supports": "Berechnung der geordneten Mitte; bei gerader Anzahl arithmetisches Mittel der zwei zentralen Werte."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "anteil",
+          "title": "Erst die Bezugsgruppe, dann die Prozentzahl",
+          "paragraphs": [
+            "Ein Prozentwert setzt einen Anteil zu einem Grundwert ins Verhältnis: Anteil geteilt durch Grundwert, anschließend mal hundert. Der Nenner beschreibt also, auf welche Gesamtheit sich die Aussage bezieht. Ein Bruchteil aller Aufnahmen ist etwas anderes als ein Bruchteil aller unterschiedlichen Tiere. Vor jeder Rechnung muss klar sein, was gezählt wird.",
+            "Lernbeispiel mit erfundenen Daten: Unter 80 protokollierten Beobachtungsereignissen betreffen 20 eine bestimmte Art. Das sind 25 Prozent der Ereignisse. Wenn Individuen mehrfach vorkommen können, folgt daraus nicht, dass diese Art 25 Prozent des Tierbestands ausmacht. Die richtige Rechnung allein repariert keine unpassende Bezeichnung der Eingangsdaten.",
+            "Noch ein eigener Vergleich: 10 von 40 und 20 von 80 ergeben beide 25 Prozent, obwohl die absoluten Zahlen verschieden sind. Notiere deshalb bei einer Prozentangabe nach Möglichkeit Zähler und Nenner. Nur so bleibt für eine Prüfung oder einen Bericht verständlich, ob sich der Anteil, die Gesamtmenge oder beides verändert hat."
+          ],
+          "takeaway": "Eine Prozentzahl ist nur mit klarer Bezugsgruppe verständlich.",
+          "exercise": "Berechne 12 von 60 und erkläre, was sich bei 12 von 120 ändert."
+        },
+        {
+          "id": "prozentpunkte",
+          "title": "Von zwanzig auf dreißig ist nicht nur eine einzige Änderung",
+          "paragraphs": [
+            "Die Differenz zweier Prozentsätze wird in Prozentpunkten ausgedrückt. Eine relative Prozentänderung verwendet dagegen einen Grundwert: Änderung geteilt durch Ausgangswert, mal hundert. Beide Größen können denselben Verlauf beschreiben, beantworten aber unterschiedliche Fragen. Die verwendete Einheit gehört deshalb ausdrücklich in die Antwort.",
+            "Lernbeispiel mit erfundenen Lernständen: Ein Anteil steigt von 20 auf 30 Prozent. Die Differenz beträgt zehn Prozentpunkte. Relativ zum Ausgangswert 20 ist der Zuwachs 10 geteilt durch 20, also 50 Prozent. „Zehn Prozent Zuwachs“ wäre für dieses Beispiel nicht dieselbe Aussage.",
+            "Auch der Rückweg ist nicht symmetrisch: Ein Rückgang von 30 auf 20 Prozent sind zehn Prozentpunkte, relativ zum neuen Ausgangswert 30 aber rund 33,3 Prozent weniger. Die Beispiele üben nur die Rechnung und stellen keine tatsächlichen Lernerfolgsdaten dar. Benenne Richtung, Ausgangswert und Einheit, bevor du einen Vergleich bewertest."
+          ],
+          "takeaway": "Prozentpunkte sind eine Differenz; relative Prozentänderung braucht den Ausgangswert.",
+          "exercise": "Berechne für einen erfundenen Anstieg von 40 auf 50 Prozent beide Änderungsmaße."
+        },
+        {
+          "id": "diagramme",
+          "title": "Das Diagramm wird nach der Frage gewählt",
+          "paragraphs": [
+            "Ein Liniendiagramm ist häufig geeignet, eine zeitliche Entwicklung darzustellen. Balken helfen beim Vergleich definierter Gruppen; sie können auch einzelne Jahresmengen hervorheben. Kreisdiagramme zeigen Teile eines gemeinsamen Ganzen. Es gibt daher nicht genau eine erlaubte Grafik für jede Datenreihe, wohl aber besser oder schlechter passende Darstellungen für die konkrete Frage.",
+            "Lies Titel, Achsen, Einheit, Zeitraum und Legende, bevor du eine Kurve deutest. Bei einer Tabelle bleiben einzelne Werte besonders gut nachschlagbar; bei einer Grafik fällt oft ein Muster schneller auf. Eine fehlende Angabe wird durch eine ansprechende Farbe nicht ersetzt. Gruppen müssen außerdem dieselbe betrachtete Größe verwenden, wenn sie direkt verglichen werden sollen.",
+            "Lernbeispiel: Du willst erfundene monatliche Beobachtungsereignisse über ein Jahr erklären. Eine Linie stellt den Verlauf heraus; eine begleitende Tabelle bewahrt die genauen Zahlen. Für den Vergleich dreier gleichzeitig untersuchter Standorte können Balken leichter lesbar sein. Keine Darstellung macht aus Ereignissen automatisch unterschiedliche Individuen oder eine Ursache ihrer Veränderung."
+          ],
+          "takeaway": "Frage, Bezugsgröße und Lesbarkeit bestimmen die passende Darstellung.",
+          "exercise": "Wähle je eine Darstellung für Zeitverlauf, Gruppenvergleich und exakte Einzelwerte und begründe die Auswahl."
+        },
+        {
+          "id": "mittelwerte",
+          "title": "Durchschnitt und mittlerer Wert sind nicht dieselbe Rechnung",
+          "paragraphs": [
+            "Das arithmetische Mittel entsteht durch Addition aller Werte und Division durch ihre Anzahl. Für den Median werden die Werte zuerst der Größe nach geordnet. Bei ungerader Anzahl ist der mittlere Wert der Median; bei gerader Anzahl wird üblicherweise der Mittelwert der beiden zentralen Werte verwendet. Die beiden Kennzahlen beschreiben Lage, aber auf verschiedene Weise.",
+            "Eigene Rechenübung mit fünf erfundenen Wartezeiten in Minuten: 2, 3, 3, 4 und 18. Die Summe 30 geteilt durch fünf ergibt ein arithmetisches Mittel von sechs Minuten. In der sortierten Mitte steht drei, also ist der Median drei Minuten. Der große Einzelwert 18 beeinflusst den Durchschnitt stärker als den Median.",
+            "Keine dieser Zahlen beschreibt allein die gesamte Verteilung. Nenne die Zahl der Beobachtungen, die Einheit und auffällige Streuung, wenn sie für die Frage wichtig sind. Ein Durchschnitt ist außerdem kein Sollwert für jedes Einzelereignis. Die Aufgabe prüft das Lesen einer Zahlenreihe und ist kein gemessener Richtwert für jagdliche Tätigkeiten."
+          ],
+          "takeaway": "Mittelwert nutzt jede Größe; Median nutzt die geordnete Mitte und reagiert weniger stark auf extreme Größen.",
+          "exercise": "Berechne Mittelwert und Median für die erfundenen Werte 2, 4, 4 und 10."
+        }
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "AT": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt.",
+        "CH": "Biologisches und methodisches Lernwissen; örtliche Maßnahmen und Zuständigkeiten werden am konkreten Standort geklärt."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-16",
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "anteil",
+          "q": "Eigene Rechenübung: 20 von 80 Beobachtungsereignissen betreffen eine Art. Wie groß ist ihr Ereignisanteil?",
+          "options": [
+            "20 Prozent.",
+            "25 Prozent.",
+            "40 Prozent.",
+            "60 Prozent."
+          ],
+          "answer": 1,
+          "explain": "20 / 80 × 100 = 25. Das ist ein Anteil der Ereignisse, keine automatisch bestimmte Populationszusammensetzung."
+        },
+        {
+          "id": "q2",
+          "lessonId": "anteil",
+          "q": "Eigene Rechenübung: 12 von 60 Karten wurden wiederholt. Welcher Anteil ist das?",
+          "options": [
+            "12 Prozent.",
+            "25 Prozent.",
+            "50 Prozent.",
+            "20 Prozent."
+          ],
+          "answer": 3,
+          "explain": "12 / 60 × 100 = 20. Der Grundwert ist die Gesamtzahl von 60 Karten."
+        },
+        {
+          "id": "q3",
+          "lessonId": "anteil",
+          "q": "Welcher Bruch hat denselben Anteil wie 10 von 40?",
+          "options": [
+            "20 von 80.",
+            "10 von 80.",
+            "20 von 40.",
+            "40 von 80."
+          ],
+          "answer": 0,
+          "explain": "Beide Verhältnisse sind ein Viertel beziehungsweise 25 Prozent."
+        },
+        {
+          "id": "q4",
+          "lessonId": "anteil",
+          "q": "Warum wird bei einer Prozentangabe der Nenner genannt?",
+          "options": [
+            "Er beschreibe ausschließlich die Genauigkeit der Dezimalstellen.",
+            "Er sei bei jedem Prozentwert automatisch 100 beobachtete Tiere.",
+            "Er legt fest, auf welche Gesamtheit sich der Anteil bezieht.",
+            "Er könne ohne Bedeutungsänderung beliebig gewechselt werden."
+          ],
+          "answer": 2,
+          "explain": "Prozent normiert ein Verhältnis auf hundert; die tatsächlich betrachtete Bezugsgruppe bleibt trotzdem wichtig."
+        },
+        {
+          "id": "q5",
+          "lessonId": "prozentpunkte",
+          "q": "Eigene Rechenübung: Ein Anteil steigt von 20 auf 30 Prozent. Wie groß ist die Differenz?",
+          "options": [
+            "10 Prozent relative Zunahme.",
+            "50 Prozentpunkte.",
+            "30 Prozentpunkte.",
+            "10 Prozentpunkte."
+          ],
+          "answer": 3,
+          "explain": "30 minus 20 ergibt zehn Prozentpunkte. Der relative Zuwachs wäre dagegen 50 Prozent."
+        },
+        {
+          "id": "q6",
+          "lessonId": "prozentpunkte",
+          "q": "Eigene Rechenübung: Ein Anteil steigt von 20 auf 30 Prozent. Wie groß ist die relative Zunahme?",
+          "options": [
+            "10 Prozent.",
+            "50 Prozent.",
+            "20 Prozent.",
+            "30 Prozent."
+          ],
+          "answer": 1,
+          "explain": "Die Änderung beträgt zehn; bezogen auf den Ausgangswert 20 sind 10 / 20 × 100 = 50 Prozent."
+        },
+        {
+          "id": "q7",
+          "lessonId": "prozentpunkte",
+          "q": "Eigene Rechenübung: Ein Anteil sinkt von 30 auf 20 Prozent. Wie groß ist die relative Abnahme gerundet?",
+          "options": [
+            "10 Prozent.",
+            "50 Prozent.",
+            "33,3 Prozent.",
+            "66,7 Prozent."
+          ],
+          "answer": 2,
+          "explain": "Die Abnahme zehn wird durch den Ausgangswert 30 geteilt: 10 / 30 × 100 ≈ 33,3 Prozent."
+        },
+        {
+          "id": "q8",
+          "lessonId": "prozentpunkte",
+          "q": "Eigene Rechenübung: Ein Anteil steigt von 40 auf 50 Prozent. Welche Kombination ist richtig?",
+          "options": [
+            "10 Prozentpunkte und 25 Prozent relative Zunahme.",
+            "10 Prozentpunkte und 10 Prozent relative Zunahme.",
+            "25 Prozentpunkte und 10 Prozent relative Zunahme.",
+            "50 Prozentpunkte und 40 Prozent relative Zunahme."
+          ],
+          "answer": 0,
+          "explain": "Die Differenz ist zehn Prozentpunkte; 10 / 40 × 100 ergibt 25 Prozent relativen Zuwachs."
+        },
+        {
+          "id": "q9",
+          "lessonId": "diagramme",
+          "q": "Welche Darstellung ist häufig passend für einen Verlauf über zwölf Monate?",
+          "options": [
+            "Ein Liniendiagramm mit Zeitachse.",
+            "Ein Kreis ohne gemeinsame Bezugsmenge.",
+            "Eine ungeordnete Liste ausschließlich der Ortsnamen.",
+            "Ein einzelner Balken ohne Zeitangabe."
+          ],
+          "answer": 0,
+          "explain": "Eine Linie kann die zeitliche Entwicklung sichtbar machen. Die tatsächlichen Einheiten und Zeitpunkte bleiben zu beschriften."
+        },
+        {
+          "id": "q10",
+          "lessonId": "diagramme",
+          "q": "Du vergleichst dieselbe Messgröße an drei Standorten im selben Zeitraum. Welche Darstellung ist oft übersichtlich?",
+          "options": [
+            "Drei unbeschriftete Farben ohne Werte.",
+            "Ein Kreis, dessen Teile keinen gemeinsamen Gesamtwert bilden.",
+            "Ein beschriftetes Balkendiagramm.",
+            "Eine Zeitlinie ohne Standortzuordnung."
+          ],
+          "answer": 2,
+          "explain": "Balken eignen sich zum direkten Gruppenvergleich, wenn Messgröße und Bezugszeit verständlich bleiben."
+        },
+        {
+          "id": "q11",
+          "lessonId": "diagramme",
+          "q": "Wann ist eine Tabelle besonders nützlich?",
+          "options": [
+            "Wenn Daten ohne Einheit miteinander vermischt werden sollen.",
+            "Wenn genaue Einzelwerte nachgeschlagen werden sollen.",
+            "Wenn Erhebungsfehler durch tabellarische Form automatisch verschwinden sollen.",
+            "Wenn eine Tabelle ohne Zahlen lediglich einen Trend andeuten soll."
+          ],
+          "answer": 1,
+          "explain": "Eine Tabelle stellt exakte Zahlen und ihre Zuordnung bereit; sie bestätigt nicht automatisch die Qualität der Erhebung."
+        },
+        {
+          "id": "q12",
+          "lessonId": "diagramme",
+          "q": "Was ist vor der Deutung einer Kurve zu lesen?",
+          "options": [
+            "Nur der höchste Punkt ohne Einheit.",
+            "Nur die Linienfarbe ohne Zeitangabe.",
+            "Nur die Steigung ohne Prüfung der Achsen.",
+            "Titel, Achsen, Einheit, Zeitraum und Legende."
+          ],
+          "answer": 3,
+          "explain": "Die Beschriftungen zeigen, was tatsächlich dargestellt wird und welche Aussage die Grafik trägt."
+        },
+        {
+          "id": "q13",
+          "lessonId": "mittelwerte",
+          "q": "Eigene Rechenübung: 2, 3, 3, 4 und 18 Minuten. Wie groß ist das arithmetische Mittel?",
+          "options": [
+            "3 Minuten.",
+            "4 Minuten.",
+            "6 Minuten.",
+            "18 Minuten."
+          ],
+          "answer": 2,
+          "explain": "Die Summe ist 30; geteilt durch fünf Beobachtungen ergibt das sechs Minuten."
+        },
+        {
+          "id": "q14",
+          "lessonId": "mittelwerte",
+          "q": "Eigene Rechenübung: 2, 3, 3, 4 und 18 Minuten. Wie groß ist der Median?",
+          "options": [
+            "3 Minuten.",
+            "2 Minuten.",
+            "6 Minuten.",
+            "9 Minuten."
+          ],
+          "answer": 0,
+          "explain": "Die bereits sortierte Reihe hat fünf Werte. Ihr dritter und damit mittlerer Wert ist drei."
+        },
+        {
+          "id": "q15",
+          "lessonId": "mittelwerte",
+          "q": "Warum können Mittelwert und Median bei derselben Reihe deutlich verschieden sein?",
+          "options": [
+            "Der Median addiert grundsätzlich sämtliche Werte doppelt.",
+            "Der Mittelwert verwendet nie die größten Werte.",
+            "Beide Kennzahlen müssen für jede Reihe identisch sein.",
+            "Extreme Einzelwerte beeinflussen das arithmetische Mittel stärker."
+          ],
+          "answer": 3,
+          "explain": "Das arithmetische Mittel berücksichtigt jede Größe direkt; der Median beschreibt die Position in der sortierten Reihe."
+        },
+        {
+          "id": "q16",
+          "lessonId": "mittelwerte",
+          "q": "Eigene Rechenübung: 2, 4, 4 und 10. Welche Kombination ist richtig?",
+          "options": [
+            "Mittelwert 4, Median 5.",
+            "Mittelwert 5, Median 4.",
+            "Mittelwert 10, Median 2.",
+            "Mittelwert 5, Median 6."
+          ],
+          "answer": 1,
+          "explain": "Die Summe 20 geteilt durch vier ist fünf. Die beiden mittleren sortierten Werte vier und vier ergeben als Median vier."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "geloest",
+      "claims": [
+        {
+          "claim": "Aquatische Atmung nutzt gelösten Sauerstoff; Atmosphäre und Photosynthese liefern ihn, Atmung beziehungsweise Abbau verbrauchen ihn; Temperatur beeinflusst die Löslichkeit.",
+          "sourceUrls": [
+            "https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water",
+            "https://www.eawag.ch/de/info/portal/aktuelles/newsarchiv/archiv-detail/biomassenproduktion-in-seen-wird-einfacher-bestimmbar/",
+            "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/wasserhaushalt/ww-i-8/indikator"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "schichtung",
+      "claims": [
+        {
+          "claim": "Temperaturbedingte Dichteunterschiede können Schichtung bilden; Mischung ist gewässer- und wetterabhängig und beeinflusst den Sauerstofftransport.",
+          "sourceUrls": [
+            "https://thermdis.eawag.ch/de/lakes-rivers",
+            "https://pubs.usgs.gov/sir/2008/5026/section7.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "naehrstoffkette",
+      "claims": [
+        {
+          "claim": "Nährstoffanreicherung kann Algenwachstum fördern; Abbau abgesunkener Biomasse und früherer Ablagerungen zehrt Sauerstoff und kann verzögerte Reaktionen verursachen.",
+          "sourceUrls": [
+            "https://www.umweltbundesamt.de/themen/wasser/seen/nutzung-belastungen/wie-verbessern-wir-den-zustand-unserer-seen",
+            "https://www.eawag.ch/de/info/portal/aktuelles/newsarchiv/archiv-detail/biomassenproduktion-in-seen-wird-einfacher-bestimmbar/",
+            "https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "messprofil",
+      "claims": [
+        {
+          "claim": "Gelöster Sauerstoff wird mit geeigneten Sonden untersucht; Temperatur ist wichtig; vertikale und zeitliche Messreihen erfassen unterschiedliche Bedingungen.",
+          "sourceUrls": [
+            "https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water",
+            "https://pubs.usgs.gov/sir/2008/5026/section7.html",
+            "https://thermdis.eawag.ch/de/lakes-rivers"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+      "lessonId": "geflecht",
+      "claims": [
+        {
+          "claim": "Bei den behandelten Waldpilzen bilden Hyphen ein Myzel; sichtbare Fruchtkörper sind ein Teil des Organismus. Pilze sind keine photosynthetisierenden Pflanzen.",
+          "sourceUrls": [
+            "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf",
+            "https://lwf.bayern.de/wissenstransfer/forstcastnet/234240/index.php",
+            "https://genetic-expo.wsl.ch/de/funga/mykorrhiza/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+      "lessonId": "partnerschaft",
+      "claims": [
+        {
+          "claim": "Mykorrhiza umfasst Wasser-/Mineralstoffleistungen des Pilzes und organische Photosyntheseprodukte der Pflanze; Ektomykorrhiza hat Mantel und Zwischenzellnetz.",
+          "sourceUrls": [
+            "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf",
+            "https://www.wsl.ch/de/wald/boden-und-kreislaeufe/wurzeln-und-rhizosphaere/",
+            "https://genetic-expo.wsl.ch/de/funga/mykorrhiza/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+      "lessonId": "wurzelraum",
+      "claims": [
+        {
+          "claim": "Feinwurzeln nehmen Wasser und Mineralstoffe auf; Pilzhyphen sind ein eigener Partner. Rhizosphäre bezeichnet den durch Wurzeln beeinflussten Bodenraum mit Stoffaufnahme und Exsudaten.",
+          "sourceUrls": [
+            "https://www.wsl.ch/de/wald/boden-und-kreislaeufe/wurzeln-und-rhizosphaere/",
+            "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf",
+            "https://www.boden.uni-bonn.de/rhizosphaere-1/de/forschung/mikrobiologie-der-rhizosphaere-und-des-bodens"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+      "lessonId": "holzabbau",
+      "claims": [
+        {
+          "claim": "Braunfäule baut vor allem Cellulose/Hemicellulosen ab; Weißfäule greift auch Lignin an. Typische Struktur- und Farbänderungen benennen keinen einzelnen Erreger.",
+          "sourceUrls": [
+            "https://totholz.wsl.ch/de/totholz/abbau-von-holz/holzfaeulen/",
+            "https://www.lwf.bayern.de/forsttechnik-holz/holzverwendung/343177/index.php",
+            "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-bodenporen-verdichtung-2026",
+      "lessonId": "poren",
+      "claims": [
+        {
+          "claim": "Bodenporen führen Wasser und Luft; Porosität und Porenverbindungen beeinflussen Bodenfunktionen. Korngrößen und Gefüge sind verschiedene Beschreibungsebenen.",
+          "sourceUrls": [
+            "https://www.agroscope.admin.ch/de/physikalische-untersuchungen",
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/bodenbelastungen/verdichtung",
+            "https://www.lfl.bayern.de/mam/cms07/ilt/dateien/ilt1_bodenfruchtbarkeit_themenblatt_bodenverdichtung.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-bodenporen-verdichtung-2026",
+      "lessonId": "belastung",
+      "claims": [
+        {
+          "claim": "Feuchte beeinflusst die Verdichtungsempfindlichkeit; Radlast, Kontaktflächendruck und Überfahrten beeinflussen die Belastung unterschiedlich.",
+          "sourceUrls": [
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/bodenbelastungen/verdichtung",
+            "https://www.lfl.bayern.de/bodenerosion",
+            "https://www.lfl.bayern.de/mam/cms07/ilt/dateien/ilt1_bodenfruchtbarkeit_themenblatt_bodenverdichtung.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-bodenporen-verdichtung-2026",
+      "lessonId": "wasserwege",
+      "claims": [
+        {
+          "claim": "Verdichtung kann Wasser-/Lufttransport und Bodenleben beeinträchtigen; eingeschränkte Infiltration kann oberflächigen Abfluss und Erosion begünstigen; Unterbodenschäden können langfristig sein.",
+          "sourceUrls": [
+            "https://www.agroscope.admin.ch/de/physikalische-untersuchungen",
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/bodenbelastungen/verdichtung",
+            "https://www.lfl.bayern.de/bodenerosion"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-bodenporen-verdichtung-2026",
+      "lessonId": "diagnose",
+      "claims": [
+        {
+          "claim": "Eindringwiderstand ist wassergehaltsabhängig; visuelle Gefügebeurteilung und weitere Messgrößen ergänzen sich bei der Ortsdiagnose.",
+          "sourceUrls": [
+            "https://www.agroscope.admin.ch/de/physikalische-untersuchungen",
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/bodenbelastungen/verdichtung",
+            "https://www.lfl.bayern.de/bodenerosion"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wetterdaten-verstehen-2026",
+      "lessonId": "zeitbezug",
+      "claims": [
+        {
+          "claim": "Numerische Vorhersagen gehen von aus Beobachtungen geschätzten Ausgangszuständen aus; Messung und Prognose sind unterschiedliche Informationsarten.",
+          "sourceUrls": [
+            "https://www.metoffice.gov.uk/research/weather/ensemble-forecasting/what-is-an-ensemble-forecast",
+            "https://www.meteoschweiz.admin.ch/wetter/warn-und-prognosesysteme/icon-prognosesysteme/ensemble-datenassimilation.html",
+            "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/07/statistik-fuer-dummies.html",
+            "https://www.meteoschweiz.admin.ch/dam/jcr%3Af01cd53a-7a00-4089-8c3c-c86d7f3b530b/Wetterprognose_D_web.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wetterdaten-verstehen-2026",
+      "lessonId": "radar",
+      "claims": [
+        {
+          "claim": "Wetterradar nutzt Echos zur Niederschlagserfassung; Radarprodukte haben definierte Abdeckung und sind von Satelliten-Wolkenbildern zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.meteoschweiz.admin.ch/dam/jcr%3Af01cd53a-7a00-4089-8c3c-c86d7f3b530b/Wetterprognose_D_web.pdf",
+            "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/04/ein-blick-auf-das-satelliten-und-radarbild.html",
+            "https://weather.metoffice.gov.uk/learn-about/met-office-for-schools/other-content/other-resources/how-to-measure-the-weather"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wetterdaten-verstehen-2026",
+      "lessonId": "satellit",
+      "claims": [
+        {
+          "claim": "Sichtbare Satellitenkanäle nutzen Sonnenlicht; thermisches Infrarot ist nachts nutzbar. Wolkenbilder und Radar-Niederschlagsprodukte liefern unterschiedliche Information.",
+          "sourceUrls": [
+            "https://training.tools.eumetsat.int/asmet/asmet10/en/comet/asmet/asmet10/print.php.htm",
+            "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/04/ein-blick-auf-das-satelliten-und-radarbild.html",
+            "https://www.meteoschweiz.admin.ch/dam/jcr%3Af01cd53a-7a00-4089-8c3c-c86d7f3b530b/Wetterprognose_D_web.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-wetterdaten-verstehen-2026",
+      "lessonId": "ensemble",
+      "claims": [
+        {
+          "claim": "Ensembles untersuchen durch leicht unterschiedliche Anfangszustände beziehungsweise Varianten mögliche Entwicklungen; Streuung informiert über Unsicherheit ohne vollständige Garantie.",
+          "sourceUrls": [
+            "https://www.metoffice.gov.uk/research/weather/ensemble-forecasting/what-is-an-ensemble-forecast",
+            "https://www.meteoschweiz.admin.ch/wetter/warn-und-prognosesysteme/icon-prognosesysteme/ensemble-datenassimilation.html",
+            "https://www.meteoschweiz.admin.ch/ueber-uns/meteoschweiz-blog/de/2023/07/statistik-fuer-dummies.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-nachtlebensraum-licht-2026",
+      "lessonId": "dunkelverbund",
+      "claims": [
+        {
+          "claim": "Künstliche Beleuchtung kann funktionelle nächtliche Verbindungen beeinträchtigen; Wirkung hängt von Art und Situation ab.",
+          "sourceUrls": [
+            "https://www.bafu.admin.ch/dam/de/sd-web/aQ6zvI4B09xl/empfehlungen-zur-vermeidung-von-lichtemissionen.pdf",
+            "https://www.wsl.ch/en/news/zurich-home-to-many-bats-thanks-to-connected-green-areas/",
+            "https://www.eurobats.org/sites/default/files/documents/publications/publication_series/WEB_EUROBATS_08_ENGL_NVK_19092018.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-nachtlebensraum-licht-2026",
+      "lessonId": "insekten",
+      "claims": [
+        {
+          "claim": "Künstliches Licht kann Insekten anlocken und aus Lebensräumen abziehen; Richtung, Intensität und Spektrum beeinflussen Wirkung, ohne universelle Produktgarantie.",
+          "sourceUrls": [
+            "https://www.bfn.de/projektsteckbriefe/artenschutz-durch-umweltvertraegliche-beleuchtung",
+            "https://lwf.wsl.ch/de/lwf-demoflaeche/20-vegetation-und-biodiversitaet/37-lichtverschmutzung/",
+            "https://www.bafu.admin.ch/dam/de/sd-web/aQ6zvI4B09xl/empfehlungen-zur-vermeidung-von-lichtemissionen.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-nachtlebensraum-licht-2026",
+      "lessonId": "fledermausgruppen",
+      "claims": [
+        {
+          "claim": "Fledermausarten reagieren unterschiedlich auf Licht; opportunistisches Jagen und Lichtmeidung sind zu trennen. Quartier, Flugroute und Nahrungshabitat bilden funktionelle Verbindungen.",
+          "sourceUrls": [
+            "https://www.wsl.ch/en/news/zurich-home-to-many-bats-thanks-to-connected-green-areas/",
+            "https://www.eurobats.org/sites/default/files/documents/publications/publication_series/WEB_EUROBATS_08_ENGL_NVK_19092018.pdf",
+            "https://www.bafu.admin.ch/dam/de/sd-web/aQ6zvI4B09xl/empfehlungen-zur-vermeidung-von-lichtemissionen.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-nachtlebensraum-licht-2026",
+      "lessonId": "lichtplanung",
+      "claims": [
+        {
+          "claim": "Beleuchtungszweck, Abschirmung, Ausrichtung, Intensität, Spektrum und zeitliche Steuerung werden kombiniert, um unnötige Emissionen zu begrenzen.",
+          "sourceUrls": [
+            "https://www.bafu.admin.ch/dam/de/sd-web/aQ6zvI4B09xl/empfehlungen-zur-vermeidung-von-lichtemissionen.pdf",
+            "https://www.bfn.de/projektsteckbriefe/artenschutz-durch-umweltvertraegliche-beleuchtung",
+            "https://www.eurobats.org/sites/default/files/documents/publications/publication_series/WEB_EUROBATS_08_ENGL_NVK_19092018.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahlen-diagramme-pruefung-2026",
+      "lessonId": "anteil",
+      "claims": [
+        {
+          "claim": "Ein Anteil in Prozent ist Anteil/Grundwert mal hundert; gleicher Prozentsatz kann bei unterschiedlichen absoluten Mengen entstehen.",
+          "sourceUrls": [
+            "https://www150.statcan.gc.ca/n1/pub/11-533-x/2005001/using-utiliser/4072242-eng.htm",
+            "https://openstax.org/books/prealgebra-2e/pages/6-5-solve-proportions-and-their-applications"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahlen-diagramme-pruefung-2026",
+      "lessonId": "prozentpunkte",
+      "claims": [
+        {
+          "claim": "Die Differenz zweier Prozentsätze wird in Prozentpunkten ausgedrückt; eine relative Veränderung wird auf den Ausgangswert bezogen.",
+          "sourceUrls": [
+            "https://service-manual.ons.gov.uk/content/numbers/percentages",
+            "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Percentage_point"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahlen-diagramme-pruefung-2026",
+      "lessonId": "diagramme",
+      "claims": [
+        {
+          "claim": "Linien eignen sich oft für Zeitverläufe, Balken für Gruppen beziehungsweise Einzelmengen, Tabellen für präzise Einzelwerte; Diagrammwahl hängt von Fragestellung ab.",
+          "sourceUrls": [
+            "https://www.statcan.gc.ca/en/wtc/data-literacy/catalogue/892000062020014",
+            "https://service.destatis.de/eLearning/modul13/lm_pg_3055.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-zahlen-diagramme-pruefung-2026",
+      "lessonId": "mittelwerte",
+      "claims": [
+        {
+          "claim": "Arithmetisches Mittel ist Summe/Anzahl; Median ist die geordnete Mitte und gegenüber extremen Werten weniger empfindlich. Kennzahlen allein bilden die Verteilung nicht vollständig ab.",
+          "sourceUrls": [
+            "https://openstax.org/books/statistics/pages/2-5-measures-of-the-center-of-the-data",
+            "https://service.destatis.de/eLearning/modul14/lm_pg_821.html",
+            "https://service.destatis.de/eLearning/modul14/lm_pg_823.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Zahlenvergrößerung und Wettbewerbsbehauptung",
+      "reason": "Keine bloßen Zahlen-/Wortvarianten zur Vervielfachung. Diese 96 eigenen Übungsfragen sind keine amtlichen Prüfungsfragen. Aus diesem Ausbau folgt noch kein größerer Gesamtumfang als bei einem Wettbewerber."
+    },
+    {
+      "topic": "Universelle Schwellen und Standortwerte",
+      "reason": "Keine Sauerstoff-Grenzwerte für alle Arten, pauschalen Mischungsmonate/-tiefen, zulässigen Radlasten, festen Lampen-Kelvin-/Luxwerte oder Wetterwarnschwellen übernommen."
+    },
+    {
+      "topic": "Pilznetz als absichtsvolle Baumhilfe",
+      "reason": "Historische LWF-Passagen zu pauschal gerichteter Versorgung von Jungbäumen sowie überholte Pilzzucht-Ausschlüsse nicht übernommen. Der Kurs erklärt nur mehrfach bestätigte anatomische und stoffliche Grundlagen."
+    },
+    {
+      "topic": "Eigenständige Maßnahmen",
+      "reason": "Keine See-Belüftungs-/Chemikalienanleitung, keine Befahrungsfreigabe, kein Sicherheitsnachweis für Holz, kein Eingriff in Fledermausquartiere und keine Wetterfreigabe."
+    },
+    {
+      "topic": "Medien und fremde Übungsinhalte",
+      "reason": "Keine Abbildungen, Medien oder Quizfragen aus externen Quellen kopiert. Keine neuen Fotos eingebunden; vorhandene Kategoriegestaltung bleibt Integrationsaufgabe."
+    },
+    {
+      "topic": "Lichtregelungen und EUROBATS-Revision 2026",
+      "reason": "Biologische Grundlagen des 2018er Leitfadens wurden mit BAFU/WSL abgeglichen. Der 2026er Entwurf wird nicht als verabschiedete Rechts- oder Planungsregel verwendet."
+    }
+  ]
+}
