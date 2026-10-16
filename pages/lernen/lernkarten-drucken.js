@@ -60,7 +60,7 @@ export default function PrintableFlashcards({ deck, cards: rawCards = EMPTY_LIST
     <div className={styles.printToolbar} id="lernkarten-druckauswahl">
       <label className={styles.field}>Kategorie<select value={category} onChange={event => setCategory(event.target.value)}><option value="all">Alle Kategorien</option>{categories.map(item => <option value={item.id} key={item.id}>{item.title} ({item.count})</option>)}</select></label>
       <label className={styles.field}>Karten suchen<input type="search" value={query} placeholder="Thema eingrenzen" onChange={event => setQuery(event.target.value.slice(0, 160))} /></label>
-      <button type="button" className={styles.primary} onClick={() => window.print()} disabled={!filtered.length}><AppIcon name="book" size={22} />{filtered.length} Karten drucken</button>
+      <button type="button" className={styles.primary} onClick={() => window.print()} disabled={!filtered.length}><AppIcon name="book" size={22} />{filtered.length} {filtered.length === 1 ? "Karte" : "Karten"} drucken</button>
     </div>
     <div className={styles.printInstructions}><p>Auf A4 im Hochformat und einseitig drucken. Jedes Frage-Antwort-Paar an der Außenkante ausschneiden und an der Mittellinie falten. So bleibt die Frage vorn und die Antwort hinten.</p><p>Du kannst im Druckdialog auch „Als PDF speichern“ wählen. Die Auswahl enthält {filtered.length} {filtered.length === 1 ? "Karte" : "Karten"}.</p></div>
     <div className={styles.printHeading}><h2>Jagdlatein-Lernkarten · {selectedCategory}</h2><p>Einseitig drucken · außen ausschneiden · Mittellinie falten · jagdlatein.de</p></div>
