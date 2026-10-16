@@ -198,7 +198,7 @@ test('Packed print props retain a changed category and search across repeated re
     settle();
     assert.equal(find(tree, node => node.type === 'select').props.value, 'hundewesen');
     assert.equal(find(tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'nächste');
-    assert.match(words(tree), /1\s+Karten drucken/);
+    assert.match(words(tree), /1\s+Karte\s+drucken/);
     assert.match(words(tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(tree), /Welche Wildart zeigt dieses Foto/);
   } finally { e.unmount(); }
