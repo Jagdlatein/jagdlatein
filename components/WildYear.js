@@ -7,15 +7,26 @@ import { wildlifePhotographs } from "../lib/wildlife-photographs";
 import { getWildYearProfile, wildYearMonths, wildYearSources, wildYearSpecies } from "../lib/wild-year";
 import styles from "../styles/WildYear.module.css";
 
-export default function WildYear() {
+function selectedMonth(value, currentMonth) {
+  const requested = typeof value === "string" && value.trim() !== "" ? Number(value) : NaN;
+  return Number.isInteger(requested) && requested >= 1 && requested <= 12 ? requested : currentMonth;
+}
+
+function selectedSpecies(value) {
+  return typeof value === "string" && wildYearSpecies.some(item => item.slug === value) ? value : "gamswild";
+}
+
+export default function WildYear({ currentMonth = 1 }) {
   const router = useRouter();
-  const [slug, setSlug] = useState("gamswild");
-  const [month, setMonth] = useState(1);
+  // The server supplies one Zurich calendar month for the HTML and hydration.
+  // Explicit links still win, including when Back/Forward removes a selection.
+  const fallbackMonth = Number.isInteger(currentMonth) && currentMonth >= 1 && currentMonth <= 12 ? currentMonth : 1;
+  const [slug, setSlug] = useState(() => selectedSpecies(router.query.art));
+  const [month, setMonth] = useState(() => selectedMonth(router.query.monat, fallbackMonth));
   useEffect(() => {
-    if (typeof router.query.art === "string" && wildYearSpecies.some(item => item.slug === router.query.art)) setSlug(router.query.art);
-    const requested = Number(router.query.monat);
-    if (Number.isInteger(requested) && requested >= 1 && requested <= 12) setMonth(requested);
-  }, [router.query.art, router.query.monat]);
+    setSlug(selectedSpecies(router.query.art));
+    setMonth(selectedMonth(router.query.monat, fallbackMonth));
+  }, [router.query.art, router.query.monat, fallbackMonth]);
   const view = getWildYearProfile(slug, month);
   const photograph = wildlifePhotographs[view.species.slug];
   return <LearningToolLayout title="Das biologische Wildjahr" description="Art und Monat wählen. Merkmale, Fortpflanzung und Verhalten im Jahreslauf erscheinen direkt darunter." icon="wildkunde" category="wildkunde" compact hideCommunity>

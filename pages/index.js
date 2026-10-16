@@ -6,6 +6,8 @@ import Link from "next/link";
 import AppIcon from "../components/AppIcon";
 import home from "../styles/Home.module.css";
 import HomeNews from "../components/HomeNews";
+import RevierMomentEntry from "../components/RevierMomentEntry";
+import { getRevierMoment, getRevierMomentPreview } from "../lib/revier-moment-server";
 import { CommunityInvite } from "../components/Community";
 import { getInitialJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
@@ -19,11 +21,12 @@ export async function getServerSideProps({ req }) {
     props: {
       loggedIn: Boolean(readRequestAccountSession(req)),
       initialNews: getInitialJagdNews(),
+      revierMoment: getRevierMomentPreview(getRevierMoment()),
     },
   };
 }
 
-export default function Home({ loggedIn = false, initialNews }) {
+export default function Home({ loggedIn = false, initialNews, revierMoment }) {
 
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
@@ -208,6 +211,8 @@ export default function Home({ loggedIn = false, initialNews }) {
               </svg>
             </a>
           </div>
+
+          <RevierMomentEntry preview={revierMoment} />
 
           <Link href="/lernen" className={home.learningCard}>
             <span className={home.learningIcon}><AppIcon name="book" size={42} /></span>

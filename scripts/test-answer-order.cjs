@@ -92,14 +92,22 @@ test('Mini-course display indexes never change correctness, progress or saved an
   h.click('Mini-Kurs wiederholen'); h.click('Falsch'); h.click('Ergebnis ansehen'); assert.match(words(h.tree), /0 von 1/); assert.match(words(h.tree), /Deine Antwort: Falsch/);
 });
 
-test('Daily question uses sequential visible letters while selecting the original answer ID', () => {
-  const question = { id: 'fixture', topic: 'Wildkunde', countries: ['DE', 'AT', 'CH'], q: 'Welche Antwort?', answers: ['a', 'b', 'c', 'd'].map(id => ({ id, text: `Antwort ${id}` })), correct: ['c'], explain: 'Eine Erklärung.' };
-  const h = setup('pages/tagesquiz.js', { question, displayDate: '16. Oktober 2026' });
-  const first = renderToStaticMarkup(h.tree); h.render(); assert.equal(renderToStaticMarkup(h.tree), first);
-  const buttons = findAll(h.tree, node => node.type === 'button');
-  assert.deepEqual(buttons.map(node => words(node.props.children[0])), ['A', 'B', 'C', 'D']);
-  const correct = buttons.find(node => words(node).includes('Antwort c')); correct.props.onClick(); h.render();
-  assert.match(words(h.tree), /Richtig/); assert.equal(h.button(words(correct)).props['aria-pressed'], true);
+test('Daily research case keeps visible answer order stable and grades the original option ID', () => {
+  const question = { id: 'fixture', format: 'single', skill: 'Einordnen', prompt: 'Welche Antwort?',
+    options: ['a', 'b', 'c', 'd'].map(id => ({ id, text: `Antwort ${id}` })), correctIds: ['c'],
+    explanation: 'Eine synthetische Erklärung.', sourceIds: ['fixture-source'] };
+  const props = { daily: true, questions: [question], sources: [{ id: 'fixture-source', title: 'Testquelle', url: 'https://example.org/source' }] };
+  let state;
+  const Page = load('components/ResearchQuestionRound.js', { react: { ...React, useRef: () => ({ current: null }), useEffect() {},
+    useReducer(reducer, initial, init) { state ||= init(initial); return [state, event => { state = reducer(state, event); }]; } } }).default;
+  let tree = Page(props), first = renderToStaticMarkup(tree);
+  tree = Page(props); assert.equal(renderToStaticMarkup(tree), first);
+  const answers = () => findAll(tree, node => node.type === 'button' && /answerOption/.test(node.props.className || ''));
+  assert.deepEqual(answers().map(words).sort(), question.options.map(option => option.text).sort());
+  const correct = answers().find(node => words(node) === 'Antwort c'); correct.props.onClick(); tree = Page(props);
+  assert.equal(state.answers.fixture.correct, true); assert.deepEqual(state.answers.fixture.selectedIds, ['c']);
+  assert.match(words(tree), /Für heute bearbeitet/);
+  assert.ok(answers().every(node => node.props.disabled));
 });
 
 test('Detailed course runs preserve correct IDs, feedback and review history through a fresh practice round', () => {

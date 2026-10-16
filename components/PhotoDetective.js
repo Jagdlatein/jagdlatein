@@ -10,11 +10,16 @@ import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/PhotoDetective.module.css";
 
 function PhotoEvidence({ round, revealed, activeTrait, onTrait }) {
+  const trait = revealed && activeTrait !== null ? round.traits[activeTrait] : null;
+  const railX = ((activeTrait + .5) / round.traits.length) * 100;
   return <figure className={styles.figure}>
     <div className={styles.photoFrame}>
       <div className={styles.photo} style={{ maxWidth: round.photo.width }}>
-        <Image src={round.photo.src} alt={revealed ? round.photo.alt : round.neutralAlt} width={round.photo.width} height={round.photo.height} sizes="(max-width: 600px) 88vw, 760px" loading="eager" />
-        {revealed && round.traits.map((trait, index) => <button key={trait.title} type="button" className={[styles.marker, index === activeTrait ? styles.markerActive : ""].join(" ")} style={{ left: `${trait.x}%`, top: `${trait.y}%` }} aria-label={`Merkmal ${index + 1}: ${trait.title}`} aria-pressed={index === activeTrait} aria-controls="photo-trait-detail" onClick={() => onTrait(index)}>{index + 1}</button>)}
+        <div className={styles.imagePlane}>
+          <Image src={round.photo.src} alt={revealed ? round.photo.alt : round.neutralAlt} width={round.photo.width} height={round.photo.height} sizes="(max-width: 600px) 88vw, 760px" loading="eager" />
+          {trait && <><svg className={styles.leader} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1={trait.x} y1={trait.y} x2={railX} y2="100" vectorEffect="non-scaling-stroke" /></svg><span className={styles.locator} style={{ left: `${trait.x}%`, top: `${trait.y}%` }} aria-hidden="true" /></>}
+        </div>
+        {revealed && <div className={styles.markerRail} style={{ gridTemplateColumns: `repeat(${round.traits.length}, minmax(0, 1fr))` }} role="group" aria-label="Bildmerkmal auswählen">{round.traits.map((item, index) => <button key={item.title} type="button" className={[styles.marker, index === activeTrait ? styles.markerActive : ""].join(" ")} aria-label={`Merkmal ${index + 1}: ${item.title}`} aria-pressed={index === activeTrait} aria-controls="photo-trait-detail" onClick={() => onTrait(index)}>{index + 1}</button>)}</div>}
       </div>
     </div>
     <figcaption><LearningPhotoCredit media={round.photo} /></figcaption>
@@ -24,7 +29,7 @@ function PhotoEvidence({ round, revealed, activeTrait, onTrait }) {
 function EvidenceDetails({ round, activeTrait, onTrait }) {
   return <section className={styles.evidence} aria-label="Sichtbare Merkmale">
     <h3>Am Foto entdecken</h3>
-    <p>Tippe auf eine Zahl im Foto oder wähle das Merkmal hier.</p>
+    <p>Tippe auf eine Zahl unter dem Foto oder wähle das Merkmal hier. Nochmals auf dieselbe Zahl tippen blendet den Hinweis aus.</p>
     <div className={styles.traitButtons}>{round.traits.map((trait, index) => <button key={trait.title} type="button" aria-pressed={index === activeTrait} aria-controls="photo-trait-detail" className={index === activeTrait ? styles.traitSelected : ""} onClick={() => onTrait(index)}><span>{index + 1}</span>{trait.title}</button>)}</div>
     <div id="photo-trait-detail" className={styles.traitDetail} aria-live="polite"><strong>{round.traits[activeTrait].title}</strong><p>{round.traits[activeTrait].text}</p></div>
   </section>;
@@ -45,6 +50,7 @@ export default function PhotoDetective() {
   const [answers, setAnswers] = useState({});
   const [hint, setHint] = useState(false);
   const [activeTrait, setActiveTrait] = useState(0);
+  const [visibleTrait, setVisibleTrait] = useState(null);
   const [finished, setFinished] = useState(false);
   const [practice, setPractice] = useState(false);
   const [answerSeed, setAnswerSeed] = useState(0);
@@ -68,34 +74,41 @@ export default function PhotoDetective() {
     nextGuard.current = null;
     hintGuard.current = false;
     exploredThisRound.current.clear();
-    setRoundIds(ids); setIndex(0); setAnswers({}); setHint(false); setActiveTrait(0); setFinished(false); setPractice(isPractice); setMode("quiz");
+    setRoundIds(ids); setIndex(0); setAnswers({}); setHint(false); setActiveTrait(0); setVisibleTrait(null); setFinished(false); setPractice(isPractice); setMode("quiz");
   }
   function choose(choice) {
     if (mode !== "quiz" || !round.options.includes(choice) || answer || attemptGuard.current !== attempt || quizRoundGuard.current !== round.id) return;
     const assisted = hint || hintGuard.current || exploredThisRound.current.has(round.id);
     setAnswers(previous => previous[round.id] ? previous : ({ ...previous, [round.id]: { choice, assisted } }));
-    setActiveTrait(0);
+    setActiveTrait(0); setVisibleTrait(null);
   }
   function next() {
     if (!answer || nextGuard.current === round.id || attemptGuard.current !== attempt || quizRoundGuard.current !== round.id) return;
     nextGuard.current = round.id;
     if (index + 1 === rounds.length) setFinished(true);
-    else { setIndex(index + 1); setHint(false); hintGuard.current = false; setActiveTrait(0); }
+    else { setIndex(index + 1); setHint(false); hintGuard.current = false; setActiveTrait(0); setVisibleTrait(null); }
   }
   function showHint() {
     if (attemptGuard.current !== attempt || quizRoundGuard.current !== round.id || answer) return;
-    hintGuard.current = true; setHint(true);
+    hintGuard.current = true; setHint(true); setVisibleTrait(null);
   }
   function changeMode(nextMode) {
     if (nextMode === mode) return;
     attemptGuard.current += 1;
     if (nextMode === "explore") exploredThisRound.current.add(exploreId);
-    setMode(nextMode); setActiveTrait(0);
+    setMode(nextMode); setActiveTrait(0); setVisibleTrait(null);
   }
   function changeExplore(id) {
     if (!photoDetectiveRounds.some(item => item.id === id)) return;
     exploredThisRound.current.add(id);
-    setExploreId(id); setActiveTrait(0);
+    setExploreId(id); setActiveTrait(0); setVisibleTrait(null);
+  }
+  function togglePhotoTrait(traitIndex) {
+    setActiveTrait(traitIndex);
+    setVisibleTrait(previous => previous === traitIndex ? null : traitIndex);
+  }
+  function selectTrait(traitIndex) {
+    setActiveTrait(traitIndex); setVisibleTrait(traitIndex);
   }
 
   return <LearningToolLayout title="Fotodetektiv" description="Erkenne Wildarten an echten Fotos und entdecke die sichtbaren Merkmale. Jede Antwort wird erklärt." icon="camera" category="wildkunde" stats={[{ value: photoDetectiveRounds.length, label: "Wildarten" }, { value: photoDetectiveRounds.reduce((count, item) => count + item.traits.length, 0), label: "Bildmerkmale" }, { value: "echt", label: "fotografiert" }]}>
@@ -110,11 +123,11 @@ export default function PhotoDetective() {
       <div className={styles.reviewList}>{rounds.map(item => { const result = answers[item.id]; return <details key={item.id}><summary>{item.name} · {result.choice === item.name ? result.assisted ? "richtig mit Hilfe" : "richtig" : `deine Antwort: ${result.choice}`}</summary><p>{item.explanation}</p>{result.choice !== item.name && <p>{item.wrong[result.choice]}</p>}<Link href={`/kurse/${item.course}`}>Passenden Kurs öffnen</Link></details>; })}</div>
     </section> : <section className={styles.card} aria-labelledby="photo-question-heading">
       {mode === "explore" ? <><label className={styles.selectLabel} htmlFor="photo-species">Welche Art möchtest du ansehen?</label><select id="photo-species" className={styles.select} value={exploreId} onChange={event => changeExplore(event.target.value)}>{photoDetectiveRounds.map(item => <option key={item.id} value={item.id}>{item.name} · {item.group}</option>)}</select><h2 id="photo-question-heading">{round.name}: Merkmale im Bild</h2></> : <><div className={styles.progressLabel}><span>{practice ? "Wiederholung" : "Fotorunde"} · Foto {index + 1} von {rounds.length}</span><span>{summary.independent} richtig ohne Hilfe</span></div><progress className={styles.progress} max={rounds.length} value={summary.completed} aria-label="Beantwortete Fotos" /><h2 id="photo-question-heading">Welche Wildart zeigt das Foto?</h2></>}
-      <PhotoEvidence key={round.id} round={round} revealed={revealed} activeTrait={activeTrait} onTrait={setActiveTrait} />
+      <PhotoEvidence key={round.id} round={round} revealed={revealed} activeTrait={visibleTrait} onTrait={togglePhotoTrait} />
       {mode === "quiz" && <><div className={styles.answerGrid} role="group" aria-label="Art auswählen">{answerOrder(round.options, round.id, answerSeed).map(index => { const choice = round.options[index]; return <button key={choice} type="button" disabled={Boolean(answer)} className={[styles.answer, answer && choice === round.name ? styles.correctAnswer : "", answer && choice === answer.choice && choice !== round.name ? styles.wrongAnswer : ""].filter(Boolean).join(" ")} onClick={() => choose(choice)}>{choice}{answer && choice === round.name && <span>Richtig</span>}{answer && choice === answer.choice && choice !== round.name && <span>Deine Antwort</span>}</button>; })}</div>{!answer && <button type="button" className={styles.hintButton} aria-expanded={hint} onClick={showHint} disabled={hint}>{hint ? "Merkmals-Hilfe aktiv – diese Antwort wird als unterstützt gezählt" : "Merkmale als Hilfe anzeigen"}</button>}</>}
       {answer && mode === "quiz" && <div className={[styles.feedback, answer.choice === round.name ? styles.feedbackCorrect : styles.feedbackWrong].join(" ")} role="status"><h3>{answer.choice === round.name ? "Richtig erkannt" : `Das ist ${round.name}`}</h3>{answer.choice !== round.name && <p><strong>Du hast {answer.choice} gewählt.</strong> {round.wrong[answer.choice]}</p>}<p>{round.explanation}</p>{answer.assisted && <small>Mit Merkmals-Hilfe beantwortet.{exploredThisRound.current.has(round.id) && " Die Art wurde in dieser Runde bereits nachgeschlagen."}</small>}</div>}
       {mode === "explore" && <p className={styles.explanation}>{round.explanation}</p>}
-      {revealed && <EvidenceDetails round={round} activeTrait={activeTrait} onTrait={setActiveTrait} />}
+      {revealed && <EvidenceDetails round={round} activeTrait={activeTrait} onTrait={selectTrait} />}
       {(mode === "explore" || answer) && <FurtherLearning round={round} />}
       {mode === "quiz" && answer && <div className={styles.actions}><button type="button" className={experienceStyles.primary} onClick={next}>{index + 1 === rounds.length ? "Auswertung ansehen" : "Nächstes Foto"}<AppIcon name="arrow-right" size={18} /></button></div>}
     </section>}

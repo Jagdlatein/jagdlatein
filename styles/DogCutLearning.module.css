@@ -34,17 +34,24 @@
 .overview { margin: 0 0 22px; border: 1px solid #dfcc9b; border-radius: 16px; overflow: hidden; background: #fffdf7; }
 .photoMap { position: relative; }
 .photoMap img { display: block; width: 100%; height: auto; }
-.markers { position: absolute; inset: 0; pointer-events: none; }
-.marker { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(25px, 4.3vw, 42px); aspect-ratio: 1; background: #f8f4e9; color: #614917; border: 2px solid #fff; border-radius: 50%; font-weight: 850; font-size: clamp(.83rem, 1.7vw, 1.16rem); box-shadow: 0 2px 8px #0005; }
-.markerActive { background: #80601d; color: #fff; }
+.cutLocator { position: absolute; inset: 0; pointer-events: none; }
+.cutLocator svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.cutLocator line { fill: none; stroke: #fffdf7; stroke-width: 1.5px; filter: drop-shadow(0 0 1px #352a15); }
+.cutLocator > span { position: absolute; width: 10px; height: 10px; transform: translate(-50%, -50%); border: 1.5px solid #fffdf7; border-radius: 50%; background: transparent; box-shadow: 0 0 0 1px #594622; }
+.cutRail { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 18px 0; border-top: 1px solid #dfcc9b; }
+.cutRail button { display: inline-flex; align-items: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 9px 12px; border: 1px solid #cdbb91; border-radius: 10px; background: #fffdf7; color: #4f432c; font: inherit; line-height: 1.5; text-align: left; cursor: pointer; }
+.cutRail button[aria-pressed="true"] { background: #e9efdf; border-color: #597345; color: #294c2f; font-weight: 750; }
+.cutRail button:hover { border-color: #597345; }
+.cutRail button:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.cutRail button span { display: inline-grid; place-items: center; min-width: 24px; height: 24px; border: 1px solid currentColor; border-radius: 50%; font-size: .82rem; flex-shrink: 0; }
 .overview figcaption { padding: 16px 18px; color: #3e321b; line-height: 1.6; }
 .overview figcaption p { margin: 9px 0 0; color: #6e6249; font-size: .84rem; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 19px; padding: 0; margin: 12px 0 0; list-style: none; }
-.legend li { display: flex; align-items: center; gap: 8px; }
-.legend span, .cutBody h2 span { display: inline-grid; place-items: center; width: 24px; height: 24px; background: #80601d; color: #fff; font-size: .82rem; border-radius: 50%; flex-shrink: 0; }
+.overview .cutSelection { color: #294c2f; font-size: .95rem; }
+.cutBody h2 span { display: inline-grid; place-items: center; width: 24px; height: 24px; background: #80601d; color: #fff; font-size: .82rem; border-radius: 50%; flex-shrink: 0; }
 .results { color: #6e6249; font-size: .92rem; margin: 0 0 14px; }
 .cutGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .cutCard { border: 1px solid #dfcc9b; border-radius: 16px; background: #fffdf7; overflow: hidden; }
+.cutCardSelected { border-color: #597345; box-shadow: 0 0 0 1px #597345; }
 .cutCard figure { margin: 0; background: #f4eee0; }
 .cutCard img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; }
 .cutCard figcaption { padding: 7px 15px; color: #6e6249; font-size: .78rem; line-height: 1.5; border-bottom: 1px solid #ded1af; }
@@ -62,5 +69,5 @@
 .safety p { margin-bottom: 0; }
 .imageFallback { padding: 50px 25px; margin: 0; line-height: 1.7; color: #6e6249; }
 .visuallyHidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-@media (max-width: 720px) { .twoColumns, .cutGrid, .methodGrid { grid-template-columns: 1fr; } .cutCard { display: grid; grid-template-columns: 1fr; } .video { max-height: 390px; } .overview figcaption { padding: 13px; } .legend { gap: 8px 13px; font-size: .9rem; } .cutBody { padding: 18px; } }
+@media (max-width: 720px) { .twoColumns, .cutGrid, .methodGrid { grid-template-columns: 1fr; } .cutCard { display: grid; grid-template-columns: 1fr; } .video { max-height: 390px; } .overview figcaption { padding: 13px; } .cutRail { padding: 13px 13px 0; } .cutRail button { font-size: .95rem; } .cutBody { padding: 18px; } }
 @media (prefers-reduced-motion: reduce) { .videoLesson { scroll-behavior: auto; } }
