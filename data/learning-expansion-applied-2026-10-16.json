@@ -736,9 +736,9 @@
           "lessonId": "glykogen",
           "q": "Welcher Vorgang erklärt die nach dem Tod noch kurz mögliche ATP-Bildung aus Muskelreserven?",
           "options": [
-            "Neubildung eines funktionsfähigen Kreislaufs",
-            "Photosynthese in den Muskelzellkernen",
-            "Einwanderung sauerstoffbildender Blutzellen",
+            "Oxidative ATP-Bildung auch bei vollständig fehlendem Sauerstoff",
+            "Enzymatischer Proteinabbau als unmittelbarer Ersatz der Glykolyse",
+            "Neubildung von Glykogen als energieliefernder Abbauweg",
             "Anaerober Abbau vorhandener Kohlenhydrate"
           ],
           "answer": 3,
@@ -750,9 +750,9 @@
           "q": "Welches Produkt gehört zum anaeroben Abbau im hier beschriebenen postmortalen Muskel?",
           "options": [
             "Lactat",
-            "Cellulose",
-            "Keratin",
-            "Gallenfarbstoff"
+            "Neu aufgebautes Glykogen",
+            "Neu gebildetes Kollagen",
+            "Neu gebildetes Myosin"
           ],
           "answer": 0,
           "explain": "Lactat entsteht beim anaeroben Kohlenhydratstoffwechsel und gehört zum postmortalen Stoffwechselverlauf."
@@ -762,10 +762,10 @@
           "lessonId": "glykogen",
           "q": "Welche Messgröße beschreibt den Säurezustand des Muskels?",
           "options": [
-            "Die Länge der Muskelfasern",
-            "Die Zahl der Muskelbündel",
+            "Die verbliebene Glykogenreserve",
+            "Die zurückgehaltene Wassermenge",
             "Der pH-Wert",
-            "Die Dichte der Knochenrinde"
+            "Die Dehnbarkeit der Muskelfasern"
           ],
           "answer": 2,
           "explain": "Der pH-Wert beschreibt den Säurezustand; er ist keine direkte Mengenangabe für Glykogen."
@@ -776,8 +776,8 @@
           "q": "Wie kann stark verbrauchtes Muskelglykogen den späteren Verlauf beeinflussen?",
           "options": [
             "Die postmortale Ansäuerung muss stets stärker ausfallen",
-            "Der Muskel baut nach dem Tod neue Vorratsorgane auf",
-            "Die Kreislaufversorgung hält dadurch dauerhaft an",
+            "Der pH-Verlauf bleibt unabhängig von den verbleibenden Reserven gleich",
+            "Für die Ansäuerung zählt nur die Lactatbildung vor dem Tod",
             "Die postmortale Ansäuerung kann geringer ausfallen"
           ],
           "answer": 3,
@@ -788,10 +788,10 @@
           "lessonId": "glykogen",
           "q": "Welche Angabe ist für den Vergleich zweier Fleisch-pH-Messungen besonders wichtig?",
           "options": [
-            "Tierfoto und Farbe des Dateirahmens",
+            "Nur gleiche Tierart, unabhängig vom beprobten Muskel und Zeitpunkt",
             "Muskel und Zeitpunkt der jeweiligen Messung",
-            "Name der verwendeten Kochrezeptur",
-            "Anzahl der abgebildeten Geweihenden"
+            "Nur eine gleiche Anzahl Messungen, unabhängig vom beprobten Gewebe",
+            "Nur dieselbe Oberflächenfarbe, unabhängig vom Messzeitpunkt"
           ],
           "answer": 1,
           "explain": "pH verändert sich im Verlauf und kann zwischen Muskeln abweichen. Gewebe und Messzeit müssen zugeordnet sein."
@@ -827,10 +827,10 @@
           "lessonId": "rigor",
           "q": "Welche Rolle hat ATP beim Aktin-Myosin-System unter anderem?",
           "options": [
-            "Es ersetzt sämtliche kontraktilen Proteinfilamente",
+            "Es verkürzt Aktinfilamente durch den Abbau ihrer Bausteine",
             "Es ermöglicht das Lösen der Myosin-Aktin-Verbindung",
-            "Es verwandelt Muskelgewebe unmittelbar in Knochen",
-            "Es bildet die äußere Bindegewebshülle des Muskels"
+            "Es hält den Myosinkopf nach der ATP-Bindung dauerhaft am Aktin fest",
+            "Es ersetzt Calcium als bindendes Regulationssignal am Troponin"
           ],
           "answer": 1,
           "explain": "ATP-Bindung ermöglicht das Lösen des Myosinkopfs vom Aktin und ist Teil des regulären Querbrückenzyklus."
@@ -840,9 +840,9 @@
           "lessonId": "rigor",
           "q": "Welcher biochemische Zustand trägt zur Totenstarre bei?",
           "options": [
-            "Neu einsetzende Sauerstoffversorgung im Muskel",
-            "Vollständige Neubildung aller Zellmembranen",
-            "Ansteigende Bildung funktionsfähiger Nervenzellen",
+            "Unbegrenzt fortgesetzte ATP-Regeneration trotz erschöpfter Reserven",
+            "Ständige ATP-Neubildung durch die Spaltung kontraktiler Proteine",
+            "Dauerhaft ausreichendes ATP zum Lösen aller Querbrücken",
             "Erschöpfte ATP-Bereitstellung im Muskel"
           ],
           "answer": 3,
@@ -866,10 +866,10 @@
           "lessonId": "rigor",
           "q": "Welche Eigenschaft nimmt beim Aufbau von Rigorbindungen typischerweise ab?",
           "options": [
-            "Die Anzahl vorhandener Knochen",
-            "Die Länge des genetischen Codes",
+            "Der Anteil stabiler Aktin-Myosin-Bindungen",
+            "Der Widerstand gegen die Dehnung des Muskels",
             "Die Dehnbarkeit des Muskels",
-            "Die Anzahl äußerer Körperöffnungen"
+            "Die durch stabile Querbrücken verursachte Steifigkeit"
           ],
           "answer": 2,
           "explain": "Stabile Bindungen zwischen den kontraktilen Filamenten begrenzen die Dehnbarkeit."
@@ -879,9 +879,9 @@
           "lessonId": "rigor",
           "q": "Was bedeutet Proteolyse in der Fleischreifung?",
           "options": [
-            "Mechanische Neubildung von Knochen",
-            "Lichtabhängige Bildung von Glykogen",
-            "Elektrische Wiedereinschaltung des Kreislaufs",
+            "Enzymatischer Abbau von Glykogen",
+            "Enzymatische Spaltung von Fetten",
+            "Enzymatischer Aufbau neuer Proteine",
             "Enzymatische Spaltung von Proteinen"
           ],
           "answer": 3,
@@ -892,10 +892,10 @@
           "lessonId": "rigor",
           "q": "Welches Ergebnis kann die strukturelle Proteolyse während kontrollierter Reifung haben?",
           "options": [
-            "Eine Wiederbelebung des Muskels",
+            "Eine Verstärkung stabiler Rigorbindungen",
             "Eine Zunahme der Zartheit",
-            "Eine Neubildung des Blutkreislaufs",
-            "Eine garantierte Sterilität des Fleischs"
+            "Eine Wiederauffüllung der postmortalen Glykogenreserve",
+            "Eine Zunahme der Festigkeit durch Aufbau neuer kontraktiler Strukturen"
           ],
           "answer": 1,
           "explain": "Der enzymatische Strukturabbau kann Fleisch zarter machen. Er ist keine Sterilisierung."
@@ -919,9 +919,9 @@
           "q": "Warum wird hier kein universeller Zeitpunkt für vollständige Totenstarre genannt?",
           "options": [
             "Art, Muskel und Bedingungen beeinflussen den Verlauf",
-            "Alle Muskeln erreichen ihn grundsätzlich gleichzeitig",
-            "Der Begriff bezeichnet ausschließlich eine Farbe",
-            "Die Zahl der Knochen bestimmt allein den Verlauf"
+            "Alle Muskeln erreichen ihn unabhängig von Art und Bedingungen gleichzeitig",
+            "Eine gleiche Kühltemperatur gleicht automatisch alle Art- und Muskelunterschiede aus",
+            "Die sichtbare Oberflächenfarbe bestimmt allein den Zeitpunkt"
           ],
           "answer": 0,
           "explain": "Postmortale Abläufe hängen von mehreren Faktoren ab. Ein fester Wert für jedes Wildstück wäre irreführend."
@@ -931,10 +931,10 @@
           "lessonId": "wasserhaltevermoegen",
           "q": "Was beschreibt das Wasserhaltevermögen von Fleisch?",
           "options": [
-            "Die Fähigkeit, sämtliche Bakterien im Wasser zu beseitigen",
+            "Die ausschließlich vorhandene Wassermenge ohne Aussage zum Zurückhalten",
             "Die Fähigkeit, Wasser unter bestimmten Bedingungen zurückzuhalten",
-            "Die Anzahl wassergefüllter Blutgefäße im ganzen Tier",
-            "Die mit einem Gefäß gemessene äußere Fleischgröße"
+            "Die Menge nachträglich zugesetzten Wassers unabhängig von dessen Bindung",
+            "Die ausschließlich auf die gesamte Tierkörpermasse bezogene Wassermenge"
           ],
           "answer": 1,
           "explain": "Wasserhaltevermögen ist ein technologisches Qualitätsmerkmal und bezieht sich auf das Zurückhalten von Wasser."
@@ -944,9 +944,9 @@
           "lessonId": "wasserhaltevermoegen",
           "q": "Welche Struktur steht besonders eng mit der Wasserhaltung des Muskels in Beziehung?",
           "options": [
-            "Die Geweihoberfläche",
-            "Die Haarfollikel",
-            "Die Hornschicht",
+            "Die DNA-Stränge im Zellkern",
+            "Die Lipidschicht des Unterhautfetts",
+            "Die Calciumphosphat-Strukturen der Knochenmatrix",
             "Die Muskelproteine"
           ],
           "answer": 3,
@@ -958,9 +958,9 @@
           "q": "Welche Beobachtung erfasst unmittelbar einen sichtbaren Wasserverlust?",
           "options": [
             "Tropfsaft, der aus dem Fleisch austritt",
-            "Die Zahl der sichtbaren Knochenenden",
-            "Der Durchmesser des Kameragehäuses",
-            "Die Anzahl der beschriebenen Muskelhüllen"
+            "Die Dunkelfärbung der Fleischoberfläche",
+            "Die Festigkeit beim vorsichtigen Eindrücken",
+            "Die Dehnbarkeit des Muskelstücks"
           ],
           "answer": 0,
           "explain": "Tropfsaft zeigt austretende Flüssigkeit. Er ist keine direkte Keimzählung."
@@ -983,9 +983,9 @@
           "lessonId": "wasserhaltevermoegen",
           "q": "Wie lässt sich eine oberflächlich trockene DFD-Erscheinung mit Wasserhaltung vereinbaren?",
           "options": [
-            "Das Fleisch muss vollständig wasserfrei geworden sein",
-            "Die Muskelproteine müssen vollständig verschwunden sein",
-            "Die Oberfläche muss einen Keimfreiheitstest bestanden haben",
+            "Die Oberflächentrockenheit muss einen geringen Wassergehalt des gesamten Stücks bedeuten",
+            "Die trockene Oberfläche muss eine geringe Wasserhaltung im Inneren anzeigen",
+            "Oberflächenzustand und Wasserhaltung müssen unabhängig vom pH immer gleich bewertet werden",
             "Wasser kann im Inneren stärker zurückgehalten werden"
           ],
           "answer": 3,
@@ -996,10 +996,10 @@
           "lessonId": "wasserhaltevermoegen",
           "q": "Welche Angabe passt zum DFD-Kürzel?",
           "options": [
-            "Dünn, feucht und durchscheinend",
+            "Dunkel, weich und stark saftabgebend",
             "Dunkel, fest und oberflächlich trocken",
-            "Drucklos, faserfrei und desinfiziert",
-            "Durchgegart, fettfrei und dauerhaft haltbar"
+            "Blass, fest und oberflächlich trocken",
+            "Dunkel, fest und stark saftabgebend"
           ],
           "answer": 1,
           "explain": "DFD beschreibt dark, firm, dry als Qualitätsbild. Es ist keine hygienische Freigabe."
@@ -1009,10 +1009,10 @@
           "lessonId": "wasserhaltevermoegen",
           "q": "Welche Bewertung ist bei wenig Tropfsaft zusätzlich erforderlich?",
           "options": [
-            "Eine automatische längere Verzehrsfreigabe",
-            "Eine automatische Bestätigung fehlender Parasiten",
+            "Eine pauschale längere Haltbarkeit allein aus der Tropfsaftmenge ableiten",
+            "Die Hygienebeurteilung durch eine weitere Messung des Wasserhaltevermögens ersetzen",
             "Eine eigenständige hygienische Beurteilung",
-            "Eine automatische Bestimmung der Jagdart"
+            "Eine Verzehrsfreigabe allein aus geringer Saftabgabe und Zartheit ableiten"
           ],
           "answer": 2,
           "explain": "Wenig Tropfsaft allein sagt weder die Keimzahl noch die verbleibende sichere Haltbarkeit voraus."
@@ -1023,9 +1023,9 @@
           "q": "Welche zwei Fragen sind bei Wildbret fachlich getrennt zu beantworten?",
           "options": [
             "Wie zart es ist und ob es gesundheitlich unbedenklich ist",
-            "Wie viele Wörter und wie viele Absätze der Befund hat",
-            "Wie hell das Foto und wie groß dessen Rahmen ist",
-            "Wie ähnlich zwei Rezepte und ihre Namen klingen"
+            "Wie hoch sein Wasserhaltevermögen ist und wie gut es Wasser unter den Prüfbedingungen zurückhält",
+            "Wie sauer es ist und welchen pH-Wert es besitzt",
+            "Wie dehnbar es ist und wie weit es sich unter denselben Bedingungen dehnen lässt"
           ],
           "answer": 0,
           "explain": "Zartheit betrifft eine sensorische bzw. strukturelle Eigenschaft. Sicherheit erfordert andere Informationen und Prüfungen."
@@ -1182,10 +1182,10 @@
           "lessonId": "probe-und-ziel",
           "q": "Warum ist Fettmasse nicht einfach als Muskelprobenmasse anzurechnen?",
           "options": [
-            "Die Gesamtbeutelmasse bestimmt allein die Eignung",
+            "Für die Eignung genügt die Gesamtmasse einschließlich aller Nichtmuskelanteile",
             "Das vorgesehene Nachweismaterial ist Muskelgewebe",
-            "Jedes Körpergewebe enthält stets gleich viele Larven",
-            "Fett verwandelt sich beim Beschriften in Muskulatur"
+            "Fett-, Sehnen- und Muskelanteile derselben Masse sind als Nachweismaterial austauschbar",
+            "Eine große Beutelgesamtmasse macht die benannte Entnahmestelle unwichtig"
           ],
           "answer": 1,
           "explain": "Für die Untersuchung zählt die geeignete Gewebeart; Nichtmuskelanteile sind nicht gleichwertige Zielmatrix."
@@ -1247,10 +1247,10 @@
           "lessonId": "verdauung-und-pool",
           "q": "Welchen Zweck hat der Gewebeaufschluss bei der künstlichen Verdauung?",
           "options": [
-            "Alle Erregerarten gleichzeitig zu bestimmen",
-            "Den Tierkörper durch Geruch zu identifizieren",
+            "Eine Immunantwort anhand Trichinella-spezifischer Antikörper messbar zu machen",
+            "Die Erregermenge allein aus der Menge gelöster Muskelproteine zu berechnen",
             "Larven aus dem Muskelmaterial freizusetzen",
-            "Den pH-Wert aller übrigen Fleischstücke zu messen"
+            "Nur die äußere Form unverdauter Muskelbündel als Nachweis zu verwenden"
           ],
           "answer": 2,
           "explain": "Der Aufschluss ermöglicht, im Material vorhandene Larven aus der Muskelmatrix zu gewinnen und zu suchen."
@@ -1262,8 +1262,8 @@
           "options": [
             "Gesuchte Larven werden im aufbereiteten Material festgestellt",
             "Die Abwehrreaktion des Menschen wird stellvertretend gemessen",
-            "Die Fleischqualität wird aus einer Tieraufnahme errechnet",
-            "Die Entnahmestelle wird aus dem Körpergewicht geschätzt"
+            "Aus der Tierart allein wird ein individueller Befallsstatus abgeleitet",
+            "Aus dem vermuteten Befall des Herkunftsbestands wird der Einzelprobenbefund ersetzt"
           ],
           "answer": 0,
           "explain": "Direkter Erregernachweis sucht den Erreger beziehungsweise sein Stadium im untersuchten Material."
@@ -1273,9 +1273,9 @@
           "lessonId": "verdauung-und-pool",
           "q": "Worauf richtet sich die mikroskopische Auswertung nach der Aufbereitung?",
           "options": [
-            "Auf die Größe des zugehörigen Geweihs im Tierfoto",
-            "Auf die genaue Jagdzeit anhand der Probenfarbe",
-            "Auf die Lebensdauer der Verpackung des Beutels",
+            "Auf adulte Trichinella-Würmer als das in Muskulatur gesuchte Stadium",
+            "Auf Wurmeier als das im Muskel gesuchte Trichinella-Stadium",
+            "Auf Trichinella-spezifische Antikörper als mikroskopisch gesuchte Zielstrukturen",
             "Auf larvenverdächtige Strukturen in der Untersuchungsfraktion"
           ],
           "answer": 3,
@@ -1286,10 +1286,10 @@
           "lessonId": "verdauung-und-pool",
           "q": "Warum muss das auszuwertende Material ausreichend durchsichtig sein?",
           "options": [
-            "Damit eine Kennzeichnung überflüssig wird",
+            "Damit aus der Klarheit allein auf einen negativen Befund geschlossen werden kann",
             "Damit relevante Strukturen erkennbar bleiben",
-            "Damit alle Körperteile gleich befallen sind",
-            "Damit das Labor die Tierart erraten kann"
+            "Damit die Probenmasse nicht mehr dokumentiert werden muss",
+            "Damit auf eine systematische Durchmusterung der Fraktion verzichtet werden kann"
           ],
           "answer": 1,
           "explain": "Verdeckte Strukturen können übersehen werden. Auswertbarkeit gehört zur Verfahrensqualität."
@@ -1300,9 +1300,9 @@
           "q": "Was bezeichnet ein Pool bei der beschriebenen Untersuchung?",
           "options": [
             "Einen gemeinsamen Ansatz definierter Probenanteile",
-            "Ein beliebiges Foto mehrerer äußerlich ähnlicher Tiere",
-            "Einen vollständig ungekennzeichneten Sammelbehälter",
-            "Einen bloßen Mittelwert mehrerer Fleischfarben"
+            "Eine nachträgliche Zusammenfassung bereits fertiger Einzelbefunde",
+            "Getrennte Einzelansätze, deren Material erst nach der jeweiligen Auswertung rechnerisch zusammengefasst wird",
+            "Eine bloße Mittelung der Larvenzahlen aus getrennten Untersuchungsansätzen"
           ],
           "answer": 0,
           "explain": "Ein Pool vereint nachvollziehbare Anteile mehrerer Proben; seine Zusammensetzung muss dokumentiert sein."
@@ -1325,10 +1325,10 @@
           "lessonId": "verdauung-und-pool",
           "q": "Welche Dokumentation ermöglicht die Auflösung eines auffälligen Pools?",
           "options": [
-            "Die gemeinsame Farbe aller verwendeten Beutel",
+            "Nur die gemeinsame Ergebnisnummer ohne Liste der enthaltenen Einzelproben",
             "Die vollständige Zuordnung der enthaltenen Einzelproben",
-            "Die Alphabetfolge aller betrachteten Tierarten",
-            "Die Länge des ausgedruckten Untersuchungsberichts"
+            "Nur die Reihenfolge auffälliger mikroskopischer Sichtfelder",
+            "Nur die Summe der gewogenen Probenanteile ohne Bezug zu den Tierkörpern"
           ],
           "answer": 1,
           "explain": "Nur mit dokumentierter Poolzusammensetzung lassen sich zugehörige Einzelproben gezielt nachverfolgen."
@@ -1339,8 +1339,8 @@
           "q": "Wie wird eine larvenähnliche Struktur fachlich behandelt?",
           "options": [
             "Sie wird wegen bloßer Ähnlichkeit als sichere Art benannt",
-            "Sie wird allein anhand des Beutelgewichts bestimmt",
-            "Sie wird durch einen zusätzlichen Tiernamen bestätigt",
+            "Sie wird allein aufgrund der Herkunft aus einem vermuteten Risikobestand bestätigt",
+            "Sie wird bei unklarer Morphologie ohne weitere fachliche Abklärung als negativ abgeschlossen",
             "Sie wird im vorgesehenen Bestätigungsverfahren geprüft"
           ],
           "answer": 3,
@@ -1351,10 +1351,10 @@
           "lessonId": "qualitaetskontrolle",
           "q": "Was ist der Zweck codierter Ringversuchsproben?",
           "options": [
-            "Die Befunde allein nach der Reihenfolge zu vergeben",
-            "Die gewöhnliche Dokumentation vollständig zu ersetzen",
+            "Den Sollstatus vorab offenzulegen, damit die Befunde daran ausgerichtet werden",
+            "Die Rückverfolgbarkeit der Proben während der Leistungsprüfung entfallen zu lassen",
             "Die Nachweisleistung ohne offengelegten Sollstatus zu prüfen",
-            "Die Herkunft sämtlicher Wildtiere einer Region zu zählen"
+            "Nur die Zahl bearbeiteter Ansätze ohne Vergleich mit dem bekannten Sollstatus zu dokumentieren"
           ],
           "answer": 2,
           "explain": "Unbekannter Sollstatus ermöglicht eine sachliche Prüfung, ob das Labor die Proben korrekt beurteilt."
@@ -1392,8 +1392,8 @@
           "options": [
             "Wie viele Larven exakt zurückgewonnen wurden",
             "Ob die gesuchten Larven nachgewiesen wurden",
-            "Wie viele Tage das Tier gelebt hat",
-            "Wie lang jede einzelne Muskelzelle ist"
+            "Wie groß die Abweichung der gefundenen Larvenzahl vom Sollwert war",
+            "Welcher quantitative Toleranzbereich für die Larvenzahl eingehalten wurde"
           ],
           "answer": 1,
           "explain": "Qualitative Auswertung unterscheidet Nachweis und Nichtnachweis im definierten Verfahren."
@@ -1404,9 +1404,9 @@
           "q": "Welche Frage kommt bei einer quantitativen Ringversuchsauswertung hinzu?",
           "options": [
             "Wie viele Larven gegenüber dem Sollwert gefunden wurden",
-            "Wie ähnlich der Schriftstil zweier Berichte ausfällt",
-            "Wie viele Tierbilder im gleichen Ordner liegen",
-            "Wie hoch der spätere Verkaufspreis sein wird"
+            "Ob überhaupt Larven nachgewiesen oder nicht nachgewiesen wurden",
+            "Ob die Untersuchung noch aussteht oder bereits beendet wurde",
+            "Ob Probenkennung und Auftrag übereinstimmen"
           ],
           "answer": 0,
           "explain": "Die quantitative Auswertung prüft die Zahl der gefundenen Larven im Verhältnis zur bekannten Testprobe."
@@ -1429,10 +1429,10 @@
           "lessonId": "qualitaetskontrolle",
           "q": "Welche Maßnahme gehört neben Schulung zur Qualitätssicherung?",
           "options": [
-            "Verzicht auf die Kennzeichnung ähnlicher Proben",
+            "Eine einmalige Geräteprüfung als Ersatz für sämtliche laufenden Kontrollen behandeln",
             "Überprüfung und Pflege der verwendeten Geräte",
-            "Austausch des Befundes durch ein Fleischfoto",
-            "Vergabe des Sollwerts nach dem Beutelpreis"
+            "Das äußere Aussehen einer Muskelprobe allein als Ersatz für die analytische Leistungsprüfung verwenden",
+            "Einen früheren erfolgreichen Ringversuch ohne weitere Kontrolle als dauerhaften Leistungsnachweis nutzen"
           ],
           "answer": 1,
           "explain": "Geschultes Personal, geeignete Verfahren, Gerätewartung und Dokumentation ergänzen sich."
@@ -1455,10 +1455,10 @@
           "lessonId": "befundgrenzen",
           "q": "Auf welchen Bereich bezieht sich „Trichinella-Larven nicht nachgewiesen“?",
           "options": [
-            "Auf sämtliche denkbaren Keime in jedem Fleischstück",
-            "Auf alle Körper gleichzeitig erlegter Tiere",
+            "Auf den gesamten Tierkörper unabhängig vom untersuchten Material und Verfahren",
+            "Auf alle Körper derselben Jagdgruppe ohne gesicherte Probenzuordnung",
             "Auf das Untersuchungsziel im angegebenen Probenrahmen",
-            "Auf die dauerhafte Haltbarkeit ohne Kühlung"
+            "Auf den vollständigen hygienischen Zustand der untersuchten Muskelprobe"
           ],
           "answer": 2,
           "explain": "Der negative Befund betrifft Ziel und Rahmen der konkreten Untersuchung und ist keine allgemeine Unbedenklichkeitsgarantie."
@@ -1469,9 +1469,9 @@
           "q": "Welche Angabe sollte bei der Lektüre zuerst mit dem Tierkörper abgeglichen werden?",
           "options": [
             "Die eindeutige Proben- und Tierkennung",
-            "Die Zahl der verwendeten Schriftarten",
-            "Die Farbe des äußeren Dokumentrahmens",
-            "Die Position des Dateisymbols im Ordner"
+            "Die Kennung eines anderen Tierkörpers aus demselben Pool",
+            "Die Kennung der negativen Kontrollprobe anstelle der Herkunftsprobe",
+            "Die Nummer des Untersuchungsansatzes ohne nachvollziehbaren Einzelprobenbezug"
           ],
           "answer": 0,
           "explain": "Ohne passende Kennung kann der Befund nicht sicher dem betreffenden Tierkörper zugeordnet werden."
@@ -1508,9 +1508,9 @@
           "q": "Welches Merkmal begrenzt die Interpretation eines Untersuchungsberichts?",
           "options": [
             "Das tatsächlich verwendete Nachweisverfahren",
-            "Die Schriftgröße seiner Überschrift",
-            "Die Farbe seiner Seitenzahl",
-            "Die Anzahl der Namen in einem Fotoordner"
+            "Die Gesamtzahl anderer Methoden, die das Labor anbietet, aber bei dieser Probe nicht eingesetzt hat",
+            "Die Eignung eines anderen Nachweisverfahrens, das bei dieser Probe nicht verwendet wurde",
+            "Die Befunde anderer Tierkörper gleicher Herkunft ohne Zuordnung zur geprüften Probe"
           ],
           "answer": 0,
           "explain": "Verfahren, Probe und Untersuchungsziel legen den fachlichen Geltungsbereich des Ergebnisses fest."
@@ -1520,10 +1520,10 @@
           "lessonId": "befundgrenzen",
           "q": "Worin unterscheiden sich ein Verdacht und ein bestätigter positiver Nachweis?",
           "options": [
-            "Nur in der Länge des geschriebenen Wortes",
-            "Nur im Datum der Beutelbeschaffung",
+            "Nur in der angenommenen Befallsstärke, nicht im Bestätigungsstand",
+            "Nur in der Tierart, nicht in der Sicherheit der Strukturzuordnung",
             "Im Stand der fachlichen Abklärung",
-            "Nur in der Anzahl der Tierfotos"
+            "Nur in der Zahl enthaltener Einzelproben, nicht im Grad der fachlichen Sicherung"
           ],
           "answer": 2,
           "explain": "Ein Verdacht braucht Klärung im vorgesehenen Bestätigungsverfahren; ein bestätigter Nachweis ist bereits entsprechend beurteilt."
@@ -2252,9 +2252,9 @@
           "lessonId": "zelle",
           "q": "Welche Aufgabe hat die Zellmembran unter anderem?",
           "options": [
-            "Bildung sämtlicher Knochen des Körpers",
-            "Speicherung aller sichtbaren Körperorgane",
-            "Unbegrenztes Durchlassen jedes Stoffes",
+            "Vollständige Abschirmung der Zelle gegen jeden Stoffaustausch",
+            "Ausschließliche Speicherung der Erbinformation der Zelle",
+            "Abgrenzung eines ganzen Gewebes anstelle der einzelnen Zelle",
             "Abgrenzung und geregelter Stoffaustausch"
           ],
           "answer": 3,
@@ -2265,10 +2265,10 @@
           "lessonId": "zelle",
           "q": "Welcher Begriff bezeichnet das Zellinnere außerhalb des Kerns?",
           "options": [
-            "Epimysium",
+            "Extrazelluläre Matrix",
             "Cytoplasma",
-            "Periost",
-            "Darmlumen"
+            "Nucleoplasma",
+            "Gewebsflüssigkeit zwischen benachbarten Zellen"
           ],
           "answer": 1,
           "explain": "Cytoplasma bezeichnet den Bereich innerhalb der Zellmembran außerhalb des Zellkerns einschließlich seiner Strukturen."
@@ -2317,10 +2317,10 @@
           "lessonId": "zelle",
           "q": "Was bezeichnet ein Organell?",
           "options": [
-            "Ein eigenständiges Körperorgan aus mehreren Geweben",
-            "Ein vollständiges Organsystem des Tieres",
+            "Ein Verband mehrerer Zellen mit gemeinsamer Gewebefunktion",
+            "Eine abgrenzbare Körperstruktur aus verschiedenen Geweben",
             "Eine funktionelle Struktur innerhalb einer Zelle",
-            "Eine Gruppe mehrerer unabhängiger Tiere"
+            "Das zwischen benachbarten Zellen liegende Matrixmaterial"
           ],
           "answer": 2,
           "explain": "Organellen gehören zur inneren Organisation einer Zelle und sind von Körperorganen zu unterscheiden."
@@ -2330,9 +2330,9 @@
           "lessonId": "zelle",
           "q": "Warum lautet die Formulierung „typische kernhaltige Tierzelle“ bewusst genau?",
           "options": [
-            "Jede Tierzelle hat grundsätzlich mehrere Körperorgane",
-            "Alle Tierzellen sind identische unveränderliche Kugeln",
-            "Tierische Zellkerne sind nur im Winter vorhanden",
+            "Jede spezialisierte Tierzelle muss dieselbe Organellenausstattung besitzen",
+            "Das vereinfachte Modell beschreibt alle Zelltypen ohne Ausnahme vollständig",
+            "Die Begriffe Zellkern und Organell sind für jede Zellstruktur austauschbar",
             "Spezialisierte Zelltypen können vom Grundmodell abweichen"
           ],
           "answer": 3,
@@ -2344,9 +2344,9 @@
           "q": "Was gehört außer Zellen je nach Gewebe zu dessen Aufbau?",
           "options": [
             "Unterschiedlich viel extrazelluläres Material",
-            "Ein vollständiges zweites Verdauungssystem",
-            "Ein ausschließlich luftgefüllter Außenraum",
-            "Ein zusätzliches unabhängiges Tier"
+            "Die Gesamtheit ausschließlich intrazellulärer Organellen als Zwischenzellsubstanz",
+            "Das Cytoplasma als freier Raum zwischen benachbarten Zellen",
+            "Die Zellkerne als eigenständige extrazelluläre Matrix"
           ],
           "answer": 0,
           "explain": "Gewebe umfassen zusammenwirkende Zellen und eine unterschiedlich ausgeprägte Zwischenzellsubstanz."
@@ -2434,9 +2434,9 @@
           "lessonId": "gewebe",
           "q": "Was trifft auf die Gewebezusammensetzung eines Organs typischerweise zu?",
           "options": [
-            "Eine einzige Zellart bildet immer das ganze Organ",
-            "Jedes Organ besteht ausschließlich aus Nervengewebe",
-            "Nur die Oberfläche enthält überhaupt Zellen",
+            "Ein einzelner einheitlicher Gewebetyp ist die allgemeine Definition jedes Organs",
+            "Verschiedene Gewebearten kommen nur in verschiedenen Organen vor",
+            "Die Bezeichnung eines Organs ersetzt die Unterscheidung seiner Gewebearten",
             "Mehrere Gewebearten arbeiten zusammen"
           ],
           "answer": 3,
@@ -2448,9 +2448,9 @@
           "q": "Welche Definition beschreibt ein Organ?",
           "options": [
             "Eine abgegrenzte Struktur mit mehreren zusammenwirkenden Geweben",
-            "Eine einzelne Reaktion ohne räumliche Struktur",
-            "Ein einzelnes Molekül mit mehreren Atomen",
-            "Eine Gruppe räumlich getrennter Tierindividuen"
+            "Eine Gruppe gleichartig zusammenwirkender Zellen mit Zwischenzellsubstanz",
+            "Eine funktionelle Struktur innerhalb einer einzelnen Zelle",
+            "Ein Verband mehrerer funktionell zusammenarbeitender Organe"
           ],
           "answer": 0,
           "explain": "Ein Organ vereint mehrere Gewebe in einer räumlich und funktionell zusammenhängenden Struktur."
@@ -2460,9 +2460,9 @@
           "lessonId": "organ-system",
           "q": "Welche Definition beschreibt ein Organsystem?",
           "options": [
-            "Mehrere beliebige Moleküle eines einzigen Proteins",
-            "Mehrere unverbundene Populationen einer Tierart",
-            "Mehrere gleichlautende Namen eines einzelnen Organs",
+            "Ein Verband zusammenwirkender Zellen und ihrer Zwischenzellsubstanz",
+            "Eine abgegrenzte Körperstruktur, in der verschiedene Gewebe zusammenarbeiten",
+            "Eine funktionelle Struktur innerhalb einer einzelnen Zelle",
             "Mehrere funktionell zusammenarbeitende Organe"
           ],
           "answer": 3,
@@ -2513,9 +2513,9 @@
           "q": "Womit befasst sich die Histologie?",
           "options": [
             "Mit dem mikroskopischen Aufbau von Geweben",
-            "Mit dem Maßstab topographischer Karten",
-            "Mit der Zulassung technischer Produkte",
-            "Mit dem Verlauf von Grundstücksgrenzen"
+            "Mit Bau und Lage ganzer Organe im Körper",
+            "Mit den Funktionsabläufen zusammenarbeitender Organe",
+            "Mit der Einordnung auf- und abbauender Stoffwechselwege"
           ],
           "answer": 0,
           "explain": "Histologie ist Gewebelehre und untersucht deren mikroskopische Organisation."
@@ -2525,10 +2525,10 @@
           "lessonId": "organ-system",
           "q": "Was bezeichnet zelluläre Differenzierung?",
           "options": [
-            "Die bloße Verschiebung eines Organs im Körper",
-            "Die Umbenennung eines Gewebes ohne Veränderung",
+            "Die bloße Vermehrung bereits spezialisierter Zellen ohne Änderung ihrer Merkmale",
+            "Die bloße Größenzunahme einer Zelle ohne Spezialisierung",
             "Die Entwicklung spezialisierter Zellformen und Funktionen",
-            "Die Vergrößerung eines Fotos auf dem Bildschirm"
+            "Den Abbau komplexer Stoffe zu einfacheren Bausteinen"
           ],
           "answer": 2,
           "explain": "Bei Differenzierung entstehen aus weniger spezialisierten Zellen charakteristische Bau- und Funktionsformen."
@@ -2538,9 +2538,9 @@
           "lessonId": "organ-system",
           "q": "Warum erklärt „Muskel“ allein nicht den vollständigen Aufbau des Magens?",
           "options": [
-            "Der Magen besteht ausschließlich aus Knochenrinde",
-            "Der Magen besitzt grundsätzlich keine lebenden Zellen",
-            "Der Magen ist ein einzelnes Zellorganell",
+            "Weil ein Organ definitionsgemäß ausschließlich aus einem Grundgewebe besteht",
+            "Weil das auskleidende Epithel als eigenes Organsystem statt als Gewebe einzuordnen ist",
+            "Weil Binde- und Nervengewebe grundsätzlich außerhalb einer Organfunktion stehen",
             "Auch Epithel-, Binde- und Nervengewebe wirken dort mit"
           ],
           "answer": 3,
@@ -2552,9 +2552,9 @@
           "q": "Was bezeichnet Metabolismus?",
           "options": [
             "Die Gesamtheit chemischer Stoffwechselvorgänge",
-            "Nur das Kauen vor dem Abschlucken",
-            "Nur die äußere Bewegung der Gliedmaßen",
-            "Nur die räumliche Lage der inneren Organe"
+            "Ausschließlich den Abbau komplexer Stoffe zu einfacheren Bausteinen",
+            "Ausschließlich den Aufbau körpereigener Stoffe aus einfacheren Bausteinen",
+            "Ausschließlich die chemische Zerlegung aufgenommener Nahrung im Verdauungstrakt"
           ],
           "answer": 0,
           "explain": "Metabolismus ist der Fachausdruck für Stoffwechsel und umfasst auf- und abbauende chemische Vorgänge."
@@ -2564,9 +2564,9 @@
           "lessonId": "stoffwechsel",
           "q": "Welche Beschreibung passt zum Katabolismus?",
           "options": [
-            "Körpereigene Stoffe werden ausschließlich neu aufgebaut",
-            "Nur äußere Körperoberflächen werden vermessen",
-            "Nur Organe werden in anatomische Lage gebracht",
+            "Körpereigene Stoffe werden aus einfacheren Bausteinen aufgebaut",
+            "Die räumliche Zusammenarbeit mehrerer Organe wird als Strukturmodell geordnet",
+            "Weniger spezialisierte Zellen entwickeln besondere Bau- und Funktionsformen",
             "Komplexere Stoffe werden in einfachere zerlegt"
           ],
           "answer": 3,
@@ -2577,10 +2577,10 @@
           "lessonId": "stoffwechsel",
           "q": "Welche Beschreibung passt zum Anabolismus?",
           "options": [
-            "Sämtliche komplexen Stoffe werden nur zerlegt",
+            "Komplexe Stoffe werden in einfachere Bausteine zerlegt",
             "Körpereigene Stoffe werden unter Energiebedarf aufgebaut",
-            "Alle inneren Bedingungen bleiben ohne Aufwand unverändert",
-            "Alle Zellmembranen werden in jedem Vorgang vollständig zerstört"
+            "Eine erfasste Abweichung innerer Bedingungen wird durch Rückkopplung begrenzt",
+            "Aufgenommene Nahrung wird im Verdauungstrakt in resorbierbare Bestandteile zerlegt"
           ],
           "answer": 1,
           "explain": "Anabolische Vorgänge dienen dem Aufbau körpereigener Stoffe und benötigen Energie."
@@ -2590,10 +2590,10 @@
           "lessonId": "stoffwechsel",
           "q": "Welche Rolle haben Enzyme im Stoffwechsel?",
           "options": [
-            "Sie ersetzen sämtliche Ausgangsstoffe einer Reaktion",
-            "Sie dienen ausschließlich als äußere Wärmedämmung",
+            "Sie werden als Baustoff in jedes Produkt der von ihnen katalysierten Reaktion eingebaut",
+            "Sie liefern als verbrauchter Energievorrat die gesamte Reaktionsenergie",
             "Sie katalysieren bestimmte chemische Reaktionen",
-            "Sie bilden grundsätzlich die gesamte Energiequelle"
+            "Sie beschleunigen unabhängig vom Ausgangsstoff alle chemischen Reaktionen gleich"
           ],
           "answer": 2,
           "explain": "Enzyme wirken als Katalysatoren, beschleunigen passende Reaktionen und werden dabei nicht wie ein gewöhnlicher Baustoff verbraucht."
@@ -2603,10 +2603,10 @@
           "lessonId": "stoffwechsel",
           "q": "Welche Funktion beschreibt ATP hier?",
           "options": [
-            "Dauerhafte Speicherung aller Fettvorräte des Körpers",
+            "Langfristige Speicherung von Glucose in einer verzweigten Kohlenhydratreserve",
             "Kurzfristige Energiekopplung zellulärer Vorgänge",
-            "Ausschließliche Mineralisierung von Geweihmaterial",
-            "Vollständiger Ersatz der Zellmembran jeder Tierzelle"
+            "Mechanische Verbindung von Gewebestrukturen durch Kollagenfasern",
+            "Katalyse einer spezifischen Stoffwechselreaktion als Enzym"
           ],
           "answer": 1,
           "explain": "ATP vermittelt viele energieabhängige Zellvorgänge; es ist nicht mit sämtlichen Nährstoffreserven gleichzusetzen."
@@ -2617,9 +2617,9 @@
           "q": "Was bedeutet Homöostase?",
           "options": [
             "Laufend geregelte relative Stabilität innerer Bedingungen",
-            "Vollständiger Stillstand aller inneren Stoffwechselvorgänge",
-            "Gleiche absolute Körperwerte bei jeder europäischen Tierart",
-            "Ausschließliche unveränderliche Größe aller Zellkerne"
+            "Die chemische Zerlegung komplexer Stoffe in einfachere Bausteine",
+            "Den Aufbau körpereigener Stoffe aus einfacheren Bausteinen",
+            "Die Entwicklung weniger spezialisierter Zellen zu besonderen Funktionsformen"
           ],
           "answer": 0,
           "explain": "Homöostase ist ein dynamisch aufrechterhaltener Zustand, kein starres Ende aller Veränderung."
@@ -2642,9 +2642,9 @@
           "lessonId": "stoffwechsel",
           "q": "Wie stehen Verdauung und Stoffwechsel zueinander?",
           "options": [
-            "Verdauung umfasst ausschließlich jede chemische Körperreaktion",
-            "Verdauung beschreibt ausschließlich den Aufbau des Nervengewebes",
-            "Verdauung und Stoffwechsel sind grundsätzlich unverbundene Vorgänge",
+            "Beide Begriffe bezeichnen ausschließlich den Abbau aufgenommener Nahrung im Verdauungstrakt",
+            "Stoffwechsel bezeichnet nur die mechanischen Schritte der Verdauung",
+            "Chemische Umsetzungen nach der Nährstoffaufnahme gehören zur Verdauung, aber nicht zum Stoffwechsel",
             "Verdauung erschließt Nährstoffe und ist nicht der gesamte Stoffwechsel"
           ],
           "answer": 3,
