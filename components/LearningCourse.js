@@ -161,7 +161,7 @@ function LearningContent({ module, flashcards }) {
               </div>
             </article>
           </div>
-          <LearningDiagram media={media} />
+          {module.showCategoryDiagram !== false && <LearningDiagram media={media} />}
           {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery />}
           <WildlifeGallery pictures={media?.pictures} />
           <section id="wissenscheck" className={styles.card} aria-labelledby="quiz-heading">

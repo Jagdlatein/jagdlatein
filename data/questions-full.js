@@ -6,6 +6,7 @@
 import { learningQuestions } from "../lib/learning-curriculum";
 import { reviewLegacyQuestions } from "../lib/quiz-content-review";
 import { quizLearningPool } from "../lib/quiz-learning-scope";
+import { learningCategories } from "../lib/learning-categories";
 
 // Hilfs-Validator: wirft warn logs bei inkonsistenten Einträgen (nur Dev).
 function validatePool(arr) {
@@ -5051,7 +5052,7 @@ export const QUESTIONS = uniqueQuestions([...reviewLegacyQuestions(uniqueQuestio
 
 export const PACK_INFO = {
   version: "1.2.0",
-  topics: [...new Set(QUESTIONS.map(question => question.topic))]
+  topics: [...new Set([...QUESTIONS.map(question => question.topic), ...learningCategories])]
     .sort((left, right) => left.localeCompare(right, "de")),
   countries: ["DE", "AT", "CH"],
 };

@@ -1,0 +1,49 @@
+{
+  "reviewedOn": "2026-10-17",
+  "scope": "Navigation, Frageauswahl und redaktionelle Überschrift. Keine neuen Fachfragen, keine vollständige fachliche Neuprüfung.",
+  "quizCategories": {
+    "before": "22 teils überlappende Themenbezeichnungen",
+    "after": "Die elf gemeinsamen Kategorien des Lernbereichs; Jagdrecht mit eigener Länderwahl als zwölfter Bereich",
+    "detailedCourseCategoryPreserved": true,
+    "oldDirectTopicLinksStillSupported": true,
+    "legalQuestionsExcludedFromGeneralCategories": true,
+    "mixedQuizSelectableQuestions": 1859,
+    "countryLegalPools": { "DE": 82, "AT": 81, "CH": 76 }
+  },
+  "variety": {
+    "reviewedEquivalentGroups": 10,
+    "repeatedEntriesOmittedInNewMixedPools": 13,
+    "originalQuestionAndAnswerIdsRetained": true,
+    "scope": "Die tatsächlichen Fragen, richtigen Antworttexte und Erklärungen dieser zehn Gruppen wurden nebeneinander gelesen. Unterschiedliche generische Fragestämme werden nicht automatisch semantisch gleichgesetzt. Ursprüngliche Datensätze bleiben für gespeicherte Runden und Kursfortschritt erhalten."
+  },
+  "coursePresentation": {
+    "dentalLessonHeading": "Zahnformeln lesen: Kieferhälften und Gesamtgebiss",
+    "dentalHeadingReason": "Die vorige Überschrift zur halben Seite konnte mit der Gesamtformel verwechselt werden. Nur die Überschrift wurde neutral präzisiert; Lehrtext, Formeln, Fragen und Antworten blieben unverändert.",
+    "biologyPreviousReviewedSnapshotSha256": "b25555f1d9f69d6815b249115e184ec59ce5e39de7b3dd17c421b6d016cc7700",
+    "biologyAfterEditorialHeadingSha256": "8cd1ac6244c39e18e9e2728234c7030445f5e3c735bb2bdc1b474aaa3ee9c231",
+    "genericCategoryDiagramsHiddenInDetailedEvidenceCourses": true,
+    "diagramReason": "Ein allgemeines Diagramm zur Hundewahl erläutert beispielsweise keine Zahnformel. Bestehende Fotos, Lektionen und Quellen bleiben sichtbar. Andere Kurse behalten ihre bisherigen Diagramme."
+  },
+  "verification": {
+    "targetedTestsPassed": 256,
+    "targetedTestsFailed": 0,
+    "testLog": "work/quiz-clarity-tests-2026-10-17.log (task workspace)",
+    "build": "Next production build successful, exit 0, 381 static pages",
+    "buildLog": "work/quiz-clarity-build-2026-10-17.log (task workspace)"
+  },
+  "previousDeliveryLiveCheck": {
+    "commit": "f338b06fc976b44d57d4ad457d19382505f65549",
+    "vercelProduction": "https://vercel.com/hannes-zieglers-projects/jagdlatein/D7gWnS3tjzwRvGGwCnn4wfw5H66r",
+    "observedStatus": "Ready, Latest, Production Current; Current Domains includes jagdlatein.de",
+    "browserChecks": [
+      "896 Karten vollständig geladen",
+      "Mikrobenprotein-Suche findet genau eine Karte",
+      "Antwort und vier Quellenlinks sichtbar",
+      "Druckauswahl mit einer Karte und vollständigem Quellenverzeichnis",
+      "Rücksprung behält Suchtext und Auswahl"
+    ],
+    "screenshot": "output/jagdlatein-lernkarten-live-2026-10-17.png (task workspace)",
+    "limits": "Kein realer Geräte-Leistungstest und kein physischer Druck ausgelöst."
+  },
+  "overallGoal": "Weiterhin nicht erreicht; unvollständige Fachpakete sind nicht Teil dieser Veröffentlichung."
+}

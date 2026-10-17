@@ -42,7 +42,7 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
           <select id="quiz-topic" value={activeTopic} onChange={event => setTopic(event.target.value)} className={styles.select}>
             <option value="Alle">Alle Lernbereiche ({commonOptions.total} Fragen)</option>
             {commonOptions.topics.map(option => <option key={option.name} value={option.name}>{option.name} ({option.count} Fragen)</option>)}
-            <option value="Recht">Recht · Land wählen</option>
+            <option value="Recht">Jagdrecht · Land wählen</option>
           </select>
           {countryTopic ? <fieldset className={styles.fieldset}>
             <legend>Für welches Land möchtest du Recht üben?</legend>
