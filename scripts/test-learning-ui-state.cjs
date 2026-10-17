@@ -216,6 +216,59 @@ test('Identical shared biology notes do not add a redundant three-country disclo
   assert.match(words(regional.tree), /Ein konkret anderer regionaler Hinweis/);
 });
 
+test('Specific reading diagrams follow the actual selected lesson and disappear from unrelated lessons', () => {
+  const modules = load('lib/learning-curriculum.js').learningModules;
+  for (const [id, title] of [
+    ['wissen-ausbau-koerperfunktion-kreislauf-2026', 'Den Blutweg einmal im Kreis verfolgen'],
+    ['wissen-ausbau-anwendung-muskelbiologie-2026', 'Vom ganzen Muskel zur Kontraktionseinheit'],
+  ]) {
+    const module = modules.find(item => item.id === id);
+    const s = setup('components/LearningCourse.js', { module }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
+    const diagram = () => find(s.tree, node => node.type?.name === 'LessonDiagram');
+    assert.ok(renderToStaticMarkup(diagram()).includes(title));
+    const select = () => find(s.tree, node => node.type === 'select' && node.props.id === 'lesson-selection');
+    select().props.onChange({ target: { value: '1' } }); s.redraw();
+    assert.equal(renderToStaticMarkup(diagram()), '', 'no stale first-lesson diagram');
+    select().props.onChange({ target: { value: '0' } }); s.redraw();
+    const html = renderToStaticMarkup(diagram());
+    assert.ok(html.includes(title));
+    assert.ok(!html.includes('<button') && !html.includes('<img'), 'reading aid adds no controls or fabricated photograph');
+    if (id.includes('kreislauf')) assert.ok(html.indexOf('Rechte Herzhälfte') < html.indexOf('Durch die Lunge') && html.indexOf('Durch die Lunge') < html.indexOf('Linke Herzhälfte') && html.includes('Nach Schritt 4'));
+    else assert.ok(html.includes('Epimysium') && html.includes('Perimysium') && html.includes('Endomysium') && html.includes('Sarkolemm'));
+  }
+});
+
+test('The offline reader keeps the same lesson diagrams, precise evidence and a single shared country note', () => {
+  const course = load('lib/learning-curriculum.js').getLearningModule('wissen-ausbau-koerperfunktion-kreislauf-2026');
+  const s = setup('components/OfflineLearning.js', { course, expiresAt: Date.now() + 60000, onExpired() {} }, 'OfflineCourse', '\nexports.OfflineCourse = OfflineCourse;');
+  const diagram = () => find(s.tree, node => node.type?.name === 'LessonDiagram');
+  const evidence = () => find(s.tree, node => node.type?.name === 'LessonEvidence');
+  assert.ok(renderToStaticMarkup(diagram()).includes('Den Blutweg einmal im Kreis verfolgen'));
+  assert.equal(evidence().props.lesson, course.lessons[0]);
+  assert.equal(words(s.tree).split(course.countryNotes.DE).length - 1, 1);
+  assert.doesNotMatch(words(s.tree), /Regionale Hinweise/);
+  s.field('Lektion').props.onChange({ target: { value: '1' } }); s.redraw();
+  assert.equal(renderToStaticMarkup(diagram()), '');
+  assert.equal(evidence().props.lesson, course.lessons[1]);
+  const regional = { ...course, countryNotes: { ...course.countryNotes, CH: 'Ein konkret anderer regionaler Hinweis.' } };
+  s.setProps({ course: regional, expiresAt: Date.now() + 60000, onExpired() {} });
+  assert.match(words(s.tree), /Regionale Hinweise/);
+  assert.match(words(s.tree), /Ein konkret anderer regionaler Hinweis/);
+});
+
+test('Lesson evidence never invents a review date for an old saved lesson without a valid date', () => {
+  const lesson = load('lib/learning-curriculum.js').getLearningModule('wissen-ausbau-koerperfunktion-kreislauf-2026').lessons[0];
+  const Component = load('components/LessonEvidence.js').default;
+  for (const reviewedOn of [undefined, '', '2026-02-31', '2026-13-10', 'wrong']) {
+    const html = renderToStaticMarkup(React.createElement(Component, { lesson, reviewedOn }));
+    assert.ok(html.includes('Quellenzuordnung der Ausgangslektion.'));
+    assert.ok(!html.includes('wurden am') && !html.includes('Invalid Date'));
+    assert.ok(html.includes(lesson.evidence[0].sources[0].url));
+  }
+  const dated = renderToStaticMarkup(React.createElement(Component, { lesson, reviewedOn: '2026-10-17' }));
+  assert.ok(dated.includes('17. Oktober 2026'));
+});
+
 test('Every practice page and result uses one shared heading, browser title and learning navigation', async () => {
   const files = fs.readdirSync(path.join(root, 'pages/jagdpraxis')).filter(file => file.endsWith('.js'));
   assert.equal(files.length, 39);

@@ -17,10 +17,11 @@ export function WildlifeGallery({ pictures }) {
   </section>;
 }
 
-export function LearningDiagram({ media }) {
+export function LearningDiagram({ media, lessonSpecific = false }) {
   if (!media?.diagram) return null;
-  return <aside className={styles.diagram} aria-label={media.diagram.title}>
+  return <aside className={`${styles.diagram}${lessonSpecific ? ` ${styles.lessonDiagram}` : ""}`} aria-label={media.diagram.title}>
     <div className={styles.diagramHeading}><AppIcon name={media.icon} size={28} /><h3>{media.diagram.title}</h3></div>
+    {media.diagram.note && <p className={styles.diagramNote}>{media.diagram.note}</p>}
     <ol className={styles.steps}>{media.diagram.steps.map((step, index) => <li key={step.title}>
       <span className={styles.stepNumber}>{index + 1}</span>
       <div><h4>{step.title}</h4><p>{step.text}</p></div>

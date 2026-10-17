@@ -6,6 +6,9 @@ import styles from "../styles/LearningExperience.module.css";
 import extra from "../styles/OfflineLearning.module.css";
 import photoStyles from "../styles/LearningMedia.module.css";
 import { learningAudioPaths } from "../lib/learning-audio-paths";
+import LessonDiagram from "./LessonDiagram";
+import LessonEvidence from "./LessonEvidence";
+import { getCourseCountryNotes } from "../lib/learning-country-notes";
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 const date = value => new Date(value).toLocaleString("de-CH");
 function supportsOfflineDownloads() {
@@ -57,6 +60,7 @@ function OfflinePhoto({ photo, retired }) {
 }
 function OfflineCourse({ course, expiresAt, onExpired }) {
   const legal = course.category === "Jagdrecht";
+  const notes = getCourseCountryNotes(course);
   const [country, setCountry] = useState(course.countries[0]);
   const [lesson, setLesson] = useState(0);
   const [run, setRun] = useState({ index: 0, answers: {}, score: 0, answerSeed: 0 });
@@ -69,9 +73,11 @@ function OfflineCourse({ course, expiresAt, onExpired }) {
   const current = course.lessons[lesson];
   return <>
     <section className={styles.panel}><h2>{course.title}</h2><p>{course.description}</p><h3>Das lernst du</h3><ul>{course.objectives.map(item => <li key={item}>{item}</li>)}</ul>
-      {legal ? <><label className={styles.field}>Land<select value={country} onChange={event => { if (!allowed()) return; setCountry(event.target.value); update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>{course.countries.map(id => <option key={id} value={id}>{countryNames[id]}</option>)}</select></label><p className={styles.note}><strong>{countryNames[country]}:</strong> {course.countryNotes[country]}</p></> : <details><summary>Regionale Hinweise</summary>{course.countries.map(id => <p key={id}><strong>{countryNames[id]}:</strong> {course.countryNotes[id]}</p>)}</details>}
+      {legal ? <><label className={styles.field}>Land<select value={country} onChange={event => { if (!allowed()) return; setCountry(event.target.value); update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>{course.countries.map(id => <option key={id} value={id}>{countryNames[id]}</option>)}</select></label><p className={styles.note}><strong>{countryNames[country]}:</strong> {course.countryNotes[country]}</p></> : notes.common ? <p className={styles.note}>{notes.common}</p> : notes.regional.length > 0 && <details><summary>Regionale Hinweise</summary>{notes.regional.map(id => <p key={id}><strong>{countryNames[id]}:</strong> {course.countryNotes[id]}</p>)}</details>}
       <label className={styles.field}>Lektion<select value={lesson} onChange={event => { if (allowed()) setLesson(Number(event.target.value)); }}>{course.lessons.map((item, index) => <option key={item.id} value={index}>{index + 1}. {item.title}</option>)}</select></label>
       <h3>{current.title}</h3>{current.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}<aside className={styles.note}><strong>Merke dir</strong><p>{current.takeaway}</p><strong>Zum Nachdenken</strong><p>{current.exercise}</p></aside>
+      <LessonDiagram diagram={current.diagram} />
+      <LessonEvidence lesson={current} reviewedOn={course.reviewedOn} />
     </section>
     {question && <section className={styles.panel}><h2>Offline-Wissenscheck</h2><p className={styles.muted}>Ergebnisse gelten für diese Übungsrunde. Ein Kursabschluss wird hier nicht im Konto gespeichert.</p><p>Frage {run.index + 1} von {questions.length} · {run.score} richtig</p>{(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.note}>Geltungsbereich dieser Frage: {question.countries.map(id => countryNames[id]).join(" · ")}</p>}<h3>{question.q}</h3>
       <div className={styles.choices}>{answerOrder(question.answers, question.id, run.answerSeed).map(answerIndex => { const item = question.answers[answerIndex]; return <button className={`${styles.choice} ${answer !== undefined && question.correct.includes(item.id) ? styles.correct : answer === item.id ? styles.wrong : ""}`} key={item.id} disabled={answer !== undefined} onClick={() => choose(item.id)}>{item.text}{answer !== undefined && question.correct.includes(item.id) && " ✓"}</button>; })}</div>

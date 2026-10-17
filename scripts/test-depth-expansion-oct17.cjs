@@ -124,6 +124,28 @@ test('Every new course can be delivered in the existing eight-course offline pac
       }
     }
     assert.deepEqual(included, added.map(module => module.id));
+    const packWithDiagram = createOfflinePack({ courseIds: ['wissen-ausbau-koerperfunktion-kreislauf-2026', 'wissen-ausbau-anwendung-muskelbiologie-2026'], sounds: false }, access, now);
+    assert.ok(packWithDiagram.courses.every(module => module.lessons[0].diagram?.steps.length > 0));
+    assert.ok(validateOfflinePack(packWithDiagram, now));
+    for (const malformed of [false, 'unreadable', { title: 'Broken' }, { title: 'Broken', steps: [] }, { title: 'Broken', steps: [{ title: 'Step', text: 7 }] }]) {
+      const changed = structuredClone(packWithDiagram);
+      changed.courses[0].lessons[0].diagram = malformed;
+      assert.equal(validateOfflinePack(changed, now), false, 'malformed optional diagram must not enter the reader');
+    }
+    for (const malformed of [false, 'unreadable', [{}], [{ claim: 'Changed claim', sources: [{ label: 'Unregistered', url: 'https://example.invalid/unregistered' }] }]]) {
+      const changed = structuredClone(packWithDiagram);
+      changed.courses[0].lessons[0].evidence = malformed;
+      assert.equal(validateOfflinePack(changed, now), false, 'malformed or unregistered lesson evidence must not enter the reader');
+    }
+    const brokenSources = structuredClone(packWithDiagram);
+    brokenSources.courses[0].sources = [null];
+    assert.equal(validateOfflinePack(brokenSources, now), false, 'invalid source records are rejected without throwing');
+    const legacy = structuredClone(packWithDiagram);
+    for (const module of legacy.courses) {
+      delete module.reviewedOn;
+      for (const lesson of module.lessons) { delete lesson.diagram; delete lesson.evidence; }
+    }
+    assert.ok(validateOfflinePack(legacy, now), 'old packs without optional diagrams, claim evidence or dates remain readable');
   } finally {
     if (previousSecret === undefined) delete process.env.JL_SESSION_SECRET;
     else process.env.JL_SESSION_SECRET = previousSecret;

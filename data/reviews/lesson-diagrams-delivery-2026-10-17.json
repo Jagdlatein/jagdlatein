@@ -1,0 +1,69 @@
+{
+  "reviewedOn": "2026-10-17",
+  "baseCommit": "515199f8d947111f46c8c33d4f80cd962e3f5278",
+  "scope": "Zwei eigene Lese-Schemata und einheitliche konkrete Lektionsbelege online/offline. Keine neuen Fragen oder Lernkarten gezählt, keine neuen Lehrfotos, kein neuer iOS-Binary-Build.",
+  "diagrams": [
+    {
+      "courseId": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "lessonId": "blutweg",
+      "title": "Den Blutweg einmal im Kreis verfolgen",
+      "scope": "Vereinfachter normaler erwachsener Säugetierkreislauf; vier aufeinanderfolgende Abschnitte und ausdrückliche Rückkehr zu Schritt 1.",
+      "sourcesActuallyRead": [
+        "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels",
+        "https://www.nhlbi.nih.gov/health/heart/heart-beats"
+      ],
+      "sourceLimits": "Die konkrete Blutweg-Lektion und ihr bereits mehrfach geprüftes Mapping bilden die Grundlage. Im getrennten Schema-Peer wurde OpenStax 40.3 erneut gelesen. Ein fehlgeschlagener Merck-Abruf zählt nicht als zusätzliche neue Merck-Prüfung. Keine Human-Normalwerte oder pauschale Sauerstoffregel für alle Arterien/Venen übernommen."
+    },
+    {
+      "courseId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "muskelaufbau",
+      "title": "Vom ganzen Muskel zur Kontraktionseinheit",
+      "scope": "Fünf Organisationsebenen der Skelettmuskulatur mit Bindegewebshüllen und klar getrennter Zellmembran; keine maßstäbliche Zeichnung.",
+      "sourcesActuallyRead": [
+        "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/structure-and-composition-of-muscle/",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle"
+      ],
+      "sourceLimits": "Relevante Haupttexte durch Root und getrennte Gegenprüfung gelesen; keine fremde Abbildung, Aufgabe, Humanlänge oder fehlerhafte T-Tubulus/SR-Zuordnung übernommen."
+    }
+  ],
+  "independentReview": "Die zwei vollständigen Schemata wurden gegen konkrete Lektionen und tatsächlich erneut gelesene Originalabschnitte gegengeprüft. Kein verbleibender fachlicher Reihenfolge- oder Begriffsfehler festgestellt. Die enge Codeänderung wurde separat auf Offline-Kompatibilität, Datenübernahme und Datumsdarstellung gegengelesen; kein konkreter Regressionsbefund.",
+  "delivery": {
+    "diagramsPreparedOnServer": true,
+    "onlySelectedLessonDiagramDeliveredToReader": true,
+    "offlineUsesSameDiagramAndLessonEvidence": true,
+    "oldSavedPacksWithoutOptionalFieldsRemainValid": true,
+    "malformedOptionalFieldsRejected": true,
+    "lessonEvidenceSourcesMustBelongToSavedCourseSources": true,
+    "missingOrInvalidReviewDateDoesNotInventDate": true,
+    "commonCountryNotesAppearOnceOnlineAndOffline": true,
+    "differentCountryNotesRemainAvailable": true,
+    "newButtons": 0
+  },
+  "verification": {
+    "targetedTestsPassed": 264,
+    "targetedTestsFailed": 0,
+    "testLog": "work/lesson-diagrams-tests-2026-10-17.log (task workspace)",
+    "build": "Next production build, exit 0, 399 static pages",
+    "buildLog": "work/lesson-diagrams-build-2026-10-17.log (task workspace)",
+    "visualPreview": "Tatsächliche Komponente mit tatsächlichem CSS im Browser in einer 390-Pixel-iframe-Ansicht sowie einer breiten Ansicht gelesen und visuell geprüft. Keine physische Geräteprüfung.",
+    "previewScreenshot": "output/jagdlatein-leseschema-darstellungspruefung-2026-10-17.png (task workspace)",
+    "previewLimits": "Eine versuchte DOM-Messung des iframe-Inhalts war in der Browser-Leseumgebung nicht verfügbar. Keine pixelgenaue Überlaufmessung behauptet; die dokumentierte Prüfung war visuell."
+  },
+  "precedingContentReleaseLiveCheck": {
+    "commit": "515199f8d947111f46c8c33d4f80cd962e3f5278",
+    "productionStatus": "Vercel success",
+    "sandboxStatus": "Vercel success",
+    "productionDeployment": "https://vercel.com/hannes-zieglers-projects/jagdlatein/9yiAqDyx3ozHNQg9hKLmo3oxdTY1",
+    "sandboxDeployment": "https://vercel.com/hannes-zieglers-projects/jagdlatein-sandbox/jHP85tM16QMv8oFn5RUXo5NHsxQb",
+    "observed": [
+      "Neue Hundebewegungs-Lerneinheit mit vier Lektionen, 32 Fragen und echtem Hundebild erreichbar",
+      "Konkrete Knochen-Lektion öffnet mit exaktem Hash",
+      "Lektionsbelege zeigen drei zugeordnete Fachquellen",
+      "Direktlink öffnet genau sieben Karten der Knochen-Lektion mit korrektem Rücksprung",
+      "Kartenantwort zeigt genau die Quellen der Ausgangslektion",
+      "Gesamtbestand vollständig mit 1331 Karten und elf Kategorien geladen"
+    ],
+    "screenshot": "output/jagdlatein-neue-lernkarten-live-2026-10-17.png (task workspace)",
+    "limits": "Keinen neuen Kauf, keinen Ranglisteneintrag und keine Lernkartenbewertung ausgelöst. Diese Browserkontrolle ist keine wissenschaftliche Vollprüfung."
+  }
+}
