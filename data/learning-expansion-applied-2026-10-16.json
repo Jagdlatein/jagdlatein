@@ -632,9 +632,9 @@
           "lessonId": "muskelaufbau",
           "q": "Was enthält eine Myofibrille in Längsrichtung?",
           "options": [
-            "Hintereinander angeordnete Knochen",
-            "Hintereinander angeordnete Lymphknoten",
-            "Hintereinander angeordnete Haarfollikel",
+            "Bündel vollständiger Muskelfasern",
+            "Hintereinander angeordnete motorische Endplatten",
+            "Kollagene Hüllen kompletter Faserbündel",
             "Hintereinander angeordnete Sarkomere"
           ],
           "answer": 3,
@@ -2278,10 +2278,10 @@
           "lessonId": "zelle",
           "q": "Wo liegt bei der typischen kernhaltigen Tierzelle ein großer Teil der Erbinformation?",
           "options": [
-            "Im Darmlumen",
-            "Im Gelenkspalt",
+            "In den Lysosomen",
+            "In den Mitochondrien",
             "Im Zellkern",
-            "Im Zwischenwirbelraum"
+            "Im Golgi-Apparat"
           ],
           "answer": 2,
           "explain": "Der Zellkern enthält einen großen Teil der genetischen Information einer kernhaltigen Tierzelle."
@@ -2291,10 +2291,10 @@
           "lessonId": "zelle",
           "q": "Welche Zellstruktur ist unmittelbar an der Proteinsynthese beteiligt?",
           "options": [
-            "Das Gelenk",
+            "Der Golgi-Apparat",
             "Das Ribosom",
-            "Der Haarbalg",
-            "Der Lymphknoten"
+            "Das Lysosom",
+            "Das Centrosom"
           ],
           "answer": 1,
           "explain": "Ribosomen setzen Aminosäuren nach der zugrunde liegenden Information zu Proteinen zusammen."
@@ -2305,9 +2305,9 @@
           "q": "Welche Funktion ist eng mit Mitochondrien verbunden?",
           "options": [
             "ATP-Bereitstellung im oxidativen Stoffwechsel",
-            "Bildung einer äußeren tierischen Zellwand",
-            "Speicherung ganzer Organe innerhalb der Zelle",
-            "Weiterleitung der Nahrung durch den Darm"
+            "Sortieren und Verpacken von Sekretproteinen für den Export",
+            "Enzymatischer Abbau aufgenommener Makromoleküle in sauren Vesikeln",
+            "Organisation der Spindelmikrotubuli"
           ],
           "answer": 0,
           "explain": "Mitochondrien sind wichtige Orte oxidativer Energieumsetzung und ATP-Bildung."

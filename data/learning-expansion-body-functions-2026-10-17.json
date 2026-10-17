@@ -1,0 +1,3841 @@
+{
+  "reviewedOn": "2026-10-17",
+  "scope": "Sechs vertiefende Kurse mit 24 Lektionen und 192 eigenständig beantwortbaren Fragen zu normaler Körperfunktion von Säugetieren und Hunden. Eigene Lehrtexte und Fragen; konkrete Quellen, Referenzarten und Grenzen im Evidence-Mapping. Keine vollständige Neuprüfung des Altbestands und keine Behandlungsanleitung.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "title": "Herz, Gefäße und Lymphe: Transport im Körper",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Zwei Blutkreisläufe, rhythmische Pumparbeit, Gefäßwände und lymphatische Rückwege zusammen verstehen.",
+      "minutes": 36,
+      "objectives": [
+        "Den Blutweg im erwachsenen Säugetier verfolgen",
+        "Klappenbewegung und Erregungsleitung erklären",
+        "Gefäßbau mit Austausch verbinden",
+        "Blut- und Lymphsystem unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches Lernwissen zu benannten Referenztieren. Keine landesabhängigen Jagdrechtsregeln.",
+        "AT": "Gemeinsames biologisches Lernwissen zu benannten Referenztieren. Keine landesabhängigen Jagdrechtsregeln.",
+        "CH": "Gemeinsames biologisches Lernwissen zu benannten Referenztieren. Keine landesabhängigen Jagdrechtsregeln."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Herz und Kreislauf der Tiere",
+          "url": "https://www.merckvetmanual.com/circulatory-system/cardiovascular-system-introduction/the-cardiovascular-system-in-animals",
+          "organization": "Merck Veterinary Manual; Pierce und Hsue",
+          "supports": "Säugetierherz, Klappen, Erregungsleitung und Herzzeitvolumen; Stand Mai 2025."
+        },
+        {
+          "label": "Blood circulation",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/6-blood-circulation/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Körper- und Lungenkreislauf, Gefäßfolge und Druckunterschiede; eingesehener indexierter Originaltext, Direktabruf 403."
+        },
+        {
+          "label": "Mammalian heart and blood vessels",
+          "url": "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels",
+          "organization": "OpenStax, Rice University",
+          "supports": "Allgemeine Säugetierprinzipien von Herz, Klappen, Erregungsleitung und Gefäßwand; keine kopierten Fragen oder Grafiken."
+        },
+        {
+          "label": "How the heart beats",
+          "url": "https://www.nhlbi.nih.gov/health/heart/heart-beats",
+          "organization": "NHLBI, NIH",
+          "supports": "Elektrischer Rhythmus und Pumpfunktion als allgemeines Säugetierprinzip, am Menschen erläutert."
+        },
+        {
+          "label": "Vascular tunics",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/6-vascular-tunics/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Gefäßwand, Endothel und glatte Muskulatur; indexierter Originaltext gelesen."
+        },
+        {
+          "label": "Capillaries and sinusoids",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/6-capillaries-and-sinusoids/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Kapillarwand und Austausch; indexierter Originaltext gelesen, keine universellen Mikrometer- oder Porengrenzen."
+        },
+        {
+          "label": "Lymphatic circulation",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/6-lymphatic-circulation/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Gewebeflüssigkeit, Rückführung, Lymphknoten und Klappen; indexierter Originaltext gelesen, keine Übernahme der dort zu pauschalen Liste lymphgefäßfreier Gewebe."
+        },
+        {
+          "label": "What is immunology?",
+          "url": "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology",
+          "organization": "British Society for Immunology, Daniel Price",
+          "supports": "Barrieren, angeborene und adaptive Abwehr, Lymphgewebe, Zellen und Gedächtnis."
+        },
+        {
+          "label": "Lymphatic system",
+          "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/lymphatic-system",
+          "organization": "National Cancer Institute, NIH",
+          "supports": "Allgemeines Prinzip des lymphatischen Drainage- und Abwehrsystems."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "blutweg",
+          "title": "Zwei Herzhälften verbinden Lunge und Körper",
+          "paragraphs": [
+            "Beim erwachsenen Säugetier durchläuft Blut nacheinander Lungen- und Körperkreislauf. Die rechte Herzhälfte führt es zur Lunge, die linke zu den Körperorganen. Jede Hälfte besitzt einen Vorhof und eine Kammer. Die Scheidewand trennt rechts und links; Vorhöfe nehmen Blut auf, Kammern treiben es in die abführenden großen Arterien.",
+            "Die Hohlvenen münden in den rechten Vorhof. Über rechte Kammer und Lungenarterien gelangt Blut zum Gasaustausch in die Lunge. Lungenvenen führen es zum linken Vorhof; die linke Kammer gibt es in die Aorta ab. Arterie und Vene benennen die Richtung relativ zum Herzen, nicht den Sauerstoffgehalt. Der Herzmuskel erhält seine eigene Blutversorgung über die Herzkranzgefäße."
+          ],
+          "takeaway": "Arterien führen vom Herzen weg, Venen zu ihm hin.",
+          "exercise": "Zeichne einen geschlossenen Blutweg von der rechten Kammer bis zurück zu ihr."
+        },
+        {
+          "id": "pumpe",
+          "title": "Klappen, Stromsignal und Pumparbeit",
+          "paragraphs": [
+            "Systole bezeichnet die Kontraktionsphase, Diastole die Entspannungsphase. Für die Kammern gehören Auswurf und anschließende Füllung zum Arbeitszyklus. Herzklappen öffnen und schließen aufgrund wechselnder Druckverhältnisse. Segelklappen zwischen Vorhof und Kammer begrenzen Rückstrom zu den Vorhöfen; Taschenklappen an den großen Ausgängen begrenzen Rückstrom aus den Arterien.",
+            "Der normale Rhythmus beginnt im Sinusknoten. Am AV-Knoten wird die Erregungsweiterleitung verzögert, bevor das spezialisierte Leitungssystem die Kammern erreicht. Ein EKG erfasst elektrische Vorgänge; es ist keine unmittelbare Messung des ausgeworfenen Blutvolumens. Dieses Schlagvolumen und die Schlagzahl pro Zeit bestimmen zusammen das Herzzeitvolumen. Auch die Herzarbeit benötigt Sauerstoff und Energie."
+          ],
+          "takeaway": "Rhythmus, Füllung und Auswurf sind zusammenhängende, aber unterschiedliche Vorgänge.",
+          "exercise": "Ordne Sinusknoten, AV-Knoten, Kammererregung und mechanischen Auswurf."
+        },
+        {
+          "id": "gefaesse",
+          "title": "Vom Druckgefäß zur Austauschfläche",
+          "paragraphs": [
+            "Größere Blutgefäße besitzen eine innere, mittlere und äußere Wandschicht. Endothel kleidet die innere Oberfläche aus. In der mittleren Schicht verändert glatte Muskulatur den Gefäßdurchmesser. Besonders Arteriolen wirken an der Verteilung des Blutstroms und am Strömungswiderstand mit. Elastische Anteile großer Arterien dehnen sich beim Auswurf und federn danach zurück.",
+            "Die Kapillarwand ist viel dünner als die Wand einer großen Arterie. Dieser kurze Weg unterstützt den Stoffaustausch zwischen Blut und Umgebung. Kapillaren unterscheiden sich je nach Organ in ihrer Durchlässigkeit; nicht jeder Stoff passiert jede Wand gleich gut. Aus Kapillarnetzen sammeln Venolen das Blut und führen es zu Venen. Die Wandarchitektur folgt den jeweiligen Druck- und Austauschaufgaben."
+          ],
+          "takeaway": "Ein Gefäß ist mehr als ein Schlauch: Wandbau und Aufgabe passen zusammen.",
+          "exercise": "Ordne Endothel, glatte Muskulatur und elastische Wandanteile ihren Funktionen zu."
+        },
+        {
+          "id": "lymphe",
+          "title": "Gewebeflüssigkeit braucht einen Rückweg",
+          "paragraphs": [
+            "Zwischen Blut und Zellen liegt Gewebeflüssigkeit. Ein Teil dieser Flüssigkeit gelangt zusammen mit darin enthaltenen Stoffen in lymphatische Gefäße und heißt dann Lymphe. Lymphgefäße führen Flüssigkeit und ausgetretene Proteine zum venösen Blut zurück. Sie bilden keinen zweiten geschlossenen Blutkreislauf mit einer eigenen Herzkammer. Klappen unterstützen den gerichteten Transport und begrenzen Rückfluss.",
+            "Entlang der Lymphwege liegen Lymphknoten. In ihnen begegnen Abwehrzellen Material aus dem jeweiligen Einzugsgebiet; die Knoten sind nicht bloß Wasserspeicher. Lymphknoten und Milz haben dabei verschiedene Zufuhren: Die Knoten überwachen Lymphe, die Milz insbesondere Blut. Der Rücktransport von Flüssigkeit und die Immunüberwachung sind miteinander verbunden."
+          ],
+          "takeaway": "Lymphknoten überwachen Lymphe; die Milz überwacht Blut.",
+          "exercise": "Skizziere Gewebe → Lymphgefäß → Lymphknoten → venöses Blut."
+        }
+      ],
+      "questions": [
+        {
+          "id": "blutweg-q1",
+          "lessonId": "blutweg",
+          "q": "Welcher Herzraum nimmt beim erwachsenen Säugetier das Blut aus den Hohlvenen auf?",
+          "options": [
+            "Der rechte Vorhof.",
+            "Der linke Vorhof.",
+            "Die linke Kammer.",
+            "Die rechte Kammer."
+          ],
+          "answer": 0,
+          "explain": "Die Hohlvenen münden vor dem Weiterfluss zur rechten Kammer in den rechten Vorhof."
+        },
+        {
+          "id": "blutweg-q2",
+          "lessonId": "blutweg",
+          "q": "Wohin pumpt die rechte Herzkammer im normalen erwachsenen Säugetierkreislauf?",
+          "options": [
+            "In den Körperkreislauf über die Aorta.",
+            "In den linken Vorhof über die Lungenvenen ohne Lungenpassage.",
+            "In den Lungenkreislauf.",
+            "In den rechten Vorhof über die Hohlvenen."
+          ],
+          "answer": 2,
+          "explain": "Die rechte Kammer treibt Blut über die Lungenarterien zur Lunge."
+        },
+        {
+          "id": "blutweg-q3",
+          "lessonId": "blutweg",
+          "q": "Welches Gefäß führt das Blut aus der linken Kammer in den Körperkreislauf?",
+          "options": [
+            "Die Lungenarterie.",
+            "Die Aorta.",
+            "Die Hohlvene.",
+            "Die Lungenvene."
+          ],
+          "answer": 1,
+          "explain": "Die Aorta ist die große abführende Arterie des Körperkreislaufs."
+        },
+        {
+          "id": "blutweg-q4",
+          "lessonId": "blutweg",
+          "q": "Wodurch ist eine Vene anatomisch definiert?",
+          "options": [
+            "Sie ist durch sauerstoffarmes Blut definiert.",
+            "Sie führt Blut vom Herzen weg.",
+            "Sie ist durch den Besitz einer besonders dicken Muskelschicht definiert.",
+            "Sie führt Blut zum Herzen hin."
+          ],
+          "answer": 3,
+          "explain": "Die Flussrichtung ist entscheidend; Lungenvenen führen sauerstoffreiches Blut zum Herzen."
+        },
+        {
+          "id": "blutweg-q5",
+          "lessonId": "blutweg",
+          "q": "Welche Gefäße führen Blut nach dem Gasaustausch in der Lunge zum Herzen?",
+          "options": [
+            "Die Lungenarterien.",
+            "Die Hohlvenen.",
+            "Die Lungenvenen.",
+            "Die Herzkranzvenen."
+          ],
+          "answer": 2,
+          "explain": "Lungenvenen münden in den linken Vorhof."
+        },
+        {
+          "id": "blutweg-q6",
+          "lessonId": "blutweg",
+          "q": "Welche Struktur trennt im normal aufgebauten Säugetierherzen die rechte von der linken Hälfte?",
+          "options": [
+            "Die Herzscheidewand.",
+            "Die Mitralklappe allein.",
+            "Die Wand des Herzbeutels allein.",
+            "Die Aortenklappe allein."
+          ],
+          "answer": 0,
+          "explain": "Die Scheidewand hält die beiden Herzseiten anatomisch getrennt."
+        },
+        {
+          "id": "blutweg-q7",
+          "lessonId": "blutweg",
+          "q": "Welche Aussage beschreibt das Verhältnis von Lungen- und Körperkreislauf?",
+          "options": [
+            "Sie werden parallel von derselben Herzkammer versorgt.",
+            "Sie besitzen getrennte Blutvorräte ohne normalen Austausch.",
+            "Nur der Körperkreislauf führt Blut wieder zum Herzen zurück.",
+            "Sie sind über das Herz nacheinander geschaltet."
+          ],
+          "answer": 3,
+          "explain": "Blut wechselt im normalen Kreislauf zwischen Lunge und Körper; die Herzhälften liegen auf diesem gemeinsamen Weg."
+        },
+        {
+          "id": "blutweg-q8",
+          "lessonId": "blutweg",
+          "q": "Welches Gefäßsystem versorgt den Herzmuskel selbst mit Blut?",
+          "options": [
+            "Die Lungenvenen.",
+            "Die Koronargefäße.",
+            "Die Hohlvenen.",
+            "Das Blut in den Herzhöhlen ohne eigene zuführende Arterien."
+          ],
+          "answer": 1,
+          "explain": "Die Herzkranz- oder Koronargefäße versorgen den arbeitenden Herzmuskel."
+        },
+        {
+          "id": "pumpe-q1",
+          "lessonId": "pumpe",
+          "q": "Wie heißt die Kontraktionsphase einer Herzkammer?",
+          "options": [
+            "Systole.",
+            "Diastole.",
+            "Depolarisation als Bezeichnung der mechanischen Phase.",
+            "Repolarisation als Bezeichnung der mechanischen Phase."
+          ],
+          "answer": 0,
+          "explain": "In der Systole kontrahiert die Kammer; während ihrer Auswurfphase gelangt Blut in die Arterie."
+        },
+        {
+          "id": "pumpe-q2",
+          "lessonId": "pumpe",
+          "q": "Welche Größe entscheidet unmittelbar über das Öffnen und Schließen einer Herzklappe?",
+          "options": [
+            "Die Kontraktion eigener Muskelfasern im Klappensegel.",
+            "Die Erregung des Sinusknotens unmittelbar am Klappengewebe.",
+            "Das Druckverhältnis auf ihren beiden Seiten.",
+            "Die Fließgeschwindigkeit allein ohne Druckunterschied."
+          ],
+          "answer": 2,
+          "explain": "Herzklappen bewegen sich infolge der Druckunterschiede im Herzzyklus."
+        },
+        {
+          "id": "pumpe-q3",
+          "lessonId": "pumpe",
+          "q": "Welche Aufgabe haben die Segelklappen bei der Kammerkontraktion?",
+          "options": [
+            "Rückfluss aus der Aorta in die linke Kammer begrenzen.",
+            "Rückfluss in die Vorhöfe begrenzen.",
+            "Den Blutfluss vom Vorhof zur Kammer während jeder Füllung unterbinden.",
+            "Den elektrischen Rhythmus als Schrittmacher erzeugen."
+          ],
+          "answer": 1,
+          "explain": "Geschlossene Segelklappen halten den Druckaufbau und Auswurf der Kammern vom Vorhof getrennt."
+        },
+        {
+          "id": "pumpe-q4",
+          "lessonId": "pumpe",
+          "q": "Wo beginnt die normale elektrische Herzerregung?",
+          "options": [
+            "Im AV-Knoten.",
+            "Im His-Bündel.",
+            "In den Purkinje-Fasern.",
+            "Im Sinusknoten."
+          ],
+          "answer": 3,
+          "explain": "Der Sinusknoten ist der normale Schrittmacher des Herzens."
+        },
+        {
+          "id": "pumpe-q5",
+          "lessonId": "pumpe",
+          "q": "Wozu dient die Verzögerung der Erregung im AV-Knoten?",
+          "options": [
+            "Sie lässt Vorhof und Kammer gleichzeitig kontrahieren.",
+            "Sie trennt die Durchblutung von rechter und linker Kammer.",
+            "Sie unterstützt die zeitliche Abstimmung von Vorhof- und Kammerarbeit.",
+            "Sie ersetzt die mechanische Schließung der Segelklappen."
+          ],
+          "answer": 2,
+          "explain": "Die Verzögerung ermöglicht eine aufeinander abgestimmte Füllungs- und Pumpfolge."
+        },
+        {
+          "id": "pumpe-q6",
+          "lessonId": "pumpe",
+          "q": "Was zeichnet ein Elektrokardiogramm unmittelbar auf?",
+          "options": [
+            "Elektrische Aktivität des Herzens.",
+            "Unmittelbar das je Schlag ausgeworfene Blutvolumen.",
+            "Unmittelbar den Sauerstoffgehalt der Aorta.",
+            "Unmittelbar den Druck in der Hohlvene."
+          ],
+          "answer": 0,
+          "explain": "Aus dem elektrischen Verlauf können Rhythmusmerkmale erkannt werden; Blutvolumen wird damit nicht direkt gemessen."
+        },
+        {
+          "id": "pumpe-q7",
+          "lessonId": "pumpe",
+          "q": "Wie wird das Herzzeitvolumen rechnerisch beschrieben?",
+          "options": [
+            "Herzfrequenz geteilt durch Schlagvolumen.",
+            "Schlagvolumen minus Herzfrequenz.",
+            "Schlagvolumen ohne Berücksichtigung der Herzfrequenz.",
+            "Herzfrequenz mal Schlagvolumen."
+          ],
+          "answer": 3,
+          "explain": "Die pro Schlag bewegte Blutmenge wird mit der Zahl der Schläge pro Zeit multipliziert."
+        },
+        {
+          "id": "pumpe-q8",
+          "lessonId": "pumpe",
+          "q": "Welche Klappe begrenzt nach dem Auswurf den Rückstrom aus der Aorta in die linke Kammer?",
+          "options": [
+            "Die Mitralklappe.",
+            "Die Aortenklappe.",
+            "Die Trikuspidalklappe.",
+            "Die Pulmonalklappe."
+          ],
+          "answer": 1,
+          "explain": "Die Aortenklappe ist eine Taschenklappe am Ausgang der linken Kammer."
+        },
+        {
+          "id": "gefaesse-q1",
+          "lessonId": "gefaesse",
+          "q": "Wie heißt die Zellschicht an der blutberührten Innenfläche eines Gefäßes?",
+          "options": [
+            "Endothel.",
+            "Mesothel.",
+            "Synovialmembran.",
+            "Glatte Muskulatur."
+          ],
+          "answer": 0,
+          "explain": "Endothelzellen bilden die innere Auskleidung der Blutgefäße."
+        },
+        {
+          "id": "gefaesse-q2",
+          "lessonId": "gefaesse",
+          "q": "Welche Zellen können den Durchmesser kleiner Arterien aktiv verändern?",
+          "options": [
+            "Elastische Fasern durch aktive Kontraktion.",
+            "Endothelzellen als ringförmiger Hauptmuskel.",
+            "Glatte Muskelzellen der Gefäßwand.",
+            "Kollagenfasern durch aktive Verkürzung."
+          ],
+          "answer": 2,
+          "explain": "Kontraktion oder Entspannung der glatten Gefäßmuskulatur verändert das Lumen."
+        },
+        {
+          "id": "gefaesse-q3",
+          "lessonId": "gefaesse",
+          "q": "Welche Gefäße tragen besonders zur Regulation des Strömungswiderstands vor den Kapillaren bei?",
+          "options": [
+            "Große Hohlvenen.",
+            "Arteriolen.",
+            "Venolen.",
+            "Große elastische Arterien als wichtigste örtliche Stellglieder direkt vor jedem Kapillarnetz."
+          ],
+          "answer": 1,
+          "explain": "Arteriolen verteilen den Zufluss zu den Kapillarnetzen und beeinflussen dessen Widerstand."
+        },
+        {
+          "id": "gefaesse-q4",
+          "lessonId": "gefaesse",
+          "q": "Welchen mechanischen Nutzen haben elastische Anteile großer Arterien?",
+          "options": [
+            "Sie öffnen die Herzklappen durch eigene aktive Kontraktion.",
+            "Sie halten den Gefäßdurchmesser während des Herzzyklus unverändert.",
+            "Sie verhindern den Rückstrom anstelle der Taschenklappen.",
+            "Sie können sich beim Auswurf dehnen und anschließend zurückfedern."
+          ],
+          "answer": 3,
+          "explain": "Elastische Gefäßwände nehmen einen Teil der pulsierenden Belastung auf."
+        },
+        {
+          "id": "gefaesse-q5",
+          "lessonId": "gefaesse",
+          "q": "Welcher Bau unterstützt den Stoffaustausch an Kapillaren?",
+          "options": [
+            "Eine besonders dicke Tunica media.",
+            "Eine geschlossene elastische Membran als alleinige Wand.",
+            "Eine sehr dünne Wand mit kurzem Austauschweg.",
+            "Eine mehrlagige verhornte Zellschicht."
+          ],
+          "answer": 2,
+          "explain": "Die dünne Kapillarwand erleichtert den Austausch mit dem Gewebe."
+        },
+        {
+          "id": "gefaesse-q6",
+          "lessonId": "gefaesse",
+          "q": "Welche Gefäße sammeln Blut unmittelbar aus Kapillarnetzen?",
+          "options": [
+            "Venolen.",
+            "Arteriolen.",
+            "Große elastische Arterien.",
+            "Herzkranzarterien."
+          ],
+          "answer": 0,
+          "explain": "Venolen verbinden die mikroskopische Austauschstrecke mit dem venösen Rückweg."
+        },
+        {
+          "id": "gefaesse-q7",
+          "lessonId": "gefaesse",
+          "q": "Welche Gefäßwandschicht enthält in größeren Gefäßen besonders die glatte Muskulatur?",
+          "options": [
+            "Die Tunica intima.",
+            "Die Tunica adventitia.",
+            "Die endotheliale Basalmembran.",
+            "Die Tunica media."
+          ],
+          "answer": 3,
+          "explain": "Die mittlere Gefäßwandschicht heißt Tunica media."
+        },
+        {
+          "id": "gefaesse-q8",
+          "lessonId": "gefaesse",
+          "q": "Warum lassen sich Kapillaren verschiedener Organe nicht als gleich durchlässige Röhren behandeln?",
+          "options": [
+            "Ihr Sauerstoffgehalt bestimmt allein die Durchlässigkeit.",
+            "Ihre Wandstruktur ist an unterschiedliche Austauschaufgaben angepasst.",
+            "Alle Kapillaren besitzen denselben Wandbau, unterscheiden sich nur im Namen.",
+            "Ausschließlich der Druck nach der Kapillare entscheidet über jede Stoffpassage."
+          ],
+          "answer": 1,
+          "explain": "Kontinuierliche, fenestrierte und sinusoidale Gefäße unterscheiden sich strukturell und funktionell."
+        },
+        {
+          "id": "lymphe-q1",
+          "lessonId": "lymphe",
+          "q": "Wie heißt Gewebeflüssigkeit nach ihrem Eintritt in ein Lymphgefäß?",
+          "options": [
+            "Lymphe.",
+            "Blutplasma.",
+            "Serum.",
+            "Synovia."
+          ],
+          "answer": 0,
+          "explain": "Der Name bezeichnet die in lymphatischen Bahnen abfließende Gewebeflüssigkeit."
+        },
+        {
+          "id": "lymphe-q2",
+          "lessonId": "lymphe",
+          "q": "In welches Kreislaufkompartiment wird Lymphe letztlich zurückgeführt?",
+          "options": [
+            "In die Aorta direkt hinter der Aortenklappe.",
+            "In die Lungenarterien direkt hinter der rechten Kammer.",
+            "In das venöse Blut.",
+            "In die linke Kammer ohne venösen Anschluss."
+          ],
+          "answer": 2,
+          "explain": "Der lymphatische Abfluss verbindet sich wieder mit dem venösen Blutkreislauf."
+        },
+        {
+          "id": "lymphe-q3",
+          "lessonId": "lymphe",
+          "q": "Welche Stoffgruppe kann das Lymphsystem zusammen mit Flüssigkeit aus dem Gewebe zurückführen?",
+          "options": [
+            "Intakte Erythrozyten als reguläre Hauptfracht des Gewebeabflusses.",
+            "Ausgetretene Proteine.",
+            "An Hämoglobin gebundenen Sauerstoff als Hauptfracht jeder Lymphbahn.",
+            "Thrombozytenaggregate als regulären Ersatz des Flüssigkeitstransports."
+          ],
+          "answer": 1,
+          "explain": "Lymphatische Drainage beteiligt sich auch am Rücktransport von Proteinen aus dem Zwischenzellraum."
+        },
+        {
+          "id": "lymphe-q4",
+          "lessonId": "lymphe",
+          "q": "Welche Transportfunktion erfüllen Klappen in Lymphgefäßen?",
+          "options": [
+            "Sie erzeugen einen zentralen Schrittmacherrhythmus.",
+            "Sie lassen Flüssigkeit bevorzugt zurück in die Lymphkapillaren.",
+            "Sie halten Plasmaproteine an jedem Gefäßabschnitt vollständig zurück.",
+            "Sie begrenzen Rückfluss."
+          ],
+          "answer": 3,
+          "explain": "Klappen begünstigen die gerichtete Bewegung auf dem Rückweg zum Blut."
+        },
+        {
+          "id": "lymphe-q5",
+          "lessonId": "lymphe",
+          "q": "Welche Flüssigkeit überwacht ein Lymphknoten aus seinem Einzugsgebiet?",
+          "options": [
+            "Das Blut einer zuführenden Arterie.",
+            "Die Flüssigkeit im Gelenkraum ohne Lymphabfluss.",
+            "Lymphe.",
+            "Den Inhalt einer Vene statt des Lymphzuflusses."
+          ],
+          "answer": 2,
+          "explain": "Material aus dem Gewebe erreicht den Lymphknoten mit der Lymphe."
+        },
+        {
+          "id": "lymphe-q6",
+          "lessonId": "lymphe",
+          "q": "Welches lymphatische Organ überwacht besonders das Blut?",
+          "options": [
+            "Die Milz.",
+            "Der Thymus.",
+            "Ein regionaler Lymphknoten.",
+            "Eine Tonsille."
+          ],
+          "answer": 0,
+          "explain": "Die Milz steht funktionell mit dem Blut in Verbindung; sie ist kein Lymphknoten in einer Lymphbahn."
+        },
+        {
+          "id": "lymphe-q7",
+          "lessonId": "lymphe",
+          "q": "Welche Beschreibung trifft den Zusammenhang von Blut- und Lymphsystem?",
+          "options": [
+            "Lymphgefäße führen ausschließlich vom venösen Blut ins Gewebe.",
+            "Lymphgefäße verbinden Arterien direkt mit Venen und umgehen das Gewebe.",
+            "Lymphgefäße münden regulär wieder in die örtlichen Blutkapillaren.",
+            "Lymphgefäße ergänzen den Flüssigkeitsrücktransport und sind mit dem Blutkreislauf verbunden."
+          ],
+          "answer": 3,
+          "explain": "Das Lymphsystem führt ausgetretene Flüssigkeit zurück, ohne einen zweiten Blutkreislauf zu bilden."
+        },
+        {
+          "id": "lymphe-q8",
+          "lessonId": "lymphe",
+          "q": "Welche wichtige Aufgabe erfüllt das Abwehrzellgewebe eines Lymphknotens?",
+          "options": [
+            "Es erzeugt die Druckwelle für den gesamten Lymphstrom.",
+            "Es ermöglicht die Erkennung und Bearbeitung von Material aus dem drainierten Gewebe.",
+            "Es trennt im Normalfall alle Proteine dauerhaft aus der Lymphe ab.",
+            "Es bildet den Hauptteil der zirkulierenden Erythrozyten."
+          ],
+          "answer": 1,
+          "explain": "Lymphknoten sind organisierte Orte der Immunüberwachung und Reaktion."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-koerperfunktion-niere-2026",
+      "title": "Die Niere: Filtern, zurückholen, feinregeln",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "Harnwege und Nephron verstehen, ohne die Niere auf einen simplen Abfallfilter zu reduzieren.",
+      "minutes": 38,
+      "objectives": [
+        "Harnbildung und Harnableitung unterscheiden",
+        "Die glomeruläre Filterbarriere erklären",
+        "Rückresorption und Sekretion auseinanderhalten",
+        "ADH und weitere Nierenfunktionen einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Normale Säugetierphysiologie; keine artspezifischen Grenzwerte aus Human- oder Haustierdaten ableiten.",
+        "AT": "Normale Säugetierphysiologie; keine artspezifischen Grenzwerte aus Human- oder Haustierdaten ableiten.",
+        "CH": "Normale Säugetierphysiologie; keine artspezifischen Grenzwerte aus Human- oder Haustierdaten ableiten."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "The urinary system in animals",
+          "url": "https://www.merckvetmanual.com/urinary-system/urinary-system-introduction/the-urinary-system-in-animals",
+          "organization": "Merck Veterinary Manual; Sanderson und Carnevale",
+          "supports": "Wasser-, Elektrolyt- und Säure-Basen-Haushalt; Erythropoietin, Renin und Vitamin-D-Aktivierung; Stand April 2025."
+        },
+        {
+          "label": "Overview and anatomy: kidney",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/11-overview-and-anatomy/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Nephron und ableitende Harnwege; indexierten Originaltext gelesen. Nierenkörperchen liegen in der Rinde; keine starre Gewebequote übernommen."
+        },
+        {
+          "label": "The glomerulus",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/11-the-glomerulus/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Afferente/efferente Arteriole, Filterbarriere aus Endothel, Basalmembran und Podozyten; Bowman-Raum."
+        },
+        {
+          "label": "Proximal tubules",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/11-proximal-tubules/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Rückresorption im proximalen Tubulus und Bürstensaum; keine starren Resorptionsprozente."
+        },
+        {
+          "label": "Loop of Henle",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/11-loop-of-henle/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Unterschiedliche Wasser- und Salzpermeabilität; indexierter Originaltext gelesen."
+        },
+        {
+          "label": "Your kidneys and how they work",
+          "url": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+          "organization": "NIDDK, NIH",
+          "supports": "Glomerulärer Filter, tubulärer Rücktransport, Harnwege und Säureausscheidung als allgemeines Säugetierprinzip; menschliche Mengenwerte nicht übertragen."
+        },
+        {
+          "label": "The kidneys and osmoregulatory organs",
+          "url": "https://openstax.org/books/biology-2e/pages/41-2-the-kidneys-and-osmoregulatory-organs",
+          "organization": "OpenStax, Rice University",
+          "supports": "Allgemeine Prinzipien Filtration, Rückresorption und Sekretion; Humananatomie, Zahlen und die unzutreffende Lageangabe in der Bauchhöhle nicht übernommen. Die Textbehauptungen Filtermembranen in der afferenten Arteriole, vollständige Wasserresorption bei Bedarf und EPO aus dem juxtaglomerulären Komplex werden ebenfalls nicht übernommen."
+        },
+        {
+          "label": "Antidiuretic hormone",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/adh.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "supports": "ADH-Wirkung über regulierte Wasserkanäle am Sammelrohr, Hypothalamus und Freisetzung aus Neurohypophyse; indexierter Originaltext gelesen."
+        },
+        {
+          "label": "Diabetes insipidus: normal vasopressin function",
+          "url": "https://www.niddk.nih.gov/health-information/kidney-disease/diabetes-insipidus",
+          "organization": "NIDDK, NIH",
+          "supports": "Nur normale Bildungs-, Freisetzungs- und Wassererhaltungsfunktion von Vasopressin; keine klinische Anleitung."
+        },
+        {
+          "label": "Collecting ducts",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/11-collecting-ducts/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Hauptzellen mit ADH-regulierten Aquaporinen und Schaltzellen im Säure-Basen-Haushalt; indexierten Kapiteltext gelesen."
+        },
+        {
+          "label": "Filtration barrier",
+          "url": "https://medcell.org/histology/urinary_system_lab/filtration_barrier.php",
+          "organization": "Histology@Yale / Medcell",
+          "supports": "Originallehrtext vollständig gelesen: Endothel, Basalmembran, Podozytenfortsätze und Schlitzmembranen."
+        },
+        {
+          "label": "Renal corpuscle",
+          "url": "https://histology.leeds.ac.uk/home/urinary/renal_corpuscle/",
+          "organization": "University of Leeds, Histology Guide",
+          "supports": "Originaltext zu Bowman-Raum, weiterem Tubulusweg und Filteranteilen; offensichtlich unplausible Größen-/Massegrenzen der Seite nicht übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "anatomie",
+          "title": "Niere und Harnwege sind verschiedene Stationen",
+          "paragraphs": [
+            "Das Nephron ist die funktionelle Grundeinheit der Niere. Zu seinem Anfang gehören ein Kapillarknäuel, der Glomerulus, und die umgebende Bowman-Kapsel. Danach folgt ein Tubulussystem. Sammelrohre nehmen den weiterbearbeiteten Inhalt auf und leiten ihn in Richtung der ableitenden Harnwege. Nierenrinde und Nierenmark sind Gewebebereiche, keine zwei getrennten Harnblasen.",
+            "Die Nierenkörperchen liegen in der Rinde; Tubulusabschnitte und Sammelrohre durchziehen unterschiedliche Nierenzonen. In der Niere wird der Harn gebildet. Harnleiter transportieren ihn zur Harnblase, die ihn vorübergehend speichert. Die Harnröhre führt von dort nach außen. Blut tritt dagegen über Nierenarterien ein und verlässt das Organ über Nierenvenen. Harnweg und Blutweg dürfen in einer Skizze nicht vermischt werden."
+          ],
+          "takeaway": "Nieren bilden, Harnleiter leiten, Harnblase speichert.",
+          "exercise": "Zeichne Blutweg und Harnweg mit unterschiedlichen Farben."
+        },
+        {
+          "id": "filter",
+          "title": "Die Filterbarriere ist durchlässig und selektiv",
+          "paragraphs": [
+            "Blut erreicht den Glomerulus durch eine zuführende Arteriole und verlässt ihn über eine abführende Arteriole. Druckverhältnisse bewegen Wasser und kleine gelöste Stoffe über die glomeruläre Barriere in den Bowman-Raum. Blutzellen und große Proteine werden normalerweise weitgehend zurückgehalten. Das Filtrat ist deshalb weder vollständiges Blut noch schon unverändert auszuscheidender Endharn.",
+            "Drei wichtige Barriereanteile sind gefenstertes Kapillarendothel, glomeruläre Basalmembran und Podozyten. Die Fußfortsätze der Podozyten bilden mit ihren Schlitzmembranen einen zusätzlichen selektiven Weg. Aus dem Bowman-Raum gelangt das Filtrat in den proximalen Tubulus. „Alles durchlassen und erst in der Blase sortieren“ beschreibt die Nierenfunktion daher falsch."
+          ],
+          "takeaway": "Filtration trennt bereits am Anfang des Nephrons unterschiedlich gut passierende Bestandteile.",
+          "exercise": "Ordne Kapillarlumen, Filterbarriere, Bowman-Raum und proximalen Tubulus."
+        },
+        {
+          "id": "tubulus",
+          "title": "Rückresorption und Sekretion haben entgegengesetzte Richtungen",
+          "paragraphs": [
+            "Rückresorption holt Stoffe aus dem Tubulusinhalt über das Gewebe wieder ins Blut. Sekretion bringt Stoffe in die Gegenrichtung zusätzlich in den Tubulus. Im proximalen Abschnitt werden bereits viel Wasser, Elektrolyte und Nährstoffe zurückgewonnen. Ein Bürstensaum aus Mikrovilli vergrößert die Oberfläche. Glucose im Filter muss daher nicht zwangsläufig in gleicher Menge im ausgeschiedenen Harn erscheinen.",
+            "Abschnitte der Henle-Schleife sind unterschiedlich durchlässig: Der dünne absteigende Schenkel lässt Wasser gut passieren; der aufsteigende Schenkel hält Wasser stärker zurück, während Salz transportiert wird. Solche Unterschiede unterstützen das Konzentrationsgefälle im Nierenmark. Dieses Gefälle und die regulierbare Durchlässigkeit späterer Abschnitte arbeiten bei der Harnkonzentrierung zusammen. Es handelt sich nicht um einen überall gleichartigen Abflusskanal."
+          ],
+          "takeaway": "Tubuli bearbeiten das Filtrat aktiv und abschnittsweise verschieden.",
+          "exercise": "Markiere Rückresorption mit einem Pfeil zum Blut und Sekretion mit einem Pfeil in den Tubulus."
+        },
+        {
+          "id": "regulation",
+          "title": "Wasserkanäle und Hormone verfeinern die Bilanz",
+          "paragraphs": [
+            "ADH, auch Vasopressin genannt, wird in Nervenzellen des Hypothalamus gebildet und aus dem Hypophysenhinterlappen in das Blut freigesetzt. An Sammelrohrzellen fördert es den Einbau von Aquaporinen, also Wasserkanälen. Dadurch kann mehr Wasser zurückgewonnen werden. Die Wasserbewegung benötigt weiterhin ein geeignetes osmotisches Gefälle; das Hormon ist keine Pumpe, die beliebig Wasser erzeugt.",
+            "Die Niere wirkt außerdem am Säure-Basen-Haushalt mit. Sie bildet Erythropoietin als Signal für die Bildung roter Blutkörperchen, setzt Renin als Teil der Blutdruck- und Salzregulation frei und beteiligt sich an der Aktivierung von Vitamin D. Diese Aufgaben verbinden sie mit Blut, Kreislauf und Mineralstoffhaushalt. Das erklärt, weshalb „Abfallfilter“ allein das Organ unvollständig beschreibt."
+          ],
+          "takeaway": "Die Niere hält das innere Milieu durch Transport und hormonelle Funktionen mit stabil.",
+          "exercise": "Verbinde ADH, Erythropoietin, Renin und Vitamin-D-Aktivierung mit je einer Funktion."
+        }
+      ],
+      "questions": [
+        {
+          "id": "anatomie-q1",
+          "lessonId": "anatomie",
+          "q": "Wie heißt die funktionelle Grundeinheit der Niere?",
+          "options": [
+            "Nierenkörperchen allein ohne Tubulus.",
+            "Nephron.",
+            "Sammelrohr allein ohne Filteranfang.",
+            "Nierenkelch."
+          ],
+          "answer": 1,
+          "explain": "Ein Nephron verbindet einen Filteranfang mit der anschließenden tubulären Bearbeitung."
+        },
+        {
+          "id": "anatomie-q2",
+          "lessonId": "anatomie",
+          "q": "In welcher Nierenzone liegen die Nierenkörperchen?",
+          "options": [
+            "Ausschließlich im Nierenmark.",
+            "Im Nierenbecken.",
+            "In der Harnleiterwand.",
+            "In der Nierenrinde."
+          ],
+          "answer": 3,
+          "explain": "Glomerulus und Bowman-Kapsel bilden das Nierenkörperchen in der Rinde."
+        },
+        {
+          "id": "anatomie-q3",
+          "lessonId": "anatomie",
+          "q": "Welche Struktur umgibt den Kapillarknäuel eines Nierenkörperchens?",
+          "options": [
+            "Die Bowman-Kapsel.",
+            "Die äußere Nierenkapsel unmittelbar als Filterhülle.",
+            "Die Wand des Nierenbeckens.",
+            "Die Schleimhaut der Harnblase."
+          ],
+          "answer": 0,
+          "explain": "Der Bowman-Raum nimmt das filtrierte Flüssigkeitsvolumen um den Glomerulus auf."
+        },
+        {
+          "id": "anatomie-q4",
+          "lessonId": "anatomie",
+          "q": "Welche Aufgabe hat der Harnleiter?",
+          "options": [
+            "Er führt Harn von der Blase nach außen.",
+            "Er führt Blut aus der Aorta in die Niere.",
+            "Er führt Harn von der Niere zur Harnblase.",
+            "Er filtriert Blut im Nierenkörperchen."
+          ],
+          "answer": 2,
+          "explain": "Harnleiter sind ableitende Harnwege; sie bilden keinen Primärharnfilter."
+        },
+        {
+          "id": "anatomie-q5",
+          "lessonId": "anatomie",
+          "q": "Wo wird Harn vor der Abgabe nach außen vorübergehend gespeichert?",
+          "options": [
+            "Im Bowman-Raum.",
+            "Im Nierenbecken als Hauptspeicher zwischen den Entleerungen.",
+            "Im Sammelrohr als Hauptspeicher zwischen den Entleerungen.",
+            "In der Harnblase."
+          ],
+          "answer": 3,
+          "explain": "Die Harnblase dient der Zwischenspeicherung des gebildeten Harns."
+        },
+        {
+          "id": "anatomie-q6",
+          "lessonId": "anatomie",
+          "q": "Wie heißt die Verbindung von der Harnblase nach außen?",
+          "options": [
+            "Harnleiter.",
+            "Harnröhre.",
+            "Nierenvene.",
+            "Sammelrohr."
+          ],
+          "answer": 1,
+          "explain": "Die Harnröhre ist vom Harnleiter zwischen Niere und Blase zu unterscheiden."
+        },
+        {
+          "id": "anatomie-q7",
+          "lessonId": "anatomie",
+          "q": "Über welchen Gefäßtyp erreicht Blut die Niere?",
+          "options": [
+            "Über einen Harnleiter.",
+            "Über ein Sammelrohr.",
+            "Über eine Nierenarterie.",
+            "Über den Bowman-Raum."
+          ],
+          "answer": 2,
+          "explain": "Die Nierenarterie gehört zum Blutweg, nicht zum abführenden Harnweg."
+        },
+        {
+          "id": "anatomie-q8",
+          "lessonId": "anatomie",
+          "q": "Welches System nimmt den Inhalt nach seiner Bearbeitung in den Tubuli auf?",
+          "options": [
+            "Das Sammelrohrsystem.",
+            "Das Nierenbecken unmittelbar ohne Sammelrohrpassage.",
+            "Das Nierenvenenlumen.",
+            "Die efferente Arteriole."
+          ],
+          "answer": 0,
+          "explain": "Sammelrohre führen den bearbeiteten Tubulusinhalt in Richtung Harnableitung weiter."
+        },
+        {
+          "id": "filter-q1",
+          "lessonId": "filter",
+          "q": "Welches Gefäß führt Blut unmittelbar in den Glomerulus?",
+          "options": [
+            "Die efferente Arteriole.",
+            "Die afferente Arteriole.",
+            "Die Bowman-Kapsel.",
+            "Das Sammelrohr."
+          ],
+          "answer": 1,
+          "explain": "Afferent bedeutet hier zuführend zum Kapillarknäuel."
+        },
+        {
+          "id": "filter-q2",
+          "lessonId": "filter",
+          "q": "Über welches Gefäß verlässt Blut den Glomerulus?",
+          "options": [
+            "Die afferente Arteriole.",
+            "Den proximalen Tubulus.",
+            "Den Harnleiter.",
+            "Die efferente Arteriole."
+          ],
+          "answer": 3,
+          "explain": "Efferent bezeichnet den abführenden Blutweg aus dem Glomerulus."
+        },
+        {
+          "id": "filter-q3",
+          "lessonId": "filter",
+          "q": "Was treibt die Bildung des glomerulären Filtrats an?",
+          "options": [
+            "Druckverhältnisse über der Filterbarriere.",
+            "Die Kontraktion der Harnblase.",
+            "Aktive Aufnahme des gesamten Wassers durch die Podozyten.",
+            "Die peristaltische Bewegung des Harnleiters."
+          ],
+          "answer": 0,
+          "explain": "Hydrostatische und kolloidosmotische Kräfte beeinflussen die Filtration."
+        },
+        {
+          "id": "filter-q4",
+          "lessonId": "filter",
+          "q": "Welche Bestandteile werden im normalen glomerulären Filter weitgehend im Blut zurückgehalten?",
+          "options": [
+            "Sämtliches Wasser.",
+            "Sämtliche kleinen gelösten Stoffe.",
+            "Blutzellen und große Proteine.",
+            "Alle Elektrolyte ohne Ausnahme."
+          ],
+          "answer": 2,
+          "explain": "Die Filterbarriere lässt Wasser und kleine Stoffe wesentlich leichter passieren als Blutzellen und große Proteine."
+        },
+        {
+          "id": "filter-q5",
+          "lessonId": "filter",
+          "q": "Welche Zellart besitzt an der glomerulären Barriere charakteristische Fußfortsätze?",
+          "options": [
+            "Zellen des proximalen Tubulus.",
+            "Glatte Muskelzellen der afferenten Arteriole.",
+            "Urothelzellen des Nierenbeckens.",
+            "Podozyten."
+          ],
+          "answer": 3,
+          "explain": "Podozytenfortsätze und Schlitzmembranen wirken an der Selektivität mit."
+        },
+        {
+          "id": "filter-q6",
+          "lessonId": "filter",
+          "q": "Welche Struktur liegt zwischen Kapillarendothel und Podozyten als Teil der Filterbarriere?",
+          "options": [
+            "Die äußere Nierenkapsel.",
+            "Die glomeruläre Basalmembran.",
+            "Die Tunica media der zuführenden Arteriole.",
+            "Das Urothel des Nierenbeckens."
+          ],
+          "answer": 1,
+          "explain": "Die Basalmembran ist einer der wesentlichen Bestandteile der glomerulären Barriere."
+        },
+        {
+          "id": "filter-q7",
+          "lessonId": "filter",
+          "q": "Wo sammelt sich das frisch gebildete Filtrat zunächst?",
+          "options": [
+            "Im Lumen der efferenten Arteriole.",
+            "Im Nierenvenenlumen.",
+            "Im Bowman-Raum.",
+            "Unmittelbar in der Harnröhre."
+          ],
+          "answer": 2,
+          "explain": "Aus dem Bowman-Raum gelangt das Filtrat anschließend in den proximalen Tubulus."
+        },
+        {
+          "id": "filter-q8",
+          "lessonId": "filter",
+          "q": "Warum entspricht das glomeruläre Filtrat nicht automatisch dem Endharn?",
+          "options": [
+            "Es wird im Tubulussystem weiter verändert.",
+            "Weil es zunächst ausschließlich aus Blutzellen besteht.",
+            "Weil seine Zusammensetzung nach Filtration grundsätzlich unverändert bleibt.",
+            "Weil der Harnleiter erst noch sämtliche Blutzellen herausfiltern muss."
+          ],
+          "answer": 0,
+          "explain": "Rückresorption und Sekretion ändern seine Zusammensetzung nach der Filtration."
+        },
+        {
+          "id": "tubulus-q1",
+          "lessonId": "tubulus",
+          "q": "Welche Transportrichtung bezeichnet tubuläre Rückresorption?",
+          "options": [
+            "Vom Blut zusätzlich in den Tubulus.",
+            "Vom Tubulusinhalt zurück in Richtung Blut.",
+            "Aus dem Tubulus unmittelbar über das Sammelrohr nach außen.",
+            "Vom Nierenbecken zurück zum Glomerulus."
+          ],
+          "answer": 1,
+          "explain": "Rückresorption gewinnt bereits filtrierte Stoffe für den Körper zurück."
+        },
+        {
+          "id": "tubulus-q2",
+          "lessonId": "tubulus",
+          "q": "Welche Transportrichtung bezeichnet tubuläre Sekretion?",
+          "options": [
+            "Rückführung filtrierter Stoffe aus dem Tubulus ins Blut.",
+            "Filtration aus dem Kapillarknäuel in den Bowman-Raum.",
+            "Weiterleitung von Tubulusinhalt in das anschließende Sammelrohr.",
+            "Zusätzliche Abgabe aus dem Körperkompartiment in den Tubulusinhalt."
+          ],
+          "answer": 3,
+          "explain": "Sekretion ergänzt im Tubulus Stoffe, die ausgeschieden werden können."
+        },
+        {
+          "id": "tubulus-q3",
+          "lessonId": "tubulus",
+          "q": "Welche Struktur vergrößert die zum Tubuluslumen gerichtete Oberfläche proximaler Tubuluszellen?",
+          "options": [
+            "Ein Bürstensaum aus Mikrovilli.",
+            "Ein Saum aus beweglichen Flimmerhärchen als hauptsächlicher Lumenbesatz.",
+            "Eine mehrschichtige Lage verhornter Zellen.",
+            "Eine Lage abgeflachter Podozytenfortsätze statt des proximalen Epithels."
+          ],
+          "answer": 0,
+          "explain": "Mikrovilli erhöhen die für Transportvorgänge verfügbare Oberfläche."
+        },
+        {
+          "id": "tubulus-q4",
+          "lessonId": "tubulus",
+          "q": "Was gehört zu den typischen Aufgaben des proximalen Tubulus?",
+          "options": [
+            "Die endgültige Speicherung des Harns.",
+            "Die eigentliche Filtration durch glomeruläre Kapillarwände.",
+            "Rückgewinnung von Wasser, Elektrolyten und Nährstoffen.",
+            "Die hauptsächliche Bildung des ADH."
+          ],
+          "answer": 2,
+          "explain": "Der proximale Tubulus beginnt früh mit der umfangreichen Bearbeitung des Filtrats."
+        },
+        {
+          "id": "tubulus-q5",
+          "lessonId": "tubulus",
+          "q": "Warum muss filtrierte Glucose nicht vollständig im Endharn erscheinen?",
+          "options": [
+            "Sie wird schon vom normalen glomerulären Filter vollständig zurückgehalten.",
+            "Sie wird normalerweise erst in der Harnblasenwand zurückgewonnen.",
+            "Sie wird bei der Filtration vollständig aus dem Bowman-Raum ins Blut zurückgedrückt.",
+            "Sie kann im Tubulus wieder aufgenommen werden."
+          ],
+          "answer": 3,
+          "explain": "Normal funktionierende Rückresorption gewinnt filtrierte Glucose zurück."
+        },
+        {
+          "id": "tubulus-q6",
+          "lessonId": "tubulus",
+          "q": "Welche Eigenschaft kennzeichnet den dünnen absteigenden Schenkel der Henle-Schleife?",
+          "options": [
+            "Geringe Wasserpermeabilität bei überwiegend aktivem Salztransport.",
+            "Eine hohe Wasserdurchlässigkeit.",
+            "Dieselbe Wasser- und Salzpermeabilität wie jeder aufsteigende Abschnitt.",
+            "Eine glomeruläre Filterbarriere mit Podozyten statt Tubulusepithel."
+          ],
+          "answer": 1,
+          "explain": "Wasser kann dort entlang des Konzentrationsgefälles den Tubulus verlassen."
+        },
+        {
+          "id": "tubulus-q7",
+          "lessonId": "tubulus",
+          "q": "Welche Kombination beschreibt den aufsteigenden Schleifenschenkel grundsätzlich?",
+          "options": [
+            "Hohe Wasserpermeabilität ohne relevante Salzbewegung.",
+            "Identische Wasser- und Salzpermeabilität wie im dünnen absteigenden Abschnitt.",
+            "Salztransport bei geringer Wasserdurchlässigkeit.",
+            "Nur ein passiver Flüssigkeitsabfluss ohne selektive Wandfunktion."
+          ],
+          "answer": 2,
+          "explain": "Die unterschiedliche Wasser- und Salzbewegung unterstützt das Konzentrationsgefälle im Mark."
+        },
+        {
+          "id": "tubulus-q8",
+          "lessonId": "tubulus",
+          "q": "Welche Voraussetzung im Nierenmark unterstützt die spätere Harnkonzentrierung?",
+          "options": [
+            "Ein osmotisches Konzentrationsgefälle.",
+            "Eine identische Konzentration in allen Kompartimenten ohne Gefälle.",
+            "Ein Wasserfluss entgegen jedem osmotischen Gefälle ohne weitere Voraussetzung.",
+            "Die Aufhebung sämtlicher Salzunterschiede zwischen Mark und Tubulusinhalt."
+          ],
+          "answer": 0,
+          "explain": "Das Gefälle schafft eine Triebkraft für Wasserbewegung aus entsprechend durchlässigen Tubulusabschnitten."
+        },
+        {
+          "id": "regulation-q1",
+          "lessonId": "regulation",
+          "q": "Welches Hormon fördert im Sammelrohr die Wasserrückgewinnung?",
+          "options": [
+            "Erythropoietin.",
+            "ADH beziehungsweise Vasopressin.",
+            "Renin.",
+            "Calcitriol."
+          ],
+          "answer": 1,
+          "explain": "ADH reguliert die Wasserpermeabilität bestimmter Sammelrohrzellen."
+        },
+        {
+          "id": "regulation-q2",
+          "lessonId": "regulation",
+          "q": "Was sind Aquaporine?",
+          "options": [
+            "Transportproteine ausschließlich für Natriumionen.",
+            "Zellkontakte der glomerulären Schlitzmembran.",
+            "Botenstoffe, die im Blut zum Sammelrohr transportiert werden.",
+            "Membranproteine, die als Wasserkanäle wirken."
+          ],
+          "answer": 3,
+          "explain": "Aquaporine ermöglichen Wassertransport durch Zellmembranen."
+        },
+        {
+          "id": "regulation-q3",
+          "lessonId": "regulation",
+          "q": "Wo wird ADH gebildet?",
+          "options": [
+            "In Nervenzellen des Hypothalamus.",
+            "Im Hypophysenvorderlappen.",
+            "In den Hauptzellen des Sammelrohrs.",
+            "In der Nebennierenrinde."
+          ],
+          "answer": 0,
+          "explain": "Bildung im Hypothalamus und Freisetzung aus dem Hypophysenhinterlappen sind unterschiedliche Stationen."
+        },
+        {
+          "id": "regulation-q4",
+          "lessonId": "regulation",
+          "q": "Von wo wird ADH in den Blutkreislauf freigesetzt?",
+          "options": [
+            "Aus der Nebennierenrinde.",
+            "Aus dem Hypophysenvorderlappen.",
+            "Aus dem Hypophysenhinterlappen.",
+            "Aus der Schilddrüse."
+          ],
+          "answer": 2,
+          "explain": "Die Neurohypophyse setzt das zuvor in hypothalamischen Nervenzellen gebildete Hormon frei."
+        },
+        {
+          "id": "regulation-q5",
+          "lessonId": "regulation",
+          "q": "Welchen Einfluss hat die Niere auf den Säure-Basen-Haushalt?",
+          "options": [
+            "Sie dient nur der Speicherung bereits festgelegter Säureanteile.",
+            "Sie kann den Säure-Basen-Haushalt nur über die Atemfrequenz beeinflussen.",
+            "Ihre Säureausscheidung bleibt unabhängig vom inneren Milieu konstant.",
+            "Sie verändert unter anderem die Ausscheidung von Säure und den Umgang mit Bicarbonat."
+          ],
+          "answer": 3,
+          "explain": "Tubuläre Vorgänge beteiligen sich an der Regulation des inneren Milieus."
+        },
+        {
+          "id": "regulation-q6",
+          "lessonId": "regulation",
+          "q": "Welche Nierenfunktion verbindet das Organ mit der Bildung roter Blutkörperchen?",
+          "options": [
+            "Die Freisetzung von Renin.",
+            "Die Bildung von Erythropoietin.",
+            "Die Aktivierung von Vitamin D als identisches Blutbildungssignal.",
+            "Die Speicherung von Vasopressin als unmittelbares Blutbildungssignal."
+          ],
+          "answer": 1,
+          "explain": "Erythropoietin wirkt als Signal auf die Blutbildung."
+        },
+        {
+          "id": "regulation-q7",
+          "lessonId": "regulation",
+          "q": "Welcher von der Niere freigesetzte Faktor gehört zur Blutdruck- und Salzregulation?",
+          "options": [
+            "Erythropoietin.",
+            "Aldosteron.",
+            "Renin.",
+            "Vasopressin."
+          ],
+          "answer": 2,
+          "explain": "Renin ist ein Bestandteil des hormonellen Regelwerks für Kreislauf und Natriumhaushalt."
+        },
+        {
+          "id": "regulation-q8",
+          "lessonId": "regulation",
+          "q": "An welchem vitaminbezogenen Prozess ist die Niere beteiligt?",
+          "options": [
+            "An der Aktivierung von Vitamin D.",
+            "An der bakteriellen Bildung von Vitamin K im Darm.",
+            "An der Bereitstellung von Retinal für den Sehzyklus als eigener Hauptaufgabe.",
+            "An der Speicherung von Vitamin B12 als ihrem kennzeichnenden Vitaminprozess."
+          ],
+          "answer": 0,
+          "explain": "Die Niere ist Teil des Stoffwegs zur aktiven Vitamin-D-Form und damit des Mineralstoffhaushalts."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-koerperfunktion-genetik-2026",
+      "title": "Vererbung verstehen: Vom Allel zum komplexen Merkmal",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "imageKey": "wildkunde",
+      "description": "DNA-Begriffe, Meiose und Erbmodelle präzise unterscheiden.",
+      "minutes": 40,
+      "objectives": [
+        "Genetische Begriffe unterscheiden",
+        "Die meiotischen Teilungen erklären",
+        "Ein einfaches autosomales Lernmodell auswerten",
+        "Polygenie, Umwelt und Penetranz unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame biologische Grundlagen. A und a sind ein vereinfachtes Lernmodell, keine konkrete Krankheit oder Zuchtempfehlung.",
+        "AT": "Gemeinsame biologische Grundlagen. A und a sind ein vereinfachtes Lernmodell, keine konkrete Krankheit oder Zuchtempfehlung.",
+        "CH": "Gemeinsame biologische Grundlagen. A und a sind ein vereinfachtes Lernmodell, keine konkrete Krankheit oder Zuchtempfehlung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Genetics glossary",
+          "url": "https://vgl.ucdavis.edu/resources/genetics-glossary",
+          "organization": "UC Davis Veterinary Genetics Laboratory",
+          "supports": "Tiergenetische Begriffe und Erbmodelle."
+        },
+        {
+          "label": "VGL Vocab",
+          "url": "https://vgl.ucdavis.edu/vgl-vocab",
+          "organization": "UC Davis Veterinary Genetics Laboratory",
+          "supports": "Basenpaarung, Allele, Mutationen und Punnett-Quadrat; dieselbe Quellenfamilie."
+        },
+        {
+          "label": "Allele",
+          "url": "https://www.genome.gov/genetics-glossary/Allele",
+          "organization": "NHGRI, NIH",
+          "supports": "Sequenzvarianten und homo-/heterozygote Konstellationen."
+        },
+        {
+          "label": "Base pair",
+          "url": "https://www.genome.gov/genetics-glossary/Base-Pair",
+          "organization": "NHGRI, NIH",
+          "supports": "Komplementäre Basenpaarung."
+        },
+        {
+          "label": "Locus",
+          "url": "https://www.genome.gov/genetics-glossary/Locus",
+          "organization": "NHGRI, NIH",
+          "supports": "Genomische Position."
+        },
+        {
+          "label": "Chromosome",
+          "url": "https://www.genome.gov/genetics-glossary/Chromosome",
+          "organization": "NHGRI, NIH",
+          "supports": "Verpackung von DNA mit Protein; keine Human-Chromosomenzahlen übertragen."
+        },
+        {
+          "label": "Genome",
+          "url": "https://www.genome.gov/genetics-glossary/Genome",
+          "organization": "NHGRI, NIH",
+          "supports": "Gesamtheit der DNA einschließlich mitochondrialer DNA."
+        },
+        {
+          "label": "Genotype",
+          "url": "https://www.genome.gov/genetics-glossary/genotype",
+          "organization": "NHGRI, NIH",
+          "supports": "Allelkombination am betrachteten Ort."
+        },
+        {
+          "label": "Phenotype",
+          "url": "https://www.genome.gov/genetics-glossary/Phenotype",
+          "organization": "NHGRI, NIH",
+          "supports": "Merkmal und Umwelt."
+        },
+        {
+          "label": "Meiosis",
+          "url": "https://www.genome.gov/genetics-glossary/Meiosis",
+          "organization": "NHGRI, NIH",
+          "supports": "Reduktion des Chromosomensatzes; kein vier-Eizellen-Modell."
+        },
+        {
+          "label": "Crossing over",
+          "url": "https://www.genome.gov/genetics-glossary/Crossing-Over",
+          "organization": "NHGRI, NIH",
+          "supports": "Austausch und neue Allelkombinationen."
+        },
+        {
+          "label": "What is meiosis?",
+          "url": "https://www.yourgenome.org/theme/what-is-meiosis/",
+          "organization": "Wellcome Connecting Science",
+          "supports": "Verdopplung, Meiose I und II."
+        },
+        {
+          "label": "What is inheritance?",
+          "url": "https://www.yourgenome.org/theme/what-is-inheritance/",
+          "organization": "Wellcome Connecting Science",
+          "supports": "Diploid/haploid, Befruchtung und komplexe Erbgänge; fehlerhafte vereinfachte Zweimerkmals-Erbsenpassage nicht übernommen."
+        },
+        {
+          "label": "Recessive traits and alleles",
+          "url": "https://www.genome.gov/genetics-glossary/Recessive-Traits-Alleles",
+          "organization": "NHGRI, NIH",
+          "supports": "Einfacher autosomal-rezessiver Erbgang."
+        },
+        {
+          "label": "Polygenic trait",
+          "url": "https://www.genome.gov/genetics-glossary/Polygenic-Trait",
+          "organization": "NHGRI, NIH",
+          "supports": "Mehrere Gene und zusätzlicher Umwelteinfluss."
+        },
+        {
+          "label": "Reduced penetrance and variable expressivity",
+          "url": "https://medlineplus.gov/genetics/understanding/inheritance/penetranceexpressivity/",
+          "organization": "NLM, NIH",
+          "supports": "Allgemeiner Penetranzbegriff gegen Tiergenetik."
+        },
+        {
+          "label": "Mutation",
+          "url": "https://www.genome.gov/genetics-glossary/Mutation",
+          "organization": "NHGRI, NIH",
+          "supports": "Sequenzänderung, Keimbahn und somatische Varianten."
+        },
+        {
+          "label": "Linkage",
+          "url": "https://www.genome.gov/genetics-glossary/Linkage",
+          "organization": "NHGRI, NIH",
+          "supports": "Genetische Kopplung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "begriffe",
+          "title": "DNA, Gen und Merkmal sind unterschiedliche Ebenen",
+          "paragraphs": [
+            "DNA enthält die Basen Adenin, Thymin, Guanin und Cytosin. In der Doppelhelix paaren A mit T sowie G mit C. Chromosomen organisieren DNA zusammen mit Proteinen. Ein Gen ist ein funktioneller DNA-Abschnitt; sein Locus bezeichnet die Lage. Alternative Sequenzvarianten am betrachteten Ort heißen Allele. Gen, Position und Variante sind folglich nicht dasselbe.",
+            "Die Allelkombination eines Tieres am betrachteten Ort heißt Genotyp. Der Phänotyp bezeichnet ein beobachtbares oder messbares Merkmal. Das Genom umfasst die gesamte Erbinformation; bei Säugetieren gehört auch mitochondriale DNA dazu. Das Erscheinungsbild kann aus Genotyp und Umwelt gemeinsam hervorgehen. Ein Foto ist deshalb keine vollständige genetische Analyse."
+          ],
+          "takeaway": "Genotyp bezeichnet die genetische Konstellation, Phänotyp das beobachtete Merkmal.",
+          "exercise": "Erkläre Gen, Locus und Allel mit einer eigenen Chromosomenskizze."
+        },
+        {
+          "id": "meiose",
+          "title": "Wie Keimzellen den Chromosomensatz halbieren",
+          "paragraphs": [
+            "Diploid bedeutet zwei Chromosomensätze, haploid einen. Die Meiose reduziert den Satz bei der Keimzellbildung. Vor den beiden Teilungen wird die DNA einmal verdoppelt. In Meiose I werden die homologen Chromosomen getrennt, in Meiose II die Schwesterchromatiden. Das ist etwas anderes als zweimal einen vollständigen diploiden Satz neu herzustellen.",
+            "Crossing-over tauscht Abschnitte zwischen gepaarten homologen Chromosomen aus und schafft neue Allelkombinationen. Bei der Befruchtung kommen mütterlicher und väterlicher Satz zusammen. Menschliche Chromosomenzahlen sind keine Zahlen für Wildarten."
+          ],
+          "takeaway": "Meiose I trennt homologe Chromosomen, Meiose II Schwesterchromatiden.",
+          "exercise": "Verfolge beide Teilungen mit verschiedenfarbigen homologen Chromosomenpaaren."
+        },
+        {
+          "id": "modell",
+          "title": "Ein einfaches Erbmodell richtig lesen",
+          "paragraphs": [
+            "Im ausdrücklich vereinfachten autosomalen Lernmodell gibt es A und a. A/A und a/a sind homozygot, A/a ist heterozygot. Für das betrachtete Merkmal sei A vollständig dominant und a rezessiv. Ein A/a-Tier kann a tragen und weitergeben, ohne den rezessiven Phänotyp zu zeigen. Dominant bedeutet dabei weder häufiger noch gesundheitlich besser.",
+            "Eine Keimzelle eines A/a-Tieres erhält am betrachteten Ort A oder a. Ein Punnett-Quadrat kombiniert mögliche elterliche Beiträge und beschreibt Wahrscheinlichkeiten. Beim Modell A/a × A/a ergeben sich A/A, A/a, a/A und a/a als vier gleich wahrscheinliche Kombinationen. Ein Viertel Wahrscheinlichkeit für a/a garantiert nicht genau ein solches Tier in jedem Wurf aus vier Jungtieren. Das Modell gilt nur unter seinen gesetzten Annahmen."
+          ],
+          "takeaway": "Wahrscheinlichkeiten sind keine vorgeschriebene Wurfaufteilung.",
+          "exercise": "Fülle A/a × A/a aus und trenne Genotyp- von Phänotypanteilen."
+        },
+        {
+          "id": "komplex",
+          "title": "Wo die einfache Buchstabenregel endet",
+          "paragraphs": [
+            "Polygen bedeutet, dass mehrere Gene an einem Merkmal mitwirken. Kommen relevante Umweltwirkungen hinzu, spricht man von multifaktorieller Ausprägung. Eng benachbarte Orte auf demselben Chromosom können häufiger gemeinsam vererbt werden; völlig unabhängige Verteilung passt dann nicht ohne Weiteres. Penetranz beschreibt den Anteil der Tiere mit einer bestimmten genetischen Konstellation, die das betrachtete Merkmal tatsächlich zeigen.",
+            "Eine Mutation ist zunächst eine Änderung der DNA-Sequenz und nicht automatisch schädlich. Keimbahnveränderungen können Nachkommen erreichen; eine allein in einer Körperzelle entstandene somatische Veränderung wird nicht auf diesem Weg vererbt. Für Prognosen müssen untersuchte Variante, Merkmal und Population bekannt sein. Ein Ergebnis zu einem Ort ist keine Gesamtaussage über Gesundheit oder jagdliche Eignung."
+          ],
+          "takeaway": "Ein Befund braucht ein konkretes Merkmal und ein passendes Erbmodell.",
+          "exercise": "Unterscheide polygen, multifaktoriell und unvollständige Penetranz."
+        }
+      ],
+      "questions": [
+        {
+          "id": "begriffe-q1",
+          "lessonId": "begriffe",
+          "q": "Welche Basenpaarung gehört zur DNA-Doppelhelix?",
+          "options": [
+            "A mit G und T mit C.",
+            "A mit C und G mit T.",
+            "A mit T und G mit C.",
+            "A mit A und T mit T."
+          ],
+          "answer": 2,
+          "explain": "Komplementäre Basenpaarung verbindet die beiden DNA-Stränge."
+        },
+        {
+          "id": "begriffe-q2",
+          "lessonId": "begriffe",
+          "q": "Was bezeichnet der Locus eines Gens?",
+          "options": [
+            "Seine Position im Genom.",
+            "Seine sichtbare Merkmalsausprägung.",
+            "Seine Häufigkeit in einer Population.",
+            "Seine konkrete Allelkombination."
+          ],
+          "answer": 0,
+          "explain": "Der Locus ist der Ort, nicht die dort vorliegende Variante."
+        },
+        {
+          "id": "begriffe-q3",
+          "lessonId": "begriffe",
+          "q": "Was ist ein Allel?",
+          "options": [
+            "Die Gesamtheit sämtlicher Gene.",
+            "Die Zahl der Chromosomensätze.",
+            "Das beobachtete Merkmal allein.",
+            "Eine Sequenzvariante am betrachteten genetischen Ort."
+          ],
+          "answer": 3,
+          "explain": "Allele unterscheiden sich in ihrer DNA-Sequenz."
+        },
+        {
+          "id": "begriffe-q4",
+          "lessonId": "begriffe",
+          "q": "Woraus bestehen Chromosomen im Säugetierzellkern?",
+          "options": [
+            "Aus RNA und Ribosomenproteinen.",
+            "Aus DNA und verbundenen Proteinen.",
+            "Aus Proteinen ohne DNA-Anteil.",
+            "Aus DNA ohne verbundene Proteine."
+          ],
+          "answer": 1,
+          "explain": "Chromosomen organisieren DNA zusammen mit Proteinen."
+        },
+        {
+          "id": "begriffe-q5",
+          "lessonId": "begriffe",
+          "q": "Was beschreibt A/a an einem autosomalen Ort?",
+          "options": [
+            "Den Genotyp an diesem Ort.",
+            "Die vollständige Merkmalsausprägung.",
+            "Die Zahl aller Gene.",
+            "Die Gesamtgröße des Genoms."
+          ],
+          "answer": 0,
+          "explain": "A/a benennt die vorhandene Allelkombination."
+        },
+        {
+          "id": "begriffe-q6",
+          "lessonId": "begriffe",
+          "q": "Wie heißt eine beobachtete Merkmalsausprägung wie die Fellfarbe?",
+          "options": [
+            "Locus.",
+            "Basenpaar.",
+            "Phänotyp.",
+            "Chromosomensatz."
+          ],
+          "answer": 2,
+          "explain": "Phänotyp bezeichnet das beobachtete oder messbare Merkmal."
+        },
+        {
+          "id": "begriffe-q7",
+          "lessonId": "begriffe",
+          "q": "Welche Information ist mit Genom gemeint?",
+          "options": [
+            "Nur ein untersuchtes Allel.",
+            "Die gesamte Erbinformation.",
+            "Nur die sichtbare Fellfarbe.",
+            "Nur die Lage eines einzelnen Gens."
+          ],
+          "answer": 1,
+          "explain": "Das Genom ist umfassender als ein einzelnes Gen oder ein einzelner Locus."
+        },
+        {
+          "id": "begriffe-q8",
+          "lessonId": "begriffe",
+          "q": "Wo liegt bei Säugetieren außer im Zellkern weitere eigene DNA?",
+          "options": [
+            "In Ribosomen.",
+            "Im Golgi-Apparat.",
+            "Im endoplasmatischen Retikulum.",
+            "In Mitochondrien."
+          ],
+          "answer": 3,
+          "explain": "Mitochondrien besitzen ein eigenes kleines Genom."
+        },
+        {
+          "id": "meiose-q1",
+          "lessonId": "meiose",
+          "q": "Was bedeutet haploid?",
+          "options": [
+            "Zwei vollständige Chromosomensätze.",
+            "Vier vollständige Chromosomensätze.",
+            "Ein einfacher Chromosomensatz.",
+            "Zwei identische Allele an jedem Ort."
+          ],
+          "answer": 2,
+          "explain": "Keimzellen tragen im Grundmodell einen einfachen Chromosomensatz."
+        },
+        {
+          "id": "meiose-q2",
+          "lessonId": "meiose",
+          "q": "Wie oft wird die DNA vor den beiden meiotischen Teilungen verdoppelt?",
+          "options": [
+            "Einmal.",
+            "Zweimal, vor jeder Teilung.",
+            "Gar nicht.",
+            "Viermal."
+          ],
+          "answer": 0,
+          "explain": "Zwischen den beiden Teilungen erfolgt keine erneute vollständige DNA-Verdopplung."
+        },
+        {
+          "id": "meiose-q3",
+          "lessonId": "meiose",
+          "q": "Was trennt die erste meiotische Teilung?",
+          "options": [
+            "Schwesterchromatiden statt homologer Partner.",
+            "Jeweils alle mütterlichen von allen väterlichen Chromosomen als komplette Sätze.",
+            "Komplementäre DNA-Einzelstränge.",
+            "Homologe Chromosomen."
+          ],
+          "answer": 3,
+          "explain": "In Meiose I werden die Partner homologer Paare verteilt."
+        },
+        {
+          "id": "meiose-q4",
+          "lessonId": "meiose",
+          "q": "Was trennt die zweite meiotische Teilung?",
+          "options": [
+            "Die beiden Partner jedes homologen Paars erstmals.",
+            "Schwesterchromatiden.",
+            "Alle mütterlichen von allen väterlichen Chromosomen als komplette Sätze.",
+            "Komplementäre DNA-Einzelstränge."
+          ],
+          "answer": 1,
+          "explain": "Meiose II verteilt die Chromatiden."
+        },
+        {
+          "id": "meiose-q5",
+          "lessonId": "meiose",
+          "q": "Welche Folge kann Crossing-over haben?",
+          "options": [
+            "Neue Kombinationen vorhandener Allele.",
+            "Eine Verdoppelung der Chromosomensatz-Zahl.",
+            "Die Herstellung zusätzlicher Genkopien als zwingende Folge.",
+            "Die Umwandlung aller heterozygoten Orte in homozygote Orte."
+          ],
+          "answer": 0,
+          "explain": "Der Austausch von Abschnitten kombiniert Information neu."
+        },
+        {
+          "id": "meiose-q6",
+          "lessonId": "meiose",
+          "q": "Zwischen welchen Strukturen findet das hier behandelte Crossing-over statt?",
+          "options": [
+            "Zwischen den DNA-Strängen eines einzigen Chromatids als einfache Basenpaarung.",
+            "Zwischen den Kernen von Ei und Spermium erst bei der Befruchtung.",
+            "Zwischen gepaarten homologen Chromosomen.",
+            "Zwischen zwei beliebigen Körperzellen während der Mitose."
+          ],
+          "answer": 2,
+          "explain": "Homologe Chromosomen können während der Meiose Abschnitte austauschen."
+        },
+        {
+          "id": "meiose-q7",
+          "lessonId": "meiose",
+          "q": "Welchem Problem wirkt die Reduktion vor der Befruchtung entgegen?",
+          "options": [
+            "Der Neukombination elterlicher Allele.",
+            "Einer fortlaufenden Verdoppelung des Chromosomensatzes von Generation zu Generation.",
+            "Der Entstehung haploider Keimzellen.",
+            "Der Trennung homologer Chromosomen."
+          ],
+          "answer": 1,
+          "explain": "Zwei haploide Sätze ergeben bei der Befruchtung wieder einen diploiden Satz."
+        },
+        {
+          "id": "meiose-q8",
+          "lessonId": "meiose",
+          "q": "Wie entsteht bei normaler Befruchtung ein diploider Satz?",
+          "options": [
+            "Durch Verschmelzung zweier diploider Körperzellen.",
+            "Durch Verdopplung beider haploider Sätze vor ihrer Vereinigung.",
+            "Durch Vereinigung eines haploiden mit einem diploiden Satz.",
+            "Durch Vereinigung der haploiden Sätze von Ei und Spermium."
+          ],
+          "answer": 3,
+          "explain": "Mütterliche und väterliche Keimzelle tragen je einen Satz bei."
+        },
+        {
+          "id": "modell-q1",
+          "lessonId": "modell",
+          "q": "Welche Konstellation ist am betrachteten autosomalen Locus homozygot?",
+          "options": [
+            "A/a.",
+            "Ein einzelnes A in einer haploiden Keimzelle.",
+            "A/A.",
+            "Ein einzelnes a in einer haploiden Keimzelle."
+          ],
+          "answer": 2,
+          "explain": "Homozygot bedeutet zwei gleiche Allele am betrachteten Ort."
+        },
+        {
+          "id": "modell-q2",
+          "lessonId": "modell",
+          "q": "Welche Konstellation ist am betrachteten autosomalen Locus heterozygot?",
+          "options": [
+            "A/a.",
+            "A/A.",
+            "a/a.",
+            "Ein einzelnes A einer haploiden Keimzelle."
+          ],
+          "answer": 0,
+          "explain": "Heterozygot bedeutet zwei unterschiedliche Allele am betrachteten diploiden Ort."
+        },
+        {
+          "id": "modell-q3",
+          "lessonId": "modell",
+          "q": "Wann zeigt sich im Modell vollständiger Dominanz der dominante Phänotyp?",
+          "options": [
+            "Nur wenn kein A vorhanden ist.",
+            "Nur bei a/a.",
+            "Nur wenn A in der Population selten ist.",
+            "Bereits bei einer Kopie von A."
+          ],
+          "answer": 3,
+          "explain": "A/a und A/A zeigen unter dieser Modellannahme den dominanten Phänotyp."
+        },
+        {
+          "id": "modell-q4",
+          "lessonId": "modell",
+          "q": "Was bezeichnet Anlageträgerschaft im einfachen autosomal-rezessiven Modell?",
+          "options": [
+            "Das rezessive Allel ist aus allen Keimzellen entfernt.",
+            "Ein rezessives Allel kann ohne rezessiven Phänotyp vorhanden sein und weitergegeben werden.",
+            "Zwei rezessive Allele müssen immer vorhanden sein.",
+            "Der dominante Phänotyp schließt das rezessive Allel aus."
+          ],
+          "answer": 1,
+          "explain": "Ein heterozygoter Träger kann das rezessive Allel an Nachkommen übertragen."
+        },
+        {
+          "id": "modell-q5",
+          "lessonId": "modell",
+          "q": "Was lässt sich aus der Bezeichnung dominant allein nicht ableiten?",
+          "options": [
+            "Dass das Allel in der Population häufig ist.",
+            "Dass im gesetzten Modell eine Kopie zur Ausprägung genügt.",
+            "Dass eine Beziehung zum betrachteten Merkmal besteht.",
+            "Dass ein konkretes Merkmalsmodell beschrieben wird."
+          ],
+          "answer": 0,
+          "explain": "Dominanz beschreibt eine Merkmalsbeziehung, nicht die Häufigkeit des Allels."
+        },
+        {
+          "id": "modell-q6",
+          "lessonId": "modell",
+          "q": "Was kann ein A/a-Tier am betrachteten Ort mit einer Keimzelle beitragen?",
+          "options": [
+            "Stets A und a gemeinsam.",
+            "Nur A wegen seiner Dominanz.",
+            "A oder a.",
+            "Nur a wegen seiner Rezessivität."
+          ],
+          "answer": 2,
+          "explain": "Die Allele werden bei der Keimzellbildung auf haploide Keimzellen verteilt."
+        },
+        {
+          "id": "modell-q7",
+          "lessonId": "modell",
+          "q": "Welche Wahrscheinlichkeit hat a/a im vereinfachten Modell A/a × A/a?",
+          "options": [
+            "Drei Viertel.",
+            "Ein Viertel je Nachkomme.",
+            "Null.",
+            "Zwei Drittel."
+          ],
+          "answer": 1,
+          "explain": "Eine von vier gleich wahrscheinlichen Kombinationen enthält zwei a-Allele."
+        },
+        {
+          "id": "modell-q8",
+          "lessonId": "modell",
+          "q": "Was bedeutet ein Viertel Wahrscheinlichkeit für a/a bei vier Jungtieren?",
+          "options": [
+            "Genau ein a/a-Tier ist zwingend.",
+            "Mehrere a/a-Tiere sind ausgeschlossen.",
+            "Nach einem a/a-Tier müssen drei A/A-Tiere folgen.",
+            "Genau ein a/a-Tier ist dadurch nicht garantiert."
+          ],
+          "answer": 3,
+          "explain": "Ein rechnerischer Anteil ist keine feste Wurfzusammensetzung."
+        },
+        {
+          "id": "komplex-q1",
+          "lessonId": "komplex",
+          "q": "Was bedeutet polygen?",
+          "options": [
+            "Ein Gen beeinflusst mehrere verschiedene Merkmale.",
+            "Ein Merkmal hängt allein von Umweltwirkungen ab.",
+            "Mehrere Gene wirken an einem Merkmal mit.",
+            "Ein Genort besitzt in einer Population mehrere Allele."
+          ],
+          "answer": 2,
+          "explain": "Polygenie bezeichnet die Beteiligung mehrerer genetischer Orte."
+        },
+        {
+          "id": "komplex-q2",
+          "lessonId": "komplex",
+          "q": "Welche Beschreibung passt zu multifaktorieller Ausprägung?",
+          "options": [
+            "Genetische Beiträge und Umweltwirkungen wirken zusammen.",
+            "Eine einzelne Variante erklärt das Merkmal ohne weitere Einflüsse.",
+            "Nur die Umwelt wirkt auf das Merkmal.",
+            "Mehrere Gene wirken, während Umweltwirkungen im Begriff ausdrücklich ausgeschlossen sind."
+          ],
+          "answer": 0,
+          "explain": "Multifaktoriell schließt neben genetischen Beiträgen weitere Einflussfaktoren ein."
+        },
+        {
+          "id": "komplex-q3",
+          "lessonId": "komplex",
+          "q": "Was beschreibt genetische Kopplung?",
+          "options": [
+            "Ähnliche Merkmale müssen von demselben Genort stammen.",
+            "Dominante Allele werden grundsätzlich gemeinsam vererbt.",
+            "Alle Orte auf verschiedenen Chromosomen werden als feste Gruppe weitergegeben.",
+            "Nahe Orte auf demselben Chromosom werden eher gemeinsam vererbt."
+          ],
+          "answer": 3,
+          "explain": "Physische Nähe beeinflusst die Wahrscheinlichkeit gemeinsamer Vererbung."
+        },
+        {
+          "id": "komplex-q4",
+          "lessonId": "komplex",
+          "q": "Was bezeichnet Penetranz?",
+          "options": [
+            "Die Häufigkeit eines Allels unabhängig vom Merkmal.",
+            "Den Anteil genetisch entsprechend eingeordneter Individuen, die das zugeordnete Merkmal zeigen.",
+            "Die Anzahl der Chromosomensätze.",
+            "Die Länge eines DNA-Abschnitts."
+          ],
+          "answer": 1,
+          "explain": "Penetranz bezieht das Auftreten des Merkmals auf die betreffende genetische Konstellation."
+        },
+        {
+          "id": "komplex-q5",
+          "lessonId": "komplex",
+          "q": "Welche Aussage über Mutationen ist richtig?",
+          "options": [
+            "Eine Sequenzänderung ist nicht automatisch schädlich.",
+            "Jede Mutation verändert die Aminosäuresequenz eines Proteins.",
+            "Eine Mutation wirkt in jedem genetischen Hintergrund gleich.",
+            "Mutationen entstehen nur, wenn ein Tier sie zur Anpassung benötigt."
+          ],
+          "answer": 0,
+          "explain": "Ihre Wirkung muss konkret untersucht werden."
+        },
+        {
+          "id": "komplex-q6",
+          "lessonId": "komplex",
+          "q": "Welche Veränderung kann über Ei oder Spermium Nachkommen erreichen?",
+          "options": [
+            "Jede allein in einer alten Hautzelle entstandene Variante.",
+            "Jede allein im erwachsenen Muskel entstandene Variante.",
+            "Eine Variante der Keimbahn.",
+            "Jede allein in einer Leberzelle entstandene Variante."
+          ],
+          "answer": 2,
+          "explain": "Keimbahnzellen vermitteln die genetische Information zwischen Generationen."
+        },
+        {
+          "id": "komplex-q7",
+          "lessonId": "komplex",
+          "q": "Wie heißt eine DNA-Veränderung, die in einer Körperzelle statt in der Keimbahn entsteht?",
+          "options": [
+            "Meiotische Rekombination.",
+            "Somatische Mutation.",
+            "Haploide Befruchtung.",
+            "Autosomal-rezessive Segregation."
+          ],
+          "answer": 1,
+          "explain": "Somatisch bezieht sich auf Körperzellen."
+        },
+        {
+          "id": "komplex-q8",
+          "lessonId": "komplex",
+          "q": "Was erlaubt der Nachweis einer einzelnen Variante unmittelbar?",
+          "options": [
+            "Ein vollständiges Urteil über alle erblichen Gesundheitsrisiken.",
+            "Eine vom genetischen Hintergrund unabhängige Vorhersage jedes Merkmals.",
+            "Eine Aussage über alle Gene allein aus diesem untersuchten Ort.",
+            "Eine Aussage zur untersuchten Variante unter den bekannten Testbedingungen."
+          ],
+          "answer": 3,
+          "explain": "Untersuchter Ort und belegte Merkmalsbeziehung begrenzen die Aussage."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-koerperfunktion-hundeimmunitaet-2026",
+      "title": "Hundeabwehr: Barrieren, Zellen und Gedächtnis",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Wie die Abwehr des Jagdhundes arbeitet und weshalb angeboren, adaptiv und passiv verschiedene Begriffe sind.",
+      "minutes": 38,
+      "objectives": [
+        "Barrieren und angeborene Abwehr erklären",
+        "Aufgaben wichtiger Immunzellen unterscheiden",
+        "Antigen und Antikörper auseinanderhalten",
+        "Gedächtnis und übertragenen Schutz verstehen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Hundebiologie. Impfstoffwahl, Impfzeitpunkte und Behandlung werden nicht aus diesen Grundlagen abgeleitet.",
+        "AT": "Gemeinsame Hundebiologie. Impfstoffwahl, Impfzeitpunkte und Behandlung werden nicht aus diesen Grundlagen abgeleitet.",
+        "CH": "Gemeinsame Hundebiologie. Impfstoffwahl, Impfzeitpunkte und Behandlung werden nicht aus diesen Grundlagen abgeleitet."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Immune system responses in dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/immune-disorders-of-dogs/immune-system-responses-in-dogs",
+          "organization": "Merck Veterinary Manual, Ian Tizard",
+          "supports": "Barrieren, Zellen und Störungen; aktualisiert Juni 2026. Pauschale „adaptive immunity is not present at birth“ nicht übernommen."
+        },
+        {
+          "label": "Innate immunity in animals",
+          "url": "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/innate-immunity-in-animals",
+          "organization": "Merck Veterinary Manual, Ian Tizard",
+          "supports": "Barrieren, Mikrobiota, angeborene Zellen und Mustererkennung."
+        },
+        {
+          "label": "Adaptive immunity in animals",
+          "url": "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/adaptive-immunity-in-animals",
+          "organization": "Merck Veterinary Manual, Ian Tizard",
+          "supports": "Antigenpräsentation, B-/T-Zellen und Gedächtnis."
+        },
+        {
+          "label": "What is immunology?",
+          "url": "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology",
+          "organization": "British Society for Immunology, Daniel Price",
+          "supports": "Unabhängiger Begriffsabgleich zu Barrieren, Abwehrzellen, Geweben, Gedächtnis und Fehlregulation."
+        },
+        {
+          "label": "Phagocytosis",
+          "url": "https://www.immunology.org/public-information/bitesized-immunology/systems-processes/phagocytosis",
+          "organization": "British Society for Immunology; James Harris, Trinity College Dublin",
+          "supports": "Aufnahme und Verarbeitung fester Partikel; eigene fachliche Erläuterung."
+        },
+        {
+          "label": "Introduction to lung and airway disorders of dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/introduction-to-lung-and-airway-disorders-of-dogs",
+          "organization": "Merck Veterinary Manual",
+          "supports": "Nur normale Partikelfilterung und Schleimtransport."
+        },
+        {
+          "label": "Passive immunity in animals",
+          "url": "https://www.merckvetmanual.com/pharmacology/vaccines-and-immunotherapy/passive-immunity-in-animals",
+          "organization": "Merck Veterinary Manual, Ian Tizard",
+          "supports": "Fertige übertragene Antikörper versus eigene aktive Abwehr; Stand Juni 2025."
+        },
+        {
+          "label": "Canine vaccinations",
+          "url": "https://riney.vet.cornell.edu/member-benefits-health-tips/canine-vaccinations-december",
+          "organization": "Cornell University, Riney Canine Health Center",
+          "supports": "Mütterliche Antikörper über Kolostrum, aktive Stimulation und individuell tierärztlicher Impfplan."
+        },
+        {
+          "label": "Protecting puppies from pathogens",
+          "url": "https://www.vet.cornell.edu/research/awards/protecting-puppies-pathogens-understanding-canine-maternal-antibody-transfer-0",
+          "organization": "Cornell University, Sarah Caddy",
+          "supports": "Nur etablierter Ausgangsbefund: unreifes Immunsystem, maternaler Antikörpertransfer. Angekündigte Projektergebnisse nicht als nachgewiesen ausgegeben."
+        },
+        {
+          "label": "Microbes and gastrointestinal health of dogs and cats",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7199667/",
+          "organization": "Journal of Animal Science; Autorenbeitrag im Companion Animals Symposium",
+          "supports": "Gelesene indexierte Originalpassage zu Konkurrenz um Nährstoffe und Haftstellen; Volltextabruf durch Zugangskontrolle begrenzt."
+        },
+        {
+          "label": "Antigen Processing and Presentation",
+          "url": "https://www.immunology.org/public-information/bitesized-immunology/systems-processes/antigen-processing-and-presentation",
+          "organization": "British Society for Immunology; Pavel Nesmiyanov",
+          "supports": "Originallehrtext zu verarbeiteten Peptiden auf Zelloberflächen und Erkennung/Aktivierung von T-Zellen gelesen; keine Human-HLA-Namen, absoluten Zahlen oder All-Antigen-Pauschale übernommen."
+        },
+        {
+          "label": "Antigen recognition by T cells – Immunobiology, Abschnitt 3-11",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK27098/",
+          "organization": "Janeway, Travers, Walport und Mitautoren; Garland Science 2001, NCBI Bookshelf",
+          "supports": "Konkreter indexierter Originalabschnitt zu direkter Bindung intakter Antigene durch B-Zell-Rezeptoren und MHC-gebundener Peptiderkennung konventioneller T-Zellen gelesen; Direktabruf durch Zugangskontrolle begrenzt. Keine universelle B-Zell-Reifungsortangabe."
+        },
+        {
+          "label": "Glossary – maternal immunity / colostrum",
+          "url": "https://www.merckvetmanual.com/resourcespages/glossary",
+          "organization": "Merck Veterinary Manual",
+          "supports": "Konkrete indexierte Originaldefinitionen gelesen: Kolostrum als mütterliche Erstmilch und mütterlicher Antikörpertransfer; keine Zeit-, Mengen- oder Schutzgarantie übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "barrieren",
+          "title": "Abwehr beginnt vor dem Eindringen",
+          "paragraphs": [
+            "Intakte Haut und Schleimhäute erschweren das Eindringen vieler Mikroorganismen. Tränen und weitere Sekrete enthalten zusätzlich antimikrobielle Bestandteile. Im Atemweg hält Schleim Partikel fest; Flimmerhärchen transportieren belasteten Schleim in Richtung Rachen. Ein Teil des Schutzes beruht somit auf Bau und Bewegung, nicht auf einem zuvor gebildeten Antikörper.",
+            "Die ansässige Mikrobiota besetzt Lebensräume und konkurriert mit möglichen Eindringlingen. Hautverletzungen unterbrechen eine Barriere, verursachen aber nicht automatisch eine bestimmte Infektion. Als Antigen bezeichnet man eine Struktur, die vom adaptiven Immunsystem spezifisch erkannt werden kann. Sie muss nicht zu einem Erreger gehören: Auch Pollenbestandteile können als Antigene wirken. Angeborene und adaptive Abwehr arbeiten zusammen."
+          ],
+          "takeaway": "Körperoberflächen, Sekrete und Transportvorgänge sind aktive Bestandteile des Schutzes.",
+          "exercise": "Ordne Haut, Schleim, Flimmerhärchen und ansässige Mikrobiota verschiedenen Schutzprinzipien zu."
+        },
+        {
+          "id": "angeboren",
+          "title": "Schnelle Reaktion durch Zellen und lösliche Faktoren",
+          "paragraphs": [
+            "Phagozytose bedeutet Aufnahme fester Teilchen in eine Zelle. Neutrophile und Makrophagen können so Mikroorganismen oder Zellreste aufnehmen und bearbeiten. Ein Phagosom ist das dabei entstandene membranumhüllte Kompartiment. Die aufgenommene Fracht kann nach Verbindung mit abbauenden Zellkompartimenten zerlegt werden. Aufnahme bedeutet allerdings nicht, dass jeder Erreger unter allen Bedingungen sicher abgetötet wird.",
+            "Weitere angeborene Abwehrwege ergänzen diese Zellen. Mustererkennungsrezeptoren reagieren auf charakteristische mikrobielle oder Schadenssignale. Natürliche Killerzellen können veränderte körpereigene Zellen angreifen. Komplement besteht aus zusammenwirkenden Proteinen und ist keine einzelne Blutzelle. Zytokine übermitteln Signale; Chemokine lenken Zellwanderung. Die Begriffe benennen unterschiedliche Aufgaben im selben Reaktionsnetz."
+          ],
+          "takeaway": "Fresszellen, Musterrezeptoren, Killerzellen und Proteinwege erfüllen verschiedene Aufgaben.",
+          "exercise": "Vergleiche Phagozyt, Phagosom, Komplement und Chemokin in einer Tabelle."
+        },
+        {
+          "id": "adaptiv",
+          "title": "Spezifität entsteht durch passende Zellen und Rezeptoren",
+          "paragraphs": [
+            "B- und T-Lymphozyten tragen spezifische Erkennungsrezeptoren. Aus aktivierten B-Zellen können Plasmazellen werden, die Antikörper ausschütten. Antikörper sind Proteine; sie können passende Antigene binden, deren Wirkung neutralisieren oder ihre Entfernung erleichtern. Ein Antigen ist das erkannte Ziel, ein Antikörper ein Bestandteil der Antwort.",
+            "T-Zellen reifen im Thymus. B-Zell-Rezeptoren können passende Antigene in intakter Form direkt binden. Die hier beschriebene Erkennung durch Helfer-T-Zellen bezieht sich dagegen auf verarbeitete Antigenfragmente, die auf der Oberfläche einer anderen Zelle präsentiert werden. Antigenpräsentierende Zellen verbinden damit die Verarbeitung von Material mit der Aktivierung passender T-Zellen. Zytotoxische T-Zellen können bestimmte veränderte Körperzellen abtöten, Helfer-T-Zellen koordinieren andere Zellen über Signale. Diese Rollen erklären, warum „Abwehr besteht nur aus Antikörpern“ zu kurz greift."
+          ],
+          "takeaway": "Plasmazellen produzieren Antikörper; T-Zellen leisten andere spezifische Abwehrarbeit.",
+          "exercise": "Vergleiche B-Zelle, Plasmazelle, Helfer-T-Zelle und zytotoxische T-Zelle."
+        },
+        {
+          "id": "gedaechtnis",
+          "title": "Gedächtnis, übertragene Antikörper und Fehlsteuerung",
+          "paragraphs": [
+            "Nach einer ersten passenden Aktivierung können Gedächtnis-B- und -T-Zellen erhalten bleiben. Bei erneutem Kontakt kann die adaptive Reaktion dadurch rascher und wirksamer anlaufen. Impfungen nutzen dieses Prinzip aktiver Immunität. Das Immunsystem eines Welpen entwickelt sich; die pauschale Aussage, bei Geburt sei adaptive Abwehr überhaupt nicht vorhanden, beschreibt diese Entwicklung nicht angemessen.",
+            "Passive Immunität bedeutet Übertragung schon fertiger Antikörper. Welpen erhalten mütterliche Antikörper unter anderem über Kolostrum. Diese Übertragung ist nicht dasselbe wie ein eigenes langfristiges Abwehrgedächtnis. Störungen haben ebenfalls unterschiedliche Richtungen: Immundefizienz schwächt Schutzfunktionen, Autoimmunität richtet sich gegen körpereigene Ziele, Allergie ist eine unangemessene Reaktion auf bestimmte normalerweise harmlose äußere Stoffe."
+          ],
+          "takeaway": "Aktiver Gedächtnisaufbau und passive Antikörperübertragung sind verschiedene Schutzwege.",
+          "exercise": "Stelle aktive Immunität, passive Immunität, Immundefizienz, Autoimmunität und Allergie gegenüber."
+        }
+      ],
+      "questions": [
+        {
+          "id": "barrieren-q1",
+          "lessonId": "barrieren",
+          "q": "Welche Struktur bildet beim Hund eine wichtige äußere Barriere?",
+          "options": [
+            "Eine frei zirkulierende Plasmazelle.",
+            "Ein einzelner Antikörper im Blut.",
+            "Ein Gedächtnis-T-Lymphozyt.",
+            "Intakte Haut."
+          ],
+          "answer": 3,
+          "explain": "Die Haut erschwert den unmittelbaren Eintritt vieler Mikroorganismen."
+        },
+        {
+          "id": "barrieren-q2",
+          "lessonId": "barrieren",
+          "q": "Welche mechanische Aufgabe hat Atemwegsschleim?",
+          "options": [
+            "Er reift die T-Lymphozyten.",
+            "Er kann eingeatmete Partikel festhalten.",
+            "Er erzeugt die Bewegung der Zilien als kontraktile Schicht.",
+            "Er ist der Hauptbildungsort von Gedächtniszellen."
+          ],
+          "answer": 1,
+          "explain": "Schleim bindet Partikel und kann anschließend abtransportiert werden."
+        },
+        {
+          "id": "barrieren-q3",
+          "lessonId": "barrieren",
+          "q": "In welche Richtung bewegen Flimmerhärchen belasteten Atemwegsschleim grundsätzlich?",
+          "options": [
+            "Vom Rachen tiefer in die Bronchien.",
+            "Durch das Atemwegsepithel direkt in das Blut.",
+            "Zum Rachen.",
+            "Von der Luftröhre zu den Alveolen."
+          ],
+          "answer": 2,
+          "explain": "Der gerichtete Transport unterstützt die Entfernung aus empfindlichen Atemwegen."
+        },
+        {
+          "id": "barrieren-q4",
+          "lessonId": "barrieren",
+          "q": "Was ergänzt die rein mechanische Wirkung von Tränen?",
+          "options": [
+            "Antimikrobielle Bestandteile im Sekret.",
+            "Die Reifung naiver T-Zellen im Tränengang.",
+            "Die Herstellung neuer Gedächtnis-B-Zellen an der Hornhaut.",
+            "Die Aufnahme der Erreger durch die Tränenflüssigkeit als lebende Fresszelle."
+          ],
+          "answer": 0,
+          "explain": "Sekrete können sowohl mechanische als auch chemische Schutzfunktionen haben."
+        },
+        {
+          "id": "barrieren-q5",
+          "lessonId": "barrieren",
+          "q": "Wie kann ansässige Mikrobiota den Schutz unterstützen?",
+          "options": [
+            "Durch vollständige Sterilisation der Haut.",
+            "Durch Konkurrenz mit möglichen Eindringlingen um Lebensraum und Ressourcen.",
+            "Durch Produktion aller spezifischen Antikörper des Hundes.",
+            "Durch Ersatz der Epithelzellen als dauerhafte mechanische Gewebewand."
+          ],
+          "answer": 1,
+          "explain": "Eine besetzte mikrobielle Gemeinschaft kann Ansiedlungsmöglichkeiten für andere Keime begrenzen."
+        },
+        {
+          "id": "barrieren-q6",
+          "lessonId": "barrieren",
+          "q": "Was folgt aus einer Verletzung der Hautbarriere?",
+          "options": [
+            "Jede Verletzung beweist eine bakterielle Infektion.",
+            "Ein Barriereschaden betrifft nur adaptive Gedächtniszellen.",
+            "Die Barriere kann erst nach einer spezifischen Antikörperreaktion überhaupt wirken.",
+            "Das Eindringrisiko kann steigen; eine konkrete Infektion ist damit noch nicht bewiesen."
+          ],
+          "answer": 3,
+          "explain": "Barriereschaden ist ein Risikofaktor, keine Erregerdiagnose."
+        },
+        {
+          "id": "barrieren-q7",
+          "lessonId": "barrieren",
+          "q": "Was bezeichnet ein Antigen im hier behandelten Sinn?",
+          "options": [
+            "Eine vom adaptiven Immunsystem spezifisch erkennbare Struktur.",
+            "Ein ausgeschütteter Antikörper.",
+            "Ausschließlich ein vollständiger lebender Erreger.",
+            "Ein Botenstoff, dessen Hauptaufgabe Zellwanderung ist."
+          ],
+          "answer": 0,
+          "explain": "Antigene können Teil größerer Strukturen oder einzelne Moleküle sein."
+        },
+        {
+          "id": "barrieren-q8",
+          "lessonId": "barrieren",
+          "q": "Welche Aussage beschreibt angeborene und adaptive Abwehr?",
+          "options": [
+            "Angeborene Signale haben keinen Einfluss auf adaptive Reaktionen.",
+            "Adaptive Abwehr beginnt erst, nachdem sämtliche angeborenen Wege beendet sind.",
+            "Sie wirken zusammen und beeinflussen einander.",
+            "Nur adaptive Abwehr kann andere Abwehrzellen beeinflussen."
+          ],
+          "answer": 2,
+          "explain": "Angeborene Signale können adaptive Reaktionen einleiten und mitgestalten."
+        },
+        {
+          "id": "angeboren-q1",
+          "lessonId": "angeboren",
+          "q": "Was bedeutet Phagozytose?",
+          "options": [
+            "Freisetzung von Antikörpern durch Plasmazellen.",
+            "Verarbeitung elektrischer Nervensignale.",
+            "Reifung eines Lymphozyten im Thymus.",
+            "Aufnahme fester Teilchen durch eine Zelle."
+          ],
+          "answer": 3,
+          "explain": "Die Zellmembran umschließt die Fracht in einem inneren Kompartiment."
+        },
+        {
+          "id": "angeboren-q2",
+          "lessonId": "angeboren",
+          "q": "Welche Zellgruppen sind wichtige professionelle Phagozyten?",
+          "options": [
+            "B-Lymphozyten und Plasmazellen als wichtigste Fresszellgruppe.",
+            "Neutrophile und Makrophagen.",
+            "Reife Erythrozyten und Blutplättchen.",
+            "Helfer-T-Zellen und Gedächtnis-T-Zellen als wichtigste Fresszellgruppe."
+          ],
+          "answer": 1,
+          "explain": "Diese Abwehrzellen können Mikroorganismen und Zellmaterial aufnehmen."
+        },
+        {
+          "id": "angeboren-q3",
+          "lessonId": "angeboren",
+          "q": "Was ist ein Phagosom?",
+          "options": [
+            "Ein freier Antikörper im Blut.",
+            "Eine Ansammlung reifer T-Zellen im Thymus.",
+            "Das membranumhüllte Kompartiment mit aufgenommener Fracht.",
+            "Der extrazelluläre Raum eines Lymphknotens."
+          ],
+          "answer": 2,
+          "explain": "Ein Phagosom entsteht beim Umschließen aufgenommener Partikel."
+        },
+        {
+          "id": "angeboren-q4",
+          "lessonId": "angeboren",
+          "q": "Welche Aussage zur Phagozytose ist zutreffend?",
+          "options": [
+            "Einige Erreger können die intrazelluläre Verarbeitung umgehen oder überleben.",
+            "Jede Aufnahme bedeutet automatisch vollständige Abtötung.",
+            "Phagozytose wirkt nur nach der Bildung eines neuen passenden Antikörpers.",
+            "Phagosomen entstehen grundsätzlich außerhalb der aufnehmenden Zelle."
+          ],
+          "answer": 0,
+          "explain": "Aufnahme und erfolgreiche Abtötung sind nicht automatisch gleichzusetzen."
+        },
+        {
+          "id": "angeboren-q5",
+          "lessonId": "angeboren",
+          "q": "Worauf reagieren Mustererkennungsrezeptoren?",
+          "options": [
+            "Nur auf zuvor erzeugte spezifische Antikörper.",
+            "Auf charakteristische mikrobielle oder Schadensmuster.",
+            "Nur auf dieselbe individuelle Antigenstelle wie der klonal ausgewählte B-Zell-Rezeptor.",
+            "Nur auf den mechanischen Flüssigkeitsdruck im Gewebe."
+          ],
+          "answer": 1,
+          "explain": "Mustererkennung ist ein Grundprinzip der angeborenen Abwehr."
+        },
+        {
+          "id": "angeboren-q6",
+          "lessonId": "angeboren",
+          "q": "Welche Zielgruppe können natürliche Killerzellen angreifen?",
+          "options": [
+            "Frei gelöste Toxine durch eigene Antikörpersekretion.",
+            "Antigene ausschließlich durch Phagozytose ganzer Bakterien.",
+            "Nur antigenpräsentierende Zellen unabhängig von deren Zustand.",
+            "Veränderte körpereigene Zellen, etwa virusinfizierte Zellen."
+          ],
+          "answer": 3,
+          "explain": "NK-Zellen gehören zu den zellulären angeborenen Abwehrwegen."
+        },
+        {
+          "id": "angeboren-q7",
+          "lessonId": "angeboren",
+          "q": "Was ist das Komplementsystem?",
+          "options": [
+            "Ein zusammenwirkendes System von Proteinen.",
+            "Eine einzelne phagozytierende Zellart.",
+            "Ein primäres lymphatisches Organ.",
+            "Die Gesamtheit der Antigenrezeptoren eines einzelnen T-Lymphozyten."
+          ],
+          "answer": 0,
+          "explain": "Komplement ergänzt Zellreaktionen durch lösliche und gebundene Proteinwirkungen."
+        },
+        {
+          "id": "angeboren-q8",
+          "lessonId": "angeboren",
+          "q": "Welche Signalfunktion ist typisch für Chemokine?",
+          "options": [
+            "Die Hauptproduktion spezifischer Antikörper.",
+            "Die mechanische Aufnahme großer Partikel.",
+            "Sie helfen, die Wanderung von Abwehrzellen zu lenken.",
+            "Die unmittelbare Speicherung der Antigeninformation als Gedächtniszelle."
+          ],
+          "answer": 2,
+          "explain": "Chemokine sind eine Gruppe von Botenstoffen mit besonderer Bedeutung für Zellbewegung."
+        },
+        {
+          "id": "adaptiv-q1",
+          "lessonId": "adaptiv",
+          "q": "Welche Zellen geben besonders große Mengen Antikörper ab?",
+          "options": [
+            "Gedächtnis-T-Zellen.",
+            "Natürliche Killerzellen.",
+            "Neutrophile.",
+            "Plasmazellen."
+          ],
+          "answer": 3,
+          "explain": "Plasmazellen entstehen aus entsprechend aktivierten B-Zellen."
+        },
+        {
+          "id": "adaptiv-q2",
+          "lessonId": "adaptiv",
+          "q": "Zu welcher Stoffklasse gehören Antikörper?",
+          "options": [
+            "Speicherfette.",
+            "Proteine.",
+            "Mineralsalze.",
+            "DNA-Chromosomen."
+          ],
+          "answer": 1,
+          "explain": "Immunglobuline sind spezifisch bindende Proteine."
+        },
+        {
+          "id": "adaptiv-q3",
+          "lessonId": "adaptiv",
+          "q": "Was bedeutet Neutralisation durch einen Antikörper?",
+          "options": [
+            "Die Antikörperbindung erzeugt ein neues passendes Antigen.",
+            "Neutralisation erfordert immer die vollständige Aufnahme durch eine Fresszelle.",
+            "Die Bindung kann eine schädigende oder infektiöse Wechselwirkung blockieren.",
+            "Die Bindung wandelt den Antikörper in eine zytotoxische T-Zelle um."
+          ],
+          "answer": 2,
+          "explain": "Bindung kann zum Beispiel den Eintritt eines Virus in eine Zielzelle behindern."
+        },
+        {
+          "id": "adaptiv-q4",
+          "lessonId": "adaptiv",
+          "q": "Wo reifen T-Lymphozyten?",
+          "options": [
+            "Im Thymus.",
+            "Im Knochenmark.",
+            "Im regionalen Lymphknoten als ihrem primären Reifungsort.",
+            "In der Milz als ihrem primären Reifungsort."
+          ],
+          "answer": 0,
+          "explain": "Der Thymus gehört zu den primären lymphatischen Organen."
+        },
+        {
+          "id": "adaptiv-q5",
+          "lessonId": "adaptiv",
+          "q": "Worin unterscheidet sich die hier beschriebene Antigenerkennung von B-Zellen und Helfer-T-Zellen?",
+          "options": [
+            "B-Zellen benötigen präsentierte Fragmente, Helfer-T-Zellen binden dagegen intakte freie Antigene direkt.",
+            "B-Zellen können passende intakte Antigene direkt binden; Helfer-T-Zellen erkennen präsentierte Fragmente.",
+            "Beide erkennen ausschließlich freie intakte Antigene ohne Präsentation.",
+            "Nur ausgeschüttete Antikörper können Antigene binden; B-Zell-Rezeptoren können dies nicht."
+          ],
+          "answer": 1,
+          "explain": "Die direkte Bindung durch den B-Zell-Rezeptor ist von der Erkennung eines auf einer Zelloberfläche präsentierten Fragments durch die hier behandelten Helfer-T-Zellen zu unterscheiden."
+        },
+        {
+          "id": "adaptiv-q6",
+          "lessonId": "adaptiv",
+          "q": "Welche Aufgabe gehört zu zytotoxischen T-Zellen?",
+          "options": [
+            "Die Hauptproduktion frei zirkulierender Antikörper.",
+            "Die Freisetzung der meisten Komplementproteine als einziger Aufgabe.",
+            "Die Reifung sämtlicher B-Zellen.",
+            "Das gezielte Abtöten bestimmter veränderter Körperzellen."
+          ],
+          "answer": 3,
+          "explain": "Sie können passende Zielzellen mit präsentierten Antigenen erkennen und beseitigen."
+        },
+        {
+          "id": "adaptiv-q7",
+          "lessonId": "adaptiv",
+          "q": "Welche Rolle erfüllen Helfer-T-Zellen?",
+          "options": [
+            "Sie koordinieren und unterstützen andere Abwehrzellen durch Signale.",
+            "Sie sind die Hauptquelle ausgeschütteter Immunglobuline.",
+            "Sie übernehmen ausschließlich die direkte Phagozytose großer Partikel.",
+            "Sie erzeugen nur die mechanische Schleimbarriere."
+          ],
+          "answer": 0,
+          "explain": "Helfer-T-Zellen gestalten den Verlauf adaptiver Antworten mit."
+        },
+        {
+          "id": "adaptiv-q8",
+          "lessonId": "adaptiv",
+          "q": "Was leisten antigenpräsentierende Zellen?",
+          "options": [
+            "Sie geben den T-Zellen ausschließlich fertige Antikörper weiter.",
+            "Sie ersetzen den spezifischen Rezeptor der T-Zelle durch einen eigenen Rezeptor.",
+            "Sie zeigen verarbeitete Antigenbestandteile zur Erkennung durch T-Zellen.",
+            "Sie zeigen ausschließlich unverarbeitete ganze Erreger ohne Oberflächenpräsentation."
+          ],
+          "answer": 2,
+          "explain": "Präsentation verbindet die Aufnahme von Material mit der Aktivierung spezifischer Abwehr."
+        },
+        {
+          "id": "gedaechtnis-q1",
+          "lessonId": "gedaechtnis",
+          "q": "Welche Zellen können eine schnellere spezifische Antwort nach erneutem Antigenkontakt ermöglichen?",
+          "options": [
+            "Nur kurzlebige neutrophile Granulozyten.",
+            "Nur neu gebildete Epithelzellen.",
+            "Ausschließlich die löslichen Komplementproteine ohne Beteiligung spezifischer Zellen.",
+            "Gedächtnis-B- und -T-Zellen."
+          ],
+          "answer": 3,
+          "explain": "Immunologisches Gedächtnis beruht auf erhaltenen spezifischen Zellpopulationen."
+        },
+        {
+          "id": "gedaechtnis-q2",
+          "lessonId": "gedaechtnis",
+          "q": "Welches Grundprinzip nutzt eine Impfung zur aktiven Immunität?",
+          "options": [
+            "Übertragung fertiger mütterlicher Antikörper als einziges Prinzip.",
+            "Sie regt die eigene spezifische Abwehr und deren Gedächtnisbildung an.",
+            "Vermehrung der Hautmikrobiota ohne adaptive Reaktion.",
+            "Ausschließlich eine Verstärkung des mechanischen Zilienschlags."
+          ],
+          "answer": 1,
+          "explain": "Aktive Immunität entsteht durch Reaktionen des eigenen Immunsystems."
+        },
+        {
+          "id": "gedaechtnis-q3",
+          "lessonId": "gedaechtnis",
+          "q": "Was kennzeichnet passive Immunität?",
+          "options": [
+            "Ausschließlich der eigene langfristige Gedächtnisaufbau.",
+            "Nur die mechanische Wiederherstellung der Haut.",
+            "Schon fertige Antikörper werden übertragen.",
+            "Die alleinige Vermehrung angeborener Fresszellen."
+          ],
+          "answer": 2,
+          "explain": "Passiver Schutz nutzt Antikörper, die nicht erst vom Empfänger neu erzeugt werden müssen."
+        },
+        {
+          "id": "gedaechtnis-q4",
+          "lessonId": "gedaechtnis",
+          "q": "Wie heißt die mütterliche Erstmilch nach der Geburt, die Welpen Antikörper liefern kann?",
+          "options": [
+            "Kolostrum.",
+            "Reifmilch.",
+            "Übergangsmilch.",
+            "Milchaustauscher."
+          ],
+          "answer": 0,
+          "explain": "Kolostrum bezeichnet die mütterliche Erstmilch mit Abwehrbestandteilen. Die Bezeichnung allein ist keine Aussage über eine für jeden Welpen gesicherte aufgenommene Antikörpermenge."
+        },
+        {
+          "id": "gedaechtnis-q5",
+          "lessonId": "gedaechtnis",
+          "q": "Warum ist passive Antikörperübertragung nicht gleichbedeutend mit eigenem langfristigem Gedächtnis?",
+          "options": [
+            "Übernommene Antikörper können grundsätzlich kein Antigen binden.",
+            "Die Antikörper sind übernommen; ihre bloße Übertragung erzeugt nicht das eigene spezifische Gedächtnis.",
+            "Jeder übertragene Antikörper wird direkt zu einer Gedächtniszelle.",
+            "Fertige Antikörper sind dasselbe wie übertragene lebende Gedächtniszellen."
+          ],
+          "answer": 1,
+          "explain": "Übertragene Antikörper und selbst gebildete Gedächtniszellen sind unterschiedliche Komponenten."
+        },
+        {
+          "id": "gedaechtnis-q6",
+          "lessonId": "gedaechtnis",
+          "q": "Was bezeichnet Immundefizienz?",
+          "options": [
+            "Eine fehlgeleitete Reaktion gegen eigene Gewebe.",
+            "Eine übersteigerte Reaktion auf harmlose äußere Stoffe.",
+            "Eine normale Gedächtnisreaktion nach erneutem Kontakt.",
+            "Eine eingeschränkte Funktion von Teilen des Immunsystems."
+          ],
+          "answer": 3,
+          "explain": "Eine Schwäche von Abwehrfunktionen kann die Anfälligkeit erhöhen."
+        },
+        {
+          "id": "gedaechtnis-q7",
+          "lessonId": "gedaechtnis",
+          "q": "Welche Zielrichtung kennzeichnet Autoimmunität?",
+          "options": [
+            "Eine fehlgeleitete Reaktion gegen körpereigene Strukturen.",
+            "Jede angemessene Reaktion gegen einen Erreger.",
+            "Eine allein gegen harmlose äußere Pollen gerichtete Allergie.",
+            "Nur eine verminderte Zahl von Abwehrzellen ohne Selbstreaktion."
+          ],
+          "answer": 0,
+          "explain": "Autoimmunreaktionen betreffen eigene Zielstrukturen."
+        },
+        {
+          "id": "gedaechtnis-q8",
+          "lessonId": "gedaechtnis",
+          "q": "Welche Beschreibung passt zu einer Allergie?",
+          "options": [
+            "Eine fehlgeleitete Reaktion ausschließlich gegen eigene Körperstrukturen.",
+            "Eine unzureichende Abwehrleistung aufgrund fehlender Funktionen.",
+            "Eine unangemessene Abwehrreaktion auf bestimmte normalerweise harmlose äußere Stoffe.",
+            "Jede angemessene Abwehr eines Krankheitserregers."
+          ],
+          "answer": 2,
+          "explain": "Allergie, Immundefizienz und Autoimmunität sind verschiedene Begriffe."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-koerperfunktion-hundebewegung-2026",
+      "title": "Hund in Bewegung: Lebende Knochen und belastbare Verbindungen",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Knochenzellen, Wachstum, Gelenke und Kraftübertragung im Jagdhund verstehen.",
+      "minutes": 40,
+      "objectives": [
+        "Knochenzellen ihren Aufgaben zuordnen",
+        "Wachstum und Umbau unterscheiden",
+        "Den Aufbau eines synovialen Gelenks erklären",
+        "Sehnen und Bänder funktionell trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Hundebiologie. Keine pauschalen Trainingslasten, Reifealter oder Therapieangaben.",
+        "AT": "Gemeinsame Hundebiologie. Keine pauschalen Trainingslasten, Reifealter oder Therapieangaben.",
+        "CH": "Gemeinsame Hundebiologie. Keine pauschalen Trainingslasten, Reifealter oder Therapieangaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Components of the musculoskeletal system in dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/bone-joint-and-muscle-disorders-of-dogs/components-of-the-musculoskeletal-system-in-dogs",
+          "organization": "Merck Veterinary Manual; Stephen Adams",
+          "supports": "Knochen, Gelenke, Muskeln, Sehnen und Bänder; Stand September 2024. Absolutbehauptung „tendons do not stretch“ nicht übernommen."
+        },
+        {
+          "label": "Bone microanatomy",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-microanatomy/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Matrix, Zellen, Hüllen und kompakte/trabekuläre Architektur; indexierter Originaltext."
+        },
+        {
+          "label": "Bone function",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-function/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Modellierung und Umbau; keine pauschale lokale Zug-/Druckbildungsregel übernommen."
+        },
+        {
+          "label": "Bone growth",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-growth/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Direkte und endochondrale Knochenbildung, Wachstumsfuge."
+        },
+        {
+          "label": "Cartilage microanatomy",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/5-cartilage-microanatomy/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Hyaliner Gelenkknorpel, Matrix und Chondrozyten; keine pauschale Ernährung sämtlicher Knorpel durch Synovia."
+        },
+        {
+          "label": "Tendons and joints",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/5-tendons-and-joints/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Kapsel, Synovium, Kollagen und Verankerung."
+        },
+        {
+          "label": "Bone development and growth",
+          "url": "https://training.seer.cancer.gov/anatomy/skeletal/growth.html",
+          "organization": "National Cancer Institute, SEER Training",
+          "supports": "Allgemeine Säugetierprinzipien der Knochenbildung; menschliche Reifealter nicht übertragen."
+        },
+        {
+          "label": "Bone structure",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+          "organization": "OpenStax, Rice University",
+          "supports": "Allgemeine Knochenstruktur, Zellen, Hüllen und Gefäße; keine kopierten Grafiken oder Aufgaben."
+        },
+        {
+          "label": "Synovial joints",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/9-4-synovial-joints",
+          "organization": "OpenStax, Rice University",
+          "supports": "Gelenkraum, Kapsel, Knorpel und Menisken."
+        },
+        {
+          "label": "Interactions of skeletal muscles",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems",
+          "organization": "OpenStax, Rice University",
+          "supports": "Kraftübertragung und funktionelle Gegenspieler; Humanbeispiele nicht als Hundeanatomie benannt."
+        },
+        {
+          "label": "Skeletal muscle",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/4-skeletal-muscle/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Haltung, Bewegung und Bremsen; keine Pauschale „jede Faser läuft durch gesamten Muskel“ übernommen."
+        },
+        {
+          "label": "Osteoarthritis in dogs",
+          "url": "https://www.acvs.org/small-animal/osteoarthritis-in-dogs/",
+          "organization": "American College of Veterinary Surgeons",
+          "supports": "Nur normale Funktion von Gelenkknorpel und Synovia als Ausgangspunkt; keine Behandlung oder Übernahme der fraglichen genetischen Risikopauschale."
+        },
+        {
+          "label": "Musculotendon excursion potential, tendon slack and muscle fibre length: the interaction of the canine gastrocnemius muscle and tendon",
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/joa.12845",
+          "organization": "Dries et al., Journal of Anatomy, 2018",
+          "supports": "Originaluntersuchung zu Muskel-Sehnen-Zusammenspiel am Hunde-Gastrocnemius; keine universellen Rassenwerte."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "knochen",
+          "title": "Knochen ist lebendes Gewebe",
+          "paragraphs": [
+            "Knochen besteht aus Zellen und einer mineralisierten Zwischenzellsubstanz. Kollagen trägt zur Zugfestigkeit bei, Mineral verstärkt die Steifigkeit. Osteoblasten bilden neue organische Matrix; Osteoklasten bauen Knochen ab. Eingebettete Osteozyten stehen über feine Zellfortsätze in Verbindung und wirken an der Wahrnehmung und Regulation ihrer Umgebung mit.",
+            "Kompakte Knochenabschnitte bilden dichte tragende Bereiche; spongiöser Knochen bildet ein Netz aus Trabekeln. Diese Bälkchen sind kein krankhafter Hohlraum, sondern normale Architektur. Außen liegt an vielen Knochenoberflächen die Knochenhaut, das Periost; innere Oberflächen werden vom Endost ausgekleidet. Im Knochenmark kann Blutbildung stattfinden. Tragstruktur und Stoffwechsel sind damit unmittelbar verbunden."
+          ],
+          "takeaway": "Knochenzellen bauen die tragende Matrix auf, erhalten sie und bauen sie um.",
+          "exercise": "Beschrifte Osteoblast, Osteoklast und Osteozyt mit je einer Funktion."
+        },
+        {
+          "id": "wachstum",
+          "title": "Wachsen und Erneuern sind verschiedene Prozesse",
+          "paragraphs": [
+            "Dicke und Form eines Knochens verändern sich durch Anlagerung und Abbau an Oberflächen. Beim Remodeling wird vorhandener Knochen in abgestimmten Abläufen abgebaut und neu gebildet. Dieser Umbau endet nicht mit dem Längenwachstum. Er dient auch der Erneuerung und Anpassung des Gewebes.",
+            "Direkte, desmale Knochenbildung benötigt kein vorgeschaltetes Knorpelmodell. Endochondrale Knochenbildung ersetzt dagegen ein solches Modell schrittweise durch Knochen. Die Wachstumsfuge eines langen Knochens ist eine Knorpelzone, an der Längenzuwachs erfolgt. Diaphyse heißt Schaft, Epiphyse der Endbereich. Das Ende des Längenwachstums ist deshalb weder gleichbedeutend mit Stoffwechselstillstand noch mit dem Verlust lebender Zellen."
+          ],
+          "takeaway": "Endochondrale Bildung nutzt ein Knorpelmodell; Umbau geht über das Längenwachstum hinaus.",
+          "exercise": "Zeichne Schaft, Endbereiche und Wachstumsfuge eines jungen langen Knochens."
+        },
+        {
+          "id": "gelenk",
+          "title": "Ein Gelenk ist mehr als zwei Knochenenden",
+          "paragraphs": [
+            "Ein synoviales Gelenk besitzt einen Gelenkraum innerhalb einer Kapsel. Die belasteten Gelenkflächen sind gewöhnlich mit hyalinem Gelenkknorpel überzogen. Seine Chondrozyten erhalten die wasserreiche Matrix. Der Gelenkknorpel besitzt keine eigene Blutgefäßversorgung; Stoffe werden unter anderem aus der Gelenkflüssigkeit zugeführt. Eine Knorpeldecke ist damit funktionell etwas anderes als die mineralisierte Knochenschicht darunter.",
+            "Die innere Synovialmembran und die äußere faserige Kapsel erfüllen unterschiedliche Aufgaben. Synovia schmiert das Gelenk und trägt zur Versorgung des Knorpels bei. Menisken sind zusätzliche Faserknorpelstrukturen in bestimmten Gelenken, keine universelle Ausstattung jedes Gelenks. Form und Führung beeinflussen Bewegungsmöglichkeiten. Bindegewebige oder knorpelige Knochenverbindungen sind zudem nicht automatisch frei bewegliche synoviale Gelenke."
+          ],
+          "takeaway": "Gelenkraum, Knorpel, Kapsel und Synovia arbeiten zusammen.",
+          "exercise": "Zeichne Knochen, Gelenkknorpel, Raum, Synovia und beide Kapselbereiche."
+        },
+        {
+          "id": "kraftweg",
+          "title": "Muskeln ziehen, Verbindungen übertragen und führen",
+          "paragraphs": [
+            "Sehnen übertragen Muskelkraft auf Knochen. Bänder verbinden im Bewegungsapparat überwiegend Knochen mit Knochen und führen beziehungsweise stabilisieren Gelenke. Beide sind kollagenreiche Bindegewebe. Ihre Rollen sind trotz ähnlichen histologischen Grundmaterials verschieden. Ein aktiv arbeitender Muskel kann Bewegung erzeugen, abbremsen oder eine Position halten; Kraftentwicklung bedeutet nicht zwingend sichtbare Verkürzung.",
+            "Bewegungsrichtungen entstehen durch das Zusammenspiel von Muskeln und Hebelverhältnissen. Ein Gegenspieler wirkt der betrachteten Bewegung funktionell entgegen. Muskelfaserlänge und Länge des gesamten Muskelbauchs sind nicht dasselbe: Auch gefiederte Anordnung verändert ihre Beziehung. Originaluntersuchungen am Hunde-Gastrocnemius verdeutlichen dieses Zusammenspiel. Ergebnisse einer untersuchten Rasse und Muskelgruppe sind keine universellen Längenverhältnisse aller Jagdhunde."
+          ],
+          "takeaway": "Sehne überträgt Muskelkraft; Band führt und stabilisiert Knochenverbindungen.",
+          "exercise": "Verfolge einen Kraftweg Muskel → Sehne → Knochen → Gelenkbewegung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "knochen-q1",
+          "lessonId": "knochen",
+          "q": "Welche Komponente verleiht Knochen einen wesentlichen Teil seiner mineralischen Steifigkeit?",
+          "options": [
+            "Unmineralisiertes Kollagen allein.",
+            "Die eingelagerte Mineralphase.",
+            "Die Zellfortsätze der Osteozyten allein.",
+            "Die weiche Fettkomponente des Knochenmarks."
+          ],
+          "answer": 1,
+          "explain": "Knochen ist ein Verbund aus organischer Matrix und Mineral."
+        },
+        {
+          "id": "knochen-q2",
+          "lessonId": "knochen",
+          "q": "Welche Zellen bilden neue organische Knochenmatrix?",
+          "options": [
+            "Osteoklasten.",
+            "Chondrozyten.",
+            "Osteozyten als alleinige Hauptgruppe neuer Oberflächenmatrixbildung.",
+            "Osteoblasten."
+          ],
+          "answer": 3,
+          "explain": "Osteoblasten bilden Osteoid als Grundlage neuer Knochenmatrix."
+        },
+        {
+          "id": "knochen-q3",
+          "lessonId": "knochen",
+          "q": "Welche Zellen bauen mineralisierten Knochen ab?",
+          "options": [
+            "Osteoklasten.",
+            "Osteoblasten.",
+            "Chondrozyten.",
+            "Fibroblasten der äußeren Gelenkkapsel."
+          ],
+          "answer": 0,
+          "explain": "Knochenabbau ist eine normale Aufgabe von Osteoklasten."
+        },
+        {
+          "id": "knochen-q4",
+          "lessonId": "knochen",
+          "q": "Welche Zellart liegt in kleinen Hohlräumen der Knochenmatrix eingebettet?",
+          "options": [
+            "Chondrozyten.",
+            "Synovialzellen.",
+            "Osteozyten.",
+            "Osteoklasten als typische dauerhaft eingemauerte Matrixzellen."
+          ],
+          "answer": 2,
+          "explain": "Osteozyten sind lebende eingebettete Knochenzellen."
+        },
+        {
+          "id": "knochen-q5",
+          "lessonId": "knochen",
+          "q": "Was bezeichnet Spongiosa?",
+          "options": [
+            "Die dichte äußere Knochenrinde allein.",
+            "Die hyaline Gelenkknorpeldecke.",
+            "Das Knochenmark ohne zugehörige Knochenbälkchen.",
+            "Ein Netzwerk knöcherner Trabekel."
+          ],
+          "answer": 3,
+          "explain": "Die trabekuläre Architektur ist eine normale Form des Knochenbaus."
+        },
+        {
+          "id": "knochen-q6",
+          "lessonId": "knochen",
+          "q": "Wie heißt die Knochenhaut an äußeren Knochenoberflächen?",
+          "options": [
+            "Endost.",
+            "Periost.",
+            "Synovialmembran.",
+            "Gelenkknorpel."
+          ],
+          "answer": 1,
+          "explain": "Das Periost ist von innerer Knochenauskleidung und Gelenkinnenhaut zu unterscheiden."
+        },
+        {
+          "id": "knochen-q7",
+          "lessonId": "knochen",
+          "q": "Wie heißt die Auskleidung innerer Knochenoberflächen?",
+          "options": [
+            "Periost.",
+            "Epidermis.",
+            "Endost.",
+            "Gelenkknorpel."
+          ],
+          "answer": 2,
+          "explain": "Das Endost liegt unter anderem an inneren Knochenoberflächen und Trabekeln."
+        },
+        {
+          "id": "knochen-q8",
+          "lessonId": "knochen",
+          "q": "Welche weitere Funktion hat blutbildendes Knochenmark außer seiner Lage im Skelett?",
+          "options": [
+            "Die Bildung von Blutzellen.",
+            "Die Herstellung der Synovia.",
+            "Die Neubildung der hyalinen Gelenkknorpelmatrix.",
+            "Die Bildung des periostalen Fasergewebes als alleinige Hauptaufgabe."
+          ],
+          "answer": 0,
+          "explain": "Knochenmark verbindet das Skelett mit der Blutbildung."
+        },
+        {
+          "id": "wachstum-q1",
+          "lessonId": "wachstum",
+          "q": "Was beschreibt Knochen-Remodeling?",
+          "options": [
+            "Ausschließlich Längenwachstum an der Wachstumsfuge.",
+            "Abgestimmten Abbau und Neubildung vorhandenen Knochens.",
+            "Ausschließlich Auflagerung ohne vorausgehenden Knochenabbau.",
+            "Umbau von Knochen in Gelenkknorpel als reguläre Endstufe."
+          ],
+          "answer": 1,
+          "explain": "Umbau erneuert vorhandenes Gewebe."
+        },
+        {
+          "id": "wachstum-q2",
+          "lessonId": "wachstum",
+          "q": "Welche Aussage zum Knochenumbau nach Ende des Längenwachstums trifft zu?",
+          "options": [
+            "Nach Fugenschluss endet jede Neubildung von Knochenmatrix.",
+            "Nach Fugenschluss wirken nur noch Osteoklasten, keine Osteoblasten.",
+            "Der Umbau findet anschließend ausschließlich in verbliebenem Gelenkknorpel statt.",
+            "Er kann weiter stattfinden."
+          ],
+          "answer": 3,
+          "explain": "Ausgewachsene Knochen bleiben stoffwechselaktiv."
+        },
+        {
+          "id": "wachstum-q3",
+          "lessonId": "wachstum",
+          "q": "Welche Knochenbildung erfolgt ohne vorgeschaltetes Knorpelmodell?",
+          "options": [
+            "Desmale beziehungsweise direkte Knochenbildung.",
+            "Endochondrale Knochenbildung.",
+            "Längenwachstum an der knorpeligen Wachstumsfuge.",
+            "Ersatz eines knorpeligen Skelettmodells durch Knochen."
+          ],
+          "answer": 0,
+          "explain": "Direkte Knochenbildung geht aus entsprechend differenziertem Bindegewebe hervor."
+        },
+        {
+          "id": "wachstum-q4",
+          "lessonId": "wachstum",
+          "q": "Was kennzeichnet endochondrale Knochenbildung?",
+          "options": [
+            "Direkte Knochenbildung im Bindegewebe ohne Knorpelvorstufe.",
+            "Anlagerung fertigen Knochens ohne Beteiligung von Zellen.",
+            "Ein Knorpelmodell wird schrittweise durch Knochen ersetzt.",
+            "Umbau von mineralisierter Matrix in ein dauerhaftes Knorpelmodell."
+          ],
+          "answer": 2,
+          "explain": "Knorpel dient als vorausgehendes Modell."
+        },
+        {
+          "id": "wachstum-q5",
+          "lessonId": "wachstum",
+          "q": "Welches Gewebe kennzeichnet die Wachstumsfuge eines jungen langen Knochens?",
+          "options": [
+            "Kompakter Lamellenknochen ohne Knorpelzone.",
+            "Sehnengewebe.",
+            "Synovialmembran.",
+            "Knorpel."
+          ],
+          "answer": 3,
+          "explain": "Die Physis ist eine organisierte Knorpelzone des Längenwachstums."
+        },
+        {
+          "id": "wachstum-q6",
+          "lessonId": "wachstum",
+          "q": "Wie heißt der Schaft eines langen Knochens?",
+          "options": [
+            "Epiphyse.",
+            "Diaphyse.",
+            "Metaphyse.",
+            "Periost."
+          ],
+          "answer": 1,
+          "explain": "Diaphyse bezeichnet den Schaftbereich."
+        },
+        {
+          "id": "wachstum-q7",
+          "lessonId": "wachstum",
+          "q": "Wie heißt ein Endbereich eines langen Knochens?",
+          "options": [
+            "Diaphyse.",
+            "Metaphyse.",
+            "Epiphyse.",
+            "Periost."
+          ],
+          "answer": 2,
+          "explain": "Epiphysen liegen an den Enden des langen Knochens."
+        },
+        {
+          "id": "wachstum-q8",
+          "lessonId": "wachstum",
+          "q": "Wie wächst ein Knochen in der Dicke?",
+          "options": [
+            "Durch Anlagerung an Oberflächen, verbunden mit modellierendem Abbau.",
+            "Durch Dehnung bereits mineralisierter Matrix von innen.",
+            "Allein durch Zellteilung mitten in der fertigen mineralisierten Matrix.",
+            "Ausschließlich durch Knorpelwachstum an der Gelenkoberfläche."
+          ],
+          "answer": 0,
+          "explain": "Mineralisierter Knochen vergrößert sich durch oberflächengebundene Auf- und Abbauprozesse."
+        },
+        {
+          "id": "gelenk-q1",
+          "lessonId": "gelenk",
+          "q": "Was kennzeichnet ein synoviales Gelenk strukturell?",
+          "options": [
+            "Eine knöcherne Verschmelzung ohne Gelenkraum.",
+            "Ein Gelenkraum innerhalb einer Kapsel.",
+            "Eine durchgehende faserknorpelige Brücke ohne Gelenkraum.",
+            "Eine bindegewebige Naht ohne Kapselraum."
+          ],
+          "answer": 1,
+          "explain": "Der flüssigkeitshaltige Raum ist ein wesentliches Unterscheidungsmerkmal."
+        },
+        {
+          "id": "gelenk-q2",
+          "lessonId": "gelenk",
+          "q": "Welcher Knorpeltyp überzieht gewöhnlich die tragenden Gelenkflächen eines synovialen Gelenks?",
+          "options": [
+            "Elastischer Knorpel.",
+            "Faserknorpel als allgemeiner Flächenüberzug.",
+            "Mineralisierter Lamellenknochen ohne Knorpeldecke.",
+            "Hyaliner Knorpel."
+          ],
+          "answer": 3,
+          "explain": "Hyaliner Gelenkknorpel unterstützt glattes Gleiten und Lastverteilung."
+        },
+        {
+          "id": "gelenk-q3",
+          "lessonId": "gelenk",
+          "q": "Welche Zellen erhalten die Knorpelmatrix?",
+          "options": [
+            "Chondrozyten.",
+            "Osteoblasten.",
+            "Osteoklasten.",
+            "Synovialzellen als typische eingebettete Knorpelzellen."
+          ],
+          "answer": 0,
+          "explain": "Chondrozyten sind die charakteristischen Zellen des Knorpelgewebes."
+        },
+        {
+          "id": "gelenk-q4",
+          "lessonId": "gelenk",
+          "q": "Welche Besonderheit gilt für normalen Gelenkknorpel?",
+          "options": [
+            "Versorgung durch ein dichtes eigenes Kapillarnetz.",
+            "Eine Matrix, die im Normalzustand keine lebenden Zellen enthält.",
+            "Er besitzt keine eigene Blutgefäßversorgung.",
+            "Ein Gewebeaufbau, der mit der äußeren faserigen Kapsel identisch ist."
+          ],
+          "answer": 2,
+          "explain": "Versorgung erfolgt über Stofftransport, unter anderem aus der Synovia."
+        },
+        {
+          "id": "gelenk-q5",
+          "lessonId": "gelenk",
+          "q": "Wo liegt die Synovialmembran?",
+          "options": [
+            "Als Periost außen am Knochenschaft.",
+            "Als Endost an inneren Knochenoberflächen.",
+            "Als oberflächliche Zellschicht auf der tragenden Knorpelfläche.",
+            "An der inneren Kapseloberfläche."
+          ],
+          "answer": 3,
+          "explain": "Die Synovialmembran ist von der äußeren faserigen Kapsel zu unterscheiden."
+        },
+        {
+          "id": "gelenk-q6",
+          "lessonId": "gelenk",
+          "q": "Welche Funktion erfüllt die Synovia?",
+          "options": [
+            "Sie übernimmt die gerichtete Zugfunktion der Seitenbänder.",
+            "Sie schmiert das Gelenk und trägt zur Knorpelversorgung bei.",
+            "Sie mineralisiert die Knorpeloberfläche als normale Gleitfunktion.",
+            "Sie überträgt Muskelkraft als flüssiger Ersatz einer Sehne."
+          ],
+          "answer": 1,
+          "explain": "Gelenkflüssigkeit verringert Reibung und transportiert gelöste Stoffe."
+        },
+        {
+          "id": "gelenk-q7",
+          "lessonId": "gelenk",
+          "q": "Was sind Menisken?",
+          "options": [
+            "Die äußere faserige Kapsel jedes Gelenks.",
+            "Die durchgehende hyaline Knorpeldecke jeder Gelenkfläche.",
+            "Zusätzliche Faserknorpelstrukturen in bestimmten Gelenken.",
+            "Sehnenansätze im Gelenkraum ohne Knorpelgewebe."
+          ],
+          "answer": 2,
+          "explain": "Menisken ergänzen bestimmte Gelenke, etwa das Knie."
+        },
+        {
+          "id": "gelenk-q8",
+          "lessonId": "gelenk",
+          "q": "Welche Aussage über Knochenverbindungen ist richtig?",
+          "options": [
+            "Nicht jede Knochenverbindung besitzt die Beweglichkeit eines synovialen Gelenks.",
+            "Jede Knochenverbindung besitzt einen flüssigkeitsgefüllten Kapselraum.",
+            "Knorpelige Verbindungen sind grundsätzlich beweglicher als synoviale Gelenke.",
+            "Die Beweglichkeit hängt allein vom Vorhandensein eines Meniskus ab."
+          ],
+          "answer": 0,
+          "explain": "Bindegewebige, knorpelige und synoviale Verbindungen unterscheiden sich im Bau und in ihrer Beweglichkeit."
+        },
+        {
+          "id": "kraftweg-q1",
+          "lessonId": "kraftweg",
+          "q": "Welche Verbindung überträgt Muskelkraft auf Knochen?",
+          "options": [
+            "Ein Seitenband.",
+            "Eine Sehne.",
+            "Die Synovialmembran.",
+            "Der Gelenkknorpel."
+          ],
+          "answer": 1,
+          "explain": "Sehnen verbinden die kraftentwickelnde Muskulatur mit ihrer knöchernen Wirkung."
+        },
+        {
+          "id": "kraftweg-q2",
+          "lessonId": "kraftweg",
+          "q": "Welche Verbindung ist für ein Band im Bewegungsapparat typisch?",
+          "options": [
+            "Muskel mit Knochen als typische Kraftübertragung einer Sehne.",
+            "Muskelbauch mit seiner umgebenden Haut.",
+            "Gelenkknorpel mit Synovia als flüssige Verbindung.",
+            "Knochen mit Knochen."
+          ],
+          "answer": 3,
+          "explain": "Bänder unterstützen Führung und Stabilität von Knochenverbindungen."
+        },
+        {
+          "id": "kraftweg-q3",
+          "lessonId": "kraftweg",
+          "q": "Welche Proteinfasern prägen Sehnen und Bänder besonders?",
+          "options": [
+            "Kollagenfasern.",
+            "Elastische Fasern als überwiegendes zugtragendes Grundgerüst.",
+            "Aktin-Myosin-Sarkomere als überwiegender Aufbau.",
+            "Keratinfasern als überwiegendes zugtragendes Grundgerüst."
+          ],
+          "answer": 0,
+          "explain": "Die kollagenreiche Matrix trägt wesentlich zur mechanischen Funktion bei."
+        },
+        {
+          "id": "kraftweg-q4",
+          "lessonId": "kraftweg",
+          "q": "Was kann aktive Muskelarbeit außer dem Beschleunigen einer Bewegung bewirken?",
+          "options": [
+            "Nur aktive Verkürzung, niemals Bremsung.",
+            "Kraft ausschließlich bei einer Abnahme der Muskelbaulänge erzeugen.",
+            "Eine Bewegung abbremsen oder eine Position halten.",
+            "Eine Haltung ausschließlich durch passives Erschlaffen stabilisieren."
+          ],
+          "answer": 2,
+          "explain": "Muskelkraft trägt auch zur Kontrolle und Stabilisierung bei."
+        },
+        {
+          "id": "kraftweg-q5",
+          "lessonId": "kraftweg",
+          "q": "Was kennzeichnet einen funktionellen Muskelgegner, den Antagonisten?",
+          "options": [
+            "Er unterstützt dieselbe betrachtete Bewegung als Synergist.",
+            "Er ist die Sehne, die dem Muskel nachgeschaltet ist.",
+            "Er ist jeder Muskel auf der gegenüberliegenden Körperseite unabhängig von der Bewegung.",
+            "Er wirkt der betrachteten Bewegungsrichtung entgegen."
+          ],
+          "answer": 3,
+          "explain": "Agonist und Antagonist bezeichnen Rollen relativ zu einer Bewegung."
+        },
+        {
+          "id": "kraftweg-q6",
+          "lessonId": "kraftweg",
+          "q": "Welche Aussage zu Muskelkraft und Bewegung trifft zu?",
+          "options": [
+            "Jede Kraftentwicklung erfordert sichtbare Verkürzung.",
+            "Ein Muskel kann Kraft entwickeln, ohne dabei sichtbar kürzer zu werden.",
+            "Ein Muskel kann nur während passiver Entspannung Kraft übertragen.",
+            "Das Halten einer Position benötigt grundsätzlich keine aktive Muskelkraft."
+          ],
+          "answer": 1,
+          "explain": "Aktive Stabilisierung ist nicht mit sichtbarer Bewegung gleichzusetzen."
+        },
+        {
+          "id": "kraftweg-q7",
+          "lessonId": "kraftweg",
+          "q": "Warum darf Muskelfaserlänge nicht mit der Länge des ganzen Muskelbauchs gleichgesetzt werden?",
+          "options": [
+            "Der ganze Muskelbauch besteht grundsätzlich aus einer einzigen Faser.",
+            "Die Muskelfaserlänge bezeichnet nur die Länge der Endsehne.",
+            "Die räumliche Faseranordnung kann beide Längen unterschiedlich beeinflussen.",
+            "Alle Muskelfasern verlaufen unabhängig von der Architektur parallel von Ursprung bis Ansatz."
+          ],
+          "answer": 2,
+          "explain": "Gefiederte Architektur zeigt besonders, dass beide Längen verschiedene Größen sind."
+        },
+        {
+          "id": "kraftweg-q8",
+          "lessonId": "kraftweg",
+          "q": "Wie sind Längenverhältnisse aus einer Studie an einer Rasse und Muskelgruppe einzuordnen?",
+          "options": [
+            "Als Befund dieser untersuchten Gruppe, nicht als Universalwert aller Hunde.",
+            "Als universelles Verhältnis sämtlicher Hundemuskeln.",
+            "Als alleinigen Nachweis individueller Leistungsfähigkeit.",
+            "Als Referenz, die Rassenunterschiede und Messmethoden grundsätzlich überflüssig macht."
+          ],
+          "answer": 0,
+          "explain": "Art der Stichprobe, Muskelarchitektur und Messmethode begrenzen die Übertragung."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-koerperfunktion-hundethermik-2026",
+      "title": "Jagdliche Arbeit und Wärmehaushalt des Hundes",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "imageKey": "hundewesen",
+      "description": "Wärmebildung, Hecheln, Isolation und Belastungsrisiken biologisch verstehen.",
+      "minutes": 40,
+      "objectives": [
+        "Wärmequellen und Austauschwege unterscheiden",
+        "Hecheln und Verdunstung erklären",
+        "Regelung und Isolation verbinden",
+        "Studienbefunde und individuelle Risiken richtig lesen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Hundebiologie. Keine universelle Einsatztemperatur, Belastungsdauer oder Behandlungsanweisung.",
+        "AT": "Gemeinsame Hundebiologie. Keine universelle Einsatztemperatur, Belastungsdauer oder Behandlungsanweisung.",
+        "CH": "Gemeinsame Hundebiologie. Keine universelle Einsatztemperatur, Belastungsdauer oder Behandlungsanweisung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Homeostasis and thermoregulation",
+          "url": "https://openstax.org/books/biology-2e/pages/33-3-homeostasis",
+          "organization": "OpenStax, Rice University",
+          "supports": "Innere Wärmequelle, Austauschwege, Isolation und Rückkopplung; keine universellen Enzym-, Temperatur- oder Prozentwerte."
+        },
+        {
+          "label": "Mechanisms of heat transfer",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/1-6-mechanisms-of-heat-transfer",
+          "organization": "OpenStax, Rice University",
+          "supports": "Physikalische Begriffe Wärmeleitung, Konvektion und Strahlung."
+        },
+        {
+          "label": "Vorbereitungsliteratur Veterinärmedizin 2022/23",
+          "url": "https://www.vetmeduni.ac.at/fileadmin/v/z/lehre/Aufnahmeverfahren/AV_22_VET_V2.pdf",
+          "organization": "Veterinärmedizinische Universität Wien",
+          "supports": "Abschnitt 7.6 Thermophysiologie, PDF-S. 75–77; Hecheln, Sensorik, zentrale Steuerung und Wärmebildung. Nicht als aktueller Rechtsstand ausgegeben."
+        },
+        {
+          "label": "The integumentary system in animals",
+          "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+          "organization": "Merck Veterinary Manual; Karen Moriello",
+          "supports": "Hautgefäße, Haare, Unterhautfett und Schweißdrüsen; Stand Mai 2025. Merck und MSD dieselbe Familie."
+        },
+        {
+          "label": "Panting in dogs: paths of air flow in response to heat and exercise",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/7280382/",
+          "organization": "Goldberg, Langman und Taylor, Respiratory Physiology, 1981",
+          "supports": "Originalabstract gelesen: drei Hunde, Atemluftwege und Verdunstung; keine universellen Schwellen aus dieser kleinen Gruppe."
+        },
+        {
+          "label": "The microclimate of the canine coat",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34644843/",
+          "organization": "C. J. Chesney, Veterinary Dermatology, 1997",
+          "supports": "Originalabstract gelesen: sieben Landseer-Neufundländer unter Infrarot; geringe kühlende Bedeutung der gemessenen Schweißabgabe. Keine universelle Fellfarbenregel."
+        },
+        {
+          "label": "Energy and heat balance",
+          "url": "https://openstax.org/books/anatomy-and-physiology/pages/24-6-energy-and-heat-balance",
+          "organization": "OpenStax, Rice University",
+          "supports": "Verdunstungsenergie und Luftfeuchtigkeit; keine menschlichen Normalwerte/Anteile übertragen. Fehlerhafte Nebenformulierung Konvektion→Hyperthermie nicht übernommen."
+        },
+        {
+          "label": "Fever of unknown origin in animals – Abschnitt zur Temperaturregelung",
+          "url": "https://www.merckvetmanual.com/metabolic-disorders/fever-of-unknown-origin/fever-of-unknown-origin-in-animals",
+          "organization": "Merck Veterinary Manual, Katharine Lunn",
+          "supports": "Hypothalamus, Thermorezeptoren, Fieber-Sollwert versus Überhitzung; Stand September 2024. Nur Physiologie übernommen."
+        },
+        {
+          "label": "Summer heat safety tips for dogs",
+          "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+          "organization": "Cornell University, Aly Cohen",
+          "supports": "Hitze-/Feuchtigkeits-/Belastungsrisiken, Risikofaktoren und Warnzeichen. Pauschale „nur Pfoten besitzen Schweißdrüsen“ nicht übernommen."
+        },
+        {
+          "label": "Heatstroke in dogs and cats",
+          "url": "https://www.rvc.ac.uk/small-animal-vet/teaching-and-research/fact-files/heatstroke-in-dogs-and-cats",
+          "organization": "Royal Veterinary College",
+          "supports": "Risikofaktoren und Verlauf; kein Kältewasserverbot und keine Behandlungsanleitung übernommen. Indexierter Originaltext gelesen."
+        },
+        {
+          "label": "Incidence and risk factors for heat-related illness (heatstroke) in UK dogs under primary veterinary care in 2016",
+          "url": "https://irep.ntu.ac.uk/id/eprint/39958/1/39958_a732_Carter.pdf",
+          "organization": "Hall et al., Scientific Reports 2020, Nottingham Trent University/RVC",
+          "supports": "Originalmethoden und Ergebnisse sowie Grenzen gelesen; beobachtete Risiken, keine individuellen Vorhersagen oder DACH-Inzidenz."
+        },
+        {
+          "label": "Vergleich rektaler und infraroter Temperaturmessung bei Hunden",
+          "url": "https://phaidra.vetmeduni.ac.at/detail/o%3A3907",
+          "organization": "Monika Ulicna, Vetmeduni Wien, 2021",
+          "supports": "Originalzusammenfassung mit 30 Hunden und unterschiedlichen Messbedingungen gelesen; keine Gleichsetzung Oberflächen- und Kerntemperatur."
+        },
+        {
+          "label": "Tiny tech tracks overheating risk in sporting dogs",
+          "url": "https://www.vet.cornell.edu/about-us/news/20260429/tiny-tech-tracks-overheating-risk-sporting-dogs",
+          "organization": "Cornell University, Forschung Christopher Frye",
+          "supports": "Institutsbericht 29.04.2026; nur dokumentierte thermoregulatorische Verhaltensweisen. Keine Übernahme von 20-Minuten- oder Myoglobin-Grenzwerten."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "bilanz",
+          "title": "Wärme kommt von innen und von außen",
+          "paragraphs": [
+            "Der Hund ist ein endothermes Tier: Ein wesentlicher Anteil seiner Wärme entsteht im eigenen Stoffwechsel. Intensive Muskelarbeit setzt zusätzlich Wärme frei. Bleiben Wärmebildung und Wärmeaufnahme größer als die Abgabe, wird Wärme gespeichert und die Körpertemperatur kann steigen. Eine niedrige Lufttemperatur allein beschreibt diese Bilanz daher nicht vollständig.",
+            "Wärmeleitung erfolgt bei direktem Kontakt, etwa zwischen Körper und Unterlage. Konvektion transportiert Wärme mit bewegter Luft oder Flüssigkeit. Strahlung benötigt weder direkten Kontakt noch einen Luftstrom. Verdunstung entzieht einer feuchten Oberfläche Energie, wenn Wasser in die Gasphase übergeht. Sonnenstrahlung kann zusätzliche Wärme zuführen; die Austauschwege sind deshalb keine ausnahmslosen Einbahnstraßen zur Kühlung."
+          ],
+          "takeaway": "Die Wärmebilanz umfasst Stoffwechsel, äußere Aufnahme und mehrere Abgabewege.",
+          "exercise": "Ordne Unterlagenkontakt, Luftstrom, Sonneneinstrahlung und Wasserverdunstung den Austauschwegen zu."
+        },
+        {
+          "id": "hecheln",
+          "title": "Verdunstung braucht Wasser und ein passendes Gefälle",
+          "paragraphs": [
+            "Hecheln bewegt Luft über feuchte Bereiche des Atemtrakts und unterstützt Verdunstung. Wasser verlässt den Körper dabei als Wasserdampf. Hohe Luftfeuchtigkeit kann diese Abgabe erschweren, weil die Umgebung weniger zusätzlichen Wasserdampf aufnimmt. Ein schnellerer Luftwechsel und die Feuchtigkeit der Oberflächen sind deshalb funktionell relevante Bedingungen.",
+            "Hunde besitzen Schweißdrüsen; Schwitzen über eine große Körperoberfläche ist bei ihnen jedoch nicht der Hauptkühlweg wie beim Menschen. Messungen an kleinen, ausdrücklich benannten Hundegruppen belegen keine allgemeingültige Schweißquote für alle Rassen. Hecheln allein ist auch keine Diagnose einer bestimmten Überhitzungsstufe. Felloberflächen- und Körperkerntemperatur sind unterschiedliche Messgrößen."
+          ],
+          "takeaway": "Hecheln unterstützt Verdunstung; eine sichtbare Atembewegung ist keine vollständige Zustandsmessung.",
+          "exercise": "Erkläre die Verbindung von Hecheln, Wasserdampf und Luftfeuchtigkeit."
+        },
+        {
+          "id": "regelung",
+          "title": "Sensoren, Kreislauf, Isolation und Verhalten",
+          "paragraphs": [
+            "Im Hypothalamus werden Informationen für die Temperaturregelung verarbeitet. Thermorezeptoren liefern Meldungen aus inneren Bereichen und aus der Haut. Eine gegensteuernde Reaktion auf eine Abweichung ist negative Rückkopplung. Hautgefäße können die Wärmeverteilung zwischen Körperkern und Oberfläche verändern. Stärkere Oberflächendurchblutung erleichtert bei geeignetem Temperaturgefälle die Abgabe; Gefäßverengung kann Wärme eher im Kern zurückhalten.",
+            "Haare und Unterhautfett wirken als Isolation. Zwischen Haaren eingeschlossene Luft kann Wärmeverluste begrenzen. Muskelzittern erhöht die Wärmebildung. Auch Verhalten trägt bei: Schatten aufsuchen oder Aktivität verändern beeinflusst die Bilanz. Fieber und belastungsbedingte Überhitzung sind physiologisch nicht identisch: Bei Fieber ist der thermoregulatorische Sollwert erhöht, bei nicht fieberhafter Überhitzung nicht entsprechend angehoben."
+          ],
+          "takeaway": "Regelung verbindet Wahrnehmung, Kreislauf, Stoffwechsel und Verhalten.",
+          "exercise": "Skizziere Sensor → Hypothalamus → körperliche und verhaltensbezogene Reaktion."
+        },
+        {
+          "id": "belastung",
+          "title": "Risiko ist ein Zusammenspiel, keine einzelne Thermometerzahl",
+          "paragraphs": [
+            "Belastung, Luftfeuchtigkeit, Strahlung, Luftwechsel und individuelle Voraussetzungen wirken gemeinsam. Ein eng begrenzter Raum kann Ausweichen verhindern. Kurzköpfige Hunde mit beeinträchtigter Atemfunktion haben ungünstigere Voraussetzungen für die Wärmeabgabe; auch Übergewicht, Alter und bestehende Erkrankungen können Risiken verändern. Kein Rassenname garantiert Schutz.",
+            "Die VetCompass-Auswertung britischer Behandlungsakten aus 2016 fand Zusammenhänge zwischen Hundemerkmalen und dokumentierter hitzebedingter Erkrankung. Die Autoren beschreiben Grenzen fehlender Akteninformationen und betonen, dass ihr Modell erklärt und keine zuverlässige individuelle Vorhersage liefert. Diese Daten sind weder DACH-Häufigkeitszahlen noch eine Einsatzfreigabe. Deutlich gestörte Atmung, Schwäche, Verwirrtheit oder Kollaps im Hitzekontext verlangen sofortige tierärztliche Abklärung."
+          ],
+          "takeaway": "Eine Risikoeinschätzung verbindet Tier, Belastung und Umgebung.",
+          "exercise": "Notiere getrennt Umweltbedingungen, Belastung und individuelle Voraussetzungen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "bilanz-q1",
+          "lessonId": "bilanz",
+          "q": "Was bedeutet endotherm beim Hund?",
+          "options": [
+            "Wärme aus dem eigenen Stoffwechsel ist eine wesentliche Wärmequelle.",
+            "Die Körpertemperatur wird ausschließlich von der Lufttemperatur bestimmt.",
+            "Sonnenstrahlung ist die einzige wesentliche Wärmequelle.",
+            "Wärme entsteht nur durch direkten Kontakt mit warmen Oberflächen."
+          ],
+          "answer": 0,
+          "explain": "Endothermie bezeichnet die Bedeutung innerer Wärmebildung."
+        },
+        {
+          "id": "bilanz-q2",
+          "lessonId": "bilanz",
+          "q": "Was geschieht mit der Wärmebildung bei intensiver Muskelarbeit?",
+          "options": [
+            "Die gesamte umgesetzte Energie wird in äußere Bewegung überführt.",
+            "Wärme entsteht nur während der anschließenden Ruhe.",
+            "Sie nimmt zusätzlich zur mechanischen Arbeit zu.",
+            "Wärmebildung ist von der Stoffwechselaktivität der Muskulatur unabhängig."
+          ],
+          "answer": 2,
+          "explain": "Energieumsetzungen in der arbeitenden Muskulatur setzen auch Wärme frei."
+        },
+        {
+          "id": "bilanz-q3",
+          "lessonId": "bilanz",
+          "q": "Wann wird im vereinfachten Wärmebilanzmodell Wärme gespeichert?",
+          "options": [
+            "Wenn die Abgabe größer als Bildung und Aufnahme ist.",
+            "Wenn Bildung und Aufnahme die Abgabe übersteigen.",
+            "Wenn Wärmebildung und Aufnahme genau der Abgabe entsprechen.",
+            "Wenn allein der Luftaustausch zunimmt, unabhängig von den anderen Beiträgen."
+          ],
+          "answer": 1,
+          "explain": "Eine positive Bilanz kann die Körpertemperatur ansteigen lassen."
+        },
+        {
+          "id": "bilanz-q4",
+          "lessonId": "bilanz",
+          "q": "Welcher Austauschweg wirkt bei unmittelbarem Kontakt mit einer kühleren Unterlage?",
+          "options": [
+            "Strahlung.",
+            "Konvektion.",
+            "Verdunstung.",
+            "Wärmeleitung."
+          ],
+          "answer": 3,
+          "explain": "Leitung benötigt einen unmittelbaren thermischen Kontakt."
+        },
+        {
+          "id": "bilanz-q5",
+          "lessonId": "bilanz",
+          "q": "Wie heißt Wärmetransport durch bewegte Luft oder Flüssigkeit?",
+          "options": [
+            "Wärmeleitung.",
+            "Strahlung.",
+            "Konvektion.",
+            "Verdunstung als Bezeichnung des strömungsbedingten Transports."
+          ],
+          "answer": 2,
+          "explain": "Eine strömende Umgebung kann Wärme mitführen."
+        },
+        {
+          "id": "bilanz-q6",
+          "lessonId": "bilanz",
+          "q": "Welcher Wärmeaustausch benötigt weder Körperkontakt noch Luftströmung?",
+          "options": [
+            "Wärmestrahlung.",
+            "Wärmeleitung.",
+            "Konvektion.",
+            "Wärmeübertragung durch Berührung."
+          ],
+          "answer": 0,
+          "explain": "Elektromagnetische Strahlung überträgt Energie ohne diese Voraussetzungen."
+        },
+        {
+          "id": "bilanz-q7",
+          "lessonId": "bilanz",
+          "q": "Warum kann Wasserverdunstung eine feuchte Körperoberfläche kühlen?",
+          "options": [
+            "Der Phasenübergang setzt der Oberfläche unmittelbar Wärme zu.",
+            "Nur der Flüssigkeitsabfluss ohne Phasenübergang verursacht diesen Verdunstungseffekt.",
+            "Verdunstung ändert nur die Masse, ohne Energie zu übertragen.",
+            "Der Übergang in die Gasphase benötigt Energie."
+          ],
+          "answer": 3,
+          "explain": "Die benötigte Energie kann der Oberfläche entzogen werden."
+        },
+        {
+          "id": "bilanz-q8",
+          "lessonId": "bilanz",
+          "q": "Welche zusätzliche Wärmequelle muss bei gleicher gemessener Lufttemperatur berücksichtigt werden?",
+          "options": [
+            "Die Lufttemperatur allein erfasst bereits jede Strahlungsaufnahme.",
+            "Direkte Sonnenstrahlung.",
+            "Sonnenstrahlung beeinflusst nur die Helligkeit, ohne Energie zuzuführen.",
+            "Strahlungsaufnahme zählt erst bei unmittelbarem Kontakt mit der Wärmequelle."
+          ],
+          "answer": 1,
+          "explain": "Strahlungsaufnahme ist ein eigener Anteil der Wärmebilanz."
+        },
+        {
+          "id": "hecheln-q1",
+          "lessonId": "hecheln",
+          "q": "Welcher Prozess ist ein wesentlicher Kühleffekt des Hechelns?",
+          "options": [
+            "Verdunstung an feuchten Atemwegsoberflächen.",
+            "Verstärkte Schweißverdunstung über die gesamte behaarte Haut als alleiniger Effekt.",
+            "Wärmeleitung durch direkten Zungenkontakt mit der Umgebung.",
+            "Absenkung der Stoffwechselwärme auf null."
+          ],
+          "answer": 0,
+          "explain": "Atemlufttransport ermöglicht die Abgabe von Wasserdampf."
+        },
+        {
+          "id": "hecheln-q2",
+          "lessonId": "hecheln",
+          "q": "In welcher Form verlässt bei der respiratorischen Verdunstung Wasser den Körper?",
+          "options": [
+            "Als flüssiger Inhalt der Lungenvenen.",
+            "Als überwiegend flüssiger Urin in der Ausatemluft.",
+            "Als Wasserdampf.",
+            "Es bleibt vollständig im Körper; nur Wärme verlässt ihn."
+          ],
+          "answer": 2,
+          "explain": "Verdunstetes Wasser geht in die Gasphase über."
+        },
+        {
+          "id": "hecheln-q3",
+          "lessonId": "hecheln",
+          "q": "Wie kann hohe Luftfeuchtigkeit die Verdunstung beeinflussen?",
+          "options": [
+            "Sie vergrößert grundsätzlich das Gefälle zur feuchten Oberfläche.",
+            "Sie kann die weitere Wasserdampfabgabe erschweren.",
+            "Sie ersetzt die Notwendigkeit der Wasserverdunstung durch Wärmeleitung.",
+            "Sie beeinflusst nur Wärmeleitung, nicht die Aufnahme von Wasserdampf."
+          ],
+          "answer": 1,
+          "explain": "Das Gefälle zwischen feuchter Oberfläche und Umgebungsluft wird ungünstiger."
+        },
+        {
+          "id": "hecheln-q4",
+          "lessonId": "hecheln",
+          "q": "Welche Bedingung kann die Abgabe feuchter Luft unterstützen?",
+          "options": [
+            "Erhalt derselben bereits gesättigten Luftschicht ohne Austausch.",
+            "Sättigung der umgebenden Luft mit zusätzlichem Wasserdampf.",
+            "Unterbrechung des Luftstroms über der feuchten Oberfläche.",
+            "Ein Austausch der Luft an der feuchten Oberfläche."
+          ],
+          "answer": 3,
+          "explain": "Luftwechsel kann den Abtransport des Wasserdampfs unterstützen."
+        },
+        {
+          "id": "hecheln-q5",
+          "lessonId": "hecheln",
+          "q": "Welche Aussage zu Schweißdrüsen des Hundes ist präzise?",
+          "options": [
+            "Beim Hund fehlen Schweißdrüsen vollständig.",
+            "Die gesamte behaarte Haut kühlt vorwiegend wie die menschliche Haut durch Schwitzen.",
+            "Sie sind vorhanden; Ganzkörperschwitzen ist aber nicht sein Hauptkühlweg.",
+            "Hecheln spielt gegenüber Ganzkörperschwitzen keine wesentliche Rolle."
+          ],
+          "answer": 2,
+          "explain": "Weder vollständiges Fehlen noch menschliche Ganzkörperschweißkühlung beschreibt den Hund angemessen."
+        },
+        {
+          "id": "hecheln-q6",
+          "lessonId": "hecheln",
+          "q": "Was lässt sich aus Hecheln allein sicher ableiten?",
+          "options": [
+            "Dass eine entsprechende Atembewegung vorliegt, nicht die genaue Ursache oder Schwere einer Erkrankung.",
+            "Die Körperkerntemperatur ist allein dadurch exakt bekannt.",
+            "Hecheln beweist unabhängig von der Situation einen Hitzschlag.",
+            "Hecheln schließt eine temperaturbedingte Belastung aus."
+          ],
+          "answer": 0,
+          "explain": "Hecheln muss zusammen mit Situation und weiteren Beobachtungen eingeordnet werden."
+        },
+        {
+          "id": "hecheln-q7",
+          "lessonId": "hecheln",
+          "q": "Welche Größen dürfen nicht ohne Validierung gleichgesetzt werden?",
+          "options": [
+            "Zwei gleich definierte Temperaturangaben desselben Messorts in derselben Einheit.",
+            "Zwei Werte desselben validierten Kerntemperaturverfahrens am selben Messort.",
+            "Zwei identisch definierte Zeitangaben.",
+            "Felloberflächen- und Körperkerntemperatur."
+          ],
+          "answer": 3,
+          "explain": "Unterschiedliche Messorte und Umgebungsbedingungen können verschiedene Werte liefern."
+        },
+        {
+          "id": "hecheln-q8",
+          "lessonId": "hecheln",
+          "q": "Warum ist respiratorische Verdunstung auch für die Wasserbilanz relevant?",
+          "options": [
+            "Wasser wird dabei ausschließlich innerhalb des Blutkreislaufs umverteilt.",
+            "Dabei verlässt Wasser den Körper.",
+            "Die abgegebene Feuchtigkeit stammt ausschließlich aus neu gebildetem Außenwasser.",
+            "Verdunstung betrifft die Wärmebilanz, aber keinen Wasserverlust."
+          ],
+          "answer": 1,
+          "explain": "Wärme- und Wasserhaushalt sind über Verdunstung miteinander verbunden."
+        },
+        {
+          "id": "regelung-q1",
+          "lessonId": "regelung",
+          "q": "Welcher Gehirnbereich ist zentral an der Temperaturregelung beteiligt?",
+          "options": [
+            "Der Hypothalamus.",
+            "Der Hippocampus.",
+            "Das Kleinhirn als zentraler thermoregulatorischer Integrator.",
+            "Der Balken zwischen den Großhirnhälften."
+          ],
+          "answer": 0,
+          "explain": "Der Hypothalamus verarbeitet Temperaturinformationen und steuert Reaktionen."
+        },
+        {
+          "id": "regelung-q2",
+          "lessonId": "regelung",
+          "q": "Welche Information liefern Thermorezeptoren der Haut besonders?",
+          "options": [
+            "Ausschließlich die Temperatur im Körperkern.",
+            "Ausschließlich die Sauerstoffkonzentration der Hautkapillaren.",
+            "Temperaturinformationen aus der Körperschale.",
+            "Den arteriellen Blutdruck statt Temperatur."
+          ],
+          "answer": 2,
+          "explain": "Hautinformationen ergänzen innere Temperaturmeldungen."
+        },
+        {
+          "id": "regelung-q3",
+          "lessonId": "regelung",
+          "q": "Was kennzeichnet negative Rückkopplung in einer Temperaturregelung?",
+          "options": [
+            "Die erfasste Abweichung wird durch die Reaktion verstärkt.",
+            "Die Reaktion wirkt der erfassten Abweichung entgegen.",
+            "Eine Gegenreaktion erfolgt ohne Erfassung einer Abweichung.",
+            "Der Begriff bezeichnet ausschließlich eine dauernde Erhöhung des Sollwerts."
+          ],
+          "answer": 1,
+          "explain": "Gegensteuerung hilft, den regulierten Bereich wieder anzunähern."
+        },
+        {
+          "id": "regelung-q4",
+          "lessonId": "regelung",
+          "q": "Was kann eine stärkere Hautdurchblutung bei geeignetem Temperaturgefälle bewirken?",
+          "options": [
+            "Weniger Wärme erreicht die Oberfläche trotz stärkerer Durchblutung.",
+            "Die Abgabe wird ohne Bezug zur Umgebungstemperatur in jedem Fall maximal.",
+            "Die Durchblutung verändert ausschließlich den Stofftransport, keine Wärmeverteilung.",
+            "Mehr Wärme gelangt zur abgebenden Oberfläche."
+          ],
+          "answer": 3,
+          "explain": "Die Durchblutung beeinflusst die Verteilung zwischen Kern und Oberfläche."
+        },
+        {
+          "id": "regelung-q5",
+          "lessonId": "regelung",
+          "q": "Welcher Anteil des Fells trägt zur Isolation bei?",
+          "options": [
+            "Allein das Pigment ohne Einfluss des Fellaufbaus.",
+            "Die Schweißmenge im Haarschaft als alleiniger Isolator.",
+            "Die zwischen Haaren gehaltene Luft.",
+            "Die Länge der Haarwurzel unabhängig von der Luftschicht."
+          ],
+          "answer": 2,
+          "explain": "Eingeschlossene Luft begrenzt den Wärmetransport."
+        },
+        {
+          "id": "regelung-q6",
+          "lessonId": "regelung",
+          "q": "Welche Wirkung hat Muskelzittern?",
+          "options": [
+            "Es setzt durch zusätzliche Muskelaktivität Wärme frei.",
+            "Es vermindert die Wärmebildung trotz zusätzlicher Muskelaktivität.",
+            "Es erzeugt ausschließlich äußere Bewegung ohne Wärmefreisetzung.",
+            "Es ist ein passiver Wärmetransport ohne Energieumsatz."
+          ],
+          "answer": 0,
+          "explain": "Zittern gehört zu den Mechanismen zusätzlicher Wärmebildung."
+        },
+        {
+          "id": "regelung-q7",
+          "lessonId": "regelung",
+          "q": "Welche Verhaltensänderung kann die Wärmebilanz beeinflussen?",
+          "options": [
+            "Ein unveränderter Aufenthalt bei gleicher Aktivität beeinflusst automatisch jede Wärmeaufnahme.",
+            "Verhalten verändert nur die Wahrnehmung, keine Wärmebilanz.",
+            "Nur die Hautdurchblutung kann die Bilanz ändern; Standortwahl ist ohne Wirkung.",
+            "Schatten aufsuchen oder die Aktivität verändern."
+          ],
+          "answer": 3,
+          "explain": "Der Aufenthaltsort und die körperliche Aktivität beeinflussen Aufnahme und Bildung von Wärme."
+        },
+        {
+          "id": "regelung-q8",
+          "lessonId": "regelung",
+          "q": "Was unterscheidet Fieber von nicht fieberhafter Überhitzung?",
+          "options": [
+            "Fieber ist allein durch die Höhe des Messwerts von jeder Überhitzung abgrenzbar.",
+            "Bei Fieber ist der thermoregulatorische Sollwert erhöht.",
+            "Jede belastungsbedingte Überhitzung beruht auf einem erhöhten Sollwert.",
+            "Fieber und nicht fieberhafte Überhitzung bezeichnen denselben Regelmechanismus."
+          ],
+          "answer": 1,
+          "explain": "Ein erhöhter Messwert allein benennt den zugrunde liegenden Regelmechanismus nicht."
+        },
+        {
+          "id": "belastung-q1",
+          "lessonId": "belastung",
+          "q": "Warum reicht Lufttemperatur allein zur Beurteilung eines arbeitenden Hundes nicht aus?",
+          "options": [
+            "Auch Muskelwärme, Feuchtigkeit, Strahlung und Luftwechsel beeinflussen die Bilanz.",
+            "Nur die Lufttemperatur bestimmt die verdunstungsbedingte Kühlung.",
+            "Strahlung ist in der Lufttemperatur stets vollständig enthalten.",
+            "Muskelwärme wirkt nur nach Ende der Belastung."
+          ],
+          "answer": 0,
+          "explain": "Mehrere Beiträge bestimmen gemeinsam die Wärmebelastung."
+        },
+        {
+          "id": "belastung-q2",
+          "lessonId": "belastung",
+          "q": "Welche Situation kann die selbstständige thermoregulatorische Reaktion begrenzen?",
+          "options": [
+            "Freie Wahl zwischen schattigen Ruheplätzen.",
+            "Eine selbstständige Aktivitätsunterbrechung.",
+            "Eingeschlossensein ohne Ausweichmöglichkeit.",
+            "Ein frei zugänglicher kühlerer Aufenthaltsort."
+          ],
+          "answer": 2,
+          "explain": "Ein eingeschlossenes Tier kann ungünstigen Bedingungen nicht einfach ausweichen."
+        },
+        {
+          "id": "belastung-q3",
+          "lessonId": "belastung",
+          "q": "Warum kann eingeschränkte Atemfunktion bei kurzköpfigen Hunden relevant sein?",
+          "options": [
+            "Sie verstärkt automatisch die Wasserdampfabgabe.",
+            "Sie kann die respiratorische Wärmeabgabe erschweren.",
+            "Sie macht Luftwechsel beim Hecheln überflüssig.",
+            "Sie verringert die Muskelwärme in gleichem Maß und gleicht jede Belastung aus."
+          ],
+          "answer": 1,
+          "explain": "Die Funktion des Atemwegs ist für Hecheln und Luftaustausch bedeutsam."
+        },
+        {
+          "id": "belastung-q4",
+          "lessonId": "belastung",
+          "q": "Welche Aussage zu Übergewicht und Hitzerisiko ist angemessen?",
+          "options": [
+            "Übergewicht verbessert grundsätzlich die Abgabe der Stoffwechselwärme.",
+            "Körperkondition spielt nur bei Kälte eine Rolle.",
+            "Nur absolutes Körpergewicht ohne Bezug zu Körperkondition oder Hund ist aussagekräftig.",
+            "Übergewicht kann ein zusätzlicher Risikofaktor sein."
+          ],
+          "answer": 3,
+          "explain": "Individuelle Kondition wird zusammen mit Belastung und Umgebung betrachtet."
+        },
+        {
+          "id": "belastung-q5",
+          "lessonId": "belastung",
+          "q": "Welche Aussage zum Alter ist fachlich angemessen?",
+          "options": [
+            "Ein bestimmtes Alter garantiert gleiche Wärmebelastbarkeit bei jedem Hund.",
+            "Alter allein definiert eine universell sichere Außentemperatur.",
+            "Alter kann das Risiko verändern, ersetzt aber keine Beurteilung des einzelnen Hundes.",
+            "Junges Alter schließt jede hitzebedingte Erkrankung aus."
+          ],
+          "answer": 2,
+          "explain": "Ein Risikofaktor ist keine sichere individuelle Vorhersage."
+        },
+        {
+          "id": "belastung-q6",
+          "lessonId": "belastung",
+          "q": "Welche Art von Daten nutzte die hier benannte VetCompass-Auswertung zu 2016?",
+          "options": [
+            "Rückblickend ausgewertete tierärztliche Behandlungsakten britischer Hunde.",
+            "Ein kontrolliertes Belastungsexperiment an DACH-Jagdhunden.",
+            "Eine prospektive Messung sämtlicher Körperkerntemperaturen aller britischen Hunde.",
+            "Eine Befragung ausschließlich gesunder Leistungshunde ohne Behandlungsakten."
+          ],
+          "answer": 0,
+          "explain": "Die Untersuchung bezog sich auf die dokumentierte Versorgungspopulation und deren Akten."
+        },
+        {
+          "id": "belastung-q7",
+          "lessonId": "belastung",
+          "q": "Welche Grenze hat ein beobachteter Risikozusammenhang aus solchen Akten?",
+          "options": [
+            "Er liefert bereits eine kausale Erklärung jedes individuellen Falls.",
+            "Fehlende Einträge beeinflussen ein solches Modell grundsätzlich nicht.",
+            "Er lässt sich ohne erneute Prüfung als genaue DACH-Häufigkeit verwenden.",
+            "Er beweist nicht allein die genaue Ursache beim individuellen Tier."
+          ],
+          "answer": 3,
+          "explain": "Beobachtungsdesign, Datenlücken und weitere Einflüsse begrenzen Schlussfolgerungen."
+        },
+        {
+          "id": "belastung-q8",
+          "lessonId": "belastung",
+          "q": "Welche Reaktion ist bei Kollaps oder deutlich gestörter Atmung eines hitzebelasteten Hundes angemessen?",
+          "options": [
+            "Die Arbeit fortsetzen, solange der Hund noch aufsteht.",
+            "Sofortige tierärztliche Abklärung veranlassen.",
+            "Ohne Abklärung bis zum nächsten regulären Vorsorgetermin abwarten.",
+            "Allein die Körperkondition prüfen und bei Normalgewicht weiterarbeiten lassen."
+          ],
+          "answer": 1,
+          "explain": "Solche Veränderungen können Ausdruck eines lebensbedrohlichen Zustands sein."
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "topic": "Pauschale oder fragliche Quellenaussagen",
+      "reason": "Nicht übernommen: Merck-Sehnen dehnen nie; adaptive Abwehr bei Geburt überhaupt nicht vorhanden; Ohio-Liste lymphgefäßfreier Organe; Cornell nur Pfoten hätten Schweißdrüsen; OpenStax Nierenlage in Bauchhöhle und vereinfachte fehlerhafte Zweimerkmals-Erbsenpassage; weitere starre Mengen-/Temperatur-/Reifeangaben."
+    },
+    {
+      "topic": "Universelle Übertragung von Messwerten",
+      "reason": "Keine Schweiß-, Atem-, Temperatur-, Rassen- oder Einsatzquoten aus kleinen Originalgruppen. VetCompass ist keine DACH-Inzidenz und kein individuelles Prognosemodell. Keine Human-Normalwerte auf Wildarten."
+    },
+    {
+      "topic": "Verworfener Ausgangslink 10.3389/fvets.2019.00351",
+      "reason": "Tatsächlich ein Editorial Working Dogs: Form and Function, keine Thermoregulationsstudie. Nicht als solcher Nachweis verwendet. Suche nach DOI und Titel im bestehenden data/lib/pages/components ohne Treffer."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Bestehende freigegebene reale Kategorie-Fotofallbacks Wildkunde und Hundewesen; keine neue Bilddatei und keine Abbildung als Beweis innerer Vorgänge."
+  },
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "lessonId": "blutweg",
+      "claims": [
+        {
+          "claim": "Normales erwachsenes Säugetier: vier Räume, getrennte Herzhälften, Hohlvenen und Lungengefäße, Aorta; Richtung statt Sauerstoff als Gefäßdefinition; eigene Koronarversorgung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/circulatory-system/cardiovascular-system-introduction/the-cardiovascular-system-in-animals",
+            "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/6-blood-circulation/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "lessonId": "pumpe",
+      "claims": [
+        {
+          "claim": "Systole/Diastole, druckgesteuerte Klappen, Segel- und Taschenklappen; Sinus- und AV-Knoten, EKG als elektrisches Signal, Herzzeitvolumen aus Herzfrequenz mal Schlagvolumen.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/circulatory-system/cardiovascular-system-introduction/the-cardiovascular-system-in-animals",
+            "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels",
+            "https://www.nhlbi.nih.gov/health/heart/heart-beats"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "lessonId": "gefaesse",
+      "claims": [
+        {
+          "claim": "Endothel, drei Wandschichten großer Gefäße, glatte Gefäßmuskulatur, Arteriolenwiderstand, elastische Arterien, dünne organabhängige Kapillarwand und venulärer Abfluss.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/6-vascular-tunics/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/6-capillaries-and-sinusoids/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/6-blood-circulation/",
+            "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels",
+            "https://www.merckvetmanual.com/circulatory-system/cardiovascular-system-introduction/the-cardiovascular-system-in-animals"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-kreislauf-2026",
+      "lessonId": "lymphe",
+      "claims": [
+        {
+          "claim": "Gewebeflüssigkeit als Ursprung der Lymphe, Rückführung von Wasser und Proteinen ins Blut, gerichteter klappengestützter Weg, Knoten als Überwachungsorte, Milz-Blut versus Lymphknoten-Lymphe.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/6-lymphatic-circulation/",
+            "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology",
+            "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/lymphatic-system",
+            "https://openstax.org/books/biology-2e/pages/40-3-mammalian-heart-and-blood-vessels"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-niere-2026",
+      "lessonId": "anatomie",
+      "claims": [
+        {
+          "claim": "Säugetier-Nephron mit Nierenkörperchen und Tubulus; Sammelrohr als anschließendes System, Rinde mit Nierenkörperchen; Harnleiter, Harnblase und Harnröhre; getrennte Nierengefäßzufuhr.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-overview-and-anatomy/",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+            "https://openstax.org/books/biology-2e/pages/41-2-the-kidneys-and-osmoregulatory-organs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-niere-2026",
+      "lessonId": "filter",
+      "claims": [
+        {
+          "claim": "Zuführende und abführende Arteriole; druckgetriebene selektive Filtration, normalerweise Rückhalt von Zellen/großen Proteinen, drei Barriereanteile, Fußfortsätze, Bowman-Raum und Weiterweg.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-the-glomerulus/",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+            "https://openstax.org/books/biology-2e/pages/41-2-the-kidneys-and-osmoregulatory-organs"
+          ]
+        },
+        {
+          "claim": "Drei Komponenten der Filterbarriere: Kapillarendothel, Basalmembran und Podozyten mit Fußfortsätzen/Schlitzmembranen.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-the-glomerulus/",
+            "https://medcell.org/histology/urinary_system_lab/filtration_barrier.php",
+            "https://histology.leeds.ac.uk/home/urinary/renal_corpuscle/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-niere-2026",
+      "lessonId": "tubulus",
+      "claims": [
+        {
+          "claim": "Richtungen von Rückresorption/Sekretion; proximale Wasser-, Elektrolyt- und Nährstoffaufnahme, Mikrovilli; Glucose-Rückgewinnung; unterschiedliche Schleifenpermeabilität und Markgradient ohne Mengenquoten.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-proximal-tubules/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-loop-of-henle/",
+            "https://openstax.org/books/biology-2e/pages/41-2-the-kidneys-and-osmoregulatory-organs",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-niere-2026",
+      "lessonId": "regulation",
+      "claims": [
+        {
+          "claim": "ADH-Bildung und Freisetzung; regulierte Aquaporine und Wasserrückgewinnung; osmotische Triebkraft, Säure-Basen-Funktion, renale EPO-/Renin- und Vitamin-D-Funktion; keine Diagnostik oder Behandlung.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/adh.html",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/diabetes-insipidus",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/11-collecting-ducts/",
+            "https://www.merckvetmanual.com/urinary-system/urinary-system-introduction/the-urinary-system-in-animals",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-genetik-2026",
+      "lessonId": "begriffe",
+      "claims": [
+        {
+          "claim": "Basenpaarung, Chromosom als DNA-Protein-Struktur; Gen, Locus, Allel, Genotyp, Phänotyp und Genom einschließlich mitochondrialer DNA.",
+          "sourceUrls": [
+            "https://vgl.ucdavis.edu/resources/genetics-glossary",
+            "https://vgl.ucdavis.edu/vgl-vocab",
+            "https://www.genome.gov/genetics-glossary/Allele",
+            "https://www.genome.gov/genetics-glossary/Base-Pair",
+            "https://www.genome.gov/genetics-glossary/Locus",
+            "https://www.genome.gov/genetics-glossary/Chromosome",
+            "https://www.genome.gov/genetics-glossary/Genome",
+            "https://www.genome.gov/genetics-glossary/genotype",
+            "https://www.genome.gov/genetics-glossary/Phenotype"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-genetik-2026",
+      "lessonId": "meiose",
+      "claims": [
+        {
+          "claim": "Haploid/diploid, einmalige Replikation vor zwei Teilungen, homologe Chromosomen versus Schwesterchromatiden, Crossing-over und Wiedervereinigung bei Befruchtung; kein vier-Eizellen-Modell.",
+          "sourceUrls": [
+            "https://vgl.ucdavis.edu/resources/genetics-glossary",
+            "https://www.genome.gov/genetics-glossary/Meiosis",
+            "https://www.genome.gov/genetics-glossary/Crossing-Over",
+            "https://www.yourgenome.org/theme/what-is-meiosis/",
+            "https://www.yourgenome.org/theme/what-is-inheritance/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-genetik-2026",
+      "lessonId": "modell",
+      "claims": [
+        {
+          "claim": "Homo-/Heterozygotie, vollständig dominantes autosomales Zwei-Allel-Modell, Anlageträger, Dominanz nicht Häufigkeit oder Wertung, Allelseparation, eigenes Punnett-Beispiel 1:2:1 und 25 Prozent ohne Wurfgarantie.",
+          "sourceUrls": [
+            "https://vgl.ucdavis.edu/resources/genetics-glossary",
+            "https://vgl.ucdavis.edu/vgl-vocab",
+            "https://www.genome.gov/genetics-glossary/Allele",
+            "https://www.genome.gov/genetics-glossary/Recessive-Traits-Alleles"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-genetik-2026",
+      "lessonId": "komplex",
+      "claims": [
+        {
+          "claim": "Polygenie, Umwelt, Kopplung, Penetranz, Mutation ohne automatische Schädlichkeit, Keimbahn und somatische Zellen; Aussageumfang einzelner untersuchter Varianten.",
+          "sourceUrls": [
+            "https://www.genome.gov/genetics-glossary/Polygenic-Trait",
+            "https://www.genome.gov/genetics-glossary/Phenotype",
+            "https://medlineplus.gov/genetics/understanding/inheritance/penetranceexpressivity/",
+            "https://www.genome.gov/genetics-glossary/Mutation",
+            "https://www.genome.gov/genetics-glossary/Linkage",
+            "https://vgl.ucdavis.edu/resources/genetics-glossary",
+            "https://vgl.ucdavis.edu/vgl-vocab",
+            "https://www.yourgenome.org/theme/what-is-inheritance/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundeimmunitaet-2026",
+      "lessonId": "barrieren",
+      "claims": [
+        {
+          "claim": "Haut/Schleimhaut, antimikrobielle Sekrete, Schleim und Zilien, Mikrobiota-Konkurrenz, Barriereverletzung und Risikobegriff, Antigen auch ohne Erreger, Kooperation der Abwehrzweige.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/immune-disorders-of-dogs/immune-system-responses-in-dogs",
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/innate-immunity-in-animals",
+            "https://www.merckvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/introduction-to-lung-and-airway-disorders-of-dogs",
+            "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology"
+          ]
+        },
+        {
+          "claim": "Ansässige Darmmikrobiota kann durch Konkurrenz um Nährstoffe und Haftstellen Kolonisationsresistenz beitragen; keine universelle Sterilisation oder Therapiebehauptung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/innate-immunity-in-animals",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7199667/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundeimmunitaet-2026",
+      "lessonId": "angeboren",
+      "claims": [
+        {
+          "claim": "Phagozytose, neutrophile/Makrophagen, Phagosom und Abbau, keine universelle Abtötung; Musterrezeptoren, NK-Zellen, Komplement, Zytokine und Chemokine.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/innate-immunity-in-animals",
+            "https://www.merckvetmanual.com/dog-owners/immune-disorders-of-dogs/immune-system-responses-in-dogs",
+            "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology",
+            "https://www.immunology.org/public-information/bitesized-immunology/systems-processes/phagocytosis"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundeimmunitaet-2026",
+      "lessonId": "adaptiv",
+      "claims": [
+        {
+          "claim": "B-/T-Rezeptoren, Plasmazellen und Antikörper, Neutralisation/Markierung, Antigen versus Antikörper, T-Zellrollen und Antigenpräsentation; keine pauschale Ortsangabe zur B-Zellreifung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/immune-disorders-of-dogs/immune-system-responses-in-dogs",
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/adaptive-immunity-in-animals",
+            "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology"
+          ]
+        },
+        {
+          "claim": "Antigenpräsentierende Zellen zeigen verarbeitete Antigenbestandteile auf ihrer Oberfläche; dies trägt zur Erkennung und Aktivierung passender T-Zellen bei.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/adaptive-immunity-in-animals",
+            "https://www.immunology.org/public-information/bitesized-immunology/systems-processes/antigen-processing-and-presentation"
+          ]
+        },
+        {
+          "claim": "B-Zell-Rezeptoren können passende intakte Antigene direkt binden; die hier beschriebene Helfer-T-Zell-Erkennung betrifft auf Zelloberflächen präsentierte verarbeitete Fragmente.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/adaptive-immunity-in-animals",
+            "https://www.ncbi.nlm.nih.gov/books/NBK27098/",
+            "https://www.immunology.org/public-information/bitesized-immunology/systems-processes/antigen-processing-and-presentation"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundeimmunitaet-2026",
+      "lessonId": "gedaechtnis",
+      "claims": [
+        {
+          "claim": "Gedächtnis-B-/T-Zellen, raschere erneute Antwort, aktives Impfprinzip ohne Schema, Entwicklungszustand Welpen, fertige übertragene Antikörper und Kolostrum; Immundefizienz, Autoimmunität, Allergie.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/immune-disorders-of-dogs/immune-system-responses-in-dogs",
+            "https://www.merckvetmanual.com/immune-system/the-biology-of-the-immune-system/adaptive-immunity-in-animals",
+            "https://www.immunology.org/public-information/bitesized-immunology/special-topics/what-immunology",
+            "https://www.merckvetmanual.com/pharmacology/vaccines-and-immunotherapy/passive-immunity-in-animals",
+            "https://riney.vet.cornell.edu/member-benefits-health-tips/canine-vaccinations-december",
+            "https://www.vet.cornell.edu/research/awards/protecting-puppies-pathogens-understanding-canine-maternal-antibody-transfer-0"
+          ]
+        },
+        {
+          "claim": "Kolostrum bezeichnet die mütterliche Erstmilch; beim Hund dient sie der Übertragung mütterlicher Antikörper. Die neue Begriffsfrage enthält ausschließlich Milch-/Fütterungsbezeichnungen als Optionen.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/resourcespages/glossary",
+            "https://www.vet.cornell.edu/research/awards/protecting-puppies-pathogens-understanding-canine-maternal-antibody-transfer-0"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundebewegung-2026",
+      "lessonId": "knochen",
+      "claims": [
+        {
+          "claim": "Kollagen/Mineral; Osteoblast/-klast/-zyt; kompakte und trabekuläre Architektur; Periost/Endost und Knochenmarkfunktion.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-microanatomy/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+            "https://www.merckvetmanual.com/dog-owners/bone-joint-and-muscle-disorders-of-dogs/components-of-the-musculoskeletal-system-in-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundebewegung-2026",
+      "lessonId": "wachstum",
+      "claims": [
+        {
+          "claim": "Modellierung/Oberflächenwachstum, Remodeling auch nach Reife, desmale versus endochondrale Bildung, Knorpel-Wachstumsfuge, Diaphyse und Epiphyse.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-function/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-bone-growth/",
+            "https://training.seer.cancer.gov/anatomy/skeletal/growth.html",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+            "https://www.merckvetmanual.com/dog-owners/bone-joint-and-muscle-disorders-of-dogs/components-of-the-musculoskeletal-system-in-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundebewegung-2026",
+      "lessonId": "gelenk",
+      "claims": [
+        {
+          "claim": "Synovialer Raum, hyaliner Gelenkknorpel, Chondrozyten, Gefäßlosigkeit und Synoviaversorgung, Kapselschichten, Schmierung, Menisken als begrenztes Vorkommen und Beweglichkeit.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-cartilage-microanatomy/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-tendons-and-joints/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/9-4-synovial-joints",
+            "https://www.acvs.org/small-animal/osteoarthritis-in-dogs/",
+            "https://www.merckvetmanual.com/dog-owners/bone-joint-and-muscle-disorders-of-dogs/components-of-the-musculoskeletal-system-in-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundebewegung-2026",
+      "lessonId": "kraftweg",
+      "claims": [
+        {
+          "claim": "Sehne versus Band, kollagenreiches Gewebe, aktive Haltung/Bremsung, Gegenspieler, Faser-/Muskelbauchlänge und begrenzte Übertragbarkeit der Originalmessung Dries 2018.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/bone-joint-and-muscle-disorders-of-dogs/components-of-the-musculoskeletal-system-in-dogs",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/5-tendons-and-joints/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/4-skeletal-muscle/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems",
+            "https://onlinelibrary.wiley.com/doi/full/10.1111/joa.12845"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundethermik-2026",
+      "lessonId": "bilanz",
+      "claims": [
+        {
+          "claim": "Endotherme Wärmequelle, Muskelarbeit, Wärmespeicherung als Bilanz, Leitung/Konvektion/Strahlung/Verdunstung und äußere Strahlungsaufnahme; keine Einsatzgrenzwerte.",
+          "sourceUrls": [
+            "https://openstax.org/books/biology-2e/pages/33-3-homeostasis",
+            "https://openstax.org/books/university-physics-volume-2/pages/1-6-mechanisms-of-heat-transfer",
+            "https://www.vetmeduni.ac.at/fileadmin/v/z/lehre/Aufnahmeverfahren/AV_22_VET_V2.pdf",
+            "https://openstax.org/books/anatomy-and-physiology/pages/24-6-energy-and-heat-balance",
+            "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundethermik-2026",
+      "lessonId": "hecheln",
+      "claims": [
+        {
+          "claim": "Hecheln als Verdunstungsweg, Wasserverlust, Luftfeuchte/Gefälle und Luftwechsel; keine Ganzkörperschweißkühlung wie Mensch, keine universellen Studienquoten; Hecheln und Oberflächentemperatur nicht alleinige Kerndiagnose.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/7280382/",
+            "https://pubmed.ncbi.nlm.nih.gov/34644843/",
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://openstax.org/books/anatomy-and-physiology/pages/24-6-energy-and-heat-balance",
+            "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+            "https://www.rvc.ac.uk/small-animal-vet/teaching-and-research/fact-files/heatstroke-in-dogs-and-cats",
+            "https://phaidra.vetmeduni.ac.at/detail/o%3A3907"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundethermik-2026",
+      "lessonId": "regelung",
+      "claims": [
+        {
+          "claim": "Hypothalamus und Thermorezeptoren, negative Rückkopplung, Hautdurchblutung mit Temperaturgefälle, Isolation durch Haare/Fett/Luft, Muskelzittern und Verhalten; Fiebersollwert versus nicht febrile Überhitzung.",
+          "sourceUrls": [
+            "https://www.vetmeduni.ac.at/fileadmin/v/z/lehre/Aufnahmeverfahren/AV_22_VET_V2.pdf",
+            "https://openstax.org/books/biology-2e/pages/33-3-homeostasis",
+            "https://www.merckvetmanual.com/metabolic-disorders/fever-of-unknown-origin/fever-of-unknown-origin-in-animals",
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://www.vet.cornell.edu/about-us/news/20260429/tiny-tech-tracks-overheating-risk-sporting-dogs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-koerperfunktion-hundethermik-2026",
+      "lessonId": "belastung",
+      "claims": [
+        {
+          "claim": "Zusammenspiel von Umgebung und Belastung, eingeschränkte Ausweichmöglichkeit, brachycephale Atemfunktion und weitere individuelle Risiken, beobachtende Aktenstudie 2016 mit Grenzen; keine universelle Einsatzfreigabe, Warnzeichen und dringende Abklärung.",
+          "sourceUrls": [
+            "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+            "https://www.rvc.ac.uk/small-animal-vet/teaching-and-research/fact-files/heatstroke-in-dogs-and-cats",
+            "https://irep.ntu.ac.uk/id/eprint/39958/1/39958_a732_Carter.pdf",
+            "https://www.vet.cornell.edu/about-us/news/20260429/tiny-tech-tracks-overheating-risk-sporting-dogs"
+          ]
+        }
+      ]
+    }
+  ]
+}

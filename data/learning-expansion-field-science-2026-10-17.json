@@ -1,0 +1,3132 @@
+{
+  "reviewedOn": "2026-10-17",
+  "scope": "Sechs eingegrenzte Vertiefungskurse mit eigenen Lernfällen. Quellenabgleich je Lektion; keine Gesamtzertifizierung der App. Bau-, Labor-, Koch- und medizinische Behandlungsanleitungen sind nicht Gegenstand dieses Pakets.",
+  "modules": [
+    {
+      "id": "wissen-ausbau-revierpraxis-ansitzeinrichtungen-2026",
+      "title": "Ansitzeinrichtungen: Bauteile, Schäden und Verantwortung",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Tragstruktur, Aufstieg und Materialzustand verstehen, damit Auffälligkeiten gezielt beschrieben werden können.",
+      "minutes": 45,
+      "objectives": [
+        "Bauteile und Kraftübertragung qualitativ zuordnen",
+        "Materialschäden und verdeckte Schwachstellen unterscheiden",
+        "Den gesamten Zugang als eigene Gefahrenstelle betrachten",
+        "Deutsche Pflichten und österreichische Empfehlungen auseinanderhalten"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Die VSG 4.4 § 7 ist eine deutsche Unfallverhütungsvorschrift. Unternehmerpflicht und Prüfung vor Benutzung werden ausdrücklich diesem Geltungsbereich zugeordnet.",
+        "AT": "SVS-Broschüre 2026-2 als österreichische Präventionsinformation; die dort empfohlene Prüfhäufigkeit ist keine allgemeine deutsche oder Schweizer Gesetzesfrist.",
+        "CH": "Allgemeine technische Gefahren gelten auch hier. Suva-Hinweise betreffen den beschriebenen beruflichen Leitergebrauch; Bau- und Jagdrecht am konkreten kantonalen Standort gesondert klären."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "SVLFG · VSG 4.4 Jagd, Ausgabe 22.08.2024",
+          "url": "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/4602f00372a5a47d/3ae5d95e332a/vsg4_4-jagd.pdf",
+          "organization": "Sozialversicherung für Landwirtschaft, Forsten und Gartenbau",
+          "supports": "§ 7 Hochsitze: fachgerechte Errichtung, Absturzsicherung, Standsicherheit, Prüfung und Abbau; deutscher Regelungskontext."
+        },
+        {
+          "label": "SVS · Wissenswertes für Jäger, Stand 2026-2",
+          "url": "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+          "organization": "Sozialversicherungsanstalt der Selbständigen Österreich",
+          "supports": "Gedruckte Seiten 22–24: gesundes Holz, sichere Übergänge und Sichtprüfung; zweimal jährliche eingehende Überprüfung als Präventionshinweis. Abmessungs- und Waffenhandhabungsangaben nicht übernommen."
+        },
+        {
+          "label": "SVLFG · An Hochsitzprüfung denken, 09.09.2025",
+          "url": "https://www.svlfg.de/pm-jagd-hochsitze",
+          "organization": "Sozialversicherung für Landwirtschaft, Forsten und Gartenbau",
+          "supports": "Beschädigte Sprossen, korrodierte Verbindungen, lose Aufstiege, Glätte und witterungsbelastete Querhölzer; Aus-dem-Betrieb-Nehmen unsicherer Gesamtkonstruktionen."
+        },
+        {
+          "label": "HSE · How to check your ladder is safe before use",
+          "url": "https://www.hse.gov.uk/work-at-height/ladders/how-to-check-ladder-is-safe-before-use.htm",
+          "organization": "Health and Safety Executive, Vereinigtes Königreich",
+          "supports": "Holme, Füße, Sprossen, Verriegelung, Plattform und Verschmutzung als getrennte Fehlerstellen; nach Zustandsänderung erneut prüfen. Britische Leiterempfehlung, keine DACH-Hochsitznorm."
+        },
+        {
+          "label": "Suva · Tragbare Leitern und Tritte,67028.D",
+          "url": "https://www.suva.ch/de-ch/download/checklisten/tragbare-leitern-und-tritte/tragbare-leitern-und-tritte--67028.D/null",
+          "organization": "Suva, Schweiz",
+          "supports": "Ausgabe 15.10.2023: Umkippen, Wegrutschen und Überstieg; geeignete Arbeitsmittel, Instruktion und Instandhaltung. Öffentliche Beschreibung gelesen, keine ungelesenen PDF-Einzelfragen übernommen."
+        },
+        {
+          "label": "OpenStax · First Condition for Equilibrium",
+          "url": "https://openstax.org/books/college-physics-2e/pages/9-1-the-first-condition-for-equilibrium",
+          "organization": "Rice University / OpenStax",
+          "supports": "Grundprinzip des Kräftegleichgewichts und Bedeutung der Angriffspunkte; ausschließlich eigenständiges vereinfachtes Lernmodell, keine Lehrbuchabbildung oder Konstruktionsberechnung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "tragstruktur",
+          "title": "Vom Tritt zum Boden: Bauteile und Kraftübertragung",
+          "paragraphs": [
+            "Eine Aufstiegsleiter besitzt längs verlaufende Holme und quer liegende Sprossen oder Stufen. Beim Auftreten werden Kräfte über die Trittfläche und ihre Verbindungen in die weitere Tragstruktur übertragen. Ein Sitzboden und seine Unterstützung bilden einen anderen Teil der Einrichtung als eine seitliche Absturzsicherung. Bei der Beurteilung wird deshalb die vorgesehene Funktion jedes Bauteils mit betrachtet.",
+            "Im vereinfachten Lernmodell folgt eine Personenlast dem Weg Trittfläche – Verbindung – tragendes Bauteil – Auflager – Untergrund. Das ist eine Betrachtungshilfe, kein Bauplan. Auch eine äußerlich unbeschädigte Sprosse nützt wenig, wenn ihre Verbindung lose ist. Standfestigkeit betrifft unter anderem die Unterstützung gegen Verschieben oder Kippen; Tragfähigkeit betrifft die Aufnahme der auftretenden Belastung. Wind kann zusätzliche seitliche Kräfte erzeugen. Aus einem Foto oder dieser qualitativen Beschreibung folgt keine Belastungsfreigabe."
+          ],
+          "takeaway": "Ein tragfähiges Bauteil braucht ebenso geeignete Verbindungen, Auflager und einen passenden Untergrund.",
+          "exercise": "Zeichne den vereinfachten Kraftweg einer gedachten Leiter. Benenne Trittfläche, Holm, Verbindung und Auflager, ohne Bauabmessungen festzulegen."
+        },
+        {
+          "id": "material",
+          "title": "Schaden, Oberflächenspur und verdeckte Schwachstelle",
+          "paragraphs": [
+            "Witterung beansprucht Holz und Verbindungen. Die SVLFG nennt besonders belastete waagerechte Hölzer, beschädigte Sprossen und korrodierte Verbindungsmittel als Unfallrisiken. Morsche Stellen, gelockerte Verbindungen und verformte Holme sind verschiedene Befunde: Eine genaue Meldung benennt das betroffene Bauteil und die sichtbare Veränderung. Ein frischer Anstrich ist keine Festigkeitsprüfung und kann eine verdeckte Stelle nicht beurteilen.",
+            "Eine Konstruktion besteht aus mehreren zusammenwirkenden Teilen. Bei einer losen Sprosse ist nicht nur ihre Holzoberfläche, sondern auch die Verbindung betroffen; bei einem einsinkenden Fuß kann sich die Unterstützung geändert haben. Der Schaden wird vom sicheren Standort aus beschrieben. Eine unklare Einrichtung durch Besteigen zu belasten, um ihre Festigkeit zu testen, ist kein geeigneter Prüfversuch. Die fachkundige Prüfung entscheidet über Instandsetzung oder Außerbetriebnahme; eine Meldung allein ist noch keine Reparatur."
+          ],
+          "takeaway": "Schäden werden am konkreten Bauteil beschrieben; optische Auffrischung belegt keine Festigkeit.",
+          "exercise": "Formuliere drei getrennte Meldungen: lose Sprosse, korrodierte Verbindung und veränderte Unterstützung."
+        },
+        {
+          "id": "zugang",
+          "title": "Der Zugang endet nicht an der ersten Sprosse",
+          "paragraphs": [
+            "Zuwegung, Leiter und Überstieg bilden eine Folge verschiedener Übergänge. Glatter Boden vor der Leiter, verschmutzte Trittflächen und der Wechsel vom Aufstieg auf den Sitz können jeweils eigene Gefahren bilden. Die Einrichtung wird nicht schon dadurch geeignet, dass nur ihr Sitzboden trocken ist. HSE trennt insbesondere Holm-, Fuß- und Trittzustand; Suva betont auch die Absturzgefahr beim Übersteigen.",
+            "Kleidung und mitgeführte Gegenstände können beim Übergang hängen bleiben oder die Bewegungsfreiheit einschränken. Die SVS weist für Reviereinrichtungen ausdrücklich auf dickere Winterkleidung und mögliche Hängepunkte hin. Eine verschobene Leiter oder veränderte Bodenauflage verlangt eine neue Beurteilung. Die konkrete Bauart, Herstellerhinweise und örtlich geltende Anforderungen bestimmen, wie Zugang und Überstieg ausgeführt und benutzt werden dürfen."
+          ],
+          "takeaway": "Zuwegung, Trittflächen und Überstieg werden getrennt betrachtet.",
+          "exercise": "Beschreibe einen Zugang mit drei Übergängen und ordne jedem eine andere mögliche Auffälligkeit zu."
+        },
+        {
+          "id": "verantwortung",
+          "title": "Prüfung, Meldung und Zuständigkeit richtig einordnen",
+          "paragraphs": [
+            "Deutschland: § 7 VSG 4.4 verpflichtet den Unternehmer, fachgerechte Errichtung mit Absturzsicherung, die Standsicherheit ortsveränderlicher Hochsitze und die Prüfung vor jeder Benutzung, mindestens jedoch jährlich, sicherzustellen. Nicht mehr benötigte Einrichtungen sind abzubauen. Das sind verschiedene Pflichten: Eine Jahresprüfung macht die Betrachtung vor der nächsten Nutzung nicht überflüssig.",
+            "Österreich: Die SVS-Broschüre 2026-2 empfiehlt für Reviereinrichtungen mindestens zwei eingehende Überprüfungen pro Jahr und eine kurze Sichtprüfung vor jeder Benutzung. Diese Präventionsangabe wird nicht als deutsches Gesetz bezeichnet. Schweiz: Die gelesene Suva-Beschreibung betrifft Leitern im beruflichen Kontext; sie begründet keine einheitliche kantonale Hochsitzfrist. Ein eigener Mängelhinweis benennt Ort, Einrichtung, betroffenes Teil und erkennbaren Zustand, damit Verantwortliche gezielt handeln können."
+          ],
+          "takeaway": "Eine konkrete Pflicht braucht ihren richtigen Geltungsbereich; eine Meldung braucht einen eindeutigen Gegenstand.",
+          "exercise": "Ordne die Aussagen „vor jeder Nutzung“, „mindestens jährlich“ und „zweimal jährlich empfohlen“ ihren hier benannten Quellen zu."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "tragstruktur",
+          "q": "Wie heißt das längs verlaufende tragende Seitenteil einer Leiter?",
+          "options": [
+            "Holm",
+            "Sprosse",
+            "Podestbelag",
+            "Geländerfüllung"
+          ],
+          "answer": 0,
+          "explain": "Holme verlaufen längs; die quer liegenden Sprossen oder Stufen bilden die Trittflächen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "tragstruktur",
+          "q": "An welcher Stelle wird eine Last von einer Sprosse in den Holm weitergegeben?",
+          "options": [
+            "Ausschließlich am Kontakt zwischen Leiterfuß und Boden",
+            "An der seitlichen Absturzsicherung des Sitzes",
+            "An der Verbindung zwischen beiden Bauteilen",
+            "An der Verbindung zwischen Dach und Kanzelwand"
+          ],
+          "answer": 2,
+          "explain": "Die Verbindung gehört zum Kraftweg. Ein intakter Tritt allein belegt deshalb noch keine sichere Leiter."
+        },
+        {
+          "id": "q3",
+          "lessonId": "tragstruktur",
+          "q": "Welche Aufgabe hat ein Auflager im vereinfachten Tragmodell?",
+          "options": [
+            "Es übernimmt allein die seitliche Absturzsicherung",
+            "Es überträgt Kräfte an die unterstützende Struktur oder den Boden",
+            "Es bildet die begehbare Trittfläche zwischen zwei Holmen",
+            "Es verbindet ausschließlich zwei benachbarte Sprossen miteinander"
+          ],
+          "answer": 1,
+          "explain": "Ein Auflager stützt ein Bauteil und gibt Kräfte an seine Unterstützung weiter. Trittfläche, Bauteilverbindung und Absturzsicherung haben andere Aufgaben."
+        },
+        {
+          "id": "q4",
+          "lessonId": "tragstruktur",
+          "q": "Welcher Befund beschreibt vorrangig ein Problem der Standsicherheit einer mobilen Ansitzeinrichtung?",
+          "options": [
+            "Eine einzelne Sprosse besitzt einen verminderten Holzquerschnitt",
+            "Der Sitzboden ist an einer Stelle durchgebrochen",
+            "Eine Trittverbindung hat sich vom Holm gelöst",
+            "Die gesamte Einrichtung kann auf ihrer Unterstützung seitlich kippen"
+          ],
+          "answer": 3,
+          "explain": "Standsicherheit betrifft die Lage der gesamten Einrichtung gegen Kippen oder Verschieben. Auch die anderen Schäden sind relevant, betreffen zunächst aber einzelne Tragteile oder Verbindungen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "tragstruktur",
+          "q": "Welche Eigenschaft muss eine Seitenverkleidung besitzen, damit sie auch eine vorgesehene Absturzschutzfunktion erfüllen kann?",
+          "options": [
+            "Eine geschlossene Fläche genügt unabhängig von ihrer Befestigung",
+            "Die Verwendung derselben Holzart wie beim Sitzboden genügt",
+            "Konstruktion, Befestigung und Zustand müssen diese Schutzaufgabe erfüllen",
+            "Die bloße Höhe der Verkleidung genügt unabhängig von ihrer Festigkeit"
+          ],
+          "answer": 2,
+          "explain": "Sichtschutz und Absturzschutz sind unterschiedliche Funktionen. Die tatsächliche Konstruktion und Verbindung müssen die vorgesehene Schutzaufgabe erfüllen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "tragstruktur",
+          "q": "Welcher Einfluss wird in einem Modell mit ausschließlich senkrechter Personenlast übersehen?",
+          "options": [
+            "Eine zusätzliche seitliche Einwirkung durch Wind",
+            "Die nach unten wirkende Last der ruhig stehenden Person",
+            "Das senkrecht wirkende Eigengewicht des Sitzbodens",
+            "Der senkrechte Druck einer aufliegenden Sitzauflage"
+          ],
+          "answer": 0,
+          "explain": "Wind kann eine zusätzliche seitliche Kraft bewirken. Ein Modell allein für senkrechte Lasten beschreibt diese Einwirkung nicht."
+        },
+        {
+          "id": "q7",
+          "lessonId": "material",
+          "q": "Ein Tritt bewegt sich an seiner Befestigung, seine Holzfläche wirkt intakt. Welche Befundbeschreibung trifft den Fehler am genauesten?",
+          "options": [
+            "Der Holzquerschnitt ist durch Fäulnis vermindert",
+            "Die Verbindung der Sprosse ist gelockert",
+            "Der Leiterfuß besitzt zu wenig Auflagefläche",
+            "Der Holm ist durchgehend seitlich verbogen"
+          ],
+          "answer": 1,
+          "explain": "Die beobachtete Bewegung liegt an der Befestigung. Eine darüber hinausgehende Ursache wie Fäulnis ist damit noch nicht belegt."
+        },
+        {
+          "id": "q8",
+          "lessonId": "material",
+          "q": "Welche Veränderung gehört zu einer metallischen Verbindung und verlangt eine Beurteilung ihres Zustands?",
+          "options": [
+            "Vergrauung einer unbeschichteten Holzfläche",
+            "Abnutzung einer textilen Sitzauflage",
+            "Harzaustritt an einer Holzoberfläche",
+            "Korrosion am Verbindungsmittel"
+          ],
+          "answer": 3,
+          "explain": "Korrosion betrifft das Verbindungsmittel. Die übrigen Beobachtungen gehören zu anderen Materialien und belegen seine Festigkeit nicht."
+        },
+        {
+          "id": "q9",
+          "lessonId": "material",
+          "q": "Warum verdienen waagerechte Hölzer bei der Zustandsprüfung besondere Aufmerksamkeit?",
+          "options": [
+            "Sie werden im Tragwerk grundsätzlich nicht belastet",
+            "Ihre waagerechte Lage verhindert das Eindringen von Feuchtigkeit",
+            "Die SVLFG beschreibt sie als besonders witterungsbeanspruchte Teile",
+            "Ihre Festigkeit lässt sich allein an der Holzart ablesen"
+          ],
+          "answer": 2,
+          "explain": "Die SVLFG hebt witterungsbelastete Querhölzer hervor. Das ersetzt keine Prüfung der übrigen Tragteile."
+        },
+        {
+          "id": "q10",
+          "lessonId": "material",
+          "q": "Ein neuer Anstrich verdeckt eine bisher unklare Holzstelle. Was ist dadurch geklärt?",
+          "options": [
+            "Nur die sichtbare Oberflächengestaltung, nicht die Festigkeit darunter",
+            "Die ausreichende Tragfähigkeit des gesamten Sitzes",
+            "Die sichere Verbindung aller Leiterteile",
+            "Der einwandfreie Zustand des Fundaments"
+          ],
+          "answer": 0,
+          "explain": "Eine beschichtete Oberfläche liefert keine Festigkeitsprüfung des darunterliegenden Materials."
+        },
+        {
+          "id": "q11",
+          "lessonId": "material",
+          "q": "Ein Leiterfuß ist nach Regen abgesackt. Welcher Teil des Tragmodells hat sich unmittelbar erkennbar verändert?",
+          "options": [
+            "Die Verbindung zwischen oberster Sprosse und Holm",
+            "Der Holzquerschnitt sämtlicher Sprossen",
+            "Die Befestigung der seitlichen Absturzsicherung",
+            "Die Unterstützung am Untergrund"
+          ],
+          "answer": 3,
+          "explain": "Absacken verändert die Abstützung und möglicherweise die Lage der Leiter. Über Schäden an anderen Bauteilen lässt sich daraus allein noch nichts Sicheres sagen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "material",
+          "q": "Wie wird ein unbekannter Festigkeitszustand sinnvoll weitergegeben?",
+          "options": [
+            "Die Konstruktion zunächst durch stärkeres Wippen belasten",
+            "Bauteil und Veränderung beschreiben und Nutzung bis zur fachlichen Klärung unterlassen",
+            "Den letzten problemlosen Besuch als aktuellen Prüfbefund einsetzen",
+            "Die Änderung erst nach dem nächsten Ansitz melden"
+          ],
+          "answer": 1,
+          "explain": "Die Meldung unterstützt die zuständige Prüfung. Eigenes riskantes Belastungsprobieren liefert keine verlässliche Freigabe."
+        },
+        {
+          "id": "q13",
+          "lessonId": "zugang",
+          "q": "Der Sitzboden ist trocken, der Weg zur Leiter vereist. Welcher Bereich bleibt gesondert zu beurteilen?",
+          "options": [
+            "Die Verbindung der Sprossen mit den Holmen",
+            "Die Auflager des Sitzbodens",
+            "Die Zuwegung zur Einrichtung",
+            "Die seitliche Absturzsicherung"
+          ],
+          "answer": 2,
+          "explain": "Ein unauffälliger Sitzboden beantwortet die Frage nach dem sicheren Erreichen der Leiter nicht. Vereisung betrifft hier ausdrücklich die Zuwegung."
+        },
+        {
+          "id": "q14",
+          "lessonId": "zugang",
+          "q": "Welche Phase ist beim Wechsel von der Leiter auf den Sitz eigenständig zu beurteilen?",
+          "options": [
+            "Der Überstieg mit dem Wechsel der Tritt- und Haltepunkte",
+            "Nur die erste Bodenauflage am Leiterfuß",
+            "Nur die Sitzposition nach dem vollständigen Platznehmen",
+            "Ausschließlich der Weg bis zur untersten Sprosse"
+          ],
+          "answer": 0,
+          "explain": "Suva nennt den Überstieg als eigene Absturzgefahr. Dabei ändern sich die benutzten Tritt- und Haltepunkte."
+        },
+        {
+          "id": "q15",
+          "lessonId": "zugang",
+          "q": "Warum muss bei einem Überstieg auch dickere Winterkleidung bedacht werden?",
+          "options": [
+            "Nur die Wärmeisolation ist relevant, die Bewegungsfreiheit bleibt unverändert",
+            "Die Bewegungsfreiheit wird allein durch die Sprossenfestigkeit bestimmt",
+            "Ein Überstieg ist allein dann ausreichend, wenn er in leichter Sommerkleidung gelingt",
+            "Sie kann Beweglichkeit einschränken und an Engstellen hängen bleiben"
+          ],
+          "answer": 3,
+          "explain": "Die SVS beschreibt eingeschränkte Bewegungsfreiheit und Hängepunkte als Gesichtspunkte der Gestaltung."
+        },
+        {
+          "id": "q16",
+          "lessonId": "zugang",
+          "q": "Eine Leiter wurde von weichem Boden auf eine glatte Fläche umgesetzt. Welcher Befund am Fuß ist besonders wichtig?",
+          "options": [
+            "Ob der obere Leiterabschluss unverändert lang ist",
+            "Ob anhaftender Schmutz den vorgesehenen Bodenkontakt verändert",
+            "Ob die oberste Sprosse denselben Querschnitt behält",
+            "Ob die seitliche Absturzsicherung dieselbe Höhe besitzt"
+          ],
+          "answer": 1,
+          "explain": "HSE nennt gerade den Wechsel zwischen verschmutztem weichem und glattem festem Untergrund als Anlass, den tatsächlichen Fußkontakt erneut zu prüfen."
+        },
+        {
+          "id": "q17",
+          "lessonId": "zugang",
+          "q": "Ein Tritt ist mit glattem Belag verschmutzt. Welche Eigenschaft ist unmittelbar betroffen?",
+          "options": [
+            "Die Rutschhemmung der Trittfläche",
+            "Der tragende Querschnitt des Holms",
+            "Die seitliche Aussteifung der Gesamtkonstruktion",
+            "Die Zugfestigkeit einer nicht betroffenen Verbindung"
+          ],
+          "answer": 0,
+          "explain": "Verschmutzung kann den Halt auf der Trittfläche verändern; sie ist nicht bloß eine optische Eigenschaft."
+        },
+        {
+          "id": "q18",
+          "lessonId": "zugang",
+          "q": "Warum ist die Benutzungsanleitung einer gekauften Leiter für ihre Beurteilung relevant?",
+          "options": [
+            "Sie ersetzt die Betrachtung aktueller Schäden",
+            "Sie erlaubt jede beliebige Veränderung der Leiter",
+            "Sie beschreibt die vorgesehene Verwendung dieser Bauart",
+            "Sie enthält automatisch die Jagdvorschriften aller Länder"
+          ],
+          "answer": 2,
+          "explain": "Eine Anleitung ordnet die Bauart und Verwendung ein. Der aktuelle Zustand und die örtlichen Anforderungen bleiben zusätzlich zu prüfen."
+        },
+        {
+          "id": "q19",
+          "lessonId": "verantwortung",
+          "q": "Deutschland: Wer muss nach § 7 VSG 4.4 sicherstellen, dass die genannten Hochsitzanforderungen eingehalten werden?",
+          "options": [
+            "Ausschließlich der jeweilige Jagdgast",
+            "Nur der beauftragte externe Handwerksbetrieb",
+            "Nur die Person, welche die letzte Prüfung durchgeführt hat",
+            "Der Unternehmer"
+          ],
+          "answer": 3,
+          "explain": "§ 7 weist die Sicherstellung dem Unternehmer zu. Das entbindet Nutzende nicht davon, erkennbare Gefahren ernst zu nehmen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q20",
+          "lessonId": "verantwortung",
+          "q": "Deutschland: Wie stehen jährliche Prüfung und Prüfung vor jeder Benutzung nach § 7 VSG 4.4 zueinander?",
+          "options": [
+            "Die Jahresprüfung ersetzt sämtliche Benutzungsprüfungen",
+            "Beide Anforderungen gelten nebeneinander",
+            "Nur nach einer schriftlichen Beschwerde wird erneut geprüft",
+            "Die Benutzungsprüfung entfällt bei ortsfesten Sitzen"
+          ],
+          "answer": 1,
+          "explain": "Die Vorschrift verlangt vor jeder Benutzung eine Prüfung, mindestens jedoch einmal jährlich.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q21",
+          "lessonId": "verantwortung",
+          "q": "Deutschland: Was verlangt § 7 VSG 4.4 für nicht mehr benötigte Einrichtungen?",
+          "options": [
+            "Sie sind abzubauen",
+            "Es genügt dauerhaft, nur die Zugangsleiter zu sperren",
+            "Die weitere Zustandsprüfung entfällt, solange sie unbenutzt bleiben",
+            "Ein Warnschild ersetzt dauerhaft den vorgesehenen Abbau"
+          ],
+          "answer": 0,
+          "explain": "Der Abbau nicht mehr benötigter Einrichtungen ist als eigener Punkt ausdrücklich genannt.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q22",
+          "lessonId": "verantwortung",
+          "q": "Österreich: Wie ist die zweimal jährliche eingehende Prüfung in der gelesenen SVS-Broschüre einzuordnen?",
+          "options": [
+            "Als in Deutschland geltender Wortlaut des § 7 VSG 4.4",
+            "Als einheitliche gesetzliche Frist aller Schweizer Kantone",
+            "Als österreichischer Präventionshinweis der SVS",
+            "Als Ersatz für die kurze Sichtprüfung vor Benutzung"
+          ],
+          "answer": 2,
+          "explain": "Die SVS-Broschüre nennt die eingehende Überprüfung zusätzlich zur Sichtprüfung; ihre Empfehlung wird nicht in einen fremden Rechtsraum übertragen.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q23",
+          "lessonId": "verantwortung",
+          "q": "Schweiz: Welche Reichweite hat die hier gelesene Suva-Beschreibung für tragbare Leitern?",
+          "options": [
+            "Sie setzt für jedes private Revier dieselbe Jahresfrist wie die VSG 4.4 fest",
+            "Sie behandelt sicheren Leitergebrauch und Instruktion, keine einheitliche kantonale Hochsitzprüffrist",
+            "Sie erklärt jede Ansitzeinrichtung mit Leiter automatisch für zulässig",
+            "Sie ersetzt alle Standort- und Bauentscheidungen eines Kantons"
+          ],
+          "answer": 1,
+          "explain": "Die Aussage wird auf die tatsächlich gelesene Leiterinformation begrenzt. Eine allgemeine kantonale Hochsitzregel wurde daraus nicht abgeleitet.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q24",
+          "lessonId": "verantwortung",
+          "q": "Welche Mängelmeldung ermöglicht am ehesten eine gezielte Prüfung am richtigen Bauteil?",
+          "options": [
+            "„Beim Aufstieg ist eine Veränderung; welcher Sitz gemeint ist, folgt später“",
+            "„Der Sitz ist wohl schadhaft; betroffenes Bauteil und Standort unbekannt“",
+            "„Beim Wiesenrand-Sitz wurde etwas repariert; Zustand danach nicht beschrieben“",
+            "„Sitz Wiesenrand 3: zweite Sprosse am linken Holm gelockert; nicht benutzt“"
+          ],
+          "answer": 3,
+          "explain": "Ort, Einrichtung und betroffener Bauteil machen die Beobachtung nachvollziehbar, ohne eine ungeprüfte Gesamtdiagnose zu behaupten."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "title": "Beschuss und Kennzeichnung richtig lesen",
+      "category": "Waffen & Sicherheit",
+      "topic": "Waffensicherheit",
+      "description": "Sicherheitsprüfung, Waffenidentität, Munitionslos und Berechtigung als getrennte Informationen einordnen.",
+      "minutes": 45,
+      "objectives": [
+        "Den Prüfzweck des Beschusses erklären",
+        "Hersteller, Seriennummer und Kaliber auseinanderhalten",
+        "Munitionsverpackungen als Informationsquelle verstehen",
+        "CIP-Anerkennung und nationales Waffenrecht trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Konkrete Kennzeichnungspflichten werden nach § 24 WaffG und § 39 BeschussV als deutsche Regeln bezeichnet. Für Ausnahmen und Altwaffen gelten die jeweiligen Normen.",
+        "AT": "Österreichische Munitionsverpackungen: § 9 Patronenprüfordnung 2013. BMWET erläutert Waffen- und Munitionsprüfung. Deutsches Recht wird nicht nach Österreich übertragen.",
+        "CH": "Die Schweiz wird auf der eingesehenen CIP-Mitgliederliste nicht geführt. Erwerb, Besitz und weitere waffenrechtliche Fragen richten sich nach Schweizer Recht; Informationen bei fedpol und zuständigen kantonalen Stellen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "Beschussamt München · Aufgaben und Prüfgrenzen",
+          "url": "https://lmg.bayern.de/lmg/beschussaemter/muenchen/index.html",
+          "organization": "Bayerisches Landesamt für Maß und Gewicht",
+          "supports": "Sicherheitsprüfung statt Zielgenauigkeits-, Montage- oder Finishprüfung; Munitionsmaße und Höchstgasdruck."
+        },
+        {
+          "label": "BMWET · Beschussämter und Schießstätten",
+          "url": "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/",
+          "organization": "Bundesministerium für Wirtschaft, Energie und Tourismus Österreich",
+          "supports": "Waffenprüfung: Maßhaltigkeit, Funktionssicherheit, Haltbarkeit; gewerbliche Munitions-Typen- und Fabrikationskontrolle, Prüfzeichen auf kleinster Verpackung."
+        },
+        {
+          "label": "Deutschland · § 24 Waffengesetz",
+          "url": "https://www.gesetze-im-internet.de/waffg_2002/__24.html",
+          "organization": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "supports": "Abs. 1: Hersteller, Herstellungsland, Munitions-/Kaliberbezeichnung und Seriennummer im genannten Herstellungs-/Verbringensrahmen mit Ausnahmen. Abs. 4: kleinste Munitionsverpackung, Hersteller, Fertigungsserie, Zulassung und Bezeichnung. Aktueller Original-HTML-Text tatsächlich gelesen."
+        },
+        {
+          "label": "Deutschland · § 39 Beschussverordnung",
+          "url": "https://www.gesetze-im-internet.de/beschussv/__39.html",
+          "organization": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "supports": "Zusätzliche Angaben auf kleinster Verpackungseinheit: Patronenzahl, Prüfzeichen, Beschussmunitionswarnung und auf die betreffende Munition bezogene Warnhinweise; keine privaten Nutzungsanweisungen."
+        },
+        {
+          "label": "Österreich · Patronenprüfordnung 2013, insbesondere §§ 2/9/11",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008706",
+          "organization": "Rechtsinformationssystem des Bundes Österreich",
+          "supports": "Originalfassung vom 16.10.2026 im bereitgestellten Text: Definition Los/Packung, Hersteller, Typenbezeichnung, Los, Anzahl, Prüfzeichen auf Packungen; Originaltext zusätzlich per öffentlichem HTML gelesen."
+        },
+        {
+          "label": "CIP · Aufgaben der Ständigen Internationalen Kommission",
+          "url": "https://cip-bobp.org/de/cip",
+          "organization": "Commission Internationale Permanente",
+          "supports": "Regeln für Sicherheitsprüfung und gegenseitige Beschusszeichenanerkennung; keine Aussage zur individuellen Besitzberechtigung."
+        },
+        {
+          "label": "CIP · Mitglieder des Übereinkommens",
+          "url": "https://cip-bobp.org/de/membres",
+          "organization": "Commission Internationale Permanente",
+          "supports": "Eingesehene Mitgliederliste enthält Deutschland und Österreich, nicht Schweiz. Mitgliedschaft ist keine Gleichsetzung mit EU-Mitgliedschaft."
+        },
+        {
+          "label": "fedpol · Waffen und Munition",
+          "url": "https://www.fedpol.admin.ch/de/waffen-munition",
+          "organization": "Bundesamt für Polizei fedpol",
+          "supports": "Schweizer Waffengesetz als Rahmen für Erwerb und Besitz; nationale Zuständigkeit getrennt von technischen Beschussinformationen."
+        },
+        {
+          "label": "Europäische Kommission · CE marking",
+          "url": "https://single-market-economy.ec.europa.eu/single-market/goods/ce-marking_en",
+          "organization": "Europäische Kommission",
+          "supports": "CE betrifft Konformität nach jeweils einschlägigem Produktharmonisierungsrecht; ist kein Ersatzbegriff für den amtlichen Waffenbeschuss."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "pruefzweck",
+          "title": "Was ein Beschuss prüft und was er offenlässt",
+          "paragraphs": [
+            "Beim amtlichen Beschuss steht die technische Sicherheit im Mittelpunkt. Das Beschussamt München grenzt diese Prüfung ausdrücklich von Zielgenauigkeit, Montage und äußerer Ausführung ab. Die österreichische Behördeninformation nennt Maßhaltigkeit, Funktionssicherheit und Haltbarkeit als Prüfaspekte. Eine bestandene Sicherheitsprüfung und ein enger Schussgruppenvergleich beantworten deshalb verschiedene Fragen.",
+            "Auch die Prüfung von Handelsmunition besitzt einen eigenen Gegenstand: Maße und festgelegte Druckanforderungen gehören dazu. Ein anerkanntes Prüfzeichen besagt nicht, dass beliebige Munition in jede Waffe gleichen ungefähren Durchmessers passt. Beschussinformationen werden mit vollständiger Munitionsbezeichnung, konkreter Waffe und Herstellerunterlagen zusammen gelesen. CE ist wiederum ein Kennzeichen innerhalb einschlägiger Produktkonformitätsregeln und kein austauschbares Wort für Waffenbeschuss."
+          ],
+          "takeaway": "Sicherheitsprüfung, Treffleistung und Produktkonformität sind getrennte Prüffragen.",
+          "exercise": "Ordne drei Dokumente zu: Beschussnachweis, Schussgruppenprotokoll und Herstellerunterlage zur vorgesehenen Munition."
+        },
+        {
+          "id": "identitaet",
+          "title": "Hersteller, Seriennummer und Kaliber unterscheiden",
+          "paragraphs": [
+            "Eine Herstellerangabe benennt die Herkunft aus einer Fertigung oder Marke; eine Seriennummer ordnet ein individuelles Stück zu. Eine Modellbezeichnung beschreibt dagegen eine Bauart oder Produktreihe. Zwei Waffen derselben Reihe können deshalb dieselbe Modellbezeichnung tragen und trotzdem verschiedene Seriennummern besitzen. Das Kaliber beziehungsweise die Munitionsbezeichnung hat wieder eine andere Aufgabe: Sie benennt die vorgesehene Munition oder das Laufkaliber, nicht die individuelle Waffe.",
+            "Deutschland: § 24 Abs. 1 WaffG beschreibt im dort genannten Herstellungs- und Verbringensrahmen unter anderem Hersteller, Herstellungsland, Munitions-/Kaliberbezeichnung und fortlaufende Nummer. Der Paragraph enthält auch Ausnahmen; er ist keine pauschale Aussage über jedes historische Sammlungsstück. Im eigenen Lesebeispiel stehen „Hersteller A“, „Modell B“, „Nummer 12345“ und „Kaliber C“ in vier getrennten Feldern. Die Angaben werden abgeschrieben, nicht durch eine geschätzte Bezeichnung anhand des Aussehens ersetzt."
+          ],
+          "takeaway": "Modell benennt eine Reihe, Seriennummer ein Stück, Kaliber die vorgesehene Munitions-/Laufinformation.",
+          "exercise": "Erstelle an einem fiktiven Datenblatt vier beschriftete Felder, ohne reale Seriennummern zu veröffentlichen."
+        },
+        {
+          "id": "packung",
+          "title": "Eine Munitionspackung enthält mehrere Informationsebenen",
+          "paragraphs": [
+            "Ein Los bezeichnet eine Fertigungsgruppe, nicht ein einzelnes Stück Munition. Die Packungsangaben ermöglichen die Zuordnung zu Hersteller, Munitionstyp und Fertigungsserie; die Stückzahl beantwortet eine Mengenfrage. In einem eigenen Rückfragefall sind deshalb „welche Munition“, „aus welcher Fertigung“ und „wie viele Patronen“ getrennte Angaben.",
+            "Deutschland: § 24 Abs. 4 WaffG nennt auf der kleinsten Verpackungseinheit Hersteller, Fertigungsserie, Zulassung und Munitionsbezeichnung; § 39 BeschussV ergänzt unter anderem die Anzahl und bestimmte Warnhinweise. Österreich: § 9 Patronenprüfordnung 2013 nennt unter anderem Name/Marke, Typenbezeichnung, Losidentifikation, Anzahl und Prüfzeichen. Zusätzliche Hinweise für besondere Munition sind ernst zu nehmende Einschränkungen, keine Werbung. Eine Packung mit unbekannt gemischtem Inhalt belegt nicht mehr zuverlässig die Herkunft jedes einzelnen enthaltenen Stücks."
+          ],
+          "takeaway": "Typ, Los, Menge und Prüfkennzeichnung beantworten unterschiedliche Fragen.",
+          "exercise": "Ordne auf einer rein fiktiven Packung Typenbezeichnung, Losnummer, Anzahl und Hersteller vier verschiedenen Rückfragen zu."
+        },
+        {
+          "id": "anerkennung",
+          "title": "Anerkanntes Prüfzeichen und nationale Berechtigung",
+          "paragraphs": [
+            "Die CIP legt gemeinsame Regeln für Prüfungen und die gegenseitige Anerkennung von Beschusszeichen ihrer Mitgliedstaaten fest. Deutschland und Österreich stehen auf der eingesehenen Liste; die Schweiz ist dort nicht aufgeführt. Das System ist ein eigenes Übereinkommen und keine bloße Umschreibung für die Europäische Union. Auch in einem Mitgliedstaat werden historische Zeichen und besondere Prüfarten anhand amtlicher Unterlagen eingeordnet.",
+            "Ein technischer Prüfnachweis beantwortet nicht, wer eine Waffe erwerben, besitzen, transportieren oder jagdlich verwenden darf. Solche Fragen haben ihre eigenen nationalen Vorschriften und Zuständigkeiten; fedpol verweist für den Schweizer Waffenbesitz auf das Waffengesetz. Ebenso beschreibt ein älterer Prüfstand nicht von selbst spätere Schäden oder Veränderungen. Unklare Kennzeichen und Unterlagen werden mit Fachbetrieb oder zuständiger Stelle abgeklärt. Für ein konkretes Zeichen sind die zugehörige Prüfart, der Zeitraum und die amtliche Herkunft maßgeblich."
+          ],
+          "takeaway": "Gegenseitige technische Anerkennung und persönliche Berechtigung bleiben getrennt.",
+          "exercise": "Sortiere Beschussinformation, Besitzfrage und aktuelle Zustandsfrage in drei getrennte Felder."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "pruefzweck",
+          "q": "Welche Frage gehört zum technischen Gegenstand eines amtlichen Waffenbeschusses?",
+          "options": [
+            "Ob die Waffe die einschlägigen Sicherheitsprüfungen besteht",
+            "Ob sie im Revier bei jedem Wetter dieselbe Treffpunktlage besitzt",
+            "Ob ihre Schaftform allen Personen gleich gut passt",
+            "Ob ihre äußere Ausführung besonders hochwertig wirkt"
+          ],
+          "answer": 0,
+          "explain": "Die Behörden beschreiben den Beschuss als Sicherheitsprüfung. Individuelle Passform und praktische Treffleistung haben andere Prüfgrundlagen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "pruefzweck",
+          "q": "Welchen Nachweis liefert ein enger Streukreis für sich allein nicht?",
+          "options": [
+            "Eine Beobachtung zur Treffleistung dieser Schussserie",
+            "Die aufgezeichnete Anordnung der Einschüsse",
+            "Den vorgeschriebenen amtlichen Beschussnachweis",
+            "Eine Information unter den dokumentierten Versuchsbedingungen"
+          ],
+          "answer": 2,
+          "explain": "Ein Schussgruppenprotokoll beschreibt die Serie, ersetzt jedoch keine amtliche Sicherheitsprüfung."
+        },
+        {
+          "id": "q3",
+          "lessonId": "pruefzweck",
+          "q": "DE/AT: Welche Größen nennt die gelesene Behördeninformation bei der Munitionsprüfung?",
+          "options": [
+            "Ausschließlich Streukreis und Treffpunktlage einer bestimmten Jagdwaffe",
+            "Abmessungen und die Einhaltung festgelegter Druckanforderungen",
+            "Nur Rückstoßempfinden und subjektiv wahrgenommene Lautstärke",
+            "Allein Geschossmasse und äußerer Hülsendurchmesser"
+          ],
+          "answer": 1,
+          "explain": "Munitionsprüfung bezieht sich auf technische Anforderungen. Daraus wird keine allgemeine jagdliche Eignungs- oder Verwendungsfreigabe abgeleitet.",
+          "countries": [
+            "DE",
+            "AT"
+          ]
+        },
+        {
+          "id": "q4",
+          "lessonId": "pruefzweck",
+          "q": "Welche Bedeutung hat die behördliche Aussage, das Finish werde beim Beschuss nicht getestet?",
+          "options": [
+            "Die Beschussprüfung bestätigt automatisch eine makellose äußere Verarbeitung",
+            "Jeder sichtbare Oberflächenkratzer beweist einen fehlenden Beschuss",
+            "Die Bewertung der Oberflächenverarbeitung ersetzt die technische Sicherheitsprüfung",
+            "Äußere Verarbeitungsqualität ist kein vom Beschussamt bestätigtes Qualitätsurteil"
+          ],
+          "answer": 3,
+          "explain": "Die ausdrückliche Abgrenzung beschreibt den Prüfgegenstand; sie behauptet weder eine bestimmte Oberflächenausführung noch eine Gesamtnote."
+        },
+        {
+          "id": "q5",
+          "lessonId": "pruefzweck",
+          "q": "Wie ist ein CE-Zeichen gegenüber dem amtlichen Beschuss einzuordnen?",
+          "options": [
+            "Als europaweit identisches Ersatzzeichen jedes Beschussamts",
+            "Als persönlicher Nachweis der jagdlichen Berechtigung",
+            "Als Kennzeichnung eines anderen, produktspezifischen Konformitätssystems",
+            "Als allgemeine Bestätigung jeder möglichen Munitionsverwendung"
+          ],
+          "answer": 2,
+          "explain": "CE und Beschuss haben unterschiedliche Rechts- und Prüfgrundlagen; diese dürfen nicht allein aus ähnlich wirkenden Zeichen gleichgesetzt werden."
+        },
+        {
+          "id": "q6",
+          "lessonId": "pruefzweck",
+          "q": "Welche Information muss zur Beurteilung einer Munition über einen bloß ungefähr gleichen Geschossdurchmesser hinaus herangezogen werden?",
+          "options": [
+            "Die vollständige vorgesehene Munitionsbezeichnung der konkreten Waffe",
+            "Nur die äußerlich ähnliche Hülsenlänge ohne weitere Bezeichnung",
+            "Nur die Geschossmasse unabhängig von der Patronenbezeichnung",
+            "Nur die äußerlich gleiche Hülsenbodenform"
+          ],
+          "answer": 0,
+          "explain": "Bezeichnung und Herstellerunterlagen ordnen die konkrete Verwendung ein. Ein ähnliches äußeres Maß ist kein Kompatibilitätsnachweis."
+        },
+        {
+          "id": "q7",
+          "lessonId": "identitaet",
+          "q": "Welche Angabe unterscheidet im fiktiven Datenblatt zwei einzelne Waffen derselben Modellreihe?",
+          "options": [
+            "Die gemeinsame Modellbezeichnung",
+            "Die jeweilige Seriennummer",
+            "Die gemeinsame Kaliberbezeichnung",
+            "Der gleiche Herstellername"
+          ],
+          "answer": 1,
+          "explain": "Die Seriennummer ordnet das einzelne Stück zu. Hersteller, Modell und Kaliber können bei mehreren Waffen übereinstimmen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "identitaet",
+          "q": "Wofür steht im Lesebeispiel die Angabe „Modell B“?",
+          "options": [
+            "Für die Identifikationsnummer eines Munitionsloses",
+            "Für die vorgesehene Munitionsbezeichnung",
+            "Für die individuelle Seriennummer einer einzelnen Waffe",
+            "Für eine Bauart oder Produktreihe"
+          ],
+          "answer": 3,
+          "explain": "Eine Modellbezeichnung gruppiert eine Ausführung; sie ist kein Ersatz für die individuelle Seriennummer."
+        },
+        {
+          "id": "q9",
+          "lessonId": "identitaet",
+          "q": "Deutschland: Welche Angabe nennt § 24 Abs. 1 WaffG für das Herstellungsland?",
+          "options": [
+            "Die Postleitzahl des herstellenden Betriebs",
+            "Ein dreistelliges Länderkennzeichen unabhängig von der genannten ISO-Norm",
+            "Das zweistellige Landeskürzel nach der genannten ISO-Norm",
+            "Das Land der zuletzt besitzenden Person"
+          ],
+          "answer": 2,
+          "explain": "Die Norm nennt ein Landeskürzel. Das ist eine Herkunftsangabe im gesetzlich beschriebenen Kennzeichnungskontext.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q10",
+          "lessonId": "identitaet",
+          "q": "Welche Information beschreibt im fiktiven Datenblatt „Kaliber C“?",
+          "options": [
+            "Die vorgesehene Munitions- oder Laufkaliberbezeichnung",
+            "Den Nummernbereich aller Waffen desselben Modells",
+            "Die individuelle Identität der besitzenden Person",
+            "Die Nummer des zuständigen Beschussamts"
+          ],
+          "answer": 0,
+          "explain": "Kaliber und Seriennummer erfüllen verschiedene Aufgaben. Eine Kaliberangabe identifiziert nicht die einzelne Person oder Waffe."
+        },
+        {
+          "id": "q11",
+          "lessonId": "identitaet",
+          "q": "Deutschland: Weshalb wird § 24 WaffG nicht als ausnahmslose Kennzeichnungsvorschrift für jedes historische Objekt zusammengefasst?",
+          "options": [
+            "Weil Seriennummern in dieser Vorschrift grundsätzlich nicht vorkommen",
+            "Weil nur Herstellerlogos gesetzlich behandelt werden",
+            "Weil sämtliche Kennzeichnung freiwillig wäre",
+            "Weil der Normtext besondere Ausnahmen und einen bestimmten Geltungsrahmen enthält"
+          ],
+          "answer": 3,
+          "explain": "Die Norm muss mit ihrem Anwendungsbereich und ihren Ausnahmen gelesen werden; eine Kurzliste ersetzt diese Einordnung nicht.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q12",
+          "lessonId": "identitaet",
+          "q": "Auf einem alten Datenblatt wurde die Seriennummer durch den Modellnamen ersetzt. Welcher Fehler liegt vor?",
+          "options": [
+            "Hersteller und Importeur wurden verwechselt",
+            "Individuelle Identität und Produktreihe wurden vertauscht",
+            "Munitionsbezeichnung und Losnummer wurden vertauscht",
+            "Packungsmenge und Geschossmasse wurden verwechselt"
+          ],
+          "answer": 1,
+          "explain": "Eine Modellbezeichnung kann mehreren Stücken gemeinsam sein. Sie stellt die verlorene individuelle Zuordnung nicht wieder her."
+        },
+        {
+          "id": "q13",
+          "lessonId": "packung",
+          "q": "Welche Frage beantwortet eine Losnummer auf einer Munitionspackung am ehesten?",
+          "options": [
+            "Wie viele Patronen noch in der geöffneten Packung liegen",
+            "Welcher Person die Waffe gehört",
+            "Welcher Fertigungsgruppe die enthaltene Munition zugeordnet wird",
+            "Welche individuelle Seriennummer eine einzelne Patrone trägt"
+          ],
+          "answer": 2,
+          "explain": "Losnummer und Stückzahl sind verschiedene Informationen. Die Losnummer ist für eine Rückfrage zur Fertigung relevant."
+        },
+        {
+          "id": "q14",
+          "lessonId": "packung",
+          "q": "Deutschland: Welche Mengenangabe nennt § 39 Abs. 1 BeschussV für die kleinste Verpackungseinheit?",
+          "options": [
+            "Die Anzahl der Patronen oder Kartuschen",
+            "Die Gesamtmasse sämtlicher verpackter Geschosse",
+            "Die Zahl zugelassener Waffenmodelle für dieses Kaliber",
+            "Die aufsummierte Hülsenlänge des Packungsinhalts"
+          ],
+          "answer": 0,
+          "explain": "Die Vorschrift nennt eine Stückzahl der verpackten Munition, keine Einsatz- oder Besitzstatistik.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q15",
+          "lessonId": "packung",
+          "q": "Deutschland: Welche Packungsangabe dient nach § 24 Abs. 4 WaffG zur Zuordnung der Fertigung?",
+          "options": [
+            "Die alleinige Bezeichnung der Munitionsart",
+            "Die Stückzahl ohne Serienbezug",
+            "Die individuelle Seriennummer der verwendeten Waffe",
+            "Die Fertigungsserie beziehungsweise das Fertigungszeichen"
+          ],
+          "answer": 3,
+          "explain": "Die Fertigungsangabe dient der Zuordnung des Produkts; die übrigen Daten sind keine dort genannten Herstellungskennzeichen.",
+          "countries": [
+            "DE"
+          ]
+        },
+        {
+          "id": "q16",
+          "lessonId": "packung",
+          "q": "Österreich: Welche Angabengruppe steht in § 9 Patronenprüfordnung 2013 für die Packungskennzeichnung?",
+          "options": [
+            "Hersteller, Waffenseriennummer und persönlicher Erwerbsnachweis",
+            "Hersteller/Marke, Typ, Losidentifikation, Anzahl und Prüfzeichen",
+            "Typ, Geschossmasse und Händlerbeurteilung ohne Losidentifikation",
+            "Hersteller, Kaliber und Herstellungsland ohne Anzahl und Prüfzeichen"
+          ],
+          "answer": 1,
+          "explain": "Diese unterschiedlichen Angaben stehen im originalen § 9. Sie werden nicht zu einer einzigen Kaliberangabe verkürzt.",
+          "countries": [
+            "AT"
+          ]
+        },
+        {
+          "id": "q17",
+          "lessonId": "packung",
+          "q": "Eine Originalpackung enthält später Patronen aus mehreren unbekannten Packungen. Welche Fertigungszuordnung lässt sich nicht mehr allein mit dem alten Etikett belegen?",
+          "options": [
+            "Dass jedes enthaltene Stück noch zum aufgedruckten Los gehört",
+            "Dass die aufgedruckte Losnummer überhaupt eine Fertigungsgruppe bezeichnet",
+            "Dass eine Typenbezeichnung eine andere Information als die Stückzahl ist",
+            "Dass die Packungsaufschrift ursprünglich einen Hersteller benannte"
+          ],
+          "answer": 0,
+          "explain": "Das äußere Originaletikett dokumentiert keine nachträglich unbekannt eingefüllten Patronen. Die Herkunft muss für den tatsächlichen Inhalt geklärt sein."
+        },
+        {
+          "id": "q18",
+          "lessonId": "packung",
+          "q": "Wie ist ein zusätzlicher Warnhinweis für eine besondere Munitionsart zu behandeln?",
+          "options": [
+            "Als vollständiger Ersatz für die vorgesehene Typenbezeichnung",
+            "Als unverbindlicher Werbetext ohne technische Bedeutung",
+            "Als Information über besondere Anforderungen des bezeichneten Produkts",
+            "Als allgemeine Freigabe für jede Waffe gleichen Geschossdurchmessers"
+          ],
+          "answer": 2,
+          "explain": "Die einschlägigen Vorschriften nennen Warnhinweise zu besonderen Munitionsarten. Daraus entsteht keine pauschale Verwendungsfreigabe."
+        },
+        {
+          "id": "q19",
+          "lessonId": "anerkennung",
+          "q": "Welchen Zweck nennt die CIP für ihre gemeinsamen Prüfregeln?",
+          "options": [
+            "Eine gemeinsame persönliche Waffenbesitzberechtigung in allen Mitgliedstaaten",
+            "Eine einheitliche Qualitätsnote für die Zielgenauigkeit aller Waffen",
+            "Die gegenseitige Anerkennung jeder privaten Waffenreparatur ohne Prüfung",
+            "Die gegenseitige Anerkennung von Beschusszeichen der Mitgliedstaaten"
+          ],
+          "answer": 3,
+          "explain": "Die CIP beschreibt einen technischen Anerkennungsrahmen. Persönliche und jagdrechtliche Berechtigungen werden darin nicht pauschal erteilt."
+        },
+        {
+          "id": "q20",
+          "lessonId": "anerkennung",
+          "q": "Welches Staatenpaar steht gemeinsam auf der hier eingesehenen CIP-Mitgliederliste?",
+          "options": [
+            "Deutschland und Schweiz",
+            "Deutschland und Österreich",
+            "Österreich und Schweiz",
+            "Schweiz und Norwegen"
+          ],
+          "answer": 1,
+          "explain": "Deutschland und Österreich sind aufgeführt. Die Aussage betrifft die tatsächlich gelesene Mitgliederliste, keine allgemeine EU-Zugehörigkeit."
+        },
+        {
+          "id": "q21",
+          "lessonId": "anerkennung",
+          "q": "Schweiz: Welche Aussage wird von der eingesehenen CIP-Liste getragen?",
+          "options": [
+            "Die Schweiz ist auf dieser Mitgliederliste nicht aufgeführt",
+            "Die Schweiz ist aufgeführt, weil jeder DACH-Staat automatisch Mitglied ist",
+            "Die Schweiz ist über ihre kantonalen Jagdbehörden als Mitglied aufgeführt",
+            "Die Schweiz ist aufgeführt, weil jeder europäische Staat automatisch Mitglied ist"
+          ],
+          "answer": 0,
+          "explain": "Das Fehlen auf einer Mitgliederliste erlaubt keine weitergehenden Aussagen über nationales Erwerbsrecht oder technischen Zustand.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q22",
+          "lessonId": "anerkennung",
+          "q": "Welche Frage betrifft neben einem technischen Beschussnachweis eine andere, persönliche Berechtigungsebene?",
+          "options": [
+            "Welche technische Prüfart ein amtliches Zeichen bezeichnet",
+            "Welche konkrete Waffe ein vorhandener Prüfbeleg beschreibt",
+            "Ob die Person die Waffe erwerben oder besitzen darf",
+            "Welcher Mitgliedstaat das amtliche Prüfzeichen verwendet"
+          ],
+          "answer": 2,
+          "explain": "Ein technischer Nachweis verleiht der einzelnen Person keine waffenrechtliche Berechtigung."
+        },
+        {
+          "id": "q23",
+          "lessonId": "anerkennung",
+          "q": "Eine Waffe weist seit ihrer früheren Prüfung einen neuen sichtbaren Schaden auf. Was sagt der frühere Prüfnachweis darüber aus?",
+          "options": [
+            "Er bestätigt ohne Weiteres die Sicherheit jeder späteren Veränderung",
+            "Er beschreibt den früheren Prüfstand und beurteilt den neuen Schaden nicht automatisch",
+            "Er ersetzt die notwendige Klärung allein wegen seines Alters",
+            "Er belegt, dass der neue Schaden nur kosmetisch sein kann"
+          ],
+          "answer": 1,
+          "explain": "Ein zurückliegender Befund ist keine Untersuchung eines später entstandenen Zustands."
+        },
+        {
+          "id": "q24",
+          "lessonId": "anerkennung",
+          "q": "Wie werden unklare historische Beschusszeichen sachgerecht eingeordnet?",
+          "options": [
+            "Durch Übertragung eines ähnlich aussehenden Zeichens ohne Datumsbezug",
+            "Durch Gleichsetzung jedes amtlichen Stempels mit einer CE-Kennzeichnung",
+            "Durch Anwendung heutiger Zeichenbedeutungen ohne Prüfung ihrer historischen Geltung",
+            "Mit passenden amtlichen Zeichenunterlagen und fachkundiger Klärung"
+          ],
+          "answer": 3,
+          "explain": "Historische Zeichen und besondere Prüfarten brauchen die passende Quelle. Die Frage verlangt keine Deutung eines ungesehenen Bildes."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-revierpraxis-blei-wildbret-2026",
+      "title": "Blei im Wildbret: Eintrag, Aufnahme und Wirkung",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Chemische Belastung, unsichtbare Partikel und die Bedeutung von Verzehrsmenge und Empfindlichkeit verstehen.",
+      "minutes": 45,
+      "objectives": [
+        "Umwelt- und Munitionseintrag unterscheiden",
+        "Bleispeicherung und empfindliche Lebensphasen erklären",
+        "Lebensmittelkonzentration von aufgenommener Menge trennen",
+        "Originalbefunde und vorsorgliche Empfehlungen richtig einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Biologische und toxikologische Grundlagen gelten länderübergreifend. Behördliche Verzehrsempfehlungen werden mit Herausgeber und Datum gelesen; das Schweizer BLV wird ausdrücklich als Schweizer Quelle benannt. Keine individuelle Verzehrsfreigabe.",
+        "AT": "Biologische und toxikologische Grundlagen gelten länderübergreifend. Behördliche Verzehrsempfehlungen werden mit Herausgeber und Datum gelesen; das Schweizer BLV wird ausdrücklich als Schweizer Quelle benannt. Keine individuelle Verzehrsfreigabe.",
+        "CH": "Biologische und toxikologische Grundlagen gelten länderübergreifend. Behördliche Verzehrsempfehlungen werden mit Herausgeber und Datum gelesen; das Schweizer BLV wird ausdrücklich als Schweizer Quelle benannt. Keine individuelle Verzehrsfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "BfR · Blei aus jagdlich gewonnenem Wildbret,FAQ 19.09.2011",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Umwelt- und Munitionseintrag, Partikel, Nervensystem/Niere und Knochen; historische Quelle. Alte pauschale Portionsfreigaben und Angaben zu Grenzwerten werden nicht übernommen."
+        },
+        {
+          "label": "BLV · Blei im Wildfleisch",
+          "url": "https://www.blv.admin.ch/de/blei",
+          "organization": "Bundesamt für Lebensmittelsicherheit und Veterinärwesen Schweiz",
+          "supports": "Aktuelle gelesene Webseite: Belastungsquellen und vorsorgliche Empfehlung für Kinder bis sieben Jahre, Schwangere, Stillende und Frauen mit Kinderwunsch. Verlinkte alte PDF nicht als 2026 neu ausgewertet."
+        },
+        {
+          "label": "WHO · Lead poisoning, 10.06.2026",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health",
+          "organization": "Weltgesundheitsorganisation",
+          "supports": "Aufnahme über Lebensmittel, Verteilung/Speicherung, Freisetzung aus Knochen in Schwangerschaft, Entwicklungs-/Nierenwirkungen und keine bekannte unschädliche Exposition."
+        },
+        {
+          "label": "Green und Mitautoren 2022 · Originaluntersuchung an Fasanen",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394810/",
+          "organization": "University of Cambridge / University of the Highlands and Islands / University of East Anglia / RSPB",
+          "supports": "Primäre Micro-CT-Untersuchung an acht in Großbritannien gekauften, 2016 erlegten Fasanen; kleine räumlich verteilte Metallfragmente, chemische Analyse geborgener größerer Stücke. Kleinste CT-Partikel nicht einzeln chemisch analysiert. Keine Übertragung der Häufigkeiten auf DACH oder alle Arten."
+        },
+        {
+          "label": "EFSA CONTAM · Scientific Opinion on Lead in Food, 20.04.2010",
+          "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2010.1570",
+          "organization": "Europäische Behörde für Lebensmittelsicherheit",
+          "supports": "Tatsächlich gelesener Abstract der Original-Opinion von 2010: Entwicklungsneurotoxizität, adulte Nephrotoxizität/chronische Nierenerkrankung, Blutdruckeffekte, Speicherung und frühere tolerierbare Wochendosis ungeeignet. Keine Volllektüre der gesamten Opinion behauptet, keine alten Expositions- oder Benchmarkwerte als persönliche Grenzwerte übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "eintragswege",
+          "title": "Umwelteintrag und Geschossreste sind verschiedene Quellen",
+          "paragraphs": [
+            "Blei ist ein chemisches Element und kein Krankheitserreger. Ein Wildtier kann Blei über seine Umwelt und Nahrung aufnehmen; zusätzlich können bei Verwendung bleihaltiger Munition Geschossreste in den Tierkörper gelangen. Beide Wege werden getrennt betrachtet. Das Entfernen sichtbarer großer Metallstücke erfasst nicht automatisch jede kleine Partikelbelastung.",
+            "Eine Originaluntersuchung von Green und Mitautoren erschien 2022: Mittels Micro-CT wurden acht in Großbritannien verkaufte Fasanenkörper untersucht. Die 2016 erlegten Vögel enthielten auch kleine, räumlich verteilte Metallfragmente. Geborgene größere Metallstücke wurden chemisch untersucht; die kleinsten CT-Partikel wurden als bleihaltige Geschossfragmente eingeordnet, nicht alle einzeln chemisch analysiert. Der Befund erklärt, warum allein die Suche nach ganzen Schrotkugeln eine Belastung übersehen kann. Er liefert keine Quote für heutiges DACH-Wildbret."
+          ],
+          "takeaway": "Umwelteintrag und Munition können zur chemischen Belastung beitragen; Sichtkontrolle erfasst nicht jede Partikelgröße.",
+          "exercise": "Skizziere zwei Eintragswege und kennzeichne am Studienbeispiel Beobachtung, chemische Analyse und begrenzte Übertragbarkeit."
+        },
+        {
+          "id": "wirkung",
+          "title": "Warum Knochen, Niere und Entwicklung eine Rolle spielen",
+          "paragraphs": [
+            "Nach der Aufnahme kann Blei in verschiedene Organe gelangen. Es kann sich insbesondere in Knochen und Zähnen längerfristig ansammeln. Eine solche Speicherung macht es nicht dauerhaft unschädlich: Während der Schwangerschaft kann aus dem Knochen freigesetztes Blei über das Blut das ungeborene Kind belasten. Die gesundheitliche Beurteilung betrifft deshalb auch frühere und wiederholte Expositionen.",
+            "Das sich entwickelnde Nervensystem ist besonders empfindlich; längerfristige Aufnahme kann auch Nieren und weitere Organsysteme schädigen. Nicht jede Belastung verursacht sofort erkennbare Beschwerden. Die WHO benennt keinen bekannten Expositionsbereich ohne schädliche Wirkung. Aus dem unauffälligen Zustand nach einer Mahlzeit lässt sich daher keine persönliche sichere Dosis ableiten. Die Einordnung einer tatsächlichen individuellen Belastung gehört in die medizinische Abklärung, nicht in eine aus Verzehrserinnerungen errechnete Diagnose."
+          ],
+          "takeaway": "Speicherung ist keine Entgiftung; fehlende unmittelbare Beschwerden sind kein Unbedenklichkeitsnachweis.",
+          "exercise": "Erkläre mit den Wörtern Aufnahme, Blut, Knochen und Freisetzung, weshalb frühere Exposition relevant bleiben kann."
+        },
+        {
+          "id": "exposition",
+          "title": "Konzentration, gegessene Menge und Aufnahme trennen",
+          "paragraphs": [
+            "Ein Lebensmittelgehalt und eine aufgenommene Stoffmenge sind verschiedene Größen. Eine Konzentration in Milligramm pro Kilogramm wird mit der tatsächlich gegessenen Masse in Kilogramm multipliziert. Eigener vereinfachter Rechenfall: Bei einem als gleichmäßig angenommenen Gehalt von 0,4 mg/kg enthält eine Portion von 0,25 kg rechnerisch 0,1 mg Blei. Das ist eine Rechenübung, kein gemessener Wildbretwert und keine sichere Portionsgrenze.",
+            "Partikel können ungleich verteilt sein; eine kleine Probe muss nicht jede Portion gleich gut beschreiben. Zur Exposition gehören außerdem Häufigkeit und weitere Aufnahmequellen aus Lebensmitteln oder Umwelt. Die verschluckte Menge ist nicht automatisch gleich der ins Blut aufgenommenen Menge: Bioverfügbarkeit beschreibt diesen Übergang mit. Sie wird hier nicht als fester Prozentwert für jeden Menschen oder jede Zubereitung behandelt. Das Ergebnis einer Rechnung beschreibt weder einen Gesundheitsbefund noch eine persönliche Verzehrsfreigabe."
+          ],
+          "takeaway": "Gehalt mal gegessene Masse ergibt eine Stoffmenge; Wirkung und innere Aufnahme sind weitere Fragen.",
+          "exercise": "Rechne das ausdrücklich eigene Beispiel nach und nenne anschließend zwei reale Informationen, die darin fehlen."
+        },
+        {
+          "id": "vorsorge",
+          "title": "Behördenempfehlung und Originalbefund mit ihrem Rahmen lesen",
+          "paragraphs": [
+            "Das BLV rät auf seiner eingesehenen Schweizer Webseite Kindern bis sieben Jahre, Schwangeren, Stillenden und Frauen mit Kinderwunsch vorsorglich zum Verzicht auf Wildfleisch, weil die verwendete Munition nicht immer feststellbar ist. Diese Empfehlung ist breiter als eine Aussage ausschließlich über nachweislich bleihaltig erlegtes Wild. Die Herkunfts- und Munitionsinformation ist somit relevant, aber allein kein Nachweis für sämtliche gesundheitlichen Eigenschaften einer Portion.",
+            "Quellen tragen unterschiedliche Zeitangaben: Die hier gelesene BfR-FAQ ist vom 19.09.2011, die Fasanenstudie wurde 2022 veröffentlicht und untersuchte 2016 erlegte Tiere; die WHO-Information stammt vom 10.06.2026. Abrufdatum und Entstehungsdatum sind nicht dasselbe. Kleine wissenschaftliche Originalbefunde erklären einen Mechanismus, geben aber keinen heutigen Gesamtmarktanteil an. Für den konkreten Umgang werden aktuelle behördliche Empfehlungen und die tatsächlich bekannte Herkunft zusammen betrachtet."
+          ],
+          "takeaway": "Empfehlungen, Untersuchungszeitraum und Übertragbarkeit bleiben sichtbar.",
+          "exercise": "Markiere bei drei Quellen getrennt Herausgeber, Veröffentlichungsjahr und tatsächlich untersuchte Tiergruppe."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "eintragswege",
+          "q": "Welcher Vorgang ist ein anderer Eintragsweg als eine Belastung durch Geschossreste?",
+          "options": [
+            "Die Aufnahme von Umweltblei über die Nahrung des Wildtiers",
+            "Das Eindringen eines kleinen Geschossfragments beim Treffer",
+            "Das Verbleiben einer Schrotkugel im Tierkörper",
+            "Die Verteilung von Geschossresten im betroffenen Gewebe"
+          ],
+          "answer": 0,
+          "explain": "Umweltaufnahme besteht unabhängig vom zusätzlichen Eintrag durch Munition; beide Quellen können zum Gehalt beitragen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "eintragswege",
+          "q": "Welche Art von Gefährdung stellt Blei im Wildbret dar?",
+          "options": [
+            "Eine Vermehrung von Parasitenlarven",
+            "Eine bakterielle Besiedlung",
+            "Eine chemische Kontamination",
+            "Eine durch Viren gebildete Infektion"
+          ],
+          "answer": 2,
+          "explain": "Blei ist ein Element. Seine Gefährdung wird nicht über eine Vermehrung wie bei Krankheitserregern erklärt."
+        },
+        {
+          "id": "q3",
+          "lessonId": "eintragswege",
+          "q": "Was untersuchte die benannte Originalarbeit von Green und Mitautoren 2022 unmittelbar?",
+          "options": [
+            "Bleikonzentrationen einer repräsentativen Stichprobe aller DACH-Wildarten",
+            "Metallfragmente in acht in Großbritannien verkauften Fasanenkörpern",
+            "Den Bleigehalt des Bluts einer Gruppe regelmäßiger Wildbretverzehrender",
+            "Den Erfolg verschiedener Verarbeitungsverfahren zur vollständigen Bleientfernung"
+          ],
+          "answer": 1,
+          "explain": "Die Arbeit hat eine genau benannte Probenherkunft und einen bestimmten Untersuchungsgegenstand. Ihre Zahlen werden nicht auf fremde Populationen übertragen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "eintragswege",
+          "q": "Welche Methode machte in dieser Untersuchung räumlich verteilte kleine Metallstücke sichtbar?",
+          "options": [
+            "Eine reine Sichtkontrolle der äußeren Fleischoberfläche",
+            "Die chemische Analyse einer einzigen homogenisierten Fleischprobe ohne Ortsinformation",
+            "Das Wiegen der zuvor von Hand geborgenen ganzen Schrotkugeln",
+            "Hochauflösende Computertomographie"
+          ],
+          "answer": 3,
+          "explain": "Micro-CT bildet strahlendichte Strukturen räumlich ab. Größe, Zusammensetzung und Nachweisgrenze wurden in der Arbeit gesondert eingeordnet."
+        },
+        {
+          "id": "q5",
+          "lessonId": "eintragswege",
+          "q": "Wie wurden in der Originalarbeit die kleinsten im CT sichtbaren Partikel eingeordnet?",
+          "options": [
+            "Als ausnahmslos einzeln chemisch bestätigte Bleipartikel",
+            "Als Partikel, deren genaue Metallchemie allein das CT zweifelsfrei bestimmte",
+            "Als mutmaßliche bleihaltige Geschossfragmente, gestützt auf Bildbefunde und die Analyse geborgener Metallstücke",
+            "Als unabhängig von ihrer Zusammensetzung nachgewiesen gesundheitlich unbedenklich"
+          ],
+          "answer": 2,
+          "explain": "Die geborgenen größeren Stücke waren überwiegend Blei. Für die kleinsten CT-Partikel blieb die Metallzuordnung eine begründete Schlussfolgerung der Forschenden."
+        },
+        {
+          "id": "q6",
+          "lessonId": "eintragswege",
+          "q": "Warum beweist das Entfernen ganzer sichtbarer Schrotkugeln keine vollständige Entfernung von Munitionsblei?",
+          "options": [
+            "Zusätzliche kleine Fragmente können im Gewebe verbleiben",
+            "Eine reine Sichtkontrolle besitzt unabhängig von der Partikelgröße dieselbe Nachweisfähigkeit",
+            "Alle Geschossbestandteile müssen nach dem Treffer weiterhin eine einzige kompakte Kugel bilden",
+            "Der Eintrag durch Munition beschränkt sich grundsätzlich auf von außen sichtbare Metallstücke"
+          ],
+          "answer": 0,
+          "explain": "Die Quellen beschreiben kleine Partikel zusätzlich zu den gut sichtbaren großen Resten. Ein bestimmter Ausschneideabstand wird daraus hier nicht abgeleitet."
+        },
+        {
+          "id": "q7",
+          "lessonId": "wirkung",
+          "q": "In welchem Gewebe kann sich aufgenommenes Blei längerfristig anreichern?",
+          "options": [
+            "Ausschließlich im aktuellen Mageninhalt",
+            "In Knochen und Zähnen",
+            "Nur kurzfristig im Darminhalt, ohne innere Speicherung",
+            "Ausschließlich im Blut, ohne Übergang in Gewebe"
+          ],
+          "answer": 1,
+          "explain": "WHO und BfR beschreiben Knochen als Speicher. Die Aufnahme wird deshalb nicht nur durch den aktuellen Mageninhalt erfasst."
+        },
+        {
+          "id": "q8",
+          "lessonId": "wirkung",
+          "q": "Weshalb kann eine frühere Bleiaufnahme während einer späteren Schwangerschaft noch bedeutsam sein?",
+          "options": [
+            "Im Knochen gespeichertes Blei bleibt in jeder Lebensphase vollständig unverfügbar",
+            "Für das ungeborene Kind zählt ausschließlich die Aufnahme am selben Tag",
+            "Eine Belastung vor der Schwangerschaft hat grundsätzlich keinen Einfluss auf eine spätere innere Exposition",
+            "Gespeichertes Blei kann aus Knochen wieder ins Blut gelangen"
+          ],
+          "answer": 3,
+          "explain": "Die WHO beschreibt die Freisetzung aus mütterlichem Knochen als mögliche Expositionsquelle für den Fötus."
+        },
+        {
+          "id": "q9",
+          "lessonId": "wirkung",
+          "q": "Welcher Aspekt erklärt die besondere Empfindlichkeit von Ungeborenen und kleinen Kindern gegenüber Blei?",
+          "options": [
+            "Die abgeschlossene Entwicklung sämtlicher Organe bereits vor der Geburt",
+            "Ein grundsätzlich vollständiger Schutz aller Organe durch kleine Körpermasse",
+            "Die Entwicklung des Nervensystems",
+            "Die für Kinder stets geringere Aufnahme jedes verschluckten Stoffes"
+          ],
+          "answer": 2,
+          "explain": "Die Entwicklungsneurotoxizität ist ein wesentlicher Grund für die besondere Vorsorge bei jungen Kindern und Ungeborenen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "wirkung",
+          "q": "Welches der folgenden Organe nennen WHO und EFSA ausdrücklich als Ziel längerfristiger Bleiwirkungen?",
+          "options": [
+            "Die Niere",
+            "Die Schilddrüse",
+            "Die Milz",
+            "Die Gallenblase"
+          ],
+          "answer": 0,
+          "explain": "Nierenwirkungen gehören zu den von WHO, BLV und EFSA beschriebenen Risiken. Daraus folgt keine Diagnose allein aus einer vermuteten Mahlzeitbelastung."
+        },
+        {
+          "id": "q11",
+          "lessonId": "wirkung",
+          "q": "Eine Person bemerkt nach einer Mahlzeit keine Beschwerden. Was lässt sich daraus zur Bleiaufnahme folgern?",
+          "options": [
+            "Jede mögliche Bleiaufnahme ist damit ausgeschlossen",
+            "Jede spätere Wirkung ist dadurch ausgeschlossen",
+            "Ein vorhandener Knochenbleispeicher ist dadurch widerlegt",
+            "Es entsteht daraus kein Nachweis einer unschädlichen Bleidosis"
+          ],
+          "answer": 3,
+          "explain": "Belastung und unmittelbar wahrnehmbare Beschwerden sind unterschiedliche Größen. Auch langfristige oder zunächst unbemerkte Wirkungen sind relevant."
+        },
+        {
+          "id": "q12",
+          "lessonId": "wirkung",
+          "q": "Wie ist die WHO-Aussage über einen unbekannten sicheren Expositionsbereich zu verstehen?",
+          "options": [
+            "Jede einzelne Portion löst bei jeder Person dieselbe akute Vergiftung aus",
+            "Eine vermeidbare Aufnahme soll nicht mit einer vermeintlich sicheren persönlichen Schwelle gerechtfertigt werden",
+            "Unterhalb einer sichtbaren Partikelgröße sei Blei stets harmlos",
+            "Die Lagerung im Knochen garantiere einen unschädlichen Endzustand"
+          ],
+          "answer": 1,
+          "explain": "Keine bekannte unschädliche Exposition ist keine Vorhersage einer identischen Wirkung bei allen Menschen. Sie begründet das Minimieren vermeidbarer Aufnahme."
+        },
+        {
+          "id": "q13",
+          "lessonId": "exposition",
+          "q": "Welche Größen werden für die rechnerische Bleimenge einer Portion mit angenommenem gleichmäßigem Gehalt multipliziert?",
+          "options": [
+            "Bleigehalt pro Kilogramm und Lagerdauer in Tagen",
+            "Portionsmasse in Kilogramm und Körpermasse der essenden Person",
+            "Bleigehalt pro Kilogramm und gegessene Masse in Kilogramm",
+            "Bleigehalt pro Kilogramm und Gesamtmasse des ungegessenen Tierkörpers"
+          ],
+          "answer": 2,
+          "explain": "Die Einheiten mg/kg mal kg ergeben mg. Die Rechnung setzt einen für die Portion zutreffenden Gehalt voraus."
+        },
+        {
+          "id": "q14",
+          "lessonId": "exposition",
+          "q": "Eigene Rechenübung: 0,4 mg/kg mal 0,25 kg ergibt welche enthaltene Bleimenge?",
+          "options": [
+            "0,1 mg",
+            "0,65 mg",
+            "1,6 mg",
+            "0,4 mg/kg"
+          ],
+          "answer": 0,
+          "explain": "Die Multiplikation ergibt 0,1 mg. Ein Gehalt in mg/kg ist noch keine Stoffmenge in mg."
+        },
+        {
+          "id": "q15",
+          "lessonId": "exposition",
+          "q": "Was bedeutet Bioverfügbarkeit in diesem Zusammenhang?",
+          "options": [
+            "Welche Stoffmenge pro Kilogramm im Lebensmittel enthalten ist",
+            "Wie viele Metallpartikel auf der Oberfläche sichtbar sind",
+            "Welche Stoffmenge vor dem Verzehr im gesamten Lebensmittel vorhanden ist",
+            "Welcher Anteil des verschluckten Stoffes vom Körper aufgenommen wird"
+          ],
+          "answer": 3,
+          "explain": "Verschluckte Stoffmenge und der vom Körper aufgenommene Anteil sind getrennte Größen. Der Kurs setzt keine universelle Aufnahmequote ein."
+        },
+        {
+          "id": "q16",
+          "lessonId": "exposition",
+          "q": "Weshalb kann eine kleine unauffällige Probe nicht ohne Weiteres jede Portion desselben Stücks beschreiben?",
+          "options": [
+            "Der Gehalt muss in allen Proben definitionsgemäß identisch sein",
+            "Metallpartikel können im Gewebe ungleich verteilt sein",
+            "Partikel werden durch das Wiegen automatisch gleichmäßig verteilt",
+            "Eine Probe enthält grundsätzlich nur Umweltblei"
+          ],
+          "answer": 1,
+          "explain": "Die räumliche Verteilung ist ein eigener Einfluss auf die Repräsentativität einer Probe; unauffälliges Aussehen beseitigt ihn nicht."
+        },
+        {
+          "id": "q17",
+          "lessonId": "exposition",
+          "q": "Zwei Personen essen gleich große Portionen mit demselben angenommenen Bleigehalt, eine wöchentlich, die andere einmal jährlich. Welche zusätzliche Größe unterscheidet ihre langfristige Exposition?",
+          "options": [
+            "Die Verzehrshäufigkeit",
+            "Der Gehalt pro Kilogramm dieser vorgegebenen Portionen",
+            "Die im Beispiel gleich gesetzte Portionsmasse",
+            "Die Einheit Milligramm pro Kilogramm"
+          ],
+          "answer": 0,
+          "explain": "Wiederholte Verzehrsereignisse tragen zur längerfristigen Aufnahme bei. Im Beispiel sind Portionsmasse und Gehalt gleich; die Häufigkeit unterscheidet sich."
+        },
+        {
+          "id": "q18",
+          "lessonId": "exposition",
+          "q": "Welche Aussage über eine rechnerisch bestimmte enthaltene Bleimenge ist fachlich richtig?",
+          "options": [
+            "Sie beweist unabhängig von der Person eine feste Erkrankungswahrscheinlichkeit",
+            "Sie entspricht zwangsläufig vollständig dem Blutbleiwert",
+            "Sie ist noch keine individuelle Diagnose und keine sichere Verzehrsgrenze",
+            "Sie schließt jede weitere Bleiquelle des Menschen aus"
+          ],
+          "answer": 2,
+          "explain": "Die Rechnung beschreibt nur ihren eigenen Gegenstand. Aufnahme aus anderen Quellen, Resorption und individuelle Empfindlichkeit sind zusätzliche Fragen."
+        },
+        {
+          "id": "q19",
+          "lessonId": "vorsorge",
+          "q": "Schweiz: Weshalb nennt das BLV vorsorglich den Verzicht empfindlicher Gruppen auf Wildfleisch, nicht nur auf sicher bleihaltig erlegtes Wild?",
+          "options": [
+            "Weil jede Wildfleischportion definitionsgemäß denselben Bleigehalt besitzt",
+            "Weil das Entfernen sichtbarer Schrotkugeln die Munitionsart immer eindeutig belegt",
+            "Weil Umweltblei ausschließlich durch die verwendete Munitionsart bestimmt wird",
+            "Weil sich die verwendete Munition nicht immer feststellen lässt"
+          ],
+          "answer": 3,
+          "explain": "Das BLV begründet die breitere Vorsorgeempfehlung mit der nicht immer feststellbaren Munition. Eine einheitliche Belastung jeder Portion wird damit nicht behauptet.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q20",
+          "lessonId": "vorsorge",
+          "q": "Schweiz: Welche Gruppe nennt die eingesehene BLV-Seite bei ihrer Vorsorgeempfehlung ausdrücklich zusätzlich zu Schwangeren?",
+          "options": [
+            "Ausschließlich Erwachsene ohne Kinderwunsch",
+            "Stillende",
+            "Ausschließlich Personen mit beruflicher Bleiverarbeitung",
+            "Ausschließlich Personen mit bereits nachgewiesener Bleivergiftung"
+          ],
+          "answer": 1,
+          "explain": "Stillende gehören zu den ausdrücklich benannten empfindlichen Gruppen der Schweizer Empfehlung.",
+          "countries": [
+            "CH"
+          ]
+        },
+        {
+          "id": "q21",
+          "lessonId": "vorsorge",
+          "q": "Warum werden 2016 und 2022 beim Fasanenbeispiel getrennt genannt?",
+          "options": [
+            "2016 betrifft die erlegten Tiere, 2022 die Veröffentlichung der Arbeit",
+            "Beide Jahreszahlen bezeichnen zwei unabhängig wiederholte Fasanenuntersuchungen",
+            "2022 bezeichnet eine neue Probenahme, welche die älteren Tiere ersetzt",
+            "Das Publikationsjahr 2022 datiert automatisch auch die Erlegung der Tiere"
+          ],
+          "answer": 0,
+          "explain": "Untersuchungsmaterial und Veröffentlichung haben unterschiedliche Zeitbezüge. Eine spätere Publikation macht die Proben nicht zu aktuellen Marktproben."
+        },
+        {
+          "id": "q22",
+          "lessonId": "vorsorge",
+          "q": "Was ist aus der kleinen britischen Fasanenuntersuchung unmittelbar nicht ableitbar?",
+          "options": [
+            "Dass dort Metallfragmente räumlich untersucht wurden",
+            "Dass die Arbeit eine bestimmte untersuchte Tiergruppe besitzt",
+            "Der aktuelle Anteil belasteter Portionen aller Wildarten in DACH",
+            "Dass die Autoren ihre Methoden beschreiben"
+          ],
+          "answer": 2,
+          "explain": "Eine eng begrenzte Stichprobe liefert keine universelle heutige Marktquote für andere Länder und Arten."
+        },
+        {
+          "id": "q23",
+          "lessonId": "vorsorge",
+          "q": "Welche Aussage bleibt bei nachgewiesener Verwendung bleifreier Munition zusätzlich zu beachten?",
+          "options": [
+            "Sämtliche Umweltkontaminanten sind damit sicher ausgeschlossen",
+            "Andere chemische und mikrobielle Gefahren sind damit nicht automatisch geprüft",
+            "Eine hygienische Untersuchung ist allein dadurch in jedem Fall vollständig",
+            "Jede Portion besitzt damit automatisch denselben Nährstoffgehalt"
+          ],
+          "answer": 1,
+          "explain": "Die Information betrifft einen bestimmten Eintragsweg. Lebensmittelsicherheit umfasst darüber hinaus weitere Gefahren und Verfahren."
+        },
+        {
+          "id": "q24",
+          "lessonId": "vorsorge",
+          "q": "Welche Datumsangabe bezeichnet eine 2011 veröffentlichte, 2026 erneut gelesene Behörden-FAQ korrekt?",
+          "options": [
+            "Veröffentlichung 2026, weil die Seite erneut geöffnet wurde",
+            "Erhebung 2026, obwohl keine neue Untersuchung angegeben ist",
+            "Neue Originalstudie 2026 allein aufgrund des erneuten Quellenabrufs",
+            "Veröffentlichung 2011; tatsächlicher erneuter Quellenabgleich 2026"
+          ],
+          "answer": 3,
+          "explain": "Ein erneuter Abruf ändert weder das Publikationsdatum noch erzeugt er neue Messdaten."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "title": "Lebensmittelbakterien: Eintrag, Überleben und Wachstum",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Salmonellen, Campylobacter und Listerien nach ihren tatsächlichen Eigenschaften unterscheiden.",
+      "minutes": 45,
+      "objectives": [
+        "Kontamination, Vermehrung und Abtötung trennen",
+        "Die wichtigsten Eigenschaften von Salmonellen erklären",
+        "Campylobacter-Überleben ohne übliche Vermehrung auf Lebensmitteln verstehen",
+        "Kühlwachstum und verzehrfertige Produkte bei Listerien einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Erregerbiologie und begriffliche Grundlagen gelten länderübergreifend. Keine festen Gar-, Lager- oder Freigabevorschriften; konkrete Lebensmittelverfahren und Abgabeanforderungen mit den zuständigen Fachstellen klären.",
+        "AT": "Erregerbiologie und begriffliche Grundlagen gelten länderübergreifend. Keine festen Gar-, Lager- oder Freigabevorschriften; konkrete Lebensmittelverfahren und Abgabeanforderungen mit den zuständigen Fachstellen klären.",
+        "CH": "Erregerbiologie und begriffliche Grundlagen gelten länderübergreifend. Keine festen Gar-, Lager- oder Freigabevorschriften; konkrete Lebensmittelverfahren und Abgabeanforderungen mit den zuständigen Fachstellen klären."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "BfR · Salmonellen",
+          "url": "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/salmonellen/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Gattung, Serovare, Tierreservoire, asymptomatisches Tragen und variable Infektionsdosis; Wachstumsbedingungen. Überholte Häufigkeitsrangfolgen und starre Serovaranzahl nicht übernommen."
+        },
+        {
+          "label": "AGES · Salmonellen",
+          "url": "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/salmonellen",
+          "organization": "Österreichische Agentur für Gesundheit und Ernährungssicherheit",
+          "supports": "Öffentliche Original-HTML-Abschnitte vollständig gelesen: Lebensmittel-/Kontaktübertragung, Wachstum, Überleben bei Einfrieren und Einfluss von Person/Lebensmittel auf die Infektionsdosis. Keine Garzeit-, Dosis- oder Verdoppelungszeitgrenzen übernommen."
+        },
+        {
+          "label": "BfR · Campylobacter",
+          "url": "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/campylobacter/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Überleben ohne übliche Vermehrung auf Lebensmitteln, mikroaerob, gebogene gramnegative Stäbchen, Tierreservoire und Kreuzkontamination."
+        },
+        {
+          "label": "AGES · Campylobacter",
+          "url": "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/campylobacter",
+          "organization": "Österreichische Agentur für Gesundheit und Ernährungssicherheit",
+          "supports": "Original-HTML gelesen: gramnegative, nicht sporenbildende gebogene Bakterien, reduzierte Sauerstoffbedingungen, Tiere als Darmreservoir und Rohmilch-/Geflügel-/Kreuzkontaminationswege."
+        },
+        {
+          "label": "BfR · Listerien",
+          "url": "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/listerien/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "L. monocytogenes, Umweltreservoir, Wachstum bei Kühlschranktemperaturen, Verarbeitungs-/Rekontamination und verzehrfertige Lebensmittel."
+        },
+        {
+          "label": "AGES · Listerien",
+          "url": "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/listerien",
+          "organization": "Österreichische Agentur für Gesundheit und Ernährungssicherheit",
+          "supports": "Original-HTML gelesen: Umwelt-/Betriebsreservoir, Kältewachstum, nachträgliche Verunreinigung und besonders gefährdete Gruppen."
+        },
+        {
+          "label": "BfR · Fragen und Antworten zu verdorbenem Fleisch",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Verderb und Krankheitserreger nicht gleichsetzen; sensorischer Eindruck ist kein vollständiger Erregernachweis. Keine alten pauschalen Restverwertungsratschläge übernommen."
+        },
+        {
+          "label": "FSANZ · Compendium of Microbiological Criteria for Food, März 2022",
+          "url": "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Compendium_revised%20Dec%202022.pdf",
+          "organization": "Food Standards Australia New Zealand",
+          "supports": "Gedruckte Seiten 63–64 tatsächlich gelesen: Campylobacter als gramnegative nicht sporenbildende Bakterien, Darmreservoire, mikroaerobe Bedingungen, Rohmilch/Geflügel, Überleben ohne übliche Vermehrung im Lebensmittel. Biologische Einordnung; keine Übernahme australischer Lebensmittelgrenzwerte oder Verfahren."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "begriffe",
+          "title": "Vier Vorgänge, die oft verwechselt werden",
+          "paragraphs": [
+            "Kontamination bedeutet, dass eine Verunreinigung in oder auf ein Lebensmittel gelangt. Vermehrung beschreibt eine Zunahme der Bakterienzahl unter geeigneten Bedingungen. Überleben bedeutet dagegen nicht automatisch Vermehrung: Bereits eingetragene Keime können erhalten bleiben, obwohl sie sich im betreffenden Lebensmittel nicht vermehren. Eine keimabtötende Wirkung ist ein weiterer, gesondert zu belegender Vorgang.",
+            "Bei Kreuzkontamination werden Keime von einer Quelle über Kontaktwege auf ein anderes Lebensmittel übertragen. Der Eintrag kann auch nach einem vorangegangenen hygienischen Verarbeitungsschritt erfolgen. Das verunreinigte Lebensmittel und eine tatsächlich erkrankte Person sind ebenfalls nicht dasselbe: Ob eine Erkrankung entsteht, hängt unter anderem von Erreger, aufgenommener Menge und Empfindlichkeit ab. Geruch und Aussehen können Verderbshinweise liefern, erfassen aber nicht zuverlässig jeden Krankheitserreger."
+          ],
+          "takeaway": "Eintrag, Erhaltung, Zunahme und Abtötung sind vier unterschiedliche Aussagen.",
+          "exercise": "Ordne die Sätze „gelangt auf die Oberfläche“, „bleibt vorhanden“, „nimmt zahlenmäßig zu“ und „wird inaktiviert“ den richtigen Begriffen zu."
+        },
+        {
+          "id": "salmonellen",
+          "title": "Salmonellen: Reservoir, Serovar und Lebensmittelbedingungen",
+          "paragraphs": [
+            "Salmonella bezeichnet eine Bakteriengattung. Innerhalb dieser Gruppe werden unter anderem Serovare unterschieden; Enteritidis und Typhimurium sind Namen solcher Untergruppen und keine eigenen Wildtierarten. Die enteritischen Salmonellosen werden von den durch Typhi beziehungsweise Paratyphi verursachten Krankheitsbildern unterschieden. Der Name „Salmonellen“ allein beschreibt somit nicht jede biologische Eigenschaft und jede Erkrankungsform gleich genau.",
+            "Haus-, Nutz- und Wildtiere können Erregerreservoire sein und Keime tragen, ohne sichtbar krank zu wirken. Bei passenden Lebensmittelbedingungen können sich Salmonellen vermehren. Einfrieren ist kein verlässlicher Nachweis, sämtliche Salmonellen seien abgetötet. Eine für alle Lebensmittel und Menschen identische Infektionsdosis wird nicht angegeben: Empfindlichkeit und die jeweilige Lebensmittelmatrix können die wirksame Dosis verändern. Diese Begriffe erklären Zusammenhänge; sie sind kein Labor- oder Kochverfahren."
+          ],
+          "takeaway": "Gattung, Untergruppe, Reservoir und Lebensmittelbedingungen getrennt benennen.",
+          "exercise": "Erkläre, warum „unauffälliges Tier“, „gefrorenes Produkt“ und „keine Salmonellen“ keine gleichbedeutenden Angaben sind."
+        },
+        {
+          "id": "campylobacter",
+          "title": "Campylobacter: Überleben ohne übliches Lebensmittelwachstum",
+          "paragraphs": [
+            "Campylobacter sind meist gebogene bis spiralige gramnegative Stäbchen. Die gelesene AGES-Information beschreibt sie als nicht sporenbildend. Sie wachsen unter mikroaeroben Bedingungen, also bei gegenüber normaler Luft vermindertem Sauerstoffangebot. Diese Laborbeschreibung ist keine praktische Nachweisanleitung und bedeutet insbesondere nicht, dass jede sauerstoffarme Verpackung für das Lebensmittel sicher wäre.",
+            "Warmblütige Tiere, darunter Wildvögel und Säugetiere, können Campylobacter im Darm tragen, ohne deutlich krank zu sein. Zu den bekannten Übertragungswegen gehören belastetes Geflügelfleisch, Rohmilch und Kreuzkontamination auf andere nicht mehr erhitzte Lebensmittel. Die lebensmittelrelevanten thermotoleranten Campylobacter vermehren sich unter üblichen Lebensmittelbedingungen nicht, können dort aber überleben. Ein Lebensmittel muss daher keine gewachsene Keimzahl aufweisen, um einen bestehenden Übertragungsweg zu bilden."
+          ],
+          "takeaway": "Kein übliches Wachstum im Lebensmittel bedeutet nicht: kein Überleben und kein Infektionsweg.",
+          "exercise": "Stelle Salmonellen und Campylobacter hinsichtlich üblicher Vermehrung in Lebensmitteln gegenüber, ohne daraus eine Produktfreigabe abzuleiten."
+        },
+        {
+          "id": "listerien",
+          "title": "Listerien: Umweltreservoir und Wachstum bei Kälte",
+          "paragraphs": [
+            "Listeria monocytogenes ist die für diese Lektion maßgebliche Art. Listerien kommen unter anderem in Boden, Wasser, Pflanzen und im Umfeld von Lebensmittelbetrieben vor. Ihr Auftreten wird nicht allein durch eine sichtbare Darminhaltsverunreinigung erklärt. Keime können während weiterer Verarbeitung erneut in ein Produkt gelangen, auch wenn davor ein wirksamer hygienischer Schritt stattgefunden hat.",
+            "Listerien können sich unter geeigneten Bedingungen auch bei Kühlschranktemperaturen vermehren. Eine kühle Lagerung ist daher kein allgemeiner Beweis, ihre Zahl bleibe dauerhaft gleich. Verzehrfertige Produkte sind besonders zu beachten, weil vor dem Essen häufig kein weiterer keimabtötender Schritt vorgesehen ist. Schwere Listeriose betrifft vor allem empfindliche Gruppen wie Schwangere, ältere oder immungeschwächte Menschen. Die biologische Eigenschaft erklärt, weshalb Prozesshygiene, Lagerdauer und der konkrete Produktzustand zusammen betrachtet werden müssen."
+          ],
+          "takeaway": "Kälte schließt Listerienwachstum nicht aus; nachträglicher Eintrag ist bei verzehrfertigen Produkten besonders relevant.",
+          "exercise": "Vergleiche einen möglichen Umwelteintrag vor der Verarbeitung und eine Rekontamination eines bereits verarbeiteten Produkts."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "begriffe",
+          "q": "Welche Beschreibung entspricht einer Kontamination eines Lebensmittels?",
+          "options": [
+            "Keime gelangen neu auf oder in das Lebensmittel",
+            "Die Zahl vorhandener Keime nimmt ausschließlich durch Teilung zu",
+            "Bereits vorhandene Keime werden vollständig inaktiviert",
+            "Eine Person entwickelt nach Aufnahme klinische Beschwerden"
+          ],
+          "answer": 0,
+          "explain": "Kontamination bezeichnet zunächst den Eintrag. Wachstum, Abtötung und Erkrankung sind weitere Vorgänge."
+        },
+        {
+          "id": "q2",
+          "lessonId": "begriffe",
+          "q": "Was unterscheidet Vermehrung von bloßem Überleben bereits eingetragener Bakterien?",
+          "options": [
+            "Vermehrung bedeutet nur den unveränderten Erhalt vorhandener Zellen",
+            "Überleben erfordert grundsätzlich einen neuen Eintrag von außen",
+            "Bei Vermehrung nimmt ihre Zahl durch Zellteilung zu",
+            "Überleben bezeichnet ausschließlich eine bereits erkrankte Person"
+          ],
+          "answer": 2,
+          "explain": "Eine erhaltene Keimzahl ist etwas anderes als eine zahlenmäßige Zunahme unter geeigneten Bedingungen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "begriffe",
+          "q": "Ein verzehrfertiges Lebensmittel berührt eine keimtragende Arbeitsfläche. Welcher Vorgang wird beschrieben?",
+          "options": [
+            "Ausschließlich Vermehrung bereits vorhandener Keime im Lebensmittel",
+            "Kreuzkontamination",
+            "Ausschließlich Überleben ohne neuen Keimeintrag",
+            "Eine vollständig erfolgte Keimabtötung"
+          ],
+          "answer": 1,
+          "explain": "Der Kontakt stellt einen Übertragungsweg zwischen Quelle und weiterem Lebensmittel dar."
+        },
+        {
+          "id": "q4",
+          "lessonId": "begriffe",
+          "q": "Warum ist „Das Lebensmittel riecht unauffällig“ kein vollständiger Erregerbefund?",
+          "options": [
+            "Jeder Krankheitserreger verursacht vorher immer einen charakteristischen Geruch",
+            "Geruch misst unmittelbar die Zahl aller lebenden Bakterien",
+            "Die Geruchsprobe ersetzt die gezielte mikrobiologische Untersuchung",
+            "Krankheitserreger können vorhanden sein, ohne erkennbaren Verderbsgeruch zu verursachen"
+          ],
+          "answer": 3,
+          "explain": "Sensorischer Verderb und Anwesenheit bestimmter Krankheitserreger sind unterschiedliche Prüfgegenstände."
+        },
+        {
+          "id": "q5",
+          "lessonId": "begriffe",
+          "q": "Welche Aussage beschreibt eine Rekontamination nach einer Verarbeitung?",
+          "options": [
+            "Ausschließlich das Überleben unveränderter Keime ohne neuen Kontakt",
+            "Ausschließlich eine chemische Metallkontamination vor der Gewinnung",
+            "Erneuter Keimeintrag nach einem vorherigen hygienischen Schritt",
+            "Eine grundsätzlich unvermeidbare Vermehrung unabhängig von Bedingungen"
+          ],
+          "answer": 2,
+          "explain": "Ein späterer Kontakt kann einen neuen Eintrag verursachen. Ein früherer Verarbeitungsschritt verhindert ihn nicht von selbst."
+        },
+        {
+          "id": "q6",
+          "lessonId": "begriffe",
+          "q": "Weshalb führt eine vergleichbare Lebensmittelkontamination nicht bei jeder Person zum gleichen Krankheitsverlauf?",
+          "options": [
+            "Aufgenommene Dosis und individuelle Empfindlichkeit können verschieden sein",
+            "Eine vergleichbare äußere Kontamination bedeutet stets dieselbe innere Erregermenge",
+            "Die Empfindlichkeit ist allein durch die Bezeichnung des Lebensmittels festgelegt",
+            "Der Krankheitsverlauf ist bei demselben Erregertyp unabhängig von Person und Dosis"
+          ],
+          "answer": 0,
+          "explain": "Erreger, Dosis, Lebensmittel und Person beeinflussen das Geschehen. Eine einzelne Beobachtung legt keine universelle Erkrankungsschwelle fest."
+        },
+        {
+          "id": "q7",
+          "lessonId": "salmonellen",
+          "q": "Welche biologische Einordnung bezeichnet „Salmonella“?",
+          "options": [
+            "Eine einzelne Bakterienart ohne weitere Untergruppen",
+            "Eine Bakteriengattung",
+            "Einen bestimmten Serovar",
+            "Eine klinische Verlaufsform jeder Darminfektion"
+          ],
+          "answer": 1,
+          "explain": "Gattungsname, Wirtsart, Charge und Krankheitssymptom bezeichnen unterschiedliche Ebenen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "salmonellen",
+          "q": "Wie sind die Namen Enteritidis und Typhimurium in diesem Zusammenhang einzuordnen?",
+          "options": [
+            "Als zwei unterschiedliche Bakteriengattungen",
+            "Als zwei Entwicklungsstadien derselben Bakterienzelle",
+            "Als zwei typische Symptome einer Salmonelleninfektion",
+            "Als Serovare innerhalb der Salmonellen"
+          ],
+          "answer": 3,
+          "explain": "Die Namen unterscheiden Untergruppen von Salmonellen. Daraus wird keine vollständige Eigenschaftsliste jedes Isolats abgeleitet."
+        },
+        {
+          "id": "q9",
+          "lessonId": "salmonellen",
+          "q": "Ein Tier trägt Salmonellen, wirkt aber äußerlich gesund. Welche fachliche Einordnung passt?",
+          "options": [
+            "Das sichtbare Wohlbefinden schließt den Erreger grundsätzlich aus",
+            "Salmonellen können ausschließlich sichtbar erkrankte Tiere besiedeln",
+            "Ein symptomloses Tragen ist möglich",
+            "Eine äußerliche Beobachtung ersetzt die Erregeruntersuchung"
+          ],
+          "answer": 2,
+          "explain": "BfR und AGES beschreiben Tiere als mögliche Reservoirwirte ohne erkennbare Erkrankung."
+        },
+        {
+          "id": "q10",
+          "lessonId": "salmonellen",
+          "q": "Was kann bei günstigen Lagerbedingungen mit Salmonellen in einem belasteten Lebensmittel geschehen?",
+          "options": [
+            "Ihre Zahl kann durch Vermehrung zunehmen",
+            "Ihre Zahl muss unabhängig von Bedingungen gleich bleiben",
+            "Sie werden durch vorhandene Nährstoffe grundsätzlich abgetötet",
+            "Sie können sich ausschließlich im menschlichen Körper vermehren"
+          ],
+          "answer": 0,
+          "explain": "Die Art der Bedingungen ist entscheidend. Salmonellen können sich im Gegensatz zu bestimmten anderen Erregern auch in geeigneten Lebensmitteln vermehren."
+        },
+        {
+          "id": "q11",
+          "lessonId": "salmonellen",
+          "q": "Welche Schlussfolgerung ist aus dem bloßen Einfrieren eines salmonellenbelasteten Produkts zulässig?",
+          "options": [
+            "Sämtliche Salmonellen sind damit verlässlich entfernt",
+            "Der Inhalt wird dadurch automatisch steril",
+            "Die frühere Kontamination wird rückwirkend ausgeschlossen",
+            "Eine vollständige Abtötung ist damit nicht nachgewiesen"
+          ],
+          "answer": 3,
+          "explain": "AGES beschreibt das Überleben von Salmonellen trotz Einfrieren. Erhaltene Keime bleiben ein anderer Sachverhalt als neues Wachstum."
+        },
+        {
+          "id": "q12",
+          "lessonId": "salmonellen",
+          "q": "Warum wird eine einzige feste Infektionsdosis nicht als allgemeine Verzehrsschwelle benutzt?",
+          "options": [
+            "Jede Erregerzelle besitzt in jedem Lebensmittel dieselbe Wirkung",
+            "Person und Lebensmittelmatrix beeinflussen die erforderliche Erregermenge",
+            "Nur die Verpackungsgröße entscheidet über eine Infektion",
+            "Die Dosis ist grundsätzlich von der aufgenommenen Keimzahl unabhängig"
+          ],
+          "answer": 1,
+          "explain": "Die Quellen nennen empfindliche Personen und matrixbedingte Unterschiede. Das verhindert eine pauschale individuelle Sicherheitsgrenze."
+        },
+        {
+          "id": "q13",
+          "lessonId": "campylobacter",
+          "q": "Welche Zellform ist für Campylobacter in den gelesenen Quellen beschrieben?",
+          "options": [
+            "Eine kugelförmige Bakterienzelle in traubenartigen Gruppen",
+            "Eine ausgeprägt würfelförmige Bakterienzelle",
+            "Ein gebogenes bis spiraliges Stäbchen",
+            "Ein ungegliederter mehrzelliger Pilzfaden"
+          ],
+          "answer": 2,
+          "explain": "Campylobacter werden als gebogene gramnegative Bakterienstäbchen beschrieben; eine makroskopische Betrachtung eines Lebensmittels identifiziert sie nicht."
+        },
+        {
+          "id": "q14",
+          "lessonId": "campylobacter",
+          "q": "Was bedeutet mikroaerob bei den beschriebenen Wachstumsbedingungen?",
+          "options": [
+            "Ein vermindertes Sauerstoffangebot gegenüber normaler Luft",
+            "Ein gegenüber normaler Luft erhöhtes Sauerstoffangebot",
+            "Ausschließlich vollständige Sauerstofffreiheit für jedes Wachstum",
+            "Dass der normale Sauerstoffanteil der Umgebungsluft die günstigste Bedingung ist"
+          ],
+          "answer": 0,
+          "explain": "Mikroaerob ist eine Aussage über Sauerstoffbedingungen. Sie ist weder mit rein aerob noch mit strikt anaerob gleichzusetzen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "campylobacter",
+          "q": "Welche Aussage trifft auf die beschriebenen Campylobacter-Bakterien zu?",
+          "options": [
+            "Sie überdauern grundsätzlich als widerstandsfähige Endosporen",
+            "Sie sind Hefepilze mit einer mehrzelligen Dauerform",
+            "Sie vermehren sich am besten bei deutlich erhöhtem Sauerstoff gegenüber normaler Luft",
+            "Sie bilden keine bakteriellen Sporen"
+          ],
+          "answer": 3,
+          "explain": "Die nicht sporenbildende Eigenschaft ist bei AGES und FSANZ beschrieben. Sie ist von der grundsätzlichen Möglichkeit des Überlebens zu unterscheiden."
+        },
+        {
+          "id": "q16",
+          "lessonId": "campylobacter",
+          "q": "Wo liegt das in den Quellen beschriebene Campylobacter-Reservoir symptomloser Wild- und Nutztiere?",
+          "options": [
+            "Ausschließlich im Blut klinisch erkrankter Tiere",
+            "Im Darm",
+            "Ausschließlich im Inneren unbeschädigter Knochen",
+            "Nur auf bereits abgestoßenen Federn außerhalb des Tierkörpers"
+          ],
+          "answer": 1,
+          "explain": "Die Tierreservoire sind ein Grund, warum ein äußerlich unauffälliges Tier die Lebensmittelhygiene nicht überflüssig macht."
+        },
+        {
+          "id": "q17",
+          "lessonId": "campylobacter",
+          "q": "Welche Gegenüberstellung beschreibt Campylobacter unter üblichen Lebensmittelbedingungen am besten?",
+          "options": [
+            "Überleben ist möglich, obwohl üblicherweise keine Vermehrung im Lebensmittel erfolgt",
+            "Ausbleibende Vermehrung bedeutet zwangsläufig sofortige vollständige Abtötung",
+            "Ein Übertragungsweg setzt in jedem Fall eine vorherige Vermehrung im Lebensmittel voraus",
+            "Campylobacter vermehren sich unter üblichen Lebensmittelbedingungen regelmäßig wie Salmonellen"
+          ],
+          "answer": 0,
+          "explain": "Eine bereits vorhandene Erregermenge kann erhalten bleiben und übertragen werden. Zunahme und Erhaltung sind getrennte Vorgänge."
+        },
+        {
+          "id": "q18",
+          "lessonId": "campylobacter",
+          "q": "Ein verzehrfertiger Salat kommt mit einer Arbeitsfläche in Kontakt, auf der zuvor mit Campylobacter belastetes rohes Geflügelfleisch lag. Welche Einordnung des möglichen Übertragungswegs ist richtig?",
+          "options": [
+            "Ohne Vermehrung auf der Arbeitsfläche ist der beschriebene Übertragungsweg ausgeschlossen",
+            "Da der Salat anfangs unbelastet war, ist für ihn nur seine Herkunft entscheidend",
+            "Kreuzkontamination über Rückstände auf der Arbeitsfläche ist möglich",
+            "Für den beschriebenen Weg müssten sich die Keime zuerst im Salat vermehren"
+          ],
+          "answer": 2,
+          "explain": "Bereits vorhandene Campylobacter können über eine kontaminierte Fläche auf ein anderes Lebensmittel gelangen. Dafür ist weder ein lebendes Tier am Ort der Übertragung noch eine vorherige Vermehrung im Salat erforderlich. Der Fall erläutert die in der Lektion belegte Kreuzkontamination."
+        },
+        {
+          "id": "q19",
+          "lessonId": "listerien",
+          "q": "Welche Art steht im Mittelpunkt des hier beschriebenen Listeriose-Risikos?",
+          "options": [
+            "Salmonella Enteritidis",
+            "Campylobacter jejuni",
+            "Borrelia burgdorferi",
+            "Listeria monocytogenes"
+          ],
+          "answer": 3,
+          "explain": "Die drei anderen Namen gehören zu anderen Erregergruppen und dürfen nicht als austauschbare Bezeichnungen verwendet werden."
+        },
+        {
+          "id": "q20",
+          "lessonId": "listerien",
+          "q": "Welche Aussage beschreibt ein Listerienreservoir zutreffend?",
+          "options": [
+            "Listerien kommen ausschließlich im Darm sichtbar erkrankter Menschen vor",
+            "Listerien können in Boden, Wasser und im Umfeld der Lebensmittelverarbeitung vorkommen",
+            "Ein Listerieneintrag setzt immer sichtbare Darminhaltsverschmutzung voraus",
+            "Listerien können außerhalb eines tierischen Wirts grundsätzlich nicht überleben"
+          ],
+          "answer": 1,
+          "explain": "Listerien sind verbreitete Umweltkeime; ein Eintrag muss nicht ausschließlich aus sichtbar verschmutztem Darminhalt stammen."
+        },
+        {
+          "id": "q21",
+          "lessonId": "listerien",
+          "q": "Was unterscheidet Listerien bei geeigneter Produktbeschaffenheit von der Vorstellung „Kühlung verhindert jedes Keimwachstum“?",
+          "options": [
+            "Sie können sich auch bei Kühlschranktemperaturen vermehren",
+            "Sie werden durch jede Abkühlung automatisch vollständig inaktiviert",
+            "Sie entstehen nur bei einem sichtbaren Erwärmungsfehler neu",
+            "Sie können unterhalb normaler Raumtemperatur grundsätzlich nicht überleben"
+          ],
+          "answer": 0,
+          "explain": "Die Kältewachstumsfähigkeit ist in beiden Fachquellen beschrieben. Sie macht Lagerdauer und übrige Bedingungen weiterhin relevant."
+        },
+        {
+          "id": "q22",
+          "lessonId": "listerien",
+          "q": "Warum kann ein aus bereits hygienisch behandeltem Ausgangsmaterial hergestelltes Produkt später Listerien enthalten?",
+          "options": [
+            "Eine frühere Behandlung verhindert unabhängig von späteren Kontakten jeden neuen Eintrag",
+            "Eine wirksame frühere Behandlung garantiert automatisch die Keimfreiheit aller folgenden Geräte",
+            "Während der weiteren Verarbeitung kann eine Rekontamination stattfinden",
+            "Eine spätere Kontamination ist nur möglich, wenn der frühere Schritt keinerlei Wirkung hatte"
+          ],
+          "answer": 2,
+          "explain": "Der spätere Prozess ist eine eigene Eintragsebene. Ein früherer Schritt schützt nicht automatisch vor neuen Kontakten."
+        },
+        {
+          "id": "q23",
+          "lessonId": "listerien",
+          "q": "Was macht eine Listerienkontamination bei verzehrfertigen Produkten besonders relevant?",
+          "options": [
+            "Die Keime sind dort definitionsgemäß immer sichtbar",
+            "Vor dem Essen ist häufig kein weiterer keimabtötender Verarbeitungsschritt vorgesehen",
+            "Die Verzehrfertigkeit garantiert eine unveränderliche Keimzahl",
+            "Nur verzehrfertige Produkte können jemals Listerien enthalten"
+          ],
+          "answer": 1,
+          "explain": "Die Produktverwendung beeinflusst, ob nach einem Eintrag noch ein abtötender Schritt folgt. Das ist keine Behauptung, nur diese Produkte könnten kontaminiert sein."
+        },
+        {
+          "id": "q24",
+          "lessonId": "listerien",
+          "q": "Welcher persönliche Faktor begründet besondere Aufmerksamkeit für einen möglichen schweren Listerioseverlauf?",
+          "options": [
+            "Eine besonders gute körperliche Trainingsleistung allein",
+            "Eine im Übrigen gesunde erwachsene Person ohne weitere Risikofaktoren",
+            "Eine bestimmte Körpergröße ohne weiteren medizinischen Befund",
+            "Eine geschwächte Immunabwehr"
+          ],
+          "answer": 3,
+          "explain": "AGES und BfR beschreiben immungeschwächte Menschen als empfindliche Gruppe. Schwangerschaft und höheres Alter sind ebenfalls besonders zu beachten."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-revierpraxis-zecken-menschen-2026",
+      "title": "Zecken im Revier: Kontakt, Erreger und Vorsorge",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbrethygiene",
+      "description": "Zeckenexposition bei Menschen verstehen und Risiken mit passenden aktuellen Informationen einordnen.",
+      "minutes": 45,
+      "objectives": [
+        "Den Kontaktweg des Gemeinen Holzbocks erklären",
+        "Jahreszeit und örtliche Erregerverbreitung auseinanderhalten",
+        "FSME und Borreliose biologisch unterscheiden",
+        "Vorbeugung und hilfreiche Angaben für ärztliche Rückfragen kennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "RKI-Risikogebietskarten und individuelle Impfempfehlungen sind mit aktuellem Stand zu prüfen. Die alte Karte der DGUV-Broschüre von 2020 wird nicht als heutige Karte übernommen.",
+        "AT": "Die biologische Einordnung gilt auch in Österreich. Aktuelle österreichische Impfempfehlungen und Risikoinformationen bei AGES und den zuständigen Gesundheitsstellen prüfen; keine deutsche Kreisgebietslogik übertragen.",
+        "CH": "BAG erklärt Schweizer Vorsorge und Risikoeinordnung. Aktuelle örtliche Impfberatung erfolgt nach Schweizer Empfehlungen; hier kein Impfplan und keine individuelle medizinische Diagnose."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "RKI · FAQ zu Zecken, Zeckenstich und Infektion",
+          "url": "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+          "organization": "Robert Koch-Institut",
+          "supports": "Aktueller öffentlich gelesener Original-HTML-Text; einzelne Abschnitte mit Stand 2018/2019/2024. Kontakt von Vegetation, Artunterschiede, jahreszeitliche Aktivität, Erreger und Vorsorge. Keine Übernahme alter Karten, Fundzahlen oder pauschaler Häufigkeiten."
+        },
+        {
+          "label": "BAG · FAQ Zecken und übertragene Krankheitserreger",
+          "url": "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+          "organization": "Bundesamt für Gesundheit Schweiz",
+          "supports": "Habitat, Frühling/Herbst, Bekleidung/Repellentien/Körperkontrolle, Erreger- und Impfstoffabgrenzung, Stich/Infektion/Erkrankung, Wanderröte und ärztliche Rückfragen. Keine Dosierung, Impfintervalle oder Behandlungspläne."
+        },
+        {
+          "label": "DGUV · Vorsicht Zecken,Information 214-078,AusgabeApril 2020",
+          "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2908",
+          "organization": "Deutsche Gesetzliche Unfallversicherung",
+          "supports": "Gelesene Seiten 6–12: Spinnentier, Kontakt/Stechapparat/Speichel, kleine Entwicklungsstadien, Vorsorge und Dokumentation. Karte/regionale Infektionsquoten und Versicherungsrecht von 2020 nicht übernommen."
+        },
+        {
+          "label": "AGES · FSME",
+          "url": "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme",
+          "organization": "Österreichische Agentur für Gesundheit und Ernährungssicherheit",
+          "supports": "FSME als Virusinfektion, aktuelle österreichische Informationsquelle; kein selbst formulierter Impfplan."
+        },
+        {
+          "label": "ECDC · Hyalomma marginatum, Factsheet for experts",
+          "url": "https://www.ecdc.europa.eu/en/disease-vectors/facts/tick-factsheets/hyalomma-marginatum",
+          "organization": "European Centre for Disease Prevention and Control",
+          "supports": "Abschnitte Host seeking und Adults gelesen: erwachsene Hyalomma suchen Wirte aktiv, im Gegensatz zu auf Vegetation lauernden Ixodes. Keine alten Verbreitungskarten, Distanzen oder Erregerhäufigkeiten übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "kontakt",
+          "title": "Wie der Gemeine Holzbock seinen Wirt erreicht",
+          "paragraphs": [
+            "Der Gemeine Holzbock, Ixodes ricinus, ist eine wichtige Zeckenart in Mitteleuropa. Zecken gehören zu den Spinnentieren. Ixodes wartet unter anderem an Gräsern und niedrigem Bewuchs; bei Berührung kann die Zecke abgestreift werden und sich an Mensch oder Tier festhalten. Die Vorstellung, sie springe vom Boden oder lasse sich gezielt aus hohen Baumkronen fallen, beschreibt diesen Kontaktweg nicht.",
+            "Nach dem Kontakt kann eine Zecke zunächst auf dem Körper umherlaufen und einen geeigneten Platz suchen. Ihr Stechapparat dringt in die Haut ein; „Zeckenstich“ ist deshalb die gebräuchliche fachliche Bezeichnung. Beim Blutsaugen wird Speichel abgegeben, über den Krankheitserreger übertragen werden können. Das Verhalten unterscheidet sich zwischen Zeckengattungen: Beispielsweise können erwachsene Hyalomma-Zecken aktiv auf einen Wirt zulaufen. Ixodes-Beobachtungen werden daher nicht für jede Zeckenart verallgemeinert."
+          ],
+          "takeaway": "Der typische Ixodes-Kontakt entsteht durch Berührung von Bewuchs; Stich und Speichel erklären den Übertragungsweg.",
+          "exercise": "Beschreibe den Weg Vegetation – Kontakt – Hautsuche – Stich, ohne aus jedem Kontakt eine Infektion abzuleiten."
+        },
+        {
+          "id": "ort-zeit",
+          "title": "Zeckenaktivität ist keine starre Kalenderregel",
+          "paragraphs": [
+            "Geeignete Lebensräume des Gemeinen Holzbocks finden sich nicht nur im tiefen Wald. Unterholz, Waldränder, Lichtungen und waldnahe Parks oder Gärten können Kontaktgelegenheiten bieten. Temperatur und Feuchtigkeit beeinflussen die Aktivität. Häufig liegen Aktivitätsschwerpunkte im Frühling beziehungsweise Frühsommer und im Herbst; je nach Art, Stadium und Witterung sind Kontakte auch außerhalb dieser Schwerpunkte möglich.",
+            "Eine FSME-Risikogebietskarte zeigt eine krankheitsbezogene räumliche Einordnung und nicht die vollständige Verbreitung sämtlicher Zecken oder aller zeckenübertragenen Erreger. Alte Karten bleiben an ihren damaligen Datenstand gebunden. Wer im Revier viel Kontakt mit Gras oder Unterholz hat, betrachtet daher Tätigkeit, örtliche aktuelle Information und persönliche Vorsorge gemeinsam. Ein bekannter Kalendertermin oder das Fehlen einer Markierung auf einer fremden Karte beweist keine zeckenfreie Situation."
+          ],
+          "takeaway": "Ort, Bewuchskontakt, Witterung und der Gegenstand einer Risikokarte werden getrennt geprüft.",
+          "exercise": "Vergleiche eine Karte der Zeckenverbreitung mit einer FSME-Risikogebietskarte: Welche Frage beantwortet jede von ihnen?"
+        },
+        {
+          "id": "erreger",
+          "title": "FSME und Borreliose sind verschiedene Krankheiten",
+          "paragraphs": [
+            "FSME wird durch ein Virus verursacht; die Lyme-Borreliose durch Bakterien aus der Borreliengruppe. Derselbe allgemeine Überträgername bedeutet daher nicht dieselbe Erkrankung, Diagnostik oder Vorsorge. Eine FSME-Impfung richtet sich gegen FSME und ist kein Schutz gegen Borreliose. Die individuelle Impfberatung orientiert sich an den aktuellen Empfehlungen des eigenen Landes und dem persönlichen Expositionsprofil.",
+            "Nicht jede Zecke trägt einen betreffenden Erreger, nicht jeder Stich überträgt ihn und nicht jede Infektion führt zu einer erkennbaren Erkrankung. Frühzeitiges Entdecken und Entfernen kann das Übertragungsrisiko senken, garantiert aber insbesondere gegen früh übertragbare FSME-Viren keinen vollständigen Schutz. Borreliose kann sich unter anderem durch eine sich ausbreitende Hautrötung äußern; deren Fehlen schließt sie nicht aus. Beschwerden nach möglichem Zeckenkontakt werden ärztlich geklärt."
+          ],
+          "takeaway": "Überträger, Erreger, Infektion und Erkrankung sind unterschiedliche Ebenen.",
+          "exercise": "Erkläre einem Lernpartner, weshalb „gegen FSME geimpft“ nicht „gegen jede Zeckenkrankheit geschützt“ bedeutet."
+        },
+        {
+          "id": "vorsorge",
+          "title": "Kontakt verringern und Veränderungen nachvollziehbar melden",
+          "paragraphs": [
+            "Körperbedeckende Kleidung und geschlossene Schuhe können den Hautkontakt erschweren. Helle Stoffe erleichtern es, krabbelnde Zecken zu entdecken. Über die Hosenbeine gezogene Socken lenken den Weg zur Haut um, bieten jedoch keinen vollständigen Schutz vor Stichen. Repellentien besitzen eine begrenzte Wirkdauer; Anwendung und Eignung richten sich nach dem Produkt und der Person.",
+            "Nach einem Aufenthalt mit Bewuchskontakt wird der gesamte Körper aufmerksam kontrolliert. Kleine Zeckenstadien sind leicht zu übersehen; auch geschützte Hautbereiche sind relevant. Gefundene festgesogene Zecken werden zeitnah mit geeigneter Hilfe entfernt, ohne vorherige Behandlung mit Öl oder Klebstoff. Für eine ärztliche Rückfrage sind Zeitpunkt und Ort eines bekannten Stichs sowie die beobachtete Veränderung hilfreich. Eine sich ausbreitende Rötung oder Beschwerden nach möglichem Kontakt werden medizinisch abgeklärt; eine Fotobeobachtung ersetzt die Untersuchung nicht."
+          ],
+          "takeaway": "Bekleidung, zeitnahe Körperkontrolle und eine genaue Beobachtung ergänzen sich.",
+          "exercise": "Notiere an einem fiktiven Beispiel Datum, Aufenthaltsort und sichtbare Veränderung für eine ärztliche Rückfrage."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "kontakt",
+          "q": "Wie gelangt eine lauernde Ixodes-Zecke typischerweise von einer Pflanze auf einen vorbeigehenden Menschen?",
+          "options": [
+            "Sie wird beim Kontakt abgestreift und hält sich fest",
+            "Sie springt beim Annähern gezielt vom Boden auf freie Haut",
+            "Sie lässt sich gezielt aus hohen Baumkronen fallen",
+            "Sie muss unmittelbar aus einem anderen Wirtskörper in die Haut übertreten"
+          ],
+          "answer": 0,
+          "explain": "Der Gemeine Holzbock nutzt typischerweise Kontakt mit Bewuchs. Andere Zeckengattungen können ein abweichendes Suchverhalten haben."
+        },
+        {
+          "id": "q2",
+          "lessonId": "kontakt",
+          "q": "Welcher Tiergruppe gehören Zecken an?",
+          "options": [
+            "Den Insekten",
+            "Den Tausendfüßern",
+            "Den Spinnentieren",
+            "Den Ringelwürmern"
+          ],
+          "answer": 2,
+          "explain": "Zecken gehören zoologisch zu den Spinnentieren und werden von Insekten unterschieden. Diese Einordnung allein sagt nichts darüber aus, ob ein einzelnes Tier Krankheitserreger trägt."
+        },
+        {
+          "id": "q3",
+          "lessonId": "kontakt",
+          "q": "Was kann zwischen dem ersten Körperkontakt und dem Stich einer Ixodes-Zecke geschehen?",
+          "options": [
+            "Der erste Kontakt bedeutet bereits zwangsläufig einen abgeschlossenen Stich",
+            "Die Zecke sucht zunächst laufend eine geeignete Hautstelle",
+            "Die Zecke muss sich zunächst auf der Kleidung häuten, bevor jeder Stich möglich wird",
+            "Jede an der Kleidung festgehaltene Zecke muss sofort an derselben Stelle die Haut erreichen"
+          ],
+          "answer": 1,
+          "explain": "RKI und DGUV beschreiben eine Suchphase am Körper. Ein Fund auf der Kleidung ist daher nicht gleichbedeutend mit einem bereits erfolgten Stich."
+        },
+        {
+          "id": "q4",
+          "lessonId": "kontakt",
+          "q": "Welcher Vorgang wird fachlich als Zeckenstich bezeichnet?",
+          "options": [
+            "Die Zecke wird an der Kleidung abgestreift",
+            "Die Zecke läuft auf der Haut, ohne sich festzusaugen",
+            "Ein Erreger wird auf einer Pflanze nachgewiesen, ohne dass Hautkontakt besteht",
+            "Der Stechapparat dringt zum Blutsaugen in die Haut ein"
+          ],
+          "answer": 3,
+          "explain": "Der Stechapparat dringt in die Haut ein. Daher hat sich im deutschsprachigen Fachgebrauch „Stich“ etabliert."
+        },
+        {
+          "id": "q5",
+          "lessonId": "kontakt",
+          "q": "Über welches beim Blutsaugen abgegebene Material können die beschriebenen Erreger auf Menschen gelangen?",
+          "options": [
+            "Ausschließlich das außen am Bein haftende Pflanzenmaterial",
+            "Ausschließlich Kot, der ohne Stich auf unbeschädigte Kleidung gelangt",
+            "Den Speichel der Zecke",
+            "Nur abgestreifte Hautreste der Zecke außerhalb des Menschen"
+          ],
+          "answer": 2,
+          "explain": "Der Speichelweg erklärt eine wichtige Verbindung zwischen saugender Zecke und Erregerübertragung; nicht jede Zecke trägt jeden Erreger."
+        },
+        {
+          "id": "q6",
+          "lessonId": "kontakt",
+          "q": "Worin unterscheiden sich erwachsene Hyalomma-Zecken vom hier beschriebenen Lauerverhalten des Gemeinen Holzbocks?",
+          "options": [
+            "Sie können aktiv auf einen erkannten Wirt zulaufen",
+            "Sie müssen bei jedem Wirtskontakt von hoher Vegetation herabfallen",
+            "Sie erreichen Wirte ausschließlich durch direkten Körperkontakt zwischen zwei Wirten",
+            "Sie warten in jedem Fall unbeweglich an erhöhten Pflanzen auf Berührung"
+          ],
+          "answer": 0,
+          "explain": "RKI und ECDC beschreiben unterschiedliche Suchweisen. Der Vergleich betrifft die benannten Gattungen und Entwicklungsstadien, nicht jede Zecke gleichermaßen."
+        },
+        {
+          "id": "q7",
+          "lessonId": "ort-zeit",
+          "q": "Welche Aussage zur Kontaktmöglichkeit mit Ixodes neben geschlossenem Wald ist zutreffend?",
+          "options": [
+            "Ein Park schließt Kontakt allein aufgrund seiner Nutzung als Erholungsfläche aus",
+            "Auch ein waldnaher Park mit geeignetem Unterbewuchs kann Kontaktgelegenheiten bieten",
+            "Ixodes kommt grundsätzlich nur tief im geschlossenen Wald vor",
+            "Regelmäßige Gartennutzung schließt einen Kontakt unabhängig vom Bewuchs aus"
+          ],
+          "answer": 1,
+          "explain": "BAG und RKI nennen unter anderem Parks und Gärten mit geeignetem Bewuchs. Eine pauschale Beschränkung auf Waldinneres trifft nicht zu."
+        },
+        {
+          "id": "q8",
+          "lessonId": "ort-zeit",
+          "q": "Welche Umweltgrößen beeinflussen die Aktivität des Gemeinen Holzbocks besonders?",
+          "options": [
+            "Ausschließlich der Kalendermonat unabhängig von der Witterung",
+            "Ausschließlich die Tageslänge ohne Einfluss des Mikroklimas",
+            "Allein die Zahl sichtbarer großer Wildtiere am betreffenden Tag",
+            "Temperatur und Feuchtigkeit"
+          ],
+          "answer": 3,
+          "explain": "Aktivitätsmuster hängen von den Umweltbedingungen ab. Ein einzelner Kalenderwert beschreibt die örtliche Situation nicht vollständig."
+        },
+        {
+          "id": "q9",
+          "lessonId": "ort-zeit",
+          "q": "Welche häufigen saisonalen Aktivitätsschwerpunkte werden für den Gemeinen Holzbock genannt?",
+          "options": [
+            "Ausschließlich die heißeste und trockenste Hochsommerphase",
+            "Nur eine kurze Phase nach dem ersten dauerhaften Schneefall",
+            "Frühling beziehungsweise Frühsommer und Herbst",
+            "Eine gleichmäßige Aktivität ohne jeden Einfluss der Jahreszeit"
+          ],
+          "answer": 2,
+          "explain": "BAG und RKI beschreiben diese häufigen Schwerpunkte. Die Witterung kann den Verlauf verändern; Aktivität zu anderen Zeiten wird dadurch nicht ausgeschlossen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "ort-zeit",
+          "q": "Was bedeutet milde Winterwitterung für die Aussage „Im Winter besteht grundsätzlich kein Zeckenkontakt“?",
+          "options": [
+            "Die Aussage ist zu pauschal; Aktivität kann auch im Winter auftreten",
+            "Der Monatsname genügt unabhängig von der Temperatur als Ausschlusskriterium",
+            "Ein Winterfund muss allein wegen des Datums zu einer anderen Gattung gehören",
+            "Nur ein bereits warmer Frühlingsmonat ermöglicht irgendeine Zeckenaktivität"
+          ],
+          "answer": 0,
+          "explain": "RKI und DGUV weisen auf witterungsabhängig mögliche ganzjährige Aktivität hin."
+        },
+        {
+          "id": "q11",
+          "lessonId": "ort-zeit",
+          "q": "Welche Frage beantwortet eine FSME-Risikogebietskarte unmittelbar?",
+          "options": [
+            "Die vollständige Verbreitung aller Zeckenarten Europas",
+            "Die Verbreitung sämtlicher bakterieller und viraler Zeckenerreger zugleich",
+            "Die persönliche Diagnose einer Person nach einem Stich",
+            "Die örtliche Einordnung des FSME-Risikos nach ihrem Datenstand"
+          ],
+          "answer": 3,
+          "explain": "Eine krankheitsbezogene Karte wird nicht zur Karte sämtlicher Zecken oder zu einer individuellen Diagnose umgedeutet."
+        },
+        {
+          "id": "q12",
+          "lessonId": "ort-zeit",
+          "q": "Weshalb muss bei einer älteren FSME-Risikogebietskarte ihr Datenstand beachtet werden?",
+          "options": [
+            "Eine einmal veröffentlichte Gebietseinstufung bleibt unabhängig von neuen Daten dauerhaft gleich",
+            "Gebietseinstufung und Erhebungsstand können sich seitdem geändert haben",
+            "Die Karte bezeichnet unabhängig von ihrem Stand immer die Verbreitung aller Zeckenarten",
+            "Der Kartenmaßstab allein aktualisiert die epidemiologische Gebietseinordnung"
+          ],
+          "answer": 1,
+          "explain": "Zeitbezogene Gebietsinformation und weiter brauchbare allgemeine Grundlagen werden getrennt beurteilt."
+        },
+        {
+          "id": "q13",
+          "lessonId": "erreger",
+          "q": "Welche Erregergruppe verursacht FSME?",
+          "options": [
+            "Borrelienbakterien",
+            "Fadenwürmer",
+            "Viren",
+            "Hefepilze"
+          ],
+          "answer": 2,
+          "explain": "FSME und Borreliose werden nicht vom selben Erregertyp verursacht; FSME ist eine Virusinfektion."
+        },
+        {
+          "id": "q14",
+          "lessonId": "erreger",
+          "q": "Welche Erregergruppe verursacht die Lyme-Borreliose?",
+          "options": [
+            "Bakterien aus der Borreliengruppe",
+            "FSME-Viren",
+            "Larven von Bandwürmern",
+            "Sporen eines Hautpilzes"
+          ],
+          "answer": 0,
+          "explain": "Die bakterielle Ursache unterscheidet sich von der viralen FSME. Die medizinische Diagnostik bleibt krankheitsspezifisch."
+        },
+        {
+          "id": "q15",
+          "lessonId": "erreger",
+          "q": "Wogegen richtet sich eine FSME-Impfung?",
+          "options": [
+            "Gegen Borreliose anstelle von FSME",
+            "Gegen sämtliche durch Zecken übertragbaren Viren und Bakterien gemeinsam",
+            "Gegen den Zeckenstich selbst unabhängig vom übertragenen Erreger",
+            "Gegen FSME, nicht zugleich gegen die Lyme-Borreliose"
+          ],
+          "answer": 3,
+          "explain": "Die Impfung hat einen spezifischen Gegenstand und ersetzt die übrige Zeckenvorsorge nicht."
+        },
+        {
+          "id": "q16",
+          "lessonId": "erreger",
+          "q": "Welche Aussage trennt die Stufen nach einem Zeckenstich fachlich richtig?",
+          "options": [
+            "Jeder Stich ist bereits eine nachgewiesene FSME",
+            "Stich, Erregerübertragung und klinische Erkrankung sind nicht zwangsläufig identisch",
+            "Jede infizierte Zecke verursacht bei jedem Stich dieselben Beschwerden",
+            "Eine symptomfreie Person kann definitionsgemäß keinen Erreger aufgenommen haben"
+          ],
+          "answer": 1,
+          "explain": "Die Behörden unterscheiden die einzelnen Stufen. Die Übergänge sind keine sicheren Folgen jedes Kontakts."
+        },
+        {
+          "id": "q17",
+          "lessonId": "erreger",
+          "q": "Warum ist rasches Entdecken einer Zecke keine vollständige Garantie gegen jede FSME-Übertragung?",
+          "options": [
+            "FSME-Viren können bereits früh beim Stich übertragen werden",
+            "FSME-Viren werden grundsätzlich erst nach mehrtägiger Saugdauer abgegeben",
+            "Für FSME und Borrelien gilt zwangsläufig derselbe feste sichere Zeitraum",
+            "Jeder frühe Zeckenfund schließt eine bereits erfolgte Virusübertragung aus"
+          ],
+          "answer": 0,
+          "explain": "Zeitnahe Entfernung bleibt sinnvoll, doch unterschiedliche Erreger besitzen unterschiedliche Übertragungsbedingungen."
+        },
+        {
+          "id": "q18",
+          "lessonId": "erreger",
+          "q": "Was bedeutet das Fehlen einer beobachteten Wanderröte nach einem möglichen Zeckenkontakt?",
+          "options": [
+            "Jede Borrelieninfektion ist damit widerlegt",
+            "Eine andere bestimmte Diagnose ist dadurch bereits bewiesen",
+            "Eine Borreliose ist dadurch nicht sicher ausgeschlossen",
+            "Es lässt sich daraus eine feste risikofreie Wartezeit berechnen"
+          ],
+          "answer": 2,
+          "explain": "Nicht jede Infektion zeigt dieses Zeichen. Beschwerden und Befunde werden im medizinischen Zusammenhang beurteilt."
+        },
+        {
+          "id": "q19",
+          "lessonId": "vorsorge",
+          "q": "Wozu trägt körperbedeckende Kleidung bei der Zeckenvorsorge bei?",
+          "options": [
+            "Sie ersetzt unabhängig vom Sitz der Kleidung jede spätere Körperkontrolle",
+            "Ihr Tragen schließt jeden Kontakt mit einer Zecke auf der Kleidung aus",
+            "Sie verhindert grundsätzlich das spätere Umherlaufen einer bereits aufgenommenen Zecke",
+            "Sie erschwert den unmittelbaren Kontakt zur Haut"
+          ],
+          "answer": 3,
+          "explain": "Kleidung ist eine Kontaktbarriere; ihre Wirkung wird nicht mit Erregerabtötung oder Immunisierung gleichgesetzt."
+        },
+        {
+          "id": "q20",
+          "lessonId": "vorsorge",
+          "q": "Worin liegt der praktische Vorteil heller Kleidung bei einer Zeckenkontrolle?",
+          "options": [
+            "Die helle Stofffarbe allein verhindert das Festhalten von Ixodes",
+            "Krabbelnde Zecken lassen sich darauf leichter entdecken",
+            "Die Farbe allein weist eine ausreichende Repellentwirkung des Stoffes nach",
+            "Helle Kleidung macht eine Kontrolle verdeckter Hautstellen überflüssig"
+          ],
+          "answer": 1,
+          "explain": "Die bessere Sichtbarkeit hilft beim Auffinden, ist aber keine absolute Schutzwirkung gegen Kontakt oder Infektion."
+        },
+        {
+          "id": "q21",
+          "lessonId": "vorsorge",
+          "q": "Welche Grenze nennen die Behörden für Repellentien?",
+          "options": [
+            "Ihre Wirkung ist zeitlich begrenzt und bietet keinen vollständigen Schutz vor Stichen",
+            "Jede einmalige Anwendung wirkt unabhängig von Zeit und Produkt gleich lange",
+            "Alle Produkte sind in jedem Alter und an jeder Hautstelle gleich geeignet",
+            "Die angegebene Schutzwirkung macht weitere Kontaktvorsorge grundsätzlich unnötig"
+          ],
+          "answer": 0,
+          "explain": "Wirkdauer und Eignung hängen vom Produkt ab. Eine allgemeine lebenslange Schutzwirkung oder Behandlung wird nicht behauptet."
+        },
+        {
+          "id": "q22",
+          "lessonId": "vorsorge",
+          "q": "Warum umfasst die Kontrolle nach Bewuchskontakt mehr als Hände und Unterarme?",
+          "options": [
+            "Ixodes sticht ausschließlich dort, wo die Haut bereits beim Pflanzenkontakt frei liegt",
+            "Eine Kontrolle der Socken reicht aus, um jeden möglichen späteren Stich auszuschließen",
+            "Zecken können umherlaufen und geschützte Hautstellen aufsuchen",
+            "Verdeckte Hautstellen bleiben unabhängig von der Suchphase immer unerreichbar"
+          ],
+          "answer": 2,
+          "explain": "Die Suchphase am Körper und kleine Entwicklungsstadien begründen die aufmerksame Kontrolle des gesamten Körpers."
+        },
+        {
+          "id": "q23",
+          "lessonId": "vorsorge",
+          "q": "Welche Vorbehandlung einer festgesogenen Zecke wird von RKI und BAG nicht empfohlen?",
+          "options": [
+            "Zeitnah geeignete Hilfe zur Entfernung nutzen",
+            "Öl oder Klebstoff vor dem Entfernen auftragen",
+            "Bei Unsicherheit medizinische Hilfe einholen",
+            "Den Zeitpunkt eines bekannten Stichs festhalten"
+          ],
+          "answer": 1,
+          "explain": "Die Quellen raten von Öl und Klebstoff ab. Die konkrete Hilfe richtet sich nach der Situation; hier wird kein Behandlungsablauf vorgegeben."
+        },
+        {
+          "id": "q24",
+          "lessonId": "vorsorge",
+          "q": "Welche Angaben erleichtern bei Beschwerden nach einem bekannten Zeckenstich die zeitliche und örtliche Einordnung?",
+          "options": [
+            "Nur die vermutete Zeckenart ohne Datum oder Beschwerden",
+            "Nur frühere Revierbesuche ohne Bezug zum betroffenen Aufenthalt",
+            "Nur die Körperstelle ohne Zeitpunkt und Verlauf der Veränderung",
+            "Zeitpunkt, Aufenthaltsort und beobachtete Veränderungen"
+          ],
+          "answer": 3,
+          "explain": "Ein genauer zeitlicher und örtlicher Bezug unterstützt die Anamnese. Die Diagnose wird nicht aus einer einzelnen App-Antwort gestellt."
+        }
+      ]
+    },
+    {
+      "id": "wissen-ausbau-revierpraxis-groessen-einheiten-2026",
+      "title": "Größen und Einheiten: Masse, Dichte und Druck",
+      "category": "Prüfung & Sprache",
+      "topic": "Allgemein",
+      "description": "Mit Einheiten denken, damit Fläche, Volumen, Masse, Kraft und Druck in Praxisbeispielen zusammenpassen.",
+      "minutes": 45,
+      "objectives": [
+        "Masse und Gewichtskraft fachlich unterscheiden",
+        "Quadratische und kubische Umrechnungen nachvollziehen",
+        "Dichte aus Masse und Volumen erklären",
+        "Druck als Kraft pro Fläche mit korrekten Einheiten berechnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Internationale physikalische Definitionen und ausdrücklich eigene vereinfachte Lernrechnungen. Keine rechtlichen Prüffristen und keine Konstruktion oder technische Freigabe einer Reviereinrichtung aus den Beispielen ableiten.",
+        "AT": "Internationale physikalische Definitionen und ausdrücklich eigene vereinfachte Lernrechnungen. Keine rechtlichen Prüffristen und keine Konstruktion oder technische Freigabe einer Reviereinrichtung aus den Beispielen ableiten.",
+        "CH": "Internationale physikalische Definitionen und ausdrücklich eigene vereinfachte Lernrechnungen. Keine rechtlichen Prüffristen und keine Konstruktion oder technische Freigabe einer Reviereinrichtung aus den Beispielen ableiten."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-17",
+      "sources": [
+        {
+          "label": "PTB · Die gesetzlichen Einheiten in Deutschland",
+          "url": "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+          "organization": "Physikalisch-Technische Bundesanstalt",
+          "supports": "Gelesene Tabellen auf PDF-Seiten 20–23: Fläche, Volumen, Masse, Dichte, Kraft und Druck mit Einheitenbeziehungen; keine alte Rechtsstands- oder Konstantentabelle als 2026 neu übernommen."
+        },
+        {
+          "label": "NIST · SI Units – Mass",
+          "url": "https://www.nist.gov/pml/owm/si-units-mass",
+          "organization": "National Institute of Standards and Technology,USA",
+          "supports": "AktuelleFAQ: Masse gegenüber Gewichtskraft, Kilogramm gegenüber Newton und Abhängigkeit von lokaler Fallbeschleunigung; veraltete historische Zylinderbeschreibung im verlinkten Lehrvideo nicht übernommen."
+        },
+        {
+          "label": "NIST · SI Units – Volume",
+          "url": "https://www.nist.gov/pml/owm/si-units-volume",
+          "organization": "National Institute of Standards and Technology,USA",
+          "supports": "Kubikmeter, Liter als Kubikdezimeter, Milliliter/Kubikzentimeter und dreidimensionales Volumen; fehlerhafteEinheit 1000 cm im Fließtext des Beispiels nicht übernommen."
+        },
+        {
+          "label": "BIPM · SI-Kurzfassung,aktualisiert 2026",
+          "url": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3?download=true&t=1780473467684&version=4.1",
+          "organization": "Bureau International des Poids et Mesures",
+          "supports": "Originaldefinitionen von Kilogramm und abgeleiteten Einheiten Newton und Pascal; Größe und Einheit zusammen angeben. Kein eigener Reviermesswert daraus abgeleitet."
+        },
+        {
+          "label": "BEV · Dichte",
+          "url": "https://www.bev.gv.at/en/Topics/Metrology-Service/Metrological-Subject-Fields/Mass,-Density,-Viscosity/Density.html",
+          "organization": "Bundesamt für Eich- und Vermessungswesen Österreich",
+          "supports": "Dichte als Masse/Volumen,SI-Einheitkg/m³. Messtechnische Spezialverfahren nicht als private Anleitung übernommen."
+        },
+        {
+          "label": "BEV · Druck",
+          "url": "https://www.bev.gv.at/Themen/Mess-und-Eichwesen/Messtechnische-Fachbereiche/Druck-Kraft-Haerte/Druck.html",
+          "organization": "Bundesamt für Eich- und Vermessungswesen Österreich",
+          "supports": "Druck als Kraft/Fläche; Pascal bei senkrecht und gleichmäßig aufgebrachter Kraft. Keine österreichischen Eichfristen oder Gerätefreigaben im Kurs."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "masse-kraft",
+          "title": "Masse ist nicht Gewichtskraft",
+          "paragraphs": [
+            "Masse wird im SI in Kilogramm angegeben. Gewichtskraft ist dagegen eine Kraft und wird in Newton angegeben. Sie hängt außer von der Masse auch von der örtlichen Fallbeschleunigung ab. Wird derselbe Gegenstand ohne Materialänderung an einen Ort mit anderer Schwerkraft gebracht, bleibt seine Masse gleich, während sich seine Gewichtskraft ändern kann. Die alltagssprachliche Wendung „Gewicht in Kilogramm“ benennt meist eine Masse, nicht die physikalische Kraft.",
+            "Für die Gewichtskraft gilt im vereinfachten Fall F = m · g. Eigene Lernannahme: Eine Masse von 5 kg bei vorgegebenem g = 10 m/s² ergibt 50 N. Das angenommene g ist eine Rechenvereinfachung, kein überall exakter Erdmesswert. Ein Newton entspricht 1 kg·m/s². Auch bei einer Masseangabe mit Behälter werden die Gegenstände sauber getrennt: Im eigenen Beispiel ergeben 6,8 kg Gesamtmasse minus 0,8 kg Behältermasse 6,0 kg Inhalt."
+          ],
+          "takeaway": "Kilogramm benennt Masse, Newton eine Kraft; der Zusammenhang braucht die Fallbeschleunigung.",
+          "exercise": "Schreibe zu den eigenen Beispielen Rechenweg und Einheit aus. Kennzeichne das angenommene g ausdrücklich."
+        },
+        {
+          "id": "flaeche-volumen",
+          "title": "Eine Länge wird zur zweiten oder dritten Potenz",
+          "paragraphs": [
+            "Eine Fläche hat zwei räumliche Dimensionen und wird zum Beispiel in Quadratmetern angegeben. Ein Volumen besitzt drei Dimensionen und wird zum Beispiel in Kubikmetern angegeben. Weil 1 m gleich 100 cm ist, entspricht 1 m² genau 10000 cm². Bei Kubikeinheiten wird der Umrechnungsfaktor in drei Richtungen berücksichtigt: 1 dm³ sind 1000 cm³.",
+            "Ein Liter ist ein Kubikdezimeter, ein Milliliter ein Kubikzentimeter. Ein Hektar ist eine Flächeneinheit und entspricht 10000 m². Eigene Modellbox: 0,6 m Länge mal 0,4 m Breite mal 0,3 m Höhe ergeben 0,072 m³ beziehungsweise 72 Liter geometrischen Innenraum. Eine Fläche von 0,6 m mal 0,4 m besitzt dagegen nur 0,24 m²; ohne Höhe wird daraus kein Volumen. Werden alle Kanten eines geometrisch ähnlichen Körpers verdoppelt, vervierfacht sich seine Oberfläche und sein Volumen wächst auf das Achtfache."
+          ],
+          "takeaway": "Bei Flächen wird der Längenfaktor quadriert, bei Volumen kubiert.",
+          "exercise": "Zeichne ein Quadrat und einen Würfel mit ihren Einheiten; prüfe bei der Modellbox, weshalb Liter und Quadratmeter verschiedene Ergebnisse beschreiben."
+        },
+        {
+          "id": "dichte",
+          "title": "Dichte verbindet zwei Messgrößen",
+          "paragraphs": [
+            "Die Massendichte ist das Verhältnis von Masse zu Volumen:ρ = m/V. Ihre SI-Einheit ist Kilogramm pro Kubikmeter. Bei gleichem Volumen gehört die größere Masse zur höheren mittleren Dichte. Werden bei gleichem Material und gleichen Bedingungen Masse und Volumen beide verdoppelt, bleibt ihr Verhältnis unverändert.",
+            "Eigener homogener Probenfall: 540 g Masse bei 600 cm³ Volumen ergeben 0,9 g/cm³. Da 1 g gleich 0,001 kg und 1 cm³ gleich 0,000001 m³ sind, entspricht 1 g/cm³ genau 1000 kg/m³; die Beispielprobe besitzt rechnerisch 900 kg/m³. Diese frei gewählten Werte sind keine reale Wildbret-, Holz- oder Materialmessung. Bei der Angabe muss außerdem klar sein, welches Volumen gemeint ist: Das Volumen des Materials und das äußere Hüllvolumen eines hohlen Gegenstands einschließlich seines Hohlraums sind nicht automatisch dieselbe Bezugsgröße."
+          ],
+          "takeaway": "Dichte braucht eine zugehörige Masse und ein klar benanntes Volumen.",
+          "exercise": "Rechne den eigenen Probenfall nach und schreibe die Umrechnung von Gramm und Kubikzentimeter getrennt aus."
+        },
+        {
+          "id": "druck",
+          "title": "Druck ist Kraft auf eine Fläche bezogen",
+          "paragraphs": [
+            "Druck wird im einfachen mechanischen Modell als senkrechte Kraft pro Fläche betrachtet: p = F/A. Ein Pascal entspricht einem Newton pro Quadratmeter. Bei einer gleichmäßig aufgebrachten Kraft ist die Fläche deshalb genauso wichtig wie die Kraft selbst. Wird bei gleicher Kraft die Fläche verdoppelt, halbiert sich der so berechnete Druck.",
+            "Eigener idealisierter Rechenfall: 200 N wirken gleichmäßig und senkrecht auf 0,02 m². Der Druck beträgt 200/0,02 = 10000 Pa. Das entspricht 0,1 bar, denn 1 bar sind 100000 Pa. Eine reale ungleichmäßig belastete Kontaktfläche kann unterschiedliche lokale Belastungen besitzen; F/A beschreibt dann einen Mittelwert und nicht automatisch den höchsten örtlichen Wert. Die Modellrechnung wird deshalb nicht als Belastungsfreigabe für ein reales Bauteil oder einen Revieruntergrund verwendet."
+          ],
+          "takeaway": "Kraft, Fläche und Verteilung sind für eine Druckangabe gemeinsam relevant.",
+          "exercise": "Rechne den idealisierten Fall nach und benenne die Annahmen „senkrecht“ und „gleichmäßig“ ausdrücklich."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "masse-kraft",
+          "q": "Welche Größenangabe beschreibt eine Masse im Internationalen Einheitensystem?",
+          "options": [
+            "5 kg",
+            "5 N",
+            "5 Pa",
+            "5 m³"
+          ],
+          "answer": 0,
+          "explain": "Kilogramm ist die Masseneinheit; Newton bezeichnet Kraft, Pascal Druck und Kubikmeter Volumen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "masse-kraft",
+          "q": "In welcher Einheit wird eine Gewichtskraft fachlich angegeben?",
+          "options": [
+            "Kilogramm",
+            "Kilogramm pro Kubikmeter",
+            "Newton",
+            "Quadratmeter"
+          ],
+          "answer": 2,
+          "explain": "Gewichtskraft ist eine Kraft. Der alltagssprachliche Gebrauch von „Gewicht“ für Masse ändert diese Unterscheidung nicht."
+        },
+        {
+          "id": "q3",
+          "lessonId": "masse-kraft",
+          "q": "Was bleibt beim Transport desselben unveränderten Gegenstands an einen Ort mit anderer Fallbeschleunigung gleich?",
+          "options": [
+            "Zwangsläufig seine Gewichtskraft",
+            "Seine Masse",
+            "Zwangsläufig die örtliche Schwerkraft",
+            "Das Produkt aus Gewichtskraft und Fallbeschleunigung"
+          ],
+          "answer": 1,
+          "explain": "Ohne Materialänderung bleibt die Masse gleich. Die Gewichtskraft hängt zusätzlich vom örtlichen g ab."
+        },
+        {
+          "id": "q4",
+          "lessonId": "masse-kraft",
+          "q": "Eigene Lernrechnung: Welche Gewichtskraft ergibt 5 kg bei ausdrücklich angenommenem g = 10 m/s²?",
+          "options": [
+            "0,5 N",
+            "2 N",
+            "50 kg",
+            "50 N"
+          ],
+          "answer": 3,
+          "explain": "F = m · g ergibt 5 · 10 = 50 N. Das angenommene g dient nur diesem Rechenfall."
+        },
+        {
+          "id": "q5",
+          "lessonId": "masse-kraft",
+          "q": "Welcher Ausdruck ist gleich einem Newton?",
+          "options": [
+            "1 kg/m³",
+            "1 N/m²",
+            "1 kg·m/s²",
+            "1 kg·m²"
+          ],
+          "answer": 2,
+          "explain": "Die Kraftdimension enthält Masse mal Beschleunigung. Die anderen Ausdrücke bezeichnen andere Größen beziehungsweise Dimensionen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "masse-kraft",
+          "q": "Eigener Behälterfall: 6,8 kg Gesamtmasse einschließlich 0,8 kg leerem Behälter ergeben welche Inhaltsmasse?",
+          "options": [
+            "6,0 kg",
+            "7,6 kg",
+            "6,8 kg",
+            "0,8 kg"
+          ],
+          "answer": 0,
+          "explain": "Die Behältermasse wird von der Gesamtmasse abgezogen. Alle Angaben sind eigene vorgegebene Lernwerte."
+        },
+        {
+          "id": "q7",
+          "lessonId": "flaeche-volumen",
+          "q": "Weshalb entspricht 1 m² nicht bloß 100 cm²?",
+          "options": [
+            "Der Umrechnungsfaktor wirkt bei einer Fläche nur auf eine der beiden Längen",
+            "Der Faktor 100 gilt in beiden Flächenrichtungen und wird quadriert",
+            "Der Längenfaktor wird bei Quadratflächen addiert statt multipliziert",
+            "Bei jeder Umrechnung wird unabhängig von der Dimension derselbe Faktor verwendet"
+          ],
+          "answer": 1,
+          "explain": "Ein Quadrat von 1 m mal 1 m misst 100 cm mal 100 cm; sein Flächeninhalt beträgt 10000 cm²."
+        },
+        {
+          "id": "q8",
+          "lessonId": "flaeche-volumen",
+          "q": "Welche Gleichheit zwischen Volumenangaben ist richtig?",
+          "options": [
+            "1 Liter=1 m²",
+            "1 Liter=1 cm³",
+            "1 Liter=1000 dm³",
+            "1 Liter=1 dm³"
+          ],
+          "answer": 3,
+          "explain": "Der Liter ist der besondere Name für den Kubikdezimeter. Flächen- und Volumeneinheiten sind nicht austauschbar."
+        },
+        {
+          "id": "q9",
+          "lessonId": "flaeche-volumen",
+          "q": "Welche Fläche entspricht einem Hektar?",
+          "options": [
+            "1000 m²",
+            "100 m²",
+            "10000 m²",
+            "1000000 m²"
+          ],
+          "answer": 2,
+          "explain": "Hektar ist eine Flächeneinheit und entspricht 100 Ar beziehungsweise 10000 Quadratmetern."
+        },
+        {
+          "id": "q10",
+          "lessonId": "flaeche-volumen",
+          "q": "Eigene Modellbox: 0,6 m × 0,4 m × 0,3 m Innenmaß entsprechen welchem geometrischen Innenvolumen?",
+          "options": [
+            "0,072 m³ beziehungsweise 72 Liter",
+            "0,24 m³ beziehungsweise 240 Liter",
+            "0,72 m³ beziehungsweise 720 Liter",
+            "0,072 m² beziehungsweise 72 Liter"
+          ],
+          "answer": 0,
+          "explain": "Alle drei Längen werden multipliziert; 0,072 m³ mal 1000 Liter/m³ ergeben 72 Liter. Einheiten bleiben Teil der Rechnung."
+        },
+        {
+          "id": "q11",
+          "lessonId": "flaeche-volumen",
+          "q": "Eine ebene Fläche ist mit 0,6 m Länge und 0,4 m Breite beschrieben. Welche zusätzliche Größe fehlt für ein Quader-Volumen?",
+          "options": [
+            "Die Masse des gedachten Quaders",
+            "Die Dichte seines Materials",
+            "Der Umfang der bereits beschriebenen Grundfläche",
+            "Die Höhe beziehungsweise dritte senkrechte Ausdehnung"
+          ],
+          "answer": 3,
+          "explain": "Ein Volumen benötigt eine dritte Raumdimension. Die beiden Angaben allein beschreiben eine Fläche."
+        },
+        {
+          "id": "q12",
+          "lessonId": "flaeche-volumen",
+          "q": "Was geschieht mit dem Volumen eines geometrisch ähnlichen Körpers, wenn alle drei Kanten verdoppelt werden?",
+          "options": [
+            "Es wird nur doppelt so groß",
+            "Es wird achtmal so groß",
+            "Es wird viermal so groß",
+            "Es bleibt unverändert"
+          ],
+          "answer": 1,
+          "explain": "Der Längenfaktor 2 wirkt dreimal: 2 · 2 · 2 = 8. Die Oberfläche wächst dagegen mit dem Quadrat des Längenfaktors."
+        },
+        {
+          "id": "q13",
+          "lessonId": "dichte",
+          "q": "Wie wird die Massendichte ρ aus Masse m und Volumen V berechnet?",
+          "options": [
+            "ρ = m · V",
+            "ρ = V/m",
+            "ρ = m/V",
+            "ρ = m + V"
+          ],
+          "answer": 2,
+          "explain": "Die Dichte ist die Masse bezogen auf das zugehörige Volumen, nicht das Produkt beider Größen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "dichte",
+          "q": "Welche SI-Einheit gehört zur Massendichte?",
+          "options": [
+            "kg/m³",
+            "kg·m³",
+            "N/m²",
+            "m³/kg"
+          ],
+          "answer": 0,
+          "explain": "Die Einheit folgt direkt aus Kilogramm geteilt durch Kubikmeter. N/m² beschreibt Druck."
+        },
+        {
+          "id": "q15",
+          "lessonId": "dichte",
+          "q": "Zwei gedachte Proben besitzen dasselbe Volumen. Probe A hat die größere Masse. Welche Folgerung ist zwingend?",
+          "options": [
+            "Probe A muss zusätzlich das größere Volumen besitzen",
+            "Probe A muss wegen gleicher Volumina dieselbe Dichte besitzen",
+            "Probe A muss bei größerer Masse eine kleinere mittlere Dichte besitzen",
+            "Probe A besitzt die größere mittlere Massendichte"
+          ],
+          "answer": 3,
+          "explain": "Bei gleichem Nenner V bedeutet eine größere Masse m einen größeren Quotienten m/V. Die anderen Bedingungen sind damit nicht bestimmt."
+        },
+        {
+          "id": "q16",
+          "lessonId": "dichte",
+          "q": "Eine homogene Probe wird bei gleichen Bedingungen in doppelter Menge betrachtet. Masse und Volumen verdoppeln sich. Was gilt für die Dichte?",
+          "options": [
+            "Sie verdoppelt sich",
+            "Sie bleibt unverändert",
+            "Sie halbiert sich",
+            "Sie vervierfacht sich"
+          ],
+          "answer": 1,
+          "explain": "2 m geteilt durch 2 V ergibt dasselbe Verhältnis wie m/V. Das ist eine Verhältnisbetrachtung, keine neue Materialmessung."
+        },
+        {
+          "id": "q17",
+          "lessonId": "dichte",
+          "q": "Eigener Probenfall: Welche Dichte ergibt 540 g geteilt durch 600 cm³?",
+          "options": [
+            "0,9 g/cm³",
+            "1,11 g/cm³",
+            "324000 g/cm³",
+            "60 g/cm³"
+          ],
+          "answer": 0,
+          "explain": "540/600 = 0,9. Die Einheit bleibt Gramm pro Kubikzentimeter."
+        },
+        {
+          "id": "q18",
+          "lessonId": "dichte",
+          "q": "Welche Umrechnung ist für 1 g/cm³ korrekt?",
+          "options": [
+            "1 kg/m³",
+            "0,001 kg/m³",
+            "1000 kg/m³",
+            "1000000 kg/m³"
+          ],
+          "answer": 2,
+          "explain": "Der Zähler wird mit 0,001, der Nenner mit 0,000001 umgerechnet; ihr Quotient ergibt den Faktor 1000."
+        },
+        {
+          "id": "q19",
+          "lessonId": "druck",
+          "q": "Welche Beziehung beschreibt den Druck p im hier verwendeten einfachen Modell?",
+          "options": [
+            "p = F · A",
+            "p = A/F",
+            "p = F + A",
+            "p = F/A"
+          ],
+          "answer": 3,
+          "explain": "Eine Kraft wird auf eine Fläche bezogen. Das Produkt aus Kraft und Fläche besitzt eine andere Dimension."
+        },
+        {
+          "id": "q20",
+          "lessonId": "druck",
+          "q": "Welche Einheitengleichung ist richtig?",
+          "options": [
+            "1 Pa=1 N·m²",
+            "1 Pa=1 N/m²",
+            "1 Pa=1 kg/m³",
+            "1 Pa=1 m²/N"
+          ],
+          "answer": 1,
+          "explain": "Pascal ist die SI-Druckeinheit und entspricht Newton pro Quadratmeter."
+        },
+        {
+          "id": "q21",
+          "lessonId": "druck",
+          "q": "Was geschieht im gleichmäßig belasteten Modell bei gleicher Kraft und verdoppelter Fläche?",
+          "options": [
+            "Der Druck halbiert sich",
+            "Der Druck verdoppelt sich",
+            "Die Kraft verdoppelt sich automatisch",
+            "Der Druck bleibt unabhängig von der Fläche gleich"
+          ],
+          "answer": 0,
+          "explain": "Bei konstantem F steht die Fläche im Nenner: Eine Verdopplung von A halbiert F/A."
+        },
+        {
+          "id": "q22",
+          "lessonId": "druck",
+          "q": "Eigener Rechenfall: 200 N wirken gleichmäßig senkrecht auf 0,02 m². Welcher Druck ergibt sich?",
+          "options": [
+            "4 Pa",
+            "100 Pa",
+            "10000 Pa",
+            "4000 Pa"
+          ],
+          "answer": 2,
+          "explain": "200 geteilt durch 0,02 ergibt 10000 N/m² und damit 10000 Pa."
+        },
+        {
+          "id": "q23",
+          "lessonId": "druck",
+          "q": "Welche Beziehung zwischen Bar und Pascal gilt?",
+          "options": [
+            "1 bar=100 Pa",
+            "1 bar=100000 Pa",
+            "1 bar=1000 Pa",
+            "1 bar=1000000 Pa"
+          ],
+          "answer": 1,
+          "explain": "Bar ist eine weitere gebräuchliche Druckeinheit; die feste Umrechnung steht in der PTB-Tabelle."
+        },
+        {
+          "id": "q24",
+          "lessonId": "druck",
+          "q": "Was beschreibt F/A bei einer räumlich ungleichmäßig belasteten Fläche zunächst?",
+          "options": [
+            "Zwangsläufig den höchsten örtlichen Druck",
+            "Zwangsläufig den niedrigsten örtlichen Druck",
+            "Den örtlichen Druck an jeder Stelle unabhängig von seiner Verteilung",
+            "Den mittleren Druck bezogen auf die betrachtete Fläche"
+          ],
+          "answer": 3,
+          "explain": "Eine mittlere Flächenbelastung gibt die Verteilung nicht vollständig wieder. Lokale Spitzen werden damit nicht automatisch bestimmt."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-ansitzeinrichtungen-2026",
+      "lessonId": "tragstruktur",
+      "claims": [
+        {
+          "claim": "Bauteilrollen und Verbindungsmängel von Leitern: getrennte Funktionen von Holmen, Tritten und Auflagern. Die Kraftwegfolge ist ein eigenes qualitatives Lernmodell auf Grundlage des Kräftegleichgewichts; keine Dimensionierung.",
+          "sourceUrls": [
+            "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+            "https://www.hse.gov.uk/work-at-height/ladders/how-to-check-ladder-is-safe-before-use.htm",
+            "https://openstax.org/books/college-physics-2e/pages/9-1-the-first-condition-for-equilibrium"
+          ]
+        },
+        {
+          "claim": "Trag- und Standsicherheit sowie Absturzsicherung beantworten unterschiedliche technische Schutzziele; auch Zugang gehört zur Einrichtung.",
+          "sourceUrls": [
+            "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/4602f00372a5a47d/3ae5d95e332a/vsg4_4-jagd.pdf",
+            "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+            "https://www.suva.ch/de-ch/download/checklisten/tragbare-leitern-und-tritte/tragbare-leitern-und-tritte--67028.D/null"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-ansitzeinrichtungen-2026",
+      "lessonId": "material",
+      "claims": [
+        {
+          "claim": "Sprossen-, Holm-, Verbindungs- und Auflagermängel als verschiedene Gefahren; nicht benutzen und verantwortliche Person informieren statt Belastungsversuch.",
+          "sourceUrls": [
+            "https://www.svlfg.de/pm-jagd-hochsitze",
+            "https://www.hse.gov.uk/work-at-height/ladders/how-to-check-ladder-is-safe-before-use.htm"
+          ]
+        },
+        {
+          "claim": "Gesundes tragendes Holz, Witterungseinfluss und sichere Gesamtkonstruktion; äußerer Anstrich ist kein Tragfähigkeitsnachweis als eigene Schlussfolgerung aus den Prüfanforderungen.",
+          "sourceUrls": [
+            "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/4602f00372a5a47d/3ae5d95e332a/vsg4_4-jagd.pdf",
+            "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+            "https://www.svlfg.de/pm-jagd-hochsitze"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-ansitzeinrichtungen-2026",
+      "lessonId": "zugang",
+      "claims": [
+        {
+          "claim": "Glätte und Unebenheiten im Zugang, verschmutzte Tritte, bewegte Leiterfüße und Überstiegsrisiken; geänderte Bedingungen verlangen erneute Betrachtung.",
+          "sourceUrls": [
+            "https://www.svlfg.de/pm-jagd-hochsitze",
+            "https://www.hse.gov.uk/work-at-height/ladders/how-to-check-ladder-is-safe-before-use.htm",
+            "https://www.suva.ch/de-ch/download/checklisten/tragbare-leitern-und-tritte/tragbare-leitern-und-tritte--67028.D/null"
+          ]
+        },
+        {
+          "claim": "Winterkleidung und Hängepunkte beim Übergang zum Sitz als konkrete organisatorisch-technische Gesichtspunkte; keine Übernahme numerischer Konstruktionsvorgaben.",
+          "sourceUrls": [
+            "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+            "https://www.suva.ch/de-ch/download/checklisten/tragbare-leitern-und-tritte/tragbare-leitern-und-tritte--67028.D/null"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-ansitzeinrichtungen-2026",
+      "lessonId": "verantwortung",
+      "claims": [
+        {
+          "claim": "DE-Unternehmerpflichten aus § 7 VSG 4.4; jährliche Prüfung und Prüfung vor jeder Benutzung sind zusammen zu lesen. AT-SVS beschreibt andere Präventionshäufigkeit; Suva-Leiterbeschreibung ist keine kantonale Hochsitzregel.",
+          "sourceUrls": [
+            "https://cdn.svlfg.de/fiona8-blobs/public/svlfgonpremiseproduction/4602f00372a5a47d/3ae5d95e332a/vsg4_4-jagd.pdf",
+            "https://www.svs.at/cdscontent/load?contentid=10008.765752&version=1770814564",
+            "https://www.suva.ch/de-ch/download/checklisten/tragbare-leitern-und-tritte/tragbare-leitern-und-tritte--67028.D/null"
+          ]
+        },
+        {
+          "claim": "Mangel an verantwortliche Person weitergeben; genaue Bauteil-/Ortsbeschreibung ist ein eigener Dokumentationsfall, keine amtliche Formularpflicht.",
+          "sourceUrls": [
+            "https://www.svlfg.de/pm-jagd-hochsitze",
+            "https://www.hse.gov.uk/work-at-height/ladders/how-to-check-ladder-is-safe-before-use.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "pruefzweck",
+      "claims": [
+        {
+          "claim": "Technischer Sicherheitszweck, Maße/Funktion/Haltbarkeit und Abgrenzung von Treffleistung/Finish.",
+          "sourceUrls": [
+            "https://lmg.bayern.de/lmg/beschussaemter/muenchen/index.html",
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/"
+          ]
+        },
+        {
+          "claim": "CE-Konformitätskennzeichnung und Beschussprüfung sind getrennte Systeme; keine pauschale Waffen-CE-Pflicht behauptet.",
+          "sourceUrls": [
+            "https://lmg.bayern.de/lmg/beschussaemter/muenchen/index.html",
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/",
+            "https://single-market-economy.ec.europa.eu/single-market/goods/ce-marking_en"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "identitaet",
+      "claims": [
+        {
+          "claim": "Identität, Typenbezeichnung und Kaliber als verschiedene Angaben in deutschen Kennzeichnungsvorgaben und österreichischem Prüfkontext. Fiktives Datenblatt ist eine eigene Begriffsübung.",
+          "sourceUrls": [
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/",
+            "https://www.gesetze-im-internet.de/waffg_2002/__24.html",
+            "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008706"
+          ]
+        },
+        {
+          "claim": "DE § 24 Abs. 1: benannter Geltungsrahmen und ausdrücklich vorhandene Ausnahmen; keine Ableitung einer globalen Pflicht für jedes Altstück.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/waffg_2002/__24.html",
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "packung",
+      "claims": [
+        {
+          "claim": "DE Kennzeichnung kleinster Verpackungen aus § 24 Abs. 4 WaffG und § 39 BeschussV; AT § 2 Los/Packung und § 9 Angaben. Normen sind örtliche Rechtsquellen, BMWET erläutert unabhängig vom deutschen Recht die Prüfaufgabe.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/waffg_2002/__24.html",
+            "https://www.gesetze-im-internet.de/beschussv/__39.html",
+            "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008706",
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/"
+          ]
+        },
+        {
+          "claim": "Losnummer zur Fertigungszuordnung gegenüber Stückzahl und Typ; eigenes Beispiel einer gemischten Packung als Grenze der Zuordnung.",
+          "sourceUrls": [
+            "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008706",
+            "https://www.gesetze-im-internet.de/waffg_2002/__24.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "anerkennung",
+      "claims": [
+        {
+          "claim": "CIP-Regeln und Mitgliederliste: technische gegenseitige Anerkennung, DE/AT-Mitgliedschaft, CH nicht auf eingesehener Liste; keine Gleichsetzung mit EU. Prüfstand von aktueller unbeschädigter Funktion unterscheiden.",
+          "sourceUrls": [
+            "https://cip-bobp.org/de/cip",
+            "https://cip-bobp.org/de/membres",
+            "https://lmg.bayern.de/lmg/beschussaemter/muenchen/index.html",
+            "https://www.bmwet.gv.at/Themen/Technik-und-Vermessung/beschussaemter/"
+          ]
+        },
+        {
+          "claim": "Technische Prüfung und nationale persönliche Waffenberechtigung sind getrennte Geltungsbereiche; Schweizer Waffenbesitz unterliegt eigenem Waffengesetz.",
+          "sourceUrls": [
+            "https://cip-bobp.org/de/cip",
+            "https://www.fedpol.admin.ch/de/waffen-munition"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-blei-wildbret-2026",
+      "lessonId": "eintragswege",
+      "claims": [
+        {
+          "claim": "Blei als chemische Kontamination; Umwelt-/Nahrungsaufnahme und zusätzlicher Munitionseintrag; sichtbare große Stücke gegenüber kleinen Fragmenten.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/",
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394810/"
+          ]
+        },
+        {
+          "claim": "Originalbefund 2022: acht UK-Fasane, Erlegung 2016, Micro-CT und chemisch analysierte geborgene Metallstücke; untere Partikel nicht einzeln analysiert. Primärstudie trägt diese Datenaussage, BfR bestätigt unabhängig den allgemeinen Partikelmechanismus; keine unabhängige Wiederholung derselben Messung behauptet.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394810/",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-blei-wildbret-2026",
+      "lessonId": "wirkung",
+      "claims": [
+        {
+          "claim": "Verteilung und Speicherung in Knochen/Zähnen; Freisetzung in Schwangerschaft und Empfindlichkeit der fetalen Entwicklung.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/",
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health"
+          ]
+        },
+        {
+          "claim": "Entwicklungsneurotoxizität, Nierenschädigung und fehlende bekannte unschädliche Exposition; Abwesenheit von Symptomen erlaubt keine persönliche sichere Dosis.",
+          "sourceUrls": [
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2010.1570"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-blei-wildbret-2026",
+      "lessonId": "exposition",
+      "claims": [
+        {
+          "claim": "Exposition über mehrere Lebensmittel und Verzehrsmengen, innere Aufnahme und Empfindlichkeit als getrennte Begriffe. Rechenwert 0,4 mg/kg × 0,25 kg = 0,1 mg ist eigene dimensionsgerechte Anwendung, keine Quellenmessung.",
+          "sourceUrls": [
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2010.1570"
+          ]
+        },
+        {
+          "claim": "Räumliche Partikelverteilung begrenzt Aussagen einzelner Proben; verschlucktes und resorbiertes Blei nicht gleichsetzen, keine feste Aufnahmequote.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394810/",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-blei-wildbret-2026",
+      "lessonId": "vorsorge",
+      "claims": [
+        {
+          "claim": "Schweizer BLV-Empfehlung und empfindliche Gruppen; WHO bestätigt besondere Vulnerabilität, ist keine unabhängige Quelle einer Schweizer Behördenentscheidung.",
+          "sourceUrls": [
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health"
+          ]
+        },
+        {
+          "claim": "Zeitliche Einordnung: BfR 2011, Green 2022/Proben 2016, WHO 2026; keine Übertragung beschränkter Proben auf sämtliche DACH-Arten und keine Gleichsetzung von Munitionsherkunft mit umfassender Lebensmittelsicherheit.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zum-verzehr-von-wild-das-mit-bleihaltiger-munition-geschossen-wurde/",
+            "https://www.blv.admin.ch/de/blei",
+            "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC9394810/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "begriffe",
+      "claims": [
+        {
+          "claim": "Kontamination/Kreuzkontamination, Vermehrung, Überleben und keimabtötende Wirkung als unterschiedliche Sachverhalte; pathogener Nachweis ist nicht gleich sensorischem Verderb.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/salmonellen/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/salmonellen",
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/campylobacter/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/campylobacter",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch/"
+          ]
+        },
+        {
+          "claim": "Erkrankungsentstehung hängt neben dem Erreger von Dosis und betroffener Person ab; Kontamination ist keine Aussage, jede Person werde gleich erkranken.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/salmonellen/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/salmonellen",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/listerien"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "salmonellen",
+      "claims": [
+        {
+          "claim": "Salmonella als Gattung, Serovare und Abgrenzung enteritischer gegenüber Typhi/Paratyphi-Erkrankungen; Reservoir und asymptomatisches Tragen.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/salmonellen/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/salmonellen"
+          ]
+        },
+        {
+          "claim": "Wachstum unter passenden Bedingungen, kein sicherer Abtötungsnachweis durch Einfrieren und variable Dosis nach Mensch/Matrix.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/salmonellen/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/salmonellen"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "campylobacter",
+      "claims": [
+        {
+          "claim": "Gebogene gramnegative, nicht sporenbildende Campylobacter und mikroaerobe Bedingungen als Merkmale.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/campylobacter/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/campylobacter",
+            "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Compendium_revised%20Dec%202022.pdf"
+          ]
+        },
+        {
+          "claim": "Asymptomatische Darmreservoire warmblütiger Tiere, Lebensmittel-/Kreuzkontaktwege und fehlendes übliches Lebensmittelwachstum bei möglichem Überleben.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/campylobacter/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/campylobacter",
+            "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Compendium_revised%20Dec%202022.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "listerien",
+      "claims": [
+        {
+          "claim": "L. monocytogenes, Boden-/Wasser-/Pflanzen-/Betriebsreservoir und nachträgliche Verunreinigung.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/listerien/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/listerien"
+          ]
+        },
+        {
+          "claim": "Wachstum bei Kühltemperaturen, Besonderheit verzehrfertiger Produkte und besonders gefährdete Gruppen; keine universelle Zeit-/Temperaturgarantie.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/listerien/",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/listerien"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-zecken-menschen-2026",
+      "lessonId": "kontakt",
+      "claims": [
+        {
+          "claim": "Ixodes-Kontakt durch Abstreifen statt Sprung/Baumfall, vorherige Suche auf dem Wirt, Zeckenstich und Speichelübertragung.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        },
+        {
+          "claim": "Spinnentierzuordnung und artabhängige Unterschiede: aktive Annäherung anderer Gattungen nach RKI; keine Generalisierung aller Zecken als reine Lauerjäger.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908",
+            "https://www.ecdc.europa.eu/en/disease-vectors/facts/tick-factsheets/hyalomma-marginatum"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-zecken-menschen-2026",
+      "lessonId": "ort-zeit",
+      "claims": [
+        {
+          "claim": "Habitate über geschlossenen Wald hinaus und saisonale/witterungsabhängige Aktivität; mögliche Kontakte auch im milden Winter.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        },
+        {
+          "claim": "Krankheitsbezogene aktuelle Risikoinformation getrennt von Zeckenvorkommen und weiteren Erregern; alte DGUV-Karte 2020 nicht aktualisiert übernommen.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-zecken-menschen-2026",
+      "lessonId": "erreger",
+      "claims": [
+        {
+          "claim": "Virus-FSME gegenüber bakterieller Lyme-Borreliose; erregerspezifische Wirkung der FSME-Impfung.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme"
+          ]
+        },
+        {
+          "claim": "Stich/Übertragung/Infektion/Erkrankung nicht gleichsetzen, frühzeitige Entfernung ohne Schutzgarantie und mögliche fehlende Wanderröte.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-zecken-menschen-2026",
+      "lessonId": "vorsorge",
+      "claims": [
+        {
+          "claim": "Bedeckende/helle Kleidung, geschlossene Schuhe, Sockenüberstand und zeitlich begrenzte Repellentienwirkung; keine Schutzgarantie.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        },
+        {
+          "claim": "Ganzkörperkontrolle, kleine Stadien, rasche Entfernung ohne Öl/Klebstoff sowie Zeitpunkt/Ort/Veränderung für ärztliche Klärung; keine Schrittfolge einer Behandlung.",
+          "sourceUrls": [
+            "https://www.rki.de/SharedDocs/FAQs/DE/Zecken/Zecken.html",
+            "https://www.bag.admin.ch/de/faq-zeckenuebertragene-krankheiten",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/2908"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-groessen-einheiten-2026",
+      "lessonId": "masse-kraft",
+      "claims": [
+        {
+          "claim": "Kilogramm/Masse und Newton/Gewichtskraft, lokale Fallbeschleunigung und 1 N = 1 kg·m/s².",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.nist.gov/pml/owm/si-units-mass",
+            "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3?download=true&t=1780473467684&version=4.1"
+          ]
+        },
+        {
+          "claim": "Eigene Anwendungen F = m · g mit ausdrücklich angenommenem g sowie einfache Massendifferenz bei einem gedachten Behälter. Zahlen sind keine Messdaten.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.nist.gov/pml/owm/si-units-mass"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-groessen-einheiten-2026",
+      "lessonId": "flaeche-volumen",
+      "claims": [
+        {
+          "claim": "SI-Flächen-/Volumeneinheiten, Hektar, Liter/dm³ und Milliliter/cm³; potenzierte Umrechnungsfaktoren.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.nist.gov/pml/owm/si-units-volume",
+            "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3?download=true&t=1780473467684&version=4.1"
+          ]
+        },
+        {
+          "claim": "Eigene geometrische Beispiele: Quaderprodukt und Formähnlichkeit bei Verdopplung aller Längen. Es sind elementare Ableitungen aus Fläche/Volumen, keine Hersteller-Kapazitätsangaben.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.nist.gov/pml/owm/si-units-volume"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-groessen-einheiten-2026",
+      "lessonId": "dichte",
+      "claims": [
+        {
+          "claim": "Dichte als Masse/Volumen, kg/m³, Verhältnisbetrachtung bei gleichem Volumen und Skalierung.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.bev.gv.at/en/Topics/Metrology-Service/Metrological-Subject-Fields/Mass,-Density,-Viscosity/Density.html"
+          ]
+        },
+        {
+          "claim": "Eigene Zahlenrechnung 540 g/600 cm³ = 0,9 g/cm³ = 900 kg/m³; Bezugsvolumen explizit benennen. Keine reale Materialdichte angegeben.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.nist.gov/pml/owm/si-units-volume",
+            "https://www.bev.gv.at/en/Topics/Metrology-Service/Metrological-Subject-Fields/Mass,-Density,-Viscosity/Density.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-groessen-einheiten-2026",
+      "lessonId": "druck",
+      "claims": [
+        {
+          "claim": "Druck = senkrechte Kraft/Fläche, Pa = N/m², bei gleichmäßiger Verteilung; Verhältnis bei geänderter Fläche.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3?download=true&t=1780473467684&version=4.1",
+            "https://www.bev.gv.at/Themen/Mess-und-Eichwesen/Messtechnische-Fachbereiche/Druck-Kraft-Haerte/Druck.html"
+          ]
+        },
+        {
+          "claim": "Eigenes Modell 200 N/0,02 m² = 10000 Pa = 0, 1 bar, 1 bar = 100000 Pa; Mittelwert nicht automatisch lokaler Spitzenwert bei ungleichmäßiger Verteilung.",
+          "sourceUrls": [
+            "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
+            "https://www.bev.gv.at/Themen/Mess-und-Eichwesen/Messtechnische-Fachbereiche/Druck-Kraft-Haerte/Druck.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Bauabmessungen und Tragfähigkeitsfreigaben",
+      "reason": "Keine Konstruktion, Lastgrenzen, Anstellwinkel oder Eigenbauvorgaben aus qualitativen Lernmodellen ableiten. Bauart, Hersteller und örtliche Anforderungen benötigen eine konkrete Beurteilung."
+    },
+    {
+      "topic": "Nicht vorliegende historische Beschusszeichen als Bildquiz",
+      "reason": "Kein ungesehenes Markenbild wird benannt. Keine allgemeine Munitionsverwendungsfreigabe; konkrete Prüfart und nationale Regeln bleiben getrennt."
+    },
+    {
+      "topic": "Universelle sichere Bleidosis oder Ausschneideabstand",
+      "reason": "Aus Partikelnachweisen, alten Portionsangaben oder eigenen Rechenfällen folgt keine individuelle Verzehrsfreigabe. Alte BLV-PDF mit Dokumentstand 2015 nicht als Studie von 2026 bezeichnet."
+    },
+    {
+      "topic": "Starre Gar-, Labor- und medizinische Behandlungsprotokolle",
+      "reason": "Die sechs Kurse erläutern biologische und physikalische Zusammenhänge. Keine Dosierung, Impfserie, Diagnose, Bakterienanzucht oder pauschale Freigaberegel wird vermittelt."
+    },
+    {
+      "topic": "Aktuelle Zecken-Risikogebietskarte aus alter Broschüre",
+      "reason": "Historische Karten und Häufigkeitsangaben werden nicht als aktueller DACH-Stand verwendet. FSME-Karten sind keine Verbreitungskarten aller Zecken oder Erreger."
+    },
+    {
+      "topic": "Batterie-, Kartenprofil- und Statistikverdopplungen",
+      "reason": "Keine zusätzlichen Fragen zu V/Ah/Wh/Laufzeit, Kartenprofilen oder statistischen Kennzahlen; diese Inhalte werden im parallelen Ausbau gesondert behandelt."
+    }
+  ]
+}

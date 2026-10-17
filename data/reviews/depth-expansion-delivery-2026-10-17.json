@@ -1,0 +1,237 @@
+{
+  "recordedAt": "2026-10-17T06:13:09.904Z",
+  "baseCommit": "7356a4268f5cc0efef5ab7dc0384c6e74a025f44",
+  "scope": "18 neue Kurse in bestehenden Kategorien; keine vollständige Neuprüfung der App und kein neuer iOS-Binary-Build.",
+  "added": {
+    "courses": 18,
+    "lessons": 72,
+    "questions": 528,
+    "eligibleReusedFlashcards": 435
+  },
+  "inventory": {
+    "generatedAt": "2026-10-17T06:12:27.988Z",
+    "courses": 150,
+    "lessons": 671,
+    "courseQuestions": 2314,
+    "centralQuizRecords": 2545,
+    "distinctCentralStems": 2532,
+    "flashcards": 1331,
+    "speciesPortraits": 114,
+    "animalSoundRecordings": 37,
+    "added": {
+      "courses": 18,
+      "lessons": 72,
+      "questions": 528
+    },
+    "expansionBatches": {
+      "firstKnowledgeGrowth": {
+        "courses": 18,
+        "lessons": 72,
+        "questions": 288
+      },
+      "secondScientificDepth": {
+        "courses": 18,
+        "lessons": 72,
+        "questions": 576
+      },
+      "thirdBiologyHabitatPractice": {
+        "courses": 18,
+        "lessons": 72,
+        "questions": 528
+      }
+    },
+    "categories": {
+      "Wildkunde": {
+        "courses": 26,
+        "newQuestions": 96
+      },
+      "Natur & Revier": {
+        "courses": 14,
+        "newQuestions": 64
+      },
+      "Hundewesen": {
+        "courses": 21,
+        "newQuestions": 96
+      },
+      "Waffen & Sicherheit": {
+        "courses": 11,
+        "newQuestions": 24
+      },
+      "Prüfung & Sprache": {
+        "courses": 10,
+        "newQuestions": 24
+      },
+      "Jagdrecht": {
+        "courses": 10,
+        "newQuestions": 0
+      },
+      "Jagdpraxis": {
+        "courses": 11,
+        "newQuestions": 24
+      },
+      "Wildbret & Gesundheit": {
+        "courses": 14,
+        "newQuestions": 72
+      },
+      "Wald & Pflanzen": {
+        "courses": 10,
+        "newQuestions": 64
+      },
+      "Landwirtschaft & Lebensräume": {
+        "courses": 8,
+        "newQuestions": 32
+      },
+      "Ausrüstung & Technik": {
+        "courses": 8,
+        "newQuestions": 32
+      },
+      "Tierschutz & Verantwortung": {
+        "courses": 7,
+        "newQuestions": 0
+      }
+    },
+    "scope": "Course questions are already included in the central pool. Flashcards reuse existing questions. Counts do not mean distinct facts, official examination questions, or complete scientific verification."
+  },
+  "editorialReview": {
+    "fullTextAndQuestionReading": "Alle 72 Lektionen und 528 Fragen mit sämtlichen Optionen, Schlüsseln und Erklärungen in getrennten Autoren- und Gegenprüfungsdurchgängen gelesen.",
+    "sourceScope": "Konkrete Autorenrecherchen mit mehreren unabhängigen Fachquellen; getrennte Gegenlese mit tatsächlich gelesenen aussagebezogenen Originalquellenstichproben. Abstract-/Index- und Zugangsgrenzen stehen in den jeweiligen Berichten. Kein Prüfdatum allein aus einem Link- oder Strukturtest.",
+    "resolvedFindings": [
+      "Pauschalen B-Zell-Reifungsort entfernt; präzise Rezeptorerkennungsfrage",
+      "Kolostrum-Optionen auf dieselbe Antwortkategorie gebracht",
+      "Zwei Flechtenfragen mit fachnäheren falschen Optionen",
+      "Dichte: Hüllvolumen statt Umfang",
+      "Zecken: verständliche Schutzformulierung",
+      "Zwei triviale Field-Fragen verbessert; direkte EFSA-Original-Opinion für Niereneffekt"
+    ],
+    "packages": [
+      {
+        "data": "data/learning-expansion-body-functions-2026-10-17.json",
+        "sha256": "20a7c8f862ea969475348dabaa1d095845875f685af3d693ee2a292a8cf060bb",
+        "gitStoredSha256": "f79e31e9eeac9544ecc7084406a3ed4f10f66910e4a9a8b513502993be834cf5",
+        "parsedJsonSha256": "fb64ea449848baeca6ef59a8b245068029765ceb8346621fbdceca8efd82d731",
+        "authorReview": "data/reviews/learning-expansion-body-functions-2026-10-17.md",
+        "authorReviewSha256": "d81ab51f462df9673137bd86f1c6e75d4acdc4491cbe73185cf4e7c803dffb26",
+        "independentReview": "data/reviews/learning-expansion-body-functions-peer-2026-10-17.md",
+        "independentReviewSha256": "09142736541873f6b83836d3c6c7ddca7413ecc66267bfdcea8238f74c832689"
+      },
+      {
+        "data": "data/learning-expansion-habitat-depth-2026-10-17.json",
+        "sha256": "26653b409d483d00f48938acd132a68a481f52ace477cb6455310ba68331eec2",
+        "gitStoredSha256": "aef43dcff819f99edad80faa615a31f3ce32baaabf076d1c546970d06c8f7b06",
+        "parsedJsonSha256": "98e1d35e2cc815c1630c2b71775988476340b2ef49064320b73e7e230cfb1832",
+        "authorReview": "data/reviews/learning-expansion-habitat-depth-2026-10-17.md",
+        "authorReviewSha256": "34682db6a03ccec749e409e7a6d9da8405a73cf8f01ebd7210ee12e93ea92dcb",
+        "independentReview": "data/reviews/learning-expansion-habitat-depth-peer-2026-10-17.md",
+        "independentReviewSha256": "81172845bd6a19924eadcabe383150fc587b4cc8392217ecbd82f73e7caa0520"
+      },
+      {
+        "data": "data/learning-expansion-field-science-2026-10-17.json",
+        "sha256": "922eb9a6c1c64bf844532db1435e461025360082ec7f6a66294ada973b3aa2c0",
+        "gitStoredSha256": "76e2672895d056a40d9dffb1c46b2abd96dbed2eb3a56171e1ab8d1cc2392463",
+        "parsedJsonSha256": "37dfc7b1b6caafdd60b6b68544e8c2707a127041e74df60c8b3669afb30d4cd8",
+        "authorReview": "data/reviews/learning-expansion-field-science-2026-10-17.md",
+        "authorReviewSha256": "b987a602c9f25877feea97878871d47ac73bf186f67b15f509dc6d53ee6b3f49",
+        "independentReview": "data/reviews/learning-expansion-field-science-peer-2026-10-17.md",
+        "independentReviewSha256": "87ab4a9ee11ba67db551a2f6d095643f7ac2a3f341b1e4ebe407bddfe9489d5c"
+      }
+    ],
+    "hashScope": "sha256 und Bericht-Hashes bezeichnen die tatsächlich geprüften lokalen Windows-Dateibytes. Git normalisiert CRLF zu LF. gitStoredSha256 bezeichnet exakt die gestagten JSON-Bytes; parsedJsonSha256 ist SHA256 von JSON.stringify(JSON.parse(Dateitext)). Die vollständigen geparsten lokalen und gestagten Daten wurden vor Veröffentlichung gleichheitsgeprüft; kein Sachinhalt ändert sich durch die Zeilenenden.",
+    "selectedExistingQuestionReview": "data/reviews/quiz-distractors-selected-2026-10-17.md",
+    "existingQuestionChanges": "Nur zwölf falsche Optionen in vier alten Fragen ersetzt. IDs, richtige Antworttexte, Positionen, Erklärungen und übrige Lehrtexte unverändert. Keine neuen Fragen daraus gezählt."
+  },
+  "delivery": {
+    "categories": "Bestehende Kategorien und deren reale Kategorie-Fotos; keine neuen Medien oder neuen Lizenzbehauptungen.",
+    "navigation": "Suche bis zur konkreten Lektion, direkte Karten je Kurs/Lektion, gemeinsames Quiz, bestehende Offline-Pakete für bis zu acht Kurse.",
+    "regionalQuestions": "Begrenzte countries bleiben erhalten und führen im gemeinsamen Quiz zu Recht mit Länderwahl. Keine biologische Ländertrennung.",
+    "quizOptions": {
+      "commonOptions": {
+        "total": 2373,
+        "topics": [
+          {
+            "name": "Wildkunde",
+            "count": 548
+          },
+          {
+            "name": "Waffen & Sicherheit",
+            "count": 159
+          },
+          {
+            "name": "Jagdpraxis",
+            "count": 149
+          },
+          {
+            "name": "Natur & Revier",
+            "count": 230
+          },
+          {
+            "name": "Hundewesen",
+            "count": 354
+          },
+          {
+            "name": "Wildbret & Gesundheit",
+            "count": 240
+          },
+          {
+            "name": "Prüfung & Sprache",
+            "count": 144
+          },
+          {
+            "name": "Wald & Pflanzen",
+            "count": 194
+          },
+          {
+            "name": "Landwirtschaft & Lebensräume",
+            "count": 130
+          },
+          {
+            "name": "Ausrüstung & Technik",
+            "count": 128
+          },
+          {
+            "name": "Tierschutz & Verantwortung",
+            "count": 97
+          }
+        ]
+      },
+      "countryOptions": [
+        {
+          "code": "DE",
+          "name": "Deutschland",
+          "count": 90
+        },
+        {
+          "code": "AT",
+          "name": "Österreich",
+          "count": 84
+        },
+        {
+          "code": "CH",
+          "name": "Schweiz",
+          "count": 80
+        }
+      ]
+    },
+    "flashcardTransport": {
+      "total": 1331,
+      "revision": "b713085fd127f0d2c463bf934aaf43e489365c2fd9740451b1a68f3fc9538762",
+      "sizes": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        51
+      ],
+      "largestPackageBytes": 155732
+    },
+    "verification": {
+      "targetedTestsPassed": 261,
+      "targetedTestsFailed": 0,
+      "testLog": "work/depth-expansion-tests-2026-10-17.log (task workspace)",
+      "build": "Next production build, exit 0, 399 static pages",
+      "buildLog": "work/depth-expansion-build-2026-10-17.log (task workspace)",
+      "limits": "Live-Kontrolle der neuen Veröffentlichung folgt separat. Keine physische iPhone-, iPad- oder Android-Geräteprüfung aus diesen Strukturtests abgeleitet."
+    }
+  },
+  "overallGoal": "Weiter offen. 30000 Fragen und 10000 Karten bleiben Planungsuntergrenzen; dieser Stand belegt weder einen Nr.-1-Status noch doppelte Größe gegenüber einem vollständig erhobenen Konkurrenzinventar. Lernkarten verwenden vorhandene Fragen und sind keine zusätzlichen eigenständigen Fakten."
+}

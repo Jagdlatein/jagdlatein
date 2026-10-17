@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-10-17T06:12:27.988Z",
+  "courses": 150,
+  "lessons": 671,
+  "courseQuestions": 2314,
+  "centralQuizRecords": 2545,
+  "distinctCentralStems": 2532,
+  "flashcards": 1331,
+  "speciesPortraits": 114,
+  "animalSoundRecordings": 37,
+  "added": {
+    "courses": 18,
+    "lessons": 72,
+    "questions": 528
+  },
+  "expansionBatches": {
+    "firstKnowledgeGrowth": {
+      "courses": 18,
+      "lessons": 72,
+      "questions": 288
+    },
+    "secondScientificDepth": {
+      "courses": 18,
+      "lessons": 72,
+      "questions": 576
+    },
+    "thirdBiologyHabitatPractice": {
+      "courses": 18,
+      "lessons": 72,
+      "questions": 528
+    }
+  },
+  "categories": {
+    "Wildkunde": {
+      "courses": 26,
+      "newQuestions": 96
+    },
+    "Natur & Revier": {
+      "courses": 14,
+      "newQuestions": 64
+    },
+    "Hundewesen": {
+      "courses": 21,
+      "newQuestions": 96
+    },
+    "Waffen & Sicherheit": {
+      "courses": 11,
+      "newQuestions": 24
+    },
+    "Prüfung & Sprache": {
+      "courses": 10,
+      "newQuestions": 24
+    },
+    "Jagdrecht": {
+      "courses": 10,
+      "newQuestions": 0
+    },
+    "Jagdpraxis": {
+      "courses": 11,
+      "newQuestions": 24
+    },
+    "Wildbret & Gesundheit": {
+      "courses": 14,
+      "newQuestions": 72
+    },
+    "Wald & Pflanzen": {
+      "courses": 10,
+      "newQuestions": 64
+    },
+    "Landwirtschaft & Lebensräume": {
+      "courses": 8,
+      "newQuestions": 32
+    },
+    "Ausrüstung & Technik": {
+      "courses": 8,
+      "newQuestions": 32
+    },
+    "Tierschutz & Verantwortung": {
+      "courses": 7,
+      "newQuestions": 0
+    }
+  },
+  "scope": "Course questions are already included in the central pool. Flashcards reuse existing questions. Counts do not mean distinct facts, official examination questions, or complete scientific verification."
+}
