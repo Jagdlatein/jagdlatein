@@ -1,0 +1,51 @@
+{
+  "reviewedOn": "2026-10-17",
+  "scope": "Technische Auslieferung der bestehenden Lernkarten; keine neue fachliche Prüfung und keine zusätzlichen Lerninhalte.",
+  "publishedContentBasis": {
+    "cards": 896,
+    "parts": 4,
+    "partCardCounts": [256, 256, 256, 128],
+    "largestResponseBytes": 157096,
+    "revision": "dcda9a7c43b404b5241df5988a0881faf17dbc1a2d4c05f82178d777bebe0b14"
+  },
+  "delivery": {
+    "firstRenderMaximumCards": 24,
+    "maximumPartCards": 256,
+    "maximumPartBytes": 262144,
+    "maximumParallelRequests": 3,
+    "perRequestTimeoutSeconds": 15,
+    "fullSelectionPublishedToUIOnlyAfterAllPartsValidate": true,
+    "sourceLabelsImagesAndOrderPreserved": true,
+    "revisionConflictOffersActualPageRefresh": true,
+    "paidOrAdminAuthorizationRequiredForEveryPart": true,
+    "privateNoStore": true,
+    "oldSmallUnpagedClientsRemainCompatible": true,
+    "oldUnpagedResponseMaximumBytes": 3145728
+  },
+  "verification": {
+    "targetedTestsPassed": 188,
+    "targetedTestsFailed": 0,
+    "testLog": "work/flashcard-paging-release-tests-2026-10-17.log (task workspace)",
+    "nextProductionBuildExitCode": 0,
+    "staticPagesBuilt": 381,
+    "buildLog": "work/flashcard-paging-build-2026-10-17.log (task workspace)",
+    "independentCodeReview": "review_flashcard_paging; 409 retry-loop finding fixed and checked; abort timer cleanup checked",
+    "capacityFixture": "10,000 synthetic records used only for transport round-trip tests; excluded from content inventory",
+    "cases": [
+      "exact real catalog round trip including sources, source labels, photographs and editorial dates",
+      "adaptive byte-size splitting and rejection of one oversized record",
+      "out-of-order arrival with at most three parallel requests",
+      "deployment revision, exact scope, part index and manifest validation",
+      "cross-part duplicate IDs and changed seed answers rejected",
+      "timeouts, cancellation, old ignored-abort responses and retry",
+      "print button and articles remain blocked until complete; failed second part never becomes printable",
+      "unsigned and unpaid requests rejected before content lookup",
+      "old response compatibility and bounded refresh response for oversized legacy requests"
+    ]
+  },
+  "limits": [
+    "Capacity fixtures do not establish performance on a real iPhone, iPad or Android device.",
+    "Digital recall and course questions reuse learning facts and are not counted as separate independent facts.",
+    "The overall expansion goal has not been achieved."
+  ]
+}

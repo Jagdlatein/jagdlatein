@@ -368,11 +368,11 @@ test('Expanded cards preserve the active category, typed search and revealed ans
   } finally { e.unmount(); h.cleanup(); b.restore(); }
 });
 
-function printHarness() {
+function printHarness(props = baseProps) {
   const e = engine();
   const Page = load('pages/lernen/lernkarten-drucken.js', { react: e.hooks }).default;
   let tree;
-  const render = () => { tree = e.render(() => Page(baseProps)); };
+  const render = () => { tree = e.render(() => Page(props)); };
   const settleRender = () => { render(); e.flush(); render(); e.flush(); render(); };
   settleRender();
   return { e, get tree() { return tree; }, settleRender, async settle() { await settlePromises(); settleRender(); },
@@ -449,5 +449,73 @@ test('A same-sized response may not silently discard a learner\'s initial cards'
     assert.deepEqual(h.value.cards, seedCards, 'a revealed starting card remains usable on a mismatched server response');
     assert.equal(h.value.incomplete, true);
     assert.match(h.value.loadError, /unvollständig/);
+  } finally { h.cleanup(); b.restore(); }
+});
+
+test('A deployment revision conflict reloads current page data instead of repeatedly requesting an obsolete snapshot', async () => {
+  const b = browser(() => Promise.resolve(response(409))); const h = hookHarness();
+  let refreshes = 0; window.location = { reload: () => refreshes++ };
+  try {
+    h.flush(); await h.settle();
+    assert.match(h.value.loadError, /aktualisiert/);
+    assert.equal(h.value.incomplete, true);
+    h.value.onReload(); h.flush(); await h.settle();
+    assert.equal(refreshes, 1);
+    assert.equal(b.calls.length, 1, 'the old manifest must not be fetched again');
+    assert.deepEqual(h.value.cards, seedCards);
+  } finally { h.cleanup(); b.restore(); }
+});
+
+test('Paged hook retains only the seed until every valid package arrives, then exposes all cards', async () => {
+  const { getFlashcardSnapshot } = load('lib/flashcard-snapshot.js');
+  const snapshot = getFlashcardSnapshot({ version: 1, title: 'Ausgangswissen', cards: fullCards, categories });
+  // Split this tiny fixture manually so a partial success really is exercised.
+  const paging = { ...snapshot.manifest, sizes: [2, 2] };
+  const parts = [makeDeck(seedCards), makeDeck(fullCards.slice(2))].map((part, i) => ({ ...part, paging: { ...paging, part: i } }));
+  const first = deferred(), second = deferred();
+  const b = browser(url => new URL(url, 'https://jagdlatein.test').searchParams.get('part') === '0' ? first.promise : second.promise);
+  const h = hookHarness({ ...baseProps, deck: { ...seedDeck, paging } });
+  try {
+    h.flush(); assert.equal(b.calls.length, 2);
+    first.resolve(response(200, parts[0])); await h.settle();
+    assert.equal(h.value.incomplete, true); assert.deepEqual(h.value.cards, seedCards);
+    second.resolve(response(200, parts[1])); await h.settle();
+    assert.equal(h.value.incomplete, false); assert.deepEqual(h.value.cards, fullCards);
+  } finally { h.cleanup(); b.restore(); }
+});
+
+test('Paged printing stays blocked after a valid first package and never prints an incomplete or failed selection', async () => {
+  const { getFlashcardSnapshot } = load('lib/flashcard-snapshot.js');
+  const snapshot = getFlashcardSnapshot({ version: 1, title: 'Ausgangswissen', cards: fullCards, categories });
+  const paging = { ...snapshot.manifest, sizes: [2, 2] };
+  const parts = [makeDeck(seedCards), makeDeck(fullCards.slice(2))].map((part, i) => ({ ...part, paging: { ...paging, part: i } }));
+  for (const failure of [false, true]) {
+    const first = deferred(), second = deferred();
+    const b = browser(url => new URL(url, 'https://jagdlatein.test').searchParams.get('part') === '0' ? first.promise : second.promise);
+    const p = printHarness({ ...baseProps, deck: { ...seedDeck, paging } });
+    try {
+      first.resolve(response(200, parts[0])); await p.settle();
+      assert.equal(p.printButton.props.disabled, true); assert.equal(find(p.tree, node => node.type === 'article'), null);
+      second.resolve(response(failure ? 503 : 200, parts[1])); await p.settle();
+      assert.equal(p.printButton.props.disabled, failure);
+      assert.equal(Boolean(find(p.tree, node => node.type === 'article')), !failure);
+      assert.equal(b.prints, 0);
+      if (!failure) { assert.match(words(p.tree), /4 Karten drucken/); p.printButton.props.onClick(); assert.equal(b.prints, 1); }
+    } finally { p.cleanup(); b.restore(); }
+  }
+});
+
+test('An aborted paged selection cannot replace a newly complete lesson even if its fetch ignores abort', async () => {
+  const { getFlashcardSnapshot } = load('lib/flashcard-snapshot.js');
+  const snapshot = getFlashcardSnapshot({ version: 1, title: 'Ausgangswissen', cards: fullCards, categories });
+  const pending = deferred(); const b = browser(() => pending.promise);
+  const h = hookHarness({ ...baseProps, deck: { ...seedDeck, paging: snapshot.manifest } });
+  try {
+    h.flush();
+    const next = [card('new-lesson', 'hundewesen', 'Nächste Lektion?', 'Ihre eigene Antwort.')];
+    h.setProps({ deck: makeDeck(next), remote: false, totalCount: 1 }); h.flush();
+    assert.equal(b.calls[0].options.signal.aborted, true);
+    pending.resolve(response(200, snapshot.parts[0])); await h.settle();
+    assert.deepEqual(h.value.cards, next); assert.equal(h.value.incomplete, false); assert.equal(h.value.loadError, '');
   } finally { h.cleanup(); b.restore(); }
 });
