@@ -203,6 +203,19 @@ test('Detailed courses show the legal scope of regional questions while retainin
   const progress = find(s.tree, node => node.type === 'progress'); assert.equal(progress.props.max, module.questions.length);
 });
 
+test('Identical shared biology notes do not add a redundant three-country disclosure, while actual differences remain visible', () => {
+  const source = load('lib/learning-curriculum.js').learningModules.find(entry => entry.category === 'Wildkunde');
+  const common = 'Gemeinsames biologisches Lernwissen.';
+  const module = { ...source, countryNotes: { DE: common, AT: common, CH: common } };
+  const s = setup('components/LearningCourse.js', { module }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
+  assert.doesNotMatch(words(s.tree), /Regionale Vorschriften und Hinweise|Länderschwerpunkt/);
+  assert.equal(words(s.tree).split(common).length - 1, 1, 'shared scope guidance remains visible exactly once');
+  const different = { ...module, countryNotes: { ...module.countryNotes, CH: 'Ein konkret anderer regionaler Hinweis.' } };
+  const regional = setup('components/LearningCourse.js', { module: different }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
+  assert.match(words(regional.tree), /Regionale Vorschriften und Hinweise/);
+  assert.match(words(regional.tree), /Ein konkret anderer regionaler Hinweis/);
+});
+
 test('Every practice page and result uses one shared heading, browser title and learning navigation', async () => {
   const files = fs.readdirSync(path.join(root, 'pages/jagdpraxis')).filter(file => file.endsWith('.js'));
   assert.equal(files.length, 39);

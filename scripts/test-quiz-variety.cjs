@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { createLoader } = require('./helpers/project-module.cjs');
+const { createLoader, local } = require('./helpers/project-module.cjs');
 const load = createLoader();
 const { QUESTIONS, filterQuestions } = load('data/questions-full.js');
 const { reviewedQuizDuplicateGroups, variedQuizPool } = load('lib/quiz-question-variety.js');
@@ -60,6 +60,35 @@ test('Legacy topic links still select their original non-legal records and law n
     assert.deepEqual(quizLearningPool(QUESTIONS, { country, topic: 'Jagdrecht' }), quizLearningPool(QUESTIONS, { country, topic: 'Recht' }));
     for (const topic of ['Wildkunde', 'Waffen & Sicherheit', 'Wildbret & Gesundheit', 'Hege/Naturschutz']) assert.ok(!quizLearningPool(QUESTIONS, { country, topic }).some(q => quizQuestionTopic(q) === 'Recht'));
   }
+});
+
+test('Actual quiz entry pages retain each legacy topic, its exact pool and the resulting start link', async () => {
+  const React = local('react');
+  const { renderToStaticMarkup } = local('react-dom/server');
+  const entryLoader = createLoader({ 'next/link': ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children) });
+  const Page = entryLoader('app/quiz-app/page.jsx').default;
+  const ordinary = await Page({ searchParams: Promise.resolve({}) });
+  assert.equal(ordinary.props.commonOptions.topics.length, 11);
+  for (const topic of ['Federwild', 'Rehwild', 'Hege/Naturschutz', 'Waffen & Schuss', 'Prüfungsvorbereitung']) {
+    const page = await Page({ searchParams: Promise.resolve({ country: 'CH', topic }) });
+    assert.equal(page.props.initialTopic, topic);
+    const option = page.props.commonOptions.topics.find(item => item.name === topic);
+    assert.deepEqual(option, { name: topic, count: quizLearningPool(QUESTIONS, { topic }).length });
+    assert.equal(page.props.commonOptions.topics.length, 12);
+    const html = renderToStaticMarkup(page);
+    assert.ok(html.includes(`href="/quiz-app/run?topic=${encodeURIComponent(topic)}"`), topic);
+    assert.ok(html.includes(`value="${topic.replace(/&/g, '&amp;')}" selected=""`), topic);
+    assert.ok(html.includes(`aus ${option.count} verfügbaren Fragen`), topic);
+    assert.ok(!html.includes('Für welches Land möchtest du Recht üben?'));
+  }
+  const law = await Page({ searchParams: { country: 'CH', topic: 'Jagdrecht' } });
+  assert.equal(law.props.initialTopic, 'Recht');
+  assert.equal(law.props.commonOptions.topics.length, 11);
+  assert.ok(renderToStaticMarkup(law).includes('href="/quiz-app/run?country=CH&amp;topic=Recht"'));
+  const invalid = await Page({ searchParams: { topic: 'invented-topic' } });
+  assert.equal(invalid.props.initialTopic, 'Alle');
+  assert.equal(invalid.props.commonOptions.topics.length, 11);
+  assert.equal(ordinary.props.commonOptions.topics.length, 11, 'request-specific topic must not mutate another request');
 });
 
 test('The ranked server accepts every shared category and selects from its exact pool without touching scores', () => {

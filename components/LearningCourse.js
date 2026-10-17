@@ -28,7 +28,10 @@ function LearningContent({ module, flashcards }) {
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
   const countrySelection = category?.slug === "jagdrecht";
-  const regionalNotes = module.countries.filter((item) => module.countryNotes?.[item]);
+  const availableNotes = module.countries.filter((item) => module.countryNotes?.[item]);
+  const distinctNotes = new Set(availableNotes.map(item => module.countryNotes[item].trim().replace(/\s+/g, " ")));
+  const regionalNotes = availableNotes.length === 1 || distinctNotes.size > 1 ? availableNotes : [];
+  const commonNote = !countrySelection && availableNotes.length > 1 && distinctNotes.size === 1 ? module.countryNotes[availableNotes[0]] : "";
   const [country, setCountry] = useState(module.countries[0]);
   const [lessonIndex, setLessonIndex] = useState(0);
   const lessonHeading = useRef(null);
@@ -131,6 +134,7 @@ function LearningContent({ module, flashcards }) {
               </div>
             </fieldset>}
             {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
+            {commonNote && <p className={styles.countryNote}>{commonNote}</p>}
             {!countrySelection && regionalNotes.length > 0 && <details className={styles.regionalNotes}>
               <summary>Regionale Vorschriften und Hinweise</summary>
               <p>Für die praktische Anwendung beachtest du die örtlichen Vorgaben und den Geltungsbereich der Quellen.</p>

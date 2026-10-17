@@ -5,7 +5,8 @@
     "before": "22 teils überlappende Themenbezeichnungen",
     "after": "Die elf gemeinsamen Kategorien des Lernbereichs; Jagdrecht mit eigener Länderwahl als zwölfter Bereich",
     "detailedCourseCategoryPreserved": true,
-    "oldDirectTopicLinksStillSupported": true,
+    "oldDirectRoundTopicLinksStillSupported": true,
+    "legacyEntryLinkCorrection": "Die erste Veröffentlichung behielt alte direkte Rundenfilter bei, erweiterte aber alte Einstiegslinks wie Federwild irrtümlich zur Oberkategorie Wildkunde. Die anschließende Gegenprüfung deckte dies auf. Der Einstieg erhält nun ausschließlich für das angeforderte bekannte Alt-Thema eine zusätzliche ausgewählte Option mit dem exakten ursprünglichen Fragenpool. Ein Test führt die tatsächliche Page bis zum gerenderten Startlink aus.",
     "legalQuestionsExcludedFromGeneralCategories": true,
     "mixedQuizSelectableQuestions": 1859,
     "countryLegalPools": { "DE": 82, "AT": 81, "CH": 76 }
@@ -22,7 +23,8 @@
     "biologyPreviousReviewedSnapshotSha256": "b25555f1d9f69d6815b249115e184ec59ce5e39de7b3dd17c421b6d016cc7700",
     "biologyAfterEditorialHeadingSha256": "8cd1ac6244c39e18e9e2728234c7030445f5e3c735bb2bdc1b474aaa3ee9c231",
     "genericCategoryDiagramsHiddenInDetailedEvidenceCourses": true,
-    "diagramReason": "Ein allgemeines Diagramm zur Hundewahl erläutert beispielsweise keine Zahnformel. Bestehende Fotos, Lektionen und Quellen bleiben sichtbar. Andere Kurse behalten ihre bisherigen Diagramme."
+    "diagramReason": "Ein allgemeines Diagramm zur Hundewahl erläutert beispielsweise keine Zahnformel. Bestehende Fotos, Lektionen und Quellen bleiben sichtbar. Andere Kurse behalten ihre bisherigen Diagramme.",
+    "commonCountryNotes": "Identische Hinweise für mehrere Länder erscheinen einmal sichtbar. Tatsächlich unterschiedliche Hinweise behalten die regionale Aufklappung. Der gemeinsame Text wird nicht verworfen."
   },
   "verification": {
     "targetedTestsPassed": 256,
@@ -30,6 +32,15 @@
     "testLog": "work/quiz-clarity-tests-2026-10-17.log (task workspace)",
     "build": "Next production build successful, exit 0, 381 static pages",
     "buildLog": "work/quiz-clarity-build-2026-10-17.log (task workspace)"
+  },
+  "subsequentEntryCorrectionVerification": {
+    "independentCodeReview": "Die frühere Gegenprüfung fand den erweiterten Alt-Einstiegsfilter. Die anschließende Korrektur wurde separat gegengelesen und die tatsächliche Einstiegsseite bis zum Startlink getestet.",
+    "targetedTestsPassed": 20,
+    "legacyFederwildPool": 45,
+    "legacyRehwildPool": 12,
+    "ordinarySharedCategories": 11,
+    "build": "Next production build successful, exit 0, 381 static pages",
+    "buildLog": "work/quiz-entry-fix-build-2026-10-17.log (task workspace)"
   },
   "previousDeliveryLiveCheck": {
     "commit": "f338b06fc976b44d57d4ad457d19382505f65549",
