@@ -1,0 +1,458 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Vier konkrete Artenlektionen zur Winterbestimmung von Laubbäumen. Knospenmerkmale stehen im Mittelpunkt; wenige Blatt- und Fruchtmerkmale ergänzen den Vergleich. Keine vollständige Flora und keine Verzehr-, Gesundheits- oder Standortfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-winterknospen-2026",
+      "title": "Bäume im Winter: Buche, Hainbuche, Esche und Bergahorn",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Vier häufig behandelte Laubbäume an Knospen erkennen und mit Blatt- oder Fruchtmerkmalen verbinden.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "objectives": [
+        "Abstehende und anliegende Knospen vergleichen",
+        "Rotbuche und Hainbuche auseinanderhalten",
+        "Schwarze Eschenknospen und grüne Bergahornknospen erkennen",
+        "Knospen, Blätter und Früchte derselben Art zusammenführen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame botanische Artmerkmale; keine Aussage zu landesspezifischen Prüfungsfragen oder zur Nutzung eines gefundenen Gehölzes.",
+        "AT": "Gemeinsame botanische Artmerkmale; keine Aussage zu landesspezifischen Prüfungsfragen oder zur Nutzung eines gefundenen Gehölzes.",
+        "CH": "Gemeinsame botanische Artmerkmale; keine Aussage zu landesspezifischen Prüfungsfragen oder zur Nutzung eines gefundenen Gehölzes."
+      },
+      "sources": [
+        {
+          "label": "FAZ Mattenhof / Regierungspräsidium Freiburg: Baum- und Straucharten im Winter, Stand Februar 2024",
+          "url": "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf",
+          "organization": "Forstliches Ausbildungszentrum Mattenhof / Regierungspräsidium Freiburg",
+          "supports": "Artenbezogene Knospenmerkmale auf den bedruckten Seiten 3 bis 5: Bergahorn, Esche, Hainbuche und Rotbuche. Keine Übernahme von Fotografien oder Abbildungen."
+        },
+        {
+          "label": "Woodland Trust: Common beech – Fagus sylvatica",
+          "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/common-beech/",
+          "organization": "Woodland Trust",
+          "supports": "Rotbuche: spitze, vom Zweig abstehende Winterknospen mit Schuppen sowie ergänzende Rinden- und Blattmerkmale. Keine britischen Herkunfts- oder Höchstmaßangaben übernommen."
+        },
+        {
+          "label": "Landesforsten Rheinland-Pfalz: Rot-Buche",
+          "url": "https://www.wald.rlp.de/wald/baeume-unserer-waelder/rotbuche",
+          "organization": "Landesforsten Rheinland-Pfalz",
+          "supports": "Rotbuchenknospen schlank, spitz, vielschuppig und deutlich abstehend; eigenständiger institutioneller Abgleich."
+        },
+        {
+          "label": "Woodland Trust: Hornbeam – Carpinus betulus",
+          "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/hornbeam/",
+          "organization": "Woodland Trust",
+          "supports": "Hainbuche: anliegende Knospen, gegenüber Rotbuche kürzere Knospen; dreilappiges Fruchthochblatt, gesägter Blattrand und Birkengewächse."
+        },
+        {
+          "label": "LfL: Hainbuche – Kurzbeschreibung heimischer Gehölze",
+          "url": "https://www.lfl.bayern.de/iab/kulturlandschaft/178833/index.php",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft",
+          "supports": "Hainbuche: spindelig zugespitzte vielschuppige Knospen; Nüsschen mit dreilappigem Hochblatt; gesägte Blätter und Familie Betulaceae. Keine pauschalen Standort- oder Höhenangaben übernommen."
+        },
+        {
+          "label": "LfL: Gemeine Esche – Kurzbeschreibung heimischer Gehölze",
+          "url": "https://www.lfl.bayern.de/iab/kulturlandschaft/181306/index.php",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft",
+          "supports": "Gemeine Esche: mattschwarze gegenständige Knospen, größere Terminalknospe; unpaarig gefiederte Blätter und geflügelte Früchte. Keine starre Größen-, Blüh- oder Mastperiode übernommen."
+        },
+        {
+          "label": "Woodland Trust: Ash – Fraxinus excelsior",
+          "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/ash/",
+          "organization": "Woodland Trust",
+          "supports": "Gemeine Esche: schwarze Knospen in gegenüberstehenden Paaren, gefiederte Blätter mit Endblättchen und geflügelte Früchte. Keine Krankheitsdiagnose oder britische Verbreitungsangabe übernommen."
+        },
+        {
+          "label": "Gregor Aas / LWF Wissen 62: Bergahorn – Verwandtschaft, Verbreitung und Biologie",
+          "url": "https://www.lfl.bayern.de/mam/cms04/service/dateien/w62_bergahorn.pdf",
+          "organization": "Ökologisch-Botanischer Garten Universität Bayreuth / Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "supports": "Originalbeitrag und Steckbrief, besonders bedruckte Seite 12: eiförmige grüne Knospen, gegenständige abstehende Seitenknospen und größere Endknospe. Mögliche rötliche Tönung berücksichtigt; keine exakten Maße, Häufigkeiten oder Verbreitungsgrenzen übernommen."
+        },
+        {
+          "label": "Dan Crowley / Trees and Shrubs Online: Acer pseudoplatanus (2020)",
+          "url": "https://www.treesandshrubsonline.org/articles/acer/acer-pseudoplatanus/",
+          "organization": "International Dendrology Society",
+          "supports": "Taxonomischer Artabschnitt: eiförmige grüne Knospen, teilweise rötliche Spitzen. Unabhängiger Abgleich zum LWF-Steckbrief, ohne Übernahme der Maße oder Herkunftsaussagen."
+        },
+        {
+          "label": "Owen Johnson / Trees and Shrubs Online: Carpinus betulus (2022)",
+          "url": "https://www.treesandshrubsonline.org/articles/carpinus/carpinus-betulus/",
+          "organization": "International Dendrology Society",
+          "supports": "Taxonomischer Artabschnitt: schlanke lang zugespitzte Knospen; dreilappiges Fruchthochblatt und gezähntes Laub. Keine Maße, Standort- oder Nutzungsbehauptungen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "rotbuche",
+          "title": "Rotbuche: lange Spitzen stehen vom Zweig ab",
+          "paragraphs": [
+            "Die Rotbuche heißt wissenschaftlich Fagus sylvatica. Ihre Winterknospen sind auffallend schlank und lang zugespitzt. Viele überlappende Schuppen umgeben die Knospe. Die seitlichen Knospen liegen nicht flach am Zweig, sondern stehen deutlich davon ab. Form, Schuppen und Stellung ergeben zusammen das hier wichtige Wintermerkmal.",
+            "An einem seitlich betrachteten Zweig kannst du den Abstand zwischen Knospenspitze und Zweig gut verfolgen. Zum Vergleich: Die Hainbuche besitzt enger anliegende Knospen. Ein ähnlicher deutscher Name ersetzt diesen Merkmalsvergleich nicht. Bei der Rotbuche unterstützt häufig die glatte graue Rinde die Ansprache; sie ist aber nicht allein auf diese Art beschränkt.",
+            "Eigenes schriftliches Lernbeispiel: Notiere bei einem beschriebenen Zweig „lange schmale Knospen, viele Schuppen, deutlich abstehend“. Ordne die Kombination der Rotbuche zu und benenne anschließend den Unterschied zur Hainbuche. Dafür wird weder ein Zweig abgebrochen noch eine Knospe aufgeschnitten."
+          ],
+          "takeaway": "Typische Rotbuchenknospen sind schlank, lang zugespitzt, vielschuppig und deutlich vom Zweig abstehend.",
+          "exercise": "Erkläre die Lage einer abstehenden Knospe mit einer einfachen Zweigskizze. Beschrifte Rotbuche / Fagus sylvatica."
+        },
+        {
+          "id": "hainbuche",
+          "title": "Hainbuche: die Knospen liegen näher am Zweig",
+          "paragraphs": [
+            "Die Hainbuche, Carpinus betulus, hat ebenfalls zugespitzte Knospen mit vielen Schuppen. Anders als die deutlich abstehenden Rotbuchenknospen liegen ihre Seitenknospen eng am Zweig. Sie sind schlank und zur Spitze hin verjüngt. „Spitz“ allein trennt die beiden Arten deshalb noch nicht; die Stellung am Zweig ist der zusätzliche Schlüssel.",
+            "Die Hainbuche gehört zu den Birkengewächsen, Betulaceae. Ein ergänzendes Fruchtmerkmal ist das Nüsschen an einem dreilappigen Hochblatt. Dieses blattartige Gebilde gehört zum Fruchtstand und ist kein dreilappiges gewöhnliches Laubblatt. Die eigentlichen Laubblätter der Hainbuche besitzen einen gesägten Rand.",
+            "Eigenes Lernbeispiel: Lege in einer Zeichnung eine schmale Knospe dicht neben den Zweig und eine zweite schräg davon weg. Beschrifte die erste mit Hainbuche und die zweite mit Rotbuche. Ergänze beim Hainbuchenfruchtstand ein Nüsschen und das dreilappige Hochblatt als getrennte Teile."
+          ],
+          "takeaway": "Hainbuchenknospen sind zugespitzt, vielschuppig und eng anliegend; das Nüsschen trägt ein dreilappiges Hochblatt.",
+          "exercise": "Verbinde Carpinus betulus mit Knospenstellung, Birkengewächsen und Fruchthochblatt – nicht mit einer beliebigen dreilappigen Blattspreite."
+        },
+        {
+          "id": "esche",
+          "title": "Gemeine Esche: schwarze Knospen in Paaren",
+          "paragraphs": [
+            "Die Gemeine Esche, Fraxinus excelsior, besitzt auffällige mattschwarze Winterknospen. Die seitlichen Knospen stehen paarweise gegenüber. Diese gegenständige Anordnung unterscheidet sich von einem einzelnen, seitlich wechselnden Knospenansatz. Am Triebende fällt die größere Endknospe auf; sie wird auch Terminalknospe genannt.",
+            "Für die Verbindung zum belaubten Baum ist der Blattbau wichtig: Ein typisches Eschenblatt ist unpaarig gefiedert. Mehrere Fiederblättchen sitzen an der gemeinsamen Blattachse, dazu kommt ein Endblättchen. Die länglichen geflügelten Früchte sind ein weiteres Merkmal. Ein Fiederblättchen ist daher nicht mit dem gesamten zusammengesetzten Blatt gleichzusetzen.",
+            "Im Vergleich dieser vier Kursarten führt die Kombination aus schwarzen Knospen und gegenüberstehenden Paaren zur Gemeinen Esche. Gegenständigkeit allein genügt nicht: Auch der Bergahorn besitzt gegenüberstehende Seitenknospen, deren Schuppen normalerweise grün statt schwarz sind. Ein unbekannter Zweig wird anhand mehrerer Merkmale mit dem vollständigen Artenschlüssel verglichen."
+          ],
+          "takeaway": "Fraxinus excelsior verbindet schwarze gegenständige Knospen mit einer größeren Endknospe und unpaarig gefiederten Laubblättern.",
+          "exercise": "Zeichne ein Knospenpaar am Zweig und daneben ein gefiedertes Blatt. Markiere beim Blatt das einzelne Endblättchen."
+        },
+        {
+          "id": "bergahorn",
+          "title": "Bergahorn: grüne Knospen gegenüberstellen",
+          "paragraphs": [
+            "Der Bergahorn heißt Acer pseudoplatanus. Seine Winterknospen besitzen normalerweise grüne bis gelbgrüne Schuppen und sind eiförmig. Die Seitenknospen stehen gegenständig und von der Sprossachse ab. Die Endknospe ist deutlich größer als die Seitenknospen. Die sonst grüne Knospe kann auch eine rötliche Tönung zeigen; ein starres „jede Knospe immer rein grün“ wäre deshalb falsch.",
+            "Das Paarmerkmal verbindet Bergahorn und Gemeine Esche, während die typische Knospenfarbe sie im hier behandelten Vergleich trennt: grün beim Bergahorn, schwarz bei der Esche. „Endknospe“ bezeichnet die Lage am Triebende, nicht eine eigene Farbe. „Seitenknospe“ bezeichnet dagegen die Lage seitlich am Trieb.",
+            "Eigenes Lernbeispiel: Beschrifte eine Skizze mit einer großen grünen Endknospe und zwei kleineren gegenüberstehenden Seitenknospen als Bergahorn. Stelle daneben die schwarze Eschenknospe. Diese begrenzte Vier-Arten-Übung ist kein Bestimmungsschlüssel für alle Ahorne, Eschen oder Gartenformen."
+          ],
+          "takeaway": "Typische Bergahornknospen sind grün bis gelbgrün; gegenständige Seitenknospen und eine größere Endknospe ergänzen das Farbmerkmal.",
+          "exercise": "Erkläre an deiner Zeichnung den Unterschied zwischen Farbe, Form und Stellung einer Knospe, ohne diese Merkmale zu vermischen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "rotbuche",
+          "q": "Welche Knospenkombination ist für die Rotbuche im Winter typisch?",
+          "options": [
+            "Grüne gegenüberstehende Knospen mit deutlich größerer Endknospe.",
+            "Mattschwarze Knospen in gegenüberstehenden Paaren.",
+            "Lange schlanke Spitzen, viele Schuppen und deutlicher Abstand zum Zweig.",
+            "Schlanke zugespitzte Seitenknospen, die eng am Zweig anliegen."
+          ],
+          "answer": 2,
+          "explain": "Bei der Rotbuche werden lange zugespitzte, vielschuppige und abstehende Knospen gemeinsam betrachtet."
+        },
+        {
+          "id": "q2",
+          "lessonId": "rotbuche",
+          "q": "Wie stehen typische seitliche Winterknospen der Rotbuche zum Zweig?",
+          "options": [
+            "Sie stehen deutlich vom Zweig ab.",
+            "Sie sind vollständig unter der Rinde verborgen.",
+            "Sie liegen ohne Abstand flach am Zweig an.",
+            "Sie sitzen ausschließlich auf der Wurzeloberfläche."
+          ],
+          "answer": 0,
+          "explain": "Die abstehende Stellung ist ein wichtiges Rotbuchenmerkmal und hilft beim Vergleich mit der anliegenden Hainbuchenknospe."
+        },
+        {
+          "id": "q3",
+          "lessonId": "rotbuche",
+          "q": "Wie ist die Hülle einer typischen Winterknospe der Rotbuche aufgebaut?",
+          "options": [
+            "Aus zwei langen Nadeln in einem Bündel.",
+            "Aus einem dreilappigen Fruchthochblatt.",
+            "Aus einem vollständig offenen, schuppenlosen Blattbüschel.",
+            "Aus zahlreichen überlappenden Knospenschuppen."
+          ],
+          "answer": 3,
+          "explain": "Die Rotbuchenknospe ist vielschuppig. Ein Nadelbündel oder Fruchthochblatt ist ein anderes Pflanzengebilde."
+        },
+        {
+          "id": "q4",
+          "lessonId": "rotbuche",
+          "q": "Welcher wissenschaftliche Artname gehört zur Rotbuche?",
+          "options": [
+            "Carpinus betulus.",
+            "Fagus sylvatica.",
+            "Acer pseudoplatanus.",
+            "Fraxinus excelsior."
+          ],
+          "answer": 1,
+          "explain": "Fagus sylvatica ist der wissenschaftliche Artname der Rotbuche."
+        },
+        {
+          "id": "q5",
+          "lessonId": "hainbuche",
+          "q": "Welches Wintermerkmal der Hainbuche trennt sie besonders von der Rotbuche?",
+          "options": [
+            "Ihre Knospen bestehen aus paarweise gebündelten Nadeln.",
+            "Ihre seitlichen Knospen liegen eng am Zweig an.",
+            "Ihre Knospen sind stets mattschwarz und gegenständig.",
+            "Ihre Seitenknospen sind stets größer als die ganze Zweigspitze."
+          ],
+          "answer": 1,
+          "explain": "Hainbuchenknospen liegen eng am Zweig. Die Rotbuchenknospen stehen dagegen deutlich ab."
+        },
+        {
+          "id": "q6",
+          "lessonId": "hainbuche",
+          "q": "Wie lassen sich typische Winterknospen der Hainbuche in ihrer Form beschreiben?",
+          "options": [
+            "Rund und aus zwei langen Flügelfrüchten zusammengesetzt.",
+            "Breit dreilappig wie ihr Fruchthochblatt.",
+            "Immer nadelförmig ohne jede Schuppe.",
+            "Schlank zugespitzt und von vielen Schuppen umgeben."
+          ],
+          "answer": 3,
+          "explain": "Die Knospen der Hainbuche sind schlank zugespitzt und vielschuppig. Das dreilappige Gebilde gehört zur Frucht."
+        },
+        {
+          "id": "q7",
+          "lessonId": "hainbuche",
+          "q": "Welches Gebilde gehört zum typischen Fruchtstand der Hainbuche?",
+          "options": [
+            "Ein Nüsschen an einem dreilappigen Hochblatt.",
+            "Eine dreikantige Buchecker im stacheligen Becher.",
+            "Eine Eichel in einem becherförmigen Fruchtbecher.",
+            "Ein fleischiger blauer Steinfruchtmantel."
+          ],
+          "answer": 0,
+          "explain": "Das Nüsschen und sein dreilappiges Hochblatt kennzeichnen den Hainbuchenfruchtstand. Das Hochblatt ist kein gewöhnliches Laubblatt."
+        },
+        {
+          "id": "q8",
+          "lessonId": "hainbuche",
+          "q": "Zu welcher Pflanzenfamilie gehört die Hainbuche, Carpinus betulus?",
+          "options": [
+            "Ölbaumgewächse, Oleaceae.",
+            "Seifenbaumgewächse, Sapindaceae.",
+            "Birkengewächse, Betulaceae.",
+            "Kieferngewächse, Pinaceae."
+          ],
+          "answer": 2,
+          "explain": "Die Hainbuche gehört zu den Birkengewächsen. Der Namensbestandteil „Buche“ macht sie nicht zur Gattung Fagus."
+        },
+        {
+          "id": "q9",
+          "lessonId": "esche",
+          "q": "Welche Kombination kennzeichnet die Winterknospen der Gemeinen Esche?",
+          "options": [
+            "Unsichtbare Knospen unter paarigen Dornen.",
+            "Gelbgrüne Knospen ohne gegenüberstehende Paare.",
+            "Lange rotbraune Spitzen, die einzeln deutlich abstehen.",
+            "Mattschwarze Knospen und paarweise gegenüberstehende Seitenknospen."
+          ],
+          "answer": 3,
+          "explain": "Die Kombination aus schwarzen Knospen und gegenständiger Stellung gehört zur Gemeinen Esche, Fraxinus excelsior."
+        },
+        {
+          "id": "q10",
+          "lessonId": "esche",
+          "q": "Wie verhält sich die Endknospe der Gemeinen Esche typischerweise zu ihren Seitenknospen?",
+          "options": [
+            "Sie ist kein Teil des Zweigs, sondern eine Frucht.",
+            "Sie ist größer als die Seitenknospen.",
+            "Sie besteht aus einem Paar flacher Nadeln.",
+            "Sie ist stets vollständig unter der Rinde verborgen."
+          ],
+          "answer": 1,
+          "explain": "Die Gemeine Esche besitzt eine auffällige größere Terminal- oder Endknospe am Triebende."
+        },
+        {
+          "id": "q11",
+          "lessonId": "esche",
+          "q": "Was bedeutet der typische unpaarig gefiederte Blattbau der Gemeinen Esche?",
+          "options": [
+            "Eine einzige ungeteilte Blattspreite ohne weitere Teile.",
+            "Zwei Nadeln an einer gemeinsamen Basis.",
+            "Mehrere Fiederblättchen an einer gemeinsamen Achse und ein Endblättchen.",
+            "Eine einzelne fünfmal gelappte Spreite ohne getrennte Fiederblättchen."
+          ],
+          "answer": 2,
+          "explain": "Die Esche besitzt ein zusammengesetztes Blatt. Das Endblättchen ergänzt die seitlichen Fiederblättchen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "esche",
+          "q": "Welche Fruchtform ergänzt die Bestimmung der Gemeinen Esche?",
+          "options": [
+            "Eine längliche geflügelte Frucht.",
+            "Ein Nüsschen am dreilappigen Hochblatt.",
+            "Eine Eichel an einem langen Fruchtstandsstiel.",
+            "Eine dreikantige Nuss im weichstacheligen Becher."
+          ],
+          "answer": 0,
+          "explain": "Die Gemeine Esche bildet längliche Flügelfrüchte. Sie ergänzen Knospen- und Blattmerkmale."
+        },
+        {
+          "id": "q13",
+          "lessonId": "bergahorn",
+          "q": "Welche Knospenmerkmale passen typischerweise zum Bergahorn?",
+          "options": [
+            "Grüne bis gelbgrüne, eiförmige Knospen und gegenüberstehende Seitenknospen.",
+            "Mattschwarze Knospen mit einem vollständig ungeteilten Rundblatt.",
+            "Lange nadelförmige braune Knospen ohne erkennbare Schuppen.",
+            "Unsichtbare Knospen unter zwei Dornen."
+          ],
+          "answer": 0,
+          "explain": "Acer pseudoplatanus besitzt normalerweise grüne Knospen mit gegenständigen Seitenknospen. Eine gelegentliche rötliche Tönung ist möglich."
+        },
+        {
+          "id": "q14",
+          "lessonId": "bergahorn",
+          "q": "Welcher Größenvergleich gehört zum typischen Winterzweig des Bergahorns?",
+          "options": [
+            "Alle Seitenknospen sind größer als die gesamte Endknospe.",
+            "Die Endknospe besteht aus einer langen Eichel.",
+            "Die Endknospe ist deutlich größer als die Seitenknospen.",
+            "Seitliche Knospen fehlen am Bergahorn grundsätzlich."
+          ],
+          "answer": 2,
+          "explain": "Beim Bergahorn ist die Terminalknospe auffällig größer; die kleineren Seitenknospen stehen gegenständig."
+        },
+        {
+          "id": "q15",
+          "lessonId": "bergahorn",
+          "q": "Welcher Farbvergleich hilft bei typischen Winterknospen von Gemeiner Esche und Bergahorn?",
+          "options": [
+            "Beide haben grundsätzlich vollständig farblose Knospen.",
+            "Die Esche besitzt schwarze, der Bergahorn normalerweise grüne bis gelbgrüne Knospen.",
+            "Die Esche hat immer grüne, der Bergahorn immer schwarze Knospen.",
+            "Die Esche trägt weiße Nadelpaare, der Bergahorn blaue Dornknospen."
+          ],
+          "answer": 1,
+          "explain": "Die typische Knospenfarbe trennt die beiden Arten trotz ihrer gemeinsamen gegenständigen Stellung. Beim Bergahorn ist eine gewisse rötliche Tönung möglich."
+        },
+        {
+          "id": "q16",
+          "lessonId": "bergahorn",
+          "q": "Welche Knospenstellung teilen Gemeine Esche und Bergahorn?",
+          "options": [
+            "Seitliche Knospen ausschließlich in Dreierbündeln.",
+            "Sämtliche Knospen liegen unter der Rinde verborgen.",
+            "Alle Knospen sitzen nur am Triebende.",
+            "Die seitlichen Knospen stehen paarweise gegenüber."
+          ],
+          "answer": 3,
+          "explain": "Beide besitzen gegenständige Seitenknospen. Für die Artansprache kommen unter anderem Farbe und Form hinzu."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-winterknospen-2026",
+      "lessonId": "rotbuche",
+      "claims": [
+        {
+          "claim": "Fagus sylvatica besitzt lange, schlanke, spitze, vielschuppige Winterknospen, die deutlich vom Zweig abstehen.",
+          "sourceUrls": [
+            "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf",
+            "https://www.wald.rlp.de/wald/baeume-unserer-waelder/rotbuche",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/common-beech/"
+          ]
+        },
+        {
+          "claim": "Rotbuche und Hainbuche unterscheiden sich in der Knospenstellung. Die Rotbuche besitzt häufig glatte graue Rinde; auch Hainbuche kann glatte graue Rinde haben, sodass dieses Merkmal nicht exklusiv ist. Die Zeichenübung ist ein eigenes Lehrbeispiel.",
+          "sourceUrls": [
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/common-beech/",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/hornbeam/",
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/178833/index.php",
+            "https://www.wald.rlp.de/wald/baeume-unserer-waelder/rotbuche"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-winterknospen-2026",
+      "lessonId": "hainbuche",
+      "claims": [
+        {
+          "claim": "Carpinus betulus hat schlanke zugespitzte vielschuppige Knospen; die Seitenknospen liegen eng am Zweig. Ein spitzer Umriss allein unterscheidet sie nicht von Rotbuche.",
+          "sourceUrls": [
+            "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/hornbeam/",
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/178833/index.php",
+            "https://www.treesandshrubsonline.org/articles/carpinus/carpinus-betulus/"
+          ]
+        },
+        {
+          "claim": "Hainbuche gehört zu Betulaceae, hat gesägte Laubblätter und Nüsschen an einem dreilappigen Hochblatt. Hochblatt und gewöhnliches Laubblatt werden nicht gleichgesetzt. Zeichnung und Zuordnungsaufgabe sind eigene Lernbeispiele.",
+          "sourceUrls": [
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/hornbeam/",
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/178833/index.php"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-winterknospen-2026",
+      "lessonId": "esche",
+      "claims": [
+        {
+          "claim": "Fraxinus excelsior hat schwarze gegenständige Knospen und eine größere Terminalknospe. Gegenständig bedeutet hier paarweise gegenüberstehende Seitenknospen.",
+          "sourceUrls": [
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/181306/index.php",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/ash/",
+            "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf"
+          ]
+        },
+        {
+          "claim": "Das Eschenlaub ist unpaarig gefiedert, mit Endblättchen; Eschenfrüchte sind länglich und geflügelt. Blatt und Fiederblättchen sind verschiedene Ebenen des zusammengesetzten Blattes.",
+          "sourceUrls": [
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/181306/index.php",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/ash/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-winterknospen-2026",
+      "lessonId": "bergahorn",
+      "claims": [
+        {
+          "claim": "Acer pseudoplatanus hat normalerweise grüne bis gelbgrüne, eiförmige Winterknospen; Seitenknospen sind gegenständig und abstehend, die Endknospe ist größer. Eine rötliche Tönung ist bei LWF und IDS dokumentiert; eine feste Häufigkeit wird nicht behauptet.",
+          "sourceUrls": [
+            "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf",
+            "https://www.lfl.bayern.de/mam/cms04/service/dateien/w62_bergahorn.pdf",
+            "https://www.treesandshrubsonline.org/articles/acer/acer-pseudoplatanus/"
+          ]
+        },
+        {
+          "claim": "Gegenständige Knospen sind bei Bergahorn und Esche gemeinsam, die typische Farbe ist verschieden. Die Lagebegriffe End- und Seitenknospe werden an den ausdrücklich benannten Organen erklärt. Vier-Arten-Vergleich und Zeichnung sind eigene begrenzte Lernmodelle, kein Vollschlüssel.",
+          "sourceUrls": [
+            "https://rpf.baden-wuerttemberg.de/fileadmin/RP-Internet/Freiburg/Abteilung_8/Referat_81/FAZ_Mattenhof/Barrierefreie-Dokumente/22-05-2025/Bestimmungshilfe_Winterzustand_Hu_23.02.24_bf.pdf",
+            "https://www.lfl.bayern.de/mam/cms04/service/dateien/w62_bergahorn.pdf",
+            "https://www.lfl.bayern.de/iab/kulturlandschaft/181306/index.php",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/ash/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Vollständiger Winter-Bestimmungsschlüssel für alle Laubbäume und Zierformen",
+      "reason": "Die Lerneinheit vergleicht genau vier Arten; weitere ähnlich aussehende Gehölze sind dadurch nicht ausgeschlossen."
+    },
+    {
+      "topic": "Exakte Knospenmaße und feste Austriebtermine",
+      "reason": "Nicht benötigt und in den Quellen unterschiedlich begrenzt; keine vermeintlich universellen Millimeter- oder Monatswerte übernommen."
+    },
+    {
+      "topic": "Verzehr, Heilkunde und Krankheitsdiagnose anhand der Knospenfarbe",
+      "reason": "Der Kurs vermittelt Artenmerkmale, keine entsprechende Nutzungs- oder Diagnosefreigabe."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine Fotos, Scans, Zeichnungen oder fremden Aufgaben übernommen. Skizzen sind rein schriftliche eigene Arbeitsaufträge."
+  }
+}

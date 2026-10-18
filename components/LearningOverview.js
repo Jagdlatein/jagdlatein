@@ -3,6 +3,7 @@ import Image from "next/image";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
+import { getRecentLearningModules } from "../lib/recent-learning";
 import LearningCategoryMenu from "./LearningCategoryMenu";
 import LearningSearch from "./LearningSearch";
 import QuizLeagueEntry from "./QuizLeagueEntry";
@@ -48,6 +49,7 @@ export default function LearningOverview({ data }) {
   const modulesById = new Map(modules.map(module => [module.id, module]));
   const paths = learningPaths.map(path => ({ ...path, modules: path.moduleIds.map(id => modulesById.get(id)).filter(Boolean) }));
   const additionalResources = resources.filter(tool => !tool.featured);
+  const recent = categoryInfo ? [] : getRecentLearningModules(modules);
 
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
     {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
@@ -57,6 +59,15 @@ export default function LearningOverview({ data }) {
       <Link href="/lernen/lernkarten">Lernkarten<AppIcon name="arrow-right" size={17} /></Link>
       <Link href="/kurse">Kursverzeichnis<AppIcon name="arrow-right" size={17} /></Link>
     </nav>}
+    {recent.length > 0 && <section className={styles.section} aria-labelledby="learning-recent-heading">
+      <h2 id="learning-recent-heading">Zuletzt ergänzt</h2>
+      <ul className={styles.recentList}>{recent.map(module => <li key={module.id}>
+        <Link href={`/kurse/${module.id}`}>
+          <span><strong>{module.title}</strong><span>{module.category} · {module.lessonCount} Lektionen · {module.questionCount} Fragen</span></span>
+          <span className={styles.recentDate}><time dateTime={module.contentAddedOn}>{new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</time><AppIcon name="arrow-right" size={19} /></span>
+        </Link>
+      </li>)}</ul>
+    </section>}
     {!categoryInfo && <QuizLeagueEntry />}
     {categoryInfo ? <>
       <FeaturedLearning tools={resources.filter(tool => tool.featured)} media={featuredMedia} />

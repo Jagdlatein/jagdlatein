@@ -1,0 +1,563 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Bodenkundliches Lernwissen zum pflanzenverfügbaren Wasserspeicher. Kennwerte und eigene Rechenbeispiele werden von aktuellen Messwerten und Bewässerungsempfehlungen getrennt.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "title": "Bodenwasser: Feldkapazität, Welkepunkt und Wurzelraum",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Ökologie",
+      "description": "Warum ein feuchter Boden nicht jedes Wasser an Pflanzen abgibt und wie Bodenart, Durchwurzelung und Verdunstung den Vorrat prägen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame bodenphysikalische Grundlagen; keine örtlichen Bewässerungs-, Befahrungs- oder Eingriffsfreigaben.",
+        "AT": "Die Wasserbindung und die Unterscheidung von Speicherkapazität und aktuellem Vorrat gelten unabhängig von Landesgrenzen.",
+        "CH": "Die Schweizer WSL-Fachinformation ergänzt den Quellenabgleich zur Wasserbindung. Ihre Messstandorte werden nicht als allgemeine Revierwerte übernommen."
+      },
+      "objectives": [
+        "Wassersättigung und Feldkapazität auseinanderhalten",
+        "Wasserbindung und permanenten Welkepunkt erklären",
+        "Nutzbare Feldkapazität vom aktuellen Füllstand unterscheiden",
+        "Bodenart, Schichtung und durchwurzelten Raum gemeinsam betrachten",
+        "Infiltration, Versickerung und Verdunstung zuordnen"
+      ],
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "WSL · Tensiometer: Wasserbindung im Waldboden",
+          "url": "https://lwf.wsl.ch/de/lwf-demoflaeche/40-boden/42-tensiometer/",
+          "organization": "Eidgenössische Forschungsanstalt für Wald, Schnee und Landschaft WSL",
+          "supports": "Saugspannung als Maß für die Bindung des Wassers in Bodenporen; Wurzeln müssen diese Bindung bei der Aufnahme überwinden. Keine lokalen Messbereiche als allgemeine Pflanzengrenze übernommen."
+        },
+        {
+          "label": "FAO · Irrigation Water Management, Kapitel Soil and Water",
+          "url": "https://www.fao.org/4/R4082E/r4082e03.htm",
+          "organization": "Ernährungs- und Landwirtschaftsorganisation der Vereinten Nationen FAO",
+          "supports": "Abschnitte 2.2–2.4: Infiltration, Sättigung, Abfluss aus großen Poren, Feldkapazität, Wassergehalt und verfügbarer Speicher. Die vereinfachte Sterbeaussage beim Welkepunkt wird durch die präzisere LGRB-Definition ersetzt. Keine Zeit- oder Bodenarten-Richtwerte übernommen."
+        },
+        {
+          "label": "FAO · Drought-resistant soils",
+          "url": "https://www.fao.org/4/a0072e/a0072e07.htm",
+          "organization": "Ernährungs- und Landwirtschaftsorganisation der Vereinten Nationen FAO",
+          "supports": "Stärkere Bindung des Restwassers bei Austrocknung; Feldkapazität minus permanenter Welkepunkt als nutzbarer Speicher. Keine überall identische Entwässerungsdauer oder nutzbare Hälfte angenommen."
+        },
+        {
+          "label": "LGRB · Permanenter Welkepunkt",
+          "url": "https://lgrbwissen.lgrb-bw.de/glossar/permanenter-welkepunkt",
+          "organization": "Landesamt für Geologie, Rohstoffe und Bergbau Baden-Württemberg",
+          "supports": "Grenzbereich, in dem die meisten landwirtschaftlichen Nutzpflanzen bei sonst optimalen Bedingungen irreversibel zu welken beginnen. Keine universelle artübergreifende Todesgrenze."
+        },
+        {
+          "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+          "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft LfL",
+          "supports": "Gedruckte S. 50–51: Evaporation über die Bodenoberfläche, Transpiration über Pflanzen und Summe als Evapotranspiration; S. 54–55: Poren und pflanzenverfügbares Wasser, hoher gebundener Rest bei Ton, nFK in Volumenprozent bzw. mm pro Bodentiefe, Durchwurzelung und unterschiedliche Schichten. Nur Grundlagen, keine Hopfen-Bewässerungsschwellen oder Tabelle als allgemeine Bodenkennwerte übernommen."
+        },
+        {
+          "label": "Umweltbundesamt · Bodenfunktionen: Böden sind Wasserspeicher",
+          "url": "https://www.umweltbundesamt.de/themen/boden-flaeche/kleine-bodenkunde/bodenfunktionen",
+          "organization": "Umweltbundesamt Deutschland",
+          "supports": "Abschnitt Böden sind Wasserspeicher: Poren, sandige und schluffreiche Böden, vertikale Bodenmächtigkeit und verzögerte Wasserabgabe. Andere biologische Aussagen der Seite nicht ungeprüft übernommen."
+        },
+        {
+          "label": "FAO · Crop Evapotranspiration, Kapitel 8",
+          "url": "https://www.fao.org/4/X0490E/x0490e0e.htm",
+          "organization": "Ernährungs- und Landwirtschaftsorganisation der Vereinten Nationen FAO",
+          "supports": "FAO Irrigation and Drainage Paper 56: Abschnitte Soil water availability und Soil water balance; nutzbarer Wurzelraumspeicher, Wurzeltiefe, Wasserflüsse sowie Wasserstress bereits oberhalb des Welkepunkts. Keine Standardkoeffizienten oder Bewässerungsanleitung."
+        },
+        {
+          "label": "Umweltbundesamt · Bodenwasser in landwirtschaftlich genutzten Böden und Waldböden",
+          "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/boden/bo-i-1_bo-i-2/indikator",
+          "organization": "Umweltbundesamt Deutschland",
+          "supports": "nFK als Bezugsgröße für pflanzenverfügbaren Vorrat; hoher Bedarf und Verdunstung können Wasserstress bereits vor vollständiger Entleerung hervorrufen. Keine Indikatorschwelle als universelle biologische Grenze übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "wasserbindung",
+          "title": "Wasser im Boden: gehalten, beweglich oder gesättigt",
+          "paragraphs": [
+            "Bodenwasser wird durch Kräfte an den Teilchenoberflächen und in den Poren gehalten. Diese Bindung wird mit der Saugspannung beschrieben. Wurzeln müssen sie bei der Wasseraufnahme überwinden. Wird der Boden trockener, bleibt das verbliebene Wasser stärker gebunden; ein Boden kann deshalb noch Wasser enthalten, das Pflanzen nur schwer oder nicht mehr nutzen können.",
+            "Bei Wassersättigung sind praktisch alle Poren wassergefüllt. In einem gut entwässernden Boden fließt anschließend Wasser unter dem Einfluss der Schwerkraft ab; größere Poren werden dabei zuerst entleert und können wieder Luft enthalten. Sättigung ist deshalb ein anderer Zustand als der nach dem starken Abfluss verbleibende Wasservorrat. Eine feuchte Probe ist nicht automatisch gesättigt."
+          ],
+          "takeaway": "Wassergehalt beschreibt die Menge; Wasserbindung erklärt mit, wie schwer Pflanzen an diesen Vorrat gelangen.",
+          "exercise": "Ordne einem gedachten Boden Feststoff, wassergefüllte Poren und luftgefüllte Poren zu. Beschreibe, was sich nach der Entwässerung verändert.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Saugspannung beschreibt Wasserbindung in der Bodenmatrix; mit zunehmender Austrocknung wird Restwasser schwerer aufnehmbar.",
+              "sources": [
+                {
+                  "label": "WSL · Tensiometer: Wasserbindung im Waldboden",
+                  "url": "https://lwf.wsl.ch/de/lwf-demoflaeche/40-boden/42-tensiometer/"
+                },
+                {
+                  "label": "FAO · Drought-resistant soils",
+                  "url": "https://www.fao.org/4/a0072e/a0072e07.htm"
+                }
+              ]
+            },
+            {
+              "claim": "Wassersättigung bedeutet weitgehende Porenfüllung; schwerkraftbedingte Entwässerung entleert größere Poren zuerst. Sättigung und bloße Feuchte sind verschiedene Zustände.",
+              "sources": [
+                {
+                  "label": "FAO · Irrigation Water Management, Kapitel Soil and Water",
+                  "url": "https://www.fao.org/4/R4082E/r4082e03.htm"
+                },
+                {
+                  "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+                  "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "speichergrenzen",
+          "title": "Feldkapazität, Welkepunkt und nutzbare Feldkapazität",
+          "paragraphs": [
+            "Feldkapazität bezeichnet den Wassergehalt nach weitgehendem Abklingen der schwerkraftbedingten Entwässerung eines gut dränierenden Bodens. Sie ist keine vollständige Porenfüllung. Der permanente Welkepunkt beschreibt einen unteren Grenzbereich, in dem die meisten landwirtschaftlichen Nutzpflanzen bei sonst günstigen Bedingungen irreversibel zu welken beginnen. Er bedeutet weder wasserfreien Boden noch eine für sämtliche Arten identische Todesgrenze.",
+            "Die Differenz der Wassergehalte bei Feldkapazität und permanentem Welkepunkt ist die nutzbare Feldkapazität, kurz nFK. Das stärker gebundene, dabei nicht nutzbare Restwasser wird auch Totwasser genannt; der Begriff meint keine abgestorbenen Organismen. 100 Prozent nFK beschreibt einen gefüllten nutzbaren Speicher. Bei 0 Prozent nFK ist dieser rechnerisch ausgeschöpft, obwohl noch Wasser im Boden vorhanden ist."
+          ],
+          "takeaway": "nFK = Wassergehalt bei Feldkapazität minus Wassergehalt am permanenten Welkepunkt; die Größen brauchen dieselbe Bezugsbasis.",
+          "exercise": "Eigenes Rechenbeispiel: Bei 30 Volumenprozent Feldkapazität und 10 Volumenprozent Welkepunkt beträgt die nFK 20 Volumenprozent. Kennzeichne den nicht nutzbaren Rest getrennt.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Feldkapazität ist vom gesättigten Zustand verschieden; nutzbare Feldkapazität ist die Differenz zu dem am permanenten Welkepunkt verbleibenden, nicht nutzbaren Wasser. 0 Prozent nutzbarer Speicher ist kein wasserfreier Boden.",
+              "sources": [
+                {
+                  "label": "FAO · Drought-resistant soils",
+                  "url": "https://www.fao.org/4/a0072e/a0072e07.htm"
+                },
+                {
+                  "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+                  "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Der permanente Welkepunkt ist ein Grenzbereich irreversiblen Welkens für die betrachteten Pflanzen unter definierten Bedingungen; er wird nicht als universelle Todesgrenze jeder Art ausgegeben.",
+              "sources": [
+                {
+                  "label": "LGRB · Permanenter Welkepunkt",
+                  "url": "https://lgrbwissen.lgrb-bw.de/glossar/permanenter-welkepunkt"
+                },
+                {
+                  "label": "FAO · Drought-resistant soils",
+                  "url": "https://www.fao.org/4/a0072e/a0072e07.htm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wurzelraumspeicher",
+          "title": "Warum Bodenart und erreichbare Tiefe zusammengehören",
+          "paragraphs": [
+            "Sandreiche Böden besitzen häufig einen kleinen pflanzenverfügbaren Speicher. Tonreiche Böden können viel Gesamtwasser enthalten, halten aber einen erheblichen Anteil sehr fest. Viel Gesamtwasser bedeutet daher nicht automatisch viel nutzbares Wasser. Schluffreiche und lehmige Böden können günstigere Speicherverhältnisse haben; starre Werte allein aus dem Bodennamen wären dennoch ungenau.",
+            "Für den Pflanzenvorrat zählt außerdem der durchwurzelte Raum. Unterschiedliche Schichten können verschieden viel Wasser speichern; Wasser unterhalb der erreichbaren Wurzeln gehört nicht einfach zum nutzbaren Wurzelraumspeicher. Volumenprozent beziehen sich auf ein Bodenvolumen, Millimeter Wassersäule auf eine Fläche und festgelegte Tiefe. Ein Millimeter Wasser entspricht einem Liter je Quadratmeter. Eigenes, gleichförmiges Lernprofil: 20 Volumenprozent nFK über 50 Zentimeter durchwurzelte Tiefe ergeben 100 Millimeter Speicherkapazität. Das ist kein gemessener Standortwert."
+          ],
+          "takeaway": "Der Wurzelraumspeicher ergibt sich aus dem Speichervermögen der erreichbaren Schichten und deren Mächtigkeit.",
+          "exercise": "Vergleiche zwei gleichartige Lernprofile mit 25 und 50 Zentimetern erreichbarer Tiefe. Halte den Wassergehalt pro Bodenvolumen gleich und vergleiche die Speichermenge.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Sandreiche Böden haben häufig geringe nutzbare Speicher; Ton kann viel Wasser fest binden. Bodenart, Porenverteilung und Profilmächtigkeit sind gemeinsam zu betrachten, statt Gesamtwasser mit verfügbarem Vorrat gleichzusetzen.",
+              "sources": [
+                {
+                  "label": "Umweltbundesamt · Bodenfunktionen: Böden sind Wasserspeicher",
+                  "url": "https://www.umweltbundesamt.de/themen/boden-flaeche/kleine-bodenkunde/bodenfunktionen"
+                },
+                {
+                  "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+                  "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Die nutzbare Speichermenge im Wurzelraum hängt von Wassergehaltsdifferenz, Schichten und erreichbarer Tiefe ab. Volumenanteil und Bodentiefe ergeben eine Wassersäule; die Zahlenbeispiele sind eigene dimensionsgerechte Lernrechnungen.",
+              "sources": [
+                {
+                  "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+                  "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+                },
+                {
+                  "label": "FAO · Crop Evapotranspiration, Kapitel 8",
+                  "url": "https://www.fao.org/4/X0490E/x0490e0e.htm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wasserwege-stress",
+          "title": "Nachschub, Entzug und Trockenstress",
+          "paragraphs": [
+            "Infiltration ist das Eindringen von Wasser durch die Bodenoberfläche. Eingedrungenes Wasser kann gespeichert werden oder weiter in tiefere Bereiche versickern. Ein Niederschlag füllt deshalb nicht zwangsläufig vollständig den Wurzelraumspeicher. Wasser kann auch oberflächlich abfließen. Bodenverdunstung heißt Evaporation; Wasserabgabe durch Pflanzen heißt Transpiration. Beide zusammen werden als Evapotranspiration bezeichnet.",
+            "Pflanzen können bereits vor dem permanenten Welkepunkt unter Trockenstress geraten. Entscheidend ist auch, ob Wasser schnell genug zu den Wurzeln gelangt, um den aktuellen Bedarf zu decken. Die Bindung wird bei Austrocknung stärker; die Wasseraufnahme kann dadurch begrenzt werden. Zwei Standorte mit gleicher nFK können unterschiedlich weit entleert sein. Speicherkapazität, gegenwärtiger Füllstand und aktueller Wasserbedarf sind deshalb drei verschiedene Größen."
+          ],
+          "takeaway": "Die Kapazität bleibt vom aktuellen Füllstand zu unterscheiden; nutzbares Restwasser garantiert noch keine stressfreie Versorgung.",
+          "exercise": "Zeichne für ein eigenes Lernprofil Zufluss, Speicherung, Abfluss und Verdunstung. Eine Bilanz braucht einen Zeitraum; erfinde dazu keine örtlichen Regen- oder Verbrauchsmesswerte.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Wasser kann in den Boden eindringen, dort gespeichert werden, weiter versickern oder oberflächlich abfließen. Evaporation ist Bodenverdunstung, Transpiration die pflanzliche Wasserabgabe; beide zusammen heißen Evapotranspiration. Niederschlag ist nicht gleich gespeicherter Wurzelraumvorrat.",
+              "sources": [
+                {
+                  "label": "FAO · Irrigation Water Management, Kapitel Soil and Water",
+                  "url": "https://www.fao.org/4/R4082E/r4082e03.htm"
+                },
+                {
+                  "label": "Umweltbundesamt · Bodenfunktionen: Böden sind Wasserspeicher",
+                  "url": "https://www.umweltbundesamt.de/themen/boden-flaeche/kleine-bodenkunde/bodenfunktionen"
+                },
+                {
+                  "label": "LfL · Tropfbewässerung und Fertigation bei Hopfen, Bodenwassergrundlagen",
+                  "url": "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Die Aufnahme kann bereits vor dem Welkepunkt den Pflanzenbedarf nicht decken. Kapazität, aktueller Vorrat und Bedarf sind verschiedene Größen; Indikatorschwellen werden nicht als universelle Stressgrenze übernommen.",
+              "sources": [
+                {
+                  "label": "FAO · Crop Evapotranspiration, Kapitel 8",
+                  "url": "https://www.fao.org/4/X0490E/x0490e0e.htm"
+                },
+                {
+                  "label": "Umweltbundesamt · Bodenwasser in landwirtschaftlich genutzten Böden und Waldböden",
+                  "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/boden/bo-i-1_bo-i-2/indikator"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "wasserbindung",
+          "q": "Welche Größe beschreibt die Bindung des Bodenwassers in der Bodenmatrix?",
+          "options": [
+            "Jahresniederschlag",
+            "Hanglänge",
+            "Saugspannung",
+            "Blattfläche"
+          ],
+          "answer": 2,
+          "explain": "Die Saugspannung beschreibt, wie stark das Wasser im Boden zurückgehalten wird."
+        },
+        {
+          "id": "q2",
+          "lessonId": "wasserbindung",
+          "q": "Was kennzeichnet einen wassergesättigten Boden?",
+          "options": [
+            "Praktisch alle Poren sind wassergefüllt.",
+            "Nur die feinsten Poren enthalten Wasser.",
+            "Sämtliches Wasser ist bereits abgeflossen.",
+            "Wasser befindet sich ausschließlich außerhalb des Bodens."
+          ],
+          "answer": 0,
+          "explain": "Sättigung betrifft die Füllung des Porenraums. Ein lediglich feuchter Boden muss nicht gesättigt sein."
+        },
+        {
+          "id": "q3",
+          "lessonId": "wasserbindung",
+          "q": "Welche Poren werden bei der schwerkraftbedingten Entwässerung im Allgemeinen zuerst entleert?",
+          "options": [
+            "Die kleinsten Feinporen",
+            "Ausschließlich abgeschlossene Poren",
+            "Alle Porengrößen gleichzeitig",
+            "Größere Poren"
+          ],
+          "answer": 3,
+          "explain": "Wasser in größeren Poren wird weniger stark festgehalten und kann zuerst abfließen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "wasserbindung",
+          "q": "Warum kann ein trockener werdender Boden trotz vorhandenen Wassers die Pflanzenversorgung erschweren?",
+          "options": [
+            "Wasser wird dabei zu mineralischem Gestein.",
+            "Das verbleibende Wasser ist stärker im Boden gebunden.",
+            "Jede Wurzel verliert sofort ihre gesamte Oberfläche.",
+            "Restwasser ist grundsätzlich reines Grundwasser."
+          ],
+          "answer": 1,
+          "explain": "Nicht nur die Menge, sondern auch die Bindung des Wassers beeinflusst seine Aufnahme durch Wurzeln."
+        },
+        {
+          "id": "q5",
+          "lessonId": "speichergrenzen",
+          "q": "Welchen Zustand beschreibt die Feldkapazität eines gut entwässernden Bodens?",
+          "options": [
+            "Den Wassergehalt vor Beginn jedes Niederschlags",
+            "Die vollständige Füllung aller Poren",
+            "Den Wassergehalt eines vollständig wasserfreien Bodens",
+            "Den Wassergehalt nach weitgehend abgeklungener schwerkraftbedingter Entwässerung"
+          ],
+          "answer": 3,
+          "explain": "Feldkapazität ist vom gesättigten Zustand zu unterscheiden; ein Teil der Poren kann bereits Luft enthalten."
+        },
+        {
+          "id": "q6",
+          "lessonId": "speichergrenzen",
+          "q": "Wie wird die nutzbare Feldkapazität aus zwei Wassergehalten gleicher Bezugsbasis gebildet?",
+          "options": [
+            "Feldkapazität plus Wassergehalt am permanenten Welkepunkt",
+            "Feldkapazität minus Wassergehalt am permanenten Welkepunkt",
+            "Jahresniederschlag minus Bodenmasse",
+            "Porenvolumen plus Wurzeltiefe"
+          ],
+          "answer": 1,
+          "explain": "Die nFK ist die zwischen Feldkapazität und permanentem Welkepunkt liegende speicherbare Wassermenge."
+        },
+        {
+          "id": "q7",
+          "lessonId": "speichergrenzen",
+          "q": "Was bezeichnet Totwasser im bodenkundlichen Zusammenhang?",
+          "options": [
+            "So fest gebundenes Restwasser, dass es im betrachteten Modell nicht pflanzenverfügbar ist",
+            "Wasser mit abgestorbenen Insekten",
+            "Ausschließlich abgeflossenes Regenwasser",
+            "Den Wassergehalt oberhalb der Sättigung"
+          ],
+          "answer": 0,
+          "explain": "Der Begriff betrifft die Verfügbarkeit des gebundenen Bodenwassers und keine biologische Verunreinigung."
+        },
+        {
+          "id": "q8",
+          "lessonId": "speichergrenzen",
+          "q": "Welche Aussage trifft auf einen rechnerischen Füllstand von 0 Prozent nFK zu?",
+          "options": [
+            "Sämtliche Bodenporen sind wassergefüllt.",
+            "Es gibt keinerlei Wasser mehr im Boden.",
+            "Der nutzbare Speicher ist ausgeschöpft; gebundenes Restwasser kann verbleiben.",
+            "Der nutzbare Speicher ist vollständig gefüllt."
+          ],
+          "answer": 2,
+          "explain": "Der Nullpunkt der nFK bezieht sich auf den nutzbaren Speicher, nicht auf den gesamten Wassergehalt."
+        },
+        {
+          "id": "q9",
+          "lessonId": "wurzelraumspeicher",
+          "q": "Warum bedeutet hoher Gesamtwassergehalt eines tonreichen Bodens nicht automatisch hohen pflanzenverfügbaren Vorrat?",
+          "options": [
+            "Ton enthält grundsätzlich keine Poren.",
+            "Ein erheblicher Wasseranteil kann sehr fest gebunden sein.",
+            "Wurzeln können Wasser nur aus trockenen Poren aufnehmen.",
+            "Gesamtwasser und nutzbares Wasser sind identische Begriffe."
+          ],
+          "answer": 1,
+          "explain": "Ein großer Gesamtvorrat kann zugleich einen großen nicht nutzbaren Anteil enthalten."
+        },
+        {
+          "id": "q10",
+          "lessonId": "wurzelraumspeicher",
+          "q": "Welche zusätzliche Angabe ist nötig, um aus einem Speichervermögen je Bodenvolumen den nutzbaren Wurzelraumvorrat abzuleiten?",
+          "options": [
+            "Nur die Farbe der Blätter",
+            "Nur die Entfernung zum nächsten Weg",
+            "Ausschließlich der Name der Tierart im Revier",
+            "Die erreichbare Durchwurzelungstiefe und Eigenschaften der Schichten"
+          ],
+          "answer": 3,
+          "explain": "Wasser wird in einem räumlich begrenzten, durchwurzelten Profil erschlossen. Schichten und ihre Mächtigkeit zählen mit."
+        },
+        {
+          "id": "q11",
+          "lessonId": "wurzelraumspeicher",
+          "q": "Welcher Wassermenge je Fläche entspricht eine Wassersäule von einem Millimeter?",
+          "options": [
+            "Ein Liter je Hektar",
+            "Zehn Liter je Quadratmeter",
+            "Ein Liter je Quadratmeter",
+            "Ein Kubikmeter je Quadratmeter"
+          ],
+          "answer": 2,
+          "explain": "Ein Quadratmeter mal 0,001 Meter ergibt 0,001 Kubikmeter, also einen Liter."
+        },
+        {
+          "id": "q12",
+          "lessonId": "wurzelraumspeicher",
+          "q": "Ein gleichförmiges Lernprofil hat 20 Volumenprozent nFK über 50 Zentimeter durchwurzelte Tiefe. Wie groß ist seine Speicherkapazität?",
+          "options": [
+            "100 Millimeter",
+            "10 Millimeter",
+            "20 Millimeter",
+            "50 Millimeter"
+          ],
+          "answer": 0,
+          "explain": "0,20 mal 500 Millimeter Bodentiefe ergibt 100 Millimeter Wasser. Das ist ein eigenes Rechenbeispiel, kein Standortmesswert."
+        },
+        {
+          "id": "q13",
+          "lessonId": "wasserwege-stress",
+          "q": "Wie heißt das Eindringen von Wasser durch die Bodenoberfläche?",
+          "options": [
+            "Infiltration",
+            "Transpiration",
+            "Mineralisation",
+            "Bestäubung"
+          ],
+          "answer": 0,
+          "explain": "Infiltration beschreibt den Eintritt in den Boden; der weitere Wasserweg kann Speicherung oder Versickerung umfassen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "wasserwege-stress",
+          "q": "Welche beiden Wasserabgaben werden als Evapotranspiration zusammengefasst?",
+          "options": [
+            "Versickerung und Oberflächenabfluss",
+            "Niederschlag und Grundwasserzufluss",
+            "Evaporation und Transpiration",
+            "Kondensation und Gefrieren"
+          ],
+          "answer": 2,
+          "explain": "Evaporation ist direkte Verdunstung, Transpiration die Wasserabgabe der Pflanzen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "wasserwege-stress",
+          "q": "Wann kann Trockenstress bei Pflanzen beginnen?",
+          "options": [
+            "Erst nachdem jede Bodenpore vollständig wasserfrei ist",
+            "Bereits vor dem permanenten Welkepunkt, wenn die Aufnahme den Bedarf nicht deckt",
+            "Ausschließlich nach dem Absterben aller Feinwurzeln",
+            "Nur während sichtbaren Oberflächenabflusses"
+          ],
+          "answer": 1,
+          "explain": "Die Versorgung kann schon vor Ausschöpfung des rechnerisch nutzbaren Speichers begrenzt sein."
+        },
+        {
+          "id": "q16",
+          "lessonId": "wasserwege-stress",
+          "q": "Zwei Böden besitzen dieselbe nutzbare Feldkapazität. Welche Größe kann trotzdem unterschiedlich sein?",
+          "options": [
+            "Die Bedeutung der Abkürzung nFK",
+            "Die Umrechnung eines Millimeters in Liter je Quadratmeter",
+            "Die Definition der Feldkapazität im Lernmodell",
+            "Der aktuell noch vorhandene nutzbare Wasservorrat"
+          ],
+          "answer": 3,
+          "explain": "Gleiche Speicherkapazität bedeutet nicht gleichen gegenwärtigen Füllstand."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Abgleich bodenphysikalischer Grundlagen aus vier voneinander getrennten Fachinstitutionen: WSL, FAO, LGRB und LfL, ergänzt durch das Umweltbundesamt. Mehrere FAO- oder UBA-Seiten zählen jeweils nicht als zusätzliche unabhängige Organisation.",
+        "limitations": [
+          "Konventionelle Speicherkennwerte sind keine universellen biologischen Schwellen für sämtliche Wild- und Kulturpflanzen.",
+          "Keine feste Entwässerungsdauer, Porengröße, artunabhängige Stressgrenze oder Bewässerungsschwelle übernommen.",
+          "Vereinfachte FAO-Formulierungen zu Tod am Welkepunkt und unveränderlichen Bodenkennwerten werden nicht übernommen.",
+          "Bei Grund- oder Stauwassereinfluss ist die einfache Betrachtung eines frei entwässernden Speichers nicht vollständig; daraus wird keine Standortprognose abgeleitet.",
+          "Die Rechenbeispiele sind ausdrücklich eigene Lernmodelle mit vorgegebenen gleichförmigen Profilen, keine Ortsdaten.",
+          "DWD- und BOKU-Volltexte waren nicht zugänglich und sind nicht als gelesene Kursquellen enthalten."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "wasserbindung",
+      "claims": [
+        {
+          "claim": "Saugspannung beschreibt Wasserbindung in der Bodenmatrix; mit zunehmender Austrocknung wird Restwasser schwerer aufnehmbar.",
+          "sourceUrls": [
+            "https://lwf.wsl.ch/de/lwf-demoflaeche/40-boden/42-tensiometer/",
+            "https://www.fao.org/4/a0072e/a0072e07.htm"
+          ]
+        },
+        {
+          "claim": "Wassersättigung bedeutet weitgehende Porenfüllung; schwerkraftbedingte Entwässerung entleert größere Poren zuerst. Sättigung und bloße Feuchte sind verschiedene Zustände.",
+          "sourceUrls": [
+            "https://www.fao.org/4/R4082E/r4082e03.htm",
+            "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "speichergrenzen",
+      "claims": [
+        {
+          "claim": "Feldkapazität ist vom gesättigten Zustand verschieden; nutzbare Feldkapazität ist die Differenz zu dem am permanenten Welkepunkt verbleibenden, nicht nutzbaren Wasser. 0 Prozent nutzbarer Speicher ist kein wasserfreier Boden.",
+          "sourceUrls": [
+            "https://www.fao.org/4/a0072e/a0072e07.htm",
+            "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+          ]
+        },
+        {
+          "claim": "Der permanente Welkepunkt ist ein Grenzbereich irreversiblen Welkens für die betrachteten Pflanzen unter definierten Bedingungen; er wird nicht als universelle Todesgrenze jeder Art ausgegeben.",
+          "sourceUrls": [
+            "https://lgrbwissen.lgrb-bw.de/glossar/permanenter-welkepunkt",
+            "https://www.fao.org/4/a0072e/a0072e07.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "wurzelraumspeicher",
+      "claims": [
+        {
+          "claim": "Sandreiche Böden haben häufig geringe nutzbare Speicher; Ton kann viel Wasser fest binden. Bodenart, Porenverteilung und Profilmächtigkeit sind gemeinsam zu betrachten, statt Gesamtwasser mit verfügbarem Vorrat gleichzusetzen.",
+          "sourceUrls": [
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/kleine-bodenkunde/bodenfunktionen",
+            "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+          ]
+        },
+        {
+          "claim": "Die nutzbare Speichermenge im Wurzelraum hängt von Wassergehaltsdifferenz, Schichten und erreichbarer Tiefe ab. Volumenanteil und Bodentiefe ergeben eine Wassersäule; die Zahlenbeispiele sind eigene dimensionsgerechte Lernrechnungen.",
+          "sourceUrls": [
+            "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf",
+            "https://www.fao.org/4/X0490E/x0490e0e.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "wasserwege-stress",
+      "claims": [
+        {
+          "claim": "Wasser kann in den Boden eindringen, dort gespeichert werden, weiter versickern oder oberflächlich abfließen. Evaporation ist Bodenverdunstung, Transpiration die pflanzliche Wasserabgabe; beide zusammen heißen Evapotranspiration. Niederschlag ist nicht gleich gespeicherter Wurzelraumvorrat.",
+          "sourceUrls": [
+            "https://www.fao.org/4/R4082E/r4082e03.htm",
+            "https://www.umweltbundesamt.de/themen/boden-flaeche/kleine-bodenkunde/bodenfunktionen",
+            "https://www.lfl.bayern.de/mam/cms07/publikationen/daten/informationen/tropfbewaesserung-fertigation-hopfen_lfl-information.pdf"
+          ]
+        },
+        {
+          "claim": "Die Aufnahme kann bereits vor dem Welkepunkt den Pflanzenbedarf nicht decken. Kapazität, aktueller Vorrat und Bedarf sind verschiedene Größen; Indikatorschwellen werden nicht als universelle Stressgrenze übernommen.",
+          "sourceUrls": [
+            "https://www.fao.org/4/X0490E/x0490e0e.htm",
+            "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/boden/bo-i-1_bo-i-2/indikator"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Bewässerungs- und Befahrungsgrenzen",
+      "reason": "Der Kurs erklärt Bodenkunde, bestimmt aber keine örtlich richtige Wassergabe, Eingriffserlaubnis oder Fahrzeugfreigabe."
+    },
+    {
+      "topic": "Einheitliche Bodenartentabelle",
+      "reason": "Porenverteilung, Struktur, Schichtung und Definition der Kennwerte können abweichen; vereinfachte Tabellen werden nicht zu universellen Standortwerten gemacht."
+    }
+  ]
+}

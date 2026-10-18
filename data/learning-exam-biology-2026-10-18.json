@@ -1,0 +1,523 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Neue prüfungsrelevante Wildkunde-Vertiefung nach der Eiablage. Hühner-Lehrmodell und artspezifische Jungvogelbeispiele ausdrücklich getrennt.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-vogelembryo-schlupf-2026",
+      "title": "Vom Embryo zum Küken: Eihüllen, Atmung und Schlupf",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Die lebenden Eihüllen und den Übergang zur Lungenatmung verstehen; Nestflüchter und Nesthocker am Wildvogel unterscheiden.",
+      "minutes": 38,
+      "objectives": [
+        "Die vier extraembryonalen Hüllen ihren Funktionen zuordnen",
+        "Chorioallantoismembran und Dottersack unterscheiden",
+        "Inneres Anpicken, Eizahn und Lungenatmung erklären",
+        "Stockente und Ringeltaube nach ihrer Nestentwicklung vergleichen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame biologische Grundlagen. Embryonale Einzelabläufe am ausdrücklich benannten Hühner-Lehrmodell; Wildvogelbeispiele Stockente und Ringeltaube. Keine Brut-, Rettungs- oder Eingriffsanleitung und keine landesspezifische Rechtsaussage.",
+        "AT": "Gemeinsame biologische Grundlagen. Embryonale Einzelabläufe am ausdrücklich benannten Hühner-Lehrmodell; Wildvogelbeispiele Stockente und Ringeltaube. Keine Brut-, Rettungs- oder Eingriffsanleitung und keine landesspezifische Rechtsaussage.",
+        "CH": "Gemeinsame biologische Grundlagen. Embryonale Einzelabläufe am ausdrücklich benannten Hühner-Lehrmodell; Wildvogelbeispiele Stockente und Ringeltaube. Keine Brut-, Rettungs- oder Eingriffsanleitung und keine landesspezifische Rechtsaussage."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Jacquie Jacob: Avian embryology",
+          "url": "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+          "organization": "University of Kentucky / Cooperative Extension",
+          "supports": "Hühner-Modell: Dottersack, Amnion, Chorion und Allantois; Chorioallantoismembran; inneres Anpicken, Lungenatmung und Eizahn. Fachtext vollständig in relevanten Abschnitten gelesen; keine Brut- oder Temperaturtabellen übernommen."
+        },
+        {
+          "label": "The Avian Embryo, P1150",
+          "url": "https://extension.msstate.edu/publications/the-avian-embryo",
+          "organization": "Mississippi State University Extension",
+          "supports": "Abschnitte Life in 21 Days und Terms to Know: Hüllen, embryonale Gefäßsysteme, Luftkammer, Lungenatmung und horniger Eizahn. Keine allgemeinen Tages-, Überlebens- oder Aufzuchtwerte verwendet."
+        },
+        {
+          "label": "Physiological Processes within the Egg",
+          "url": "https://extension.psu.edu/programs/4-h/opportunities/projects/animal-science/poultry/raising-rearing/viii-other-online-resources/embryo-development/physiological-processes-within-the-egg",
+          "organization": "Pennsylvania State University Extension / 4-H",
+          "supports": "Öffentlich indexierter vollständiger Fachabschnitt gelesen: Dottersackaufnahme, flüssigkeitsgefülltes Amnion, Chorion-Allantois-Verbindung und Ausscheidungsspeicher. Keine feste Dauer der Dotterversorgung übernommen; späterer Direktabruf lieferte einen technischen Fehler."
+        },
+        {
+          "label": "Gabrielli und Accili 2010: The Chick Chorioallantoic Membrane",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2842975/",
+          "organization": "Università di Camerino; Journal of Biomedicine and Biotechnology / Fachübersicht",
+          "supports": "Originalzusammenfassung und öffentlich indexierter Abschnitt Morphologie gelesen: Fusion von Chorion und Allantois, Lage an der inneren Schalenhaut, Atemgasaustausch und Calciumtransport. Überblick, keine neue unabhängige Messreihe behauptet."
+        },
+        {
+          "label": "Mohammed und andere 2015: Functional differences between the arteries perfusing gas exchange and nutritional membranes in the late chicken embryo",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/",
+          "organization": "Maastricht University Medical Center und Università degli Studi di Milano",
+          "supports": "Originalvolltext, Abstract und Einleitung: getrennte Funktion von Dottersack als Ernährungsorgan und CAM als Gasaustauschorgan, Gefäßversorgung und Schalenaustausch. Die experimentellen Gefäßreaktionen sind nicht Gegenstand des Kurses."
+        },
+        {
+          "label": "de Melo Bernardo und Chuva de Sousa Lopes 2014: The Involvement of the Proamnion in the Development of the Anterior Amnion Fold in the Chicken",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3960272/",
+          "organization": "Leiden University Medical Center / PLOS ONE",
+          "supports": "Originalzusammenfassung und Einleitungsabschnitt gelesen: vier extraembryonale Hüllen; Schutz durch das Amnion. Keine molekularen Mechanismen aus dem Spezialversuch verallgemeinert."
+        },
+        {
+          "label": "Embryology: Hatching in the Classroom, The egg tooth",
+          "url": "https://florida4h.ifas.ufl.edu/4-h-embryology/documents/Embryology_Beg_Gr2-5_HatchingClassroom.pdf",
+          "organization": "University of Florida IFAS / National 4-H Curriculum",
+          "supports": "Original-PDF, Abschnitt The egg tooth, öffentlich indexiert gelesen: vorübergehende Schlupfhilfe am Schnabel. Keine exakte Abfallzeit als universeller Wert übernommen."
+        },
+        {
+          "label": "Ehrlich, Dobkin und Wheye: Precocial and Altricial Young",
+          "url": "https://web.stanford.edu/group/stanfordbirds/text/essays/Precocial_and_Altricial.html",
+          "organization": "Stanford University, Stanford Birds",
+          "supports": "Definitionen, Entwicklungsspektrum und unterschiedliche Elternabhängigkeit gelesen. Verlassen des Nestes, Eigenbewegung und Flugfähigkeit getrennt. Keine evolutionären Gehirn-/Energiethesen übernommen."
+        },
+        {
+          "label": "Jacquie Jacob: Precocial and altricial birds",
+          "url": "https://poultry.extension.org/articles/poultry-anatomy/avian-reproductive-female/precocial-and-altricial-birds/",
+          "organization": "University of Kentucky / Cooperative Extension",
+          "supports": "Entwicklungsgrad bei Schlupf und Elternabhängigkeit; Tauben als altriziales Beispiel. Gleiche Organisation/Autorin wie Avian embryology, nicht als unabhängige zweite Institution gezählt."
+        },
+        {
+          "label": "BTO BirdFacts: Mallard, Biology / Fledging",
+          "url": "https://www.bto.org/learn/about-birds/birdfacts/mallard",
+          "organization": "British Trust for Ornithology",
+          "supports": "Stockente ausdrücklich Precocial, downy. Keine britischen Gelege-, Brutzeit- oder Überlebenswerte nach DACH übertragen."
+        },
+        {
+          "label": "BTO BirdFacts: Woodpigeon, Biology / Fledging",
+          "url": "https://www.bto.org/learn/about-birds/birdfacts/woodpigeon",
+          "organization": "British Trust for Ornithology",
+          "supports": "Ringeltaube ausdrücklich Altricial, downy. Belegt zugleich, dass Daunen allein keinen Nestflüchter kennzeichnen; gleiche Institution wie Stockenten-Seite."
+        },
+        {
+          "label": "Cornell Lab: Mallard Identification, Female and chick",
+          "url": "https://www.allaboutbirds.org/guide/Mallard/id",
+          "organization": "Cornell University, Lab of Ornithology",
+          "supports": "Stockentenküken bedunt und früh mobil / verlassen bald das Nest. Keine genaue Stundenangabe verwendet."
+        },
+        {
+          "label": "Umweltfreunde Würzburg-Ochsenfurt: Jungvögel, Abschnitt Ringeltaube",
+          "url": "https://www.lbv-wue.de/aktionen/meldung5.php",
+          "organization": "Umweltfreunde Würzburg-Ochsenfurt, ornithologische Fachinformation",
+          "supports": "Artabschnitt Ringeltaube vollständig gelesen: Nestlinge als bedunte Nesthocker und elterliche Versorgung. Nur diese mit BTO abgeglichene enge Aussage verwendet, keine Zahlen oder Rettungsratschläge der Seite übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "embryonalhuellen",
+          "title": "Vier Hüllen versorgen und schützen den Embryo",
+          "paragraphs": [
+            "Beim Hühnerembryo entstehen neben dem eigentlichen Körper vier extraembryonale Hüllen: Dottersack, Amnion, Chorion und Allantois. „Extraembryonal“ bezeichnet ihre Lage außerhalb des Embryokörpers. Diese lebenden Gewebe sind von den schon vor der Eiablage gebildeten Schalenhäuten zu unterscheiden. Der Embryo entwickelt so eigene Versorgungs- und Schutzflächen innerhalb des Eies.",
+            "Der Dottersack wächst um den Dotter. Sein Gewebe nimmt Dotterbestandteile auf; seine Blutgefäße helfen, die Nährstoffe zum Embryo zu transportieren. Das Amnion umschließt dagegen unmittelbar den Embryo mit einem flüssigkeitsgefüllten Raum und dämpft mechanische Einwirkungen. Vorratsaufnahme und schützende Flüssigkeitshülle sind verschiedene Aufgaben.",
+            "Die Allantois nimmt Ausscheidungsprodukte des Embryos auf. Zusammen mit dem Chorion entwickelt sie außerdem eine wichtige Austauschfläche. Diese Mehrfachfunktion erklärt, weshalb „Amnion“, „Dottersack“ und „Allantois“ in einer Prüfungsantwort nicht austauschbar sind. Hier dient das Huhn als anatomisches Lehrmodell; artspezifische Entwicklungszeiten werden daraus nicht für Wildvögel abgeleitet."
+          ],
+          "takeaway": "Dottersack: Nährstoffaufnahme. Amnion: Flüssigkeitsschutz. Allantois: Ausscheidung und Beteiligung an der Austauschfläche.",
+          "exercise": "Ordne einer selbst gezeichneten Eiskizze die Funktionen Nährstoffaufnahme, Flüssigkeitsschutz und Ausscheidungsspeicher zu; beschrifte die lebenden Hüllen getrennt von den Schalenhäuten."
+        },
+        {
+          "id": "austauschflaeche",
+          "title": "Die Chorioallantoismembran verbindet Schale und Blutkreislauf",
+          "paragraphs": [
+            "Im Hühnerembryo verbinden sich Chorion und Allantois zur Chorioallantoismembran, kurz CAM. Sie liegt der inneren Schalenhaut an und besitzt ein dichtes Blutgefäßnetz. Ihre Lage bringt das embryonale Blut nahe an die Umgebungsluft, von der es weiterhin durch die Austauschstrukturen getrennt ist.",
+            "Sauerstoff gelangt durch das poröse Schalensystem zur Austauschfläche und ins Blut; Kohlendioxid nimmt den entgegengesetzten Weg nach außen. Die CAM erfüllt damit eine Atemfunktion, bevor die Lunge die Luftatmung übernimmt. Eine Atemfunktion setzt also nicht voraus, dass der Embryo bereits mit dem Schnabel Außenluft einatmet.",
+            "Die CAM ist außerdem am Transport von Calcium aus der Eischale zum Embryo beteiligt. Dottersack und CAM besitzen unterschiedliche Schwerpunkte: Nährstoffaufnahme aus dem Dotter einerseits, Atemgasaustausch und weitere Transportaufgaben andererseits. „Die Schale schützt“ und „die Schale ermöglicht Austausch“ passen deshalb zusammen. Es werden weder Gefäßdurchmesser noch feste Entwicklungstage als allgemeine Wildvogelwerte gelernt."
+          ],
+          "takeaway": "Chorion plus Allantois bilden die gefäßreiche CAM: eine Atem- und Transportfläche an der Schalenhaut.",
+          "exercise": "Zeichne zwei Pfeile durch ein Schalen-Schema: Sauerstoff zum embryonalen Blut, Kohlendioxid nach außen. Trage daneben den Dottersack als getrennte Nährstoffaufnahmefläche ein."
+        },
+        {
+          "id": "schlupf",
+          "title": "Inneres Anpicken, Lungenatmung und Eizahn",
+          "paragraphs": [
+            "Vor dem Schlupf richtet sich das Hühnerküken zur Luftkammer aus. Es durchbricht die innere Begrenzung zur Luftkammer und erreicht mit dem Schnabel den dortigen Luftraum. Dieser Schritt heißt inneres Anpicken, englisch internal pipping. Nun beginnt die Luftatmung mit der Lunge, obwohl die äußere Kalkschale noch nicht vollständig geöffnet ist.",
+            "Zum Öffnen der Schale dient der Eizahn: ein vorübergehender horniger Vorsprung am oberen Schnabel. Mit Bewegungen von Kopf und Körper hilft er, die Schale aufzubrechen; anschließend befreit sich das Küken. Er ist kein bleibender Kieferzahn zum späteren Zerkleinern der Nahrung. Der Vorsprung geht nach dem Schlupf wieder verloren.",
+            "Die Abfolge lautet im Hühner-Lehrmodell: Zugang zur Luftkammer, beginnende Lungenatmung, Öffnung der äußeren Schale und Austritt. Die Atemumstellung und der mechanische Schlupf sind zusammenhängende, aber unterscheidbare Vorgänge. Dieser Lernablauf ist keine Anleitung, Wildvogeleier zu öffnen oder Küken beim Schlupf herauszuziehen."
+          ],
+          "takeaway": "Inneres Anpicken öffnet den Weg zur Luftkammer; der vorübergehende Eizahn hilft später beim Durchbrechen der Schale.",
+          "exercise": "Erkläre ohne Tageszahlen den Unterschied zwischen Zugang zur Luftkammer und Öffnung der äußeren Schale."
+        },
+        {
+          "id": "nestentwicklung",
+          "title": "Nestflüchter und Nesthocker: Entwicklungsgrad statt bloßer Daunen",
+          "paragraphs": [
+            "Stockentenküken schlüpfen bedunt und können sich bald selbst fortbewegen. Sie sind ein Beispiel für Nestflüchter. In der Fachsprache bezeichnet „präkozial“ einen bereits weit entwickelten, früh mobilen Zustand beim Schlupf. Frühes Laufen ist dabei von späterer Flugfähigkeit zu unterscheiden.",
+            "Bei Nesthockern ist die Bewegungs- und Versorgungsfähigkeit beim Schlupf deutlich geringer; die Jungvögel sind auf Betreuung und Fütterung angewiesen. Die Ringeltaube ist ein solches altriziales Beispiel. Ihre Küken tragen dennoch Daunen. Das Einzelmerkmal „Daunen vorhanden“ genügt daher nicht, um Nesthocker und Nestflüchter sicher zu trennen.",
+            "Entwicklungsformen bilden ein Spektrum mit Zwischenformen. Auch mobile Nestflüchter sind nicht automatisch unabhängig: Entenküken folgen den Eltern, und bei anderen präkozialen Gruppen unterscheiden sich die elterlichen Hilfen bei der Nahrungssuche. Für eine Einordnung werden deshalb Beweglichkeit, Entwicklungsgrad, Aufenthalt im Nest und Versorgung gemeinsam betrachtet. „Nest verlassen“, „selbst Nahrung aufnehmen“ und „fliegen können“ sind verschiedene Fähigkeiten."
+          ],
+          "takeaway": "Stockente: früh mobil. Ringeltaube: Nesthocker trotz Daunen. Entwicklungsgrad und Elternabhängigkeit gemeinsam beurteilen.",
+          "exercise": "Vergleiche Stockente und Ringeltaube nach Beweglichkeit und Daunen beim Schlupf. Erkläre anschließend, warum ein Daunenfoto allein die Entwicklungsform nicht sicher bestimmt."
+        }
+      ],
+      "questions": [
+        {
+          "id": "vogelschlupf-q1",
+          "lessonId": "embryonalhuellen",
+          "q": "Welche Hülle des Hühnerembryos nimmt Nährstoffe aus dem Dotter auf?",
+          "options": [
+            "Amnion",
+            "Chorion",
+            "Dottersack",
+            "Äußere Schalenhaut"
+          ],
+          "answer": 2,
+          "explain": "Der Dottersack umgibt den Dotter; sein Gewebe und seine Gefäße vermitteln die Nährstoffversorgung."
+        },
+        {
+          "id": "vogelschlupf-q2",
+          "lessonId": "embryonalhuellen",
+          "q": "Welche Hauptaufgabe erfüllt das flüssigkeitsgefüllte Amnion beim Hühnerembryo?",
+          "options": [
+            "Es umhüllt und schützt den Embryo vor mechanischen Einwirkungen.",
+            "Es bildet die mineralische Außenschale.",
+            "Es speichert die Ausscheidungsprodukte als Allantoissack.",
+            "Es bildet den hornigen Vorsprung am Oberschnabel."
+          ],
+          "answer": 0,
+          "explain": "Das Amnion bildet den schützenden flüssigkeitsgefüllten Raum unmittelbar um den Embryo."
+        },
+        {
+          "id": "vogelschlupf-q3",
+          "lessonId": "embryonalhuellen",
+          "q": "Welche embryonale Hülle dient beim Huhn als Speicher für Ausscheidungsprodukte?",
+          "options": [
+            "Die Dotterhaut",
+            "Die innere Schalenhaut",
+            "Das Amnion",
+            "Die Allantois"
+          ],
+          "answer": 3,
+          "explain": "Die Allantois nimmt embryonale Ausscheidungsprodukte auf und beteiligt sich an der späteren Austauschfläche."
+        },
+        {
+          "id": "vogelschlupf-q4",
+          "lessonId": "embryonalhuellen",
+          "q": "Welche Strukturen gehören zu den vier extraembryonalen Hüllen des Hühnerembryos?",
+          "options": [
+            "Dotterhaut, Eiklar, Schalenhaut und Kalkschale",
+            "Dottersack, Amnion, Chorion und Allantois",
+            "Eizahn, Oberschnabel, Lunge und Luftkammer",
+            "Keimscheibe, Hagelschnur, Dotter und Kalkschale"
+          ],
+          "answer": 1,
+          "explain": "Dottersack, Amnion, Chorion und Allantois sind die extraembryonalen Hüllen."
+        },
+        {
+          "id": "vogelschlupf-q5",
+          "lessonId": "austauschflaeche",
+          "q": "Welche beiden Hüllen verbinden sich beim Hühnerembryo zur Chorioallantoismembran?",
+          "options": [
+            "Dottersack und Amnion",
+            "Amnion und Schalenhaut",
+            "Dotterhaut und Chorion",
+            "Chorion und Allantois"
+          ],
+          "answer": 3,
+          "explain": "Der Name Chorioallantoismembran bezeichnet die Verbindung von Chorion und Allantois."
+        },
+        {
+          "id": "vogelschlupf-q6",
+          "lessonId": "austauschflaeche",
+          "q": "Wo liegt die Chorioallantoismembran des sich entwickelnden Hühnereies?",
+          "options": [
+            "Außen auf der Kalkschale",
+            "An der inneren Schalenhaut",
+            "Im Inneren des Dotters ohne Gefäßkontakt",
+            "Nur im Schnabel der Luftkammer zugewandt"
+          ],
+          "answer": 1,
+          "explain": "Die gefäßreiche CAM liegt der inneren Schalenhaut an."
+        },
+        {
+          "id": "vogelschlupf-q7",
+          "lessonId": "austauschflaeche",
+          "q": "In welche Richtungen werden die Atemgase über die Chorioallantoismembran des Hühnereies ausgetauscht?",
+          "options": [
+            "Sauerstoff zum embryonalen Blut, Kohlendioxid nach außen",
+            "Kohlendioxid zum embryonalen Blut, Sauerstoff nach außen",
+            "Beide Gase nur vom Blut nach außen",
+            "Beide Gase nur von außen zum Blut"
+          ],
+          "answer": 0,
+          "explain": "Die Austauschfläche ermöglicht Sauerstoffaufnahme und Kohlendioxidabgabe durch das Schalensystem."
+        },
+        {
+          "id": "vogelschlupf-q8",
+          "lessonId": "austauschflaeche",
+          "q": "Welchen Mineralstoff transportiert die Chorioallantoismembran aus der Eischale zum Hühnerembryo?",
+          "options": [
+            "Natrium",
+            "Eisen",
+            "Calcium",
+            "Kalium"
+          ],
+          "answer": 2,
+          "explain": "Die CAM ist am Calciumtransport aus der Schale zum Embryo beteiligt."
+        },
+        {
+          "id": "vogelschlupf-q9",
+          "lessonId": "schlupf",
+          "q": "Welcher Vorgang heißt beim Hühnerküken inneres Anpicken?",
+          "options": [
+            "Das erste Durchbrechen der äußeren Kalkschale zur Umgebung",
+            "Das Durchbrechen der Begrenzung zur Luftkammer",
+            "Das vollständige Verlassen beider Schalenhälften",
+            "Das Abfallen des Eizahns nach dem Schlupf"
+          ],
+          "answer": 1,
+          "explain": "Beim inneren Anpicken erreicht der Schnabel den Luftraum der Luftkammer."
+        },
+        {
+          "id": "vogelschlupf-q10",
+          "lessonId": "schlupf",
+          "q": "Mit welchem Organ beginnt das Hühnerküken nach Erreichen der Luftkammer Luft zu atmen?",
+          "options": [
+            "Mit dem Dottersack",
+            "Mit dem Amnion",
+            "Mit den Hagelschnüren",
+            "Mit der Lunge"
+          ],
+          "answer": 3,
+          "explain": "Mit dem Zugang zur Luftkammer beginnt die Lungenatmung vor dem vollständigen Schlupf."
+        },
+        {
+          "id": "vogelschlupf-q11",
+          "lessonId": "schlupf",
+          "q": "Was ist der Eizahn eines schlüpfenden Hühnerkükens?",
+          "options": [
+            "Ein bleibender Schneidezahn im Oberkiefer",
+            "Ein verkalkter Rest des Dottersacks",
+            "Ein vorübergehender horniger Vorsprung am oberen Schnabel",
+            "Ein Teil der inneren Schalenhaut"
+          ],
+          "answer": 2,
+          "explain": "Der Eizahn ist eine vorübergehende Schlupfhilfe am Oberschnabel."
+        },
+        {
+          "id": "vogelschlupf-q12",
+          "lessonId": "schlupf",
+          "q": "Welche Aufgabe hat der Eizahn beim Schlupf des Hühnerkükens?",
+          "options": [
+            "Er hilft beim Durchbrechen der Eischale.",
+            "Er nimmt Atemgase aus dem Blut auf.",
+            "Er zerkleinert später dauerhaft harte Samen.",
+            "Er verankert den Dotter im Eiklar."
+          ],
+          "answer": 0,
+          "explain": "Der hornige Vorsprung unterstützt das Öffnen der Schale und geht nach dem Schlupf verloren."
+        },
+        {
+          "id": "vogelschlupf-q13",
+          "lessonId": "nestentwicklung",
+          "q": "Welche Entwicklungsform kennzeichnet die frisch geschlüpften Küken der Stockente?",
+          "options": [
+            "Altriziale, noch kaum bewegliche Nesthocker",
+            "Flugfähige Jungvögel ohne Betreuung",
+            "Präkoziale, früh mobile Nestflüchter",
+            "Jungvögel ohne Daunen und mit geschlossenen Augen"
+          ],
+          "answer": 2,
+          "explain": "Stockentenküken sind bedunt und früh mobil; frühe Beweglichkeit ist von Flugfähigkeit zu unterscheiden."
+        },
+        {
+          "id": "vogelschlupf-q14",
+          "lessonId": "nestentwicklung",
+          "q": "Welche Entwicklungsform haben die Küken der Ringeltaube?",
+          "options": [
+            "Nestflüchter ohne weitere Elternbetreuung",
+            "Altriziale Nesthocker, die trotzdem Daunen tragen",
+            "Beim Schlupf bereits flugfähige Nestflüchter",
+            "Mobile Nestflüchter allein wegen ihrer Daunen"
+          ],
+          "answer": 1,
+          "explain": "BTO führt Ringeltaubenküken als altrizial und bedunt. Daunen allein bestimmen die Entwicklungsform nicht."
+        },
+        {
+          "id": "vogelschlupf-q15",
+          "lessonId": "nestentwicklung",
+          "q": "Welche Beziehung zu ihren Eltern haben Entenküken trotz ihrer frühen Beweglichkeit?",
+          "options": [
+            "Sie folgen den Eltern und sind damit noch nicht vollständig unabhängig.",
+            "Sie benötigen ab dem Schlupf grundsätzlich keinen Kontakt zu Eltern.",
+            "Sie werden erst nach Erreichen der Flugfähigkeit von Eltern begleitet.",
+            "Sie wechseln bei jedem Schlupf obligatorisch zu fremden Altvögeln."
+          ],
+          "answer": 0,
+          "explain": "Präkoziale Entwicklung bedeutet frühe Mobilität, bei Entenküken aber keine vollständige Elternunabhängigkeit."
+        },
+        {
+          "id": "vogelschlupf-q16",
+          "lessonId": "nestentwicklung",
+          "q": "Welche Fähigkeiten müssen bei der Entwicklung eines Jungvogels getrennt betrachtet werden?",
+          "options": [
+            "Daunenfarbe, Kalkschalendicke und Dotterfarbe",
+            "Nur Brutdauer und Anzahl der Eier",
+            "Nur Körpermasse und Länge des Schnabels",
+            "Nest verlassen, selbst Nahrung aufnehmen und fliegen können"
+          ],
+          "answer": 3,
+          "explain": "Fortbewegung, Versorgung und Flugfähigkeit entwickeln sich je nach Art unterschiedlich; sie sind keine austauschbaren Merkmale."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Enger Quellenabgleich der vier neuen Lektionen und 16 eigenen Fragen; kein Prüfsiegel für das übrige Artenwissen.",
+        "independentOrganizations": [
+          "University of Kentucky",
+          "Mississippi State University",
+          "Pennsylvania State University",
+          "Maastricht University Medical Center / Università degli Studi di Milano",
+          "Leiden University Medical Center",
+          "Università di Camerino",
+          "Stanford University",
+          "British Trust for Ornithology",
+          "Cornell University",
+          "University of Florida",
+          "Umweltfreunde Würzburg-Ochsenfurt"
+        ],
+        "limitations": [
+          "Huhn ist das ausdrücklich benannte Lehrmodell für den Embryonalablauf.",
+          "Die beiden Kentucky-Texte bilden eine Institution; die beiden BTO-Artenseiten bilden ebenfalls eine Institution.",
+          "Forschungsarbeiten werden für ihre anatomisch-physiologische Einordnung genutzt; ihre Spezialversuche werden nicht zu neuen Wildvogelbefunden erklärt.",
+          "Keine Tages-, Temperatur-, Prozent- oder Überlebenswerte und keine Anleitung zur Manipulation von Wildvogeleiern."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-vogelembryo-schlupf-2026",
+      "lessonId": "embryonalhuellen",
+      "claims": [
+        {
+          "claim": "Im Hühnerembryo sind Dottersack, Amnion, Chorion und Allantois die extraembryonalen Hüllen; sie sind von den Schalenhäuten zu trennen.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3960272/",
+            "https://extension.psu.edu/programs/4-h/opportunities/projects/animal-science/poultry/raising-rearing/viii-other-online-resources/embryo-development/physiological-processes-within-the-egg"
+          ]
+        },
+        {
+          "claim": "Der gefäßversorgte Dottersack vermittelt die Aufnahme aus dem Dotter; das flüssigkeitsgefüllte Amnion schützt den Embryo mechanisch.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/",
+            "https://extension.psu.edu/programs/4-h/opportunities/projects/animal-science/poultry/raising-rearing/viii-other-online-resources/embryo-development/physiological-processes-within-the-egg",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3960272/"
+          ]
+        },
+        {
+          "claim": "Die Allantois speichert Ausscheidungsprodukte und beteiligt sich gemeinsam mit dem Chorion an einer Austauschfläche.",
+          "sourceUrls": [
+            "https://extension.psu.edu/programs/4-h/opportunities/projects/animal-science/poultry/raising-rearing/viii-other-online-resources/embryo-development/physiological-processes-within-the-egg",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelembryo-schlupf-2026",
+      "lessonId": "austauschflaeche",
+      "claims": [
+        {
+          "claim": "Chorion und Allantois bilden beim Hühnerembryo die gefäßreiche CAM an der inneren Schalenhaut.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2842975/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/"
+          ]
+        },
+        {
+          "claim": "Die CAM vermittelt Sauerstoffaufnahme und Kohlendioxidabgabe über das Schalensystem, bevor die Lunge die Luftatmung übernimmt.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2842975/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/",
+            "https://extension.msstate.edu/publications/the-avian-embryo"
+          ]
+        },
+        {
+          "claim": "Die CAM ist am Calciumtransport von der Eischale zum Embryo beteiligt; ihre Atemfunktion unterscheidet sich vom Schwerpunkt der Dottersack-Ernährung.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC2842975/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568027/",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelembryo-schlupf-2026",
+      "lessonId": "schlupf",
+      "claims": [
+        {
+          "claim": "Beim Hühnerküken führt das innere Anpicken zur Luftkammer; damit beginnt Lungenatmung vor dem vollständigen Öffnen der äußeren Schale.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+            "https://extension.msstate.edu/publications/the-avian-embryo"
+          ]
+        },
+        {
+          "claim": "Der vorübergehende hornige Eizahn am Oberschnabel hilft beim Durchbrechen der Schale und geht nach dem Schlupf verloren.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-embryology/",
+            "https://extension.msstate.edu/publications/the-avian-embryo",
+            "https://florida4h.ifas.ufl.edu/4-h-embryology/documents/Embryology_Beg_Gr2-5_HatchingClassroom.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelembryo-schlupf-2026",
+      "lessonId": "nestentwicklung",
+      "claims": [
+        {
+          "claim": "Stockentenküken sind bedunte, früh mobile Nestflüchter; Beweglichkeit und Flugfähigkeit sind verschiedene Merkmale.",
+          "sourceUrls": [
+            "https://www.bto.org/learn/about-birds/birdfacts/mallard",
+            "https://www.allaboutbirds.org/guide/Mallard/id",
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Precocial_and_Altricial.html"
+          ]
+        },
+        {
+          "claim": "Ringeltaubenküken sind altriziale Nesthocker und tragen dennoch Daunen; Daunen allein trennen die Entwicklungsformen nicht.",
+          "sourceUrls": [
+            "https://www.bto.org/learn/about-birds/birdfacts/woodpigeon",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-reproductive-female/precocial-and-altricial-birds/",
+            "https://www.lbv-wue.de/aktionen/meldung5.php"
+          ]
+        },
+        {
+          "claim": "Die Entwicklungsformen bilden ein Spektrum; präkoziale Entenküken folgen ihren Eltern, und Mobilität bedeutet nicht vollständige Elternunabhängigkeit.",
+          "sourceUrls": [
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Precocial_and_Altricial.html",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-reproductive-female/precocial-and-altricial-birds/",
+            "https://www.allaboutbirds.org/guide/Mallard/id"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Feste Brutzeiten, Inkubatortemperaturen und Schlupfintervalle",
+      "reason": "Artspezifisch und umgebungsabhängig; nicht für alle Wildvögel vereinheitlicht."
+    },
+    {
+      "topic": "Schlupfhilfe, Öffnen von Wildvogeleiern und Handaufzucht",
+      "reason": "Kein Gegenstand dieses biologischen Lernkurses."
+    },
+    {
+      "topic": "Universelle Einteilung anhand eines Daunenfotos",
+      "reason": "Ringeltauben liefern bereits ein Gegenbeispiel; Zwischenformen und mehrere Entwicklungsmerkmale beachten."
+    }
+  ]
+}
