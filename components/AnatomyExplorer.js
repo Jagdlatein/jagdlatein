@@ -20,16 +20,22 @@ export default function AnatomyExplorer() {
   const [orbit, setOrbit] = useState("45deg 75deg 110%");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [quizOpen, setQuizOpen] = useState(false);
   const viewer = useRef(null);
   const generation = useRef(0);
   const answered = useRef(new Set());
   const activeQuestion = useRef(0);
+  const activeModel = useRef(anatomyModels[0].id);
+  const activeSection = useRef("museum");
   const renderGeneration = generation.current;
   const model = anatomyModels.find(item => item.id === modelId);
-  const question = anatomyQuestions[questionIndex];
-  const selected = answers[question.id];
-  const answeredCount = Object.keys(answers).length;
-  const correct = anatomyQuestions.filter(item => answers[item.id] === item.answer).length;
+  // The original question catalog explicitly names its corresponding model.
+  // Do not infer anatomical associations from wording or a similar structure.
+  const questions = anatomyQuestions.filter(item => item.modelId === modelId);
+  const question = questions[questionIndex];
+  const selected = question ? answers[question.id] : undefined;
+  const answeredCount = questions.filter(item => answers[item.id] !== undefined).length;
+  const correct = questions.filter(item => answers[item.id] === item.answer).length;
   const feature = model.features.find(item => item.id === featureId);
 
   useEffect(() => {
@@ -37,16 +43,14 @@ export default function AnatomyExplorer() {
     const id = params.get("eintrag");
     if (anatomyModels.some(item => item.id === id)) chooseModel(id);
     if (params.get("bereich") === "verdauung") {
-      setSection("verdauung");
-      if (digestiveTopics.some(item => item.id === params.get("thema"))) setDigestiveId(params.get("thema"));
+      chooseDigestive(digestiveTopics.find(item => item.id === params.get("thema"))?.id || digestiveTopics[0].id);
     }
   }, []);
 
   useEffect(() => {
     if (!router.isReady) return;
     if (router.query.bereich === "verdauung") {
-      setSection("verdauung");
-      setDigestiveId(digestiveTopics.find(item => item.id === router.query.thema)?.id || digestiveTopics[0].id);
+      chooseDigestive(digestiveTopics.find(item => item.id === router.query.thema)?.id || digestiveTopics[0].id);
     } else {
       setSection("museum");
       chooseModel(anatomyModels.find(item => item.id === router.query.eintrag)?.id || anatomyModels[0].id);
@@ -56,7 +60,7 @@ export default function AnatomyExplorer() {
   function selectEntry(id) {
     const digestive = digestiveTopics.some(item => item.id === id);
     if (!digestive && !anatomyModels.some(item => item.id === id)) return;
-    if (digestive) { setSection("verdauung"); setDigestiveId(id); } else { setSection("museum"); chooseModel(id); }
+    if (digestive) chooseDigestive(id); else chooseModel(id);
     if (router.isReady) {
       const { bereich, thema, eintrag, ...query } = router.query;
       router.replace({ pathname: router.pathname, query: { ...query, ...(digestive ? { bereich: "verdauung", thema: id } : { eintrag: id }) } }, undefined, { shallow: true, scroll: false }).catch(() => {});
@@ -85,11 +89,21 @@ export default function AnatomyExplorer() {
 
   function chooseModel(id) {
     if (!anatomyModels.some(item => item.id === id)) return;
+    if (activeModel.current !== id || activeSection.current !== "museum") resetQuiz();
+    activeModel.current = id; activeSection.current = "museum"; setSection("museum");
     setModelId(id); setFeatureId(null); setOrbit("45deg 75deg 110%");
     if (enabled) setStatus("loading");
   }
+  function chooseDigestive(id) {
+    if (activeSection.current !== "verdauung") resetQuiz();
+    activeSection.current = "verdauung"; setSection("verdauung"); setDigestiveId(id);
+  }
+  function resetQuiz() {
+    generation.current += 1; answered.current.clear(); activeQuestion.current = 0;
+    setAnswers({}); setQuestionIndex(0); setQuizOpen(false);
+  }
   function answer(index) {
-    if (generation.current !== renderGeneration || activeQuestion.current !== questionIndex || answered.current.has(question.id) || !Number.isInteger(index) || index < 0 || index >= question.choices.length) return;
+    if (!quizOpen || !question || activeSection.current !== "museum" || activeModel.current !== modelId || generation.current !== renderGeneration || activeQuestion.current !== questionIndex || answered.current.has(question.id) || !Number.isInteger(index) || index < 0 || index >= question.choices.length) return;
     answered.current.add(question.id); setAnswers(current => ({ ...current, [question.id]: index }));
   }
   function rotate(delta) {
@@ -97,9 +111,9 @@ export default function AnatomyExplorer() {
     if (current) setOrbit(`${current.theta * 180 / Math.PI + delta}deg ${current.phi * 180 / Math.PI}deg ${current.radius}m`);
   }
   function changeQuestion(delta) {
-    if (generation.current !== renderGeneration || activeQuestion.current !== questionIndex || (delta > 0 && !answered.current.has(question.id))) return;
+    if (!quizOpen || !question || activeSection.current !== "museum" || activeModel.current !== modelId || generation.current !== renderGeneration || activeQuestion.current !== questionIndex || (delta > 0 && !answered.current.has(question.id))) return;
     const next = questionIndex + delta;
-    if (next < 0 || next >= anatomyQuestions.length) return;
+    if (next < 0 || next >= questions.length) return;
     activeQuestion.current = next; setQuestionIndex(next);
   }
 
@@ -121,11 +135,14 @@ export default function AnatomyExplorer() {
       <div className={styles.gridThree}>{model.features.map(item => <button type="button" key={item.id} className={styles.choice} aria-pressed={item.id === featureId} onClick={() => { setFeatureId(item.id); setOrbit(item.orbit); }}>{item.title}</button>)}</div>
       {feature && <div className={styles.feedback} role="status"><h3>{feature.title}</h3><p>{feature.explanation}</p><p className={styles.muted}>Die Kamera zeigt eine Betrachtungsrichtung. Die Erklärung benennt die Struktur; sie ist keine automatische Messung.</p></div>}
     </section>
-    <section className={styles.panel} aria-labelledby="anatomie-fragen"><h2 id="anatomie-fragen">Das Verständnis prüfen</h2><p>Frage {questionIndex + 1} von {anatomyQuestions.length} · {answeredCount} beantwortet · {correct} richtig</p><progress className={styles.progress} value={answeredCount} max={anatomyQuestions.length} aria-label="Beantwortete Anatomiefragen" /><h3>{question.question}</h3><div className={styles.choices}>{question.choices.map((choice, index) => <button key={choice} type="button" disabled={selected !== undefined} className={`${styles.choice} ${selected !== undefined && index === question.answer ? styles.correct : selected === index ? styles.wrong : ""}`} onClick={() => answer(index)}>{choice}</button>)}</div>
-      {selected !== undefined && <div className={styles.feedback} role="status"><strong>{selected === question.answer ? "Richtig." : `Die richtige Antwort ist: ${question.choices[question.answer]}.`}</strong><p>{question.explanation}</p><button className={styles.secondary} type="button" onClick={() => chooseModel(question.modelId)}>Passendes Modell ansehen</button></div>}
-      <div className={styles.actions}><button className={styles.secondary} type="button" disabled={questionIndex === 0} onClick={() => changeQuestion(-1)}>Vorige Frage</button><button className={styles.primary} type="button" disabled={selected === undefined || questionIndex === anatomyQuestions.length - 1} onClick={() => changeQuestion(1)}>Nächste Frage</button>{answeredCount === anatomyQuestions.length && <button className={styles.secondary} type="button" onClick={() => { generation.current += 1; answered.current.clear(); activeQuestion.current = 0; setAnswers({}); setQuestionIndex(0); }}>Alle Fragen wiederholen</button>}</div>
-      {answeredCount === anatomyQuestions.length && <p className={styles.note} role="status">Runde abgeschlossen: {correct} von {anatomyQuestions.length} richtig. Du kannst jede Erklärung wieder aufrufen.</p>}
-    </section>
+    {questions.length > 0 && <details key={model.id} className={styles.sources} open={quizOpen} onToggle={event => { if (generation.current !== renderGeneration || activeSection.current !== "museum" || activeModel.current !== modelId) return; if (!event.currentTarget.open) generation.current += 1; setQuizOpen(event.currentTarget.open); }}>
+      <summary>Wissen zum Modell „{model.title}“ prüfen</summary>
+      {quizOpen && question && <section className={styles.panel} aria-labelledby="anatomie-fragen"><h2 id="anatomie-fragen">Wissen zum {model.title}</h2><p>Frage {questionIndex + 1} von {questions.length} · {answeredCount} beantwortet · {correct} richtig</p><progress className={styles.progress} value={answeredCount} max={questions.length} aria-label="Beantwortete Fragen zum gewählten Modell" /><h3>{question.question}</h3><div className={styles.choices}>{question.choices.map((choice, index) => <button key={choice} type="button" disabled={selected !== undefined} className={`${styles.choice} ${selected !== undefined && index === question.answer ? styles.correct : selected === index ? styles.wrong : ""}`} onClick={() => answer(index)}>{choice}</button>)}</div>
+        {selected !== undefined && <div className={styles.feedback} role="status"><strong>{selected === question.answer ? "Richtig." : `Die richtige Antwort ist: ${question.choices[question.answer]}.`}</strong><p>{question.explanation}</p></div>}
+        <div className={styles.actions}><button className={styles.secondary} type="button" disabled={questionIndex === 0} onClick={() => changeQuestion(-1)}>Vorige Frage</button><button className={styles.primary} type="button" disabled={selected === undefined || questionIndex === questions.length - 1} onClick={() => changeQuestion(1)}>Nächste Frage</button>{answeredCount === questions.length && <button className={styles.secondary} type="button" onClick={() => { if (generation.current !== renderGeneration || activeModel.current !== modelId) return; generation.current += 1; answered.current.clear(); activeQuestion.current = 0; setAnswers({}); setQuestionIndex(0); }}>Diese Fragen wiederholen</button>}</div>
+        {answeredCount === questions.length && <p className={styles.note} role="status">Runde abgeschlossen: {correct} von {questions.length} richtig. Du kannst jede Erklärung wieder aufrufen.</p>}
+      </section>}
+    </details>}
     <details className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
     </>}
   </LearningToolLayout>;

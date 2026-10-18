@@ -376,20 +376,21 @@ test('Course overview combines category, format and text filters, accepts umlaut
   function hrefs() { return cards().map(card => walk(card, node => typeof node.props?.href === 'string' && node.props.href.startsWith('/kurse/')).props.href); }
   function change(label, value) { const parent = walk(tree, node => node.type === 'label' && words(node).startsWith(label)); assert.ok(parent, label); const field = walk(parent, node => node.type === 'input' || node.type === 'select'); field.props.onChange({ target: { value } }); tree = render(); }
   function reset() { const button = walk(tree, node => node.type === 'button' && words(node) === 'Auswahl zurücksetzen'); assert.ok(button); button.props.onClick(); tree = render(); }
-  assert.equal(cards().length, props.courses.length);
-  assert.match(words(walk(tree, node => node.props?.role === 'status')), new RegExp(`${props.courses.length} von ${props.courses.length}`));
+  assert.equal(cards().length, 0);
+  assert.ok(walk(tree, node => node.type?.name === 'LearningCategoryMenu'));
+  assert.equal(walk(tree, node => node.props?.role === 'status'), null);
   change('Lernformat', 'mini'); assert.equal(cards().length, props.miniCount);
   change('Kategorie', 'wildkunde'); assert.deepEqual(hrefs(), props.courses.filter(course => course.format === 'mini' && course.category === 'wildkunde').map(course => course.href));
   change('Kurse durchsuchen', 'Rehwild'); assert.deepEqual(hrefs(), ['/kurse/rehwild']);
   reset(); change('Lernformat', 'detailed'); assert.equal(cards().length, props.detailedCount);
   change('Kategorie', 'hundewesen'); assert.ok(cards().length >= 5); assert.deepEqual(hrefs(), props.courses.filter(course => course.format === 'detailed' && course.category === 'hundewesen').map(course => course.href)); assert.ok(hrefs().includes('/kurse/wissen-nachsuche'));
   change('Lernformat', 'mini'); assert.equal(cards().length, 0); assert.match(words(tree), /Keine passenden Kurse gefunden/);
-  reset(); assert.equal(cards().length, props.courses.length);
+  reset(); assert.equal(cards().length, 0);
   for (const [accented, transliterated] of [['Jägersprache', 'Jaegersprache'], ['Fährten', 'Faehrten'], ['Wärmebild', 'Waermebild']]) {
     change('Kurse durchsuchen', accented); const expected = hrefs(); assert.ok(expected.length > 0, accented);
     change('Kurse durchsuchen', transliterated); assert.deepEqual(hrefs(), expected, transliterated);
   }
-  change('Kurse durchsuchen', 'zzznichtvorhanden'); assert.equal(cards().length, 0); reset(); assert.equal(cards().length, props.courses.length);
+  change('Kurse durchsuchen', 'zzznichtvorhanden'); assert.equal(cards().length, 0); reset(); assert.equal(cards().length, 0);
 });
 
 test('The course overview client transform excludes full curriculum and server-only course metadata imports', () => {

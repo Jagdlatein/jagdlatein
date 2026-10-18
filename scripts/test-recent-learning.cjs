@@ -23,10 +23,11 @@ test('Recent courses prefer the latest actual addition date, diversify ties, and
   assert.equal(JSON.stringify(rows), original);
 });
 
-test('The actual overview exposes at most three quiet dated links after categories and search; category pages keep their own complete list', () => {
+test('The overview exposes three quiet dated links; category roots show branches and selection exposes only the chosen knowledge', () => {
   const React = local('react');
   const { renderToStaticMarkup } = local('react-dom/server');
-  const pageLoad = createLoader({ 'next/router': { useRouter: () => ({ query: {}, asPath: '/lernen' }) }, 'next/head': () => null });
+  let route = { query: {}, asPath: '/lernen' };
+  const pageLoad = createLoader({ 'next/router': { useRouter: () => route }, 'next/head': () => null });
   const { getLearningOverviewData } = pageLoad('lib/learning-overview-server.js');
   const Component = pageLoad('components/LearningOverview.js').default;
   const data = getLearningOverviewData();
@@ -43,9 +44,19 @@ test('The actual overview exposes at most three quiet dated links after categori
   assert.ok(html.indexOf('all-search-title') < html.indexOf('learning-recent-heading'));
   for (const slug of ['wildkunde', 'wald-pflanzen', 'landwirtschaft-lebensraeume']) {
     const category = getLearningOverviewData(slug);
+    route = { query: {}, asPath: `/lernen/${slug}` };
     const rendered = renderToStaticMarkup(React.createElement(Component, { data: category }));
     assert.ok(!rendered.includes('learning-recent-heading'));
-    assert.ok(category.modules.every(m => rendered.includes(`/kurse/${m.id}`)));
+    assert.ok(rendered.includes('Unterkategorien'));
+    assert.doesNotMatch(rendered, /href="\/kurse\//, 'A category root no longer dumps every course');
+    for (const group of category.topicGroups) {
+      assert.ok(rendered.includes(`/lernen/${slug}?bereich=${group.id}#learning-modules`));
+      route = { query: { bereich: group.id }, asPath: `/lernen/${slug}?bereich=${group.id}` };
+      const selected = renderToStaticMarkup(React.createElement(Component, { data: category }));
+      assert.ok(!selected.includes('learning-recent-heading'));
+      const visibleIds = [...new Set([...selected.matchAll(/href="\/kurse\/([^"#]+)#lesson-/g)].map(match => match[1]))];
+      assert.deepEqual(visibleIds, group.moduleIds, 'No other branch leaks into a selected topic');
+    }
   }
 });
 

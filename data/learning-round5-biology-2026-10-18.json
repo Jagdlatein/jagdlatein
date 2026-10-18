@@ -1,0 +1,436 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Zwei funktionelle Wissenslücken nach Titel- und Lektionsaudit der 177 bestehenden Kurse und gezieltem Volltextabgleich: Schilddrüsenfunktion sowie Nebennierenfunktion im Säugermodell. Wissen zuerst, vier direkt lesbare Lektionen und nur vier ergänzende Fragen je Kurs. Keine Vollprüfung der übrigen App, keine Diagnostik oder Behandlung.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-schilddruese-round5-2026",
+      "title": "Schilddrüse: Jod, Hormonspeicher und Rückkopplung",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Vom Follikel zum Regelkreis: verstehen, wie Jod eingebaut, Schilddrüsenhormon gespeichert, im Gewebe aktiviert und über TRH und TSH reguliert wird.",
+      "minutes": 26,
+      "objectives": [
+        "Follikelwand, Kolloid und Blutseite räumlich unterscheiden",
+        "Jod als Baustoff von T3 und T4 einordnen",
+        "Transport, örtliche Aktivierung und Hormonwirkung verbinden",
+        "TRH, TSH und Schilddrüsenhormone im Regelkreis zuordnen"
+      ],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Funktionsmodell der Säugerschilddrüse, kein artspezifisches Organmaß, Hormon-Normalwert, Fütterungs- oder Behandlungsschema. Die äußere Drüsenform und die Anteile einzelner Hormonwege können zwischen Arten variieren.",
+        "AT": "Funktionsmodell der Säugerschilddrüse, kein artspezifisches Organmaß, Hormon-Normalwert, Fütterungs- oder Behandlungsschema. Die äußere Drüsenform und die Anteile einzelner Hormonwege können zwischen Arten variieren.",
+        "CH": "Funktionsmodell der Säugerschilddrüse, kein artspezifisches Organmaß, Hormon-Normalwert, Fütterungs- oder Behandlungsschema. Die äußere Drüsenform und die Anteile einzelner Hormonwege können zwischen Arten variieren."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Jennings: Thyroid Gland, Veterinary Histology",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/thyroid-gland/",
+          "organization": "The Ohio State University, College of Veterinary Medicine",
+          "supports": "Öffentlich indexierten Originalabschnitt gelesen: Follikel aus einschichtigem Epithel, Kolloid mit Thyreoglobulin, Jodierung/Kopplung und Abgabe zur benachbarten Kapillare. Unterschiedliche äußere Drüsenformen nicht vereinheitlicht; T3/T4 nicht als Protein bezeichnet."
+        },
+        {
+          "label": "Rousset, Dupuy, Miot und Dumont: Thyroid Hormone Synthesis and Secretion",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK285550/",
+          "organization": "Endotext / MDText.com; Rousset, Dupuy, Miot und Dumont",
+          "supports": "Original-Abstract, Einleitung und Abschnitte zu Zellpolarität, Jodid, Thyreoglobulin, Speicherung und Freisetzung öffentlich gelesen. Blut-/Lumenseite, gebundener Vorrat und Proteolyse abgeglichen; Humanwerte, Arzneien und Mangel-/Überschussschemata nicht übernommen."
+        },
+        {
+          "label": "Bowen: Thyroid Hormone Synthesis and Secretion",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/synthesis.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierte Originalabschnitte gelesen: Jodierung/Kopplung an Thyreoglobulin, endozytotische Aufnahme des Kolloids, lysosomaler Abbau und TSH. Keine alte vereinfachte Aussage über ausschließlich passive Membranpassage übernommen."
+        },
+        {
+          "label": "Bowen: Thyroid Hormone Chemistry",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/chem.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originaltext gelesen: T4/T3 als iodierte Tyrosinderivate, Jodatomzahl und Position, periphere Umwandlung, Trägerproteine und freie Fraktion. Keine universellen Prozentanteile oder Bindungsprotein-Verhältnisse."
+        },
+        {
+          "label": "Bowen: Physiologic Effects of Thyroid Hormones",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/physio.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originalabschnitt gelesen: Membrantransporter, intrazelluläre Rezeptoren/Genexpression, Stoffwechsel, Wärmebildung und Entwicklung. Keine klinische Ableitung aus Verhalten oder Fell, keine Humandiagnostik."
+        },
+        {
+          "label": "Bowen: Control of Thyroid Hormone Synthesis and Secretion",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/control.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originaltext gelesen: TRH, Vorderlappen-TSH und negative Rückkopplung der Schilddrüsenhormone. Die didaktische An-/Aus-Metapher nicht als binären Schalter und Kältereize nicht artsübergreifend übernommen."
+        },
+        {
+          "label": "Heseltine: Overview of the Thyroid Gland in Animals",
+          "url": "https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/overview-of-the-thyroid-gland-in-animals",
+          "organization": "Merck Veterinary Manual; Texas A&M University",
+          "supports": "Originalabschnitte Physiology/Action über öffentlichen Suchindex gelesen: T4 als Hauptsekretionsprodukt, örtlich regulierte T3-Bildung, Trägerbindung, TRH–TSH-Achse, Kernrezeptoren und Stoffwechselwirkung. Direkter Abruf teilweise blockiert; keine Volltextzugänglichkeit behauptet, keine Prozentwerte oder artsübergreifenden Potenzfaktoren."
+        },
+        {
+          "label": "Peeters und Visser: Metabolism of Thyroid Hormone",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK285545/",
+          "organization": "Endotext; Erasmus University Medical Center",
+          "supports": "Öffentliche Originalabschnitte zur Deiodierung gelesen: aktivierende äußere Ringdeiodierung und inaktivierende Wege, T4/T3/reverse T3 sowie örtliche Verfügbarkeit. Keine humanen Umwandlungsanteile, Organrangfolgen oder Therapieempfehlungen auf Wildsäuger übertragen."
+        },
+        {
+          "label": "Kemppainen: General Chemical Structure and Function of the Endocrine System of Animals",
+          "url": "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals",
+          "organization": "Merck Veterinary Manual; Auburn University",
+          "supports": "Öffentlich indexierten Originalabschnitt Modified Amino Acid Hormones gelesen: iodierte Tyrosinderivate, Speicherung im Thyreoglobulin, Jodbedarf der Synthese, Blutträger, Zelltransport und intrazelluläre Rezeptoren. Wegen gleicher Verlagsfamilie nicht als alleinige unabhängige Bestätigung von Heseltine gezählt."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "follikel-und-speicher",
+          "title": "Follikel: innen der Vorrat, außen die Blutversorgung",
+          "paragraphs": [
+            "Die funktionelle Grundeinheit der Schilddrüse ist der Follikel. Eine einschichtige Lage von Epithelzellen umschließt einen Innenraum. In diesem Follikellumen liegt das Kolloid, eine proteinreiche Substanz mit dem großen Speicherprotein Thyreoglobulin. Außerhalb der Follikel befinden sich Blutkapillaren. Wer diese räumliche Anordnung versteht, kann Herstellung, Vorrat und Abgabe der Hormone voneinander unterscheiden.",
+            "Eine Follikelzelle besitzt eine Blutseite und eine dem Lumen zugewandte Seite. Sie stellt Thyreoglobulin her und gibt es in den Innenraum ab. An diesem Protein entstehen die Schilddrüsenhormone T4 und T3; zunächst bleiben sie daran gebunden. Der Vorrat liegt damit im Follikellumen außerhalb der Zellen. Kolloid ist kein bereits frei im Blut zirkulierendes Hormon, sondern der Ort einer besonderen gebundenen Speicherung.",
+            "Für die Hormonabgabe nehmen Follikelzellen Bestandteile des Kolloids wieder auf. In der Zelle wird Thyreoglobulin enzymatisch abgebaut; dabei werden T4 und T3 freigesetzt. Die Hormone gelangen über die Blutseite in den Kreislauf. Synthese, Speicherung und Freisetzung gehören zusammen, finden aber an unterschiedlichen Stellen statt. Die Drüse gibt ihre Hormone endokrin ans Blut ab und benötigt dafür keinen Ausführungsgang zur Körperoberfläche.",
+            "Selbst erstelltes Lernbeispiel: Du ordnest in einem vereinfachten Follikelmodell drei Begriffe zu. Das Epithel bildet die Wand, Thyreoglobulin mit gebundenem Hormon liegt im Kolloid des Innenraums, und die Kapillare liegt außerhalb. Ein Pfeil vom Kolloid durch die Follikelzelle zum Blut beschreibt die Freisetzung. Ein Pfeil von der Zelle zum Lumen kann dagegen die Bereitstellung des Speicherproteins zeigen. Die Pfeilrichtung entscheidet, welcher Vorgang gemeint ist."
+          ],
+          "takeaway": "Im Follikellumen werden Schilddrüsenhormone an Thyreoglobulin gebunden gespeichert; vor der Abgabe ins Blut wird dieses Protein in Follikelzellen abgebaut.",
+          "exercise": "Zeichne Follikelwand, Kolloid und äußere Kapillare und ergänze getrennte Pfeile für Speicherung und Freisetzung."
+        },
+        {
+          "id": "jod-und-hormonbildung",
+          "title": "Jod: ein Baustein des Hormonmoleküls",
+          "paragraphs": [
+            "Jod ist ein chemischer Bestandteil der Schilddrüsenhormone. Die Drüse nimmt es aus dem Blut als Jodid, also als negativ geladenes Ion, auf. Dieses wird durch die Follikelzelle zur Lumenseite weitertransportiert. Dort wird Jod an Tyrosinreste des Thyreoglobulins gebunden. Jodidaufnahme und Einbau in das Protein sind unterschiedliche Schritte derselben Herstellungskette.",
+            "Durch Jodierung und anschließende Kopplung geeigneter Tyrosinreste entstehen T4 und T3 innerhalb des Thyreoglobulins. T4 heißt Thyroxin oder Tetrajodthyronin und enthält vier Jodatome; Trijodthyronin, T3, enthält drei. Diese Bezeichnungen beschreiben die Hormonmoleküle und nicht die Zahl der Drüsenlappen oder die Stärke eines einzelnen Ausschüttungsreizes. Die Hormone sind chemisch veränderte Aminosäurederivate und nicht selbst große Speicherproteine.",
+            "Die Herstellung benötigt sowohl Material als auch geregelte Zellarbeit. Jod liefert einen unverzichtbaren Baustoff, Thyreoglobulin das Proteingerüst für Synthese und Vorrat. Enzyme ermöglichen die erforderlichen Reaktionen. Das spätere Steuerhormon TSH kann diese Abläufe anregen, ersetzt aber keinen Baustoff. Aus der Bedeutung von Jod lässt sich keine allgemeine Zufütterungsmenge für Wildtiere oder Hunde ableiten.",
+            "Selbst erstelltes Lernbeispiel: In einer Modellwerkstatt liegen Jodid, Thyreoglobulin und ein TSH-Signal bereit. Das Jodid gehört zur Materialseite, Thyreoglobulin zur Synthese- und Speicherstruktur und TSH zur Steuerung. Ein fertiges Molekül mit vier Jodatomen wird als T4 beschriftet. Mit dieser Trennung wird verständlich, weshalb ein Signal und ein chemischer Baustein trotz gemeinsamer Beteiligung verschiedene Aufgaben haben."
+          ],
+          "takeaway": "T4 und T3 entstehen durch Jodeinbau und Kopplung an Thyreoglobulin; die Zahlen bezeichnen vier beziehungsweise drei Jodatome im Hormonmolekül.",
+          "exercise": "Ordne Jodid, Thyreoglobulin, TSH und T4 den Begriffen Baustoff, Synthese-/Speicherprotein, Steuerhormon und fertiges Schilddrüsenhormon zu."
+        },
+        {
+          "id": "transport-und-aktivierung",
+          "title": "Vom Blut zum Zielgewebe: Transport und örtliche Aktivierung",
+          "paragraphs": [
+            "Die Schilddrüse gibt vor allem T4 und daneben T3 ab. Im Blut sind Schilddrüsenhormone überwiegend an Transportproteine gebunden; ein kleiner Anteil liegt frei vor. Zwischen gebundener und freier Form besteht ein Austausch. Der Proteinspeicher im Blut ist etwas anderes als der Thyreoglobulinvorrat im Follikel. Er unterstützt die Verteilung der bereits freigesetzten Hormone im Körper.",
+            "Zielgewebe können T4 in das stärker wirksame T3 umwandeln. Dabei entfernen Enzyme, die Deiodinasen heißen, ein Jodatom an einer bestimmten Stelle des Moleküls. T4 wirkt somit auch als Vorstufe für T3. Die örtliche Umwandlung trägt dazu bei, wie viel wirksames Hormon einer Zelle zur Verfügung steht. Produktion in der Drüse und Aktivierung im Zielgewebe sind zwei verschiedene Ebenen der Regulation.",
+            "Entscheidend ist die Position der Abspaltung. Die aktivierende Umwandlung von T4 zu T3 ist nicht mit jeder beliebigen Entfernung eines Jodatoms gleichzusetzen. Andere Deiodierungswege führen beispielsweise zu reverse T3, einer hormonell inaktiven Form. Nach dem Transport in die Zielzelle kann insbesondere T3 an intrazelluläre Rezeptoren binden und die Genexpression beeinflussen. Die Wirkung hängt deshalb von Transport, Umwandlung und Empfänglichkeit des Gewebes ab.",
+            "Selbst erstelltes Lernbeispiel: Zwei Gewebemodelle erhalten T4 aus demselben Blutgefäß. Im ersten ist der Weg zur Bildung von T3 eingezeichnet, im zweiten ein inaktivierender Weg zu reverse T3. Obwohl beide Modelle ein Jodatom entfernen, entstehen unterschiedliche Produkte. Das Beispiel erklärt eine funktionelle Unterscheidung; es legt keine festen Umwandlungsanteile oder Normalwerte für verschiedene Wildarten fest."
+          ],
+          "takeaway": "T4 kann im Zielgewebe zu wirksamerem T3 aktiviert werden; Deiodierung kann je nach Position auch zu inaktiven Produkten führen.",
+          "exercise": "Vergleiche die Wege T4 → T3 und T4 → reverse T3 und erkläre, weshalb die Jodatomzahl allein die Wirkung nicht vollständig beschreibt."
+        },
+        {
+          "id": "trh-tsh-regelkreis",
+          "title": "TRH und TSH: die Schilddrüse im Regelkreis",
+          "paragraphs": [
+            "Die Schilddrüse arbeitet in einem übergeordneten hormonellen Regelkreis. Der Hypothalamus gibt TRH ab. Dieses Thyreotropin-Releasing-Hormon regt im Vorderlappen der Hypophyse die Abgabe von TSH an. TSH, das schilddrüsenstimulierende Hormon, wirkt an den Follikelzellen. Die Reihenfolge verbindet ein Steuersignal im Gehirn mit der Herstellung und Freisetzung von Schilddrüsenhormonen.",
+            "TSH fördert mehrere Arbeitsschritte der Follikelzelle, darunter Jodidaufnahme, Synthesevorgänge und die Freisetzung gespeicherter Hormone. Es ist also mehr als ein Signal für einen einzigen Abgabemoment. Schilddrüsenhormone wirken auf viele Zellprozesse, etwa Stoffwechsel, Wärmebildung, Wachstum und Entwicklung. Daraus folgt keine feste Hormonmenge für eine bestimmte Laufleistung, Jahreszeit oder Körpergröße.",
+            "Die Schilddrüsenhormone wirken auf die übergeordneten Steuerstellen zurück. Diese negative Rückkopplung dämpft die Anregung über TRH und TSH. Ein Regelkreis enthält damit einen vorwärts gerichteten Signalweg und eine zurückwirkende Begrenzung. Er ist kein starrer An-/Aus-Schalter: Herstellung, Transport und Wirkung werden auf mehreren Ebenen angepasst.",
+            "Selbst erstelltes Lernbeispiel: Auf einer Lernzeichnung steht TRH beim Hypothalamus, TSH beim Hypophysenvorderlappen und T4/T3 bei der Schilddrüse. Durchgezogene Pfeile führen in dieser Reihenfolge nach vorn. Zurückführende Hemmpfeile zeigen die Rückkopplung der Schilddrüsenhormone. So lassen sich Steuerhormone und Endhormone auseinanderhalten, ohne aus einem äußeren Merkmal eines beobachteten Tieres eine Hormonstörung zu diagnostizieren."
+          ],
+          "takeaway": "TRH regt TSH an, TSH regt die Schilddrüse an; Schilddrüsenhormone begrenzen die übergeordneten Signale durch negative Rückkopplung.",
+          "exercise": "Beschrifte den Vorwärtsweg Hypothalamus → Hypophysenvorderlappen → Schilddrüse und zeichne anschließend die Rückkopplung ein."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-schilddruese-round5-2026-q1",
+          "lessonId": "follikel-und-speicher",
+          "q": "Wo liegt im Säuger-Schilddrüsenfollikel der Vorrat an Thyreoglobulin mit daran gebundenen Schilddrüsenhormonen?",
+          "options": ["Im Blutplasma der äußeren Kapillaren", "Im Zellkern der Follikelepithelzellen", "Im Kolloid des Follikelinnenraums", "In einem Ausführungsgang zur Haut"],
+          "answer": 2,
+          "explain": "Thyreoglobulin wird von den Follikelzellen ins Lumen abgegeben. Dort liegt es im Kolloid und trägt gebundene Schilddrüsenhormone. Für die Freisetzung wird das Protein wieder in Zellen aufgenommen und abgebaut."
+        },
+        {
+          "id": "wissen-pruefung-schilddruese-round5-2026-q2",
+          "lessonId": "jod-und-hormonbildung",
+          "q": "Ein Molekül Thyroxin wird als T4 bezeichnet. Wofür steht die Zahl vier in dieser Hormonbezeichnung?",
+          "options": ["Für vier Jodatome im Hormonmolekül", "Für vier Tyrosinreste im freien Hormon", "Für vier Drüsenlappen am Bildungsort", "Für vier Transportproteine je Hormon"],
+          "answer": 0,
+          "explain": "Thyroxin heißt auch Tetrajodthyronin und enthält vier Jodatome. T3 enthält drei. Die Zahl beschreibt einen Bestandteil des Molekülaufbaus; für seine Wirkung ist außerdem die Position der Jodatome bedeutsam."
+        },
+        {
+          "id": "wissen-pruefung-schilddruese-round5-2026-q3",
+          "lessonId": "transport-und-aktivierung",
+          "q": "Welcher Umwandlungsweg aktiviert T4 im Säuger-Zielgewebe zu einem stärker wirksamen Schilddrüsenhormon?",
+          "options": ["Der Abbau von T4 zu Jodid und Tyrosin", "Die Bindung von T4 an Thyreoglobulin", "Die Umwandlung von T4 in reverse T3", "Die Umwandlung von T4 in T3"],
+          "answer": 3,
+          "explain": "Die geeignete Deiodierung von T4 bildet T3, das stärker wirksame Schilddrüsenhormon. Die Entfernung eines Jodatoms kann bei anderer Position dagegen zum inaktiven reverse T3 führen. Örtliche Enzymwege sind deshalb für die Hormonverfügbarkeit wichtig."
+        },
+        {
+          "id": "wissen-pruefung-schilddruese-round5-2026-q4",
+          "lessonId": "trh-tsh-regelkreis",
+          "q": "In welcher Folge wirken TRH und TSH im Vorwärtsweg des Säuger-Schilddrüsenregelkreises?",
+          "options": ["TSH → Hypothalamus → TRH → Schilddrüse", "TRH → Hypophysenvorderlappen → TSH → Schilddrüse", "TRH → Schilddrüse → TSH → Hypophyse", "TSH → Schilddrüse → TRH → Hypothalamus"],
+          "answer": 1,
+          "explain": "TRH aus dem Hypothalamus regt die TSH-Abgabe im Hypophysenvorderlappen an. TSH fördert Synthese und Freisetzung von Schilddrüsenhormonen. Die Endhormone begrenzen die übergeordneten Signale durch negative Rückkopplung."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Ausschließlich die vier neuen Schilddrüsenlektionen mit ihren vier Fragen. Konservierte Säugermechanismen anhand veterinärmedizinischer Lehre und unabhängiger Endokrinologie abgeglichen.",
+        "independentOrganizations": ["Ohio State University", "Colorado State University", "Texas A&M University / Merck Veterinary Manual", "Endotext-Autorenteams Rousset/Dupuy/Miot/Dumont und Peeters/Visser"],
+        "limitations": ["Mehrere CSU-Seiten bilden eine Quellenfamilie. Die beiden Merck-Veterinary-Seiten werden nicht allein als unabhängiges Paar verwendet.", "Humanbezogene Endotext-Ausführungen bestätigen nur allgemeine Mechanismen; Referenzwerte, Zeitangaben, Dosierungen und Umwandlungsanteile werden nicht auf Wildarten übertragen.", "Originalabschnitte teilweise über den öffentlichen Original-Suchindex gelesen, nicht überall ein direkter Volltextabruf. Keine Abbildungen oder Formulierungen übernommen."]
+      }
+    },
+    {
+      "id": "wissen-pruefung-nebennieren-round5-2026",
+      "title": "Nebennieren: Alarmantwort und Cortisol-Regelkreis",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Am Säugermodell mit Bezug zum Hund verstehen, weshalb Nebennierenmark und -rinde verschiedene Aufgaben haben und wie Nervensignale, Adrenalin und Cortisol zusammenhängen.",
+      "minutes": 26,
+      "objectives": [
+        "Nebennierenrinde und Nebennierenmark funktionell unterscheiden",
+        "Sympathisches Nervensignal und hormonelle Weitergabe verbinden",
+        "Katecholaminvorrat und Steroidbildung unterscheiden",
+        "CRH, ACTH, Cortisol und negative Rückkopplung zuordnen"
+      ],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Säugermodell einschließlich Hund. Keine Übertragung der räumlichen Rinden-/Markanordnung auf Vögel, keine artsübergreifenden Normalwerte, Verhaltensdiagnosen oder Behandlungsempfehlungen.",
+        "AT": "Säugermodell einschließlich Hund. Keine Übertragung der räumlichen Rinden-/Markanordnung auf Vögel, keine artsübergreifenden Normalwerte, Verhaltensdiagnosen oder Behandlungsempfehlungen.",
+        "CH": "Säugermodell einschließlich Hund. Keine Übertragung der räumlichen Rinden-/Markanordnung auf Vögel, keine artsübergreifenden Normalwerte, Verhaltensdiagnosen oder Behandlungsempfehlungen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Jennings: Adrenal Gland, Veterinary Histology",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/adrenal-gland/",
+          "organization": "The Ohio State University, College of Veterinary Medicine",
+          "supports": "Öffentlich indexierten Originaltext gelesen: paarige Organe nahe den Nieren, Säugerrinde/-mark, Rindenzonen und Hormongruppen, chromaffine Zellen. Die ausdrücklich abweichende Vogelanordnung und im Text widersprüchliche pauschale Zonenformulierung begrenzen die Verwendung auf das Säugermodell."
+        },
+        {
+          "label": "Van Vertloo: Overview of the Adrenal Glands in Animals",
+          "url": "https://www.merckvetmanual.com/endocrine-system/the-adrenal-glands/overview-of-the-adrenal-glands-in-animals",
+          "organization": "Merck Veterinary Manual; Iowa State University",
+          "supports": "Originalabschnitte über öffentlichen Suchindex gelesen: Rinde/Mark, CRH–ACTH–Glucocorticoide, Rückkopplung, Stoffwechselwirkung, sympathische Markanregung. Keine Bildgebung, Krankheiten, Medikamentenangaben oder Normalwerte übernommen; direkter Abruf teilweise blockiert."
+        },
+        {
+          "label": "Bowen: Functional Anatomy of the Adrenal Gland",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/anatomy.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originaltext gelesen: Organe nahe den Nieren, äußere Rinde/inneres Mark, drei Rindenzonen, Steroidklassen und chromaffine Zellen. Keine einheitliche äußere Form für alle Säuger behauptet."
+        },
+        {
+          "label": "Bowen: Adrenal Medullary Hormones",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/medhormones.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierte Originalabschnitte gelesen: Tyrosinderivate, Granulenspeicherung, präganglionäre sympathische Acetylcholin-Anregung, adrenerge Rezeptoren und verstärkte Herzkontraktion. Artabhängige Katecholaminanteile und Blutbindungsanteile nicht übernommen."
+        },
+        {
+          "label": "Carbone, Borges, Eiden, García und Hernández-Cruz (2019): Chromaffin Cells of the Adrenal Medulla",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/",
+          "organization": "Comprehensive Physiology / American Physiological Society; internationales Autorenteam",
+          "supports": "Öffentlich indexierte Originalabschnitte Introduction, Synthesis/Storage, Chromaffin Granules und Didactic Synopsis gelesen; direkter PMC-Abruf mit Botprüfung. Granulenspeicherung/Exozytose, Acetylcholin-Anregung und adrenerge Wirkungen bestätigt. Kein universelles Ausschüttungsverhältnis, keine Größen, Konzentrationen, Zelllinien- oder Krankheitsresultate übertragen."
+        },
+        {
+          "label": "Medical Neuroscience: Acetylcholine Neurotransmission, Seite 91",
+          "url": "https://nba.uth.tmc.edu/Assets/pdf/courses/2013_neuro_blk_1_v13.1.0_SCR.pdf",
+          "organization": "UTHealth Houston, McGovern Medical School",
+          "supports": "Öffentlich indexierten Original-PDF-Abschnitt Acetylcholine in the Autonomic Nervous System samt beschriftetem Schema gelesen: präganglionärer Sympathikus setzt an der Nebenniere Acetylcholin frei, Mark gibt E/NE ab. Keine Humanreferenzwerte oder sonstigen Schemaäste übernommen."
+        },
+        {
+          "label": "Bowen: Glucocorticoids",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/gluco.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originaltext gelesen: Cortisol/Corticosteron, Cholesterin als Vorstufe, intrazelluläre Rezeptoren, Stoffwechsel, CRH/ACTH und negative Rückkopplung. Kein universeller Morgenhöchstwert, kein starres Langzeit-/Kurzzeitschema und keine pauschale Reaktion jedes Stressors."
+        },
+        {
+          "label": "Bowen: Adrenocorticotropic Hormone",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/acth.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierten Originaltext gelesen: ACTH des Hypophysenvorderlappens, CRH-Anregung und Rückkopplung. Keine POMC-Spaltungsvarianten als universelle Artenregel verwendet."
+        },
+        {
+          "label": "Kemppainen: General Chemical Structure and Function of the Endocrine System of Animals",
+          "url": "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals",
+          "organization": "Merck Veterinary Manual; Auburn University",
+          "supports": "Öffentlich indexierte Originalabschnitte Protein/Polypeptide, Steroid und Modified Amino Acid Hormones gelesen: ACTH, Cholesterinvorstufe, geringe Speicherung fertiger Steroidhormone, intrazelluläre Rezeptoren und ergänzende schnelle nichtgenomische Wirkungen. Nicht als alleinige unabhängige Bestätigung derselben Verlagsfamilie gezählt."
+        },
+        {
+          "label": "Betts und andere: The Adrenal Glands, 17.6",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands",
+          "organization": "OpenStax / Rice University",
+          "supports": "Öffentlich indexierten Originalabschnitt gelesen: Rinden-/Markfunktionen, Sympathikus–Katecholamine und CRH–ACTH–Cortisol. Humanabbildung, starre Stressphasen, Cortisolwerte und die vereinfachte Muskel-Glucose-/Blutzuckerformulierung nicht übernommen."
+        },
+        {
+          "label": "Minireview: Rapid Glucocorticoid Signaling via Membrane-Associated Receptors (2006)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/16946006/",
+          "organization": "Tulane University, Department of Cell and Molecular Biology",
+          "supports": "Öffentliche Originalzusammenfassung gelesen: klassische verzögerte transkriptionsabhängige sowie zusätzlich rasche nichtgenomische Glucocorticoidwirkungen in mehreren Arten/Modellen. Keine offene Rezeptoridentität vereinfacht, keine Studie am Jagdhund oder neue Messwerte behauptet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "rinde-und-mark",
+          "title": "Rinde und Mark: zwei Funktionsbereiche in einem Organ",
+          "paragraphs": [
+            "Beim Hund und im hier verwendeten Säugermodell liegen zwei Nebennieren in der Nähe der Nieren. Trotz des Namens sind sie eigene hormonbildende Organe. Ihre äußere Nebennierenrinde umgibt das innere Nebennierenmark. Diese Einteilung ordnet unterschiedliche Zellverbände und Hormongruppen. Sie beschreibt kein einheitliches Form- oder Größenmaß für alle Wildsäuger und wird nicht auf den inneren Drüsenbau der Vögel übertragen.",
+            "Die Rinde bildet Steroidhormone. Im üblichen Säugermodell heißen ihre Bereiche von außen nach innen Zona glomerulosa, Zona fasciculata und Zona reticularis. Die äußere Zone ist vor allem mit Mineralocorticoiden wie Aldosteron verbunden, die mittlere mit Glucocorticoiden wie Cortisol und die innere mit Nebennierenandrogenen. Diese räumliche Ordnung hilft, Salz-/Wasserhaushalt, Stoffwechselregulation und Sexualhormonbeiträge auseinanderzuhalten.",
+            "Das Mark enthält chromaffine Zellen. Sie gehören funktionell zum sympathischen Nervensystem und geben unter anderem Adrenalin und Noradrenalin ins Blut ab. Diese beiden Stoffe heißen auch Epinephrin und Norepinephrin und gehören zu den Katecholaminen. Cortisol und Adrenalin können beide an Belastungsreaktionen beteiligt sein, stammen aber aus verschiedenen Zellverbänden und unterschiedlichen chemischen Hormonklassen.",
+            "Selbst erstelltes Lernbeispiel: In einem vereinfachten Hundemodell soll eine Cortisol-bildende Zellgruppe markiert werden. Sie gehört in die mittlere Rindenzone, die Zona fasciculata. Eine Zellgruppe mit gespeicherten Katecholaminen wird dagegen im Mark eingeordnet. Damit lassen sich Funktionsbezeichnungen sicher zuordnen, ohne aus Lage oder äußerem Aussehen eines Organs auf die aktuelle Hormonabgabe zu schließen."
+          ],
+          "takeaway": "Im Säugermodell bildet die Rinde Steroidhormone; das Mark enthält Katecholamin-bildende chromaffine Zellen. Cortisol gehört zur mittleren Rindenzone.",
+          "exercise": "Zeichne Rinde und Mark und ergänze Aldosteron, Cortisol, Nebennierenandrogene sowie Adrenalin/Noradrenalin an ihren Funktionsbereichen."
+        },
+        {
+          "id": "nervensignal-zu-hormon",
+          "title": "Vom Nervensignal zur Hormonabgabe ins Blut",
+          "paragraphs": [
+            "Das Nebennierenmark verbindet einen Nervenweg mit einer hormonellen Antwort. Präganglionäre sympathische Nervenfasern erreichen die chromaffinen Zellen und setzen dort Acetylcholin frei. Dieser Botenstoff kann die Zellen zur Abgabe von Katecholaminen anregen. Der ankommende Reiz wird nervös übermittelt; die ausgeschütteten Hormone werden anschließend durch das Blut zu Zielgeweben verteilt.",
+            "Adrenalin und Noradrenalin entstehen aus der Aminosäure Tyrosin. In chromaffinen Zellen liegen sie in sekretorischen Granula bereit. Bei geregelter Exozytose verschmilzt die Granulamembran mit der Zellmembran und Inhalt wird nach außen abgegeben. Ein vorgebildeter Vorrat kann so freigesetzt werden. Das ist ein anderer Bereitstellungsweg als die Neubildung eines Steroidhormons aus Cholesterin in Rindenzellen.",
+            "An den Zielzellen binden Katecholamine an adrenerge Rezeptoren der Zelloberfläche. Verschiedene Rezeptortypen und ihre Verteilung tragen dazu bei, dass Gewebe unterschiedlich reagieren. Eine wichtige Wirkung kann die Steigerung von Frequenz und Kontraktionskraft des Herzens sein. Der Name eines Hormons allein beschreibt also noch nicht jede Einzelwirkung: Für die Reaktion ist auch entscheidend, welche Zielzelle mit welchem Rezeptor erreicht wird.",
+            "Selbst erstelltes Lernbeispiel: Ein vereinfachter Signalplan für einen Hund enthält den Weg Sympathikusfaser → Acetylcholin → chromaffine Zelle → Adrenalin im Blut → Zielzellrezeptor. In diesem Plan ist Acetylcholin das örtliche Nervensignal an der Nebenniere, Adrenalin dagegen der weiterverteilte Botenstoff. Das Beispiel beschreibt einen biologischen Signalweg und keine Empfehlung, einen Hund zum Zweck einer Hormonreaktion zu belasten."
+          ],
+          "takeaway": "Das Mark kann ein sympathisches Acetylcholin-Signal in die Freisetzung gespeicherter Katecholamine ins Blut übersetzen; Zielzellrezeptoren bestimmen die Wirkung mit.",
+          "exercise": "Kennzeichne im Signalplan den nervösen Abschnitt, den Granulenvorrat und den hormonellen Abschnitt über das Blut."
+        },
+        {
+          "id": "cortisol-entstehung-wirkung",
+          "title": "Cortisol: aus Cholesterin gebildet, im Zellinneren wirksam",
+          "paragraphs": [
+            "Cortisol ist ein Glucocorticoid aus der Nebennierenrinde. Wie andere Steroidhormone wird es durch mehrere enzymatische Schritte aus Cholesterin gebildet. Die Zelle kann Vorstufen bereithalten; das fertige Steroidhormon wird jedoch nicht in großen abgabebereiten Granulenvorräten wie ein Katecholamin gespeichert. Für die Bereitstellung ist deshalb die regulierte Synthese ein zentraler Schritt.",
+            "Glucocorticoide beeinflussen die Bereitstellung und Nutzung von Energieträgern. Cortisol kann unter anderem die Neubildung von Glucose in der Leber und die Mobilisierung von Ausgangsstoffen aus anderen Geweben unterstützen. Es wirkt damit im Zusammenhang des gesamten Stoffwechsels. Der biologische Nutzen dieses Regelungsbeitrags lässt sich erklären, ohne für einen Hund oder eine Wildart einen festen Leistungs- oder Hormonwert festzulegen.",
+            "Ein wichtiger Wirkweg beginnt mit der Bindung an einen intrazellulären Glucocorticoid-Rezeptor. Der aktivierte Rezeptorkomplex beeinflusst die Genexpression und damit die Bildung von Proteinen. Dieser Weg unterscheidet sich von der Katecholaminwirkung über adrenerge Rezeptoren an der Zelloberfläche. Zusätzlich sind schnelle, nichtgenomische Glucocorticoidwirkungen bekannt; das Lehrmodell setzt Steroidwirkung daher nicht mit ausschließlich langsamer Genregulation gleich.",
+            "Selbst erstelltes Lernbeispiel: Zwei Zellmodelle werden verglichen. Die Markzelle gibt Katecholamine aus Granula ab; die Rindenzelle bildet Cortisol aus einer Cholesterinvorstufe. Beim ersten Modell steht ein Oberflächenrezeptor am Zielgewebe, beim zweiten der intrazelluläre Glucocorticoid-Rezeptor. Dieser Vergleich ordnet Bereitstellung und wichtigen Wirkweg. Er verlangt keine scharfe zeitliche Trennung beider Reaktionen."
+          ],
+          "takeaway": "Cortisol ist ein aus Cholesterin gebildetes Steroidhormon; ein wichtiger Wirkweg führt über intrazelluläre Rezeptoren zur veränderten Genexpression.",
+          "exercise": "Stelle Katecholamin und Cortisol nach Vorstufe, Bereitstellung und wichtigem Rezeptorort gegenüber."
+        },
+        {
+          "id": "crh-acth-rueckkopplung",
+          "title": "CRH und ACTH: Anregung mit Rückmeldung",
+          "paragraphs": [
+            "Die Cortisolbildung gehört zu einem Regelkreis aus Hypothalamus, Hypophysenvorderlappen und Nebennierenrinde. Der Hypothalamus gibt CRH, Corticotropin-Releasing-Hormon, ab. CRH regt im Vorderlappen die Freisetzung von ACTH an. Dieses adrenocorticotrope Hormon gelangt mit dem Blut zur Nebennierenrinde und fördert dort insbesondere die Bildung und Abgabe von Glucocorticoiden.",
+            "Cortisol wirkt auf die übergeordneten Ebenen zurück und dämpft die Anregung durch CRH und ACTH. Das ist negative Rückkopplung. Sie begrenzt den vorwärts gerichteten Signalweg. ACTH ist dabei ein Peptidhormon der Hypophyse, Cortisol ein Steroidhormon der Rinde. Wer die Bildungsorte und chemischen Klassen getrennt hält, verwechselt Steuerhormon und Endhormon nicht miteinander.",
+            "Nervöse Anregung des Marks und hormonelle Anregung der Rinde sind zwei verschiedene Wege, die im Organismus zusammenwirken können. Die Markantwort läuft über sympathische Fasern und Katecholamine, die Rindenantwort über den CRH–ACTH-Regelkreis und Glucocorticoide. Eine Belastungsreaktion lässt sich deshalb nicht sinnvoll auf ein einziges Hormon oder einen starren Ablauf zuerst Adrenalin, später Cortisol reduzieren.",
+            "Selbst erstelltes Lernbeispiel: In einer Zeichnung des Regelkreises führt ein Pfeil von CRH zu ACTH und weiter zur Glucocorticoidbildung. Zurücklaufende Hemmpfeile von Cortisol treffen die übergeordneten Steuerstellen. Du kannst daraus die Richtung der Rückmeldung erklären. Die Zeichnung erlaubt jedoch weder eine Aussage über den aktuellen Hormonspiegel eines betrachteten Hundes noch eine Diagnose seines Verhaltens oder seiner Gesundheit."
+          ],
+          "takeaway": "CRH fördert ACTH, ACTH fördert Glucocorticoidbildung; Cortisol dämpft durch negative Rückkopplung die übergeordneten Signale.",
+          "exercise": "Beschrifte Hypothalamus, Hypophysenvorderlappen und Nebennierenrinde mit CRH, ACTH und Cortisol und ergänze die hemmende Rückmeldung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-nebennieren-round5-2026-q1",
+          "lessonId": "rinde-und-mark",
+          "q": "Welcher Bereich der Nebenniere ist im Säugermodell einschließlich Hund besonders mit der Bildung von Cortisol verbunden?",
+          "options": ["Das innere Nebennierenmark", "Die mittlere Rindenzone, Zona fasciculata", "Die äußere Rindenzone, Zona glomerulosa", "Die innere Rindenzone, Zona reticularis"],
+          "answer": 1,
+          "explain": "Die Zona fasciculata bildet Glucocorticoide wie Cortisol. Die Zona glomerulosa ist besonders mit Mineralocorticoiden und die Zona reticularis mit Androgenen verbunden. Das Mark enthält Katecholamin-bildende chromaffine Zellen."
+        },
+        {
+          "id": "wissen-pruefung-nebennieren-round5-2026-q2",
+          "lessonId": "nervensignal-zu-hormon",
+          "q": "Über welchen Weg regt der Sympathikus im Säugermodell die Katecholaminabgabe des Nebennierenmarks an?",
+          "options": ["Über ACTH aus dem Hypophysenvorderlappen an Rindenzellen", "Über TSH aus dem Hypophysenvorderlappen an Follikelzellen", "Über Cortisol aus Rindenzellen an chromaffine Zellen", "Über Acetylcholin aus präganglionären Fasern an chromaffine Zellen"],
+          "answer": 3,
+          "explain": "Präganglionäre sympathische Fasern setzen an chromaffinen Zellen Acetylcholin frei. Das kann die Abgabe gespeicherter Katecholamine ins Blut anregen. Der nervöse Eingang wird dadurch mit einer hormonellen Weitergabe verbunden."
+        },
+        {
+          "id": "wissen-pruefung-nebennieren-round5-2026-q3",
+          "lessonId": "cortisol-entstehung-wirkung",
+          "q": "Aus welcher chemischen Vorstufe bilden die Zellen der Säuger-Nebennierenrinde das Steroidhormon Cortisol?",
+          "options": ["Aus Cholesterin", "Aus Tyrosin", "Aus Tryptophan", "Aus Histidin"],
+          "answer": 0,
+          "explain": "Cortisol entsteht wie andere Steroidhormone durch enzymatische Schritte aus Cholesterin. Seine Bereitstellung beruht wesentlich auf regulierter Synthese. Das unterscheidet sich von der Abgabe vorgebildeter Katecholamine aus Granula im Nebennierenmark."
+        },
+        {
+          "id": "wissen-pruefung-nebennieren-round5-2026-q4",
+          "lessonId": "crh-acth-rueckkopplung",
+          "q": "Wie wirkt Cortisol im Säuger-Regelkreis durch negative Rückkopplung auf die übergeordneten Signale CRH und ACTH?",
+          "options": ["Es dämpft CRH und verstärkt ACTH", "Es verstärkt CRH und dämpft ACTH", "Es dämpft die Abgabe von CRH und ACTH", "Es verstärkt die Abgabe von CRH und ACTH"],
+          "answer": 2,
+          "explain": "Cortisol begrenzt die übergeordnete Anregung durch negative Rückkopplung. Der Vorwärtsweg lautet CRH aus dem Hypothalamus, ACTH aus dem Hypophysenvorderlappen und Glucocorticoidbildung in der Rinde. Die Rückmeldung stabilisiert diesen Regelzusammenhang."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Ausschließlich die vier neuen Nebennierenlektionen und ihre vier Fragen, Säugermodell mit Hundebezug. Keine klinische Bewertung, keine Anleitung zur Belastung eines Tieres.",
+        "independentOrganizations": ["Ohio State University", "Colorado State University", "Iowa State University / Merck Veterinary Manual", "Auburn University / Merck Veterinary Manual", "UTHealth Houston", "Rice University / OpenStax", "Carbone/Borges/Eiden/García/Hernández-Cruz, Comprehensive Physiology", "Tulane University"],
+        "limitations": ["CSU-Unterseiten bilden eine Quellenfamilie. Merck-Veterinary-Beiträge werden trotz verschiedener Fachautoren nicht allein als unabhängiges Quellenpaar verwendet.", "Säuger-Rinden-/Markgliederung nicht auf Vögel übertragen. Keine universellen Katecholaminverhältnisse, Tageshöchstwerte, Reaktionsdauern oder Normalwerte.", "Originaltexte teilweise im öffentlichen Original-Suchindex gelesen. Die Chromaffinzell-Übersicht fasst Studien verschiedener Säuger und Zellmodelle zusammen; sie ist keine neue Beobachtungsstudie am Jagdhund.", "Katecholaminbindung an Plasmaproteine wird wegen unterschiedlicher vereinfachter Quellenformulierungen nicht gelehrt. Starre Kurzzeit-/Langzeit-Stressphasen und klinische Beispiele bleiben ausgeschlossen."]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-schilddruese-round5-2026",
+      "lessonId": "follikel-und-speicher",
+      "claims": [
+        {"claim": "Ein einschichtiges Follikelepithel umgibt Kolloid mit Thyreoglobulin; die Blutversorgung liegt außerhalb, und Blut-/Lumenseite unterscheiden sich funktionell.", "sourceUrls": ["https://ohiostate.pressbooks.pub/vethisto/chapter/thyroid-gland/", "https://www.ncbi.nlm.nih.gov/books/NBK285550/"]},
+        {"claim": "T3/T4 bleiben zunächst an Thyreoglobulin im Lumen gebunden; Aufnahme und Proteinabbau in Follikelzellen ermöglichen die endokrine Freisetzung ins Blut.", "sourceUrls": ["https://www.ncbi.nlm.nih.gov/books/NBK285550/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/synthesis.html", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-schilddruese-round5-2026",
+      "lessonId": "jod-und-hormonbildung",
+      "claims": [
+        {"claim": "Jodid gelangt von der Blutseite über Follikelzellen zur Lumenseite; Jodierung und Kopplung von Tyrosinresten am Thyreoglobulin bilden Schilddrüsenhormone.", "sourceUrls": ["https://www.ncbi.nlm.nih.gov/books/NBK285550/", "https://ohiostate.pressbooks.pub/vethisto/chapter/thyroid-gland/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/synthesis.html"]},
+        {"claim": "T4/T3 sind iodierte Aminosäurederivate mit vier/drei Jodatomen; Jod als Baustoff, Thyreoglobulin als Synthese-/Speicherstruktur und TSH als Anregung sind verschiedene Funktionen.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/chem.html", "https://www.ncbi.nlm.nih.gov/books/NBK285550/", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-schilddruese-round5-2026",
+      "lessonId": "transport-und-aktivierung",
+      "claims": [
+        {"claim": "T4 ist das Hauptsekretionsprodukt; Schilddrüsenhormone werden im Blut überwiegend reversibel an Proteine gebunden transportiert, neben einer freien Fraktion.", "sourceUrls": ["https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/overview-of-the-thyroid-gland-in-animals", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/chem.html"]},
+        {"claim": "Geeignete Deiodierung von T4 aktiviert zu stärker wirksamem T3, andere Wege führen zu inaktivem reverse T3; örtliche Aktivierung beeinflusst die Gewebeverfügbarkeit.", "sourceUrls": ["https://www.ncbi.nlm.nih.gov/books/NBK285545/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/chem.html", "https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/overview-of-the-thyroid-gland-in-animals"]},
+        {"claim": "Schilddrüsenhormone werden in Zellen transportiert und wirken unter anderem über intrazelluläre Rezeptoren auf Genexpression; Wirkung hängt deshalb auch von lokalen Zellvorgängen ab.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/physio.html", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-schilddruese-round5-2026",
+      "lessonId": "trh-tsh-regelkreis",
+      "claims": [
+        {"claim": "Hypothalamisches TRH regt Vorderlappen-TSH an; TSH fördert mehrere Synthese-/Abgabeschritte in Follikelzellen, Schilddrüsenhormone wirken negativ rückkoppelnd.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/control.html", "https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/overview-of-the-thyroid-gland-in-animals", "https://www.ncbi.nlm.nih.gov/books/NBK285550/"]},
+        {"claim": "Schilddrüsenhormone beeinflussen Stoffwechsel, Wärmebildung, Wachstum und Entwicklung; aus diesen Funktionen werden keine universellen Dosen oder Leistungswerte abgeleitet.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/thyroid/physio.html", "https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/overview-of-the-thyroid-gland-in-animals"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nebennieren-round5-2026",
+      "lessonId": "rinde-und-mark",
+      "claims": [
+        {"claim": "Nebennieren sind paarige endokrine Organe nahe den Nieren; im Säugermodell liegt die Rinde außen, das Mark innen; äußere Form ist nicht artübergreifend identisch.", "sourceUrls": ["https://ohiostate.pressbooks.pub/vethisto/chapter/adrenal-gland/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/anatomy.html", "https://www.merckvetmanual.com/endocrine-system/the-adrenal-glands/overview-of-the-adrenal-glands-in-animals"]},
+        {"claim": "Die Rindenzonen glomerulosa/fasciculata/reticularis sind im Säugermodell vor allem Mineralocorticoiden/Glucocorticoiden/Androgenen zugeordnet; Cortisol und Katecholamine stammen aus verschiedenen Bereichen und chemischen Klassen.", "sourceUrls": ["https://ohiostate.pressbooks.pub/vethisto/chapter/adrenal-gland/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/anatomy.html", "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands"]},
+        {"claim": "Chromaffine Markzellen sind sympathisch eingebunden und geben Adrenalin/Epinephrin und Noradrenalin/Norepinephrin als Katecholamine ins Blut ab.", "sourceUrls": ["https://www.merckvetmanual.com/endocrine-system/the-adrenal-glands/overview-of-the-adrenal-glands-in-animals", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/anatomy.html"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nebennieren-round5-2026",
+      "lessonId": "nervensignal-zu-hormon",
+      "claims": [
+        {"claim": "Präganglionäre sympathische Fasern geben Acetylcholin an chromaffinen Zellen ab und können damit deren Katecholaminfreisetzung anregen: nervöser Eingang, hormonelle Blutweitergabe.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/medhormones.html", "https://nba.uth.tmc.edu/Assets/pdf/courses/2013_neuro_blk_1_v13.1.0_SCR.pdf", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/"]},
+        {"claim": "Katecholamine entstehen aus Tyrosin, werden in Granula gespeichert und durch geregelte Exozytose freigesetzt; dies unterscheidet sich von der Synthese der Rindensteroide aus Cholesterin.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/medhormones.html", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals"]},
+        {"claim": "Adrenerge Rezeptoren an der Zielzelloberfläche und ihre Verteilung bestimmen Gewebereaktionen mit; verstärkte Herzfrequenz und Kontraktionskraft sind mögliche Wirkungen.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/medhormones.html", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/", "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nebennieren-round5-2026",
+      "lessonId": "cortisol-entstehung-wirkung",
+      "claims": [
+        {"claim": "Cortisol ist ein aus Cholesterin gebildetes Glucocorticoid; fertige Steroidhormone werden nicht in großen abgabebereiten Granulenvorräten wie Katecholamine gespeichert.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/gluco.html", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13070227/"]},
+        {"claim": "Cortisol kann Gluconeogenese und Mobilisierung von Stoffwechsel-Ausgangsstoffen unterstützen; ein wichtiger Wirkweg ist intrazellulärer Glucocorticoid-Rezeptor/Genexpression.", "sourceUrls": ["https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/gluco.html", "https://www.merckvetmanual.com/endocrine-system/the-adrenal-glands/overview-of-the-adrenal-glands-in-animals", "https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals"]},
+        {"claim": "Zusätzlich zu transkriptionsabhängigen Wirkungen sind rasche nichtgenomische Glucocorticoidwirkungen bekannt; Steroidwirkung wird nicht auf ausschließlich langsame Genregulation reduziert.", "sourceUrls": ["https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals", "https://pubmed.ncbi.nlm.nih.gov/16946006/"]}
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nebennieren-round5-2026",
+      "lessonId": "crh-acth-rueckkopplung",
+      "claims": [
+        {"claim": "Hypothalamisches CRH regt ACTH des Hypophysenvorderlappens an; ACTH fördert die Glucocorticoidbildung in der Rinde, Cortisol begrenzt CRH/ACTH durch negative Rückkopplung.", "sourceUrls": ["https://www.merckvetmanual.com/endocrine-system/the-adrenal-glands/overview-of-the-adrenal-glands-in-animals", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/acth.html", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/adrenal/gluco.html"]},
+        {"claim": "ACTH ist ein Peptidhormon, Cortisol ein Steroidhormon; sympathisch gesteuerte Markantwort und hormonelle Rindenantwort sind verschiedene, im Organismus zusammenwirkende Wege.", "sourceUrls": ["https://www.merckvetmanual.com/endocrine-system/endocrine-system-introduction/general-chemical-structure-and-function-of-the-endocrine-system-of-animals", "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/acth.html", "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands"]}
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {"topic": "Diagnosen und hormonbasierte Verhaltensbewertung", "reason": "Keine Diagnose einer Schilddrüsen-/Nebennierenerkrankung oder eines subjektiven Zustands anhand von Aussehen, Jagdverhalten oder einer isolierten Hormondarstellung."},
+    {"topic": "Fütterungs-, Medikamenten- und Leistungswerte", "reason": "Keine Dosierungen, allgemeinen Jodzufütterungsregeln, artsübergreifenden Normalwerte, Hormonhalbwertszeiten oder festen Ausschüttungsverhältnisse."},
+    {"topic": "Universelle Stressphasen und Vogelsäuger-Gleichsetzung", "reason": "Keine starre Reihenfolge Kurzzeit-Adrenalin/Langzeit-Cortisol. Rinden-/Markgliederung nur am Säugermodell; keine identische räumliche Nebenniere für Vögel behauptet."}
+  ]
+}

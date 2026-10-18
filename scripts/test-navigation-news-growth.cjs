@@ -61,12 +61,15 @@ test('All twelve homepage knowledge categories resolve through the actual catego
   const page = load('pages/lernen/[category].js');
   const paths = page.getStaticPaths();
   assert.equal(paths.fallback, false); assert.equal(categories.length, 12);
-  const categoryNav = nodes(Home(), node => node.type === 'nav' && node.props['aria-label'] === 'Wissensbereiche auf der Startseite')[0];
-  const links = nodes(categoryNav, node => node.type === Link);
+  const html = render(Home);
+  const categoryNav = html.split('<nav aria-label="Lernkategorien">')[1]?.split('</nav>')[0];
+  assert.ok(categoryNav);
+  assert.ok(html.indexOf('aria-label="Lernkategorien"') < html.indexOf('<details'), 'Primary knowledge categories are visible before optional shortcuts');
+  const links = [...categoryNav.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
   assert.equal(links.length, categories.length);
-  assert.equal(new Set(links.map(link => link.props.href)).size, categories.length);
+  assert.equal(new Set(links).size, categories.length);
   for (const category of categories) {
-    assert.ok(links.some(link => link.props.href === `/lernen/${category.slug}` && words(link).includes(category.title)));
+    assert.ok(links.includes(`/lernen/${category.slug}`) && categoryNav.includes(category.title.replaceAll('&', '&amp;')));
     assert.ok(paths.paths.some(item => item.params.category === category.slug));
     const result = page.getStaticProps({ params: { category: category.slug } });
     assert.equal(result.props.data.categoryInfo.slug, category.slug);

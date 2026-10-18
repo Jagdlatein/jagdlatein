@@ -79,10 +79,10 @@ function OfflineCourse({ course, expiresAt, onExpired }) {
       <LessonDiagram diagram={current.diagram} />
       <LessonEvidence lesson={current} reviewedOn={course.reviewedOn} />
     </section>
-    {question && <section className={styles.panel}><h2>Offline-Wissenscheck</h2><p className={styles.muted}>Ergebnisse gelten für diese Übungsrunde. Ein Kursabschluss wird hier nicht im Konto gespeichert.</p><p>Frage {run.index + 1} von {questions.length} · {run.score} richtig</p>{(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.note}>Geltungsbereich dieser Frage: {question.countries.map(id => countryNames[id]).join(" · ")}</p>}<h3>{question.q}</h3>
+    {question && <details className={styles.panel}><summary>Offline-Wissenscheck zum Kurs</summary><p className={styles.muted}>Ergebnisse gelten für diese Übungsrunde. Ein Kursabschluss wird hier nicht im Konto gespeichert.</p><p>Frage {run.index + 1} von {questions.length} · {run.score} richtig</p>{(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.note}>Geltungsbereich dieser Frage: {question.countries.map(id => countryNames[id]).join(" · ")}</p>}<h3>{question.q}</h3>
       <div className={styles.choices}>{answerOrder(question.answers, question.id, run.answerSeed).map(answerIndex => { const item = question.answers[answerIndex]; return <button className={`${styles.choice} ${answer !== undefined && question.correct.includes(item.id) ? styles.correct : answer === item.id ? styles.wrong : ""}`} key={item.id} disabled={answer !== undefined} onClick={() => choose(item.id)}>{item.text}{answer !== undefined && question.correct.includes(item.id) && " ✓"}</button>; })}</div>
       {answer !== undefined && <div className={styles.feedback} role="status"><strong>{question.correct.includes(answer) ? "Richtig." : "Diese Antwort passt nicht."}</strong><p>{question.explain}</p>{run.index + 1 < questions.length ? <button className={styles.primary} onClick={() => { if (allowed() && active.current === run) update({ ...run, index: run.index + 1 }); }}>Nächste Frage</button> : <><p>{run.score} von {questions.length} richtig.</p><button className={styles.secondary} onClick={() => { if (allowed() && active.current === run) update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>Noch einmal üben</button></>}</div>}
-    </section>}
+    </details>}
     <section className={styles.panel}><h2>Fachquellen</h2><p>Zum Öffnen der Originalquellen brauchst du eine Internetverbindung.</p><ul className={styles.sources}>{course.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section>
   </>;
 }
@@ -94,6 +94,9 @@ export default function OfflineLearning({ courses }) {
   const [online, setOnline] = useState(true); const action = useRef(false);
   const [retiredPhotoPaths, setRetiredPhotoPaths] = useState([]);
   const [downloadSupport, setDownloadSupport] = useState("checking");
+  const [view, setView] = useState("lernen");
+  const [photoId, setPhotoId] = useState("");
+  const [soundId, setSoundId] = useState("");
   useEffect(() => {
     let alive = true;
     setDownloadSupport(supportsOfflineDownloads() ? "supported" : "unsupported");
@@ -129,7 +132,7 @@ export default function OfflineLearning({ courses }) {
       const body = await response.json(); if (!response.ok) throw new Error(body.message || "Download fehlgeschlagen.");
       if (!validateOfflinePack(body.pack)) throw new Error("Die heruntergeladenen Lerninhalte sind ungültig.");
       await prepareOfflineCache([...body.pack.photos.map(photo => photo.src), ...body.pack.sounds.map(sound => sound.src)]);
-      await saveOfflinePack(body.pack); setPack(body.pack); setRetiredPhotoPaths([]); setCourseId(body.pack.courses[0].id); setMessage("Dein Lernrucksack ist bereit. Du kannst diese Seite jetzt auch ohne Internet erneut öffnen.");
+      await saveOfflinePack(body.pack); setPack(body.pack); setRetiredPhotoPaths([]); setCourseId(body.pack.courses[0].id); setView("lernen"); setPhotoId(""); setSoundId(""); setMessage("Dein Lernrucksack ist bereit. Du kannst diese Seite jetzt auch ohne Internet erneut öffnen.");
     } catch (failure) { setMessage(""); setError(failure.message || "Der Download konnte nicht abgeschlossen werden."); }
     finally { action.current = false; setBusy(false); }
   }
@@ -140,6 +143,10 @@ export default function OfflineLearning({ courses }) {
   }
   const visible = courses.filter(course => [course.title, course.category].join(" ").toLocaleLowerCase("de").includes(query.toLocaleLowerCase("de")));
   const course = pack?.courses.find(item => item.id === courseId);
+  const photo = pack?.photos.find(item => item.src === photoId);
+  const sound = pack?.sounds.find(item => item.id === soundId);
+  function expire() { setPack(null); setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte online erneuern."); }
+  function canRead() { if (pack && Date.now() < pack.expiresAt) return true; expire(); return false; }
   return <LearningToolLayout title="Offline-Lernrucksack" description="Nimm ausgewählte Kurse, echte Fotos und Originalstimmen mit ins Revier oder auf die Reise." icon="download" category="ausruestung-technik" stats={[{ value: "8", label: "Kurse pro Paket" }, { value: "7 Tage", label: "maximal offline" }]}>
     <section className={styles.panel}><h2>{online ? "Für unterwegs vorbereiten" : "Du lernst gerade offline"}</h2><p>Downloads bleiben auf diesem Gerät. Für das Herunterladen brauchst du einen aktiven Zugang. Ein Paket gilt höchstens sieben Tage, bei kürzerem Test- oder Abo-Zugang bis zu dessen Ende. Online kannst du es erneuern.</p><p className={styles.muted}>Beim Abmelden werden die Downloads entfernt. Browserdaten oder Betriebssystembereinigung können sie ebenfalls löschen. Öffne für unterwegs diese Seite einmal über ihre gespeicherte Webadresse.</p>
       {message && <p className={styles.note} role="status">{message}</p>}{error && <p className={styles.wrong} role="alert">{error}</p>}{!loaded && <p role="status">Lokalen Lernrucksack laden …</p>}
@@ -150,10 +157,16 @@ export default function OfflineLearning({ courses }) {
       <label className={extra.check}><input type="checkbox" checked={sounds} disabled={busy || downloadSupport !== "supported"} onChange={event => setSounds(event.target.checked)} />Alle {learningAudioPaths.length} Originalstimmen mitnehmen</label>
       <div className={styles.actions}><button className={styles.primary} disabled={busy || !online || !loaded || !selected.length || downloadSupport !== "supported"} aria-describedby={downloadSupport !== "supported" ? "offline-download-support" : undefined} onClick={download}>{busy ? "Bitte warten …" : pack ? "Auswahl neu herunterladen" : "Lernrucksack herunterladen"}</button>{loaded && <button className={styles.secondary} disabled={busy} onClick={remove}>Downloads entfernen</button>}</div>
     </section>
-    {pack && <><section className={styles.panel}><h2>Gespeicherte Kurse</h2><p>{pack.courses.length} Kurse · {pack.photos.length} Fotos · {pack.sounds.length} Aufnahmen<br />Heruntergeladen: {date(pack.createdAt)} · Verfügbar bis {date(pack.expiresAt)}</p><label className={styles.field}>Gespeicherten Kurs öffnen<select value={courseId} onChange={event => setCourseId(event.target.value)}>{pack.courses.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>
-      {course && <OfflineCourse key={`${pack.id}:${course.id}`} course={course} expiresAt={pack.expiresAt} onExpired={() => { setPack(null); setMessage("Der gespeicherte Zugang ist abgelaufen. Bitte online erneuern."); }} />}
-      {pack.photos.length > 0 && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2><div className={styles.grid}>{pack.photos.map((photo, index) => <OfflinePhoto photo={photo} retired={retiredPhotoPaths.includes(photo.src)} key={`${photo.src}:${index}`} />)}</div></section>}
-      {pack.sounds.length > 0 && <section className={styles.panel}><h2>Originalstimmen unterwegs</h2><div className={styles.grid}>{pack.sounds.map(sound => <article className={styles.card} key={sound.id}><h3>{sound.name}</h3><audio controls preload="none" src={sound.src} aria-label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>Aufnahme: {sound.author} · {sound.licenseUrl ? <a href={sound.licenseUrl} target="_blank" rel="noopener noreferrer">{sound.license}</a> : sound.license}</p>{sound.recording && <p className={styles.muted}>{sound.recording}</p>}{sound.modifications && <p className={styles.muted}>{sound.modifications}</p>}<p><a href={sound.sourceUrl} target="_blank" rel="noopener noreferrer">Originalquelle mit Aufnahme- und Lizenznachweis</a></p></article>)}</div></section>}
+    {pack && <><section className={styles.panel}><h2>Gespeicherte Kurse</h2><p>{pack.courses.length} Kurse · {pack.photos.length} Fotos · {pack.sounds.length} Aufnahmen<br />Heruntergeladen: {date(pack.createdAt)} · Verfügbar bis {date(pack.expiresAt)}</p>
+      <div className={extra.readerSelection}>
+        <label className={styles.field}>Ansicht<select value={view} onChange={event => { const value = event.target.value; if (!["lernen", "fotos", "stimmen"].includes(value) || value === "fotos" && !pack.photos.length || value === "stimmen" && !pack.sounds.length || !canRead()) return; setView(value); }}><option value="lernen">Lernen</option><option value="fotos" disabled={!pack.photos.length}>Fotos</option><option value="stimmen" disabled={!pack.sounds.length}>Stimmen</option></select></label>
+        {view === "lernen" && <label className={styles.field}>Gespeicherten Kurs öffnen<select value={courseId} onChange={event => { if (pack.courses.some(item => item.id === event.target.value) && canRead()) setCourseId(event.target.value); }}>{pack.courses.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>}
+        {view === "fotos" && <label className={styles.field}>Foto auswählen<select value={photoId} onChange={event => { if (pack.photos.some(item => item.src === event.target.value) && canRead()) setPhotoId(event.target.value); }}><option value="">Bitte ein Foto auswählen</option>{pack.photos.map(item => <option key={item.src} value={item.src}>{item.alt}</option>)}</select></label>}
+        {view === "stimmen" && <label className={styles.field}>Stimme auswählen<select value={soundId} onChange={event => { if (pack.sounds.some(item => item.id === event.target.value) && canRead()) setSoundId(event.target.value); }}><option value="">Bitte eine Stimme auswählen</option>{pack.sounds.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+      </div></section>
+      {view === "lernen" && course && <OfflineCourse key={`${pack.id}:${course.id}`} course={course} expiresAt={pack.expiresAt} onExpired={expire} />}
+      {view === "fotos" && <section className={styles.panel}><h2>Mitgenommene Fotografien</h2>{photo ? <OfflinePhoto photo={photo} retired={retiredPhotoPaths.includes(photo.src)} key={`${pack.id}:${photo.src}`} /> : <p>Wähle ein Foto. Die Aufnahme und ihr Bildnachweis erscheinen hier.</p>}</section>}
+      {view === "stimmen" && <section className={styles.panel}><h2>Originalstimmen unterwegs</h2>{sound ? <article className={styles.card} key={`${pack.id}:${sound.id}`}><h3>{sound.name}</h3><audio controls preload="none" src={sound.src} aria-label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>Aufnahme: {sound.author} · {sound.licenseUrl ? <a href={sound.licenseUrl} target="_blank" rel="noopener noreferrer">{sound.license}</a> : sound.license}</p>{sound.recording && <p className={styles.muted}>{sound.recording}</p>}{sound.modifications && <p className={styles.muted}>{sound.modifications}</p>}<p><a href={sound.sourceUrl} target="_blank" rel="noopener noreferrer">Originalquelle mit Aufnahme- und Lizenznachweis</a></p></article> : <p>Wähle eine Stimme. Die Originalaufnahme startet erst, wenn du sie abspielst.</p>}</section>}
     </>}
   </LearningToolLayout>;
 }

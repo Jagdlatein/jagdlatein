@@ -1,0 +1,18 @@
+.reader { min-width: 0; margin: 12px 0 28px; scroll-margin-top: 24px; }
+.heading { margin: 0 0 20px; font-size: clamp(25px, 3vw, 32px); line-height: 1.4; overflow-wrap: anywhere; }
+.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #dfcda0; }
+.list li { min-width: 0; border-bottom: 1px solid #dfcda0; }
+.link { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 62px; padding: 16px 4px; color: #57431d; text-decoration: none; font-size: 19px; line-height: 1.5; }
+.link > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.link > span:last-child { flex-shrink: 0; }
+.link strong { font-size: 20px; }
+.link small { display: block; margin-top: 4px; color: #6e6249; font-size: 15px; }
+.link:hover { color: #796021; text-decoration: underline; text-underline-offset: 4px; }
+.breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 20px; color: #796021; }
+.breadcrumb a { min-height: 48px; display: inline-flex; align-items: center; font-weight: 600; color: inherit; overflow-wrap: anywhere; text-underline-offset: 4px; }
+.content { min-width: 0; scroll-margin-top: 24px; }
+.content :where(p, li) { line-height: 1.8; }
+.content :where(h2, h3, p, li, a) { overflow-wrap: anywhere; }
+.content :where(img, video, canvas) { max-width: 100%; }
+.reader :where(a, [tabindex]):focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 4px; }
+@media (max-width: 620px) { .link { padding: 15px 2px; gap: 12px; } .breadcrumb { gap: 4px 12px; } }

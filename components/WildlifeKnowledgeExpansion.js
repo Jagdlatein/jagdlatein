@@ -1,12 +1,14 @@
 import { wildlifeKnowledgeBySlug } from "../lib/wildlife-knowledge";
 import styles from "../styles/WildlifeKnowledge.module.css";
 
-export default function WildlifeKnowledgeExpansion({ slug, name }) {
+export default function WildlifeKnowledgeExpansion({ slug, name, sectionId }) {
   const profile = wildlifeKnowledgeBySlug[slug];
   if (!profile) return null;
+  const sections = sectionId ? profile.sections.filter(section => section.id === sectionId) : profile.sections;
+  if (!sections.length) return null;
   return <section id="artenwissen-vertiefung" className={styles.knowledge} aria-labelledby="artenwissen-vertiefung-title">
     <h2 id="artenwissen-vertiefung-title">{name} genauer verstehen</h2>
-    {profile.sections.map(section => <section key={section.id} id={`art-wissen-${section.id}`} className={styles.section}>
+    {sections.map(section => <section key={section.id} id={`art-wissen-${section.id}`} className={styles.section}>
       <h3>{section.title}</h3>
       <p>{section.text}</p>
       {section.observationNote && <p className={styles.observation}><strong>Beim Beobachten:</strong> {section.observationNote}</p>}

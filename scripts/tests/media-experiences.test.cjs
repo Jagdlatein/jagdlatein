@@ -54,6 +54,13 @@ function setup(relative) {
 const videos = load('lib/wildlife-video-cases.js');
 const anatomy = load('lib/anatomy-explorer.js');
 const observation = load('lib/observation-workshop.js');
+function selectAnatomyModel(app, id) {
+  find(app.tree, node => node.type === 'select').props.onChange({ target: { value: id } }); app.redraw();
+}
+function openAnatomyQuiz(app) {
+  const details = find(app.tree, node => node.type === 'details' && text(node.props.children[0]).startsWith('Wissen zum Modell'));
+  assert.ok(details && !details.props.open); details.props.onToggle({ currentTarget: { open: true } }); app.redraw();
+}
 
 test('All 45 questions have valid answers, substantial feedback and stable IDs', () => {
   assert.equal(videos.wildlifeVideoQuestionCount, 15);
@@ -122,15 +129,19 @@ test('Observation reveals exactly one stage, rejects stale events and explains a
   app.click('Alle acht Fälle neu beginnen'); assert.match(app.content(), /0 von 24 Entscheidungen beantwortet/);
 });
 
-test('All anatomy answers explain mistakes and rapid advance does not skip questions', () => {
+test('Each optional model-specific anatomy round explains mistakes and rapid advance does not skip its questions', () => {
   const app = setup('components/AnatomyExplorer.js');
-  for (let index = 0; index < anatomy.anatomyQuestions.length; index++) {
-    const question = anatomy.anatomyQuestions[index]; const wrong = (question.answer + 1) % question.choices.length;
-    const stale = app.button(question.choices[wrong]).props.onClick; stale(); stale(); app.redraw(); assert.ok(app.content().includes(question.explanation));
-    if (index < anatomy.anatomyQuestions.length - 1) { const next = app.button('Nächste Frage').props.onClick; next(); next(); app.redraw(); assert.ok(app.content().includes(anatomy.anatomyQuestions[index + 1].question)); stale(); app.redraw(); }
+  for (const model of anatomy.anatomyModels) {
+    selectAnatomyModel(app, model.id); openAnatomyQuiz(app);
+    const questions = anatomy.anatomyQuestions.filter(question => question.modelId === model.id);
+    for (let index = 0; index < questions.length; index++) {
+      const question = questions[index]; const wrong = (question.answer + 1) % question.choices.length;
+      const stale = app.button(question.choices[wrong]).props.onClick; stale(); stale(); app.redraw(); assert.ok(app.content().includes(question.explanation));
+      if (index < questions.length - 1) { const next = app.button('Nächste Frage').props.onClick; next(); next(); app.redraw(); assert.ok(app.content().includes(questions[index + 1].question)); stale(); app.redraw(); }
+    }
+    assert.ok(app.content().includes(`Runde abgeschlossen: 0 von ${questions.length} richtig`));
+    app.click('Diese Fragen wiederholen'); assert.match(app.content(), /0 beantwortet · 0 richtig/);
   }
-  assert.match(app.content(), /Runde abgeschlossen: 0 von 6 richtig/);
-  app.click('Alle Fragen wiederholen'); assert.match(app.content(), /0 beantwortet · 0 richtig/);
 });
 
 test('The anatomy selector opens real-photo digestion content directly and retains museum questions', () => {
@@ -142,6 +153,8 @@ test('The anatomy selector opens real-photo digestion content directly and retai
   assert.ok(panel); assert.equal(panel.props.selectedId, 'schwarzwild-verdauung'); assert.equal(panel.props.hideSelector, true);
   select().props.onChange({target: {value: anatomy.anatomyModels[0].id}}); app.redraw();
   assert.equal(find(app.tree, node => node.type?.name === 'DigestiveLearning'), null);
+  assert.ok(!app.content().includes(anatomy.anatomyQuestions[0].question));
+  openAnatomyQuiz(app);
   assert.ok(app.content().includes(anatomy.anatomyQuestions[0].question));
 });
 
@@ -175,9 +188,13 @@ test('All forty-five correct choices receive explanations and correct completion
   }
   assert.match(observationApp.content(), /24 von 24 Entscheidungen beantwortet · 24 richtig/);
   const anatomyApp = setup('components/AnatomyExplorer.js');
-  for (const [index, question] of anatomy.anatomyQuestions.entries()) {
-    anatomyApp.click(question.choices[question.answer]); assert.ok(anatomyApp.content().includes(question.explanation));
-    if (index < anatomy.anatomyQuestions.length - 1) anatomyApp.click('Nächste Frage');
+  for (const model of anatomy.anatomyModels) {
+    selectAnatomyModel(anatomyApp, model.id); openAnatomyQuiz(anatomyApp);
+    const questions = anatomy.anatomyQuestions.filter(question => question.modelId === model.id);
+    for (const [index, question] of questions.entries()) {
+      anatomyApp.click(question.choices[question.answer]); assert.ok(anatomyApp.content().includes(question.explanation));
+      if (index < questions.length - 1) anatomyApp.click('Nächste Frage');
+    }
+    assert.ok(anatomyApp.content().includes(`Runde abgeschlossen: ${questions.length} von ${questions.length} richtig`));
   }
-  assert.match(anatomyApp.content(), /Runde abgeschlossen: 6 von 6 richtig/);
 });

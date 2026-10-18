@@ -10,6 +10,13 @@ const React = pr('react');
 const {renderToStaticMarkup} = pr('react-dom/server');
 const sharp = pr('sharp');
 const swc = pr('next/dist/build/swc');
+const routerStateByCache = new WeakMap();
+const htmlValue = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+function knowledgeSection(html) {
+  const start = html.indexOf('<section id="learning-modules"');
+  assert.ok(start >= 0, 'The knowledge tree has its own stable section anchor');
+  return html.slice(start, html.indexOf('</section>', start) + '</section>'.length);
+}
 function load(relative, cache = new Map()) {
   const filename = path.join(root, relative);
   if (filename.endsWith(".json")) return JSON.parse(fs.readFileSync(filename, "utf8"));
@@ -20,7 +27,7 @@ function load(relative, cache = new Map()) {
     if (id === 'next/link') return ({href, children, prefetch, ...props}) => React.createElement('a', {href, ...props}, children);
     if (id === 'next/head') return ({children}) => children;
     if (id === 'next/image') return ({priority, fill, ...props}) => React.createElement('img', props);
-    if (id === 'next/router') return {useRouter: () => ({isReady: true, query: {}, asPath: '/lernen', replace: async () => true})};
+    if (id === 'next/router') return {useRouter: () => routerStateByCache.get(cache) || ({isReady: true, query: {}, asPath: '/lernen', replace: async () => true})};
     if (id.endsWith('.module.css')) return {__esModule: true, default: new Proxy({}, {get: (_, key) => String(key)})};
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), (path.extname(id) ? id : id + '.js'))), cache);
     return pr(id);
@@ -40,44 +47,91 @@ test('The learning overview exposes one search, twelve direct categories, and co
   assert.ok(html.indexOf('Kategorien') < html.indexOf('all-search-title'));
 });
 
-test('Category pages lead with reading and exact lessons, with practice reachable by an in-page link', () => {
+test('All twelve category roots expose their real topic branches before optional practice, without a flat course directory', () => {
   const cache = new Map();
   const getData = load('lib/learning-overview-server.js', cache).getLearningOverviewData;
   const Component = load('components/LearningOverview.js', cache).default;
-  const getModule = load('lib/learning-curriculum.js', cache).getLearningModule;
-  const { lessonHash } = load('lib/learning-lesson-navigation.js', cache);
   for (const category of load('lib/learning-categories.js', cache).learningCategoryDetails.map(item => item.slug)) {
     const data = getData(category);
     assert.deepEqual(data.covers, [], 'Reading lists do not transfer unused course photo summaries');
+    routerStateByCache.set(cache, {isReady: true, query: {}, asPath: `/lernen/${category}`});
     const html = renderToStaticMarkup(React.createElement(Component, {data}));
+    const tree = knowledgeSection(html);
+    assert.ok(html.indexOf('id="learning-modules"') < html.indexOf('id="lernen-suche"'), 'Category navigation precedes the optional search route');
     assert.equal((html.match(/type="search"/g) || []).length, 1);
     if (data.resources.some(tool => !tool.featured)) assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-resources-heading"'));
     if (data.resources.some(tool => tool.featured)) {
       assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-featured-heading"'));
       assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('aria-label="Deine Kurse"'));
-      assert.ok(html.includes('href="#learning-featured"'));
     }
+    if (data.resources.length) assert.ok(html.includes('<summary>Videos, Stimmen und Übungen in dieser Kategorie</summary>'));
     assert.doesNotMatch(html, /Lerneinheit öffnen|id="learning-country"/);
     assert.doesNotMatch(html, /class="lessonPreview"/);
+    assert.ok(tree.includes('Unterkategorien'));
+    assert.doesNotMatch(tree, /href="\/kurse\/|<details|<button|<img/, `${category}: start with a compact branch choice`);
+    const branchTargets = [...tree.matchAll(/href="([^"]*\?bereich=[^"]+)"/g)].map(match => match[1]);
+    assert.deepEqual(branchTargets, data.topicGroups.map(group => `/lernen/${category}?bereich=${encodeURIComponent(group.id)}#learning-modules`));
+    const byId = new Map(data.modules.map(module => [module.id, module]));
+    for (const group of data.topicGroups) {
+      assert.ok(tree.includes(htmlValue(group.title)), group.id);
+      const courses = group.moduleIds.map(id => byId.get(id));
+      const lessonCount = courses.reduce((sum, module) => sum + module.lessonCount, 0);
+      assert.ok(tree.includes(`${courses.length} Themenbereiche · ${lessonCount} Wissenstexte`), `${category}/${group.id}: actual branch counts`);
+    }
     const resourceHtml = html.split('id="learning-resources-heading"')[1]?.split('</ul>')[0] || '';
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));
     const links = [...resourceHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => targets.has(href));
     assert.equal(new Set(links).size, links.length);
-    const cards = [...html.matchAll(/<article class="moduleCard courseRow">([\s\S]*?)<\/article>/g)];
-    assert.equal(cards.length, data.modules.length);
-    cards.forEach((card, index) => {
-      const href = `/kurse/${data.modules[index].id}`;
-      assert.ok(card[1].includes(`<a href="${href}" class="moduleLink">`), href);
-      const original = getModule(data.modules[index].id);
-      assert.equal(data.modules[index].topics.length, original.lessons.length);
-      for (const [lessonIndex, lesson] of original.lessons.entries()) {
-        const target = `${href}${lessonHash(lesson.id)}`;
-        assert.deepEqual(data.modules[index].topics[lessonIndex], { title: lesson.title, href: target });
-        assert.ok(card[1].includes(`href="${target.replaceAll('&', '&amp;')}"`), target);
-      }
-      assert.doesNotMatch(card[1], /<details|<button/, 'All lessons are direct links, without an opening step');
-      assert.doesNotMatch(card[1], /<img|class="photoLink"/, `${href}: the category reading list stays text-first`);
-    });
+  }
+});
+
+test('Every selected category branch shows exactly its own courses and all exact lesson links, including after another route was rendered', () => {
+  const cache = new Map();
+  const { getLearningOverviewData } = load('lib/learning-overview-server.js', cache);
+  const Component = load('components/LearningOverview.js', cache).default;
+  const { getLearningModule } = load('lib/learning-curriculum.js', cache);
+  const { lessonHash } = load('lib/learning-lesson-navigation.js', cache);
+  for (const category of load('lib/learning-categories.js', cache).learningCategoryDetails) {
+    const data = getLearningOverviewData(category.slug);
+    const byId = new Map(data.modules.map(module => [module.id, module]));
+    for (const group of data.topicGroups) {
+      routerStateByCache.set(cache, {isReady: true, query: {bereich: group.id}, asPath: `/lernen/${category.slug}?bereich=${group.id}#learning-modules`});
+      const tree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
+      assert.ok(tree.includes(`aria-current="page">${htmlValue(group.title)}`), `${category.slug}/${group.id}: current breadcrumb`);
+      assert.ok(tree.includes(`href="/lernen/${category.slug}"`), 'The category parent is directly reachable');
+      const expected = group.moduleIds.flatMap(id => {
+        const module = byId.get(id);
+        const original = getLearningModule(id);
+        assert.equal(module.topics.length, original.lessons.length, id);
+        assert.ok(tree.includes(`<h3>${htmlValue(module.title)}</h3>`), id);
+        return original.lessons.map((lesson, index) => {
+          const href = `/kurse/${id}${lessonHash(lesson.id)}`;
+          assert.deepEqual(module.topics[index], {title: lesson.title, href});
+          assert.ok(tree.includes(htmlValue(lesson.title)), `${id}/${lesson.id}`);
+          return htmlValue(href);
+        });
+      });
+      const actual = [...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]);
+      assert.deepEqual(actual, expected, `${category.slug}/${group.id}: no hidden, duplicated or foreign lesson links`);
+      assert.doesNotMatch(tree, /<details|<button|<img/, 'Every selected knowledge topic is a direct readable lesson link');
+    }
+  }
+});
+
+test('Invalid or array-valued branch queries return the category root safely rather than opening an arbitrary first branch', () => {
+  const cache = new Map();
+  const { getLearningOverviewData } = load('lib/learning-overview-server.js', cache);
+  const Component = load('components/LearningOverview.js', cache).default;
+  for (const category of load('lib/learning-categories.js', cache).learningCategoryDetails) {
+    const data = getLearningOverviewData(category.slug);
+    for (const bereich of ['unknown-branch', '<script>alert(1)</script>', [data.topicGroups[0].id], [data.topicGroups[0].id, data.topicGroups[1].id]]) {
+      routerStateByCache.set(cache, {isReady: true, query: {bereich}, asPath: `/lernen/${category.slug}`});
+      const tree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
+      assert.ok(tree.includes('Unterkategorien'));
+      assert.doesNotMatch(tree, /href="\/kurse\/|<script/);
+      assert.equal((tree.match(/\?bereich=/g) || []).length, data.topicGroups.length);
+      if (typeof bereich === 'string') assert.ok(tree.includes('role="status"'), 'Unknown branches explain how to continue');
+    }
   }
 });
 
@@ -235,7 +289,7 @@ test('New dog photos decode, match provenance hashes, and are allowed as public 
   assert.equal(media({id: 'wissen-vertiefung-hunde-retriever-spaniels', imageKey: 'hundewesen'}).src, '/lernen/hunde-2026/labrador.jpg');
 });
 
-test('Every expanded wildlife portrait renders its actual text and sources, with each deep course linked once', () => {
+test('Every expanded wildlife portrait keeps its actual text and sources in its reader topics, with each deep course linked once', () => {
   const profiles = load('lib/wildlife-depth.js').wildlifeDepthBySlug;
   const species = load('lib/dach-wildlife.js').dachWildlifeBySlug;
   const Component = load('components/WildlifePortraitLayout.js').default;
@@ -244,8 +298,20 @@ test('Every expanded wildlife portrait renders its actual text and sources, with
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'components/WildlifeDepth.js'), 'utf8'), /from ["'].*learning-curriculum/);
   for (const [slug, profile] of Object.entries(profiles)) {
     assert.ok(species[slug], slug);
-    const html = renderToStaticMarkup(React.createElement(Component, {slug, name: species[slug].name}));
-    assert.ok(html.includes('Wissen vertiefen'));
+    const layout = Component({slug, title: species[slug].name});
+    const reader = React.Children.toArray(layout.props.children).find(child => React.isValidElement(child) && Array.isArray(child.props.groups));
+    assert.ok(reader, `${slug}: actual authored reader groups are reachable`);
+    const topics = reader.props.groups.flatMap(group => group.topics);
+    assert.equal(new Set(topics.map(topic => topic.id)).size, topics.length, `${slug}: each reader topic has an unambiguous anchor`);
+    const html = topics.map(topic => renderToStaticMarkup(topic.render())).join('');
+    for (const field of ['seasonalLife', 'fieldSigns', 'comparisons', 'observation']) {
+      for (const text of profile[field]) assert.ok(html.includes(htmlValue(text)), `${slug}: ${field} retains its exact authored text`);
+    }
+    for (const question of profile.learningQuestions) {
+      assert.ok(html.includes(htmlValue(question.q)), `${slug}: the question stays in its reader topic`);
+      assert.ok(html.includes(htmlValue(question.answer)));
+      assert.ok(html.includes(htmlValue(question.explain)));
+    }
     for (const source of profile.sources) assert.ok(html.includes(source.url.replace(/&/g, '&amp;')));
     for (const id of profile.courseIds) { assert.ok(getModule(id), `${slug}: ${id}`); assert.equal(titles[id], getModule(id).title); assert.equal(html.split(`href="/kurse/${id}"`).length - 1, 1, `${slug}: one clear course entry`); }
   }

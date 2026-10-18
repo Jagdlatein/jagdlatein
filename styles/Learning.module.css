@@ -85,6 +85,8 @@
 .course .takeaway h3, .course .exercise h3 { font-size: 21px; }
 .lessonEvidence { border-top: 1px solid #ded2b3; margin-top: 24px; font-size: 17px; }
 .lessonCards { margin:18px 0 8px; }
+.supplement > summary { cursor:pointer; min-height:48px; padding:10px 0; font-weight:700; color:#72541d; }
+.supplement { margin-top:18px; }
 .lessonCards a { display:inline-flex; align-items:center; min-height:48px; color:#72541d; font-size:18px; font-weight:650; text-underline-offset:4px; }
 .lessonEvidence summary { min-height: 54px; padding: 14px 0; font-weight: 700; cursor: pointer; }
 .lessonEvidence ul { padding-left: 22px; line-height: 1.8; }

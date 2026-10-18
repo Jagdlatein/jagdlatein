@@ -111,22 +111,33 @@ test('Offline download requires same origin, active account and JSON without any
   const response = await route.POST(new Request(url, { method: 'POST', headers: { origin: 'https://jagdlatein.example', 'content-type': 'application/json' }, body: '{}' })); assert.equal(response.status, 401); assert.match(response.headers.get('cache-control'), /no-store/);
   assert.equal((await route.GET(new Request(url))).status, 401);
 });
-test('Offline recordings retain linked licenses, origin and disclosed source processing', () => {
+test('Individually selected offline recordings retain linked licenses, origin and disclosed source processing', () => {
   process.env.JL_SESSION_SECRET = 'unit-test-offline-key-never-used-for-auth';
   const { createOfflinePack } = load('lib/offline-learning-server.js');
   const pack = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: true }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
-  const React = requireProject('react'); let stateIndex = 0;
-  const hooks = { ...React, useState(initial) { const value = stateIndex++ === 0 ? pack : typeof initial === 'function' ? initial() : initial; return [value, () => {}]; }, useEffect() {}, useRef(value) { return { current: value }; } };
+  const React = requireProject('react'); let stateIndex = 0; const slots = [];
+  const hooks = { ...React, useState(initial) { const i = stateIndex++; if (!(i in slots)) slots[i] = i === 0 ? pack : typeof initial === 'function' ? initial() : initial; return [slots[i], value => { slots[i] = typeof value === 'function' ? value(slots[i]) : value; }]; }, useEffect() {}, useRef(value) { return { current: value }; } };
   const OfflineLearning = load('components/OfflineLearning.js', { react: hooks, './LearningToolLayout': { __esModule: true, default: ({ children }) => children } }).default;
-  const html = requireProject('react-dom/server').renderToStaticMarkup(React.createElement(OfflineLearning, { courses: [] }));
+  const text = node => node == null || typeof node === 'boolean' ? '' : Array.isArray(node) ? node.map(text).join('') : typeof node === 'object' ? text(node.props?.children) : String(node);
+  function find(node, predicate) { if (Array.isArray(node)) return node.map(child => find(child, predicate)).find(Boolean); if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
+  const render = () => { stateIndex = 0; return OfflineLearning({ courses: [] }); };
+  const field = (tree, label) => find(find(tree, node => node.type === 'label' && text(node).startsWith(label)), node => node.type === 'select');
+  let tree = render();
+  assert.equal(find(tree, node => node.type === 'audio'), undefined);
+  field(tree, 'Ansicht').props.onChange({ target: { value: 'stimmen' } }); tree = render();
+  assert.equal(find(tree, node => node.type === 'audio'), undefined, 'Choosing a view does not start or preload a recording');
   for (const id of ['gams', 'murmeltier']) {
     const sound = pack.sounds.find(item => item.id === id); assert.ok(sound);
+    field(tree, 'Stimme auswählen').props.onChange({ target: { value: id } }); tree = render();
+    const audio = find(tree, node => node.type === 'audio');
+    assert.equal(audio.props.src, sound.src); assert.equal(audio.props.preload, 'none'); assert.notEqual(audio.props.autoPlay, true);
+    const html = requireProject('react-dom/server').renderToStaticMarkup(tree);
     assert.ok(html.includes(sound.licenseUrl), id + ' license link');
     assert.ok(html.includes(sound.sourceUrl.replaceAll('&', '&amp;')), id + ' recording source');
     assert.ok(html.includes(sound.recording.replaceAll('&', '&amp;')), id + ' recording context');
     assert.ok(html.includes(sound.modifications.replaceAll('&', '&amp;')), id + ' processing disclosure');
+    if (id === 'murmeltier') assert.match(html, /Hintergrundgeräusche reduziert/);
   }
-  assert.match(html, /Hintergrundgeräusche reduziert/);
 });
 function offlineSupportHarness({ missing, saved = null } = {}) {
   const keys = ['window', 'navigator', 'indexedDB', 'caches', 'MessageChannel', 'document', 'fetch', 'setInterval', 'clearInterval'];

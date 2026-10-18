@@ -8,10 +8,16 @@ const requireProject = createRequire(path.join(root, 'package.json'));
 const React = requireProject('react');
 const swc = requireProject('next/dist/build/swc');
 const { renderToStaticMarkup } = requireProject('react-dom/server');
+const load = require('./helpers/project-module.cjs').createLoader();
+function collectLinks(node) {
+  if (Array.isArray(node)) return node.flatMap(collectLinks);
+  if (!node || typeof node !== 'object') return [];
+  return [...(node.props?.href ? [node] : []), ...collectLinks(node.props?.children)];
+}
 
 function setup(pathname = '/login', history = [], appRouter = false, navigation = null) {
   let editing = false;
-  const effects = [], cleanups = [], listeners = new Map(), timers = new Map();
+  const effects = [], cleanups = [], listeners = new Map(), windowListeners = new Map(), timers = new Map();
   let timerId = 0, stored = JSON.stringify(history), destination;
   const clientNavigations = [], documentNavigations = [];
   let summaryFocus = 0;
@@ -21,6 +27,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
   };
   const window = { location: { pathname, search: '', hash: '', assign(value) { documentNavigations.push(value); destination = value; } },
+    addEventListener(name, fn) { windowListeners.set(name, fn); }, removeEventListener(name, fn) { if(windowListeners.get(name)===fn) windowListeners.delete(name); },
     setTimeout(callback) { const id = ++timerId; timers.set(id, callback); return id; },
     clearTimeout(id) { timers.delete(id); },
   };
@@ -38,6 +45,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
+    if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);
   const render = () => mod.exports.default();
@@ -46,6 +54,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage, menu, get summaryFocus() { return summaryFocus; },
     route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
     navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; },
+    hash(value) { window.location.hash=value; windowListeners.get('hashchange')?.(); },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
     blur(element = null) { document.activeElement = element; listeners.get('focusout')?.(); timers.forEach(callback => callback()); timers.clear(); },
     get destination() { return destination; }, get history() { return JSON.parse(stored); }, clientNavigations, documentNavigations,
@@ -70,8 +79,8 @@ test('Shared dock retains Back, learning, search, community and Start and adds a
 test('Dock links use client navigation without preloading private destinations on every page', () => {
   const s = setup('/konto');
   const children = s.tree.props.children;
-  const links = [children[1], children[2], ...children[3].props.children[1].props.children];
-  assert.equal(links.length, 12);
+  const links = collectLinks(children);
+  assert.equal(links.length, 24);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -113,16 +122,19 @@ test('Account grouping follows login, registration, pricing, account and learnin
   assert.doesNotMatch(setup('/community-other').html(), /aria-label="Zur Community" aria-current/);
 });
 
-test('Menu exposes clear destinations in one flat list and highlights the specific current learning tool', () => {
+test('Menu exposes one expandable category branch and highlights the specific current learning tool', () => {
   const s = setup('/lernen/lernkarten');
   const details = s.tree.props.children[3];
-  const links = details.props.children[1].props.children;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
+  const links = collectLinks(details.props.children[1]);
+  const categories = load('lib/learning-categories.js').learningCategoryDetails;
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
   assert.equal(details.props.children[0].type, 'summary', 'Native menu summary keeps keyboard and expanded state behavior');
-  assert.ok(links.every(link => link.type !== 'button' && link.type !== 'details' && link.props.prefetch === false));
+  assert.ok(links.every(link => link.type !== 'button' && link.props.prefetch === false));
+  const categoryBranch = details.props.children[1].props.children.find(item => item.type === 'details');
+  assert.ok(categoryBranch && !categoryBranch.props.open);
   for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
   for (const route of ['/lernen/videos', '/lernen/wildtier-videofaelle', '/lernen/jagdhund-videos']) {
     const videoLinks = setup(route).tree.props.children[3].props.children[1].props.children;
@@ -193,4 +205,34 @@ test('An immediate Back click after a same-page query edit skips that page and t
   const app = setup('/quiz-app', ['/lernen'], true);
   assert.match(app.html(), /Seitennavigation/);
   app.tree.props.children[0].props.onClick(); assert.equal(app.destination, '/lernen');
+});
+
+
+test('Back follows a selected category branch before leaving the category', () => {
+  const s = setup('/lernen/wildkunde', ['/lernen']);
+  s.route('/lernen/wildkunde?bereich=schalenwild#learning-modules');
+  s.route('/kurse/wissen-rehwild-jahreslauf#lesson-1');
+  s.tree.props.children[0].props.onClick();
+  assert.equal(s.destination, '/lernen/wildkunde?bereich=schalenwild#learning-modules');
+  const branch = setup('/lernen/wildkunde', ['/lernen']);
+  branch.route('/lernen/wildkunde?bereich=schalenwild#learning-modules');
+  branch.tree.props.children[0].props.onClick();
+  assert.equal(branch.destination, '/lernen/wildkunde');
+});
+
+
+test('Native species topic links preserve each branch for dock Back, including browser history navigation', () => {
+  const s=setup('/wildkunde/rehwild',['/lernen/wildkunde']);
+  s.hash('#portrait-grundlagen');s.hash('#portrait-lebensraum');
+  s.tree.props.children[0].props.onClick();assert.equal(s.destination,'/wildkunde/rehwild#portrait-grundlagen');
+  const native=setup('/wildkunde/rehwild',['/lernen/wildkunde']);
+  native.hash('#portrait-grundlagen');native.hash('#portrait-lebensraum');native.hash('#portrait-grundlagen');
+  native.tree.props.children[0].props.onClick();assert.equal(native.destination,'/wildkunde/rehwild');
+});
+
+
+test('Habitat reading fragments are also real Back stops without adding search typing stops', () => {
+ const s=setup('/lernen/lebensraum-werkstatt',['/lernen/natur-revier']);
+ s.hash('#habitat-lesen?baustein=wald&art=alle');s.hash('#habitat-lesen?baustein=wiese&art=rehwild');
+ s.tree.props.children[0].props.onClick();assert.equal(s.destination,'/lernen/lebensraum-werkstatt#habitat-lesen?baustein=wald&art=alle');
 });

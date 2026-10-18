@@ -1,0 +1,27 @@
+.section { margin: 0 0 32px; scroll-margin-top: 20px; }
+.section h2 { font-size: 26px; line-height: 1.35; overflow-wrap: anywhere; margin: 0 0 14px; }
+.breadcrumb { margin: 0 0 20px; }
+.breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; list-style: none; padding: 0; margin: 0; color: #6e6249; font-size: 15px; line-height: 1.5; }
+.breadcrumb li { min-width: 0; overflow-wrap: anywhere; }
+.breadcrumb li + li::before { content: "›"; margin-right: 10px; }
+.breadcrumb a { display: inline-block; min-height: 44px; padding: 10px 0; color: #72541d; text-underline-offset: 4px; }
+.hint { color: #6e6249; line-height: 1.7; margin: 0 0 20px; }
+.branches, .topics, .topics ul { list-style: none; padding: 0; margin: 0; }
+.branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.branches > li { min-width: 0; }
+.branches a { display: flex; align-items: center; gap: 18px; justify-content: space-between; height: 100%; min-height: 92px; padding: 20px; background: #fffdf7; border: 1px solid #dfcda0; border-radius: 14px; text-decoration: none; color: #3e321b; }
+.branches a > span { min-width: 0; }
+.branches strong, .branches a > span > span { display: block; overflow-wrap: anywhere; }
+.branches strong { font-size: 20px; line-height: 1.4; }
+.branches a > span > span { color: #6e6249; font-size: 14px; line-height: 1.6; margin-top: 7px; }
+.branches svg, .topics svg { flex-shrink: 0; color: #796021; }
+.topics > li { padding: 20px; margin-bottom: 16px; background: #fffdf7; border: 1px solid #dfcda0; border-radius: 14px; min-width: 0; }
+.topics h3 { font-size: 21px; line-height: 1.45; margin: 0 0 14px; overflow-wrap: anywhere; }
+.topics ul { margin-left: 8px; border-left: 2px solid #dfcda0; }
+.topics ul li { min-width: 0; position: relative; padding-left: 20px; }
+.topics ul li::before { content: ""; position: absolute; left: 0; top: 24px; width: 14px; border-top: 2px solid #dfcda0; }
+.topics ul a { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 50px; padding: 12px 0; line-height: 1.6; color: #57431d; text-decoration: none; overflow-wrap: anywhere; }
+.topics ul li + li a { border-top: 1px solid #eee4cd; }
+.branches a:hover strong, .topics a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.section a:focus-visible, .breadcrumb a:focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 4px; }
+@media (max-width: 620px) { .branches { grid-template-columns: minmax(0, 1fr); } .topics > li { padding: 18px 14px; } .topics h3 { font-size: 20px; } }

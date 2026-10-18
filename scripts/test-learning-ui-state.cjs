@@ -203,13 +203,13 @@ test('Detailed courses show the legal scope of regional questions while retainin
   const progress = find(s.tree, node => node.type === 'progress'); assert.equal(progress.props.max, module.questions.length);
 });
 
-test('Identical shared biology notes do not add a redundant three-country disclosure, while actual differences remain visible', () => {
+test('Identical shared biology notes do not add redundant country choices, while actual differences remain accessible after the chosen text', () => {
   const source = load('lib/learning-curriculum.js').learningModules.find(entry => entry.category === 'Wildkunde');
   const common = 'Gemeinsames biologisches Lernwissen.';
   const module = { ...source, countryNotes: { DE: common, AT: common, CH: common } };
   const s = setup('components/LearningCourse.js', { module }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
   assert.doesNotMatch(words(s.tree), /Regionale Vorschriften und Hinweise|Länderschwerpunkt/);
-  assert.equal(words(s.tree).split(common).length - 1, 1, 'shared scope guidance remains visible exactly once');
+  assert.equal(words(s.tree).split(common).length - 1, 1, 'shared scope guidance remains available exactly once');
   const different = { ...module, countryNotes: { ...module.countryNotes, CH: 'Ein konkret anderer regionaler Hinweis.' } };
   const regional = setup('components/LearningCourse.js', { module: different }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
   assert.match(words(regional.tree), /Regionale Vorschriften und Hinweise/);
@@ -316,4 +316,58 @@ test('Next.js client/server directives precede imports and other statements on e
     const source = fs.readFileSync(path.join(root, 'pages/jagdpraxis', filename), 'utf8');
     assert.equal(misplacedDirectives(source, filename).length, 0, filename + ': a misplaced Next.js directive fails production compilation');
   }
+});
+
+
+test('Focused reading keeps only the chosen lesson text, with optional practice and source panels that honor deep links and history', () => {
+  const course = load('lib/learning-curriculum.js').learningModules.find(c=>c.lessons.length>=4);
+  const nav = load('lib/learning-lesson-navigation.js');
+  const previousWindow=global.window;
+  try {
+    for (const initialHash of [nav.lessonHash(course.lessons[2].id),'#wissenscheck','#learning-sources','#quellen']) {
+      const listeners=new Map(),router={asPath:`/kurse/${course.id}${initialHash}`,replace:async()=>true};
+      global.window={location:{pathname:`/kurse/${course.id}`,search:'',hash:initialHash},addEventListener:(n,fn)=>listeners.set(n,fn),removeEventListener:(n,fn)=>{if(listeners.get(n)===fn)listeners.delete(n);}};
+      const s=setup('components/LearningCourse.js',{module:course},'LearningContent','\nexports.LearningContent = LearningContent;',{'../hooks/useCourseProgress':()=>({}),'next/router':{useRouter:()=>router}});
+      s.flush();
+      const article=()=>find(s.tree,n=>n.type==='article');
+      const quiz=()=>find(s.tree,n=>n.type==='details'&&n.props.id==='wissenscheck');
+      const sources=()=>find(s.tree,n=>n.type==='details'&&n.props.id==='quellen');
+      assert.equal(quiz().props.open,initialHash==='#wissenscheck');
+      assert.equal(sources().props.open,['#learning-sources','#quellen'].includes(initialHash));
+      const index=initialHash.startsWith('#lesson-')?2:0;
+      assert.ok(words(article()).includes(course.lessons[index].paragraphs[0]));
+      for (const [i,l] of course.lessons.entries()) if(i!==index) assert.ok(!words(article()).includes(l.paragraphs[0]),l.title);
+      global.window.location.hash=nav.lessonHash(course.lessons[1].id);listeners.get('popstate')();s.redraw();
+      assert.equal(article().props.id,`lesson-${course.lessons[1].id}`);
+      const crumb=find(s.tree,n=>n.type?.name==='KnowledgeBreadcrumb');
+      assert.equal(crumb.props.current,course.lessons[1].title);
+      assert.ok(crumb.props.items.some(i=>i.href.includes('?bereich=')));
+      quiz().props.onToggle({currentTarget:{open:true}});s.redraw();assert.equal(quiz().props.open,true);
+      quiz().props.onToggle({currentTarget:{open:false}});s.redraw();assert.equal(quiz().props.open,false);
+      s.unmount();assert.equal(listeners.size,0);
+    }
+  } finally {if(previousWindow===undefined)delete global.window;else global.window=previousWindow;}
+});
+
+test('Course directory begins at categories and exposes course results only for a specific search or filter', () => {
+  const page=load('pages/kurse/index.js'),props=page.getStaticProps().props;
+  const s=setup('pages/kurse/index.js',props);
+  assert.equal(find(s.tree,n=>n.type==='article'),null);
+  assert.ok(find(s.tree,n=>n.type?.name==='LearningCategoryMenu'));
+  const selected=props.courses.find(c=>c.format==='detailed');
+  s.field('Kurse durchsuchen').props.onChange({target:{value:selected.title}});s.redraw();
+  assert.ok(words(s.tree).includes(selected.title));assert.ok(find(s.tree,n=>n.type==='article'));
+  s.click('Auswahl zurücksetzen');assert.equal(find(s.tree,n=>n.type==='article'),null);
+});
+
+
+test('A direct lesson link never focuses the first text before the requested text is committed', () => {
+  const module=load('lib/learning-curriculum.js').learningModules.find(c=>c.lessons.length>=3);
+  const oldWindow=global.window,events=new Map(),focus=[];
+  global.window={location:{pathname:`/kurse/${module.id}`,search:'',hash:`#lesson-${encodeURIComponent(module.lessons[2].id)}`},addEventListener:(n,f)=>events.set(n,f),removeEventListener:n=>events.delete(n)};
+  const e=engine();
+  const Component=load('components/LearningCourse.js',{react:e.hooks,'../hooks/useCourseProgress':()=>({}),'next/router':{useRouter:()=>({asPath:`/kurse/${module.id}#lesson-${module.lessons[2].id}`})}},'\nexports.LearningContent = LearningContent;').LearningContent;
+  const render=()=>{const tree=e.render(()=>Component({module})),heading=find(tree,n=>n.props?.id==='current-lesson-heading');heading.props.ref.current={focus(){focus.push(words(heading));},scrollIntoView(){}};return tree;};
+  try {render();e.flush();assert.deepEqual(focus,[]);render();e.flush();assert.deepEqual(focus,[module.lessons[2].title]);}
+  finally {e.unmount();if(oldWindow===undefined)delete global.window;else global.window=oldWindow;}
 });

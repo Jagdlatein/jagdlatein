@@ -1,0 +1,576 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Zwei neue Habitatkurse nach Audit von 177 Kursen und 776 Lektionen; acht direkt lesbare Wissenslektionen mit nur je einer ergänzenden Frage. Keine neuen Medien.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-samenruhe-keimung-round5-2026",
+      "title": "Samenruhe und Keimung: vom Wasseraufnehmen zum Keimling",
+      "category": "Wald & Pflanzen",
+      "topic": "Hege/Naturschutz",
+      "description": "Quellung, Dormanz, Hüllenbarrieren und die Keimblattlage beim Auflaufen verständlich auseinanderhalten.",
+      "minutes": 30,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen üblicher terrestrischer Keimmodelle mit benannten Artbeispielen; keine vollständige Dormanzklassifikation, Kulturanleitung oder universelle Keim-/Lagerfrist.",
+        "AT": "Grundlagen üblicher terrestrischer Keimmodelle mit benannten Artbeispielen; keine vollständige Dormanzklassifikation, Kulturanleitung oder universelle Keim-/Lagerfrist.",
+        "CH": "Grundlagen üblicher terrestrischer Keimmodelle mit benannten Artbeispielen; keine vollständige Dormanzklassifikation, Kulturanleitung oder universelle Keim-/Lagerfrist."
+      },
+      "objectives": [
+        "Quellung von Wurzelaustritt und Auflaufen unterscheiden",
+        "Dormanz von fehlenden Umweltbedingungen trennen",
+        "Hüllenbarriere und physiologische Hemmung vergleichen",
+        "Epigäisches und hypogäisches Auflaufen erklären"
+      ],
+      "sources": [
+        {
+          "label": "Penn State Extension: Seed and Seedling Biology",
+          "url": "https://extension.psu.edu/seed-and-seedling-biology",
+          "organization": "Pennsylvania State University Extension",
+          "supports": "Originalabschnitte Voraussetzungen, Keimungsphasen und epigäische/hypogäische Entwicklung im vollständigen Original-Suchindex gelesen; Direktabruf403. Keine amerikanischen Saat-, Kultur-, Lagerfristen, Wassergehalts- oder Temperaturtabellen übernommen."
+        },
+        {
+          "label": "University of Minnesota: 2.2 Introduction to Seed Germination",
+          "url": "https://open.lib.umn.edu/horticulture/chapter/2-2-introduction-to-seed-germination/",
+          "organization": "University of Minnesota, The Science of Plants",
+          "supports": "Originalabschnitte Wasseraufnahme, Wurzelaustritt und ober-/unterirdische Keimblattlage gelesen. Keine Bilder/Videos/Aufgaben oder pauschalen Zellteilungs-/Stoffwechselstillstandsbehauptungen übernommen."
+        },
+        {
+          "label": "University of Minnesota: 9.2 Seed Physiology",
+          "url": "https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/",
+          "organization": "University of Minnesota, The Science of Plants",
+          "supports": "Originalabschnitte Germination, External conditions und Dormancy gelesen. Keine dortige unzutreffende Stärkeformel, relativen Samenfeuchtewerte oder ausnahmslosen Sauerstoff-/Kälteregeln übertragen."
+        },
+        {
+          "label": "Forest Research: Seed dormancy characteristics",
+          "url": "https://www.forestresearch.gov.uk/tools-and-resources/fthr/seeds-pretreatment-information/seed-pretreatment-seed-dormancy-characteristics/",
+          "organization": "Forest Research, UK Forestry Commission",
+          "supports": "Originaldefinition sowie getrennte Beschreibungen physiologischer Ruhe und wasserundurchlässiger Samenschale gelesen. Pauschale Aussage virtually all tree seeds und weite Gruppenzuordnungen nicht übernommen."
+        },
+        {
+          "label": "Forest Research: Seed Storage Database",
+          "url": "https://www.forestresearch.gov.uk/tools-and-resources/seed-storage/",
+          "organization": "Forest Research, UK Forestry Commission",
+          "supports": "Originaleinleitung zu verschiedenen natürlichen Signalen und Unterschieden zwischen Arten, Saatgutpartien und einzelnen Samen gelesen. Keine universelle Vorbehandlung oder aktuelle Ergebnisquote behauptet."
+        },
+        {
+          "label": "RHS: Trees and shrubs from seed",
+          "url": "https://www.rhs.org.uk/plants/types/trees/trees-shrubs-from-seed",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte Scarification und Stratification gelesen: verschiedene Mechanismen, feuchte Kälte-/Wärmephasen. Keine praktischen Schneide-, Säure-, Hitze-, Sammel- oder Kulturrezepte und keine pauschale Sorte-ist-nicht-samenecht-Regel übernommen."
+        },
+        {
+          "label": "FAO: A Guide to Forest Seed Handling, Chapter2",
+          "url": "https://www.fao.org/4/AD232E/AD232E02.htm",
+          "organization": "Food and Agriculture Organization of the United Nations",
+          "supports": "Originalabschnitte Seed Germination/Dormancy gelesen: Wasseraufnahme, Stoffwechsel, radikulärer Austritt, Artunterschiede und begrenzte Ruhe-/Keimmodelle. Historische Angaben zu Fruchtbildung/Taxonomie, Prozentwerten und universellen Überlebensregeln ausgeschlossen."
+        },
+        {
+          "label": "PropG: Germination Patterns",
+          "url": "https://propg.ifas.ufl.edu/04-seeds/03-germination/05-seedsgermination-patterns.html",
+          "organization": "University of Florida, University of Kentucky und Texas A&M University; ein gemeinsames Lehrprojekt",
+          "supports": "Originaltext zur Keimblattlage und Hypokotyl-/Epikotylentwicklung direkt gelesen; gemeinsame Institutionen nicht als mehrere unabhängige Quellen gezählt. Keine Videos/Fotos übernommen."
+        },
+        {
+          "label": "PropG: Hypocotyl",
+          "url": "https://propg.ifas.ufl.edu/04-seeds/03-germination/07-seedsgermination-hypocotyl.html",
+          "organization": "University of Florida, University of Kentucky und Texas A&M University; ein gemeinsames Lehrprojekt",
+          "supports": "Originaldefinition der Sprossregion zwischen Keimblattknoten und Keimwurzel sowie epigäischem Auflaufen gelesen."
+        },
+        {
+          "label": "PropG: Epicotyl",
+          "url": "https://propg.ifas.ufl.edu/04-seeds/03-germination/02-seedsgermination-epicotyl.html",
+          "organization": "University of Florida, University of Kentucky und Texas A&M University; ein gemeinsames Lehrprojekt",
+          "supports": "Originaldefinition der Sprossregion oberhalb des Keimblattknotens und hypogäischem Auflaufen gelesen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "wasser-stoffwechsel",
+          "title": "Wasseraufnahme, Stoffwechsel und Wurzelaustritt sind verschiedene Schritte",
+          "paragraphs": [
+            "Bei vielen ausgereiften trockenen Samen beginnt der Keimungsvorgang mit Wasseraufnahme und Quellung, der Imbibition. Wasser gelangt in die Gewebe; eine äußere Größenzunahme kann früh sichtbar werden. Danach beziehungsweise damit überlappend werden Stoffwechselvorgänge verstärkt, Vorräte mobilisiert und wachsende Embryobereiche versorgt. Quellung, Stoffwechsel und sichtbarer Durchtritt sind deshalb unterscheidbare Teile eines zusammenhängenden Vorgangs, keine drei vollständig voneinander abgeschlossenen Kästen.",
+            "Für die hier betrachteten üblichen landlebenden Saat- und Gehölzbeispiele gehören passende Feuchtigkeit, Temperatur und Sauerstoffversorgung zu den Voraussetzungen. Die artspezifischen Bereiche unterscheiden sich. Bei manchen Samen beeinflusst zusätzlich Licht die Keimung; eine allgemeine Regel „jeder Samen braucht zum Keimen Licht“ gilt nicht. Sauerstoff dient der aeroben Zellatmung, mit der der Keimling chemische Energie aus seinen Vorräten nutzbar macht. Daraus folgt weder eine einzige passende Temperatur für alle Arten noch die Regel, möglichst viel Wasser sei immer am besten.",
+            "Eigenes Beobachtungsmodell: A zeigt einen aufgequollenen Samen mit geschlossener Hülle, B zusätzlich den Austritt der Keimwurzel aus der Hülle. B enthält damit eine weitergehende Entwicklungsbeobachtung. In botanischen Versuchen wird der Wurzelaustritt häufig als Keimungskriterium verwendet. Das spätere Erscheinen eines Keimlings über der Substratoberfläche heißt Auflaufen; dieser räumliche Schritt ist vom Durchbrechen der Samenhülle zu trennen. Noch später liegt die Etablierung einer weiterwachsenden Jungpflanze."
+          ],
+          "takeaway": "Quellung, Wurzelaustritt und Auflaufen beschreiben unterschiedliche Entwicklungsbeobachtungen.",
+          "exercise": "Ordne dem eigenen Modell Wasseraufnahme, Austritt aus der Samenhülle und Auftauchen über der Substratoberfläche zu."
+        },
+        {
+          "id": "dormanz-umwelt",
+          "title": "Ein lebensfähiger Samen kann trotz günstiger Umgebung ruhen",
+          "paragraphs": [
+            "Samenruhe oder Dormanz bezeichnet einen Zustand lebensfähiger Samen, in dem sie unter normalerweise passenden äußeren Keimbedingungen nicht keimen. Der Begriff bezieht sich auf eine Hemmung im Samen beziehungsweise seinen Hüllen. Ein einfach zu trockener Standort ist davon zu unterscheiden: Dort fehlt zunächst eine äußere Voraussetzung. Für diese umweltbedingte Ruhe wird auch Quieszenz verwendet. Dormanz und fehlende Feuchtigkeit können am selben Fund nicht allein am ungekeimten Aussehen auseinandergehalten werden.",
+            "Lebensfähig und sofort keimend sind daher keine Synonyme. Ein ruhender Samen ist nicht schon deshalb tot, weil während eines kurzen Beobachtungsfensters keine Wurzel erscheint. Umgekehrt beweist auch eine unversehrte Samenhülle keine Lebensfähigkeit des Embryos. Die Bestimmung von Lebensfähigkeit und Keimfähigkeit benötigt geeignete Untersuchungsbedingungen; eine bestimmte Dauer wird hier nicht als universelle Prüfregel angegeben. Eine unbekannte Saatgutpartie lässt sich nicht durch bloßes Warten unter beliebigen Bedingungen sicher klassifizieren.",
+            "Ökologisch kann verzögerte Keimung die Entwicklung über die Zeit verteilen. Sie kann verhindern, dass alle Samen bereits auf eine kurze günstige Zwischenphase reagieren, der wieder ungünstige Bedingungen folgen. Das ist keine Überlebensgarantie und keine Absicht des Samens. Eigenes Vergleichsmodell: Ein lebensfähiger Samen wartet wegen fehlenden Wassers; ein zweiter bleibt unter den für ihn sonst geeigneten Bedingungen dormant. Beide sind ungekeimt, aber die beschriebenen Ursachen liegen auf verschiedenen Ebenen."
+          ],
+          "takeaway": "Nicht gekeimt kann fehlende Umweltbedingungen oder Dormanz bedeuten; beides ist von abgestorben zu trennen.",
+          "exercise": "Benenne im Vergleichsmodell die äußere Begrenzung und die im Samen liegende Hemmung, ohne aus der Hülle ein Vitalitätsurteil abzuleiten."
+        },
+        {
+          "id": "huelle-innere-hemmung",
+          "title": "Harte Hülle und innere Keimhemmung brauchen verschiedene Erklärungen",
+          "paragraphs": [
+            "Bei physischer Dormanz kann eine wasserundurchlässige Samenschale den Eintritt von Wasser begrenzen. Im engeren Beispiel der Hartschaligkeit bleibt das Embryogewebe deshalb zunächst unzureichend durchfeuchtet. Das ist ein anderes Hindernis als eine physiologische Hemmung in bereits wasseraufnehmenden Geweben. Eine harte Oberfläche allein beweist aber noch keine Wasserundurchlässigkeit; Materialgefühl und tatsächliche Funktion der Hülle sind getrennte Eigenschaften.",
+            "Skarifikation bezeichnet eine Veränderung der harten Hülle, die deren Barrierewirkung verringert. Stratifikation bezeichnet dagegen eine Vorbehandlung unter geeigneten feuchten Temperaturbedingungen, beispielsweise eine feuchte Kältephase. Solche Phasen können bei dafür empfänglichen Samen die physiologische Ruhe verändern. Manche Arten benötigen andere Bedingungen oder aufeinanderfolgende warme und kalte Phasen. Die beiden Begriffe stehen somit nicht für austauschbare Allzweckverfahren. Der genaue Bedarf hängt auch von Herkunft und Zustand der Samen ab.",
+            "Eigenes Funktionsmodell: Bei A erreicht Wasser den Embryo wegen einer undurchlässigen Hülle nicht; B nimmt Wasser auf, bleibt aber physiologisch gehemmt. Eine bloße Öffnung der Hülle beantwortet die innere Hemmung von B noch nicht. Umgekehrt ist eine Temperaturphase nicht automatisch der Nachweis, dass jede harte Hülle nun durchlässig ist. Das Modell erklärt die Ansatzpunkte. Es enthält keine Anleitung zum Anschneiden, Erhitzen oder chemischen Behandeln unbekannter Samen und keine allgemeine Aussaatfrist."
+          ],
+          "takeaway": "Hüllenbarriere und physiologische Ruhe sind verschiedene Mechanismen; Vorbehandlung bleibt artspezifisch.",
+          "exercise": "Erkläre für die Modelle A und B, ob Wasserzugang oder innere Keimhemmung im Mittelpunkt steht."
+        },
+        {
+          "id": "keimblaetter-aufgang",
+          "title": "Keimblätter können über oder unter der Oberfläche bleiben",
+          "paragraphs": [
+            "Die Keimblätter gehören zum Embryo. Für das Auflaufen ist wichtig, wie sich die junge Sprossachse um ihren Ansatz herum streckt. Hypokotyl heißt der Achsenabschnitt zwischen Keimblattansatz und Keimwurzel; Epikotyl liegt oberhalb des Keimblattansatzes. Die Begriffe benennen Positionen innerhalb derselben jungen Pflanze. Sie sind weder Bezeichnungen für zwei verschiedene Wurzeln noch für die obere und untere Hälfte der Samenschale.",
+            "Beim typischen epigäischen Auflaufen wird der Keimblattknoten über die Substratoberfläche gehoben; eine Streckung des Hypokotyls trägt dazu bei. Die Gartenbohne (Phaseolus vulgaris) liefert ein bekanntes Beispiel. Beim hypogäischen Muster bleiben die Keimblätter dagegen unter der Oberfläche, während sich der obere Sprossabschnitt entwickelt. Die Erbse (Pisum sativum) ist ein Beispiel dafür. Zwei ähnlich wirkende große Samen können deshalb verschieden auflaufen. Die Zuordnung wird an den genannten Arten und Bauplänen erklärt, nicht jedem Träger des umgangssprachlichen Namens „Bohne“ zugeschrieben.",
+            "Eigenes Vergleichsmodell: A zeigt Keimblätter oberhalb der Substratlinie und einen gestreckten Hypokotylbogen; bei B stehen erste Laubblätter oberhalb, die Keimblätter bleiben darunter. A entspricht dem epigäischen, B dem hypogäischen Muster. In beiden Fällen wächst ein Spross nach oben. Das Wort hypogäisch bedeutet somit nicht, dass die ganze Jungpflanze im Untergrund bleibt. Für eine Beschreibung werden Keimblattlage und sichtbarer Spross gemeinsam betrachtet."
+          ],
+          "takeaway": "Epigäisch und hypogäisch unterscheiden die Keimblattlage beim Auflaufen, nicht oben und unten an der Samenschale.",
+          "exercise": "Ordne im Modell Keimblattansatz, Hypokotyl und Epikotyl einer gemeinsamen Sprossachse zu."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "wasser-stoffwechsel",
+          "q": "Ein Keimungsmodell zeigt zuerst einen aufgequollenen Samen und später den Austritt einer kleinen Wurzel durch die Samenhülle. Welche embryonale Struktur tritt im zweiten Schritt hervor?",
+          "options": [
+            "Keimblatt",
+            "Keimwurzel (Radicula)",
+            "Fruchtknoten",
+            "Blattstiel"
+          ],
+          "answer": 1,
+          "explain": "Die Radicula ist die embryonale Wurzel. Ihr Austritt durch die Samenhülle ist eine weitergehende Entwicklungsbeobachtung als bloße Quellung. Das spätere Auftauchen über der Substratoberfläche wird davon als Auflaufen unterschieden."
+        },
+        {
+          "id": "q2",
+          "lessonId": "dormanz-umwelt",
+          "q": "Ein nachweislich lebensfähiger Samen bleibt unter den für ihn sonst geeigneten äußeren Keimbedingungen gehemmt. Wie heißt dieser Zustand?",
+          "options": [
+            "Befruchtung",
+            "Sporenreife",
+            "Blattalterung",
+            "Samenruhe (Dormanz)"
+          ],
+          "answer": 3,
+          "explain": "Dormanz bezeichnet die Hemmung eines lebensfähigen Samens unter normalerweise passenden äußeren Keimbedingungen. Bei einem lediglich zu trockenen Standort fehlt dagegen zunächst eine äußere Voraussetzung. Aus dem ungekeimten Aussehen allein ließen sich diese Ursachen nicht sicher trennen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "huelle-innere-hemmung",
+          "q": "Bei einem Samenmodell hält eine wasserundurchlässige Hülle das Wasser vom Embryo fern. Welcher Mechanismus steht im Mittelpunkt?",
+          "options": [
+            "Physische Dormanz durch Hüllenbarriere",
+            "Physiologische Ruhe nach vollständiger Wasseraufnahme",
+            "Photoperiodische Blühreaktion",
+            "Vegetative Knospenruhe am Zweig"
+          ],
+          "answer": 0,
+          "explain": "Die beschriebene Barriere liegt in der Wasserundurchlässigkeit der Hülle. Physiologische Hemmung bereits wasseraufnehmender Gewebe ist ein anderer Mechanismus. Eine passende Untersuchung muss deshalb Funktion und Lage der Hemmung berücksichtigen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "keimblaetter-aufgang",
+          "q": "Ein Keimlingsmodell behält seine Keimblätter unter der Substratoberfläche; der obere Sprossabschnitt mit Laubblättern wächst darüber hinaus. Welches Auflaufmuster zeigt es?",
+          "options": [
+            "Epigäisches Auflaufen",
+            "Vegetative Ausläuferbildung",
+            "Hypogäisches Auflaufen",
+            "Fruchtöffnung durch Streuklappen"
+          ],
+          "answer": 2,
+          "explain": "Beim hypogäischen Muster bleiben die Keimblätter unter der Oberfläche. Der Spross kann trotzdem oberirdisch weiterwachsen. Epigäisches Auflaufen bringt dagegen den Keimblattknoten über die Oberfläche; die Keimblattlage ist das hier abgefragte Merkmal."
+        }
+      ],
+      "sourceReview": {
+        "scope": "Grundlagen üblicher terrestrischer Keimmodelle mit benannten Artbeispielen; keine vollständige Dormanzklassifikation, Kulturanleitung oder universelle Keim-/Lagerfrist."
+      }
+    },
+    {
+      "id": "wissen-vertiefung-gallen-blattminen-round5-2026",
+      "title": "Gallen und Blattminen: Lebensspuren an Pflanzen verstehen",
+      "category": "Natur & Revier",
+      "topic": "Hege/Naturschutz",
+      "description": "Gallen als Wuchsreaktion und Blattminen als inneren Fraß verstehen; Bewohnerrollen und ein Rosskastanien-Beispiel unterscheiden.",
+      "minutes": 30,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen von Gallen und Blattminen mit ausdrücklich begrenztem Rosskastanien-Beispiel; keine vollständige Artbestimmung, Gesundheitsdiagnose, Bekämpfungsanleitung oder Übertragung britischer/amerikanischer Kalender auf DACH.",
+        "AT": "Grundlagen von Gallen und Blattminen mit ausdrücklich begrenztem Rosskastanien-Beispiel; keine vollständige Artbestimmung, Gesundheitsdiagnose, Bekämpfungsanleitung oder Übertragung britischer/amerikanischer Kalender auf DACH.",
+        "CH": "Grundlagen von Gallen und Blattminen mit ausdrücklich begrenztem Rosskastanien-Beispiel; keine vollständige Artbestimmung, Gesundheitsdiagnose, Bekämpfungsanleitung oder Übertragung britischer/amerikanischer Kalender auf DACH."
+      },
+      "objectives": [
+        "Pflanzenwachstum von Gewebeverlust unterscheiden",
+        "Gallerzeuger, Einmieter und Parasitoid nach Lebensweise zuordnen",
+        "Innere Fraßgänge und flächige Blattminen erklären",
+        "Rosskastanien-Miniermotte und pilzliche Blattflecken begrenzt vergleichen"
+      ],
+      "sources": [
+        {
+          "label": "UMN Extension: Insect and mite galls",
+          "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/insect-and-mite-galls",
+          "organization": "University of Minnesota Extension",
+          "supports": "Originalabschnitte How galls are formed und Types of galls direkt gelesen: verändertes Pflanzenwachstum, mehrere Auslösergruppen und betroffene Organe. Keine einheitliche Hormonursache, pauschale Harmlosigkeit, Saisonfristen oder amerikanischen Bekämpfungsregeln übernommen."
+        },
+        {
+          "label": "NC State: Oak Apple Galls",
+          "url": "https://content.ces.ncsu.edu/oak-apple-galls",
+          "organization": "North Carolina State University Extension",
+          "supports": "Originaltext vom 13.02.2025, besonders Gall-Inducers und Natural Enemies and Ecology, vollständig gelesen. Ernährung/Schutz und Rollenvergleich induzierender Insekten, Inquilinen und Parasitoide; kein kalifornischer Einzelstudieneffekt als DACH-Befund, keine allgemeinen Gallwespen-Lebenszyklen übernommen."
+        },
+        {
+          "label": "OSU: Vegetarians, Predators and Parasitoids, EM9426",
+          "url": "https://extension.oregonstate.edu/catalog/em-9426-vegetarians-predators-parasitoids-lesser-known-wasps-oregon",
+          "organization": "Oregon State University Extension Service",
+          "supports": "Originalabschnitte Cheaters and thieves, Gall wasps und A plethora of parasitoids gelesen. Nur Rollen/Ernährung und Gallenbildung genutzt; pauschales inquilines do not harm the host wegen dokumentierter Ausnahmen nicht übernommen. Keine Oregon-Artenzahlen, Lebenszeiten, Sammel- oder Eingriffsempfehlungen."
+        },
+        {
+          "label": "RHS: Gall mites",
+          "url": "https://www.rhs.org.uk/biodiversity/gall-mites",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte What are gall mites und Symptoms direkt gelesen: Milben können verändertes Pflanzenwachstum hervorrufen; ähnliche Gallen auch durch Insekten, Pilze und Bakterien. Keine allgemeinen Generations-/Eizahlen oder pauschalen Gesundheitsurteile."
+        },
+        {
+          "label": "UMN Extension: Leafminers in home gardens",
+          "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/leafminers",
+          "organization": "University of Minnesota Extension",
+          "supports": "Originalabschnitte How to identify leafminers und Biology of leafminers direkt gelesen: Gänge/Flächen und Larvenfraß zwischen den Blattoberflächen. Angaben zu Beinlosigkeit, Überwinterung im Boden und Kalender gelten dort genannten Fliegen; nicht auf alle Minierer übertragen."
+        },
+        {
+          "label": "RHS: Echinops leaf miner",
+          "url": "https://www.rhs.org.uk/biodiversity/echinops-leaf-miner",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte What is echinops leaf miner, Symptoms und Biology direkt gelesen. Nur als unabhängiger Fliegen-Beleg für die minierende Lebensweise; keine lokalen Jahresgenerationen, Wirtslisten, Schadlosigkeits- oder Verpuppungsregeln verallgemeinert."
+        },
+        {
+          "label": "Forest Research: Horse chestnut leaf miner (Cameraria ohridella)",
+          "url": "https://www.forestresearch.gov.uk/tools-and-resources/pests-and-diseases/database/horse-chestnut-leaf-miner-cameraria-ohridella/",
+          "organization": "Forest Research, UK Forestry Commission",
+          "supports": "Originaltext direkt und im vollständigen Originalindex gelesen, besonders Identification and symptoms und Biology and life cycle. Aesculus, innerer Larvenfraß, gegen Licht sichtbare Raupen/Kokons, Pilz-Verwechslung und mögliches gemeinsames Auftreten abgeglichen. Keine britischen Kalender-/Verbreitungsdaten, Gesundheitsgarantien, Prozentwerte oder Bekämpfungsrezepte übertragen."
+        },
+        {
+          "label": "RHS: Horse chestnut leaf-mining moth",
+          "url": "https://www.rhs.org.uk/biodiversity/horse-chestnut-leaf-mining-moth",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte Quick facts, What is horse chestnut leaf-miner und Symptoms direkt gelesen: Cameraria ohridella, Aesculus hippocastanum, weißlich-braune längliche Minen und mögliche Larven/Kokons im Gegenlicht. Keine britischen Artenzahlen oder Saisonfristen."
+        },
+        {
+          "label": "RHS: Horse chestnut leaf blotch",
+          "url": "https://www.rhs.org.uk/disease/horse-chestnut-leaf-blotch",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte Quick facts, What is horse chestnut leaf blotch und Symptoms direkt gelesen: Phyllosticta paviae, Synonym Guignardia aesculi, unregelmäßige Flecken und manchmal gelbe Ränder; Verwechslung mit Minen. Keine definitive Ferndiagnose allein aus Farbe oder pauschale Harmlosigkeit."
+        },
+        {
+          "label": "Hurley, Dittrich-Schröder und Gevers (2023): Gall Formers, Abschnitt14.2.3",
+          "url": "https://link.springer.com/chapter/10.1007/978-3-031-11553-0_14",
+          "organization": "Forestry and Agricultural Biotechnology Institute, University of Pretoria; Originalkapitel bei Springer Nature",
+          "supports": "Frei zugängliche Originalabschnitte14.1–14.2.3 direkt gelesen, besonders14.2.3Gall Community: Gallengewebe-Ernährung, mögliche Koexistenz und möglicher Tod des ursprünglichen Erzeugers durch Inquilinen. Ursprünglicher institutioneller PDF-Link scheiterte404; vollständiger Kapiteltext beim Verlag zugänglich. Keine eigenen Daten oder DACH-Erhebung behauptet; keine allgemeine Hyperplasie-Zellvergrößerungsformulierung und keine Universalregeln für Fortpflanzung übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "galle-pflanzengewebe",
+          "title": "Eine Galle wächst aus der Pflanze",
+          "paragraphs": [
+            "Eine Pflanzengalle besteht aus verändert wachsendem Pflanzengewebe. Das Gewächs bildet eine auffällige Struktur, nachdem ein gallauslösender Organismus auf seine Entwicklung eingewirkt hat. Bei Gallwespen kann das entstehende Gewebe der Larve Nahrung und einen geschützten Entwicklungsraum bieten. Die Galle ist also weder der Körper des Insekts noch einfach ein von außen angeheftetes Ei. Eine solche Wuchsreaktion muss von einem bloß abgebissenen oder abgestorbenen Blattstück unterschieden werden.",
+            "Gallbildungen gehen auf unterschiedliche Organismen zurück. Dazu gehören bestimmte Insekten und Milben; auch bestimmte Pilze und Bakterien können Gallen hervorrufen. Ebenso verschieden sind die betroffenen Pflanzenteile: Blattspreite oder Blattstiel, Knospe, Blüte und Spross können verändert sein. Nicht jede Galle hat die Form einer geschlossenen Kugel. Es kommen auch Aufwölbungen, verdickte oder eingerollte Bereiche vor. Die Bezeichnung Galle beschreibt zunächst eine Bildungsweise, keinen einzelnen Verursacher.",
+            "Eigenes Vergleichsbeispiel: An einem Blatt ist ein Bereich neu verdickt und aufgewölbt, an einem anderen fehlt Gewebe entlang eines Fraßrandes. Für die erste Struktur ist eine Wachstumsreaktion eine passende Erklärung; beim zweiten Befund ist Gewebe entfernt worden. Für die weitere Einordnung werden Pflanze, betroffenes Organ und Form zusammen betrachtet. Der sichtbare Befund rechtfertigt noch keinen beliebigen Artnamen für den Auslöser."
+          ],
+          "takeaway": "Gallen sind verändertes Pflanzenwachstum; ihre Gestalt und ihr Auslöser sind verschieden.",
+          "exercise": "Beschreibe im Gedankenbeispiel getrennt, wo zusätzliches beziehungsweise verändertes Gewebe vorliegt und wo Gewebe fehlt. Das ist ein eigener Merkmalsvergleich, keine Aufforderung zum Öffnen oder Sammeln."
+        },
+        {
+          "id": "bewohner-rollen",
+          "title": "Gallerzeuger, Einmieter und Parasitoid",
+          "paragraphs": [
+            "Eine von einem Insekt ausgelöste Galle kann mehr Organismen beherbergen als ihren ursprünglichen Erzeuger. Der gallauslösende Bewohner veranlasst die Pflanzenbildung und nutzt sie für seine Entwicklung. Ein Inquilin, auch Einmieter genannt, nutzt dagegen eine bereits von einem anderen Organismus hervorgerufene Galle. Bei den hier betrachteten pflanzenfressenden Galleninquilinen dient das Gallengewebe als Nahrung und die Struktur als Entwicklungsraum. Eine später gefundene Larve muss deshalb nicht der ursprüngliche Gallerzeuger sein.",
+            "Ein Parasitoid hat eine andere Ernährungsbeziehung: Seine Larve entwickelt sich auf Kosten eines tierischen Wirts, der im Verlauf dieser Entwicklung getötet wird. An Gallen können beispielsweise parasitoide Wespen auftreten, deren Larven einen Gallenbewohner verzehren. Die Begriffe Einmieter und Parasitoid unterscheiden hier die genutzte Nahrung und Entwicklungsbeziehung. Einmieter sind dabei nicht grundsätzlich folgenlose Gäste; manche beeinträchtigen oder töten den ursprünglichen Bewohner.",
+            "Eigenes Rollenmodell: Tier A löst die Gallenbildung aus. Tier B nutzt später das vorhandene Gallengewebe, ohne selbst die ursprüngliche Galle hervorgerufen zu haben. Tier C entwickelt sich an einem anderen Insekt und tötet dieses während seiner Entwicklung. A ist in diesem Modell der Gallerzeuger, B ein pflanzenfressender Inquilin und C ein Parasitoid. Erst die Lebensweise begründet diese Zuordnung; ein bloßer Fund im selben Hohlraum ersetzt diese Information nicht."
+          ],
+          "takeaway": "Der Fundort Galle verrät allein noch nicht die Rolle ihres Bewohners.",
+          "exercise": "Ordne die drei Tiere des eigenen Rollenmodells nach ihrer Beziehung zu Pflanze und tierischem Wirt. Begründe jede Zuordnung mit dem Entstehungs- oder Ernährungsweg."
+        },
+        {
+          "id": "mine-im-blatt",
+          "title": "Blattminen sind Fraßräume im Inneren",
+          "paragraphs": [
+            "Bei einer Blattmine frisst eine Insektenlarve im Blattinneren zwischen den äußeren Blattoberflächen. Dabei wird inneres Gewebe verzehrt, während die darüber und darunter liegenden Schichten den Fraßraum zunächst überdecken können. Sichtbar wird beispielsweise ein schmaler gewundener Gang oder eine flächige Mine. Das unterscheidet diesen Fraßweg von einem außen beginnenden Randfraß, bei dem ein Stück der Blattfläche fehlt.",
+            "Minieren ist eine Lebensweise, keine Bezeichnung für eine einzige Insektengruppe. Unter anderem gibt es minierende Fliegenlarven und Schmetterlingsraupen. Die Mine gehört zur fressenden Larvenphase; der Ausdruck bedeutet nicht, dass auch das erwachsene fliegende Tier im Blatt wohnt und dort weiterfrisst. Bei manchen Minen erweitert sich ein anfangs schmaler Bereich später zu einer größeren Fläche. Aus Gangform oder brauner Farbe allein folgt daher noch keine sichere Artbestimmung.",
+            "Eigenes Vergleichsbeispiel: Bei Blatt A verläuft ein heller Gang unter einer erhaltenen Oberflächenschicht, bei Blatt B fehlt ein Stück vom Rand, bei Blatt C liegt eine neu verdickte Wuchsbildung vor. Das passt zu den drei unterschiedlichen Vorgängen innerer Fraß, äußerer Gewebeverlust und Gallenbildung. Für eine Artzuordnung sind zusätzliche Merkmale von Pflanze und Verursacher nötig. Die Unterscheidung der Vorgänge ist bereits ein konkreter Erkenntnisgewinn und darf vor einem ungesicherten Artnamen stehen."
+          ],
+          "takeaway": "Eine Blattmine ist ein innerer Fraßraum; nicht jeder braune Fleck ist eine Mine.",
+          "exercise": "Vergleiche die drei eigenen Blattmodelle zunächst nach Gewebeort und Bildungsweise. Lass den Artnamen offen, solange Verursacher und weitere Merkmale fehlen."
+        },
+        {
+          "id": "rosskastanie-vergleich",
+          "title": "Rosskastanie: Mine oder Pilzfleck?",
+          "paragraphs": [
+            "An der Gewöhnlichen Rosskastanie (Aesculus hippocastanum) verursacht die Rosskastanien-Miniermotte Cameraria ohridella Fraßminen. Ihre Raupen leben im Blattinneren. Die Minen erscheinen zunächst weißlich und werden später braun; häufig sind sie länglich und durch Blattadern begrenzt. Hält man einen betroffenen Bereich gegen Licht, können darin Raupen oder rundliche Puppenkokons erkennbar sein. Das innere Tier oder sein Kokon ist ein anderer Befund als die bloße Braunfärbung.",
+            "Ähnlich wirkende Blattflecken können durch den Pilz Phyllosticta paviae entstehen, der auch unter dem Synonym Guignardia aesculi geführt wird. Beschrieben werden unregelmäßige braune bis rötlich-braune Flecken, teilweise mit gelblichem Rand. Ein gelber Rand ist jedoch kein Merkmal, das in jedem Einzelfall vorhanden sein muss. Miniermotte und pilzliche Blattbräune können an demselben Baum auftreten. Die Wahl zwischen genau einer einzigen Ursache wäre dann bereits zu eng.",
+            "Eigenes Beobachtungsbeispiel: In einem länglichen Bereich ist im Gegenlicht eine Raupe im Fraßraum sichtbar; daneben liegen anders geformte braune Flecken. Der erste Befund stützt inneren Larvenfraß. Er beweist nicht zugleich die Ursache jedes benachbarten Flecks. Für eine Einordnung werden Form, Lage zu den Blattadern und erkennbare Strukturen gemeinsam betrachtet. Aus einem braunen Blatt allein folgt weder eine sichere Verursacherbestimmung noch eine Aussage über den Gesundheitszustand des ganzen Baums."
+          ],
+          "takeaway": "Bei der Rosskastanie helfen innere Fraßstrukturen mehr als Farbe allein; mehrere Ursachen können zusammen auftreten.",
+          "exercise": "Trenne im eigenen Rosskastanienbeispiel den belegten Befund Raupe im Fraßraum von der noch offenen Ursache anderer Flecken. Das ist eine Beobachtungsübung, keine Ferndiagnose."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "galle-pflanzengewebe",
+          "q": "Woraus besteht eine durch ein Insekt ausgelöste Pflanzengalle hauptsächlich?",
+          "options": [
+            "Aus abgelegter Insektenhaut",
+            "Aus angehefteten Eiweißfäden",
+            "Aus verändertem Pflanzengewebe",
+            "Aus aufgeklebtem Blütenstaub"
+          ],
+          "answer": 2,
+          "explain": "Die Galle wird aus dem Gewebe der Pflanze gebildet. Der Auslöser verändert deren Wachstum; die sichtbare Struktur ist nicht der Körper des Tieres."
+        },
+        {
+          "id": "q2",
+          "lessonId": "bewohner-rollen",
+          "q": "Welche Rolle hat eine Larve, die sich vom Gewebe einer bereits durch ein anderes Tier hervorgerufenen Galle ernährt?",
+          "options": [
+            "Pflanzenfressender Inquilin",
+            "Ursprünglicher Gallerzeuger",
+            "Tierverzehrender Parasitoid",
+            "Blütenbesuchender Bestäuber"
+          ],
+          "answer": 0,
+          "explain": "Ein pflanzenfressender Galleninquilin nutzt die bereits entstandene Galle. Das ursprüngliche Hervorrufen der Galle kennzeichnet den Erzeuger; die Entwicklung auf Kosten eines tierischen Wirts kennzeichnet den Parasitoiden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "mine-im-blatt",
+          "q": "Welcher Vorgang erzeugt einen Fraßgang zwischen den erhaltenen äußeren Oberflächen eines Blattes?",
+          "options": [
+            "Äußerer Randfraß",
+            "Gallige Wuchsbildung",
+            "Äußeres Anheften von Eiern",
+            "Minierender Larvenfraß"
+          ],
+          "answer": 3,
+          "explain": "Minierende Larven fressen im Blattinneren. Der Gang ist ein Fraßraum unter den Oberflächenschichten; Randfraß entfernt dagegen Gewebe von außen, und eine Galle entsteht durch verändertes Wachstum."
+        },
+        {
+          "id": "q4",
+          "lessonId": "rosskastanie-vergleich",
+          "q": "Welcher Befund an einem Rosskastanienblatt stützt unmittelbar einen inneren Larvenfraß?",
+          "options": [
+            "Ein brauner Fleck mit gelbem Rand",
+            "Eine Raupe im länglichen Fraßraum",
+            "Eine kahle Stelle am Blattrand",
+            "Ein eingerollter, verdickter Bereich"
+          ],
+          "answer": 1,
+          "explain": "Eine Raupe im länglichen inneren Fraßraum ist ein direkter Hinweis auf minierenden Larvenfraß. Braunfärbung oder gelblicher Rand allein unterscheiden die Rosskastanien-Miniermotte nicht sicher von anderen Ursachen."
+        }
+      ],
+      "sourceReview": {
+        "scope": "Grundlagen von Gallen und Blattminen mit ausdrücklich begrenztem Rosskastanien-Beispiel; keine vollständige Artbestimmung, Gesundheitsdiagnose, Bekämpfungsanleitung oder Übertragung britischer/amerikanischer Kalender auf DACH."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-samenruhe-keimung-round5-2026",
+      "lessonId": "wasser-stoffwechsel",
+      "claims": [
+        {
+          "claim": "Bei vielen trockenen Samen überlappen Wasseraufnahme/Quellung, Stoffwechselaktivierung und Embryowachstum; mobilisierte Vorräte versorgen das Wachstum. Wurzelaustritt und oberirdisches Auflaufen sind verschiedene räumliche Beobachtungen.",
+          "sourceUrls": [
+            "https://extension.psu.edu/seed-and-seedling-biology",
+            "https://open.lib.umn.edu/horticulture/chapter/2-2-introduction-to-seed-germination/",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        },
+        {
+          "claim": "Passende Feuchtigkeit, Temperatur und Gasversorgung unterstützen die betrachteten terrestrischen Keimmodelle; Sauerstoff dient aerober Atmung. Lichtansprüche und Temperaturbereiche sind artspezifisch, keine allgemeine Gieß-/Temperaturregel.",
+          "sourceUrls": [
+            "https://extension.psu.edu/seed-and-seedling-biology",
+            "https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-samenruhe-keimung-round5-2026",
+      "lessonId": "dormanz-umwelt",
+      "claims": [
+        {
+          "claim": "Dormanz: lebensfähiger Samen keimt unter normalerweise passenden äußeren Keimbedingungen nicht; umweltbedingtes Ausbleiben der Keimung ist davon zu trennen. Lebensfähigkeit und sofortige Keimung sind verschiedene Eigenschaften.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/",
+            "https://www.forestresearch.gov.uk/tools-and-resources/fthr/seeds-pretreatment-information/seed-pretreatment-seed-dormancy-characteristics/",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        },
+        {
+          "claim": "Keimverzögerung kann Entwicklung über Zeit verteilen und kurzfristig günstige von dauerhaft tragfähigen Phasen entkoppeln; Saatgutpartien/Individuen variieren. Eigenes Ursachenvergleichsmodell ohne universelle Prüf- oder Überlebensgarantie.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/",
+            "https://www.forestresearch.gov.uk/tools-and-resources/seed-storage/",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-samenruhe-keimung-round5-2026",
+      "lessonId": "huelle-innere-hemmung",
+      "claims": [
+        {
+          "claim": "Wasserundurchlässige Hülle kann physische Dormanz verursachen; wasseraufnehmendes Embryogewebe kann dennoch physiologisch gehemmt bleiben. Härte allein ist kein Nachweis der Wasserundurchlässigkeit.",
+          "sourceUrls": [
+            "https://www.forestresearch.gov.uk/tools-and-resources/fthr/seeds-pretreatment-information/seed-pretreatment-seed-dormancy-characteristics/",
+            "https://www.rhs.org.uk/plants/types/trees/trees-shrubs-from-seed",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        },
+        {
+          "claim": "Skarifikation verändert die Hüllenbarriere; feuchte Temperaturbehandlung/Stratifikation wirkt bei dafür empfänglichen Samen auf Keimruhe, mit artspezifischen Varianten und fehlender Universalwirkung. Eigenes Funktionsmodell, keine Behandlungsanleitung.",
+          "sourceUrls": [
+            "https://www.forestresearch.gov.uk/tools-and-resources/fthr/seeds-pretreatment-information/seed-pretreatment-seed-dormancy-characteristics/",
+            "https://www.forestresearch.gov.uk/tools-and-resources/seed-storage/",
+            "https://www.rhs.org.uk/plants/types/trees/trees-shrubs-from-seed",
+            "https://www.fao.org/4/AD232E/AD232E02.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-samenruhe-keimung-round5-2026",
+      "lessonId": "keimblaetter-aufgang",
+      "claims": [
+        {
+          "claim": "Hypokotyl liegt zwischen Keimblattansatz und Keimwurzel, Epikotyl oberhalb des Keimblattansatzes. Epigäisches Auflaufen hebt den Keimblattknoten mit Hypokotylstreckung; beim hypogäischen Modell bleiben Keimblätter unter der Oberfläche.",
+          "sourceUrls": [
+            "https://open.lib.umn.edu/horticulture/chapter/2-2-introduction-to-seed-germination/",
+            "https://propg.ifas.ufl.edu/04-seeds/03-germination/05-seedsgermination-patterns.html",
+            "https://propg.ifas.ufl.edu/04-seeds/03-germination/07-seedsgermination-hypocotyl.html",
+            "https://propg.ifas.ufl.edu/04-seeds/03-germination/02-seedsgermination-epicotyl.html"
+          ]
+        },
+        {
+          "claim": "Gartenbohne Phaseolus vulgaris dient als epigäisches, Erbse Pisum sativum als hypogäisches Beispiel; eigenes Vergleichsmodell beschreibt die Keimblattlage und keine pauschale Bohnengruppenregel.",
+          "sourceUrls": [
+            "https://extension.psu.edu/seed-and-seedling-biology",
+            "https://open.lib.umn.edu/horticulture/chapter/2-2-introduction-to-seed-germination/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gallen-blattminen-round5-2026",
+      "lessonId": "galle-pflanzengewebe",
+      "claims": [
+        {
+          "claim": "Gallen bestehen aus verändertem Pflanzenwachstum; bei Gallwespen können sie Nahrung und Schutz bieten. Ein Blattfraß mit Gewebeentfernung ist ein anderes Bildungsprinzip.",
+          "sourceUrls": [
+            "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/insect-and-mite-galls",
+            "https://content.ces.ncsu.edu/oak-apple-galls",
+            "https://extension.oregonstate.edu/catalog/em-9426-vegetarians-predators-parasitoids-lesser-known-wasps-oregon"
+          ]
+        },
+        {
+          "claim": "Verschiedene Organismengruppen können Gallen auslösen; mehrere Organe und auch offene/verformte statt kugelige Gestalten sind möglich.",
+          "sourceUrls": [
+            "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/insect-and-mite-galls",
+            "https://extension.oregonstate.edu/catalog/em-9426-vegetarians-predators-parasitoids-lesser-known-wasps-oregon",
+            "https://www.rhs.org.uk/biodiversity/gall-mites"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gallen-blattminen-round5-2026",
+      "lessonId": "bewohner-rollen",
+      "claims": [
+        {
+          "claim": "Gallenauslöser und pflanzenfressende Galleninquilinen unterscheiden sich durch das ursprüngliche Hervorrufen der Galle; beide können Pflanzengewebe nutzen.",
+          "sourceUrls": [
+            "https://content.ces.ncsu.edu/oak-apple-galls",
+            "https://extension.oregonstate.edu/catalog/em-9426-vegetarians-predators-parasitoids-lesser-known-wasps-oregon",
+            "https://link.springer.com/chapter/10.1007/978-3-031-11553-0_14"
+          ]
+        },
+        {
+          "claim": "Parasitoidenlarven entwickeln sich auf Kosten eines tierischen Wirts und töten ihn; Einmieter sind nicht pauschal unschädlich. Der Bewohnerfund allein beweist keine Erzeugerrolle.",
+          "sourceUrls": [
+            "https://content.ces.ncsu.edu/oak-apple-galls",
+            "https://extension.oregonstate.edu/catalog/em-9426-vegetarians-predators-parasitoids-lesser-known-wasps-oregon",
+            "https://link.springer.com/chapter/10.1007/978-3-031-11553-0_14"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gallen-blattminen-round5-2026",
+      "lessonId": "mine-im-blatt",
+      "claims": [
+        {
+          "claim": "Blattminen entstehen durch Larvenfraß im Blattinneren zwischen den Oberflächen; es gibt schmale Gänge und flächige Minen sowie Erweiterungen im Verlauf.",
+          "sourceUrls": [
+            "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/leafminers",
+            "https://www.forestresearch.gov.uk/tools-and-resources/pests-and-diseases/database/horse-chestnut-leaf-miner-cameraria-ohridella/",
+            "https://www.rhs.org.uk/biodiversity/horse-chestnut-leaf-mining-moth"
+          ]
+        },
+        {
+          "claim": "Minierende Larven gehören verschiedenen Insektengruppen an; Fliegenlarven und Schmetterlingsraupen sind getrennt belegte Beispiele. Die Mine betrifft die Larven- und nicht die erwachsene Flugphase.",
+          "sourceUrls": [
+            "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/leafminers",
+            "https://www.rhs.org.uk/biodiversity/echinops-leaf-miner",
+            "https://www.forestresearch.gov.uk/tools-and-resources/pests-and-diseases/database/horse-chestnut-leaf-miner-cameraria-ohridella/",
+            "https://www.rhs.org.uk/biodiversity/horse-chestnut-leaf-mining-moth"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-gallen-blattminen-round5-2026",
+      "lessonId": "rosskastanie-vergleich",
+      "claims": [
+        {
+          "claim": "Cameraria ohridella miniert Aesculus hippocastanum: zunächst helle, später braune längliche Blattminen; Raupen oder rundliche Kokons können im Gegenlicht sichtbar sein.",
+          "sourceUrls": [
+            "https://www.forestresearch.gov.uk/tools-and-resources/pests-and-diseases/database/horse-chestnut-leaf-miner-cameraria-ohridella/",
+            "https://www.rhs.org.uk/biodiversity/horse-chestnut-leaf-mining-moth"
+          ]
+        },
+        {
+          "claim": "Phyllosticta paviae, synonym Guignardia aesculi, verursacht unregelmäßige Flecken mit teils gelbem Rand; Verwechslung und gemeinsames Auftreten mit Miniermottenbefall sind möglich. Farbe allein ist keine vollständige Diagnose.",
+          "sourceUrls": [
+            "https://www.forestresearch.gov.uk/tools-and-resources/pests-and-diseases/database/horse-chestnut-leaf-miner-cameraria-ohridella/",
+            "https://www.rhs.org.uk/disease/horse-chestnut-leaf-blotch"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    "Keine ausnahmslosen Sauerstoff-, Temperatur-, Winter- oder Keimzeitregeln für sämtliche Samen.",
+    "Keine Rezepturen für Skarifikation, Stratifizierung, Saat oder Pflanzenschutz.",
+    "Keine übernommenen Abbildungen, Videos, Tabellen oder fremden Lehrfragen.",
+    "Keine universelle Hormonursache aller Gallen, keine pauschale Harmlosigkeit von Einmietern oder Pflanzengallen.",
+    "Keine Fliegenmerkmale, Bodenverpuppung oder jährlichen Generationenzahlen auf sämtliche Blattminierer übertragen.",
+    "Keine britischen oder amerikanischen Befallsfristen, Bekämpfungsrezepte, Artenzahlen oder Rechtsregeln; kein Gesundheitsurteil über einen Baum aus einem Blattfoto."
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Ausschließlich eigene Wissenstexte und Modelle; keine neuen Medien."
+  }
+}

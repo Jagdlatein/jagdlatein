@@ -11,6 +11,7 @@ const { renderToStaticMarkup } = pr('react-dom/server');
 
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
+  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8').replace(/^\uFEFF/, ''));
   if (cache.has(filename)) return cache.get(filename).exports;
   const mod = { exports: {} };
   cache.set(filename, mod);
@@ -19,7 +20,7 @@ function load(relative, overrides = {}, cache = new Map()) {
   const requireLocal = id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), `${id}.js`)), overrides, cache);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)), overrides, cache);
     return pr(id);
   };
   new Function('require', 'module', 'exports', code)(requireLocal, mod, mod.exports);

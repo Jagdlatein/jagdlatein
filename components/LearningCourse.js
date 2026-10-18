@@ -14,6 +14,8 @@ import { recordReviewAnswer } from "../lib/daily-review";
 import LessonEvidence from "./LessonEvidence";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
+import KnowledgeBreadcrumb from "./KnowledgeBreadcrumb";
+import { getLearningTopicLocation } from "../lib/learning-topic-tree";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -28,18 +30,24 @@ export default function LearningCourse({ module, flashcards }) {
 function LearningContent({ module, flashcards }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
+  const topicLocation = getLearningTopicLocation(module.id);
   const media = getLearningMedia(module);
   const countrySelection = category?.slug === "jagdrecht";
   const { common: commonNote, regional: regionalNotes } = getCourseCountryNotes(module);
   const [country, setCountry] = useState(module.countries[0]);
   const [lessonIndex, setLessonIndex] = useState(0);
+  const [quizOpen, setQuizOpen] = useState(false);
+  const [sourcesOpen, setSourcesOpen] = useState(false);
+  const panelTarget = useRef(null);
   const lessonHeading = useRef(null);
-  const revealLesson = useRef(false);
+  const revealLesson = useRef(null);
   useEffect(() => {
     if (typeof window === "undefined") return;
     function readLesson() {
+      if (window.location.hash === "#wissenscheck") { panelTarget.current = "quiz-heading"; setQuizOpen(true); }
+      if (["#quellen", "#learning-sources"].includes(window.location.hash)) { panelTarget.current = "learning-sources"; setSourcesOpen(true); }
       const index = lessonIndexFromHash(module.lessons, window.location.hash);
-      if (index >= 0) { revealLesson.current = true; setLessonIndex(index); }
+      if (index >= 0) { revealLesson.current = index; setLessonIndex(index); }
     }
     readLesson();
     window.addEventListener("hashchange", readLesson);
@@ -47,20 +55,29 @@ function LearningContent({ module, flashcards }) {
     return () => { window.removeEventListener("hashchange", readLesson); window.removeEventListener("popstate", readLesson); };
   }, [module.id, module.lessons, router.asPath]);
   useEffect(() => {
-    if (!revealLesson.current || !lessonHeading.current) return;
-    revealLesson.current = false;
+    if (!panelTarget.current || typeof document === "undefined") return;
+    if (panelTarget.current === "quiz-heading" && !quizOpen || panelTarget.current === "learning-sources" && !sourcesOpen) return;
+    const target = document.getElementById(panelTarget.current);
+    if (!target) return;
+    panelTarget.current = null;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start", behavior: "auto" });
+  }, [quizOpen, sourcesOpen, router.asPath]);
+  useEffect(() => {
+    if (revealLesson.current !== lessonIndex || !lessonHeading.current) return;
+    revealLesson.current = null;
     lessonHeading.current.focus({ preventScroll: true });
     lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
   }, [lessonIndex, router.asPath]);
   function selectLesson(index) {
     if (!Number.isInteger(index) || !module.lessons[index]) return;
-    revealLesson.current = true;
+    revealLesson.current = index;
     if (typeof window !== "undefined" && typeof router.replace === "function") {
       const href = `${window.location.pathname}${window.location.search}${lessonHash(module.lessons[index].id)}`;
       router.replace(href, undefined, { shallow: true, scroll: false }).catch(error => { if (!error.cancelled) console.error("Lektion konnte nicht im Seitenverlauf aktualisiert werden."); });
     }
     if (index === lessonIndex && lessonHeading.current) {
-      revealLesson.current = false;
+      revealLesson.current = null;
       lessonHeading.current.focus({ preventScroll: true });
       lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
     }
@@ -116,13 +133,13 @@ function LearningContent({ module, flashcards }) {
   }
 
   return (
-    <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} className={styles.course} compact stats={[{ value: module.lessons.length, label: "Lektionen" }, { value: module.questions.length, label: "Fragen" }, { value: module.minutes, label: "Minuten" }, { value: module.level, label: "Lernstufe" }]}>
-          <nav className={styles.topNav} aria-label="Kursübersicht">
-            <Link href="/meine-kurse">Meine Kurse</Link>
-          </nav>
-          <section className={styles.card} aria-labelledby="learning-objectives">
-            <h2 id="learning-objectives">Das lernst du</h2>
-            <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
+    <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} className={styles.course} headingOnly searchHref="/lernen#lernen-suche">
+          <KnowledgeBreadcrumb items={[
+            {href: "/lernen", title: "Kategorien"},
+            ...(category ? [{href: `/lernen/${category.slug}`, title: category.title}] : []),
+            ...(topicLocation ? [{href: `/lernen/${topicLocation.categorySlug}?bereich=${topicLocation.groupId}#learning-modules`, title: topicLocation.groupTitle}] : []),
+          ]} current={lesson.title} />
+          {countrySelection && <section aria-label="Geltungsbereich">
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
@@ -132,16 +149,9 @@ function LearningContent({ module, flashcards }) {
               </div>
             </fieldset>}
             {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
-            {!countrySelection && commonNote && <p className={styles.countryNote}>{commonNote}</p>}
-            {!countrySelection && regionalNotes.length > 0 && <details className={styles.regionalNotes}>
-              <summary>Regionale Vorschriften und Hinweise</summary>
-              <p>Für die praktische Anwendung beachtest du die örtlichen Vorgaben und den Geltungsbereich der Quellen.</p>
-              <dl>{regionalNotes.map((item) => <div key={item}><dt>{countryNames[item] || item}</dt><dd>{module.countryNotes[item]}</dd></div>)}</dl>
-            </details>}
-          </section>
+          </section>}
           <div className={styles.lessonGrid}>
             <nav className={styles.lessonNav} aria-label="Lektionen">
-              <h2>Lektionen</h2>
               <div className={styles.mobileLessonChoice}>
                 <label htmlFor="lesson-selection">Lektion auswählen</label>
                 <select id="lesson-selection" value={lessonIndex} onChange={event => selectLesson(Number(event.target.value))}>
@@ -161,15 +171,31 @@ function LearningContent({ module, flashcards }) {
               {flashcards?.lessons?.[lesson.id] > 0 && <p className={styles.lessonCards}><Link href={{ pathname: "/lernen/lernkarten", query: { kurs: module.id, lektion: lesson.id } }} prefetch={false}>Diese Lektion mit {flashcards.lessons[lesson.id]} Lernkarten wiederholen</Link></p>}
               <div className={styles.actions}>
                 {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => selectLesson(lessonIndex - 1)}>Vorherige Lektion</button>}
-                {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => selectLesson(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" className={styles.button}>Zum Wissenscheck</a>}
+                {lessonIndex + 1 < module.lessons.length ? <button type="button" className={styles.button} onClick={() => selectLesson(lessonIndex + 1)}>Nächste Lektion</button> : <a href="#wissenscheck" onClick={() => setQuizOpen(true)} className={styles.button}>Zum Wissenscheck</a>}
               </div>
             </article>
           </div>
+          <details className={`${styles.card} ${styles.supplement}`}>
+            <summary>Über dieses Thema</summary>
+            <h2 id="learning-objectives">Das lernst du</h2>
+            <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
+            <Link href="/meine-kurse">Meine Kurse und Fortschritt</Link>
+          </details>
+          {!countrySelection && (commonNote || regionalNotes.length > 0) && <details className={`${styles.card} ${styles.supplement}`}>
+            <summary>{regionalNotes.length > 0 ? "Regionale Vorschriften und Hinweise" : "Geltungsbereich dieses Wissens"}</summary>
+            {commonNote && <p className={styles.countryNote}>{commonNote}</p>}
+            {regionalNotes.length > 0 && <><p>Für die praktische Anwendung beachtest du die örtlichen Vorgaben und den Geltungsbereich der Quellen.</p><dl>{regionalNotes.map(item => <div key={item}><dt>{countryNames[item] || item}</dt><dd>{module.countryNotes[item]}</dd></div>)}</dl></>}
+          </details>}
+          {(module.showCategoryDiagram !== false && media?.diagram || media?.pictures?.length > 1 || module.id === "wissen-vertiefung-jagdhunderassen") && <details className={`${styles.card} ${styles.supplement}`}>
+          <summary>Weitere Abbildungen zu diesem Thema</summary>
           {module.showCategoryDiagram !== false && <LearningDiagram media={media} />}
           {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery />}
           <WildlifeGallery pictures={media?.pictures} />
-          <section id="wissenscheck" className={styles.card} aria-labelledby="quiz-heading">
-            <h2 id="quiz-heading">Wissenscheck</h2>
+          </details>}
+          <details id="wissenscheck" className={`${styles.card} ${styles.supplement}`} open={quizOpen} onToggle={event => setQuizOpen(event.currentTarget.open)}>
+            <summary>Wissen zu diesem Thema prüfen</summary>
+          <section aria-labelledby="quiz-heading">
+            <h2 id="quiz-heading" tabIndex={-1}>Wissenscheck</h2>
             {!run.started ? (
               <>
                 <p className={styles.muted}>Beantworte {module.questions.length} Fragen zu dieser Lerneinheit. Du bekommst nach jeder Antwort eine Erklärung und bestimmst selbst, wann es weitergeht.</p>
@@ -224,13 +250,17 @@ function LearningContent({ module, flashcards }) {
             )}
             <CourseProgressNotice courseId={module.id} {...courseProgress} />
           </section>
-          <section className={styles.card} aria-labelledby="learning-sources">
-            <h2 id="learning-sources">Quellen und weiterführende Informationen</h2>
+          </details>
+          <details id="quellen" className={`${styles.card} ${styles.supplement}`} open={sourcesOpen} onToggle={event => setSourcesOpen(event.currentTarget.open)}>
+            <summary>Alle Quellen dieses Themenbereichs</summary>
+          <section aria-labelledby="learning-sources">
+            <h2 id="learning-sources" tabIndex={-1}>Quellen und weiterführende Informationen</h2>
             <p className={styles.muted}>Eigene Lerntexte und Übungsfragen zur Vertiefung deiner Ausbildung. Die verlinkten Quellen dienen zum Nachschlagen; verbindliche örtliche Vorgaben prüfst du vor der praktischen Anwendung.</p>
             <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a>{source.scope && <p>{source.scope}</p>}</li>)}</ul>
             {module.sourceReview && <details><summary>Welche Aussagen wurden gegengeprüft?</summary><p>{module.sourceReview.scope}</p>{module.sourceReview.lessons.map(review => <div key={review.lesson}><h3>{module.lessons.find(lesson => lesson.id.endsWith(`-${review.lesson}`))?.title || review.lesson}</h3><ul>{review.confirmedClaims.map(claim => <li key={claim}>{claim}</li>)}</ul>{review.standardOnly.length > 0 && <p>Beleggrenze: {review.standardOnly.join(" ")}</p>}</div>)}</details>}
             <p className={styles.muted}><Link href="/hilfe#wissensquellen">Wie wir Wissen und Quellen prüfen</Link></p>
           </section>
+          </details>
     </LearningToolLayout>
   );
 }

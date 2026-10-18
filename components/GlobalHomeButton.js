@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/compat/router";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
+import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
@@ -60,11 +61,18 @@ function writeHistory(history) {
   }
 }
 
+function tracksTopicFragments(path) {
+  return path.startsWith("/wildkunde/") || path.split(/[?#]/)[0] === "/lernen/lebensraum-werkstatt";
+}
+
 function rememberCurrentPath(history, current) {
   const previous = history[history.length - 1];
   if (previous === current) return false;
-  // Search/filter edits replace the current page rather than adding a Back stop.
-  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0]) history[history.length - 1] = current;
+  const previousBranch = previous ? new URL(previous, "https://jagdlatein.invalid").searchParams.get("bereich") : null;
+  const currentBranch = new URL(current, "https://jagdlatein.invalid").searchParams.get("bereich");
+  const topicStep = tracksTopicFragments(current) && previous?.split("#")[0] === current.split("#")[0] && previous?.split("#")[1] !== current.split("#")[1];
+  // A chosen tree branch is a navigation step; typing a search remains one stop.
+  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && !topicStep) history[history.length - 1] = current;
   else history.push(current);
   return true;
 }
@@ -90,12 +98,16 @@ export default function GlobalHomeButton() {
 
   useEffect(() => {
     if (!pathname) return;
-
-    const current = window.location.pathname + window.location.search + (window.location.hash || "");
-    const history = readHistory();
-    if (rememberCurrentPath(history, current)) {
-      writeHistory(history.slice(-20));
+    function rememberLocation() {
+      const current = window.location.pathname + window.location.search + (window.location.hash || "");
+      const history = readHistory();
+      const existing = tracksTopicFragments(current) ? history.lastIndexOf(current) : -1;
+      if (existing >= 0) writeHistory(history.slice(0, existing + 1));
+      else if (rememberCurrentPath(history, current)) writeHistory(history.slice(-20));
     }
+    rememberLocation();
+    window.addEventListener("hashchange", rememberLocation);
+    return () => window.removeEventListener("hashchange", rememberLocation);
   }, [pathname, router?.asPath]);
 
   useEffect(() => {
@@ -184,7 +196,11 @@ export default function GlobalHomeButton() {
       }}>
         <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
         <div className={styles.moreLinks}>
-          {mainMenuItems.map(item => <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
+          {mainMenuItems.map(item => item.href === "/lernen" ? <details key={item.href} className={styles.categoryTree}>
+            <summary><AppIcon name="book" size={21} />Lernbereiche<span aria-hidden="true">›</span></summary>
+            <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>
+            {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` ? "page" : undefined}>{category.title}</Link>)}</div>
+          </details> : <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
         </div>
       </details>
     </nav>
