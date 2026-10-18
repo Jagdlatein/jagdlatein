@@ -33,7 +33,7 @@ test('Only an audited, actually illustrated course/lesson receives a course phot
   assert.equal(getLearningMedia(byId['wissen-rotwild-sozialverhalten']).coursePhotoUse, undefined, 'An individual stag does not illustrate group relationships');
 });
 
-test('Overview summaries and actual cards omit category fallback photos, while twelve category orientation photos remain', () => {
+test('Overview navigation omits decorative photos and their payload while preserving actual teaching photos', () => {
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
   const Overview = load('components/LearningOverview.js').default;
   const data = getData();
@@ -41,11 +41,11 @@ test('Overview summaries and actual cards omit category fallback photos, while t
     if (Object.hasOwn(coursePhotoUses, module.id)) assert.ok(data.covers[module.coverIndex]?.coursePhotoUse, module.id);
     else assert.equal(module.coverIndex, null, module.id);
   }
-  assert.equal(Object.keys(data.categoryCovers).length, 12);
-  for (const index of Object.values(data.categoryCovers)) assert.ok(data.covers[index]?.src);
+  assert.deepEqual(data.categoryCovers, {});
+  assert.ok(data.covers.every(photo => photo.coursePhotoUse), 'Only actual course teaching photographs remain in the overview payload');
   const html = renderToStaticMarkup(React.createElement(Overview, { data }));
   assert.equal((html.match(/class="photoLink"/g) || []).length, Object.keys(coursePhotoUses).length);
-  assert.equal((html.match(/class="photo"/g) || []).length, 12);
+  assert.equal((html.match(/class="photo"/g) || []).length, 0);
   assert.ok(data.covers.every(photo => !photo.pictures && !photo.diagram && !photo.lessons && !photo.questions));
 });
 

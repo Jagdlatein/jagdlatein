@@ -225,6 +225,20 @@ test('Manufacturer cards are distinctly labelled and the community link is a loc
   }
 });
 
+test('News date-only publications retain date precision in cards, overview and source status markup', () => {
+  const { NewsCard, NewsRefreshStatus, default: JagdNews } = load('components/JagdNews.js');
+  const source = newsSources[0];
+  const article = { id: 'date-only', title: 'Wildtierforschung', topic: 'science', sourceId: source.id, sourceLabel: source.label, url: source.homepage, publishedAt: '2026-10-18T12:00:00.000Z', publishedDate: '2026-10-18' };
+  const snapshot = { id: source.id, label: source.label, status: 'ok', stale: false, fetchedAt: '2026-10-18T08:00:00.000Z', lastPublishedAt: article.publishedAt, lastPublishedDate: article.publishedDate };
+  const news = { items: [article], sources: [snapshot], generatedAt: snapshot.fetchedAt, latestPublishedAt: article.publishedAt, latestPublishedDate: article.publishedDate };
+  for (const html of [render(NewsCard, { item: article }), render(NewsRefreshStatus, { news }), render(JagdNews, { initialNews: news })]) {
+    assert.match(html, /datetime="2026-10-18"/i);
+    assert.doesNotMatch(html, /datetime="2026-10-18T12:00:00/i);
+  }
+  const timed = render(NewsCard, { item: { ...article, publishedDate: undefined, publishedAt: '2026-10-18T08:15:00.000Z' } });
+  assert.match(timed, /datetime="2026-10-18T08:15:00.000Z"/i);
+});
+
 test('News discussion URLs encode bounded titles, trusted sources and topic categories safely', () => {
   for (const [topic, category] of [['equipment', 'ausruestung-technik'], ['hunting', 'jagdpraxis'], ['science', 'natur-revier'], ['nature', 'natur-revier']]) {
     const route = new URL(newsDiscussionHref({ topic, title: 'Gams & Wald? #1\nFragen', url: swarovski.homepage + '#tracking' }), 'https://jagdlatein.de');

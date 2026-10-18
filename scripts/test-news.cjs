@@ -55,6 +55,78 @@ test('Verified HTML adapters read article cards, preserve winter dates and rejec
   assert.equal(load('lib/news-catalog.js').formatNewsDate(result[0].publishedAt), '01.12.2025');
   assert.throws(() => parseNewsHtml('<h2>News redesigned</h2>', { ...source, format: 'izw-html' }, now));
 });
+
+test('HTML calendar dates are visible in the morning while future days and future exact times stay excluded', () => {
+  const { parseNewsHtml } = load('lib/jagd-news-feeds.js');
+  const morning = Date.parse('2026-10-18T08:00:00Z');
+  const card = (date, id) => `<div class="news-list-item"><time datetime="${date}"></time><a class="news-headline-link" href="/${id}">Neue Studie zu Wildtieren</a></div>`;
+  const html = card('18.10.2026', 'today') + card('2026-10-18', 'iso-day') + card('19.10.2026', 'tomorrow')
+    + card('31.02.2026', 'invalid') + card('2026-10-18T08:00:01Z', 'future-second') + card('2026-10-18T08:00:00Z', 'exact');
+  const result = parseNewsHtml(html, { ...source, format: 'vetmed-html' }, morning);
+  assert.deepEqual(new Set(result.map(item => item.url)), new Set(['https://research.example/today', 'https://research.example/iso-day', 'https://research.example/exact']));
+  assert.equal(result.find(item => item.url.endsWith('/today')).publishedDate, '2026-10-18');
+  assert.equal(result.find(item => item.url.endsWith('/iso-day')).publishedDate, '2026-10-18');
+  assert.ok(!Object.hasOwn(result.find(item => item.url.endsWith('/exact')), 'publishedDate'));
+
+  const swarovski = { ...source, format: 'swarovski-html' };
+  const press = (date, id) => `<a href="https://research.example/at/de/jagd/press-releases/${id}">Neues Fernglas ${date}</a>`;
+  const products = parseNewsHtml(press('18. Oktober 2026', 'today') + press('19. Oktober 2026', 'future'), swarovski, morning);
+  assert.equal(products.length, 1);
+  assert.equal(products[0].publishedDate, '2026-10-18');
+});
+
+test('Publication precision follows the DACH civil day across summer, winter and invalid calendar values', () => {
+  const { isNewsPublicationCurrent } = load('lib/news-publication-date.js');
+  const day = value => ({ publishedDate: value, publishedAt: `${value}T12:00:00Z` });
+  for (const [current, today, tomorrow] of [
+    ['2026-06-01T22:30:00Z', '2026-06-02', '2026-06-03'],
+    ['2026-01-01T23:30:00Z', '2026-01-02', '2026-01-03'],
+    ['2026-03-28T23:30:00Z', '2026-03-29', '2026-03-30'],
+    ['2026-10-24T22:30:00Z', '2026-10-25', '2026-10-26'],
+  ]) {
+    assert.equal(isNewsPublicationCurrent(day(today), Date.parse(current)), true, current);
+    assert.equal(isNewsPublicationCurrent(day(tomorrow), Date.parse(current)), false, current);
+  }
+  assert.equal(isNewsPublicationCurrent(day('2026-06-02'), Date.parse('2026-06-01T21:59:59Z')), false);
+  assert.equal(isNewsPublicationCurrent(day('2026-01-02'), Date.parse('2026-01-01T22:59:59Z')), false);
+  const current = Date.parse('2026-10-18T08:00:00Z');
+  for (const invalid of [day('2026-02-30'), day('2026-02-29'), day('2025-01-01'), { ...day('2026-10-18'), publishedDate: null }, { ...day('2026-10-18'), publishedAt: '2026-10-19T12:00:00Z' }]) assert.equal(isNewsPublicationCurrent(invalid, current), false);
+  assert.equal(isNewsPublicationCurrent({ publishedAt: '2026-10-18T08:00:00Z' }, current), true);
+  assert.equal(isNewsPublicationCurrent({ publishedAt: '2026-10-18T08:00:01Z' }, current), false);
+  assert.equal(isNewsPublicationCurrent({ publishedAt: '2026-10-18T12:00:00Z' }, current), false, 'An old noon timestamp is never guessed to be a date-only publication');
+});
+
+test('Server assembly and saved initial news preserve date-only eligibility without admitting future entries', async () => {
+  const { newsSources } = load('lib/news-catalog.js');
+  const morning = Date.parse('2026-10-18T08:00:00Z');
+  const rows = [
+    { id: 'today', url: 'https://research.example/today', publishedDate: '2026-10-18', publishedAt: '2026-10-18T12:00:00Z' },
+    { id: 'tomorrow', url: 'https://research.example/tomorrow', publishedDate: '2026-10-19', publishedAt: '2026-10-19T12:00:00Z' },
+    { id: 'future-time', url: 'https://research.example/future-time', publishedAt: '2026-10-18T08:00:01Z' },
+    { id: 'exact', url: 'https://research.example/exact', publishedAt: '2026-10-18T08:00:00Z' },
+  ];
+  const snapshot = { fetchedAt: '2026-10-18T07:00:00Z', items: rows };
+  const server = load('lib/jagd-news-server.js', {
+    'next/cache': { unstable_cache: fn => fn },
+    './jagd-news-feeds': { fetchNewsSource: async () => { throw new Error('offline'); } },
+    './jagd-news-fallback.json': { [newsSources[0].id]: snapshot },
+  });
+  const first = server.getInitialJagdNews(morning);
+  assert.deepEqual(first.items.map(item => item.id), ['today', 'exact']);
+  assert.equal(first.latestPublishedDate, '2026-10-18');
+  assert.equal(first.sources[0].lastPublishedDate, '2026-10-18');
+  assert.equal(first.sources[0].fetchedAt, snapshot.fetchedAt);
+  assert.equal(first.sources[0].status, 'fallback');
+  const collected = await server.collectJagdNews(async value => value.id === newsSources[0].id ? snapshot : { items: [], fetchedAt: snapshot.fetchedAt }, morning);
+  assert.deepEqual(collected.items.map(item => item.id), ['today', 'exact']);
+  const originalNow = Date.now; Date.now = () => morning;
+  try {
+    const fallback = await server.getJagdNews();
+    assert.deepEqual(fallback.items.map(item => item.id), ['today', 'exact']);
+    assert.equal(fallback.sources[0].fetchedAt, snapshot.fetchedAt);
+    assert.equal(fallback.sources[0].status, 'fallback');
+  } finally { Date.now = originalNow; }
+});
 test('Fetching is bounded and does not follow feed redirects or save transport errors as successes', async () => {
   const { fetchNewsSource, NEWS_MAX_BYTES } = load('lib/jagd-news-feeds.js'); let observed;
   const snapshot = await fetchNewsSource({ ...source, feed: 'https://research.example/rss' }, { now: () => now, fetchImpl: async (url, options) => { observed = { url, options }; return new Response(rss(item('Studie zu Wildtieren'))); } });
@@ -176,4 +248,47 @@ test('Homepage refreshes after first paint, skips hidden background work and abo
     harness.unmount(); assert.equal(signal.aborted, true); assert.equal(intervals.size, 0); assert.equal(listeners.size, 0);
     release(new Response('{}')); await new Promise(resolve => setImmediate(resolve));
   } finally { harness.unmount(); Object.assign(global, originals); }
+});
+
+test('News retries saved or unavailable sources promptly, waits while hidden, and keeps the normal interval after recovery', async () => {
+  const originals = { fetch: global.fetch, document: global.document, setTimeout: global.setTimeout, clearTimeout: global.clearTimeout, setInterval: global.setInterval, clearInterval: global.clearInterval };
+  const timeouts = new Map(); const intervals = new Map(); const listeners = new Map(); let sequence = 0; let requests = 0; let release;
+  global.document = { visibilityState: 'visible', addEventListener: (event, listener) => listeners.set(event, listener), removeEventListener: event => listeners.delete(event) };
+  global.setTimeout = (callback, delay) => { const id = ++sequence; timeouts.set(id, { callback, delay }); return id; };
+  global.clearTimeout = id => timeouts.delete(id);
+  global.setInterval = (callback, delay) => { const id = ++sequence; intervals.set(id, { callback, delay }); return id; };
+  global.clearInterval = id => intervals.delete(id);
+  global.fetch = () => { requests++; return new Promise(resolve => { release = resolve; }); };
+  const fresh = { generatedAt: new Date().toISOString(), items: [{ id: 'recent' }], sources: [{ id: 'source', status: 'ok', stale: false }] };
+  const cases = [
+    { ...fresh, sources: [{ id: 'source', status: 'fallback' }] },
+    { ...fresh, sources: [{ id: 'source', status: 'unavailable' }] },
+    { ...fresh, sources: [{ id: 'source', status: 'ok', stale: true }] },
+    { ...fresh, refreshPending: true },
+  ];
+  let harness;
+  try {
+    for (const initialNews of cases) {
+      timeouts.clear(); intervals.clear(); listeners.clear(); const before = requests;
+      harness = newsHookHarness(initialNews);
+      assert.equal(harness.render().news, initialNews);
+      assert.equal(requests, before, 'Rendering must not block on source requests');
+      const first = [...timeouts.values()].find(timer => timer.delay === 1000);
+      assert.ok(first, 'Saved or unavailable sources must not wait another 30 minutes');
+      global.document.visibilityState = 'hidden'; first.callback();
+      assert.equal(requests, before, 'The early timer must not load a hidden tab');
+      assert.equal([...intervals.values()][0].delay, 30 * 60 * 1000);
+      global.document.visibilityState = 'visible'; listeners.get('visibilitychange')(); listeners.get('visibilitychange')();
+      assert.equal(requests, before + 1, 'Returning to a stale tab starts one shared request');
+      release(new Response(JSON.stringify(fresh))); await new Promise(resolve => setImmediate(resolve));
+      assert.equal(harness.render().news.items[0].id, 'recent');
+      listeners.get('visibilitychange')();
+      assert.equal(requests, before + 1, 'A fresh successful response must not refetch on every focus');
+      harness.unmount(); harness = null;
+    }
+    timeouts.clear(); intervals.clear(); listeners.clear(); const before = requests;
+    harness = newsHookHarness(fresh); harness.render();
+    assert.ok([...timeouts.values()].every(timer => timer.delay > 1000), 'A fresh successful feed keeps its normal refresh schedule');
+    assert.equal(requests, before);
+  } finally { harness?.unmount(); Object.assign(global, originals); }
 });

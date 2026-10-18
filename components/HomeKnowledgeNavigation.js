@@ -19,6 +19,7 @@ export const homeKnowledgeGroups = [
   { title: "Austauschen und nachschlagen", links: [
     { href: "/community", title: "Community", text: "Fragen in allen Wissensbereichen", icon: "community" },
     { href: "/news", title: "Jagd-News", text: "Wissenschaft, Ausrüstung und Natur", icon: "calendar" },
+    { href: "/lernen/videos", title: "Jagdvideos", text: "Originalaufnahmen mit Erklärungen", icon: "video" },
     { href: "/jagdpraxis", title: "Praxisübungen", text: "Fälle und Simulatoren", icon: "practice" },
     { href: "/glossar", title: "Jägersprache", text: "Fachbegriffe gezielt finden", icon: "glossary" },
   ] },

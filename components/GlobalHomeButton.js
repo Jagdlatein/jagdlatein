@@ -16,6 +16,7 @@ export const mainMenuItems = [
   { href: "/quiz-app", title: "Quiz & Rangliste", icon: "quiz" },
   { href: "/community", title: "Community", icon: "community", ariaLabel: "Zur Community" },
   { href: "/news", title: "Jagd-News", icon: "calendar" },
+  { href: "/lernen/videos", title: "Jagdvideos", icon: "video" },
   { href: "/konto", title: "Konto & Abo", icon: "account", ariaLabel: "Konto und Abo öffnen" },
   { href: "/hilfe", title: "Hilfe & Kontakt", icon: "help" },
 ];
@@ -145,10 +146,13 @@ export default function GlobalHomeButton() {
   const learningCurrent = ["/lernen", "/wildkunde", "/kurse"].some(section => inSection(pathname, section));
   const accountCurrent = ["/konto", "/meine-kurse", "/auswertungen", "/login", "/registrieren", "/preise"]
     .some(section => inSection(pathname, section));
+  const videoCurrent = ["/lernen/videos", "/lernen/wildtier-videofaelle", "/lernen/jagdhund-videos"]
+    .some(section => inSection(pathname, section));
   function menuCurrent(item) {
     if (item.href === "/") return pathname === "/";
     if (item.href === "/konto") return accountCurrent;
-    if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !inSection(pathname, "/lernen/lernkarten");
+    if (item.href === "/lernen/videos") return videoCurrent;
+    if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !inSection(pathname, "/lernen/lernkarten") && !videoCurrent;
     return inSection(pathname, item.href);
   }
   function closeMenu(event) {

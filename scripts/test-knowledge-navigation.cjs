@@ -29,7 +29,7 @@ function load(relative, cache = new Map()) {
   cache.set(filename, mod.exports); return mod.exports;
 }
 
-test('The learning overview exposes one search, twelve real photo categories, and complete optional learning paths', () => {
+test('The learning overview exposes one search, twelve direct categories, and complete optional learning paths', () => {
   const data = load('lib/learning-overview-server.js').getLearningOverviewData();
   const html = renderToStaticMarkup(React.createElement(load('components/LearningOverview.js').default, {data}));
   assert.equal((html.match(/type="search"/g) || []).length, 1);
@@ -113,9 +113,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
       const media = getLearningMedia(module);
       assert.equal(renderCover(data.covers[module.coverIndex]), media?.coursePhotoUse ? renderCover(media) : '', module.id);
     }
-    for (const category of slug ? [] : learningCategoryDetails) {
-      assert.equal(renderCredit(data.covers[data.categoryCovers[category.slug]]), renderCredit(getLearningMedia({ category: category.title })), category.slug);
-    }
+    assert.deepEqual(data.categoryCovers, {}, 'The compact category menu needs no photo payload');
     const selectedIds = new Set(data.modules.map(module => module.id));
     const expectedPaths = learningPaths.filter(path => !slug || path.advanced)
       .map(path => ({ ...path, moduleIds: path.moduleIds.filter(id => selectedIds.has(id)) })).filter(path => path.moduleIds.length);

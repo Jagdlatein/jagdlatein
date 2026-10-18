@@ -10,6 +10,7 @@ import learning from "../styles/LearningExperience.module.css";
 const pageSize = 12;
 const countryLabels = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz", DACH: "Deutschland · Österreich · Schweiz" };
 const emptyNews = { items: [], sources: [], generatedAt: null, latestPublishedAt: null, refreshSeconds: newsRefreshSeconds };
+const needsEarlyRefresh = news => Boolean(news.refreshPending || news.sources?.some(source => source.status !== "ok" || source.stale));
 
 export function useJagdNews(initialNews, { refreshOnMount = false } = {}) {
   const [news, setNews] = useState(initialNews || emptyNews);
@@ -57,7 +58,7 @@ export function useJagdNews(initialNews, { refreshOnMount = false } = {}) {
     mounted.current = true;
     const intervalMs = newsRefreshSeconds * 1000;
     const lastGenerated = Date.parse(currentNews.current.generatedAt);
-    const firstDelay = refreshOnMount ? 1000 : Number.isFinite(lastGenerated) ? Math.min(intervalMs, Math.max(1000, intervalMs - (Date.now() - lastGenerated))) : intervalMs;
+    const firstDelay = refreshOnMount || needsEarlyRefresh(currentNews.current) ? 1000 : Number.isFinite(lastGenerated) ? Math.min(intervalMs, Math.max(1000, intervalMs - (Date.now() - lastGenerated))) : intervalMs;
     const refreshIfVisible = () => {
       if (document.visibilityState !== "hidden") refresh();
     };
@@ -68,7 +69,7 @@ export function useJagdNews(initialNews, { refreshOnMount = false } = {}) {
     }, firstDelay);
     const onVisibilityChange = () => {
       const generated = Date.parse(currentNews.current.generatedAt);
-      if (document.visibilityState === "visible" && (currentNews.current.refreshPending || !Number.isFinite(generated) || Date.now() - generated >= intervalMs)) refresh();
+      if (document.visibilityState === "visible" && (needsEarlyRefresh(currentNews.current) || !Number.isFinite(generated) || Date.now() - generated >= intervalMs)) refresh();
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
     return () => {
@@ -91,7 +92,7 @@ export function NewsCard({ item, compact = false, sourceSnapshot }) {
     {source?.sourceType === "manufacturer" && <p className={styles.manufacturer}>Herstellermeldung · Produktinformation</p>}
     <h3><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<AppIcon name="arrow-right" size={19} /></a></h3>
     <p className={styles.meta}><span>{item.sourceLabel}</span>{source?.country && <span className={styles.country}>{countryLabels[source.country] || source.country}</span>}</p>
-    <p className={styles.date}><AppIcon name="calendar" size={15} /><span>Veröffentlicht: <time dateTime={item.publishedAt}>{formatNewsDate(item.publishedAt)}</time></span></p>
+    <p className={styles.date}><AppIcon name="calendar" size={15} /><span>Veröffentlicht: <time dateTime={item.publishedDate || item.publishedAt}>{formatNewsDate(item.publishedAt)}</time></span></p>
     {sourceSnapshot && <p className={styles.sourceFetched}>{sourceSnapshot.fetchedAt ? <>{sourceSnapshot.status === "ok" && !sourceSnapshot.stale ? "Quelle abgerufen: " : "Gespeicherter Quellenabruf: "}<time dateTime={sourceSnapshot.fetchedAt}>{formatNewsDate(sourceSnapshot.fetchedAt, { withTime: true })}</time></> : "Noch kein erfolgreicher Quellenabruf."}</p>}
     {!compact && source?.sourceType === "manufacturer" ? <p className={styles.topicDescription}>Die Produktangaben stammen vom Hersteller.</p> : !compact && topic?.description && <p className={styles.topicDescription}>{topic.description}</p>}
     <Link className={styles.articleLink} href={newsDiscussionHref(item)}>In der Community besprechen<AppIcon name="community" size={17} /></Link>
@@ -102,7 +103,7 @@ export function NewsRefreshStatus({ news, refreshing, refreshError, refreshed })
   const sources = news.sources || [];
   const unavailable = sources.filter(source => source.status !== "ok" || source.stale);
   return <div className={styles.status}>
-    {news.latestPublishedAt && <p><strong>Neueste Meldung:</strong> <time dateTime={news.latestPublishedAt}>{formatNewsDate(news.latestPublishedAt)}</time></p>}
+    {news.latestPublishedAt && <p><strong>Neueste Meldung:</strong> <time dateTime={news.latestPublishedDate || news.latestPublishedAt}>{formatNewsDate(news.latestPublishedAt)}</time></p>}
     {news.generatedAt && <p>Übersicht zusammengestellt: <time dateTime={news.generatedAt}>{formatNewsDate(news.generatedAt, { withTime: true })}</time></p>}
     <p className={styles.refreshMessage} role="status" aria-live="polite">{refreshing ? "Meldungen werden abgerufen …" : refreshError ? "Der Abruf ist gerade nicht möglich. Bereits geladene Meldungen bleiben erhalten." : refreshed ? "Übersicht geladen. Veröffentlichungsdatum und Quellenabruf stehen bei den Meldungen und Quellen." : "Die Übersicht wird automatisch alle 30 Minuten abgerufen."}</p>
     {unavailable.length > 0 && <p className={styles.notice}>{news.refreshPending && !refreshError ? "Gespeicherte Meldungen sind bereits sichtbar. Die Quellen werden unabhängig von der Startseite aktualisiert; der letzte erfolgreiche Quellenabruf steht bei den Meldungen." : <>{unavailable.map(source => source.label).join(", ")}: derzeit kein erfolgreicher neuer Abruf. Gespeicherte Meldungen können weiterhin angezeigt werden; den letzten erfolgreichen Quellenabruf findest du unter „Quellen und Abrufstand“.</>}</p>}
@@ -134,7 +135,7 @@ export default function JagdNews({ initialNews }) {
     {matches.length > pageSize && <nav className={styles.pagination} aria-label="Newsseiten"><button type="button" className={learning.secondary} disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Zurück</button><span>Seite {safePage + 1} von {Math.ceil(matches.length / pageSize)}</span><button type="button" className={learning.primary} disabled={(safePage + 1) * pageSize >= matches.length} onClick={() => setPage(safePage + 1)}>Weitere Meldungen</button></nav>}
     <section className={styles.sourcesPanel} aria-labelledby="news-sources"><h2 id="news-sources">Quellen und Abrufstand</h2><p>Hier siehst du, wann jede Quelle zuletzt erfolgreich abgerufen wurde. Das Datum einer Meldung ist ihr Veröffentlichungsdatum. Die fachliche Einordnung und der vollständige Beitrag stehen bei der Originalquelle.</p><ul className={styles.sourceList}>{newsSources.map(source => {
       const snapshot = sourceSnapshots.find(value => value.id === source.id);
-      return <li key={source.id}><div><a href={source.homepage} target="_blank" rel="noopener noreferrer">{source.label}<AppIcon name="arrow-right" size={16} /></a><span className={styles.country}>{countryLabels[source.country] || source.country}</span></div><p>{snapshot?.fetchedAt ? <>Letzter erfolgreicher Abruf: <time dateTime={snapshot.fetchedAt}>{formatNewsDate(snapshot.fetchedAt, { withTime: true })}</time></> : "Noch kein erfolgreicher Abruf verfügbar."}</p>{snapshot?.lastPublishedAt && <p>Neueste Meldung dieser Quelle: <time dateTime={snapshot.lastPublishedAt}>{formatNewsDate(snapshot.lastPublishedAt)}</time></p>}<p className={snapshot?.status === "ok" && !snapshot?.stale ? styles.sourceOk : styles.sourceNotice}>{snapshot?.status === "ok" && !snapshot?.stale ? "Quelle erreichbar" : snapshot?.status === "fallback" || snapshot?.stale ? "Neuer Abruf nicht möglich · gespeicherter Stand" : "Quelle derzeit nicht verfügbar"}</p></li>;
+      return <li key={source.id}><div><a href={source.homepage} target="_blank" rel="noopener noreferrer">{source.label}<AppIcon name="arrow-right" size={16} /></a><span className={styles.country}>{countryLabels[source.country] || source.country}</span></div><p>{snapshot?.fetchedAt ? <>Letzter erfolgreicher Abruf: <time dateTime={snapshot.fetchedAt}>{formatNewsDate(snapshot.fetchedAt, { withTime: true })}</time></> : "Noch kein erfolgreicher Abruf verfügbar."}</p>{snapshot?.lastPublishedAt && <p>Neueste Meldung dieser Quelle: <time dateTime={snapshot.lastPublishedDate || snapshot.lastPublishedAt}>{formatNewsDate(snapshot.lastPublishedAt)}</time></p>}<p className={snapshot?.status === "ok" && !snapshot?.stale ? styles.sourceOk : styles.sourceNotice}>{snapshot?.status === "ok" && !snapshot?.stale ? "Quelle erreichbar" : snapshot?.status === "fallback" || snapshot?.stale ? "Neuer Abruf nicht möglich · gespeicherter Stand" : "Quelle derzeit nicht verfügbar"}</p></li>;
     })}</ul></section>
   </LearningToolLayout>;
 }

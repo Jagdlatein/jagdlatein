@@ -36,7 +36,8 @@ export default function HuntingDogVideos() {
       <label htmlFor="hundevideo-auswahl">Welche Szene möchtest du ansehen?</label>
       <select id="hundevideo-auswahl" value={lesson.id} onChange={event => changeLesson(event.target.value)}>{huntingDogVideoLessons.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select>
     </section>
-    <article key={lesson.id} className={styles.videoLesson}>
+    <p className={styles.continueLink}><Link href="/lernen/videos">Alle Lernvideos</Link></p>
+    <article key={lesson.id} className={styles.videoLesson} id="hundevideo-film">
       <header className={styles.sectionHeader}><h2>{lesson.title}</h2><p>{lesson.breed} · {Math.ceil(lesson.duration)} Sekunden · ohne Ton, mit Handlungstext</p></header>
       <video className={styles.video} controls playsInline preload="none" poster={lesson.poster} aria-label={lesson.title} aria-describedby="hundevideo-handlung" onError={() => setFailed(true)}>
         <source src={lesson.src} type="video/mp4" />

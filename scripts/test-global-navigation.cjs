@@ -71,7 +71,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = [children[1], children[2], ...children[3].props.children[1].props.children];
-  assert.equal(links.length, 11);
+  assert.equal(links.length, 12);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -113,17 +113,22 @@ test('Account grouping follows login, registration, pricing, account and learnin
   assert.doesNotMatch(setup('/community-other').html(), /aria-label="Zur Community" aria-current/);
 });
 
-test('Menu exposes the nine clear destinations in one flat list and highlights the specific current learning tool', () => {
+test('Menu exposes clear destinations in one flat list and highlights the specific current learning tool', () => {
   const s = setup('/lernen/lernkarten');
   const details = s.tree.props.children[3];
   const links = details.props.children[1].props.children;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/konto', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
   assert.equal(details.props.children[0].type, 'summary', 'Native menu summary keeps keyboard and expanded state behavior');
   assert.ok(links.every(link => link.type !== 'button' && link.type !== 'details' && link.props.prefetch === false));
   for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
+  for (const route of ['/lernen/videos', '/lernen/wildtier-videofaelle', '/lernen/jagdhund-videos']) {
+    const videoLinks = setup(route).tree.props.children[3].props.children[1].props.children;
+    assert.equal(videoLinks.filter(link => link.props['aria-current']).length, 1);
+    assert.equal(videoLinks.find(link => link.props['aria-current']).props.href, '/lernen/videos');
+  }
 });
 
 test('Menu closes after a normal choice, Escape restores summary focus, and outside clicks or a new route dismiss it', () => {
