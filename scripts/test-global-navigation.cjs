@@ -14,6 +14,8 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   const effects = [], cleanups = [], listeners = new Map(), timers = new Map();
   let timerId = 0, stored = JSON.stringify(history), destination;
   const clientNavigations = [], documentNavigations = [];
+  let summaryFocus = 0;
+  const menu = { open: false, contains: element => element?.insideMenu === true, querySelector: selector => selector === 'summary' ? { focus() { summaryFocus++; } } : null };
   const document = { activeElement: null,
     addEventListener(name, callback) { listeners.set(name, callback); },
     removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
@@ -31,7 +33,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   });
   const mod = { exports: {} };
   new Function('require', 'module', 'exports', 'window', 'document', 'sessionStorage', code)(id => {
-    if (id === 'react') return { ...React, useState: () => [editing, value => { editing = value; }], useEffect: callback => effects.push(callback) };
+    if (id === 'react') return { ...React, useState: () => [editing, value => { editing = value; }], useRef: () => ({ current: menu }), useEffect: callback => effects.push(callback) };
     if (id === 'next/navigation') return { usePathname: () => pathname };
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
@@ -41,7 +43,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   const render = () => mod.exports.default();
   const tree = render();
   effects.splice(0).forEach(callback => cleanups.push(callback()));
-  return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage,
+  return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage, menu, get summaryFocus() { return summaryFocus; },
     route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
     navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
@@ -69,7 +71,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = [children[1], children[2], ...children[3].props.children[1].props.children];
-  assert.equal(links.length, 6);
+  assert.equal(links.length, 11);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -106,9 +108,44 @@ test('Dock Back retains the selected lesson fragment instead of sending the lear
 
 test('Account grouping follows login, registration, pricing, account and learning records without prefix collisions', () => {
   for (const route of ['/login', '/registrieren', '/preise', '/konto', '/meine-kurse', '/auswertungen']) {
-    assert.match(setup(route).html(), /aria-label="Konto und Abo öffnen" aria-current="true"/, route);
+    assert.match(setup(route).html(), /aria-label="Konto und Abo öffnen" aria-current="page"/, route);
   }
   assert.doesNotMatch(setup('/community-other').html(), /aria-label="Zur Community" aria-current/);
+});
+
+test('Menu exposes the nine clear destinations in one flat list and highlights the specific current learning tool', () => {
+  const s = setup('/lernen/lernkarten');
+  const details = s.tree.props.children[3];
+  const links = details.props.children[1].props.children;
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/konto', '/hilfe']);
+  assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
+  assert.equal(links.filter(link => link.props['aria-current']).length, 1);
+  assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
+  assert.equal(details.props.children[0].type, 'summary', 'Native menu summary keeps keyboard and expanded state behavior');
+  assert.ok(links.every(link => link.type !== 'button' && link.type !== 'details' && link.props.prefetch === false));
+  for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
+});
+
+test('Menu closes after a normal choice, Escape restores summary focus, and outside clicks or a new route dismiss it', () => {
+  const s = setup('/lernen'); const details = s.tree.props.children[3];
+  const first = details.props.children[1].props.children[0];
+  s.menu.open = true; first.props.onClick({ button: 0 }); assert.equal(s.menu.open, false);
+  s.menu.open = true; first.props.onClick({ button: 0, ctrlKey: true }); assert.equal(s.menu.open, true, 'A new-tab choice retains native behavior');
+  s.listeners.get('pointerdown')({ target: { insideMenu: true } }); assert.equal(s.menu.open, true);
+  s.listeners.get('pointerdown')({ target: {} }); assert.equal(s.menu.open, false);
+  s.menu.open = true; let prevented = false;
+  details.props.onKeyDown({ key: 'Escape', preventDefault() { prevented = true; } });
+  assert.equal(s.menu.open, false); assert.equal(prevented, true); assert.equal(s.summaryFocus, 1);
+  s.menu.open = true; s.route('/news'); assert.equal(s.menu.open, false); assert.equal(s.summaryFocus, 1, 'Route changes do not steal focus');
+  s.unmount(); assert.equal(s.listeners.size, 0);
+});
+
+test('Small-screen menu stays inside a 320px viewport, scrolls vertically and keeps readable large touch targets', () => {
+  const css = fs.readFileSync(path.join(root, 'styles/GlobalNavigation.module.css'), 'utf8');
+  assert.match(css, /width:\s*min\(340px,\s*calc\(100vw - 32px\)\)/);
+  assert.match(css, /max-height:\s*min\(70dvh,\s*560px\)/); assert.match(css, /overflow-y:\s*auto/);
+  assert.match(css, /\.moreLinks a\s*\{[^}]*min-height:\s*52px[^}]*font-size:\s*18px/s);
+  assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*\.button\s*\{[^}]*font-size:\s*17px[^}]*min-height:\s*64px/s);
 });
 
 test('Editable fields hide the touch dock until focus leaves; checkboxes and readonly fields keep it available', () => {

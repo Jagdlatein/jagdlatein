@@ -1,5 +1,5 @@
 .nav { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 100; display: flex; align-items: stretch; gap: 6px; max-width: calc(100vw - 32px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); padding: 6px; border: 1px solid #e0d2af; border-radius: 20px; background: #fffdf7f5; box-shadow: 0 5px 20px #3e321b1f; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 14px; background: transparent; color: #796021; font: inherit; font-size: 13px; font-weight: 700; line-height: 1.25; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 44px; min-height: 48px; padding: 10px 12px; border: 0; border-radius: 14px; background: transparent; color: #796021; font: inherit; font-size: 17px; font-weight: 700; line-height: 1.25; white-space: nowrap; text-decoration: none; cursor: pointer; }
 .button svg { flex-shrink: 0; }
 .desktopLabel { min-width: 0; }
 .mobileLabel { display: none; }
@@ -12,14 +12,15 @@
 .more summary { list-style: none; }
 .more summary::-webkit-details-marker { display: none; }
 .more[open] summary { background: #f3e5bd; }
-.moreLinks { position: absolute; right: 0; bottom: calc(100% + 14px); min-width: 224px; padding: 8px; border: 1px solid #e0d2af; border-radius: 16px; background: #fffdf7; box-shadow: 0 5px 20px #3e321b26; }
-.moreLinks a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px; border-radius: 10px; color: #73571a; text-decoration: none; font-size: 15px; font-weight: 600; }
+.moreLinks { position: absolute; right: 0; bottom: calc(100% + 14px); width: min(340px, calc(100vw - 32px)); max-height: 70vh; max-height: min(70dvh, 560px); overflow-y: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid #e0d2af; border-radius: 16px; background: #fffdf7; box-shadow: 0 5px 20px #3e321b26; }
+.moreLinks a { display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 52px; padding: 12px; border-radius: 10px; color: #73571a; text-decoration: none; font-size: 18px; line-height: 1.5; font-weight: 600; }
+.moreLinks svg { flex-shrink: 0; }
 .moreLinks a:hover, .moreLinks a[aria-current] { background: #f3e5bd; }
 .moreLinks a:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
 @media (max-width: 620px) {
   .nav { left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: max(8px, env(safe-area-inset-bottom, 0px)); max-width: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; }
   .more summary { width: 100%; }
-  .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: clamp(10px, 2.8vw, 12px); min-height: 58px; white-space: normal; }
+  .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: 17px; min-height: 64px; white-space: normal; }
   .desktopLabel { display: none; }
   .mobileLabel { display: inline; }
 }

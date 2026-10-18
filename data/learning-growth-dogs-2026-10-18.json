@@ -1,0 +1,354 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Ein neuer enger Hundewesenkurs. Quellengebundene Signal- und Lernbegriffe mit ausdrücklich eigenen Beobachtungs- und Rechenbeispielen; keine Diagnose, Erfolgsquote oder Einsatzfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-wachstum-hund-signale-kontext-2026",
+      "title": "Wortsignal, Handzeichen und Kontext: Was wurde wirklich gelernt?",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Signalbestandteile, Übertragung und Lernfortschritt mit klaren Beobachtungen unterscheiden.",
+      "minutes": 30,
+      "objectives": [
+        "Wortsignal und begleitende Hinweise auseinanderhalten",
+        "Generalisierung und Diskrimination unterscheiden",
+        "Vergleichsbedingungen und Erfolgskriterien benennen",
+        "Ein verständliches Lernjournal lesen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Lern- und Beobachtungsgrundlagen. Kein Ersatz für fachkundige Ausbildung, örtliche jagdliche Einsatzvoraussetzungen oder tierärztliche Beurteilung.",
+        "AT": "Gemeinsame Lern- und Beobachtungsgrundlagen. Kein Ersatz für fachkundige Ausbildung, örtliche jagdliche Einsatzvoraussetzungen oder tierärztliche Beurteilung.",
+        "CH": "Gemeinsame Lern- und Beobachtungsgrundlagen. Kein Ersatz für fachkundige Ausbildung, örtliche jagdliche Einsatzvoraussetzungen oder tierärztliche Beurteilung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "D’Aniello und andere: Wort und Geste bei Wasserrettungshunden,2016",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27338818/",
+          "organization": "Universitäten Neapel, Padua, Parma und Mailand",
+          "supports": "Originalzusammenfassung gelesen: getrennte und widersprüchliche Wort-/Gestensignale; situationsabhängige Gewichtung bei entsprechend ausgebildeten Wasserrettungshunden. Keine allgemeine Rangfolge aller Hundesignale."
+        },
+        {
+          "label": "Fukuzawa, Mills und Cooper: veränderte Lautbestandteile gelernter Signale,2005",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/15740436/",
+          "organization": "University of Lincoln",
+          "supports": "Originalzusammenfassung gelesen: sechs Hunde, aufgezeichnete Sitz- und Herankomm-Signale mit veränderten Lautbestandteilen. Begrenzter Versuch, keine allgemeine Fehlertoleranzquote."
+        },
+        {
+          "label": "Cunningham und Ramos: Aufmerksamkeit für menschliche Hinweise,2014",
+          "url": "https://rke.abertay.ac.uk/ws/files/8559131/Cunningham_EffectOfTrainingAndFamiliarityOnResponsivenessToHumanCues_Author_2014.pdf",
+          "organization": "Abertay University",
+          "supports": "Autorenfassung: Zusammenfassung und Methoden Seiten14–17 gelesen. Signalarten und vertraute/unvertraute Personen getrennt; erfasst wurde die Orientierung zum Ziel, nicht ein vollständiger Gehorsamsablauf."
+        },
+        {
+          "label": "OpenStax: Reizgeneralisierung und Reizdiskrimination",
+          "url": "https://openstax.org/books/psychology-2e/pages/6-2-classical-conditioning",
+          "organization": "Rice University / OpenStax",
+          "supports": "Begriffsabschnitt zu ähnlichen Reizen und differenzierter Reaktion; allgemeine Lernbegriffe, keine jagdhundespezifische Erfolgsstudie."
+        },
+        {
+          "label": "VCA: Grundlagen des Welpentrainings, Signal und neue Übungsorte",
+          "url": "https://vcahospitals.com/know-your-pet/puppy-behavior-and-training-",
+          "organization": "VCA Animal Hospitals / LifeLearn",
+          "supports": "Abschnitte zum gewünschten Verhalten, neuen ablenkungsarmen Orten und Signalbegriff gelesen. Fachliche Halterinformation zu Welpen, kein Leistungsnachweis erwachsener Jagdhunde."
+        },
+        {
+          "label": "Washington State University: Reizdiskrimination und Reizgeneralisierung, Abschnitte 6.6.2 und 6.6.3",
+          "url": "https://wsu.pressbooks.pub/principles-of-learning-and-behavior/chapter/module-6-operant-conditioning/table-6-2/",
+          "organization": "Washington State University / Principles of Learning and Behavior",
+          "supports": "Öffentlich indexierter Originalkapiteltext der Abschnitte 6.6.2 und 6.6.3 gelesen: unterscheidende Reizkontrolle und Reaktion auf ähnliche neue Reize. Unabhängiger zweiter Begriffsbeleg neben OpenStax, keine Hundestudie."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "signalbestandteile",
+          "title": "Wort, Hand und Körperbewegung getrennt betrachten",
+          "paragraphs": [
+            "Ein gesprochenes Wort kann zusammen mit einem Handzeichen, der Blickrichtung und einer Bewegung der führenden Person auftreten. Gelingt das gewünschte Verhalten bei dieser Kombination, ist damit noch nicht geprüft, ob das Wort allein ausreicht. Untersuchungen zu menschlichen Hinweisen trennen deshalb einzelne Informationsquellen und die beobachtete Reaktion.",
+            "D’Aniello und andere verglichen bei Wasserrettungshunden unter anderem Wort- und Gestensignale, die verschiedene Aufgaben verlangten. Ihre Ergebnisse waren situationsabhängig; daraus folgt keine Regel „Gesten gewinnen immer“. Fukuzawa, Mills und Cooper änderten bei sechs Hunden Lautbestandteile aufgezeichneter gelernter Signale und fanden Leistungseinbußen. Das zeigt eine mögliche Bedeutung der konkreten Signalform, keine universelle Fehlertoleranz.",
+            "Eigenes Lernbeispiel: Im gesicherten, vertrauten Umfeld wird ein bereits bekanntes Alltagssignal mit und ohne die gewohnte Handbewegung betrachtet. Aufgabe und Bedingungen werden zuvor beschrieben. Das ist eine Beobachtungshilfe, kein Provokationsversuch und keine jagdliche Prüfung. Unklare Ergebnisse werden als offen notiert, statt dem Hund Absicht zu unterstellen."
+          ],
+          "takeaway": "Erfolg bei einer Signalkombination belegt nicht automatisch jeden ihrer Bestandteile einzeln.",
+          "exercise": "Beschreibe auf Papier zwei ansonsten vergleichbare Szenen, die sich nur durch das zusätzliche Handzeichen unterscheiden. Benenne, was der Vergleich offenlässt."
+        },
+        {
+          "id": "uebertragung",
+          "title": "Übertragen ist eine eigene Lernfrage",
+          "paragraphs": [
+            "Reizgeneralisierung bezeichnet die Ausweitung einer gelernten Reaktion auf ähnliche Reize. Reizdiskrimination bezeichnet dagegen das erlernte unterschiedliche Reagieren auf unterscheidbare Reize. Das sind allgemeine Lernbegriffe. Sie sagen weder voraus, wie viele Wiederholungen ein bestimmter Hund braucht, noch dass jede Reaktion überall gleich ausfallen muss.",
+            "Die VCA-Halterinformation empfiehlt, bereits gelernte Fähigkeiten auch an weiteren zunächst ablenkungsarmen Orten zu üben. Ein Erfolg im Wohnzimmer ist daher kein Nachweis für einen beliebigen anderen Ort. Eigenes Lernmodell: Werden Ort, Abstand und führende Person zugleich verändert, bleibt bei einem anderen Ergebnis unklar, welche Veränderung dazu beigetragen hat.",
+            "Für einen übersichtlichen Lernvergleich wird zunächst eine klar benannte Bedingung verändert und der übrige Ablauf möglichst vergleichbar gehalten. So wird die nächste Frage genauer; ein einzelner Vergleich beweist trotzdem keine Ursache. Draußen werden Wildkontakt und ungesicherte Situationen nicht als Belastungstest eingesetzt. Die konkrete Ausbildung gehört in fachkundige Begleitung."
+          ],
+          "takeaway": "Ein Erfolg gilt zunächst für seine beobachteten Bedingungen; Übertragung und Unterscheidung werden eigens betrachtet.",
+          "exercise": "Plane einen rein schriftlichen Vergleich mit demselben bekannten Signal an zwei sicheren Orten. Markiere alle Bedingungen, die du für einen verständlichen Vergleich gleich halten möchtest."
+        },
+        {
+          "id": "lernjournal",
+          "title": "Fortschritt so notieren, dass er vergleichbar bleibt",
+          "paragraphs": [
+            "Vor dem Beobachten wird festgelegt, welche sichtbare Reaktion gezählt werden soll. Cunningham und Ramos erfassten in ihrem Hinweisversuch die Orientierung zum Ziel; ein Hinlaufen war dafür nicht erforderlich. D’Aniello und andere prüften dagegen die verlangten Handlungen. Aufmerksamkeit, Bewegungsbeginn und vollständig ausgeführte Aufgabe sind unterschiedliche Zielgrößen.",
+            "Eigenes Lernjournal: Datum, Ort, Signalform, führende Person, Aufgabe und sichtbare Reaktion werden getrennt notiert. Zusätzliche Handhilfe oder eine Signalwiederholung wird vermerkt. „Setzte sich nach dem ersten Wort“ beschreibt etwas anderes als „setzte sich nach Wort, Handzeichen und Wiederholung“. Beide Beobachtungen können nützlich sein; sie werden nicht unter einem unscharfen Erfolgsbegriff vermischt.",
+            "Fiktives Rechenbeispiel, keine Studiendaten: Sechs passende Reaktionen aus acht vergleichbar erfassten Versuchen sind 75 Prozent; sechs aus zwölf sind 50 Prozent. Die gleiche Erfolgszahl allein beschreibt den Verlauf daher nicht. Auch eine Quote wird erst mit Aufgabe und Bedingungen verständlich. Das Journal ordnet Beobachtungen; es diagnostiziert weder Gesundheit noch Motivation und bescheinigt keine Einsatzfähigkeit."
+          ],
+          "takeaway": "Ein Lernjournal nennt Kriterium, Bedingungen, Versuchszahl und beobachtete Reaktion statt nur „gut“ oder „schlecht“.",
+          "exercise": "Erstelle eine leere Tabelle mit den genannten Feldern. Trenne eine Reaktion nach erstem Signal von einer Reaktion nach zusätzlicher Hilfe, ohne echte Versuchsergebnisse zu erfinden."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "signalbestandteile",
+          "q": "Ein Hund setzt sich auf ein gesprochenes Signal mit gleichzeitigem Handzeichen. Was ist durch diese Beobachtung belegt?",
+          "options": [
+            "Die Reaktion auf das Wort ohne weitere Hinweise.",
+            "Die Reaktion auf die beobachtete Signalkombination.",
+            "Die gleiche Reaktion bei jeder fremden Person.",
+            "Die Reaktion auf das Handzeichen ohne gesprochenes Wort."
+          ],
+          "answer": 1,
+          "explain": "Geprüft wurde die Kombination. Ob einer ihrer Bestandteile allein genügt, bleibt eine eigene Frage."
+        },
+        {
+          "id": "q2",
+          "lessonId": "signalbestandteile",
+          "q": "Welche Gegenüberstellung untersucht am gezieltesten den zusätzlichen Einfluss eines Handzeichens bei einem bekannten Alltagssignal?",
+          "options": [
+            "Wort und Handzeichen zu Hause gegen Wort allein an einem neuen Ort.",
+            "Ein anderes Wort mit einer anderen Handbewegung bei einer neuen Person.",
+            "Wort mit und ohne Handzeichen bei sonst vergleichbarem Ablauf.",
+            "Wort und Handzeichen vor und nach einem Wechsel von Ort und Abstand."
+          ],
+          "answer": 2,
+          "explain": "Der gezielte Vergleich verändert das Handzeichen. Gleichzeitige weitere Änderungen erschweren die Zuordnung des Ergebnisses."
+        },
+        {
+          "id": "q3",
+          "lessonId": "signalbestandteile",
+          "q": "Was wurde in der Originalstudie von Fukuzawa, Mills und Cooper mit sechs Hunden gezielt verändert?",
+          "options": [
+            "Die Rassezugehörigkeit bei identischer Aufzucht.",
+            "Die Entfernung zum Wild bei freier Suche.",
+            "Die Art der Belohnung bei unverändertem Signal.",
+            "Lautbestandteile aufgezeichneter gelernter Signale."
+          ],
+          "answer": 3,
+          "explain": "Die Untersuchung veränderte die Lautform von Sitz- und Herankomm-Signalen. Sie liefert keine allgemeine Fehlerquote für alle Hunde."
+        },
+        {
+          "id": "q4",
+          "lessonId": "signalbestandteile",
+          "q": "Welche Einordnung des Wort-Gesten-Vergleichs von D’Aniello und anderen ist angemessen?",
+          "options": [
+            "Die untersuchten Wasserrettungshunde gewichteten Hinweise abhängig von der konkreten Situation.",
+            "Jeder Hund muss Handzeichen unabhängig vom Training immer bevorzugen.",
+            "Ein einzelner Signalkonflikt misst die gesamte jagdliche Eignung.",
+            "Wort- und Gestensignale sind für jeden Hund bedeutungsgleich."
+          ],
+          "answer": 0,
+          "explain": "Der Versuch betrifft entsprechend ausgebildete Wasserrettungshunde und bestimmte Aufgaben. Eine allgemeine Vorrangregel wäre weitergehend als der Befund."
+        },
+        {
+          "id": "q5",
+          "lessonId": "uebertragung",
+          "q": "Was bezeichnet Reizgeneralisierung beim Lernen?",
+          "options": [
+            "Den schrittweisen Aufbau neuer Bewegungsabläufe.",
+            "Die Abnahme einer Reaktion bei wiederholtem folgenlosem Reiz.",
+            "Die Ausweitung einer gelernten Reaktion auf ähnliche Reize.",
+            "Das gezielte unterschiedliche Reagieren auf unterscheidbare Reize."
+          ],
+          "answer": 2,
+          "explain": "Generalisierung betrifft die Übertragung auf ähnliche Reize. Der Begriff allein legt keine feste Trainingsdauer fest."
+        },
+        {
+          "id": "q6",
+          "lessonId": "uebertragung",
+          "q": "Was bezeichnet Reizdiskrimination beim Lernen?",
+          "options": [
+            "Die unveränderte Übertragung einer Reaktion auf sämtliche Umgebungen.",
+            "Das bloße Wiederholen derselben Bewegung ohne Signal.",
+            "Die Belohnung jedes neu auftretenden Verhaltens.",
+            "Das erlernte unterschiedliche Reagieren auf unterscheidbare Reize."
+          ],
+          "answer": 3,
+          "explain": "Diskrimination bedeutet eine Unterscheidung von Reizen. Sie wird nicht mit einer allgemeinen Übertragung gleichgesetzt."
+        },
+        {
+          "id": "q7",
+          "lessonId": "uebertragung",
+          "q": "Ort, führende Person und Abstand werden zugleich verändert; das bekannte Signal gelingt seltener. Welche Aussage ist zunächst zulässig?",
+          "options": [
+            "Die Bedingungen und das beobachtete Ergebnis haben sich gemeinsam verändert; der entscheidende Einfluss bleibt offen.",
+            "Der größere Abstand ist damit als alleinige Ursache bewiesen.",
+            "Die neue Person ist damit als alleinige Ursache bewiesen.",
+            "Der neue Ort ist damit als alleinige Ursache bewiesen."
+          ],
+          "answer": 0,
+          "explain": "Mehrere veränderte Bedingungen lassen die einzelne Ursache offen. Ein übersichtlicher nächster Vergleich benennt eine konkrete Änderung."
+        },
+        {
+          "id": "q8",
+          "lessonId": "uebertragung",
+          "q": "Ein Alltagssignal gelingt im Wohnzimmer. Was bleibt vor einer Aussage über seine Übertragung an andere Orte zu prüfen?",
+          "options": [
+            "Ob das Wort im Kalender immer gleich geschrieben ist.",
+            "Wie die bekannte Aufgabe unter den jeweiligen neuen Bedingungen tatsächlich gelingt.",
+            "Ob alle weiteren Beobachtungen entfallen können.",
+            "Ob ein Ortswechsel automatisch einen vollständigen Neuanfang erfordert."
+          ],
+          "answer": 1,
+          "explain": "Ein beobachteter Erfolg beantwortet nicht jeden Kontextwechsel. Die VCA-Information beschreibt das Üben bereits gelernter Fähigkeiten an weiteren zunächst ablenkungsarmen Orten."
+        },
+        {
+          "id": "q9",
+          "lessonId": "lernjournal",
+          "q": "Warum wird vor einer Lernbeobachtung die erwartete sichtbare Reaktion festgelegt?",
+          "options": [
+            "Damit möglichst jede Bewegung als gleichwertiger Erfolg gilt.",
+            "Damit die vermutete Motivation nicht mehr benannt werden muss.",
+            "Damit wiederholte Signale aus der Notiz entfernt werden können.",
+            "Damit Aufzeichnungen nach einem gleich verständlichen Kriterium ausgewertet werden können."
+          ],
+          "answer": 3,
+          "explain": "Ein vorab beschriebenes Kriterium trennt beispielsweise bloße Orientierung von der vollständig verlangten Aufgabe."
+        },
+        {
+          "id": "q10",
+          "lessonId": "lernjournal",
+          "q": "Welche Notiz macht einen Unterschied zwischen Reaktion auf das erste Signal und Reaktion nach Hilfen sichtbar?",
+          "options": [
+            "Setzte sich nach erstem Wort; im nächsten Versuch erst nach zusätzlichem Handzeichen.",
+            "Zweimal erfolgreich, deshalb waren die Bedingungen identisch.",
+            "Zweimal erfolgreich, daher wurde nur das Wort verstanden.",
+            "Setzte sich zweimal; weitere Angaben sind für jeden Vergleich entbehrlich."
+          ],
+          "answer": 0,
+          "explain": "Die erste Notiz erhält die Art und Reihenfolge der Hilfen. Ein pauschales Erfolgslabel würde diesen Unterschied verdecken."
+        },
+        {
+          "id": "q11",
+          "lessonId": "lernjournal",
+          "q": "Fiktives Lernjournal: In Block A gelingen 6 von 8, in Block B 6 von 12 vergleichbar bewerteten Versuchen. Welche Quoten gehören dazu?",
+          "options": [
+            "A 50 Prozent und B 75 Prozent.",
+            "A 75 Prozent und B 50 Prozent.",
+            "Beide 75 Prozent, weil beide sechs Erfolge haben.",
+            "Beide 50 Prozent, weil die Erfolgszahl gleich ist."
+          ],
+          "answer": 1,
+          "explain": "Die Versuchszahl gehört zum Nenner: 6/8 = 0,75 und 6/12 = 0,50. Die Zahlen sind ein eigenes Rechenbeispiel und keine Hundestudiendaten."
+        },
+        {
+          "id": "q12",
+          "lessonId": "lernjournal",
+          "q": "Welchen Schluss erlaubt es, wenn ein Hund in einem Hinweisversuch nur den Kopf zum bezeichneten Ziel dreht?",
+          "options": [
+            "Ein vollständiger Bringauftrag ist damit ausgeführt.",
+            "Der Rückruf unter Wildablenkung ist damit nachgewiesen.",
+            "Die beobachtete Orientierung ist erfasst; weitere Handlungen sind damit nicht belegt.",
+            "Die Dauerleistung einer freien Suche ist damit gemessen."
+          ],
+          "answer": 2,
+          "explain": "Cunningham und Ramos unterschieden die Orientierung zum Ziel ausdrücklich von einem erforderlichen Hinlaufen. Die Messgröße muss zur Schlussfolgerung passen."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begrenzter Quellenabgleich für diese drei Lektionen. Originalversuche, allgemeine Lernbegriffe und eigene Unterrichtsbeispiele werden getrennt ausgewiesen.",
+        "independentOrganizations": [
+          "Universitäten Neapel und weitere italienische Hochschulen",
+          "University of Lincoln",
+          "Abertay University",
+          "Rice University / OpenStax",
+          "VCA / LifeLearn",
+          "Washington State University"
+        ],
+        "limitations": [
+          "Keine unabhängige Replikation der einzelnen Originalstudie behauptet.",
+          "Bei D’Aniello und Fukuzawa wurde die Originalzusammenfassung gelesen; keine Volltextlektüre behauptet.",
+          "Welpentraining ist keine Einsatzstudie erwachsener Jagdhunde.",
+          "Eigene Vergleichs- und Rechenbeispiele sind keine erhobenen Daten."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-wachstum-hund-signale-kontext-2026",
+      "lessonId": "signalbestandteile",
+      "claims": [
+        {
+          "claim": "Untersuchungen trennen Signalformen und Reaktionen. Ein Erfolg mit mehreren Hinweisen beweist deren isolierte Wirkung nicht. D’Aniello untersucht Wort/Geste bei Wasserrettungshunden; Cunningham/Ramos trennen Hinweisarten und beobachtete Orientierung.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/27338818/",
+            "https://rke.abertay.ac.uk/ws/files/8559131/Cunningham_EffectOfTrainingAndFamiliarityOnResponsivenessToHumanCues_Author_2014.pdf"
+          ]
+        },
+        {
+          "claim": "Fukuzawas begrenzter Originalversuch belegt Leistungseinbußen nach veränderter Lautform. Der unabhängige Wort-Gesten-Versuch stützt die vorsichtige Einordnung mehrerer Signalquellen, ist jedoch keine Replikation des Lautversuchs. Der schriftliche Vergleich ist ein eigenes Lernbeispiel.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/15740436/",
+            "https://pubmed.ncbi.nlm.nih.gov/27338818/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-wachstum-hund-signale-kontext-2026",
+      "lessonId": "uebertragung",
+      "claims": [
+        {
+          "claim": "Generalisierung und Diskrimination sind unterschiedliche allgemeine Lernbegriffe. Die VCA-Praxisinformation empfiehlt weitere zunächst ablenkungsarme Orte bei bereits gelernten Fähigkeiten; sie belegt keine allgemeine Quote oder Trainingsfrist.",
+          "sourceUrls": [
+            "https://openstax.org/books/psychology-2e/pages/6-2-classical-conditioning",
+            "https://vcahospitals.com/know-your-pet/puppy-behavior-and-training-",
+            "https://wsu.pressbooks.pub/principles-of-learning-and-behavior/chapter/module-6-operant-conditioning/table-6-2/"
+          ]
+        },
+        {
+          "claim": "Eine getrennte Betrachtung veränderter Signal- und Kontextbedingungen hält die Interpretation eng. Das Prinzip wird als eigenes schriftliches Vergleichsmodell eingesetzt, nicht als kausaler Nachweis oder Prüfverfahren am Wild.",
+          "sourceUrls": [
+            "https://rke.abertay.ac.uk/ws/files/8559131/Cunningham_EffectOfTrainingAndFamiliarityOnResponsivenessToHumanCues_Author_2014.pdf",
+            "https://vcahospitals.com/know-your-pet/puppy-behavior-and-training-"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-wachstum-hund-signale-kontext-2026",
+      "lessonId": "lernjournal",
+      "claims": [
+        {
+          "claim": "Erfasste Orientierung und Ausführung einer verlangten Handlung sind verschiedene Messgrößen: Cunningham/Ramos nennen eine gerichtete Kopfbewegung; D’Aniello bewertet verlangte Aufgaben. Beide Originalarbeiten belegen ihre eigene jeweilige Messentscheidung.",
+          "sourceUrls": [
+            "https://rke.abertay.ac.uk/ws/files/8559131/Cunningham_EffectOfTrainingAndFamiliarityOnResponsivenessToHumanCues_Author_2014.pdf",
+            "https://pubmed.ncbi.nlm.nih.gov/27338818/"
+          ]
+        },
+        {
+          "claim": "Vorab definierte Aufgabe, Signalform und beobachtete Reaktion machen den Vergleich verständlich. Journalfelder und6/8-gegen6/12-Rechnung sind eigene Unterrichtsbeispiele, keine publizierten Hundeergebnisse.",
+          "sourceUrls": [
+            "https://rke.abertay.ac.uk/ws/files/8559131/Cunningham_EffectOfTrainingAndFamiliarityOnResponsivenessToHumanCues_Author_2014.pdf",
+            "https://vcahospitals.com/know-your-pet/puppy-behavior-and-training-"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Feste Wiederholungszahlen, Erfolgsgrenzen und eine allgemeine Rangfolge Wort gegen Geste",
+      "reason": "Die gelesenen Quellen tragen keine universellen Werte oder Rangfolgen für alle Jagdhunde."
+    }
+  ]
+}

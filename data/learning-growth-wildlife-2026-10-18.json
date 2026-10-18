@@ -1,0 +1,427 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Eine methodische Vertiefung zur Erfolgskontrolle von Wildtierquerungen. Bewegungsnachweise, Wildunfälle und genetische Verbindung werden getrennt beurteilt. Keine Bauanleitung, allgemeine Wirksamkeitsquote oder örtliche Rechtsbewertung.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-wildtierquerungen-erfolgskontrolle-2026",
+      "title": "Wildtierquerungen prüfen: Bewegung, Unfallzahlen und Genfluss",
+      "category": "Tierschutz & Verantwortung",
+      "topic": "Hege/Naturschutz",
+      "description": "Forschungsbefunde richtig lesen: Was verraten Spuren, Unfallstatistiken und DNA tatsächlich über eine Wildtierquerung?",
+      "minutes": 30,
+      "objectives": [
+        "Erfasste Querungen von wiederhergestellter Bewegungsmöglichkeit unterscheiden",
+        "Die vier Vergleichsgruppen einer Vorher-Nachher-Kontrollstudie zuordnen",
+        "Unfallrückgang und genetischen Austausch getrennt nachweisen",
+        "Europäische und nordamerikanische Feldstudien mit ihren Grenzen einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Die Methoden helfen beim Lesen von Monitoringberichten. Die genannten Auslandsstudien liefern keine örtliche Wirkungsquote und ersetzen keine Standortuntersuchung.",
+        "AT": "Bewegung, Unfallgeschehen und Genfluss bleiben unterschiedliche Untersuchungsziele. Aus den Beispielen folgt keine österreichische Bau- oder Jagdrechtsvorgabe.",
+        "CH": "Die Schweizer Rehwildstudie untersucht genetische Landschaftsstruktur an einem bestimmten Korridor. Sie ist kein Vorher-Nachher-Erfolgsnachweis einer neu gebauten Passage."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Ballók, Náhlik & Tari · Rotwild an der ungarischen M7, 2010",
+          "url": "https://real.mtak.hu/188652/1/Acta-Silvatica-Lignaria-Hungarica-2010-Vol06-067-074.pdf",
+          "organization": "Universität Westungarn / Universität Sopron; Originalarbeit im Repositorium der Ungarischen Akademie der Wissenschaften",
+          "supports": "Original-Feldstudie: Spurenaufnahmen vor, während und nach dem Autobahnbau; Methoden S. 69, Ergebnisse und Einordnung S. 70–73. Keine Übertragung der lokalen Spurenzahlen auf die Größe einer Population."
+        },
+        {
+          "label": "Soanes et al. · Weltweite Auswertung von Querungsstudien, 2024",
+          "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.14582",
+          "organization": "Internationales Forschungsteam; Journal of Applied Ecology",
+          "supports": "Unterschiedliche Erfolgsziele, fehlende Vergleichsmaßstäbe und Verzerrung ortsfester Erfassungen durch Bündelung an Leitzäunen. Forschungsübersicht, keine unabhängige Wiederholung jeder enthaltenen Feldstudie."
+        },
+        {
+          "label": "Ford et al. · Vorher-Nachher-Kontrollstudie in den Rocky Mountains, 2022",
+          "url": "https://www.frontiersin.org/journals/conservation-science/articles/10.3389/fcosc.2022.935420/full",
+          "organization": "University of British Columbia, Miistakis Institute und Western Transportation Institute",
+          "supports": "Original-Feldstudie an zwei kanadischen Untersuchungsgebieten: vier BACI-Gruppen, Bezugsgrößen Straßenlänge und Beobachtungszeit, veränderte Unfallraten an Referenzabschnitten; seltene Ereignisse begrenzen artspezifische Aussagen."
+        },
+        {
+          "label": "Rytwinski et al. · Metaanalyse zur Verringerung von Wildunfällen, 2016",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166941",
+          "organization": "Carleton University und internationales Forschungsteam; PLOS ONE",
+          "supports": "Unfallzahlen als eigener Endpunkt; Bedeutung von Vergleichsdesign, Vorherdaten und ausreichender Erfassung. Keine pauschale Mindestdauer oder DACH-Wirkungsquote übernommen."
+        },
+        {
+          "label": "Sawaya, Kalinowski & Clevenger · Genetische Verbindung bei Bären, 2014",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24552834/",
+          "organization": "Montana State University, Department of Ecology und Western Transportation Institute",
+          "supports": "Original-Feldstudie Banff: DNA von Querungsbauwerken und umgebenden Bärenbeständen, Individualzuordnung, Elternschaft und genetische Mischung. Untersuchung 2006–2008; keine aktuelle Bestandsschätzung."
+        },
+        {
+          "label": "Hepenstrick et al. · Rehwild und genetische Landschaftsstruktur in der Schweiz, 2012",
+          "url": "https://digitalcollection.zhaw.ch/items/d63598a1-4d8a-4166-b557-ed3b0c1f6f6c",
+          "organization": "Unabhängiges Schweizer Forschungsteam; WSL und ZHAW",
+          "supports": "Originalzusammenfassung: genetische Gruppierung mittels Mikrosatelliten und räumlicher Abgleich mit Verkehrsinfrastruktur; eingezäunte Autobahnen als wichtige Barrieren im untersuchten Korridor. Keine neue Passage im Vorher-Nachher-Vergleich."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "bewegung-nachweisen",
+          "title": "Was eine gezählte Querung wirklich misst",
+          "paragraphs": [
+            "Eine Passage kann genutzt werden, obwohl die Straße weiterhin Bewegungen einschränkt. Soll die frühere Durchlässigkeit beurteilt werden, braucht es einen passenden Vergleich zur Zeit vor dem Eingriff. Eine ungarische Rotwildstudie erfasste dazu zunächst Spuren über die geplante Autobahntrasse und später über die fertigen Querungsbauwerke. Die beobachtete Nutzung der Bauwerke bedeutete dort keine Wiederherstellung der früher erfassten Querungsaktivität. Das ist ein örtlicher Befund, keine allgemeine Quote für Rotwild.",
+            "Auch ein Anstieg am selben Kamerastandort kann täuschen: Ein neuer Leitzaun bündelt Tiere aus einem größeren Straßenabschnitt an einer Öffnung. Dadurch kann dort mehr gezählt werden, ohne dass insgesamt mehr Tiere die Straße überwinden. Die weltweite Auswertung von Soanes und Kollegen beschreibt diese mögliche Verzerrung. Vergleichbar sein müssen deshalb auch Erfassungsraum, Methode und Aufwand; ergänzende Bewegungsdaten können helfen.",
+            "Spuren oder Bildereignisse sind zunächst erfasste Ereignisse. Ohne geeignete individuelle Erkennung ist ihre Anzahl keine Zahl verschiedener Tiere. Für einen Bericht werden Zielart, Strecke, Zeitraum und Erfassungsmethode festgehalten. Die Schlussfolgerung bleibt auf die tatsächlich gemessene Größe begrenzt."
+          ],
+          "takeaway": "Eine höhere Zählung am Bauwerk ist erst mit einem passenden räumlichen und zeitlichen Vergleich ein Hinweis auf verbesserte Durchlässigkeit.",
+          "exercise": "Zwei Kameras melden nach dem Zaunbau mehr Ereignisse. Formuliere eine zusätzliche Untersuchung, die räumliche Bündelung von einer Zunahme der gesamten Straßenquerungen unterscheiden könnte.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Belegte Nutzung und Erhaltung früherer Bewegungsmöglichkeiten sind verschiedene Ziele. Die ungarische Originalstudie vergleicht Spurenerfassungen vor und nach dem Straßenbau; die internationale Auswertung unterscheidet die Erfolgsziele und beschreibt den Bündelungseffekt ortsfester Erfassung an Leitzäunen. Keine unabhängige Replikation des ungarischen Einzelbefunds behauptet.",
+              "sources": [
+                {
+                  "label": "Ballók, Náhlik & Tari · Rotwild an der ungarischen M7, 2010",
+                  "url": "https://real.mtak.hu/188652/1/Acta-Silvatica-Lignaria-Hungarica-2010-Vol06-067-074.pdf"
+                },
+                {
+                  "label": "Soanes et al. · Weltweite Auswertung von Querungsstudien, 2024",
+                  "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.14582"
+                }
+              ]
+            },
+            {
+              "claim": "Ein erfasstes Querungsereignis ist ohne geeignete Individualzuordnung keine sichere Zählung verschiedener Tiere. Der Vergleich von Spurenerfassung mit genetischer Individualidentifikation verdeutlicht die unterschiedlichen Zähleinheiten.",
+              "sources": [
+                {
+                  "label": "Ballók, Náhlik & Tari · Rotwild an der ungarischen M7, 2010",
+                  "url": "https://real.mtak.hu/188652/1/Acta-Silvatica-Lignaria-Hungarica-2010-Vol06-067-074.pdf"
+                },
+                {
+                  "label": "Sawaya, Kalinowski & Clevenger · Genetische Verbindung bei Bären, 2014",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/24552834/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wirkung-vergleichen",
+          "title": "Unfallrückgang: Warum der Vergleichsabschnitt zählt",
+          "paragraphs": [
+            "Weniger Wildunfälle sind ein eigenes Untersuchungsziel. Sie belegen für sich weder erhaltene Bewegungen noch genetischen Austausch. Ein BACI-Design verbindet vier Datengruppen: Maßnahmenabschnitt vorher und nachher sowie Referenzabschnitt vorher und nachher. So wird die zeitliche Veränderung am behandelten Abschnitt mit einer Veränderung ohne diese Maßnahme verglichen.",
+            "Ford und Kollegen untersuchten in zwei kanadischen Gebieten Unfallraten an Abschnitten mit und ohne neue Wildschutzzäune und Querungsbauwerke. Auch die Referenzabschnitte veränderten sich mit der Zeit. Deren Entwicklung beeinflusste die geschätzte Wirkung. Ein eigener Lernfall macht die Frage deutlich: Sinken die erfassten Unfallraten an beiden Abschnitten, darf der gesamte Rückgang am Maßnahmenabschnitt nicht ungeprüft allein dem Bauwerk zugerechnet werden.",
+            "Unterschiedliche Straßenlängen, Zeiträume und Erfassungsverfahren erschweren den Vergleich bloßer Gesamtzahlen. Zudem wurden die Maßnahmen nicht zufällig auf beliebige Straßen verteilt. BACI verbessert die Einordnung, beseitigt aber nicht automatisch jede andere Erklärung. Bei selten erfassten Arten begrenzen wenige Ereignisse die Aussagekraft; ein unklarer Effekt ist kein sicherer Nachweis fehlender Wirkung."
+          ],
+          "takeaway": "Zeitlicher Vergleich und Referenzabschnitt helfen, einen Maßnahmenbefund von einer allgemeinen Veränderung zu trennen.",
+          "exercise": "Ordne vier gedachte Unfalltabellen den Gruppen vorher–Maßnahme, nachher–Maßnahme, vorher–Referenz und nachher–Referenz zu. Prüfe danach Straßenlänge und Beobachtungsdauer.",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Ein BACI-Vergleich verbindet Vorher-/Nachherdaten von Maßnahmen- und Referenzabschnitten; Bezugsgrößen und allgemeine zeitliche Veränderungen beeinflussen die Einordnung von Unfallraten. Das konkrete Feldbeispiel Ford 2022 wird mit der methodischen Einordnung der Metaanalyse Rytwinski 2016 abgeglichen, nicht als deren unabhängige Wiederholung bezeichnet.",
+              "sources": [
+                {
+                  "label": "Ford et al. · Vorher-Nachher-Kontrollstudie in den Rocky Mountains, 2022",
+                  "url": "https://www.frontiersin.org/journals/conservation-science/articles/10.3389/fcosc.2022.935420/full"
+                },
+                {
+                  "label": "Rytwinski et al. · Metaanalyse zur Verringerung von Wildunfällen, 2016",
+                  "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166941"
+                }
+              ]
+            },
+            {
+              "claim": "Eine Erfassung von Unfällen beantwortet einen anderen Endpunkt als Bewegungs- oder Genflussdaten. Wenige Ereignisse begrenzen die Aussagekraft artspezifischer Wirkungsbewertungen; ein unklarer Befund beweist nicht sicher fehlende Wirkung.",
+              "sources": [
+                {
+                  "label": "Ford et al. · Vorher-Nachher-Kontrollstudie in den Rocky Mountains, 2022",
+                  "url": "https://www.frontiersin.org/journals/conservation-science/articles/10.3389/fcosc.2022.935420/full"
+                },
+                {
+                  "label": "Soanes et al. · Weltweite Auswertung von Querungsstudien, 2024",
+                  "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.14582"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "genfluss-pruefen",
+          "title": "Vom Ortswechsel zum genetischen Austausch",
+          "paragraphs": [
+            "Genfluss bezeichnet hier die Weitergabe genetischer Varianten zwischen Teilpopulationen durch Fortpflanzung. Ein Ortswechsel allein belegt diese Weitergabe nicht. Die Untersuchung in Banff verband DNA-Proben an Querungsbauwerken mit Proben aus den umgebenden Grizzly- und Schwarzbärenbeständen. Neben der Wiedererkennung einzelner Tiere wurden Elternschaft und genetische Mischung untersucht. Damit ging der Nachweis über die bloße Passage hinaus.",
+            "Ein unabhängiges Schweizer Team untersuchte beim Rehwild die räumliche Verteilung genetischer Gruppen und verglich sie mit Verkehrsinfrastruktur. Im untersuchten Korridor fielen genetische Trennungen mit eingezäunten Autobahnen zusammen. Diese Landschaftsuntersuchung liefert einen anderen Befund als die Bärenstudie: Sie beschreibt die genetische Struktur und mögliche Barrieren, prüft aber nicht den Erfolg einer neu eröffneten Querung im Vorher-Nachher-Vergleich.",
+            "Die Beispiele zeigen unterschiedliche Beweiswege, keine universelle Erfolgszusage. Der Banff-Befund betrifft die untersuchten Arten und das damalige Untersuchungsgebiet; daraus folgt keine feste Genflussrate für Reh, Hirsch oder Gams im DACH-Raum. Für die Bewertung wird zuerst gefragt, ob Nutzung, Unfallvermeidung oder genetische Verbindung das Ziel ist. Erst dann lässt sich die passende Erfassung auswählen."
+          ],
+          "takeaway": "Bewegungsdaten zeigen Ortswechsel; genetische Untersuchungen können zusätzlich Verwandtschaft, Mischung und damit Fortpflanzungsverbindungen prüfen.",
+          "exercise": "Ordne drei Fragen einer passenden Datengruppe zu: Wird die Passage benutzt? Verändern sich Unfallraten? Gibt es genetische Verbindungen zwischen den Seiten?",
+          "reviewedOn": "2026-10-18",
+          "evidence": [
+            {
+              "claim": "Genetische Untersuchungen beantworten andere Fragen als reine Passagezählungen. Banff prüft Individualzuordnung, Elternschaft und genetische Mischung bei zwei Bärenarten; das unabhängige Schweizer Rehwildprojekt prüft genetische Landschaftsstruktur und deren Zusammenhang mit Verkehrsinfrastruktur. Die beiden unterschiedlichen Untersuchungen werden nicht als Replikationen ausgegeben.",
+              "sources": [
+                {
+                  "label": "Sawaya, Kalinowski & Clevenger · Genetische Verbindung bei Bären, 2014",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/24552834/"
+                },
+                {
+                  "label": "Hepenstrick et al. · Rehwild und genetische Landschaftsstruktur in der Schweiz, 2012",
+                  "url": "https://digitalcollection.zhaw.ch/items/d63598a1-4d8a-4166-b557-ed3b0c1f6f6c"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "bewegung-nachweisen",
+          "q": "Welche Ausgangsdaten helfen zu prüfen, ob eine neue Wildtierquerung die frühere Durchlässigkeit einer Landschaft erhält?",
+          "options": [
+            "Die Zahl der auf dem Bauwerk gepflanzten Sträucher",
+            "Die Betriebskosten der neuen Kameras",
+            "Vergleichbare Bewegungsdaten aus der Zeit vor dem Straßenbau",
+            "Die Länge des Bauwerks ohne Angaben zum Tierverhalten"
+          ],
+          "answer": 2,
+          "explain": "Die Aussage betrifft eine Veränderung gegenüber einem früheren Zustand. Dazu werden geeignete Vorherdaten und vergleichbare spätere Erfassungen gebraucht."
+        },
+        {
+          "id": "q2",
+          "lessonId": "bewegung-nachweisen",
+          "q": "Nach dem Bau eines Leitzauns zählt eine Kamera an einer Passage mehr Querungsereignisse. Welche Erklärung muss zusätzlich geprüft werden?",
+          "options": [
+            "Der Zaun bündelt Bewegungen aus einem größeren Straßenabschnitt.",
+            "Die Tiere haben sicher ihre Fortpflanzungsrate erhöht.",
+            "Die gesamte regionale Population hat sich sicher vergrößert.",
+            "Die Kamera erfasst nun automatisch jedes Tier nur einmal."
+          ],
+          "answer": 0,
+          "explain": "Eine räumliche Bündelung kann die Zählung am Standort erhöhen. Sie ist von einer Zunahme der gesamten Straßenquerungen zu unterscheiden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "bewegung-nachweisen",
+          "q": "Was liefert eine standardisierte Zählung von Querungsspuren ohne individuelle Tiererkennung unmittelbar?",
+          "options": [
+            "Die Zahl aller Tiere in der umgebenden Population",
+            "Die Zahl erfolgreicher Elternpaare auf beiden Straßenseiten",
+            "Den genetischen Verwandtschaftsgrad der querenden Tiere",
+            "Erfasste Querungsereignisse am untersuchten Ort"
+          ],
+          "answer": 3,
+          "explain": "Die Zähleinheit ist das erfasste Ereignis. Wiederholte Querungen desselben Tieres können ohne individuelle Zuordnung nicht sicher getrennt werden."
+        },
+        {
+          "id": "q4",
+          "lessonId": "bewegung-nachweisen",
+          "q": "Eine Rotwildpassage wird genutzt. Im vergleichbaren Monitoring bleiben jedoch weniger Querungen als vor dem Straßenbau nachweisbar. Welche Aussage passt dazu?",
+          "options": [
+            "Die Population ist im selben Verhältnis geschrumpft.",
+            "Nutzung ist belegt; eine Wiederherstellung der früheren Querungsaktivität ist damit nicht belegt.",
+            "Die Passage wird von keinem Rotwild angenommen.",
+            "Die frühere Durchlässigkeit ist bereits vollständig belegt."
+          ],
+          "answer": 1,
+          "explain": "Nutzung und Erhaltung des früheren Bewegungsniveaus sind verschiedene Erfolgsziele. Eine Abnahme von Spurenzahlen ist außerdem keine direkte Bestandszählung."
+        },
+        {
+          "id": "q5",
+          "lessonId": "wirkung-vergleichen",
+          "q": "Welche Datengruppen verbindet ein BACI-Design bei der Untersuchung von Wildunfällen?",
+          "options": [
+            "Vier Maßnahmenabschnitte ausschließlich nach dem Eingriff",
+            "Vier Tierarten ausschließlich am neuen Querungsbauwerk",
+            "Unfallzahlen, Baukosten, Zaunhöhe und Fahrzeugfarbe",
+            "Maßnahmen- und Referenzabschnitt jeweils vor und nach dem Eingriff"
+          ],
+          "answer": 3,
+          "explain": "BACI steht für Before–After–Control–Impact: Zeitvergleich und Vergleich mit einem Referenzabschnitt werden verbunden."
+        },
+        {
+          "id": "q6",
+          "lessonId": "wirkung-vergleichen",
+          "q": "In einem Lernfall sinken die Unfallraten sowohl am Maßnahmenabschnitt als auch am unbehandelten Referenzabschnitt. Was ist für die Wirkungsbewertung entscheidend?",
+          "options": [
+            "Nur die Änderung am Maßnahmenabschnitt zu verwenden",
+            "Auch die zeitliche Veränderung am Referenzabschnitt einzubeziehen",
+            "Die Vorherdaten beider Abschnitte zu verwerfen",
+            "Den Referenzabschnitt nachträglich zum Maßnahmenabschnitt umzubenennen"
+          ],
+          "answer": 1,
+          "explain": "Der Referenzverlauf hilft, gemeinsame zeitliche Veränderungen einzuordnen. Der gesamte örtliche Rückgang darf nicht ungeprüft allein der Maßnahme zugeschrieben werden."
+        },
+        {
+          "id": "q7",
+          "lessonId": "wirkung-vergleichen",
+          "q": "Welche Angaben braucht ein sinnvoller Vergleich von Wildunfall-Erfassungen unterschiedlich langer Straßenabschnitte?",
+          "options": [
+            "Straßenlänge, Beobachtungsdauer und vergleichbare Erfassungsmethoden",
+            "Nur die absoluten Summen über beliebig lange Zeiträume",
+            "Nur das Baujahr der nächstgelegenen Wildbrücke",
+            "Nur den jeweils unfallreichsten Tag jedes Abschnitts"
+          ],
+          "answer": 0,
+          "explain": "Bezugsraum, Zeitraum und Art der Erfassung beeinflussen die gezählten Ereignisse. Ford und Kollegen berücksichtigten unter anderem Straßenlänge und Beobachtungszeit."
+        },
+        {
+          "id": "q8",
+          "lessonId": "wirkung-vergleichen",
+          "q": "In einer Querungsstudie werden für eine seltene Tierart nur sehr wenige Unfälle erfasst. Ein klarer Maßnahmeneffekt ist nicht nachweisbar. Was folgt daraus?",
+          "options": [
+            "Die Maßnahme ist für diese Art sicher wirkungslos.",
+            "Die Art überquert in diesem Gebiet niemals Straßen.",
+            "Die wenigen Ereignisse können eine verlässliche Effektschätzung begrenzen.",
+            "Für diese Art ist keine weitere Untersuchung nötig."
+          ],
+          "answer": 2,
+          "explain": "Ein unklarer Befund bei wenigen Beobachtungen ist kein sicherer Nachweis eines fehlenden Effekts. Die Datengrundlage gehört zur Interpretation."
+        },
+        {
+          "id": "q9",
+          "lessonId": "genfluss-pruefen",
+          "q": "Was ist über einen bloßen Ortswechsel hinaus für Genfluss zwischen Teilpopulationen entscheidend?",
+          "options": [
+            "Die wiederholte Aufnahme desselben Tieres auf einem Weg",
+            "Die Weitergabe genetischer Varianten durch Fortpflanzung",
+            "Die Zahl der im Gebiet installierten Kameras",
+            "Die Häufigkeit vorbeifahrender Fahrzeuge"
+          ],
+          "answer": 1,
+          "explain": "Für Genfluss muss genetisches Material zwischen den Teilpopulationen weitergegeben werden. Bewegungsnachweise allein zeigen diese Fortpflanzungsverbindung nicht."
+        },
+        {
+          "id": "q10",
+          "lessonId": "genfluss-pruefen",
+          "q": "Welche Frage untersucht eine genetische Elternschaftsanalyse in einem Wildtierbestand?",
+          "options": [
+            "Wie viele Fahrzeuge nachts die Straße benutzen",
+            "Welche Zaunhöhe für jede Tierart vorgeschrieben ist",
+            "Wie viele Meter jede einzelne Querung lang ist",
+            "Welche untersuchten Tiere als Eltern und Nachkommen zusammengehören"
+          ],
+          "answer": 3,
+          "explain": "Elternschaftsanalysen prüfen genetisch gestützte Verwandtschaftsbeziehungen. In Banff war dies ein Teil der Untersuchung erfolgreicher Fortpflanzung von Querungsnutzern."
+        },
+        {
+          "id": "q11",
+          "lessonId": "genfluss-pruefen",
+          "q": "Was untersuchte die hier behandelte Schweizer Rehwildstudie von Hepenstrick und Kollegen?",
+          "options": [
+            "Den Vorher-Nachher-Erfolg einer neu eröffneten Bärenbrücke",
+            "Die Unfallrate aller Schweizer Straßen in der Gegenwart",
+            "Den räumlichen Zusammenhang genetischer Gruppen mit Verkehrsinfrastruktur",
+            "Die Wirkung eines einheitlichen Jagdgesetzes in allen DACH-Ländern"
+          ],
+          "answer": 2,
+          "explain": "Die Studie verband genetische Gruppierung mit Landschaftsdaten. Sie wird nicht als Vorher-Nachher-Wirkungsprüfung einer neuen Passage dargestellt."
+        },
+        {
+          "id": "q12",
+          "lessonId": "genfluss-pruefen",
+          "q": "Wie lässt sich der genetische Befund der Banff-Bärenstudie fachlich angemessen nutzen?",
+          "options": [
+            "Als örtliches Beispiel für einen Nachweisweg über Bewegung, Elternschaft und genetische Mischung",
+            "Als feste Genflussrate für alle europäischen Schalenwildarten",
+            "Als Ersatz für die Untersuchung jeder anderen Tierart",
+            "Als Nachweis, dass jede einzelne Wildbrücke gleich gut funktioniert"
+          ],
+          "answer": 0,
+          "explain": "Die Studie zeigt einen konkreten Nachweisweg bei den untersuchten Bären. Eine allgemeine Erfolgsquote für andere Arten oder Standorte wurde daraus nicht abgeleitet."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Eingegrenzter Quellenabgleich dieser drei Lektionen. Vier Original-Feldstudien aus getrennten Untersuchungen sowie zwei Forschungsübersichten; keine unabhängige Replikation eines einzelnen lokalen Ergebnisses behauptet.",
+        "independentOrganizations": [
+          "Universität Westungarn / Universität Sopron",
+          "University of British Columbia und Miistakis Institute",
+          "Montana State University",
+          "WSL / ZHAW"
+        ],
+        "limitations": [
+          "Rytwinski 2016 und Soanes 2024 sind Übersichten mit teilweise überlappenden Autoren und möglicherweise enthaltenen Originalstudien; sie zählen nicht als unabhängige Wiederholung der jeweiligen Felddaten.",
+          "Ford 2022 und Sawaya 2014 teilen einen Koautor und Teile der Untersuchungslandschaft, prüfen aber unterschiedliche Endpunkte. Sie werden nicht als unabhängige Wiederholung desselben Ergebnisses gezählt.",
+          "Bei Hepenstrick 2012 wurde die institutionell bereitgestellte Originalzusammenfassung gelesen; keine Volltextlektüre behauptet.",
+          "Banff und Rocky Mountains werden nicht als DACH-Wirkungsstudien ausgegeben. Nordamerikanischer Elk wird nicht dem europäischen Rotwild gleichgesetzt.",
+          "Keine populationsbiologische Schlussfolgerung allein aus Spurenhäufigkeit; keine aktuelle Bestandszahl aus älteren Studien; keine universelle Wirksamkeitsquote.",
+          "Der Lernfall mit sinkenden Unfallraten ist ein eigenes hypothetisches Beispiel ohne erfundene empirische Zahlen."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-wildtierquerungen-erfolgskontrolle-2026",
+      "lessonId": "bewegung-nachweisen",
+      "claims": [
+        {
+          "claim": "Belegte Nutzung und Erhaltung früherer Bewegungsmöglichkeiten sind verschiedene Ziele. Die ungarische Originalstudie vergleicht Spurenerfassungen vor und nach dem Straßenbau; die internationale Auswertung unterscheidet die Erfolgsziele und beschreibt den Bündelungseffekt ortsfester Erfassung an Leitzäunen. Keine unabhängige Replikation des ungarischen Einzelbefunds behauptet.",
+          "sourceUrls": [
+            "https://real.mtak.hu/188652/1/Acta-Silvatica-Lignaria-Hungarica-2010-Vol06-067-074.pdf",
+            "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.14582"
+          ]
+        },
+        {
+          "claim": "Ein erfasstes Querungsereignis ist ohne geeignete Individualzuordnung keine sichere Zählung verschiedener Tiere. Der Vergleich von Spurenerfassung mit genetischer Individualidentifikation verdeutlicht die unterschiedlichen Zähleinheiten.",
+          "sourceUrls": [
+            "https://real.mtak.hu/188652/1/Acta-Silvatica-Lignaria-Hungarica-2010-Vol06-067-074.pdf",
+            "https://pubmed.ncbi.nlm.nih.gov/24552834/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wildtierquerungen-erfolgskontrolle-2026",
+      "lessonId": "wirkung-vergleichen",
+      "claims": [
+        {
+          "claim": "Ein BACI-Vergleich verbindet Vorher-/Nachherdaten von Maßnahmen- und Referenzabschnitten; Bezugsgrößen und allgemeine zeitliche Veränderungen beeinflussen die Einordnung von Unfallraten. Das konkrete Feldbeispiel Ford 2022 wird mit der methodischen Einordnung der Metaanalyse Rytwinski 2016 abgeglichen, nicht als deren unabhängige Wiederholung bezeichnet.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/conservation-science/articles/10.3389/fcosc.2022.935420/full",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166941"
+          ]
+        },
+        {
+          "claim": "Eine Erfassung von Unfällen beantwortet einen anderen Endpunkt als Bewegungs- oder Genflussdaten. Wenige Ereignisse begrenzen die Aussagekraft artspezifischer Wirkungsbewertungen; ein unklarer Befund beweist nicht sicher fehlende Wirkung.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/conservation-science/articles/10.3389/fcosc.2022.935420/full",
+            "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2664.14582"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wildtierquerungen-erfolgskontrolle-2026",
+      "lessonId": "genfluss-pruefen",
+      "claims": [
+        {
+          "claim": "Genetische Untersuchungen beantworten andere Fragen als reine Passagezählungen. Banff prüft Individualzuordnung, Elternschaft und genetische Mischung bei zwei Bärenarten; das unabhängige Schweizer Rehwildprojekt prüft genetische Landschaftsstruktur und deren Zusammenhang mit Verkehrsinfrastruktur. Die beiden unterschiedlichen Untersuchungen werden nicht als Replikationen ausgegeben.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/24552834/",
+            "https://digitalcollection.zhaw.ch/items/d63598a1-4d8a-4166-b557-ed3b0c1f6f6c"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Allgemeine Erfolgsquote von Wildbrücken",
+      "reason": "Unterschiedliche Arten, Endpunkte, Standorte und Studiendesigns erlauben keine feste universelle Prozentzahl."
+    },
+    {
+      "topic": "Bestandsgröße aus Querungsspuren",
+      "reason": "Spurenhäufigkeit ist ohne geeignetes Modell und Individualdaten keine direkte Populationszählung."
+    },
+    {
+      "topic": "Bauempfehlung und Rechtsvorgaben",
+      "reason": "Der Kurs bewertet Untersuchungslogik und begründet weder örtliche Bauabmessungen noch DACH-weit einheitliche Pflichten."
+    }
+  ]
+}

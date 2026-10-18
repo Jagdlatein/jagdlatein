@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/compat/router";
 import Link from "next/link";
@@ -8,6 +8,17 @@ import AppIcon from "./AppIcon";
 import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
+export const mainMenuItems = [
+  { href: "/", title: "Startseite", icon: "home" },
+  { href: "/lernen", title: "Lernbereich", icon: "book" },
+  { href: "/wildkunde", title: "Wildarten", icon: "deer" },
+  { href: "/lernen/lernkarten", title: "Lernkarten", icon: "book" },
+  { href: "/quiz-app", title: "Quiz & Rangliste", icon: "quiz" },
+  { href: "/community", title: "Community", icon: "community", ariaLabel: "Zur Community" },
+  { href: "/news", title: "Jagd-News", icon: "calendar" },
+  { href: "/konto", title: "Konto & Abo", icon: "account", ariaLabel: "Konto und Abo öffnen" },
+  { href: "/hilfe", title: "Hilfe & Kontakt", icon: "help" },
+];
 
 function isEditingField(element) {
   if (!element || element.disabled || element.readOnly) return false;
@@ -61,6 +72,20 @@ export default function GlobalHomeButton() {
   const pathname = usePathname();
   const router = useRouter();
   const [editing, setEditing] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    if (menuRef.current) menuRef.current.open = false;
+  }, [pathname, router?.asPath]);
+
+  useEffect(() => {
+    const closeOutside = event => {
+      const menu = menuRef.current;
+      if (menu?.open && !menu.contains(event.target)) menu.open = false;
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, []);
 
   useEffect(() => {
     if (!pathname) return;
@@ -117,10 +142,18 @@ export default function GlobalHomeButton() {
     window.location.assign(target);
   }
 
-  const learningCurrent = inSection(pathname, "/lernen");
-  const communityCurrent = inSection(pathname, "/community");
+  const learningCurrent = ["/lernen", "/wildkunde", "/kurse"].some(section => inSection(pathname, section));
   const accountCurrent = ["/konto", "/meine-kurse", "/auswertungen", "/login", "/registrieren", "/preise"]
     .some(section => inSection(pathname, section));
+  function menuCurrent(item) {
+    if (item.href === "/") return pathname === "/";
+    if (item.href === "/konto") return accountCurrent;
+    if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !inSection(pathname, "/lernen/lernkarten");
+    return inSection(pathname, item.href);
+  }
+  function closeMenu(event) {
+    if (!event.defaultPrevented && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (!event.button || event.button === 0) && menuRef.current) menuRef.current.open = false;
+  }
 
   return (
     <nav
@@ -139,13 +172,15 @@ export default function GlobalHomeButton() {
         <AppIcon name="book" size={18} /> Lernen
       </Link>
       <Link href="/lernen#lernen-suche" prefetch={false} className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</Link>
-      <details className={styles.more}>
+      <details className={styles.more} ref={menuRef} onKeyDown={event => {
+        if (event.key === "Escape" && menuRef.current?.open) {
+          event.preventDefault(); menuRef.current.open = false;
+          menuRef.current.querySelector("summary")?.focus();
+        }
+      }}>
         <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
         <div className={styles.moreLinks}>
-          <Link href="/" prefetch={false} aria-label="Zur Startseite"><AppIcon name="home" size={18} />Startseite</Link>
-          <Link href="/community" prefetch={false} aria-label="Zur Community" aria-current={communityCurrent ? "true" : undefined}><AppIcon name="community" size={18} />Community</Link>
-          <Link href="/konto" prefetch={false} aria-label="Konto und Abo öffnen" aria-current={accountCurrent ? "true" : undefined}><AppIcon name="account" size={18} />Konto & Abo</Link>
-          <Link href="/hilfe" prefetch={false}><AppIcon name="help" size={18} />Hilfe & Kontakt</Link>
+          {mainMenuItems.map(item => <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
         </div>
       </details>
     </nav>
