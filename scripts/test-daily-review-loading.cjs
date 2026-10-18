@@ -74,6 +74,44 @@ test('Server question retrieval preserves requested order and never serves legal
   assert.deepEqual(maintained.getDailyReviewQuestions(ids.reverse()).map(item => item.id), ids);
   for (const invalid of [[], [ids[0], ids[0]], ['wissen-jagdrecht-de-1'], ['wissen-waffensicherheit-4'], ['wissen-no-such-question'], ['__proto__'], Array.from({ length: 9 }, (_, i) => maintained.getDailyReviewCatalog()[i].id)]) assert.throws(() => maintained.getDailyReviewQuestions(invalid));
 });
+
+test('Selected questions carry one unchanged lesson paragraph with matching sources, not a whole course', () => {
+  const modules = load('lib/learning-curriculum.js').learningModules;
+  for (const item of maintained.getDailyReviewPool()) {
+    const course = modules.find(course => course.questions.some(question => question.id === item.id));
+    const question = course.questions.find(question => question.id === item.id);
+    const lesson = course.lessons.find(lesson => lesson.id === question.lessonId);
+    assert.deepEqual(item.reading, { title: lesson.title, paragraph: lesson.paragraphs.find(paragraph => typeof paragraph === 'string' && paragraph.trim()) });
+    assert.deepEqual(Object.keys(item.reading).sort(), ['paragraph', 'title']);
+    assert.ok(!('lessons' in item) && !('objectives' in item));
+    const evidence = (lesson.evidence || []).flatMap(record => record.sources || []);
+    const expected = [...new Set((evidence.length ? evidence : course.sources).map(source => source.url))];
+    assert.deepEqual(item.sources.map(source => source.url), expected);
+    assert.equal(item.sourceScope, evidence.length ? 'lesson' : 'course');
+  }
+  const ids = maintained.getDailyReviewCatalog().slice(0, 8).map(item => item.id);
+  assert.equal(maintained.getDailyReviewQuestions(ids).length, 8);
+});
+
+test('After an answer the original knowledge is visible immediately and reading does not reset the round', async () => {
+  const network = requests();
+  try {
+    const s = setup(fixtureCatalog); s.start();
+    const ids = new URL(network.pending[0].url, 'https://example.test').searchParams.get('ids').split(',');
+    const questions = ids.map(id => ({ ...fixture.find(item => item.id === id), sourceScope: 'lesson', reading: { title: 'Vorhandener Lektionsname', paragraph: 'Unveränderter Wissenstext aus der tatsächlich zugeordneten Lektion.' } }));
+    await network.answer(0, 200, { questions }); s.render();
+    assert.doesNotMatch(words(s.tree), /Wissen dazu|Unveränderter Wissenstext/);
+    s.button('Antwort a').props.onClick(); s.render();
+    assert.match(words(s.tree), /Wissen dazu.*Vorhandener Lektionsname.*Unveränderter Wissenstext/);
+    assert.match(words(s.tree), /Quellen zur passenden Lektion/);
+    assert.equal(s.records.length, 1); assert.equal(network.pending.length, 1);
+    const reading = find(s.tree, node => node.type === 'section' && node.props['aria-labelledby'] === `reading-${ids[0]}`);
+    assert.ok(reading); assert.equal(find(reading, node => node.type === 'details' || node.type === 'button'), null);
+    s.button('Nächste Frage').props.onClick(); s.render();
+    assert.match(words(s.tree), /Frage 2 von 3/); assert.doesNotMatch(words(s.tree), /Wissen dazu/);
+    assert.equal(s.records.length, 1); s.e.unmount();
+  } finally { network.restore(); }
+});
 test('The API uses signed paid/admin access and never caches private question details', async () => {
   let account = null, failure = false, calls = 0;
   const handler = load('pages/api/lernen/wiederholung.js', { '../../../lib/account-access': { getSignedAccountAccess: async req => { calls++; assert.equal(req.method, 'GET'); if (failure) throw Error('service unavailable'); return account; } } }).default;

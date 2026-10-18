@@ -1,0 +1,892 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Zwei neue stoffliche Vertiefungen: Bau der Süßgräser und Gestaltung von Flussbetten durch Sedimenttransport. Allgemeine Biologie und Geomorphologie, keine vollständigen Artenschlüssel, Futterwerturteile oder wasserbaulichen Handlungsanweisungen.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-graeser-bau-2026",
+      "title": "Gräser lesen: Halm, Blattgrund, Ährchen und Blütenstand",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Die Organe der Süßgräser verstehen: vom gegliederten Halm über Häutchen und Öhrchen bis zur Kornfrucht.",
+      "minutes": 40,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame botanische Baupläne der Süßgräser; keine Anbau-, Bekämpfungs- oder Verzehrempfehlung.",
+        "AT": "Gemeinsame botanische Baupläne der Süßgräser; keine Anbau-, Bekämpfungs- oder Verzehrempfehlung.",
+        "CH": "Gemeinsame botanische Baupläne der Süßgräser; keine Anbau-, Bekämpfungs- oder Verzehrempfehlung."
+      },
+      "objectives": [
+        "Knoten, Internodium, Blattscheide und Blattspreite unterscheiden",
+        "Ligula, Blattöhrchen und Blattanlage zuordnen",
+        "Ährchen, Hüllspelzen und einzelne Grasblüten auseinanderhalten",
+        "Ähre, einfache Traube und Rispe am Aufbau erklären"
+      ],
+      "sources": [
+        {
+          "label": "LfL: Kleine Gräserkunde, Diepolder und Raschbacher, 2. Auflage 2023",
+          "url": "https://www.lfl.bayern.de/mam/cms07/iab/dateien/kleine_gr%C3%A4serkunde-gr%C3%A4serbestimmung_2023.pdf",
+          "organization": "Bayerische Landesanstalt für Landwirtschaft",
+          "supports": "Original-PDF, Seiten 3–6: Blattgrund und jüngste Blattanlage, ungestielte Ährchen echter Ähren sowie gestielte und verzweigte Scheinähren. Keine Zeichnungen, Bestimmungstabelle oder Artenschlüssel übernommen."
+        },
+        {
+          "label": "Oregon State University: Grass Structures",
+          "url": "https://forages.oregonstate.edu/regrowth/how-does-grass-grow/grass-structures",
+          "organization": "Oregon State University",
+          "supports": "Vegetative und florale Strukturdefinitionen: Knoten, Internodien, Scheide, Spreite, Ligula, Öhrchen, Ährchen und Verzweigung. Starre Aussagen über die Größe der Hüllspelzen nicht übernommen."
+        },
+        {
+          "label": "University of California Davis: PLB 102, Lab 8, Poaceae",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+          "organization": "University of California Davis",
+          "supports": "Halm-/Blattbau, variable Ligula und Öhrchen; typische Spelzenanordnung einschließlich Ausnahmen; Kornfrucht und bauliche Abgrenzung von Ähre, Traube und Rispe. Kalifornische Artenzahlen und regionale Schlüssel nicht übernommen."
+        },
+        {
+          "label": "Montana State University: Grass Identification Basics, überarbeitet März 2025",
+          "url": "https://extension-store.montana.edu/montguides/grass-identification-basics",
+          "organization": "Montana State University Extension",
+          "supports": "Blattscheide und Spreite; Lage und Variation von Öhrchen und Ligula; Glossar zu Knoten, Ährchen und Spelzen. Die vereinfachende Einordnung von Phleum als spike wird nicht als deutsche Artklassifikation übernommen."
+        },
+        {
+          "label": "Penn State Extension: The Cool-season Turfgrasses – Identification",
+          "url": "https://extension.psu.edu/the-cool-season-turfgrasses-identification",
+          "organization": "Pennsylvania State University",
+          "supports": "Abschnitte Vernation sowie Ligules and Auricles: jüngste Blätter im Trieb, gefaltete/gerollte Anlage und variable Blattgrundorgane. Keine amerikanischen Pflanzenschutz- oder Rasenpflegeempfehlungen übernommen."
+        },
+        {
+          "label": "University of Hawaiʻi: Flowering Plant Families, Poaceae",
+          "url": "https://manoa.hawaii.edu/lifesciences/faculty/carr/po.htm",
+          "organization": "University of Hawaiʻi at Mānoa",
+          "supports": "Allgemeiner Familienbauplan mit meist hohlen Internodien, scheidigem Blatt und typischem Ährchen-/Spelzenbau. Keine veralteten Artenzahlen oder tropischen Sondermerkmale verallgemeinert."
+        },
+        {
+          "label": "University of Illinois: Poaceae lecture text",
+          "url": "https://www.life.illinois.edu/help/digitalflowers/picts/Poaceae/Poaceae%20lecture%20text.html",
+          "organization": "University of Illinois",
+          "supports": "Karyopse als Fruchttyp mit an die Samenschale gebundener Fruchtwand; grundlegender Spelzen- und Halmaufbau. Historische Unterfamilienzahlen nicht übernommen."
+        },
+        {
+          "label": "University of Sydney: eFlora, Caryopsis",
+          "url": "https://eflora.sydney.edu.au/glossary/caryopsis",
+          "organization": "University of Sydney",
+          "supports": "Karyopse als trockene, geschlossen bleibende einsamige Frucht mit eng verbundener Fruchtwand. Keine ungeklärte Fruchtblattzahl als universelle Regel übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "halm-blatt",
+          "title": "Ein Halm ist gegliedert, eine Scheide gehört zum Blatt",
+          "paragraphs": [
+            "Bei Süßgräsern, den Poaceae, heißt der Stängel Halm. Er besteht aus Knoten und den dazwischenliegenden Internodien. Ein Knoten ist eine Ansatzstelle für Blätter und kann als verdickte Stelle sichtbar sein. Die Abschnitte dazwischen sind bei vielen Gräsern hohl; diese typische Eigenschaft darf aber nicht zur Behauptung werden, ausnahmslos jeder Grashalm sei überall leer.",
+            "Das Grasblatt gliedert sich in den unteren scheidigen Teil und die darüber frei abstehende Blattspreite. Die Blattscheide umgreift den Halm und entspringt an einem Knoten. Sie ist damit Blattgewebe, nicht einfach eine zweite Stängelwand. Die Spreite ist der meist längliche freie Teil. Manche Scheidenränder überlappen sich, bei anderen Gräsern sind sie auf längerer Strecke verbunden. Ein Querschnitt kann daher gleichzeitig einen Halm und ihn umgebende Blattscheiden enthalten."
+          ],
+          "takeaway": "Knoten und Internodien gliedern den Halm; Scheide und Spreite sind Teile des Grasblattes.",
+          "exercise": "Eigene Begriffsübung: Beschrifte einen gedachten Halm mit zwei Knoten, einem Internodium und einem Blatt aus Scheide und Spreite. Die Zeichnung ist ein Lernmodell, kein Artennachweis."
+        },
+        {
+          "id": "blattgrund-anlage",
+          "title": "Häutchen, Öhrchen und das jüngste Blatt",
+          "paragraphs": [
+            "An der Innenseite des Übergangs von Blattscheide zu Blattspreite liegt bei vielen Gräsern die Ligula, das Blatthäutchen. Sie kann als dünnes Häutchen oder als Haarsaum ausgebildet sein und bei manchen Arten fehlen. Größe und Form sind Bestimmungsmerkmale. Seitliche Fortsätze am Blattgrund heißen Blattöhrchen oder Aurikeln. Sie können den Halm umfassen, klein sein oder fehlen. Häutchen und Öhrchen bezeichnen also verschiedene Strukturen am selben Übergangsbereich.",
+            "Ein weiteres Merkmal betrifft das jüngste noch nicht entfaltete Blatt im Trieb. Diese Blattanlage wird auch Vernation genannt. Bei gefalteter Anlage liegen die Blatthälften zusammen; ein schematischer Querschnitt erscheint V-förmig. Bei gerollter Anlage ist das junge Blatt eingerollt. Vernation beschreibt somit die Anlage des jungen Blattes im Trieb, nicht die Form irgendeines ausgewachsenen Blattes."
+          ],
+          "takeaway": "Ligula sitzt innen am Übergang Scheide–Spreite; Öhrchen sitzen seitlich. Vernation beschreibt das junge Blatt im Trieb.",
+          "exercise": "Ordne in einer eigenen Wortskizze innen, seitlich und junges Blatt den Begriffen Ligula, Öhrchen und Vernation zu. Es wird kein fremder Bestimmungsschlüssel nachgebaut."
+        },
+        {
+          "id": "aehrchen-spelzen",
+          "title": "Im Ährchen stecken Blüten, später entstehen Kornfrüchte",
+          "paragraphs": [
+            "Das Ährchen ist eine kleine Baueinheit des Grasblütenstandes. Es enthält eine oder mehrere Blüteneinheiten. Am Grund stehen typischerweise zwei Hüllspelzen, die Glumen; sie gehören zur Umhüllung des Ährchens. Eine einzelne Grasblüte wird gewöhnlich von Deckspelze und Vorspelze begleitet, wissenschaftlich Lemma und Palea. Hüllspelzen und die Spelzen einer einzelnen Blüte sind deshalb verschiedene Ebenen. Bei bestimmten Grasgruppen können Spelzen reduziert sein oder fehlen; der typische Bauplan ist keine ausnahmslose Stückliste.",
+            "Blüte, Ährchen und ganzer Blütenstand sind nicht gleichbedeutend. Mehrere Blüten können in einem Ährchen sitzen, viele Ährchen wiederum im Blütenstand. Aus dem Fruchtknoten entwickelt sich bei vielen Süßgräsern die Kornfrucht, Karyopse genannt. Sie ist eine trockene, bei Reife geschlossen bleibende Frucht mit einem Samen, dessen Hülle eng mit der Fruchtwand verbunden ist. Ein solches Korn ist botanisch somit eine Frucht einschließlich des darin liegenden Samens. Anhaftende Spelzen sind davon als zusätzliche Hüllen zu unterscheiden."
+          ],
+          "takeaway": "Typischerweise umgeben Hüllspelzen das Ährchen, Deck- und Vorspelze die einzelne Blüte. Eine Karyopse ist eine einsamige Kornfrucht.",
+          "exercise": "Baue eine eigene Begriffskette: Blütenstand – Ährchen – einzelne Blüte. Ergänze Hüllspelze sowie Deck-/Vorspelze auf der richtigen Ebene und die Karyopse als spätere Frucht."
+        },
+        {
+          "id": "aehre-traube-rispe",
+          "title": "Nicht jeder dichte Blütenstand ist eine echte Ähre",
+          "paragraphs": [
+            "Für die einfachen Grundformen der Grasblütenstände zählt die Verbindung der Ährchen zur Hauptachse. Bei einer echten Ähre sitzen die Ährchen ohne Stiel unmittelbar an dieser Achse. Bei einer einfachen Traube sind sie einzeln gestielt, doch die Stiele sind nicht weiter verzweigt. Bei einer Rispe stehen die Ährchen an Seitenästen eines verzweigten Systems. Die Einheiten dieses Vergleichs sind die Ährchen und nicht die einzelnen winzigen Blüten darin.",
+            "Eine Rispe kann locker ausgebreitet oder stark zusammengezogen sein. Ein dichter, fast walzenförmiger Umriss beweist daher keine echte Ähre: Kurze Stiele und Äste können im Inneren verborgen sein. In der deutschen Gräserkunde werden solche äußerlich ähnlichen Formen unter anderem als Scheinähren bezeichnet und feiner nach ihrem Verzweigungsbau getrennt. Die drei hier behandelten Grundformen ordnen den Aufbau; detaillierte Grasbestimmungsschlüssel können zusätzliche Zwischen- und Unterformen verwenden."
+          ],
+          "takeaway": "Ähre: Ährchen ungestielt. Einfache Traube: gestielt und unverzweigt. Rispe: verzweigtes System; auch eine dichte Form kann eine Rispe sein.",
+          "exercise": "Entwirf drei eigene Achsenschemata mit denselben kleinen Ährchensymbolen: direkt sitzend, einzeln gestielt und an verzweigten Seitenästen. Vergleiche den Aufbau statt nur den Umriss."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "halm-blatt",
+          "q": "Wie heißt der Abschnitt eines Grashalms zwischen zwei aufeinanderfolgenden Knoten?",
+          "options": [
+            "Blattscheide",
+            "Blattspreite",
+            "Internodium",
+            "Blatthäutchen"
+          ],
+          "answer": 2,
+          "explain": "Das Internodium ist der Halmabschnitt zwischen zwei Knoten. Der Knoten selbst trägt den Blattansatz."
+        },
+        {
+          "id": "q2",
+          "lessonId": "halm-blatt",
+          "q": "An welchem Bereich des Grashalms entspringt die Blattscheide?",
+          "options": [
+            "An einem Knoten",
+            "An einer Hüllspelze",
+            "An einer Blattspitze",
+            "An einer Wurzelhaube"
+          ],
+          "answer": 0,
+          "explain": "Das Grasblatt setzt am Knoten an; sein unterer Abschnitt bildet die Blattscheide um den Halm."
+        },
+        {
+          "id": "q3",
+          "lessonId": "halm-blatt",
+          "q": "Welcher Teil des Grasblattes umgreift den Halm unterhalb der freien Spreite?",
+          "options": [
+            "Die Vorspelze der Blüte",
+            "Die Endknospe des Triebs",
+            "Das Internodium des Halms",
+            "Die Blattscheide des Blattes"
+          ],
+          "answer": 3,
+          "explain": "Die Blattscheide ist der untere Blattabschnitt, der den Halm umgibt. Sie gehört zum Blatt und nicht zur Halmwand."
+        },
+        {
+          "id": "q4",
+          "lessonId": "halm-blatt",
+          "q": "Wie heißt der freie, oberhalb der Blattscheide abstehende Teil eines Grasblattes?",
+          "options": [
+            "Ährchenspindel",
+            "Blattspreite",
+            "Hüllspelze",
+            "Halmknoten"
+          ],
+          "answer": 1,
+          "explain": "Die Blattspreite ist der freie Teil des Grasblattes; die Scheide umfasst darunter den Halm."
+        },
+        {
+          "id": "q5",
+          "lessonId": "blattgrund-anlage",
+          "q": "Wo liegt die Ligula eines Süßgrasblattes, wenn sie ausgebildet ist?",
+          "options": [
+            "Außen an der Spitze des Blütenstandes",
+            "Innen am Übergang von Scheide zu Spreite",
+            "Seitlich am Ansatz der ersten Wurzeln",
+            "Mittig zwischen zwei Knoten im Halm"
+          ],
+          "answer": 1,
+          "explain": "Die Ligula liegt an der dem Halm zugewandten Innenseite des Übergangs von Blattscheide zu Blattspreite."
+        },
+        {
+          "id": "q6",
+          "lessonId": "blattgrund-anlage",
+          "q": "In welchen beiden Formen kann eine Ligula bei Süßgräsern auftreten?",
+          "options": [
+            "Als Fruchtknoten oder Samenschale",
+            "Als Knospenpaar oder Wurzelknolle",
+            "Als Blattstiel oder Halmabschnitt",
+            "Als dünnes Häutchen oder Haarsaum"
+          ],
+          "answer": 3,
+          "explain": "Eine Ligula kann häutig oder als Haarsaum ausgebildet sein. Manche Grasarten besitzen keine erkennbare Ligula."
+        },
+        {
+          "id": "q7",
+          "lessonId": "blattgrund-anlage",
+          "q": "Wie heißen die seitlichen, teils den Halm umfassenden Fortsätze am Grasblattgrund?",
+          "options": [
+            "Blattöhrchen oder Aurikeln",
+            "Hüllspelzen oder Glumen",
+            "Deckspelzen oder Lemmen",
+            "Internodien oder Zwischenknoten"
+          ],
+          "answer": 0,
+          "explain": "Aurikeln sind seitliche Fortsätze am Übergang von Blattscheide und Spreite; sie können klein sein oder fehlen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "blattgrund-anlage",
+          "q": "Welchen Entwicklungszustand beschreibt die gefaltete oder gerollte Vernation bei Gräsern?",
+          "options": [
+            "Die Anordnung reifer Kornfrüchte",
+            "Die Stellung der Hüllspelzen",
+            "Die Anlage des jüngsten Blattes",
+            "Die Verzweigung der Seitenwurzeln"
+          ],
+          "answer": 2,
+          "explain": "Vernation beschreibt die Lage des jüngsten, noch nicht entfalteten Blattes innerhalb des Triebs."
+        },
+        {
+          "id": "q9",
+          "lessonId": "aehrchen-spelzen",
+          "q": "Welche kleine Einheit des Grasblütenstandes enthält eine oder mehrere Blüteneinheiten?",
+          "options": [
+            "Das Internodium",
+            "Das Blattöhrchen",
+            "Die Blattscheide",
+            "Das Ährchen"
+          ],
+          "answer": 3,
+          "explain": "Ein Ährchen enthält eine oder mehrere Blüteneinheiten und ist selbst Teil des größeren Blütenstandes."
+        },
+        {
+          "id": "q10",
+          "lessonId": "aehrchen-spelzen",
+          "q": "Wo stehen die typischen Hüllspelzen, die Glumen, eines Grasährchens?",
+          "options": [
+            "An der Spitze jeder Blattspreite",
+            "Am Grund des gesamten Ährchens",
+            "Am Grund jedes Halmknotens",
+            "In der Mitte der Kornfrucht"
+          ],
+          "answer": 1,
+          "explain": "Hüllspelzen sitzen typischerweise an der Basis des Ährchens. Einige Grasgruppen besitzen reduzierte oder fehlende Hüllspelzen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "aehrchen-spelzen",
+          "q": "Wie heißen die beiden Spelzen, die eine einzelne Grasblüte gewöhnlich begleiten?",
+          "options": [
+            "Blattscheide und Blattspreite",
+            "Knospenschuppe und Hochblatt",
+            "Deckspelze und Vorspelze",
+            "Keimblatt und Samenschale"
+          ],
+          "answer": 2,
+          "explain": "Deckspelze und Vorspelze heißen Lemma und Palea. Sie begleiten die einzelne Blüte; Hüllspelzen stehen auf der Ebene des Ährchens."
+        },
+        {
+          "id": "q12",
+          "lessonId": "aehrchen-spelzen",
+          "q": "Was ist eine Karyopse, wie sie als Kornfrucht bei vielen Süßgräsern entsteht?",
+          "options": [
+            "Eine einsamige Frucht mit verwachsener Fruchtwand und Samenschale",
+            "Eine mehrsamige Frucht mit fleischiger Fruchtwand um einen Steinkern",
+            "Eine einsamige Frucht mit zwei häutigen Flügeln an der Fruchtwand",
+            "Eine mehrsamige Frucht mit verholzten Schuppen an einer Spindel"
+          ],
+          "answer": 0,
+          "explain": "Die Karyopse ist eine trockene einsamige Frucht. Ihre Fruchtwand ist eng mit der Samenschale verbunden; Korn und bloßer Samen sind hier botanisch zu unterscheiden."
+        },
+        {
+          "id": "q13",
+          "lessonId": "aehre-traube-rispe",
+          "q": "Wie sind die Ährchen bei einer echten Ähre an der Hauptachse befestigt?",
+          "options": [
+            "Ungestielt direkt an der Hauptachse",
+            "Gestielt an verzweigten Seitenästen",
+            "Einzeln gestielt an der Hauptachse",
+            "Gruppiert an mehrfach verzweigten Stielen"
+          ],
+          "answer": 0,
+          "explain": "Bei der echten Ähre sitzen die Ährchen direkt und ungestielt an der unverzweigten Hauptachse."
+        },
+        {
+          "id": "q14",
+          "lessonId": "aehre-traube-rispe",
+          "q": "Wie heißt ein Grasblütenstand mit einzeln gestielten Ährchen an einer unverzweigten Hauptachse?",
+          "options": [
+            "Echte Ähre",
+            "Zusammengezogene Rispe",
+            "Einfache Traube",
+            "Verzweigte Doppeltraube"
+          ],
+          "answer": 2,
+          "explain": "In der einfachen Traube sitzen die Ährchen an eigenen Stielen, die unmittelbar von der Hauptachse abgehen und sich nicht weiter verzweigen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "aehre-traube-rispe",
+          "q": "Welcher Blütenstand besitzt Ährchen an einem verzweigten System von Seitenästen?",
+          "options": [
+            "Eine echte Ähre",
+            "Eine Rispe",
+            "Eine einfache Traube",
+            "Eine einzelne Blüte"
+          ],
+          "answer": 1,
+          "explain": "Die Rispe ist verzweigt. Ihre Ährchen stehen an Seitenästen; je nach Bau kann sie locker oder zusammengezogen erscheinen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "aehre-traube-rispe",
+          "q": "Wodurch lässt sich eine dichte Rispe im Inneren von einer echten Ähre unterscheiden?",
+          "options": [
+            "Durch die Zahl der Halmknoten",
+            "Durch die Farbe der Kornfrucht",
+            "Durch die Länge der Blattspreite",
+            "Durch kurze verzweigte Seitenachsen"
+          ],
+          "answer": 3,
+          "explain": "Bei einer zusammengezogenen Rispe sind kurze Seitenachsen vorhanden. Die echte Ähre trägt dagegen ungestielte Ährchen direkt an der Hauptachse; ein dichter Umriss allein zeigt diesen Unterschied nicht."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-flussbett-sediment-2026",
+      "title": "Flussbett in Bewegung: Geschiebe, Mäander und Kieslücken",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Ökologie",
+      "description": "Verstehen, wie Wasser Material verlagert, Flussschlingen formt und den Lebensraum zwischen Kies und Steinen verändert.",
+      "minutes": 40,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame flussmorphologische Prozesse; keine Einbau-, Entnahme-, Betretungs- oder Sanierungserlaubnis.",
+        "AT": "Gemeinsame flussmorphologische Prozesse; keine Einbau-, Entnahme-, Betretungs- oder Sanierungserlaubnis.",
+        "CH": "Gemeinsame flussmorphologische Prozesse; die Schweizer Fachquellen liefern keine allgemeine Prognose für jeden Bach."
+      },
+      "objectives": [
+        "Geschiebe und Schwebstoffe nach ihrem Transportweg unterscheiden",
+        "Erosion, Ablagerung und dynamisches Gleichgewicht erklären",
+        "Prallhang und Gleithang in einer Flussschlinge zuordnen",
+        "Sedimentrückhalt, Eintiefung und Kolmation als verschiedene Prozesse verstehen"
+      ],
+      "sources": [
+        {
+          "label": "LfU Bayern: Gewässermorphologie",
+          "url": "https://www.lfu.bayern.de/wasser/gewaessermorphologie/index.htm",
+          "organization": "Bayerisches Landesamt für Umwelt",
+          "supports": "Glossar zu Geschiebe, Schwebstoffen, Erosion, Akkumulation und dynamischem morphologischem Gleichgewicht. Grobe Ober-/Mittel-/Unterlaufregel nicht als ausnahmsloser Flussbauplan übernommen."
+        },
+        {
+          "label": "BAFU: Geschiebe und Schwebstoffe in Fliessgewässern",
+          "url": "https://www.bafu.admin.ch/de/geschiebe-und-schwebstoffe-in-fliessgewaessern",
+          "organization": "Bundesamt für Umwelt Schweiz",
+          "supports": "Transportwege, auch Sand in Suspension, Folgen reduzierter Geschiebeführung, Sohlerosion, Grundwasser und Rückhalt. Keine landesweiten Kilometer-, Schadstoff- oder Anlagenzahlen übernommen."
+        },
+        {
+          "label": "Spreafico et al. 2005: Feststoffbeobachtung in der Schweiz, BWG Bericht 8",
+          "url": "https://www.bafu.admin.ch/dam/de/sd-web/RvvwiiCN38dL/feststoffbeobachtunginderschweizeintaetigkeitsberichtderlandeshy.pdf",
+          "organization": "Bundesamt für Wasser und Geologie Schweiz, heute BAFU",
+          "supports": "Originalbericht, gedruckte Seiten 7–10: zeitweise Ablagerung und erneute Erosion, Transportarten und Wechselwirkung von Materialzufuhr, Abfluss und Gerinneform. Historische Messwerte und Wildbach-Grenzwerte nicht verallgemeinert."
+        },
+        {
+          "label": "WSL: Langfristige Geschiebebeobachtungen in steilen Bächen",
+          "url": "https://www.wsl.ch/de/naturgefahren/murgang-und-geschiebe/geschiebe/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "supports": "Geschiebebewegung, Abfluss und Gefälle sowie begrenzender Materialnachschub und Gerinnestruktur. Keine einheitliche Hochwasser- oder Korngrößenschwelle übernommen."
+        },
+        {
+          "label": "LfU Bayern: Bäche und Flüsse in Bayern",
+          "url": "https://www.lfu.bayern.de/wasser/baeche_und_fluesse/index.htm",
+          "organization": "Bayerisches Landesamt für Umwelt",
+          "supports": "Abschnitte Laufformen und Mäander: Prall-/Gleithang und Kieslückensystem. Kein allgemeiner chemischer Qualitäts- oder Artbesatznachweis daraus abgeleitet."
+        },
+        {
+          "label": "National Park Service: Fluvial Features – Meandering Stream",
+          "url": "https://www.nps.gov/articles/meandering-stream.htm",
+          "organization": "U.S. National Park Service, Geologic Resources Division",
+          "supports": "Außenkurve mit Erosion, Innenkurve mit Ablagerung, seitliche Verlagerung und abgeschnittene Mäanderschlingen. Die vereinfachende Annahme stets gleichbleibender Gerinnegröße wird nicht übernommen."
+        },
+        {
+          "label": "National Park Service: River Systems and Fluvial Landforms",
+          "url": "https://www.nps.gov/subjects/geology/fluvial-landforms.htm",
+          "organization": "U.S. National Park Service",
+          "supports": "Erosion, Transport, fluviale Ablagerungen und Veränderung von Gerinneformen. Keine US-Ortsdaten oder Maßnahmenanleitung übernommen."
+        },
+        {
+          "label": "Coffman, Malstaff und Heitmuller: Characterization of Geomorphic Units in the Alluvial Valleys and Channels of Gulf Coastal Plain Rivers in Texas, USGS SIR 2011–5067",
+          "url": "https://pubs.usgs.gov/sir/2011/5067/pdf/sir2011-5067.pdf",
+          "organization": "U.S. Geological Survey",
+          "supports": "Eingesehener indexierter Originalabschnitt Neck Cutoffs and Oxbow Lakes: Abschneiden einer Schlinge, anschließende Ablagerung und verbleibendes Altwasser. Kein vollständiger PDF-Abruf oder Übertrag texanischer Ortswerte behauptet."
+        },
+        {
+          "label": "USGS: Suspended sediment and bedload transport along the Main and South Branches, Wild Rice River, northwestern Minnesota, 1979 through 2023, OFR 2025–1008",
+          "url": "https://pubs.usgs.gov/publication/ofr20251008/full",
+          "organization": "U.S. Geological Survey",
+          "supports": "Eingesehener indexierter Originalabschnitt Discussion: Sand kann sohlennah oder in Suspension transportiert werden; Strömung und Materialnachschub beeinflussen den Transport. Keine Messwerte oder Häufigkeiten des amerikanischen Untersuchungsgebiets auf DACH übertragen. Direkter Abruf antwortete mit HTTP 403."
+        },
+        {
+          "label": "BfN: Auentypologie",
+          "url": "https://www.bfn.de/auentypologie",
+          "organization": "Bundesamt für Naturschutz Deutschland",
+          "supports": "Seitliche Verlagerung und Durchbrüche von Mäandern als formende Prozesse; unterschiedliche natürliche Laufformen. Keine rechtliche Typisierung eines konkreten Grundstücks übernommen."
+        },
+        {
+          "label": "LfU Bayern: Sedimentmanagement",
+          "url": "https://www.lfu.bayern.de/wasser/gewaessermorphologie/sedimentmanagement/index.htm",
+          "organization": "Bayerisches Landesamt für Umwelt",
+          "supports": "Glossar und Prozessbeschreibung zu Kolmation, vermindertem Porenraum und Durchlässigkeit; Sedimentrückhalt, Eintiefung und mögliche Grundwasserabsenkung. Keine vorgeschlagenen Baumaßnahmen als Selbsthilfeanweisung übernommen."
+        },
+        {
+          "label": "Universität Stuttgart: Bestimmung von Kolmation mittels multi-parameter Ansatz",
+          "url": "https://www.iws.uni-stuttgart.de/institut/forschung/projekte/lww/va/20161001_Kolmation_multi-parameter/",
+          "organization": "Universität Stuttgart, Institut für Wasser- und Umweltsystemmodellierung",
+          "supports": "Definition: Feinsedimente dringen in kiesige Gewässersohlen ein und setzen sich ab; Verstopfung beeinträchtigt aquatische Organismen. Keine unpublizierten Projekt-Ergebniszahlen oder Erfolgsgarantie übernommen."
+        },
+        {
+          "label": "Flussgebietsgemeinschaft Elbe 2021: Abschlussbericht Konzeptionelle Analyse Sedimentprojekte",
+          "url": "https://www.fgg-elbe.de/files/Download-Archive/Fachberichte/Sedimentmanagement/FGG_Elbe_BfG_Sedimentprojekte_Abschlussbericht_2021_konzepAnalyse_final_12-2021.pdf",
+          "organization": "Flussgebietsgemeinschaft Elbe",
+          "supports": "Original-PDF, gedruckte Seiten 31–32 gelesen: längerfristig ausgeglichener Sedimentein-/austrag und Beziehung von Zufuhr und Transportkapazität; begrenztes Gleichgewichtsmodell. Bericht zitiert die Begriffsdefinition aus DWA 2015. Keine Elbe-Falldaten oder Maßnahmen übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "transportwege",
+          "title": "Geschiebe rollt am Grund, Schwebstoff reist im Wasserkörper",
+          "paragraphs": [
+            "Fließendes Wasser verlagert nicht nur Wasser selbst, sondern auch festes Material. Geschiebe bewegt sich nahe der Gewässersohle: Körner rollen, gleiten oder springen. Schwebstoffe werden dagegen im Wasserkörper in Suspension mitgeführt. Die Begriffe unterscheiden damit Transportweisen. Die Korngröße spielt eine Rolle, ist aber keine überall feste Trennlinie: Sand kann je nach Bedingungen sohlennah oder schwebend verfrachtet werden.",
+            "Das Material muss zunächst verfügbar und beweglich sein. Strömung, Gerinnegefälle, Bettstruktur und Nachschub wirken zusammen; aus einem einzelnen Wasserstand folgt deshalb keine für jeden Bach gleiche Geschiebemenge. Material kann sich zwischendurch ablagern und später wieder aufgenommen werden. Die Ablagerung heißt Sedimentation oder Akkumulation; von fluvialen Ablagerungen spricht man, wenn fließendes Wasser sie abgesetzt hat. Ein Sand- oder Kieskörper ist somit nicht zwangsläufig ein dauerhafter Endpunkt seines Materials."
+          ],
+          "takeaway": "Geschiebe und Schwebstoffe unterscheiden Transportwege. Abgelagertes Material kann später erneut in Bewegung geraten.",
+          "exercise": "Eigene Zuordnungsaufgabe: Ordne rollende Kiesel, im Wasser schwebende Partikel und eine frisch aufgebaute Sandbank Transport am Grund, Suspension und Ablagerung zu. Keine Materialien im Gewässer bewegen."
+        },
+        {
+          "id": "erosion-bilanz",
+          "title": "Abtragen, tiefer werden und seitlich ausweichen",
+          "paragraphs": [
+            "Erosion bedeutet Abtragung. Wird Material aus der Gewässersohle entfernt und nicht ausreichend ersetzt, kann das Bett tiefer werden: Das ist Tiefenerosion. Bei Seitenerosion wird Material am Ufer abgetragen; das Gerinne kann sich verbreitern oder seitlich verlagern. Akkumulation ist dagegen der Aufbau von Ablagerungen. Ein Fluss kann an einer Stelle erodieren und an einer benachbarten Stelle gleichzeitig Material absetzen.",
+            "Bei einem dynamischen morphologischen Gleichgewicht gleichen sich Eintiefung und Auflandung über einen längeren Zeitraum in einem betrachteten Abschnitt ungefähr aus. Das bedeutet keinen unbeweglichen Grund: Kiesbänke und kleine Rinnen können sich weiterhin umlagern. Entscheidend ist das Verhältnis von Materialzufuhr und Transportvermögen. Form und Gefälle des Bettes beeinflussen die Strömung; Abtragung und Ablagerung ändern umgekehrt die Bettform. Dieser Zusammenhang erklärt, warum derselbe Flussabschnitt seine Gestalt verändern kann, ohne dass jeder einzelne Materialtransport eine dauerhafte Vertiefung bewirkt."
+          ],
+          "takeaway": "Tiefenerosion betrifft die Sohlenhöhe, Seitenerosion die Ufer. Dynamisches Gleichgewicht lässt lokale Umlagerungen zu.",
+          "exercise": "Beschrifte in einer eigenen Querschnittsskizze ein tiefer werdendes Bett, ein zurückweichendes Ufer und eine Ablagerungsbank. Es wird weder ein reales Abflussmodell noch eine Gefahrenprognose erstellt."
+        },
+        {
+          "id": "maeander",
+          "title": "Prallhang außen, Gleithang innen",
+          "paragraphs": [
+            "Ein Mäander ist eine Flussschlinge. In einem typischen frei entwickelten Bogen liegt der Prallhang an der Außenseite: Dort trägt die Strömung Ufermaterial ab, und es kann ein steiler Uferanbruch entstehen. Auf der Innenseite liegt der Gleithang. Hier wird mitgeführtes Material abgelagert; häufig entsteht eine flachere Sand- oder Kiesbank. Innen und außen beziehen sich auf den jeweiligen Bogen, nicht auf ein pauschal linkes oder rechtes Flussufer.",
+            "Abtragung außen und Anlagerung innen können die Schlinge seitlich verlagern. Nähern sich benachbarte Bögen am Schlingenhals stark an, kann der Fluss diesen Hals durchbrechen und einen kürzeren Lauf nehmen. Die alte Schlinge kann dann als abgetrennter Laufrest zurückbleiben und sich zum Altwasser entwickeln; spätere Ablagerung kann sie weiter auffüllen. Der zeitliche Ablauf und die Verbindung zum Hauptfluss unterscheiden sich von Fall zu Fall. Nicht jeder gekrümmte Abschnitt entwickelt zwangsläufig einen solchen Durchbruch."
+          ],
+          "takeaway": "Prallhang und Gleithang sind Außen- und Innenseite desselben Bogens. Seitliche Verlagerung kann schließlich eine alte Schlinge zurücklassen.",
+          "exercise": "Zeichne eine eigene S-Schlinge, markiere in beiden Bögen innen/außen und ergänze einen möglichen Durchbruch am Hals. Die Zeichnung erklärt Begriffe und sagt keinen örtlichen Verlauf voraus."
+        },
+        {
+          "id": "sediment-lebensraum",
+          "title": "Zu wenig Nachschub und verstopfte Kieslücken sind verschiedene Probleme",
+          "paragraphs": [
+            "Wird ein Fließgewässer aufgestaut, kann seine Strömung im Staubereich langsamer werden. Sedimente werden dort abgesetzt und zurückgehalten. Flussabwärts kann dadurch Geschiebenachschub fehlen. Wenn der Fluss weiterhin Material transportieren kann, wird unter Umständen die Sohle verstärkt erodiert. Eine solche Eintiefung kann auch das angrenzende Grundwasser absenken. Rückhalt und Eintiefung betreffen also unterschiedliche Stellen eines zusammenhängenden Materialwegs.",
+            "Ein anderes Problem ist Kolmation: Feinmaterial lagert sich in und auf der Gewässersohle ab und füllt Zwischenräume des Kieses. Dieser Porenraum heißt Interstitial und ist zugleich Lebensraum. Wird er verstopft, werden seine Durchlässigkeit und der Austausch des Wassers eingeschränkt; betroffene Organismen, darunter kieslaichende Fische und wirbellose Tiere, verlieren geeignete Bedingungen. Das ist etwas anderes als das bloße Vorhandensein einer natürlichen Sandbank. Eine Bewertung braucht den jeweiligen Gewässertyp und die tatsächlichen Bedingungen; aus dem Lernwissen folgt keine Erlaubnis, Kies einzubringen, Schlamm auszuräumen oder Ufer zu verändern."
+          ],
+          "takeaway": "Sedimentrückhalt kann Nachschub unterbrechen. Kolmation füllt Kieslücken und verändert deren Durchlässigkeit und Lebensraumfunktion.",
+          "exercise": "Verbinde in zwei eigenen Prozessketten Stau–Rückhalt–Nachschubdefizit und Feineintrag–Kieslückenfüllung–verminderte Durchlässigkeit. Vergleiche Ursachen und betroffene Stellen, ohne eine Maßnahme anzuweisen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "transportwege",
+          "q": "Wie heißt Feststoffmaterial, das in einem Fluss sohlennah rollend, gleitend oder springend transportiert wird?",
+          "options": [
+            "Schwebstoff",
+            "Geschiebe",
+            "Lösungsfracht",
+            "Schwemmholz"
+          ],
+          "answer": 1,
+          "explain": "Geschiebe wird nahe der Gewässersohle durch Rollen, Gleiten oder Springen verlagert. Der Begriff beschreibt die Transportweise."
+        },
+        {
+          "id": "q2",
+          "lessonId": "transportwege",
+          "q": "Wo werden Schwebstoffe während des Suspensionstransports in einem Fluss mitgeführt?",
+          "options": [
+            "Als gelöste Ionen im Flusswasser",
+            "Als feste Lage unter der Gewässersohle",
+            "Als rollendes Geschiebe am Gewässergrund",
+            "Als schwebende Partikel im Wasserkörper"
+          ],
+          "answer": 3,
+          "explain": "Suspension bedeutet, dass feste Partikel im Wasserkörper schwebend mitgeführt werden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "transportwege",
+          "q": "Wie heißt das Absetzen von zuvor im Fluss transportiertem Material?",
+          "options": [
+            "Sedimentation oder Akkumulation",
+            "Erosion oder Materialabtragung",
+            "Suspension oder Schwebtransport",
+            "Infiltration oder Versickerung"
+          ],
+          "answer": 0,
+          "explain": "Bei der Sedimentation lagert sich transportiertes Material ab. Solche Ablagerungen können bei späteren Abflüssen erneut mobilisiert werden."
+        },
+        {
+          "id": "q4",
+          "lessonId": "transportwege",
+          "q": "Welche Einordnung trifft auf die Transportwege von Sand in Fließgewässern zu?",
+          "options": [
+            "Sand wird ausnahmslos als gelöste Fracht transportiert.",
+            "Sand wird ausnahmslos als sohlennahes Geschiebe transportiert.",
+            "Sand kann sohlennah oder in Suspension transportiert werden.",
+            "Sand kann sich ablagern, aber danach nie erneut bewegt werden."
+          ],
+          "answer": 2,
+          "explain": "Sand kann je nach Strömungsbedingungen als Geschiebe oder in Suspension transportiert werden. Eine überall gleiche Korngrößengrenze trennt diese Wege nicht."
+        },
+        {
+          "id": "q5",
+          "lessonId": "erosion-bilanz",
+          "q": "Welcher Fachbegriff bezeichnet die Abtragung von Boden- oder Ufermaterial durch fließendes Wasser?",
+          "options": [
+            "Erosion",
+            "Akkumulation",
+            "Verdunstung",
+            "Kondensation"
+          ],
+          "answer": 0,
+          "explain": "Erosion ist die Abtragung. Sie kann unter anderem die Gewässersohle oder das Ufer betreffen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "erosion-bilanz",
+          "q": "Was verändert Tiefenerosion unmittelbar an der Gestalt eines Flussbetts?",
+          "options": [
+            "Sie erhöht die Sohle durch Ablagerungen.",
+            "Sie setzt nur die Uferlinie seitlich zurück.",
+            "Sie senkt die Sohle durch Materialabtrag.",
+            "Sie füllt die Kiesporen mit Feinmaterial."
+          ],
+          "answer": 2,
+          "explain": "Tiefenerosion vertieft das Gewässerbett durch Abtragung an der Sohle. Ob die Vertiefung fortschreitet, hängt auch vom Materialnachschub ab."
+        },
+        {
+          "id": "q7",
+          "lessonId": "erosion-bilanz",
+          "q": "Welcher Bereich eines Gerinnes wird bei Seitenerosion vor allem abgetragen?",
+          "options": [
+            "Das Feinmaterial in inneren Kiesporen",
+            "Das seitlich angrenzende Ufermaterial",
+            "Die gelösten Stoffe im Wasserkörper",
+            "Die Wassermenge in einem Stausee"
+          ],
+          "answer": 1,
+          "explain": "Seitenerosion betrifft die Ufer. Sie kann zur Verbreiterung oder seitlichen Verlagerung des Gerinnes beitragen."
+        },
+        {
+          "id": "q8",
+          "lessonId": "erosion-bilanz",
+          "q": "Was kennzeichnet ein dynamisches morphologisches Gleichgewicht eines Gewässerabschnitts?",
+          "options": [
+            "Eintiefung überwiegt die Auflandung dauerhaft.",
+            "Auflandung überwiegt die Eintiefung dauerhaft.",
+            "Transport und Umlagerung sind überall beendet.",
+            "Eintiefung und Auflandung halten sich längerfristig die Waage."
+          ],
+          "answer": 3,
+          "explain": "Der längerfristige Ausgleich von Eintiefung und Auflandung schließt lokale Umlagerung und Erneuerung von Kiesbänken nicht aus."
+        },
+        {
+          "id": "q9",
+          "lessonId": "maeander",
+          "q": "An welcher Seite einer typischen Flussschlinge liegt der erodierende Prallhang?",
+          "options": [
+            "Am geraden Verbindungsstück beider Bögen",
+            "An der Innenseite des einzelnen Bogens",
+            "An der Außenseite des einzelnen Bogens",
+            "Am abgeschnittenen Ende einer Altschlinge"
+          ],
+          "answer": 2,
+          "explain": "Der Prallhang liegt an der Außenseite des jeweiligen Bogens; Uferabtragung kann dort einen steilen Anbruch schaffen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "maeander",
+          "q": "Wo liegt der meist durch Ablagerung geprägte Gleithang eines Mäanderbogens?",
+          "options": [
+            "An der Innenseite des einzelnen Bogens",
+            "An der Außenseite des einzelnen Bogens",
+            "Am Schnittpunkt beider Bogenachsen",
+            "Am Ursprung des zugehörigen Nebenbaches"
+          ],
+          "answer": 0,
+          "explain": "Am inneren Gleithang wird Material abgelagert. Die Bezeichnung richtet sich nach dem einzelnen Bogen, nicht pauschal nach links oder rechts."
+        },
+        {
+          "id": "q11",
+          "lessonId": "maeander",
+          "q": "Was kann aus der alten Flussschlinge nach einem Durchbruch des Mäanderhalses entstehen?",
+          "options": [
+            "Eine zusätzliche Quelle im Einzugsgebiet",
+            "Ein neuer Felsriegel quer durch die Aue",
+            "Eine ausgeprägte Wasserscheide im Tal",
+            "Ein abgetrennter Laufrest mit Altwasser"
+          ],
+          "answer": 3,
+          "explain": "Nach einem Durchbruch kann der Hauptfluss den kürzeren Weg nutzen. Die alte Schlinge bleibt als Laufrest zurück und kann sich zum Altwasser entwickeln."
+        },
+        {
+          "id": "q12",
+          "lessonId": "maeander",
+          "q": "Welche beiden Vorgänge tragen zur seitlichen Verlagerung einer frei entwickelten Flussschlinge bei?",
+          "options": [
+            "Uferanlagerung außen und Materialabtrag innen",
+            "Uferabtragung außen und Materialanlagerung innen",
+            "Gleichmäßiger Sohlabtrag ohne Uferveränderung",
+            "Gleichmäßige Auflandung ohne Uferveränderung"
+          ],
+          "answer": 1,
+          "explain": "Durch Abtragung am Außenbogen und Ablagerung am Innenbogen kann sich die Lage des Gerinnes verändern. Die Geschwindigkeit dieser Entwicklung ist nicht überall gleich."
+        },
+        {
+          "id": "q13",
+          "lessonId": "sediment-lebensraum",
+          "q": "Was geschieht mit einem Teil des Sediments, wenn die Strömung im Staubereich langsamer wird?",
+          "options": [
+            "Er wird vollständig im Wasser gelöst.",
+            "Er wird restlos als Suspension weitergetragen.",
+            "Er wird gegen die Fließrichtung zurückgespült.",
+            "Er setzt sich ab und kann zurückgehalten werden."
+          ],
+          "answer": 3,
+          "explain": "Die verringerte Strömung im Staubereich begünstigt Ablagerung und Rückhalt. Dadurch kann der Nachschub flussabwärts abnehmen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "sediment-lebensraum",
+          "q": "Welche Entwicklung kann ein Geschiebedefizit unterhalb eines Rückhalts begünstigen?",
+          "options": [
+            "Eine dauerhafte Aufhöhung der Gewässersohle",
+            "Eine verstärkte Eintiefung der Gewässersohle",
+            "Eine gleichmäßige Verbreiterung jeder Aue",
+            "Eine sofortige vollständige Verlandung des Flusses"
+          ],
+          "answer": 1,
+          "explain": "Fehlt Nachschub, während weiter Material abgeführt wird, kann die Sohle erodieren und sich eintiefen. Das ist keine zwangsläufig gleiche Reaktion jedes Gewässers."
+        },
+        {
+          "id": "q15",
+          "lessonId": "sediment-lebensraum",
+          "q": "Welcher Vorgang wird an einer kiesigen Gewässersohle als Kolmation bezeichnet?",
+          "options": [
+            "Das seitliche Abtragen eines steilen Außenufers",
+            "Das Umlagern ganzer Kiesbänke in einer Flussschlinge",
+            "Das Eindringen und Ablagern von Feinmaterial in Kieslücken",
+            "Das Absinken der Sohle bei fehlendem Geschiebenachschub"
+          ],
+          "answer": 2,
+          "explain": "Bei Kolmation füllt Feinmaterial Poren der Gewässersohle. Der Porenraum und seine hydraulische Durchlässigkeit können dadurch abnehmen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "sediment-lebensraum",
+          "q": "Welche Veränderung kann eine Sohleintiefung am angrenzenden, verbundenen Grundwasser bewirken?",
+          "options": [
+            "Ein Absinken des Grundwasserspiegels",
+            "Einen Anstieg des Grundwasserspiegels",
+            "Eine Vermehrung des örtlichen Niederschlags",
+            "Ein Abdichten sämtlicher Kieszwischenräume"
+          ],
+          "answer": 0,
+          "explain": "Eine tiefer liegende Sohle kann auch angrenzendes Grundwasser absenken. Stärke und Verlauf hängen von den örtlichen Verbindungen ab."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-graeser-bau-2026",
+      "lessonId": "halm-blatt",
+      "claims": [
+        {
+          "claim": "Poaceae besitzen einen in Knoten und Internodien gegliederten Halm; zwischen den Knoten ist er häufig, aber nicht bei allen Gräsern, hohl. Am Knoten setzen Blätter an.",
+          "sourceUrls": [
+            "https://forages.oregonstate.edu/regrowth/how-does-grass-grow/grass-structures",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/po.htm"
+          ]
+        },
+        {
+          "claim": "Blattscheide und freie Spreite sind Blattabschnitte. Die Scheide umgibt den Halm; Scheiden können offene/überlappende oder verbundene Ränder besitzen. Die Beschriftungsübung ist ein eigenes Lernmodell.",
+          "sourceUrls": [
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://extension-store.montana.edu/montguides/grass-identification-basics",
+            "https://forages.oregonstate.edu/regrowth/how-does-grass-grow/grass-structures"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-graeser-bau-2026",
+      "lessonId": "blattgrund-anlage",
+      "claims": [
+        {
+          "claim": "Ligula liegt innen am Übergang von Scheide zu Spreite und kann häutig, haarig oder fehlend sein. Seitliche Öhrchen sind ein anderes Organmerkmal und ebenfalls variabel.",
+          "sourceUrls": [
+            "https://extension-store.montana.edu/montguides/grass-identification-basics",
+            "https://forages.oregonstate.edu/regrowth/how-does-grass-grow/grass-structures",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html"
+          ]
+        },
+        {
+          "claim": "Vernation beschreibt die Anlage der jüngsten Blätter im Trieb; gefaltete und gerollte Anlage werden unterschieden. Es wird nicht einfach der Umriss eines älteren Blattes als diese Entwicklungsangabe ausgegeben.",
+          "sourceUrls": [
+            "https://extension.psu.edu/the-cool-season-turfgrasses-identification",
+            "https://www.lfl.bayern.de/mam/cms07/iab/dateien/kleine_gr%C3%A4serkunde-gr%C3%A4serbestimmung_2023.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-graeser-bau-2026",
+      "lessonId": "aehrchen-spelzen",
+      "claims": [
+        {
+          "claim": "Das Ährchen enthält eine oder mehrere Blüteneinheiten. Typisch stehen zwei Hüllspelzen an seiner Basis, während Deck- und Vorspelze die einzelne Blüte begleiten; Reduktionen und Ausnahmen werden ausdrücklich zugelassen.",
+          "sourceUrls": [
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/po.htm",
+            "https://extension-store.montana.edu/montguides/grass-identification-basics"
+          ]
+        },
+        {
+          "claim": "Eine typische Kornfrucht ist eine trockene, geschlossen bleibende einsamige Karyopse mit eng verbundener Fruchtwand und Samenschale. Blüte, Spelzen und spätere Frucht werden getrennt; die Begriffskette ist ein eigenes Lernbeispiel.",
+          "sourceUrls": [
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://www.life.illinois.edu/help/digitalflowers/picts/Poaceae/Poaceae%20lecture%20text.html",
+            "https://eflora.sydney.edu.au/glossary/caryopsis"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-graeser-bau-2026",
+      "lessonId": "aehre-traube-rispe",
+      "claims": [
+        {
+          "claim": "In den behandelten Grundformen trägt die echte Ähre ungestielte Ährchen, die einfache Traube gestielte Ährchen an unverzweigten Stielen und die Rispe ein verzweigtes Achsensystem. Detaillierte deutsche Schlüssel unterscheiden weitere Unterformen.",
+          "sourceUrls": [
+            "https://forages.oregonstate.edu/regrowth/how-does-grass-grow/grass-structures",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://www.lfl.bayern.de/mam/cms07/iab/dateien/kleine_gr%C3%A4serkunde-gr%C3%A4serbestimmung_2023.pdf"
+          ]
+        },
+        {
+          "claim": "Rispen können ausgebreitet oder zusammengezogen sein; ein dichter äußerer Umriss allein beweist keine echte Ähre. LfL erläutert Scheinähren mit kurzen Stielen und möglicher Verzweigung; es werden keine fremden Abbildungen übernommen.",
+          "sourceUrls": [
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+            "https://www.lfl.bayern.de/mam/cms07/iab/dateien/kleine_gr%C3%A4serkunde-gr%C3%A4serbestimmung_2023.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-flussbett-sediment-2026",
+      "lessonId": "transportwege",
+      "claims": [
+        {
+          "claim": "Geschiebe bewegt sich sohlennah rollend, gleitend oder springend; Schwebstoffe werden in Suspension mitgeführt. Sand kann abhängig von der Strömung beiden Transportweisen angehören, ohne eine universelle Korngrenze.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/index.htm",
+            "https://www.bafu.admin.ch/de/geschiebe-und-schwebstoffe-in-fliessgewaessern",
+            "https://pubs.usgs.gov/publication/ofr20251008/full",
+            "https://www.wsl.ch/de/naturgefahren/murgang-und-geschiebe/geschiebe/"
+          ]
+        },
+        {
+          "claim": "Feststofftransport hängt unter anderem von Abfluss, Gefälle, Bettstruktur und Nachschub ab. Material kann zeitweise abgelagert und wieder erodiert werden; Sedimentation/Akkumulation beschreibt Ablagerung. Die Sortierübung ist ein eigenes Beispiel.",
+          "sourceUrls": [
+            "https://www.wsl.ch/de/naturgefahren/murgang-und-geschiebe/geschiebe/",
+            "https://www.bafu.admin.ch/dam/de/sd-web/RvvwiiCN38dL/feststoffbeobachtunginderschweizeintaetigkeitsberichtderlandeshy.pdf",
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/index.htm",
+            "https://www.nps.gov/subjects/geology/fluvial-landforms.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-flussbett-sediment-2026",
+      "lessonId": "erosion-bilanz",
+      "claims": [
+        {
+          "claim": "Erosion ist Abtragung; Tiefenerosion betrifft die Sohlenhöhe, Seitenerosion die Ufer und mögliche Verbreiterung/Verlagerung. Ablagerung und Abtragung können nebeneinander auftreten.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/index.htm",
+            "https://www.nps.gov/subjects/geology/fluvial-landforms.htm",
+            "https://www.nps.gov/articles/meandering-stream.htm",
+            "https://www.bafu.admin.ch/de/geschiebe-und-schwebstoffe-in-fliessgewaessern"
+          ]
+        },
+        {
+          "claim": "Dynamisches morphologisches Gleichgewicht erlaubt lokale Umlagerung bei längerfristig ausgeglichener Eintiefung/Auflandung. Transportvermögen, Materialzufuhr und Gerinneform beeinflussen sich; es wird keine immer feste Sohle behauptet.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/index.htm",
+            "https://www.bafu.admin.ch/dam/de/sd-web/RvvwiiCN38dL/feststoffbeobachtunginderschweizeintaetigkeitsberichtderlandeshy.pdf",
+            "https://www.nps.gov/articles/meandering-stream.htm",
+            "https://www.fgg-elbe.de/files/Download-Archive/Fachberichte/Sedimentmanagement/FGG_Elbe_BfG_Sedimentprojekte_Abschlussbericht_2021_konzepAnalyse_final_12-2021.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-flussbett-sediment-2026",
+      "lessonId": "maeander",
+      "claims": [
+        {
+          "claim": "In einem typischen frei entwickelten Mäander liegt der erodierende Prallhang außen und der durch Ablagerung geprägte Gleithang innen. Die Lage bezieht sich auf den Bogen und kann sich durch Abtragung/Anlagerung verlagern.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/baeche_und_fluesse/index.htm",
+            "https://www.nps.gov/articles/meandering-stream.htm",
+            "https://www.bfn.de/auentypologie"
+          ]
+        },
+        {
+          "claim": "Ein Durchbruch des Schlingenhalses kann den Lauf verkürzen; die alte Schlinge kann als Laufrest und späteres Altwasser zurückbleiben und sich mit Sediment füllen. Der Verlauf ist keine Vorhersage für jeden gekrümmten Fluss.",
+          "sourceUrls": [
+            "https://www.nps.gov/articles/meandering-stream.htm",
+            "https://pubs.usgs.gov/sir/2011/5067/pdf/sir2011-5067.pdf",
+            "https://www.bfn.de/auentypologie"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-flussbett-sediment-2026",
+      "lessonId": "sediment-lebensraum",
+      "claims": [
+        {
+          "claim": "Im Staubereich kann Material zurückgehalten werden; fehlender Nachschub kann flussabwärts Sohlerosion/Eintiefung fördern. Eintiefung kann auch angrenzendes Grundwasser absenken, ohne eine überall gleiche Wirkung zu behaupten.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/sedimentmanagement/index.htm",
+            "https://www.bafu.admin.ch/de/geschiebe-und-schwebstoffe-in-fliessgewaessern",
+            "https://www.bafu.admin.ch/dam/de/sd-web/RvvwiiCN38dL/feststoffbeobachtunginderschweizeintaetigkeitsberichtderlandeshy.pdf"
+          ]
+        },
+        {
+          "claim": "Kolmation beschreibt die Anlagerung von Feinmaterial in und auf kiesiger Sohle mit eingeschränktem Porenraum und Wasseraustausch. Interstitial ist Lebensraum; Kolmation kann Wirbellose und kieslaichende Fische beeinträchtigen. Keine Selbsthilfeeingriffe oder allgemeine Gleichsetzung jedes Feinsediments mit Schaden.",
+          "sourceUrls": [
+            "https://www.lfu.bayern.de/wasser/gewaessermorphologie/sedimentmanagement/index.htm",
+            "https://www.iws.uni-stuttgart.de/institut/forschung/projekte/lww/va/20161001_Kolmation_multi-parameter/",
+            "https://www.lfu.bayern.de/wasser/baeche_und_fluesse/index.htm"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Vollständige Bestimmung aller Grasarten",
+      "reason": "Der Kurs vermittelt Organbau. Regionale Artenschlüssel und artspezifische Ausnahmefälle werden nicht ersetzt."
+    },
+    {
+      "topic": "Einheitliche Hüllspelzen-, Blüten- und Artenzahlen",
+      "reason": "Der typische Bauplan hat taxonomische Ausnahmen; veraltete Weltzahlen und starre Spelzenregeln werden nicht übernommen."
+    },
+    {
+      "topic": "Grasfutterwert, Pflanzenschutz und Verzehr",
+      "reason": "Botanische Merkmale allein begründen keine Fütterungs-, Bekämpfungs- oder Verzehrfreigabe."
+    },
+    {
+      "topic": "Universelle Abfluss- oder Korngrößenschwellen und Renaturierungsanweisungen",
+      "reason": "Gewässerform, Untergrund und Nachschub sind ortsspezifisch; der Kurs erklärt Vorgänge und keine bauliche Durchführung."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine fremden Bilder, Tabellen oder Arbeitsblätter übernommen. Schriftliche Skizzenaufträge sind eigene begrenzte Lernbeispiele."
+  }
+}

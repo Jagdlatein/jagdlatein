@@ -48,6 +48,7 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
           question.answers.some(answer => !answer || typeof answer.id !== "string" || typeof answer.text !== "string") || new Set(question.answers.map(answer => answer.id)).size !== 4 ||
           !Array.isArray(question.correct) || !question.correct.length || question.correct.some(id => !question.answers.some(answer => answer.id === id)) ||
           typeof question.explain !== "string" || typeof question.courseTitle !== "string" || !Array.isArray(question.sources) ||
+          question.reading != null && (typeof question.reading.title !== "string" || !question.reading.title.trim() || typeof question.reading.paragraph !== "string" || !question.reading.paragraph.trim()) ||
           typeof question.href !== "string" || !question.href.startsWith("/kurse/");
       })) throw new Error("Die Fragenauswahl konnte nicht vollständig geladen werden. Bitte erneut versuchen.");
       if (version !== request.current || abort.signal.aborted || !mounted.current) return;
@@ -102,7 +103,9 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
       <p className={styles.eyebrow}>{question.reason} · Frage {round.index + 1} von {round.questions.length}</p>
       <h2 ref={heading} tabIndex={-1}>{question.q}</h2>
       <div className={styles.choices}>{question.answers.map(answer => <button type="button" key={answer.id} className={`${styles.choice} ${round.selected !== null && question.correct.includes(answer.id) ? styles.correct : round.selected === answer.id ? styles.wrong : ""}`} disabled={round.selected !== null} aria-pressed={round.selected === answer.id} onClick={() => choose(answer.id)}>{answer.text}</button>)}</div>
-      {round.selected !== null && <div className={styles.feedback} role="status"><h3>{question.correct.includes(round.selected) ? "Richtig" : "Noch einmal nachlesen"}</h3><p>{question.explain}</p><Link href={question.href}>In „{question.courseTitle}“ nachlesen</Link><details><summary>Quellen der Lerneinheit</summary><ul>{question.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></details></div>}
+      {round.selected !== null && <div className={styles.feedback}><div role="status"><h3>{question.correct.includes(round.selected) ? "Richtig" : "Noch einmal nachlesen"}</h3><p>{question.explain}</p></div>
+        {question.reading && <section className={styles.reviewReading} aria-labelledby={`reading-${question.id}`}><h3 id={`reading-${question.id}`}>Wissen dazu</h3><p><strong>{question.reading.title}</strong></p><p>{question.reading.paragraph}</p></section>}
+        <Link href={question.href}>In „{question.courseTitle}“ weiterlesen</Link><details><summary>{question.sourceScope === "lesson" ? "Quellen zur passenden Lektion" : "Quellen der Lerneinheit"}</summary><ul>{question.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></details></div>}
       {round.selected !== null && <button type="button" className={styles.primary} onClick={advance}>{round.index + 1 === round.questions.length ? "Runde abschließen" : "Nächste Frage"}</button>}
     </section> : <p>Für dieses Thema sind noch keine Fragen in der kurzen Runde verfügbar.</p>}
     {notice && <p role="status">{notice}</p>}

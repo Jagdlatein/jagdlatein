@@ -1,0 +1,1095 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Zwei anatomische beziehungsweise geometrische Vertiefungskurse. Keine Diagnose, Pflege-, Waffen-, GPS- oder Gelände-Navigationsanleitung.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-hund-haut-haarkleid-2026",
+      "title": "Haut und Haarkleid: Schichten, Follikel und Haarzyklus",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Den anatomischen Aufbau hinter Deckhaar, Unterwolle, Fellwechsel, Talg und Pigment verstehen.",
+      "minutes": 35,
+      "objectives": [
+        "Oberhaut und Lederhaut unterscheiden",
+        "Haarschaft und Follikel auseinanderhalten",
+        "Die drei Hauptphasen des Haarzyklus benennen",
+        "Talgdrüsen und pigmentbildende Zellen unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame anatomische Grundlagen; keine Diagnose, Pflege- oder Behandlungsvorgabe.",
+        "AT": "Gemeinsame anatomische Grundlagen; keine Diagnose, Pflege- oder Behandlungsvorgabe.",
+        "CH": "Gemeinsame anatomische Grundlagen; keine Diagnose, Pflege- oder Behandlungsvorgabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+          "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+          "organization": "Merck Veterinary Manual",
+          "supports": "Fachartikel, Stand Mai 2025, gelesen: Keratinisierung, Dermis, Follikel und Haartypen, Zyklus, Talgdrüsen und Melanozyten. Merck und MSD zählen als eine Quellenfamilie."
+        },
+        {
+          "label": "Ohio State: Structure of the epidermis",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-epidermis/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierten Originalkapiteltext gelesen: Basalschicht, Keratinozytenwanderung und Hornschicht. Keine Abbildung oder Originalprosa übernommen."
+        },
+        {
+          "label": "Ohio State: Structure of the dermis",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-dermis/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierten Originalkapiteltext gelesen: kollagenreiches Bindegewebe, Gefäße und Versorgung der Epidermis."
+        },
+        {
+          "label": "Ohio State: Dermal adnexa – follicles",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierten Originalkapiteltext gelesen: epidermale Einstülpung, Primär-/Sekundärhaare, einfache und zusammengesetzte Follikel, Anagen/Katagen/Telogen und Einfluss der Lichtperiode."
+        },
+        {
+          "label": "Ohio State: Dermal adnexa – sebaceous glands",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-sebaceous-glands/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierten Originalkapiteltext gelesen: Sebozyten, lipidreiches Sebum und holokrine Abgabe mit Zellzerfall."
+        },
+        {
+          "label": "Ohio State: Additional cells of the epidermis",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-additional-cells-of-the-epidermis/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierten Originalkapiteltext gelesen: Melanozyten bilden das Pigment Melanin."
+        },
+        {
+          "label": "Müntener und andere, 2011: The canine hair cycle",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21401741/",
+          "organization": "Universität Bern / Vetsuisse-Fakultät",
+          "supports": "Originalzusammenfassung gelesen, DOI 10.1111/j.1365-3164.2011.00963.x: Anagen, Katagen und Telogen; Untersuchung an 20 gesunden Beagles. Keine Volltextlektüre oder rasseübergreifende Dauer behauptet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "hautschichten",
+          "title": "Oberhaut und Lederhaut erfüllen verschiedene Aufgaben",
+          "paragraphs": [
+            "Die Oberhaut, die Epidermis, besteht überwiegend aus Keratinozyten. In ihrer Basalschicht entstehen durch Zellteilung neue Zellen. Bei ihrer Wanderung zur Oberfläche verändern sie sich und bilden die Hornschicht. Hauterneuerung bedeutet deshalb mehr als das Nachwachsen von Haaren.",
+            "Unter der Epidermis liegt die Lederhaut, die Dermis. Ihr kollagenreiches Bindegewebe gibt der Haut mechanischen Halt. Hier liegen unter anderem Blutgefäße; sie versorgen auch die darüberliegende, selbst gefäßfreie Epidermis durch Stoffaustausch. Die Basalmembranzone verbindet und verankert die beiden Gewebe.",
+            "Diese Schichten sind ein anatomischer Bauplan. Hautdicke und Aufbau unterscheiden sich nach Körperregion. Aus einer sichtbaren Farbe oder einer einzelnen kahlen Stelle lässt sich keine Diagnose ableiten."
+          ],
+          "takeaway": "Hornschicht, erneuernde Basalschicht und gefäßführende Lederhaut sind unterschiedliche Teile der Haut.",
+          "exercise": "Ordne auf einer eigenen Skizze Hornschicht, Basalschicht und Dermis von außen nach innen an.",
+          "evidence": [
+            {
+              "claim": "Basale Keratinozyten erneuern die Epidermis und verhornen bei der Wanderung zur Oberfläche; die Basalmembranzone verankert Epidermis und Dermis.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Structure of the epidermis",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-epidermis/"
+                }
+              ]
+            },
+            {
+              "claim": "Die kollagenreiche Dermis enthält Blutgefäße und versorgt die gefäßfreie Epidermis. Hautaufbau und Dicke variieren nach Region.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Structure of the dermis",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-dermis/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "haarfollikel",
+          "title": "Ein Fell besteht aus Haaren und ihren Bildungsorganen",
+          "paragraphs": [
+            "Ein Haarfollikel ist eine Einstülpung der Epidermis in die Dermis. Er ist das Hautorgan, in dem ein Haar gebildet und gehalten wird. Der sichtbare Haarschaft und der im Gewebe liegende Follikel sind daher unterschiedliche Strukturen.",
+            "Primärhaare sind im typischen Aufbau die größeren Deck- oder Grannenhaare. Die kleineren Sekundärhaare tragen zur Unterwolle bei. Beim Hund kommen zusammengesetzte Follikel vor: Mehrere Haare nutzen eine gemeinsame oberflächliche Austrittsöffnung. Eine sichtbare Öffnung muss also nicht für genau ein Haar stehen.",
+            "Die veterinärhistologische Lehrquelle beschreibt beim Hund sowohl einfache als auch zusammengesetzte Follikel. Der genaue Aufbau und das Verhältnis der Haartypen werden hier nicht für jede Rasse gleichgesetzt. Aus langem Fell allein folgt keine bestimmte Unterwolldichte."
+          ],
+          "takeaway": "Haarschaft, Haarfollikel, Primärhaar und Sekundärhaar bezeichnen verschiedene Strukturen.",
+          "exercise": "Zeichne schematisch zwei Haare mit gemeinsamer Austrittsöffnung; beschrifte Öffnung, Schäfte und darunterliegende Follikel.",
+          "evidence": [
+            {
+              "claim": "Follikel sind epidermale Einstülpungen in die Dermis. Primärhaare sind typische größere Deckhaare, kleinere Sekundärhaare tragen zur Unterwolle bei. Zusammengesetzte Follikel besitzen eine gemeinsame Austrittsöffnung.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Dermal adnexa – follicles",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+                }
+              ]
+            },
+            {
+              "claim": "Ohio State benennt beim Hund einfache und zusammengesetzte Follikel; Mercks zusammenfassende Beschreibung zusammengesetzter Follikel wird daher nicht zur Ausschließlichkeitsbehauptung ausgeweitet. Keine gleiche Unterwolldichte aller Rassen.",
+              "sources": [
+                {
+                  "label": "Ohio State: Dermal adnexa – follicles",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+                },
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "haarzyklus",
+          "title": "Wachsen, zurückbilden, ruhen: der Haarzyklus",
+          "paragraphs": [
+            "Haarfollikel wechseln zwischen Phasen. In der Anagenphase wächst das Haar. In der Katagenphase bildet sich der aktive untere Follikelabschnitt zurück. Die Telogenphase ist eine Ruhephase. Diese Bezeichnungen beschreiben einen Zyklus und keine drei unterschiedlichen Haarsorten.",
+            "Nicht jeder Follikel befindet sich gleichzeitig in derselben Phase. Tageslänge, hormonelle Einflüsse und weitere Bedingungen können den Haarzyklus beeinflussen. Daraus lässt sich kein für alle Hunde gleicher Kalendertag des Fellwechsels ableiten.",
+            "Eine Originalarbeit aus Bern beschreibt die Phasen anhand von Gewebeproben gesunder Beagles. Sie stützt die anatomische Unterscheidung; ihre konkreten Untersuchungsbedingungen werden nicht auf alle Jagdhunderassen übertragen. Der Kurs nennt deshalb keine allgemeine Dauer, feste Haarverlustquote oder Gesundheitsbewertung nach ausgefallenen Haaren."
+          ],
+          "takeaway": "Anagen bedeutet Wachstum, Katagen Rückbildung und Telogen Ruhe; der Fellwechsel folgt keinem universellen Hundekalender.",
+          "exercise": "Ordne die drei Begriffe ihren Vorgängen zu und trenne eine Phasenbezeichnung von einer behaupteten festen Dauer.",
+          "evidence": [
+            {
+              "claim": "Anagen ist Wachstum, Katagen Rückbildung und Telogen Ruhe. Bern liefert einen Originalbefund am Hund, Ohio State die unabhängige histologische Einordnung.",
+              "sources": [
+                {
+                  "label": "Müntener und andere, 2011: The canine hair cycle",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/21401741/"
+                },
+                {
+                  "label": "Ohio State: Dermal adnexa – follicles",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+                }
+              ]
+            },
+            {
+              "claim": "Lichtperiode und weitere Einflüsse können den Zyklus verändern; keine universelle Kalenderfrist, Dauer oder Haarverlustquote wird abgeleitet.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Dermal adnexa – follicles",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "talg-pigment",
+          "title": "Talgdrüsen und Pigmentzellen unterscheiden",
+          "paragraphs": [
+            "Talgdrüsen sind Hautanhangsgebilde, die meist mit Haarfollikeln verbunden sind. Ihr lipidreiches Sekret heißt Sebum. Es gelangt zum Follikel und zur Hautoberfläche und überzieht Haare und Haut. Talg und Haarpigment erfüllen unterschiedliche Aufgaben.",
+            "Die Talgdrüse gibt ihr Sekret holokrin ab: Talggefüllte Drüsenzellen zerfallen und werden mit ihrem Inhalt Teil des Sekrets. Das unterscheidet diesen Vorgang von einer Zelle, die nur einzelne Stoffe abgibt und dabei erhalten bleibt.",
+            "Melanozyten sind dagegen pigmentbildende Zellen. Sie stellen das Pigment Melanin her. Pigmentbildung und Talgproduktion sind verschiedene Zellaufgaben. Der sichtbare Farbton eines Hundes erklärt damit noch nicht sein vollständiges Farbgenmuster oder seine gesundheitliche Verfassung."
+          ],
+          "takeaway": "Talgdrüsen liefern ein lipidreiches Sekret; Melanozyten liefern Pigment.",
+          "exercise": "Verbinde Talgdrüse, Sebum, holokrin, Melanozyt und Melanin mit jeweils einer kurzen Funktion.",
+          "evidence": [
+            {
+              "claim": "Talgdrüsen produzieren lipidreiches Sebum; bei holokriner Sekretion zerfallen gefüllte Drüsenzellen und geben ihren Inhalt ab.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Dermal adnexa – sebaceous glands",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-sebaceous-glands/"
+                }
+              ]
+            },
+            {
+              "claim": "Melanozyten bilden das Pigment Melanin. Pigmentbildung und Talgproduktion sind unterschiedliche Zellaufgaben.",
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: The Integumentary System in Animals",
+                  "url": "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+                },
+                {
+                  "label": "Ohio State: Additional cells of the epidermis",
+                  "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/7-additional-cells-of-the-epidermis/"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "hautschichten",
+          "q": "In welcher Hautschicht entstehen neue Keratinozyten für die Erneuerung der Epidermis?",
+          "options": [
+            "In der Hornschicht.",
+            "Im sichtbaren Haarschaft.",
+            "In der Basalschicht.",
+            "Im Talg auf der Oberfläche."
+          ],
+          "answer": 2,
+          "explain": "Die Basalschicht liefert neue Keratinozyten; auf ihrem Weg zur Oberfläche verändern sie sich."
+        },
+        {
+          "id": "q2",
+          "lessonId": "hautschichten",
+          "q": "Welcher Vorgang führt von neu gebildeten Keratinozyten zur Hornschicht?",
+          "options": [
+            "Wanderung nach außen mit Verhornung.",
+            "Wanderung nach innen zur Haarwurzel.",
+            "Umwandlung in Blutgefäße der Dermis.",
+            "Einlagerung unveränderter Talgdrüsenzellen."
+          ],
+          "answer": 0,
+          "explain": "Die Zellen verändern sich während ihrer Verlagerung zur Oberfläche und bilden schließlich die Hornschicht."
+        },
+        {
+          "id": "q3",
+          "lessonId": "hautschichten",
+          "q": "Wo liegen die Blutgefäße, die auch die darüberliegende gefäßfreie Epidermis versorgen?",
+          "options": [
+            "Im Haarschaft.",
+            "Im Talgfilm.",
+            "In der Hornschicht.",
+            "In der Dermis."
+          ],
+          "answer": 3,
+          "explain": "Die Gefäße liegen in der Lederhaut. Die Epidermis wird durch Stoffaustausch aus dem darunterliegenden Gewebe versorgt."
+        },
+        {
+          "id": "q4",
+          "lessonId": "hautschichten",
+          "q": "Welche Gewebekomponente verleiht der Lederhaut wesentlichen mechanischen Halt?",
+          "options": [
+            "Frei liegendes Haarpigment.",
+            "Kollagenreiches Bindegewebe.",
+            "Eine Schicht aus reinem Sebum.",
+            "Luftgefüllte Hohlräume im Fell."
+          ],
+          "answer": 1,
+          "explain": "Die Dermis enthält ein tragendes kollagenreiches Bindegewebe."
+        },
+        {
+          "id": "q5",
+          "lessonId": "haarfollikel",
+          "q": "Was ist ein Haarfollikel beim Hund?",
+          "options": [
+            "Der bereits sichtbare freie Teil eines Haares.",
+            "Eine nur aus Talg bestehende Oberflächenschicht.",
+            "Eine ausschließlich pigmentbildende Zelle.",
+            "Ein in die Dermis eingestülptes Bildungsorgan des Haares."
+          ],
+          "answer": 3,
+          "explain": "Der Follikel liegt im Hautgewebe; der freie Haarschaft ist ein anderer Teil des Systems."
+        },
+        {
+          "id": "q6",
+          "lessonId": "haarfollikel",
+          "q": "Welche Haare bilden im typischen Aufbau die größeren Deck- oder Grannenhaare?",
+          "options": [
+            "Die Sekundärhaare.",
+            "Die Primärhaare.",
+            "Die Hornschuppen.",
+            "Die Melanozyten."
+          ],
+          "answer": 1,
+          "explain": "Primärhaare sind im typischen Aufbau größer als die unterwollbildenden Sekundärhaare."
+        },
+        {
+          "id": "q7",
+          "lessonId": "haarfollikel",
+          "q": "Welche Haare tragen im typischen Hundefell zur Unterwolle bei?",
+          "options": [
+            "Die kleineren Sekundärhaare.",
+            "Die größeren Primärhaare allein.",
+            "Die abgestoßenen Hornzellen.",
+            "Die Sekrete der Talgdrüsen."
+          ],
+          "answer": 0,
+          "explain": "Sekundärhaare sind die kleineren Haare des typischen Follikelverbands. Gleiche Mengen bei allen Rassen werden daraus nicht abgeleitet."
+        },
+        {
+          "id": "q8",
+          "lessonId": "haarfollikel",
+          "q": "Was kennzeichnet einen zusammengesetzten Haarfollikel beim Hund an der Hautoberfläche?",
+          "options": [
+            "Ein Haar besitzt stets mehrere voneinander getrennte Austrittsöffnungen.",
+            "Jedes Haar tritt zwingend durch eine eigene Hautöffnung aus.",
+            "Mehrere Haare nutzen eine gemeinsame Austrittsöffnung.",
+            "An der Öffnung wird ausschließlich Talg statt Haar abgegeben."
+          ],
+          "answer": 2,
+          "explain": "Zusammengesetzte Follikel haben eine gemeinsame oberflächliche Öffnung; einfache Follikel kommen ebenfalls vor."
+        },
+        {
+          "id": "q9",
+          "lessonId": "haarzyklus",
+          "q": "In welcher Phase des Haarzyklus wächst das Haar?",
+          "options": [
+            "In der Katagenphase.",
+            "In der Anagenphase.",
+            "In der Telogenphase.",
+            "In einer eigenen Pigmentphase."
+          ],
+          "answer": 1,
+          "explain": "Anagen bezeichnet die Wachstumsphase des Haarfollikels."
+        },
+        {
+          "id": "q10",
+          "lessonId": "haarzyklus",
+          "q": "Wie heißt die Rückbildungsphase des Haarfollikels?",
+          "options": [
+            "Anagenphase.",
+            "Telogenphase.",
+            "Hornschichtphase.",
+            "Katagenphase."
+          ],
+          "answer": 3,
+          "explain": "Katagen bezeichnet die Rückbildung des aktiven unteren Follikelabschnitts."
+        },
+        {
+          "id": "q11",
+          "lessonId": "haarzyklus",
+          "q": "Welchen Zustand bezeichnet die Telogenphase eines Haarfollikels?",
+          "options": [
+            "Die aktive Wachstumsphase.",
+            "Die Phase der Talgzellbildung.",
+            "Die Ruhephase.",
+            "Die Entstehung eines Blutgefäßes."
+          ],
+          "answer": 2,
+          "explain": "Telogen ist die Ruhephase; sie bezeichnet keine eigene Haarsorte."
+        },
+        {
+          "id": "q12",
+          "lessonId": "haarzyklus",
+          "q": "Welcher jahreszeitlich veränderliche Umweltfaktor kann den Haarzyklus von Hunden beeinflussen?",
+          "options": [
+            "Die Tageslänge.",
+            "Die Zahl der Haarfollikel.",
+            "Die Dicke eines Haarschafts.",
+            "Die Verteilung der Fellfarben."
+          ],
+          "answer": 0,
+          "explain": "Lichtperioden können den Haarzyklus beeinflussen. Ein gleicher Fellwechseltermin für alle Hunde folgt daraus nicht."
+        },
+        {
+          "id": "q13",
+          "lessonId": "talg-pigment",
+          "q": "Welche Hautstruktur produziert das als Sebum bezeichnete Sekret?",
+          "options": [
+            "Die Talgdrüse.",
+            "Der Melanozyt.",
+            "Der freie Haarschaft.",
+            "Das Kollagenbündel."
+          ],
+          "answer": 0,
+          "explain": "Talgdrüsen geben lipidreiches Sebum an Haarfollikel und Hautoberfläche ab. Es überzieht Haare und Haut; pigmentbildende Melanozyten haben eine andere Aufgabe."
+        },
+        {
+          "id": "q14",
+          "lessonId": "talg-pigment",
+          "q": "Woraus besteht der über Haare und Haut abgegebene Talg zu einem wesentlichen Anteil?",
+          "options": [
+            "Aus Luftblasen.",
+            "Aus Melanin allein.",
+            "Aus Lipiden.",
+            "Aus Knochenmineral."
+          ],
+          "answer": 2,
+          "explain": "Sebum ist ein lipidreiches Sekret und kein Haarpigment."
+        },
+        {
+          "id": "q15",
+          "lessonId": "talg-pigment",
+          "q": "Was bedeutet die holokrine Sekretion einer Talgdrüse?",
+          "options": [
+            "Ein fertiges Haar wandert vollständig in die Drüse.",
+            "Drüsenzellen zerfallen und werden Teil des Sekrets.",
+            "Nur Wasser tritt durch intakte Hornschuppen aus.",
+            "Pigmentzellen werden zu neuen Blutgefäßen."
+          ],
+          "answer": 1,
+          "explain": "Die mit Talg gefüllten Sebozyten geben beim Zerfall ihren Inhalt ab."
+        },
+        {
+          "id": "q16",
+          "lessonId": "talg-pigment",
+          "q": "Welche Zellen bilden das Pigment Melanin in Haut und Haaren?",
+          "options": [
+            "Sebozyten.",
+            "Bindegewebsfasern.",
+            "Gefäßinnenzellen.",
+            "Melanozyten."
+          ],
+          "answer": 3,
+          "explain": "Melanozyten sind für die Pigmentbildung zuständig; Sebozyten gehören zur Talgdrüse."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begrenzter fachlicher Abgleich dieser vier Lektionen und ihrer Fragen, keine Neuprüfung der gesamten App.",
+        "independentOrganizations": [
+          "Merck Veterinary Manual",
+          "The Ohio State University",
+          "Universität Bern / Vetsuisse-Fakultät"
+        ],
+        "limitations": [
+          "Ohio-State-Kapitel wurden im öffentlich indexierten Originaltext gelesen; direkte Seitenabrufe waren eingeschränkt.",
+          "Mehrere Ohio-State-Kapitel zählen als eine Institution, Merck/MSD als eine Quellenfamilie.",
+          "Die Beagle-Originalarbeit wurde als Zusammenfassung gelesen; keine universellen Zyklusdauern, Rassequoten oder Diagnosen.",
+          "Keine medizinische Anleitung und keine ungeprüften Pflege- oder Scherregeln."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-kompass-nordrichtungen-2026",
+      "title": "Kompass und Nordrichtungen: Winkel richtig zuordnen",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Nordreferenzen, Vollkreiswinkel, Deklination und örtliche Magnetfelder als Begriffe auseinanderhalten.",
+      "minutes": 35,
+      "objectives": [
+        "Geografisch Nord, Gitternord und magnetisch Nord unterscheiden",
+        "Richtungs- und Gegenwinkel auf einer ebenen Skizze lesen",
+        "Deklination mit Vorzeichen und Referenz einordnen",
+        "Örtliche Zusatzfelder vom großräumigen Modell unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Karten- und Winkelgrundlagen; schematische Beispiele ohne Standortmessung oder Routenfreigabe.",
+        "AT": "Gemeinsame Karten- und Winkelgrundlagen; schematische Beispiele ohne Standortmessung oder Routenfreigabe.",
+        "CH": "Gemeinsame Karten- und Winkelgrundlagen; schematische Beispiele ohne Standortmessung oder Routenfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "swisstopo: Magnetische Deklination berechnen",
+          "url": "https://www.swisstopo.admin.ch/de/magnetische-deklination-berechnen",
+          "organization": "Bundesamt für Landestopografie swisstopo",
+          "supports": "Originalseite gelesen: Deklination als Unterschied geografisch/magnetisch Nord; Unterschied zum Bezug Kartennord. Keine Werte aus dem Rechner übernommen."
+        },
+        {
+          "label": "British Geological Survey: UK magnetic survey",
+          "url": "https://geomagnetism.bgs.ac.uk/operations/uksurvey.html",
+          "organization": "British Geological Survey",
+          "supports": "Originalseite gelesen: drei Nordrichtungen, Orts- und Zeitveränderlichkeit, Messorte möglichst frei von Interferenzen. Britische konkrete Feldwerte nicht auf DACH übertragen."
+        },
+        {
+          "label": "NOAA NCEI: Magnetic Declination",
+          "url": "https://www.ncei.noaa.gov/products/magnetic-declination",
+          "organization": "NOAA National Centers for Environmental Information",
+          "supports": "Originalseite gelesen: örtliche horizontale Feldrichtung; Ost positiv, West negativ; geografischer Winkel gleich magnetischer Winkel plus vorzeichenbehaftete Deklination."
+        },
+        {
+          "label": "NOAA NCEI: Geomagnetism frequently asked questions",
+          "url": "https://www.ncei.noaa.gov/products/geomagnetism-frequently-asked-questions",
+          "organization": "NOAA National Centers for Environmental Information",
+          "supports": "Abschnitte zu Kompasswirkung, magnetisierter Kruste und nicht erfassten technischen Nahfeldern gelesen. Historische Modelljahre und damalige Genauigkeitswerte nicht übernommen."
+        },
+        {
+          "label": "USGS: How does a compass work?",
+          "url": "https://www.usgs.gov/media/audio/how-does-compass-work",
+          "organization": "U.S. Geological Survey",
+          "supports": "Originaltranskript gelesen: frei bewegliche Magnetnadel, örtliche elektrische Einflüsse und magnetisierte Erdkruste."
+        },
+        {
+          "label": "USGS: Why am I adding for one situation, but subtracting for another?",
+          "url": "https://www.usgs.gov/educational-resources/why-am-i-adding-one-situation-subtracting-another",
+          "organization": "U.S. Geological Survey",
+          "supports": "Originalseite vollständig gelesen: geografisch/magnetisch, positive Ostdeklination und Addieren beim Umrechnen einer magnetischen Anzeige in eine geografische Richtung."
+        },
+        {
+          "label": "Ordnance Survey Mapzone: Compass bearings, page 2",
+          "url": "https://www.ordnancesurvey.co.uk/mapzone/map-skills/compass-bearings/page-two",
+          "organization": "Ordnance Survey",
+          "supports": "Originalinhalt gelesen: Vollkreis 360°, Zählung im Uhrzeigersinn ab Nord, Nord 000/360 und dreistellige Winkelschreibweise."
+        },
+        {
+          "label": "Canada DND: EO C 490.05",
+          "url": "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-804-PF-001/section-20_10_en.html",
+          "organization": "Department of National Defence Canada, Cadet Publications",
+          "supports": "Öffentlich indexierten Originalabschnitt gelesen; direkter Abruf nicht verfügbar. Nord 0/360°, Ost 90°, Süd 180°, West 270° und Zählung im Uhrzeigersinn."
+        },
+        {
+          "label": "Canada DND: EO M 222.02",
+          "url": "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-702-PF-001/section-12_2_en.html",
+          "organization": "Department of National Defence Canada, Cadet Publications",
+          "supports": "Öffentlich indexierten Originalabschnitt gelesen: Richtungswinkel ab Nord im Uhrzeigersinn und Gegenrichtung um 180° versetzt."
+        },
+        {
+          "label": "The Scouts: Navigation stations",
+          "url": "https://www.scouts.org.uk/activities/navigation-stations/",
+          "organization": "The Scout Association",
+          "supports": "Originalseite gelesen, Abschnitt Back bearings: Gegenrichtung um 180°; nur die Winkelbeziehung übernommen, keine pauschale Rückwegempfehlung."
+        },
+        {
+          "label": "USGS: Finding Your Way With Map and Compass",
+          "url": "https://www.usgs.gov/educational-resources/finding-your-way-map-and-compass",
+          "organization": "U.S. Geological Survey",
+          "supports": "Originalseite, Abschnitt zur Winkelteilung gelesen: Nord 0/360, Ost 90, Süd 180 und West 270 Grad. Eigenständiger gut erreichbarer Beleg für die vier Grundrichtungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "nordrichtungen",
+          "title": "Geografisch Nord, Gitternord und magnetisch Nord",
+          "paragraphs": [
+            "Geografisch Nord bezeichnet die Richtung zum geografischen Nordpol entlang des örtlichen Meridians. Gitternord folgt dagegen der Nordrichtung des aufgedruckten Kartengitters. Wegen der Kartenprojektion müssen beide Richtungen nicht genau übereinstimmen. Die Bezeichnung Nord allein kann daher zu ungenau sein.",
+            "Ein frei beweglicher Magnetkompass richtet sich nach dem örtlichen Magnetfeld aus; für die Richtungsanzeige ist dessen horizontale Komponente maßgeblich. Die Nadel zeigt nicht einfach entlang einer geraden Linie zu einem einzigen magnetischen Pol.",
+            "Ein Richtungswinkel wird erst mit seiner Bezugsrichtung eindeutig: geografisch, Gitter oder magnetisch. Die britischen Kartenbeispiele der Quellen erklären die Begriffe, liefern aber keine Winkelkorrektur für DACH. Maßgeblich bleiben die Nordangaben und der Stand der tatsächlich verwendeten Karte."
+          ],
+          "takeaway": "Vor einem Winkelvergleich muss klar sein, welche Nordrichtung als Nullrichtung dient.",
+          "exercise": "Beschrifte in einer schematischen Zeichnung drei getrennte Nordpfeile; trage keine erfundenen örtlichen Abstände ein.",
+          "evidence": [
+            {
+              "claim": "Geografisch Nord, Gitternord und magnetisch Nord sind unterschiedliche Bezugsrichtungen. Ein Richtungswinkel benötigt eine benannte Referenz. Die horizontale örtliche Feldkomponente bestimmt die Magnetkompassrichtung.",
+              "sources": [
+                {
+                  "label": "British Geological Survey: UK magnetic survey",
+                  "url": "https://geomagnetism.bgs.ac.uk/operations/uksurvey.html"
+                },
+                {
+                  "label": "swisstopo: Magnetische Deklination berechnen",
+                  "url": "https://www.swisstopo.admin.ch/de/magnetische-deklination-berechnen"
+                },
+                {
+                  "label": "NOAA NCEI: Magnetic Declination",
+                  "url": "https://www.ncei.noaa.gov/products/magnetic-declination"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richtungswinkel",
+          "title": "Richtungswinkel auf einem vollständigen Kreis lesen",
+          "paragraphs": [
+            "Im hier verwendeten 360-Grad-System werden Richtungswinkel von der festgelegten Nordrichtung im Uhrzeigersinn gezählt. Nord entspricht 0 oder 360 Grad, Ost 90 Grad, Süd 180 Grad und West 270 Grad. Südwest liegt bei 225 Grad. Alle Werte gelten innerhalb derselben gewählten Nordreferenz.",
+            "Nach einer vollen Drehung beginnt die Zählung wieder bei 0 Grad. Eigenes Rechenbeispiel: Von 355 Grad weitere 10 Grad im Uhrzeigersinn ergeben 5 Grad. Die Schreibweise 005 Grad macht bei dreistellig notierten Richtungswinkeln die führenden Nullen sichtbar.",
+            "Auf einer ebenen Lernskizze unterscheidet sich die entgegengesetzte Richtung um 180 Grad: Aus 070 wird 250 Grad, aus 300 wird 120 Grad. Das erklärt die Winkelbeziehung. Es bescheinigt weder einen begehbaren Rückweg noch eine sichere Route und wird nicht als Berechnung einer Fernstrecke auf der Erdkugel verwendet."
+          ],
+          "takeaway": "Nord ist die Nullrichtung; gezählt wird im Uhrzeigersinn, und eine Gegenrichtung liegt auf der ebenen Skizze um 180 Grad versetzt.",
+          "exercise": "Zeichne 070 und 250 Grad auf derselben schematischen Windrose ein.",
+          "evidence": [
+            {
+              "claim": "360-Grad-System: Zählung im Uhrzeigersinn ab Nord 0/360, Ost 90, Süd 180 und West 270 Grad. Südwest 225 Grad und 355+10 zu 005 Grad sind eigene geometrische Ableitungen aus dieser Konvention.",
+              "sources": [
+                {
+                  "label": "Ordnance Survey Mapzone: Compass bearings, page 2",
+                  "url": "https://www.ordnancesurvey.co.uk/mapzone/map-skills/compass-bearings/page-two"
+                },
+                {
+                  "label": "Canada DND: EO C 490.05",
+                  "url": "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-804-PF-001/section-20_10_en.html"
+                },
+                {
+                  "label": "USGS: Finding Your Way With Map and Compass",
+                  "url": "https://www.usgs.gov/educational-resources/finding-your-way-map-and-compass"
+                }
+              ]
+            },
+            {
+              "claim": "Eine Gegenrichtung ist auf der ebenen Skizze bei gleicher Nordreferenz um 180 Grad versetzt. Die 70/250-Rechnung ist ein eigenes Lernbeispiel, keine Routenfreigabe.",
+              "sources": [
+                {
+                  "label": "Canada DND: EO M 222.02",
+                  "url": "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-702-PF-001/section-12_2_en.html"
+                },
+                {
+                  "label": "The Scouts: Navigation stations",
+                  "url": "https://www.scouts.org.uk/activities/navigation-stations/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "deklination",
+          "title": "Deklination mit benannter Richtung und Vorzeichen",
+          "paragraphs": [
+            "Magnetische Deklination ist der Winkelunterschied zwischen geografischer und magnetischer Nordrichtung. Sie hängt von Ort und Zeitpunkt ab. Ein früherer Wert oder ein Beispiel aus einer anderen Region ist deshalb kein aktueller Wert für das eigene Revier.",
+            "In der hier verwendeten Vorzeichenkonvention zählt eine östliche Deklination positiv, eine westliche negativ. Für bereits störungsfrei auf magnetisch Nord bezogene Vollkreiswinkel gilt: geografischer Winkel gleich magnetischer Winkel plus vorzeichenbehaftete Deklination. Eine volle Umdrehung wird wieder auf den Bereich 0 bis unter 360 Grad zurückgeführt.",
+            "Eigenes Rechenbeispiel ohne Ortsbezug: Magnetisch 100 Grad und Deklination plus 8 Grad ergeben geografisch 108 Grad. Die Rechnung betrifft geografisch gegen magnetisch Nord. Für einen Vergleich mit Gitternord muss zusätzlich die Abweichung des Kartengitters von geografisch Nord bekannt sein; Deklination allein ist keine universelle Gitterkorrektur."
+          ],
+          "takeaway": "Erst Nordreferenz, Ort, Zeitpunkt und Vorzeichen klären; dann die passende Winkelbeziehung verwenden.",
+          "exercise": "Rechne das fiktive Beispiel magnetisch 100 Grad bei Deklination minus 6 Grad: geografisch 94 Grad. Benenne ausdrücklich beide Referenzen.",
+          "evidence": [
+            {
+              "claim": "Deklination bezeichnet geografisch gegen magnetisch Nord und hängt von Ort sowie Zeitpunkt ab; das ist von einem Bezug auf Gitternord zu unterscheiden.",
+              "sources": [
+                {
+                  "label": "swisstopo: Magnetische Deklination berechnen",
+                  "url": "https://www.swisstopo.admin.ch/de/magnetische-deklination-berechnen"
+                },
+                {
+                  "label": "British Geological Survey: UK magnetic survey",
+                  "url": "https://geomagnetism.bgs.ac.uk/operations/uksurvey.html"
+                },
+                {
+                  "label": "NOAA NCEI: Magnetic Declination",
+                  "url": "https://www.ncei.noaa.gov/products/magnetic-declination"
+                }
+              ]
+            },
+            {
+              "claim": "Ostdeklination positiv, Westdeklination negativ; geografischer Vollkreiswinkel gleich magnetischer Vollkreiswinkel plus vorzeichenbehaftete Deklination, ohne lokale Störablenkung. Die 100-plus 8- und 100-minus 6-Rechnungen sind eigene Beispiele.",
+              "sources": [
+                {
+                  "label": "NOAA NCEI: Magnetic Declination",
+                  "url": "https://www.ncei.noaa.gov/products/magnetic-declination"
+                },
+                {
+                  "label": "USGS: Why am I adding for one situation, but subtracting for another?",
+                  "url": "https://www.usgs.gov/educational-resources/why-am-i-adding-one-situation-subtracting-another"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lokale-magnetfelder",
+          "title": "Ein Kompass reagiert auch auf örtliche Zusatzfelder",
+          "paragraphs": [
+            "Eine Kompassnadel ist selbst ein kleiner Magnet. In der Horizontalen richtet sie sich nach dem dort wirksamen resultierenden Magnetfeld aus. Zum Erdmagnetfeld können örtliche Beiträge hinzukommen; die Nadel unterscheidet nicht zwischen gewünschtem Erdanteil und einer nahen Störquelle.",
+            "Technische Einrichtungen und elektrische Systeme können Zusatzfelder verursachen. Auch magnetisierte Gesteine der Erdkruste tragen örtlich zum Feld bei. Eine auffällige Abweichung muss deshalb nicht durch eine Änderung der geografischen Nordrichtung entstanden sein.",
+            "Ein großräumiges Erdmagnetfeldmodell bildet nicht jedes Feld einer nahen technischen Anlage oder eines örtlichen Gesteinskörpers ab. Eine tabellierte Deklination beseitigt daher nicht automatisch solche Einflüsse. Feste Sicherheitsabstände oder Gerätekalibrierungen lassen sich aus dieser Erklärung nicht ableiten; dafür gelten Geräteunterlagen und fachkundige Ausbildung."
+          ],
+          "takeaway": "Die Nadel folgt dem örtlich wirksamen Feld; eine regionale Deklinationskorrektur ersetzt keine Prüfung örtlicher Einflüsse.",
+          "exercise": "Trenne schriftlich geografische Nordrichtung, modellierte Deklination und mögliches örtliches Zusatzfeld.",
+          "evidence": [
+            {
+              "claim": "Eine bewegliche Magnetnadel reagiert auf das örtlich resultierende Feld; technische beziehungsweise elektrische Einflüsse und magnetisierte Kruste können beitragen. Ein großräumiges Feldmodell bildet nicht jedes Nahfeld ab.",
+              "sources": [
+                {
+                  "label": "USGS: How does a compass work?",
+                  "url": "https://www.usgs.gov/media/audio/how-does-compass-work"
+                },
+                {
+                  "label": "NOAA NCEI: Geomagnetism frequently asked questions",
+                  "url": "https://www.ncei.noaa.gov/products/geomagnetism-frequently-asked-questions"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "nordrichtungen",
+          "q": "Welche Bezugsrichtung folgt dem örtlichen Meridian zum geografischen Nordpol?",
+          "options": [
+            "Gitternord.",
+            "Geografisch Nord.",
+            "Die magnetische Nordrichtung.",
+            "Die Richtung einer beliebigen Höhenlinie."
+          ],
+          "answer": 1,
+          "explain": "Geografisch Nord ist an den örtlichen Meridian gebunden; Kartengitter und Magnetfeld sind andere Referenzen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "nordrichtungen",
+          "q": "Welche Nordrichtung folgt den nordwärts verlaufenden Linien eines Kartengitters?",
+          "options": [
+            "Magnetisch Nord.",
+            "Die Richtung des Gefälles.",
+            "Die Achse eines sichtbaren Weges.",
+            "Gitternord."
+          ],
+          "answer": 3,
+          "explain": "Gitternord gehört zum Kartenkoordinatengitter und muss nicht genau geografisch Nord entsprechen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "nordrichtungen",
+          "q": "Woran richtet sich die Richtungsanzeige eines frei beweglichen Magnetkompasses örtlich aus?",
+          "options": [
+            "An der horizontalen Komponente des wirksamen Magnetfelds.",
+            "An den Höhenlinien einer gedruckten Karte.",
+            "An der Verbindung zum nächstgelegenen Ortsschild.",
+            "An einer geraden Verbindung zu einem einzigen magnetischen Pol."
+          ],
+          "answer": 0,
+          "explain": "Die Nadel reagiert auf das örtliche Feld, nicht auf eine direkte Sichtlinie zu einem Pol."
+        },
+        {
+          "id": "q4",
+          "lessonId": "nordrichtungen",
+          "q": "Welche Zusatzangabe macht einen notierten Richtungswinkel hinsichtlich seiner Nullrichtung eindeutig?",
+          "options": [
+            "Die Schriftfarbe der Zahl.",
+            "Der Preis des Kompasses.",
+            "Die verwendete Nordreferenz.",
+            "Die Länge des Kartenrands."
+          ],
+          "answer": 2,
+          "explain": "Geografisch, Gitter oder magnetisch benennt die Referenz, von der aus der Winkel gemessen wird."
+        },
+        {
+          "id": "q5",
+          "lessonId": "richtungswinkel",
+          "q": "Welchen Richtungswinkel hat Ost im 360-Grad-System mit Zählung im Uhrzeigersinn ab Nord?",
+          "options": [
+            "0 Grad.",
+            "180 Grad.",
+            "90 Grad.",
+            "270 Grad."
+          ],
+          "answer": 2,
+          "explain": "Eine Vierteldrehung im Uhrzeigersinn von Nord führt nach Ost."
+        },
+        {
+          "id": "q6",
+          "lessonId": "richtungswinkel",
+          "q": "Welcher Richtungswinkel bezeichnet Südwest im 360-Grad-System ab Nord im Uhrzeigersinn?",
+          "options": [
+            "225 Grad.",
+            "45 Grad.",
+            "135 Grad.",
+            "315 Grad."
+          ],
+          "answer": 0,
+          "explain": "Südwest liegt mittig zwischen Süd bei 180 und West bei 270 Grad."
+        },
+        {
+          "id": "q7",
+          "lessonId": "richtungswinkel",
+          "q": "Ein Pfeil zeigt auf einer ebenen Lernskizze nach 070 Grad. Welchen Winkel hat seine entgegengesetzte Richtung bei derselben Nordreferenz?",
+          "options": [
+            "110 Grad.",
+            "290 Grad.",
+            "340 Grad.",
+            "250 Grad."
+          ],
+          "answer": 3,
+          "explain": "Die Gegenrichtung liegt auf der ebenen Skizze 180 Grad versetzt:70 plus 180 ergibt 250."
+        },
+        {
+          "id": "q8",
+          "lessonId": "richtungswinkel",
+          "q": "Eine Richtung wird von 355 Grad um 10 Grad im Uhrzeigersinn gedreht. Welcher Vollkreiswinkel ergibt sich?",
+          "options": [
+            "345 Grad.",
+            "005 Grad.",
+            "355 Grad.",
+            "015 Grad."
+          ],
+          "answer": 1,
+          "explain": "355 plus 10 ergibt 365; nach Abzug der vollen Umdrehung bleiben 5 Grad. Das ist ein eigenes Rechenbeispiel."
+        },
+        {
+          "id": "q9",
+          "lessonId": "deklination",
+          "q": "Zwischen welchen Nordrichtungen ist magnetische Deklination definiert?",
+          "options": [
+            "Zwischen geografisch und magnetisch Nord.",
+            "Zwischen Gitternord und einer Höhenlinie.",
+            "Zwischen einem Weg und dem Kartenrand.",
+            "Zwischen Ost und West auf derselben Windrose."
+          ],
+          "answer": 0,
+          "explain": "Deklination beschreibt geografisch gegen magnetisch Nord. Ein Gitterwinkel ist eine weitere Beziehung."
+        },
+        {
+          "id": "q10",
+          "lessonId": "deklination",
+          "q": "Welches Vorzeichen hat eine östliche Deklination in der verwendeten Konvention?",
+          "options": [
+            "Ein negatives Vorzeichen.",
+            "Immer den Wert null.",
+            "Ein positives Vorzeichen.",
+            "Das Vorzeichen einer Entfernungsangabe."
+          ],
+          "answer": 2,
+          "explain": "Östlich ist positiv und westlich negativ; die Bezugsrichtungen müssen dabei ausdrücklich benannt sein."
+        },
+        {
+          "id": "q11",
+          "lessonId": "deklination",
+          "q": "Ein störungsfrei auf magnetisch Nord bezogener Winkel beträgt im Lernbeispiel 100 Grad; die Deklination ist plus 8 Grad. Wie groß ist der geografische Winkel?",
+          "options": [
+            "092 Grad.",
+            "108 Grad.",
+            "172 Grad.",
+            "280 Grad."
+          ],
+          "answer": 1,
+          "explain": "Geografischer Winkel gleich magnetischer Winkel plus vorzeichenbehaftete Deklination:100 plus 8 gleich 108 Grad."
+        },
+        {
+          "id": "q12",
+          "lessonId": "deklination",
+          "q": "Welche Angaben gehören zu einem für das Revier verwendeten Deklinationswert?",
+          "options": [
+            "Nur der Kontinent.",
+            "Nur die Kartenfarbe.",
+            "Nur die Seitenzahl.",
+            "Ort und Zeitpunkt."
+          ],
+          "answer": 3,
+          "explain": "Das Erdmagnetfeld und damit die Deklination variieren räumlich und zeitlich."
+        },
+        {
+          "id": "q13",
+          "lessonId": "lokale-magnetfelder",
+          "q": "Wie wirkt ein zusätzliches örtliches Magnetfeld auf eine frei bewegliche Kompassnadel?",
+          "options": [
+            "Es ändert ausschließlich die gedruckte Winkelskala.",
+            "Es verschiebt den geografischen Nordpol.",
+            "Es verändert nur die Entfernung zum Ziel.",
+            "Es trägt zum Feld bei, nach dem sie sich ausrichtet."
+          ],
+          "answer": 3,
+          "explain": "Die Nadel reagiert auf das am Kompass wirksame resultierende Feld."
+        },
+        {
+          "id": "q14",
+          "lessonId": "lokale-magnetfelder",
+          "q": "Welche technische Umgebung kann ein örtliches magnetisches Zusatzfeld erzeugen?",
+          "options": [
+            "Eine auf Papier gedruckte Höhenlinie.",
+            "Eine elektrische Anlage.",
+            "Ein rein gedanklicher Richtungswinkel.",
+            "Eine nummerierte Textüberschrift."
+          ],
+          "answer": 1,
+          "explain": "USGS und NOAA nennen technische beziehungsweise elektrische Einflüsse auf örtliche Kompassmessungen."
+        },
+        {
+          "id": "q15",
+          "lessonId": "lokale-magnetfelder",
+          "q": "Welcher natürliche Untergrund kann örtliche Beiträge zum Magnetfeld liefern?",
+          "options": [
+            "Die leere Fläche einer Papierkarte.",
+            "Eine gedachte Grenzlinie.",
+            "Magnetisiertes Gestein.",
+            "Die Schreibweise eines Ortsnamens."
+          ],
+          "answer": 2,
+          "explain": "Magnetisierte Teile der Erdkruste können örtlich zum Feld beitragen."
+        },
+        {
+          "id": "q16",
+          "lessonId": "lokale-magnetfelder",
+          "q": "Welche Aufgabe bleibt neben einer großräumigen modellierten Deklination bei einer Kompassmessung bestehen?",
+          "options": [
+            "Örtliche magnetische Einflüsse berücksichtigen.",
+            "Den geografischen Nordpol neu festlegen.",
+            "Das Kartengitter grundsätzlich entfernen.",
+            "Jede Winkelangabe durch eine Entfernung ersetzen."
+          ],
+          "answer": 0,
+          "explain": "Ein großräumiges Modell beschreibt nicht jedes nahe technische oder örtliche Zusatzfeld."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begrenzter fachlicher Abgleich dieser vier Lektionen und ihrer Fragen; keine Neuprüfung der gesamten App.",
+        "independentOrganizations": [
+          "swisstopo",
+          "British Geological Survey",
+          "NOAA NCEI",
+          "U.S. Geological Survey",
+          "Ordnance Survey",
+          "Department of National Defence Canada",
+          "The Scout Association"
+        ],
+        "limitations": [
+          "Eigene Winkelrechnungen ohne Ortsbezug, Sensormessung, GPS, aktuelle Deklination oder Navigation im Gelände.",
+          "Gegenwinkel gelten hier für die ebene Lernskizze bei gleicher Nordreferenz, nicht als allgemeine Rückpeilung langer geodätischer Strecken.",
+          "Deklination wird eng als geografisch gegen magnetisch verwendet; keine ungeprüfte Gleichsetzung mit Gitternord.",
+          "Die kanadischen Originalabschnitte wurden im öffentlichen Original-Suchindex gelesen; direkte Abrufe waren eingeschränkt. USGS und NOAA sind zusätzlich direkt gelesen.",
+          "Keine feste Distanzregel zu Metall, kein Kalibrieren und keine Einsatz- oder Routenfreigabe."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-hund-haut-haarkleid-2026",
+      "lessonId": "hautschichten",
+      "claims": [
+        {
+          "claim": "Basale Keratinozyten erneuern die Epidermis und verhornen bei der Wanderung zur Oberfläche; die Basalmembranzone verankert Epidermis und Dermis.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-epidermis/"
+          ]
+        },
+        {
+          "claim": "Die kollagenreiche Dermis enthält Blutgefäße und versorgt die gefäßfreie Epidermis. Hautaufbau und Dicke variieren nach Region.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-structure-of-the-dermis/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-haut-haarkleid-2026",
+      "lessonId": "haarfollikel",
+      "claims": [
+        {
+          "claim": "Follikel sind epidermale Einstülpungen in die Dermis. Primärhaare sind typische größere Deckhaare, kleinere Sekundärhaare tragen zur Unterwolle bei. Zusammengesetzte Follikel besitzen eine gemeinsame Austrittsöffnung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+          ]
+        },
+        {
+          "claim": "Ohio State benennt beim Hund einfache und zusammengesetzte Follikel; Mercks zusammenfassende Beschreibung zusammengesetzter Follikel wird daher nicht zur Ausschließlichkeitsbehauptung ausgeweitet. Keine gleiche Unterwolldichte aller Rassen.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/",
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-haut-haarkleid-2026",
+      "lessonId": "haarzyklus",
+      "claims": [
+        {
+          "claim": "Anagen ist Wachstum, Katagen Rückbildung und Telogen Ruhe. Bern liefert einen Originalbefund am Hund, Ohio State die unabhängige histologische Einordnung.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/21401741/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+          ]
+        },
+        {
+          "claim": "Lichtperiode und weitere Einflüsse können den Zyklus verändern; keine universelle Kalenderfrist, Dauer oder Haarverlustquote wird abgeleitet.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-follicles/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-haut-haarkleid-2026",
+      "lessonId": "talg-pigment",
+      "claims": [
+        {
+          "claim": "Talgdrüsen produzieren lipidreiches Sebum; bei holokriner Sekretion zerfallen gefüllte Drüsenzellen und geben ihren Inhalt ab.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-dermal-adnexa-sebaceous-glands/"
+          ]
+        },
+        {
+          "claim": "Melanozyten bilden das Pigment Melanin. Pigmentbildung und Talgproduktion sind unterschiedliche Zellaufgaben.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/integumentary-system/integumentary-system-introduction/the-integumentary-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/7-additional-cells-of-the-epidermis/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kompass-nordrichtungen-2026",
+      "lessonId": "nordrichtungen",
+      "claims": [
+        {
+          "claim": "Geografisch Nord, Gitternord und magnetisch Nord sind unterschiedliche Bezugsrichtungen. Ein Richtungswinkel benötigt eine benannte Referenz. Die horizontale örtliche Feldkomponente bestimmt die Magnetkompassrichtung.",
+          "sourceUrls": [
+            "https://geomagnetism.bgs.ac.uk/operations/uksurvey.html",
+            "https://www.swisstopo.admin.ch/de/magnetische-deklination-berechnen",
+            "https://www.ncei.noaa.gov/products/magnetic-declination"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kompass-nordrichtungen-2026",
+      "lessonId": "richtungswinkel",
+      "claims": [
+        {
+          "claim": "360-Grad-System: Zählung im Uhrzeigersinn ab Nord 0/360, Ost 90, Süd 180 und West 270 Grad. Südwest 225 Grad und 355+10 zu 005 Grad sind eigene geometrische Ableitungen aus dieser Konvention.",
+          "sourceUrls": [
+            "https://www.ordnancesurvey.co.uk/mapzone/map-skills/compass-bearings/page-two",
+            "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-804-PF-001/section-20_10_en.html",
+            "https://www.usgs.gov/educational-resources/finding-your-way-map-and-compass"
+          ]
+        },
+        {
+          "claim": "Eine Gegenrichtung ist auf der ebenen Skizze bei gleicher Nordreferenz um 180 Grad versetzt. Die 70/250-Rechnung ist ein eigenes Lernbeispiel, keine Routenfreigabe.",
+          "sourceUrls": [
+            "https://app.cadets.gc.ca/cadet-publications/A-CR-CCP-702-PF-001/section-12_2_en.html",
+            "https://www.scouts.org.uk/activities/navigation-stations/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kompass-nordrichtungen-2026",
+      "lessonId": "deklination",
+      "claims": [
+        {
+          "claim": "Deklination bezeichnet geografisch gegen magnetisch Nord und hängt von Ort sowie Zeitpunkt ab; das ist von einem Bezug auf Gitternord zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.swisstopo.admin.ch/de/magnetische-deklination-berechnen",
+            "https://geomagnetism.bgs.ac.uk/operations/uksurvey.html",
+            "https://www.ncei.noaa.gov/products/magnetic-declination"
+          ]
+        },
+        {
+          "claim": "Ostdeklination positiv, Westdeklination negativ; geografischer Vollkreiswinkel gleich magnetischer Vollkreiswinkel plus vorzeichenbehaftete Deklination, ohne lokale Störablenkung. Die 100-plus 8- und 100-minus 6-Rechnungen sind eigene Beispiele.",
+          "sourceUrls": [
+            "https://www.ncei.noaa.gov/products/magnetic-declination",
+            "https://www.usgs.gov/educational-resources/why-am-i-adding-one-situation-subtracting-another"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kompass-nordrichtungen-2026",
+      "lessonId": "lokale-magnetfelder",
+      "claims": [
+        {
+          "claim": "Eine bewegliche Magnetnadel reagiert auf das örtlich resultierende Feld; technische beziehungsweise elektrische Einflüsse und magnetisierte Kruste können beitragen. Ein großräumiges Feldmodell bildet nicht jedes Nahfeld ab.",
+          "sourceUrls": [
+            "https://www.usgs.gov/media/audio/how-does-compass-work",
+            "https://www.ncei.noaa.gov/products/geomagnetism-frequently-asked-questions"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Einheitliche Fellwechseldauer, Scher- und Pflegeanweisungen oder Diagnose anhand von Haut/Fell",
+      "reason": "Nicht aus den gelesenen anatomischen Quellen für alle Hunde ableitbar; medizinische Handlungsanweisungen sind nicht Gegenstand dieses Kurses."
+    },
+    {
+      "topic": "Aktuelle lokale Deklinationswerte, pauschale Sicherheitsabstände und Gelände-Navigationsfreigabe",
+      "reason": "Die schematische Winkelkonvention liefert weder einen Standortmesswert noch eine überprüfte Route oder gerätespezifische Kalibrierung."
+    }
+  ]
+}

@@ -52,6 +52,9 @@
 .wrong { background: #fae9df; border-color: #ac6144; color: #784123; }
 .feedback { padding: 20px; border: 1px solid #c8ad61; border-radius: 14px; background: #fbf4df; margin: 20px 0; }
 .feedback h3 { margin-top: 0; }
+.reviewReading { border-top: 1px solid #d8c58e; padding-top: 18px; margin: 20px 0; overflow-wrap: anywhere; }
+.reviewReading h3 { margin-bottom: 10px; }
+.reviewReading p { line-height: 1.75; }
 .muted { color: #6e6249; font-size: 14px; }
 .empty, .note { padding: 20px; border: 1px solid #ded1af; border-radius: 14px; background: #f8f3e6; margin: 18px 0; }
 .field { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; min-width: 0; font-weight: 700; }

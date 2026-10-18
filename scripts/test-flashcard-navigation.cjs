@@ -32,7 +32,9 @@ test('Browsing URL contains only navigation fields and preserves exact scoped/ot
 
 test('Every actual card ID survives a complete browsing URL round trip', () => {
   const cards = createLoader()('lib/learning-flashcards.js').getFlashcardExport().cards;
-  assert.equal(cards.length, 1331);
+  // The catalog grows; exercise every real ID without freezing an old deck size.
+  assert.ok(cards.length >= 1331);
+  assert.equal(new Set(cards.map(card => card.id)).size, cards.length);
   for (const card of cards) assert.equal(readURL(url('/lernen/lernkarten', { ...state, cardId: card.id }, categories), categories).cardId, card.id);
 });
 

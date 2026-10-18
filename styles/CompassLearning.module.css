@@ -1,0 +1,23 @@
+.model { padding: 22px; margin: 22px 0; border: 1px solid #d7c18b; border-radius: 16px; background: #faf5e7; color: #44351c; }
+.model *, .model *::before, .model *::after { box-sizing: border-box; }
+.model h3 { margin: 0 0 12px; }
+.model p { line-height: 1.7; }
+.body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 26px; }
+.diagram { width: 100%; max-width: 360px; margin: auto; }
+.diagram svg { display: block; width: 100%; height: auto; overflow: visible; }
+.diagram text { font-size: 23px; font-weight: 800; fill: #44351c; }
+.diagram .degree { font-size: 13px; font-weight: 600; fill: #6c5b38; }
+.ring { fill: #fffdf6; stroke: #c7b47f; stroke-width: 2; }
+.axes { fill: none; stroke: #d8caab; stroke-width: 1; stroke-dasharray: 4 5; }
+.arc { fill: none; stroke: #c49c35; stroke-width: 6; }
+.pointer { fill: #4d6537; stroke: #4d6537; stroke-width: 5; }
+.center { fill: #44351c; }
+.values { min-width: 0; }
+.values label { display: grid; gap: 8px; font-weight: 700; }
+.values input { width: 100%; min-height: 50px; font: inherit; padding: 12px; border: 1px solid #b9a16d; border-radius: 10px; background: #fffdf7; color: #44351c; }
+.values input:focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.result { margin-top: 18px; }
+.result > strong { font-size: 30px; }
+.result p { margin: 8px 0; }
+.note { font-size: 15px; color: #6c5b38; margin-bottom: 0; }
+@media (max-width: 620px) { .model { padding: 18px 12px; } .body { grid-template-columns: minmax(0, 1fr); gap: 18px; } .diagram { max-width: 300px; } }

@@ -1,0 +1,1008 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Zwei neue biologische Grundlagenvertiefungen nach Audit des aktuellen Kursbestands.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-saeugeratmung-round2-2026",
+      "title": "Säugeratmung: Luftwege, Lungenbläschen und Atemgase",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Vom Knorpel der Luftwege über Zwerchfell und Pleura bis zu Surfactant, Hämoglobin und Bicarbonat: die Schritte der Atmung verstehen.",
+      "minutes": 36,
+      "objectives": [
+        "Luftleitung und Gasaustausch räumlich trennen",
+        "Zwerchfell und Pleura bei der Einatmung zuordnen",
+        "Typ-I- und Typ-II-Pneumozyten unterscheiden",
+        "Den Transport beider Atemgase erklären"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Anatomisch-physiologische Grundlagen der Säugetiere in DACH, mit veterinärmedizinischen Lehrtexten und unabhängigen Hochschulquellen abgeglichen. Keine artspezifischen Normalwerte, Diagnosen oder Eingriffsanleitungen.",
+        "AT": "Anatomisch-physiologische Grundlagen der Säugetiere in DACH, mit veterinärmedizinischen Lehrtexten und unabhängigen Hochschulquellen abgeglichen. Keine artspezifischen Normalwerte, Diagnosen oder Eingriffsanleitungen.",
+        "CH": "Anatomisch-physiologische Grundlagen der Säugetiere in DACH, mit veterinärmedizinischen Lehrtexten und unabhängigen Hochschulquellen abgeglichen. Keine artspezifischen Normalwerte, Diagnosen oder Eingriffsanleitungen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Tonozzi / Carney: The Respiratory System in Animals",
+          "url": "https://www.merckvetmanual.com/respiratory-system/respiratory-system-introduction/the-respiratory-system-in-animals",
+          "organization": "Merck / MSD Veterinary Manual",
+          "supports": "Säuger-Luftweg, Nasenmuscheln, mukoziliärer Transport, Alveolen und artspezifische Anatomie. April-2026-Fassung im öffentlichen Originalindex gelesen."
+        },
+        {
+          "label": "Jennings / Premanandan: Air conduction",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/10-larynx-trachea-bronchi-and-bronchioles/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Knorpelstützen und knorpelfreie Bronchiolen; vollständiger öffentlich indexierter Originalabschnitt gelesen. Direktabruf zeitweise 403."
+        },
+        {
+          "label": "Jennings / Premanandan: Gas exchange – Alveoli",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/10-respiratory-tract-gas-exchange/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Typ-I-Zellen, Blut-Luft-Schranke, Typ-II-Zellen und Surfactant; vollständiger öffentlich indexierter Originalabschnitt gelesen."
+        },
+        {
+          "label": "Jennings / Premanandan: Pleura",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/10-pleura/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Beide Pleurablätter und reibungsmindernde Sekretion; öffentlich indexierter Originalabschnitt gelesen."
+        },
+        {
+          "label": "Respiratory System Histology",
+          "url": "https://histology.oit.duke.edu/DPT/Respiratory/Respiratory.html",
+          "organization": "Duke University",
+          "supports": "Abschnitte Trachea, Bronchi, Bronchioles und Alveoli gelesen: Knorpel, dünne Typ-I-Zellen und Typ-II-Sekretion."
+        },
+        {
+          "label": "Betts und andere: Respiratory Structures, 22.1",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system",
+          "organization": "OpenStax / Rice University",
+          "supports": "Leitende und austauschende Zone; Reinigung, Erwärmung, Befeuchtung und Flimmertransport. Humanlehrtext nur für konservierte Prinzipien."
+        },
+        {
+          "label": "Betts und andere: The Lungs, 22.2",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-2-the-lungs",
+          "organization": "OpenStax / Rice University",
+          "supports": "Pleurablätter und reibungsarme Flüssigkeitsschicht; keine Human-Lappenzahlen oder Flächenwerte übernommen."
+        },
+        {
+          "label": "Betts und andere: Process of Breathing, 22.3",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing",
+          "organization": "OpenStax / Rice University",
+          "supports": "Volumen-Druck-Beziehung, Zwerchfell und Surfactant gelesen; keine universell passive Säugerausatmung behauptet."
+        },
+        {
+          "label": "Betts und andere: Gas Exchange, 22.4",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange",
+          "organization": "OpenStax / Rice University",
+          "supports": "Diffusion nach jeweiligem Partialdruckgefälle und kurze Blut-Luft-Strecke; keine menschlichen Blutgaswerte."
+        },
+        {
+          "label": "Betts und andere: Transport of Gases, 22.5",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases",
+          "organization": "OpenStax / Rice University",
+          "supports": "Hämoglobinbindung sowie Bicarbonat, gelöstes und proteingebundenes CO2; keine Prozentangaben."
+        },
+        {
+          "label": "Rebecca Dezube: Control of Breathing",
+          "url": "https://www.msdmanuals.com/home/lung-and-airway-disorders/biology-of-the-lungs-and-airways/control-of-breathing",
+          "organization": "MSD Manual; Johns Hopkins University",
+          "supports": "Respiratory muscles gelesen: Zwerchfellkontraktion, Brustraumzunahme und Druckabfall. Humanbeispiel, keine Atemfrequenz übertragen."
+        },
+        {
+          "label": "Doyle / Cooper: Carbon Dioxide Transport",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK532988/?report=classic",
+          "organization": "StatPearls; University of Kansas / University of Nebraska Medical Center",
+          "supports": "Originalabschnitt Mechanism im öffentlichen Index gelesen: drei Transportformen und reversible Carboanhydrase-Reaktion. Direktabrufe zeitweise Browserprüfung."
+        },
+        {
+          "label": "Rhodes / Denault / Varacallo: Oxygen Transport",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK538336/?report=reader",
+          "organization": "StatPearls, physiologischer Fachtext",
+          "supports": "Originalabschnitt Mechanism im öffentlichen Index gelesen: Hämoglobin, Häm-Eisen und reversible Bindung; keine Human-Normalwerte."
+        },
+        {
+          "label": "Bicarbonate",
+          "url": "https://eclinpath.com/chemistry/acid-base/chemistry-tests/bicarbonate/",
+          "organization": "Cornell University College of Veterinary Medicine",
+          "supports": "Veterinärmedizinische Einleitung gelesen: Bildung aus CO2 und Wasser in Gegenwart von Carboanhydrase; keine Diagnose oder Therapie."
+        },
+        {
+          "label": "Erythrocytes – Function",
+          "url": "https://eclinpath.com/hematology/physiology/erythrocytes/",
+          "organization": "Cornell University College of Veterinary Medicine, eClinpath",
+          "supports": "Originalabschnitt Function gelesen: Hämoglobin in Erythrozyten und reversible Sauerstoffbindung an Häm-Eisen. Die vereinfachende CO2-Formulierung dieser Seite nicht als Bicarbonatbeleg genutzt."
+        },
+        {
+          "label": "Ramsook und andere 2023: The oxygen transport cascade and exercise – lessons from comparative physiology",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10330610/",
+          "organization": "Mayo Clinic / University of Waterloo; Comparative Biochemistry and Physiology A",
+          "supports": "Abstract, Einleitung und Abschnitt 3 im öffentlich indexierten Original gelesen: vergleichende Säugerphysiologie, alveoläre Sauerstoffdiffusion und Hämoglobinbindung. Keine Leistungs-, Höhen- oder Dissoziationswerte übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "luftwege",
+          "title": "Die Luftwege leiten, reinigen und verteilen Luft",
+          "paragraphs": [
+            "Bei Säugetieren führt der Luftweg von den Nasenöffnungen durch Nasenhöhle, Rachen, Kehlkopf und Luftröhre. In der Lunge verzweigt er sich in Bronchien und kleinere Bronchiolen bis zu den alveolären Austauschflächen. Die Reihenfolge ist ein Bauplan; Lungenlappen und Feinverzweigungen unterscheiden sich zwischen Arten.",
+            "Die Nasenmuscheln helfen, eingeatmete Luft zu erwärmen, zu befeuchten und Partikel abzufangen. Schleim bindet eingeatmetes Material. In entsprechend ausgestatteten Abschnitten bewegen Flimmerhärchen den Schleim in Richtung Rachen. Luftleitung und Reinigung liegen damit vor dem eigentlichen Gasaustausch.",
+            "Die Luftröhre und Bronchien besitzen Knorpelstützen. Bronchiolen sind kleinere, knorpelfreie Atemwege mit glatter Muskulatur in ihrer Wand. Knorpelfrei bedeutet deshalb weder wandlos noch muskelarm. Die Typen und Übergänge im letzten Luftwegabschnitt sind nicht bei allen Säugern identisch."
+          ],
+          "takeaway": "Erst leiten und aufbereiten, dann an den Alveolen austauschen.",
+          "exercise": "Zeichne Luftröhre – Bronchus – Bronchiole – Alveole und kennzeichne den Knorpelunterschied."
+        },
+        {
+          "id": "atemmechanik",
+          "title": "Zwerchfell und Pleura verbinden Lunge und Brustraum",
+          "paragraphs": [
+            "Das Zwerchfell trennt Brust- und Bauchraum. Seine Kontraktion flacht die Kuppel ab und bewegt sie bauchwärts. Zusammen mit der Bewegung des Brustkorbs vergrößert dies den Raum für die Lunge. Einatmung ist damit an die Arbeit der Atemmuskulatur gekoppelt.",
+            "Die Pleura hat zwei zusammenhängende Blätter: Die viszerale Pleura liegt der Lungenoberfläche an; die parietale Pleura kleidet die Brustwand und angrenzende Flächen aus. Dazwischen liegt der schmale Pleuraspalt. Seine Flüssigkeit ermöglicht reibungsarmes Gleiten. Der normale mechanische Zusammenhang zwischen Brustraum und Lunge ermöglicht deren Entfaltung.",
+            "Vergrößert sich bei der Einatmung das Lungenvolumen, sinkt der Luftdruck in den Alveolen vorübergehend unter den Umgebungsdruck. Durch die offenen Luftwege strömt Luft nach innen. Der Druckunterschied treibt den Luftstrom; er unterscheidet sich von der Diffusion einzelner Gase durch die Blut-Luft-Schranke. Muskelanteile und Ausatmungsarbeit variieren mit Art und Atemsituation."
+          ],
+          "takeaway": "Einatmung verbindet Muskelarbeit, Volumenzunahme und Druckgefälle nach innen.",
+          "exercise": "Ordne Lungenoberfläche, Brustwand und Zwischenraum den Pleurablättern und dem Pleuraspalt zu."
+        },
+        {
+          "id": "alveolen",
+          "title": "An der Blut-Luft-Schranke zählt der kurze Weg",
+          "paragraphs": [
+            "Alveolen sind die Lungenbläschen der Säugetierlunge. Ihre Wand liegt eng an einem Kapillarnetz. Die dünnen Typ-I-Pneumozyten bilden einen großen Teil der alveolären Oberfläche. Zusammen mit den dünnen Gefäßwänden und den dazwischenliegenden Schichten entsteht eine kurze Diffusionsstrecke: die Blut-Luft-Schranke.",
+            "Typ-II-Pneumozyten sind eine andere Zellgruppe. Sie bilden Surfactant, einen oberflächenaktiven Stofffilm. Dieser senkt die Oberflächenspannung der Flüssigkeit an der Alveolenoberfläche und erleichtert das Offenhalten der Austauschflächen. Typ-I-Zelle und Typ-II-Zelle sind damit verschiedene funktionelle Bausteine derselben Region.",
+            "Sauerstoff und Kohlendioxid diffundieren jeweils entlang ihres eigenen Partialdruckgefälles. Partialdruck bezeichnet den Druckanteil eines bestimmten Gases. Unter normalen Austauschbedingungen in der Lunge gelangt Sauerstoff aus der Alveolenluft ins Blut, Kohlendioxid in Gegenrichtung. Dafür werden weder Luft und Blut vermischt noch Gasmoleküle durch eine eigene Alveolenpumpe befördert."
+          ],
+          "takeaway": "Dünne Austauschwand, Kapillaren und Surfactant erfüllen unterschiedliche Aufgaben.",
+          "exercise": "Erkläre getrennt, was Typ-I-Zelle, Typ-II-Zelle und Partialdruckgefälle zum Austausch beitragen."
+        },
+        {
+          "id": "gastransport",
+          "title": "Atemgase reisen im Blut auf verschiedenen Wegen",
+          "paragraphs": [
+            "Der überwiegende Teil des Sauerstoffs wird im Blut an Hämoglobin der Erythrozyten transportiert; ein kleinerer Anteil ist physikalisch gelöst. Hämoglobin besitzt eisenhaltige Hämgruppen. An deren Eisen kann Sauerstoff reversibel binden. Reversibel bedeutet, dass Aufnahme in der Lunge und spätere Abgabe im Gewebe möglich sind.",
+            "Kohlendioxid hat mehrere Transportformen: physikalisch gelöst, an Proteine gebunden und als Bicarbonat beziehungsweise Hydrogencarbonat. Bicarbonat ist seine wichtigste Transportform. Kohlendioxid und Wasser können über Kohlensäure in Wasserstoffionen und Bicarbonat übergehen. Das Enzym Carboanhydrase beschleunigt diese umkehrbare Reaktion; Erythrozyten sind dafür ein wichtiger Ort.",
+            "In der Lunge kann aus Bicarbonat wieder Kohlendioxid entstehen, das in die Alveolen diffundiert und ausgeatmet wird. Sauerstoffbindung am Häm-Eisen und CO2-Transport als Bicarbonat sind daher unterschiedliche Vorgänge. Exakte Transportanteile, Hämoglobinvarianten und Atemleistungen werden hier nicht von einer untersuchten Art auf alle Wildsäuger übertragen."
+          ],
+          "takeaway": "Sauerstoff reist vor allem an Hämoglobin, Kohlendioxid vor allem als Bicarbonat.",
+          "exercise": "Verfolge Sauerstoff von der Alveole zur Hämoglobinbindung und eine CO2-Transportform zurück zur Lunge."
+        }
+      ],
+      "questions": [
+        {
+          "id": "saeugeratmung-r2-q1",
+          "lessonId": "luftwege",
+          "q": "Welche Reihenfolge beschreibt den Luftweg nach der Luftröhre bis zur Austauschregion der Säugetierlunge?",
+          "options": [
+            "Alveolen – Bronchien – Bronchiolen",
+            "Bronchiolen – Alveolen – Bronchien",
+            "Bronchien – Bronchiolen – Alveolen",
+            "Bronchien – Alveolen – Bronchiolen"
+          ],
+          "answer": 2,
+          "explain": "Nach der Luftröhre verzweigt sich der Luftweg über Bronchien und Bronchiolen zur alveolären Austauschregion."
+        },
+        {
+          "id": "saeugeratmung-r2-q2",
+          "lessonId": "luftwege",
+          "q": "Welche Aufgabe übernehmen die Nasenmuscheln bei eingeatmeter Luft?",
+          "options": [
+            "Erwärmen, befeuchten und Partikel zurückhalten",
+            "Sauerstoff binden und als Bicarbonat abgeben",
+            "Atemluft mit dem Kapillarblut vermischen",
+            "Surfactant in die Alveolen ausschütten"
+          ],
+          "answer": 0,
+          "explain": "Nasenmuscheln unterstützen Erwärmung, Befeuchtung und Filterung der Atemluft."
+        },
+        {
+          "id": "saeugeratmung-r2-q3",
+          "lessonId": "luftwege",
+          "q": "In welche Richtung transportieren Flimmerhärchen den partikelbeladenen Schleim entsprechend ausgestatteter Luftwege?",
+          "options": [
+            "In Richtung der Pleuraspalte",
+            "Durch die Alveolenwand ins Blut",
+            "Von den Bronchien in die Bauchhöhle",
+            "In Richtung Rachen"
+          ],
+          "answer": 3,
+          "explain": "Mukoziliärer Transport befördert Schleim und gebundene Partikel in Richtung Rachen."
+        },
+        {
+          "id": "saeugeratmung-r2-q4",
+          "lessonId": "luftwege",
+          "q": "Welcher Wandbestandteil unterscheidet Bronchien von Bronchiolen?",
+          "options": [
+            "Glattes Muskelgewebe nur der Bronchien",
+            "Knorpelstützen der Bronchien",
+            "Eine Blutversorgung nur der Bronchiolen",
+            "Eine Außenwand nur der Bronchien"
+          ],
+          "answer": 1,
+          "explain": "Bronchien besitzen Knorpelstützen; Bronchiolen sind knorpelfrei, besitzen aber glatte Wandmuskulatur."
+        },
+        {
+          "id": "saeugeratmung-r2-q5",
+          "lessonId": "atemmechanik",
+          "q": "Wie verändert das kontrahierende Zwerchfell den Raum für die Lunge bei der Einatmung?",
+          "options": [
+            "Es entspannt sich bauchwärts und verkleinert den Brustraum.",
+            "Es kontrahiert brustwärts und verkleinert den Brustraum.",
+            "Es entspannt sich brustwärts und vergrößert den Brustraum.",
+            "Es flacht bauchwärts ab und vergrößert den Brustraum."
+          ],
+          "answer": 3,
+          "explain": "Die Zwerchfellkontraktion bewegt die Kuppel bauchwärts und vergrößert den Raum für die Lunge."
+        },
+        {
+          "id": "saeugeratmung-r2-q6",
+          "lessonId": "atemmechanik",
+          "q": "Welcher Druckunterschied lässt bei offenen Luftwegen Atemluft in die Lunge einströmen?",
+          "options": [
+            "Alveolardruck vorübergehend über Umgebungsdruck",
+            "Alveolardruck vorübergehend unter Umgebungsdruck",
+            "Identischer Sauerstoffpartialdruck in allen Räumen",
+            "Gleicher Druck in Pleuraspalt und Außenluft"
+          ],
+          "answer": 1,
+          "explain": "Luft strömt bei der Einatmung entlang des Luftdruckgefälles von außen in die Alveolen."
+        },
+        {
+          "id": "saeugeratmung-r2-q7",
+          "lessonId": "atemmechanik",
+          "q": "Welches Pleurablatt liegt der Lungenoberfläche unmittelbar an?",
+          "options": [
+            "Die viszerale Pleura",
+            "Die parietale Pleura",
+            "Das Bauchfell der Darmwand",
+            "Die Schleimhaut der Luftröhre"
+          ],
+          "answer": 0,
+          "explain": "Die viszerale Pleura bedeckt die Lunge; die parietale Pleura kleidet unter anderem die Brustwand aus."
+        },
+        {
+          "id": "saeugeratmung-r2-q8",
+          "lessonId": "atemmechanik",
+          "q": "Welche Funktion erfüllt die Flüssigkeit zwischen den Pleurablättern beim Atmen?",
+          "options": [
+            "Sauerstoff an Häm-Eisen binden",
+            "Schwebstoffe aus der Nasenluft filtern",
+            "Reibungsarmes Gleiten der Blätter ermöglichen",
+            "Kapillaren der Alveolenwand ersetzen"
+          ],
+          "answer": 2,
+          "explain": "Die Flüssigkeit im schmalen Pleuraspalt vermindert Reibung zwischen den Pleurablättern."
+        },
+        {
+          "id": "saeugeratmung-r2-q9",
+          "lessonId": "alveolen",
+          "q": "Welche Eigenschaft der Typ-I-Pneumozyten unterstützt den Gasaustausch?",
+          "options": [
+            "Ihre dicken, würfelförmigen Austauschabschnitte",
+            "Ihre sehr dünnen, flachen Zellabschnitte",
+            "Ihre mehrlagige, verhornte Zellschicht",
+            "Ihre kräftigen kontraktilen Zellfortsätze"
+          ],
+          "answer": 1,
+          "explain": "Dünne Typ-I-Pneumozyten halten die Diffusionsstrecke an der Austauschfläche kurz."
+        },
+        {
+          "id": "saeugeratmung-r2-q10",
+          "lessonId": "alveolen",
+          "q": "Welche Alveolenzellen bilden Surfactant?",
+          "options": [
+            "Typ-I-Pneumozyten",
+            "Erythrozyten der Kapillaren",
+            "Flimmerzellen der Luftröhre",
+            "Typ-II-Pneumozyten"
+          ],
+          "answer": 3,
+          "explain": "Typ-II-Pneumozyten bilden den oberflächenaktiven Surfactantfilm."
+        },
+        {
+          "id": "saeugeratmung-r2-q11",
+          "lessonId": "alveolen",
+          "q": "Welche Wirkung hat Surfactant an der Flüssigkeitsoberfläche der Alveolen?",
+          "options": [
+            "Es erhöht die Oberflächenspannung.",
+            "Es verknorpelt die Alveolenwand.",
+            "Es senkt die Oberflächenspannung.",
+            "Es trennt Bronchus und Luftröhre."
+          ],
+          "answer": 2,
+          "explain": "Geringere Oberflächenspannung erleichtert das Offenhalten der alveolären Austauschflächen."
+        },
+        {
+          "id": "saeugeratmung-r2-q12",
+          "lessonId": "alveolen",
+          "q": "Welches Gefälle bestimmt die Diffusionsrichtung eines Atemgases durch die Blut-Luft-Schranke?",
+          "options": [
+            "Das jeweilige Partialdruckgefälle des Gases",
+            "Das gemeinsame Gesamtdruckgefälle aller Gase",
+            "Die Fließrichtung des Schleims im Luftweg",
+            "Die Richtung des Muskelzugs am Zwerchfell"
+          ],
+          "answer": 0,
+          "explain": "Jedes Atemgas diffundiert vom höheren zum niedrigeren eigenen Partialdruck."
+        },
+        {
+          "id": "saeugeratmung-r2-q13",
+          "lessonId": "gastransport",
+          "q": "Welches Protein der Erythrozyten transportiert den überwiegenden Teil des Sauerstoffs im Blut?",
+          "options": [
+            "Myoglobin",
+            "Fibrinogen",
+            "Hämoglobin",
+            "Carboanhydrase"
+          ],
+          "answer": 2,
+          "explain": "Hämoglobin ist der wesentliche Sauerstoffträger der roten Blutkörperchen."
+        },
+        {
+          "id": "saeugeratmung-r2-q14",
+          "lessonId": "gastransport",
+          "q": "An welchen Bestandteil der Hämgruppe bindet Sauerstoff reversibel?",
+          "options": [
+            "An das Bicarbonat",
+            "An das Eisen",
+            "An das Natrium",
+            "An das Calcium"
+          ],
+          "answer": 1,
+          "explain": "Das Eisen der Hämgruppe ermöglicht reversible Sauerstoffbindung und spätere Abgabe."
+        },
+        {
+          "id": "saeugeratmung-r2-q15",
+          "lessonId": "gastransport",
+          "q": "In welcher Form wird der größte Teil des Kohlendioxids im Blut transportiert?",
+          "options": [
+            "Als Bicarbonat beziehungsweise Hydrogencarbonat",
+            "Als unverändertes CO2 an der Häm-Eisenstelle",
+            "Überwiegend als physikalisch gelöstes CO2",
+            "Überwiegend fest an Globinketten gebunden"
+          ],
+          "answer": 0,
+          "explain": "Ein großer Teil des Kohlendioxids wird in die lösliche Transportform Bicarbonat überführt."
+        },
+        {
+          "id": "saeugeratmung-r2-q16",
+          "lessonId": "gastransport",
+          "q": "Welches Enzym beschleunigt die umkehrbare Umsetzung von Kohlendioxid und Wasser im Bicarbonatsystem?",
+          "options": [
+            "Amylase",
+            "Pepsin",
+            "Lipase",
+            "Carboanhydrase"
+          ],
+          "answer": 3,
+          "explain": "Carboanhydrase beschleunigt die reversible Reaktion im Kohlensäure-Bicarbonat-System."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Vier neue Grundlagenlektionen und 16 eigene Fragen; keine vollständige Neuprüfung des Artenwissens.",
+        "independentOrganizations": [
+          "The Ohio State University",
+          "Duke University",
+          "Rice University / OpenStax",
+          "MSD / Merck Manuals",
+          "Cornell University",
+          "StatPearls: unabhängige Autoren der Gastransport-Kapitel"
+        ],
+        "limitations": [
+          "Mehrere Kapitel eines Lehrwerks zählen als eine Institution. MSD und Merck sind dieselbe Quellenfamilie.",
+          "Humanphysiologie stützt konservierte Mechanismen; keine artspezifischen Normalwerte übertragen.",
+          "Keine universell passive Ruhausatmung oder einheitlichen respiratorischen Bronchiolen bei allen Säugern behauptet.",
+          "Eigenständiger Text und eigene Fragen, keine fremden Bilder, Tabellen oder Aufgaben übernommen."
+        ]
+      }
+    },
+    {
+      "id": "wissen-pruefung-nervensystem-round2-2026",
+      "title": "Säugernervensystem: Nervenzelle, Rückenmark und Synapse",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Zellteile und Nerven unterscheiden, Signalwege verfolgen und die Schaltung von Dehnungsreflex und chemischer Synapse verstehen.",
+      "minutes": 37,
+      "objectives": [
+        "Bauteile einer typischen multipolaren Nervenzelle zuordnen",
+        "Zentrale und periphere Signalwege unterscheiden",
+        "Muskelspindel und monosynaptischen Reflexweg erklären",
+        "Vesikel, synaptischen Spalt und Rezeptoren verbinden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundbauplan des Säugernervensystems und benannte Zell- und Reflexmodelle. Keine Ableitung von Bewusstsein, Schmerzfreiheit oder Gesundheit aus einem Einzelzeichen. Keine klinischen Tests oder Behandlungsanleitungen.",
+        "AT": "Grundbauplan des Säugernervensystems und benannte Zell- und Reflexmodelle. Keine Ableitung von Bewusstsein, Schmerzfreiheit oder Gesundheit aus einem Einzelzeichen. Keine klinischen Tests oder Behandlungsanleitungen.",
+        "CH": "Grundbauplan des Säugernervensystems und benannte Zell- und Reflexmodelle. Keine Ableitung von Bewusstsein, Schmerzfreiheit oder Gesundheit aus einem Einzelzeichen. Keine klinischen Tests oder Behandlungsanleitungen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "John H. Byrne: Introduction to Neurons and Neuronal Networks",
+          "url": "https://med.uth.edu/nba/cellular-and-molecular-neurobiology/",
+          "organization": "UTHealth Houston, McGovern Medical School",
+          "supports": "The Neuron und elektrische Signalgrundlagen gelesen: Soma, Dendrit, Axon, Vesikel, Erregung/Hemmung. Keine Zellzahlen oder Spannungswerte."
+        },
+        {
+          "label": "Thomas Schubert: Parts of the Nervous System in Dogs",
+          "url": "https://www.merckvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/parts-of-the-nervous-system-in-dogs",
+          "organization": "Merck / MSD Veterinary Manual; University of Florida",
+          "supports": "Neurons und Types of Neurons gelesen: tiermedizinischer Grundbauplan und Signalrichtung. Vereinfachtes all neurons bewusst nicht übernommen."
+        },
+        {
+          "label": "Purves und andere: Nerve Cells, Neuroscience 2e",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK11103/",
+          "organization": "Sinauer Associates; Hochschullehrbuch",
+          "supports": "Vollständiger Originaltext über den ausdrücklich vorgesehenen öffentlichen Suchindex gelesen: Zellteile, Ausnahmen vom typischen Bauplan und chemische Synapsen. Direkte NCBI-Aufrufe Browserprüfung."
+        },
+        {
+          "label": "Beitz / Fletcher: Lab 1 – Neurons",
+          "url": "https://vanat.ahc.umn.edu/neurLab1/neuron.html",
+          "organization": "University of Minnesota, College of Veterinary Medicine",
+          "supports": "Originalseite: multipolare Zellen, Dendritenzone, Axonfunktion und Kontakt zum Skelettmuskel. Keine Präparatebilder übernommen."
+        },
+        {
+          "label": "Beitz / Fletcher: Lab 1 – Peripheral Nerves",
+          "url": "https://vanat.ahc.umn.edu/neurLab1/nerves.html",
+          "organization": "University of Minnesota, College of Veterinary Medicine",
+          "supports": "Originalabschnitt: myelinisierte und nichtmyelinisierte Axone, Bindegewebe und Schwannzellen, Beispiele Pferd, Hund und Rind."
+        },
+        {
+          "label": "Myelin & Schwann Cell Components",
+          "url": "https://neuromuscular.wustl.edu/lab/schcell.html",
+          "organization": "Washington University in St. Louis",
+          "supports": "Mature Schwann cells und Myelinating/Non-myelinating Schwann cells gelesen; nur periphere Myelinbildung, keine molekularen Sonderbefunde."
+        },
+        {
+          "label": "Kirby und andere: Organization of the Nervous System, 1.2",
+          "url": "https://openstax.org/books/introduction-behavioral-neuroscience/pages/1-2-organization-of-the-nervous-system",
+          "organization": "OpenStax / Rice University",
+          "supports": "CNS and PNS, Basic building blocks und Simple human circuit example gelesen; Wirbeltiergrundbauplan, keine Human-Wirbelzahlen."
+        },
+        {
+          "label": "Purves und andere: Spinal Cord Circuitry Underlying Muscle Stretch Reflexes",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10809/",
+          "organization": "Sinauer Associates; Hochschullehrbuch",
+          "supports": "Vollständiger Originaltext über öffentlichen Suchindex gelesen: Muskelspindel, direkter Motoneuronweg und indirekte Gegenspielerhemmung. Keine klinische Durchführung."
+        },
+        {
+          "label": "Walkowski / Munakomi: Monosynaptic Reflex",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK541028/",
+          "organization": "StatPearls; Lake Erie College / Kathmandu University",
+          "supports": "Originaldefinition im öffentlichen Index gelesen: Muskelspindel und direkte sensorisch-motorische Verbindung. Keine klinischen Reflexgrade."
+        },
+        {
+          "label": "MeSH: Reflex, Monosynaptic",
+          "url": "https://meshb.nlm.nih.gov/record/ui?ui=D012023",
+          "organization": "U.S. National Library of Medicine",
+          "supports": "Originaldefinition 2026: direkte afferent-efferente Verbindung ohne Interneuron; Begriffsbestätigung, keine neue Messung."
+        },
+        {
+          "label": "Purves und andere: Neurotransmitter Receptors and Their Effects",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK11099/",
+          "organization": "Sinauer Associates; Hochschullehrbuch",
+          "supports": "Originalabschnitt im öffentlichen Suchindex: Rezeptorbindung und Abhängigkeit von Kanaltyp und Ionensituation; gleiche Lehrbuchfamilie wie Nerve Cells."
+        },
+        {
+          "label": "Alberts und andere: Ion Channels and the Electrical Properties of Membranes",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26910/",
+          "organization": "Garland Science, Molecular Biology of the Cell 4e",
+          "supports": "Originalabschnitt Chemical Synapses Can Be Excitatory or Inhibitory im öffentlichen Suchindex gelesen: Rezeptor- und Ionenabhängigkeit der Wirkung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "nervenzelle",
+          "title": "Eine Nervenzelle ist noch kein ganzer Nerv",
+          "paragraphs": [
+            "Als Grundmodell dient eine multipolare Nervenzelle: Von ihrem Zellkörper gehen mehrere Fortsätze aus. Im Zellkörper, auch Soma genannt, liegen Zellkern und weitere für die Zellfunktion benötigte Organellen. Dendriten und Soma sind wichtige Empfängerbereiche für synaptische Eingänge anderer Zellen.",
+            "Das Axon ist auf die Weiterleitung von Erregung zu seinen Endabschnitten spezialisiert. Dort kann die Zelle Verbindungen mit anderen Nervenzellen, Muskelzellen oder Drüsenzellen eingehen. Axon und Dendrit sind Zellteile. Ein peripherer Nerv enthält dagegen viele gebündelte Nervenfasern und Bindegewebshüllen.",
+            "Periphere Nerven enthalten sowohl myelinisierte als auch nichtmyelinisierte Axone. Myelin ist eine besondere Hülle; im peripheren Nervensystem wird sie von myelinisierenden Schwannzellen gebildet. Nicht jede Schwannzelle bildet Myelin. Das multipolare Modell ist ebenfalls kein Baugesetz für jede Nervenzelle: Andere Zelltypen besitzen abweichende Fortsatzanordnungen."
+          ],
+          "takeaway": "Soma, Dendrit und Axon sind Zellteile; ein Nerv bündelt viele Fasern.",
+          "exercise": "Ordne Zellkern, Eingangssignal, Erregungsleitung und periphere Myelinbildung verschiedenen Bauteilen oder Zelltypen zu."
+        },
+        {
+          "id": "zentrale-peripherie",
+          "title": "Zentrale und Peripherie nach Ort und Richtung trennen",
+          "paragraphs": [
+            "Gehirn und Rückenmark bilden das Zentralnervensystem, kurz ZNS. Nerven und Ganglien außerhalb dieser Strukturen gehören zum peripheren Nervensystem, PNS. Ein Ganglion ist eine Ansammlung von Nervenzellkörpern in der Peripherie. Diese Einteilung beschreibt die anatomische Lage, nicht allein eine bestimmte Sinnes- oder Bewegungsaufgabe.",
+            "Afferente Bahnen leiten Informationen zur betrachteten Zentrale hin. Gegenüber dem ZNS sind dies etwa sensorische Meldungen aus dem Körper an Rückenmark oder Gehirn. Efferente Bahnen führen Signale vom ZNS weg zu Zielorganen. Die Begriffe sind Richtungsangaben und benötigen deshalb einen klaren Bezugspunkt.",
+            "Das Rückenmark ist nicht nur Durchgangsstation: Es enthält Schaltkreise für bestimmte Reflexantworten. Gleichzeitig verbinden auf- und absteigende Bahnen Rückenmark und Gehirn. Eine Reaktion im Rückenmark und eine weiterlaufende Meldung zum Gehirn schließen sich deshalb nicht aus."
+          ],
+          "takeaway": "ZNS/PNS bezeichnet den Ort; afferent/efferent die Richtung relativ zur Zentrale.",
+          "exercise": "Verfolge eine sensorische Meldung zum Rückenmark und einen motorischen Ausgang zum Skelettmuskel."
+        },
+        {
+          "id": "dehnungsreflex",
+          "title": "Die Muskelspindel meldet Dehnung",
+          "paragraphs": [
+            "Muskelspindeln sind sensorische Strukturen in der Skelettmuskulatur. Sie reagieren auf Länge beziehungsweise Dehnung des Muskels und deren Änderung. Im Grundmodell des Dehnungsreflexes gelangt ihre Meldung über eine afferente Faser zum Rückenmark.",
+            "Ein Zweig der Meldung erregt direkt das Motoneuron, das den gedehnten Muskel versorgt. Zwischen sensorischem Neuron und diesem Motoneuron liegt eine zentrale Synapse. Genau dieser direkte erregende Teilweg wird monosynaptisch genannt. Der Begriff zählt hier die zentrale Verschaltung, nicht alle Kontaktstellen bis zur Muskelkontraktion.",
+            "Andere Zweige wirken über Interneurone. Beim klassischen Dehnungsreflex können solche Schaltzellen die Motoneurone der Gegenspielermuskeln hemmen. Direkte Erregung des gedehnten Muskels und indirekte Gegenspielerhemmung sind verschiedene Teilwege. Reflexschaltungen ermöglichen schnelle, unwillkürliche Anpassungen; übergeordnete Bahnen beeinflussen sie mit. Der Kurs beschreibt diesen Bauplan, ohne eine Reflexprüfung am Tier anzuleiten."
+          ],
+          "takeaway": "Direkte zentrale Erregung ist monosynaptisch; Gegenspielerhemmung nutzt einen anderen Teilweg.",
+          "exercise": "Zeichne den direkten Weg zum gedehnten Muskel und den Weg über ein hemmendes Interneuron zum Gegenspieler."
+        },
+        {
+          "id": "chemische-synapse",
+          "title": "Die chemische Synapse wandelt das Signal um",
+          "paragraphs": [
+            "An einer chemischen Synapse stehen sich präsynaptische Endigung und postsynaptische Membran gegenüber. Sie sind durch den synaptischen Spalt getrennt. In der sendenden Endigung liegen Vesikel mit Neurotransmittern. Bei passender Erregung können die Vesikel mit der Membran verschmelzen und Botenstoffe freisetzen.",
+            "Der Transmitter diffundiert durch den Spalt und bindet an passende Rezeptoren der Empfängerseite. Dadurch verändern sich Signalvorgänge und gegebenenfalls die Durchlässigkeit für Ionen. Die entlang des Axons elektrische Erregung wird hier über einen chemischen Botenstoff weitergegeben. Daneben existieren elektrische Synapsen; nicht jede Nervenzellverbindung folgt dem chemischen Modell.",
+            "Ein synaptisches Signal kann weitere Aktionspotenziale begünstigen oder erschweren: Man spricht von erregender oder hemmender Wirkung. Dafür sind unter anderem Rezeptortyp und Ionenverhältnisse entscheidend. Der Name eines Transmitters allein legt seine Wirkung an jeder denkbaren Synapse nicht fest."
+          ],
+          "takeaway": "Vesikel setzen Transmitter frei; Rezeptoren bestimmen die Antwort der Empfängerseite mit.",
+          "exercise": "Verfolge die Signalfolge von Erregung über Vesikel und Spalt zum postsynaptischen Rezeptor."
+        }
+      ],
+      "questions": [
+        {
+          "id": "nervensystem-r2-q1",
+          "lessonId": "nervenzelle",
+          "q": "Wo liegt der Zellkern einer typischen multipolaren Nervenzelle?",
+          "options": [
+            "Im präsynaptischen Endknöpfchen",
+            "Im Soma beziehungsweise Zellkörper",
+            "Im Inneren der Myelinscheide",
+            "Im distalen Abschnitt jedes Dendriten"
+          ],
+          "answer": 1,
+          "explain": "Das Soma enthält den Zellkern und weitere Organellen für die Zellfunktion."
+        },
+        {
+          "id": "nervensystem-r2-q2",
+          "lessonId": "nervenzelle",
+          "q": "Welche Fortsätze sind bei einer typischen multipolaren Nervenzelle wichtige Empfänger synaptischer Eingänge?",
+          "options": [
+            "Die Myelinscheiden",
+            "Die Ranvier-Schnürringe",
+            "Die Bindegewebshüllen",
+            "Die Dendriten"
+          ],
+          "answer": 3,
+          "explain": "Dendriten bilden zusammen mit dem Soma einen wichtigen Empfängerbereich synaptischer Signale."
+        },
+        {
+          "id": "nervensystem-r2-q3",
+          "lessonId": "nervenzelle",
+          "q": "Welche Aufgabe hat das Axon im Grundbauplan einer multipolaren Nervenzelle?",
+          "options": [
+            "Erregung zu den Endabschnitten weiterleiten",
+            "Genetische Information im Zellkern speichern",
+            "Die peripheren Bindegewebshüllen erzeugen",
+            "Die Myelinhülle um benachbarte Axone bilden"
+          ],
+          "answer": 0,
+          "explain": "Das Axon leitet Erregung vom Eingangsbereich zu den terminalen Kontaktstellen."
+        },
+        {
+          "id": "nervensystem-r2-q4",
+          "lessonId": "nervenzelle",
+          "q": "Welche Zellen bilden Myelinhüllen im peripheren Nervensystem?",
+          "options": [
+            "Oligodendrozyten",
+            "Astrozyten",
+            "Myelinisierende Schwannzellen",
+            "Mikrogliazellen"
+          ],
+          "answer": 2,
+          "explain": "Eine Gruppe der Schwannzellen bildet peripheres Myelin; andere Schwannzellen bilden keine Myelinscheide."
+        },
+        {
+          "id": "nervensystem-r2-q5",
+          "lessonId": "zentrale-peripherie",
+          "q": "Welche Organe bilden bei Säugetieren das Zentralnervensystem?",
+          "options": [
+            "Gehirn und sämtliche peripheren Nerven",
+            "Rückenmark und alle Muskelspindeln",
+            "Gehirn und Rückenmark",
+            "Ganglien und sämtliche Skelettmuskeln"
+          ],
+          "answer": 2,
+          "explain": "Gehirn und Rückenmark bilden das Zentralnervensystem."
+        },
+        {
+          "id": "nervensystem-r2-q6",
+          "lessonId": "zentrale-peripherie",
+          "q": "Welche Strukturen außerhalb von Gehirn und Rückenmark gehören zum peripheren Nervensystem?",
+          "options": [
+            "Periphere Nerven und Ganglien",
+            "Großhirnrinde und Kleinhirn",
+            "Rückenmarksbahnen und Hirnkerne",
+            "Zentrale Hirnventrikel und Hirnstamm"
+          ],
+          "answer": 0,
+          "explain": "Das PNS umfasst Nerven und Ganglien außerhalb von Gehirn und Rückenmark."
+        },
+        {
+          "id": "nervensystem-r2-q7",
+          "lessonId": "zentrale-peripherie",
+          "q": "Welche Signalrichtung bezeichnet afferent im Bezug auf das Zentralnervensystem?",
+          "options": [
+            "Vom ZNS zum Zielmuskel",
+            "Vom Blut zur Alveolenluft",
+            "Vom Zellkern zur Myelinhülle",
+            "Von der Peripherie zum ZNS"
+          ],
+          "answer": 3,
+          "explain": "Afferent bedeutet zur Zentrale hin, etwa eine sensorische Körpermeldung zum Rückenmark."
+        },
+        {
+          "id": "nervensystem-r2-q8",
+          "lessonId": "zentrale-peripherie",
+          "q": "Welche Signalrichtung bezeichnet efferent im Bezug auf das Zentralnervensystem?",
+          "options": [
+            "Von einem Sinnesrezeptor zum ZNS",
+            "Vom ZNS zu peripheren Zielorganen",
+            "Von der Alveole zum Kapillarblut",
+            "Vom Muskel zur sensorischen Rückenmarkswurzel"
+          ],
+          "answer": 1,
+          "explain": "Efferente Bahnen führen Signale von der betrachteten Zentrale weg, beispielsweise zum Muskel."
+        },
+        {
+          "id": "nervensystem-r2-q9",
+          "lessonId": "dehnungsreflex",
+          "q": "Welche sensorische Struktur liefert die Dehnungsmeldung des klassischen Muskeldehnungsreflexes?",
+          "options": [
+            "Das Golgi-Sehnenorgan",
+            "Ein Rezeptor der Gelenkkapsel",
+            "Eine freie Nervenendigung der Haut",
+            "Die Muskelspindel"
+          ],
+          "answer": 3,
+          "explain": "Muskelspindeln erfassen Länge und Längenänderung in der Skelettmuskulatur."
+        },
+        {
+          "id": "nervensystem-r2-q10",
+          "lessonId": "dehnungsreflex",
+          "q": "Was bedeutet monosynaptisch für den direkten zentralen Teilweg des Muskeldehnungsreflexes?",
+          "options": [
+            "Eine zentrale Synapse zwischen zwei benachbarten Muskelfasern",
+            "Eine zentrale Synapse zwischen sensorischem Neuron und Motoneuron",
+            "Eine Kontaktstelle zwischen Gehirn und sämtlichen Körperorganen",
+            "Eine Nervenzelle vom Rezeptor bis zur Muskelkontraktion"
+          ],
+          "answer": 1,
+          "explain": "Der direkte erregende Teilweg verbindet sensorisches Neuron und Motoneuron über eine zentrale Synapse."
+        },
+        {
+          "id": "nervensystem-r2-q11",
+          "lessonId": "dehnungsreflex",
+          "q": "Wie reagiert der gedehnte Muskel auf die direkte erregende Motoneuronantwort des klassischen Dehnungsreflexes?",
+          "options": [
+            "Er wird durch diesen Teilweg gehemmt.",
+            "Er bleibt bei diesem Teilweg unerregt.",
+            "Er kontrahiert.",
+            "Er kontrahiert erst nach bewusstem Entschluss."
+          ],
+          "answer": 2,
+          "explain": "Die direkte Erregung aktiviert die Motoneurone des gedehnten Muskels und bewirkt dessen Kontraktion."
+        },
+        {
+          "id": "nervensystem-r2-q12",
+          "lessonId": "dehnungsreflex",
+          "q": "Welche Verschaltung vermittelt im klassischen Dehnungsreflex die Hemmung des Gegenspielermuskels?",
+          "options": [
+            "Ein Weg über ein hemmendes Interneuron",
+            "Die direkte Erregung des Gegenspieler-Motoneurons",
+            "Ein Weg ohne jede zentrale Umschaltung",
+            "Ein unmittelbarer Kontakt beider Muskelfasern"
+          ],
+          "answer": 0,
+          "explain": "Gegenspielerhemmung erfolgt über Interneurone und ist vom direkten erregenden Teilweg zu trennen."
+        },
+        {
+          "id": "nervensystem-r2-q13",
+          "lessonId": "chemische-synapse",
+          "q": "Wo sind die zur Freisetzung bereitliegenden Neurotransmitter einer chemischen Synapse verpackt?",
+          "options": [
+            "In präsynaptischen Vesikeln",
+            "In den Mitochondrien der Endigung",
+            "In den Myelinschichten des Axons",
+            "Im Zellkern der Empfängerzelle"
+          ],
+          "answer": 0,
+          "explain": "Präsynaptische Vesikel enthalten Neurotransmitter und können sie durch Membranfusion freisetzen."
+        },
+        {
+          "id": "nervensystem-r2-q14",
+          "lessonId": "chemische-synapse",
+          "q": "Welchen Zwischenraum durchquert freigesetzter Transmitter an einer chemischen Synapse?",
+          "options": [
+            "Das Innere des postsynaptischen Axons",
+            "Die Myelinschichten am Endknöpfchen",
+            "Den synaptischen Spalt",
+            "Den Zellkern der benachbarten Nervenzelle"
+          ],
+          "answer": 2,
+          "explain": "Der synaptische Spalt trennt die sendende Endigung von der postsynaptischen Membran."
+        },
+        {
+          "id": "nervensystem-r2-q15",
+          "lessonId": "chemische-synapse",
+          "q": "Woran bindet ein Neurotransmitter auf der Empfängerseite einer chemischen Synapse?",
+          "options": [
+            "An eine Bindegewebsfaser der Nervenhülle",
+            "An das Chromatin im postsynaptischen Kern",
+            "An eine beliebige Stelle der Myelinhülle",
+            "An einen passenden postsynaptischen Rezeptor"
+          ],
+          "answer": 3,
+          "explain": "Postsynaptische Rezeptoren binden den Transmitter und setzen eine Signalantwort in Gang."
+        },
+        {
+          "id": "nervensystem-r2-q16",
+          "lessonId": "chemische-synapse",
+          "q": "Wovon hängt mit ab, ob ein chemisches synaptisches Signal erregend oder hemmend wirkt?",
+          "options": [
+            "Allein von der Länge des sendenden Axons",
+            "Vom Rezeptortyp und den Ionenverhältnissen",
+            "Allein von der Körperseite der Zielzelle",
+            "Allein von der Zahl der Dendritenäste"
+          ],
+          "answer": 1,
+          "explain": "Rezeptoren und Ionenverhältnisse bestimmen die Wirkung mit; der Transmittername allein genügt nicht."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Vier Grundlagenlektionen und 16 eigene Fragen; keine klinische Befundung oder Einzelreflex-Aussage über Bewusstsein.",
+        "independentOrganizations": [
+          "UTHealth Houston",
+          "University of Minnesota",
+          "Washington University in St. Louis",
+          "Rice University / OpenStax",
+          "Merck / MSD Veterinary Manual",
+          "Sinauer Associates / Purves und andere",
+          "Garland Science / Alberts und andere",
+          "U.S. National Library of Medicine",
+          "StatPearls: Walkowski / Munakomi"
+        ],
+        "limitations": [
+          "Purves-Kapitel bilden eine Lehrbuchfamilie; Minnesota-Seiten eine veterinäranatomische Lehreinheit.",
+          "Chemische Synapse und multipolare Zelle sind benannte Modelle, keine universelle Form aller Neuronen und Synapsen.",
+          "Monosynaptisch wird nur für den direkten zentralen erregenden Teilweg verwendet.",
+          "Keine menschlichen Zellzahlen, Wirbelzahlen, Spannungen oder klinischen Schwellen auf Wildtiere übertragen."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-saeugeratmung-round2-2026",
+      "lessonId": "luftwege",
+      "claims": [
+        {
+          "claim": "Der Säuger-Luftweg führt über Luftröhre, Bronchien und Bronchiolen zur alveolären Austauschregion.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/respiratory-system/respiratory-system-introduction/the-respiratory-system-in-animals",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/10-larynx-trachea-bronchi-and-bronchioles/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system"
+          ]
+        },
+        {
+          "claim": "Nasenmuscheln unterstützen Aufbereitung; Flimmerhärchen transportieren Partikel mit Schleim rachenwärts.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/respiratory-system/respiratory-system-introduction/the-respiratory-system-in-animals",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system"
+          ]
+        },
+        {
+          "claim": "Bronchien besitzen Knorpelstützen; Bronchiolen sind knorpelfrei mit glatter Wandmuskulatur.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/10-larynx-trachea-bronchi-and-bronchioles/",
+            "https://histology.oit.duke.edu/DPT/Respiratory/Respiratory.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-saeugeratmung-round2-2026",
+      "lessonId": "atemmechanik",
+      "claims": [
+        {
+          "claim": "Zwerchfellkontraktion vergrößert den Brustraum; Volumenzunahme senkt den Alveolardruck vorübergehend und Luft strömt nach innen.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing",
+            "https://www.msdmanuals.com/home/lung-and-airway-disorders/biology-of-the-lungs-and-airways/control-of-breathing"
+          ]
+        },
+        {
+          "claim": "Viszerale Pleura bedeckt Lunge, parietale Pleura die Brustwand; Flüssigkeit ermöglicht reibungsarmes Gleiten.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/10-pleura/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-2-the-lungs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-saeugeratmung-round2-2026",
+      "lessonId": "alveolen",
+      "claims": [
+        {
+          "claim": "Dünne Typ-I-Pneumozyten und angrenzende Kapillaren ergeben eine kurze Blut-Luft-Diffusionsstrecke.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/10-respiratory-tract-gas-exchange/",
+            "https://histology.oit.duke.edu/DPT/Respiratory/Respiratory.html",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange"
+          ]
+        },
+        {
+          "claim": "Typ-II-Pneumozyten bilden Surfactant zur Senkung der Oberflächenspannung.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/10-respiratory-tract-gas-exchange/",
+            "https://histology.oit.duke.edu/DPT/Respiratory/Respiratory.html",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing"
+          ]
+        },
+        {
+          "claim": "Atemgase diffundieren nach eigenem Partialdruckgefälle; normal Sauerstoff zum Blut und Kohlendioxid zur Alveole.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange",
+            "https://www.merckvetmanual.com/respiratory-system/respiratory-system-introduction/the-respiratory-system-in-animals",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10330610/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK532988/?report=classic"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-saeugeratmung-round2-2026",
+      "lessonId": "gastransport",
+      "claims": [
+        {
+          "claim": "Der überwiegende Sauerstoffanteil ist an Hämoglobin in Erythrozyten gebunden; Sauerstoff bindet reversibel am Häm-Eisen.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases",
+            "https://www.ncbi.nlm.nih.gov/sites/books/NBK538336/?report=reader",
+            "https://eclinpath.com/hematology/physiology/erythrocytes/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10330610/"
+          ]
+        },
+        {
+          "claim": "CO2 wird gelöst, proteingebunden und vor allem als Bicarbonat transportiert; in der Lunge entsteht wieder ausatembares CO2.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases",
+            "https://www.ncbi.nlm.nih.gov/books/NBK532988/?report=classic"
+          ]
+        },
+        {
+          "claim": "Carboanhydrase beschleunigt die umkehrbare Reaktion zwischen CO2, Wasser und dem Kohlensäure-Bicarbonat-System.",
+          "sourceUrls": [
+            "https://eclinpath.com/chemistry/acid-base/chemistry-tests/bicarbonate/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK532988/?report=classic",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nervensystem-round2-2026",
+      "lessonId": "nervenzelle",
+      "claims": [
+        {
+          "claim": "Beim typischen multipolaren Neuron enthält Soma den Kern, Soma und Dendriten empfangen Eingänge, Axon leitet zu Endabschnitten; andere Zellformen kommen vor.",
+          "sourceUrls": [
+            "https://med.uth.edu/nba/cellular-and-molecular-neurobiology/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK11103/",
+            "https://vanat.ahc.umn.edu/neurLab1/neuron.html",
+            "https://www.merckvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/parts-of-the-nervous-system-in-dogs"
+          ]
+        },
+        {
+          "claim": "Periphere Nerven bündeln myelinisierte und nichtmyelinisierte Fasern mit Bindegewebshüllen; myelinisierende Schwannzellen bilden peripheres Myelin, andere keine Myelinscheide.",
+          "sourceUrls": [
+            "https://vanat.ahc.umn.edu/neurLab1/nerves.html",
+            "https://neuromuscular.wustl.edu/lab/schcell.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nervensystem-round2-2026",
+      "lessonId": "zentrale-peripherie",
+      "claims": [
+        {
+          "claim": "Gehirn und Rückenmark bilden das ZNS; Nerven und Ganglien außerhalb bilden das PNS.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/parts-of-the-nervous-system-in-dogs",
+            "https://openstax.org/books/introduction-behavioral-neuroscience/pages/1-2-organization-of-the-nervous-system",
+            "https://vanat.ahc.umn.edu/neurLab1/nerves.html"
+          ]
+        },
+        {
+          "claim": "Afferente Informationen laufen zum ZNS, efferente davon weg; das Rückenmark leitet weiter und enthält lokale Schaltkreise.",
+          "sourceUrls": [
+            "https://openstax.org/books/introduction-behavioral-neuroscience/pages/1-2-organization-of-the-nervous-system",
+            "https://www.merckvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/parts-of-the-nervous-system-in-dogs",
+            "https://www.ncbi.nlm.nih.gov/books/NBK10809/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nervensystem-round2-2026",
+      "lessonId": "dehnungsreflex",
+      "claims": [
+        {
+          "claim": "Muskelspindeln erfassen Muskellänge/Dehnung und deren Änderung; afferente Fasern melden zum Rückenmark.",
+          "sourceUrls": [
+            "https://www.ncbi.nlm.nih.gov/books/NBK10809/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK541028/"
+          ]
+        },
+        {
+          "claim": "Der direkte erregende Teilweg zum Motoneuron des gedehnten Muskels ist zentral monosynaptisch und bewirkt Kontraktion.",
+          "sourceUrls": [
+            "https://www.ncbi.nlm.nih.gov/books/NBK10809/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK541028/",
+            "https://meshb.nlm.nih.gov/record/ui?ui=D012023"
+          ]
+        },
+        {
+          "claim": "Gegenspielerhemmung im klassischen Dehnungsreflex erfolgt über Interneurone, getrennt vom direkten erregenden Teilweg.",
+          "sourceUrls": [
+            "https://www.ncbi.nlm.nih.gov/books/NBK10809/",
+            "https://openstax.org/books/introduction-behavioral-neuroscience/pages/1-2-organization-of-the-nervous-system"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-nervensystem-round2-2026",
+      "lessonId": "chemische-synapse",
+      "claims": [
+        {
+          "claim": "Chemische Synapsen setzen Transmitter aus präsynaptischen Vesikeln frei; Botenstoffe diffundieren durch den Spalt und binden an postsynaptische Rezeptoren.",
+          "sourceUrls": [
+            "https://med.uth.edu/nba/cellular-and-molecular-neurobiology/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK11103/",
+            "https://www.merckvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/parts-of-the-nervous-system-in-dogs"
+          ]
+        },
+        {
+          "claim": "Synaptische Wirkung kann erregend oder hemmend sein und wird durch Rezeptor- und Ionenbedingungen mitbestimmt; auch elektrische Synapsen existieren.",
+          "sourceUrls": [
+            "https://med.uth.edu/nba/cellular-and-molecular-neurobiology/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK11103/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK11099/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK26910/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Einheitliche Atemleistung, Lungenlappung und Bronchiolen-Feinstruktur aller Wildsäuger",
+      "reason": "Artspezifisch; keine universellen Zahlen veröffentlicht."
+    },
+    {
+      "topic": "Ausschließlich passive Ruhausatmung aller Säugetiere",
+      "reason": "Atemmuskelanteile und Ausatmungsmechanik sind art- und situationsabhängig."
+    },
+    {
+      "topic": "Bewusstsein, Schmerzfreiheit oder Gesundheit aus Einzelreflexen",
+      "reason": "Ein anatomischer Grundlagenkurs erlaubt diese Ableitungen nicht; keine klinische Prüfung oder Therapie."
+    }
+  ]
+}
