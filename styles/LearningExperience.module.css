@@ -28,12 +28,13 @@
 .compactHeader .eyebrow { grid-column: 2; margin: 0; }
 .compactHeader h1 { grid-column: 2; font-size: clamp(25px, 4vw, 32px); margin: 0; }
 .compactHeader > p:last-of-type { grid-column: 1 / -1; margin-top: 8px; font-size: 16px; }
+.compactHeader > .stats { grid-column: 1 / -1; min-width: 0; }
 .titleHeader { padding: 16px 20px; margin-bottom: 18px; }
 .titleHeader h1 { font-size: clamp(26px, 4vw, 34px); margin: 0; }
 .stats { display: flex; flex-wrap: wrap; list-style: none; gap: 9px; padding: 0; margin: 22px 0 0; }
 .stats div, .tags span { border: 1px solid #dfcb98; background: #fffdf7; border-radius: 24px; padding: 7px 12px; font-size: 13px; }
-.stats div { display: flex; gap: 5px; align-items: baseline; }
-.stats dt, .stats dd { margin: 0; }
+.stats div { display: flex; flex-wrap: wrap; gap: 5px; align-items: baseline; min-width: 0; max-width: 100%; }
+.stats dt, .stats dd { margin: 0; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 .stats dd { order: -1; font-weight: 800; }
 .content { min-width: 0; }
 .panel, .card { border: 1px solid #e0c989; border-radius: 18px; padding: 26px; background: #fffdf7; margin: 0 0 22px; min-width: 0; }

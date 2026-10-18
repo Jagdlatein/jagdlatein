@@ -51,16 +51,14 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const [canSave, setCanSave] = useState(true);
   const [now, setNow] = useState(0);
   const [currentId, setCurrentId] = useState(null);
-  const [openId, setOpenId] = useState(null);
   const [rated, setRated] = useState(0);
   const [againIds, setAgainIds] = useState([]);
   const [message, setMessage] = useState("");
   const reviewRef = useRef(EMPTY_REVIEW);
   const generation = useRef(0);
   const againRef = useRef([]);
-  const active = useRef({ id: null, revealed: false });
+  const active = useRef(null);
   const headingRef = useRef(null);
-  const answerRef = useRef(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -81,8 +79,8 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     if (router.isReady === false) return;
     const requested = cleanQuery(router.query?.kategorie || router.query?.category);
     generation.current++;
-    active.current = { id: null, revealed: false };
-    setOpenId(null); setCurrentId(null);
+    active.current = null;
+    setCurrentId(null);
     setCategory(!selection && categories.some(item => item.id === requested) ? requested : "all");
     setQuery(cleanQuery(router.query?.q));
   }, [router.isReady, router.query?.kategorie, router.query?.category, router.query?.q, selection?.courseId, selection?.lessonId, selection?.invalid, categories]);
@@ -96,28 +94,37 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const filtered = useMemo(() => filterFlashcards(cards, category, query, selection), [cards, category, query, selection]);
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const current = available.find(card => card.id === currentId) || available[0] || null;
-  const revealed = Boolean(current && openId === current.id);
   const token = generation.current;
-  active.current = { id: current?.id || null, revealed };
+  active.current = current?.id || null;
   const printQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}) };
   const printHref = { pathname: "/lernen/lernkarten-drucken", query: printQuery };
 
   function changeFilter(change) {
     generation.current++;
-    active.current = { id: null, revealed: false };
-    setOpenId(null); setCurrentId(null); setMessage("");
+    active.current = null;
+    setCurrentId(null); setMessage("");
     change();
   }
-  function reveal() {
-    if (!current || generation.current !== token || active.current.id !== current.id) return;
-    active.current.revealed = true;
-    setOpenId(current.id);
-    if (typeof window !== "undefined") window.requestAnimationFrame(() => answerRef.current?.focus({ preventScroll: true }));
+  function showCurrentQuestion() {
+    if (typeof window !== "undefined") window.requestAnimationFrame(() => {
+      const heading = headingRef.current;
+      heading?.focus({ preventScroll: true });
+      heading?.scrollIntoView({ block: "start", behavior: "auto" });
+    });
+  }
+  function nextWithoutRating() {
+    if (!current || available.length < 2 || generation.current !== token || active.current !== current.id) return;
+    generation.current++;
+    active.current = null;
+    const index = available.findIndex(card => card.id === current.id);
+    setCurrentId(available[(index + 1) % available.length].id);
+    setMessage("");
+    showCurrentQuestion();
   }
   function rate(rating) {
-    if (!loaded || !current || !revealed || generation.current !== token || active.current.id !== current.id || !active.current.revealed) return;
+    if (!loaded || !current || generation.current !== token || active.current !== current.id) return;
     generation.current++;
-    active.current = { id: null, revealed: false };
+    active.current = null;
     const time = Date.now();
     const nextReview = rateFlashcardReview(reviewRef.current, current.id, rating, time);
     const nextAgain = againRef.current.filter(id => id !== current.id);
@@ -130,9 +137,9 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     const nextIds = new Set(nextCards.map(card => card.id));
     const next = following.find(card => nextIds.has(card.id));
     setReview(nextReview); setAgainIds(nextAgain); setNow(time); setRated(count => count + 1);
-    setOpenId(null); setCurrentId(next?.id || null);
+    setCurrentId(next?.id || null);
     setMessage(rating === "again" ? "Die Karte kommt nach den übrigen Karten noch einmal." : "Als gewusst bewertet. Die Karte kommt später wieder.");
-    if (typeof window !== "undefined") window.requestAnimationFrame(() => headingRef.current?.focus({ preventScroll: true }));
+    showCurrentQuestion();
   }
 
   return <LearningToolLayout title="Lernkarten" description="Wildwissen mit Frage und Antwort wiederholen, auf diesem Gerät vormerken oder als Lernkarten ausdrucken." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-suche" hideCommunity className={styles.page}>
@@ -147,15 +154,14 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     </div>
     <div className={styles.status} role="status" aria-live="polite">{loadError || (loading ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
-      <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>{revealed ? "Antwort" : "Frage"}</span></div>
+      <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Frage und Antwort</span></div>
       {current.context && (!selection?.lessonId || selection.lessonId !== current.lessonId) && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
       <FlashcardImage image={current.image} />
-      {!revealed ? <div className={styles.revealArea}><p>Antworte erst für dich selbst.</p><button type="button" onClick={reveal} className={styles.primary}><AppIcon name="eye" size={23} />Antwort zeigen</button></div>
-        : <div className={styles.back}>
-          <p className={styles.answer} ref={answerRef} tabIndex={-1}>{current.answer}</p>
+      <div className={styles.back}>
+          <p className={styles.answer}>{current.answer}</p>
           <p className={styles.explanation}>{current.explanation}</p>
-          <div className={styles.rating} aria-label="Deine Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch einmal</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button></div>
+          <div className={styles.rating} aria-label="Freiwillige Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch üben</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button><button type="button" onClick={nextWithoutRating} disabled={available.length < 2} className={styles.nextCard}>Weiter ohne Bewertung</button></div>
           <div className={styles.sources}>
             <h3>{current.sourceScope === "photo" ? "Bildnachweis und Artenporträt" : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion" : "Quellen des Ausgangskurses"}</h3>
             <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>
@@ -163,7 +169,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
             {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Stand des Ausgangskurses"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
             <Link href={current.courseHref} className={styles.courseLink}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
           </div>
-        </div>}
+        </div>
     </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Schalte den Filter oben aus, wenn du alle passenden Karten erneut ansehen möchtest." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
     <div className={styles.exportLinks}>{!selection?.invalid && <Link href={printHref}><AppIcon name="book" size={21} />Diese Auswahl drucken</Link>}<a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={21} />Starterset als PDF</a></div>

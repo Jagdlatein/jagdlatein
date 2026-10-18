@@ -23,7 +23,6 @@
 @media (max-width: 620px) { .body section { padding: 20px 16px; } }
 /* Larger species portraits, including older pages with inline font sizes. */
 .page { max-width: 1280px; font-size: 19px; }
-.page h1 { font-size: clamp(32px, 5vw, 46px); }
 .body { max-width: 1120px; }
 .body :where(p, li) { font-size: 19px !important; line-height: 1.8 !important; }
 .body :where(h2) { font-size: clamp(26px, 3.6vw, 32px) !important; line-height: 1.4 !important; }
