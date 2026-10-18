@@ -18,7 +18,6 @@
 .depth a { color: #72541d; text-underline-offset: 4px; }
 .depthSources ul { line-height: 1.8; padding-left: 22px; }
 .depthSources p { font-size: 14px; color: #6e6249; }
-.depthCourses a { display: block; min-height: 44px; padding: 10px 0; font-weight: 600; line-height: 1.6; }
 @media (max-width: 620px) { .depth { padding: 20px 16px; } .depthGrid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 620px) { .body section { padding: 20px 16px; } }
 /* Larger species portraits, including older pages with inline font sizes. */

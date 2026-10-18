@@ -212,10 +212,10 @@ test('New dog photos decode, match provenance hashes, and are allowed as public 
   assert.equal(media({id: 'wissen-vertiefung-hunde-retriever-spaniels', imageKey: 'hundewesen'}).src, '/lernen/hunde-2026/labrador.jpg');
 });
 
-test('Every expanded wildlife section renders its actual text, question and source without orphaned course links', () => {
+test('Every expanded wildlife portrait renders its actual text and sources, with each deep course linked once', () => {
   const profiles = load('lib/wildlife-depth.js').wildlifeDepthBySlug;
   const species = load('lib/dach-wildlife.js').dachWildlifeBySlug;
-  const Component = load('components/WildlifeDepth.js').default;
+  const Component = load('components/WildlifePortraitLayout.js').default;
   const getModule = load('lib/learning-curriculum.js').getLearningModule;
   const titles = load('lib/wildlife-depth-course-links.js').wildlifeDepthCourseTitles;
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'components/WildlifeDepth.js'), 'utf8'), /from ["'].*learning-curriculum/);
@@ -224,6 +224,6 @@ test('Every expanded wildlife section renders its actual text, question and sour
     const html = renderToStaticMarkup(React.createElement(Component, {slug, name: species[slug].name}));
     assert.ok(html.includes('Wissen vertiefen'));
     for (const source of profile.sources) assert.ok(html.includes(source.url.replace(/&/g, '&amp;')));
-    for (const id of profile.courseIds) { assert.ok(getModule(id), `${slug}: ${id}`); assert.equal(titles[id], getModule(id).title); assert.ok(html.includes(`/kurse/${id}`)); }
+    for (const id of profile.courseIds) { assert.ok(getModule(id), `${slug}: ${id}`); assert.equal(titles[id], getModule(id).title); assert.equal(html.split(`href="/kurse/${id}"`).length - 1, 1, `${slug}: one clear course entry`); }
   }
 });

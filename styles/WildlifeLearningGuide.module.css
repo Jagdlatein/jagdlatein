@@ -1,0 +1,14 @@
+.guide { margin: 28px 0; scroll-margin-top: 24px; }
+.list { list-style: none; padding: 0; margin: 0; border-top: 1px solid #dfcda1; }
+.list li { min-width: 0; border-bottom: 1px solid #dfcda1; }
+.link { display: grid; gap: 7px; padding: 18px 4px; color: inherit; text-decoration: none; border-radius: 7px; }
+.link:hover { background: #fcf2d9; }
+.label { font-size: 12px; font-weight: 750; color: #7c6228; line-height: 1.5; }
+.link strong { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 18px; line-height: 1.45; overflow-wrap: anywhere; }
+.link svg { flex-shrink: 0; margin-top: 3px; color: #8b6d29; }
+.description { color: #625741; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.model { color: #74684e; font-size: 13px; line-height: 1.6; }
+@media (max-width: 600px) {
+  .link { padding: 17px 2px; }
+  .link strong { font-size: 17px; }
+}

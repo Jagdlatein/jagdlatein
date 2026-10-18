@@ -1,0 +1,14 @@
+.knowledge { border: 1px solid #e0c989; border-radius: 18px; padding: 26px; background: #fffdf7; margin-bottom: 26px; scroll-margin-top: 22px; }
+.knowledge > h2 { margin: 0 0 24px; }
+.section { margin-top: 24px; scroll-margin-top: 22px; }
+.section + .section { border-top: 1px solid #e4d8ba; padding-top: 22px; }
+.section h3 { margin: 0 0 12px; }
+.section p { margin: 0; font-size: 19px; line-height: 1.8; }
+.section .observation { margin-top: 12px; padding-left: 16px; border-left: 3px solid #b99b50; }
+.sources { margin-top: 12px; font-size: 16px; }
+.sources summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 650; line-height: 1.6; }
+.sources ul { padding-left: 21px; line-height: 1.7; }
+.sources li + li { margin-top: 9px; }
+.sources a { color: #72541d; overflow-wrap: anywhere; text-underline-offset: 4px; }
+.review { margin: 25px 0 0; color: #6b6047; font-size: 15px; line-height: 1.7; }
+@media (max-width: 620px) { .knowledge { padding: 20px 16px; } }

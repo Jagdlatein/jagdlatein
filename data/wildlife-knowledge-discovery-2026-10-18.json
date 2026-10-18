@@ -1,0 +1,137 @@
+{
+  "species": [
+    {
+      "slug": "waldschnepfe",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Schnepfenvogel des Waldes",
+          "text": "Die Waldschnepfe wirkt durch den gedrungenen Körper und die kurzen Beine kompakter als viele offen im Wasser watende Schnepfenvögel; dazu kommt ein sehr langer, gerader Schnabel. Ihr fein braun gemustertes Gefieder tarnt sie zwischen Laub und Bodenvegetation. Tagsüber bleibt sie häufig in dichter Deckung: Ein schlecht sichtbarer Vogel ist deshalb nicht automatisch ein seltener Vogel am Beobachtungsort.",
+          "observationNote": "Der letzte Halbsatz ist eine Schlussfolgerung für die Beobachtung: geringe Sichtbarkeit ist keine lokale Bestandszählung."
+        },
+        {
+          "id": "nahrung",
+          "title": "Feuchter Boden gehört zum Lebensraum",
+          "text": "Als Brutlebensraum dienen feuchte Wälder mit lichten Stellen und einer ausgebildeten Strauch- oder Krautschicht; reiner Baumbestand beschreibt den Lebensraum deshalb nur unvollständig. Regenwürmer sind eine wichtige Nahrung, hinzu kommen weitere Wirbellose. Mit dem langen Schnabel sucht die Waldschnepfe im weichen Boden; außerhalb der Brutzeit kann sie zur Nahrungssuche auch offene Flächen wie Weiden nutzen."
+        },
+        {
+          "id": "fortpflanzung",
+          "title": "Balzflug und versteckte Bodenbrut",
+          "text": "Die Männchen fallen während der Fortpflanzungszeit durch Balzflüge in der Abend- und Morgendämmerung auf, bei denen sie hörbare tiefe und hohe Laute äußern. Die Brut findet dagegen gut verborgen am Waldboden statt; das Weibchen bebrütet die Eier. Die Jungen sind Nestflüchter: Balzflüge über dem Wald und die schwer sichtbare Jungenphase sind unterschiedliche Teile desselben Fortpflanzungszyklus."
+        },
+        {
+          "id": "zug",
+          "title": "Brutvogel und Durchzügler unterscheiden",
+          "text": "Europäische Waldschnepfen zeigen je nach Herkunft unterschiedliche Zugbewegungen; nord- und osteuropäische Vögel verlassen ihre Brutgebiete zum Winter. Für schweizerische Brutvögel beschreibt die Vogelwarte einen südwestlichen Wegzug und Wintergebiete vor allem in Frankreich und auf der Iberischen Halbinsel. Eine Herbstbeobachtung im Revier belegt daher die Anwesenheit der Art, für sich allein aber keinen örtlichen Brutbestand.",
+          "observationNote": "Der letzte Satz trennt eine Sichtbeobachtung von einem daraus nicht belegbaren Brutnachweis."
+        }
+      ]
+    },
+    {
+      "slug": "bekassine",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Längsstreifen statt auffälliger Geschlechtskleider",
+          "text": "An der Bekassine fallen der lange, gerade Schnabel, die kurzen Beine und die hellen Längsstreifen des braun gemusterten Gefieders auf. Männchen und Weibchen sind äußerlich ähnlich; eine auffällige Erpelfärbung wie bei manchen Enten gibt es hier nicht als Bestimmungshilfe. Für die Ansprache sind deshalb Körperproportionen und das Muster von Kopf, Rücken und Flanken gemeinsam hilfreicher als die bloße Angabe „brauner Vogel“.",
+          "observationNote": "Die Empfehlung, mehrere sichtbare Merkmale gemeinsam zu verwenden, ist eine redaktionelle Bestimmungshilfe."
+        },
+        {
+          "id": "nahrung",
+          "title": "Der Boden muss erreichbar sein",
+          "text": "Bekassinen nutzen nasse Wiesen, Moore und andere Feuchtflächen mit weichem Boden; Deckung und offene nasse Stellen können dabei dicht nebeneinanderliegen. Sie stochern nach kleinen Wirbellosen, darunter Regenwürmern und Insektenlarven. Entscheidend ist damit nicht nur sichtbares Wasser: Zum Nahrungserwerb gehört auch ein ausreichend feuchter, durchdringbarer Boden, während höhere Vegetation Bereiche zum Verbergen und Brüten bietet."
+        },
+        {
+          "id": "brut-und-zug",
+          "title": "Mobile Küken werden dennoch gefüttert",
+          "text": "Das Nest liegt am Boden und ist in der Vegetation verborgen; die Eier werden vom Weibchen bebrütet. Die Küken sind Nestflüchter, doch die Eltern versorgen die jungen Küken mit Nahrung: „Nestflüchter“ bedeutet hier also nicht sofort vollständige Unabhängigkeit. Außerhalb der Brutzeit verändern Zugbewegungen die Zusammensetzung örtlicher Vorkommen; europäische Winterbestände können Vögel aus nördlicheren Brutgebieten enthalten und dürfen nicht mit dem örtlichen Brutbestand gleichgesetzt werden."
+        }
+      ]
+    },
+    {
+      "slug": "loeffelente",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Die Schnabelform zuerst betrachten",
+          "text": "Der nach vorn stark verbreiterte, spatelförmige Schnabel ist das besonders auffällige Merkmal der Löffelente und hilft auch bei unauffällig braun gefärbten Weibchen. Der Erpel trägt im Prachtkleid einen grünen Kopf, eine weiße Brust und kastanienbraune Körperseiten. Diese Farbkombination beschreibt ein bestimmtes Kleid und nicht jedes Tier zu jeder Jahreszeit; im Flug ergänzen hellblaue und grüne Flügelbereiche die Bestimmung."
+        },
+        {
+          "id": "nahrung",
+          "title": "Ein Schnabel als Filterwerkzeug",
+          "text": "Am Schnabelrand sitzen feine Lamellen, mit denen die Löffelente kleine Nahrung aus dem Wasser zurückhält. Zum Menü gehören kleine Krebstiere und andere wirbellose Wassertiere sowie Samen; Zooplankton spielt eine besondere Rolle. Flache Feuchtgewässer bieten den passenden Raum für diese oberflächennahe Nahrungsaufnahme, bei der die Ente den Schnabel durchs Wasser führt, statt ausschließlich am tiefen Gewässerboden zu suchen."
+        },
+        {
+          "id": "brut-und-zug",
+          "title": "Deckung an Land, Nahrung im Flachwasser",
+          "text": "Die Löffelente legt ihre geschützte Nestmulde am Boden in Vegetation an; Brutplatz und benachbarte Nahrungsflächen sind damit verschiedene Bestandteile ihres Lebensraums. Das Weibchen bebrütet die Eier, die Küken verlassen das Nest als bewegliche Nestflüchter. Innerhalb Europas gibt es sowohl verbleibende als auch südwärts ziehende Vögel; winterliche Ansammlungen können deshalb andere Herkünfte umfassen als die zuvor an einem Gewässer anwesenden Brutvögel."
+        }
+      ]
+    },
+    {
+      "slug": "knaekente",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Überaugenstreif und Flügel gemeinsam nutzen",
+          "text": "Der Knäkenten-Erpel im Prachtkleid ist am breiten, gebogenen weißen Überaugenstreif auf braunem Kopf gut erkennbar; graue Körperseiten und lange kontrastierende Schulterfedern ergänzen das Bild. Im Flug kann der helle blaugraue Vorderflügel auffallen. Weibchen sehen Krickenten-Weibchen ähnlich: Die auffällige Kopfzeichnung des Erpels ist daher keine Bestimmungsvoraussetzung für alle Knäkenten, und der Größenunterschied allein genügt für schwierige Weibchenbeobachtungen nicht.",
+          "observationNote": "Die Einschränkung zum Größenvergleich ist eine Bestimmungshilfe; die Art ist im Mittel etwas größer als die Krickente."
+        },
+        {
+          "id": "nahrung",
+          "title": "Vegetationsreiches Flachwasser nutzen",
+          "text": "Zur Nahrungssuche nutzt die Knäkente die Wasseroberfläche und die unmittelbar darunterliegenden Schichten; sie nimmt pflanzliche Nahrung und kleine Wassertiere wie Insekten auf. Flache, sumpfige Gewässer mit Wasser- und Uferpflanzen sowie nasse Wiesen gehören zu ihren wichtigen Lebensräumen. Die Kombination aus seichten Nahrungsflächen und schützender Vegetation ist aussagekräftiger als die bloße Gewässergröße, denn nicht jeder große See bietet solche flachen Übergänge.",
+          "observationNote": "Der Vergleich zwischen Gewässergröße und Ausstattung ist eine aus den Habitatangaben abgeleitete Einordnung, keine Messung eines konkreten Sees."
+        },
+        {
+          "id": "brut-und-zug",
+          "title": "Ein ausgeprägter Fernzieher",
+          "text": "Europäische Knäkenten überwintern überwiegend in Afrika südlich der Sahara und kehren im Frühjahr in die Brutgebiete zurück; in Mitteleuropa fehlen sie deshalb im Winter weitgehend. Das Nest wird in dichter Boden- oder Ufervegetation angelegt, die Jungen sind Nestflüchter. Ein im Frühjahr beobachtetes Paar an passendem Gewässer ist dennoch kein sicherer Brutnachweis: Gerade während des Zuges können Paare vorübergehend geeignete Brutlebensräume zur Rast nutzen."
+        }
+      ]
+    },
+    {
+      "slug": "schellente",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Kopfzeichnung nach Geschlecht unterscheiden",
+          "text": "Beim erwachsenen Schellenten-Erpel fallen das schwarz-weiße Körpermuster, der grünlich dunkel schimmernde Kopf und der runde weiße Fleck zwischen Auge und Schnabel auf. Weibchen tragen einen braunen Kopf und einen überwiegend grauen Körper; sie besitzen diesen weißen Erpelfleck nicht. Der große Kopf und die Flügelzeichnung ergänzen die Ansprache: Ein fehlender Wangenfleck schließt eine Schellente somit nicht aus, sondern verlangt zunächst die Unterscheidung der Geschlechtskleider."
+        },
+        {
+          "id": "nahrung",
+          "title": "Unter Wasser überwiegend tierische Kost",
+          "text": "Die Schellente taucht zur Nahrungssuche und nimmt unter anderem Muscheln, Insektenlarven und kleine Fische auf; pflanzliche Nahrung kann das Menü ergänzen. Sie nutzt Seen und andere Binnengewässer, außerhalb der Brutzeit auch Küstengewässer. Das unterscheidet ihren Nahrungserwerb von einer an der Oberfläche filternden Löffelente: „Wasservogel“ bezeichnet keinen einheitlichen Ernährungstyp, und selbst ähnlich gefärbte Enten können verschiedene Bereiche eines Gewässers nutzen.",
+          "observationNote": "Der Artenvergleich ist eine fachliche Einordnung; die Filterernährung der Löffelente ist im zugehörigen Porträt gesondert belegt."
+        },
+        {
+          "id": "brut-und-zug",
+          "title": "Baumhöhlen und Wasser gehören zusammen",
+          "text": "Schellenten brüten in Baumhöhlen und nehmen geeignete Nistkästen an; zum Brutlebensraum gehört deshalb neben Wasser auch ein erreichbarer Höhlenplatz. Das Weibchen bebrütet die Eier, die Jungen sind Nestflüchter. Nordeuropäische Brutvögel verlagern sich zum Winter in südlichere Gebiete und können dort an Binnengewässern oder Küsten auftreten: Viele Winterbeobachtungen an einem See sagen für sich allein noch nichts über die Zahl seiner örtlichen Brutpaare aus.",
+          "observationNote": "Die Trennung von Wintergastzahl und örtlichem Brutbestand ist eine Schlussfolgerung für das Lesen von Beobachtungen."
+        }
+      ]
+    },
+    {
+      "slug": "kolbenente",
+      "sections": [
+        {
+          "id": "gestalt",
+          "title": "Großer Kopf, rote Schnabelfarbe",
+          "text": "Der Kolbenenten-Erpel im Prachtkleid zeigt einen auffällig großen orange- bis rotbraunen Kopf, einen roten Schnabel, eine schwarze Brust und helle Flanken. Aufgerichtete Kopffedern verstärken den rundlich großen Eindruck; eine Tafelente mit braunem Kopf ist deshalb nicht allein wegen dieser Farbe eine Kolbenente. Weibchen sind wesentlich unauffälliger braun gefärbt und haben helle Wangen: Die leuchtende Erpelkombination darf nicht als Ganzjahresmerkmal aller Vögel verwendet werden."
+        },
+        {
+          "id": "nahrung",
+          "title": "Wasserpflanzen statt ausschließlich Tierbeute",
+          "text": "Kolbenenten nehmen überwiegend Wasserpflanzen auf, darunter Armleuchteralgen und Laichkräuter; kleine Wassertiere ergänzen die Nahrung. Dafür können sie sowohl tauchen als auch gründeln, sodass die Bezeichnung Tauchente keinen ausschließlichen Nahrungserwerb in tiefem Wasser bedeutet. Pflanzenreiche flache Seen mit dichter Ufervegetation bieten Nahrung und Deckung; der Verlust untergetauchter Pflanzen verändert deshalb eine wichtige Grundlage dieses Lebensraums und nicht nur sein Aussehen."
+        },
+        {
+          "id": "brut-und-jahreslauf",
+          "title": "Brut, Mauser und Winterrast trennen",
+          "text": "Die Kolbenente brütet am Boden in Wassernähe, meist geschützt durch Ufervegetation; ein offener See ohne geeigneten Ufersaum beschreibt daher noch keinen vollständigen Brutlebensraum. Ihr Jahreslauf umfasst außerdem Mauser- und Rastplätze, an denen sich größere Gruppen sammeln können, sowie regional unterschiedlichen Teilzug innerhalb Europas. Eine größere Ansammlung belegt deshalb nicht automatisch viele Brutpaare am selben Ort: Für die Einordnung sind Jahreszeit und beobachtetes Verhalten mitentscheidend.",
+          "observationNote": "Der letzte Satz ist eine Schlussfolgerung aus den unterschiedlichen saisonalen Gewässerfunktionen und ersetzt keinen örtlichen Brutnachweis."
+        }
+      ]
+    }
+  ]
+}
