@@ -1,0 +1,1309 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Drei neue Wissenstext-Kurse nach Audit von 168 Kursen und ihren Lektionen: zwölf Lektionen, zwölf ergänzende Anwendungsfragen. Eigene Beispiele sind ausdrücklich Modelle.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-lichtmessgroessen-round4-2026",
+      "title": "Lichtmessgrößen verstehen: Lumen, Lux, Candela und Lichtfarbe",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "description": "Leuchtendaten verstehen: Wie viel Licht entsteht, wohin es gelangt und weshalb Watt und Lichtfarbe andere Fragen beantworten.",
+      "minutes": 30,
+      "objectives": [
+        "Lichtstrom, gerichtete Lichtstärke und Beleuchtungsstärke unterscheiden",
+        "Flächen- und Entfernungsbezug mit begrenzten Rechenmodellen erklären",
+        "Lichtausbeute mit klarer elektrischer Systemgrenze vergleichen",
+        "Farbtemperatur von Farbwiedergabe trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame physikalische Grundlagen. Keine örtliche Beleuchtungs-, Arbeitsschutz- oder jagdrechtliche Freigabe.",
+        "AT": "Gemeinsame physikalische Grundlagen. Keine örtliche Beleuchtungs-, Arbeitsschutz- oder jagdrechtliche Freigabe.",
+        "CH": "Gemeinsame physikalische Grundlagen. Keine örtliche Beleuchtungs-, Arbeitsschutz- oder jagdrechtliche Freigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "NPL: candela (cd)",
+          "url": "https://www.npl.co.uk/resources/the-si-units/candela",
+          "organization": "National Physical Laboratory",
+          "supports": "Originalabschnitt Definition und Application gelesen: am menschlichen Sehen orientierte Lichtstärke und abgeleiteter Lichtstrom. Vereinfachende Gleichsetzung mit Leuchtdichte im Randtext nicht übernommen."
+        },
+        {
+          "label": "NIST: Realization of the candela",
+          "url": "https://www.nist.gov/pml/sensor-science/optical-radiation/realization-candela",
+          "organization": "National Institute of Standards and Technology",
+          "supports": "Originalabschnitt zu photopischer V(λ)-Bewertung, Candela und gerichteter Messung mit Abstandsquadratgesetz gelesen. Historische Realisierungsdaten und Unsicherheitswerte nicht übernommen."
+        },
+        {
+          "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+          "url": "https://oar.ptb.de/files/download/310.20150405.pdf",
+          "organization": "Physikalisch-Technische Bundesanstalt",
+          "supports": "Öffentlich indexierten Original-Infokasten gelesen: Lichtstrom und Verteilung, V(λ), Lichtausbeute in lm/W, CCT und Farbwiedergabe. Direkter PDF-Abruf eingeschränkt. Keine pauschalen CRI-Empfehlungswerte oder Marktleistungen übernommen."
+        },
+        {
+          "label": "PTB maßstäbe: Wäre das Auge nicht sonnenhaft, Licht-Größen",
+          "url": "https://www.ptb.de/cms/fileadmin/internet/forschung_entwicklung/das_si/magazinartikel/Waere_das_Auge_nicht_sonnenhaft.pdf",
+          "organization": "Physikalisch-Technische Bundesanstalt",
+          "supports": "Originalindex der Begriffsübersicht gelesen: Lichtstrom/lm, gerichtete Lichtstärke/cd, Beleuchtungsstärke/lx = lm/m² sowie Lichtausbeute/lm/W. Historische Messapparaturen und Bildmaterial nicht übernommen."
+        },
+        {
+          "label": "CIE e-ILV: Photometric distance law",
+          "url": "https://cie.co.at/eilv/912",
+          "organization": "International Commission on Illumination",
+          "supports": "Originaldefinition gelesen: Zusammenhang von Lichtstärke, Abstand und Einfallswinkel; Punktquellenannahme sowie Messprüfung bei ausgedehnten Quellen. Keine allgemeine Leuchtenreichweite abgeleitet."
+        },
+        {
+          "label": "CIE e-ILV: Correlated colour temperature",
+          "url": "https://cie.co.at/eilv/258",
+          "organization": "International Commission on Illumination",
+          "supports": "Originaldefinition gelesen: ähnlichste Farbtemperatur eines Planckschen Strahlers, Kelvin und begrenzte Anwendbarkeit fern des Planckschen Kurvenzugs."
+        },
+        {
+          "label": "U.S. DOE: LED Basics",
+          "url": "https://www.energy.gov/cmei/ssl/led-basics",
+          "organization": "U.S. Department of Energy",
+          "supports": "Originalabschnitte Energieeffizienz und Lichtqualität gelesen: Systemgrenze Quelle/Leuchte, CCT gegenüber Farbtreue und eingeschränkter Aussageumfang des CRI. Keine aktuellen Leistungs-, Preis- oder Lebensdauerwerte übernommen."
+        },
+        {
+          "label": "IES: Inverse-square law",
+          "url": "https://ies.org/definitions/inverse-square-law/",
+          "organization": "Illuminating Engineering Society",
+          "supports": "Originaldefinition 9.1.1 gelesen: E=I/d² bei senkrechter Fläche und Punktquelle, begrenzte Annäherung bei ausgedehnten Quellen. Keine dortige pauschale Abstandsnäherung als Geräteregel übernommen."
+        },
+        {
+          "label": "U.S. DOE: Color and Spectrum",
+          "url": "https://www.energy.gov/cmei/ssl/color-and-spectrum",
+          "organization": "U.S. Department of Energy",
+          "supports": "Originalabschnitte zu CCT/Duv und spektralen Verteilungen gelesen, insbesondere 2023-Abstract mit verschiedenen Spektren bei gleichem Farbort. Keine Messergebnisse oder Diagramme übernommen."
+        },
+        {
+          "label": "IES: Cosine law",
+          "url": "https://ies.org/definitions/cosine-law/",
+          "organization": "Illuminating Engineering Society",
+          "supports": "Originaldefinition 9.1.2 und Gleichung direkt gelesen: Einfallswinkel zur Flächennormalen und E = I cosθ / d². Zusammen mit CIE abgeglichen; keine Reichweitenregel."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "lichtgroessen",
+          "title": "Lumen beschreibt den Strom, Lux die beleuchtete Fläche",
+          "paragraphs": [
+            "Lichtstrom beschreibt die gesamte sichtbewertete Lichtleistung, die eine Quelle abgibt. Seine Einheit ist Lumen, lm. „Sichtbewertet“ bedeutet: Die verschiedenen Wellenlängen werden nach einer festgelegten Empfindlichkeitsfunktion des menschlichen Tagsehens gewichtet. Eine Lumenangabe ist deshalb weder ein ungewichteter Strahlungswert in Watt noch eine Sehkurve für Reh oder Hund.",
+            "Lichtstärke in Candela, cd, beschreibt dagegen den Lichtstrom pro Raumwinkel in einer bestimmten Richtung. Zwei Leuchten mit gleichem Gesamtlichtstrom können diesen unterschiedlich verteilen. Eine stärker gebündelte Abstrahlung kann in einer gewählten Richtung mehr Lichtstärke erzeugen, ohne deshalb insgesamt mehr Lumen abzugeben.",
+            "Beleuchtungsstärke beschreibt den auf eine Fläche auftreffenden Lichtstrom pro Fläche. Ihre Einheit Lux entspricht einem Lumen je Quadratmeter. Bei gleichmäßiger Verteilung gilt das einfache Verhältnis Lichtstrom durch Fläche. Eigenes Modell: 120 Lumen treffen vollständig und gleichmäßig auf 4 m²; daraus folgen 30 Lux. Der abgegebene Gesamtlichtstrom der Lampe und der tatsächlich auf dieser Fläche ankommende Anteil sind dabei getrennte Angaben.",
+            "Für eine Arbeitsfläche im Revier ist daher die Frage „Was kommt wo an?“ zusätzlich zur Leuchtenangabe sinnvoll. Das Beispiel beschreibt eine angenommene gleichmäßige Fläche; es ist keine reale Messung eines Geräts und kein vorgeschriebener Sollwert. Ein einzelner heller Fleck beschreibt außerdem noch nicht die Gleichmäßigkeit der ganzen Fläche."
+          ],
+          "takeaway": "Lumen gehört zum Lichtstrom, Candela zu einer Abstrahlrichtung und Lux zur empfangenden Fläche.",
+          "exercise": "Ordne einem Leuchtendatenblatt Gesamtlichtstrom, Richtungsangabe und Messung auf einer Arbeitsfläche zu.",
+          "evidence": [
+            {
+              "claim": "Lichtstrom/lm, gerichtete Lichtstärke/cd und Beleuchtungsstärke/lx = lm/m² sind verschiedene photometrische Größen; gleichmäßige 120 lm auf 4 m² ergeben im eigenen Modell 30 lx.",
+              "sources": [
+                {
+                  "label": "NPL: candela (cd)",
+                  "url": "https://www.npl.co.uk/resources/the-si-units/candela"
+                },
+                {
+                  "label": "PTB maßstäbe: Wäre das Auge nicht sonnenhaft, Licht-Größen",
+                  "url": "https://www.ptb.de/cms/fileadmin/internet/forschung_entwicklung/das_si/magazinartikel/Waere_das_Auge_nicht_sonnenhaft.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Photometrie gewichtet Strahlung nach dem menschlichen Sehen; Gesamtlichtstrom enthält die räumliche Verteilung nicht.",
+              "sources": [
+                {
+                  "label": "NIST: Realization of the candela",
+                  "url": "https://www.nist.gov/pml/sensor-science/optical-radiation/realization-candela"
+                },
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abstand-richtung",
+          "title": "Abstand und Abstrahlrichtung verändern das Ergebnis",
+          "paragraphs": [
+            "Die Lichtstärke einer Quelle ist richtungsbezogen. Ein Leuchtendatenblatt kann deshalb eine Verteilung über viele Richtungen beschreiben; ein einzelner Spitzenwert steht für eine bestimmte Richtung. Eine größere Gesamt-Lumenangabe legt den Wert in jeder einzelnen Richtung noch nicht fest.",
+            "Für eine idealisierte Punktquelle gilt bei senkrechtem Lichteinfall das photometrische Abstandsgesetz: Die Beleuchtungsstärke ist proportional zur Lichtstärke und umgekehrt proportional zum Quadrat des Abstands. Bei unveränderter Lichtstärke in derselben Richtung ergibt doppelter Abstand ein Viertel der Beleuchtungsstärke. Eigenes Modell ohne zusätzliche Abschwächung und Reflexionen: Aus 80 Lux bei 2 m werden 20 Lux bei 4 m.",
+            "Bei schräg gestellter Empfangsfläche kommt zusätzlich der Einfallswinkel hinzu. Das Licht verteilt sich auf eine größere Fläche; maßgeblich ist der Winkel zur Flächennormalen, also zur gedachten Senkrechten auf der Fläche. Der Abstand allein beschreibt somit nicht jede Messsituation. Ein Vergleich nennt auch die Ausrichtung der Fläche zur Quelle.",
+            "Eine ausgedehnte Leuchte in kurzer Entfernung ist nicht automatisch eine Punktquelle. Der Modellansatz darf nur verwendet werden, wenn seine Annäherung für die betrachtete Geometrie passt. Das Zahlenbeispiel ist eine eigene Geometrieübung und keine Reichweitenangabe für eine reale Taschenlampe, kein Sichtbarkeitsnachweis und keine Aussage über einen Waldweg."
+          ],
+          "takeaway": "Entfernungsrechnungen brauchen eine passende Quellengeometrie, Richtung und Flächenausrichtung.",
+          "exercise": "Vergleiche gedanklich dieselbe Leuchte vor einer senkrechten und einer schräg gestellten Messfläche.",
+          "evidence": [
+            {
+              "claim": "Punktquellenmodell: Beleuchtungsstärke folgt Lichtstärke und Abstand zum Quadrat; bei senkrechtem Einfall und gleichen übrigen Bedingungen führt Abstandsverdopplung zum Viertel. 80 lx bei 2 m zu 20 lx bei 4 m ist ein eigenes Beispiel.",
+              "sources": [
+                {
+                  "label": "CIE e-ILV: Photometric distance law",
+                  "url": "https://cie.co.at/eilv/912"
+                },
+                {
+                  "label": "NIST: Realization of the candela",
+                  "url": "https://www.nist.gov/pml/sensor-science/optical-radiation/realization-candela"
+                },
+                {
+                  "label": "IES: Inverse-square law",
+                  "url": "https://ies.org/definitions/inverse-square-law/"
+                }
+              ]
+            },
+            {
+              "claim": "Einfallswinkel und Punktquellen-/Fernfeldannäherung gehören zur Anwendung des Abstandsgesetzes; ein Richtungsspitzenwert ist kein Gesamtlichtstrom.",
+              "sources": [
+                {
+                  "label": "IES: Cosine law",
+                  "url": "https://ies.org/definitions/cosine-law/"
+                },
+                {
+                  "label": "CIE e-ILV: Photometric distance law",
+                  "url": "https://cie.co.at/eilv/912"
+                },
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                },
+                {
+                  "label": "PTB maßstäbe: Wäre das Auge nicht sonnenhaft, Licht-Größen",
+                  "url": "https://www.ptb.de/cms/fileadmin/internet/forschung_entwicklung/das_si/magazinartikel/Waere_das_Auge_nicht_sonnenhaft.pdf"
+                },
+                {
+                  "label": "IES: Inverse-square law",
+                  "url": "https://ies.org/definitions/inverse-square-law/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lichtausbeute",
+          "title": "Elektrische Watt und abgegebene Lumen gemeinsam lesen",
+          "paragraphs": [
+            "Die elektrische Leistungsaufnahme einer Leuchte wird in Watt angegeben. Sie beschreibt einen Energieumsatz pro Zeit, nicht unmittelbar den sichtbewerteten Lichtstrom. Verschiedene Lichtquellen können bei gleicher elektrischer Leistungsaufnahme unterschiedliche Lumenwerte liefern.",
+            "Die Lichtausbeute einer elektrisch betriebenen Quelle verbindet beide Angaben: abgegebener Lichtstrom geteilt durch aufgenommene elektrische Leistung, ausgedrückt in lm/W. Eigenes Datenblattmodell: 600 Lumen bei 6 Watt ergeben 100 lm/W; 600 Lumen bei 10 Watt ergeben 60 lm/W. Im Modell geben beide gleich viel Lichtstrom ab, benötigen dafür aber verschieden viel elektrische Leistung.",
+            "Die Systemgrenze muss stimmen. Ein Wert für einen einzelnen LED-Baustein ist von einem Wert für die ganze Leuchte samt Betriebsgerät und Optik zu unterscheiden. Verluste und die Lichtverteilung des Gesamtsystems können das Ergebnis verändern. Für einen Vergleich werden daher Angaben derselben Ebene und vergleichbarer Betriebsbedingungen zusammen betrachtet.",
+            "Ein hoher lm/W-Wert beantwortet auch nicht jede Qualitätsfrage: Er beschreibt weder allein die Beleuchtungsstärke auf der Arbeitsfläche noch die Farbwiedergabe. Die Übung ist ein Vergleich vorgegebener Zahlen; sie schätzt keine aktuelle Marktleistung und empfiehlt kein Produkt."
+          ],
+          "takeaway": "Lichtausbeute ist Lumen pro elektrischem Watt bei benannter Systemgrenze.",
+          "exercise": "Berechne für zwei gedachte ganze Leuchten 600÷6 und 600÷10, bevor du den Vergleich formulierst.",
+          "evidence": [
+            {
+              "claim": "Lichtausbeute ist Lichtstrom geteilt durch elektrische Leistungsaufnahme in lm/W; Quelle und gesamte Leuchte sind verschiedene Systemgrenzen. 100 bzw. 60 lm/W sind eigene Rechenergebnisse aus vorgegebenen Werten.",
+              "sources": [
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                },
+                {
+                  "label": "U.S. DOE: LED Basics",
+                  "url": "https://www.energy.gov/cmei/ssl/led-basics"
+                }
+              ]
+            },
+            {
+              "claim": "Elektrische Aufnahmeleistung, Gesamtlichtstrom, Verteilung und Farbqualität beantworten unterschiedliche Fragen.",
+              "sources": [
+                {
+                  "label": "NPL: candela (cd)",
+                  "url": "https://www.npl.co.uk/resources/the-si-units/candela"
+                },
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                },
+                {
+                  "label": "U.S. DOE: LED Basics",
+                  "url": "https://www.energy.gov/cmei/ssl/led-basics"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lichtfarbe",
+          "title": "Farbtemperatur und Farbwiedergabe sind zwei Eigenschaften",
+          "paragraphs": [
+            "Die ähnlichste Farbtemperatur, kurz CCT, beschreibt einen Farbort des Lichts durch den Vergleich mit einem Planckschen Strahler. Die Einheit ist Kelvin. Bei dafür geeignetem weißem Licht wird ein eher gelblich wirkendes Weiß mit niedrigeren, ein eher bläulich wirkendes Weiß mit höheren CCT-Werten verbunden. Die Angabe ist keine gemessene Gehäusetemperatur der Leuchte.",
+            "Diese Zuordnung verdichtet Farbinformation. Unterschiedliche spektrale Verteilungen können eine ähnliche CCT besitzen. Eine einzelne Kelvinzahl ersetzt daher kein vollständiges Spektrum. Bei stark vom Planckschen Kurvenzug abweichenden Farben ist das CCT-Konzept zudem nur eingeschränkt beziehungsweise nicht sinnvoll anzuwenden.",
+            "Farbwiedergabe fragt dagegen, wie eine Lichtquelle die Farben beleuchteter Gegenstände im Vergleich mit einer Referenz erscheinen lässt. Der klassische Farbwiedergabeindex CRI beziehungsweise Ra beschreibt bestimmte Vergleichsfarben; er ist kein vollständiges Maß für jeden Farbton und jede Nutzung. Gleiche CCT garantiert deshalb nicht gleiche Farbwiedergabe.",
+            "Eigener Vergleichsfall: Zwei weiße Leuchten tragen dieselbe Kelvinzahl, aber verschiedene Angaben zur Farbwiedergabe. Daraus ist dieselbe grobe Lichtfarbzuordnung erkennbar; die gleichartige Wiedergabe aller Objektfarben ist damit noch nicht belegt. Für natürliche Oberflächen werden Lichtfarbe, Farbwiedergabe und Lichtverteilung getrennt benannt. Eine Gesundheits- oder Wildtierverträglichkeitszusage folgt aus keiner dieser Zahlen allein."
+          ],
+          "takeaway": "Kelvin beschreibt hier die ähnliche Lichtfarbe, nicht die Wiedergabe sämtlicher Objektfarben.",
+          "exercise": "Trenne bei zwei gedachten Datenblättern Kelvinzahl und Farbwiedergabemerkmal in zwei Spalten.",
+          "evidence": [
+            {
+              "claim": "CCT vergleicht den Farbort geeigneten Lichts mit einem Planckschen Strahler und wird in Kelvin angegeben; sie beschreibt keine Geräteoberflächentemperatur und kein vollständiges Spektrum.",
+              "sources": [
+                {
+                  "label": "CIE e-ILV: Correlated colour temperature",
+                  "url": "https://cie.co.at/eilv/258"
+                },
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                },
+                {
+                  "label": "U.S. DOE: LED Basics",
+                  "url": "https://www.energy.gov/cmei/ssl/led-basics"
+                },
+                {
+                  "label": "U.S. DOE: Color and Spectrum",
+                  "url": "https://www.energy.gov/cmei/ssl/color-and-spectrum"
+                }
+              ]
+            },
+            {
+              "claim": "CCT und Farbtreue/Farbwiedergabe sind getrennte Eigenschaften; der klassische CRI hat einen begrenzten Aussageumfang.",
+              "sources": [
+                {
+                  "label": "U.S. DOE: LED Basics",
+                  "url": "https://www.energy.gov/cmei/ssl/led-basics"
+                },
+                {
+                  "label": "PTB-Mitteilungen 125(2015), Heft 4: Infokasten LED, S. 33",
+                  "url": "https://oar.ptb.de/files/download/310.20150405.pdf"
+                },
+                {
+                  "label": "U.S. DOE: Color and Spectrum",
+                  "url": "https://www.energy.gov/cmei/ssl/color-and-spectrum"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "lichtgroessen",
+          "q": "120 Lumen treffen in einem Lernmodell vollständig und gleichmäßig auf 4 m². Welche Beleuchtungsstärke entsteht?",
+          "options": [
+            "30 Lux.",
+            "120 Lux.",
+            "480 Lux.",
+            "4 Lux."
+          ],
+          "answer": 0,
+          "explain": "Für die gleichmäßig beleuchtete Modellfläche werden die ankommenden 120 Lumen durch 4 Quadratmeter geteilt. Das ergibt 30 Lumen je Quadratmeter, also 30 Lux; die Annahme betrifft den tatsächlich ankommenden Lichtstrom."
+        },
+        {
+          "id": "q2",
+          "lessonId": "abstand-richtung",
+          "q": "Eine unveränderte Punktquelle liefert im reflexionsfreien Lernmodell bei senkrechtem Einfall 80 Lux in 2 m Abstand. Welcher Wert folgt in derselben Richtung bei 4 m?",
+          "options": [
+            "160 Lux.",
+            "40 Lux.",
+            "20 Lux.",
+            "80 Lux."
+          ],
+          "answer": 2,
+          "explain": "Im ausdrücklich begrenzten Punktquellenmodell wächst die Bezugsfläche mit dem Quadrat des Abstands. Doppelte Entfernung ergibt deshalb ein Viertel von 80 Lux, also 20 Lux; eine ausgedehnte Nahquelle ist dadurch nicht beschrieben."
+        },
+        {
+          "id": "q3",
+          "lessonId": "lichtausbeute",
+          "q": "Zwei ganze Leuchten liefern im Datenblattmodell jeweils 600 Lumen; A benötigt 6 Watt, B 10 Watt. Wie unterscheiden sich ihre Lichtausbeuten?",
+          "options": [
+            "A: 60 lm/W; B: 100 lm/W.",
+            "A: 100 lm/W; B: 60 lm/W.",
+            "A: 600 lm/W; B: 600 lm/W.",
+            "A: 6 lm/W; B: 10 lm/W."
+          ],
+          "answer": 1,
+          "explain": "Der gleiche Lichtstrom wird jeweils durch die zugehörige elektrische Leistung geteilt: 600÷6 ergibt 100 lm/W, 600÷10 ergibt 60 lm/W. Die Zahlen vergleichen ganze Leuchten; sie beschreiben keine zusätzliche Farb- oder Flächenqualität."
+        },
+        {
+          "id": "q4",
+          "lessonId": "lichtfarbe",
+          "q": "Zwei weiße Leuchten besitzen dieselbe CCT, aber unterschiedliche Farbwiedergabeangaben. Was beschreibt ihre gemeinsame Kelvinzahl?",
+          "options": [
+            "Die gleiche elektrische Leistungsaufnahme.",
+            "Die gleiche Beleuchtungsstärke auf jedem Gegenstand.",
+            "Die vollständige Gleichheit ihrer Spektren.",
+            "Einen ähnlichen Farbort des ausgesandten weißen Lichts."
+          ],
+          "answer": 3,
+          "explain": "Die ähnlichste Farbtemperatur ordnet einen Farbort über einen Planckschen Vergleichsstrahler ein. Verschiedene Spektren und unterschiedliche Farbwiedergabe können trotzdem zu einer ähnlichen CCT gehören."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Fachlicher Abgleich nur der vier neuen Wissenstexte, ergänzenden Fragen und eigenen Rechenmodelle.",
+        "independentOrganizations": [
+          "NPL",
+          "NIST",
+          "PTB",
+          "CIE",
+          "U.S. DOE",
+          "IES"
+        ],
+        "limitations": [
+          "PTB-Passagen öffentlich im Originalindex gelesen; direkter PDF-Abruf des LED-Infokastens eingeschränkt.",
+          "Photometrische Größen sind am menschlichen Sehen gewichtet; keine Sehkurve für Wildtiere.",
+          "Keine Leuchtenmessung, Reichweiten- oder Sicherheitszusage; gleiche CCT beschreibt kein vollständiges Spektrum."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-korrosion-metalle-round4-2026",
+      "title": "Korrosion verstehen: Metall, Feuchte und Schutzschichten",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "description": "Warum Metall sich chemisch verändert, Kontaktstellen besonders sein können und eine glänzende Fläche noch keine Materialprüfung ersetzt.",
+      "minutes": 30,
+      "objectives": [
+        "Anodische Metallauflösung von kathodischer Reaktion unterscheiden",
+        "Die Voraussetzungen galvanischer Korrosion erklären",
+        "Passivität, flächigen Angriff und Lochkorrosion trennen",
+        "Örtliche Spaltbedingungen mit der Umgebung vergleichen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Werkstoffgrundlagen. Keine Reparatur-, Beschichtungs- oder Belastbarkeitsfreigabe für ein reales Bauteil.",
+        "AT": "Gemeinsame Werkstoffgrundlagen. Keine Reparatur-, Beschichtungs- oder Belastbarkeitsfreigabe für ein reales Bauteil.",
+        "CH": "Gemeinsame Werkstoffgrundlagen. Keine Reparatur-, Beschichtungs- oder Belastbarkeitsfreigabe für ein reales Bauteil."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "CCI: Caring for metal objects",
+          "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+          "organization": "Canadian Conservation Institute",
+          "supports": "Direkte Originalabschnitte Understanding corrosion, galvanische Reihe, Passivschichten und Coatings gelesen. Feuchtes Eisen dient als Modell; museale Feuchte-, Reinigungs- und Lagerrezepte werden nicht auf Ausrüstung übertragen."
+        },
+        {
+          "label": "NASA KSC: Corrosion Fundamentals",
+          "url": "https://public.ksc.nasa.gov/corrosion/corrosion-fundamentals/",
+          "organization": "NASA Kennedy Space Center, Corrosion Technology Laboratory",
+          "supports": "Öffentlich indexierten Originaltext zu Metallauflösung, Oxidation/Reduktion, Elektrolyt und Elektroden gelesen. Direkter Abruf lieferte 502; keine Allgemeinbehauptung, jede Korrosion brauche Sauerstoff."
+        },
+        {
+          "label": "NASA KSC: Forms of Corrosion",
+          "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/",
+          "organization": "NASA Kennedy Space Center, Corrosion Technology Laboratory",
+          "supports": "Öffentlich indexierte Originalabschnitte zu galvanischer Korrosion, gleichmäßigem Angriff, Pitting und Sauerstoffkonzentrationszellen gelesen. Direkter Abruf eingeschränkt; NASA-Werkstofffreigaben und Gegenmaßnahmen nicht übernommen."
+        },
+        {
+          "label": "AMPP: Forms of Corrosion",
+          "url": "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion",
+          "organization": "Association for Materials Protection and Performance",
+          "supports": "Originalabschnitte Galvanic, Pitting und Uniform Corrosion gelesen. Materialpaar, Elektrolyt und galvanische Reihe sind an Bedingungen gebunden; keine universelle Resttragfähigkeitsbewertung."
+        },
+        {
+          "label": "AMPP: Crevice Corrosion",
+          "url": "https://www.ampp.org/technical-research/impact/corrosion-basics/group-1/crevice-corrosion",
+          "organization": "Association for Materials Protection and Performance",
+          "supports": "Originalabschnitt gelesen: stagnierende Spaltlösung, Sauerstoffverarmung, örtliche Ansäuerung und Chloridanreicherung. Keine eigene Auslegung oder Reparaturmethode."
+        },
+        {
+          "label": "AMPP: Key Corrosion Terms",
+          "url": "https://protect-perform.ampp.org/are-you-speaking-the-same-language/",
+          "organization": "Association for Materials Protection and Performance",
+          "supports": "Originaldefinitionen galvanische Korrosion und Passivität gelesen: elektrische Verbindung plus Elektrolyt, relativ aktive Anode und schützende Passivschicht, abhängig von Werkstoff und Umgebung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "elektrochemie",
+          "title": "Am Metall laufen gekoppelte Teilreaktionen ab",
+          "paragraphs": [
+            "Korrosion ist eine chemische beziehungsweise elektrochemische Wechselwirkung eines Werkstoffs mit seiner Umgebung. Bei Metallen kann dabei metallisches Material in andere chemische Formen übergehen. Sie ist von rein mechanischem Verschleiß zu unterscheiden, auch wenn sich Vorgänge an einer realen Oberfläche überlagern können. Eine Korrosionsschicht ist nicht einfach zusätzlicher unveränderter Stahl.",
+            "Ein verständliches Modell ist Eisen unter einem sauerstoffhaltigen Wasserfilm. An anodischen Bereichen geben Eisenatome Elektronen ab und gehen als Ionen in die wässrige Umgebung über. Die Schreibweise Fe → Fe²⁺ + 2 e⁻ beschreibt diese Teilreaktion. Elektronenabgabe heißt Oxidation. Die Elektronen werden durch das Metall zu Bereichen geleitet, an denen eine Reduktionsreaktion stattfindet.",
+            "Im genannten Modell wird an kathodischen Bereichen gelöster Sauerstoff unter Beteiligung von Wasser reduziert. Der Wasserfilm mit beweglichen Ionen wirkt als Elektrolyt und verbindet die Teilreaktionen über einen Ionenweg. Anode und Kathode können auf demselben Metallstück liegen; dafür müssen nicht zwei verschiedene sichtbare Bauteile vorliegen.",
+            "Eigene Lernskizze: Bereich A gibt Eisenionen und Elektronen ab, Bereich B verbraucht Elektronen. A ist der anodische, B der kathodische Bereich. Das Modell erklärt gekoppelte Ladungswege; es behauptet keine für alle Metalle gleiche Reaktion oder Geschwindigkeit. Andere Medien können andere kathodische Reaktionen ermöglichen. Auch ein dünner Feuchtefilm kann elektrochemisch bedeutsam sein."
+          ],
+          "takeaway": "Bei anodischer Metallauflösung werden Elektronen abgegeben; eine gekoppelte kathodische Reaktion nimmt sie auf.",
+          "exercise": "Beschrifte in der beschriebenen Lernskizze getrennt den Elektronenweg im Metall und den Ionenweg im Wasserfilm.",
+          "evidence": [
+            {
+              "claim": "Korrosion verändert Metall durch Reaktion mit seiner Umgebung. Im feuchten Eisenmodell ist Fe→Fe²⁺+2 e⁻ anodische Oxidation, gekoppelt an eine kathodische Reduktion und Elektronen-/Ionenwege.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "NASA KSC: Corrosion Fundamentals",
+                  "url": "https://public.ksc.nasa.gov/corrosion/corrosion-fundamentals/"
+                }
+              ]
+            },
+            {
+              "claim": "Anodische und kathodische Bereiche können auf einem Metallstück liegen; ein sauerstoffhaltiger Wasserfilm ist ein begrenztes Modell, keine Bedingung für alle Korrosionssysteme.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "NASA KSC: Corrosion Fundamentals",
+                  "url": "https://public.ksc.nasa.gov/corrosion/corrosion-fundamentals/"
+                },
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "metallkontakt",
+          "title": "Zwei Metalle brauchen mehr als bloße Nachbarschaft",
+          "paragraphs": [
+            "Galvanische Korrosion kann entstehen, wenn unterschiedliche metallische Werkstoffe elektrisch miteinander verbunden sind und ein gemeinsamer Elektrolyt den Ionenweg ermöglicht. Die Verbindung kann durch unmittelbaren Kontakt oder einen leitenden Weg bestehen. Zwei trocken nebeneinander liegende, elektrisch getrennte Muster erfüllen diese Kombination noch nicht.",
+            "Im galvanischen Paar wirkt der unter den betrachteten Bedingungen relativ aktivere Werkstoff anodisch. Sein Angriff kann gegenüber dem ungekoppelten Zustand beschleunigt werden; der andere Partner wirkt kathodisch. „Edel“ und „unedel“ werden hier auf das konkrete elektrochemische System bezogen und nicht nach Farbe, Preis oder dem Wort Edelstahl entschieden.",
+            "Galvanische Reihen ordnen gemessene Potentiale für eine bestimmte Umgebung, beispielsweise Meerwasser. Ein solcher Kontext gehört zur Tabelle. Auch der aktive oder passive Oberflächenzustand beeinflusst die Einordnung. Die Werkstoffnamen allein beschreiben deshalb nicht alle Eigenschaften einer beliebigen Verbindung im Revier.",
+            "Eigener Vergleich: Skizze A zeigt zwei unterschiedliche Metalle mit leitender Verbindung und gemeinsamem Wasserfilm, Skizze B dieselben Metalle trocken und elektrisch getrennt. A enthält die genannten Voraussetzungen eines galvanischen Systems, B nicht. Eine tatsächliche Schadensrate wird damit nicht berechnet; sie hängt zusätzlich von Materialzustand, Medium und Geometrie ab."
+          ],
+          "takeaway": "Galvanische Korrosion verbindet Werkstoffunterschied, elektrischen Kontakt und einen geeigneten gemeinsamen Elektrolyten.",
+          "exercise": "Ergänze an der gedachten Verbindung je eine Markierung für den Elektronen- und den Ionenweg.",
+          "evidence": [
+            {
+              "claim": "Galvanischer Angriff braucht unterschiedliche gekoppelte Werkstoffe, elektrische Verbindung und gemeinsamen Elektrolyten; der relativ aktive anodische Partner kann beschleunigt korrodieren.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                },
+                {
+                  "label": "AMPP: Forms of Corrosion",
+                  "url": "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion"
+                }
+              ]
+            },
+            {
+              "claim": "Galvanische Reihen und relativer aktiver/passiver Zustand gelten für benannte Umgebungsbedingungen; Werkstoffname, Farbe oder Preis allein sind keine vollständige Beständigkeitsangabe.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "AMPP: Forms of Corrosion",
+                  "url": "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion"
+                },
+                {
+                  "label": "AMPP: Key Corrosion Terms",
+                  "url": "https://protect-perform.ampp.org/are-you-speaking-the-same-language/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "passivitaet-lochfrass",
+          "title": "Eine schützende Schicht kann örtlich versagen",
+          "paragraphs": [
+            "Manche Metalle besitzen in geeigneter Umgebung eine dünne Passivschicht, die den weiteren Angriff stark vermindert. Nichtrostende Stähle sind ein bekanntes Beispiel; ihre Beständigkeit beruht wesentlich auf dieser schützenden Oberflächenschicht. Passivität beschreibt einen Zustand mit geringer Korrosionsrate und keine Garantie gegen jeden denkbaren Angriff.",
+            "Bei gleichmäßiger Korrosion wird eine größere Oberfläche vergleichsweise flächig abgetragen. Lochkorrosion konzentriert den Angriff dagegen auf kleine Bereiche, in denen Vertiefungen entstehen. Eine kleine angegriffene Oberfläche kann deshalb mit einer ausgeprägten örtlichen Eindringtiefe verbunden sein. Sichtbar betroffene Fläche und verlorene Materialdicke sind unterschiedliche Größen.",
+            "Eine Passivschicht kann unter bestimmten chemischen oder mechanischen Bedingungen örtlich instabil werden. Chloride und die lokale Umgebung können dabei bedeutsam sein. Die genaue Empfindlichkeit hängt vom Werkstoff und den Bedingungen ab; aus dem Wort „nichtrostend“ folgt keine universelle Lochkorrosionsfreiheit.",
+            "Eigener Skizzenvergleich: Muster A ist über eine breite Fläche etwas dünner, Muster B besitzt eine einzelne tiefe Vertiefung in sonst wenig veränderter Oberfläche. A veranschaulicht flächigen, B örtlich konzentrierten Angriff. Die Skizzen erklären die Geometrie. Sie beziffern weder eine zulässige Tiefe noch die verbleibende Tragfähigkeit eines realen Werkzeugs oder Befestigungsteils."
+          ],
+          "takeaway": "Passivität bedeutet eine geringe Korrosionsrate unter passenden Bedingungen; Lochkorrosion ist räumlich konzentriert.",
+          "exercise": "Vergleiche in zwei gedachten Querschnitten angegriffene Fläche und maximale Eindringtiefe getrennt.",
+          "evidence": [
+            {
+              "claim": "Passivschichten vermindern Korrosionsraten und tragen zur Beständigkeit nichtrostender Stähle bei; ihre Stabilität bleibt werkstoff- und umgebungsabhängig.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "AMPP: Key Corrosion Terms",
+                  "url": "https://protect-perform.ampp.org/are-you-speaking-the-same-language/"
+                },
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                }
+              ]
+            },
+            {
+              "claim": "Gleichmäßiger Angriff und örtliche Pitting-Vertiefungen haben verschiedene Geometrien; lokale Schichtstörung und Chloride können Pitting begünstigen. Kleine sichtbare Fläche belegt keine geringe Tiefe.",
+              "sources": [
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                },
+                {
+                  "label": "AMPP: Forms of Corrosion",
+                  "url": "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "spalt-umgebung",
+          "title": "Im Spalt kann eine andere Umgebung entstehen",
+          "paragraphs": [
+            "Ein enger Spalt kann Feuchtigkeit zurückhalten und den Austausch mit der äußeren Lösung begrenzen. Solche Mikroumgebungen sind beispielsweise unter Auflagen, Dichtungen oder überlappenden Flächen möglich. Entscheidend ist die örtliche Lösung im Spalt, nicht nur der gemessene Zustand weit daneben.",
+            "Wird Sauerstoff im Spalt verbraucht und langsamer nachgeliefert, kann ein Belüftungsunterschied zur äußeren Oberfläche entstehen. Im beschriebenen Konzentrationszellenmodell wirkt der sauerstoffärmere Bereich anodisch. Weitere örtliche Veränderungen, etwa Ansäuerung und Anreicherung aggressiver Ionen, können den Angriff verstärken. Spaltkorrosion ist deshalb mehr als Wasser an einer beliebigen offenen Fläche.",
+            "Eine Beschichtung kann den Zutritt eines Mediums erschweren; ihre Wirkung hängt aber von Material, Haftung, Durchgängigkeit und Umgebung ab. Eine sichtbare Deckschicht ist nicht automatisch eine dauerhaft geschlossene Barriere. Fehlstellen, Ablösungen und unterwanderte Bereiche sind bei einer Zustandsbeschreibung gesondert zu benennen.",
+            "Eigener Vergleichsfall: Neben einer feuchten überlappenden Verbindung wirkt die offene Metallfläche noch wenig verändert. Die mögliche chemische Situation im zurückgehaltenen Spaltwasser bleibt davon getrennt. Das ist eine Erklärung lokaler Unterschiede, keine Aufforderung zum Zerlegen oder Nachbeschichten. Reale Ausrüstung und tragende Teile werden nach den zuständigen Prüf- und Herstellerverfahren beurteilt."
+          ],
+          "takeaway": "Eine lokale Spaltlösung kann chemisch deutlich von der offenen Umgebung abweichen.",
+          "exercise": "Beschreibe an einer gedachten Überlappung offene Oberfläche, Feuchtespalt und mögliche Austauschwege getrennt.",
+          "evidence": [
+            {
+              "claim": "Stagnierende Spaltlösungen können Sauerstoffarmut, Ansäuerung und aggressive Ionenanreicherung entwickeln; das Belüftungsunterschiedsmodell macht den sauerstoffarmen Bereich anodisch.",
+              "sources": [
+                {
+                  "label": "AMPP: Crevice Corrosion",
+                  "url": "https://www.ampp.org/technical-research/impact/corrosion-basics/group-1/crevice-corrosion"
+                },
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                }
+              ]
+            },
+            {
+              "claim": "Schichten können den Medienzutritt begrenzen, sind aber keine universelle dauerhafte Barriere; Fehlstellen/Unterwanderung und lokale Spaltumgebung gehören zur Beurteilung.",
+              "sources": [
+                {
+                  "label": "CCI: Caring for metal objects",
+                  "url": "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html"
+                },
+                {
+                  "label": "NASA KSC: Forms of Corrosion",
+                  "url": "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+                },
+                {
+                  "label": "AMPP: Crevice Corrosion",
+                  "url": "https://www.ampp.org/technical-research/impact/corrosion-basics/group-1/crevice-corrosion"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "elektrochemie",
+          "q": "Eine Lernskizze zeigt Eisenatome, die in Bereich A als Fe²⁺ in einen Wasserfilm übergehen und Elektronen abgeben. Welche Funktion hat A?",
+          "options": [
+            "Eine kathodische Reduktionsstelle.",
+            "Eine rein isolierende Schutzschicht.",
+            "Eine anodische Oxidationsstelle.",
+            "Ein ausschließlich mechanischer Gleitkontakt."
+          ],
+          "answer": 2,
+          "explain": "Die Abgabe von Elektronen und der Übergang von Metallatomen zu Ionen kennzeichnen im Eisenmodell die anodische Oxidation. Eine kathodische Teilreaktion verbraucht die Elektronen an anderer Stelle; beide Teilreaktionen gehören zusammen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "metallkontakt",
+          "q": "Welche Kombination aus Werkstoffen, Verbindung und Umgebung kennzeichnet ein galvanisches Korrosionspaar?",
+          "options": [
+            "Unterschiedliche Metalle, leitend verbunden und von gemeinsamem Elektrolyten benetzt.",
+            "Unterschiedliche Metalle, trocken und elektrisch vollständig getrennt.",
+            "Ein trockener Kunststoffstab neben einer trockenen Glasscheibe.",
+            "Zwei getrennte trockene Metallmuster ohne leitenden Kontakt."
+          ],
+          "answer": 0,
+          "explain": "Die leitende Verbindung ermöglicht den Elektronenweg, der gemeinsame Elektrolyt den Ionenweg. Der Materialunterschied kann unter diesen Bedingungen eine Potentialdifferenz erzeugen; bloße Nachbarschaft genügt nicht."
+        },
+        {
+          "id": "q3",
+          "lessonId": "passivitaet-lochfrass",
+          "q": "Zwei Querschnittsskizzen zeigen A mit breitem gleichmäßigem Dickenverlust und B mit einer schmalen tiefen Vertiefung. Welche Beschreibung passt zu B?",
+          "options": [
+            "Flächige gleichmäßige Abtragung.",
+            "Reine elastische Formänderung.",
+            "Gleichmäßiger Auftrag einer Schutzschicht.",
+            "Örtlich konzentrierte Lochkorrosion."
+          ],
+          "answer": 3,
+          "explain": "Lochkorrosion konzentriert Materialverlust auf einzelne Stellen. Ein kleiner Oberflächenbereich kann daher tief angegriffen sein; die Fläche allein beschreibt weder das Schadensvolumen noch die Belastbarkeit eines echten Bauteils."
+        },
+        {
+          "id": "q4",
+          "lessonId": "spalt-umgebung",
+          "q": "Im Konzentrationszellenmodell bleibt Wasser unter einer Auflage zurück; Sauerstoff gelangt dort langsamer nach als an der offenen Oberfläche. Was kann den örtlichen Spaltangriff erklären?",
+          "options": [
+            "Ein überall identischer Sauerstoffgehalt mit völlig gleichem chemischem Zustand.",
+            "Ein sauerstoffärmerer anodischer Spaltbereich mit veränderter lokaler Lösung.",
+            "Eine ausschließliche Vergrößerung der äußeren trockenen Oberfläche.",
+            "Ein vollständiger Stillstand aller elektrochemischen Teilreaktionen."
+          ],
+          "answer": 1,
+          "explain": "Der eingeschränkte Austausch kann einen Belüftungsunterschied zwischen Spalt und offener Umgebung erzeugen. Im benannten Modell wird der sauerstoffärmere Bereich anodisch; zusätzliche Ansäuerung und Ionenanreicherung können den lokalen Angriff verstärken."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Abgleich der vier neuen Werkstoff-Lektionen und ergänzenden Vergleichsfragen.",
+        "independentOrganizations": [
+          "Canadian Conservation Institute",
+          "NASA KSC",
+          "AMPP"
+        ],
+        "limitations": [
+          "NASA-Originalabschnitte öffentlich indexiert gelesen; Direktabruf 502. Mehrere NASA-Seiten bleiben eine Familie, mehrere AMPP-Seiten ebenfalls.",
+          "Das feuchte sauerstoffhaltige Eisenmodell ist keine Erklärung sämtlicher Korrosionsformen.",
+          "Museale Schutzmaßnahmen, Chemikalien, Prüfversuche und Feuchteschwellen werden nicht in Anwendungsempfehlungen umgewandelt.",
+          "Keine Sichtdiagnose zu Festigkeit oder Sicherheit realer Ausrüstung."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-wasseraktivitaet-ph-round4-2026",
+      "title": "Wasseraktivität und Säuregrad: Lebensmittelbedingungen verstehen",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Jagdpraxis",
+      "description": "Warum Wassergehalt, aw und pH verschiedene Eigenschaften sind und weshalb Lebensmittel aus mehreren zusammenwirkenden Bedingungen bestehen.",
+      "minutes": 30,
+      "objectives": [
+        "Wasseraktivität von Wassergehalt und Raumluftfeuchte unterscheiden",
+        "Matrix, gelöste Stoffe und Feuchtewanderung erklären",
+        "Die logarithmische Bedeutung eines pH-Unterschieds verstehen",
+        "Produkteigenschaften und Lagerumgebung gemeinsam einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Lebensmittelgrundlagen. Keine Herstellanleitung, Grenzwertliste oder Haltbarkeits- und Verzehrfreigabe.",
+        "AT": "Gemeinsame Lebensmittelgrundlagen. Keine Herstellanleitung, Grenzwertliste oder Haltbarkeits- und Verzehrfreigabe.",
+        "CH": "Gemeinsame Lebensmittelgrundlagen. Keine Herstellanleitung, Grenzwertliste oder Haltbarkeits- und Verzehrfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+          "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+          "organization": "U.S. Food and Drug Administration",
+          "supports": "Originalabschnitte Definition und Sorption Behavior gelesen: Dampfdruckverhältnis, Gleichgewichts-RH, Matrix/Wasserbindung, Salz-/Zuckerlösungen und Temperaturgleichgewicht. Historische Messgeräte, Lebensmittelwerte, US-Grenzen und pauschaler Temperaturtrend nicht übernommen."
+        },
+        {
+          "label": "FAO: Fruit and vegetable processing, 5.2.1",
+          "url": "https://www.fao.org/4/v5030e/v5030e0b.htm",
+          "organization": "Food and Agriculture Organization",
+          "supports": "Originalabschnitt Water and water activity gelesen: Wassergehalt gegenüber aw, produktspezifische Sorptionsisotherme und Gleichgewicht mit Luft. Kein Frucht-Trocknungsrezept auf Wildbret übertragen."
+        },
+        {
+          "label": "IUPAC Gold Book: pH",
+          "url": "https://goldbook.iupac.org/terms/view/P04524",
+          "organization": "International Union of Pure and Applied Chemistry",
+          "supports": "Öffentlich indexierten vollständigen Originaleintrag Version 5 gelesen: pH als negativer dekadischer Logarithmus der Wasserstoffionenaktivität; Begriff und operative Messgrenzen. Direkter Aufruf eingeschränkt, keine Harned-Zellen-Anleitung."
+        },
+        {
+          "label": "OpenStax Chemistry 2 e, 14.2: pH and pOH",
+          "url": "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh",
+          "organization": "Rice University / OpenStax",
+          "supports": "Originalabschnitt zur logarithmischen Skala, verdünnten wässrigen Lösungen und Messgrößen gelesen. Die Konzentrationsnäherung wird von der genaueren IUPAC-Aktivitätsdefinition getrennt; keine Buchaufgaben übernommen."
+        },
+        {
+          "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+          "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306",
+          "organization": "European Food Safety Authority",
+          "supports": "Originalabschnitte 3.2.1–3.2.2 sowie Produktcharakterisierung gelesen: aw/pH, Temperatur/Gasatmosphäre, Solute, Hemmung versus Inaktivierung und produktspezifische Bedingungen. Geänderte Grenzwerttabellen und Rechtsvorschriften nicht als allgemeine Wildbretfreigabe übernommen."
+        },
+        {
+          "label": "Leistner 2000: Basic aspects of food preservation by hurdle technology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10791741/",
+          "organization": "Bundesanstalt für Fleischforschung, Kulmbach; International Journal of Food Microbiology",
+          "supports": "Originalabstract über PubMed und öffentlich indexierte erste Original-PDF-Seite gelesen: kombinierte Faktoren Temperatur/pH/aw und Wechselwirkungen. Vollkapitel nicht behauptet; kein experimenteller Datensatz, keine Konservierungsrezeptur übernommen."
+        },
+        {
+          "label": "University of Minnesota Extension: Cottage food uses for your strawberry crop",
+          "url": "https://extension.umn.edu/about/our-stories/news/cottage-food-connection/cottage-food-uses-for-your-strawberry-crop",
+          "organization": "University of Minnesota Extension",
+          "supports": "Nur Originalabschnitt über moisture migration zwischen Füllung und Kruste gelesen: unterschiedliche aw als Antrieb bei Mehrkomponentenprodukten. US-Haushalts-/Verkaufsregeln, Schwellen und Gefriertrocknungsaussagen nicht übernommen."
+        },
+        {
+          "label": "USDA ARS: Pathogen Modeling Program, Tutorial und Glossar",
+          "url": "https://pmp.ars.usda.gov/tutorial.aspx",
+          "organization": "USDA Agricultural Research Service",
+          "supports": "Originalabschnitte Choosing a Model/Model Interpretation und Glossar Extrinsic/Intrinsic Factors direkt gelesen: Umgebungstemperatur und Gase versus Produkteigenschaften; Modelle und Wachstums-/Inaktivierungsaussagen gelten nur in ihrem validierten Produktkontext. Keine Softwareanweisung, US-Schwellen oder vereinfachte pH-Konzentrationsdefinition übernommen."
+        },
+        {
+          "label": "EMPIR EMUE / NPL: Examples of evaluating measurement uncertainty, E1.1.2.2, S. 58",
+          "url": "https://empir.npl.co.uk/emue/wp-content/uploads/sites/49/2021/07/Compendium_M36.pdf",
+          "organization": "EMPIR EMUE, institutionell bereitgestellt durch das National Physical Laboratory",
+          "supports": "Öffentlich indexierten Originalabschnitt E1.1.2.2 auf gedruckter S. 58 gelesen: pH als negativer Zehnerlogarithmus der Wasserstoffionenaktivität. Direkter PDF-Abruf zeitweise nicht erreichbar. Metrologische Erläuterung der Definition, keine unabhängige Messwiederholung und keine Kalibrier- oder Unsicherheitszahlen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "aw-wassergehalt",
+          "title": "Wassergehalt und Wasseraktivität beschreiben Verschiedenes",
+          "paragraphs": [
+            "Ein Wassergehalt beschreibt eine Wassermenge mit einer festgelegten Bezugsgröße, etwa als Massenanteil am gesamten Lebensmittel. Die Wasseraktivität, aw, beschreibt dagegen das Gleichgewicht des Wassers im Produkt: Sie ist das Verhältnis des Wasserdampfdrucks über dem Lebensmittel zum Dampfdruck über reinem Wasser bei derselben Temperatur. Sie hat keine Einheit wie Gramm oder Prozent Wassergehalt.",
+            "Bei erreichtem Gleichgewicht lässt sich aw aus der relativen Feuchte im geschlossenen Luftraum über der Probe ausdrücken: aw entspricht dieser Gleichgewichtsfeuchte in Prozent geteilt durch 100. Eine zufällig im Raum gemessene Luftfeuchte ist noch keine solche Probenmessung. Produkt und Luftraum müssen den benannten Gleichgewichtszustand und dieselbe Temperatur erreicht haben.",
+            "Eigenes Zahlenbeispiel: Eine gedachte Probe erreicht unter den genannten Bedingungen 82 Prozent Gleichgewichtsfeuchte; das entspricht aw 0,82. Die Zahl bedeutet weder 82 Prozent Wassergehalt noch 82 Prozent abgetötete Mikroorganismen. Zwei Lebensmittel können trotz gleichem Wassergehalt verschiedene aw-Werte besitzen, weil ihre Bestandteile das Wasser unterschiedlich beeinflussen.",
+            "Für Wildbret und daraus hergestellte Erzeugnisse werden deshalb Wassermenge, Wasseraktivität und Temperatur getrennt benannt. Das Beispiel erläutert nur die Messgröße; es klassifiziert keine reale Portion als haltbar oder verzehrfertig. Ein aw-Wert ersetzt auch keine Information darüber, welche Mikroorganismen zuvor in ein Produkt gelangt sind."
+          ],
+          "takeaway": "aw ist ein Gleichgewichtsverhältnis und keine Prozentangabe über die gesamte Wassermenge.",
+          "exercise": "Ordne im Beispiel 82 Prozent Gleichgewichtsfeuchte, aw 0,82 und einen möglichen Wasser-Massenanteil getrennten Größen zu.",
+          "evidence": [
+            {
+              "claim": "aw ist ein Dampfdruckverhältnis bei derselben Temperatur und im Gleichgewicht; aw=Gleichgewichts-RH/100.82 Prozent zu 0,82 ist ein eigenes Umrechnungsbeispiel, kein Wasser-Massenanteil.",
+              "sources": [
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                },
+                {
+                  "label": "FAO: Fruit and vegetable processing, 5.2.1",
+                  "url": "https://www.fao.org/4/v5030e/v5030e0b.htm"
+                }
+              ]
+            },
+            {
+              "claim": "Gleicher Wassergehalt kann bei unterschiedlicher Matrix verschiedene aw bedeuten; der Messwert beschreibt keine Keimabtötung oder alleinige Produktfreigabe.",
+              "sources": [
+                {
+                  "label": "FAO: Fruit and vegetable processing, 5.2.1",
+                  "url": "https://www.fao.org/4/v5030e/v5030e0b.htm"
+                },
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                },
+                {
+                  "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+                  "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "matrix-gleichgewicht",
+          "title": "Bestandteile und Umgebung verändern den Wasserzustand",
+          "paragraphs": [
+            "Wasser steht mit Proteinen, Kohlenhydraten und weiteren Bestandteilen des Lebensmittels in Wechselwirkung. Die vereinfachten Begriffe „gebunden“ und „verfügbar“ helfen beim Einstieg; aw ist trotzdem keine direkte Auszählung zweier sauber getrennter Wasserportionen. Entscheidend ist das gemessene Gleichgewichtsverhalten des gesamten Systems.",
+            "Gelöste Stoffe können den Dampfdruck gegenüber reinem Wasser vermindern. Salz- und Zuckerlösungen sind Grundbeispiele dafür. Deshalb kann sich aw ändern, wenn eine Rezeptur beziehungsweise Zusammensetzung verändert wird, selbst wenn man nur auf die gesamte Wassermenge schaut. Daraus lässt sich ohne produktspezifischen Nachweis keine sichere Menge zum Salzen oder Zuckern ableiten.",
+            "Eine Sorptionsisotherme stellt den Zusammenhang zwischen Wassergehalt und aw beziehungsweise Gleichgewichtsfeuchte bei festgelegter Temperatur dar. Sie gehört zum betrachteten Material und seinen Bedingungen. Sie ist keine universelle Gerade für jedes Lebensmittel. Wird eine solche Kurve für ein Produkt verwendet, dürfen seine Bedingungen nicht stillschweigend durch die eines anderen ersetzt werden.",
+            "Bei gleicher Temperatur kann Feuchtigkeit von einem Bereich höherer aw zu einem Bereich niedrigerer aw wandern, bis sich das Gleichgewicht verändert hat. Eigenes Vergleichsmodell: Zwei Bestandteile mit aw 0,90 und 0,60 stehen über einen gemeinsamen Luftraum in Feuchteaustausch. Der Antrieb folgt dem Wasserzustand, nicht allein dem schwereren Bestandteil. Die Zahlen sind vorgegeben; Verlauf, Endwert und Haltbarkeit eines realen Erzeugnisses werden damit nicht berechnet."
+          ],
+          "takeaway": "Die Matrix prägt aw; Feuchtewanderung folgt bei gleicher Temperatur dem Gleichgewichtsgefälle.",
+          "exercise": "Vergleiche zwei gedachte Zutaten nach aw und Wassergehalt und benenne, welche Größe den beschriebenen Feuchteaustausch antreibt.",
+          "evidence": [
+            {
+              "claim": "Matrixwechselwirkungen unterscheiden aw von bloßem Wassergehalt; Salz/Zucker können Dampfdruck und aw ändern. Eine Sorptionsisotherme gilt für Material und Temperatur, keine universelle Mengenformel.",
+              "sources": [
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                },
+                {
+                  "label": "FAO: Fruit and vegetable processing, 5.2.1",
+                  "url": "https://www.fao.org/4/v5030e/v5030e0b.htm"
+                },
+                {
+                  "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+                  "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+                }
+              ]
+            },
+            {
+              "claim": "Feuchte kann bei gleicher Temperatur von höherer zu niedrigerer aw wandern;0,90/0,60 sind eigene vorgegebene Modellwerte, ohne realen Endwert oder Zeitangabe.",
+              "sources": [
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                },
+                {
+                  "label": "FAO: Fruit and vegetable processing, 5.2.1",
+                  "url": "https://www.fao.org/4/v5030e/v5030e0b.htm"
+                },
+                {
+                  "label": "University of Minnesota Extension: Cottage food uses for your strawberry crop",
+                  "url": "https://extension.umn.edu/about/our-stories/news/cottage-food-connection/cottage-food-uses-for-your-strawberry-crop"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ph-skala",
+          "title": "Ein pH-Schritt bedeutet einen Faktor zehn",
+          "paragraphs": [
+            "Der pH beschreibt den Säurezustand einer wässrigen Phase. Genau definiert ist er als negativer dekadischer Logarithmus der Aktivität von Wasserstoffionen. Aktivität berücksichtigt das wirksame Verhalten der Ionen in ihrer Umgebung. In einfachen Lehrrechnungen für hinreichend verdünnte wässrige Lösungen wird häufig die zugehörige Konzentration als Näherung verwendet; die genauere Definition bleibt die Aktivität.",
+            "Weil die Skala logarithmisch ist, bedeutet eine um eins kleinere pH-Zahl eine zehnfach größere Wasserstoffionenaktivität. Eigenes Vergleichsmodell bei gleicher Temperatur: Eine Phase mit pH 5 besitzt gegenüber einer Phase mit pH 6 die zehnfache Aktivität. Ein Unterschied von zwei pH-Einheiten entspräche dem Faktor 100. Das ist keine Verdopplung oder Halbierung einer beliebigen Säuremenge.",
+            "Auch das gesamte Lebensmittel ist von einer beschriebenen wässrigen Phase zu unterscheiden. aw fragt nach dem Gleichgewicht des Wassers, pH nach dem Säurezustand; beide können mikrobielles Wachstum beeinflussen. Aus einem einzelnen pH-Wert folgt weder die vollständige Zusammensetzung noch die bisherige Temperaturgeschichte eines Fleischprodukts.",
+            "Für vergleichbare Angaben werden Probe, Messbedingungen und Temperatur benannt. Die Rechnung pH 5 gegen pH 6 ist bewusst eine Begriffsübung und kein erlaubter Zielwert für die Verarbeitung. Der bereits bekannte pH-Abfall bei der postmortalen Muskelveränderung ist ein biologischer Verlauf; dieser Abschnitt erklärt zusätzlich, was ein Unterschied auf der Zahlenskala bedeutet."
+          ],
+          "takeaway": "Eine kleinere pH-Zahl bedeutet größere Wasserstoffionenaktivität; die Skala ist logarithmisch.",
+          "exercise": "Erkläre den pH 5-zu-pH 6-Vergleich mit einem Verhältnis, ohne ihn in Gramm Säure umzudeuten.",
+          "evidence": [
+            {
+              "claim": "pH ist der negative dekadische Logarithmus der Wasserstoffionenaktivität; die einfache Konzentrationsrechnung ist eine Näherung. Ein pH-Schritt entspricht Faktor 10, pH 5 gegen 6 ist ein eigenes Beispiel.",
+              "sources": [
+                {
+                  "label": "EMPIR EMUE / NPL: Examples of evaluating measurement uncertainty, E1.1.2.2, S. 58",
+                  "url": "https://empir.npl.co.uk/emue/wp-content/uploads/sites/49/2021/07/Compendium_M36.pdf"
+                },
+                {
+                  "label": "IUPAC Gold Book: pH",
+                  "url": "https://goldbook.iupac.org/terms/view/P04524"
+                },
+                {
+                  "label": "OpenStax Chemistry 2 e, 14.2: pH and pOH",
+                  "url": "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh"
+                }
+              ]
+            },
+            {
+              "claim": "pH und aw sind verschiedene intrinsische Lebensmitteleigenschaften; ihr Messwert allein beschreibt weder Gesamtzusammensetzung noch eine validierte Haltbarkeit. Probe und Bedingungen gehören zur Charakterisierung.",
+              "sources": [
+                {
+                  "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+                  "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+                },
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                },
+                {
+                  "label": "IUPAC Gold Book: pH",
+                  "url": "https://goldbook.iupac.org/terms/view/P04524"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "huerden-zusammenwirken",
+          "title": "Produkteigenschaften und Lagerumgebung wirken zusammen",
+          "paragraphs": [
+            "Lebensmittel bieten Mikroorganismen mehrere Bedingungen gleichzeitig. Zu den inneren, intrinsischen Eigenschaften gehören unter anderem pH, aw und die vorhandenen Nährstoffe. Temperatur und Gasatmosphäre der Lagerumgebung werden als äußere, extrinsische Faktoren betrachtet. Zusätzlich können sich Mikroorganismen gegenseitig beeinflussen. Ein Lebensmittelname allein beschreibt diese Kombination noch nicht.",
+            "Das Hürdenkonzept betrachtet die Kombination solcher Einflüsse. Mehrere Faktoren können gemeinsam Wachstum begrenzen; die Wirkung ist nicht durch einfaches Addieren von Zahlen verschiedener Einheiten zu bestimmen. Beispielsweise sind eine veränderte Wasseraktivität und ein veränderter pH zwei verschiedene Eingriffe in die Lebensbedingungen von Mikroorganismen. Ihre gemeinsame Wirkung muss zum konkreten Produkt und Zielorganismus passen.",
+            "Wachstumshemmung bedeutet zunächst, dass eine Vermehrung begrenzt wird. Sie ist von einer nachgewiesenen Inaktivierung zu unterscheiden. Ein veränderter aw- oder pH-Wert belegt allein daher nicht, dass sämtliche zuvor vorhandenen Keime verschwunden sind. Dasselbe Prinzip erklärt, weshalb Lebensmittelcharakterisierung und hygienische Prozessgeschichte zusammengehören.",
+            "Eigener Vergleichsfall: Zwei Portionen haben denselben aw-Wert, aber unterschiedliche Lagerbedingungen und eine unterschiedlich bekannte Vorgeschichte. Aus der gemeinsamen Zahl kann noch keine identische Haltbarkeit abgelesen werden. Eine fachliche Bewertung betrachtet die relevanten Mikroorganismen und das wirkliche Produkt über seinen Verlauf. Diese Lektion vermittelt die Zusammenhänge und ergänzt keine Hausrezeptur oder pauschale Lagerfrist."
+          ],
+          "takeaway": "Hürden sind zusammenwirkende Bedingungen; Hemmung und Inaktivierung bleiben verschiedene Ergebnisse.",
+          "exercise": "Ordne im Vergleichsfall aw und pH dem Produkt, Temperatur und Gasatmosphäre der Umgebung zu.",
+          "evidence": [
+            {
+              "claim": "aw/pH/Nährstoffe sind intrinsische Faktoren, Temperatur/Gasatmosphäre extrinsische; Mikroorganismen und Lebensmittelbedingungen wirken zusammen. Die Hürdenkombination ist produktbezogen.",
+              "sources": [
+                {
+                  "label": "USDA ARS: Pathogen Modeling Program, Tutorial und Glossar",
+                  "url": "https://pmp.ars.usda.gov/tutorial.aspx"
+                },
+                {
+                  "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+                  "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+                },
+                {
+                  "label": "Leistner 2000: Basic aspects of food preservation by hurdle technology",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/10791741/"
+                }
+              ]
+            },
+            {
+              "claim": "Hemmung und Inaktivierung sind verschiedene Vorgänge; einzelne aw-/pH-Werte oder ein Lebensmittelname ergeben keine vollständige Haltbarkeitsbewertung.",
+              "sources": [
+                {
+                  "label": "USDA ARS: Pathogen Modeling Program, Tutorial und Glossar",
+                  "url": "https://pmp.ars.usda.gov/tutorial.aspx"
+                },
+                {
+                  "label": "EFSA BIOHAZ: Date marking and related food information, Part 1, 2020/2021",
+                  "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+                },
+                {
+                  "label": "Leistner 2000: Basic aspects of food preservation by hurdle technology",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/10791741/"
+                },
+                {
+                  "label": "FDA Technical Guide 39: Water Activity (aw) in Foods, 1984",
+                  "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "aw-wassergehalt",
+          "q": "Eine Probe erreicht bei gleicher Temperatur im geschlossenen Messraum 82 Prozent Gleichgewichtsfeuchte. Welcher aw-Wert gehört dazu?",
+          "options": [
+            "0,082.",
+            "8,2.",
+            "82.",
+            "0,82."
+          ],
+          "answer": 3,
+          "explain": "Die Gleichgewichtsfeuchte in Prozent wird durch 100 geteilt:82÷100=0,82. Diese dimensionslose Zahl ist ein Dampfdruckverhältnis und weder der Wasser-Massenanteil noch ein Maß für abgetötete Keime."
+        },
+        {
+          "id": "q2",
+          "lessonId": "matrix-gleichgewicht",
+          "q": "Zwei Modellbestandteile mit aw 0,90 und aw 0,60 stehen bei gleicher Temperatur über einen gemeinsamen Luftraum im Feuchteaustausch. In welche Richtung wirkt das anfängliche Gefälle?",
+          "options": [
+            "Vom Bereich mit aw 0,60 zum Bereich mit aw 0,90.",
+            "Vom Bereich mit aw 0,90 zum Bereich mit aw 0,60.",
+            "Stets vom Bereich mit mehr Wassermasse zum Bereich mit weniger Wassermasse.",
+            "Stets vom Bereich größerer Oberfläche zum Bereich kleinerer Oberfläche."
+          ],
+          "answer": 1,
+          "explain": "Bei gleicher Temperatur entspricht höhere aw einem höheren Gleichgewichts-Wasserdampfdruck. Dadurch kann der Austausch in Richtung des niedrigeren Werts erfolgen. Der Endwert hängt zusätzlich von Mengen und Sorptionsverhalten der Bestandteile ab."
+        },
+        {
+          "id": "q3",
+          "lessonId": "ph-skala",
+          "q": "Zwei gedachte wässrige Phasen haben bei gleicher Temperatur pH 5 und pH 6. Wie verhält sich die Wasserstoffionenaktivität der pH 5-Phase zur pH 6-Phase?",
+          "options": [
+            "Sie ist zehnmal so groß.",
+            "Sie ist halb so groß.",
+            "Sie ist gleich groß.",
+            "Sie ist hundertmal so klein."
+          ],
+          "answer": 0,
+          "explain": "Der pH ist ein negativer Zehnerlogarithmus. Eine um eins kleinere Zahl entspricht daher der zehnfachen Wasserstoffionenaktivität. Diese Relation beschreibt keine Grammmenge zugesetzter Säure und keine Verzehrfreigabe."
+        },
+        {
+          "id": "q4",
+          "lessonId": "huerden-zusammenwirken",
+          "q": "Ein Vergleich nennt aw und pH des Produkts sowie Temperatur und Gasatmosphäre der Lagerung. Wie lassen sich diese Faktoren zuordnen?",
+          "options": [
+            "aw/Temperatur sind innere Eigenschaften; pH/Gasatmosphäre äußere Bedingungen.",
+            "Temperatur/Gasatmosphäre sind innere Eigenschaften; aw/pH äußere Bedingungen.",
+            "aw/pH sind innere Produkteigenschaften; Temperatur/Gasatmosphäre äußere Bedingungen.",
+            "pH/Gasatmosphäre sind innere Eigenschaften; aw/Temperatur äußere Bedingungen."
+          ],
+          "answer": 2,
+          "explain": "Die intrinsischen Eigenschaften gehören zum Lebensmittel selbst, die extrinsischen zum Lagerumfeld. Die Kombination beeinflusst das Wachstum relevanter Mikroorganismen; eine Begriffszuordnung validiert noch keine konkrete Haltbarkeit."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Fachlicher Abgleich nur der neuen Wissenstexte, Vergleichsbeispiele und vier ergänzenden Fragen.",
+        "independentOrganizations": [
+          "FDA",
+          "FAO",
+          "IUPAC",
+          "Rice/OpenStax",
+          "EFSA",
+          "Bundesanstalt für Fleischforschung / Leistner",
+          "University of Minnesota",
+          "USDA ARS",
+          "NPL / EMPIR EMUE"
+        ],
+        "limitations": [
+          "FDA-Text 1984 dient nur grundlegenden Definitionen; historische Laborgeräte, Temperaturvereinfachungen und US-Rechtsgrenzen ausgeschlossen.",
+          "FAO und FDA sind fachliche Grundlagenübersichten mit teilweise gemeinsamen klassischen Literaturbezügen; keine unabhängige Wiederholung einer Messreihe behauptet.",
+          "IUPAC-Originaleintrag öffentlich indexiert gelesen; direkter Abruf eingeschränkt.",
+          "Leistner ist eine Originalübersicht, deren Abstract/Einleitung gelesen wurden; EFSA bewertet darüber hinaus den Produktkontext, kein separater neuer Leistner-Versuch.",
+          "Keine Erregergrenzwerte, Herstellrezepte, Säuerungs-/Trocknungsmengen, Lagerfristen oder sensorische Sicherheitsprüfung."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-lichtmessgroessen-round4-2026",
+      "lessonId": "lichtgroessen",
+      "claims": [
+        {
+          "claim": "Lichtstrom/lm, gerichtete Lichtstärke/cd und Beleuchtungsstärke/lx = lm/m² sind verschiedene photometrische Größen; gleichmäßige 120 lm auf 4 m² ergeben im eigenen Modell 30 lx.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/the-si-units/candela",
+            "https://www.ptb.de/cms/fileadmin/internet/forschung_entwicklung/das_si/magazinartikel/Waere_das_Auge_nicht_sonnenhaft.pdf"
+          ]
+        },
+        {
+          "claim": "Photometrie gewichtet Strahlung nach dem menschlichen Sehen; Gesamtlichtstrom enthält die räumliche Verteilung nicht.",
+          "sourceUrls": [
+            "https://www.nist.gov/pml/sensor-science/optical-radiation/realization-candela",
+            "https://oar.ptb.de/files/download/310.20150405.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lichtmessgroessen-round4-2026",
+      "lessonId": "abstand-richtung",
+      "claims": [
+        {
+          "claim": "Punktquellenmodell: Beleuchtungsstärke folgt Lichtstärke und Abstand zum Quadrat; bei senkrechtem Einfall und gleichen übrigen Bedingungen führt Abstandsverdopplung zum Viertel. 80 lx bei 2 m zu 20 lx bei 4 m ist ein eigenes Beispiel.",
+          "sourceUrls": [
+            "https://cie.co.at/eilv/912",
+            "https://www.nist.gov/pml/sensor-science/optical-radiation/realization-candela",
+            "https://ies.org/definitions/inverse-square-law/"
+          ]
+        },
+        {
+          "claim": "Einfallswinkel und Punktquellen-/Fernfeldannäherung gehören zur Anwendung des Abstandsgesetzes; ein Richtungsspitzenwert ist kein Gesamtlichtstrom.",
+          "sourceUrls": [
+            "https://ies.org/definitions/cosine-law/",
+            "https://cie.co.at/eilv/912",
+            "https://oar.ptb.de/files/download/310.20150405.pdf",
+            "https://www.ptb.de/cms/fileadmin/internet/forschung_entwicklung/das_si/magazinartikel/Waere_das_Auge_nicht_sonnenhaft.pdf",
+            "https://ies.org/definitions/inverse-square-law/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lichtmessgroessen-round4-2026",
+      "lessonId": "lichtausbeute",
+      "claims": [
+        {
+          "claim": "Lichtausbeute ist Lichtstrom geteilt durch elektrische Leistungsaufnahme in lm/W; Quelle und gesamte Leuchte sind verschiedene Systemgrenzen. 100 bzw. 60 lm/W sind eigene Rechenergebnisse aus vorgegebenen Werten.",
+          "sourceUrls": [
+            "https://oar.ptb.de/files/download/310.20150405.pdf",
+            "https://www.energy.gov/cmei/ssl/led-basics"
+          ]
+        },
+        {
+          "claim": "Elektrische Aufnahmeleistung, Gesamtlichtstrom, Verteilung und Farbqualität beantworten unterschiedliche Fragen.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/the-si-units/candela",
+            "https://oar.ptb.de/files/download/310.20150405.pdf",
+            "https://www.energy.gov/cmei/ssl/led-basics"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lichtmessgroessen-round4-2026",
+      "lessonId": "lichtfarbe",
+      "claims": [
+        {
+          "claim": "CCT vergleicht den Farbort geeigneten Lichts mit einem Planckschen Strahler und wird in Kelvin angegeben; sie beschreibt keine Geräteoberflächentemperatur und kein vollständiges Spektrum.",
+          "sourceUrls": [
+            "https://cie.co.at/eilv/258",
+            "https://oar.ptb.de/files/download/310.20150405.pdf",
+            "https://www.energy.gov/cmei/ssl/led-basics",
+            "https://www.energy.gov/cmei/ssl/color-and-spectrum"
+          ]
+        },
+        {
+          "claim": "CCT und Farbtreue/Farbwiedergabe sind getrennte Eigenschaften; der klassische CRI hat einen begrenzten Aussageumfang.",
+          "sourceUrls": [
+            "https://www.energy.gov/cmei/ssl/led-basics",
+            "https://oar.ptb.de/files/download/310.20150405.pdf",
+            "https://www.energy.gov/cmei/ssl/color-and-spectrum"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-korrosion-metalle-round4-2026",
+      "lessonId": "elektrochemie",
+      "claims": [
+        {
+          "claim": "Korrosion verändert Metall durch Reaktion mit seiner Umgebung. Im feuchten Eisenmodell ist Fe→Fe²⁺+2 e⁻ anodische Oxidation, gekoppelt an eine kathodische Reduktion und Elektronen-/Ionenwege.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://public.ksc.nasa.gov/corrosion/corrosion-fundamentals/"
+          ]
+        },
+        {
+          "claim": "Anodische und kathodische Bereiche können auf einem Metallstück liegen; ein sauerstoffhaltiger Wasserfilm ist ein begrenztes Modell, keine Bedingung für alle Korrosionssysteme.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://public.ksc.nasa.gov/corrosion/corrosion-fundamentals/",
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-korrosion-metalle-round4-2026",
+      "lessonId": "metallkontakt",
+      "claims": [
+        {
+          "claim": "Galvanischer Angriff braucht unterschiedliche gekoppelte Werkstoffe, elektrische Verbindung und gemeinsamen Elektrolyten; der relativ aktive anodische Partner kann beschleunigt korrodieren.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/",
+            "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion"
+          ]
+        },
+        {
+          "claim": "Galvanische Reihen und relativer aktiver/passiver Zustand gelten für benannte Umgebungsbedingungen; Werkstoffname, Farbe oder Preis allein sind keine vollständige Beständigkeitsangabe.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion",
+            "https://protect-perform.ampp.org/are-you-speaking-the-same-language/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-korrosion-metalle-round4-2026",
+      "lessonId": "passivitaet-lochfrass",
+      "claims": [
+        {
+          "claim": "Passivschichten vermindern Korrosionsraten und tragen zur Beständigkeit nichtrostender Stähle bei; ihre Stabilität bleibt werkstoff- und umgebungsabhängig.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://protect-perform.ampp.org/are-you-speaking-the-same-language/",
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+          ]
+        },
+        {
+          "claim": "Gleichmäßiger Angriff und örtliche Pitting-Vertiefungen haben verschiedene Geometrien; lokale Schichtstörung und Chloride können Pitting begünstigen. Kleine sichtbare Fläche belegt keine geringe Tiefe.",
+          "sourceUrls": [
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/",
+            "https://www.ampp.org/technical-research/what-is-corrosion/forms-of-corrosion"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-korrosion-metalle-round4-2026",
+      "lessonId": "spalt-umgebung",
+      "claims": [
+        {
+          "claim": "Stagnierende Spaltlösungen können Sauerstoffarmut, Ansäuerung und aggressive Ionenanreicherung entwickeln; das Belüftungsunterschiedsmodell macht den sauerstoffarmen Bereich anodisch.",
+          "sourceUrls": [
+            "https://www.ampp.org/technical-research/impact/corrosion-basics/group-1/crevice-corrosion",
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/"
+          ]
+        },
+        {
+          "claim": "Schichten können den Medienzutritt begrenzen, sind aber keine universelle dauerhafte Barriere; Fehlstellen/Unterwanderung und lokale Spaltumgebung gehören zur Beurteilung.",
+          "sourceUrls": [
+            "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects.html",
+            "https://public.ksc.nasa.gov/corrosion/forms-of-corrosion/",
+            "https://www.ampp.org/technical-research/impact/corrosion-basics/group-1/crevice-corrosion"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wasseraktivitaet-ph-round4-2026",
+      "lessonId": "aw-wassergehalt",
+      "claims": [
+        {
+          "claim": "aw ist ein Dampfdruckverhältnis bei derselben Temperatur und im Gleichgewicht; aw=Gleichgewichts-RH/100.82 Prozent zu 0,82 ist ein eigenes Umrechnungsbeispiel, kein Wasser-Massenanteil.",
+          "sourceUrls": [
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+            "https://www.fao.org/4/v5030e/v5030e0b.htm"
+          ]
+        },
+        {
+          "claim": "Gleicher Wassergehalt kann bei unterschiedlicher Matrix verschiedene aw bedeuten; der Messwert beschreibt keine Keimabtötung oder alleinige Produktfreigabe.",
+          "sourceUrls": [
+            "https://www.fao.org/4/v5030e/v5030e0b.htm",
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wasseraktivitaet-ph-round4-2026",
+      "lessonId": "matrix-gleichgewicht",
+      "claims": [
+        {
+          "claim": "Matrixwechselwirkungen unterscheiden aw von bloßem Wassergehalt; Salz/Zucker können Dampfdruck und aw ändern. Eine Sorptionsisotherme gilt für Material und Temperatur, keine universelle Mengenformel.",
+          "sourceUrls": [
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+            "https://www.fao.org/4/v5030e/v5030e0b.htm",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306"
+          ]
+        },
+        {
+          "claim": "Feuchte kann bei gleicher Temperatur von höherer zu niedrigerer aw wandern;0,90/0,60 sind eigene vorgegebene Modellwerte, ohne realen Endwert oder Zeitangabe.",
+          "sourceUrls": [
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+            "https://www.fao.org/4/v5030e/v5030e0b.htm",
+            "https://extension.umn.edu/about/our-stories/news/cottage-food-connection/cottage-food-uses-for-your-strawberry-crop"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wasseraktivitaet-ph-round4-2026",
+      "lessonId": "ph-skala",
+      "claims": [
+        {
+          "claim": "pH ist der negative dekadische Logarithmus der Wasserstoffionenaktivität; die einfache Konzentrationsrechnung ist eine Näherung. Ein pH-Schritt entspricht Faktor 10, pH 5 gegen 6 ist ein eigenes Beispiel.",
+          "sourceUrls": [
+            "https://empir.npl.co.uk/emue/wp-content/uploads/sites/49/2021/07/Compendium_M36.pdf",
+            "https://goldbook.iupac.org/terms/view/P04524",
+            "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh"
+          ]
+        },
+        {
+          "claim": "pH und aw sind verschiedene intrinsische Lebensmitteleigenschaften; ihr Messwert allein beschreibt weder Gesamtzusammensetzung noch eine validierte Haltbarkeit. Probe und Bedingungen gehören zur Charakterisierung.",
+          "sourceUrls": [
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306",
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods",
+            "https://goldbook.iupac.org/terms/view/P04524"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-wasseraktivitaet-ph-round4-2026",
+      "lessonId": "huerden-zusammenwirken",
+      "claims": [
+        {
+          "claim": "aw/pH/Nährstoffe sind intrinsische Faktoren, Temperatur/Gasatmosphäre extrinsische; Mikroorganismen und Lebensmittelbedingungen wirken zusammen. Die Hürdenkombination ist produktbezogen.",
+          "sourceUrls": [
+            "https://pmp.ars.usda.gov/tutorial.aspx",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306",
+            "https://pubmed.ncbi.nlm.nih.gov/10791741/"
+          ]
+        },
+        {
+          "claim": "Hemmung und Inaktivierung sind verschiedene Vorgänge; einzelne aw-/pH-Werte oder ein Lebensmittelname ergeben keine vollständige Haltbarkeitsbewertung.",
+          "sourceUrls": [
+            "https://pmp.ars.usda.gov/tutorial.aspx",
+            "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2020.6306",
+            "https://pubmed.ncbi.nlm.nih.gov/10791741/",
+            "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-technical-guides/water-activity-aw-foods"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Leuchten-, Material- oder Lebensmittel-Freigaben",
+      "reason": "Physikalische und chemische Grundlagen ersetzen keine konkrete Produktprüfung, Zustandsbewertung oder validierte Lebensmittelherstellung."
+    },
+    {
+      "topic": "Herstellrezepte, Behandlungs- oder Waffenanleitungen und universelle Grenzwerte",
+      "reason": "Keine Trocknungs-, Säuerungs-, Konservierungs-, Reparatur- oder Schussanweisung; keine neue örtliche Rechtsbewertung."
+    }
+  ]
+}

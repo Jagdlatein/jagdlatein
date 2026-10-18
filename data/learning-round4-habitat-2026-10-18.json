@@ -1,0 +1,836 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Drei botanische Wissenskurse nach Audit von 168 geladenen Kursen: zwölf gehaltvolle Lektionen und nur eine ergänzende Frage je Lektion. Keine neuen Medien.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-laubblatt-merkmale-round4-2026",
+      "title": "Laubblätter lesen: Stellung, Gliederung und Merkmale",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Ein Blatt abgrenzen und Stellung, Aderung, Form und Rand getrennt beschreiben.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Botanische Laubblattmerkmale mit eigenen Vergleichsmodellen; kein vollständiger Arten- oder Verzehrschlüssel.",
+        "AT": "Botanische Laubblattmerkmale mit eigenen Vergleichsmodellen; kein vollständiger Arten- oder Verzehrschlüssel.",
+        "CH": "Botanische Laubblattmerkmale mit eigenen Vergleichsmodellen; kein vollständiger Arten- oder Verzehrschlüssel."
+      },
+      "objectives": [
+        "Blatt und Blättchen unterscheiden",
+        "Blattstellung über mehrere Knoten lesen",
+        "Nervatur von Blattgliederung trennen",
+        "Umriss und Rand getrennt beschreiben"
+      ],
+      "sources": [
+        {
+          "label": "AMNH: Plant Morphology – Leaf Type",
+          "url": "https://www.amnh.org/learn-teach/curriculum-collections/biodiversity-counts/plant-identification/plant-morphology/leaf-type",
+          "organization": "American Museum of Natural History",
+          "supports": "Originaltext zu Spreite, Stiel, Blatt/Blättchen und Achselknospe gelesen; keine Zeichnungen übernommen."
+        },
+        {
+          "label": "NC State Extension Gardener Handbook: 3. Botany",
+          "url": "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+          "organization": "North Carolina State University Extension",
+          "supports": "Abschnitte Blattgliederung, Stellung und Nervatur gelesen; eng mit Oregon verwandte Lehrpassagen nicht als zwei unabhängige Quellen gezählt."
+        },
+        {
+          "label": "UT Austin: Botany Basics – Understanding Leaves",
+          "url": "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+          "organization": "University of Texas at Austin, Biodiversity Center",
+          "supports": "Originaltext von Nicole Elmer, gegengelesen von Kurator George Yatskievych, zu Gliederung, Stellung, Nervatur, Umriss/Rand gelesen. Keine Illustrationen oder starren Einschnitttiefen übernommen."
+        },
+        {
+          "label": "University of Illinois: UIPlants – Botanic Terminology",
+          "url": "https://woodyplantstutorial.nres.illinois.edu/glossary.asp",
+          "organization": "University of Illinois at Urbana-Champaign",
+          "supports": "Definitionen zu Blattstellung, Stiel/Blattspindel, Nervatur, Umriss und Rand gelesen. Keine pauschalen Catkin-/Tendril- oder Gewebeangaben übernommen."
+        },
+        {
+          "label": "Oregon State University: Vegetative plant parts, EM 9904",
+          "url": "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+          "organization": "Oregon State University Extension",
+          "supports": "Originalabschnitte zu Blattadern und feineren Querverbindungen gelesen. Keine pauschalen anatomischen, Blattfall- oder Kulturregeln übernommen."
+        },
+        {
+          "label": "Universität Hamburg: Botanik online – Blätter (Archiv)",
+          "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm",
+          "organization": "Universität Hamburg, Archiv von Peter von Sengbusch",
+          "supports": "Originaltext direkt vollständig gelesen: Stiel/Spreite, sitzende Blätter und variable Blattgestalt. Fehlerhafte historische Fibonacci-/Zweizeiligkeitsformulierungen nicht verwendet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "blatt-oder-blaettchen",
+          "title": "Ein ganzes Blatt ist mehr als eine grüne Teilfläche",
+          "paragraphs": [
+            "Die breite Fläche eines Laubblattes heißt Spreite oder Lamina. Ein Blattstiel verbindet sie mit der Sprossachse; bei sitzenden Blättern fehlt dieser deutlich abgesetzte Stiel. Ein einfaches Blatt hat eine zusammenhängende Spreite, die trotzdem gezähnt oder gelappt sein kann. Ein zusammengesetztes Blatt gliedert sich dagegen in einzelne Blättchen.",
+            "Bei gefiederten Blättern stehen die Blättchen entlang einer gemeinsamen Blattspindel. Bei handförmig zusammengesetzten Blättern strahlen sie von einem gemeinsamen Ansatzbereich aus. Eine hilfreiche Kontrolle ist die Achselknospe am Ansatz des ganzen Blattes an der Sprossachse. An den Ansätzen der einzelnen Blättchen fehlen solche Achselknospen. Ein Blättchen mit kleinem eigenem Stiel ist daher noch kein selbstständiges Blatt.",
+            "Eigenes Vergleichsmodell: Fünf getrennte Blättchen laufen am Ende eines gemeinsamen Blattstiels zusammen. Eine Achselknospe sitzt dort, wo dieser Stiel den Zweig erreicht, nicht an jedem Blättchen. Das ist ein handförmig zusammengesetztes Blatt. Bei einem abgebrochenen Einzelteil fehlt dieser Zusammenhang; ein tiefer Einschnitt allein löst die Organfrage nicht. Für eine Merkmalsnotiz wird zuerst das ganze Blatt abgegrenzt, danach sein innerer Bau beschrieben."
+          ],
+          "takeaway": "Zuerst das ganze Blatt abgrenzen, dann Spreite oder Blättchen beschreiben.",
+          "exercise": "Verfolge im gedachten Modell den Weg vom Blättchen bis zum Zweig."
+        },
+        {
+          "id": "blattstellung",
+          "title": "Die Blattstellung wird am Knoten gelesen",
+          "paragraphs": [
+            "Wechselständig bedeutet ein Blatt je Knoten der Sprossachse. Gegenständig heißt zwei Blätter am selben Knoten gegenüber. Bei quirliger oder wirteliger Stellung entspringen drei oder mehr Blätter an einem Knoten. Gezählt werden die Ansätze der ganzen Blätter, nicht die Blättchen eines zusammengesetzten Blattes.",
+            "Wechselständige Blätter können sich schraubig um den Spross verteilen oder in zwei Zeilen stehen. Gegenständig und zweizeilig sind deshalb keine austauschbaren Wörter: Blattzahl am Knoten und räumliche Anordnung entlang der Achse sind verschiedene Angaben. Bei kreuzgegenständiger, auch dekussierter Stellung sind aufeinanderfolgende gegenständige Blattpaare ungefähr rechtwinklig gegeneinander gedreht. Nicht jede gegenständige Stellung muss genau diese Folge zeigen.",
+            "Eigenes Achsenmodell: Am unteren Knoten sitzen zwei Blätter nach links und rechts, am nächsten zwei nach vorn und hinten. Die Folge heißt kreuzgegenständig. Der Blick auf nur einen Knoten würde lediglich Gegenständigkeit erkennen lassen. Betrachtet man nur eine Seite eines wirklichen Zweiges, kann ein rückseitiger Blattansatz außerdem verdeckt bleiben; eine vollständige Beschreibung verfolgt deshalb mehrere Knoten."
+          ],
+          "takeaway": "Blattzahl am Knoten und Richtung benachbarter Paare getrennt lesen.",
+          "exercise": "Benenne im Achsenmodell zuerst die Blattzahl am Knoten und dann die Drehung."
+        },
+        {
+          "id": "nervatur",
+          "title": "Blattadern bilden ein Muster innerhalb der Spreite",
+          "paragraphs": [
+            "Blattadern oder Blattnerven enthalten Leitbündel. Nervatur bezeichnet ihre Anordnung innerhalb der Spreite, nicht die Zahl der Blättchen des ganzen Blattes. Eine Ader ist daher kein kleiner Blattstiel. Die Wörter für Adermuster und Blattgliederung müssen auch dann getrennt werden, wenn sie ähnlich klingen.",
+            "Bei fiedernervigem Bau gehen Seitennerven von einer längs verlaufenden Hauptader ab. Handnervig bedeutet mehrere kräftige Nerven aus einem Bereich nahe der Spreitenbasis. Feinere Adern können sich weiter verzweigen und zu einem Netz verbinden. Bei parallelnervigem Bau verlaufen die kräftigeren Adern über längere Strecken annähernd parallel; feinere Querverbindungen können trotzdem vorhanden sein.",
+            "Eigenes Vergleichsmodell: Eine ungeteilte Spreite besitzt eine Hauptader mit seitlich abzweigenden Adern. Das Blatt ist einfach und fiedernervig. Es wird durch diese Adern nicht zu einem gefiederten zusammengesetzten Blatt. Eine zweite Notiz „handnervig“ würde wiederum ein Adermuster bezeichnen; für „handförmig zusammengesetzt“ müssten getrennte Blättchen vorhanden sein. Diese Trennung verhindert widersprüchliche Merkmalskombinationen."
+          ],
+          "takeaway": "Nervatur gliedert die Adern; Blattgliederung trennt Spreite und Blättchen.",
+          "exercise": "Notiere für das Modell getrennt die Blattgliederung und die Nervatur."
+        },
+        {
+          "id": "umriss-rand",
+          "title": "Umriss, Rand und Einschnitte getrennt notieren",
+          "paragraphs": [
+            "Der Umriss beschreibt die Gesamtgestalt einer Spreite. Eiförmig heißt im Grundmodell breiter unterhalb der Mitte, schmaler zur Spitze; verkehrt eiförmig besitzt die breitere Zone oberhalb der Mitte. Lanzettliche Spreiten sind verhältnismäßig schmal und zur Spitze verjüngt, linealische haben über größere Strecken annähernd parallele Seiten.",
+            "Der Blattrand ist eine andere Eigenschaft. Ganzrandig bedeutet ohne Zähne oder entsprechende Einschnitte. Bei gesägtem Rand weisen spitze Zähne überwiegend zur Blattspitze, bei gekerbtem sind die Randzähne rundlich. Doppelt gesägt bedeutet kleinere Zähne an den größeren. Größere Einschnitte können Lappen bilden; ein gelapptes einfaches Blatt bleibt dennoch eine Spreite und wird nicht allein durch tiefe Buchten zusammengesetzt.",
+            "Eigene Merkmalsnotiz: „einfach, eiförmig, gesägt“ enthält drei Angaben. Ersetzt man nur „gesägt“ durch „gekerbt“, verändert sich die Randbeschreibung, nicht automatisch der Umriss oder die Zahl der Blättchen. Es werden deshalb keine starren Bruchteilsregeln für die Einschnitttiefe als allgemeiner Artenschlüssel ausgegeben. Die getrennte Notiz beschreibt zunächst das beobachtete Organ; sie ist noch keine vollständige Artbestimmung."
+          ],
+          "takeaway": "Umriss und Rand sind getrennte Merkmale: eiförmig bedeutet nicht automatisch gesägt.",
+          "exercise": "Ändere in einer eigenen Drei-Merkmals-Notiz nur die Randbeschreibung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "blatt-oder-blaettchen",
+          "q": "In einem Blattmodell strahlen fünf getrennte Blättchen vom Ende eines gemeinsamen Blattstiels aus. Wie heißt diese Blattgliederung?",
+          "options": [
+            "Einfach und ungeteilt",
+            "Einfach und gelappt",
+            "Handförmig zusammengesetzt",
+            "Gefiedert zusammengesetzt"
+          ],
+          "answer": 2,
+          "explain": "Die Blättchen treffen am gemeinsamen Ansatzbereich zusammen. Bei gefiederter Gliederung wären sie entlang einer längeren Blattspindel verteilt."
+        },
+        {
+          "id": "q2",
+          "lessonId": "blattstellung",
+          "q": "Zwei Blätter sitzen je Knoten gegenüber; das nächste Blattpaar ist um ungefähr 90 Grad gedreht. Wie heißt diese Stellung?",
+          "options": [
+            "Kreuzgegenständig",
+            "Schraubig wechselständig",
+            "Zweizeilig wechselständig",
+            "Quirlig mit drei Blättern"
+          ],
+          "answer": 0,
+          "explain": "Kreuzgegenständig verbindet gegenüberstehende Blätter am Knoten mit der Drehung zwischen benachbarten Paaren."
+        },
+        {
+          "id": "q3",
+          "lessonId": "nervatur",
+          "q": "Eine einfache Blattspreite besitzt eine Hauptader mit seitlich abzweigenden Adern. Welche Nervatur beschreibt dieses Modell?",
+          "options": [
+            "Parallelnervig",
+            "Handnervig",
+            "Gabelnervig",
+            "Fiedernervig"
+          ],
+          "answer": 3,
+          "explain": "Fiedernervig beschreibt das Adermuster innerhalb der Spreite. Das Blatt bleibt einfach; seine Adern sind keine Blättchen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "umriss-rand",
+          "q": "Ein Blatt besitzt spitze Randzähne, die überwiegend zur Blattspitze zeigen. Wie heißt dieser Rand?",
+          "options": [
+            "Ganzrandig",
+            "Gesägt",
+            "Gekerbt",
+            "Gewellt"
+          ],
+          "answer": 1,
+          "explain": "Gesägte Zähne weisen zur Spitze. Rundliche Zähne heißen gekerbt; der Gesamtumriss des Blattes ist davon unabhängig."
+        }
+      ],
+      "sourceReview": {
+        "scope": "Botanische Laubblattmerkmale mit eigenen Vergleichsmodellen; kein vollständiger Arten- oder Verzehrschlüssel."
+      }
+    },
+    {
+      "id": "wissen-vertiefung-krautpflanzen-lebensdauer-round4-2026",
+      "title": "Krautpflanzen durchs Jahr: Lebensdauer, Rosetten und Speicherorgane",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Landwirtschaft & Lebensräume",
+      "description": "Lebenszyklen, Rosette und Schossen verstehen; Speicherblätter, Sprossknollen und Speicherwurzeln unterscheiden.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Entwicklungs- und Organmodelle mit benannten Kulturpflanzen als Vergleich; keine Bekämpfungs-, Entnahme-, Vermehrungs- oder Verzehrempfehlung.",
+        "AT": "Entwicklungs- und Organmodelle mit benannten Kulturpflanzen als Vergleich; keine Bekämpfungs-, Entnahme-, Vermehrungs- oder Verzehrempfehlung.",
+        "CH": "Entwicklungs- und Organmodelle mit benannten Kulturpflanzen als Vergleich; keine Bekämpfungs-, Entnahme-, Vermehrungs- oder Verzehrempfehlung."
+      },
+      "objectives": [
+        "Lebenszyklus und Kalenderjahr trennen",
+        "Rosette und Schossen erklären",
+        "Speicherblätter mit Sprossgewebe vergleichen",
+        "Sprossknolle und Speicherwurzel unterscheiden"
+      ],
+      "sources": [
+        {
+          "label": "Oregon State University: Know the life cycles of plants, EM 9899",
+          "url": "https://extension.oregonstate.edu/catalog/em-9899-know-life-cycles-plants-annuals-biennials-perennials",
+          "organization": "Oregon State University Extension",
+          "supports": "Originaltext zu ein-/zwei-/mehrjährig, vegetativer erster Saison und zeitlichen Abweichungen gelesen. Keine Bekämpfungsmaßnahmen; keine Einteilung allein nach Kalenderjahr."
+        },
+        {
+          "label": "Royal Horticultural Society: How plants age",
+          "url": "https://www.rhs.org.uk/advice/understanding-plants/how-plants-age",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitte Life expectancy/Life stages gelesen: Lebensdauer, zweijährige Rosette und ausdauernde Pflanzen. Keine Schnitt-/Hormon- oder Kulturregeln übernommen."
+        },
+        {
+          "label": "NC State Extension Gardener Handbook: 3. Botany",
+          "url": "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+          "organization": "North Carolina State University Extension",
+          "supports": "Growth Habits, Specialized Stems, Knospen und Rosetten gelesen. Eng verwandte Oregon-Passagen nicht als zwei unabhängige Bestätigungen gezählt. Keine starren Größen-/Winterregeln oder Vermehrungsgarantien."
+        },
+        {
+          "label": "Universität Hamburg: Botanik online – Blätter (Archiv)",
+          "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm",
+          "organization": "Universität Hamburg, Archiv von Peter von Sengbusch",
+          "supports": "Historischen Originaltext direkt gelesen: Rosette mit verkürzten Internodien, Streckung der Haupt-/Seitenachsen und verschiedene Grund-/Stängelblätter. Keine falschen Fibonacci-/Zweizeiligkeitsformulierungen verwendet."
+        },
+        {
+          "label": "South Dakota State University: Biennial Weed Species Have Started to Emerge",
+          "url": "https://extension.sdstate.edu/biennial-weed-species-have-started-emerge",
+          "organization": "South Dakota State University Extension",
+          "supports": "Originalabschnitt zu Rosette, nachfolgender Stängelstreckung/bolting, Blühen und Samen gelesen. Regionale Invasivbeurteilung, Mahd und Herbizide nicht übernommen."
+        },
+        {
+          "label": "Oregon State University: Vegetative plant parts, EM 9904",
+          "url": "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+          "organization": "Oregon State University Extension",
+          "supports": "Originalabschnitte zu Kartoffelaugen, Zwiebelschuppen, Kormus und Speicherwurzeln sowie Adventivknospen gelesen. Keine universelle Wiederbewurzelungs-/Vermehrungsgarantie."
+        },
+        {
+          "label": "University of Maryland Extension: Bulbs – Botanically speaking",
+          "url": "https://extension.umd.edu/resource/bulbs",
+          "organization": "University of Maryland Extension",
+          "supports": "Originalabschnitt Botanically speaking gelesen: fleischige Speicherblätter, massiver Kormus und Dahlien-Speicherwurzel. Unpräzise Sammelgruppe Tuber-corm-perennial und Pflege-/Winterregeln nicht übernommen."
+        },
+        {
+          "label": "Royal Horticultural Society: How to grow bulbs – What are bulbs?",
+          "url": "https://www.rhs.org.uk/plants/types/bulbs/growing-guide",
+          "organization": "Royal Horticultural Society",
+          "supports": "Originalabschnitt What are bulbs gelesen: gärtnerischer Sammelbegriff und verschiedene Speicherorgane. Keine Pflanztiefen, Kultur- oder Entnahmeanweisungen."
+        },
+        {
+          "label": "University of Illinois Extension: How sweet it is growing sweet potatoes, 17.04.2026",
+          "url": "https://extension.illinois.edu/blogs/good-growing/2026-04-17-how-sweet-it-growing-sweet-potatoes",
+          "organization": "University of Illinois Extension",
+          "supports": "Originaleinleitung von Horticulture Educator Chris Enroth gelesen: Süßkartoffel als Speicherwurzel gegenüber Kartoffel als Sprossknolle. Keine US-Sorten, Ernte-/Lager- oder Verzehrangaben."
+        },
+        {
+          "label": "Penn State Extension: Weed Management in Pasture Systems",
+          "url": "https://extension.psu.edu/weed-management-in-pasture-systems",
+          "organization": "Pennsylvania State University Extension",
+          "supports": "Originaltext im vollständigen Suchindex der Originalseite gelesen: winterannuelle Keimung im Herbst und Abschluss im folgenden Frühjahr/Frühsommer. Direktabruf 403; ausschließlich Lebenszyklusbeschreibung, keine Bekämpfungs-, Gift-, Futter- oder Regionalangaben übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "lebenszyklus",
+          "title": "Einjährig und zweijährig beschreiben den Lebensweg",
+          "paragraphs": [
+            "Einjährige Pflanzen schließen ihren Lebenszyklus von der Keimung bis zur Samenbildung und zum Absterben in einer Vegetationsperiode ab. Das ist keine reine Kalenderjahreszählung. Eine überwinternde einjährige Pflanze kann im Herbst keimen und im folgenden Frühjahr oder Frühsommer ihren Lebenszyklus beenden. Die Jahresgrenze allein macht sie nicht zweijährig.",
+            "Beim typischen zweijährigen Weg werden in der ersten Vegetationsperiode vor allem vegetative Organe gebildet. Nach der Überwinterung folgen in der zweiten Blüten, Früchte und Samen; anschließend stirbt die Pflanze ab. Ausdauernde Pflanzen überleben mehr als zwei Vegetationsperioden. Krautig bedeutet fehlende dauerhafte oberirdische Verholzung, nicht einjährig. Bei vielen krautigen Ausdauernden sterben oberirdische Teile saisonal ab, während überlebende Organe den nächsten Austrieb ermöglichen.",
+            "Eigenes Verlaufsmodell: Im ersten Sommer wächst eine Rosette, sie überwintert; im nächsten Sommer entstehen Blüten und Samen, danach stirbt dieses Individuum. Die ganze Folge entspricht dem zweijährigen Grundmodell. Ein einzelnes Rosettenfoto würde dagegen weder die vollständige Lebensdauer noch eine feste Blühfrist beweisen. Auch eine ausdauernde Pflanze muss nicht jedes Jahr gleich stark blühen. Art und Entwicklungsbedingungen begrenzen das einfache Schema."
+          ],
+          "takeaway": "Lebensdauer wird am Entwicklungsweg beurteilt, nicht allein an Höhe oder Kalenderjahr.",
+          "exercise": "Ordne dem Modell Blattphase, Überwinterung, Fortpflanzung und Absterben zu."
+        },
+        {
+          "id": "rosette-schossen",
+          "title": "Aus einer Rosette kann eine gestreckte Blütenachse werden",
+          "paragraphs": [
+            "Bei einer grundständigen Blattrosette stehen viele Blätter dicht an einer kurzen Sprossbasis nahe dem Boden. Die Abstände zwischen den aufeinanderfolgenden Knoten, die Internodien, sind stark verkürzt. Eine Rosette ist deshalb kein Blattbündel ohne Achse: Die Sprossachse ist vorhanden, aber zunächst wenig gestreckt.",
+            "Beim Schossen streckt sich eine Achse deutlich und trägt später den Blütenstand. Bei vielen zweijährigen Kräutern folgt dieser höhere Fortpflanzungsspross auf eine niedrige Rosettenphase. Grundblätter und höher sitzende Blätter können unterschiedlich gestaltet sein. Nicht jede Art hat denselben Ablauf, und niedrige Rosetten sowie gestreckte Abschnitte können an einer Pflanze gleichzeitig vorkommen.",
+            "Eigenes Vergleichsmodell: Derselbe markierte Spross besitzt zuerst dicht stehende Grundblätter, später erhebt sich darüber eine längere blütentragende Achse. Rosettenphase gefolgt vom Schossen beschreibt diese Entwicklung. Rosette benennt dabei einen Bauzustand, zweijährig den Lebenszyklus. Die Rosette allein beweist folglich weder eine Blüte erst im nächsten Kalenderjahr noch ein Absterben nach einer bestimmten Zahl von Monaten. Das veränderte Aussehen kann zur Entwicklung derselben Pflanze gehören."
+          ],
+          "takeaway": "Rosette benennt kurze Internodien; Schossen die Streckung einer später blütentragenden Achse.",
+          "exercise": "Beschreibe im Modell die Veränderung der Achse, ohne eine unbekannte Art zu benennen."
+        },
+        {
+          "id": "zwiebel-kormus",
+          "title": "Echte Zwiebel und massive Sprossknolle speichern in verschiedenen Geweben",
+          "paragraphs": [
+            "Der gärtnerische Sammelname Zwiebelpflanze umfasst oft Organe unterschiedlichen botanischen Aufbaus. Eine echte Zwiebel besitzt eine kurze zusammengedrängte Sprossbasis und fleischige Speicherblätter oder Blattbasen. Die verdickten Schichten einer Küchenzwiebel zeigen damit vor allem Blattgewebe. Das Organ ist nicht einfach eine große verdickte Wurzel.",
+            "Ein Kormus, auch als massive Sprossknolle bezeichnet, ist im Inneren vorwiegend eine verdickte Sprossachse. Trockene Blattreste können ihn außen umhüllen, bilden aber keine saftigen Speicherschichten wie bei einer echten Zwiebel. Krokus und Gladiole sind gebräuchliche Beispiele. Ähnliche äußere Rundung bedeutet somit nicht gleiches Speichergewebe; auch eine trockene Außenhaut allein trennt beide Formen nicht zuverlässig.",
+            "Eigenes Schnittmodell: Organ A zeigt mehrere fleischige Blattschichten um eine kurze Sprossbasis. Organ B zeigt einen kompakten massiven Sprosskörper mit dünner trockener Hülle. A entspricht einer echten Zwiebel, B dem Kormus-Grundmodell. Beide verbinden Sprossanlagen mit gespeicherten Reserven, aber in verschiedenen Geweben. Der Vergleich beschriebener Organe ist keine Aufforderung, Wildpflanzen auszugraben, und kein Nachweis von Essbarkeit oder Winterhärte."
+          ],
+          "takeaway": "Bei echter Zwiebel speichern vor allem Blattteile, beim Kormus der massive Sprosskörper.",
+          "exercise": "Ordne im Schnittmodell das Speichergewebe dem Blatt oder der Sprossachse zu."
+        },
+        {
+          "id": "spross-wurzelknolle",
+          "title": "Kartoffel und Süßkartoffel zeigen verschiedene Speicherorgane",
+          "paragraphs": [
+            "Das Wort Knolle beschreibt im Alltag häufig ein verdicktes Organ, bestimmt aber dessen Herkunft noch nicht. Die Kartoffel besitzt eine Sprossknolle. Ihre Augen gehören zu Knotenbereichen und enthalten Knospenanlagen. Diese Gliederung verbindet den Speicherkörper mit dem Bau einer Sprossachse, auch wenn er äußerlich keinem belaubten Stängel ähnelt.",
+            "Die Süßkartoffel bildet dagegen verdickte Speicherwurzeln; auch die verdickten Speicherorgane einer Dahlie sind Wurzelknollen. Wurzelgewebe besitzt nicht die regelmäßige Knoten-/Internodiengliederung einer Sprossachse. Organherkunft und Speicherfunktion sind dabei getrennte Fragen; eine Anleitung zur praktischen Vermehrung wird aus dem Vergleich nicht abgeleitet.",
+            "Eigenes Vergleichsbeispiel: „Kartoffel – Sprossknolle mit Augen“ und „Süßkartoffel – Speicherwurzel“ bezeichnen unterschiedliche Organe mit ähnlicher Speicherfunktion. Man muss daraus weder einen nahen Verwandtschaftsgrad noch eine gleiche Vermehrungstechnik ableiten. Aus der Lage unter der Erde wird nicht automatisch eine Wurzel und aus einer rundlichen Form keine echte Zwiebel. Bei unbekannten Wildorganen ersetzt dieser Vergleich keine Artbestimmung oder Verwendungsprüfung."
+          ],
+          "takeaway": "Ähnliche Speicherfunktion macht Sprossknolle und Speicherwurzel nicht zum selben Organ.",
+          "exercise": "Schreibe für Kartoffel und Süßkartoffel je eine getrennte Organbeschreibung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "lebenszyklus",
+          "q": "Ein Pflanzenindividuum bildet zuerst eine Rosette, überwintert, trägt in der zweiten Vegetationsperiode Samen und stirbt danach. Welchem Grundmodell entspricht dieser Verlauf?",
+          "options": [
+            "Einjährig",
+            "Zweijährig",
+            "Krautig ausdauernd",
+            "Verholzt ausdauernd"
+          ],
+          "answer": 1,
+          "explain": "Das Modell umfasst eine vegetative und eine folgende fortpflanzende Vegetationsperiode. Eine Rosette allein würde die Lebensdauer noch nicht beweisen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "rosette-schossen",
+          "q": "Eine Pflanze bildet nach ihrer niedrigen Rosettenphase eine stark verlängerte blütentragende Achse. Wie heißt dieser Entwicklungsschritt?",
+          "options": [
+            "Keimen",
+            "Bewurzeln",
+            "Entblättern",
+            "Schossen"
+          ],
+          "answer": 3,
+          "explain": "Beim Schossen streckt sich die Achse für den späteren Blütenstand. Die Rosettenphase besitzt stark verkürzte Internodien."
+        },
+        {
+          "id": "q3",
+          "lessonId": "zwiebel-kormus",
+          "q": "Ein Organmodell zeigt fleischige Blattschichten um eine kurze Sprossbasis, ein zweites einen massiven verdickten Spross mit trockener Hülle. Welches Paar ordnet die Modelle richtig zu?",
+          "options": [
+            "Echte Zwiebel – Kormus",
+            "Kormus – echte Zwiebel",
+            "Speicherwurzel – echte Zwiebel",
+            "Speicherwurzel – Kormus"
+          ],
+          "answer": 0,
+          "explain": "Fleischige Speicherblätter kennzeichnen die echte Zwiebel; der Kormus speichert überwiegend im massiven Sprosskörper."
+        },
+        {
+          "id": "q4",
+          "lessonId": "spross-wurzelknolle",
+          "q": "Welche Organpaarung beschreibt Kartoffel und Süßkartoffel in dieser Reihenfolge?",
+          "options": [
+            "Speicherwurzel – Sprossknolle",
+            "Echte Zwiebel – Kormus",
+            "Sprossknolle – Speicherwurzel",
+            "Kormus – echte Zwiebel"
+          ],
+          "answer": 2,
+          "explain": "Kartoffelaugen gehören zur knospentragenden Sprossknolle. Die Süßkartoffel ist eine verdickte Wurzel; Speicherfunktion allein bestimmt den Organbau nicht."
+        }
+      ],
+      "sourceReview": {
+        "scope": "Entwicklungs- und Organmodelle mit benannten Kulturpflanzen als Vergleich; keine Bekämpfungs-, Entnahme-, Vermehrungs- oder Verzehrempfehlung."
+      }
+    },
+    {
+      "id": "wissen-vertiefung-pflanzenfamilien-vier-round4-2026",
+      "title": "Vier Pflanzenfamilien im Revier: Blütenbau und Merkmalskombinationen",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Kreuz-, Lippen-, Korb- und Doldenblütler anhand mehrerer zusammengehöriger Merkmale verstehen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Vier häufige Familienbaupläne mit ausdrücklich benannten Ausnahmen und eigenen Organ-/Strukturvergleichen; kein vollständiger Artenschlüssel und keine Verzehr-, Heil- oder Sammelanleitung.",
+        "AT": "Vier häufige Familienbaupläne mit ausdrücklich benannten Ausnahmen und eigenen Organ-/Strukturvergleichen; kein vollständiger Artenschlüssel und keine Verzehr-, Heil- oder Sammelanleitung.",
+        "CH": "Vier häufige Familienbaupläne mit ausdrücklich benannten Ausnahmen und eigenen Organ-/Strukturvergleichen; kein vollständiger Artenschlüssel und keine Verzehr-, Heil- oder Sammelanleitung."
+      },
+      "objectives": [
+        "Blüten- und Fruchtmerkmale gemeinsam lesen",
+        "Lippenblütler als Merkmalskombination verstehen",
+        "Köpfchen und Einzelblüte auseinanderhalten",
+        "Einfache Dolde und Doppeldolde unterscheiden"
+      ],
+      "sources": [
+        {
+          "label": "University of Hawaiʻi: Brassicaceae",
+          "url": "https://manoa.hawaii.edu/lifesciences/faculty/carr/brassic.htm",
+          "organization": "University of Hawaiʻi at Mānoa, Gerald D. Carr",
+          "supports": "Originale Familienbeschreibung gelesen: typischer vierzähliger Blütenbau, sechs unterschiedlich lange Staubblätter und Schoten/Schötchen mit Ausnahmen. Keine Bilder, historischen Familienzahlen oder Taxonomie übernommen."
+        },
+        {
+          "label": "UC Davis PLB 102: Lab 3, Brassicaceae",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab3.html",
+          "organization": "University of California, Davis, Department of Plant Sciences",
+          "supports": "Originaltext Brassicaceae gelesen: vier Kronblätter, zweiklappige Früchte, Schote/Schötchen und Fruchtausnahmen. Lehrfragen und Abbildungen nicht übernommen."
+        },
+        {
+          "label": "NC State Plant Toolbox: Brassica oleracea",
+          "url": "https://plants.ces.ncsu.edu/plants/brassica-oleracea/",
+          "organization": "North Carolina State University Extension",
+          "supports": "Originale Blütenbeschreibung mit vier Kronblättern und vier längeren/zwei kürzeren Staubblättern als konkretes Beispiel des typischen Kreuzblütler-Bauplans gelesen. Keine Kultur- oder Verzehrangaben übernommen."
+        },
+        {
+          "label": "University of Hawaiʻi: Lamiaceae",
+          "url": "https://manoa.hawaii.edu/lifesciences/faculty/carr/lami.htm",
+          "organization": "University of Hawaiʻi at Mānoa, Gerald D. Carr",
+          "supports": "Originale Familienbeschreibung zu Blattstellung, vierkantiger Achse, oft zweilippiger Krone und vierteiligem Fruchtknoten gelesen; Ausnahmen ausdrücklich berücksichtigt. Keine Bilder übernommen."
+        },
+        {
+          "label": "UC Davis PLB 102: Lab 5, Lamiaceae",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab5.html",
+          "organization": "University of California, Davis, Department of Plant Sciences",
+          "supports": "Originaltext Lamiaceae zu gegenständigen Blättern, vierkantigen Stängeln, zweiseitiger Blüte und tief vierlappigem Fruchtknoten gelesen. Keine Aufgaben oder Arzneiwirkungen übernommen."
+        },
+        {
+          "label": "University of Hawaiʻi: Asteraceae",
+          "url": "https://manoa.hawaii.edu/lifesciences/faculty/carr/aster.htm",
+          "organization": "University of Hawaiʻi at Mānoa, Gerald D. Carr",
+          "supports": "Originale Familienbeschreibung zu Köpfchen, Hüllblättern, Röhren-/Zungenblüten, unterständigem Fruchtknoten und Pappus gelesen. Keine Familiengrößen, Bilder oder pauschale Geschlechterregeln übernommen."
+        },
+        {
+          "label": "UC Davis PLB 102: Lab 6, Asteraceae und Apiaceae",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab6.html",
+          "organization": "University of California, Davis, Department of Plant Sciences",
+          "supports": "Original-HTML direkt abgerufen und vollständig in den Familienabschnitten gelesen: Köpfchenorgane, Blütentypen und Pappus; Apiaceae mit zusammengesetzten Dolden/anderen Formen. Web-Parser zeitweise unvollständig. Keine fremden Aufgaben oder Fotos übernommen."
+        },
+        {
+          "label": "Kew: Apiaceae, Temperate Plant Families Identification Handbook",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000180-2/general-information",
+          "organization": "Royal Botanic Gardens, Kew",
+          "supports": "Originale Darstellung des Kew Temperate Plant Families Identification Handbook (2023), Autorin Laura Pearce, gelesen: Blattbasis, variable Blätter/Infloreszenzen, fünfteilige Blüte, unterständiger Fruchtknoten und zwei Teilfrüchte. Andere teils historisch vermischte POWO-Quellabschnitte nicht als eigene Bestätigung gezählt."
+        },
+        {
+          "label": "PlantNET: Apiaceae, Flora of New South Wales",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=apiaceae&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, Sydney",
+          "supports": "Originale Familienbeschreibung von J. M. Powell, Stand Januar 2017, gelesen: Dolden/Döldchen, variable Blätter, fünf Kron-/Staubblätter und unterständiger zweiteiliger Fruchtknoten. Keine alten Gattungsgrenzen oder australischen Artenzahlen übertragen."
+        },
+        {
+          "label": "NC State Extension Gardener Handbook: 3. Botany",
+          "url": "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+          "organization": "North Carolina State University Extension",
+          "supports": "Originalabschnitt Inflorescences: Dolde mit gestielten Blüten aus gemeinsamem Ansatz gelesen. Nicht die pauschale Einordnung von Köpfchen als determiniert übernommen."
+        },
+        {
+          "label": "Universität Hamburg: Botanik online – Blütenstände (Archiv)",
+          "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02e.htm",
+          "organization": "Universität Hamburg, Archiv von Peter von Sengbusch",
+          "supports": "Historischen Originaltext zu einfacher und zusammengesetzter Infloreszenz, Doppeltraube/Doppeldolde gelesen. Keine Abbildungen oder weitergehenden pauschalen Verzweigungsregeln übernommen."
+        },
+        {
+          "label": "PlantNET: Asteraceae, Flora of New South Wales",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=Asteraceae&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, Sydney",
+          "supports": "Originaler Familienabschnitt von E. A. Brown und Mitwirkenden gelesen: Köpfchenhülle, Blütentypen, weibliche oder sterile Randblüten sowie unterständiger Fruchtknoten/eine Samenanlage im fruchtbildenden Bau. Keine Bilder, historischen Gattungsgrenzen oder Artenzahlen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "kreuzbluetler",
+          "title": "Kreuzblütler: Blüte und Frucht gemeinsam lesen",
+          "paragraphs": [
+            "Vier freie Kronblätter können bei Kreuzblütlern (Brassicaceae) kreuzförmig stehen. Im typischen Bauplan folgen außen vier Kelchblätter; innen stehen sechs Staubblätter, davon vier längere und zwei kürzere. Diese Kombination ist lernreicher als allein die Blütenfarbe. Die Blütenbeschreibung von Kohl (Brassica oleracea) zeigt beispielsweise den Bau mit zwei kürzeren äußeren und vier längeren inneren Staubblättern. Der Familienbau wird hier als typisches Modell behandelt, nicht als ausnahmslose Zählregel jeder Art.",
+            "Zum zweiten Blick gehört die Frucht. Der oberständige Fruchtknoten ist aus zwei Fruchtblättern aufgebaut. Viele reife Früchte öffnen sich mit zwei Klappen; eine dünne Scheidewand trennt die beiden Bereiche. Eine längliche, schmale Ausprägung heißt Schote, eine kurze und eher breite Schötchen. Nicht sämtliche Früchte der Familie öffnen sich auf diese Weise; abweichende, etwa gegliederte Früchte gehören zu den Grenzen des Modells.",
+            "Eigenes Vergleichsmodell: Eine Pflanze zeigt vier kreuzförmige freie Kronblätter, vier lange und zwei kurze Staubblätter sowie eine längliche zweiklappige Frucht. Gemeinsam passt das zum typischen Kreuzblütler-Bau. Ein zweiter Fund mit lediglich vier gelben Kronblättern ist viel schwächer beschrieben. Für eine belastbare Artbestimmung fehlen weiterhin die genaue Blatt-, Frucht- und übrige Merkmalsbeschreibung. Familienerkennung ist eine Ordnungshilfe, kein vollständiger Artenschlüssel."
+          ],
+          "takeaway": "Kronblätter, Staubblätter und Frucht zu einer Merkmalskombination verbinden.",
+          "exercise": "Vergleiche das vollständige Modell mit einer bloßen Angabe zur Blütenfarbe; benenne die zusätzlichen Beobachtungen."
+        },
+        {
+          "id": "lippenbluetler",
+          "title": "Lippenblütler: Merkmale bündeln statt nur den Stängel fühlen",
+          "paragraphs": [
+            "Bei vielen krautigen Lippenblütlern (Lamiaceae) fallen gegenständige Blätter und ein vierkantiger Stängel zusammen auf. Häufig kommen aromatische Stoffe vor. Keine dieser Eigenschaften allein reicht aber aus, um eine Familie oder Art sicher anzusprechen. Die Familie enthält unterschiedliche Wuchs- und Blütenformen. Deshalb werden hier häufige Merkmalskombinationen beschrieben; weder ein vierkantiger Querschnitt noch ein Geruch wird zur ausnahmslosen Familienregel erklärt.",
+            "Die Krone besteht aus miteinander verwachsenen Kronblättern und ist oft in Ober- und Unterlippe gegliedert. Im typischen zweilippigen Modell bilden zwei der fünf Kronzipfel die Oberlippe und drei die Unterlippe. Häufig sind vier Staubblätter vorhanden, in zwei verschieden langen Paaren; manche Formen besitzen nur zwei. Der Fruchtknoten ist im häufigen Bauplan oberständig und tief vierlappig. Daraus können vier einsamige Teilfrüchte entstehen. Auch in diesem Bereich gibt es innerhalb der Familie Abweichungen.",
+            "Eigenes Vergleichsmodell: Gegenständige Blätter, vierkantige Achse und eine verwachsene zweilippige Krone sprechen gemeinsam für den typischen Lippenblütler-Bau. Ein einzelner vierkantiger Stängel liefert diese Kombination noch nicht. Bei der Beobachtung lassen sich Blattstellung, Blütenansicht und Frucht getrennt notieren und anschließend zusammenführen. Die Familie wird damit verständlich, ohne aus einem allgemeinen Bauplan eine bestimmte Art, eine Arzneiwirkung oder eine Verzehrfreigabe abzuleiten."
+          ],
+          "takeaway": "Beim häufigen Lippenblütler-Bau tragen vegetative und Blütenmerkmale gemeinsam zur Einordnung bei.",
+          "exercise": "Ordne im Modell die Blattstellung dem Spross und die Ober-/Unterlippe der Einzelblüte zu."
+        },
+        {
+          "id": "korbbluetler",
+          "title": "Korbblütler: viele Einzelblüten in einem Köpfchen",
+          "paragraphs": [
+            "Was bei einem Korbblütler (Asteraceae) wie eine einzelne große Blüte wirkt, ist meist ein ganzes Köpfchen aus vielen kleinen Einzelblüten. Diese sitzen auf einem gemeinsamen Blütenstandsboden. Außen umgeben Hüllblätter das Köpfchen; ihre Gesamtheit heißt Hülle oder Involucrum. Diese Hüllblätter gehören zum Blütenstand und dürfen nicht mit dem Kelch einer einzelnen kleinen Blüte gleichgesetzt werden. Der Wechsel der Betrachtungsebene ist der Schlüssel zum Aufbau.",
+            "Die Einzelblüten können unterschiedlich geformt sein. Röhrenblüten besitzen eine röhrige Krone; bei zungenförmigen Blüten ist die Krone zu einem seitlich gerichteten, zungenartigen Teil ausgezogen. Je nach Art enthält ein Köpfchen nur eine dieser Formen oder verschiedene Formen nebeneinander. Ein Kranz auffälliger Zungenblüten um Röhrenblüten ist daher ein mögliches Modell, kein Pflichtbau jeder Asteraceae. Die auffällige äußere Zunge gehört zur Krone einer Einzelblüte, nicht zu einem einzelnen Kronblatt einer riesigen Gesamtblüte.",
+            "Im typischen fruchtbildenden Bau besitzt die Einzelblüte einen unterständigen Fruchtknoten mit einer Samenanlage. Daneben können männliche oder sterile Einzelblüten im Köpfchen vorkommen; nicht jede kleine Blüte bildet eine Frucht. Der Kelch kann fehlen oder zu einem Pappus umgebildet sein, etwa aus Haaren, Borsten oder Schuppen. Er ist damit etwas anderes als die äußeren Hüllblätter des Köpfchens. Eigenes Vergleichsmodell: In einem Köpfchen liegen innen Röhrenblüten und außen Zungenblüten. Beide sind Einzelblüten desselben Blütenstandes. Für den Organvergleich wird deshalb zuerst eine kleine Blüte betrachtet und erst danach wieder das ganze Köpfchen."
+          ],
+          "takeaway": "Köpfchenhülle und Kelch der Einzelblüte sind zwei verschiedene Ebenen.",
+          "exercise": "Verfolge im gedachten Köpfchen einmal die ganze Hülle und einmal den Pappus genau einer Einzelblüte."
+        },
+        {
+          "id": "doldenbluetler",
+          "title": "Doldenblütler: zwei Verzweigungsebenen erkennen",
+          "paragraphs": [
+            "Bei einer einfachen Dolde entspringen die Blütenstiele ungefähr an einem gemeinsamen Punkt der verkürzten Achse. Bei einer Doppeldolde tragen die ersten Strahlen dagegen kleine Dolden, die Döldchen. Erst deren Strahlen führen zu den Einzelblüten. Die gleichmäßige Außenkontur allein macht daher noch keine Doppeldolde aus: Entscheidend sind die zwei erkennbaren Verzweigungsebenen. Dolden und Döldchen können an ihrer Basis Hüllblätter beziehungsweise Hüllchenblätter besitzen.",
+            "Doppeldolden sind ein häufiger Bau der Doldenblütler (Apiaceae), aber nicht die einzige Form: Auch einfache Dolden und kopfige Blütenstände kommen vor. Die Blätter sind meist wechselständig, häufig gegliedert oder geteilt; ihre Stiele besitzen oft eine scheidenartig verbreiterte Basis. Es gibt jedoch auch einfache Blätter. Der Blütenbau ist typischerweise fünfzählig, mit fünf Kronblättern und fünf Staubblättern. Der unterständige Fruchtknoten besteht meist aus zwei miteinander verbundenen Fruchtblättern.",
+            "Die reife trockene Frucht zerfällt im typischen Bau in zwei einsamige Teilfrüchte. Zusammen mit dem Blütenstand ist die genaue Fruchtgestalt für die weitere Bestimmung wichtig. Eigenes Vergleichsmodell: Bei A gehen Blütenstiele direkt vom gemeinsamen Ansatz aus; bei B stehen dort zunächst Strahlen, die jeweils ein Döldchen tragen. A ist eine einfache Dolde, B eine Doppeldolde. Dieses Strukturwissen ordnet den Blütenstand ein. Es ersetzt weder einen vollständigen Artenschlüssel noch eine fachkundige Beurteilung einer unbekannten Pflanze."
+          ],
+          "takeaway": "Eine Doppeldolde besitzt Döldchen auf den ersten Strahlen; der Familienname macht nicht jeden Blütenstand gleich.",
+          "exercise": "Beschreibe für Modell A und B nacheinander, was direkt am Ende eines ersten Strahls sitzt."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "kreuzbluetler",
+          "q": "Vier kreuzförmig angeordnete freie Kronblätter, vier lange und zwei kurze Staubblätter sowie eine längliche zweiklappige Frucht passen zu welchem typischen Familienbau?",
+          "options": [
+            "Lippenblütler (Lamiaceae)",
+            "Doldenblütler (Apiaceae)",
+            "Korbblütler (Asteraceae)",
+            "Kreuzblütler (Brassicaceae)"
+          ],
+          "answer": 3,
+          "explain": "Die vollständige Merkmalskombination entspricht dem typischen Kreuzblütler-Bau: vier Kronblätter, sechs Staubblätter in zwei Längengruppen und eine Schote. Eine einzelne vierzählige oder farbige Blüte wäre als Familienbeleg deutlich schwächer. Das Modell bestimmt noch keine konkrete Art."
+        },
+        {
+          "id": "q2",
+          "lessonId": "lippenbluetler",
+          "q": "Gegenständige Blätter, ein vierkantiger Stängel und eine verwachsene zweilippige Krone passen gemeinsam zu welchem häufigen Familienbau?",
+          "options": [
+            "Kreuzblütler (Brassicaceae)",
+            "Lippenblütler (Lamiaceae)",
+            "Korbblütler (Asteraceae)",
+            "Doldenblütler (Apiaceae)"
+          ],
+          "answer": 1,
+          "explain": "Die Kombination gehört zum häufigen Lippenblütler-Bau. Die Ober- und Unterlippe sind Teile der Krone einer Einzelblüte. Blattstellung oder Stängelquerschnitt allein wären keine gleichwertig vollständige Beschreibung; innerhalb der Familie gibt es zudem Abweichungen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "korbbluetler",
+          "q": "Ein Korbblütler-Köpfchen trägt innen Röhrenblüten und außen Zungenblüten. Wie sind diese beiden Gruppen im beschriebenen Modell einzuordnen?",
+          "options": [
+            "Innen liegen Kelchblätter, außen Kronblätter einer Gesamtblüte.",
+            "Innen liegen Einzelblüten, außen Hüllblätter desselben Köpfchens.",
+            "Innen und außen liegen verschieden geformte Einzelblüten.",
+            "Innen liegen Fruchtblätter, außen Staubblätter einer Gesamtblüte."
+          ],
+          "answer": 2,
+          "explain": "Röhrenblüten und Zungenblüten sind im Modell verschieden geformte Einzelblüten auf demselben Blütenstandsboden. Das Köpfchen ist der gesamte Blütenstand; seine Hüllblätter bilden eine weitere, äußere Ebene. Andere Korbblütler können auch Köpfchen mit nur einem Blütentyp besitzen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "doldenbluetler",
+          "q": "Die ersten Strahlen eines Blütenstandes tragen jeweils ein Döldchen mit mehreren gestielten Blüten. Wie heißt diese zweistufige Bauform?",
+          "options": [
+            "Doppeldolde",
+            "Einfache Dolde",
+            "Traube",
+            "Ähre"
+          ],
+          "answer": 0,
+          "explain": "Die ersten Strahlen enden in kleinen Dolden: Das ergibt die zusammengesetzte Dolde oder Doppeldolde. Bei der einfachen Dolde führen die Blütenstiele unmittelbar vom gemeinsamen Ansatz zu den Blüten. Die Verzweigung wird hier beschrieben, nicht eine bestimmte Pflanzenart freigegeben."
+        }
+      ],
+      "sourceReview": {
+        "scope": "Vier häufige Familienbaupläne mit ausdrücklich benannten Ausnahmen und eigenen Organ-/Strukturvergleichen; kein vollständiger Artenschlüssel und keine Verzehr-, Heil- oder Sammelanleitung."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-laubblatt-merkmale-round4-2026",
+      "lessonId": "blatt-oder-blaettchen",
+      "claims": [
+        {
+          "claim": "Spreite, Blattstiel und Ansatz am Spross sind verschiedene Strukturen; sitzende Blätter ohne abgesetzten Stiel. Einfache Blätter können gelappt, zusammengesetzte in Blättchen gegliedert sein.",
+          "sourceUrls": [
+            "https://www.amnh.org/learn-teach/curriculum-collections/biodiversity-counts/plant-identification/plant-morphology/leaf-type",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm"
+          ]
+        },
+        {
+          "claim": "Achselknospen sitzen am ganzen Blattansatz, nicht an Blättchen. Gefiederte Blättchen stehen an einer Achse, handförmige an einem gemeinsamen Ansatzbereich. Das Fünf-Blättchen-Modell ist eine eigene Anwendung.",
+          "sourceUrls": [
+            "https://www.amnh.org/learn-teach/curriculum-collections/biodiversity-counts/plant-identification/plant-morphology/leaf-type",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubblatt-merkmale-round4-2026",
+      "lessonId": "blattstellung",
+      "claims": [
+        {
+          "claim": "Wechselständig: ein Blatt je Knoten; gegenständig: zwei gegenüber; quirlig: mindestens drei. Die Blättchen eines zusammengesetzten Blattes sind keine weiteren ganzen Blätter am Sprossknoten.",
+          "sourceUrls": [
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+            "https://woodyplantstutorial.nres.illinois.edu/glossary.asp",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        },
+        {
+          "claim": "Wechselständigkeit kann schraubig oder zweizeilig sein; dekussiert bedeutet ungefähr rechtwinklig gegeneinander gedrehte aufeinanderfolgende Blattpaare. Das Achsenmodell ist eine eigene Anwendung.",
+          "sourceUrls": [
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+            "https://woodyplantstutorial.nres.illinois.edu/glossary.asp"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubblatt-merkmale-round4-2026",
+      "lessonId": "nervatur",
+      "claims": [
+        {
+          "claim": "Nervatur ist die Anordnung leitbündelhaltiger Blattadern. Fiedernervig: Seitenadern an Hauptader; handnervig: mehrere kräftige Adern aus basalem Bereich. Von Blattgliederung unterscheiden.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+            "https://woodyplantstutorial.nres.illinois.edu/glossary.asp",
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm"
+          ]
+        },
+        {
+          "claim": "Annähernd parallele kräftigere Adern können feinere Querverbindungen besitzen. Das eigene Modell einer einfachen fiedernervigen Spreite ist kein zusammengesetztes Blatt.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubblatt-merkmale-round4-2026",
+      "lessonId": "umriss-rand",
+      "claims": [
+        {
+          "claim": "Eiförmig, verkehrt eiförmig, lanzettlich und linealisch beschreiben Umrisse; ganzrandig, gesägt, gekerbt und doppelt gesägt betreffen den Rand.",
+          "sourceUrls": [
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+            "https://woodyplantstutorial.nres.illinois.edu/glossary.asp"
+          ]
+        },
+        {
+          "claim": "Einfache Blätter können gelappt sein; eigene Merkmalsnotiz trennt Gliederung, Umriss und Rand, ohne vollständige Artbestimmung daraus abzuleiten.",
+          "sourceUrls": [
+            "https://www.amnh.org/learn-teach/curriculum-collections/biodiversity-counts/plant-identification/plant-morphology/leaf-type",
+            "https://biodiversity.utexas.edu/news/features/botany-basics-understanding-leaves",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-krautpflanzen-lebensdauer-round4-2026",
+      "lessonId": "lebenszyklus",
+      "claims": [
+        {
+          "claim": "Einjährige schließen den Zyklus in einer Vegetationsperiode ab, Zweijährige typischerweise in zwei; Ausdauernde leben länger. Überwinternde Einjährige zeigen die Grenze reiner Kalenderjahreszählung.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9899-know-life-cycles-plants-annuals-biennials-perennials",
+            "https://www.rhs.org.uk/advice/understanding-plants/how-plants-age",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+            "https://extension.psu.edu/weed-management-in-pasture-systems"
+          ]
+        },
+        {
+          "claim": "Krautige und verholzte Ausdauernde sind möglich; saisonales Absterben oberirdischer Teile ist nicht zwingend Tod des ganzen Individuums. Eigenes Verlaufsmodell, keine universelle Blühgarantie.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9899-know-life-cycles-plants-annuals-biennials-perennials",
+            "https://www.rhs.org.uk/advice/understanding-plants/how-plants-age",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-krautpflanzen-lebensdauer-round4-2026",
+      "lessonId": "rosette-schossen",
+      "claims": [
+        {
+          "claim": "Grundständige Rosetten besitzen dicht folgende Knoten mit stark verkürzten Internodien, keine fehlende Sprossachse.",
+          "sourceUrls": [
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        },
+        {
+          "claim": "Bei vielen zweijährigen Kräutern folgt eine gestreckte blütentragende Achse; Grund- und Stängelblätter können verschieden sein. Bauzustand allein bestimmt keine Lebensdauer.",
+          "sourceUrls": [
+            "https://extension.sdstate.edu/biennial-weed-species-have-started-emerge",
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02c.htm",
+            "https://www.rhs.org.uk/advice/understanding-plants/how-plants-age"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-krautpflanzen-lebensdauer-round4-2026",
+      "lessonId": "zwiebel-kormus",
+      "claims": [
+        {
+          "claim": "Echte Zwiebel: kurze Sprossbasis mit fleischigen Speicherblättern/-basen. Kormus: massives verdicktes Sprossgewebe mit möglichen trockenen Blattresten.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://extension.umd.edu/resource/bulbs",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        },
+        {
+          "claim": "Krokus und Gladiole sind Kormus-Beispiele; gärtnerischer Sammelbegriff umfasst verschiedene Organbauten. Das Schnittmodell ist eine eigene Anwendung, keine Kultur-/Verzehrfreigabe.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://extension.umd.edu/resource/bulbs",
+            "https://www.rhs.org.uk/plants/types/bulbs/growing-guide"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-krautpflanzen-lebensdauer-round4-2026",
+      "lessonId": "spross-wurzelknolle",
+      "claims": [
+        {
+          "claim": "Kartoffel: Sprossknolle mit Knospen an Augen/Knotenbereichen. Süßkartoffel: verdickte Speicherwurzel.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://extension.illinois.edu/blogs/good-growing/2026-04-17-how-sweet-it-growing-sweet-potatoes",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        },
+        {
+          "claim": "Dahlien besitzen Speicherwurzeln ohne regelmäßige Knoten-/Internodiengliederung einer Sprossachse. Organherkunft, Speicherfunktion und praktische Vermehrung werden getrennt.",
+          "sourceUrls": [
+            "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+            "https://extension.umd.edu/resource/bulbs",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-pflanzenfamilien-vier-round4-2026",
+      "lessonId": "kreuzbluetler",
+      "claims": [
+        {
+          "claim": "Typischer Brassicaceae-Blütenbau: vier freie kreuzförmige Kronblätter, vier Kelchblätter, sechs Staubblätter mit vier längeren/zwei kürzeren; konkretes Kohl-Beispiel, keine universelle Regel.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/brassic.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab3.html",
+            "https://plants.ces.ncsu.edu/plants/brassica-oleracea/"
+          ]
+        },
+        {
+          "claim": "Oberständiger zweikarpelliger Fruchtknoten; Schote/Schötchen häufig zweiklappig mit Scheidewand, dabei abweichende Fruchttypen möglich. Eigenes Kombinationsmodell, kein Artenschlüssel.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/brassic.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab3.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-pflanzenfamilien-vier-round4-2026",
+      "lessonId": "lippenbluetler",
+      "claims": [
+        {
+          "claim": "Viele krautige Lamiaceae verbinden gegenständige Blätter, vierkantige Achsen und häufig aromatische Merkmale, mit Ausnahmen innerhalb der Familie.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/lami.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab5.html"
+          ]
+        },
+        {
+          "claim": "Häufig verwachsene zweilippige Krone mit fünf Zipfeln (zwei oben/drei unten), vier oder zwei Staubblätter sowie oberständiger tief vierlappiger Fruchtknoten und meist vier einsamige Teilfrüchte. Eigenes Kombinationsmodell, keine Nutzungsfreigabe.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/lami.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab5.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-pflanzenfamilien-vier-round4-2026",
+      "lessonId": "korbbluetler",
+      "claims": [
+        {
+          "claim": "Asteraceae-Köpfchen: viele Einzelblüten auf gemeinsamem Boden, umgeben von Hüllblättern; Röhren- und zungenförmige Blüten können in unterschiedlichen Kombinationen auftreten.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/aster.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab6.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=Asteraceae&page=nswfl"
+          ]
+        },
+        {
+          "claim": "Kelch der Einzelblüte kann fehlen oder als Pappus aus Haaren/Borsten/Schuppen vorliegen; unterständiger Fruchtknoten mit einer Samenanlage im typischen fruchtbildenden Bau, daneben männliche oder sterile Einzelblüten möglich. Pappus und Köpfchenhülle sind nicht dieselben Organe; eigenes Ebenenvergleichsmodell.",
+          "sourceUrls": [
+            "https://manoa.hawaii.edu/lifesciences/faculty/carr/aster.htm",
+            "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab6.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=Asteraceae&page=nswfl"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-pflanzenfamilien-vier-round4-2026",
+      "lessonId": "doldenbluetler",
+      "claims": [
+        {
+          "claim": "Einfache Dolde: gestielte Blüten aus gemeinsamem Ansatz; Doppeldolde: Strahlen tragen Döldchen. Apiaceae besitzen häufig zusammengesetzte Dolden, mit einfachen und kopfigen Ausnahmen sowie möglichen Hüll-/Hüllchenblättern.",
+          "sourceUrls": [
+            "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000180-2/general-information",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=apiaceae&page=nswfl",
+            "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d02/02e.htm"
+          ]
+        },
+        {
+          "claim": "Apiaceae-Blätter meist wechselständig, häufig geteilt und scheidiger Stielbasis, aber variable Gestalt; typischer fünfzähliger Blütenbau, unterständiger meist zweikarpelliger Fruchtknoten und zwei einsamige Teilfrüchte. Eigenes Strukturvergleichsmodell ohne Art-/Nutzungsbestimmung.",
+          "sourceUrls": [
+            "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000180-2/general-information",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=fm&name=apiaceae&page=nswfl"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    "Keine vollständige Artbestimmung oder Verzehr-, Heil-, Sammel- oder Kulturfreigabe aus allgemeinen Merkmalen.",
+    "Keine pauschale Gleichsetzung von Rosette mit Lebensdauer oder Wintertriebverlust mit Tod des Individuums.",
+    "Keine historischen Fibonacci-/Zweizeiligkeitsangaben aus dem Hamburger Archiv und keine unzutreffende Cyclamen-Kormuszuordnung aus einem anderen Gartenbeitrag.",
+    "Keine Artenzahlen oder historischen Gattungsgrenzen der Pflanzenfamilien, keine Universalregel zu Aromatik, Stängelquerschnitt, Blüten- oder Fruchtform."
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine fremden Bilder, Videos, Grafiken oder Aufgaben übernommen. Vergleichsmodelle sind eigene Beispiele."
+  }
+}

@@ -17,7 +17,7 @@ function load(relative, cache = new Map()) {
   const mod = {exports: {}};
   const {code} = swc.transformSync(fs.readFileSync(filename, 'utf8'), {filename, disableNextSsg: true, jsc: {parser: {syntax: 'ecmascript', jsx: true}, target: 'es2022', transform: {react: {runtime: 'automatic'}}}, module: {type: 'commonjs'}});
   const resolve = id => {
-    if (id === 'next/link') return ({href, children, ...props}) => React.createElement('a', {href, ...props}, children);
+    if (id === 'next/link') return ({href, children, prefetch, ...props}) => React.createElement('a', {href, ...props}, children);
     if (id === 'next/head') return ({children}) => children;
     if (id === 'next/image') return ({priority, fill, ...props}) => React.createElement('img', props);
     if (id === 'next/router') return {useRouter: () => ({isReady: true, query: {}, asPath: '/lernen', replace: async () => true})};
@@ -40,18 +40,22 @@ test('The learning overview exposes one search, twelve direct categories, and co
   assert.ok(html.indexOf('Kategorien') < html.indexOf('all-search-title'));
 });
 
-test('Category pages expose compact photographed practice before courses, with remaining resources below and no extra opening button', () => {
-  const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
-  const Component = load('components/LearningOverview.js').default;
-  for (const category of ['hundewesen', 'wildkunde', 'jagdrecht']) {
+test('Category pages lead with reading and exact lessons, with practice reachable by an in-page link', () => {
+  const cache = new Map();
+  const getData = load('lib/learning-overview-server.js', cache).getLearningOverviewData;
+  const Component = load('components/LearningOverview.js', cache).default;
+  const getModule = load('lib/learning-curriculum.js', cache).getLearningModule;
+  const { lessonHash } = load('lib/learning-lesson-navigation.js', cache);
+  for (const category of load('lib/learning-categories.js', cache).learningCategoryDetails.map(item => item.slug)) {
     const data = getData(category);
+    assert.deepEqual(data.covers, [], 'Reading lists do not transfer unused course photo summaries');
     const html = renderToStaticMarkup(React.createElement(Component, {data}));
     assert.equal((html.match(/type="search"/g) || []).length, 1);
-    assert.ok(html.indexOf('learning-modules-heading') < html.indexOf('learning-resources-heading'));
-    if (category !== 'jagdrecht') {
-      assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('id="learning-modules-heading"'));
+    if (data.resources.some(tool => !tool.featured)) assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-resources-heading"'));
+    if (data.resources.some(tool => tool.featured)) {
+      assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-featured-heading"'));
       assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('aria-label="Deine Kurse"'));
-      assert.ok(html.includes('class="featuredPhoto"'));
+      assert.ok(html.includes('href="#learning-featured"'));
     }
     assert.doesNotMatch(html, /Lerneinheit öffnen|id="learning-country"/);
     assert.doesNotMatch(html, /class="lessonPreview"/);
@@ -59,16 +63,20 @@ test('Category pages expose compact photographed practice before courses, with r
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));
     const links = [...resourceHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => targets.has(href));
     assert.equal(new Set(links).size, links.length);
-    const cards = [...html.matchAll(/<article class="moduleCard">([\s\S]*?)<\/article>/g)];
+    const cards = [...html.matchAll(/<article class="moduleCard courseRow">([\s\S]*?)<\/article>/g)];
     assert.equal(cards.length, data.modules.length);
     cards.forEach((card, index) => {
       const href = `/kurse/${data.modules[index].id}`;
       assert.ok(card[1].includes(`<a href="${href}" class="moduleLink">`), href);
-      if (data.covers[data.modules[index].coverIndex]?.coursePhotoUse) {
-        assert.ok(card[1].includes(`<a href="${href}" class="photoLink" tabindex="-1" aria-hidden="true"><img`), href);
-        assert.doesNotMatch(card[1].split('class="photoLink"')[1].split('</a>')[0], /<a\s/);
-        assert.ok(card[1].indexOf('</a>') < card[1].indexOf('<figcaption'), 'Image credits remain independent links');
-      } else assert.doesNotMatch(card[1], /<img|class="photoLink"/, `${href}: no decorative category fallback`);
+      const original = getModule(data.modules[index].id);
+      assert.equal(data.modules[index].topics.length, original.lessons.length);
+      for (const [lessonIndex, lesson] of original.lessons.entries()) {
+        const target = `${href}${lessonHash(lesson.id)}`;
+        assert.deepEqual(data.modules[index].topics[lessonIndex], { title: lesson.title, href: target });
+        assert.ok(card[1].includes(`href="${target.replaceAll('&', '&amp;')}"`), target);
+      }
+      assert.doesNotMatch(card[1], /<details|<button/, 'All lessons are direct links, without an opening step');
+      assert.doesNotMatch(card[1], /<img|class="photoLink"/, `${href}: the category reading list stays text-first`);
     });
   }
 });
@@ -78,6 +86,7 @@ test('Overview photo summaries preserve exact delivered media and attribution wi
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
   assert.equal(Object.keys(summaries).length, 5);
   assert.deepEqual(getData().featuredMedia, {});
+  assert.ok(getData().modules.every(module => module.topics === undefined), 'The complete directory does not load every lesson title');
   assert.equal(new Set(Object.values(summaries).map(photo => photo.src)).size, 5);
   for (const [href, photo] of Object.entries(summaries)) {
     const dimensions = await sharp(path.join(root, 'public', photo.src)).metadata();
@@ -89,7 +98,10 @@ test('Overview photo summaries preserve exact delivered media and attribution wi
     const data = getData(category);
     const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category) && summaries[tool.href]?.purpose).map(tool => tool.href).sort();
     assert.deepEqual(Object.keys(data.featuredMedia).sort(), expected);
-    assert.ok(data.modules.every(module => !module.lessons && !module.questions && !module.lessonTitles));
+    assert.ok(data.modules.every(module => !module.lessons && !module.questions));
+    for (const module of data.modules) {
+      assert.ok(module.topics.every(topic => Object.keys(topic).sort().join(',') === 'href,title'), 'Category links transfer only titles and destinations');
+    }
   }
 });
 
@@ -111,7 +123,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
     assert.equal(new Set(data.covers.map(cover => JSON.stringify(cover))).size, data.covers.length);
     for (const module of data.modules) {
       const media = getLearningMedia(module);
-      assert.equal(renderCover(data.covers[module.coverIndex]), media?.coursePhotoUse ? renderCover(media) : '', module.id);
+      assert.equal(renderCover(data.covers[module.coverIndex]), !slug && media?.coursePhotoUse ? renderCover(media) : '', module.id);
     }
     assert.deepEqual(data.categoryCovers, {}, 'The compact category menu needs no photo payload');
     const selectedIds = new Set(data.modules.map(module => module.id));

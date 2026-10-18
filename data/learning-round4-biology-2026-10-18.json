@@ -1,0 +1,941 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Drei neue biologische Vertiefungen nach Abgleich des Bestands von 168 Kursen, passender Artenprofile und vorhandener Fragen. Wissenstexte stehen im Vordergrund: vier Lektionen und nur eine ergänzende Anwendungsfrage je Lektion. Keine Vollprüfung der übrigen App.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-blutstillung-round4-2026",
+      "title": "Blutstillung: Blutplättchen, Gerinnung und Fibrinabbau",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Wie eine verletzte Gefäßstelle abgedichtet wird: Gefäßwand, Plättchen, Fibrinnetz und kontrollierter Abbau im Zusammenhang verstehen.",
+      "minutes": 28,
+      "objectives": [
+        "Gefäßbarriere und Blutplättchen unterscheiden",
+        "Adhäsion, Aktivierung und Aggregation am Lernbeispiel erklären",
+        "Fibrinogen, Thrombin und Fibrin funktionell zuordnen",
+        "Gerinnungshemmung und Abbau vorhandenen Fibrins trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundmechanismen der Blutstillung bei Säugern. Zellfragmente, Gefäßoberfläche, Fibrinbildung und Fibrinabbau werden als zusammenwirkendes System erklärt; keine Diagnostik, Blutverlustschätzung, Zeitnorm oder Behandlung.",
+        "AT": "Grundmechanismen der Blutstillung bei Säugern. Zellfragmente, Gefäßoberfläche, Fibrinbildung und Fibrinabbau werden als zusammenwirkendes System erklärt; keine Diagnostik, Blutverlustschätzung, Zeitnorm oder Behandlung.",
+        "CH": "Grundmechanismen der Blutstillung bei Säugern. Zellfragmente, Gefäßoberfläche, Fibrinbildung und Fibrinabbau werden als zusammenwirkendes System erklärt; keine Diagnostik, Blutverlustschätzung, Zeitnorm oder Behandlung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Hemostasis: Physiology",
+          "url": "https://eclinpath.com/hemostasis/physiology/",
+          "organization": "Cornell University, eClinpath",
+          "supports": "Originaltext gelesen: primäre/sekundäre Hämostase und Fibrinolyse werden gleichzeitig unterschiedlich stark aktiviert, Zelloberflächen und lokale Hemmung. Kein starres Nacheinander übernommen."
+        },
+        {
+          "label": "Primary hemostasis",
+          "url": "https://eclinpath.com/hemostasis/physiology/primary-hemostasis/",
+          "organization": "Cornell University, eClinpath",
+          "supports": "Originalabschnitte gelesen: Endothelbarriere, Kollagen/von-Willebrand-Faktor, Adhäsion, Aktivierung und Fibrinogenbrücken bei Aggregation."
+        },
+        {
+          "label": "Platelets: Production",
+          "url": "https://eclinpath.com/hematology/physiology/platelets/",
+          "organization": "Cornell University, eClinpath",
+          "supports": "Originalabschnitt zur Abgabe von Plättchenvorstufen durch Megakaryozyten gelesen. Keine Zellzahlen, Lebensdauern oder Maus-Lungenanteile übertragen."
+        },
+        {
+          "label": "Fibrinolysis",
+          "url": "https://eclinpath.com/hemostasis/physiology/fibrinolysis/",
+          "organization": "Cornell University, eClinpath",
+          "supports": "Originaltext gelesen: tPA, Plasminogen/Plasmin, Fibrinabbau und Balance zur Gerinnung. Keine Laborinterpretation übernommen."
+        },
+        {
+          "label": "McMichael: Coagulation Abnormalities in the Emergency Patient",
+          "url": "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf",
+          "organization": "University of Illinois College of Veterinary Medicine",
+          "supports": "Original-PDF, Abschnitte Primary/Secondary Hemostasis und Fibrinolysis gelesen: vorläufiger Plättchenverschluss, Fibrin, Membranoberflächen und tPA/Plasmin. Lehrmäßige Reihenfolge nicht als zeitlich getrennte Phasen behauptet."
+        },
+        {
+          "label": "Betts und andere: Hemostasis, 18.5",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originalabschnitte gelesen: lokale Gefäßreaktion, Plättchenaktivierung, Thrombin/Fibrinogen/Fibrin, Faktor XIII und Plasmin. Nur allgemeine Säugermechanismen abgeglichen; keine Humanwerte, Fragen, Abbildungen oder Textformulierungen übernommen."
+        },
+        {
+          "label": "Betts und andere: Leukocytes and Platelets, 18.4",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originalabschnitt Platelets gelesen: membranumgebene Zytoplasmafragmente von Megakaryozyten. Humanwerte und pauschale Alters-/Zahlregeln nicht übertragen; eigenständige deutsche Formulierung."
+        },
+        {
+          "label": "Streiff / Emadi: Overview of Hemostasis",
+          "url": "https://www.merckmanuals.com/professional/hematology/hemostasis/overview-of-hemostasis",
+          "organization": "Merck Manual Professional; Johns Hopkins University / West Virginia University",
+          "supports": "Öffentliche Originalabschnitte gelesen: Gefäßreaktion, Plättchen und Gerinnung, Thrombin-vermittelte Fibrinbildung und Vernetzung. Humanmodell nur zum konservierten Mechanismus, nicht zu Referenzwerten."
+        },
+        {
+          "label": "Center: Hemostasis and Fibrinolysis in Animals",
+          "url": "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals",
+          "organization": "Merck Veterinary Manual; Cornell University",
+          "supports": "Öffentlich indexierte Originalabschnitte gelesen: zellgebundene Gerinnung, überlappende Aktivierung, Antithrombin und Plasminogen/Plasmin. Wegen Cornell-Autorenschaft nicht als alleinige unabhängige Bestätigung von eClinpath gezählt."
+        },
+        {
+          "label": "Hoffman / Monroe (2001): A cell-based model of hemostasis",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/11434702/",
+          "organization": "Durham VA / Duke University / University of North Carolina",
+          "supports": "Öffentliche Originalzusammenfassung gelesen: Zelloberflächen regulieren die Gerinnung, überlappende Initiation/Amplifikation/Propagation, Gewebefaktor-tragende Zellen und Plättchenoberfläche. Keine experimentellen Mengen oder klinischen Ableitungen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "gefaess-plattchen",
+          "title": "Gefäßoberfläche und Plättchen: der Ort entscheidet",
+          "paragraphs": [
+            "Im unverletzten Blutgefäß trennt das Endothel, die innere Zellschicht der Gefäßwand, das strömende Blut vom darunterliegenden Gewebe. Wird diese Barriere beschädigt, können Blutplättchen mit sonst abgeschirmten Bestandteilen wie Kollagen in Kontakt kommen. Damit verändert sich die Oberfläche, auf die das Blut trifft. Eine lokale Verengung des verletzten Gefäßes kann den Blutstrom an dieser Stelle zusätzlich vermindern. Gefäßreaktion und Plättchenwirkung sind verschiedene Beiträge zur Blutstillung.",
+            "Blutplättchen der Säuger sind membranumgebene Zellfragmente. Sie entstehen aus dem Zellplasma großer Vorläuferzellen, der Megakaryozyten, überwiegend im Knochenmark. Ein Plättchen ist deshalb weder ein rotes Blutkörperchen noch ein kleines Stück eines Fibrinfadens. Es besitzt Strukturen für Anheftung, Signalverarbeitung und Formänderung und kann auf eine verletzte Gefäßoberfläche reagieren. Herkunft und Aufgabe lassen sich lernen, ohne eine allgemeine Zellzahl für alle Wildsäuger anzunehmen.",
+            "Hämostase bedeutet Blutstillung. Die Begriffe primäre Hämostase, sekundäre Hämostase und Fibrinolyse helfen, das System zu ordnen: Plättchen bilden einen Verschluss, Gerinnung erzeugt stabilisierendes Fibrin, und Fibrin kann wieder abgebaut werden. Im Körper sind diese Funktionen eng gekoppelt. Insbesondere Plättchenreaktion und Gerinnung laufen überlappend und nicht als vollständig getrennte Arbeitsschritte ab. Die Lehrbegriffe beschreiben verschiedene Aufgaben, keinen starren Zeitplan für den gesamten Ablauf.",
+            "Selbst erstelltes Lernbeispiel: In einer schematischen Gefäßzeichnung bleibt ein Abschnitt mit intaktem Endothel neben einer kleinen beschädigten Stelle erhalten. Dass Plättchen bevorzugt an der freigelegten Stelle anhaften, passt zum Oberflächenprinzip. Aus dem Vorhandensein von Plättchen im gesamten Blut folgt daher kein überall entstehender Pfropf. Der biologische Nutzen liegt in einer örtlichen Reaktion, während das Blut in intakten Gefäßabschnitten weiterfließen kann."
+          ],
+          "takeaway": "Blutstillung wird an einer veränderten Gefäßoberfläche organisiert; Säugerplättchen sind aktive Zellfragmente und kein Fibrin.",
+          "exercise": "Markiere in einer Gefäßskizze Endothel, freiliegendes Kollagen und Blutplättchen. Erkläre den Unterschied zwischen der intakten und der verletzten Oberfläche."
+        },
+        {
+          "id": "anhaften-verbinden",
+          "title": "Anhaften, aktivieren, verbinden: drei Plättchenfunktionen",
+          "paragraphs": [
+            "Bei der Adhäsion haftet ein Plättchen an einer geeigneten Oberfläche der verletzten Gefäßwand. Der von-Willebrand-Faktor, kurz vWF, beteiligt sich an der Verbindung zwischen freigelegtem Gewebe und Plättchenrezeptoren. Kollagen und vWF bilden damit wichtige Kontaktpartner. Adhäsion bezeichnet das Anhaften am Verletzungsort; der Begriff sagt noch nichts darüber aus, wie viele weitere Plättchen sich miteinander verbinden.",
+            "Bei der Aktivierung verändert das Plättchen seine Form und seine Oberflächeneigenschaften. Freigesetzte und örtlich gebildete Signalstoffe fördern die Reaktion weiterer Plättchen. Dazu gehören unter anderem ADP und Thromboxan; auch Thrombin kann Plättchen aktivieren. Das verknüpft Plättchenreaktion und Gerinnung. Ein aktiviertes Plättchen stellt außerdem eine geeignete Membranoberfläche bereit, an der Gerinnungsreaktionen unterstützt werden.",
+            "Aggregation bedeutet dagegen die Verbindung von Plättchen untereinander. Fibrinogen kann dabei als Brückenmolekül zwischen passenden Rezeptoren aktivierter Plättchen wirken. So wächst ein vorläufiger Plättchenverschluss. Dieser Beitrag des Fibrinogens ist von seiner später beschriebenen Umwandlung zu Fibrin zu unterscheiden: Dasselbe Ausgangsprotein kann an Plättchenbrücken beteiligt sein und zugleich als Baustoff für das Fibrinnetz dienen.",
+            "Selbst erstelltes Vergleichsbeispiel: Ein einzelnes Plättchen sitzt an der freigelegten Gefäßwand; daneben verbinden sich mehrere aktivierte Plättchen miteinander. Die erste Beobachtung veranschaulicht Adhäsion, die zweite Aggregation. Aktivierung ist der Funktionswechsel, der beide Vorgänge unterstützt. Mit diesen drei Verben lässt sich ein Plättchenverschluss genauer beschreiben als mit der Vorstellung, Blut werde an der Verletzung einfach nur dickflüssiger."
+          ],
+          "takeaway": "Adhäsion verbindet Plättchen mit der verletzten Oberfläche, Aggregation verbindet aktivierte Plättchen miteinander.",
+          "exercise": "Beschrifte eine einfache Zeichnung mit den Verben anhaften, aktivieren und miteinander verbinden. Ordne vWF und Fibrinogen den passenden Verbindungen zu."
+        },
+        {
+          "id": "fibrinnetz",
+          "title": "Vom löslichen Fibrinogen zum stabilisierenden Fibrinnetz",
+          "paragraphs": [
+            "Ein Plättchenverschluss erhält durch Fibrin zusätzliche Stabilität. Fibrinogen ist ein lösliches Protein im Blutplasma. Das Enzym Thrombin spaltet es so, dass Fibrinbausteine entstehen, die sich zu Fäden verbinden. Das entstehende Netz verfestigt den Verschluss an der verletzten Stelle. Fibrin ist daher kein eigener Blutzelltyp, sondern ein aus einem Plasmaprotein entstandenes Fasergerüst.",
+            "Thrombin entsteht seinerseits durch Aktivierung seiner Vorstufe Prothrombin. Gerinnungsfaktoren bilden ein System von Aktivierungen und Verstärkungen. Die Funktion eines Faktors ist dabei von der eines Baustoffs zu unterscheiden: Thrombin wirkt als Enzym auf Fibrinogen; es wird nicht selbst zu den langen Fibrinfäden. Faktor XIII trägt durch Quervernetzung dazu bei, das bereits gebildete Fibrin weiter zu stabilisieren.",
+            "Die Reaktionen laufen im lebenden Gewebe wesentlich an Zelloberflächen ab. Bei einer Verletzung werden Gewebefaktor-tragende Zellen zugänglich; aktivierte Plättchen stellen weitere geeignete Oberflächen für Reaktionskomplexe bereit. Deshalb ergänzen sich Plättchenverschluss und Gerinnung. Das häufig abgebildete Schema aus intrinsischem und extrinsischem Weg ordnet Gerinnungsfaktoren, bildet aber die räumliche Zusammenarbeit von Gewebe und Zellen allein noch nicht vollständig ab.",
+            "Selbst erstelltes Lernbeispiel: In zwei Beschreibungen wird einmal eine Verbindung zwischen aktivierten Plättchen und einmal die Bildung langer Proteinfasern genannt. Für die erste passt die Fibrinogenbrücke, für die zweite die Thrombin-vermittelte Fibrinbildung. Beide können am selben Verschluss beteiligt sein. Der Wechsel vom löslichen Vorläufer zum Fasergerüst erklärt, weshalb ein Plättchenpfropf und ein fibrinstabilisierter Verschluss nicht genau dasselbe sind."
+          ],
+          "takeaway": "Thrombin ist das Enzym, Fibrinogen der lösliche Ausgangsstoff und Fibrin das stabilisierende Fasergerüst.",
+          "exercise": "Stelle Prothrombin, Thrombin, Fibrinogen und Fibrin als zwei miteinander verknüpfte Umwandlungen dar. Kennzeichne, welches Molekül als Enzym wirkt."
+        },
+        {
+          "id": "begrenzen-abbauen",
+          "title": "Begrenzen und abbauen: Blutstillung bleibt reguliert",
+          "paragraphs": [
+            "Blutstillung muss auf den passenden Ort begrenzt bleiben. Eine intakte Endotheloberfläche trennt das Blut vom darunterliegenden aktivierenden Gewebe und gibt Signale ab, die Plättchenreaktionen dämpfen. Dazu gehören Stickstoffmonoxid und Prostacyclin. Daneben begrenzen natürliche Gerinnungshemmer die Aktivität von Gerinnungsenzymen. Antithrombin kann beispielsweise Thrombin und den aktivierten Faktor X hemmen. Diese Hemmung bremst die weitere Gerinnungsreaktion.",
+            "Der Abbau bereits entstandenen Fibrins ist eine andere Aufgabe. Bei der Fibrinolyse spaltet das Enzym Plasmin Fibrin und löst dadurch das Fasergerüst auf. Plasmin entsteht aus der inaktiven Vorstufe Plasminogen. Ein wichtiger Aktivator dafür ist tPA, der Gewebe-Plasminogenaktivator. Diese Begriffskette unterscheidet sich klar von Prothrombin, Thrombin und Fibrinogen auf der Seite des Fibrinaufbaus.",
+            "Auch der Fibrinabbau besitzt Bremsen. Hemmstoffe können die Aktivierung von Plasminogen oder freies Plasmin begrenzen. Das Zusammenwirken von Aufbau, Hemmung und Abbau verhindert, dass man Blutstillung als unbegrenzt wachsenden Verschluss verstehen muss. Die Wirkung dieser miteinander verknüpften Systeme verschiebt sich im Verlauf; ein reines Ein-Aus-Schema erklärt diese Balance unzureichend. Eine feste universelle Dauer für alle Gefäße und Säuger lässt sich daraus nicht ableiten.",
+            "Selbst erstelltes Vergleichsbeispiel: Wenn ein Gerinnungsenzym gehemmt wird, entsteht weniger neues Fibrin. Wenn Plasmin vorhandene Fibrinfäden spaltet, wird dagegen ein bestehendes Gerüst abgebaut. Die beiden Beschreibungen meinen verschiedene Vorgänge, obwohl beide ein übermäßiges Fortbestehen eines Verschlusses begrenzen können. Diese Unterscheidung erklärt das System, ohne aus sichtbarem Blut oder einem einzelnen Gerinnsel eine Gesundheitsdiagnose abzuleiten."
+          ],
+          "takeaway": "Gerinnungshemmung begrenzt die Bildung neuen Fibrins; Fibrinolyse durch Plasmin baut vorhandenes Fibrin ab.",
+          "exercise": "Vergleiche die Wirkungen von Antithrombin und Plasmin in je einem Satz. Trenne Hemmung eines Enzyms und Spaltung des bereits gebildeten Fasergerüsts."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-blutstillung-round4-2026-q1",
+          "lessonId": "gefaess-plattchen",
+          "q": "Warum können Blutplättchen an einer beschädigten Gefäßstelle bevorzugt anhaften?",
+          "options": [
+            "Die Verletzung aktiviert nur den Abbau bereits vorhandener Fibrinfäden.",
+            "Die Verletzung ersetzt die Endotheloberfläche durch lösliches Fibrinogen.",
+            "Die Verletzung legt normalerweise abgeschirmte Kontaktflächen wie Kollagen frei.",
+            "Die Verletzung verbindet die Plättchen unmittelbar über freies Hämoglobin."
+          ],
+          "answer": 2,
+          "explain": "Das intakte Endothel schirmt darunterliegende Gewebebestandteile ab. Bei einer Beschädigung werden Kontaktflächen wie Kollagen zugänglich; vWF und Plättchenrezeptoren unterstützen die örtliche Anheftung."
+        },
+        {
+          "id": "wissen-pruefung-blutstillung-round4-2026-q2",
+          "lessonId": "anhaften-verbinden",
+          "q": "Ein Lernschema zeigt Fibrinogenbrücken zwischen aktivierten Blutplättchen. Welcher Vorgang wird dargestellt?",
+          "options": [
+            "Aggregation der Plättchen.",
+            "Fibrinolyse des Gerinnsels.",
+            "Adhäsion an der Gefäßwand.",
+            "Vernetzung der Fibrinfäden."
+          ],
+          "answer": 0,
+          "explain": "Aggregation verbindet aktivierte Plättchen miteinander; Fibrinogen kann dabei Brücken zwischen Plättchenrezeptoren bilden. Adhäsion bezeichnet dagegen das Anhaften an der verletzten Oberfläche."
+        },
+        {
+          "id": "wissen-pruefung-blutstillung-round4-2026-q3",
+          "lessonId": "fibrinnetz",
+          "q": "Wie entstehen die Fibrinfäden, die einen Plättchenverschluss stabilisieren?",
+          "options": [
+            "Plasmin spaltet Fibrinogen; daraus entstehen zusätzliche Fibrinfäden.",
+            "vWF spaltet Fibrinogen; die Spaltstücke lösen den Plättchenverschluss.",
+            "Antithrombin vernetzt Fibrinogen zu den Fasern des Gerinnsels.",
+            "Thrombin spaltet Fibrinogen; die Fibrinbausteine verbinden sich."
+          ],
+          "answer": 3,
+          "explain": "Thrombin wirkt als Enzym auf das lösliche Fibrinogen. Die entstehenden Fibrinbausteine lagern sich zu Fäden zusammen; Faktor XIII unterstützt anschließend ihre Quervernetzung."
+        },
+        {
+          "id": "wissen-pruefung-blutstillung-round4-2026-q4",
+          "lessonId": "begrenzen-abbauen",
+          "q": "Welcher Vorgang baut das bereits entstandene Fibringerüst eines Gefäßverschlusses ab?",
+          "options": [
+            "vWF vermittelt die Anheftung an freigelegtes Kollagen.",
+            "Plasmin spaltet vorhandenes Fibrin bei der Fibrinolyse.",
+            "Thrombin spaltet lösliches Fibrinogen zu Fibrinbausteinen.",
+            "Fibrinogen bildet Brücken zwischen aktivierten Plättchen."
+          ],
+          "answer": 1,
+          "explain": "Bei der Fibrinolyse spaltet Plasmin die vorhandenen Fibrinfäden. Die Vorstufe Plasminogen wird unter anderem durch tPA aktiviert; dies ist vom Aufbau neuen Fibrins und von der Plättchenanheftung zu unterscheiden."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Grundmechanismen der Blutstillung bei Säugern. Zellfragmente, Gefäßoberfläche, Fibrinbildung und Fibrinabbau werden als zusammenwirkendes System erklärt; keine Diagnostik, Blutverlustschätzung, Zeitnorm oder Behandlung.",
+        "independentOrganizations": [
+          "Cornell University (einschließlich Center/Merck Veterinary)",
+          "University of Illinois",
+          "OpenStax / Rice University",
+          "Johns Hopkins University / West Virginia University (Merck Humanmedizin)",
+          "Durham VA / Duke University / University of North Carolina"
+        ],
+        "limitations": [
+          "Säuger-Grundmodell; kernhaltige Vogelthrombozyten werden nicht mit Säugerplättchen gleichgesetzt.",
+          "Didaktische Teilvorgänge laufen im lebenden Gefäß überlappend, nicht als drei strikt getrennte Zeitblöcke.",
+          "Keine Gerinnungstests, Medikamente, Wundversorgung oder universellen Blutverlust-/Gerinnungszeiten."
+        ]
+      }
+    },
+    {
+      "id": "wissen-pruefung-milchbildung-round4-2026",
+      "title": "Milchbildung bei Säugern: Drüsengewebe, Milchinhalte und Milchabgabe",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Vom Blutvorläufer bis zur Milch: Alveolen, Zellarbeit, unterschiedliche Sekretionswege und den Oxytocin-Reflex verständlich verbinden.",
+      "minutes": 30,
+      "objectives": [
+        "Sekretorische Zellen, Alveolenlumen, Myoepithel und Gänge unterscheiden",
+        "Milch als aktiv gebildetes Sekret aus aufgenommenen Vorstufen erklären",
+        "Exozytose von Milchproteinen und Abgabe von Fettglobuli vergleichen",
+        "Milchbildung von der reflexgesteuerten Milchabgabe trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Milchdrüse und grundlegende Sekretionsmechanismen der Säuger; für die Lactose-Synthese ausdrücklich das Modell lactosehaltiger Milch. Detailbefunde aus Rind, Maus und Mensch werden nicht als identische Mengen, Säugeabstände, Euterformen oder Milchzusammensetzungen aller Wildarten ausgegeben. Keine Aufzucht-, Melk- oder Therapieanleitung.",
+        "AT": "Milchdrüse und grundlegende Sekretionsmechanismen der Säuger; für die Lactose-Synthese ausdrücklich das Modell lactosehaltiger Milch. Detailbefunde aus Rind, Maus und Mensch werden nicht als identische Mengen, Säugeabstände, Euterformen oder Milchzusammensetzungen aller Wildarten ausgegeben. Keine Aufzucht-, Melk- oder Therapieanleitung.",
+        "CH": "Milchdrüse und grundlegende Sekretionsmechanismen der Säuger; für die Lactose-Synthese ausdrücklich das Modell lactosehaltiger Milch. Detailbefunde aus Rind, Maus und Mensch werden nicht als identische Mengen, Säugeabstände, Euterformen oder Milchzusammensetzungen aller Wildarten ausgegeben. Keine Aufzucht-, Melk- oder Therapieanleitung."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Premanandan: The mammary gland",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-mammary-gland/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierter vollständiger Originalabschnitt gelesen: Alveolarepithel, Ausführungsgänge, Myoepithel, gefäßreiches Stroma und aktives/inaktives Gewebe. Pauschale apokrine Einordnung sämtlicher Sekrete sowie gemeinsame Zisterne nicht auf alle Arten übertragen."
+        },
+        {
+          "label": "Goff / Hill / Ferrer: Milk Biosynthesis",
+          "url": "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+          "organization": "University of Guelph",
+          "supports": "Originalkapitel vollständig gelesen: Alveolus, Lumen, Blutversorgung, Aminosäuren, ER/Golgi, Lactose/Osmose und Milchabgabe. Rinder-Blutvolumen, Fettsäure-Zahlen und Minutenangaben nicht übernommen; keine Text-/Bildübernahme."
+        },
+        {
+          "label": "Shennan / Peaker (2000): Transport of Milk Constituents by the Mammary Gland",
+          "url": "https://journals.physiology.org/doi/full/10.1152/physrev.2000.80.3.925",
+          "organization": "Hannah Research Institute; Physiological Reviews",
+          "supports": "Öffentlich indexierte Originalabschnitte Einleitung, Sekretionswege und XII Glucose Transport gelesen: Blutvorstufen, Caseine, Fettglobuli, Golgi-Vesikel/Exozytose; Lactosesynthese im Golgi und Zusammenhang mit Wassertransport/Milchvolumen. Arts-/Laktationsunterschiede mitgeführt, keine Abbildungen oder experimentellen Zahlen übernommen."
+        },
+        {
+          "label": "Wooding / Kinoshita (2023/2024): Milk fat globule membrane: formation and transformation",
+          "url": "https://www.repository.cam.ac.uk/items/4fc2ba49-71ad-402f-8eb2-66cb130df5d0",
+          "organization": "University of Cambridge / Kyushu University; Journal of Dairy Research",
+          "supports": "Institutionelle Originalzusammenfassung sowie Verlagsoriginal-Abstract gelesen: Umhüllung des austretenden Fettglobulus mit Membran in untersuchten Säugern. Verlagsoriginal bestätigt beide Autoren; Methodenvergleich TEM/CLSM und strittige Detailstruktur nicht als gesicherte allgemeine Lehraussage übernommen."
+        },
+        {
+          "label": "Honvo-Houéto und andere (2016): The endoplasmic reticulum and casein-containing vesicles contribute to milk fat globule membrane",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5042581/",
+          "organization": "INRA, Jouy-en-Josas; Molecular Biology of the Cell",
+          "supports": "Öffentlich indexierte Originaleinleitung und Diskussion gelesen: Casein-Sekretionsweg/Exozytose gegenüber Knospung membranumhüllter Fettglobuli. Molekulare Hypothesen zu SNAREs und die konkreten Maus-Proteinbefunde nicht artsübergreifend übertragen."
+        },
+        {
+          "label": "Bowen: Oxytocin",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/oxytocin.html",
+          "organization": "Colorado State University, Pathophysiology of the Endocrine System",
+          "supports": "Öffentlich indexierter Originalvolltext gelesen: hypothalamische Synthese, Freisetzung aus der Neurohypophyse, Saugreiz und Myoepithel-Kontraktion. Soziale Verhaltenserklärungen, Dosen, Minuten und Rinder-Milchanteile nicht übernommen."
+        },
+        {
+          "label": "Pinzón-Sánchez: The Role of Predictability and Calm Handling in Milk Letdown",
+          "url": "https://dairy.extension.wisc.edu/articles/the-role-of-predictability-and-calm-handling-in-milk-letdown/",
+          "organization": "University of Wisconsin-Madison Extension",
+          "supports": "Originalabschnitt zur Physiologie der Milchabgabe gelesen: Reflex, Oxytocin im Blut und Kontraktion des Myoepithels. Nur Mechanismus als unabhängiger Abgleich, keine Haltungsanweisung oder Zahlenübertragung auf Wildtiere."
+        },
+        {
+          "label": "Hummel / Richardson / Fekete: Anatomy, Chapter 13, Mammary Glands",
+          "url": "https://www.informatics.jax.org/greenbook/chapters/chapter13.shtml",
+          "organization": "The Jackson Laboratory, Mouse Genome Informatics",
+          "supports": "Originaldarstellung und indexierter Abschnitt zu aktiver und rückgebildeter Mäuse-Milchdrüse gelesen: Alveolarentwicklung, verbleibende Gänge und relativ mehr Fettgewebe im Ruhezustand. Keine Maus-Fristen oder Zahl der Drüsen übertragen."
+        },
+        {
+          "label": "Endotext: Functional Anatomy of the Hypothalamus and Pituitary",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK279126/",
+          "organization": "Endotext / MDText.com, NCBI Bookshelf",
+          "supports": "Öffentlich indexierter Originalabschnitt zur hypothalamisch-neurohypophysären Bahn gelesen: Transport/Abgabe von Oxytocin in die periphere Zirkulation, Milchabgabe. Nur Anatomie/Mechanismus, keine Humanbehandlung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "alveolen",
+          "title": "Alveolen: Produktionszellen, Hohlraum und Gangsystem",
+          "paragraphs": [
+            "Die Milchdrüse ist eine nach außen abgebende, exokrine Drüse. Zu ihren sekretorischen Einheiten gehören kleine Alveolen: Eine Lage milchbildender Epithelzellen umgibt jeweils einen Hohlraum, das Lumen. Das Sekret wird an der dem Lumen zugewandten Seite der Zellen abgegeben. Das Lumen ist also der Raum mit der bereits gebildeten Milch; die umgebenden Zellen sind deren Produktionsort. Diese Unterscheidung verhindert, dass Drüsenzelle und Milchvorrat als dasselbe angesehen werden.",
+            "Die dem Gewebe zugewandte Seite der Epithelzellen wird über die Blutversorgung mit Ausgangsstoffen versorgt. Zwischen den sekretorischen Einheiten liegen unter anderem Bindegewebe und Blutgefäße. Das Blut liefert Vorstufen und Nährstoffe; es fließt aber nicht als Milch durch den Ausführungsgang. Das Sekret gelangt aus den Alveolen in ein verzweigtes Gangsystem. Blutbahn und Milchweg sind somit verschiedene Räume mit einer arbeitenden Zellschicht dazwischen.",
+            "Um Alveolen liegen Myoepithelzellen. Diese spezialisierten Epithelzellen besitzen kontraktile Eigenschaften und können die Abgabe bereits gebildeter Milch unterstützen. Sie werden von den eigentlichen sekretorischen Zellen unterschieden: Die eine Zellgruppe stellt die Milchbestandteile bereit und gibt sie in das Lumen ab, die andere unterstützt durch Kontraktion deren Weiterleitung. Unterschiedliche Zellaufgaben erklären den Aufbau besser als die Vorstellung eines bloßen Milchbehälters.",
+            "Der Gewebeaufbau verändert sich mit dem Funktionszustand. In der laktierenden Milchdrüse sind sekretorische Alveolen stark entwickelt; im inaktiven beziehungsweise rückgebildeten Zustand nehmen Fett- und Bindegewebe relativ mehr Raum ein, während größere Gangabschnitte erhalten bleiben. Dieser histologische Vergleich ist von der äußeren Drüsenform zu trennen. Zahl, Lage und Zusammenfassung der Drüsen sowie die Ausbildung von Gängen und Zisternen unterscheiden sich zwischen Säugerarten."
+          ],
+          "takeaway": "Alveolarepithel bildet das Sekret, das Lumen enthält es, Myoepithel unterstützt die Weitergabe und Gänge leiten es ab.",
+          "exercise": "Zeichne einen Alveolus und kennzeichne getrennt Blutseite, sekretorisches Epithel, Lumen, Myoepithel und Ausführungsgang."
+        },
+        {
+          "id": "synthese",
+          "title": "Milch entsteht durch Aufnahme, Umbau und Synthese",
+          "paragraphs": [
+            "Die Milchdrüse übernimmt nicht einfach eine fertige Flüssigkeit aus dem Blut. Ihre Epithelzellen nehmen Vorstufen auf und verarbeiten sie. Aminosäuren aus dem Blut dienen als Bausteine für Milchproteine; Zucker und Lipidvorstufen tragen zu weiteren Bestandteilen bei. Synthese und gezielter Transport erzeugen damit ein Sekret mit eigener Zusammensetzung. Milch als unverändertes Blutfiltrat zu beschreiben, würde diese Zellarbeit auslassen.",
+            "Für die Proteinsynthese wirken Ribosomen am rauen endoplasmatischen Retikulum mit. Danach werden Milchproteine im Zellinneren weitertransportiert und verarbeitet; der Golgi-Apparat ist eine wichtige Station dieses sekretorischen Weges. Milchfett entsteht ebenfalls unter Beteiligung zellulärer Stoffwechselwege und aufgenommener Vorstufen. Welche Anteile verschiedener Fettvorstufen verwendet werden, ist arts- und ernährungsabhängig. Eine rinderspezifische Aufteilung einzelner Fettsäuren wird hier deshalb nicht als Regel des Wildes gelernt.",
+            "Im Modell lactosehaltiger Milch wird Lactose im Golgi-Apparat gebildet. Gelöste Teilchen beeinflussen den osmotischen Wassertransport; die Lactosebildung hängt daher mit dem Wasseranteil und dem gebildeten Milchvolumen zusammen. Auch andere gelöste Bestandteile tragen zum osmotischen Gleichgewicht bei. Das bedeutet weder, dass Wasser chemisch zu Lactose wird, noch dass jede Säugerart denselben Lactosegehalt besitzen muss.",
+            "Selbst erstelltes Vergleichsbeispiel: Für ein Milchprotein werden Aminosäuren zu einem Protein verbunden; bei der Bildung von Lactose entsteht ein Zucker, der zugleich den Wassertransport beeinflusst. In beiden Fällen liefert das Blut Ausgangsstoffe, aber die sekretorische Zelle bestimmt durch Aufnahme, Synthese und Transport den weiteren Weg. Die Milchmenge lässt sich deshalb nicht allein als gespeicherte Wassermenge erklären; ebenso wenig folgt aus gleicher Flüssigkeitsmenge eine identische Nährstoffzusammensetzung."
+          ],
+          "takeaway": "Milch ist ein aktiv gebildetes Drüsensekret; Protein- und Lactosebildung verbinden Stoffwechsel mit gezieltem Transport.",
+          "exercise": "Verbinde Blut-Aminosäuren, raues ER, Milchprotein und Alveolenlumen zu einem Weg. Stelle daneben Lactosebildung und osmotischen Wassertransport dar."
+        },
+        {
+          "id": "sekretionswege",
+          "title": "Zwei Wege ins Lumen: Vesikel und Fettglobuli",
+          "paragraphs": [
+            "Nicht alle Milchbestandteile verlassen die sekretorische Zelle auf dieselbe Weise. Für zahlreiche Milchproteine führt der Weg über membranumgebene Transportvesikel. Diese gelangen zur dem Alveolenlumen zugewandten Zellseite. Ihre Membran verschmilzt dort mit der Zellmembran, und der Vesikelinhalt wird in das Lumen freigesetzt. Diese Abgabe heißt Exozytose. Sie erklärt, wie zuvor im Zellinneren bearbeitete Stoffe nach außen gelangen.",
+            "Fetttröpfchen nehmen einen anderen Weg. Sie werden an der lumenseitigen Oberfläche als Fettglobuli abgegeben und dabei mit einer Membranhülle umgeben. Diese Hülle enthält Anteile der abgebenden Zellmembran. Für diesen Vorgang wird der Begriff apokrine Sekretion verwendet. Das ist von einer Vesikelverschmelzung mit bloßer Freisetzung ihres Inhalts zu unterscheiden. Die Milch enthält daher Fett in abgegrenzten Globuli, nicht einfach nur frei gelöste Fettmoleküle.",
+            "Das Sekret vereint mehrere physikalische Formen: eine wässrige Phase mit gelösten Stoffen, Fettglobuli und Proteinverbände wie Caseinmicellen. Die Struktur der Milch folgt somit auch aus ihren unterschiedlichen Bildungs- und Abgabewegen. Caseinmicellen sind Proteinverbände; Fettglobuli sind membranumhüllte Lipidtröpfchen. Beide Begriffe bezeichnen verschiedene Bestandteile und dürfen trotz ihrer geringen Größe nicht gleichgesetzt werden.",
+            "Selbst erstelltes Lernbeispiel: In einer Zellskizze verschmilzt einmal ein proteinbeladenes Vesikel mit der äußeren Zellmembran. Daneben wird ein Lipidtröpfchen unter Mitnahme einer Membranhülle abgegeben. Die erste Szene zeigt den exozytotischen, die zweite den Fettglobulus-Weg. Diese Gegenüberstellung erklärt das Sekretionsprinzip. Die genaue molekulare Zusammensetzung jeder Hülle und die Mengenanteile in der Milch bleiben arts- und zustandsabhängig."
+          ],
+          "takeaway": "Milchproteine können durch Exozytose abgegeben werden; Milchfett verlässt die Zelle als membranumhüllter Fettglobulus.",
+          "exercise": "Beschreibe den Unterschied zwischen Vesikelverschmelzung und Abgabe eines umhüllten Lipidtröpfchens, ohne beide Vorgänge als dasselbe zu bezeichnen."
+        },
+        {
+          "id": "milchabgabe",
+          "title": "Milchbildung und Milchabgabe: Produktion trifft Reflex",
+          "paragraphs": [
+            "Milchbildung bezeichnet die Synthese und Sekretion der Bestandteile durch die Drüsenzellen. Milchabgabe beziehungsweise Milchejektion bezeichnet dagegen die Weiterleitung bereits vorhandener Milch aus den Alveolen in das Gangsystem. Ein Vorrat im Alveolenlumen und seine Freisetzung sind also zwei unterschiedliche Vorgänge. Der Begriff Laktation umfasst den Funktionszusammenhang, ersetzt aber diese Unterscheidung nicht.",
+            "Ein Saugreiz an der Zitze kann über sensible Nerven Signale zum Gehirn auslösen. Oxytocin wird in Nervenzellen des Hypothalamus gebildet und aus dem Hypophysenhinterlappen in das Blut freigesetzt. Über den Kreislauf erreicht das Hormon die Milchdrüse. Der Weg enthält damit einen nervösen Abschnitt vom Reiz zum Gehirn und einen hormonellen Abschnitt vom Gehirn zur Drüse; ein direkter Milchfluss vom Gehirn ist damit nicht gemeint.",
+            "Oxytocin fördert die Kontraktion der Myoepithelzellen um die Alveolen. Dadurch wird die im Lumen gespeicherte Milch in Richtung der Gänge weitergegeben. Der unmittelbar erklärte Effekt ist die Bewegung vorhandener Milch, nicht die augenblickliche Neusynthese sämtlicher Milchbestandteile. Hormonfreisetzung, Reaktion des kontraktilen Gewebes und Sekretionsarbeit der Epithelzellen können zusammenwirken, bleiben aber funktionell unterscheidbar.",
+            "Selbst erstelltes Vergleichsbeispiel: Ein Satz beschreibt die Herstellung eines Milchproteins in der Drüsenzelle, ein anderer die Kontraktion des Myoepithels nach einem Saugreiz. Der erste gehört zur Milchbildung, der zweite zur reflexgesteuerten Milchabgabe. Daraus ergibt sich kein allgemeiner Säuger-Zeitplan. Rinderbefunde über gespeicherte Milchanteile, Säugeabstände oder die Dauer eines Reflexes werden weder auf Rehkitze noch auf andere Wildjungtiere übertragen."
+          ],
+          "takeaway": "Der Oxytocin-Reflex unterstützt die Abgabe bereits gebildeter Milch durch Kontraktion des Myoepithels.",
+          "exercise": "Verbinde Saugreiz, sensible Nerven, Hypothalamus/Neurohypophyse, Blut und Myoepithel zu einer Reflexkette. Trenne diese Kette von der Synthese der Milchproteine."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-milchbildung-round4-2026-q1",
+          "lessonId": "alveolen",
+          "q": "Welche Zellgruppe unterstützt durch Kontraktion den Transport bereits gebildeter Milch aus den Alveolen?",
+          "options": [
+            "Die sekretorischen Zellen durch Bildung neuer Milchproteine.",
+            "Die Myoepithelzellen in der Umgebung der Alveolen.",
+            "Die Endothelzellen der Blutgefäße durch ihre Filtration.",
+            "Die Fettgewebszellen zwischen den sekretorischen Einheiten."
+          ],
+          "answer": 1,
+          "explain": "Myoepithelzellen besitzen kontraktile Eigenschaften und umgeben die Alveolen. Ihre Kontraktion unterstützt die Weiterleitung der bereits im Lumen gespeicherten Milch; sekretorische Epithelzellen leisten dagegen die Synthese und Sekretion."
+        },
+        {
+          "id": "wissen-pruefung-milchbildung-round4-2026-q2",
+          "lessonId": "synthese",
+          "q": "Wie trägt die Lactosebildung in der Milchdrüsenzelle zur Bildung lactosehaltiger Milch bei?",
+          "options": [
+            "Sie liefert die Membranhülle für austretende Milchfettglobuli.",
+            "Sie löst die Kontraktion der Myoepithelzellen über das Blut aus.",
+            "Sie verbindet Aminosäuren im rauen ER zu neuen Milchproteinen.",
+            "Sie erzeugt gelöste Teilchen und beeinflusst den Wassertransport."
+          ],
+          "answer": 3,
+          "explain": "Lactose wird im Golgi-Apparat synthetisiert. Als gelöster Bestandteil trägt sie zum osmotischen Wassertransport und damit zum gebildeten Milchvolumen bei; andere gelöste Stoffe wirken ebenfalls am Gleichgewicht mit."
+        },
+        {
+          "id": "wissen-pruefung-milchbildung-round4-2026-q3",
+          "lessonId": "sekretionswege",
+          "q": "Woran unterscheidet sich die Abgabe eines Milchfettglobulus von der exozytotischen Abgabe von Milchproteinen?",
+          "options": [
+            "Der Fettglobulus wird beim Austritt mit einer Membranhülle umgeben.",
+            "Der Fettglobulus wird als Vesikelinhalt ohne eigene Hülle freigesetzt.",
+            "Der Fettglobulus wird erst nach dem Austritt aus Casein zusammengesetzt.",
+            "Der Fettglobulus wird im Lumen durch Spaltung von Lactose gebildet."
+          ],
+          "answer": 0,
+          "explain": "Milchfett wird als Lipidtröpfchen unter Umhüllung mit Membran abgegeben. Beim exozytotischen Proteinweg verschmilzt dagegen die Membran eines Transportvesikels mit der Zellmembran und gibt seinen Inhalt in das Lumen frei."
+        },
+        {
+          "id": "wissen-pruefung-milchbildung-round4-2026-q4",
+          "lessonId": "milchabgabe",
+          "q": "Welcher Vorgang gehört unmittelbar zur Oxytocin-vermittelten Milchabgabe nach einem Saugreiz?",
+          "options": [
+            "Im rauen ER werden Aminosäuren zu Milchproteinen verbunden.",
+            "Im Golgi-Apparat werden Ausgangsstoffe zu Lactose verarbeitet.",
+            "Myoepithelzellen kontrahieren und leiten gespeicherte Milch weiter.",
+            "Im Blut werden Lipidvorstufen zur sekretorischen Zelle transportiert."
+          ],
+          "answer": 2,
+          "explain": "Oxytocin gelangt über das Blut zur Milchdrüse und fördert die Kontraktion der Myoepithelzellen. Dadurch wird bereits vorhandene Milch aus den Alveolen weitergegeben; die Herstellung neuer Milchbestandteile gehört zur Milchbildung."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Milchdrüse und grundlegende Sekretionsmechanismen der Säuger; für die Lactose-Synthese ausdrücklich das Modell lactosehaltiger Milch. Detailbefunde aus Rind, Maus und Mensch werden nicht als identische Mengen, Säugeabstände, Euterformen oder Milchzusammensetzungen aller Wildarten ausgegeben. Keine Aufzucht-, Melk- oder Therapieanleitung.",
+        "independentOrganizations": [
+          "The Ohio State University",
+          "University of Guelph",
+          "Hannah Research Institute",
+          "University of Cambridge / Wooding",
+          "INRA / Honvo-Houéto und andere",
+          "Colorado State University",
+          "University of Wisconsin-Madison",
+          "The Jackson Laboratory",
+          "Endotext / MDText.com"
+        ],
+        "limitations": [
+          "Artspezifische Zahl und Lage von Milchdrüsen, Zitzen, Gangmündungen und Zisternen werden nicht vereinheitlicht.",
+          "Keine universellen Milchgehalte, Blutdurchflussmengen, Laktationszeiten oder Säugeabstände.",
+          "Die Lactose-Erklärung gilt für lactosehaltige Milch; kein behaupteter Mindestgehalt bei jedem Säuger.",
+          "Milchbildung und Milchabgabe sind unterschieden; keine klinische Diagnose oder Gabe von Hormonen."
+        ]
+      }
+    },
+    {
+      "id": "wissen-pruefung-vogelniere-salz-round4-2026",
+      "title": "Vögel: Niere, Harnsäure und Salzhaushalt",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Warum Vogelharn einen weißen Anteil haben kann, wie Wasser nach der Niere zurückgewonnen wird und was Salzdrüsen zusätzlich leisten.",
+      "minutes": 30,
+      "objectives": [
+        "Schleifenhaltige und schleifenlose Vogelnephrone unterscheiden",
+        "Harnsäure/Uratsuspension, klare Harnflüssigkeit und Kot auseinanderhalten",
+        "Niere und Enddarm als gemeinsam wirkende Orte des Wasserhaushalts erklären",
+        "Salzdrüsensekretion und Harnbildung räumlich und funktionell trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen von Vogelniere, stickstoffhaltigen Ausscheidungen, nachgeschalteter Wasserrückgewinnung und Salzdrüsen. Das Haushuhn dient als ausdrücklich benanntes Organmodell; eine Originalstudie an Pekingenten illustriert die Sekretion von Salzdrüsen. Keine universellen Artenanteile, Trinkbedarfe, Salzverträglichkeitswerte oder Krankheitsdiagnosen.",
+        "AT": "Grundlagen von Vogelniere, stickstoffhaltigen Ausscheidungen, nachgeschalteter Wasserrückgewinnung und Salzdrüsen. Das Haushuhn dient als ausdrücklich benanntes Organmodell; eine Originalstudie an Pekingenten illustriert die Sekretion von Salzdrüsen. Keine universellen Artenanteile, Trinkbedarfe, Salzverträglichkeitswerte oder Krankheitsdiagnosen.",
+        "CH": "Grundlagen von Vogelniere, stickstoffhaltigen Ausscheidungen, nachgeschalteter Wasserrückgewinnung und Salzdrüsen. Das Haushuhn dient als ausdrücklich benanntes Organmodell; eine Originalstudie an Pekingenten illustriert die Sekretion von Salzdrüsen. Keine universellen Artenanteile, Trinkbedarfe, Salzverträglichkeitswerte oder Krankheitsdiagnosen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Excretory system",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+          "organization": "Poultry Hub Australia, University of New England",
+          "supports": "Originaltext und vollständig indexierter Originalabschnitt gelesen: Haushuhn-Nieren, Harnleiter/Kloake, schleifenhaltige und schleifenlose Nephrone sowie Rücktransport zum Dickdarm. Dreilappigkeit, Mengenanteile und die vereinfachte pauschal pastöse Urinbeschreibung nicht verallgemeinert."
+        },
+        {
+          "label": "Echols: Evaluating and Treating the Kidneys, Chapter 16",
+          "url": "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/16_kidneys.pdf",
+          "organization": "Clinical Avian Medicine, Volume II",
+          "supports": "Original-PDF, Anatomie S.452 sowie Nasal-/Salzdrüsen S.454 und Physiologie gelesen: zwei Nephrontypen, variable Organform, extrarenale NaCl-Ausscheidung. Zahlen, klinische Verfahren und Therapien nicht übernommen; Echols/Orosz ist keine unabhängige Replikation."
+        },
+        {
+          "label": "Harr: Diagnostic Value of Biochemistry, Chapter 23",
+          "url": "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/23_biochemistry.pdf",
+          "organization": "Clinical Avian Medicine, Volume II",
+          "supports": "Original-PDF S.627–628 gelesen: Harnsäure als stickstoffhaltiges Endprodukt, Transport nach der Niere, Wasser-/Elektrolytänderung im Enddarm, klare Flüssigkeit und Uratsuspension. Keine Laborwerte, Diagnose oder Probennahmeanleitung; derselbe Sammelband zählt nicht als zweite unabhängige Institution."
+        },
+        {
+          "label": "Orosz / Echols (2020): The Urinary and Osmoregulatory Systems of Birds",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31759441/",
+          "organization": "Veterinary Clinics of North America: Exotic Animal Practice",
+          "supports": "Öffentliche Originalzusammenfassung direkt gelesen: schleifenlose/schleifenhaltige Nephrone, tubuläre Rückresorption und weitere Konzentration durch Retroperistaltik. Kein Volltextzugriff behauptet, keine Filtrationsfaktoren oder Konzentrationsnormen übernommen."
+        },
+        {
+          "label": "Ehrlich / Dobkin / Wheye: Drinking",
+          "url": "https://web.stanford.edu/group/stanfordbirds/text/uessays/earlier%20versions/Drinking.html",
+          "organization": "Stanford University, The Birder’s Handbook essays",
+          "supports": "Originalessay gelesen: Wasser aus Trinken, Nahrung und Zellstoffwechsel, Verlust durch Atmung/Haut/Ausscheidung sowie schwer wasserlösliche Harnsäure. Vereinfachte Toxizitäts-/Evolutionsgeschichte und Trinkaussagen zu einzelnen Arten nicht übernommen."
+        },
+        {
+          "label": "Hess (2026): Kidney and Urinary Tract Disorders of Pet Birds",
+          "url": "https://www.merckvetmanual.com/en-us/veterinary/bird-owners/disorders-and-diseases-of-birds/kidney-and-urinary-tract-disorders-of-pet-birds",
+          "organization": "Merck / MSD Veterinary Manual",
+          "supports": "Öffentlich indexierter Originalabschnitt gelesen: Harnsäure und weißlicher Harnanteil von Vogelausscheidungen. Krankheitsursachen, Ernährungsgrenzwerte und Therapien ausdrücklich ausgeschlossen."
+        },
+        {
+          "label": "Johnson und andere (2021): Initial treatment and care guidelines for rescued native birds",
+          "url": "https://nswdpe.intersearch.com.au/nswdpejspui/bitstream/1/11977/1/native-birds-initial-treatment-care-guidelines-210623.pdf",
+          "organization": "State of New South Wales, Department of Planning, Industry and Environment",
+          "supports": "Original-PDF, Beschreibung und Abbildung 7 S.11 im Originalindex gelesen: Kot, weißlicher Urateanteil und klare Harnflüssigkeit als unterscheidbare Bestandteile. Keine australischen Pflege-/Rechtsanweisungen oder Lehrbilder übernommen."
+        },
+        {
+          "label": "Water-Environment Interactions: Poultry",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK232337/",
+          "organization": "National Research Council / National Academies Press",
+          "supports": "Öffentlich indexierter vollständiger Geflügel-Abschnitt gelesen: Wasser aus Nahrung, Stoffwechsel und Trinken sowie Ausscheidungs-/Verdunstungsverluste. Alte Haltungsversuche, Tagesmengen, Temperaturwerte und Prozentanteile nicht auf Wildvögel übertragen."
+        },
+        {
+          "label": "Why Can Some Birds Drink Salty Seawater?",
+          "url": "https://www.allaboutbirds.org/news/why-can-some-birds-drink-salty-seawater/",
+          "organization": "Cornell Lab of Ornithology, Living Bird / Handbook of Bird Biology",
+          "supports": "Originaltext gelesen: Salzdrüsen als zusätzliche Ausscheidungsroute vieler Meeresvögel, Gangsystem zum Schnabelbereich. Historischer Möwenversuch nur als Kontext, keine Versuchsmenge oder alle-Vögel-Regel übernommen."
+        },
+        {
+          "label": "Butler (2002): Hypertonic fluids are secreted by medial and lateral segments in duck (Anas platyrhynchos) nasal salt glands",
+          "url": "https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.2001.016980",
+          "organization": "University of Toronto; The Journal of Physiology",
+          "supports": "Originalzusammenfassung und indexierte Originaleinleitung gelesen: direkt aus Drüsenabschnitten entnommenes Pekingenten-Sekret war bereits hypertonisch vor den Ausführungsgängen. Keine universellen Konzentrationswerte, kein zweites Replikationsexperiment behauptet."
+        },
+        {
+          "label": "Jacob: Basic Poultry Nutrition, Water",
+          "url": "https://poultry.extension.org/articles/feeds-and-feeding-of-poultry/basic-poultry-nutrition/",
+          "organization": "University of Kentucky, Cooperative Extension",
+          "supports": "Originalabschnitt Water gelesen: Wasserverlust durch Verdunstung sowie Abhängigkeit des Wasserbedarfs von Nahrung, Umwelt und Körperzustand. Fütterungs-, Vitamin- und Mengenregeln nicht übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "nephrone",
+          "title": "Vogelniere: zwei Nephrontypen in einem Organ",
+          "paragraphs": [
+            "Die Niere entfernt Stoffwechselabfälle aus dem Blut und wirkt am Wasser- und Elektrolythaushalt mit. Als anschauliches Organmodell dient hier das Haushuhn: Es besitzt zwei Nieren, von denen jeweils ein Harnleiter, Ureter, zur Kloake führt. Ein Harnleiter transportiert Harn aus der Niere; er ist weder Darm noch Ausführungsgang einer Salzdrüse. Die genaue Gliederung und Form der Nieren variiert zwischen Vogelgruppen, weshalb das Huhn keine identische Schablone jeder Wildvogelart liefert.",
+            "Die funktionellen Einheiten heißen Nephrone. Ein Nierenkörperchen enthält ein Gefäßknäuel, den Glomerulus, und die umgebende Bowman-Kapsel. Daran schließen sich Abschnitte des Nierenkanälchens an. Filtration und anschließende Transportvorgänge in den Kanälchen tragen gemeinsam dazu bei, welche Stoffe im Harn verbleiben oder wieder in den Körper gelangen. Ein einzelner Filtervorgang erklärt den fertigen Harn daher noch nicht vollständig.",
+            "Eine Besonderheit der Vogelniere ist das Nebeneinander schleifenloser und schleifenhaltiger Nephrone. Schleifenlose, oft als reptilientypisch bezeichnete Nephrone liegen in der Nierenrinde. Schleifenhaltige, auch säugertypisch genannte Nephrone reichen mit ihrer Henle-Schleife in Markbereiche. Die Namen bezeichnen Bauformen innerhalb der Vogelniere; sie bedeuten weder, dass diese Niere aus zwei Tierklassen besteht, noch dass jedes Vogelnephron eine Schleife besitzen muss.",
+            "Die Henle-Schleifen tragen zur Konzentrationsleistung bei. Vögel können Harn konzentrieren, obwohl ein Teil ihrer Nephrone ohne solche Schleifen auskommt. Wie stark das gelingt und wie die Nephrontypen verteilt sind, hängt unter anderem von der Art ab. Selbst erstelltes Vergleichsbeispiel: Zwei gezeichnete Vogelnephrone unterscheiden sich durch eine zusätzliche, ins Mark reichende Schleife. Für den Vergleich wird dieses Baumerkmal benannt; aus der Zeichnung wird keine allgemeine Prozentzahl für alle Vögel abgeleitet."
+          ],
+          "takeaway": "Vogelnieren enthalten schleifenlose und schleifenhaltige Nephrone; Harnbildung umfasst Filtration und weitere Transportvorgänge.",
+          "exercise": "Vergleiche zwei Nephronskizzen mit und ohne Henle-Schleife. Verfolge anschließend den Harnweg von der Niere über den Harnleiter zur Kloake."
+        },
+        {
+          "id": "harnsaeure",
+          "title": "Harnsäure, Urate und Kot: ähnliche Stelle, andere Herkunft",
+          "paragraphs": [
+            "Beim Stickstoffstoffwechsel entstehen ausscheidungspflichtige Endprodukte. Bei Vögeln ist Harnsäure ein wichtiges solches Produkt. Sie wird über die Nieren ausgeschieden und ist im Vergleich zu gut gelösten Abfallstoffen schwer wasserlöslich. Das ermöglicht die Abgabe eines konzentrierten, pastösen Anteils mit vergleichsweise wenig begleitendem Wasser. Wasserersparnis bedeutet dabei keine vollständig wasserfreie Ausscheidung und keine Unabhängigkeit vom Wasserhaushalt.",
+            "Der helle bis weißliche Anteil vieler Vogelausscheidungen stammt aus dem Harnsystem. Dafür wird häufig der Begriff Urate verwendet. Er ist von der eigentlichen Kotkomponente aus dem Verdauungstrakt zu unterscheiden. Dass beide über den Kloakenbereich nach außen gelangen, macht ihre Herkunft nicht identisch. Die helle Harnkomponente ist daher kein Beleg dafür, dass Nahrung im Darm grundsätzlich zu weißem Kot verarbeitet wird.",
+            "Zur Harnabgabe kann auch eine klare Flüssigkeitskomponente gehören. Eine Vogelausscheidung ist somit nicht zwingend nur eine trockene weiße Masse. Beschrieben werden können Kot, der helle urathaltige Anteil und klare Harnflüssigkeit. Mengen und Erscheinungsbild unterscheiden sich nach Art, Nahrung und Umständen. Der Grundbau des Ausscheidungssystems erklärt die verschiedenen Anteile; eine einzelne Farbe oder Menge liefert für sich keine gesicherte Krankheits- oder Gesundheitsdiagnose.",
+            "Selbst erstelltes Vergleichsbeispiel: Eine schematische Ausscheidung wird in einen geformten Kotanteil, einen weißlichen Belag und etwas klare Flüssigkeit gegliedert. Der Belag und die klare Flüssigkeit gehören zum Harnanteil, während der geformte Verdauungsrest aus dem Darm stammt. So lässt sich die häufige Verkürzung vermeiden, Vögel hätten nur Kot und überhaupt keinen Harn. Auch beim gemeinsamen Absetzen bleiben Darm- und Nierenfunktion unterschiedliche Vorgänge."
+          ],
+          "takeaway": "Weißliche Urate und klare Harnflüssigkeit gehören zum Harnsystem; sie sind von der Kotkomponente zu unterscheiden.",
+          "exercise": "Ordne in einer beschrifteten Schemazeichnung Kotanteil, weißlichen Harnanteil und klare Harnflüssigkeit ihrer Herkunft zu."
+        },
+        {
+          "id": "rueckgewinnung",
+          "title": "Nach der Niere: Wasser bleibt im Austausch",
+          "paragraphs": [
+            "Die Zusammensetzung des Harns kann sich nach seinem Austritt aus der Niere noch verändern. Durch rückwärts gerichtete Transportbewegungen, die Retroperistaltik, kann Harn aus dem Kloakenbereich in Richtung Enddarm gelangen. Dort kann Wasser wieder aufgenommen werden; auch Elektrolyte können weiter verändert werden. Diese nachgeschaltete Verarbeitung wird als postrenal bezeichnet. Sie ergänzt die Regulation in der Niere und ist kein zweites Nierenorgan im Darm.",
+            "Wasserrückgewinnung nach der Niere ist von der tubulären Rückresorption innerhalb der Niere zu unterscheiden. Beide können Wasser im Körper halten, aber sie finden an verschiedenen Epitheloberflächen statt. Selbst erstelltes Lernbeispiel: Ein Pfeil vom Nierenkanälchen zum Blut veranschaulicht renale Rückresorption, ein Pfeil aus dem Enddarm zurück zum Körper die postrenale Rückgewinnung. Der Vergleich erklärt den Ort und beansprucht keinen gleichen Mengenanteil bei jeder Vogelart.",
+            "Zur Wasserbilanz gehören außerdem mehrere Eingänge: aufgenommenes Trinkwasser, Wasser in der Nahrung und Wasser, das beim Stoffwechsel der Nährstoffe entsteht. Auf der Verlustseite stehen unter anderem Ausscheidungen und Verdunstung bei Atmung und über die Körperoberfläche. Wie diese Beiträge gewichtet sind, unterscheidet sich je nach Art, Nahrung, Aktivität und Umwelt. Ein Vogel, der gerade nicht beim Trinken beobachtet wird, muss deshalb nicht ohne jede Wasserzufuhr auskommen.",
+            "Die Kombination aus Nierenfunktion, nachgeschalteter Rückgewinnung und verschiedenen Wasserquellen hilft, unterschiedliche Lebensweisen von Vögeln zu verstehen. Daraus folgt jedoch keine pauschale Trinkmenge oder sichere Vorhersage, wie lange eine Art ohne freies Wasser auskommt. Für den biologischen Vergleich sind die Wege des Wassers aussagekräftiger als eine einzige Zahl. Eine Modellrechnung müsste ihre betrachtete Art und die jeweiligen Umweltbedingungen ausdrücklich benennen."
+          ],
+          "takeaway": "Der Enddarm kann Wasser aus zurücktransportiertem Harn wieder aufnehmen; Wasserbilanz umfasst zudem Nahrung, Stoffwechsel, Trinken und Verluste.",
+          "exercise": "Stelle Niere und Enddarm als zwei getrennte Rückgewinnungsorte dar. Ergänze drei Wasserquellen und zwei Wege des Wasserverlusts."
+        },
+        {
+          "id": "salzdruesen",
+          "title": "Salzdrüsen: zusätzliche Ausscheidung außerhalb der Niere",
+          "paragraphs": [
+            "Viele Meeresvögel können überschüssiges Salz über spezialisierte Salzdrüsen abgeben. Das ist ein extrarenaler Weg: Die Drüse liegt außerhalb der Niere und gibt ein salzreiches Sekret über Ausführungsgänge in den Nasen- beziehungsweise Schnabelbereich ab. Die Nieren bleiben weiterhin beteiligt am Stoffwechsel- und Wasserhaushalt. Salzdrüsen ersetzen daher weder die Harnbildung noch die übrigen Aufgaben der Niere.",
+            "Die Drüse entfernt Ionen wie Natrium und Chlorid aus dem inneren Milieu und bildet eine konzentrierte Salzlösung. Es handelt sich um Sekretion aus dem Körper, nicht um ein Sieb, das Meerwasser vor dem Verschlucken im Schnabel reinigt. Diese zusätzliche Ausscheidung hilft entsprechend angepassten Arten, mit Salz aus Wasser und Nahrung umzugehen. Die Leistung einer Salzdrüse ist von der allgemeinen Nierenleistung zu unterscheiden.",
+            "Ein konkreter Originalversuch untersuchte Pekingenten, Anas platyrhynchos. Flüssigkeit wurde unmittelbar aus unterschiedlichen Abschnitten ihrer Nasalsalzdrüsen gewonnen. Diese Flüssigkeit war bereits vor dem Durchlaufen der Ausführungsgänge hypertonisch, also konzentrierter als die Vergleichs-Körperflüssigkeit. Der Versuch stützt für die untersuchten Enten, dass die konzentrierte Lösung in den Drüsenabschnitten entsteht und nicht erst durch nachträgliches Verdunsten an der Schnabelspitze.",
+            "Das Vorhandensein, die Ausprägung und die nutzbare Leistung dieses Ausscheidungswegs sind zwischen Arten und Zuständen verschieden. Eine Untersuchung an Pekingenten oder ein Befund an Möwen ist deshalb keine allgemeine Salzwasserverträglichkeit aller Wildvögel. Selbst erstelltes Vergleichsbeispiel: Ein Harnleiter zur Kloake und ein Salzdrüsengang zum Nasenbereich sind zwei getrennte Wege. Ihre Ziele zeigen, weshalb ein salziges Nasensekret anatomisch von Harn zu unterscheiden ist."
+          ],
+          "takeaway": "Salzdrüsen geben konzentriertes Salzsekret außerhalb der Niere ab; diese Leistung darf nicht allen Vogelarten gleich zugeschrieben werden.",
+          "exercise": "Vergleiche Harnleiter und Salzdrüsengang nach Ausgangsorgan, transportiertem Sekret und Mündungsbereich."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-vogelniere-salz-round4-2026-q1",
+          "lessonId": "nephrone",
+          "q": "Woran unterscheidet sich ein schleifenhaltiges von einem schleifenlosen Vogelnephron?",
+          "options": [
+            "An einer Harnleiterschleife, die zur Nierenrinde zurückführt.",
+            "An einer zusätzlichen Schleife der Blutgefäße im Glomerulus.",
+            "An einer Schleife des Sammelgangs zwischen Niere und Kloake.",
+            "An einer Henle-Schleife, die in einen Markbereich reicht."
+          ],
+          "answer": 3,
+          "explain": "Schleifenhaltige Vogelnephrone reichen mit ihrer Henle-Schleife in Markbereiche. Schleifenlose Nephrone bleiben in der Rinde. Beide Bauformen können in derselben Vogelniere vorkommen."
+        },
+        {
+          "id": "wissen-pruefung-vogelniere-salz-round4-2026-q2",
+          "lessonId": "harnsaeure",
+          "q": "Welche Herkunft hat der weißliche urathaltige Anteil vieler Vogelausscheidungen?",
+          "options": [
+            "Er gehört zu den über das Harnsystem abgegebenen Stoffen.",
+            "Er gehört zu den aus der Galle stammenden Verdauungssekreten.",
+            "Er besteht aus im Muskelmagen zerkleinertem Verdauungsrest.",
+            "Er besteht aus dem direkt durch den Darm abgegebenen Calcium."
+          ],
+          "answer": 0,
+          "explain": "Der weißliche urathaltige Anteil gehört zur Harnabgabe und stammt damit aus dem Nieren-/Harnsystem. Er ist von der Kotkomponente des Verdauungstrakts zu unterscheiden; zusätzlich kann klare Harnflüssigkeit abgegeben werden."
+        },
+        {
+          "id": "wissen-pruefung-vogelniere-salz-round4-2026-q3",
+          "lessonId": "rueckgewinnung",
+          "q": "Was ermöglicht der Rücktransport von Harn aus dem Kloakenbereich in Richtung Enddarm?",
+          "options": [
+            "Die erstmalige Filtration des Blutes im Enddarm.",
+            "Die Rückgewinnung von Wasser nach dem Austritt aus der Niere.",
+            "Die Abgabe der Salzdrüsenlösung durch die Kloake.",
+            "Die Rückleitung des gesamten Kots in die Nierenkanälchen."
+          ],
+          "answer": 1,
+          "explain": "Im Enddarm kann aus zurücktransportiertem Harn erneut Wasser aufgenommen werden; auch Elektrolyte können verändert werden. Diese postrenale Verarbeitung ergänzt die Rückresorption innerhalb der Niere."
+        },
+        {
+          "id": "wissen-pruefung-vogelniere-salz-round4-2026-q4",
+          "lessonId": "salzdruesen",
+          "q": "Wie unterstützen aktive Nasalsalzdrüsen entsprechend angepasste Vögel im Salzhaushalt?",
+          "options": [
+            "Sie filtern Meerwasser im Schnabel vor jeder Aufnahme.",
+            "Sie ersetzen die Filtration in sämtlichen Nierennephronen.",
+            "Sie geben eine konzentrierte Salzlösung aus dem Körper ab.",
+            "Sie leiten den gebildeten Harn von der Kloake in die Nase."
+          ],
+          "answer": 2,
+          "explain": "Aktive Salzdrüsen sezernieren eine konzentrierte Lösung, insbesondere mit Natrium und Chlorid, und leiten sie in den Nasen-/Schnabelbereich. Dieser extrarenale Ausscheidungsweg ist von Harnbildung und Harntransport getrennt und nicht bei allen Arten gleich leistungsfähig."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Grundlagen von Vogelniere, stickstoffhaltigen Ausscheidungen, nachgeschalteter Wasserrückgewinnung und Salzdrüsen. Das Haushuhn dient als ausdrücklich benanntes Organmodell; eine Originalstudie an Pekingenten illustriert die Sekretion von Salzdrüsen. Keine universellen Artenanteile, Trinkbedarfe, Salzverträglichkeitswerte oder Krankheitsdiagnosen.",
+        "independentOrganizations": [
+          "Poultry Hub Australia / University of New England",
+          "Clinical Avian Medicine (Harr/Echols; einschließlich Orosz/Echols nicht doppelt gezählt)",
+          "Stanford University",
+          "Merck / MSD Veterinary Manual",
+          "State of New South Wales, DPIE",
+          "National Research Council",
+          "Cornell Lab of Ornithology",
+          "University of Toronto",
+          "University of Kentucky"
+        ],
+        "limitations": [
+          "Haushuhn als Grundbau-Modell, keine universelle Nierenlappenzahl oder Harnblasenbehauptung für alle Vogelarten.",
+          "Zwei Nephrontypen sind beschrieben, aber ihre Anteile und die Konzentrationsleistung werden nicht artsübergreifend beziffert.",
+          "Weißliche Urate sind ein Harnbestandteil; Flüssigkeit und Kot bleiben begrifflich getrennt. Keine Gesundheitsbeurteilung aus Farbe oder Konsistenz.",
+          "Salzdrüsenfunktion ist art- und zustandsabhängig. Keine Empfehlung, Vögeln Salzwasser zu geben.",
+          "Der konkrete Pekingenten-Versuch wird seiner Originalquelle zugeschrieben, weitere Fachtexte bestätigen das Prinzip und sind keine Wiederholungen dieses Versuchs."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-blutstillung-round4-2026",
+      "lessonId": "gefaess-plattchen",
+      "claims": [
+        {
+          "claim": "Intaktes Endothel schirmt aktivierende Gewebebestandteile ab; Verletzung legt unter anderem Kollagen frei, lokale Gefäßverengung unterstützt die Blutstillung.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/primary-hemostasis/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+            "https://www.merckmanuals.com/professional/hematology/hemostasis/overview-of-hemostasis"
+          ]
+        },
+        {
+          "claim": "Säugerplättchen sind membranumgebene Zytoplasmafragmente von Megakaryozyten, überwiegend im Knochenmark gebildet; keine Zellzahl-/Zeitnorm.",
+          "sourceUrls": [
+            "https://eclinpath.com/hematology/physiology/platelets/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets"
+          ]
+        },
+        {
+          "claim": "Primäre/sekundäre Hämostase und Fibrinolyse sind funktionell verschiedene gekoppelte Teilvorgänge; insbesondere Plättchenreaktion und Gerinnung laufen überlappend.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/",
+            "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf",
+            "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals",
+            "https://pubmed.ncbi.nlm.nih.gov/11434702/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-blutstillung-round4-2026",
+      "lessonId": "anhaften-verbinden",
+      "claims": [
+        {
+          "claim": "Adhäsion an freigelegter Oberfläche mit Kollagen/vWF, Aktivierung mit Signalstoffen einschließlich ADP/Thromboxan/Thrombin und Aggregation durch Fibrinogenbrücken sind verschiedene gekoppelte Plättchenfunktionen.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/primary-hemostasis/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+            "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf"
+          ]
+        },
+        {
+          "claim": "Aktivierte Plättchenoberflächen unterstützen Gerinnungsreaktionen; Fibrinogen als Plättchenbrücke ist von seiner Umwandlung in Fibrin zu unterscheiden.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/primary-hemostasis/",
+            "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-blutstillung-round4-2026",
+      "lessonId": "fibrinnetz",
+      "claims": [
+        {
+          "claim": "Prothrombin wird zu Thrombin; dieses spaltet lösliches Fibrinogen zu polymerisierenden Fibrinbausteinen, Faktor XIII stabilisiert durch Quervernetzung.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+            "https://www.merckmanuals.com/professional/hematology/hemostasis/overview-of-hemostasis",
+            "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals"
+          ]
+        },
+        {
+          "claim": "Gewebefaktor-tragende Zellen und aktivierte Plättchenoberflächen organisieren die Gerinnungsreaktionen; ein isoliertes Kaskadenschema beschreibt deren räumliches Zusammenwirken nicht vollständig.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/",
+            "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf",
+            "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals",
+            "https://pubmed.ncbi.nlm.nih.gov/11434702/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-blutstillung-round4-2026",
+      "lessonId": "begrenzen-abbauen",
+      "claims": [
+        {
+          "claim": "Intaktes Endothel mit NO/Prostacyclin und natürliche Hemmstoffe begrenzen die Gerinnung; Antithrombin hemmt unter anderem Thrombin/Faktor Xa.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+            "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals",
+            "https://www.merckmanuals.com/professional/hematology/hemostasis/overview-of-hemostasis"
+          ]
+        },
+        {
+          "claim": "tPA aktiviert Plasminogen zu Plasmin; Plasmin baut vorhandenes Fibrin ab. Aktivierung und Wirkung der Fibrinolyse werden ebenfalls gehemmt; Aufbau und Abbau bilden eine regulierte Balance.",
+          "sourceUrls": [
+            "https://eclinpath.com/hemostasis/physiology/fibrinolysis/",
+            "https://vetmed.illinois.edu/wp-content/uploads/2016/09/62.-McMichael-Coagulation-Abnormalities-in-ER-Patient.pdf",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+            "https://www.merckvetmanual.com/circulatory-system/hemostasis-and-fibrinolysis/hemostasis-and-fibrinolysis-in-animals"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-milchbildung-round4-2026",
+      "lessonId": "alveolen",
+      "claims": [
+        {
+          "claim": "Sekretorisches Alveolarepithel umgibt ein Lumen; Blutseite, Sekretionsseite und ableitende Gänge sind verschiedene Räume, Myoepithel hat kontraktile Eigenschaften.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-mammary-gland/",
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/oxytocin.html"
+          ]
+        },
+        {
+          "claim": "Laktierendes Drüsengewebe besitzt stark entwickelte Alveolen, inaktiv/rückgebildet relativ mehr Fett-/Bindegewebe und erhaltene größere Gänge; artspezifische äußere Architektur bleibt verschieden.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-mammary-gland/",
+            "https://www.informatics.jax.org/greenbook/chapters/chapter13.shtml"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-milchbildung-round4-2026",
+      "lessonId": "synthese",
+      "claims": [
+        {
+          "claim": "Milch ist ein durch aktive Aufnahme, Stoffwechsel und Synthese erzeugtes Sekret aus Blutvorstufen; Aminosäuren dienen Proteinen, ER/Ribosomen und Golgi sind am Sekretionsweg beteiligt.",
+          "sourceUrls": [
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://journals.physiology.org/doi/full/10.1152/physrev.2000.80.3.925",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5042581/"
+          ]
+        },
+        {
+          "claim": "Bei lactosehaltiger Milch wird Lactose im Golgi gebildet und beeinflusst zusammen mit anderen gelösten Teilchen den osmotischen Wassertransport; keine universellen Gehalte oder Fettvorstufen-Anteile.",
+          "sourceUrls": [
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://journals.physiology.org/doi/full/10.1152/physrev.2000.80.3.925"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-milchbildung-round4-2026",
+      "lessonId": "sekretionswege",
+      "claims": [
+        {
+          "claim": "Milchproteine einschließlich Caseinen können über Transportvesikel und Exozytose freigesetzt werden; Milchfettglobuli werden dagegen bei der Abgabe mit Membran umhüllt.",
+          "sourceUrls": [
+            "https://journals.physiology.org/doi/full/10.1152/physrev.2000.80.3.925",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5042581/",
+            "https://www.repository.cam.ac.uk/items/4fc2ba49-71ad-402f-8eb2-66cb130df5d0"
+          ]
+        },
+        {
+          "claim": "Milch vereint eine wässrige Phase, Caseinmicellen und membranumhüllte Fettglobuli; diese Bestandteile und ihre Sekretionswege sind begrifflich verschieden, Zusammensetzungen variieren.",
+          "sourceUrls": [
+            "https://journals.physiology.org/doi/full/10.1152/physrev.2000.80.3.925",
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://www.repository.cam.ac.uk/items/4fc2ba49-71ad-402f-8eb2-66cb130df5d0"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-milchbildung-round4-2026",
+      "lessonId": "milchabgabe",
+      "claims": [
+        {
+          "claim": "Milchbildung/Sekretion ist von der Weitergabe bereits gespeicherter Milch zu unterscheiden; Saugreiz, nervöse Signalübertragung und Oxytocin im Blut wirken beim Milchabgabereflex zusammen.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/oxytocin.html",
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://dairy.extension.wisc.edu/articles/the-role-of-predictability-and-calm-handling-in-milk-letdown/"
+          ]
+        },
+        {
+          "claim": "Oxytocin wird in hypothalamischen Nervenzellen gebildet und aus der Neurohypophyse freigesetzt; es fördert die Kontraktion des Myoepithels und dadurch die Weiterleitung der Alveolenmilch.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/endocrine/hypopit/oxytocin.html",
+            "https://dairy.extension.wisc.edu/articles/the-role-of-predictability-and-calm-handling-in-milk-letdown/",
+            "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/milk-biosynthesis/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK279126/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelniere-salz-round4-2026",
+      "lessonId": "nephrone",
+      "claims": [
+        {
+          "claim": "Vogelnieren regulieren Wasser/Elektrolyte und entfernen Stoffwechselabfälle; am benannten Haushuhnmodell führt je ein Ureter aus den zwei Nieren zur Kloake, die Organform ist nicht bei allen Arten identisch.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/16_kidneys.pdf",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/23_biochemistry.pdf"
+          ]
+        },
+        {
+          "claim": "Nephrone mit Glomerulus/Bowman-Kapsel und nachgeschalteten Kanälchen leisten Filtration und weitere Transportprozesse; Vogelnieren enthalten schleifenlose und schleifenhaltige Bauformen, letztere mit Henle-Schleife in Markbereichen.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/16_kidneys.pdf",
+            "https://pubmed.ncbi.nlm.nih.gov/31759441/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelniere-salz-round4-2026",
+      "lessonId": "harnsaeure",
+      "claims": [
+        {
+          "claim": "Harnsäure ist ein wesentliches stickstoffhaltiges Ausscheidungsprodukt von Vögeln; die geringe Wasserlöslichkeit ermöglicht konzentrierte urathaltige Abgabe mit vergleichsweise wenig Wasser, aber keine vollständig wasserfreie Ausscheidung.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+            "https://web.stanford.edu/group/stanfordbirds/text/uessays/earlier%20versions/Drinking.html",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/23_biochemistry.pdf"
+          ]
+        },
+        {
+          "claim": "Weißlicher urathaltiger Harnanteil, klare Harnflüssigkeit und Verdauungs-Kotkomponente sind nach ihrer Herkunft unterscheidbar; gemeinsamer Abgabeort macht sie nicht identisch, keine Diagnose aus Einzelmerkmal.",
+          "sourceUrls": [
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/23_biochemistry.pdf",
+            "https://nswdpe.intersearch.com.au/nswdpejspui/bitstream/1/11977/1/native-birds-initial-treatment-care-guidelines-210623.pdf",
+            "https://www.merckvetmanual.com/en-us/veterinary/bird-owners/disorders-and-diseases-of-birds/kidney-and-urinary-tract-disorders-of-pet-birds"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelniere-salz-round4-2026",
+      "lessonId": "rueckgewinnung",
+      "claims": [
+        {
+          "claim": "Retroperistaltik kann Harn aus dem Kloakenbereich in Richtung Enddarm transportieren; dort können Wasser zurückgewonnen und Elektrolyte verändert werden, ergänzend zur renalen Rückresorption.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/23_biochemistry.pdf",
+            "https://pubmed.ncbi.nlm.nih.gov/31759441/"
+          ]
+        },
+        {
+          "claim": "Vögel gewinnen Wasser aus Trinken, Nahrung und Nährstoffstoffwechsel und verlieren es unter anderem durch Ausscheidung und Verdunstung; Beiträge variieren mit Art, Nahrung, Aktivität und Umwelt.",
+          "sourceUrls": [
+            "https://web.stanford.edu/group/stanfordbirds/text/uessays/earlier%20versions/Drinking.html",
+            "https://www.ncbi.nlm.nih.gov/books/NBK232337/",
+            "https://poultry.extension.org/articles/feeds-and-feeding-of-poultry/basic-poultry-nutrition/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-vogelniere-salz-round4-2026",
+      "lessonId": "salzdruesen",
+      "claims": [
+        {
+          "claim": "Aktive Nasalsalzdrüsen bilden einen extrarenalen Weg der Natriumchlorid-Ausscheidung in konzentrierter Lösung über Gänge zum Nasen-/Schnabelbereich; sie ersetzen nicht die Niere und reinigen nicht Wasser vor dem Schlucken.",
+          "sourceUrls": [
+            "https://www.allaboutbirds.org/news/why-can-some-birds-drink-salty-seawater/",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/16_kidneys.pdf",
+            "https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.2001.016980"
+          ]
+        },
+        {
+          "claim": "In der benannten Pekingenten-Originalstudie war unmittelbar aus Drüsenabschnitten entnommenes Sekret schon vor den Ausführungsgängen hypertonisch. Andere Fachtexte bestätigen das Sekretionsprinzip, nicht unabhängig denselben Messversuch; Leistungsfähigkeit wird nicht auf alle Arten übertragen.",
+          "sourceUrls": [
+            "https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.2001.016980",
+            "https://www.harrisonsbirdfoods.com/wp-content/uploads/2024/02/16_kidneys.pdf",
+            "https://www.allaboutbirds.org/news/why-can-some-birds-drink-salty-seawater/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Blutstillung: Gerinnungszeiten, Blutverlust und Behandlung",
+      "reason": "Keine universellen Normalwerte oder sichtbaren Blutspuren als Diagnose. Mechanismenunterricht ersetzt keine Erste-Hilfe- oder veterinärmedizinische Anleitung."
+    },
+    {
+      "topic": "Milch: universelle Gehalte, Säugeabstände und äußerer Euterbau",
+      "reason": "Rinder-, Human- und Mausdaten liefern keine artsübergreifenden Mengen, Zeiten, Zitzenzahlen oder Speicheranteile. Keine klinischen Hormon- oder Aufzuchtanweisungen."
+    },
+    {
+      "topic": "Vögel: pauschale Salzverträglichkeit und feste Trinkmengen",
+      "reason": "Nierenform, Nephronanteile, Enddarmrückgewinnung und Salzdrüsenleistung sind artspezifisch. Ein Pekingenten-Versuch rechtfertigt keine Haltungsempfehlung oder Salzwasser-Gabe."
+    }
+  ]
+}

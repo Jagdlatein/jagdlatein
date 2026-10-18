@@ -13,23 +13,26 @@ import styles from "../styles/LearningOverview.module.css";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
-function CourseCards({ modules, covers, showCategory = false }) {
-  return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
-    {covers[module.coverIndex]?.coursePhotoUse && <LearningCover media={covers[module.coverIndex]} compact imageHref={`/kurse/${module.id}`} />}
-    <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
+function CourseCards({ modules, covers, showCategory = false, directLessons = false }) {
+  return <div className={directLessons ? styles.courseList : styles.moduleGrid}>{modules.map(module => <article key={module.id} className={`${styles.moduleCard}${directLessons ? ` ${styles.courseRow}` : ""}`}>
+    {!directLessons && covers[module.coverIndex]?.coursePhotoUse && <LearningCover media={covers[module.coverIndex]} compact imageHref={`/kurse/${module.id}`} />}
+    <Link href={`/kurse/${module.id}`} prefetch={false} className={styles.moduleLink}>
       <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span>{module.contentAddedOn && <span>Ergänzt: {new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</span>}</span>
       <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>
       <p className={styles.muted}>{module.description}</p>
       {getLearningCategoryByTitle(module.category)?.slug === "jagdrecht" && <p className={styles.countries}>{module.countries.map(item => countryNames[item] || item).join(" · ")}</p>}
-      <p className={styles.moduleFacts}>{module.lessonCount} Lektionen · {module.questionCount} Fragen · etwa {module.minutes} Minuten</p>
+      <p className={styles.moduleFacts}>{module.lessonCount} Lektionen · etwa {module.minutes} Minuten</p>
     </Link>
+    {directLessons && module.topics?.length > 0 && <ol className={styles.lessonLinks} aria-label={`Lektionen: ${module.title}`}>
+      {module.topics.map(topic => <li key={topic.href}><Link href={topic.href} prefetch={false}>{topic.title}<AppIcon name="arrow-right" size={16} /></Link></li>)}
+    </ol>}
   </article>)}</div>;
 }
 
 function FeaturedLearning({ tools, media }) {
   if (!tools.length) return null;
-  return <section className={styles.section} aria-labelledby="learning-featured-heading">
-    <h2 id="learning-featured-heading">Direkt entdecken & üben</h2>
+  return <section id="learning-featured" className={styles.section} aria-labelledby="learning-featured-heading">
+    <h2 id="learning-featured-heading">Entdecken & anwenden</h2>
     <div className={styles.featuredGrid}>{tools.map(tool => {
       const photo = media[tool.href]?.purpose ? media[tool.href] : null;
       return <article className={styles.featuredCard} key={tool.href}>
@@ -49,6 +52,7 @@ export default function LearningOverview({ data }) {
   const modulesById = new Map(modules.map(module => [module.id, module]));
   const paths = learningPaths.map(path => ({ ...path, modules: path.moduleIds.map(id => modulesById.get(id)).filter(Boolean) }));
   const additionalResources = resources.filter(tool => !tool.featured);
+  const featuredResources = resources.filter(tool => tool.featured);
   const recent = categoryInfo ? [] : getRecentLearningModules(modules);
 
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
@@ -63,19 +67,24 @@ export default function LearningOverview({ data }) {
       <h2 id="learning-recent-heading">Zuletzt ergänzt</h2>
       <ul className={styles.recentList}>{recent.map(module => <li key={module.id}>
         <Link href={`/kurse/${module.id}`}>
-          <span><strong>{module.title}</strong><span>{module.category} · {module.lessonCount} Lektionen · {module.questionCount} Fragen</span></span>
+          <span><strong>{module.title}</strong><span>{module.category} · {module.lessonCount} Lektionen</span></span>
           <span className={styles.recentDate}><time dateTime={module.contentAddedOn}>{new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</time><AppIcon name="arrow-right" size={19} /></span>
         </Link>
       </li>)}</ul>
     </section>}
     {!categoryInfo && <QuizLeagueEntry />}
     {categoryInfo ? <>
-      <FeaturedLearning tools={resources.filter(tool => tool.featured)} media={featuredMedia} />
-      <section className={styles.section} aria-labelledby="learning-modules-heading">
-        <div className={styles.sectionHeading}><h2 id="learning-modules-heading">Lerneinheiten</h2><p>{counts.modules} Kurse · {counts.lessons} Lektionen · {counts.questions} Übungsfragen</p></div>
-        <CourseCards modules={modules} covers={covers} />
+      {(featuredResources.length > 0 || additionalResources.length > 0) && <nav className={styles.quietNav} aria-label="In dieser Kategorie">
+        <a href="#learning-modules">Wissen lesen</a>
+        <a href={featuredResources.length ? "#learning-featured" : "#learning-resources"}>Entdecken & anwenden</a>
+      </nav>}
+      <section id="learning-modules" className={styles.section} aria-labelledby="learning-modules-heading">
+        <div className={styles.sectionHeading}><h2 id="learning-modules-heading">Wissen lesen</h2><p>{counts.modules} Kurse · {counts.lessons} Lektionen</p></div>
+        <p className={styles.readingHint}>Wähle ein Thema oder springe direkt zur gewünschten Lektion.</p>
+        <CourseCards modules={modules} covers={covers} directLessons />
       </section>
-      {additionalResources.length > 0 && <section className={styles.section} aria-labelledby="learning-resources-heading">
+      <FeaturedLearning tools={featuredResources} media={featuredMedia} />
+      {additionalResources.length > 0 && <section id="learning-resources" className={styles.section} aria-labelledby="learning-resources-heading">
         <h2 id="learning-resources-heading">Weitere Lernangebote</h2>
         <ul className={styles.resources}>{additionalResources.map(tool => <li key={tool.href}><Link href={tool.href}>
           <AppIcon name={tool.icon} size={26} /><span><strong>{tool.title}</strong><span>{tool.description}</span></span><AppIcon name="arrow-right" size={18} />
