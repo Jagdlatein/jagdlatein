@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import Link from "next/link";
 import LearningToolLayout from "../../components/LearningToolLayout";
 import AppIcon from "../../components/AppIcon";
@@ -6,11 +6,11 @@ import { europeanWildlife, europeanWildlifeGroups, filterEuropeanWildlife } from
 import { dentitionBySlug } from "../../lib/wildlife-dentition";
 import { matchWildlifeSection } from "../../lib/wildlife-section-match";
 import { animalSounds } from "../../lib/animal-sounds";
+import useWildlifeListState from "../../lib/use-wildlife-list-state";
 import styles from "../../styles/WildlifeIndex.module.css";
 
 export default function WildkundeIndex() {
-  const [query, setQuery] = useState("");
-  const [group, setGroup] = useState("all");
+  const { query, group, urlReady, change, reset, openPortrait } = useWildlifeListState();
   const resultsRef = useRef(null);
   const soundCounts = useMemo(() => animalSounds.reduce((counts, sound) => {
     counts[sound.speciesSlug] = (counts[sound.speciesSlug] || 0) + 1;
@@ -19,7 +19,6 @@ export default function WildkundeIndex() {
   const matches = useMemo(() => [...filterEuropeanWildlife({ query, group })]
     .sort((left, right) => left.name.localeCompare(right.name, "de")), [query, group]);
 
-  function reset() { setQuery(""); setGroup("all"); }
   function showResults(event) {
     event.preventDefault();
     resultsRef.current?.focus({ preventScroll: true });
@@ -30,8 +29,8 @@ export default function WildkundeIndex() {
     <section className={styles.search} aria-labelledby="wildlife-search">
       <h2 id="wildlife-search">Wildart finden</h2>
       <form className={styles.filters} role="search" aria-label="Wildarten durchsuchen" onSubmit={showResults}>
-        <label className={styles.query}>Art, Merkmal oder wissenschaftlicher Name<input type="search" maxLength={160} value={query} placeholder="Zum Beispiel Gams, Enten oder Zahnformel" enterKeyHint="search" aria-controls="wildlife-results" onChange={event => setQuery(event.target.value)} /></label>
-        <label>Artengruppe<select value={group} aria-controls="wildlife-results" onChange={event => setGroup(event.target.value)}><option value="all">Alle Gruppen</option>{europeanWildlifeGroups.map(value => <option key={value}>{value}</option>)}</select></label>
+        <label className={styles.query}>Art, Merkmal oder wissenschaftlicher Name<input type="search" maxLength={160} disabled={!urlReady} value={query} placeholder="Zum Beispiel Gams, Enten oder Zahnformel" enterKeyHint="search" aria-controls="wildlife-results" onChange={event => change("query", event.target.value)} /></label>
+        <label>Artengruppe<select disabled={!urlReady} value={group} aria-controls="wildlife-results" onChange={event => change("group", event.target.value)}><option value="all">Alle Gruppen</option>{europeanWildlifeGroups.map(value => <option key={value}>{value}</option>)}</select></label>
       </form>
       <div className={styles.searchStatus}><p role="status">{matches.length} von {europeanWildlife.length} Einträgen{query.trim() || group !== "all" ? " gefunden" : " · A–Z"}</p>{(query || group !== "all") && <button type="button" onClick={reset}>Suche leeren</button>}</div>
     </section>
@@ -40,7 +39,7 @@ export default function WildkundeIndex() {
         const sounds = soundCounts[species.slug] || 0;
         const destination = matchWildlifeSection(species, query);
         return <li key={species.slug} data-wildlife-slug={species.slug}>
-          <Link href={destination?.href || `/wildkunde/${species.slug}`} className={styles.speciesLink} aria-labelledby={`wildlife-${species.slug}`}>
+          <Link href={destination?.href || `/wildkunde/${species.slug}`} className={styles.speciesLink} aria-labelledby={`wildlife-${species.slug}`} onClick={event => openPortrait(event, destination?.href || `/wildkunde/${species.slug}`)} onAuxClick={event => openPortrait(event, destination?.href || `/wildkunde/${species.slug}`)}>
             <div className={styles.rowHeading}><div><h2 id={`wildlife-${species.slug}`}>{species.name}</h2><p className={styles.scientific}><i>{species.scientificName}</i>{species.slug === "rackelwild" ? " · Hybrid, keine eigene Art" : ""}</p></div><AppIcon name="arrow-right" size={22} /></div>
             <p className={styles.meta}>{species.group}{sounds > 0 && <> · {sounds} Originalaufnahme{sounds === 1 ? "" : "n"}</>}{dentitionBySlug[species.slug] && " · Gebiss erklärt"}{species.europeanOnly && " · Europa"}</p>
             <dl className={styles.knowledge}><div><dt>Erkennen</dt><dd>{species.identification}</dd></div><div><dt>Lebensraum & Lebensweise</dt><dd>{species.habitat}</dd></div></dl>

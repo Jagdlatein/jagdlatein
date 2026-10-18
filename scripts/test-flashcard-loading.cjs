@@ -363,7 +363,7 @@ test('Expanded cards preserve the active category, typed search and immediately 
     assert.match(words(tree), /In den Tagesplan/);
     assert.match(words(tree), /2 Karten offen oder fällig/);
     const printLink = find(tree, node => node.props?.href?.pathname === '/lernen/lernkarten-drucken');
-    assert.deepEqual(printLink.props.href.query, { kategorie: 'hundewesen', q: 'Belohnung' });
+    assert.deepEqual(printLink.props.href.query, { kategorie: 'hundewesen', q: 'Belohnung', karte: 'flash-hund-eins' });
   } finally { e.unmount(); h.cleanup(); b.restore(); }
 });
 

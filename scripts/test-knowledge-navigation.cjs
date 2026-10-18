@@ -44,7 +44,8 @@ test('Category pages expose compact photographed practice before courses, with r
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
   const Component = load('components/LearningOverview.js').default;
   for (const category of ['hundewesen', 'wildkunde', 'jagdrecht']) {
-    const html = renderToStaticMarkup(React.createElement(Component, {data: getData(category)}));
+    const data = getData(category);
+    const html = renderToStaticMarkup(React.createElement(Component, {data}));
     assert.equal((html.match(/type="search"/g) || []).length, 1);
     assert.ok(html.indexOf('learning-modules-heading') < html.indexOf('learning-resources-heading'));
     if (category !== 'jagdrecht') {
@@ -58,6 +59,15 @@ test('Category pages expose compact photographed practice before courses, with r
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));
     const links = [...resourceHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => targets.has(href));
     assert.equal(new Set(links).size, links.length);
+    const cards = [...html.matchAll(/<article class="moduleCard">([\s\S]*?)<\/article>/g)];
+    assert.equal(cards.length, data.modules.length);
+    cards.forEach((card, index) => {
+      const href = `/kurse/${data.modules[index].id}`;
+      assert.ok(card[1].includes(`<a href="${href}" class="photoLink" tabindex="-1" aria-hidden="true"><img`), href);
+      assert.ok(card[1].includes(`<a href="${href}" class="moduleLink">`), href);
+      assert.doesNotMatch(card[1].split('class="photoLink"')[1].split('</a>')[0], /<a\s/);
+      assert.ok(card[1].indexOf('</a>') < card[1].indexOf('<figcaption'), 'Image credits remain independent links');
+    });
   }
 });
 

@@ -197,7 +197,7 @@ test('Filter changes reject previous-card handlers and keep search/category on t
     const input = find(s.tree, node => node.type === 'input' && node.props.type === 'search');
     input.props.onChange({ target: { value: 'nächste' } }); s.render();
     const link = find(s.tree, node => node.props?.href?.pathname === '/lernen/lernkarten-drucken');
-    assert.deepEqual(link.props.href.query, { kategorie: 'hundewesen', q: 'nächste' });
+    assert.deepEqual(link.props.href.query, { kategorie: 'hundewesen', q: 'nächste', karte: cards[1].id });
   } finally { s.cleanup(); }
 });
 
@@ -221,6 +221,7 @@ test('Print view keeps compact numbered source references and lists every full U
   assert.match(html, /Hunde verstehen · Vorhandene Lektion/);
   assert.match(html, /https:\/\/example.org\/lesson/);
   assert.match(html, /Links im Quellenverzeichnis/);
+  assert.ok(html.indexOf('Digital wiederholen') < html.indexOf('class="printList"'));
   assert.match(html, /Quellenverzeichnis/);
   const { sourceList, sourceByUrl } = printModule.getPrintSourceIndex(cards);
   assert.equal(sourceList.length, new Set(sourceList.map(item => item.url)).size);
@@ -269,5 +270,7 @@ test('Packed print props retain a changed category and search across repeated re
     assert.match(words(tree), /1\s+Karte\s+drucken/);
     assert.match(words(tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(tree), /Welche Wildart zeigt dieses Foto/);
+    const back = find(tree, node => node.props?.href?.pathname === '/lernen/lernkarten');
+    assert.deepEqual(back.props.href.query, { kategorie: 'hundewesen', q: 'nächste' });
   } finally { e.unmount(); }
 });

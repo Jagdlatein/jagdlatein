@@ -14,7 +14,7 @@ const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
 function CourseCards({ modules, covers, showCategory = false }) {
   return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
-    <LearningCover media={covers[module.coverIndex]} compact />
+    <LearningCover media={covers[module.coverIndex]} compact imageHref={`/kurse/${module.id}`} />
     <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
       <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span>{module.contentAddedOn && <span>Ergänzt: {new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</span>}</span>
       <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>

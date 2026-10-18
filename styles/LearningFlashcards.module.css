@@ -51,6 +51,8 @@
 .deviceNote { font-size: 14px; line-height: 1.7; margin: 18px 0 0; color: #6e6249; }
 .exportLinks { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; }
 .exportLinks a { display: inline-flex; align-items: center; min-height: 48px; gap: 8px; color: #73571a; text-underline-offset: 4px; font-weight: 650; font-size: 16px; }
+.cardExports { margin: 4px 0 12px; gap: 0 24px; }
+.cardExports a { min-height: 44px; font-size: 15px; }
 .empty { padding: 26px; border: 1px solid #ded1af; border-radius: 18px; background: #fffdf7; }
 .empty h2 { font-size: 25px; }
 .empty p { font-size: 18px; }
@@ -101,6 +103,7 @@
   .printFace + .printFace { border-left: 0; border-top: 1px dashed #b7a47d; }
 }
 @media (prefers-reduced-motion: no-preference) { .primary, .secondary { transition: background-color 120ms ease; } }
+@media (max-width: 430px) { .filters { grid-template-columns: minmax(0, 1fr); } }
 @media print {
   @page { size: A4 portrait; margin: 12mm; }
   .printPage { max-width: none !important; margin: 0 !important; padding: 0 !important; color: #111 !important; background: #fff !important; }
