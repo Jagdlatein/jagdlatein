@@ -22,6 +22,9 @@
 .knowledge dt { margin: 0 0 4px; font-size: 13px; font-weight: 750; color: #6f613f; }
 .knowledge dd { margin: 0; font-size: 16px; line-height: 1.65; }
 .destination { margin: 13px 0 0; font-size: 14px; font-weight: 650; color: #73571a; }
+.studyLinks { display: flex; flex-wrap: wrap; gap: 0 24px; padding: 0 8px 12px; }
+.studyLinks a { display: inline-flex; align-items: center; min-height: 44px; color: #73571a; font-size: 14px; text-underline-offset: 4px; }
+.studyLinks a:focus-visible { outline: 2px solid #8b6d29; outline-offset: 3px; border-radius: 3px; }
 .empty { padding: 24px 0; }
 .more { display: flex; gap: 4px 25px; flex-wrap: wrap; margin: 24px 0; }
 .more a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #73571a; font-weight: 650; text-underline-offset: 4px; }

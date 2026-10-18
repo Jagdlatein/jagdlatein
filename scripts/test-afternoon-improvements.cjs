@@ -102,7 +102,7 @@ test('Lesson evidence shows the exact claims, source labels and section review d
   }
 });
 
-test('Every published dental formula yields three correct counting questions, unique options and source-specific limits', () => {
+test('Every published dental formula retains its three original counting checks within a varied sourced question bank', () => {
   const { dentitionProfiles } = load('lib/wildlife-dentition.js');
   const { makeDentitionQuestions } = load('lib/dentition-questions.js');
   const { gradeResearchQuestion } = load('lib/research-question-round.js');
@@ -111,11 +111,11 @@ test('Every published dental formula yields three correct counting questions, un
   assert.deepEqual(makeDentitionQuestions({ formula: {} }), []);
   for (const profile of dentitionProfiles) {
     const questions = makeDentitionQuestions(profile);
-    assert.equal(questions.length, 3, profile.slug);
-    assert.equal(new Set(questions.map(question => question.id)).size, 3);
+    assert.equal(questions.length, 16, profile.slug);
+    assert.equal(new Set(questions.map(question => question.id)).size, questions.length);
     if (profile.variants?.length) assert.ok(questions.every(question => question.prompt.includes('Grundform')), profile.slug);
     const expected = [profile.total, profile.count.upper * 2, profile.formula.M[1]];
-    questions.forEach((question, index) => {
+    questions.slice(0, 3).forEach((question, index) => {
       assert.equal(question.context, profile.scope);
       assert.deepEqual(question.sourceIds, profile.sourceIds);
       assert.equal(new Set(question.options.map(option => option.text)).size, 4);

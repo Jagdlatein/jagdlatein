@@ -284,6 +284,34 @@
       ]
     },
     {
+      "speciesSlug": "elchwild",
+      "name": "Elchwild",
+      "scientificName": "Alces alces",
+      "models": [
+        {
+          "id": "c75d9cfd1d45475ba7ed577dc25f7973",
+          "part": "cranium",
+          "title": "Elchwild: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/alces-alces-moose-os-euroazjatycki-c75d9cfd1d45475ba7ed577dc25f7973",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FNN6BJC",
+          "specimen": "Alces alces - 170765, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Unveränderte Originalvorschau visuell geprüft; konkrete Modell-API, Sammlungsdatensatz und Lizenz eingesehen.",
+            "observed": "Seitliche Originalvorschau zeigt geweihefreien Schädel mit eingesetztem Unterkiefer, sichtbaren Schneidezähnen unten, Diastema und Backenzahnreihen. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Alces alces (Moose) (Łoś euroazjatycki)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/c75d9cfd1d45475ba7ed577dc25f7973"
+        }
+      ]
+    },
+    {
       "speciesSlug": "fasan",
       "name": "Fasan",
       "scientificName": "Phasianus colchicus",
@@ -725,6 +753,39 @@
       ]
     },
     {
+      "speciesSlug": "lachmoewe",
+      "name": "Lachmöwe",
+      "scientificName": "Chroicocephalus ridibundus",
+      "models": [
+        {
+          "id": "73793356b24a47ca8072a911968fe054",
+          "part": "mandible",
+          "title": "Lachmöwe: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/larus-ridibundus-mandible-73793356b24a47ca8072a911968fe054",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2005-0413/463",
+          "specimen": "MZB 2005-0413",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer. Im Museum unter dem älteren Namen Larus ridibundus geführt.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Unveränderte Originalvorschau visuell geprüft; konkrete Modell-API, Sammlungsdatensatz und Lizenz eingesehen.",
+            "observed": "Originalvorschau zeigt isolierten U-förmigen Unterkiefer mit beiden Ästen und vorderem Schnabelabschnitt; keine Hirnkapsel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "researchNote": "Zuordnung Larus ridibundus -> Chroicocephalus ridibundus durch ITIS und NCBI Taxonomy 1192867 belegt.",
+          "taxonomySources": [
+            "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=824041",
+            "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1192867&mode=Info"
+          ],
+          "originalTitle": "Larus ridibundus, mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/73793356b24a47ca8072a911968fe054"
+        }
+      ]
+    },
+    {
       "speciesSlug": "luchs",
       "name": "Luchs",
       "scientificName": "Lynx lynx carpathica",
@@ -895,6 +956,39 @@
           },
           "originalTitle": "Myocastor coypus, mandible",
           "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "pfeifente",
+      "name": "Pfeifente",
+      "scientificName": "Mareca penelope",
+      "models": [
+        {
+          "id": "f225d83130f14c909798c9a5fd0a3be8",
+          "part": "mandible",
+          "title": "Pfeifente: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/anas-penelope-mandible-f225d83130f14c909798c9a5fd0a3be8",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2005-0888/440",
+          "specimen": "MZB 2005-0888",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer. Im Museum unter dem älteren Namen Anas penelope geführt.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Unveränderte Originalvorschau visuell geprüft; konkrete Modell-API, Sammlungsdatensatz und Lizenz eingesehen.",
+            "observed": "Originalvorschau zeigt einen isolierten U-förmigen Unterkiefer mit zwei hinteren Ästen und offener Mitte; keine Hirnkapsel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "researchNote": "Zuordnung Anas penelope -> Mareca penelope durch AOS Checklist Supplement 2017 und NHM Species Dictionary belegt.",
+          "taxonomySources": [
+            "https://academic.oup.com/auk/article/134/3/751/5149324",
+            "https://www.nhm.ac.uk/our-science/data/uk-species/taxon?tvk=NHMSYS0021276071"
+          ],
+          "originalTitle": "Anas penelope, mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/f225d83130f14c909798c9a5fd0a3be8"
         }
       ]
     },
@@ -1420,6 +1514,34 @@
           },
           "originalTitle": "Felis silvestris, mandible",
           "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "wisent",
+      "name": "Wisent",
+      "scientificName": "Bison bonasus",
+      "models": [
+        {
+          "id": "c3f939ef7b084b1f8c6b3b0ac54abb88",
+          "part": "cranium",
+          "title": "Wisent: Schädel ohne Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/bison-bonasus-european-bison-zubr-europejski-c3f939ef7b084b1f8c6b3b0ac54abb88",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FWHPTUI",
+          "specimen": "Bison bonasus - 113669, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Oberschädel ohne eingesetzten Unterkiefer. Der Scan zeigt auch vorhandene Fehlstellen des Präparats.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Unveränderte Originalvorschau visuell geprüft; konkrete Modell-API, Sammlungsdatensatz und Lizenz eingesehen.",
+            "observed": "Originalvorschau zeigt Schädel mit Hornzapfen und oberer Backenzahnreihe; kein eingesetzter Unterkiefer sichtbar. Unregelmäßige Fehlstellen im Schädel werden nicht als arttypische Merkmale interpretiert. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Bison bonasus (European bison) (Żubr europejski)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/c3f939ef7b084b1f8c6b3b0ac54abb88"
         }
       ]
     },

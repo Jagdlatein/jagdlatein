@@ -14,5 +14,18 @@
 .panel .credit, .panel .scope { font-size: 14px; line-height: 1.7; color: #6e6249; }
 .panel a { color: #73571a; text-underline-offset: 4px; }
 .allSpecies { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 650; }
+.selectionGrid, .comparisonGrid, .comparisonNotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.selectionGrid > *, .comparisonGrid > *, .comparisonNotes > * { min-width: 0; }
+.comparisonGrid .panel { margin-top: 0; }
+.comparisonGrid .viewer { height: clamp(300px, 33vw, 420px); }
+.comparisonTable { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 20px 0; font-size: 17px; }
+.comparisonTable caption { text-align: left; margin-bottom: 12px; font-size: 16px; line-height: 1.6; }
+.comparisonTable th, .comparisonTable td { padding: 12px 8px; border-bottom: 1px solid #ded1af; text-align: left; vertical-align: top; overflow-wrap: anywhere; line-height: 1.6; }
+.comparisonTable th:first-child { width: 44%; }
+.comparisonTable th small { display: block; font-weight: 400; font-size: 14px; line-height: 1.5; }
+.comparisonNotes h3 { margin: 12px 0 8px; }
+.comparisonNotes p { margin-top: 0; }
 .panel :is(button, select, a):focus-visible { outline: 3px solid #796021; outline-offset: 4px; }
+@media (max-width: 850px) { .comparisonGrid, .comparisonNotes { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 620px) { .selectionGrid { grid-template-columns: minmax(0, 1fr); gap: 16px; } .comparisonTable { font-size: 16px; } .comparisonTable th, .comparisonTable td { padding: 10px 5px; } }
 @media (max-width: 430px) { .opening { padding: 14px; } .panel h2 { font-size: 23px; } .panel p { font-size: 17px; } .panel .credit, .panel .scope { font-size: 14px; } }

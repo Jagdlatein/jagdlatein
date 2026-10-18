@@ -27,7 +27,7 @@ function load(relative, cache = new Map()) {
   new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports);
   cache.set(filename, mod.exports); return mod.exports;
 }
-const { getWildlifeLearningGuide: guide, wildlifeGuideTargets: targets } = load('lib/wildlife-learning-guide.js');
+const { getWildlifeLearningGuide: guide, getWildlifeStudyLinks: studyLinks, wildlifeGuideTargets: targets } = load('lib/wildlife-learning-guide.js');
 const guideDependencies = [...loaded];
 const inventory = load('lib/european-wildlife-discovery.js').europeanWildlife;
 const curriculum = load('lib/learning-curriculum.js').learningModules;
@@ -89,10 +89,36 @@ test('Guide renders knowledge previews as quiet links with scope labels and a st
   assert.match(html, /id="art-weiterlernen"/);
   assert.match(html, /Rehwild: weiterlernen/);
   assert.match(html, /Vertiefung zur Art/); assert.match(html, /Biologische Grundlagen/);
-  assert.equal((html.match(/<a /g) || []).length, 3);
+  assert.equal((html.match(/<a /g) || []).length, 5);
   assert.doesNotMatch(html, /<button|<details|<img|<video/);
   assert.ok(html.includes(targets.roe.description));
   assert.equal(renderToStaticMarkup(React.createElement(Component, { slug: 'erfunden', name: 'Erfunden' })), '');
+});
+
+test('Every species opens a real scoped card deck, with group foundations explicitly distinguished from species knowledge', () => {
+  const cards = load('lib/learning-flashcards.js').getFlashcards();
+  const models = load('lib/wildlife-jaw-models.js').jawModelsBySlug;
+  const knownCounts = new Map();
+  for (const species of inventory) {
+    const links = studyLinks(species.slug);
+    assert.ok(links.length >= 1 && links.length <= 2, species.slug);
+    const model = links.find(link => link.kind === 'model');
+    assert.equal(Boolean(model), Boolean(models[species.slug]), species.slug);
+    if (model) assert.equal(model.href, `/lernen/kiefer-3d?art=${species.slug}`);
+    const link = links.find(link => link.kind === 'cards'); assert.ok(link, species.slug);
+    const url = new URL(link.href, 'https://test.invalid');
+    assert.equal(url.pathname, '/lernen/lernkarten'); assert.equal(url.searchParams.get('modus'), 'alle');
+    const target = guide(species.slug).find(item => item.moduleId === url.searchParams.get('kurs') && (item.lessonId || '') === (url.searchParams.get('lektion') || ''));
+    assert.ok(target, species.slug);
+    const selected = cards.filter(card => card.moduleId === target.moduleId && (!target.lessonId || card.lessonId === target.lessonId));
+    assert.ok(selected.length > 0, `${species.slug}: no empty or unscoped card bank`);
+    assert.equal(target.flashcardCount, selected.length, species.slug);
+    assert.equal(link.count, selected.length); assert.equal(link.context, target.title);
+    assert.equal(link.title, target.scope === 'species' ? 'Lernkarten zur Art' : 'Lernkarten: Biologie');
+    for (const entry of guide(species.slug)) knownCounts.set(entry.moduleId + '/' + (entry.lessonId || ''), entry);
+  }
+  for (const target of knownCounts.values()) assert.equal(target.flashcardCount, cards.filter(card => card.moduleId === target.moduleId && (!target.lessonId || card.lessonId === target.lessonId)).length, target.title);
+  for (const slug of [undefined, '', 'erfunden', '__proto__']) assert.deepEqual(studyLinks(slug), []);
 });
 
 test('Browser guide keeps its own metadata small and does not import complete course or quiz datasets', () => {

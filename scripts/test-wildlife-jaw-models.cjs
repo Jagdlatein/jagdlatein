@@ -113,7 +113,7 @@ test('A real viewer failure retains an accessible original-model fallback and sw
 });
 
 test('Atlas lists every current wildlife entry once; supported and missing species remain honestly distinct', () => {
-  const ui = atlas(); const options = all(ui.tree, n => n.type === 'option');
+  const ui = atlas(); const options = all(ui.field(), n => n.type === 'option');
   assert.equal(options.length, inventory.length); assert.deepEqual(new Set(options.map(o => o.props.value)), new Set(inventory.map(s => s.slug)));
   const groups = all(ui.tree, n => n.type === 'optgroup'); assert.equal(groups.length, 2);
   assert.deepEqual(all(groups[0], n => n.type === 'option').map(o => o.props.value), ['rehwild']);

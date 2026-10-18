@@ -1,5 +1,7 @@
 # Kiefer- und Schädelmodelle: Quellenprüfung vom 18. Oktober 2026
 
+Dokumentierter Erstbestand; spätere Ergänzungen stehen in `wildlife-jaw-growth-2026-10-18.md`.
+
 50 von 114 Arten/Vergleichsformen; 52 Modelle. 37 Arten mit isoliertem Unterkiefer oder einer Unterkieferhälfte. 64 Einträge bleiben offen.
 
 ## Geprüfter Umfang

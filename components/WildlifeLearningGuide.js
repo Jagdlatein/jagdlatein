@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AppIcon from "./AppIcon";
-import { getWildlifeLearningGuide } from "../lib/wildlife-learning-guide";
+import { getWildlifeLearningGuide, getWildlifeStudyLinks } from "../lib/wildlife-learning-guide";
 import styles from "../styles/WildlifeLearningGuide.module.css";
 
 export default function WildlifeLearningGuide({ slug, name }) {
@@ -8,6 +8,7 @@ export default function WildlifeLearningGuide({ slug, name }) {
   if (!links.length) return null;
   return <section id="art-weiterlernen" className={styles.guide} aria-labelledby="art-weiterlernen-heading">
     <h2 id="art-weiterlernen-heading">{name}: weiterlernen</h2>
+    <nav className={styles.studyLinks} aria-label={`${name}: direkt üben und vergleichen`}>{getWildlifeStudyLinks(slug).map(link => <Link key={link.kind} href={link.href} title={link.context} aria-label={`${name}: ${link.title} – ${link.context}`}>{link.title}</Link>)}</nav>
     <ul className={styles.list}>{links.map(link => <li key={link.href}>
       <Link href={link.href} className={styles.link}>
         <span className={styles.label}>{link.label}</span>

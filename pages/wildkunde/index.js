@@ -5,6 +5,7 @@ import AppIcon from "../../components/AppIcon";
 import { europeanWildlife, europeanWildlifeGroups, filterEuropeanWildlife } from "../../lib/european-wildlife-discovery";
 import { dentitionBySlug } from "../../lib/wildlife-dentition";
 import { matchWildlifeSection } from "../../lib/wildlife-section-match";
+import { getWildlifeStudyLinks } from "../../lib/wildlife-learning-guide";
 import { animalSounds } from "../../lib/animal-sounds";
 import useWildlifeListState from "../../lib/use-wildlife-list-state";
 import styles from "../../styles/WildlifeIndex.module.css";
@@ -29,7 +30,7 @@ export default function WildkundeIndex() {
     <section className={styles.search} aria-labelledby="wildlife-search">
       <h2 id="wildlife-search">Wildart finden</h2>
       <form className={styles.filters} role="search" aria-label="Wildarten durchsuchen" onSubmit={showResults}>
-        <label className={styles.query}>Art, Merkmal oder wissenschaftlicher Name<input type="search" maxLength={160} disabled={!urlReady} value={query} placeholder="Zum Beispiel Gams, Enten oder Zahnformel" enterKeyHint="search" aria-controls="wildlife-results" onChange={event => change("query", event.target.value)} /></label>
+        <label className={styles.query}>Art, Merkmal oder wissenschaftlicher Name<input type="search" maxLength={160} disabled={!urlReady} value={query} placeholder="Zum Beispiel Gams, Zahnformel oder 3D" enterKeyHint="search" aria-controls="wildlife-results" onChange={event => change("query", event.target.value)} /></label>
         <label>Artengruppe<select disabled={!urlReady} value={group} aria-controls="wildlife-results" onChange={event => change("group", event.target.value)}><option value="all">Alle Gruppen</option>{europeanWildlifeGroups.map(value => <option key={value}>{value}</option>)}</select></label>
       </form>
       <div className={styles.searchStatus}><p role="status">{matches.length} von {europeanWildlife.length} Einträgen{query.trim() || group !== "all" ? " gefunden" : " · A–Z"}</p>{(query || group !== "all") && <button type="button" onClick={reset}>Suche leeren</button>}</div>
@@ -45,10 +46,11 @@ export default function WildkundeIndex() {
             <dl className={styles.knowledge}><div><dt>Erkennen</dt><dd>{species.identification}</dd></div><div><dt>Lebensraum & Lebensweise</dt><dd>{species.habitat}</dd></div></dl>
             {destination && <p className={styles.destination}>Direkt zu: {destination.sectionTitle}</p>}
           </Link>
+          <div className={styles.studyLinks} role="group" aria-label={`${species.name}: direkt weiterlernen`}>{getWildlifeStudyLinks(species.slug).map(link => <Link key={link.kind} href={link.href} title={link.context} aria-label={`${species.name}: ${link.title} – ${link.context}`} onClick={event => openPortrait(event, link.href)} onAuxClick={event => openPortrait(event, link.href)}>{link.title}</Link>)}</div>
         </li>;
       })}</ul> : <p className={styles.empty}>Keine Wildart passt zu dieser Suche. Versuche einen kürzeren Begriff oder wähle „Alle Gruppen“.</p>}
     </section>
-    <nav className={styles.more} aria-label="Wildwissen ergänzen"><Link href="/lernen/tierstimmen">Tierstimmen hören und üben<AppIcon name="arrow-right" size={17} /></Link><Link href="/jagdrecht/wildarten">Jagdstatus in DACH vergleichen<AppIcon name="arrow-right" size={17} /></Link></nav>
+    <nav className={styles.more} aria-label="Wildwissen ergänzen"><Link href="/lernen/kiefer-3d">Kiefer & Schädel in 3D vergleichen<AppIcon name="arrow-right" size={17} /></Link><Link href="/lernen/tierstimmen">Tierstimmen hören und üben<AppIcon name="arrow-right" size={17} /></Link><Link href="/jagdrecht/wildarten">Jagdstatus in DACH vergleichen<AppIcon name="arrow-right" size={17} /></Link></nav>
     <aside className={styles.scope}><strong>Artenkenntnis und Jagdstatus getrennt betrachten</strong><p>Der Atlas enthält auch geschützte Vergleichsarten, seltene Gäste, gebietsfremde Arten und Rackelwild als Hybrid. Die Aufnahme eines Eintrags bedeutet keine Jagdfreigabe. Ob eine Art bejagt werden darf, muss nach den geltenden örtlichen Bestimmungen geprüft werden.</p></aside>
   </LearningToolLayout>;
 }

@@ -79,7 +79,7 @@ function setup(asPath = '/wildkunde', ready = true) {
 
 const inventory = load('lib/european-wildlife-discovery.js').europeanWildlife;
 
-test('One alphabetic list exposes every existing entry, its real knowledge and one portrait link without paging', () => {
+test('One alphabetic list exposes every existing entry and its knowledge, with a primary portrait and quiet scoped study links', () => {
   const ui = setup();
   const expected = [...inventory].sort((left, right) => left.name.localeCompare(right.name, 'de'));
   assert.deepEqual(ui.rows().map(row => row.props['data-wildlife-slug']), expected.map(species => species.slug));
@@ -87,8 +87,10 @@ test('One alphabetic list exposes every existing entry, its real knowledge and o
   for (const [index, species] of expected.entries()) {
     const row = ui.rows()[index];
     const links = findAll(row, node => typeof node.props?.href === 'string');
-    assert.equal(links.length, 1, species.slug);
+    const study = load('lib/wildlife-learning-guide.js').getWildlifeStudyLinks(species.slug);
+    assert.equal(links.length, 1 + study.length, species.slug);
     assert.equal(links[0].props.href, `/wildkunde/${species.slug}`);
+    assert.deepEqual(links.slice(1).map(link => link.props.href), study.map(link => link.href));
     assert.ok(words(row).includes(species.identification), `${species.slug}: identification stays visible`);
     assert.ok(words(row).includes(species.habitat), `${species.slug}: habitat stays visible`);
     assert.equal(findAll(row, node => node.type === 'button' || node.type === 'details').length, 0);
@@ -101,6 +103,37 @@ test('One alphabetic list exposes every existing entry, its real knowledge and o
   assert.equal((html.match(/data-wildlife-slug=/g) || []).length, inventory.length, 'All entries also exist before client hydration');
   assert.match(html, /Hybrid, keine eigene Art/);
   assert.match(html, /bedeutet keine Jagdfreigabe/);
+});
+
+test('3D search exposes exactly the supported species and takes the main row directly to its actual model section', () => {
+  const ui = setup(); ui.change('input', '3D');
+  const supported = load('lib/wildlife-jaw-models.js').jawModelSpecies.map(species => species.speciesSlug).sort();
+  assert.deepEqual(ui.rows().map(row => row.props['data-wildlife-slug']).sort(), supported);
+  for (const row of ui.rows()) {
+    const slug = row.props['data-wildlife-slug'];
+    const links = findAll(row, node => typeof node.props?.href === 'string');
+    assert.equal(links[0].props.href, `/wildkunde/${slug}#kiefer-3d`);
+    assert.ok(links.some(link => link.props.href === `/lernen/kiefer-3d?art=${slug}`));
+    assert.ok(links.some(link => link.props.href.startsWith('/lernen/lernkarten?kurs=')));
+    assert.equal(findAll(row, node => node.type === 'button' || node.type === 'details').length, 0);
+  }
+});
+
+test('Quick study-link navigation flushes the same list state before leaving for the exact selected deck or model', async () => {
+  for (const kind of ['model', 'cards']) {
+    const ui = setup('/wildkunde?ref=study#merken'); ui.change('input', 'Reh'); ui.change('select', 'Schalenwild');
+    const row = ui.rows().find(node => node.props['data-wildlife-slug'] === 'rehwild');
+    const href = load('lib/wildlife-learning-guide.js').getWildlifeStudyLinks('rehwild').find(link => link.kind === kind).href;
+    const link = findAll(row, node => node.props?.href === href)[0];
+    const event = { button: 0, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+    const navigation = link.props.onClick(event);
+    assert.equal(event.defaultPrevented, true); assert.equal(ui.replacements.length, 1);
+    ui.ack(0); await ui.settle(0); await navigation;
+    assert.deepEqual(ui.pushes, [href]);
+    const restored = setup(ui.replacements[0].href);
+    assert.equal(restored.field('input').props.value, 'Reh'); assert.equal(restored.field('select').props.value, 'Schalenwild');
+    assert.ok(ui.replacements[0].href.includes('ref=study') && ui.replacements[0].href.endsWith('#merken'));
+  }
 });
 
 test('Live name/alias and group filters combine, an empty result explains recovery, reset restores the full list', () => {
