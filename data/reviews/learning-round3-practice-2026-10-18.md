@@ -1,0 +1,57 @@
+# Redaktioneller Quellenbericht: Schall und Luftfeuchte
+
+Tatsächlicher fachlicher Abgleich: 18.10.2026. Umfang ausschließlich dieser beiden neuen Kurse, ihrer acht Lektionen, 32 Fragen und eigenen Lernbeispiele; keine vollständige Neuprüfung des Jagdlatein-Bestands.
+
+## Bestand und Abgrenzung
+
+Vor der Themenwahl wurden die Titel und Lektionstitel aller 162 zu diesem Zeitpunkt geladenen Kurse gelesen und fachnahe Treffer mit Stichwortsuche sowie ihren Lehrtexten abgeglichen. Betroffen waren insbesondere Wetter/Wind, Wetterdaten, Ausrüstungsplanung/Bekleidung, Gehörschutz/Passform, Hundeohr, Hundethermoregulation sowie die soeben integrierten Haut- und Kompasskurse. Das Ergebnis war eine echte Lücke bei physikalischen Schallgrößen und der Thermodynamik von Feuchte/Kondensation. Die neuen Kurse wiederholen weder Gehörschutzanwendung und Höranatomie noch allgemeine Wetterbeobachtung oder Bekleidungslisten.
+
+Die biologischen Grundbegriffe im Bestand widersprechen den hier eng benannten Modellen nicht. Es werden keine künstlichen Unterschiede zwischen DE, AT und CH erzeugt. Kategorien bleiben Ausrüstung & Technik beziehungsweise Jagdpraxis. Keine neuen Fotos, Videos oder fremden Aufgaben wurden übernommen.
+
+## Kurs 1: Schall verstehen
+
+ID: `wissen-vertiefung-schall-pegel-ausbreitung-round3-2026`.
+
+| Lektion / Fragen | Tatsächlich gelesene Belege | Eng übernommener Inhalt |
+| --- | --- | --- |
+| `druckwelle-frequenz`, q1–q4 | [OpenStax Physics 14.1](https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength), [NASA Speed of Sound 9–12](https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf), [CCOHS Basic](https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html) | Longitudinale Druckschwingung in Luft, Hertz als Zyklen pro Sekunde, räumliche Wellenlänge und v=f·λ. NASA nur der öffentlich indexierte Originalabschnitt zu Wellentyp und Gleichung. |
+| `pegel-logarithmus`, q5–q8 | CCOHS Basic, [OpenStax College Physics 17.3](https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level), [OSHA OTM III/5](https://www.osha.gov/otm/section-3-health-hazards/chapter-5), [NPS Final EIS](https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304) | Druck/Pa gegenüber logarithmischem Pegel, Bezug 20 µPa; Intensitätsverhältnisse 10:1 und 2:1; energetische Addition gleichartiger Pegel unabhängiger, unkorrelierter Quellen. |
+| `quelle-ausbreitung`, q9–q12 | CCOHS Basic, OSHA Freifeld/Nahfeld und Schallleistung, NPS gedruckte S. 92 | Quellenleistung als Energie pro Zeit/W gegenüber empfangenem Schalldruck. Abstandsverdopplung nur für die ausdrücklich unveränderte isotrope Punktquelle außerhalb des Nahfelds ohne Reflexionen und zusätzliche Verluste. |
+| `bewertung-zeit`, q13–q16 | CCOHS Basic und [CCOHS Measurement](https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_measurement.html), OSHA Appendix A: A-weighting, maximum und peak; NPS Final EIS, gedruckte S. 91 und 392 | Frequenzbewertung, energetisches Zeitmittel über denselben Zeitraum und kurze Druckspitze sind verschiedene Angaben. Der explizite zweite Beleg für die Leq-Energieäquivalenz ist die NPS-Definition Sound Level Equivalent, nicht eine aus TWA abgeleitete OSHA-Definition. Keine Wildtier-Hörkurve oder individuelle Lautheitsprognose. |
+
+Die sieben Links bilden fünf Institutionenfamilien: Rice/OpenStax, NASA, CCOHS, OSHA und NPS. Zwei CCOHS-Seiten oder zwei OpenStax-Kapitel werden nicht als voneinander unabhängige Institutionen gezählt.
+
+Eigene Beispiele: 340 m/s ÷ 680 Hz = 0,5 m; zwei gleich starke unabhängige Beiträge von je 60 dB ergeben rund 63 dB; 72 dB bei 10 m werden im ausdrücklich begrenzten Punktquellenmodell ungefähr 66 dB bei 20 m. Das sind vorgegebene Modellwerte, keine Feldmessungen. Pegeladdition bezieht sich auf denselben Empfangsort, dieselbe Pegelgröße, Frequenzbewertung und denselben Zeitbezug. Phasengekoppelte reine Töne sind ausgeschlossen. Intensität wird nicht mit Druck oder subjektiver Lautheit gleichgesetzt. Eine Meterregel im Wald, sichere Entfernung oder Tierreaktion wird daraus nicht abgeleitet.
+
+Zugang und begrenzte Übernahme: Der NASA-Originalabschnitt wurde öffentlich indexiert gelesen; der direkte PDF-Abruf war eingeschränkt. Das NPS-Dokument ist der Jackson Hole Airport Agreement Extension Final Environmental Impact Statement, September 2010, Grand Teton National Park. Anfangs wurde der Originalindex der gedruckten S. 92 gelesen, im Schlussabgleich zusätzlich das direkt zugängliche PDF (PDF-Seite 114, nullbasierter Index 113, Abschnitt Characteristics of Sound). Es dient nur als institutioneller Gegenbeleg zu den physikalischen Grundlagen, nicht als aktuelle Untersuchung europäischer Wildarten. Wahrnehmungsvereinfachungen und Beispielpegel der dortigen Folgeseite werden nicht übernommen. Das daneben gefundene NPS-RM-47-Entwurfsglossar mit dem Vermerk „Do not cite“ ist kein Kursbeleg.
+
+Die OSHA-Seite ist eine Fachreferenz für Messbegriffe, keine nach DACH übertragene Rechtsgrundlage. Ihre vereinfachte Formulierung zur Einheit eines Schallleistungspegels wird nicht übernommen: Leistung wird in W angegeben, der Leistungspegel in dB. Ebenso werden Expositionsgrenzen, Behandlung, Schussversuche und Schutzfreigaben zurückgehalten.
+
+## Kurs 2: Luftfeuchte und Taupunkt
+
+ID: `wissen-vertiefung-luftfeuchte-taupunkt-round3-2026`.
+
+| Lektion / Fragen | Tatsächlich gelesene Belege | Eng übernommener Inhalt |
+| --- | --- | --- |
+| `feuchte-verhaeltnis`, q1–q4 | [NPL Q&A](https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity), [PTB/DKD-R 5-8, 2019](https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf), [Met Office UKV/AWS parameters](https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf), [NWS Dew Point vs Humidity](https://www.weather.gov/arx/why_dewpoint_vs_humidity) | Verhältnis tatsächlichen Dampfdrucks zum Sättigungsbezug bei derselben Temperatur und demselben Druck; Wasser-/Eisreferenz; Temperaturabhängigkeit und Abgrenzung von absoluter Wassermenge. |
+| `abkuehlen-taupunkt`, q5–q8 | NPL, Met-Office-PDF, NWS Dew Point vs Humidity | Sättigungstemperatur über flüssigem Wasser bei konstantem Druck und unverändertem spezifischem Wasserdampfanteil. Erwärmen/Abkühlen bis zur Sättigung unter diesen Bedingungen, ohne Mischen oder Kondensatverlust. |
+| `kalte-oberflaechen`, q9–q12 | [Met Office Dew](https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew), [NWS Dry/Wet Bulb and Dew Point](https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html), [Met Office Frost and Ice](https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice), [NWS Dew and Frost](https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm) | Temperatur einer Oberfläche gegenüber dem Taupunkt benachbarter Luft; kalter Gegenstand in warmer feuchter Luft; langwellige nächtliche Abkühlung und Unterschied zur Luftmessung. |
+| `tau-nebel-reif`, q13–q16 | Met Office Dew, Frost and Ice, [Fog](https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/fog); [NOAA JetStream, Abschnitt Fog](https://www.noaa.gov/jetstream/synoptic/types-of-weather-phenomena); NWS Dew and Frost; NPL und PTB | Tau an Oberflächen, flüssiger Nebel als schwebende Tröpfchen, direkte Dampf-zu-Eis-Abscheidung gegenüber nachträglich gefrorenem Tau; Frostpunkt über Eis gegenüber Taupunkt über Wasser. |
+
+Die zehn Links bilden vier Institutionenfamilien: NPL, PTB/DKD, Met Office und NOAA/NWS. NOAA und NWS werden nicht als unabhängige Organisationen gezählt. Die claimgenaue Zuordnung steht sowohl in `evidence` als auch unmittelbar an jeder Lektion; zusammengesetzte Aussagen enthalten gezielt die passenden Gegenbelege.
+
+Eigene Verhältnisbeispiele: 10/20×100 = 50 Prozent, Übung 12/24×100 = 50 Prozent. Die hPa-Werte sind bewusst vorgegeben und keiner Temperatur oder Ortsmessung zugeordnet. Das Erwärmungsbeispiel ist eine ausdrücklich qualitative Folgerung aus den belegten Definitionen, keine experimentell erhobene Zeitreihe. Die Oberflächen-Optik ist eine Anwendung des kalten-Gegenstands-Beispiels, keine Dichtheitsdiagnose und keine Pflegeanweisung.
+
+Zugang: NPL und die benannten Met-Office-/NOAA-Originalseiten wurden mit ihren relevanten Abschnitten gelesen. Das Met-Office-PDF wurde als Originaltext gelesen, insbesondere die Feuchte- und Taupunktparameter auf Seite 3. Bei der PTB-Datei war der direkte Abruf eingeschränkt; eingesehen wurde der öffentliche Originalindex mit den ausdrücklich relevanten Definitionen/Gleichungen 3–6 zur Wasser-/Eisreferenz. Technische Feuchtekorrektur- und Kalibrierzahlen werden nicht unterrichtet. Der konkrete NOAA-Fog-Abschnitt wurde abschließend direkt geöffnet; eine bloße Clouds-Inhaltsübersicht wird nicht als Sachbeleg verwendet.
+
+Quellenunterschied: Vereinfachte NWS-Trainingsformulierungen setzen Tau- und Frostpunkt teilweise zusammen. Die Lektion übernimmt das nicht, sondern unterscheidet die Wasser-/Eissättigung anhand NPL und PTB. Met Office bestätigt außerdem unterkühlte flüssige Tröpfchen; „unter null“ wird nicht als vollständiger Nachweis der Phasengeschichte ausgegeben. Reif wird hier eng als direkte Ablagerung erklärt, nicht jede Eisauflage automatisch als Reif bezeichnet. Keine universelle Nebel-, Regen-, Sichtweiten- oder Frostfreigabe wird behauptet.
+
+## Eigenprüfung und technische Reichweite
+
+- Beide Module: je vier Lektionen und 16 Fragen, insgesamt 19 claimgenaue Evidenceblöcke. Alle Fragen genau einer vorhandenen Lektion zugeordnet, jeweils vier verschiedene Antworten und genau eine richtige Antwort.
+- Antwortpositionen je Kurs 4/4/4/4 in nichtzyklischer Reihenfolge. Die richtige Antwort ist im Schallkurs 8/16-mal, im Feuchtekurs 4/16-mal die längste Option, nicht durchgehend. Alle 32 Stämme wurden gegenüber dem geladenen Bestand auf identische Fragen geprüft; keine gefunden. Inhaltliche Abgrenzung erfolgte zusätzlich durch die oben benannten Bestandslektüren.
+- Die tatsächliche integrierte Pipeline `prepareReviewedEvidenceModules` → Lerncurriculum → `getFlashcards()` liefert 16 + 16 Karten, je vier pro Lektion, mit mindestens zwei Quellen und dem exakten `#lesson-…`-Ziel. q7 benennt positiv „unabhängige, unkorrelierte Geräuschquellen“; die physikalische Randbedingung wurde für die Karten nicht gestrichen. Keine Adapterlockerung.
+- Eigene Rechnungen und sämtliche richtigen Antworten wurden gelesen. Erklärungen liefern den begrifflichen Zusammenhang und behalten ihren Aussageumfang auch ohne Auswahloptionen. Lehrabsätze umfassen pro Lektion rund 1.100–1.250 Zeichen; kein dekoratives Bild als Wissensersatz.
+- Keine Shared-Dateien, Builds, Commits oder Pushes durch diesen Autor. Struktur-/Kartenprüfungen bestätigen keine wissenschaftliche Zertifizierung. Unabhängiger Kreisreview wird vom Root-Agenten koordiniert.
+
+Im unabhängigen Kreisreview wurde die präzisere zweite Stützung der Leq-Definition angefordert. Der Autor las daraufhin NPS gedruckte S. 91 (PDF-Index 112, Definition Sound Level Equivalent) und S. 392 selbst im direkt geöffneten Original und ergänzte den bereits registrierten NPS-Beleg in diesem Evidenceblock. Lehrtext, Fragen und Antworten blieben unverändert. Keine 15-Stunden-Flughafenbewertung wurde auf die Lektion übertragen.

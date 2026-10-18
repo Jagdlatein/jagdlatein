@@ -141,6 +141,10 @@ test('Client selection sends only IDs, leaves history local and never shows an e
     assert.deepEqual([...params.keys()], ['ids']); assert.equal(sent.options.body, undefined); assert.equal(sent.options.credentials, 'same-origin'); assert.equal(sent.options.cache, 'no-store');
     assert.doesNotMatch(sent.url, /private|history|reason|answers|email/); assert.ok(params.get('ids').split(',').length <= 8);
     await network.answer(0); s.render(); assert.match(words(s.tree), /Neu entdecken/); assert.ok(s.button('Antwort a'));
+    const firstId = params.get('ids').split(',')[0];
+    const categoryTitle = load('lib/learning-categories.js').learningCategoryDetails.find(item => item.slug === fixture.find(item => item.id === firstId).category).title;
+    const orientation = find(s.tree, node => node.type === 'p' && node.props.className?.split(' ').includes('reviewContext'));
+    assert.match(words(orientation), new RegExp(`${categoryTitle}.*Frage 1 von 3`));
     assert.doesNotMatch(s.html(), /<img|<figure/, 'A text question has no arbitrary category photograph');
     const selectedIds = params.get('ids').split(','); assert.match(words(s.tree), new RegExp(`Frage ${selectedIds[0]}`));
     assert.equal(s.records.length, 0); assert.equal((s.html().match(/href="\/lernen#lernen-suche"/g) || []).length, 1);

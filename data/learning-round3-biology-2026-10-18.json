@@ -1,0 +1,1032 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Zwei fachliche Lücken nach Audit von 162 Kursen, Artenwissen und Parasitenwerkstatt: Keimdrüsen/Zyklus und Leber/Galle; keine Vollprüfung der übrigen App.",
+  "modules": [
+    {
+      "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026",
+      "title": "Säugerfortpflanzung: Keimdrüsen, Keimzellen und Zyklus",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Sertoli- und Leydig-Zellen, Spermienwege, Follikel und Gelbkörper sowie die GnRH-FSH-LH-Achse im Zusammenhang verstehen.",
+      "minutes": 38,
+      "objectives": [
+        "Bildung, Formumbau und Weiterreifung von Spermien unterscheiden",
+        "Oozyte, Follikel, Ovulation und Gelbkörper zuordnen",
+        "Hypothalamus, Hypophyse und Keimdrüsen als Regelkreis erklären",
+        "Grundmodell und artspezifischen Reproduktionskalender trennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Konservierte Fortpflanzungsgrundlagen der Säuger, anhand veterinärmedizinischer und unabhängiger Hochschultexte. Ein Organ-/Phasenmodell für die Wildkunde; keine universellen Zykluslängen, Brunstkalender, Fruchtbarkeitsdiagnosen oder Zuchtanleitungen.",
+        "AT": "Konservierte Fortpflanzungsgrundlagen der Säuger, anhand veterinärmedizinischer und unabhängiger Hochschultexte. Ein Organ-/Phasenmodell für die Wildkunde; keine universellen Zykluslängen, Brunstkalender, Fruchtbarkeitsdiagnosen oder Zuchtanleitungen.",
+        "CH": "Konservierte Fortpflanzungsgrundlagen der Säuger, anhand veterinärmedizinischer und unabhängiger Hochschultexte. Ein Organ-/Phasenmodell für die Wildkunde; keine universellen Zykluslängen, Brunstkalender, Fruchtbarkeitsdiagnosen oder Zuchtanleitungen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Momont / Carnevale: The Gonads and Tubular Genital Tract in Animals",
+          "url": "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals",
+          "organization": "Merck Veterinary Manual; University of Wisconsin-Madison / Iowa State University",
+          "supports": "Keimdrüsen, FSH/LH/GnRH, Leydig-Zellen, Follikel/Ovulation/Gelbkörper und artspezifische Unterschiede; Originalvolltext gelesen, Fassung Februar 2025. Pauschale Aussage zum Hodenabstieg und Vogel-Ausnahmen nicht übernommen."
+        },
+        {
+          "label": "Thomas: Reproductive Anatomy and Physiology of the Bull",
+          "url": "https://extension.missouri.edu/publications/g2016",
+          "organization": "University of Missouri Extension",
+          "supports": "Samenkanälchen, Leydig-Zellen, Nebenhodenreifung und -speicherung sowie Samenleiter. Öffentlich indexierte Originalabschnitte gelesen; Zahlen, Rinder-Zuchtmanagement und gesamte Drüsenausstattung nicht übertragen."
+        },
+        {
+          "label": "Reproductive Anatomy and Physiology of the Cow",
+          "url": "https://extension.missouri.edu/publications/g2015",
+          "organization": "University of Missouri Extension",
+          "supports": "Follikel, Follikelatresie, Ovulation, Luteinisierung und Hormonachse. Öffentlich indexierte Originalabschnitte gelesen; Rinder-Tageszahlen und vereinfachte Darstellung neuer Primärfollikel nicht übernommen."
+        },
+        {
+          "label": "Premanandan: The testes",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/12-the-testes/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Sertoli-/Leydig-Zellen, Spermatogenese und Spermiogenese. Originalindex und ausdrücklich als identische OSU-Abschrift markierter LibreTexts-Volltext für den Spermiogenese-Abschnitt gelesen; Direktseite 403. Abschrift zählt nicht als zweite unabhängige Quelle."
+        },
+        {
+          "label": "Premanandan: Male tubular genitalia",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/12-male-tubular-genitalia/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Nebenhoden, Kopf/Körper/Schwanz und muskulärer Samenleiter; öffentlich indexierter vollständiger Originalabschnitt gelesen. Keine Flimmerhaar-Behauptung übertragen."
+        },
+        {
+          "label": "Premanandan: Male accessory sex glands",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/12-male-accessory-sex-glands/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Zusatzsekrete und artsabhängige Drüsenausstattung; öffentlich indexierter Originalabschnitt gelesen. Keine universelle Zahl oder Liste von Drüsen übernommen."
+        },
+        {
+          "label": "Premanandan: The ovary",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-ovary/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Oozyte mit Follikelzellen, Atresie, Ovulation und Luteinisierung; öffentlich indexierter Originalabschnitt gelesen. Keine Reifestadien-Zeitregel oder pauschale Behauptung zur Trächtigkeitsdauer des Gelbkörpers."
+        },
+        {
+          "label": "Betts und andere: Testicular Reproductive System, 27.1",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system",
+          "organization": "OpenStax / Rice University",
+          "supports": "Sertoli-Zellen, Spermiogenese, Spermienkopf/Akrosom, Nebenhoden und Samenleiter. Originaltext gelesen; Humanmaße, Zeitwerte und lebenslang konstante Produktion ausdrücklich ausgeschlossen."
+        },
+        {
+          "label": "Betts und andere: Ovarian Reproductive System, 27.2",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+          "organization": "OpenStax / Rice University",
+          "supports": "Follikel, Atresie, GnRH-FSH-LH-Achse und LH-Anstieg; Originalvolltext gelesen. Nur konservierte Zell-/Hormonprinzipien, kein Menstruationsmodell oder Ein-Follikel-Modell auf Wildsäuger übertragen."
+        },
+        {
+          "label": "The Histology Guide: Sertoli cells",
+          "url": "https://histology.leeds.ac.uk/home/male/sertoli_cells/",
+          "organization": "University of Leeds",
+          "supports": "Unterstützende Sertoli-Zellen im Samenkanälchen, Milieu und Entwicklung der Keimzellen; Originalseite gelesen."
+        },
+        {
+          "label": "Temple-Smith / Ravichandran / Nunez (2018): Sperm: Comparative vertebrate",
+          "url": "https://research.monash.edu/en/publications/sperm-comparative-vertebrate/",
+          "organization": "Monash University; Encyclopedia of Reproduction",
+          "supports": "Institutionell veröffentlichte Originalzusammenfassung gelesen: Kopf/Zellkern, Akrosom, Beweglichkeit und epididymale Reifung; kein Zugriff auf vollständiges Buchkapitel behauptet."
+        },
+        {
+          "label": "Hill: Spermatozoa Development",
+          "url": "https://embryology.med.unsw.edu.au/embryology/index.php/Spermatozoa_Development",
+          "organization": "UNSW Embryology",
+          "supports": "Öffentlich indexierter Originalabschnitt zur Spermiogenese als Formumbau und Akrosomentstehung gelesen. Keine Human-Reifezeiten übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "keimzellen",
+          "title": "Hoden: Keimzellen und arbeitsteilige Zellgruppen",
+          "paragraphs": [
+            "Ein Hoden ist zugleich Keimdrüse und hormonbildendes Organ. In seinen gewundenen Samenkanälchen, den Tubuli seminiferi, entwickeln sich Spermien aus Keimzellvorstufen. Diese gesamte Entwicklung heißt Spermatogenese. Unterstützende Sertoli-Zellen liegen im Kanälchen zwischen den sich entwickelnden Keimzellen. Sie halten deren Milieu aufrecht und beteiligen sich durch Versorgung und Signale an der Entwicklung. Leydig-Zellen liegen dagegen im Gewebe zwischen den Kanälchen und bilden Testosteron. Die beiden Zellgruppen werden deshalb räumlich und funktionell unterschieden.",
+            "Die nach den meiotischen Teilungen entstandene Spermatide besitzt bereits den einfachen Chromosomensatz, zunächst aber noch keine fertig ausgebildete Spermiengestalt. Bei der Spermiogenese verändert sie ihre Form: Der Zellkern wird verdichtet, Kopf und Akrosom werden ausgebildet, der Schwanzapparat entsteht und überschüssiges Zellplasma wird abgegeben. Dieser Formumbau ist von einer weiteren Zellteilung zu unterscheiden. Die anschließende Weiterreifung im Nebenhoden ist wieder ein eigener Abschnitt. Weder die Dauer noch der jahreszeitliche Verlauf der Produktion werden hier für alle Wildsäuger gleichgesetzt."
+          ],
+          "takeaway": "Im Hoden bilden Keimzellen die Spermien; Sertoli-Zellen unterstützen sie, Leydig-Zellen produzieren Testosteron.",
+          "exercise": "Zeichne ein Samenkanälchen mit Keimzellen und Sertoli-Zellen sowie Leydig-Zellen im Zwischengewebe. Beschrifte Spermatogenese und Spermiogenese getrennt."
+        },
+        {
+          "id": "spermienwege",
+          "title": "Nebenhoden, Samenleiter und Spermienbau",
+          "paragraphs": [
+            "Die im Hoden gebildeten Spermien gelangen über ableitende Kanälchen zum Nebenhoden. Dessen stark gewundener Gang ist ein Ort der Weiterreifung; vor allem sein Schwanzabschnitt dient auch der Speicherung. Es reicht daher nicht, Spermienbildung und vollständige Befruchtungsfähigkeit als denselben Moment zu behandeln. Vom Nebenhoden führt der Samenleiter, Ductus deferens, weiter zur Harnröhre. Seine kräftige glatte Muskulatur unterstützt den Transport bei der Ejakulation. Länge der Gänge und Dauer der Passage unterscheiden sich zwischen Arten und werden hier ohne allgemeine Zahlen gelernt.",
+            "Ein typisches Säugerspermium verbindet einen Kopf mit dem Zellkern und einen Schwanzapparat für die Bewegung. Über dem vorderen Kopfbereich liegt das Akrosom. Es enthält Stoffe und Enzyme, die beim Zusammenwirken von Spermium und Eihüllen während der Befruchtung bedeutsam sind; es ist kein zweiter Zellkern. Zusätzlich zu den Spermien gelangen Sekrete der akzessorischen Geschlechtsdrüsen in die Samenflüssigkeit. Dieses Samenplasma schafft unter anderem ein Transportmilieu. Welche Drüsen vorhanden sind und welche Anteile sie liefern, ist artsabhängig: Eine Drüsenliste des Menschen oder Rindes ist kein universeller Bauplan des Wildes."
+          ],
+          "takeaway": "Nebenhodenreifung, Speicherung, muskulärer Transport und Drüsensekrete sind verschiedene Beiträge zum Ejakulat.",
+          "exercise": "Ordne Bildung, Weiterreifung/Speicherung, Transport und Zusatzsekrete jeweils Hoden, Nebenhoden, Samenleiter und akzessorischen Drüsen zu."
+        },
+        {
+          "id": "follikel",
+          "title": "Eierstock: Follikel, Atresie und Gelbkörper",
+          "paragraphs": [
+            "Der Eierstock, Ovar, enthält weibliche Keimzellen und bildet Sexualhormone. Ein Follikel ist die Einheit aus einer Oozyte und den sie umgebenden unterstützenden Follikelzellen; die Keimzelle allein ist noch nicht der ganze Follikel. Während der Follikelentwicklung wachsen diese Zellgruppen und bei weiter entwickelten Follikeln entsteht ein flüssigkeitsgefüllter Hohlraum, das Antrum. Viele Follikel gehen zugrunde, statt bis zum Eisprung zu gelangen. Diese Rückbildung heißt Follikelatresie und kann auf verschiedenen Entwicklungsstufen auftreten.",
+            "Bei der Ovulation öffnet sich ein reifer Follikel und gibt die Oozyte mit begleitenden Zellen frei. Ovulation bezeichnet diese Freisetzung, nicht die Verschmelzung mit einem Spermium. Zurückbleibende Follikelzellen werden durch Luteinisierung zu einem Gelbkörper, Corpus luteum, umgebaut. Dieser ist hormonell aktiv und produziert Progesteron. Follikel und Gelbkörper sind damit unterschiedliche, vorübergehende Funktionsstrukturen desselben Organs. Wie viele Follikel ovulieren, in welchem meiotischen Stadium die Oozyte freigesetzt wird und wie lange ein Gelbkörper besteht, hängt von der Art und ihrem Fortpflanzungszustand ab."
+          ],
+          "takeaway": "Ein Follikel enthält die Oozyte; Ovulation setzt sie frei, danach entsteht aus Follikelgewebe ein progesteronbildender Gelbkörper.",
+          "exercise": "Erstelle eine Folge mit zwei möglichen Follikelschicksalen: Atresie oder Ovulation mit anschließender Luteinisierung. Trenne darin Zellfreisetzung und Befruchtung."
+        },
+        {
+          "id": "hormonachse",
+          "title": "Hormonachse: Signale aus Gehirn und Keimdrüsen",
+          "paragraphs": [
+            "Die Keimdrüsen arbeiten in einem hormonellen Regelkreis. Nervenzellen des Hypothalamus geben GnRH ab, das auf den Hypophysenvorderlappen wirkt. Dieser setzt die Gonadotropine FSH und LH in das Blut frei. Am Eierstock fördert FSH insbesondere die weitere Follikelentwicklung. Ein ausgeprägter LH-Anstieg löst an einem entsprechend reifen Follikel die Ovulation aus und unterstützt dessen Umbau zum Gelbkörper. Beim männlichen Tier regt LH die Leydig-Zellen zur Testosteronbildung an; FSH wirkt zusammen mit der Unterstützung durch Sertoli-Zellen auf die Spermienentwicklung.",
+            "Sexualhormone aus den Keimdrüsen wirken auf Zielgewebe und zugleich zurück auf Hypothalamus und Hypophyse. So kann die Hormonabgabe im Regelkreis gedämpft werden; in der passenden präovulatorischen Phase kann eine veränderte Rückkopplung den LH-Anstieg ermöglichen. Follikelphase und Lutealphase benennen unterschiedliche Funktionszustände des Ovars. Brunstverhalten, Eisprung und Befruchtung sind verschiedene Vorgänge. Ein Rinder- oder Humanzyklus liefert dafür Begriffe und Mechanismen, aber keinen festen Kalender für Reh, Hirsch, Hase oder Hund. Auch die Auslösung der Ovulation und Fortpflanzungspausen unterscheiden sich zwischen Säugerarten."
+          ],
+          "takeaway": "GnRH stammt aus dem Hypothalamus, FSH und LH aus dem Hypophysenvorderlappen; sie steuern unterschiedliche Vorgänge der Keimdrüsen.",
+          "exercise": "Verbinde Hypothalamus, Hypophysenvorderlappen und Ovar durch gerichtete Pfeile. Schreibe GnRH, FSH und LH an die richtigen Verbindungen und ergänze einen Rückkopplungspfeil."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q1",
+          "lessonId": "keimzellen",
+          "q": "In welchem Gewebeabschnitt des Säugerhodens entstehen Spermien?",
+          "options": [
+            "Im Lumen der Hodenarterie.",
+            "In der äußeren Hodenhülle.",
+            "In den Samenkanälchen.",
+            "In der Wand des Samenleiters."
+          ],
+          "answer": 2,
+          "explain": "Die Tubuli seminiferi sind die gewundenen Samenkanälchen des Hodens. In ihrem Keimepithel läuft die Spermatogenese ab."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q2",
+          "lessonId": "keimzellen",
+          "q": "Welche Aufgabe haben Sertoli-Zellen im Säugerhoden?",
+          "options": [
+            "Sie unterstützen die Entwicklung der Keimzellen im Samenkanälchen.",
+            "Sie bilden Testosteron im Zwischengewebe zwischen den Kanälchen.",
+            "Sie bilden die kontraktile Wand des ableitenden Samenleiters.",
+            "Sie erzeugen die Sekrete der akzessorischen Geschlechtsdrüsen."
+          ],
+          "answer": 0,
+          "explain": "Sertoli-Zellen sind unterstützende somatische Zellen des Samenkanälchens. Sie gestalten das Milieu und fördern die Entwicklung der Keimzellen."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q3",
+          "lessonId": "keimzellen",
+          "q": "Wo liegen die testosteronbildenden Leydig-Zellen im Säugerhoden?",
+          "options": [
+            "Im Schwanzteil des Nebenhodengangs.",
+            "Im Inneren des Spermienkopfes.",
+            "In der Schleimhaut der Harnröhre.",
+            "Im Zwischengewebe zwischen den Samenkanälchen."
+          ],
+          "answer": 3,
+          "explain": "Leydig-Zellen liegen interstitiell zwischen den Samenkanälchen. Die Spermienentwicklung findet im Kanälchen statt, die Testosteronbildung in einer anderen Zellgruppe."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q4",
+          "lessonId": "keimzellen",
+          "q": "Was verändert sich während der Spermiogenese bei Säugern?",
+          "options": [
+            "Ein Follikel wird zum Gelbkörper umgebildet.",
+            "Eine Spermatide wird zur ausgeformten Spermienzelle umgebaut.",
+            "Ein Spermium verschmilzt mit der Oozyte.",
+            "Ein Spermium erhält einen zweiten Chromosomensatz."
+          ],
+          "answer": 1,
+          "explain": "Spermiogenese bezeichnet den Formumbau der bereits haploiden Spermatide, unter anderem mit Kernverdichtung und Ausbildung des Schwanzapparats. Sie ist keine zusätzliche meiotische Teilung."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q5",
+          "lessonId": "spermienwege",
+          "q": "Welche Funktion erfüllt der Nebenhoden für Säugerspermien?",
+          "options": [
+            "Bildung der Follikelhormone und Eisprung.",
+            "Erzeugung der meiotischen Keimzellvorstufen.",
+            "Verschmelzung des Spermienkerns mit dem Eikern.",
+            "Weiterreifung und Speicherung nach der Bildung im Hoden."
+          ],
+          "answer": 3,
+          "explain": "Im Nebenhodengang reifen Spermien weiter; sein Schwanzabschnitt dient als Speicher. Bildung im Hoden und Weiterreifung im Nebenhoden sind aufeinanderfolgende Beiträge."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q6",
+          "lessonId": "spermienwege",
+          "q": "Welche Struktur transportiert Spermien vom Nebenhoden in Richtung Harnröhre?",
+          "options": [
+            "Der Eileiter, Tuba uterina.",
+            "Der muskuläre Samenleiter, Ductus deferens.",
+            "Der Harnleiter, Ureter.",
+            "Der Ausführungsgang der Speicheldrüse."
+          ],
+          "answer": 1,
+          "explain": "Der Samenleiter schließt an den Nebenhoden an. Kontraktionen seiner glatten Muskulatur unterstützen die Weiterleitung bei der Ejakulation."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q7",
+          "lessonId": "spermienwege",
+          "q": "Welche Funktion besitzt das Akrosom am Kopf eines typischen Säugerspermiums?",
+          "options": [
+            "Es trägt Enzyme für Vorgänge an den Eihüllen bei der Befruchtung.",
+            "Es enthält den gesamten zweiten Chromosomensatz.",
+            "Es speichert die Sekrete aller akzessorischen Drüsen.",
+            "Es erzeugt die Pumpbewegung des Samenleiters."
+          ],
+          "answer": 0,
+          "explain": "Das Akrosom ist eine Kappenstruktur am vorderen Spermienkopf. Es beteiligt sich am Kontakt mit den Eihüllen; der erbliche Zellkern und die Gangmuskulatur sind andere Strukturen."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q8",
+          "lessonId": "spermienwege",
+          "q": "Was steuern akzessorische Geschlechtsdrüsen zum Ejakulat eines Säugers bei?",
+          "options": [
+            "Die im Ejakulat enthaltenen reifen Oozyten.",
+            "Sämtliche im Hoden gebildeten Keimzellkerne.",
+            "Sekrete, die einen Teil des Samenplasmas bilden.",
+            "Die Muskelfasern des Nebenhodenschwanzes."
+          ],
+          "answer": 2,
+          "explain": "Die akzessorischen Drüsen liefern Zusatzsekrete zur Samenflüssigkeit. Ihre Ausstattung und ihr Anteil variieren zwischen Arten; sie erzeugen keine Spermienzellen."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q9",
+          "lessonId": "follikel",
+          "q": "Welche Bestandteile bilden einen Ovarialfollikel?",
+          "options": [
+            "Ein Spermienkopf und sein Akrosom.",
+            "Eine Oozyte und die sie umgebenden Follikelzellen.",
+            "Ein Gelbkörper und ein Eileiterabschnitt.",
+            "Ein Blutgefäß und eine freie Eizelle darin."
+          ],
+          "answer": 1,
+          "explain": "Der Follikel ist eine mehrzellige Funktionseinheit des Eierstocks. Die Oozyte ist seine Keimzelle, die umgebenden somatischen Zellen unterstützen ihre Entwicklung."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q10",
+          "lessonId": "follikel",
+          "q": "Welcher Vorgang wird bei Säugern als Ovulation bezeichnet?",
+          "options": [
+            "Die Einnistung des Embryos in die Gebärmutterschleimhaut.",
+            "Die Verschmelzung der beiden elterlichen Keimzellkerne.",
+            "Die Rückbildung eines heranwachsenden Follikels.",
+            "Die Freisetzung einer Oozyte aus einem reifen Ovarialfollikel."
+          ],
+          "answer": 3,
+          "explain": "Bei der Ovulation öffnet sich der Follikel und die Oozyte wird freigesetzt. Befruchtung und Einnistung folgen unter jeweils eigenen Voraussetzungen."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q11",
+          "lessonId": "follikel",
+          "q": "Was bedeutet Follikelatresie im Eierstock?",
+          "options": [
+            "Die Aufnahme einer Oozyte durch den Eileiter.",
+            "Der Transport von Spermien durch die Gebärmutter.",
+            "Die Rückbildung eines Follikels während seiner Entwicklung.",
+            "Die hormonelle Umwandlung zum Gelbkörper nach dem Eisprung."
+          ],
+          "answer": 2,
+          "explain": "Atresie ist der Untergang eines Follikels. Sie ist ein anderer Entwicklungsweg als Ovulation und anschließende Gelbkörperbildung."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q12",
+          "lessonId": "follikel",
+          "q": "Welche hormonaktive Struktur entsteht durch Luteinisierung nach der Ovulation?",
+          "options": [
+            "Der progesteronbildende Gelbkörper.",
+            "Der testosteronbildende Nebenhoden.",
+            "Der GnRH-bildende Primärfollikel.",
+            "Der FSH-bildende Eileiter."
+          ],
+          "answer": 0,
+          "explain": "Aus zurückbleibenden Follikelzellen entwickelt sich das Corpus luteum. Dieses produziert Progesteron; Dauer und Trächtigkeitsbedeutung sind artsabhängig."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q13",
+          "lessonId": "hormonachse",
+          "q": "Welcher Gehirnabschnitt setzt das Fortpflanzungssignal GnRH frei?",
+          "options": [
+            "Der Hypophysenvorderlappen.",
+            "Die Kleinhirnrinde.",
+            "Der Hypothalamus.",
+            "Das Nebennierenmark."
+          ],
+          "answer": 2,
+          "explain": "GnRH wird von hypothalamischen Nervenzellen freigesetzt und steuert die Gonadotropinabgabe des Hypophysenvorderlappens."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q14",
+          "lessonId": "hormonachse",
+          "q": "Wo werden die Gonadotropine FSH und LH ins Blut freigesetzt?",
+          "options": [
+            "Im Nebenhodenschwanz.",
+            "Im Hypophysenvorderlappen.",
+            "In der Gebärmutterhöhle.",
+            "In der Schilddrüse."
+          ],
+          "answer": 1,
+          "explain": "Der Hypophysenvorderlappen setzt FSH und LH unter dem Einfluss von GnRH frei. Beide erreichen die Keimdrüsen über das Blut."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q15",
+          "lessonId": "hormonachse",
+          "q": "Welche Wirkung hat FSH im hormonell gesteuerten Ovarialzyklus?",
+          "options": [
+            "Es fördert die weitere Entwicklung der Ovarialfollikel.",
+            "Es transportiert die Oozyte durch den Eileiter.",
+            "Es bildet selbst die Keimzelle im Follikel.",
+            "Es wird zum Bindegewebe des rückgebildeten Gelbkörpers."
+          ],
+          "answer": 0,
+          "explain": "FSH ist das follikelstimulierende Hormon. Es beeinflusst Follikelzellen und unterstützt die Follikelentwicklung; es ist weder Keimzelle noch Transportorgan."
+        },
+        {
+          "id": "wissen-pruefung-keimdruesen-zyklus-round3-2026-q16",
+          "lessonId": "hormonachse",
+          "q": "Welcher Hormonanstieg löst an einem entsprechend reifen Säugerfollikel die Ovulation aus?",
+          "options": [
+            "Der ADH-Anstieg.",
+            "Der Insulinanstieg.",
+            "Der Thyroxinanstieg.",
+            "Der LH-Anstieg."
+          ],
+          "answer": 3,
+          "explain": "Ein ausgeprägter Anstieg von luteinisierendem Hormon wirkt am reifen Follikel ovulationsauslösend. Wie dieser Anstieg zustande kommt und wann er erfolgt, ist artsabhängig."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Konservierte Fortpflanzungsgrundlagen der Säuger, anhand veterinärmedizinischer und unabhängiger Hochschultexte. Ein Organ-/Phasenmodell für die Wildkunde; keine universellen Zykluslängen, Brunstkalender, Fruchtbarkeitsdiagnosen oder Zuchtanleitungen.",
+        "independentOrganizations": [
+          "The Ohio State University",
+          "University of Missouri",
+          "OpenStax / Rice University",
+          "University of Leeds",
+          "Monash University",
+          "UNSW",
+          "Merck Veterinary Manual"
+        ],
+        "limitations": [
+          "Rindertexte bestätigen Bau und Prozesse; ihre Tageszahlen und Managementempfehlungen werden nicht zu Wildarten-Regeln.",
+          "Humanlehrtexte bestätigen konservierte Zell-/Hormonfunktionen, nicht Menstruation, Ei-Anzahl, Hodenlage oder Pubertätszeit aller Säuger.",
+          "Follikelreifestadium bei Ovulation, Saisonalität, Ovulationsauslösung und Dauer der Lutealphase sind artsabhängig.",
+          "Merck und MSD sind eine Quellenfamilie; OSU und seine LibreTexts-Abschrift sind dieselbe Quelle."
+        ]
+      }
+    },
+    {
+      "id": "wissen-pruefung-leber-galle-round3-2026",
+      "title": "Leber und Galle: Stoffwechselzentrale des Säugers",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Pfortader und Leberläppchen, Glucosespeicher, Eiweiß- und Stickstoffumsatz sowie Gallenwege ohne pauschalen Säugerbauplan verstehen.",
+      "minutes": 39,
+      "objectives": [
+        "Blut- und Gallenwege im Läppchenmodell unterscheiden",
+        "Glykogenaufbau, Glykogenabbau und Gluconeogenese trennen",
+        "Albuminsynthese und Harnstoffbildung funktionell einordnen",
+        "Gallensäuren, Bilirubin und artsabhängige Gallenblase zuordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Säuger-Leberfunktionen als Wildkunde-Grundlage. Klassisches Läppchen als mikroskopisches Modell, keine universelle Lappenzahl. Gallenblase ausdrücklich artsabhängig, Reh/Damwild separat belegt. Keine Wildbretfreigabe, Arzneimittelanwendung oder Diagnose aus Organfarbe.",
+        "AT": "Säuger-Leberfunktionen als Wildkunde-Grundlage. Klassisches Läppchen als mikroskopisches Modell, keine universelle Lappenzahl. Gallenblase ausdrücklich artsabhängig, Reh/Damwild separat belegt. Keine Wildbretfreigabe, Arzneimittelanwendung oder Diagnose aus Organfarbe.",
+        "CH": "Säuger-Leberfunktionen als Wildkunde-Grundlage. Klassisches Läppchen als mikroskopisches Modell, keine universelle Lappenzahl. Gallenblase ausdrücklich artsabhängig, Reh/Damwild separat belegt. Keine Wildbretfreigabe, Arzneimittelanwendung oder Diagnose aus Organfarbe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Bowen: Architecture of the Liver and Biliary Tract",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/anatomy.html",
+          "organization": "Colorado State University",
+          "supports": "Vollständiger öffentlich indexierter Originaltext gelesen: doppelte Blutzufuhr, Sinusoide, Zentralvene, Portaltriade, Gallenkanälchen zwischen Hepatozyten. Keine Lappenzahlen oder Blutanteile übernommen."
+        },
+        {
+          "label": "Bowen: Metabolic Functions of the Liver",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/metabolic.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierter Originalvolltext gelesen: Glykogenaufbau/-abbau, Gluconeogenese, Aminosäureumsatz, Harnstoff und Plasmaproteine. Keine starre zeitliche Umschaltregel der Stoffwechselwege."
+        },
+        {
+          "label": "Bowen: Secretion of Bile and the Role of Bile Acids In Digestion",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bile.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierte Originalabschnitte gelesen: Hepatozyten, Gallengänge, Gallensäuren/Mizellen und Rückresorption im Ileum. Mengen, Konzentrationsfaktoren und Prozentwerte ausgelassen."
+        },
+        {
+          "label": "Bowen: Biliary Excretion of Waste Products: Elimination of Bilirubin",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bilirubin.html",
+          "organization": "Colorado State University",
+          "supports": "Öffentlich indexierter Originalvolltext gelesen: Hämabbau, Albumintransport und biliäre Ausscheidung. Keine unzutreffende Gleichsetzung aller Hämanteile mit Abfall und keine klinische Eigeninterpretation übernommen."
+        },
+        {
+          "label": "Wong / Jennings: Hepatic blood supply",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/9-hepatic-blood-supply/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Öffentlich indexierter Originalvolltext gelesen: Pfortader, Leberarterie, Blutfluss zur Zentralvene und Portaltriade; Direktseite zeitweise nicht abrufbar."
+        },
+        {
+          "label": "Wong / Jennings: Cells of the liver",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/9-cells-of-the-liver/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Originalindex sowie der öffentlich indexierte Originalbuchabschnitt gelesen: Hepatozyten und Kupffer-Zellen. Keine Gewebefärbung als Wildkörperdiagnose übertragen."
+        },
+        {
+          "label": "Wong / Jennings: The biliary system",
+          "url": "https://ohiostate.pressbooks.pub/vethisto/chapter/9-the-biliary-system/",
+          "organization": "The Ohio State University, Veterinary Histology",
+          "supports": "Originalbuchabschnitt öffentlich indexiert gelesen: Gallenkanälchen zwischen Zellmembranen, Ableitung in Richtung Portalfelder. Direktseite 403. Pauschales Haustierwort ruminants nicht als universelle Wildwiederkäuer-Gallenblasenregel übernommen."
+        },
+        {
+          "label": "WebPath: Liver, Biliary Tract, and Pancreas",
+          "url": "https://webpath.med.utah.edu/HISTHTML/NORMAL/NORMAL10.html",
+          "organization": "University of Utah",
+          "supports": "Originalvolltext gelesen: Blutfluss/Läppchenmodell, Portaltriade, Hepatozyten und Kupffer-Zellen; Human-Gallenweg und Zellplattenzahl nicht verallgemeinert."
+        },
+        {
+          "label": "Center / Carnevale: Overview of Liver Structure and Function in Animals",
+          "url": "https://www.merckvetmanual.com/digestive-system/liver-structure-and-function/overview-of-liver-structure-and-function-in-animals",
+          "organization": "Merck Veterinary Manual; Cornell University / Iowa State University",
+          "supports": "Originalvolltext einschließlich Funktionstabelle gelesen, Stand November 2024: Glykogen, Gluconeogenese, Albumin, Gerinnungsproteine, Harnstoff, Galle. Mit Cornell eClinpath nicht als völlig unabhängige Autorenfamilie gezählt."
+        },
+        {
+          "label": "eClinpath: Glucose",
+          "url": "https://eclinpath.com/chemistry/energy-metabolism/glucose/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Originalabschnitt Physiologie gelesen: Leberglykogen, Gluconeogenese, Insulin/Glucagon; keine klinischen Grenzwerte, Zeitregeln oder Übertragung einer Carnivoren-Ernährung auf Wiederkäuer."
+        },
+        {
+          "label": "eClinpath: Ammonia",
+          "url": "https://eclinpath.com/chemistry/liver/liver-function-tests/ammonia/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Originalabschnitt Physiologie gelesen: Stickstoffquellen, Portalkreislauf, hepatischer Harnstoffzyklus und Ausscheidung. Keine Provokationstests oder Schwellenwerte."
+        },
+        {
+          "label": "eClinpath: Albumin",
+          "url": "https://eclinpath.com/chemistry/proteins/albumin/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Originalabschnitt Physiologie gelesen: Lebersynthese, Transport und kolloidosmotische Funktion; keine Konzentrationen, Halbwertszeiten oder Krankheitsdiagnosen."
+        },
+        {
+          "label": "eClinpath: Bilirubin",
+          "url": "https://eclinpath.com/chemistry/liver/cholestasis/bilirubin/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Originalindex zu Hämproteinen/Hämabbau und Verarbeitung in der Leber gelesen. Keine Prozentwerte, universelle Konjugationschemie oder Urintestinterpretation."
+        },
+        {
+          "label": "Betts und andere: An Overview of Blood, 18.1",
+          "url": "https://openstax.org/books/anatomy-and-physiology/pages/18-1-an-overview-of-blood",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originaltext Plasma Proteins gelesen: Albumin als Transport-/Osmoseprotein, Fibrinogen als Gerinnungsprotein der Leber. Immunoglobuline ausdrücklich nicht der Leber zugeordnet."
+        },
+        {
+          "label": "Betts und andere: Protein Metabolism, 24.4",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/24-4-protein-metabolism",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originalvolltext gelesen: Abtrennung stickstoffhaltiger Anteile beim Aminosäureabbau, Harnstoff und Kohlenstoffgerüste. Ungenaue Gleichsetzung von Transaminierung und Ammoniumfreisetzung nicht übernommen."
+        },
+        {
+          "label": "Betts und andere: Accessory Organs in Digestion, 23.6",
+          "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originalabschnitte Galle/Gallensalze gelesen: Emulgierung und enterohepatischer Rückweg. Menschliche Mengen-/pH-Werte und die vereinfachte Gallenfarbenerklärung ausgelassen."
+        },
+        {
+          "label": "Glucagon Physiology",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279127/",
+          "organization": "Endotext / NCBI Bookshelf",
+          "supports": "Originalvolltext geöffnet und Abschnitte zur Leberwirkung gelesen: Glucagon fördert hepatische Glykogenolyse und Gluconeogenese. Keine Human-Dosis oder Interventionsanleitung."
+        },
+        {
+          "label": "Shin Nam-sik: Life Without a Gallbladder",
+          "url": "https://en.snu.ac.kr/snunow/snu_media/news?bbsidx=71788&md=v",
+          "organization": "Seoul National University, College of Veterinary Medicine",
+          "supports": "Originaltext Zeilen 234–241 gelesen: Lebergalle auch ohne Gallenblase und fehlendes Organ bei Hirschen. Überholte Einordnung Moschustier als Hirsch-Ausnahme sowie spekulative Erklärung über Fressintervalle nicht übernommen."
+        },
+        {
+          "label": "Staatliche Jägerprüfung: Fragenkatalog Sachgebiet 4, Stand 06.08.2025",
+          "url": "https://lmg.bayern.de/mam/aufgaben_leistungen/jaegerpruefung/fragenkatalog_mit_antworten_sg4.pdf",
+          "organization": "Bayerisches Staatsministerium für Wirtschaft, Landesentwicklung und Energie / Bayerisches Landesamt für Maß und Gewicht",
+          "supports": "Amtliches Original-PDF Seite 43, Fragen 202–203 gelesen: Reh und Damwild ohne Gallenblase, Organlage an Leber. Nur biologische Anatomie abgeglichen; keine praktische Aufbrechanweisung oder alte Hygieneempfehlung übernommen."
+        },
+        {
+          "label": "eClinpath: Fibrinogen und Leberbeteiligung an der Hämostase",
+          "url": "https://eclinpath.com/hemostasis/disorders/disease/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Originalabschnitt Liver disease gelesen: Produktion von Fibrinogen und weiteren Gerinnungsfaktoren in der Leber. Keine Labordiagnosen oder Häufigkeiten übernommen."
+        },
+        {
+          "label": "eClinpath: Coagulation assays – Thrombin clot time",
+          "url": "https://eclinpath.com/hemostasis/tests/screening-coagulation-assays/",
+          "organization": "Cornell University, College of Veterinary Medicine",
+          "supports": "Öffentlich indexierter Originalabschnitt gelesen: Umwandlung von Fibrinogen zu Fibrin. Keine Anleitung zur Laboruntersuchung übernommen."
+        },
+        {
+          "label": "McMurry: Catabolism of Proteins: Deamination, 29.9",
+          "url": "https://openstax.org/books/organic-chemistry/pages/29-9-catabolism-of-proteins-deamination",
+          "organization": "OpenStax / Rice University",
+          "supports": "Originalvolltext gelesen: Entfernung der Aminogruppe und Transaminierung als Gruppentransfer. Nur Begriffe und Stofffluss, keine Reaktionsschemata oder Buchfragen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "leberblut",
+          "title": "Leberblut: Zwei Zuflüsse und ein Austauschraum",
+          "paragraphs": [
+            "Die Leber erhält Blut aus zwei Gefäßwegen. Die Leberarterie führt sauerstoffreiches Blut zu. Die Pfortader bringt venöses Blut unter anderem aus Darm, Magen, Bauchspeicheldrüse und Milz; damit erreichen aufgenommene Nährstoffe und weitere Stoffe die Leber. Die Leberzellen, Hepatozyten, sind stoffwechselaktive Epithelzellen. Zwischen ihren Zellplatten verlaufen erweiterte Blutkapillaren, die Sinusoide. Dort mischt sich Blut aus den beiden Zuflüssen und steht über eine durchlässige Gefäßauskleidung mit dem angrenzenden Austauschraum in Verbindung.",
+            "Das klassische Leberläppchen ist ein Lernmodell dieses Zusammenhangs: Kleine Äste von Pfortader und Leberarterie liegen zusammen mit einem Gallengang in einem Portalfeld. Diese drei Leitungsstrukturen heißen Portaltriade; im realen Bindegewebe können weitere Gefäße und Strukturen hinzukommen. Blut fließt von dort durch die Sinusoide zur Zentralvene und anschließend über Lebervenen weiter. Kupffer-Zellen sind ansässige Makrophagen im Bereich der Sinusoide. Als phagozytierende Zellen tragen sie zur Aufnahme von Material aus dem vorbeiströmenden Blut bei. Das Läppchenmodell verlangt weder bei jeder Art deutlich sichtbare Sechsecke noch dieselbe Zahl äußerer Leberlappen."
+          ],
+          "takeaway": "Pfortader und Leberarterie liefern Blut; Sinusoide ermöglichen Austausch, die Zentralvene sammelt den Abfluss.",
+          "exercise": "Zeichne Pfortaderast, Leberarterienast und Gallengang als Portaltriade. Ergänze Blutpfeile zur Zentralvene und markiere eine Kupffer-Zelle am Sinusoid."
+        },
+        {
+          "id": "leberglucose",
+          "title": "Glucose bereitstellen: Speicher und Neubildung",
+          "paragraphs": [
+            "Glykogen ist eine verzweigte Speicherform aus Glucosebausteinen. Hepatozyten können Glucose in diesen Vorrat einbauen; der Vorgang heißt Glykogenese. Beim Abbau des Leberglykogens, der Glykogenolyse, kann die Leber wieder Glucose für das Blut bereitstellen. Speicherung und Mobilisierung sind also entgegengesetzte Stoffflüsse. Ihre Stärke hängt vom Ernährungs- und Hormonstatus ab. Ein Vorrat im Gewebe ist von einer gemessenen Glucosekonzentration im Blut zu unterscheiden. Die Leber ist dabei in ein Zusammenspiel mit anderen Organen eingebunden.",
+            "Gluconeogenese bedeutet dagegen Neubildung von Glucose aus geeigneten Vorstufen, etwa bestimmten Aminosäuren. Es handelt sich um einen anderen Weg als die Freisetzung aus vorhandenem Glykogen. Glykogenolyse und Gluconeogenese können gleichzeitig beitragen; eine feste Umschaltstunde für alle Säuger wäre falsch. Auch die Niere kann Glucose neu bilden. Glucagon aus der Bauchspeicheldrüse fördert in der Leber die Glykogenolyse und Gluconeogenese und damit die Glucosebereitstellung. Insulin begünstigt unter anderem die Speicherung als Glykogen. Die Bedeutung der Wege und ihrer Ausgangsstoffe variiert mit Tierart, Ernährung und Zustand; ein stärkehaltiges Einzelmahl ist kein allgemeines Ernährungsmodell des Wildes."
+          ],
+          "takeaway": "Glykogenese speichert, Glykogenolyse mobilisiert und Gluconeogenese bildet Glucose neu.",
+          "exercise": "Ordne den Begriffen Glykogenese, Glykogenolyse und Gluconeogenese je einen Stoffpfeil zu. Markiere, welcher Weg einen vorhandenen Glykogenvorrat braucht."
+        },
+        {
+          "id": "lebereiweiss",
+          "title": "Eiweiße aufbauen und Stickstoff verarbeiten",
+          "paragraphs": [
+            "Die Leber verarbeitet Aminosäuren und stellt zahlreiche Blutproteine her. Dazu gehört Albumin. Es bindet und transportiert unter anderem schlecht wasserlösliche Stoffe und trägt wesentlich zum kolloidosmotischen Druck des Blutplasmas bei. Dieser durch gelöste Proteine erzeugte osmotische Beitrag ist an der Flüssigkeitsverteilung zwischen Gefäßraum und Gewebe beteiligt. Albumin verbindet damit eine Transportaufgabe mit einer Funktion im Wasserhaushalt. Auch zahlreiche Gerinnungsproteine stammen aus der Leber, darunter Fibrinogen, die lösliche Vorstufe des späteren Fibrinnetzes. Nicht jedes Blutprotein wird dort gebildet: Antikörper stammen von Plasmazellen.",
+            "Beim Abbau von Aminosäuren müssen Kohlenstoffgerüst und stickstoffhaltiger Anteil getrennt weiterverarbeitet werden. Deaminierung bezeichnet die Entfernung einer Aminogruppe; Umlagerung einer Aminogruppe auf ein anderes Molekül heißt Transaminierung. Stickstoffhaltiger Umsatz im Körper und durch Darmmikroorganismen liefert unter anderem Ammoniak beziehungsweise Ammonium. Die Leber überführt solche Stickstoffverbindungen im Harnstoffzyklus in Harnstoff, der anschließend unter anderem über die Niere ausgeschieden wird. Bildung des Harnstoffs und seine Ausscheidung sind verschiedene Organleistungen. Daraus folgen weder ein universeller Blutwert noch eine Diagnose anhand eines einzelnen Organs."
+          ],
+          "takeaway": "Albumin und Fibrinogen zeigen die Synthesearbeit; Harnstoffbildung zeigt die Verarbeitung stickstoffhaltiger Abbauprodukte.",
+          "exercise": "Verbinde Aminosäureumsatz, Ammoniak/Ammonium, Leber und Harnstoff. Zeichne daneben Albumin und Fibrinogen als nach außen abgegebene Syntheseprodukte."
+        },
+        {
+          "id": "gallenwege",
+          "title": "Gallenwege: Kanälchen, Kreislauf und Artenunterschiede",
+          "paragraphs": [
+            "Hepatozyten geben Galle in feinste Kanälchen zwischen benachbarten Leberzellen ab. Diese Gallenkanälchen sind vom Blutraum der Sinusoide getrennt. Im klassischen Läppchenmodell fließt Galle in Richtung der Gallengänge in den Portalfeldern und damit dem Blutfluss zur Zentralvene entgegen. Größere Gallengänge führen die Flüssigkeit schließlich in den Dünndarm. Gallensäuren unterstützen die Verteilung und Aufnahme von Lipiden im wässrigen Darminhalt. Sie ersetzen kein fettspaltendes Enzym. Ein großer Teil wird im hinteren Dünndarm wieder aufgenommen und gelangt über die Pfortader zur Leber zurück. Dieser Rückweg ist Teil des enterohepatischen Kreislaufs.",
+            "Galle dient zugleich der Ausscheidung bestimmter körpereigener Stoffe. Bilirubin entsteht beim Abbau von Häm, unter anderem aus dem Hämoglobin alter roter Blutkörperchen. Nach Transport und Verarbeitung in der Leber kann es mit der Galle ausgeschieden werden. Bilirubin ist von verdauungswirksamen Gallensäuren zu unterscheiden. Eine vorhandene Gallenblase kann Galle speichern und konzentrieren; sie erzeugt die Galle nicht. Sie gehört jedoch nicht zum normalen Organbestand jedes Säugers: Reh und Damwild besitzen keine Gallenblase. Deren Leber bildet trotzdem Galle, die über Gallengänge abgeleitet wird. Die fehlende Speicherblase bedeutet daher weder eine fehlende Leberfunktion noch fehlende Fettverdauung."
+          ],
+          "takeaway": "Blut und Galle haben getrennte Wege. Eine Gallenblase ist ein artsabhängiger Speicher, kein notwendiger Ort der Gallenbildung.",
+          "exercise": "Zeichne die getrennten Pfeile für Blut, Galle und rückaufgenommene Gallensäuren. Ergänze Reh oder Damwild als Beispiel mit Gallengängen, aber ohne Gallenblasen-Speicher."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q1",
+          "lessonId": "leberblut",
+          "q": "Welche beiden Gefäßwege führen der Säugerleber Blut zu?",
+          "options": [
+            "Lebervene und Gallengang.",
+            "Pfortader und Leberarterie.",
+            "Harnleiter und Pfortader.",
+            "Zentralvene und Lymphgang."
+          ],
+          "answer": 1,
+          "explain": "Die Pfortader bringt venöses Blut unter anderem aus Verdauungsorganen, die Leberarterie sauerstoffreiches arterielles Blut. Lebervenen gehören zum Abfluss."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q2",
+          "lessonId": "leberblut",
+          "q": "Welche Leitungsstrukturen fasst die Portaltriade des Leberläppchens zusammen?",
+          "options": [
+            "Lebervenenast, Lymphgang und Harnleiter.",
+            "Zentralvene, Pfortaderast und Pankreasgang.",
+            "Gallengang, Zentralvene und Luftröhrenast.",
+            "Pfortaderast, Leberarterienast und Gallengang."
+          ],
+          "answer": 3,
+          "explain": "Die Portaltriade bezeichnet die drei typischen Leitungen des Portalfeldes. Lymphgefäße und weitere Strukturen können zusätzlich im realen Bindegewebe liegen."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q3",
+          "lessonId": "leberblut",
+          "q": "Wohin fließt das Blut im klassischen Leberläppchenmodell durch die Sinusoide?",
+          "options": [
+            "Von den Portalfeldern zur Zentralvene.",
+            "Von der Zentralvene in den Gallengang.",
+            "Vom Gallengang in die Gallenblase.",
+            "Von der Lebervene zurück in den Pfortaderast."
+          ],
+          "answer": 0,
+          "explain": "Blut aus Pfortader- und Arterienästen strömt durch die Sinusoide zur Zentralvene. Die Galle besitzt einen getrennten, im Modell entgegengerichteten Weg."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q4",
+          "lessonId": "leberblut",
+          "q": "Welche Zellgruppe wirkt als ansässige Makrophagen an den Lebersinusoiden?",
+          "options": [
+            "Leydig-Zellen.",
+            "Sertoli-Zellen.",
+            "Kupffer-Zellen.",
+            "Osteoklasten."
+          ],
+          "answer": 2,
+          "explain": "Kupffer-Zellen sind Lebermakrophagen im Bereich der Sinusoide. Sie können Material aus dem vorbeiströmenden Blut durch Phagozytose aufnehmen."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q5",
+          "lessonId": "leberglucose",
+          "q": "Welcher Stoffwechselvorgang wird in der Leber als Glykogenese bezeichnet?",
+          "options": [
+            "Der Abbau von Glykogen für Glucosefreisetzung.",
+            "Die Bildung von Harnstoff aus Ammoniak.",
+            "Der Aufbau von Glykogen aus Glucosebausteinen.",
+            "Die Bildung von Glucose aus Aminosäurevorstufen."
+          ],
+          "answer": 2,
+          "explain": "Glykogenese baut einen Kohlenhydratvorrat auf. Glykogenolyse bezeichnet dessen Abbau, Gluconeogenese die Neubildung von Glucose aus anderen geeigneten Vorstufen."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q6",
+          "lessonId": "leberglucose",
+          "q": "Wie trägt die Glykogenolyse der Leber zur Glucoseversorgung bei?",
+          "options": [
+            "Sie mobilisiert Glucose aus vorhandenem Leberglykogen.",
+            "Sie bildet Glucose aus geeigneten Aminosäurevorstufen neu.",
+            "Sie baut aus Glucose einen größeren Glykogenvorrat auf.",
+            "Sie spaltet Glucose zur lokalen Energiegewinnung weiter."
+          ],
+          "answer": 0,
+          "explain": "Bei der Glykogenolyse wird der Glykogenvorrat abgebaut. Die Leber kann daraus Glucose bereitstellen und an das Blut abgeben."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q7",
+          "lessonId": "leberglucose",
+          "q": "Was bedeutet Gluconeogenese in der Säugerleber?",
+          "options": [
+            "Aufbau eines Glykogenvorrats aus freier Glucose.",
+            "Abbau von gespeichertem Glykogen zur Glucosebereitstellung.",
+            "Abbau von Glucose zur Bereitstellung nutzbarer Zellenergie.",
+            "Neubildung von Glucose aus geeigneten Vorstufen wie bestimmten Aminosäuren."
+          ],
+          "answer": 3,
+          "explain": "Gluconeogenese erzeugt neue Glucose aus geeigneten Ausgangsstoffen. Sie ist vom Glykogenabbau zu unterscheiden und kann neben diesem stattfinden."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q8",
+          "lessonId": "leberglucose",
+          "q": "Welche Wirkung hat Glucagon auf die Glucosebereitstellung der Leber?",
+          "options": [
+            "Es fördert Glykogenese und hemmt Gluconeogenese.",
+            "Es fördert Glykogenolyse und Gluconeogenese.",
+            "Es hemmt Glykogenolyse und Gluconeogenese.",
+            "Es transportiert Glucose als gebundenes Plasmaprotein."
+          ],
+          "answer": 1,
+          "explain": "Glucagon ist ein pankreatisches Signalhormon. Es fördert in Hepatozyten Wege, die Glucose für das Blut bereitstellen; es ist kein Transportprotein."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q9",
+          "lessonId": "lebereiweiss",
+          "q": "Welche beiden Leistungen verbindet das Leberprotein Albumin im Blut?",
+          "options": [
+            "Sauerstoffbindung am Häm und Aufbau des Spermienkopfes.",
+            "Fettspaltung im Darm und Bildung von Gallengängen.",
+            "Nervenleitung und mechanische Kontraktion der Gefäßwand.",
+            "Stofftransport und Beitrag zum kolloidosmotischen Druck."
+          ],
+          "answer": 3,
+          "explain": "Albumin transportiert gebundene Stoffe im Plasma und trägt als gelöstes Protein zum kolloidosmotischen Druck bei. Dadurch ist es an der Flüssigkeitsverteilung beteiligt."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q10",
+          "lessonId": "lebereiweiss",
+          "q": "Was bezeichnet Deaminierung beim Aminosäureumsatz?",
+          "options": [
+            "Die Verkettung von Glucose zu Glykogen.",
+            "Die Entfernung einer Aminogruppe.",
+            "Die Aufnahme von Gallensäuren im Ileum.",
+            "Die Faltung einer fertigen Fibrinfaser."
+          ],
+          "answer": 1,
+          "explain": "Deaminierung entfernt eine Aminogruppe. Die Übertragung einer Aminogruppe auf ein anderes Molekül heißt dagegen Transaminierung."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q11",
+          "lessonId": "lebereiweiss",
+          "q": "In welche Verbindung überführt der hepatische Harnstoffzyklus Stickstoff aus Ammoniak beziehungsweise Ammonium?",
+          "options": [
+            "In Glykogen.",
+            "In Bilirubin.",
+            "In Harnstoff.",
+            "In Albumin."
+          ],
+          "answer": 2,
+          "explain": "Im Harnstoffzyklus verarbeitet die Leber stickstoffhaltige Abbauprodukte zu Harnstoff. Dieser gelangt zur Ausscheidung unter anderem an die Niere."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q12",
+          "lessonId": "lebereiweiss",
+          "q": "Welche lösliche Vorstufe des Fibrinnetzes wird in der Leber gebildet?",
+          "options": [
+            "Fibrinogen.",
+            "Hämoglobin.",
+            "Myoglobin.",
+            "Immunglobulin."
+          ],
+          "answer": 0,
+          "explain": "Fibrinogen ist ein von der Leber gebildetes Plasmaprotein. Bei der Blutgerinnung kann daraus Fibrin entstehen; es hat eine andere Funktion als die Sauerstoff bindenden Proteine."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q13",
+          "lessonId": "gallenwege",
+          "q": "Wo beginnen die feinen Gallenkanälchen der Säugerleber?",
+          "options": [
+            "Zwischen den Membranen benachbarter Hepatozyten.",
+            "Im Inneren der roten Blutkörperchen.",
+            "Als Fortsetzung der Zentralvene.",
+            "In den Muskelschichten des Dünndarms."
+          ],
+          "answer": 0,
+          "explain": "Hepatozyten geben Galle in interzelluläre Gallenkanälchen ab. Diese sind vom Blutstrom in den Sinusoiden getrennt und leiten zu den Gallengängen weiter."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q14",
+          "lessonId": "gallenwege",
+          "q": "Welcher Rückweg von Gallensäuren gehört zum enterohepatischen Kreislauf?",
+          "options": [
+            "Transport aus der Gallenblase direkt in die Nierenarterie.",
+            "Aufnahme durch Lungenbläschen und Rücktransport im Lymphgang.",
+            "Aufnahme im Darm und Rücktransport über die Pfortader zur Leber.",
+            "Transport aus der Zentralvene direkt in das Darmlumen."
+          ],
+          "answer": 2,
+          "explain": "Nach ihrer Wirkung im Darm können Gallensäuren vor allem im hinteren Dünndarm wieder aufgenommen werden. Das Pfortaderblut bringt sie zur erneuten Nutzung zur Leber."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q15",
+          "lessonId": "gallenwege",
+          "q": "Welcher Gallenbestandteil entsteht beim Abbau von Häm, etwa aus alten Erythrozyten?",
+          "options": [
+            "Glykogen.",
+            "Fibrinogen.",
+            "Progesteron.",
+            "Bilirubin."
+          ],
+          "answer": 3,
+          "explain": "Bilirubin ist ein Produkt des Hämabbaus. Nach Transport und Verarbeitung in der Leber wird es über die Galle ausgeschieden; es ist von Gallensäuren zu unterscheiden."
+        },
+        {
+          "id": "wissen-pruefung-leber-galle-round3-2026-q16",
+          "lessonId": "gallenwege",
+          "q": "Wie wird Galle bei Reh und Damwild trotz regulär fehlender Gallenblase bereitgestellt?",
+          "options": [
+            "Die Bauchspeicheldrüse ersetzt die gesamte Gallenbildung.",
+            "Die Leber bildet sie und Gallengänge leiten sie in den Darm.",
+            "Die Pfortader bildet sie innerhalb roter Blutkörperchen.",
+            "Der Pansen bildet einen Ersatzspeicher für Lebergalle."
+          ],
+          "answer": 1,
+          "explain": "Reh und Damwild besitzen regulär keine Gallenblase. Ihre Leber bildet dennoch Galle; Gallengänge erfüllen die Ableitung, während der zusätzliche Speicher fehlt."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Säuger-Leberfunktionen als Wildkunde-Grundlage. Klassisches Läppchen als mikroskopisches Modell, keine universelle Lappenzahl. Gallenblase ausdrücklich artsabhängig, Reh/Damwild separat belegt. Keine Wildbretfreigabe, Arzneimittelanwendung oder Diagnose aus Organfarbe.",
+        "independentOrganizations": [
+          "Colorado State University",
+          "The Ohio State University",
+          "University of Utah",
+          "Cornell University",
+          "OpenStax / Rice University",
+          "Endotext",
+          "Seoul National University",
+          "LMG Bayern"
+        ],
+        "limitations": [
+          "Keine universelle Gallenblase aller Säuger oder Wiederkäuer behauptet. Reh und Damwild sind konkret gegen amtlichen Katalog und unabhängigen veterinärmedizinischen Hochschultext abgeglichen.",
+          "Merck-Autorin Center arbeitet an Cornell; Merck plus Cornell zählt bei gemeinsamen Claims nicht allein als unabhängiges Paar. Colorado State, Ohio State oder Rice ergänzen unabhängig.",
+          "Keine Human-Blutanteile, Lebermengen, Hormonwerte, anatomischen Lappenzahlen oder starren Zeitabfolgen auf Wildsäuger übertragen.",
+          "Rein funktionelles Wissen; kein Einzelmerkmal eines Organs belegt Genusstauglichkeit oder eine bestimmte Krankheit."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-pruefung-keimdruesen-zyklus-round3-2026",
+      "lessonId": "keimzellen",
+      "claims": [
+        {
+          "claim": "Samenkanälchen als Bildungsort, Sertoli-Zellen als unterstützende Zellen und Leydig-Zellen im Zwischengewebe als Testosteronquelle.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/12-the-testes/",
+            "https://extension.missouri.edu/publications/g2016",
+            "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals",
+            "https://histology.leeds.ac.uk/home/male/sertoli_cells/"
+          ]
+        },
+        {
+          "claim": "Spermiogenese ist Formumbau einer bereits haploiden Spermatide mit Kernverdichtung, Akrosom-/Schwanzbildung und Zytoplasmaabbau; getrennt von Meiose und epididymaler Weiterreifung.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/12-the-testes/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system",
+            "https://embryology.med.unsw.edu.au/embryology/index.php/Spermatozoa_Development"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-keimdruesen-zyklus-round3-2026",
+      "lessonId": "spermienwege",
+      "claims": [
+        {
+          "claim": "Nebenhoden für Weiterreifung und Speicherung, Schwanz als Speicher; Samenleiter mit kräftiger glatter Muskulatur für Weitertransport. Keine Passagezeiten oder Ganglängen übertragen.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/12-male-tubular-genitalia/",
+            "https://extension.missouri.edu/publications/g2016",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system"
+          ]
+        },
+        {
+          "claim": "Typischer Säugerspermienkopf trägt Kern und Akrosom, Schwanz Bewegung; Akrosom trägt Enzyme für Befruchtungsvorgänge an Eihüllen bei.",
+          "sourceUrls": [
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system",
+            "https://research.monash.edu/en/publications/sperm-comparative-vertebrate/"
+          ]
+        },
+        {
+          "claim": "Akzessorische Drüsensekrete bilden einen Teil des Samenplasmas und Transportmilieus; Drüsenausstattung und Anteile sind artsabhängig.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/12-male-accessory-sex-glands/",
+            "https://extension.missouri.edu/publications/g2016",
+            "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-keimdruesen-zyklus-round3-2026",
+      "lessonId": "follikel",
+      "claims": [
+        {
+          "claim": "Follikel als Oozyte plus somatische Follikelzellen, Weiterentwicklung mit Antrum; Follikelatresie als möglicher Rückbildungsweg auf verschiedenen Stufen.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-ovary/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+            "https://extension.missouri.edu/publications/g2015"
+          ]
+        },
+        {
+          "claim": "Ovulation setzt Oozyte frei; nachfolgende Luteinisierung verbliebener Follikelzellen bildet progesteronproduzierendes Corpus luteum. Zahl/Reifestadium der Oozyten und Dauer des Gelbkörpers sind artsabhängig.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/13-the-ovary/",
+            "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals",
+            "https://extension.missouri.edu/publications/g2015"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-keimdruesen-zyklus-round3-2026",
+      "lessonId": "hormonachse",
+      "claims": [
+        {
+          "claim": "GnRH aus Hypothalamus steuert FSH/LH-Abgabe des Hypophysenvorderlappens. FSH unterstützt Follikel- und Spermienentwicklung, LH Leydig-Testosteronbildung und als Anstieg am reifen Follikel Ovulation/Luteinisierung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals",
+            "https://extension.missouri.edu/publications/g2015",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/12-the-testes/"
+          ]
+        },
+        {
+          "claim": "Rückkopplung durch Sexualhormone; Follikel- und Lutealphase als Funktionszustände ohne universelle Tageszahlen. Auslösung der Ovulation und Reproduktionspausen unterscheiden sich zwischen Arten.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/reproductive-system/reproductive-system-introduction/the-gonads-and-tubular-genital-tract-in-animals",
+            "https://extension.missouri.edu/publications/g2015",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-leber-galle-round3-2026",
+      "lessonId": "leberblut",
+      "claims": [
+        {
+          "claim": "Doppelte Zufuhr durch Pfortader und Leberarterie; Portalblut aus Verdauungsorganen/Milz, Mischung in Sinusoiden und hepatocellulärer Austausch.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/9-hepatic-blood-supply/",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/anatomy.html"
+          ]
+        },
+        {
+          "claim": "Klassisches Läppchenmodell mit Portaltriade und Blutfluss zur Zentralvene; Kupffer-Zellen als ansässige phagozytierende Makrophagen an den Sinusoiden. Keine universellen Lappen-/Plattenzahlen.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/9-hepatic-blood-supply/",
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/9-cells-of-the-liver/",
+            "https://webpath.med.utah.edu/HISTHTML/NORMAL/NORMAL10.html",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/anatomy.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-leber-galle-round3-2026",
+      "lessonId": "leberglucose",
+      "claims": [
+        {
+          "claim": "Glykogenese als Aufbau des Glucosespeichers, Glykogenolyse als dessen Mobilisierung; Gluconeogenese aus geeigneten Vorstufen als eigener Weg. Keine starre zeitliche Trennung, Niere kann ebenfalls Glucose neu bilden.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/metabolic.html",
+            "https://eclinpath.com/chemistry/energy-metabolism/glucose/",
+            "https://webpath.med.utah.edu/HISTHTML/NORMAL/NORMAL10.html"
+          ]
+        },
+        {
+          "claim": "Insulin begünstigt Speicherung als Glykogen; Glucagon fördert hepatische Glykogenolyse und Gluconeogenese zur Glucosebereitstellung. Keine Humanwerte oder universeller Ernährungsplan.",
+          "sourceUrls": [
+            "https://eclinpath.com/chemistry/energy-metabolism/glucose/",
+            "https://www.ncbi.nlm.nih.gov/sites/books/NBK279127/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-leber-galle-round3-2026",
+      "lessonId": "lebereiweiss",
+      "claims": [
+        {
+          "claim": "Leber bildet Albumin mit Transport- und kolloidosmotischer Funktion sowie Gerinnungsproteine einschließlich Fibrinogen; Antikörper dagegen Plasmazellen.",
+          "sourceUrls": [
+            "https://eclinpath.com/chemistry/proteins/albumin/",
+            "https://openstax.org/books/anatomy-and-physiology/pages/18-1-an-overview-of-blood",
+            "https://www.merckvetmanual.com/digestive-system/liver-structure-and-function/overview-of-liver-structure-and-function-in-animals",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/metabolic.html",
+            "https://eclinpath.com/hemostasis/disorders/disease/",
+            "https://eclinpath.com/hemostasis/tests/screening-coagulation-assays/"
+          ]
+        },
+        {
+          "claim": "Aminosäureabbau trennt Stickstoffumsatz vom Kohlenstoffgerüst; Deaminierung als Aminogruppenentfernung, Transaminierung als Übertragung. Ammoniak/Ammonium aus Körper/Darm wird hepatisch im Harnstoffzyklus verarbeitet, Harnstoff u.a. renal ausgeschieden.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/metabolic.html",
+            "https://eclinpath.com/chemistry/liver/liver-function-tests/ammonia/",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/24-4-protein-metabolism",
+            "https://openstax.org/books/organic-chemistry/pages/29-9-catabolism-of-proteins-deamination"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-pruefung-leber-galle-round3-2026",
+      "lessonId": "gallenwege",
+      "claims": [
+        {
+          "claim": "Hepatozyten geben Galle in Kanälchen zwischen Nachbarzellen ab; getrennt von Sinusoiden, im Läppchenmodell zur Portalregion. Gallensäuren unterstützen Fettverdauung/-aufnahme und werden über Ileum/Pfortader enterohepatisch rückgeführt.",
+          "sourceUrls": [
+            "https://ohiostate.pressbooks.pub/vethisto/chapter/9-the-biliary-system/",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/anatomy.html",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bile.html",
+            "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+          ]
+        },
+        {
+          "claim": "Bilirubin als Hämabbauprodukt, unter anderem aus Erythrozyten; Transport und Verarbeitung zur biliären Ausscheidung, funktionell von Gallensäuren getrennt.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bilirubin.html",
+            "https://eclinpath.com/chemistry/liver/cholestasis/bilirubin/"
+          ]
+        },
+        {
+          "claim": "Gallenblase als artsabhängiger Speicher/Konzentrierung, nicht Bildung; Reh und Damwild regulär ohne Gallenblase bei erhaltener hepatischer Gallenbildung und gangförmiger Ableitung. Keine Moschustier-Taxonomie oder Spekulation über Fressintervalle übernommen.",
+          "sourceUrls": [
+            "https://lmg.bayern.de/mam/aufgaben_leistungen/jaegerpruefung/fragenkatalog_mit_antworten_sg4.pdf",
+            "https://en.snu.ac.kr/snunow/snu_media/news?bbsidx=71788&md=v",
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/liver/bile.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Universeller Fortpflanzungskalender",
+      "reason": "Keine Human-/Rinderzyklustage, Pubertätsalter, Oozytenzahlen oder Spermatogenesedauern auf alle Wildsäuger übertragen."
+    },
+    {
+      "topic": "Diagnostik und Fortpflanzungseingriffe",
+      "reason": "Keine Fruchtbarkeit aus Einzelmerkmalen ableiten, keine Hormonbehandlung, Palpation oder Besamungsanleitung."
+    },
+    {
+      "topic": "Universelle Gallenblasen- und Leberlappenausstattung",
+      "reason": "Haustier- und Humanmodelle sind keine identische Organausstattung aller Wildsäuger. Konkrete Abwesenheit hier nur Reh und Damwild."
+    },
+    {
+      "topic": "Organfarbe als Freigabe oder Diagnose",
+      "reason": "Keine krankheits- oder lebensmittelhygienische Entscheidung aus den hier gelehrten Funktionsprinzipien ableiten."
+    }
+  ]
+}

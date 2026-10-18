@@ -88,19 +88,20 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
     current.current = next; setRound(next);
   }
   const question = round?.questions[round.index];
+  const questionCategory = learningCategoryDetails.find(item => item.slug === question?.category)?.title;
   return <LearningToolLayout title="Deine fünf Minuten Wissen" icon="book" category="pruefung-sprache" headingOnly searchHref="/lernen#lernen-suche">
     <section className={styles.panel}>
       <p>Eine kurze Runde mit bis zu acht Fragen aus den ausführlichen Kursen. Du bestimmst das Tempo; fünf Minuten sind eine Orientierung.</p>
       <label htmlFor="review-category">Thema</label>{" "}<select id="review-category" value={category} onChange={event => { const value = event.target.value; if (value && !available.some(item => item.slug === value)) return; categoryRef.current = value; setCategory(value); start(value); }}>
         <option value="">Themen mischen</option>{available.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}
       </select>
-      <p className={styles.muted}>Auf diesem Gerät: zuerst fällige Fehler und Wiederholungen, dann neue Fragen. Antworten aus ausführlichen Kursen und deren Quizfragen fließen ab jetzt ein. Frühere Antworten werden nicht nachträglich übernommen.</p>
+      <p className={styles.muted}>Auf diesem Gerät: zuerst fällige Fehler und Wiederholungen, dann neue Fragen. Bei „Themen mischen“ wechseln sich neue Fragen aus den verfügbaren Bereichen ab. Antworten aus ausführlichen Kursen und deren Quizfragen fließen ab jetzt ein. Frühere Antworten werden nicht nachträglich übernommen.</p>
     </section>
     {load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} onClick={() => start()}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
       <h2 tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig. Lies die Erklärungen und wiederhole zu einem späteren Zeitpunkt.</p>
       <button type="button" className={styles.primary} onClick={() => start()}>Neue kurze Runde</button>
     </section> : question ? <section className={styles.panel}>
-      <p className={styles.eyebrow}>{question.reason} · Frage {round.index + 1} von {round.questions.length}</p>
+      <p className={`${styles.eyebrow} ${styles.reviewContext}`}>{question.reason}{!category && questionCategory ? ` · ${questionCategory}` : ""} · Frage {round.index + 1} von {round.questions.length}</p>
       <h2 ref={heading} tabIndex={-1}>{question.q}</h2>
       <div className={styles.choices}>{question.answers.map(answer => <button type="button" key={answer.id} className={`${styles.choice} ${round.selected !== null && question.correct.includes(answer.id) ? styles.correct : round.selected === answer.id ? styles.wrong : ""}`} disabled={round.selected !== null} aria-pressed={round.selected === answer.id} onClick={() => choose(answer.id)}>{answer.text}</button>)}</div>
       {round.selected !== null && <div className={styles.feedback}><div role="status"><h3>{question.correct.includes(round.selected) ? "Richtig" : "Noch einmal nachlesen"}</h3><p>{question.explain}</p></div>

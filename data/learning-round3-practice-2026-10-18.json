@@ -1,0 +1,1223 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Zwei physikalische Vertiefungskurse nach Audit von 162 geladenen Kursen:8 Lektionen,32 eigene Fragen und eigene klar begrenzte Rechenbeispiele.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-schall-pegel-ausbreitung-round3-2026",
+      "title": "Schall verstehen: Wellen, Pegel und Ausbreitung",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "description": "Hertz, Pascal, Watt und Dezibel auseinanderhalten; Quellen, Entfernung und Zeitbezug richtig verbinden.",
+      "minutes": 36,
+      "objectives": [
+        "Frequenz, Wellenlänge und Druckamplitude trennen",
+        "Logarithmische Pegel und unabhängige Quellen vergleichen",
+        "Schallleistung und Empfangsschalldruck unterscheiden",
+        "A-Bewertung, Zeitmittel und Spitzenwert benennen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame physikalische Grundlagen und eigene begrenzte Lernbeispiele. Keine örtliche Gefahrenbewertung, Produktfreigabe oder Rechtsauskunft.",
+        "AT": "Gemeinsame physikalische Grundlagen und eigene begrenzte Lernbeispiele. Keine örtliche Gefahrenbewertung, Produktfreigabe oder Rechtsauskunft.",
+        "CH": "Gemeinsame physikalische Grundlagen und eigene begrenzte Lernbeispiele. Keine örtliche Gefahrenbewertung, Produktfreigabe oder Rechtsauskunft."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "OpenStax Physics 14.1: Speed of Sound, Frequency, and Wavelength",
+          "url": "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength",
+          "organization": "Rice University / OpenStax",
+          "supports": "Originalabschnitt gelesen: Druckverdichtung/-verdünnung und Longitudinalwelle, Schwingungszahl, Wellenlänge und v=fλ. Keine fremden Aufgaben oder Zahlenbeispiele übernommen."
+        },
+        {
+          "label": "NASA Airspace: Speed of Sound, Grades 9–12",
+          "url": "https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf",
+          "organization": "NASA",
+          "supports": "Öffentlich indexierten Original-Lektionsabschnitt gelesen: Wellengleichung v=λ·f, longitudinaler Wellentyp und Messgrößen. Direkter PDF-Abruf war eingeschränkt; keine Versuchsanleitung oder Grafik übernommen."
+        },
+        {
+          "label": "CCOHS: Noise – Basic Information",
+          "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+          "organization": "Canadian Centre for Occupational Health and Safety",
+          "supports": "Originalabschnitte zu Druckwellen, Frequenz/Hz, Schalldruck, Schallleistung/Watt, logarithmischen Pegeln, Addition und A-Bewertung gelesen. Vereinfachte Nebenformulierungen über Tonhöhe, Hörschwelle und kleine Pegelbeiträge nicht als allgemeine Naturgesetze übernommen."
+        },
+        {
+          "label": "OpenStax College Physics 17.3: Sound Intensity and Sound Level",
+          "url": "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level",
+          "organization": "Rice University / OpenStax",
+          "supports": "Originalabschnitte zu Intensität, logarithmischem Verhältnis und Faktor 2 beziehungsweise 10 gelesen. Keine menschlichen Schmerz-/Schädigungswerte oder Tabellenbeispiele übertragen."
+        },
+        {
+          "label": "OSHA Technical Manual, III 5: Noise",
+          "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5",
+          "organization": "Occupational Safety and Health Administration",
+          "supports": "Originalabschnitte Sound Fields, Sound Power, AppendixA undB gelesen: Freifeld/Punktquelle,6-dB-Abnahme, Leistungsbegriff,20-µPa-Bezug, logarithmische Addition, A-Bewertung, Leq und Peak. Keine US-Grenzwerte oder Schutzfreigabe übernommen."
+        },
+        {
+          "label": "National Park Service: Grand Teton, Acoustic environment, AbschnittS.92",
+          "url": "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304",
+          "organization": "U.S. National Park Service",
+          "supports": "Öffentlich indexierten Originalabschnitt der Umweltprüfung gelesen: Abstandsbezug und 6-dB-Modell, gleiche Quellen etwa+3 dB. Historische örtliche Messwerte und Projektprognosen nicht übernommen. Im Schlussabgleich direkt im Original-PDF gelesen: gedruckte S. 91, Definition Sound Level Equivalent, gleicher energetischer Beitrag im selben Zeitraum (auch S. 392); keine 15-Stunden-Flughafenbewertung übertragen."
+        },
+        {
+          "label": "CCOHS: Noise – Measurement of Workplace Noise",
+          "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_measurement.html",
+          "organization": "Canadian Centre for Occupational Health and Safety",
+          "supports": "Originalabschnitte gelesen: A-Filter, zeitlich integrierter äquivalenter Pegel, Impulsmessung mit geeigneter Spitzenwerterfassung und Messdauer. Keine Arbeitsplatzgrenzwerte übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "druckwelle-frequenz",
+          "title": "Luftschall ist eine Druckwelle mit mehreren Messgrößen",
+          "paragraphs": [
+            "Ein schwingender Gegenstand erzeugt in der benachbarten Luft kleine Druckänderungen. Bereiche mit Verdichtung und Verdünnung breiten sich aus. Beim gewöhnlichen Luftschall schwingen die Luftteilchen dabei in Richtung der Wellenausbreitung: Es handelt sich um eine longitudinale mechanische Welle. Die Schwingung braucht ein Medium; sie ist kein Funk- oder Lichtsignal.",
+            "Frequenz bezeichnet die Anzahl vollständiger Schwingungszyklen pro Sekunde. Ihre Einheit ist Hertz, kurz Hz. Ein reiner Ton mit höherer Frequenz wird im üblichen hörbaren Bereich als höher wahrgenommen. Eine größere Druckschwankung betrifft dagegen die Amplitude. Frequenz und Amplitude sind deshalb getrennte Eigenschaften; ein hoher Ton muss keinen hohen Schalldruck haben.",
+            "Die Wellenlänge ist der räumliche Abstand zwischen zwei aufeinanderfolgenden gleichen Wellenzuständen, etwa zwei Verdichtungen. Es gilt v=f·λ. Bei gleicher Ausbreitungsgeschwindigkeit gehört zur höheren Frequenz eine kürzere Wellenlänge. Eigenes Rechenmodell: v=340 m/s und f=680 Hz ergeben λ=0,5 m. Der eingesetzte Geschwindigkeitswert ist eine Modellannahme, keine aktuelle Luftmessung im Revier."
+          ],
+          "takeaway": "Hertz zählt Schwingungen pro Zeit; Wellenlänge misst Abstand, Amplitude die Stärke der Druckschwankung.",
+          "exercise": "Berechne im genannten Modell 340÷680 und notiere, warum das Ergebnis in Metern angegeben wird.",
+          "evidence": [
+            {
+              "claim": "Gewöhnlicher Luftschall ist eine longitudinale mechanische Druckschwingung; Frequenz/Hz und Druckamplitude sind verschiedene Größen.",
+              "sources": [
+                {
+                  "label": "OpenStax Physics 14.1: Speed of Sound, Frequency, and Wavelength",
+                  "url": "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength"
+                },
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "NASA Airspace: Speed of Sound, Grades 9–12",
+                  "url": "https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Wellenlänge ist ein räumlicher Abstand, v=f·λ; bei gleicher Geschwindigkeit ist höhere Frequenz mit kürzerer Wellenlänge verbunden.340 m/s und 680 Hz sind eigene vorgegebene Modellwerte, daraus folgt 0,5 m.",
+              "sources": [
+                {
+                  "label": "OpenStax Physics 14.1: Speed of Sound, Frequency, and Wavelength",
+                  "url": "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength"
+                },
+                {
+                  "label": "NASA Airspace: Speed of Sound, Grades 9–12",
+                  "url": "https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pegel-logarithmus",
+          "title": "Dezibel sind Verhältniswerte und werden anders addiert",
+          "paragraphs": [
+            "Schalldruck wird in Pascal gemessen. Ein Schalldruckpegel in Dezibel beschreibt dagegen ein logarithmisches Verhältnis zu einem Bezugsschalldruck. Für Luftschall werden 20 µPa verwendet. Ein Pegel von 0 dB bedeutet somit diesen Bezugsschalldruck und keine vollständige Abwesenheit von Schall. Er ist auch keine für jedes Tier und jede Frequenz gleiche Hörgrenze.",
+            "Bei gleicher Vergleichsart entspricht eine Zunahme des Intensitätspegels um 10 dB einer zehnfachen Schallintensität. Etwa 3 dB entsprechen einer Verdopplung der Intensität. Der Zahlenwert in dB wird folglich nicht wie eine Länge verdoppelt. Intensität, Schalldruck und subjektive Lautheit sind unterschiedliche Größen; aus „doppelt so viel Intensität“ wird hier keine feste Wahrnehmungsregel für Mensch oder Wild.",
+            "Für die energetische Addition unabhängiger, nicht phasengekoppelter Geräusche werden ihre Beiträge zusammengeführt. Eigenes Lernbeispiel am selben Empfangsort und über denselben Zeitraum: Zwei Quellen liefern einzeln je 60 dB Schalldruckpegel unter gleicher Frequenzbewertung und vergleichbaren Bedingungen. Zusammen ergeben sie etwa 63 dB, nicht 120 dB. Für gezielt phasengekoppelte reine Töne ist diese einfache Additionsregel nicht ohne Weiteres übertragbar."
+          ],
+          "takeaway": "Eine dB-Angabe braucht ihre Bezugsgröße; gleiche unabhängige Beiträge addieren sich energetisch.",
+          "exercise": "Erkläre den Unterschied zwischen 60+60 in einer Längenrechnung und zwei unabhängigen Quellen mit je 60 dB am selben Empfangsort.",
+          "evidence": [
+            {
+              "claim": "Schalldruck in Pascal und logarithmischer Pegel sind getrennt; übliche Luftschallreferenz 20 µPa,0 dB bedeutet die Referenz und keinen fehlenden Schall.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                }
+              ]
+            },
+            {
+              "claim": "Ein Intensitätsverhältnis 10:1 entspricht 10 dB,2:1 etwa 3 dB; keine universelle Lautheits- oder Tierhörregel wird daraus abgeleitet.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OpenStax College Physics 17.3: Sound Intensity and Sound Level",
+                  "url": "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level"
+                }
+              ]
+            },
+            {
+              "claim": "Energetische Addition unabhängiger, nicht phasengekoppelter Beiträge bei gleicher Pegelgröße, Bewertung und vergleichbarem Zeitbezug: Zwei einzeln gleich starke Quellen 60 dB ergeben im eigenen Lernbeispiel etwa 63 dB.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                },
+                {
+                  "label": "National Park Service: Grand Teton, Acoustic environment, AbschnittS.92",
+                  "url": "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "quelle-ausbreitung",
+          "title": "Die Quelle und der Empfangsort sind zwei verschiedene Ebenen",
+          "paragraphs": [
+            "Schallleistung ist die von einer Quelle abgegebene Schallenergie pro Zeit und wird in Watt angegeben. Der am Empfangsort vorhandene Schalldruck hängt außerdem von Abstand und Umgebung ab. Auch Schallleistung kann als Pegel dargestellt werden. Ein Schallleistungspegel und ein Schalldruckpegel sind daher trotz derselben Einheit dB verschiedene Angaben.",
+            "Ein einfaches Ausbreitungsmodell betrachtet eine unverändert arbeitende, in alle Richtungen strahlende Punktquelle im freien Feld, außerhalb ihres Nahfelds. Ohne Reflexion und zusätzliche Verluste verteilt sich ihre Leistung auf immer größere Kugelflächen. Wird der Abstand verdoppelt, sinkt der Schalldruckpegel in diesem Modell um ungefähr 6 dB. Eigenes Zahlenbeispiel:72 dB bei 10 m werden 66 dB bei 20 m.",
+            "Harte Flächen können Schall reflektieren und zusätzliche Schallwege erzeugen. In einem reflektierenden Raum gilt deshalb nicht einfach dieselbe Abnahme wie im freien Feld. Eine Punktquelle im Modell ist auch keine beliebig lange oder räumlich ausgedehnte Quelle. Aus einer einzelnen Pegelangabe ohne Messabstand und Umgebungsbeschreibung lässt sich keine feste Hörreichweite für Menschen oder Wildtiere ableiten."
+          ],
+          "takeaway": "Schallleistung gehört zur Quelle; Schalldruck am Empfangsort entsteht aus Quelle, Entfernung und Umgebung.",
+          "exercise": "Nenne die Voraussetzungen des 72-zu 66-dB-Beispiels, bevor du die Abstandsrechnung durchführst.",
+          "evidence": [
+            {
+              "claim": "Schallleistung ist Schallenergie pro Zeit in Watt, Empfangsschalldruck hängt zusätzlich von Abstand und Umgebung ab. Schallleistungspegel und Schalldruckpegel sind verschiedene Größen.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                }
+              ]
+            },
+            {
+              "claim": "Idealisiertes Freifeld ohne Reflexionen mit unveränderter isotroper Punktquelle außerhalb des Nahfelds: Abstandsverdopplung etwa−6 dB Schalldruckpegel.72 dB bei 10 m zu 66 dB bei 20 m ist eine eigene Modellrechnung, keine Wald-Hörreichweite.",
+              "sources": [
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                },
+                {
+                  "label": "National Park Service: Grand Teton, Acoustic environment, AbschnittS.92",
+                  "url": "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+                }
+              ]
+            },
+            {
+              "claim": "Reflektierende Flächen erzeugen zusätzliche Schallwege; ihre räumliche Pegelabnahme darf nicht einfach mit dem Freifeldmodell gleichgesetzt werden.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bewertung-zeit",
+          "title": "A-Bewertung, Mittelungspegel und Spitzenwert beantworten andere Fragen",
+          "paragraphs": [
+            "Ein Schallmessgerät kann die Frequenzanteile unterschiedlich gewichten. Die A-Bewertung ist eine festgelegte, am menschlichen Gehör orientierte Frequenzbewertung; das Ergebnis wird häufig als dB(A) geschrieben. Sie ist keine eigene Frequenz in Hertz und bildet weder jeden individuellen Höreindruck noch die Hörempfindlichkeit sämtlicher Wildarten ab.",
+            "Ein äquivalenter Dauerschallpegel, Leq, beschreibt einen zeitlich veränderlichen Verlauf durch einen konstanten Pegel mit derselben Schallenergie über denselben betrachteten Zeitraum. Bei A-Bewertung lautet die Bezeichnung LAeq,T; T benennt den Zeitraum. Die Mittelung erfolgt energetisch, nicht durch einfaches Addieren der dB-Zahlen und Teilen durch ihre Anzahl.",
+            "Ein Spitzenwert erfasst eine sehr kurze maximale Druckspitze. Er ist etwas anderes als der höchste bereits zeitbewertete Anzeigewert eines Geräts und etwas anderes als der Dauerschallpegel. Für einen Vergleich werden Messgröße, Frequenzbewertung und Zeitraum benannt. Ein Smartphonewert oder ein Rechenmodell bescheinigt hier weder Impulstauglichkeit des Mikrofons noch die Unbedenklichkeit einer Situation."
+          ],
+          "takeaway": "Ein dB-Wert wird erst mit Frequenzbewertung, Zeitbezug und Messgröße verständlich.",
+          "exercise": "Ordne „Frequenzanteile gewichtet“, „gleiche Energie im selben Zeitraum“ und „kurze Druckspitze“ den drei Begriffen zu.",
+          "evidence": [
+            {
+              "claim": "A-Bewertung gewichtet Frequenzanteile am menschlichen Gehör orientiert; sie ist weder eine Frequenzangabe noch eine artsübergreifende Tierhörkurve.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Basic Information",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                }
+              ]
+            },
+            {
+              "claim": "Leq beschreibt denselben energetischen Beitrag wie ein konstanter Verlauf über denselben Zeitraum. Spitzenpegel ist eine andere Messgröße als energetisches Zeitmittel beziehungsweise höchster zeitbewerteter Anzeigewert. Frequenzbewertung und Zeitraum gehören zur Einordnung.",
+              "sources": [
+                {
+                  "label": "CCOHS: Noise – Measurement of Workplace Noise",
+                  "url": "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_measurement.html"
+                },
+                {
+                  "label": "OSHA Technical Manual, III 5: Noise",
+                  "url": "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+                },
+                {
+                  "label": "National Park Service: Grand Teton, Acoustic environment, AbschnittS.92",
+                  "url": "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "druckwelle-frequenz",
+          "q": "Welche Art von Welle beschreibt gewöhnlichen Luftschall?",
+          "options": [
+            "Eine elektromagnetische Lichtwelle.",
+            "Eine longitudinale mechanische Welle.",
+            "Eine rein statische Druckverteilung.",
+            "Eine Strömung ohne Druckschwankung."
+          ],
+          "answer": 1,
+          "explain": "Luftschall besteht aus sich ausbreitenden Verdichtungen und Verdünnungen des Mediums."
+        },
+        {
+          "id": "q2",
+          "lessonId": "druckwelle-frequenz",
+          "q": "Welche Größe wird bei einem periodischen Schallsignal in Hertz angegeben?",
+          "options": [
+            "Der räumliche Abstand zweier Verdichtungen.",
+            "Die Stärke der Druckschwankung in Pascal.",
+            "Die Schallenergie der Quelle pro Sekunde.",
+            "Die Zahl vollständiger Schwingungszyklen pro Sekunde."
+          ],
+          "answer": 3,
+          "explain": "Hertz ist die Einheit der Frequenz:1 Hz bedeutet einen vollständigen Schwingungszyklus pro Sekunde."
+        },
+        {
+          "id": "q3",
+          "lessonId": "druckwelle-frequenz",
+          "q": "Wie ändert sich die Wellenlänge von Luftschall bei höherer Frequenz und gleicher Ausbreitungsgeschwindigkeit?",
+          "options": [
+            "Sie wird kürzer.",
+            "Sie wird länger.",
+            "Sie bleibt gleich.",
+            "Sie wird zur Druckamplitude."
+          ],
+          "answer": 0,
+          "explain": "Aus v=f·λ folgt bei festem v: Höhere Frequenz und kürzere Wellenlänge gehören zusammen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "druckwelle-frequenz",
+          "q": "In einem Schall-Lernmodell gelten v=340 m/s und f=680 Hz. Welche Wellenlänge folgt aus λ=v/f?",
+          "options": [
+            "2 m.",
+            "340 m.",
+            "0,5 m.",
+            "680 m."
+          ],
+          "answer": 2,
+          "explain": "340 m/s geteilt durch 680 Schwingungen pro Sekunde ergibt 0,5 m. Die Werte sind Modellannahmen."
+        },
+        {
+          "id": "q5",
+          "lessonId": "pegel-logarithmus",
+          "q": "Welche Skaleneigenschaft kennzeichnet einen Schallpegel in Dezibel?",
+          "options": [
+            "Eine lineare Längenaddition.",
+            "Eine prozentuale Zeitskala.",
+            "Eine direkte Temperaturskala.",
+            "Eine logarithmische Verhältnisbildung."
+          ],
+          "answer": 3,
+          "explain": "Der Pegel beschreibt das logarithmische Verhältnis einer Schallgröße zu ihrer Referenz."
+        },
+        {
+          "id": "q6",
+          "lessonId": "pegel-logarithmus",
+          "q": "Eine Schallintensität wird bei gleicher Vergleichsart um den Faktor 10 größer. Um wie viel steigt ihr Intensitätspegel?",
+          "options": [
+            "Um 1 dB.",
+            "Um 10 dB.",
+            "Um 3 dB.",
+            "Um 100 dB."
+          ],
+          "answer": 1,
+          "explain": "Ein Zehnerfaktor entspricht 10 dB;3 dB bedeuten ungefähr einen Faktor 2."
+        },
+        {
+          "id": "q7",
+          "lessonId": "pegel-logarithmus",
+          "q": "Zwei unabhängige, unkorrelierte Geräuschquellen ergeben am selben Ort einzeln je 60 dB Schalldruckpegel bei gleicher Frequenzbewertung und gleichem Zeitbezug. Welcher gemeinsame Pegel folgt im Lernmodell?",
+          "options": [
+            "Etwa 30 dB.",
+            "Etwa 60 dB.",
+            "Etwa 63 dB.",
+            "Etwa 120 dB."
+          ],
+          "answer": 2,
+          "explain": "Gleiche unabhängige Beiträge verdoppeln die Intensität. Der logarithmische Pegel steigt dabei um etwa 3 dB."
+        },
+        {
+          "id": "q8",
+          "lessonId": "pegel-logarithmus",
+          "q": "Was bezeichnet 0 dB Schalldruckpegel bei der üblichen Luftschallreferenz von 20 µPa?",
+          "options": [
+            "Einen Schalldruck entsprechend der Referenz.",
+            "Vollständige Abwesenheit jeder Druckschwankung.",
+            "Die gleiche Hörschwelle sämtlicher Wildarten.",
+            "Eine Schallleistung von genau 20 Watt."
+          ],
+          "answer": 0,
+          "explain": "Der Nullpunkt der Pegelskala gehört zu einer endlichen Referenzgröße. Er bedeutet keinen Nullschall."
+        },
+        {
+          "id": "q9",
+          "lessonId": "quelle-ausbreitung",
+          "q": "Welche physikalische Größe beschreibt die Schallenergie, die eine Quelle pro Sekunde abgibt?",
+          "options": [
+            "Die Schallleistung in Watt.",
+            "Die Wellenlänge in Metern.",
+            "Die Frequenz in Hertz.",
+            "Den Empfangsschalldruck in Pascal."
+          ],
+          "answer": 0,
+          "explain": "Leistung ist Energie pro Zeit. Der Schalldruck an einem anderen Ort ist eine eigene Größe."
+        },
+        {
+          "id": "q10",
+          "lessonId": "quelle-ausbreitung",
+          "q": "Was kennzeichnet das idealisierte freie Schallfeld?",
+          "options": [
+            "Es besteht ausschließlich aus Schallreflexionen.",
+            "Es besitzt an jedem Ort denselben Schalldruck.",
+            "Es enthält keine reflektierten Schallanteile.",
+            "Es enthält nur Schallwellen einer einzigen Frequenz."
+          ],
+          "answer": 2,
+          "explain": "Die Freifeldannahme schließt Reflexionen aus; sie ist ein begrenztes Modell der Ausbreitung."
+        },
+        {
+          "id": "q11",
+          "lessonId": "quelle-ausbreitung",
+          "q": "Eine unveränderte Punktquelle liefert im idealen Freifeld außerhalb des Nahfelds 72 dB bei 10 m Abstand. Welcher Pegel folgt im Modell bei 20 m?",
+          "options": [
+            "Etwa 36 dB.",
+            "Etwa 69 dB.",
+            "Etwa 78 dB.",
+            "Etwa 66 dB."
+          ],
+          "answer": 3,
+          "explain": "Die Abstandsverdopplung vermindert den Schalldruckpegel im beschriebenen Modell um ungefähr 6 dB."
+        },
+        {
+          "id": "q12",
+          "lessonId": "quelle-ausbreitung",
+          "q": "Wie verändert eine harte reflektierende Fläche den Schallweg zwischen Quelle und Empfangsort?",
+          "options": [
+            "Sie macht aus Schall elektromagnetische Strahlung.",
+            "Sie kann zusätzliche zurückgeworfene Schallanteile erzeugen.",
+            "Sie verdoppelt stets die Frequenz aller Schwingungen.",
+            "Sie beseitigt sämtliche ankommende Schallenergie."
+          ],
+          "answer": 1,
+          "explain": "Reflexion schafft zusätzliche Ausbreitungswege. Deshalb ist ein reflektierender Raum kein freies Schallfeld."
+        },
+        {
+          "id": "q13",
+          "lessonId": "bewertung-zeit",
+          "q": "Welche Aufgabe erfüllt die A-Bewertung eines Schallmessgeräts?",
+          "options": [
+            "Sie zählt einzelne Schwingungen pro Sekunde.",
+            "Sie misst ausschließlich die Schallleistung der Quelle.",
+            "Sie gewichtet Frequenzanteile mit einem am menschlichen Gehör orientierten Filter.",
+            "Sie ersetzt die Angabe des Messzeitraums."
+          ],
+          "answer": 2,
+          "explain": "Das A bezeichnet eine Frequenzbewertung; es ist keine Tierhörkurve oder Zeitdauer."
+        },
+        {
+          "id": "q14",
+          "lessonId": "bewertung-zeit",
+          "q": "Was bedeutet ein äquivalenter Dauerschallpegel Leq über einen benannten Zeitraum?",
+          "options": [
+            "Ein konstanter Pegel mit derselben Schallenergie in diesem Zeitraum.",
+            "Der höchste einzelne Druckausschlag in diesem Zeitraum.",
+            "Die Summe aller dB-Zahlen ohne Zeitgewichtung.",
+            "Der Pegel nur während vollständig stiller Abschnitte."
+          ],
+          "answer": 0,
+          "explain": "Leq fasst einen Verlauf energetisch zusammen. Der betrachtete Zeitraum bleibt Bestandteil der Angabe."
+        },
+        {
+          "id": "q15",
+          "lessonId": "bewertung-zeit",
+          "q": "Welche Messgröße beschreibt eine sehr kurze maximale Schalldruckspitze?",
+          "options": [
+            "Die Wellenlänge des Grundtons.",
+            "Der Spitzenschalldruckpegel.",
+            "Der äquivalente Dauerschallpegel.",
+            "Die mittlere Schallleistung pro Jahr."
+          ],
+          "answer": 1,
+          "explain": "Die Spitzenerfassung betrifft einen kurzen Druckhöchstwert und ist vom energetischen Zeitmittel zu unterscheiden."
+        },
+        {
+          "id": "q16",
+          "lessonId": "bewertung-zeit",
+          "q": "Welche Angabe legt bei LAeq,T den Mittelungszeitraum fest?",
+          "options": [
+            "Das A.",
+            "Das L.",
+            "Die EinheitHz.",
+            "Das T."
+          ],
+          "answer": 3,
+          "explain": "T benennt die Zeitspanne, während A die Frequenzbewertung bezeichnet. Beides erfüllt unterschiedliche Aufgaben."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begrenzter fachlicher Quellenabgleich der vier neuen Lektionen, Fragen und eigenen Rechenbeispiele.",
+        "independentOrganizations": [
+          "Rice University / OpenStax",
+          "NASA",
+          "CCOHS",
+          "OSHA",
+          "U.S. National Park Service"
+        ],
+        "limitations": [
+          "NASA-PDF und enger NPS-Originalabschnitt wurden öffentlich indexiert gelesen; direkter PDF-Abruf war eingeschränkt.",
+          "Mehrere OpenStax-Kapitel bilden eine Quellenfamilie, mehrere CCOHS-Seiten eine Organisation.",
+          "Freifeld und Quellenaddition sind ausdrücklich begrenzte Modelle; keine universelle Hörreichweite oder Wahrnehmungsschwelle für Wildarten.",
+          "Keine Lärmexpositionsgrenzen, Gehördiagnose oder Schutzfreigabe; kein Schuss- oder Waffenversuch."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-luftfeuchte-taupunkt-round3-2026",
+      "title": "Luftfeuchte und Taupunkt: Kondensation an Ausrüstung verstehen",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Feuchteverhältnisse, Abkühlung und kalte Oberflächen unterscheiden; Tau, Nebel und Reif mit ihrem Phasenbezug erklären.",
+      "minutes": 36,
+      "objectives": [
+        "Relative Feuchte als temperaturabhängiges Verhältnis lesen",
+        "Taupunkt und Temperatur-Taupunkt-Abstand erklären",
+        "Kondensation auf einer kalten Ausrüstungsoberfläche einordnen",
+        "Flüssigen Tau, Nebel und direkte Reifbildung unterscheiden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame meteorologische Grundlagen; eigene Beispiele ohne lokale Wetter-, Produkt- oder Sicherheitsfreigabe.",
+        "AT": "Gemeinsame meteorologische Grundlagen; eigene Beispiele ohne lokale Wetter-, Produkt- oder Sicherheitsfreigabe.",
+        "CH": "Gemeinsame meteorologische Grundlagen; eigene Beispiele ohne lokale Wetter-, Produkt- oder Sicherheitsfreigabe."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "National Physical Laboratory: Dew point and relative humidity",
+          "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity",
+          "organization": "National Physical Laboratory, UK",
+          "supports": "Originaltext mit Gleichung 1 und Unterscheidung Tau-/Frostpunkt gelesen: Verhältnis tatsächlicher zu Sättigungsdampfdruck, Temperaturabhängigkeit und Phasenbezug. Keine Magnus-Genauigkeit oder vollständige metrologische Rechnerfunktion übertragen."
+        },
+        {
+          "label": "PTB/DKD-R 5-8: Kalibrierung von Hygrometern, 2019",
+          "url": "https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf",
+          "organization": "Physikalisch-Technische Bundesanstalt / Deutscher Kalibrierdienst",
+          "supports": "Öffentlich indexierten Originalabschnitt mit Gleichungen 3–6 gelesen: relative Feuchte als Partialdruckverhältnis, Sättigung über Wasser versus Eis und Benennung Tau-/Frostpunkt. Direkter PDF-Abruf eingeschränkt; keine vollständige PDF-Lektüre behauptet."
+        },
+        {
+          "label": "Met Office: UKV AWS parameters, 2019",
+          "url": "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf",
+          "organization": "Met Office",
+          "supports": "Original-PDF gelesen, Seite 3: relative humidity als Dampfdruckverhältnis; dew point als Sättigung bei Abkühlung unter konstantem Druck und konstantem spezifischem Wasserdampfanteil. Historische Produktauflösungen/Zeitraster nicht übernommen."
+        },
+        {
+          "label": "NOAA/NWS: Dew Point vs Humidity",
+          "url": "https://www.weather.gov/arx/why_dewpoint_vs_humidity",
+          "organization": "NOAA National Weather Service, La Crosse",
+          "supports": "Originalseite gelesen: Sättigung bei Abkühlung unter konstantem Druck, relative Feuchte 100 Prozent und Unterschied zu Wasserdampfgehalt. Keine US-Komfortschwellen übernommen."
+        },
+        {
+          "label": "Met Office: Dew",
+          "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew",
+          "organization": "Met Office",
+          "supports": "Originalseite gelesen: Tauwasser kondensiert an Oberflächen, die den Taupunkt der benachbarten Luft erreichen beziehungsweise unterschreiten. Keine Maximalmenge oder Ernteempfehlung übernommen."
+        },
+        {
+          "label": "NWS Training: Dry Bulb, Wet Bulb and Dew Point Temperatures",
+          "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html",
+          "organization": "NOAA/NWS-Lehrseite, Fachabschnitt zu Taupunkttemperatur",
+          "supports": "Originalabschnitt Dry Bulb/Wet Bulb/Dew Point gelesen: Feuchte versus Taupunktabstand; Kondenswasser außen an einer kalten Flasche. Andere, vereinfachte atmosphärische Nebenangaben werden nicht übertragen."
+        },
+        {
+          "label": "Met Office: What is frost and ice?",
+          "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice",
+          "organization": "Met Office",
+          "supports": "Originalabschnitte gelesen: direkte Dampf-zu-Eis-Bildung, gefrorener vorheriger Tau, Wärmeabgabe von Oberflächen und Unterschied Luft-/Oberflächentemperatur."
+        },
+        {
+          "label": "NWS Training: Dew and Frost Development",
+          "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm",
+          "organization": "NOAA/NWS-Lehrseite, Jeff Haby",
+          "supports": "Originalabschnitte zur Tau- und Reifbildung gelesen: Oberflächenstrahlung, Taupunkt/Frostpunkt, direkte Ablagerung versus gefrorener Tau, Messhöhe versus Oberfläche. Vereinfachte Gleichsetzungen von Taupunkt und Frostpunkt ausdrücklich nicht übernommen."
+        },
+        {
+          "label": "Met Office: What is fog?",
+          "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/fog",
+          "organization": "Met Office",
+          "supports": "Originaltext gelesen: Nebel aus schwebenden kleinen Wassertröpfchen, bodennahe Wolke und Entstehungswege. Keine pauschale Nebelprognose oder Sichtweitenfreigabe abgeleitet."
+        },
+        {
+          "label": "NOAA JetStream: Types of Weather Phenomena – Fog",
+          "url": "https://www.noaa.gov/jetstream/synoptic/types-of-weather-phenomena",
+          "organization": "National Oceanic and Atmospheric Administration",
+          "supports": "Originalabschnitt Fog gelesen: bodennahe schwebende kleine Wassertröpfchen, im Gegensatz zu fallendem Nieselregen. Der Quellenbeleg trägt die Flüssigwasser-Nebel-Aussage; keine Sichtweitenregel oder Eiskristall-Aussage aus dieser Passage übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "feuchte-verhaeltnis",
+          "title": "Relative Feuchte braucht eine Temperatur und eine Referenz",
+          "paragraphs": [
+            "Gasförmiges Wasser in der Luft erzeugt einen Wasserdampfpartialdruck. Die relative Luftfeuchte setzt diesen tatsächlichen Dampfdruck ins Verhältnis zum Sättigungsdampfdruck bei derselben Temperatur und demselben Druck. Häufig wird der Wert in Prozent angegeben. Der normale meteorologische Bezug ist eine flüssige Wasseroberfläche; der Bezug auf Eis muss bei anderen Definitionen ausdrücklich benannt werden.",
+            "Für das vereinfachte Rechenschema gilt: relative Feuchte gleich 100 mal tatsächlicher Dampfdruck geteilt durch Sättigungsdampfdruck. Eigenes Beispiel mit vorgegebenen Druckwerten:10 hPa geteilt durch 20 hPa ergeben 50 Prozent. Das sind bewusst gewählte Verhältniswerte, keine Messung und keine Behauptung über eine bestimmte Lufttemperatur.",
+            "Der Sättigungsdampfdruck über Wasser steigt mit der Temperatur. Deshalb können zwei Luftmassen mit derselben relativen Feuchte verschiedene tatsächliche Dampfdruckwerte haben. Relative Feuchte allein ist keine absolute Mengenangabe. Bei 100 Prozent stimmen tatsächlicher Dampfdruck und gewählter Sättigungsbezug überein; daraus folgt noch keine bestimmte Niederschlagsmenge."
+          ],
+          "takeaway": "Prozent relative Feuchte beschreibt ein temperaturbezogenes Verhältnis und keine Grammzahl pro Luftvolumen.",
+          "exercise": "Berechne für vorgegebene 12 hPa und 24 hPa die relative Feuchte und benenne den Nenner.",
+          "evidence": [
+            {
+              "claim": "Relative Feuchte ist das Verhältnis tatsächlichen Wasserdampfpartialdrucks zum Sättigungsdampfdruck bei gleichem Druck und gleicher Temperatur. Wasser-/Eisbezug sind zu benennen.10/20×100=50 Prozent ist ein eigenes Verhältnisbeispiel ohne Ortsmessung.",
+              "sources": [
+                {
+                  "label": "National Physical Laboratory: Dew point and relative humidity",
+                  "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+                },
+                {
+                  "label": "PTB/DKD-R 5-8: Kalibrierung von Hygrometern, 2019",
+                  "url": "https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf"
+                },
+                {
+                  "label": "Met Office: UKV AWS parameters, 2019",
+                  "url": "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf"
+                }
+              ]
+            },
+            {
+              "claim": "Sättigungsdampfdruck über Wasser steigt mit Temperatur; gleiche relative Feuchte bedeutet deshalb nicht zwingend gleichen tatsächlichen Dampfdruck.100 Prozent bedeutet Gleichheit mit dem gewählten Sättigungsbezug, keine absolute Wassermenge oder Niederschlagsrate.",
+              "sources": [
+                {
+                  "label": "National Physical Laboratory: Dew point and relative humidity",
+                  "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+                },
+                {
+                  "label": "Met Office: UKV AWS parameters, 2019",
+                  "url": "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf"
+                },
+                {
+                  "label": "NOAA/NWS: Dew Point vs Humidity",
+                  "url": "https://www.weather.gov/arx/why_dewpoint_vs_humidity"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abkuehlen-taupunkt",
+          "title": "Der Taupunkt beschreibt Sättigung beim Abkühlen",
+          "paragraphs": [
+            "Die Taupunkttemperatur ist die Temperatur, auf die eine Luftmenge bei gleichbleibendem Druck und unverändertem Wasserdampfanteil abgekühlt werden müsste, um Sättigung gegenüber flüssigem Wasser zu erreichen. Solange keine Kondensation oder kein Wasserdampfaustausch stattfindet, beschreibt der Taupunkt denselben vorhandenen Feuchteanteil.",
+            "Kühlt diese zunächst ungesättigte Luft unter den genannten Bedingungen ab, sinkt der Sättigungsdampfdruck. Ihr Verhältniswert, die relative Feuchte, steigt. Stimmen Lufttemperatur und Taupunkt überein, beträgt die relative Feuchte bei diesem Wasserbezug 100 Prozent. Der Temperatur-Taupunkt-Abstand heißt auch Spread; ein kleiner Abstand kennzeichnet eine Luftmenge näher an der Sättigung.",
+            "Wird dieselbe Luft bei unverändertem Druck und Wasserdampfanteil erwärmt, sinkt die relative Feuchte, während der Taupunkt gleich bleibt. Erwärmen allein entfernt also kein Wasser aus dieser Luftmenge. Die Aussagen gelten für den beschriebenen Vergleich. Beim Mischen von Luftmassen, bei Druckänderung oder nach Abscheidung von Wasser müssen die Voraussetzungen neu betrachtet werden."
+          ],
+          "takeaway": "Abkühlen kann die relative Feuchte erhöhen, obwohl kein Wasserdampf hinzukommt.",
+          "exercise": "Beschreibe getrennt, was sich beim reinen Erwärmen mit relativer Feuchte und Taupunkt ändert.",
+          "evidence": [
+            {
+              "claim": "Taupunkt ist Sättigung über flüssigem Wasser beim Abkühlen mit konstantem Druck und spezifischem Wasserdampfanteil. Bei Lufttemperatur gleich Taupunkt ist relative Feuchte 100 Prozent; kleiner Abstand bedeutet größere Sättigungsnähe.",
+              "sources": [
+                {
+                  "label": "Met Office: UKV AWS parameters, 2019",
+                  "url": "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf"
+                },
+                {
+                  "label": "NOAA/NWS: Dew Point vs Humidity",
+                  "url": "https://www.weather.gov/arx/why_dewpoint_vs_humidity"
+                },
+                {
+                  "label": "National Physical Laboratory: Dew point and relative humidity",
+                  "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+                }
+              ]
+            },
+            {
+              "claim": "Vergleich bei konstantem Druck und unverändertem Wasserdampfanteil bis zur Sättigung: Abkühlung erhöht die relative Feuchte; bloßes Erwärmen senkt sie und lässt den Taupunkt gleich. Eigene qualitative Ableitung aus Dampfdruckverhältnis und Taupunktdefinition; nicht auf Mischen/Druckwechsel/Kondensatverlust übertragen.",
+              "sources": [
+                {
+                  "label": "National Physical Laboratory: Dew point and relative humidity",
+                  "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+                },
+                {
+                  "label": "Met Office: UKV AWS parameters, 2019",
+                  "url": "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf"
+                },
+                {
+                  "label": "NOAA/NWS: Dew Point vs Humidity",
+                  "url": "https://www.weather.gov/arx/why_dewpoint_vs_humidity"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kalte-oberflaechen",
+          "title": "Bei Beschlag zählt die Oberfläche, nicht nur die Luftanzeige",
+          "paragraphs": [
+            "Für Tauwasser an einem Gegenstand ist seine Oberflächentemperatur im Verhältnis zum Taupunkt der unmittelbar benachbarten Luft entscheidend. Eine ausreichend kalte Oberfläche kann Wassertröpfchen tragen, obwohl die weiter entfernte Raumluft noch unter 100 Prozent relativer Feuchte liegt. Ein Luftthermometer misst daher nicht automatisch die Temperatur einer Linse, eines Gehäuses oder einer Sitzfläche.",
+            "Eigenes Ausrüstungsbeispiel: Ein ausgekühltes optisches Gerät kommt in wärmere feuchte Luft. Liegt seine Außenfläche zunächst unter deren Taupunkt, kann sich außen Kondenswasser bilden. Das Wasser stammt in diesem Modell aus der benachbarten Luft und setzt keinen Regen voraus. Die Erklärung ist keine Feststellung über Dichtheit oder Schäden eines konkreten Produkts; dafür sind Zustand und Herstellerunterlagen gesondert zu prüfen.",
+            "Auch draußen kann eine Oberfläche in klaren, ruhigen Nächten durch langwellige Wärmeabgabe stärker abkühlen als die Luft in üblicher Messhöhe. Deshalb ist eine positive Lufttemperatur kein Beweis für eine ebenso warme Oberfläche. Luftzustand, Oberfläche und zeitlicher Temperaturausgleich werden getrennt betrachtet; daraus entsteht hier keine Garantie trockener Ausrüstung oder sicherer Bodenverhältnisse."
+          ],
+          "takeaway": "Kondensation an Ausrüstung hängt vom örtlichen Taupunkt und von der tatsächlichen Oberflächentemperatur ab.",
+          "exercise": "Benenne im kalten-Gerät-warme-Luft-Beispiel die zwei verschiedenen Temperaturen, die verglichen werden.",
+          "evidence": [
+            {
+              "claim": "Kondensation an einer kalten Oberfläche hängt von deren Temperatur gegenüber dem Taupunkt benachbarter Luft ab. Das eigene kalte-Optik-in-warmer-Luft-Beispiel erklärt eine mögliche äußere Kondensation und ist keine Dichtheitsdiagnose.",
+              "sources": [
+                {
+                  "label": "Met Office: Dew",
+                  "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew"
+                },
+                {
+                  "label": "NWS Training: Dry Bulb, Wet Bulb and Dew Point Temperatures",
+                  "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html"
+                }
+              ]
+            },
+            {
+              "claim": "Offene Oberflächen können in klaren ruhigen Nächten durch langwellige Wärmeabgabe stärker als die Luft in Messhöhe abkühlen. Luftthermometer beschreiben ihren Messort, keine garantierte Temperatur jeder Oberfläche.",
+              "sources": [
+                {
+                  "label": "Met Office: What is frost and ice?",
+                  "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice"
+                },
+                {
+                  "label": "NWS Training: Dew and Frost Development",
+                  "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm"
+                },
+                {
+                  "label": "NWS Training: Dry Bulb, Wet Bulb and Dew Point Temperatures",
+                  "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tau-nebel-reif",
+          "title": "Tau, Nebel und Reif unterscheiden sich nach Ort und Phase",
+          "paragraphs": [
+            "Bei Kondensation wird gasförmiges Wasser zu flüssigen Tröpfchen. Tau ist ein flüssiger Belag auf einer Oberfläche. Flüssiger Nebel besteht dagegen aus sehr kleinen in der bodennahen Luft schwebenden Wassertröpfchen. Beide können aus Wasserdampf entstehen, befinden sich danach aber an verschiedenen Orten. Eine sichtbare Tröpfchenschicht wird nicht mit dem ursprünglichen gasförmigen Zustand gleichgesetzt.",
+            "Reif im engeren Sinn entsteht, wenn Wasserdampf direkt als Eiskristalle auf einer ausreichend kalten Oberfläche abgeschieden wird. Der Übergang heißt Resublimation oder Deposition. Zunächst flüssig gebildeter Tau, der später gefriert, hat einen anderen Entstehungsweg. Eine Eisauflage kann daher nicht allein aufgrund ihrer Farbe sicher diesem oder jenem Prozess zugeordnet werden.",
+            "Bei Eis ist der Frostpunkt die Sättigungstemperatur bezogen auf Eis; der Taupunkt bezieht sich auf flüssiges Wasser. Die beiden Sättigungsbezüge sind nicht beliebig austauschbar. Unterhalb des Gefrierpunkts werden deshalb Begriffe und Feuchtebezug ausdrücklich genannt. Auch unterkühlte flüssige Tröpfchen sind möglich; eine negative Lufttemperatur allein bestimmt nicht die gesamte Phasengeschichte einer beobachteten Ablagerung."
+          ],
+          "takeaway": "Oberflächenwasser, schwebende Tröpfchen und direkt abgeschiedenes Eis sind verschiedene Zustände und Entstehungswege.",
+          "exercise": "Trenne schriftlich Wasserdampf→Tau→gefrorener Tau von Wasserdampf→Reif.",
+          "evidence": [
+            {
+              "claim": "Kondensation schafft flüssige Tröpfchen: Tau liegt auf Oberflächen, flüssiger Nebel besteht aus schwebenden bodennahen Tröpfchen.",
+              "sources": [
+                {
+                  "label": "Met Office: Dew",
+                  "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew"
+                },
+                {
+                  "label": "Met Office: What is fog?",
+                  "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/fog"
+                },
+                {
+                  "label": "NOAA JetStream: Types of Weather Phenomena – Fog",
+                  "url": "https://www.noaa.gov/jetstream/synoptic/types-of-weather-phenomena"
+                },
+                {
+                  "label": "NWS Training: Dew and Frost Development",
+                  "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm"
+                }
+              ]
+            },
+            {
+              "claim": "Reif im engeren Sinn ist direkte Dampf-zu-Eis-Abscheidung. Zunächst kondensierter, anschließend gefrorener Tau hat eine andere Phasenfolge; negative Temperatur allein legt die Vorgeschichte nicht fest.",
+              "sources": [
+                {
+                  "label": "Met Office: What is frost and ice?",
+                  "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice"
+                },
+                {
+                  "label": "NWS Training: Dew and Frost Development",
+                  "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm"
+                }
+              ]
+            },
+            {
+              "claim": "Frostpunkt bezieht die Sättigung auf Eis, Taupunkt auf flüssiges Wasser. Die Bezüge sind nicht beliebig austauschbar, insbesondere unter 0°C.",
+              "sources": [
+                {
+                  "label": "National Physical Laboratory: Dew point and relative humidity",
+                  "url": "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+                },
+                {
+                  "label": "PTB/DKD-R 5-8: Kalibrierung von Hygrometern, 2019",
+                  "url": "https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "feuchte-verhaeltnis",
+          "q": "Welche Größen werden für die relative Feuchte bei festgelegtem Sättigungsbezug miteinander verglichen?",
+          "options": [
+            "Luftdruck und Windgeschwindigkeit.",
+            "Taupunkttemperatur und Sichtweite.",
+            "Tatsächlicher Dampfdruck und Sättigungsdampfdruck.",
+            "Oberflächenmasse und Wasserdampfdichte."
+          ],
+          "answer": 2,
+          "explain": "Die relative Feuchte ist ein Verhältnis bei gleicher Temperatur und gleichem Druck; eine Mengenangabe braucht zusätzliche Bedingungen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "feuchte-verhaeltnis",
+          "q": "Ein Lernbeispiel gibt 10 hPa tatsächlichen Dampfdruck und 20 hPa Sättigungsdampfdruck vor. Welche relative Feuchte folgt?",
+          "options": [
+            "50 Prozent.",
+            "10 Prozent.",
+            "20 Prozent.",
+            "200 Prozent."
+          ],
+          "answer": 0,
+          "explain": "10÷20×100 ergibt 50 Prozent. Die vorgegebenen Werte sind ein Rechenbeispiel ohne Orts- oder Temperaturmessung."
+        },
+        {
+          "id": "q3",
+          "lessonId": "feuchte-verhaeltnis",
+          "q": "Was gilt bei 100 Prozent relativer Feuchte bezüglich des gewählten Sättigungsbezugs?",
+          "options": [
+            "Die Luft besteht vollständig aus Wasserdampf.",
+            "Tatsächlicher und Sättigungsdampfdruck sind gleich.",
+            "Ein Kubikmeter Luft enthält genau 100 Gramm Wasser.",
+            "Es regnet zwingend mit einer festen Intensität."
+          ],
+          "answer": 1,
+          "explain": "100 Prozent kennzeichnet das Erreichen des Bezugswerts. Es ist keine Zusammensetzung aus 100 Prozent Wasser."
+        },
+        {
+          "id": "q4",
+          "lessonId": "feuchte-verhaeltnis",
+          "q": "Wie verändert sich der Sättigungsdampfdruck über flüssigem Wasser bei steigender Temperatur?",
+          "options": [
+            "Er sinkt.",
+            "Er bleibt unverändert.",
+            "Er wird zur Windgeschwindigkeit.",
+            "Er steigt."
+          ],
+          "answer": 3,
+          "explain": "Der Temperaturbezug verändert den Nenner der relativen Feuchte. Gleiche Prozentwerte müssen deshalb keine gleiche tatsächliche Feuchte bedeuten."
+        },
+        {
+          "id": "q5",
+          "lessonId": "abkuehlen-taupunkt",
+          "q": "Was bezeichnet die Taupunkttemperatur einer Luftmenge?",
+          "options": [
+            "Die Temperatur beim Verdunsten des letzten Tropfens im Boden.",
+            "Die Temperatur der Sättigung über Wasser beim Abkühlen mit konstantem Druck und Wasserdampfanteil.",
+            "Die höchste Sonnentemperatur auf einer dunklen Oberfläche.",
+            "Die Temperatur der Sättigung allein durch Druckerhöhung."
+          ],
+          "answer": 1,
+          "explain": "Der Taupunkt beschreibt einen definierten Abkühlvergleich. Temperatur, Druck und Wasserdampfanteil dürfen dabei nicht beliebig zugleich verändert werden."
+        },
+        {
+          "id": "q6",
+          "lessonId": "abkuehlen-taupunkt",
+          "q": "Wie ändert sich die relative Feuchte ungesättigter Luft beim Abkühlen mit konstantem Druck und unverändertem Wasserdampfanteil bis zur Sättigung?",
+          "options": [
+            "Sie sinkt.",
+            "Sie bleibt immer gleich.",
+            "Sie steigt.",
+            "Sie wird zu einer Regenmenge."
+          ],
+          "answer": 2,
+          "explain": "Mit sinkender Temperatur nimmt der Sättigungsdampfdruck ab; der relative Anteil des vorhandenen Dampfdrucks wird größer."
+        },
+        {
+          "id": "q7",
+          "lessonId": "abkuehlen-taupunkt",
+          "q": "Was geschieht beim Erwärmen einer Luftmenge mit konstantem Druck und unverändertem Wasserdampfanteil mit ihrem Taupunkt?",
+          "options": [
+            "Er steigt zwingend mit jedem Grad Lufttemperatur.",
+            "Er sinkt zwangsläufig auf 0°C.",
+            "Er entspricht anschließend immer der Lufttemperatur.",
+            "Er bleibt gleich."
+          ],
+          "answer": 3,
+          "explain": "Reines Erwärmen entfernt im beschriebenen Vergleich keinen Wasserdampf. Die relative Feuchte sinkt, der Taupunkt bleibt gleich."
+        },
+        {
+          "id": "q8",
+          "lessonId": "abkuehlen-taupunkt",
+          "q": "Was kennzeichnet ein kleiner Temperatur-Taupunkt-Abstand bei derselben Luftmenge und Bezug auf flüssiges Wasser?",
+          "options": [
+            "Eine Luftmenge näher an der Sättigung.",
+            "Eine besonders große Differenz zum Sättigungszustand.",
+            "Eine bereits festgelegte Regenmenge.",
+            "Einen sicher trockenen Gegenstand unabhängig von dessen Temperatur."
+          ],
+          "answer": 0,
+          "explain": "Je näher Lufttemperatur und Taupunkt liegen, desto weniger Abkühlung fehlt unter konstanten Vergleichsbedingungen zur Sättigung."
+        },
+        {
+          "id": "q9",
+          "lessonId": "kalte-oberflaechen",
+          "q": "Welche Temperaturen werden für die Bildung von Tauwasser auf einem Gegenstand unmittelbar verglichen?",
+          "options": [
+            "Nur die Lufttemperaturen zweier ferner Wetterstationen.",
+            "Seine Kerntemperatur und die höchste Tagestemperatur.",
+            "Die Außentemperatur und die Körpertemperatur der beobachtenden Person.",
+            "Seine Oberflächentemperatur und der Taupunkt der benachbarten Luft."
+          ],
+          "answer": 3,
+          "explain": "An der kalten Grenzfläche kann Wasser kondensieren. Die entfernte Lufttemperatur beschreibt diese Oberfläche nicht vollständig."
+        },
+        {
+          "id": "q10",
+          "lessonId": "kalte-oberflaechen",
+          "q": "Welcher Prozess kann eine offen liegende Oberfläche in einer klaren, ruhigen Nacht unter die Lufttemperatur der Messhöhe abkühlen?",
+          "options": [
+            "Erwärmung durch direkte Sonnenstrahlung.",
+            "Langwellige Wärmeabgabe durch Strahlung.",
+            "Erhöhung der Oberflächentemperatur durch Reibung.",
+            "Aufnahme warmer Luft ohne Wärmeabgabe."
+          ],
+          "answer": 1,
+          "explain": "Oberflächen können nachts mehr Strahlungsenergie abgeben als aufnehmen. Der Temperaturverlauf kann von der Luft in Messhöhe abweichen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "kalte-oberflaechen",
+          "q": "Eine ausgekühlte Außenlinse wird in warme feuchte Luft gebracht und liegt unter deren Taupunkt. Welcher Vorgang erklärt einen dort neu entstehenden flüssigen Beschlag?",
+          "options": [
+            "Kondensation aus der benachbarten Luft.",
+            "Resublimation unmittelbar zu Eiskristallen.",
+            "Verdampfen des Glases.",
+            "Sublimation einer unverändert trockenen Oberfläche."
+          ],
+          "answer": 0,
+          "explain": "Die kalte Fläche kann Wasserdampf aus der Umgebung als flüssige Tröpfchen aufnehmen. Für dieses Modell ist kein Regen erforderlich."
+        },
+        {
+          "id": "q12",
+          "lessonId": "kalte-oberflaechen",
+          "q": "Welche Temperatur beschreibt ein frei aufgestelltes Luftthermometer zunächst?",
+          "options": [
+            "Zwingend die Temperatur jeder Linse im Revier.",
+            "Zwingend die tiefste Temperatur am gesamten Boden.",
+            "Die Lufttemperatur an seinem Messort.",
+            "Die Temperatur sämtlicher Gegenstände im selben Tal."
+          ],
+          "answer": 2,
+          "explain": "Luft- und Oberflächentemperatur können voneinander abweichen. Der Messort gehört deshalb zur Aussage."
+        },
+        {
+          "id": "q13",
+          "lessonId": "tau-nebel-reif",
+          "q": "Woraus besteht flüssiger Nebel in Bodennähe?",
+          "options": [
+            "Aus kleinen schwebenden Wassertröpfchen.",
+            "Aus einer zusammenhängenden Wasserhaut am Boden.",
+            "Ausschließlich aus gasförmigen Wassermolekülen ohne Tröpfchen.",
+            "Ausschließlich aus trockenen Staubteilchen."
+          ],
+          "answer": 0,
+          "explain": "Bei flüssigem Nebel ist Wasser bereits kondensiert und schwebt als kleine Tröpfchen in der Luft; Tau liegt auf Oberflächen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "tau-nebel-reif",
+          "q": "Welcher Phasenübergang bildet Reif im engeren Sinn direkt aus Wasserdampf?",
+          "options": [
+            "Flüssig zu gasförmig.",
+            "Fest zu flüssig.",
+            "Flüssig zu fest nach vorheriger Taubildung.",
+            "Gasförmig zu fest."
+          ],
+          "answer": 3,
+          "explain": "Direkte Eisabscheidung wird Resublimation oder Deposition genannt. Gefrorener vorheriger Tau hat einen anderen Entstehungsweg."
+        },
+        {
+          "id": "q15",
+          "lessonId": "tau-nebel-reif",
+          "q": "Welcher Ablauf beschreibt gefrorenen Tau?",
+          "options": [
+            "Wasserdampf lagert sich ausschließlich direkt als Eis ab.",
+            "Festes Eis schmilzt und verdunstet danach vollständig.",
+            "Wasserdampf kondensiert zu Tau, anschließend gefrieren die Tropfen.",
+            "Trockene Luft bildet ohne Wasseranteil eine Eisauflage."
+          ],
+          "answer": 2,
+          "explain": "Vor dem Gefrieren war das Wasser bei diesem Weg bereits flüssig. Das unterscheidet ihn von direkter Reifbildung."
+        },
+        {
+          "id": "q16",
+          "lessonId": "tau-nebel-reif",
+          "q": "Auf welche Phase bezieht sich der Sättigungszustand beim Frostpunkt?",
+          "options": [
+            "Auf flüssiges Wasser.",
+            "Auf Eis.",
+            "Auf trockenen Staub.",
+            "Auf wasserdampffreie Luft."
+          ],
+          "answer": 1,
+          "explain": "Frostpunkt und Taupunkt verwenden unterschiedliche Sättigungsbezüge. Der Taupunkt ist auf flüssiges Wasser bezogen."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begrenzter fachlicher Quellenabgleich der vier neuen Lektionen, Fragen und eigenen Verhältnisbeispiele.",
+        "independentOrganizations": [
+          "National Physical Laboratory",
+          "Physikalisch-Technische Bundesanstalt / DKD",
+          "Met Office",
+          "NOAA / National Weather Service"
+        ],
+        "limitations": [
+          "Die PTB/DKD-Richtlinie wurde im eng benannten öffentlichen Originalindexabschnitt gelesen; direkter PDF-Abruf eingeschränkt.",
+          "Met-Office-Seiten zählen als eine Institution, NOAA-/NWS-Seiten als eine Quellenfamilie.",
+          "Die NWS-Lehrseite nennt teils vereinfachend Taupunkt und Frostpunkt zusammen. Diese Gleichsetzung wird anhand NPL/PTB ausdrücklich vermieden.",
+          "Kein aktueller Taupunktrechner, keine Oberflächenmessung, Gerätepflege oder Dichtheitsdiagnose.",
+          "Kein universeller Regen-, Reif-, Sichtweiten- oder Sicherheitsgrenzwert."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-schall-pegel-ausbreitung-round3-2026",
+      "lessonId": "druckwelle-frequenz",
+      "claims": [
+        {
+          "claim": "Gewöhnlicher Luftschall ist eine longitudinale mechanische Druckschwingung; Frequenz/Hz und Druckamplitude sind verschiedene Größen.",
+          "sourceUrls": [
+            "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength",
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf"
+          ]
+        },
+        {
+          "claim": "Wellenlänge ist ein räumlicher Abstand, v=f·λ; bei gleicher Geschwindigkeit ist höhere Frequenz mit kürzerer Wellenlänge verbunden.340 m/s und 680 Hz sind eigene vorgegebene Modellwerte, daraus folgt 0,5 m.",
+          "sourceUrls": [
+            "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength",
+            "https://www.nasa.gov/wp-content/uploads/2023/02/speed_of_sound_9-12.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-schall-pegel-ausbreitung-round3-2026",
+      "lessonId": "pegel-logarithmus",
+      "claims": [
+        {
+          "claim": "Schalldruck in Pascal und logarithmischer Pegel sind getrennt; übliche Luftschallreferenz 20 µPa,0 dB bedeutet die Referenz und keinen fehlenden Schall.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+          ]
+        },
+        {
+          "claim": "Ein Intensitätsverhältnis 10:1 entspricht 10 dB,2:1 etwa 3 dB; keine universelle Lautheits- oder Tierhörregel wird daraus abgeleitet.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://openstax.org/books/college-physics-2e/pages/17-3-sound-intensity-and-sound-level"
+          ]
+        },
+        {
+          "claim": "Energetische Addition unabhängiger, nicht phasengekoppelter Beiträge bei gleicher Pegelgröße, Bewertung und vergleichbarem Zeitbezug: Zwei einzeln gleich starke Quellen 60 dB ergeben im eigenen Lernbeispiel etwa 63 dB.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5",
+            "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-schall-pegel-ausbreitung-round3-2026",
+      "lessonId": "quelle-ausbreitung",
+      "claims": [
+        {
+          "claim": "Schallleistung ist Schallenergie pro Zeit in Watt, Empfangsschalldruck hängt zusätzlich von Abstand und Umgebung ab. Schallleistungspegel und Schalldruckpegel sind verschiedene Größen.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+          ]
+        },
+        {
+          "claim": "Idealisiertes Freifeld ohne Reflexionen mit unveränderter isotroper Punktquelle außerhalb des Nahfelds: Abstandsverdopplung etwa−6 dB Schalldruckpegel.72 dB bei 10 m zu 66 dB bei 20 m ist eine eigene Modellrechnung, keine Wald-Hörreichweite.",
+          "sourceUrls": [
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5",
+            "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+          ]
+        },
+        {
+          "claim": "Reflektierende Flächen erzeugen zusätzliche Schallwege; ihre räumliche Pegelabnahme darf nicht einfach mit dem Freifeldmodell gleichgesetzt werden.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-schall-pegel-ausbreitung-round3-2026",
+      "lessonId": "bewertung-zeit",
+      "claims": [
+        {
+          "claim": "A-Bewertung gewichtet Frequenzanteile am menschlichen Gehör orientiert; sie ist weder eine Frequenzangabe noch eine artsübergreifende Tierhörkurve.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_basic.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5"
+          ]
+        },
+        {
+          "claim": "Leq beschreibt denselben energetischen Beitrag wie ein konstanter Verlauf über denselben Zeitraum. Spitzenpegel ist eine andere Messgröße als energetisches Zeitmittel beziehungsweise höchster zeitbewerteter Anzeigewert. Frequenzbewertung und Zeitraum gehören zur Einordnung.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/phys_agents/noise/noise_measurement.html",
+            "https://www.osha.gov/otm/section-3-health-hazards/chapter-5",
+            "https://parkplanning.nps.gov/showFile.cfm?projectID=12099&sfid=91304"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-luftfeuchte-taupunkt-round3-2026",
+      "lessonId": "feuchte-verhaeltnis",
+      "claims": [
+        {
+          "claim": "Relative Feuchte ist das Verhältnis tatsächlichen Wasserdampfpartialdrucks zum Sättigungsdampfdruck bei gleichem Druck und gleicher Temperatur. Wasser-/Eisbezug sind zu benennen.10/20×100=50 Prozent ist ein eigenes Verhältnisbeispiel ohne Ortsmessung.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity",
+            "https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf",
+            "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf"
+          ]
+        },
+        {
+          "claim": "Sättigungsdampfdruck über Wasser steigt mit Temperatur; gleiche relative Feuchte bedeutet deshalb nicht zwingend gleichen tatsächlichen Dampfdruck.100 Prozent bedeutet Gleichheit mit dem gewählten Sättigungsbezug, keine absolute Wassermenge oder Niederschlagsrate.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity",
+            "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf",
+            "https://www.weather.gov/arx/why_dewpoint_vs_humidity"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-luftfeuchte-taupunkt-round3-2026",
+      "lessonId": "abkuehlen-taupunkt",
+      "claims": [
+        {
+          "claim": "Taupunkt ist Sättigung über flüssigem Wasser beim Abkühlen mit konstantem Druck und spezifischem Wasserdampfanteil. Bei Lufttemperatur gleich Taupunkt ist relative Feuchte 100 Prozent; kleiner Abstand bedeutet größere Sättigungsnähe.",
+          "sourceUrls": [
+            "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf",
+            "https://www.weather.gov/arx/why_dewpoint_vs_humidity",
+            "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity"
+          ]
+        },
+        {
+          "claim": "Vergleich bei konstantem Druck und unverändertem Wasserdampfanteil bis zur Sättigung: Abkühlung erhöht die relative Feuchte; bloßes Erwärmen senkt sie und lässt den Taupunkt gleich. Eigene qualitative Ableitung aus Dampfdruckverhältnis und Taupunktdefinition; nicht auf Mischen/Druckwechsel/Kondensatverlust übertragen.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity",
+            "https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/data/ukv-aws-parameters-nov-2019.pdf",
+            "https://www.weather.gov/arx/why_dewpoint_vs_humidity"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-luftfeuchte-taupunkt-round3-2026",
+      "lessonId": "kalte-oberflaechen",
+      "claims": [
+        {
+          "claim": "Kondensation an einer kalten Oberfläche hängt von deren Temperatur gegenüber dem Taupunkt benachbarter Luft ab. Das eigene kalte-Optik-in-warmer-Luft-Beispiel erklärt eine mögliche äußere Kondensation und ist keine Dichtheitsdiagnose.",
+          "sourceUrls": [
+            "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew",
+            "https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html"
+          ]
+        },
+        {
+          "claim": "Offene Oberflächen können in klaren ruhigen Nächten durch langwellige Wärmeabgabe stärker als die Luft in Messhöhe abkühlen. Luftthermometer beschreiben ihren Messort, keine garantierte Temperatur jeder Oberfläche.",
+          "sourceUrls": [
+            "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice",
+            "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm",
+            "https://www.weather.gov/source/zhu/ZHU_Training_Page/definitions/dry_wet_bulb_definition/dry_wet_bulb.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-luftfeuchte-taupunkt-round3-2026",
+      "lessonId": "tau-nebel-reif",
+      "claims": [
+        {
+          "claim": "Kondensation schafft flüssige Tröpfchen: Tau liegt auf Oberflächen, flüssiger Nebel besteht aus schwebenden bodennahen Tröpfchen.",
+          "sourceUrls": [
+            "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew",
+            "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/fog",
+            "https://www.noaa.gov/jetstream/synoptic/types-of-weather-phenomena",
+            "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm"
+          ]
+        },
+        {
+          "claim": "Reif im engeren Sinn ist direkte Dampf-zu-Eis-Abscheidung. Zunächst kondensierter, anschließend gefrorener Tau hat eine andere Phasenfolge; negative Temperatur allein legt die Vorgeschichte nicht fest.",
+          "sourceUrls": [
+            "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/frost-and-ice",
+            "https://www.weather.gov/source/zhu/ZHU_Training_Page/fog_stuff/Dew_Frost/Dew_Frost.htm"
+          ]
+        },
+        {
+          "claim": "Frostpunkt bezieht die Sättigung auf Eis, Taupunkt auf flüssiges Wasser. Die Bezüge sind nicht beliebig austauschbar, insbesondere unter 0°C.",
+          "sourceUrls": [
+            "https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity",
+            "https://www.ptb.de/cms/fileadmin/internet/dienstleistungen/dkd/archiv/Publikationen/Richtlinien/DKD-R_5-8_2019.pdf"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Tierartspezifische Hörschwellen, sichere Entfernung und Waffen-/Impulslärmanleitung",
+      "reason": "Die physikalischen Messgrößen und Modelle erlauben keine solche universelle Beurteilung."
+    },
+    {
+      "topic": "Aktueller Taupunkt-, Frost- oder Nebelrechner und konkrete Gerätepflege",
+      "reason": "Keine örtliche Messung, Produktprüfung oder vollständige thermodynamische Berechnung implementiert; Beispiele bleiben Unterrichtsmodelle."
+    }
+  ]
+}

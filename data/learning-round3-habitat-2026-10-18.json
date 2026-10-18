@@ -1,0 +1,901 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Zwei botanische Aufbaukurse. Der Mooskurs behandelt vor allem Laubmoose; der Farnkurs erläutert den typischen Bau und geschlechtlichen Lebenszyklus vieler krautiger, gleichsporiger Farne. Keine vollständigen Artenschlüssel, Entnahme-, Verzehr- oder Bekämpfungsempfehlungen.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-laubmoose-2026",
+      "title": "Moose verstehen: Pflanzenkörper, Generationen und Sporenkapsel",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Laubmoose genauer kennenlernen: Rhizoide, Vorkeim, Geschlechtsorgane, Kapseldeckel und vegetative Brutkörper.",
+      "minutes": 40,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Gemeinsame Botanik vor allem der Laubmoose; keine vollständige Moosflora oder Entnahmefreigabe.",
+        "AT": "Gemeinsame Botanik vor allem der Laubmoose; keine vollständige Moosflora oder Entnahmefreigabe.",
+        "CH": "Gemeinsame Botanik vor allem der Laubmoose; keine vollständige Moosflora oder Entnahmefreigabe."
+      },
+      "objectives": [
+        "Rhizoide und den grünen Mooskörper zuordnen",
+        "Vorkeim, Geschlechtsorgane und Befruchtung unterscheiden",
+        "Seta, Kalyptra, Operculum und Peristom auseinanderhalten",
+        "Fragmentierung und besondere Brutkörper als vegetative Wege erklären"
+      ],
+      "sources": [
+        {
+          "label": "Australian National Botanic Gardens: What is a moss?, Heino Lepp",
+          "url": "https://www.anbg.gov.au/bryophyte/what-is-moss.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originalseite gelesen: Laubmooskörper, Rhizoide, Vorkeim, dominanter Gametophyt und verschiedene Kapselöffnungen. Keine australischen Artmaße oder starre Wurzellosigkeitsfolgen übertragen."
+        },
+        {
+          "label": "OpenStax / Rice University: Biology 2e, 25.3 Bryophytes",
+          "url": "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+          "organization": "OpenStax, Rice University",
+          "supports": "Abschnitte zu Bryophyten und Laubmoosen gelesen: Gametophyt, Rhizoide, Geschlechtsorgane, Meiose und Kapselstrukturen. Keine Bilder, Lehrbuchaufgaben oder Prosa übernommen; veraltete Arten-/Stammbaumangaben nicht verwendet."
+        },
+        {
+          "label": "Australian National Botanic Gardens: Life cycle in a nutshell",
+          "url": "https://www.anbg.gov.au/bryophyte/life-cycle-in-nutshell.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originalseite gelesen: haploider Vorkeim und Gametophyt, Antheridien/Archegonien, diploider Sporophyt und typische Fuß-Seta-Kapsel-Gliederung einschließlich Ausnahmen."
+        },
+        {
+          "label": "Australian National Botanic Gardens: Reproduction and dispersal",
+          "url": "https://anbg.gov.au/bryophyte/reproduction-dispersal.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originaltext gelesen: Wasserweg der Spermienzellen und geschlechtlicher Generationswechsel. Keine vereinfachende Gleichsetzung von Pollen mit einer einzelnen männlichen Keimzelle übernommen."
+        },
+        {
+          "label": "Australian National Botanic Gardens: Sporophyte development – Mosses",
+          "url": "https://www.anbg.gov.au/bryophyte/life-cycle-sporophyte-dev-mosses.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originalseite gelesen: junge Kalyptra, wachsende Seta, Kapsel und möglicher eigener Photosynthesebeitrag bei fortbestehender Versorgung vom Gametophyten. Keine Prozentwerte einzelner Arten verallgemeinert."
+        },
+        {
+          "label": "University of Auckland: Moss Life Cycle",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/moss-life-cycle.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: photosynthetisch dominanter haploider Gametophyt, abhängiger Sporophyt, Protonema und Knospenbildung. Keine neuseeländischen Artbeispiele als DACH-Artennachweise verwendet."
+        },
+        {
+          "label": "University of Auckland: Moss Sexual Reproduction",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/sexual-reproduction.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: Antheridien und Archegonien, gleicher oder getrennter Gametophyt, Spermienzellen im Wasser und Herkunft der Kalyptra."
+        },
+        {
+          "label": "University of Auckland: The Capsule Cover",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/the-capsule-cover.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: Kalyptra aus Archegoniumhülle, Seta und davon verschiedener Kapseldeckel Operculum. Keine Abbildungen übernommen."
+        },
+        {
+          "label": "University of Auckland: Capsule Opening",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/capsule-opening.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: Operculum, Peristom und Feuchtebewegung; ausdrücklich auch zahnlose und seitlich aufreißende Kapseln. Kein für alle Moose gleicher Öffnungsmechanismus behauptet."
+        },
+        {
+          "label": "Australian National Botanic Gardens: Vegetative Reproduction",
+          "url": "https://www.anbg.gov.au/bryophyte/vegetative-reproduction.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originalseite gelesen: ein Elternorganismus, regenerierende Fragmente, spezialisierte Gemmen und Brutkörper an Rhizoiden; artspezifische Regenerations- und Laborergebnisse nicht pauschalisiert."
+        },
+        {
+          "label": "University of Auckland: Moss Asexual Reproduction",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/asexual-reproduction.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: Regeneration aus Blatt-/Stämmchenteilen, spezialisierte Zellgruppen und Knöllchen an Rhizoiden. Keine arktischen Mengenangaben oder Kulturversuche übertragen."
+        },
+        {
+          "label": "Australian National Botanic Gardens: What is a bryophyte?",
+          "url": "https://anbg.gov.au/bryophyte/what-is-bryophyte.html",
+          "organization": "Australian National Botanic Gardens / Australian National Herbarium",
+          "supports": "Originalabschnitte Basic facts und Bryophytes and Water gelesen: Oberflächenaufnahme, äußere Kapillarleitung und unterschiedliche innere Leitung. Veraltete Artenzahlen und vereinfachende Einordnung als Evolutions-Zwischenstufe nicht übernommen."
+        },
+        {
+          "label": "University of Auckland: The Secret Life of Mosses, Animation description",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-mosses.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Schriftliche Originalbeschreibung gelesen, kein Video angesehen: photosynthetischer Gametophyt, teils leitende Gewebe und zeitweise photosynthetischer Sporophyt, Fuß/Seta/Kapsel sowie Meiose. Keine Animation oder Originalgrafik übernommen."
+        },
+        {
+          "label": "University of Auckland: Moss Stems, Leaves and Rhizoids",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/mosses/structure/stems-and-leaves.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: verschiedene Stämmchen-/Blattstellungen sowie mehrzellige verzweigte Rhizoide zur Verankerung. Keine universelle Blattzeilenzahl aus einzelnen Artbeispielen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "mooskoerper",
+          "title": "Grüner Mooskörper und Rhizoide gehören zusammen",
+          "paragraphs": [
+            "Dieser Kurs betrachtet vor allem Laubmoose. Ihr grüner, beblätterter Körper ist gewöhnlich die auffälligste und länger bestehende Generation: der Gametophyt. Viele Einzelpflänzchen stehen eng in einem Polster oder bilden kriechende Matten. Ein Polster ist daher nicht automatisch ein einzelnes Individuum. Stämmchen und Blättchen tragen zur grünen, photosynthetisch aktiven Oberfläche bei; die hochragende Sporenkapsel gehört zu einer anderen Generation.",
+            "An der Unterlage halten Rhizoide die Moospflanze fest. Bei Laubmoosen sind diese fadenartigen Strukturen mehrzellig und häufig verzweigt. Sie sehen oberflächlich wie Wurzeln aus, sind aber keine echten Wurzeln. Ihre Verankerungsfunktion darf nicht mit dem ganzen Wasserhaushalt der Pflanze gleichgesetzt werden. Wasser kann auch über die Oberfläche aufgenommen und außen in engen Zwischenräumen weitergeleitet werden. Manche Moose besitzen zudem spezialisierte innere Leitungszellen; aus dem Fehlen echter Wurzeln folgt also nicht, dass in einem Moos überhaupt kein Stofftransport stattfindet."
+          ],
+          "takeaway": "Der grüne Laubmooskörper ist meist der Gametophyt. Mehrzellige Rhizoide dienen der Verankerung und sind keine echten Wurzeln.",
+          "exercise": "Eigene Begriffsskizze: Beschrifte einen grünen Moosspross und seine fadenartigen Haftstrukturen. Eine Zeichnung erklärt den Bauplan und bestimmt keine Art."
+        },
+        {
+          "id": "vorkeim-befruchtung",
+          "title": "Vom Vorkeim über Geschlechtsorgane zur Zygote",
+          "paragraphs": [
+            "Aus einer keimenden Laubmoosspore entsteht gewöhnlich zunächst ein Vorkeim, das Protonema. Häufig bildet es verzweigte Zellfäden; andere Formen kommen vor. Daraus wachsen Knospen und später die beblätterten Moossprosse. Spore, Vorkeim und grüner Gametophyt besitzen im Grundmodell jeweils einen Chromosomensatz und heißen haploid. Das Protonema ist deshalb weder ein Pilzgeflecht noch schon eine neue Sporenkapsel.",
+            "Am Gametophyten entstehen Geschlechtsorgane. Antheridien bilden Spermienzellen; Archegonien enthalten Eizellen. Je nach Art stehen beide Organtypen auf derselben oder auf verschiedenen Moospflanzen. Für den Weg der beweglichen Spermienzellen zur Eizelle wird Wasser benötigt. Bei der Befruchtung vereinigen sich die Chromosomensätze: Es entsteht eine diploide Zygote. Aus ihr wächst der Sporophyt, der am Gametophyten befestigt bleibt und von ihm versorgt wird. Seine Zellen können selbst Photosynthese betreiben; die Verbindung ist trotzdem keine bloße Halterung."
+          ],
+          "takeaway": "Protonema und grüner Spross gehören zur haploiden Generation. Nach der Befruchtung wächst aus der diploiden Zygote der verbundene Sporophyt.",
+          "exercise": "Ordne auf einer eigenen Lebenszykluslinie Spore, Protonema, Gametophyt, Befruchtung und Sporophyt. Markiere den Wechsel von einem zu zwei Chromosomensätzen."
+        },
+        {
+          "id": "kapselbauteile",
+          "title": "Haube, Deckel und Kapselmund sind verschiedene Bauteile",
+          "paragraphs": [
+            "Ein typischer gestielter Laubmoossporophyt besitzt einen im Gametophyten verankerten Fuß, einen Kapselstiel und die Sporenkapsel. Der Stiel heißt Seta; er hebt die Kapsel über den grünen Mooskörper. In der Kapsel entstehen durch Meiose haploide Sporen. Nicht jedes Laubmoos besitzt einen langen sichtbaren Stiel. Der Grundbauplan erklärt Begriffe und ist keine ausnahmslose Formvorschrift.",
+            "Eine junge Kapsel kann eine Haube tragen: die Kalyptra. Sie geht aus der Hülle des mütterlichen Archegoniums hervor. Davon verschieden ist das Operculum, der Deckel der Kapsel selbst. Nach dessen Ablösung liegt bei vielen Laubmoosen der Kapselmund frei. Um ihn kann ein Peristom aus zahnartigen Strukturen sitzen, dessen feuchteabhängige Bewegungen die Sporenabgabe beeinflussen. Haube, Deckel und Zahnkranz sind somit nicht drei Namen desselben Teils. Es gibt auch Kapseln ohne Peristom und solche, die durch seitliche Spalten statt durch einen gedeckelten Mund öffnen."
+          ],
+          "takeaway": "Seta = Kapselstiel; Kalyptra = Haube aus der Archegoniumhülle; Operculum = Kapseldeckel; Peristom = Strukturen am Kapselmund.",
+          "exercise": "Eigene Beschriftungsübung ohne Originalabbildung: Ordne Stiel, Haube, Deckel und Zahnkranz den vier Begriffen zu. Ergänze, dass nicht jede Art alle Merkmale gleich ausbildet."
+        },
+        {
+          "id": "vegetative-vermehrung",
+          "title": "Neue Moospflanzen können aus vorhandenen Teilen wachsen",
+          "paragraphs": [
+            "Laubmoose sind nicht allein auf den Weg über Befruchtung und Sporenkapsel angewiesen. Bei vegetativer Vermehrung wächst eine neue Pflanze aus vorhandenem Gewebe eines Elternorganismus. Ein abgelöstes Blatt- oder Stämmchenstück kann sich unter geeigneten Bedingungen regenerieren. Die Teilung in solche Stücke heißt Fragmentierung. Ob ein bestimmtes Fragment anwächst, hängt von Art, erhaltenem Gewebe und Standortbedingungen ab; ein abgebrochenes Stück ist keine Erfolgsgarantie.",
+            "Daneben bilden manche Moose besondere vegetative Verbreitungseinheiten, sogenannte Brutkörper oder Gemmen. Das sind spezialisierte Zellgruppen oder kleine pflanzliche Gebilde, nicht aus Befruchtung hervorgegangene Samen. Sie können je nach Art an verschiedenen Stellen entstehen; bei einigen Laubmoosen sitzen knöllchenartige Brutkörper an Rhizoiden. Fragment und besonderer Brutkörper sind zwei unterschiedliche Ausgangsformen vegetativer Vermehrung. Beide setzen keine erneute Verschmelzung von Ei- und Spermienzelle voraus. Diese Unterscheidung erklärt, warum ein Moosbestand wachsen kann, obwohl gerade keine Sporenkapseln zu sehen sind."
+          ],
+          "takeaway": "Fragmentierung nutzt vorhandene Pflanzenteile; spezielle Brutkörper sind eigens gebildete Verbreitungseinheiten. Für beide genügt ein Elternorganismus.",
+          "exercise": "Eigener Vergleich: Stelle Blattfragment und Brutkörper dem Weg über befruchtete Eizelle und Sporenkapsel gegenüber. Daraus folgt keine Entnahme- oder Kulturaufforderung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "mooskoerper",
+          "q": "Wie heißen die fadenartigen Verankerungsstrukturen einer Laubmoospflanze?",
+          "options": [
+            "Hüllspelzen",
+            "Sporangien",
+            "Rhizoide",
+            "Antheridien"
+          ],
+          "answer": 2,
+          "explain": "Rhizoide befestigen die Moospflanze an ihrer Unterlage. Sie sind wurzelähnliche Haftstrukturen und keine echten Wurzeln."
+        },
+        {
+          "id": "q2",
+          "lessonId": "mooskoerper",
+          "q": "Wie sind Rhizoide von Laubmoosen im typischen Bau aufgebaut?",
+          "options": [
+            "Mehrzellig und häufig verzweigt",
+            "Einzellig ohne innere Querwände",
+            "Aus verholzten Gefäßbündeln",
+            "Aus einem Geflecht von Pilzhyphen"
+          ],
+          "answer": 0,
+          "explain": "Laubmoosrhizoide sind mehrzellig und können sich verzweigen. Ihr Bau ist von echten Wurzeln und von Pilzhyphen zu unterscheiden."
+        },
+        {
+          "id": "q3",
+          "lessonId": "mooskoerper",
+          "q": "Welche Generation bildet den auffälligen grünen, beblätterten Körper eines typischen Laubmooses?",
+          "options": [
+            "Die Sporenkapsel",
+            "Das Operculum",
+            "Die diploide Zygote",
+            "Der haploide Gametophyt"
+          ],
+          "answer": 3,
+          "explain": "Der grüne Mooskörper gehört zur haploiden Gametophytengeneration. Der daran wachsende Sporophyt mit Kapsel ist die andere Generation."
+        },
+        {
+          "id": "q4",
+          "lessonId": "mooskoerper",
+          "q": "Welcher grundlegende Stoffwechselprozess findet im grünen Gewebe eines Laubmoosgametophyten statt?",
+          "options": [
+            "Bildung von Blütenpollen",
+            "Photosynthese",
+            "Aufbau einer verholzten Jahresringfolge",
+            "Bildung einer Samenschale"
+          ],
+          "answer": 1,
+          "explain": "Der grüne Gametophyt betreibt Photosynthese. Laubmoose bilden weder Blütenpollen noch Samen; ihr grüner Körper ist eine selbst aktive Pflanzengeneration."
+        },
+        {
+          "id": "q5",
+          "lessonId": "vorkeim-befruchtung",
+          "q": "Wie heißt der gewöhnlich zuerst entstehende Vorkeim nach der Keimung einer Laubmoosspore?",
+          "options": [
+            "Peristom",
+            "Protonema",
+            "Operculum",
+            "Indusium"
+          ],
+          "answer": 1,
+          "explain": "Das Protonema ist der Vorkeim der Laubmoose. Häufig besteht es aus verzweigten Zellfäden, aus denen beblätterte Sprosse entstehen."
+        },
+        {
+          "id": "q6",
+          "lessonId": "vorkeim-befruchtung",
+          "q": "Welche Organe eines Moosgametophyten bilden die männlichen Spermienzellen?",
+          "options": [
+            "Archegonien",
+            "Sporenkapseln",
+            "Rhizoide",
+            "Antheridien"
+          ],
+          "answer": 3,
+          "explain": "Antheridien sind die spermienbildenden Geschlechtsorgane des Gametophyten. Die Eizellen liegen in Archegonien."
+        },
+        {
+          "id": "q7",
+          "lessonId": "vorkeim-befruchtung",
+          "q": "In welchen Organen des Moosgametophyten befinden sich die Eizellen?",
+          "options": [
+            "In Archegonien",
+            "In Peristomzähnen",
+            "In Antheridien",
+            "In Sporenkapseln"
+          ],
+          "answer": 0,
+          "explain": "Archegonien enthalten die Eizelle. Nach deren Befruchtung entwickelt sich dort die Zygote und daraus der junge Sporophyt."
+        },
+        {
+          "id": "q8",
+          "lessonId": "vorkeim-befruchtung",
+          "q": "Was entsteht im geschlechtlichen Laubmooszyklus unmittelbar aus der Verschmelzung von Ei- und Spermienzelle?",
+          "options": [
+            "Ein haploides Protonema",
+            "Ein haploider Brutkörper",
+            "Eine diploide Zygote",
+            "Eine fertige haploide Spore"
+          ],
+          "answer": 2,
+          "explain": "Die Befruchtung vereinigt zwei haploide Chromosomensätze zur diploiden Zygote. Sie ist der Ausgangspunkt des Sporophyten."
+        },
+        {
+          "id": "q9",
+          "lessonId": "kapselbauteile",
+          "q": "Wie heißt der Stiel, der bei vielen Laubmoosen die Sporenkapsel über den grünen Mooskörper hebt?",
+          "options": [
+            "Kalyptra",
+            "Operculum",
+            "Rhizoid",
+            "Seta"
+          ],
+          "answer": 3,
+          "explain": "Die Seta ist der Kapselstiel des Sporophyten. Ihre Länge und Ausprägung unterscheiden sich zwischen Moosgruppen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "kapselbauteile",
+          "q": "Wie heißt die Haube einer jungen Laubmooskapsel, die aus der Archegoniumhülle hervorgeht?",
+          "options": [
+            "Seta",
+            "Kalyptra",
+            "Peristom",
+            "Protonema"
+          ],
+          "answer": 1,
+          "explain": "Die Kalyptra stammt aus dem Gewebe der Archegoniumhülle. Sie liegt über dem jungen Sporophyten und ist vom Kapseldeckel zu unterscheiden."
+        },
+        {
+          "id": "q11",
+          "lessonId": "kapselbauteile",
+          "q": "Wie heißt der ablösbare Deckel einer entsprechend gebauten Laubmooskapsel?",
+          "options": [
+            "Protonema",
+            "Rhizoid",
+            "Operculum",
+            "Antheridium"
+          ],
+          "answer": 2,
+          "explain": "Das Operculum ist der Kapseldeckel. Nach seiner Ablösung können bei solchen Kapseln Sporen durch den Kapselmund freigegeben werden."
+        },
+        {
+          "id": "q12",
+          "lessonId": "kapselbauteile",
+          "q": "Wie heißt der Zahnkranz am Kapselmund vieler Laubmoose, der die Sporenabgabe beeinflussen kann?",
+          "options": [
+            "Peristom",
+            "Kalyptra",
+            "Blattspreite",
+            "Archegonium"
+          ],
+          "answer": 0,
+          "explain": "Das Peristom besteht aus Strukturen am Kapselmund. Feuchteabhängige Bewegungen können die Sporenabgabe beeinflussen; nicht jedes Laubmoos besitzt ein solches Peristom."
+        },
+        {
+          "id": "q13",
+          "lessonId": "vegetative-vermehrung",
+          "q": "Was kann bei geeigneten Bedingungen aus einem abgelösten Blatt- oder Stämmchenfragment eines Laubmooses entstehen?",
+          "options": [
+            "Eine neue Moospflanze durch Regeneration",
+            "Eine Samenpflanze durch Bestäubung",
+            "Ein Fruchtkörper durch Pilzbildung",
+            "Eine Blüte durch Verschmelzung mit Pollen"
+          ],
+          "answer": 0,
+          "explain": "Moosgewebe kann sich vegetativ regenerieren. Ein erhaltener Teil bildet unter geeigneten Bedingungen eine neue Pflanze, ohne zuvor eine neue Befruchtung zu durchlaufen."
+        },
+        {
+          "id": "q14",
+          "lessonId": "vegetative-vermehrung",
+          "q": "Wie heißen eigens gebildete kleine Zellgruppen, mit denen sich manche Laubmoose vegetativ verbreiten?",
+          "options": [
+            "Pollenkörner oder Staubbeutel",
+            "Samenanlagen oder Fruchtknoten",
+            "Brutkörper oder Gemmen",
+            "Archegonien oder Antheridien"
+          ],
+          "answer": 2,
+          "explain": "Brutkörper beziehungsweise Gemmen sind spezialisierte vegetative Verbreitungseinheiten. Sie sind von Geschlechtsorganen und von Samen zu unterscheiden."
+        },
+        {
+          "id": "q15",
+          "lessonId": "vegetative-vermehrung",
+          "q": "Wie viele Elternorganismen sind für die vegetative Entstehung einer neuen Moospflanze aus einem Fragment erforderlich?",
+          "options": [
+            "Zwei mit getrennten Geschlechtsorganen",
+            "Einer mit regenerationsfähigem Gewebe",
+            "Drei mit verschiedenen Sporenkapseln",
+            "Vier mit gemeinsamem Peristom"
+          ],
+          "answer": 1,
+          "explain": "Vegetative Vermehrung geht von einem Elternorganismus aus. Die neue Pflanze entsteht aus dessen Gewebe; die Vereinigung zweier Gameten gehört zu einem anderen Fortpflanzungsweg."
+        },
+        {
+          "id": "q16",
+          "lessonId": "vegetative-vermehrung",
+          "q": "An welchen fadenartigen Strukturen können einige Laubmoose knöllchenartige vegetative Brutkörper bilden?",
+          "options": [
+            "An den Setae reifer Sporenkapseln",
+            "An den Zähnen des Peristoms",
+            "An den Deckeln der Sporenkapseln",
+            "An den Rhizoiden"
+          ],
+          "answer": 3,
+          "explain": "Bei einigen Laubmoosen werden Brutknöllchen an Rhizoiden gebildet. Dies ist eine artspezifische Möglichkeit und kein Merkmal aller Moose."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-farnbau-2026",
+      "title": "Farne verstehen: Rhizom, Wedel und der Weg von der Spore zur Pflanze",
+      "category": "Wald & Pflanzen",
+      "topic": "Wald & Pflanzen",
+      "description": "Farnteile zuordnen und den Unterschied zwischen Blatt, Sporenbehälter und kleiner Geschlechtspflanze verstehen.",
+      "minutes": 40,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Botanisches Grundmodell vieler krautiger, gleichsporiger Farne; keine vollständige Farnflora oder Verzehrfreigabe.",
+        "AT": "Botanisches Grundmodell vieler krautiger, gleichsporiger Farne; keine vollständige Farnflora oder Verzehrfreigabe.",
+        "CH": "Botanisches Grundmodell vieler krautiger, gleichsporiger Farne; keine vollständige Farnflora oder Verzehrfreigabe."
+      },
+      "objectives": [
+        "Rhizom, Wurzeln und Wedel auseinanderhalten",
+        "Stiel, Rhachis, Fiedern und Fiederchen richtig zuordnen",
+        "Sporangium, Sorus, Indusium und fertile Wedel unterscheiden",
+        "Vorkeim, Wasserweg der Gameten und Entstehung des Sporophyten erklären"
+      ],
+      "sources": [
+        {
+          "label": "American Fern Society: About Ferns, Jerald Pinson",
+          "url": "https://www.amerfernsoc.org/about-ferns",
+          "organization": "American Fern Society",
+          "supports": "Abschnitte Shared derived traits und Lifecycle gelesen: Rhizom/Wedelgliederung, eingerollte junge Wedel, Sporangien/Sori/Indusium sowie verschiedene Gametophyten. Keine historischen Artenzahlen oder vereinfachenden Aussagen zu fossilen Brennstoffen übernommen."
+        },
+        {
+          "label": "Illinois Department of Natural Resources: Wild About Illinois Ferns!",
+          "url": "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+          "organization": "Illinois Department of Natural Resources",
+          "supports": "Originalabschnitte Morphology, Life Cycle und Glossary gelesen: Wurzel tragendes Rhizom, Wedelgliederung und typischer geschlechtlicher Lebenszyklus. Keine US-Artenzahlen, 64-Sporen-Regel oder Verzehrinformation übertragen."
+        },
+        {
+          "label": "University of Auckland: The fern frond",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/frond.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: ungeteilte und mehrfach gefiederte Wedel, Stipe/Rhachis/Fiedern und eingerollte Jungblätter. Keine neuseeländischen Arten als heimische Beispiele ausgegeben."
+        },
+        {
+          "label": "University of Auckland: The fern stem",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/stem.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: Leitgewebe, kriechender Spross/Rhizom und abweichende aufrechte Achsen. Keine Baumfarn-Höhen oder neuseeländischen Wachstumsangaben übertragen."
+        },
+        {
+          "label": "Botanischer Garten und Botanisches Museum Berlin: Die Sporenwedel der Farne",
+          "url": "https://www.bgbm.org/de/infotainment/die-sporenwedel-der-farne",
+          "organization": "Botanischer Garten und Botanisches Museum Berlin, Freie Universität Berlin",
+          "supports": "Originaltext gelesen: fertile/sterile beziehungsweise gemischt funktionierende Wedel, Sporangien, Sori und variable Indusien. Keine Abbildungen oder mechanistischen Zahlen übernommen."
+        },
+        {
+          "label": "University of Auckland: Fern Sporangium",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/ferns/reproduction/sporangium.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: einzelne Sporangien, Sori, verschiedene Hüllen und Hüllenausfall. Wertende Begriffe wie primitive/more advanced nicht übernommen."
+        },
+        {
+          "label": "University of Auckland: Fertile and sterile fronds",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/fertile-sterile-fronds.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Originaltext gelesen: sporangientragende und nicht sporangientragende Wedel sowie Unterschiede einzelner Fiedern. Nicht jede Art besitzt zwei verschieden aussehende Wedeltypen."
+        },
+        {
+          "label": "University of Auckland: The Secret Life of Ferns, Animation description",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-ferns.html",
+          "organization": "University of Auckland, School of Biological Sciences",
+          "supports": "Schriftliche Originalbeschreibung gelesen, nicht Video angesehen: typischer haploider Gametophyt, Meiose, Wasserfilm bei Befruchtung und junge Sporophyten. Keine Animation oder Medien übernommen und keine universelle Vorkeimform behauptet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "rhizom-wedel",
+          "title": "Ein Rhizom ist eine Sprossachse, ein Wedel ist ein Blatt",
+          "paragraphs": [
+            "Viele krautige Farne besitzen eine kriechende Sprossachse, die im Boden oder an dessen Oberfläche verläuft: das Rhizom. Von ihr gehen Wurzeln und Blätter aus. Trotz seiner unterirdischen Lage ist das Rhizom also keine Wurzel. Andere Farne besitzen kurze aufsteigende oder aufrechte Achsen; das kriechende Modell beschreibt nicht jede Farnform. Farne verfügen über Leitgewebe, mit dem Stoffe im Pflanzenkörper transportiert werden.",
+            "Das ganze Farnblatt heißt Wedel. Bei vielen Arten ist ein junger Wedel zunächst spiralig eingerollt und entfaltet sich während des Wachstums. Die Bezeichnung umfasst später sowohl seinen Stiel als auch seine Blattspreite. Die große, gewöhnlich sichtbare Farnpflanze ist der Sporophyt. Im geschlechtlichen Lebenszyklus bildet diese Generation Sporen, nicht Samen oder Blüten. Die kleine gametenbildende Generation ist ein anderer Entwicklungsabschnitt und wird in der letzten Lektion behandelt. Ein Rhizom, ein Blatt und eine Pflanzengeneration sind somit drei verschiedene Betrachtungsebenen."
+          ],
+          "takeaway": "Das Rhizom ist Spross, der Wedel ist Blatt. Die auffällige Farnpflanze gehört zur sporenbildenden Generation.",
+          "exercise": "Eigene Bauplanskizze: Zeichne eine kriechende Achse mit Wurzeln, einem eingerollten jungen und einem entfalteten Wedel. Das Schema ersetzt keine Artbestimmung."
+        },
+        {
+          "id": "wedelgliederung",
+          "title": "Vom Stiel über die Rhachis zu Fiedern und Fiederchen",
+          "paragraphs": [
+            "Am Farnwedel unterscheidet man den unteren Blattstiel und die Spreite. Der freie Stielabschnitt wird in Fachbeschreibungen Stipe genannt. Seine Fortsetzung durch die Spreite ist die Rhachis, die Hauptachse des gefiederten Blattes. Eine Fieder, lateinisch Pinna, ist ein erster seitlicher Abschnitt der Spreite. Diese Begriffe benennen Teile eines Blattes und nicht mehrere selbstständige Farnpflanzen.",
+            "Bei einem einfach gefiederten Wedel stehen Fiedern an der Rhachis. Sind die Fiedern selbst weiter in kleinere Abschnitte unterteilt, heißen diese Fiederchen oder Pinnulae; dann liegt eine zweite Fiederungsebene vor. Weitere Teilungen sind möglich. Es gibt zugleich Farne mit ungeteilter Spreite. Die Anzahl der Teilungsebenen ist deshalb eine beschreibbare Formeigenschaft, keine Voraussetzung dafür, dass eine Pflanze überhaupt ein Farn ist. Stiel, Rhachis und Fiederung geben einen genaueren Bauplan wieder als der bloße Eindruck, ein Blatt sehe federartig aus."
+          ],
+          "takeaway": "Stipe = Blattstiel; Rhachis = Hauptachse in der Spreite; Fieder = erster Abschnitt; Fiederchen = Unterteilung einer Fieder.",
+          "exercise": "Beschrifte eine eigene schematische Blattzeichnung mit Stipe, Rhachis, Fieder und Fiederchen. Ergänze als Gegenmodell einen ungeteilten Wedel."
+        },
+        {
+          "id": "sori-sporangien",
+          "title": "Ein Sorus besteht aus mehreren Sporenbehältern",
+          "paragraphs": [
+            "Sporen entstehen beim Farn in kleinen Behältern, den Sporangien. Bei vielen Arten stehen mehrere davon zu Gruppen zusammen. Eine solche Gruppe heißt Sorus, in der Mehrzahl Sori. Häufig sitzen sie auf der Blattunterseite, mitunter am Blattrand; ihre Form und Anordnung sind verschieden. Ein sichtbarer Punkt oder Streifen kann daher aus zahlreichen Sporangien bestehen und ist nicht einfach eine einzelne große Spore.",
+            "Manche Sori werden während ihrer Entwicklung von einem häutigen Schleier, dem Indusium, bedeckt. Er kann unterschiedlich geformt sein oder fehlen. Auch umgeschlagene Blattränder können Sporangien schützen. Ein fertiler Wedel trägt Sporangien; ein steriler Wedel trägt sie nicht. Bei einigen Farnen sehen diese Wedel deutlich verschieden aus, bei anderen entstehen Sporangien an grünen Blattflächen oder nur an bestimmten Fiedern. Fertil bedeutet in diesem Zusammenhang sporenbildend, nicht automatisch braun, blattlos oder ohne Photosynthese."
+          ],
+          "takeaway": "Sporangium = Sporenbehälter; Sorus = Gruppe solcher Behälter; Indusium = mögliche Hülle. Fertile Wedel tragen Sporangien.",
+          "exercise": "Eigene Größenordnung: Stelle Blattfläche, Sorus, einzelnes Sporangium und Spore in eine verschachtelte Begriffskette. Es wird keine fremde Abbildung benötigt."
+        },
+        {
+          "id": "vorkeim-generationen",
+          "title": "Aus einer Spore wächst zunächst die kleine Geschlechtspflanze",
+          "paragraphs": [
+            "Im typischen geschlechtlichen Zyklus vieler gleichsporiger Farne entstehen im Sporophyten durch Meiose haploide Sporen. Aus einer keimenden Spore entwickelt sich der Gametophyt, auch Vorkeim oder Prothallium genannt. Bei vielen krautigen Farnen ist er klein, grün und oft herzförmig; es gibt andere Wuchsformen. Er ist nicht bloß ein junges eingerolltes Farnblatt. Der Vorkeim bildet Geschlechtsorgane: Antheridien mit Spermienzellen und Archegonien mit Eizellen.",
+            "Für die Befruchtung müssen bewegliche Spermienzellen zur Eizelle gelangen; im behandelten Modell schwimmen sie durch einen Wasserfilm. Vereinigen sich Ei- und Spermienzelle, entsteht eine diploide Zygote. Daraus wächst ein junger Sporophyt, der anfangs noch mit dem Vorkeim verbunden ist und später als größere Farnpflanze selbstständig wird. Meiose und Befruchtung wirken an verschiedenen Stellen: Meiose erzeugt den haploiden Sporenabschnitt, Befruchtung beginnt den diploiden Sporophytenabschnitt. Dieses Modell deckt nicht sämtliche Sonderformen, Wasserfarne oder ungeschlechtlichen Entwicklungswege der Farne ab."
+          ],
+          "takeaway": "Spore → Gametophyt/Vorkeim → Befruchtung → Sporophyt. Meiose und Befruchtung sind verschiedene Übergänge des Lebenszyklus.",
+          "exercise": "Zeichne eine eigene Zykluslinie mit Meiose und Befruchtung an zwei verschiedenen Stellen. Markiere Vorkeim und großen Farn getrennt, statt den Vorkeim als kleines Wedelblatt zu zeichnen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "rhizom-wedel",
+          "q": "Was ist das Rhizom eines krautigen Farns trotz seiner häufig unterirdischen Lage?",
+          "options": [
+            "Eine lange Seitenwurzel",
+            "Eine Sprossachse",
+            "Eine einzelne Blattfieder",
+            "Ein Sporenbehälter"
+          ],
+          "answer": 1,
+          "explain": "Das Rhizom ist eine Sprossachse. An ihm können Wurzeln und Wedel entstehen; unterirdische Lage allein macht ein Organ nicht zur Wurzel."
+        },
+        {
+          "id": "q2",
+          "lessonId": "rhizom-wedel",
+          "q": "Zu welcher Generation gehört die große, gewöhnlich sichtbare Farnpflanze im geschlechtlichen Lebenszyklus?",
+          "options": [
+            "Zum haploiden Vorkeim",
+            "Zur einzelnen Spore",
+            "Zum Antheridium",
+            "Zum Sporophyten"
+          ],
+          "answer": 3,
+          "explain": "Die auffällige Farnpflanze ist der Sporophyt. Er bildet Sporen; der kleinere Gametophyt bildet die Geschlechtszellen."
+        },
+        {
+          "id": "q3",
+          "lessonId": "rhizom-wedel",
+          "q": "Welche botanische Einheit bezeichnet der Begriff Wedel bei einem Farn?",
+          "options": [
+            "Das ganze Blatt aus Stiel und Spreite",
+            "Nur die unterirdische Sprossachse",
+            "Nur einen Haufen reifer Sporen",
+            "Die Gesamtheit aller Wurzeln"
+          ],
+          "answer": 0,
+          "explain": "Ein Wedel ist ein Farnblatt einschließlich Stiel und Spreite. Eine einzelne Fieder ist dagegen nur ein Teil eines gegliederten Wedels."
+        },
+        {
+          "id": "q4",
+          "lessonId": "rhizom-wedel",
+          "q": "Wie sieht ein junger Wedel bei vielen krautigen Farnen vor seiner vollständigen Entfaltung aus?",
+          "options": [
+            "Als geschlossene Samenkapsel",
+            "Als flächiges Wurzelgeflecht",
+            "Als spiralig eingerolltes Blatt",
+            "Als verholzter Blütenzapfen"
+          ],
+          "answer": 2,
+          "explain": "Viele Farnwedel sind in ihrer Jugend spiralig eingerollt und entfalten sich beim Wachstum. Das ist eine häufige Form und kein ausnahmsloses Merkmal aller Farne."
+        },
+        {
+          "id": "q5",
+          "lessonId": "wedelgliederung",
+          "q": "Welchen Teil eines Farnwedels bezeichnet der Fachausdruck Stipe?",
+          "options": [
+            "Den freien Blattstiel unter der Spreite",
+            "Den ersten seitlichen Spreitenabschnitt",
+            "Die Hauptachse innerhalb der Spreite",
+            "Den Haufen kleiner Sporenbehälter"
+          ],
+          "answer": 0,
+          "explain": "Die Stipe ist der Blattstiel des Wedels. In der Spreite setzt sich die Blattachse als Rhachis fort."
+        },
+        {
+          "id": "q6",
+          "lessonId": "wedelgliederung",
+          "q": "Wie heißt die Hauptachse innerhalb der Spreite eines gefiederten Farnwedels?",
+          "options": [
+            "Indusium",
+            "Rhizom",
+            "Rhachis",
+            "Prothallium"
+          ],
+          "answer": 2,
+          "explain": "Die Rhachis ist die Fortsetzung des Blattstiels innerhalb der Spreite. An ihr sitzen die Fiedern des gegliederten Wedels."
+        },
+        {
+          "id": "q7",
+          "lessonId": "wedelgliederung",
+          "q": "Was bezeichnet eine Pinna bei einem einfach gefiederten Farnwedel?",
+          "options": [
+            "Den gesamten unterirdischen Spross",
+            "Einen ersten seitlichen Spreitenabschnitt",
+            "Den unteren freien Blattstiel",
+            "Eine Hülle über mehreren Sporangien"
+          ],
+          "answer": 1,
+          "explain": "Pinna bedeutet Fieder. Sie ist ein erster seitlicher Teil der Spreite und sitzt bei einem einfach gefiederten Wedel an der Rhachis."
+        },
+        {
+          "id": "q8",
+          "lessonId": "wedelgliederung",
+          "q": "Wie heißen die kleineren Abschnitte, in die eine Fieder bei einem doppelt gefiederten Farnwedel weiter unterteilt ist?",
+          "options": [
+            "Rhizoide oder Haftfäden",
+            "Sori oder Sporangiengruppen",
+            "Stipe oder Blattstiel",
+            "Fiederchen oder Pinnulae"
+          ],
+          "answer": 3,
+          "explain": "Die zweite Teilungsebene besteht aus Fiederchen, den Pinnulae. Sie sind Abschnitte einer Fieder und nicht einzelne Wedel."
+        },
+        {
+          "id": "q9",
+          "lessonId": "sori-sporangien",
+          "q": "In welcher kleinen Struktur werden die Sporen eines Farns gebildet?",
+          "options": [
+            "Im Indusium",
+            "Im Blattstiel",
+            "Im Sporangium",
+            "Im Wurzelhaar"
+          ],
+          "answer": 2,
+          "explain": "Das Sporangium ist der Sporenbehälter. Mehrere Sporangien können zu einem Sorus zusammenstehen."
+        },
+        {
+          "id": "q10",
+          "lessonId": "sori-sporangien",
+          "q": "Was ist ein Sorus an einem entsprechend gebauten Farnwedel?",
+          "options": [
+            "Eine Gruppe von Sporangien",
+            "Eine einzelne große Samenzelle",
+            "Eine seitliche Blattwurzel",
+            "Ein Abschnitt des Blattstiels"
+          ],
+          "answer": 0,
+          "explain": "Ein Sorus ist eine Gruppe von Sporenbehältern. Die darin liegenden Sporangien enthalten beziehungsweise bilden die einzelnen Sporen."
+        },
+        {
+          "id": "q11",
+          "lessonId": "sori-sporangien",
+          "q": "Wie heißt der häutige Schleier, der bei manchen Farnen einen sich entwickelnden Sorus bedeckt?",
+          "options": [
+            "Rhachis",
+            "Protonema",
+            "Antheridium",
+            "Indusium"
+          ],
+          "answer": 3,
+          "explain": "Das Indusium ist eine mögliche Hülle über dem Sorus. Es kann unterschiedlich geformt sein oder fehlen; nicht jeder Farn besitzt dasselbe Schleierchen."
+        },
+        {
+          "id": "q12",
+          "lessonId": "sori-sporangien",
+          "q": "Wodurch ist ein fertiler Farnwedel gegenüber einem sterilen Wedel gekennzeichnet?",
+          "options": [
+            "Er besitzt grundsätzlich keine Blattspreite.",
+            "Er trägt Sporangien zur Sporenbildung.",
+            "Er bildet Blütenpollen statt Sporen.",
+            "Er gehört allein zur haploiden Generation."
+          ],
+          "answer": 1,
+          "explain": "Fertile Wedel tragen Sporangien, sterile Wedel nicht. Ein fertiler Wedel kann zugleich grüne, photosynthetisch aktive Blattflächen besitzen."
+        },
+        {
+          "id": "q13",
+          "lessonId": "vorkeim-generationen",
+          "q": "Welche Generation bildet das kleine Prothallium vieler krautiger Farne nach der Sporenkeimung?",
+          "options": [
+            "Die diploide Zygote",
+            "Der große Sporophyt",
+            "Die fertige Sporenkapsel",
+            "Der haploide Gametophyt"
+          ],
+          "answer": 3,
+          "explain": "Das Prothallium ist der Vorkeim und gehört zum Gametophyten. Es bildet die Geschlechtsorgane und ist nicht bloß ein junges Blatt des großen Farns."
+        },
+        {
+          "id": "q14",
+          "lessonId": "vorkeim-generationen",
+          "q": "Welche Funktion hat ein Wasserfilm bei der Befruchtung im typischen geschlechtlichen Farnzyklus?",
+          "options": [
+            "Er ersetzt die Eizelle durch eine Spore.",
+            "Er ermöglicht den Spermienzellen den Weg zur Eizelle.",
+            "Er verwandelt den Wedel in ein Rhizom.",
+            "Er bildet aus dem Indusium einen Samen."
+          ],
+          "answer": 1,
+          "explain": "Die beweglichen Spermienzellen schwimmen im Wasserfilm zur Eizelle im Archegonium. Sporenverbreitung und Befruchtung sind dabei unterschiedliche Vorgänge."
+        },
+        {
+          "id": "q15",
+          "lessonId": "vorkeim-generationen",
+          "q": "Welcher Zellteilungsvorgang erzeugt im typischen geschlechtlichen Farnzyklus die haploiden Sporen?",
+          "options": [
+            "Mitose des diploiden Embryos",
+            "Mitose einer Blattspitzenzelle",
+            "Meiose der Sporenmutterzellen",
+            "Verschmelzung zweier Geschlechtszellen"
+          ],
+          "answer": 2,
+          "explain": "In den Sporangien entstehen die haploiden Sporen durch Meiose. Die Befruchtung liegt an einer anderen Stelle des Zyklus und führt zur diploiden Zygote."
+        },
+        {
+          "id": "q16",
+          "lessonId": "vorkeim-generationen",
+          "q": "Woraus entwickelt sich nach der Befruchtung der junge Sporophyt eines Farns?",
+          "options": [
+            "Aus der diploiden Zygote",
+            "Aus einem reifen Indusium",
+            "Aus einer unbefruchteten haploiden Spore",
+            "Aus einem einzelnen Peristomzahn"
+          ],
+          "answer": 0,
+          "explain": "Die befruchtete Eizelle ist die Zygote. Aus ihr wächst der diploide Sporophyt, zunächst noch am Vorkeim und später als größere Farnpflanze."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-laubmoose-2026",
+      "lessonId": "mooskoerper",
+      "claims": [
+        {
+          "claim": "Der grüne beblätterte Laubmooskörper ist gewöhnlich der dominante photosynthetische Gametophyt. Viele Einzelpflanzen können ein Polster bilden; der Sporophyt ist eine andere Generation.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/what-is-moss.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/moss-life-cycle.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-mosses.html"
+          ]
+        },
+        {
+          "claim": "Rhizoide von Laubmoosen sind mehrzellige, oft verzweigte Verankerungsstrukturen und keine echten Wurzeln. Oberflächenaufnahme und äußerer Kapillartransport sind von inneren Leitungszellen zu unterscheiden; nicht jede Art besitzt denselben Wasserleitungsbau.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/what-is-moss.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+            "https://anbg.gov.au/bryophyte/what-is-bryophyte.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-mosses.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/structure/stems-and-leaves.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubmoose-2026",
+      "lessonId": "vorkeim-befruchtung",
+      "claims": [
+        {
+          "claim": "Die keimende Laubmoosspore bildet gewöhnlich ein Protonema; daraus entstehen beblätterte Sprosse. Diese Stadien sind im beschriebenen Grundzyklus haploid; abweichende Vorkeimformen werden zugelassen.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/life-cycle-in-nutshell.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/moss-life-cycle.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes"
+          ]
+        },
+        {
+          "claim": "Antheridien bilden Spermienzellen, Archegonien enthalten Eizellen; Organe können auf derselben oder auf getrennten Pflanzen stehen. Wasser ermöglicht den Spermienweg, Befruchtung erzeugt die diploide Zygote. Der daraus wachsende Sporophyt bleibt verbunden und versorgt, kann aber selbst photosynthetisch aktiv sein.",
+          "sourceUrls": [
+            "https://anbg.gov.au/bryophyte/reproduction-dispersal.html",
+            "https://www.anbg.gov.au/bryophyte/life-cycle-in-nutshell.html",
+            "https://www.anbg.gov.au/bryophyte/life-cycle-sporophyte-dev-mosses.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/sexual-reproduction.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/moss-life-cycle.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+            "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-mosses.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubmoose-2026",
+      "lessonId": "kapselbauteile",
+      "claims": [
+        {
+          "claim": "Typischer gestielter Laubmoossporophyt: Fuß, Seta und Sporenkapsel; Meiose erzeugt haploide Sporen. Die Kalyptra stammt aus der Archegoniumhülle und ist vom Kapseldeckel Operculum verschieden. Keine universell lange Seta behauptet.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/life-cycle-in-nutshell.html",
+            "https://www.anbg.gov.au/bryophyte/life-cycle-sporophyte-dev-mosses.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/the-capsule-cover.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes"
+          ]
+        },
+        {
+          "claim": "Bei vielen Laubmoosen wird nach Ablösen des Operculums ein Kapselmund mit Peristom frei; feuchteabhängige Bewegungen beeinflussen die Sporenabgabe. Es gibt auch zahnlose sowie seitlich aufreißende Kapseln, deshalb keine gemeinsame Öffnungsregel für alle Arten.",
+          "sourceUrls": [
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/capsule-opening.html",
+            "https://www.anbg.gov.au/bryophyte/what-is-moss.html",
+            "https://openstax.org/books/biology-2e/pages/25-3-bryophytes"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laubmoose-2026",
+      "lessonId": "vegetative-vermehrung",
+      "claims": [
+        {
+          "claim": "Regenerationsfähige Blatt- oder Stämmchenfragmente können unter geeigneten Bedingungen neue Moospflanzen bilden. Vegetative Vermehrung geht von einem Elternorganismus aus und benötigt keine erneute Gametenverschmelzung; Anwachsen ist keine Garantie.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/vegetative-reproduction.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/asexual-reproduction.html"
+          ]
+        },
+        {
+          "claim": "Spezialisierte Brutkörper/Gemmen sind von zufälligen Pflanzenteilen und Samen zu unterscheiden. Bei einigen Laubmoosen treten knöllchenartige vegetative Verbreitungseinheiten an Rhizoiden auf. Kein Merkmal aller Arten.",
+          "sourceUrls": [
+            "https://www.anbg.gov.au/bryophyte/vegetative-reproduction.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/mosses/reproduction/asexual-reproduction.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-farnbau-2026",
+      "lessonId": "rhizom-wedel",
+      "claims": [
+        {
+          "claim": "Das Rhizom ist eine Sprossachse, von der Wurzeln und Wedel ausgehen können; es ist trotz möglicher unterirdischer Lage keine Wurzel. Andere Achsenformen kommen vor; Farne besitzen Leitgewebe.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/stem.html"
+          ]
+        },
+        {
+          "claim": "Der Wedel ist das ganze Farnblatt aus Stiel und Spreite. Viele Jungwedel sind eingerollt und entfalten sich. Die größere auffällige Pflanze ist der Sporophyt; im beschriebenen geschlechtlichen Zyklus produziert sie Sporen statt Samen.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/frond.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-farnbau-2026",
+      "lessonId": "wedelgliederung",
+      "claims": [
+        {
+          "claim": "Stipe bezeichnet den Blattstiel und Rhachis dessen Fortsetzung innerhalb der Spreite. Eine erste seitliche Fieder heißt Pinna, ihre weitere Unterteilung Fiederchen/Pinnula; Begriffe beschreiben Teile desselben Blattes.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/frond.html"
+          ]
+        },
+        {
+          "claim": "Einfach und mehrfach gefiederte sowie ungeteilte Wedel kommen vor. Der Fiederungsgrad wird nicht als universelles Farnmerkmal ausgegeben; eigene beschriftete Skizze, keine übernommene Abbildung.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/frond.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-farnbau-2026",
+      "lessonId": "sori-sporangien",
+      "claims": [
+        {
+          "claim": "Sporangien enthalten beziehungsweise bilden Sporen; Gruppen heißen Sori. Lage und Gestalt variieren, häufig an Unterseite oder Rand. Ein Indusium kann die Gruppe bedecken, fehlen oder durch einen schützenden Blattrand funktionell ergänzt werden.",
+          "sourceUrls": [
+            "https://www.bgbm.org/de/infotainment/die-sporenwedel-der-farne",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/reproduction/sporangium.html",
+            "https://www.amerfernsoc.org/about-ferns"
+          ]
+        },
+        {
+          "claim": "Fertile Wedel tragen Sporangien, sterile nicht. Sie können verschieden aussehen; Sporangien können auch nur an bestimmten Fiedern oder an zugleich grünen assimilierenden Blattflächen entstehen.",
+          "sourceUrls": [
+            "https://www.bgbm.org/de/infotainment/die-sporenwedel-der-farne",
+            "https://www.nzplants.auckland.ac.nz/en/about/ferns/structure/fertile-sterile-fronds.html",
+            "https://www.amerfernsoc.org/about-ferns"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-farnbau-2026",
+      "lessonId": "vorkeim-generationen",
+      "claims": [
+        {
+          "claim": "Im beschriebenen geschlechtlichen Grundmodell erzeugt Meiose haploide Sporen; daraus wächst der Gametophyt/Prothallium. Oft kleine grüne herzförmige Vorkeime, aber andere Wuchsformen und Fortpflanzungswege existieren; kein universelles Modell aller Farne.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-ferns.html"
+          ]
+        },
+        {
+          "claim": "Antheridien und Archegonien sind Geschlechtsorgane des Gametophyten. Bewegliche Spermienzellen gelangen im Wasserfilm zur Eizelle; Befruchtung bildet die diploide Zygote. Ihr junger Sporophyt bleibt zunächst verbunden und wird später selbstständig.",
+          "sourceUrls": [
+            "https://www.amerfernsoc.org/about-ferns",
+            "https://dnr.illinois.gov/education/wildaboutpages/wildaboutplants/wildaboutplantsferns.html",
+            "https://www.nzplants.auckland.ac.nz/en/about/resources/animations/secret-life-of-ferns.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Vollständige Moose-/Farnflora, feste Artenzahlen und absolute Größenregeln",
+      "reason": "Behandelt werden gemeinsame Bauprinzipien mit ausdrücklich genannten Ausnahmen. Fremde Regionalzahlen und taxonomische Sonderfälle ersetzen keinen DACH-Artenschlüssel."
+    },
+    {
+      "topic": "Universeller Wassertransport ohne innere Leitung bei allen Moosen",
+      "reason": "Fehlende echte Wurzeln begründen keine solche Aussage. Äußere Aufnahme, Kapillartransport und unterschiedliche innere Leitungszellen müssen getrennt werden."
+    },
+    {
+      "topic": "Alle Farnvorkeime sind herzförmig und jeder Farn durchläuft nur den beschriebenen Befruchtungsweg",
+      "reason": "Andere Vorkeimformen, heterospore Wasserfarne und ungeschlechtliche Entwicklungswege verhindern diese Verallgemeinerung."
+    },
+    {
+      "topic": "Sammeln, Kultivieren, Essen oder Entfernen wilder Moose und Farne",
+      "reason": "Botanische Organkenntnis ist keine Entnahme-, Verzehr-, Pflege- oder Bekämpfungsfreigabe."
+    }
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Keine Abbildungen, Videos, Lehrbuchtabellen oder Originalaufgaben übernommen. Wortskizzen und Begriffsketten sind eigene Lernbeispiele, keine Artbestimmungsbelege."
+  }
+}
