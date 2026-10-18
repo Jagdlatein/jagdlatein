@@ -83,6 +83,28 @@ test('Real species comparison and dog breed galleries remain, without an additio
   assert.equal((breeds.match(/<img/g) || []).length, breedPictures.length);
 });
 
+test('New offline packs omit category decoration for text courses and preserve actual lesson and breed photographs', () => {
+  const oldSecret = process.env.JL_SESSION_SECRET;
+  process.env.JL_SESSION_SECRET = 'photo-purpose-test-key-not-used-for-auth';
+  try {
+    const { createOfflinePack } = load('lib/offline-learning-server.js');
+    const now = Date.now();
+    const access = { email: 'photo-test@example.invalid', paidUntil: new Date(now + 3600000).toISOString() };
+    const pack = id => createOfflinePack({ courseIds: [id], sounds: false }, access, now);
+    for (const id of ['wissen-rotwild-sozialverhalten', 'wissen-ausbau-biologie-wiederkaeuer-2026', 'wissen-ausbau-anwendung-biologische-ebenen-2026']) {
+      assert.deepEqual(pack(id).photos, [], `${id}: no generic category photo in the offline collection`);
+    }
+    const single = getLearningMedia(byId['wissen-rehwild-jahreslauf']);
+    assert.ok(pack('wissen-rehwild-jahreslauf').photos.some(photo => photo.src === single.src && photo.creditUrl === single.creditUrl));
+    const comparison = getLearningMedia(byId['wissen-gams-steinbock']).pictures;
+    assert.deepEqual(pack('wissen-gams-steinbock').photos.map(photo => photo.src).sort(), comparison.map(photo => photo.src).sort());
+    assert.deepEqual(pack('wissen-vertiefung-jagdhunderassen').photos.map(photo => photo.src).sort(), [...new Set(breedPictures.map(photo => photo.src))].sort());
+  } finally {
+    if (oldSecret === undefined) delete process.env.JL_SESSION_SECRET;
+    else process.env.JL_SESSION_SECRET = oldSecret;
+  }
+});
+
 test('Featured previews require a concrete teaching-medium purpose; research and short-review entries remain text links', () => {
   const previews = load('lib/learning-featured-media.js').learningFeaturedMedia;
   assert.equal(Object.keys(previews).length, 5);
