@@ -43,7 +43,7 @@ test('Eighteen substantive additions cover all twelve existing categories with 7
   assert.equal(new Set(stems).size, stems.length, 'No duplicate stems in the authored expansion');
 });
 
-test('New lessons are searchable at the exact existing course/lesson and receive a licensed category cover', () => {
+test('New lessons are searchable at the exact existing course/lesson without decorative category covers', () => {
   const search = load('lib/learning-search.js').searchLearning;
   const { getLearningOverviewData } = load('lib/learning-overview-server.js');
   const { getLearningCategoryByTitle } = load('lib/learning-categories.js');
@@ -51,7 +51,8 @@ test('New lessons are searchable at the exact existing course/lesson and receive
   for (const module of added) {
     const data = getLearningOverviewData(getLearningCategoryByTitle(module.category).slug);
     const summary = data.modules.find(x => x.id === module.id);
-    assert.ok(summary && data.covers[summary.coverIndex]?.src, module.id);
+    assert.ok(summary, module.id);
+    assert.equal(summary.coverIndex, null, `${module.id}: text/knowledge course`);
     assert.ok(!summary.questions && !summary.lessons && !summary.evidence);
     const hits = search({ query: module.title, type: 'course' }).results;
     assert.ok(hits.some(x => x.href.startsWith(`/kurse/${module.id}`)), module.id);

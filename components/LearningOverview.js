@@ -14,7 +14,7 @@ const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
 function CourseCards({ modules, covers, showCategory = false }) {
   return <div className={styles.moduleGrid}>{modules.map(module => <article key={module.id} className={styles.moduleCard}>
-    <LearningCover media={covers[module.coverIndex]} compact imageHref={`/kurse/${module.id}`} />
+    {covers[module.coverIndex]?.coursePhotoUse && <LearningCover media={covers[module.coverIndex]} compact imageHref={`/kurse/${module.id}`} />}
     <Link href={`/kurse/${module.id}`} className={styles.moduleLink}>
       <span className={styles.tags}>{showCategory && <span>{module.category}</span>}<span>{module.level}</span>{module.contentAddedOn && <span>Ergänzt: {new Intl.DateTimeFormat("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(`${module.contentAddedOn}T00:00:00Z`))}</span>}</span>
       <h3>{module.title}<AppIcon name="arrow-right" size={20} /></h3>
@@ -30,7 +30,7 @@ function FeaturedLearning({ tools, media }) {
   return <section className={styles.section} aria-labelledby="learning-featured-heading">
     <h2 id="learning-featured-heading">Direkt entdecken & üben</h2>
     <div className={styles.featuredGrid}>{tools.map(tool => {
-      const photo = media[tool.href];
+      const photo = media[tool.href]?.purpose ? media[tool.href] : null;
       return <article className={styles.featuredCard} key={tool.href}>
         <Link href={tool.href} className={styles.featuredLink}>
           {photo && <Image src={photo.src} alt="" width={photo.width} height={photo.height} sizes="(max-width: 600px) 80px, 112px" className={styles.featuredPhoto} />}

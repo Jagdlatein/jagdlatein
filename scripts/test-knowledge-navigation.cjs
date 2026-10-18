@@ -63,10 +63,12 @@ test('Category pages expose compact photographed practice before courses, with r
     assert.equal(cards.length, data.modules.length);
     cards.forEach((card, index) => {
       const href = `/kurse/${data.modules[index].id}`;
-      assert.ok(card[1].includes(`<a href="${href}" class="photoLink" tabindex="-1" aria-hidden="true"><img`), href);
       assert.ok(card[1].includes(`<a href="${href}" class="moduleLink">`), href);
-      assert.doesNotMatch(card[1].split('class="photoLink"')[1].split('</a>')[0], /<a\s/);
-      assert.ok(card[1].indexOf('</a>') < card[1].indexOf('<figcaption'), 'Image credits remain independent links');
+      if (data.covers[data.modules[index].coverIndex]?.coursePhotoUse) {
+        assert.ok(card[1].includes(`<a href="${href}" class="photoLink" tabindex="-1" aria-hidden="true"><img`), href);
+        assert.doesNotMatch(card[1].split('class="photoLink"')[1].split('</a>')[0], /<a\s/);
+        assert.ok(card[1].indexOf('</a>') < card[1].indexOf('<figcaption'), 'Image credits remain independent links');
+      } else assert.doesNotMatch(card[1], /<img|class="photoLink"/, `${href}: no decorative category fallback`);
     });
   }
 });
@@ -74,18 +76,18 @@ test('Category pages expose compact photographed practice before courses, with r
 test('Overview photo summaries preserve exact delivered media and attribution without transferring full lesson datasets', async () => {
   const summaries = load('lib/learning-featured-media.js').learningFeaturedMedia;
   const getData = load('lib/learning-overview-server.js').getLearningOverviewData;
-  assert.equal(Object.keys(summaries).length, 8);
+  assert.equal(Object.keys(summaries).length, 5);
   assert.deepEqual(getData().featuredMedia, {});
-  assert.ok(new Set(Object.values(summaries).map(photo => photo.src)).size >= 6);
+  assert.equal(new Set(Object.values(summaries).map(photo => photo.src)).size, 5);
   for (const [href, photo] of Object.entries(summaries)) {
     const dimensions = await sharp(path.join(root, 'public', photo.src)).metadata();
     assert.equal(dimensions.width, photo.width, href); assert.equal(dimensions.height, photo.height, href);
-    assert.ok(photo.credit && photo.alt && photo.creditUrl.startsWith('https://') && photo.licenseUrl.startsWith('https://'), href);
+    assert.ok(photo.purpose && photo.credit && photo.alt && photo.creditUrl.startsWith('https://') && photo.licenseUrl.startsWith('https://'), href);
     assert.ok(Object.values(photo).every(value => typeof value === 'string' || typeof value === 'number'));
   }
   for (const category of ['hundewesen', 'wildkunde', 'natur-revier']) {
     const data = getData(category);
-    const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category)).map(tool => tool.href).sort();
+    const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category) && summaries[tool.href]?.purpose).map(tool => tool.href).sort();
     assert.deepEqual(Object.keys(data.featuredMedia).sort(), expected);
     assert.ok(data.modules.every(module => !module.lessons && !module.questions && !module.lessonTitles));
   }
@@ -108,7 +110,8 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
     assert.ok(data.covers.length < data.modules.length, slug || 'all');
     assert.equal(new Set(data.covers.map(cover => JSON.stringify(cover))).size, data.covers.length);
     for (const module of data.modules) {
-      assert.equal(renderCover(data.covers[module.coverIndex]), renderCover(getLearningMedia(module)), module.id);
+      const media = getLearningMedia(module);
+      assert.equal(renderCover(data.covers[module.coverIndex]), media?.coursePhotoUse ? renderCover(media) : '', module.id);
     }
     for (const category of slug ? [] : learningCategoryDetails) {
       assert.equal(renderCredit(data.covers[data.categoryCovers[category.slug]]), renderCredit(getLearningMedia({ category: category.title })), category.slug);

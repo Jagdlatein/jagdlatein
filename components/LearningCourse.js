@@ -120,7 +120,6 @@ function LearningContent({ module, flashcards }) {
           <nav className={styles.topNav} aria-label="Kursübersicht">
             <Link href="/meine-kurse">Meine Kurse</Link>
           </nav>
-          <LearningCover media={media} />
           <section className={styles.card} aria-labelledby="learning-objectives">
             <h2 id="learning-objectives">Das lernst du</h2>
             <ul className={styles.objectives}>{module.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
@@ -154,6 +153,7 @@ function LearningContent({ module, flashcards }) {
               <p className={styles.eyebrow}>Lektion {lessonIndex + 1} von {module.lessons.length}</p>
               <h2 id="current-lesson-heading" tabIndex={-1} ref={lessonHeading}>{lesson.title}</h2>
               <div className={styles.lessonText}>{lesson.paragraphs.map((paragraph, index) => <p key={`${lesson.id}:${index}`}>{paragraph}</p>)}</div>
+              {media?.coursePhotoUse?.lessonId === lesson.id && (!media.pictures || media.pictures.length < 2) && <LearningCover media={media} />}
               <LessonDiagram diagram={lesson.diagram} />
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>

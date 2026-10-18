@@ -2,8 +2,6 @@ import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LearningToolLayout from "./LearningToolLayout";
-import { LearningCover } from "./LearningPhoto";
-import { categoryPhotographs } from "../lib/learning-category-photos";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
 import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
@@ -89,7 +87,6 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
     current.current = next; setRound(next);
   }
   const question = round?.questions[round.index];
-  const photo = categoryPhotographs[category || question?.category || "pruefung-sprache"];
   return <LearningToolLayout title="Deine fünf Minuten Wissen" icon="book" category="pruefung-sprache" headingOnly searchHref="/lernen#lernen-suche">
     <section className={styles.panel}>
       <p>Eine kurze Runde mit bis zu acht Fragen aus den ausführlichen Kursen. Du bestimmst das Tempo; fünf Minuten sind eine Orientierung.</p>
@@ -102,7 +99,6 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
       <h2 tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig. Lies die Erklärungen und wiederhole zu einem späteren Zeitpunkt.</p>
       <button type="button" className={styles.primary} onClick={() => start()}>Neue kurze Runde</button>
     </section> : question ? <section className={styles.panel}>
-      {photo && <LearningCover media={photo} compact />}
       <p className={styles.eyebrow}>{question.reason} · Frage {round.index + 1} von {round.questions.length}</p>
       <h2 ref={heading} tabIndex={-1}>{question.q}</h2>
       <div className={styles.choices}>{question.answers.map(answer => <button type="button" key={answer.id} className={`${styles.choice} ${round.selected !== null && question.correct.includes(answer.id) ? styles.correct : round.selected === answer.id ? styles.wrong : ""}`} disabled={round.selected !== null} aria-pressed={round.selected === answer.id} onClick={() => choose(answer.id)}>{answer.text}</button>)}</div>

@@ -70,15 +70,17 @@ test('Twelve new courses cover every existing category, with real lesson evidenc
   assert.ok(addedQuestions >= 72);
 });
 
-test('Each category shows its new course first, while summary payloads and search omit lessons and answer keys', () => {
+test('Each category shows its newest course first, while summary payloads and search omit lessons and answer keys', () => {
   const cache = new Map();
   const { learningCategoryDetails } = load('lib/learning-categories.js', cache);
   const { getLearningOverviewData } = load('lib/learning-overview-server.js', cache);
+  const { learningModules } = load('lib/learning-curriculum.js', cache);
   const search = load('lib/learning-search.js', cache).searchLearning;
   for (const category of learningCategoryDetails) {
     const data = getLearningOverviewData(category.slug);
-    assert.equal(data.modules[0].contentAddedOn, '2026-10-16', category.slug);
-    assert.ok(data.covers[data.modules[0].coverIndex]?.src, category.slug);
+    const latest = learningModules.filter(module => module.category === category.title).reduce((date, module) => module.contentAddedOn > date ? module.contentAddedOn : date, '');
+    assert.equal(data.modules[0].contentAddedOn, latest, category.slug);
+    assert.equal(data.modules[0].coverIndex, null, `${category.slug}: a text course needs no decorative category photo`);
     assert.ok(data.modules.every(item => !item.lessons && !item.questions && !item.evidence));
     const result = search({ query: data.modules[0].title });
     assert.ok(result.results.some(item => item.href.startsWith(`/kurse/${data.modules[0].id}`)), category.slug);

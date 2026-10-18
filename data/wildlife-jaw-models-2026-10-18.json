@@ -1,0 +1,1455 @@
+{
+  "version": 1,
+  "sourceCheckedOn": "2026-10-18",
+  "scope": "Zuordnung der publizierten Sammlungsobjekte, Modellteile, Originalvorschauen und Lizenzbelege. Keine neue Zahnformel, Alters- oder Maßbestimmung; keine vollständige Rundumprüfung aller Modelle.",
+  "species": [
+    {
+      "speciesSlug": "amsel",
+      "name": "Amsel",
+      "scientificName": "Turdus merula",
+      "models": [
+        {
+          "id": "4bd7f213c0e247a3a97f412142089e10",
+          "part": "mandible",
+          "title": "Amsel: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/turdus-merula-mandible-4bd7f213c0e247a3a97f412142089e10",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2000-1350/421",
+          "specimen": "MZB 2000-1350",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/4bd7f213c0e247a3a97f412142089e10",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter schlanker Vogelunterkiefer. Vorderende und längliche seitliche Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Turdus merula, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "auerhuhn",
+      "name": "Auerhuhn",
+      "scientificName": "Tetrao urogallus",
+      "models": [
+        {
+          "id": "8a55264ceaaf4c759b1df7cf6820b4dc",
+          "part": "mandible",
+          "title": "Auerhuhn: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/tetrao-urogallus-mandible-8a55264ceaaf4c759b1df7cf6820b4dc",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2003-1106/823",
+          "specimen": "MZB 2003-1106",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/8a55264ceaaf4c759b1df7cf6820b4dc",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Vogelunterkiefer. Beide vorne verbundenen Kieferseiten und größere seitliche Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Tetrao urogallus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "baummarder",
+      "name": "Baummarder",
+      "scientificName": "Martes martes",
+      "models": [
+        {
+          "id": "ef973dcb24a0446a9b707fe801a8fd5f",
+          "part": "cranium",
+          "title": "Baummarder: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/martes-martes-european-pine-martenkuna-lesna-ef973dcb24a0446a9b707fe801a8fd5f",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FP94MTQ",
+          "specimen": "Martes martes - 31348, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Schräg seitlicher Originalvorschaublick: Hirnschädel und Oberkiefer sowie anliegender Unterkiefer mit Zahnreihe sichtbar. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Martes martes (European pine marten)(Kuna leśna)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/ef973dcb24a0446a9b707fe801a8fd5f"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "biber",
+      "name": "Biber",
+      "scientificName": "Castor fiber",
+      "models": [
+        {
+          "id": "5c7d8a54d5ac408d8f25ebd0883f6d9e",
+          "part": "cranium",
+          "title": "Biber: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/castor-fiber-eurasian-beaver-bobr-europejski-5c7d8a54d5ac408d8f25ebd0883f6d9e",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FIXSXOK",
+          "specimen": "Castor fiber - 171149, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Schädel und eingesetzten Unterkiefer mit großem Nagezahn und Diastema. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Castor fiber (Eurasian beaver) (Bóbr europejski)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/5c7d8a54d5ac408d8f25ebd0883f6d9e"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "bisam",
+      "name": "Bisam",
+      "scientificName": "Ondatra zibethicus",
+      "models": [
+        {
+          "id": "f8b5d7bfca8c469f9a80594d776bd922",
+          "part": "mandible",
+          "title": "Bisam: isolierter Unterkiefer",
+          "creator": "University of Wyoming Libraries",
+          "sourceURL": "https://sketchfab.com/3d-models/uwymvmamm2200-ondatra-zibethicus-mandible-f8b5d7bfca8c469f9a80594d776bd922",
+          "catalogURL": "https://sketchfab.com/3d-models/uwymvmamm2200-ondatra-zibethicus-mandible-f8b5d7bfca8c469f9a80594d776bd922",
+          "specimen": "UWYMV:Mamm:2200",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer eines Sammlungspräparats.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Originalvorschau zeigt isolierten Unterkiefer mit aufsteigenden Ästen und Backenzahnreihen; keine Hirnkapsel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "UWYMV:Mamm:2200, Ondatra zibethicus, Mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/f8b5d7bfca8c469f9a80594d776bd922"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "braunbaer",
+      "name": "Braunbär",
+      "scientificName": "Ursus arctos",
+      "models": [
+        {
+          "id": "b56ab3e3828345ff9a744cc3064ae1dc",
+          "part": "mandible",
+          "title": "Braunbär: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/ursus-arctos-mandible-b56ab3e3828345ff9a744cc3064ae1dc",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2007-0191/89",
+          "specimen": "MZB 2007-0191",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter kräftiger Unterkiefer mit beiden Kieferseiten. Hintere Äste und Zahnregion sichtbar; der vordere Zahnbereich ist in der Vorschau nicht vollständig beurteilbar.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Ursus arctos, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "dachs",
+      "name": "Dachs",
+      "scientificName": "Meles meles",
+      "models": [
+        {
+          "id": "606475b39fbf48308bee531fa9ed5d51",
+          "part": "mandible",
+          "title": "Dachs: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/meles-meles-mandible-606475b39fbf48308bee531fa9ed5d51",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2011-1034/93",
+          "specimen": "MZB 2011-1034",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/606475b39fbf48308bee531fa9ed5d51",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Zahnregion und hohe hintere Äste sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Meles meles, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "damwild",
+      "name": "Damwild",
+      "scientificName": "Dama dama",
+      "models": [
+        {
+          "id": "0fb18dc4a0154ddba983db0053a47b39",
+          "part": "cranium",
+          "title": "Damhirsch - Schädel mit Geweih",
+          "creator": "Mammal Research Institute, Polish Academy of Sciences",
+          "sourceURL": "https://sketchfab.com/3d-models/dama-dama-fallow-deer-daniel-zwyczajny-0fb18dc4a0154ddba983db0053a47b39",
+          "catalogURL": "https://sketchfab.com/3d-models/dama-dama-fallow-deer-daniel-zwyczajny-0fb18dc4a0154ddba983db0053a47b39",
+          "specimen": "",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel aus der Sammlung Henryk Okarma, digitalisiert durch MRI PAS. Ein Unterkiefer ist in diesem Modell nicht enthalten.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Cranium with palmate antlers visible; no lower jaw present in the preview. Untextured surface scan; upper jaw and cheek-tooth area visible.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/0fb18dc4a0154ddba983db0053a47b39"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "eichelhaeher",
+      "name": "Eichelhäher",
+      "scientificName": "Garrulus glandarius",
+      "models": [
+        {
+          "id": "415816eed2ae49f48101eb3a4f6ceb4d",
+          "part": "mandible",
+          "title": "Eichelhäher: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/garrulus-glandarius-mandible-415816eed2ae49f48101eb3a4f6ceb4d",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2019-1721/833",
+          "specimen": "MZB 2019-1721",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter schlanker Vogelunterkiefer. Beide Kieferseiten laufen vorne zusammen; hintere Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Garrulus glandarius, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "eichhoernchen",
+      "name": "Eichhörnchen",
+      "scientificName": "Sciurus vulgaris",
+      "models": [
+        {
+          "id": "7871c039c2e7403b81f0471897158c16",
+          "part": "mandible",
+          "title": "Eichhörnchen: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/sciurus-vulgaris-mandible-7871c039c2e7403b81f0471897158c16",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2003-0512/145",
+          "specimen": "MZB 2003-0512",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/7871c039c2e7403b81f0471897158c16",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Gebogene orangefarbene Schneidezahnspitzen, Backenzahnregion und hintere Äste sichtbar.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Sciurus vulgaris, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "fasan",
+      "name": "Fasan",
+      "scientificName": "Phasianus colchicus",
+      "models": [
+        {
+          "id": "6fce323c573244a9bc62ea3b50325c97",
+          "part": "cranium",
+          "title": "Fasan: Schädel mit Unterkiefer",
+          "creator": "Museo [UV] Historia Natural",
+          "sourceURL": "https://sketchfab.com/3d-models/common-pheasant-phasianus-colchicus-6fce323c573244a9bc62ea3b50325c97",
+          "catalogURL": "https://sketchfab.com/MUVHN",
+          "specimen": "MUVHN VER0000424; Sammlung des Zoologischen Fachbereichs",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Vogelschädel mit Hirnkapsel, Oberschnabel und eingesetztem Unterkiefer. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Common pheasant (Phasianus colchicus)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/6fce323c573244a9bc62ea3b50325c97"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "feldhase",
+      "name": "Feldhase",
+      "scientificName": "Lepus europaeus",
+      "models": [
+        {
+          "id": "ba4ce19c92ee438ca9c96dbe1d6d5845",
+          "part": "cranium",
+          "title": "Feldhase: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/lepus-europaeus-european-hare-zajac-szarak-ba4ce19c92ee438ca9c96dbe1d6d5845",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2F0LPFAX",
+          "specimen": "Lepus europaeus - 169451, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Schräg seitliche Originalvorschau zeigt Schädel und Unterkiefer; Schneidezähne, Diastema und Backenzahnreihe sichtbar. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Lepus europaeus (European hare) ( Zając szarak)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/ba4ce19c92ee438ca9c96dbe1d6d5845"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "fischotter",
+      "name": "Fischotter",
+      "scientificName": "Lutra lutra",
+      "models": [
+        {
+          "id": "4612c2bba5f74380b83b67af2bd7c1d4",
+          "part": "mandible",
+          "title": "Fischotter: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/lutra-lutra-mandible-4612c2bba5f74380b83b67af2bd7c1d4",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2014-3318/897",
+          "specimen": "MZB 2014-3318",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Große spitze vordere Zähne und aufsteigende hintere Äste sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Lutra lutra, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "fuchs",
+      "name": "Fuchs",
+      "scientificName": "Vulpes vulpes",
+      "models": [
+        {
+          "id": "42a8f074ff4d4acd94008db723122122",
+          "part": "mandible",
+          "title": "Fuchs: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/vulpes-vulpes-mandible-42a8f074ff4d4acd94008db723122122",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_87-0099/97",
+          "specimen": "MZB 87-0099",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/42a8f074ff4d4acd94008db723122122",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Spitze vordere Zähne und seitliche Zahnreihen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Vulpes vulpes, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "gamswild",
+      "name": "Gamswild",
+      "scientificName": "Rupicapra rupicapra",
+      "models": [
+        {
+          "id": "b388542911d648c284c3766eb8189286",
+          "part": "mandible",
+          "title": "Gämse - isolierter Unterkiefer",
+          "creator": "SchmalhausenEvolMorph",
+          "sourceURL": "https://sketchfab.com/3d-models/full-mandible-of-rupicapra-rupicapra-b388542911d648c284c3766eb8189286",
+          "catalogURL": "https://sketchfab.com/3d-models/full-mandible-of-rupicapra-rupicapra-b388542911d648c284c3766eb8189286",
+          "specimen": "1353",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer aus der Sammlung des National Museum of Natural History in Kyiv. Der Erhaltungszustand dieses Einzelpräparats ersetzt keine allgemeine Zahnformel.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Both lower-jaw halves, ascending rami, cheek-tooth rows and anterior teeth visible. Collection marking1353 visible, agreeing with source metadata.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/b388542911d648c284c3766eb8189286"
+        },
+        {
+          "id": "8c279797eed148ddac38f6e78b73e27f",
+          "part": "cranium",
+          "title": "Gämse - Schädel mit Unterkiefer",
+          "creator": "Natalia Conejero-Ortega; specimen photo Kevin Iborra",
+          "sourceURL": "https://sketchfab.com/3d-models/chamois-rupicapra-rupicapra-8c279797eed148ddac38f6e78b73e27f",
+          "catalogURL": "https://sketchfab.com/3d-models/chamois-rupicapra-rupicapra-8c279797eed148ddac38f6e78b73e27f",
+          "specimen": "MUVHNZD0301",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Sammlungspräparat der Universität Valencia mit eingesetztem Unterkiefer. Im vorderen Unterkiefer sind keine Schneidezähne sichtbar; kein Beispiel für ein vollständiges normales Gebiss.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Cranium with horns and articulated lower jaw visible. Lower anterior teeth absent in the preview; do not present this mounted specimen as a complete normal tooth set.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/8c279797eed148ddac38f6e78b73e27f"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "goldschakal",
+      "name": "Goldschakal",
+      "scientificName": "Canis aureus",
+      "models": [
+        {
+          "id": "9a1b50477ab242c6b3ec5f7ea6258081",
+          "part": "cranium",
+          "title": "Goldschakal: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/canis-aureus-golden-jackal-szakal-zocisty-9a1b50477ab242c6b3ec5f7ea6258081",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FOJBJY9",
+          "specimen": "Canis aureus - 170857, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Oberschädel und eingesetzten bezahnten Unterkiefer. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Canis aureus (Golden jackal) (Szakal złocisty)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/9a1b50477ab242c6b3ec5f7ea6258081"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "graugans",
+      "name": "Graugans",
+      "scientificName": "Anser anser",
+      "models": [
+        {
+          "id": "37d671b84f714dae88d62618a422d499",
+          "part": "mandible",
+          "title": "Graugans: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/anser-anser-mandible-37d671b84f714dae88d62618a422d499",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_97-0475/188",
+          "specimen": "MZB 97-0475",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/37d671b84f714dae88d62618a422d499",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter langer Vogelunterkiefer mit breiterem Vorderende und zwei hinteren Kieferseiten; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Anser anser, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "graureiher",
+      "name": "Graureiher",
+      "scientificName": "Ardea cinerea",
+      "models": [
+        {
+          "id": "fab6dbfe090d4a1e8077c5fc0b10b844",
+          "part": "mandible",
+          "title": "Graureiher: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/ardea-cinerea-mandible-fab6dbfe090d4a1e8077c5fc0b10b844",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2011-0371/467",
+          "specimen": "MZB 2011-0371",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/fab6dbfe090d4a1e8077c5fc0b10b844",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter sehr langer, schmaler Vogelunterkiefer. Spitzes Vorderende und zwei getrennte hintere Enden sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Ardea cinerea, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "haubentaucher",
+      "name": "Haubentaucher",
+      "scientificName": "Podiceps cristatus",
+      "models": [
+        {
+          "id": "d6220c917793423587d6652a80405efd",
+          "part": "mandible",
+          "title": "Haubentaucher: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/podiceps-cristatus-mandible-d6220c917793423587d6652a80405efd",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2006-0557/787",
+          "specimen": "MZB 2006-0557",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/d6220c917793423587d6652a80405efd",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter länglicher, schlanker Vogelunterkiefer. Vorderende und hintere seitliche Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Podiceps cristatus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "heringsmoewe",
+      "name": "Heringsmöwe",
+      "scientificName": "Larus fuscus",
+      "models": [
+        {
+          "id": "c860f0b52cd2446fb9d421c612225d1e",
+          "part": "mandible",
+          "title": "Heringsmöwe: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/larus-fuscus-mandible-c860f0b52cd2446fb9d421c612225d1e",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2006-0565/459",
+          "specimen": "MZB 2006-0565",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/c860f0b52cd2446fb9d421c612225d1e",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Vogelunterkiefer. Zwei vorne verbundene Kieferseiten und hintere Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Larus fuscus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "hermelin",
+      "name": "Hermelin",
+      "scientificName": "Mustela erminea",
+      "models": [
+        {
+          "id": "085f828edb30464db306fd47e4151229",
+          "part": "mandible",
+          "title": "Hermelin: isolierter Unterkiefer",
+          "creator": "University of Wyoming Libraries",
+          "sourceURL": "https://sketchfab.com/3d-models/uwymvmamm3983-mustela-erminea-mandible-085f828edb30464db306fd47e4151229",
+          "catalogURL": "https://arctos.database.museum/guid/UWYMV:Mamm:3983",
+          "specimen": "UWYMV:Mamm:3983",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer eines Sammlungspräparats.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Originalvorschau zeigt isolierten U-förmigen bezahnten Unterkiefer mit aufsteigenden Ästen, ohne Hirnschädel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "UWYMV:Mamm:3983, Mustela erminea, Mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/085f828edb30464db306fd47e4151229"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "iltis",
+      "name": "Iltis",
+      "scientificName": "Mustela putorius",
+      "models": [
+        {
+          "id": "4124c958ea7b45b29dfcc54cd62c168c",
+          "part": "mandible",
+          "title": "Iltis: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/mustela-putorius-mandible-4124c958ea7b45b29dfcc54cd62c168c",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_82-6869/887",
+          "specimen": "MZB 82-6869",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Spitze vordere Zähne und zahntragende Seiten sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Mustela putorius, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "kanadagans",
+      "name": "Kanadagans",
+      "scientificName": "Branta canadensis",
+      "models": [
+        {
+          "id": "d462d1f4c4ba4b20abf964377848db8b",
+          "part": "mandible",
+          "title": "Kanadagans: isolierter Unterkiefer",
+          "creator": "University of Wyoming Libraries",
+          "sourceURL": "https://sketchfab.com/3d-models/uwymvbird4105-branta-canadensis-mandible-d462d1f4c4ba4b20abf964377848db8b",
+          "catalogURL": "https://arctos.database.museum/guid/UWYMV:bird:4105",
+          "specimen": "UWYMV:bird:4105",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer eines Sammlungspräparats.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Einzeln geöffnete Originalvorschau zeigt U-förmigen Unterkiefer mit offener Mitte und zwei hinteren Ästen; keine Hirnkapsel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "UWYMV:Bird:4105, Branta canadensis, Mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/d462d1f4c4ba4b20abf964377848db8b"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "kolkrabe",
+      "name": "Kolkrabe",
+      "scientificName": "Corvus corax",
+      "models": [
+        {
+          "id": "373389368f3f4899a9a6c28bf71f7b7f",
+          "part": "mandible",
+          "title": "Kolkrabe: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/corvus-corax-mandible-373389368f3f4899a9a6c28bf71f7b7f",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_96-0075/827",
+          "specimen": "MZB 96-0075",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/373389368f3f4899a9a6c28bf71f7b7f",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Vogelunterkiefer. Vorderende und hintere seitliche Öffnungen sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Corvus corax, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "kormoran",
+      "name": "Kormoran",
+      "scientificName": "Phalacrocorax carbo",
+      "models": [
+        {
+          "id": "025070f7f2f0460f878654af82ebdacb",
+          "part": "mandible",
+          "title": "Kormoran: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/phalacrocorax-carbo-mandible-025070f7f2f0460f878654af82ebdacb",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2009-4163/317",
+          "specimen": "MZB 2009-4163",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/025070f7f2f0460f878654af82ebdacb",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter langer Vogelunterkiefer. Dünne Kieferseiten treffen vorne zusammen und liegen hinten auseinander; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Phalacrocorax carbo, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "luchs",
+      "name": "Luchs",
+      "scientificName": "Lynx lynx carpathica",
+      "models": [
+        {
+          "id": "27bc126d51954ded8fbc32190b6a98b9",
+          "part": "mandible",
+          "title": "Luchs: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/lynx-lynx-carpathica-mandible-27bc126d51954ded8fbc32190b6a98b9",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2010-1402-b/905",
+          "specimen": "MZB 2010-1402-B",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Eckzahnregion und hintere Fortsätze sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Lynx lynx carpathica, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ],
+      "note": "Das gezeigte Präparat ist als Lynx lynx carpathica bestimmt. Es steht nicht für jede Unterart oder individuelle Ausprägung des Eurasischen Luchses."
+    },
+    {
+      "speciesSlug": "marderhund",
+      "name": "Marderhund",
+      "scientificName": "Nyctereutes procyonoides",
+      "models": [
+        {
+          "id": "1631af4e14544311a11e55032b010880",
+          "part": "cranium",
+          "title": "Marderhund: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/nyctereutes-procyonoides-raccoon-dog-jenot-1631af4e14544311a11e55032b010880",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FA6CDIL",
+          "specimen": "Nyctereutes procyonoides - 169479, Zoological collection of the Mammal Research Institute, PAS Version 1.2",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer; kein separat beweglicher Kiefer.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Oberschädel und eingesetzten bezahnten Unterkiefer. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Nyctereutes procyonoides (Raccoon dog) (Jenot)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/1631af4e14544311a11e55032b010880"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "mauswiesel",
+      "name": "Mauswiesel",
+      "scientificName": "Mustela nivalis",
+      "models": [
+        {
+          "id": "2941752b8c374192840dba4da044ec96",
+          "part": "mandible",
+          "title": "Mauswiesel: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/mustela-nivalis-mandible-2941752b8c374192840dba4da044ec96",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_84-9516/899",
+          "specimen": "MZB 84-9516",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Spitze vordere Zähne und hohe hintere Fortsätze sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Mustela nivalis, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "mink",
+      "name": "Mink – Amerikanischer Nerz",
+      "scientificName": "Neogale vison",
+      "models": [
+        {
+          "id": "55110261ff784508978627b33761227c",
+          "part": "cranium",
+          "title": "Mink – Amerikanischer Nerz: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/mustela-vison-american-minknorka-amerykanska-55110261ff784508978627b33761227c",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2F87ARCV",
+          "specimen": "Mustela vison - 158754, Zoological collection of the Mammal Research Institute, PAS",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer. Im Original als Mustela vison bezeichnet; heute Neogale vison.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Schädel und eingesetzten bezahnten Unterkiefer. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "researchNote": "Taxonomische Synonymie Mustela vison -> Neogale vison bestätigt durch ITIS (Mustela vison valid name Neogale vison) und NCBI Taxonomy 452646.",
+          "taxonomySources": [
+            "https://www.itis.gov/servlet/SingleRpt/SingleRpt?categories=All&search_kingdom=every&search_span=exactly_for&search_topic=Scientific_Name&search_value=Mustela+vison",
+            "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=452646&mode=info"
+          ],
+          "originalTitle": "Mustela vison (American mink)(Norka amerykańska)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/55110261ff784508978627b33761227c"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "muffelwild",
+      "name": "Muffelwild",
+      "scientificName": "Ovis orientalis musimon",
+      "models": [
+        {
+          "id": "8216f7257e924498bba20a81a2735d5d",
+          "part": "cranium",
+          "title": "Europäischer Mufflon - Schädel",
+          "creator": "CMPLab",
+          "sourceURL": "https://sketchfab.com/3d-models/muflon-ovis-orientalis-musimon-8216f7257e924498bba20a81a2735d5d",
+          "catalogURL": "https://sketchfab.com/3d-models/muflon-ovis-orientalis-musimon-8216f7257e924498bba20a81a2735d5d",
+          "specimen": "",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Aus 96 Fotografien rekonstruiertes Sammlungspräparat ohne Unterkiefer. Die Quelle bezeichnet das Tier als Ovis orientalis musimon; diese Quellenbezeichnung bleibt erhalten.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Textured cranium with coiled horns visible, no lower jaw visible. Natural surface/scan gaps visible around the orbit; do not fill or infer missing geometry.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/8216f7257e924498bba20a81a2735d5d"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "nutria",
+      "name": "Nutria",
+      "scientificName": "Myocastor coypus",
+      "models": [
+        {
+          "id": "299490e82ca647ec8c5e34d045f0fdcc",
+          "part": "mandible",
+          "title": "Nutria: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/myocastor-coypus-mandible-299490e82ca647ec8c5e34d045f0fdcc",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_93-0048/141",
+          "specimen": "MZB 93-0048",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/299490e82ca647ec8c5e34d045f0fdcc",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Lange orangefarbene gebogene Schneidezähne und seitliche Backenzahnregion sichtbar.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Myocastor coypus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "rabenkraehe",
+      "name": "Rabenkrähe",
+      "scientificName": "Corvus corone",
+      "models": [
+        {
+          "id": "79754ef52fa1483ba0b05a73a46e3979",
+          "part": "cranium",
+          "title": "Rabenkrähe: Schädel ohne Unterkiefer",
+          "creator": "Chapel_Prints_CO",
+          "sourceURL": "https://sketchfab.com/3d-models/carrion-crow-corvus-corone-skull-colour-79754ef52fa1483ba0b05a73a46e3979",
+          "catalogURL": "https://www.chapelprints.co.uk/3dmodels",
+          "specimen": "Fund Bempton Cliffs, East Yorkshire; Eigentümer Lewis Ward; kein Inventarcode angegeben",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Oberschädel mit erhaltener Schnabelscheide; kein Unterkiefer. Unbearbeiteter Originalscan.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Seitliche Originalvorschau zeigt Hirnschädel und Oberschnabel ohne Unterkiefer; Augenbereich/Scleroticalring und Schnabelscheide erhalten. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Carrion Crow (Corvus corone) - Skull Colour",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/79754ef52fa1483ba0b05a73a46e3979"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "rehwild",
+      "name": "Rehwild",
+      "scientificName": "Capreolus capreolus",
+      "models": [
+        {
+          "id": "745302a63eae4201868d65fe5c6363e1",
+          "part": "mandible",
+          "title": "Rehwild: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/capreolus-capreolus-mandible-745302a63eae4201868d65fe5c6363e1",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2002-0516/101",
+          "specimen": "MZB 2002-0516",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/745302a63eae4201868d65fe5c6363e1",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Vorderer Kieferabschnitt, hintere Äste und Backenzahnregion erkennbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Capreolus capreolus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "rotwild",
+      "name": "Rotwild",
+      "scientificName": "Cervus elaphus",
+      "models": [
+        {
+          "id": "1c1bd6842b934b309c363b14dc491365",
+          "part": "mandible",
+          "title": "Rotwild: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/cervus-elaphus-mandible-1c1bd6842b934b309c363b14dc491365",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2010-0206/103",
+          "specimen": "MZB 2010-0206",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/1c1bd6842b934b309c363b14dc491365",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Langer zahntragender Körper und aufsteigende hintere Äste sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Cervus elaphus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "schneehase",
+      "name": "Schneehase",
+      "scientificName": "Lepus timidus",
+      "models": [
+        {
+          "id": "61e86079265945cb8c960f3c4e3bba61",
+          "part": "cranium",
+          "title": "Schneehase: Schädel mit Unterkiefer",
+          "creator": "Mammal Research Institute PAS, Poland",
+          "sourceURL": "https://sketchfab.com/3d-models/lepus-timidus-mountain-hare-zajac-bielak-61e86079265945cb8c960f3c4e3bba61",
+          "catalogURL": "https://dataverse.openforestdata.pl/dataset.xhtml?persistentId=doi%3A10.48370%2FOFD%2FZIWH4J",
+          "specimen": "Lepus timidus - 6352, Collection of the Upper Silesian Museum",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Schädel mit eingesetztem Unterkiefer. Herkunft: Museum Bytom; keine Unterartbestimmung für den Alpenraum.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Schräg seitliche Originalvorschau zeigt Schädel und Unterkiefer; Schneidezähne, Diastema und Backenzahnreihe sichtbar. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Lepus timidus (Mountain hare) (Zając bielak)",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/61e86079265945cb8c960f3c4e3bba61"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "schwarzwild",
+      "name": "Schwarzwild",
+      "scientificName": "Sus scrofa",
+      "models": [
+        {
+          "id": "0eee037718ba482e985809de2a8dd6ab",
+          "part": "cranium",
+          "title": "Wildschwein - Schädel mit Unterkiefer",
+          "creator": "M. Perretta, Sorbonne Universite",
+          "sourceURL": "https://sketchfab.com/3d-models/sus-scrofa-0eee037718ba482e985809de2a8dd6ab",
+          "catalogURL": "https://colluniv.sorbonne-universite.fr/document/ark:/82426/00270251/",
+          "specimen": "SU.CPZ.Mm.546",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Sammlungspräparat eines europäischen Wildschweins mit eingesetztem Unterkiefer. Schädel und Unterkiefer lassen sich hier nicht getrennt bewegen.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Textured cranium AND articulated lower jaw visible, with tusks and upper/lower cheek teeth. Not an isolated mandible.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/0eee037718ba482e985809de2a8dd6ab"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "seehund",
+      "name": "Seehund",
+      "scientificName": "Phoca vitulina",
+      "models": [
+        {
+          "id": "af7d0e6b6f9f4db689bb44c823ba4d2a",
+          "part": "mandible",
+          "title": "Seehund: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/phoca-vitulina-mandible-af7d0e6b6f9f4db689bb44c823ba4d2a",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_93-0007/873",
+          "specimen": "MZB 93-0007",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Spitze Zähne und beidseitige hintere Fortsätze sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Phoca vitulina, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "sikawild",
+      "name": "Sikawild",
+      "scientificName": "Cervus nippon",
+      "models": [
+        {
+          "id": "d371123af19442a5a98430e500192964",
+          "part": "cranium",
+          "title": "Sikahirsch - Schädel mit Geweih",
+          "creator": "ffish.asia / floraZia.com",
+          "sourceURL": "https://sketchfab.com/3d-models/cc0-japanese-deer-skull-c-nippon-d371123af19442a5a98430e500192964",
+          "catalogURL": "https://sketchfab.com/3d-models/cc0-japanese-deer-skull-c-nippon-d371123af19442a5a98430e500192964",
+          "specimen": "",
+          "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "license": "CC0 1.0",
+          "note": "Schädelpräparat ohne Unterkiefer aus einer japanischen Quelle. Eine bestimmte Unterart oder Herkunft aus dem DACH-Raum wird damit nicht behauptet.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Textured cranium with antlers and upper cheek-tooth row visible, no lower jaw visible. Antlers extend beyond preview framing; no claim of whole-model clipping.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/d371123af19442a5a98430e500192964"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "silbermoewe",
+      "name": "Silbermöwe",
+      "scientificName": "Larus argentatus",
+      "models": [
+        {
+          "id": "bf5509baaa57414a942293261f045772",
+          "part": "mandible",
+          "title": "Silbermöwe: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/larus-argentatus-mandible-bf5509baaa57414a942293261f045772",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_90-0010/450",
+          "specimen": "MZB 90-0010",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/bf5509baaa57414a942293261f045772",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Vogelunterkiefer mit zwei langen Kieferseiten und gebogenem Vorderabschnitt; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Larus argentatus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "spiessente",
+      "name": "Spießente",
+      "scientificName": "Anas acuta",
+      "models": [
+        {
+          "id": "41b1c7a8378e48d3a1b39badaa0f7087",
+          "part": "mandible",
+          "title": "Spießente: isolierter Unterkiefer",
+          "creator": "University of Wyoming Libraries",
+          "sourceURL": "https://sketchfab.com/3d-models/uwymvbird1208-anas-acuta-mandible-41b1c7a8378e48d3a1b39badaa0f7087",
+          "catalogURL": "https://arctos.database.museum/guid/UWYMV:Bird:1208",
+          "specimen": "UWYMV:Bird:1208",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "note": "Isolierter Unterkiefer eines Sammlungspräparats.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Einzeln geöffnete Originalvorschau zeigt U-förmigen Unterkiefer mit offener Mitte, seitlichen Lamellen und zwei hinteren Ästen; keine Hirnkapsel. Geprüft wurde die unveränderte Originalvorschau, keine vollständige 360°-Ansicht.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "UWYMV:Bird:1208, Anas acuta, Mandible",
+          "licenseBasis": "model-api",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/41b1c7a8378e48d3a1b39badaa0f7087"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "steinmarder",
+      "name": "Steinmarder",
+      "scientificName": "Martes foina",
+      "models": [
+        {
+          "id": "fbac9bd1a144439caac55fa7a0309fb8",
+          "part": "mandible",
+          "title": "Steinmarder: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/martes-foina-mandible-fbac9bd1a144439caac55fa7a0309fb8",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2008-0186/880",
+          "specimen": "MZB 2008-0186",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Große spitze vordere Zähne und hintere Äste sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Martes foina, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "steinwild",
+      "name": "Steinwild",
+      "scientificName": "Capra ibex",
+      "models": [
+        {
+          "id": "4a707964051245ddaa4670fad881e503",
+          "part": "mandible",
+          "title": "Alpensteinbock - isolierter Unterkiefer",
+          "creator": "Simone Farina, Natural History Museum University of Pisa; Commons publication: Patrizia17",
+          "sourceURL": "https://commons.wikimedia.org/wiki/File:Capra_ibex_(mandible)_3d_scan_Natural_History_Museum_University_of_Pisa_C_1233.stl",
+          "catalogURL": "https://www.msn.unipi.it/it/il-museo-di-storia-naturale-e-il-progetto-wikimedia-italia/",
+          "specimen": "C1233",
+          "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "license": "CC BY-SA 4.0 (Commons-Veröffentlichung)",
+          "note": "Unterkiefer des Sammlungspräparats C1233. Vordere Zähne fehlen; Befestigungsdrähte sind sichtbar. Die allgemeine Zahnformel wird separat erklärt.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Both lower-jaw halves and cheek-tooth rows visible. No lower front teeth visible; mounting wires are visible. Treat as preserved museum specimen, not complete normal dentition.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "museum-commons-identical-object",
+          "licenseSourceURL": "https://commons.wikimedia.org/wiki/File:Capra_ibex_(mandible)_3d_scan_Natural_History_Museum_University_of_Pisa_C_1233.stl"
+        },
+        {
+          "id": "f6eab7d03c04445385d6f62fd803a6ff",
+          "part": "cranium",
+          "title": "Alpensteinbock - Schädel mit Hörnern",
+          "creator": "Simone Farina, Natural History Museum University of Pisa; Commons publication: Patrizia17",
+          "sourceURL": "https://commons.wikimedia.org/wiki/File:Capra_ibex_3d_scan_Natural_History_Museum_University_of_Pisa_C_1233.stl",
+          "catalogURL": "https://www.msn.unipi.it/it/il-museo-di-storia-naturale-e-il-progetto-wikimedia-italia/",
+          "specimen": "C1233",
+          "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "license": "CC BY-SA 4.0 (Commons-Veröffentlichung)",
+          "note": "Schädel des Sammlungspräparats C1233 mit Hörnern, ohne Unterkiefer.",
+          "visualCheck": {
+            "status": "preview-checked",
+            "checkedOn": "2026-10-18",
+            "method": "Original1920x1080 preview retrieved from public Sketchfab API and visually inspected.",
+            "observed": "Cranium with large horns and upper cheek teeth visible; no lower jaw visible.",
+            "limitations": "Single preview only; no interactive rotation, mesh integrity check, independent species determination, tooth count or age assessment."
+          },
+          "licenseBasis": "museum-commons-identical-object",
+          "licenseSourceURL": "https://commons.wikimedia.org/wiki/File:Capra_ibex_3d_scan_Natural_History_Museum_University_of_Pisa_C_1233.stl"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "stockente",
+      "name": "Stockente",
+      "scientificName": "Anas platyrhynchos",
+      "models": [
+        {
+          "id": "edd9e7a7caf7494e8ac4047b21475fa2",
+          "part": "mandible",
+          "title": "Stockente: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/anas-platyrhynchos-mandible-edd9e7a7caf7494e8ac4047b21475fa2",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2002-0844/186",
+          "specimen": "MZB 2002-0844",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/edd9e7a7caf7494e8ac4047b21475fa2",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter langer Vogelunterkiefer mit verbreitertem rundlichem Vorderende und beidseitigen hinteren Abschnitten; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Anas platyrhynchos, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "verwilderte-hauskatze",
+      "name": "Verwilderte Hauskatze",
+      "scientificName": "Felis catus",
+      "models": [
+        {
+          "id": "6ce82ddef3b54710a5ec719de9d7eba6",
+          "part": "right-mandible",
+          "title": "Hauskatze: rechte Unterkieferhälfte",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/felis-catus-right-hemimandible-6ce82ddef3b54710a5ec719de9d7eba6",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2021-1706/915",
+          "specimen": "MZB 2021-1706",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "Hauskatzenpräparat (Felis catus), ausschließlich die rechte Unterkieferhälfte. Die Quelle belegt weder Verwilderung noch Besitzlosigkeit.",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Eine isolierte rechte Unterkieferhälfte; kein vollständiger Unterkiefer und kein Schädel. Vordere Zahnregion und hinterer Ast sichtbar.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Felis catus, right hemimandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "waldkauz",
+      "name": "Waldkauz",
+      "scientificName": "Strix aluco",
+      "models": [
+        {
+          "id": "36e31469b01d470b894db603d0b1032d",
+          "part": "mandible",
+          "title": "Waldkauz: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/strix-aluco-mandible-36e31469b01d470b894db603d0b1032d",
+          "catalogURL": "https://www.bioexplora.cat/ca/atles-osteologic/mzb_98-0667/490",
+          "specimen": "MZB 98-0667",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter breiter Vogelunterkiefer. Beide Seiten treffen im gebogenen Vorderabschnitt zusammen; hintere Enden liegen auseinander; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Strix aluco, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "waldschnepfe",
+      "name": "Waldschnepfe",
+      "scientificName": "Scolopax rusticola",
+      "models": [
+        {
+          "id": "e8a9d31495104325b1e62e018fa03f0a",
+          "part": "mandible",
+          "title": "Waldschnepfe: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/scolopax-rusticola-mandible-e8a9d31495104325b1e62e018fa03f0a",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_96-0249/803",
+          "specimen": "MZB 96-0249",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/e8a9d31495104325b1e62e018fa03f0a",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter sehr langer, schlanker Vogelunterkiefer. Beide schmalen Kieferseiten treffen im verlängerten Vorderabschnitt zusammen; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Scolopax rusticola, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "waschbaer",
+      "name": "Waschbär",
+      "scientificName": "Procyon lotor",
+      "models": [
+        {
+          "id": "d107f0a9c9ce46599cb41f21526ada41",
+          "part": "mandible",
+          "title": "Waschbär: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/procyon-lotor-94-0815-mandibula-d107f0a9c9ce46599cb41f21526ada41",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_94-0815/941",
+          "specimen": "MZB 94-0815",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/d107f0a9c9ce46599cb41f21526ada41",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Zahnregion und aufsteigende Äste sichtbar; die Vorschau allein bestätigt keine Vollständigkeit.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Procyon_lotor_94-0815_mandibula",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "wildkaninchen",
+      "name": "Wildkaninchen",
+      "scientificName": "Oryctolagus cuniculus",
+      "models": [
+        {
+          "id": "65d078562ec44d5a802a7e18fac7b639",
+          "part": "mandible",
+          "title": "Wildkaninchen: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/oryctolagus-cuniculus-mandible-65d078562ec44d5a802a7e18fac7b639",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_97-0280/164",
+          "specimen": "MZB 97-0280",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://api.sketchfab.com/v3/models/65d078562ec44d5a802a7e18fac7b639",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Breite hintere Äste und verlängerter Vorderabschnitt sichtbar; die schräge Ansicht begrenzt die Beurteilung der Zahnreihen.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Oryctolagus cuniculus, mandible",
+          "licenseBasis": "model-api"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "wildkatze",
+      "name": "Wildkatze",
+      "scientificName": "Felis silvestris",
+      "models": [
+        {
+          "id": "ef402ba6c05841c0b19e654de8602326",
+          "part": "mandible",
+          "title": "Wildkatze: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/felis-silvestris-mandible-ef402ba6c05841c0b19e654de8602326",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_2016-2770/878",
+          "specimen": "MZB 2016-2770",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Eckzahnregion und seitliche Zähne sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Felis silvestris, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    },
+    {
+      "speciesSlug": "wolf",
+      "name": "Wolf",
+      "scientificName": "Canis lupus lupus",
+      "models": [
+        {
+          "id": "9348100603704e37a81431e8f75feb21",
+          "part": "mandible",
+          "title": "Wolf: isolierter Unterkiefer",
+          "creator": "Museu de Ciències Naturals de Barcelona",
+          "sourceURL": "https://sketchfab.com/3d-models/canis-lupus-lupus-mandible-9348100603704e37a81431e8f75feb21",
+          "catalogURL": "https://www.bioexplora.cat/en/osteologic-atlas/mzb_97-0670/903",
+          "specimen": "MZB 97-0670",
+          "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+          "license": "CC BY 4.0",
+          "licenseSourceURL": "https://www.bioexplora.cat/en/legal-notes",
+          "note": "",
+          "visualCheck": {
+            "checkedOn": "2026-10-18",
+            "method": "Originalvorschau visuell geprüft; Taxon und Inventar mit der Objektquelle abgeglichen.",
+            "observed": "Isolierter Unterkiefer mit beiden Kieferseiten. Zahntragende Seiten und hohe hintere Äste sichtbar; kein Schädel.",
+            "limitations": "Keine vollständige Rundumprüfung, Zahnzählung, Altersbestimmung oder neue biologische Artbestimmung."
+          },
+          "originalTitle": "Canis lupus lupus, mandible",
+          "licenseBasis": "museum-object-and-legal-notes"
+        }
+      ]
+    }
+  ]
+}
