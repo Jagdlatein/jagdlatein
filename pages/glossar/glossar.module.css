@@ -2,6 +2,7 @@
    GLOBALER HINTERGRUND
    ======================================= */
 .wrapper {
+  box-sizing: border-box;
   min-height: 100vh;
   padding: 45px 16px 80px;
   background: linear-gradient(180deg, #faf8f1 0%, #f3eee3 100%);
@@ -12,6 +13,7 @@
    LAYOUT
    ======================================= */
 .container {
+  min-width: 0;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -20,6 +22,7 @@
    TITEL & TEXTE
    ======================================= */
 .title {
+  overflow-wrap: anywhere;
   font-size: 40px;
   font-weight: 800;
   color: #1a1a1a;
@@ -103,15 +106,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
 .slugTitle {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: 34px;
   font-weight: 800;
   color: #1a1a1a;
 }
 
 .slugLetter {
+  flex-shrink: 0;
   font-size: 50px;
   font-weight: 900;
   opacity: 0.35;
@@ -141,11 +148,15 @@
 /* Navigation */
 .navRow {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: space-between;
   margin: 14px 0 32px;
 }
 
 .navLink {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: 16px;
   color: #b38b2e;
   font-weight: 600;
@@ -245,6 +256,7 @@
 }
 
 .searchInput {
+  box-sizing: border-box;
   width: 100%;
   padding: 18px 22px;        /* GRÖSSER */
   font-size: 19px;           /* GRÖSSER */
@@ -271,3 +283,27 @@
   box-shadow: 0 0 0 4px rgba(179, 139, 46, 0.25);
   background: #fffef9;
 }
+
+/* The index leads from one initial to a term; definitions live on its page. */
+.indexHeading { font-size: 25px; line-height: 1.4; margin: 0 0 18px; }
+.breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 20px; line-height: 1.6; }
+.breadcrumb a { color: #72541d; min-height: 48px; display: inline-flex; align-items: center; }
+.letterTree, .entryList { list-style: none; padding: 0; margin: 0; }
+.letterTree { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.letterTree li, .entryList li { min-width: 0; }
+.letterTree a { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 16px; color: #57431d; text-decoration: none; border: 1px solid #ded8c9; border-radius: 12px; background: #fffdf7; }
+.letterTree strong { font-size: 25px; }
+.letterTree a > span:nth-child(2) { min-width: 0; font-size: 16px; overflow-wrap: anywhere; }
+.letterTree a > span:last-child { margin-left: auto; }
+.entryList { border-top: 1px solid #ded8c9; }
+.entryList li { border-bottom: 1px solid #ded8c9; }
+.entryLink { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 56px; padding: 12px 4px; color: #57431d; font-size: 21px; font-weight: 600; line-height: 1.5; text-decoration: none; }
+.entryLink > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.entryLink > span:last-child { flex-shrink: 0; }
+.entryLink:hover, .letterTree a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.letterDisclosure { margin: 20px 0; border-top: 1px solid #ded8c9; }
+.letterDisclosure > summary { min-height: 48px; padding: 12px 0; cursor: pointer; font-weight: 600; color: #72541d; }
+.letterDisclosure .azBar { margin: 12px 0; }
+.letterDisclosure .azItem { display: inline-flex; align-items: center; min-height: 44px; }
+.entryLink:focus-visible, .letterTree a:focus-visible, .breadcrumb a:focus-visible, .letterDisclosure > summary:focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 4px; }
+@media (max-width: 620px) { .letterTree { grid-template-columns: repeat(2, minmax(0, 1fr)); } .letterTree a { padding: 14px 10px; gap: 8px; } }

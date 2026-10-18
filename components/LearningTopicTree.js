@@ -25,7 +25,7 @@ export default function LearningTopicTree({ category, groups = [], modules = [] 
       const courses = item.moduleIds.map(id => catalog.get(id)).filter(Boolean);
       const lessons = courses.reduce((sum, course) => sum + course.lessonCount, 0);
       return <li key={item.id}><Link href={`${base}?bereich=${encodeURIComponent(item.id)}#learning-modules`} prefetch={false}>
-        <span><strong>{item.title}</strong><span>{courses.length} Themenbereiche · {lessons} Wissenstexte</span></span><AppIcon name="arrow-right" size={20} />
+        <span><strong>{item.title}</strong><span>{courses.length} {courses.length === 1 ? "Themenbereich" : "Themenbereiche"} · {lessons} {lessons === 1 ? "Wissenstext" : "Wissenstexte"}</span></span><AppIcon name="arrow-right" size={20} />
       </Link></li>;
     })}</ul>}
   </section>;

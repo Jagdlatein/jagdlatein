@@ -76,7 +76,7 @@ test('All twelve category roots expose their real topic branches before optional
       assert.ok(tree.includes(htmlValue(group.title)), group.id);
       const courses = group.moduleIds.map(id => byId.get(id));
       const lessonCount = courses.reduce((sum, module) => sum + module.lessonCount, 0);
-      assert.ok(tree.includes(`${courses.length} Themenbereiche · ${lessonCount} Wissenstexte`), `${category}/${group.id}: actual branch counts`);
+      assert.ok(tree.includes(`${courses.length} ${courses.length === 1 ? 'Themenbereich' : 'Themenbereiche'} · ${lessonCount} ${lessonCount === 1 ? 'Wissenstext' : 'Wissenstexte'}`), `${category}/${group.id}: actual branch counts`);
     }
     const resourceHtml = html.split('id="learning-resources-heading"')[1]?.split('</ul>')[0] || '';
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));

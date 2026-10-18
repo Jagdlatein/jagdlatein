@@ -16,10 +16,12 @@ export async function getServerSideProps(context) {
 
 export default function GlossarIndex({ letter = "" }) {
   const [query, setQuery] = useState("");
-
+  const search = query.trim().toLowerCase();
+  const letters = [...new Set(TERMS.map(entry => entry.term[0].toUpperCase()))].sort((a, b) => a.localeCompare(b, "de"));
+  const showTerms = Boolean(letter || search);
   const filtered = TERMS.filter(t => (!letter || t.term[0].toUpperCase() === letter) && (
-    t.term.toLowerCase().includes(query.toLowerCase()) ||
-    t.def.toLowerCase().includes(query.toLowerCase())
+    t.term.toLowerCase().includes(search) ||
+    t.def.toLowerCase().includes(search)
   ));
 
   return (
@@ -34,14 +36,12 @@ export default function GlossarIndex({ letter = "" }) {
 
           <h1 className={styles.title}>Jagd-Glossar</h1>
 
-          <p className={styles.subtitle}>
-            Zentrale Begriffe aus der Jägersprache, kompakt erklärt. Einzelne Bezeichnungen werden regional unterschiedlich verwendet.
-          </p>
-          {letter && <p>Begriffe mit {letter} · <a href="/glossar">Alle Begriffe anzeigen</a></p>}
+          {letter && <nav className={styles.breadcrumb} aria-label="Glossarpfad"><a href="/glossar">Glossar A–Z</a><span aria-hidden="true">›</span><span aria-current="page">Begriffe mit {letter}</span></nav>}
 
           <div className={styles.searchBox}>
             <input
-              type="text"
+              type="search"
+              maxLength={160}
               aria-label="Glossarbegriffe durchsuchen"
               placeholder="Begriff suchen…"
               value={query}
@@ -50,20 +50,28 @@ export default function GlossarIndex({ letter = "" }) {
             />
           </div>
 
-          <ul className={styles.list}>
+          <h2 className={styles.indexHeading}>{showTerms ? letter ? `Begriffe mit ${letter}` : "Gefundene Begriffe" : "Anfangsbuchstaben"}</h2>
+          {showTerms ? <>
+          {search && <p role="status">{filtered.length} {filtered.length === 1 ? "Begriff gefunden" : "Begriffe gefunden"}{letter ? ` mit ${letter}` : ""}.</p>}
+          <ul className={styles.entryList}>
             {filtered.length === 0 && (
               <li className={styles.empty}>Keine passenden Begriffe gefunden.</li>
             )}
 
             {filtered.map((t) => (
-              <li key={t.slug} className={styles.card}>
-                <a href={`/glossar/${t.slug}`} className={styles.term}>
-                  {t.term}
+              <li key={t.slug}>
+                <a href={`/glossar/${t.slug}`} className={styles.entryLink}>
+                  <span>{t.term}</span><span aria-hidden="true">→</span>
                 </a>
-                <p className={styles.def}>{t.def}</p>
               </li>
             ))}
           </ul>
+          </> : <ul className={styles.letterTree} aria-label="Glossar nach Anfangsbuchstaben">
+            {letters.map(initial => {
+              const count = TERMS.filter(entry => entry.term[0].toUpperCase() === initial).length;
+              return <li key={initial}><a href={`/glossar?letter=${encodeURIComponent(initial)}`}><strong>{initial}</strong><span>{count} {count === 1 ? "Begriff" : "Begriffe"}</span><span aria-hidden="true">→</span></a></li>;
+            })}
+          </ul>}
 
           <div className={styles.footer}>
             <a href="/" className={styles.footerLink}>Startseite</a>
