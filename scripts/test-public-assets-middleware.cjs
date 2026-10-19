@@ -72,7 +72,7 @@ test('Every published learning image path is exact, unique and backed by a real 
   assert.ok(learningImagePaths.every(pathname => fs.existsSync(path.join(root, 'public', pathname))));
 });
 
-for (const pathname of ['/impressum', '/datenschutz', '/robots.txt', '/sitemap.xml']) test(`${pathname} is available to a guest`, async () => {
+for (const pathname of ['/impressum', '/datenschutz', '/datenschutzerklaerung.html', '/robots.txt', '/sitemap.xml']) test(`${pathname} is available to a guest`, async () => {
   const response = await middleware(request(pathname)); assert.equal(response.headers.get('x-middleware-next'), '1');
 });
 
@@ -80,7 +80,8 @@ test('Opening exact portraits and public documents never opens lessons, PDFs or 
   for (const pathname of ['/wildkunde/biber', '/wildkunde/private.jpg', '/wildkunde/biber.jpg/private', '/wildkunde/biber.json',
     '/wildkunde/BIBER.jpg', '/wildkunde/biber.jpg.bak', '/lernen/private.jpg', '/ebook.pdf', '/protected/ebook',
     '/lernen/lernkarten', '/lernen/lernkarten-drucken', '/lernen/lernkarten/jagdlatein-lernkarten.pdf',
-    '/datenschutz/private', '/impressum.pdf', '/robots.txt/private', '/sitemap.xml.bak']) {
+    '/datenschutz/private', '/datenschutzerklaerung.html/private', '/datenschutzerklaerung.html.bak',
+    '/private.html', '/impressum.pdf', '/robots.txt/private', '/sitemap.xml.bak']) {
     const response = await middleware(request(pathname)); const target = new URL(response.headers.get('location'));
     assert.equal(target.pathname, '/preise', pathname); assert.equal(target.searchParams.get('next'), pathname);
   }

@@ -37,6 +37,7 @@ const PUBLIC_PATHS = [
   "/preise",
   "/impressum",
   "/datenschutz",
+  "/datenschutzerklaerung.html",
   "/hilfe",
   "/robots.txt",
   "/sitemap.xml",
