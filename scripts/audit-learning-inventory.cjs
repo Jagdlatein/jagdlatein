@@ -8,6 +8,7 @@ const { getFlashcards } = load('lib/learning-flashcards.js');
 const growth = load('lib/learning-knowledge-growth.js').knowledgeGrowthModules;
 const science = load('lib/learning-science-expansion.js').scienceExpansionModules;
 const depth = load('lib/learning-expansion-oct17.js').depthExpansionModules;
+const latest = load('lib/learning-round6-oct18.js').round6ExpansionModules;
 const countBatch = modules => ({ courses: modules.length, lessons: modules.reduce((n, x) => n + x.lessons.length, 0), questions: modules.reduce((n, x) => n + x.questions.length, 0) });
 const report = {
   generatedAt: new Date().toISOString(),
@@ -17,9 +18,9 @@ const report = {
   flashcards: getFlashcards().length,
   speciesPortraits: load('lib/european-wildlife.js').europeanWildlife.length,
   animalSoundRecordings: load('lib/animal-sounds.js').animalSounds.length,
-  added: countBatch(depth),
-  expansionBatches: { firstKnowledgeGrowth: countBatch(growth), secondScientificDepth: countBatch(science), thirdBiologyHabitatPractice: countBatch(depth) },
-  categories: Object.fromEntries([...new Set(learningModules.map(x => x.category))].map(category => [category, { courses: learningModules.filter(x => x.category === category).length, newQuestions: depth.filter(x => x.category === category).reduce((n, x) => n + x.questions.length, 0) }])),
+  added: { batch: 'round6-2026-10-18', ...countBatch(latest) },
+  expansionBatches: { firstKnowledgeGrowth: countBatch(growth), secondScientificDepth: countBatch(science), thirdBiologyHabitatPractice: countBatch(depth), round6October18: countBatch(latest) },
+  categories: Object.fromEntries([...new Set(learningModules.map(x => x.category))].map(category => [category, { courses: learningModules.filter(x => x.category === category).length, newQuestions: latest.filter(x => x.category === category).reduce((n, x) => n + x.questions.length, 0) }])),
   scope: 'Course questions are already included in the central pool. Flashcards reuse existing questions. Counts do not mean distinct facts, official examination questions, or complete scientific verification.',
 };
 if (process.argv[2]) fs.writeFileSync(process.argv[2], JSON.stringify(report, null, 2) + '\n', 'utf8');

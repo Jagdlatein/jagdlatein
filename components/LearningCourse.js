@@ -138,7 +138,8 @@ function LearningContent({ module, flashcards }) {
             {href: "/lernen", title: "Kategorien"},
             ...(category ? [{href: `/lernen/${category.slug}`, title: category.title}] : []),
             ...(topicLocation ? [{href: `/lernen/${topicLocation.categorySlug}?bereich=${topicLocation.groupId}#learning-modules`, title: topicLocation.groupTitle}] : []),
-          ]} current={lesson.title} />
+            ...(topicLocation ? [{href: `/lernen/${topicLocation.categorySlug}?bereich=${topicLocation.groupId}&kurs=${encodeURIComponent(module.id)}#learning-modules`, title: "Themenübersicht"}] : []),
+          ]} current="Wissenstext" />
           {countrySelection && <section aria-label="Geltungsbereich">
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>

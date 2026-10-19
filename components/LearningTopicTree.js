@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import KnowledgeBreadcrumb from "./KnowledgeBreadcrumb";
@@ -11,15 +12,32 @@ export default function LearningTopicTree({ category, groups = [], modules = [] 
   const base = `/lernen/${category.slug}`;
   const catalog = new Map(modules.map(module => [module.id, module]));
   const selected = group ? group.moduleIds.map(id => catalog.get(id)).filter(Boolean) : [];
-  return <section id="learning-modules" className={styles.section} aria-labelledby="learning-modules-heading">
-    <KnowledgeBreadcrumb items={[{ href: "/lernen", title: "Kategorien" }, ...(requested ? [{ href: base, title: category.title }] : [])]} current={group?.title || category.title} />
-    <h2 id="learning-modules-heading">{group?.title || "Unterkategorien"}</h2>
+  const requestedCourse = typeof router.query?.kurs === "string" ? router.query.kurs : "";
+  const course = selected.find(item => item.id === requestedCourse);
+  const groupHref = group ? `${base}?bereich=${encodeURIComponent(group.id)}` : base;
+  const heading = useRef(null);
+  const section = useRef(null);
+  useEffect(() => {
+    if (!router.isReady || window.location.hash !== "#learning-modules") return;
+    heading.current?.focus({ preventScroll: true });
+    section.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }, [router.isReady, category.slug, requested, requestedCourse]);
+  return <section id="learning-modules" ref={section} className={styles.section} aria-labelledby="learning-modules-heading">
+    <KnowledgeBreadcrumb items={[{ href: "/lernen", title: "Kategorien" }, ...(requested ? [{ href: base, title: category.title }] : []), ...(course ? [{ href: `${groupHref}#learning-modules`, title: group.title }] : [])]} current={course ? "Wissenstexte" : group?.title || category.title} />
+    <h2 id="learning-modules-heading" ref={heading} tabIndex={-1}>{course?.title || group?.title || "Unterkategorien"}</h2>
     {requested && !group && <p role="status">Diese Unterkategorie ist nicht verfügbar. Wähle einen Bereich aus.</p>}
-    {group ? <>
-      <p className={styles.hint}>Wähle das Thema, dessen Wissenstext du lesen möchtest.</p>
-      <ul className={styles.topics}>{selected.map(module => <li key={module.id}>
-        <h3>{module.title}</h3>
-        <ul>{module.topics.map(topic => <li key={topic.href}><Link href={topic.href} prefetch={false}>{topic.title}<AppIcon name="arrow-right" size={17} /></Link></li>)}</ul>
+    {router.query?.kurs !== undefined && !course && <p role="status">Dieser Themenbereich gehört nicht zum gewählten Pfad. Wähle einen verfügbaren Themenbereich.</p>}
+    {course ? <>
+      <p className={styles.hint}>Wähle den Wissenstext, den du genauer lesen möchtest.</p>
+      <ul className={styles.topics} aria-label={`Wissenstexte: ${course.title}`}><li>
+        <ul>{course.topics.map(topic => <li key={topic.href}><Link href={topic.href} prefetch={false}>{topic.title}<AppIcon name="arrow-right" size={17} /></Link></li>)}</ul>
+      </li></ul>
+    </> : group ? <>
+      <p className={styles.hint}>Wähle einen Themenbereich und danach den passenden Wissenstext.</p>
+      <ul className={styles.branches}>{selected.map(module => <li key={module.id}>
+        <Link href={`${groupHref}&kurs=${encodeURIComponent(module.id)}#learning-modules`} prefetch={false}>
+          <span><strong>{module.title}</strong><span>{module.lessonCount} {module.lessonCount === 1 ? "Wissenstext" : "Wissenstexte"} · {module.level}</span></span><AppIcon name="arrow-right" size={20} />
+        </Link>
       </li>)}</ul>
     </> : <ul className={styles.branches}>{groups.map(item => {
       const courses = item.moduleIds.map(id => catalog.get(id)).filter(Boolean);

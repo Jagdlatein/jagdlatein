@@ -1,0 +1,1281 @@
+{
+  "reviewedOn": "2026-10-18",
+  "contentAddedOn": "2026-10-18",
+  "scope": "Vier neue fachliche Vertiefungen nach Titel-/Lektionsaudit des integrierten Bestands mit 181 Kursen und 792 Lektionen sowie gezieltem Text-/Fragen-/Porträtabgleich. Wissen zuerst: 16 ausführliche direkt lesbare Lektionen, 64 Wissensabsätze und nur 16 ergänzende Fragen. Keine Vollprüfung der übrigen App; keine medizinische Diagnostik, Behandlung oder neuen Rechtsbehauptungen.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026",
+      "title": "Säugerohr: Schallwandlung und Gleichgewicht",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Den Weg vom Luftschall zur Haarzelle verfolgen und verstehen, wie das Innenohr Drehung, Beschleunigung und Blickstabilisierung ermöglicht.",
+      "minutes": 28,
+      "objectives": [
+        "Mechanische Übertragung und elektrische Sinneswandlung auseinanderhalten",
+        "Frequenz-Ortszuordnung der Cochlea erklären",
+        "Bogengänge und Otolithenorgane funktionell vergleichen",
+        "Vestibuläre, visuelle und körpereigene Lageinformationen verbinden"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Funktioneller Säugerbauplan; Hörgrenzen, Diagnostik und Provokationsversuche ausgeschlossen.",
+        "AT": "Funktioneller Säugerbauplan; Hörgrenzen, Diagnostik und Provokationsversuche ausgeschlossen.",
+        "CH": "Funktioneller Säugerbauplan; Hörgrenzen, Diagnostik und Provokationsversuche ausgeschlossen."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "Gray: Auditory System, Neuroscience Online, Kapitel 12",
+          "url": "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+          "organization": "UTHealth Houston; Lincoln Gray, James Madison University",
+          "supports": "Originaltext 12.1–12.4 direkt gelesen: Gehörknöchelchen/Fenster, Haarzell-Mechanotransduktion, Endolymphe an den Stereozilien, afferente Übertragung und Frequenz-Ortszuordnung. Keine menschlichen Hörgrenzen, Prozentwerte oder irreführenden dB-Beispiele übernommen."
+        },
+        {
+          "label": "Gray: Vestibular System, Neuroscience Online, Kapitel 10",
+          "url": "https://nba.uth.tmc.edu/neuroscience/s2/chapter10.html",
+          "organization": "UTHealth Houston; Lincoln Gray, James Madison University",
+          "supports": "Originalabschnitte zu Cupula, Macula/Otokonien, Winkel-/Linearbeschleunigung und vestibulo-okulärem Reflex direkt gelesen. Gleiche Quellenfamilie wie Kapitel 12; keine klinischen Provokationsversuche, Strömungsrichtungsregeln oder Geschwindigkeitsgrenzen."
+        },
+        {
+          "label": "NIDCD: How Do We Hear?",
+          "url": "https://www.nidcd.nih.gov/health/how-do-we-hear",
+          "organization": "NIH / National Institute on Deafness and Other Communication Disorders",
+          "supports": "Nummerierte Originalerklärung vollständig gelesen: Luftschall, Trommelfell, Gehörknöchelchen, Cochlea/Basilarmembran, Haarzellfortsätze und neuronale Signale; hohe/tiefe Frequenzen. Unzutreffende bildliche Alttextzuordnung der Ohrtrompete nicht übernommen."
+        },
+        {
+          "label": "OpenStax Biology 2e: Hearing and Vestibular Sensation",
+          "url": "https://openstax.org/books/biology-2e/pages/36-4-hearing-and-vestibular-sensation",
+          "organization": "Rice University / OpenStax",
+          "supports": "Originalabschnitte Mittelohr, Basilarmembran sowie Haarzell-Abbildung mit mechanisch geöffneten Ionenkanälen direkt und im vollständigen Originalindex gelesen. Säuger-Modell, keine individuellen Hörleistungen, keine verkürzte Gleichsetzung Haarzellpotential = Aktionspotential."
+        },
+        {
+          "label": "NIDCD: Balance Disorders, Abschnitt How does the balance system work?",
+          "url": "https://www.nidcd.nih.gov/health/balance-disorders",
+          "organization": "NIH / National Institute on Deafness and Other Communication Disorders",
+          "supports": "Originalabschnitt direkt gelesen: drei Bogengänge, Cupula/Haarzellen, Utriculus/Sacculus, Otokonien sowie Zusammenwirken mit visuellen und muskuloskelettalen Informationen. Klinische Symptomlisten/Behandlung nicht übernommen."
+        },
+        {
+          "label": "Purves und andere: Central Vestibular Pathways: Eye, Head, and Body Reflexes",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10987/",
+          "organization": "Duke University; Neuroscience, 2. Auflage / Sinauer",
+          "supports": "Vollständigen öffentlich indexierten Originalabschnitt zu Vestibularnerv, Vestibulariskernen/Kleinhirn und kompensierenden Augenbewegungen gelesen. Direkter Folgeabruf durch Browserprüfung begrenzt; keine artspezifischen Leistungs- oder Krankheitsangaben."
+        },
+        {
+          "label": "University of Alberta: Auditory System",
+          "url": "https://sites.ualberta.ca/~neuro/OnlineIntro/SysSensoryAuditory.htm",
+          "organization": "University of Alberta",
+          "supports": "Öffentlich indexierten Originalabschnitt zu Cochlearäumen, Corti-Organ, Basilarmembran und hoher basaler/tiefer apikaler Frequenzzuordnung gelesen. Keine Zahlen zu Steifigkeitsverhältnissen oder individuellen Frequenzgrenzen."
+        },
+        {
+          "label": "Purves und andere: Hair Cells and the Mechanoelectrical Transduction of Sound Waves",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10867/",
+          "organization": "Duke University; Neuroscience, 2. Auflage / Sinauer",
+          "supports": "Vollständigen öffentlich indexierten Originalabschnitt zur getrennten apikalen Endolymphe/basalen Perilymphe, K+-Einstrom, Depolarisation, Ca2+ und basaler Transmitterfreisetzung gelesen. Keine elektrischen Messwerte übernommen."
+        },
+        {
+          "label": "Purves und andere: The Middle Ear",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK11076/",
+          "organization": "Duke University; Neuroscience, 2. Auflage / Sinauer",
+          "supports": "Vollständigen Originalabschnitt öffentlich gelesen: Impedanzanpassung, Trommelfell-/Ovalfensterflächen und Hebelwirkung der Knöchelchen. Keine Druck- oder dB-Faktoren, keine klinischen Stimmgabeltests."
+        },
+        {
+          "label": "NIH Curriculum Supplement: Information about Hearing, Communication, and Understanding",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK20366/",
+          "organization": "National Institutes of Health / NIH Curriculum Supplement Series",
+          "supports": "Öffentlich indexierten Originalabschnitt The inner ear mit ovalem/rundem Fenster und Ausgleich der Flüssigkeitsdruckänderung gelesen. Nur diese Funktion, keine humanen Cochleamaße oder vereinfachte Zweikammer-Vollanatomie übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "schallweg",
+          "title": "Luftschall wird zur Bewegung im Innenohr",
+          "paragraphs": [
+            "Ein Laut besteht zunächst aus Druckschwankungen in der Luft. Im Säugerohr versetzen diese das Trommelfell in Schwingung. Hammer, Amboss und Steigbügel übertragen die Bewegung zur Fußplatte des Steigbügels am ovalen Fenster. Dahinter liegt kein weiterer luftgefüllter Hörraum, sondern das Flüssigkeitssystem der Cochlea. Schon dieser Übergang erklärt, weshalb ein Ohr mehr benötigt als eine empfindliche Membran: Die Bewegung muss zwischen unterschiedlichen Medien wirksam übertragen werden.",
+            "Die Gehörknöchelchen arbeiten dabei als mechanisches Übertragungssystem. Zusammen mit dem Flächenunterschied zwischen Trommelfell und ovalem Fenster unterstützen ihre Hebelverhältnisse die Anpassung an die Flüssigkeit des Innenohrs. Es entsteht keine zusätzliche Energie aus dem Nichts. Vielmehr werden Kraft, Druck und Bewegungsweg so aufeinander abgestimmt, dass nicht der größte Teil des ankommenden Schalls an diesem Übergang verloren geht.",
+            "Die Bewegung am ovalen Fenster setzt Druckänderungen in der Cochlea in Gang. Das runde Fenster ermöglicht den notwendigen Druckausgleich durch seine bewegliche Membran. Die dadurch ausgelösten Bewegungen der Basilarmembran erreichen schließlich das darauf liegende Corti-Organ. Erst dort beginnt die eigentliche Umwandlung einer mechanischen Bewegung in ein elektrisches Signal der Sinneszellen; die Knöchelchen selbst erzeugen noch keine Hörnervensignale.",
+            "Als Lernvergleich hilft eine Kette verschiedener Aufgaben: Das Trommelfell nimmt eine Bewegung auf, das Mittelohr überträgt sie, und die Cochlea analysiert sie mithilfe ihrer Sinneszellen. Ein bewegtes Außenohr allein verrät deshalb nicht, wie gut ein Tier einen Laut verarbeitet. Die hier erklärte Grundkette gilt für Säuger; sie enthält weder einen Hörtest für Jagdhunde noch eine Rangfolge der Hörleistung verschiedener Wildarten."
+          ],
+          "takeaway": "Das Mittelohr überträgt Luftschallschwingungen in das Flüssigkeitssystem; erst die Haarzellen übernehmen die elektrische Sinneswandlung.",
+          "exercise": "Ordne Trommelfell, Gehörknöchelchen, ovales Fenster und Haarzelle ihren unterschiedlichen Aufgaben zu."
+        },
+        {
+          "id": "haarzelle-frequenz",
+          "title": "Haarzellen übersetzen Bewegung und ordnen Frequenzen",
+          "paragraphs": [
+            "Haarzellen im Corti-Organ sind mechanisch empfindliche Sinneszellen. Ihre feinen Fortsätze heißen Stereozilien. Werden die Bündel passend ausgelenkt, verändern sich mechanisch gekoppelte Ionenkanäle. So übersetzt die Zelle die Bewegung in eine Änderung ihres elektrischen Zustands. Die Stereozilien sind daher keine winzigen Mikrofone mit eigenem Kabel, sondern Teile einer lebenden Membranstruktur, deren Auslenkung den Ionenstrom beeinflusst.",
+            "An der Oberseite der Haarzellen herrscht ein besonderes Flüssigkeitsmilieu: Die Stereozilien ragen in kaliumreiche Endolymphe. Bei entsprechender Auslenkung strömen Ionen ein, die Haarzelle wird depolarisiert, und an ihrer Basis wird die Signalübertragung auf nachgeschaltete Nervenfasern verändert. Haarzellpotential und Aktionspotential im Hörnerv sind dabei unterschiedliche Vorgänge. Die Sinneszelle steuert die Übertragung; die Nervenfaser leitet anschließend ihre eigenen elektrischen Impulse weiter.",
+            "Die Basilarmembran schwingt nicht an allen Orten gleich. Ihre mechanischen Eigenschaften ändern sich entlang der Cochlea. Hohe Frequenzen erregen bevorzugt Bereiche nahe der Basis, tiefere Frequenzen weiter in Richtung Spitze. Diese räumliche Ordnung heißt Tonotopie. Ein tiefer und ein hoher Laut werden folglich nicht nur durch eine größere oder kleinere Auslenkung am selben Ort unterschieden; auch der Ort besonders starker Anregung liefert Information über die Frequenz.",
+            "Ein selbst erstellter Lernvergleich ist eine geordnete Reihe unterschiedlich abgestimmter Empfänger. Sie dient nur als Merkhilfe: Die Cochlea besitzt keine Klaviertasten, und die Verarbeitung im Gehirn geht über diese Ortsordnung hinaus. Für die Jagdausbildung ist der Unterschied zwischen Lautstärke und Tonhöhe wichtig. Ein höherer Ton ist nicht automatisch lauter. Aus dem gemeinsamen Säugerbauplan lassen sich außerdem keine identischen Hörgrenzen für Reh, Wildschwein und Hund ableiten."
+          ],
+          "takeaway": "Stereozilien steuern mechanisch empfindliche Ionenkanäle; die Ortsordnung der Cochlea trägt zur Frequenzunterscheidung bei.",
+          "exercise": "Erkläre an einem tiefen und einem hohen Laut, weshalb Frequenz und Lautstärke verschiedene Merkmale sind."
+        },
+        {
+          "id": "drehen-geradeaus",
+          "title": "Bogengänge und Otolithenorgane messen Verschiedenes",
+          "paragraphs": [
+            "Neben dem Hörorgan liegt im Innenohr das Vestibularorgan. Seine Sinneszellen reagieren ebenfalls auf mechanische Auslenkung, erhalten diese aber über andere Strukturen. Die drei Bogengänge sind räumlich unterschiedlich orientiert und besitzen jeweils eine Erweiterung mit Sinneszellen. Deren Fortsätze reichen in die Cupula, eine gallertige Struktur. Bei einer Änderung der Kopfdrehung wirkt die Trägheit der Flüssigkeit gegenüber der bewegten Umgebung; die Cupula wird ausgelenkt und beeinflusst die Aktivität der Nervenfasern.",
+            "Die Bogengänge informieren vor allem über Änderungen der Drehbewegung, also Winkelbeschleunigung. Das ist etwas anderes als eine dauerhafte Messung der Kopfrichtung wie durch einen Kompass. Wird eine Drehbewegung verändert, entsteht eine andere mechanische Situation als bei einer unverändert gehaltenen Kopfstellung. Die für diesen Kurs wichtige Frage lautet deshalb: Dreht sich der Kopf gerade anders, oder wird seine Lage gegenüber der Schwerkraft verändert?",
+            "Für lineare Beschleunigung und Schwerkraft sind besonders Utriculus und Sacculus zuständig. In ihren Sinnesfeldern liegen die Fortsätze der Haarzellen in einer gallertigen Schicht, die kleine Calciumcarbonatteilchen trägt: die Otokonien. Deren Masse sorgt bei Schwerkraftwirkung und Beschleunigung für eine Verschiebung gegenüber dem Sinnesepithel. Auch hier verändert eine mechanische Auslenkung die Sinneszellaktivität. Der Unterschied liegt in der vorgeschalteten Struktur und in der Art des Bewegungsreizes.",
+            "Als Lernbeispiel lassen sich Kopfdrehung und geradliniges Anfahren vergleichen. Bei der Drehänderung stehen die Bogengänge im Vordergrund; beim geradlinigen Beschleunigen die Otolithenorgane. In realen Bewegungen treten mehrere Komponenten gemeinsam auf. Außerdem können Schwerkraft und lineare Beschleunigung ähnliche Signale an den Otolithen erzeugen. Das Nervensystem muss diese mit weiteren Informationen einordnen. Das Beispiel ist eine Funktionserklärung und keine Aufforderung, Tiere durch Drehen oder ruckartige Bewegungen zu testen."
+          ],
+          "takeaway": "Bogengänge erfassen vor allem Änderungen der Drehbewegung; Otolithenorgane erfassen lineare Beschleunigung und Schwerkraft.",
+          "exercise": "Vergleiche eine Kopfdrehung mit geradlinigem Beschleunigen, ohne einen praktischen Tierversuch durchzuführen."
+        },
+        {
+          "id": "blick-lage",
+          "title": "Ein stabiler Blick entsteht im Zusammenspiel",
+          "paragraphs": [
+            "Beim Bewegen des Kopfes würde sich das Bild eines ruhenden Gegenstands über die Netzhaut verschieben, wenn die Augen einfach starr mitgenommen würden. Der vestibulo-okuläre Reflex, kurz VOR, wirkt dem entgegen. Informationen aus dem Vestibularorgan erreichen über zentrale Verschaltungen die Steuerung der Augenmuskeln. Dadurch können kompensierende Augenbewegungen entstehen, die den Blick während einer Kopfbewegung stabilisieren. Diese Verbindung erklärt, weshalb Gleichgewichtssystem und Sehen funktionell eng zusammenhängen.",
+            "Die Information beginnt im Innenohr und wird über den vestibulären Anteil des achten Hirnnervs weitergeleitet. Vestibulariskerne und weitere zentrale Verbindungen sind an ihrer Verarbeitung beteiligt; auch zum Kleinhirn bestehen Verbindungen. Die Sinnesorgane melden dabei nicht bereits eine fertige Vorstellung wie „der Weg ist schief“. Sie liefern Signale über Bewegung und Lage, aus denen das Nervensystem zusammen mit anderen Eingängen angemessene Reaktionen aufbaut.",
+            "Für Orientierung und Haltung kommen zusätzlich visuelle Informationen sowie Informationen aus dem Bewegungsapparat hinzu. Das sichtbare Umfeld und die Rückmeldungen über den eigenen Körper ergänzen die vestibulären Signale. Gleichgewicht ist deshalb weder allein eine Leistung der Augen noch allein eine des Innenohrs. Ein selbst erstelltes Lernbeispiel ist der Unterschied zwischen dem Blick auf einen feststehenden Baum und der Rückmeldung über die Stellung der eigenen Gliedmaßen: Beide liefern verschiedene Bezugspunkte.",
+            "Für das Verständnis eines sich bewegenden Jagdhundes ist diese Arbeitsteilung hilfreicher als die Vorstellung eines einzelnen „Gleichgewichtsschalters“. Blickstabilisierung, Kopfbewegung und Körperhaltung müssen zusammenpassen. Der biologische Zusammenhang erlaubt jedoch keine Ferndiagnose aus einem kurzen Video oder einer auffälligen Kopfhaltung. Dieser Kurs erklärt normale Funktionswege. Er legt keine universellen Reflexgeschwindigkeiten fest und ersetzt weder eine tierärztliche Untersuchung noch eine artspezifische Bewertung des Hör- oder Gleichgewichtsvermögens."
+          ],
+          "takeaway": "Der VOR verbindet vestibuläre Kopfinformation mit kompensierenden Augenbewegungen; Orientierung nutzt zusätzlich Sehen und Körperrückmeldungen.",
+          "exercise": "Erkläre, welche unterschiedlichen Informationen Innenohr, Augen und Bewegungsapparat zur Orientierung beitragen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026-q1",
+          "lessonId": "schallweg",
+          "q": "Welche Struktur übernimmt im Säugerohr die Umwandlung mechanischer Bewegung in ein elektrisches Sinneszellsignal?",
+          "options": [
+            "Die Fußplatte des Steigbügels",
+            "Die Membran des runden Fensters",
+            "Die Haarzelle im Corti-Organ",
+            "Der Hammer im Mittelohr"
+          ],
+          "answer": 2,
+          "explain": "Die Haarzelle verändert bei Auslenkung ihrer Stereozilien ihren Ionenstrom und ihr elektrisches Potential. Trommelfell, Gehörknöchelchen und Fenster gehören zur vorgeschalteten mechanischen Übertragung."
+        },
+        {
+          "id": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026-q2",
+          "lessonId": "haarzelle-frequenz",
+          "q": "Wie sind hohe und tiefe Frequenzen im grundlegenden Ortsmodell der Säugercochlea zugeordnet?",
+          "options": [
+            "Hohe eher an der Basis, tiefe eher Richtung Spitze",
+            "Hohe eher Richtung Spitze, tiefe eher an der Basis",
+            "Hohe am runden Fenster, tiefe an der Ohrmuschel",
+            "Hohe im Utriculus, tiefe in den Bogengängen"
+          ],
+          "answer": 0,
+          "explain": "Die mechanischen Eigenschaften der Basilarmembran ändern sich entlang der Cochlea. Hohe Frequenzen erregen bevorzugt basale, tiefere bevorzugt weiter apikal gelegene Bereiche. Diese Tonotopie beschreibt keine für alle Säuger identischen Hörgrenzen."
+        },
+        {
+          "id": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026-q3",
+          "lessonId": "drehen-geradeaus",
+          "q": "Welcher Bewegungsreiz wird besonders durch die Otolithenorgane Utriculus und Sacculus erfasst?",
+          "options": [
+            "Die Frequenz eines ankommenden Luftschalls",
+            "Die Schwingung der Gehörknöchelchenkette",
+            "Die Änderung einer reinen Kopfdrehung",
+            "Lineare Beschleunigung und Schwerkraft"
+          ],
+          "answer": 3,
+          "explain": "Utriculus und Sacculus besitzen Sinnesfelder mit einer otokonienbeladenen Gallertschicht. Ihre Verschiebung bei Schwerkraft und linearer Beschleunigung lenkt Haarzellfortsätze aus. Die Bogengänge sind besonders auf Änderungen der Drehbewegung ausgerichtet."
+        },
+        {
+          "id": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026-q4",
+          "lessonId": "blick-lage",
+          "q": "Welche Funktion erfüllt der vestibulo-okuläre Reflex bei einer Kopfbewegung?",
+          "options": [
+            "Er passt die Hebelverhältnisse der Gehörknöchelchen an",
+            "Er unterstützt die Blickstabilisierung durch Augenbewegungen",
+            "Er ordnet hohe Töne der Cochleaspitze zu",
+            "Er verschiebt die Otokonien in die Bogengänge"
+          ],
+          "answer": 1,
+          "explain": "Der vestibulo-okuläre Reflex nutzt vestibuläre Bewegungssignale für kompensierende Augenbewegungen. Dadurch kann der Blick bei Kopfbewegung stabilisiert werden. Für Orientierung und Haltung werden zusätzlich visuelle und körpereigene Informationen verarbeitet."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Funktioneller Säugerbauplan; Hörgrenzen, Diagnostik und Provokationsversuche ausgeschlossen.",
+        "independentOrganizations": [
+          "UTHealth / Gray (beide Kapitel eine Familie)",
+          "NIH / NIDCD (beide Seiten eine Familie)",
+          "Rice University / OpenStax",
+          "Duke University / Purves",
+          "University of Alberta"
+        ],
+        "limitations": [
+          "Humanlehrquellen dienen dem Säuger-Funktionsmodell, nicht artspezifischen Leistungswerten.",
+          "Oberseite der Haarzelle an Endolymphe präzisiert; Haarzellpotential und Hörnerven-Aktionspotential getrennt.",
+          "Keine Dezibel-, Prozent-, Drehgeschwindigkeits- oder Ampullen-Strömungsrichtungsregeln übernommen."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-hund-naehrstoffe-round6-2026",
+      "title": "Nährstoffe beim Hund: Protein, Fett, Stärke und Faser",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Verstehen, was Nährstoffe im Hund leisten und weshalb Zutatenname, Prozentzahl und biologische Verwertbarkeit unterschiedliche Dinge beschreiben.",
+      "minutes": 30,
+      "objectives": [
+        "Proteinmenge von Aminosäureversorgung und Verdaulichkeit unterscheiden",
+        "Energie- und Baustofffunktionen der Fette verbinden",
+        "Körpereigene Stärkeverdauung von mikrobieller Fermentation trennen",
+        "Löslichkeit, Fermentierbarkeit und Rohfaser richtig einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Nährstoff-Funktionswissen beim Hund; keine Futterrezeptur, Dosierung, Diagnose oder Therapie. Aussage zur nicht zwingenden Kohlenhydratzufuhr nur gesunder erwachsener nicht reproduzierender Hund.",
+        "AT": "Nährstoff-Funktionswissen beim Hund; keine Futterrezeptur, Dosierung, Diagnose oder Therapie. Aussage zur nicht zwingenden Kohlenhydratzufuhr nur gesunder erwachsener nicht reproduzierender Hund.",
+        "CH": "Nährstoff-Funktionswissen beim Hund; keine Futterrezeptur, Dosierung, Diagnose oder Therapie. Aussage zur nicht zwingenden Kohlenhydratzufuhr nur gesunder erwachsener nicht reproduzierender Hund."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "NRC: Your Dog's Nutritional Needs",
+          "url": "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+          "organization": "National Research Council / National Academies",
+          "supports": "Original-PDF, gedruckte Abschnitte Protein/Aminosäuren, Fette/Fettsäuren und Kohlenhydrate/Faser gelesen. Liefert Essentialität, Baustoff-/Energiefunktion, fettlösliche Vitamine und mikrobielle Fermentation. Keine Bedarfszahlen oder vereinfachte Aussage über alleinige Protein-/Vitamin-D-Ergänzung übernommen."
+        },
+        {
+          "label": "Sanderson: Nutritional Requirements of Small Animals",
+          "url": "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+          "organization": "Merck Veterinary Manual; University of Georgia",
+          "supports": "Öffentlich indexierte Originalabschnitte Protein, Fett und Kohlenhydrate/Faser vollständig gelesen. Aminosäureversorgung/Verdaulichkeit, Linolsäure, fettlösliche Vitamine, Stärkenutzung sowie getrennte Fasereigenschaften. Fehlerhafte Gleichsetzung Fettsäure=Triglycerid nicht übernommen; keine Dosen, Therapien oder pauschalen Mindesttemperaturen."
+        },
+        {
+          "label": "Heinze: Carb Confusion Part 1: The Role of Carbohydrate in Pet Foods",
+          "url": "https://sites.tufts.edu/petfoodology/2021/07/07/the-role-of-carbohydrate-in-pet-foods/",
+          "organization": "Tufts University / Cummings School of Veterinary Medicine",
+          "supports": "Vollständigen öffentlichen Originalindex gelesen; direkter Abruf zeitweise nicht verfügbar. Glucoseketten der Stärke, körpereigene Enzyme versus Mikroben, Verwertbarkeit ausreichend aufgeschlossener Stärke und begrenzte Aussage zum gesunden erwachsenen nicht reproduzierenden Hund. Keine Erkrankungs-/Diabetesableitungen."
+        },
+        {
+          "label": "Heinze: The Skinny on Fat: Part 1 – The Basics",
+          "url": "https://sites.tufts.edu/petfoodology/2018/03/15/the-skinny-on-fat-part-1/",
+          "organization": "Tufts University / Cummings School of Veterinary Medicine",
+          "supports": "Vollständigen öffentlich indexierten Originalabschnitt gelesen: Energiedichte, unterschiedliche Bezugsgrößen von Masseprozent und Energieanteil, Aufgaben von Fett. Keine pauschalen Fettmengen oder Therapieempfehlungen."
+        },
+        {
+          "label": "Heinze: Fiber Frustrations",
+          "url": "https://sites.tufts.edu/petfoodology/2019/11/04/fiber-frustrations/",
+          "organization": "Tufts University / Cummings School of Veterinary Medicine",
+          "supports": "Vollständigen Originalindex gelesen: Löslichkeit und Fermentierbarkeit, Faser-Gemische, Rohfaser gegenüber Gesamtfaser. Den dort vereinfachten Durchgang unlöslicher Faser nicht als ausnahmslos unverändert gelehrt; keine Ergänzungsmengen/Behandlung."
+        },
+        {
+          "label": "Linder: What Nutrients are Essential for My Pet?",
+          "url": "https://sites.tufts.edu/petfoodology/2023/05/09/what-nutrients-are-essential-for-my-pet/",
+          "organization": "Tufts University / Cummings School of Veterinary Medicine",
+          "supports": "Öffentlichen Originaltext gelesen: Aminosäuren als Proteinbausteine, essenzielle Nährstoffe und Linolsäure bei Hunden. Katzenbesonderheiten und US-Kennzeichnung nicht in DACH-Regeln umgedeutet."
+        },
+        {
+          "label": "VCA: Nutrition – General Feeding Guidelines for Dogs",
+          "url": "https://vcahospitals.com/know-your-pet/nutrition-general-feeding-guidelines",
+          "organization": "VCA Animal Hospitals",
+          "supports": "Originalabschnitt zur Kohlenhydratverdauung direkt gelesen: Hunde besitzen Enzyme für Stärke, nicht für die entsprechende Faserverdauung. Nur diese Funktionserklärung genutzt; keine Fütterungsmengen oder Gesundheitsgarantien."
+        },
+        {
+          "label": "Montserrat-Malagarriga und andere: The Impact of Fiber Source on Digestive Function, Fecal Microbiota, and Immune Response in Adult Dogs",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10812474/",
+          "organization": "Universitat Autònoma de Barcelona; Originalarbeit Animals 2024",
+          "supports": "Originaleinleitung und Studienzusammenfassung im vollständigen öffentlichen Originalindex gelesen: unterschiedliche chemische Zusammensetzung, Löslichkeit, Viskosität, Fermentierbarkeit. Nur diese begriffliche Trennung verwendet; konkrete Versuchsdiäten/Mikrobiom- oder Immuneffekte nicht verallgemeinert."
+        },
+        {
+          "label": "Originalarbeit: Organic matter disappearance and production of short- and branched-chain fatty acids from selected fiber sources used in pet foods by a canine in vitro fermentation model",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827402/",
+          "organization": "Kansas State University; Originalarbeit Journal of Animal Science 2019",
+          "supports": "Originalabstract, Einleitung und Fasertabelle öffentlich gelesen: lösliche/unlösliche Mischungen und unterschiedliche Fermentierbarkeit in einem In-vitro-Modell mit hundebezogenem Inokulum. Kein klinischer Nutzen aus einem Labormodell abgeleitet."
+        },
+        {
+          "label": "Purina Institute: The Source of Protein and Protein Quality",
+          "url": "https://www.purinainstitute.com/sites/default/files/2024-02/HOT-TOPIC-The-source-of-protein-and-protein-quality.pdf",
+          "organization": "Purina Institute",
+          "supports": "Öffentlich indexierten Originalabschnitt Aminosäuremuster, Proteinqualität und Verdaulichkeit gelesen; nur diese Funktionszusammenhänge, keine Produktwerbung oder Allergiebehandlung übernommen. Herstellerquelle als solche ausgewiesen."
+        },
+        {
+          "label": "FEDIAF: Carbohydrates in dog and cat food",
+          "url": "https://europeanpetfood.org/pet-food-facts/fact-sheets/nutrition/carbohydrates-in-dog-and-cat-food/",
+          "organization": "FEDIAF / European Pet Food Industry Federation",
+          "supports": "Originalabschnitte zu Stärkeverdauung, mikrobieller Fermentation und insbesondere Absatz Are carbohydrates reported on the pet food label direkt gelesen: Rohfaser unterschätzt die Gesamtfaser. Branchenverband als solcher ausgewiesen; keine Kennzeichnungsrechtsauskunft, Futterquote oder pauschalen Kalorien-/Gesundheitsversprechen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "protein-bausteine",
+          "title": "Proteinqualität beginnt bei den Aminosäuren",
+          "paragraphs": [
+            "Protein ist nicht nur ein Baustoff für sichtbare Muskulatur. Nahrungsproteine liefern Aminosäuren und Stickstoff für die Erneuerung körpereigener Eiweiße und weiterer stickstoffhaltiger Verbindungen. Ein Hund benötigt deshalb nicht die unveränderten Proteine eines bestimmten Beutetiers, sondern eine bedarfsgerechte Versorgung mit verwertbaren Bausteinen. Die Bezeichnungen einer Zutat und ihre ernährungsphysiologische Funktion sind zwei verschiedene Ebenen. Ein vertrauter Name auf der Packung beschreibt noch nicht die gesamte Versorgung.",
+            "Essenzielle Aminosäuren kann der Hund nicht in ausreichendem Umfang selbst bereitstellen; sie müssen über die Nahrung verfügbar werden. Ein insgesamt hoher Proteingehalt garantiert noch keine passende Menge jeder einzelnen essenziellen Aminosäure. Für die Proteinsynthese wird ein geeignetes Muster benötigt. Als Lernvergleich eignet sich ein Baukasten: Viele Steine einer Form ersetzen nicht automatisch ein fehlendes benötigtes Teil. Der Vergleich erklärt das Prinzip, nicht einen berechneten Futterbedarf.",
+            "Hinzu kommt die Verdaulichkeit. Ein chemisch vorhandener Nährstoff steht dem Körper nicht automatisch vollständig zur Verfügung. Proteinquellen können sich darin unterscheiden, wie gut ihre Bausteine nach der Verdauung nutzbar werden. Deshalb werden Aminosäuremuster und Verdaulichkeit gemeinsam betrachtet. Die bloße Unterscheidung „pflanzlich oder tierisch“ ersetzt diese Prüfung nicht. Eine Mischung unterschiedlicher Zutaten kann zur Versorgung beitragen; ihre Zusammenstellung muss als Ganzes passen.",
+            "Für die Praxis bedeutet das: Zwei Futtermittel mit gleicher Proteinprozentzahl sind nicht schon allein deshalb ernährungsphysiologisch gleichwertig. Außerdem benötigen Hunde neben Protein weitere Nährstoffe und Energie. Ein selbst erstelltes Vergleichsbeispiel wäre ein Futter mit mehr Gesamtprotein, aber ungünstigerer Verfügbarkeit eines benötigten Bausteins. Ohne entsprechende Analyse lässt sich daraus kein Siegerprodukt bestimmen. Dieser Kurs vermittelt die Zusammenhänge und keine Rezeptur, Supplementempfehlung oder Diagnose eines vermeintlichen Proteinmangels."
+          ],
+          "takeaway": "Proteinmenge, Aminosäuremuster und Verdaulichkeit beschreiben unterschiedliche Voraussetzungen einer geeigneten Versorgung.",
+          "exercise": "Vergleiche gedanklich zwei identische Proteinprozentzahlen und nenne, welche Informationen über die Bausteine noch fehlen."
+        },
+        {
+          "id": "fett-funktionen",
+          "title": "Fette liefern Energie und besondere Bausteine",
+          "paragraphs": [
+            "Fette gehören zu den energieliefernden Nährstoffen. Bezogen auf dieselbe Masse liefern sie mehr Energie als Protein oder verdauliche Kohlenhydrate. Eine kleine Änderung der Fettmenge kann deshalb die Energiedichte eines Futters deutlich verändern. Daraus folgt jedoch nicht, dass jedes energiereiche Futter für jeden Jagdhund passend wäre. Energiebedarf, Lebensphase und Zusammensetzung der gesamten Ration bleiben voneinander zu unterscheidende Größen.",
+            "Fett hat zugleich Funktionen, die mit einer reinen Kalorienbetrachtung nicht erfasst werden. Es liefert Fettsäuren, darunter solche, die über die Nahrung bereitgestellt werden müssen. Linolsäure ist eine essenzielle Fettsäure für Hunde. Fettsäuren wirken außerdem am Aufbau und an der Funktion von Zellstrukturen mit. Ein ausreichender Energiewert allein beschreibt folglich noch nicht, ob die benötigten spezifischen Fettsäuren in geeigneter Menge verfügbar sind.",
+            "Nahrungsfette unterstützen auch die Aufnahme fettlöslicher Vitamine. Das verbindet zwei Nährstoffgruppen: Das Vorhandensein eines Vitamins und die Bedingungen seiner Aufnahme sind nicht dasselbe. Als Lernbeispiel kann man Energieversorgung und Baustoffversorgung nebeneinander notieren. Die erste fragt nach nutzbarer Energie, die zweite nach bestimmten erforderlichen Bestandteilen. Beide gehören zur Beurteilung einer vollständigen Ernährung, lassen sich aber nicht durch eine einzige Fettprozentzahl ersetzen.",
+            "Beim Vergleich von Angaben ist zudem die Bezugsgröße wichtig. Ein Masseanteil Fett ist nicht sein Anteil an der gesamten Nahrungsenergie. Weil Fett eine höhere Energiedichte besitzt, können beide Prozentangaben deutlich voneinander abweichen. Auch unterschiedliche Wassergehalte erschweren einen direkten Vergleich von Produkten. Diese Erklärung soll Zahlen verständlich machen, nicht eine besonders fettarme oder fettreiche Fütterung empfehlen. Aus Fellveränderungen oder Müdigkeit lässt sich anhand dieses Wissens keine bestimmte Fettsäure- oder Vitaminunterversorgung diagnostizieren."
+          ],
+          "takeaway": "Fette liefern konzentrierte Energie, essenzielle Fettsäuren und Unterstützung bei der Aufnahme fettlöslicher Vitamine.",
+          "exercise": "Erkläre den Unterschied zwischen Fettanteil an der Futtermasse und Fettanteil an der Nahrungsenergie."
+        },
+        {
+          "id": "staerke-verwertung",
+          "title": "Stärke und Faser nehmen unterschiedliche Wege",
+          "paragraphs": [
+            "Kohlenhydrate sind eine vielfältige Stoffgruppe. Dazu gehören einfache Zucker, Stärke und zahlreiche Faserbestandteile. Stärke besteht aus verknüpften Glucosebausteinen. Verdauliche Stärke kann durch körpereigene Verdauungsenzyme aufgeschlossen werden; die daraus verfügbaren einfachen Zucker können aufgenommen und im Stoffwechsel genutzt werden. Hunde besitzen die hierfür nötigen Verdauungsmöglichkeiten. Eine Bezeichnung wie „Kohlenhydrat“ sagt daher noch nicht, ob ein Stoff direkt enzymatisch verdaut oder vor allem mikrobiell umgesetzt wird.",
+            "Die Aufbereitung der stärkehaltigen Zutat beeinflusst ihre Verfügbarkeit. Ausreichend aufgeschlossene Stärke in einem geeigneten Futter ist nicht mit jeder beliebigen rohen Pflanzenzutat gleichzusetzen. Außerdem liefern Zutaten oft mehrere Nährstoffgruppen zugleich. Ein Getreidebestandteil kann beispielsweise neben Stärke auch Protein und Faser enthalten. Zutatenliste und Nährstoffanalyse beantworten deshalb unterschiedliche Fragen: Die eine nennt Ausgangsmaterialien, die andere beschreibt Bestandteile der Nahrung.",
+            "Gesunde erwachsene Hunde, die weder wachsen noch sich in Fortpflanzung befinden, haben nicht allein deshalb einen festgelegten Nahrungsbedarf an Kohlenhydraten, weil ihr Körper Glucose verwendet. Sie können Glucose auch aus anderen Ausgangsstoffen bilden. Daraus folgt aber kein biologisches Unvermögen, verdauliche Kohlenhydrate zu nutzen. „Nicht zwingend als solche mit dem Futter erforderlich“ bedeutet etwas anderes als „nicht verdaulich“. Diese Unterscheidung verhindert einen häufigen begrifflichen Kurzschluss.",
+            "Als Lernvergleich dienen zwei Wege: Auf der einen Seite spalten körpereigene Enzyme verdauliche Stärke; auf der anderen setzen Darmmikroben fermentierbare Faseranteile um. Die entstehenden Produkte und die beteiligten Akteure unterscheiden sich. Ob eine konkrete Ration passt, hängt von ihrer gesamten Nährstoffversorgung und vom jeweiligen Tier ab. Der Kurs legt keine Kohlenhydratquote fest und überträgt Aussagen über den gesunden erwachsenen Hund nicht auf Welpen, trächtige oder säugende Hündinnen oder erkrankte Tiere."
+          ],
+          "takeaway": "Hunde können geeignete Stärke enzymatisch verwerten; fehlende zwingende Zufuhr ist kein Beleg für fehlende Verdauungsfähigkeit.",
+          "exercise": "Trenne in eigenen Worten Nährstoffbedarf, Verdauungsfähigkeit und Eigenschaften einer konkreten Zutat."
+        },
+        {
+          "id": "faser-fermentation",
+          "title": "Faser hat mehrere Eigenschaften statt einer einzigen Wirkung",
+          "paragraphs": [
+            "Nahrungsfaser ist keine einzelne chemische Verbindung. Unter diesem Begriff werden unterschiedliche Bestandteile zusammengefasst, die den körpereigenen Verdauungsenzymen im Dünndarm weitgehend widerstehen. Darmmikroben können einen Teil davon weiter umsetzen. Bei dieser Fermentation entstehen unter anderem kurzkettige Fettsäuren. „Für den Hund nicht direkt enzymatisch verdaulich“ heißt deshalb nicht zwangsläufig „biologisch völlig wirkungslos“. Es beschreibt zunächst, welcher Verdauungsweg nicht zur Verfügung steht.",
+            "Drei Eigenschaften müssen auseinandergehalten werden: Löslichkeit beschreibt das Verhalten in Wasser, Viskosität die Zähflüssigkeit eines Gemischs und Fermentierbarkeit die mikrobielle Umsetzbarkeit. Sie können zusammenhängen, sind aber keine Synonyme. Faserquellen bestehen zudem häufig aus Mischungen. Eine einzelne Bezeichnung wie „löslich“ beschreibt deshalb nicht vollständig, wie schnell und in welchem Umfang eine Faserquelle in einem bestimmten Verdauungsumfeld umgesetzt wird.",
+            "Auch die Angabe Rohfaser erfasst nicht die gesamte Nahrungsfaser eines Futters. Das analytische Verfahren bildet insbesondere lösliche Anteile nur unzureichend ab. Gesamtfaser beziehungsweise Total Dietary Fiber ist daher eine andere Größe als Rohfaser. Zwei Produkte mit ähnlichem Rohfaserwert können unterschiedliche Mengen und Arten von Faser enthalten. Für einen sinnvollen Vergleich muss zuerst klar sein, welche Messgröße tatsächlich vorliegt; gleiche Zahlen mit verschiedenen Bedeutungen sind nicht austauschbar.",
+            "Ein selbst erstelltes Lernbeispiel vergleicht eine schlecht fermentierbare Faserquelle mit einem stärker fermentierbaren Gemisch. Beide können den körpereigenen Dünndarmenzymen widerstehen, werden aber von Mikroben unterschiedlich genutzt. Daraus folgt keine pauschale Rangfolge „mehr Fermentation ist besser“. Die Wirkung hängt von Art, Menge und gesamter Ration ab. Der Kurs erklärt diese Eigenschaften, ohne Kotveränderungen zu diagnostizieren oder eine bestimmte Faserergänzung und Dosierung für einen Hund vorzugeben."
+          ],
+          "takeaway": "Löslichkeit, Viskosität und Fermentierbarkeit sind verschiedene Fasereigenschaften; Rohfaser ist nicht gleich Gesamtfaser.",
+          "exercise": "Erläutere, weshalb ein ähnlicher Rohfaserwert nicht automatisch eine vergleichbare Faserzusammensetzung beweist."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-vertiefung-hund-naehrstoffe-round6-2026-q1",
+          "lessonId": "protein-bausteine",
+          "q": "Welche Merkmale ergänzen die reine Proteinmenge bei der Beurteilung einer Proteinquelle für den Hund?",
+          "options": [
+            "Gesamtfasergehalt und Wasserbindung",
+            "Aminosäuremuster und Verdaulichkeit",
+            "Fettgehalt und Fettsäuremuster",
+            "Mineralstoffmuster und Wassergehalt"
+          ],
+          "answer": 1,
+          "explain": "Neben der Menge zählen das bedarfsgerechte Muster der Aminosäuren und ihre Verfügbarkeit nach der Verdauung. Eine gleiche Proteinprozentzahl beweist daher noch keine gleiche Versorgung mit verwertbaren essenziellen Bausteinen."
+        },
+        {
+          "id": "wissen-vertiefung-hund-naehrstoffe-round6-2026-q2",
+          "lessonId": "fett-funktionen",
+          "q": "Welche Fettsäure muss der Hund als essenziellen Nährstoff über die Nahrung erhalten?",
+          "options": [
+            "Ölsäure",
+            "Palmitinsäure",
+            "Stearinsäure",
+            "Linolsäure"
+          ],
+          "answer": 3,
+          "explain": "Linolsäure ist eine essenzielle Fettsäure für Hunde. Nahrungsfette liefern außerdem konzentrierte Energie und unterstützen die Aufnahme fettlöslicher Vitamine. Daraus ergibt sich noch keine bestimmte Ergänzungsmenge für ein Tier."
+        },
+        {
+          "id": "wissen-vertiefung-hund-naehrstoffe-round6-2026-q3",
+          "lessonId": "staerke-verwertung",
+          "q": "Wer übernimmt beim Hund den enzymatischen Aufschluss geeigneter verdaulicher Stärke?",
+          "options": [
+            "Körpereigene Verdauungsenzyme",
+            "Ausschließlich Dickdarmmikroben",
+            "Ausschließlich die Magensäure",
+            "Nur die mechanische Zerkleinerung"
+          ],
+          "answer": 0,
+          "explain": "Körpereigene Enzyme ermöglichen die Verdauung geeigneter Stärke zu verfügbaren einfachen Zuckern. Die Fermentation widerständiger Faseranteile durch Darmmikroben ist ein anderer Weg. Bedarf und Verdauungsfähigkeit müssen getrennt betrachtet werden."
+        },
+        {
+          "id": "wissen-vertiefung-hund-naehrstoffe-round6-2026-q4",
+          "lessonId": "faser-fermentation",
+          "q": "Welche Eigenschaft beschreibt die Umsetzbarkeit einer Faserquelle durch Darmmikroben?",
+          "options": [
+            "Ihre Löslichkeit",
+            "Ihre Viskosität",
+            "Ihre Fermentierbarkeit",
+            "Ihr Rohproteingehalt"
+          ],
+          "answer": 2,
+          "explain": "Fermentierbarkeit bezeichnet die mikrobielle Umsetzbarkeit. Löslichkeit beschreibt das Verhalten in Wasser, Viskosität die Zähflüssigkeit. Diese Eigenschaften können zusammenhängen, ersetzen einander aber nicht."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Nährstoff-Funktionswissen beim Hund; keine Futterrezeptur, Dosierung, Diagnose oder Therapie. Aussage zur nicht zwingenden Kohlenhydratzufuhr nur gesunder erwachsener nicht reproduzierender Hund.",
+        "independentOrganizations": [
+          "National Research Council / National Academies",
+          "Merck Veterinary Manual / University of Georgia",
+          "Tufts University (alle Seiten eine Familie)",
+          "VCA Animal Hospitals",
+          "Universitat Autònoma de Barcelona",
+          "Kansas State University",
+          "FEDIAF, Branchenverband"
+        ],
+        "limitations": [
+          "Menge, Muster, Verdaulichkeit und vollständige Ration getrennt; keine pauschale Zutatenrangliste.",
+          "Faser-Studien nur für begriffliche/chemische Eigenschaften, keine Übertragung konkreter Versuchs- oder Immunergebnisse.",
+          "Rohfaserverfahren erklärt, keine DACH-Kennzeichnungsrechtsauskunft aus US-Quellen."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026",
+      "title": "Fleischfarbe: Myoglobin, Sauerstoff und Oxidation",
+      "category": "Wildbret & Gesundheit",
+      "topic": "Wildbret & Gesundheit",
+      "description": "Verstehen, weshalb Muskel unterschiedliche Rottöne zeigt, Sauerstoffbindung etwas anderes als Oxidation ist und Farbe allein keine Aussage über die Lebensmittelsicherheit erlaubt.",
+      "minutes": 29,
+      "objectives": [
+        "Myoglobin im Muskel und Hämoglobin im Blut unterscheiden",
+        "Oxygenierung und Änderung der Eisenoxidationsstufe trennen",
+        "Farbstoff- und Fettveränderungen als gekoppelte Prozesse verstehen",
+        "Verpackung, Oberfläche und Qualitätsbeurteilung auseinanderhalten"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Pigment- und Oxidationschemie frischen roten Muskelgewebes, ohne universelle Wildartfarben, Lagerfristen oder Sicherheitsfreigaben.",
+        "AT": "Pigment- und Oxidationschemie frischen roten Muskelgewebes, ohne universelle Wildartfarben, Lagerfristen oder Sicherheitsfreigaben.",
+        "CH": "Pigment- und Oxidationschemie frischen roten Muskelgewebes, ohne universelle Wildartfarben, Lagerfristen oder Sicherheitsfreigaben."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "AMSA: Chemistry of Fresh Meat Color, Resource Guide 2023",
+          "url": "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+          "organization": "American Meat Science Association",
+          "supports": "Beide Original-PDF-Seiten direkt gelesen: Häm/Myoglobin, Fe2+ in Deoxy-/Oxymyoglobin, Fe3+ in Metmyoglobin, Sauerstoffkonkurrenz, Reduktionsaktivität und unterlagerte Farbschichten. Oxygenierung ausdrücklich von Oxidation getrennt; kein linearer Mehr-Sauerstoff-mehr-Braun-Satz."
+        },
+        {
+          "label": "USDA FSIS: The Color of Meat and Poultry",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/color-meat-and-poultry",
+          "organization": "US Department of Agriculture / Food Safety and Inspection Service",
+          "supports": "Vollständigen Originaltext öffentlich gelesen: Myoglobin im Muskel versus Hämoglobin im Blut, Farbeinflussfaktoren, Vakuum-/Luftfarbänderung und fehlende Aussagekraft von Farbe allein für Verderb/Sicherheit. Keine pauschalen Sicherheitsantworten, US-Temperaturen oder universellen Artfarben übernommen."
+        },
+        {
+          "label": "USDA FSIS: Is Pink Turkey Meat Safe?",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/pink-turkey-meat-safe",
+          "organization": "US Department of Agriculture / Food Safety and Inspection Service",
+          "supports": "Öffentlich indexierten Originalabschnitt Why Are White & Dark Meat of Poultry Different Colors gelesen: Myoglobin speichert in Muskelzellen den vom Blut gelieferten Sauerstoff. Kein Garzustand oder Sicherheitsurteil aus einem Farbton abgeleitet."
+        },
+        {
+          "label": "Texas A&M Meat Science: Meat Color",
+          "url": "https://extension.animalscience.tamu.edu/meat/ansc-307-honors/meat-color/",
+          "organization": "Texas A&M University",
+          "supports": "Öffentliche Original-Lehrabschnitte Myoglobin/Hämoglobin und Reduktionsaktivität im Suchindex gelesen; direkter Abruf fehlerhaft. Keine vereinfachte Reaktionspfeilkette Oxygenierung=Oxidation übernommen."
+        },
+        {
+          "label": "Domínguez und andere: A Comprehensive Review on Lipid Oxidation in Meat and Meat Products",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827023/",
+          "organization": "Centro Tecnológico de la Carne de Galicia; Teagasc und weitere Mitautoreninstitutionen",
+          "supports": "Originalvolltext Abschnitte 1, 2.1, 2.4 und 3.1 direkt gelesen: Lipidoxidation als chemischer Qualitätsverlust, Hydroperoxide/sekundäre flüchtige Produkte, Einflüsse von Licht, Sauerstoff und Metallen. Keine pauschalen Humanerkrankungskausalitäten oder Oxidationsgrenzwerte übernommen."
+        },
+        {
+          "label": "Hoa und andere: The significant influences of pH, temperature and fatty acids on meat myoglobin oxidation: a model study",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8357901/",
+          "organization": "National Institute of Animal Science, Rural Development Administration, Republic of Korea",
+          "supports": "Originaleinleitung, Methoden mit Pferdemuskel-Myoglobin im Puffer und Ergebnisse zur Kopplung von Fettsäure-/Myoglobinoxidation direkt gelesen. Modell erklärt mögliche Zusammenhänge; keine Lagerzeiten, Vitamin-E-Rezeptur oder vollständige Wildfleischvorhersage abgeleitet."
+        },
+        {
+          "label": "Originalarbeit: Vacuum Packaging Can Protect Ground Beef Color and Oxidation during Cold Storage",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11394816/",
+          "organization": "Auburn University; Foods 2024",
+          "supports": "Originalmethoden und Ergebnisse direkt gelesen: getrennte Messung Oberflächenfarbe und Lipidoxidation bei vakuumverpacktem Rinderhack, keine mikrobiologische Sicherheitsprüfung. Kein signifikanter Verpackungshaupteffekt auf Lipidoxidation; Titel nicht als universelle Haltbarkeitsgarantie übernommen."
+        },
+        {
+          "label": "Mancini und Hunt: Current research in meat color",
+          "url": "https://meatscience.org/docs/default-source/publications-resources/rmc/2005/current-research-in-meat-color.pdf?sfvrsn=2",
+          "organization": "Originalreview Meat Science 2005; Mancini und Hunt / Kansas State University",
+          "supports": "Öffentlich indexierte Originalabschnitte 1.1.1/1.1.2 gelesen: Oxygenierung ohne Änderung der Eisenvalenz, Oxygenierungstiefe durch Sauerstoffverbrauch und weitere Faktoren. Mit AMSA personell/thematisch verwandt, nicht als alleinige unabhängige zweite Bestätigung gezählt."
+        },
+        {
+          "label": "BfR: Fragen und Antworten zu verdorbenem Fleisch",
+          "url": "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "supports": "Originalabschnitte Was ist mit einem verdorbenen Lebensmittel zu tun / Welche Gesundheitsrisiken im öffentlichen Originaltext gelesen: Krankheitserreger können ohne sensorische Verderbzeichen vorhanden sein. Keine pauschalen Keim-/Garwerte oder Gesundheitsdiagnosen übernommen."
+        },
+        {
+          "label": "USDA FSIS: Refrigeration & Food Safety, Types of Bacteria in Refrigerated Foods",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration",
+          "organization": "US Department of Agriculture / Food Safety and Inspection Service",
+          "supports": "Öffentlich indexierten Originalabschnitt zur Unterscheidung krankmachender und sensorisch verderbender Mikroorganismen gelesen: Pathogene verändern Geschmack, Geruch oder Aussehen häufig nicht. Keine formale Zweifamilien-Taxonomie, US-Temperaturen oder Freigabe verdorbener Lebensmittel übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "muskelpigment",
+          "title": "Die rote Farbe sitzt vor allem im Muskelpigment",
+          "paragraphs": [
+            "Die rote Farbe von Fleisch stammt überwiegend vom Myoglobin. Dieses Protein befindet sich in Muskelzellen und kann Sauerstoff binden. Es ist vom Hämoglobin zu unterscheiden, das vor allem in roten Blutkörperchen den Sauerstofftransport übernimmt. Beide besitzen eine eisenhaltige Hämgruppe, gehören aber zu unterschiedlichen funktionellen Zusammenhängen. Ein rotes Muskelstück besteht deshalb nicht einfach aus Gewebe, das noch besonders viel Blut enthält.",
+            "Im lebenden Muskel trägt Myoglobin zur örtlichen Sauerstoffverfügbarkeit bei. Nach dem Tod bleibt der Farbstoff zunächst im Gewebe erhalten, während sich seine chemische Umgebung verändert. Für den sichtbaren Farbton kommt es sowohl auf die vorhandene Pigmentmenge als auch auf dessen chemischen Zustand an. Ein Vergleich zweier Stücke muss diese Ebenen trennen: Mehr Pigment ist eine andere Ursache als eine andere Bindungssituation desselben Pigments.",
+            "Die Myoglobinmenge kann sich zwischen Tierarten und zwischen Muskeln unterscheiden. Auch Merkmale des Tieres und die Funktion eines Muskels beeinflussen die Ausgangssituation. Deshalb ist ein einziger „normaler Wildfleischrotton“ kein geeigneter Maßstab für alle Arten und Teilstücke. Dieser Kurs erklärt die grundsätzliche Pigmentchemie; er stellt keine Farbtafel bereit, mit der sich Alter, Tierart, Gesundheitszustand oder Behandlung eines Stücks sicher bestimmen ließen.",
+            "Als Lernbeispiel kann man zwei gedankliche Fragen nebeneinanderstellen: „Wie viel Myoglobin enthält der Muskel?“ und „In welchem Zustand liegt dieses Myoglobin vor?“ Die erste betrifft die Ausgangsausstattung, die zweite aktuelle chemische Bedingungen. Erst zusammen helfen sie, Unterschiede zu verstehen. Ein Foto zeigt nur den sichtbaren Eindruck unter seiner jeweiligen Beleuchtung. Es belegt weder die Myoglobinkonzentration im Labor noch die mikrobiologische Beschaffenheit oder die Verzehrseignung des abgebildeten Stücks."
+          ],
+          "takeaway": "Myoglobin ist das wichtigste rote Muskelpigment; seine Menge und sein chemischer Zustand sind verschiedene Einflussgrößen.",
+          "exercise": "Erkläre den Unterschied zwischen örtlicher Sauerstoffbindung im Muskel und Sauerstofftransport im Blut."
+        },
+        {
+          "id": "oxygenierung-redox",
+          "title": "Sauerstoff binden heißt noch nicht Eisen oxidieren",
+          "paragraphs": [
+            "Myoglobin besitzt eine Hämgruppe mit einem zentralen Eisenatom. Für das Grundverständnis frischen roten Fleisches werden drei Formen unterschieden: Deoxymyoglobin ohne gebundenen Sauerstoff, Oxymyoglobin mit gebundenem Sauerstoff und oxidiertes Metmyoglobin. Das vereinfachte Dreiermodell ist nützlich, umfasst aber nicht sämtliche Pigmentformen, die etwa bei weiteren Verarbeitungsverfahren entstehen können. Es beschreibt hier die für frisches Fleisch besonders wichtigen Zustände.",
+            "Bei der Oxygenierung bindet Sauerstoff an Deoxymyoglobin. Das Eisen bleibt dabei in der zweiwertigen Form Fe2+. Damit verbunden ist der bekannte Wechsel von eher purpurroter zu heller roter Erscheinung. Bei der Bildung von Metmyoglobin wird das Eisen dagegen zur dreiwertigen Form Fe3+ oxidiert; dieses Pigment trägt zu einer bräunlichen Erscheinung bei. Sauerstoffbindung und Oxidation sind somit unterschiedliche chemische Vorgänge, obwohl beide Wörter im Alltag leicht miteinander vermischt werden.",
+            "Der Farbverlauf ist außerdem keine einfache Regel „je mehr Sauerstoff, desto brauner“. Sauerstoff kann zunächst die rote Oxymyoglobinschicht fördern. Sein Angebot, sein Verbrauch im Gewebe und reduzierende Reaktionen beeinflussen gemeinsam die Verteilung der Formen. Besonders bei begrenzter Sauerstoffverfügbarkeit können andere Bedingungen entstehen als direkt an einer gut mit Sauerstoff versorgten Oberfläche. Eine sichtbare rote oder braune Schicht bildet daher nicht jede Zwischenreaktion ab.",
+            "Als Lernvergleich dient ein Molekül, das einen Partner bindet, gegenüber einem Molekül, dessen Eisen seinen Oxidationszustand ändert. Im ersten Fall ändert sich die Belegung, im zweiten die Elektronensituation des Eisens. Diese Unterscheidung erklärt mehr als eine starre Farbreihenfolge. Temperatur, pH und Zeit beeinflussen die Reaktionsbedingungen zusätzlich. Der Kurs nennt deshalb weder eine universelle Umfärbezeit noch eine für alle Wildarten identische Abfolge von Farbtönen."
+          ],
+          "takeaway": "Oxygenierung erhält Fe2+; die Oxidation zu Metmyoglobin führt zu Fe3+. Sauerstoffmenge und Braunfärbung stehen nicht in einer einfachen linearen Beziehung.",
+          "exercise": "Ordne Sauerstoffbindung und Eisenoxidation den Begriffen Oxymyoglobin und Metmyoglobin zu."
+        },
+        {
+          "id": "oxidationsnetz",
+          "title": "Farbstoffe und Fette verändern sich gemeinsam",
+          "paragraphs": [
+            "Oxidative Veränderungen betreffen nicht nur den Muskelfarbstoff. Auch Fette können chemisch verändert werden. Besonders ungesättigte Fettsäurebestandteile sind mögliche Reaktionspartner. Dabei können zunächst Lipidhydroperoxide und anschließend weitere Abbauprodukte entstehen. Einige sekundäre Produkte sind flüchtig und tragen zu veränderten Geruchs- und Geschmackseindrücken bei. Diese Vorgänge sind chemische Prozesse; sie sind nicht mit dem Wachstum von Mikroorganismen gleichzusetzen.",
+            "Pigment- und Fettreaktionen laufen jedoch nicht völlig getrennt ab. Hämverbindungen und Eisen können an oxidativen Reaktionen beteiligt sein; umgekehrt können Produkte der Fettveränderung auch die Stabilität des Myoglobins beeinflussen. In einem kontrollierten Labormodell mit isoliertem Myoglobin lässt sich eine solche Kopplung gezielt untersuchen. Ein Modellversuch erklärt mögliche Mechanismen, bildet aber nicht die gesamte Zusammensetzung und Lagergeschichte eines Wildfleischstücks nach.",
+            "Die Geschwindigkeit solcher Veränderungen hängt von mehreren Bedingungen ab. Dazu gehören Zusammensetzung, Sauerstoffzugang, Licht, Temperatur und das Verhältnis oxidationsfördernder zu hemmenden Einflüssen. Deshalb ist allein der sichtbare Fettanteil kein ausreichender Maßstab für die oxidative Stabilität. Ebenso lässt sich aus einem einzelnen Farbton nicht bestimmen, welche Verbindung in welcher Menge entstanden ist. Für wissenschaftliche Vergleiche werden Farbe und Oxidationsprodukte mit dafür vorgesehenen Verfahren getrennt untersucht.",
+            "Als selbst erstelltes Lernbeispiel dienen zwei Proben mit ähnlicher Oberflächenfarbe, aber unterschiedlicher chemischer Vorgeschichte. Ihre Ähnlichkeit beweist noch keine gleiche Fettstabilität. Der praktische Lernwert besteht darin, Qualitätsmerkmale nicht auf einen einzigen Sinneseindruck zu reduzieren. Weder ein angenehmer Geruch noch eine rote Farbe weist für sich allein die Lebensmittelsicherheit nach. Dieser Kurs beschreibt Zusammenhänge, keine Zusatzstoffrezeptur, keine Behandlung auffälligen Fleisches und keine zulässige Lagerdauer."
+          ],
+          "takeaway": "Lipid- und Pigmentoxidation können sich gegenseitig beeinflussen; chemische Qualität und mikrobiologische Sicherheit sind unterschiedliche Beurteilungsebenen.",
+          "exercise": "Erkläre, weshalb gleiche Oberflächenfarben keine identischen Oxidationszustände aller Fleischbestandteile beweisen."
+        },
+        {
+          "id": "verpackung-schichten",
+          "title": "Verpackung verändert das Sauerstoffangebot an der Oberfläche",
+          "paragraphs": [
+            "Eine Verpackung ist für die Fleischfarbe keine bloße Hülle. Sie beeinflusst, wie viel Sauerstoff die Oberfläche erreicht und wie schnell er nachgeliefert werden kann. Unter sauerstoffarmen Bedingungen kann Deoxymyoglobin mit seiner purpurroten Erscheinung stärker hervortreten. Nach Kontakt mit Luft kann sich durch Oxygenierung eine rötere Oberfläche entwickeln. Dieser als Aufblühen bezeichnete Vorgang erklärt einen Farbwechsel, ohne damit eine Verbesserung der Lebensmittelsicherheit zu beweisen.",
+            "Zwischen Oberfläche und tieferen Bereichen können unterschiedliche Bedingungen herrschen. Sauerstoff muss eindringen und wird zugleich durch Reaktionen im Muskel verbraucht. Pigmentformen können deshalb in Schichten vorkommen. Ein brauner Bereich kann unter einer roten Oberflächenschicht liegen; nicht jeder chemische Zwischenzustand ist von außen einzeln sichtbar. Das sichtbare Gesamtbild hängt von den übereinanderliegenden Schichten und der Betrachtung ab, nicht nur von einer isolierten Farbstoffform.",
+            "Nach dem Tod enden zudem nicht augenblicklich alle chemischen Reaktionen im Gewebe. Reduzierende Systeme können Metmyoglobin unter geeigneten Bedingungen wieder in zweiwertige Myoglobinformen überführen. Die verfügbare reduzierende Kapazität ist jedoch begrenzt und verändert sich. Gemeinsam mit Sauerstoffverbrauch und Sauerstoffnachlieferung erklärt sie, weshalb verschiedene Muskeln oder Verpackungsbedingungen nicht zwangsläufig gleich schnell dieselbe sichtbare Farbe entwickeln.",
+            "Ein Lernvergleich ist das Unterscheiden zweier Fragen: „Welches Sauerstoffangebot schafft diese Verpackung?“ und „Welche hygienische Vorgeschichte hat dieses Stück?“ Eine Farberklärung beantwortet vor allem die erste, nicht automatisch die zweite. Auch eine wissenschaftliche Untersuchung von Verpackungsfolien und Rinderhack erlaubt keine pauschale Lagerfreigabe für Wildbret; eine reine Farb- und Oxidationsmessung ist keine vollständige mikrobiologische Sicherheitsprüfung. Verpackung, Temperaturführung, Untersuchung und fachgerechte Lebensmittelbeurteilung müssen deshalb als unterschiedliche Informationen erkennbar bleiben."
+          ],
+          "takeaway": "Sauerstoffangebot, Verbrauch und begrenzte Reduktionsaktivität prägen Farbschichten; eine Verpackungsfarbe ist kein Sicherheitsnachweis.",
+          "exercise": "Erkläre einen möglichen Farbwechsel nach Luftkontakt, ohne daraus eine Aussage zur Verzehrseignung abzuleiten."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026-q1",
+          "lessonId": "muskelpigment",
+          "q": "Welches Protein ist für den größten Teil der roten Farbe von Muskelgewebe verantwortlich?",
+          "options": [
+            "Kollagen",
+            "Albumin",
+            "Keratin",
+            "Myoglobin"
+          ],
+          "answer": 3,
+          "explain": "Myoglobin ist das wichtigste rote Pigment im Muskel und bindet dort Sauerstoff. Hämoglobin übernimmt vor allem den Transport im Blut. Pigmentmenge und chemischer Zustand beeinflussen den sichtbaren Farbton."
+        },
+        {
+          "id": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026-q2",
+          "lessonId": "oxygenierung-redox",
+          "q": "Welche Eisenform liegt sowohl in Deoxymyoglobin als auch in Oxymyoglobin vor?",
+          "options": [
+            "Dreiwertiges Eisen, Fe3+",
+            "Zweiwertiges Eisen, Fe2+",
+            "Elementares Eisen, Fe0",
+            "Vierwertiges Eisen, Fe4+"
+          ],
+          "answer": 1,
+          "explain": "Bei der Oxygenierung bindet Sauerstoff, während das Eisen zweiwertig bleibt. Metmyoglobin enthält dagegen dreiwertiges Eisen. Sauerstoffbindung und Oxidation zu Metmyoglobin sind unterschiedliche chemische Vorgänge."
+        },
+        {
+          "id": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026-q3",
+          "lessonId": "oxidationsnetz",
+          "q": "Welche Verbindung entsteht bei frühen Schritten der Lipidoxidation und kann anschließend weiter zerfallen?",
+          "options": [
+            "Glucose",
+            "Milchsäure",
+            "Ein Lipidhydroperoxid",
+            "Kreatinphosphat"
+          ],
+          "answer": 2,
+          "explain": "Lipidhydroperoxide gehören zu den primären Produkten der Fettveränderung. Sie können weiter zerfallen; sekundäre Produkte können zu veränderten Geruchs- und Geschmackseindrücken beitragen. Daraus lässt sich keine Lebensmittelsicherheit durch Riechen ableiten."
+        },
+        {
+          "id": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026-q4",
+          "lessonId": "verpackung-schichten",
+          "q": "Welcher Vorgang erklärt eine rötere Fleischoberfläche nach Kontakt eines sauerstoffarmen Stücks mit Luft?",
+          "options": [
+            "Die Oxygenierung zu Oxymyoglobin",
+            "Die Oxidation zu Metmyoglobin",
+            "Die Denaturierung des Myoglobins",
+            "Die Austrocknung der Oberfläche"
+          ],
+          "answer": 0,
+          "explain": "Durch Sauerstoffbindung kann aus Deoxymyoglobin rotes Oxymyoglobin entstehen. Dieses Aufblühen ist eine Pigmentreaktion und beweist weder Keimfreiheit noch eine bestimmte zulässige Lagerdauer."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Pigment- und Oxidationschemie frischen roten Muskelgewebes, ohne universelle Wildartfarben, Lagerfristen oder Sicherheitsfreigaben.",
+        "independentOrganizations": [
+          "American Meat Science Association; verwandte Hunt-Reviews nicht separat verdoppelt",
+          "USDA FSIS (beide Seiten eine Familie)",
+          "Texas A&M University",
+          "Centro Tecnológico de la Carne de Galicia und Mitautoren",
+          "National Institute of Animal Science, Republic of Korea",
+          "Auburn University"
+        ],
+        "limitations": [
+          "AMSA-Oxygenierungs-/Redoxunterscheidung ausdrücklich maßgeblich; komplexe Schicht-/Sauerstoffbedingungen statt linearer Braunregel.",
+          "Isoliertes Pferde-Myoglobin im Puffer und verpacktes Rinderhack sind begrenzte Modelle, keine Wildfleisch-Normalwerte.",
+          "Keine pauschalen Pathologiekausalitäten aus Oxidationsreviews; keine Zusatzstoffdosen oder Gar-/Lagerzeiten."
+        ]
+      }
+    },
+    {
+      "id": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "title": "Tierwohl: Empfindung, Bedürfnisse und Handlungsspielraum",
+      "category": "Tierschutz & Verantwortung",
+      "topic": "Tierschutz & Verantwortung",
+      "description": "Körperliche Versorgung, subjektive Erfahrung, Schmerzverarbeitung und selbstbestimmte Interaktionen unterscheiden – mit klaren Grenzen für die Beurteilung eines einzelnen Tieres.",
+      "minutes": 28,
+      "objectives": [
+        "Tierwohl als körperlichen und mentalen Zustand erklären",
+        "Nozizeption und Schmerzerfahrung auseinanderhalten",
+        "Positive Erfahrungen von bloßer Abwesenheit sichtbarer Probleme unterscheiden",
+        "Wahlmöglichkeiten und verlässliche Kontrolle fachlich einordnen"
+      ],
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Begriffliches und biologisches Tierwohlwissen mit Lernbeispielen aus betreuten Säugern, besonders Hunden. Keine Diagnose, Therapie, Interventionspflicht, Wildtiermanipulation oder aktuelle Rechtsauskunft.",
+        "AT": "Begriffliches und biologisches Tierwohlwissen mit Lernbeispielen aus betreuten Säugern, besonders Hunden. Keine Diagnose, Therapie, Interventionspflicht, Wildtiermanipulation oder aktuelle Rechtsauskunft.",
+        "CH": "Begriffliches und biologisches Tierwohlwissen mit Lernbeispielen aus betreuten Säugern, besonders Hunden. Keine Diagnose, Therapie, Interventionspflicht, Wildtiermanipulation oder aktuelle Rechtsauskunft."
+      },
+      "level": "Vertiefung",
+      "reviewedOn": "2026-10-18",
+      "contentAddedOn": "2026-10-18",
+      "flashcardExpansion": true,
+      "showCategoryDiagram": false,
+      "sources": [
+        {
+          "label": "WOAH Terrestrial Code: Introduction to the recommendations for animal welfare, Kapitel 7.1",
+          "url": "https://www.woah.org/fileadmin/Home/eng/Health_standards/tahc/2024/en_chapitre_aw_introduction.htm",
+          "organization": "World Organisation for Animal Health",
+          "supports": "Originalartikel 7.1.1 im öffentlichen Originaltext gelesen: körperlicher/mentaler Zustand des Tieres, Gesundheit, Sicherheit, Ernährung, Verhalten und unangenehme Zustände. Explizit 2024er Fassung für Begriffe, keine aktuelle DACH-Rechtsauskunft."
+        },
+        {
+          "label": "EFSA: Animal welfare",
+          "url": "https://www.efsa.europa.eu/en/topics/topic/animal-welfare",
+          "organization": "European Food Safety Authority",
+          "supports": "Originalseite (Standangabe 6. Juli 2026) öffentlich gelesen: körperliches und mentales Wohlergehen sowie verschiedene Einflüsse der Haltung/Betreuung. Keine EU-Rechtsbestimmung als DACH-Universalrecht übernommen."
+        },
+        {
+          "label": "Mellor und andere: The 2020 Five Domains Model: Including Human–Animal Interactions in Assessments of Animal Welfare",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7602120/",
+          "organization": "Massey University und Mitautoren; Animals 2020",
+          "supports": "Originalabstract sowie Einleitung und Abschnitt 5 über öffentlichen Originalindex gelesen; direkter Folgeabruf Browserprüfung. Fünf Bereiche, Zuordnung körperlicher Bedingungen/Interaktionen zu vorsichtig erschlossenen Erfahrungen und Eigenaktivität. Framework, keine unabhängige experimentelle Replikation."
+        },
+        {
+          "label": "RSPCA: Policy Book, Januar 2025, Einführung Seite 7",
+          "url": "https://www.rspca.org.uk/documents/d/rspca/policy_booklet_2025",
+          "organization": "Royal Society for the Prevention of Cruelty to Animals",
+          "supports": "Vollständigen öffentlich indexierten Originalabschnitt Seite 7 gelesen: eigenständige praktische Einordnung der fünf Bereiche Ernährung, Umwelt, Gesundheit, Verhalten und mentaler Zustand. Als Anwendung desselben Modells, nicht als zweiter Modellursprung oder DACH-Recht verwendet."
+        },
+        {
+          "label": "IASP: Terminology, Pain und Nociception",
+          "url": "https://www.iasp-pain.org/resources/terminology/",
+          "organization": "International Association for the Study of Pain",
+          "supports": "Originaldefinitionen und sechs Hinweise öffentlich vollständig gelesen: Schmerz als sensorische/emotionale Erfahrung, Nozizeption als neuronale Codierung schädigender Reize, Reflexe und fehlende notwendige Gleichsetzung; fehlende Sprache schließt tierlichen Schmerz nicht aus. Keine wörtliche längere Übersetzung oder Diagnoseanleitung."
+        },
+        {
+          "label": "NRC: Pain in Research Animals: General Principles and Considerations",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK32655/",
+          "organization": "National Research Council / Institute for Laboratory Animal Research",
+          "supports": "Originalkapitel zu Nozizeption versus bewusstem Schmerz und sensorischer/affektiver Dimension im öffentlichen Originaltext gelesen. Labortier-Scope und Erkenntnisgrenzen beachtet; keine universelle Schmerzskala, Arzneien oder Behandlungsverfahren."
+        },
+        {
+          "label": "Lawrence, Vigors und Sandøe: What Is so Positive about Positive Animal Welfare?—A Critical Review of the Literature",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826906/",
+          "organization": "Originalreview Animals 2019; Lawrence, Vigors und Sandøe",
+          "supports": "Öffentlichen Originalindex von Abstract, Methoden und Abschnitten positive Emotion/Motivation/positive affektive Beteiligung gelesen; direkter Abruf zeitweise Browserprüfung. Chancen positiver Erfahrungen, Unterschied Motivation/Gefallen und Grenzen einfacher Normalverhaltensregeln."
+        },
+        {
+          "label": "Englund und Cronin: Choice, control, and animal welfare: definitions and essential inquiries to advance animal welfare science",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full",
+          "organization": "Lincoln Park Zoo / Georgia State University; Frontiers in Veterinary Science 2023",
+          "supports": "Originalvolltext Abschnitte 1 und 2.1–2.2 direkt gelesen: Wahl, vorhersagbare Kontrolle, Bewältigung und Grenzen bloßer Natürlichkeit; klare Trennung Begriffsrahmen von noch begrenzten direkten Wahl-Wohlergehensstudien. Keine Garantie, dass mehr Optionen immer besser sind."
+        },
+        {
+          "label": "Littlewood und andere: The agency domain and behavioral interactions: assessing positive animal welfare using the Five Domains Model",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10656766/",
+          "organization": "Massey University und Mitautoren; Frontiers in Veterinary Science 2023",
+          "supports": "Originalvolltext Abschnitte 3 und 4.2–4.3 direkt gelesen: artspezifische/individuelle Wahlmöglichkeiten, vorhersagbare Kontrolle, Nichtteilnahme als Wahl, kontextspezifische Indikatoren. Mit Mellor-2020-Familie nicht als unabhängige zweite Bestätigung gezählt."
+        },
+        {
+          "label": "Rault und andere: A consensus on the definition of positive animal welfare",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11883819/",
+          "organization": "Vetmeduni Vienna und internationale Mitautoren; Biology Letters 2025",
+          "supports": "Originalabstract und Definitionskommentar öffentlich gelesen: positive Erfahrungen über reine Leidvermeidung hinaus, erreichbare Ziele und artspezifische/individuelle Fähigkeiten. Internationaler begrifflicher Konsens, keine eigenständige Wirksamkeitsstudie oder für alle Tiere gleiche Maßnahme."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "koerper-erleben",
+          "title": "Tierwohl betrifft den Körper und das Erleben",
+          "paragraphs": [
+            "Tierwohl bezeichnet den körperlichen und mentalen Zustand eines Tieres in seinen Lebensbedingungen. Damit wird zunächst eine Eigenschaft des Tieres beschrieben, nicht nur die Absicht des betreuenden Menschen. Eine gut gemeinte Maßnahme ist nicht automatisch ein Beleg für gutes Wohlergehen. Ernährung, Gesundheit, Sicherheit und Möglichkeiten zu bedeutsamem Verhalten gehören zusammen. Die Frage lautet deshalb nicht allein, welche Ausstattung vorhanden ist, sondern auch, wie sie zum jeweiligen Tier und seiner Situation passt.",
+            "Ein Tier kann körperlich versorgt sein und trotzdem belastende Erfahrungen machen. Umgekehrt ersetzt ein einzelner erfreulicher Moment keine angemessene körperliche Versorgung. Diese Ebenen sind miteinander verbunden, aber nicht austauschbar. Als selbst erstelltes Lernbeispiel dient ein Hund, dem Futter und Wasser bereitstehen, der jedoch keine geeignete Rückzugsmöglichkeit hat. Das Beispiel verdeutlicht die verschiedenen Bedürfnisse; es stellt keine Diagnose über einen bestimmten Hund oder eine konkrete Haltung dar.",
+            "Das Fünf-Domänen-Modell ordnet Ernährung, physische Umwelt, Gesundheit und Verhaltensinteraktionen in Beziehung zum mentalen Zustand. Die fünfte Domäne ist kein zusätzliches Körperorgan. Sie lenkt den Blick auf die möglichen positiven oder negativen Erfahrungen, die mit den anderen Bereichen verbunden sind. Das Modell hilft, Zusammenhänge geordnet zu bedenken, ist aber weder ein universeller Punktetest noch eine vollständige Abbildung sämtlicher Körperfunktionen.",
+            "Für die Jagdausbildung ist außerdem wichtig, Tierwohl von einer reinen Bestandsbetrachtung zu unterscheiden: Hier geht es um das einzelne Tier und seine Erfahrungen. Daraus entsteht noch keine automatische Entscheidung über eine konkrete Wildtiersituation. Geeignete Aussagen benötigen Wissen über Art, Individuum und Umstände. Dieser Kurs vermittelt den biologischen und begrifflichen Hintergrund; er formuliert keine neue Rechtsregel und ersetzt keine fachliche Untersuchung oder eine örtlich erforderliche Zuständigkeitsprüfung."
+          ],
+          "takeaway": "Tierwohl beschreibt den körperlichen und mentalen Zustand des einzelnen Tieres; gute Absicht und vorhandene Ausstattung allein beweisen diesen Zustand nicht.",
+          "exercise": "Ordne am Lernbeispiel Futter, Rückzug und mögliche Erfahrung verschiedenen Ebenen des Tierwohls zu."
+        },
+        {
+          "id": "nozizeption-schmerz",
+          "title": "Ein Nervensignal ist etwas anderes als eine Schmerzerfahrung",
+          "paragraphs": [
+            "Nozizeption bezeichnet die neuronale Erfassung und Verarbeitung tatsächlich oder potenziell gewebeschädigender Reize. Dafür besitzt das Nervensystem entsprechend empfindliche Rezeptoren und Leitungswege. Solche Signale können Schutzreaktionen auslösen, etwa eine motorische Rückzugsreaktion. Der Begriff beschreibt einen physiologischen Vorgang. Er bedeutet noch nicht, dass damit sämtliche Eigenschaften einer subjektiven Schmerzerfahrung vollständig erfasst wären.",
+            "Schmerz enthält eine sensorische und eine unangenehme emotionale Dimension. Neben der Information über einen Reiz gehört also auch das aversive Erleben dazu. Deshalb dürfen die Begriffe Schmerz und Nozizeption nicht schlicht gleichgesetzt werden. Ein beobachteter Reflex zeigt einen funktionierenden Reaktionsweg, liefert aber für sich allein keine genaue Messung dessen, wie ein Tier die Situation erlebt. Umgekehrt kann aus dem Fehlen einer auffälligen Reaktion keine sichere Schmerzfreiheit abgeleitet werden.",
+            "Für Tiere ist besonders wichtig, dass fehlende sprachliche Mitteilung eine Schmerzerfahrung nicht ausschließt. Ein Hund muss sein Erleben nicht in menschlichen Worten schildern können, damit es relevant ist. Bei der fachlichen Beurteilung werden deshalb verschiedene geeignete Informationen im jeweiligen Zusammenhang betrachtet. Die begriffliche Trennung dient gerade nicht dazu, eine belastende Situation als „nur Reflex“ abzutun oder durch selbst erfundene Belastungstests Klarheit herstellen zu wollen.",
+            "Ein Lernvergleich ist die Unterscheidung zwischen einem gemessenen Nervensignal, einer sichtbaren Bewegung und einer erschlossenen Erfahrung. Diese Ebenen hängen zusammen, sind jedoch nicht identisch. Das Wissen hilft, biologische Antworten sorgfältiger zu formulieren. Es liefert weder eine Schmerzskala für alle Wildarten noch ein Verfahren, ein einzelnes Tier aus einem Foto zu beurteilen. Es enthält keine Arznei-, Behandlungs- oder Manipulationsanweisung; auffälliges Verhalten wird dadurch nicht zu einer eigenständig gestellten Diagnose."
+          ],
+          "takeaway": "Nozizeption beschreibt die neuronale Verarbeitung schädigender Reize; Schmerz umfasst eine subjektive sensorische und emotionale Erfahrung.",
+          "exercise": "Erkläre an einem gedachten Rückzugsreflex den Unterschied zwischen Signalweg, sichtbarer Reaktion und subjektiver Erfahrung."
+        },
+        {
+          "id": "positive-erfahrung",
+          "title": "Gutes Wohlergehen umfasst auch positive Erfahrungen",
+          "paragraphs": [
+            "Leid zu vermeiden und körperliche Grundbedürfnisse zu erfüllen, ist für Tierwohl wesentlich. Positive Wohlergehensansätze fragen zusätzlich nach Möglichkeiten zu angenehmen, für das Tier bedeutsamen Erfahrungen. Die Abwesenheit deutlich erkennbarer Probleme ist daher nicht dasselbe wie ein Nachweis positiver Erfahrungen. Ein ruhiges Tier kann beispielsweise beobachtbar wenig Aktivität zeigen; allein diese Beschreibung sagt noch nicht, weshalb es ruht oder wie es die Situation erlebt.",
+            "Verhalten, Motivation und Erleben stehen in Beziehung. Tiere können Möglichkeiten aufsuchen, erkunden und Ziele verfolgen. Die Ausführung geeigneter, selbst angestrebter Aktivitäten kann mit positiven Erfahrungen verbunden sein. Dabei sind bloßes Anstreben und tatsächliches Gefallen begrifflich zu unterscheiden: Eine starke Motivation allein beweist nicht automatisch eine durchgehend angenehme Situation. In der Forschung werden diese Zusammenhänge vorsichtig eingeordnet, statt jedes rege Verhalten unmittelbar als Freude zu bezeichnen.",
+            "Auch „natürlich“ und „gut für das Wohlergehen“ sind keine gleichbedeutenden Begriffe. Die Verfolgung eines Beutetiers durch einen Feind ist ein natürlich vorkommendes Geschehen, aber daraus folgt kein angenehmes Erleben für das verfolgte Tier. Umgekehrt kann eine geeignete, vom Menschen bereitgestellte Beschäftigung positive Möglichkeiten eröffnen. Entscheidend sind die Eigenschaften der Art, die Voraussetzungen des Individuums und die konkrete Ausgestaltung, nicht allein das Etikett „natürlich“.",
+            "Als selbst erstelltes Lernbeispiel kann ein Hund zwischen ruhigem Rückzug und einer für ihn geeigneten Erkundungsmöglichkeit wählen. Das Beispiel veranschaulicht Chancen, behauptet aber nicht, jede Aktivität oder jeder Hund empfinde gleich. Positive Möglichkeiten ersetzen keine notwendige Versorgung und keine Vermeidung belastender Zustände. Für Jagdpraktikerinnen und Jagdpraktiker liegt der Nutzen in einer erweiterten Fragestellung: Welche Erfahrungen werden ermöglicht, und worauf stützt sich die Einschätzung ihres Werts für das Tier?"
+          ],
+          "takeaway": "Positive Wohlergehensansätze berücksichtigen bedeutsame angenehme Erfahrungen; Aktivität oder Natürlichkeit allein beweisen sie nicht.",
+          "exercise": "Vergleiche eine natürliche Bedrohungssituation mit einer geeigneten Erkundungsmöglichkeit, ohne Natürlichkeit mit Wohlergehen gleichzusetzen."
+        },
+        {
+          "id": "wahl-kontrolle",
+          "title": "Wahlmöglichkeiten brauchen erreichbare und verlässliche Folgen",
+          "paragraphs": [
+            "Eine Wahl liegt vor, wenn ein Tier zwischen tatsächlich verfügbaren Alternativen auswählen kann. Kontrolle geht einen Schritt weiter: Eine eigene Handlung kann in vorhersagbarer Weise zu einem gewünschten Ergebnis führen. Beide Begriffe hängen zusammen, sind aber nicht identisch. Zwei äußerlich verschiedene Angebote geben noch keinen sinnvollen Handlungsspielraum, wenn beide unzugänglich sind oder für das Tier keine relevante Alternative darstellen.",
+            "Eigenaktivität, in der Fachliteratur häufig als Agency bezeichnet, umfasst freiwilliges, selbst begonnenes und zielgerichtetes Handeln. Dazu können der Erwerb von Informationen und das Bewältigen geeigneter Herausforderungen gehören. Entscheidend ist nicht, möglichst viele Gegenstände anzubieten. Die Möglichkeiten müssen zu Wahrnehmung, Fähigkeiten und Motivation passen. Was für ein Individuum interessant ist, kann ein anderes überfordern oder überhaupt nicht ansprechen.",
+            "Ein selbst erstelltes Lernbeispiel ist ein Hund mit zwei geeigneten Ruheplätzen, zwischen denen er tatsächlich wechseln kann. Die relevante Eigenschaft ist nicht die Zahl der angeschafften Decken, sondern die nutzbare Alternative. Auch eine Nichtteilnahme kann eine Wahl ausdrücken: Ein angebotener Gegenstand muss nicht benutzt werden, damit der Hund Kontrolle über seine Beteiligung hat. Aus einem einmaligen Nichtbenutzen folgt umgekehrt noch keine vollständige Erklärung seiner Vorlieben.",
+            "Für die Anwendung sind daher Wahl, Erreichbarkeit und verlässliche Folgen gemeinsam zu betrachten. Daraus entsteht keine allgemeine Garantie, dass jede zusätzliche Option das Wohlergehen verbessert. Die Forschung unterscheidet begriffliche Modelle von den jeweils verfügbaren direkten Belegen. Der Kurs überträgt Ansätze aus betreuten Tieren deshalb nicht ungeprüft in Eingriffe bei Wildtieren. Sein Lernwert liegt im Verständnis, warum selbstbestimmte, passende Interaktionen etwas anderes sind als eine von Menschen vorgeschriebene Dauerbeschäftigung."
+          ],
+          "takeaway": "Wahl bedeutet verfügbare Alternativen; Kontrolle bedeutet vorhersagbaren Einfluss auf Ergebnisse. Sinnvolle Möglichkeiten müssen zum Tier passen.",
+          "exercise": "Unterscheide am Ruheplatzbeispiel Anzahl der Angebote, tatsächliche Zugänglichkeit und Kontrolle über die Nutzung."
+        }
+      ],
+      "questions": [
+        {
+          "id": "wissen-vertiefung-tierwohl-empfindung-round6-2026-q1",
+          "lessonId": "koerper-erleben",
+          "q": "Was bezeichnet Tierwohl im hier verwendeten fachlichen Verständnis?",
+          "options": [
+            "Den körperlichen und mentalen Zustand eines Tieres",
+            "Allein die vorhandene technische Ausstattung einer Haltung",
+            "Allein die gute Absicht einer betreuenden Person",
+            "Den zahlenmäßigen Gesamtbestand einer Tierart"
+          ],
+          "answer": 0,
+          "explain": "Tierwohl bezieht sich auf den körperlichen und mentalen Zustand des einzelnen Tieres in seinen Lebensbedingungen. Ausstattung und Betreuung können diesen beeinflussen, sind aber nicht mit dem Zustand selbst gleichzusetzen."
+        },
+        {
+          "id": "wissen-vertiefung-tierwohl-empfindung-round6-2026-q2",
+          "lessonId": "nozizeption-schmerz",
+          "q": "Welcher Begriff bezeichnet die neuronale Codierung tatsächlich oder potenziell gewebeschädigender Reize?",
+          "options": [
+            "Propriozeption",
+            "Olfaktion",
+            "Nozizeption",
+            "Vestibuläre Wahrnehmung"
+          ],
+          "answer": 2,
+          "explain": "Nozizeption bezeichnet die neuronale Codierung schädigender Reize. Schmerz umfasst dagegen auch eine subjektive unangenehme sensorische und emotionale Erfahrung. Ein Nervensignal allein liefert deshalb keine vollständige Beschreibung des Erlebens."
+        },
+        {
+          "id": "wissen-vertiefung-tierwohl-empfindung-round6-2026-q3",
+          "lessonId": "positive-erfahrung",
+          "q": "Welchen zusätzlichen Schwerpunkt setzen positive Wohlergehensansätze neben der Vermeidung belastender Zustände?",
+          "options": [
+            "Eine möglichst dauerhafte Erhöhung der Aktivität",
+            "Eine für alle Tiere identische Beschäftigung",
+            "Die ausschließliche Nachbildung jedes Naturereignisses",
+            "Möglichkeiten bedeutsamer angenehmer Erfahrungen"
+          ],
+          "answer": 3,
+          "explain": "Positive Wohlergehensansätze berücksichtigen Chancen auf angenehme Erfahrungen. Solche Möglichkeiten müssen zu Art, Individuum und Situation passen. Weder hohe Aktivität noch die bloße Natürlichkeit eines Geschehens beweist positives Erleben."
+        },
+        {
+          "id": "wissen-vertiefung-tierwohl-empfindung-round6-2026-q4",
+          "lessonId": "wahl-kontrolle",
+          "q": "Was bedeutet Kontrolle im hier verwendeten tierwohlbezogenen Verständnis?",
+          "options": [
+            "Möglichst viele äußerlich verschiedene Angebote",
+            "Vorhersagbarer Einfluss eigener Handlungen auf Ergebnisse",
+            "Dauernde Vorgabe jedes Verhaltens durch Menschen",
+            "Die vollständige Vermeidung aller Entscheidungen"
+          ],
+          "answer": 1,
+          "explain": "Kontrolle meint, dass eigene Handlungen in vorhersagbarer Weise gewünschte Ergebnisse beeinflussen können. Wahlmöglichkeiten können dafür ein Mittel sein, müssen aber tatsächlich verfügbar und für das Tier relevant sein."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-18",
+        "scope": "Begriffliches und biologisches Tierwohlwissen mit Lernbeispielen aus betreuten Säugern, besonders Hunden. Keine Diagnose, Therapie, Interventionspflicht, Wildtiermanipulation oder aktuelle Rechtsauskunft.",
+        "independentOrganizations": [
+          "WOAH",
+          "EFSA",
+          "Mellor/Littlewood und Mitautoren (eine fachlich verwandte Modellfamilie)",
+          "RSPCA, Anwendung desselben Frameworks",
+          "IASP",
+          "National Research Council / ILAR",
+          "Lawrence/Vigors/Sandøe",
+          "Lincoln Park Zoo / Georgia State University",
+          "Rault und internationales Konsensteam"
+        ],
+        "limitations": [
+          "Fünf Domänen sind ein begründeter Ordnungsrahmen, keine unabhängige experimentelle Feststellung fünf messbarer Körperbereiche.",
+          "Originalreviews und Konsens definieren Begriffe; keine einzelne Maßnahme als für jedes Tier wirksam ausgegeben.",
+          "Schmerzerleben nicht auf Reflexe reduziert; fehlende Reaktion nicht als Schmerzfreiheit behandelt.",
+          "Wahl/Agency nicht mit unbegrenzter Auswahl oder zulässigen Eingriffen bei Wildtieren gleichgesetzt."
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026",
+      "lessonId": "schallweg",
+      "claims": [
+        {
+          "claim": "Säuger-Grundweg: Luftschall/Trommelfell, Hammer–Amboss–Steigbügel, ovales Fenster und flüssigkeitsgefüllte Cochlea; mechanische Übertragung vor Haarzellwandlung.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+            "https://www.nidcd.nih.gov/health/how-do-we-hear",
+            "https://openstax.org/books/biology-2e/pages/36-4-hearing-and-vestibular-sensation"
+          ]
+        },
+        {
+          "claim": "Impedanzanpassung durch Flächen-/Hebelverhältnisse, keine Energieerzeugung; rundes Fenster ermöglicht Flüssigkeitsbewegung/Druckausgleich.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+            "https://www.ncbi.nlm.nih.gov/books/NBK11076/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK20366/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026",
+      "lessonId": "haarzelle-frequenz",
+      "claims": [
+        {
+          "claim": "Auslenkung der Stereozilien verändert mechanisch gekoppelte Ionenkanäle und das Haarzellpotential; basale synaptische Übertragung führt zu Aktivität afferenter Nervenfasern, nicht zu einem identischen Haarzell-Aktionspotential.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+            "https://openstax.org/books/biology-2e/pages/36-4-hearing-and-vestibular-sensation",
+            "https://www.ncbi.nlm.nih.gov/books/NBK10867/"
+          ]
+        },
+        {
+          "claim": "Nur apikale Haarzellfläche mit Stereozilien liegt in kaliumreicher Endolymphe; K+-Einstrom depolarisiert, Ca2+-abhängige Übertragung an Nervenendigungen.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+            "https://www.ncbi.nlm.nih.gov/books/NBK10867/"
+          ]
+        },
+        {
+          "claim": "Frequenz-Ortsmodell des Säugerohrs: hohe Frequenzen basal, tiefe weiter apikal; keine gleiche Hörgrenze für alle Arten und keine Gleichsetzung Tonhöhe/Lautstärke.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter12.html",
+            "https://www.nidcd.nih.gov/health/how-do-we-hear",
+            "https://openstax.org/books/biology-2e/pages/36-4-hearing-and-vestibular-sensation",
+            "https://sites.ualberta.ca/~neuro/OnlineIntro/SysSensoryAuditory.htm"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026",
+      "lessonId": "drehen-geradeaus",
+      "claims": [
+        {
+          "claim": "Bogengänge: Cupula/Haarzellen reagieren auf relative Flüssigkeitsbewegung bei Änderungen von Kopfdrehung; Winkelbeschleunigung statt dauerhafter Kompassrichtung.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter10.html",
+            "https://www.nidcd.nih.gov/health/balance-disorders"
+          ]
+        },
+        {
+          "claim": "Utriculus/Sacculus: otokonienbeladene Gallertschicht mit Calciumcarbonat, relative Auslenkung bei linearer Beschleunigung/Schwerkraft; mehrere Bewegungsanteile müssen zentral eingeordnet werden.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter10.html",
+            "https://www.nidcd.nih.gov/health/balance-disorders"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026",
+      "lessonId": "blick-lage",
+      "claims": [
+        {
+          "claim": "Vestibulo-okulärer Reflex nutzt vestibuläre Bewegungssignale zur Blickstabilisierung; Vestibularnerv, zentrale Kerne und Kleinhirnverbindungen, kompensierende Augenbewegungen.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter10.html",
+            "https://www.ncbi.nlm.nih.gov/books/NBK10987/"
+          ]
+        },
+        {
+          "claim": "Orientierung/Haltung verknüpfen vestibuläre, visuelle und muskuloskelettale Informationen; gemeinsame Funktionen sind keine individuelle Diagnostik.",
+          "sourceUrls": [
+            "https://nba.uth.tmc.edu/neuroscience/s2/chapter10.html",
+            "https://www.nidcd.nih.gov/health/balance-disorders"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-naehrstoffe-round6-2026",
+      "lessonId": "protein-bausteine",
+      "claims": [
+        {
+          "claim": "Nahrungsprotein liefert Aminosäuren/Stickstoff für körpereigene Proteine und weitere Verbindungen; essenzielle Bausteine müssen verfügbar sein, Gesamtproteinmenge allein beweist kein passendes Muster.",
+          "sourceUrls": [
+            "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2023/05/09/what-nutrients-are-essential-for-my-pet/"
+          ]
+        },
+        {
+          "claim": "Proteinqualität umfasst Aminosäuremuster und Verdaulichkeit; Zutatenname oder pflanzlich/tierisch allein beschreibt keine vollständige Ration, unterschiedliche Proteinquellen können kombiniert werden.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2023/05/09/what-nutrients-are-essential-for-my-pet/",
+            "https://www.purinainstitute.com/sites/default/files/2024-02/HOT-TOPIC-The-source-of-protein-and-protein-quality.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-naehrstoffe-round6-2026",
+      "lessonId": "fett-funktionen",
+      "claims": [
+        {
+          "claim": "Fett liefert mehr Energie je Masse als Protein/verdauliche Kohlenhydrate; Fett-Masseanteil und Energieanteil sind unterschiedliche Bezugsgrößen, Wassergehalt beeinflusst Produktvergleich.",
+          "sourceUrls": [
+            "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2018/03/15/the-skinny-on-fat-part-1/"
+          ]
+        },
+        {
+          "claim": "Nahrungsfette liefern spezifische Fettsäuren, Linolsäure ist beim Hund essenziell; Fettsäuren tragen zu Zellstruktur/-funktion bei und Fett unterstützt fettlösliche Vitaminaufnahme.",
+          "sourceUrls": [
+            "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2023/05/09/what-nutrients-are-essential-for-my-pet/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-naehrstoffe-round6-2026",
+      "lessonId": "staerke-verwertung",
+      "claims": [
+        {
+          "claim": "Stärke aus Glucosebausteinen kann nach geeigneter Aufbereitung durch körpereigene Enzyme verdaut werden; Faser und mikrobielle Umsetzung sind davon zu trennen. Zutaten können mehrere Nährstoffgruppen liefern.",
+          "sourceUrls": [
+            "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2021/07/07/the-role-of-carbohydrate-in-pet-foods/",
+            "https://vcahospitals.com/know-your-pet/nutrition-general-feeding-guidelines"
+          ]
+        },
+        {
+          "claim": "Gesunder erwachsener nicht reproduzierender Hund: Glucoseverwendung bedeutet keine zwingende Zufuhr verdaulicher Kohlenhydrate als solche; alternative Glucosebildung und Fähigkeit zur Stärkenutzung sind vereinbar.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2021/07/07/the-role-of-carbohydrate-in-pet-foods/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-hund-naehrstoffe-round6-2026",
+      "lessonId": "faser-fermentation",
+      "claims": [
+        {
+          "claim": "Faser ist chemisch vielfältig, widersteht körpereigenen Dünndarmenzymen und kann je nach Quelle mikrobiell fermentiert werden; dabei entstehen unter anderem kurzkettige Fettsäuren.",
+          "sourceUrls": [
+            "https://nap.nationalacademies.org/resource/10668/dog_nutrition_final_fix.pdf",
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2021/07/07/the-role-of-carbohydrate-in-pet-foods/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10812474/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827402/"
+          ]
+        },
+        {
+          "claim": "Löslichkeit, Viskosität und Fermentierbarkeit sind verschiedene Eigenschaften; Gemische und geringe Fermentierbarkeit verhindern eine starre Gleichsetzung löslich=fermentierbar.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2019/11/04/fiber-frustrations/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10812474/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827402/"
+          ]
+        },
+        {
+          "claim": "Rohfaser erfasst Gesamtfaser unvollständig, insbesondere lösliche Anteile; ähnliche Rohfaserwerte beweisen daher keine gleiche Faserzusammensetzung.",
+          "sourceUrls": [
+            "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "https://sites.tufts.edu/petfoodology/2019/11/04/fiber-frustrations/",
+            "https://europeanpetfood.org/pet-food-facts/fact-sheets/nutrition/carbohydrates-in-dog-and-cat-food/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026",
+      "lessonId": "muskelpigment",
+      "claims": [
+        {
+          "claim": "Myoglobin ist wichtigstes rotes Muskelpigment und örtlicher Sauerstoffbinder; Hämoglobin dient vor allem dem Bluttransport. Pigmentmenge und Pigmentzustand sind getrennte Einflussgrößen.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/color-meat-and-poultry",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/pink-turkey-meat-safe",
+            "https://extension.animalscience.tamu.edu/meat/ansc-307-honors/meat-color/"
+          ]
+        },
+        {
+          "claim": "Art, Muskel und weitere Merkmale beeinflussen Farbe/Pigmentmenge; daraus folgt keine universelle Wildartfarbtafel oder Diagnose durch ein Foto.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/color-meat-and-poultry"
+          ]
+        },
+        {
+          "claim": "Farbe allein beziehungsweise unauffälliger Sinneseindruck beweist keine mikrobiologische Sicherheit.",
+          "sourceUrls": [
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/color-meat-and-poultry",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026",
+      "lessonId": "oxygenierung-redox",
+      "claims": [
+        {
+          "claim": "Deoxy-/Oxymyoglobin mit Fe2+ unterscheiden sich in Sauerstoffbindung; Metmyoglobin mit Fe3+ in Eisenoxidation. Oxygenierung ist keine Oxidation des Eisens.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC8357901/",
+            "https://meatscience.org/docs/default-source/publications-resources/rmc/2005/current-research-in-meat-color.pdf?sfvrsn=2"
+          ]
+        },
+        {
+          "claim": "Sauerstoffangebot/-verbrauch, reduzierende Kapazität, pH, Temperatur und Schichtbildung bewirken komplexe Farbbedingungen statt linearer Mehr-Sauerstoff-mehr-Braun-Regel.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://extension.animalscience.tamu.edu/meat/ansc-307-honors/meat-color/",
+            "https://meatscience.org/docs/default-source/publications-resources/rmc/2005/current-research-in-meat-color.pdf?sfvrsn=2"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026",
+      "lessonId": "oxidationsnetz",
+      "claims": [
+        {
+          "claim": "Oxidative Fettveränderung als chemischer Prozess, Hydroperoxide und weitere teils flüchtige Abbauprodukte; nicht gleich mikrobielles Wachstum.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827023/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC8357901/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11394816/"
+          ]
+        },
+        {
+          "claim": "Häm/Eisen und Fettabbauprodukte koppeln Pigment-/Lipidreaktionen; Zusammensetzung, Sauerstoff, Licht und Temperatur beeinflussen Stabilität. Isoliertes Myoglobin-Modell ist keine vollständige Wildfleischvorhersage.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6827023/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC8357901/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11394816/"
+          ]
+        },
+        {
+          "claim": "Farbe, Oxidationsmessung und mikrobiologische Sicherheit sind getrennte Ebenen; unauffälliger Geruch/Farbe allein beweist keine Unbedenklichkeit.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11394816/",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-fleischfarbe-oxidation-round6-2026",
+      "lessonId": "verpackung-schichten",
+      "claims": [
+        {
+          "claim": "Verpackung verändert Sauerstoffzugang; bei geringer Verfügbarkeit Deoxymyoglobin, bei geeigneter Sauerstoffbindung rötere Oberfläche; Schichten können sichtbare Zwischenzustände verdecken.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/color-meat-and-poultry",
+            "https://meatscience.org/docs/default-source/publications-resources/rmc/2005/current-research-in-meat-color.pdf?sfvrsn=2"
+          ]
+        },
+        {
+          "claim": "Restreaktionen im Muskel umfassen Sauerstoffverbrauch und Metmyoglobin-Reduktionsaktivität mit begrenzten Reduktanten; keine universelle Farbumstellzeit.",
+          "sourceUrls": [
+            "https://meatscience.org/docs/default-source/publications-resources/fact-sheets/color_chemistry_resource1_7.28.23_final.pdf?sfvrsn=6db353c1_7.",
+            "https://extension.animalscience.tamu.edu/meat/ansc-307-honors/meat-color/",
+            "https://meatscience.org/docs/default-source/publications-resources/rmc/2005/current-research-in-meat-color.pdf?sfvrsn=2"
+          ]
+        },
+        {
+          "claim": "Rinderhack-Verpackungsstudie misst Farbe/Lipidoxidation und nennt mikrobiologische Folgestudien als offene Frage; keine daraus ableitbare Wildfleisch-Lagerfreigabe. Sinneseindrücke allein reichen nicht.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11394816/",
+            "https://www.bfr.bund.de/fragen-und-antworten/thema/fragen-und-antworten-zu-verdorbenem-fleisch",
+            "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "lessonId": "koerper-erleben",
+      "claims": [
+        {
+          "claim": "Tierwohl betrifft körperlichen/mentalen Zustand des einzelnen Tieres, nicht allein menschliche Absicht, technische Ausstattung oder Bestandszahl; Versorgung und mögliches Erleben gemeinsam betrachten.",
+          "sourceUrls": [
+            "https://www.woah.org/fileadmin/Home/eng/Health_standards/tahc/2024/en_chapitre_aw_introduction.htm",
+            "https://www.efsa.europa.eu/en/topics/topic/animal-welfare",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full"
+          ]
+        },
+        {
+          "claim": "Fünf-Domänen-Modell ordnet Ernährung, Umwelt, Gesundheit und Verhaltensinteraktionen zu möglichen mentalen Erfahrungen. Als Ordnungsrahmen verwendet, nicht als Körperinventar oder automatischer Punktetest.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7602120/",
+            "https://www.rspca.org.uk/documents/d/rspca/policy_booklet_2025",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "lessonId": "nozizeption-schmerz",
+      "claims": [
+        {
+          "claim": "Nozizeption ist neuronale Codierung schädigender Reize und kann motorische Schutzreaktionen auslösen; Schmerz enthält sensorische und unangenehme emotionale Erfahrung, Reflex ist keine vollständige Erlebensmessung.",
+          "sourceUrls": [
+            "https://www.iasp-pain.org/resources/terminology/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK32655/"
+          ]
+        },
+        {
+          "claim": "Fehlende Sprachmitteilung schließt tierlichen Schmerz nicht aus; ein einzelnes sichtbares Signal oder sein Fehlen ermöglicht keine sichere universelle Schmerzbeurteilung.",
+          "sourceUrls": [
+            "https://www.iasp-pain.org/resources/terminology/",
+            "https://www.ncbi.nlm.nih.gov/books/NBK32655/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "lessonId": "positive-erfahrung",
+      "claims": [
+        {
+          "claim": "Positive Wohlergehensansätze ergänzen Leidvermeidung um Chancen bedeutsamer angenehmer Erfahrungen; Abwesenheit sichtbarer Probleme allein ist kein Nachweis positiver Erfahrung.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC7602120/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826906/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11883819/"
+          ]
+        },
+        {
+          "claim": "Motiviertes Anstreben und angenehmes Erleben sind begrifflich unterscheidbar; Aktivität und Natürlichkeit allein sind keine ausreichenden Tierwohlmerkmale.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826906/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full"
+          ]
+        },
+        {
+          "claim": "Positive Möglichkeiten müssen Art/Individuum/Situation entsprechen und ersetzen keine körperliche Versorgung; selbst erstelltes Hundebeispiel ist keine Wirksamkeitsstudie.",
+          "sourceUrls": [
+            "https://www.woah.org/fileadmin/Home/eng/Health_standards/tahc/2024/en_chapitre_aw_introduction.htm",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826906/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11883819/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "lessonId": "wahl-kontrolle",
+      "claims": [
+        {
+          "claim": "Wahl als Auswahl verfügbarer Alternativen, Kontrolle als vorhersagbarer Einfluss auf gewünschte Ergebnisse; Agency freiwillig selbst begonnen/zielführend.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10656766/"
+          ]
+        },
+        {
+          "claim": "Nutzbare Möglichkeiten müssen zu Art/Individuum/Fähigkeiten passen; auch Nichtteilnahme kann Handlungsspielraum sein. Keine Garantie mehr Optionen=mehr Tierwohl.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10656766/",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC11883819/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {
+      "topic": "Hör-/Gleichgewichtsleistung und Tierversuche",
+      "reason": "Keine universellen artsübergreifenden Hör- oder Gleichgewichtsnormalwerte und keine praktischen Provokationsversuche."
+    },
+    {
+      "topic": "Individuelle Fütterung und Gesundheitsbeurteilung",
+      "reason": "Keine Futterrezepturen, Ergänzungsdosen, Mangel- oder Krankheitsdiagnosen."
+    },
+    {
+      "topic": "Lagerfreigaben und Farbsicherheit",
+      "reason": "Keine pauschale Sicherheitsfreigabe aus Farbe/Geruch, keine Wildfleisch-Lagerfrist oder Zusatzstoffbehandlung."
+    },
+    {
+      "topic": "Schmerzdiagnose und Wildtiereingriffe",
+      "reason": "Keine universelle Schmerzskala, keine pauschale Wildtierintervention, keine DACH-Rechtsauskunft aus ausländischen Tierwohlrahmen."
+    }
+  ]
+}

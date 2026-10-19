@@ -70,9 +70,11 @@ function rememberCurrentPath(history, current) {
   if (previous === current) return false;
   const previousBranch = previous ? new URL(previous, "https://jagdlatein.invalid").searchParams.get("bereich") : null;
   const currentBranch = new URL(current, "https://jagdlatein.invalid").searchParams.get("bereich");
+  const previousCourse = previous ? new URL(previous, "https://jagdlatein.invalid").searchParams.get("kurs") : null;
+  const currentCourse = new URL(current, "https://jagdlatein.invalid").searchParams.get("kurs");
   const topicStep = tracksTopicFragments(current) && previous?.split("#")[0] === current.split("#")[0] && previous?.split("#")[1] !== current.split("#")[1];
   // A chosen tree branch is a navigation step; typing a search remains one stop.
-  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && !topicStep) history[history.length - 1] = current;
+  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && previousCourse === currentCourse && !topicStep) history[history.length - 1] = current;
   else history.push(current);
   return true;
 }

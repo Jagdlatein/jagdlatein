@@ -220,6 +220,28 @@ test('Back follows a selected category branch before leaving the category', () =
   assert.equal(branch.destination, '/lernen/wildkunde');
 });
 
+test('Back preserves the course choice as a separate tree level while search typing stays within that level', () => {
+  const base = '/lernen/wildkunde';
+  const branch = `${base}?bereich=schalenwild#learning-modules`;
+  const course = `${base}?bereich=schalenwild&kurs=wissen-rehwild-jahreslauf#learning-modules`;
+  const s = setup(base, ['/lernen']);
+  s.route(branch); s.route(course);
+  s.route('/kurse/wissen-rehwild-jahreslauf#lesson-reh-nachwuchs');
+  s.render().props.children[0].props.onClick();
+  assert.equal(s.destination, course);
+  const choice = setup(base, ['/lernen']);
+  choice.route(branch); choice.route(course);
+  choice.render().props.children[0].props.onClick();
+  assert.equal(choice.destination, branch);
+  const search = setup(base, ['/lernen']);
+  search.route(branch); search.route(course);
+  search.route(`${base}?bereich=schalenwild&kurs=wissen-rehwild-jahreslauf&q=Reh`);
+  search.route(`${base}?bereich=schalenwild&kurs=wissen-rehwild-jahreslauf&q=Kitz`);
+  assert.equal(search.history.length, 4);
+  search.render().props.children[0].props.onClick();
+  assert.equal(search.destination, branch);
+});
+
 
 test('Native species topic links preserve each branch for dock Back, including browser history navigation', () => {
   const s=setup('/wildkunde/rehwild',['/lernen/wildkunde']);

@@ -56,6 +56,16 @@ test('Writing a search preserves unrelated duplicate parameters, actual category
   assert.equal(reset.hash, '#werkzeuge'); assert.deepEqual(reset.searchParams.getAll('eintrag'), ['a', 'b']);
 });
 
+test('Searching and clearing a search preserve both levels of the selected category tree', () => {
+  const original='/lernen/wildkunde?bereich=koerperbau-atmung&kurs=wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026#learning-modules';
+  const search=state.learningSearchURL(original,{...state.defaultLearningSearch('wildkunde'),query:'Gleichgewicht'},'wildkunde');
+  const reset=state.learningSearchURL(search,state.defaultLearningSearch('wildkunde'),'wildkunde');
+  assert.equal(reset,original);
+  const url=new URL(search,'https://test.invalid');
+  assert.equal(url.searchParams.get('bereich'),'koerperbau-atmung');
+  assert.equal(url.searchParams.get('kurs'),'wissen-vertiefung-saeugerohr-gleichgewicht-round6-2026');
+});
+
 function find(node, predicate) {
   if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; }
   if (!node || typeof node !== 'object') return null;

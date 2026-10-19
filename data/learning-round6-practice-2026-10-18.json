@@ -1,0 +1,1068 @@
+{
+  "reviewedOn": "2026-10-19",
+  "scope": "Vier neue, eng abgegrenzte Vertiefungskurse nach Inventarprüfung der 181 Bestandskurse mit 792 Lektionen sowie thematischer Volltextsuche. 16 ausführliche Wissenstexte mit je einer ergänzenden Frage; keine neuen Medien. Deutsches Jagdbezirksrecht bleibt ausschließlich Deutschland zugeordnet.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-laserklassen-round6-2026",
+      "title": "Laser verstehen: Kennzeichnung und optische Sicherheit",
+      "category": "Waffen & Sicherheit",
+      "topic": "Waffensicherheit",
+      "description": "Zugängliche Strahlung, Einhausung, M-Klassen und sichtbare Blendung auseinanderhalten, ohne aus einem Lichtpunkt eine Sicherheitsmessung zu machen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundverständnis optischer Laserkennzeichnung und begrenzter Betriebsbedingungen. Keine Produktfreigabe, Reparatur-, Ziel-, Schuss- oder medizinische Behandlungsanleitung; nationale Erwerbs- und Verwendungsregeln werden nicht aus Klassen abgeleitet.",
+        "AT": "Grundverständnis optischer Laserkennzeichnung und begrenzter Betriebsbedingungen. Keine Produktfreigabe, Reparatur-, Ziel-, Schuss- oder medizinische Behandlungsanleitung; nationale Erwerbs- und Verwendungsregeln werden nicht aus Klassen abgeleitet.",
+        "CH": "Grundverständnis optischer Laserkennzeichnung und begrenzter Betriebsbedingungen. Keine Produktfreigabe, Reparatur-, Ziel-, Schuss- oder medizinische Behandlungsanleitung; nationale Erwerbs- und Verwendungsregeln werden nicht aus Klassen abgeleitet."
+      },
+      "objectives": [
+        "Die zugängliche Emission vom eingebauten Laser unterscheiden",
+        "M-Klassen mit und ohne optische Hilfsmittel vergleichen",
+        "Sichtbarkeit von Strahlung und Gefährdung trennen",
+        "Klassifizierungsannahmen, Blendung und tatsächlichen Augenschutz unterscheiden"
+      ],
+      "sources": [
+        {
+          "label": "Suva: Schutzmassnahmen bei Laser",
+          "url": "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/strahlung-und-radioaktivitaet/nichtionisierende-strahlung/schutzmassnahmen-bei-laser",
+          "organization": "Suva",
+          "supports": "Originalabschnitte Klassen 1, 1M, 2M sowie Einhausung höherer Klassen gelesen. Nicht übernommen: verkürzte Gleichsetzung von Parallelität und Kohärenz, pauschale Reflex-/Zeitgarantien und Schweizer Laserpointerrecht."
+        },
+        {
+          "label": "UKHSA: Laser radiation – safety advice",
+          "url": "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+          "organization": "UK Health Security Agency",
+          "supports": "Originalfassung vom 18.03.2025, Abschnitte Laser radiation, Classification und Klassen 1/1M/2/2M sowie falsche Kennzeichnung gelesen. Nur physikalische Klasseneinordnung; keine britischen Verkaufs-/Besitzregeln und keine behauptete Schutzgarantie durch Reflexe."
+        },
+        {
+          "label": "BAuA: Laser sicher anwenden",
+          "url": "https://www.baua.de/DE/Angebote/Publikationen/Praxis/A37.pdf?__blob=publicationFile",
+          "organization": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin",
+          "supports": "Konkrete Originalindexabschnitte gedruckte S. 14–16 zu zugänglicher Strahlung/M-Klassen und S. 23–24, insbesondere Abschnitt 6.1.2 auf S. 24, zu unzuverlässigen Abwendungsreaktionen gelesen; Direktabruf 403. Keine historischen Zahlenwerte als aktuelle universelle Expositionsgrenzen übertragen."
+        },
+        {
+          "label": "BAuA Forschungsbericht Fb 1069: Abwendungsreaktionen des Menschen gegenüber sichtbarer Laserstrahlung",
+          "url": "https://www.baua.de/DE/Angebote/Publikationen/Schriftenreihe/Forschungsberichte/2006/Fb1069",
+          "organization": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin; Reidenbach, Hofmann, Dollinger und Ott",
+          "supports": "Originalabstract des Forschungsberichts 2006 gelesen: untersuchte spontane Schutzreaktionen sind unzuverlässig. Keine vollständige Studienlektüre behauptet; Versuchszahlen/Quoten nicht übernommen. Dieselbe Quellenfamilie wie BAuA-Praxis."
+        },
+        {
+          "label": "DGUV Information 203-095: Laserstrahlung auf Baustellen",
+          "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4594",
+          "organization": "Deutsche Gesetzliche Unfallversicherung",
+          "supports": "Original-PDF Juni 2023 gelesen: S. 6–9 Definition/Klassifikation, Augen-/Blendwirkung und zweifelhafte Kennzeichnung; S. 13 unzuverlässiger Lidschlussreflex; Anhang 2 Klassen. Berufsbezogene Organisationspflichten, medizinische Hinweise, Zeit-/Verstärkungszahlen und Baustellenrezepte nicht übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "zugang-einhausung",
+          "title": "Die Klasse beschreibt zugängliche Strahlung unter bestimmten Bedingungen",
+          "paragraphs": [
+            "Eine Laserklasse beschreibt das Gefährdungspotenzial der zugänglichen Laserstrahlung. Zugänglich ist dabei entscheidend: Ein geschlossenes Gerät kann einen leistungsfähigeren Laser enthalten, dessen Strahlung im vorgesehenen Betrieb durch das Gehäuse abgeschirmt bleibt. Die Kennzeichnung des vollständigen Produkts und die Klasse einer eingebauten Strahlungsquelle beantworten deshalb unterschiedliche Fragen. Eine Geräteklasse lässt sich nicht einfach als Aussage über jedes innere Bauteil lesen.",
+            "Bei Klasse 1 überschreitet die zugängliche Strahlung unter den zugrunde gelegten Betriebsbedingungen die Grenzwerte dieser Klasse nicht. Dazu gehört die bestimmungsgemäße beziehungsweise vernünftigerweise vorhersehbare Verwendung des vollständigen Geräts. Das ist etwas anderes als die Behauptung, jede beliebige Veränderung daran sei ebenfalls unbedenklich. Herstellerangaben beschreiben den vorgesehenen Betrieb; eine Öffnung oder Wartung kann andere Zugangsbedingungen schaffen. Die äußere Klassifizierung ersetzt keine Wartungsqualifikation.",
+            "Eigenes Vergleichsmodell: In einer geschlossenen Messbox bleibt der Strahl eines höher klassifizierten eingebauten Lasers unzugänglich. Ein zweites Schema zeigt dieselbe Quelle bei entfernter Abschirmung. Die Quelle wurde im Modell nicht stärker, aber der Zugang zu ihrer Strahlung hat sich verändert. Dieser Unterschied erklärt, weshalb eine sichere Einhausung eine wesentliche Funktion erfüllt und weshalb das Entfernen einer Barriere keine gewöhnliche Fortsetzung des bisherigen Betriebs ist.",
+            "Für die Prüfung lohnt sich eine genaue Zuordnung: Produkt, eingebauter Laser und jeweiliger Betriebszustand sind drei getrennte Angaben. Eine sichtbare Klasse 1-Kennzeichnung am intakten Gesamtgerät bedeutet daher weder, dass darin ausschließlich schwache Quellen vorkommen, noch dass alle Wartungssituationen von derselben Einordnung erfasst sind. Hier wird dieses Prinzip erklärt; das Lernmodell ist keine Freigabe zum Öffnen oder Verändern eines konkreten Geräts."
+          ],
+          "takeaway": "Zugängliche Emission und Betriebszustand sind Teil der Klasseneinordnung; ein abgeschirmter innerer Laser kann einer höheren Klasse angehören.",
+          "exercise": "Vergleiche im Schema die unveränderte Quelle mit dem veränderten Zugang zur Strahlung."
+        },
+        {
+          "id": "m-optische-hilfen",
+          "title": "Das M verändert die Bedeutung optischer Beobachtung",
+          "paragraphs": [
+            "Die Klassen 1M und 2M müssen als vollständige Bezeichnungen gelesen werden. Das M kennzeichnet eine besondere Einordnung im Zusammenhang mit vergrößernden optischen Instrumenten. Die Bewertung für das unbewaffnete Auge lässt sich bei diesen Klassen nicht unverändert auf ein Fernglas oder eine Lupe übertragen. Eine zusätzliche Optik ist keine bloße Vergrößerung derselben Sicherheitsbewertung, sondern kann die Strahlungsaufnahme am Auge verändern.",
+            "Optische Systeme können Strahlung sammeln oder bündeln. Bei entsprechendem Strahlaufbau kann deshalb eine Beobachtung durch solche Hilfsmittel gefährlicher sein als die zugrunde gelegte Betrachtung ohne sie. Die M-Klassen berücksichtigen gerade diesen Unterschied. Das ist eine Aussage über die Kombination aus Quelle, Strahlgeometrie und Beobachtungsoptik. Daraus folgt keine allgemeine Formel, nach der jede Vergrößerung automatisch ein bestimmtes zusätzliches Risiko erzeugt.",
+            "Klasse 1M ist unter den zugrunde gelegten Bedingungen für das unbewaffnete Auge eingeordnet; optische Instrumente können diese Beurteilung verändern. Klasse 2M betrifft sichtbare Strahlung und enthält zusätzlich die Einschränkungen der Klasse 2. Auch hier ist das absichtliche längere Hineinsehen keine vorgesehene sichere Anwendung. Die beiden Bezeichnungen sind deshalb keine Qualitätsstufen eines Fernglases und keine Aussage darüber, wie gut ein Messgerät arbeitet.",
+            "Eigenes Lesebeispiel: Eine Gerätebeschreibung nennt 1M und ein Nutzungsschema zeigt davor eine Sammeloptik. Die richtige Frage lautet nun, ob diese optische Anordnung von der vorgesehenen Anwendung erfasst ist. Die Zahl 1 allein reicht als Antwort nicht aus. Der Vergleich bleibt auf Kennzeichnung und Wirkprinzip beschränkt; ein tatsächlicher Strahl wird niemals zur Prüfung mit dem Auge gesucht. Die Sicherheitsangaben des konkreten Geräts müssen zur tatsächlichen Anordnung passen."
+          ],
+          "takeaway": "Bei M-Klassen gehört die mögliche Veränderung durch vergrößernde Optik ausdrücklich zur Einordnung.",
+          "exercise": "Erkläre, weshalb das Lesen nur der Zahl 1 die Information des vollständigen Zeichens 1M verliert."
+        },
+        {
+          "id": "sichtbar-unsichtbar",
+          "title": "Ein sichtbarer Punkt ist kein Leistungsmessgerät",
+          "paragraphs": [
+            "Laserstrahlung kann im sichtbaren oder in einem für das menschliche Auge unsichtbaren Spektralbereich liegen. Sichtbarkeit und Vorhandensein von Strahlung sind daher verschiedene Eigenschaften. Besonders leicht entsteht ein Denkfehler, wenn eine Person nur nach einem Lichtpunkt sucht: Kein sichtbarer Punkt belegt zunächst lediglich, dass unter diesen Beobachtungsbedingungen kein solcher Punkt wahrgenommen wurde. Daraus folgt keine nachgewiesene Strahlungsfreiheit.",
+            "Auch bei sichtbarer Strahlung ist wahrgenommene Helligkeit kein verlässlicher Ersatz für eine Bestimmung der Laserklasse. Die menschliche Wahrnehmung bewertet Wellenlängen unterschiedlich; zudem beschreibt die Klasse zugängliche Emission unter festgelegten Bedingungen. Farbe oder subjektiv schwache Helligkeit liefern deshalb keine vollständige Gefährdungsbeurteilung. Ebenso wenig lässt sich eine Herstellerkennzeichnung durch einen kurzen Blick in die Austrittsöffnung bestätigen.",
+            "Für das Verständnis sind drei Informationen zu trennen: der angegebene Spektralbereich, die dokumentierte Klasse und die tatsächliche Anwendung. Ein Etikett mit widersprüchlichen oder unverständlichen Angaben löst diese Fragen nicht zuverlässig. Institutionelle Hinweise nennen gerade solche Dokumentationsmängel als Grund, eine Beurteilung nicht ohne entsprechende Fachkenntnis vorzunehmen. Die Einordnung verlangt verlässliche technische Angaben, statt einen unsicheren Eindruck durch einen Beobachtungsversuch zu ersetzen.",
+            "Eigenes Vergleichsmodell: Zwei geschlossene Geräte sind in einer Zeichnung gleich groß; eines ist als sichtbarer, das andere als infraroter Laser beschrieben. Aus dem dunklen gezeichneten Austritt des zweiten Geräts lässt sich keine niedrigere Klasse ableiten. Das Beispiel zeigt ausschließlich den Unterschied zwischen Wahrnehmung und technischer Information. Es enthält weder eine Annahme über reale Produkte noch eine Anleitung zum Prüfen oder Vermessen unbekannter Laser."
+          ],
+          "takeaway": "Unsichtbar ist keine Gefahrenklasse; Helligkeit und Farbe ersetzen verlässliche technische Angaben nicht.",
+          "exercise": "Ordne Spektralbereich, Klassifizierung und sichtbaren Eindruck drei verschiedenen Informationsarten zu."
+        },
+        {
+          "id": "reflex-blendung",
+          "title": "Reflex, Blendung und Verletzung sind verschiedene Sachverhalte",
+          "paragraphs": [
+            "Bei der Einordnung sichtbarer Laser der Klasse 2 werden Bedingungen einer kurzen unbeabsichtigten Exposition zugrunde gelegt. Daraus entsteht leicht die missverständliche Vorstellung, das Auge werde sich bei jedem Treffer zuverlässig rechtzeitig schließen. Untersuchungen der BAuA und Hinweise der DGUV widersprechen diesem Vertrauen: Spontaner Lidschluss und andere Abwendungsreaktionen sind kein verlässlicher technischer Schutz. Eine Klassenbezeichnung ist daher keine Erlaubnis zum absichtlichen Hineinstarren.",
+            "Eine zweite Unterscheidung betrifft Blendung und dauerhafte Gewebeschädigung. Sichtbare Laserstrahlung kann die Wahrnehmung vorübergehend beeinträchtigen und Nachbilder auslösen. Solche Wirkungen können auch bei einer niedrigeren Klasse relevant sein. Die Aussage, unter bestimmten Klassifizierungsbedingungen sei keine dauerhafte Augenverletzung zu erwarten, bedeutet folglich nicht, dass währenddessen jede Tätigkeit unbeeinträchtigt weitergehen kann. Eine wahrnehmungsbezogene Beeinträchtigung ist ein eigener Sachverhalt.",
+            "Eigenes Vergleichsbeispiel: Eine Person soll in einer Zeichnung eine Stufe erkennen; ein Nachbild verdeckt vorübergehend einen Teil ihres Gesichtsfelds. Für dieses Modell ist keine bleibende Netzhautverletzung vorausgesetzt. Trotzdem ist die visuelle Aufgabe verändert. Umgekehrt kann aus dem Fehlen einer geschilderten Blendung keine technische Aussage über eine unbekannte Quelle abgeleitet werden, insbesondere wenn deren Strahlung unsichtbar ist.",
+            "Beim Lernen bleiben somit Klassifizierungsbedingungen, spontane Körperreaktion und mögliche Folgen getrennt. Eine in einer älteren Kurzbeschreibung genannte Reaktionszeit wird hier weder als persönliche Garantie noch als sichere Beobachtungsdauer verwendet. Der Kurs vermittelt Begriffe und Grenzen von Kennzeichnungen. Konkrete Schutzmaßnahmen richten sich nach dem tatsächlich eingesetzten Gerät, seiner vorgesehenen Verwendung und der fachgerechten Beurteilung; ein Selbstversuch am Auge gehört nicht zu dieser Prüfung."
+          ],
+          "takeaway": "Eine niedrige Klasse ist keine Zusicherung zuverlässigen Lidschlusses; vorübergehende Blendung bleibt von dauerhafter Verletzung zu unterscheiden.",
+          "exercise": "Erkläre am Stufenbeispiel, weshalb eine vorübergehende Sehstörung bereits die Aufgabe verändert."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "zugang-einhausung",
+          "q": "Was erklärt bei einem vollständig eingehausten Lasergerät die Klassifizierung der zugänglichen Emission?",
+          "options": [
+            "Sie beschreibt ausschließlich die Farbe der inneren Quelle.",
+            "Sie beschreibt die im vorgesehenen Betrieb zugängliche Strahlung.",
+            "Sie beschreibt ausschließlich den Stromverbrauch der Elektronik.",
+            "Sie beschreibt die Vergrößerung einer eingebauten Anzeige."
+          ],
+          "answer": 1,
+          "explain": "Die Einhausung kann Strahlung eines höher klassifizierten inneren Lasers unzugänglich machen. Deshalb müssen Gesamtgerät, innere Quelle und jeweiliger Betriebszustand getrennt betrachtet werden."
+        },
+        {
+          "id": "q2",
+          "lessonId": "m-optische-hilfen",
+          "q": "Wofür steht die Einschränkung der Laserklasse 1M im behandelten optischen Modell?",
+          "options": [
+            "Vergrößernde Optik kann die Gefährdung am Auge verändern.",
+            "Jede Beobachtungsoptik verringert die Strahlungsaufnahme am Auge.",
+            "Die Ziffer 1 schließt optisch bedingte Änderungen stets aus.",
+            "Das M kennzeichnet die Farbe der ausgesandten Strahlung."
+          ],
+          "answer": 0,
+          "explain": "Die Einordnung für das unbewaffnete Auge lässt sich bei 1M nicht auf eine Sammel- oder Vergrößerungsoptik übertragen. Eine solche Optik kann die Strahlungsaufnahme am Auge verändern."
+        },
+        {
+          "id": "q3",
+          "lessonId": "sichtbar-unsichtbar",
+          "q": "Was kennzeichnet Laserstrahlung in einem für Menschen unsichtbaren Spektralbereich?",
+          "options": [
+            "Sie gehört stets zur niedrigsten Laserklasse.",
+            "Sie enthält ausschließlich schwache Strahlung.",
+            "Sie ist durch gewöhnliche Beobachtung zuverlässig geprüft.",
+            "Sie liegt außerhalb des menschlichen sichtbaren Spektralbereichs."
+          ],
+          "answer": 3,
+          "explain": "Sichtbarkeit ist eine Eigenschaft des Spektralbereichs und der Wahrnehmung. Die Gefährdungseinstufung verlangt andere verlässliche Angaben; ein fehlender sichtbarer Lichtpunkt misst die Emission nicht."
+        },
+        {
+          "id": "q4",
+          "lessonId": "reflex-blendung",
+          "q": "Welche Wirkung beschreibt Blendung durch sichtbare Laserstrahlung?",
+          "options": [
+            "Eine Veränderung der Klasse durch die Gehäusefarbe",
+            "Eine Vergrößerung des beobachteten Gegenstands",
+            "Eine vorübergehende Beeinträchtigung der visuellen Wahrnehmung",
+            "Eine garantierte Schutzreaktion mit festgelegter Reaktionsdauer"
+          ],
+          "answer": 2,
+          "explain": "Blendung und Nachbilder können eine Sehaufgabe vorübergehend beeinträchtigen. Das ist begrifflich von einer bleibenden Gewebeschädigung zu trennen und bleibt auch bei niedrigen Klassen relevant."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-lawinenprobleme-round6-2026",
+      "title": "Schneedecke verstehen: Triebschnee, Schwachschichten und Nassschnee",
+      "category": "Jagdpraxis",
+      "topic": "Jagdpraxis",
+      "description": "Verstehen, weshalb eine tragende Oberfläche, alter Schnee und flüssiges Wasser verschiedene Teile eines veränderlichen Schichtsystems beschreiben.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Physikalische Grundlagen der Schneedecke mit SLF-/Avalanche-Canada-Modellen; keine lokale Lagebeurteilung, Tourenfreigabe, Befahrbarkeits-, Zeit-, Temperatur- oder Neigungsgarantie und keine Anleitung zu Belastungsversuchen.",
+        "AT": "Physikalische Grundlagen der Schneedecke mit SLF-/Avalanche-Canada-Modellen; keine lokale Lagebeurteilung, Tourenfreigabe, Befahrbarkeits-, Zeit-, Temperatur- oder Neigungsgarantie und keine Anleitung zu Belastungsversuchen.",
+        "CH": "Physikalische Grundlagen der Schneedecke mit SLF-/Avalanche-Canada-Modellen; keine lokale Lagebeurteilung, Tourenfreigabe, Befahrbarkeits-, Zeit-, Temperatur- oder Neigungsgarantie und keine Anleitung zu Belastungsversuchen."
+      },
+      "objectives": [
+        "Gebundenes Schneebrett und darunter liegende Schwachschicht gemeinsam erklären",
+        "Verfrachtung und Ablagerung durch Wind unterscheiden",
+        "Langlebige Schwachschichten von bloßem Schneealter trennen",
+        "Nasse Schneebretter und nasse Lockerschneelawinen vergleichen"
+      ],
+      "sources": [
+        {
+          "label": "SLF: Lawinenarten",
+          "url": "https://www.slf.ch/de/lawinen/lawinenkunde-und-praevention/lawinenarten/",
+          "organization": "WSL-Institut für Schnee- und Lawinenforschung SLF",
+          "supports": "Originalabschnitte Schneebrett-, Lockerschnee- und Nassschneelawinen direkt gelesen. Nur Schichtung, Bruchausbreitung und Wasserwirkung; keine dortigen pauschalen Neigungen, Größen, Opferanteile, Geschwindigkeiten oder Aussagen zur geringen Verschüttung übernommen."
+        },
+        {
+          "label": "SLF: Typisches Lawinenproblem Triebschnee",
+          "url": "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/triebschnee/",
+          "organization": "WSL-Institut für Schnee- und Lawinenforschung SLF",
+          "supports": "Originalabschnitte Was/Wo/Warum und Erkennbarkeit direkt gelesen: verfrachtbarer Neu-/Altschnee, ungleichmäßige Ablagerung, gebundenes Brett und Zusatzlast. Keine allgemeine Stabilisierung nach einer bestimmten Zahl von Tagen."
+        },
+        {
+          "label": "SLF: Typisches Lawinenproblem Altschnee",
+          "url": "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/altschnee/",
+          "organization": "WSL-Institut für Schnee- und Lawinenforschung SLF",
+          "supports": "Originalabschnitte schwache Schichten aus kantigen Kristallen/Tiefenreif/eingeschneitem Oberflächenreif, Dauer und fehlende sichtbare Alarmzeichen direkt gelesen. Keine Entlastungsbehauptung für bestimmte Expositionen oder Schneetiefen."
+        },
+        {
+          "label": "SLF: Typisches Lawinenproblem Nasse Lawinen",
+          "url": "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/nasse-lawinen/",
+          "organization": "WSL-Institut für Schnee- und Lawinenforschung SLF",
+          "supports": "Originalabschnitte Flüssigwasser, Regen-/Schmelzwassereintrag, nasses Brett versus Lockerschnee, zeitliche Veränderung direkt gelesen. Keine Geländeprüfung, Touren-/Uhrzeit- oder Temperaturfreigabe."
+        },
+        {
+          "label": "Avalanche Canada AvySavvy: How do avalanches form?",
+          "url": "https://avysavvy.avalanche.ca/en-ca/how-do-avalanches-form",
+          "organization": "Avalanche Canada",
+          "supports": "Originalabschnitte Snowpack und Slab/Loose snow direkt gelesen: Schichtunterschiede, Bindungen, Platte über schwacher Lage. Nicht übernommen: fachlich verkürzte Gleichsetzung von Oberflächenreif und gefrorenem Tau sowie Größen-/Temperaturzahlen."
+        },
+        {
+          "label": "Avalanche Canada AvySavvy: Wind slabs",
+          "url": "https://avysavvy.avalanche.ca/en-ca/wind-slabs",
+          "organization": "Avalanche Canada",
+          "supports": "Originalbeschreibung des durch Wind abgelagerten gebundenen Schnees über schwacher Lage gelesen. Kanada ist eine unabhängige fachliche Prozessdarstellung, keine DACH-Lagebeobachtung; dortige Tourenempfehlungen ausgeschlossen."
+        },
+        {
+          "label": "Avalanche Canada AvySavvy: Persistent slabs",
+          "url": "https://avysavvy.avalanche.ca/en-ca/persistent-slabs",
+          "organization": "Avalanche Canada",
+          "supports": "Originalbeschreibung begrabener Schwachschichten, möglicher Dauer über Wochen/Monate und fehlender offensichtlicher Zeichen gelesen. Keine Übertragung kanadischer Häufigkeiten oder konkreter Geländeentscheidungen."
+        },
+        {
+          "label": "Avalanche Canada AvySavvy: Wet slabs",
+          "url": "https://avysavvy.avalanche.ca/en-ca/wet-slabs",
+          "organization": "Avalanche Canada",
+          "supports": "Originalbeschreibung eindringenden Wassers bis zu bestehenden Schwachschichten gelesen. Keine dortige pauschale Ausweichempfehlung auf schattige Hänge übernommen."
+        },
+        {
+          "label": "Avalanche Canada AvySavvy: Loose wet",
+          "url": "https://avysavvy.avalanche.ca/en-ca/loose-wet",
+          "organization": "Avalanche Canada",
+          "supports": "Originalbeschreibung feuchten bindungsarmen Oberflächenschnees und Mitreißen weiteren Schnees gelesen. Keine Uhrzeit- oder Hangfreigabe abgeleitet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "schneebrett-schichtung",
+          "title": "Ein festes Brett kann auf einer schwachen Lage liegen",
+          "paragraphs": [
+            "Eine Schneedecke besteht häufig aus übereinanderliegenden Schichten mit unterschiedlichen Eigenschaften. Schneefälle, Wind und spätere Veränderungen der Kristalle können ihre Bindungen und Festigkeiten verschieden entwickeln. Eine oberflächlich fest wirkende Lage beschreibt deshalb nur einen Teil des Systems. Für eine Schneebrettlawine ist die Kombination aus einer gebundenen Schicht darüber und einer darunterliegenden Schwachschicht entscheidend, nicht allein die Härte der Oberfläche.",
+            "Das Schneebrett besitzt genügend Zusammenhalt, um Spannungen über eine Fläche weiterzugeben. In einer Schwachschicht kann zunächst ein begrenzter Bruch entstehen. Wenn sich dieser Bruch ausbreitet und das Brett sich löst, kann die darüberliegende Schneemasse abgleiten. Anriss, Bruchausbreitung und Bewegung sind unterscheidbare Vorgänge desselben Geschehens. Die Festigkeit eines einzelnen sichtbaren Abschnitts beschreibt nicht vollständig die Eigenschaften der verborgenen Kombination.",
+            "Eine Lockerschneelawine beginnt dagegen punktförmig in wenig gebundenem Schnee und reißt beim Abwärtsbewegen weiteren Schnee mit. Der Vergleich erklärt zwei unterschiedliche Anrissformen: flächig zusammenhängendes Brett über schwacher Lage gegenüber einem von einem Punkt aus anwachsenden Fluss lockeren Schnees. Die Namen beschreiben Prozesse und Materialzusammenhalt. Sie sind keine Rangliste, nach der die eine Form grundsätzlich harmlos wäre.",
+            "Eigenes Querschnittsmodell: Oben ist eine zusammenhängende Platte eingezeichnet, darunter eine schwächere Lage. Ein zweites Schema enthält nur einen lockeren oberflächlichen Anriss mit zunehmender mitbewegter Masse. Der Vergleich dient dem Begriffsverständnis. Er erlaubt keine Beurteilung einer realen Schneedecke aus deren Foto oder sichtbarer Oberfläche. Auch eine ältere, auf den ersten Blick ruhige Oberfläche schließt ein darunterliegendes Problem nicht aus; die aktuelle örtliche Lage wird durch dieses Modell nicht erfasst."
+          ],
+          "takeaway": "Für ein Schneebrett müssen gebundene Platte und Schwachschicht als zusammenwirkendes Schichtsystem verstanden werden.",
+          "exercise": "Beschreibe, welchen zusätzlichen Teil des Querschnitts eine bloße Ansicht der Oberfläche auslässt."
+        },
+        {
+          "id": "windtransport",
+          "title": "Wind kann vorhandenen Schnee neu verteilen",
+          "paragraphs": [
+            "Triebschnee ist durch Wind verfrachteter und abgelagerter Schnee. Als Ausgangsmaterial kommt lockerer Neuschnee, aber auch bereits vorhandener lockerer Altschnee infrage. Deshalb können neue Ablagerungen entstehen, obwohl gerade kein Schnee fällt. Schneefallmenge und Windverfrachtung sind verschiedene Größen: Die eine beschreibt neu hinzukommenden Niederschlag, die andere eine räumliche Umverteilung verfügbaren Schnees.",
+            "Wind nimmt Schnee an einer Stelle auf und lagert ihn an anderer Stelle ab. Geländekanten, Rinnen, Mulden und windabgewandte Bereiche können diese Verteilung beeinflussen. Das Muster bleibt räumlich ungleichmäßig und hängt von der tatsächlichen Wind- und Geländesituation ab. Der Satz „auf der Leeseite liegt immer gleich viel“ ersetzt dieses Verständnis nicht. Auch ein einzelner auffälliger Ablagerungsort beschreibt die übrige Fläche nicht vollständig.",
+            "Die Ablagerung kann einen gebundenen Schneekörper bilden und zugleich zusätzliche Last auf eine vorhandene schwache Lage bringen. Die kritische Schichtgrenze kann an der bisherigen Oberfläche liegen; schwache Lagen können auch innerhalb des verfrachteten Schnees oder tiefer in der Schneedecke vorkommen. Für das Verständnis muss daher zwischen Transport, Brettbildung, Zusatzlast und Schwachschicht unterschieden werden. Wind allein beschreibt noch nicht jede Voraussetzung eines auslösbaren Schneebretts.",
+            "Eigenes Modell: Auf einer Skizze wird lockerer Schnee von A nach B umgelagert. Bei A nimmt die Schneemenge ab, bei B steigt sie, obwohl im gesamten Modell kein neuer Niederschlag hinzukommt. Erst ein zusätzlicher Querschnitt zeigt, welche Schichten unter B liegen. Das Modell erklärt, weshalb „heute kein Schneefall“ und „keine neue Windablagerung“ verschiedene Aussagen sind. Es liefert weder eine universelle Windgeschwindigkeit noch eine feste Wartefrist bis zur Stabilität."
+          ],
+          "takeaway": "Windtransport kann ohne neuen Schneefall eine zusätzliche gebundene Ablagerung über schwachen Schichten schaffen.",
+          "exercise": "Trenne im Modell die neu abgelagerte Last von der darunterliegenden Schichtkombination."
+        },
+        {
+          "id": "anhaltende-schwachschichten",
+          "title": "Alt ist eine Zeitangabe, stabil eine Eigenschaft",
+          "paragraphs": [
+            "Das typische Lawinenproblem Altschnee bezieht sich auf anhaltend schwache Lagen innerhalb der vorhandenen Schneedecke. Dazu können Schichten aus kantigen Kristallen, Tiefenreif oder eingeschneitem Oberflächenreif gehören. Der Begriff meint damit einen bestimmten ungünstigen Aufbau, nicht jede Schneedecke, die schon einige Zeit liegt. Alter und mechanische Stabilität beschreiben unterschiedliche Eigenschaften und dürfen nicht als austauschbare Begriffe behandelt werden.",
+            "Eine solche Schwachschicht kann unter späteren Schneefällen oder Windablagerungen begraben werden. Die sichtbare Oberfläche gehört dann zu einer jüngeren Schicht, während das relevante Problem tiefer liegt. Manche schwachen Lagen können über Wochen oder Monate bestehen. Das ist eine mögliche zeitliche Beständigkeit und keine für jeden Ort geltende Mindest- oder Höchstdauer. Aus einem festen Kalenderdatum lässt sich ihre tatsächliche Entwicklung nicht ablesen.",
+            "Risse oder hörbare Setzungsgeräusche können Hinweise auf einen ungünstigen Aufbau sein. Gerade bei tiefer liegenden anhaltenden Schwachschichten müssen solche auffälligen Zeichen jedoch nicht erkennbar sein. Aus ihrem Ausbleiben folgt deshalb keine nachgewiesene Stabilität. Diese Grenze ist wichtig, weil eine ruhige Oberfläche und eine fehlende spontane Rückmeldung leicht als positiver Materialtest missverstanden werden. Eine nicht erfolgte Beobachtung ersetzt aber keine Erfassung der verdeckten Lage.",
+            "Eigenes Vergleichsmodell: Zwei Schneedecken tragen gleich alte Oberflächenschichten. Nur der Querschnitt von A enthält darunter eine begrabene schwache Lage; der Querschnitt von B zeigt sie im Modell nicht. Das gleiche Oberflächenalter erklärt den Unterschied nicht. Umgekehrt bedeutet das Modell ohne eingezeichnete Schwachschicht keine Freigabe für einen realen Hang. Es veranschaulicht ausschließlich, welche Information das Wort alt enthält und welche mechanischen Informationen zusätzlich nötig wären."
+          ],
+          "takeaway": "Altschneeprobleme betreffen anhaltend schwache Schichten; das bloße Schneealter beweist weder ihr Vorliegen noch ihre Abwesenheit.",
+          "exercise": "Erkläre, weshalb zwei gleich alte Oberflächen unterschiedliche verborgene Schichtsysteme überdecken können."
+        },
+        {
+          "id": "wasser-in-schnee",
+          "title": "Flüssiges Wasser verändert Bindungen und Schichtgrenzen",
+          "paragraphs": [
+            "Flüssiges Wasser kann durch Regen oder durch Schmelzen in eine Schneedecke gelangen. Es verändert die Bindungen zwischen Schneekörnern und kann bestehende Schwachschichten schwächen. Dabei ist der Weg des Wassers durch die Schichten wichtig: Wasser kann an bestimmten Schichtgrenzen zusammenlaufen oder sich dort zeitweise konzentrieren. Eine Temperaturangabe aus der Umgebung allein beschreibt diesen inneren Wasserhaushalt nicht vollständig.",
+            "Bei einer nassen Schneebrettlawine bleibt die Kombination aus gebundener Platte und versagender Lage bedeutsam. Eindringendes Wasser kann eine schon vorhandene Schwachschicht beeinträchtigen. Eine nasse Lockerschneelawine beginnt dagegen in feuchtem, bindungsarmem Oberflächenschnee und kann beim Fließen weiteres Material aufnehmen. Beide Formen enthalten nassen Schnee, aber ihr anfänglicher Zusammenhalt und ihre Anrissmechanik sind verschieden. Nass ist somit keine vollständige Erklärung des Lawinentyps.",
+            "Sonneneinstrahlung und Erwärmung können die Entwicklung im Tagesverlauf und zwischen unterschiedlich ausgerichteten Hängen verändern. Regen kann jedoch einen anderen zeitlichen Ablauf erzeugen. Deshalb wird aus einer häufig beobachteten tageszeitlichen Entwicklung keine universelle Nachmittagsregel. Ebenso wenig ist eine einzelne Lufttemperatur ein allgemeiner Schalter, der eine reale Schneedecke zuverlässig in stabil und instabil einteilt. Wasserzufuhr, Schichtaufbau und zeitlicher Verlauf wirken zusammen.",
+            "Eigenes Schnittmodell: In A erreicht Wasser eine begrabene schwache Lage unter einem Brett; in B verliert lockerer Oberflächenschnee Bindungen und setzt sich punktförmig in Bewegung. Die beiden Skizzen erklären unterschiedliche Wirkpfade desselben Stoffes. Sie enthalten keine Aussage über die Begehbarkeit eines Ortes. Für eine wirkliche Unternehmung bleiben aktuelle lokale Warninformationen und qualifizierte Planung erforderlich; ein Lehrmodell ersetzt weder eine Lawinenprognose noch eine Ausbildung für winterliches Gelände."
+          ],
+          "takeaway": "Flüssigwasser kann verschiedene Anrissmechanismen begünstigen; nasser Schnee allein benennt weder den Aufbau noch einen sicheren Zeitpunkt.",
+          "exercise": "Vergleiche in den beiden Schnitten Wasserweg, Lage der Schwächung und anfänglichen Zusammenhalt."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "schneebrett-schichtung",
+          "q": "Welche Schichtkombination beschreibt das Grundmodell einer Schneebrettlawine?",
+          "options": [
+            "Locker bewegte Einzelkörner unter einer vollständig offenen Wasserfläche",
+            "Eine durchgehend gleichartige Schneemasse ohne Schichtunterschiede",
+            "Eine gebundene Schneeschicht über einer vorhandenen Schwachschicht",
+            "Eine allein nach ihrem Kalenderalter eingeordnete Oberflächenschicht"
+          ],
+          "answer": 2,
+          "explain": "Der gebundene Schneekörper kann über einer schwächeren Lage zusammenhängend abgehen. Die Eigenschaften beider Schichten und die mögliche Bruchausbreitung gehören zum Modell."
+        },
+        {
+          "id": "q2",
+          "lessonId": "windtransport",
+          "q": "Wie kann sich örtlich neuer Triebschnee ablagern, obwohl gerade kein Schnee fällt?",
+          "options": [
+            "Wind verlagert bereits vorhandenen lockeren Schnee an andere Orte.",
+            "Eine reine Kornverfestigung erzeugt zusätzliche Schneemasse am selben Ort.",
+            "Eine reine Umformung vorhandener Kristalle vermehrt ihre Gesamtmasse.",
+            "Ein reiner Wechsel der Bezeichnung Altschnee in Neuschnee erhöht die Menge."
+          ],
+          "answer": 0,
+          "explain": "Windverfrachtung ist eine räumliche Umverteilung verfügbaren Schnees. Eine neue Ablagerung ist daher auch ohne gleichzeitigen neuen Niederschlag möglich."
+        },
+        {
+          "id": "q3",
+          "lessonId": "anhaltende-schwachschichten",
+          "q": "Was bezeichnet das typische Lawinenproblem Altschnee?",
+          "options": [
+            "Jede Schneedecke ab einer festgelegten Zahl von Kalendertagen",
+            "Jede Schneedecke mit einer gleichmäßig weißen Oberfläche",
+            "Ausschließlich Schnee, der gerade vom Wind transportiert wird",
+            "Anhaltend schwache Lagen innerhalb der vorhandenen Schneedecke"
+          ],
+          "answer": 3,
+          "explain": "Begrabene schwache Schichten können unter jüngeren Lagen fortbestehen. Der Name beschreibt einen ungünstigen Aufbau und lässt sich nicht durch das Alter der sichtbaren Oberfläche ersetzen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "wasser-in-schnee",
+          "q": "Welcher Prozess kann eine bestehende Schwachschicht für ein nasses Schneebrett beeinträchtigen?",
+          "options": [
+            "Die Verfestigung einer ausschließlich trockenen Oberflächenlage",
+            "Das Eindringen flüssigen Wassers bis zur schwachen Lage",
+            "Die Umlagerung trockenen Schnees ohne zusätzlichen Wassereintrag",
+            "Das unveränderte Lagern vollständig trockener Schneekörner"
+          ],
+          "answer": 1,
+          "explain": "Regen- oder Schmelzwasser kann bis zu einer bestehenden schwachen Lage gelangen und deren Bindungen beeinträchtigen. Eine einzelne Lufttemperatur beschreibt diesen Schichtprozess nicht vollständig."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-jagdbezirke-de-round6-2026",
+      "title": "Deutschland: Jagdbezirke, Jagdgenossenschaft und Pacht",
+      "category": "Jagdrecht",
+      "topic": "Recht",
+      "description": "Grundbesitz, Revierstruktur, doppelte Mehrheit und Jagdnutzung im deutschen Bundesrahmen mit ausdrücklich benannten Bayern-Beispielen unterscheiden.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE"
+      ],
+      "countryNotes": {
+        "DE": "Deutscher Bundesrahmen §§ 3/7–11 BJagdG, am 18.10.2026 abgeglichen; Bayern-Beispiele Art. 8/10/17 BayJG in der ab 01.04.2026 geltenden amtlichen Anzeige. Landesabweichungen, Sonderfälle und konkrete Revierabgrenzungen bleiben gesondert zu prüfen. Keine Gültigkeit für Österreich oder die Schweiz und keine Einzelfall- oder Vertragsberatung."
+      },
+      "objectives": [
+        "Grundstücksbezogenes Jagdrecht von der organisierten Jagdausübung unterscheiden",
+        "Eigenjagd und gemeinschaftlichen Jagdbezirk mit Landesgrenzen vergleichen",
+        "Die doppelte Mehrheit an einem eigenen Zahlenmodell erklären",
+        "Verpachtung, Eigenbewirtschaftung und bayerische Jagderlaubnis auseinanderhalten"
+      ],
+      "sources": [
+        {
+          "label": "Bundesjagdgesetz: §§ 3,7–11",
+          "url": "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+          "organization": "Deutscher Bundesgesetzgeber; amtliche Bereitstellung Bundesministerium der Justiz/Bundesamt für Justiz",
+          "supports": "Aktuelle amtliche Gesamtfassung am 18.10.2026 gelesen, besonders § 3 Abs. 1/3, § 7 Abs. 1/4, § 8 Abs. 1/4/5, § 9 Abs. 1/3, § 10 Abs. 1/2 und § 11 Abs. 1. Bundeswerte werden nicht als einheitlich gültige Länderwerte ausgegeben; keine Pachtzeit-/Pachtfähigkeits- oder Steuerempfehlungen."
+        },
+        {
+          "label": "BayJG Art. 8: Eigenjagdreviere",
+          "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-8",
+          "organization": "Bayerischer Gesetzgeber; amtliches Portal BAYERN.RECHT",
+          "supports": "Amtliche Fassung mit Anzeige Text gilt ab 01.04.2026, Abs. 1/2 direkt gelesen. Allgemeine Mindestgröße 81,755 ha und abweichender Hochgebirgsfall getrennt; Größen für Teilung werden nicht mit Entstehungsgrößen vermischt."
+        },
+        {
+          "label": "BayJG Art. 10: Gemeinschaftsjagdreviere",
+          "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-10",
+          "organization": "Bayerischer Gesetzgeber; amtliches Portal BAYERN.RECHT",
+          "supports": "Amtliche Anzeige ab 01.04.2026 direkt gelesen:250 ha, im Hochgebirge mit Vorbergen abweichend 500 ha; befriedete Bezirke zählen bei der Größe nicht mit. Im Text steht das räumlich begrenzte 250-ha-Beispiel, keine DACH-Regel."
+        },
+        {
+          "label": "BayJG Art. 17: Jagderlaubnis",
+          "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-17",
+          "organization": "Bayerischer Gesetzgeber; amtliches Portal BAYERN.RECHT",
+          "supports": "Amtliche Anzeige ab 01.04.2026, Abs. 1 und 4 direkt gelesen: Erteilung an Jagdgast und dessen Abgrenzung zum Jagdausübungsberechtigten. Keine Aussagen über Form, Entgelt, Begleitung oder Nachweis aus früheren Fassungen übernommen."
+        },
+        {
+          "label": "Bayerisches Landesamt für Steuern: Selbstnutzung und Verpachtung von Jagdbezirken",
+          "url": "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf",
+          "organization": "Bayerisches Landesamt für Steuern",
+          "supports": "Originalverfügung 01.03.2023, S. 2 allgemeine Begriffe/81,755 ha/250 ha und Rollen, S. 3 Abgrenzung Rechts- von Grundstücksverpachtung direkt gelesen. Eigenständige behördliche Erläuterung; rechtliche Gültigkeit aus den aktuellen Normen geprüft. Sämtliche steuerlichen Fristen, Übergangsregeln und Einordnungen dieses älteren Dokuments bleiben ausgeschlossen."
+        },
+        {
+          "label": "BVerwG 27.06.2012–9C 10.11",
+          "url": "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf",
+          "organization": "Bundesverwaltungsgericht",
+          "supports": "Originalentscheidung, insbesondere Rn. 10–12/gedruckteS. 6–8 direkt gelesen: Eigentum, gesetzliche Zuordnung zur Jagdgenossenschaft und Entscheidung zwischen Verpachtung/Eigennutzung. Nur diese vom Gericht erläuterte Organisationsstruktur; kein heutiger Steuerrechtsrat, keine Übernahme der damaligen Rheinland-Pfalz-Fassung als aktuelles Landesrecht."
+        },
+        {
+          "label": "VG Potsdam 01.09.2025–VG 9K 2347/21",
+          "url": "https://gerichtsentscheidungen.brandenburg.de/gerichtsentscheidung/27665",
+          "organization": "Verwaltungsgericht Potsdam; Entscheidungsdatenbank Brandenburg",
+          "supports": "Originalentscheidung und Gründe zur doppelten Mehrheit nach § 9 Abs. 3 BJagdG direkt gelesen. Konkrete Wahlentscheidung als unabhängige gerichtliche Einordnung des Bundesprinzips, nicht als Satzung oder Verfahrensrecht aller Länder übertragen."
+        },
+        {
+          "label": "Bayerische Forstverwaltung: Jagdnutzung und Jagdreviere",
+          "url": "https://www.waldbesitzer-portal.bayern.de/wald_jagd/jagdnutzung-und-jagdreviere/index.html",
+          "organization": "Bayerisches Staatsministerium für Ernährung, Landwirtschaft, Forsten und Tourismus; Waldbesitzer-Portal",
+          "supports": "Originalabschnitt Ein wichtiges Gremium direkt gelesen: Eigentümerzuordnung und Ausnahme für Grundflächen, auf denen die Jagd nicht ausgeübt werden darf. Gesonderte institutionelle Erklärung neben aktueller Bundesnorm; ältere Laufzeit-/Pachtangaben und weitere Organregeln nicht übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "eigentum-ausuebung",
+          "title": "Grundstück, Jagdrecht und Jagdausübung haben verschiedene Träger",
+          "paragraphs": [
+            "Im deutschen Bundesrahmen ist das Jagdrecht untrennbar mit dem Eigentum am Grund und Boden verbunden. Die tatsächliche Ausübung dieses Rechts wird jedoch über Jagdbezirke organisiert. Das beantwortet zwei verschiedene Fragen: Wem ist das grundstücksbezogene Recht zugeordnet, und wer darf die Jagd im betreffenden Revier ausüben? Eine Eigentumsgrenze und eine jagdliche Ausübungsbefugnis sind deshalb nicht schon begrifflich dieselbe Grenze.",
+            "Im Eigenjagdbezirk ist die Ausübung grundsätzlich dem Eigentümer zugeordnet; gesetzliche besondere Zuordnungen bleiben zu beachten. Im gemeinschaftlichen Jagdbezirk steht die Ausübung der Jagdgenossenschaft zu. Die einzelnen Eigentümer behalten ihr Grundeigentum, während die Jagdausübung gemeinschaftlich organisiert wird. Eine Verpachtung kann anschließend die Ausübung einem Pächter übertragen. Dafür müssen nicht alle Grundstücke an ihn verkauft werden.",
+            "Eigenes Rollenmodell: A besitzt eine Fläche im gemeinschaftlichen Jagdbezirk, B ist dessen Jagdpächter. A und B können daher gleichzeitig rechtlich bedeutsame, aber unterschiedliche Beziehungen zu derselben Fläche haben. A gehört wegen des entsprechenden Grundbesitzes zur gesetzlich gebildeten Gemeinschaft; B übt die Jagd aufgrund der Verpachtung aus. Aus einer dieser Rollen folgt nicht automatisch die andere. Das Modell setzt eine rechtmäßige Zuordnung und Verpachtung voraus und entscheidet keinen konkreten Grenzfall.",
+            "Für das Verständnis einer Revierbeschreibung lohnt es sich deshalb, die Begriffe Eigentümer, Jagdgenossenschaft und Jagdausübungsberechtigter jeweils dem passenden Sachverhalt zuzuordnen. Der Ausdruck „meine Jagd“ ist allein zu ungenau, um diese Unterschiede aufzulösen. Der Kurs beschreibt den deutschen gesetzlichen Rahmen. Er ist weder eine Jagderlaubnis auf einer bezeichneten Fläche noch eine Übertragung dieser Struktur auf Österreich oder die Schweiz."
+          ],
+          "takeaway": "Das grundstücksbezogene Jagdrecht und die organisierte Ausübung können unterschiedlichen rechtlichen Rollen zugeordnet sein.",
+          "exercise": "Ordne im Rollenmodell Grundbesitz, Jagdgenossenschaft und verpachtete Ausübung getrennt zu."
+        },
+        {
+          "id": "revierformen-flaechen",
+          "title": "Die Revierform verlangt mehr als eine addierte Hektarzahl",
+          "paragraphs": [
+            "Für Eigenjagdbezirke verbindet § 7 BJagdG mehrere Voraussetzungen: zusammenhängende Grundflächen, die erforderliche nutzbare Fläche und Eigentum derselben Person oder Personengemeinschaft. Die Größe ist also nur ein Teil der Beschreibung. Gemeinschaftliche Jagdbezirke erfassen demgegenüber im gesetzlichen Rahmen zusammenhängende Flächen einer Gemeinde oder abgesonderten Gemarkung, die nicht zu einem Eigenjagdbezirk gehören. Die Länder können Mindestgrößen abweichend höher festsetzen.",
+            "Das ausdrückliche Landesbeispiel Bayern zeigt diese Grenze der Verallgemeinerung. Art. 8 BayJG nennt als allgemeine Mindestgröße eines Eigenjagdreviers 81,755 Hektar; für das Hochgebirge mit seinen Vorbergen gilt eine andere Mindestgröße. Art. 10 BayJG nennt für Gemeinschaftsjagdreviere außerhalb dieses besonderen Hochgebirgsfalls 250 Hektar. Die beiden Zahlen gehören zu unterschiedlichen Revierformen und sind keine austauschbaren Antworten auf die Frage nach irgendeinem Jagdrevier.",
+            "Eigenes Flächenmodell: Drei voneinander getrennte Flächen zu je 30 Hektar ergeben rechnerisch 90 Hektar. Die Addition beweist jedoch keinen Zusammenhang der Flächen und auch nicht automatisch sämtliche rechtlichen Voraussetzungen eines Eigenjagdreviers. Umgekehrt ist eine zusammenhängende Fläche nicht allein wegen ihres Zusammenhangs schon groß genug. Das Modell trennt eine richtige Flächenrechnung von der rechtlichen Einordnung; behördliche Angliederungen oder besondere Abgrenzungsfälle werden damit nicht entschieden.",
+            "Eine weitere häufige Verwechslung betrifft Entstehung und spätere Teilung. Die Regeln zur Aufteilung eines vorhandenen Reviers können andere Mindestgrößen voraussetzen als die allgemeine Bildung eines Eigenjagdreviers. Deshalb braucht eine fachlich präzise Zahl immer Revierform, Vorgang und Bundesland. Die hier genannten Bayern-Werte wurden am 18.10.2026 mit der amtlichen Fassung abgeglichen. Sie werden weder als bundesweit einheitliche Werte noch als eigenständige Genehmigung zur Revierbildung vermittelt."
+          ],
+          "takeaway": "Revierform, Zusammenhang, Eigentumszuordnung, Vorgang und Landesrecht bestimmen gemeinsam, welche Flächenregel gemeint ist.",
+          "exercise": "Erkläre am 90-ha-Modell, was die Addition belegt und welche Voraussetzungen sie offenlässt."
+        },
+        {
+          "id": "genossenschaft-beschluss",
+          "title": "Personenmehrheit und Flächenmehrheit müssen zusammenkommen",
+          "paragraphs": [
+            "Eine Jagdgenossenschaft ist im deutschen Bundesrahmen die gesetzlich gebildete Gemeinschaft der entsprechenden Grundstückseigentümer des gemeinschaftlichen Jagdbezirks. Die Mitgliedschaft entsteht daher nicht wie in einem freiwilligen Freizeitverein durch einen Beitrittsantrag. Umgekehrt begründet der bloße Besitz eines Jagdscheins keine solche Mitgliedschaft. Entscheidend ist die gesetzlich geregelte Beziehung zum Grundbesitz des betreffenden gemeinschaftlichen Jagdbezirks. § 9 Abs. 1 nimmt dabei Eigentümer von Grundflächen aus, auf denen die Jagd nicht ausgeübt werden darf. Eine solche Fläche begründet für sich keine Mitgliedschaft.",
+            "Für Beschlüsse verlangt § 9 Abs. 3 BJagdG eine doppelte Mehrheit: sowohl die Mehrheit der anwesenden und vertretenen Jagdgenossen als auch die Mehrheit der bei der Beschlussfassung vertretenen Grundfläche. Die beiden Bezugsgrößen werden getrennt betrachtet. Eine hohe Zahl zustimmender Personen ersetzt fehlende zustimmende Fläche ebenso wenig wie eine große Fläche die fehlende Personenmehrheit. Das VG Potsdam hat diese gemeinsame Anforderung 2025 bei einer Vorstandswahl ausdrücklich angewendet.",
+            "Eigenes vereinfachtes Zahlenmodell: Zehn Jagdgenossen und insgesamt 200 Hektar sind vollständig bei der Abstimmung vertreten. Sechs stimmen zu; zu diesen Stimmen gehören 80 Hektar. Damit liegt eine Personenmehrheit vor, aber keine Mehrheit der vertretenen Fläche. Das Modell erfüllt die doppelte Mehrheit deshalb nicht. Beim umgekehrten Modell könnten wenige Personen viel Fläche vertreten; auch dann wäre die Fläche allein keine vollständige Grundlage für den Beschluss.",
+            "Dieses Rechenbeispiel isoliert die beiden Mehrheiten. Es entscheidet weder die Gültigkeit einer wirklichen Versammlung noch Fragen zu Vollmachten, Miteigentum, Stimmenthaltung oder Verfahrensmängeln. Dafür kommen weitere gesetzliche und satzungsmäßige Regeln hinzu. Als Wissenskern bleibt: Bei jeder Aussage über ein Abstimmungsergebnis muss erkennbar sein, ob gerade Köpfe oder die repräsentierte Fläche gezählt werden. Die Mehrheit nur einer Bezugsgröße ist nicht das gesamte Bundesprinzip."
+          ],
+          "takeaway": "Die doppelte Mehrheit verbindet zwei eigenständige Bezugsgrößen; keine davon ersetzt die andere.",
+          "exercise": "Prüfe im eigenen Modell zunächst sechs von zehn Personen und danach 80 von 200 Hektar."
+        },
+        {
+          "id": "nutzung-pacht",
+          "title": "Verpachtung, Eigenbewirtschaftung und Jagdgast sind verschiedene Modelle",
+          "paragraphs": [
+            "§ 10 BJagdG nennt die Verpachtung als regelmäßige Nutzungsform der Jagdgenossenschaft. Daneben kann sie die Jagd für eigene Rechnung durch angestellte Jäger ausüben lassen. Diese Modelle unterscheiden, wer die Jagdnutzung organisiert und auf welcher rechtlichen Grundlage Personen tätig werden. Die Jagdgenossenschaft ist also nicht begrifflich identisch mit einer Gruppe von Jagdpächtern, auch wenn sie die Jagd häufig verpachtet.",
+            "Bei der Jagdpacht ist die Ausübung des Jagdrechts Vertragsgegenstand. Grund und Boden müssen dafür nicht auf den Pächter übergehen. Die Abgrenzung erklärt, weshalb Grundstückseigentümer, Verpächter und Pächter unterschiedliche Rollen behalten können. Die aktuelle Norm und die institutionelle Erläuterung des Bayerischen Landesamts für Steuern trennen diese Rechtsverpachtung von einer bloßen Grundstücksverpachtung. Steuerliche Einzelheiten des älteren Erläuterungsdokuments werden hier ausdrücklich nicht vermittelt.",
+            "Als zusätzliches, klar benanntes Bayern-Beispiel regelt Art. 17 BayJG eine Jagderlaubnis für einen Jagdgast. Der Jagdgast ist nach dessen Absatz 4 nicht Jagdausübungsberechtigter im Sinne der Gesetze. Eine Erlaubnis zur Jagdteilnahme und die rechtliche Stellung des Revierinhabers sind damit verschiedene Dinge. Dass beide tatsächlich im selben Revier jagen können, macht die Rechtsgrundlage ihrer Tätigkeit nicht gleich. Form- und Entgeltfragen dieses Landesbeispiels bleiben außerhalb der Lektion.",
+            "Eigenes Vergleichsmodell: In A wird ein Revier rechtmäßig verpachtet; in B lässt die Jagdgenossenschaft für eigene Rechnung durch angestellte Jäger jagen. Ein bayerischer Jagdgast in C erhält lediglich die vorgesehene Jagderlaubnis. Alle drei Modelle betreffen Jagdnutzung, verteilen aber Rollen unterschiedlich. Der Vergleich erläutert Begriffe. Er ersetzt keine Prüfung eines Vertrags, persönlicher Voraussetzungen oder aktueller landesrechtlicher Einzelheiten und begründet für keine der beschriebenen Personen eine konkrete Jagdbefugnis."
+          ],
+          "takeaway": "Verpachtete Ausübung ist kein Grundstücksverkauf; eine bayerische Jagderlaubnis macht den Jagdgast nicht zum Revierinhaber.",
+          "exercise": "Vergleiche, ob im Modell eine verpachtete Ausübung, Eigenbewirtschaftung oder bloße Gaststellung beschrieben wird."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "eigentum-ausuebung",
+          "q": "Wem weist § 8 Abs. 5 BJagdG im gemeinschaftlichen Jagdbezirk die Ausübung des Jagdrechts zu?",
+          "options": [
+            "Jedem Besucher mit einem Jagdschein",
+            "Jedem Grundeigentümer ausschließlich für seine Parzelle",
+            "Der Gemeindeverwaltung als automatischem Jagdpächter",
+            "Der Jagdgenossenschaft"
+          ],
+          "answer": 3,
+          "explain": "Die Ausübung ist im gemeinschaftlichen Jagdbezirk der Jagdgenossenschaft zugeordnet. Das grundstücksbezogene Jagdrecht der Eigentümer und die organisierte Ausübung müssen getrennt gelesen werden."
+        },
+        {
+          "id": "q2",
+          "lessonId": "revierformen-flaechen",
+          "q": "Welche allgemeine Mindestgröße nennt Art. 8 BayJG für ein Eigenjagdrevier in Bayern außerhalb des besonderen Hochgebirgsfalls?",
+          "options": [
+            "250 Hektar",
+            "81,755 Hektar",
+            "500 Hektar",
+            "300 Hektar"
+          ],
+          "answer": 1,
+          "explain": "81,755 Hektar gehört zur allgemeinen Eigenjagdregel Bayerns. 250 Hektar betrifft dort die andere Revierform Gemeinschaftsjagd außerhalb des Hochgebirgsfalls; allein eine Zahl ohne Landes- und Sachbezug wäre ungenau."
+        },
+        {
+          "id": "q3",
+          "lessonId": "genossenschaft-beschluss",
+          "q": "Welche Mehrheiten verlangt § 9 Abs. 3 BJagdG gemeinsam für Beschlüsse einer Jagdgenossenschaft?",
+          "options": [
+            "Mehrheit der anwesenden/vertretenen Jagdgenossen und Mehrheit der vertretenen Grundfläche",
+            "Mehrheit der anwesenden/vertretenen Jagdgenossen oder Mehrheit der vertretenen Grundfläche",
+            "Mehrheit der Jagdpächter und Mehrheit der von ihnen selbst bejagten Fläche",
+            "Mehrheit der vertretenen Grundfläche und Zustimmung nur des Jagdvorstands"
+          ],
+          "answer": 0,
+          "explain": "Personen- und Flächenmehrheit werden eigenständig geprüft. Sechs von zehn Personen mit 80 von 200 vertretenen Hektar erfüllen nur die erste, nicht beide Anforderungen."
+        },
+        {
+          "id": "q4",
+          "lessonId": "nutzung-pacht",
+          "q": "Welche rechtliche Stellung beschreibt Art. 17 Abs. 4 BayJG für einen Jagdgast mit Jagderlaubnis in Bayern?",
+          "options": [
+            "Er wird allein durch die Jagderlaubnis Eigentümer sämtlicher Revierflächen.",
+            "Er wird allein durch die Jagderlaubnis Mitglied jeder Jagdgenossenschaft.",
+            "Er erhält dadurch nicht die Stellung des Jagdausübungsberechtigten.",
+            "Er wird allein durch die Jagderlaubnis Verpächter des gesamten Reviers."
+          ],
+          "answer": 2,
+          "explain": "Die Jagderlaubnis ermöglicht die vorgesehene Gastteilnahme, überträgt aber nicht die Stellung des Jagdausübungsberechtigten. Das ist ausdrücklich ein Bayern-Beispiel und keine DACH-Regel."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-tiernamen-taxonomie-round6-2026",
+      "title": "Wissenschaftliche Tiernamen lesen: Art, Unterart und Synonym",
+      "category": "Prüfung & Sprache",
+      "topic": "Jägersprache",
+      "description": "Namen in Artenporträts, Museen und Fachquellen genau lesen: zwei oder drei Namensbestandteile, Autorenzitate und frühere Namenskombinationen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundregeln zoologischer Namen nach ICZN und institutionellen Sammlungs-/Datenstandards. Keine automatische Artbestimmung, keine neu behaupteten Unterarten, keine Ableitung des Jagd- oder Schutzstatus aus Namen; botanische Autorenkonventionen werden nicht übertragen.",
+        "AT": "Grundregeln zoologischer Namen nach ICZN und institutionellen Sammlungs-/Datenstandards. Keine automatische Artbestimmung, keine neu behaupteten Unterarten, keine Ableitung des Jagd- oder Schutzstatus aus Namen; botanische Autorenkonventionen werden nicht übertragen.",
+        "CH": "Grundregeln zoologischer Namen nach ICZN und institutionellen Sammlungs-/Datenstandards. Keine automatische Artbestimmung, keine neu behaupteten Unterarten, keine Ableitung des Jagd- oder Schutzstatus aus Namen; botanische Autorenkonventionen werden nicht übertragen."
+      },
+      "objectives": [
+        "Gattungsname und Artbeiname als vollständiges Binomen lesen",
+        "Unterartnamen von Autor und Jahr unterscheiden",
+        "Klammern um zoologische Autorenzitate richtig deuten",
+        "Akzeptierten Namen, frühere Kombination und taxonomisches Synonym auseinanderhalten"
+      ],
+      "sources": [
+        {
+          "label": "ICZN: Article 5 – Principle of Binominal Nomenclature",
+          "url": "https://code.iczn.org/chapter-2-the-number-of-words-in-the-scientific-names-of-animals/article-5-principle-of-binominal-nomenclature/",
+          "organization": "International Commission on Zoological Nomenclature",
+          "supports": "Originalartikel 5.1/5.2 im vollständigen Original-Suchindex gelesen; wiederholter Direktabruf technisch gescheitert. Binomen/Trinomen und Groß-/Kleinschreibung. Keine biologische Artdefinition aus dem Namenscode abgeleitet."
+        },
+        {
+          "label": "ICZN: Article 51 – Citation of names of authors",
+          "url": "https://code.iczn.org/authorship/article-51-citation-of-names-of-authors/",
+          "organization": "International Commission on Zoological Nomenclature",
+          "supports": "Originalartikel 51.1–51.3.2 im vollständigen Originalindex mit frame=0 gelesen, Direktabruf wechselnd fehlerhaft. Autorenzitat getrennt vom Namen, ursprüngliche Gattung versus neue Kombination, keine bloße Rangänderung als Klammergrund. Kommissionsseiten zählen als eine Quellenfamilie."
+        },
+        {
+          "label": "Natural History Museum: What is taxonomy?",
+          "url": "https://www.nhm.ac.uk/discover/what-is-taxonomy.html",
+          "organization": "Natural History Museum London; James Ashworth",
+          "supports": "Originalartikel über den indexierten institutionellen Host wifi.nhm.ac.uk/discover/what-is-taxonomy.html vollständig gelesen: Benennung, Cervus-elaphus-Beispiel, Änderung von Einordnung und Kaninchen-Gattung. Nicht übernommen: fehlerhafte Zuordnung Artiodactyla zur Domäne und verkürzte universelle Fortpflanzungsdefinition."
+        },
+        {
+          "label": "AMNH: Invertebrate Paleontology Data Standards, 2015 Edition",
+          "url": "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf",
+          "organization": "American Museum of Natural History",
+          "supports": "Original-PDF, Glossar gedruckte S. 30–31 direkt gelesen: Species/Binomen, Subspecies/Trinomen, Synonyms und Taxon. Nur zoologische Namens- und Datenbegriffe; vereinfachte biologische Unterartdefinition und historische Sammlungsdetails nicht als universelle Artabgrenzung übertragen."
+        },
+        {
+          "label": "ITIS: Data Definition",
+          "url": "https://www.itis.gov/data_definition.html",
+          "organization": "Integrated Taxonomic Information System; institutionelles Kooperationssystem",
+          "supports": "Originalabschnitte Scientific Name, Author(s), Rank, Associated Accepted Name und Unacceptability Reason direkt gelesen. Zoologische Felder von botanischen getrennt; Transfer in andere Gattung und getrennte Autorenzitate, synonymische Verknüpfungen. Keine Behauptung weltweit abschließend gültiger Taxonomie."
+        },
+        {
+          "label": "GBIF: Biodiversity Data Use – Synonymy",
+          "url": "https://docs.gbif.org/course-data-use/en/synonymy.html",
+          "organization": "Global Biodiversity Information Facility",
+          "supports": "Originalabschnitt Synonymy gelesen: verschiedene Namen, Gattungswechsel und Verbindung zum verwendeten akzeptierten Namen. Kein technischer Schluss, alle Namen besäßen dieselbe Datensatzkennung; keine Artenzahl aus der bloßen Namenszahl abgeleitet."
+        },
+        {
+          "label": "ITIS: Cervus elaphus, TSN 180695",
+          "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180695",
+          "organization": "Integrated Taxonomic Information System",
+          "supports": "Originaleintrag im vollständigen Originalindex gelesen: wissenschaftlicher Name Cervus elaphus, Rang Species und Gattung Cervus. Nur das Namensbeispiel bestätigt; alte weit gefasste Verbreitungs-/Unterartkommentare und Rechtsstatus nicht übernommen."
+        },
+        {
+          "label": "ICZN: Frequently Asked Questions – How should zoological names be written?",
+          "url": "https://www.iczn.org/outreach/faqs",
+          "organization": "International Commission on Zoological Nomenclature",
+          "supports": "Am 19.10.2026 direkt gelesene Originalabschnitte Standard format und Should all names be written in italics: Kursivsetzung ist üblich und empfohlen, jedoch nicht zwingend. Gleiche institutionelle Quellenfamilie wie die ICZN-Codeartikel; unabhängige Gegenbestätigung durch AMNH."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "binomen",
+          "title": "Der Artname besteht aus zwei zusammengehörenden Teilen",
+          "paragraphs": [
+            "Ein zoologischer Artname ist ein Binomen: Er verbindet den Gattungsnamen mit einem zweiten, artbezogenen Namensbestandteil. Der erste beginnt mit einem Großbuchstaben, der zweite mit einem Kleinbuchstaben. In wissenschaftlicher Darstellung werden beide gewöhnlich kursiv gesetzt. Entscheidend ist ihre gemeinsame Funktion. Ein Gattungsname allein nennt noch keine bestimmte Art innerhalb der Gattung; der zweite Bestandteil allein ist ebenfalls nicht das vollständige Binomen.",
+            "Das Museumsbeispiel Cervus elaphus zeigt diese Lesart. Cervus ist die Gattung, elaphus der zweite Bestandteil dieses Artnamens. Beide zusammen bezeichnen die entsprechende Art in der verwendeten taxonomischen Einordnung. Die Zweiteiligkeit verhindert, dass ein einzelner ähnlich klingender Beiname als vollständige Bestimmung gelesen wird. Sie erklärt auch, weshalb beim Vergleichen zweier Artenporträts beide Teile und ihre jeweilige Stellung beachtet werden.",
+            "Eigenes Lesemodell: Eine Tabelle besitzt getrennte Spalten für Gattung und Artbeiname. Eine dritte Spalte führt beide Bestandteile zusammen. Die dritte Spalte enthält damit eine andere Information als eine bloße Liste von Gattungen. Werden Daten aus zwei Quellen verglichen, sollte die Zusammenführung die ursprüngliche Schreibweise und die Zuordnung der Felder erhalten. Das Modell illustriert ein Namensschema und bildet keine Untersuchung eines Tierbestands ab.",
+            "Wissenschaftliche Namen helfen beim genauen Nachschlagen, sind aber keine Beschreibung sämtlicher Merkmale des benannten Tieres. Eine korrekte Schreibweise ersetzt deshalb weder einen Bestimmungsgang noch den Abgleich der Fund- und Merkmalsangaben. Der Kurs behandelt die zoologische Namensform. Er entscheidet nicht, welche biologische Artabgrenzung in jedem schwierigen Artkomplex die beste ist, und leitet aus dem lateinisch geschriebenen Namen keine örtliche Jagdbefugnis ab."
+          ],
+          "takeaway": "Beim zoologischen Binomen bilden Gattungsname und Artbeiname gemeinsam den Artnamen.",
+          "exercise": "Zerlege Cervus elaphus in seine beiden Funktionen, ohne aus dem Gattungsnamen allein eine Art zu machen."
+        },
+        {
+          "id": "unterart",
+          "title": "Ein dritter Bestandteil bezeichnet im Trinomen die Unterart",
+          "paragraphs": [
+            "Der zoologische Name einer Unterart ist ein Trinomen. Auf Gattungsname und Artbeiname folgt ein dritter, unterartbezogener Bestandteil. Die Reihenfolge ist damit inhaltlich gegliedert: zuerst die Gattung, danach die Artzuordnung und anschließend die Unterartzuordnung. Ein drittes Wort darf nicht einfach als zusätzliche Beschreibung gelesen werden, ohne seine Funktion in der vollständigen Namensangabe zu prüfen.",
+            "Zur deutlichen Darstellung dient hier ausschließlich ein Platzhalterschema: „Gattung art unterart“. Es ist kein neu eingeführter Tiername. Im entsprechenden zoologischen Namen beginnt der Gattungsname groß, die beiden folgenden Namensbestandteile klein; die Namensfolge wird wissenschaftlich kursiv dargestellt. Das Schema zeigt die Rangfolge der Bestandteile. Es macht keine Behauptung darüber, dass eine bestimmte europäische Wildart heute in einer bestimmten Zahl von Unterarten anerkannt sei.",
+            "Autor und Veröffentlichungsjahr können einer solchen Namensfolge folgen, gehören aber nicht als vierte und fünfte Rangstufe zur Unterart hinzu. Eine Sammlungszeile kann daher gleichzeitig Trinomen, Autorenzitat und weitere Informationen enthalten. Eigenes Vergleichsmodell: In A stehen drei Namensfelder; B ergänzt dahinter „Autor, Jahr“. Die Unterartstellung ist bereits durch die drei Namensfelder ausgedrückt. Der Zusatz in B dokumentiert die Namensherkunft, statt eine weitere Unterart zu erzeugen.",
+            "Aus dem Erkennen eines Trinomens folgt noch keine sichere Unterartbestimmung eines beobachteten Individuums. Das Namensschema sagt zunächst, auf welchem taxonomischen Rang die Quelle ihre Angabe führt. Welche Merkmale und welche Einordnung diese Quelle tatsächlich zugrunde legt, ist eine zusätzliche fachliche Frage. Deshalb werden hier weder eine Fellfarbe noch ein Herkunftsort automatisch in einen neuen Unterartnamen übersetzt. Gelesen wird die vorhandene Namenstruktur, nicht eine unbekannte Population neu klassifiziert."
+          ],
+          "takeaway": "Das Trinomen hat drei geordnete Namensbestandteile; Autor und Jahr sind keine zusätzliche taxonomische Rangstufe.",
+          "exercise": "Vergleiche die drei Namensfelder des Schemas mit einem nachgestellten Autorenzitat."
+        },
+        {
+          "id": "autor-kombination",
+          "title": "Runde Klammern um das Autorenzitat zeigen einen Gattungswechsel an",
+          "paragraphs": [
+            "Bei zoologischen Namen kann hinter dem eigentlichen Namen ein Autorenzitat mit Veröffentlichungsjahr stehen. Es verweist auf die Urheberschaft des eingeführten Namens. Nach dem zoologischen Code ist dieses Zitat nicht selbst ein weiterer Bestandteil des Taxonnamens. Seine Angabe ist für das genaue Nachschlagen oft hilfreich, verändert aber nicht die Anzahl der Bestandteile eines Binomens oder Trinomens.",
+            "Steht ein Artgruppenname heute in einer anderen Gattung als bei seiner ursprünglichen Einführung, werden Autor und gegebenenfalls Jahr in runde Klammern gesetzt. Die Klammern sind somit ein Hinweis auf eine geänderte Kombination. Sie bedeuten nicht, dass die Person in Klammern die Art nur vermutet habe. Auch sind sie kein allgemeines Warnzeichen für eine unsichere Bestimmung eines einzelnen beobachteten Tieres.",
+            "Eine Änderung nur zwischen Art- und Unterartrang innerhalb derselben Gattung erzeugt nach dieser Regel keinen solchen Klammergrund. Ebenso muss zwischen den Klammern um ein Autorenzitat und anderen Klammerfunktionen in ausführlichen taxonomischen Angaben unterschieden werden. Gelesen wird hier ausdrücklich das nachgestellte zoologische Autorenzitat. Die Konvention botanischer Namen wird damit nicht erklärt; bei Pflanzen werden unter anderem spätere Kombinationsautoren anders zitiert.",
+            "Eigenes Vergleichsschema: Eine Namensangabe enthält die ursprüngliche Gattung und ein ohne Klammern geschriebenes Autorenzitat. Eine zweite Angabe kombiniert denselben Artgruppennamen mit einer anderen Gattung und setzt das ursprüngliche Zitat in runde Klammern. Das Modell veranschaulicht die historische Kombination, ohne einen neuen realen Tiernamen vorzuschlagen. Für eine konkrete Art muss die ursprüngliche Veröffentlichung beziehungsweise eine verlässliche taxonomische Quelle herangezogen werden; die bloße Erinnerung an einen Personennamen reicht dafür nicht."
+          ],
+          "takeaway": "Klammern um ein zoologisches Autorenzitat beziehen sich auf die ursprüngliche gegenüber der verwendeten Gattung.",
+          "exercise": "Erkläre im Schema, was sich an der Kombination ändert und welche Urheberschaft erhalten bleibt."
+        },
+        {
+          "id": "synonyme-taxonomie",
+          "title": "Mehrere Namen müssen nicht mehrere Arten bedeuten",
+          "paragraphs": [
+            "Taxonomie ordnet Organismen in begründete Gruppen ein; Nomenklatur regelt deren wissenschaftliche Benennung. Beide Aufgaben hängen zusammen, sind aber nicht gleich. Wenn sich eine Einordnung ändert, kann auch die verwendete Namenskombination wechseln. Ebenso können Fachleute später erkennen, dass verschiedene eingeführte Namen auf dasselbe Taxon angewendet wurden. Eine längere Namensliste ist deshalb nicht automatisch eine längere Artenliste.",
+            "Ein taxonomisches Synonym ist ein anderer wissenschaftlicher Name, der in der betreffenden Einordnung demselben Taxon zugeordnet wird. Datenbanken verbinden solche Einträge mit dem von ihnen verwendeten akzeptierten beziehungsweise gültigen Namen. Frühere Gattungskombinationen können ebenfalls über diese Verknüpfungen auffindbar bleiben. Dabei dokumentiert eine Datenbank eine fachlich begründete Namensverwendung; sie macht nicht jeden einzelnen alten Namen zu einer zusätzlich vorkommenden Tierart.",
+            "Eigenes Datenmodell: Eine Liste enthält die Namenseinträge A und B. Die zugehörige taxonomische Quelle verknüpft B ausdrücklich als Synonym mit dem akzeptierten Eintrag A. Für dieses Modell liegen zwei Namenseinträge, aber eine durch diese Verknüpfung dargestellte taxonomische Einheit vor. Werden beide ungeprüft als zwei Arten gezählt, wird die Anzahl der Namen mit der Anzahl der Einheiten verwechselt. Das Beispiel ist eine selbst erstellte Erklärung, keine reale Artenzählung.",
+            "Beim Nachschlagen ist deshalb der Zusammenhang der verwendeten Quelle wichtig: Welcher Name wird akzeptiert, welche Namen werden ihm zugeordnet, und auf welchen fachlichen Stand bezieht sich die Einordnung? Neue Forschung kann solche Zuordnungen verändern. Daraus folgt weder, dass alle älteren Namen bedeutungslos seien, noch dass jede Abweichung nur ein Schreibfehler wäre. Synonymie, neue Kombination und biologische Abgrenzung müssen begrifflich auseinandergehalten werden, bevor verschiedene Quellen sinnvoll miteinander verglichen werden."
+          ],
+          "takeaway": "Namenseinträge und taxonomische Einheiten sind verschiedene Zählgrößen; Synonymverknüpfungen erklären ihren Zusammenhang.",
+          "exercise": "Bestimme im eigenen A/B-Modell getrennt die Anzahl der Namenseinträge und der dargestellten taxonomischen Einheiten."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "lessonId": "binomen",
+          "q": "Welche zwei Bestandteile bilden einen zoologischen Artnamen als Binomen?",
+          "options": [
+            "Familienname und Veröffentlichungsjahr",
+            "Unterartbeiname und Sammlungsnummer",
+            "Gattungsname und Artbeiname",
+            "Autorenname und Fundortangabe"
+          ],
+          "answer": 2,
+          "explain": "Die beiden Namensbestandteile werden zusammen gelesen. Bei Cervus elaphus ist Cervus die Gattung und elaphus der zweite Bestandteil; weder einer allein ist das vollständige Binomen."
+        },
+        {
+          "id": "q2",
+          "lessonId": "unterart",
+          "q": "Welche Funktion hat der dritte Namensbestandteil eines zoologischen Trinomens?",
+          "options": [
+            "Er bezeichnet die Unterart innerhalb der genannten Art.",
+            "Er bezeichnet die Sammlung innerhalb des genannten Museums.",
+            "Er bezeichnet den Autor der ursprünglichen Veröffentlichung.",
+            "Er bezeichnet das Jahr der letzten Beobachtung."
+          ],
+          "answer": 0,
+          "explain": "Das Trinomen verbindet Gattung, Artbeiname und Unterartbeiname. Ein nachgestelltes Autorenzitat bleibt davon getrennt und fügt keine weitere taxonomische Rangstufe hinzu."
+        },
+        {
+          "id": "q3",
+          "lessonId": "autor-kombination",
+          "q": "Welche Änderung zeigt ein rund eingeklammertes zoologisches Autorenzitat nach der Grundregel des ICZN an?",
+          "options": [
+            "Eine Änderung des Funddatums eines beobachteten Individuums",
+            "Eine andere Gattungskombination als bei der ursprünglichen Einführung",
+            "Eine garantierte Höherstufung jeder Unterart zur eigenen Art",
+            "Eine Verlagerung des Namens vom Tier- in den Pflanzencode"
+          ],
+          "answer": 1,
+          "explain": "Die Klammern beziehen sich auf die geänderte Gattungskombination des Artgruppennamens. Eine bloße Rangänderung innerhalb derselben Gattung erzeugt nach dieser Regel keinen Klammergrund."
+        },
+        {
+          "id": "q4",
+          "lessonId": "synonyme-taxonomie",
+          "q": "Was beschreibt ein taxonomisches Synonym in einer benannten Datenbankeinordnung?",
+          "options": [
+            "Eine zusätzliche Altersklasse desselben beobachteten Individuums",
+            "Eine zweite, allein durch den Namen neu entstandene Tierpopulation",
+            "Eine weitere Sammlung mit zwingend eigenständiger Tierart",
+            "Ein anderer wissenschaftlicher Name für dasselbe zugeordnete Taxon"
+          ],
+          "answer": 3,
+          "explain": "Die Namenseinträge werden in der betreffenden taxonomischen Quelle miteinander verknüpft. Deshalb darf die Zahl verschiedener Namen nicht ohne diesen Abgleich als Zahl verschiedener Arten verwendet werden."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-laserklassen-round6-2026",
+      "lessonId": "zugang-einhausung",
+      "claims": [
+        {
+          "claim": "Die Klassifizierung bezieht sich auf zugängliche Emission unter definierten Betriebsbedingungen; Klasse 1-Gesamtgeräte können eingehauste höher klassifizierte Quellen enthalten.",
+          "sourceUrls": [
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/strahlung-und-radioaktivitaet/nichtionisierende-strahlung/schutzmassnahmen-bei-laser",
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://www.baua.de/DE/Angebote/Publikationen/Praxis/A37.pdf?__blob=publicationFile"
+          ]
+        },
+        {
+          "claim": "Öffnung/Wartung und vorgesehener Betrieb können verschiedene Zugangsbedingungen haben; das geschlossene Vergleichsmodell ist eine eigene Veranschaulichung.",
+          "sourceUrls": [
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/strahlung-und-radioaktivitaet/nichtionisierende-strahlung/schutzmassnahmen-bei-laser",
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laserklassen-round6-2026",
+      "lessonId": "m-optische-hilfen",
+      "claims": [
+        {
+          "claim": "Bei 1M/2M kann Beobachtung durch sammelnde oder vergrößernde Optik eine andere Augengefährdung ergeben als die zugrunde gelegte Beobachtung ohne solche Hilfsmittel.",
+          "sourceUrls": [
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/strahlung-und-radioaktivitaet/nichtionisierende-strahlung/schutzmassnahmen-bei-laser",
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://www.baua.de/DE/Angebote/Publikationen/Praxis/A37.pdf?__blob=publicationFile"
+          ]
+        },
+        {
+          "claim": "Klasse 2M betrifft sichtbare Strahlung; die Klasseneinordnung rechtfertigt kein absichtliches längeres Hineinsehen.",
+          "sourceUrls": [
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://www.baua.de/DE/Angebote/Publikationen/Praxis/A37.pdf?__blob=publicationFile"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laserklassen-round6-2026",
+      "lessonId": "sichtbar-unsichtbar",
+      "claims": [
+        {
+          "claim": "Laserstrahlung kann sichtbar oder unsichtbar sein; aus fehlendem sichtbaren Punkt lässt sich keine Strahlungsfreiheit oder Klasse ableiten.",
+          "sourceUrls": [
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/4594",
+            "https://www.suva.ch/de-ch/praevention/nach-gefahren/gefaehrliche-materialien-strahlungen-und-situationen/strahlung-und-radioaktivitaet/nichtionisierende-strahlung/schutzmassnahmen-bei-laser"
+          ]
+        },
+        {
+          "claim": "Die Sichtbarkeit hängt auch von der spektralen Wahrnehmung ab; widersprüchliche Dokumentation und subjektive Helligkeit erlauben keine verlässliche Klassifizierung.",
+          "sourceUrls": [
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/4594"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-laserklassen-round6-2026",
+      "lessonId": "reflex-blendung",
+      "claims": [
+        {
+          "claim": "Spontaner Lidschluss und Abwendungsreaktionen sind bei sichtbarer Laserexposition kein zuverlässiger Schutz; eine persönliche sichere Beobachtungsdauer wird nicht zugesagt.",
+          "sourceUrls": [
+            "https://www.baua.de/DE/Angebote/Publikationen/Praxis/A37.pdf?__blob=publicationFile",
+            "https://www.baua.de/DE/Angebote/Publikationen/Schriftenreihe/Forschungsberichte/2006/Fb1069",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/4594"
+          ]
+        },
+        {
+          "claim": "Blendung/Nachbilder können die Wahrnehmung zeitweise beeinträchtigen und sind von dauerhafter Gewebeschädigung zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.gov.uk/government/publications/laser-radiation-safety-advice/laser-radiation-safety-advice",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/4594"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lawinenprobleme-round6-2026",
+      "lessonId": "schneebrett-schichtung",
+      "claims": [
+        {
+          "claim": "Unterschiedlich gebundene Schichten, ein gebundenes Brett über einer schwachen Lage sowie Initialbruch und Bruchausbreitung erklären das Schneebrett-Grundmodell.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinen/lawinenkunde-und-praevention/lawinenarten/",
+            "https://avysavvy.avalanche.ca/en-ca/how-do-avalanches-form"
+          ]
+        },
+        {
+          "claim": "Lockerschneelawinen beginnen punktförmig und nehmen beim Bewegen weiteren Schnee auf; Anrissform und Materialzusammenhalt sind vom Schneebrett zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinen/lawinenkunde-und-praevention/lawinenarten/",
+            "https://avysavvy.avalanche.ca/en-ca/how-do-avalanches-form"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lawinenprobleme-round6-2026",
+      "lessonId": "windtransport",
+      "claims": [
+        {
+          "claim": "Wind kann lockeren Neu- oder Altschnee ohne gleichzeitigen neuen Schneefall räumlich umverteilen; Gelände und Wind prägen ungleichmäßige Ablagerungen.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/triebschnee/",
+            "https://avysavvy.avalanche.ca/en-ca/wind-slabs"
+          ]
+        },
+        {
+          "claim": "Windablagerung kann gebundenes Brett und Zusatzlast schaffen; die schwache Lage kann an einer Grenzfläche oder innerhalb der Schichtung liegen.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/triebschnee/",
+            "https://avysavvy.avalanche.ca/en-ca/wind-slabs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lawinenprobleme-round6-2026",
+      "lessonId": "anhaltende-schwachschichten",
+      "claims": [
+        {
+          "claim": "Anhaltende schwache Lagen können kantige Kristalle, Tiefenreif oder eingeschneiten Oberflächenreif enthalten, begraben werden und über Wochen/Monate fortbestehen.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/altschnee/",
+            "https://avysavvy.avalanche.ca/en-ca/persistent-slabs",
+            "https://avysavvy.avalanche.ca/en-ca/how-do-avalanches-form"
+          ]
+        },
+        {
+          "claim": "Bei anhaltenden Schwachschichten müssen offensichtliche Alarmzeichen nicht auftreten; eine ruhige Oberfläche belegt keine Stabilität.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/altschnee/",
+            "https://avysavvy.avalanche.ca/en-ca/persistent-slabs"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-lawinenprobleme-round6-2026",
+      "lessonId": "wasser-in-schnee",
+      "claims": [
+        {
+          "claim": "Regen-/Schmelzwasser kann Bindungen und vorhandene schwache Lagen beeinträchtigen; nasses Schneebrett und nasser Lockerschnee haben verschiedene Ausgangsmechanismen.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/nasse-lawinen/",
+            "https://www.slf.ch/de/lawinen/lawinenkunde-und-praevention/lawinenarten/",
+            "https://avysavvy.avalanche.ca/en-ca/wet-slabs",
+            "https://avysavvy.avalanche.ca/en-ca/loose-wet"
+          ]
+        },
+        {
+          "claim": "Sonnen-/Erwärmungsverlauf und Regen führen zu unterschiedlichen räumlich-zeitlichen Entwicklungen; daraus wird keine allgemeine Uhrzeit-/Temperaturfreigabe abgeleitet.",
+          "sourceUrls": [
+            "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/wissen-zum-lawinenbulletin/typische-lawinenprobleme/nasse-lawinen/",
+            "https://avysavvy.avalanche.ca/en-ca/wet-slabs",
+            "https://avysavvy.avalanche.ca/en-ca/loose-wet"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-jagdbezirke-de-round6-2026",
+      "lessonId": "eigentum-ausuebung",
+      "claims": [
+        {
+          "claim": "Jagdrecht ist in Deutschland grundstücksgebunden; dessen Ausübung ist revierbezogen organisiert und im gemeinschaftlichen Bezirk der Jagdgenossenschaft zugeordnet.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf"
+          ]
+        },
+        {
+          "claim": "Verpachtung verändert die Rolle des Ausübungsberechtigten, ohne Eigentum an allen Grundstücken zu übertragen; das Rollenmodell ist selbst erstellt.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf",
+            "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-jagdbezirke-de-round6-2026",
+      "lessonId": "revierformen-flaechen",
+      "claims": [
+        {
+          "claim": "Eigenjagd setzt im gesetzlichen Grundmodell Zusammenhang, passende nutzbare Fläche und dieselbe Eigentumszuordnung voraus; eine bloße Addition getrennt liegender Flächen reicht als Nachweis nicht.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf",
+            "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf"
+          ]
+        },
+        {
+          "claim": "Ausdrückliches Bayern-Beispiel außerhalb des besonderen Hochgebirgsfalls: allgemeines Eigenjagdminimum 81,755 ha, Gemeinschaftsjagdminimum 250 ha; Bildung und Teilung sind verschieden.",
+          "sourceUrls": [
+            "https://www.gesetze-bayern.de/Content/Document/BayJG-8",
+            "https://www.gesetze-bayern.de/Content/Document/BayJG-10",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-jagdbezirke-de-round6-2026",
+      "lessonId": "genossenschaft-beschluss",
+      "claims": [
+        {
+          "claim": "Die Jagdgenossenschaft folgt der gesetzlich geregelten Eigentümerzuordnung und ist kein freiwilliger Jagdscheininhaberverein.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf"
+          ]
+        },
+        {
+          "claim": "§ 9 Abs. 3 BJagdG verbindet Personenmehrheit und Mehrheit der vertretenen Fläche; die gerichtliche Anwendung bestätigt beide Voraussetzungen, das 80/200-Beispiel ist eine eigene Rechnung.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://gerichtsentscheidungen.brandenburg.de/gerichtsentscheidung/27665"
+          ]
+        },
+        {
+          "claim": "§ 9 Abs. 1 BJagdG nimmt Eigentümer von Grundflächen aus, auf denen die Jagd nicht ausgeübt werden darf; eine solche Fläche begründet für sich keine Mitgliedschaft.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.waldbesitzer-portal.bayern.de/wald_jagd/jagdnutzung-und-jagdreviere/index.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-jagdbezirke-de-round6-2026",
+      "lessonId": "nutzung-pacht",
+      "claims": [
+        {
+          "claim": "§ 10 BJagdG unterscheidet regelmäßige Verpachtung von Ausübung für eigene Rechnung durch angestellte Jäger; Pacht der Ausübung ist kein Grundstückseigentumsübergang.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/bjagdg/BJNR007800952.html",
+            "https://www.bverwg.de/entscheidungen/pdf/270612U9C10.11.0.pdf",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf"
+          ]
+        },
+        {
+          "claim": "Im ausdrücklich bayerischen Beispiel ist der Jagdgast nach Art. 17 BayJG trotz Jagderlaubnis nicht Jagdausübungsberechtigter.",
+          "sourceUrls": [
+            "https://www.gesetze-bayern.de/Content/Document/BayJG-17",
+            "https://www.finanzamt-wuerzburg.de/fileadmin/RESSOURCEN/INFORMATIONEN/Steuerinfos/Steuerarten/Umsatzsteuer/S_7416.1.1-2_9_St33_vom_01.03.2023.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tiernamen-taxonomie-round6-2026",
+      "lessonId": "binomen",
+      "claims": [
+        {
+          "claim": "Das zoologische Binomen verbindet Gattungsname und Artbeiname; Gattung beginnt groß, Artbeiname klein, wissenschaftliche Darstellung üblicherweise kursiv.",
+          "sourceUrls": [
+            "https://code.iczn.org/chapter-2-the-number-of-words-in-the-scientific-names-of-animals/article-5-principle-of-binominal-nomenclature/",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf",
+            "https://www.itis.gov/data_definition.html",
+            "https://www.iczn.org/outreach/faqs"
+          ]
+        },
+        {
+          "claim": "Cervus elaphus ist ein institutionell gezeigtes Binomen; Namensstruktur ersetzt keine biologische Bestimmung oder universelle Artabgrenzung.",
+          "sourceUrls": [
+            "https://www.nhm.ac.uk/discover/what-is-taxonomy.html",
+            "https://code.iczn.org/chapter-2-the-number-of-words-in-the-scientific-names-of-animals/article-5-principle-of-binominal-nomenclature/",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf",
+            "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=180695"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tiernamen-taxonomie-round6-2026",
+      "lessonId": "unterart",
+      "claims": [
+        {
+          "claim": "Ein zoologisches Trinomen besteht in dieser Reihenfolge aus Gattungsname, Artbeiname und Unterartbeiname; das Platzhalterschema ist kein real neu eingeführter Name.",
+          "sourceUrls": [
+            "https://code.iczn.org/chapter-2-the-number-of-words-in-the-scientific-names-of-animals/article-5-principle-of-binominal-nomenclature/",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf",
+            "https://www.itis.gov/data_definition.html",
+            "https://www.iczn.org/outreach/faqs"
+          ]
+        },
+        {
+          "claim": "Autorenzitat und Jahr werden von den taxonomischen Namensfeldern unterschieden; Namenstruktur allein liefert keine biologische Unterartbestimmung.",
+          "sourceUrls": [
+            "https://code.iczn.org/authorship/article-51-citation-of-names-of-authors/",
+            "https://www.itis.gov/data_definition.html",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tiernamen-taxonomie-round6-2026",
+      "lessonId": "autor-kombination",
+      "claims": [
+        {
+          "claim": "Ein nachgestelltes Autorenzitat verweist auf Namensurheberschaft und ist kein weiterer Bestandteil des zoologischen Taxonnamens.",
+          "sourceUrls": [
+            "https://code.iczn.org/authorship/article-51-citation-of-names-of-authors/",
+            "https://www.itis.gov/data_definition.html",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf"
+          ]
+        },
+        {
+          "claim": "Runde Klammern um Autor und gegebenenfalls Jahr kennzeichnen die andere Gattungskombination gegenüber der ursprünglichen; bloßer Rangwechsel innerhalb derselben Gattung löst das nicht aus.",
+          "sourceUrls": [
+            "https://code.iczn.org/authorship/article-51-citation-of-names-of-authors/",
+            "https://www.itis.gov/data_definition.html"
+          ]
+        },
+        {
+          "claim": "Botanische und zoologische Autorenkonventionen sind zu unterscheiden; der Kurs vermittelt ausschließlich die bezeichnete zoologische Klammerfunktion.",
+          "sourceUrls": [
+            "https://code.iczn.org/authorship/article-51-citation-of-names-of-authors/",
+            "https://www.itis.gov/data_definition.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-tiernamen-taxonomie-round6-2026",
+      "lessonId": "synonyme-taxonomie",
+      "claims": [
+        {
+          "claim": "Taxonomische Einordnung und wissenschaftliche Namensgebung hängen zusammen, können sich verändern und sind verschiedene Aufgaben.",
+          "sourceUrls": [
+            "https://www.nhm.ac.uk/discover/what-is-taxonomy.html",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf",
+            "https://www.itis.gov/data_definition.html"
+          ]
+        },
+        {
+          "claim": "Synonyme beziehungsweise frühere Kombinationen können mit demselben akzeptierten Taxon verknüpft sein; Namenszahl ist deshalb keine ungeprüfte Artenzahl.",
+          "sourceUrls": [
+            "https://docs.gbif.org/course-data-use/en/synonymy.html",
+            "https://www.itis.gov/data_definition.html",
+            "https://www.amnh.org/content/download/136631/2239638/file/division-of-invertebrate-paleontology-(microfossil-project)-data-standards.pdf"
+          ]
+        }
+      ]
+    }
+  ],
+  "authoredOn": "2026-10-18",
+  "revisionScope": "Unabhängige Gegenprüfung der vier Praxis-Kurse und gezielte Präzisierungen am 19.10.2026; ursprünglicher Autorenstand 18.10.2026. Kein neuer Prüfstand des übrigen App-Bestands."
+}

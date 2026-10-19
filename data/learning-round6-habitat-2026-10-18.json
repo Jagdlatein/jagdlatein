@@ -1,0 +1,1227 @@
+{
+  "reviewedOn": "2026-10-18",
+  "scope": "Vier neue Vertiefungskurse nach Audit von 181 Kursen und 792 Lektionen; 16 direkt lesbare Wissenslektionen mit je einer ergänzenden Frage. Keine neuen Medien.",
+  "modules": [
+    {
+      "id": "wissen-vertiefung-ameisenstaaten-round6-2026",
+      "title": "Ameisenstaaten: Entwicklungsstadien, Arbeitsteilung und Zusammenleben",
+      "category": "Natur & Revier",
+      "topic": "Hege/Naturschutz",
+      "description": "Brutstadien, weibliche Arbeiterinnen, chemische Verständigung und unterschiedliche Wege der Koloniegründung erklären.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Allgemeine Grundmuster mit ausdrücklich begrenzten Artbeispielen; keine vollständige Ameisenbestimmung, allgemeine Schwarmfrist oder Anleitung zum Eingriff in Nester.",
+        "AT": "Allgemeine Grundmuster mit ausdrücklich begrenzten Artbeispielen; keine vollständige Ameisenbestimmung, allgemeine Schwarmfrist oder Anleitung zum Eingriff in Nester.",
+        "CH": "Allgemeine Grundmuster mit ausdrücklich begrenzten Artbeispielen; keine vollständige Ameisenbestimmung, allgemeine Schwarmfrist oder Anleitung zum Eingriff in Nester."
+      },
+      "objectives": [
+        "Ei, Larve, Puppe und erwachsene Ameise trennen",
+        "Fortpflanzung und Arbeiterinnenaufgaben zuordnen",
+        "Duftspur und Nahrungsbeziehung erklären",
+        "Selbständige Gründung und Kolonieableger vergleichen"
+      ],
+      "sources": [
+        {
+          "label": "CSU Extension: Ants in the Home",
+          "url": "https://extension.colostate.edu/resource/ants-in-the-home/",
+          "organization": "Colorado State University Extension",
+          "supports": "Biologieabschnitte vollständig direkt gelesen: Brutstadien, Puppenkokons, Aufgaben, Gründungsmodelle, chemische Nahrungsspuren und verschiedene Nahrung. Schädlingsbekämpfung, regionale Artenlisten, Fristen und allgemeine Kokon-/Sterilitätsregeln nicht übertragen."
+        },
+        {
+          "label": "University of Maryland: Ants – Indoor Insects",
+          "url": "https://www.extension.umd.edu/resource/ants-indoor-insects",
+          "organization": "University of Maryland Extension",
+          "supports": "Originalabschnitte Description/Life cycle einschließlich nicht fressender Puppe direkt und im Originalindex gelesen. Keine Lebensdauern, US-Schädlingseinordnung oder universellen Kokon-/Paarungsregeln übernommen."
+        },
+        {
+          "label": "University of Minnesota: Ants",
+          "url": "https://extension.umn.edu/garden-and-home/home-maintenance/household-insects/ants",
+          "organization": "University of Minnesota Extension",
+          "supports": "Originalabschnitte Arbeiterinnen, Königinnen, Männchen, Brutpflege und Nahrung im Original-Suchindex gelesen. Ausnahmslose Sterilität, Größen- und Flügelregeln nicht übernommen."
+        },
+        {
+          "label": "UC IPM: Ants – Identification and Biology",
+          "url": "https://ipm.ucanr.edu/home-and-landscape/ants/",
+          "organization": "University of California Agriculture and Natural Resources",
+          "supports": "Originalabschnitte zu vollständiger Metamorphose, Arbeitsteilung, Nahrung/Honigtau und Koloniegründung direkt gelesen. Keine kalifornischen Anwendungs-, Bekämpfungs- oder Artenzahlregeln übernommen."
+        },
+        {
+          "label": "UC IPM Ant Key: Colony establishment",
+          "url": "https://ipm.ucanr.edu/TOOLS/ANTKEY/biolcol.html?wpmobileexternal=true",
+          "organization": "University of California Agriculture and Natural Resources",
+          "supports": "Originaltext zu Gründung nach Paarungsflug sowie budding mit Königinnen/Arbeiterinnen und Brut direkt gelesen. Gehört mit UC IPM zur gleichen Quellenfamilie."
+        },
+        {
+          "label": "Natural History Museum: Flying ant day",
+          "url": "https://www.nhm.ac.uk/discover/when-why-winged-ants-swarm-nuptial-flight.html",
+          "organization": "Natural History Museum London",
+          "supports": "Originalabschnitte Kasten und unabhängige Gründung am ausdrücklich benannten Beispiel Lasius niger direkt gelesen. Keine britischen Flugtermine, Größen-/Lebensdauerwerte oder Übertragung auf sämtliche Ameisen."
+        },
+        {
+          "label": "Ask A Biologist: Secrets of a Superorganism",
+          "url": "https://askabiologist.asu.edu/explore/secrets-superorganism",
+          "organization": "Arizona State University School of Life Sciences",
+          "supports": "Originalabschnitte Colony Anatomy, Working Together, Communication Skills und Hunting and Farming direkt gelesen; keine pauschalen Familienverwandtschafts-, Hirnleistungs- oder Kriegsvergleiche übernommen."
+        },
+        {
+          "label": "Virginia Tech: Schools IPM for Ants",
+          "url": "https://www.sites.ext.vt.edu/schoolipm/ipmtechniques/documents/ants.pdf",
+          "organization": "Virginia Tech, Department of Entomology",
+          "supports": "Original-PDF S.1 und Urhebernennung S.5 direkt gelesen: vollständige Metamorphose, nicht fressende Puppe und Arbeiterinnenpflege. Nur diese Biologie genutzt; keinerlei Rechts-/Bekämpfungs- oder Krankheitsempfehlung übertragen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "brutstadien",
+          "title": "Brut ist nicht gleich Ei: Larve, Puppe und erwachsenes Tier",
+          "paragraphs": [
+            "Bei Ameisen folgen auf das Ei eine Larvenphase, eine Puppenphase und das erwachsene Insekt. Diese vollständige Metamorphose enthält also eine eigene Puppenphase zwischen dem Larvenwachstum und dem erwachsenen Tier. Die Larve ist kein verkleinertes Abbild einer Arbeiterin: Sie ist hell, beinlos und anders gebaut als die erwachsene Ameise. Zwischen dem Wachstum der Larve und dem fertigen Tier liegt deshalb ein eigener Umbauabschnitt.",
+            "Zur Brut zählen Eier, Larven und Puppen. Arbeiterinnen versorgen diese Stadien, tragen sie innerhalb des Nestes und pflegen insbesondere die auf Nahrung angewiesenen Larven. Die Puppe frisst nicht wie die Larve weiter. Ein längliches helles Gebilde im Nest darf daher nicht einfach als besonders großes Ei bezeichnet werden. Manche sichtbaren länglichen Gebilde sind Kokons mit einer Puppe darin; die umgangssprachlichen „Ameiseneier“ können tatsächlich Puppen sein.",
+            "Die drei Bezeichnungen beschreiben Entwicklungszustände, während „Arbeiterin“ eine erwachsene weibliche Ameise mit Aufgaben im Staat bezeichnet. Eine Puppe ist also keine zusätzliche erwachsene Kaste. Ebenso entsteht aus einer Larve nicht unmittelbar durch bloßes Größerwerden eine laufende Arbeiterin: Erst nach dem Puppenstadium schlüpft das erwachsene Tier. Form, Beweglichkeit und Ernährungsweise ändern sich während dieser Entwicklung grundlegend.",
+            "Eigenes Vergleichsbeispiel: Eine Skizze zeigt eine beinlose Larve neben einer bereits ameisenförmigen Puppe. Beide gehören zur Brut, obwohl sie sehr verschieden aussehen. Für das Verständnis des Nestlebens ist die Entwicklungsreihe wichtiger als eine gemeinsame helle Farbe. Sie erklärt, weshalb ein Staat gleichzeitig Nahrung sammelnde Erwachsene und von ihnen betreute Jungstadien enthält. Die Begriffe lassen sich anhand fachlicher Abbildungen lernen; ein Nest muss dafür nicht geöffnet werden."
+          ],
+          "takeaway": "Eine Puppe ist ein Entwicklungsstadium der Brut und kein großes Ei.",
+          "exercise": "Ordne Ei, Larve und Puppe des eigenen Vergleichs der Brut zu und trenne sie von der erwachsenen Arbeiterin."
+        },
+        {
+          "id": "arbeiterinnen-fortpflanzung",
+          "title": "Königinnen, Arbeiterinnen und Männchen haben verschiedene Rollen",
+          "paragraphs": [
+            "Ein Ameisenstaat ist eine Kolonie zusammenlebender Tiere mit Arbeitsteilung. In dem hier betrachteten Grundmodell legt die Königin die Eier; die Arbeiterinnen beschaffen Nahrung, pflegen Brut, unterhalten das Nest und übernehmen Verteidigungsaufgaben. Arbeiterinnen sind weibliche Ameisen. Der deutsche Name bezeichnet ihre Tätigkeit und nicht ein männliches Geschlecht. Männchen gehören vor allem zur Fortpflanzungsphase des Staates.",
+            "Bei vielen Arten erscheinen geschlechtsreife Männchen und junge Königinnen zeitweise als geflügelte Tiere. Eine geflügelte Ameise ist deshalb nicht schon wegen ihrer Flügel eine eigene „Flugameisenart“. Flügel tragen in diesem Zusammenhang Informationen über die Fortpflanzungsform. Sie ersetzen aber keine Artbestimmung. Auch eine flügellose Ameise ist nicht automatisch eine Arbeiterin, denn eine begattete Königin kann ihre Flügel abwerfen.",
+            "Arbeitsteilung bedeutet außerdem nicht, dass jede Arbeiterin täglich dieselbe Aufgabe erfüllt oder dass in jeder Art alle Arbeiterinnen gleich groß sind. Es gibt Arten mit recht einheitlichen und solche mit deutlich unterschiedlichen Arbeiterinnengrößen. Aufgaben können sich mit Alter und Situation verändern. Der Begriff Kaste beschreibt dabei einen Zusammenhang von Körperform und Funktion im Staat; er ist von den aufeinanderfolgenden Entwicklungsstadien Ei, Larve und Puppe zu unterscheiden.",
+            "Eigenes Anwendungsbeispiel: Auf einem Weg werden zahlreiche flügellose Tiere beim Nahrungstransport beobachtet; daneben erscheinen einige geflügelte Tiere. Das lässt sich mit verschiedenen erwachsenen Rollen innerhalb einer Kolonie vereinbaren. Daraus folgt weder eine sichere Artzugehörigkeit aller beobachteten Tiere noch eine feste Königinnenzahl im verborgenen Nest. Verschiedene Arten und Kolonieformen können eine oder mehrere fortpflanzungsfähige Königinnen besitzen. Für das Lernen ist zunächst die Trennung zwischen Geschlecht, Entwicklungsstadium und Tätigkeit entscheidend."
+          ],
+          "takeaway": "Arbeiterinnen sind weibliche Erwachsene; Fortpflanzungsform und Artname sind verschiedene Ebenen.",
+          "exercise": "Trenne im eigenen Wegbeispiel Geschlecht, Entwicklungsstadium und Tätigkeit."
+        },
+        {
+          "id": "duftspuren-honigtau",
+          "title": "Duftspuren, Nahrung und Honigtau verbinden viele Tiere",
+          "paragraphs": [
+            "Eine Ameisenstraße ist mehr als eine Reihe zufällig gleich gerichteter Tiere. Bei vielen Arten können suchende Arbeiterinnen chemische Spuren ablegen, denen weitere Arbeiterinnen zu einer Nahrungs- oder Wasserquelle folgen. Solche Signalstoffe heißen Pheromone. Sie übertragen Informationen zwischen Tieren, ohne dass diese einander gleichzeitig sehen müssen. Eine am Boden bleibende Spur verbindet damit das Verhalten nacheinander eintreffender Tiere.",
+            "Die Nahrungsnutzung ist unter Ameisen vielfältig. Je nach Art und Situation gehören lebende oder tote Insekten, Samen sowie zuckerhaltige Flüssigkeiten dazu. Die Beobachtung einer Ameise an etwas Süßem beweist deshalb nicht, dass ihre ganze Art ausschließlich Zucker frisst. Nahrungssuche und Versorgung der Kolonie gehören zusammen: Die außen laufenden Arbeiterinnen beschaffen Ressourcen auch für die im Nest betreuten Tiere.",
+            "Eine wichtige zuckerhaltige Quelle ist Honigtau. Pflanzen saugende Insekten wie Blattläuse scheiden diese Flüssigkeit aus; Ameisen können sie aufnehmen. Manche Ameisen schützen solche Honigtauproduzenten gegen deren Feinde. Das ist ein anderer Zusammenhang als direkter Fraß an einem Insekt: Eine Ameise kann ein Insekt als Nahrung nutzen oder mit einem lebenden Pflanzensaftsauger eine Nahrungsbeziehung unterhalten. Beides darf nicht aus einem einzigen Kontakt vorschnell gleichgesetzt werden.",
+            "Eigenes Revierbeispiel: Eine Ameisenstraße führt am Stamm zu einer Blattlausgruppe. Das passt zur Nutzung von Honigtau; die bloße Laufrichtung belegt aber noch nicht jeden einzelnen Fressvorgang. In einer zweiten Beobachtung tragen Arbeiterinnen ein totes Insekt. Hier ist eine andere Ressource sichtbar. Diese Gegenüberstellung zeigt, weshalb ökologische Rollen nicht auf das Etikett „nützlich“ oder „schädlich“ verkürzt werden können. Entscheidend sind die konkrete Ressource und die beteiligten Organismen, nicht eine pauschale Bewertung sämtlicher Ameisen."
+          ],
+          "takeaway": "Chemische Spuren lenken bei vielen Arten die Nahrungssuche; Honigtau und Insektennahrung sind verschiedene Ressourcen.",
+          "exercise": "Vergleiche Honigtauaufnahme und Transport eines toten Insekts nach der genutzten Ressource."
+        },
+        {
+          "id": "koloniegruendung",
+          "title": "Neue Kolonien entstehen nicht immer auf demselben Weg",
+          "paragraphs": [
+            "Beim häufigen Modell einer selbständigen Koloniegründung verlässt eine junge Königin die Herkunftskolonie, paart sich und sucht einen Nistplatz. Am Beispiel der Schwarzen Wegameise, Lasius niger, lässt sich die nächste Phase gut erklären: Die begattete Königin verliert ihre Flügel, richtet eine kleine Kammer ein und zieht zunächst eigene Brut auf. Erst die ersten erwachsenen Arbeiterinnen übernehmen die Nahrungssuche für die wachsende Kolonie.",
+            "Diese anfängliche Versorgung unterscheidet sich von einem bereits großen Staat. Bei der beschriebenen abgeschlossenen Gründung werden Körperreserven der Königin für die erste Brut genutzt. Es gibt also noch keinen fertigen Trupp von Arbeiterinnen, der vom ersten Tag an alle Nahrung heranträgt. Eine allein laufende entflügelte Königin und eine belebte Ameisenstraße können damit verschiedene Phasen im Leben einer Kolonie zeigen; sie sind nicht zwei vollständig getrennte Lebensweisen derselben erwachsenen Arbeiterin.",
+            "Daneben gibt es Koloniegründungen durch Ableger, häufig als Knospung oder budding bezeichnet. Hier ziehen Arbeiterinnen mit einer oder mehreren Königinnen beziehungsweise mit Brut zu einem neuen Nistplatz. Ein solcher Anfang nutzt bereits Teile eines vorhandenen Staates. Er ist nicht dasselbe wie die Gründung einer einzelnen Königin nach einem Paarungsflug. Welche Form vorkommt, hängt von der Art und der Kolonieorganisation ab; die bekannte Flugphase darf nicht zur ausnahmslosen Regel sämtlicher Ameisen gemacht werden.",
+            "Eigenes Vergleichsmodell: Fall A beginnt mit einer Königin und ihrer ersten Brut, Fall B mit einem Verband aus erwachsenen Arbeiterinnen, Königin und mitgebrachter Brut. Beide können zu einer neuen Nestgemeinschaft führen, haben aber unterschiedliche Startbedingungen. Auch „Nest“ und „Kolonie“ sind nicht zwingend deckungsgleich: Manche Kolonien nutzen mehrere verbundene Nistplätze. Für Naturbeobachtungen ist deshalb eine sichtbare Öffnung kein verlässlicher Zähler aller Staaten oder Königinnen eines Gebietes."
+          ],
+          "takeaway": "Selbständige Gründung durch eine Königin und Ableger eines vorhandenen Staates sind verschiedene Gründungsmodelle.",
+          "exercise": "Stelle die Startbedingungen der selbständigen Gründung und des Ablegers gegenüber."
+        }
+      ],
+      "questions": [
+        {
+          "id": "brutstadien",
+          "lessonId": "brutstadien",
+          "q": "Welche Entwicklungsfolge durchläuft eine Ameise bei vollständiger Metamorphose?",
+          "options": [
+            "Ei – Puppe – Larve – erwachsenes Tier",
+            "Ei – Larve – Puppe – erwachsenes Tier",
+            "Ei – Larve – erwachsenes Tier – Puppe",
+            "Larve – Ei – Puppe – erwachsenes Tier"
+          ],
+          "answer": 1,
+          "explain": "Aus dem Ei schlüpft eine Larve. Auf ihre Wachstumsphase folgt die nicht fressende Puppe; daraus geht die erwachsene Ameise hervor. Eier, Larven und Puppen werden zusammen als Brut bezeichnet."
+        },
+        {
+          "id": "arbeiterinnen-fortpflanzung",
+          "lessonId": "arbeiterinnen-fortpflanzung",
+          "q": "Welches Geschlecht haben die Arbeiterinnen eines Ameisenstaates?",
+          "options": [
+            "Sie sind Männchen der Nahrungskaste.",
+            "Sie sind geschlechtslose erwachsene Tiere.",
+            "Sie sind Weibchen der Arbeitskaste.",
+            "Sie sind Larven vor der Geschlechtsbildung."
+          ],
+          "answer": 2,
+          "explain": "Arbeiterinnen sind weibliche erwachsene Ameisen. Brutpflege, Nahrungssuche und Nestunterhalt sind typische Aufgaben; Ei, Larve und Puppe bezeichnen dagegen Entwicklungsstadien."
+        },
+        {
+          "id": "duftspuren-honigtau",
+          "lessonId": "duftspuren-honigtau",
+          "q": "Was nutzen Ameisen bei der Aufnahme von Honigtau einer Blattlausgruppe?",
+          "options": [
+            "Eine zuckerhaltige Ausscheidung der Pflanzensaftsauger",
+            "Den von den Blattläusen gesammelten Blütenpollen",
+            "Die unveränderte Blattoberhaut der Wirtspflanze",
+            "Das ausgehärtete Häutungsprodukt der Blattläuse"
+          ],
+          "answer": 0,
+          "explain": "Honigtau ist eine zuckerhaltige Ausscheidung von Pflanzensaftsaugern. Seine Nutzung unterscheidet sich davon, ein Insekt als Beute oder Aas zu fressen; manche Ameisen schützen die Honigtauproduzenten."
+        },
+        {
+          "id": "koloniegruendung",
+          "lessonId": "koloniegruendung",
+          "q": "Wodurch unterscheidet sich ein Kolonieableger von der hier beschriebenen selbständigen Gründung einer einzelnen Ameisenkönigin?",
+          "options": [
+            "Er beginnt ausschließlich mit ungelegten Eiern.",
+            "Er entsteht erst durch das Verschmelzen aller Puppen.",
+            "Er besteht ausschließlich aus neu geschlüpften Männchen.",
+            "Er nimmt bereits Arbeiterinnen und gegebenenfalls Brut mit."
+          ],
+          "answer": 3,
+          "explain": "Bei der Knospung ziehen Teile einer bestehenden Kolonie zu einem neuen Nistplatz. Beim beschriebenen unabhängigen Gründungsmodell zieht die Königin zunächst ihre erste Brut selbst auf."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-kiefernzapfen-round6-2026",
+      "title": "Kiefernzapfen: Samenanlagen, Bestäubung und hygroskopische Bewegung",
+      "category": "Wald & Pflanzen",
+      "topic": "Hege/Naturschutz",
+      "description": "Zapfenschuppen, Pollenübertragung, Samenbau und passive Bewegung reifer Kiefernzapfen verknüpfen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Fortpflanzungsbau der Gattung Pinus und untersuchte hygroskopisch bewegliche reife Zapfen; keine ausnahmslose Regel sämtlicher Nacktsamer oder Zapfen und keine Saat-/Brandbehandlung.",
+        "AT": "Fortpflanzungsbau der Gattung Pinus und untersuchte hygroskopisch bewegliche reife Zapfen; keine ausnahmslose Regel sämtlicher Nacktsamer oder Zapfen und keine Saat-/Brandbehandlung.",
+        "CH": "Fortpflanzungsbau der Gattung Pinus und untersuchte hygroskopisch bewegliche reife Zapfen; keine ausnahmslose Regel sämtlicher Nacktsamer oder Zapfen und keine Saat-/Brandbehandlung."
+      },
+      "objectives": [
+        "Pollen- und Samenanlagenzapfen unterscheiden",
+        "Bestäubung und Befruchtung trennen",
+        "Embryo, Nährgewebe und Samenschale zuordnen",
+        "Hygroskopische Bewegung erklären"
+      ],
+      "sources": [
+        {
+          "label": "USDA Forest Service: Cone Analysis of Southern Pines",
+          "url": "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+          "organization": "USDA Forest Service",
+          "supports": "Original-PDF Kapitel II S.4–5 und IV S.6 direkt gelesen: Zapfenbau, fruchtbare Schuppen, Pollenübertragung, Befruchtung, Samenbau und Ausfälle. Regionale Entwicklungsmonate, Ernteverfahren und Abbildungen nicht übernommen."
+        },
+        {
+          "label": "University of Auckland: Pine Life Cycle",
+          "url": "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+          "organization": "University of Auckland, NZ Plants",
+          "supports": "Originalschritte1–22 direkt gelesen. Zapfentypen, Schuppen/Anlagen, Pollen, Pollenschlauch, Embryo, Gametophytenvorrat und Samenhülle. Vereinfachtes Modell nicht als Erfolgsgarantie jedes pollinierten Ovulums verwendet; Mehrfachembryozahlen und Fristen ausgeschlossen."
+        },
+        {
+          "label": "UBC: Pinus – Female Cones",
+          "url": "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/",
+          "organization": "University of British Columbia, BIOL/APBI210",
+          "supports": "Originaltext Samenanlage/Schuppe, Nucellus/Integument und Embryoentwicklung direkt gelesen. Keine Bilder oder speziellen Polyembryoniezahlen übernommen."
+        },
+        {
+          "label": "Kew: What is a seed?",
+          "url": "https://www.kew.org/read-and-watch/what-is-a-seed",
+          "organization": "Royal Botanic Gardens, Kew",
+          "supports": "Originalabschnitte Seed structure/Gymnosperms direkt gelesen. Nackte Samen und schützende Zapfenschuppen; Eibenarillus-Herkunftsbehauptung, Artenzahlen und Schutzgarantien ausgeschlossen."
+        },
+        {
+          "label": "SUNY Geneseo: Sex and Reproduction in Seed Plants",
+          "url": "https://milnepublishing.geneseo.edu/botany/chapter/sex-and-reproduction-in-specific-groups/",
+          "organization": "SUNY Geneseo, Inanimate Life",
+          "supports": "Originalabschnitt Conifers im Original-Suchindex gelesen; direkter Abruf unzuverlässig. Samenanlagen, Pollenschlauch und Embryo im weiblichen Gametophyten; keine eigene Wiederholungsstudie. Auch original-indexierten Abschnitt Angiosperms zu Endosperm aus zweiter Befruchtung gelesen; keine dortigen veralteten Pflanzen-Gruppen-/Vollkommenheitsangaben übernommen."
+        },
+        {
+          "label": "Eger et al.2022: The Structural and Mechanical Basis for Passive-Hydraulic Pine Cone Actuation",
+          "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202200458",
+          "organization": "Eigenständige Originalarbeit, Universität Freiburg/Universität Stuttgart/TUM und Mitautoren",
+          "supports": "Indexierten Original-Abstract/Einleitung einschließlich Modellgrenzen gelesen. Passive feuchteabhängige Biegung und unterschiedliche Gewebereaktion; keine Messwerte, Zeitgarantien oder Bilder übernommen. PMC-Direktseite CAPTCHA."
+        },
+        {
+          "label": "Reyssat & Mahadevan2009: Hygromorphs: from pine cones to biomimetic bilayers",
+          "url": "https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2009-05.pdf",
+          "organization": "Eigenständige Originalarbeit, Harvard University",
+          "supports": "Autoren-PDF S.951–953 direkt gelesen: Bewegung toter abgefallener Zapfen, feucht schließen/trocken öffnen, unterschiedliche Quellung. Auch Picea-Beispiel enthalten; keine Übertragung aller Abbildungen auf Pinus oder Winkel-/Zeitwerte."
+        },
+        {
+          "label": "PropG: Gymnosperm Endosperm – Female Gametophyte",
+          "url": "https://propg.ifas.ufl.edu/04-seeds/01-development/08-seedsdevelopment-gymnospermendosperm.html",
+          "organization": "University of Florida/University of Kentucky/Texas A&M University, ein gemeinsames Lehrprojekt",
+          "supports": "Vollständiger kurzer Originaltext direkt gelesen: Nahrungsreserve im weiblichen Gametophyten gegenüber Endosperm der Bedecktsamer. Gemeinsames Projekt als eine Quellenfamilie gezählt; keine Bilder oder universelle Ploidie-Ausnahmefreiheit behauptet."
+        },
+        {
+          "label": "Cairney & Pullman2007: The cellular and molecular biology of conifer embryogenesis",
+          "url": "https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2007.02239.x",
+          "organization": "Fachreview in New Phytologist, Cairney und Pullman",
+          "supports": "Originalabschnitt I.2 direkt gelesen: weiblicher Gametophyt vor Befruchtung, Embryoentwicklung und Abgrenzung zum durch doppelte Befruchtung entstehenden Angiospermen-Endosperm. Als Fachsynthese und nicht unabhängiger Wiederholungsversuch benannt; keine alten Flächen-/Artenzahlen oder speziellen Embryozahlen übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "zapfenschuppen",
+          "title": "Zwei Zapfentypen und die Lage der Samenanlagen",
+          "paragraphs": [
+            "Kiefern der Gattung Pinus bilden männliche Pollen- und weibliche Samenanlagenzapfen. Die beiden erfüllen unterschiedliche Aufgaben: Im Pollenzapfen entsteht der Pollen; im weiblichen Zapfen sitzen die Samenanlagen, aus denen sich später Samen entwickeln können. Der große verholzte Zapfen, der beim Wort „Kiefernzapfen“ häufig gemeint ist, gehört zur weiblichen Entwicklungsreihe. Ein kleiner Pollenzapfen ist also nicht lediglich dieselbe Struktur in einem früheren Alter.",
+            "Der weibliche Zapfen besitzt eine zentrale Achse mit schraubig angeordneten Schuppen. An einer fruchtbaren Samenschuppe stehen im grundlegenden Pinus-Bauplan zwei Samenanlagen auf der zur Achse gerichteten Oberseite. „Fruchtbar“ bezieht sich hier auf diese Fortpflanzungsfähigkeit der Schuppe. Nicht jede Schuppe muss deshalb zwei ausgereifte Samen tragen. Randständige Schuppen können unfruchtbar sein; auch angelegte Samenanlagen können im weiteren Verlauf ausfallen.",
+            "Kiefern sind Nacktsamer. Ihre Samenanlagen sind nicht in einen geschlossenen Fruchtknoten eingeschlossen, aus dem später eine Fruchtwand entsteht. Das bedeutet nicht, dass der Samen ohne jede Schutzhülle aufwächst: Zapfenschuppen schützen die heranwachsenden Samen, und der Samen entwickelt eine eigene Samenschale. Eine verholzte Zapfenschuppe ist folglich nicht dasselbe Organ wie die Fruchtwand einer Haselnuss oder eines Apfels.",
+            "Eigenes Vergleichsmodell: Zwei beschriftete Schemata zeigen einen Pollenzapfen mit Pollenbildung und einen weiblichen Zapfen mit Samenanlagen. Wird nur ihre äußere Größe verglichen, bleibt die biologische Funktion offen. Werden dagegen Pollen beziehungsweise Samenanlagen zugeordnet, wird der Unterschied verständlich. Dass ein reifer Zapfen außen holzig aussieht, sagt außerdem noch nichts darüber aus, wie viele seiner Samen vollständig entwickelt oder keimfähig sind. Dafür sind andere Entwicklungsmerkmale nötig als die sichtbare Schuppenform allein."
+          ],
+          "takeaway": "Pollenzapfen und Samenanlagenzapfen sind funktionell verschieden; der Zapfen ist keine bedecktsamige Frucht.",
+          "exercise": "Ordne den beiden Zapfentypen Pollenbildung beziehungsweise Samenanlagen zu."
+        },
+        {
+          "id": "pollen-befruchtung",
+          "title": "Pollenankunft und Befruchtung sind getrennte Vorgänge",
+          "paragraphs": [
+            "Bestäubung bezeichnet bei der Kiefer die Übertragung von Pollen zu den weiblichen Samenanlagen. Luftströmungen transportieren die Pollenkörner von den männlichen Zapfen. Während der empfänglichen Phase liegen die Schuppen des weiblichen Zapfens so, dass Pollen zu den Anlagen gelangen kann. Die Samenanlage besitzt in ihrer Hülle eine kleine Öffnung, die Mikropyle. Der Pollen gelangt in diesen Bereich; er wird nicht wie bei einer bedecktsamigen Blüte auf einer Narbe abgelegt.",
+            "Damit ist die Befruchtung noch nicht geschehen. Aus dem Pollen wächst ein Pollenschlauch, der im Gewebe der Samenanlage weiterwächst und schließlich männliche Keimzellen zur Eizelle bringt. Erst die Vereinigung der betreffenden Zellkerne begründet die Zygote, aus der sich der Embryo entwickelt. Pollenübertragung, Pollenschlauchwachstum und Kernverschmelzung sind daher verschiedene Schritte eines zusammenhängenden Fortpflanzungsvorgangs.",
+            "Bei Kiefern kann zwischen Bestäubung und Befruchtung eine lange Entwicklungsphase liegen. Die in Lehrmodellen beschriebenen Zeitabläufe sind jedoch nicht als einheitlicher Kalender für jede Kiefernart zu verwenden. Schon der begriffliche Unterschied ist wichtiger als ein auswendig gelernter Monat: Ein bestäubter Zapfen ist nicht automatisch ein Zapfen mit fertigen Embryonen. Ebenso zeigt ein äußerlich gewachsener Zapfen allein noch nicht den erfolgreichen Abschluss sämtlicher innerer Vorgänge.",
+            "Eigenes Anwendungsbeispiel: Im ersten Schema liegt ein Pollenkorn an der Samenanlage; im zweiten erreicht ein Pollenschlauch die Eizelle und die Befruchtung ist dargestellt. Das erste Schema belegt Bestäubung, das zweite einen weitergehenden Schritt. Wer beide mit „Samen ist schon fertig“ beschriftet, überspringt die entscheidende Embryonalentwicklung. Diese Trennung hilft auch, das Nebeneinander verschieden alter Zapfen am Baum zu verstehen, ohne allein aus Größe oder Farbe einen taggenauen Fortpflanzungszeitpunkt abzuleiten."
+          ],
+          "takeaway": "Bestäubung bringt Pollen zur Samenanlage; Befruchtung vereinigt die Kerne der Keimzellen.",
+          "exercise": "Trenne im eigenen Schema Pollenankunft, Schlauchwachstum und Kernvereinigung."
+        },
+        {
+          "id": "samen-gewebe",
+          "title": "Ein Kiefernsamen enthält Gewebe verschiedener Herkunft",
+          "paragraphs": [
+            "Ein vollständig entwickelter Kiefernsamen ist mehr als eine einzelne fertige Zelle. Er enthält einen Embryo, umgebendes Nährgewebe und eine schützende Samenschale. Am Embryo sind die Anlagen des künftigen Wurzel- und Sprosssystems sowie die Keimblätter zu unterscheiden. Der sichtbare Samen ist damit ein Fortpflanzungs- und Versorgungsverband: Eine neue Pflanze liegt zusammen mit Schutz und Vorräten in einer transportfähigen Einheit.",
+            "Das Nährgewebe des hier betrachteten Pinus-Modells gehört zum weiblichen Gametophyten. Es entsteht in der Samenanlage und umgibt später den Embryo mit gespeicherter Nahrung. Seine Entwicklung beginnt bereits vor der Befruchtung. Es ist daher nicht einfach der Embryo selbst und auch nicht pauschal mit dem durch doppelte Befruchtung entstehenden Endosperm der Bedecktsamer gleichzusetzen. Gleiche Versorgungsaufgabe bedeutet nicht dieselbe Entwicklungsgeschichte des Gewebes.",
+            "Die Samenschale geht aus der Hülle der Samenanlage, dem Integument, hervor. Diese Hülle und das Nährgewebe müssen von der eigentlichen neuen Pflanze unterschieden werden. Der Embryo entsteht nach der Befruchtung; der umgebende Gametophyt und das mütterliche Hüllgewebe haben eine andere Herkunft. Auch die schützende Zapfenschuppe ist nochmals etwas anderes: Sie gehört nicht zu den drei inneren Funktionsbereichen, die man an einem Samenschnitt zuordnet.",
+            "Eigenes Vergleichsbeispiel: In einem Schema wird außen „Samenschale“, innen „Embryo“ und zwischen beiden „Vorratsgewebe“ eingetragen. Die passende Funktionszuordnung lautet schützen, neue Pflanze bilden und ernähren. Erst die zusätzliche Herkunftszuordnung zeigt, welches Gewebe bereits vor der Embryobildung vorhanden war. Dieser zweite Blick verhindert, dass alle hellen Bereiche im Samen als Keimling bezeichnet werden. Er erklärt zugleich, weshalb die bloße äußere Samenhülle noch kein Beweis für einen vollständig entwickelten Embryo im Inneren ist."
+          ],
+          "takeaway": "Embryo, weibliches Gametophyten-Nährgewebe und Samenschale haben unterschiedliche Aufgaben und Herkunft.",
+          "exercise": "Verbinde in einem gedanklichen Samenschnitt Embryo, Vorratsgewebe und Hülle mit Aufgabe und Herkunft."
+        },
+        {
+          "id": "hygroskopische-bewegung",
+          "title": "Warum trockene Zapfen sich öffnen und feuchte wieder schließen",
+          "paragraphs": [
+            "Bei untersuchten reifen Kiefernzapfen biegen sich die Samenschuppen abhängig von ihrem Wassergehalt. Unter trockenen Bedingungen spreizen sie sich von der Zapfenachse weg; beim Befeuchten schließen sie sich wieder in Richtung der Achse. Diese hygroskopische Bewegung beruht auf der Aufnahme und Abgabe von Wasser durch die Gewebe. Sie ist nicht dasselbe wie das Wachstum eines jungen Zapfens oder das aktive Öffnen einer Blüte.",
+            "Verschiedene Gewebebereiche der Schuppe quellen und schwinden unterschiedlich. Weil sie miteinander verbunden sind, führt diese ungleiche Längenänderung zu einer Biegung. Als einfaches mechanisches Vergleichsmodell kann ein fest verbundener Streifen aus zwei unterschiedlich quellenden Materialien dienen. Er veranschaulicht das Grundprinzip, ersetzt aber nicht die tatsächliche mehrschichtige und räumlich gegliederte Zapfenschuppe. Die neuere Forschung berücksichtigt auch weitere Gewebe und deren Wasseraufnahme.",
+            "Der Vorgang ist passiv: Auch tote, bereits abgefallene Zapfen können beim Befeuchten schließen und beim Trocknen wieder öffnen. Dazu muss kein lebender Baum laufend einen Muskel oder einen aktiven Pumpvorgang betätigen. Die Formänderung steckt in den Materialeigenschaften und im Aufbau der Schuppen. Dass sich ein Gegenstand bewegt, beweist also für sich allein keine aktive Lebensfunktion seiner Zellen.",
+            "Eigenes Naturvergleichsbeispiel: Derselbe geeignete, bereits abgefallene Zapfen wird einmal trocken und einmal nach Befeuchtung betrachtet. Eine veränderte Schuppenstellung passt zum beschriebenen Mechanismus. Daraus lässt sich keine allgemeine feste Reaktionszeit oder Regenvorhersage für sämtliche Zapfen ableiten. Die Öffnung schafft bei diesen Zapfen Raum für die Abgabe von Samen; eine spätere erneute Schließbewegung zeigt nicht, dass sich inzwischen neue Samen gebildet hätten. Fortpflanzungsentwicklung und wiederholte Materialbewegung bleiben zwei verschiedene Vorgänge."
+          ],
+          "takeaway": "Ungleiche Quellung verbundener Gewebe kann auch an toten Zapfenschuppen eine passive Biegung auslösen.",
+          "exercise": "Vergleiche Wachstum des jungen Zapfens mit wiederholter Materialbewegung des reifen Zapfens."
+        }
+      ],
+      "questions": [
+        {
+          "id": "zapfenschuppen",
+          "lessonId": "zapfenschuppen",
+          "q": "Welche Strukturen trägt eine fruchtbare Samenschuppe im grundlegenden Pinus-Bauplan?",
+          "options": [
+            "Zwei Fruchtknoten mit je einer Fruchtwand",
+            "Zwei Pollensäcke mit reifendem Blütenpollen",
+            "Zwei Samenanlagen an ihrer Oberseite",
+            "Zwei geschlossene Nüsse an langen Fruchtstielen"
+          ],
+          "answer": 2,
+          "explain": "An einer fruchtbaren weiblichen Kiefernschuppe liegen im Grundbauplan zwei Samenanlagen. Ob daraus zwei voll entwickelte Samen entstehen, hängt vom weiteren Entwicklungsverlauf ab; der Bauplan ist keine Erfolgsgarantie."
+        },
+        {
+          "id": "pollen-befruchtung",
+          "lessonId": "pollen-befruchtung",
+          "q": "Was unterscheidet die Befruchtung einer Kiefer von ihrer Bestäubung?",
+          "options": [
+            "Bei der Befruchtung vereinigen sich die Kerne der Keimzellen.",
+            "Bei der Befruchtung verlässt Pollen erstmals den männlichen Zapfen.",
+            "Bei der Befruchtung trägt der Wind Pollen zwischen Bäumen.",
+            "Bei der Befruchtung landet Pollen außen am empfänglichen Zapfen."
+          ],
+          "answer": 0,
+          "explain": "Bestäubung ist Pollenübertragung. Nach dem Pollenschlauchwachstum folgt bei erfolgreichem Verlauf die Kernvereinigung; daraus entsteht die Zygote und anschließend der Embryo. Die Vorgänge sind bei Kiefern zeitlich getrennt."
+        },
+        {
+          "id": "samen-gewebe",
+          "lessonId": "samen-gewebe",
+          "q": "Welches Gewebe stellt im hier betrachteten Kiefernsamen die umgebenden Nahrungsreserven für den Embryo bereit?",
+          "options": [
+            "Die verholzte Achse des Pollenzapfens",
+            "Die äußere Rinde des Mutterbaumes",
+            "Die Fruchtwand des reifen Zapfens",
+            "Das Gewebe des weiblichen Gametophyten"
+          ],
+          "answer": 3,
+          "explain": "Das weibliche Gametophytengewebe umgibt und ernährt den Embryo. Die Samenschale entsteht aus dem Integument; der Embryo selbst geht aus der befruchteten Eizelle hervor."
+        },
+        {
+          "id": "hygroskopische-bewegung",
+          "lessonId": "hygroskopische-bewegung",
+          "q": "Was verursacht die feuchteabhängige Biegung untersuchter reifer Kiefernzapfenschuppen?",
+          "options": [
+            "Eine dauernde Muskelverkürzung in der Samenschuppe",
+            "Die unterschiedliche Quellung verbundener Schuppengewebe",
+            "Die fortlaufende Neubildung von Samen im abgefallenen Zapfen",
+            "Die Verschmelzung benachbarter Pollenkörner an der Schuppe"
+          ],
+          "answer": 1,
+          "explain": "Die verbundenen Gewebe reagieren unterschiedlich auf Wasseraufnahme und Trocknung. Daraus entsteht eine passive Biegung, die auch an totem Material möglich ist. Ein einfaches Zweischichtmodell erklärt das Prinzip, bildet die reale Anatomie aber nur vereinfacht ab."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-getreidearten-round6-2026",
+      "title": "Getreide unterscheiden: Weizen, Gerste, Roggen und Hafer",
+      "category": "Landwirtschaft & Lebensräume",
+      "topic": "Hege/Naturschutz",
+      "description": "Ährchenbau, Ähre oder Rispe sowie Blattöhrchen und Blatthäutchen an vier wichtigen Kulturgetreiden vergleichen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Bestimmungsmerkmale vier benannter Kulturgetreide und ihrer Blattansätze; keine vollständige Gräserbestimmung, Sortenbestimmung, Ernte-/Verzehrfreigabe oder Herkunfts-/Anbaubewertung.",
+        "AT": "Bestimmungsmerkmale vier benannter Kulturgetreide und ihrer Blattansätze; keine vollständige Gräserbestimmung, Sortenbestimmung, Ernte-/Verzehrfreigabe oder Herkunfts-/Anbaubewertung.",
+        "CH": "Bestimmungsmerkmale vier benannter Kulturgetreide und ihrer Blattansätze; keine vollständige Gräserbestimmung, Sortenbestimmung, Ernte-/Verzehrfreigabe oder Herkunfts-/Anbaubewertung."
+      },
+      "objectives": [
+        "Mehrblütige Weizenährchen erkennen",
+        "Gersten-Dreiergruppen und Kornzeilen trennen",
+        "Roggenährchen und Blattansätze zuordnen",
+        "Hafer-Rispe von Ähren unterscheiden"
+      ],
+      "sources": [
+        {
+          "label": "Agriculture Victoria: Identifying cereal seedlings",
+          "url": "https://agriculture.vic.gov.au/crops-and-horticulture/grains-pulses-and-cereals/crop-production/general-agronomy/identifying-cereal-seedlings",
+          "organization": "Department of Energy, Environment and Climate Action, Victoria",
+          "supports": "Originaltext direkt gelesen, Stand28.07.2026: Blattansatz, Ligula/Öhrchen, Gerste lange kahle und Weizen meist kurze bewimperte Öhrchen, Hafer ohne Öhrchen, Roggen kurze Öhrchen. Absolute Blattbehaarungs- und Drehrichtungsregeln nicht übernommen; keine australische Anbauanleitung."
+        },
+        {
+          "label": "USDA NRCS: Cereal Plant Identification in Vegetative Stage",
+          "url": "https://efotg.sc.egov.usda.gov/references/public/WA/A.3Cereal_Plant_Identification_In_Vegetative_Stage.pdf",
+          "organization": "USDA Natural Resources Conservation Service",
+          "supports": "Einseitiges Original-PDF Agronomy3, Spokane, 2003 direkt gelesen: Blattansatzdefinitionen und vier Kulturgetreide. Quellenkredit UC Davis nicht als zusätzliche unabhängige Bestätigung gezählt; keine Abbildungen übernommen."
+        },
+        {
+          "label": "InfoFlora / Flora Helvetica: triticum-aestivum",
+          "url": "https://www.infoflora.ch/de/flora/triticum-aestivum.html",
+          "organization": "InfoFlora, Flora Helvetica2018",
+          "supports": "Original-Artbeschreibung direkt gelesen: Blütenstands-/Ährchenbau, Spelzen/Grannen und gegebenenfalls Blattansatz. Keine Maß-, Monats-, Herkunfts-, Schutz- oder anatomischen Tabellenwerte übernommen. Alle vier Seiten bilden eine Quellenfamilie."
+        },
+        {
+          "label": "InfoFlora / Flora Helvetica: hordeum-vulgare",
+          "url": "https://www.infoflora.ch/de/flora/hordeum-vulgare.html",
+          "organization": "InfoFlora, Flora Helvetica2018",
+          "supports": "Original-Artbeschreibung direkt gelesen: Blütenstands-/Ährchenbau, Spelzen/Grannen und gegebenenfalls Blattansatz. Keine Maß-, Monats-, Herkunfts-, Schutz- oder anatomischen Tabellenwerte übernommen. Alle vier Seiten bilden eine Quellenfamilie."
+        },
+        {
+          "label": "InfoFlora / Flora Helvetica: secale-cereale",
+          "url": "https://www.infoflora.ch/de/flora/secale-cereale.html",
+          "organization": "InfoFlora, Flora Helvetica2018",
+          "supports": "Original-Artbeschreibung direkt gelesen: Blütenstands-/Ährchenbau, Spelzen/Grannen und gegebenenfalls Blattansatz. Keine Maß-, Monats-, Herkunfts-, Schutz- oder anatomischen Tabellenwerte übernommen. Alle vier Seiten bilden eine Quellenfamilie."
+        },
+        {
+          "label": "InfoFlora / Flora Helvetica: avena-sativa",
+          "url": "https://www.infoflora.ch/de/flora/avena-sativa.html",
+          "organization": "InfoFlora, Flora Helvetica2018",
+          "supports": "Original-Artbeschreibung direkt gelesen: Blütenstands-/Ährchenbau, Spelzen/Grannen und gegebenenfalls Blattansatz. Keine Maß-, Monats-, Herkunfts-, Schutz- oder anatomischen Tabellenwerte übernommen. Alle vier Seiten bilden eine Quellenfamilie."
+        },
+        {
+          "label": "PlantNET Flora of NSW: Triticum aestivum",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Triticum~aestivum&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, National Herbarium of New South Wales",
+          "supports": "Originalbeschreibung vollständig im Originalindex beziehungsweise direkt gelesen. Genus-/Artgrenzen beachtet. Keine australischen Verbreitungs-/Blühregeln oder Maßtabellen. Offensichtlicher cm-Druckfehler bei Avena-Hüllspelzen nicht übernommen; bei Hordeum historisch getrenntes H.distichon nicht mit engem H.vulgare-Konzept vermischt."
+        },
+        {
+          "label": "PlantNET Flora of NSW: Hordeum",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Hordeum&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, National Herbarium of New South Wales",
+          "supports": "Originalbeschreibung vollständig im Originalindex beziehungsweise direkt gelesen. Genus-/Artgrenzen beachtet. Keine australischen Verbreitungs-/Blühregeln oder Maßtabellen. Offensichtlicher cm-Druckfehler bei Avena-Hüllspelzen nicht übernommen; bei Hordeum historisch getrenntes H.distichon nicht mit engem H.vulgare-Konzept vermischt."
+        },
+        {
+          "label": "PlantNET Flora of NSW: Secale",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Secale&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, National Herbarium of New South Wales",
+          "supports": "Originalbeschreibung vollständig im Originalindex beziehungsweise direkt gelesen. Genus-/Artgrenzen beachtet. Keine australischen Verbreitungs-/Blühregeln oder Maßtabellen. Offensichtlicher cm-Druckfehler bei Avena-Hüllspelzen nicht übernommen; bei Hordeum historisch getrenntes H.distichon nicht mit engem H.vulgare-Konzept vermischt."
+        },
+        {
+          "label": "PlantNET Flora of NSW: Avena sativa",
+          "url": "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Avena~sativa&page=nswfl",
+          "organization": "Royal Botanic Gardens and Domain Trust, National Herbarium of New South Wales",
+          "supports": "Originalbeschreibung vollständig im Originalindex beziehungsweise direkt gelesen. Genus-/Artgrenzen beachtet. Keine australischen Verbreitungs-/Blühregeln oder Maßtabellen. Offensichtlicher cm-Druckfehler bei Avena-Hüllspelzen nicht übernommen; bei Hordeum historisch getrenntes H.distichon nicht mit engem H.vulgare-Konzept vermischt."
+        },
+        {
+          "label": "Montana State University: 2-Row vs6-Row",
+          "url": "https://nios.montana.edu/barleybreeding/learning-center/maltster-resources/articles-posters/2r-v-6r.html",
+          "organization": "Montana State University, Barley Breeding Program",
+          "supports": "Originalabschnitt Ährchendreiergruppen, nur mittleres fruchtbar bei zweizeiliger Form, alle drei bei sechszeiliger Form im vollständigen Original-Suchindex gelesen. Pauschale Ein-Gen-Aussage, Genanzahl und Malz-/Ertragsvergleiche ausgeschlossen."
+        },
+        {
+          "label": "UC Davis SAREP: Barley",
+          "url": "https://sarep.ucdavis.edu/covercrop/barley",
+          "organization": "University of California Davis, Sustainable Agriculture Research and Education Program",
+          "supports": "Originalabschnitte Botanical description/Seed description im vollständigen Original-Suchindex gelesen: dreierweise Ährchen, zwei-/sechszeilige Fruchtbarkeit. Zitatbasis Hitchcock1971 kenntlich; keine Saat-/Herbizidempfehlungen oder Größen-/Ertragswerte übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "weizen-aehrchen",
+          "title": "Saat-Weizen: mehrere Blüten in einem Ährchen",
+          "paragraphs": [
+            "Beim Saat- oder Weichweizen, Triticum aestivum, ist der Blütenstand eine Ähre. Die Ährchen sitzen unmittelbar an der unverzweigten Ährenachse. Ein Ährchen ist dabei nicht mit einer einzelnen Blüte gleichzusetzen: Es enthält mehrere Blüten, die innerhalb einer gemeinsamen kleinen Einheit angeordnet sind. Dieser Aufbau unterscheidet den hier betrachteten Weizen von der Gerste mit ihren einblütigen Ährchen in Dreiergruppen.",
+            "Zum Verständnis helfen drei Ebenen: Die Ähre ist der gesamte Blütenstand, das Ährchen eine darin sitzende Teileinheit, die Blüte die noch kleinere Fortpflanzungseinheit. Die Hüllspelzen stehen am Grund des Ährchens. Deck- und Vorspelze gehören zur einzelnen Blüte. Wer nur die sichtbaren Spitzen zählt, kann diese Ebenen leicht verwechseln. Eine Granne ist eine borstenförmige Verlängerung an einer Spelze und kein eigener Fruchtstiel.",
+            "Bei Saat-Weizen gibt es begrannte und unbegrannte Ausprägungen. „Grannen vorhanden“ ist deshalb kein sicherer Ausschluss von Weizen. Am Blattansatz stehen typischerweise kleine Öhrchen, oft mit Haaren oder Wimpern, sowie ein kurzes häutiges Blatthäutchen. Auch diese Merkmale müssen mit dem übrigen Bau zusammenpassen; die Behaarung ist innerhalb des Kulturweizens variabel. Eine einzelne haarlose Stelle widerlegt daher nicht jeden Weizenverdacht.",
+            "Eigenes Vergleichsbeispiel am Feldrand: Pflanze A besitzt eine Ähre mit einzeln an der Achse sitzenden mehrblütigen Ährchen, Pflanze B je drei einblütige Ährchen an einem Ansatz. A passt zum hier beschriebenen Weizenbau, B zur Gerste. Die Grannenlänge allein löst diesen Vergleich nicht. Der Kurs behandelt Saat-Weizen und nicht automatisch jede andere Weizenart oder Kreuzungsform. Der Erkenntnisgewinn liegt in der Verbindung von Blattansatz und Blütenstand, nicht in einer einzigen vermeintlich unfehlbaren Merkhilfe."
+          ],
+          "takeaway": "Beim Saat-Weizen sind Ähre, mehrblütiges Ährchen und Einzelblüte drei verschiedene Bauebenen.",
+          "exercise": "Vergleiche mehrblütige Einzelährchen mit Gersten-Dreiergruppen einblütiger Ährchen."
+        },
+        {
+          "id": "gerste-dreiergruppen",
+          "title": "Gerste: drei Ährchen sind nicht drei Blüten in einem Ährchen",
+          "paragraphs": [
+            "Kulturgerste besitzt einen besonders kennzeichnenden Aufbau der Ähre: An einem Ansatz der Ährenachse stehen drei Ährchen beisammen. Jedes dieser Ährchen ist im normalen Grundbau einblütig. Die drei Einheiten sind also keine drei Blüten innerhalb eines gemeinsamen mehrblütigen Ährchens. Diese räumliche Unterscheidung ist wichtiger als der bloße Eindruck einer dichten, häufig lang begrannten Ähre.",
+            "Bei zweizeiligen Kulturformen ist in jeder Dreiergruppe die mittlere Einheit fruchtbar und bildet ein Korn; die beiden seitlichen bleiben unfruchtbar. Bei sechszeiligen Formen können alle drei Ährchen Körner bilden. Die Bezeichnungen zwei- und sechszeilig beschreiben die daraus entstehenden Kornreihen entlang der Ähre. Sie bedeuten nicht, dass eine Pflanze zwei oder sechs Ähren besitzt oder dass jede Einzelblüte zwei beziehungsweise sechs Körner entwickelt.",
+            "Der Blattansatz ergänzt den Ährenbau: Die Öhrchen der Gerste sind gewöhnlich lang, kahl und greifen sichelförmig um den Halm. Das unterscheidet sie im hier betrachteten Getreidevergleich von den meist kleineren, häufig bewimperten Weizenöhrchen und den fehlenden Haferöhrchen. Das Blatthäutchen ist eine weitere, davon getrennte Struktur. Es sitzt an der Innenseite des Übergangs zwischen Blattscheide und Blattspreite.",
+            "Eigenes Anwendungsbeispiel: Eine schematische Gerstenähre hat an jedem Ansatz weiterhin drei Ährchen, obwohl nur in der Mitte ein Korn entwickelt ist. Das ist kein Widerspruch zum zweizeiligen Typ, sondern gerade dessen Kennzeichen. Die hier beschriebene Kulturgruppe wird häufig im weiteren Sinn als Hordeum vulgare zusammengefasst; einzelne Floren trennen zweizeilige Formen taxonomisch anders. Der sichtbare Dreierbau und die unterschiedliche Fruchtbarkeit lassen sich erklären, ohne daraus eine einheitliche Ertragsaussage oder eine vollständige Bestimmung aller wild wachsenden Gersten abzuleiten."
+          ],
+          "takeaway": "Die Kornzeilen der Kulturgerste hängen von der Fruchtbarkeit dreier benachbarter einblütiger Ährchen ab.",
+          "exercise": "Erkläre am eigenen Dreiermodell, welche Einheiten beim zweizeiligen Typ Körner bilden."
+        },
+        {
+          "id": "roggen-zwei-fertile",
+          "title": "Roggen: ein Ährchen mit gewöhnlich zwei fruchtbaren Blüten",
+          "paragraphs": [
+            "Roggen, Secale cereale, trägt eine Ähre mit unmittelbar an der Achse sitzenden Ährchen. Im grundlegenden Vergleich stehen die Ährchen einzeln und enthalten gewöhnlich zwei fruchtbare Blüten. Dazu kann eine verkümmerte weitere Blüte kommen. „Zweiblütig“ darf daher nicht so verstanden werden, als müsse jede mikroskopische Anlage eines Ährchens immer exakt auf zwei begrenzt sein. Gemeint ist hier vor allem der charakteristische Bau mit zwei voll entwickelten Blüten.",
+            "Die einzelnen Blüten besitzen Spelzen. Bei Roggen sind die Hüllspelzen schmal; die Deckspelzen sind gekielt und tragen Grannen. Die Granne sitzt also an einer Spelze und nicht als selbständiger Zweig an der Ährenachse. Eine lange begrannte Gesamtgestalt kann auch bei anderen Getreiden vorkommen. Der Ährchenbau macht aus dem äußeren Eindruck erst einen fachlich nutzbaren Vergleich.",
+            "Am Blattansatz befinden sich kleine Öhrchen und ein kurzes häutiges Blatthäutchen. Im Vergleich zu den langen halmumgreifenden Gerstenöhrchen sind die Roggenöhrchen viel weniger auffällig. Die Blattfarbe oder ein Eindruck von Rauheit allein genügt nicht zur Abgrenzung. Auch eine verwischte oder unvollständige Ansicht des Blattgrundes ist kein positiver Nachweis für fehlende Öhrchen, wie sie beim Hafer vorkommen.",
+            "Eigenes Vergleichsbeispiel: Ein Ährchen enthält zwei gut entwickelte Blüten und eine kleine verkümmerte Anlage. Zusammen mit einer unverzweigten Ähre, schmalen Hüllspelzen und den passenden Blattansätzen passt dies zum beschriebenen Roggenbau. Man sollte die verkümmerte Anlage weder als vollwertige dritte Kornanlage zählen noch wegen ihres Vorhandenseins die Bestimmung sofort verwerfen. Dieses Beispiel zeigt, weshalb botanische Merkmale Entwicklungszustand und Funktionsfähigkeit einschließen. Es ist eine Orientierung an einer benannten Kulturart, kein Schlüssel für sämtliche ähnlichen Wildgräser oder Getreidekreuzungen."
+          ],
+          "takeaway": "Roggenährchen besitzen gewöhnlich zwei fruchtbare Blüten; eine zusätzliche verkümmerte Anlage ist möglich.",
+          "exercise": "Trenne im eigenen Roggenbeispiel zwei entwickelte Blüten von einer verkümmerten Anlage."
+        },
+        {
+          "id": "hafer-rispe",
+          "title": "Saat-Hafer: verzweigte Rispe statt kompakter Ähre",
+          "paragraphs": [
+            "Saat-Hafer, Avena sativa, lässt sich im entwickelten Blütenstand besonders gut von den drei zuvor behandelten Getreiden abgrenzen. Seine Ährchen stehen an den Ästen und Stielen einer verzweigten Rispe. Die Verzweigung ist der entscheidende Unterschied zur Ähre, deren Ährchen unmittelbar an einer unverzweigten Hauptachse sitzen. „Locker“ beschreibt nur den Gesamteindruck; die tatsächlichen Ansatzstellen erklären den Bau.",
+            "Die Haferährchen sind mehrblütige Einheiten und werden von zwei Hüllspelzen umgeben. Einzelne Blüten tragen wiederum Deck- und Vorspelze. Beim Saat-Hafer können Deckspelzen begrannt sein; es kommen auch unbegrannte Ausprägungen vor. Eine Rispe ist deshalb weder mit einer einzigen großen Blüte gleichzusetzen noch eine Ansammlung von Spelzen ohne eigentliche Blüten. Dieselben Baubegriffe wie beim Weizen bleiben erhalten, werden aber in einem anders verzweigten Blütenstand angeordnet.",
+            "Am Übergang zwischen Blattscheide und Blattspreite besitzt Hafer ein häutiges Blatthäutchen, aber keine Blattöhrchen. „Keine Öhrchen“ bedeutet also nicht „gar kein häutiger Anhang am Blattgrund“. Gerade diese Trennung ist beim Lernen hilfreich: Das mittig beziehungsweise innen liegende Blatthäutchen und die seitlichen Öhrchen anderer Getreide sind zwei verschiedene Merkmalsgruppen, die einzeln betrachtet werden müssen.",
+            "Eigenes Anwendungsbeispiel: Pflanze A zeigt eine verzweigte Rispe und Blattansätze ohne Öhrchen, aber mit Blatthäutchen. Pflanze B zeigt eine unverzweigte Ähre und lange umgreifende Öhrchen. A passt zum hier erklärten Hafermodell, B zum Gerstenmodell. Die Merkmale grenzen jedoch Saat-Hafer nicht schon vollständig gegen jeden Wildhafer ab. Besonders junge Haferpflanzen können sich vegetativ sehr ähneln. Das Lernziel ist ein verständlicher Vergleich der vier Kulturgetreide; für eine vollständige Artbestimmung müssen weitere Merkmale der reifen Ährchen und ihrer Blüten hinzukommen."
+          ],
+          "takeaway": "Saat-Hafer verbindet eine verzweigte Rispe mit öhrchenlosen Blattansätzen und vorhandenem Blatthäutchen.",
+          "exercise": "Vergleiche Hafer und Gerste jeweils nach Blütenstand und Blattansatz."
+        }
+      ],
+      "questions": [
+        {
+          "id": "weizen-aehrchen",
+          "lessonId": "weizen-aehrchen",
+          "q": "Welche Anordnung beschreibt die Ähre des Saat-Weizens im Vergleich zur Gerste?",
+          "options": [
+            "Drei einblütige Ährchen je Ansatz der Ährenachse",
+            "Gestielte Ährchen an verzweigten Rispenästen",
+            "Einzelne Blüten ohne Ährchen und Spelzen",
+            "Mehrblütige Ährchen einzeln an der Ährenachse"
+          ],
+          "answer": 3,
+          "explain": "Beim Saat-Weizen sitzen mehrblütige Ährchen einzeln an der Ährenachse. Gerste trägt demgegenüber Gruppen aus drei einblütigen Ährchen; Hafer besitzt eine verzweigte Rispe."
+        },
+        {
+          "id": "gerste-dreiergruppen",
+          "lessonId": "gerste-dreiergruppen",
+          "q": "Welche Ährchen einer Dreiergruppe bilden beim zweizeiligen Kulturgersten-Modell Körner?",
+          "options": [
+            "Nur das mittlere Ährchen",
+            "Nur die beiden seitlichen Ährchen",
+            "Alle drei Ährchen gleichermaßen",
+            "Abwechselnd jeweils zwei Ährchen"
+          ],
+          "answer": 0,
+          "explain": "Beim zweizeiligen Typ ist je Dreiergruppe nur das mittlere Ährchen fruchtbar. Beim sechszeiligen Typ können auch die beiden seitlichen Ährchen Körner bilden. Die Zahl der Ansatz-Einheiten bleibt davon getrennt."
+        },
+        {
+          "id": "roggen-zwei-fertile",
+          "lessonId": "roggen-zwei-fertile",
+          "q": "Wie ist das typische Roggenährchen hinsichtlich seiner fruchtbaren Blüten aufgebaut?",
+          "options": [
+            "Es enthält drei voneinander getrennte einblütige Ährchen.",
+            "Es enthält gewöhnlich zwei fruchtbare Blüten.",
+            "Es enthält nur Hüllspelzen ohne Blüten.",
+            "Es enthält eine Rispe aus gestielten Ähren."
+          ],
+          "answer": 1,
+          "explain": "Im typischen Roggenährchen stehen zwei fruchtbare Blüten. Eine verkümmerte zusätzliche Blüte kann vorhanden sein; sie ist nicht als weitere voll entwickelte Blüte oder fertiges Korn zu zählen."
+        },
+        {
+          "id": "hafer-rispe",
+          "lessonId": "hafer-rispe",
+          "q": "Welche Kombination passt im Viergetreide-Vergleich zum Saat-Hafer?",
+          "options": [
+            "Unverzweigte Ähre und lange halmumgreifende Öhrchen",
+            "Unverzweigte Ähre und kleine bewimperte Öhrchen",
+            "Verzweigte Rispe und Blattansatz ohne Öhrchen",
+            "Dreiergruppen einblütiger Ährchen und fehlende Ligula"
+          ],
+          "answer": 2,
+          "explain": "Saat-Hafer trägt seine Ährchen an einer verzweigten Rispe und besitzt keine Öhrchen, wohl aber ein häutiges Blatthäutchen. Diese Kombination unterscheidet ihn von den drei hier verglichenen Ährengetreiden, ersetzt aber keinen vollständigen Wildhafer-Schlüssel."
+        }
+      ]
+    },
+    {
+      "id": "wissen-vertiefung-funkwellen-round6-2026",
+      "title": "Funk verstehen: Wellenlänge, Polarisation und Signalwege",
+      "category": "Ausrüstung & Technik",
+      "topic": "Jagdpraxis",
+      "description": "Elektromagnetische Wellen von Schall unterscheiden und Frequenz, Feldrichtung sowie Wechselwirkungen mit Hindernissen verstehen.",
+      "minutes": 35,
+      "level": "Vertiefung",
+      "countries": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "countryNotes": {
+        "DE": "Grundlagen freier elektromagnetischer Wellen und vereinfachter Ausbreitungsmodelle; keine Frequenzfreigabe, Reichweitenprognose, Montageanleitung oder Aussage zur Eignung einzelner Geräte.",
+        "AT": "Grundlagen freier elektromagnetischer Wellen und vereinfachter Ausbreitungsmodelle; keine Frequenzfreigabe, Reichweitenprognose, Montageanleitung oder Aussage zur Eignung einzelner Geräte.",
+        "CH": "Grundlagen freier elektromagnetischer Wellen und vereinfachter Ausbreitungsmodelle; keine Frequenzfreigabe, Reichweitenprognose, Montageanleitung oder Aussage zur Eignung einzelner Geräte."
+      },
+      "objectives": [
+        "Funkwellen von Luftschall trennen",
+        "Frequenz und Wellenlänge verknüpfen",
+        "Lineare und zirkulare Polarisation erklären",
+        "Mehrere Ausbreitungswege statt pauschaler Reichweite verstehen"
+      ],
+      "sources": [
+        {
+          "label": "NASA: Anatomy of an Electromagnetic Wave",
+          "url": "https://science.nasa.gov/ems/02_anatomy/",
+          "organization": "NASA Science",
+          "supports": "Originalabschnitte Mechanical/Electromagnetic waves, Frequency, Wavelength und Polarization direkt gelesen. Keine historischen Rekorde, Teilchenvergleiche oder Absolutaussagen über Materietransport übernommen."
+        },
+        {
+          "label": "OpenStax: Plane Electromagnetic Waves",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves",
+          "organization": "Rice University, OpenStax University Physics Vol.2",
+          "supports": "Originalabschnitte transversale ebene freie Wellen, c=fλ und Dipol-Erzeugung direkt gelesen. Modell nicht auf das gesamte Nahfeld oder alle Medien verallgemeinert; keine Antennenabmessungen übernommen."
+        },
+        {
+          "label": "NASA: Basics of Space Flight – Electromagnetics",
+          "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter6-2/",
+          "organization": "NASA Science",
+          "supports": "Originalabschnitt Frequenz und Wellenlänge im vollständigen Original-Suchindex gelesen: λ=c/f, Hz und Amplitude. Keine Spektrumsgrenzen, Übertragungsrechte oder Leistungszahlen übernommen."
+        },
+        {
+          "label": "NASA: Polarimetry",
+          "url": "https://science.nasa.gov/mission/nisar/polarimetry/",
+          "organization": "NASA/JPL-Caltech, NISAR",
+          "supports": "Originaltext direkt gelesen: Polarisation über E-Feld, linear/zirkular sowie definierte Sende-/Empfangspolarisation. Keine Geräte-Leistungsgarantie oder heutige Missionsparameter abgeleitet."
+        },
+        {
+          "label": "OpenStax: Polarization",
+          "url": "https://openstax.org/books/university-physics-volume-3/pages/1-7-polarization",
+          "organization": "Rice University, OpenStax University Physics Vol.3",
+          "supports": "Originaldefinitionen transversales Feld, Polarisationsrichtung und linearer Feldverlauf direkt gelesen. Keine fremden Aufgaben, Filterbilder, Verlustwerte oder Produktversprechen übernommen."
+        },
+        {
+          "label": "Feynman Lectures Vol.I, Chapter33: Polarization",
+          "url": "https://www.feynmanlectures.caltech.edu/I_33.html",
+          "organization": "California Institute of Technology, Feynman Lectures",
+          "supports": "Originalabschnitt33–1 im vollständigen Original-Suchindex gelesen: geradlinige, elliptische und kreisende Spitze des E-Feldvektors bei festem Ort. Keine Rechts-/Linkshandkonvention oder fremden Rechenaufgaben übernommen."
+        },
+        {
+          "label": "ESA: Communicating from space – gaining a grip on antennas",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Rosetta/Communicating_from_space_gaining_a_grip_on_antennas2",
+          "organization": "European Space Agency",
+          "supports": "Originaltext vollständig im Original-Suchindex gelesen: Antenne sendet/empfängt, Richtwirkung verschieden. Keine Behauptung über Büroklammer-Eignung oder bestimmte Reichweiten übernommen."
+        },
+        {
+          "label": "ESA Navipedia: Antennas",
+          "url": "https://gssc.esa.int/navipedia/index.php/Antennas",
+          "organization": "European Space Agency, Navipedia",
+          "supports": "Originaltext Polarisation/Antennen direkt beziehungsweise im vollständigen Originalindex gelesen: gezielte Polarisation und reale nicht perfekte Trennung. GNSS-Zahlen/Abstrahlwinkel nicht in allgemeine Geräteversprechen übertragen."
+        },
+        {
+          "label": "NASA: Wave Behaviors",
+          "url": "https://science.nasa.gov/ems/03_behaviors/",
+          "organization": "NASA Science",
+          "supports": "Originalabschnitte Reflexion, Absorption, Beugung und einleitende Wellen-/Materialabhängigkeit direkt gelesen. Keine Temperaturwerte, Farbanalogien als Funkgarantie oder Dekobilder übernommen."
+        },
+        {
+          "label": "OpenStax: Huygens's Principle – Diffraction",
+          "url": "https://openstax.org/books/college-physics-2e/pages/27-2-huygenss-principle-diffraction",
+          "organization": "Rice University, OpenStax College Physics2e",
+          "supports": "Originalabschnitte Beugung an Hindernissen/Öffnungen und Größenverhältnis zur Wellenlänge direkt gelesen. Keine optischen Zahlenwerte oder fremden Aufgaben übernommen."
+        },
+        {
+          "label": "ESA: Wave Interaction and Propagation",
+          "url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Wave_Interaction_and_Propagation",
+          "organization": "European Space Agency",
+          "supports": "Originaltext direkt gelesen: reflektierte Funkwege, Material-/Umgebungseinfluss und konkrete komplexe Ausbreitungsprobleme. Keine allgemeine Schlechtwetter- oder Reichweitenregel abgeleitet."
+        },
+        {
+          "label": "ITU-R: Propagation prediction methods for interference and sharing studies",
+          "url": "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf",
+          "organization": "International Telecommunication Union, Radiocommunication Sector",
+          "supports": "Originalabschnitt3.5 S.21–22 im vollständigen Original-Suchindex gelesen: terrestrische und Weltraumpfade, Beugung/Reflexion/Absorption/Dämpfung. Nur physikalische Grundlagen, keine Übertragung auf konkrete Gerätefrequenz oder aktuelle Rechtslage."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "elektromagnetisch-schall",
+          "title": "Was zwischen Funkantennen übertragen wird",
+          "paragraphs": [
+            "Eine Funkwelle ist eine elektromagnetische Welle. Sie besteht im klassischen Modell aus zusammenhängenden zeitlich veränderlichen elektrischen und magnetischen Feldern. Damit gehört sie zur selben grundlegenden Strahlungsfamilie wie sichtbares Licht, obwohl unsere Augen Funkwellen nicht sehen. Funkübertragung ist also keine besonders laute Form von Schall und auch kein Luftstrom, der vom Sender zum Empfänger geblasen wird.",
+            "Luftschall ist dagegen eine mechanische Welle: Druck- und Dichteschwankungen breiten sich durch ein materielles Medium aus. Im Vakuum fehlt dieses Medium für Luftschall. Elektromagnetische Wellen benötigen es nicht und können auch durch den leeren Raum laufen. Genau dieser Unterschied macht verständlich, weshalb eine Funkverbindung zwischen Raumfahrzeug und Bodenstation physikalisch möglich ist, obwohl dort keine durchgehende Luftsäule existiert.",
+            "Eine Antenne koppelt elektrische Vorgänge im Gerät an elektromagnetische Wellen oder umgekehrt. Das Mikrofon und der Lautsprecher einer Sprechverbindung übernehmen andere Aufgaben: Die Stimme ist zunächst Schall, die Übertragungsstrecke zwischen den Antennen elektromagnetisch. Die hörbare Ausgabe am Empfänger macht die zuvor durchlaufene Funkwelle nicht nachträglich zu einer Schallwelle. Eine technische Kette kann verschiedene physikalische Signalformen miteinander verbinden.",
+            "Für das weitere Lernen betrachten wir eine freie ebene Welle als vereinfachtes Fernfeldmodell. Dabei stehen elektrisches Feld, magnetisches Feld und Ausbreitungsrichtung senkrecht zueinander. Die Welle heißt deshalb transversal. Diese Zeichnung ist kein vollständiges Bild der Felder unmittelbar an jeder Antenne. Eigenes Vergleichsbeispiel: Ein Pfeil zeigt nach vorn für die Ausbreitung, ein zweiter nach oben für das elektrische Feld. Der zweite Pfeil zeigt nicht die Flugrichtung einzelner Luftteilchen, sondern die momentane Richtung einer Feldgröße."
+          ],
+          "takeaway": "Funk transportiert elektromagnetische Energie; Luftschall benötigt ein materielles Medium.",
+          "exercise": "Trenne beim Sprechfunkmodell akustischen Ein-/Ausgang und elektromagnetischen Übertragungsweg."
+        },
+        {
+          "id": "frequenz-wellenlaenge",
+          "title": "Zeitliche Wiederholung und räumlicher Abstand sind verschieden",
+          "paragraphs": [
+            "Die Frequenz f beschreibt, wie oft sich eine vollständige Schwingung an einem festen Ort innerhalb einer Zeit wiederholt. Ihre Einheit Hertz bedeutet eine Schwingung pro Sekunde. Die Wellenlänge λ beschreibt dagegen einen räumlichen Abstand: etwa den Abstand zwischen zwei aufeinanderfolgenden gleichphasigen Wellenbergen. Zeitliche Wiederholungszahl und räumliche Länge sind verschiedene Größen, auch wenn sie bei einer laufenden Welle zusammenhängen.",
+            "Für eine elektromagnetische Welle im Vakuum gilt c = f · λ. Dabei ist c die Lichtgeschwindigkeit im Vakuum. Wird die Ausbreitungsgeschwindigkeit gleich gehalten, bedeutet eine höhere Frequenz eine kürzere Wellenlänge. Das ist keine zusätzliche Materialeigenschaft eines bestimmten Funkgeräts, sondern die Verknüpfung der beiden Wellenbeschreibungen. Frequenz und Wellenlänge dürfen deshalb nicht wie zwei beliebig unabhängig einstellbare Beschriftungen derselben freien Welle behandelt werden.",
+            "Eigenes Verhältnisbeispiel: Zwei gedachte freie Wellen breiten sich mit derselben Geschwindigkeit aus. Bei B ist die Frequenz doppelt so groß wie bei A. Dann ist die Wellenlänge von B halb so groß. Für diesen Vergleich braucht man keinen realen Funkkanal und keine konkrete zugelassene Frequenz zu wählen. Es werden nur die beiden Größen in der Gleichung verändert, während die Ausbreitungsgeschwindigkeit ausdrücklich gleich bleibt.",
+            "Die Amplitude beschreibt nochmals etwas anderes, nämlich die Stärke der betrachteten Schwingungsgröße. Eine Zeichnung mit dichter aufeinanderfolgenden Wellenbergen zeigt eine kürzere Wellenlänge; eine Zeichnung mit größeren Feldpfeilen kann eine größere Feldamplitude zeigen. Aus einer höheren Frequenz folgt nicht allein, dass die Feldpfeile größer sein müssen. Ebenso liefert die Wellenlänge noch keine verlässliche Entfernung, über die ein bestimmtes Gerät unter beliebigen Geländebedingungen funktioniert. Wellenbeschreibung und vollständige Funkverbindung sind unterschiedliche Ebenen."
+          ],
+          "takeaway": "Bei gleicher Ausbreitungsgeschwindigkeit sind Frequenz und Wellenlänge umgekehrt proportional.",
+          "exercise": "Halte im eigenen Verhältnisbeispiel die Ausbreitungsgeschwindigkeit fest und verändere Frequenz und Wellenlänge."
+        },
+        {
+          "id": "polarisation",
+          "title": "Die Feldrichtung ist nicht die Ausbreitungsrichtung",
+          "paragraphs": [
+            "Die Polarisation einer elektromagnetischen Welle wird über das Verhalten ihres elektrischen Feldes beschrieben. Im freien transversalen Wellenmodell liegt dieses Feld quer zur Ausbreitungsrichtung. Eine nach vorn laufende Welle kann deshalb etwa ein auf- und abschwingendes oder ein seitlich schwingendes elektrisches Feld besitzen. Die Bezeichnungen vertikal und horizontal beziehen sich hier auf die Feldorientierung, nicht darauf, ob das Signal bergauf oder waagerecht durch die Landschaft läuft.",
+            "Bei linearer Polarisation bewegt sich die Spitze des elektrischen Feldvektors an einem festen Ort auf einer Geraden hin und her. Diese Gerade kann unterschiedlich orientiert sein. Bei zirkularer Polarisation beschreibt die Feldspitze an einem festen Ort dagegen einen Kreis. Das ist eine zeitliche Änderung der Feldrichtung; es bedeutet nicht, dass die gesamte Funkverbindung einen kreisförmigen Weg um den Empfänger nimmt.",
+            "Auch die Kreisbewegung darf nicht mit einer Drehung des Geräts verwechselt werden. Sie beschreibt die lokale Welle. Antennen können für bestimmte Sende- und Empfangspolarisationen ausgelegt werden. Reale Systeme trennen diese Formen jedoch nicht immer vollkommen. Aus dem Begriff allein lässt sich weder eine bestimmte Gerätereichweite noch eine allgemeine Rangfolge „diese Polarisation ist immer besser“ ableiten. Dazu gehören der konkrete Signalweg und die ausgelegte Antenne.",
+            "Eigenes Vergleichsmodell: Zwei Wellen laufen beide von links nach rechts. Bei A schwingt das elektrische Feld auf derselben senkrechten Linie, bei B dreht seine Spitze in einer Ebene quer zum Weg. A ist linear, B zirkular polarisiert. Frequenz und Laufrichtung könnten in beiden Skizzen gleich sein. Das Modell zeigt, weshalb zusätzlich zur Wellenlänge eine weitere Eigenschaft angegeben werden muss, wenn eine Funkwelle genauer beschrieben werden soll."
+          ],
+          "takeaway": "Polarisation beschreibt das elektrische Feld quer zur Laufrichtung; linear und zirkular sind verschiedene zeitliche Muster.",
+          "exercise": "Zeichne gedanklich bei gleicher Laufrichtung einen linearen und einen zirkularen Feldverlauf."
+        },
+        {
+          "id": "hindernisse-signalwege",
+          "title": "Hindernisse verändern Wellen auf mehreren Wegen",
+          "paragraphs": [
+            "Trifft eine elektromagnetische Welle auf Materie, kann ein Teil reflektiert, weitergeleitet beziehungsweise durchgelassen, gestreut oder absorbiert werden. Welche Anteile auftreten, hängt unter anderem vom Material und der Wellenlänge ab. „Hindernis“ ist deshalb kein physikalisch eindeutiger Ein-Aus-Schalter: Dass eine Wand oder ein Gehölz optisch im Weg steht, beschreibt noch nicht vollständig das Verhalten einer Funkwelle an diesem Objekt.",
+            "Reflexion lenkt einen Anteil der Welle an einer Grenzfläche zurück beziehungsweise in eine andere Richtung. Absorption überträgt Energie der Welle auf die Materie. Transmission bezeichnet den durch das Material weiterlaufenden Anteil. Diese Vorgänge können an demselben Gegenstand gleichzeitig auftreten. Ein Signalweg kann dadurch aus einem direkten und mehreren über die Umgebung veränderten Anteilen bestehen; nicht jeder empfangene Anteil muss auf der geradesten Verbindung angekommen sein.",
+            "Hinzu kommt Beugung: Wellen können sich an Öffnungen und Hindernisrändern in den geometrischen Schattenraum ausbreiten. Wie auffällig diese Wirkung ist, hängt auch vom Verhältnis der Hindernisgröße zur Wellenlänge ab. Das ist etwas anderes als die Annahme, jedes Signal müsse an jeder Kante vollständig um die Ecke gelangen. In Funk-Ausbreitungsmodellen werden Geländeform und Umgebung deshalb zusammen mit den Eigenschaften der Welle betrachtet.",
+            "Eigenes Anwendungsbeispiel: Zwischen zwei gedachten Stationen liegt eine Kante. Ein Skizzenpfeil zeigt den geraden Weg, ein zweiter einen reflektierten Weg über eine Fläche und ein dritter einen gebeugten Anteil an der Kante. Die drei Linien stellen verschiedene Mechanismen dar, keine zugesicherte Empfangsqualität. Eine kurze freie Strecke und eine gleich lange Strecke mit Hindernissen können verschieden wirken. Eine allgemeine Kilometerangabe allein aus der Frequenz wäre daher nicht belastbar; für eine reale Verbindung müssen die konkreten Bedingungen berücksichtigt werden."
+          ],
+          "takeaway": "Reflexion, Transmission, Absorption und Beugung sind verschiedene Mechanismen; Gelände ist kein pauschaler Ein-Aus-Schalter.",
+          "exercise": "Ordne den drei eigenen Pfadpfeilen direkte Ausbreitung, Reflexion und Beugung zu."
+        }
+      ],
+      "questions": [
+        {
+          "id": "elektromagnetisch-schall",
+          "lessonId": "elektromagnetisch-schall",
+          "q": "Welches Merkmal unterscheidet eine Funkwelle von Luftschall?",
+          "options": [
+            "Die Funkwelle ist ein fortlaufender Luftstrom.",
+            "Die Funkwelle kann sich auch im Vakuum ausbreiten.",
+            "Die Funkwelle benötigt eine zusammenhängende Luftsäule.",
+            "Die Funkwelle besteht aus wandernden Luftdruckknoten."
+          ],
+          "answer": 1,
+          "explain": "Funkwellen sind elektromagnetisch und benötigen kein stoffliches Medium. Luftschall ist mechanisch und kann im Vakuum nicht übertragen werden. Antenne und Lautsprecher gehören daher zu verschiedenen Abschnitten einer Signalübertragung."
+        },
+        {
+          "id": "frequenz-wellenlaenge",
+          "lessonId": "frequenz-wellenlaenge",
+          "q": "Wie verändert sich die Wellenlänge, wenn sich die Frequenz einer freien Welle bei gleicher Ausbreitungsgeschwindigkeit verdoppelt?",
+          "options": [
+            "Sie wird viermal so groß.",
+            "Sie bleibt unverändert.",
+            "Sie wird doppelt so groß.",
+            "Sie wird halb so groß."
+          ],
+          "answer": 3,
+          "explain": "Aus c=f·λ folgt bei festem c: doppelte Frequenz bedeutet halbe Wellenlänge. Die Amplitude ist eine andere Größe; das Verhältnisbeispiel behauptet keine Gerätereichweite."
+        },
+        {
+          "id": "polarisation",
+          "lessonId": "polarisation",
+          "q": "Welches Verhalten zeigt das elektrische Feld einer linear polarisierten freien Welle an einem festen Ort?",
+          "options": [
+            "Seine Spitze schwingt entlang einer festen Geraden.",
+            "Seine Spitze läuft auf einem Kreis mit konstantem Betrag.",
+            "Seine Spitze folgt dem Weg vom Sender zum Empfänger.",
+            "Seine Richtung ist ausschließlich durch die Frequenz festgelegt."
+          ],
+          "answer": 0,
+          "explain": "Bei linearer Polarisation schwingt der E-Feldvektor entlang einer Geraden. Beim zirkularen Fall beschreibt seine Spitze an einem festen Ort einen Kreis. Beide Angaben betreffen das Feld, nicht einen geraden oder kreisförmigen Signalweg."
+        },
+        {
+          "id": "hindernisse-signalwege",
+          "lessonId": "hindernisse-signalwege",
+          "q": "Wie heißt die Ausbreitung einer Welle an einer Hinderniskante in den geometrischen Schattenraum?",
+          "options": [
+            "Absorption",
+            "Transmission",
+            "Beugung",
+            "Polarisation"
+          ],
+          "answer": 2,
+          "explain": "Beugung beschreibt die Ausbreitung an Kanten oder Öffnungen über den geradlinigen geometrischen Weg hinaus. Sie ist von Reflexion an einer Fläche, Durchtritt und Energieaufnahme im Material zu unterscheiden; sie garantiert keinen brauchbaren Funkempfang."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-vertiefung-ameisenstaaten-round6-2026",
+      "lessonId": "brutstadien",
+      "claims": [
+        {
+          "claim": "Vollständige Metamorphose umfasst Ei, beinlose Larve, Puppe und erwachsenes Tier; Brut umfasst die unreifen Stadien.",
+          "sourceUrls": [
+            "https://ipm.ucanr.edu/home-and-landscape/ants/",
+            "https://www.extension.umd.edu/resource/ants-indoor-insects",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism"
+          ]
+        },
+        {
+          "claim": "Arbeiterinnen pflegen und füttern Larven; die Puppe frisst nicht. Längliche als Ameiseneier bezeichnete Gebilde können Puppenkokons sein.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://www.extension.umd.edu/resource/ants-indoor-insects",
+            "https://www.sites.ext.vt.edu/schoolipm/ipmtechniques/documents/ants.pdf"
+          ]
+        },
+        {
+          "claim": "Arbeiterin bezeichnet die erwachsene weibliche Arbeitskaste, nicht ein weiteres Brutstadium.",
+          "sourceUrls": [
+            "https://extension.umn.edu/garden-and-home/home-maintenance/household-insects/ants",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-ameisenstaaten-round6-2026",
+      "lessonId": "arbeiterinnen-fortpflanzung",
+      "claims": [
+        {
+          "claim": "Arbeiterinnen sind weibliche Erwachsene und übernehmen Nahrungssuche, Brutpflege, Nestunterhalt und Verteidigung; Königinnen tragen die Fortpflanzung, Männchen die Paarung.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://extension.umn.edu/garden-and-home/home-maintenance/household-insects/ants",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism"
+          ]
+        },
+        {
+          "claim": "Geflügelte Männchen und Jungköniginnen gehören bei vielen Arten zur Fortpflanzung; begattete Königinnen können ihre Flügel verlieren.",
+          "sourceUrls": [
+            "https://www.nhm.ac.uk/discover/when-why-winged-ants-swarm-nuptial-flight.html",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/",
+            "https://extension.colostate.edu/resource/ants-in-the-home/"
+          ]
+        },
+        {
+          "claim": "Arbeiterinnengrößen und Aufgaben unterscheiden sich nach Art beziehungsweise Alter/Situation; ein- und mehrköniginnenhaltige Kolonien kommen vor.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism",
+            "https://ipm.ucanr.edu/TOOLS/ANTKEY/biolcol.html?wpmobileexternal=true"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-ameisenstaaten-round6-2026",
+      "lessonId": "duftspuren-honigtau",
+      "claims": [
+        {
+          "claim": "Viele Ameisen legen chemische Nahrungsspuren; Pheromone dienen der Verständigung zwischen Koloniemitgliedern.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism"
+          ]
+        },
+        {
+          "claim": "Ameisennahrung umfasst je nach Art verschiedene Ressourcen, darunter Insekten, Samen und Zucker; Arbeiterinnen versorgen die Kolonie.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/",
+            "https://extension.umn.edu/garden-and-home/home-maintenance/household-insects/ants"
+          ]
+        },
+        {
+          "claim": "Honigtau ist zuckerhaltige Ausscheidung von Pflanzensaftsaugern; manche Ameisen schützen Honigtauproduzenten, während andere Nahrungsbeziehungen Insektenfraß umfassen.",
+          "sourceUrls": [
+            "https://ipm.ucanr.edu/home-and-landscape/ants/",
+            "https://askabiologist.asu.edu/explore/secrets-superorganism",
+            "https://extension.colostate.edu/resource/ants-in-the-home/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-ameisenstaaten-round6-2026",
+      "lessonId": "koloniegruendung",
+      "claims": [
+        {
+          "claim": "Lasius niger gründet nach Paarung/Flügelverlust mit zunächst selbst aufgezogener Brut; bei der abgeschlossenen unabhängigen Gründung werden Reserven vor den ersten sammelnden Arbeiterinnen genutzt.",
+          "sourceUrls": [
+            "https://www.nhm.ac.uk/discover/when-why-winged-ants-swarm-nuptial-flight.html",
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/"
+          ]
+        },
+        {
+          "claim": "Bei Knospung begleiten Arbeiterinnen neue Königinnen beziehungsweise transportieren Brut; es gibt je nach Art verschiedene Gründungsmodelle.",
+          "sourceUrls": [
+            "https://ipm.ucanr.edu/TOOLS/ANTKEY/biolcol.html?wpmobileexternal=true",
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/"
+          ]
+        },
+        {
+          "claim": "Eine Kolonie kann mehrere Nistplätze nutzen; Satellitennester beziehungsweise verknüpfte Nester erlauben keine Gleichsetzung von Nestöffnung und Kolonie.",
+          "sourceUrls": [
+            "https://extension.colostate.edu/resource/ants-in-the-home/",
+            "https://ipm.ucanr.edu/home-and-landscape/ants/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kiefernzapfen-round6-2026",
+      "lessonId": "zapfenschuppen",
+      "claims": [
+        {
+          "claim": "Pinus bildet Pollen- und Samenanlagenzapfen; weibliche Schuppen stehen um eine Achse und tragen im Grundbauplan je zwei Samenanlagen auf fruchtbaren Schuppen.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/"
+          ]
+        },
+        {
+          "claim": "Kiefern-Samenanlagen sind nicht in einen Fruchtknoten eingeschlossen; Zapfenschuppen und Samenschale schützen trotzdem. Nicht jede Schuppe beziehungsweise Anlage liefert einen vollständigen Samen.",
+          "sourceUrls": [
+            "https://www.kew.org/read-and-watch/what-is-a-seed",
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/",
+            "https://milnepublishing.geneseo.edu/botany/chapter/sex-and-reproduction-in-specific-groups/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kiefernzapfen-round6-2026",
+      "lessonId": "pollen-befruchtung",
+      "claims": [
+        {
+          "claim": "Wind überträgt Kiefernpollen zu den Samenanlagen; Mikropyle und empfängliche Schuppenstellung ermöglichen den Zugang, nicht eine bedecktsamige Narbe.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+            "https://milnepublishing.geneseo.edu/botany/chapter/sex-and-reproduction-in-specific-groups/"
+          ]
+        },
+        {
+          "claim": "Pollenschlauchwachstum liegt zwischen Pollenankunft und Befruchtung; Kernvereinigung erzeugt die Zygote und danach entwickelt sich der Embryo.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/"
+          ]
+        },
+        {
+          "claim": "Bei Kiefern sind Bestäubung und Befruchtung zeitlich getrennt; Entwicklungsfristen sind artspezifisch und Zapfenansatz ist keine vollständige Samen-Erfolgsgarantie.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/",
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kiefernzapfen-round6-2026",
+      "lessonId": "samen-gewebe",
+      "claims": [
+        {
+          "claim": "Der vollständige Kiefernsamen enthält Embryo mit Wurzel-/Spross-/Keimblattanlagen, gespeicherte Nahrung im weiblichen Gametophyten und eine aus dem Integument entstandene Samenschale.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+            "https://milnepublishing.geneseo.edu/botany/chapter/sex-and-reproduction-in-specific-groups/"
+          ]
+        },
+        {
+          "claim": "Weiblicher Gametophyt und Integument entwickeln sich vor dem nach Befruchtung entstehenden Embryo; ihre Herkunft unterscheidet sich vom Embryo beziehungsweise vom Endosperm der Bedecktsamer.",
+          "sourceUrls": [
+            "https://www.nzplants.auckland.ac.nz/en/about/seed-plants-non-flowering/reproduction/pine-life-cycle.html",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/",
+            "https://milnepublishing.geneseo.edu/botany/chapter/sex-and-reproduction-in-specific-groups/",
+            "https://propg.ifas.ufl.edu/04-seeds/01-development/08-seedsdevelopment-gymnospermendosperm.html",
+            "https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2007.02239.x"
+          ]
+        },
+        {
+          "claim": "Schuppen, Samenschale und Embryo sind verschiedene Strukturen; äußerlich entwickelte Samenhüllen können auch ohne vollständig entwickelten Sameninhalt vorkommen.",
+          "sourceUrls": [
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf",
+            "https://blogs.ubc.ca/biology210/lab/lab-8-coniferophyta/pinus-reproduction/pinus-female-cones/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-kiefernzapfen-round6-2026",
+      "lessonId": "hygroskopische-bewegung",
+      "claims": [
+        {
+          "claim": "Untersuchte reife Zapfen öffnen trocken und schließen bei Feuchte durch passive hygroskopische Schuppenbiegung; dies ist auch an toten abgefallenen Zapfen wiederholt möglich.",
+          "sourceUrls": [
+            "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202200458",
+            "https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2009-05.pdf"
+          ]
+        },
+        {
+          "claim": "Unterschiedliche Quellung/Schwindung verbundener Gewebe erzeugt Biegung. Das Zweischichtmodell ist eine Vereinfachung der realen räumlich gegliederten Schuppen.",
+          "sourceUrls": [
+            "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202200458",
+            "https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2009-05.pdf"
+          ]
+        },
+        {
+          "claim": "Die Öffnung ist mit Samenfreigabe verbunden, nicht mit neuer Samenentwicklung bei jedem Feuchtezyklus; Reaktionswerte sind keine universelle Zeit-/Wetterregel.",
+          "sourceUrls": [
+            "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202200458",
+            "https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2009-05.pdf",
+            "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-LPS56633/pdf/GOVPUB-A13-PURL-LPS56633.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+      "lessonId": "weizen-aehrchen",
+      "claims": [
+        {
+          "claim": "Saat-Weizen hat eine Ähre mit einzeln sitzenden mehrblütigen Ährchen, im Unterschied zur Gerste mit Dreiergruppen einblütiger Ährchen.",
+          "sourceUrls": [
+            "https://www.infoflora.ch/de/flora/triticum-aestivum.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Triticum~aestivum&page=nswfl",
+            "https://www.infoflora.ch/de/flora/hordeum-vulgare.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Hordeum&page=nswfl"
+          ]
+        },
+        {
+          "claim": "Hüllspelzen gehören zur Ährchenbasis, Deck-/Vorspelze zur Blüte; Weizen kann begrannt oder unbegrannt sein. Blattansatz typischerweise kleine oft behaarte Öhrchen und kurze häutige Ligula, ohne ausnahmslose Behaarungsregel.",
+          "sourceUrls": [
+            "https://www.infoflora.ch/de/flora/triticum-aestivum.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Triticum~aestivum&page=nswfl",
+            "https://agriculture.vic.gov.au/crops-and-horticulture/grains-pulses-and-cereals/crop-production/general-agronomy/identifying-cereal-seedlings",
+            "https://efotg.sc.egov.usda.gov/references/public/WA/A.3Cereal_Plant_Identification_In_Vegetative_Stage.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+      "lessonId": "gerste-dreiergruppen",
+      "claims": [
+        {
+          "claim": "Kulturgerste trägt dreierweise einblütige Ährchen; zweizeilige Formen haben nur mittlere, sechszeilige auch seitliche fruchtbare Ährchen.",
+          "sourceUrls": [
+            "https://www.infoflora.ch/de/flora/hordeum-vulgare.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Hordeum&page=nswfl",
+            "https://nios.montana.edu/barleybreeding/learning-center/maltster-resources/articles-posters/2r-v-6r.html",
+            "https://sarep.ucdavis.edu/covercrop/barley"
+          ]
+        },
+        {
+          "claim": "Gerstenöhrchen sind typischerweise lang, kahl und halmumgreifend; Ligula und Öhrchen sind verschiedene Strukturen des Blattansatzes.",
+          "sourceUrls": [
+            "https://agriculture.vic.gov.au/crops-and-horticulture/grains-pulses-and-cereals/crop-production/general-agronomy/identifying-cereal-seedlings",
+            "https://efotg.sc.egov.usda.gov/references/public/WA/A.3Cereal_Plant_Identification_In_Vegetative_Stage.pdf",
+            "https://www.infoflora.ch/de/flora/hordeum-vulgare.html"
+          ]
+        },
+        {
+          "claim": "Floren können zweizeilige Kulturformen unter anderem Taxonkonzept behandeln; der Kurs verwendet ausdrücklich die weitere Kulturgruppe, nicht eine Ertrags- oder Vollbestimmungsregel.",
+          "sourceUrls": [
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Hordeum&page=nswfl",
+            "https://www.infoflora.ch/de/flora/hordeum-vulgare.html",
+            "https://nios.montana.edu/barleybreeding/learning-center/maltster-resources/articles-posters/2r-v-6r.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+      "lessonId": "roggen-zwei-fertile",
+      "claims": [
+        {
+          "claim": "Roggen besitzt eine Ähre mit einzeln sitzenden Ährchen und zwei fruchtbaren Blüten, gegebenenfalls weiterer verkümmerter Anlage; schmale Hüllspelzen und gekielte begrannte Deckspelzen.",
+          "sourceUrls": [
+            "https://www.infoflora.ch/de/flora/secale-cereale.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=gn&name=Secale&page=nswfl"
+          ]
+        },
+        {
+          "claim": "Roggen besitzt kurze häutige Ligula und kleine Öhrchen; Vergleich zu langen Gersten- und fehlenden Haferöhrchen, keine alleinige Farb-/Behaarungsregel.",
+          "sourceUrls": [
+            "https://agriculture.vic.gov.au/crops-and-horticulture/grains-pulses-and-cereals/crop-production/general-agronomy/identifying-cereal-seedlings",
+            "https://efotg.sc.egov.usda.gov/references/public/WA/A.3Cereal_Plant_Identification_In_Vegetative_Stage.pdf",
+            "https://www.infoflora.ch/de/flora/secale-cereale.html",
+            "https://www.infoflora.ch/de/flora/hordeum-vulgare.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+      "lessonId": "hafer-rispe",
+      "claims": [
+        {
+          "claim": "Avena sativa hat eine verzweigte Rispe mit gestielten mehrblütigen Ährchen, zwei Hüllspelzen und variabler Grannenbildung.",
+          "sourceUrls": [
+            "https://www.infoflora.ch/de/flora/avena-sativa.html",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?lvl=sp&name=Avena~sativa&page=nswfl"
+          ]
+        },
+        {
+          "claim": "Hafer besitzt häutige Ligula, aber keine Öhrchen. Vegetative Merkmale allein grenzen Kulturhafer nicht zuverlässig von allen Wildhaferformen ab.",
+          "sourceUrls": [
+            "https://agriculture.vic.gov.au/crops-and-horticulture/grains-pulses-and-cereals/crop-production/general-agronomy/identifying-cereal-seedlings",
+            "https://efotg.sc.egov.usda.gov/references/public/WA/A.3Cereal_Plant_Identification_In_Vegetative_Stage.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-funkwellen-round6-2026",
+      "lessonId": "elektromagnetisch-schall",
+      "claims": [
+        {
+          "claim": "Funk ist elektromagnetische Strahlung aus veränderlichen E-/B-Feldern und benötigt im Unterschied zu mechanischem Luftschall kein materielles Medium.",
+          "sourceUrls": [
+            "https://science.nasa.gov/ems/02_anatomy/",
+            "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves"
+          ]
+        },
+        {
+          "claim": "Antennen senden/empfangen elektromagnetische Energie beziehungsweise koppeln elektrische Vorgänge an Wellen; akustische Stimme und elektromagnetischer Übertragungsweg sind getrennte Signalformen.",
+          "sourceUrls": [
+            "https://www.esa.int/Science_Exploration/Space_Science/Rosetta/Communicating_from_space_gaining_a_grip_on_antennas2",
+            "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves",
+            "https://science.nasa.gov/ems/02_anatomy/"
+          ]
+        },
+        {
+          "claim": "Im freien ebenen Wellenmodell stehen E-/B-Feld und Ausbreitungsrichtung senkrecht zueinander; es ist kein universelles Nahfeldmodell.",
+          "sourceUrls": [
+            "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves",
+            "https://openstax.org/books/university-physics-volume-3/pages/1-7-polarization",
+            "https://www.feynmanlectures.caltech.edu/I_33.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-funkwellen-round6-2026",
+      "lessonId": "frequenz-wellenlaenge",
+      "claims": [
+        {
+          "claim": "Frequenz ist Schwingungszahl pro Zeit in Hz, Wellenlänge ein räumlicher Periodenabstand; im Vakuum c=fλ, deshalb bei festem c doppelte Frequenz/halbe Wellenlänge.",
+          "sourceUrls": [
+            "https://science.nasa.gov/ems/02_anatomy/",
+            "https://science.nasa.gov/learn/basics-of-space-flight/chapter6-2/",
+            "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves"
+          ]
+        },
+        {
+          "claim": "Amplitude bezeichnet die Schwingungsstärke und ist von Frequenz/Wellenlänge zu trennen; diese beiden Größen allein bestimmen keine reale Funkreichweite.",
+          "sourceUrls": [
+            "https://science.nasa.gov/learn/basics-of-space-flight/chapter6-2/",
+            "https://openstax.org/books/university-physics-volume-2/pages/16-2-plane-electromagnetic-waves",
+            "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Wave_Interaction_and_Propagation",
+            "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-funkwellen-round6-2026",
+      "lessonId": "polarisation",
+      "claims": [
+        {
+          "claim": "Polarisation wird über das E-Feld definiert; dieses liegt im freien transversalen Modell quer zur Ausbreitung, H/V bezeichnet die Feldrichtung.",
+          "sourceUrls": [
+            "https://openstax.org/books/university-physics-volume-3/pages/1-7-polarization",
+            "https://science.nasa.gov/mission/nisar/polarimetry/",
+            "https://www.feynmanlectures.caltech.edu/I_33.html"
+          ]
+        },
+        {
+          "claim": "Linear bedeutet Feldspitze auf einer Geraden, zirkular Feldspitze auf einem Kreis an einem festen Ort; die Ausbreitungsrichtung ist davon getrennt.",
+          "sourceUrls": [
+            "https://www.feynmanlectures.caltech.edu/I_33.html",
+            "https://science.nasa.gov/mission/nisar/polarimetry/"
+          ]
+        },
+        {
+          "claim": "Antennen können auf definierte Sende-/Empfangspolarisation ausgelegt sein; reale Trennung ist nicht perfekt und eine Polarisation allein ist keine allgemeine Eignungs-/Reichweitengarantie.",
+          "sourceUrls": [
+            "https://science.nasa.gov/mission/nisar/polarimetry/",
+            "https://gssc.esa.int/navipedia/index.php/Antennas",
+            "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-vertiefung-funkwellen-round6-2026",
+      "lessonId": "hindernisse-signalwege",
+      "claims": [
+        {
+          "claim": "EM-Wellen können an Materie reflektiert, transmittiert, gestreut und absorbiert werden; Material und Wellenlänge beeinflussen das Ergebnis.",
+          "sourceUrls": [
+            "https://science.nasa.gov/ems/03_behaviors/",
+            "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Wave_Interaction_and_Propagation",
+            "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf"
+          ]
+        },
+        {
+          "claim": "Beugung betrifft Ausbreitung an Hindernissen/Öffnungen in den geometrischen Schatten; Verhältnis zur Wellenlänge und konkrete Geometrie sind relevant.",
+          "sourceUrls": [
+            "https://science.nasa.gov/ems/03_behaviors/",
+            "https://openstax.org/books/college-physics-2e/pages/27-2-huygenss-principle-diffraction",
+            "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf"
+          ]
+        },
+        {
+          "claim": "Funkpfade können direkte/reflektierte/gebeugte Anteile enthalten; örtliche Bedingungen begrenzen pauschale Frequenz-/Entfernungsregeln.",
+          "sourceUrls": [
+            "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Wave_Interaction_and_Propagation",
+            "https://www.itu.int/dms_pub/itu-r/opb/hdb/R-HDB-58-2012-OAS-PDF-E.pdf",
+            "https://science.nasa.gov/ems/03_behaviors/"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    "Keine festen Flugzeiten, Lebensdauern, Artenzahlen, Königinnenzahlen oder ausnahmslosen Kokon-/Sterilitätsregeln sämtlicher Ameisen; keine Nestöffnung oder Bekämpfungsanleitung.",
+    "Keine einheitlichen Kiefern-Fristen, stets zwei erfolgreichen Samen pro Schuppe, universelle Zapfenöffnungs- oder Brandbehandlungsregeln; keine Aussagen über sämtliche Koniferen.",
+    "Keine unveränderliche Getreide-Behaarungs-, Grannen-, Monats-, Herkunfts-, Sorten-, Ertrags- oder Verzehrregel; keine Maßwerte aus widersprüchlichen Tabellen. Das weitere Kulturgersten-Modell ist von engeren historischen Taxonkonzepten getrennt.",
+    "Keine Funkfrequenzfreigabe, Rechtsauskunft, Produktempfehlung, Antennen-Montage-, Leistungs- oder Kilometerangabe; keine universelle Höherfrequenz-Durchdringungs- oder Polarisationsrangfolge.",
+    "Keine neuen Medien und keine fremden Quizfragen. Eigene Schemata/Vergleiche sind textliche Lernmodelle, keine Messreihen oder Feldversuche."
+  ],
+  "mediaReview": {
+    "newMedia": false,
+    "note": "Eigene Lehrtexte und ausdrücklich benannte Lernmodelle, keine zusätzlichen Bilder, Audio- oder Videodateien."
+  }
+}

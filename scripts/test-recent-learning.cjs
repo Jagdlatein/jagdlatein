@@ -54,8 +54,9 @@ test('The overview exposes three quiet dated links; category roots show branches
       route = { query: { bereich: group.id }, asPath: `/lernen/${slug}?bereich=${group.id}` };
       const selected = renderToStaticMarkup(React.createElement(Component, { data: category }));
       assert.ok(!selected.includes('learning-recent-heading'));
-      const visibleIds = [...new Set([...selected.matchAll(/href="\/kurse\/([^"#]+)#lesson-/g)].map(match => match[1]))];
+      const visibleIds = [...selected.matchAll(/&amp;kurs=([^"#]+)#learning-modules/g)].map(match => match[1]);
       assert.deepEqual(visibleIds, group.moduleIds, 'No other branch leaks into a selected topic');
+      assert.doesNotMatch(selected, /href="\/kurse\//);
     }
   }
 });

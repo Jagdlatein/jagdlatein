@@ -340,12 +340,33 @@ test('Focused reading keeps only the chosen lesson text, with optional practice 
       global.window.location.hash=nav.lessonHash(course.lessons[1].id);listeners.get('popstate')();s.redraw();
       assert.equal(article().props.id,`lesson-${course.lessons[1].id}`);
       const crumb=find(s.tree,n=>n.type?.name==='KnowledgeBreadcrumb');
-      assert.equal(crumb.props.current,course.lessons[1].title);
+      assert.equal(crumb.props.current,'Wissenstext');
+      assert.equal(words(find(s.tree,n=>n.props?.id==='current-lesson-heading')),course.lessons[1].title);
       assert.ok(crumb.props.items.some(i=>i.href.includes('?bereich=')));
+      assert.ok(crumb.props.items.some(i=>i.href.includes(`&kurs=${encodeURIComponent(course.id)}#learning-modules`)), 'The exact course choice is reachable from the reader breadcrumb');
       quiz().props.onToggle({currentTarget:{open:true}});s.redraw();assert.equal(quiz().props.open,true);
       quiz().props.onToggle({currentTarget:{open:false}});s.redraw();assert.equal(quiz().props.open,false);
       s.unmount();assert.equal(listeners.size,0);
     }
+  } finally {if(previousWindow===undefined)delete global.window;else global.window=previousWindow;}
+});
+
+test('Category tree choices focus the committed heading while typing in the optional search does not interrupt reading', () => {
+  const data=load('lib/learning-overview-server.js').getLearningOverviewData('wildkunde');
+  const category=load('lib/learning-categories.js').learningCategoryDetails.find(c=>c.slug==='wildkunde');
+  const e=engine(),router={isReady:false,query:{},asPath:'/lernen/wildkunde'},focused=[];
+  const Component=load('components/LearningTopicTree.js',{react:e.hooks,'next/router':{useRouter:()=>router}}).default;
+  const previousWindow=global.window;
+  try {
+    global.window={location:{hash:'#learning-modules'}};
+    const render=()=>{const tree=e.render(()=>Component({category,groups:data.topicGroups,modules:data.modules}));const heading=find(tree,n=>n.props?.id==='learning-modules-heading');heading.props.ref.current={focus(){focused.push(words(heading));},scrollIntoView(){}};return tree;};
+    render();e.flush();assert.deepEqual(focused,[]);
+    const group=data.topicGroups[0],course=data.modules.find(c=>c.id===group.moduleIds[0]);
+    router.isReady=true;router.query={bereich:group.id};render();e.flush();assert.deepEqual(focused,[group.title]);
+    router.query={bereich:group.id,kurs:course.id};render();e.flush();assert.deepEqual(focused,[group.title,course.title]);
+    router.query={bereich:group.id,kurs:course.id,q:'Kitz'};render();e.flush();assert.equal(focused.length,2);
+    global.window.location.hash='#lernen-suche';router.query={bereich:group.id};render();e.flush();assert.equal(focused.length,2);
+    e.unmount();
   } finally {if(previousWindow===undefined)delete global.window;else global.window=previousWindow;}
 });
 
