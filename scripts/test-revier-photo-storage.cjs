@@ -65,6 +65,29 @@ test("animated and truncated WebP/PNG are rejected before image decode", async (
   await assert.rejects(api.validateRevierPhotoFile(new Blob([png.slice(0, -12)], { type: "image/png" })), rejectCode("INVALID_FILE"));
 });
 
+test("large photo input accepts the exact 50MiB boundary and still rejects excess resolution", async () => {
+  const { api } = load();
+  const header = jpeg();
+  const atLimit = new Blob([header.slice(0, -2), new Uint8Array(50 * 1024 * 1024 - header.length), header.slice(-2)], { type: "image/jpeg" });
+  const inspected = await api.validateRevierPhotoFile(atLimit);
+  assert.equal(inspected.size, 50 * 1024 * 1024);
+  assert.equal(inspected.width, 1200);
+  assert.equal(inspected.height, 800);
+  await assert.rejects(api.validateRevierPhotoFile(photo(10000, 6000)), rejectCode("IMAGE_TOO_LARGE"));
+});
+
+test("oversized input is rejected before reading bytes or decoding an image", async () => {
+  let reads = 0, decodes = 0;
+  class OversizedPhoto extends Blob {
+    get size() { return 50 * 1024 * 1024 + 1; }
+    async arrayBuffer() { reads++; throw new Error("oversized file must never be read"); }
+  }
+  const { api } = load({ Image: class { constructor() { decodes++; throw new Error("must not decode"); } }, document: {} });
+  await assert.rejects(api.prepareRevierPhoto(new OversizedPhoto([jpeg()], { type: "image/jpeg" })), rejectCode("FILE_TOO_LARGE"));
+  assert.equal(reads, 0);
+  assert.equal(decodes, 0);
+});
+
 function imageEnvironment({ decodeFails = false, contextMissing = false, encodeFails = false, width = 4000, height = 3000 } = {}) {
   const calls = { created: [], revoked: [], canvases: [], images: [], encoding: [] };
   class ImageMock {
