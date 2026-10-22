@@ -91,6 +91,9 @@ test('Homepage learning targets are unique real routes and include direct commun
   for (const route of ['/lernen', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/tierstimmen', '/lernen/jagdhund-kompass']) assert.ok(routes.includes(route));
   const html = render(Home);
   for (const route of routes) assert.ok(html.includes(`href="${route}"`), route);
+  assert.equal((html.match(/href="\/fotohelfer"/g) || []).length, 1);
+  assert.ok(html.indexOf('href="/fotohelfer"') < html.indexOf('<details'), 'The photo helper is directly visible before optional shortcuts');
+  assert.ok(html.includes('Eigene Revierfotos mit geprüften Merkmalen vergleichen'));
 });
 
 test('Homepage actually renders discovery, the existing community invitation, news and separated advertising', () => {

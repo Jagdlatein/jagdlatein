@@ -101,6 +101,15 @@ test('An unpaid fresh session cannot use a learning page or gain an admin entitl
   assert.equal(ctx.requests.length, 0);
 });
 
+test('The new local photo tool is public without opening nested or protected learning routes', async () => {
+  const ctx = harness();
+  assert.equal((await ctx.run('/fotohelfer')).headers.get('x-middleware-next'), '1');
+  for (const route of ['/fotohelfer/private', '/wildkunde/rehwild', '/lernen/spurenwerkstatt']) {
+    assert.equal(new URL((await ctx.run(route)).headers.get('location')).pathname, '/preise', route);
+  }
+  assert.equal(ctx.requests.length, 0, 'The local photo tool does not fetch personal account data');
+});
+
 test('The public community landing remains available without a cookie', async () => {
   const ctx = harness(); assert.equal((await ctx.run('/community')).headers.get('x-middleware-next'), '1');
   assert.equal(ctx.requests.length, 0);

@@ -259,14 +259,14 @@ test('All established learning shortcuts and legal country hubs are discoverable
   const { searchLearning } = load('lib/learning-search.js');
   const { learningTools, legalLearningHubs, learningToolCatalog } = load('lib/learning-tool-catalog.js');
   const validCategories = new Set(load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug));
-  assert.equal(learningTools.length, 11); assert.equal(legalLearningHubs.length, 3);
+  assert.equal(learningTools.length, 12); assert.equal(legalLearningHubs.length, 3);
   assert.equal(new Set(learningToolCatalog.map(item => item.href)).size, learningToolCatalog.length);
   for (const tool of learningToolCatalog) {
     const base = tool.href.split('?')[0];
     assert.ok(fs.existsSync(path.join(root, 'pages', base + '.js')) || fs.existsSync(path.join(root, 'pages', base, 'index.js')) || fs.existsSync(path.join(root, 'app', base, 'page.jsx')), tool.href);
     assert.ok(tool.categories.length && tool.categories.every(category => validCategories.has(category)), tool.href);
   }
-  for (const [query, href] of [['Quiz', '/quiz-app'], ['Rangliste', '/quiz-app/leaderboard'], ['Tagesquiz', '/tagesquiz'], ['Reviermoment', '/tagesquiz'], ['Fall des Tages', '/tagesquiz'], ['Ebook', '/ebook'], ['PDF', '/ebook'], ['Glossar', '/glossar'], ['3D Kiefer', '/lernen/kiefer-3d'], ['Museumsscan', '/lernen/kiefer-3d'], ['Deutsches Jagdrecht', '/jagdrecht/de'], ['Österreichisches Jagdrecht', '/jagdrecht/at'], ['Schweizer Jagdrecht', '/jagdrecht/ch']]) {
+  for (const [query, href] of [['Quiz', '/quiz-app'], ['Rangliste', '/quiz-app/leaderboard'], ['Tagesquiz', '/tagesquiz'], ['Reviermoment', '/tagesquiz'], ['Fall des Tages', '/tagesquiz'], ['Ebook', '/ebook'], ['PDF', '/ebook'], ['Glossar', '/glossar'], ['Fotohelfer', '/fotohelfer'], ['Revierfoto', '/fotohelfer'], ['Spuren vergleichen', '/fotohelfer'], ['3D Kiefer', '/lernen/kiefer-3d'], ['Museumsscan', '/lernen/kiefer-3d'], ['Deutsches Jagdrecht', '/jagdrecht/de'], ['Österreichisches Jagdrecht', '/jagdrecht/at'], ['Schweizer Jagdrecht', '/jagdrecht/ch']]) {
     assert.ok(searchLearning({ query, type: 'tool' }).results.some(item => item.href === href), query);
   }
   const first = searchLearning({ type: 'tool' });

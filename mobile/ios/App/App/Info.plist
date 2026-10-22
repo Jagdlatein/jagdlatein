@@ -24,6 +24,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Wenn du im Revier-Fotohelfer „Foto aufnehmen“ wählst, kannst du ein eigenes Foto zum Vergleich mit den Lernmerkmalen aufnehmen.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Wenn du „Foto auswählen“ wählst, kannst du ein eigenes Revierfoto zum Vergleich mit den Lernmerkmalen öffnen.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

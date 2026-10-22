@@ -39,6 +39,9 @@ const PUBLIC_PATHS = [
   "/datenschutz",
   "/datenschutzerklaerung.html",
   "/hilfe",
+  // New local-only observation tool; existing premium knowledge routes retain
+  // their own access checks. No photo upload or account data is exposed here.
+  "/fotohelfer",
   "/robots.txt",
   "/sitemap.xml",
   "/debug-cookies",

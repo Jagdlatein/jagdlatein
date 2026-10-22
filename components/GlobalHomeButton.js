@@ -13,6 +13,7 @@ export const mainMenuItems = [
   { href: "/", title: "Startseite", icon: "home" },
   { href: "/lernen", title: "Lernbereich", icon: "book" },
   { href: "/wildkunde", title: "Wildarten", icon: "deer" },
+  { href: "/fotohelfer", title: "Fotohelfer", icon: "camera" },
   { href: "/lernen/lernkarten", title: "Lernkarten", icon: "book" },
   { href: "/quiz-app", title: "Quiz & Rangliste", icon: "quiz" },
   { href: "/community", title: "Community", icon: "community", ariaLabel: "Zur Community" },
@@ -157,7 +158,7 @@ export default function GlobalHomeButton() {
     window.location.assign(target);
   }
 
-  const learningCurrent = ["/lernen", "/wildkunde", "/kurse"].some(section => inSection(pathname, section));
+  const learningCurrent = ["/lernen", "/wildkunde", "/kurse", "/fotohelfer"].some(section => inSection(pathname, section));
   const accountCurrent = ["/konto", "/meine-kurse", "/auswertungen", "/login", "/registrieren", "/preise"]
     .some(section => inSection(pathname, section));
   const videoCurrent = ["/lernen/videos", "/lernen/wildtier-videofaelle", "/lernen/jagdhund-videos"]

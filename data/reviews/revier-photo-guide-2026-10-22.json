@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": 1,
+  "id": "revier-photo-guide-2026-10-22",
+  "reviewedOn": "2026-10-22",
+  "title": "Revier-Fotohelfer: kuratierte äußere Vergleichsmerkmale",
+  "scope": "Acht Säugetierarten sowie drei neutrale Trittsiegeltypen. Vergleich eigener Fotos anhand manuell gewählter sichtbarer Merkmale; keine Bildanalyse, automatische Artbestimmung, Vollständigkeit oder fachliche Zertifizierung.",
+  "method": "Die unten genannten fachlichen Abschnitte wurden am 22. Oktober 2026 tatsächlich eingesehen und konkrete übernommene Merkmale zwischen unabhängigen Organisationen abgeglichen. Zwei Seiten derselben Organisation zählen nicht als zwei Bestätigungen. UK-Quellen stützen nur die Morphologie identischer europäischer Taxa; britische Verbreitung, Populationswerte und Rechtslagen werden nicht übernommen. Maryland stützt nur Haustier-Trittmorphologie.",
+  "sources": [
+    {
+      "id": "wt-roe",
+      "title": "Woodland Trust: Roe deer",
+      "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/mammals/roe-deer/",
+      "organization": "Woodland Trust",
+      "independenceGroup": "Woodland Trust",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "ptes-mammals",
+      "title": "PTES: Spotting wild mammals (2015)",
+      "url": "https://ptes.org/wp-content/uploads/2015/03/Spotting-Wild-Mammals-2015-low-res.pdf",
+      "organization": "People’s Trust for Endangered Species",
+      "independenceGroup": "People’s Trust for Endangered Species",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "ms-red",
+      "title": "Mammal Society: Red deer – Vergleichsarten",
+      "url": "https://mammal.org.uk/british-mammals/red-deer",
+      "organization": "Mammal Society",
+      "independenceGroup": "Mammal Society",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "wt-red",
+      "title": "Woodland Trust: Red deer",
+      "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/mammals/red-deer/",
+      "organization": "Woodland Trust",
+      "independenceGroup": "Woodland Trust",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "djv-red",
+      "title": "Deutscher Jagdverband: Rothirsch",
+      "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/rothirsch-cervus-elaphus",
+      "organization": "Deutscher Jagdverband",
+      "independenceGroup": "Deutscher Jagdverband",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "stadtfauna-red",
+      "title": "Stadtwildtiere / Stadtfauna: Rothirsch",
+      "url": "https://bern.stadtwildtiere.ch/artportraet/rothirsch",
+      "organization": "Haupt Verlag / Stadtfauna, mit Genehmigung bei Stadtwildtiere (Verein StadtNatur)",
+      "independenceGroup": "Haupt Verlag / Stadtfauna, mit Genehmigung bei Stadtwildtiere (Verein StadtNatur)",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "wt-fallow",
+      "title": "Woodland Trust: Fallow deer",
+      "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/mammals/fallow-deer/",
+      "organization": "Woodland Trust",
+      "independenceGroup": "Woodland Trust",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "djv-fallow",
+      "title": "Deutscher Jagdverband: Damwild",
+      "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/damwild-dama-dama",
+      "organization": "Deutscher Jagdverband",
+      "independenceGroup": "Deutscher Jagdverband",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "bds-fallow",
+      "title": "British Deer Society: Identifying fallow deer",
+      "url": "https://bds.org.uk/wp-content/uploads/2020/05/Deer-Identification-sheets-Fallow-Deer.pdf",
+      "organization": "British Deer Society",
+      "independenceGroup": "British Deer Society",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "djv-chamois",
+      "title": "Deutscher Jagdverband: Gämse",
+      "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/gaemse-rupicapra-rupicapra",
+      "organization": "Deutscher Jagdverband",
+      "independenceGroup": "Deutscher Jagdverband",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "oetztal-chamois",
+      "title": "Naturpark Ötztal: Alpengämse",
+      "url": "https://www.naturpark-oetztal.at/wissen/natur-im-fokus/tiere/alpengaemse/",
+      "organization": "Naturpark Ötztal",
+      "independenceGroup": "Naturpark Ötztal",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "snp-ibex",
+      "title": "Schweizerischer Nationalpark / SCNAT: Der Steinbock (2011)",
+      "url": "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf",
+      "organization": "Schweizerischer Nationalpark / SCNAT",
+      "independenceGroup": "Schweizerischer Nationalpark / SCNAT",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "dws-ibex",
+      "title": "Deutsche Wildtier Stiftung: Alpensteinbock",
+      "url": "https://www.deutschewildtierstiftung.de/wildtiere/alpensteinbock",
+      "organization": "Deutsche Wildtier Stiftung",
+      "independenceGroup": "Deutsche Wildtier Stiftung",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "lbv-ibex",
+      "title": "LBV: Alpensteinbock",
+      "url": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/alpensteinbock/",
+      "organization": "LBV – Landesbund für Vogel- und Naturschutz in Bayern",
+      "independenceGroup": "LBV – Landesbund für Vogel- und Naturschutz in Bayern",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "dws-boar",
+      "title": "Deutsche Wildtier Stiftung: Wildschwein",
+      "url": "https://www.deutschewildtierstiftung.de/wildtiere/wildschwein",
+      "organization": "Deutsche Wildtier Stiftung",
+      "independenceGroup": "Deutsche Wildtier Stiftung",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "ms-boar",
+      "title": "Mammal Society: Wild boar",
+      "url": "https://mammal.org.uk/british-mammals/wild-boar",
+      "organization": "Mammal Society",
+      "independenceGroup": "Mammal Society",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "wt-boar",
+      "title": "Woodland Trust: Wild boar",
+      "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/mammals/wild-boar/",
+      "organization": "Woodland Trust",
+      "independenceGroup": "Woodland Trust",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "ms-hare",
+      "title": "Mammal Society: Brown hare",
+      "url": "https://mammal.org.uk/british-mammals/brown-hare",
+      "organization": "Mammal Society",
+      "independenceGroup": "Mammal Society",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "twt-hare",
+      "title": "The Wildlife Trusts: Brown hare",
+      "url": "https://www.wildlifetrusts.org/wildlife-explorer/mammals/brown-hare",
+      "organization": "The Wildlife Trusts",
+      "independenceGroup": "The Wildlife Trusts",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "ms-rabbit",
+      "title": "Mammal Society: European rabbit",
+      "url": "https://mammal.org.uk/british-mammals/european-rabbit",
+      "organization": "Mammal Society",
+      "independenceGroup": "Mammal Society",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "twt-rabbit",
+      "title": "The Wildlife Trusts: Rabbit",
+      "url": "https://www.wildlifetrusts.org/wildlife-explorer/mammals/rabbit",
+      "organization": "The Wildlife Trusts",
+      "independenceGroup": "The Wildlife Trusts",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "twt-tracks",
+      "title": "The Wildlife Trusts: Identify tracks",
+      "url": "https://www.wildlifetrusts.org/how-identify/identify-tracks",
+      "organization": "The Wildlife Trusts",
+      "independenceGroup": "The Wildlife Trusts",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "maryland-tracks",
+      "title": "Maryland DNR: Animal Treks – Identifying tracks in the snow",
+      "url": "https://news.maryland.gov/dnr/2016/12/21/animal-treks/",
+      "organization": "Maryland Department of Natural Resources",
+      "independenceGroup": "Maryland Department of Natural Resources",
+      "readOn": "2026-10-22"
+    },
+    {
+      "id": "wt-badger",
+      "title": "Woodland Trust: Badger – Trittmerkmale",
+      "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/mammals/badger/",
+      "organization": "Woodland Trust",
+      "independenceGroup": "Woodland Trust",
+      "readOn": "2026-10-22"
+    }
+  ],
+  "claims": [
+    {
+      "id": "roe-rump-tail",
+      "candidateId": "rehwild",
+      "claim": "Rehwild hat einen hellen Spiegel. Sein sehr kurzer Schwanz ist äußerlich gewöhnlich nicht als freier Schwanz zu erkennen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "wt-roe",
+        "ptes-mammals",
+        "ms-red"
+      ],
+      "evidence": [
+        {
+          "sourceId": "wt-roe",
+          "section": "What do roe deer look like?: weißer Spiegel."
+        },
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seite 22 (PDF-Seite 24): heller Spiegel verbirgt sehr kurzen Schwanz."
+        },
+        {
+          "sourceId": "ms-red",
+          "section": "Confusion species / Roe deer: heller Spiegel, äußerlich kein sichtbarer Schwanz."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "roe-antlers",
+      "candidateId": "rehwild",
+      "claim": "Rehböcke können kurze, verzweigte Geweihstangen tragen. Die typische Stange hat bis zu drei Enden; nicht jedes Geweih zeigt diese Form.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "wt-roe",
+        "ptes-mammals"
+      ],
+      "evidence": [
+        {
+          "sourceId": "wt-roe",
+          "section": "What do roe deer look like?: kurze Geweihe männlicher Tiere mit bis zu drei Enden."
+        },
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seite 22: kurze Geweihe mit nicht mehr als drei Enden."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "red-rump",
+      "candidateId": "rotwild",
+      "claim": "Beim Rotwild ist der Spiegel hell cremefarben. Ein kurzer Schwanz kann davor sichtbar sein.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "wt-red",
+        "ms-red",
+        "stadtfauna-red"
+      ],
+      "evidence": [
+        {
+          "sourceId": "wt-red",
+          "section": "What do red deer look like?: cremefarbener Spiegel."
+        },
+        {
+          "sourceId": "ms-red",
+          "section": "Identifying and surveying / Tail: heller Spiegel mit kurzem beigem Schwanz."
+        },
+        {
+          "sourceId": "stadtfauna-red",
+          "section": "Ähnliche Arten: gegenüber Reh gut sichtbarer Schwanz und heller Spiegel; Morphologie aus Stadtfauna mit Verlagserlaubnis."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "red-antlers",
+      "candidateId": "rotwild",
+      "claim": "Das Geweih eines entsprechend entwickelten Rothirsches besteht aus verzweigten Stangen. Die ausgebildete Form unterscheidet sich von den flächigen Schaufeln eines Damhirsches.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "wt-red",
+        "ms-red",
+        "djv-fallow",
+        "wt-fallow"
+      ],
+      "evidence": [
+        {
+          "sourceId": "wt-red",
+          "section": "What do red deer look like?: verzweigtes Hirschgeweih."
+        },
+        {
+          "sourceId": "ms-red",
+          "section": "Confusion species / Roe deer: verzweigte Geweihe beim Rothirsch."
+        },
+        {
+          "sourceId": "djv-fallow",
+          "section": "Kennzeichen: Schaufelgeweih; unterschiedliche Entwicklungsstadien genannt."
+        },
+        {
+          "sourceId": "wt-fallow",
+          "section": "What do fallow deer look like?: palmate antlers."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "red-colour",
+      "candidateId": "rotwild",
+      "claim": "Rotwild kann ein rotbraunes Haarkleid zeigen. Für diesen Vergleich entscheidet die Fellfarbe allein nicht über die Art.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "wt-red",
+        "djv-red"
+      ],
+      "evidence": [
+        {
+          "sourceId": "wt-red",
+          "section": "What do red deer look like?: rotbraunes Fell."
+        },
+        {
+          "sourceId": "djv-red",
+          "section": "Kennzeichen: rotbraunes Sommerfell; andersfarbiges Winterfell."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "fallow-rump-tail",
+      "candidateId": "damwild",
+      "claim": "Typisches Damwild zeigt einen hellen, dunkel umrahmten Spiegel und einen vergleichsweise langen Schwanz mit dunkler Zeichnung.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-fallow",
+        "bds-fallow",
+        "wt-fallow"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-fallow",
+          "section": "Kennzeichen: langer Wedel mit schwarzer Spitze, schwarz umrahmter weißer Spiegel."
+        },
+        {
+          "sourceId": "bds-fallow",
+          "section": "PDF-Seite 2 / Rear: dunkle Hufeisenumrandung, längerer Schwanz mit dunklem Streifen."
+        },
+        {
+          "sourceId": "wt-fallow",
+          "section": "What do fallow deer look like?: weißer Spiegel mit schwarzer Umrandung und weiß gesäumter Schwanz."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "fallow-palmation",
+      "candidateId": "damwild",
+      "claim": "Entsprechend entwickelte Damhirsche tragen ein flächiges Schaufelgeweih. Junge Hirsche müssen noch keine Schaufeln zeigen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-fallow",
+        "wt-fallow",
+        "bds-fallow"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-fallow",
+          "section": "Kennzeichen: Schaufelgeweih und unterschiedliche Entwicklungsstadien; junge Spießer/Knieper bilden noch keine große Schaufel."
+        },
+        {
+          "sourceId": "wt-fallow",
+          "section": "What do fallow deer look like?: palmate antlers und Entwicklung im Lebenslauf."
+        },
+        {
+          "sourceId": "bds-fallow",
+          "section": "PDF-Seite 2 / Head: Schaufelgeweih erreicht volle Größe nach drei bis vier Jahren; genaue Altersgrenze nicht übernommen. Junge Entwicklungsstadien werden zusätzlich beim DJV erläutert."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "fallow-colour",
+      "candidateId": "damwild",
+      "claim": "Damwild kommt in unterschiedlichen Farbschlägen vor, auch sehr dunkel oder hell. Das typische Sommerkleid ist gefleckt. Die Fellfarbe allein entscheidet diesen Vergleich nicht.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-fallow",
+        "wt-fallow"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-fallow",
+          "section": "Kennzeichen: weiße bis schwarze Farbschläge; typisches geflecktes Sommerkleid."
+        },
+        {
+          "sourceId": "wt-fallow",
+          "section": "What do fallow deer look like?: typische Sommerfleckung, dunkle bis schwarze und weiße Formen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "chamois-horns",
+      "candidateId": "gamswild",
+      "claim": "Die schlanken Gämshörner steigen zunächst auf und sind an den Spitzen hakenförmig nach hinten und unten gebogen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-chamois",
+        "oetztal-chamois"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-chamois",
+          "section": "Kennzeichen: Hornspitzen nach unten gebogen."
+        },
+        {
+          "sourceId": "oetztal-chamois",
+          "section": "Beschreibung/Merkmale: zunächst aufrecht, Enden hakenförmig nach unten gekrümmt."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "chamois-face",
+      "candidateId": "gamswild",
+      "claim": "Typisch ist das helle Gesicht mit dunklen seitlichen Streifen über den Augen. Vergleiche Gesichtszeichnung und Hornform gemeinsam.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-chamois",
+        "oetztal-chamois"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-chamois",
+          "section": "Kennzeichen: helle Gesichtsbereiche und dunkle Zügelstreifen über die Augen."
+        },
+        {
+          "sourceId": "oetztal-chamois",
+          "section": "Beschreibung/Merkmale: heller Kopf mit seitlichem dunklem Streifen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "chamois-sexes",
+      "candidateId": "gamswild",
+      "claim": "Bei der Gämse tragen beide Geschlechter Hörner. Hörner allein bedeuten deshalb nicht, dass ein männliches Tier zu sehen ist.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "djv-chamois",
+        "oetztal-chamois"
+      ],
+      "evidence": [
+        {
+          "sourceId": "djv-chamois",
+          "section": "Kennzeichen: beide Geschlechter tragen Hörner."
+        },
+        {
+          "sourceId": "oetztal-chamois",
+          "section": "Beschreibung/Merkmale: beide Geschlechter Hornträger."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "ibex-curve",
+      "candidateId": "steinwild",
+      "claim": "Die großen Hörner eines entsprechend entwickelten männlichen Alpensteinbocks sind weit nach hinten gebogen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "snp-ibex",
+        "dws-ibex"
+      ],
+      "evidence": [
+        {
+          "sourceId": "snp-ibex",
+          "section": "PDF-Seite 2 / Steckbrief und Mittelklasse: gebogenes männliches Gehörn, säbelartig nach hinten."
+        },
+        {
+          "sourceId": "dws-ibex",
+          "section": "Fakten / Hörner: charakteristisch nach hinten gebogen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "ibex-bumps",
+      "candidateId": "steinwild",
+      "claim": "An der Vorderseite der Hörner männlicher Alpensteinböcke fallen kräftige Wülste beziehungsweise Knoten auf.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "snp-ibex",
+        "lbv-ibex"
+      ],
+      "evidence": [
+        {
+          "sourceId": "snp-ibex",
+          "section": "PDF-Seite 2 / Entwicklung der Hörner: Wülste beziehungsweise Schmuckknoten an der Vorderkante männlicher Hörner."
+        },
+        {
+          "sourceId": "lbv-ibex",
+          "section": "Beschreibung: männliche Hörner mit auffälligen Knoten an der Vorderseite."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "ibex-sexes",
+      "candidateId": "steinwild",
+      "claim": "Auch weibliche Alpensteinböcke tragen Hörner. Ihre Hörner bleiben deutlich kleiner als die großen Hörner ausgewachsener Böcke.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "snp-ibex",
+        "lbv-ibex"
+      ],
+      "evidence": [
+        {
+          "sourceId": "snp-ibex",
+          "section": "PDF-Seite 2 / Steckbrief: beide Geschlechter; Geiß mit kurzen Hörnern."
+        },
+        {
+          "sourceId": "lbv-ibex",
+          "section": "Beschreibung: Männchen und Weibchen tragen Hörner, männliche Hörner deutlich größer."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "boar-snout-coat",
+      "candidateId": "schwarzwild",
+      "claim": "Ein ausgeprägter Rüssel und grobe Borsten gehören zu den sichtbaren Merkmalen des Wildschweins.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "dws-boar",
+        "ms-boar"
+      ],
+      "evidence": [
+        {
+          "sourceId": "dws-boar",
+          "section": "Wildschwein Merkmale: ausgeprägter Rüssel und borstiges Fell."
+        },
+        {
+          "sourceId": "ms-boar",
+          "section": "Biology: grobes Haarkleid/Borsten und lange Schnauze."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "boar-stripes",
+      "candidateId": "schwarzwild",
+      "claim": "Junge Frischlinge können helle Längsstreifen auf bräunlichem Grund zeigen. Das gestreifte Haarkleid bleibt nicht dauerhaft erhalten.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "dws-boar",
+        "wt-boar",
+        "ms-boar"
+      ],
+      "evidence": [
+        {
+          "sourceId": "dws-boar",
+          "section": "Fell und Schild: frühes Frischlingskleid mit hellen Längsstreifen, später verloren."
+        },
+        {
+          "sourceId": "wt-boar",
+          "section": "What do wild boar look like?: gestreiftes Frischlingskleid gegenüber borstig graubraunen älteren Tieren."
+        },
+        {
+          "sourceId": "ms-boar",
+          "section": "Biology: längsgestreifte Frischlinge gegenüber grobhaarigen älteren Tieren."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "hare-ears",
+      "candidateId": "feldhase",
+      "claim": "Der Feldhase hat im Vergleich zum Wildkaninchen lange Ohren mit schwarzen Spitzen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "ms-hare",
+        "twt-hare"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ms-hare",
+          "section": "Species information / Description und Confusion species: lange schwarz gespitzte Ohren, länger als beim Kaninchen."
+        },
+        {
+          "sourceId": "twt-hare",
+          "section": "How to identify: längere Ohren mit schwarzen Spitzen gegenüber Kaninchen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "hare-legs",
+      "candidateId": "feldhase",
+      "claim": "Im Vergleich zum Wildkaninchen ist der Feldhase langbeiniger und besitzt kräftige Hinterläufe.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "ms-hare",
+        "twt-hare"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ms-hare",
+          "section": "Description: lange kräftige Hinterläufe; gegenüber Kaninchen längere Gliedmaßen."
+        },
+        {
+          "sourceId": "twt-hare",
+          "section": "About / How to identify: kräftige Hinterläufe, längere Beine gegenüber Kaninchen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "rabbit-ears",
+      "candidateId": "wildkaninchen",
+      "claim": "Wildkaninchen haben im Vergleich zum Feldhasen kürzere Ohren ohne dessen schwarze Ohrspitzen.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "ms-rabbit",
+        "twt-rabbit",
+        "ms-hare"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ms-rabbit",
+          "section": "Biology / Confusion species: keine schwarzen Ohrspitzen und gegenüber Feldhasen kürzere Ohren."
+        },
+        {
+          "sourceId": "twt-rabbit",
+          "section": "How to identify: Kaninchen ohne schwarze Ohrspitzen."
+        },
+        {
+          "sourceId": "ms-hare",
+          "section": "Confusion species / Rabbit: kürzere Ohren, keine schwarzen Spitzen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "rabbit-build",
+      "candidateId": "wildkaninchen",
+      "claim": "Im direkten Vergleich ist das Wildkaninchen kleiner und kürzerbeinig als der Feldhase.",
+      "scope": "Beschriebenes Merkmal des benannten Taxons; keine umkehrbare, alle Arten umfassende Bestimmungsregel.",
+      "sourceIds": [
+        "ms-rabbit",
+        "twt-rabbit",
+        "ms-hare"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ms-rabbit",
+          "section": "Confusion species / Brown hare: Hase größer und mit längeren Gliedmaßen."
+        },
+        {
+          "sourceId": "twt-rabbit",
+          "section": "How to identify: kleiner als Feldhase."
+        },
+        {
+          "sourceId": "ms-hare",
+          "section": "Confusion species / Rabbit: Kaninchen kleiner mit kürzeren Gliedmaßen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "track-hoof",
+      "candidateId": "split-hoof-track",
+      "claim": "Hirschartige hinterlassen Abdrücke der beiden Hauptschalen nebeneinander. Auch Schafe und andere Paarhufer können geteilte Hufabdrücke hinterlassen.",
+      "scope": "Nur ausdrücklich benanntes morphologisches Beispiel, keine Artbestimmung.",
+      "sourceIds": [
+        "twt-tracks",
+        "ptes-mammals"
+      ],
+      "evidence": [
+        {
+          "sourceId": "twt-tracks",
+          "section": "Deer and sheep: beide mit geteiltem Huf; zwei benachbarte Hauptabdrücke."
+        },
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seiten 22 und 28: zwei Hauptzehen; Verwechslung mit Schafen, Ziegen und Rindern."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "track-hoof-limit",
+      "candidateId": "split-hoof-track",
+      "claim": "Trittsiegel verschiedener Hirscharten können einander ähneln. Ein einzelner Schalenabdruck wird hier deshalb keiner Art zugewiesen.",
+      "scope": "Nur ausdrücklich benanntes morphologisches Beispiel, keine Artbestimmung.",
+      "sourceIds": [
+        "twt-tracks",
+        "ptes-mammals"
+      ],
+      "evidence": [
+        {
+          "sourceId": "twt-tracks",
+          "section": "Deer and sheep: verschiedene Hirscharten schwer anhand der Spur zu trennen."
+        },
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seiten 2 und 28: ähnliche Hirschspuren, schwieriger Artvergleich."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "track-four",
+      "candidateId": "four-toe-track",
+      "claim": "Bei klaren Hundeabdrücken können vier Zehen vor beziehungsweise um den größeren Ballen sichtbar sein.",
+      "scope": "Nur ausdrücklich benanntes morphologisches Beispiel, keine Artbestimmung.",
+      "sourceIds": [
+        "ptes-mammals",
+        "maryland-tracks"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seite 28 / Tracks that you might confuse: vier Hundezehen um einen größeren zentralen Ballen."
+        },
+        {
+          "sourceId": "maryland-tracks",
+          "section": "Textabschnitt zu Haustierabdrücken: Hunde und Katzen mit vier Zehen und deutlichem Ballen; unabhängige Behördeninformation. Nur Grundmorphologie, keine nordamerikanischen Arten oder sichere Krallenregeln übernommen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "track-four-confusion",
+      "candidateId": "four-toe-track",
+      "claim": "Auch Katzenabdrücke können vier Zehen und einen größeren Ballen zeigen. Vier sichtbare Zehen allein trennen diese Tiere nicht sicher.",
+      "scope": "Nur ausdrücklich benanntes morphologisches Beispiel, keine Artbestimmung.",
+      "sourceIds": [
+        "ptes-mammals",
+        "maryland-tracks"
+      ],
+      "evidence": [
+        {
+          "sourceId": "ptes-mammals",
+          "section": "Gedruckte Seite 28: auch Katzenabdrücke mit vier Zehen und zentralem Ballen."
+        },
+        {
+          "sourceId": "maryland-tracks",
+          "section": "Textabschnitt zu Haustierabdrücken: Hunde/Katzen zeigen vier Zehen und Ballen und können verwechselt werden."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    },
+    {
+      "id": "track-five",
+      "candidateId": "five-toe-track",
+      "claim": "Ein klarer Dachstritt kann fünf Zehen vor einem breiten Ballen zeigen; oft kommen deutliche Krallenabdrücke hinzu.",
+      "scope": "Nur ausdrücklich benanntes morphologisches Beispiel, keine Artbestimmung.",
+      "sourceIds": [
+        "twt-tracks",
+        "wt-badger"
+      ],
+      "evidence": [
+        {
+          "sourceId": "twt-tracks",
+          "section": "Badger: fünf Zehen vor breitem Ballen, lange Krallenabdrücke."
+        },
+        {
+          "sourceId": "wt-badger",
+          "section": "Signs and spotting tips / Bildlegenden: Dachstritt mit fünf Zehen und deutlichen Krallen."
+        }
+      ],
+      "reviewedOn": "2026-10-22",
+      "reviewStatus": "compared-independent-organization-sources"
+    }
+  ],
+  "questions": [
+    {
+      "candidateId": "rehwild",
+      "prompt": "Welches Körperteil solltest du beim Vergleich von Reh- und Damwild zusätzlich zum Geweih betrachten?",
+      "answer": "Das vollständig sichtbare Hinterteil mit Spiegel und Schwanz.",
+      "explanation": "Beim Reh ist der Schwanz sehr kurz; beim Damwild ist ein längerer Schwanz zusammen mit der Spiegelzeichnung ein nützlicher Vergleichspunkt.",
+      "sourceIds": [
+        "ptes-mammals",
+        "djv-fallow",
+        "bds-fallow"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "rotwild",
+      "prompt": "Welcher Vergleich ist bei deutlich ausgebildetem Rot- und Damhirschgeweih hilfreich?",
+      "answer": "Verzweigte Stangen mit flächigen Schaufeln vergleichen.",
+      "explanation": "Rotwild entwickelt verzweigte Geweihstangen; die Schaufelbildung ist ein typischer Vergleichspunkt beim entsprechend entwickelten Damhirsch. Fehlende Schaufeln allein schließen Damwild nicht aus.",
+      "sourceIds": [
+        "wt-red",
+        "ms-red",
+        "djv-fallow",
+        "wt-fallow"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "damwild",
+      "prompt": "Schließt ein sehr dunkles Haarkleid Damwild aus?",
+      "answer": "Nein. Damwild besitzt unterschiedliche Farbschläge.",
+      "explanation": "Neben der typischen gefleckten Form gibt es unter anderem dunkle und helle Formen. Vergleiche mehrere sichtbare Merkmale.",
+      "sourceIds": [
+        "djv-fallow",
+        "wt-fallow"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "gamswild",
+      "prompt": "Beweisen sichtbare Gämshörner ein männliches Tier?",
+      "answer": "Nein. Beide Geschlechter tragen Hörner.",
+      "explanation": "Die Hornform hilft beim Artvergleich. Eine einzelne sichtbare Hornstruktur genügt hier nicht zur Geschlechtsbestimmung.",
+      "sourceIds": [
+        "djv-chamois",
+        "oetztal-chamois"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "steinwild",
+      "prompt": "Tragen nur männliche Alpensteinböcke Hörner?",
+      "answer": "Nein. Auch die weiblichen Tiere tragen Hörner.",
+      "explanation": "Die Hörner der weiblichen Tiere bleiben deutlich kleiner als die großen Hörner ausgewachsener Böcke. Ein kleines Horn ist deshalb hier kein Ausschlussgrund.",
+      "sourceIds": [
+        "snp-ibex",
+        "lbv-ibex"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "schwarzwild",
+      "prompt": "Ist ein fehlendes Streifenmuster ein Ausschlussgrund für Schwarzwild?",
+      "answer": "Nein. Das Frischlingsmuster bleibt nicht dauerhaft erhalten.",
+      "explanation": "Die Längsstreifen gehören zum frühen Haarkleid. Vergleiche zusätzlich Rüssel, Körper und Borsten, ohne aus dem Foto ein genaues Alter abzulesen.",
+      "sourceIds": [
+        "dws-boar",
+        "wt-boar",
+        "ms-boar"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "feldhase",
+      "prompt": "Welche zwei Merkmalsgruppen vergleichst du bei Feldhase und Wildkaninchen gemeinsam?",
+      "answer": "Ohren einschließlich Spitzen sowie den sichtbaren Beinbau.",
+      "explanation": "Der Feldhase besitzt vergleichsweise längere, schwarz gespitzte Ohren und längere Beine. Bildgröße ohne Maßstab ist kein Größenbeweis.",
+      "sourceIds": [
+        "ms-hare",
+        "twt-hare",
+        "ms-rabbit",
+        "twt-rabbit"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "wildkaninchen",
+      "prompt": "Kann ein kleineres Tier im Foto allein sicher als Wildkaninchen gelten?",
+      "answer": "Nein. Die Entfernung zur Kamera ist kein Körpermaß.",
+      "explanation": "Vergleiche stattdessen die im Bild erkennbaren Ohren und den Beinbau mit den beschriebenen Artmerkmalen; verdeckte Merkmale bleiben offen.",
+      "sourceIds": [
+        "ms-rabbit",
+        "twt-rabbit",
+        "ms-hare"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "split-hoof-track",
+      "prompt": "Beweisen zwei Hauptschalen nebeneinander eine bestimmte Hirschart?",
+      "answer": "Nein. Auch andere Paarhufer hinterlassen geteilte Hufabdrücke.",
+      "explanation": "Ähnliche Trittsiegel brauchen zusätzliche Beobachtungen. Der Fotohelfer lässt die genaue Art offen.",
+      "sourceIds": [
+        "twt-tracks",
+        "ptes-mammals"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "four-toe-track",
+      "prompt": "Sind vier sichtbare Zehen allein ein sicherer Wildtiernachweis?",
+      "answer": "Nein. Auch Haustiere können solche Pfotenabdrücke hinterlassen.",
+      "explanation": "Hunde und Katzen sind wichtige Vergleichsmöglichkeiten. Die Formgruppe ersetzt keine Artbestimmung.",
+      "sourceIds": [
+        "ptes-mammals",
+        "maryland-tracks"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    },
+    {
+      "candidateId": "five-toe-track",
+      "prompt": "Bestätigt diese Karte mit fünf Zehen bereits einen Dachs?",
+      "answer": "Nein. Sie zeigt eine Vergleichsgruppe und beschreibt ein mögliches Beispiel.",
+      "explanation": "Der Dachstritt hat neben der Zehenzahl weitere Merkmale wie breiten Ballen und Krallen. Ein einzelnes Detail genügt hier nicht zur Artbestimmung.",
+      "sourceIds": [
+        "twt-tracks",
+        "wt-badger"
+      ],
+      "basis": "Eigene Lernfrage aus den hier geprüften Vergleichsmerkmalen; keine separat erhobene Beobachtung.",
+      "reviewedOn": "2026-10-22"
+    }
+  ],
+  "matchingPolicy": {
+    "input": "Vom Nutzer selbst ausgewählte Gruppe und sichtbare Merkmals-IDs.",
+    "output": "Karten mit allen gewählten positiven Merkmalen; keine Punktwerte, Wahrscheinlichkeit oder bestätigte Art.",
+    "unknown": "Nicht sichtbar gilt als unbekannt, nicht als fehlendes Merkmal.",
+    "contradictions": "Widersprüchliche und ungültige Auswahl liefert keine passende Karte und keine sichere Art.",
+    "coverage": "Andere Arten und Entwicklungsstadien können ähnliche Merkmale zeigen; die Auswahl ist kein vollständiger Bestimmungsschlüssel."
+  },
+  "withheld": [
+    "Keine Altersformeln, exakten Gewichte, Gesundheits-, Geschlechts- oder Freigabediagnosen aus Fotos.",
+    "Keine automatische Bestimmung von Haus-/Wildformen, Geißen und Jungtieren aus den großen Bockhornmerkmalen.",
+    "Keine exakte Art aus einem Trittsiegel, keine alleinige Artzuweisung durch Afterklauen oder Spurgröße.",
+    "Mammal-Society-Rothirschseite enthält uneinheitliche allgemeine Geweih-/Spurgrößenformulierungen; diese Zahlen und die falsche Schreibweise im Kopf wurden nicht übernommen.",
+    "Alte Steinbockquelle enthält Altersableitungen aus Schmuckknoten; diese wurden bewusst nicht übernommen."
+  ],
+  "nearbyConsistencyReview": {
+    "status": "targeted-review-only",
+    "files": [
+      "lib/dach-wildlife.js",
+      "lib/wildlife-depth.js",
+      "lib/learning-wildlife.js",
+      "lib/learning-wildlife-depth.js",
+      "lib/tracks-workshop.js",
+      "lib/photo-detective.js",
+      "pages/wildkunde/[art].js"
+    ],
+    "result": "Die passenden vorhandenen Merkmalsaussagen zu Schaufelentwicklung, Hornträgern beider Geschlechter, langen schwarz gespitzten Hasenohren und Grenzen einzelner Trittsiegel stehen nicht im Widerspruch zu den hier übernommenen Merkmalen. Keine vollständige Neuprüfung dieser Dateien oder der App behauptet.",
+    "confirmedCorrectionsNeeded": []
+  },
+  "media": {
+    "newTeachingMedia": [],
+    "userPhoto": "Nur als lokales eigenes Vergleichsfoto. Kein redaktionell bestimmtes Lehrfoto, keine Zuordnung von Alter oder Gesundheit. Keine externen Medien kopiert."
+  },
+  "links": [
+    {
+      "candidateId": "rehwild",
+      "href": "/wildkunde/rehwild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "rotwild",
+      "href": "/wildkunde/rotwild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "damwild",
+      "href": "/wildkunde/damwild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "gamswild",
+      "href": "/wildkunde/gamswild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "steinwild",
+      "href": "/wildkunde/steinwild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "schwarzwild",
+      "href": "/wildkunde/schwarzwild",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "feldhase",
+      "href": "/wildkunde/feldhase",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "wildkaninchen",
+      "href": "/wildkunde/wildkaninchen",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "split-hoof-track",
+      "href": "/lernen/spurenwerkstatt",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "four-toe-track",
+      "href": "/lernen/spurenwerkstatt",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    },
+    {
+      "candidateId": "five-toe-track",
+      "href": "/lernen/spurenwerkstatt",
+      "localRoute": "checked-source-route",
+      "date": "2026-10-22"
+    }
+  ],
+  "technicalChecks": "Ein gesonderter Test prüft Quelle/Merkmal-Verknüpfungen, lokale Zielrouten und Matching-Grenzen. Er ist kein fachlicher Beleg."
+}

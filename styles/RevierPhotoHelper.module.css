@@ -1,0 +1,61 @@
+.intro { margin: 0 0 22px; font-size: 1.12rem; line-height: 1.65; max-width: 760px; }
+.photoPanel, .panel, .journal { padding: clamp(18px, 3vw, 28px); border: 1px solid #dacc9f; border-radius: 18px; background: #fffdf6; margin: 0 0 24px; min-width: 0; }
+.sectionTitle { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.sectionTitle > span { flex: 0 0 32px; display: grid; place-items: center; height: 32px; border-radius: 50%; background: #efe3bd; color: #63501b; font-weight: 800; }
+.sectionTitle h2 { margin: 0; font-size: clamp(1.3rem, 4vw, 1.65rem); line-height: 1.3; }
+.photoPanel p, .panel p, .journal p, .comparison p, .results > p { line-height: 1.7; }
+.photoActions { display: flex; gap: 10px; flex-wrap: wrap; }
+.primary, .secondary, .danger { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #816323; border-radius: 11px; min-height: 48px; padding: 12px 18px; font: inherit; font-weight: 700; cursor: pointer; }
+.primary { background: #765b21; color: #fff; }
+.secondary { background: #fffdf6; color: #624a18; }
+.danger { background: #853d29; color: #fff; border-color: #853d29; }
+.photoPanel button:disabled, .panel button:disabled, .journal button:disabled { opacity: .6; cursor: wait; }
+.small, .scientific { font-size: .9rem; color: #665c44; line-height: 1.6; }
+.fileInput { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.preview { margin: 18px 0 0; }
+.preview > img { display: block; width: 100%; max-height: 420px; object-fit: contain; border-radius: 12px; background: #efeadc; }
+.preview figcaption { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px 16px; font-size: .86rem; line-height: 1.5; color: #665c44; }
+.label { display: block; margin: 16px 0 7px; font-weight: 700; }
+.panel select, .panel input[type="date"], .panel textarea { width: 100%; min-width: 0; max-width: 100%; min-height: 48px; border: 1px solid #caba8a; border-radius: 10px; background: #fff; color: #352c19; padding: 12px; font: inherit; font-size: 1rem; }
+.traits { padding: 0; border: 0; margin: 22px 0 0; min-width: 0; }
+.traits legend { font-size: .95rem; font-weight: 700; margin: 0 0 8px; }
+.traits label { display: flex; gap: 12px; align-items: flex-start; border-top: 1px solid #e8dfc6; padding: 14px 0; min-height: 48px; cursor: pointer; }
+.traits input { flex: 0 0 21px; width: 21px; height: 21px; margin: 3px 0 0; accent-color: #73591d; }
+.traits label span { min-width: 0; line-height: 1.55; }
+.traits label strong { display: block; font-size: 1rem; }
+.traits label small { display: block; margin-top: 3px; color: #665c44; font-size: .88rem; }
+.results { margin: 32px 0; min-width: 0; }
+.resultStatus { color: #564b32; padding: 16px 18px; border-radius: 12px; background: #f1ead7; }
+.comparisonList { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.comparison { min-width: 0; border: 1px solid #dacc9f; border-radius: 16px; padding: 22px; background: #fffdf6; overflow-wrap: anywhere; }
+.comparison:only-child { grid-column: 1 / -1; }
+.comparison:only-child p { max-width: 78ch; }
+.kicker { margin: 0 0 5px; color: #7b6227; font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.comparison h3 { margin: 0; font-size: 1.4rem; line-height: 1.3; }
+.scientific { margin: 6px 0 16px; }
+.limit { font-size: .91rem; border-left: 3px solid #b29a5d; padding-left: 13px; color: #665c44; }
+.learningLink { display: inline-flex; align-items: center; gap: 8px; color: #654c14; font-weight: 700; min-height: 44px; padding: 6px 0; text-underline-offset: 4px; }
+.learningLink svg { flex-shrink: 0; }
+.sources, .question { margin-top: 14px; border-top: 1px solid #e7dec6; font-size: .94rem; }
+.sources ul { padding-left: 20px; line-height: 1.7; }
+.sources li + li { margin-top: 7px; }
+.sources a { color: #654c14; text-underline-offset: 3px; }
+.sources p { font-size: .84rem; color: #665c44; }
+.panel summary, .journal summary, .sources summary, .question summary { cursor: pointer; min-height: 44px; padding: 11px 0; line-height: 1.5; font-weight: 700; }
+.panel > summary, .journal > summary { font-size: 1.1rem; padding: 4px 0; }
+.saveForm .primary { margin-top: 10px; }
+.saveForm textarea { resize: vertical; }
+.savedList { display: grid; gap: 16px; }
+.savedCard { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid #e4d8b7; min-width: 0; }
+.savedCard img { display: block; width: 100%; height: 130px; object-fit: contain; border-radius: 9px; background: #efe8d6; }
+.savedCard h3 { font-size: 1.15rem; margin: 5px 0; }
+.savedCard p { margin: 6px 0; }
+.savedNote { white-space: pre-wrap; overflow-wrap: anywhere; }
+.textButton { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: #6a501a; font: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; text-align: left; }
+.notice { padding: 15px 18px; border-radius: 12px; color: #2c522d; background: #edf4e9; line-height: 1.65; }
+.error { padding: 13px 16px; border-radius: 10px; color: #812c24; background: #fff0eb; line-height: 1.65; overflow-wrap: anywhere; }
+.compatibility, .deleteConfirm { padding: 16px; border: 1px solid #d3bd88; background: #f8f1dd; border-radius: 12px; }
+.deleteConfirm { margin-top: 16px; }
+.deleteConfirm p { margin-top: 0; }
+.photoPanel button:focus-visible, .panel button:focus-visible, .journal button:focus-visible, .panel input:focus-visible, .panel select:focus-visible, .panel textarea:focus-visible, .traits input:focus-visible, .panel summary:focus-visible, .journal summary:focus-visible, .results summary:focus-visible, .results a:focus-visible { outline: 3px solid #38643a; outline-offset: 4px; }
+@media (max-width: 620px) { .comparisonList { grid-template-columns: minmax(0, 1fr); } .comparison { padding: 18px; } .savedCard { grid-template-columns: 90px minmax(0, 1fr); gap: 12px; } .savedCard img { height: 100px; } .photoActions > button { flex: 1 1 auto; } }

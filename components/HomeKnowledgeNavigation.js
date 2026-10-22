@@ -28,6 +28,7 @@ export default function HomeKnowledgeNavigation() {
   return <section className={styles.section} aria-labelledby="home-knowledge-heading">
     <h2 id="home-knowledge-heading">Was möchtest du wissen?</h2>
     <form action="/lernen#lernen-suche" className={styles.search} role="search" aria-label="Jagdwissen durchsuchen"><label className={styles.searchField}><AppIcon name="search" size={22} /><span className={styles.srOnly}>Jagdwissen suchen</span><input type="search" name="q" maxLength={160} placeholder="Zum Beispiel Gams, Zahnformel oder Weimaraner" enterKeyHint="search" /></label><button type="submit">Suchen</button></form>
+    <Link href="/fotohelfer" prefetch={false} className={styles.photoHelper}><AppIcon name="camera" size={25} /><span><strong>Fotohelfer</strong><span>Eigene Revierfotos mit geprüften Merkmalen vergleichen</span></span><AppIcon name="arrow-right" size={18} /></Link>
     <LearningCategoryMenu />
     <details className={styles.categories}><summary>Üben, nachschlagen und austauschen</summary>
       <nav className={styles.groups} aria-label="Wichtige Lernangebote">{homeKnowledgeGroups.map(group => <section key={group.title}><h3>{group.title}</h3><ul>{group.links.map(item => <li key={item.href}><Link href={item.href} prefetch={false}><AppIcon name={item.icon} size={25} /><span><strong>{item.title}</strong><span>{item.text}</span></span><AppIcon name="arrow-right" size={17} /></Link></li>)}</ul></section>)}</nav>

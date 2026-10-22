@@ -80,7 +80,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 24);
+  assert.equal(links.length, 25);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -127,7 +127,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
@@ -135,7 +135,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   assert.ok(links.every(link => link.type !== 'button' && link.props.prefetch === false));
   const categoryBranch = details.props.children[1].props.children.find(item => item.type === 'details');
   assert.ok(categoryBranch && !categoryBranch.props.open);
-  for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
+  for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf', '/fotohelfer']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
   for (const route of ['/lernen/videos', '/lernen/wildtier-videofaelle', '/lernen/jagdhund-videos']) {
     const videoLinks = setup(route).tree.props.children[3].props.children[1].props.children;
     assert.equal(videoLinks.filter(link => link.props['aria-current']).length, 1);

@@ -42,6 +42,28 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .default()
         configuration.allowsInlineMediaPlayback = true
+        // iOS supplies the file-input picker. Its camera/library usage strings
+        // are declared in Info.plist; no camera or Photos request runs at launch.
+        // Only this updated native binary may enable photo inputs in the website.
+        let photoCaptureOrigins = ["https://jagdlatein.de", "https://www.jagdlatein.de", "https://jagdlatein-sandbox.vercel.app"]
+            .compactMap { URL(string: $0) }
+            .filter { WebsitePolicy.isWebsiteURL($0) }
+            .map { $0.absoluteString }
+        if let originsData = try? JSONSerialization.data(withJSONObject: photoCaptureOrigins),
+           let originsJSON = String(data: originsData, encoding: .utf8) {
+            let photoCaptureSource = """
+            (() => {
+              const allowedOrigins = \(originsJSON);
+              if (window.top !== window || !allowedOrigins.includes(window.location.origin)) return;
+              Object.defineProperty(window, "jagdlateinPhotoCapture", {
+                value: true, writable: false, configurable: false, enumerable: false
+              });
+            })();
+            """
+            configuration.userContentController.addUserScript(WKUserScript(
+                source: photoCaptureSource, injectionTime: .atDocumentStart, forMainFrameOnly: true
+            ))
+        }
         return WKWebView(frame: .zero, configuration: configuration)
     }()
     private let toolbar = UIToolbar()

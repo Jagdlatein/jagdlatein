@@ -5,6 +5,14 @@
 .searchField > svg { flex-shrink:0; }
 .search input { width:100%; min-width:0; min-height:54px; border:0; background:none; font:inherit; font-size:17px; color:#3e321b; }
 .search button { min-height:54px; border:1px solid #796021; background:#796021; color:#fffdf7; padding:12px 20px; border-radius:12px; font:inherit; font-weight:700; cursor:pointer; }
+.photoHelper { display:flex; align-items:center; gap:12px; min-height:64px; margin:0 0 24px; padding:14px 16px; border:1px solid #ded0ae; border-radius:12px; background:#fffdf7; color:#35492d; text-decoration:none; }
+.photoHelper > svg { flex-shrink:0; color:#796021; }
+.photoHelper > svg:last-child { margin-left:auto; }
+.photoHelper > span { min-width:0; }
+.photoHelper strong, .photoHelper span span { display:block; }
+.photoHelper strong { font-size:18px; line-height:1.35; }
+.photoHelper span span { margin-top:4px; font-size:14px; line-height:1.5; color:#6e6249; }
+.photoHelper:hover { background:#f8efd9; }
 .groups { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
 .groups section { min-width:0; }
 .groups h3 { margin:0 0 10px; font-size:17px; line-height:1.5; color:#6c5523; }
