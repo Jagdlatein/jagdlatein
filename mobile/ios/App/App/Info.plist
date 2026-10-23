@@ -25,9 +25,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Wenn du im Revier-Fotohelfer „Foto aufnehmen“ wählst, kannst du ein eigenes Foto zum Vergleich mit den Lernmerkmalen aufnehmen.</string>
+	<string>Wenn du im Revier-Fotohelfer „Foto aufnehmen“ wählst, wird dein Foto zuerst auf deinem Gerät vorbereitet. Erst mit „Mit OpenAI erkennen“ sendest du eine Fotokopie an OpenAI.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Wenn du „Foto auswählen“ wählst, kannst du ein eigenes Revierfoto zum Vergleich mit den Lernmerkmalen öffnen.</string>
+	<string>Wenn du „Foto auswählen“ wählst, wird dein Revierfoto zuerst auf deinem Gerät vorbereitet. Erst mit „Mit OpenAI erkennen“ sendest du eine Fotokopie an OpenAI.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
