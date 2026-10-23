@@ -66,7 +66,7 @@ test('Search opens each indexed hunting breed directly and recognises common alt
     const match = searchLearning({ query: breed.name, category: 'hundewesen', type: 'entry' }).results.find(item => item.id === `breed:${breed.id}`);
     assert.ok(match, breed.name);
     const href = new URL(match.href, 'https://test.invalid');
-    assert.equal(href.pathname, '/lernen/jagdhund-kompass'); assert.equal(href.searchParams.get('rasse'), breed.id); assert.equal(href.hash, '#dog-' + breed.id);
+    assert.equal(href.pathname, `/lernen/jagdhunde/${breed.id}`); assert.equal(href.search, ''); assert.equal(href.hash, '#rasse-erkennen');
   }
   assert.equal(searchLearning({ query: 'Dackel', category: 'hundewesen' }).results[0].id, 'breed:teckel');
   assert.ok(searchLearning({ query: 'Muensterlaender', type: 'entry' }).results.filter(item => item.id.startsWith('breed:')).length >= 2);

@@ -75,6 +75,9 @@ test('New text is visible without opening details; each claim block links its ow
     }
     const beforeSources = html.split('<details')[0];
     assert.ok(beforeSources.includes('<p>'), 'Teaching text must precede optional source disclosure');
+    for (const section of profile.sections) assert.ok(beforeSources.includes(section.text.slice(0, 50)), 'Every knowledge section remains directly visible before the source appendix');
+    assert.match(html, /<details class="sources"><summary>Fachquellen und Prüfstand<\/summary>/);
+    assert.doesNotMatch(beforeSources, /Diese Vertiefung wurde am/);
   }
   assert.equal(renderToStaticMarkup(React.createElement(Component, { slug: 'nicht-vorhanden' })), '');
 });

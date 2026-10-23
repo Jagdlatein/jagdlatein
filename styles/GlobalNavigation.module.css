@@ -22,6 +22,7 @@
 .moreLinks svg { flex-shrink: 0; }
 .moreLinks a:hover, .moreLinks a[aria-current] { background: #f3e5bd; }
 .moreLinks a:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
+.pageMenu:empty { display: none; }
 @media (max-width: 620px) {
   .nav { left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: calc(var(--navigation-bottom-inset, 0px) + max(8px, env(safe-area-inset-bottom, 0px))); max-width: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; }
   .more > summary { width: 100%; }

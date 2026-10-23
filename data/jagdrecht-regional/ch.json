@@ -7,16 +7,16 @@
       "name": "Bundesrecht Schweiz",
       "lawTitle": "Jagdgesetz (JSG), SR 922.0; Jagdverordnung (JSV), SR 922.01",
       "officialUrl": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de",
-      "notes": "Bundesrecht ergänzt das kantonale Recht und ersetzt weder Jagdberechtigung noch lokale Jagd- und Schutzvorschriften. JSG-Fassung vom 1. Februar 2025 und JSV-Fassung vom 1. Januar 2026 am 23. Oktober 2026 direkt in Fedlex gelesen. Keine Jagdzeiten aus alten Vernehmlassungsentwürfen übernommen.",
+      "notes": "Bundesrechtsstock zur Ergänzung des ausgewählten Kantons: selbst erstellte Lern- und Anwendungsfragen mit vollständigen ausgewählten Normpassagen. JSG-Fassung vom 1. Februar 2025 und JSV-Fassung vom 1. Januar 2026 am 23. Oktober 2026 direkt in Fedlex geprüft. Bundesrechtliche Einstufung oder Schonzeit ersetzt niemals eine kantonale Jagdfreigabe. Die Übergangsfrist für bleihaltige Kugelmunition bis 31. Dezember 2029 wird gemeinsam mit dem neuen Verbot gezeigt. Kein amtlicher Originalprüfungskatalog und keine vollständige Abbildung jeder Spezialvorschrift.",
       "articles": [
         {
           "id": "ch-bund-zustaendigkeit",
           "topic": "zustandigkeit",
           "title": "Kantonale Planung und Jagdsysteme",
           "lawTitle": "Jagdgesetz (JSG), SR 922.0",
-          "citation": "Art. 3 Abs. 1 und 2 JSG",
-          "officialText": "1 Die Kantone regeln und planen die Jagd nach den Grundsätzen der Nachhaltigkeit und koordinieren die Jagdplanung soweit erforderlich untereinander. Sie berücksichtigen dabei die örtlichen Verhältnisse sowie die Anliegen der Landwirtschaft, des Naturschutzes, des Tierschutzes und der Tiergesundheit. Die Regulierung der Wildbestände wird so gestaltet, dass die nachhaltige Bewirtschaftung der Wälder und die natürliche Verjüngung mit standortgerechten Baumarten gesichert sind und grosse Schäden an Lebensmittelkulturen vermieden werden können.\n2 Sie bestimmen die Voraussetzungen für die Jagdberechtigung, legen das Jagdsystem und das Jagdgebiet fest und sorgen für eine wirkungsvolle Aufsicht.",
-          "summary": "Die Kantone bestimmen Jagdsystem, Jagdgebiet und Zulassung im bundesrechtlichen Rahmen. Darum muss die Vorbereitung zur tatsächlich zuständigen Prüfungs- und Jagdregion passen.",
+          "citation": "Art. 3 Abs. 1–4 JSG",
+          "officialText": "1 Die Kantone regeln und planen die Jagd nach den Grundsätzen der Nachhaltigkeit und koordinieren die Jagdplanung soweit erforderlich untereinander. Sie berücksichtigen dabei die örtlichen Verhältnisse sowie die Anliegen der Landwirtschaft, des Naturschutzes, des Tierschutzes und der Tiergesundheit. Die Regulierung der Wildbestände wird so gestaltet, dass die nachhaltige Bewirtschaftung der Wälder und die natürliche Verjüngung mit standortgerechten Baumarten gesichert sind und grosse Schäden an Lebensmittelkulturen vermieden werden können.\n2 Sie bestimmen die Voraussetzungen für die Jagdberechtigung, legen das Jagdsystem und das Jagdgebiet fest und sorgen für eine wirkungsvolle Aufsicht.\n3 Sie führen nach den Vorschriften des Bundesrates eine Statistik über den Abschuss und den Bestand der wichtigsten Arten.\n4 Der Bundesrat bestimmt die für die Jagd verbotenen Hilfsmittel. Er lässt eine eidgenössische Jagdstatistik erstellen.",
+          "summary": "Die Kantone planen die Jagd nachhaltig und stimmen sie bei Bedarf untereinander ab. Sie müssen örtliche Verhältnisse, Landwirtschaft, Naturschutz, Tierschutz und Tiergesundheit berücksichtigen. Die Bestandsregulierung soll die nachhaltige Bewirtschaftung des Waldes, seine natürliche Verjüngung mit standortgerechten Baumarten und die Vermeidung grosser Schäden an Lebensmittelkulturen sichern. Jagdsystem, Jagdgebiet, Zulassung und wirkungsvolle Aufsicht werden im bundesrechtlichen Rahmen kantonal geregelt.",
           "sources": [
             {
               "title": "Jagdgesetz, aktuelle Fassung 1. Februar 2025",
@@ -34,6 +34,12 @@
               "title": "Jagd: Jagdsysteme und kantonale Jagdausbildung",
               "url": "https://www.bafu.admin.ch/de/jagd",
               "publisher": "Bundesamt für Umwelt BAFU",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
               "kind": "context"
             }
           ],
@@ -57,11 +63,55 @@
               "prompt": "Warum reicht bei einer kantonalen Rechtsprüfung ein ausschliesslicher Bundesrechtskatalog nicht?",
               "choices": [
                 "Weil Bundesrecht nirgends gilt",
-                "Weil das Waffengeschäft alle Regeln bestimmt",
+                "Weil jedes Bundesgesetz in den Kantonen automatisch unverbindlich wäre",
                 "Weil die Kantone Jagdsystem und Zulassung im Bundesrahmen konkret regeln"
               ],
               "correctIndex": 2,
               "explanation": "Kantonale Vorschriften ergänzen die bundesrechtlichen Grundsätze."
+            },
+            {
+              "id": "ch-bund-zustaendigkeit-q3",
+              "prompt": "Eine Jagdplanung berücksichtigt den Wald, lässt aber Tierschutz und Tiergesundheit bewusst ausser Acht. Entspricht das Art. 3 Abs. 1 JSG?",
+              "choices": [
+                "Ja; diese Anliegen sind ausdrücklich ausgeschlossen",
+                "Nein; auch Tierschutz und Tiergesundheit müssen berücksichtigt werden",
+                "Ja; sie betreffen nur Haustiere"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 3 Abs. 1 nennt Landwirtschaft, Naturschutz, Tierschutz und Tiergesundheit neben den örtlichen Verhältnissen."
+            },
+            {
+              "id": "ch-bund-zustaendigkeit-q4",
+              "prompt": "Welches Ziel der Wildbestandsregulierung nennt Art. 3 Abs. 1 für den Wald?",
+              "choices": [
+                "Jede Baumart unabhängig vom Standort künstlich pflanzen",
+                "Jede Waldfläche zu einer Wildfütterung machen",
+                "Nachhaltige Bewirtschaftung und natürliche Verjüngung mit standortgerechten Baumarten sichern"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm verlangt eine Regulierung, welche nachhaltige Waldbewirtschaftung und natürliche Verjüngung standortgerechter Baumarten sichert."
+            },
+            {
+              "id": "ch-bund-zustaendigkeit-q5",
+              "prompt": "Zwei benachbarte Kantone betreuen eine grenzüberschreitende Wildpopulation. Was verlangt Art. 3 Abs. 1, soweit erforderlich?",
+              "choices": [
+                "Die Jagdplanung untereinander koordinieren",
+                "Jede Abstimmung mit dem Nachbarkanton vermeiden",
+                "Die Verantwortung vollständig an den Grundeigentümer abgeben"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Pflicht zur Koordination ergänzt die kantonale Zuständigkeit; sie bedeutet keine automatische gegenseitige Jagdberechtigung."
+            },
+            {
+              "id": "ch-bund-zustaendigkeit-q6",
+              "prompt": "Wer muss nach Art. 3 Abs. 2 für eine wirkungsvolle Jagdaufsicht sorgen?",
+              "choices": [
+                "Nur die Jagdwaffenhersteller",
+                "Die Kantone",
+                "Ausschliesslich die Eidgenossenschaft ohne kantonale Zuständigkeit"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Kantone regeln nicht nur System und Jagdgebiet, sondern müssen auch eine wirkungsvolle Aufsicht sicherstellen."
             }
           ],
           "effectiveFrom": "2025-02-01"
@@ -92,6 +142,12 @@
               "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/jagdausweise.html",
               "publisher": "Kanton St. Gallen",
               "kind": "context"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
             }
           ],
           "reviewedOn": "2026-10-23",
@@ -119,6 +175,17 @@
               ],
               "correctIndex": 1,
               "explanation": "JagdSchweiz unterscheidet die durch Prüfung erlangte Jagdfähigkeit von der kantonalen Jagdberechtigung."
+            },
+            {
+              "id": "ch-bund-jagdberechtigung-q3",
+              "prompt": "Für welche Gruppen erlaubt Art. 4 Abs. 3 eine auf einzelne Tage beschränkte kantonale Jagdberechtigung?",
+              "choices": [
+                "Personen in Vorbereitung auf die Jagdprüfung und Jagdgäste",
+                "Nur vollamtliche Wildhüterinnen und Wildhüter",
+                "Für jedermann ohne kantonale Regelung"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Kantone können für diese beiden Gruppen eine beschränkte Berechtigung vorsehen. Die Fachkunde zum Töten nach Art. 1b JSV ist daneben zu beachten."
             }
           ],
           "effectiveFrom": "2025-02-01"
@@ -137,11 +204,29 @@
               "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_8",
               "publisher": "Schweizerische Bundesversammlung / Fedlex",
               "kind": "law"
+            },
+            {
+              "title": "Nachsuchenwesen: aktualisierte Bundesgrundlagen, Stand September 2025",
+              "url": "https://www.ajv.ch/hundewesen/",
+              "publisher": "Jagd Aargau – Hundekommission",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdbetriebsvorschriften 2025–2033: ungeklärte Schüsse und Nachsuche",
+              "url": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/fischerei-und-jagd/jagd/jagdbetriebsvorschriften_2025-2033.pdf",
+              "publisher": "Kanton Zürich – Fischerei- und Jagdverwaltung",
+              "kind": "context"
+            },
+            {
+              "title": "Richtlinie Nachsuchenwesen, Stand 01.09.2025: praktische Pflichten und Bundesgrundlagen",
+              "url": "https://www.ajv.ch/wp-content/uploads/2025/09/Richtlinie-Nachsuchenwesen-JAGDAARGAU-Stand-1-9-2025.pdf",
+              "publisher": "Jagd Aargau – Hundekommission",
+              "kind": "context"
             }
           ],
           "reviewedOn": "2026-10-23",
           "originalVerified": true,
-          "verified": false,
+          "verified": true,
           "questions": [
             {
               "id": "ch-bund-nachsuche-q1",
@@ -160,14 +245,24 @@
               "choices": [
                 "Die Kantone",
                 "Jeder Schütze nach Belieben",
-                "Ausschliesslich der Waffenhändler"
+                "Die einzelne Jagdgesellschaft ohne kantonale Vorgaben"
               ],
               "correctIndex": 0,
               "explanation": "Der zweite Satz weist die Ausgestaltung den Kantonen zu."
+            },
+            {
+              "id": "ch-bund-nachsuche-q3",
+              "prompt": "Welche zwei Anforderungen stellt Art. 8 Abs. 1 an die Nachsuche?",
+              "choices": [
+                "Sie erfolgt nur ohne Hund und erst nach der Jagdsaison",
+                "Sie erfolgt ausschliesslich bei sichtbarem Fallwild",
+                "Sie erfolgt fachgerecht und innert nützlicher Frist"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm verbindet die fachliche Qualität mit einer zeitlichen Pflicht. Die kantonalen Einzelheiten bleiben zusätzlich massgebend."
             }
           ],
-          "effectiveFrom": "2025-02-01",
-          "verificationNotes": "Aktueller amtlicher Originaltext gelesen; konkrete Erklärung und Fragen sind noch nicht unabhängig vollständig abgeglichen."
+          "effectiveFrom": "2025-02-01"
         },
         {
           "id": "ch-bund-nachsuchehilfe",
@@ -291,11 +386,29 @@
               "url": "https://www.jagd.ch/fr/pratiques-de-chasse/jaeger-werden-fr-fr/",
               "publisher": "JagdSchweiz",
               "kind": "context"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "Nachsuchenwesen: aktualisierte Bundesgrundlagen, Stand September 2025",
+              "url": "https://www.ajv.ch/hundewesen/",
+              "publisher": "Jagd Aargau – Hundekommission",
+              "kind": "context"
+            },
+            {
+              "title": "Richtlinie Nachsuchenwesen, Stand 01.09.2025: praktische Pflichten und Bundesgrundlagen",
+              "url": "https://www.ajv.ch/wp-content/uploads/2025/09/Richtlinie-Nachsuchenwesen-JAGDAARGAU-Stand-1-9-2025.pdf",
+              "publisher": "Jagd Aargau – Hundekommission",
+              "kind": "context"
             }
           ],
           "reviewedOn": "2026-10-23",
           "originalVerified": true,
-          "verified": false,
+          "verified": true,
           "questions": [
             {
               "id": "ch-bund-treffsicherheit-q1",
@@ -318,10 +431,1339 @@
               ],
               "correctIndex": 2,
               "explanation": "Prüfung, Schiesspflicht und geltende Nachweisregeln sind zu unterscheiden."
+            },
+            {
+              "id": "ch-bund-treffsicherheit-q3",
+              "prompt": "Wer regelt nach Art. 2 Abs. 2bis JSV die Ausbildung und den Einsatz von Jagdhunden näher?",
+              "choices": [
+                "Der Bund allein, ohne kantonale Ausführungsregeln",
+                "Jeder Gast ohne behördliche Regeln",
+                "Die Kantone"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die kantonale Regelungsaufgabe betrifft unter anderem Nachsuche, Vorstehen, Apportieren, Baujagd und Wildschweinjagd."
+            },
+            {
+              "id": "ch-bund-treffsicherheit-q4",
+              "prompt": "Welche Anforderungen sind zusätzlich zur reinen Waffenwahl kantonal geregelt?",
+              "choices": [
+                "Zugelassene Munition/Kaliber, maximale Schussdistanzen und periodische Treffsicherheit",
+                "Nur die Zahl der jährlich gekauften Jagdwaffen",
+                "Ausschliesslich der Kaufpreis der Waffe"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 2 Abs. 2bis Bst. a weist diese technischen und persönlichen Anforderungen den Kantonen zu. Bundesrechtliche Verbote gelten daneben weiter."
             }
           ],
+          "effectiveFrom": "2026-01-01"
+        },
+        {
+          "id": "ch-bund-zweck",
+          "topic": "zustandigkeit",
+          "title": "Wozu das eidgenössische Jagdgesetz dient",
+          "lawTitle": "Jagdgesetz (JSG), SR 922.0",
+          "citation": "Art. 1 JSG",
+          "officialText": "1 Dieses Gesetz bezweckt:a. die Artenvielfalt und die Lebensräume der einheimischen und ziehenden wildlebenden Säugetiere und Vögel zu erhalten;\nb. bedrohte Tierarten zu schützen;\nc. die von wildlebenden Tieren verursachten Schäden an Wald und an landwirtschaftlichen Kulturen auf ein tragbares Mass zu begrenzen;\nd. eine angemessene Nutzung der Wildbestände durch die Jagd zu gewährleisten.\n2 Es stellt Grundsätze auf, nach denen die Kantone die Jagd zu regeln haben.",
+          "summary": "Das JSG verbindet vier Ziele: Arten und Lebensräume erhalten, bedrohte Arten schützen, Wildschäden an Wald und landwirtschaftlichen Kulturen auf ein tragbares Mass begrenzen und Wildbestände angemessen jagdlich nutzen. Es verlangt weder die Beseitigung sämtlicher Wildschäden noch die vollständige Ausschöpfung jeder jagdbaren Art. Die Kantone konkretisieren diese Grundsätze. Schutz und nachhaltige Nutzung stehen gemeinsam im Zweckartikel.",
+          "sources": [
+            {
+              "title": "JSG: amtliche Fassung 20250201",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_1",
+              "publisher": "Schweizerische Bundesversammlung / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "GAJ St. Gallen: mögliche Übungsfragen 2025, Stoffeinordnung; keine übernommene Fragenbank",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/alte-seiten-abteilung-jagd/jagdausbildung-lehrgang-2024-20253/_jcr_content/Par/sgch_downloadlist_1016581183/DownloadListPar/sgch_download_572852381.ocFile/Pr%C3%BCfungsfragen_Jagdrecht%202025.pdf",
+              "publisher": "Kanton St. Gallen – GAJ",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2025-02-01",
+          "questions": [
+            {
+              "id": "ch-bund-zweck-q1",
+              "prompt": "Welche Kombination gibt die Ziele des JSG richtig wieder?",
+              "choices": [
+                "Möglichst viele Abschüsse und keinerlei Lebensraumschutz",
+                "Nur die Verteilung von Jagdwaffen",
+                "Arten- und Lebensraumerhaltung, Schutz bedrohter Arten, tragbare Wildschäden und angemessene Jagdnutzung"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 1 verbindet Erhaltung, Schutz, Schadenbegrenzung und angemessene Nutzung; keines dieser Ziele steht allein."
+            },
+            {
+              "id": "ch-bund-zweck-q2",
+              "prompt": "Verlangt Art. 1 JSG, dass überhaupt kein Wildschaden mehr entstehen darf?",
+              "choices": [
+                "Nein; Schäden an Wald und landwirtschaftlichen Kulturen sollen auf ein tragbares Mass begrenzt werden",
+                "Ja; jedes angefressene Blatt muss verhindert werden",
+                "Nein; Wildschäden sind vom Gesetz ausdrücklich ausgenommen"
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Zweckartikel spricht von einem tragbaren Mass, nicht von einer Nullschadensgarantie."
+            },
+            {
+              "id": "ch-bund-zweck-q3",
+              "prompt": "Welche Tiere berücksichtigt das Erhaltungsziel ausdrücklich zusätzlich zu den einheimischen Wildtieren?",
+              "choices": [
+                "Ausschliesslich in Gehegen gezüchtete Haustiere",
+                "Ziehende wildlebende Säugetiere und Vögel",
+                "Nur Arten, die während des ganzen Jahres am selben Ort bleiben"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 1 Abs. 1 Bst. a nennt einheimische und ziehende wildlebende Säugetiere und Vögel."
+            },
+            {
+              "id": "ch-bund-zweck-q4",
+              "prompt": "Ein Prüfungstext behauptet: Das JSG bezweckt nur den Schutz, niemals eine jagdliche Nutzung. Wie ist das einzuordnen?",
+              "choices": [
+                "Richtig; Jagdnutzung ist im Zweckartikel verboten",
+                "Richtig; Nutzung darf ausschliesslich ausserhalb der Schweiz stattfinden",
+                "Unvollständig; eine angemessene Nutzung der Wildbestände ist ebenfalls ein gesetzliches Ziel"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 1 Abs. 1 Bst. d nennt die angemessene Nutzung ausdrücklich. Das bedeutet keine Freigabe entgegen Schutz- und Kantonsrecht."
+            },
+            {
+              "id": "ch-bund-zweck-q5",
+              "prompt": "Welche Funktion hat das JSG gegenüber dem kantonalen Jagdrecht?",
+              "choices": [
+                "Es stellt Grundsätze auf, nach denen die Kantone die Jagd regeln",
+                "Es ersetzt jede kantonale Vorschrift und jede Bewilligung",
+                "Es ist ausschliesslich ein freiwilliges Vereinsreglement"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 1 Abs. 2 beschreibt den Rahmen für die kantonalen Regelungen."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-jagdhund-einsatz",
+          "topic": "jagdausuebung",
+          "title": "Jagdhund: Aufgaben vor und nach dem Schuss",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 2a JSV",
+          "officialText": "Der Zweck des Einsatzes von Jagdhunden ist das weitgehend selbstständige Suchen, Anzeigen oder laute Verfolgen von Wildtieren sowie das Suchen von kranken oder verletzten Wildtieren. Bei verletzten Wildtieren umfasst der Einsatzzweck zusätzlich das Greifen, sofern das Nottöten dieser Tiere nicht möglich ist.",
+          "summary": "Art. 2a beschreibt den Zweck des Hundeeinsatzes: Wildtiere weitgehend selbstständig suchen, anzeigen oder laut verfolgen und kranke oder verletzte Wildtiere suchen. Bei verletzten Tieren kommt das Greifen nur unter der genannten Voraussetzung hinzu: Das Nottöten ist nicht möglich. Die Norm ist keine pauschale Freigabe beliebiger Hunde; kantonale Eignungs-, Ausbildungs- und Prüfungsanforderungen bleiben bestehen.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_2_a",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "Richtlinie Nachsuchenwesen, Stand 01.09.2025: praktische Pflichten und Bundesgrundlagen",
+              "url": "https://www.ajv.ch/wp-content/uploads/2025/09/Richtlinie-Nachsuchenwesen-JAGDAARGAU-Stand-1-9-2025.pdf",
+              "publisher": "Jagd Aargau – Hundekommission",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
           "effectiveFrom": "2026-01-01",
-          "verificationNotes": "Aktueller amtlicher Originaltext gelesen; konkrete Erklärung und Fragen sind noch nicht unabhängig vollständig abgeglichen."
+          "questions": [
+            {
+              "id": "ch-bund-jagdhund-einsatz-q1",
+              "prompt": "Welche Tätigkeit gehört nach Art. 2a JSV zum gesetzlichen Zweck des Hundeeinsatzes?",
+              "choices": [
+                "Das wahllose Hetzen beliebiger Haustiere",
+                "Das Suchen kranker oder verletzter Wildtiere",
+                "Das Ersetzen jeder Berechtigung der Hundeführerin"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Suche nach krankem oder verletztem Wild ist ein ausdrücklich genannter Einsatzzweck."
+            },
+            {
+              "id": "ch-bund-jagdhund-einsatz-q2",
+              "prompt": "Welche drei Tätigkeiten nennt Art. 2a für den weitgehend selbstständigen Einsatz an Wildtieren?",
+              "choices": [
+                "Ausschliesslich Bewachen eines Autos",
+                "Nur stilles Ablegen ausserhalb des Reviers",
+                "Suchen, Anzeigen oder lautes Verfolgen"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Verordnung nennt diese drei Alternativen ausdrücklich; die näheren kantonalen Regeln müssen ebenfalls erfüllt werden."
+            },
+            {
+              "id": "ch-bund-jagdhund-einsatz-q3",
+              "prompt": "Wann umfasst der Einsatzzweck nach Art. 2a zusätzlich das Greifen eines verletzten Wildtiers?",
+              "choices": [
+                "Wenn das Nottöten dieses Tiers nicht möglich ist",
+                "Bei jedem gesunden Wildtier unabhängig von der Lage",
+                "Nur zur Herstellung eines Jagdfotos"
+              ],
+              "correctIndex": 0,
+              "explanation": "Das Greifen ist im Satz ausdrücklich an verletztes Wild und die fehlende Möglichkeit der Nottötung gebunden."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-hilfsmittel",
+          "topic": "jagdausuebung",
+          "title": "Verbotene Hilfsmittel und ausdrücklich genannte Ausnahmen",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 2 JSV und Übergangsbestimmung zur Änderung vom 13. Dezember 2024",
+          "officialText": "1 Folgende Hilfsmittel und Methoden dürfen für die Ausübung der Jagd nicht verwendet werden:a. Fallen, ausser Kastenfallen zum Lebendfang, sofern diese täglich kontrolliert werden;\nb. Schlingen, Drahtschnüre, Netze, Leimruten und Haken;\nc. für die Baujagd: das Begasen und Ausräuchern von Tierbauten, das Ausgraben von Dachsen, die Verwendung von Zangen und Bohrern, die Abgabe von Treibschüssen und das gleichzeitige Verwenden von mehr als einem Hund pro Bau;\nd. als Lockmittel verwendete lebende Tiere;\ne. elektronische Tonwiedergabegeräte für das Anlocken von Tieren, Elektroschockgeräte, künstliche Lichtquellen, Spiegel oder andere blendende Vorrichtungen sowie Laserzielgeräte, Nachtsichtzielgeräte und Gerätekombinationen mit vergleichbarer Funktion;\nf. Sprengstoffe, pyrotechnische Gegenstände, Gift, Betäubungsmittel und vergiftete oder betäubende Köder;\ng. Armbrüste, Pfeilbogen, Schleudern, Speere, Lanzen, Messer, Luftgewehre und Luftpistolen;\nh. Selbstladewaffen mit einem Magazin von mehr als zwei Patronen, Schrotwaffen mit einem Kaliber von mehr als 18,2 mm (Kaliber 12), Seriefeuerwaffen und Faustfeuerwaffen;\ni.\nFeuerwaffen:1. deren Lauf kürzer als 40 cm ist,\n2. deren Schaft klappbar, teleskopartig ausziehbar oder nicht fest mit dem System verbunden ist,\n3. deren Lauf auseinandergeschraubt werden kann,\n4. …\nj. das Schiessen ab Motorbooten, deren Leistung 6 kW übersteigt, ausser zur Verhinderung von Schäden an den ausgelegten Fanggeräten bei der Ausübung der Berufsfischerei;\nk. das Schiessen ab fahrenden Motorfahrzeugen, Luftseilbahnen, Standseilbahnen, Sessel- und Skiliften sowie Eisenbahnen und Luftfahrzeugen;\nl. für die Wasservogeljagd: Bleischrot;\nm. Munition, deren Projektile eine Mündungsgeschwindigkeit unter Schallgeschwindigkeit aufweisen;\nn. bleihaltige Kugelmunition ab Kaliber 6 mm;\no. zivile, unbemannte Luftfahrzeuge, ausser zum Einsatz durch fachkundige Personen für die Rehkitzrettung.\n2 Abweichend von Absatz 1 dürfen für das Töten von Wildtieren, die nicht fluchtfähig sind, verwendet werden:a. Faustfeuerwaffen für Fangschüsse;\nb. Messer und Lanzen zum Anbringen eines Kammerstiches, wenn die Wildtiere verletzt sind und Fangschüsse Menschen, Jagdhunde oder erhebliche Sachwerte gefährden.\n2bis Zur Sicherstellung einer tierschutzgerechten Jagd regeln die Kantone bei den nachfolgenden Hilfsmitteln:a. Feuerwaffen: die zugelassene Munition und Kaliber, die maximal erlaubten Schussdistanzen sowie den periodischen Nachweis der Treffsicherheit als Voraussetzung für die Jagdberechtigung;\nb. Jagdhunde: die Ausbildung und den Einsatz insbesondere für die Nachsuche, das Vorstehen und Apportieren, die Baujagd sowie die Jagd auf Wildschweine.\n2ter Das Bundesamt für Umwelt (BAFU) kann Richtlinien für die Verwendung von Hilfsmitteln und Methoden erlassen.\n3 Die Kantone können die Verwendung weiterer Hilfsmittel verbieten.\n\nÜbergangsbestimmung zur Änderung vom 13. Dezember 2024:\nBis zum 31. Dezember 2029 bleibt bleihaltige Kugelmunition für Kaliber ab 6 mm erlaubt.",
+          "summary": "Lerne die Regel und ihre Grenzen zusammen: Art. 2 verbietet zahlreiche Fang-, Lock-, Waffen- und Transportmittel für die Jagd. Eine Kastenfalle zum Lebendfang ist von diesem Fallenverbot ausgenommen, wenn sie täglich kontrolliert wird; zusätzliche kantonale Vorgaben gelten weiter. Für nicht fluchtfähiges Wild enthält Abs. 2 besondere Ausnahmen für Fangschüsse mit Faustfeuerwaffen und unter engen Bedingungen für einen Kammerstich. Eine Ausnahmebewilligung nach Art. 3 ist ein eigener behördlicher Vorgang, kein privater Entscheid. Die jagdrechtliche Streichung des Schalldämpfers ersetzt keine waffenrechtliche Bewilligung. Wichtig am heutigen Rechtsstand: Bleihaltige Kugelmunition ab Kaliber 6 mm bleibt aufgrund der Übergangsbestimmung bis 31. Dezember 2029 erlaubt; strengere anderweitige Regeln bleiben möglich.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_2",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "GAJ St. Gallen: mögliche Übungsfragen 2025, Stoffeinordnung; keine übernommene Fragenbank",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/alte-seiten-abteilung-jagd/jagdausbildung-lehrgang-2024-20253/_jcr_content/Par/sgch_downloadlist_1016581183/DownloadListPar/sgch_download_572852381.ocFile/Pr%C3%BCfungsfragen_Jagdrecht%202025.pdf",
+              "publisher": "Kanton St. Gallen – GAJ",
+              "kind": "context"
+            },
+            {
+              "title": "FJV Bulletin April 2025: Nachtjagd, Schalldämpfer und Übergangsfrist Bleimunition",
+              "url": "https://www.sfvubs.ch/News/FJV%20Bulletin%20Nr.%206%20April%202025.pdf",
+              "publisher": "Kanton Zürich – Fischerei- und Jagdverwaltung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-hilfsmittel-q1",
+              "prompt": "Welche Falle nimmt Art. 2 Abs. 1 Bst. a vom bundesrechtlichen Fallenverbot aus?",
+              "choices": [
+                "Jede Totschlagfalle, wenn sie beschriftet ist",
+                "Eine beliebige Falle, die nur monatlich kontrolliert wird",
+                "Eine Kastenfalle zum Lebendfang, die täglich kontrolliert wird"
+              ],
+              "correctIndex": 2,
+              "explanation": "Lebendfang in Kastenfallen und tägliche Kontrolle gehören zusammen. Weitere kantonale Vorschriften werden damit nicht aufgehoben."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q2",
+              "prompt": "Welche Gruppe ist für die Jagdausübung nach Art. 2 Abs. 1 Bst. b verboten?",
+              "choices": [
+                "Schlingen, Drahtschnüre, Netze, Leimruten und Haken",
+                "Gewöhnliche Beobachtungsferngläser",
+                "Ein papiernes Jagdtagebuch"
+              ],
+              "correctIndex": 0,
+              "explanation": "Bst. b nennt diese Fangmittel ausdrücklich. Der Besitz eines Jagdausweises beseitigt dieses Verbot nicht."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q3",
+              "prompt": "Darf ein Tierbau zur Baujagd begast oder ausgeräuchert werden?",
+              "choices": [
+                "Ja; sobald der Jagdpächter zustimmt",
+                "Nein; beide Methoden sind ausdrücklich verboten",
+                "Ja; wenn das Tier nicht sichtbar ist"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 2 Abs. 1 Bst. c zählt Begasen und Ausräuchern zu den verbotenen Methoden."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q4",
+              "prompt": "Zwei Hunde sollen gleichzeitig in denselben Bau geschickt werden. Wie beurteilt dies Art. 2 Abs. 1 Bst. c?",
+              "choices": [
+                "Es ist zwingend vorgeschrieben",
+                "Es ist erlaubt, wenn beide Hunde derselben Rasse angehören",
+                "Das gleichzeitige Verwenden von mehr als einem Hund pro Bau ist verboten"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Höchstzahl bezieht sich auf den gleichzeitigen Einsatz pro Bau. Kantonale Einsatz- und Prüfungsvorgaben kommen hinzu."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q5",
+              "prompt": "Was sagt Art. 2 Abs. 1 Bst. c zum Ausgraben von Dachsen für die Baujagd?",
+              "choices": [
+                "Es ist verboten",
+                "Es ist stets ohne Bewilligung erlaubt",
+                "Es ist nur nachts erlaubt"
+              ],
+              "correctIndex": 0,
+              "explanation": "Das Ausgraben von Dachsen ist ausdrücklich in der Verbotsliste aufgeführt."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q6",
+              "prompt": "Eine lebende Ente soll auf der Jagd als Locktier dienen. Welche bundesrechtliche Regel ist betroffen?",
+              "choices": [
+                "Lebende Locktiere sind immer zwingend",
+                "Lebende Tiere dürfen nicht als Lockmittel verwendet werden",
+                "Lebende Locktiere sind ohne Ausnahme zulässig, wenn sie unverletzt bleiben"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 2 Abs. 1 Bst. d verbietet als Lockmittel verwendete lebende Tiere."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q7",
+              "prompt": "Darf eine Tonaufnahme aus einem elektronischen Gerät zum Anlocken von Wild verwendet werden, ohne dass eine Ausnahmebewilligung besteht?",
+              "choices": [
+                "Ja; Tonaufnahmen sind grundsätzlich von jeder Jagdregel ausgenommen",
+                "Ja; sobald das Gerät über ein Mobiltelefon läuft",
+                "Nein; elektronische Tonwiedergabegeräte zum Anlocken sind verboten"
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Verbot erfasst die Funktion des elektronischen Anlockens, nicht nur ein bestimmtes Gerätemodell."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q8",
+              "prompt": "Welche Zielgeräte nennt Art. 2 Abs. 1 Bst. e als grundsätzlich verboten?",
+              "choices": [
+                "Laserzielgeräte, Nachtsichtzielgeräte und Gerätekombinationen mit vergleichbarer Funktion",
+                "Jedes gewöhnliche Tagesfernglas",
+                "Jedes gewöhnliche Zielfernrohr ohne Nacht- oder Laserfunktion"
+              ],
+              "correctIndex": 0,
+              "explanation": "Eine allfällige Ausnahme setzt die zuständigen Bewilligungen voraus. Aus einem Kauf oder Besitz folgt keine jagdliche Einsatzberechtigung."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q9",
+              "prompt": "Welche Aussage zu künstlichem Licht trifft die Grundregel des Art. 2 Abs. 1 Bst. e?",
+              "choices": [
+                "Jede Taschenlampe erlaubt automatisch einen Nachtabschuss",
+                "Künstliche Lichtquellen zählen zu den verbotenen Hilfsmitteln",
+                "Eine Jagdeinladung ersetzt jede notwendige Ausnahmebewilligung"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Grundregel nennt künstliche Lichtquellen. Spezielle behördliche Ausnahmen müssen gesondert erfüllt sein."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q10",
+              "prompt": "Ein Köder wird mit einem Betäubungsmittel versehen. Wie ist diese Methode nach Art. 2 Abs. 1 Bst. f einzuordnen?",
+              "choices": [
+                "Erlaubt, wenn der Köder klein ist",
+                "Erlaubt, sobald ein Jagdhund anwesend ist",
+                "Verboten; auch betäubende Köder sind ausdrücklich erfasst"
+              ],
+              "correctIndex": 2,
+              "explanation": "Gift, Betäubungsmittel und entsprechend präparierte Köder gehören zu den ausdrücklich verbotenen Mitteln."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q11",
+              "prompt": "Darf eine gewöhnliche Jagd ohne Ausnahmebewilligung mit einem Pfeilbogen durchgeführt werden?",
+              "choices": [
+                "Nein; Pfeilbogen sind ausdrücklich verboten",
+                "Ja; Pfeilbogen gelten nicht als Jagdmittel",
+                "Ja; sofern keine Kugelmunition verwendet wird"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 2 Abs. 1 Bst. g nennt Pfeilbogen und Armbrüste. Das Weglassen von Kugelmunition ist keine Ausnahme."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q12",
+              "prompt": "Wie ist ein Luftgewehr als Mittel für die normale Jagdausübung nach Art. 2 Abs. 1 Bst. g eingestuft?",
+              "choices": [
+                "Als immer erlaubte Alternative für jedes Wild",
+                "Als verbotenes Hilfsmittel",
+                "Als zwingende Waffe für die Rehjagd"
+              ],
+              "correctIndex": 1,
+              "explanation": "Luftgewehre und Luftpistolen sind in dieser Verbotsgruppe ausdrücklich genannt."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q13",
+              "prompt": "Eine Selbstladewaffe hat ein Magazin mit Platz für drei Patronen. Was sagt die bundesrechtliche Jagdregel?",
+              "choices": [
+                "Jedes Magazin bis zehn Patronen ist automatisch jagdlich erlaubt",
+                "Die Magazinkapazität spielt im Jagdrecht keine Rolle",
+                "Ein Magazin von mehr als zwei Patronen ist verboten"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 2 Abs. 1 Bst. h setzt die Grenze beim Magazin von mehr als zwei Patronen; weitere waffen- und kantonalrechtliche Anforderungen bleiben bestehen."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q14",
+              "prompt": "Welche Schrotwaffengrösse liegt an der bundesrechtlichen oberen Grenze des Art. 2 Abs. 1 Bst. h?",
+              "choices": [
+                "18,2 mm, entsprechend Kaliber 12",
+                "Kaliber 8 unabhängig vom Laufdurchmesser",
+                "Jede beliebige Flinte ohne Grössenbegrenzung"
+              ],
+              "correctIndex": 0,
+              "explanation": "Verboten sind Schrotwaffen mit einem Kaliber von mehr als 18,2 mm (Kaliber 12). Daraus folgt keine Freigabe jeder Munition oder Jagdart."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q15",
+              "prompt": "Eine Feuerwaffe hat einen 35 cm langen Lauf. Wie beurteilt Art. 2 Abs. 1 Bst. i Ziff. 1 ihre normale jagdliche Verwendung?",
+              "choices": [
+                "Erlaubt; die Verordnung kennt keine Lauflänge",
+                "Verboten; der Lauf ist kürzer als 40 cm",
+                "Zwingend vorgeschrieben für jedes Schalenwild"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die aktuelle Bundesverordnung nennt 40 cm, nicht die in älteren Fassungen vorkommende Grenze von 45 cm."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q16",
+              "prompt": "Welche Schaftbauart wird in Art. 2 Abs. 1 Bst. i Ziff. 2 als verbotenes Jagdmittel genannt?",
+              "choices": [
+                "Ein gewöhnlicher fester Schaft allein wegen seiner Holzart",
+                "Jeder Schaft mit einer Schaftkappe",
+                "Ein klappbarer oder teleskopartig ausziehbarer Schaft"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Vorschrift nennt klappbare, teleskopartig ausziehbare und nicht fest mit dem System verbundene Schäfte."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q17",
+              "prompt": "Wie ist eine Feuerwaffe einzuordnen, deren Lauf auseinandergeschraubt werden kann?",
+              "choices": [
+                "Sie fällt unter das Verbot des Art. 2 Abs. 1 Bst. i Ziff. 3",
+                "Sie ist allein deswegen für jede Jagd ausdrücklich empfohlen",
+                "Die Verordnung erwähnt diese Bauart nicht"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die ausdrücklich genannte Bauart ist von der jagdlichen Verbotsnorm erfasst."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q18",
+              "prompt": "Ab welchem Motorboot erfasst Art. 2 Abs. 1 Bst. j das Schiessverbot bei der normalen Jagd?",
+              "choices": [
+                "Erst ab einer Leistung von mehr als 60 kW",
+                "Bei einer Leistung von mehr als 6 kW",
+                "Nur bei Segelbooten ohne Motor"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm enthält eine gesonderte eng gefasste Ausnahme zur Verhinderung von Schäden an ausgelegten Fanggeräten der Berufsfischerei; sie ist keine allgemeine Jagdfreigabe."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q19",
+              "prompt": "Darf während der normalen Jagd aus einem fahrenden Motorfahrzeug geschossen werden?",
+              "choices": [
+                "Ja; sobald ein Fenster geöffnet ist",
+                "Ja; wenn das Fahrzeug langsamer als ein Fussgänger fährt",
+                "Nein; Art. 2 Abs. 1 Bst. k verbietet dies"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Vorschrift nennt fahrende Motorfahrzeuge sowie verschiedene Seilbahnen, Eisenbahnen und Luftfahrzeuge."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q20",
+              "prompt": "Welches Schrotmaterial ist für die Wasservogeljagd bundesrechtlich ausdrücklich verboten?",
+              "choices": [
+                "Bleischrot",
+                "Jedes bleifreie Schrot allein wegen seiner Bleifreiheit",
+                "Nur Holzschrot"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 2 Abs. 1 Bst. l verbietet Bleischrot für die Wasservogeljagd. Die Übergangsregel für bleihaltige Kugelmunition hebt dieses Verbot nicht auf."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q21",
+              "prompt": "Eine Drohne soll Wild für einen Abschuss auffinden oder treiben. Macht der Besitz eines Jagdausweises diesen Einsatz allgemein zulässig?",
+              "choices": [
+                "Ja; jedes Jagdausweisdokument hebt das Drohnenverbot auf",
+                "Nein; zivile unbemannte Luftfahrzeuge sind für die Jagd grundsätzlich verboten",
+                "Ja; wenn die Drohne leise fliegt"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 2 Abs. 1 Bst. o nennt eine besondere Ausnahme für fachkundig durchgeführte Rehkitzrettung, keine allgemeine Such- oder Treiberlaubnis für Abschüsse."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q22",
+              "prompt": "Welche Verwendung eines zivilen unbemannten Luftfahrzeugs nimmt Art. 2 Abs. 1 Bst. o ausdrücklich aus?",
+              "choices": [
+                "Beliebiges Treiben von Schalenwild für den Abschuss",
+                "Nächtliche Jagd ohne kantonale Erlaubnis",
+                "Rehkitzrettung durch fachkundige Personen"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Ausnahme ist zweck- und personengebunden. Andere Luftfahrt-, Datenschutz- und Gebietsregeln werden dadurch nicht aufgehoben."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q23",
+              "prompt": "Wann erlaubt Art. 2 Abs. 2 Bst. a abweichend von der Grundregel eine Faustfeuerwaffe?",
+              "choices": [
+                "Für Fangschüsse auf Wildtiere, die nicht fluchtfähig sind",
+                "Für jede normale Fernjagd auf gesundes Wild",
+                "Ausschliesslich für eine fotografische Vorführung"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Ausnahme gilt für den beschriebenen Fangschussfall. Fachkunde und weitere anwendbare Vorschriften bleiben nötig."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q24",
+              "prompt": "Welche Voraussetzung gehört zur Ausnahme für einen Kammerstich nach Art. 2 Abs. 2 Bst. b?",
+              "choices": [
+                "Das Wildtier ist gesund und sicher fluchtfähig",
+                "Das Wildtier ist verletzt und ein Fangschuss würde Menschen, Jagdhunde oder erhebliche Sachwerte gefährden",
+                "Die handelnde Person möchte Munition sparen"
+              ],
+              "correctIndex": 1,
+              "explanation": "Zusätzlich geht es nach dem Eingangssatz um nicht fluchtfähige Wildtiere. Die Ausnahme ist keine allgemeine Alternative zum sicheren fachkundigen Nottöten."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q25",
+              "prompt": "Dürfen Kantone weitere Hilfsmittel verbieten, obwohl sie in Art. 2 Abs. 1 JSV nicht genannt sind?",
+              "choices": [
+                "Nein; die Bundesliste schliesst jede kantonale Einschränkung aus",
+                "Nur ein privater Verein kann zusätzliche Verbote erlassen",
+                "Ja; Art. 2 Abs. 3 lässt weitere kantonale Verbote zu"
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Nichtauftauchen in der Bundesliste genügt deshalb nicht als Nachweis der Zulässigkeit am konkreten Jagdort."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q26",
+              "prompt": "Bedeutet die jagdrechtliche Streichung des Schalldämpfers automatisch, dass jede waffenrechtliche Bewilligung entfällt?",
+              "choices": [
+                "Nein; jagdrechtliche Zulässigkeit und waffenrechtliche Erwerbs-/Besitzregeln sind getrennt zu beachten",
+                "Ja; alle anderen Gesetze wurden dadurch aufgehoben",
+                "Ja; ein Jagdgast darf daher jedes verbotene Zubehör kaufen"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Streichung des früheren Art. 2 Abs. 1 Bst. i Ziff. 4 betrifft diese jagdliche Verbotsliste. Der Erwerb ist weiterhin nach Waffenrecht zu beurteilen."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-q27",
+              "prompt": "Ist bleihaltige Kugelmunition ab Kaliber 6 mm am 23. Oktober 2026 allein aufgrund des neuen Bundesverbots bereits generell ausgeschlossen?",
+              "choices": [
+                "Ja; die Übergangsfrist endete bereits 2024",
+                "Nein; die Übergangsbestimmung lässt sie noch bis 31. Dezember 2029 zu",
+                "Nein; die Verordnung enthält überhaupt keine künftige Änderung"
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Verbotssatz muss zusammen mit der Übergangsbestimmung zur Änderung vom 13. Dezember 2024 gelesen werden. Abweichende strengere Vorgaben bleiben gesondert zu beachten."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-hilfsmittel-ausnahmen",
+          "topic": "zustandigkeit",
+          "title": "Ausnahmebewilligung: Zweck, Ausbildung und Zuständigkeit",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 3 JSV",
+          "officialText": "1 Die Kantone können speziell ausgebildeten Angehörigen der Jagdpolizei oder Jägerinnen und Jägern die Verwendung verbotener Hilfsmittel gestatten, sofern dies nötig ist, um:a. bestimmte Tierarten oder Lebensräume zu erhalten;\nb. Wildschäden zu verhüten;\nc. Tierseuchen zu bekämpfen;\nd. verletzte Tiere nachzusuchen und gegebenenfalls zu töten.\n2 Sie führen eine Liste der berechtigten Personen.\n3 Das BAFU kann den Einsatz verbotener Hilfsmittel für wissenschaftliche Untersuchungen und für Markierungsaktionen bewilligen.",
+          "summary": "Ein grundsätzlich verbotenes Jagdmittel wird nicht durch einen privaten Wunsch oder durch den blossen Waffenbesitz zulässig. Der Kanton kann es speziell ausgebildeten Angehörigen der Jagdpolizei oder Jägerinnen und Jägern nur gestatten, wenn einer der in Art. 3 genannten Zwecke dies nötig macht. Dazu gehören Arten-/Lebensraumerhaltung, Wildschadenverhütung, Tierseuchenbekämpfung und die Nachsuche mit gegebenenfalls notwendiger Tötung verletzten Wildes. Der Kanton führt die Liste der Berechtigten. Für wissenschaftliche Untersuchungen und Markierungsaktionen sieht Abs. 3 eine Zuständigkeit des BAFU vor.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_3",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q1",
+              "prompt": "Du hast eine waffenrechtliche Erwerbsbewilligung für ein Nachtsichtzielgerät. Ersetzt sie die nötige jagdrechtliche Ausnahme?",
+              "choices": [
+                "Nein; die erforderlichen jagd- und waffenrechtlichen Bewilligungen erfüllen unterschiedliche Aufgaben",
+                "Ja; jede Erwerbsbewilligung erlaubt jeden Jagdeinsatz",
+                "Ja; wenn der Händler die Rechnung abstempelt"
+              ],
+              "correctIndex": 0,
+              "explanation": "Das Solothurner Merkblatt erläutert die getrennten Bewilligungen. Art. 3 JSV regelt die jagdliche Ausnahme, nicht den blossen Erwerb."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q2",
+              "prompt": "Welche persönliche Voraussetzung nennt Art. 3 Abs. 1 für eine kantonale Hilfsmittelausnahme?",
+              "choices": [
+                "Nur eine Mitgliedschaft in einem beliebigen Freizeitverein",
+                "Spezielle Ausbildung als Angehörige der Jagdpolizei oder als Jägerin/Jäger",
+                "Nur den Kauf des Gerätes"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Verordnung bindet die Ausnahme an den bezeichneten Personenkreis und eine spezielle Ausbildung."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q3",
+              "prompt": "Kann die notwendige Bekämpfung einer Tierseuche ein in Art. 3 Abs. 1 genannter Ausnahmezweck sein?",
+              "choices": [
+                "Nein; nur ein schöneres Jagdfoto ist als Zweck anerkannt",
+                "Nein; die Vorschrift betrifft ausschliesslich Sportwettkämpfe",
+                "Ja; Tierseuchenbekämpfung ist ausdrücklich genannt"
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Zweck allein genügt noch nicht: Zuständige Bewilligung, Ausbildung und konkrete Notwendigkeit müssen hinzukommen."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q4",
+              "prompt": "Ist die fachgerechte Nachsuche verletzten Wildes ein gesetzlich vorgesehener Grund für eine Hilfsmittelausnahme?",
+              "choices": [
+                "Ja; nötigenfalls mit anschliessender Tötung",
+                "Nein; nur die normale Trophäenjagd ist genannt",
+                "Nur dann, wenn das Tier vollständig gesund ist"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 3 Abs. 1 Bst. d nennt die Nachsuche verletzter Tiere und gegebenenfalls deren Tötung."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q5",
+              "prompt": "Wer führt nach Art. 3 Abs. 2 die Liste der Personen mit entsprechender kantonaler Ausnahme?",
+              "choices": [
+                "Jede Jagdgesellschaft führt ausschliesslich ihre private Liste",
+                "Die Kantone",
+                "Jeder Jagdgast selbst ohne behördliche Liste"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die behördliche Liste gehört zum Vollzug dieser Ausnahmebestimmung."
+            },
+            {
+              "id": "ch-bund-hilfsmittel-ausnahmen-q6",
+              "prompt": "Wer kann den Einsatz verbotener Hilfsmittel für wissenschaftliche Untersuchungen und Markierungsaktionen bewilligen?",
+              "choices": [
+                "Ausschliesslich die örtliche Jagdgesellschaft ohne Bundesentscheid",
+                "Ausschliesslich die Gemeindebehörde unabhängig vom Untersuchungszweck",
+                "Das BAFU"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 3 Abs. 3 regelt diese besondere Zuständigkeit des BAFU."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-arten-schonzeiten-ergaenzung",
+          "topic": "wildschutz",
+          "title": "Arten und Schonzeiten: Verordnungsänderungen richtig mitlesen",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 3bis JSV",
+          "officialText": "1 Die jagdbaren Arten nach Artikel 5 des Jagdgesetzes werden wie folgt beschränkt oder erweitert:a. die Moorente und das Rebhuhn sind geschützt;\nb. die Saatkrähe ist jagdbar.\n2 Die Schonzeiten nach Artikel 5 des Jagdgesetzes werden wie folgt beschränkt oder erweitert:a. Wildschwein: Schonzeit vom 1. März bis 30. Juni; für Wildschweine, welche jünger als zweijährig sind, gilt ausserhalb des Waldes keine Schonzeit;\nb. Kormoran: Schonzeit vom 1. März bis 31. August;\nc. Rabenkrähe, Saatkrähe, Elster und Eichelhäher: Schonzeit vom 16. Februar bis 31. Juli; für Rabenkrähen, die in Schwärmen auftreten, gilt auf schadengefährdeten landwirtschaftlichen Kulturen keine Schonzeit.",
+          "summary": "Die Liste im JSG muss zusammen mit Art. 3bis JSV gelesen werden. Moorente und Rebhuhn sind geschützt, die Saatkrähe ist auf Bundesebene jagdbar. Für Wildschweine gilt bundesrechtlich 1. März bis 30. Juni als Schonzeit; unter zweijährige Tiere sind ausserhalb des Waldes davon ausgenommen. Für Kormorane gilt 1. März bis 31. August. Rabenkrähe, Saatkrähe, Elster und Eichelhäher haben eine Schonzeit vom 16. Februar bis 31. Juli; nur für in Schwärmen auftretende Rabenkrähen auf schadengefährdeten landwirtschaftlichen Kulturen nennt die Norm die zusätzliche Ausnahme. Das sind Bundesregeln: Eine kantonale Jagdfreigabe, der Muttertierschutz und alle übrigen Einsatzregeln sind separat zu erfüllen.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_3_bis",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "Kreisschreiben 8, S. 9: Schutz von Moorente/Rebhuhn und geänderte Schonzeiten nach Art. 3bis JSV",
+              "url": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/fischerei-und-jagd/jagd/fachinformationen_fuer_jagdberechtigte/kreisschreiben/kreisschreiben_8_201303.pdf",
+              "publisher": "Kanton Zürich – Fischerei- und Jagdverwaltung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q1",
+              "prompt": "In einer alten Tabelle steht das Rebhuhn als jagdbar. Was ergibt die zusätzliche Lektüre von Art. 3bis Abs. 1 JSV?",
+              "choices": [
+                "Es darf deshalb ohne jede Schonzeit gejagt werden",
+                "Das Rebhuhn ist bundesrechtlich geschützt",
+                "Es ist nur während jeder Vollmondnacht geschützt"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 3bis Abs. 1 Bst. a nennt Rebhuhn und Moorente als geschützt. Die Ergänzung darf nicht neben Art. 5 JSG übersehen werden."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q2",
+              "prompt": "Welche Entenart erklärt Art. 3bis Abs. 1 ausdrücklich für geschützt?",
+              "choices": [
+                "Jede Stockente allein wegen ihres Namens",
+                "Jede verwilderte Haustaube",
+                "Moorente"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Moorente ist neben dem Rebhuhn ausdrücklich genannt."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q3",
+              "prompt": "Welche Krähenart erklärt Art. 3bis Abs. 1 Bst. b auf Bundesebene für jagdbar?",
+              "choices": [
+                "Saatkrähe",
+                "Jede geschützte Greifvogelart",
+                "Jede Eulenart"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die bundesrechtliche Einstufung der Saatkrähe bedeutet noch keine unbegrenzte örtliche Jagdfreigabe."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q4",
+              "prompt": "Welche bundesrechtliche Schonzeit gilt nach Art. 3bis Abs. 2 Bst. a grundsätzlich für Wildschweine?",
+              "choices": [
+                "1. September bis 31. Dezember",
+                "1. März bis 30. Juni",
+                "Das gesamte Kalenderjahr ohne Ausnahme"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Verordnung ändert die im JSG stehende Zeit. Ihre Ausnahme für unter zweijährige Tiere ausserhalb des Waldes ist daneben zu beachten."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q5",
+              "prompt": "Ein unter zweijähriges Wildschwein steht im Mai ausserhalb des Waldes. Was besagt allein die bundesrechtliche Schonzeit-Ausnahme?",
+              "choices": [
+                "Es besteht überall eine Pflicht zum Abschuss",
+                "Jede Person darf ohne Berechtigung schiessen",
+                "Für dieses Alter gilt dort keine bundesrechtliche Schonzeit; eine kantonale Jagdfreigabe folgt daraus noch nicht"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Ausnahme kombiniert Alter unter zwei Jahren und Lage ausserhalb des Waldes. Sie hebt weder Kantonsrecht noch Muttertierschutz oder Sicherheitsregeln auf."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q6",
+              "prompt": "Ein unter zweijähriges Wildschwein steht im Mai im Wald. Gilt die besondere Ausnahme des Art. 3bis Abs. 2 Bst. a allein wegen seines Alters?",
+              "choices": [
+                "Nein; sie verlangt zusätzlich einen Standort ausserhalb des Waldes",
+                "Ja; der Standort ist in der Norm ausdrücklich bedeutungslos",
+                "Ja; für jedes Wildschwein gilt nie eine Schonzeit"
+              ],
+              "correctIndex": 0,
+              "explanation": "Alter und Standort sind kumulative Voraussetzungen der genannten Ausnahme."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q7",
+              "prompt": "Welche bundesrechtliche Schonzeit nennt Art. 3bis Abs. 2 Bst. b für den Kormoran?",
+              "choices": [
+                "1. Juli bis 31. Dezember",
+                "1. März bis 31. August",
+                "Keine Schonzeit im Bundesrecht"
+              ],
+              "correctIndex": 1,
+              "explanation": "Auch diese Verordnungsänderung ist beim Lesen der JSG-Tabelle mitzuberücksichtigen; kantonale Einschränkungen bleiben möglich."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q8",
+              "prompt": "Welche bundesrechtliche Schonzeit gilt für Rabenkrähe, Saatkrähe, Elster und Eichelhäher nach Art. 3bis Abs. 2 Bst. c?",
+              "choices": [
+                "1. Dezember bis 31. Januar",
+                "Jede Art hat in dieser Bestimmung eine andere Monatsgrenze",
+                "16. Februar bis 31. Juli"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die vier Arten werden gemeinsam genannt. Die weitere Ausnahme betrifft nur Rabenkrähenschwärme auf den bezeichneten Kulturen."
+            },
+            {
+              "id": "ch-bund-arten-schonzeiten-ergaenzung-q9",
+              "prompt": "Eine einzelne Rabenkrähe sitzt im April auf einer ungeschädigten Waldlichtung. Reicht dies für die spezielle Ausnahme für Rabenkrähenschwärme?",
+              "choices": [
+                "Nein; die Norm nennt Schwärme auf schadengefährdeten landwirtschaftlichen Kulturen",
+                "Ja; jede einzelne Rabenkrähe erfüllt die Ausnahme überall",
+                "Ja; eine Waldlichtung ist automatisch jede landwirtschaftliche Kultur"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Ausnahme ist weder auf sämtliche Rabenvögel noch auf jeden beliebigen Ort übertragbar."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-nachtjagd-wald",
+          "topic": "jagdausuebung",
+          "title": "Nachtjagd im Wald: Grundsatz und Ausnahmen",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 3ter JSV",
+          "officialText": "1 Im Wald ist die Jagd während der Nacht verboten; ausgenommen ist die Passjagd.\n2 Die Kantone können für die Verhütung von Wildschaden Ausnahmen vorsehen.",
+          "summary": "Art. 3ter verbietet die Jagd im Wald während der Nacht und nimmt die Passjagd ausdrücklich aus. Die Kantone können für die Wildschadenverhütung Ausnahmen vorsehen. Eine solche Ausnahme folgt nicht schon daraus, dass man selbst einen Schaden vermutet. Kantonale Jagdzeiten, die konkret erlaubte Jagdart sowie jagd- und waffenrechtliche Gerätevorgaben bleiben zu prüfen. Die Bundesregel über den Wald ist zudem kein Beweis dafür, dass ausserhalb des Waldes ohne weitere Grenzen nachts gejagt werden dürfte.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_3_ter",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "FJV Bulletin April 2025: Nachtjagd, Schalldämpfer und Übergangsfrist Bleimunition",
+              "url": "https://www.sfvubs.ch/News/FJV%20Bulletin%20Nr.%206%20April%202025.pdf",
+              "publisher": "Kanton Zürich – Fischerei- und Jagdverwaltung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-nachtjagd-wald-q1",
+              "prompt": "Welche räumliche Grundregel stellt Art. 3ter Abs. 1 JSV auf?",
+              "choices": [
+                "In jedem Garten ist jede Nachtjagd automatisch erlaubt",
+                "Nur ausserhalb der Schweiz gibt es Nachtjagdregeln",
+                "Im Wald ist die Jagd während der Nacht grundsätzlich verboten"
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Bundesartikel nennt den Wald. Weitere örtliche und kantonale Einschränkungen werden dadurch nicht aufgehoben."
+            },
+            {
+              "id": "ch-bund-nachtjagd-wald-q2",
+              "prompt": "Welche Jagdart nimmt Art. 3ter Abs. 1 ausdrücklich vom bundesrechtlichen Nachtjagdverbot im Wald aus?",
+              "choices": [
+                "Die Passjagd",
+                "Jede Treibjagd ohne Begrenzung",
+                "Jede spontane Jagd mit Drohnen"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die gesetzliche Ausnahme heisst Passjagd. Zulässige Arten, Zeiten und Hilfsmittel bleiben zusätzlich massgebend."
+            },
+            {
+              "id": "ch-bund-nachtjagd-wald-q3",
+              "prompt": "Zu welchem Zweck können Kantone nach Art. 3ter Abs. 2 Ausnahmen vorsehen?",
+              "choices": [
+                "Damit jede Person ohne Fachkunde nachts jagen kann",
+                "Zur Verhütung von Wildschaden",
+                "Ausschliesslich zur Werbung für ein Wärmebildgerät"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die kantonale Ausnahme bedarf ihrer Rechtsgrundlage und konkreten Voraussetzungen. Eine blosse private Absicht ersetzt sie nicht."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-wildschaden-grundsaetze",
+          "topic": "wildschutz",
+          "title": "Wildschaden: Voraussetzungen der Entschädigung",
+          "lawTitle": "Jagdgesetz (JSG), SR 922.0",
+          "citation": "Art. 13 JSG",
+          "officialText": "1 Der Schaden, den jagdbare Tiere an Wald, landwirtschaftlichen Kulturen und Nutztieren anrichten, wird angemessen entschädigt. Ausgenommen sind Schäden durch Tiere, gegen welche nach Artikel 12 Absatz 3 Selbsthilfemassnahmen ergriffen werden dürfen.\n2 Die Kantone regeln die Entschädigungspflicht. Entschädigungen sind nur insoweit zu leisten, als es sich nicht um Bagatellschäden handelt und die zumutbaren Massnahmen zur Verhütung von Wildschaden getroffen worden sind. Aufwendungen für Verhütungsmassnahmen können bei der Entschädigung von Wildschaden berücksichtigt werden.\n3 Der Bund gewährt den Kantonen auf der Grundlage von Programmvereinbarungen globale Abgeltungen an die Kosten für die Entschädigung von Wildschaden, der auf ein Reservat oder Gebiet nach Artikel 11 Absatz 6 zurückzuführen ist.\n4 Bund und Kantone beteiligen sich an der Vergütung von Schaden an Wald, landwirtschaftlichen Kulturen und Nutztieren, den Tiere bestimmter geschützter Arten verursachen, soweit die zumutbaren Massnahmen zur Verhütung von Wildschaden getroffen worden sind. Der Bundesrat bestimmt nach Anhören der Kantone diese geschützten Tierarten und die Voraussetzungen der Entschädigungspflicht.\n5 Bei Schaden, den Biber verursachen, beteiligen sich Bund und Kantone zusätzlich zu Absatz 4 auch an der Vergütung von Schaden an Bauten und Anlagen, die im öffentlichen Interesse liegen, an privaten Verkehrsinfrastrukturen sowie an Uferböschungen, wenn durch deren Schädigung die Hochwassersicherheit nicht mehr gewährleistet werden kann. Entschädigungen werden nur ausgerichtet, soweit die zumutbaren Massnahmen zur Verhütung von Wildschaden getroffen wurden.",
+          "summary": "Der Bund regelt den Rahmen, die Kantone konkretisieren die Entschädigungspflicht. Art. 13 erfasst Schäden jagdbarer Tiere an Wald, landwirtschaftlichen Kulturen und Nutztieren. Ausgenommen sind Schäden durch Tiere, gegen die Selbsthilfemassnahmen nach Art. 12 Abs. 3 zulässig sind. Ausserdem müssen die zumutbaren Verhütungsmassnahmen getroffen sein; Bagatellschäden sind nach diesem Bundesrahmen nicht zu entschädigen. Welche Betragsgrenze und welches Verfahren gelten, richtet sich nach dem Kanton. Bei bestimmten geschützten Arten und Bibern bestehen ergänzende bundesrechtliche Regelungen, die ebenfalls an zumutbare Verhütung anknüpfen.",
+          "sources": [
+            {
+              "title": "JSG: amtliche Fassung 20250201",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_13",
+              "publisher": "Schweizerische Bundesversammlung / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Wildschaden: Verhütung, Selbsthilfe und Entschädigung",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/wildtiere/wildschaden.html",
+              "publisher": "Kanton St. Gallen – Amt für Natur, Jagd und Fischerei",
+              "kind": "context"
+            },
+            {
+              "title": "Verwaltungsgericht St. Gallen B 2008/148, E. 2.2: Bundesrahmen Art. 13 JSG, Verhütung und Berücksichtigung von Aufwendungen",
+              "url": "https://entscheidsuche.ch/dok/SG_Gerichte/SG_VG_001_B-2008-148_2009-06-16.pdf",
+              "publisher": "Verwaltungsgericht St. Gallen – eigenständiger Gerichtsentscheid",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2025-02-01",
+          "questions": [
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q1",
+              "prompt": "Welche drei Schadensbereiche nennt Art. 13 Abs. 1 JSG?",
+              "choices": [
+                "Sämtliche beliebigen Sachschäden ohne Bezug zu Wald, Landwirtschaft oder Nutztieren",
+                "Ausschliesslich Schäden an Waffen im Schiessstand",
+                "Wald, landwirtschaftliche Kulturen und Nutztiere"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die gesetzliche Aufzählung ist der Ausgangspunkt der Wildschadenentschädigung; ein beliebiger Sachschaden wird dadurch nicht automatisch erfasst."
+            },
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q2",
+              "prompt": "Wer konkretisiert nach Art. 13 Abs. 2 die Entschädigungspflicht?",
+              "choices": [
+                "Die Kantone",
+                "Jeder Jagdgast allein",
+                "Der Bund legt in Art. 13 alle Entschädigungsbeträge abschliessend fest"
+              ],
+              "correctIndex": 0,
+              "explanation": "Bundesrecht gibt den Rahmen vor, während die kantonalen Regeln unter anderem Verfahren und Bagatellgrenzen konkretisieren."
+            },
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q3",
+              "prompt": "Sind Bagatellschäden nach Art. 13 Abs. 2 bundesrechtlich uneingeschränkt zu vergüten?",
+              "choices": [
+                "Ja; jeder noch so kleine Schaden muss zwingend gleich vergütet werden",
+                "Nein; Entschädigungen sind nur zu leisten, soweit es sich nicht um Bagatellschäden handelt",
+                "Ja; der Bund nennt einen einheitlichen Rappenbetrag für alle Kantone"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die konkrete kantonale Ausgestaltung ist zusätzlich nötig. Aus dieser Norm kann kein einheitlicher Franken-Grenzwert für alle Kantone abgelesen werden."
+            },
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q4",
+              "prompt": "Die zumutbaren Massnahmen zur Wildschadenverhütung wurden unterlassen. Ist eine Entschädigung nach Art. 13 Abs. 2 trotzdem voraussetzungslos geschuldet?",
+              "choices": [
+                "Ja; Verhütung ist rechtlich immer ohne Bedeutung",
+                "Ja; sofern die Person Mitglied eines Vereins ist",
+                "Nein; zumutbare Verhütung ist eine gesetzliche Voraussetzung"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 13 Abs. 2 knüpft die Entschädigung ausdrücklich an die getroffenen zumutbaren Verhütungsmassnahmen."
+            },
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q5",
+              "prompt": "Was gilt für Schäden durch Tiere, gegen die Selbsthilfemassnahmen nach Art. 12 Abs. 3 zulässig sind?",
+              "choices": [
+                "Sie sind nach Art. 13 Abs. 1 von dieser Entschädigung ausgenommen",
+                "Sie werden ausnahmslos doppelt bezahlt",
+                "Der Begriff Selbsthilfe spielt im Entschädigungsrecht keine Rolle"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Ausnahme ist ausdrücklich im zweiten Satz von Art. 13 Abs. 1 enthalten."
+            },
+            {
+              "id": "ch-bund-wildschaden-grundsaetze-q6",
+              "prompt": "Dürfen Aufwendungen für Verhütungsmassnahmen bei der Wildschadenentschädigung berücksichtigt werden?",
+              "choices": [
+                "Nein; das Gesetz verbietet jede Berücksichtigung",
+                "Ja; Art. 13 Abs. 2 sieht diese Möglichkeit vor",
+                "Nur der private Jagdgast kann darüber verbindlich entscheiden"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm eröffnet diese Berücksichtigung; die kantonalen Voraussetzungen und das zuständige Verfahren bleiben massgebend."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-wildschaden-massnahmen",
+          "topic": "zustandigkeit",
+          "title": "Wildschaden: Behördliche Massnahmen und Selbsthilfe trennen",
+          "lawTitle": "Jagdgesetz (JSG), SR 922.0",
+          "citation": "Art. 12 JSG",
+          "officialText": "1 Die Kantone treffen Massnahmen zur Verhütung von Wildschaden.\n2 Sie können jederzeit Massnahmen gegen einzelne geschützte oder jagdbare Tiere, die erheblichen Schaden anrichten oder eine Gefährdung von Menschen darstellen, anordnen oder erlauben. Mit der Durchführung dieser Massnahmen dürfen sie nur Jagdberechtigte und Aufsichtsorgane beauftragen.\n2bis Der Bundesrat kann geschützte Tierarten bezeichnen, bei denen das Bundesamt die Massnahmen nach Absatz 2 anordnet.\n3 Die Kantone bestimmen, welche Selbsthilfemassnahmen gegen jagdbare Tiere zum Schutze von Haustieren, Liegenschaften und landwirtschaftlichen Kulturen zulässig sind. Der Bundesrat bezeichnet die geschützten Tierarten, gegen die solche Selbsthilfemassnahmen ergriffen werden dürfen.\n4 Weist eine geschützte Tierart einen zu hohen Bestand auf und entsteht dadurch grosser Schaden oder eine erhebliche Gefährdung, so können die Kantone mit vorheriger Zustimmung des Departements Massnahmen zur Verringerung des Bestandes treffen. Vorbehalten bleibt die Bestandsregulierung von Arten gemäss Artikel 7a Absätze 1 und 2.\n4bis Wölfe eines Rudels dürfen zwischen dem 1. Juni und dem 31. August mit vorgängiger Zustimmung des Bundesamtes reguliert werden, wenn das Rudel Schäden insbesondere an Nutztieren der Rinder- oder Pferdegattung anrichtet. Der Bundesrat regelt die Bedingungen.\n5 Der Bund fördert und koordiniert die Massnahme der Kantone zur Verhütung von Wildschaden, der verursacht wird durch:a. Grossraubtiere an Nutztieren; oder\nb. Biber an Bauten und Anlagen, die im öffentlichen Interesse liegen, und an Erschliessungswegen für Landwirtschaftsbetriebe oder an Uferböschungen, die für die Hochwassersicherheit von Bedeutung sind.\n6 Er kann gegen Entgelt öffentlich-rechtliche Körperschaften oder Private mit dem Vollzug der Aufgaben nach Absatz 5 beauftragen.\n7 Der Bund legt im Einvernehmen mit den Kantonen die Grundsätze der Herdenschutzmassnahmen und die Anforderungen an die Zumutbarkeit fest; der Kanton die Durchführbarkeit der Herdenschutzmassnahmen.",
+          "summary": "Art. 12 trennt staatliche Schadenverhütung, Massnahmen gegen einzelne Tiere und die kantonal geregelte Selbsthilfe. Massnahmen gegen einzelne geschützte oder jagdbare Tiere mit erheblichem Schaden oder einer Gefährdung von Menschen werden von den Kantonen angeordnet oder erlaubt; beauftragt werden dürfen nur Jagdberechtigte und Aufsichtsorgane. Selbsthilfe ist kein allgemeines Abschussrecht. Die Kantone bestimmen die erlaubten Selbsthilfemassnahmen gegen jagdbare Tiere, der Bundesrat bezeichnet dafür die geschützten Arten. Für Bestandsregulierungen geschützter Arten und Wölfe gelten die weitergehenden besonderen Bewilligungsregeln des Artikels und der JSV.",
+          "sources": [
+            {
+              "title": "JSG: amtliche Fassung 20250201",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_12",
+              "publisher": "Schweizerische Bundesversammlung / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Wildschaden: Verhütung, Selbsthilfe und Entschädigung",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/wildtiere/wildschaden.html",
+              "publisher": "Kanton St. Gallen – Amt für Natur, Jagd und Fischerei",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2025-02-01",
+          "questions": [
+            {
+              "id": "ch-bund-wildschaden-massnahmen-q1",
+              "prompt": "Wer ist nach Art. 12 Abs. 1 verpflichtet, Massnahmen zur Wildschadenverhütung zu treffen?",
+              "choices": [
+                "Nur die einzelne Jagdgesellschaft ohne kantonale Verantwortung",
+                "Die Kantone",
+                "Jeder Waffenhersteller"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die staatliche Verhütungsaufgabe steht neben Pflichten und Möglichkeiten betroffener Privater."
+            },
+            {
+              "id": "ch-bund-wildschaden-massnahmen-q2",
+              "prompt": "Eine Person entdeckt ein geschütztes Tier, das nach ihrer Meinung Schaden anrichtet. Darf sie allein aus Art. 12 Abs. 2 eine private Abschussbefugnis ableiten?",
+              "choices": [
+                "Ja; jede persönliche Schadensvermutung ersetzt die Bewilligung",
+                "Ja; Schutzstatus und Zuständigkeit spielen nie eine Rolle",
+                "Nein; die Kantone ordnen oder erlauben die bezeichneten Massnahmen"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm begründet eine kantonale Befugnis. Sie ist kein allgemeiner Selbstvollzug durch beliebige Personen."
+            },
+            {
+              "id": "ch-bund-wildschaden-massnahmen-q3",
+              "prompt": "Wen darf der Kanton nach Art. 12 Abs. 2 mit der Durchführung dieser Massnahmen beauftragen?",
+              "choices": [
+                "Jagdberechtigte und Aufsichtsorgane",
+                "Jede beliebige Person unabhängig von Berechtigung und Fachkunde",
+                "Jede betroffene Person auch ohne Jagdberechtigung und ohne Aufsichtsaufgabe"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm beschränkt den zulässigen beauftragten Personenkreis ausdrücklich."
+            },
+            {
+              "id": "ch-bund-wildschaden-massnahmen-q4",
+              "prompt": "Wer bestimmt nach Art. 12 Abs. 3 die zulässigen Selbsthilfemassnahmen gegen jagdbare Tiere?",
+              "choices": [
+                "Nur der betroffene Grundstückskäufer",
+                "Die Kantone",
+                "Ausschliesslich der Wildbretkäufer"
+              ],
+              "correctIndex": 1,
+              "explanation": "Zulässige Mittel, Orte, Zeiten und betroffene Personen ergeben sich aus den ergänzenden Regeln, nicht aus einem freien privaten Ermessen."
+            },
+            {
+              "id": "ch-bund-wildschaden-massnahmen-q5",
+              "prompt": "Wer bezeichnet nach Art. 12 Abs. 3 die geschützten Arten, gegen die Selbsthilfemassnahmen ergriffen werden dürfen?",
+              "choices": [
+                "Jede Jagdgesellschaft durch Mehrheitsbeschluss",
+                "Nur die Versicherung des Geschädigten",
+                "Der Bundesrat"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 12 Abs. 3 unterscheidet die kantonale Ausgestaltung von der bundesrechtlichen Artenbestimmung."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-versicherung-mindestdeckung",
+          "topic": "zulassung",
+          "title": "Jagdhaftpflicht: mindestens zwei Millionen Franken",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 14 JSV",
+          "officialText": "Die minimale Deckungssumme für die Haftpflicht von Jägerinnen und Jägern beträgt 2 Millionen Franken.",
+          "summary": "Die bundesrechtliche Mindestdeckung der Jagdhaftpflicht beträgt zwei Millionen Franken. Es geht um eine Haftpflichtdeckung für die Jagd, nicht bloss um irgendeine private Police oder einen Rechtsschutzvertrag. Ob eine bestehende Police das Jagdrisiko tatsächlich einschliesst, muss ihr Deckungsumfang ergeben. Ein Werbeangebot mit einer höheren Versicherungssumme ändert den gesetzlichen Mindestbetrag nicht.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_14",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Haftpflichtversicherung: eidgenössische Versicherungspflicht und Mindestdeckung",
+              "url": "https://www.pjvs.ch/jagd/allgemeines",
+              "publisher": "Patentjägerverein Seeland",
+              "kind": "context"
+            },
+            {
+              "title": "GAJ St. Gallen: mögliche Übungsfragen 2025, Stoffeinordnung; keine übernommene Fragenbank",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/alte-seiten-abteilung-jagd/jagdausbildung-lehrgang-2024-20253/_jcr_content/Par/sgch_downloadlist_1016581183/DownloadListPar/sgch_download_572852381.ocFile/Pr%C3%BCfungsfragen_Jagdrecht%202025.pdf",
+              "publisher": "Kanton St. Gallen – GAJ",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-versicherung-mindestdeckung-q1",
+              "prompt": "Wie hoch ist die bundesrechtliche minimale Deckungssumme der Jagdhaftpflicht nach Art. 14 JSV?",
+              "choices": [
+                "2 Millionen Franken",
+                "200 Franken",
+                "20 000 Franken"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 14 nennt zwei Millionen Franken. Ein konkreter Versicherungsvertrag kann eine höhere Deckung vorsehen."
+            },
+            {
+              "id": "ch-bund-versicherung-mindestdeckung-q2",
+              "prompt": "Eine gewöhnliche Privatpolice schliesst die Jagd ausdrücklich aus. Erfüllt sie allein die gesetzlich verlangte Jagdhaftpflichtdeckung?",
+              "choices": [
+                "Ja; der Titel Privatversicherung genügt immer",
+                "Nein; die Deckung muss das Jagdrisiko tatsächlich umfassen",
+                "Ja; sofern der Versicherte einen Jagdhut besitzt"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Versicherungspflicht bezieht sich auf die jagdliche Haftpflicht. Der PJVS weist ausdrücklich auf den tatsächlich erforderlichen Deckungsumfang hin."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-wildruhezonen",
+          "topic": "wildschutz",
+          "title": "Wildruhezonen: Schutz vor Störung und erlaubte Wege",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 4e JSV",
+          "officialText": "1 Soweit es für den ausreichenden Schutz der wildlebenden Säugetiere und Vögel vor Störung durch Freizeitaktivitäten und Tourismus erforderlich ist, können die Kantone Wildruhezonen und die darin zur Benutzung erlaubten Routen und Wege bezeichnen.\n2 Die Kantone berücksichtigen bei der Bezeichnung dieser Zonen deren Vernetzung mit eidgenössischen und kantonalen Jagdbanngebieten und Vogelreservaten und sorgen dafür, dass die Bevölkerung bei der Bezeichnung dieser Zonen, Routen und Wege in geeigneter Art und Weise mitwirken kann.\n3 Das BAFU erlässt Richtlinien zur Bezeichnung und einheitlichen Markierung der Wildruhezonen. Es unterstützt die Kantone bei der Bekanntmachung dieser Zonen in der Bevölkerung.\n4 Das Bundesamt für Landestopografie bildet in den Landeskarten mit Schneesportthematik die Wildruhezonen sowie die darin zur Benutzung erlaubten Routen ab.",
+          "summary": "Wildruhezonen sollen Wildtiere vor Störung durch Freizeitaktivitäten und Tourismus schützen. Soweit es erforderlich ist, bezeichnen die Kantone solche Zonen und die dort erlaubten Routen und Wege. Entscheidend sind die konkret festgelegten Gebote, zeitlichen Geltungen und Ausnahmen vor Ort; aus dem Namen allein folgt keine für alle Zonen identische Regel. Die Bevölkerung muss an der Bezeichnung in geeigneter Weise mitwirken können. Die Vernetzung mit anderen Schutzgebieten gehört zur Planung. Eine Wildruhezone ist nicht schon begrifflich dasselbe wie ein Jagdbanngebiet; Jagdbetrieb und Ruhevorschriften müssen aufeinander abgestimmt sein.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_4_e",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Erläuterung Wildruhezonen: Schutzzweck, zeitliche Regeln und zulässige Nutzungen",
+              "url": "https://www.gl.ch/public/upload/assets/3833/Erlaeuterung_Wildruhezonen.pdf",
+              "publisher": "Kanton Glarus – fachliche Erläuterung",
+              "kind": "context"
+            },
+            {
+              "title": "Jagd und Wildruhe: Ruhegebote und Jagdbetrieb aufeinander abstimmen",
+              "url": "https://www.wildruhezonen.ch/stoerung/jaeger",
+              "publisher": "Wildruhezonen.ch – Kampagne Respektiere deine Grenzen",
+              "kind": "context"
+            },
+            {
+              "title": "Wildruhezonen: Rückzugsgebiete und erlaubte Routen",
+              "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/lebensraeume/wildruhezonen.html",
+              "publisher": "Kanton St. Gallen – Amt für Natur, Jagd und Fischerei",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-wildruhezonen-q1",
+              "prompt": "Welchem Zweck dient die kantonale Bezeichnung von Wildruhezonen nach Art. 4e Abs. 1 JSV?",
+              "choices": [
+                "Der möglichst starken Beunruhigung von Wildtieren",
+                "Dem ausreichenden Schutz vor Störung durch Freizeitaktivitäten und Tourismus",
+                "Der automatischen privaten Aneignung aller dort lebenden Tiere"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm knüpft die Zonen an den erforderlichen Störungsschutz wildlebender Säugetiere und Vögel."
+            },
+            {
+              "id": "ch-bund-wildruhezonen-q2",
+              "prompt": "Wer bezeichnet nach Art. 4e Abs. 1 Wildruhezonen und die darin erlaubten Routen und Wege?",
+              "choices": [
+                "Jede Spaziergängerin für sich allein",
+                "Jeder private Grundeigentümer ohne kantonales Verfahren",
+                "Die Kantone"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die kantonale Ausweisung bestimmt zusammen mit den örtlichen Regeln, welche Routen genutzt werden dürfen."
+            },
+            {
+              "id": "ch-bund-wildruhezonen-q3",
+              "prompt": "Muss bei der Ausweisung von Wildruhezonen die Vernetzung mit Jagdbanngebieten und Vogelreservaten berücksichtigt werden?",
+              "choices": [
+                "Ja; Art. 4e Abs. 2 schreibt dies vor",
+                "Nein; Schutzgebiete dürfen nicht vernetzt gedacht werden",
+                "Nur wenn ein privater Jagdgast dies bezahlt"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Zonen sollen im räumlichen Zusammenhang mit eidgenössischen und kantonalen Schutzgebieten betrachtet werden."
+            },
+            {
+              "id": "ch-bund-wildruhezonen-q4",
+              "prompt": "Welche Beteiligung verlangt Art. 4e Abs. 2 bei der Bezeichnung von Zonen, Routen und Wegen?",
+              "choices": [
+                "Die Bevölkerung darf grundsätzlich keinerlei Kenntnis erhalten",
+                "Die Bevölkerung muss in geeigneter Art und Weise mitwirken können",
+                "Nur Jagdberechtigte, unter vollständigem Ausschluss der übrigen Bevölkerung"
+              ],
+              "correctIndex": 1,
+              "explanation": "Mitwirkung gehört zur gesetzlichen Ausgestaltung. Sie bedeutet nicht, dass jede Person sich später von geltenden Geboten befreien kann."
+            },
+            {
+              "id": "ch-bund-wildruhezonen-q5",
+              "prompt": "Bedeutet das Wort Wildruhezone automatisch überall ein vollständiges ganzjähriges Jagdbanngebiet?",
+              "choices": [
+                "Ja; jede Wildruhezone hat überall exakt denselben ganzjährigen Jagdbann",
+                "Nein; in Wildruhezonen gelten überhaupt keine Regeln",
+                "Nein; die konkrete Ruheverordnung und die Jagdbestimmungen sind zusammen zu beachten"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Bundesnorm schützt vor Störung. Fachliche Erläuterungen betonen die Abstimmung mit dem Jagdbetrieb; die örtlich geltenden Gebote und Ruhezeiten sind entscheidend."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-wildtierkorridore",
+          "topic": "wildschutz",
+          "title": "Überregionale Wildtierkorridore: Raum und Funktion sichern",
+          "lawTitle": "Jagdgesetz (JSG), SR 922.0",
+          "citation": "Art. 11a JSG",
+          "officialText": "1 Der Bundesrat bezeichnet im Einvernehmen mit den Kantonen Wildtierkorridore von überregionaler Bedeutung, die der grossräumigen Vernetzung der Lebensräume der Wildtiere dienen.\n2 Bund und Kantone sorgen im Rahmen ihrer Zuständigkeit für die räumliche und funktionale Sicherung der überregionalen Wildtierkorridore.\n3 Der Bund gewährt den Kantonen auf der Grundlage von Programmvereinbarungen globale Abgeltungen an Massnahmen zur funktionalen Sicherung der überregionalen Wildtierkorridore. Deren Höhe richtet sich nach dem Umfang der Massnahmen und der Sanierungsbedürftigkeit der Korridore.",
+          "summary": "Überregionale Wildtierkorridore dienen der grossräumigen Vernetzung von Lebensräumen. Der Bundesrat bezeichnet sie im Einvernehmen mit den Kantonen. Es genügt nicht, nur eine Linie in einer Karte zu erhalten: Bund und Kantone müssen im Rahmen ihrer Zuständigkeiten die räumliche und funktionale Sicherung gewährleisten. Dazu gehören je nach Ort sichere Querungsmöglichkeiten und die Beseitigung von Wanderhindernissen. Solche Massnahmen unterstützen den Austausch zwischen Lebensräumen und Populationen; ein Korridor ist kein zusätzliches privates Jagdrecht.",
+          "sources": [
+            {
+              "title": "JSG: amtliche Fassung 20250201",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_11_a",
+              "publisher": "Schweizerische Bundesversammlung / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "Umweltbericht: Wildtierkorridore, Hindernisse und Vernetzungsprojekte",
+              "url": "https://www.zh.ch/de/umwelt-tiere/umweltschutz/umweltbericht/umweltbericht-biodiversitaet.html",
+              "publisher": "Kanton Zürich – Umweltbericht",
+              "kind": "context"
+            },
+            {
+              "title": "Kantonaler Richtplan Luzern 2025, L1-3: Wildtierkorridore und Wildtierwechsel",
+              "url": "https://richtplan.lu.ch/-/media/Richtplan/Dokumente/Richtplan_20250131/KRP_LU_RPText_20250131.pdf?rev=c8960fd88f7049eea1219cfa83fef946",
+              "publisher": "Kanton Luzern – Richtplanung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2025-02-01",
+          "questions": [
+            {
+              "id": "ch-bund-wildtierkorridore-q1",
+              "prompt": "Wozu werden Wildtierkorridore von überregionaler Bedeutung nach Art. 11a JSG bezeichnet?",
+              "choices": [
+                "Ausschliesslich zur Werbung für Jagdwaffen",
+                "Damit jede Person überall ohne Bewilligung jagen darf",
+                "Zur grossräumigen Vernetzung der Lebensräume der Wildtiere"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Vernetzung von Lebensräumen ist der ausdrückliche Zweck der Korridore; Jagdberechtigungen werden dadurch nicht ersetzt."
+            },
+            {
+              "id": "ch-bund-wildtierkorridore-q2",
+              "prompt": "Wer bezeichnet die überregionalen Wildtierkorridore nach Art. 11a Abs. 1?",
+              "choices": [
+                "Der Bundesrat im Einvernehmen mit den Kantonen",
+                "Ein einzelner Jagdgast nach Belieben",
+                "Nur private Grundstücksverkäufer"
+              ],
+              "correctIndex": 0,
+              "explanation": "Bundes- und kantonale Ebene wirken bei der Bezeichnung zusammen."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-wildtierkorridore-massnahmen",
+          "topic": "wildschutz",
+          "title": "Wildtierkorridore: Hindernisse, Zäune und Raumplanung",
+          "lawTitle": "Jagdverordnung (JSV), SR 922.01",
+          "citation": "Art. 8c JSV",
+          "officialText": "1 Bund und Kantone sorgen dafür, dass die Funktionalität der Wildtierkorridore sichergestellt ist und nicht durch andere Nutzungen beeinträchtigt wird. Liegen im Einzelfall andere Interessen vor, ist anhand einer Interessenabwägung zu entscheiden.\n2 Die Wildtierkorridore sind bei der Sach-, Richt- und Nutzungsplanung zu berücksichtigen.\n3 Die Kantone treffen im Rahmen ihrer Zuständigkeiten die zur Erhaltung der Funktionalität der Wildtierkorridore geeigneten Massnahmen. Sie sorgen namentlich dafür, dass: a. Wildtierkorridore land- und waldwirtschaftlich angepasst genutzt werden; insbesondere dürfen von Anlagen und Zäunen keine dauerhaften Beeinträchtigungen der Wildtierkorridore ausgehen;\nb. innerhalb der Wildtierkorridore Strukturelemente zur Aufwertung des Korridors geschaffen werden;\nc. Massnahmen getroffen werden, die den Wildtieren zur sicheren Querung des Korridors dienen;\nd. die Entfernung bestehender Störungen und Hindernisse in der Nähe von Wildtierpassagen geprüft wird; und\ne. die Lichtverschmutzung in den Wildtierkorridoren begrenzt wird.",
+          "summary": "Bund und Kantone sichern die Funktionsfähigkeit von Wildtierkorridoren. Die Korridore sind in Sach-, Richt- und Nutzungsplanungen zu berücksichtigen. Anlagen und Zäune dürfen keine dauerhaften Beeinträchtigungen verursachen; weitere Aufgaben betreffen Strukturelemente, sichere Querungen, die Prüfung vorhandener Hindernisse und die Begrenzung der Lichtverschmutzung. Bestehen andere Interessen, verlangt die Norm im Einzelfall eine Interessenabwägung. Eine reine Karteneintragung ohne Betrachtung der tatsächlichen Durchgängigkeit genügt dem Schutzzweck nicht.",
+          "sources": [
+            {
+              "title": "JSV: amtliche Fassung 20260101",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/517_517_517/de?version=20260101#art_8_c",
+              "publisher": "Schweizerischer Bundesrat / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Kantonaler Richtplan Luzern 2025, L1-3: Wildtierkorridore und Wildtierwechsel",
+              "url": "https://richtplan.lu.ch/-/media/Richtplan/Dokumente/Richtplan_20250131/KRP_LU_RPText_20250131.pdf?rev=c8960fd88f7049eea1219cfa83fef946",
+              "publisher": "Kanton Luzern – Richtplanung",
+              "kind": "context"
+            },
+            {
+              "title": "Umweltbericht: Wildtierkorridore, Hindernisse und Vernetzungsprojekte",
+              "url": "https://www.zh.ch/de/umwelt-tiere/umweltschutz/umweltbericht/umweltbericht-biodiversitaet.html",
+              "publisher": "Kanton Zürich – Umweltbericht",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2026-01-01",
+          "questions": [
+            {
+              "id": "ch-bund-wildtierkorridore-massnahmen-q1",
+              "prompt": "Ein überregionaler Wildtierkorridor ist auf einer Karte eingetragen, wird aber dauerhaft durch einen Zaun unpassierbar gemacht. Welcher Grundsatz ist betroffen?",
+              "choices": [
+                "Eine Karteneintragung erlaubt jede dauerhafte Sperre",
+                "Die Funktionalität muss gesichert sein; Anlagen und Zäune dürfen keine dauerhaften Beeinträchtigungen verursachen",
+                "Ein Korridor muss nur für Motorfahrzeuge offen bleiben"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 8c Abs. 1 und 3 knüpfen an die tatsächliche Funktion an. Im Einzelfall sind zuständige Behörden und gegebenenfalls die Interessenabwägung massgebend."
+            },
+            {
+              "id": "ch-bund-wildtierkorridore-massnahmen-q2",
+              "prompt": "In welchen Planungsinstrumenten sind die Wildtierkorridore nach Art. 8c Abs. 2 zu berücksichtigen?",
+              "choices": [
+                "Nur im privaten Jagdkalender",
+                "Ausschliesslich in privaten Pachtverträgen, niemals in der Raumplanung",
+                "Sach-, Richt- und Nutzungsplanung"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die planungsrechtliche Berücksichtigung hilft, Wanderachsen langfristig freizuhalten und ihre Durchgängigkeit wiederherzustellen."
+            }
+          ]
+        },
+        {
+          "id": "ch-bund-information-forschung",
+          "topic": "zustandigkeit",
+          "title": "Öffentliche Information und Wissen für das Wildtiermanagement",
+          "lawTitle": "Jagdgesetz (JSG), SR 922.0",
+          "citation": "Art. 14 JSG",
+          "officialText": "1 Bund und Kantone sorgen dafür, dass die Bevölkerung über die Lebensweise der wildlebenden Tiere, ihre Bedürfnisse und ihren Schutz, insbesondere über Grossraubtiere und das Zusammenleben, ausreichend informiert wird.\n2 Sie regeln die Aus- und Weiterbildung der Wildschutzorgane und der Jäger. Für die zusätzliche Weiterbildung der Wildschutzorgane der eidgenössischen Schutzgebiete führt der Bund entsprechende Kurse durch.\n3 Der Bund fördert die Erforschung der wildlebenden Tiere, ihrer Krankheiten und ihres Lebensraumes. Zu diesem Zweck kann das Bundesamt für geschützte Tiere Ausnahmen von den Schutzbestimmungen dieses Gesetzes bewilligen. Für Ausnahmebewilligungen, die jagdbare Tiere betreffen, sind die Kantone zuständig.\n4 Der Bund führt die Schweizerische Forschungs-, Dokumentations- und Beratungsstelle für das Wildtiermanagement. Er fördert die Information der Öffentlichkeit und kann Forschungsstätten und andere Einrichtungen von gesamtschweizerischer Bedeutung, welche der Bildung, Forschung oder Beratung dienen, Beiträge gewähren.\n4bis Der Bund erfasst und dokumentiert in Zusammenarbeit mit den Kantonen die Bestände der Grossraubtiere, ihre Rolle im Ökosystem und die durch sie verursachten direkten und indirekten Schäden und informiert die Öffentlichkeit darüber.\n5 Der Bundesrat erlässt Vorschriften über das Markieren von wildlebenden Säugetieren und Vögeln.",
+          "summary": "Das Jagdgesetz betrachtet Information und Fachwissen als öffentliche Aufgabe. Bund und Kantone informieren die Bevölkerung über Lebensweise, Bedürfnisse und Schutz wildlebender Tiere, insbesondere auch über Grossraubtiere und das Zusammenleben. Der Bund führt eine Schweizerische Forschungs-, Dokumentations- und Beratungsstelle für das Wildtiermanagement. Diese Aufgaben dienen einer fachlich begründeten Entscheidung und verständlichen Information; sie ersetzen keine kantonale Jagdbewilligung.",
+          "sources": [
+            {
+              "title": "JSG: amtliche Fassung 20250201",
+              "url": "https://www.fedlex.admin.ch/eli/cc/1988/506_506_506/de?version=20250201#art_14",
+              "publisher": "Schweizerische Bundesversammlung / Fedlex",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdrecht: Ausbildung Solothurn 2026, Bundesrechtskapitel S. 8–32",
+              "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Modul_Jagdrecht_Praesentation_2026.pdf",
+              "publisher": "Kanton Solothurn – Jagdausbildung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2025-02-01",
+          "questions": [
+            {
+              "id": "ch-bund-information-forschung-q1",
+              "prompt": "Worüber sollen Bund und Kantone die Bevölkerung nach Art. 14 Abs. 1 informieren?",
+              "choices": [
+                "Über Lebensweise, Bedürfnisse und Schutz wildlebender Tiere, insbesondere auch Grossraubtiere und Zusammenleben",
+                "Ausschliesslich über die persönlichen Jagderfolge einzelner Berechtigter",
+                "Nur über jährliche Abschusszahlen, niemals über Bedürfnisse oder Schutz"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Informationsaufgabe ist breit angelegt und umfasst den Schutz sowie das Zusammenleben mit Wildtieren."
+            },
+            {
+              "id": "ch-bund-information-forschung-q2",
+              "prompt": "Welche Einrichtung nennt Art. 14 Abs. 4 ausdrücklich als Aufgabe des Bundes?",
+              "choices": [
+                "Eine private Jagdpachtvermittlung für jedes Grundstück",
+                "Die Schweizerische Forschungs-, Dokumentations- und Beratungsstelle für das Wildtiermanagement",
+                "Ein Organ zum Verkauf sämtlicher kantonaler Jagdausweise"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Stelle dient Wissen, Dokumentation und Beratung im Wildtiermanagement; kantonale Zuständigkeiten bleiben daneben bestehen."
+            }
+          ]
         }
       ],
       "examResources": [
@@ -1326,7 +2768,7 @@
           "reviewedOn": "2026-10-23",
           "originalVerified": true,
           "verified": true,
-          "effectiveUntil": "2026-12-31",
+          "effectiveUntil": "2027-01-01",
           "questions": [
             {
               "id": "ch-gl-patentsystem-q1",
@@ -2560,9 +4002,419 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-sg-vergabe-voraussetzungen",
+          "topic": "zustandigkeit",
+          "title": "Reviervergabe: Eignung, Berechtigung, Mitglieder und Verein",
+          "lawTitle": "Jagdgesetz (JG), sGS 853.1",
+          "citation": "Art. 10 Abs. 1 und 2 JG",
+          "officialText": "1 Das Revier wird an die Jagdgesellschaft vergeben, die:\na) Gewähr bietet, die Aufgaben einer Jagdgesellschaft ordnungsgemäss zu erfüllen;\nb) nur Mitglieder hat, die zur Jagd berechtigt sind;\nc) die notwendige Mitgliederzahl der Jagdgesellschaft aufweist;\nd) in der Rechtsform des Vereins nach Art. 60 ff. des Schweizerischen Zivilgesetzbuches vom 10. Dezember 1907 organisiert ist.\n2 Die Voraussetzungen müssen spätestens bei Ablauf der Bewerbungsfrist erfüllt sein.",
+          "summary": "Für die Reviervergabe müssen zuerst die Voraussetzungen erfüllt sein: ordnungsgemässe Aufgabenerfüllung, jagdberechtigte Mitglieder, notwendige Mitgliederzahl und Vereinsorganisation nach ZGB. Erst unter geeigneten Gesellschaften kommen die Auswahlkriterien zum Zuge. Die Voraussetzungen müssen spätestens bei Ablauf der Bewerbungsfrist und auch im weiteren Vergabeverfahren vorliegen. Sie sind während der Pacht aufrechtzuerhalten; andernfalls kann eine vorzeitige Auflösung nach Art. 14 JG drohen. Das Verwaltungsgericht hat diese Trennung 2025 ausdrücklich erläutert.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (JG), sGS 853.1 – geltende Fassung 01.04.2024",
+              "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3478/pdf_file",
+              "publisher": "Kanton St. Gallen",
+              "kind": "law"
+            },
+            {
+              "title": "Verwaltungsgericht St. Gallen B 2025/4 vom 18.08.2025, E. 2.1–2.5: Vergabe und Wohnsitzkriterien",
+              "url": "https://entscheidsuche.ch/dok/SG_Gerichte/SG_VG_001_B-2025-4_2025-08-18.pdf",
+              "publisher": "Verwaltungsgericht St. Gallen – eigenständiger Gerichtsentscheid",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2024-04-01",
+          "questions": [
+            {
+              "id": "ch-sg-vergabe-voraussetzungen-q1",
+              "prompt": "Welche Rechtsform muss eine Jagdgesellschaft für die reguläre Vergabe nach Art. 10 Abs. 1 Bst. d JG haben?",
+              "choices": [
+                "Verein nach Art. 60 ff. ZGB",
+                "Beliebige lose Gruppe ohne Vereinsorganisation",
+                "Zwingend eine börsenkotierte Aktiengesellschaft"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die aktuelle St. Galler Norm verlangt die Vereinsorganisation. Die früher gebräuchliche blosse Bewerbergruppe ist damit nicht gleichzusetzen."
+            },
+            {
+              "id": "ch-sg-vergabe-voraussetzungen-q2",
+              "prompt": "Eine Gesellschaft hat genügend Mitglieder, darunter aber eine nicht jagdberechtigte Person. Ist allein die genügende Kopfzahl ausreichend?",
+              "choices": [
+                "Ja; die Berechtigung einzelner Mitglieder ist ohne Bedeutung",
+                "Nein; die Gesellschaft muss auch die Berechtigungsvoraussetzungen des Art. 10 erfüllen",
+                "Ja; eine grosse Gruppe ersetzt jede persönliche Voraussetzung"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 10 Abs. 1 Bst. b verlangt nur jagdberechtigte Mitglieder. Das Verwaltungsgericht betont die rechtliche Bedeutung der Vergabevoraussetzungen."
+            },
+            {
+              "id": "ch-sg-vergabe-voraussetzungen-q3",
+              "prompt": "Bis wann müssen die regulären Vergabevoraussetzungen spätestens erfüllt sein?",
+              "choices": [
+                "Erst nach dem letzten Tag der achtjährigen Pacht",
+                "Irgendwann nach dem ersten Jagderfolg",
+                "Bei Ablauf der Bewerbungsfrist"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 10 Abs. 2 setzt die Bewerbungsfrist als spätesten Zeitpunkt. Der Entscheid B 2025/4 erläutert, dass die Voraussetzungen auch im weiteren Verfahren erhalten bleiben müssen."
+            },
+            {
+              "id": "ch-sg-vergabe-voraussetzungen-q4",
+              "prompt": "Zwei Gesellschaften bewerben sich. Welche Prüfung steht vor dem Vergleich der Auswahlkriterien nach Art. 11?",
+              "choices": [
+                "Ob beide Gesellschaften die Vergabevoraussetzungen des Art. 10 erfüllen",
+                "Welche zuerst eine Trophäe vorzeigt",
+                "Welche die auffälligere Vereinskleidung trägt"
+              ],
+              "correctIndex": 0,
+              "explanation": "Eignung und Vergabevoraussetzungen sind von der nachfolgenden Auswahl unter mehreren geeigneten Gesellschaften zu unterscheiden."
+            },
+            {
+              "id": "ch-sg-vergabe-voraussetzungen-q5",
+              "prompt": "Dürfen die Voraussetzungen nach Art. 10 nach rechtskräftiger Vergabe dauerhaft wegfallen, weil der Stichtag bereits vorbei ist?",
+              "choices": [
+                "Ja; nach Vergabe ist jede Voraussetzung endgültig bedeutungslos",
+                "Nein; sie müssen während der Pachtdauer gewährleistet bleiben",
+                "Ja; aber nur in einem einheimischen Revier"
+              ],
+              "correctIndex": 1,
+              "explanation": "Das Verwaltungsgericht B 2025/4, E. 2.5.1, stellt die fortdauernden Vergabevoraussetzungen den besonderen Stichtagsregeln für einzelne Auswahlkriterien gegenüber."
+            }
+          ]
+        },
+        {
+          "id": "ch-sg-auswahl-einheimisch",
+          "topic": "zustandigkeit",
+          "title": "Mehrere Bewerbungen: Wohnsitz und Auswahl präzise unterscheiden",
+          "lawTitle": "Jagdgesetz (JG), sGS 853.1",
+          "citation": "Art. 11 Abs. 1–3 und Art. 78 Abs. 2 JG",
+          "officialText": "Art. 11\n1 Erfüllen mehrere Jagdgesellschaften die Voraussetzungen für eine Vergabe, wird vergeben:\na) das einheimische Revier an die Jagdgesellschaft, die bis zur notwendigen Mitgliederzahl mehr einheimische Mitglieder aufweist;\nb) das auswärtige Revier an die Jagdgesellschaft, die bis zur notwendigen Mitgliederzahl mehr auswärtige Mitglieder aufweist.\n1bis Kommen mehrere Jagdgesellschaften nach Abs. 1 Bst. a und b dieser Bestimmung für eine Vergabe in Frage, wird das Revier an die Jagdgesellschaft vergeben, die das Revier in der ablaufenden Pachtperiode gepachtet hat.\n1ter Führt auch das Vorgehen nach Abs. 1bis dieser Bestimmung zu keinem Ergebnis, wird das Revier an die Jagdgesellschaft vergeben, die aufgrund ihrer Altersstruktur die Erfüllung der Aufgaben einer Jagdgesellschaft besser gewährleistet.\n2 Massgebend sind:\na) für die Auswahl nach Abs. 1 dieser Bestimmung ausschliesslich Mitglieder, die für das Revier an die notwendige Mitgliederzahl der Jagdgesellschaft angerechnet werden und im Kanton wohnen;\nb) für die Auswahl nach Abs. 1ter dieser Bestimmung alle jagdberechtigten Mitglieder der Jagdgesellschaft.\n3 Als einheimisch gilt, wer bei Ablauf der Bewerbungsfrist seit wenigstens sechs Monaten ununterbrochen in einer Standortgemeinde des Reviers wohnt.\n\nArt. 78 Abs. 2\nAuf die Vergabe der von 1. April 2024 bis 31. März 2032 laufenden Pachten wird bei Anwendung von Art. 11 Abs. 1bis dieses Erlasses anstelle der Jagdgesellschaft, die das Revier in der ablaufenden Pachtperiode gepachtet hat, die Jagdgesellschaft berücksichtigt, in der mehr bisherige Pächterinnen und Pächter des Reviers Mitglied sind. Massgebend ist der letzte Tag der laufenden Bewerbungsfrist.",
+          "summary": "Lerne zunächst den Unterschied zwischen Vergabevoraussetzungen und Auswahl: Art. 11 entscheidet erst zwischen mehreren Gesellschaften, die Art. 10 erfüllen. Für ein einheimisches Revier zählt primär die Zahl der anrechenbaren einheimischen Mitglieder bis zur notwendigen Mitgliederzahl. Einheimisch bedeutet nicht bloss irgendeinen Wohnsitz im Kanton: Es braucht bei Ablauf der Bewerbungsfrist wenigstens sechs Monate ununterbrochenen Wohnsitz in einer Standortgemeinde des Reviers. Für die laufende Periode 2024–2032 ersetzt Art. 78 Abs. 2 das sonstige zweite Kriterium durch die Zahl bisheriger Pächterinnen und Pächter am letzten Tag der Bewerbungsfrist. Erst wenn auch danach kein Ergebnis entsteht, folgt die Altersstruktur. Der Gerichtsentscheid B 2025/4 bestätigt diese Reihenfolge für einheimische Reviere.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (JG), sGS 853.1 – geltende Fassung 01.04.2024",
+              "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3478/pdf_file",
+              "publisher": "Kanton St. Gallen",
+              "kind": "law"
+            },
+            {
+              "title": "Verwaltungsgericht St. Gallen B 2025/4 vom 18.08.2025, E. 2.1–2.5: Vergabe und Wohnsitzkriterien",
+              "url": "https://entscheidsuche.ch/dok/SG_Gerichte/SG_VG_001_B-2025-4_2025-08-18.pdf",
+              "publisher": "Verwaltungsgericht St. Gallen – eigenständiger Gerichtsentscheid",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2024-04-01",
+          "questions": [
+            {
+              "id": "ch-sg-auswahl-einheimisch-q1",
+              "prompt": "Du wohnst im Kanton St. Gallen, aber nicht in einer Standortgemeinde des Reviers. Genügt das allein für die Eigenschaft einheimisch nach Art. 11 Abs. 3?",
+              "choices": [
+                "Ja; jeder Kantonswohnsitz bedeutet automatisch einheimisch in jedem Revier",
+                "Ja; jeder Wohnsitz in der Schweiz genügt",
+                "Nein; erforderlich ist der bezeichnete Wohnsitz in einer Standortgemeinde und die Mindestdauer"
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Verwaltungsgericht B 2025/4 unterscheidet ausdrücklich Kantonswohnsitz und den engeren Begriff einheimisch."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q2",
+              "prompt": "Eine Person zieht erst zwei Monate vor Ablauf der Bewerbungsfrist in die Standortgemeinde. Erfüllt sie damit die sechsmonatige Voraussetzung?",
+              "choices": [
+                "Nein; mindestens sechs Monate ununterbrochener Wohnsitz sind erforderlich",
+                "Ja; jeder beliebige Zuzug am letzten Tag genügt",
+                "Ja; mehrere kurze frühere Aufenthalte ersetzen den ununterbrochenen Wohnsitz"
+              ],
+              "correctIndex": 0,
+              "explanation": "Zeitliches und geografisches Erfordernis müssen gemeinsam erfüllt sein."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q3",
+              "prompt": "Was wird primär verglichen, wenn mehrere geeignete Gesellschaften sich für ein einheimisches Revier bewerben?",
+              "choices": [
+                "Die beliebig grosse Gesamtzahl aller Unterstützenden",
+                "Die Zahl anrechenbarer einheimischer Mitglieder bis zur notwendigen Mitgliederzahl",
+                "Nur die Höhe freiwilliger Spenden"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 11 Abs. 1 Bst. a und Abs. 2 begrenzen, welche Mitglieder in diesem ersten Vergleich zählen."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q4",
+              "prompt": "Welches zweite Auswahlkriterium gilt für die Pachtvergabe der Periode 1. April 2024 bis 31. März 2032?",
+              "choices": [
+                "Die Gesellschaft mit dem höchsten Gebot einer privaten Auktion",
+                "Immer automatisch die neueste Vereinsgründung",
+                "Die Gesellschaft mit mehr bisherigen Pächterinnen und Pächtern des Reviers"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 78 Abs. 2 ist eine spezielle Übergangsregel für genau diese Periode; sie ersetzt insoweit Art. 11 Abs. 1bis."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q5",
+              "prompt": "Welcher Zeitpunkt ist für die Zahl bisheriger Pächterinnen und Pächter nach Art. 78 Abs. 2 massgebend?",
+              "choices": [
+                "Der letzte Tag der laufenden Bewerbungsfrist",
+                "Jeder beliebige Tag nach dem Rekursentscheid",
+                "Ausschliesslich der letzte Tag der gesamten Pachtdauer"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die besondere Regel legt einen festen Stichtag fest. Der Entscheid B 2025/4 behandelt gerade diese Abgrenzung."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q6",
+              "prompt": "Wann wird die Altersstruktur im Auswahlmodell des Art. 11 relevant?",
+              "choices": [
+                "Immer vor der Prüfung der Jagdberechtigung",
+                "Wenn die vorangehenden Auswahlstufen kein Ergebnis liefern",
+                "Sie ersetzt sofort sämtliche übrigen Voraussetzungen"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Reihenfolge darf nicht beliebig umgestellt werden. Nach Art. 11 Abs. 1ter folgt die Altersstruktur erst nach den vorherigen Stufen."
+            },
+            {
+              "id": "ch-sg-auswahl-einheimisch-q7",
+              "prompt": "Wer zählt bei der Beurteilung der Altersstruktur nach Art. 11 Abs. 2 Bst. b?",
+              "choices": [
+                "Nur ausserkantonale Besucher ohne Mitgliedschaft",
+                "Nur Personen ohne Jagdberechtigung",
+                "Alle jagdberechtigten Mitglieder der Gesellschaft"
+              ],
+              "correctIndex": 2,
+              "explanation": "Für diese Auswahlstufe gilt ein anderer Personenkreis als für das primäre Wohnsitzkriterium."
+            }
+          ]
+        },
+        {
+          "id": "ch-sg-mitgliederzahl",
+          "topic": "zustandigkeit",
+          "title": "Notwendige Mitgliederzahl: Mindestbestand und Anrechenbarkeit",
+          "lawTitle": "Jagdgesetz (JG), sGS 853.1",
+          "citation": "Art. 8 Abs. 1 und 2; Art. 8bis Abs. 1 und 2 JG",
+          "officialText": "Art. 8\n1 Die zuständige Stelle des Kantons legt für jedes Revier die notwendige Mitgliederzahl der Jagdgesellschaft fest.\n2 Die notwendige Mitgliederzahl der Jagdgesellschaft bemisst sich nach der Bewertung des Reviers, weist jedoch wenigstens drei Mitglieder auf. Sie gilt für die ganze Pachtdauer.\n\nArt. 8bis\n1 Eine Person wird nur in einem einzigen Revier an die notwendige Mitgliederzahl der Jagdgesellschaft angerechnet.\n2 Nach vollendetem 70. Altersjahr wird eine Person nicht mehr an die notwendige Mitgliederzahl der Jagdgesellschaft angerechnet.",
+          "summary": "Die zuständige kantonale Stelle setzt die notwendige Mitgliederzahl je Revier anhand seiner Bewertung fest. Mindestens drei Mitglieder sind nötig; es handelt sich nicht um eine schweizweit oder für jedes Revier identische Sollzahl von genau drei Personen. Die notwendige Zahl gilt für die ganze Pachtperiode. Die Anrechenbarkeit ist davon zu unterscheiden: Eine Person zählt nur in einem Revier zur notwendigen Zahl und nach vollendetem 70. Altersjahr nicht mehr. Das ist keine hieraus abzuleitende allgemeine Altersgrenze für jede Jagdausübung. Die Verbandserläuterung diskutiert ausdrücklich die weiterhin wichtige Mitarbeit älterer Mitglieder.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (JG), sGS 853.1 – geltende Fassung 01.04.2024",
+              "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3478/pdf_file",
+              "publisher": "Kanton St. Gallen",
+              "kind": "law"
+            },
+            {
+              "title": "Verwaltungsgericht St. Gallen B 2025/4 vom 18.08.2025, E. 2.1–2.5: Vergabe und Wohnsitzkriterien",
+              "url": "https://entscheidsuche.ch/dok/SG_Gerichte/SG_VG_001_B-2025-4_2025-08-18.pdf",
+              "publisher": "Verwaltungsgericht St. Gallen – eigenständiger Gerichtsentscheid",
+              "kind": "context"
+            },
+            {
+              "title": "RJSG-Vernehmlassungsantwort 29.10.2021: Mindestmitglieder, Altersstruktur und Mitteilungspflichten; Anträge nicht als geltendes Recht übernommen",
+              "url": "https://de.cdn-website.com/c29cf376e982436aa60bf4f9775aca3c/files/uploaded/11613743-RJSG_Vernahmlassungsantwort_zum_V._Nachtrag_zum_Jagdgesetz-c51ce.pdf",
+              "publisher": "RevierJagd St. Gallen",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2024-04-01",
+          "questions": [
+            {
+              "id": "ch-sg-mitgliederzahl-q1",
+              "prompt": "Bedeutet wenigstens drei Mitglieder, dass jedes St. Galler Revier unabhängig von seiner Bewertung genau drei notwendige Mitglieder hat?",
+              "choices": [
+                "Nein; drei ist die Mindestzahl, die konkrete notwendige Zahl wird für das Revier festgelegt",
+                "Ja; die Bewertung darf niemals eine höhere Zahl ergeben",
+                "Nein; eine einzelne Person genügt immer"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 8 unterscheidet die gesetzliche Untergrenze von der revierspezifischen Festlegung."
+            },
+            {
+              "id": "ch-sg-mitgliederzahl-q2",
+              "prompt": "Eine Person hat das 70. Altersjahr vollendet. Zählt sie nach Art. 8bis Abs. 2 weiterhin zur notwendigen Mitgliederzahl?",
+              "choices": [
+                "Ja; unverändert bis zum 100. Geburtstag",
+                "Nein",
+                "Ja; sobald sie mindestens einmal jährlich an einer Jagd teilnimmt"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Nichtanrechnung ist von der Frage zu unterscheiden, ob die Person bei sonst erfüllten Voraussetzungen weiter jagen und mitarbeiten darf."
+            },
+            {
+              "id": "ch-sg-mitgliederzahl-q3",
+              "prompt": "Eine Gesellschaft beruft sich nur bei der Bewerbung auf ihre notwendige Mitgliederzahl. Was sagt Art. 8 Abs. 2 zur Geltung?",
+              "choices": [
+                "Sie gilt nur am ersten Jagdtag",
+                "Sie entfällt automatisch nach dem ersten Abschuss",
+                "Die notwendige Mitgliederzahl gilt für die ganze Pachtdauer"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die fortdauernde Anforderung ist bei Mitgliederwechseln und bei der Altersanrechnung zu berücksichtigen."
+            }
+          ]
+        },
+        {
+          "id": "ch-sg-treffsicherheitsnachweis",
+          "topic": "zulassung",
+          "title": "Treffsicherheit: Waffenart, zwölf Monate und Anerkennung",
+          "lawTitle": "Jagdgesetz (JG), sGS 853.1",
+          "citation": "Art. 24 Abs. 1–3 und Art. 26 Abs. 1 und 2 JV",
+          "officialText": "Art. 24\n1 Die Jägerin oder der Jäger erbringt für jede von ihr oder von ihm verwendete Waffenart (Kugel oder Schrot) den periodischen Nachweis der Treffsicherheit.\n2 Der Nachweis richtet sich nach dem Standard der Jagd- und Fischereiverwalterkonferenz (JFK-Standard). Er ist zwölf Monate ab erfülltem Schiessprogramm gültig.\n3 Der während der Jagdausbildung im Kanton erworbene Ausweis über die bestandenen Prüfungen im Schiessen gilt während zwölf Monaten als Nachweis der Treffsicherheit.\n\nArt. 26\n1 Der ausserkantonale Nachweis nach JFK-Standard ist im Kanton gültig.\n2 Andere ausserkantonale oder ausländische Nachweise sind erst nach Anerkennung durch das Amt für Natur, Jagd und Fischerei gültig.",
+          "summary": "Der Nachweis nach JFK-Standard gilt nach dem aktuellen Art. 24 Abs. 2 JV zwölf Monate ab dem erfüllten Schiessprogramm; ein aus älteren Sonderregelungen erinnerter längerer Zeitraum ist nicht die aktuelle Regel. Der aktuelle amtliche Wortlaut steht vollständig im folgenden Auszug. Ausserkantonale JFK-Nachweise sind gültig, wenn auch die geltende zeitliche Gültigkeit erfüllt ist. Andere ausserkantonale oder ausländische Nachweise bedürfen zuerst der Anerkennung des ANJF. Die unabhängig abgeglichenen Fragen dieses Blocks prüfen diese Gültigkeit und Anerkennung; der historische Verbandstext wird nicht als aktuelle Erlassfassung ausgegeben.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (JG), sGS 853.1 – geltende Fassung 01.04.2024",
+              "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3478/pdf_file",
+              "publisher": "Kanton St. Gallen",
+              "kind": "law"
+            },
+            {
+              "title": "Hubertus aktuell 1/2015, Druckseite 79 / PDF-Seite 81: ausserkantonaler JFK-Nachweis, zwölf Monate und Anerkennung anderer Nachweise",
+              "url": "https://www.jagd-hubertus.ch/wp-content/uploads/2023/07/hubertus_aktuell_01_2015.pdf",
+              "publisher": "Jagdverein Hubertus St. Gallen",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2024-04-01",
+          "questions": [
+            {
+              "id": "ch-sg-treffsicherheitsnachweis-q1",
+              "prompt": "Wie lange ist der JFK-Treffsicherheitsnachweis nach der geltenden St. Galler Grundregel gültig?",
+              "choices": [
+                "Unbegrenzt seit der ersten Jagdprüfung",
+                "Zwölf Monate ab erfülltem Schiessprogramm",
+                "Immer acht volle Pachtjahre"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 24 Abs. 2 JV nennt ausdrücklich zwölf Monate ab dem erfüllten Schiessprogramm. Der aktuelle Wortlaut ist massgebend, nicht eine aus einer früheren Fassung erinnerte Frist."
+            },
+            {
+              "id": "ch-sg-treffsicherheitsnachweis-q2",
+              "prompt": "Ein Gast legt einen ausserkantonalen Nachweis nach JFK-Standard vor. Was bestimmt Art. 26 Abs. 1 JV?",
+              "choices": [
+                "Jeder ausserkantonale Nachweis ist ausnahmslos verboten",
+                "Der Nachweis wird automatisch zu einer unbegrenzten Jagdeinladung",
+                "Dieser Nachweis ist im Kanton gültig; seine geltende zeitliche Gültigkeit muss ebenfalls erfüllt sein"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Anerkennung des Standards ist von persönlicher Jagdberechtigung, Einladung und zeitlicher Gültigkeit zu unterscheiden."
+            },
+            {
+              "id": "ch-sg-treffsicherheitsnachweis-q3",
+              "prompt": "Ein ausländischer Schiessnachweis entspricht nicht dem JFK-Standard. Ist er allein wegen der ausländischen Ausstellung automatisch gültig?",
+              "choices": [
+                "Nein; andere Nachweise sind erst nach Anerkennung durch das ANJF gültig",
+                "Ja; jedes ausländische Papier ersetzt die Anerkennung",
+                "Ja; wenn die betroffene Person den Nachweis selbst für gleichwertig erklärt"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 26 Abs. 2 verlangt die Anerkennung durch die zuständige kantonale Stelle."
+            }
+          ]
+        },
+        {
+          "id": "ch-sg-stacheldraht",
+          "topic": "wildschutz",
+          "title": "Zäune: Stacheldraht, Sömmerungsgebiet und Verantwortung",
+          "lawTitle": "Jagdgesetz (JG), sGS 853.1",
+          "citation": "Art. 41sexies Abs. 1–3 und Art. 41septies Abs. 1–5 JG",
+          "officialText": "Art. 41sexies\n1 Der Zaun:\na) ist für wildlebende Tiere gut sichtbar;\nb) wird ausreichend unterhalten;\nc) steht nur unter Strom, solange sich in der eingezäunten Fläche Nutztiere befinden oder solange Spezialkulturen oder Ackerkulturen vor Schädigungen geschützt werden;\nd) wird abgeräumt, sobald er dauerhaft nicht mehr benötigt wird.\n2 Schränkt der Zaun die Zugänglichkeit des Waldes dauerhaft ein, werden Durchgänge für wildlebende Tiere eingerichtet.\n3 Die Pflichten nach Abs. 1 und 2 dieser Bestimmung erfüllt, wer den Zaun nutzt oder wer Eigentümerin oder Eigentümer des Grundstücks ist, auf dem sich der Zaun befindet.\n\nArt. 41septies\n1 Neuanlagen aus Stacheldraht und ähnlichen spitzen oder scharfkantigen Materialien sind verboten.\n2 Zäune und Absperrungen aus Stacheldraht und ähnlichen spitzen oder scharfkantigen Materialien sind ausserhalb des Sömmerungsgebietes verboten.\n3 Ausgenommen sind Zäune und Absperrungen zu polizeilichen oder militärischen Zwecken und zum Schutz von Einzelobjekten.\n4 Zäune aus Stacheldraht oder ähnlichen spitzen oder scharfkantigen Materialien sind ausserhalb der Sömmerungszeit abzulegen.\n5 Im Sömmerungsgebiet sind Zäune aus Stacheldraht und ähnlichen spitzen oder scharfkantigen Materialien nur für die Einzäunung oder Sicherung von Rindviehweiden zulässig.",
+          "summary": "Stacheldraht ist im St. Galler Jagdgesetz besonders geregelt, weil solche Zäune Wildtiere verletzen und Wanderungen behindern können. Neue Anlagen aus Stacheldraht oder ähnlichem spitzen oder scharfkantigen Material sind verboten. Für bestehende Zäune ist zwischen Sömmerungsgebiet und übrigen Gebieten zu unterscheiden; die ausdrücklich genannten Sonderzwecke bleiben vorbehalten. Im Sömmerungsgebiet sind solche Zäune nur zur Einzäunung oder Sicherung von Rindviehweiden zulässig und ausserhalb der Sömmerungszeit abzulegen. Die Regeln richten sich auch an Nutzende und Grundeigentümer, nicht ausschliesslich an Jagdgesellschaften. Die allgemeine Verantwortung für Sichtbarkeit, Unterhalt und Entfernung ungenutzter Zäune besteht daneben.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (JG), sGS 853.1 – geltende Fassung 01.04.2024",
+              "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3478/pdf_file",
+              "publisher": "Kanton St. Gallen",
+              "kind": "law"
+            },
+            {
+              "title": "Ortsgemeinde Wartau: Stacheldrahtregeln und Übergangsende 30.09.2025",
+              "url": "https://www.og-wartau.ch/news/artikel/entfernen-von-stacheldraht-bis-3092025/",
+              "publisher": "Ortsgemeinde Wartau",
+              "kind": "context"
+            },
+            {
+              "title": "Wildtiere in Gefahr: Sichtbarkeit, Kontrolle und Entfernung ungenutzter Zäune",
+              "url": "https://sts-psa.ch/tierschutz/themen/wildtiere/wildtiere-in-gefahr/",
+              "publisher": "Schweizer Tierschutz STS",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "effectiveFrom": "2024-04-01",
+          "questions": [
+            {
+              "id": "ch-sg-stacheldraht-q1",
+              "prompt": "Darf in St. Gallen eine neue gewöhnliche landwirtschaftliche Stacheldrahtanlage errichtet werden?",
+              "choices": [
+                "Ja; jede Neuanlage ist ohne Einschränkung erlaubt",
+                "Nein; Neuanlagen aus Stacheldraht und ähnlichem spitzen oder scharfkantigen Material sind verboten",
+                "Ja; sofern kein Wild direkt daneben steht"
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 41septies Abs. 1 enthält das Verbot neuer Anlagen. Besondere gesetzliche Sonderzwecke dürfen nicht mit einer gewöhnlichen Weideeinzäunung verwechselt werden."
+            },
+            {
+              "id": "ch-sg-stacheldraht-q2",
+              "prompt": "Genügt es, statt klassischem Stacheldraht ein anderes ähnliches spitzes oder scharfkantiges Material zu verwenden?",
+              "choices": [
+                "Ja; sobald das Material anders bezeichnet wird, ist die gleiche scharfkantige Wirkung unerheblich",
+                "Ja; sofern die Spitzen lackiert werden",
+                "Nein; der Gesetzestext erfasst auch solche ähnlichen Materialien"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm ist gerade nicht auf die Bezeichnung Stacheldraht beschränkt."
+            },
+            {
+              "id": "ch-sg-stacheldraht-q3",
+              "prompt": "Was ist mit einem im Sömmerungsgebiet zulässigen Stacheldrahtzaun ausserhalb der Sömmerungszeit zu tun?",
+              "choices": [
+                "Er ist abzulegen",
+                "Er muss zusätzlich unter Strom gesetzt werden",
+                "Er darf unabhängig von der Saison unverändert stehen bleiben"
+              ],
+              "correctIndex": 0,
+              "explanation": "Art. 41septies Abs. 4 nennt das Ablegen ausserhalb der Sömmerungszeit. Die Ortsgemeinde Wartau erläutert diese Pflicht gesondert."
+            },
+            {
+              "id": "ch-sg-stacheldraht-q4",
+              "prompt": "Für welchen Zweck lässt Art. 41septies Abs. 5 solche Zäune im Sömmerungsgebiet zu?",
+              "choices": [
+                "Für jede beliebige neue Freizeitabsperrung",
+                "Zur Einzäunung oder Sicherung von Rindviehweiden",
+                "Für die Sperre sämtlicher Wildtierkorridore"
+              ],
+              "correctIndex": 1,
+              "explanation": "Auch im Sömmerungsgebiet besteht keine allgemeine Freigabe für beliebige Zwecke oder Neuanlagen."
+            },
+            {
+              "id": "ch-sg-stacheldraht-q5",
+              "prompt": "Kann eine Grundeigentümerin die gesetzliche Verantwortung für einen Zaun stets mit dem Hinweis ablehnen, sie sei keine Jägerin?",
+              "choices": [
+                "Ja; Zäune betreffen ausschliesslich Jäger",
+                "Ja; solange sie kein Jagdpatent hat",
+                "Nein; die Pflichten richten sich auch an Nutzende und Grundeigentümer"
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 41sexies Abs. 3 benennt Nutzende und Grundeigentümer. Die Ortsgemeinde Wartau erklärt diese Verantwortlichkeit ausdrücklich."
+            }
+          ]
         }
       ],
-      "notes": "Ausgewählte Grundnormen; kein vollständiger amtlicher Prüfungsstoff. Weitere Bundes-, Verordnungs-, Gebiets- und Jahresvorschriften bleiben zu beachten.",
+      "notes": "Vertiefung St. Gallen mit aktuellem Bundesrechtsstock und ausgewählten kantonalen Lernblöcken. Aktuelle JG-/JV-Fassung seit 1. April 2024; die 2026 diskutierte Revision ist nicht als geltendes Recht übernommen. Enthalten sind selbst erstellte Rechtsfragen, keine behauptete vollständige amtliche Prüfungsbank. Für die laufende Pachtperiode 2024–2032 wird die Sonderregel von Art. 78 Abs. 2 ausdrücklich berücksichtigt. Noch nicht sämtliche kommunalen Schutzverordnungen, Jahresverfügungen und Prüfungsbereiche sind vollständig redaktionell abgedeckt.",
       "examResources": [
         {
           "title": "Übungsprüfungsfragen Jagdrecht und Öffentlichkeitsarbeit – Theorieprüfung 2025, Version 2.1",

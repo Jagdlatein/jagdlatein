@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/compat/router";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
+import { PAGE_MENU_OUTLET_ID } from "./PageMenu";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/GlobalNavigation.module.css";
 
@@ -60,7 +61,7 @@ function writeHistory(history) {
 }
 
 function tracksTopicFragments(path) {
-  return path.startsWith("/wildkunde/") || path.split(/[?#]/)[0] === "/lernen/lebensraum-werkstatt";
+  return path.startsWith("/wildkunde/") || path.startsWith("/lernen/jagdhunde/") || path.split(/[?#]/)[0] === "/lernen/lebensraum-werkstatt";
 }
 function tracksLawSelection(path) {
   return /^\/jagdrecht\/(?:ch|de|at)$/.test(path.split(/[?#]/)[0]);
@@ -224,6 +225,7 @@ export default function GlobalHomeButton() {
       }}>
         <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
         <div className={styles.moreLinks}>
+          <div id={PAGE_MENU_OUTLET_ID} className={styles.pageMenu} />
           {mainMenuItems.map(item => item.href === "/lernen" ? <details key={item.href} className={styles.categoryTree}>
             <summary><AppIcon name="book" size={21} />Lernbereiche<span aria-hidden="true">›</span></summary>
             <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>

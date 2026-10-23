@@ -11,10 +11,10 @@ function nodes(node, predicate) {
 }
 function harness(query = {}, saved = null) {
   const originalWindow = global.window, originalFetch = global.fetch;
-  const slots = [], effects = [], requests = [], pushes = [], replacements = [];
+  const slots = [], effects = [], requests = [], pushes = [], replacements = [], menuOpenCalls = [];
   let cursor = 0, dirty = false, tree, focusCount = 0, scrollCount = 0;
   const window = { localStorage: { getItem: () => saved && JSON.stringify(saved), setItem(_key, value) { saved = JSON.parse(value); } } };
-  const router = { isReady: true, query, push(href) { pushes.push(href); }, replace(href) { replacements.push(href); } };
+  const router = { isReady: true, query, push(href) { pushes.push(href); return Promise.resolve(true); }, replace(href) { replacements.push(href); } };
   const hooks = { ...React,
     useState(initial) { const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; dirty = true; }]; },
     useRef(initial) { const i = cursor++; slots[i] ||= { value: { current: initial } }; return slots[i].value; },
@@ -27,8 +27,10 @@ function harness(query = {}, saved = null) {
     },
   };
   const Link = ({ href, children, shallow, scroll, prefetch, ...props }) => React.createElement('a', { href, ...props }, children);
+  const PageMenu = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, 'next/link': { __esModule: true, default: Link },
     './Seo': { __esModule: true, default: () => null },
+    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id) },
     './ResearchQuestionRound': { __esModule: true, default: ({ questions }) => React.createElement('div', { 'data-practice': questions.map(q => q.id).join(',') }, 'Practice') },
   });
   const Component = load('components/RegionalLawLearning.js').default;
@@ -43,12 +45,14 @@ function harness(query = {}, saved = null) {
   }
   function flush() { let guard = 0; do { render(); effects.splice(0).forEach(effect => effect()); } while (dirty && ++guard < 12); return tree; }
   flush();
-  return { requests, pushes, replacements, get tree() { return tree; }, get saved() { return saved; }, get focusCount() { return focusCount; }, get scrollCount() { return scrollCount; },
+  return { requests, pushes, replacements, menuOpenCalls, get tree() { return tree; }, get saved() { return saved; }, get focusCount() { return focusCount; }, get scrollCount() { return scrollCount; },
     html: () => renderToStaticMarkup(tree),
+    menuHtml: () => renderToStaticMarkup(nodes(tree, node => node.type === PageMenu)[0].props.children),
     route(value) { router.query = value; flush(); },
     async respond(index, data, status = 200) { requests[index].resolve({ ok: status === 200, status, json: async () => data }); for (let i = 0; i < 6; i++) await Promise.resolve(); flush(); },
     close() { for (const slot of slots) slot?.cleanup?.(); global.window = originalWindow; global.fetch = originalFetch; },
     select(label) { const field = nodes(tree, node => node.type === 'label' && node.props.children?.[0] === label)[0]; return nodes(field, node => node.type === 'select')[0]; },
+    search(value) { nodes(tree, node => node.type === 'input' && node.props.type === 'search')[0].props.onChange({ target: { value } }); flush(); },
   };
 }
 const norm = { id: 'sg-one', topic: 'pruefung', title: 'Synthetic norm', lawTitle: 'Synthetic law', citation: 'Art. 1–3', officialTextCitation: 'Art. 2 Abs. 1',
@@ -68,6 +72,19 @@ test('A late response from another canton is hidden and cannot replace the curre
   } finally { s.close(); }
 });
 
+test('Filtering the lower-menu choices cannot erase the legal text already selected for reading', async () => {
+  const s = harness({ region: 'SG', thema: 'pruefung', artikel: norm.id });
+  try {
+    await s.respond(0, bundle());
+    const focused = s.focusCount;
+    s.search('Kein Treffer fuer diesen Suchbegriff');
+    assert.match(s.html(), /Synthetic reviewed explanation/);
+    assert.doesNotMatch(s.html(), /Kein Treffer in dieser Auswahl/);
+    assert.match(s.menuHtml(), /Kein Treffer\. Ändere deinen Suchbegriff/);
+    assert.equal(s.focusCount, focused, 'Typing in a filter does not interrupt reading');
+  } finally { s.close(); }
+});
+
 test('A remembered canton restores only an empty choice and never overrides an explicit region or country', () => {
   for (const [query, saved, expected] of [[{}, { country: 'CH', region: 'SG' }, 1], [{ region: 'ZH' }, { country: 'CH', region: 'SG' }, 0],
     [{}, { country: 'DE', region: 'BY' }, 0], [{}, { country: 'CH', region: 'XX' }, 0]]) {
@@ -76,13 +93,18 @@ test('A remembered canton restores only an empty choice and never overrides an e
   }
 });
 
-test('Reading shows only the chosen norm, keeps the exact excerpt citation, and moves focus after a topic choice', async () => {
+test('Topic selection lives in the lower menu while the page shows only the chosen norm and its exact excerpt citation', async () => {
   const s = harness({ region: 'SG' });
   try {
     await s.respond(0, bundle());
     const link = nodes(s.tree, node => node.props?.href === '/jagdrecht/ch?region=SG&thema=pruefung')[0];
     link.props.onClick({ button: 0 });
-    s.route({ region: 'SG', thema: 'pruefung' }); assert.equal(s.focusCount, 1); assert.equal(s.scrollCount, 1);
+    s.route({ region: 'SG', thema: 'pruefung' });
+    await new Promise(resolve => setTimeout(resolve, 1));
+    assert.ok(s.menuOpenCalls.includes('regional-law-topics'));
+    assert.equal(s.focusCount, 0); assert.equal(s.scrollCount, 0);
+    assert.doesNotMatch(s.html(), /<select|type="search"|aria-label="Rechtsthemen"|aria-label="Gesetzesstellen"/);
+    assert.match(s.menuHtml(), /Prüfungsregion auswählen/); assert.match(s.menuHtml(), /<select/);
     s.route({ region: 'SG', thema: 'pruefung', artikel: norm.id });
     assert.match(s.html(), /Art\. 2 Abs\. 1/); assert.match(s.html(), /Synthetic reviewed explanation/);
     assert.equal((s.html().match(/<article/g) || []).length, 1); assert.equal(s.requests.length, 1, 'Topic and reading form changes reuse the selected region response.');

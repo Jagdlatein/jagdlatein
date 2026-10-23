@@ -1,5 +1,7 @@
 .reader { min-width: 0; margin: 12px 0 28px; scroll-margin-top: 24px; }
 .heading { margin: 0 0 20px; font-size: clamp(25px, 3vw, 32px); line-height: 1.4; overflow-wrap: anywhere; }
+.menuHeading { margin: 16px 0 10px; font-size: 19px; line-height: 1.5; }
+.hint { color: #6e6249; font-size: 18px; line-height: 1.7; }
 .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #dfcda0; }
 .list li { min-width: 0; border-bottom: 1px solid #dfcda0; }
 .link { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 62px; padding: 16px 4px; color: #57431d; text-decoration: none; font-size: 19px; line-height: 1.5; }

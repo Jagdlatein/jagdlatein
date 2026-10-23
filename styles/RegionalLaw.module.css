@@ -5,8 +5,13 @@
 .selection { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; padding: 20px; border: 1px solid var(--jl-border); border-radius: 18px; background: var(--jl-surface); margin-bottom: 24px; }
 .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 17px; font-weight: 650; }
 .field select, .field input { width: 100%; min-width: 0; min-height: 52px; padding: 12px; border: 1px solid #bca571; border-radius: 12px; background: white; color: inherit; font: inherit; font-weight: 400; }
+.menuFields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 16px 0; }
+.menuList { list-style: none; margin: 12px 0 0; padding: 0; }
+.menuList a { flex-direction: column; align-items: flex-start; gap: 5px; }
+.menuList a strong { font-size: 17px; }
+.menuList a span { font-size: 14px; color: var(--jl-muted); }
 .regionHint { grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 1.6; color: var(--jl-muted); }
-.controls { display: flex; flex-wrap: wrap; align-items: end; gap: 18px; margin: 20px 0; }
+.controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 18px; margin: 20px 0; }
 .controls .field { flex: 1 1 220px; }
 .check { display: flex; align-items: flex-start; gap: 10px; min-height: 48px; line-height: 1.6; }
 .check input { width: 22px; height: 22px; flex-shrink: 0; margin-top: 3px; }

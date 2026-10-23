@@ -66,18 +66,16 @@ test('Searching still matches definition text and terms but renders only relevan
   for (const other of TERMS.filter(term => term.slug !== target.slug)) assert.ok(!words(detail).includes(other.def));
 });
 
-test('A term opens directly at its definition; further navigation stays below it in one closed disclosure', () => {
+test('A term opens directly at its definition; all glossary navigation is contributed to the shared lower menu', () => {
   const Detail = createLoader({ '../../lib/account-access': { getPaidPageProps: async () => ({ props: {} }) } })('pages/glossar/[slug].js').default;
   const entry = TERMS[0], tree = Detail({ slug: entry.slug }), html = renderToStaticMarkup(tree);
   const breadcrumb = find(tree, node => node.type === 'nav' && node.props['aria-label'] === 'Glossarpfad');
   assert.ok(breadcrumb); assert.ok(words(breadcrumb).includes(`Begriffe mit ${entry.term[0].toUpperCase()}`));
-  const disclosure = find(tree, node => node.type === 'details');
-  assert.ok(disclosure && !disclosure.props.open);
-  assert.equal(find(disclosure, node => node === breadcrumb), breadcrumb);
-  assert.ok(html.indexOf('class="defBig"') < html.indexOf('aria-label="Glossarpfad"'));
-  assert.ok(html.indexOf('class="defBig"') < html.indexOf('Weitere Glossarbegriffe'));
+  const menu = find(tree, node => node.props?.title === 'Glossarbegriffe');
+  assert.ok(menu); assert.equal(find(menu, node => node === breadcrumb), breadcrumb);
+  assert.doesNotMatch(html, /<nav|Glossarpfad|Andere Glossargruppen|Weitere Glossarbegriffe/);
   assert.doesNotMatch(html.slice(0, html.indexOf('class="defBig"')), /<nav|<summary|navbar|Hauptmenü/);
-  for (const letter of new Set(TERMS.map(term => term.term[0].toUpperCase()))) assert.ok(renderToStaticMarkup(disclosure).includes(`/glossar?letter=${encodeURIComponent(letter)}`));
+  for (const letter of new Set(TERMS.map(term => term.term[0].toUpperCase()))) assert.ok(renderToStaticMarkup(menu.props.children).includes(`/glossar?letter=${encodeURIComponent(letter)}`));
 });
 
 test('Legacy header imports cannot restore a duplicate upper menu or trigger an auth request', () => {

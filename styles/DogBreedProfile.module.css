@@ -1,0 +1,18 @@
+.page { max-width: 1040px; }
+.knowledge { line-height: 1.85; font-size: 18px; }
+.knowledge h2 { margin-top: 0; font-size: clamp(25px, 4vw, 34px); line-height: 1.35; overflow-wrap: anywhere; }
+.knowledge h3 { margin: 24px 0 12px; font-size: 23px; line-height: 1.4; }
+.knowledge p { margin: 0 0 20px; }
+.lead { font-size: 20px; }
+.knowledge dl { margin: 16px 0 24px; }
+.knowledge dl > div { margin-bottom: 22px; }
+.knowledge dt { font-weight: 700; }
+.knowledge dd { margin: 6px 0 0; }
+.boundary { padding: 18px; border-left: 4px solid #aa812b; background: #fbf4df; }
+.photo { margin: 24px 0; }
+.photo img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: contain; background: #f7f2e5; border-radius: 14px; }
+.sources { margin-top: 32px; border-top: 1px solid #dfcda0; color: #6e6249; font-size: 15px; }
+.sources summary { min-height: 48px; padding: 14px 0; cursor: pointer; font-weight: 650; }
+.sources a { color: #73571a; overflow-wrap: anywhere; }
+.sources li { padding: 6px 0; }
+@media (max-width: 620px) { .knowledge { font-size: 18px; } .boundary { padding: 14px; } }

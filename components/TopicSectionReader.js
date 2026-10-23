@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Router from "next/router";
+import PageMenu, { openPageMenu, closePageMenu } from "./PageMenu";
 import styles from "../styles/TopicSectionReader.module.css";
 
 export function resolveTopicSection(groups, hash, rootId = "themenbaum") {
@@ -19,7 +20,7 @@ const hashLink = id => `#${encodeURIComponent(id)}`;
 
 // Native fragment links provide normal Back/Forward, sharing, and new-tab use.
 // Only the chosen renderer runs; the rest is neither hidden DOM nor a text dump.
-export default function TopicSectionReader({ id = "themenbaum", title = "Themen wählen", groups }) {
+export default function TopicSectionReader({ id = "themenbaum", title = "Themen wählen", groups, menuFooter }) {
   const [hash, setHash] = useState("");
   const focusTarget = useRef(null);
   const previousHash = useRef(null);
@@ -56,6 +57,11 @@ export default function TopicSectionReader({ id = "themenbaum", title = "Themen 
   }, [id]);
 
   useEffect(() => {
+    if (view.kind !== "topic") {
+      const timer = setTimeout(() => openPageMenu(`${id}-choices`), 0);
+      return () => clearTimeout(timer);
+    }
+    closePageMenu();
     if (focusAfterNavigation.current !== hash || !focusTarget.current) return;
     focusAfterNavigation.current = null;
     focusTarget.current.focus({ preventScroll: true });
@@ -63,19 +69,21 @@ export default function TopicSectionReader({ id = "themenbaum", title = "Themen 
   }, [hash, id]);
 
   return <section id={id} className={styles.reader} aria-label={title}>
-    {view.kind !== "root" && <nav className={styles.breadcrumb} aria-label="Themenpfad">
-      <a href={hashLink(id)}>Alle Themen</a>
-      {view.kind === "topic" && <><span aria-hidden="true">›</span><a href={hashLink(view.group.id)}>{view.group.title}</a></>}
-    </nav>}
-    {view.kind === "topic" ? <article className={styles.content} tabIndex={-1} ref={focusTarget} aria-label={view.topic.title}>
-      {view.topic.render()}
-    </article> : <>
-      <h2 ref={focusTarget} tabIndex={-1} className={styles.heading}>{view.kind === "group" ? view.group.title : title}</h2>
-      {view.kind === "group" ? <ol className={styles.list} id={view.group.id} aria-label={`${view.group.title}: Themen`}>
+    <PageMenu title={title}>
+      <div id={`${id}-choices`} tabIndex={-1}>
+      {view.kind !== "root" && <a className={styles.link} href={hashLink(id)}>Alle Unterkategorien</a>}
+      {view.kind !== "root" ? <>
+      <h3 className={styles.menuHeading}>{view.group.title}</h3>
+      <ol className={styles.list} aria-label={`${view.group.title}: Themen`}>
         {view.group.topics.map(topic => <li key={topic.id}><a className={styles.link} href={hashLink(topic.id)}><span>{topic.title}</span><span aria-hidden="true">→</span></a></li>)}
-      </ol> : <ul className={styles.list} aria-label="Unterkategorien">
+      </ol></> : <ul className={styles.list} aria-label="Unterkategorien">
         {available.map(group => <li key={group.id}><a className={styles.link} href={hashLink(group.id)}><span><strong>{group.title}</strong><small>{group.topics.length} {group.topics.length === 1 ? "Thema" : "Themen"}</small></span><span aria-hidden="true">→</span></a></li>)}
       </ul>}
-    </>}
+      </div>
+      {menuFooter}
+    </PageMenu>
+    {view.kind === "topic" ? <article className={styles.content} tabIndex={-1} ref={focusTarget} aria-label={view.topic.title}>
+      {view.topic.render()}
+    </article> : <p className={styles.hint}>Wähle {view.kind === "group" ? "dein Thema" : "eine Unterkategorie"} im unteren Menü. Der passende Wissenstext erscheint direkt hier.</p>}
   </section>;
 }

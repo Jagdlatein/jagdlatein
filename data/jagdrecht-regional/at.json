@@ -615,9 +615,284 @@
           "contentValidated": true,
           "verificationNote": "Amtlicher § 61 und NÖ-Bürgerinformation wurden gelesen. Beide stammen inhaltlich vom Land; eine zweite unabhängige konkrete Erläuterung des Verweigerungsgrundes fehlt. Noch nicht als Übungsstoff freigegeben.",
           "originalVerified": true
+        },
+        {
+          "id": "at-noe-gastkarte-ausfolgung",
+          "topic": "jagdausuebung",
+          "title": "Jagdgastkarte: Laufzeit und Jagdleiter",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 59 Abs. 2 und 3",
+          "effectiveFrom": "2026-02-03",
+          "summary": "NÖ Jagdgastkarten laufen drei oder vierzehn Tage ab der Ausfolgung an den Gast. Das Ausstellungsdatum beim Verband startet diese Laufzeit nicht. Bei einer Jagdgesellschaft beantragt und ergänzt der Jagdleiter die Karten. Die weiteren Voraussetzungen und Ausfüllpflichten des § 59 bleiben erforderlich.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974 § 59, Fassung seit 03.02.2026",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=59&Uebergangsrecht=",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagen Heute – Jagd(gast)karte: Ausstellungsdatum und Laufzeit",
+              "url": "https://www.noejagdverband.at/jagd-in-niederoesterreich/jagen-heute/",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            },
+            {
+              "title": "Änderungen des NÖ Jagdgesetzes 2025/2026, Seite 3: Jagdgastkarte und Jagdleiter",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Aenderungen-NOe-Jagdgesetz-und-NOe-Jagdverordnung-2026.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-gastkarte-ausfolgung-q1",
+              "prompt": "Eine NÖ Jagdgastkarte wurde beim Verband vor Wochen ausgefertigt. Wann beginnt ihre drei- oder vierzehntägige Laufzeit?",
+              "choices": [
+                "Mit der Ausfolgung an den Jagdgast.",
+                "Mit dem früheren Ausstellungsdatum beim Verband.",
+                "Mit dem Beginn des Kalenderjahres."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 59 Abs. 3 knüpft die Laufzeit an die Ausfolgung an den Gast. Das vorgedruckte Ausstellungsdatum ist dafür nicht maßgeblich."
+            },
+            {
+              "id": "at-noe-gastkarte-ausfolgung-q2",
+              "prompt": "Wer beantragt bei einer NÖ Jagdgesellschaft die Jagdgastkarten beim Verband und ergänzt die vorgesehenen Gastangaben?",
+              "choices": [
+                "Jedes Gesellschaftsmitglied unabhängig vom Jagdleiter.",
+                "Ausschließlich der Jagdgast bei der Gemeinde.",
+                "Der Jagdleiter der Jagdgesellschaft."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 59 Abs. 2 nennt seit 03.02.2026 bei Jagdgesellschaften ausdrücklich den Jagdleiter. Die Gastkarte ersetzt die weiteren Jagdvoraussetzungen nicht."
+            }
+          ],
+          "officialText": "Jagdgastkarten sind entweder für einen Zeitraum von drei oder vierzehn Tagen, gerechnet vom Zeitpunkt der Ausfolgung an den Jagdgast, auszustellen.",
+          "officialTextCitation": "§ 59 Abs. 3 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Die eigenständige Verbandserklärung unterscheidet Ausstellungsdatum und Laufzeit. Die Novellenerläuterung bestätigt die Rolle des Jagdleiters; beide Verbandsseiten bilden nur eine unabhängige Organisation.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-pacht-jagdkarte",
+          "topic": "zulassung",
+          "title": "Gültige Jagdkarte während der gesamten Pacht",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 26 Abs. 5 Satz 1",
+          "effectiveFrom": "2026-02-03",
+          "summary": "Einzelpächter einer NÖ Genossenschaftsjagd und bei Jagdgesellschaften deren Jagdleiter müssen während der gesamten Pachtdauer eine gültige Jagdkarte besitzen. Seit 03.02.2026 ist dies ausdrücklich Teil der Pächtereignung. Eine bloß früher erworbene oder nur an einzelnen Jagdtagen gültige Karte erfüllt diese Dauerpflicht nicht.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974 § 26 Abs. 5, LGBl. 12/2026",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/P26/LNO40085732",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Änderungen des NÖ Jagdgesetzes 2025/2026, Seite 3: ganzjährig gültige Jagdkarte",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Aenderungen-NOe-Jagdgesetz-und-NOe-Jagdverordnung-2026.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-pacht-jagdkarte-q1",
+              "prompt": "Ein NÖ Jagdleiter meint, seine Jagdkarte müsse nur an tatsächlichen Jagdtagen gültig sein. Was verlangt § 26 Abs. 5?",
+              "choices": [
+                "Gültigkeit nur an den Tagen einer Gesellschaftsjagd.",
+                "Eine gültige Jagdkarte während der gesamten Pachtdauer.",
+                "Eine gültige Karte nur bei Beginn und Ende der Pacht."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Dauerpflicht betrifft Einzelpächter und bei Jagdgesellschaften den Jagdleiter. Jagdfreie Zeiten unterbrechen sie nicht; eine frühere Kartenausstellung allein genügt nicht."
+            }
+          ],
+          "officialText": "während der gesamten Pachtdauer (§ 25 Abs. 2) im Besitz einer gültigen Jagdkarte sein.",
+          "officialTextCitation": "§ 26 Abs. 5 Satz 1, Schlussteil",
+          "contentValidated": true,
+          "verificationNote": "Nur die durchgehende Kartengültigkeit wurde als Lernstoff freigegeben. Die genaue Nachfrist bei Zahlungsrückstand wird mangels unabhängiger konkreter Bestätigung nicht abgefragt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-weiterbildung",
+          "topic": "zulassung",
+          "title": "Weiterbildung für Pächter und Jagdleiter",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 26a Abs. 1",
+          "effectiveFrom": "2017-01-01",
+          "summary": "Einzelpächter und Jagdleiter müssen innerhalb von drei Jahren mindestens einen Verbandskurs zu Recht und Sicherheit besuchen. Gewöhnliche Gesellschaftsmitglieder ohne Leiterfunktion trifft diese Pflicht nicht. Bei Säumigkeit setzt die Bezirksverwaltungsbehörde sechs Monate Nachfrist; verstreicht sie ungenutzt, wird die Pächtereignung bis zum Teilnahmenachweis aberkannt.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974 § 26a Abs. 1, geltender Wortlaut seit 01.01.2017",
+              "url": "https://ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=26a&Uebergangsrecht=",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Weiterbildungspflicht für Jagdausübungsberechtigte in NÖ – eigenständige Erläuterung",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Weiterbildungspflicht-fu%CC%88r-Jagdausu%CC%88bungsberechtigte-in-NO%CC%88.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-weiterbildung-q1",
+              "prompt": "Wen betrifft bei einer NÖ Jagdgesellschaft die Weiterbildungspflicht nach § 26a?",
+              "choices": [
+                "Jedes einfache Mitglied ohne Leiterfunktion.",
+                "Den Jagdleiter, nicht jedes gewöhnliche Mitglied.",
+                "Nur den Schriftführer der Gesellschaft."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 26a verpflichtet bei Jagdgesellschaften den Jagdleiter, nicht jedes gewöhnliche Mitglied."
+            },
+            {
+              "id": "at-noe-weiterbildung-q2",
+              "prompt": "In welchem Zeitraum muss ein NÖ Einzelpächter mindestens einen vorgesehenen Weiterbildungskurs besuchen?",
+              "choices": [
+                "Innerhalb von drei Jahren.",
+                "Nur einmal vor der ersten Pacht.",
+                "Einmal in zehn Jahren."
+              ],
+              "correctIndex": 0,
+              "explanation": "Gemeint ist ein Verbandskurs zu Recht und Sicherheit; die Pflicht ist wiederkehrend."
+            },
+            {
+              "id": "at-noe-weiterbildung-q3",
+              "prompt": "Ein Jagdleiter lässt auch die wegen fehlender Weiterbildung gesetzte sechsmonatige Nachfrist ungenutzt verstreichen. Welche Folge sieht § 26a vor?",
+              "choices": [
+                "Nur eine unverbindliche Erinnerung.",
+                "Dauerhafte Aberkennung ohne Möglichkeit eines Teilnahmenachweises.",
+                "Aberkennung der Pächtereignung bis zum Nachweis der Kursteilnahme."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Bezirksverwaltungsbehörde setzt zuerst die Nachfrist und erkennt danach bei weiterer Säumigkeit die Pächtereignung ab."
+            }
+          ],
+          "officialText": "Über deren Besuch ist eine Bestätigung auszustellen.",
+          "officialTextCitation": "§ 26a Abs. 1 Satz 2",
+          "contentValidated": true,
+          "verificationNote": "Personenkreis, Dreijahreszeitraum, Nachfrist und Folge konkret mit der eigenständigen Verbandserklärung abgeglichen. Sonderanrechnungen nach Abs. 2 werden nicht abgefragt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-abschussliste-digital",
+          "topic": "zustandigkeit",
+          "title": "Abschussliste: Frist und Datentransfer",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 84 Abs. 5 Sätze 1 und 2",
+          "effectiveFrom": "2026-01-01",
+          "summary": "Die Abschussliste ist bis 15. Jänner des folgenden Jagdjahres im elektronischen Verbandssystem einzutragen und der Bezirksverwaltungsbehörde zu übermitteln. Der mögliche Datentransfer zwischen Verbands- und Behördensystem ersetzt die zusätzliche Kopie. Bei JIS muss dazu die Dateneingabe endgültig abgeschlossen werden; bloßes Zwischenspeichern genügt nicht.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974 § 84 Abs. 5, Fassung seit 01.01.2026",
+              "url": "https://ris.bka.gv.at/Dokumente/Landesnormen/LNO40082440/LNO40082440.html",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Recht & Verordnung – JIS Online: endgültiger Abschluss und Behördenübermittlung",
+              "url": "https://www.noejagdverband.at/jagd-in-niederoesterreich/recht-und-verordnung/",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-abschussliste-digital-q1",
+              "prompt": "Bis wann ist die NÖ Abschussliste für das vergangene Jagdjahr im elektronischen System einzutragen und der Behörde zu übermitteln?",
+              "choices": [
+                "Bis 31. März des folgenden Jagdjahres.",
+                "Erst nach einer individuellen Aufforderung.",
+                "Bis 15. Jänner des folgenden Jagdjahres."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 84 Abs. 5 bestimmt den 15. Jänner. Die Möglichkeit des elektronischen Transfers verschiebt diese Frist nicht."
+            },
+            {
+              "id": "at-noe-abschussliste-digital-q2",
+              "prompt": "Die NÖ Abschussliste wurde per verfügbarem JIS-Datentransfer an die Behörde übermittelt. Ist zusätzlich dieselbe Kopie per Post nötig?",
+              "choices": [
+                "Nein, der gesetzlich vorgesehene Datentransfer ersetzt die Übermittlung einer Kopie.",
+                "Ja, der elektronische Transfer ist nur eine unverbindliche Vorabinformation.",
+                "Nein, weil seit 2026 jegliche Listenübermittlung entfällt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der mögliche und durchgeführte Transfer ersetzt nach § 84 Abs. 5 die Kopie; die Meldepflicht bleibt bestehen."
+            }
+          ],
+          "officialText": "Die Abschussliste ist bis 15. Jänner des folgenden Jagdjahres in ein elektronisches System, das der Landesjagdverband zu führen hat, einzutragen […]",
+          "officialTextCitation": "§ 84 Abs. 5 Satz 1, Anfang bis „einzutragen“",
+          "contentValidated": true,
+          "verificationNote": "Frist und Kopienersatz mit eigenständiger JIS-Verfahrenserklärung abgeglichen. Ältere Hinweise zur Papierübermittlung sind kein aktueller Gegenbeleg.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-kastenfallen-zustimmung",
+          "topic": "jagdausuebung",
+          "title": "Kastenfallen: schriftliche Zustimmung",
+          "lawTitle": "NÖ Jagdverordnung",
+          "citation": "§ 31 Einleitung und Z 4",
+          "summary": "Für Kastenfallen ist schriftliche Zustimmung des Jagdausübungsberechtigten erforderlich, bei Jagdgesellschaften des Jagdleiters. Das betrifft auch Mitglieder und Jagdaufseher. Ein Jagderlaubnisschein oder ein gesondertes Schreiben kann diese Zustimmung enthalten. Die weiteren persönlichen und sachlichen Voraussetzungen der Fallenjagd bleiben einzuhalten.",
+          "sources": [
+            {
+              "title": "NÖ Jagdverordnung § 31 Z 4, aktueller konsolidierter Wortlaut",
+              "url": "https://ris.bka.gv.at/Dokumente/Landesnormen/LNO40012212/LNO40012212.html",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagderlaubnisschein – Information 2026, Abschnitt 2: Fallenjagd-Erlaubnis",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Jagderlaubnisschein_Information.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-kastenfallen-zustimmung-q1",
+              "prompt": "Ein Mitglied einer NÖ Jagdgesellschaft möchte Kastenfallen verwenden. Genügt für die Zustimmung ein mündliches Einverständnis des Jagdleiters?",
+              "choices": [
+                "Ja, die Mitgliedschaft beseitigt das Schrifterfordernis.",
+                "Nein, auch das Mitglied benötigt die schriftliche Zustimmung des Jagdleiters.",
+                "Ja, sofern das Mitglied eine gültige Jagdkarte besitzt."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 31 Z 4 verlangt schriftliche Zustimmung. Mitgliedschaft und Jagdkarte ersetzen sie nicht; weitere Fallenjagdvoraussetzungen bleiben zusätzlich erforderlich."
+            },
+            {
+              "id": "at-noe-kastenfallen-zustimmung-q2",
+              "prompt": "Muss die schriftliche NÖ Fallenjagd-Zustimmung zwingend auf einem Jagderlaubnisschein stehen?",
+              "choices": [
+                "Ja, ein gesondertes Schreiben ist stets unwirksam.",
+                "Nein, eine mündliche Erlaubnis ist in jedem Fall gleichwertig.",
+                "Nein, ein gesondertes Schreiben des zuständigen Jagdausübungsberechtigten beziehungsweise Jagdleiters ist möglich."
+              ],
+              "correctIndex": 2,
+              "explanation": "Vorgeschrieben ist die schriftliche Zustimmung, nicht ausschließlich dieses Formular. Die Erklärung allein ersetzt weder Eignungsnachweise noch sonstige Fangvorschriften."
+            }
+          ],
+          "officialText": "Kastenfallen dürfen nur von Personen verwendet werden, die […] eine schriftliche Zustimmung des Jagdausübungsberechtigten – bei Jagdgesellschaften des Jagdleiters – besitzen.",
+          "officialTextCitation": "§ 31 Einleitung und Z 4; Z 1–3 ausgelassen",
+          "contentValidated": true,
+          "verificationNote": "Die Verbandserklärung bestätigt Personenkreis und gesonderte Schriftform. Nur Zustimmung wird abgefragt. Der RIS-Erfassungsstichtag 01.01.2015 ist kein belegtes ursprüngliches Inkrafttreten.",
+          "originalVerified": true
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die zusätzliche Lektion zum Waffenverbot ist derzeit wegen des noch nicht unabhängigen Zweitnachweises gesperrt.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Der Ausbau umfasst nur die benannten Karten-, Pacht-, Weiterbildungs-, Melde- und Zustimmungsfragen, nicht das gesamte NÖ Jagdrecht. Die zusätzliche Lektion zum Waffenverbot bleibt wegen des fehlenden unabhängigen Zweitnachweises gesperrt.",
       "examResources": [
         {
           "title": "NÖ Jagdgesetz 1974 § 60 – Jagdprüfung",
@@ -1834,9 +2109,94 @@
           "contentValidated": true,
           "verificationNote": "Wartefrist und Teilwiederholung wurden mit der aktuellen Erklärung des Wiener Landesjagdverbandes konkret abgeglichen. Alters- und sonstige Zulassungsregeln werden mit dieser Freigabe nicht ohne zusätzliche konkrete Bestätigung als vollständiger Lernkatalog behandelt.",
           "originalVerified": true
+        },
+        {
+          "id": "at-w-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Getrennte Prüfungsteile und Antritt nach Fehlversuch",
+          "lawTitle": "Wiener Jagdgesetz",
+          "citation": "§ 52 Abs. 3, 5 und 7",
+          "effectiveFrom": "2019-12-14",
+          "summary": "Die Wiener Jagdprüfung umfasst Praxis und Theorie, auch an unterschiedlichen Tagen. Der Wiener Landesjagdverband teilt die Termine zu. Eine nicht bestandene Schießprüfung verhindert den Theorieantritt nicht. Für den Gesamtabschluss müssen beide Teile bestanden sein; der gescheiterte Teil bleibt nach den Wiederholungsregeln nachzuholen.",
+          "sources": [
+            {
+              "title": "Wiener Jagdgesetz § 52 Abs. 3, 5 und 7, Fassung seit 14.12.2019",
+              "url": "https://www.ris.bka.gv.at/Dokumente/Landesnormen/LWI40013735/LWI40013735.html",
+              "publisher": "Land Wien / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Ablauf der Jagdprüfung beim Wiener Landesjagdverband, Seite 2: getrennte Termine und Antritt zum anderen Teil",
+              "url": "https://jagd-wien.at/wp-content/uploads/2025/07/Ablauf-Jagdpruefung_01.pdf",
+              "publisher": "Wiener Landesjagdverband",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte.at FAQ – getrennte Prüfungsteile und Theorie nach nicht bestandener Schießprüfung",
+              "url": "https://www.jagdkarte.at/faq/",
+              "publisher": "Jagdkarte.at – Ausbildungsanbieter",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-w-pruefungsteile-q1",
+              "prompt": "Müssen Theorie und Praxis der Wiener Jagdprüfung zwingend am selben Tag stattfinden?",
+              "choices": [
+                "Ja, getrennte Tage sind nur bei einer Wiederholung erlaubt.",
+                "Ja, andernfalls wird der erste Teil automatisch ungültig.",
+                "Nein, beide Teile dürfen an unterschiedlichen Tagen stattfinden."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 52 Abs. 5 lässt unterschiedliche Tage zu. Die Termine bestimmt der Verband; sie sind nicht selbst frei festzulegen."
+            },
+            {
+              "id": "at-w-pruefungsteile-q2",
+              "prompt": "Ein Wiener Prüfungswerber besteht die Schießprüfung nicht. Darf er dennoch zum theoretischen Teil antreten?",
+              "choices": [
+                "Ja; die Praxis bleibt für den Gesamtabschluss nach den Wiederholungsregeln nachzuholen.",
+                "Nein, ein Theorieantritt ist vor bestandener Praxis immer ausgeschlossen.",
+                "Ja; eine bestandene Theorie ersetzt dann die gesamte praktische Prüfung."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Fehlversuch sperrt den anderen Teil nicht. Dessen Bestehen ersetzt aber keinen erfolgreichen Praxisabschluss."
+            }
+          ],
+          "officialText": "Die Prüfung besteht aus einem praktischen und einem theoretischen Teil.",
+          "officialTextCitation": "§ 52 Abs. 3 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Ablaufbeschreibung und Ausbildungs-FAQ bestätigen getrennte Termine sowie Theorieantritt nach Praxis-Fehlversuch. Alte Dienststellen, Gebühren und Schießzahlen werden nicht übernommen. Die ältere Verordnung wird nicht als Praxis-vor-Theorie-Zwang vermittelt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-w-gastkarte-original",
+          "topic": "jagdausuebung",
+          "title": "Jagdgastkarte: zeitliche und örtliche Geltung im Original",
+          "lawTitle": "Wiener Jagdgesetz",
+          "citation": "§ 51 Abs. 2",
+          "effectiveFrom": "2014-01-01",
+          "summary": "",
+          "sources": [
+            {
+              "title": "Wiener Jagdgesetz § 51 Abs. 2, geltender Wortlaut seit 01.01.2014",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrW&Anlage=&Artikel=&Gesetzesnummer=20000437&Paragraf=51&Uebergangsrecht=",
+              "publisher": "Land Wien / RIS",
+              "kind": "law"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [],
+          "officialText": "Jagdgastkarten gelten für die Dauer von zwei Wochen ab Ausfolgung und nur für das darauf bezeichnete Jagdgebiet.",
+          "officialTextCitation": "§ 51 Abs. 2, vollständiger Absatz",
+          "contentValidated": true,
+          "verificationNote": "Nur der amtliche Originaltext ist freigegeben. Der gelesene Verbandsabschnitt übernimmt die entscheidenden Sätze aus dem Gesetz und gilt nicht als unabhängige Erläuterung. Deshalb keine freigegebenen Lernfragen oder eigene Zusammenfassung.",
+          "originalVerified": true
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Der Ausbau behandelt einzelne Prüfungsregeln. Die zusätzliche Gastkartenstelle ist bislang nur als amtlicher Originaltext verfügbar und enthält keine freigegebenen Lernfragen.",
       "examResources": [
         {
           "title": "Wiener Jagdgesetz § 52 – Jagdprüfung",

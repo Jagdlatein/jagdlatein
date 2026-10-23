@@ -98,6 +98,15 @@
 .textAction { min-height: 44px; border: 0; background: transparent; padding: 10px 0; font: inherit; color: #796021; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 .breedList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; align-items: start; }
 .breedRow { min-width: 0; border-bottom: 1px solid #dfcda0; scroll-margin-top: 24px; }
+.breedLink { display: flex; align-items: flex-start; gap: 12px; min-height: 64px; padding: 18px 6px 4px; color: #73571a; text-decoration: none; }
+.breedLink > svg { flex-shrink: 0; margin-top: 2px; }
+.breedLink > svg:last-child { margin-left: auto; }
+.breedLink > span { display: block; min-width: 0; }
+.breedLink strong { display: block; font-size: 20px; line-height: 1.4; }
+.breedLink > span > span { display: block; margin-top: 5px; color: #6e6249; font-size: 14px; line-height: 1.6; }
+.breedLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.breedLink:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
+.comparisonChoices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; padding-bottom: 20px; }
 .breedDetails > summary { display: flex; align-items: flex-start; gap: 12px; padding: 18px 6px; cursor: pointer; list-style: none; }
 .breedDetails > summary::-webkit-details-marker { display: none; }
 .breedDetails > summary::after { content: "+"; margin-left: auto; color: #796021; font-size: 22px; }
@@ -115,6 +124,6 @@
 .optionalPanel .panel { margin-top: 8px; }
 .optionalBody { padding: 0 0 24px; }
 .moreLink a { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; font-weight: 600; }
-@media (max-width: 650px) { .breedList { grid-template-columns: minmax(0, 1fr); } .breedContent { padding: 18px; } }
+@media (max-width: 650px) { .breedList, .comparisonChoices { grid-template-columns: minmax(0, 1fr); } .breedContent { padding: 18px; } }
 @media (max-width: 1000px) { .profileGrid, .taskGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .comparisonGrid, .planGrid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 650px) { .main { padding: 18px 12px 36px; } .header, .panel { padding: 20px 16px; border-radius: 16px; } .header > p:last-of-type { font-size: 16px; } .panel h2, .sectionHeading h2 { font-size: 23px; } .profileGrid, .taskGrid { grid-template-columns: minmax(0, 1fr); } .nav { gap: 8px; } .nav a { padding: 10px 12px; font-size: 13px; } .photo img { height: 240px; } .sectionHeading p { margin-top: 0; } .feedback { padding: 16px; } .quickLinks a { font-size: 14px; } }

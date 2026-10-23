@@ -5,7 +5,7 @@ import WildlifePhoto from "../../components/WildlifePhoto";
 export default function Rotwild() {
   const quiz = [
     {
-      q: "Wann brunftet das Rotwild?",
+      q: "Wann liegt in Mitteleuropa üblicherweise die Hauptbrunft des Rotwilds?",
       a: ["Mai–Juni", "September–Oktober", "Januar–Februar"],
       correct: 1,
     },
@@ -70,8 +70,8 @@ export default function Rotwild() {
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Vertiefung und Abgrenzung</h2>
           <ul style={styles.list}>
-            <li>Hirsche können etwa 250 kg, weibliche Tiere etwa 170 kg erreichen</li>
-            <li>Die Schulterhöhe liegt häufig ungefähr zwischen 120 und 150 cm</li>
+            <li>Hirsche können regional etwa 250 kg Lebendgewicht erreichen; weibliche Tiere sind gewöhnlich deutlich leichter</li>
+            <li>Beim Hirsch werden Schulterhöhen bis etwa 150 cm beschrieben. Körpermaße hängen unter anderem von Geschlecht, Alter und Population ab</li>
             <li>Hirsch, Alttier und Kalb sind wichtige Geschlechts- und Altersbezeichnungen</li>
           </ul>
         </section>

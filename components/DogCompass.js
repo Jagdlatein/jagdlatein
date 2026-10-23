@@ -1,25 +1,15 @@
 import { answerOrder, newAnswerSeed } from "../lib/answer-order";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { useRef, useState } from "react";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import { dogBreeds, dogWorkTasks, dogCompassSources, dogCompassChecks, getDogTaskMatch, getCompassAdvice } from "../lib/dog-compass";
+import { dogBreedProfileHref } from "../lib/dog-breed-routing";
 import experienceStyles from "../styles/LearningExperience.module.css";
 import styles from "../styles/DogCompass.module.css";
 
 const taskName = id => dogWorkTasks.find(task => task.id === id)?.title || id;
 const normalize = text => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ß/g, "ss").replace(/ae/g, "a").replace(/oe/g, "o").replace(/ue/g, "u");
-
-function BreedPhoto({ profile }) {
-  const photo = profile.photo;
-  if (!photo) return <div className={styles.symbol}><AppIcon name="paw" size={52} /><span>{profile.group}</span></div>;
-  return <figure className={styles.photo}>
-    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 33vw" />
-    <figcaption>Foto: {photo.author} · {photo.license}. <a href={photo.url} target="_blank" rel="noopener noreferrer">Originalaufnahme</a>{photo.licenseUrl && <> · <a href={photo.licenseUrl} target="_blank" rel="noopener noreferrer">Lizenz</a></>}{photo.modifications && <span> {photo.modifications}</span>}</figcaption>
-  </figure>;
-}
 
 function ProfileFacts({ profile }) {
   return <dl className={styles.facts}>
@@ -72,7 +62,6 @@ function KnowledgeCheck() {
 }
 
 export default function DogCompass() {
-  const router = useRouter();
   const [tasks, setTasks] = useState([]);
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState("all");
@@ -81,23 +70,6 @@ export default function DogCompass() {
   const comparisonRef = useRef([]);
   const [message, setMessage] = useState("");
   const [plan, setPlan] = useState({ access: "", guidance: "", everyday: "" });
-  const [requestedId, setRequestedId] = useState(null);
-  const requestRevealed = useRef(null);
-  useEffect(() => {
-    const id = typeof router.query?.rasse === "string" ? router.query.rasse : "";
-    const profile = dogBreeds.find(item => item.id === id);
-    if (!profile) return;
-    setTasks([]); setGroup("all"); setQuery(profile.name); setRequestedId(profile.id);
-  }, [router.query?.rasse]);
-  useEffect(() => {
-    if (typeof document === "undefined" || !requestedId || requestRevealed.current === requestedId) return;
-    const article = document.getElementById(`dog-${requestedId}`);
-    const detail = article?.querySelector("details");
-    const summary = detail?.querySelector("summary");
-    if (!summary || query !== dogBreeds.find(item => item.id === requestedId)?.name) return;
-    requestRevealed.current = requestedId;
-    detail.open = true; summary.focus({ preventScroll: true }); article.scrollIntoView({ block: "start", behavior: "auto" });
-  }, [requestedId, query]);
   const search = normalize(query.trim());
   const namedTask = dogWorkTasks.find(task => normalize(task.title) === search || normalize(task.id) === search);
   const visible = dogBreeds.filter(profile => {
@@ -121,7 +93,7 @@ export default function DogCompass() {
   }
   function resetFilters() { setTasks([]); setQuery(""); setGroup("all"); setOnlyComplete(false); }
   function setPlanValue(key, value) { setPlan(previous => ({ ...previous, [key]: value })); }
-  return <LearningToolLayout title="Jagdhunderassen" description="Arbeitsweisen, Rassen und die Zusammenarbeit im Hundeteam verstehen. Öffne eine Rasse, um ihr Arbeitsprofil, Ausbildung und Alltag kennenzulernen." icon="paw" category="hundewesen" compact stats={[{ value: dogBreeds.length, label: "Rassenprofile" }]}>
+  return <LearningToolLayout title="Jagdhunderassen" description="Arbeitsweisen, Rassen und die Zusammenarbeit im Hundeteam verstehen. Öffne eine Rasse, um ihr Arbeitsprofil, Ausbildung und Alltag kennenzulernen." icon="paw" category="hundewesen" headingOnly hideCommunity>
     <section className={styles.panel} aria-labelledby="dog-task-title">
       <h2 id="dog-task-title">Rasse finden</h2>
       <div className={styles.filters}>
@@ -140,14 +112,12 @@ export default function DogCompass() {
       {message && <p className={styles.message} role="status">{message}{comparison.length > 0 && <a href="#dog-comparison" className={styles.compareJump}>Vergleich ansehen ({comparison.length})</a>}</p>}
       {!visible.length && <div className={styles.empty}><h3>Kein Profil passt zu dieser Auswahl.</h3><p>Versuche einen kürzeren Begriff oder wähle weniger Arbeitsgebiete.</p></div>}
       <div className={styles.breedList}>{visible.map(profile => <article key={profile.id} id={`dog-${profile.id}`} className={styles.breedRow}>
-        <details className={styles.breedDetails}><summary><AppIcon name="paw" size={23} /><span><strong>{profile.name}</strong><span>{profile.group} · {profile.tasks.map(taskName).join(" / ")}</span></span></summary>
-          <div className={styles.breedContent}>{profile.photo && <BreedPhoto profile={profile} />}<p>{profile.summary}</p><ProfileFacts profile={profile} />
-            <label className={styles.compareChoice}><input type="checkbox" checked={comparison.includes(profile.id)} onChange={() => toggleCompare(profile.id)} aria-label={`${profile.name} vergleichen`} />Im Rassenvergleich zeigen</label>
-            <a href={profile.source.url} target="_blank" rel="noopener noreferrer">{profile.source.title}</a>
-          </div>
-        </details>
+        <Link className={styles.breedLink} prefetch={false} href={dogBreedProfileHref(profile.id)}><AppIcon name="paw" size={23} /><span><strong>{profile.name}</strong><span>{profile.group} · {profile.tasks.map(taskName).join(" / ")}</span></span><AppIcon name="arrow-right" size={19} /></Link>
       </article>)}</div>
     </section>
+    <details className={styles.optionalPanel}><summary>Rassen vergleichen{comparison.length ? ` (${comparison.length} von 3)` : ""}</summary>
+      <div className={styles.comparisonChoices}>{visible.map(profile => <label key={profile.id} className={styles.compareChoice}><input type="checkbox" checked={comparison.includes(profile.id)} onChange={() => toggleCompare(profile.id)} aria-label={`${profile.name} vergleichen`} />{profile.name}</label>)}</div>
+    </details>
     {compared.length > 0 && <section className={styles.panel} id="dog-comparison" aria-labelledby="dog-comparison-title"><h2 id="dog-comparison-title">Dein Rassenvergleich</h2><div className={styles.comparisonGrid}>{compared.map(profile => <article key={profile.id} className={styles.comparison}><h3>{profile.name}</h3><p><strong>Schwerpunkte:</strong> {profile.tasks.map(taskName).join(", ")}</p><ProfileFacts profile={profile} /><label className={styles.compareChoice}><input type="checkbox" checked onChange={() => toggleCompare(profile.id)} />Im Vergleich</label></article>)}</div><button type="button" className={styles.textAction} onClick={() => { comparisonRef.current = []; setComparison([]); setMessage("Der Vergleich wurde geleert."); }}>Vergleich leeren</button></section>}
     <details className={styles.optionalPanel} id="dog-plan"><summary>Passt ein Jagdhund in deinen Alltag?</summary><div className={styles.optionalBody}><p>Arbeitsmöglichkeiten, Ausbildungsbegleitung und tägliche Betreuung gemeinsam planen.</p>
       <div className={styles.planGrid}><fieldset><legend>Passende Arbeitsmöglichkeiten</legend>{[["ready", "Konkrete Möglichkeiten sind geklärt"], ["planned", "Ich plane sie noch"], ["none", "Bisher keine passende Möglichkeit"]].map(([value, title]) => <label key={value}><input type="radio" name="dog-access" value={value} checked={plan.access === value} onChange={() => setPlanValue("access", value)} />{title}</label>)}</fieldset>

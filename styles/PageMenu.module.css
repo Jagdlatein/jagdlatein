@@ -1,0 +1,17 @@
+.section {
+  min-width: 0;
+  padding: 12px 8px 18px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0d2af;
+  color: #3e321b;
+}
+.title {
+  margin: 0 0 14px;
+  font-size: 21px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.section label { min-width: 0; }
+.section input, .section select { max-width: 100%; }
+.section :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) { width: 100%; min-height: 48px; padding: 12px; border: 1px solid #cdbb91; border-radius: 10px; background: #fff; color: #3e321b; font: inherit; }
+.section :focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }

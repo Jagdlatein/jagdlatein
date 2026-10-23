@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
-import KnowledgeBreadcrumb from "./KnowledgeBreadcrumb";
 import styles from "../styles/KnowledgeTree.module.css";
 
 export default function LearningTopicTree({ category, groups = [], modules = [] }) {
@@ -23,7 +22,6 @@ export default function LearningTopicTree({ category, groups = [], modules = [] 
     section.current?.scrollIntoView({ block: "start", behavior: "auto" });
   }, [router.isReady, category.slug, requested, requestedCourse]);
   return <section id="learning-modules" ref={section} className={styles.section} aria-labelledby="learning-modules-heading">
-    <KnowledgeBreadcrumb items={[{ href: "/lernen", title: "Kategorien" }, ...(requested ? [{ href: base, title: category.title }] : []), ...(course ? [{ href: `${groupHref}#learning-modules`, title: group.title }] : [])]} current={course ? "Wissenstexte" : group?.title || category.title} />
     <h2 id="learning-modules-heading" ref={heading} tabIndex={-1}>{course?.title || group?.title || "Unterkategorien"}</h2>
     {requested && !group && <p role="status">Diese Unterkategorie ist nicht verfügbar. Wähle einen Bereich aus.</p>}
     {router.query?.kurs !== undefined && !course && <p role="status">Dieser Themenbereich gehört nicht zum gewählten Pfad. Wähle einen verfügbaren Themenbereich.</p>}

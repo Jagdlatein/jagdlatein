@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Children, Fragment, isValidElement } from "react";
+import { Children, Fragment, cloneElement, isValidElement } from "react";
 import LearningToolLayout from "./LearningToolLayout";
 import { SoundPlayer } from "./AnimalSounds";
 import { animalSounds } from "../lib/animal-sounds";
@@ -9,6 +9,8 @@ import WildlifeDentition from "./WildlifeDentition";
 import WildlifeDepth, { wildlifeDepthFields } from "./WildlifeDepth";
 import WildlifeKnowledgeExpansion from "./WildlifeKnowledgeExpansion";
 import WildlifeLearningGuide from "./WildlifeLearningGuide";
+import WildlifeStudyContent from "./WildlifeStudyContent";
+import { getWildlifeLearningGuide } from "../lib/wildlife-learning-guide";
 import WildlifeJawModel from "./WildlifeJawModel";
 import { jawModelsBySlug } from "../lib/wildlife-jaw-models";
 import { wildlifeKnowledgeDiscovery } from "../lib/wildlife-knowledge-discovery";
@@ -35,6 +37,23 @@ function headingOf(node) {
 
 // Legacy portraits already contain authored section elements. Split only their
 // transparent wrappers; never inspect or mutate the rendered DOM or their text.
+export function splitPortraitSources(children) {
+  const sources = [];
+  function keepLearning(node) {
+    if (!isValidElement(node)) return node;
+    if ((node.type === "p" && /^Biologiequellen\b/.test(textOf(node))) ||
+        (node.type === "section" && headingOf(node.props.children) === "Biologiequellen")) {
+      sources.push(node); return null;
+    }
+    // Only authored native wrappers are transparent; never execute a custom
+    // component or infer which factual text might count as a reference.
+    if (typeof node.type === "string" || node.type === Fragment)
+      return cloneElement(node, undefined, Children.map(node.props.children, keepLearning));
+    return node;
+  }
+  return { content: Children.map(children, keepLearning), sources };
+}
+
 export function createPortraitTopics(children) {
   const nodes = [];
   function collect(items) {
@@ -62,7 +81,8 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
   const sounds = animalSounds.filter(sound => sound.speciesSlug === slug);
   const name = species?.name || title;
   const depth = wildlifeDepthBySlug[slug];
-  const baseTopics = portraitSections || createPortraitTopics(children);
+  const authored = splitPortraitSources(children);
+  const baseTopics = portraitSections || createPortraitTopics(authored.content);
   const groups = [
     { id: "portrait-grundlagen", title: "Art kennenlernen", topics: baseTopics },
     { id: "artenwissen-vertiefung", title: "Biologie genauer verstehen", topics: (wildlifeKnowledgeDiscovery[slug] || []).map(section => ({ id: `art-wissen-${section.id}`, title: section.title, render: () => <WildlifeKnowledgeExpansion slug={slug} name={name} sectionId={section.id} /> })) },
@@ -74,6 +94,10 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
       ...wildlifeDepthFields.filter(([key]) => depth[key]?.length).map(([key, label]) => ({ id: `wildlife-depth-${key}`, title: label, render: () => <WildlifeDepth slug={slug} name={name} section={key} /> })),
       ...(depth.learningQuestions?.length ? [{ id: "wildlife-depth-questions", title: "Kurze Wissensfragen", render: () => <WildlifeDepth slug={slug} name={name} section="questions" /> }] : []),
     ] : [] },
+    { id: "portrait-lerntexte", title: "Zusammenhänge vertiefen", topics: getWildlifeLearningGuide(slug).map(target => ({
+      id: `art-lerntext-${target.moduleId}`, title: target.title,
+      render: () => <WildlifeStudyContent key={`${slug}:${target.moduleId}`} slug={slug} target={target} />,
+    })) },
     { id: "portrait-stimmen-lernen", title: "Stimme und Weiterlernen", topics: [
       { id: "portrait-sounds", title: "Die Stimme dieser Art", render: () => <section className={styles.panel} aria-labelledby="portrait-sounds"><h2 id="portrait-sounds">Die Stimme dieser Art</h2>{sounds.length ? sounds.map(sound => <article key={sound.id}><h3>{sound.name}: {sound.call}</h3><SoundPlayer sound={sound} label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>{sound.confusion}</p></article>) : <p>Für diese Art ist noch keine geprüfte Originalaufnahme in der Stimmenbibliothek verfügbar. Ihre Bestimmung erfolgt zusätzlich über sichtbare Merkmale, Verhalten und Lebensraum.</p>}</section> },
       { id: "art-weiterlernen", title: "Passendes Wissen weiterlernen", render: () => <WildlifeLearningGuide slug={slug} name={name} /> },
@@ -82,5 +106,6 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
   ];
   return <LearningToolLayout title={title || `${species?.name} (${species?.scientificName})`} description={subtitle || species?.identification || "Merkmale, Lebensweise und sichere Unterscheidung kennenlernen."} icon="deer" category="wildkunde" className={portrait.page} headingOnly>
     <TopicSectionReader key={slug} id="arten-themenbaum" title="Themen dieser Art" groups={groups} />
+    {authored.sources.length > 0 && <details className={portrait.depthSources}><summary>Ergänzende Biologiequellen zum Artenporträt</summary>{authored.sources}</details>}
   </LearningToolLayout>;
 }

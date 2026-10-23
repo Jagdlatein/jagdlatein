@@ -52,9 +52,12 @@ test('Root and group navigation render no topic text; an initial deep link focus
   try {
     assert.deepEqual(s.calls, []);
     s.settle(); assert.deepEqual(s.calls, ['first']); assert.deepEqual(s.focus, ['article']);
+    assert.equal(find(s.tree, node => node.type === 'nav'), null, 'The selected topic has no duplicate upper breadcrumb');
     s.navigate('#biology'); assert.equal(find(s.tree, node => node.type === 'article'), null); assert.deepEqual(s.calls, ['first']);
+    assert.equal(find(s.tree, node => node.type === 'nav'), null, 'Category choices remain content without a second navigation bar');
     s.navigate('#second', 'popstate'); assert.equal(s.calls.at(-1), 'second'); assert.equal(s.focus.at(-1), 'article');
-    s.navigate('#tree', 'popstate'); assert.equal(find(s.tree, node => node.type === 'article'), null); assert.equal(s.focus.at(-1), 'h2');
+    const beforeRoot = s.focus.length;
+    s.navigate('#tree', 'popstate'); assert.equal(find(s.tree, node => node.type === 'article'), null); assert.equal(s.focus.length, beforeRoot, 'A branch focuses the lower menu instead of an upper heading');
   } finally { s.cleanup(); }
 });
 
@@ -97,6 +100,18 @@ test('Every authored legacy portrait retains all its original text exactly once 
   }
 });
 
+test('Legacy biological bibliographies are separated from their teaching text without losing references or scope limits', () => {
+  const { splitPortraitSources, createPortraitTopics } = createLoader()('components/WildlifePortraitLayout.js');
+  const sources = React.createElement('p', null, 'Biologiequellen (alter dokumentierter Prüfstand): ', React.createElement('a', { href: 'https://example.invalid/source' }, 'Originalbeleg'));
+  const authored = React.createElement('section', null, sources, React.createElement('p', null, 'Richtwerte können abweichen.'), React.createElement('h2', null, 'Quiz'), React.createElement('p', null, 'Lernfrage'));
+  const split = splitPortraitSources(authored);
+  const text = renderToStaticMarkup(split.content), evidence = renderToStaticMarkup(split.sources);
+  assert.doesNotMatch(text, /Biologiequellen|Originalbeleg/);
+  assert.match(text, /Richtwerte können abweichen/); assert.match(text, /Lernfrage/);
+  assert.match(evidence, /alter dokumentierter Prüfstand/); assert.match(evidence, /https:\/\/example.invalid\/source/);
+  const topics = createPortraitTopics(split.content); assert.equal(topics[0].title, 'Quiz');
+});
+
 test('Every expansion/depth section and all established species links resolve to an exact reader leaf or group', () => {
   const load = createLoader(), Layout = load('components/WildlifePortraitLayout.js').default;
   const { resolveTopicSection } = load('components/TopicSectionReader.js');
@@ -106,7 +121,7 @@ test('Every expansion/depth section and all established species links resolve to
   let checked = 0;
   for (const slug of Object.keys(speciesList)) {
     const tree = Layout({ slug, children: React.createElement('section', null, React.createElement('h2', null, 'Art kennenlernen'), React.createElement('p', null, 'GRUNDTEXT')) });
-    assert.equal(tree.props.headingOnly, true); assert.equal(tree.props.searchHref, '/lernen#lernen-suche');
+    assert.equal(tree.props.headingOnly, true); assert.equal(tree.props.searchHref, undefined, 'Search is available in the shared bottom navigation');
     const reader = find(tree, node => node.props?.groups);
     assert.ok(reader, slug);
     const groups = reader.props.groups, ids = groups.flatMap(group => [group.id, ...group.topics.map(topic => topic.id)]);

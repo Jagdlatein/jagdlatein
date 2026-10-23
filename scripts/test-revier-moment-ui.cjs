@@ -117,6 +117,10 @@ test('Daily cases reveal the complete explanation, sources and completion immedi
     assert.match(h.text(), /Beim Neuladen beginnt der heutige Fall erneut/);
     const source = nodes(h.tree, node => node.type === 'a' && node.props.href === sources[0].url)[0];
     assert.equal(source.props.target, '_blank'); assert.equal(source.props.rel, 'noopener noreferrer');
+    const sourcePanel = nodes(h.tree, node => node.type === 'details' && text(node).startsWith('Quellen zur aktuellen Frage'))[0];
+    assert.ok(sourcePanel && !sourcePanel.props.open);
+    assert.equal(nodes(sourcePanel, node => node.type === 'a' && node.props.href === sources[0].url)[0], source);
+    assert.equal(nodes(sourcePanel, node => node.type === 'p' && text(node) === question.explanation).length, 0, 'The complete explanation stays outside source disclosure');
     assert.equal(nodes(h.tree, node => node.type === 'button' && !node.props.disabled).length, 0);
     assert.equal(h.state.index, 0); assert.equal(h.state.finished, false);
     assert.ok(!h.events.some(event => ['next', 'restart', 'retry', 'continue'].includes(event.type)));

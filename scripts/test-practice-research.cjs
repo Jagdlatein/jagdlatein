@@ -59,16 +59,20 @@ test('Every dossier keeps original source roles, study scope, explicit practice 
   assert.match(data.topics.find(topic => topic.id === 'wild-und-stoerung').publicationState, /2017 und 2018/);
 });
 
-test('All dossiers render their evidence with a large topic selector and direct access to the practice questions', () => {
+test('Dossiers keep teaching text and practice directly accessible while evidence and review remain in the closed final block', () => {
   for (const topic of data.topics) {
     const router = { query: { thema: topic.id }, isReady: true };
     const Page = load('components/ResearchForPractice.js', { 'next/router': { useRouter: () => router } }).default;
     const html = renderToStaticMarkup(React.createElement(Page, data));
     const dossier = html.slice(html.indexOf('<article'), html.indexOf('</article>'));
     assert.equal((dossier.match(/<button/g) || []).length, 0);
-    assert.ok(html.includes('Dein Thema'));
-    assert.match(html, /href="#revierwissen-fragen"/);
-    assert.ok(html.includes('60 Fragen mit Erklärungen'));
+    const menu = find(Page(data), node => node.props?.title === 'Wissen fürs Revier – Thema wählen');
+    assert.ok(menu);
+    const menuHTML = renderToStaticMarkup(menu.props.children);
+    assert.ok(menuHTML.includes('Dein Thema'));
+    assert.doesNotMatch(html, /<select|Praxisthema auswählen/);
+    assert.doesNotMatch(html, /aria-label="In diesem Thema"/);
+    assert.ok(menuHTML.includes('60 Fragen mit Erklärungen'));
     assert.ok(html.includes('20 Fragen im Thema'));
     assert.equal((html.match(/<h1/g) || []).length, 1);
     assert.match(html, /id="revierwissen-inhalt"/);
@@ -79,6 +83,9 @@ test('All dossiers render their evidence with a large topic selector and direct 
     assert.ok(html.indexOf('Was du im Revier damit anfangen kannst') < html.indexOf('Was die Untersuchungen zeigen'));
     assert.match(html, /keine Aufnahme aus/);
     assert.match(html, /Für die Webanzeige proportional verkleinert/);
+    assert.doesNotMatch(dossier, /Fachlicher Abgleich|class="sourceLinks"/);
+    assert.ok(html.indexOf('id="revierwissen-fragen"') < html.indexOf('<summary>Quellen und Prüfstand</summary>'));
+    assert.match(html, /<details class="sources"><summary>Quellen und Prüfstand<\/summary>/);
   }
 });
 

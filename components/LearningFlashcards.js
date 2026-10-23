@@ -27,11 +27,11 @@ export function formatFlashcardDate(value) {
   const date = new Date(`${value}T12:00:00Z`);
   return Number.isNaN(date.getTime()) ? null : date.toLocaleDateString("de-CH", { timeZone: "UTC" });
 }
-export function FlashcardImage({ image, printing = false }) {
+export function FlashcardImage({ image, printing = false, showCredit = true }) {
   if (!image) return null;
   return <figure className={printing ? styles.printFigure : styles.figure}>
     <img src={image.src} width={image.width} height={image.height} alt={image.alt || "Tierfoto für diese Bestimmungskarte"} />
-    <figcaption><a href={image.creditUrl} target="_blank" rel="noopener noreferrer">{image.author}</a>{" · "}<a href={image.licenseUrl} target="_blank" rel="noopener noreferrer">{image.license}</a></figcaption>
+    {showCredit && <figcaption><a href={image.creditUrl} target="_blank" rel="noopener noreferrer">{image.author}</a>{" · "}<a href={image.licenseUrl} target="_blank" rel="noopener noreferrer">{image.license}</a></figcaption>}
   </figure>;
 }
 function pendingCards(cards, review, now, againIds = []) {
@@ -229,20 +229,20 @@ export default function LearningFlashcards({ cards = [], categories = [], select
       <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Frage und Antwort</span></div>
       {current.context && (!selection?.lessonId || selection.lessonId !== current.lessonId) && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
-      <FlashcardImage image={current.image} />
+      <FlashcardImage image={current.image} showCredit={false} />
       <div className={styles.back}>
           <p className={styles.answer}>{current.answer}</p>
           <p className={styles.explanation}>{current.explanation}</p>
           <div className={styles.rating} aria-label="Freiwillige Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch üben</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button><button type="button" onClick={nextWithoutRating} disabled={available.length < 2} className={styles.nextCard}>Weiter ohne Bewertung</button></div>
-          <div className={styles.sources}>
-            <h3>{current.sourceScope === "photo" ? "Bildnachweis und Artenporträt" : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion" : "Quellen des Ausgangskurses"}</h3>
-            <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>
-            {current.image && <p>Foto: <a href={current.image.creditUrl} target="_blank" rel="noopener noreferrer">{current.image.author}</a> · <a href={current.image.licenseUrl} target="_blank" rel="noopener noreferrer">{current.image.license}</a></p>}
-            {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Stand des Ausgangskurses"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
-            <Link href={current.courseHref} className={styles.courseLink} onClick={event => rememberBeforeLeaving(event, current.courseHref)}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
-          </div>
+          <Link href={current.courseHref} className={styles.courseLink} onClick={event => rememberBeforeLeaving(event, current.courseHref)}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
         </div>
     </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Schalte den Filter oben aus, wenn du alle passenden Karten erneut ansehen möchtest." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
+    {current && <details className={styles.sources} key={`sources-${current.id}`}>
+      <summary>{current.sourceScope === "photo" ? "Bildnachweis und Artenporträt" : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion und Prüfstand" : "Quellen des Ausgangskurses und Prüfstand"}</summary>
+      <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>
+      {current.image && <p>Foto: <a href={current.image.creditUrl} target="_blank" rel="noopener noreferrer">{current.image.author}</a> · <a href={current.image.licenseUrl} target="_blank" rel="noopener noreferrer">{current.image.license}</a></p>}
+      {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Stand des Ausgangskurses"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
+    </details>}
   </LearningToolLayout>;
 }

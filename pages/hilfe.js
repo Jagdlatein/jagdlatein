@@ -5,14 +5,6 @@ import styles from "../styles/LearningExperience.module.css";
 
 export default function Hilfe() {
   return <LearningToolLayout title="Hilfe zu Jagdlatein" description="Dein Konto, Lernen und Abo auf PC, Mac, Android, iPhone und iPad." icon="community" eyebrow="Kontakt und Hilfe" hideCommunity compact>
-    <nav className={styles.actions} aria-label="Hilfethemen">
-      <a className={styles.secondary} href="#geraete">Auf allen Geräten</a>
-      <a className={styles.secondary} href="#kurse">Kurse und Fortschritt</a>
-      <a className={styles.secondary} href="#anmelden">Anmeldung</a>
-      <a className={styles.secondary} href="#abo">Abo und Käufe</a>
-      <a className={styles.secondary} href="#offline">Offline lernen</a>
-      <a className={styles.secondary} href="#community">Community</a>
-    </nav>
     <section id="geraete" className={styles.panel}>
       <h2>Dein Lernkonto auf allen Geräten</h2>
       <div className={styles.gridThree}>

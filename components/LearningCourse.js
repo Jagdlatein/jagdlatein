@@ -12,10 +12,9 @@ import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from ".
 import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
 import { recordReviewAnswer } from "../lib/daily-review";
 import LessonEvidence from "./LessonEvidence";
+import PageMenu, { closePageMenu } from "./PageMenu";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
-import KnowledgeBreadcrumb from "./KnowledgeBreadcrumb";
-import { getLearningTopicLocation } from "../lib/learning-topic-tree";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -30,7 +29,6 @@ export default function LearningCourse({ module, flashcards }) {
 function LearningContent({ module, flashcards }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
-  const topicLocation = getLearningTopicLocation(module.id);
   const media = getLearningMedia(module);
   const countrySelection = category?.slug === "jagdrecht";
   const { common: commonNote, regional: regionalNotes } = getCourseCountryNotes(module);
@@ -71,6 +69,7 @@ function LearningContent({ module, flashcards }) {
   }, [lessonIndex, router.asPath]);
   function selectLesson(index) {
     if (!Number.isInteger(index) || !module.lessons[index]) return;
+    closePageMenu();
     revealLesson.current = index;
     if (typeof window !== "undefined" && typeof router.replace === "function") {
       const href = `${window.location.pathname}${window.location.search}${lessonHash(module.lessons[index].id)}`;
@@ -134,13 +133,8 @@ function LearningContent({ module, flashcards }) {
 
   return (
     <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} className={styles.course} headingOnly searchHref="/lernen#lernen-suche">
-          <KnowledgeBreadcrumb items={[
-            {href: "/lernen", title: "Kategorien"},
-            ...(category ? [{href: `/lernen/${category.slug}`, title: category.title}] : []),
-            ...(topicLocation ? [{href: `/lernen/${topicLocation.categorySlug}?bereich=${topicLocation.groupId}#learning-modules`, title: topicLocation.groupTitle}] : []),
-            ...(topicLocation ? [{href: `/lernen/${topicLocation.categorySlug}?bereich=${topicLocation.groupId}&kurs=${encodeURIComponent(module.id)}#learning-modules`, title: "Themenübersicht"}] : []),
-          ]} current="Wissenstext" />
-          {countrySelection && <section aria-label="Geltungsbereich">
+          {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
+          <PageMenu title="Lektion wählen">
             {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
               <legend>Länderschwerpunkt</legend>
               <div className={styles.countryButtons}>
@@ -149,9 +143,6 @@ function LearningContent({ module, flashcards }) {
                 ))}
               </div>
             </fieldset>}
-            {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
-          </section>}
-          <div className={styles.lessonGrid}>
             <nav className={styles.lessonNav} aria-label="Lektionen">
               <div className={styles.mobileLessonChoice}>
                 <label htmlFor="lesson-selection">Lektion auswählen</label>
@@ -160,6 +151,8 @@ function LearningContent({ module, flashcards }) {
                 </select>
               </div>
             </nav>
+          </PageMenu>
+          <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">
               <p className={styles.eyebrow}>Lektion {lessonIndex + 1} von {module.lessons.length}</p>
               <h2 id="current-lesson-heading" tabIndex={-1} ref={lessonHeading}>{lesson.title}</h2>
@@ -168,7 +161,6 @@ function LearningContent({ module, flashcards }) {
               <LessonDiagram diagram={lesson.diagram} />
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>
-              <LessonEvidence lesson={lesson} reviewedOn={module.reviewedOn} />
               {flashcards?.lessons?.[lesson.id] > 0 && <p className={styles.lessonCards}><Link href={{ pathname: "/lernen/lernkarten", query: { kurs: module.id, lektion: lesson.id } }} prefetch={false}>Diese Lektion mit {flashcards.lessons[lesson.id]} Lernkarten wiederholen</Link></p>}
               <div className={styles.actions}>
                 {lessonIndex > 0 && <button type="button" className={styles.secondaryButton} onClick={() => selectLesson(lessonIndex - 1)}>Vorherige Lektion</button>}
@@ -256,6 +248,7 @@ function LearningContent({ module, flashcards }) {
             <summary>Alle Quellen dieses Themenbereichs</summary>
           <section aria-labelledby="learning-sources">
             <h2 id="learning-sources" tabIndex={-1}>Quellen und weiterführende Informationen</h2>
+            <LessonEvidence lesson={lesson} reviewedOn={module.reviewedOn} embedded />
             <p className={styles.muted}>Eigene Lerntexte und Übungsfragen zur Vertiefung deiner Ausbildung. Die verlinkten Quellen dienen zum Nachschlagen; verbindliche örtliche Vorgaben prüfst du vor der praktischen Anwendung.</p>
             <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a>{source.scope && <p>{source.scope}</p>}</li>)}</ul>
             {module.sourceReview && <details><summary>Welche Aussagen wurden gegengeprüft?</summary><p>{module.sourceReview.scope}</p>{module.sourceReview.lessons.map(review => <div key={review.lesson}><h3>{module.lessons.find(lesson => lesson.id.endsWith(`-${review.lesson}`))?.title || review.lesson}</h3><ul>{review.confirmedClaims.map(claim => <li key={claim}>{claim}</li>)}</ul>{review.standardOnly.length > 0 && <p>Beleggrenze: {review.standardOnly.join(" ")}</p>}</div>)}</details>}

@@ -12,11 +12,11 @@ export default function WildlifeKnowledgeExpansion({ slug, name, sectionId }) {
       <h3>{section.title}</h3>
       <p>{section.text}</p>
       {section.observationNote && <p className={styles.observation}><strong>Beim Beobachten:</strong> {section.observationNote}</p>}
-      <details className={styles.sources}>
-        <summary>Fachquellen zu diesem Abschnitt</summary>
-        <ul>{section.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.organization}: {source.title}</a></li>)}</ul>
-      </details>
     </section>)}
-    <p className={styles.review}>Diese Vertiefung wurde am {new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${profile.reviewedOn}T00:00:00Z`))} mit den angegebenen Fachquellen abgeglichen.</p>
+    <details className={styles.sources}>
+      <summary>Fachquellen und Prüfstand</summary>
+      {sections.map(section => <div key={section.id}><h3>{section.title}</h3><ul>{section.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.organization}: {source.title}</a></li>)}</ul></div>)}
+      <p className={styles.review}>Diese Vertiefung wurde am {new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${profile.reviewedOn}T00:00:00Z`))} mit den angegebenen Fachquellen abgeglichen.</p>
+    </details>
   </section>;
 }

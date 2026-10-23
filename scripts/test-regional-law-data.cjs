@@ -63,3 +63,11 @@ test('Public static region metadata contains counts and destinations, no paid qu
     }
   }
 });
+
+test('The recorded Glarus law version remains readable through 31 December and expires only on 1 January', () => {
+  const data = load('data/jagdrecht-regional/ch.json');
+  const article = data.regions.find(region => region.code === 'GL').articles.find(article => article.id === 'ch-gl-patentsystem');
+  assert.equal(article.effectiveUntil, '2027-01-01', 'The core treats the end date as exclusive');
+  assert.equal(core.isReadableLegalArticle(article, '2026-12-31'), true);
+  assert.equal(core.isReadableLegalArticle(article, '2027-01-01'), false);
+});

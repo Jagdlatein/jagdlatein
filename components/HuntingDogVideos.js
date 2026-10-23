@@ -54,6 +54,6 @@ export default function HuntingDogVideos() {
       <section className={styles.checks} aria-label="Beobachtung prüfen"><h3>Deine Beobachtung prüfen</h3>{lesson.questions.map(question => <ObservationQuestion key={`${lesson.id}-${question.id}`} question={question} />)}</section>
       <details className={styles.details} id="hundevideo-handlung"><summary>Handlung als Text und Bildnachweis</summary><p>{lesson.transcript}</p><p>{lesson.media.recordingDate}. {lesson.media.changes}</p><p>Inhalt und sichtbare Szenen geprüft am 12. Oktober 2026. Die Fachquellen erklären das jeweilige Thema; sie sind keine Bewertung dieses einzelnen Hundes.</p><ul>{lesson.sources.map(id => <li key={id}><a href={dogVideoSources[id].url} target="_blank" rel="noopener noreferrer">{dogVideoSources[id].organization}: {dogVideoSources[id].label}</a></li>)}</ul></details>
     </article>
-    <p className={styles.continueLink}><Link href="/lernen/jagdhund-kompass">Jagdhunderassen und ihre Arbeitsgebiete ansehen</Link></p>
+    <p className={styles.continueLink}><Link href="/lernen/jagdhunde">Jagdhunderassen und ihre Arbeitsgebiete ansehen</Link></p>
   </LearningToolLayout>;
 }

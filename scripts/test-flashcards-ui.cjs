@@ -149,6 +149,10 @@ test('Visible answers retain the correct source scope and an explicit rating per
     assert.match(words(s.tree), /Beispielart/);
     assert.match(words(s.tree), /Bildnachweis und Artenporträt/);
     assert.match(words(s.tree), /Bildnachweis geprüft/);
+    const sourcePanel = find(s.tree, node => node.type === 'details' && node.props.className === 'sources');
+    assert.ok(sourcePanel && !sourcePanel.props.open);
+    assert.equal(find(sourcePanel, node => node.props?.className === 'answer'), null, 'The learning answer never requires opening sources');
+    assert.ok(find(s.tree, node => node.props?.className === 'courseLink'), 'The full existing lesson remains directly reachable');
     const stale = s.button('Gewusst');
     s.click('Gewusst');
     assert.match(words(s.tree), /Wie wird die nächste Frage/);

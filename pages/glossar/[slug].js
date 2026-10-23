@@ -1,6 +1,7 @@
 import { TERMS } from "../../data/glossary-terms";
 import { getPaidPageProps } from "../../lib/account-access";
 import Seo from "../../components/Seo";
+import PageMenu from "../../components/PageMenu";
 import styles from "./glossar.module.css";
 
 
@@ -71,7 +72,7 @@ export default function GlossarSlugPage({ slug }) {
 
             <p className={styles.defBig}>{entry.def}</p>
 
-            {/* Kontrolle: Vorher/Nachher */}
+            <PageMenu title="Glossarbegriffe">
             <div className={styles.navRow}>
               {prev && (
                 <a href={`/glossar/${prev.slug}`} className={styles.navLink}>
@@ -85,8 +86,6 @@ export default function GlossarSlugPage({ slug }) {
               )}
             </div>
 
-            <details className={styles.letterDisclosure}>
-              <summary>Weitere Glossarbegriffe</summary>
               <nav className={styles.breadcrumb} aria-label="Glossarpfad">
                 <a href="/glossar">Glossar A–Z</a><span aria-hidden="true">›</span>
                 <a href={`/glossar?letter=${encodeURIComponent(entry.term[0].toUpperCase())}`}>Begriffe mit {entry.term[0].toUpperCase()}</a>
@@ -114,7 +113,7 @@ export default function GlossarSlugPage({ slug }) {
                   </a>
                 ))}
               </nav>
-            </details>
+            </PageMenu>
           </div>
         </div>
       </main>

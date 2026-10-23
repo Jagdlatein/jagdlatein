@@ -56,6 +56,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
+    if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu' };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);
@@ -149,11 +150,11 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
   assert.equal(details.props.children[0].type, 'summary', 'Native menu summary keeps keyboard and expanded state behavior');
   assert.ok(links.every(link => link.type !== 'button' && link.props.prefetch === false));
-  const categoryBranch = details.props.children[1].props.children.find(item => item.type === 'details');
+  const categoryBranch = details.props.children[1].props.children.flat(Infinity).find(item => item.type === 'details');
   assert.ok(categoryBranch && !categoryBranch.props.open);
   for (const route of ['/wildkunde/rehwild', '/kurse/wissen-rehwild-jahreslauf', '/fotohelfer']) assert.match(setup(route).html(), /aria-label="Zum Lernbereich" aria-current="true"/);
   for (const route of ['/lernen/videos', '/lernen/wildtier-videofaelle', '/lernen/jagdhund-videos']) {
-    const videoLinks = setup(route).tree.props.children[3].props.children[1].props.children;
+    const videoLinks = setup(route).tree.props.children[3].props.children[1].props.children.flat(Infinity);
     assert.equal(videoLinks.filter(link => link.props['aria-current']).length, 1);
     assert.equal(videoLinks.find(link => link.props['aria-current']).props.href, '/lernen/videos');
   }
@@ -161,7 +162,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
 
 test('Menu closes after a normal choice, Escape restores summary focus, and outside clicks or a new route dismiss it', () => {
   const s = setup('/lernen'); const details = s.tree.props.children[3];
-  const first = details.props.children[1].props.children[0];
+  const first = collectLinks(details.props.children[1])[0];
   s.menu.open = true; first.props.onClick({ button: 0 }); assert.equal(s.menu.open, false);
   s.menu.open = true; first.props.onClick({ button: 0, ctrlKey: true }); assert.equal(s.menu.open, true, 'A new-tab choice retains native behavior');
   s.listeners.get('pointerdown')({ target: { insideMenu: true } }); assert.equal(s.menu.open, true);
@@ -306,6 +307,12 @@ test('Native species topic links preserve each branch for dock Back, including b
   const native=setup('/wildkunde/rehwild',['/lernen/wildkunde']);
   native.hash('#portrait-grundlagen');native.hash('#portrait-lebensraum');native.hash('#portrait-grundlagen');
   native.tree.props.children[0].props.onClick();assert.equal(native.destination,'/wildkunde/rehwild');
+});
+
+test('Breed profiles preserve the chosen working topic as a real lower-menu Back step', () => {
+  const s = setup('/lernen/jagdhunde/drahthaar', ['/lernen/jagdhunde']);
+  s.hash('#rassenprofil'); s.hash('#arbeitsprofil');
+  s.tree.props.children[0].props.onClick(); assert.equal(s.destination, '/lernen/jagdhunde/drahthaar#rassenprofil');
 });
 
 

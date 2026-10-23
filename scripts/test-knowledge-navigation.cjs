@@ -11,6 +11,7 @@ const {renderToStaticMarkup} = pr('react-dom/server');
 const sharp = pr('sharp');
 const swc = pr('next/dist/build/swc');
 const routerStateByCache = new WeakMap();
+const pageMenuByCache = new WeakMap();
 const htmlValue = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 function knowledgeSection(html) {
   const start = html.indexOf('<section id="learning-modules"');
@@ -24,6 +25,7 @@ function load(relative, cache = new Map()) {
   const mod = {exports: {}};
   const {code} = swc.transformSync(fs.readFileSync(filename, 'utf8'), {filename, disableNextSsg: true, jsc: {parser: {syntax: 'ecmascript', jsx: true}, target: 'es2022', transform: {react: {runtime: 'automatic'}}}, module: {type: 'commonjs'}});
   const resolve = id => {
+    if (id.endsWith('/PageMenu')) return { __esModule: true, default: ({ children }) => { pageMenuByCache.set(cache, children); return null; } };
     if (id === 'next/link') return ({href, children, prefetch, ...props}) => React.createElement('a', {href, ...props}, children);
     if (id === 'next/head') return ({children}) => children;
     if (id === 'next/image') return ({priority, fill, ...props}) => React.createElement('img', props);
@@ -116,9 +118,11 @@ test('Shared layouts keep headings and study content without duplicate page-navi
   const portrait = renderToStaticMarkup(React.createElement(Portrait, {slug: 'rehwild', title: 'Rehwild'}, body));
   assert.doesNotMatch(portrait, /aria-label="(?:Lernmenü|Artenwissen)"/);
   assert.match(portrait, /Themen dieser Art/);
-  assert.match(portrait, /Art kennenlernen/);
-  assert.match(portrait, /Gebiss und Kiefer/);
-  assert.match(portrait, /Lebensweise und Unterscheidung/);
+  assert.doesNotMatch(portrait, /href=|<nav|<select/);
+  const portraitMenu = renderToStaticMarkup(React.createElement(React.Fragment, null, ...(pageMenuByCache.get(cache) || [])));
+  assert.match(portraitMenu, /Art kennenlernen/);
+  assert.match(portraitMenu, /Gebiss und Kiefer/);
+  assert.match(portraitMenu, /Lebensweise und Unterscheidung/);
 });
 
 test('Every branch exposes only its course choices, then each selected course exposes exactly its own lesson links', () => {
@@ -133,8 +137,8 @@ test('Every branch exposes only its course choices, then each selected course ex
     for (const group of data.topicGroups) {
       routerStateByCache.set(cache, {isReady: true, query: {bereich: group.id}, asPath: `/lernen/${category.slug}?bereich=${group.id}#learning-modules`});
       const tree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
-      assert.ok(tree.includes(`aria-current="page">${htmlValue(group.title)}`), `${category.slug}/${group.id}: current breadcrumb`);
-      assert.ok(tree.includes(`href="/lernen/${category.slug}"`), 'The category parent is directly reachable');
+      assert.ok(tree.includes(`id="learning-modules-heading" tabindex="-1">${htmlValue(group.title)}</h2>`), `${category.slug}/${group.id}: selected branch heading`);
+      assert.doesNotMatch(tree, /aria-label="Wissenspfad"|class="breadcrumb"/, 'The shared bottom menu owns parent navigation');
       assert.doesNotMatch(tree, /href="\/kurse\//, 'An intermediate branch shows choices instead of every lesson');
       const choices = [...tree.matchAll(/href="([^\"]*&amp;kurs=[^\"]+)"/g)].map(match => match[1]);
       assert.deepEqual(choices, group.moduleIds.map(id => htmlValue(`/lernen/${category.slug}?bereich=${group.id}&kurs=${id}#learning-modules`)));
@@ -145,9 +149,8 @@ test('Every branch exposes only its course choices, then each selected course ex
         assert.ok(tree.includes(htmlValue(module.title)), id);
         routerStateByCache.set(cache, {isReady: true, query: {bereich: group.id, kurs: id}, asPath: `/lernen/${category.slug}?bereich=${group.id}&kurs=${id}#learning-modules`});
         const courseTree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
-        assert.ok(courseTree.includes('aria-current="page">Wissenstexte'));
+        assert.doesNotMatch(courseTree, /aria-label="Wissenspfad"|class="breadcrumb"/);
         assert.ok(courseTree.includes(`id="learning-modules-heading" tabindex="-1">${htmlValue(module.title)}</h2>`));
-        assert.ok(courseTree.includes(`href="/lernen/${category.slug}?bereich=${group.id}#learning-modules"`));
         const expected = original.lessons.map((lesson, index) => {
           const href = `/kurse/${id}${lessonHash(lesson.id)}`;
           assert.deepEqual(module.topics[index], {title: lesson.title, href});
@@ -276,7 +279,9 @@ test('Practice and law discovery cards retain their original three courses and c
     const original = learningModules.filter(module => module.category === category).slice(0, 3);
     assert.deepEqual(props.discoveryModules, original.map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length })));
     assert.ok(props.discoveryModules.every(module => Object.keys(module).sort().join(',') === 'id,lessonCount,questionCount,title'));
-    const html = renderToStaticMarkup(React.createElement(Page.default, props));
+    const pageHtml = renderToStaticMarkup(React.createElement(Page.default, props));
+    if (category === 'Jagdrecht') assert.doesNotMatch(pageHtml, /href=|<select|<nav/, 'Law country and course navigation belongs to the lower menu.');
+    const html = pageHtml + (category === 'Jagdrecht' ? renderToStaticMarkup(pageMenuByCache.get(cache)) : '');
     assert.ok(html.includes(title));
     assert.doesNotMatch(html, /aria-label="Lernmenü"/);
     for (const module of original) {
@@ -374,6 +379,6 @@ test('Every expanded wildlife portrait keeps its actual text and sources in its 
       assert.ok(html.includes(htmlValue(question.explain)));
     }
     for (const source of profile.sources) assert.ok(html.includes(source.url.replace(/&/g, '&amp;')));
-    for (const id of profile.courseIds) { assert.ok(getModule(id), `${slug}: ${id}`); assert.equal(titles[id], getModule(id).title); assert.equal(html.split(`href="/kurse/${id}"`).length - 1, 1, `${slug}: one clear course entry`); }
+    for (const id of profile.courseIds) { assert.ok(getModule(id), `${slug}: ${id}`); assert.equal(titles[id], getModule(id).title); assert.equal(html.split(`href="#art-lerntext-${id}"`).length - 1, 1, `${slug}: one clear entry to the same full lesson within the species portrait`); }
   }
 });

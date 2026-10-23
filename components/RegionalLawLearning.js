@@ -3,12 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Seo from "./Seo";
 import ResearchQuestionRound from "./ResearchQuestionRound";
+import PageMenu, { openPageMenu } from "./PageMenu";
 import { legalCountries, legalTopics, legalSelection, legalSelectionHref, readLegalRegionPreference,
   saveLegalRegionPreference } from "../lib/regional-law-core";
 import styles from "../styles/RegionalLaw.module.css";
 
 function ArticleSources({ article }) {
-  return <details className={styles.sources}><summary>Quellen und Prüfstand</summary>
+  return <div className={styles.sources}>
     <p>{article.learningReviewed ? "Wortlaut und Lerninhalt abgeglichen" : "Amtlichen Wortlaut eingesehen"}: {article.reviewedOn}. Geltungsbereich: {article.regionName}.</p>
     {article.effectiveFrom && <p>Diese Normfassung gilt ab {article.effectiveFrom}.</p>}
     {article.effectiveUntil && <p>Diese Normfassung tritt am {article.effectiveUntil} außer Kraft.</p>}
@@ -16,11 +17,10 @@ function ArticleSources({ article }) {
       <a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a> · {source.publisher}
       {source.kind === "law" ? " · Rechtsquelle" : " · Erläuterung / Abgleich"}
     </li>)}</ul>
-  </details>;
+  </div>;
 }
 
 function LegalArticle({ article, headingRef }) {
-  const original = article.sources.find(source => source.kind === "law");
   return <article className={styles.article} aria-labelledby={`law-${article.id}`}>
     <p className={styles.scope}>{article.regionName} · {article.lawTitle}</p>
     <h2 id={`law-${article.id}`} ref={headingRef} tabIndex={-1}>{article.title}</h2>
@@ -28,11 +28,9 @@ function LegalArticle({ article, headingRef }) {
     <h3>Amtlicher Wortlaut – Auszug</h3>
     <p className={styles.scope}>{article.officialTextCitation}</p>
     <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
-    <a className={styles.sourceLink} href={original.url} target="_blank" rel="noopener noreferrer">Amtliche Norm vollständig öffnen</a>
     {article.learningReviewed ? <><h3>Verständlich erklärt</h3>
       <p className={styles.explanation}>{article.summary}</p></> :
       <p className={styles.notice}>Der amtliche Auszug ist zugänglich. Der ergänzende Abgleich für Erklärung und Lernfragen ist noch offen; dazu werden hier noch keine Fragen freigegeben.</p>}
-    <ArticleSources article={article} />
   </article>;
 }
 
@@ -50,7 +48,7 @@ function LegalQuestionCatalog({ questions, articles }) {
         {article && <><p className={styles.citation}>{article.lawTitle} · {article.citation}</p>
           <p className={styles.scope}>Amtlicher Auszug: {article.officialTextCitation}</p>
           <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
-          <ArticleSources article={article} /></>}
+          </>}
       </details>;
     })}
   </section>;
@@ -139,12 +137,19 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
   const query = search.trim().toLocaleLowerCase("de");
   const topicArticles = bundle?.articles.filter(article => (!currentTopic || article.topic === currentTopic.id) &&
     (!query || `${article.title} ${article.lawTitle} ${article.citation} ${article.summary} ${article.officialText}`.toLocaleLowerCase("de").includes(query))) || [];
-  const article = topicArticles.find(article => article.id === selection.article);
+  // Searching narrows the menu, not the text already chosen for reading.
+  const article = bundle?.articles.find(article => article.id === selection.article && (!currentTopic || article.topic === currentTopic.id));
   const questionPool = bundle?.questions.filter(question => (!currentTopic || question.topic === currentTopic.id) &&
     (!query || `${question.prompt} ${question.explanation} ${question.context}`.toLocaleLowerCase("de").includes(query))) || [];
 
   useEffect(() => {
     if (!bundle) return;
+    if (selection.view === "wissen" && !article) {
+      firstContent.current = false;
+      moved.current = false;
+      const timer = setTimeout(() => openPageMenu("regional-law-topics"), 0);
+      return () => clearTimeout(timer);
+    }
     if (moved.current || (firstContent.current && article)) {
       moved.current = false;
       const target = article ? articleHeading.current : contentHeading.current || heading.current;
@@ -162,32 +167,56 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
     if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey)
       moved.current = true;
   }
+  function changeCountry(value) { router.push(legalSelectionHref(value)).catch(() => {}); }
   const hasFederal = regions.some(region => region.code === "BUND") && selection.region !== "BUND";
-  const sectionTitle = selectedRegion ? `${selectedRegion.name}${currentTopic ? ` · ${currentTopic.title}` : ""}` : "Deine Lernregion";
   return <main className={styles.main}>
     <Seo title={`Jagdrecht ${name} – nach ${regionLabel} lernen`} description={`Jagdrecht und eigene Rechtsfragen für deine Prüfungsregion in ${name}. Mit amtlichen Originalauszügen und genauen Fundstellen.`} />
-    <header className={styles.header}><h1>Jagdrecht {name}</h1><p>Wähle deine Lernregion. Danach lernst du gezielt nach Thema und konkreter Gesetzesstelle.</p></header>
-    <section className={styles.selection} aria-label="Prüfungsregion auswählen">
-      <label className={styles.field}>Land<select value={country} onChange={event => router.push(legalSelectionHref(event.target.value))}>
+    <header className={styles.header}><h1 ref={heading} tabIndex={-1}>{selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
+    <PageMenu key={country} title="Jagdrecht – Auswahl" openInitially={!selection.region} initialFocusId="regional-law-region">
+    <div className={styles.menuFields} aria-label="Prüfungsregion auswählen">
+      <label className={styles.field}>Land<select value={country} onChange={event => changeCountry(event.target.value)}>
         {legalCountries.map(item => <option key={item.code} value={item.code}>{item.name}</option>)}
       </select></label>
-      <label className={styles.field}>Wohn- oder Prüfungs{regionLabel === "Kanton" ? "kanton" : "bundesland"}<select value={selection.region}
+      <label className={styles.field}>Wohn- oder Prüfungs{regionLabel === "Kanton" ? "kanton" : "bundesland"}<select id="regional-law-region" value={selection.region}
         onChange={event => choose({ region: event.target.value, topic: "all", article: "" })}>
         <option value="">Bitte {regionLabel} wählen …</option>
         {regions.map(region => <option key={region.code} value={region.code}>{region.name}{region.code === "BUND" ? " (Bundesrecht)" : ` (${region.code})`}</option>)}
       </select></label>
       <p className={styles.regionHint}>Für die Vorbereitung wählst du den Ort deiner Prüfung. Deine Auswahl wird auf diesem Gerät gemerkt; du kannst sie jederzeit ändern.</p>
-    </section>
-    {selection.invalidRegion && <p role="status" className={styles.notice}>Diese Region ist nicht verfügbar. Bitte wähle einen Eintrag aus der Liste.</p>}
+    </div>
     {selection.region && <>
-      <div className={styles.controls}>
+      <div className={styles.menuFields}>
         <label className={styles.field}>Lernform<select value={selection.view} onChange={event => choose({ view: event.target.value, article: "" })}>
           <option value="wissen">Wissen und Gesetzestexte</option><option value="originale">Originalkataloge und Prüfungsunterlagen</option>
           <option value="uebung">Eigene Rechtsfragen üben</option><option value="fragen">Eigener Fragenkatalog mit Lösungen</option>
         </select></label>
         {hasFederal && selection.view !== "originale" && <label className={styles.check}><input type="checkbox" checked={selection.includeFederal} onChange={event => choose({ includeFederal: event.target.checked, article: "" })} />Bundesrecht ergänzend mitlernen</label>}
       </div>
-      <h2 ref={heading} tabIndex={-1} className={styles.regionTitle}>{sectionTitle}</h2>
+      {bundle && selection.view !== "originale" && <div className={styles.menuFields}>
+        <label className={styles.field}>In dieser Auswahl suchen<input type="search" value={search} maxLength={160} onChange={event => setSearch(event.target.value)} placeholder="Thema, Artikel, Paragraph oder Begriff" /></label>
+        {selection.view !== "wissen" && <label className={styles.field}>Prüfungsthema<select value={selection.topic} onChange={event => choose({ topic: event.target.value, article: "" })}>
+          <option value="all">Alle freigegebenen Rechtsthemen dieser Auswahl</option>
+          {legalTopics.filter(topic => bundle.questions.some(question => question.topic === topic.id)).map(topic => <option key={topic.id} value={topic.id}>{topic.title}</option>)}
+        </select></label>}
+        {selection.view === "wissen" && <div id="regional-law-topics" tabIndex={-1}>
+          <h3>{currentTopic ? currentTopic.title : query ? "Gefundene Gesetzesstellen" : "Thema wählen"}</h3>
+          {!currentTopic && !query ? <ul className={styles.menuList} aria-label="Rechtsthemen">{legalTopics.map(topic => {
+            const count = bundle.articles.filter(article => article.topic === topic.id).length;
+            return count ? <li key={topic.id}><Link prefetch={false} shallow scroll={false} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: topic.id, article: "" })}>
+              <strong>{topic.title}</strong><span>{count} {count === 1 ? "Gesetzesstelle" : "Gesetzesstellen"}</span></Link></li> : null;
+          })}</ul> : <ul className={styles.menuList} aria-label="Gesetzesstellen">{topicArticles.map(item => <li key={item.id}><Link prefetch={false} shallow scroll={false} aria-current={article?.id === item.id ? "page" : undefined} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: item.topic, article: item.id })}>
+            <strong>{item.title}</strong><span>{item.regionName} · {item.citation}</span></Link></li>)}</ul>}
+          {!topicArticles.length && <p role="status">{query ? "Kein Treffer. Ändere deinen Suchbegriff." : "Für diese Auswahl sind noch keine belegten Abschnitte freigegeben."}</p>}
+        </div>}
+        {selection.view !== "wissen" && <p className={styles.scope}>{questionPool.length} eigene Fragen in dieser Auswahl</p>}
+      </div>}
+      <Link shallow prefetch={false} onClick={event => { prepareContentMove(event); setSearch(""); }} href={legalSelectionHref(country, { ...selection, topic: "all", article: "" })}>Alle Rechtsthemen dieser Region</Link>
+    </>}
+    <Link prefetch={false} href="/jagdrecht">Länderübersicht</Link>
+    </PageMenu>
+    {selection.invalidRegion && <p role="status" className={styles.notice}>Diese Region ist nicht verfügbar. Wähle deine Lernregion unten im Menü.</p>}
+    {!selection.region && <p className={styles.hint}>Wähle dein Land und deine Prüfungsregion im unteren Menü.</p>}
+    {selection.region && <>
       {!bundle && !active.error && <p role="status">Rechtsinhalte für diese Auswahl werden geladen …</p>}
       {active.error && <div className={styles.error} role="alert"><p>{active.error}</p>
         {active.status === 401 ? <Link className={styles.button} href={`/login?next=${encodeURIComponent(legalSelectionHref(country, selection))}`}>Erneut anmelden</Link>
@@ -198,37 +227,25 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
         {selection.view === "originale" ? <OriginalExamResources region={bundle.region} headingRef={contentHeading} /> : <>
         <p className={styles.scope}><strong>{bundle.region.name}</strong> · {localArticles.length} Gesetzesstellen · {localQuestions.length} eigene Lernfragen
           {bundle.includesFederal ? ` · zusätzlich ${bundle.articles.length - localArticles.length} Gesetzesstellen und ${bundle.questions.length - localQuestions.length} Fragen zum Bundesrecht` : " · nur diese Rechtsebene"}</p>
-        {bundle.region.notes && <details className={styles.sources}><summary>Abdeckung und Rechtsstand dieser Region</summary><p>{bundle.region.notes}</p></details>}
+        {selection.view !== "wissen" && <p className={styles.hint}>Verfügbare eigene Lernfragen: {bundle.questions.length}{bundle.includesFederal ? " einschließlich Bundesrecht" : " auf dieser Rechtsebene"}. Die genaue regionale Abdeckung steht am Ende.</p>}
         {bundle.includesFederal && localQuestions.length === 0 && <p className={styles.notice}>Für diese Region sind noch keine eigenen Lernfragen freigegeben. Die Übung enthält derzeit nur das ergänzende Bundesrecht; sie ersetzt keine Vorbereitung auf das regionale Recht.</p>}
-        <label className={styles.field}>In dieser Auswahl suchen<input type="search" value={search} maxLength={160} onChange={event => setSearch(event.target.value)} placeholder="Thema, Artikel, Paragraph oder Begriff" /></label>
-        {selection.view !== "wissen" && <label className={styles.field}>Prüfungsthema<select value={selection.topic} onChange={event => choose({ topic: event.target.value, article: "" })}>
-          <option value="all">Alle freigegebenen Rechtsthemen dieser Auswahl</option>
-          {legalTopics.filter(topic => bundle.questions.some(question => question.topic === topic.id)).map(topic => <option key={topic.id} value={topic.id}>{topic.title}</option>)}
-        </select></label>}
         <div ref={contentHeading} tabIndex={-1} aria-label="Ausgewählter Rechtsinhalt">
-        {selection.view === "wissen" ? article ? <LegalArticle article={article} headingRef={articleHeading} /> : !currentTopic && !query ? <>
-          <ul className={styles.topics} aria-label="Rechtsthemen">{legalTopics.map(topic => {
-            const count = bundle.articles.filter(article => article.topic === topic.id).length;
-            return count ? <li key={topic.id}><Link prefetch={false} shallow scroll={false} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: topic.id, article: "" })}>
-              <strong>{topic.title}</strong><span>{count} {count === 1 ? "Gesetzesstelle" : "Gesetzesstellen"}</span></Link></li> : null;
-          })}</ul>
-        </> : <>
+        {selection.view === "wissen" ? article ? <LegalArticle article={article} headingRef={articleHeading} /> : <>
           {selection.article && !article && <p role="status">Diese Gesetzesstelle gehört nicht zur aktuellen Auswahl.</p>}
-          <ul className={styles.articles} aria-label="Gesetzesstellen">{topicArticles.map(article => <li key={article.id}><Link prefetch={false} shallow scroll={false} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: article.topic, article: article.id })}>
-            <strong>{article.title}</strong><span>{article.regionName} · {article.citation}</span></Link></li>)}</ul>
+          <p className={styles.hint}>Wähle {currentTopic ? "die gewünschte Gesetzesstelle" : "dein Thema"} im unteren Menü. Hier erscheint anschließend nur der ausgewählte Inhalt.</p>
         </> : selection.view === "fragen" ? <LegalQuestionCatalog questions={questionPool} articles={bundle.articles} />
           : questionPool.length > 0 && <ResearchQuestionRound key={`${requestKey}:${selection.topic}:${questionPool.map(question => question.id).join(",")}`}
             questions={questionPool} sources={bundle.sources} title={`Rechtsfragen: ${bundle.region.name}`} sectionId="regional-law-practice"
             notice="Eigene Lernfragen zur gewählten Rechtsebene, keine amtlichen Originalprüfungsfragen. Antworten und Erklärungen beziehen sich auf die jeweils angegebene Norm. Beim Verlassen beginnt die Übungsrunde neu." />}
         </div>
-        {((selection.view === "wissen" && !topicArticles.length) || (selection.view !== "wissen" && !questionPool.length)) &&
+        {((selection.view === "wissen" && !article && !topicArticles.length) || (selection.view !== "wissen" && !questionPool.length)) &&
           <p className={styles.notice} role="status">{query ? "Kein Treffer in dieser Auswahl. Ändere den Suchbegriff oder das Thema." : "Für diese Auswahl sind noch keine ausreichend belegten Lernabschnitte und Fragen freigegeben. Die amtliche Gesetzessammlung bleibt direkt erreichbar."}</p>}
         </>}
-        <p><a href={bundle.region.officialUrl} target="_blank" rel="noopener noreferrer">{bundle.region.lawTitle} – amtliche Gesamtsammlung öffnen</a></p>
-        <details className={styles.lowerPath}><summary>Andere Themen und Einordnung</summary>
+        <details className={styles.lowerPath}><summary>Ergänzende Quellen, Rechtsstand und Umfang</summary>
+          {bundle.region.notes && <p>{bundle.region.notes}</p>}
           <p>Die freigegebenen Abschnitte sind eine gezielte Lernsammlung. Sie bilden noch nicht sämtliche Gesetze, Verordnungen und Prüfungsanforderungen der Region ab.</p>
-          <Link shallow prefetch={false} onClick={event => { prepareContentMove(event); setSearch(""); }} href={legalSelectionHref(country, { ...selection, topic: "all", article: "" })}>Alle Themen dieser Region</Link>
-          <Link prefetch={false} href="/jagdrecht">Andere Prüfungsregion wählen</Link>
+          <p><a href={bundle.region.officialUrl} target="_blank" rel="noopener noreferrer">{bundle.region.lawTitle} – amtliche Gesamtsammlung</a></p>
+          {(selection.view === "wissen" ? (article ? [article] : []) : bundle.articles.filter(item => questionPool.some(question => question.articleId === item.id))).map(item => <div key={item.id}><h3>{item.title} · {item.citation}</h3><ArticleSources article={item} /></div>)}
         </details>
       </>}
     </>}

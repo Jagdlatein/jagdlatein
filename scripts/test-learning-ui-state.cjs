@@ -245,6 +245,9 @@ test('The offline reader keeps the same lesson diagrams, precise evidence and a 
   const evidence = () => find(s.tree, node => node.type?.name === 'LessonEvidence');
   assert.ok(renderToStaticMarkup(diagram()).includes('Den Blutweg einmal im Kreis verfolgen'));
   assert.equal(evidence().props.lesson, course.lessons[0]);
+  const finalSources = find(s.tree, node => node.type === 'details' && words(node).startsWith('Quellen und Prüfstand'));
+  assert.ok(finalSources && !finalSources.props.open);
+  assert.equal(find(finalSources, node => node.type?.name === 'LessonEvidence'), evidence());
   assert.equal(words(s.tree).split(course.countryNotes.DE).length - 1, 1);
   assert.doesNotMatch(words(s.tree), /Regionale Hinweise/);
   s.field('Lektion').props.onChange({ target: { value: '1' } }); s.redraw();
@@ -332,6 +335,8 @@ test('Focused reading keeps only the chosen lesson text, with optional practice 
       const article=()=>find(s.tree,n=>n.type==='article');
       const quiz=()=>find(s.tree,n=>n.type==='details'&&n.props.id==='wissenscheck');
       const sources=()=>find(s.tree,n=>n.type==='details'&&n.props.id==='quellen');
+      assert.equal(find(article(),n=>n.type?.name==='LessonEvidence'),null, 'Evidence does not interrupt the chosen lesson');
+      assert.ok(find(sources(),n=>n.type?.name==='LessonEvidence'), 'All lesson evidence is retained at the end with the source list');
       assert.equal(quiz().props.open,initialHash==='#wissenscheck');
       assert.equal(sources().props.open,['#learning-sources','#quellen'].includes(initialHash));
       const index=initialHash.startsWith('#lesson-')?2:0;
@@ -339,11 +344,8 @@ test('Focused reading keeps only the chosen lesson text, with optional practice 
       for (const [i,l] of course.lessons.entries()) if(i!==index) assert.ok(!words(article()).includes(l.paragraphs[0]),l.title);
       global.window.location.hash=nav.lessonHash(course.lessons[1].id);listeners.get('popstate')();s.redraw();
       assert.equal(article().props.id,`lesson-${course.lessons[1].id}`);
-      const crumb=find(s.tree,n=>n.type?.name==='KnowledgeBreadcrumb');
-      assert.equal(crumb.props.current,'Wissenstext');
+      assert.equal(find(s.tree,n=>n.type?.name==='KnowledgeBreadcrumb'),null, 'Reading starts without an upper navigation path');
       assert.equal(words(find(s.tree,n=>n.props?.id==='current-lesson-heading')),course.lessons[1].title);
-      assert.ok(crumb.props.items.some(i=>i.href.includes('?bereich=')));
-      assert.ok(crumb.props.items.some(i=>i.href.includes(`&kurs=${encodeURIComponent(course.id)}#learning-modules`)), 'The exact course choice is reachable from the reader breadcrumb');
       quiz().props.onToggle({currentTarget:{open:true}});s.redraw();assert.equal(quiz().props.open,true);
       quiz().props.onToggle({currentTarget:{open:false}});s.redraw();assert.equal(quiz().props.open,false);
       s.unmount();assert.equal(listeners.size,0);

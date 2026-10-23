@@ -13,7 +13,7 @@ export const homeKnowledgeGroups = [
   { title: "Für dein Revier", links: [
     { href: "/wildkunde", title: "Wildarten", text: "Merkmale und Biologie", icon: "deer" },
     { href: "/lernen/tierstimmen", title: "Tierstimmen", text: "Echte Aufnahmen erkennen", icon: "sound" },
-    { href: "/lernen/jagdhund-kompass", title: "Jagdhunde", text: "Rassen, Aufgaben und Lernen", icon: "paw" },
+    { href: "/lernen/jagdhunde", title: "Jagdhunde", text: "Rassen, Aufgaben und Lernen", icon: "paw" },
     { href: "/lernen/wissen-fuers-revier", title: "Wissen fürs Revier", text: "Forschung für die Praxis", icon: "tree" },
   ] },
   { title: "Austauschen und nachschlagen", links: [

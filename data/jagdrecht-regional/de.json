@@ -5,7 +5,7 @@
     {
       "code": "BUND",
       "name": "Bundesrecht Deutschland",
-      "lawTitle": "Bundesjagdgesetz (BJagdG)",
+      "lawTitle": "Bundesjagdgesetz (BJagdG), Waffenrecht und Tierschutzrecht",
       "officialUrl": "https://www.gesetze-im-internet.de/bjagdg/",
       "articles": [
         {
@@ -225,9 +225,1735 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-bund-jugend-alter",
+          "topic": "zulassung",
+          "title": "Mindestalter und Jugendjagdschein",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 16 Abs. 1; § 17 Abs. 1 Satz 1 Nr. 1",
+          "officialText": "§ 16 Abs. 1: Personen, die das sechzehnte Lebensjahr vollendet haben, aber noch nicht achtzehn Jahre alt sind, darf nur ein Jugendjagdschein erteilt werden.\n\n§ 17 Abs. 1 Satz 1 Nr. 1: Der Jagdschein ist zu versagen\n1. Personen, die noch nicht sechzehn Jahre alt sind;",
+          "summary": "Das Mindestalter für einen Jagdschein beträgt 16 Jahre. Bis zum 18. Geburtstag kommt nur ein Jugendjagdschein in Betracht. Das ist vom landesrechtlichen Mindestalter für Lehrgang oder Prüfung zu unterscheiden; eine frühere Prüfung berechtigt nicht automatisch zur früheren Jagdausübung.",
+          "sources": [
+            {
+              "title": "Bundesjagdgesetz (BJagdG) § 16 Abs. 1; § 17 Abs. 1 Satz 1 Nr. 1",
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__16.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Bundesjagdgesetz § 17: Mindestalter",
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__17.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdschein – Ausstellung beantragen",
+              "url": "https://www.freiburg.de/pb/%2CLde_DE/-/205332/jagdschein---ausstellung-beantragen/vbid222",
+              "publisher": "Stadt Freiburg im Breisgau",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-jugend-alter-q1",
+              "prompt": "Eine Person besteht die landesrechtlich zugelassene Jägerprüfung vor ihrem 16. Geburtstag. Kann sie deshalb bereits einen Jugendjagdschein erhalten?",
+              "choices": [
+                "Ja, das Prüfungszeugnis ersetzt die Altersgrenze.",
+                "Nein, vor Vollendung des 16. Lebensjahres ist der Jagdschein zu versagen.",
+                "Nur wenn die Eltern schriftlich zustimmen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Prüfungszulassung und Jagdscheinerteilung sind zu trennen. Die bundesrechtliche Grenze für die Erteilung bleibt 16 Jahre."
+            },
+            {
+              "id": "de-bund-jugend-alter-q2",
+              "prompt": "Welche Jagdscheinart kommt für eine 17-jährige Person bei erfüllten übrigen Voraussetzungen in Betracht?",
+              "choices": [
+                "Nur der Jugendjagdschein.",
+                "Bereits ein regulärer Jahresjagdschein ohne Jugendbeschränkungen.",
+                "Ein regulärer Tagesjagdschein, der die Jugendbeschränkungen aufhebt."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 16 Abs. 1 schreibt zwischen dem vollendeten 16. und dem vollendeten 18. Lebensjahr den Jugendjagdschein vor."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-erstmalige-pruefung",
+          "topic": "pruefung",
+          "title": "Erste Erteilung: Prüfung, Fachwissen und Schießleistung",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 15 Abs. 5 Sätze 1 und 2",
+          "officialText": "Die erste Erteilung eines Jagdscheines ist davon abhängig, daß der Bewerber im Geltungsbereich dieses Gesetzes eine Jägerprüfung bestanden hat, die aus einem schriftlichen und einem mündlich-praktischen Teil und einer Schießprüfung bestehen soll; er muß in der Jägerprüfung ausreichende Kenntnisse der Tierarten, der Wildbiologie, der Wildhege, des Jagdbetriebes, der Wildschadensverhütung, des Land- und Waldbaues, des Waffenrechts, der Waffentechnik, der Führung von Jagdwaffen (einschließlich Faustfeuerwaffen), der Führung von Jagdhunden, in der Behandlung des erlegten Wildes unter besonderer Berücksichtigung der hygienisch erforderlichen Maßnahmen, in der Beurteilung der gesundheitlich unbedenklichen Beschaffenheit des Wildbrets, insbesondere auch hinsichtlich seiner Verwendung als Lebensmittel, und im Jagd-, Tierschutz- sowie Naturschutz- und Landschaftspflegerecht nachweisen; mangelhafte Leistungen in der Schießprüfung sind durch Leistungen in anderen Prüfungsteilen nicht ausgleichbar.\nDie Länder können die Zulassung zur Jägerprüfung insbesondere vom Nachweis einer theoretischen und praktischen Ausbildung abhängig machen.",
+          "summary": "Für die reguläre erste Erteilung ist die bestandene Jägerprüfung erforderlich; gesetzliche Sonderfälle wie Ausländerjagdscheine sind gesondert zu prüfen. Zum Prüfungswissen gehören auch Wildbrethygiene, Hundewesen sowie Waffen-, Tierschutz- und Naturschutzrecht. Mangelhafte Schießleistungen lassen sich nicht durch andere Prüfungsteile ausgleichen. Zulassung, Lehrgangspflicht, Ablauf und Bewertung konkretisiert das jeweilige Land.",
+          "sources": [
+            {
+              "title": "Bundesjagdgesetz (BJagdG) § 15 Abs. 5 Sätze 1 und 2",
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "BVerwG, Beschluss vom 12. August 2024 – 3 B 13.23",
+              "url": "https://www.bverwg.de/120824B3B13.23.0",
+              "publisher": "Bundesverwaltungsgericht",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-erstmalige-pruefung-q1",
+              "prompt": "Du erzielst sehr gute schriftliche Leistungen, bestehst aber die vorgeschriebene Schießprüfung nicht. Können die schriftlichen Punkte die mangelhafte Schießleistung ausgleichen?",
+              "choices": [
+                "Ja, sofern die Gesamtnote ausreichend ist.",
+                "Ja, aber nur mit einem Lehrgangsnachweis.",
+                "Nein, mangelhafte Schießleistungen sind nicht durch andere Prüfungsteile ausgleichbar."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 15 Abs. 5 Satz 1 schließt diesen Ausgleich ausdrücklich aus; die konkrete Wiederholungsregel ergibt sich aus dem Landesrecht."
+            },
+            {
+              "id": "de-bund-erstmalige-pruefung-q2",
+              "prompt": "Welche Wissensgruppe gehört ausdrücklich zum bundesrechtlichen Prüfungsrahmen?",
+              "choices": [
+                "Nur Wildarten und Schießen; Wildbrethygiene ist freiwillig.",
+                "Behandlung des erlegten Wildes, hygienische Maßnahmen und Beurteilung des Wildbrets als Lebensmittel.",
+                "Ausschließlich die örtlichen Jagdzeiten."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Gesetzestext nennt die Behandlung erlegten Wildes und die gesundheitlich unbedenkliche Beschaffenheit des Wildbrets ausdrücklich."
+            },
+            {
+              "id": "de-bund-erstmalige-pruefung-q3",
+              "prompt": "Gibt § 15 Abs. 5 für alle Länder denselben verpflichtenden Vorbereitungskurs mit derselben Stundenzahl vor?",
+              "choices": [
+                "Nein. Die konkrete Ausbildungs- und Zulassungsregel ist im Prüfungsland zu prüfen.",
+                "Ja. Jedes Land muss genau denselben Kurs anbieten.",
+                "Nein. Deshalb darf kein Land einen Ausbildungsnachweis verlangen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Bund erlaubt den Ländern ausdrücklich, die Zulassung insbesondere von theoretischer und praktischer Ausbildung abhängig zu machen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-versicherung-mindestschutz",
+          "topic": "zulassung",
+          "title": "Jagdhaftpflicht: gesetzliche Mindestdeckung",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 17 Abs. 1 Satz 1 Nr. 4",
+          "officialText": "Der Jagdschein ist zu versagen\n[…]\n4. Personen, die keine ausreichende Jagdhaftpflichtversicherung (fünfhunderttausend Euro für Personenschäden und fünfzigtausend Euro für Sachschäden) nachweisen; die Versicherung kann nur bei einem Versicherungsunternehmen mit Sitz in der Europäischen Union oder mit Niederlassung im Geltungsbereich des Versicherungsaufsichtsgesetzes genommen werden; die Länder können den Abschluß einer Gemeinschaftsversicherung ohne Beteiligungszwang zulassen.",
+          "summary": "Ohne ausreichenden Versicherungsnachweis darf der Jagdschein nicht erteilt werden. Das Bundesgesetz verlangt mindestens 500.000 Euro für Personenschäden und 50.000 Euro für Sachschäden. Höhere vertragliche Summen sind möglich. Die Versicherungsbestätigung muss den beantragten Gültigkeitszeitraum abdecken; ein bloßer Zahlbeleg ist kein gleichwertiger Deckungsnachweis.",
+          "sources": [
+            {
+              "title": "Bundesjagdgesetz (BJagdG) § 17 Abs. 1 Satz 1 Nr. 4",
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__17.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdschein – Ausstellung beantragen",
+              "url": "https://www.freiburg.de/pb/%2CLde_DE/-/205332/jagdschein---ausstellung-beantragen/vbid222",
+              "publisher": "Stadt Freiburg im Breisgau",
+              "kind": "context"
+            },
+            {
+              "title": "Anforderungen an den Nachweis einer ausreichenden Jagdhaftpflichtversicherung",
+              "url": "https://www.ortenaukreis.de/media/custom/3406_352_1.PDF?1725954553=",
+              "publisher": "Landratsamt Ortenaukreis",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-versicherung-mindestschutz-q1",
+              "prompt": "Eine Jagdhaftpflicht deckt 400.000 Euro für Personen- und 100.000 Euro für Sachschäden. Reicht sie für den gesetzlichen Mindestschutz?",
+              "choices": [
+                "Ja, weil die Gesamtsumme über 500.000 Euro liegt.",
+                "Nein, die Personenschadendeckung erreicht 500.000 Euro nicht.",
+                "Ja, eine hohe Sachschadendeckung gleicht die Lücke aus."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die beiden Mindestdeckungen gelten getrennt. Eine höhere Sachschadendeckung ersetzt die fehlende Personenschadendeckung nicht."
+            },
+            {
+              "id": "de-bund-versicherung-mindestschutz-q2",
+              "prompt": "Welche Mindestdeckung für Sachschäden nennt § 17 Abs. 1 Satz 1 Nr. 4?",
+              "choices": [
+                "50.000 Euro.",
+                "500.000 Euro.",
+                "5.000 Euro."
+              ],
+              "correctIndex": 0,
+              "explanation": "Für Sachschäden nennt die Norm 50.000 Euro; für Personenschäden 500.000 Euro."
+            },
+            {
+              "id": "de-bund-versicherung-mindestschutz-q3",
+              "prompt": "Die Versicherungsbestätigung endet vor dem gewünschten Jagdscheinende. Was ist für den beantragten längeren Zeitraum zu klären?",
+              "choices": [
+                "Der Zahlungseingang beim Lehrgangsanbieter genügt.",
+                "Eine Prüfung mit guter Note ersetzt die fehlende Deckung.",
+                "Ein ausreichender Versicherungsnachweis für die gesamte beantragte Gültigkeit."
+              ],
+              "correctIndex": 2,
+              "explanation": "Nach der behördlichen Verfahrensinformation wird der Jagdschein nur für den versicherten Zeitraum erteilt. Versicherung und gewünschte Laufzeit müssen zusammenpassen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-zuverlaessigkeit-pruefung",
+          "topic": "zulassung",
+          "title": "Prüfungserfolg ersetzt Zuverlässigkeit nicht",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 17 Abs. 1 Satz 1 Nr. 2",
+          "officialText": "Der Jagdschein ist zu versagen\n[…]\n2. Personen, bei denen Tatsachen die Annahme rechtfertigen, daß sie die erforderliche Zuverlässigkeit oder körperliche Eignung nicht besitzen;",
+          "summary": "Die bestandene Prüfung belegt nicht automatisch alle Voraussetzungen für den Jagdschein. Fehlen die erforderliche Zuverlässigkeit oder körperliche Eignung, ist die Erteilung zu versagen. Das Bundesverwaltungsgericht hat außerdem entschieden, dass das Bundesrecht den Ländern nicht verbietet, unzuverlässige Personen bereits von der Prüfung auszuschließen; daraus folgt keine für alle Länder identische Zulassungsregel.",
+          "sources": [
+            {
+              "title": "Bundesjagdgesetz (BJagdG) § 17 Abs. 1 Satz 1 Nr. 2",
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__17.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "BVerwG, Beschluss vom 12. August 2024 – 3 B 13.23",
+              "url": "https://www.bverwg.de/120824B3B13.23.0",
+              "publisher": "Bundesverwaltungsgericht",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-zuverlaessigkeit-pruefung-q1",
+              "prompt": "Eine Person besteht die Prüfung. Anschließend stehen Tatsachen fest, die ihre erforderliche Zuverlässigkeit ausschließen. Muss die Jagdbehörde wegen des Prüfungserfolgs dennoch einen Jagdschein erteilen?",
+              "choices": [
+                "Ja, das Prüfungszeugnis bindet die Behörde in allen Fragen.",
+                "Nur wenn die Kursgebühr bereits bezahlt ist.",
+                "Nein, die eigenständigen Erteilungsvoraussetzungen bleiben zu prüfen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Prüfungsleistung und Zuverlässigkeit sind verschiedene Voraussetzungen. Der Prüfungsabschluss beseitigt einen Versagungsgrund nicht."
+            },
+            {
+              "id": "de-bund-zuverlaessigkeit-pruefung-q2",
+              "prompt": "Welche Aussage entspricht dem Beschluss BVerwG 3 B 13.23 zur Prüfungszulassung?",
+              "choices": [
+                "Das Bundesrecht verpflichtet alle Länder, jede unzuverlässige Person zur Prüfung zuzulassen.",
+                "Das Bundesrecht verbietet den Ländern einen Ausschluss unzuverlässiger Bewerber von der Prüfung nicht.",
+                "Wer eine Prüfung besteht, darf auch ohne Jagdschein jagen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Das Gericht bestätigt die Zulässigkeit entsprechender landesrechtlicher Zulassungsvoraussetzungen. Ob und wie diese gelten, ist im gewählten Land zu prüfen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-langwaffe-erwerb",
+          "topic": "jagdausuebung",
+          "title": "Jagdlangwaffe erwerben und rechtzeitig eintragen",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 3",
+          "officialText": "Inhaber eines gültigen Jahresjagdscheines im Sinne des § 15 Abs. 2 in Verbindung mit Abs. 1 Satz 1 des Bundesjagdgesetzes bedürfen zum Erwerb von Langwaffen nach Absatz 1 Nr. 2 keiner Erlaubnis. Der Jagdscheininhaber nach Satz 1 hat binnen zwei Wochen nach Erwerb einer Langwaffe bei der zuständigen Behörde die Ausstellung einer Waffenbesitzkarte zu beantragen.",
+          "summary": "Ein gültiger regulärer Jahresjagdschein ermöglicht den Erwerb einer nach § 13 Abs. 1 Nr. 2 zulässigen Jagdlangwaffe ohne vorherigen Voreintrag. Die spätere Waffenbesitzkarte beziehungsweise Eintragung bleibt erforderlich: binnen zwei Wochen nach dem Erwerb bei der Waffenbehörde handeln. Das Prüfungszeugnis allein, ein Jugendjagdschein oder ein bloßer abgelaufener Jahresjagdschein ersetzen diese Erwerbsgrundlage nicht.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 3",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Erwerb und Besitz von Schusswaffen durch Jagdscheininhaber",
+              "url": "https://www.zollernalbkreis.de/landratsamt/aemter%2B%2Bund%2Borganisation/jagdscheininhaber",
+              "publisher": "Landratsamt Zollernalbkreis",
+              "kind": "context"
+            },
+            {
+              "title": "Waffenbesitzkarten und Jahresjagdschein: Kurzübersicht",
+              "url": "https://www.vdb-waffen.de/de/service/rund_um_den_waffenkauf/wbk_kurzuebersicht.html",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-langwaffe-erwerb-q1",
+              "prompt": "Du besitzt einen gültigen regulären Jahresjagdschein und willst deine erste erlaubte Jagdbüchse dauerhaft kaufen. Welche Aussage trifft zu?",
+              "choices": [
+                "Ein vorheriger Voreintrag ist für diese Jagdlangwaffe nicht erforderlich; die Waffenbesitzkarte ist fristgerecht zu beantragen.",
+                "Der Kauf ist nur mit gelber Sportschützen-WBK möglich.",
+                "Der Jahresjagdschein befreit dauerhaft von jeder Registrierung."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 13 Abs. 3 unterscheidet den erlaubnisfreien Erwerb auf Jahresjagdschein von der anschließenden Beantragung der Besitzdokumentation."
+            },
+            {
+              "id": "de-bund-langwaffe-erwerb-q2",
+              "prompt": "Welche Frist nennt § 13 Abs. 3 nach dem Erwerb einer Jagdlangwaffe für den Antrag auf Ausstellung der Waffenbesitzkarte?",
+              "choices": [
+                "Vier Wochen.",
+                "Zwei Wochen.",
+                "Drei Monate."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Gesetzestext nennt ausdrücklich zwei Wochen nach Erwerb. Vorhandene Waffenbesitzkarten sind zur erforderlichen Eintragung einzubeziehen."
+            },
+            {
+              "id": "de-bund-langwaffe-erwerb-q3",
+              "prompt": "Du hast die Jägerprüfung bestanden, aber noch keinen gültigen Jagdschein. Genügt das Prüfungszeugnis für den Erwerb nach § 13 Abs. 3?",
+              "choices": [
+                "Ja, sobald der Jagdschein beantragt wurde.",
+                "Ja, ein Kursnachweis würde ebenfalls reichen.",
+                "Nein, die Sonderregel verlangt einen gültigen Jahresjagdschein."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Sonderregel knüpft an den gültigen Jahresjagdschein an, nicht lediglich an den Prüfungsabschluss."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-kurzwaffe-voreintrag",
+          "topic": "jagdausuebung",
+          "title": "Kurzwaffe: Bedürfnisprivileg ist keine Kauferlaubnis",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 2 Satz 2; § 10 Abs. 1",
+          "officialText": "§ 13 Abs. 2 Satz 2: Bei Jägern, die Inhaber eines Jahresjagdscheines im Sinne von § 15 Abs. 2 in Verbindung mit Abs. 1 Satz 1 des Bundesjagdgesetzes sind, erfolgt keine Prüfung der Voraussetzungen des Absatzes 1 Nr. 1 sowie des § 4 Abs. 1 Nr. 4 für den Erwerb und Besitz von Langwaffen und zwei Kurzwaffen, sofern die Voraussetzungen des Absatzes 1 Nr. 2 vorliegen.\n\n§ 10 Abs. 1: Die Erlaubnis zum Erwerb und Besitz von Waffen wird durch eine Waffenbesitzkarte oder durch Eintragung in eine bereits vorhandene Waffenbesitzkarte erteilt. Für die Erteilung einer Erlaubnis für Schusswaffen sind Art, Anzahl und Kaliber der Schusswaffen anzugeben. Die Erlaubnis zum Erwerb einer Waffe gilt für die Dauer eines Jahres, die Erlaubnis zum Besitz wird in der Regel unbefristet erteilt.",
+          "summary": "Bei regulären Jahresjagdscheininhabern entfällt für zwei nach der Norm zulässige Kurzwaffen die gesonderte Bedürfnisprüfung. Das beseitigt nicht die vorherige Erwerbserlaubnis: Vor dem dauerhaften Erwerb ist der entsprechende Voreintrag in die Waffenbesitzkarte einzuholen. Die einjährige Erwerbserlaubnis und die grundsätzlich unbefristete Besitzerlaubnis sind zu unterscheiden. Eine dritte Kurzwaffe fällt nicht automatisch unter das Zwei-Kurzwaffen-Privileg.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 2 Satz 2; § 10 Abs. 1",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffengesetz § 10: Erwerbs- und Besitzerlaubnis",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__10.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Erwerb und Besitz von Schusswaffen durch Jagdscheininhaber",
+              "url": "https://www.zollernalbkreis.de/landratsamt/aemter%2B%2Bund%2Borganisation/jagdscheininhaber",
+              "publisher": "Landratsamt Zollernalbkreis",
+              "kind": "context"
+            },
+            {
+              "title": "Waffenbesitzkarten und Jahresjagdschein: Kurzübersicht",
+              "url": "https://www.vdb-waffen.de/de/service/rund_um_den_waffenkauf/wbk_kurzuebersicht.html",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-kurzwaffe-voreintrag-q1",
+              "prompt": "Du besitzt einen regulären Jahresjagdschein und möchtest deine erste Kurzwaffe dauerhaft erwerben. Was erledigst du vor der Übernahme?",
+              "choices": [
+                "Nur die Anmeldung zur nächsten Schießübung.",
+                "Den passenden Voreintrag als Erwerbserlaubnis in der Waffenbesitzkarte beantragen und erhalten.",
+                "Nichts; für Kurzwaffen gilt dieselbe Erwerbsfreiheit wie für Jagdlangwaffen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Das Bedürfnisprivileg für zwei Kurzwaffen ersetzt deren Erwerbserlaubnis nicht."
+            },
+            {
+              "id": "de-bund-kurzwaffe-voreintrag-q2",
+              "prompt": "Wie lange gilt die gewöhnliche Erwerbserlaubnis für eine Waffe nach § 10 Abs. 1 Satz 3?",
+              "choices": [
+                "Grundsätzlich unbegrenzt, genau wie der Besitz.",
+                "Drei Jagdjahre.",
+                "Ein Jahr; die Besitzerlaubnis wird dagegen in der Regel unbefristet erteilt."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Wortlaut trennt die auf ein Jahr begrenzte Erwerbserlaubnis vom grundsätzlich unbefristeten Besitz."
+            },
+            {
+              "id": "de-bund-kurzwaffe-voreintrag-q3",
+              "prompt": "Wodurch unterscheidet sich der Antrag für eine dritte Kurzwaffe vom bundesrechtlichen Grundprivileg für zwei?",
+              "choices": [
+                "Das zusätzliche Bedürfnis wird nicht allein durch das Zwei-Kurzwaffen-Privileg abgedeckt und ist gesondert zu begründen.",
+                "Für eine dritte Kurzwaffe entfällt erstmals der Voreintrag.",
+                "Die dritte Kurzwaffe darf nur auf einen Tagesjagdschein eingetragen werden."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 13 Abs. 2 privilegiert zwei Kurzwaffen. Darüber hinaus ist das konkrete weitere Bedürfnis zu prüfen; die allgemeinen Erlaubnisvoraussetzungen bleiben bestehen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-munition-berechtigung",
+          "topic": "jagdausuebung",
+          "title": "Langwaffenmunition und Kurzwaffenmunition unterscheiden",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 5; § 10 Abs. 3 Satz 1",
+          "officialText": "§ 13 Abs. 5: Jäger bedürfen für den Erwerb und Besitz von Munition für Langwaffen nach Absatz 1 Nr. 2 keiner Erlaubnis, sofern sie nicht nach dem Bundesjagdgesetz in der jeweiligen Fassung verboten ist.\n\n§ 10 Abs. 3 Satz 1: Die Erlaubnis zum Erwerb und Besitz von Munition wird durch Eintragung in eine Waffenbesitzkarte für die darin eingetragenen Schusswaffen erteilt.",
+          "summary": "Die jagdliche Ausnahme betrifft zulässige Langwaffenmunition und setzt einen gültigen Jagdschein voraus. Sie ist keine allgemeine Freigabe für jede Pistolen- oder Revolvermunition. Bei Kurzwaffen ist die passende Munitionserwerbsberechtigung zu prüfen, etwa der entsprechende Eintrag in der Waffenbesitzkarte. Nach Ablauf des Jagdscheins nicht unbesehen von unverändertem Munitionsbesitzrecht ausgehen; eine andere gültige Besitzberechtigung muss gegebenenfalls vorhanden sein.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 5; § 10 Abs. 3 Satz 1",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffengesetz § 10: Munitionserlaubnis",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__10.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffenbesitzkarten und Jahresjagdschein: Kurzübersicht",
+              "url": "https://www.vdb-waffen.de/de/service/rund_um_den_waffenkauf/wbk_kurzuebersicht.html",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-munition-berechtigung-q1",
+              "prompt": "Welche Munition erfasst das besondere Jägerprivileg des § 13 Abs. 5 unmittelbar?",
+              "choices": [
+                "Jede Munition unabhängig von Waffenart und Verboten.",
+                "Nur Munition für Kurzwaffen mit Fangschusseignung.",
+                "Nach der Norm zulässige Munition für Langwaffen."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 13 Abs. 5 bezieht sich auf Langwaffenmunition und enthält zusätzlich die Grenze des bundesjagdrechtlichen Verbots."
+            },
+            {
+              "id": "de-bund-munition-berechtigung-q2",
+              "prompt": "Du möchtest nur für eine Pistole bestimmte Munition kaufen. Reicht das allgemeine Langwaffenmunitionsprivileg aus?",
+              "choices": [
+                "Nein. Die passende Erwerbsberechtigung für diese Kurzwaffenmunition ist gesondert zu prüfen.",
+                "Ja, jeder Jagdschein deckt ausnahmslos jede Munitionsart ab.",
+                "Ja, wenn die Munition am selben Tag aufbewahrt wird."
+              ],
+              "correctIndex": 0,
+              "explanation": "Langwaffenprivileg und Berechtigung für die konkrete Kurzwaffenmunition sind auseinanderzuhalten."
+            },
+            {
+              "id": "de-bund-munition-berechtigung-q3",
+              "prompt": "Eine Waffenbesitzkarte enthält eine Munitionserwerbserlaubnis für die darin eingetragene Kurzwaffe. Was beschreibt deren Umfang richtig?",
+              "choices": [
+                "Sie erlaubt den Erwerb sämtlicher Kaliber.",
+                "Sie betrifft die Munition für die darin eingetragene Schusswaffe.",
+                "Sie ersetzt den Waffenschein für das Führen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 10 Abs. 3 Satz 1 bindet den Munitionseintrag an die eingetragenen Schusswaffen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-waffenmeldung",
+          "topic": "jagdausuebung",
+          "title": "Private Überlassung und Erwerb fristgerecht melden",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 37a Satz 1 Nr. 1 und 2; § 37g Abs. 1",
+          "officialText": "§ 37a Satz 1 Nr. 1 und 2: Der Inhaber einer Erlaubnis zum Erwerb und Besitz von Waffen nach § 10 Absatz 1 Satz 1 oder einer gleichgestellten anderen Erlaubnis zum Erwerb und Besitz sowie der Inhaber einer Erlaubnis zur nichtgewerbsmäßigen Herstellung, Bearbeitung oder Instandsetzung von Schusswaffen nach § 26 Absatz 1 Satz 1 hat der zuständigen Behörde den folgenden Umgang mit fertiggestellten Schusswaffen, deren Erwerb oder Besitz der Erlaubnis bedarf, binnen zwei Wochen schriftlich oder elektronisch anzuzeigen:\n1. die Überlassung,\n2. den Erwerb,\n[…]\n\n§ 37g Abs. 1: Der Inhaber einer Erlaubnis zum Erwerb und Besitz von Waffen nach § 10 Absatz 1 Satz 1 oder einer gleichgestellten anderen Erlaubnis zum Erwerb und Besitz hat gleichzeitig mit der Anzeige nach § 37a oder § 37b Absatz 1 die Waffenbesitzkarte und, sofern die betreffende Waffe in den Europäischen Feuerwaffenpass des Erlaubnisinhabers eingetragen ist, auch diesen zur Eintragung oder Berichtigung bei der zuständigen Behörde vorzulegen.",
+          "summary": "Beim gewöhnlichen dauerhaften privaten Waffenverkauf haben Überlasser und Erwerber eigene Pflichten. Die Anzeige erfolgt binnen zwei Wochen schriftlich oder elektronisch an die zuständige Waffenbehörde. Die Waffenbesitzkarte ist zur Eintragung beziehungsweise Berichtigung vorzulegen; ein vorhandener Europäischer Feuerwaffenpass mit dieser Waffe ist ebenfalls zu berichtigen. Die Abwicklung durch die Gegenseite ersetzt die eigene Meldung nicht. Gesetzliche Anzeigeausnahmen, etwa bestimmte vorübergehende Vorgänge, sind gesondert zu prüfen.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 37a Satz 1 Nr. 1 und 2; § 37g Abs. 1",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__37a.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffengesetz § 37g: Eintragungen und Berichtigung",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__37g.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Erwerb und Besitz von Schusswaffen durch Jagdscheininhaber",
+              "url": "https://www.zollernalbkreis.de/landratsamt/aemter%2B%2Bund%2Borganisation/jagdscheininhaber",
+              "publisher": "Landratsamt Zollernalbkreis",
+              "kind": "context"
+            },
+            {
+              "title": "Antrag auf Eintragung und Anzeige über Schusswaffenerwerb: WBK und Feuerwaffenpass",
+              "url": "https://www.landkreis-kronach.de/media/7262/eintragwaffe.pdf",
+              "publisher": "Landratsamt Kronach",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-waffenmeldung-q1",
+              "prompt": "Du überlässt deine eingetragene Büchse einem berechtigten Käufer dauerhaft. Welche eigene Pflicht bleibt dir?",
+              "choices": [
+                "Keine, allein der Käufer ist meldepflichtig.",
+                "Die Überlassung binnen zwei Wochen schriftlich oder elektronisch anzeigen.",
+                "Die Meldung erst mit der nächsten Jagdscheinverlängerung abgeben."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 37a erfasst die Überlassung und den Erwerb. Ein privater Verkäufer verlässt sich nicht allein auf die Meldung des Käufers."
+            },
+            {
+              "id": "de-bund-waffenmeldung-q2",
+              "prompt": "Welche Anzeigeform nennt § 37a für den gewöhnlichen meldepflichtigen Erwerb?",
+              "choices": [
+                "Ausschließlich persönliche mündliche Mitteilung.",
+                "Ausschließlich ein Telefonanruf.",
+                "Schriftliche oder elektronische Anzeige."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm lässt ausdrücklich die schriftliche oder elektronische Anzeige zu."
+            },
+            {
+              "id": "de-bund-waffenmeldung-q3",
+              "prompt": "Eine dauerhaft verkaufte Waffe steht auch in deinem Europäischen Feuerwaffenpass. Was ist neben der Anzeige und Waffenbesitzkarte zu beachten?",
+              "choices": [
+                "Auch den Europäischen Feuerwaffenpass zur Berichtigung vorlegen.",
+                "Der Feuerwaffenpass bleibt unverändert, weil er nur Reisen betrifft.",
+                "Der Kaufvertrag ersetzt die behördliche Berichtigung."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 37g Abs. 1 nennt beide Dokumente, wenn die betreffende Waffe im Europäischen Feuerwaffenpass eingetragen ist."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-waffenleihe",
+          "topic": "jagdausuebung",
+          "title": "Jagdlangwaffe für einen begrenzten Jagdzweck leihen",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 4; § 12 Abs. 1 Nr. 1",
+          "officialText": "§ 13 Abs. 4: Für den Erwerb und vorübergehenden Besitz gemäß § 12 Abs. 1 Nr. 1 von Langwaffen nach Absatz 1 Nr. 2 steht ein Jagdschein im Sinne von § 15 Abs. 1 Satz 1 des Bundesjagdgesetzes einer Waffenbesitzkarte gleich.\n\n§ 12 Abs. 1 Nr. 1: Einer Erlaubnis zum Erwerb und Besitz einer Waffe bedarf nicht, wer diese\n1. als Inhaber einer Waffenbesitzkarte von einem Berechtigten\na) lediglich vorübergehend, höchstens aber für einen Monat für einen von seinem Bedürfnis umfassten Zweck oder im Zusammenhang damit, oder\nb) vorübergehend zum Zweck der sicheren Verwahrung oder der Beförderung\nerwirbt;",
+          "summary": "Ein gültiger regulärer Jagdschein wird bei der vorübergehenden Übernahme einer zulässigen Jagdlangwaffe einer Waffenbesitzkarte gleichgestellt. Für eine gewöhnliche Jagdleihe nach Buchstabe a gelten ein bedürfnisgedeckter Zweck, ein berechtigter Überlasser und höchstens ein Monat. Der gesonderte Fall sicherer Verwahrung oder Beförderung nach Buchstabe b ist davon zu unterscheiden. Für Jugendjagdscheine gilt die speziell begrenzte Regel des § 13 Abs. 7.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 4; § 12 Abs. 1 Nr. 1",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffengesetz § 12: vorübergehender Erwerb",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Sicherer Umgang mit Waffen: Leihe, Verwahren und Transport",
+              "url": "https://www.vdb-waffen.de/downloads/editor/e4fx0b_de.pdf",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-waffenleihe-q1",
+              "prompt": "Ein berechtigter Jagdfreund leiht dir als regulärem Jagdscheininhaber eine zulässige Büchse für deine Jagdeinladung. Welche Obergrenze nennt die gewöhnliche bedürfnisbezogene Leihe nach § 12 Abs. 1 Nr. 1 Buchstabe a?",
+              "choices": [
+                "Ein Jahr.",
+                "Höchstens einen Monat.",
+                "Unbegrenzt, solange der Verleiher Eigentümer bleibt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die bedürfnisbezogene gewöhnliche Leihe ist ausdrücklich auf höchstens einen Monat begrenzt."
+            },
+            {
+              "id": "de-bund-waffenleihe-q2",
+              "prompt": "Jemand bietet dir ohne jede eigene Berechtigung eine erlaubnispflichtige Büchse zur Jagdleihe an. Erfüllt allein dein eigener Jagdschein die Voraussetzungen der genannten Ausnahme?",
+              "choices": [
+                "Ja, nur der Entleiher benötigt eine Berechtigung.",
+                "Ja, wenn keine Bezahlung erfolgt.",
+                "Nein. Die Übernahme muss nach der Norm von einem Berechtigten erfolgen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die gesetzliche Ausnahme nennt ausdrücklich den berechtigten Überlasser. Zusätzlich bleiben Zweck und zeitliche Grenzen zu beachten."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-jagdwaffe-fuehren",
+          "topic": "jagdausuebung",
+          "title": "Befugte Jagd und bloßer Zusammenhang: zwei Situationen",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 6 Sätze 1 und 2",
+          "officialText": "Ein Jäger darf Jagdwaffen zur befugten Jagdausübung einschließlich des Ein- und Anschießens im Revier, zur Ausbildung von Jagdhunden im Revier, zum Jagdschutz oder zum Forstschutz ohne Erlaubnis führen und mit ihnen schießen; er darf auch im Zusammenhang mit diesen Tätigkeiten die Jagdwaffen nicht schussbereit ohne Erlaubnis führen.\nDer befugten Jagdausübung gleichgestellt ist der Abschuss von Tieren, die dem Naturschutzrecht unterliegen, wenn die naturschutzrechtliche Ausnahme oder Befreiung die Tötung durch einen Jagdscheininhaber vorsieht.",
+          "summary": "§ 13 Abs. 6 ist eine zweckgebundene waffenrechtliche Erleichterung. Sie umfasst unter anderem befugte Jagdausübung und das Ein- und Anschießen im Revier. Auf dem damit zusammenhängenden Weg darf die Waffe nicht schussbereit sein. Ein gültiger Jagdschein ist kein allgemeiner Waffenschein für beliebige Alltagstätigkeiten. Jagdbefugnis, örtliche Jagdregeln und Unfallverhütung bleiben zusätzlich zu beachten.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 6 Sätze 1 und 2",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Informationen zum Waffentransport",
+              "url": "https://www.landkreis-rastatt.de/landratsamt/aemteruebersicht/amt-fuer-oeffentliche-ordnung-und-bevoelkerungsschutz/waffen-und-sprengstoffrecht/informationen-zum-waffentransport",
+              "publisher": "Landratsamt Rastatt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-jagdwaffe-fuehren-q1",
+              "prompt": "Du fährst unmittelbar zur befugten Jagdausübung ins Revier und nutzt die Erleichterung nach § 13 Abs. 6. In welchem Zustand muss die Jagdwaffe auf diesem Weg sein?",
+              "choices": [
+                "Nicht schussbereit, also ungeladen.",
+                "Geladen, sofern sie gesichert ist.",
+                "Beliebig geladen, wenn der Jagdschein griffbereit liegt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Im Zusammenhang mit der Jagd darf die Jagdwaffe ohne Waffenschein geführt werden, aber nicht schussbereit."
+            },
+            {
+              "id": "de-bund-jagdwaffe-fuehren-q2",
+              "prompt": "Welche Tätigkeit ist in § 13 Abs. 6 ausdrücklich mit der befugten Jagdausübung genannt?",
+              "choices": [
+                "Das private Probeschießen auf jedem beliebigen Grundstück.",
+                "Das Ein- und Anschießen im Revier.",
+                "Das dauernde bewaffnete Einkaufen ohne Jagdzusammenhang."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Gesetzeswortlaut nennt das Ein- und Anschießen im Revier. Die Regel ist zweckgebunden und hebt andere Sicherheits- und Jagdvorschriften nicht auf."
+            },
+            {
+              "id": "de-bund-jagdwaffe-fuehren-q3",
+              "prompt": "Ersetzt der Jagdschein einen allgemeinen Waffenschein für beliebige bewaffnete Alltagstätigkeiten?",
+              "choices": [
+                "Ja, weil er im ganzen Bundesgebiet gilt.",
+                "Ja, sobald eine Waffe in der WBK eingetragen ist.",
+                "Nein, die jagdliche Ausnahme gilt nur in ihrem gesetzlich bestimmten Zusammenhang."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Reichweite der Erleichterung ergibt sich aus den genannten Tätigkeiten und ihrem Zusammenhang."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-waffentransport",
+          "topic": "jagdausuebung",
+          "title": "Zum Schießstand oder Büchsenmacher: ungeladen und nicht zugriffsbereit",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 12 Abs. 3 Nr. 2",
+          "officialText": "Einer Erlaubnis zum Führen von Waffen bedarf nicht, wer\n[…]\n2. diese nicht schussbereit und nicht zugriffsbereit von einem Ort zu einem anderen Ort befördert, sofern der Transport der Waffe zu einem von seinem Bedürfnis umfassten Zweck oder im Zusammenhang damit erfolgt;",
+          "summary": "Beim Transport zum jagdlichen Übungsschießen oder zum Büchsenmacher gilt die allgemeine Transportausnahme: nicht schussbereit und nicht zugriffsbereit, außerdem ein vom Bedürfnis umfasster Zweck oder dessen Zusammenhang. Ein verschlossenes Transportbehältnis ist die gesetzlich ausdrücklich anerkannte Möglichkeit, die Zugriffsbereitschaft auszuschließen. Das bloße Sichern einer geladenen Waffe genügt nicht.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 12 Abs. 3 Nr. 2",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__12.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Führen und Transport nach § 12 WaffG",
+              "url": "https://www.dsb.de/recht/wichtiges-zum-waffenrecht/transport",
+              "publisher": "Deutscher Schützenbund e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Informationen zum Waffentransport",
+              "url": "https://www.landkreis-rastatt.de/landratsamt/aemteruebersicht/amt-fuer-oeffentliche-ordnung-und-bevoelkerungsschutz/waffen-und-sprengstoffrecht/informationen-zum-waffentransport",
+              "publisher": "Landratsamt Rastatt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-waffentransport-q1",
+              "prompt": "Du bringst die Büchse zur Reparatur zum Büchsenmacher und besitzt keinen Waffenschein. Welche Transportkombination erfüllt die genannten Voraussetzungen?",
+              "choices": [
+                "Geladen und gesichert im offenen Futteral.",
+                "Ungeladen und nicht zugriffsbereit im verschlossenen Waffenkoffer.",
+                "Ungeladen, aber jederzeit unmittelbar im Anschlag."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für diesen Transport müssen Nichtschussbereitschaft und Nichtzugriffsbereitschaft zusammen vorliegen."
+            },
+            {
+              "id": "de-bund-waffentransport-q2",
+              "prompt": "Du fährst zum Übungsschießen auf eine Schießstätte. Reicht die Erleichterung des unmittelbaren Jagdwegs aus, um die ungeladene Büchse offen und unmittelbar greifbar zu befördern?",
+              "choices": [
+                "Ja, jede Fahrt eines Jägers ist unmittelbare Jagdausübung.",
+                "Ja, die Einladung zum Übungsschießen ersetzt alle Transportvoraussetzungen.",
+                "Nein. Für die Fahrt zum Schießstand gilt grundsätzlich die nicht schuss- und nicht zugriffsbereite Beförderung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Schießstandfahrt und unmittelbarer Jagdweg sind rechtlich zu unterscheiden. Der Landkreis Rastatt erläutert diesen Unterschied ausdrücklich."
+            },
+            {
+              "id": "de-bund-waffentransport-q3",
+              "prompt": "Welche weitere Voraussetzung nennt § 12 Abs. 3 Nr. 2 außer dem Zustand der Waffe?",
+              "choices": [
+                "Der Transport muss einem vom Bedürfnis umfassten Zweck dienen oder damit zusammenhängen.",
+                "Ein gelbes Kennzeichen am Fahrzeug.",
+                "Die Waffe muss immer dem Transportierenden gehören."
+              ],
+              "correctIndex": 0,
+              "explanation": "Auch ein ungeladener, verschlossener Transport braucht den gesetzlich genannten Zweckzusammenhang."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-schussbereitschaft",
+          "topic": "jagdausuebung",
+          "title": "Schussbereit: Auch ein eingefügtes geladenes Magazin zählt",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "Anlage 1 Abschnitt 2 Nr. 12",
+          "officialText": "Im Sinne dieses Gesetzes\n12. ist eine Waffe schussbereit, wenn sie geladen ist, das heißt, dass Munition oder Geschosse in der Trommel, im in die Waffe eingefügten Magazin oder im Patronen- oder Geschosslager sind, auch wenn sie nicht gespannt ist;",
+          "summary": "Die gesetzliche Definition richtet sich nach dem Ladezustand, nicht nach Sicherungshebel oder Spannung. Eine Patrone im Patronenlager macht die Waffe schussbereit. Ebenso genügt Munition im eingesetzten Magazin oder in der Trommel. Ein fehlender Spannvorgang beseitigt die Schussbereitschaft nicht. Die jeweiligen Führungs- und Transportregeln sind danach anzuwenden.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) Anlage 1 Abschnitt 2 Nr. 12",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/anlage_1.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Führen und Transport nach § 12 WaffG",
+              "url": "https://www.dsb.de/recht/wichtiges-zum-waffenrecht/transport",
+              "publisher": "Deutscher Schützenbund e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-schussbereitschaft-q1",
+              "prompt": "Das Patronenlager ist leer, das eingesetzte Magazin enthält Patronen. Ist die Waffe im Sinne der gesetzlichen Definition schussbereit?",
+              "choices": [
+                "Nein, weil noch repetiert werden muss.",
+                "Nein, wenn die Sicherung eingelegt ist.",
+                "Ja, Munition im in die Waffe eingefügten Magazin genügt."
+              ],
+              "correctIndex": 2,
+              "explanation": "Anlage 1 nennt das eingesetzte Magazin neben Trommel und Patronenlager ausdrücklich."
+            },
+            {
+              "id": "de-bund-schussbereitschaft-q2",
+              "prompt": "Eine geladene Waffe ist nicht gespannt. Ändert das allein ihre Einstufung als schussbereit?",
+              "choices": [
+                "Nein, die Definition gilt ausdrücklich auch bei nicht gespannter Waffe.",
+                "Ja, erst das Spannen begründet Schussbereitschaft.",
+                "Ja, sofern die Waffe einen Sicherungshebel hat."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Gesetzestext enthält den Zusatz „auch wenn sie nicht gespannt ist“."
+            },
+            {
+              "id": "de-bund-schussbereitschaft-q3",
+              "prompt": "In der Trommel eines Revolvers befinden sich Patronen. Welche Einstufung ergibt sich aus Anlage 1 Abschnitt 2 Nr. 12?",
+              "choices": [
+                "Nicht schussbereit, solange der Hahn entspannt ist.",
+                "Schussbereit, weil sich Munition in der Trommel befindet.",
+                "Nicht schussbereit, sofern die Waffe in einem geschlossenen Koffer liegt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Das Behältnis betrifft die Zugriffsbereitschaft. Patronen in der Trommel begründen Schussbereitschaft."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-zugriffsbereitschaft",
+          "topic": "jagdausuebung",
+          "title": "Zugriffsbereit und schussbereit sind verschiedene Begriffe",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "Anlage 1 Abschnitt 2 Nr. 13",
+          "officialText": "Im Sinne dieses Gesetzes\n13. ist eine Schusswaffe zugriffsbereit, wenn sie unmittelbar in Anschlag gebracht werden kann; sie ist nicht zugriffsbereit, wenn sie in einem verschlossenen Behältnis mitgeführt wird, ein Messer ist nicht zugriffsbereit, wenn es nur mit mehr als drei Handgriffen erreicht werden kann;",
+          "summary": "Für Schusswaffen ist die unmittelbare Möglichkeit des Inanschlagbringens maßgeblich. Das Gesetz stellt das Mitführen im verschlossenen Behältnis ausdrücklich als nicht zugriffsbereit klar. Ein einfach geschlossenes, frei zu öffnendes Futteral ist nicht dieselbe eindeutige Absicherung. Die bei Messern ausdrücklich genannte Handgriffzahl wird hier nicht als gesetzliche Drei-Handgriffe- oder Drei-Sekunden-Regel für Schusswaffen ausgegeben.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) Anlage 1 Abschnitt 2 Nr. 13",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/anlage_1.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Führen und Transport nach § 12 WaffG",
+              "url": "https://www.dsb.de/recht/wichtiges-zum-waffenrecht/transport",
+              "publisher": "Deutscher Schützenbund e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Informationen zum Waffentransport",
+              "url": "https://www.landkreis-rastatt.de/landratsamt/aemteruebersicht/amt-fuer-oeffentliche-ordnung-und-bevoelkerungsschutz/waffen-und-sprengstoffrecht/informationen-zum-waffentransport",
+              "publisher": "Landratsamt Rastatt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-zugriffsbereitschaft-q1",
+              "prompt": "Welche Variante nennt das Gesetz ausdrücklich als nicht zugriffsbereit?",
+              "choices": [
+                "Eine Schusswaffe im verschlossenen Behältnis.",
+                "Eine gesicherte Schusswaffe im offenen Futteral.",
+                "Jede ungeladene Waffe unabhängig von ihrer Erreichbarkeit."
+              ],
+              "correctIndex": 0,
+              "explanation": "Das verschlossene Behältnis ist in der Definition unmittelbar genannt."
+            },
+            {
+              "id": "de-bund-zugriffsbereitschaft-q2",
+              "prompt": "Eine ungeladene Schusswaffe liegt so bereit, dass sie unmittelbar in Anschlag gebracht werden kann. Welche Aussage ist richtig?",
+              "choices": [
+                "Ungeladen bedeutet zugleich immer nicht zugriffsbereit.",
+                "Sie kann nicht schussbereit, aber dennoch zugriffsbereit sein.",
+                "Zugriffsbereitschaft ist nur bei Kurzwaffen relevant."
+              ],
+              "correctIndex": 1,
+              "explanation": "Ladezustand und unmittelbarer Zugriff betreffen verschiedene gesetzliche Begriffe."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-aufbewahrung-grundpflicht",
+          "topic": "jagdausuebung",
+          "title": "Aufbewahrung: Unbefugter Zugriff muss verhindert werden",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 36 Abs. 1",
+          "officialText": "Wer Waffen oder Munition besitzt, hat die erforderlichen Vorkehrungen zu treffen, um zu verhindern, dass diese Gegenstände abhanden kommen oder Dritte sie unbefugt an sich nehmen.",
+          "summary": "Die Sicherungspflicht betrifft Waffen und Munition. Nicht nur der Schrank, sondern auch der Umgang mit Zugangsmitteln ist entscheidend: Nichtberechtigte Haushaltsmitglieder dürfen keinen freien Zugang zu Schlüssel oder Code bekommen. Persönliches Vertrauen ersetzt keine waffenrechtliche Berechtigung. Besondere Behältnis- und Aufbewahrungsvorschriften gelten zusätzlich.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 36 Abs. 1",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__36.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Informationen zum Waffentransport",
+              "url": "https://www.landkreis-rastatt.de/landratsamt/aemteruebersicht/amt-fuer-oeffentliche-ordnung-und-bevoelkerungsschutz/waffen-und-sprengstoffrecht/informationen-zum-waffentransport",
+              "publisher": "Landratsamt Rastatt",
+              "kind": "context"
+            },
+            {
+              "title": "Aufbewahrung von Waffen: Zugang durch nichtberechtigte Haushaltsmitglieder",
+              "url": "https://www.dsb.de/aktuelles/artikel/news/aufbewahrung-von-waffen",
+              "publisher": "Deutscher Schützenbund e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-aufbewahrung-grundpflicht-q1",
+              "prompt": "Deine nicht waffenberechtigte Mitbewohnerin kennt den Code des Waffenschranks. Macht persönliches Vertrauen den freien Zugriff rechtmäßig?",
+              "choices": [
+                "Ja, im gemeinsamen Haushalt entfällt die Sicherungspflicht.",
+                "Nein. Die erforderlichen Vorkehrungen müssen den unbefugten Zugriff verhindern.",
+                "Ja, sofern die Munition im selben Schrank liegt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Grundpflicht schützt auch gegenüber nichtberechtigten Haushaltsmitgliedern; persönliche Nähe ersetzt keine Berechtigung."
+            },
+            {
+              "id": "de-bund-aufbewahrung-grundpflicht-q2",
+              "prompt": "Erfasst § 36 Abs. 1 nur Schusswaffen oder auch Munition?",
+              "choices": [
+                "Nur Waffen mit gezogenem Lauf.",
+                "Nur Kurzwaffen und deren Patronen.",
+                "Waffen und Munition."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm nennt beide ausdrücklich und verlangt Schutz gegen Abhandenkommen und unbefugte Ansichnahme."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-aufbewahrung-ungeladen",
+          "topic": "jagdausuebung",
+          "title": "Auch im passenden Tresor: Waffen ungeladen aufbewahren",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 2 Einleitungssatz; § 13 Abs. 1 Satz 1 Nr. 1 und 2",
+          "officialText": "§ 13 Abs. 2 Einleitungssatz: Wer Waffen oder Munition besitzt, hat diese ungeladen und unter Beachtung der folgenden Sicherheitsvorkehrungen und zahlenmäßigen Beschränkungen aufzubewahren:\n\n§ 13 Abs. 1 Satz 1 Nr. 1 und 2: Schusswaffen, deren Erwerb und Besitz erlaubnispflichtig sind, verbotene Waffen und verbotene Munition sind ungeladen und in einem Behältnis aufzubewahren, das\n1. mindestens der Norm DIN/EN 1143-1 (Stand Mai 1997, Oktober 2002, Februar 2006, Januar 2010, Juli 2012 oder Juli 2019) mit dem in Absatz 2 geregelten Widerstandsgrad und Gewicht entspricht und\n2. zum Nachweis dessen über eine Zertifizierung durch eine akkreditierte Stelle gemäß Absatz 10 verfügt.",
+          "summary": "Das gemeinsame Aufbewahren von Waffen und Munition in einem dafür geeigneten Tresor ist nicht dasselbe wie das Lagern geladener Waffen. Die Waffen müssen ungeladen sein. Für die gewöhnliche neue Aufbewahrung erlaubnispflichtiger Schusswaffen verlangt die Norm einen passenden Widerstandsgrad und einen zertifizierten Behältnisnachweis; gesetzlicher Altbestandsschutz oder behördlich zugelassene gleichwertige Aufbewahrung sind gesondert zu behandeln.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 2 Einleitungssatz; § 13 Abs. 1 Satz 1 Nr. 1 und 2",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Antworten auf Fragen zum neuen Waffengesetz: Aufbewahrung und Transport",
+              "url": "https://www.jagdverband.de/antworten-auf-fragen-zum-neuen-waffengesetz",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Sichere Aufbewahrung von Waffen und Munition, Mai 2019",
+              "url": "https://www.polizei.bayern.de/mam/akutelles/aufbewahrung_von_waffen_und_munition.pdf",
+              "publisher": "Bayerisches Landeskriminalamt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-aufbewahrung-ungeladen-q1",
+              "prompt": "Du darfst Munition und Büchse gemeinsam im passenden Klasse-0-Tresor lagern. Darf die Büchse deshalb mit gefülltem eingesetztem Magazin im Schrank stehen?",
+              "choices": [
+                "Nein. Die Erlaubnis gemeinsamer Lagerung hebt die Pflicht zur ungeladenen Aufbewahrung nicht auf.",
+                "Ja, sofern der Tresor abgeschlossen ist.",
+                "Ja, wenn das Patronenlager leer ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Aufbewahrungsvorschrift verlangt ungeladene Waffen; Munition im eingesetzten Magazin zählt waffenrechtlich als geladen."
+            },
+            {
+              "id": "de-bund-aufbewahrung-ungeladen-q2",
+              "prompt": "Ein neu angeschaffter gewöhnlicher Waffenschrank trägt nur eine Werbeaussage „besonders sicher“, aber keinen Nachweis der verlangten Zertifizierung. Ersetzt die Werbeaussage die gesetzlichen Anforderungen?",
+              "choices": [
+                "Ja, jede Stahlkonstruktion genügt.",
+                "Nein. Maßgeblich sind die normgerechte, zertifizierte Sicherung oder eine rechtlich zugelassene gleichwertige Alternative.",
+                "Ja, sofern der Schrank genügend Platz bietet."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 13 Abs. 1 fordert eine nachgewiesene passende Sicherheit. Andere gleichwertige Lösungen bedürfen der gesetzlichen beziehungsweise behördlichen Grundlage."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-tresor-null-leicht",
+          "topic": "jagdausuebung",
+          "title": "Widerstandsgrad 0 unter 200 Kilogramm",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 2 Nr. 3",
+          "officialText": "Wer Waffen oder Munition besitzt, hat diese ungeladen und unter Beachtung der folgenden Sicherheitsvorkehrungen und zahlenmäßigen Beschränkungen aufzubewahren:\n3. in einem Sicherheitsbehältnis, das mindestens der Norm DIN/EN 1143-1 Widerstandsgrad 0 (Stand Mai 1997, Oktober 2002, Februar 2006, Januar 2010, Juli 2012 oder Juli 2019 ) entspricht und bei dem das Gewicht des Behältnisses 200 Kilogramm unterschreitet:\na) eine unbegrenzte Anzahl von Langwaffen und insgesamt bis zu fünf nach Anlage 2 Abschnitt 1 Nummer 1.1 bis 1.2.3 und 1.2.5 des Waffengesetzes verbotene Waffen und Kurzwaffen (Anlage 1 Abschnitt 1 Unterabschnitt 1 Nummer 2.5 des Waffengesetzes), für deren Erwerb und Besitz es ihrer Art nach einer Erlaubnis bedarf, und\nb) zusätzlich eine unbegrenzte Anzahl nach Anlage 2 Abschnitt 1 Nummer 1.2.4 bis 1.2.4.2 und 1.3 bis 1.4.4 des Waffengesetzes verbotener Waffen sowie\nc) zusätzlich Munition;",
+          "summary": "Bei gewöhnlichen erlaubnispflichtigen Jagdwaffen dürfen im zertifizierten Widerstandsgrad-0-Behältnis unter 200 kg beliebig viele Langwaffen und bis zu fünf Kurzwaffen liegen, soweit die sichere tatsächliche Unterbringung möglich ist. Munition darf zusätzlich gemeinsam darin aufbewahrt werden. Die Lagerkapazität begründet keine Erwerbs- oder Besitzberechtigung für die Waffen. Die gesetzlichen Sammelgrenzen für weitere verbotene Gegenstände sind bei solchen Sonderfällen mitzubeachten.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 2 Nr. 3",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Antworten auf Fragen zum neuen Waffengesetz: Aufbewahrung und Transport",
+              "url": "https://www.jagdverband.de/antworten-auf-fragen-zum-neuen-waffengesetz",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Sichere Aufbewahrung von Waffen und Munition, Mai 2019",
+              "url": "https://www.polizei.bayern.de/mam/akutelles/aufbewahrung_von_waffen_und_munition.pdf",
+              "publisher": "Bayerisches Landeskriminalamt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-tresor-null-leicht-q1",
+              "prompt": "Ein zertifizierter Widerstandsgrad-0-Tresor wiegt 150 kg. Wie viele gewöhnliche erlaubnispflichtige Kurzwaffen erlaubt diese Regel ohne weitere Sondergegenstände höchstens?",
+              "choices": [
+                "Zehn.",
+                "Unbegrenzt.",
+                "Fünf."
+              ],
+              "correctIndex": 2,
+              "explanation": "Unter 200 kg gilt bei Widerstandsgrad 0 grundsätzlich die Fünfergrenze für Kurzwaffen beziehungsweise die im Original genannte Gesamtgruppe."
+            },
+            {
+              "id": "de-bund-tresor-null-leicht-q2",
+              "prompt": "Du besitzt acht erlaubte Jagdlangwaffen. Verbietet § 13 Abs. 2 Nr. 3 deren gemeinsame Unterbringung in einem geeigneten Klasse-0-Tresor unter 200 kg allein wegen dieser Anzahl?",
+              "choices": [
+                "Nein. Die Norm begrenzt die Zahl der Langwaffen dort nicht.",
+                "Ja, dort sind höchstens drei Langwaffen erlaubt.",
+                "Ja, die Fünfergrenze gilt für alle Lang- und Kurzwaffen zusammen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die dortige Fünfergrenze betrifft die im Gesetz genannte Gruppe der Kurzwaffen und bestimmten verbotenen Waffen, nicht die Langwaffenzahl."
+            },
+            {
+              "id": "de-bund-tresor-null-leicht-q3",
+              "prompt": "Muss zulässige Munition in einem ordnungsgemäßen Widerstandsgrad-0-Tresor getrennt von den ungeladenen Waffen aufbewahrt werden?",
+              "choices": [
+                "Ja, immer in einem eigenen Tresor anderer Klasse.",
+                "Nein. Die Norm erlaubt zusätzlich Munition im selben Behältnis.",
+                "Nur wenn mehr als eine Langwaffe gelagert wird."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Regel erlaubt gemeinsame Aufbewahrung. Die Waffen bleiben dabei ungeladen und der Zugriff auf das Behältnis ist weiterhin zu sichern."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-tresor-null-schwer-eins",
+          "topic": "jagdausuebung",
+          "title": "200-Kilogramm-Grenze und Widerstandsgrad I",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 2 Nr. 4 sowie Nr. 5 Einleitung und Buchstabe a",
+          "officialText": "Wer Waffen oder Munition besitzt, hat diese ungeladen und unter Beachtung der folgenden Sicherheitsvorkehrungen und zahlenmäßigen Beschränkungen aufzubewahren:\n4. in einem Sicherheitsbehältnis, das mindestens der Norm DIN/EN 1143-1 Widerstandsgrad 0 (Stand Mai 1997, Oktober 2002, Februar 2006, Januar 2010, Juli 2012 oder Juli 2019 ) entspricht und bei dem das Gewicht des Behältnisses mindestens 200 Kilogramm beträgt:\na) eine unbegrenzte Anzahl von Langwaffen und bis zu zehn nach Anlage 2 Abschnitt 1 Nummer 1.1 bis 1.2.3 und 1.2.5 des Waffengesetzes verbotene Waffen und Kurzwaffen (Anlage 1 Abschnitt 1 Unterabschnitt 1 Nummer 2.5 des Waffengesetzes), für deren Erwerb und Besitz es ihrer Art nach einer Erlaubnis bedarf, und\nb) zusätzlich eine unbegrenzte Anzahl nach Anlage 2 Abschnitt 1 Nummer 1.2.4 bis 1.2.4.2 und 1.3 bis 1.4.4 des Waffengesetzes verbotener Waffen sowie\nc) zusätzlich Munition;\n5. in einem Sicherheitsbehältnis, das mindestens der Norm DIN/EN 1143-1 Widerstandsgrad I (Stand Mai 1997, Oktober 2002, Februar 2006, Januar 2010, Juli 2012 oder Juli 2019 ) entspricht:\na) eine unbegrenzte Anzahl von Lang- und Kurzwaffen (Anlage 1 Abschnitt 1 Unterabschnitt 1 Nummer 2.5 des Waffengesetzes), für deren Erwerb und Besitz es ihrer Art nach einer Erlaubnis bedarf, \n[…]",
+          "summary": "Ab einem Behältnisgewicht von 200 kg erhöht sich im Widerstandsgrad 0 die gewöhnliche Kurzwaffengrenze auf zehn. Widerstandsgrad I begrenzt die Zahl gewöhnlicher erlaubnispflichtiger Lang- und Kurzwaffen nicht. Gemeint sind Aufbewahrungsgrenzen; Erwerbserlaubnis, Besitzberechtigung, ungeladener Zustand und sichere tatsächliche Unterbringung bleiben erforderlich. Sonderfälle verbotener Gegenstände richten sich nach den weiteren Gruppen der Norm.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 2 Nr. 4 und 5 Buchstabe a",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Antworten auf Fragen zum neuen Waffengesetz: Aufbewahrung und Transport",
+              "url": "https://www.jagdverband.de/antworten-auf-fragen-zum-neuen-waffengesetz",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Sichere Aufbewahrung von Waffen und Munition, Mai 2019",
+              "url": "https://www.polizei.bayern.de/mam/akutelles/aufbewahrung_von_waffen_und_munition.pdf",
+              "publisher": "Bayerisches Landeskriminalamt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-tresor-null-schwer-eins-q1",
+              "prompt": "Dein zertifizierter Klasse-0-Tresor wiegt genau 200 kg. Welche gewöhnliche Kurzwaffengrenze ergibt sich ohne zusätzliche Sondergegenstände?",
+              "choices": [
+                "Fünf, weil er mehr als 200 kg wiegen müsste.",
+                "Zehn, weil mindestens 200 kg genügt.",
+                "Unbegrenzt, sobald 200 kg erreicht sind."
+              ],
+              "correctIndex": 1,
+              "explanation": "Nr. 4 verlangt mindestens 200 kg und nennt dann bis zu zehn Kurzwaffen beziehungsweise die gesetzlich zusammengefasste Gruppe."
+            },
+            {
+              "id": "de-bund-tresor-null-schwer-eins-q2",
+              "prompt": "Du willst elf gewöhnliche erlaubnispflichtige Kurzwaffen in einem einzigen Standardtresor aufbewahren. Welche der genannten Klassen eröffnet ohne besondere behördliche Ausnahme die entsprechende unbegrenzte Aufbewahrung?",
+              "choices": [
+                "Widerstandsgrad 0 mit 200 kg.",
+                "Ein bloß verschlossener Stahlblechschrank.",
+                "Widerstandsgrad I nach der genannten Norm."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Standardregel für Widerstandsgrad I enthält keine zahlenmäßige Begrenzung für erlaubnispflichtige Lang- und Kurzwaffen."
+            },
+            {
+              "id": "de-bund-tresor-null-schwer-eins-q3",
+              "prompt": "Ein Klasse-I-Tresor hat noch Platz. Ersetzt seine unbegrenzte gesetzliche Aufbewahrungszahl die erforderliche Erwerbs- oder Besitzberechtigung?",
+              "choices": [
+                "Nein, Lagerkapazität und Berechtigung sind getrennte Voraussetzungen.",
+                "Ja, jede hineinpassende Waffe darf erworben werden.",
+                "Ja, sofern sie ungeladen ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Aufbewahrungsvorschrift regelt die Sicherung bereits berechtigt besessener Gegenstände; sie erteilt keine Erwerbserlaubnis."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-munition-aufbewahren",
+          "topic": "jagdausuebung",
+          "title": "Munition außerhalb eines gemeinsamen Waffentresors",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 2 Nr. 2",
+          "officialText": "Wer Waffen oder Munition besitzt, hat diese ungeladen und unter Beachtung der folgenden Sicherheitsvorkehrungen und zahlenmäßigen Beschränkungen aufzubewahren:\n2. mindestens in einem Stahlblechbehältnis ohne Klassifizierung mit Schwenkriegelschloss oder einer gleichwertigen Verschlussvorrichtung oder in einem gleichwertigen Behältnis: Munition, deren Erwerb nicht von der Erlaubnispflicht freigestellt ist;",
+          "summary": "Für diese Munition ist als eigene Standardaufbewahrung mindestens ein Stahlblechbehältnis mit Schwenkriegelschloss oder gleichwertiger Lösung vorgeschrieben. Ein offenes Regal genügt nicht. In einem dafür geeigneten Widerstandsgrad-0- oder -I-Tresor ist dagegen die gesetzlich zulässige gemeinsame Aufbewahrung mit ungeladenen Waffen möglich.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 2 Nr. 2",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Antworten auf Fragen zum neuen Waffengesetz: Aufbewahrung und Transport",
+              "url": "https://www.jagdverband.de/antworten-auf-fragen-zum-neuen-waffengesetz",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Sichere Aufbewahrung von Waffen und Munition, Mai 2019",
+              "url": "https://www.polizei.bayern.de/mam/akutelles/aufbewahrung_von_waffen_und_munition.pdf",
+              "publisher": "Bayerisches Landeskriminalamt",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-munition-aufbewahren-q1",
+              "prompt": "Du bewahrst erlaubnispflichtige Munition getrennt von deinen Jagdwaffen auf. Welche genannte Standardlösung entspricht § 13 Abs. 2 Nr. 2?",
+              "choices": [
+                "Ein offener Karton im Jagdzimmer.",
+                "Ein mindestens passendes Stahlblechbehältnis mit Schwenkriegelschloss oder gleichwertiger Sicherung.",
+                "Ein Stoffbeutel neben dem verschlossenen Waffenschrank."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm beschreibt das Mindestbehältnis beziehungsweise eine gleichwertige Lösung ausdrücklich."
+            },
+            {
+              "id": "de-bund-munition-aufbewahren-q2",
+              "prompt": "Die Jagdwaffen sind vorschriftsmäßig eingeschlossen, die erlaubnispflichtige Munition liegt frei zugänglich daneben. Reicht die Sicherung der Waffen allein?",
+              "choices": [
+                "Ja, weil Munition ohne Waffe nicht schießen kann.",
+                "Ja, wenn keine Kinder im Haushalt leben.",
+                "Nein. Auch für die Munition gelten eigene Sicherungsanforderungen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Waffen und Munition unterliegen der Sicherungspflicht. Die korrekte Waffenlagerung ersetzt die Munitionssicherung nicht."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-jagdhuette-aufbewahrung",
+          "topic": "jagdausuebung",
+          "title": "Nicht dauernd bewohnte Jagdhütte: besondere Grenze",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 4",
+          "officialText": "In einem nicht dauernd bewohnten Gebäude dürfen nur bis zu drei Langwaffen, zu deren Erwerb und Besitz es einer Erlaubnis bedarf, aufbewahrt werden. Die Aufbewahrung darf nur in einem mindestens der Norm DIN/EN 1143-1 Widerstandsgrad I entsprechenden Sicherheitsbehältnis erfolgen. Die zuständige Behörde kann Abweichungen in Bezug auf die Art oder Anzahl der aufbewahrten Waffen oder das Sicherheitsbehältnis auf Antrag zulassen.",
+          "summary": "Für die dauerhafte Lagerung in einer nur zeitweise genutzten Jagdhütte greift die Sonderregel für nicht dauernd bewohnte Gebäude: ohne behördliche Abweichung höchstens drei erlaubnispflichtige Langwaffen und mindestens Widerstandsgrad I. Die allgemeinen hohen Kapazitäten eines Klasse-I-Schrankes heben diese Standortgrenze nicht auf. Eine kurzfristige situationsgebundene Sicherung während einer Jagd ist gesondert nach Abs. 9 zu beurteilen.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 4",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Sichere Aufbewahrung von Waffen und Munition, Mai 2019",
+              "url": "https://www.polizei.bayern.de/mam/akutelles/aufbewahrung_von_waffen_und_munition.pdf",
+              "publisher": "Bayerisches Landeskriminalamt",
+              "kind": "context"
+            },
+            {
+              "title": "Merkblatt zur Aufbewahrung von Waffen und Munition, 28. September 2017",
+              "url": "https://www.berlin.de/polizei/_assets/service/merkblatt-aufbewahrung_2017.pdf",
+              "publisher": "Polizei Berlin",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-jagdhuette-aufbewahrung-q1",
+              "prompt": "Du möchtest vier erlaubnispflichtige Langwaffen dauerhaft in einer nur gelegentlich genutzten Jagdhütte lagern. Genügt ein Klasse-I-Tresor allein?",
+              "choices": [
+                "Nein. Ohne behördlich zugelassene Abweichung gilt dort zusätzlich die Grenze von drei Langwaffen.",
+                "Ja, Widerstandsgrad I erlaubt an jedem Standort unbegrenzt viele Waffen.",
+                "Ja, sofern keine Munition in der Hütte liegt."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 13 Abs. 4 setzt für nicht dauernd bewohnte Gebäude eine zusätzliche Anzahlgrenze."
+            },
+            {
+              "id": "de-bund-jagdhuette-aufbewahrung-q2",
+              "prompt": "Welchen Standardwiderstandsgrad verlangt § 13 Abs. 4 für die genannte Aufbewahrung von bis zu drei Langwaffen in einem nicht dauernd bewohnten Gebäude?",
+              "choices": [
+                "Klasse 0 unter 200 kg.",
+                "Mindestens Widerstandsgrad I.",
+                "Ein verschlossenes Behältnis ohne Klassifizierung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Sonderregel nennt mindestens Widerstandsgrad I. Eine abweichende Lösung darf nicht eigenmächtig angenommen werden."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-gemeinsame-aufbewahrung",
+          "topic": "jagdausuebung",
+          "title": "Gemeinsamer Haushalt: gemeinsamer Tresor nur für Berechtigte",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 8",
+          "officialText": "Die gemeinschaftliche Aufbewahrung von Waffen oder Munition durch berechtigte Personen, die in einer häuslichen Gemeinschaft leben, ist zulässig.",
+          "summary": "Zwei berechtigte Personen in häuslicher Gemeinschaft dürfen unter den übrigen Sicherungsanforderungen gemeinsam aufbewahren. Die bloße Verwandtschaft oder derselbe Wohnsitz genügt ohne die passende Berechtigung nicht. Auch beim gemeinsamen Schrank müssen Widerstandsgrad, Kapazität, ungeladene Waffen und Zugriffsschutz eingehalten werden.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 8",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Merkblatt zur Aufbewahrung von Waffen und Munition, 28. September 2017",
+              "url": "https://www.berlin.de/polizei/_assets/service/merkblatt-aufbewahrung_2017.pdf",
+              "publisher": "Polizei Berlin",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-gemeinsame-aufbewahrung-q1",
+              "prompt": "Zwei für die betreffenden Waffen berechtigte Personen leben in häuslicher Gemeinschaft. Ist gemeinschaftliche Aufbewahrung nach § 13 Abs. 8 grundsätzlich möglich?",
+              "choices": [
+                "Nein, jeder benötigt zwingend einen eigenen Tresor.",
+                "Nur bei verheirateten Paaren.",
+                "Ja, unter Einhaltung der übrigen Aufbewahrungsvorschriften."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm erlaubt gemeinschaftliche Aufbewahrung durch berechtigte Personen in häuslicher Gemeinschaft."
+            },
+            {
+              "id": "de-bund-gemeinsame-aufbewahrung-q2",
+              "prompt": "Eine Familienangehörige wohnt im selben Haushalt, besitzt aber keine passende Waffenberechtigung. Darf sie deshalb als gleichberechtigte Tresornutzerin Zugang erhalten?",
+              "choices": [
+                "Nein. Die gemeinsame Wohnung ersetzt die erforderliche Berechtigung nicht.",
+                "Ja, der gemeinsame Haushalt genügt für sich allein.",
+                "Ja, wenn die Waffen nicht ihr Eigentum sind."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 13 Abs. 8 verlangt ausdrücklich berechtigte Personen; die allgemeine Sicherungspflicht bleibt bestehen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-unterwegs-aufbewahrung",
+          "topic": "jagdausuebung",
+          "title": "Unterwegs: vorübergehende Aufbewahrung bleibt Sicherungsaufgabe",
+          "lawTitle": "Allgemeine Waffengesetz-Verordnung (AWaffV)",
+          "citation": "§ 13 Abs. 9",
+          "officialText": "Bei der vorübergehenden Aufbewahrung von Waffen im Sinne des Absatzes 1 Satz 1 oder des Absatzes 2 oder von Munition außerhalb der Wohnung, insbesondere im Zusammenhang mit der Jagd oder dem sportlichen Schießen, hat der Verpflichtete die Waffen oder Munition unter angemessener Aufsicht aufzubewahren oder durch sonstige erforderliche Vorkehrungen gegen Abhandenkommen oder unbefugte Ansichnahme zu sichern, wenn die Aufbewahrung gemäß den Anforderungen des Absatzes 1 und 2 nicht möglich ist.",
+          "summary": "Ist auf einer Jagdreise die gewöhnliche sichere Aufbewahrung nicht möglich, entfällt die Verantwortung nicht. Waffen und Munition müssen angemessen beaufsichtigt oder durch erforderliche andere Maßnahmen gegen Verlust und unbefugten Zugriff gesichert werden. Die geeignete Lösung hängt von der konkreten Situation ab. Ein geschlossener Raum oder ein Fahrzeug wird hier nicht pauschal als für jede Dauer und jeden Ort ausreichend erklärt.",
+          "sources": [
+            {
+              "title": "Allgemeine Waffengesetz-Verordnung (AWaffV) § 13 Abs. 9",
+              "url": "https://www.gesetze-im-internet.de/awaffv/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Merkblatt zur Aufbewahrung von Waffen und Munition, 28. September 2017",
+              "url": "https://www.berlin.de/polizei/_assets/service/merkblatt-aufbewahrung_2017.pdf",
+              "publisher": "Polizei Berlin",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-unterwegs-aufbewahrung-q1",
+              "prompt": "Auf einer Jagdreise ist die gewöhnliche Tresoraufbewahrung vorübergehend nicht möglich. Was verlangt § 13 Abs. 9?",
+              "choices": [
+                "Für Reisen gelten überhaupt keine Sicherungspflichten.",
+                "Angemessene Aufsicht oder andere erforderliche Vorkehrungen gegen Abhandenkommen und unbefugte Ansichnahme.",
+                "Nur das Mitführen des Jagdscheins, ohne weitere Sicherung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Sonderregel ersetzt die normalen Behältnisanforderungen situationsbezogen, beseitigt aber nicht den notwendigen Schutz."
+            },
+            {
+              "id": "de-bund-unterwegs-aufbewahrung-q2",
+              "prompt": "Darfst du aus § 13 Abs. 9 ableiten, dass ein Fahrzeug unabhängig von Ort, Dauer und Situation immer eine ausreichende Lagerstätte ist?",
+              "choices": [
+                "Ja, jedes abgeschlossene Fahrzeug genügt uneingeschränkt.",
+                "Ja, solange die Waffen darin nicht sichtbar sind.",
+                "Nein. Die tatsächlich erforderlichen Schutzmaßnahmen bleiben im Einzelfall zu beurteilen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm fordert angemessene Aufsicht oder erforderliche Vorkehrungen; eine pauschale Freigabe jeder Fahrzeuglagerung enthält sie nicht."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-jugend-waffen",
+          "topic": "jagdausuebung",
+          "title": "Jugendjagdschein: keine dauerhafte Waffenbesitzerlaubnis",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 7",
+          "officialText": "Inhabern eines Jugendjagdscheines im Sinne von § 16 des Bundesjagdgesetzes wird eine Erlaubnis zum Erwerb und Besitz von Schusswaffen und der dafür bestimmten Munition nicht erteilt.\nSie dürfen Schusswaffen und die dafür bestimmte Munition nur für die Dauer der Ausübung der Jagd oder des Trainings im jagdlichen Schießen einschließlich jagdlicher Schießwettkämpfe ohne Erlaubnis erwerben, besitzen, die Schusswaffen führen und damit schießen; sie dürfen auch im Zusammenhang mit diesen Tätigkeiten die Jagdwaffen nicht schussbereit ohne Erlaubnis führen.",
+          "summary": "Der Jugendjagdschein eröffnet keinen gewöhnlichen dauerhaften Waffenerwerb. Die Ausnahme ist an die Dauer der Jagdausübung oder des jagdlichen Trainings einschließlich Wettkämpfen gebunden. Im Zusammenhang damit darf eine Jagdwaffe nur nicht schussbereit geführt werden. Begleitung und Ausschluss von Gesellschaftsjagden nach § 16 BJagdG gelten daneben weiter.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 7",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffenbesitzkarten und Jahresjagdschein: Kurzübersicht",
+              "url": "https://www.vdb-waffen.de/de/service/rund_um_den_waffenkauf/wbk_kurzuebersicht.html",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Waffen und Sprengstoffe: Schalldämpfer und Jugendjagdschein",
+              "url": "https://www.landkreis-miesbach.de/Bauen-Sicherheit-Umwelt/Bauen-und-Sicherheit/%C3%96ffentliche-Sicherheit-und-Katastrophenschutz/Waffen-und-Sprengstoffe/",
+              "publisher": "Landratsamt Miesbach",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-jugend-waffen-q1",
+              "prompt": "Eine 17-jährige Person mit Jugendjagdschein möchte eine eigene Jagdbüchse auf Dauer erwerben und dafür eine Waffenbesitzkarte erhalten. Welche Regel ist einschlägig?",
+              "choices": [
+                "Das Jugendjagdscheinprivileg ermöglicht denselben dauerhaften Erwerb wie ein regulärer Jahresjagdschein.",
+                "Die Eltern können die Erwerbserlaubnis durch eine einfache Zustimmung ersetzen.",
+                "§ 13 Abs. 7 schließt die Erteilung dieser Erwerbs- und Besitzerlaubnis an Jugendjagdscheininhaber aus."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die zeitlich begrenzte jagdliche Übernahme ist von einer regulären dauerhaften Erwerbs- und Besitzerlaubnis zu unterscheiden."
+            },
+            {
+              "id": "de-bund-jugend-waffen-q2",
+              "prompt": "Für welchen Zweck darf ein Jugendjagdscheininhaber im Rahmen des § 13 Abs. 7 vorübergehend Jagdwaffen und passende Munition besitzen?",
+              "choices": [
+                "Für die Dauer der Jagd oder des jagdlichen Trainings einschließlich jagdlicher Schießwettkämpfe.",
+                "Für beliebige private Aufbewahrung während der gesamten Jugendjagdscheinlaufzeit.",
+                "Nur zum Anschauen im Geschäft, niemals zum jagdlichen Training."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm nennt die zeitgebundenen Zwecke ausdrücklich. Die übrigen jagdlichen und sicherheitsrechtlichen Vorgaben bleiben zu beachten."
+            },
+            {
+              "id": "de-bund-jugend-waffen-q3",
+              "prompt": "Darf ein Jugendjagdscheininhaber eine überlassene Jagdwaffe im Zusammenhang mit den nach § 13 Abs. 7 erlaubten Tätigkeiten geladen führen?",
+              "choices": [
+                "Ja, sobald die Eltern zugestimmt haben.",
+                "Nein. Für den bloßen Zusammenhang verlangt die Vorschrift nicht schussbereites Führen.",
+                "Ja, weil er die Waffe nicht dauerhaft besitzt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für den Zusammenhang mit diesen Tätigkeiten enthält § 13 Abs. 7 dieselbe Grenze der Nichtschussbereitschaft."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-jagdausbildung-waffen",
+          "topic": "jagdausuebung",
+          "title": "Ab 14 in der Ausbildung: Bescheinigung und Aufsicht",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 8; § 27 Abs. 5",
+          "officialText": "§ 13 Abs. 8: Personen in der Ausbildung zum Jäger dürfen nicht schussbereite Jagdwaffen in der Ausbildung ohne Erlaubnis unter Aufsicht eines Ausbilders erwerben, besitzen und führen, wenn sie das 14. Lebensjahr vollendet haben und der Sorgeberechtigte und der Ausbildungsleiter ihr Einverständnis in einer schriftlichen oder elektronischen Berechtigungsbescheinigung erklärt haben. Die Person hat in der Ausbildung die Berechtigungsbescheinigung mit sich zu führen.\n\n§ 27 Abs. 5: Personen in der Ausbildung zum Jäger dürfen in der Ausbildung ohne Erlaubnis mit Jagdwaffen schießen, wenn sie das 14. Lebensjahr vollendet haben und der Sorgeberechtigte und der Ausbildungsleiter ihr Einverständnis in einer schriftlichen oder elektronischen Berechtigungsbescheinigung erklärt haben. Die Person hat in der Ausbildung die Berechtigungsbescheinigung mit sich zu führen.",
+          "summary": "Für die besondere jagdliche Ausbildungsausnahme ist das vollendete 14. Lebensjahr erforderlich. Beim Umgang nach § 13 Abs. 8 müssen die Jagdwaffen nicht schussbereit sein und die Aufsicht durch einen Ausbilder ist vorgeschrieben. Sorgeberechtigter und Ausbildungsleiter erklären ihr Einverständnis in der mitzuführenden schriftlichen oder elektronischen Berechtigungsbescheinigung. Das Ausbildungsschießen richtet sich gesondert nach § 27 Abs. 5 und den Schießstätten-/Aufsichtsvorschriften. Diese Regeln erlauben noch keine selbständige Jagdausübung.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 8; § 27 Abs. 5",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffengesetz § 27: Ausbildungsschießen",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__27.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "DJV-Schießvorschrift 2024: Aufsicht und jagdliche Ausbildung",
+              "url": "https://www.jagdverband.de/sites/default/files/2024-03/DJV-Schie%C3%9Fvorschrift_01-04-24_Neu.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-jagdausbildung-waffen-q1",
+              "prompt": "Eine 13-jährige Person befindet sich in der Jagdausbildung. Reicht die Zustimmung der Eltern für die besondere Ausbildungsausnahme des § 13 Abs. 8 aus?",
+              "choices": [
+                "Nein, diese Ausnahme setzt das vollendete 14. Lebensjahr voraus.",
+                "Ja, bei jeder beliebigen Jagdwaffe.",
+                "Ja, ein Prüfungszeugnis des Ausbilders ersetzt das Alter."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Altersgrenze dieser speziellen Ausnahme beträgt 14 Jahre. Andere gesetzliche Sonderfälle werden damit nicht pauschal ausgeschlossen oder zugesagt."
+            },
+            {
+              "id": "de-bund-jagdausbildung-waffen-q2",
+              "prompt": "Wer erklärt für die genannte besondere Ausbildungsausnahme sein Einverständnis in der Berechtigungsbescheinigung?",
+              "choices": [
+                "Nur der Ausbildungsleiter.",
+                "Der Sorgeberechtigte und der Ausbildungsleiter.",
+                "Nur die ausgebildete Person selbst."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm nennt beide. Die schriftliche oder elektronische Bescheinigung ist während der Ausbildung mitzuführen."
+            },
+            {
+              "id": "de-bund-jagdausbildung-waffen-q3",
+              "prompt": "Eine 14-jährige Jagdschülerin übt außerhalb des eigentlichen Schießvorgangs den Umgang mit einer Jagdwaffe nach § 13 Abs. 8. Welche Kombination verlangt diese Vorschrift?",
+              "choices": [
+                "Geladene Waffe ohne Ausbilder, sobald die Bescheinigung vorliegt.",
+                "Geladene Waffe unter beliebiger erwachsener Begleitung.",
+                "Nicht schussbereite Waffe unter Aufsicht eines Ausbilders und mit der erforderlichen Bescheinigung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Aufsicht und der nicht schussbereite Zustand sind eigenständige Anforderungen dieser Umgangsausnahme. Für das Schießen ist § 27 Abs. 5 gesondert heranzuziehen."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-schalldaempfer-bund",
+          "topic": "jagdausuebung",
+          "title": "Schalldämpfer: Waffenrecht und örtliche Jagderlaubnis trennen",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 13 Abs. 9",
+          "officialText": "Auf Schalldämpfer finden die Absätze 1 bis 4 und 6 bis 8 entsprechende Anwendung. Die Schalldämpfer gemäß Satz 1 dürfen ausschließlich mit für die Jagd zugelassenen Langwaffen für Munition mit Zentralfeuerzündung im Rahmen der Jagd und des jagdlichen Übungsschießens verwendet werden.",
+          "summary": "Für das jagdliche Schalldämpferprivileg gelten die in § 13 Abs. 9 genannten Erwerbs- und Umgangsregeln entsprechend. Der reguläre Jahresjagdscheininhaber benötigt für den so erfassten Erwerb keinen Voreintrag; die fristgerechte Eintragung bleibt erforderlich. Die privilegierte Verwendung ist auf jagdlich zugelassene Zentralfeuer-Langwaffen bei der Jagd und beim jagdlichen Übungsschießen begrenzt. Eine waffenrechtliche Erleichterung hebt örtliche jagdrechtliche Verbote oder erforderliche Ausnahmen nicht automatisch auf.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 13 Abs. 9",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__13.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Schalldämpfer und Nachtzieltechnik: waffenrechtliche Voraussetzungen und jagdrechtliche Verfügung",
+              "url": "https://www.lra-bgl.de/lw/umwelt-natur/jagd/schalldaempfer/",
+              "publisher": "Landratsamt Berchtesgadener Land",
+              "kind": "context"
+            },
+            {
+              "title": "Waffen und Sprengstoffe: Schalldämpfer und Jugendjagdschein",
+              "url": "https://www.landkreis-miesbach.de/Bauen-Sicherheit-Umwelt/Bauen-und-Sicherheit/%C3%96ffentliche-Sicherheit-und-Katastrophenschutz/Waffen-und-Sprengstoffe/",
+              "publisher": "Landratsamt Miesbach",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-schalldaempfer-bund-q1",
+              "prompt": "Welche Waffen-/Munitionskombination nennt § 13 Abs. 9 für die privilegierte Verwendung eines Schalldämpfers?",
+              "choices": [
+                "Jede Kurzwaffe, sofern der Schalldämpfer eingetragen ist.",
+                "Für die Jagd zugelassene Langwaffen für Munition mit Zentralfeuerzündung.",
+                "Alle Randfeuerwaffen allein aufgrund eines Jagdscheins."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Wortlaut grenzt die privilegierte Verwendung ausdrücklich auf diese Kombination ein."
+            },
+            {
+              "id": "de-bund-schalldaempfer-bund-q2",
+              "prompt": "Du erwirbst als regulärer Jahresjagdscheininhaber einen vom Privileg erfassten Schalldämpfer ohne Voreintrag. Entfällt deshalb die anschließende behördliche Eintragung?",
+              "choices": [
+                "Nein, die entsprechend geltenden Erwerbs- und Melde-/Eintragungsregeln bleiben zu beachten.",
+                "Ja, Schalldämpfer werden generell nicht in der WBK dokumentiert.",
+                "Ja, wenn er zusammen mit einer Büchse gekauft wird."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Erwerbserleichterung ist keine Registrierungsbefreiung. Die behördlichen Informationen nennen die Eintragung binnen zwei Wochen."
+            },
+            {
+              "id": "de-bund-schalldaempfer-bund-q3",
+              "prompt": "Das Waffengesetz erleichtert den Schalldämpferumgang. Darfst du daraus ohne Weiteres auf die jagdrechtliche Zulässigkeit an jedem Jagdort schließen?",
+              "choices": [
+                "Ja, Bundeswaffenrecht ersetzt alle örtlichen Jagdregeln.",
+                "Ja, sobald das Übungsschießen erlaubt ist.",
+                "Nein, das am Jagdort geltende Jagdrecht und erforderliche Ausnahmen sind zusätzlich zu prüfen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Behörden erläutern Erwerbsrecht und jagdrechtliche Zulässigkeit getrennt. Eine örtliche Ausnahme gilt nur in ihrem jeweiligen Geltungsbereich."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-tierbetreuung",
+          "topic": "wildschutz",
+          "title": "Jagdhund und andere betreute Tiere: tägliche Pflichten",
+          "lawTitle": "Tierschutzgesetz (TierSchG)",
+          "citation": "§ 2",
+          "officialText": "Wer ein Tier hält, betreut oder zu betreuen hat,\n1. muss das Tier seiner Art und seinen Bedürfnissen entsprechend angemessen ernähren, pflegen und verhaltensgerecht unterbringen,\n2. darf die Möglichkeit des Tieres zu artgemäßer Bewegung nicht so einschränken, dass ihm Schmerzen oder vermeidbare Leiden oder Schäden zugefügt werden,\n3. muss über die für eine angemessene Ernährung, Pflege und verhaltensgerechte Unterbringung des Tieres erforderlichen Kenntnisse und Fähigkeiten verfügen.",
+          "summary": "Die Grundpflichten betreffen nicht nur Eigentümer, sondern auch Personen, die ein Tier betreuen oder zu betreuen haben. Bei Jagdhunden gehören angemessene Ernährung und Pflege, verhaltensgerechte Unterbringung und artgemäße Bewegung dazu. Die Betreuungsperson benötigt die hierfür erforderlichen Kenntnisse und Fähigkeiten. Weitergehende Regeln der Tierschutz-Hundeverordnung und örtliches Hunderecht gelten zusätzlich; ein bundesweit identischer besonderer Hundeführerschein wird hier nicht behauptet.",
+          "sources": [
+            {
+              "title": "Tierschutzgesetz (TierSchG) § 2",
+              "url": "https://www.gesetze-im-internet.de/tierschg/__2.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Tiergerechte Haltung: Pflichten von Tierhaltern und Tierbetreuern",
+              "url": "https://mlr.baden-wuerttemberg.de/de/unsere-themen/tierschutz-tiergesundheit/tierschutz/tierhaltung/",
+              "publisher": "Ministerium für Ländlichen Raum, Landwirtschaft und Heimat Baden-Württemberg",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-tierbetreuung-q1",
+              "prompt": "Du betreust den Jagdhund eines Freundes während dessen Abwesenheit. Gelten die Pflichten aus § 2 auch für dich?",
+              "choices": [
+                "Nur der Eigentümer trägt diese Pflichten.",
+                "Ja, die Norm erfasst auch Personen, die das Tier betreuen oder zu betreuen haben.",
+                "Nur wenn du für die Betreuung bezahlt wirst."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Verantwortung ist nicht allein an Eigentum oder Bezahlung gebunden."
+            },
+            {
+              "id": "de-bund-tierbetreuung-q2",
+              "prompt": "Welche Beurteilung verlangt § 2 für die Bewegungsmöglichkeiten eines gehaltenen Jagdhunds?",
+              "choices": [
+                "Bewegung darf unabhängig von ihren Folgen auf ein Minimum begrenzt werden.",
+                "Für Jagdhunde gilt § 2 außerhalb der Jagdsaison nicht.",
+                "Die artgemäße Bewegung darf nicht so eingeschränkt werden, dass Schmerzen oder vermeidbare Leiden oder Schäden entstehen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm knüpft an artgemäße Bewegung und die Folgen der Einschränkung an. Weitere Hundehaltungsregeln konkretisieren diese Grundpflicht."
+            },
+            {
+              "id": "de-bund-tierbetreuung-q3",
+              "prompt": "Reicht es für eine tiergerechte Betreuung, nur ausreichend Futter bereitzustellen?",
+              "choices": [
+                "Nein. Auch Pflege, verhaltensgerechte Unterbringung und die erforderlichen Kenntnisse und Fähigkeiten gehören dazu.",
+                "Ja, die weiteren Anforderungen sind freiwillig.",
+                "Ja, sofern der Hund jagdlich ausgebildet ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 2 nennt mehrere eigenständige Anforderungen; jagdliche Ausbildung ersetzt sie nicht."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-tiertoetung",
+          "topic": "wildschutz",
+          "title": "Wirbeltier töten: Sachkunde, Schmerzvermeidung und vernünftiger Grund",
+          "lawTitle": "Tierschutzgesetz (TierSchG)",
+          "citation": "§ 4 Abs. 1; § 17 Einleitung und Nr. 1",
+          "officialText": "§ 4 Abs. 1: Ein Wirbeltier darf nur unter wirksamer Schmerzausschaltung (Betäubung) in einem Zustand der Wahrnehmungs- und Empfindungslosigkeit oder sonst, soweit nach den gegebenen Umständen zumutbar, nur unter Vermeidung von Schmerzen getötet werden. Ist die Tötung eines Wirbeltieres ohne Betäubung im Rahmen weidgerechter Ausübung der Jagd oder auf Grund anderer Rechtsvorschriften zulässig oder erfolgt sie im Rahmen zulässiger Schädlingsbekämpfungsmaßnahmen, so darf die Tötung nur vorgenommen werden, wenn hierbei nicht mehr als unvermeidbare Schmerzen entstehen. Ein Wirbeltier töten darf nur, wer die dazu notwendigen Kenntnisse und Fähigkeiten hat.\n\n§ 17 Einleitung und Nr. 1: Mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe wird bestraft, wer\n1. ein Wirbeltier ohne vernünftigen Grund tötet oder\n[…]",
+          "summary": "Auch bei einer zulässigen Tötung ohne vorherige Betäubung im Rahmen weidgerechter Jagd dürfen nur unvermeidbare Schmerzen entstehen. Wer ein Wirbeltier tötet, braucht die dafür notwendigen Kenntnisse und Fähigkeiten. Daneben ist ein vernünftiger Grund erforderlich; die Tötung ohne solchen Grund ist nach § 17 Nr. 1 strafbar. Die Bewertung eines konkreten Falls ersetzt keine Prüfung von Jagdbefugnis, Artenschutz und örtlichen Vorschriften.",
+          "sources": [
+            {
+              "title": "Tierschutzgesetz (TierSchG) § 4 Abs. 1; § 17 Einleitung und Nr. 1",
+              "url": "https://www.gesetze-im-internet.de/tierschg/__4.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Tierschutzgesetz § 17: Tötung ohne vernünftigen Grund",
+              "url": "https://www.gesetze-im-internet.de/tierschg/__17.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Töten und Schlachten von Tieren",
+              "url": "https://www.ml.niedersachsen.de/startseite/themen/tiergesundheit_tierschutz/tierschutz_allgemein/toeten-und-schlachten-von-tieren-5058.html",
+              "publisher": "Niedersächsisches Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-tiertoetung-q1",
+              "prompt": "Bei weidgerechter Jagd ist eine Tötung ohne vorherige Betäubung zulässig. Entfällt damit die Pflicht zur Schmerzvermeidung?",
+              "choices": [
+                "Nein. Es dürfen dabei nicht mehr als unvermeidbare Schmerzen entstehen.",
+                "Ja, die jagdliche Ausnahme beseitigt jede tierschutzrechtliche Grenze.",
+                "Ja, sofern das Tier jagdbar ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 4 Abs. 1 Satz 2 enthält für diese Ausnahme ausdrücklich die Grenze unvermeidbarer Schmerzen."
+            },
+            {
+              "id": "de-bund-tiertoetung-q2",
+              "prompt": "Wer darf ein Wirbeltier töten, wenn die Tötung im Übrigen rechtmäßig ist?",
+              "choices": [
+                "Jede volljährige Person ohne weitere Anforderungen.",
+                "Nur wer die dazu notwendigen Kenntnisse und Fähigkeiten hat.",
+                "Jede Person, die Eigentümer des Grundstücks ist."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die erforderlichen Kenntnisse und Fähigkeiten verlangt § 4 Abs. 1 Satz 3 unabhängig davon, wer das Grundstück besitzt."
+            },
+            {
+              "id": "de-bund-tiertoetung-q3",
+              "prompt": "Welche Rechtsfolge nennt § 17 Nr. 1 für das Töten eines Wirbeltiers ohne vernünftigen Grund?",
+              "choices": [
+                "Ausschließlich einen freiwilligen Hinweis ohne mögliche Sanktion.",
+                "Immer nur ein Verwarnungsgeld ohne Strafbarkeit.",
+                "Freiheitsstrafe bis zu drei Jahren oder Geldstrafe."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm enthält einen Straftatbestand. Ein Jagdschein allein ist kein vernünftiger Grund für jede beliebige Tötung."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-waffenerlaubnisse-trennen",
+          "topic": "jagdausuebung",
+          "title": "Waffenbesitzkarte, Waffenschein und Schießerlaubnis",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 10 Abs. 1 Satz 1, Abs. 4 Satz 1 und Abs. 5",
+          "officialText": "§ 10 Abs. 1 Satz 1: Die Erlaubnis zum Erwerb und Besitz von Waffen wird durch eine Waffenbesitzkarte oder durch Eintragung in eine bereits vorhandene Waffenbesitzkarte erteilt.\n\n§ 10 Abs. 4 Satz 1: Die Erlaubnis zum Führen einer Waffe wird durch einen Waffenschein erteilt.\n\n§ 10 Abs. 5: Die Erlaubnis zum Schießen mit einer Schusswaffe wird durch einen Erlaubnisschein erteilt.",
+          "summary": "Das Waffengesetz trennt Erwerb und Besitz, Führen und Schießen. Eine Waffenbesitzkarte ist deshalb kein allgemeiner Waffenschein und keine allgemeine Schießerlaubnis für jeden Ort. Die jagdlichen Erleichterungen und andere gesetzliche Ausnahmen, etwa Schießen auf einer zugelassenen Schießstätte, sind jeweils gesondert anzuwenden. Entscheidend ist die konkrete Tätigkeit, nicht nur der Name eines mitgeführten Dokuments.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 10 Abs. 1 Satz 1, Abs. 4 Satz 1 und Abs. 5",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__10.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Waffenschein und Waffenbesitzkarte: verschiedene waffenrechtliche Erlaubnisse",
+              "url": "https://service.jena.de/de/waffenschein-und-waffenbesitzkarte",
+              "publisher": "Stadt Jena",
+              "kind": "context"
+            },
+            {
+              "title": "Führen und Transport nach § 12 WaffG",
+              "url": "https://www.dsb.de/recht/wichtiges-zum-waffenrecht/transport",
+              "publisher": "Deutscher Schützenbund e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-waffenerlaubnisse-trennen-q1",
+              "prompt": "Du besitzt eine Waffenbesitzkarte für deine Büchse. Berechtigt diese Karte allein zum beliebigen Führen der Waffe in der Öffentlichkeit?",
+              "choices": [
+                "Ja, Besitz und Führen sind dasselbe.",
+                "Nein. Führen ist eine eigene Erlaubniskategorie; gesetzliche Ausnahmen sind gesondert zu prüfen.",
+                "Ja, sofern die Waffe dir gehört."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die WBK betrifft Erwerb und Besitz; § 10 Abs. 4 regelt das Führen gesondert."
+            },
+            {
+              "id": "de-bund-waffenerlaubnisse-trennen-q2",
+              "prompt": "Welche Aussage beschreibt den Zusammenhang von Jagdschein und waffenrechtlichen Ausnahmen richtig?",
+              "choices": [
+                "Der Jagdschein ist eine uneingeschränkte Schießerlaubnis für jedes Grundstück.",
+                "Eine WBK ersetzt ausnahmslos alle Erlaubnisse zum Schießen.",
+                "Für eine konkrete jagdliche Tätigkeit kann eine gesetzliche Ausnahme greifen; daraus folgt keine allgemeine Freigabe jeder Schussabgabe."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Tätigkeiten und Bedingungen der Ausnahme sind entscheidend. Die Erlaubniskategorien bleiben rechtlich verschieden."
+            }
+          ]
+        },
+        {
+          "id": "de-bund-waffendokumente",
+          "topic": "jagdausuebung",
+          "title": "Persönliche Dokumente und Nachweis bei Leihwaffen",
+          "lawTitle": "Waffengesetz (WaffG)",
+          "citation": "§ 38 Abs. 1 Satz 1 Nr. 1 Einleitung, Buchstabe a und f sowie Nr. 2",
+          "officialText": "Wer eine Waffe führt, muss folgende Dokumente mit sich führen:\n1. seinen Personalausweis oder Pass und\na) wenn es einer Erlaubnis zum Erwerb bedarf, die Waffenbesitzkarte oder, wenn es einer Erlaubnis zum Führen bedarf, den Waffenschein,\n[…]\nf) im Fall der vorübergehenden Berechtigung zum Erwerb oder zum Führen auf Grund des § 12 Absatz 1 Nummer 1 und 2 oder § 28 Absatz 4 einen Beleg, aus dem der Name des Überlassers und des Besitzberechtigten sowie das Datum der Überlassung hervorgeht, oder\n[…]\n2. in den Fällen des § 13 Absatz 6 den Jagdschein.",
+          "summary": "Bei der Jagdausübung mit eigener, bereits eingetragener Jagdwaffe sind grundsätzlich Personalausweis oder Pass, Waffenbesitzkarte und Jagdschein mitzuführen. Bei einer nach § 12 Abs. 1 Nr. 1 überlassenen Leihwaffe kommt der gesetzlich geforderte Beleg mit den Namen beider Beteiligten und dem Überlassungsdatum hinzu. Sonderfälle wie der gerade erfolgte Erwerb vor Eintragung sind nach den weiteren Sätzen des § 38 zu prüfen; diese Auswahl behauptet keine vollständige Liste aller Reise- und Auslandspapiere.",
+          "sources": [
+            {
+              "title": "Waffengesetz (WaffG) § 38 Abs. 1 Satz 1 Nr. 1 Einleitung, Buchstabe a und f sowie Nr. 2",
+              "url": "https://www.gesetze-im-internet.de/waffg_2002/__38.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "kind": "law"
+            },
+            {
+              "title": "Sicherer Umgang mit Waffen: Leihe, Verwahren und Transport",
+              "url": "https://www.vdb-waffen.de/downloads/editor/e4fx0b_de.pdf",
+              "publisher": "Verband Deutscher Büchsenmacher und Waffenfachhändler e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Amtlicher Rechtsfragenkatalog: waffenrechtliche Dokumente bei der Jagdausübung (Stand 23. November 2023)",
+              "url": "https://rp-kassel.hessen.de/sites/rp-kassel.hessen.de/files/2023-11/2023-11-23-jaegerpruefungsfragen_sachgebiet_4_recht.pdf",
+              "publisher": "Regierungspräsidium Kassel",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-bund-waffendokumente-q1",
+              "prompt": "Du gehst mit deiner eigenen, bereits in deiner WBK eingetragenen Jagdwaffe zur befugten Jagd. Welche Grundausstattung an Dokumenten entspricht den genannten Anforderungen?",
+              "choices": [
+                "Jagdschein, Waffenbesitzkarte und Personalausweis oder Pass.",
+                "Nur ein Foto des Jagdscheins auf dem Telefon.",
+                "Nur das Prüfungszeugnis und der Kaufbeleg der Waffe."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Anforderungen aus § 38 kommen neben der jagdrechtlichen Mitführpflicht zum Tragen."
+            },
+            {
+              "id": "de-bund-waffendokumente-q2",
+              "prompt": "Was muss der Beleg bei einer von § 38 Abs. 1 Nr. 1 Buchstabe f erfassten vorübergehenden Waffenüberlassung erkennen lassen?",
+              "choices": [
+                "Nur das Kaliber, ohne persönliche Angaben.",
+                "Name des Überlassers, Name des Besitzberechtigten und Datum der Überlassung.",
+                "Nur die Jagdstrecke des letzten Jahres."
+              ],
+              "correctIndex": 1,
+              "explanation": "Diese drei Angaben nennt § 38 ausdrücklich; der Leihbeleg dokumentiert die konkrete vorübergehende Berechtigung."
+            }
+          ]
         }
       ],
-      "notes": "Ausgewählte Grundlagen. Abweichendes bzw. ergänzendes Landesrecht ist stets über die Jagdregion zu prüfen. Kein vollständiger Bundesrechts- oder amtlicher Prüfungsfragenkatalog.",
+      "notes": "Bundesweit einheitliche ausgewählte Jagdschein-, Waffen- und Tierschutzgrundlagen mit eigenen Lernfragen. Landesrechtliche Jagdausübung, Jagdzeiten und örtliche Verfügungen werden nicht durch unqualifizierte Bundesfragen ersetzt. Kein vollständiger amtlicher Prüfungsfragenkatalog.",
       "examResources": [
         {
           "title": "Bundesrechtlicher Rahmen der Jägerprüfung und Jagdscheine",
@@ -345,6 +2071,396 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-eigenjagd",
+          "topic": "jagdausuebung",
+          "title": "Eigenjagd: zusammenhängende Nutzfläche und Eigentum",
+          "citation": "§ 10 Abs. 1 JWMG",
+          "officialText": "(1) Zusammenhängende Grundflächen mit einer land-, forst- oder fischereiwirtschaftlich nutzbaren Fläche von mindestens 75 Hektar, die im Eigentum ein und derselben Person oder Personengemeinschaft stehen, bilden einen Eigenjagdbezirk.",
+          "summary": "Der Regelfall eines Eigenjagdbezirks verlangt in Baden-Württemberg mindestens 75 Hektar zusammenhängende land-, forst- oder fischereiwirtschaftlich nutzbare Fläche und einheitliches Eigentum derselben Person oder Personengemeinschaft. Eine bloße Summe voneinander unabhängiger Grundstücke verschiedener Eigentümer genügt nicht. Die Feststellung eines Jagdbezirks ersetzt weder einen persönlichen Jagdschein noch die sonst erforderliche Befugnis zur Jagdausübung.",
+          "sources": [
+            {
+              "title": "§ 10 JWMG: Eigenjagdbezirke",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000025",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdverpachtung: Eigenjagdbezirke und gemeinschaftliche Jagdbezirke",
+              "url": "https://www.pforzheim.de/stadt/umwelt-natur/wald-und-forstwirtschaft/jagdverpachtung/faqs-haeufige-fragen.html",
+              "publisher": "Stadt Pforzheim",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-eigenjagd-q1",
+              "prompt": "Eine Person besitzt in Baden-Württemberg eine zusammenhängende, landwirtschaftlich nutzbare Fläche. Welche Größe erfüllt die reguläre Mindestfläche eines Eigenjagdbezirks nach § 10 Abs. 1 JWMG?",
+              "choices": [
+                "60 Hektar",
+                "75 Hektar",
+                "150 Hektar"
+              ],
+              "correctIndex": 1,
+              "explanation": "Die reguläre Mindestfläche beträgt 75 Hektar. Zusätzlich müssen die Fläche zusammenhängen und die Eigentumsvoraussetzungen erfüllt sein. Daraus folgt noch keine persönliche Jagdscheinbefreiung."
+            },
+            {
+              "id": "de-bw-eigenjagd-q2",
+              "prompt": "Drei Nachbarn besitzen jeweils allein 25 Hektar aneinandergrenzendes Nutzland. Sie behaupten, ihre getrennten Grundstücke bildeten allein wegen der Summe automatisch eine Eigenjagd. Was fehlt für diesen Schluss?",
+              "choices": [
+                "Einheitliches Eigentum derselben Person oder Personengemeinschaft an der erforderlichen zusammenhängenden Fläche",
+                "Eine Erhöhung der Fläche auf 250 Hektar, denn 75 Hektar gelten nur für Gemeinschaftsjagden",
+                "Die Zustimmung jedes eingeladenden Jagdgastes"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die bloße Addition verschiedener Alleineigentumsflächen erfüllt das einheitliche Eigentumserfordernis nicht. § 10 Abs. 1 verlangt Eigentum derselben Person oder Personengemeinschaft; ein gemeinsamer Jagdwunsch ändert die Eigentumsverhältnisse nicht."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-gemeinschaftsjagd",
+          "topic": "jagdausuebung",
+          "title": "Gemeinschaftsjagd: Mindestfläche und Teilung unterscheiden",
+          "citation": "§ 11 Abs. 1 und 3 JWMG",
+          "officialText": "(1) Alle Grundflächen einer Gemeinde oder einer abgesonderten Gemarkung, die nicht zu einem Eigenjagdbezirk gehören, bilden einen gemeinschaftlichen Jagdbezirk, wenn sie im Zusammenhang mindestens 150 Hektar umfassen.\n[…]\n(3) Die untere Jagdbehörde kann auf Antrag die Bildung neuer selbständiger gemeinschaftlicher Jagdbezirke durch Teilung mindestens eines bestehenden gemeinschaftlichen Jagdbezirks zulassen, wenn die Jagdgenossenschaft sie beschlossen hat, jeder Teil die Mindestgröße von 250 Hektar hat und auf jedem Teil eine den Erfordernissen der Jagdpflege entsprechende Jagdausübung möglich ist. Ein Unterschreiten der Mindestgröße von 250 Hektar bis zu einer Größe von 150 Hektar kann die untere Jagdbehörde unter Berücksichtigung der Belange der Jagdpflege zulassen.",
+          "summary": "Die reguläre gemeinschaftliche Jagdbezirksbildung nach Absatz 1 knüpft an mindestens 150 Hektar zusammenhängende Grundflächen einer Gemeinde oder abgesonderten Gemarkung außerhalb der Eigenjagdbezirke an. Davon ist die spätere Teilung zu unterscheiden: Sie braucht Antrag, Beschluss der Jagdgenossenschaft und Zulassung der unteren Jagdbehörde. Regulär muss jeder neue Teil 250 Hektar erreichen und eine jagdpflegegerechte Ausübung ermöglichen. Eine Absenkung bis 150 Hektar ist eine behördliche Möglichkeit unter Berücksichtigung der Jagdpflege, kein Anspruch auf eigenmächtige Teilung.",
+          "sources": [
+            {
+              "title": "§ 11 JWMG: Gemeinschaftliche Jagdbezirke",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000026",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Leitfaden für selbstverwaltende Jagdgenossenschaften, 2025, Kapitel 3 und 6",
+              "url": "https://www.wildtierportal-bw.de/filefly/api?action=stream&path=%2Fforschungsprojekte%2F2025-leitfaden-jagdgenossenschaften-inhalt-ba-final.pdf",
+              "publisher": "Landwirtschaftliches Zentrum Baden-Württemberg – Wildforschungsstelle",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-gemeinschaftsjagd-q1",
+              "prompt": "Welche reguläre Mindestfläche nennt § 11 Abs. 1 JWMG für die zusammenhängenden, nicht zu einer Eigenjagd gehörenden Flächen einer Gemeinde oder abgesonderten Gemarkung?",
+              "choices": [
+                "75 Hektar",
+                "250 Hektar in jedem Fall",
+                "150 Hektar"
+              ],
+              "correctIndex": 2,
+              "explanation": "Absatz 1 nennt 150 Hektar. Die Zahl 250 Hektar gehört insbesondere zum Regelfall der behördlich zugelassenen Teilung nach Absatz 3 und darf nicht mit der ursprünglichen Bezirksbildung verwechselt werden."
+            },
+            {
+              "id": "de-bw-gemeinschaftsjagd-q2",
+              "prompt": "Eine Jagdgenossenschaft möchte einen bestehenden Gemeinschaftsjagdbezirk in zwei selbständige Teile zu je 200 Hektar teilen. Welche Aussage trifft nach § 11 Abs. 3 JWMG zu?",
+              "choices": [
+                "Der Beschluss allein bewirkt die Teilung, weil jeder Teil über 150 Hektar liegt",
+                "Die regulären 250 Hektar je Teil werden unterschritten; die untere Jagdbehörde kann die Absenkung bis 150 Hektar unter Berücksichtigung der Jagdpflege zulassen",
+                "Eine Teilung unter 250 Hektar je Teil ist ausnahmslos ausgeschlossen"
+              ],
+              "correctIndex": 1,
+              "explanation": "Für die Teilung gilt regulär 250 Hektar je Teil. Das Gesetz erlaubt eine behördliche Absenkung bis 150 Hektar. Antrag, Beschluss, Zulassung und die jagdpflegerischen Anforderungen bleiben erforderlich."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-jagderlaubnis",
+          "topic": "jagdausuebung",
+          "title": "Jagdgast: Zustimmung, Begleitung und schriftlicher Nachweis",
+          "citation": "§ 25 Abs. 1, 3 und 4 JWMG",
+          "officialText": "(1) Die jagdausübungsberechtigte Person kann einer dritten natürlichen Person (Jagdgast) die Erlaubnis erteilen, sich in bestimmtem Umfang an der Jagdausübung zu beteiligen (Jagderlaubnis). Bei mehreren jagdausübungsberechtigten Personen muss eine Jagderlaubnis von allen jagdausübungsberechtigten Personen erteilt sein. Die jagdausübungsberechtigten Personen können sich gegenseitig zur Erteilung von Jagderlaubnissen schriftlich bevollmächtigen.\n[…]\n(3) Soweit der Jagdgast bei der Jagdausübung nicht von einer jagdausübungsberechtigten Person, einer anerkannten Wildtierschützerin oder einem anerkannten Wildtierschützer begleitet wird, hat er eine schriftliche Jagderlaubnis bei sich zu führen. Sofern eine jagdausübungsberechtigte Person gemäß Absatz 1 Satz 3 bevollmächtigt ist und den Jagdgast begleitet, bedarf es der Begleitung oder einer schriftlichen Jagderlaubnis der bevollmächtigenden Person nicht.\n(4) Der Jagdgast ist nicht jagdausübungsberechtigte Person im Sinne dieses Gesetzes.",
+          "summary": "Ein Jagdgast darf die Jagd nur im erlaubten Umfang ausüben. Bei mehreren Revierberechtigten ist die Zustimmung aller notwendig; sie können einander dafür schriftlich bevollmächtigen. Wer ohne die gesetzlich genannte Begleitung jagt, muss eine schriftliche Jagderlaubnis mitführen. Die Begleitung durch eine wirksam bevollmächtigte jagdausübungsberechtigte Person kann die zusätzliche Begleitung oder schriftliche Erlaubnis der bevollmächtigenden Person ersetzen. Ein Jagdgast wird durch den Erlaubnisschein nicht selbst zur jagdausübungsberechtigten Person im gesetzlichen Sinn.",
+          "sources": [
+            {
+              "title": "§ 25 JWMG: Jagderlaubnis",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000049",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Leitfaden für selbstverwaltende Jagdgenossenschaften, 2025, Kapitel 3 und 6",
+              "url": "https://www.wildtierportal-bw.de/filefly/api?action=stream&path=%2Fforschungsprojekte%2F2025-leitfaden-jagdgenossenschaften-inhalt-ba-final.pdf",
+              "publisher": "Landwirtschaftliches Zentrum Baden-Württemberg – Wildforschungsstelle",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-jagderlaubnis-q1",
+              "prompt": "Ein Revier in Baden-Württemberg hat drei Mitpächter. Zwei möchten ohne Bevollmächtigung des dritten einen Jagdgast zulassen. Reicht ihre Mehrheit?",
+              "choices": [
+                "Nein, die Jagderlaubnis muss von allen jagdausübungsberechtigten Personen erteilt sein; eine schriftliche gegenseitige Bevollmächtigung ist möglich",
+                "Ja, eine einfache Mehrheit der Mitpächter genügt",
+                "Ja, wenn der Jagdgast einen Dreijahresjagdschein besitzt"
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 25 Abs. 1 verlangt die Erteilung durch alle Revierberechtigten. Die Beteiligten können sich gegenseitig schriftlich bevollmächtigen. Ein persönlicher Jagdschein ersetzt die Zustimmung der Revierberechtigten nicht."
+            },
+            {
+              "id": "de-bw-jagderlaubnis-q2",
+              "prompt": "Ein Jagdgast geht allein zur erlaubten Ansitzjagd. Weder eine jagdausübungsberechtigte Person noch eine anerkannte Wildtierschützerin oder ein anerkannter Wildtierschützer begleitet ihn. Welchen zusätzlichen revierbezogenen Nachweis muss er mitführen?",
+              "choices": [
+                "Nur die Telefonnummer des Revierinhabers",
+                "Nur eine mündliche Einladung, an die er sich erinnert",
+                "Eine schriftliche Jagderlaubnis"
+              ],
+              "correctIndex": 2,
+              "explanation": "Ohne die in § 25 Abs. 3 genannte Begleitung muss der Jagdgast die schriftliche Jagderlaubnis bei sich führen. Das tritt neben die sonstigen persönlichen Dokumentenpflichten."
+            },
+            {
+              "id": "de-bw-jagderlaubnis-q3",
+              "prompt": "Eine Jägerin erhält einen Jagderlaubnisschein für ein fremdes Revier. Ist sie damit jagdausübungsberechtigte Person im Sinne des JWMG?",
+              "choices": [
+                "Ja, sie steht rechtlich automatisch den Pächtern gleich",
+                "Nein, sie bleibt Jagdgast und ist nur im erlaubten Umfang zur Beteiligung befugt",
+                "Ja, sobald sie dort erstmals Wild erlegt"
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 25 Abs. 4 grenzt den Jagdgast ausdrücklich von der jagdausübungsberechtigten Person ab. Die Erlaubnis überträgt nicht automatisch die gesetzliche Stellung des Revierinhabers."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-fallen",
+          "topic": "wildschutz",
+          "title": "Fallen: Zulassung, Unversehrtheit und Totfangausnahme",
+          "citation": "§ 32 Abs. 1 bis 3 JWMG",
+          "officialText": "(1) Bei der Verwendung von Fallen ist ein tierschutzgerechter Fang sicherzustellen und dafür Sorge zu tragen, dass Gefahren für Menschen und nicht bejagbare Tiere vermieden werden. Verwendet werden dürfen nur Fallen, deren Bauart zugelassen ist und die auf ihre zuverlässige Funktion überprüft sind.\n(2) Lebendfangfallen müssen nach ihrer Bauart so beschaffen sein, dass sie einen unversehrten Fang gewährleisten.\n(3) Die Fangjagd mit Fallen, die töten, ist verboten. Unter den Voraussetzungen des § 31 Absatz 3 kann die untere Jagdbehörde ausnahmsweise Totfangfallen zulassen. Totfangfallen müssen nach ihrer Bauart sofortiges Töten gewährleisten und dürfen nur in geschlossenen Räumen, Fangbunkern oder Fanggärten mit geeigneter Verblendung nach oben oder auf andere Weise so aufgestellt werden, dass von ihnen keine Gefährdung von Menschen, besonders geschützten Tieren oder Haustieren ausgeht.",
+          "summary": "Eine Falle ist nicht allein deshalb zulässig, weil sie im Handel erhältlich ist oder ein Tier fangen kann. Die Bauart muss zugelassen und die zuverlässige Funktion überprüft sein; auch die konkrete Verwendung muss Menschen und nicht bejagbare Tiere schützen. Eine Lebendfangfalle muss unverletzt fangen. Totfangfallen sind grundsätzlich verboten. Die untere Jagdbehörde kann nur unter den gesetzlichen Voraussetzungen des § 31 Abs. 3 eine Ausnahme zulassen; zusätzlich gelten die Anforderungen an sofortiges Töten und sichere Aufstellung. Dieser Baustein ersetzt keine Prüfung weiterer Sachkunde-, Kennzeichnungs-, Kontroll- und Schonzeitvorschriften.",
+          "sources": [
+            {
+              "title": "§ 32 JWMG: Ausübung der Fangjagd mit Fallen",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000059",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Antwort des MLR vom 22. Dezember 2025 zum Einsatz von Kofferfallen, Landtagsdrucksache 17/9739",
+              "url": "https://www.landtag-bw.de/resource/blob/608076/5cd52a15a6f167e69837459330896c10/17_9739_D.pdf",
+              "publisher": "Ministerium für Ernährung, Ländlichen Raum und Verbraucherschutz Baden-Württemberg",
+              "kind": "context"
+            },
+            {
+              "title": "Rechtsgrundlagen zur Fangjagd, Januar 2017, Abschnitte 1 und 7",
+              "url": "https://www.landesjagdverband.de/fileadmin/Medien/LJV/Dokumente/3__Jagdpraxis/Fallenpr%C3%BCfstelle/Fangjagd_Flyer2017.pdf",
+              "publisher": "Landesjagdverband Baden-Württemberg",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-fallen-q1",
+              "prompt": "Eine neu gekaufte Falle wurde noch nicht auf zuverlässige Funktion überprüft. Der Verkäufer verweist nur auf ihren kommerziellen Verkauf. Reicht das nach § 32 Abs. 1 JWMG für den Einsatz?",
+              "choices": [
+                "Ja, der Verkauf ersetzt die Prüfung",
+                "Ja, sofern nur eine Person die Falle bedient",
+                "Nein, zugelassene Bauart und überprüfte zuverlässige Funktion sind erforderlich"
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Handel allein beweist keine rechtliche Einsatzberechtigung. § 32 Abs. 1 verlangt die zugelassene Bauart und die Überprüfung der zuverlässigen Funktion; außerdem sind Gefahren für Menschen und nicht bejagbare Tiere zu vermeiden."
+            },
+            {
+              "id": "de-bw-fallen-q2",
+              "prompt": "Eine als Lebendfangfalle bezeichnete Konstruktion hält das Zielwild lebend fest, verursacht aber bauartbedingt regelmäßig Verletzungen. Erfüllt sie damit § 32 Abs. 2 JWMG?",
+              "choices": [
+                "Nein, die Bauart muss einen unversehrten Fang gewährleisten",
+                "Ja, denn lebendig ist rechtlich gleichbedeutend mit unversehrt",
+                "Ja, wenn das gefangene Tier später verwertet wird"
+              ],
+              "correctIndex": 0,
+              "explanation": "Lebendfang verlangt mehr als bloßes Überleben. Der gesetzliche Maßstab ist ein unversehrter Fang. Eine bauartbedingte Verletzung wird nicht durch spätere Nutzung gerechtfertigt."
+            },
+            {
+              "id": "de-bw-fallen-q3",
+              "prompt": "Unter welcher Voraussetzung kommt in Baden-Württemberg ein Einsatz von Totfangfallen nach § 32 Abs. 3 JWMG überhaupt in Betracht?",
+              "choices": [
+                "Eine zugelassene Bauart genügt stets ohne weitere Entscheidung",
+                "Nur mit einer Ausnahme der unteren Jagdbehörde unter den Voraussetzungen des § 31 Abs. 3 und unter Einhaltung der zusätzlichen Sicherheitsanforderungen",
+                "Mit Einverständnis der Jagdgäste, wenn die Falle innerhalb des Reviers bleibt"
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Ausgangspunkt ist ein Verbot. Die Ausnahme muss die untere Jagdbehörde auf gesetzlicher Grundlage zulassen. Selbst dann müssen die Falle sofortiges Töten gewährleisten und ihre Aufstellung Menschen, besonders geschützte Tiere und Haustiere schützen."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-nachsuche",
+          "topic": "wildschutz",
+          "title": "Nachsuche organisieren: unverzüglich, fachgerecht und grenzüberschreitend",
+          "citation": "§ 38 Abs. 2 JWMG",
+          "officialText": "(2) Die jagdausübungsberechtigte Person ist verpflichtet, für eine unverzügliche und fachgerechte Nachsuche krank geschossener, schwerkranker oder auf andere Weise schwer verletzter Wildtiere auch über die Grenze des Jagdbezirks hinaus zu sorgen.",
+          "summary": "Die jagdausübungsberechtigte Person muss die fachgerechte Nachsuche organisieren. Die Pflicht betrifft nicht nur angeschossene Wildtiere, sondern auch schwerkranke und sonst schwer verletzte Wildtiere. Unverzüglich heißt, die fachgerechte Organisation nicht schuldhaft zu verzögern; daraus folgt kein fachlich falsches sofortiges Hinterherlaufen. Die Sorgepflicht endet nicht an der Reviergrenze. Wer dort unter welchen Voraussetzungen bewaffnet eintreten darf, ist eine zusätzliche Frage der Wildfolge nach § 39; Absatz 2 allein erlaubt nicht jedem Jagdgast den freien Eintritt ins Nachbarrevier.",
+          "sources": [
+            {
+              "title": "§ 38 JWMG: Verhindern vermeidbarer Schmerzen und Leiden",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000074",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Nachsuche ist gesetzliche Pflicht; Organisation anerkannter Gespanne im regionalen Einsatz",
+              "url": "https://www.kjv-tuebingen.de/aus-der-jagdpraxis/nachsuche/informationen-zum-thema-nachsuche/nachsuche-ist-gesetzliche-pflicht",
+              "publisher": "Kreisjägervereinigung Tübingen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-nachsuche-q1",
+              "prompt": "Ein durch einen Verkehrsunfall schwer verletztes Wildtier flüchtet. Kann der Revierinhaber die gesetzliche Nachsorge mit der Begründung ablehnen, er habe das Tier nicht angeschossen?",
+              "choices": [
+                "Ja, § 38 Abs. 2 betrifft ausschließlich angeschossenes Wild",
+                "Nein, die Pflicht erfasst auch auf andere Weise schwer verletzte Wildtiere und verlangt eine unverzügliche fachgerechte Nachsuche",
+                "Ja, sofern sich niemand das Wildbret aneignen möchte"
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Wortlaut nennt neben krank geschossenem auch schwerkrankes oder auf andere Weise schwer verletztes Wild. Die Organisation der erforderlichen Nachsuche hängt nicht davon ab, dass der Revierinhaber selbst geschossen hat."
+            },
+            {
+              "id": "de-bw-nachsuche-q2",
+              "prompt": "Ein krank geschossenes Wildtier wechselt über die Reviergrenze. Welche Folge ergibt sich aus § 38 Abs. 2 JWMG für die jagdausübungsberechtigte Person?",
+              "choices": [
+                "Ihre Sorgepflicht endet dort automatisch",
+                "Jeder Jagdgast darf deshalb ohne weitere Prüfung bewaffnet das fremde Revier betreten",
+                "Sie muss auch über die Grenze hinaus für die fachgerechte Nachsuche sorgen; die Eintrittsbefugnisse richten sich zusätzlich nach den Wildfolgeregeln"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Organisationspflicht reicht ausdrücklich über die Jagdbezirksgrenze. Daraus entsteht keine pauschale Betretungs- oder Schussbefugnis für jeden Beteiligten. Dafür sind die besonderen Wildfolgevorschriften zu beachten."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-hundeeinsatz",
+          "topic": "wildschutz",
+          "title": "Geeignete Hunde: Jagdart und Nachsuchesituation entscheiden",
+          "citation": "§ 38 Abs. 3 Satz 1 und 2 JWMG",
+          "officialText": "Bei Such- und Bewegungsjagden sowie bei jeglicher Bejagung von Federwild, mit Ausnahme der Beizjagd, sind geeignete Jagdhunde mitzuführen und zur Nachsuche zu verwenden. Für sonstige Nachsuchen sind brauchbare Jagdhunde bereitzuhalten und einzusetzen, wenn es nach den Umständen erforderlich ist.",
+          "summary": "Bei Such- und Bewegungsjagden und grundsätzlich jeder Federwildbejagung sind geeignete Jagdhunde mitzuführen und zur Nachsuche zu verwenden. Für die Federwildbejagung ist die Beizjagd ausdrücklich ausgenommen. Für andere Nachsuchen besteht die Pflicht zum Bereithalten und Einsatz brauchbarer Hunde, soweit die Umstände dies erfordern. Die konkrete Eignung ist auf den Einsatz zu beziehen. Die Regel ist weder eine pauschale Pflicht für jeden Jäger, einen eigenen Hund zu besitzen, noch die Behauptung, irgendein mitgebrachter Hund genüge.",
+          "sources": [
+            {
+              "title": "§ 38 Abs. 3 JWMG: Jagdhunde",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000074",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Die Brauchbarkeitsprüfung und was sie noch wert ist: gesetzliche Lage in Baden-Württemberg",
+              "url": "https://www.jaegermagazin.de/artikel/die-brauchbarkeitspruefung-und-was-sie-noch-wert-ist/",
+              "publisher": "JÄGER Magazin",
+              "kind": "context"
+            },
+            {
+              "title": "Ausbildung und Prüfung von Jagdhunden; Erläuterung der tierschutzbezogenen Einsatzpflicht, März 2021",
+              "url": "https://jghv-bw.de/aktuelles/",
+              "publisher": "JGHV-Landesverband Baden-Württemberg",
+              "kind": "context"
+            },
+            {
+              "title": "Drückjagdzeit – Hundezeit: einsatzbezogene Eignung von Jagdhunden",
+              "url": "https://www.landesjagdverband.de/unser-verband/fachbereiche/hundewesen/uebungsgatter/rund-um-den-jagdhund/detail/drueckjagdzeit-hundezeit",
+              "publisher": "Landesjagdverband Baden-Württemberg",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-hundeeinsatz-q1",
+              "prompt": "Welche Jagdart nimmt § 38 Abs. 3 Satz 1 JWMG ausdrücklich von der dortigen Hunde-Mitführpflicht bei Federwildbejagung aus?",
+              "choices": [
+                "Beizjagd",
+                "Einzelansitz auf Federwild mit der Flinte allgemein",
+                "Jede Federwildjagd ohne Treiber"
+              ],
+              "correctIndex": 0,
+              "explanation": "Der aktuelle Wortlaut enthält die Ausnahme der Beizjagd. Eine allgemeine Ausnahme für den Einzelansitz oder das Fehlen von Treibern enthält er nicht. Andere Anforderungen und gegebenenfalls notwendige Nachsuche bleiben gesondert zu beurteilen."
+            },
+            {
+              "id": "de-bw-hundeeinsatz-q2",
+              "prompt": "Bei einer sonstigen Nachsuche außerhalb der zuerst genannten Jagdarten ist ein brauchbarer Jagdhund nach den Umständen erforderlich. Was verlangt § 38 Abs. 3 Satz 2 JWMG?",
+              "choices": [
+                "Sein Einsatz ist nur eine freiwillige Empfehlung",
+                "Ein Hund muss lediglich irgendwo im Landkreis vorhanden sein",
+                "Ein brauchbarer Jagdhund muss bereitgehalten und eingesetzt werden"
+              ],
+              "correctIndex": 2,
+              "explanation": "Satz 2 verbindet bei entsprechender Erforderlichkeit Bereithalten und tatsächlichen Einsatz. Er verpflichtet nicht jeden Jäger zum eigenen Hundebesitz, verlangt aber eine funktionierende Bereitstellung und Verwendung."
+            }
+          ]
+        },
+        {
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz Baden-Württemberg (JWMG)",
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "id": "de-bw-managementstufen",
+          "topic": "wildschutz",
+          "title": "Managementstufen und die Grenze zur Bejagbarkeit",
+          "citation": "§ 7 Abs. 3 Satz 1 und Abs. 7 JWMG",
+          "officialText": "Die Wildtiere unterliegen einem\n1. Nutzungsmanagement,\n2. Entwicklungsmanagement oder\n3. Schutzmanagement\nnach Maßgabe dieses Gesetzes und der aufgrund dieses Gesetzes erlassenen Vorschriften.\n[…]\n(7) Die Jagd darf nach Maßgabe dieses Gesetzes und aufgrund dieses Gesetzes ausgeübt werden auf Wildtiere, deren Arten dem Nutzungsmanagement oder dem Entwicklungsmanagement zugeordnet sind. Für Wildtierarten, die dem Schutzmanagement zugeordnet sind, darf keine Jagdzeit bestimmt werden. Auf Wildtiere der dem Schutzmanagement unterliegenden Arten finden die §§ 36 und 51 Absatz 1 keine Anwendung; die Vorschriften des Naturschutzrechts bleiben unberührt. Die jagdausübungsberechtigten Personen haben die nach § 45 Absatz 7 des Bundesnaturschutzgesetzes zulässigen Maßnahmen, die Arten des Schutzmanagements betreffen, zu dulden.",
+          "summary": "Baden-Württemberg ordnet die dem JWMG unterliegenden Wildtierarten drei Managementstufen zu: Nutzung, Entwicklung oder Schutz. Für Arten im Nutzungs- und Entwicklungsmanagement kann Jagd nur nach den weiteren gesetzlichen und verordnungsrechtlichen Voraussetzungen ausgeübt werden; die Zuordnung allein öffnet keine beliebige Jagdzeit. Für Arten des Schutzmanagements darf keine Jagdzeit festgesetzt werden. Naturschutzrechtliche Ausnahmen sind davon zu unterscheiden und bleiben gesondert zu prüfen. Dieser Baustein enthält bewusst keine möglicherweise veraltete Artenzuordnung.",
+          "sources": [
+            {
+              "title": "§ 7 JWMG: Wildtiere und Managementstufen",
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000021",
+              "publisher": "Land Baden-Württemberg – Landesrecht BW",
+              "kind": "law"
+            },
+            {
+              "title": "Taschenbuch Naturschutz Baden-Württemberg, Kapitel 9.3: Managementstufen",
+              "url": "https://taschenbuch-naturschutz-bw.de/9-3-managementstufen/",
+              "publisher": "Landesnaturschutzverband Baden-Württemberg",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-bw-managementstufen-q1",
+              "prompt": "Welche Dreiteilung verwendet das JWMG für die Managementstufen der ihm unterliegenden Wildtierarten?",
+              "choices": [
+                "Waldmanagement, Feldmanagement und Gewässermanagement",
+                "Nutzungsmanagement, Entwicklungsmanagement und Schutzmanagement",
+                "Standwildmanagement, Wechselwildmanagement und Zugwildmanagement"
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 7 Abs. 3 nennt genau diese drei Stufen. Die Einstufung ist ein wildtierbezogenes Regelungssystem und keine bloße Einteilung des Geländes."
+            },
+            {
+              "id": "de-bw-managementstufen-q2",
+              "prompt": "Für eine dem Schutzmanagement zugeordnete Wildtierart soll eine gewöhnliche Jagdzeit eröffnet werden. Was sagt § 7 Abs. 7 JWMG dazu?",
+              "choices": [
+                "Für solche Arten darf keine Jagdzeit bestimmt werden; gesondertes Naturschutzrecht bleibt unberührt",
+                "Eine gewöhnliche Jagdzeit darf immer eröffnet werden, sobald ein Jagdschein vorliegt",
+                "Die Jagdzeit bestimmt jeweils der eingeladene Jagdgast"
+              ],
+              "correctIndex": 0,
+              "explanation": "Das Schutzmanagement schließt die Festsetzung einer Jagdzeit aus. Spezielle naturschutzrechtliche Maßnahmen sind kein gewöhnlicher Jagdzeitbeschluss und müssen auf ihrer eigenen Rechtsgrundlage beurteilt werden."
+            }
+          ]
         }
       ],
       "examResources": [
@@ -464,6 +2580,390 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-by-eigenjagd-groesse",
+          "topic": "jagdausuebung",
+          "title": "Eigenjagd: bayerische Flächengrenzen",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 8 Abs. 1 Satz 1",
+          "officialText": "Die Mindestgröße eines Eigenjagdreviers beträgt 81,755 ha, im Hochgebirge mit seinen Vorbergen 300 ha.",
+          "summary": "Bayern weicht bei den Eigenjagdmindestgrößen von der allgemeinen Bundesregel ab. Es gelten 81,755 ha, im Hochgebirge mit seinen Vorbergen 300 ha. Neben der Größe müssen die weiteren Voraussetzungen für die Entstehung eines Eigenjagdreviers erfüllt sein; lose verteilte Grundstücke werden nicht allein durch Addition zu einem Eigenjagdrevier. Bei einer späteren Teilung gelten gesonderte Anforderungen.",
+          "sources": [
+            {
+              "title": "Bayerisches Jagdgesetz (BayJG) Art. 8 Abs. 1 Satz 1",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-8",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Standlaut 1/2023: Grundlagen der Eigen- und Gemeinschaftsjagdreviere in Bayern",
+              "url": "https://s7ce52c127a353929.jimcontent.com/download/version/1683694475/module/11934343495/name/Standlaut_2023-01.pdf",
+              "publisher": "Ökologischer Jagdverein Bayern e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-eigenjagd-groesse-q1",
+              "prompt": "Welche Mindestgröße nennt Art. 8 Abs. 1 Satz 1 für ein Eigenjagdrevier außerhalb des Hochgebirges mit seinen Vorbergen?",
+              "choices": [
+                "75 ha.",
+                "81,755 ha.",
+                "250 ha."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die landesrechtliche Mindestgröße in Bayern beträgt dort 81,755 ha. Die übrigen Eigenjagdvoraussetzungen sind zusätzlich zu erfüllen."
+            },
+            {
+              "id": "de-by-eigenjagd-groesse-q2",
+              "prompt": "Im Hochgebirge mit seinen Vorbergen soll ein bayerisches Eigenjagdrevier entstehen. Welche Mindestfläche ist nach Art. 8 Abs. 1 Satz 1 erforderlich?",
+              "choices": [
+                "300 ha.",
+                "81,755 ha.",
+                "500 ha."
+              ],
+              "correctIndex": 0,
+              "explanation": "Für diese Region erhöht die Norm die Eigenjagdmindestfläche auf 300 ha; 500 ha ist dort die Gemeinschaftsjagdmindestgröße."
+            }
+          ]
+        },
+        {
+          "id": "de-by-gemeinschaftsjagd-groesse",
+          "topic": "jagdausuebung",
+          "title": "Gemeinschaftsjagd: Mindestfläche ohne befriedete Bezirke",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 10 Abs. 1",
+          "officialText": "Die Mindestgröße eines Gemeinschaftsjagdreviers beträgt 250 ha, im Hochgebirge mit seinen Vorbergen 500 ha. Befriedete Bezirke zählen bei der Berechnung der Mindestgröße nicht mit.",
+          "summary": "Bei einem Gemeinschaftsjagdrevier gelten in Bayern 250 ha, im Hochgebirge mit seinen Vorbergen 500 ha. Befriedete Bezirke werden für diese Mindestflächenberechnung nicht mitgezählt. Bruttofläche und für die Mindestgröße zählende Fläche können deshalb unterschiedlich sein; die Einordnung einzelner Flächen und verbindliche Revierfeststellung sind gesondert zu klären.",
+          "sources": [
+            {
+              "title": "Bayerisches Jagdgesetz (BayJG) Art. 10 Abs. 1",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-10",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Standlaut 1/2023: Grundlagen der Eigen- und Gemeinschaftsjagdreviere in Bayern",
+              "url": "https://s7ce52c127a353929.jimcontent.com/download/version/1683694475/module/11934343495/name/Standlaut_2023-01.pdf",
+              "publisher": "Ökologischer Jagdverein Bayern e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-gemeinschaftsjagd-groesse-q1",
+              "prompt": "Welche Kombination entspricht den Mindestgrößen bayerischer Gemeinschaftsjagdreviere?",
+              "choices": [
+                "81,755 ha allgemein und 300 ha im Hochgebirge.",
+                "150 ha allgemein und 250 ha im Hochgebirge.",
+                "250 ha allgemein und 500 ha im Hochgebirge mit seinen Vorbergen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Art. 10 Abs. 1 nennt 250 beziehungsweise 500 ha. Diese Werte sind nicht mit Eigenjagdgrenzen zu verwechseln."
+            },
+            {
+              "id": "de-by-gemeinschaftsjagd-groesse-q2",
+              "prompt": "Ein Gemeinschaftsjagdrevier außerhalb des Hochgebirges umfasst brutto 260 ha, davon 20 ha befriedete Bezirke. Erreicht es allein mit diesen Zahlen die Mindestgröße?",
+              "choices": [
+                "Ja, entscheidend ist stets die gesamte Bruttofläche.",
+                "Nein, für diese Rechnung bleiben nur 240 ha.",
+                "Ja, befriedete Bezirke zählen doppelt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Befriedete Bezirke bleiben bei der Mindestgrößenberechnung außer Ansatz. 260 minus 20 ergibt 240 ha und liegt unter 250 ha."
+            }
+          ]
+        },
+        {
+          "id": "de-by-jagderlaubnis-mitpaechter",
+          "topic": "jagdausuebung",
+          "title": "Jagdgast: Erlaubnis aller Revierinhaber",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 17 Abs. 1",
+          "officialText": "Der Revierinhaber kann einem Dritten (Jagdgast) eine Jagderlaubnis erteilen. Diese kann auch beschränkt erteilt werden. Bei mehreren Revierinhabern muß die Jagderlaubnis von allen Revierinhabern erteilt werden. Die Revierinhaber können sich gegenseitig zur Erteilung von Jagderlaubnissen bevollmächtigen.",
+          "summary": "Eine Jagderlaubnis wird vom Revierinhaber erteilt und kann beschränkt sein. Gibt es mehrere Revierinhaber, ist grundsätzlich ihre gemeinsame Erteilung erforderlich. Eine gegenseitige Bevollmächtigung kann die Erteilung durch eine einzelne hierzu befugte Person ermöglichen. Der Jagdgast klärt daher die wirksame Erteilung und den konkreten Umfang seiner Freigabe. Mitführ- und Formvorschriften der weiteren Absätze gelten zusätzlich.",
+          "sources": [
+            {
+              "title": "Bayerisches Jagdgesetz (BayJG) Art. 17 Abs. 1",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-17",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Jagderlaubnisschein: einheitliche Entscheidung aller Mitpächter und Bevollmächtigung",
+              "url": "https://www.die-jagdrechtskanzlei.de/de/jagdrecht/jagderlaubnisschein/",
+              "publisher": "Dr. Heiko Granzin, Die Jagdrechtskanzlei",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-jagderlaubnis-mitpaechter-q1",
+              "prompt": "In einem von zwei Personen gepachteten Revier lädt nur eine Person einen Gast ein; eine Bevollmächtigung besteht nicht und die andere stimmt nicht zu. Reicht diese alleinige Erlaubnis nach Art. 17 Abs. 1?",
+              "choices": [
+                "Ja, jeder Mitpächter darf die anderen stets übergehen.",
+                "Ja, wenn der Gast keinen Abschuss plant.",
+                "Nein, bei mehreren Revierinhabern müssen grundsätzlich alle die Jagderlaubnis erteilen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Ohne passende Bevollmächtigung genügt die eigenmächtige Einladung eines einzelnen Mitpächters nicht."
+            },
+            {
+              "id": "de-by-jagderlaubnis-mitpaechter-q2",
+              "prompt": "Wie kann nach Art. 17 Abs. 1 die Erteilung von Jagderlaubnissen durch eine einzelne Person innerhalb der Pächtergemeinschaft wirksam ermöglicht werden?",
+              "choices": [
+                "Durch gegenseitige Bevollmächtigung der Revierinhaber.",
+                "Durch das bloße Eigentum des Gastes an einer Jagdwaffe.",
+                "Durch Zahlung eines beliebigen Geldbetrags an einen Mitpächter."
+              ],
+              "correctIndex": 0,
+              "explanation": "Satz 4 erlaubt die gegenseitige Bevollmächtigung. Ob sie im Einzelfall vorliegt und reicht, muss geklärt sein."
+            }
+          ]
+        },
+        {
+          "id": "de-by-brauchbare-hunde",
+          "topic": "jagdausuebung",
+          "title": "Brauchbare Hunde passend zur Jagdart einsetzen",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 39 Abs. 1",
+          "officialText": "Bei jeder Such-, Drück-, Riegel- und Treibjagd sowie bei jeder Jagdart auf Wasserwild sind brauchbare Jagdhunde in genügender Zahl zu verwenden. Auch der bei einer anderen Jagdart zur Nachsuche verwendete Hund muß brauchbar sein.",
+          "summary": "Bei den genannten Jagdarten sind brauchbare Hunde in genügender Zahl einzusetzen. Die Wasserwildjagd ist ausdrücklich unabhängig von einer Gesellschaftsjagd erfasst. Auch ein Hund, der nach einer anderen Jagdart zur Nachsuche eingesetzt wird, muss dafür brauchbar sein. Die konkrete Eignung und ihr Nachweis richten sich nach den einschlägigen bayerischen Regeln; ein bestimmter Verbandstitel wird hier nicht als einzig möglicher Nachweis behauptet.",
+          "sources": [
+            {
+              "title": "Bayerisches Jagdgesetz (BayJG) Art. 39 Abs. 1",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-39",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdhundewesen in Bayern: jagdlicher Einsatz und Brauchbarkeit",
+              "url": "https://jagd-bayern.de/jagdpraxis/jagdhundewesen/",
+              "publisher": "Bayerischer Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "Brauchbarkeit von Jagdhunden in Bayern: Rechtslage und Einzelfall",
+              "url": "https://www.stmwi.bayern.de/jagd-forst/oberste-jagdbehoerde/jagdhunde/",
+              "publisher": "Bayerisches Staatsministerium für Wirtschaft, Landesentwicklung und Energie",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-brauchbare-hunde-q1",
+              "prompt": "Du jagst allein auf Wasserwild. Entfällt die Hundevorgabe allein deshalb, weil keine Gesellschaftsjagd stattfindet?",
+              "choices": [
+                "Nein. Art. 39 Abs. 1 erfasst jede Jagdart auf Wasserwild.",
+                "Ja, die Regel gilt ausschließlich ab fünf Personen.",
+                "Ja, sofern nur eine Ente freigegeben ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Wortlaut nennt jede Jagdart auf Wasserwild. Die erforderliche Brauchbarkeit und genügende Zahl der Hunde bleiben maßgeblich."
+            },
+            {
+              "id": "de-by-brauchbare-hunde-q2",
+              "prompt": "Nach einer Einzeljagd soll ein Hund zur Nachsuche eingesetzt werden. Was verlangt Art. 39 Abs. 1 Satz 2?",
+              "choices": [
+                "Nur, dass der Hund dem Schützen gehört.",
+                "Dass auch dieser Nachsuchenhund brauchbar ist.",
+                "Keine Eignung, weil die Jagd zuvor allein ausgeübt wurde."
+              ],
+              "correctIndex": 1,
+              "explanation": "Auch der bei einer anderen Jagdart zur Nachsuche eingesetzte Hund muss brauchbar sein."
+            }
+          ]
+        },
+        {
+          "id": "de-by-fuetterung-pflichten",
+          "topic": "wildschutz",
+          "title": "Natürliche Äsung, Hegeziel und Notzeitfütterung",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 43 Abs. 1; Abs. 2 Satz 1; Abs. 3",
+          "officialText": "Art. 43 Abs. 1: Der Schutz und die Pflege der natürlichen Lebensgrundlagen des Wildes sind Aufgabe des Revierinhabers, der im Einvernehmen mit den Grundstückseigentümern oder Nutzungsberechtigten durch Maßnahmen der Reviergestaltung und Äsungsverbesserung die Voraussetzungen dafür schaffen soll, daß das Wild auch in der vegetationsarmen Zeit natürliche Äsung findet. Auf Grund anderer Vorschriften bestehende Verpflichtungen bleiben unberührt.\n\nArt. 43 Abs. 2 Satz 1: Durch die Fütterung des Wildes darf die Verwirklichung des Hegeziels (§ 1 Abs. 2 BJagdG) nicht gefährdet werden.\n[…]\n\nArt. 43 Abs. 3: Der Revierinhaber ist verpflichtet, in der Notzeit für angemessene Wildfütterung zu sorgen und die dazu erforderlichen Fütterungsanlagen zu unterhalten. Das gilt nicht für Rotwild, das auf Grund einer Rechtsverordnung nach Art. 32 Abs. 7 Nr. 3 nicht gehegt werden darf.",
+          "summary": "Der Revierinhaber soll gemeinsam mit den Berechtigten die natürlichen Lebensgrundlagen verbessern. In einer tatsächlich vorliegenden Notzeit besteht grundsätzlich die Pflicht zu angemessener Wildfütterung und den nötigen Anlagen; die ausdrückliche Rotwildausnahme bleibt zu beachten. Zugleich darf Fütterung das Hegeziel nicht gefährden. Diese Auswahl ist keine pauschale Erlaubnis für jede Futtergabe: Ausführungsverordnung, Wildart, Standort und gegebenenfalls behördliche Regelungen sind zusätzlich zu prüfen.",
+          "sources": [
+            {
+              "title": "Bayerisches Jagdgesetz (BayJG) Art. 43 Abs. 1; Abs. 2 Satz 1; Abs. 3",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-43",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Füttern für den Klimawald: rechtliche Pflicht in Notzeiten und natürliche Lebensgrundlagen (nur diese Rechtsaussagen abgeglichen)",
+              "url": "https://jagd-bayern.de/testbeitrag-2/",
+              "publisher": "Bayerischer Jagdverband e. V.",
+              "kind": "context"
+            },
+            {
+              "title": "VG Würzburg, Urteil vom 4. Dezember 2025 – W 9 K 24.1304, insbesondere Rn. 25–32: Gefährdung des Hegeziels",
+              "url": "https://www.gesetze-bayern.de/Content/Pdf/Y-300-Z-BECKRS-B-2025-N-36836?all=False",
+              "publisher": "Verwaltungsgericht Würzburg",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-fuetterung-pflichten-q1",
+              "prompt": "Wer trägt nach Art. 43 Abs. 3 grundsätzlich die Pflicht zur angemessenen Wildfütterung in einer tatsächlich bestehenden Notzeit, sofern keine gesetzliche Ausnahme greift?",
+              "choices": [
+                "Jeder beliebige Waldbesucher.",
+                "Der Revierinhaber.",
+                "Ausschließlich die Gemeinde, unabhängig vom Revierinhaber."
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 43 Abs. 3 weist diese Pflicht dem Revierinhaber zu und nennt zugleich eine besondere Rotwildausnahme."
+            },
+            {
+              "id": "de-by-fuetterung-pflichten-q2",
+              "prompt": "Beschränkt sich die Aufgabe des Revierinhabers nach Art. 43 auf das Ausbringen künstlichen Futters?",
+              "choices": [
+                "Ja, natürliche Äsung ist allein Sache der Waldbesitzer.",
+                "Ja, sobald eine Fütterungsanlage vorhanden ist.",
+                "Nein. Er soll im Einvernehmen mit den Berechtigten auch natürliche Lebensgrundlagen und Äsung verbessern."
+              ],
+              "correctIndex": 2,
+              "explanation": "Abs. 1 stellt die natürlichen Lebensgrundlagen und die Reviergestaltung ausdrücklich neben die Fütterung."
+            },
+            {
+              "id": "de-by-fuetterung-pflichten-q3",
+              "prompt": "Welche Grenze setzt Art. 43 Abs. 2 Satz 1 auch für eine Wildfütterung?",
+              "choices": [
+                "Die Verwirklichung des Hegeziels darf dadurch nicht gefährdet werden.",
+                "Eine gute Absicht macht jede Futtergabe ohne weitere Prüfung zulässig.",
+                "Eine Fütterung muss unabhängig von Wildart und Ort stets ganzjährig erfolgen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Gefährdung des Hegeziels ist die gesetzliche Grenze. Der konkrete Anwendungsfall und weitere Regeln bleiben zu prüfen."
+            }
+          ]
+        },
+        {
+          "id": "de-by-schriftliche-pruefung",
+          "topic": "pruefung",
+          "title": "Bayerische schriftliche Prüfung: Umfang und Bestehensgrenze",
+          "lawTitle": "Jäger- und Falknerprüfungsordnung (JFPO)",
+          "citation": "§ 12",
+          "officialText": "Der schriftliche Teil der Prüfung wird im Antwort-Wahl-Verfahren (Multiple-Choice-Verfahren) anhand eines Fragebogens mit separatem Antwortblatt durchgeführt. Die Bewerber haben insgesamt 100 Fragen (16 Fragen je Sachgebiet nach § 10 Nr. 1 bis 5 und 20 Fragen aus dem Sachgebiet nach § 10 Nr. 6) durch Ankreuzen auf dem Antwortblatt zu beantworten. Die Fragen werden von der Prüfungsbehörde aus dem von der obersten Jagdbehörde veröffentlichten Fragenkatalog mit Musterlösung ausgewählt. Die Arbeitszeit beträgt 100 Minuten.\n\nBewerber, die mehr als ein Viertel der Fragen nicht, nicht richtig oder nicht vollständig beantwortet haben, haben den schriftlichen Teil der Prüfung nicht bestanden.",
+          "summary": "Die bayerische schriftliche Jägerprüfung umfasst 100 Fragen in 100 Minuten. Maximal 25 dürfen nicht richtig oder nicht vollständig beantwortet beziehungsweise ausgelassen sein. Eine vollständig richtig beantwortete Frage ist daher von einer teilweise richtigen Mehrfachauswahl zu unterscheiden. Jagdlatein formuliert eigene Lernfragen; diese Übung ist keine Kopie und keine vollständige Simulation des amtlichen Mehrfachantwortformats.",
+          "sources": [
+            {
+              "title": "Jäger- und Falknerprüfungsordnung (JFPO) § 12",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJFPO-12",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Prüfung: Ablauf, schriftliche Prüfung und praktischer Prüfungsteil",
+              "url": "https://jagd-aschaffenburg.de/pr%C3%BCfung",
+              "publisher": "Jägervereinigung Spessart-Aschaffenburg e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-schriftliche-pruefung-q1",
+              "prompt": "Welche Kombination von Fragenzahl und Arbeitszeit bestimmt § 12 JFPO?",
+              "choices": [
+                "80 Fragen in 100 Minuten.",
+                "100 Fragen in 60 Minuten.",
+                "100 Fragen in 100 Minuten."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 12 Abs. 1 nennt insgesamt 100 Fragen und 100 Minuten."
+            },
+            {
+              "id": "de-by-schriftliche-pruefung-q2",
+              "prompt": "Du hast 75 von 100 Fragen vollständig richtig beantwortet; die übrigen 25 sind falsch oder leer. Ist allein dadurch die Fehlergrenze überschritten?",
+              "choices": [
+                "Nein. Nicht bestanden ist der Teil bei mehr als einem Viertel fehlerhafter, unvollständiger oder unbeantworteter Fragen.",
+                "Ja, schon genau 25 Fehler bedeuten Nichtbestehen.",
+                "Ja, jede unbeantwortete Frage führt unabhängig von der Zahl zum Nichtbestehen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Mehr als ein Viertel von 100 bedeutet mehr als 25. Die übrigen Prüfungsteile sind unabhängig davon zu bestehen."
+            },
+            {
+              "id": "de-by-schriftliche-pruefung-q3",
+              "prompt": "Eine Frage mit mehreren nötigen Kreuzen ist nur teilweise richtig beantwortet. Wie wird sie bei der genannten Bestehensregel behandelt?",
+              "choices": [
+                "Sie zählt automatisch als vollständig richtige Antwort.",
+                "Als nicht vollständig beantwortete Frage innerhalb der Fehlerzählung.",
+                "Sie wird aus der Gesamtzahl gestrichen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Wortlaut zählt ausdrücklich auch nicht vollständig beantwortete Fragen zu den maßgeblichen Fehlern."
+            }
+          ]
+        },
+        {
+          "id": "de-by-praktische-pruefung",
+          "topic": "pruefung",
+          "title": "Waffenhandhabung und Büchsenschießen getrennt bestehen",
+          "lawTitle": "Jäger- und Falknerprüfungsordnung (JFPO)",
+          "citation": "§ 14 Abs. 1, 2 und 4",
+          "officialText": "§ 14 Abs. 1: Der praktische Teil der Prüfung besteht aus den Disziplinen Handhabung der Waffen sowie Büchsenschießen.\n\n§ 14 Abs. 2: Die Bewerber haben ausreichende Leistungen in der Handhabung der gebräuchlichen Jagdwaffen (Lang- und Kurzwaffen) nachzuweisen. Die Leistungen sind getrennt von den Anforderungen im Büchsenschießen zu prüfen und zu bewerten.\n[…]\n\n§ 14 Abs. 4: Die Anforderungen im Büchsenschießen sind nicht erfüllt, wenn weniger als drei Treffer erzielt werden; als Treffer gelten der getroffene achte bis zehnte Ring; ein berührter Ring gilt als getroffen; in Zweifelsfällen entscheidet der Vorsitzende des Prüfungsausschusses.",
+          "summary": "Die praktische Prüfung enthält Waffenhandhabung und Büchsenschießen als getrennt zu bewertende Disziplinen. Gute Schießtreffer beseitigen deshalb keine unzureichende Handhabung. Im Büchsenschießen gelten nach der hier geltenden Norm mindestens drei Treffer im Bereich des achten bis zehnten Rings; ein berührter Ring zählt. Schusszahl, Anschlagsarten, Ablauf und Wiederholungen richten sich nach den weiteren Absätzen.",
+          "sources": [
+            {
+              "title": "Jäger- und Falknerprüfungsordnung (JFPO) § 14 Abs. 1, 2 und 4",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJFPO-14",
+              "publisher": "Bayerische Staatskanzlei / BAYERN.RECHT",
+              "kind": "law"
+            },
+            {
+              "title": "Prüfung: Ablauf, schriftliche Prüfung und praktischer Prüfungsteil",
+              "url": "https://jagd-aschaffenburg.de/pr%C3%BCfung",
+              "publisher": "Jägervereinigung Spessart-Aschaffenburg e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "originalVerified": true,
+          "verified": true,
+          "questions": [
+            {
+              "id": "de-by-praktische-pruefung-q1",
+              "prompt": "Du erzielst beim Büchsenschießen gute Treffer, weist aber keine ausreichende Waffenhandhabung nach. Gleichen die Treffer die Handhabungsmängel automatisch aus?",
+              "choices": [
+                "Ja, der praktische Teil wird nur nach der Gesamtzahl der Treffer bewertet.",
+                "Nein. Handhabung und Büchsenschießen sind getrennt zu prüfen und zu bewerten.",
+                "Ja, sofern nur Langwaffen betroffen sind."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 14 Abs. 2 verlangt die getrennte Bewertung der Handhabung von Lang- und Kurzwaffen und der Schießanforderungen."
+            },
+            {
+              "id": "de-by-praktische-pruefung-q2",
+              "prompt": "Eine Prüfungsserie erzielt nur zwei Treffer im achten bis zehnten Ring. Sind die Anforderungen des § 14 Abs. 4 damit erfüllt?",
+              "choices": [
+                "Ja, zwei Treffer genügen immer.",
+                "Ja, sofern die übrigen Schüsse auf der Scheibe liegen.",
+                "Nein, weniger als drei solche Treffer reichen nicht."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Gesetzestext verlangt mindestens drei Treffer. Ein berührter Ring zählt; Zweifelsfälle entscheidet der Vorsitzende."
+            }
+          ]
         }
       ],
       "notes": "Die 2026 geänderte Fassung wurde verwendet; ältere bayerische Gesetzesabschriften sind nicht die Grundlage dieser Normblöcke.",
