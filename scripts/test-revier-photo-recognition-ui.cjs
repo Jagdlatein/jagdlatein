@@ -7,6 +7,7 @@ const { renderToStaticMarkup } = local("react-dom/server");
 const { normalizePhotoRecognitionResponse } = createLoader()("lib/revier-photo-recognition.js");
 const { createPhotoRecognitionRequestId } = createLoader()("lib/revier-photo-request-id.js");
 const { photoRecognitionRequestId } = createLoader()("lib/revier-photo-quota.js");
+const { photoRecognitionLimitMessage } = createLoader()("lib/revier-photo-limit-message.js");
 
 function text(node) {
   if (node == null || typeof node === "boolean") return "";
@@ -199,10 +200,11 @@ test("Generic motif, uncertain alternatives and unknown outcomes retain their di
   }
 });
 
-test("GET 401, 403 and unconfigured/unavailable responses explain the gate without posting the photo", async () => {
+test("GET auth, quota and unconfigured/unavailable responses explain the gate without posting the photo", async () => {
   const cases = [
     [401, {}, /Für die Bilderkennung anmelden/, "/login?next=%2Ffotohelfer"],
     [403, {}, /aktiven Jagdlatein-Zugang/, "/preise?next=%2Ffotohelfer"],
+    [429, { code: "photo_daily_limit", message: "secret diagnostics" }, /Tageslimit von 5/, null],
     [503, { message: "secret diagnostics" }, /nicht verfügbar/, null],
     [200, { available: false, configured: false }, /nicht verfügbar/, null],
   ];
@@ -237,15 +239,51 @@ test("A temporary configuration/network failure can be retried without selecting
 });
 
 test("POST auth changes and exhausted quota remain visible and do not replay a purchase or recognition", async () => {
-  for (const [status, message] of [[401, /anmelden/], [403, /aktiven Jagdlatein-Zugang/], [429, /Erkennungslimit ist erreicht/]]) {
-    const h = setup({ fetch: async ({ init }) => init.method === "POST" ? json(status, { message: "private provider body" }) : available() });
+  const resetsAt = new Date(Math.ceil((Date.now() + 60000) / 86400000) * 86400000).toISOString();
+  for (const [status, message, metadata = {}, hasReset = false] of [
+    [401, /anmelden/], [403, /aktiven Jagdlatein-Zugang/], [429, /Erkennungslimit ist erreicht/],
+    [429, /Dein Tageslimit von 5 Foto-Erkennungsversuchen/, { code: "photo_daily_limit", resetsAt }, true],
+    [429, /Tageskontingent.*für alle Konten/, { code: "photo_capacity_limit", resetsAt }, true],
+    [429, /Gesamtkontingent.*für alle Konten/, { code: "photo_capacity_limit" }],
+    [429, /monatliche Gesamtkontingent/, { code: "photo_monthly_capacity_limit", resetsAt }],
+    [429, /Dein Tageslimit von 5/, { code: "photo_daily_limit" }],
+    [429, /Dein Tageslimit von 5/, { code: "photo_daily_limit", resetsAt: "<script>private reset</script>" }],
+    [429, /Erkennungslimit ist erreicht/, { code: "private unknown code", resetsAt }],
+  ]) {
+    const h = setup({ fetch: async ({ init }) => init.method === "POST" ? json(status, { ...metadata, message: "private provider body" }) : available() });
     try {
       await h.ready(); await h.recognize(); h.flush();
-      assert.match(h.text, message); assert.doesNotMatch(h.text, /private provider body/);
+      assert.match(h.text, message); assert.doesNotMatch(h.text, /private (?:provider body|reset|unknown code)/);
+      if (hasReset) assert.match(h.text, /Tageskontingent wird am .*deine Ortszeit.*erneuert/);
+      else assert.doesNotMatch(h.text, /deine Ortszeit/);
+      if (metadata.code === "photo_daily_limit") assert.match(h.text, /Auch ein gestarteter Versuch ohne Ergebnis zählt mit/);
       assert.equal(h.requests("POST").length, 1);
       assert.equal(h.nodes(node => node.type === "button" && text(node) === "Mit OpenAI erkennen").length, 0);
+      assert.equal(h.timers.size, 0, "A reset timestamp must not schedule an automatic recognition");
     } finally { h.cleanup(); }
   }
+});
+
+test("Daily reset metadata displays local summer/winter time and rejects malformed or unbounded dates", () => {
+  const summer = { now: Date.parse("2026-10-23T16:00:00.000Z"), timeZone: "Europe/Zurich" };
+  const reset = "2026-10-24T00:00:00.000Z";
+  const message = photoRecognitionLimitMessage({ code: "photo_daily_limit", resetsAt: reset, message: "private body" }, summer);
+  assert.match(message, /24\.10\.2026/); assert.match(message, /02:00/); assert.match(message, /deine Ortszeit/);
+  assert.match(message, /5 Foto-Erkennungsversuchen/); assert.doesNotMatch(message, /private body/);
+  const winter = photoRecognitionLimitMessage({ code: "photo_capacity_limit", resetsAt: "2026-10-26T00:00:00Z" },
+    { now: Date.parse("2026-10-25T16:00:00.000Z"), timeZone: "Europe/Zurich" });
+  assert.match(winter, /26\.10\.2026/); assert.match(winter, /01:00/);
+  assert.doesNotMatch(winter, /Dein Tageslimit/);
+  for (const resetsAt of [undefined, null, 1792800000000, {}, "not a date", "9999-10-24T00:00:00.000Z", "2026-10-22T00:00:00.000Z",
+    "2026-10-24T01:00:00.000Z", "2026-02-30T00:00:00.000Z", "2026-10-24T00:00:00.000Z private text"]) {
+    const invalid = photoRecognitionLimitMessage({ code: "photo_daily_limit", resetsAt }, summer);
+    assert.match(invalid, /Dein Tageslimit von 5/); assert.match(invalid, /später erneut/);
+    assert.doesNotMatch(invalid, /deine Ortszeit|9999|private text|not a date/);
+  }
+  const monthly = photoRecognitionLimitMessage({ code: "photo_monthly_capacity_limit", resetsAt: reset }, summer);
+  assert.match(monthly, /monatliche Gesamtkontingent/); assert.doesNotMatch(monthly, /24\.10|deine Ortszeit|Tageslimit/);
+  const unknown = photoRecognitionLimitMessage({ code: "__proto__", resetsAt: reset, message: "private body" }, summer);
+  assert.match(unknown, /Erkennungslimit ist erreicht/); assert.doesNotMatch(unknown, /private body|deine Ortszeit/);
 });
 
 test("Network failure, provider failure and malformed JSON offer an explicit retry", async () => {

@@ -44,7 +44,11 @@ function harness(options = {}) {
       ? { schemaVersion: 1, available: true, dailyLimit: 5, globalDailyLimit: 50, globalMonthlyLimit: 100 }
       : { schemaVersion: 1, allowed: true, reason: "reserved" } };
   } };
-  const context = vm.createContext({ process: { env }, Buffer, Date, URL, Uint8Array, ArrayBuffer, Response,
+  const clock = options.now === undefined ? Date : class extends Date {
+    constructor(...args) { super(...(args.length ? args : [options.now])); }
+    static now() { return options.now; }
+  };
+  const context = vm.createContext({ process: { env }, Buffer, Date: clock, URL, Uint8Array, ArrayBuffer, Response,
     setTimeout: options.shortReadTimeout ? (callback, duration) => setTimeout(callback, duration === 10000 ? 10 : duration) : setTimeout, clearTimeout });
   const cache = new Map();
   function load(relative) {
@@ -314,11 +318,56 @@ test("missing/malformed quota schema fails closed, no in-memory fallback and no 
 
 test("duplicate and exhausted distributed counters stop provider and use safe retry information", async () => {
   for (const [reason, status, code] of [["duplicate", 409, "photo_request_already_used"], ["account_limit", 429, "photo_daily_limit"],
-    ["global_limit", 429, "photo_capacity_limit"], ["monthly_limit", 429, "photo_capacity_limit"], ["identity_missing", 401, "photo_session_required"]]) {
+    ["global_limit", 429, "photo_capacity_limit"], ["monthly_limit", 429, "photo_monthly_capacity_limit"], ["identity_missing", 401, "photo_session_required"]]) {
     const ctx = harness({ rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason, retryAfter: 3600 }, error: null }) });
     const response = await ctx.route.POST(ctx.request()); const parsed = await result(response);
     assert.equal(parsed.status, status); assert.equal(parsed.body.code, code); assert.equal(ctx.calls.provider.length, 0);
     if (["account_limit", "global_limit"].includes(reason)) assert.equal(response.headers.get("retry-after"), "3600");
+  }
+});
+
+test("daily limits return the UTC reset only when bounded database timing agrees, without a provider call", async () => {
+  const now = Date.parse("2026-10-23T12:00:00.000Z");
+  for (const reason of ["account_limit", "global_limit"]) {
+    for (const retryAfter of [43200, 43199]) {
+      const ctx = harness({ now, rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason, retryAfter }, error: null }) });
+      const response = await ctx.route.POST(ctx.request());
+      const parsed = await result(response);
+      assert.equal(parsed.status, 429);
+      assert.equal(parsed.body.resetsAt, "2026-10-24T00:00:00.000Z");
+      assert.equal(response.headers.get("retry-after"), String(retryAfter));
+      assert.equal(ctx.calls.provider.length, 0);
+      assert.equal(ctx.calls.rpc.length, 1);
+    }
+    for (const retryAfter of [undefined, null, "43200", 0, -1, 86401, 43200.5, 3600]) {
+      const ctx = harness({ now, rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason, retryAfter }, error: null }) });
+      const response = await ctx.route.POST(ctx.request());
+      const parsed = await result(response);
+      assert.equal(parsed.status, 429);
+      assert.equal(Object.hasOwn(parsed.body, "resetsAt"), false);
+      assert.equal(ctx.calls.provider.length, 0);
+      if (retryAfter !== 3600) assert.equal(response.headers.get("retry-after"), null);
+    }
+  }
+  const month = harness({ now, rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason: "monthly_limit", retryAfter: 43200 }, error: null }) });
+  const monthlyResponse = await month.route.POST(month.request());
+  const monthly = await result(monthlyResponse);
+  assert.equal(monthly.body.code, "photo_monthly_capacity_limit");
+  assert.equal(Object.hasOwn(monthly.body, "resetsAt"), false);
+  assert.equal(monthlyResponse.headers.get("retry-after"), null);
+  assert.equal(month.calls.provider.length, 0);
+});
+
+test("daily reset metadata handles UTC month/year boundaries and the European clock change", async () => {
+  for (const [instant, retryAfter, reset] of [
+    ["2026-10-24T23:59:59.500Z", 1, "2026-10-25T00:00:00.000Z"],
+    ["2026-10-25T12:00:00.000Z", 43200, "2026-10-26T00:00:00.000Z"],
+    ["2026-12-31T23:59:30.000Z", 30, "2027-01-01T00:00:00.000Z"],
+  ]) {
+    const ctx = harness({ now: Date.parse(instant), rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason: "account_limit", retryAfter }, error: null }) });
+    const response = await result(await ctx.route.POST(ctx.request()));
+    assert.equal(response.body.resetsAt, reset);
+    assert.equal(ctx.calls.provider.length, 0);
   }
 });
 

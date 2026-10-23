@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { createPhotoRecognitionRequestId } from "../lib/revier-photo-request-id";
+import { photoRecognitionLimitMessage } from "../lib/revier-photo-limit-message";
 import styles from "../styles/RevierPhotoHelper.module.css";
 
 const ENDPOINT = "/api/fotohelfer/recognize";
@@ -43,6 +44,7 @@ export default function RevierPhotoRecognition({ photo }) {
         if (request !== generation.current) return;
         if (response.status === 401) setView({ photo, phase: "login" });
         else if (response.status === 403) setView({ photo, phase: "subscription" });
+        else if (response.status === 429) setView({ photo, phase: "limited", message: photoRecognitionLimitMessage(data) });
         else if (response.ok && data.available === true && data.configured === true) setView({ photo, phase: "ready", dailyLimit: data.dailyLimit });
         else setView({ photo, phase: "unavailable" });
       } catch {
@@ -75,7 +77,7 @@ export default function RevierPhotoRecognition({ photo }) {
       } else if (response.status === 401) setView({ photo, phase: "login" });
       else if (response.status === 403) setView({ photo, phase: "subscription" });
       else setView({ photo, phase: response.status === 429 ? "limited" : "error", dailyLimit: current.dailyLimit,
-        message: response.status === 429 ? "Das Erkennungslimit ist erreicht. Bitte versuche es später erneut. Die Merkmalsvergleiche bleiben verfügbar."
+        message: response.status === 429 ? photoRecognitionLimitMessage(data)
           : "Das Foto konnte gerade nicht ausgewertet werden. Bitte versuche es erneut oder nutze den Merkmalsvergleich." });
     } catch (error) {
       if (request === generation.current) setView({ photo, phase: "error", dailyLimit: current.dailyLimit,

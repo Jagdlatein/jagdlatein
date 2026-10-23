@@ -22,7 +22,8 @@ function json(body, status = 200, extraHeaders = {}) {
 
 function fail(error) {
   if (error instanceof PhotoRecognitionQuotaError) {
-    return json({ ok: false, code: error.code, message: error.message }, error.status,
+    return json({ ok: false, code: error.code, message: error.message,
+      ...(error.resetsAt ? { resetsAt: error.resetsAt } : {}) }, error.status,
       error.retryAfter ? { "Retry-After": String(error.retryAfter) } : {});
   }
   if (error?.status === 401 || error?.status === 403) {
