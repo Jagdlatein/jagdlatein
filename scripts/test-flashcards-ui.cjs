@@ -81,7 +81,7 @@ test('SSR immediately shows the current question, answer, explanation and source
   assert.match(html, /Freiwillige Selbsteinschätzung/);
   assert.match(html, /Weiter ohne Bewertung/);
   assert.match(html, /nur in diesem Browser auf diesem Gerät/);
-  assert.match(html, /lernkarten-drucken/);
+  assert.doesNotMatch(html, /lernkarten-drucken|PDF-Starterset/, 'Export navigation belongs to the lower main menu');
 });
 
 test('Seeing and browsing cards does not rate them or write learning progress', () => {
@@ -225,7 +225,7 @@ test('Print view keeps compact numbered source references and lists every full U
   assert.match(html, /Hunde verstehen · Vorhandene Lektion/);
   assert.match(html, /https:\/\/example.org\/lesson/);
   assert.match(html, /Links im Quellenverzeichnis/);
-  assert.ok(html.indexOf('Digital wiederholen') < html.indexOf('class="printList"'));
+  assert.doesNotMatch(html, /Digital wiederholen|Starterset als PDF/, 'The print preview has no upper navigation');
   assert.match(html, /Quellenverzeichnis/);
   const { sourceList, sourceByUrl } = printModule.getPrintSourceIndex(cards);
   assert.equal(sourceList.length, new Set(sourceList.map(item => item.url)).size);
@@ -248,6 +248,21 @@ test('Print view keeps compact numbered source references and lists every full U
   assert.match(cssText, /break-inside:\s*avoid/);
   assert.match(cssText, /object-fit:\s*contain/);
   assert.match(cssText, /Seitennavigation/);
+});
+
+test('Flashcard export and selection links are owned by the existing page-menu outlet', () => {
+  const s = setup();
+  try {
+    const menu = find(s.tree, node => node.props?.title === 'Lernkarten drucken und speichern');
+    assert.ok(menu, 'The print/export choices remain available in the lower menu');
+    assert.ok(find(menu, node => node.props?.href?.pathname === '/lernen/lernkarten-drucken'));
+    assert.ok(find(menu, node => node.type === 'a' && node.props.download === true));
+    const { FlashcardSelectionNotice } = load('components/LearningFlashcards.js');
+    const notice = FlashcardSelectionNotice({ selection: { title: 'Gewählte Lektion', returnHref: '/kurse/beispiel#lektion' } });
+    const selectionMenu = find(notice, node => node.props?.title === 'Lernkartenauswahl');
+    assert.ok(find(selectionMenu, node => node.props?.href === '/kurse/beispiel#lektion'));
+    assert.ok(find(selectionMenu, node => node.props?.href === '/lernen/lernkarten'));
+  } finally { s.cleanup(); }
 });
 
 test('Packed print props retain a changed category and search across repeated renders/effects', () => {

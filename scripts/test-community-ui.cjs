@@ -63,18 +63,22 @@ test('User contributions render as plain text and reveal only their public learn
   assert.ok(!html.includes('Eigenen Beitrag entfernen') && !html.includes('Ausblenden'));
 });
 
-test('Community offers a clear writing action while moderation remains limited to moderators and extra options', () => {
+test('Community keeps writing visible and moves views and moderator options into the lower menu', () => {
   const { CommunityToolbar } = load('components/Community.js');
   const html = render(CommunityToolbar, { viewer: { displayName: 'Lernfuchs', canModerate: false }, view: 'posts' });
   assert.match(html, /Frage stellen/);
-  assert.match(html, /aria-label="Community-Ansicht"/);
-  assert.match(html, /aria-pressed="true"[^>]*>Alle Themen/);
-  assert.ok(html.includes('Meine Einreichungen') && html.includes('<summary>Weitere Optionen</summary>'));
-  assert.ok(!html.includes('Neue Beiträge prüfen') && !html.includes('Gemeldete Beiträge prüfen'));
-  const moderator = render(CommunityToolbar, { viewer: { canModerate: true }, view: 'moderation' });
+  assert.doesNotMatch(html, /Community-Ansicht|Meine Einreichungen|Weitere Optionen|Neue Beiträge prüfen|Gemeldete Beiträge prüfen/);
+  const MenuToolbar = load('components/Community.js', { './PageMenu': { __esModule: true, default: ({ title, children }) => React.createElement('section', { 'data-lower-menu': title }, children), closePageMenu() {} } }).CommunityToolbar;
+  const menu = render(MenuToolbar, { viewer: { canModerate: false }, view: 'posts' });
+  assert.match(menu, /data-lower-menu="Community auswählen"/);
+  assert.match(menu, /aria-label="Community-Ansicht"/);
+  assert.match(menu, /aria-pressed="true"[^>]*>Alle Themen/);
+  assert.match(menu, /Meine Einreichungen/);
+  assert.doesNotMatch(menu, /Neue Beiträge prüfen|Gemeldete Beiträge prüfen/);
+  const moderator = render(MenuToolbar, { viewer: { canModerate: true }, view: 'moderation' });
   assert.ok(moderator.includes('Neue Beiträge prüfen') && moderator.includes('Gemeldete Beiträge prüfen'));
-  const writing = render(CommunityToolbar, { viewer: { canModerate: true }, compose: true });
-  assert.ok(!writing.includes('Frage stellen') && !writing.includes('Weitere Optionen'));
+  const writing = render(MenuToolbar, { viewer: { canModerate: true }, compose: true });
+  assert.doesNotMatch(writing, /Frage stellen|Community-Ansicht|Neue Beiträge prüfen/);
 });
 
 test('Search defaults to compact inputs and keeps selected restrictions understandable', () => {

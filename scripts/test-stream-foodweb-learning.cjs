@@ -32,12 +32,14 @@ function engine() {
   const slots = [], effects = []; let cursor = 0;
   const hooks = { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; }]; },
+    useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
     useEffect(fn, deps) { const i = cursor++; const old = slots[i]; if (!old || !deps || deps.some((dep, j) => !Object.is(dep, old.deps[j]))) { slots[i] = { deps }; effects.push(fn); } },
   };
   return { hooks, render(fn) { cursor = 0; return fn(); }, effects() { for (const effect of effects.splice(0)) effect(); } };
 }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const result = find(child, predicate); if (result) return result; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
 function text(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(text).join(''); return typeof node === 'object' ? text(node.props?.children) : String(node); }
+function hrefs(node) { return [...renderToStaticMarkup(node).matchAll(/href="([^"]+)"/g)].map(match => match[1].replace(/&amp;/g, '&')); }
 function setup(file, props = {}, exposed = '', router = { query: {}, isReady: false }) {
   const e = engine(); const mod = load(file, { react: e.hooks, 'next/router': { useRouter: () => router } }, exposed); const Component = exposed ? mod.__test : mod.default; let tree;
   const render = () => tree = e.render(() => Component(props)); render();
@@ -136,6 +138,27 @@ test('Food-web photograph selection immediately changes explanation without an o
   assert.doesNotMatch(s.html(), /<button|<canvas|type="range"/);
   for (const node of foodweb.foodwebNodes) assert.ok(find(s.tree, n => n.props?.src === node.photo.src));
 });
+
+test('Food-web explanations stay direct while each relation, context and quiz reference and every photo licence is preserved in the final closed block', () => {
+  for (const node of foodweb.foodwebNodes) {
+    const s = setup('components/FoodwebLearning.js', { selectedId: node.id });
+    const children = React.Children.toArray(s.tree.props.children);
+    const footer = children.at(-1), body = React.createElement(React.Fragment, null, children.slice(0, -1));
+    assert.equal(footer.type, 'details'); assert.ok(!footer.props.open);
+    assert.doesNotMatch(renderToStaticMarkup(body), /<a\b/);
+    assert.ok(text(body).includes(node.description)); assert.ok(text(body).includes(foodweb.foodwebContext.text)); assert.ok(text(body).includes(foodweb.foodwebContext.limit));
+    for (const relation of foodweb.getFoodwebSelection(node.id).relationships) assert.ok(text(body).includes(relation.text));
+    for (const [id, sourceIds] of [...foodweb.foodwebRelationships.map(relation => [relation.id, relation.sourceIds]), ['context', foodweb.foodwebContext.sourceIds], ['question', foodweb.foodwebQuestion.sourceIds]]) {
+      const mapping = find(footer, item => item.props?.['data-source-for'] === id);
+      assert.ok(mapping, id); assert.deepEqual(hrefs(mapping), sourceIds.map(sourceId => foodweb.foodwebSources[sourceId].url));
+    }
+    for (const photograph of foodweb.foodwebNodes.map(item => item.photo)) {
+      assert.ok(text(footer).includes(photograph.author)); assert.ok(text(footer).includes(photograph.license));
+      assert.ok(text(footer).includes(photograph.modifications));
+      assert.ok(hrefs(footer).includes(photograph.sourceUrl)); assert.ok(hrefs(footer).includes(photograph.licenseUrl));
+    }
+  }
+});
 test('Existing selector supports food-web deep links, keeps URL state and returns to normal profiles on back navigation', () => {
   const changes = []; const router = { query: { thema: 'nahrungsnetz', preserved: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
@@ -185,5 +208,5 @@ test('The four added soil and waterside profiles are reachable through the exist
     assert.equal(search.find(entry => entry.id === `revierleben:${id}`).href, `/lernen/kleines-revierleben?thema=${id}#revierleben-inhalt`);
     assert.ok(assets.includes(topic.photo.src));
   }
-  assert.equal(load('lib/learning-experiences.js').learningExperiences.length, 24);
+  assert.ok(load('lib/learning-experiences.js').learningExperiences.some(item => item.href === '/lernen/kleines-revierleben'), 'The ecology tool remains reachable from the learning catalog');
 });

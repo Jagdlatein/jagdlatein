@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
+import PageMenu, { closePageMenu } from "./PageMenu";
 import CommunityWeeklyCase from "./CommunityWeeklyCase";
 import { communityWeeklyCases } from "../lib/community-weekly-case";
 import { communityCategories, communityRules } from "../lib/community-catalog";
@@ -34,21 +35,23 @@ function focusSection(id) {
 function CommunityToolbar({ threadId, view, viewer, compose, loading, busy, onView, onCompose, onReload }) {
   return <div className={styles.toolbar}>
     <div className={styles.toolbarMain}>
-      {threadId && <Link className={learning.secondary} href="/community"><AppIcon name="arrow-left" size={18} />Alle Themen</Link>}
       {!threadId && viewer && !compose && <button className={learning.primary} type="button" onClick={onCompose} disabled={busy}><AppIcon name="community" size={18} />Frage stellen</button>}
+    </div>
+    <PageMenu title="Community auswählen">
+      {threadId && <Link className={learning.secondary} href="/community" onClick={closePageMenu}><AppIcon name="arrow-left" size={18} />Alle Themen</Link>}
       {!threadId && !compose && <nav className={styles.viewNav} aria-label="Community-Ansicht">
         <button type="button" aria-pressed={view === "posts"} onClick={() => onView("posts")} disabled={busy}>Alle Themen</button>
         <button type="button" aria-pressed={view === "submissions"} onClick={() => onView("submissions")} disabled={busy}>Meine Einreichungen</button>
       </nav>}
-    </div>
-    {!compose && <details className={styles.utilityMenu}><summary>Weitere Optionen</summary><div className={styles.toolbarTools}>
+    {!compose && <div className={styles.toolbarTools}>
       <button className={learning.secondary} type="button" onClick={onReload} disabled={loading || busy}>Aktualisieren</button>
       {!threadId && <button className={learning.secondary} type="button" aria-pressed={view === "blocks"} onClick={() => onView("blocks")} disabled={busy}>Blockierte Nutzer</button>}
       {!threadId && viewer?.canModerate === true && <>
         <button className={learning.secondary} type="button" aria-pressed={view === "moderation"} onClick={() => onView("moderation")} disabled={busy}>Neue Beiträge prüfen</button>
         <button className={learning.secondary} type="button" aria-pressed={view === "reports"} onClick={() => onView("reports")} disabled={busy}>Gemeldete Beiträge prüfen</button>
       </>}
-    </div></details>}
+    </div>}
+    </PageMenu>
   </div>;
 }
 
@@ -202,6 +205,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   function setBlock(value) { setBlockState(value); if (value) { setNotice(""); setMutationError(null); setReportState(null); setRemovalState(null); } }
   function reset() { resultFocusRequested.current = false; setCategory("all"); setQuery(""); setSearch(""); setType("all"); setUnanswered(false); setPage(1); }
   function showResults() {
+    closePageMenu();
     const value = query.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
     setSearch(value); setPage(1);
     resultFocusRequested.current = true;
@@ -211,11 +215,13 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     }
   }
   function changeView(value) {
+    closePageMenu();
     resultFocusRequested.current = false;
     setView(value); setPage(1); setBlock(null); setReport(null); setRemoval(null);
     setNotice(""); setMutationError(null); setFocusTarget("community-view");
   }
   function startCompose() {
+    closePageMenu();
     setDiscussionTitle(context ? `Frage zu ${context}`.slice(0, 140) : "");
     resultFocusRequested.current = false;
     setView("posts"); setPage(1); setCompose(true); setFocusTarget("community-compose");
@@ -243,7 +249,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
         {!compose && !threadId && ["moderation", "submissions"].includes(view) && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>{view === "moderation" ? "Neue Beiträge prüfen" : "Meine Einreichungen"}</h2><p>{view === "moderation" ? "Diese Warteschlange ist nur für die Moderation sichtbar. Prüfe auch den öffentlichen Lernnamen; Freigaben bestätigen die Community-Regeln, keine fachliche Richtigkeit." : "Hier siehst du deine noch nicht freigegebenen Themen und Antworten. Freigegebene Beiträge findest du in der Themenübersicht."}</p>{posts.map(post => <CommunitySubmission key={post.id} post={post} admin={view === "moderation" && admin} busy={busy} mutate={mutate} setRemoval={setRemoval} />)}{!loading && posts.length === 0 && <p>{view === "moderation" ? "Keine neuen Beiträge warten auf Prüfung." : "Du hast keine offenen oder abgelehnten Einreichungen."}</p>}</section>}
         {!compose && view === "blocks" && !threadId && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>Blockierte Nutzer</h2><p>Ihr seht die Beiträge des jeweils anderen nicht mehr und könnt nicht aufeinander antworten. Eine Blockierung kannst du hier aufheben. Für eine Prüfung durch die Moderation melde den betreffenden Beitrag zusätzlich.</p>{(data?.blocks || []).map(item => <article className={styles.post} key={item.id}><h3>{item.displayName}</h3><p>Blockiert am {displayDate(item.createdAt)}</p><button className={learning.secondary} disabled={busy} onClick={() => mutate({ action: "unblock", blockId: item.id }, "PATCH")}>Blockierung aufheben</button></article>)}{!loading && !(data?.blocks || []).length && <p>Du hast keine Nutzer blockiert.</p>}</section>}
         {!compose && !threadId && view === "posts" && <div id="community-view" tabIndex={-1} className={styles.confirmation}>
-          <CommunitySearch {...{ query, category, type, unanswered, search, total, loading }} onQuery={changeQuery} onCategory={value => changeFilter(setCategory, value)} onType={value => changeFilter(setType, value)} onUnanswered={value => changeFilter(setUnanswered, value)} onSearch={showResults} onReset={reset} />
+          <PageMenu title="Community durchsuchen"><CommunitySearch {...{ query, category, type, unanswered, search, total, loading }} onQuery={changeQuery} onCategory={value => changeFilter(setCategory, value)} onType={value => changeFilter(setType, value)} onUnanswered={value => changeFilter(setUnanswered, value)} onSearch={showResults} onReset={reset} /></PageMenu>
           <section id="community-results" tabIndex={-1} className={styles.confirmation} aria-label="Gefundene Community-Themen">
             <div className={styles.topics}>{posts.map(post => <article className={styles.topicCard} key={post.id}><div className={styles.badges}><span>{categoryName(post.category)}</span><span>{post.type === "question" ? "Frage" : "Austausch"}</span>{post.solved && <span className={styles.solved}>Als geklärt markiert</span>}</div><h2><Link className={styles.topicLink} href={`/community/${post.id}`}>{post.title}<AppIcon name="arrow-right" size={20} /></Link></h2><p className={styles.preview}>{post.body.slice(0, 220)}{post.body.length > 220 ? " …" : ""}</p><div className={styles.postMeta}><span>{post.displayName}</span><time dateTime={post.createdAt}>{displayDate(post.createdAt)}</time><span>{post.replyCount || 0} {post.replyCount === 1 ? "Antwort" : "Antworten"}</span></div><PostActions {...{ post, admin, busy, mutate, setReport, setRemoval, setBlock }} /></article>)}</div>
             {!loading && posts.length === 0 && <section className={learning.panel}><h2>{search || category !== "all" || type !== "all" || unanswered ? "Keine passenden Themen" : "Hier beginnt euer Austausch"}</h2><p>{search || category !== "all" || type !== "all" || unanswered ? "Ändere die Auswahl oder stelle deine eigene Frage." : "Stelle die erste Frage oder teile einen Lernansatz."}</p>{viewer && <button className={learning.primary} onClick={startCompose}>Frage stellen</button>}</section>}

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import DigestiveLearning from "./DigestiveLearning";
 import { digestiveTopics } from "../lib/digestive-learning";
 import LearningToolLayout from "./LearningToolLayout";
+import PageMenu, { closePageMenu } from "./PageMenu";
 import { anatomyModels, anatomyQuestions, anatomySources } from "../lib/anatomy-explorer";
 import styles from "../styles/LearningExperience.module.css";
 import mediaStyles from "../styles/LearningMediaExperiences.module.css";
@@ -21,6 +22,9 @@ export default function AnatomyExplorer() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [quizOpen, setQuizOpen] = useState(false);
+  const [selectionRevision, setSelectionRevision] = useState(0);
+  const contentTarget = useRef(null);
+  const focusedRevision = useRef(0);
   const viewer = useRef(null);
   const generation = useRef(0);
   const answered = useRef(new Set());
@@ -61,11 +65,20 @@ export default function AnatomyExplorer() {
     const digestive = digestiveTopics.some(item => item.id === id);
     if (!digestive && !anatomyModels.some(item => item.id === id)) return;
     if (digestive) chooseDigestive(id); else chooseModel(id);
+    closePageMenu();
+    setSelectionRevision(value => value + 1);
     if (router.isReady) {
       const { bereich, thema, eintrag, ...query } = router.query;
       router.replace({ pathname: router.pathname, query: { ...query, ...(digestive ? { bereich: "verdauung", thema: id } : { eintrag: id }) } }, undefined, { shallow: true, scroll: false }).catch(() => {});
     }
   }
+
+  useEffect(() => {
+    if (selectionRevision === focusedRevision.current || !contentTarget.current) return;
+    focusedRevision.current = selectionRevision;
+    contentTarget.current.focus({ preventScroll: true });
+    contentTarget.current.scrollIntoView({ block: "start", behavior: "auto" });
+  }, [selectionRevision, section, modelId, digestiveId]);
 
   useEffect(() => {
     if (section !== "museum" || !enabled || !scriptReady || !viewer.current) return undefined;
@@ -118,7 +131,10 @@ export default function AnatomyExplorer() {
   }
 
   return <LearningToolLayout title="Wildkörper verstehen" description="Körperbau und Verdauung an echten Präparatfotos und Museumsscans vergleichen." icon="cube" category="wildkunde" compact>
-    <label className={styles.field}>Körperbau erkunden<select value={section === "verdauung" ? digestiveId : modelId} onChange={event => selectEntry(event.target.value)}><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label>
+    <PageMenu title="Körperbau – Thema wählen">
+      <label className={styles.field}>Körperbau erkunden<select value={section === "verdauung" ? digestiveId : modelId} onChange={event => selectEntry(event.target.value)}><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label>
+    </PageMenu>
+    <div ref={contentTarget} tabIndex={-1} aria-label={section === "verdauung" ? digestiveTopics.find(item => item.id === digestiveId)?.title : model.title}>
     {section === "verdauung" ? <DigestiveLearning key={digestiveId} selectedId={digestiveId} onSelect={selectEntry} hideSelector /> : <>
     <section className={styles.note}><strong>Ein klar benanntes Vergleichsbeispiel</strong><p>Alle Modelle zeigen Abgüsse des <strong>nordamerikanischen Weißwedelhirsches (Odocoileus virginianus)</strong> aus der Smithsonian-Lehrsammlung EO404749. Sie stellen kein Reh oder Rotwild dar. Schädel und Vorderlauf können aus verschiedenen Exemplaren stammen und sind nicht maßstabsgleich. Keine KI-Modelle.</p></section>
     <section className={styles.panel} aria-labelledby="anatomie-modell">
@@ -145,5 +161,6 @@ export default function AnatomyExplorer() {
     </details>}
     <details className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
     </>}
+    </div>
   </LearningToolLayout>;
 }

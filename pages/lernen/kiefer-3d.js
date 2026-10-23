@@ -5,6 +5,7 @@ import LearningToolLayout from "../../components/LearningToolLayout";
 import WildlifeJawModel from "../../components/WildlifeJawModel";
 import WildlifeDentition from "../../components/WildlifeDentition";
 import WildlifeJawComparison from "../../components/WildlifeJawComparison";
+import PageMenu, { closePageMenu } from "../../components/PageMenu";
 import { europeanWildlife } from "../../lib/european-wildlife-discovery";
 import { jawModelsBySlug, jawModelSpecies } from "../../lib/wildlife-jaw-models";
 import styles from "../../styles/WildlifeJawModel.module.css";
@@ -40,6 +41,7 @@ export default function JawAtlas() {
     if (!query.vergleich || query.vergleich === query.art) delete query.vergleich;
     try {
       Promise.resolve(router.replace({ pathname: "/lernen/kiefer-3d", query }, undefined, { shallow: true, scroll: false }))
+        .then(completed => { if (completed !== false && request.current === attempt && [origin, JSON.stringify(query)].includes(currentQuery.current)) closePageMenu(); })
         .catch(failure => { if (!failure?.cancelled && currentQuery.current === origin && request.current === attempt) { errorQuery.current = origin; setError("Die Auswahl konnte gerade nicht geöffnet werden. Bitte versuche es erneut."); } })
         .finally(() => { if (request.current === attempt) setPendingRoute(null); });
     } catch { setPendingRoute(null); errorQuery.current = origin; setError("Die Auswahl konnte gerade nicht geöffnet werden. Bitte versuche es erneut."); }
@@ -50,12 +52,15 @@ export default function JawAtlas() {
     return jawModelsBySlug[item.slug] ? <WildlifeJawModel key={item.slug} slug={item.slug} name={item.name} showDirectoryLink={false} sectionId={secondary ? "kiefer-3d-vergleich" : "kiefer-3d"} viewerOwner={viewerOwner} onActivate={setViewerOwner} /> : <section className={styles.panel} aria-labelledby={headingId}><h2 id={headingId}>{item.name}: 3D-Modell noch offen</h2><p>Für diese Art ist derzeit kein eindeutig zugeordnetes und für die Anzeige geprüftes Kiefer- oder Schädelmodell eingebunden. Ein ähnliches Tier wird hier nicht als Ersatz ausgegeben.</p></section>;
   }
 
-  return <LearningToolLayout title="Kiefer & Schädel in 3D" description="Artspezifische Sammlungspräparate von Wildarten untersuchen und Zahnformeln nachlesen." icon="cube" category="wildkunde" headingOnly searchHref="#kiefer-artauswahl">
+  return <LearningToolLayout title="Kiefer & Schädel in 3D" description="Artspezifische Sammlungspräparate von Wildarten untersuchen und Zahnformeln nachlesen." icon="cube" category="wildkunde" headingOnly>
+    <PageMenu title="Kiefer & Schädel – Wildart wählen">
     <div className={styles.selectionGrid}><label className={styles.field} id="kiefer-artauswahl">Wildart auswählen<select value={species.slug} disabled={changing} onChange={event => choose(event.target.value)}>
       <optgroup label="Mit geprüftem 3D-Modell">{available.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</optgroup>
       <optgroup label="3D-Modell noch offen">{missing.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</optgroup>
     </select></label><label className={styles.field}>Vergleichen mit (optional)<select value={comparison?.slug || ""} disabled={changing} onChange={event => choose(event.target.value, "vergleich")}><option value="">Kein Vergleich</option>{jawAtlasSpecies.filter(item => item.slug !== species.slug).map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</select></label></div>
     <p>{jawModelSpecies.length} von {jawAtlasSpecies.length} Arten und Vergleichsformen haben hier ein geprüftes Kiefer- oder Schädelmodell; {mandibleCount} davon mit isoliertem Unterkiefer oder einer Kieferhälfte. Die übrigen Einträge bleiben ausdrücklich als offen erkennbar.</p>
+    </PageMenu>
+    <p className={styles.object}><strong>{species.name}</strong>{comparison && <> im Vergleich mit <strong>{comparison.name}</strong></>}</p>
     {error && errorQuery.current === queryKey && <p role="status">{error}</p>}
     {comparison && <WildlifeJawComparison left={species.slug} right={comparison.slug} />}
     {comparison && <p>Zum Wechseln zwischen den Präparaten lade die gewünschte 3D-Ansicht. Es bleibt jeweils eine Ansicht geöffnet. Die Modelle werden unabhängig an ihren Bildschirm angepasst und haben keinen gemeinsamen Maßstab.</p>}

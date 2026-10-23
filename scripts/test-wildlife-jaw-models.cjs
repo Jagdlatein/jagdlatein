@@ -39,13 +39,13 @@ function viewer() {
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const tick = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function atlas(query = { art: 'rehwild' }) {
-  const e = engine(), calls = []; let tree;
+  const e = engine(), calls = [], menuCalls = []; let tree;
   const router = { query, isReady: true, asPath: '/lernen/kiefer-3d', replace(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
-  const Jaw = () => null;
-  const loaded = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)), '../../components/WildlifeJawModel': moduleValue(Jaw), '../../components/WildlifeDentition': moduleValue(() => null), '../../lib/wildlife-jaw-models': fixture })('pages/lernen/kiefer-3d.js');
+  const Jaw = () => null, PageMenu = () => null;
+  const loaded = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)), '../../components/PageMenu': { ...moduleValue(PageMenu), closePageMenu: () => { menuCalls.push('close'); } }, '../../components/WildlifeJawModel': moduleValue(Jaw), '../../components/WildlifeDentition': moduleValue(() => null), '../../lib/wildlife-jaw-models': fixture })('pages/lernen/kiefer-3d.js');
   const render = () => { tree = e.render(() => loaded.default()); e.flush(); };
   render();
-  return { get tree() { return tree; }, calls, router, render, Jaw,
+  return { get tree() { return tree; }, calls, menuCalls, router, render, Jaw, PageMenu,
     field() { return all(tree, n => n.type === 'select')[0]; },
     choose(slug) { this.field().props.onChange({ target: { value: slug } }); render(); },
     async reject(error) { calls.at(-1).task.reject(error); await tick(); render(); },
@@ -126,6 +126,29 @@ test('Atlas lists every current wildlife entry once; supported and missing speci
 test('Invalid or repeated art parameters fall back safely; every valid art stays exact', () => {
   for (const art of ['../fremd', 'https://evil.example', ['rehwild', 'damwild']]) assert.equal(atlas({ art }).field().props.value, 'rehwild');
   for (const species of inventory) { const ui = atlas({ art: species.slug }); assert.equal(ui.field().props.value, species.slug); }
+});
+
+test('Atlas contributes species navigation only to the lower PageMenu and keeps the selected species visible in the content', () => {
+  const ui = atlas();
+  const menu = all(ui.tree, node => node.type === ui.PageMenu);
+  assert.equal(menu.length, 1);
+  assert.equal(all(menu[0], node => node.type === 'select').length, 2);
+  const content = renderToStaticMarkup(ui.tree);
+  assert.doesNotMatch(content, /<select|Wildart auswählen|Vergleichen mit \(optional\)/);
+  assert.match(content, /<strong>Rehwild<\/strong>/);
+  assert.equal(all(ui.tree, node => node.type === ui.Jaw).length, 1, 'Model panel remains in the page content');
+});
+
+test('Successful atlas leaf selection closes the lower menu; failure or an abandoned route leaves it alone', async () => {
+  const ui = atlas();
+  ui.choose('damwild'); await ui.reject(new Error('offline'));
+  assert.deepEqual(ui.menuCalls, []);
+  ui.choose('damwild'); await ui.acknowledge(1);
+  assert.deepEqual(ui.menuCalls, ['close']);
+  const abandoned = atlas(); abandoned.choose('damwild');
+  abandoned.router.query = { art: 'gamswild' }; abandoned.render();
+  abandoned.calls[0].task.resolve(true); await tick(); abandoned.render();
+  assert.deepEqual(abandoned.menuCalls, []);
 });
 
 test('Atlas navigation preserves unrelated query fields and recovers after ordinary/cancelled errors', async () => {

@@ -156,6 +156,41 @@ test('Every radio answer reveals the correct explanation immediately and can be 
   }
 });
 
+test('Digestive learning keeps all teaching and limits visible while the last closed source block retains each fact, diagram, quiz and photograph attribution', () => {
+  const hooks = { ...React, useState: initial => [initial, () => {}] };
+  const Component = load('components/DigestiveLearning.js', { react: hooks }).default;
+  const words = node => Array.isArray(node) ? node.map(words).join(' ') : node == null || typeof node === 'boolean' ? '' : typeof node === 'object' ? words(node.props?.children) : String(node);
+  const hrefs = node => [...renderToStaticMarkup(node).matchAll(/href="([^"]+)"/g)].map(match => match[1].replaceAll('&amp;', '&'));
+  for (const topic of digestive.digestiveTopics) {
+    const tree = Component({ selectedId: topic.id, hideSelector: true });
+    const content = walk(tree, node => node.type?.name === 'Content')[0];
+    const article = content.type(content.props);
+    const children = React.Children.toArray(article.props.children);
+    const evidence = children.at(-1);
+    assert.equal(evidence.type, 'details'); assert.ok(!evidence.props.open, 'All supplemental sources start closed');
+    const learning = children.slice(0, -1);
+    assert.equal(walk(learning, node => node.type === 'a' || node.type?.name === 'SourceLinks').length, 0, 'No inline source or photo-license links interrupt the learning text');
+    const visible = words(learning);
+    for (const text of [topic.summary, topic.photoContext, topic.observation, topic.limit, topic.pathway.note, ...topic.facts.map(fact => fact.text), ...topic.pathway.steps.flatMap(step => [step.title, step.text]), ...topic.questions.map(question => question.prompt)]) assert.ok(visible.includes(text), `${topic.id}: learning text or scope limit missing`);
+    const mapping = walk(evidence, node => node.type === 'li' && walk(node, child => child.type?.name === 'SourceLinks').length > 0);
+    for (const fact of topic.facts) {
+      const row = mapping.find(row => words(row).includes(fact.title)); assert.ok(row, fact.id);
+      assert.deepEqual(new Set(hrefs(row)), new Set(fact.sourceIds.map(id => digestive.digestiveSources[id].url)));
+    }
+    for (const question of topic.questions) {
+      const row = mapping.find(row => words(row).includes(question.prompt)); assert.ok(row, question.id);
+      const expected = topic.facts.filter(fact => question.factIds.includes(fact.id)).flatMap(fact => fact.sourceIds).map(id => digestive.digestiveSources[id].url);
+      assert.deepEqual(new Set(hrefs(row)), new Set(expected), 'Quiz sources remain traceable to the exact facts used by its explanation');
+    }
+    const links = walk(evidence, node => node.type?.name === 'SourceLinks');
+    assert.deepEqual(new Set(hrefs(links[topic.facts.length])), new Set(topic.pathway.sourceIds.map(id => digestive.digestiveSources[id].url)), 'The learning diagram retains its own source assignment');
+    const evidenceText = words(evidence), evidenceLinks = hrefs(evidence);
+    for (const text of [topic.photo.author, topic.photo.license, topic.photo.modifications]) assert.ok(evidenceText.includes(text));
+    assert.ok(evidenceLinks.includes(topic.photo.sourceUrl)); assert.ok(evidenceLinks.includes(topic.photo.licenseUrl));
+    for (const id of new Set([...topic.facts.flatMap(fact => fact.sourceIds), ...topic.pathway.sourceIds])) assert.ok(evidenceText.includes(digestive.digestiveSources[id].scope));
+  }
+});
+
 test('Each search result addresses the real profile directly and exposes no answer keys', () => {
   for (const collection of collections) {
     assert.equal(collection.searches.length, collection.topics.length);

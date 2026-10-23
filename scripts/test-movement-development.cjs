@@ -102,7 +102,7 @@ test('Biological/methodical claims carry scoped independent references without t
 function hooksEngine() {
   let cursor = 0; const slots = [];
   const hooks = { ...React, useId: () => 'test-movement', useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = initial; return [slots[i], value => { slots[i] = typeof value === 'function' ? value(slots[i]) : value; }]; } };
-  return { hooks, render(Component) { cursor = 0; return Component({}); } };
+  return { hooks, render(Component, props = {}) { cursor = 0; return Component(props); } };
 }
 function findNode(node, predicate) { if (!node || typeof node !== 'object') return null; if (predicate(node)) return node; return React.Children.toArray(node.props?.children).map(child => findNode(child, predicate)).find(Boolean) || null; }
 test('Interactive movement timeline, sampling and learning answer update without purchase/network actions', () => {
@@ -116,6 +116,38 @@ test('Interactive movement timeline, sampling and learning answer update without
   assert.match(renderToStaticMarkup(tree), /04\.09\.2014/);
   const radios = []; function collect(node) { if (!node || typeof node !== 'object') return; if (node.type === 'input' && node.props.type === 'radio') radios.push(node); React.Children.forEach(node.props?.children, collect); } collect(tree); radios[1].props.onChange();
   assert.match(renderToStaticMarkup(engine.render(Component)), /Richtig eingeordnet/);
+});
+
+test('Movement knowledge and limitations remain directly visible while exact claim, quiz, file and map references occur only in the final closed block', () => {
+  const engine = hooksEngine(); const Component = load('components/WildMovementMap.js', {react: engine.hooks}).default;
+  const dataset = movement.wildMovementDatasets[0];
+  const hrefs = node => [...renderToStaticMarkup(node).matchAll(/href="([^"]+)"/g)].map(match => match[1].replace(/&amp;/g, '&'));
+  let tree = engine.render(Component, { selectedId: dataset.id, hideSelector: true });
+  for (const sampling of ['four', 'daily']) {
+    if (sampling === 'daily') { findNode(tree, node => node.type === 'select').props.onChange({ target: { value: sampling } }); tree = engine.render(Component, { selectedId: dataset.id, hideSelector: true }); }
+    const children = React.Children.toArray(tree.props.children), footer = children.at(-1);
+    const body = React.createElement(React.Fragment, null, children.slice(0, -1));
+    const bodyHtml = renderToStaticMarkup(body);
+    assert.equal(footer.type, 'details'); assert.ok(!footer.props.open); assert.doesNotMatch(bodyHtml, /<a\b/);
+    assert.doesNotMatch(bodyHtml, /Kartengrundlage: Natural Earth/);
+    assert.equal((bodyHtml.match(/<select\b/g) || []).length, 1, 'Only the existing sampling control remains; no additional subject selection is introduced');
+    const limits = findNode(body, node => node.type === 'section' && node.props['aria-labelledby'] === 'wildbewegung-grenzen');
+    assert.ok(limits, 'Limitations are outside any closed details element');
+    for (const limit of dataset.boundaries) assert.ok(renderToStaticMarkup(limits).includes(limit));
+    for (const fact of dataset.facts) {
+      assert.ok(bodyHtml.includes(fact.text));
+      const mapping = findNode(footer, node => node.props?.['data-source-for'] === fact.id);
+      assert.deepEqual(hrefs(mapping), fact.sourceIds.map(id => movement.wildMovementSources[id].url));
+    }
+    assert.deepEqual(hrefs(findNode(footer, node => node.props?.['data-source-for'] === 'question')), dataset.question.sourceIds.map(id => movement.wildMovementSources[id].url));
+    const table = findNode(body, node => node.type === 'table');
+    assert.equal((renderToStaticMarkup(table).match(/<tr\b/g) || []).length, movement.selectMovementPoints(dataset, sampling).length + 1);
+    for (const filename of ['weissstorch-originalausschnitt.csv', 'bewegungsdaten-nachweis.json', 'lifetrack-original-readme.txt']) assert.ok(hrefs(footer).includes(`/lernen/bewegung-entwicklung-2026/${filename}`));
+    const sourceHtml = renderToStaticMarkup(footer);
+    assert.ok(sourceHtml.includes(dataset.producer)); assert.ok(sourceHtml.includes(dataset.license)); assert.ok(hrefs(footer).includes(dataset.licenseUrl));
+    assert.match(sourceHtml, /Kartengrundlage: Natural Earth, stark vereinfachte Länderumrisse; Mercator-Übersicht/);
+    assert.ok(hrefs(footer).includes(movement.wildMovementSources.naturalEarth.url));
+  }
 });
 test('Sampling keeps a nearest existing timestamp instead of returning to the first day or interpolating', () => {
   const points = [{ timestamp: '2014-08-23 12:00:00' }, { timestamp: '2014-08-24 12:00:00' }, { timestamp: '2014-08-25 12:00:00' }];

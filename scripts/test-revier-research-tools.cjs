@@ -32,16 +32,35 @@ function engine() {
   const slots = [], effects = []; let cursor = 0;
   const hooks = { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; }]; },
+    useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
     useEffect(fn, deps) { const i = cursor++; const old = slots[i]; if (!old || !deps || deps.some((dep, j) => !Object.is(dep, old.deps[j]))) { slots[i] = { deps }; effects.push(fn); } },
   };
   return { hooks, render(fn) { cursor = 0; return fn(); }, effects() { for (const effect of effects.splice(0)) effect(); } };
 }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const result = find(child, predicate); if (result) return result; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
 function text(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(text).join(''); return typeof node === 'object' ? text(node.props?.children) : String(node); }
+function hrefs(node) { return [...renderToStaticMarkup(node).matchAll(/href="([^"]+)"/g)].map(match => match[1].replace(/&amp;/g, '&')); }
+function PageMenu() { return null; }
 function setup(file, props = {}, exposed = '', router = { query: {}, isReady: false }) {
-  const e = engine(); const mod = load(file, { react: e.hooks, 'next/router': { useRouter: () => router } }, exposed); const Component = exposed ? mod.__test : mod.default; let tree;
-  const render = () => tree = e.render(() => Component(props)); render();
-  return { e, render, router, get tree() { return tree; }, html() { return renderToStaticMarkup(tree); } };
+  let closes = 0;
+  const focused = [], scrolled = [];
+  const e = engine(); const mod = load(file, { react: e.hooks, 'next/router': { useRouter: () => router }, './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closes++; return true; } } }, exposed); const Component = exposed ? mod.__test : mod.default; let tree;
+  const render = () => {
+    tree = e.render(() => Component(props));
+    const container = find(tree, node => node.props?.ref);
+    if (container) {
+      const id = find(tree, node => node.type === 'select' && ['revierleben-thema', 'forschung-datensatz'].includes(node.props.id))?.props.value;
+      const heading = { setAttribute(name, value) { assert.equal(name, 'tabindex'); assert.equal(value, '-1'); }, focus(options) { focused.push({ id, options }); }, scrollIntoView(options) { scrolled.push({ id, options }); } };
+      container.props.ref.current = { querySelector(selector) { assert.equal(selector, 'h2'); return heading; } };
+    }
+    return tree;
+  };
+  render();
+  return { e, render, router, focused, scrolled, get closes() { return closes; }, get tree() { return tree; }, html() { return renderToStaticMarkup(tree); },
+    menu() { return find(tree, node => node.type === PageMenu); },
+    menuHtml() { return renderToStaticMarkup(find(tree, node => node.type === PageMenu).props.children); },
+    flush() { for (let i = 0; i < 3; i++) { e.effects(); render(); } },
+  };
 }
 const ecology = load('lib/small-revier-life.js');
 const research = load('lib/research-understanding.js');
@@ -122,13 +141,53 @@ test('Search entries resolve every profile and dataset and exclude private quiz 
     }
   }
 });
-test('Tools immediately render meaningful content, one main region and no submit or confirm button wall', () => {
+test('Tools keep complete learning content visible while their subject selectors occur only in the lower PageMenu', () => {
   for (const file of ['components/SmallRevierLife.js', 'components/ResearchUnderstanding.js']) {
-    const html = setup(file).html();
-    assert.equal((html.match(/<main/g) || []).length, 1); assert.match(html, /<label[^>]*>[^<]+<select/);
+    const s = setup(file); const html = s.html();
+    assert.equal((html.match(/<main/g) || []).length, 1);
+    assert.doesNotMatch(html, /id="(?:revierleben-thema|forschung-datensatz)"|Lebewesen oder Zusammenhang|Forschungsbeispiel/);
+    assert.match(s.menuHtml(), /<label[^>]*>[^<]+<select/);
+    assert.ok(find(s.menu(), node => node.type === 'optgroup'), 'All thematic groups remain available in the shared menu');
     assert.doesNotMatch(html, /<button|undefined/); assert.match(html, /<fieldset/);
     assert.match(html, /revierleben-inhalt|forschung-inhalt/);
   }
+});
+
+test('Valid menu selection closes the menu and focuses the newly committed learning heading; invalid selection changes nothing', () => {
+  for (const [file, parameter, initial, next] of [
+    ['components/SmallRevierLife.js', 'thema', 'holzpilze', 'regenwuermer'],
+    ['components/ResearchUnderstanding.js', 'datensatz', 'temperatur', 'waldbrand'],
+  ]) {
+    const changes = [];
+    const router = { query: { [parameter]: initial, retained: 'yes' }, isReady: true, pathname: '/synthetic-tool', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+    const s = setup(file, {}, '', router); s.flush();
+    const closes = s.closes, focused = s.focused.length;
+    find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: 'invalid' } }); s.flush();
+    assert.equal(changes.length, 0); assert.equal(s.closes, closes); assert.equal(s.focused.length, focused);
+    find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: next } }); s.flush();
+    assert.ok(s.closes > closes); assert.equal(changes.length, 1);
+    assert.equal(changes[0][0].query[parameter], next); assert.equal(changes[0][0].query.retained, 'yes');
+    assert.deepEqual(changes[0][2], { shallow: true, scroll: false });
+    assert.deepEqual(s.focused.at(-1), { id: next, options: { preventScroll: true } });
+    assert.deepEqual(s.scrolled.at(-1), { id: next, options: { block: 'start', behavior: 'auto' } });
+    assert.doesNotMatch(s.html(), /id="(?:revierleben-thema|forschung-datensatz)"/);
+    router.query[parameter] = next; s.render(); s.flush();
+    router.query[parameter] = initial; s.render(); s.flush();
+    assert.equal(find(s.menu(), node => node.type === 'select').props.value, initial);
+    assert.equal(s.focused.at(-1).id, initial, 'Back/direct URL navigation focuses its own restored content');
+  }
+});
+
+test('The lower research menu switches between data series and movement maps without mixing their content', () => {
+  const router = { query: { datensatz: 'weissstorch-olea-2014' }, isReady: true, pathname: '/lernen/forschung-verstehen', replace: () => Promise.resolve() };
+  const s = setup('components/ResearchUnderstanding.js', {}, '', router); s.flush();
+  assert.equal(find(s.tree, node => node.type?.name === 'WildMovementMap').props.selectedId, 'weissstorch-olea-2014');
+  assert.equal(find(s.tree, node => node.props?.dataset), null);
+  assert.match(s.html(), /id="wildbewegung"/); assert.doesNotMatch(s.html(), /id="forschung-inhalt"/);
+  find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: 'brutvoegel' } }); s.flush();
+  assert.equal(find(s.tree, node => node.props?.dataset).props.dataset.id, 'brutvoegel');
+  assert.equal(find(s.tree, node => node.type?.name === 'WildMovementMap'), null);
+  assert.equal(s.focused.at(-1).id, 'brutvoegel');
 });
 test('Ecology deep links, back navigation and selectors consistently show the addressed topic', () => {
   const changes = []; const router = { query: { thema: 'holzpilze', preserved: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
@@ -156,6 +215,51 @@ test('An interpretation answer immediately supplies corrective explanation and t
     find(s.tree, item => item.type === 'input' && item.props.value === 0).props.onChange(); s.render();
     const feedback = find(s.tree, item => item.props?.role === 'status'); assert.ok(feedback); assert.match(text(feedback), /Passend ist:/);
     assert.doesNotMatch(s.html(), /<button/);
+  }
+});
+
+test('Every ecology profile keeps knowledge and photo context visible, with exact claim references and all photo credits only in the final closed source block', () => {
+  for (const topic of ecology.revierLifeTopics) {
+    const s = setup('components/SmallRevierLife.js', { topic }, 'TopicContent');
+    const children = React.Children.toArray(s.tree.props.children);
+    const footer = children.at(-1), body = React.createElement(React.Fragment, null, children.slice(0, -1));
+    assert.equal(footer.type, 'details'); assert.ok(!footer.props.open);
+    assert.doesNotMatch(renderToStaticMarkup(body), /<a\b/);
+    assert.ok(text(body).includes(topic.photoContext)); assert.ok(text(body).includes(topic.limit));
+    for (const fact of topic.facts) {
+      assert.ok(text(body).includes(fact.text));
+      const mapping = find(footer, node => node.props?.['data-source-for'] === fact.id);
+      assert.ok(mapping, `${topic.id}/${fact.id}: explicit evidence mapping`);
+      assert.deepEqual(hrefs(mapping), [...new Set(fact.sourceIds)].map(id => ecology.revierLifeSources[id].url));
+    }
+    assert.ok(text(footer).includes(topic.photo.author)); assert.ok(text(footer).includes(topic.photo.license));
+    assert.ok(hrefs(footer).includes(topic.photo.sourceUrl)); assert.ok(hrefs(footer).includes(topic.photo.licenseUrl));
+    assert.match(text(footer), /Originalaufnahme bzw\. proportionale Vorschau; kein generativer Bildinhalt/);
+  }
+});
+
+test('Research values and per-year dates remain readable before sources, and every displayed point retains its exact original reference at the end', () => {
+  for (const dataset of research.researchDatasets) {
+    const s = setup('components/ResearchUnderstanding.js', { dataset }, 'DatasetView');
+    const children = React.Children.toArray(s.tree.props.children);
+    const footer = children.at(-1), body = React.createElement(React.Fragment, null, children.slice(0, -1));
+    assert.equal(footer.type, 'details'); assert.ok(!footer.props.open);
+    assert.doesNotMatch(renderToStaticMarkup(body), /<a\b/);
+    assert.ok(text(body).includes(dataset.method)); assert.ok(text(body).includes(dataset.interpretation));
+    const table = find(body, node => node.type === 'table'); assert.ok(table);
+    for (const point of research.selectResearchPoints(dataset, 'all', 'all')) {
+      assert.ok(text(table).includes(research.formatResearchValue(dataset, point.value)));
+      if (point.statusOn) assert.ok(text(table).includes(point.statusOn));
+      const mapping = find(footer, node => node.props?.['data-source-for'] === `point-${point.id || point.year}`);
+      assert.deepEqual(hrefs(mapping), [research.researchSources[point.source || dataset.originalSourceIds[0]].url]);
+    }
+    for (const point of dataset.areaComparison || []) {
+      const mapping = find(footer, node => node.props?.['data-source-for'] === `area-${point.year}`);
+      assert.deepEqual(hrefs(mapping), [research.researchSources[point.source].url]);
+      if (point.approximate) assert.ok(text(body).includes(`rund ${point.value} Hektar`));
+    }
+    assert.ok(hrefs(footer).includes('/lernen/forschung-2026/originaldaten.json'));
+    if (dataset.id === 'temperatur') assert.ok(hrefs(footer).includes('/lernen/forschung-2026/dwd-gebietsmittel-2026-10-12.txt'));
   }
 });
 test('Displayed chart and accessible table change together, including isolated Swiss groups', () => {

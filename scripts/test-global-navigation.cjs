@@ -21,6 +21,8 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   let timerId = 0, stored = JSON.stringify(history), destination;
   const clientNavigations = [], documentNavigations = [];
   let summaryFocus = 0;
+  let refCursor = 0;
+  const refs = [];
   const menu = { open: false, contains: element => element?.insideMenu === true, querySelector: selector => selector === 'summary' ? { focus() { summaryFocus++; } } : null,
     getBoundingClientRect: () => ({ height: 64 }),
     style: { getPropertyValue: () => `${state?.bottom || 0}px` },
@@ -51,7 +53,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === 'react') return { ...React, useState: initial => {
       if (state === undefined) state = initial;
       return [state, value => { state = typeof value === 'function' ? value(state) : value; }];
-    }, useRef: () => ({ current: menu }), useEffect: callback => effects.push(callback) };
+    }, useRef: initial => { const index = refCursor++; return refs[index] ||= { current: initial === null ? menu : initial }; }, useEffect: callback => effects.push(callback) };
     if (id === 'next/navigation') return { usePathname: () => pathname };
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
@@ -60,7 +62,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);
-  const render = () => mod.exports.default();
+  const render = () => { refCursor = 0; return mod.exports.default(); };
   const tree = render();
   effects.splice(0).forEach(callback => cleanups.push(callback()));
   return { tree, render, html: () => renderToStaticMarkup(render()), listeners, windowListeners, viewportListeners, timers, sessionStorage, menu, get summaryFocus() { return summaryFocus; },
@@ -172,6 +174,25 @@ test('Menu closes after a normal choice, Escape restores summary focus, and outs
   assert.equal(s.menu.open, false); assert.equal(prevented, true); assert.equal(s.summaryFocus, 1);
   s.menu.open = true; s.route('/news'); assert.equal(s.menu.open, false); assert.equal(s.summaryFocus, 1, 'Route changes do not steal focus');
   s.unmount(); assert.equal(s.listeners.size, 0);
+});
+
+test('A shallow search update keeps a focused lower-menu field open, while actual navigation and non-editing choices close it', () => {
+  const s = setup('/lernen/lernkarten');
+  const field = { tagName: 'INPUT', type: 'search', insideMenu: true, closest: selector => selector === '#jl-page-menu' ? {} : null };
+  s.menu.open = true; s.focus(field);
+  s.route('/lernen/lernkarten?q=Gam');
+  assert.equal(s.menu.open, true, 'The 220ms search URL update must not hide the focused input');
+  s.route('/lernen/lernkarten?q=Gams');
+  assert.equal(s.menu.open, true);
+  s.route('/lernen');
+  assert.equal(s.menu.open, false, 'A new page always closes the old page menu');
+  s.menu.open = true; s.focus({ tagName: 'SELECT', insideMenu: true });
+  s.route('/lernen?kategorie=wildkunde');
+  assert.equal(s.menu.open, false, 'A deliberate selection keeps its existing dismissal behavior');
+  s.menu.open = true; s.focus({ tagName: 'INPUT', type: 'search', insideMenu: false, closest: () => null });
+  s.route('/lernen?q=Gams');
+  assert.equal(s.menu.open, false, 'Only the shared page-menu field can preserve its menu');
+  s.unmount();
 });
 
 test('Small-screen menu stays inside a 320px viewport, scrolls vertically and keeps readable large touch targets', () => {

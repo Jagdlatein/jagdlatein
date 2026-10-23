@@ -90,9 +90,18 @@ export default function GlobalHomeButton() {
   const [viewportSpace, setViewportSpace] = useState({ bottom: 0, menuHeight: null });
   const menuRef = useRef(null);
   const navigationRef = useRef(null);
+  const menuRoute = useRef(pathname);
 
   useEffect(() => {
-    if (menuRef.current) menuRef.current.open = false;
+    const samePage = menuRoute.current === pathname;
+    menuRoute.current = pathname;
+    const menu = menuRef.current;
+    const field = document.activeElement;
+    // Updating a search query in the address bar must not dismiss the field
+    // while the learner is still typing inside the lower page menu.
+    const typing = field?.tagName === "TEXTAREA" || (field?.tagName === "INPUT" && ["search", "text"].includes(field.type));
+    if (samePage && menu?.open && typing && menu.contains(field) && field.closest?.(`#${PAGE_MENU_OUTLET_ID}`)) return;
+    if (menu) menu.open = false;
   }, [pathname, router?.asPath]);
 
   useEffect(() => {

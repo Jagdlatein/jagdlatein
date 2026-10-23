@@ -167,26 +167,32 @@ test('Back or another route before a pending course click completes cancels that
   }
 });
 
-test('Print/PDF actions appear once near filters before the current card, with no new buttons', () => {
+const lowerMenu = { __esModule: true, default: ({ title, children }) => React.createElement('section', { 'data-lower-menu': title }, children), closePageMenu() {} };
+
+test('Print/PDF choices and filters appear once in the lower menu while the card itself keeps only its three study actions', () => {
   const Component = createLoader({ ...framework, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
   const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
-  assert.ok(html.indexOf('Lernkarten drucken und speichern') < html.indexOf('<article'));
-  assert.equal((html.match(/Diese Auswahl drucken/g) || []).length, 1);
-  assert.equal((html.match(/Starterset als PDF/g) || []).length, 1);
+  assert.doesNotMatch(html, /Diese Auswahl drucken|Starterset als PDF|<select|Karten anzeigen/);
   assert.equal((html.match(/<button/g) || []).length, 3);
+  const WithMenu = createLoader({ ...framework, './PageMenu': lowerMenu, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
+  const withMenu = renderToStaticMarkup(React.createElement(WithMenu, { cards, categories }));
+  assert.match(withMenu, /data-lower-menu="Lernkarten auswählen"/);
+  assert.match(withMenu, /data-lower-menu="Lernkarten drucken und speichern"/);
+  assert.equal((withMenu.match(/Diese Auswahl drucken/g) || []).length, 1);
+  assert.equal((withMenu.match(/Starterset als PDF/g) || []).length, 1);
 });
 
 test('Print and its visible digital return link preserve the current card and browsing mode', () => {
   const query = { kategorie: 'wildkunde', q: 'Gams', modus: 'alle', karte: 'flash-gams' };
   const linking = { __esModule: true, default: ({ href, children, prefetch, ...props }) => React.createElement('a', { ...props, href: typeof href === 'string' ? href : `${href.pathname}?${new URLSearchParams(href.query)}` }, children) };
-  const loader = createLoader({ ...framework, 'next/link': linking, 'next/router': { useRouter: () => ({ query, isReady: true }) } });
+  const loader = createLoader({ ...framework, './PageMenu': lowerMenu, '../../components/PageMenu': lowerMenu, 'next/link': linking, 'next/router': { useRouter: () => ({ query, isReady: true }) } });
   const digital = renderToStaticMarkup(React.createElement(loader('components/LearningFlashcards.js').default, { cards, categories }));
   const printHref = digital.match(/href="(\/lernen\/lernkarten-drucken\?[^\"]+)"/)[1].replaceAll('&amp;', '&');
   assert.deepEqual(Object.fromEntries(new URL(printHref, 'https://jagdlatein.de').searchParams), query);
   const printed = renderToStaticMarkup(React.createElement(loader('pages/lernen/lernkarten-drucken.js').default, { cards, categories }));
   const backHref = printed.match(/href="(\/lernen\/lernkarten\?[^\"]+)"/)[1].replaceAll('&amp;', '&');
   assert.deepEqual(Object.fromEntries(new URL(backHref, 'https://jagdlatein.de').searchParams), query);
-  assert.ok(printed.indexOf('Digital wiederholen') < printed.indexOf('<article'));
+  assert.match(printed, /data-lower-menu="Weitere Lernkarten"/);
   assert.equal((printed.match(/Digital wiederholen/g) || []).length, 1);
 });
 

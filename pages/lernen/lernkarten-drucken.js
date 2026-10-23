@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "../../components/LearningToolLayout";
+import PageMenu, { closePageMenu } from "../../components/PageMenu";
 import AppIcon from "../../components/AppIcon";
 import { filterFlashcards, formatFlashcardDate, FlashcardImage, FlashcardSelectionNotice } from "../../components/LearningFlashcards";
 import useFlashcardDeck from "../../components/useFlashcardDeck";
@@ -62,13 +63,16 @@ export default function PrintableFlashcards(props) {
   const backQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(navigation.mode === "all" ? { modus: "alle" } : {}), ...(sameSelection && navigation.cardId ? { karte: navigation.cardId } : {}) };
   return <LearningToolLayout title="Lernkarten drucken" description="Frage und Antwort nebeneinander auf A4 drucken, ausschneiden und zu einer Karte zusammenfalten." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-druckauswahl" hideCommunity robots="noindex,follow" className={styles.printPage}>
     <FlashcardSelectionNotice selection={selection} />
-    <div className={styles.printToolbar} id="lernkarten-druckauswahl">
-      {!selection && <label className={styles.field}>Kategorie<select value={category} onChange={event => setCategory(event.target.value)}><option value="all">Alle Kategorien</option>{categories.map(item => <option value={item.id} key={item.id}>{item.title} ({item.count})</option>)}</select></label>}
-      <label className={styles.field}>Karten suchen<input type="search" value={query} placeholder="Thema eingrenzen" onChange={event => setQuery(event.target.value.slice(0, 160))} /></label>
+    <PageMenu title="Druckauswahl ändern"><form className={styles.filters} id="lernkarten-druckauswahl" onSubmit={event => { event.preventDefault(); closePageMenu(); }}>
+      {!selection && <label className={styles.field}>Kategorie<select value={category} onChange={event => { setCategory(event.target.value); closePageMenu(); }}><option value="all">Alle Kategorien</option>{categories.map(item => <option value={item.id} key={item.id}>{item.title} ({item.count})</option>)}</select></label>}
+      <label className={styles.field}>Karten suchen<input type="search" value={query} placeholder="Thema eingrenzen" enterKeyHint="search" onChange={event => setQuery(event.target.value.slice(0, 160))} /></label>
+      <button type="submit" className={styles.textButton}>Auswahl anzeigen</button>
+    </form></PageMenu>
+    <div className={styles.printToolbar}>
       <button type="button" className={styles.primary} onClick={() => window.print()} disabled={!filtered.length || incomplete}><AppIcon name="book" size={22} />{incomplete ? "Druckauswahl wird geladen" : `${filtered.length} ${filtered.length === 1 ? "Karte" : "Karten"} drucken`}</button>
     </div>
     <div className={styles.printInstructions}><p>Auf A4 im Hochformat und einseitig drucken. Jedes Frage-Antwort-Paar an der Außenkante ausschneiden und an der Mittellinie falten. So bleibt die Frage vorn und die Antwort hinten.</p><p>Du kannst im Druckdialog auch „Als PDF speichern“ wählen. {incomplete ? "Der vollständige Kartenbestand wird vor dem Drucken geladen." : `Die Auswahl enthält ${filtered.length} ${filtered.length === 1 ? "Karte" : "Karten"}.`}</p>{incomplete && <p role="status">{loadError || (loading ? "Druckauswahl wird geladen …" : "Die Auswahl ist noch unvollständig.")}{loadError && <button type="button" className={styles.textButton} onClick={onReload}>Erneut laden</button>}</p>}</div>
-    <nav className={styles.exportLinks} aria-label="Zurück zu den digitalen Lernkarten"><Link href={{ pathname: "/lernen/lernkarten", query: backQuery }}><AppIcon name="arrow-left" size={20} />Digital wiederholen</Link><a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={20} />Starterset als PDF</a></nav>
+    <PageMenu title="Weitere Lernkarten"><nav className={styles.exportLinks} aria-label="Zurück zu den digitalen Lernkarten"><Link href={{ pathname: "/lernen/lernkarten", query: backQuery }}><AppIcon name="arrow-left" size={20} />Digital wiederholen</Link><a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download><AppIcon name="download" size={20} />Starterset als PDF</a></nav></PageMenu>
     <div className={styles.printHeading}><h2>Jagdlatein-Lernkarten · {selectedCategory}</h2><p>Einseitig drucken · außen ausschneiden · Mittellinie falten · jagdlatein.de</p></div>
     {!incomplete && filtered.length ? <div className={styles.printList}>{filtered.map((card, index) => <article className={styles.printPair} key={card.id}>
       <div className={styles.printFace}><p className={styles.printMeta}><span>{index + 1} · Frage</span><span>{card.categoryTitle}</span></p>{card.context && <p className={styles.printContext}>{card.context}{card.lessonTitle && card.lessonTitle !== card.context ? ` · ${card.lessonTitle}` : ""}</p>}<h2>{card.question}</h2><FlashcardImage image={card.image} printing /></div>

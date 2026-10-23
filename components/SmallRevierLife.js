@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import FoodwebLearning from "./FoodwebLearning";
+import PageMenu, { closePageMenu } from "./PageMenu";
 import { foodwebTopic, foodwebNodes, getFoodwebSelection } from "../lib/foodweb-learning";
 import { getRevierLifeTopic, revierLifeGroups, revierLifeSources, revierLifeTopics } from "../lib/small-revier-life";
 import shared from "../styles/LearningExperience.module.css";
@@ -19,27 +20,54 @@ function TopicContent({ topic }) {
     <p className={shared.eyebrow}>{revierLifeGroups.find(group => group.id === topic.group).title}</p>
     <h2 id="revierleben-title">{topic.title}</h2><p>{topic.summary}</p>
     <figure className={styles.photoFigure}><Image src={topic.photo.src} alt={topic.photo.alt} width={topic.photo.width} height={topic.photo.height} sizes="(max-width: 620px) 92vw, 980px" className={styles.photo} />
-      <figcaption>{topic.photoContext}<span className={styles.credit}>Foto: {topic.photo.author} · <a href={topic.photo.sourceUrl} target="_blank" rel="noopener noreferrer">Original</a> · <a href={topic.photo.licenseUrl} target="_blank" rel="noopener noreferrer">{topic.photo.license}</a> · Originalaufnahme bzw. proportionale Vorschau; kein generativer Bildinhalt.</span></figcaption>
+      <figcaption>{topic.photoContext}</figcaption>
     </figure>
-    <div className={styles.factGrid}>{topic.facts.map(item => <section key={item.id}><h3>{item.title}</h3><p>{item.text}</p><SourceLinks ids={item.sourceIds} /></section>)}</div>
+    <div className={styles.factGrid}>{topic.facts.map(item => <section key={item.id}><h3>{item.title}</h3><p>{item.text}</p></section>)}</div>
     <section className={styles.connections} aria-labelledby="revierleben-connections"><h3 id="revierleben-connections">So hängt es zusammen</h3><p className={shared.muted}>Vereinfachte fachliche Beziehungen, keine berechneten Tierzahlen oder Vorhersagen.</p><ul>{topic.connections.map(item => <li key={item.label}><strong>{item.label}</strong><span>{item.text}</span></li>)}</ul></section>
     <div className={styles.factGrid}><section><h3>Draußen beobachten</h3><p>{topic.observe}</p></section><section><h3>Was offenbleibt</h3><p>{topic.limit}</p></section></div>
     <fieldset className={styles.question}><legend>{topic.quiz.prompt}</legend><p className={shared.muted}>Eigene Lernfrage. Eine Antwort wählen; die Erklärung erscheint sofort.</p>{topic.quiz.choices.map((choice, index) => <label key={choice}><input type="radio" name={`revierleben-${topic.id}`} value={index} checked={answer === index} onChange={() => setAnswer(index)} />{choice}</label>)}{answer !== null && <div className={styles.feedback} role="status"><strong>{answer === topic.quiz.answer ? "Das passt." : "Hier lohnt sich ein genauerer Blick."}</strong><p>{topic.quiz.explanation}</p>{answer !== topic.quiz.answer && <p><strong>Passend ist:</strong> {topic.quiz.choices[topic.quiz.answer]}</p>}</div>}</fieldset>
-    <details className={shared.sources}><summary>Fachquellen und Prüfstand</summary><p>Eigene Kurzfassungen; fachlich abgeglichen am {reviewedOn}. Quellen von verschiedenen Organisationen werden je Aussage verknüpft. Bildquelle und Fachquelle erfüllen unterschiedliche Aufgaben.</p><ul>{sources.map(id => <li key={id}><a href={revierLifeSources[id].url} target="_blank" rel="noopener noreferrer">{revierLifeSources[id].organization}: {revierLifeSources[id].title}</a></li>)}</ul></details>
+    <details className={shared.sources}><summary>Fotos, Fachquellen und Prüfstand</summary><p>Eigene Kurzfassungen; fachlich abgeglichen am {reviewedOn}. Quellen von verschiedenen Organisationen werden je Aussage verknüpft. Bildquelle und Fachquelle erfüllen unterschiedliche Aufgaben.</p>
+      <h3>Nachweise zu den Aussagen</h3><ul>{topic.facts.map(item => <li key={item.id} data-source-for={item.id}><strong>{item.title}</strong><SourceLinks ids={item.sourceIds} /></li>)}</ul>
+      <h3>Fachquellen</h3><ul>{sources.map(id => <li key={id}><a href={revierLifeSources[id].url} target="_blank" rel="noopener noreferrer">{revierLifeSources[id].organization}: {revierLifeSources[id].title}</a></li>)}</ul>
+      <h3>Bildnachweis</h3><p className={styles.credit}>Foto: {topic.photo.author} · <a href={topic.photo.sourceUrl} target="_blank" rel="noopener noreferrer">Original</a> · <a href={topic.photo.licenseUrl} target="_blank" rel="noopener noreferrer">{topic.photo.license}</a> · Originalaufnahme bzw. proportionale Vorschau; kein generativer Bildinhalt.</p>
+    </details>
   </article>;
 }
 export default function SmallRevierLife() {
   const router = useRouter();
   const [selected, setSelected] = useState(revierLifeTopics[0].id);
   const [foodwebNode, setFoodwebNode] = useState("regenwurm");
-  useEffect(() => { if (router.isReady) setSelected(router.query.thema === foodwebTopic.id ? foodwebTopic.id : getRevierLifeTopic(typeof router.query.thema === "string" ? router.query.thema : "").id); }, [router.isReady, router.query.thema]);
+  const content = useRef(null);
+  const focusAfterSelection = useRef(null);
+  useEffect(() => {
+    if (!router.isReady) return;
+    const id = router.query.thema === foodwebTopic.id ? foodwebTopic.id : getRevierLifeTopic(typeof router.query.thema === "string" ? router.query.thema : "").id;
+    if (typeof router.query.thema === "string") focusAfterSelection.current = id;
+    setSelected(id);
+  }, [router.isReady, router.query.thema]);
   useEffect(() => { if (router.isReady) setFoodwebNode(getFoodwebSelection(typeof router.query.motiv === "string" ? router.query.motiv : "").node.id); }, [router.isReady, router.query.motiv]);
+  function focusContent() {
+    if (!content.current) return;
+    focusAfterSelection.current = null;
+    const target = content.current.querySelector("h2") || content.current;
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+  useEffect(() => {
+    if (focusAfterSelection.current !== selected) return;
+    closePageMenu();
+    focusContent();
+  }, [selected, router.isReady, router.query.thema]);
   const topic = getRevierLifeTopic(selected);
   function updateSelection(query) {
     if (router.isReady) router.replace({ pathname: router.pathname, query, hash: "revierleben-inhalt" }, undefined, { shallow: true, scroll: false }).catch(() => {});
   }
   function select(id) {
     if (id !== foodwebTopic.id && !revierLifeTopics.some(item => item.id === id)) return;
+    focusAfterSelection.current = id;
+    closePageMenu();
+    if (id === selected) focusContent();
     setSelected(id);
     const { motiv, ...query } = router.query;
     updateSelection({ ...query, thema: id, ...(id === foodwebTopic.id ? { motiv: foodwebNode } : {}) });
@@ -50,7 +78,7 @@ export default function SmallRevierLife() {
     updateSelection({ ...router.query, thema: foodwebTopic.id, motiv: id });
   }
   return <LearningToolLayout title="Das kleine Leben im Revier" description="Kleine Tiere, Pilze und Bodenleben mit echten Fotos entdecken und ihre ökologischen Beziehungen verstehen." category="natur-revier" icon="nature" compact>
-    <section className={`${shared.panel} ${styles.selector}`} aria-label="Thema auswählen"><label className={shared.field}>Lebewesen oder Zusammenhang<select value={selected} onChange={event => select(event.target.value)}>{revierLifeGroups.map(group => <optgroup key={group.id} label={group.title}>{revierLifeTopics.filter(item => item.group === group.id).map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup>)}<optgroup label="Zusammenhänge"><option value={foodwebTopic.id}>{foodwebTopic.title}</option></optgroup></select></label></section>
-    {selected === foodwebTopic.id ? <FoodwebLearning selectedId={foodwebNode} onSelect={selectFoodwebNode} /> : <TopicContent key={topic.id} topic={topic} />}
+    <PageMenu title="Kleines Revierleben – Thema wählen"><label className={shared.field}>Lebewesen oder Zusammenhang<select id="revierleben-thema" value={selected} onChange={event => select(event.target.value)}>{revierLifeGroups.map(group => <optgroup key={group.id} label={group.title}>{revierLifeTopics.filter(item => item.group === group.id).map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup>)}<optgroup label="Zusammenhänge"><option value={foodwebTopic.id}>{foodwebTopic.title}</option></optgroup></select></label></PageMenu>
+    <div ref={content}>{selected === foodwebTopic.id ? <FoodwebLearning selectedId={foodwebNode} onSelect={selectFoodwebNode} /> : <TopicContent key={topic.id} topic={topic} />}</div>
   </LearningToolLayout>;
 }
