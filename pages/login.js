@@ -27,8 +27,10 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const nextUrl = getNextUrl(router.query.next);
   const nextPath = decodeURIComponent(new URL(nextUrl, "https://jagdlatein.invalid").pathname).replace(/\/+$/, "");
   const forSubscription = nextPath === "/preise";
-  const loginHref = `/login?next=${encodeURIComponent(nextUrl)}`;
-  const registrationHref = `/registrieren?next=${encodeURIComponent(nextUrl)}`;
+  // The registration OTP also signs existing members in without replacing
+  // their account. This covers native /konto entry as well as web checkout.
+  const registrationMode = registration || allowRegistration;
+  const flowKey = `${registration ? "registration-route" : "login-route"}:${registrationMode ? "register" : "login"}`;
   const reviewNextUrl = nextUrl === "/" || nextPath === "/review-login" ? "/konto" : nextUrl;
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
   const [email, setEmail] = useState("");
@@ -44,14 +46,14 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const redirectTimer = useRef(null);
   const resendTimer = useRef(null);
   const resendDeadlines = useRef(new Map());
-  const authMode = useRef(registration);
+  const authMode = useRef(flowKey);
 
   useEffect(() => {
     mounted.current = true;
     // Both routes export this component, so Next can retain it when switching.
     // A code belongs to one endpoint; only the address survives the switch.
-    if (authMode.current !== registration) {
-      authMode.current = registration;
+    if (authMode.current !== flowKey) {
+      authMode.current = flowKey;
       setStep("email");
       setCode("");
       setMsg("");
@@ -67,10 +69,10 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       clearTimeout(redirectTimer.current);
       clearTimeout(resendTimer.current);
     };
-  }, [registration]);
+  }, [flowKey]);
 
   function resendKey(cleanEmail) {
-    return `${registration ? "register" : "login"}:${cleanEmail}`;
+    return `${registrationMode ? "register" : "login"}:${cleanEmail}`;
   }
 
   function remainingWait(cleanEmail) {
@@ -110,10 +112,10 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     request.current = controller;
     const timeout = setTimeout(() => controller.abort(), 18000);
     requestTimer.current = timeout;
-    const isCurrentRequest = () => mounted.current && request.current === controller;
+    const isCurrentRequest = () => mounted.current && authMode.current === flowKey && request.current === controller;
     let redirecting = false;
     try {
-      const endpoint = registration
+      const endpoint = registrationMode
         ? (verify ? "/api/auth/register-verify" : "/api/auth/register-request")
         : (verify ? "/api/auth/verify-code" : "/api/auth/request-code");
       const response = await fetch(endpoint, {
@@ -142,7 +144,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
         setEmail(cleanEmail);
         setCode("");
         setStep("code");
-        setMsg(typeof data.message === "string" && data.message.trim() ? data.message : (registration
+        setMsg(typeof data.message === "string" && data.message.trim() ? data.message : (registrationMode
           ? "Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet."
           : "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet."));
       }
@@ -159,38 +161,33 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     }
   }
 
-  const title = forSubscription ? "Dein Konto für das Abo" : registration ? "Dein Lernkonto" : "Willkommen zurück";
+  const title = forSubscription ? "Dein Konto für das Abo" : registrationMode ? "Dein Lernkonto" : "Willkommen zurück";
   const description = forSubscription
     ? "Mit deinem Jagdlatein-Konto bleibt dein Abo dir zugeordnet. Erst danach bestätigst du dein Angebot und die Zahlung."
-    : registration ? "Erstelle dein kostenloses Konto und bestätige deine E-Mail-Adresse. Ein Abo wählst du danach separat." : "Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an.";
+    : registrationMode ? "Mit E-Mail anmelden oder ein kostenloses Konto erstellen. Du bestätigst deine Adresse mit einem einmaligen Code." : "Melde dich mit deiner E-Mail-Adresse und einem einmaligen Login-Code an.";
 
   return <LearningToolLayout title={title} description={description} icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity compact>
     <section className={`${styles.panel} ${authStyles.formPanel}`} aria-labelledby="login-heading">
       {forSubscription && <ol className={authStyles.progress} aria-label="Schritte zum Abo">
         {["E-Mail", "Code bestätigen", "Abo wählen"].map((label, index) => <li key={label} aria-current={(step === "email" ? 0 : 1) === index ? "step" : undefined}><span aria-hidden="true">{index + 1}</span>{label}</li>)}
       </ol>}
-      {forSubscription && allowRegistration && !registration && step === "email" && <nav className={authStyles.accountChoice} aria-label="Jagdlatein-Konto wählen">
-        <Link href={loginHref} aria-current={!registration ? "page" : undefined}>Ich habe ein Konto</Link>
-        <Link href={registrationHref} aria-current={registration ? "page" : undefined}>Konto kostenlos anlegen</Link>
-      </nav>}
-      <h2 id="login-heading">{step === "email" ? (forSubscription && registration ? "Mit E-Mail fortfahren" : registration ? "Konto kostenlos anlegen" : "Mit E-Mail anmelden") : (registration ? "E-Mail bestätigen" : "Login-Code bestätigen")}</h2>
-      <p>{step === "email" ? (forSubscription && registration ? "Mit deiner E-Mail anmelden oder kostenloses Konto anlegen. Dein bestehendes Konto bleibt erhalten. Dieser Schritt löst keine Zahlung aus." : registration ? "Gib die E-Mail-Adresse für dein Jagdlatein-Konto ein. Die Registrierung löst keine Zahlung aus." : "Gib die E-Mail-Adresse deines Jagdlatein-Kontos ein.") : <>Code für <strong className={authStyles.emailAddress}>{email}</strong></>}</p>
+      <h2 id="login-heading">{step === "email" ? (registrationMode ? "Anmelden oder Konto erstellen" : "Mit E-Mail anmelden") : (registrationMode ? "E-Mail bestätigen" : "Login-Code bestätigen")}</h2>
+      <p>{step === "email" ? (registrationMode ? "Mit deiner E-Mail anmelden oder ein kostenloses Konto erstellen. Dein bestehendes Konto bleibt erhalten. Ein neues Konto entsteht erst nach der Codebestätigung. Dieser Schritt löst keine Zahlung aus." : "Gib die E-Mail-Adresse deines Jagdlatein-Kontos ein.") : <>Code für <strong className={authStyles.emailAddress}>{email}</strong></>}</p>
       {isTestMail && <p className={styles.note}>
         <strong>Testumgebung:</strong> {testMailMode === "tester-smtp"
           ? "Freigegebene Tester erhalten ihren Anmelde- oder Registrierungscode per E-Mail. Bitte prüfe auch den Spamordner."
           : "Anmelde- und Registrierungscodes landen ausschließlich im getrennten Testpostfach. Dein normales E-Mail-Postfach erhält keine Nachricht."}
         {" Konten der öffentlichen App werden hier nicht übernommen."}
-        {registration ? (testMailMode === "tester-smtp" ? " Registriere dein eigenes Testkonto mit deiner freigegebenen E-Mail-Adresse." : " Mit dem Code aus dem Testpostfach bestätigst du dein eigenes Testkonto.")
-          : allowRegistration && " Wenn du hier noch kein Konto hast, wähle zuerst „Kostenlos registrieren“."}
+        {registrationMode && (testMailMode === "tester-smtp" ? " Bestätige dein eigenes Testkonto mit deiner freigegebenen E-Mail-Adresse." : " Mit dem Code aus dem Testpostfach bestätigst du dein eigenes Testkonto.")}
       </p>}
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
         {step === "email" ? <label>E-Mail-Adresse
           <input key="email" type="email" inputMode="email" enterKeyHint="next" autoComplete="email" autoCapitalize="none" spellCheck={false} autoFocus placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => { setEmail(event.target.value); updateResendWait(event.target.value); }} aria-describedby="login-help" required />
-        </label> : <label>{registration ? "6-stelliger Bestätigungscode" : "6-stelliger Login-Code"}
+        </label> : <label>{registrationMode ? "6-stelliger Bestätigungscode" : "6-stelliger Login-Code"}
           <input key="code" type="text" inputMode="numeric" enterKeyHint="go" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} className={authStyles.code} aria-describedby="login-help" required />
         </label>}
         <p id="login-help" className={authStyles.help}>{step === "email" ? "Kein Passwort nötig: Du bestätigst deine E-Mail mit einem einmaligen Code." : isTestMail && testMailMode === "sink" ? "Der Code steht im getrennten Testpostfach. Gib den neuesten Code ein; er ist 10 Minuten gültig." : "Öffne dein E-Mail-Postfach und gib den neuesten Code ein; er ist 10 Minuten gültig. Prüfe auch den Spamordner."}</p>
-        <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registration ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und zum Abo" : "Einloggen"))}</button>
+        <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registrationMode ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und zum Abo" : "Einloggen"))}</button>
       </form>
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
       {step === "code" && <div className={authStyles.codeActions}>
@@ -198,7 +195,6 @@ export default function LoginPage({ registration = false, allowRegistration = fa
         <button type="button" className={styles.secondary} disabled={loading || resendSeconds > 0} aria-describedby="resend-help" onClick={event => submitCode(event, false)}>Neuen Code senden</button>
         <p id="resend-help">{resendSeconds > 0 ? <><span aria-hidden="true">Neuer Code in {resendSeconds} {resendSeconds === 1 ? "Sekunde" : "Sekunden"}.</span><span className={authStyles.srOnly}>Bitte warte kurz, bevor du einen neuen Code anforderst.</span></> : "Kein Code angekommen? Prüfe zuerst den Spamordner und fordere dann einen neuen Code an."}</p>
       </div>}
-      {!(forSubscription && allowRegistration && step === "email") && (registration ? <p className={authStyles.switchAccount}>Bereits ein Konto? <Link href={loginHref}>Mit E-Mail anmelden</Link></p> : allowRegistration && <p className={authStyles.switchAccount}>Noch kein Konto? <Link href={registrationHref}>Kostenlos registrieren</Link></p>)}
       {!registration && !isTestMail && allowReviewLogin === true && <p><Link href={`/review-login?next=${encodeURIComponent(reviewNextUrl)}`} className={styles.secondary}>Mit Prüfkonto anmelden</Link></p>}
     </section>
   </LearningToolLayout>;

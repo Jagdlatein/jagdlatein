@@ -129,35 +129,80 @@ test('Requesting a code preserves the neutral server message without claiming th
   h.unmount();
 });
 
-test('Payment sign-in and registration keep the checkout context when switching account modes and confirming the code', async () => {
+test('Both payment entry routes use the same email flow and preserve checkout context', async () => {
   const next = '/preise?next=%2Fkurse%2Fhundewesen%3Fmodus%3Dtest#paypal-subscribe-preise';
   for (const registration of [false, true]) {
     const h = harness(() => response({ success: true, paid: false, admin: false }), { registration, allowRegistration: true }, { next });
     h.states[2] = 'email';
     const html = renderToStaticMarkup(h.render());
     assert.match(html, /Schritte zum Abo/);
-    if(registration) {
-      assert.match(html,/Mit E-Mail fortfahren/);
-      assert.match(html,/Dein bestehendes Konto bleibt erhalten/);
-      assert.doesNotMatch(html,/aria-label="Jagdlatein-Konto wählen"/);
-    } else {
-      assert.match(html, /Ich habe ein Konto/);
-      assert.match(html, /Konto kostenlos anlegen/);
-    }
+    assert.match(html,/Anmelden oder Konto erstellen/);
+    assert.match(html,/Dein bestehendes Konto bleibt erhalten/);
+    assert.match(html,/Ein neues Konto entsteht erst nach der Codebestätigung/);
+    assert.doesNotMatch(html,/aria-label="Jagdlatein-Konto wählen"/);
     const links = [...html.matchAll(/href="(\/(?:login|registrieren)\?[^"]+)"/g)].map(match => new URL(match[1], 'https://jagdlatein.invalid'));
-    assert.equal(links.length, registration ? 0 : 2);
+    assert.equal(links.length, 0);
     for (const link of links) assert.equal(link.searchParams.get('next'), next);
     h.states[2] = 'code'; h.states[1] = '123456';
     assert.match(renderToStaticMarkup(h.render()), /Bestätigen und zum Abo/);
     await h.submit(h.render());
-    assert.equal(h.calls[0][0], registration ? '/api/auth/register-verify' : '/api/auth/verify-code');
+    assert.equal(h.calls[0][0], '/api/auth/register-verify');
     [...h.timers.values()].find(item => item.delay === 500).fn();
     assert.equal(h.window.location.href, next);
     h.unmount();
   }
 });
 
-test('Switching login and registration preserves the email, clears the former code, and keeps independent resend deadlines', async () => {
+test('Native account entry and web checkout request and verify the same OTP for new or existing addresses', async () => {
+  for (const email of ['new@example.invalid', 'member@example.invalid']) {
+    for (const next of ['/konto', '/preise?next=%2Flernen#paypal-subscribe-preise']) {
+      const h = harness(() => response({ success: true, ...unpaid }), { allowRegistration: true }, { next, reauth: '1' });
+      h.states[0] = email; h.states[1] = ''; h.states[2] = 'email';
+      const html = renderToStaticMarkup(h.render());
+      assert.match(html, /Anmelden oder Konto erstellen/);
+      assert.match(html, /Ein neues Konto entsteht erst nach der Codebestätigung/);
+      assert.doesNotMatch(html, /Ich habe ein Konto|Kostenlos registrieren|Jagdlatein-Konto wählen/);
+      await h.submit(h.render());
+      assert.equal(h.calls.length, 1, 'No preflight account-existence lookup.');
+      assert.equal(h.calls[0][0], '/api/auth/register-request');
+      assert.deepEqual(JSON.parse(h.calls[0][1].body), { email });
+      assert.equal(h.window.location.href, null, 'Email request does not authenticate or buy.');
+      assert.match(h.states[3], /Falls die Adresse erreichbar/);
+      h.states[1] = '123456';
+      await h.submit(h.render());
+      assert.equal(h.calls[1][0], '/api/auth/register-verify');
+      assert.deepEqual(JSON.parse(h.calls[1][1].body), { email, code: '123456' });
+      [...h.timers.values()].find(timer => timer.delay === 500).fn();
+      assert.equal(h.window.location.href, next);
+      h.unmount();
+    }
+  }
+});
+
+test('Disabling registration cancels the prior unified request and starts an independent login-code flow', async () => {
+  const old = deferred(); let sends = 0;
+  const h = harness(() => ++sends === 1 ? old.promise : response({ success: true, ...unpaid }), { allowRegistration: true }, { next: '/konto', reauth: '1' });
+  h.states[2] = 'email';
+  const previous = h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-request');
+  h.states[1] = '999999';
+  const switched = h.render({ allowRegistration: false });
+  assert.equal(h.calls[0][1].signal.aborted, true);
+  assert.equal(h.states[1], ''); assert.equal(h.states[2], 'email');
+  assert.match(renderToStaticMarkup(switched), /Login-Code senden/);
+  const current = h.submit(switched);
+  old.resolve(response({ success: true, message: 'Obsolete registration response' }));
+  await Promise.all([previous, current]);
+  assert.equal(h.calls[1][0], '/api/auth/request-code');
+  assert.doesNotMatch(h.states[3], /Obsolete/);
+  h.states[1] = '123456'; await h.submit(h.render());
+  assert.equal(h.calls[2][0], '/api/auth/verify-code');
+  [...h.timers.values()].find(timer => timer.delay === 500).fn();
+  assert.equal(h.window.location.href, '/konto');
+  h.unmount(); assert.equal(h.timers.size, 0);
+});
+
+test('Switching unified entry routes preserves the email, clears the code, and honors the same resend deadline', async () => {
   const h = harness(() => response({ success: true }), { allowRegistration: true });
   h.states[2] = 'email';
   await h.submit(h.render());
@@ -168,20 +213,25 @@ test('Switching login and registration preserves the email, clears the former co
   assert.equal(find(switched, node => node.type === 'input').props.type, 'email');
   assert.equal(h.calls.length, 1, 'Changing mode must not send mail automatically.');
   await h.submit(switched);
-  assert.equal(h.calls.length, 2); assert.equal(h.calls[1][0], '/api/auth/register-request');
+  assert.equal(h.calls.length, 1, 'The same OTP endpoint keeps its original resend deadline across routes.');
   assert.equal(h.states[2], 'code');
   h.render({ registration: false });
   assert.equal(h.states[1], ''); assert.equal(h.states[2], 'email');
   await h.submit(h.render());
-  assert.equal(h.calls.length, 2, 'Returning to login must honor its original deadline.');
+  assert.equal(h.calls.length, 1, 'Returning to login must honor the same deadline.');
   assert.equal(h.states[2], 'code');
   assert.match(h.states[3], /zuletzt angeforderten Code/);
+  h.advance(60000);
+  const resend = find(h.render(), node => node.type === 'button' && node.props.children === 'Neuen Code senden');
+  await resend.props.onClick({ preventDefault() {} });
+  assert.equal(h.calls.length, 2); assert.equal(h.calls[1][0], '/api/auth/register-request');
   h.unmount(); assert.equal(h.timers.size, 0);
 });
 
 test('An aborted old-mode response cannot overwrite or release a newer registration request', async () => {
   const login = deferred(), registration = deferred();
-  const h = harness(url => url === '/api/auth/request-code' ? login.promise : registration.promise, { allowRegistration: true });
+  let sends = 0;
+  const h = harness(() => ++sends === 1 ? login.promise : registration.promise, { allowRegistration: true });
   h.states[2] = 'email';
   const oldRequest = h.submit(h.render());
   const switched = h.render({ registration: true });
@@ -212,12 +262,17 @@ test('Changing mode cancels a completed verification redirect and ignores its ol
   h.unmount();
 });
 
-test('The registration link also preserves a selected free community thread for ordinary sign-in', () => {
+test('Unified sign-in keeps a free community destination without another account-choice link', async () => {
   const next = '/community/11111111-1111-4111-8111-111111111111?thema=Gams#frage';
   const page = load('pages/login.js', { 'next/router': { useRouter: () => ({ query: { next } }) } }).default;
   const html = renderToStaticMarkup(React.createElement(page, { allowRegistration: true }));
-  const href = html.match(/href="(\/registrieren\?[^"]+)"/)[1];
-  assert.equal(new URL(href, 'https://jagdlatein.invalid').searchParams.get('next'), next);
+  assert.doesNotMatch(html, /href="\/(?:login|registrieren)\?/);
+  assert.match(html, /Anmelden oder Konto erstellen/);
+  const h = harness(() => response({ success: true, ...unpaid }), { allowRegistration: true }, { next });
+  await h.submit(h.render());
+  assert.equal(h.calls[0][0], '/api/auth/register-verify');
+  [...h.timers.values()].find(timer => timer.delay === 500).fn();
+  assert.equal(h.window.location.href, next); h.unmount();
   assert.ok(!html.includes('Schritte zum Abo'));
 });
 
@@ -426,7 +481,7 @@ test('The actual ordinary sign-in page exposes a same-origin review entry only f
     const html = renderToStaticMarkup(React.createElement(page.default, result.props));
     assert.equal(html.includes('href="/review-login?next=%2Fkonto"'), expected);
     assert.equal(html.includes('Mit Prüfkonto anmelden'), expected);
-    assert.match(html, /Login-Code senden/);
+    assert.match(html, /Bestätigungscode senden/);
     const publicResult = JSON.stringify(result) + html;
     for (const key of ['APPLE_REVIEW_ACCOUNT_GENERATION', 'APPLE_REVIEW_APP_ACCOUNT_TOKEN',
       'APPLE_REVIEW_LOGIN_PASSWORD_HASH', 'APPLE_REVIEW_LOGIN_CREDENTIAL_ID', 'JL_SESSION_SECRET']) {
@@ -484,7 +539,7 @@ test('Sandbox login and registration explain the isolated inbox and separate acc
     assert.match(html, /ausschließlich im getrennten Testpostfach/);
     assert.match(html, /normales E-Mail-Postfach erhält keine Nachricht/);
     assert.match(html, /Konten der öffentlichen App werden hier nicht übernommen/);
-    assert.match(html, registration ? /bestätigst du dein eigenes Testkonto/ : /wähle zuerst „Kostenlos registrieren“/);
+    assert.match(html, /bestätigst du dein eigenes Testkonto/);
     const codePage = harness(() => response({ success: true }), { registration, isTestMail: true });
     const codeHtml = renderToStaticMarkup(codePage.render());
     assert.match(codeHtml, /Der Code steht im getrennten Testpostfach/);

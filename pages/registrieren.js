@@ -12,4 +12,6 @@ export async function getServerSideProps({ res, query = {} }) {
   return { props: { registration: true, allowRegistration: true, isTestMail: testMailMode !== null, testMailMode } };
 }
 
+// Both entry routes use the same verified-email flow. No account-existence
+// lookup or separate choice is needed before the confirmation code.
 export default LoginPage;
