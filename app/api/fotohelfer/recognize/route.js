@@ -75,24 +75,46 @@ function requirePhotoRequest(req) {
   return photoRecognitionRequestId(req.headers.get("x-jagdlatein-photo-request-id"));
 }
 
-function hasOnlyPixelJpegSegments(bytes) {
+function sanitizePreparedJpeg(bytes) {
   // Also inspect segments between progressive scans. Merely searching for
   // "Exif" or stopping at the first scan would miss later metadata segments.
   let offset = 2;
   let sawScan = false;
+  let iccChunk = 0;
+  let iccChunkCount = null;
+  const removed = [];
   while (offset < bytes.length) {
-    if (bytes[offset++] !== 0xff) return false;
+    const segmentStart = offset;
+    if (bytes[offset++] !== 0xff) return null;
     while (bytes[offset] === 0xff) offset++;
     const marker = bytes[offset++];
-    if (marker === 0xd9) return sawScan && offset === bytes.length;
-    if (marker === undefined || marker === 0x00 || marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) return false;
-    if (offset + 2 > bytes.length) return false;
+    if (marker === 0xd9) {
+      if (!sawScan || offset !== bytes.length || (iccChunkCount !== null && iccChunk !== iccChunkCount)) return null;
+      if (!removed.length) return bytes;
+      const cleaned = new Uint8Array(bytes.byteLength - removed.reduce((total, [start, end]) => total + end - start, 0));
+      let previous = 0, written = 0;
+      for (const [start, end] of removed) { cleaned.set(bytes.subarray(previous, start), written); written += start - previous; previous = end; }
+      cleaned.set(bytes.subarray(previous), written);
+      return cleaned;
+    }
+    if (marker === undefined || marker === 0x00 || marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) return null;
+    if (offset + 2 > bytes.length) return null;
     const length = bytes[offset] * 256 + bytes[offset + 1];
-    if (length < 2 || length > bytes.length - offset) return false;
-    if (marker === 0xfe || (marker >= 0xe1 && marker <= 0xef && marker !== 0xee)) return false;
+    if (length < 2 || length > bytes.length - offset) return null;
+    if (marker === 0xe2) {
+      // Fresh sRGB canvas exports can still contain ICC colour descriptions.
+      // Strip exact ICC_PROFILE chunks rather than forwarding their arbitrary
+      // descriptions or accepting all APP2. Validate one complete ordered set,
+      // including chunks occurring between progressive JPEG scans.
+      if (length <= 16 || ![73, 67, 67, 95, 80, 82, 79, 70, 73, 76, 69, 0].every((value, index) => bytes[offset + 2 + index] === value)) return null;
+      const sequence = bytes[offset + 14], count = bytes[offset + 15];
+      if (!count || sequence !== iccChunk + 1 || sequence > count || (iccChunkCount !== null && count !== iccChunkCount)) return null;
+      iccChunk = sequence; iccChunkCount = count;
+      removed.push([segmentStart, offset + length]);
+    } else if (marker === 0xfe || (marker >= 0xe1 && marker <= 0xef && marker !== 0xee)) return null;
     if (marker === 0xe0 && (length !== 16 || ![74, 70, 73, 70, 0].every((value, index) => bytes[offset + 2 + index] === value) ||
-      bytes[offset + 14] !== 0 || bytes[offset + 15] !== 0)) return false;
-    if (marker === 0xee && (length !== 14 || ![65, 100, 111, 98, 101].every((value, index) => bytes[offset + 2 + index] === value))) return false;
+      bytes[offset + 14] !== 0 || bytes[offset + 15] !== 0)) return null;
+    if (marker === 0xee && (length !== 14 || ![65, 100, 111, 98, 101].every((value, index) => bytes[offset + 2 + index] === value))) return null;
     offset += length;
     if (marker !== 0xda) continue;
     sawScan = true;
@@ -107,9 +129,9 @@ function hasOnlyPixelJpegSegments(bytes) {
       endedScan = true;
       break;
     }
-    if (!endedScan) return false;
+    if (!endedScan) return null;
   }
-  return false;
+  return null;
 }
 
 async function readPhoto(req) {
@@ -144,11 +166,12 @@ async function readPhoto(req) {
     for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
     let inspected;
     try { inspected = inspectRevierPhotoBytes(bytes); } catch { throw problem("invalid_photo", 400, "Das vorbereitete Foto konnte nicht geöffnet werden."); }
-    if (inspected.mimeType !== "image/jpeg" || inspected.hasMetadata || !hasOnlyPixelJpegSegments(bytes) ||
+    const sanitized = inspected.mimeType === "image/jpeg" ? sanitizePreparedJpeg(bytes) : null;
+    if (inspected.mimeType !== "image/jpeg" || inspected.hasMetadata || !sanitized ||
       inspected.width > REVIER_PHOTO_MAX_EDGE || inspected.height > REVIER_PHOTO_MAX_EDGE) {
       throw problem("photo_preparation_required", 400, "Bitte das Foto erneut auswählen, damit Jagdlatein es verkleinert und die ursprünglichen Standort-Metadaten entfernt.");
     }
-    return bytes;
+    return sanitized;
   } finally {
     clearTimeout(timer);
     req.signal?.removeEventListener("abort", abort);

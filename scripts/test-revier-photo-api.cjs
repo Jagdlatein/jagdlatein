@@ -26,6 +26,11 @@ function jpeg(width = 1200, height = 800, metadata = false, afterScan = false) {
     0xff, 0xda, 0, 8, 1, 1, 0, 0, 63, 0, 0,
     ...(metadata && afterScan ? app1 : []), 0xff, 0xd9]);
 }
+function iccChunk(sequence, count, data = "private source/location text must not leave this process") {
+  const payload = [...Buffer.from("ICC_PROFILE\0", "ascii"), sequence, count, ...Buffer.from(data, "utf8")];
+  const length = payload.length + 2;
+  return [0xff, 0xe2, length >> 8, length & 255, ...payload];
+}
 
 function harness(options = {}) {
   const calls = { auth: 0, rpc: [], provider: [], normalization: 0, database: 0 };
@@ -206,6 +211,38 @@ test("exact 3MiB/1600px boundary and clean canvas JPEG headers remain accepted",
     const next = harness();
     const body = new Uint8Array([0xff, 0xd8, 0xff, metadataMarker, 0, 3, 0, ...clean.slice(2)]);
     assert.equal((await next.route.POST(next.request({ body }))).status, 400); zeroProvider(next);
+  }
+});
+
+test("exact ICC_PROFILE chunks are removed without changing JPEG pixels or forwarding private profile text", async () => {
+  const original = jpeg();
+  const variants = [
+    [0xff, 0xd8, ...iccChunk(1, 1), ...original.slice(2)],
+    [0xff, 0xd8, ...iccChunk(1, 2, "private creator"), ...iccChunk(2, 2, "GPS coordinates in ICC text"), ...original.slice(2)],
+    [...original.slice(0, -2), ...iccChunk(1, 1), ...original.slice(-2)],
+    [0xff, 0xd8, ...iccChunk(1, 2), ...original.slice(2, -2), ...iccChunk(2, 2), ...original.slice(-2)],
+  ];
+  for (const variant of variants) {
+    const ctx = harness();
+    assert.equal((await ctx.route.POST(ctx.request({ body: new Uint8Array(variant) }))).status, 200);
+    const transmitted = Buffer.from(ctx.calls.provider[0].imageBytes);
+    assert.equal(Buffer.compare(transmitted, Buffer.from(original)), 0);
+    assert.equal(transmitted.includes(Buffer.from("ICC_PROFILE")), false);
+    assert.equal(transmitted.includes(Buffer.from("private")), false);
+  }
+});
+
+test("malformed, incomplete, duplicate or out-of-order ICC sets never reach provider or quota", async () => {
+  const original = jpeg();
+  const invalid = [iccChunk(1, 2), iccChunk(2, 2), iccChunk(1, 0), iccChunk(2, 1),
+    [...iccChunk(1, 2), ...iccChunk(1, 2)], [...iccChunk(1, 2), ...iccChunk(2, 3)],
+    [...iccChunk(1, 1), ...iccChunk(1, 1)], iccChunk(1, 1, "")];
+  const fakeSignature = iccChunk(1, 1); fakeSignature[4] = 88; invalid.push(fakeSignature);
+  const truncated = iccChunk(1, 1); truncated[2] = 0x7f; invalid.push(truncated);
+  for (const segment of invalid) {
+    const ctx = harness();
+    const body = new Uint8Array([0xff, 0xd8, ...segment, ...original.slice(2)]);
+    assert.equal((await ctx.route.POST(ctx.request({ body }))).status, 400); zeroProvider(ctx);
   }
 });
 
