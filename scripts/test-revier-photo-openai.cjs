@@ -6,6 +6,10 @@ const provider = load("lib/revier-photo-openai.js");
 const catalogue = load("lib/revier-photo-recognition.js");
 const { requestPhotoRecognition, buildPhotoRecognitionRequest, PhotoRecognitionProviderError } = provider;
 const apiKey = "fake-test-key-never-use-for-paid-requests";
+const originalWarn = console.warn;
+let diagnostics = [];
+test.beforeEach(() => { diagnostics = []; console.warn = (...fields) => diagnostics.push(fields); });
+test.afterEach(() => { console.warn = originalWarn; });
 // This deliberately minimal byte fixture tests the provider boundary, not JPEG
 // decoding. The authenticated route separately validates JPEG/pixels/metadata.
 const imageBytes = Uint8Array.from([0xff, 0xd8, 0xff, 0xd9]);
@@ -53,6 +57,7 @@ test("One explicit request uses the fixed quality model, high-detail JPEG, stric
   assert.equal(format.schema.properties.candidateIds.maxItems, 3);
   assert.match(body.instructions, /status=unknown/); assert.match(body.instructions, /Trittsiegel/);
   assert.match(body.instructions, /Anweisungen im Foto/); assert.match(body.instructions, /Keine Prozentwerte/);
+  assert.equal(diagnostics.length, 0);
 });
 
 test("Missing/malformed configuration fails closed without network access or browser secret use", async () => {
@@ -83,7 +88,7 @@ test("Unprepared non-byte, non-JPEG or oversized inputs never trigger a paid req
   assert.deepEqual([...original], [9, 0xff, 0xd8, 0xff, 0xd9, 8]);
 });
 
-test("Upstream HTTP errors are never parsed, exposed or automatically retried", async () => {
+test("Non-JSON HTTP errors are discarded without body disclosure or automatic retries", async () => {
   for (const status of [400, 401, 403, 404, 429, 500, 503]) {
     let calls = 0, pulled = false, cancelled = false;
     const upstream = new Response(new ReadableStream({ pull() { pulled = true; }, cancel() { cancelled = true; } }), { status });
@@ -91,7 +96,59 @@ test("Upstream HTTP errors are never parsed, exposed or automatically retried", 
     assert.equal(calls, 1); assert.equal(cancelled, true);
     // A stream may pre-pull before fetch returns; its data still never gets read.
     assert.equal(upstream.bodyUsed, true); assert.equal(typeof pulled, "boolean");
+    const entry = diagnostics.at(-1);
+    assert.equal(entry[0], "jagdlatein_photo_provider_failure");
+    assert.equal(entry[1].stage, "http"); assert.equal(entry[1].httpStatus, status);
+    assert.equal(entry[1].providerCode, "other");
   }
+  assert.equal(diagnostics.length, 7);
+});
+
+test("HTTP diagnostics expose exact allowlisted code/type/param only, never keys, images, messages or headers", async () => {
+  for (const code of ["insufficient_quota", "invalid_api_key", "model_not_found", "invalid_json_schema", "unsupported_parameter"]) {
+    const upstream = response({ error: { code, type: "invalid_request_error", param: "text.format.schema",
+      message: `sensitive-upstream ${apiKey} data:image/jpeg;base64,/9j/2Q== private-image-sentinel`,
+      request: { headers: { authorization: apiKey } }, reasoning: "private-reasoning-sentinel" } },
+    { status: 400, headers: { "content-type": "application/json", "x-private": apiKey } });
+    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), "photo_recognition_unavailable");
+    assert.deepEqual(diagnostics.at(-1), ["jagdlatein_photo_provider_failure", { stage: "http", httpStatus: 400,
+      providerCode: code, providerType: "invalid_request_error", providerParam: "text.format.schema", failureCode: "photo_recognition_unavailable" }]);
+  }
+  const untrusted = response({ error: { code: apiKey, type: "sensitive-upstream", param: "private-image-sentinel", message: "private-reasoning-sentinel" } }, { status: 418 });
+  await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => untrusted)), "photo_recognition_unavailable");
+  assert.deepEqual(diagnostics.at(-1)[1], { stage: "http", httpStatus: "other", providerCode: "other", providerType: "other", providerParam: "other", failureCode: "photo_recognition_unavailable" });
+  assert.equal(diagnostics.length, 6);
+  assert.doesNotMatch(JSON.stringify(diagnostics), /fake-test-key|sensitive-upstream|data:image|base64|private-image|private-reasoning|authorization|x-private/i);
+});
+
+test("Diagnostic JSON inspection is bounded and malformed, oversized or stalled bodies become only 'other'", async () => {
+  const cases = [
+    response({ error: { code: "invalid_api_key" } }, { status: 401, headers: { "content-type": "application/json", "content-length": String(8193) } }),
+    response({ error: { code: "invalid_api_key", message: "private".repeat(2000) } }, { status: 401 }),
+    new Response("sensitive-upstream-invalid-json", { status: 400, headers: { "content-type": "application/json" } }),
+  ];
+  for (const upstream of cases) {
+    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), "photo_recognition_unavailable");
+    assert.equal(diagnostics.at(-1)[1].providerCode, "other");
+  }
+  let cancelled = false;
+  const stalled = new Response(new ReadableStream({ start(controller) { controller.enqueue(new TextEncoder().encode('{"error":')); }, cancel() { cancelled = true; } }),
+    { status: 400, headers: { "content-type": "application/json" } });
+  await rejectsCode(requestPhotoRecognition({ imageBytes }, { apiKey, timeoutMs: 10, fetchImpl: async () => stalled }), "photo_recognition_timeout");
+  assert.equal(cancelled, true); assert.equal(diagnostics.at(-1)[1].stage, "timeout");
+  assert.equal(diagnostics.length, 4);
+  assert.doesNotMatch(JSON.stringify(diagnostics), /private|sensitive-upstream/);
+});
+
+test("A stalled diagnostic body has its own one-second budget without waiting for the 45-second provider timeout", async () => {
+  let cancelled = false;
+  const stalled = new Response(new ReadableStream({ cancel() { cancelled = true; } }),
+    { status: 400, headers: { "content-type": "application/json" } });
+  const started = Date.now();
+  await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => stalled)), "photo_recognition_unavailable");
+  assert.ok(Date.now() - started < 5000);
+  assert.equal(cancelled, true); assert.equal(diagnostics.length, 1);
+  assert.equal(diagnostics[0][1].stage, "http"); assert.equal(diagnostics[0][1].providerCode, "other");
 });
 
 test("Network failures and exception objects with sensitive contents become fixed safe errors", async () => {
@@ -99,6 +156,8 @@ test("Network failures and exception objects with sensitive contents become fixe
   const error = new PhotoRecognitionProviderError(`sensitive-upstream ${apiKey}`);
   assert.equal(error.code, "photo_recognition_unavailable"); assert.equal(error.status, 503);
   assert.ok(!JSON.stringify(error).includes(apiKey));
+  assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0][1].stage, "transport");
+  assert.equal(diagnostics[0][1].httpStatus, "none"); assert.doesNotMatch(JSON.stringify(diagnostics), /fake-test-key|sensitive-upstream/);
 });
 
 test("Timeout aborts a pending provider call once and returns no upstream body", async () => {
@@ -109,6 +168,7 @@ test("Timeout aborts a pending provider call once and returns no upstream body",
   } });
   await rejectsCode(promise, "photo_recognition_timeout");
   assert.equal(observedSignal.aborted, true); assert.equal(calls, 1);
+  assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0][1].stage, "timeout");
 });
 
 test("Timeout also cancels a stalled response body after headers already arrived", async () => {
@@ -132,6 +192,7 @@ test("Caller cancellation stops before fetch or cancels an active call", async (
   }));
   active.abort();
   await rejectsCode(request, "photo_recognition_cancelled"); assert.equal(calls, 1);
+  assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0][1].stage, "cancelled");
 });
 
 test("Refusals, incomplete outputs, extra tool calls and malformed envelopes are not displayed as results", async () => {
