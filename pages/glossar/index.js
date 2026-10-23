@@ -36,8 +36,6 @@ export default function GlossarIndex({ letter = "" }) {
 
           <h1 className={styles.title}>Jagd-Glossar</h1>
 
-          {letter && <nav className={styles.breadcrumb} aria-label="Glossarpfad"><a href="/glossar">Glossar A–Z</a><span aria-hidden="true">›</span><span aria-current="page">Begriffe mit {letter}</span></nav>}
-
           <div className={styles.searchBox}>
             <input
               type="search"
@@ -72,12 +70,6 @@ export default function GlossarIndex({ letter = "" }) {
               return <li key={initial}><a href={`/glossar?letter=${encodeURIComponent(initial)}`}><strong>{initial}</strong><span>{count} {count === 1 ? "Begriff" : "Begriffe"}</span><span aria-hidden="true">→</span></a></li>;
             })}
           </ul>}
-
-          <div className={styles.footer}>
-            <a href="/" className={styles.footerLink}>Startseite</a>
-            <span>·</span>
-            <a href="/quiz" className={styles.footerLink}>Zum Quiz</a>
-          </div>
 
         </div>
       </main>

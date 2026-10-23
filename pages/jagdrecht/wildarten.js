@@ -32,7 +32,6 @@ export default function WildartenRecht() {
   const countryName = dachCountries.find(value => value.id === country).name;
   function reset() {setSelectedArt(null);setQuery("");setGroup("all");setStatus("all");setPage(0);}
   return <LearningToolLayout title="Wildarten und Jagdstatus in DACH" description="Jagdzeit, Schutz und regionale Regelungen mit amtlichen Quellen einordnen." icon="jagdrecht" category="jagdrecht" stats={[{value:dachWildlife.length,label:"Arten und Vergleichsformen"},{value:3,label:"Länder"},{value:"4.10.2026",label:"Quellenprüfung"}]}>
-    <div className={styles.actions}><Link className={styles.secondary} href="/wildkunde">Wildarten erkennen</Link><Link className={styles.secondary} href="/lernen/tierstimmen">Echte Tierstimmen</Link></div>
     <section className={styles.panel} aria-labelledby="legal-filter"><h2 id="legal-filter">Land und Wildart auswählen</h2>
       <label className={styles.field}>Land<select value={country} onChange={event => {setCountry(event.target.value);setPage(0);}}>{dachCountries.map(value => <option key={value.id} value={value.id}>{value.name}</option>)}</select></label>
       <p className={styles.note}>{countryNotes[country]}</p>

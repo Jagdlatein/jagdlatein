@@ -61,12 +61,6 @@ export default function GlossarSlugPage({ slug }) {
       <main className={styles.wrapper}>
         <div className={styles.container}>
 
-          <nav className={styles.breadcrumb} aria-label="Glossarpfad">
-            <a href="/glossar">Glossar A–Z</a><span aria-hidden="true">›</span>
-            <a href={`/glossar?letter=${encodeURIComponent(entry.term[0].toUpperCase())}`}>Begriffe mit {entry.term[0].toUpperCase()}</a><span aria-hidden="true">›</span>
-            <span aria-current="page">{entry.term}</span>
-          </nav>
-
           {/* Begriff-Karte */}
           <div className={styles.card}>
 
@@ -91,6 +85,12 @@ export default function GlossarSlugPage({ slug }) {
               )}
             </div>
 
+            <details className={styles.letterDisclosure}>
+              <summary>Weitere Glossarbegriffe</summary>
+              <nav className={styles.breadcrumb} aria-label="Glossarpfad">
+                <a href="/glossar">Glossar A–Z</a><span aria-hidden="true">›</span>
+                <a href={`/glossar?letter=${encodeURIComponent(entry.term[0].toUpperCase())}`}>Begriffe mit {entry.term[0].toUpperCase()}</a>
+              </nav>
             {/* Verwandte Begriffe */}
             {related.length > 0 && (
               <div className={styles.relatedBox}>
@@ -107,8 +107,6 @@ export default function GlossarSlugPage({ slug }) {
               </div>
             )}
 
-            <details className={styles.letterDisclosure}>
-              <summary>Weitere Anfangsbuchstaben</summary>
               <nav className={styles.azBar} aria-label="Andere Glossargruppen">
                 {letters.map((l) => (
                   <a key={l} href={`/glossar?letter=${encodeURIComponent(l)}`} className={styles.azItem}>
@@ -117,11 +115,6 @@ export default function GlossarSlugPage({ slug }) {
                 ))}
               </nav>
             </details>
-
-            <a href="/glossar" className={styles.linkBack}>
-              ← Zurück zum Glossar
-            </a>
-
           </div>
         </div>
       </main>

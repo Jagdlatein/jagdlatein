@@ -48,7 +48,8 @@ test('Each initial branch exposes only its compact term links and preserves the 
       assert.ok(!s.text().includes(term.def), `Index leaked definition: ${term.slug}`);
       if (belongs) linked++;
     }
-    assert.match(html, /aria-label="Glossarpfad"/); assert.match(html, /href="\/glossar"/);
+    assert.doesNotMatch(html, /aria-label="Glossarpfad"|Startseite|Zum Quiz/);
+    assert.match(html, new RegExp(`Begriffe mit ${letter}`));
   }
   assert.equal(linked, TERMS.length);
 });
@@ -65,16 +66,23 @@ test('Searching still matches definition text and terms but renders only relevan
   for (const other of TERMS.filter(term => term.slug !== target.slug)) assert.ok(!words(detail).includes(other.def));
 });
 
-test('A term opens at its own definition after a compact breadcrumb, with all alphabet links preserved in one optional disclosure', () => {
+test('A term opens directly at its definition; further navigation stays below it in one closed disclosure', () => {
   const Detail = createLoader({ '../../lib/account-access': { getPaidPageProps: async () => ({ props: {} }) } })('pages/glossar/[slug].js').default;
   const entry = TERMS[0], tree = Detail({ slug: entry.slug }), html = renderToStaticMarkup(tree);
   const breadcrumb = find(tree, node => node.type === 'nav' && node.props['aria-label'] === 'Glossarpfad');
   assert.ok(breadcrumb); assert.ok(words(breadcrumb).includes(`Begriffe mit ${entry.term[0].toUpperCase()}`));
-  assert.match(renderToStaticMarkup(breadcrumb), /aria-current="page"/);
   const disclosure = find(tree, node => node.type === 'details');
   assert.ok(disclosure && !disclosure.props.open);
-  assert.ok(html.indexOf('class="defBig"') < html.indexOf('Weitere Anfangsbuchstaben'));
+  assert.equal(find(disclosure, node => node === breadcrumb), breadcrumb);
+  assert.ok(html.indexOf('class="defBig"') < html.indexOf('aria-label="Glossarpfad"'));
+  assert.ok(html.indexOf('class="defBig"') < html.indexOf('Weitere Glossarbegriffe'));
+  assert.doesNotMatch(html.slice(0, html.indexOf('class="defBig"')), /<nav|<summary|navbar|Hauptmenü/);
   for (const letter of new Set(TERMS.map(term => term.term[0].toUpperCase()))) assert.ok(renderToStaticMarkup(disclosure).includes(`/glossar?letter=${encodeURIComponent(letter)}`));
+});
+
+test('Legacy header imports cannot restore a duplicate upper menu or trigger an auth request', () => {
+  const Header = createLoader()('components/Header.js').default;
+  assert.equal(renderToStaticMarkup(React.createElement(Header)), '');
 });
 
 test('Server letter validation retains the existing paid-access guard for all callers and rejects invalid/array filters', async () => {
