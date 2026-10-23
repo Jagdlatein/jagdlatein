@@ -81,14 +81,14 @@ test("empty photo SSR renders without browser APIs, an image or a persistence ca
   })("components/RevierPhotoHelper.js").default;
   const html = renderToStaticMarkup(React.createElement(Component));
   assert.match(html, /Dein Revierfoto/);
-  assert.match(html, /Was kannst du erkennen/);
+  assert.match(html, /Merkmale selbst vergleichen/);
   assert.doesNotMatch(html, /<img |blob:|Beobachtung speichern<\/button>/);
 });
 
 test("opening, selecting and comparing never persist or upload a photo", async () => {
   const h = setup();
   try {
-    assert.match(h.text, /nicht automatisch analysiert/);
+    assert.match(h.text, /Bildvorschläge können falsch sein/);
     assert.equal(h.calls.list, 0); assert.equal(h.calls.save.length, 0);
     await h.photo();
     assert.equal(h.calls.save.length, 0);

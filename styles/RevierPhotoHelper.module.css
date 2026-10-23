@@ -14,6 +14,18 @@
 .fileInput { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .preview { margin: 18px 0 0; }
 .preview > img { display: block; width: 100%; max-height: 420px; object-fit: contain; border-radius: 12px; background: #efeadc; }
+.recognition { margin-top: 22px; padding: 22px; border: 2px solid #b89a45; border-radius: 16px; background: #fffdf5; overflow-wrap: anywhere; }
+.recognition h2 { font-size: clamp(1.25rem, 3vw, 1.6rem); margin: 0 0 12px; }
+.recognition h3 { font-size: 1.4rem; line-height: 1.35; margin: 0 0 12px; }
+.recognitionFocus:focus { outline: none; }
+.recognitionReport > p { line-height: 1.7; }
+.recognitionReport a { color: #654c14; text-underline-offset: 3px; }
+.categorySuggestion { padding: 12px 14px; border-radius: 8px; background: #f1e9ce; }
+.categorySuggestion a { font-weight: 800; }
+.recognitionProgress { display: flex; align-items: center; gap: 14px; line-height: 1.65; }
+.recognitionSpinner { flex: 0 0 28px; width: 28px; height: 28px; border: 3px solid #e8dbae; border-top-color: #765c1d; border-radius: 50%; animation: photo-spin 1s linear infinite; }
+@keyframes photo-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .recognitionSpinner { animation: none; } }
 .preview figcaption { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px 16px; font-size: .86rem; line-height: 1.5; color: #665c44; }
 .label { display: block; margin: 16px 0 7px; font-weight: 700; }
 .panel select, .panel input[type="date"], .panel textarea { width: 100%; min-width: 0; max-width: 100%; min-height: 48px; border: 1px solid #caba8a; border-radius: 10px; background: #fff; color: #352c19; padding: 12px; font: inherit; font-size: 1rem; }

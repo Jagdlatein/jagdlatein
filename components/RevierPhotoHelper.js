@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import AppIcon from "./AppIcon";
+import RevierPhotoRecognition from "./RevierPhotoRecognition";
 import { PHOTO_GUIDE_GROUPS, PHOTO_GUIDE_REVIEWED_ON, getPhotoGuideMatches } from "../lib/revier-photo-guide";
 import {
   prepareRevierPhoto, saveRevierObservation, listRevierObservations,
@@ -71,7 +72,7 @@ export default function RevierPhotoHelper() {
   const [oldIosApp, setOldIosApp] = useState(false);
   const [environmentReady, setEnvironmentReady] = useState(false);
   const mounted = useRef(false), generation = useRef(0), journalGeneration = useRef(0), saveGuard = useRef(false), deleteGuard = useRef(false);
-  const cameraInput = useRef(null), photoInput = useRef(null), features = useRef(null);
+  const cameraInput = useRef(null), photoInput = useRef(null), features = useRef(null), recognitionPanel = useRef(null);
   const preview = useLocalPhoto(photo?.blob);
   const selectedGroup = PHOTO_GUIDE_GROUPS.find(item => item.id === group);
   const result = useMemo(() => getPhotoGuideMatches({ group, traits }), [group, traits]);
@@ -85,6 +86,8 @@ export default function RevierPhotoHelper() {
     setEnvironmentReady(true);
     return () => { mounted.current = false; generation.current++; journalGeneration.current++; };
   }, []);
+
+  useEffect(() => { if (photo) recognitionPanel.current?.focus(); }, [photo]);
 
   function changeObservation(change) {
     generation.current++;
@@ -104,8 +107,7 @@ export default function RevierPhotoHelper() {
       const prepared = await prepareRevierPhoto(file);
       if (!mounted.current || request !== generation.current) return;
       setPhoto(prepared);
-      setNotice("Foto bereit. Wähle jetzt die Merkmale, die du selbst erkennst.");
-      features.current?.focus();
+      setNotice("Foto bereit. Starte die Bilderkennung direkt unter deinem Foto oder nutze die Merkmalsvergleiche.");
     } catch (error) {
       if (mounted.current && request === generation.current) setPhotoError(getRevierPhotoErrorMessage(error));
     } finally {
@@ -168,23 +170,24 @@ export default function RevierPhotoHelper() {
     }
   }
 
-  return <LearningToolLayout title="Revier-Fotohelfer" description="Eigene Revierfotos mit geprüften Merkmalen vergleichen und das passende Wissen direkt lesen." icon="camera" category="wildkunde" compact hideCommunity>
-    <p className={styles.intro}>Foto auswählen, sichtbare Merkmale anklicken, Wissen lesen. Die Vergleiche folgen deiner Auswahl – das Foto wird nicht automatisch analysiert.</p>
+  return <LearningToolLayout title="Revier-Fotohelfer" description="Foto erkennen lassen, passenden Lernbereich finden und Wissen direkt lesen." icon="camera" category="wildkunde" compact hideCommunity>
+    <p className={styles.intro}>Wähle dein Foto und starte die Bilderkennung. Du bekommst einen Bildvorschlag mit passender Kategorie und vorhandenen Lernartikeln. Bildvorschläge können falsch sein; die Merkmalsvergleiche helfen dir beim Prüfen.</p>
     <section className={styles.photoPanel} aria-labelledby="photo-helper-upload">
       <div className={styles.sectionTitle}><span aria-hidden="true">1</span><h2 id="photo-helper-upload">Dein Revierfoto</h2></div>
       {oldIosApp ? <div className={styles.compatibility}><p>Für Fotos benötigt deine iPhone-/iPad-App die neue Foto-Unterstützung. Bis zum App-Update kannst du den Fotohelfer unter <strong>jagdlatein.de/fotohelfer</strong> in Safari öffnen. Die Merkmalsvergleiche unten funktionieren bereits hier.</p></div> : <>
         <input ref={cameraInput} className={styles.fileInput} type="file" accept="image/*" capture="environment" disabled={!environmentReady || preparing || saving} aria-label="Revierfoto mit der Kamera aufnehmen" onChange={selectPhoto} />
         <input ref={photoInput} className={styles.fileInput} type="file" accept="image/jpeg,image/png,image/webp" disabled={!environmentReady || preparing || saving} aria-label="Revierfoto aus deinen Dateien auswählen" onChange={selectPhoto} />
         <div className={styles.photoActions}><button type="button" className={styles.primary} disabled={!environmentReady || preparing || saving} onClick={() => cameraInput.current?.click()}><AppIcon name="camera" size={21} />Foto aufnehmen</button><button type="button" className={styles.secondary} disabled={!environmentReady || preparing || saving} onClick={() => photoInput.current?.click()}>Foto auswählen</button></div>
-        <p className={styles.small}>JPG, PNG oder WebP, bis 50 MB und 50 Megapixel. Große Fotos werden auf diesem Gerät für die Anzeige und das Tagebuch verkleinert. Dein Original bleibt unverändert; es wird nichts hochgeladen.</p>
+        <p className={styles.small}>JPG, PNG oder WebP, bis 50 MB und 50 Megapixel. Dein Foto wird zuerst nur auf diesem Gerät vorbereitet; dein Original bleibt unverändert. Erst mit „Mit OpenAI erkennen“ wird die verkleinerte Kopie zur Bilderkennung übertragen.</p>
       </>}
       {preparing && <p role="status">Foto wird auf deinem Gerät vorbereitet …</p>}
       {photoError && <p role="alert" className={styles.error}>{photoError}</p>}
-      {preview && <figure className={styles.preview}><img src={preview} alt="Dein ausgewähltes Revierfoto zum Merkmalsvergleich" /><figcaption><span>Dein Foto · nur auf diesem Gerät</span><button type="button" className={styles.textButton} disabled={saving} onClick={removePhoto}>Foto entfernen</button></figcaption></figure>}
+      {preview && <figure className={styles.preview}><img src={preview} alt="Dein ausgewähltes Revierfoto zum Merkmalsvergleich" /><figcaption><span>Deine vorbereitete Fotokopie</span><button type="button" className={styles.textButton} disabled={saving} onClick={removePhoto}>Foto entfernen</button></figcaption></figure>}
+      {photo && <div ref={recognitionPanel} tabIndex={-1} className={styles.recognitionFocus}><RevierPhotoRecognition photo={photo.blob} /></div>}
     </section>
 
     <section className={styles.panel} aria-labelledby="photo-helper-features">
-      <div className={styles.sectionTitle}><span aria-hidden="true">2</span><h2 id="photo-helper-features" ref={features} tabIndex={-1}>Was kannst du erkennen?</h2></div>
+      <div className={styles.sectionTitle}><span aria-hidden="true">2</span><h2 id="photo-helper-features" ref={features} tabIndex={-1}>Merkmale selbst vergleichen</h2></div>
       <label className={styles.label} htmlFor="photo-helper-group">Tier oder Spur eingrenzen</label>
       <select id="photo-helper-group" value={group} disabled={preparing || saving} onChange={event => changeObservation(() => { setGroup(event.target.value); setTraits([]); setCandidateId(""); })}>
         <option value="">Bitte eine Gruppe wählen</option>{PHOTO_GUIDE_GROUPS.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
