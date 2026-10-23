@@ -132,6 +132,7 @@ function setup() {
 
 test('Feedback remains readable after 45 seconds and only a manual Weiter starts the next answer time', async () => {
   const s = await setup().start(); await s.answer();
+  assert.equal(find(s.tree, node => node.type === 'nav' && node.props['aria-label'] === 'Quizmenü'), null);
   assert.match(s.text(), /Synthetische Erklärung/); assert.match(s.text(), /Lies in Ruhe nach/);
   s.advance(45000); await s.settle();
   assert.equal(s.requests.length, 3); assert.equal(s.timers.size, 0);

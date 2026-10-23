@@ -298,7 +298,6 @@ export default function QuizClient() {
   const feedback = round.phase === "feedback" ? round.feedback : null;
   const locked = round.phase !== "asking" || !!busy || !!error || !!pending.current;
   return <main className={styles.main}><div className={styles.wrap}>
-    <nav className={styles.nav} aria-label="Quizmenü"><Link href={setupUrl}>Thema wählen</Link><Link href="/quiz-app/leaderboard">Rangliste</Link></nav>
     <header className={styles.header}><p className={styles.eyebrow}>{isCountryQuizTopic(topic) ? `${{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[country]} · Recht` : topic === "Alle" ? "Alle Lernbereiche" : topic}</p><h1><AppIcon name="quiz" size={34} />Jagdquiz mit Rangliste</h1></header>
     <progress className={styles.timebar} max={30} value={round.phase === "asking" ? seconds : 0} aria-label="Verbleibende Antwortzeit in Sekunden" />
     <div className={styles.roundMeta}>

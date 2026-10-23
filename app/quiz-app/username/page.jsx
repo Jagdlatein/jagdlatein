@@ -129,7 +129,6 @@ function UsernameForm() {
         🏹 Jagdquiz – Start
       </h1>
       <p>{isCountryQuizTopic(quizTopic) ? <>Recht: <strong>{{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[quizCountry]}</strong></> : <>Lernbereich: <strong>{quizTopic === "Alle" ? "Alle Lernbereiche" : quizTopic}</strong></>}</p>
-      <p><Link href={quizLearningUrl("/quiz-app", quizCountry, quizTopic)}>Thema wählen</Link></p>
 
       <label htmlFor="quiz-username" style={{ fontSize: 18, fontWeight: 700 }}>Dein Username:</label>
       <input

@@ -39,11 +39,6 @@ export default function LearningOverview({ data }) {
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
     {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
     {!categoryInfo && <LearningSearch category="all" />}
-    {!categoryInfo && <nav className={styles.quietNav} aria-label="Deine Kurse">
-      <Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link>
-      <Link href="/lernen/lernkarten">Lernkarten<AppIcon name="arrow-right" size={17} /></Link>
-      <Link href="/kurse">Kursverzeichnis<AppIcon name="arrow-right" size={17} /></Link>
-    </nav>}
     {recent.length > 0 && <section className={styles.section} aria-labelledby="learning-recent-heading">
       <h2 id="learning-recent-heading">Zuletzt ergänzt</h2>
       <ul className={styles.recentList}>{recent.map(module => <li key={module.id}>
@@ -75,7 +70,6 @@ export default function LearningOverview({ data }) {
         <ol className={styles.pathModules}>{path.modules.map(module => <li key={module.id}><Link href={`/kurse/${module.id}`}>{module.title}</Link></li>)}</ol>
       </article>)}</div>
     </details>}
-    {categoryInfo && <nav className={styles.quietNav} aria-label="Deine Kurse"><Link href="/meine-kurse">Meine Kurse & Fortschritt<AppIcon name="arrow-right" size={17} /></Link></nav>}
     {(!categoryInfo || categoryInfo.slug === "pruefung-sprache") && <JagdakademiePromotion />}
   </LearningToolLayout>;
 }

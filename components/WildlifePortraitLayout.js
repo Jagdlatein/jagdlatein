@@ -80,8 +80,7 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
       { id: "portrait-jagdstatus", title: "Artenkenntnis und Jagdstatus", render: () => <aside className={styles.note}><h2>Artenkenntnis und Jagdstatus</h2><p>Biologische Merkmale gelten unabhängig von Landesgrenzen. Ob eine Art bejagt werden darf, hängt dagegen von den geltenden örtlichen Bestimmungen ab. Die Rechtsübersicht von Jagdlatein behandelt Deutschland, Österreich und die Schweiz.</p><Link href={species?.europeanOnly ? "/jagdrecht/wildarten" : `/jagdrecht/wildarten?art=${slug}`}>{species?.europeanOnly ? "Zur Rechtsübersicht für DACH" : "Rechtsübersicht für diese Art →"}</Link></aside> },
     ] },
   ];
-  return <LearningToolLayout title={title || `${species?.name} (${species?.scientificName})`} description={subtitle || species?.identification || "Merkmale, Lebensweise und sichere Unterscheidung kennenlernen."} icon="deer" category="wildkunde" className={portrait.page} headingOnly searchHref="/lernen#lernen-suche">
-    <nav className={portrait.quietLinks} aria-label="Artenwissen"><Link href="/wildkunde">Alle Wildarten</Link></nav>
+  return <LearningToolLayout title={title || `${species?.name} (${species?.scientificName})`} description={subtitle || species?.identification || "Merkmale, Lebensweise und sichere Unterscheidung kennenlernen."} icon="deer" category="wildkunde" className={portrait.page} headingOnly>
     <TopicSectionReader key={slug} id="arten-themenbaum" title="Themen dieser Art" groups={groups} />
   </LearningToolLayout>;
 }

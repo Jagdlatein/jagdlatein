@@ -15,18 +15,26 @@ function collectLinks(node) {
   return [...(node.props?.href ? [node] : []), ...collectLinks(node.props?.children)];
 }
 
-function setup(pathname = '/login', history = [], appRouter = false, navigation = null) {
-  let editing = false;
-  const effects = [], cleanups = [], listeners = new Map(), windowListeners = new Map(), timers = new Map();
+function setup(pathname = '/login', history = [], appRouter = false, navigation = null, viewportSupported = true) {
+  let state;
+  const effects = [], cleanups = [], listeners = new Map(), windowListeners = new Map(), viewportListeners = new Map(), timers = new Map();
   let timerId = 0, stored = JSON.stringify(history), destination;
   const clientNavigations = [], documentNavigations = [];
   let summaryFocus = 0;
-  const menu = { open: false, contains: element => element?.insideMenu === true, querySelector: selector => selector === 'summary' ? { focus() { summaryFocus++; } } : null };
+  const menu = { open: false, contains: element => element?.insideMenu === true, querySelector: selector => selector === 'summary' ? { focus() { summaryFocus++; } } : null,
+    getBoundingClientRect: () => ({ height: 64 }),
+    style: { getPropertyValue: () => `${state?.bottom || 0}px` },
+  };
   const document = { activeElement: null,
     addEventListener(name, callback) { listeners.set(name, callback); },
     removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
   };
-  const window = { location: { pathname, search: '', hash: '', assign(value) { documentNavigations.push(value); destination = value; } },
+  const viewport = { height: 800, offsetTop: 0, scale: 1,
+    addEventListener(name, fn) { viewportListeners.set(name, fn); },
+    removeEventListener(name, fn) { if (viewportListeners.get(name) === fn) viewportListeners.delete(name); },
+  };
+  const window = { innerHeight: 800, visualViewport: viewportSupported ? viewport : undefined, location: { pathname, search: '', hash: '', assign(value) { documentNavigations.push(value); destination = value; } },
+    getComputedStyle: () => ({ bottom: `${(state?.bottom || 0) + 16}px` }),
     addEventListener(name, fn) { windowListeners.set(name, fn); }, removeEventListener(name, fn) { if(windowListeners.get(name)===fn) windowListeners.delete(name); },
     setTimeout(callback) { const id = ++timerId; timers.set(id, callback); return id; },
     clearTimeout(id) { timers.delete(id); },
@@ -40,7 +48,10 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   });
   const mod = { exports: {} };
   new Function('require', 'module', 'exports', 'window', 'document', 'sessionStorage', code)(id => {
-    if (id === 'react') return { ...React, useState: () => [editing, value => { editing = value; }], useRef: () => ({ current: menu }), useEffect: callback => effects.push(callback) };
+    if (id === 'react') return { ...React, useState: initial => {
+      if (state === undefined) state = initial;
+      return [state, value => { state = typeof value === 'function' ? value(state) : value; }];
+    }, useRef: () => ({ current: menu }), useEffect: callback => effects.push(callback) };
     if (id === 'next/navigation') return { usePathname: () => pathname };
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
@@ -51,12 +62,13 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
   const render = () => mod.exports.default();
   const tree = render();
   effects.splice(0).forEach(callback => cleanups.push(callback()));
-  return { tree, render, html: () => renderToStaticMarkup(render()), listeners, timers, sessionStorage, menu, get summaryFocus() { return summaryFocus; },
+  return { tree, render, html: () => renderToStaticMarkup(render()), listeners, windowListeners, viewportListeners, timers, sessionStorage, menu, get summaryFocus() { return summaryFocus; },
     route(asPath) { const url = new URL(asPath, 'https://test.invalid'); pathname = url.pathname; router.asPath = asPath; window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; render(); effects.splice(0).forEach(callback => cleanups.push(callback())); },
     navigateBeforeEffects(asPath) { const url = new URL(asPath, 'https://test.invalid'); window.location.pathname = url.pathname; window.location.search = url.search; window.location.hash = url.hash; },
     hash(value) { window.location.hash=value; windowListeners.get('hashchange')?.(); },
     focus(element) { document.activeElement = element; listeners.get('focusin')?.(); },
     blur(element = null) { document.activeElement = element; listeners.get('focusout')?.(); timers.forEach(callback => callback()); timers.clear(); },
+    resizeViewport(height, offsetTop = 0, scale = 1) { Object.assign(viewport, { height, offsetTop, scale }); viewportListeners.get('resize')?.(); },
     get destination() { return destination; }, get history() { return JSON.parse(stored); }, clientNavigations, documentNavigations,
     unmount() { cleanups.forEach(callback => callback?.()); },
   };
@@ -73,14 +85,14 @@ test('Shared dock retains Back, learning, search, community and Start and adds a
   assert.match(html, /Konto und Abo öffnen/);
   assert.match(html, /aria-label="Zum Lernbereich" aria-current="true"/);
   assert.doesNotMatch(html, /aria-label="Konto und Abo öffnen" aria-current/);
-  assert.equal(setup('/').tree, null);
+  assert.match(setup('/').html(), /Seitennavigation/);
 });
 
 test('Dock links use client navigation without preloading private destinations on every page', () => {
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 25);
+  assert.equal(links.length, 31);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -115,9 +127,13 @@ test('Dock Back retains the selected lesson fragment instead of sending the lear
   assert.equal(s.destination, '/kurse/wissen-vertiefung-hunde-vorstehrassen#lesson-setter');
 });
 
-test('Account grouping follows login, registration, pricing, account and learning records without prefix collisions', () => {
-  for (const route of ['/login', '/registrieren', '/preise', '/konto', '/meine-kurse', '/auswertungen']) {
+test('Account grouping follows entry and pricing while records and leaderboard keep a single exact current destination', () => {
+  for (const route of ['/login', '/registrieren', '/preise', '/konto']) {
     assert.match(setup(route).html(), /aria-label="Konto und Abo öffnen" aria-current="page"/, route);
+  }
+  for (const route of ['/meine-kurse', '/auswertungen', '/quiz-app/leaderboard']) {
+    const links = collectLinks(setup(route).tree.props.children[3].props.children[1]);
+    assert.deepEqual(links.filter(link => link.props['aria-current']).map(link => link.props.href), [route]);
   }
   assert.doesNotMatch(setup('/community-other').html(), /aria-label="Zur Community" aria-current/);
 });
@@ -127,7 +143,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/quiz-app', '/community', '/news', '/lernen/videos', '/konto', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
@@ -160,21 +176,61 @@ test('Menu closes after a normal choice, Escape restores summary focus, and outs
 test('Small-screen menu stays inside a 320px viewport, scrolls vertically and keeps readable large touch targets', () => {
   const css = fs.readFileSync(path.join(root, 'styles/GlobalNavigation.module.css'), 'utf8');
   assert.match(css, /width:\s*min\(340px,\s*calc\(100vw - 32px\)\)/);
-  assert.match(css, /max-height:\s*min\(70dvh,\s*560px\)/); assert.match(css, /overflow-y:\s*auto/);
+  assert.match(css, /max-height:\s*min\(70dvh,\s*560px,\s*var\(--navigation-menu-height,\s*560px\)\)/); assert.match(css, /overflow-y:\s*auto/);
   assert.match(css, /\.moreLinks a\s*\{[^}]*min-height:\s*52px[^}]*font-size:\s*18px/s);
   assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*\.button\s*\{[^}]*font-size:\s*17px[^}]*min-height:\s*64px/s);
 });
 
-test('Editable fields hide the touch dock until focus leaves; checkboxes and readonly fields keep it available', () => {
+test('Email and code autofocus, selects and text editing keep every bottom destination available', () => {
   const s = setup();
-  for (const field of [{ tagName: 'INPUT', type: 'email' }, { tagName: 'INPUT', type: 'password' }, { tagName: 'TEXTAREA' }, { tagName: 'SELECT' }, { isContentEditable: true }]) {
-    s.focus(field); assert.match(s.html(), /class="nav editing"/);
-    s.blur(); assert.doesNotMatch(s.html(), /class="nav editing"/);
+  for (const field of [{ tagName: 'INPUT', type: 'email' }, { tagName: 'INPUT', type: 'password' }, { tagName: 'INPUT', type: 'text', inputMode: 'numeric' }, { tagName: 'TEXTAREA' }, { tagName: 'SELECT' }, { isContentEditable: true }]) {
+    s.focus(field); assert.match(s.html(), /Seitennavigation/); assert.match(s.html(), /Menü/);
+    assert.equal(s.render().props.style['--navigation-bottom-inset'], '0px');
+    assert.doesNotMatch(s.html(), /editing/);
   }
-  for (const field of [{ tagName: 'INPUT', type: 'checkbox' }, { tagName: 'INPUT', type: 'text', readOnly: true }, { tagName: 'INPUT', type: 'radio' }, { tagName: 'A' }]) {
-    s.focus(field); assert.doesNotMatch(s.html(), /class="nav editing"/);
+  s.unmount(); assert.equal(s.listeners.size, 0); assert.equal(s.timers.size, 0); assert.equal(s.viewportListeners.size, 0);
+});
+
+test('A reduced visual viewport raises the dock and bounds its menu, including keyboard dismissal while a field stays focused', () => {
+  const s = setup('/registrieren');
+  s.focus({ tagName: 'INPUT', type: 'email' });
+  s.resizeViewport(460, 20);
+  assert.equal(s.render().props.style['--navigation-bottom-inset'], '320px');
+  assert.equal(s.render().props.style['--navigation-menu-height'], '358px');
+  assert.match(s.html(), /Menü/);
+  s.blur({ tagName: 'SUMMARY' });
+  assert.equal(s.render().props.style['--navigation-bottom-inset'], '320px', 'Closing keyboard transition must not drop the menu under the keyboard.');
+  s.focus({ tagName: 'INPUT', type: 'text', inputMode: 'numeric' });
+  s.resizeViewport(800);
+  assert.equal(s.render().props.style['--navigation-bottom-inset'], '0px');
+  assert.equal(s.render().props.style['--navigation-menu-height'], undefined);
+  s.resizeViewport(730);
+  assert.equal(s.render().props.style['--navigation-bottom-inset'], '0px', 'Browser chrome is not a keyboard-sized obstruction.');
+  s.resizeViewport(400, 0, 2);
+  assert.equal(s.render().props.style['--navigation-bottom-inset'], '0px', 'Pinch zoom must not reposition the dock.');
+  for (const height of [NaN, Infinity, -1]) {
+    s.resizeViewport(height);
+    assert.equal(s.render().props.style['--navigation-bottom-inset'], '0px');
   }
-  s.unmount(); assert.equal(s.listeners.size, 0); assert.equal(s.timers.size, 0);
+  s.resizeViewport(150);
+  assert.equal(s.render().props.style['--navigation-menu-height'], '48px', 'A landscape keyboard menu fits above the measured dock and safe-area gap.');
+  s.resizeViewport(80);
+  assert.equal(s.render().props.style['--navigation-menu-height'], '0px', 'A tiny viewport cannot force a minimum menu above the screen.');
+  s.unmount(); assert.equal(s.windowListeners.size, 0); assert.equal(s.viewportListeners.size, 0);
+});
+
+test('Bottom navigation also covers home, document print stays clean and no touch-focus rule hides the menu', () => {
+  for (const route of ['/', '/login', '/registrieren', '/preise', '/konto', '/quiz-app', '/wildkunde/rehwild']) assert.match(setup(route).html(), /Seitennavigation/);
+  const css = fs.readFileSync(path.join(root, 'styles/GlobalNavigation.module.css'), 'utf8');
+  assert.doesNotMatch(css, /\.editing\s*\{/);
+  assert.match(css, /@media print\s*\{\s*\.nav\s*\{\s*display:\s*none/);
+  const base = fs.readFileSync(path.join(root, 'styles/AppBase.css'), 'utf8');
+  assert.match(base, /padding-bottom:\s*calc\(100px\s*\+\s*env\(safe-area-inset-bottom/);
+  assert.match(base, /scroll-padding-bottom:/);
+  const legacy = setup('/login', [], false, null, false);
+  assert.match(legacy.html(), /Menü/);
+  assert.equal(legacy.render().props.style['--navigation-bottom-inset'], '0px');
+  legacy.unmount(); assert.equal(legacy.windowListeners.size, 0);
 });
 
 test('Back ignores unsafe stored routes and works when session storage is unavailable', () => {

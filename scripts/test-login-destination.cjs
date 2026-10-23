@@ -600,5 +600,5 @@ test('Login and personal pages use the shared design, explicit field labels and 
   assert.match(headers['Cache-Control'], /private, no-store/);
   const AccountLayout = load('components/AccountLayout.js').default;
   const account = renderToStaticMarkup(React.createElement(AccountLayout, { title: 'Mein Konto', description: 'Dein Lernfortschritt', active: 'account' }));
-  assert.equal((account.match(/<h1>/g) || []).length, 1); assert.match(account, /aria-label="Kontomenü"/); assert.match(account, /aria-current="page"/); assert.match(account, /class="header compactHeader"/);
+  assert.equal((account.match(/<h1>/g) || []).length, 1); assert.doesNotMatch(account, /aria-label="(?:Lernmenü|Kontomenü)"/); assert.match(account, /class="header compactHeader"/);
 });

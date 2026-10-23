@@ -269,7 +269,7 @@ test('Lesson evidence never invents a review date for an old saved lesson withou
   assert.ok(dated.includes('17. Oktober 2026'));
 });
 
-test('Every practice page and result uses one shared heading, browser title and learning navigation', async () => {
+test('Every practice page and result uses one shared heading and browser title without duplicate page navigation', async () => {
   const files = fs.readdirSync(path.join(root, 'pages/jagdpraxis')).filter(file => file.endsWith('.js'));
   assert.equal(files.length, 39);
   for (const filename of files) {
@@ -284,9 +284,9 @@ test('Every practice page and result uses one shared heading, browser title and 
     assert.equal((html.match(/<main\b/g) || []).length, 1, filename);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, filename);
     assert.match(html, /<title>.+ – Jagdlatein<\/title>/, filename);
-    assert.ok(html.includes('Lernbereich') && html.includes('href="/lernen#lernen-suche"') && html.includes('Suche'), filename);
+    assert.doesNotMatch(html, /aria-label="(?:Lernmenü|Praxisübungen)"/, filename);
     assert.ok(!html.includes('padding:40px'), filename + ': outer mobile padding comes from the shared layout');
-    if (filename !== 'index.js') assert.ok(html.includes('Alle Praxisübungen'), filename);
+    assert.doesNotMatch(html, /Alle Praxisübungen/, filename);
     if (!source.includes('step >= scenarios.length')) continue;
     let state = 0;
     const ResultPage = load(relative, { react: { ...React, useState(initial) { const [value, update] = React.useState(initial); return [state++ === 0 ? Number.MAX_SAFE_INTEGER : value, update]; } }, '../../hooks/useActivityResult': () => ({}) }).default;

@@ -26,11 +26,6 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
   return (
     <main className={styles.main}>
       <div className={styles.wrap}>
-        <nav className={styles.nav} aria-label="Quizmenü">
-          <Link href="/lernen"><AppIcon name="book" size={20} />Lernbereich</Link>
-          <Link href="/quiz-app/leaderboard"><AppIcon name="trophy" size={20} />Rangliste</Link>
-          <Link href="/auswertungen"><AppIcon name="stats" size={20} />Meine Auswertungen</Link>
-        </nav>
         <header className={styles.header}>
           <p className={styles.eyebrow}>Wissen anwenden</p>
           <h1><AppIcon name="trophy" size={36} />Jagdquiz mit Rangliste</h1>

@@ -15,23 +15,19 @@ export const mainMenuItems = [
   { href: "/wildkunde", title: "Wildarten", icon: "deer" },
   { href: "/fotohelfer", title: "Fotohelfer", icon: "camera" },
   { href: "/lernen/lernkarten", title: "Lernkarten", icon: "book" },
+  { href: "/kurse", title: "Kursverzeichnis", icon: "book" },
   { href: "/quiz-app", title: "Quiz & Rangliste", icon: "quiz" },
+  { href: "/quiz-app/leaderboard", title: "Rangliste", icon: "trophy" },
+  { href: "/jagdpraxis", title: "Praxisübungen", icon: "practice" },
+  { href: "/glossar", title: "Jägersprache A–Z", icon: "book" },
   { href: "/community", title: "Community", icon: "community", ariaLabel: "Zur Community" },
   { href: "/news", title: "Jagd-News", icon: "calendar" },
   { href: "/lernen/videos", title: "Jagdvideos", icon: "video" },
   { href: "/konto", title: "Konto & Abo", icon: "account", ariaLabel: "Konto und Abo öffnen" },
+  { href: "/meine-kurse", title: "Meine Kurse & Fortschritt", icon: "progress" },
+  { href: "/auswertungen", title: "Meine Auswertungen", icon: "chart" },
   { href: "/hilfe", title: "Hilfe & Kontakt", icon: "help" },
 ];
-
-function isEditingField(element) {
-  if (!element || element.disabled || element.readOnly) return false;
-  if (element.isContentEditable) return true;
-  const tag = element.tagName?.toLowerCase();
-  if (tag === "textarea" || tag === "select") return true;
-  return tag === "input" && ![
-    "button", "checkbox", "color", "file", "hidden", "image", "radio", "range", "reset", "submit",
-  ].includes(element.type?.toLowerCase());
-}
 
 function inSection(pathname, section) {
   return pathname === section || pathname.startsWith(`${section}/`);
@@ -83,8 +79,9 @@ function rememberCurrentPath(history, current) {
 export default function GlobalHomeButton() {
   const pathname = usePathname();
   const router = useRouter();
-  const [editing, setEditing] = useState(false);
+  const [viewportSpace, setViewportSpace] = useState({ bottom: 0, menuHeight: null });
   const menuRef = useRef(null);
+  const navigationRef = useRef(null);
 
   useEffect(() => {
     if (menuRef.current) menuRef.current.open = false;
@@ -114,25 +111,42 @@ export default function GlobalHomeButton() {
   }, [pathname, router?.asPath]);
 
   useEffect(() => {
-    if (!pathname || pathname === "/") return;
-    let blurTimer;
-    const syncFocus = () => setEditing(isEditingField(document.activeElement));
-    const afterBlur = () => {
-      window.clearTimeout(blurTimer);
-      // Wait for focus to settle when moving between fields.
-      blurTimer = window.setTimeout(syncFocus, 0);
+    const viewport = window.visualViewport;
+    const syncViewport = () => {
+      const height = viewport?.height;
+      const offset = viewport?.offsetTop;
+      const scaled = viewport?.scale !== undefined && Math.abs(viewport.scale - 1) > 0.01;
+      const valid = Number.isFinite(height) && height > 0 && Number.isFinite(offset) && offset >= 0 &&
+        Number.isFinite(window.innerHeight) && window.innerHeight > 0;
+      // Keep the dock above a reduced visual viewport, including the closing
+      // keyboard transition. Field focus alone never hides or moves navigation.
+      // Pinch zoom is a different viewport change and must not move the dock.
+      const obscured = valid && !scaled ? Math.max(0, window.innerHeight - height - offset) : 0;
+      const bottom = obscured >= 100 ? Math.round(obscured) : 0;
+      const nav = navigationRef.current;
+      const measuredHeight = nav?.getBoundingClientRect?.().height;
+      const dockHeight = Number.isFinite(measuredHeight) ? measuredHeight : 100;
+      const previousInset = Number.parseFloat(nav?.style?.getPropertyValue("--navigation-bottom-inset")) || 0;
+      const measuredBottom = nav && window.getComputedStyle ? Number.parseFloat(window.getComputedStyle(nav).bottom) : NaN;
+      const edgeGap = Number.isFinite(measuredBottom) ? Math.max(0, measuredBottom - previousInset) : 36;
+      // Include the actual dock height and resolved safe-area gap. Very short
+      // landscape viewports must not be forced to show an oversized menu.
+      const menuHeight = bottom ? Math.max(0, Math.floor(height - dockHeight - edgeGap - 14 - 8)) : null;
+      setViewportSpace(previous => previous.bottom === bottom && previous.menuHeight === menuHeight
+        ? previous : { bottom, menuHeight });
     };
-    syncFocus();
-    document.addEventListener("focusin", syncFocus);
-    document.addEventListener("focusout", afterBlur);
+    syncViewport();
+    window.addEventListener("resize", syncViewport);
+    viewport?.addEventListener("resize", syncViewport);
+    viewport?.addEventListener("scroll", syncViewport);
     return () => {
-      window.clearTimeout(blurTimer);
-      document.removeEventListener("focusin", syncFocus);
-      document.removeEventListener("focusout", afterBlur);
+      window.removeEventListener("resize", syncViewport);
+      viewport?.removeEventListener("resize", syncViewport);
+      viewport?.removeEventListener("scroll", syncViewport);
     };
-  }, [pathname]);
+  }, []);
 
-  if (!pathname || pathname === "/") {
+  if (!pathname) {
     return null;
   }
 
@@ -165,7 +179,8 @@ export default function GlobalHomeButton() {
     .some(section => inSection(pathname, section));
   function menuCurrent(item) {
     if (item.href === "/") return pathname === "/";
-    if (item.href === "/konto") return accountCurrent;
+    if (item.href === "/konto") return accountCurrent && !["/meine-kurse", "/auswertungen"].some(section => inSection(pathname, section));
+    if (item.href === "/quiz-app") return inSection(pathname, "/quiz-app") && !inSection(pathname, "/quiz-app/leaderboard");
     if (item.href === "/lernen/videos") return videoCurrent;
     if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !inSection(pathname, "/lernen/lernkarten") && !videoCurrent;
     return inSection(pathname, item.href);
@@ -176,8 +191,11 @@ export default function GlobalHomeButton() {
 
   return (
     <nav
+      ref={navigationRef}
       aria-label="Seitennavigation"
-      className={`${styles.nav}${editing ? ` ${styles.editing}` : ""}`}
+      className={styles.nav}
+      style={{ "--navigation-bottom-inset": `${viewportSpace.bottom}px`,
+        ...(viewportSpace.menuHeight !== null ? { "--navigation-menu-height": `${viewportSpace.menuHeight}px` } : {}) }}
     >
       <button
         type="button"

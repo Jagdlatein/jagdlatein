@@ -39,14 +39,14 @@ test('Existing ranked quiz and leaderboard are discoverable without creating a s
   assert.doesNotMatch(normal + research, /Wochenrangliste|<button/);
 });
 
-test('Quiz setup links to the existing ranking and keeps country selection exclusive to legal questions', () => {
+test('Quiz setup keeps its start action and legal-country controls without a duplicate page menu', () => {
   const { QUESTIONS } = load('data/questions-full.js');
   const options = load('lib/quiz-learning-scope.js').quizLearningOptions(QUESTIONS);
   const slots = []; let cursor = 0;
   const Setup = load('components/QuizSetup.js', { react: { ...React, useState(initial) { const index = cursor++; slots[index] ??= initial; return [slots[index], value => { slots[index] = value; }]; } } }).default;
   const render = () => { cursor = 0; return Setup({ ...options, initialCountry: 'DE', initialTopic: 'Alle' }); };
   let tree = render();
-  assert.match(renderToStaticMarkup(tree), /href="\/quiz-app\/leaderboard"/);
+  assert.doesNotMatch(renderToStaticMarkup(tree), /aria-label="Quizmenü"/);
   assert.match(renderToStaticMarkup(tree), /href="\/quiz-app\/run\?topic=Alle"/);
   assert.equal(find(tree, node => node.type === 'fieldset'), null);
   find(tree, node => node.type === 'select').props.onChange({ target: { value: 'Recht' } }); tree = render();

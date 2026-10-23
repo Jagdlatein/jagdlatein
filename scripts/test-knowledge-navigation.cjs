@@ -45,6 +45,7 @@ test('The learning overview exposes one search, twelve direct categories, and co
   const paths = load('lib/learning-curriculum.js').learningPaths.filter(item => !item.advanced);
   for (const path of paths) { assert.ok(html.includes(path.title)); for (const id of path.moduleIds) assert.ok(html.includes(`/kurse/${id}`)); }
   assert.ok(html.indexOf('Kategorien') < html.indexOf('all-search-title'));
+  assert.doesNotMatch(html, /aria-label="(?:Lernmenü|Deine Kurse)"/);
 });
 
 test('All twelve category roots expose their real topic branches before optional practice, without a flat course directory', () => {
@@ -62,10 +63,10 @@ test('All twelve category roots expose their real topic branches before optional
     if (data.resources.some(tool => !tool.featured)) assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-resources-heading"'));
     if (data.resources.some(tool => tool.featured)) {
       assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-featured-heading"'));
-      assert.ok(html.indexOf('id="learning-featured-heading"') < html.indexOf('aria-label="Deine Kurse"'));
     }
     if (data.resources.length) assert.ok(html.includes('<summary>Videos, Stimmen und Übungen in dieser Kategorie</summary>'));
     assert.doesNotMatch(html, /Lerneinheit öffnen|id="learning-country"/);
+    assert.doesNotMatch(html, /aria-label="(?:Lernmenü|Deine Kurse)"/);
     assert.doesNotMatch(html, /class="lessonPreview"/);
     assert.ok(tree.includes('Unterkategorien'));
     assert.doesNotMatch(tree, /href="\/kurse\/|<details|<button|<img/, `${category}: start with a compact branch choice`);
@@ -83,6 +84,41 @@ test('All twelve category roots expose their real topic branches before optional
     const links = [...resourceHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => targets.has(href));
     assert.equal(new Set(links).size, links.length);
   }
+});
+
+test('Shared layouts keep headings and study content without duplicate page-navigation bars', () => {
+  const cache = new Map();
+  const body = React.createElement('section', null,
+    React.createElement('h2', null, 'Fachinhalt bleibt sichtbar'),
+    React.createElement('a', { href: '/kurse/wissen-rehwild-jahreslauf#lesson-1' }, 'Passende Lektion lesen'));
+  for (const [file, props] of [
+    ['components/LearningToolLayout.js', {title: 'Lerninhalt', description: 'Belegte Inhalte', category: 'wildkunde'}],
+    ['components/AccountLayout.js', {title: 'Mein Konto', description: 'Persönliche Inhalte', active: 'account'}],
+    ['components/PracticeLayout.js', {title: 'Praxisfall', exercise: 'ansitz'}],
+  ]) {
+    const Layout = load(file, cache).default;
+    const html = renderToStaticMarkup(React.createElement(Layout, props, body));
+    assert.equal((html.match(/<h1\b/g) || []).length, 1, file);
+    assert.ok(html.includes('Fachinhalt bleibt sichtbar'), file);
+    assert.ok(html.includes('href="/kurse/wissen-rehwild-jahreslauf#lesson-1"'), file);
+    assert.ok(html.includes('Dieses Thema in der Community besprechen'), file);
+    assert.doesNotMatch(html, /aria-label="(?:Lernmenü|Kontomenü|Praxisübungen)"|Alle Praxisübungen|href="\/hilfe"/, file);
+  }
+  const Setup = load('components/QuizSetup.js', cache).default;
+  const quiz = renderToStaticMarkup(React.createElement(Setup, {
+    commonOptions: {total: 10, topics: [{name: 'Wildkunde', count: 10}]},
+    countryOptions: [{code: 'DE', name: 'Deutschland', count: 4}], initialCountry: 'DE', initialTopic: 'Wildkunde',
+  }));
+  assert.doesNotMatch(quiz, /aria-label="Quizmenü"/);
+  assert.match(quiz, /id="quiz-topic"/); assert.match(quiz, /Quiz starten/);
+  assert.match(quiz, /href="\/quiz-app\/run\?/);
+  const Portrait = load('components/WildlifePortraitLayout.js', cache).default;
+  const portrait = renderToStaticMarkup(React.createElement(Portrait, {slug: 'rehwild', title: 'Rehwild'}, body));
+  assert.doesNotMatch(portrait, /aria-label="(?:Lernmenü|Artenwissen)"/);
+  assert.match(portrait, /Themen dieser Art/);
+  assert.match(portrait, /Art kennenlernen/);
+  assert.match(portrait, /Gebiss und Kiefer/);
+  assert.match(portrait, /Lebensweise und Unterscheidung/);
 });
 
 test('Every branch exposes only its course choices, then each selected course exposes exactly its own lesson links', () => {
@@ -242,6 +278,7 @@ test('Practice and law discovery cards retain their original three courses and c
     assert.ok(props.discoveryModules.every(module => Object.keys(module).sort().join(',') === 'id,lessonCount,questionCount,title'));
     const html = renderToStaticMarkup(React.createElement(Page.default, props));
     assert.ok(html.includes(title));
+    assert.doesNotMatch(html, /aria-label="Lernmenü"/);
     for (const module of original) {
       assert.ok(html.includes(`href="/kurse/${module.id}"`));
       assert.ok(html.includes(module.title));

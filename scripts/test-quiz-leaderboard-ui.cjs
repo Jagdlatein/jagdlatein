@@ -97,10 +97,10 @@ test('Tied best scores share competition ranks and sorting never mutates or expo
   assert.equal(quizLeaderboardRows([row('public@example.invalid')])[0].displayName, 'Quizname verborgen');
 });
 
-test('Loading and populated views use semantic navigation and readable tied ranks without displaying email addresses', async () => {
+test('Loading and populated views keep the quiz action and readable tied ranks without duplicate page navigation', async () => {
   await withFetch(async (h, requests) => {
     assert.match(h.html(), /<main/); assert.equal((h.html().match(/<h1/g) || []).length, 1);
-    assert.match(h.html(), /href="\/lernen"/); assert.match(h.html(), /href="\/quiz-app"/);
+    assert.doesNotMatch(h.html(), /aria-label="Quizmenü"/); assert.match(h.html(), /href="\/quiz-app"/);
     assert.match(words(h.tree), /Rangliste wird geladen/); assert.doesNotMatch(words(h.tree), /Anfang machen/);
     h.flush();
     assert.equal(requests[0].url, '/api/quiz/leaderboard-week');

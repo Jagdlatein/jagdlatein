@@ -19,9 +19,6 @@ export function getStaticProps() {
 export default function JagdrechtHome({ discoveryModules }) {
   return (
     <main className={styles.main}>
-      <nav className={styles.nav} aria-label="Lernmenü">
-        <Link href="/lernen"><AppIcon name="book" size={18} />Lernbereich</Link>
-      </nav>
       <header className={styles.header}>
         <p className={styles.eyebrow}>Rechtsquellen für dein Jagdgebiet</p>
         <h1><span className={styles.headingIcon}><AppIcon name="law" size={30} /></span><span>Jagdrecht – Länderwahl</span></h1>

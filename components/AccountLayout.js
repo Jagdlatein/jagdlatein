@@ -1,19 +1,11 @@
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
-import AppIcon from "./AppIcon";
 import styles from "../styles/Account.module.css";
 
 export default function AccountLayout({ title, description, active, children, hideCommunity = false }) {
   return (
     <LearningToolLayout title={title} description={description} icon={active === "statistics" ? "chart" : active === "courses" ? "progress" : "account"} eyebrow="Dein persönlicher Lernbereich" robots="noindex, nofollow" hideCommunity={hideCommunity} compact>
         <div className={styles.wrap}>
-          <nav className={styles.nav} aria-label="Kontomenü">
-            <Link href="/konto" aria-current={active === "account" ? "page" : undefined}><AppIcon name="account" size={18} />Mein Konto</Link>
-            <Link href="/meine-kurse" aria-current={active === "courses" ? "page" : undefined}><AppIcon name="progress" size={18} />Meine Kurse</Link>
-            <Link href="/auswertungen" aria-current={active === "statistics" ? "page" : undefined}><AppIcon name="chart" size={18} />Auswertungen</Link>
-            <Link href="/community"><AppIcon name="community" size={18} />Community</Link>
-            <Link href="/"><AppIcon name="home" size={18} />Startseite</Link>
-          </nav>
           {children}
         </div>
     </LearningToolLayout>
