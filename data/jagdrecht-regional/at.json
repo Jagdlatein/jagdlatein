@@ -1,0 +1,1853 @@
+{
+  "country": "AT",
+  "reviewedOn": "2026-10-23",
+  "regions": [
+    {
+      "code": "B",
+      "name": "Burgenland",
+      "lawTitle": "Burgenländisches Jagdgesetz 2017",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001124",
+      "articles": [
+        {
+          "id": "at-b-verweigerung",
+          "topic": "zulassung",
+          "title": "Mindestalter für die Jagdkarte",
+          "lawTitle": "Burgenländisches Jagdgesetz 2017",
+          "citation": "§ 64 Abs. 1 Z 3 und 4",
+          "summary": "Die Ausstellung der burgenländischen Jagdkarte ist unter 16 Jahren zu verweigern. Zwischen vollendetem 16. und 18. Lebensjahr ist die Zustimmung der gesetzlichen Vertretung nachzuweisen. Die übrigen Kartenvoraussetzungen und Verweigerungsgründe bleiben bestehen.",
+          "sources": [
+            {
+              "title": "Burgenländisches Jagdgesetz 2017: § 64 Abs. 1 Z 3 und 4",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrBgld&Anlage=&Artikel=&Gesetzesnummer=20001124&Paragraf=64&Uebergangsrecht=",
+              "publisher": "Land Burgenland / RIS",
+              "kind": "law"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-b-verweigerung-q1",
+              "prompt": "Kann eine 15-jährige Person allein aufgrund einer bestandenen Jagdprüfung die burgenländische Jagdkarte erhalten?",
+              "choices": [
+                "Ja, der Prüfungserfolg hebt die Altersgrenze auf.",
+                "Nein, unter 16 ist die Kartenausstellung zu verweigern.",
+                "Ja, sofern ein volljähriger Jäger sie begleitet."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 64 Abs. 1 Z 3 enthält eine eigene Altersgrenze für die Kartenausstellung."
+            },
+            {
+              "id": "at-b-verweigerung-q2",
+              "prompt": "Welche zusätzliche Voraussetzung betrifft 17-jährige Bewerber um die burgenländische Jagdkarte?",
+              "choices": [
+                "Eine bloße Kursbestätigung ohne Prüfungszeugnis.",
+                "Ein bereits bestehender Jagdpachtvertrag.",
+                "Die Zustimmung der gesetzlichen Vertretung."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 64 Abs. 1 Z 4 nennt die fehlende Zustimmung als Verweigerungsgrund."
+            }
+          ],
+          "officialText": "Die Ausstellung der Jagdkarte ist Personen zu verweigern, […] die das 16. Lebensjahr noch nicht vollendet haben;",
+          "officialTextCitation": "§ 64 Abs. 1 Einleitung und Z 3",
+          "contentValidated": true,
+          "verificationNote": "Der geltende Normtext ist im Original gelesen. Eine unabhängige konkrete Erläuterung der hier behandelten Kartenausstellung steht noch aus; der Block bleibt außerhalb des geprüften Übungsstoffs.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-b-pruefung-zulassung",
+          "topic": "pruefung",
+          "title": "Jagdprüfung: Alter und Zustimmung",
+          "lawTitle": "Burgenländisches Jagdgesetz 2017",
+          "citation": "§ 63 Abs. 1 Z 1 und Abs. 4–6",
+          "summary": "Die burgenländische Jagdprüfung ist ab vollendetem 16. Lebensjahr zugänglich; unter 18 ist die Zustimmung der gesetzlichen Vertretung erforderlich. Die praktische Schießprüfung folgt erst nach bestandenem mündlichen Teil. Weitere Zulassungsvoraussetzungen und das gesonderte Waffenrecht bleiben zu beachten.",
+          "sources": [
+            {
+              "title": "Burgenländisches Jagdgesetz 2017: § 63 Abs. 1 Z 1 und Abs. 4–6",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrBgld&Anlage=&Artikel=&Gesetzesnummer=20001124&Paragraf=63&Uebergangsrecht=",
+              "publisher": "Land Burgenland / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Toferer: Vom Jungjäger ins praktische Jägerleben (2014), S.18–19 – Alter, Zustimmung und Prüfungsreihenfolge",
+              "url": "https://jagdfibel.de/images/6/69/Toferer.pdf",
+              "publisher": "Roman Toferer – BOKU Universitätslehrgang Jagdwirt",
+              "kind": "context"
+            },
+            {
+              "title": "Anträge auf Zulassung zur Prüfung",
+              "url": "https://www.jagd-burgenland.at/antraege-auf-zulassung-zur-pruefung/",
+              "publisher": "Land Burgenland – Jagdverwaltung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-b-pruefung-zulassung-q1",
+              "prompt": "Eine 17-jährige Person möchte zur burgenländischen Jagdprüfung antreten. Welche altersbezogene Voraussetzung muss nachgewiesen sein?",
+              "choices": [
+                "Die Zustimmung der gesetzlichen Vertretung.",
+                "Die Zustimmung ist erst beim späteren Kartenantrag nötig.",
+                "Allein die Zulassung durch den privaten Kursanbieter."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 63 Abs. 1 Z 1 verlangt die Zustimmung bereits für die Prüfungszulassung; die weiteren Voraussetzungen gelten zusätzlich."
+            },
+            {
+              "id": "at-b-pruefung-zulassung-q2",
+              "prompt": "Welche Reihenfolge schreibt § 63 Abs. 6 für die praktische Schießprüfung vor?",
+              "choices": [
+                "Sie folgt erst nach bestandenem mündlichen Prüfungsteil.",
+                "Sie ist zwingend vor dem mündlichen Prüfungsteil abzulegen.",
+                "Mündliche Prüfung und Schießprüfung dürfen in beliebiger Reihenfolge bestanden werden."
+              ],
+              "correctIndex": 0,
+              "explanation": "Für die praktische Schießprüfung verlangt § 63 Abs. 6 den zuvor bestandenen mündlichen Teil."
+            }
+          ],
+          "officialText": "Zur Jagdprüfung dürfen nur Personen zugelassen werden, […] die das 16. Lebensjahr vollendet haben.",
+          "officialTextCitation": "§ 63 Abs. 1 Einleitung und Z 1 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Altersgrenze, Zustimmung und Reihenfolge wurden mit der historischen fachlichen Darstellung von Toferer (2014, S.18–19) und jeweils erneut mit dem aktuell gültigen § 63 abgeglichen. Alte Schießleistungen und sonstige historische Verfahrensdetails werden nicht übernommen.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-b-ausstellungsbehoerde",
+          "topic": "zustandigkeit",
+          "title": "Zuständig für die Kartenausstellung",
+          "lawTitle": "Burgenländisches Jagdgesetz 2017",
+          "citation": "§ 61 Abs. 7",
+          "summary": "Für die Ausstellung der burgenländischen Jagdkarte ist die Bezirksverwaltungsbehörde zuständig. Ein Prüfungszeugnis oder eine Bestätigung des Kursanbieters ist noch keine ausgestellte Jagdkarte. Die örtliche Zuständigkeit und das Verfahren regelt der vollständige § 61 Abs. 7.",
+          "sources": [
+            {
+              "title": "Burgenländisches Jagdgesetz 2017: § 61 Abs. 7",
+              "url": "https://ris.bka.gv.at/Dokumente/Landesnormen/LBG40026685/LBG40026685.html",
+              "publisher": "Land Burgenland / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            },
+            {
+              "title": "Erstausstellung einer burgenländischen Jagdkarte",
+              "url": "https://www.jagd-burgenland.at/jagd/info/jagdkarte/",
+              "publisher": "Land Burgenland – Jagdverwaltung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-b-ausstellungsbehoerde-q1",
+              "prompt": "Welche Stelle ist für die Ausstellung einer burgenländischen Jagdkarte zuständig?",
+              "choices": [
+                "Die Bezirksverwaltungsbehörde.",
+                "Der Bezirksjägermeister wie bei der Kärntner Jagdkarte.",
+                "Der Landesjägermeister wie grundsätzlich in Oberösterreich."
+              ],
+              "correctIndex": 0,
+              "explanation": "Für Burgenland nennt § 61 Abs. 7 die Bezirksverwaltungsbehörde."
+            },
+            {
+              "id": "at-b-ausstellungsbehoerde-q2",
+              "prompt": "Ein Kursanbieter stellt nach der bestandenen Prüfung ein Zeugnis aus. Welche Stelle stellt die burgenländische Jagdkarte aus?",
+              "choices": [
+                "Die Prüfungskommission ersetzt mit dem Zeugnis die Kartenausstellung.",
+                "Die zuständige Bezirksverwaltungsbehörde.",
+                "Das für den späteren Jagdort zuständige Jagdschutzorgan."
+              ],
+              "correctIndex": 1,
+              "explanation": "Prüfungszeugnis und von der Bezirksverwaltungsbehörde ausgestellte Jagdkarte sind unterschiedliche Nachweise."
+            }
+          ],
+          "officialText": "Zur Ausstellung der Jagdkarte ist jene Bezirksverwaltungsbehörde zuständig, in deren Bereich die Antragstellerin oder der Antragsteller den Hauptwohnsitz hat.",
+          "officialTextCitation": "§ 61 Abs. 7 Satz 5",
+          "contentValidated": true,
+          "verificationNote": "Die Behördenart wurde mit der bundesweiten Behördeninformation unabhängig abgeglichen. Einzelheiten der örtlichen Zuständigkeit werden hier als amtlicher Originalsatz gezeigt; die Übungsfragen prüfen nur die doppelt abgeglichene Behördenart.",
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die gesonderte Lektion zur Kartenaltersgrenze ist bis zum unabhängigen Zweitnachweis nur als amtlicher Originaltext verfügbar; Abgabe- und Versicherungsdetails sind noch kein ausgebauter Übungsstoff.",
+      "examResources": [
+        {
+          "title": "Burgenländische Jagdkarten- und Jagdprüfungsverordnung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001127",
+          "publisher": "Land Burgenland / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Verordnung, Fassung am 23.10.2026 eingesehen; Prüfungsstoff und Verfahren, kein veröffentlichter Original-Rechtsfragenkatalog."
+        }
+      ],
+      "examNotes": "Bei der Recherche auf den amtlichen Seiten wurde kein öffentlich veröffentlichter amtlicher Katalog einzelner Original-Rechtsprüfungsfragen verifiziert. Die verlinkte Verordnung ist Prüfungsrecht, kein Fragenkatalog. Die Jagdlatein-Fragen sind eigene Lernaufgaben."
+    },
+    {
+      "code": "K",
+      "name": "Kärnten",
+      "lawTitle": "Kärntner Jagdgesetz 2000 – K-JG",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrK&Gesetzesnummer=20000013",
+      "articles": [
+        {
+          "id": "at-k-jagdausuebung",
+          "topic": "jagdausuebung",
+          "title": "Jagdkarte und Erlaubnis im Revier",
+          "lawTitle": "Kärntner Jagdgesetz 2000 – K-JG",
+          "citation": "§ 36 Abs. 1, 3 und 4",
+          "summary": "In Kärnten muss bei der Jagdausübung eine gültige Kärntner Jagdkarte beziehungsweise Jagdgastkarte vorhanden sein und mitgeführt werden. Sie ist persönlich und verschafft allein kein Recht, in einem fremden Revier zu jagen: Die Erlaubnis des Jagdausübungsberechtigten bleibt notwendig. Auf Verlangen ist die Karte den gesetzlich genannten Kontrollberechtigten vorzuweisen.",
+          "sources": [
+            {
+              "title": "Kärntner Jagdgesetz 2000 – K-JG: § 36 Abs. 1, 3 und 4",
+              "url": "https://www.ris.bka.gv.at/eli/lgbl/KA/2000/21/P36/LKT40004207",
+              "publisher": "Land Kärnten / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdprüfung: Voraussetzungen und Ablauf",
+              "url": "https://www.kaerntner-jaegerschaft.at/aus-weiterbildung/ausbildung/jagdpruefung",
+              "publisher": "Kärntner Jägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Der Jagderlaubnisschein – Kärntner Jäger Nr.281, Juni 2025",
+              "url": "https://www.kaerntner-jaegerschaft.at/sites/default/files/2025-06/281_KJ_juni25_web_1.pdf",
+              "publisher": "Kärntner Jägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-k-jagdausuebung-q1",
+              "prompt": "Ein Gast hat eine gültige Kärntner Jagdkarte, aber keine Erlaubnis für ein bestimmtes Revier. Darf er dort jagen?",
+              "choices": [
+                "Ja, die Landesjagdkarte schließt die Erlaubnis für jedes Revier ein.",
+                "Ja, wenn seine Karte im Wohnsitzbezirk ausgestellt wurde.",
+                "Nein, die erforderliche Erlaubnis des Jagdausübungsberechtigten fehlt."
+              ],
+              "correctIndex": 2,
+              "explanation": "Persönliche Jagdkarte und Erlaubnis zur Jagd im konkreten Revier sind getrennte Voraussetzungen."
+            },
+            {
+              "id": "at-k-jagdausuebung-q2",
+              "prompt": "Eine Jägerin besitzt eine gültige Kärntner Jagdkarte, hat sie aber zu Hause gelassen. Welche Aussage trifft zu?",
+              "choices": [
+                "Die Karte muss bei der Jagd mitgeführt und auf Verlangen vorgewiesen werden.",
+                "Der Besitz zu Hause genügt, wenn der Jagdausübungsberechtigte sie kennt.",
+                "Ein Jagderlaubnisschein ersetzt stets das Mitführen der Karte."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 36 Abs. 4 verlangt das Mitführen und das Vorweisen gegenüber den dort genannten Kontrollberechtigten."
+            }
+          ],
+          "officialText": "Niemand darf jagen, ohne im Besitz einer gültigen Kärntner Jagdkarte (Jagdkarte, Jagdgastkarte) zu sein.",
+          "officialTextCitation": "§ 36 Abs. 1",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-k-pruefung",
+          "topic": "pruefung",
+          "title": "Jagdprüfung und örtliche Rechtskenntnisse",
+          "lawTitle": "Kärntner Jagdgesetz 2000 – K-JG",
+          "citation": "§ 37 Abs. 1, 2, 6 und 9",
+          "summary": "Für die erste Kärntner Jagdkarte ist grundsätzlich die Jagdprüfung nachzuweisen. Dazu gehören Kärntner Jagd- und Naturschutzrecht, jagdliche Fachkenntnisse, sichere Waffenhandhabung und Grundkenntnisse der Ersten Hilfe. Die Prüfung ist frühestens ab 15 möglich; dies ist nicht das Mindestalter für die Jagdkarte. Für die Kartenausstellung ist der Bezirksjägermeister zuständig, grundsätzlich nach Hauptwohnsitz.",
+          "sources": [
+            {
+              "title": "Kärntner Jagdgesetz 2000 – K-JG: § 37 Abs. 1, 2, 6 und 9",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrK&Anlage=&Artikel=&Gesetzesnummer=20000013&Paragraf=37&Uebergangsrecht=",
+              "publisher": "Land Kärnten / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdprüfung: Voraussetzungen und Ablauf",
+              "url": "https://www.kaerntner-jaegerschaft.at/aus-weiterbildung/ausbildung/jagdpruefung",
+              "publisher": "Kärntner Jägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            },
+            {
+              "title": "Rechnungshof: Umsetzung der Jagdgesetze in Kärnten, Salzburg und Tirol (2016), Abschnitt Jagdkarten; Altersunterschied mit geltenden Normen abgeglichen",
+              "url": "https://www.rechnungshof.gv.at/rh/home/home/Umsetzung_der_Jagdgesetze_in_Kaernten__Salzburg_und_Tirol.pdf",
+              "publisher": "Rechnungshof Österreich",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-k-pruefung-q1",
+              "prompt": "Eine Person hat mit 15 die Kärntner Jagdprüfung bestanden. Folgt daraus schon ein Anspruch auf die Jagdkarte mit 15?",
+              "choices": [
+                "Ja, die Altersgrenzen von Prüfung und Karte sind identisch.",
+                "Nein, die Kartenaltersgrenze ist gesondert zu erfüllen.",
+                "Ja, mit Zustimmung der gesetzlichen Vertretung entfällt jede Kartenaltersgrenze."
+              ],
+              "correctIndex": 1,
+              "explanation": "Prüfungszulassung ab 15 und Kartenausstellung grundsätzlich erst ab 16 sind verschiedene Regelungen."
+            },
+            {
+              "id": "at-k-pruefung-q2",
+              "prompt": "Welche örtlichen Rechtskenntnisse gehören in Kärnten zur Jagdprüfung?",
+              "choices": [
+                "Kenntnisse eines frei wählbaren österreichischen Landesjagdgesetzes genügen.",
+                "Kenntnisse des Waffenrechts ersetzen die landesrechtlichen Jagdkenntnisse.",
+                "Auch Kenntnisse des Kärntner Jagd- und Naturschutzrechts."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 37 verlangt die Rechtskenntnisse für Kärnten; die bundesweite Anerkennung einer Ausbildung beseitigt diese Anforderung nicht pauschal."
+            }
+          ],
+          "officialText": "Vor der Ablegung der Prüfung hat der Prüfungswerber der Prüfungskommission auf geeignete Weise nachzuweisen, daß er über Grundkenntnisse der Ersten Hilfe verfügt.",
+          "officialTextCitation": "§ 37 Abs. 6 Satz 3",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-k-minderjaehrige",
+          "topic": "zulassung",
+          "title": "Jagdkarte für 16- und 17-Jährige",
+          "lawTitle": "Kärntner Jagdgesetz 2000 – K-JG",
+          "citation": "§ 38 Abs. 1 lit. b und c",
+          "summary": "Eine Kärntner Jagdkarte wird nicht an unter 16-Jährige ausgegeben. Zwischen 16 und 18 ist die Zustimmung der gesetzlichen Vertretung zum Antrag nötig. Die Zustimmung beseitigt die Kartenaltersgrenze von 16 nicht; Prüfungserfolg und Kartenausstellung bleiben getrennt.",
+          "sources": [
+            {
+              "title": "Kärntner Jagdgesetz 2000 – K-JG: § 38 Abs. 1 lit. b und c; § 36 Abs. 3",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrK&Anlage=&Artikel=&Gesetzesnummer=20000013&Paragraf=38&Uebergangsrecht=",
+              "publisher": "Land Kärnten / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Minderjährige Jagdkarteninhaber und Jagdwaffen (September 2023), mit geltendem K-JG abgeglichen",
+              "url": "https://kaerntner-jaegerschaft.at/sites/default/files/2023-11/Minderj%C3%A4hrige%20Jagdkarteninhaber%20und%20Jagdwaffen%20Mitteilung%20BGS_Sept%2023.pdf",
+              "publisher": "Kärntner Jägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Rechnungshof: Umsetzung der Jagdgesetze in Kärnten, Salzburg und Tirol (2016), Abschnitt Jagdkarten; Altersunterschied mit geltenden Normen abgeglichen",
+              "url": "https://www.rechnungshof.gv.at/rh/home/home/Umsetzung_der_Jagdgesetze_in_Kaernten__Salzburg_und_Tirol.pdf",
+              "publisher": "Rechnungshof Österreich",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-k-minderjaehrige-q1",
+              "prompt": "Eine 16-jährige Bewerberin hat die Jagdprüfung bestanden. Kann beim Antrag auf die Kärntner Jagdkarte die Zustimmung der gesetzlichen Vertretung entfallen?",
+              "choices": [
+                "Nein, die Zustimmung ist zusätzlich erforderlich.",
+                "Ja, ein bestandenes Prüfungszeugnis ersetzt die Zustimmung.",
+                "Ja, wenn der Kursanbieter den Antrag unterstützt."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 38 Abs. 1 lit. c unterscheidet die Zustimmung zum Kartenantrag vom Prüfungszeugnis."
+            },
+            {
+              "id": "at-k-minderjaehrige-q2",
+              "prompt": "Eine 15-jährige Bewerberin hat die Jagdprüfung bestanden und die Zustimmung ihrer gesetzlichen Vertretung. Kann sie deshalb schon die Kärntner Jagdkarte erhalten?",
+              "choices": [
+                "Ja, die Zustimmung senkt die Kartenaltersgrenze auf 15.",
+                "Nein, die gesetzliche Kartenaltersgrenze 16 bleibt bestehen.",
+                "Ja, wenn der Jagdausübungsberechtigte sie zur Jagd einlädt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Prüfungserfolg und Zustimmung beseitigen den Verweigerungsgrund nach § 38 Abs. 1 lit. b nicht."
+            }
+          ],
+          "officialText": "Von der Möglichkeit des Erlangens einer Jagdkarte sind ausgeschlossen: […] Minderjährige unter 16 Jahren,",
+          "officialTextCitation": "§ 38 Abs. 1 Einleitung und lit. b",
+          "contentValidated": true,
+          "verificationNote": "Alter und Zustimmung wurden mit der Mitteilung der Kärntner Jägerschaft zu minderjährigen Jagdkarteninhabern, dem unabhängigen Rechnungshofbericht und dem aktuellen Landesgesetz abgeglichen. Besondere Jagdarten-, Begleit- und Waffenrechtsregeln werden hier nicht als mehrfach geprüfte Erklärung behandelt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-k-jagderlaubnisschein",
+          "topic": "jagdausuebung",
+          "title": "Allein jagender Gast: schriftliche Reviererlaubnis",
+          "lawTitle": "Kärntner Jagdgesetz 2000 – K-JG",
+          "citation": "§ 41 Abs. 1",
+          "summary": "Wer als Gast ohne die gesetzlich vorgesehene Begleitung jagt, braucht neben gültiger Kärntner Jagdkarte oder Jagdgastkarte einen persönlichen schriftlichen Jagderlaubnisschein des Jagdausübungsberechtigten. Eine Ausnahme gilt für die Teilnahme an Gesellschaftsjagden. Der Schein ersetzt die persönliche Jagdkarte nicht; Sonderregeln für Jagdschutzorgane und länger gültige Scheine stehen ebenfalls in § 41.",
+          "sources": [
+            {
+              "title": "Kärntner Jagdgesetz 2000 – K-JG: § 41 Abs. 1",
+              "url": "https://www.ris.bka.gv.at/eli/lgbl/KA/2000/21/P41/LKT40012031",
+              "publisher": "Land Kärnten / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Der Jagderlaubnisschein – Kärntner Jäger Nr.281, Juni 2025",
+              "url": "https://www.kaerntner-jaegerschaft.at/sites/default/files/2025-06/281_KJ_juni25_web_1.pdf",
+              "publisher": "Kärntner Jägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-k-jagderlaubnisschein-q1",
+              "prompt": "Ein Gast geht ohne Jagdausübungsberechtigten und ohne dessen mit Zustimmung begleitendes Jagdschutzorgan auf Einzeljagd. Was benötigt er zusätzlich zur Karte?",
+              "choices": [
+                "Eine mündliche Einladung allein genügt für diesen Fall stets.",
+                "Einen persönlichen schriftlichen Jagderlaubnisschein.",
+                "Die Jagdkarte allein, sobald sie für Kärnten gültig ist."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für diesen unbegleiteten Fall verlangt § 41 den schriftlichen Jagderlaubnisschein; die gesetzlichen Sonderfälle bleiben zu beachten."
+            },
+            {
+              "id": "at-k-jagderlaubnisschein-q2",
+              "prompt": "Ein Gast besitzt einen Kärntner Jagderlaubnisschein, aber keine gültige Jagdkarte oder Jagdgastkarte. Darf er damit jagen?",
+              "choices": [
+                "Ja, der Schein ersetzt für seinen Geltungsbereich die Karte.",
+                "Ja, solange der Jagdausübungsberechtigte ihn unterschrieben hat.",
+                "Nein, die erforderliche Jagdkarte oder Jagdgastkarte bleibt nötig."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Schein regelt die Reviererlaubnis und ersetzt die persönliche Karte nicht."
+            }
+          ],
+          "officialText": "Für die Teilnahme an Gesellschaftsjagden ist ein Jagderlaubnisschein nicht erforderlich.",
+          "officialTextCitation": "§ 41 Abs. 1 Satz 3",
+          "contentValidated": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich.",
+      "examResources": [
+        {
+          "title": "Kärntner Prüfungsordnung für die Jagdprüfung – 1. Verordnung 2025",
+          "url": "https://www.kaerntner-jaegerschaft.at/sites/default/files/2025-02/1.%20Verordnung_Pr%C3%BCfungsordnung%20Dez.%202024_0.pdf",
+          "publisher": "Kärntner Jägerschaft – Landesvorstand",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Verordnung vom 12.12.2024, kundgemacht am 06.02.2025; enthält Ablauf, Prüfungsfächer und Anforderungen. Öffentlich eingesehen; kein Katalog einzelner Originalfragen."
+        }
+      ],
+      "examNotes": "Die zuständige Kärntner Jägerschaft veröffentlicht Prüfungsordnung und Formulare. In den eingesehenen Angeboten wurde kein frei zugänglicher amtlicher Original-Rechtsfragenkatalog verifiziert. Die eigenen Jagdlatein-Aufgaben werden nicht als amtliche Originalfragen bezeichnet."
+    },
+    {
+      "code": "NOE",
+      "name": "Niederösterreich",
+      "lawTitle": "NÖ Jagdgesetz 1974",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20000559",
+      "articles": [
+        {
+          "id": "at-noe-jagdkarte",
+          "topic": "jagdausuebung",
+          "title": "Persönliche Jagdkarte und Reviererlaubnis",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 58 Abs. 1–3 und 8",
+          "summary": "Für die Jagd in Niederösterreich ist die gesetzlich erforderliche gültige Jagdkarte beziehungsweise Jagdgastkarte nötig. Die Karte allein erlaubt keine Jagd im fremden Revier: Die Erlaubnis des Jagdausübungsberechtigten bleibt gesondert erforderlich. Die weiteren Nachweise und Anerkennungsfälle sind in § 58 geregelt.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974: § 58 Abs. 1–3 und 8",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=58&Uebergangsrecht=",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdkarten: Eignung und Verweigerungsgründe",
+              "url": "https://niederoesterreich.gv.at/noe/Jagd-Fischerei/NOe_Jagdkarten.html",
+              "publisher": "Land Niederösterreich – Bürgerinformation",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-jagdkarte-q1",
+              "prompt": "Eine Person erhält eine NÖ Jagdkarte. Darf sie allein deshalb ohne Erlaubnis in jedem NÖ Revier jagen?",
+              "choices": [
+                "Nein, die erforderliche Erlaubnis des Jagdausübungsberechtigten bleibt nötig.",
+                "Ja, eine Landesjagdkarte ist zugleich eine allgemeine Revierfreigabe.",
+                "Ja, wenn die Jagdkarte im selben Verwaltungsbezirk ausgestellt wurde."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die persönliche Karte und die Erlaubnis zur Jagd im bestimmten Revier sind getrennt."
+            },
+            {
+              "id": "at-noe-jagdkarte-q2",
+              "prompt": "Ein Revierinhaber lädt einen Gast ein, dessen erforderliche Jagdkarte nicht gültig ist. Was gilt?",
+              "choices": [
+                "Die Einladung ersetzt die fehlende Kartengültigkeit.",
+                "Die Einladung beseitigt die Kartenpflicht nicht.",
+                "Ein Ausweisdokument ersetzt bei eingeladenen Gästen die Jagdkarte."
+              ],
+              "correctIndex": 1,
+              "explanation": "Zur Erlaubnis im Revier muss die gesetzlich erforderliche gültige Jagdkarte beziehungsweise Jagdgastkarte hinzukommen."
+            }
+          ],
+          "officialText": "Die Jagdkarte ist nicht übertragbar und gibt keine Berechtigung, ohne Erlaubnis des Jagdausübungsberechtigten zu jagen.",
+          "officialTextCitation": "§ 58 Abs. 2 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Die allgemeine Kartenpflicht und zusätzlich erforderliche Reviererlaubnis wurden unabhängig mit der bundesweiten Behördeninformation abgeglichen. Weitere Einzelheiten des § 58 werden nicht aus dieser allgemeinen Zweitquelle abgeleitet.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-pruefungsort",
+          "topic": "zustandigkeit",
+          "title": "Prüfungskommission nach Wohnsitz",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 60 Abs. 1 und 2",
+          "summary": "Die NÖ Jagdprüfung ist grundsätzlich bei der für den Wohnsitz zuständigen Prüfungskommission abzulegen. Wer weder in Niederösterreich noch in Wien einen Wohnsitz hat, legt sie bei der Kommission am NÖ Landesjagdverband ab. Eine unzuständige Kommission liefert keinen geeigneten Eignungsnachweis. Mindestalter ist 16; unter 18 kommen gesetzliche Zustimmung und erforderliche waffenrechtliche Ausnahmebewilligung hinzu.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974: § 60 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=60&Uebergangsrecht=",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jungjägerkurs und Jagdprüfung: Wohnsitz und Minderjährige",
+              "url": "https://www.noejagdverband.at/ausbildung/jungjaegerkurs/",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-pruefungsort-q1",
+              "prompt": "Ein Bewerber hat ausschließlich außerhalb von NÖ und Wien seinen Wohnsitz. Welche NÖ Prüfungskommission ist dafür vorgesehen?",
+              "choices": [
+                "Die Kommission der dem Jagdkurs nächstgelegenen NÖ Bezirkshauptmannschaft.",
+                "Die Kommission am Sitz des NÖ Landesjagdverbandes.",
+                "Ohne NÖ oder Wiener Wohnsitz ist eine NÖ Prüfung generell ausgeschlossen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 60 Abs. 1 ordnet diese Bewerber der Kommission am Sitz des Landesjagdverbandes zu."
+            },
+            {
+              "id": "at-noe-pruefungsort-q2",
+              "prompt": "Ein 17-jähriger NÖ Prüfungswerber hat die Zustimmung der gesetzlichen Vertretung. Ersetzt sie eine erforderliche waffenrechtliche Ausnahmebewilligung?",
+              "choices": [
+                "Ja, beide Anforderungen sind derselbe Nachweis.",
+                "Ja, sobald die Prüfungskommission ihn zum Kurs zugelassen hat.",
+                "Nein, eine erforderliche Ausnahmebewilligung ist gesondert nachzuweisen."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 60 Abs. 2 behandelt Zustimmung und erforderliche waffenrechtliche Bewilligung als getrennte Anforderungen."
+            }
+          ],
+          "officialText": "Die vor einer unzuständigen Prüfungskommission abgelegte Jagdprüfung ist kein geeigneter Nachweis der jagdlichen Eignung (§ 58 Abs. 3 Z 2).",
+          "officialTextCitation": "§ 60 Abs. 1 letzter Satz",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-verweigerung",
+          "topic": "zulassung",
+          "title": "Waffenverbot trotz bestandener Jagdprüfung",
+          "lawTitle": "NÖ Jagdgesetz 1974",
+          "citation": "§ 61 Abs. 1 Z 1 und 2",
+          "summary": "Eine bestandene Jagdprüfung beseitigt keine Verweigerungsgründe. Personen, denen Waffenbesitz waffenrechtlich untersagt ist, ist die NÖ Jagdkarte für die Dauer des Verbotes zu verweigern. Auch das Fehlen einer in § 58 geforderten Voraussetzung führt zur Verweigerung. Die übrigen Gründe und ihre Einzelheiten sind im vollständigen § 61 nachzulesen.",
+          "sources": [
+            {
+              "title": "NÖ Jagdgesetz 1974: § 61 Abs. 1 Z 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=61&Uebergangsrecht=",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdkarten: Eignung und Verweigerungsgründe",
+              "url": "https://niederoesterreich.gv.at/noe/Jagd-Fischerei/NOe_Jagdkarten.html",
+              "publisher": "Land Niederösterreich – Bürgerinformation",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-noe-verweigerung-q1",
+              "prompt": "Ein Bewerber hat die NÖ Jagdprüfung bestanden und unterliegt einem Waffenverbot. Reicht das Prüfungszeugnis für die Jagdkarte?",
+              "choices": [
+                "Ja, der Prüfungserfolg beseitigt den Verweigerungsgrund.",
+                "Ja, wenn zusätzlich eine Jagdhaftpflicht besteht.",
+                "Nein, das bestehende Waffenverbot ist gesondert maßgeblich."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 61 Abs. 1 Z 2 nennt das Waffenverbot für dessen Dauer als Verweigerungsgrund."
+            },
+            {
+              "id": "at-noe-verweigerung-q2",
+              "prompt": "Welche Aussage beschreibt das Verhältnis von NÖ Jagdprüfung und Kartenausstellung?",
+              "choices": [
+                "Auch nach bestandener Prüfung sind die übrigen Voraussetzungen und Verweigerungsgründe zu prüfen.",
+                "Mit dem Prüfungszeugnis ist die Karte ohne weiteres Verfahren automatisch ausgestellt.",
+                "Ein Verweigerungsgrund ist nur vor Beginn des Kurses von Bedeutung."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Prüfungserfolg ersetzt die übrigen Voraussetzungen der Jagdkarte nicht."
+            }
+          ],
+          "officialText": "Die Ausstellung der Jagdkarte ist Personen zu verweigern: […] denen der Besitz von Waffen nach den waffenrechtlichen Vorschriften verboten wurde auf die Dauer des Verbotes,",
+          "officialTextCitation": "§ 61 Abs. 1 Einleitung und Z 2",
+          "contentValidated": true,
+          "verificationNote": "Amtlicher § 61 und NÖ-Bürgerinformation wurden gelesen. Beide stammen inhaltlich vom Land; eine zweite unabhängige konkrete Erläuterung des Verweigerungsgrundes fehlt. Noch nicht als Übungsstoff freigegeben.",
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die zusätzliche Lektion zum Waffenverbot ist derzeit wegen des noch nicht unabhängigen Zweitnachweises gesperrt.",
+      "examResources": [
+        {
+          "title": "NÖ Jagdgesetz 1974 § 60 – Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Anlage=&Artikel=&Gesetzesnummer=20000559&Paragraf=60&Uebergangsrecht=",
+          "publisher": "Land Niederösterreich / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtlicher Prüfungsrahmen in der seit 01.01.2026 geltenden Fassung; enthält keine amtliche Sammlung einzelner Prüfungsfragen."
+        }
+      ],
+      "examNotes": "Ein frei zugänglicher amtlicher Original-Rechtsfragenkatalog wurde nicht verifiziert. Die Landesinformation zur Jagdprüfung verweist auf einen käuflichen Jagdprüfungsbehelf des Österreichischen Jagd- und Fischerei-Verlags und dessen Rechtsbeilage. Daraus werden ohne Nutzungsrecht keine Fragen übernommen. Eigene Jagdlatein-Aufgaben sind keine amtlichen Originalfragen."
+    },
+    {
+      "code": "OOE",
+      "name": "Oberösterreich",
+      "lawTitle": "Oö. Jagdgesetz 2024",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrOO&Gesetzesnummer=20001285",
+      "articles": [
+        {
+          "id": "at-ooe-reviererlaubnis",
+          "topic": "jagdausuebung",
+          "title": "Karte und Zustimmung sind getrennte Voraussetzungen",
+          "lawTitle": "Oö. Jagdgesetz 2024",
+          "citation": "§ 30 Abs. 1 und 3",
+          "summary": "In Oberösterreich ist die gesetzlich erforderliche gültige Jagdkarte beziehungsweise Jagdgastkarte nötig. Sie erlaubt keine Jagd ohne Zustimmung des Jagdausübungsberechtigten. Umgekehrt ersetzt die Einladung in ein Revier die erforderliche gültige Karte nicht. Weitere Anerkennungs- und Erlaubnisscheinregeln stehen im vollständigen § 30.",
+          "sources": [
+            {
+              "title": "Oö. Jagdgesetz 2024: § 30 Abs. 1 und 3",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrOO&Anlage=&Artikel=&Gesetzesnummer=20001285&Paragraf=30&Uebergangsrecht=",
+              "publisher": "Land Oberösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-ooe-reviererlaubnis-q1",
+              "prompt": "Ein Gast besitzt eine gültige Oö. Jagdkarte, aber keine Zustimmung für ein bestimmtes Revier. Darf er dort jagen?",
+              "choices": [
+                "Ja, die Karte schließt alle Revierzustimmungen ein.",
+                "Nein, die erforderliche Zustimmung fehlt.",
+                "Ja, wenn sich sein Hauptwohnsitz im selben Bezirk befindet."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Karte ist keine allgemeine Freigabe für jedes Revier."
+            },
+            {
+              "id": "at-ooe-reviererlaubnis-q2",
+              "prompt": "Ein Gast hat eine Einladung in ein oberösterreichisches Revier, jedoch keine erforderliche gültige Karte. Welche Aussage stimmt?",
+              "choices": [
+                "Die Einladung macht die Kartengültigkeit entbehrlich.",
+                "Ein amtlicher Lichtbildausweis ersetzt in diesem Fall die Jagdkarte.",
+                "Die erforderliche gültige Jagdkarte beziehungsweise Jagdgastkarte bleibt nötig."
+              ],
+              "correctIndex": 2,
+              "explanation": "Revierzustimmung und persönliche Kartenpflicht sind getrennte Voraussetzungen."
+            }
+          ],
+          "officialText": "Die Jagdkarte bzw. Jagdgastkarte gibt keine Berechtigung ohne Zustimmung der oder des Jagdausübungsberechtigten zu jagen.",
+          "officialTextCitation": "§ 30 Abs. 3 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Kartenpflicht und zusätzlich erforderliche Revierzustimmung wurden unabhängig mit der bundesweiten Behördeninformation abgeglichen. Die besonderen Oö. Regeln zum schriftlichen Jagderlaubnisschein werden hier nicht aus dieser allgemeinen Zweitquelle abgeleitet.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-ooe-ausstellung",
+          "topic": "zustandigkeit",
+          "title": "Wer die Oö. Jagdkarte ausstellt",
+          "lawTitle": "Oö. Jagdgesetz 2024",
+          "citation": "§ 32 Abs. 1–4",
+          "summary": "Grundsätzlich ist die Landesjägermeisterin beziehungsweise der Landesjägermeister für die Ausstellung der Oö. Jagdkarte zuständig; die gesetzliche Zuständigkeitsausnahme bleibt vorbehalten. Ein Erstantrag verlangt die vorgesehenen Unterlagen einschließlich Eignungsnachweis. Das Prüfungszeugnis allein ist noch keine ausgestellte Jagdkarte.",
+          "sources": [
+            {
+              "title": "Oö. Jagdgesetz 2024: § 32 Abs. 1–4",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrOO&Anlage=&Artikel=&Gesetzesnummer=20001285&Paragraf=32&Uebergangsrecht=",
+              "publisher": "Land Oberösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Leitfaden zur Ausstellung der Oö. Jagdkarte (2026)",
+              "url": "https://www.ooeljv.at/wp-content/uploads/2026/03/V2026_Erstmalige-Ausstellung-der-Jagdkarte_Antragsformular.pdf",
+              "publisher": "Oö. Landesjagdverband",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-ooe-ausstellung-q1",
+              "prompt": "An wen ist der gewöhnliche Erstantrag auf Ausstellung einer Oö. Jagdkarte grundsätzlich zu richten?",
+              "choices": [
+                "An die Landesjägermeisterin beziehungsweise den Landesjägermeister.",
+                "An den Bezirksjägermeister als grundsätzlich ausstellende Stelle wie in Kärnten.",
+                "An eine beliebige österreichische Jagdbehörde, unabhängig vom Landesrecht."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 32 Abs. 2 nennt grundsätzlich die Landesjägermeisterin beziehungsweise den Landesjägermeister; Abs. 4 enthält eine gesonderte Ausnahme."
+            },
+            {
+              "id": "at-ooe-ausstellung-q2",
+              "prompt": "Ein Bewerber hält sein Oö. Prüfungszeugnis in Händen, hat aber noch keinen Kartenantrag gestellt. Ist damit bereits eine Jagdkarte ausgestellt?",
+              "choices": [
+                "Ja, das Zeugnis ist zugleich die ausgefolgte Jagdkarte.",
+                "Nein, die Ausstellung der Jagdkarte ist ein eigener Schritt.",
+                "Ja, sobald ein Jagdausübungsberechtigter eine Einladung ausspricht."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Leitfaden zur Erstausstellung verlangt den Kartenantrag mit den Unterlagen; das Prüfungszeugnis ist der Eignungsnachweis."
+            }
+          ],
+          "officialText": "Zur Ausstellung von Jagdkarten ist - sofern Abs. 4 nichts anderes bestimmt - die Landesjägermeisterin bzw. der Landesjägermeister zuständig.",
+          "officialTextCitation": "§ 32 Abs. 2 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Behördenart, Antragsunterlagen und Trennung zwischen Eignungszeugnis und ausgestellter Karte wurden mit dem Leitfaden des Oö. Landesjagdverbandes 2026 abgeglichen. Der besondere Zuständigkeitsübergang nach vier Wochen wird nicht als mehrfach bestätigte Lehrbehauptung geprüft.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-ooe-voraussetzungen",
+          "topic": "zulassung",
+          "title": "Verlässlichkeit, Versicherung und Eignung",
+          "lawTitle": "Oö. Jagdgesetz 2024",
+          "citation": "§ 33 Abs. 1 und 2",
+          "summary": "Die Oö. Jagdkarte setzt jagdliche Verlässlichkeit, ausreichende Jagdhaftpflicht, jagdliche Eignung und das Fehlen gesetzlicher Verweigerungsgründe voraus. Der gesetzliche Versicherungsumfang betrifft auch Jagdhunde, Fanggeräte und Jagdeinrichtungen; eine beliebige private Haftpflicht ist damit nicht automatisch ausreichend. Die Prüfung belegt nur einen Teil dieser Voraussetzungen.",
+          "sources": [
+            {
+              "title": "Oö. Jagdgesetz 2024: § 33 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrOO&Anlage=&Artikel=&Gesetzesnummer=20001285&Paragraf=33&Uebergangsrecht=",
+              "publisher": "Land Oberösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Leitfaden zur Ausstellung der Oö. Jagdkarte (2026)",
+              "url": "https://www.ooeljv.at/wp-content/uploads/2026/03/V2026_Erstmalige-Ausstellung-der-Jagdkarte_Antragsformular.pdf",
+              "publisher": "Oö. Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-ooe-voraussetzungen-q1",
+              "prompt": "Welche Versicherung ist für die Oö. Jagdkarte zu prüfen?",
+              "choices": [
+                "Jede allgemeine Privathaftpflicht genügt ohne Prüfung ihres Deckungsumfangs.",
+                "Eine Versicherung ist nur beim Führen eigener Jagdhunde nötig.",
+                "Eine ausreichende Jagdhaftpflicht im gesetzlich vorgesehenen Umfang."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 33 nennt eine ausreichende Jagdhaftpflicht und konkretisiert deren Umfang."
+            },
+            {
+              "id": "at-ooe-voraussetzungen-q2",
+              "prompt": "Welche Aussage trifft auf die Voraussetzungen der Oö. Jagdkarte zu?",
+              "choices": [
+                "Eignungsnachweis, Verlässlichkeit, ausreichende Jagdhaftpflicht und fehlende Verweigerungsgründe sind gesondert zu erfüllen.",
+                "Ein bestandenes Prüfungszeugnis ersetzt die Verlässlichkeitsprüfung.",
+                "Eine ausreichende Jagdhaftpflicht ersetzt den jagdlichen Eignungsnachweis."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Voraussetzungen sind kumulativ und nicht gegeneinander austauschbar."
+            }
+          ],
+          "officialText": "Voraussetzung für die Erlangung einer Jagdkarte ist der Nachweis […] einer ausreichenden Jagdhaftpflichtversicherung (Abs. 2),",
+          "officialTextCitation": "§ 33 Abs. 1 Einleitung und Z 2",
+          "contentValidated": true,
+          "verificationNote": "Der geltende § 33 wurde als Primärtext gelesen. Der Leitfaden zur Erstausstellung belegt Unterlagen und Verweigerungsprüfung, erläutert aber nicht unabhängig den gesamten gesetzlichen Versicherungsumfang. Dieser spezielle Block bleibt deshalb außerhalb des freigegebenen Fragenpools.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-ooe-eignung",
+          "topic": "pruefung",
+          "title": "Jagdprüfung und zulässige Ersatznachweise",
+          "lawTitle": "Oö. Jagdgesetz 2024",
+          "citation": "§ 34 Abs. 1–3",
+          "summary": "Beim ersten Antrag wird jagdliche Eignung grundsätzlich durch die Prüfung vor der zuständigen Bezirksgruppen-Kommission nachgewiesen. Erforderlich sind jagdliche Kenntnisse und sichere Vertrautheit mit Jagdwaffen. Eine bestandene einschlägige Jagdprüfung oder gültige Jagdkarte eines anderen österreichischen Bundeslandes kann nach Abs. 2 den Eignungsnachweis erbringen; die weiteren Kartenvoraussetzungen bleiben bestehen.",
+          "sources": [
+            {
+              "title": "Oö. Jagdgesetz 2024: § 34 Abs. 1–3",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrOO&Anlage=&Artikel=&Gesetzesnummer=20001285&Paragraf=34&Uebergangsrecht=",
+              "publisher": "Land Oberösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Leitfaden zur Ausstellung der Oö. Jagdkarte (2026)",
+              "url": "https://www.ooeljv.at/wp-content/uploads/2026/03/V2026_Erstmalige-Ausstellung-der-Jagdkarte_Antragsformular.pdf",
+              "publisher": "Oö. Landesjagdverband",
+              "kind": "context"
+            },
+            {
+              "title": "Voraussetzungen für die Zulassung zur Jagdprüfung und Anmeldung",
+              "url": "https://www.ooeljv.at/aus-und-weiterbildung/ausbildung-jagdkurse/voraussetzungen-fuer-die-zulassung-zur-jagdpruefung-anmeldung/",
+              "publisher": "Oö. Landesjagdverband",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdprüfung: Antrag, Prüfungsteile und Nachweise",
+              "url": "https://www.land-oberoesterreich.gv.at/19719.htm",
+              "publisher": "Land Oberösterreich – Bürgerinformation",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-ooe-eignung-q1",
+              "prompt": "Welche Anforderung muss die Oö. Jagdprüfung neben jagdlichen Fachkenntnissen belegen?",
+              "choices": [
+                "Allein den Nachweis einer waffenrechtlichen Bewilligung.",
+                "Ausreichende Vertrautheit mit der Handhabung von Jagdwaffen.",
+                "Allein die Teilnahme an einem vorbereitenden Schießkurs."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 34 verlangt auch die ausreichende Vertrautheit mit der Handhabung von Jagdwaffen."
+            },
+            {
+              "id": "at-ooe-eignung-q2",
+              "prompt": "Ein Bewerber besitzt eine gültige Jagdkarte eines anderen österreichischen Bundeslandes. Welche Aussage passt zu § 34 Abs. 2?",
+              "choices": [
+                "Sie ist als Eignungsnachweis generell ausgeschlossen.",
+                "Sie ersetzt ohne Antrag automatisch die Oö. Jagdkarte.",
+                "Sie kann den Eignungsnachweis erbringen; die übrigen Kartenvoraussetzungen bleiben nötig."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Oö. Leitfaden 2026 nennt die gültige Jagdkarte eines anderen Bundeslandes als möglichen Eignungsnachweis."
+            }
+          ],
+          "officialText": "Die Prüfungskommission besteht aus der Bezirksjägermeisterin bzw. dem Bezirksjägermeister (deren bzw. dessen Stellvertretung) als Vorsitzende oder Vorsitzendem und drei weiteren Mitgliedern.",
+          "officialTextCitation": "§ 34 Abs. 3 Satz 1",
+          "contentValidated": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Der spezielle Versicherungsblock bleibt bis zu einem unabhängigen Abgleich des Deckungsumfangs außerhalb des geprüften Fragenpools.",
+      "examResources": [
+        {
+          "title": "Oö. Jagdverordnung 2024 – 4. Abschnitt Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrOO&Gesetzesnummer=20001309",
+          "publisher": "Land Oberösterreich / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Verordnung, Fassung am 23.10.2026 eingesehen. Der Abschnitt regelt die Prüfung; kein amtlicher Rechtsfragenkatalog."
+        }
+      ],
+      "examNotes": "Der Oö. Landesjagdverband veröffentlicht einen eigenen Prüfungsfragenkatalog, erklärt auf seiner Seite jedoch ausdrücklich, dass darin keine rechtskundigen Fragen enthalten sind. Er wird hier deshalb nicht als Original-Rechtsfragenkatalog geführt. Ein frei zugänglicher amtlicher Rechtsfragenkatalog wurde nicht verifiziert; die Jagdlatein-Aufgaben sind eigene Lernfragen."
+    },
+    {
+      "code": "S",
+      "name": "Salzburg",
+      "lawTitle": "Jagdgesetz 1993 (Salzburg)",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrSbg&Gesetzesnummer=10000930",
+      "articles": [
+        {
+          "id": "at-s-jahresjagdkarte",
+          "topic": "zulassung",
+          "title": "Jahresjagdkarte: Mindestalter",
+          "lawTitle": "Jagdgesetz 1993 (Salzburg)",
+          "citation": "§ 42 Abs. 2 Z 1",
+          "summary": "Für die Ausstellung einer Salzburger Jahresjagdkarte muss das 16. Lebensjahr vollendet sein. Die Altersgrenze ist nur eine von mehreren Voraussetzungen: Der erforderliche Eignungsnachweis und die übrigen gesetzlichen Bedingungen bleiben nötig. Ein bestandener theoretischer Prüfungsteil mit 15 Jahren beseitigt die Kartenaltersgrenze nicht.",
+          "sources": [
+            {
+              "title": "Jagdgesetz 1993 (Salzburg): § 42 Abs. 1, 2 und 4",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrSbg&Anlage=&Artikel=&Gesetzesnummer=10000930&Paragraf=42&Uebergangsrecht=",
+              "publisher": "Land Salzburg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            },
+            {
+              "title": "Anmeldung und Zulassung zur Salzburger Jagdprüfung",
+              "url": "https://www.sbg-jaegerschaft.at/aus-weiterbildung/jagdpruefung/anmeldung-und-zulassung-zur-jagdpruefung/",
+              "publisher": "Salzburger Jägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Rechnungshof: Umsetzung der Jagdgesetze in Kärnten, Salzburg und Tirol (2016), Abschnitt Jagdkarten; Altersunterschied mit geltenden Normen abgeglichen",
+              "url": "https://www.rechnungshof.gv.at/rh/home/home/Umsetzung_der_Jagdgesetze_in_Kaernten__Salzburg_und_Tirol.pdf",
+              "publisher": "Rechnungshof Österreich",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-s-jahresjagdkarte-q1",
+              "prompt": "Ab welchem vollendeten Lebensjahr kommt die Salzburger Jahresjagdkarte grundsätzlich in Betracht?",
+              "choices": [
+                "Ab 16; die übrigen Voraussetzungen sind zusätzlich zu erfüllen.",
+                "Ab 15, sobald der theoretische Prüfungsteil bestanden ist.",
+                "Grundsätzlich erst ab 18 wie die reguläre Tiroler Jagdkarte."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 42 nennt für Salzburg die Vollendung des 16. Lebensjahres."
+            },
+            {
+              "id": "at-s-jahresjagdkarte-q2",
+              "prompt": "Ein 15-jähriger Bewerber hat den theoretischen Teil der Salzburger Jagdprüfung bestanden. Reicht das Alter bereits für die Jahresjagdkarte?",
+              "choices": [
+                "Ja, die theoretische Prüfung senkt die Kartenaltersgrenze.",
+                "Nein, für die Jahresjagdkarte muss er mindestens 16 sein.",
+                "Ja, sofern die gesetzliche Vertretung der Kartenausstellung zustimmt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Theoretischer Prüfungsantritt ab 15 und Jahresjagdkarte ab 16 sind unterschiedliche Altersregeln."
+            }
+          ],
+          "officialText": "Der Landesjägermeister darf die Jahresjagdkarte nur ausstellen, wenn […] der Bewerber das 16. Lebensjahr vollendet hat und die jagdliche Eignung besitzt, […]",
+          "officialTextCitation": "§ 42 Abs. 2 Einleitung und Z 1 (weitere Voraussetzungen folgen)",
+          "contentValidated": true,
+          "verificationNote": "Die Kartenaltersgrenze 16 wurde im aktuellen § 42 und unabhängig im Rechnungshofbericht abgeglichen. Die aktuelle Ausbildungsinformation der Salzburger Jägerschaft trennt den theoretischen Prüfungsantritt ab 15 vom praktischen Teil ab 16. Weitere Ausstellungsbedingungen des Originaltextes werden mit dieser begrenzten Freigabe nicht vollständig zum mehrfach geprüften Lernstoff erklärt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-s-eignungsnachweis",
+          "topic": "pruefung",
+          "title": "Erste Jahresjagdkarte: Zeugnis oder gesetzlicher Ersatz",
+          "lawTitle": "Jagdgesetz 1993 (Salzburg)",
+          "citation": "§ 43 Abs. 1 und Abs. 2 Z 1",
+          "summary": "Im Regelfall belegt das Zeugnis der erfolgreich abgelegten Salzburger Jagdprüfung die jagdliche Eignung beim Erstantrag. Das Gesetz kennt daneben ausdrücklich bezeichnete Ersatzprüfungen und Ausbildungen. Eine bloße Kursteilnahme oder eine beliebige Berufsausbildung reicht nicht automatisch als Ersatznachweis.",
+          "sources": [
+            {
+              "title": "Jagdgesetz 1993 (Salzburg): § 43 Abs. 1 und Abs. 2 Z 1",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrSbg&Anlage=&Artikel=&Gesetzesnummer=10000930&Paragraf=43&Uebergangsrecht=",
+              "publisher": "Land Salzburg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Anmeldung und Zulassung zur Salzburger Jagdprüfung",
+              "url": "https://www.sbg-jaegerschaft.at/aus-weiterbildung/jagdpruefung/anmeldung-und-zulassung-zur-jagdpruefung/",
+              "publisher": "Salzburger Jägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Rechnungshof: Umsetzung der Jagdgesetze in Kärnten, Salzburg und Tirol (2016), Abschnitt Jagdprüfung – Eignungszeugnis und einschlägige Ersatznachweise",
+              "url": "https://www.rechnungshof.gv.at/rh/home/home/Umsetzung_der_Jagdgesetze_in_Kaernten__Salzburg_und_Tirol.pdf",
+              "publisher": "Rechnungshof Österreich",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-s-eignungsnachweis-q1",
+              "prompt": "Genügt eine Teilnahmebestätigung an einem Jagdkurs allein als regulärer Nachweis der jagdlichen Eignung beim Salzburger Erstantrag?",
+              "choices": [
+                "Ja, sobald sämtliche Kurstage besucht wurden.",
+                "Nein, grundsätzlich ist das Zeugnis der erfolgreich abgelegten Jagdprüfung erforderlich.",
+                "Ja, sobald der Kursanbieter die Prüfungsreife bestätigt."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 43 Abs. 1 verlangt im Regelfall die erfolgreich abgelegte Jagdprüfung."
+            },
+            {
+              "id": "at-s-eignungsnachweis-q2",
+              "prompt": "Welche Aussage zu einem Ersatz der Salzburger Jagdprüfung trifft zu?",
+              "choices": [
+                "Jede abgeschlossene Berufsausbildung ist ohne Weiteres ein Ersatz.",
+                "Eine mehrjährige Jagdpraxis ersetzt ohne gesetzliche Grundlage stets die Prüfung.",
+                "Es kommen die gesetzlich ausdrücklich anerkannten einschlägigen Nachweise in Betracht."
+              ],
+              "correctIndex": 2,
+              "explanation": "Nicht jede Ausbildung ersetzt die Jagdprüfung; § 43 bestimmt die anerkannten Fälle."
+            }
+          ],
+          "officialText": "Die Jagdprüfung wird durch folgende Prüfungen oder Ausbildungen ersetzt: […] durch die mit Erfolg abgelegte Staatsprüfung für den höheren Forstdienst (§ 106 des Forstgesetzes 1975),",
+          "officialTextCitation": "§ 43 Abs. 2 Einleitung und Z 1",
+          "contentValidated": true,
+          "verificationNote": "Prüfungszeugnis als Regelfall und die Existenz gesetzlich bestimmter einschlägiger Ersatznachweise wurden mit dem unabhängigen Rechnungshofbericht und der aktuellen Norm abgeglichen. Der abgebildete einzelne Originaleintrag zum höheren Forstdienst wird nicht als gesondert mehrfach geprüfte Katalogfrage behandelt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-s-jagderlaubnisschein",
+          "topic": "jagdausuebung",
+          "title": "Schriftliche Jagderlaubnis: Inhalt und Grenzen",
+          "lawTitle": "Jagdgesetz 1993 (Salzburg)",
+          "citation": "§ 47 Abs. 1 und 2",
+          "summary": "Ein Jahresjagdkarteninhaber ohne Begleitung des Jagdinhabers oder dessen Jagdschutzorgans braucht einen persönlichen schriftlichen Jagderlaubnisschein. Er nennt mindestens den Jagdausübungsberechtigten, das Gebiet, die Wildart und die Zeitdauer. Die Jagdgastkarte schließt diese Erlaubnis ein. Der Jagdinhaber muss auf Einhaltung achten und kann die Erlaubnis bei den in Abs. 2 genannten Verstößen entziehen.",
+          "sources": [
+            {
+              "title": "Jagdgesetz 1993 (Salzburg): § 47 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrSbg&Anlage=&Artikel=&Gesetzesnummer=10000930&Paragraf=47&Uebergangsrecht=",
+              "publisher": "Land Salzburg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Das Salzburger Jagdrecht – Erläuterung E93 zu Jagderlaubnisscheinen, mit geltendem §47 abgeglichen",
+              "url": "https://www.sbg-jaegerschaft.at/fileadmin/downloads/Downloads/Buch_Salzburger_Jagdgesetz_ONLINE_V20-11-19.pdf",
+              "publisher": "Salzburger Jägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-s-jagderlaubnisschein-q1",
+              "prompt": "Welche Angaben gehören nach § 47 mindestens in den Salzburger Jagderlaubnisschein?",
+              "choices": [
+                "Name des Gastes und Prüfungsdatum allein.",
+                "Jagdgebiet und allgemeiner Hinweis auf die Landesjagdkarte allein.",
+                "Jagdausübungsberechtigter, Gebiet beziehungsweise Gebietsteil, Wildart und erlaubte Zeitdauer."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die gesetzlich genannten Inhalte begrenzen die erteilte Erlaubnis."
+            },
+            {
+              "id": "at-s-jagderlaubnisschein-q2",
+              "prompt": "Ein Salzburger Jagderlaubnisschein erlaubt eine Wildart nur bis zu einem bestimmten Datum. Welche Aussage stimmt?",
+              "choices": [
+                "Die Jagd hat innerhalb der erteilten Erlaubnis zu bleiben.",
+                "Eine gültige Jahresjagdkarte verlängert jede darin genannte Zeitdauer automatisch.",
+                "Die Freigabe gilt automatisch für sämtliche jagdbaren Arten im Revier."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die allgemeine persönliche Karte erweitert die besondere Reviererlaubnis nicht."
+            }
+          ],
+          "officialText": "Der Jagderlaubnisschein muß zumindest den Namen des Jagdausübungsberechtigten, die Bezeichnung des Jagdgebietes bzw. Jagdgebietsteiles, die Wildart und die erlaubte Zeitdauer beinhalten.",
+          "officialTextCitation": "§ 47 Abs. 1 Satz 3",
+          "contentValidated": true,
+          "verificationNote": "Der geltende § 47 wurde im Original gelesen. Die bislang ergänzend eingesehene Buchfassung enthält Gesetzeswortlaut und amtliche Erläuterungen; sie ist keine organisatorisch unabhängige Bestätigung der konkreten Inhaltsanforderungen. Bis zu einer zusätzlichen unabhängigen fachlichen Erläuterung bleibt der Block außerhalb des Fragenpools.",
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die konkreten Anforderungen an den Jagderlaubnisschein bleiben bis zur unabhängigen fachlichen Zweitprüfung außerhalb des geprüften Fragenpools.",
+      "examResources": [
+        {
+          "title": "Salzburger Jagdgesetz 1993 – Abschnitt Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrSbg&Gesetzesnummer=10000930",
+          "publisher": "Land Salzburg / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtlicher Prüfungsrahmen in §§ 49 ff.; kein Katalog einzelner Original-Rechtsfragen. Für Zulassung und Termine ist die Salzburger Jägerschaft zusätzlich zuständig."
+        }
+      ],
+      "examNotes": "Auf den eingesehenen amtlichen und zuständigen Ausbildungsseiten wurde kein öffentlich veröffentlichter amtlicher Original-Rechtsfragenkatalog verifiziert. Prüfungsrahmen, Formulare und Lehrunterlagen sind von Originalprüfungsfragen zu unterscheiden. Die Jagdlatein-Fragen sind eigene Aufgaben."
+    },
+    {
+      "code": "ST",
+      "name": "Steiermark",
+      "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000850",
+      "articles": [
+        {
+          "id": "at-st-kartenzwang",
+          "topic": "jagdausuebung",
+          "title": "Ohne gültige Jagdkarte keine Jagdausübung",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 36; § 37 Abs. 3",
+          "summary": "Wer in der Steiermark jagt, braucht die gesetzlich erforderliche gültige Jagdkarte. Die Anmeldung zu einem Kurs oder eine Kursbestätigung ersetzt sie nicht. Kartengültigkeit und Erlaubnis des Jagdausübungsberechtigten sind gesondert erforderlich; die persönliche Karte ist keine allgemeine Revierfreigabe.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986: § 36; § 37 Abs. 3",
+              "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000850",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdprüfung und Jagdkarte",
+              "url": "https://www.graz.at/cms/beitrag/10028732/7744510/Jagdkarte.html",
+              "publisher": "Stadt Graz",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-kartenzwang-q1",
+              "prompt": "Eine Person besucht einen steirischen Jagdkurs, hat aber keine erforderliche Jagdkarte. Berechtigt die Kursteilnahme zur regulären Jagdausübung?",
+              "choices": [
+                "Ja, die Kursbestätigung ersetzt für die Kursdauer die Jagdkarte.",
+                "Nein, die gesetzlich erforderliche Karte bleibt nötig.",
+                "Ja, sobald der theoretische Kursteil abgeschlossen ist."
+              ],
+              "correctIndex": 1,
+              "explanation": "Kursbesuch und gültige Jagdkarte sind unterschiedliche Nachweise."
+            },
+            {
+              "id": "at-st-kartenzwang-q2",
+              "prompt": "Ein Inhaber einer gültigen steirischen Jagdkarte will in einem fremden Revier jagen. Was bleibt zusätzlich erforderlich?",
+              "choices": [
+                "Keine weitere Zustimmung, wenn die Karte digital vorliegt.",
+                "Keine weitere Zustimmung, wenn es im selben Verwaltungsbezirk liegt.",
+                "Die erforderliche Erlaubnis des Jagdausübungsberechtigten."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die persönliche Jagdkarte enthält keine allgemeine Erlaubnis für jedes Revier."
+            }
+          ],
+          "officialText": "Ohne eine von der zuständigen Behörde im Geltungsgebiete dieses Gesetzes ausgestellte, mit Lichtbild versehene Jagdkarte darf niemand die Jagd ausüben.",
+          "officialTextCitation": "§ 36",
+          "contentValidated": true,
+          "verificationNote": "Kartenpflicht und zusätzliche Reviererlaubnis wurden mit der bundesweiten Behördeninformation abgeglichen. Einzelheiten der Versicherung werden hier nicht allein aus dieser allgemeinen Zweitquelle zum freigegebenen Lehrinhalt abgeleitet.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-st-antrag-pruefung",
+          "topic": "zustandigkeit",
+          "title": "Antrag bei jeder Bezirksverwaltungsbehörde",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 37 Abs. 1 und 4",
+          "summary": "Der Antrag auf Ausstellung einer steirischen Jagdkarte kann bei jeder Bezirksverwaltungsbehörde eingebracht werden. Für die erste Ausstellung ist grundsätzlich eine erfolgreiche Jägerprüfung erforderlich; die genau bezeichneten Ersatznachweise bleiben vorbehalten. Die ältere pauschale Bindung der Antragstellung an die Hauptwohnsitzbehörde entspricht dieser Fassung nicht mehr.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986: § 37 Abs. 1 und 4",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrStmk&Anlage=&Artikel=&Gesetzesnummer=20000850&Paragraf=37&Uebergangsrecht=",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "FAQ zur digitalen steirischen Jagdkarte",
+              "url": "https://www.jagd-stmk.at/wp-content/uploads/2025/01/FAQ-Digitale-Jagdkarte.pdf",
+              "publisher": "Steirische Landesjägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdprüfung und Jagdkarte",
+              "url": "https://www.graz.at/cms/beitrag/10028732/7744510/Jagdkarte.html",
+              "publisher": "Stadt Graz",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-antrag-pruefung-q1",
+              "prompt": "Bei welcher Behörde kann ein Antrag auf Ausstellung einer steirischen Jagdkarte nach geltendem § 37 eingebracht werden?",
+              "choices": [
+                "Bei jeder Bezirksverwaltungsbehörde.",
+                "Ausschließlich bei der Bezirksverwaltungsbehörde des Hauptwohnsitzes.",
+                "Ausschließlich beim Landesjägermeister."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die seit 16.12.2024 geltende Fassung erlaubt die Antragstellung bei jeder Bezirksverwaltungsbehörde."
+            },
+            {
+              "id": "at-st-antrag-pruefung-q2",
+              "prompt": "Ein Bewerber legt nur die Teilnahmebestätigung des Jagdkurses vor. Ist sie ohne erfolgreiche Prüfung oder gesetzlichen Ersatznachweis automatisch ausreichend?",
+              "choices": [
+                "Ja, wenn der Kurs bei einem anerkannten Anbieter besucht wurde.",
+                "Nein, grundsätzlich braucht es den erfolgreichen Prüfungsnachweis oder einen gesetzlichen Ersatz.",
+                "Ja, sofern der Antrag auf eine digitale Karte gerichtet ist."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Kursteilnahme ist nicht mit dem geforderten Eignungsnachweis gleichzusetzen."
+            }
+          ],
+          "officialText": "Der Antrag auf Ausstellung einer Jagdkarte kann bei jeder Bezirksverwaltungsbehörde eingebracht werden.",
+          "officialTextCitation": "§ 37 Abs. 1",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-st-digitale-jagdkarte",
+          "topic": "zulassung",
+          "title": "Digitale Jagdkarte und physischer Nachweis",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 40 Abs. 1",
+          "summary": "Die steirische Jagdkarte wird digital ausgestellt und steht über die vorgesehene Anwendung mit E-ID bereit. Auf Verlangen kann ein physischer Nachweis für eine abrufbare digitale Jagdkarte ausgestellt werden. Gültigkeit setzt weiterhin die jährlichen Nachweise für Jagdkartenabgabe, Mitgliedsbeitrag und Jagdhaftpflicht voraus. Ein beliebiger Bildschirmfoto-Ausdruck ist nicht mit dem amtlich ausgestellten physischen Nachweis gleichzusetzen.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986: § 40 Abs. 1",
+              "url": "https://www.ris.bka.gv.at/eli/lgbl/ST/1986/23/P40/LST40033392",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "FAQ zur digitalen steirischen Jagdkarte",
+              "url": "https://www.jagd-stmk.at/wp-content/uploads/2025/01/FAQ-Digitale-Jagdkarte.pdf",
+              "publisher": "Steirische Landesjägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-digitale-jagdkarte-q1",
+              "prompt": "Eine Inhaberin einer digitalen steirischen Jagdkarte möchte einen behördlichen Nachweis ohne Smartphone. Was sieht § 40 vor?",
+              "choices": [
+                "Eine selbst angefertigte Abschrift ersetzt ohne Weiteres den amtlichen Nachweis.",
+                "Die digitale Karte muss dafür zunächst ungültig gemacht werden.",
+                "Auf Verlangen kann ein physischer Nachweis für die abrufbare digitale Jagdkarte ausgestellt werden."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der physische Nachweis ist eine gesetzlich vorgesehene amtliche Möglichkeit."
+            },
+            {
+              "id": "at-st-digitale-jagdkarte-q2",
+              "prompt": "Welche Aussage gilt zu den jährlichen Gültigkeitsnachweisen bei der digitalen steirischen Jagdkarte?",
+              "choices": [
+                "Die gesetzlichen Nachweise für Abgabe, Mitgliedsbeitrag und Jagdhaftpflicht bleiben erforderlich.",
+                "Mit der digitalen Ausstellung entfällt die jährliche Jagdkartenabgabe.",
+                "Die digitale Karte bleibt unabhängig von den jährlichen Nachweisen dauerhaft gültig."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die digitale Form beseitigt die jährlichen Gültigkeitsvoraussetzungen nicht."
+            }
+          ],
+          "officialText": "Auf Verlangen kann der Inhaberin/dem Inhaber einer digitalen Jagdkarte ein physischer Nachweis für das Vorliegen einer abrufbaren digitalen Jagdkarte ausgestellt werden.",
+          "officialTextCitation": "§ 40 Abs. 1 Satz 3",
+          "contentValidated": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich.",
+      "examResources": [
+        {
+          "title": "Steiermärkische Jägerprüfungsverordnung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000925",
+          "publisher": "Land Steiermark / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Verordnung einschließlich Änderung LGBl. Nr. 15/2025; Fassung am 23.10.2026 eingesehen. Prüfungsstoff und Verfahren, kein Originalfragenkatalog."
+        }
+      ],
+      "examNotes": "Ein frei zugänglicher amtlicher Katalog einzelner Original-Rechtsfragen wurde auf den eingesehenen Landes- und Jägerschaftsseiten nicht verifiziert. Die Prüfungsverordnung legt Prüfungsbereiche fest; die Jagdlatein-Aufgaben sind selbst formulierte Lernfragen."
+    },
+    {
+      "code": "T",
+      "name": "Tirol",
+      "lawTitle": "Tiroler Jagdgesetz 2004 – TJG 2004",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrT&Gesetzesnummer=10000088",
+      "articles": [
+        {
+          "id": "at-t-jagdkarte-voraussetzungen",
+          "topic": "zulassung",
+          "title": "Reguläre Tiroler Jagdkarte: 18 Jahre und Eignung",
+          "lawTitle": "Tiroler Jagdgesetz 2004 – TJG 2004",
+          "citation": "§ 28 Abs. 1 Einleitung",
+          "summary": "Für die reguläre Tiroler Jagdkarte ist grundsätzlich das vollendete 18. Lebensjahr erforderlich. Nur für Personen in Ausbildung zum Berufsjäger enthält die Altersregel die Grenze 16. Ein gewöhnlicher Jungjägerkurs macht aus einem Bewerber noch keinen Berufsjägerlehrling. Alter allein genügt nicht; weitere Voraussetzungen folgen in § 28 Abs. 1.",
+          "sources": [
+            {
+              "title": "Tiroler Jagdgesetz 2004 – TJG 2004: § 28 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrT&Anlage=&Artikel=&Gesetzesnummer=10000088&Paragraf=28&Uebergangsrecht=",
+              "publisher": "Land Tirol / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Tiroler Jagdkarte: Voraussetzungen und Unterlagen",
+              "url": "https://www.tirol.gv.at/bezirke-gemeinden/allgemein/tiroler-jagdkarte/voraussetzungen-unterlagen/",
+              "publisher": "Land Tirol – Bürgerinformation",
+              "kind": "context"
+            },
+            {
+              "title": "Rechnungshof: Umsetzung der Jagdgesetze in Kärnten, Salzburg und Tirol (2016), Abschnitt Jagdkarten; Altersunterschied mit geltenden Normen abgeglichen",
+              "url": "https://www.rechnungshof.gv.at/rh/home/home/Umsetzung_der_Jagdgesetze_in_Kaernten__Salzburg_und_Tirol.pdf",
+              "publisher": "Rechnungshof Österreich",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-t-jagdkarte-voraussetzungen-q1",
+              "prompt": "Ab welchem vollendeten Lebensjahr kann die reguläre Tiroler Jagdkarte außerhalb einer Berufsjägerausbildung ausgestellt werden?",
+              "choices": [
+                "Ab 18; die weiteren gesetzlichen Voraussetzungen bleiben nötig.",
+                "Ab 16, allein weil ein Jungjägerkurs besucht wird.",
+                "Ab 15, sobald die theoretische Jungjägerprüfung bestanden ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 28 Abs. 1 unterscheidet den Regelfall 18 von der eng begrenzten Ausnahme für die Berufsjägerausbildung."
+            },
+            {
+              "id": "at-t-jagdkarte-voraussetzungen-q2",
+              "prompt": "Ein 16-jähriger Bewerber besucht einen gewöhnlichen Jungjägerkurs. Gilt deshalb für seine Tiroler Jagdkarte die Altersausnahme 16?",
+              "choices": [
+                "Ja, jeder vorbereitende Jagdkurs zählt als Berufsjägerausbildung.",
+                "Nein, die Ausnahme betrifft ausdrücklich Personen in Ausbildung zum Berufsjäger.",
+                "Ja, sofern seine gesetzliche Vertretung zustimmt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Ein gewöhnlicher Jungjägerkurs erfüllt nicht allein die im Gesetz bezeichnete Berufsjägerausbildung."
+            }
+          ],
+          "officialText": "die das 18. Lebensjahr, im Fall von in Ausbildung zum Berufsjäger stehenden Personen das 16. Lebensjahr, vollendet haben, und […]",
+          "officialTextCitation": "§ 28 Abs. 1 Einleitung (Altersregel; weitere Voraussetzungen folgen)",
+          "contentValidated": true,
+          "verificationNote": "Die unterschiedlichen Altersgrenzen und ihre Begrenzung auf die Berufsjägerausbildung wurden mit dem unabhängigen Rechnungshofbericht und der aktuellen Norm abgeglichen. Erste Hilfe, Beitrag und ausländische Nachweise sind nicht Gegenstand dieser begrenzten Quizfreigabe.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-t-pruefungsort",
+          "topic": "pruefung",
+          "title": "Jungjägerprüfung: Wahl des Prüfungsbezirks",
+          "lawTitle": "Tiroler Jagdgesetz 2004 – TJG 2004",
+          "citation": "§ 28a Abs. 4",
+          "summary": "Die Zulassung zur Tiroler Jungjägerprüfung kann bei jeder Bezirksverwaltungsbehörde beantragt werden. Geprüft wird vor jener Behörde, bei der die Zulassung beantragt wurde. Erforderlich ist der Ausbildungslehrgang des Tiroler Jägerverbandes oder eine in Abs. 4 bezeichnete gleichwertige Ausbildung. Die Kurswahl ist nicht automatisch an den Hauptwohnsitzbezirk gebunden.",
+          "sources": [
+            {
+              "title": "Tiroler Jagdgesetz 2004 – TJG 2004: § 28a Abs. 4",
+              "url": "https://ris.bka.gv.at/eli/lgbl/TI/2004/41/P28a/LTI40049075",
+              "publisher": "Land Tirol / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Ausbildung zum Jungjäger: freie Wahl des Kurs- und Prüfungsbezirks",
+              "url": "https://www.tjv.at/bildung/jungjaeger/",
+              "publisher": "Tiroler Jägerverband",
+              "kind": "context"
+            },
+            {
+              "title": "Ansuchen um Zulassung zur Tiroler Jungjägerprüfung",
+              "url": "https://www.tirol.gv.at/schwaz/organisation/umwelt/jagd-fischerei/ansuchen-um-zulassung-zur-tiroler-jungjaegerpruefung/",
+              "publisher": "Bezirkshauptmannschaft Schwaz",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-t-pruefungsort-q1",
+              "prompt": "Ist die Antragstellung zur Tiroler Jungjägerprüfung zwingend auf den Hauptwohnsitzbezirk beschränkt?",
+              "choices": [
+                "Ja, ein anderer Prüfungsbezirk ist immer ausgeschlossen.",
+                "Nein, die Zulassung kann bei jeder Bezirksverwaltungsbehörde beantragt werden.",
+                "Nein, weil der Lehrgangsveranstalter allein über die behördliche Prüfungszulassung entscheidet."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 28a Abs. 4 erlaubt die Antragstellung bei jeder Bezirksverwaltungsbehörde."
+            },
+            {
+              "id": "at-t-pruefungsort-q2",
+              "prompt": "Wo ist die Tiroler Jungjägerprüfung nach dem Zulassungsantrag abzulegen?",
+              "choices": [
+                "Bei einer beliebigen anderen Bezirksverwaltungsbehörde ohne weiteres Zulassungsverfahren.",
+                "Zwingend im Hauptwohnsitzbezirk, auch wenn der Antrag anderswo gestellt wurde.",
+                "Bei jener Bezirksverwaltungsbehörde, bei der die Zulassung beantragt wurde."
+              ],
+              "correctIndex": 2,
+              "explanation": "Antrag und Prüfungsbehörde werden in § 28a Abs. 4 miteinander verknüpft."
+            }
+          ],
+          "officialText": "Die Zulassung zur Jungjägerprüfung kann bei jeder Bezirksverwaltungsbehörde beantragt werden; die Jungjägerprüfung ist vor jener Bezirksverwaltungsbehörde abzulegen, bei der der Antrag auf Zulassung gestellt wurde.",
+          "officialTextCitation": "§ 28a Abs. 4 Satz 1",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-t-kartenpflicht",
+          "topic": "jagdausuebung",
+          "title": "Tiroler Jagdkarte bei der Jagd mitführen",
+          "lawTitle": "Tiroler Jagdgesetz 2004 – TJG 2004",
+          "citation": "§ 11 Abs. 1",
+          "summary": "Bei der gewöhnlichen Jagdausübung in Tirol ist eine gültige persönliche Tiroler Jagdkarte oder eine für das betreffende Jagdgebiet gültige Jagdgastkarte zu besitzen und mitzuführen. Sie ist Jagdschutzorganen und Organen des öffentlichen Sicherheitsdienstes auf Verlangen vorzuweisen. § 11 Abs. 1 enthält eng begrenzte Ausnahmen für ausdrücklich ermächtigte Tätigkeiten; sie sind keine allgemeine Befreiung für Jagdgäste.",
+          "sources": [
+            {
+              "title": "Tiroler Jagdgesetz 2004 – TJG 2004: § 11 Abs. 1",
+              "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrT&Gesetzesnummer=10000088",
+              "publisher": "Land Tirol / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            },
+            {
+              "title": "Tiroler Jagdkarte: Voraussetzungen und Unterlagen",
+              "url": "https://www.tirol.gv.at/bezirke-gemeinden/allgemein/tiroler-jagdkarte/voraussetzungen-unterlagen/",
+              "publisher": "Land Tirol – Bürgerinformation",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-t-kartenpflicht-q1",
+              "prompt": "Ein Gast hat nur eine Jagdgastkarte für ein anderes Tiroler Jagdgebiet. Deckt sie die Jagd im neuen Gebiet automatisch?",
+              "choices": [
+                "Ja, jede Gastkarte gilt überall.",
+                "Ja, wenn der Gast in Tirol wohnt.",
+                "Nein, ihre Geltung für das betreffende Gebiet muss gegeben sein."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 11 Abs. 1 verlangt eine für das jeweilige Jagdgebiet gültige Jagdgastkarte."
+            },
+            {
+              "id": "at-t-kartenpflicht-q2",
+              "prompt": "Muss die für die Jagd erforderliche Karte tatsächlich mitgeführt werden?",
+              "choices": [
+                "Ja, das verlangt § 11 Abs. 1 ausdrücklich.",
+                "Nein, der Kartenbesitz zu Hause genügt.",
+                "Nur beim ersten Abschuss."
+              ],
+              "correctIndex": 0,
+              "explanation": "Besitz, Mitführen und Vorweisen sind getrennt genannte Pflichten."
+            }
+          ],
+          "officialText": "Auf Verlangen ist die Tiroler Jagdkarte oder die Jagdgastkarte den Jagdschutzorganen und den Organen des öffentlichen Sicherheitsdienstes vorzuweisen.",
+          "officialTextCitation": "§ 11 Abs. 1 Satz 2",
+          "contentValidated": true,
+          "verificationNote": "Die landesrechtliche Pflicht ist im aktuellen Primärtext gelesen. Die allgemeine Bundesinformation bestätigt die Kartenpflicht, erklärt aber nicht selbst die Tiroler Gebietsgeltung und Vorweispflicht. Zweite unabhängige konkrete Bestätigung steht noch aus.",
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Kartenmitführung/Gebietsgeltung bleibt bis zum zusätzlichen unabhängigen Nachweis außerhalb des geprüften Fragenpools.",
+      "examResources": [
+        {
+          "title": "Tiroler Jagdgesetz 2004 § 28a – Jungjägerprüfung",
+          "url": "https://ris.bka.gv.at/eli/lgbl/TI/2004/41/P28a/LTI40049075",
+          "publisher": "Land Tirol / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtlicher Prüfungsrahmen, seit 01.04.2023 geltender Paragraph. Kein Katalog einzelner Originalfragen; ergänzende aktuelle Durchführungsverordnungen bleiben maßgeblich."
+        }
+      ],
+      "examNotes": "Bei der Recherche wurde kein öffentlich verfügbarer amtlicher Original-Rechtsfragenkatalog verifiziert. Die eingesehenen Landesangebote veröffentlichen Prüfungsverfahren und Kundmachungen. Widersprüchliche Altersangaben älterer Bezirksseiten werden hier nicht als Lehrstoff übernommen. Die Jagdlatein-Aufgaben sind eigene Lernfragen."
+    },
+    {
+      "code": "V",
+      "name": "Vorarlberg",
+      "lawTitle": "Jagdgesetz (Vorarlberg)",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20000567",
+      "articles": [
+        {
+          "id": "at-v-jagdkarte",
+          "topic": "zulassung",
+          "title": "Vorarlberger Jagdkarte und Gästejagdkarte",
+          "lawTitle": "Jagdgesetz (Vorarlberg)",
+          "citation": "§ 24 Abs. 1–3 und 7",
+          "summary": "Die reguläre Vorarlberger Jagdkarte setzt Eignung, Verlässlichkeit und Haftpflicht voraus; sie wird für ein bis sechs Jagdjahre ausgestellt. Eine Gästejagdkarte ist davon zu unterscheiden: höchstens eine Woche, für bestimmte Gebiete eines Verwaltungsbezirks und höchstens dreimal je Person im Jagdjahr. Gäste dürfen damit nur begleitet vom Jagdnutzungsberechtigten oder einem Jagdschutzorgan jagen.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (Vorarlberg): § 24 Abs. 1–3 und 7",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrVbg&Anlage=&Artikel=&Gesetzesnummer=20000567&Paragraf=24&Uebergangsrecht=",
+              "publisher": "Land Vorarlberg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Vorarlberger Jagdkarte: Voraussetzungen",
+              "url": "https://vorarlberg.at/-/vorarlberger-jagdkarte",
+              "publisher": "Land Vorarlberg – Bürgerinformation",
+              "kind": "context"
+            },
+            {
+              "title": "Vorarlberger Gästejagdkarte: Geltung und Begleitung",
+              "url": "https://vorarlberg.at/-/vorarlberger-gaestejagdkarte",
+              "publisher": "Land Vorarlberg – Bürgerinformation",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": false,
+          "questions": [
+            {
+              "id": "at-v-jagdkarte-q1",
+              "prompt": "Wie lange darf eine Vorarlberger Gästejagdkarte längstens gelten?",
+              "choices": [
+                "Für ein ganzes Kalenderjahr.",
+                "Für höchstens eine Woche.",
+                "Für unbegrenzte Zeit."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 24 Abs. 3 begrenzt die Dauer auf höchstens eine Woche."
+            },
+            {
+              "id": "at-v-jagdkarte-q2",
+              "prompt": "Darf ein Inhaber einer Vorarlberger Gästejagdkarte damit allein auf Jagd gehen?",
+              "choices": [
+                "Ja, wenn er andernorts schon lange jagt.",
+                "Ja, sobald er die Gebühr bezahlt hat.",
+                "Nein, die gesetzlich verlangte Begleitung bleibt erforderlich."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 24 Abs. 3 nennt die Begleitung durch Jagdnutzungsberechtigten oder Jagdschutzorgan."
+            }
+          ],
+          "officialText": "Die Gästejagdkarte berechtigt nur zum Jagen in Begleitung des Jagdnutzungsberechtigten oder eines Jagdschutzorgans.",
+          "officialTextCitation": "§ 24 Abs. 3 letzter Satz",
+          "contentValidated": true,
+          "verificationNote": "Die Gästejagdkartenregel ist im geltenden § 24 und in der Bürgerinformation des Landes bestätigt. Beides stammt vom Land Vorarlberg; die zweite unabhängige konkrete Erläuterung steht noch aus. Noch nicht als Übungsstoff freigegeben.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-v-eignung",
+          "topic": "pruefung",
+          "title": "Jagdliche Eignung ist mehr als eine Kursbuchung",
+          "lawTitle": "Jagdgesetz (Vorarlberg)",
+          "citation": "§ 25 Abs. 1",
+          "summary": "Die erfolgreich abgelegte Vorarlberger Jagdprüfung weist im Regelfall die jagdliche Eignung nach. Eine bloße Kursbuchung oder Teilnahmebestätigung ist kein erfolgreiches Prüfungszeugnis. Auch nach bestandener Prüfung bleibt die Ausstellung der Jagdkarte ein eigener Schritt mit weiteren Voraussetzungen.",
+          "sources": [
+            {
+              "title": "Jagdgesetz (Vorarlberg): § 25 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrVbg&Anlage=&Artikel=&Gesetzesnummer=20000567&Paragraf=25&Uebergangsrecht=",
+              "publisher": "Land Vorarlberg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jungjägerkurs und Jagdprüfung: Unterlagen und Erste Hilfe",
+              "url": "https://www.xn--vumjgar-8wa.at/jungjaeger",
+              "publisher": "VUM JÄGAR! – Vorarlberger Jagdausbildung",
+              "kind": "context"
+            },
+            {
+              "title": "Vorarlberger Jagdkarte: Voraussetzungen",
+              "url": "https://vorarlberg.at/-/vorarlberger-jagdkarte",
+              "publisher": "Land Vorarlberg – Bürgerinformation",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-v-eignung-q1",
+              "prompt": "Wodurch wird nach dem Regelfall des § 25 Abs. 1 die jagdliche Eignung in Vorarlberg nachgewiesen?",
+              "choices": [
+                "Durch die erfolgreich abgelegte Jagdprüfung.",
+                "Durch die vollständige Teilnahme an einem vorbereitenden Kurs ohne Prüfung.",
+                "Durch die Anmeldung zum nächsten Prüfungstermin."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm knüpft an die erfolgreich abgelegte Prüfung an."
+            },
+            {
+              "id": "at-v-eignung-q2",
+              "prompt": "Eine Bewerberin hat die Vorarlberger Jagdprüfung bestanden. Ist dadurch die Jagdkarte bereits ohne weiteres Verfahren ausgestellt?",
+              "choices": [
+                "Ja, Zeugnis und ausgegebene Jagdkarte sind dasselbe Dokument.",
+                "Nein, die Kartenausstellung ist ein eigener Schritt mit weiteren Voraussetzungen.",
+                "Ja, sobald der Ausbildungsanbieter die erfolgreiche Teilnahme bestätigt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Prüfungsnachweis und Ausstellung der Jagdkarte sind getrennt."
+            }
+          ],
+          "officialText": "Als jagdlich geeignet gilt, wer die Jagdprüfung (Abs. 3 und 4) erfolgreich abgelegt hat.",
+          "officialTextCitation": "§ 25 Abs. 1",
+          "contentValidated": true,
+          "verificationNote": "Der unabhängige Ausbildungsanbieter erläutert den Prüfungserfolg und die danach getrennt zu beantragende Karte. Auslandsanerkennung und spezielle Ersatznachweise aus Abs. 2 werden in diesem Lernblock nicht als unabhängig bestätigter Quizstoff behandelt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-v-zulassungsunterlagen",
+          "topic": "zulassung",
+          "title": "Prüfungszulassung: Erste Hilfe und Wohnsitz",
+          "lawTitle": "Jagdverordnung (Vorarlberg)",
+          "citation": "Jagdverordnung § 11 Abs. 1–3",
+          "summary": "Die Zulassung zur Vorarlberger Jagdprüfung ist schriftlich zu beantragen. Beizulegen sind insbesondere Identitätsnachweis und Bestätigung einer anerkannten Rettungsorganisation über einen mindestens 16-stündigen Erste-Hilfe-Kurs innerhalb der letzten fünf Jahre. Zuständig ist die Bezirkshauptmannschaft des Hauptwohnsitzes; Personen ohne Vorarlberger Hauptwohnsitz können ebenfalls zugelassen werden.",
+          "sources": [
+            {
+              "title": "Jagdverordnung (Vorarlberg): Jagdverordnung § 11 Abs. 1–3",
+              "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20000568",
+              "publisher": "Land Vorarlberg / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jungjägerkurs und Jagdprüfung: Unterlagen und Erste Hilfe",
+              "url": "https://www.xn--vumjgar-8wa.at/jungjaeger",
+              "publisher": "VUM JÄGAR! – Vorarlberger Jagdausbildung",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-v-zulassungsunterlagen-q1",
+              "prompt": "Welche Erste-Hilfe-Bestätigung entspricht der in § 11 Abs. 2 genannten Anforderung?",
+              "choices": [
+                "Ein achtstündiger Kurs innerhalb der letzten fünf Jahre.",
+                "Ein 16-stündiger Kurs, der mehr als fünf Jahre zurückliegt.",
+                "Mindestens 16 Stunden bei einer anerkannten Rettungsorganisation, innerhalb der letzten fünf Jahre."
+              ],
+              "correctIndex": 2,
+              "explanation": "Umfang, anerkannte Rettungsorganisation und Zeitraum müssen zusammenpassen."
+            },
+            {
+              "id": "at-v-zulassungsunterlagen-q2",
+              "prompt": "Eine Person hat keinen Hauptwohnsitz in Vorarlberg. Welche Aussage zur Prüfungszulassung trifft zu?",
+              "choices": [
+                "Ein fehlender Vorarlberger Hauptwohnsitz schließt die Zulassung nicht generell aus.",
+                "Nur Personen mit Vorarlberger Hauptwohnsitz dürfen einen Antrag stellen.",
+                "Die Kursbuchung ersetzt bei auswärtigen Bewerbern den behördlichen Zulassungsantrag."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 11 Abs. 3 lit. b berücksichtigt ausdrücklich Personen ohne Vorarlberger Hauptwohnsitz."
+            }
+          ],
+          "officialText": "Um die Zulassung zur Prüfung ist schriftlich anzusuchen.",
+          "officialTextCitation": "Jagdverordnung § 11 Abs. 1",
+          "contentValidated": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die Gästejagdkartenlektion ist bis zum unabhängigen Zweitnachweis vom geprüften Fragenpool ausgeschlossen.",
+      "examResources": [
+        {
+          "title": "Vorarlberger Jagdverordnung – Jagdprüfung §§ 10–16",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20000568",
+          "publisher": "Land Vorarlberg / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Regelung über Zulassung, Prüfungsstoff, Durchführung und Ergebnis; kein amtlicher Katalog einzelner Prüfungsfragen."
+        },
+        {
+          "title": "Jagdrecht – Fragenkatalog 2025 der Vorarlberger Jägerschaft",
+          "url": "https://vjagd.at/download/fragenkatalog-recht/?wpdmdl=18839",
+          "publisher": "Vorarlberger Jägerschaft",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "Verbandskatalog, keine verifizierte amtliche Originalfragensammlung. Veröffentlichungsseite: https://vjagd.at/download/fragenkatalog-recht/ ; dort zuletzt aktualisiert 29.01.2025. Originaldownload als PDF technisch geprüft (Fragenkatalog-Jagdrecht-2025.pdf). Keine kommerzielle Übernahme- oder Importlizenz ausgewiesen; nur verlinkt, keine Einzelfragen übernommen. Der Rechtsstand aller Katalogfragen ist damit nicht als aktuell 2026 zertifiziert."
+        }
+      ],
+      "examNotes": "Ein öffentlicher Verbands-Rechtsfragenkatalog mit Bezeichnung 2025 wurde gefunden und verlinkt. Er ist vom amtlichen Prüfungsrecht zu unterscheiden. Eine Einordnung als amtliche Originalfragen und eine Übernahmelizenz sind nicht verifiziert. Die Jagdlatein-Aufgaben bleiben eigene Lernfragen."
+    },
+    {
+      "code": "W",
+      "name": "Wien",
+      "lawTitle": "Wiener Jagdgesetz",
+      "officialUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrW&Gesetzesnummer=20000437",
+      "articles": [
+        {
+          "id": "at-w-kartenpflicht",
+          "topic": "jagdausuebung",
+          "title": "Wien: persönliche Karte und Revierzustimmung",
+          "lawTitle": "Wiener Jagdgesetz",
+          "citation": "§ 49 Abs. 1 und 2",
+          "summary": "Zur Jagdausübung in Wien ist die gesetzlich erforderliche gültige Jagdkarte nötig. Zusätzlich ist die Zustimmung des Jagdausübungsberechtigten erforderlich. Die Karte allein ist keine allgemeine Revierfreigabe; eine Einladung beseitigt umgekehrt die erforderliche Kartenpflicht nicht.",
+          "sources": [
+            {
+              "title": "Wiener Jagdgesetz: § 49 Abs. 1 und 2",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrW&Anlage=&Artikel=&Gesetzesnummer=20000437&Paragraf=49&Uebergangsrecht=",
+              "publisher": "Land Wien / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – Antrag und Gültigkeit",
+              "url": "https://www.wien.gv.at/amtswege/jagdkarte",
+              "publisher": "Stadt Wien – Umweltschutz",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – landesspezifische Zuständigkeiten",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-w-kartenpflicht-q1",
+              "prompt": "Ein Gast besitzt eine gültige Wiener Jagdkarte, aber keine Zustimmung für das Revier. Darf er dort jagen?",
+              "choices": [
+                "Ja, die Landesjagdkarte enthält bereits die Erlaubnis für alle Wiener Reviere.",
+                "Nein, die zusätzlich erforderliche Zustimmung fehlt.",
+                "Ja, wenn die Jagdkarte im laufenden Jagdjahr bezahlt wurde."
+              ],
+              "correctIndex": 1,
+              "explanation": "Persönliche Karte und Zustimmung zur Jagd im konkreten Revier sind getrennte Voraussetzungen."
+            },
+            {
+              "id": "at-w-kartenpflicht-q2",
+              "prompt": "Ein Jagdausübungsberechtigter lädt einen Gast ohne die erforderliche gültige Jagdkarte ein. Welche Aussage stimmt?",
+              "choices": [
+                "Die Einladung ersetzt für ihre Dauer die erforderliche Karte.",
+                "Ein Lichtbildausweis ersetzt bei eingeladenen Gästen jede Jagdkarte.",
+                "Die Einladung beseitigt die gesetzlich erforderliche Kartenpflicht nicht."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Zustimmung im Revier ersetzt die persönliche Kartenpflicht nicht."
+            }
+          ],
+          "officialText": "Die Jagdkarten sind nicht übertragbar und geben keine Berechtigung, ohne Zustimmung des Jagdausübungsberechtigten zu jagen.",
+          "officialTextCitation": "§ 49 Abs. 2",
+          "contentValidated": true,
+          "verificationNote": "Kartenpflicht und zusätzliche Revierzustimmung wurden unabhängig mit der bundesweiten Behördeninformation abgeglichen. Die weiteren persönlichen Nachweis- und Kontrollpflichten werden als amtlicher Text, nicht als aus der allgemeinen Zweitquelle abgeleiteter Spezialkatalog behandelt.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-w-landesjagdkarte",
+          "topic": "zulassung",
+          "title": "Bescheinigung der Eignung und Jahresbeitrag",
+          "lawTitle": "Wiener Jagdgesetz",
+          "citation": "§ 50 Abs. 1–3",
+          "summary": "Eine Wiener Landesjagdkarte wird auf Antrag vom Magistrat ausgestellt, wenn Eignungsnachweis, Mitgliedsbeitrag und fehlende Verweigerungsgründe gegeben sind. Die Eignung wird durch Bescheinigung des Wiener Landesjagdverbandes belegt. Die Kartengültigkeit hängt weiterhin vom Beitragsnachweis ab; bei rechtzeitiger Zahlung verlängert sie sich um ein Jagdjahr. Ein Prüfungszeugnis allein ist noch keine ausgestellte gültige Karte.",
+          "sources": [
+            {
+              "title": "Wiener Jagdgesetz: § 50 Abs. 1–3",
+              "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrW&Anlage=&Artikel=&Gesetzesnummer=20000437&Paragraf=50&Uebergangsrecht=",
+              "publisher": "Land Wien / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdkarte – Antrag und Gültigkeit",
+              "url": "https://www.wien.gv.at/amtswege/jagdkarte",
+              "publisher": "Stadt Wien – Umweltschutz",
+              "kind": "context"
+            },
+            {
+              "title": "Wiener Jagdkarte: Eignung, Jagdgastkarte und Jagderlaubnisschein",
+              "url": "https://jagd-wien.at/wiener-jagdkarte/",
+              "publisher": "Wiener Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-w-landesjagdkarte-q1",
+              "prompt": "Welche Stelle stellt die Wiener Landesjagdkarte aus?",
+              "choices": [
+                "Der Magistrat.",
+                "Der Landesjägermeister als grundsätzlich ausstellende Stelle wie in Oberösterreich.",
+                "Der Bezirksjägermeister wie bei der Kärntner Jagdkarte."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 50 Abs. 1 nennt den Magistrat als ausstellende Stelle."
+            },
+            {
+              "id": "at-w-landesjagdkarte-q2",
+              "prompt": "Welcher Nachweis ist nach § 50 Abs. 3 für die jagdliche Eignung vorgesehen?",
+              "choices": [
+                "Eine Bestätigung des privaten Kursanbieters über den Kursbesuch allein.",
+                "Eine entsprechende Bescheinigung des Wiener Landesjagdverbandes.",
+                "Die private Einladung eines Jagdausübungsberechtigten."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesetzlich vorgesehene Bescheinigung des Wiener Landesjagdverbandes ist vom Kursbesuch und der Reviereinladung zu unterscheiden."
+            }
+          ],
+          "officialText": "Der Nachweis der jagdlichen Eignung ist durch eine entsprechende Bescheinigung des Wiener Landesjagdverbandes zu erbringen.",
+          "officialTextCitation": "§ 50 Abs. 3 Satz 1",
+          "contentValidated": true,
+          "originalVerified": true
+        },
+        {
+          "id": "at-w-jagdpruefung",
+          "topic": "pruefung",
+          "title": "Wiederholung der Jagdprüfung",
+          "lawTitle": "Wiener Jagdgesetz",
+          "citation": "§ 52 Abs. 7",
+          "summary": "Eine Wiederholung der Wiener Jagdprüfung ist frühestens nach zwei Monaten zulässig. Wurde nur ein Teil nicht bestanden, ist nur dieser Teil zu wiederholen; dafür bleibt der gesamte für diesen Teil vorgeschriebene Stoff beziehungsweise das Schießprogramm maßgeblich. Ein bestandener anderer Teil muss nicht allein wegen dieses Fehlversuchs wiederholt werden.",
+          "sources": [
+            {
+              "title": "Wiener Jagdgesetz: § 52 Abs. 2, 3 und 7",
+              "url": "https://www.ris.bka.gv.at/Dokumente/Landesnormen/LWI40013735/LWI40013735.html",
+              "publisher": "Land Wien / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdprüfung: Wiederholung und Wohnsitz",
+              "url": "https://jagd-wien.at/produkt/jagdpruefung/",
+              "publisher": "Wiener Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-w-jagdpruefung-q1",
+              "prompt": "Nur der theoretische Teil der Wiener Jagdprüfung wurde nicht bestanden. Was ist nach Ablauf der Wartefrist zu wiederholen?",
+              "choices": [
+                "Nur die zuletzt falsch beantworteten Einzelfragen.",
+                "Stets auch der bereits bestandene praktische Teil.",
+                "Der theoretische Teil mit dem gesamten dafür vorgesehenen Prüfungsstoff."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Teilwiederholung betrifft den nicht bestandenen Teil, nicht bloß einzelne Fehler daraus."
+            },
+            {
+              "id": "at-w-jagdpruefung-q2",
+              "prompt": "Wann ist eine Wiederholung der Wiener Jagdprüfung nach § 52 Abs. 7 frühestens möglich?",
+              "choices": [
+                "Nach zwei Monaten.",
+                "Nach einem Monat.",
+                "Nach drei Monaten."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die in § 52 Abs. 7 genannte Mindestwartezeit beträgt zwei Monate."
+            }
+          ],
+          "officialText": "Die Wiederholung der Prüfung ist frühestens nach zwei Monaten zulässig.",
+          "officialTextCitation": "§ 52 Abs. 7 Satz 1",
+          "contentValidated": true,
+          "verificationNote": "Wartefrist und Teilwiederholung wurden mit der aktuellen Erklärung des Wiener Landesjagdverbandes konkret abgeglichen. Alters- und sonstige Zulassungsregeln werden mit dieser Freigabe nicht ohne zusätzliche konkrete Bestätigung als vollständiger Lernkatalog behandelt.",
+          "originalVerified": true
+        }
+      ],
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich.",
+      "examResources": [
+        {
+          "title": "Wiener Jagdgesetz § 52 – Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/Dokumente/Landesnormen/LWI40013735/LWI40013735.html",
+          "publisher": "Land Wien / RIS",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtlicher Prüfungsrahmen, geltender Wortlaut seit 14.12.2019. Verfahren und Stoff, kein öffentlich herausgegebener Original-Rechtsfragenkatalog."
+        }
+      ],
+      "examNotes": "Der zuständige Wiener Landesjagdverband erläutert Ablauf und Prüfungsfächer. In den eingesehenen öffentlichen Angeboten wurde kein amtlicher Original-Rechtsfragenkatalog verifiziert. Die Jagdlatein-Fragen sind eigene Lernaufgaben und keine vollständige Abbildung des Prüfungsgesprächs."
+    }
+  ]
+}

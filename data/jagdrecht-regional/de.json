@@ -1,0 +1,2216 @@
+{
+  "country": "DE",
+  "reviewedOn": "2026-10-23",
+  "regions": [
+    {
+      "code": "BUND",
+      "name": "Bundesrecht Deutschland",
+      "lawTitle": "Bundesjagdgesetz (BJagdG)",
+      "officialUrl": "https://www.gesetze-im-internet.de/bjagdg/",
+      "articles": [
+        {
+          "id": "de-bund-jagdschein-mitfuehren",
+          "topic": "zulassung",
+          "title": "Jagdschein bei der Jagd mitführen",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 15 Abs. 1 Satz 1",
+          "officialText": "Wer die Jagd ausübt, muß einen auf seinen Namen lautenden Jagdschein mit sich führen und diesen auf Verlangen den Polizeibeamten sowie den Jagdschutzberechtigten (§ 25) vorzeigen.",
+          "summary": "Ein bestandener Prüfungsabschluss allein ersetzt den persönlichen Jagdschein nicht. Bei der Jagdausübung ist der eigene Jagdschein mitzuführen und den genannten Berechtigten auf Verlangen vorzuzeigen.",
+          "sources": [
+            {
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "title": "Bundesjagdgesetz § 15",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdschein – Ausstellung beantragen: Mitführen, bundesweite Gültigkeit und Jugendbegleitung",
+              "url": "https://www.freiburg.de/pb/%2CLde_DE/-/205332/jagdschein---ausstellung-beantragen/vbid222",
+              "publisher": "Stadt Freiburg im Breisgau",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du hast die Jägerprüfung bestanden und möchtest mit einer Einladung jagen. Was verlangt § 15 Abs. 1 Satz 1 zusätzlich bei der Jagdausübung?",
+              "choices": [
+                "Nur eine Kopie des Prüfungszeugnisses.",
+                "Den auf deinen Namen lautenden Jagdschein mitführen.",
+                "Nur den Jagdschein der einladenden Person."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Prüfung ist Voraussetzung für die erste Erteilung; mitzuführen ist der eigene Jagdschein.",
+              "id": "de-bund-jagdschein-mitfuehren-q1"
+            },
+            {
+              "prompt": "Ein Jagdschutzberechtigter verlangt bei der Jagdausübung deinen Jagdschein. Wie verhältst du dich?",
+              "choices": [
+                "Du zeigst den mitgeführten eigenen Jagdschein vor.",
+                "Du verweist ausschließlich auf deine Kursanmeldung.",
+                "Du darfst die Vorlage stets bis zum nächsten Monat aufschieben."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 15 Abs. 1 Satz 1 nennt die Pflicht zur Vorlage auf Verlangen ausdrücklich.",
+              "id": "de-bund-jagdschein-mitfuehren-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-bund-jagdschein-gebiet",
+          "topic": "zulassung",
+          "title": "Gültigkeit und Reviererlaubnis unterscheiden",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 15 Abs. 3",
+          "officialText": "Der Jagdschein gilt im gesamten Bundesgebiet.",
+          "summary": "Ein deutscher Jagdschein gilt bundesweit. Daraus entsteht keine freie Jagderlaubnis in fremden Revieren; eine Jagdgelegenheit und die jeweils örtlich geltenden Vorschriften bleiben erforderlich.",
+          "sources": [
+            {
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "title": "Bundesjagdgesetz § 15",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdschein – Ausstellung beantragen: Mitführen, bundesweite Gültigkeit und Jugendbegleitung",
+              "url": "https://www.freiburg.de/pb/%2CLde_DE/-/205332/jagdschein---ausstellung-beantragen/vbid222",
+              "publisher": "Stadt Freiburg im Breisgau",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Dein Jagdschein wurde in Bayern erteilt. Wo gilt er nach § 15 Abs. 3 grundsätzlich?",
+              "choices": [
+                "Ausschließlich in Bayern.",
+                "Nur im Landkreis der Erteilung.",
+                "Im gesamten Bundesgebiet."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die bundesweite Gültigkeit ist im Gesetz ausdrücklich festgelegt.",
+              "id": "de-bund-jagdschein-gebiet-q1"
+            },
+            {
+              "prompt": "Berechtigt die bundesweite Gültigkeit zum Jagen in jedem beliebigen fremden Revier?",
+              "choices": [
+                "Nein. Die erforderliche Reviererlaubnis bleibt gesondert zu klären.",
+                "Ja, eine Einladung oder Jagderlaubnis ist immer entbehrlich.",
+                "Ja, wenn die Prüfung in diesem Bundesland abgelegt wurde."
+              ],
+              "correctIndex": 0,
+              "explanation": "Jagdschein und privatrechtliche Jagdgelegenheit sind unterschiedliche Voraussetzungen.",
+              "id": "de-bund-jagdschein-gebiet-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-bund-jugend-begleitung",
+          "topic": "jagdausuebung",
+          "title": "Jugendjagdschein: erforderliche Begleitung",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 16 Abs. 2",
+          "officialText": "Der Jugendjagdschein berechtigt nur zur Ausübung der Jagd in Begleitung des Erziehungsberechtigten oder einer von dem Erziehungsberechtigten schriftlich beauftragten Aufsichtsperson; die Begleitperson muß jagdlich erfahren sein.",
+          "summary": "Beim Jugendjagdschein ist eine jagdlich erfahrene Begleitung erforderlich. Eine andere Aufsichtsperson als der Erziehungsberechtigte benötigt dessen schriftliche Beauftragung.",
+          "sources": [
+            {
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__16.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "title": "Bundesjagdgesetz § 16",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdschein – Ausstellung beantragen: Mitführen, bundesweite Gültigkeit und Jugendbegleitung",
+              "url": "https://www.freiburg.de/pb/%2CLde_DE/-/205332/jagdschein---ausstellung-beantragen/vbid222",
+              "publisher": "Stadt Freiburg im Breisgau",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Eine 17-jährige Person mit Jugendjagdschein soll von einer befreundeten erfahrenen Jägerin begleitet werden. Welche zusätzliche Voraussetzung nennt das Gesetz?",
+              "choices": [
+                "Nur eine mündliche Zusage der Jugendlichen.",
+                "Eine schriftliche Beauftragung durch den Erziehungsberechtigten.",
+                "Keine, jede beliebige Begleitung genügt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die andere Aufsichtsperson muss schriftlich beauftragt und jagdlich erfahren sein.",
+              "id": "de-bund-jugend-begleitung-q1"
+            },
+            {
+              "prompt": "Der Erziehungsberechtigte begleitet selbst, hat aber keine jagdliche Erfahrung. Reicht dies nach § 16 Abs. 2?",
+              "choices": [
+                "Ja, Verwandtschaft ersetzt die Erfahrung.",
+                "Ja, bei gutem Wetter.",
+                "Nein. Auch die Begleitperson muss jagdlich erfahren sein."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Erfahrungsvorgabe gilt für die Begleitperson insgesamt.",
+              "id": "de-bund-jugend-begleitung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-bund-jugend-gesellschaft",
+          "topic": "jagdausuebung",
+          "title": "Jugendjagdschein und Gesellschaftsjagd",
+          "lawTitle": "Bundesjagdgesetz (BJagdG)",
+          "citation": "§ 16 Abs. 3",
+          "officialText": "Der Jugendjagdschein berechtigt nicht zur Teilnahme an Gesellschaftsjagden.",
+          "summary": "Der Jugendjagdschein berechtigt nicht zur jagdlichen Teilnahme an Gesellschaftsjagden. Welche Jagd als Gesellschaftsjagd gilt, muss anhand des am Jagdort geltenden Landesrechts bestimmt werden; eine einheitliche Personenzahl wird hier nicht unterstellt.",
+          "sources": [
+            {
+              "url": "https://www.gesetze-im-internet.de/bjagdg/__16.html",
+              "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+              "title": "Bundesjagdgesetz § 16",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdverband.de/sites/default/files/2026-01/2025-07_DJV_Broschuere_Weg_zum_Jagdschein.pdf",
+              "publisher": "Deutscher Jagdverband e. V.",
+              "title": "Der Weg zum Jagdschein, Ausgabe Juli 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Eine erfahrene Aufsichtsperson begleitet eine Jugendliche mit Jugendjagdschein. Darf sie deshalb als Schützin an einer Gesellschaftsjagd teilnehmen?",
+              "choices": [
+                "Nein. Die Begleitung hebt § 16 Abs. 3 nicht auf.",
+                "Ja, wenn die Aufsicht direkt daneben steht.",
+                "Ja, sofern sie die Jägerprüfung gut bestanden hat."
+              ],
+              "correctIndex": 0,
+              "explanation": "Begleitung und Ausschluss von Gesellschaftsjagden sind getrennte Anforderungen.",
+              "id": "de-bund-jugend-gesellschaft-q1"
+            },
+            {
+              "prompt": "Wo prüfst du die für deinen Jagdort maßgebliche Definition einer Gesellschaftsjagd?",
+              "choices": [
+                "Ausschließlich im Kursvertrag.",
+                "Im jeweils geltenden Landesrecht.",
+                "Immer anhand derselben bundesweiten Mindestzahl."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Landesgesetze unterscheiden sich bei der Definition; die Jagdregion ist maßgeblich.",
+              "id": "de-bund-jugend-gesellschaft-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Ausgewählte Grundlagen. Abweichendes bzw. ergänzendes Landesrecht ist stets über die Jagdregion zu prüfen. Kein vollständiger Bundesrechts- oder amtlicher Prüfungsfragenkatalog.",
+      "examResources": [
+        {
+          "title": "Bundesrechtlicher Rahmen der Jägerprüfung und Jagdscheine",
+          "url": "https://www.gesetze-im-internet.de/bjagdg/__15.html",
+          "publisher": "Bundesministerium der Justiz und Bundesamt für Justiz",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Bundesrechtliche Voraussetzungen. Kein bundesweit einheitlicher Originalprüfungsfragenkatalog."
+        }
+      ],
+      "examNotes": "Originalprüfungsfragen sind nach dem Land der Prüfung zu wählen. Der Bund stellt hier keinen einheitlichen Länderfragenkatalog bereit. Die Jagdlatein-Fragen bleiben selbst formulierte Lernfragen."
+    },
+    {
+      "code": "BW",
+      "name": "Baden-Württemberg",
+      "lawTitle": "Jagd- und Wildtiermanagementgesetz (JWMG)",
+      "officialUrl": "https://www.landesrecht-bw.de/perma?j=WildTManagG_BW",
+      "articles": [
+        {
+          "id": "de-bw-wohnsitz",
+          "topic": "zustandigkeit",
+          "title": "Welche Jagdbehörde erteilt den Jagdschein?",
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz (JWMG)",
+          "citation": "§ 26 Abs. 4 Sätze 1 und 2",
+          "officialText": "Der Jagdschein wird von der unteren Jagdbehörde erteilt, in deren Bezirk die den Antrag stellende Person ihre Wohnung, bei mehreren Wohnungen ihre Hauptwohnung hat; abweichend von § 13 Absatz 1 Satz 2 Nummer 3 des Nationalparkgesetzes (NLPG) ist die Nationalparkverwaltung des Nationalparks Schwarzwald nicht für Entscheidungen nach den §§ 15 bis 18a des Bundesjagdgesetzes zuständig. Hat die den Antrag stellende Person im Geltungsbereich des Grundgesetzes keine Wohnung, ist die untere Jagdbehörde zuständig, in deren Bezirk die den Antrag stellende Person die Jagd ausüben will.",
+          "summary": "In Baden-Württemberg ist grundsätzlich die untere Jagdbehörde am Wohnort bzw. Hauptwohnort zuständig. Für Personen ohne Wohnung in Deutschland richtet sich die örtliche Zuständigkeit nach dem beabsichtigten Jagdort.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000051",
+              "publisher": "Land Baden-Württemberg",
+              "title": "JWMG § 26",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.baden-baden.de/buergerservice/umwelt/wald-natur/jagd-und-wildtiermanagement/jagdschein-jaegerpruefung/",
+              "publisher": "Stadt Baden-Baden",
+              "title": "Jagdschein und Jägerprüfung",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du wohnst mit Hauptwohnung in Baden-Baden. An welche Behördenart richtest du den Jagdscheinantrag grundsätzlich?",
+              "choices": [
+                "Die Prüfungsleitung einer beliebigen Jagdschule.",
+                "Die untere Jagdbehörde am Hauptwohnort.",
+                "Ausschließlich die Nationalparkverwaltung."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 26 Abs. 4 knüpft an Wohnung bzw. Hauptwohnung und die untere Jagdbehörde an.",
+              "id": "de-bw-wohnsitz-q1"
+            },
+            {
+              "prompt": "Was ist für die Zuständigkeit nach § 26 Abs. 4 zuerst zu klären?",
+              "choices": [
+                "Der Hersteller deiner Jagdausrüstung.",
+                "Deine bevorzugte Wildart.",
+                "Ob eine Wohnung bzw. Hauptwohnung in Deutschland besteht."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Gesetzestext unterscheidet den Wohnsitzfall von Personen ohne Wohnung im Geltungsbereich des Grundgesetzes.",
+              "id": "de-bw-wohnsitz-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-bw-schiessuebung",
+          "topic": "jagdausuebung",
+          "title": "Schießübung vor Bewegungsjagd und Vogelschrotschuss",
+          "lawTitle": "Jagd- und Wildtiermanagementgesetz (JWMG)",
+          "citation": "§ 31 Abs. 1 Nr. 1 (Auszug)",
+          "officialText": "(1) Verboten ist im Rahmen der Jagdausübung,\n1. ohne eine innerhalb der zurückliegenden 12 Monate unternommene Übung in der Schießfertigkeit an Bewegungsjagden teilzunehmen oder mit Schrot auf Vögel zu schießen,",
+          "summary": "Bei den beiden genannten Tätigkeiten muss in den letzten zwölf Monaten eine Übung in der Schießfertigkeit unternommen worden sein. Der Auszug regelt keine allgemeine neue Jagdscheinerteilung und behauptet keine hier nicht belegten Trefferzahlen.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D0FNN00000000058",
+              "publisher": "Land Baden-Württemberg",
+              "title": "JWMG § 31",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.lbv-bw.de/aktuelles/detail?cHash=a318edadf989af03029a491093481dc8&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=News&tx_news_pi1%5Bnews%5D=5087",
+              "publisher": "Landesbauernverband in Baden-Württemberg e. V.",
+              "title": "Jagd in Coronazeiten – Erläuterung der gesetzlichen Übungspflicht",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Deine letzte Schießübung liegt 15 Monate zurück. Was folgt aus dem zitierten Verbot vor einer Bewegungsjagd in Baden-Württemberg?",
+              "choices": [
+                "Du musst vorher wieder eine entsprechende Übung unternehmen.",
+                "Die Jägerprüfung ersetzt dauerhaft jede Übung.",
+                "Die Übungspflicht betrifft ausschließlich das Ausland."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der gesetzliche Zeitraum beträgt zurückliegende zwölf Monate.",
+              "id": "de-bw-schiessuebung-q1"
+            },
+            {
+              "prompt": "Welche weitere Tätigkeit erfasst § 31 Abs. 1 Nr. 1 neben Bewegungsjagden?",
+              "choices": [
+                "Vögel beobachten.",
+                "Mit Schrot auf Vögel schießen.",
+                "Das Lesen eines Jagdlehrbuchs."
+              ],
+              "correctIndex": 1,
+              "explanation": "Beide Fälle stehen ausdrücklich in der Norm.",
+              "id": "de-bw-schiessuebung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Prüfungsfragen und Lösungen des LJV Baden-Württemberg",
+          "url": "https://www.landesjagdverband.de/ausbildung-fortbildung/jaegerpruefung-pruefungsstelle/pruefungsfragen",
+          "publisher": "Landesjagdverband Baden-Württemberg e. V.",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "Veröffentlichter Katalogstand laut Herausgeber: 12. Juli 2021; fünf Fächer mit und ohne Lösungen. Der Herausgeber weist ausdrücklich darauf hin, dass rechtlich überholte Fragen in der Prüfung nicht berücksichtigt werden. Verbandsveröffentlichung, keine hier belegte freie Lizenz für Übernahme in eine kommerzielle App."
+        }
+      ],
+      "examNotes": "Verbandskatalog der Prüfungsstelle mit Lösungen zugänglich. Der veröffentlichte Katalogstand 2021 ist keine Bestätigung der heutigen Richtigkeit jeder Rechtsfrage. Keine 1:1-Übernahme ohne Klärung der Rechte und einzelner Rechtsstände; die eigenen Jagdlatein-Fragen sind davon getrennt."
+    },
+    {
+      "code": "BY",
+      "name": "Bayern",
+      "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+      "officialUrl": "https://www.gesetze-bayern.de/Content/Document/BayJG",
+      "articles": [
+        {
+          "id": "de-by-jagdarten",
+          "topic": "jagdausuebung",
+          "title": "Treibjagd und Gesellschaftsjagd unterscheiden",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 30 Abs. 1 und 2",
+          "officialText": "(1) Treibjagd ist die Jagd, an der neben Schützen mehr als vier Personen als Treiber und Abwehrer teilnehmen.\n(2) Gesellschaftsjagd ist die Jagd, an der mehr als vier Personen teilnehmen.",
+          "summary": "Bayern unterscheidet die Gesamtteilnehmerzahl der Gesellschaftsjagd von der Treiber-/Abwehrerzahl der Treibjagd. Für die Treibjagd zählen nach Absatz 1 neben den Schützen mehr als vier Personen als Treiber und Abwehrer. Die Zahlen sind nicht ungeprüft auf andere Bundesländer übertragbar.",
+          "sources": [
+            {
+              "title": "BayJG Art. 30, geltende Fassung seit 1. April 2026",
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-30",
+              "publisher": "Freistaat Bayern",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdarten – Erläuterung von Gesellschafts- und Treibjagd",
+              "url": "https://jagd-bayern.de/jagdpraxis/jagdarten/",
+              "publisher": "Bayerischer Jagdverband e. V.",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true,
+          "questions": [
+            {
+              "id": "de-by-jagdarten-q1",
+              "prompt": "Welche Personen zählt Art. 30 Abs. 1 für die Schwelle der Treibjagd neben den Schützen?",
+              "choices": [
+                "Nur bereits erlegte Wildtiere.",
+                "Mehr als vier Personen als Treiber und Abwehrer.",
+                "Nur die anwesenden Schützen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Absatz 1 nennt Treiber und Abwehrer ausdrücklich neben den Schützen."
+            },
+            {
+              "id": "de-by-jagdarten-q2",
+              "prompt": "Was kennzeichnet die Gesellschaftsjagd nach Art. 30 Abs. 2 in Bayern?",
+              "choices": [
+                "Mehr als vier teilnehmende Personen.",
+                "Genau eine jagende Person.",
+                "Ausschließlich die Zahl mitgeführter Hunde."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die bayerische Definition knüpft an mehr als vier teilnehmende Personen an."
+            }
+          ]
+        },
+        {
+          "id": "de-by-nachsuche",
+          "topic": "wildschutz",
+          "title": "Krankgeschossenes Wild fachgemäß nachsuchen",
+          "lawTitle": "Bayerisches Jagdgesetz (BayJG)",
+          "citation": "Art. 29 Abs. 1",
+          "officialText": "Auf krankgeschossenes Wild ist ergänzend zu § 22a BJagdG zeitgerecht und fachgemäß nachzusuchen.",
+          "summary": "Bayern verlangt ergänzend zum Bundesrecht eine zeitgerechte und fachgemäße Nachsuche. Der Text ist keine pauschale Erlaubnis, fremde Reviere ohne Beachtung der Wildfolgeregeln zu betreten, und verlangt keine unüberlegte sofortige Verfolgung.",
+          "sources": [
+            {
+              "url": "https://www.gesetze-bayern.de/Content/Document/BayJG-29",
+              "publisher": "Freistaat Bayern",
+              "title": "BayJG Art. 29, geltende Fassung ab 1. April 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.kahlgrundjaeger.de/jagdhundewesen/nachsuchengespanne/",
+              "publisher": "Jägervereinigung Kahlgrund e. V.",
+              "title": "Nachsuchengespanne – praktisches Vorgehen und Ansprechpartner",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Nach einem Schuss bestehen Anzeichen für eine Verletzung. Welche Anforderung stellt Bayern an die Nachsuche?",
+              "choices": [
+                "Sie ist freiwillig, solange das Wild nicht sichtbar ist.",
+                "Sie muss zeitgerecht und fachgemäß erfolgen.",
+                "Sie darf grundsätzlich erst nach mehreren Wochen beginnen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Art. 29 Abs. 1 nennt beide Anforderungen gemeinsam.",
+              "id": "de-by-nachsuche-q1"
+            },
+            {
+              "prompt": "Bedeutet „zeitgerecht und fachgemäß“, ohne Planung sofort beliebig weit hinterherzulaufen?",
+              "choices": [
+                "Nein. Fachgerechtes Vorgehen und die geltenden Wildfolgeregeln bleiben maßgeblich.",
+                "Ja, jede Reviergrenze verliert automatisch ihre Bedeutung.",
+                "Ja, geeignete Nachsuchengespanne dürfen nie hinzugezogen werden."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Pflicht ist mit fachgerechter Durchführung und weiteren gesetzlichen Grenzen zu verbinden.",
+              "id": "de-by-nachsuche-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Die 2026 geänderte Fassung wurde verwendet; ältere bayerische Gesetzesabschriften sind nicht die Grundlage dieser Normblöcke.",
+      "examResources": [
+        {
+          "title": "Amtlicher Fragenkatalog: Sachgebiet 3 Rechtliche Vorschriften mit Musterlösung",
+          "url": "https://www.lmg.bayern.de/mam/aufgaben_leistungen/jaegerpruefung/260512_fragenkatalog_mit_antworten_sg3_gesichert.pdf",
+          "publisher": "Bayerisches Staatsministerium für Wirtschaft, Landesentwicklung und Energie / Landesamt für Maß und Gewicht",
+          "kind": "official-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF tatsächlich geöffnet; Stand 12. Mai 2026. Richtige Antworten sind im veröffentlichten Dokument gekennzeichnet. Veröffentlichung durch die oberste Jagdbehörde, im Angebot der zuständigen Prüfungsbehörde verlinkt. Keine gesonderte freie Lizenz für App-Vervielfältigung im gelesenen Dokument belegt."
+        },
+        {
+          "title": "Originalprüfungen 2026 und zugehörige Lösungen",
+          "url": "https://www.lmg.bayern.de/aufgaben_leistungen/jaegerpruefung/index.html",
+          "publisher": "Bayerisches Landesamt für Maß und Gewicht",
+          "kind": "official-sample",
+          "reviewedOn": "2026-10-23",
+          "notes": "Die zuständige Behörde bietet ausdrücklich Originalprüfungen zum Üben und gesonderte Lösungen an, unter anderem vom 11. August 2026 und 12. Mai 2026. Es handelt sich um vergangene Prüfungen, nicht um eine Garantie künftiger Aufgaben."
+        }
+      ],
+      "examNotes": "Aktueller amtlicher Rechtskatalog und vergangene Originalprüfungen mit Lösungen sind beim Herausgeber verfügbar. Hier werden die Originaldokumente verlinkt; keine vollständige Übernahme oder eigene Umbenennung zu Originalfragen. Dokumentstand und heutiges Recht müssen für jede Frage zusammen geprüft werden."
+    },
+    {
+      "code": "BE",
+      "name": "Berlin",
+      "lawTitle": "Jäger- und Falknerprüfungsordnung Berlin (Jagd/FalkPrV BE)",
+      "officialUrl": "https://gesetze.berlin.de/bsbe/document/jlr-NNLBE0000490A",
+      "articles": [
+        {
+          "id": "de-be-anmeldung",
+          "topic": "zulassung",
+          "title": "Anmeldefristen für die Berliner Jägerprüfung",
+          "lawTitle": "Jäger- und Falknerprüfungsordnung Berlin (Jagd/FalkPrV BE)",
+          "citation": "§ 4 Abs. 1 Satz 1",
+          "officialText": "Der Antrag auf Zulassung zur Jägerprüfung muss schriftlich oder elektronisch bis zum 15. Januar oder bei Durchführung einer zweiten Prüfung bis zum 15. Juli bei der Jagdbehörde eingegangen sein.",
+          "summary": "Die Berliner Fristen betreffen den Eingang des Antrags bei der Jagdbehörde. Der 15. Juli gilt nur, wenn eine zweite Prüfung durchgeführt wird; ein weiterer Termin wird dadurch nicht garantiert.",
+          "sources": [
+            {
+              "url": "https://gesetze.berlin.de/bsbe/document/jlr-NNLBE0000490ANN00000000014",
+              "publisher": "Land Berlin",
+              "title": "Jagd/FalkPrV BE § 4, Änderung 19. August 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdlehrling.de/jaegerpruefung-in-deinem-bundesland/",
+              "publisher": "Jagdlehrling",
+              "title": "Jägerprüfung nach Bundesland – Berlin, Änderungen 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du möchtest die reguläre Berliner Jägerprüfung beantragen. Worauf kommt es für die Frist an?",
+              "choices": [
+                "Nur auf das Absendedatum am 31. Januar.",
+                "Auf den Antragseingang bis zum 15. Januar bei der Jagdbehörde.",
+                "Auf irgendeinen Termin im Sommer."
+              ],
+              "correctIndex": 1,
+              "explanation": "Das Gesetz verlangt, dass der Antrag bis zum 15. Januar eingegangen ist.",
+              "id": "de-be-anmeldung-q1"
+            },
+            {
+              "prompt": "Gilt der 15. Juli automatisch in jedem Jahr als zweite Berliner Anmeldefrist?",
+              "choices": [
+                "Ja, unabhängig vom Prüfungsangebot.",
+                "Nein, diese Frist ist nur ein unverbindlicher Kurswunsch.",
+                "Nein. Sie gilt bei Durchführung einer zweiten Prüfung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Bedingung „bei Durchführung einer zweiten Prüfung“ gehört zur Norm.",
+              "id": "de-be-anmeldung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-be-schriftlich",
+          "topic": "pruefung",
+          "title": "In jedem Berliner Sachgebiet 13 richtige Antworten",
+          "lawTitle": "Jäger- und Falknerprüfungsordnung Berlin (Jagd/FalkPrV BE)",
+          "citation": "§ 7 Abs. 4 Satz 1",
+          "officialText": "Bei der schriftlichen Prüfung müssen in allen Sachgebieten jeweils mindestens 13 Fragen richtig und vollständig beantwortet werden.",
+          "summary": "Die aktuelle Berliner schriftliche Bestehensvorgabe gilt je Sachgebiet. Mehr Punkte in einem anderen Gebiet ersetzen das Unterschreiten der Mindestzahl nicht. Alte Rahmenpläne mit abweichenden Schwellen werden hierfür nicht verwendet.",
+          "sources": [
+            {
+              "url": "https://gesetze.berlin.de/bsbe/document/jlr-NNLBE0000490A",
+              "publisher": "Land Berlin",
+              "title": "Jagd/FalkPrV BE § 7, geltende Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdlehrling.de/jaegerpruefung-in-deinem-bundesland/",
+              "publisher": "Jagdlehrling",
+              "title": "Jägerprüfung nach Bundesland – Berlin, Änderungen 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du beantwortest in einem Berliner Sachgebiet nur zwölf Fragen richtig und vollständig, in allen anderen deutlich mehr. Ist die zitierte Mindestanforderung erfüllt?",
+              "choices": [
+                "Nein. Mindestens 13 sind in jedem Sachgebiet erforderlich.",
+                "Ja, wenn die Gesamtsumme hoch genug ist.",
+                "Ja, wenn nur das Rechtsgebiet unter 13 liegt."
+              ],
+              "correctIndex": 0,
+              "explanation": "„In allen Sachgebieten jeweils“ schließt einen Ausgleich dieser Mindestzahl aus.",
+              "id": "de-be-schriftlich-q1"
+            },
+            {
+              "prompt": "Wie viele Fragen müssen je Sachgebiet mindestens richtig und vollständig beantwortet werden?",
+              "choices": [
+                "10.",
+                "13.",
+                "Nur die Hälfte der gestellten Fragen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 7 Abs. 4 Satz 1 der aktuellen Fassung nennt 13.",
+              "id": "de-be-schriftlich-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Aktuelle Änderung vom 19. August 2025 berücksichtigt. Eigene Lernfragen; keine übernommenen amtlichen Prüfungsfragen.",
+      "examResources": [
+        {
+          "title": "Amtliche Berliner Jäger- und Falknerprüfungsinformation",
+          "url": "https://www.berlin.de/sen/uvk/natur-und-gruen/jagd-und-wildtiere/jagdwesen-in-berlin/jaeger-und-falknerpruefung/",
+          "publisher": "Senatsverwaltung Berlin, Jagdbehörde",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Prüfungsorganisation und Verweis auf die aktuelle Prüfungsordnung. Auf der gelesenen amtlichen Seite wird kein vollständiger öffentlicher Originalfragenkatalog mit Lösungen bereitgestellt."
+        }
+      ],
+      "examNotes": "Ein öffentlicher vollständiger amtlicher Berliner Originalkatalog mit Lösungen konnte nicht belegt werden. Die geltende Prüfungsordnung und die eigenen Lernfragen bleiben erreichbar. Aus der fehlenden Veröffentlichung wird kein erfundener Originalkatalog erzeugt."
+    },
+    {
+      "code": "BB",
+      "name": "Brandenburg",
+      "lawTitle": "Jagdgesetz für das Land Brandenburg (BbgJagdG)",
+      "officialUrl": "https://bravors.brandenburg.de/gesetze/bbgjagdg",
+      "articles": [
+        {
+          "id": "de-bb-zustaendigkeit",
+          "topic": "zustandigkeit",
+          "title": "Jagdschein am Hauptwohnort beantragen",
+          "lawTitle": "Jagdgesetz für das Land Brandenburg (BbgJagdG)",
+          "citation": "§ 24 Abs. 2 Satz 1",
+          "officialText": "Der Jagdschein und der Falknerjagdschein werden von der unteren Jagdbehörde erteilt, in deren Zuständigkeitsbereich der Antragsteller seine Wohnung, bei mehreren Wohnungen seine Hauptwohnung, hat.",
+          "summary": "Für den zitierten Wohnsitzfall ist die untere Jagdbehörde an der Wohnung bzw. Hauptwohnung zuständig. Der Ort einer besuchten Jagdschule ersetzt diese Wohnsitzanknüpfung nicht.",
+          "sources": [
+            {
+              "url": "https://bravors.brandenburg.de/gesetze/bbgjagdg#24",
+              "publisher": "Land Brandenburg",
+              "title": "BbgJagdG § 24, Änderung vom 20. Mai 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.potsdam-mittelmark.de/files/formulare/Jagd%20AntragJagdschein_PCausfuellbar_Dezember_2025.pdf",
+              "publisher": "Landkreis Potsdam-Mittelmark",
+              "title": "Operativer Jagdscheinantrag der unteren Jagdbehörde, Stand Dezember 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du hast mehrere Wohnungen und beantragst einen Jagdschein in Brandenburg. Welche Wohnung ist nach § 24 Abs. 2 Satz 1 maßgeblich?",
+              "choices": [
+                "Immer die Ferienwohnung.",
+                "Die Wohnung neben dem Schießstand.",
+                "Die Hauptwohnung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Gesetzestext nennt bei mehreren Wohnungen ausdrücklich die Hauptwohnung.",
+              "id": "de-bb-zustaendigkeit-q1"
+            },
+            {
+              "prompt": "Welche Behörde erteilt den Jagdschein im genannten Wohnsitzfall?",
+              "choices": [
+                "Die untere Jagdbehörde des maßgeblichen Wohnbezirks.",
+                "Eine Jagdschule allein durch Kursbescheinigung.",
+                "Ein beliebiger Jagdausrüster."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 24 Abs. 2 Satz 1 benennt die untere Jagdbehörde.",
+              "id": "de-bb-zustaendigkeit-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-bb-gueltigkeitsdauer",
+          "topic": "zulassung",
+          "title": "Jagdjahre und Tagesjagdschein unterscheiden",
+          "lawTitle": "Jagdgesetz für das Land Brandenburg (BbgJagdG)",
+          "citation": "§ 24 Abs. 3",
+          "officialText": "Der Jagdschein und der Falknerjagdschein werden als Jahresjagdschein mit einer Geltungsdauer von einem, zwei oder drei Jagdjahren (1. April bis 31. März) oder als Tagesjagdschein mit einer Geltungsdauer von vierzehn aufeinander folgenden Tagen erteilt. Der Falknerjagdschein ist als solcher zu kennzeichnen.",
+          "summary": "Brandenburg nennt ein, zwei oder drei Jagdjahre für den Jahresjagdschein. Das Jagdjahr läuft vom 1. April bis 31. März; der Tagesjagdschein betrifft vierzehn aufeinanderfolgende Tage.",
+          "sources": [
+            {
+              "url": "https://bravors.brandenburg.de/gesetze/bbgjagdg#24",
+              "publisher": "Land Brandenburg",
+              "title": "BbgJagdG § 24, Änderung vom 20. Mai 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.potsdam-mittelmark.de/files/formulare/Jagd%20AntragJagdschein_PCausfuellbar_Dezember_2025.pdf",
+              "publisher": "Landkreis Potsdam-Mittelmark",
+              "title": "Operativer Jagdscheinantrag der unteren Jagdbehörde, Stand Dezember 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Ist ein brandenburgischer Jahresjagdschein stets an das Kalenderjahr Januar bis Dezember gebunden?",
+              "choices": [
+                "Ja, ausnahmslos.",
+                "Nein. Die Norm nennt das Jagdjahr vom 1. April bis 31. März.",
+                "Nein, er gilt immer genau vier Wochen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesetzliche Jahresgrenze ist das Jagdjahr.",
+              "id": "de-bb-gueltigkeitsdauer-q1"
+            },
+            {
+              "prompt": "Welche Laufzeit hat der Tagesjagdschein nach § 24 Abs. 3?",
+              "choices": [
+                "Vierzehn frei wählbare Einzeltage.",
+                "Ein Kalenderjahr.",
+                "Vierzehn aufeinanderfolgende Tage."
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Wort „aufeinander“ grenzt ihn von frei verteilbaren Jagdtagen ab.",
+              "id": "de-bb-gueltigkeitsdauer-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Mögliche Prüfungsfragen und offene Fragen der beliehenen Prüfungsstelle",
+          "url": "https://ljv-brandenburg.de/jaeger-werden/infos-zur-jaegerpruefung/",
+          "publisher": "Landesjagdverband Brandenburg e. V.",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "Der Herausgeber nennt ausdrücklich mögliche Prüfungsfragen ohne Lösungen, darunter Sachgebiet 6 Rechtsvorschriften und offene Fragen. Die Seite bietet zusätzlich einen Übungstest, bezeichnet dessen Inhalte jedoch nur als Übungsangebot. Kein Nachweis identischer künftiger Originalprüfungen oder einer freien Weiterverwendungslizenz."
+        }
+      ],
+      "examNotes": "Mögliche Fragen der beliehenen Prüfungsstelle sind öffentlich zugänglich, aber die PDF-Sammlungen werden ohne Lösungen angeboten. Sie werden nicht als vollständiger amtlicher Originalkatalog mit amtlichen Lösungen ausgegeben. Rechte und aktuelle Einzelantworten sind vor einer Übernahme zu klären."
+    },
+    {
+      "code": "HB",
+      "name": "Bremen",
+      "lawTitle": "Bremische Verordnung über die Jäger- und Falknerprüfung (JuFPrüfV)",
+      "officialUrl": "https://www.transparenz.bremen.de/sixcms/detail.php?gsid=bremen2014_tp.c.178110.de&template=00_html_to_pdf_d",
+      "articles": [
+        {
+          "id": "de-hb-ausbildungsnachweis",
+          "topic": "zulassung",
+          "title": "Ausbildung für die Bremer Jägerprüfung nachweisen",
+          "lawTitle": "Bremische Verordnung über die Jäger- und Falknerprüfung (JuFPrüfV)",
+          "citation": "§ 3 Abs. 2 Nr. 5 (Auszug)",
+          "officialText": "Dem Antrag auf einem von der Jagdbehörde bestimmten Vordruck sind beizufügen:\n5. der Nachweis einer theoretischen und praktischen Ausbildung zum Erwerb von Kenntnissen und Fähigkeiten, die Gegenstand der Jägerprüfung sind (Lehrgang der Landesjägerschaft oder ein vergleichbarer Ausbildungslehrgang oder ein vergleichbares forstwissenschaftliches oder forstwirtschaftliches Studium),",
+          "summary": "Die Bremer Zulassung verlangt den Nachweis theoretischer und praktischer Ausbildung. Die Norm lässt ausdrücklich vergleichbare Lehrgänge oder ein vergleichbares forstliches Studium zu; ausschließliches Selbstlernen ersetzt diesen Nachweis nicht.",
+          "sources": [
+            {
+              "url": "https://www.transparenz.bremen.de/sixcms/detail.php?gsid=bremen2014_tp.c.178110.de&template=00_html_to_pdf_d",
+              "publisher": "Freie Hansestadt Bremen",
+              "title": "JuFPrüfV, aktuelle Fassung seit 24. März 2022",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.lj-bremen.de/Informationen-So-werde-ich-Jaegerin-Lehrgangstermine-Anmeldung-112.html",
+              "publisher": "Landesjägerschaft Bremen e. V.",
+              "title": "Lehrgangstermine und Anmeldung – Ausbildung und Altersvoraussetzung",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du möchtest in Bremen nur mit eigenständigem Lesen ohne Ausbildungsnachweis zur Prüfung. Entspricht das § 3 Abs. 2 Nr. 5?",
+              "choices": [
+                "Ja, ein Lehrbuchkauf genügt.",
+                "Nein, der Ausbildungsnachweis ist dem Antrag beizufügen.",
+                "Ja, wenn du sehr viele Quizfragen beantwortest."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Verordnung verlangt nachgewiesene theoretische und praktische Ausbildung.",
+              "id": "de-hb-ausbildungsnachweis-q1"
+            },
+            {
+              "prompt": "Ist ausschließlich ein Lehrgang der Landesjägerschaft als Ausbildungsnachweis vorgesehen?",
+              "choices": [
+                "Nein. Die Vorschrift nennt auch vergleichbare Lehrgänge und vergleichbare forstliche Studiengänge.",
+                "Ja, jede andere Ausbildung ist schon nach diesem Wortlaut ausgeschlossen.",
+                "Nein, überhaupt keine Ausbildung wird verlangt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Klammer in Nr. 5 führt ausdrücklich Alternativen auf.",
+              "id": "de-hb-ausbildungsnachweis-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-hb-pruefungsalter",
+          "topic": "zulassung",
+          "title": "Bremer Altersvoraussetzung richtig berechnen",
+          "lawTitle": "Bremische Verordnung über die Jäger- und Falknerprüfung (JuFPrüfV)",
+          "citation": "§ 4 Abs. 1 Nr. 2 (Auszug)",
+          "officialText": "Die Jagdbehörde entscheidet über die Zulassung zur Jägerprüfung. Sie hat vorbehaltlich des Absatzes 3 alle Bewerber und Bewerberinnen zuzulassen, die\n2. spätestens sechs Monate vor der Prüfung fünfzehn Jahre alt geworden sind und",
+          "summary": "Die zitierte Altersvoraussetzung bedeutet: Der 15. Geburtstag muss spätestens sechs Monate vor der Prüfung liegen. Sie ersetzt weder die weiteren Zulassungsvoraussetzungen noch das gesonderte Mindestalter für die spätere Jagdscheinerteilung.",
+          "sources": [
+            {
+              "url": "https://www.transparenz.bremen.de/sixcms/detail.php?gsid=bremen2014_tp.c.178110.de&template=00_html_to_pdf_d",
+              "publisher": "Freie Hansestadt Bremen",
+              "title": "JuFPrüfV, aktuelle Fassung seit 24. März 2022",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.lj-bremen.de/Informationen-So-werde-ich-Jaegerin-Lehrgangstermine-Anmeldung-112.html",
+              "publisher": "Landesjägerschaft Bremen e. V.",
+              "title": "Lehrgangstermine und Anmeldung – Ausbildung und Altersvoraussetzung",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Der 15. Geburtstag liegt erst einen Monat vor der geplanten Bremer Prüfung. Ist die zitierte Altersvoraussetzung erfüllt?",
+              "choices": [
+                "Ja, der Geburtstag vor der Prüfung reicht immer.",
+                "Ja, ab dem 14. Geburtstag.",
+                "Nein. Gefordert sind spätestens sechs Monate vor der Prüfung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die gesetzliche Vorlaufzeit ist sechs Monate.",
+              "id": "de-hb-pruefungsalter-q1"
+            },
+            {
+              "prompt": "Darfst du aus der Erfüllung dieser Prüfungsaltersvoraussetzung unmittelbar auf einen bereits erteilten Jagdschein schließen?",
+              "choices": [
+                "Nein. Prüfungszulassung und Jagdscheinerteilung sind unterschiedliche Schritte.",
+                "Ja, die Zulassung ist automatisch ein Jagdschein.",
+                "Ja, die Ausbildung ersetzt den Jagdschein dauerhaft."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm betrifft nur die Zulassung zur Prüfung.",
+              "id": "de-hb-pruefungsalter-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Bremische Verordnung über die Jäger- und Falknerprüfung",
+          "url": "https://www.transparenz.bremen.de/sixcms/detail.php?gsid=bremen2014_tp.c.178110.de&template=00_html_to_pdf_d",
+          "publisher": "Freie Hansestadt Bremen",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Aktuelle Prüfungsordnung tatsächlich gelesen. Diese Rechtsquelle regelt die Prüfung; sie ist kein öffentlicher Originalfragenkatalog mit Lösungen."
+        }
+      ],
+      "examNotes": "Ein aktueller vollständiger amtlicher Bremer Originalfragenkatalog mit Lösungsschlüssel konnte in den geprüften Quellen nicht belegt werden. Andere Bundesländerfragen werden deshalb nicht als Bremer Originale angeboten."
+    },
+    {
+      "code": "HH",
+      "name": "Hamburg",
+      "lawTitle": "Verordnung über die Jägerprüfung Hamburg (JagdPrV HA)",
+      "officialUrl": "https://www.juris.de/bsha/document/jlr-NNLHH0000699C",
+      "articles": [
+        {
+          "id": "de-hh-ausbildungszeit",
+          "topic": "zulassung",
+          "title": "120 Stunden ohne Übungsschießen",
+          "lawTitle": "Verordnung über die Jägerprüfung Hamburg (JagdPrV HA)",
+          "citation": "§ 4 Abs. 3 Nr. 3 (Auszug)",
+          "officialText": "Die Zulassung ist zu versagen, wenn\n3. der Antragsteller den Nachweis einer theoretischen und praktischen Ausbildung mit einer Mindestausbildungszeit von 120 Stunden nicht erbringt; Zeiten des Übungsschießens dürfen bei der Mindestausbildungszeit nicht berücksichtigt werden; die Ausbildung soll sich an den Grundsätzen einer naturnahen Jagd orientieren.",
+          "summary": "Hamburg fordert mindestens 120 Stunden theoretische und praktische Ausbildung. Übungsschießen wird bei dieser Mindestzeit nicht angerechnet. Ein Kursplan muss diese Trennung beachten.",
+          "sources": [
+            {
+              "url": "https://www.juris.de/bsha/document/jlr-NNLHH0000699CNN00000000008",
+              "publisher": "Freie und Hansestadt Hamburg",
+              "title": "Verordnung über die Jägerprüfung, aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdlehrling.de/jaegerpruefung-in-deinem-bundesland/",
+              "publisher": "Jagdlehrling",
+              "title": "Hamburger Jägerprüfung – Ausbildung und schriftlicher Teil",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Ein Hamburger Kurs nennt insgesamt 120 Stunden einschließlich 20 Stunden Übungsschießen. Ist damit der zitierte Ausbildungsnachweis bereits erfüllt?",
+              "choices": [
+                "Ja, jede Schießstunde zählt doppelt.",
+                "Nein. Übungsschießen darf auf die 120 Stunden nicht angerechnet werden.",
+                "Ja, wenn alle Teilnehmenden zustimmen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Vorschrift nimmt die Zeiten des Übungsschießens ausdrücklich von der Anrechnung aus.",
+              "id": "de-hh-ausbildungszeit-q1"
+            },
+            {
+              "prompt": "Welche Mindestzeit verlangt § 4 Abs. 3 Nr. 3 für die theoretische und praktische Ausbildung ohne Übungsschießen?",
+              "choices": [
+                "60 Stunden.",
+                "90 Stunden.",
+                "120 Stunden."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Gesetzeswortlaut nennt 120 Stunden.",
+              "id": "de-hh-ausbildungszeit-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-hh-schriftliche-fragen",
+          "topic": "pruefung",
+          "title": "15 schriftliche Fragen aus jedem Sachgebiet",
+          "lawTitle": "Verordnung über die Jägerprüfung Hamburg (JagdPrV HA)",
+          "citation": "§ 5 Abs. 1 Satz 1 und Abs. 3 Satz 2",
+          "officialText": "Beim schriftlichen Teil der Prüfung sind aus den in § 3 Absatz 2 Nummern 1 bis 6 genannten Sachgebieten je fünfzehn Fragen anhand eines Fragebogens den Bewerbern zur schriftlichen Beantwortung vorzulegen.\nDie Fragen sind in einer Zeit von drei Stunden zu beantworten.",
+          "summary": "Der Hamburger schriftliche Teil enthält jeweils 15 Fragen aus sechs Sachgebieten, insgesamt 90. Die Bearbeitungszeit beträgt drei Stunden. Der Umfang ist von der gesonderten Bestehensbewertung zu unterscheiden.",
+          "sources": [
+            {
+              "url": "https://www.juris.de/bsha/document/jlr-NNLHH0000699CNN00000000011",
+              "publisher": "Freie und Hansestadt Hamburg",
+              "title": "Verordnung über die Jägerprüfung, aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdlehrling.de/jaegerpruefung-in-deinem-bundesland/",
+              "publisher": "Jagdlehrling",
+              "title": "Hamburger Jägerprüfung – Ausbildung und schriftlicher Teil",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Wie viele Fragen ergeben sich aus sechs Hamburger Sachgebieten mit jeweils 15 Fragen?",
+              "choices": [
+                "90 Fragen.",
+                "15 Fragen insgesamt.",
+                "150 Fragen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Sechs mal 15 ergibt 90; die Zahl wird aus der ausdrücklich genannten Verteilung berechnet.",
+              "id": "de-hh-schriftliche-fragen-q1"
+            },
+            {
+              "prompt": "Welche Bearbeitungszeit nennt § 5 Abs. 3 Satz 2?",
+              "choices": [
+                "45 Minuten.",
+                "Drei Stunden.",
+                "Zwei Tage."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für den schriftlichen Teil sind drei Stunden vorgegeben.",
+              "id": "de-hh-schriftliche-fragen-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Hamburger Prüfungsfragenkatalog der Landesjägerschaft",
+          "url": "https://ljv-hamburg.de/wp-content/uploads/2024/06/Pruefungsfragenkatalog-Fragen.pdf",
+          "publisher": "Landesjagd- und Naturschutzverband der Freien und Hansestadt Hamburg e. V.",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF geöffnet: 150 Seiten. Dokumenttitel bezeichnet die Fassung vom 30. Mai 2023; die heute verlinkte Datei liegt im Downloadbereich Juni 2024. Ein späteres Uploadverzeichnis ist kein neuer Inhaltsstand. Kein belegter freier App-Nachdruck."
+        },
+        {
+          "title": "Hamburger Antworten zum Prüfungsfragenkatalog",
+          "url": "https://ljv-hamburg.de/wp-content/uploads/2024/06/Pruefungsfragenkatalog-Antworten.pdf",
+          "publisher": "Landesjagd- und Naturschutzverband der Freien und Hansestadt Hamburg e. V.",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "Separater Antworten-PDF tatsächlich geöffnet, ebenfalls 150 Seiten; Dokumenttitel 30. Mai 2023. Die heutige Vollständigkeit und rechtliche Aktualität jeder Antwort wurden nicht pauschal bestätigt."
+        }
+      ],
+      "examNotes": "Fragen und Antworten sind auf der Seite der Landesjägerschaft getrennt veröffentlicht. Es sind Verbandsdokumente; freie Vervielfältigung und uneingeschränkte Aktualität sind nicht belegt. Kein Import in den eigenen Quizpool."
+    },
+    {
+      "code": "HE",
+      "name": "Hessen",
+      "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+      "officialUrl": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-NNLHE0000508E",
+      "articles": [
+        {
+          "id": "de-he-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Drei Teile der hessischen Jägerprüfung",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 3",
+          "officialText": "Die Jägerprüfung besteht aus den drei Prüfungsteilen jagdliche Schießprüfung, schriftliche Prüfung und praktisch-mündliche Prüfung.",
+          "summary": "In Hessen gehören jagdliche Schießprüfung, schriftliche und praktisch-mündliche Prüfung zur Jägerprüfung. Die Aufzählung allein ist keine Aussage über feste Reihenfolge oder die Regeln der Wiederholung.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-NNLHE0000508ENN00000000017",
+              "publisher": "Land Hessen",
+              "title": "HJagdV, Gesamtausgabe gültig ab 28. Mai 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/jagd-in-hessen/jagdschein/",
+              "publisher": "Landesjagdverband Hessen e. V.",
+              "title": "Jagdschein und Jägerprüfung – drei Teile, vier Sachgebiete",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Zusammenstellung entspricht den drei hessischen Prüfungsteilen?",
+              "choices": [
+                "Nur schriftlich und ein freiwilliger Schießtermin.",
+                "Nur eine praktische Revierrunde.",
+                "Jagdliche Schießprüfung, schriftliche Prüfung und praktisch-mündliche Prüfung."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 3 nennt genau diese drei Teile.",
+              "id": "de-he-pruefungsteile-q1"
+            },
+            {
+              "prompt": "Ersetzt eine bestandene schriftliche Prüfung für sich die beiden anderen Teile?",
+              "choices": [
+                "Nein. Alle drei genannten Prüfungsteile gehören zur Jägerprüfung.",
+                "Ja, wenn das Rechtsgebiet sehr gut war.",
+                "Ja, Schießen ist nach § 3 lediglich Freizeitangebot."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der zitierte § 3 beschreibt eine dreiteilige Prüfung.",
+              "id": "de-he-pruefungsteile-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-rechtssachgebiet",
+          "topic": "pruefung",
+          "title": "Recht als eigenes hessisches Sachgebiet",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 5 Abs. 1 Nr. 4 (Auszug)",
+          "officialText": "Die schriftliche Prüfung umfasst vier Sachgebiete:\n4. Recht: Jagd-, Wald-, Tierschutz-, Waffenrecht, Recht der Lebensmittelhygiene, des Naturschutzes und der Landschaftspflege sowie weitere für die Jagdausübung relevante Einzelrechtsvorschriften.",
+          "summary": "Recht ist in Hessen eines von vier schriftlichen Sachgebieten. Es umfasst mehr als das Landesjagdgesetz: auch Waffen-, Wald-, Tierschutz-, Naturschutz- und Lebensmittelhygienerecht gehören zum ausdrücklich genannten Umfang.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-NNLHE0000508ENN00000000023",
+              "publisher": "Land Hessen",
+              "title": "HJagdV, Gesamtausgabe gültig ab 28. Mai 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/jagd-in-hessen/jagdschein/",
+              "publisher": "Landesjagdverband Hessen e. V.",
+              "title": "Jagdschein und Jägerprüfung – drei Teile, vier Sachgebiete",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Reicht es für das hessische Sachgebiet Recht, ausschließlich das Hessische Jagdgesetz zu lesen?",
+              "choices": [
+                "Ja, alle anderen Rechtsbereiche sind ausgeschlossen.",
+                "Nein. Die Norm nennt weitere einschlägige Rechtsbereiche ausdrücklich.",
+                "Ja, Waffenrecht gehört nur zu biologischen Fragen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 5 Abs. 1 Nr. 4 nennt mehrere Rechtsmaterien.",
+              "id": "de-he-rechtssachgebiet-q1"
+            },
+            {
+              "prompt": "Welcher Bereich ist im zitierten Rechtssachgebiet ausdrücklich enthalten?",
+              "choices": [
+                "Nur die Geschichte der Jagdmalerei.",
+                "Nur private Einkaufsbedingungen.",
+                "Das Recht der Lebensmittelhygiene."
+              ],
+              "correctIndex": 2,
+              "explanation": "Lebensmittelhygienerecht ist im Wortlaut ausdrücklich aufgeführt.",
+              "id": "de-he-rechtssachgebiet-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Aktuelle Gesamtausgabe ab 28. Mai 2026 gelesen. Die zum 1. April 2026 veränderte schriftliche Bewertungsregel wird nicht aus alten Merkblättern übernommen.",
+      "examResources": [
+        {
+          "title": "Amtlicher hessischer Fragenkatalog: Sachgebiet 4 Recht",
+          "url": "https://rp-kassel.hessen.de/sites/rp-kassel.hessen.de/files/2023-11/2023-11-23-jaegerpruefungsfragen_sachgebiet_4_recht.pdf",
+          "publisher": "Regierungspräsidium Kassel, obere Jagdbehörde",
+          "kind": "official-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF tatsächlich geöffnet: Stand 23. November 2023, 60 Seiten, 524 Fragen. Der amtlich weiter verlinkte PDF-Einstieg nennt noch die alte Bewertung 28 von 35 Punkten und drei Stunden; diese Angaben stimmen mit der seit April 2026 geänderten Norm nicht mehr überein. Kein pauschaler Aktualitäts- oder Lizenzfreigabenachweis."
+        },
+        {
+          "title": "Aktuelle Prüfungsinformation einschließlich Neuregelung ab 1. April 2026",
+          "url": "https://rp-kassel.hessen.de/forsten-und-landwirtschaft/jagd/jaegerpruefung",
+          "publisher": "Regierungspräsidium Kassel",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Aktuelle amtliche Downloadübersicht mit separater Information zur Neuregelung der schriftlichen Prüfung ab 1. April 2026. Vor Nutzung des älteren Katalogs ist dieser Hinweis zu berücksichtigen."
+        }
+      ],
+      "examNotes": "Amtlicher Katalog veröffentlicht, jedoch mit einem überholten Prüfungsmodus im PDF-Vorspann. Ohne Einzelabgleich darf weder der ganze Katalog als heute geprüft noch eine nicht gelesene Antwortkennzeichnung als sicher übernommen werden. Verlinkung statt ungeprüfter 1:1-Übernahme."
+    },
+    {
+      "code": "MV",
+      "name": "Mecklenburg-Vorpommern",
+      "lawTitle": "Jägerprüfungsverordnung Mecklenburg-Vorpommern (JägerPVO M-V)",
+      "officialUrl": "https://www.landesrecht-mv.de/bsmv/document/jlr-NNLMV000072CE",
+      "articles": [
+        {
+          "id": "de-mv-anmeldung",
+          "topic": "zulassung",
+          "title": "Anmeldung spätestens zwei Wochen vor der Prüfung",
+          "lawTitle": "Jägerprüfungsverordnung Mecklenburg-Vorpommern (JägerPVO M-V)",
+          "citation": "§ 6 Abs. 1 Sätze 1 und 2",
+          "officialText": "Der Prüfling hat sich spätestens zwei Wochen vor dem Prüfungstermin bei der Prüfungsbehörde zur Prüfung anzumelden. Abweichend davon kann die Prüfungsbehörde Ausnahmen zulassen.",
+          "summary": "Grundsätzlich muss die Prüfungsanmeldung spätestens zwei Wochen vor dem Termin erfolgen. Eine spätere Anmeldung kann nicht selbst als zulässig behandelt werden; über Ausnahmen entscheidet die Prüfungsbehörde.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht-mv.de/bsmv/document/jlr-NNLMV000072CENN00000000007",
+              "publisher": "Land Mecklenburg-Vorpommern",
+              "title": "JägerPVO M-V, geltende Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.schwerin.de/politik-verwaltung/dienstleistungen/verwaltungsleistungen/Jaegerpruefung-Zulassung-zur-Erlangung-des-Jagdscheins-beantragen/",
+              "publisher": "Landeshauptstadt Schwerin",
+              "title": "Jägerprüfung – Zulassung beantragen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du möchtest dich in M-V regulär anmelden. Welcher Vorlauf gilt nach § 6 Abs. 1 Satz 1?",
+              "choices": [
+                "Spätestens zwei Wochen vor dem Prüfungstermin.",
+                "Erst nach der schriftlichen Prüfung.",
+                "Immer genau ein Jahr vor dem Termin."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm setzt die reguläre Anmeldefrist auf zwei Wochen vor dem Termin.",
+              "id": "de-mv-anmeldung-q1"
+            },
+            {
+              "prompt": "Du hast die reguläre Frist versäumt. Wer kann die ausdrücklich vorgesehene Ausnahme zulassen?",
+              "choices": [
+                "Du selbst durch eine Notiz im Kalender.",
+                "Eine beliebige mitlernende Person.",
+                "Die Prüfungsbehörde."
+              ],
+              "correctIndex": 2,
+              "explanation": "Satz 2 weist die Entscheidung ausdrücklich der Prüfungsbehörde zu.",
+              "id": "de-mv-anmeldung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-mv-ausbildungsnachweise",
+          "topic": "zulassung",
+          "title": "Ausbildung und zusätzliche Schießausbildungsstunden",
+          "lawTitle": "Jägerprüfungsverordnung Mecklenburg-Vorpommern (JägerPVO M-V)",
+          "citation": "§ 6 Abs. 1 Satz 3 Nr. 1 und 2 (Auszug)",
+          "officialText": "Voraussetzung für die Zulassung zur Prüfung durch die Prüfungsbehörde ist, dass der Prüfling bis spätestens einen Werktag vor dem Prüfungstermin folgende Nachweise erbracht hat:\n1. Nachweis, dass er mindestens 130 Ausbildungsstunden entsprechend dem gültigen Ausbildungsrahmenplan (§ 8 Absatz 1 Nummer 2) eines in Mecklenburg-Vorpommern anerkannten und dort durchgeführten Ausbildungskurses bei der Landesjägerschaft oder bei einer privaten Jägerschule oder an einem mindestens einjährigen Ausbildungskurs bei einer Mentorin oder einem Mentor absolviert hat; das Ende der Ausbildung darf nicht länger als ein Jahr zurückliegen,\n2. Nachweis über die Ableistung von zwei Ausbildungsstunden je prüfungsrelevanter Schießdisziplin gemäß § 5 Absatz 3; die Stunden sind über die in Nummer 1 genannten Ausbildungsstunden hinaus abzuleisten,",
+          "summary": "Die Norm verlangt den anerkannten Ausbildungsgang mit mindestens 130 Stunden bzw. den genannten mindestens einjährigen Mentorenkurs. Hinzu kommen zwei Ausbildungsstunden je prüfungsrelevanter Schießdisziplin. Diese Stunden sind zusätzlich zu leisten. Weitere Zulassungsvoraussetzungen stehen im nicht vollständig abgedruckten § 6.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht-mv.de/bsmv/document/jlr-NNLMV000072CENN00000000007",
+              "publisher": "Land Mecklenburg-Vorpommern",
+              "title": "JägerPVO M-V, geltende Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.lk-vr.de/media/custom/3034_1011_1.PDF?1774418717=",
+              "publisher": "Landkreis Vorpommern-Rügen",
+              "title": "Jägerprüfungsantrag 2026 – konkrete Ausbildungsnachweise",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Ein Ausbildungsträger möchte die zwei Stunden je prüfungsrelevanter Schießdisziplin bereits vollständig in die 130 Stunden einrechnen. Was bestimmt Nr. 2?",
+              "choices": [
+                "Das ist immer zulässig.",
+                "Die Stunden sind zusätzlich zu den Stunden nach Nr. 1 abzuleisten.",
+                "Das ist nur bei schönem Wetter zulässig."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Formulierung „über ... hinaus“ verlangt zusätzliche Stunden.",
+              "id": "de-mv-ausbildungsnachweise-q1"
+            },
+            {
+              "prompt": "Die nach Nr. 1 maßgebliche Ausbildung endete vor zwei Jahren. Entspricht das der genannten zeitlichen Grenze?",
+              "choices": [
+                "Nein. Das Ende darf nicht länger als ein Jahr zurückliegen.",
+                "Ja, die Norm nennt keinerlei zeitliche Grenze.",
+                "Ja, jeder beliebig alte Kursnachweis genügt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Jahresgrenze steht ausdrücklich in Nr. 1.",
+              "id": "de-mv-ausbildungsnachweise-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Aktuelle amtliche Jägerprüfungsverordnung M-V",
+          "url": "https://www.landesrecht-mv.de/bsmv/document/jlr-NNLMV000072CE",
+          "publisher": "Land Mecklenburg-Vorpommern",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Aktuelle Originalfassung tatsächlich im Landesrechtsportal gelesen. Regelt Prüfung und Ausbildung; ist kein Fragenkatalog."
+        }
+      ],
+      "examNotes": "Die frühere Ministeriumsseite und amtlich indexierte Fach-PDFs weisen Fragenkataloge mit Stand 1. Oktober 2024 aus. Beim erneuten Abruf wurde die Seite auf das neue Regierungsportal umgeleitet bzw. der PDF-Abruf scheiterte mit 503. Ein derzeit zuverlässig abrufbarer vollständiger Katalog samt amtlichem Lösungsschlüssel und Nachdruckrecht ist deshalb noch nicht bestätigt; kein Katalogimport."
+    },
+    {
+      "code": "NI",
+      "name": "Niedersachsen",
+      "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+      "officialUrl": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+      "articles": [
+        {
+          "id": "de-ni-jagdjahre",
+          "topic": "zulassung",
+          "title": "Ein oder drei Jagdjahre in Niedersachsen",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 22 Abs. 1 Satz 1",
+          "officialText": "Der Jahresjagdschein wird für ein oder, mit Ausnahme des Jugendjagdscheins, für drei Jagdjahre erteilt oder verlängert.",
+          "summary": "Niedersachsen sieht beim Jahresjagdschein ein oder drei Jagdjahre vor. Die Dreijahresvariante gilt nach diesem Satz ausdrücklich nicht für den Jugendjagdschein.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "Konsolidierte NJagdG-Fassung ab 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdschule-wendland.de/ratgeber/jagdschein-verlaengern",
+              "publisher": "Jagdschule Wendland",
+              "title": "Jagdschein verlängern – niedersächsische Laufzeiten und Jugendjagdschein",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Laufzeiten nennt § 22 Abs. 1 Satz 1 für den regulären Jahresjagdschein in Niedersachsen?",
+              "choices": [
+                "Nur sechs Monate.",
+                "Immer zwei Jagdjahre.",
+                "Ein oder drei Jagdjahre."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Länderregel nennt diese beiden Varianten.",
+              "id": "de-ni-jagdjahre-q1"
+            },
+            {
+              "prompt": "Kann aus dieser Vorschrift ein dreijähriger Jugendjagdschein abgeleitet werden?",
+              "choices": [
+                "Ja, die Ausnahme betrifft nur Erwachsene.",
+                "Nein. Der Jugendjagdschein ist von der Dreijahresvariante ausgenommen.",
+                "Ja, sofern die Eltern einverstanden sind."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesetzliche Ausnahme steht unmittelbar im Satz.",
+              "id": "de-ni-jagdjahre-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-pruefungsbehoerde",
+          "topic": "zustandigkeit",
+          "title": "Wer führt in Niedersachsen die Jägerprüfung durch?",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 23 Abs. 1 Sätze 2 und 3",
+          "officialText": "Die Durchführung der Jägerprüfung obliegt den Jagdbehörden. Die Kreisjägermeisterin oder der Kreisjägermeister beruft die Mitglieder einer Prüfungskommission und ist deren Vorsitzende oder Vorsitzender.",
+          "summary": "Die staatliche Jägerprüfung wird durch die Jagdbehörden durchgeführt. Die Kommissionsmitglieder werden durch die Kreisjägermeisterin oder den Kreisjägermeister berufen; diese Person führt den Vorsitz. Ein Vorbereitungskurs ist nicht bereits die Prüfung.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "Konsolidierte NJagdG-Fassung ab 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://serviceportal.landkreis-goettingen.de/dienstleistungen/-/egov-bis-detail/dienstleistung/4324/show",
+              "publisher": "Landkreis Göttingen",
+              "title": "Eigene Verwaltungsleistung Jägerprüfung und Kontakt der Jagdbehörde",
+              "kind": "context"
+            },
+            {
+              "url": "https://jagdlehrling.de/jaegerpruefung-in-deinem-bundesland/",
+              "publisher": "Jagdlehrling",
+              "title": "Niedersachsen – zuständige Jagdbehörde und Vorsitz",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Wem obliegt nach § 23 Abs. 1 Satz 2 die Durchführung der niedersächsischen Jägerprüfung?",
+              "choices": [
+                "Den Jagdbehörden.",
+                "Ausschließlich dem Ausrüstungsgeschäft.",
+                "Allen Lernenden durch gegenseitige Prüfung."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Durchführung ist den Jagdbehörden zugewiesen.",
+              "id": "de-ni-pruefungsbehoerde-q1"
+            },
+            {
+              "prompt": "Wer beruft die Mitglieder der Prüfungskommission und führt ihren Vorsitz?",
+              "choices": [
+                "Stets die jüngste Person im Kurs.",
+                "Die Kreisjägermeisterin oder der Kreisjägermeister.",
+                "Automatisch die Leitung jeder privaten Jagdschule."
+              ],
+              "correctIndex": 1,
+              "explanation": "Beide Aufgaben werden in Satz 3 derselben Person zugeordnet.",
+              "id": "de-ni-pruefungsbehoerde-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Aktuelle amtlich bereitgestellte konsolidierte Fassung vom 26. Juni 2026 verwendet. Sie ist als unverbindliche Abschrift gekennzeichnet; das jeweilige Gesetz- und Verordnungsblatt bleibt Verkündungsquelle. Eine vollständige Aufarbeitung aller Änderungen 2026 ist damit nicht behauptet.",
+      "examResources": [
+        {
+          "title": "Amtlicher Fragenkatalog Recht mit gekennzeichneten Antworten",
+          "url": "https://www.ml.niedersachsen.de/download/164717/Fachgebiet_5_Jagdrecht_und_verwandtes_Recht_nicht_vollstaendig_barrierefrei_.pdf",
+          "publisher": "Niedersächsisches Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+          "kind": "official-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF tatsächlich geöffnet: Fachgebiet 5, 71 Seiten, Stand Juli 2022. Amtlicher Lösungskatalog. Die begleitende Ministeriumsseite beansprucht ausdrücklich Urheberrecht und warnt vor unerlaubtem Kopieren auf eigene Websites. Der Stand 2022 bildet nicht automatisch jede Änderung des NJagdG von Juni 2026 ab."
+        },
+        {
+          "title": "Amtliche Katalogübersicht und Urheberrechtshinweis",
+          "url": "https://www.ml.niedersachsen.de/startseite/themen/wald_holz_jagd/jagd_in_niedersachsen/jaegerpruefung-in-niedersachsen-5226.html",
+          "publisher": "Niedersächsisches Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Veröffentlicht Kataloge mit und ohne Lösungen, Stand Juli 2022. Der aktuelle Behördensatz kann weiterentwickelt werden; Anwendung des veröffentlichten Katalogs liegt nach der Seite bei den Jagdbehörden. Keine Vervielfältigungserlaubnis für Jagdlatein vorhanden."
+        }
+      ],
+      "examNotes": "Amtlicher Lösungskatalog verfügbar, aber ausdrücklich urheberrechtlich geschützt. Die Originaldokumente werden nur verlinkt. Keine Übernahme in Jagdlatein ohne geklärtes Nachdruckrecht und Prüfung der durch 2026 geänderten Rechtsfragen."
+    },
+    {
+      "code": "NW",
+      "name": "Nordrhein-Westfalen",
+      "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+      "officialUrl": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+      "articles": [
+        {
+          "id": "de-nw-jagdschein-laufzeit",
+          "topic": "zulassung",
+          "title": "Ein, zwei oder drei Jagdjahre",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 17 Abs. 1",
+          "officialText": "Der Jagdschein wird als Jahresjagdschein mit einer Geltungsdauer von einem, zwei oder drei Jagdjahren oder als Tagesjagdschein mit einer Geltungsdauer von vierzehn aufeinander folgenden Tagen erteilt.",
+          "summary": "Nordrhein-Westfalen nennt für den Jahresjagdschein ein, zwei oder drei Jagdjahre. Der Tagesjagdschein gilt vierzehn zusammenhängende Tage. Diese örtliche Regel darf nicht mit der abweichenden niedersächsischen Laufzeit verwechselt werden.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, geltende Fassung seit 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.rhein-kreis-neuss.de/de/verwaltung-politik/aemterliste/ordnungsamt/dienstleistungen/jagdschein-beantragen/",
+              "publisher": "Rhein-Kreis Neuss",
+              "title": "Jagdschein beantragen und verlängern – örtliche Erteilungspraxis",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Jahresjagdschein-Laufzeiten nennt § 17 Abs. 1 in NRW?",
+              "choices": [
+                "Nur ein oder fünf Jagdjahre.",
+                "Ein, zwei oder drei Jagdjahre.",
+                "Immer vierzehn Jahre."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Wortlaut führt diese drei Varianten auf.",
+              "id": "de-nw-jagdschein-laufzeit-q1"
+            },
+            {
+              "prompt": "Was bedeutet die Laufzeit des Tagesjagdscheins nach § 17 Abs. 1?",
+              "choices": [
+                "Vierzehn aufeinanderfolgende Tage.",
+                "Vierzehn beliebig verteilte Wochenenden.",
+                "Vierzehn Jagdjahre."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Tage müssen aufeinander folgen.",
+              "id": "de-nw-jagdschein-laufzeit-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-bewegungsjagd-nachweis",
+          "topic": "jagdausuebung",
+          "title": "Übungsnachweis für Bewegungsjagd auf Schalenwild",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 17a Abs. 2 und Abs. 3 Satz 1",
+          "officialText": "(2) Bewegungsjagden sind alle Jagden, bei denen das Wild gezielt beunruhigt und den Schützen zugetrieben wird.\n(3) Voraussetzung für die Teilnahme an einer Bewegungsjagd auf Schalenwild ist ein Schießübungsnachweis, der nicht älter als ein Jahr sein darf.",
+          "summary": "Entscheidend ist die gesetzliche Form der Bewegungsjagd. Für die Teilnahme auf Schalenwild wird ein höchstens ein Jahr alter Schießübungsnachweis verlangt. Aus diesem Auszug werden keine ungeprüften Treffer-Mindestleistungen abgeleitet.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, geltende Fassung seit 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-nrw.de/ljv-shop/schiessnachweis/",
+              "publisher": "Landesjagdverband Nordrhein-Westfalen e. V.",
+              "title": "Schießnachweis für Bewegungsjagden auf Schalenwild",
+              "kind": "context"
+            },
+            {
+              "url": "https://olpe.ljv-nrw.de/schiessuebungsnachweis/",
+              "publisher": "Kreisjägerschaft Olpe e. V.",
+              "title": "Erläuterung der jährlichen Nachweispflicht",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du willst in NRW an einer Bewegungsjagd auf Schalenwild teilnehmen. Dein Übungsnachweis ist 18 Monate alt. Erfüllt er die genannte Altersgrenze?",
+              "choices": [
+                "Ja, bis zur nächsten Jagdscheinerteilung.",
+                "Ja, wenn die Jagd nur einen Tag dauert.",
+                "Nein, er darf nicht älter als ein Jahr sein."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 17a Abs. 3 Satz 1 begrenzt das Alter auf ein Jahr.",
+              "id": "de-nw-bewegungsjagd-nachweis-q1"
+            },
+            {
+              "prompt": "Welche Jagd beschreibt § 17a Abs. 2?",
+              "choices": [
+                "Jede stille Naturbeobachtung ohne Jagd.",
+                "Eine Jagd, bei der Wild gezielt beunruhigt und den Schützen zugetrieben wird.",
+                "Ausschließlich eine Einzeljagd ohne Beunruhigung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesetzliche Definition nennt gezielte Beunruhigung und Zutreiben.",
+              "id": "de-nw-bewegungsjagd-nachweis-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Ältere Erläuterungen enthalten teils überholte Schießleistungszahlen. Sie wurden ausschließlich für den sachlich übereinstimmenden Nachweiszweck und Jahreszeitraum herangezogen; keine alten Trefferzahlen wurden übernommen.",
+      "examResources": [
+        {
+          "title": "Amtlicher NRW-Katalog der Prüfungsfragen",
+          "url": "https://www.mlv.nrw.de/wp-content/uploads/2022/11/jaegerpruefungsfragen.pdf",
+          "publisher": "Ministerium für Landwirtschaft und Verbraucherschutz Nordrhein-Westfalen",
+          "kind": "official-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF tatsächlich geöffnet: 20 Seiten. Die aktuelle Ministeriumsseite verlinkt den Gesamtkatalog. Auf der gelesenen Veröffentlichungsseite wird kein separater amtlicher Lösungsschlüssel angeboten; eine freie kommerzielle Nachdrucklizenz ist nicht belegt. Der Dateipfad November 2022 ist kein hinreichender Nachweis eines aktuellen inhaltlichen Versionsdatums."
+        }
+      ],
+      "examNotes": "Der amtliche Fragenkatalog ist beim Ministerium veröffentlicht. Ein aktueller amtlicher Lösungsschlüssel und eine Freigabe zur vollständigen App-Übernahme sind hier nicht belegt. Antworten anderer Anbieter werden nicht als amtliche Lösungen übernommen."
+    },
+    {
+      "code": "RP",
+      "name": "Rheinland-Pfalz",
+      "lawTitle": "Landesjagdverordnung Rheinland-Pfalz (LJVO)",
+      "officialUrl": "https://landesrecht.rlp.de/bsrp/?query=DOKNR:jlr-JagdVRP2013rahmen",
+      "articles": [
+        {
+          "id": "de-rp-ausbildung",
+          "topic": "zulassung",
+          "title": "Anerkannter Kurs oder mindestens sechs Monate Mentorat",
+          "lawTitle": "Landesjagdverordnung Rheinland-Pfalz (LJVO)",
+          "citation": "§ 23 Abs. 1",
+          "officialText": "Die theoretische und praktische Ausbildung zur Vorbereitung auf die Jägerprüfung (jagdliche Ausbildung) erfolgt nach einem Rahmenplan der obersten Jagdbehörde in einem anerkannten Ausbildungskurs\n1. bei einer Vereinigung der Jägerinnen und Jäger oder bei einer Jagdschule oder\n2. von mindestens sechsmonatiger Dauer bei einer Mentorin oder einem Mentor.",
+          "summary": "Die geltende rheinland-pfälzische Verordnung unterscheidet den anerkannten Kurs bei Jagdvereinigung/Jagdschule vom mindestens sechsmonatigen Mentorenkurs. Die Anerkennung und der Rahmenplan bleiben maßgeblich; beliebige private Lernstunden genügen nicht.",
+          "sources": [
+            {
+              "url": "https://landesrecht.rlp.de/bsrp/document/jlr-NNLRP00005B8FNN00000000035",
+              "publisher": "Land Rheinland-Pfalz",
+              "title": "LJVO § 23",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.wald.rlp.de/nutzen/wild-jagd/jagdliche-regelungen/ausbildung-und-jaegerpruefung",
+              "publisher": "Landesforsten Rheinland-Pfalz",
+              "title": "Ausbildung und Jägerprüfung",
+              "kind": "context"
+            },
+            {
+              "url": "https://ljv-rlp.de/ausbildung-und-beratung/jaeger-werden-mentorenausbildung/",
+              "publisher": "Landesjagdverband Rheinland-Pfalz e. V.",
+              "title": "Eigene Mentorenausbildung – mindestens sechs Monate",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Mindestdauer nennt § 23 Abs. 1 für den anerkannten Kurs bei einer Mentorin oder einem Mentor?",
+              "choices": [
+                "Mindestens sechs Monate.",
+                "Genau zwei Nachmittage.",
+                "Keine, eine kurze mündliche Absprache reicht."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die sechsmonatige Mindestdauer gehört ausdrücklich zur Mentorenalternative.",
+              "id": "de-rp-ausbildung-q1"
+            },
+            {
+              "prompt": "Muss die Ausbildung nach § 23 Abs. 1 auf einem anerkannten Ausbildungskurs und dem Rahmenplan beruhen?",
+              "choices": [
+                "Nein, jede beliebige Lernsammlung ersetzt dies.",
+                "Nur bei einer freiwilligen Prüfung.",
+                "Ja, dies gehört zu beiden genannten Ausbildungswegen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der einleitende Satz umfasst beide Alternativen.",
+              "id": "de-rp-ausbildung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true,
+          "effectiveUntil": "2027-04-01"
+        },
+        {
+          "id": "de-rp-pruefungsrecht",
+          "topic": "pruefung",
+          "title": "Prüfungsteile und eigenständiges Sachgebiet Jagdrecht",
+          "lawTitle": "Landesjagdverordnung Rheinland-Pfalz (LJVO)",
+          "citation": "§ 26 Abs. 1 Satz 1 und Abs. 2 Nr. 5 (Auszüge)",
+          "officialText": "Die Jägerprüfung gliedert sich in folgende Teilprüfungen, die in nachstehender Reihenfolge durchgeführt werden sollen:\n1. Schießprüfung,\n2. schriftliche Prüfung und\n3. mündlich-praktische Prüfung.\n\nIn der schriftlichen und der mündlich-praktischen Prüfung sind ausreichende Kenntnisse in folgenden Sachgebieten nachzuweisen:\n5. Jagdrecht sowie",
+          "summary": "Die Soll-Reihenfolge lautet Schießen, schriftlich, mündlich-praktisch. Jagdrecht ist als eigenes Sachgebiet in der schriftlichen und mündlich-praktischen Prüfung aufgeführt. Weitere Sachgebiete bleiben daneben erforderlich.",
+          "sources": [
+            {
+              "url": "https://landesrecht.rlp.de/bsrp/document/jlr-NNLRP00005B8FNN00000000038",
+              "publisher": "Land Rheinland-Pfalz",
+              "title": "LJVO § 26",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.kaiserslautern-kreis.de/verwaltung/lebensmittelueberwachung-veterinaerwesen-und-landwirtschaft/landwirtschaft-jagd-und-fischerei/jagdrecht/jaegerpruefung/",
+              "publisher": "Landkreis Kaiserslautern",
+              "title": "Eigene Jägerprüfung – drei Teile und sechs Sachgebiete",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "In welchen Teilen ist Jagdrecht nach § 26 Abs. 2 als Sachgebiet nachzuweisen?",
+              "choices": [
+                "Nur beim Flintenschießen.",
+                "In der schriftlichen und der mündlich-praktischen Prüfung.",
+                "Überhaupt nicht in der Jägerprüfung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Absatz 2 nennt beide Prüfungsformen vor der Sachgebietsliste.",
+              "id": "de-rp-pruefungsrecht-q1"
+            },
+            {
+              "prompt": "Welche Reihenfolge sollen die drei Teilprüfungen nach § 26 Abs. 1 haben?",
+              "choices": [
+                "Schießen, schriftlich, mündlich-praktisch.",
+                "Mündlich-praktisch, Führerscheinprüfung, Schwimmen.",
+                "Ausschließlich schriftlich."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm enthält eine Soll-Reihenfolge; daraus wird keine ausnahmslose Muss-Reihenfolge gemacht.",
+              "id": "de-rp-pruefungsrecht-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true,
+          "effectiveUntil": "2027-04-01"
+        }
+      ],
+      "notes": "Wichtig: Die hier verwendete LJVO ist nach dem amtlichen Portal bis 31. März 2027 gültig. Die weitgehend erst am 1. April 2027 wirksam werdende Neuregelung wird nicht als geltendes Recht für Oktober 2026 vermittelt.",
+      "examResources": [
+        {
+          "title": "Geltende amtliche Jägerprüfungsregelung in der LJVO",
+          "url": "https://landesrecht.rlp.de/bsrp/?query=DOKNR:jlr-JagdVRP2013rahmen",
+          "publisher": "Land Rheinland-Pfalz",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Aktuelle LJVO tatsächlich gelesen; Jägerprüfung in §§ 21 bis 35. Die Fassung ist bis 31. März 2027 gültig. Dies ist die Prüfungsordnung, kein vollständiger öffentlicher Originalfragenkatalog."
+        }
+      ],
+      "examNotes": "Ein aktuell vollständig amtlich veröffentlichter Originalrechtsfragenkatalog einschließlich amtlicher Lösungen konnte nicht belegt werden. Historische Verbandskopien oder fremde Übungsportale werden nicht als heutige amtliche Originale ausgegeben. Das neue Recht ab April 2027 ist getrennt zu berücksichtigen."
+    },
+    {
+      "code": "SL",
+      "name": "Saarland",
+      "lawTitle": "Verordnung zur Durchführung des Saarländischen Jagdgesetzes (DV-SJG)",
+      "officialUrl": "https://recht.saarland.de/bssl/document/jlr-NNLSL00009D69",
+      "articles": [
+        {
+          "id": "de-sl-ausbildung",
+          "topic": "zulassung",
+          "title": "120 Unterrichts- oder Ausbildungsstunden",
+          "lawTitle": "Verordnung zur Durchführung des Saarländischen Jagdgesetzes (DV-SJG)",
+          "citation": "§ 16 Abs. 1 und Abs. 3 Satz 1",
+          "officialText": "(1) Zur Prüfung werden Personen zugelassen, die eine im Saarland durchgeführte theoretische und praktische Ausbildung in allen Sachgebieten des § 17 Abs. 2 nachweisen.\n\nJeder Prüfungsbewerber hat vor der schriftlichen Prüfung eine theoretische und praktische Ausbildung durch Teilnahme an einem von der Vereinigung der Jäger des Saarlandes oder einer anerkannten privaten Jagdschule eingerichteten Lehrgang nachzuweisen, der 120 Unterrichts- oder Ausbildungsstunden umfasst, die sich auf alle Sachgebiete des § 17 Absatz 2 erstrecken.",
+          "summary": "Der gesetzliche Regelfall verlangt einen Lehrgang mit 120 Unterrichts- oder Ausbildungsstunden und eine im Saarland durchgeführte theoretische und praktische Ausbildung. § 16 Abs. 6 ermöglicht dem Prüfungsleiter aus wichtigem persönlichen Grund Ausnahmen von Abs. 3 und 4; eine automatische Ausnahme wird hier nicht angenommen.",
+          "sources": [
+            {
+              "url": "https://recht.saarland.de/bssl/document/jlr-NNLSL00009D69NN00000000064",
+              "publisher": "Saarland",
+              "title": "DV-SJG § 16, aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.saarjaeger.de/aus-und-weiterbildung/jagerausbildung/",
+              "publisher": "Vereinigung der Jäger des Saarlandes",
+              "title": "Jägerausbildung – Lehrgänge und Prüfungen nach Stand Januar 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Zahl nennt § 16 Abs. 3 Satz 1 für den Lehrgang im gesetzlichen Regelfall?",
+              "choices": [
+                "20 freiwillige Lesestunden.",
+                "60 Stunden ohne Praxis.",
+                "120 Unterrichts- oder Ausbildungsstunden."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Wortlaut nennt 120 Stunden über alle Sachgebiete.",
+              "id": "de-sl-ausbildung-q1"
+            },
+            {
+              "prompt": "Genügt es nach § 16 Abs. 1, nur theoretisch und ohne praktische Ausbildung zu lernen?",
+              "choices": [
+                "Ja, die Praxis ist immer entbehrlich.",
+                "Nein. Theoretische und praktische Ausbildung sind ausdrücklich genannt.",
+                "Ja, wenn die Theorie aus einem sozialen Netzwerk stammt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Beide Ausbildungsarten müssen nachgewiesen werden.",
+              "id": "de-sl-ausbildung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-sl-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Drei Teile mit Waffenhandhabung",
+          "lawTitle": "Verordnung zur Durchführung des Saarländischen Jagdgesetzes (DV-SJG)",
+          "citation": "§ 17 Abs. 1",
+          "officialText": "Die Prüfung besteht aus drei Teilen:\n1. Prüfungsteil I: Waffenhandhabung und jagdliches Schießen;\n2. Prüfungsteil II: Schriftliche Prüfung;\n3. Prüfungsteil III: Mündliche und praktische Prüfung.\nDen Ablauf der Prüfung im Einzelnen bestimmt der Prüfungsleiter.",
+          "summary": "Zur saarländischen Prüfung gehört im Teil I ausdrücklich die Waffenhandhabung neben dem Schießen. Schriftlicher sowie mündlicher und praktischer Teil kommen hinzu. Den Ablauf im Einzelnen bestimmt der Prüfungsleiter.",
+          "sources": [
+            {
+              "url": "https://recht.saarland.de/bssl/document/jlr-NNLSL00009D69NN00000000067",
+              "publisher": "Saarland",
+              "title": "DV-SJG § 17, Gegenstand der Prüfung",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.saarjaeger.de/aus-und-weiterbildung/jagerausbildung/",
+              "publisher": "Vereinigung der Jäger des Saarlandes",
+              "title": "Jägerausbildung – Lehrgänge und Prüfungen nach Stand Januar 2025",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Was gehört im Saarland ausdrücklich zum Prüfungsteil I?",
+              "choices": [
+                "Waffenhandhabung und jagdliches Schießen.",
+                "Nur das Bezahlen der Prüfungsgebühr.",
+                "Ausschließlich ein schriftlicher Naturkundetest."
+              ],
+              "correctIndex": 0,
+              "explanation": "Teil I nennt beide Komponenten.",
+              "id": "de-sl-pruefungsteile-q1"
+            },
+            {
+              "prompt": "Welche Aussage über den Ablauf entspricht dem letzten Satz von § 17 Abs. 1?",
+              "choices": [
+                "Jeder Prüfling legt den Ablauf selbst fest.",
+                "Ein Ausrüstungshändler bestimmt ihn.",
+                "Der Prüfungsleiter bestimmt den Ablauf im Einzelnen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm ordnet die konkrete Ablaufbestimmung dem Prüfungsleiter zu.",
+              "id": "de-sl-pruefungsteile-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "VJS-Fragenpool 2025 mit Lösungsbögen",
+          "url": "https://www.saarjaeger.de/media/mp0pj25k/fragenpool-07-05-2025.pdf",
+          "publisher": "Vereinigung der Jäger des Saarlandes",
+          "kind": "association-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "PDF tatsächlich geöffnet: Fragenpool vom 7. Mai 2025, 206 Seiten, einschließlich Lösungsbogen Jagdrecht. Die VJS bezeichnet ihn als Grundlage des schriftlichen Prüfungsteils; 1.000 Fragen insgesamt, davon 200 Jagdrecht. Keine freie Lizenz zur Vervielfältigung in Jagdlatein belegt."
+        }
+      ],
+      "examNotes": "Der veröffentlichte Fragenpool mit Lösungen stammt von der Vereinigung der Jäger des Saarlandes. Als Verbandskatalog eindeutig gekennzeichnet; keine automatische Gleichsetzung mit gemeinfreien amtlichen Werken. Hier nur Verlinkung, kein Import."
+    },
+    {
+      "code": "SN",
+      "name": "Sachsen",
+      "lawTitle": "Sächsische Jagdverordnung (SächsJagdVO)",
+      "officialUrl": "https://revosax.sachsen.de/vorschrift/12563",
+      "articles": [
+        {
+          "id": "de-sn-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Drei Teile der sächsischen Jägerprüfung",
+          "lawTitle": "Sächsische Jagdverordnung (SächsJagdVO)",
+          "citation": "§ 12 Abs. 1",
+          "officialText": "Die Jägerprüfung besteht aus den Teilen jagdliches Schießen sowie schriftliche und mündlich-praktische Prüfung.",
+          "summary": "In Sachsen gehören Schießen, schriftliche Prüfung und mündlich-praktische Prüfung zur Jägerprüfung. Der einzelne Normsatz allein legt keine hier zusätzlich behauptete feste Terminreihenfolge fest.",
+          "sources": [
+            {
+              "url": "https://revosax.sachsen.de/vorschrift/12563",
+              "publisher": "Freistaat Sachsen",
+              "title": "SächsJagdVO, aktuelle konsolidierte Fassung",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdschein-ueben.de/bundesland/sn",
+              "publisher": "SIGAtech Softwareentwicklung, Siegfried Gaier",
+              "title": "Jägerprüfung Sachsen – erläuterte Prüfungsteile und Bestehensgrenzen, Stand 20. Oktober 2026",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Prüfungsteile nennt § 12 Abs. 1 in Sachsen?",
+              "choices": [
+                "Nur einen schriftlichen Test.",
+                "Jagdliches Schießen sowie schriftliche und mündlich-praktische Prüfung.",
+                "Nur eine Kursbescheinigung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Wortlaut enthält drei Teile.",
+              "id": "de-sn-pruefungsteile-q1"
+            },
+            {
+              "prompt": "Ist der mündlich-praktische Teil nach § 12 Abs. 1 ein bloß freiwilliges Zusatzangebot?",
+              "choices": [
+                "Ja, er kann immer frei gestrichen werden.",
+                "Ja, nur Anfänger müssen daran teilnehmen.",
+                "Nein. Er gehört zu den genannten Prüfungsteilen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der mündlich-praktische Teil steht in der gesetzlichen Aufzählung.",
+              "id": "de-sn-pruefungsteile-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-sn-recht-bestehensgrenze",
+          "topic": "pruefung",
+          "title": "Recht und Waffenkunde: höhere schriftliche Mindestquote",
+          "lawTitle": "Sächsische Jagdverordnung (SächsJagdVO)",
+          "citation": "§ 16 Abs. 3",
+          "officialText": "Der Bewerber hat in jedem Prüfungsfach mindestens ausreichende Leistungen zu erbringen. Ausreichende Leistungen hat erbracht, wer in den Fächern nach § 12 Abs. 2 Nr. 2 und 4 mindestens 75 Prozent und in den übrigen Fächern mindestens 60 Prozent der Fragen richtig beantwortet hat.",
+          "summary": "Für die schriftliche sächsische Prüfung gelten in Waffenkunde (§ 12 Abs. 2 Nr. 2) und Recht (Nr. 4) mindestens 75 Prozent richtige Antworten, in den übrigen Fächern mindestens 60 Prozent. Die Anforderungen gelten je Fach, nicht nur für eine Gesamtsumme.",
+          "sources": [
+            {
+              "url": "https://revosax.sachsen.de/vorschrift/12563",
+              "publisher": "Freistaat Sachsen",
+              "title": "SächsJagdVO, aktuelle konsolidierte Fassung",
+              "kind": "law"
+            },
+            {
+              "url": "https://jagdschein-ueben.de/bundesland/sn",
+              "publisher": "SIGAtech Softwareentwicklung, Siegfried Gaier",
+              "title": "Jägerprüfung Sachsen – erläuterte Prüfungsteile und Bestehensgrenzen, Stand 20. Oktober 2026",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du erreichst im sächsischen schriftlichen Fach Recht 70 Prozent richtige Antworten. Ist die Mindestquote dieses Fachs erreicht?",
+              "choices": [
+                "Nein. Im Fach Recht sind mindestens 75 Prozent erforderlich.",
+                "Ja, 60 Prozent reichen in jedem Fach.",
+                "Ja, im Rechtsfach besteht keine Mindestquote."
+              ],
+              "correctIndex": 0,
+              "explanation": "Recht gehört nach § 12 Abs. 2 Nr. 4 zu den Fächern mit 75-Prozent-Grenze.",
+              "id": "de-sn-recht-bestehensgrenze-q1"
+            },
+            {
+              "prompt": "Welche Fächer haben nach § 16 Abs. 3 die höhere Quote von mindestens 75 Prozent?",
+              "choices": [
+                "Ausschließlich Wildbiologie.",
+                "Waffenkunde und Recht.",
+                "Alle übrigen Fächer außer Recht."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Verweisung auf § 12 Abs. 2 Nr. 2 und 4 benennt Waffenkunde und Recht.",
+              "id": "de-sn-recht-bestehensgrenze-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Amtliche sächsische Online-Testprüfung",
+          "url": "https://www.wald.sachsen.de/online-testprufung-fur-den-erwerb-des-jagdscheines-4496.html",
+          "publisher": "Sächsisches Staatsministerium für Umwelt und Landwirtschaft",
+          "kind": "official-sample",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Seite tatsächlich geöffnet. Sie erklärt ausdrücklich, dass Fragen aus dem offiziellen Fragenkatalog zufällig ausgewählt werden und Fragebogen sowie Anzahl der jeweiligen Prüfung entsprechen. Dies belegt ein amtliches Testangebot, aber keinen vollständigen frei herunterladbaren Katalog mit Lösungsschlüssel und Nachdrucklizenz."
+        }
+      ],
+      "examNotes": "Amtliches Online-Testangebot vorhanden. Ein vollständiger öffentlicher Originalkatalog mit allen Lösungen und freiem Nachdruckrecht konnte nicht belegt werden. Die Beispielauswahl des Online-Tests wird nicht als vollständige Abdeckung bezeichnet."
+    },
+    {
+      "code": "ST",
+      "name": "Sachsen-Anhalt",
+      "lawTitle": "Verordnung zur Durchführung des Landesjagdgesetzes für Sachsen-Anhalt (LJagdG-DVO)",
+      "officialUrl": "https://www.landesrecht.sachsen-anhalt.de/bsst/document/jlr-NNLST00004418",
+      "articles": [
+        {
+          "id": "de-st-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Schießen, schriftlich und mündlich-praktisch",
+          "lawTitle": "Verordnung zur Durchführung des Landesjagdgesetzes für Sachsen-Anhalt (LJagdG-DVO)",
+          "citation": "§ 6 Abs. 1",
+          "officialText": "Die Prüfung besteht aus folgenden Teilen:\n1. dem jagdlichen Schießen,\n2. der schriftlichen Prüfung,\n3. der mündlich-praktischen Prüfung.",
+          "summary": "Die Jägerprüfung in Sachsen-Anhalt setzt sich aus drei Teilen zusammen. Die drei Teile sind von den sieben Fächern des schriftlichen und mündlich-praktischen Teils zu unterscheiden.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht.sachsen-anhalt.de/bsst/document/jlr-NNLST00004418NN00000000015",
+              "publisher": "Land Sachsen-Anhalt",
+              "title": "LJagdG-DVO, zum 23. Oktober 2026 aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-sachsen-anhalt.de/jaegerschaft-saalkreis/jaegerausbildung-2/",
+              "publisher": "Jägerschaft Saalkreis e. V.",
+              "title": "Jägerausbildung – eigene Erläuterung von Prüfungsteilen und schriftlichen Fragen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Wie viele Prüfungsteile nennt § 6 Abs. 1 in Sachsen-Anhalt?",
+              "choices": [
+                "Zwei, ausschließlich Theorie.",
+                "Sieben selbständige Gesamtprüfungen.",
+                "Drei: Schießen, schriftlich und mündlich-praktisch."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm zählt drei Prüfungsteile auf.",
+              "id": "de-st-pruefungsteile-q1"
+            },
+            {
+              "prompt": "Ersetzt die bloße Teilnahme an einem Vorbereitungskurs die aufgeführten Prüfungsteile?",
+              "choices": [
+                "Nein. Kurs und staatliche Prüfung sind zu unterscheiden.",
+                "Ja, jede Kursbescheinigung ist bereits das Prüfungszeugnis.",
+                "Ja, wenn der Kurs online stattfindet."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Vorschrift beschreibt Prüfungsteile, die nicht durch den Kursbesuch selbst erfüllt sind.",
+              "id": "de-st-pruefungsteile-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-st-schriftlicher-umfang",
+          "topic": "pruefung",
+          "title": "20 schriftliche Fragen je Prüfungsfach",
+          "lawTitle": "Verordnung zur Durchführung des Landesjagdgesetzes für Sachsen-Anhalt (LJagdG-DVO)",
+          "citation": "§ 8 Abs. 2",
+          "officialText": "Bei der schriftlichen Prüfung werden in einem von der Prüfungskommission erarbeiteten Fragebogen 20 Fragen für jedes Prüfungsfach gestellt, die die Prüflinge unter Aufsicht zu beantworten haben.",
+          "summary": "Die schriftliche Prüfung enthält 20 Fragen für jedes Prüfungsfach. Für die Fragenzahl und das Erstellen des Bogens nennt die Norm die Prüfungskommission; eine Zahl aus einem anderen Bundesland ist nicht übertragbar.",
+          "sources": [
+            {
+              "url": "https://www.landesrecht.sachsen-anhalt.de/bsst/document/jlr-NNLST00004418NN00000000019",
+              "publisher": "Land Sachsen-Anhalt",
+              "title": "LJagdG-DVO, zum 23. Oktober 2026 aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-sachsen-anhalt.de/jaegerschaft-saalkreis/jaegerausbildung-2/",
+              "publisher": "Jägerschaft Saalkreis e. V.",
+              "title": "Jägerausbildung – eigene Erläuterung von Prüfungsteilen und schriftlichen Fragen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Wie viele schriftliche Fragen sieht § 8 Abs. 2 je Prüfungsfach vor?",
+              "choices": [
+                "Fünf.",
+                "20.",
+                "Immer nur eine Frage insgesamt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Gesetzeswortlaut lautet „20 Fragen für jedes Prüfungsfach“.",
+              "id": "de-st-schriftlicher-umfang-q1"
+            },
+            {
+              "prompt": "Wer erarbeitet nach § 8 Abs. 2 den Fragebogen?",
+              "choices": [
+                "Jeder Prüfling selbst.",
+                "Eine zufällig ausgewählte Lerngruppe.",
+                "Die Prüfungskommission."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm ordnet den Fragebogen der Prüfungskommission zu; beantwortet wird er unter Aufsicht.",
+              "id": "de-st-schriftlicher-umfang-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Die aktuelle Landesrechts-Gesamtausgabe wurde gelesen. Die allgemeine Jagdrechtsbroschüre 2025 wurde nur als Suchhilfe verwendet; die 2026 geänderten Landesgesetzesbestimmungen werden daraus nicht pauschal als aktuell übernommen.",
+      "examResources": [
+        {
+          "title": "Amtliche Prüfungsordnung Sachsen-Anhalt: LJagdG-DVO",
+          "url": "https://www.landesrecht.sachsen-anhalt.de/bsst/document/jlr-NNLST00004418",
+          "publisher": "Land Sachsen-Anhalt",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Aktuelle Gesamtausgabe tatsächlich gelesen. § 8 Abs. 2 regelt den von der Prüfungskommission erarbeiteten Fragebogen. Die Verordnung veröffentlicht selbst keinen vollständigen Frage-/Antwortkatalog."
+        }
+      ],
+      "examNotes": "Ein vollständiger aktueller amtlicher Landesfragenkatalog mit amtlichen Lösungen konnte nicht belegt werden. Die eigene Prüfungskommission erarbeitet nach § 8 Abs. 2 den Fragebogen. Andere Bundesländerfragen werden nicht als Originale Sachsen-Anhalts bezeichnet."
+    },
+    {
+      "code": "SH",
+      "name": "Schleswig-Holstein",
+      "lawTitle": "Landesverordnung über die Erlangung des Schießübungsnachweises Schleswig-Holstein",
+      "officialUrl": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/IV/Service/GVOBl/GVOBl/2024/gvobl_9_2024.pdf?__blob=publicationFile&v=2",
+      "articles": [
+        {
+          "id": "de-sh-schiessuebung",
+          "topic": "jagdausuebung",
+          "title": "Fünf Schüsse in den letzten zwölf Monaten",
+          "lawTitle": "Landesverordnung über die Erlangung des Schießübungsnachweises Schleswig-Holstein",
+          "citation": "§ 2 Abs. 2 und 3",
+          "officialText": "(2) Der Schießübungsnachweis gilt als erbracht, wenn die Jägerin oder der Jäger zum Zeitpunkt der Gesellschaftsjagd nachweisen kann, dass er oder sie auf einer für das jagdliche Schießen zugelassenen Schießstätte innerhalb der letzten zwölf Monate mindestens fünf Schüsse auf die unter Nummer 5, 6, 7 oder 8 aufgeführten flüchtigen Überläuferscheiben im Anhang der vom Deutschen Jagdverband e.V. herausgegebenen Schießstandordnung und Schießvorschrift abgegeben hat. Die Scheibe muss sich bei der Schussabgabe in Bewegung befinden.\n(3) Der Schießübungsnachweis gilt ebenfalls als erbracht, wenn die Leistungen nach Absatz 2 entsprechend in einem Schießkino auf bewegte Ziele erfüllt wurden. Die Erbringung des Schießübungsnachweises in Schießsimulatoren ist unzulässig.",
+          "summary": "Die Regel betrifft den Schießübungsnachweis für Gesellschaftsjagden, bei denen Schalenwild zur Bejagung freigegeben wird (§ 1). Der Nachweis verlangt die beschriebene Übung in den letzten zwölf Monaten. Schießkino auf bewegte Ziele ist möglich; Schießsimulatoren sind ausgeschlossen. Zusätzlich gilt die Kaliberanforderung aus § 2 Abs. 1.",
+          "sources": [
+            {
+              "url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/IV/Service/GVOBl/GVOBl/2024/gvobl_9_2024.pdf?__blob=publicationFile&v=2",
+              "publisher": "Land Schleswig-Holstein",
+              "title": "GVOBl. 2024 Nr. 9, S. 680: Verordnung vom 15. Juli 2024",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-sh.de/schiessuebungsnachweis/",
+              "publisher": "Landesjagdverband Schleswig-Holstein e. V.",
+              "title": "Schießübungsnachweis – praktische Erläuterung und Dokumentation",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Kann der Nachweis nach § 2 Abs. 3 ausschließlich mit einem elektronischen Schießsimulator erbracht werden?",
+              "choices": [
+                "Nein. Schießsimulatoren sind ausdrücklich ausgeschlossen.",
+                "Ja, jede Bildschirmübung ist gleichgestellt.",
+                "Ja, schon das Anschauen eines Videos genügt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Schießkino und Schießsimulator werden im Verordnungstext unterschiedlich behandelt.",
+              "id": "de-sh-schiessuebung-q1"
+            },
+            {
+              "prompt": "Welcher Zeitraum gilt für die mindestens fünf beschriebenen Schüsse?",
+              "choices": [
+                "Die letzten zehn Jahre.",
+                "Innerhalb der letzten zwölf Monate vor der Gesellschaftsjagd.",
+                "Nur der Tag der ersten Jägerprüfung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Norm knüpft die Frist an den Zeitpunkt der Gesellschaftsjagd.",
+              "id": "de-sh-schiessuebung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-sh-nachweisform",
+          "topic": "jagdausuebung",
+          "title": "Was auf dem schriftlichen Übungsnachweis stehen muss",
+          "lawTitle": "Landesverordnung über die Erlangung des Schießübungsnachweises Schleswig-Holstein",
+          "citation": "§ 3",
+          "officialText": "Der Schießübungsnachweis muss schriftlich erfolgen. Der Nachweis enthält neben einer Bestätigung über die Erbringung der Anforderungen gemäß § 2 mindestens Angaben zum Datum des Nachweises, einen Stempelabdruck der Schießstätte und den Namen sowie die Unterschrift der verantwortlichen Standaufsicht.",
+          "summary": "Der Nachweis ist schriftlich zu dokumentieren. Er braucht neben der Leistungsbestätigung mindestens Datum, Stempel der Schießstätte sowie Name und Unterschrift der verantwortlichen Standaufsicht.",
+          "sources": [
+            {
+              "url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/IV/Service/GVOBl/GVOBl/2024/gvobl_9_2024.pdf?__blob=publicationFile&v=2",
+              "publisher": "Land Schleswig-Holstein",
+              "title": "GVOBl. 2024 Nr. 9, S. 680: Verordnung vom 15. Juli 2024",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-sh.de/schiessuebungsnachweis/",
+              "publisher": "Landesjagdverband Schleswig-Holstein e. V.",
+              "title": "Schießübungsnachweis – praktische Erläuterung und Dokumentation",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Reicht nach § 3 eine rein mündliche Erinnerung „Ich war vor kurzem auf dem Stand“ als Nachweis?",
+              "choices": [
+                "Ja, wenn andere dabei waren.",
+                "Ja, das Datum darf grundsätzlich fehlen.",
+                "Nein. Der Nachweis muss schriftlich erfolgen und die Mindestangaben enthalten."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Form und die Mindestangaben sind ausdrücklich geregelt.",
+              "id": "de-sh-nachweisform-q1"
+            },
+            {
+              "prompt": "Welche Unterschrift nennt § 3 als Mindestbestandteil?",
+              "choices": [
+                "Nur die einer beliebigen Begleitperson.",
+                "Die der verantwortlichen Standaufsicht.",
+                "Ausschließlich die des Verkäufers der Munition."
+              ],
+              "correctIndex": 1,
+              "explanation": "Name und Unterschrift der verantwortlichen Standaufsicht werden verlangt.",
+              "id": "de-sh-nachweisform-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "notes": "Ausgewählte Übungs- und Dokumentationsvorschriften. Die Ausnahme bzw. Gleichstellung anderer Nachweise nach § 4 ist nicht vollständig Gegenstand dieser Blöcke.",
+      "examResources": [
+        {
+          "title": "Amtliche Prüfungsinformation: Zulassung zur Jägerprüfung in Schleswig-Holstein",
+          "url": "https://www.schleswig-flensburg.de/Was-erledige-ich-wo-/J%C3%A4gerpr%C3%BCfung-Zulassung-zur-Pr%C3%BCfung-zur-Erlangung-des-Jagdscheins-beantragen.php?FID=3333.2127.1&ModID=10&NavID=3333.14.1&object=tx%2C3333.2.1",
+          "publisher": "Land Schleswig-Holstein, Zuständigkeitsfinder; veröffentlicht beim Kreis Schleswig-Flensburg",
+          "kind": "exam-rules",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtliche Leistungsbeschreibung heute tatsächlich gelesen: Antrag auf Prüfungszulassung, Zuständigkeit der unteren Jagdbehörden, schriftlicher und mündlich-praktischer Teil sowie Schießprüfung. Die Seite verlinkt die Landesverordnung über die Prüfung zum Erwerb des ersten Jagdscheines. Prüfungsinformation, kein Originalfragenkatalog und kein Lösungsschlüssel."
+        }
+      ],
+      "examNotes": "Ein öffentlicher vollständiger amtlicher Originalrechtsfragenkatalog einschließlich amtlicher Lösungen konnte in den geprüften Quellen nicht belegt werden. Die hier vorhandenen eigenen Übungsfragen zu örtlichen Rechtsnormen sind keine Originalprüfungsfragen. Eine behauptete Komplettabdeckung wird nicht angezeigt."
+    },
+    {
+      "code": "TH",
+      "name": "Thüringen",
+      "lawTitle": "Thüringer Ausbildungs- und Prüfungsordnung Jagd (ThürAPOJ)",
+      "officialUrl": "https://landesrecht.thueringen.de/bsth/document/jlr-NNLTH00003BF3",
+      "articles": [
+        {
+          "id": "de-th-ausbildung",
+          "topic": "zulassung",
+          "title": "130 Stunden, Praxis und gesonderte Schießausbildung",
+          "lawTitle": "Thüringer Ausbildungs- und Prüfungsordnung Jagd (ThürAPOJ)",
+          "citation": "§ 7 Abs. 1",
+          "officialText": "Die Bewerber haben eine Ausbildung zum Jäger abzuleisten, die mindestens 130 Stunden umfassen muss. Die Schießausbildung nach Absatz 2 ist hierauf nicht anzurechnen. Bei Bewerbern, die eine land- oder forstwirtschaftliche Berufsausbildung erfolgreich abgeschlossen haben oder sich in einer solchen Ausbildung befinden, sowie bei Studierenden der genannten Fachrichtungen genügt ein Mindestumfang von 100 Stunden. Der praxisbezogene Teil der Ausbildung zum Jäger umfasst mindestens 60 Stunden; dem steht eine einjährige Ausbildung zum Jäger außerhalb eines Ausbildungslehrgangs bei einer Lehrperson gleich, die ihre Tätigkeit nach Absatz 4 angezeigt hat.",
+          "summary": "Im Regelfall sind mindestens 130 Ausbildungsstunden erforderlich, darunter mindestens 60 praxisbezogene Stunden; die Schießausbildung wird nicht angerechnet. Für die im Original ausdrücklich genannten land- oder forstwirtschaftlichen Vorbildungen gelten 100 Stunden. Die genannte einjährige Ausbildung bei angezeigter Lehrperson ist eine gesetzliche Alternative.",
+          "sources": [
+            {
+              "url": "https://landesrecht.thueringen.de/bsth/document/jlr-NNLTH00003BF3NN00000000014",
+              "publisher": "Freistaat Thüringen",
+              "title": "ThürAPOJ, aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-thueringen.de/bildung/jaegerpruefung/",
+              "publisher": "Landesjagdverband Thüringen e. V.",
+              "title": "Jägerprüfung – Ausbildungsumfang und tatsächliche Prüfungsteile",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Du hast keine der genannten besonderen Vorbildungen. Darf die Schießausbildung auf die 130 Stunden angerechnet werden?",
+              "choices": [
+                "Ja, ohne Begrenzung.",
+                "Nein. Sie ist nach § 7 Abs. 1 nicht anzurechnen.",
+                "Ja, wenn sie am Wochenende stattfindet."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesonderte Schießausbildung wird ausdrücklich ausgeschlossen.",
+              "id": "de-th-ausbildung-q1"
+            },
+            {
+              "prompt": "Wie hoch ist der mindestens praxisbezogene Ausbildungsanteil nach § 7 Abs. 1 Satz 4?",
+              "choices": [
+                "Mindestens 60 Stunden.",
+                "Fünf Minuten.",
+                "Ein freiwilliger Museumsbesuch ohne Zeitvorgabe."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Wortlaut nennt mindestens 60 Stunden und daneben die besondere einjährige Ausbildungsalternative.",
+              "id": "de-th-ausbildung-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-th-pruefungsteile",
+          "topic": "pruefung",
+          "title": "Thüringische Prüfung aus drei Teilen",
+          "lawTitle": "Thüringer Ausbildungs- und Prüfungsordnung Jagd (ThürAPOJ)",
+          "citation": "§ 9 Abs. 1",
+          "officialText": "Die Jägerprüfung besteht aus\n1. dem schriftlichen Teil (§ 10),\n2. dem mündlich-praktischen Teil (§ 11) und\n3. der Schießprüfung (§ 12).",
+          "summary": "Zur thüringischen Jägerprüfung gehören schriftlicher und mündlich-praktischer Teil sowie die Schießprüfung. Die Nummerierung allein wird nicht als unabänderliche Terminreihenfolge ausgelegt; die zuständige Prüfungsbehörde bestimmt die Termine.",
+          "sources": [
+            {
+              "url": "https://landesrecht.thueringen.de/bsth/document/jlr-NNLTH00003BF3NN00000000016",
+              "publisher": "Freistaat Thüringen",
+              "title": "ThürAPOJ, aktuelle Gesamtausgabe",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-thueringen.de/bildung/jaegerpruefung/",
+              "publisher": "Landesjagdverband Thüringen e. V.",
+              "title": "Jägerprüfung – Ausbildungsumfang und tatsächliche Prüfungsteile",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "prompt": "Welche Aufstellung entspricht § 9 Abs. 1 ThürAPOJ?",
+              "choices": [
+                "Nur ein schriftlicher Wissenstest.",
+                "Nur Schießen und Kursanmeldung.",
+                "Schriftlicher Teil, mündlich-praktischer Teil und Schießprüfung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm zählt diese drei Teile auf.",
+              "id": "de-th-pruefungsteile-q1"
+            },
+            {
+              "prompt": "Ist die Schießprüfung nach § 9 Abs. 1 durch beliebig viele Online-Quizrunden ersetzt?",
+              "choices": [
+                "Ja, wenn das Ergebnis gespeichert wird.",
+                "Nein. Sie ist als eigener Prüfungsteil aufgeführt.",
+                "Ja, ein theoretischer Text ersetzt jeden praktischen Teil."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Schießprüfung bleibt ein gesonderter Teil.",
+              "id": "de-th-pruefungsteile-q2"
+            }
+          ],
+          "reviewedOn": "2026-10-23",
+          "verified": true,
+          "originalVerified": true
+        }
+      ],
+      "examResources": [
+        {
+          "title": "Amtlicher Fragen-/Antwortkatalog Thüringen ab 2026",
+          "url": "https://umwelt.thueringen.de/fileadmin/Forst_und_Jagd_Fischerei/Jagd/Jagdrecht/2025-10-27_Fragenkatalog_schr._Jaegerpruefung_Th.pdf",
+          "publisher": "Thüringer Ministerium für Umwelt, Energie, Naturschutz und Forsten",
+          "kind": "official-catalog",
+          "reviewedOn": "2026-10-23",
+          "notes": "Amtlich indexierter PDF-Katalog: Bearbeitungsstand 27. Oktober 2025, gültig ab 1. Januar 2026, 205 Seiten; enthält Antwortspalte und Sachgebiet 4 Recht. Dokumentinhalt und Metadaten waren im Suchindex einsehbar. Der erneute direkte Abruf verlangte CAPTCHA; vollständiger aktueller Lizenz- und Dateiabgleich deshalb offen. Kein Volltextimport."
+        },
+        {
+          "title": "Amtliches Online-Übungsangebot Thüringen",
+          "url": "https://was.thueringen.de/was/jpo/",
+          "publisher": "Freistaat Thüringen",
+          "kind": "official-sample",
+          "reviewedOn": "2026-10-23",
+          "notes": "Öffentliche Auswahl eines oder mehrerer Sachgebiete und Start einer Übungsrunde mit 25 Fragen tatsächlich geöffnet. Kein Nachweis, dass dieses ältere Online-Angebot bereits vollständig auf den neuen 2026-Katalog umgestellt ist."
+        }
+      ],
+      "examNotes": "Ein amtlicher Katalog mit Lösungen für 2026 ist nachweisbar veröffentlicht. Der neue PDF-Link wird angeboten; Zugriffsschutz und Nachdruckrecht müssen vor einer vollständigen Übernahme geklärt werden. Der ältere Online-Test wird nicht ungeprüft mit dem neuen PDF gleichgesetzt."
+    }
+  ]
+}

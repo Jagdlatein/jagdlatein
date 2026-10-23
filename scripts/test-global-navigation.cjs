@@ -92,7 +92,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 31);
+  assert.equal(links.length, 32);
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -143,7 +143,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/jagdrecht', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
@@ -313,4 +313,24 @@ test('Habitat reading fragments are also real Back stops without adding search t
  const s=setup('/lernen/lebensraum-werkstatt',['/lernen/natur-revier']);
  s.hash('#habitat-lesen?baustein=wald&art=alle');s.hash('#habitat-lesen?baustein=wiese&art=rehwild');
  s.tree.props.children[0].props.onClick();assert.equal(s.destination,'/lernen/lebensraum-werkstatt#habitat-lesen?baustein=wald&art=alle');
+});
+
+test('Law navigation returns through statute, topic and region without mixing another jurisdiction', () => {
+  const base = '/jagdrecht/ch';
+  const canton = `${base}?region=SG`;
+  const topic = `${canton}&thema=pruefung`;
+  const norm = `${topic}&artikel=ch-sg-pruefung`;
+  const s = setup(base, ['/jagdrecht']);
+  s.route(canton); s.route(topic); s.route(norm);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, topic);
+  s.route(topic); s.render().props.children[0].props.onClick(); assert.equal(s.destination, canton);
+  s.route(canton); s.render().props.children[0].props.onClick(); assert.equal(s.destination, base);
+  const practice = setup(canton, ['/jagdrecht', base]);
+  practice.route(`${canton}&ansicht=uebung`);
+  practice.route(`${canton}&ansicht=uebung&bund=0`);
+  practice.render().props.children[0].props.onClick(); assert.equal(practice.destination, `${canton}&ansicht=uebung`);
+  assert.match(practice.html(), /aria-label="Zum Lernbereich" aria-current="true"/);
+  const browserBack = setup(base, ['/jagdrecht']);
+  browserBack.route(canton); browserBack.route(topic); browserBack.route(norm); browserBack.route(topic);
+  browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });

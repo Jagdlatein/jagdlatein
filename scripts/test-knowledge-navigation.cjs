@@ -264,7 +264,7 @@ test('Rendering the overview and simple photo credits never imports complete med
   }
 });
 
-test('Practice and law discovery cards retain their original three courses and counts with only server-prepared summaries', () => {
+test('Practice and law discovery cards retain their original three courses and counts with only server-prepared summaries', async () => {
   const cache = new Map();
   const { learningModules } = load('lib/learning-curriculum.js', cache);
   for (const [filename, category, title] of [
@@ -272,7 +272,7 @@ test('Practice and law discovery cards retain their original three courses and c
     ['pages/jagdrecht/index.js', 'Jagdrecht', 'Jagdrecht Schritt für Schritt lernen'],
   ]) {
     const Page = load(filename, cache);
-    const props = Page.getStaticProps().props;
+    const props = (await Page.getStaticProps()).props;
     const original = learningModules.filter(module => module.category === category).slice(0, 3);
     assert.deepEqual(props.discoveryModules, original.map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length })));
     assert.ok(props.discoveryModules.every(module => Object.keys(module).sort().join(',') === 'id,lessonCount,questionCount,title'));
