@@ -5,6 +5,8 @@ const { createLoader, local } = require("./helpers/project-module.cjs");
 const React = local("react");
 const { renderToStaticMarkup } = local("react-dom/server");
 const { normalizePhotoRecognitionResponse } = createLoader()("lib/revier-photo-recognition.js");
+const { createPhotoRecognitionRequestId } = createLoader()("lib/revier-photo-request-id.js");
+const { photoRecognitionRequestId } = createLoader()("lib/revier-photo-quota.js");
 
 function text(node) {
   if (node == null || typeof node === "boolean") return "";
@@ -71,7 +73,7 @@ function setup(options = {}) {
   for (const name of ["indexedDB", "localStorage", "sessionStorage"]) Object.defineProperty(globalThis, name, {
     configurable: true, get() { storageReads++; throw new Error("Recognition must not save a model hypothesis or photo"); },
   });
-  Object.defineProperty(globalThis, "crypto", { configurable: true, value: options.noCrypto ? {} : {
+  Object.defineProperty(globalThis, "crypto", { configurable: true, value: Object.hasOwn(options, "crypto") ? options.crypto : options.noCrypto ? {} : {
     randomUUID() { return `10000000-0000-4000-8000-${String(++uuid).padStart(12, "0")}`; },
   } });
   Object.defineProperty(globalThis, "setTimeout", { configurable: true, value(fn, delay) { const id = ++timerId; timers.set(id, { fn, delay }); return id; } });
@@ -365,12 +367,59 @@ test("A transport resolving successfully after timeout cannot revive a timed-out
   }
 });
 
-test("Missing secure request identifiers fail before sending the image", async () => {
-  const h = setup({ noCrypto: true });
+test("Photo request IDs prefer native randomUUID and securely encode fallback version/variant bytes", () => {
+  const savedRandom = Math.random;
+  Math.random = () => assert.fail("Photo request identifiers must never use Math.random");
   try {
-    await h.ready(); await h.recognize(); h.flush();
-    assert.equal(h.requests("POST").length, 0);
-    assert.match(h.text, /nicht erreichbar/);
-    assert.ok(h.button());
+    const native = { randomUUID() { assert.equal(this, native); return "ABCDEFAB-CDEF-4ABC-8ABC-ABCDEFABCDEF"; }, getRandomValues() { assert.fail("Native randomUUID should take precedence"); } };
+    assert.equal(createPhotoRecognitionRequestId(native), "abcdefab-cdef-4abc-8abc-abcdefabcdef");
+    for (const [fill, expected] of [
+      [bytes => bytes.forEach((_, i) => { bytes[i] = i; }), "00010203-0405-4607-8809-0a0b0c0d0e0f"],
+      [bytes => bytes.fill(0xff), "ffffffff-ffff-4fff-bfff-ffffffffffff"],
+    ]) {
+      let draws = 0;
+      const secure = { getRandomValues(bytes) { assert.equal(this, secure); assert.ok(bytes instanceof Uint8Array); assert.equal(bytes.length, 16); draws++; fill(bytes); return bytes; } };
+      const id = createPhotoRecognitionRequestId(secure);
+      assert.equal(id, expected);
+      assert.equal(photoRecognitionRequestId(id), id, "Actual server UUID validator accepts the fallback");
+      assert.equal(draws, 1);
+    }
+    for (const secure of [null, {}, { getRandomValues() { throw new Error("private crypto error"); } }, { randomUUID() { return "not-a-v4-uuid"; } }]) {
+      assert.throws(() => createPhotoRecognitionRequestId(secure), error => error.code === "photo_secure_random_unavailable" && !error.message.includes("private"));
+    }
+  } finally { Math.random = savedRandom; }
+});
+
+test("A WebView with only getRandomValues sends an accepted fresh photo request ID after consent", async () => {
+  let draws = 0;
+  const h = setup({ crypto: { getRandomValues(bytes) { bytes.fill(++draws); return bytes; } } });
+  try {
+    await h.ready(); assert.equal(draws, 0); assert.equal(h.requests("POST").length, 0);
+    await h.recognize(); h.flush();
+    assert.equal(draws, 1); assert.equal(h.requests("POST").length, 1);
+    const first = h.requests("POST")[0].init;
+    assert.equal(first.headers["X-Jagdlatein-Photo-Request-Id"], "01010101-0101-4101-8101-010101010101");
+    assert.equal(photoRecognitionRequestId(first.headers["X-Jagdlatein-Photo-Request-Id"]), first.headers["X-Jagdlatein-Photo-Request-Id"]);
+    assert.equal(first.headers["X-Jagdlatein-Photo-Consent"], "openai-v1"); assert.equal(first.body, h.photo);
+    assert.match(h.text, /Bildvorschlag: Rehwild/);
+    h.changePhoto(prepared("another-photo")); await h.ready(); await h.recognize(); h.flush();
+    assert.equal(draws, 2); assert.equal(h.requests("POST").length, 2);
+    assert.notEqual(h.requests("POST")[1].init.headers["X-Jagdlatein-Photo-Request-Id"], first.headers["X-Jagdlatein-Photo-Request-Id"]);
+    assert.equal(h.storageReads, 0);
   } finally { h.cleanup(); }
+});
+
+test("Missing or failing secure request identifiers explain the limitation before sending the image", async () => {
+  for (const crypto of [undefined, null, {}, { getRandomValues() { throw new Error("private crypto detail"); } }, { randomUUID() { throw new Error("private native detail"); } }]) {
+    const h = setup({ crypto });
+    try {
+      await h.ready(); await h.recognize(); h.flush();
+      assert.equal(h.requests("POST").length, 0);
+      assert.match(h.text, /keine sichere Foto-Anfrage erstellen/);
+      assert.match(h.text, /Merkmalsvergleiche bleiben verfügbar/);
+      assert.doesNotMatch(h.text, /private (?:crypto|native) detail/);
+      assert.ok(h.button());
+      assert.equal(h.timers.size, 0);
+    } finally { h.cleanup(); }
+  }
 });

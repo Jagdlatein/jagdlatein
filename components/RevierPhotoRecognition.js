@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { createPhotoRecognitionRequestId } from "../lib/revier-photo-request-id";
 import styles from "../styles/RevierPhotoHelper.module.css";
 
 const ENDPOINT = "/api/fotohelfer/recognize";
@@ -60,10 +61,10 @@ export default function RevierPhotoRecognition({ photo }) {
     setView({ photo, phase: "working", dailyLimit: current.dailyLimit });
     const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
     try {
-      if (typeof globalThis.crypto?.randomUUID !== "function") throw new Error("unsupported");
+      const requestId = createPhotoRecognitionRequestId();
       const response = await fetch(ENDPOINT, {
         method: "POST", credentials: "same-origin", cache: "no-store", signal: controller.signal,
-        headers: { "Content-Type": "image/jpeg", "X-Jagdlatein-Photo-Consent": "openai-v1", "X-Jagdlatein-Photo-Request-Id": globalThis.crypto.randomUUID() },
+        headers: { "Content-Type": "image/jpeg", "X-Jagdlatein-Photo-Consent": "openai-v1", "X-Jagdlatein-Photo-Request-Id": requestId },
         body: photo,
       });
       const data = await response.json();
@@ -76,9 +77,10 @@ export default function RevierPhotoRecognition({ photo }) {
       else setView({ photo, phase: response.status === 429 ? "limited" : "error", dailyLimit: current.dailyLimit,
         message: response.status === 429 ? "Das Erkennungslimit ist erreicht. Bitte versuche es später erneut. Die Merkmalsvergleiche bleiben verfügbar."
           : "Das Foto konnte gerade nicht ausgewertet werden. Bitte versuche es erneut oder nutze den Merkmalsvergleich." });
-    } catch {
+    } catch (error) {
       if (request === generation.current) setView({ photo, phase: "error", dailyLimit: current.dailyLimit,
         message: controller.signal.aborted ? "Die Erkennung dauert zu lange. Bitte versuche es erneut; die bisherigen Vergleiche bleiben verfügbar."
+          : error?.code === "photo_secure_random_unavailable" ? "Dein Browser kann keine sichere Foto-Anfrage erstellen. Bitte aktualisiere deinen Browser oder dein Gerät. Die Merkmalsvergleiche bleiben verfügbar."
           : "Die Bilderkennung ist gerade nicht erreichbar. Prüfe deine Verbindung und versuche es erneut." });
     } finally { clearTimeout(timer); if (request === generation.current) working.current = false; }
   }
