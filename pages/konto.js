@@ -127,6 +127,7 @@ export default function AccountPage({ courses = [] } = {}) {
     .sort((left, right) => (Date.parse(right.updated_at) || 0) - (Date.parse(left.updated_at) || 0))[0] : null;
   const continueCourse = courses.find(course => course.id === latestStarted?.course_id);
   const trial = account?.accessType === "trial" && !account?.admin;
+  const courtesy = account?.paid && account?.accessType === "courtesy" && account?.accessProvider === "manual_grant" && !account?.admin;
   const apple = account?.accessProvider === "apple";
   const trialStopped = trial && !apple && ["CANCELLED", "SUSPENDED", "EXPIRED"].includes(account?.subscriptionStatus);
   const trialUntil = accessDate(account?.trialUntil);
@@ -156,26 +157,30 @@ export default function AccountPage({ courses = [] } = {}) {
             <a href="/preise" className={styles.button}>{paypalPending || paypalPaused ? "Vorhandenes Abo prüfen" : "Abo auswählen und bestätigen"}</a>
             <p><Link href="/hilfe#abo" className={styles.helpLink}>Hilfe zum Abo</Link></p>
           </section> : <section id="abo-und-zugang" className={`${styles.card} ${styles.accessCard}`} aria-labelledby="account-access">
-            <p className={styles.accessBadge}>{account.admin ? "Adminzugang aktiv" : trial ? "Testzugang aktiv" : "Lernzugang aktiv"}</p>
+            <p className={styles.accessBadge}>{account.admin ? "Adminzugang aktiv" : courtesy ? "Befristeter Lernzugang aktiv" : trial ? "Testzugang aktiv" : "Lernzugang aktiv"}</p>
             <h2 id="account-access">Bereit zum Weiterlernen</h2>
             <p>{continueCourse ? <>Dein zuletzt begonnener Kurs: <strong>{continueCourse.title.replace(/^[^\p{L}\p{N}]+/u, "")}</strong>.</> : "Deine Kurse und Auswertungen findest du hier an einem Ort."}</p>
             <div className={styles.actions}>
               <Link href={continueCourse?.href || "/meine-kurse"} className={styles.button}>{continueCourse ? "Kurs weiterlernen" : "Meine Kurse öffnen"}</Link>
-              <a href="#kontodaten" className={styles.secondaryButton}>{account.admin ? "Kontodaten ansehen" : "Abo und Laufzeit ansehen"}</a>
+              <a href="#kontodaten" className={styles.secondaryButton}>{account.admin ? "Kontodaten ansehen" : courtesy ? "Zugang und Laufzeit ansehen" : "Abo und Laufzeit ansehen"}</a>
             </div>
           </section>}
           <section id="kontodaten" className={styles.card} aria-labelledby="account-details">
             <h2 id="account-details">Kontodaten</h2>
             <dl className={styles.details}>
               <div><dt>E-Mail-Adresse</dt><dd>{account.email}</dd></div>
-              <div><dt>Zugang</dt><dd>{account.admin ? "Adminzugang" : trialStopped || endedTrial || (trial && !account.paid) ? "Testzugang beendet" : trial && account.paid ? "Kostenloser Testzugang aktiv" : account.paid ? "Premium aktiv" : "Premium nicht aktiv"}</dd></div>
+              <div><dt>Zugang</dt><dd>{account.admin ? "Adminzugang" : courtesy ? "Befristeter Lernzugang" : trialStopped || endedTrial || (trial && !account.paid) ? "Testzugang beendet" : trial && account.paid ? "Kostenloser Testzugang aktiv" : account.paid ? "Premium aktiv" : "Premium nicht aktiv"}</dd></div>
               {trial && account.paid && !trialStopped && trialUntil && <div><dt>Kostenlos bis</dt><dd>{trialUntil}</dd></div>}
-              {!trial && !account.admin && account.paid && paidUntil && <div><dt>Zugang bestätigt bis</dt><dd>{paidUntil}</dd></div>}
+              {!trial && !account.admin && account.paid && paidUntil && <div><dt>{courtesy ? "Automatisches Ende" : "Zugang bestätigt bis"}</dt><dd>{paidUntil}</dd></div>}
               {!account.admin && subscriptionLabel && <div><dt>{apple ? "Apple-Abo" : "PayPal-Abo"}</dt><dd>{subscriptionLabel}</dd></div>}
               <div><dt>Anmeldung</dt><dd>Mit einem Code per E-Mail</dd></div>
             </dl>
             {account.admin && <p><Link href="/admin/testabos" className={styles.secondaryButton}>Testabos und Abos</Link></p>}
             {!account.admin && <p><button type="button" className={styles.secondaryButton} onClick={reload}>Zugang und Abo aktualisieren</button></p>}
+            {courtesy && <p className={styles.muted}>
+              Dieser Zugang endet automatisch zum angezeigten Termin. Dafür wird kein Abo angelegt und keine Zahlung ausgelöst.
+              Wenn du danach weiterlernen möchtest, kannst du selbst ein neues Abo abschließen.
+            </p>}
             {trial && account.paid && !trialStopped && !apple && <p className={styles.muted}>
               Nach den 3 kostenlosen Tagen verlängert sich dein Abo zu den beim Abschluss in PayPal bestätigten Bedingungen.
               Kündige vor dem oben angezeigten Termin bei PayPal, wenn du keine Abozahlung möchtest. Die Kündigung beendet deinen Testzugang.

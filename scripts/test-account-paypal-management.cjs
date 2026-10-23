@@ -195,6 +195,19 @@ test('Account access can be refreshed in place and privacy guidance covers both 
   assert.match(html,/Apple- oder PayPal-Abo nicht automatisch/);
 });
 
+test('A bounded courtesy grant clearly ends without a subscription or automatic payment', () => {
+  const html = renderAccount(LIVE, { paid: true, accessType: 'courtesy', accessProvider: 'manual_grant',
+    subscriptionStatus: null, trialUntil: null, paidUntil: '2026-10-31T23:00:00.000Z' });
+  assert.match(html, /Befristeter Lernzugang aktiv/);
+  assert.match(html, /Zugang und Laufzeit ansehen/);
+  assert.match(html, /Automatisches Ende/);
+  assert.match(html, /01\.11\.2026/);
+  assert.match(html, /00:00/);
+  assert.match(html, /kein Abo angelegt und keine Zahlung ausgelöst/);
+  assert.match(html, /selbst ein neues Abo abschließen/);
+  assert.doesNotMatch(html, /Abo bei PayPal verwalten|Abo bei Apple verwalten|Testzugang aktiv|account-checkout|href="\/preise"/);
+});
+
 test('Old payment return links verify account access instead of asserting a completed payment', () => {
   const context=vm.createContext({URL});
   const page=load('pages/success.js',{},context);
