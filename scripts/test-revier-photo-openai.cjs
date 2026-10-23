@@ -105,7 +105,8 @@ test("Non-JSON HTTP errors are discarded without body disclosure or automatic re
 });
 
 test("HTTP diagnostics expose exact allowlisted code/type/param only, never keys, images, messages or headers", async () => {
-  for (const code of ["insufficient_quota", "invalid_api_key", "model_not_found", "invalid_json_schema", "unsupported_parameter"]) {
+  for (const code of ["insufficient_quota", "invalid_api_key", "model_not_found", "invalid_json_schema", "unsupported_parameter",
+    "credit_balance_exhausted", "organization_spend_limit_exceeded", "project_spend_limit_exceeded", "organization_usage_limit_exceeded"]) {
     const upstream = response({ error: { code, type: "invalid_request_error", param: "text.format.schema",
       message: `sensitive-upstream ${apiKey} data:image/jpeg;base64,/9j/2Q== private-image-sentinel`,
       request: { headers: { authorization: apiKey } }, reasoning: "private-reasoning-sentinel" } },
@@ -117,7 +118,7 @@ test("HTTP diagnostics expose exact allowlisted code/type/param only, never keys
   const untrusted = response({ error: { code: apiKey, type: "sensitive-upstream", param: "private-image-sentinel", message: "private-reasoning-sentinel" } }, { status: 418 });
   await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => untrusted)), "photo_recognition_unavailable");
   assert.deepEqual(diagnostics.at(-1)[1], { stage: "http", httpStatus: "other", providerCode: "other", providerType: "other", providerParam: "other", failureCode: "photo_recognition_unavailable" });
-  assert.equal(diagnostics.length, 6);
+  assert.equal(diagnostics.length, 10);
   assert.doesNotMatch(JSON.stringify(diagnostics), /fake-test-key|sensitive-upstream|data:image|base64|private-image|private-reasoning|authorization|x-private/i);
 });
 
