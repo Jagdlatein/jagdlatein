@@ -35,6 +35,7 @@ test("One explicit request uses the fixed quality model, high-detail JPEG, stric
   assert.equal(init.headers.Authorization, `Bearer ${apiKey}`);
   const body = JSON.parse(init.body);
   assert.equal(body.model, "gpt-6-astra");
+  assert.equal(body.service_tier, "default");
   assert.deepEqual(body.reasoning, { effort: "medium" });
   assert.equal(body.max_output_tokens, 4096);
   assert.equal(body.store, false); assert.equal(body.stream, false); assert.equal(body.background, false);
