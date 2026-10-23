@@ -20,6 +20,7 @@ Standardmäßig bleibt die Funktion **aus**. Konfiguration in jeder Zielumgebung
 | Variable | Bedeutung |
 | --- | --- |
 | `PHOTO_RECOGNITION_ENABLED` | Nur der exakte Wert `true` erlaubt die Freischaltung; zunächst weglassen oder `false` setzen. |
+| `PHOTO_RECOGNITION_TEST_ACCOUNT` | Optionaler interner Test: genau eine bereits berechtigte Konto-E-Mail in normalisierter Kleinschreibung. Bei gesetzter Variable sind alle anderen Konten gesperrt. Leer/ungültig sperrt vollständig; ohne Variable bleibt das normale Zugangsgate bestehen. |
 | `OPENAI_API_KEY` | Neuer geheimer serverseitiger API-Schlüssel des Betreiberprojekts. |
 | `SUPABASE_URL` | Bestehende Projektadresse; ersatzweise verwendet der Code `NEXT_PUBLIC_SUPABASE_URL`. |
 | `SUPABASE_SERVICE_ROLE_KEY` | Bestehender geheimer Serverschlüssel für die begrenzten Kontingent-RPCs. |
@@ -32,6 +33,7 @@ Die Websiteadresse muss zur jeweiligen Test-/Produktivadresse passen. Ein Previe
 2. Die Migration `supabase/migrations/20261023190000_photo_recognition_quota.sql` gezielt im vorgesehenen Testprojekt anwenden und prüfen, danach im richtigen Produktivprojekt. Keine fremden oder bereits erledigten Migrationen ungeprüft mit ausführen.
 3. Migration und Code müssen dieselbe Schemafassung und Grenzwerte melden. RLS schützt beide Zählertabellen; Browserrollen erhalten keine Rechte, nur `service_role` darf die eng begrenzten RPCs ausführen. Datenbankfehler oder fehlende Migration sperren die Erkennung; es gibt keinen ungesicherten Speicher-Ersatz.
 4. `GET /api/fotohelfer/recognize` prüft Konfiguration, bestätigte Anmeldung mit aktivem Lernzugang und Kontingent-Einrichtung, ohne ein Bild an OpenAI zu senden. `POST` erfordert zusätzlich Bildzustimmung, vorbereitete Bilddaten und eine neue Anfrage-ID. Ein vorhandener Schlüssel allein aktiviert die Funktion nicht.
+5. Vor dem ersten echten Test das optionale Testkonto setzen, bevor `PHOTO_RECOGNITION_ENABLED=true` bereitgestellt wird. Es erteilt keine Anmeldung, kein Abo und keine Rolle; alle bestehenden Kontoprüfungen und Kontingente gelten weiter. Erst nach erfolgreicher echter Prüfung und passenden Store-Freigaben die Beschränkung bewusst entfernen. Bei offener nativer Prüfung höchstens das ausdrücklich verwendete Betreiber-/Prüfkonto zulassen.
 
 ## Kontingente und Abschalten
 

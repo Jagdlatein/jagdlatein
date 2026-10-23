@@ -2,7 +2,7 @@ import { requirePaidAccount } from "../../../../lib/account-access";
 import { inspectRevierPhotoBytes, REVIER_PHOTO_MAX_SAVED_BYTES, REVIER_PHOTO_MAX_EDGE } from "../../../../lib/revier-photo-storage";
 import { normalizePhotoRecognitionResponse } from "../../../../lib/revier-photo-recognition";
 import { requestPhotoRecognition } from "../../../../lib/revier-photo-openai";
-import { getPhotoRecognitionQuotaStatus, isPhotoRecognitionConfigured, photoRecognitionRequestId, reservePhotoRecognition,
+import { getPhotoRecognitionQuotaStatus, isPhotoRecognitionConfigured, isPhotoRecognitionAccountAllowed, photoRecognitionRequestId, reservePhotoRecognition,
   PhotoRecognitionQuotaError, PHOTO_RECOGNITION_DAILY_LIMIT } from "../../../../lib/revier-photo-quota";
 
 export const runtime = "nodejs";
@@ -183,8 +183,10 @@ async function readPhoto(req) {
 
 export async function GET(req) {
   try {
-    await requirePaidAccount(req);
-    if (!isPhotoRecognitionConfigured()) return json({ configured: false, available: false, dailyLimit: PHOTO_RECOGNITION_DAILY_LIMIT });
+    const account = await requirePaidAccount(req);
+    if (!isPhotoRecognitionAccountAllowed(account) || !isPhotoRecognitionConfigured()) {
+      return json({ configured: false, available: false, dailyLimit: PHOTO_RECOGNITION_DAILY_LIMIT });
+    }
     const status = await getPhotoRecognitionQuotaStatus();
     return json({ configured: true, ...status });
   } catch (error) { return fail(error); }
@@ -194,7 +196,9 @@ export async function POST(req) {
   try {
     const requestId = requirePhotoRequest(req);
     const account = await requirePaidAccount(req);
-    if (!isPhotoRecognitionConfigured()) throw problem("photo_recognition_unavailable", 503, "Die Foto-Erkennung wird noch eingerichtet. Bitte versuche es später erneut.");
+    if (!isPhotoRecognitionAccountAllowed(account) || !isPhotoRecognitionConfigured()) {
+      throw problem("photo_recognition_unavailable", 503, "Die Foto-Erkennung wird noch eingerichtet. Bitte versuche es später erneut.");
+    }
     const imageBytes = await readPhoto(req);
     if (req.signal?.aborted) throw problem("photo_request_aborted", 408, "Die Foto-Anfrage wurde abgebrochen.");
     // Failed provider calls still consume their reservation. Retrying cannot

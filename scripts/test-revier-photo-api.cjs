@@ -135,6 +135,59 @@ test("disabled or unconfigured recognition makes no database/provider call", asy
   }
 });
 
+test("optional normalized single-account gate allows only the exact paid identity on GET and POST", async () => {
+  const allowed = harness({ env: { PHOTO_RECOGNITION_TEST_ACCOUNT: "synthetic@example.invalid" } });
+  const status = await result(await allowed.route.GET(allowed.request({ method: "GET" })));
+  assert.deepEqual(status.body, { configured: true, available: true, dailyLimit: 5 });
+  assert.equal((await allowed.route.POST(allowed.request())).status, 200);
+  assert.equal(allowed.calls.provider.length, 1);
+  assert.deepEqual(allowed.calls.rpc.map(call => call.name), ["photo_recognition_quota_status", "reserve_photo_recognition"]);
+  for (const account of [{ email: "other@example.invalid" }, { email: "other@example.invalid", admin: true },
+    { email: "Synthetic@example.invalid" }, { email: undefined }]) {
+    const blocked = harness({ account, env: { PHOTO_RECOGNITION_TEST_ACCOUNT: "synthetic@example.invalid" } });
+    let photoReads = 0;
+    const request = blocked.request();
+    Object.defineProperty(request, "body", { get() { photoReads++; throw new Error("private image body must not be read"); } });
+    const get = await result(await blocked.route.GET(blocked.request({ method: "GET" })));
+    assert.deepEqual(get.body, { configured: false, available: false, dailyLimit: 5 });
+    const post = await result(await blocked.route.POST(request));
+    assert.equal(post.status, 503); assert.equal(post.body.code, "photo_recognition_unavailable");
+    assert.doesNotMatch(JSON.stringify(post.body), /synthetic@|other@|test.account|private image/i);
+    assert.equal(photoReads, 0); assert.equal(blocked.calls.database, 0); zeroProvider(blocked);
+  }
+});
+
+test("missing test gate preserves behaviour, while malformed or non-normalized settings fail closed identically", async () => {
+  const ungated = harness();
+  assert.equal((await ungated.route.POST(ungated.request())).status, 200);
+  const disabled = harness({ env: { PHOTO_RECOGNITION_ENABLED: "false" } });
+  const expected = await result(await disabled.route.POST(disabled.request()));
+  for (const value of ["", " ", "Synthetic@example.invalid", " synthetic@example.invalid", "synthetic@example.invalid ",
+    "not-an-email", "a@example.invalid,b@example.invalid", "a@example.invalid;b@example.invalid", "<synthetic@example.invalid>",
+    "synthetic@example.invalid\n", "synthetic@example.invalid\0", null, 123]) {
+    const blocked = harness({ env: { PHOTO_RECOGNITION_TEST_ACCOUNT: value } });
+    assert.deepEqual(await result(await blocked.route.POST(blocked.request())), expected);
+    const get = await result(await blocked.route.GET(blocked.request({ method: "GET" })));
+    assert.deepEqual(get.body, { configured: false, available: false, dailyLimit: 5 }); zeroProvider(blocked);
+  }
+});
+
+test("QA gate never replaces paid auth, feature flag, origin, consent or quota enforcement", async () => {
+  const env = { PHOTO_RECOGNITION_TEST_ACCOUNT: "synthetic@example.invalid" };
+  for (const authError of [401, 403]) {
+    const ctx = harness({ env, authError });
+    assert.equal((await ctx.route.GET(ctx.request({ method: "GET" }))).status, authError);
+    assert.equal((await ctx.route.POST(ctx.request())).status, authError); zeroProvider(ctx);
+  }
+  const disabled = harness({ env: { ...env, PHOTO_RECOGNITION_ENABLED: "false" } });
+  assert.equal((await disabled.route.POST(disabled.request())).status, 503); zeroProvider(disabled);
+  for (const [headers, status] of [[{ origin: "https://other.example.invalid" }, 403], [{ "x-jagdlatein-photo-consent": null }, 400]]) {
+    const ctx = harness({ env }); assert.equal((await ctx.route.POST(ctx.request({ headers }))).status, status); zeroProvider(ctx);
+  }
+  const limited = harness({ env, rpc: async () => ({ data: { schemaVersion: 1, allowed: false, reason: "account_limit", retryAfter: 20 }, error: null }) });
+  assert.equal((await limited.route.POST(limited.request())).status, 429); assert.equal(limited.calls.provider.length, 0);
+});
+
 test("canonical www/apex aliases work only on the real first-party request origin", async () => {
   for (const [canonical, actual] of [["https://jagdlatein.de", "https://www.jagdlatein.de"], ["https://www.jagdlatein.de", "https://jagdlatein.de"]]) {
     const ctx = harness({ env: { NEXT_PUBLIC_SITE_URL: canonical } });
