@@ -67,6 +67,21 @@ function tracksTopicFragments(path) {
 function tracksLawSelection(path) {
   return /^\/jagdrecht\/(?:ch|de|at)$/.test(path.split(/[?#]/)[0]);
 }
+const toolSelectionFields = {
+  "/lernen/spurenwerkstatt": ["eintrag", "ansicht"],
+  "/lernen/wildbret-stuecke": ["eintrag", "ansicht"],
+  "/lernen/pflanzenatlas": ["eintrag", "jahreszeit", "entwicklung", "ansicht"],
+  "/lernen/beobachtungswerkstatt": ["eintrag"],
+  "/lernen/wildbret-fallwerkstatt": ["bereich", "eintrag", "thema"],
+  "/lernen/forschung-verstehen": ["datensatz"],
+  "/lernen/kleines-revierleben": ["thema", "motiv"],
+  "/lernen/wildtier-details": ["thema"],
+  "/lernen/jagdhund-videos": ["eintrag"],
+  "/lernen/wissen-fuers-revier": ["thema"],
+};
+function tracksToolSelection(path) {
+  return toolSelectionFields[path.split(/[?#]/)[0]];
+}
 
 function rememberCurrentPath(history, current) {
   const previous = history[history.length - 1];
@@ -79,8 +94,11 @@ function rememberCurrentPath(history, current) {
   const lawStep = lawPath && previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] &&
     ["region", "thema", "artikel", "ansicht", "bund"].some(key => new URL(previous, "https://jagdlatein.invalid").searchParams.get(key) !== new URL(current, "https://jagdlatein.invalid").searchParams.get(key));
   const topicStep = tracksTopicFragments(current) && previous?.split("#")[0] === current.split("#")[0] && previous?.split("#")[1] !== current.split("#")[1];
+  const selectionFields = tracksToolSelection(current);
+  const toolStep = selectionFields && previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && selectionFields.some(key =>
+    JSON.stringify(new URL(previous, "https://jagdlatein.invalid").searchParams.getAll(key)) !== JSON.stringify(new URL(current, "https://jagdlatein.invalid").searchParams.getAll(key)));
   // A chosen tree branch is a navigation step; typing a search remains one stop.
-  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && previousCourse === currentCourse && !topicStep && !lawStep) history[history.length - 1] = current;
+  if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && previousCourse === currentCourse && !topicStep && !lawStep && !toolStep) history[history.length - 1] = current;
   else history.push(current);
   return true;
 }
@@ -119,7 +137,7 @@ export default function GlobalHomeButton() {
     function rememberLocation() {
       const current = window.location.pathname + window.location.search + (window.location.hash || "");
       const history = readHistory();
-      const existing = tracksTopicFragments(current) || tracksLawSelection(current) ? history.lastIndexOf(current) : -1;
+      const existing = tracksTopicFragments(current) || tracksLawSelection(current) || tracksToolSelection(current) ? history.lastIndexOf(current) : -1;
       if (existing >= 0) writeHistory(history.slice(0, existing + 1));
       else if (rememberCurrentPath(history, current)) writeHistory(history.slice(-20));
     }

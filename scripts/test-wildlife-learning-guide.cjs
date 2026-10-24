@@ -33,11 +33,11 @@ const inventory = load('lib/european-wildlife-discovery.js').europeanWildlife;
 const curriculum = load('lib/learning-curriculum.js').learningModules;
 const byId = Object.fromEntries(curriculum.map(course => [course.id, course]));
 
-test('Every existing portrait receives at most three unique real course/lesson targets, with exact copied display metadata', () => {
+test('Portraits retain at most three unique targets, with one exact fourth Rotwild topic and copied course metadata', () => {
   assert.equal(inventory.length, 114);
   for (const species of inventory) {
     const links = guide(species.slug);
-    assert.ok(links.length >= 1 && links.length <= 3, species.slug);
+    assert.ok(links.length >= 1 && links.length <= (species.slug === 'rotwild' ? 4 : 3), species.slug);
     assert.equal(new Set(links.map(link => link.href)).size, links.length, species.slug);
     for (const link of links) {
       const course = byId[link.moduleId]; assert.ok(course, `${species.slug}: ${link.moduleId}`);
@@ -51,6 +51,7 @@ test('Every existing portrait receives at most three unique real course/lesson t
       assert.doesNotMatch(link.moduleId, /hunde|hundesinne|hundegebiss/);
     }
   }
+  assert.equal(guide('rotwild').length, 4);
   for (const slug of [undefined, '', 'nicht-vorhanden', '__proto__', 'constructor']) assert.deepEqual(guide(slug), []);
 });
 

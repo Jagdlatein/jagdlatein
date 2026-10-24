@@ -61,7 +61,8 @@ test('Daily page links to the selected dossier and separates local repetition fr
   assert.match(html, new RegExp(`thema=${moment.topic.id}#revierwissen-inhalt`));
   assert.match(html, /href="\/lernen\/fuenf-minuten"/);
   assert.match(html, /href="\/quiz-app"/);
-  assert.match(html, /href="\/lernen#lernen-suche"/);
+  assert.doesNotMatch(html, /href="\/lernen#lernen-suche"/);
+  assert.match(html, /class="header titleHeader"/);
   assert.match(html, /keine Antworten gespeichert/);
   assert.match(html, /keine Ranglistenpunkte/);
   assert.match(html, new RegExp(moment.question.reviewedOn));

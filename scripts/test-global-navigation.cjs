@@ -363,3 +363,40 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.route(canton); browserBack.route(topic); browserBack.route(norm); browserBack.route(topic);
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
+
+test('Dock Back preserves each committed topic, case, motif and season in the ten focused learning tools', () => {
+  const tools = [
+    ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
+    ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
+    ['/lernen/pflanzenatlas', '?eintrag=rotbuche&jahreszeit=sommer', '?eintrag=rotbuche&jahreszeit=winter'],
+    ['/lernen/beobachtungswerkstatt', '?eintrag=kitz', '?eintrag=hintergrund'],
+    ['/lernen/wildbret-fallwerkstatt', '?bereich=parasiten&thema=trichinellen', '?bereich=parasiten&thema=fuchsbandwurm'],
+    ['/lernen/forschung-verstehen', '?datensatz=weissstorch-olea-2014', '?datensatz=temperatur'],
+    ['/lernen/kleines-revierleben', '?thema=nahrungsnetz&motiv=spinne', '?thema=nahrungsnetz&motiv=laub'],
+    ['/lernen/wildtier-details', '?thema=gebiss-und-schaedel', '?thema=geweih-und-horn'],
+    ['/lernen/jagdhund-videos', '?eintrag=basset-faehrtenende', '?eintrag=labrador-signal'],
+    ['/lernen/wissen-fuers-revier', '?thema=rehwild-fruehling', '?thema=wildkameras'],
+  ];
+  for (const [base, first, second] of tools) {
+    const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
+    s.render().props.children[0].props.onClick();
+    assert.equal(s.destination, base + first, base); s.unmount();
+  }
+});
+
+test('Tool search/context edits stay in the chosen topic; native Back and immediate dock Back retain the correct prior step', () => {
+  const base = '/lernen/wissen-fuers-revier', first = `${base}?thema=rehwild-fruehling#revierwissen-inhalt`;
+  const second = `${base}?thema=wildkameras#revierwissen-fragen`;
+  const s = setup(base, ['/lernen']); s.route(first); s.route(second);
+  s.route(`${base}?thema=wildkameras&q=Kamera&ref=suche#revierwissen-fragen`);
+  s.route(`${base}?q=Wildkamera&ref=menue&thema=wildkameras#revierwissen-fragen`);
+  assert.equal(s.history.length, 4, 'Typing and parameter reordering do not add extra stops');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, first);
+  const native = setup(base, ['/lernen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base, 'Restored history cannot bounce back into the departed topic');
+  const immediate = setup(base, ['/lernen']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  const plant = setup('/lernen/pflanzenatlas', ['/lernen/natur-revier']);
+  plant.route('/lernen/pflanzenatlas?eintrag=buche'); plant.route('/lernen/pflanzenatlas?ansicht=quiz');
+  plant.render().props.children[0].props.onClick(); assert.equal(plant.destination, '/lernen/pflanzenatlas?eintrag=buche');
+});

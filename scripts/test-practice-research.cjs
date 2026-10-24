@@ -10,6 +10,7 @@ const swc = pr('next/dist/build/swc');
 const React = pr('react');
 const { renderToStaticMarkup } = pr('react-dom/server');
 const sharp = pr('sharp');
+const { setup } = require('./helpers/field-reader-fixture.cjs');
 function load(relative, overrides = {}, cache = new Map()) {
   const filename = path.join(root, relative);
   if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
@@ -59,14 +60,16 @@ test('Every dossier keeps original source roles, study scope, explicit practice 
   assert.match(data.topics.find(topic => topic.id === 'wild-und-stoerung').publicationState, /2017 und 2018/);
 });
 
-test('Dossiers keep teaching text and practice directly accessible while evidence and review remain in the closed final block', () => {
+test('Dossiers keep teaching text and practice directly accessible while evidence and review remain in the closed final block', t => {
   for (const topic of data.topics) {
     const router = { query: { thema: topic.id }, isReady: true };
     const Page = load('components/ResearchForPractice.js', { 'next/router': { useRouter: () => router } }).default;
     const html = renderToStaticMarkup(React.createElement(Page, data));
     const dossier = html.slice(html.indexOf('<article'), html.indexOf('</article>'));
     assert.equal((dossier.match(/<button/g) || []).length, 0);
-    const menu = find(Page(data), node => node.props?.title === 'Wissen fürs Revier – Thema wählen');
+    const h = setup('components/ResearchForPractice.js', router.query, { props: data });
+    t.after(() => h.dispose());
+    const menu = find(h.tree, node => node.props?.title === 'Wissen fürs Revier – Thema wählen');
     assert.ok(menu);
     const menuHTML = renderToStaticMarkup(menu.props.children);
     assert.ok(menuHTML.includes('Dein Thema'));
@@ -89,11 +92,13 @@ test('Dossiers keep teaching text and practice directly accessible while evidenc
   }
 });
 
-test('Shared URL selection validates values, preserves other context and follows restored browser query state', async () => {
+test('Shared URL selection validates values, preserves other context and follows restored browser query state', async t => {
   const calls = [];
-  const router = { pathname: '/lernen/wissen-fuers-revier', asPath: '/lernen/wissen-fuers-revier?ref=lernen#revierwissen-inhalt', isReady: true, query: { ref: 'lernen' }, replace: (...args) => { calls.push(args); return Promise.resolve(true); } };
-  const Page = load('components/ResearchForPractice.js', { 'next/router': { useRouter: () => router } }).default;
-  const selection = () => find(Page(data), node => node.type === 'select');
+  const h = setup('components/ResearchForPractice.js', { ref: 'lernen' }, { props: data, router: { pathname: '/lernen/wissen-fuers-revier', asPath: '/lernen/wissen-fuers-revier?ref=lernen#revierwissen-inhalt' } });
+  t.after(() => h.dispose());
+  const router = h.router;
+  router.push = (...args) => { calls.push(args); return Promise.resolve(true); };
+  const selection = () => find(h.render(), node => node.type === 'select');
   assert.equal(selection().props.value, data.topics[0].id);
   selection().props.onChange({ target: { value: 'javascript:alert(1)' } });
   assert.equal(calls.length, 0);
@@ -106,11 +111,10 @@ test('Shared URL selection validates values, preserves other context and follows
   router.query = { thema: data.topics[1].id }; assert.equal(selection().props.value, data.topics[1].id);
   router.query = { thema: data.topics[2].id }; assert.equal(selection().props.value, data.topics[2].id);
   router.query = { thema: data.topics[1].id }; assert.equal(selection().props.value, data.topics[1].id);
-  router.query = { thema: ['wildkameras', 'wild-und-stoerung'] }; assert.equal(selection().props.value, data.topics[0].id);
-  router.query = { thema: 'unknown' }; assert.equal(selection().props.value, data.topics[0].id);
-  router.replace = () => Promise.reject(new Error('cancelled'));
-  selection().props.onChange({ target: { value: data.topics[2].id } });
-  await Promise.resolve(); await Promise.resolve();
+  router.query = { thema: ['wildkameras', 'wild-und-stoerung'] }; assert.equal(selection().props.value, '');
+  router.query = { thema: 'unknown' }; assert.equal(selection().props.value, '');
+  router.push = () => Promise.reject(Object.assign(new Error('cancelled'), { cancelled: true }));
+  await selection().props.onChange({ target: { value: data.topics[2].id } });
 });
 
 test('Only the two licensed, unchanged, decoded photographs reach the browser and keep modification credits', async () => {

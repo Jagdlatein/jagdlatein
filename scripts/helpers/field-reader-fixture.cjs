@@ -19,11 +19,11 @@ function setup(file, initialQuery = {}, options = {}) {
   };
   function PageMenu({ children }) { return React.createElement('aside', { 'data-page-menu': true }, children); }
   const menu = { closed: 0, opened: 0 };
-  const router = { isReady: options.ready !== false, query: { ...initialQuery }, push: async (href, as, options) => { calls.push({ href, options }); router.query = href.query; return true; } };
+  const router = { isReady: options.ready !== false, query: { ...initialQuery }, push: async (href, as, options) => { calls.push({ href, options }); router.query = href.query; if (router.asPath !== undefined) router.asPath = `${href.pathname}${href.hash ? `#${href.hash}` : ''}`; return true; }, ...options.router };
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) }, './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: () => { menu.opened++; }, closePageMenu: () => { menu.closed++; } } });
   const Component = load(file).default;
   function render() {
-    for (let pass = 0; pass < 8; pass++) { cursor = 0; changed = false; tree = Component(); const pending = effects; effects = []; pending.forEach(fn => fn()); if (!changed) return tree; }
+    for (let pass = 0; pass < 8; pass++) { cursor = 0; changed = false; tree = Component(options.props); const pending = effects; effects = []; pending.forEach(fn => fn()); if (!changed) return tree; }
     throw new Error('Reader did not settle');
   }
   render();

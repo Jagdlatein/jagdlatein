@@ -1,0 +1,103 @@
+{
+  "reviewedOn": "2026-10-24",
+  "contentAddedOn": "2026-10-24",
+  "scope": "Eine kurze Rotwild-Lektion zur Unterscheidung von Grundfrequenz und Formanten sowie zur Verlängerung des Vokaltrakts beim Röhren. Keine vollständige Prüfung des Rotwildwissens, keine Alters- oder Gewichtsbestimmung und keine Anleitung zur Beeinflussung von Wild.",
+  "modules": [
+    {
+      "id": "wissen-rotwild-stimme-formanten-2026",
+      "title": "Rotwild: Grundfrequenz, Formanten und beweglicher Kehlkopf",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Die Schallquelle von den Resonanzen unterscheiden und verstehen, was sich beim Röhren im Hals verändert.",
+      "minutes": 6,
+      "objectives": ["Grundfrequenz und Formanten unterscheiden", "Kehlkopfrückzug und Vokaltraktverlängerung verbinden", "Lautbildungswissen von einer Alters- oder Gewichtsbestimmung trennen"],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Die Lektion erklärt die Lautbildung männlicher Rothirsche. Forschungsbefunde sind keine Alters- oder Gewichtsbestimmung eines gehörten Tieres; keine Anleitung zum Anlocken, keine Jagd- oder Managementempfehlung.",
+        "AT": "Die Lektion erklärt die Lautbildung männlicher Rothirsche. Forschungsbefunde sind keine Alters- oder Gewichtsbestimmung eines gehörten Tieres; keine Anleitung zum Anlocken, keine Jagd- oder Managementempfehlung.",
+        "CH": "Die Lektion erklärt die Lautbildung männlicher Rothirsche. Forschungsbefunde sind keine Alters- oder Gewichtsbestimmung eines gehörten Tieres; keine Anleitung zum Anlocken, keine Jagd- oder Managementempfehlung."
+      },
+      "level": "Vertiefung",
+      "sources": [
+        {
+          "label": "Reby und McComb, 2003: Anatomical constraints generate honesty",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0003347203920781",
+          "organization": "University of Sussex; Animal Behaviour 65, 519–530, DOI 10.1006/anbe.2003.2078",
+          "supports": "Originalabstract über den Verlagsindex und das Sussex-Repository gelesen; Quellen-Filter-Einleitung auf der indexierten Original-PDF-Seite 519 gelesen. Direkter Verlagsaufruf 403, keine vollständige PDF-Lektüre behauptet. Trennt Stimmlippenquelle/Grundfrequenz von Formanten des Vokaltrakts. Keine Alters-, Gewichts- oder Erfolgswerte übernommen."
+        },
+        {
+          "label": "Fitch und Reby, 2001: The descended larynx is not uniquely human",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1088793/",
+          "organization": "Harvard University und beteiligtes bioakustisches Forschungsteam; Proceedings of the Royal Society B, DOI 10.1098/rspb.2001.1704",
+          "supports": "Vollständiges Originalabstract über den primären PMC-Suchindex gelesen. Direkte Seite verlangte Browserprüfung, keine PDF-Lektüre behauptet. Eigene bioakustische und anatomische Untersuchung: tiefe Ruhelage und weiterer Kehlkopfrückzug beim Röhren männlicher Rothirsche, Verlängerung des Vokaltrakts und tiefere Resonanzen. Wegen Reby-Mitwirkung nicht als von Quelle 1 unabhängige Forschergruppe gezählt."
+        },
+        {
+          "label": "Frey und Riede, 2013: The Anatomy of Vocal Divergence in North American Elk and European Red Deer",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3928815/",
+          "organization": "Leibniz-Institut für Zoo- und Wildtierforschung Berlin / University of Utah; Journal of Morphology 274, 307–319, DOI 10.1002/jmor.20092",
+          "supports": "Originalvolltext: Abstract, Einleitung, Methoden, relevante anatomische Ergebnisse und Diskussion gelesen. Online Dezember 2012, Heft März 2013. Eigene Rotwildpräparate und mechanische Untersuchungen der Zungenbein-Kehlkopfverbindung stützen die anatomische Beweglichkeit. Unabhängige anatomische Daten gegenüber der Sussex/Harvard-Gruppe; wiedergegebene frühere akustische Korrelationen sind keine neue unabhängige Gewichtsprüfung."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "quelle-und-resonanz",
+          "title": "Röhren verstehen: Schwingung ist nicht Resonanz",
+          "paragraphs": [
+            "Ein stimmhafter Rothirschruf lässt sich im Quellen-Filter-Modell in zwei Komponenten unterscheiden. Die Stimmlippen im Kehlkopf schwingen und liefern das Schallsignal. Ihre regelmäßige Schwingungsfolge bestimmt die Grundfrequenz. Der Schall durchläuft anschließend den Vokaltrakt oberhalb der Stimmlippen, unter anderem den Rachen- und Mundraum. Dessen Resonanzen verstärken bestimmte Frequenzbereiche des Signals; diese Resonanzlagen heißen Formanten. Grundfrequenz und Formanten bezeichnen also verschiedene Eigenschaften desselben Rufs.",
+            "Beim Röhren kann ein männlicher Rothirsch seinen bereits tief liegenden Kehlkopf weiter in Richtung Brustbein zurückziehen. Der Weg von den Stimmlippen bis zur Schallöffnung wird dadurch länger. Mit dieser Verlängerung können die Resonanzen des Vokaltrakts sinken. Eine abgesenkte Resonanzlage ist deshalb nicht einfach dasselbe wie eine langsamere Schwingung der Stimmlippen. Die anatomische Untersuchung von Frey und Riede beschreibt dafür bewegliche Strukturen und die dehnbare Verbindung zwischen Zungenbeinapparat und Kehlkopf.",
+            "Für das Artenwissen ist diese Trennung nützlich: „klingt tief“ benennt noch keine getrennte Messung von Grundfrequenz und Formanten. Die Arbeiten untersuchen Lautbildung unter ihren jeweiligen Forschungsbedingungen. Sie liefern hier keine Alters- oder Gewichtsbestimmung für einen gehörten Hirsch. Eigenes schriftliches Lernbeispiel: Ordne „Stimmlippenschwingung“ der Schallquelle und „verlängerter Vokaltrakt“ dem Resonanzraum zu. Es geht um das Verstehen der Mechanik, nicht um eine Anleitung zur Beeinflussung von Wild."
+          ],
+          "takeaway": "Stimmlippenschwingung und Vokaltraktresonanzen sind unterschiedliche Teile der Lautbildung; beim Röhren kann Kehlkopfrückzug den Resonanzraum verlängern.",
+          "exercise": "Beschrifte auf Papier zwei Kästen mit „Schallquelle“ und „Resonanzraum“. Ordne Stimmlippen, Grundfrequenz, Vokaltrakt und Formanten zu. Das ist ein Begriffsmodell ohne Tonmessung oder Versuch am Wild."
+        }
+      ],
+      "questions": [
+        {
+          "id": "grundfrequenz-quelle",
+          "lessonId": "quelle-und-resonanz",
+          "q": "Was bezeichnet die Grundfrequenz eines regelmäßig stimmhaften Rothirschrufs im hier verwendeten Modell?",
+          "options": ["Die Länge der Pause zwischen zwei Rufen.", "Die Lage der Resonanzen des Vokaltrakts.", "Die Wiederholungsrate der Stimmlippenschwingungen.", "Die Zahl verschiedener rufender Tiere."],
+          "answer": 2,
+          "explain": "Die Grundfrequenz gehört zum regelmäßig schwingenden Quellsignal der Stimmlippen. Die Resonanzen des darüberliegenden Vokaltrakts werden als Formanten unterschieden; eine Rufpause oder Tierzahl ist eine andere Größe."
+        },
+        {
+          "id": "kehlkopf-resonanzraum",
+          "lessonId": "quelle-und-resonanz",
+          "q": "Welche Rolle spielt der Rückzug des Kehlkopfs beim Röhren des Rothirsches?",
+          "options": ["Er verlängert den Vokaltrakt und kann dessen Resonanzfrequenzen absenken.", "Er verkürzt den Vokaltrakt und ersetzt die Stimmlippen als Schallquelle.", "Er macht Grundfrequenz und Formanten zu demselben Merkmal.", "Er erlaubt allein aus dem Ruf die Bestimmung des Körpergewichts."],
+          "answer": 0,
+          "explain": "Der Kehlkopfrückzug verlängert den Resonanzraum oberhalb der Stimmlippen. Das erklärt eine Änderung der Formanten; daraus wird hier weder eine Alters- noch eine Gewichtsbestimmung abgeleitet."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-24",
+        "scope": "Begrenzter Abgleich dieser neuen Rotwild-Lektion und ihrer zwei eigenen Begriffsfragen. Quellen-Filter-Begriffe und beweglicher Kehlkopf werden anhand der Originalarbeiten erklärt; keine neue Prüfung des gesamten Rotwildporträts.",
+        "limitations": ["Reby/McComb 2003: Originalabstract und indexierte Einleitung Seite 519 gelesen; keine vollständige PDF-Lektüre.", "Fitch/Reby 2001: vollständiges Originalabstract über primären PMC-Index gelesen; kein PDF-Volltext behauptet.", "Frey/Riede 2013 liefert eigene anatomische Daten, keine unabhängige Wiederholung einer früheren Körpergewichtskorrelation.", "Keine Frequenz-, Alters- oder Körpermaßwerte; keine Alters-/Gewichtsformel, keine Lock- oder Managementempfehlung."]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-rotwild-stimme-formanten-2026",
+      "lessonId": "quelle-und-resonanz",
+      "claims": [
+        {
+          "claim": "Im Quellen-Filter-Modell wird die Grundfrequenz der regelmäßig schwingenden Stimmlippenquelle von den Formanten als Resonanzen des Vokaltrakts unterschieden. Zwei Komponenten desselben Rufs werden erklärt, keine vollständige physikalische Unabhängigkeit behauptet.",
+          "sourceUrls": ["https://www.sciencedirect.com/science/article/pii/S0003347203920781", "https://pmc.ncbi.nlm.nih.gov/articles/PMC3928815/"]
+        },
+        {
+          "claim": "Männliche Rothirsche können beim Röhren den tief liegenden Kehlkopf weiter zurückziehen und den Vokaltrakt verlängern; damit können dessen Resonanzfrequenzen sinken. Die eigene anatomische Untersuchung von Frey/Riede stützt die Beweglichkeit und dehnbare Zungenbein-Kehlkopfverbindung unabhängig von der früheren Sussex/Harvard-Arbeit.",
+          "sourceUrls": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC1088793/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC3928815/"]
+        },
+        {
+          "claim": "Die Lektion erklärt Lautbildungsmechanik und übernimmt keine Alters-/Gewichtsbestimmung aus einem gehörten Ruf. Das schriftliche Zwei-Kästen-Modell ist ein eigenes Begriffsbeispiel, keine Messung. Anatomische Daten und früher berichtete akustische Korrelationen bleiben unterschiedliche Belegarten.",
+          "sourceUrls": ["https://www.sciencedirect.com/science/article/pii/S0003347203920781", "https://pmc.ncbi.nlm.nih.gov/articles/PMC3928815/"]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {"topic": "Frequenz-, Alters-, Gewichts-, Größen- oder Erfolgswerte und Vorhersagen für einen gehörten Hirsch", "reason": "Der enge Inhalt vermittelt Begriffe und Mechanik, keine Feldmessmethode oder individuelle Schätzung."},
+    {"topic": "Locken, Brunftbeeinflussung, Jagd- und Bestandsmanagement", "reason": "Die gelesenen physiologischen Aussagen werden nicht zu Handlungsempfehlungen erweitert."}
+  ]
+}
