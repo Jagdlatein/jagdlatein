@@ -364,7 +364,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the ten focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif and season in the eleven focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -376,6 +376,8 @@ test('Dock Back preserves each committed topic, case, motif and season in the te
     ['/lernen/wildtier-details', '?thema=gebiss-und-schaedel', '?thema=geweih-und-horn'],
     ['/lernen/jagdhund-videos', '?eintrag=basset-faehrtenende', '?eintrag=labrador-signal'],
     ['/lernen/wissen-fuers-revier', '?thema=rehwild-fruehling', '?thema=wildkameras'],
+    ['/lernen/wildjahr', '?art=rehwild&monat=7', '?art=rotwild&monat=7'],
+    ['/lernen/wildjahr', '?art=rotwild&monat=7', '?art=rotwild&monat=9'],
   ];
   for (const [base, first, second] of tools) {
     const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
@@ -399,4 +401,19 @@ test('Tool search/context edits stay in the chosen topic; native Back and immedi
   const plant = setup('/lernen/pflanzenatlas', ['/lernen/natur-revier']);
   plant.route('/lernen/pflanzenatlas?eintrag=buche'); plant.route('/lernen/pflanzenatlas?ansicht=quiz');
   plant.render().props.children[0].props.onClick(); assert.equal(plant.destination, '/lernen/pflanzenatlas?eintrag=buche');
+});
+
+test('Wildyear keeps species and month as separate Back steps while context edits stay in the same phase', () => {
+  const base = '/lernen/wildjahr';
+  const roeJuly = `${base}?art=rehwild&monat=7#wildjahr-current`;
+  const redJuly = `${base}?art=rotwild&monat=7#wildjahr-current`;
+  const redSeptember = `${base}?art=rotwild&monat=9#wildjahr-current`;
+  const s = setup(base, ['/lernen/wildkunde']);
+  s.route(roeJuly); s.route(redJuly); s.route(redSeptember);
+  s.route(`${base}?monat=9&art=rotwild&q=Brunft&ref=suche#wildjahr-current`);
+  assert.equal(s.history.length, 5);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, redJuly);
+  const immediate = setup(base, ['/lernen/wildkunde']); immediate.route(roeJuly); immediate.navigateBeforeEffects(redJuly);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, roeJuly);
+  s.unmount(); immediate.unmount();
 });

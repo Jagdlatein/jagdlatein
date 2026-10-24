@@ -1544,7 +1544,39 @@
               ],
               "correctIndex": 2,
               "explanation": "Die gesetzlich genannten Inhalte begrenzen die erteilte Erlaubnis."
+            }
+          ],
+          "officialText": "Der Jagderlaubnisschein muß zumindest den Namen des Jagdausübungsberechtigten, die Bezeichnung des Jagdgebietes bzw. Jagdgebietsteiles, die Wildart und die erlaubte Zeitdauer beinhalten.",
+          "officialTextCitation": "§ 47 Abs. 1 Satz 3",
+          "contentValidated": true,
+          "verificationNote": "Der geltende § 47 wurde im Original gelesen. Die bislang ergänzend eingesehene Buchfassung enthält Gesetzeswortlaut und amtliche Erläuterungen; sie ist keine organisatorisch unabhängige Bestätigung sämtlicher konkreter Inhaltsanforderungen. Die bisherige Artikel-ID, der Titel und der Original-Feldsatz bleiben erhalten; q1 bleibt außerhalb des Fragenpools. Nur der gesondert belegte Zeitgrenzenfall q2 wurde in den neuen engen Block at-s-jagderlaubnis-zeitdauer verschoben und dort freigegeben.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-s-jagderlaubnis-zeitdauer",
+          "topic": "jagdausuebung",
+          "title": "Jagderlaubnis: die erlaubte Zeitdauer einhalten",
+          "lawTitle": "Jagdgesetz 1993 (Salzburg)",
+          "citation": "§ 47 Abs. 1 Satz 3 und Abs. 2 Satz 1",
+          "effectiveFrom": "1994-01-01",
+          "summary": "Im hier betrachteten Salzburger Lernfall nennt der Jagderlaubnisschein eine Wildart und ein Enddatum. Die Jagd muss innerhalb dieser Erlaubnis bleiben; eine gültige Jahresjagdkarte verlängert die darin erlaubte Zeitdauer nicht automatisch. Das ist eine Aussage zur ausdrücklich befristeten Erlaubnis, keine Prüfung möglicher Ansprüche aus zusätzlichen Vereinbarungen.",
+          "sources": [
+            {
+              "title": "Jagdgesetz 1993 (Salzburg): § 47, Fassung vom 24.10.2026, seit 01.01.1994 geltender Wortlaut",
+              "url": "https://ris.bka.gv.at/eli/lgbl/SA/1993/100/P47/LSB12008372",
+              "publisher": "Land Salzburg / RIS",
+              "kind": "law"
             },
+            {
+              "title": "OGH, 26.02.2002, 1 Ob 294/01v: eigene rechtliche Beurteilung zur befristeten Jagderlaubnis und fehlenden Zusage einer Verlängerung",
+              "url": "https://www.ris.bka.gv.at/Dokumente/Justiz/JJT_20020226_OGH0002_0010OB00294_01V0000_000/JJT_20020226_OGH0002_0010OB00294_01V0000_000.html",
+              "publisher": "Oberster Gerichtshof",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
             {
               "id": "at-s-jagderlaubnisschein-q2",
               "prompt": "Ein Salzburger Jagderlaubnisschein erlaubt eine Wildart nur bis zu einem bestimmten Datum. Welche Aussage stimmt?",
@@ -1557,14 +1589,14 @@
               "explanation": "Die allgemeine persönliche Karte erweitert die besondere Reviererlaubnis nicht."
             }
           ],
-          "officialText": "Der Jagderlaubnisschein muß zumindest den Namen des Jagdausübungsberechtigten, die Bezeichnung des Jagdgebietes bzw. Jagdgebietsteiles, die Wildart und die erlaubte Zeitdauer beinhalten.",
-          "officialTextCitation": "§ 47 Abs. 1 Satz 3",
+          "officialText": "Der Jagderlaubnisschein muß zumindest […] die erlaubte Zeitdauer beinhalten.\n\nDer Jagdinhaber hat dafür zu sorgen, daß diese Personen die Jagd im Rahmen der erteilten Jagderlaubnis und unter Beachtung der Vorschriften dieses Gesetzes ausüben.",
+          "officialTextCitation": "§ 47 Abs. 1 Satz 3, Auszug mit gekennzeichneter Auslassung; Abs. 2 Satz 1 vollständig",
           "contentValidated": true,
-          "verificationNote": "Der geltende § 47 wurde im Original gelesen. Die bislang ergänzend eingesehene Buchfassung enthält Gesetzeswortlaut und amtliche Erläuterungen; sie ist keine organisatorisch unabhängige Bestätigung der konkreten Inhaltsanforderungen. Bis zu einer zusätzlichen unabhängigen fachlichen Erläuterung bleibt der Block außerhalb des Fragenpools.",
+          "verificationNote": "Der aktuelle § 47 wurde mit FassungVom=2026-10-24 direkt gelesen (HTTP 200, LSB12008372, in Kraft seit 01.01.1994). Die eigenständige rechtliche Beurteilung des OGH vom 26.02.2002 behandelt konkret die bis 31.12.2000 erteilte Erlaubnis, die fehlende Zusage einer Verlängerung und die gesetzlich verlangte erlaubte Zeitdauer. Es handelt sich um einen privatrechtlichen Streit über diese Erlaubnis, nicht um einen heutigen Prüfungs- oder Jagdkartenbescheid. Freigegeben ist ausschließlich die unveränderte eigene Frage q2 mit vorausgesetzter Befristung. Die übrigen Pflichtfelder, ein allgemeines Widerrufsrecht, Entziehungsgründe und Pachtfragen werden nicht mit freigegeben.",
           "originalVerified": true
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die konkreten Anforderungen an den Jagderlaubnisschein bleiben bis zur unabhängigen fachlichen Zweitprüfung außerhalb des geprüften Fragenpools.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Zur Jagderlaubnis ist nur der ausdrücklich befristete Zeitgrenzenfall zusätzlich freigegeben; die breitere Pflichtfelderfrage bleibt bis zur unabhängigen konkreten Zweitprüfung außerhalb des geprüften Fragenpools.",
       "examResources": [
         {
           "title": "Salzburger Jagdgesetz 1993 – Abschnitt Jagdprüfung",

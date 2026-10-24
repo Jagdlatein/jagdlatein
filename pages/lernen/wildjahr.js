@@ -1,4 +1,5 @@
 import WildYear from "../../components/WildYear";
+import { readWildYearSelection } from "../../lib/wild-year-selection";
 
 export default WildYear;
 
@@ -8,6 +9,7 @@ export function currentWildYearMonth(date = new Date()) {
   }).format(date));
 }
 
-export function getServerSideProps() {
-  return { props: { currentMonth: currentWildYearMonth() } };
+export function getServerSideProps({ query = {} } = {}) {
+  const currentMonth = currentWildYearMonth();
+  return { props: { currentMonth, initialSelection: readWildYearSelection(query, currentMonth) } };
 }

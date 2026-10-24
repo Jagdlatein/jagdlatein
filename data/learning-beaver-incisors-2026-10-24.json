@@ -1,0 +1,93 @@
+{
+  "reviewedOn": "2026-10-24",
+  "contentAddedOn": "2026-10-24",
+  "scope": "Eine kurze Lektion zum Schmelz-Dentin-Aufbau und zur Selbstschärfung der Schneidezähne des Europäischen Bibers. Keine vollständige Neuprüfung des Biberwissens und keine Behandlungsempfehlung.",
+  "modules": [
+    {
+      "id": "wissen-biber-schneidezaehne-2026",
+      "title": "Biberzähne: Warum die Schneide scharf bleibt",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Harten Schmelz und weicheres Dentin räumlich zuordnen und die Selbstschärfung durch unterschiedlichen Abrieb verstehen.",
+      "minutes": 4,
+      "objectives": ["Lippenseite, Schmelz und Dentin zuordnen", "Ungleichen Abrieb als Selbstschärfungsprinzip erklären"],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Die Lektion erklärt das Grundprinzip der Schneidezähne des Europäischen Bibers. Sie liefert keine Diagnose am lebenden Tier, keine Behandlung und keine Anleitung zum Eingriff. Materialchemie, Farbursache und individuelle Abriebraten bleiben außerhalb dieses Wissensblocks.",
+        "AT": "Die Lektion erklärt das Grundprinzip der Schneidezähne des Europäischen Bibers. Sie liefert keine Diagnose am lebenden Tier, keine Behandlung und keine Anleitung zum Eingriff. Materialchemie, Farbursache und individuelle Abriebraten bleiben außerhalb dieses Wissensblocks.",
+        "CH": "Die Lektion erklärt das Grundprinzip der Schneidezähne des Europäischen Bibers. Sie liefert keine Diagnose am lebenden Tier, keine Behandlung und keine Anleitung zum Eingriff. Materialchemie, Farbursache und individuelle Abriebraten bleiben außerhalb dieses Wissensblocks."
+      },
+      "level": "Vertiefung",
+      "sources": [
+        {
+          "label": "LfU Bayern: Biber in Bayern – Biologie und Management, S. 23",
+          "url": "https://www.lfu.bayern.de/publikationen/get_pdf.htm?art_nr=lfu_nat_00147",
+          "organization": "Bayerisches Landesamt für Umwelt; Konzeption und Text: Wildbiologe Gerhard Schwab; 3. Auflage, Stand August 2015",
+          "supports": "Originalbroschüre, Abschnitt „Biber – vielseitige Vegetarier“, gedruckte S. 23 / PDF-Seite 25 gelesen: harter Schmelz an der Vorderseite nutzt sich langsamer ab als rückseitiges weicheres Dentin; erklärt die scharfe Schneide. Unabhängige fachliche Erklärung gegenüber der Max-Planck-Forschungsgruppe. Keine Bestands-, Rechts-, Farbchemie- oder Zahlenangaben übernommen."
+        },
+        {
+          "label": "Srot et al., 2024: Ingenious Architecture and Coloration Generation in Enamel of Rodent Teeth",
+          "url": "https://fvo.si/wp-content/uploads/2024/08/srot-et-al-2024-ingenious-architecture-and-coloration-generation-in-enamel-of-rodent-teeth-1.pdf",
+          "organization": "Max-Planck-Institut für Festkörperforschung und beteiligte Forschungseinrichtungen; ACS Nano 18, 11270–11283, DOI 10.1021/acsnano.4c00578; Original-PDF am Autorinstitut FVO, CC BY 4.0",
+          "supports": "Relevanter Originalvolltext gelesen: Results and Discussion, PDF-S. C, beschreibt harten Schmelz nur auf der labialen Seite des weicheren Dentinkörpers als Selbstschärfungsapparat; Methods / Incisor Samples, PDF-S. J, bezieht Castor fiber aus Deutschland ein. Die Arbeit untersucht Zahnstruktur und Material, keine populationsweite Abriebrate oder individuelle Gesundheitsdiagnose. Der allgemeine Selbstschärfungsaufbau wird dort fachlich eingeordnet, nicht als neuer eigener Verschleißversuch behauptet."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "schmelz-dentin-abrieb",
+          "title": "Zwei Zahngewebe arbeiten als Schneidwerkzeug zusammen",
+          "paragraphs": [
+            "Die Schneidezähne des Europäischen Bibers sind nicht rundum gleich aufgebaut. Harter Zahnschmelz bedeckt ihre Vorderseite zur Lippe hin. Diese Seite heißt labial. Den größeren Zahnkörper bildet das vergleichsweise weichere Dentin, auch Zahnbein genannt. Hinter der vorderen Schmelzschicht liegt deshalb kein zweiter gleichartiger Schmelzmantel. Für die Funktion ist diese ungleiche Verteilung der Zahngewebe entscheidend.",
+            "Beim Nagen wird Zahnmaterial abgetragen. Das weichere Dentin auf der Rückseite nutzt sich schneller ab als der harte Schmelz an der Vorderseite. Dadurch bleibt eine scharfe Schneidkante erhalten: Der Zahn wirkt als sich selbst schärfendes Werkzeug. Abrieb bedeutet hier also nicht einfach, dass die gesamte Schneide gleichmäßig stumpf wird. Unterschiedlicher Verschleiß der nebeneinanderliegenden Gewebe trägt zur Form der Schneide bei.",
+            "Eigenes Lernmodell: Zeichne einen vereinfachten seitlichen Zahnquerschnitt und markiere vorne Schmelz, dahinter Dentin. Ergänze, welcher Bereich sich schneller abnutzt. Die Zeichnung erklärt ein Bauprinzip; sie ist keine mikroskopische Messung und erlaubt keine Beurteilung der Zahngesundheit eines einzelnen Bibers."
+          ],
+          "takeaway": "Harter Schmelz vorne und schneller abgetragenes Dentin dahinter tragen zur Selbstschärfung der Biber-Schneidezähne bei.",
+          "exercise": "Beschrifte auf Papier einen vereinfachten Zahnquerschnitt mit Lippenseite, Schmelz und Dentin. Erkläre den unterschiedlichen Abrieb in einem Satz; verwende dafür kein Tier oder Präparat."
+        }
+      ],
+      "questions": [
+        {
+          "id": "schmelz-lippenseite",
+          "lessonId": "schmelz-dentin-abrieb",
+          "q": "Wo liegt der harte Zahnschmelz am Schneidezahn des Europäischen Bibers?",
+          "options": ["Nur an der rückwärtigen Seite zur Zunge.", "An der Vorderseite zur Lippe hin.", "Als gleich dicker Mantel auf sämtlichen Zahnseiten.", "Ausschließlich im Inneren des Dentinkörpers."],
+          "answer": 1,
+          "explain": "Der Schmelz bedeckt die labiale, also zur Lippe gerichtete Vorderseite. Der größere Zahnkörper besteht aus vergleichsweise weicherem Dentin; dieser ungleiche Aufbau gehört zum Selbstschärfungsprinzip."
+        },
+        {
+          "id": "abrieb-schneidkante",
+          "lessonId": "schmelz-dentin-abrieb",
+          "q": "Wie trägt unterschiedlicher Abrieb zur scharfen Schneidkante des Biber-Schneidezahns bei?",
+          "options": ["Dentin und Schmelz werden überall gleich schnell abgetragen.", "Der vordere Schmelz verschwindet schneller als das rückseitige Dentin.", "Abrieb findet ausschließlich am hinteren Mahlgebiss statt.", "Das weichere Dentin dahinter nutzt sich schneller ab als der harte Schmelz vorne."],
+          "answer": 3,
+          "explain": "Die unterschiedliche Abnutzung trägt dazu bei, dass die harte vordere Schmelzkante als Schneide erhalten bleibt. Selbstschärfung beschreibt dieses Funktionsprinzip und keine Diagnose der Zähne eines einzelnen Tieres."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-24",
+        "scope": "Begrenzter Abgleich dieser neuen Biber-Lektion und zweier eigener Funktionsfragen anhand einer unabhängigen Behördenbroschüre und der relevanten Originalvolltextabschnitte einer Zahnstrukturarbeit. Keine vollständige Prüfung des Biberporträts.",
+        "limitations": ["Srot et al. ordnen den Schmelz-Dentin-Aufbau als Selbstschärfungsprinzip ein; dies ist keine unabhängige Wiederholung eines eigenen Abriebversuchs.", "Die Originalarbeit schließt Castor fiber ein. Aus ihren untersuchten Tieren werden keine Artstatistiken oder allgemeinen Materialwerte abgeleitet.", "Keine Farb- oder Eisenchemie, keine Härtewerte, Wachstums- oder Verschleißraten, keine Diagnose oder Behandlung."]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-biber-schneidezaehne-2026",
+      "lessonId": "schmelz-dentin-abrieb",
+      "claims": [
+        {
+          "claim": "Beim Schneidezahn des Europäischen Bibers bedeckt harter Schmelz die labiale Vorderseite des weicheren Dentinkörpers. Der räumlich ungleiche Aufbau wird erklärt; kein rundum gleicher Schmelzmantel und keine Materialkennzahl behauptet.",
+          "sourceUrls": ["https://www.lfu.bayern.de/publikationen/get_pdf.htm?art_nr=lfu_nat_00147", "https://fvo.si/wp-content/uploads/2024/08/srot-et-al-2024-ingenious-architecture-and-coloration-generation-in-enamel-of-rodent-teeth-1.pdf"]
+        },
+        {
+          "claim": "Der schnellere Abrieb des weicheren rückseitigen Dentins gegenüber dem vorderen harten Schmelz trägt zur scharfen Schneide bei. LfU erklärt den unterschiedlichen Abrieb ausdrücklich; Srot et al. ordnen den entsprechenden Gewebeaufbau als Selbstschärfungsapparat ein, ohne hier als eigener Abriebversuch ausgegeben zu werden.",
+          "sourceUrls": ["https://www.lfu.bayern.de/publikationen/get_pdf.htm?art_nr=lfu_nat_00147", "https://fvo.si/wp-content/uploads/2024/08/srot-et-al-2024-ingenious-architecture-and-coloration-generation-in-enamel-of-rodent-teeth-1.pdf"]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {"topic": "Farbursache, Eisenchemie, Härte- und Verschleißwerte sowie Wachstumsraten", "reason": "Diese Lektion bleibt beim mehrfach belegten räumlichen Grundaufbau. Abweichende ältere und neuere Deutungen zur Farbe werden nicht zu einer vereinfachten Materialbehauptung vermischt."},
+    {"topic": "Individuelle Zahngesundheit, Behandlung und Eingriffe am Biber", "reason": "Das Lernmodell vermittelt keine Diagnose oder Handlungsempfehlung."}
+  ]
+}
