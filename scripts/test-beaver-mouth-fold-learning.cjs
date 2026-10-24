@@ -52,9 +52,16 @@ test('One narrow second lesson has its own two-source mapping and explicit hones
 });
 
 test('All other courses and all historical 1710 card objects including starter order stay exact', () => {
-  assert.equal(hash(learningModules.filter(item => item.id !== courseId)), '19d22b94329be46dfa9c6a998932008a1234ec19e95afc7c3e3151c4aea805fa');
+  const woodCourseId = 'wissen-ausbau-oekologie-holzaufbau-2026';
+  const woodCourse = getLearningModule(woodCourseId);
+  assert.equal(woodCourse.lessons.length, 5);
+  assert.equal(woodCourse.questions.length, 33);
+  assert.equal(woodCourse.sources.length, 9);
+  const historicalCourses = learningModules.filter(item => item.id !== courseId).map(item => item.id === woodCourseId
+    ? { ...item, sources: item.sources.slice(0, 5), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) } : item);
+  assert.equal(hash(historicalCourses), '19d22b94329be46dfa9c6a998932008a1234ec19e95afc7c3e3151c4aea805fa');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  const historical = cards.filter(card => !(card.moduleId === courseId && card.lessonId === lessonId)).sort((a, b) => a.id.localeCompare(b.id));
+  const historical = cards.filter(card => !(card.moduleId === courseId && card.lessonId === lessonId) && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche').sort((a, b) => a.id.localeCompare(b.id));
   assert.equal(historical.length, 1710);
   assert.equal(hash(historical), '9e6f8fde716b30bdb13238c0751522d35b88dcadc2b0d98cc578ce0affaf7a9f');
 });

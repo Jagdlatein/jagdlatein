@@ -81,6 +81,7 @@ const toolSelectionFields = {
   "/lernen/wildjahr": ["art", "monat"],
   "/lernen/wildtier-videofaelle": ["eintrag"],
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
+  "/lernen/hundetraining-tagebuch": ["eintrag"],
 };
 function tracksToolSelection(path) {
   return toolSelectionFields[path.split(/[?#]/)[0]];

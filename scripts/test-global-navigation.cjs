@@ -364,7 +364,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the thirteen focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif and season in the fourteen focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -381,6 +381,7 @@ test('Dock Back preserves each committed topic, case, motif and season in the th
     ['/lernen/wildtier-videofaelle', '?eintrag=fuchs', '?eintrag=rotwild'],
     ['/lernen/pruefungsgespraech', '?eintrag=baumwinter', '?eintrag=kitzfund'],
     ['/lernen/pruefungsgespraech', '?kategorie=wildkunde&eintrag=kitzfund', '?kategorie=hundewesen&eintrag=hundelernen'],
+    ['/lernen/hundetraining-tagebuch', '?eintrag=pflege', '?eintrag=rueckruf'],
   ];
   for (const [base, first, second] of tools) {
     const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
@@ -400,6 +401,20 @@ test('Oral exam Back tracks only its category and question while context edits r
   native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
   const immediate = setup(base, ['/lernen']); immediate.route(first); immediate.navigateBeforeEffects(second);
   immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+});
+
+test('Dog journal Back follows exercise reading while search context, native Back and immediate Back retain their correct stop', () => {
+  const base = '/lernen/hundetraining-tagebuch';
+  const first = base + '?eintrag=pflege#exercise-title';
+  const second = base + '?eintrag=rueckruf#exercise-title';
+  const s = setup(base, ['/lernen/hundewesen']); s.route(first); s.route(second);
+  s.route(base + '?q=Hund&ref=suche&eintrag=rueckruf#exercise-title');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, first);
+  const native = setup(base, ['/lernen/hundewesen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(base, ['/lernen/hundewesen']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  s.unmount(); native.unmount(); immediate.unmount();
 });
 
 test('Tool search/context edits stay in the chosen topic; native Back and immediate dock Back retain the correct prior step', () => {

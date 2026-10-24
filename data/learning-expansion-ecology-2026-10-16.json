@@ -57,6 +57,38 @@
           "url": "https://www.isb.bayern.de/fileadmin/user_upload/Realschule/Werken/Infohefte/Infohefte_7/RSWerken7_LB1_Infoheft_Holz_im_LehrplanPLUS_der_Realschule_in_Bayern.pdf",
           "organization": "Staatsinstitut für Schulqualität und Bildungsforschung Bayern",
           "supports": "Abgleich von Borke, Bast, Kambium, Holzstrahlen sowie Splint/Kern. Pauschales „totes Holz“ und ausschließlich absteigender Basttransport werden durch die genaueren Fachquellen präzisiert."
+        },
+        {
+          "label": "Ehmcke/Grosser (2014): Das Holz der Eiche, LWF Wissen 75, Holzbeschreibung S. 54",
+          "url": "https://www.lwf.bayern.de/mam/cms04/forsttechnik-holz/dateien/w75_das_holz_der_eiche-eigenschaften_und_verwendung_bf_gesch.pdf",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft / Holzforschung München",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gefaessverteilung"],
+          "supports": "Fachbeschreibung von Stiel- und Traubeneiche: ringporiger Aufbau mit großen Frühholzgefäßen und deutlich kleineren Spätholzgefäßen. Originalbeitrag und dessen Waldwissen-Spiegel sind ein Nachweis, keine zwei unabhängigen Quellen. Keine Abbildungen, Kennwerte oder Verwendungshinweise übernommen."
+        },
+        {
+          "label": "Rehbein (2014): Praxis-Handbuch Holzschutz, Kap. 1.1.1, S. 13–14",
+          "url": "https://api.pageplace.de/preview/DT0400.9783481029913_A28848045/preview-9783481029913_A28848045.pdf",
+          "organization": "Mathias Rehbein / Verlagsgesellschaft Rudolf Müller",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gefaessverteilung"],
+          "supports": "Eigenständig verfasstes holzanatomisches Fachkapitel: Größen- und Verteilungsmuster der Gefäße, ringporige Eiche und gleichmäßigerer zerstreutporiger Grundtyp. Fachliche Erklärung, keine unabhängige experimentelle Wiederholung. Keine Text- oder Abbildungsübernahme und keine Holzschutzanleitung."
+        },
+        {
+          "label": "Landesforsten Rheinland-Pfalz: Öko-Rohstoff, Abschnitt Laubholzaufbau (undatierte Webseite)",
+          "url": "https://www.wald.rlp.de/nutzen/holz/oeko-rohstoff",
+          "organization": "Landesforsten Rheinland-Pfalz",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gefaessverteilung"],
+          "supports": "Unabhängige institutionelle Erläuterung zu ringporigen und zerstreutporigen Laubhölzern sowie den Beispielen Eiche und Birke. Ausschließlich der Abschnitt Laubholzaufbau wird zum neuen Grundmuster herangezogen; keine Übernahme benachbarter Chemie-, Zahlen- oder Nutzungsaussagen."
+        },
+        {
+          "label": "Tennhoff (2020; online 2021): Die Birke – Unkraut oder Alternative?, Birkenholz ist vielseitig",
+          "url": "https://www.waldwissen.net/de/waldwirtschaft/waldbau/standortskunde/die-birke-unkraut-oder-alternative",
+          "organization": "Wald und Holz NRW / Norbert Tennhoff",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gefaessverteilung"],
+          "supports": "Eigenständiger Fachbeitrag von Wald und Holz NRW: Sandbirke als zerstreutporiges Beispiel. Originalartikel 2020, Onlinefassung vom 29. Juni 2021; keine Studie zur Gefäßgrößenverteilung und keine zusätzlichen Kennwerte oder Bewirtschaftungshinweise übernommen."
         }
       ],
       "lessons": [
@@ -103,6 +135,19 @@
           ],
           "takeaway": "Splint/Kern beschreibt Holzbereiche; Tracheiden, Gefäße und Holzstrahlen beschreiben unterschiedliche Bauelemente.",
           "exercise": "Erkläre, warum „Nadelholz ist weich und Kernholz immer dunkel“ keine zuverlässige Bestimmungsregel ist."
+        },
+        {
+          "id": "gefaessverteilung",
+          "title": "Ringporig oder zerstreutporig? Eiche und Sandbirke",
+          "reviewedOn": "2026-10-24",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Ringporig beschreibt ein Verteilungsmuster der Gefäße im Laubholz. Bei Stiel- und Traubeneiche bilden große Frühholzgefäße im Querschnitt einen auffälligen Porenring. Die später gebildeten Spätholzgefäße sind deutlich kleiner. Betrachtet wird also der Unterschied innerhalb eines Zuwachses: Der große Porenring ist nicht mit dem gesamten Jahrring gleichzusetzen. Frühholz und Spätholz gehören weiterhin zum selben Zuwachs.",
+            "Zerstreutporiges Holz besitzt ein gleichmäßigeres Gefäßmuster über die Zuwachszone; der starke Gegensatz eines großen Frühholzporenrings zu viel kleineren Spätholzgefäßen prägt diesen Grundtyp nicht. Die Sandbirke ist ein heimisches Beispiel. Gleichmäßiger bedeutet dabei nicht, dass sämtliche Gefäße exakt gleich groß sein müssen. Die Begriffe beschreiben Größe und Verteilung von Gefäßen, nicht die Farbe des Holzes.",
+            "Eigene Denkübung: Vergleiche an einem vorhandenen Lehrquerschnitt die Gefäßweiten vom Beginn zum Ende eines Zuwachses, statt nur helle und dunkle Streifen zu zählen. Die Beispiele vermitteln anatomische Grundmuster und bilden keinen vollständigen Holzbestimmungsschlüssel. Aus dem Muster allein wird hier keine sichere Artbestimmung abgeleitet."
+          ],
+          "takeaway": "Eichenholz zeigt einen Ring großer Frühholzgefäße vor deutlich kleineren Spätholzgefäßen; Sandbirke ist ein zerstreutporiges Gegenbeispiel.",
+          "exercise": "Erkläre den Unterschied zwischen einem Frühholzporenring und einem vollständigen Jahrring, ohne allein aus dem Gefäßmuster eine Art zu bestimmen."
         }
       ],
       "questions": [
@@ -521,6 +566,19 @@
           ],
           "answer": 1,
           "explain": "Harzkanäle sind ein anatomisches Unterscheidungsmerkmal und keine Laubholzgefäße."
+        },
+        {
+          "id": "gefaessverteilung-ringporige-eiche",
+          "lessonId": "gefaessverteilung",
+          "q": "Welches Gefäßmuster kennzeichnet das hier erläuterte ringporige Eichenholz?",
+          "options": [
+            "Überall exakt gleich große Gefäße ohne jede Zonierung.",
+            "Kleine Frühholzgefäße vor einem Ring viel größerer Spätholzgefäße.",
+            "Ein Ring großer Frühholzgefäße vor deutlich kleineren Spätholzgefäßen.",
+            "Ein Frühholzporenring, der bereits den vollständigen Jahrring bildet."
+          ],
+          "answer": 2,
+          "explain": "Bei Stiel- und Traubeneiche stehen die großen Frühholzgefäße ringförmig; die Spätholzgefäße sind deutlich kleiner. Beide Bereiche gehören zum Zuwachs. Das erklärt ein Gefäßmuster und ist für sich kein vollständiger Artenbestimmungsschlüssel."
         }
       ]
     },
@@ -3301,6 +3359,33 @@
           "sourceUrls": [
             "https://research.fs.usda.gov/download/treesearch/62242.pdf",
             "https://lwf.bayern.de/forsttechnik-holz/holzverwendung/172486/index.php"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-holzaufbau-2026",
+      "lessonId": "gefaessverteilung",
+      "claims": [
+        {
+          "claim": "Stiel- und Traubeneiche besitzen ringporiges Holz: Große Frühholzgefäße bilden einen Porenring, während die Spätholzgefäße deutlich kleiner sind. Frühholz und Spätholz gehören zum selben Zuwachs; der Frühholzporenring allein ist nicht der vollständige Jahrring.",
+          "sourceUrls": [
+            "https://www.lwf.bayern.de/mam/cms04/forsttechnik-holz/dateien/w75_das_holz_der_eiche-eigenschaften_und_verwendung_bf_gesch.pdf",
+            "https://api.pageplace.de/preview/DT0400.9783481029913_A28848045/preview-9783481029913_A28848045.pdf"
+          ]
+        },
+        {
+          "claim": "Zerstreutporig beschreibt ein gleichmäßigeres Gefäßmuster innerhalb der Zuwachszone gegenüber dem starken Früh-/Spätholz-Gegensatz ringporiger Hölzer; es wird keine ausnahmslos identische Gefäßweite behauptet.",
+          "sourceUrls": [
+            "https://api.pageplace.de/preview/DT0400.9783481029913_A28848045/preview-9783481029913_A28848045.pdf",
+            "https://www.wald.rlp.de/nutzen/holz/oeko-rohstoff"
+          ]
+        },
+        {
+          "claim": "Sandbirke ist ein heimisches Beispiel für zerstreutporiges Holz. Die Beispiele erläutern anatomische Grundmuster und ersetzen keinen vollständigen Holzbestimmungsschlüssel.",
+          "sourceUrls": [
+            "https://www.wald.rlp.de/nutzen/holz/oeko-rohstoff",
+            "https://www.waldwissen.net/de/waldwirtschaft/waldbau/standortskunde/die-birke-unkraut-oder-alternative"
           ]
         }
       ]
