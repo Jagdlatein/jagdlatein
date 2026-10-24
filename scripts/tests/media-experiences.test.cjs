@@ -8,6 +8,7 @@ const pr = createRequire(path.join(root, 'package.json'));
 const swc = pr('next/dist/build/swc');
 const React = pr('react');
 const css = new Proxy({}, { get: (_, key) => String(key) });
+const { setup: setupReader } = require('../helpers/field-reader-fixture.cjs');
 
 function load(relative, overrides = {}) {
   const filename = path.join(root, relative);
@@ -46,6 +47,15 @@ function text(node) {
   return typeof node === 'object' ? text(node.props?.children) : String(node);
 }
 function setup(relative) {
+  if (relative === 'components/ObservationWorkshop.js') {
+    const params = new URLSearchParams(global.window?.location?.search || '');
+    const app = setupReader(relative, Object.fromEntries(params));
+    const button = label => { const found = app.nodes(node => node.type === 'button' && text(node) === label)[0]; assert.ok(found, `Missing button ${label}`); return found; };
+    return { redraw: app.render, button, get tree() { return app.tree; },
+      click(label) { const found = button(label); assert.equal(!!found.props.disabled, false, `Disabled button ${label}`); found.props.onClick(); app.render(); },
+      choose(id) { app.nodes(node => node.type === 'select' && node.props.id === 'beobachtung-case')[0].props.onChange({ target: { value: id } }); app.render(); },
+      content() { return text(app.tree); }, dispose: app.dispose };
+  }
   const hooks = engine(); const component = load(relative, { react: hooks.hooks }).default;
   let tree; const redraw = () => tree = hooks.render(component); redraw();
   const button = label => { const found = find(tree, node => node.type === 'button' && text(node) === label); assert.ok(found, `Missing button ${label}`); return found; };
@@ -118,7 +128,7 @@ test('Every video question explains a wrong answer; text alternative and duplica
 test('Observation reveals exactly one stage, rejects stale events and explains all wrong choices', () => {
   const app = setup('components/ObservationWorkshop.js');
   for (const item of observation.observationCases) {
-    app.click(item.title);
+    app.choose(item.id);
     for (let index = 0; index < item.stages.length; index++) {
       const stage = item.stages[index]; const wrong = (stage.answer + 1) % stage.choices.length;
       const stale = app.button(stage.choices[wrong]).props.onClick; stale(); stale(); app.redraw(); assert.ok(app.content().includes(stage.explanation));
@@ -127,6 +137,7 @@ test('Observation reveals exactly one stage, rejects stale events and explains a
   }
   assert.match(app.content(), /24 von 24 Entscheidungen beantwortet · 0 richtig/);
   app.click('Alle acht Fälle neu beginnen'); assert.match(app.content(), /0 von 24 Entscheidungen beantwortet/);
+  app.dispose();
 });
 
 test('Each optional model-specific anatomy round explains mistakes and rapid advance does not skip its questions', () => {
@@ -158,13 +169,13 @@ test('The anatomy selector opens real-photo digestion content directly and retai
   assert.ok(app.content().includes(anatomy.anatomyQuestions[0].question));
 });
 
-test('Direct search links select valid content and unknown IDs are ignored', () => {
+test('Direct search links select valid content and unknown observation IDs never substitute another case', () => {
   const previousWindow = global.window;
   try {
     for (const [component, id, expected] of [['ObservationWorkshop', 'hund', 'Der Hund hechelt stark'], ['WildlifeVideoCases', 'stockente', 'Stockente bei der Nahrungssuche'], ['AnatomyExplorer', 'unterkiefer', 'Der Unterkiefer ist als eigener Scan verfügbar.']]) {
-      global.window = { location: { search: `?eintrag=${id}` } }; const app = setup(`components/${component}.js`); app.hooks.effects[0](); app.redraw(); assert.ok(app.content().includes(expected));
+      global.window = { location: { search: `?eintrag=${id}` } }; const app = setup(`components/${component}.js`); if (component !== 'ObservationWorkshop') app.hooks.effects[0](); app.redraw(); assert.ok(app.content().includes(expected)); app.dispose?.();
     }
-    global.window = { location: { search: '?eintrag=not-valid' } }; const app = setup('components/ObservationWorkshop.js'); app.hooks.effects[0](); app.redraw(); assert.ok(app.content().includes(observation.observationCases[0].stages[0].evidence));
+    global.window = { location: { search: '?eintrag=not-valid' } }; const app = setup('components/ObservationWorkshop.js'); assert.match(app.content(), /Dieser Lernfall ist nicht verfügbar/); assert.ok(!app.content().includes(observation.observationCases[0].stages[0].evidence)); app.dispose();
   } finally { global.window = previousWindow; }
 });
 
@@ -180,13 +191,14 @@ test('All forty-five correct choices receive explanations and correct completion
   assert.match(videoApp.content(), /15 von 15 Fragen beantwortet · 15 richtig/);
   const observationApp = setup('components/ObservationWorkshop.js');
   for (const item of observation.observationCases) {
-    observationApp.click(item.title);
+    observationApp.choose(item.id);
     for (const [index, stage] of item.stages.entries()) {
       observationApp.click(stage.choices[stage.answer]); assert.ok(observationApp.content().includes(stage.explanation));
       if (index < item.stages.length - 1) observationApp.click('Nächste Information aufdecken');
     }
   }
   assert.match(observationApp.content(), /24 von 24 Entscheidungen beantwortet · 24 richtig/);
+  observationApp.dispose();
   const anatomyApp = setup('components/AnatomyExplorer.js');
   for (const model of anatomy.anatomyModels) {
     selectAnatomyModel(anatomyApp, model.id); openAnatomyQuiz(anatomyApp);

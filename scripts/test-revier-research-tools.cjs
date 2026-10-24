@@ -44,7 +44,7 @@ function PageMenu() { return null; }
 function setup(file, props = {}, exposed = '', router = { query: {}, isReady: false }) {
   let closes = 0;
   const focused = [], scrolled = [];
-  const e = engine(); const mod = load(file, { react: e.hooks, 'next/router': { useRouter: () => router }, './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closes++; return true; } } }, exposed); const Component = exposed ? mod.__test : mod.default; let tree;
+  const e = engine(); const mod = load(file, { react: e.hooks, 'next/router': { useRouter: () => router }, './PageMenu': { __esModule: true, default: PageMenu, openPageMenu() {}, closePageMenu() { closes++; return true; } } }, exposed); const Component = exposed ? mod.__test : mod.default; let tree;
   const render = () => {
     tree = e.render(() => Component(props));
     const container = find(tree, node => node.props?.ref);
@@ -143,7 +143,7 @@ test('Search entries resolve every profile and dataset and exclude private quiz 
 });
 test('Tools keep complete learning content visible while their subject selectors occur only in the lower PageMenu', () => {
   for (const file of ['components/SmallRevierLife.js', 'components/ResearchUnderstanding.js']) {
-    const s = setup(file); const html = s.html();
+    const s = file.endsWith('ResearchUnderstanding.js') ? setup(file, {}, '', { isReady: true, query: { datensatz: 'temperatur' } }) : setup(file); const html = s.html();
     assert.equal((html.match(/<main/g) || []).length, 1);
     assert.doesNotMatch(html, /id="(?:revierleben-thema|forschung-datensatz)"|Lebewesen oder Zusammenhang|Forschungsbeispiel/);
     assert.match(s.menuHtml(), /<label[^>]*>[^<]+<select/);
@@ -160,6 +160,7 @@ test('Valid menu selection closes the menu and focuses the newly committed learn
   ]) {
     const changes = [];
     const router = { query: { [parameter]: initial, retained: 'yes' }, isReady: true, pathname: '/synthetic-tool', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+    router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
     const s = setup(file, {}, '', router); s.flush();
     const closes = s.closes, focused = s.focused.length;
     find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: 'invalid' } }); s.flush();
@@ -180,6 +181,7 @@ test('Valid menu selection closes the menu and focuses the newly committed learn
 
 test('The lower research menu switches between data series and movement maps without mixing their content', () => {
   const router = { query: { datensatz: 'weissstorch-olea-2014' }, isReady: true, pathname: '/lernen/forschung-verstehen', replace: () => Promise.resolve() };
+  router.push = href => { router.query = href.query; return Promise.resolve(true); };
   const s = setup('components/ResearchUnderstanding.js', {}, '', router); s.flush();
   assert.equal(find(s.tree, node => node.type?.name === 'WildMovementMap').props.selectedId, 'weissstorch-olea-2014');
   assert.equal(find(s.tree, node => node.props?.dataset), null);
@@ -202,6 +204,7 @@ test('Ecology deep links, back navigation and selectors consistently show the ad
 });
 test('Research direct selection is stable and unrelated URL state survives without extra steps', () => {
   const changes = []; const router = { query: { datensatz: 'brutvoegel', preserved: 'yes' }, isReady: true, pathname: '/lernen/forschung-verstehen', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+  router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/ResearchUnderstanding.js', {}, '', router); s.e.effects(); s.render();
   assert.equal(find(s.tree, item => item.props?.dataset)?.props.dataset.id, 'brutvoegel');
   const select = find(s.tree, item => item.type === 'select'); select.props.onChange({ target: { value: 'waldbrand' } }); s.render();

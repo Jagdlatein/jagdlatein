@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import WildMovementMap from "./WildMovementMap";
-import PageMenu, { closePageMenu } from "./PageMenu";
+import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import { wildMovementDatasets, getWildMovementDataset } from "../lib/wild-movement";
 import { formatResearchValue, getResearchDataset, researchDatasets, researchSources, selectResearchPoints } from "../lib/research-understanding";
 import shared from "../styles/LearningExperience.module.css";
@@ -47,41 +47,59 @@ function DatasetView({ dataset }) {
 }
 export default function ResearchUnderstanding() {
   const router = useRouter();
-  const [selected, setSelected] = useState(researchDatasets[0].id);
+  const [navigationError, setNavigationError] = useState("");
   const content = useRef(null);
-  const focusAfterSelection = useRef(null);
+  const mounted = useRef(false);
+  const navigation = useRef(0);
+  const pendingRequest = useRef(null);
+  const ready = router.isReady === true;
+  const selected = ready && typeof router.query.datensatz === "string" && [...researchDatasets, ...wildMovementDatasets].some(item => item.id === router.query.datensatz) ? router.query.datensatz : null;
+  const viewKey = JSON.stringify([ready, selected]);
+  const committedView = useRef({ key: viewKey });
+  if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
+  const movement = selected && wildMovementDatasets.some(item => item.id === selected) ? getWildMovementDataset(selected) : null;
+  const dataset = selected && !movement ? getResearchDataset(selected) : null;
   useEffect(() => {
-    if (!router.isReady) return;
-    const id = typeof router.query.datensatz === "string" ? router.query.datensatz : "";
-    const next = wildMovementDatasets.some(item => item.id === id) ? id : getResearchDataset(id).id;
-    if (typeof router.query.datensatz === "string") focusAfterSelection.current = next;
-    setSelected(next);
-  }, [router.isReady, router.query.datensatz]);
+    mounted.current = true;
+    return () => { mounted.current = false; navigation.current += 1; pendingRequest.current = null; };
+  }, []);
   function focusContent() {
-    if (!content.current) return;
-    focusAfterSelection.current = null;
-    const target = content.current.querySelector("h2") || content.current;
-    target.setAttribute("tabindex", "-1");
-    target.focus({ preventScroll: true });
-    target.scrollIntoView({ block: "start", behavior: "auto" });
+    const target = content.current?.querySelector?.("h2") || content.current;
+    target?.setAttribute?.("tabindex", "-1");
+    target?.focus?.({ preventScroll: true });
+    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
   }
   useEffect(() => {
-    if (focusAfterSelection.current !== selected) return;
+    if (!ready) return;
+    setNavigationError("");
+    if (!selected) {
+      const timer = setTimeout(() => openPageMenu("research-choices"), 0);
+      return () => clearTimeout(timer);
+    }
     closePageMenu();
     focusContent();
-  }, [selected, router.isReady, router.query.datensatz]);
-  const movement = wildMovementDatasets.some(item => item.id === selected) ? getWildMovementDataset(selected) : null;
-  const dataset = getResearchDataset(selected);
-  function select(id) {
-    if (![...researchDatasets, ...wildMovementDatasets].some(item => item.id === id)) return;
-    focusAfterSelection.current = id;
+  }, [ready, selected]);
+  async function select(id) {
+    if (!ready || ![...researchDatasets, ...wildMovementDatasets].some(item => item.id === id)) return;
+    setNavigationError("");
     closePageMenu();
-    if (id === selected) focusContent();
-    setSelected(id);
-    if (router.isReady) router.replace({ pathname: router.pathname, query: { ...router.query, datensatz: id } }, undefined, { shallow: true, scroll: false }).catch(() => {});
+    if (id === selected && pendingRequest.current === null) { focusContent(); return; }
+    const request = ++navigation.current;
+    const origin = committedView.current;
+    pendingRequest.current = request;
+    const hash = wildMovementDatasets.some(item => item.id === id) ? "wildbewegung" : "forschung-inhalt";
+    try {
+      await router.push({ pathname: "/lernen/forschung-verstehen", query: { ...router.query, datensatz: id }, hash }, undefined, { shallow: true, scroll: false });
+    } catch (error) {
+      if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
+      setNavigationError("Das Forschungsbeispiel konnte nicht geöffnet werden. Bitte wähle es erneut.");
+      openPageMenu("research-choices");
+    } finally {
+      if (pendingRequest.current === request) pendingRequest.current = null;
+    }
   }
-  return <LearningToolLayout title="Forschung verstehen" description="Originaldaten aus DACH erkunden: genau lesen, passende Schlüsse ziehen und Grenzen erkennen." category="natur-revier" icon="stats" compact>
-    <PageMenu title="Forschung – Beispiel wählen"><label className={shared.field}>Forschungsbeispiel<select id="forschung-datensatz" value={movement?.id || dataset.id} onChange={event => select(event.target.value)}><optgroup label="Messreihen und Diagramme">{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</optgroup><optgroup label="Wildbewegungen auf Karten">{wildMovementDatasets.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label></PageMenu>
-    <div ref={content}>{movement ? <WildMovementMap key={movement.id} selectedId={movement.id} hideSelector /> : <DatasetView key={dataset.id} dataset={dataset} />}</div>
+  return <LearningToolLayout title="Forschung verstehen" description="Originaldaten aus DACH erkunden: genau lesen, passende Schlüsse ziehen und Grenzen erkennen." category="natur-revier" icon="stats" headingOnly>
+    <PageMenu title="Forschung – Beispiel wählen" openInitially={ready && !selected} initialFocusId="research-choices"><div id="research-choices" tabIndex={-1}><label className={shared.field}>Forschungsbeispiel<select id="forschung-datensatz" value={selected || ""} onChange={event => select(event.target.value)} aria-controls={movement ? "wildbewegung" : "forschung-inhalt"}><option value="" disabled>Beispiel wählen</option><optgroup label="Messreihen und Diagramme">{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</optgroup><optgroup label="Wildbewegungen auf Karten">{wildMovementDatasets.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label>{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</div></PageMenu>
+    <div ref={content} tabIndex={-1}>{movement ? <WildMovementMap key={movement.id} selectedId={movement.id} hideSelector /> : dataset ? <DatasetView key={dataset.id} dataset={dataset} /> : <p className={shared.note}>{ready && router.query.datensatz !== undefined ? "Dieses Forschungsbeispiel ist nicht verfügbar. " : ""}Wähle ein Beispiel unten im Menü. Hier erscheint nur die ausgewählte Messreihe oder Bewegungskarte.</p>}</div>
   </LearningToolLayout>;
 }

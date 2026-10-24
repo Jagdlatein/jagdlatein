@@ -17,7 +17,7 @@ function load(relative, overrides = {}) {
   function resolve(id) {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id === 'next/router') return { useRouter: () => ({ isReady: false, query: {}, pathname: '', replace: async () => true }) };
-    if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
+    if (id === 'next/link') return ({ href, children, prefetch, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => React.createElement(React.Fragment, null, children);
     if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id.endsWith('.module.css')) return { __esModule: true, default: css };
@@ -36,8 +36,10 @@ function engine() {
 }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
 function text(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(text).join(''); return typeof node === 'object' ? text(node.props?.children) : String(node); }
-function setup(relative) {
-  const e = engine(), Component = load(relative, { react: e.hooks }).default; let tree = e.render(() => Component());
+function setup(relative, { query = {}, ready = false } = {}) {
+  const e = engine();
+  const router = { isReady: ready, query: { ...query }, pathname: '/lernen/wildbret-fallwerkstatt', async push(href) { router.query = href.query; return true; } };
+  const Component = load(relative, { react: e.hooks, 'next/router': { useRouter: () => router } }).default; let tree = e.render(() => Component());
   return { get tree() { return tree; }, redraw() { tree = e.render(() => Component()); return tree; }, flush() { e.flush(); this.redraw(); }, html() { return renderToStaticMarkup(tree); }, button(label) { const node = find(tree, n => n.type === 'button' && text(n).trim() === label); assert.ok(node, 'Missing button: ' + label); return node; }, click(label) { const node = this.button(label); assert.ok(!node.props.disabled); node.props.onClick(); this.redraw(); }, field(label, value) { const holder = find(tree, n => n.type === 'label' && text(n).startsWith(label)); assert.ok(holder, 'Missing field: ' + label); const input = find(holder, n => ['input', 'select', 'textarea'].includes(n.type)); input.props.onChange({ target: { value, checked: value } }); this.redraw(); } };
 }
 const meat = load('lib/game-meat-cases.js');
@@ -49,7 +51,7 @@ test('Ten substantive hygiene cases explain every option and all answers remain 
   for (const item of meat.gameMeatCases) { assert.equal(item.choices.length, 3); assert.ok(item.answer >= 0 && item.answer < item.choices.length); assert.equal(item.checklist.length, 3); assert.ok(item.situation.length > 90); assert.ok(item.choices.every(choice => choice.explanation.length > 45)); assert.ok(item.sources.length); }
 });
 test('Hygiene feedback supports wrong answers, guards double submissions and rejects stale round actions', () => {
-  const s = setup('components/GameMeatCases.js'); const first = meat.gameMeatCases[0]; const wrong = s.button(first.choices[1].text); const correct = s.button(first.choices[0].text);
+  const s = setup('components/GameMeatCases.js', { ready: true }); s.flush(); const first = meat.gameMeatCases[0]; const wrong = s.button(first.choices[1].text); const correct = s.button(first.choices[0].text);
   wrong.props.onClick(); wrong.props.onClick(); correct.props.onClick(); s.redraw(); assert.ok(s.html().includes(first.choices[1].explanation)); assert.ok(s.html().includes(first.choices[0].explanation));
   const next = s.button('Nächster Fall'); next.props.onClick(); next.props.onClick(); s.redraw(); assert.ok(s.html().includes('Fall 2 von 10'));
   wrong.props.onClick(); next.props.onClick(); s.redraw(); assert.ok(!s.html().includes('Fall 3 von 10'));
@@ -58,10 +60,10 @@ test('Hygiene feedback supports wrong answers, guards double submissions and rej
 });
 
 test('The single learning offer selector opens parasite cycles directly and returns to explainable hygiene cases', () => {
-  const s = setup('components/GameMeatCases.js');
+  const s = setup('components/GameMeatCases.js', { ready: true }); s.flush();
   s.field('Lernangebot', 'parasiten');
   const panel = find(s.tree, node => node.type?.name === 'ParasiteLearning');
-  assert.ok(panel); assert.equal(panel.props.selectedId, 'trichinellen');
+  assert.ok(panel); assert.equal(panel.props.selectedId, 'trichinellen'); assert.equal(panel.props.hideSelector, true);
   panel.props.onSelect('fuchsbandwurm'); s.redraw();
   assert.equal(find(s.tree, node => node.type?.name === 'ParasiteLearning').props.selectedId, 'fuchsbandwurm');
   s.field('Lernangebot', 'discover');
@@ -111,10 +113,10 @@ test('Exam reading never selects a remote voice and stays usable as text', () =>
 });
 test('Search deep links open only known content IDs in all three tools', () => {
   const oldWindow = global.window; global.window = { location: { search: '?eintrag=trichinen' }, localStorage: { getItem() { return null; }, setItem() {} } };
-  try { const meatPage = setup('components/GameMeatCases.js'); meatPage.flush(); assert.match(meatPage.html(), /Einfrieren statt Untersuchung/); assert.match(meatPage.html(), /Begründung/); global.window.location.search = '?eintrag=pflege'; const journalPage = setup('components/DogTrainingJournal.js'); journalPage.flush(); assert.match(journalPage.html(), /Pflege kooperativ vorbereiten/); global.window.location.search = '?eintrag=baumwinter'; const examPage = setup('components/OralExamTrainer.js'); examPage.flush(); assert.match(examPage.html(), /Ein Laubbaum ohne Blätter/); global.window.location.search = '?eintrag=unknown'; const fallback = setup('components/GameMeatCases.js'); fallback.flush(); assert.match(fallback.html(), /Fall 1 von 10/); }
+  try { const meatPage = setup('components/GameMeatCases.js', { ready: true, query: { eintrag: 'trichinen' } }); meatPage.flush(); assert.match(meatPage.html(), /Einfrieren statt Untersuchung/); assert.match(meatPage.html(), /Begründung/); global.window.location.search = '?eintrag=pflege'; const journalPage = setup('components/DogTrainingJournal.js'); journalPage.flush(); assert.match(journalPage.html(), /Pflege kooperativ vorbereiten/); global.window.location.search = '?eintrag=baumwinter'; const examPage = setup('components/OralExamTrainer.js'); examPage.flush(); assert.match(examPage.html(), /Ein Laubbaum ohne Blätter/); global.window.location.search = '?eintrag=unknown'; const fallback = setup('components/GameMeatCases.js', { ready: true, query: { eintrag: 'unknown' } }); fallback.flush(); assert.match(fallback.html(), /Dieses Thema ist nicht verfügbar/); assert.doesNotMatch(fallback.html(), /Fall 1 von 10/); }
   finally { global.window = oldWindow; }
 });
 test('All six learning tools share exactly one category-aware layout and retain specialized learning content', () => {
-  for (const component of ['GameMeatCases', 'DogTrainingJournal', 'OralExamTrainer', 'PhotoDetective', 'AnimalSounds', 'DogCompass']) { const s = setup(`components/${component}.js`); const html = s.html(); assert.equal((html.match(/<main\b/g) || []).length, 1, component); assert.equal((html.match(/<h1\b/g) || []).length, 1, component); assert.match(html, /href="\/lernen#lernen-suche"/); }
+  for (const component of ['GameMeatCases', 'DogTrainingJournal', 'OralExamTrainer', 'PhotoDetective', 'AnimalSounds', 'DogCompass']) { const s = setup(`components/${component}.js`); const html = s.html(); assert.equal((html.match(/<main\b/g) || []).length, 1, component); assert.equal((html.match(/<h1\b/g) || []).length, 1, component); assert.ok(find(s.tree, node => node.type?.name === 'LearningToolLayout')?.props.category, component); }
   const entries = load('lib/practice-search-entries.js').practiceSearchEntries; assert.equal(entries.length, 40); assert.equal(new Set(entries.map(item => item.id)).size, 40); assert.ok(entries.every(item => item.href.includes('?eintrag=') && item.text.length > 100));
 });
