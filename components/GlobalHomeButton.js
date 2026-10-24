@@ -6,6 +6,7 @@ import { useRouter } from "next/compat/router";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
 import { PAGE_MENU_OUTLET_ID } from "./PageMenu";
+import AppUpdateStatus from "./AppUpdateStatus";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/GlobalNavigation.module.css";
 
@@ -240,6 +241,7 @@ export default function GlobalHomeButton() {
             <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>
             {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` ? "page" : undefined}>{category.title}</Link>)}</div>
           </details> : <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
+          <AppUpdateStatus offline={pathname === "/lernen/offline-rucksack"} />
         </div>
       </details>
     </nav>

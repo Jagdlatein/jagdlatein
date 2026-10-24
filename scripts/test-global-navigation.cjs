@@ -59,6 +59,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu' };
+    if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);

@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Public release identifier only. Never forward the remaining deployment env.
+  env: {
+    NEXT_PUBLIC_JL_RELEASE_ID: /^dpl_[A-Za-z0-9]{8,80}$/.test(process.env.VERCEL_DEPLOYMENT_ID || "")
+      ? process.env.VERCEL_DEPLOYMENT_ID
+      : /^[a-f0-9]{40}$/i.test(process.env.VERCEL_GIT_COMMIT_SHA || "") ? process.env.VERCEL_GIT_COMMIT_SHA : "",
+  },
   images: {
     remotePatterns: [
       {

@@ -1884,6 +1884,58 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-zh-hundefuehrung",
+          "topic": "wildschutz",
+          "title": "Leine im Sommer und kurze Sichtdistanz",
+          "lawTitle": "Hundegesetz (HuG), LS 554.5",
+          "citation": "§ 9 Abs. 2 und § 11 Abs. 1 Einleitung und lit. e HuG",
+          "effectiveFrom": "2025-06-01",
+          "officialText": "§ 9 Abs. 2\nIn Wäldern und an Waldrändern sowie bei Dunkelheit im Freien sind Hunde in Sichtweite auf kurzer Distanz zu halten.\n\n§ 11 Abs. 1 Einleitung und lit. e (Auszug)\n1 Hunde sind anzuleinen:\n[…]\ne. im Wald und am Waldrand vom 1. April bis 31. Juli, ausgenommen Jagd-, Rettungs- und Diensthunde beim Einsatz und bei der Ausbildung.",
+          "summary": "Im Zürcher Wald und am Waldrand gilt vom 1. April bis 31. Juli grundsätzlich Leinenpflicht. Die gesetzlich genannten Einsatz- und Ausbildungsausnahmen stehen im Original. Unabhängig von diesem Saisonzeitraum müssen Hunde im Wald und am Waldrand sowie bei Dunkelheit im Freien in Sichtweite auf kurzer Distanz bleiben. Aus dem Saisonende folgt kein unbeaufsichtigter Freilauf.",
+          "sources": [
+            {
+              "title": "Hundegesetz, aktuelle Nachtragsnummer 129; Publikationsstand 1. Juni 2025",
+              "url": "https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-554_5-2008_04_14-2010_01_01-129.html",
+              "publisher": "Kanton Zürich",
+              "kind": "law"
+            },
+            {
+              "title": "Hunderecht Zürich, Stand Juni 2026: eigene juristische Einordnung der Hundeführung",
+              "url": "https://www.tierimrecht.org/de/recht/hunderecht/zuerich/",
+              "publisher": "Stiftung für das Tier im Recht (TIR)",
+              "kind": "context"
+            }
+          ],
+          "verificationNotes": "Aktuelle Nummer 129 anhand der amtlichen Historie bestätigt; tatsächliches PDF 554.5_14.4.08_129.pdf gelesen. TIR bestätigt Saisonzeitraum und eigenständige Sicht-/Distanzpflicht. Der Auszug markiert die ausgelassenen anderen Buchstaben des § 11 ausdrücklich. Keine starre Meterzahl für «kurze Distanz» erfunden.",
+          "questions": [
+            {
+              "id": "ch-zh-hundefuehrung-q1",
+              "prompt": "Du gehst im Mai mit einem gewöhnlichen Haushund im Zürcher Wald spazieren. Welche Grundregel gilt?",
+              "choices": [
+                "Leinenpflicht",
+                "Nur ein freiwilliger Hinweis",
+                "Leinenpflicht nur während einer Gesellschaftsjagd"
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 11 Abs. 1 lit. e nennt den Zeitraum 1. April bis 31. Juli. Hier liegt kein Einsatz- oder Ausbildungsfall vor."
+            },
+            {
+              "id": "ch-zh-hundefuehrung-q2",
+              "prompt": "Im Oktober gehst du mit deinem Hund im Zürcher Wald. Welche Pflicht aus § 9 Abs. 2 gilt weiterhin?",
+              "choices": [
+                "Der Hund darf unbeaufsichtigt verschwinden",
+                "Nur der Name des Hundes muss hörbar sein",
+                "Er muss in Sichtweite auf kurzer Distanz bleiben"
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Sicht- und Distanzpflicht ist nicht auf April bis Juli beschränkt. Eine zusätzliche örtliche Leinenpflicht bleibt möglich."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
       "notes": "Ausgewählte Grundnormen; kein vollständiger amtlicher Prüfungsstoff. Weitere Bundes-, Verordnungs-, Gebiets- und Jahresvorschriften bleiben zu beachten.",
@@ -2131,6 +2183,58 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-lu-leinenpflicht",
+          "topic": "wildschutz",
+          "title": "Hundeführung in der Brut- und Setzzeit",
+          "lawTitle": "Kantonale Jagdverordnung (KJSV), SRL 725a",
+          "citation": "§ 27 Abs. 1 und 2 KJSV",
+          "effectiveFrom": "2018-04-01",
+          "officialText": "1 Hunde sind vom 1. April bis 31. Juli im Wald und näher als 50 m zum Waldrand an der Leine zu führen.\n2 Die Einschränkung gilt nicht für Jagd- und Herdenschutzhunde sowie Diensthunde der Polizei und des Rettungswesens beim Einsatz und bei der Ausbildung.",
+          "summary": "Bei einem gewöhnlichen Spaziergang gilt vom 1. April bis 31. Juli Leinenpflicht im Wald und näher als 50 m zum Waldrand. Die im Original genannten Einsatz- und Ausbildungsausnahmen sind von einem privaten Spaziergang zu unterscheiden. Weitere örtliche Schutzvorschriften bleiben zu beachten.",
+          "sources": [
+            {
+              "title": "KJSV, aktuelle Fassung seit 1. April 2018",
+              "url": "https://srl.lu.ch/api/de/versions/3296/pdf_file",
+              "publisher": "Kanton Luzern",
+              "kind": "law"
+            },
+            {
+              "title": "Leinenpflicht für Hunde vom 1. April bis 31. Juli, 31. März 2026",
+              "url": "https://www.pronatura-lu.ch/de/leinenpflicht-im-wald",
+              "publisher": "Pro Natura Luzern",
+              "kind": "context"
+            }
+          ],
+          "verificationNotes": "Datum, Waldbezug und Abstand von näher als 50 m mit Pro Natura Luzern konkret abgeglichen. Ausnahmeabsatz originalgetreu mitgeführt; die Aufgaben betreffen ausdrücklich gewöhnliche Spaziergänge, keine Bewilligung einzelner Jagdhundeübungen.",
+          "questions": [
+            {
+              "id": "ch-lu-leinenpflicht-q1",
+              "prompt": "In welchem Zeitraum verlangt § 27 KJSV bei einem gewöhnlichen Spaziergang im Luzerner Wald die Leine?",
+              "choices": [
+                "Vom 1. April bis 31. Juli",
+                "Nur vom 15. April bis 30. Juni",
+                "Nur während der Hochjagd"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Luzerner Regel gilt vom 1. April bis 31. Juli; der kürzere Zeitraum ist keine Luzerner Regel."
+            },
+            {
+              "id": "ch-lu-leinenpflicht-q2",
+              "prompt": "Du gehst im Mai mit einem gewöhnlichen Haushund 30 m ausserhalb des Luzerner Waldrands. Was gilt nach § 27 Abs. 1?",
+              "choices": [
+                "Ohne Leine, weil du ausserhalb des Waldes bist",
+                "Leinenpflicht, weil der Abstand weniger als 50 m beträgt",
+                "Leinenpflicht erst ab 100 m Entfernung"
+              ],
+              "correctIndex": 1,
+              "explanation": "Der räumliche Bereich umfasst auch Flächen näher als 50 m zum Waldrand. Weitere örtliche Vorschriften bleiben möglich."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
       "notes": "Ausgewählte Grundnormen; kein vollständiger amtlicher Prüfungsstoff. Weitere Bundes-, Verordnungs-, Gebiets- und Jahresvorschriften bleiben zu beachten.",
@@ -2252,6 +2356,58 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-ur-leinenpflicht",
+          "topic": "wildschutz",
+          "title": "Leinenpflicht mit Arbeitshundeausnahme",
+          "lawTitle": "Kantonale Jagdverordnung (KJSV), RB 40.3111",
+          "citation": "Art. 28 Abs. 3 KJSV",
+          "effectiveFrom": "2024-02-01",
+          "officialText": "3 Vom 1. April bis am 31. Juli gilt im Wald und in Waldrandgebieten (Abstand von 50 m zum Wald) eine Leinenpflicht für Hunde. Von der Leinenpflicht ausgenommen sind Arbeitshunde.",
+          "summary": "Uri verlangt vom 1. April bis 31. Juli im Wald und in Waldrandgebieten mit 50 m Abstand die Leine. Art. 28 Abs. 3 nimmt Arbeitshunde aus. Daraus folgt keine Befreiung für jeden beliebigen Familienhund. Örtliche Zusatzregeln müssen daneben beachtet werden.",
+          "sources": [
+            {
+              "title": "KJSV, aktuelle Fassung seit 1. Februar 2024",
+              "url": "https://rechtsbuch.ur.ch/api/de/versions/1036/pdf_file",
+              "publisher": "Kanton Uri",
+              "kind": "law"
+            },
+            {
+              "title": "Hunderecht Uri, Stand Januar 2026: eigene juristische Einordnung der Hundeführung",
+              "url": "https://www.tierimrecht.org/de/recht/hunderecht/uri/",
+              "publisher": "Stiftung für das Tier im Recht (TIR)",
+              "kind": "context"
+            }
+          ],
+          "verificationNotes": "Aktuelle amtliche Version 1036 samt Änderungsstand gelesen. TIR erläutert genau Zeitraum, 50-m-Waldrandbereich und die Ausnahme für Arbeitshunde. Keine selbst erfundene Definition der Arbeitshunde oder schweizweit übertragene Ausnahme.",
+          "questions": [
+            {
+              "id": "ch-ur-leinenpflicht-q1",
+              "prompt": "Was gilt in Uri im Mai für einen gewöhnlichen Haushund im Wald und im 50-m-Waldrandgebiet?",
+              "choices": [
+                "Freilauf ohne jede Kontrolle",
+                "Leinenpflicht erst nach einer Verwarnung",
+                "Leinenpflicht nach Art. 28 Abs. 3 KJSV"
+              ],
+              "correctIndex": 2,
+              "explanation": "Für diesen Zeitraum und Raum schreibt die Urner Bestimmung grundsätzlich die Leine vor."
+            },
+            {
+              "id": "ch-ur-leinenpflicht-q2",
+              "prompt": "Welche Hunde nimmt Art. 28 Abs. 3 KJSV ausdrücklich von dieser Urner Leinenpflicht aus?",
+              "choices": [
+                "Alle grossen Hunde",
+                "Arbeitshunde",
+                "Alle Hunde von Personen mit Jagdpatent"
+              ],
+              "correctIndex": 1,
+              "explanation": "Der Originaltext nennt Arbeitshunde. Ein Jagdpatent des Menschen befreit nicht automatisch jeden mitgeführten Hund."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
       "notes": "Ausgewählte Grundnormen; kein vollständiger amtlicher Prüfungsstoff. Die konkreten Jahres-, Gebiets- und Ausführungsvorschriften bleiben zu beachten.",
@@ -3506,6 +3662,69 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-bl-hundefuehrung",
+          "topic": "wildschutz",
+          "title": "Wildruhegebiet, Setzzeit und fehlende Kontrolle",
+          "lawTitle": "Wildtier- und Jagdgesetz (WJG), SGS 520",
+          "citation": "§ 9 Abs. 3 und § 12 Abs. 2 und 3 WJG",
+          "effectiveFrom": "2022-01-01",
+          "officialText": "§ 9 Abs. 3\nIn Wildruhegebieten sind Hunde ganzjährig an der Leine zu führen.\n\n§ 12 Abs. 2 und 3\n2 Während der Hauptbrut- und Setzzeit (1. April–31. Juli) sind alle Hunde im Wald und in Waldesnähe an der Leine zu führen.\n3 Hunde, die nicht unter Kontrolle gehalten werden können und die Wege verlassen, sind auch ausserhalb der Hauptbrut- und Setzzeit an der Leine zu führen.",
+          "summary": "Basel-Landschaft unterscheidet drei Fälle: ganzjährige Leinenpflicht in Wildruhegebieten; Leinenpflicht vom 1. April bis 31. Juli im Wald und in Waldesnähe; zusätzlich Leinenpflicht ausserhalb dieser Saison für Hunde, die nicht unter Kontrolle gehalten werden können und die Wege verlassen. Der Auszug definiert keine feste Meterzahl für Waldesnähe.",
+          "sources": [
+            {
+              "title": "WJG, aktuelle Fassung seit 1. Januar 2022",
+              "url": "https://bl.clex.ch/api/de/versions/3127/pdf_file",
+              "publisher": "Kanton Basel-Landschaft",
+              "kind": "law"
+            },
+            {
+              "title": "Hunderecht Basel-Landschaft, Stand August 2026: eigene juristische Einordnung der Hundeführung",
+              "url": "https://www.tierimrecht.org/de/recht/hunderecht/basel-landschaft/",
+              "publisher": "Stiftung für das Tier im Recht (TIR)",
+              "kind": "context"
+            }
+          ],
+          "verificationNotes": "Alle drei Fälle im amtlichen Original und in der eigenständigen TIR-Einordnung konkret abgeglichen. § 12 Abs. 3 wird mit seinen verbundenen Bedingungen wiedergegeben; keine automatische Gleichsetzung von Wildruhegebieten und gewöhnlichen Waldflächen.",
+          "questions": [
+            {
+              "id": "ch-bl-hundefuehrung-q1",
+              "prompt": "Gilt die Leinenpflicht in einem Baselbieter Wildruhegebiet nur vom 1. April bis 31. Juli?",
+              "choices": [
+                "Ja, nur während dieser vier Monate",
+                "Nein; dort gilt sie ganzjährig",
+                "Nein; dort gilt sie nie"
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 9 Abs. 3 ordnet die ganzjährige Leinenpflicht in Wildruhegebieten an."
+            },
+            {
+              "id": "ch-bl-hundefuehrung-q2",
+              "prompt": "Welcher Zeitraum gilt nach § 12 Abs. 2 WJG für die allgemeine Leinenpflicht im Wald und in Waldesnähe?",
+              "choices": [
+                "1. April bis 31. Juli",
+                "Nur 15. April bis 30. Juni",
+                "Nur September"
+              ],
+              "correctIndex": 0,
+              "explanation": "Basel-Landschaft nennt ausdrücklich die Hauptbrut- und Setzzeit vom 1. April bis 31. Juli."
+            },
+            {
+              "id": "ch-bl-hundefuehrung-q3",
+              "prompt": "Im November kann dein Hund nicht unter Kontrolle gehalten werden und verlässt die Wege. Was verlangt § 12 Abs. 3 WJG?",
+              "choices": [
+                "Keine Leine, weil die Setzzeit vorbei ist",
+                "Nur eine mündliche Ermahnung",
+                "Auch dann ist der Hund anzuleinen"
+              ],
+              "correctIndex": 2,
+              "explanation": "Diese Leinenpflicht gilt auch ausserhalb der Hauptbrut- und Setzzeit, wenn die genannten Bedingungen vorliegen."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
       "notes": "Ausgewählte Grundnormen; kein vollständiger amtlicher Prüfungsstoff. Weitere Bundes-, Verordnungs-, Gebiets- und Jahresvorschriften bleiben zu beachten.",
@@ -3627,6 +3846,64 @@
           ],
           "originalVerified": true,
           "verificationNotes": "Amtlicher Originalauszug gelesen. Der konkrete regionale Inhalt ist noch nicht mit einer unabhängigen geeigneten zweiten Fachquelle vollständig abgeglichen; Erklärung und Lernfragen noch nicht freigegeben."
+        },
+        {
+          "id": "ch-sh-hundefuehrung",
+          "topic": "wildschutz",
+          "title": "Schaffhauser Setzzeit und Bei-Fuss-Pflicht",
+          "lawTitle": "Naturschutzverordnung, SHR 451.101; Hundegesetz, SHR 455.200",
+          "citation": "§ 13 Abs. 1–3 Naturschutzverordnung; Art. 10 Abs. 2, Art. 12 Abs. 1 lit. f und Art. 15 Abs. 1 Hundegesetz",
+          "effectiveFrom": "2021-01-01",
+          "officialText": "§ 13 Naturschutzverordnung\n1 Im Wald und in dessen unmittelbarer Nähe sind Hunde bei Fuss zu halten.\n2 Während der Setz- und Brutzeit (15. April bis 30. Juni) sind Hunde in diesen Gebieten an der Leine zu führen.\n3 Vorbehalten sind abweichende polizeiliche Verfügungen.\n\nArt. 10 Abs. 2 Hundegesetz\nIn Wäldern und in deren unmittelbarer Nähe sind Hunde bei Fuss zu halten.\n\nArt. 12 Abs. 1 Einleitung und lit. f Hundegesetz (Auszug)\n1 Hunde sind anzuleinen:\n[…]\nf) im Wald und in dessen unmittelbarer Nähe während der Setz- und Brutzeit\n\nArt. 15 Abs. 1 Hundegesetz\nVon den im Abschnitt III. auferlegten Pflichten und Verboten ausgenommen sind der pflichtgemässe Einsatz von Hunden im öffentlichen Dienst und im Rahmen der Jagdgesetzgebung.",
+          "summary": "Beim gewöhnlichen Spaziergang im Schaffhauser Wald und in dessen unmittelbarer Nähe gilt vom 15. April bis 30. Juni Leinenpflicht. In der übrigen Zeit bleiben Hunde dort bei Fuss; das Saisonende erlaubt keinen unbeaufsichtigten Freilauf. Abweichende polizeiliche Verfügungen und besondere gesetzliche Einsatzfälle sind gesondert zu beachten.",
+          "sources": [
+            {
+              "title": "Naturschutzverordnung, aktuelle Fassung seit 1. Januar 2021",
+              "url": "https://rechtsbuch.sh.ch/api/de/versions/1686/pdf_file",
+              "publisher": "Kanton Schaffhausen",
+              "kind": "law"
+            },
+            {
+              "title": "Hundegesetz, aktuelle Fassung seit 1. Januar 2010",
+              "url": "https://rechtsbuch.sh.ch/api/de/versions/1343/pdf_file",
+              "publisher": "Kanton Schaffhausen",
+              "kind": "law"
+            },
+            {
+              "title": "Hunderecht Schaffhausen, Stand Januar 2026: eigene juristische Einordnung der Hundeführung",
+              "url": "https://www.tierimrecht.org/de/recht/hunderecht/schaffhausen/",
+              "publisher": "Stiftung für das Tier im Recht (TIR)",
+              "kind": "context"
+            }
+          ],
+          "verificationNotes": "Amtliche aktuelle Versionen 1686 und 1343 gelesen; Zeitspanne und Bei-Fuss-Pflicht mit TIR konkret abgeglichen. Eigene Aufgaben beziehen sich auf gewöhnliche Spaziergänge und behaupten keine pauschale Freigabe von Jagdhundeeinsätzen. Der Auszug markiert die anderen ausgelassenen Buchstaben des Art. 12 ausdrücklich.",
+          "questions": [
+            {
+              "id": "ch-sh-hundefuehrung-q1",
+              "prompt": "Wann gilt beim gewöhnlichen Spaziergang im Schaffhauser Wald die saisonale Leinenpflicht nach § 13 Abs. 2?",
+              "choices": [
+                "1. April bis 31. Juli",
+                "15. April bis 30. Juni",
+                "Nur während der Rehjagd"
+              ],
+              "correctIndex": 1,
+              "explanation": "Schaffhausen nennt 15. April bis 30. Juni; die Frist anderer Kantone darf nicht übernommen werden."
+            },
+            {
+              "id": "ch-sh-hundefuehrung-q2",
+              "prompt": "Wie führst du deinen Hund bei einem gewöhnlichen Waldspaziergang in Schaffhausen ausserhalb dieser Setz- und Brutzeit?",
+              "choices": [
+                "Bei Fuss; zusätzliche örtliche Leinenvorschriften beachten",
+                "Unbeaufsichtigt weit voraus",
+                "Nur dann bei Fuss, wenn Wild bereits flüchtet"
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Bei-Fuss-Pflicht bleibt bestehen. Das Ende der Saisonpflicht hebt sie nicht auf."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
       "notes": "Ausgewählte gesetzliche Grundlagen; kein vollständiger amtlicher Prüfungsstoff. Der Wortlaut wird in der Originalsprache gezeigt. Jahresvorschriften und spätere Änderungen gesondert beachten.",
@@ -4694,20 +4971,14 @@
               "kind": "law"
             },
             {
-              "title": "Jagd: Jagdsysteme und kantonale Jagdausbildung",
-              "url": "https://www.bafu.admin.ch/de/jagd",
-              "publisher": "Bundesamt für Umwelt BAFU",
-              "kind": "context"
-            },
-            {
-              "title": "Jagd 1×1 – Jagdpass & Schiessnachweis",
-              "url": "https://www.ajv.ch/jagd-sos/",
-              "publisher": "Jagd Aargau (AJV)",
+              "title": "Treffsicherheitsnachweis: jährliche Erbringung und Aargauer Gültigkeit bis Ende Folgejahr",
+              "url": "https://www.jagdschuetzen-suhr.ch/schiessbetrieb/treffsicherheitsnachweis",
+              "publisher": "Jagdschützen Suhr",
               "kind": "context"
             }
           ],
-          "reviewedOn": "2026-10-23",
-          "verified": false,
+          "reviewedOn": "2026-10-24",
+          "verified": true,
           "questions": [
             {
               "id": "ch-ag-schiessnachweis-q1",
@@ -4734,7 +5005,7 @@
           ],
           "originalVerified": true,
           "effectiveFrom": "2025-08-30",
-          "verificationNotes": "Amtlicher Wortlaut und aktuelle Fassung direkt geprüft. Die AJV-Webseite übernimmt die amtliche Erläuterung weitgehend wortgleich; sie wird daher nach AGENTS.md nicht als unabhängiger Zweitabgleich für diese genaue Gültigkeitsdauer gezählt. Erklärung und Fragen sind noch nicht freigegeben."
+          "verificationNotes": "Am 24.10.2026 aktuelle AJSV-Version 3840 und § 12 Abs. 1/2 erneut gelesen. Die eigene praktische Erläuterung der Jagdschützen Suhr bestätigt jährliche Erbringung und Gültigkeit bis Ende Folgejahr unabhängig vom Gesetzgeber. Die früher beigefügte AJV-Kopie einer Behördeninformation wird hierfür nicht als unabhängiger Beleg gezählt. Nur dieser konkrete Block wird neu freigegeben."
         }
       ],
       "notes": "Ausgewählte gesetzliche Grundlagen; kein vollständiger amtlicher Prüfungsstoff. Der Wortlaut wird in der Originalsprache gezeigt. Jahresvorschriften und spätere Änderungen gesondert beachten.",

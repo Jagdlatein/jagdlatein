@@ -1,0 +1,5 @@
+.section { padding: 14px 12px 10px; border-top: 1px solid #e0d2af; color: #635333; font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.section p { margin: 0 0 10px; }
+.reload { width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #cdbb91; border-radius: 10px; background: #fbf1d5; color: #5a4516; font: inherit; font-size: 17px; font-weight: 650; cursor: pointer; }
+.reload:focus-visible { outline: 3px solid #aa812b; outline-offset: 3px; }
+.section .note { font-size: 14px; margin: 10px 0 0; }

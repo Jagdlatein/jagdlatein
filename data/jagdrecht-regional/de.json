@@ -3577,9 +3577,263 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-he-zulassung-ausbildung",
+          "topic": "pruefung",
+          "title": "Ausbildungslehrgang vor der hessischen Jägerprüfung",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 7 Eingangssatz und Nr. 1 (Auszug)",
+          "officialText": "Eine antragstellende Person ist zur Jägerprüfung zuzulassen, wenn:\n1. sie an einem Ausbildungslehrgang, dem ein Ausbildungsrahmenplan zugrunde liegt, der die in § 5 Abs. 1 genannten Sachgebiete abdeckt, an praktischen Unterweisungen und am Übungsschießen teilgenommen hat; der Ausbildungslehrgang darf nicht länger als zwei Jahre zurückliegen und muss vor Beginn der Jägerprüfung abgeschlossen sein,",
+          "summary": "In Hessen gehört zur Zulassung ein Ausbildungslehrgang mit Rahmenplan zu den gesetzlichen Sachgebieten einschließlich praktischer Unterweisung und Übungsschießen. Der Lehrgang muss vor Beginn der Prüfung abgeschlossen sein und darf nicht länger als zwei Jahre zurückliegen. Eigenständiges Lernen mit Jagdlatein ergänzt diese Ausbildung; es ersetzt den vorgeschriebenen Lehrgang und seine praktischen Bestandteile nicht. Dies ist nur eine von mehreren Zulassungsvoraussetzungen.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdV_HE_!_7",
+              "publisher": "Land Hessen",
+              "title": "HJagdV § 7, aktuelle Norm; ergänzend mit veröffentlichtem Juris-Normausdruck und Änderungen 2026 abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessische-jagdverordnung-hjagdv/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdV-Gesamtausgabe ab 1. April 2026, beim LJV veröffentlicht: nur unverändert gebliebene §§ 7/8 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 3: spätere Änderung betrifft nicht §§ 7/8",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/ausbildungsrahmenplan-jungjaegerausbildung/",
+              "publisher": "Landesjagdverband Hessen e. V.",
+              "title": "Ausbildungsrahmenplan: Ausbildungsabschluss, Zweijahresgrenze und praktische Vorbereitung; alte Paragrafennummern nicht übernommen",
+              "kind": "context"
+            },
+            {
+              "url": "https://www.ladadi.de/buergerservice-views/leistungen/HES:entry:1714975-VLR/zulassung-zur-jaegerpruefung/",
+              "publisher": "Landkreis Darmstadt-Dieburg",
+              "title": "Zulassung zur Jägerprüfung: eigenes Verwaltungsverfahren, Unterlagen und Fristen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-zulassung-ausbildung-q1",
+              "prompt": "Du möchtest in Hessen zur Jägerprüfung zugelassen werden und den vorgeschriebenen Ausbildungslehrgang erst nach Prüfungsbeginn fertigstellen. Genügt das § 7 Nr. 1?",
+              "choices": [
+                "Nein. Der Ausbildungslehrgang muss vor Beginn der Jägerprüfung abgeschlossen sein.",
+                "Ja. Der Abschluss ist erst nach dem ersten Jagdschein erforderlich.",
+                "Ja. Ein bezahlter App-Zugang ersetzt sämtliche praktischen Unterweisungen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm fordert den Abschluss vor Prüfungsbeginn sowie die Teilnahme an praktischen Unterweisungen und Übungsschießen."
+            },
+            {
+              "id": "de-he-zulassung-ausbildung-q2",
+              "prompt": "Dein Ausbildungslehrgang für die hessische Jägerprüfung liegt bereits drei Jahre zurück. Erfüllt er allein die Altersgrenze des § 7 Nr. 1?",
+              "choices": [
+                "Ja. Für den Lehrgang ist jede zeitliche Grenze ausdrücklich ausgeschlossen.",
+                "Ja. Erst nach zwanzig Jahren ist ein neuer Nachweis erforderlich.",
+                "Nein. Der Lehrgang darf nicht länger als zwei Jahre zurückliegen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der Ausbildungsnachweis muss die gesetzliche Zweijahresgrenze erfüllen. Ob die übrigen Zulassungsvoraussetzungen vorliegen, wird gesondert geprüft."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-zulassung-versicherung",
+          "topic": "pruefung",
+          "title": "Versicherung vom ersten Übungsschießen bis zum Prüfungsende",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 7 Nr. 2",
+          "officialText": "2. sie über eine seit Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung geltende Jagdhaftpflichtversicherung verfügt,",
+          "summary": "Für die hessische Prüfungszulassung muss die Jagdhaftpflichtversicherung seit Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung gelten. Eine Police, die erst am Prüfungstag beginnt oder vor dem Ende ausläuft, deckt diese vorgeschriebene Zeitspanne nicht ab. Die Bestätigung mit Geltungsdauer gehört nach § 8 Abs. 2 Nr. 4 zu den Antragsunterlagen.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdV_HE_!_7",
+              "publisher": "Land Hessen",
+              "title": "HJagdV § 7, aktuelle Norm; ergänzend mit veröffentlichtem Juris-Normausdruck und Änderungen 2026 abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessische-jagdverordnung-hjagdv/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdV-Gesamtausgabe ab 1. April 2026, beim LJV veröffentlicht: nur unverändert gebliebene §§ 7/8 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 3: spätere Änderung betrifft nicht §§ 7/8",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ladadi.de/buergerservice-views/leistungen/HES:entry:1714975-VLR/zulassung-zur-jaegerpruefung/",
+              "publisher": "Landkreis Darmstadt-Dieburg",
+              "title": "Zulassung zur Jägerprüfung: eigenes Verwaltungsverfahren, Unterlagen und Fristen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-zulassung-versicherung-q1",
+              "prompt": "Welchen Zeitraum muss die Jagdhaftpflichtversicherung für die hessische Jägerprüfungszulassung nach § 7 Nr. 2 mindestens umfassen?",
+              "choices": [
+                "Nur die Stunde der schriftlichen Prüfung.",
+                "Vom Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung.",
+                "Erst das Jagdjahr nach der bestandenen Prüfung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Zulassungsvoraussetzung erfasst Übungsphase und Prüfung, nicht nur den Prüfungstag."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-zulassung-kundige-person",
+          "topic": "pruefung",
+          "title": "Anerkannte Wildbrethygieneschulung als Zulassungsvoraussetzung",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 7 Nr. 5 (Auszug; Fundstellen- und Änderungsangaben ausgelassen)",
+          "officialText": "5. sie an einer vom Veterinäramt anerkannten Schulung zur „Kundigen Person“ nach der Verordnung (EG) Nr. 853/2004 […] teilgenommen hat,",
+          "summary": "Für die hessische Prüfungszulassung verlangt § 7 Nr. 5 die Teilnahme an einer vom Veterinäramt anerkannten Schulung zur Kundigen Person. Der entsprechende Nachweis ist nach § 8 Abs. 2 Nr. 6 beizufügen. Ein allgemeines Interesse an Wildbret oder das Lesen einzelner Hygieneseiten ersetzt diesen Schulungsnachweis nicht. Welche Anbieter anerkannt sind, lässt sich bei der zuständigen Behörde klären.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdV_HE_!_7",
+              "publisher": "Land Hessen",
+              "title": "HJagdV § 7, aktuelle Norm; ergänzend mit veröffentlichtem Juris-Normausdruck und Änderungen 2026 abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessische-jagdverordnung-hjagdv/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdV-Gesamtausgabe ab 1. April 2026, beim LJV veröffentlicht: nur unverändert gebliebene §§ 7/8 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 3: spätere Änderung betrifft nicht §§ 7/8",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ladadi.de/buergerservice-views/leistungen/HES:entry:1714975-VLR/zulassung-zur-jaegerpruefung/",
+              "publisher": "Landkreis Darmstadt-Dieburg",
+              "title": "Zulassung zur Jägerprüfung: eigenes Verwaltungsverfahren, Unterlagen und Fristen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-zulassung-kundige-person-q1",
+              "prompt": "Welcher Hygienenachweis gehört nach § 7 Nr. 5 zur Zulassung zur hessischen Jägerprüfung?",
+              "choices": [
+                "Nur der Kauf eines Wildkochbuchs.",
+                "Nur eine private Erklärung, schon einmal Wildfleisch gegessen zu haben.",
+                "Teilnahme an einer vom Veterinäramt anerkannten Schulung zur Kundigen Person."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm verlangt die anerkannte Schulung; § 8 Abs. 2 Nr. 6 fordert den Teilnahmebeleg im Antrag."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-zulassung-antrag",
+          "topic": "pruefung",
+          "title": "Prüfungsanmeldung: Erstzulassung, Wiederholung und Minderjährige",
+          "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+          "citation": "§ 8 Abs. 1, Abs. 2 Nr. 2 und Abs. 3 (Auszüge)",
+          "officialText": "(1) Der Antrag auf Zulassung zur Jägerprüfung ist vier Monate vor dem Prüfungstermin bei der Jagdbehörde zu stellen.\n(2) Dem Antrag sind beizufügen:\n[…]\n2. bei Minderjährigen eine beglaubigte Einverständniserklärung der gesetzlichen Vertreter,\n[…]\n(3) Die Wiederholung von Prüfungsteilen nach § 15 oder die Fortsetzung einer unterbrochenen Prüfung bedarf einer gesonderten Zulassung. Der Antrag ist mindestens drei Monate vor dem geplanten Prüfungstermin an dieselbe Jagdbehörde zu richten, die die Zulassung erteilt hat. Mit diesem Antrag sind neben dem Bescheid nach § 16 Abs. 3 eine erneute Bestätigung nach Abs. 2 Nr. 4 und eine erneute Erklärung nach Abs. 2 Nr. 7 vorzulegen.",
+          "summary": "Den Erstantrag zur hessischen Jägerprüfung vier Monate vor dem Termin bei der zuständigen unteren Jagdbehörde stellen. Minderjährige müssen unter anderem die beglaubigte Einverständniserklärung ihrer gesetzlichen Vertreter beifügen. Für Wiederholung eines Prüfungsteils oder Fortsetzung einer unterbrochenen Prüfung ist eine gesonderte Zulassung nötig: Antrag mindestens drei Monate vorher an dieselbe Jagdbehörde wie bei der ursprünglichen Zulassung. Bereits bestandene Teile werden durch den Bescheid belegt; eine erneute Versicherungsbestätigung und die gesetzlich verlangte persönliche Erklärung gehören ebenfalls dazu. Die zitierten Auszüge sind keine vollständige Liste sämtlicher Erstunterlagen.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-NNLHE0000508ENN00000000028",
+              "publisher": "Land Hessen",
+              "title": "HJagdV § 8, Fassung seit 1. April 2026; durch Änderung vom 20. Mai 2026 unberührt",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessische-jagdverordnung-hjagdv/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdV-Gesamtausgabe ab 1. April 2026, beim LJV veröffentlicht: nur unverändert gebliebene §§ 7/8 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 3: spätere Änderung betrifft nicht §§ 7/8",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ladadi.de/buergerservice-views/leistungen/HES:entry:1714975-VLR/zulassung-zur-jaegerpruefung/",
+              "publisher": "Landkreis Darmstadt-Dieburg",
+              "title": "Zulassung zur Jägerprüfung: eigenes Verwaltungsverfahren, Unterlagen und Fristen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-zulassung-antrag-q1",
+              "prompt": "Wann ist der Erstantrag auf Zulassung zur hessischen Jägerprüfung nach § 8 Abs. 1 zu stellen?",
+              "choices": [
+                "Vier Monate vor dem Prüfungstermin.",
+                "Erst nach Abschluss der schriftlichen Prüfung.",
+                "Immer erst am Tag vor dem Prüfungstermin."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 8 Abs. 1 nennt vier Monate; die Anmeldung erfolgt bei der zuständigen unteren Jagdbehörde."
+            },
+            {
+              "id": "de-he-zulassung-antrag-q2",
+              "prompt": "Du willst in Hessen einen nicht bestandenen Prüfungsteil wiederholen. Welche besondere Antragsfrist nennt § 8 Abs. 3?",
+              "choices": [
+                "Es gibt für Wiederholungen nie einen Zulassungsantrag.",
+                "Mindestens drei Monate vor dem geplanten Prüfungstermin.",
+                "Eine Woche nach der Wiederholungsprüfung."
+              ],
+              "correctIndex": 1,
+              "explanation": "Wiederholung und Fortsetzung bedürfen gesonderter Zulassung; hierfür nennt die Norm mindestens drei Monate Vorlauf."
+            },
+            {
+              "id": "de-he-zulassung-antrag-q3",
+              "prompt": "Welche zusätzliche Unterlage verlangt § 8 Abs. 2 Nr. 2 HJagdV bei minderjährigen Antragstellern?",
+              "choices": [
+                "Eine Einladung eines beliebigen volljährigen Jagdgasts.",
+                "Nur eine Mitgliedskarte eines Jagdvereins ohne Einverständnis der gesetzlichen Vertreter.",
+                "Eine beglaubigte Einverständniserklärung der gesetzlichen Vertreter."
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Gesetz nennt die beglaubigte Einverständniserklärung. Andere ebenfalls erforderliche Nachweise bleiben daneben notwendig."
+            },
+            {
+              "id": "de-he-zulassung-antrag-q4",
+              "prompt": "An welche Jagdbehörde richtest du den Antrag zur Wiederholung oder Fortsetzung der hessischen Prüfung nach § 8 Abs. 3?",
+              "choices": [
+                "An dieselbe Jagdbehörde, die die Zulassung erteilt hat.",
+                "An eine beliebige Waffenverkaufsstelle.",
+                "Ausschließlich an den Hersteller deiner Prüfungswaffe."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm bindet den Wiederholungs- oder Fortsetzungsantrag an die ursprünglich zulassende Jagdbehörde; die Durchführung durch den Prüfungsausschuss ist eine andere Aufgabe."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
-      "notes": "Aktuelle Gesamtausgabe ab 28. Mai 2026 gelesen. Die zum 1. April 2026 veränderte schriftliche Bewertungsregel wird nicht aus alten Merkblättern übernommen.",
+      "notes": "Aktuelle Gesamtausgabe ab 28. Mai 2026 gelesen. Die zum 1. April 2026 veränderte schriftliche Bewertungsregel wird nicht aus alten Merkblättern übernommen. Ergänzung vom 24. Oktober 2026: ausgewählte Zulassungsregeln §§ 7/8. Die über den LJV zugängliche Juris-Gesamtausgabe vom 1. April 2026 wurde nur für diese durch Art. 3 des Gesetzes vom 20. Mai 2026 unberührten Vorschriften verwendet, nicht als insgesamt aktuelle Fassung. 12 eigene Landesfragen, mit Bundesbasis 92; weitere landesspezifische Themen bleiben offen.",
       "examResources": [
         {
           "title": "Amtlicher hessischer Fragenkatalog: Sachgebiet 4 Recht",
@@ -3964,9 +4218,359 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-nw-wildfolge-vereinbarung",
+          "topic": "jagdausuebung",
+          "title": "Wildfolgevereinbarung: Frist und unverzichtbare Pflichten",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 29 Abs. 1 und 5",
+          "officialText": "(1) Die Jagdausübungsberechtigten benachbarter Jagdbezirke oder benachbarter Teile von Jagdbezirken (§ 11 Abs. 2 BJG) sind verpflichtet, innerhalb von sechs Monaten nach Beginn der Jagdnachbarschaft schriftliche Vereinbarungen über die Wildfolge abzuschließen. Durch die Vereinbarung können die Verpflichtungen nach Absatz 2 Sätze 1 und 2 sowie nach Absatz 3 Satz 2 nicht aufgehoben werden. Bis zum Abschluß der Vereinbarung gelten für die Wildfolge die Absätze 2 bis 5.\n(5) Ist Wildfolge vereinbart worden, ohne daß Einzelheiten festgelegt worden sind, so finden die Absätze 2 bis 4 Anwendung. Das gleiche gilt, soweit keine abschließenden Vereinbarungen getroffen worden sind.",
+          "summary": "In NRW müssen Jagdnachbarn innerhalb von sechs Monaten nach Beginn der Nachbarschaft eine schriftliche Wildfolgevereinbarung schließen. Bis dahin gelten die gesetzlichen Regeln. Auch eine allgemeine oder lückenhafte Vereinbarung lässt die gesetzlichen Regeln für die nicht abschließend geregelten Einzelheiten weiter gelten. Die Erlegungs- und Versorgungspflichten bei in Sichtweite niedergegangenem Wild und die Gestattungspflicht für die Nachsuche nach Benachrichtigung dürfen nicht vertraglich aufgehoben werden. Welche konkrete Befugnis über die Grenze besteht, ergibt sich aus dem jeweiligen Fall der folgenden Bausteine.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://essen.ljv-nrw.de/wp-content/uploads/sites/32/2025/01/wildfolge.pdf",
+              "publisher": "Kreisjägerschaft Essen e. V.",
+              "title": "Wildfolge und Wildfolgevereinbarung: eigenes Unterrichtsschema zu § 29 LJG-NRW",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-wildfolge-vereinbarung-q1",
+              "prompt": "Zwei NRW-Reviere haben erstmals neue Jagdnachbarn. Bis wann müssen die Jagdausübungsberechtigten die vorgeschriebene schriftliche Wildfolgevereinbarung schließen?",
+              "choices": [
+                "Innerhalb von sechs Monaten nach Beginn der Jagdnachbarschaft.",
+                "Erst nach dem ersten Wildunfall.",
+                "Eine schriftliche Vereinbarung ist in NRW grundsätzlich freiwillig."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 29 Abs. 1 legt eine Sechsmonatsfrist ab Beginn der Jagdnachbarschaft fest; bis zum Vertrag gelten die gesetzlichen Regeln."
+            },
+            {
+              "id": "de-nw-wildfolge-vereinbarung-q2",
+              "prompt": "Dürfen NRW-Jagdnachbarn vereinbaren, dass in Sichtweite niedergegangenes krankgeschossenes Wild entgegen § 29 Abs. 2 Satz 1 und 2 unversorgt bleibt?",
+              "choices": [
+                "Ja, eine private Vereinbarung hebt jede tierschutzbezogene Wildfolgeregel auf.",
+                "Nein. Diese gesetzlichen Erlegungs- und Versorgungspflichten können durch die Vereinbarung nicht aufgehoben werden.",
+                "Ja, sofern die Nachbarn ihren Vertrag nur mündlich schließen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 29 Abs. 1 Satz 2 nimmt diese Pflichten sowie die Gestattungspflicht nach Abs. 3 Satz 2 ausdrücklich von abdingbaren Vereinbarungen aus."
+            },
+            {
+              "id": "de-nw-wildfolge-vereinbarung-q3",
+              "prompt": "Eine NRW-Wildfolgevereinbarung erlaubt die Wildfolge allgemein, regelt aber keine Einzelheiten. Welche Regeln füllen diese Lücke?",
+              "choices": [
+                "Jeder darf das gesamte Wild im Nachbarrevier uneingeschränkt aneignen.",
+                "Ohne Einzelheiten entfällt die Pflicht zur Nachsuche vollständig.",
+                "Die gesetzlichen Regeln des § 29 Abs. 2 bis 4 bleiben anwendbar."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 29 Abs. 5 verweist bei fehlenden oder nicht abschließenden Einzelheiten auf die Absätze 2 bis 4."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-wildfolge-sichtweite",
+          "topic": "wildschutz",
+          "title": "Krankgeschossenes Wild in Sichtweite der Reviergrenze",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 29 Abs. 2",
+          "officialText": "(2) Tut sich krankgeschossenes Wild in Sichtweite von der Grenze im benachbarten Jagdbezirk nieder, ist es vom Jagdausübenden zu erlegen und zu versorgen. Die Pflicht zur Versorgung erstreckt sich auch auf krankgeschossenes Wild, das nach dem Überwechseln in Sichtweite von der Grenze im benachbarten Jagdbezirk verendet. Schusswaffen dürfen beim Überschreiten der Grenze nur zur Abgabe des Fangschusses mitgeführt werden. Das Fortschaffen des versorgten Schalenwildes ist nicht, das von sonstigem Wild ist zulässig. Das Erlegen ist dem Jagdausübungsberechtigten des benachbarten Jagdbezirkes oder dessen Vertreter unverzüglich anzuzeigen. Anderes Wild als Schalenwild ist der oder dem Jagdausübungsberechtigten des Jagdbezirks, in dem es zur Strecke gekommen ist, abzuliefern.",
+          "summary": "Geht krankgeschossenes Wild nach dem Grenzwechsel in Sichtweite nieder, bestehen in NRW Erlegungs- und Versorgungspflichten; auch dort bereits verendetes krankgeschossenes Wild ist zu versorgen. Eine Schusswaffe darf beim Grenzübertritt nur zur Abgabe des Fangschusses mitgeführt werden. Das Erlegen ist unverzüglich dem Nachbarn oder dessen Vertreter anzuzeigen. Versorgtes Schalenwild bleibt am Ort; anderes Wild darf fortgeschafft werden und ist beim Jagdausübungsberechtigten des Streckenreviers abzuliefern. Diese Sonderbefugnis ist keine allgemeine Jagderlaubnis im Nachbarrevier; ein sicherer und sonst rechtlich zulässiger Schuss bleibt Voraussetzung.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://essen.ljv-nrw.de/wp-content/uploads/sites/32/2025/01/wildfolge.pdf",
+              "publisher": "Kreisjägerschaft Essen e. V.",
+              "title": "Wildfolge und Wildfolgevereinbarung: eigenes Unterrichtsschema zu § 29 LJG-NRW",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-wildfolge-sichtweite-q1",
+              "prompt": "Ein von dir krankgeschossenes Stück tut sich in NRW nach dem Grenzwechsel in Sichtweite im Nachbarrevier nieder. Welche Pflicht nennt § 29 Abs. 2 unmittelbar?",
+              "choices": [
+                "Bis zum nächsten Jagdjahr zu warten.",
+                "Es zu erlegen und zu versorgen; auch ein dort bereits verendetes Stück bleibt versorgungspflichtig.",
+                "Die Versorgung grundsätzlich dem Finder ohne Benachrichtigung zu überlassen."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für diesen Sichtweitenfall sind Erlegen und Versorgen ausdrücklich vorgesehen. Die Versorgungspflicht umfasst auch in Sichtweite nach dem Überwechseln verendetes krankgeschossenes Wild."
+            },
+            {
+              "id": "de-nw-wildfolge-sichtweite-q2",
+              "prompt": "Zu welchem Zweck darfst du im Sichtweitenfall nach § 29 Abs. 2 LJG-NRW eine Schusswaffe beim Überschreiten der Reviergrenze mitführen?",
+              "choices": [
+                "Zur anschließenden freien Weiterjagd auf gesundes Wild.",
+                "Zur Kontrolle sämtlicher Hochsitze des Nachbarn.",
+                "Nur zur Abgabe des Fangschusses."
+              ],
+              "correctIndex": 2,
+              "explanation": "Satz 3 beschränkt das bewaffnete Überschreiten auf den Fangschuss. Es entsteht kein allgemeines Jagdausübungsrecht im fremden Revier."
+            },
+            {
+              "id": "de-nw-wildfolge-sichtweite-q3",
+              "prompt": "Nach einem Sichtweitenfall in NRW ist einerseits ein Reh, andererseits ein Fuchs versorgt. Welche gesetzliche Unterscheidung gilt ohne abweichende zulässige Vereinbarung für das Fortschaffen?",
+              "choices": [
+                "Das Reh als Schalenwild nicht fortschaffen; der Fuchs darf fortgeschafft werden und ist dem Jagdausübungsberechtigten des Streckenreviers abzuliefern.",
+                "Beide Stücke werden Eigentum des Schützen und dürfen ohne Meldung mitgenommen werden.",
+                "Nur das Reh darf ohne Weiteres fortgeschafft werden; der Fuchs muss immer liegen bleiben."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 29 Abs. 2 unterscheidet Schalenwild und anderes Wild. Die unverzügliche Anzeige des Erlegens bleibt zusätzlich erforderlich."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-wildfolge-nicht-sichtig",
+          "topic": "wildschutz",
+          "title": "Wildfolge außerhalb der Sichtweite: Markieren, Melden, Nachsuchen",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 29 Abs. 3 Sätze 1 bis 5",
+          "officialText": "(3) Wechselt krankgeschossenes Wild in einen benachbarten Jagdbezirk, ohne sich in Sichtweite von der Grenze nieder zu tun, so hat der Jagdausübende den Anschuss und die Stelle des Überwechselns nach Möglichkeit in der Örtlichkeit kenntlich zu machen sowie das Überwechseln dem Jagdausübungsberechtigten des benachbarten Jagdbezirkes oder dessen Vertreter unverzüglich anzuzeigen; das gilt auch für auf Grund anderer Ursachen schwer krankes oder verletztes Wild. Die Jagdausübungsberechtigten der Jagdbezirke, die durch eine Nachsuche voraussichtlich berührt werden, sind nach Benachrichtigung verpflichtet, dem Führer eines brauchbaren Schweißhundes oder eines anderen brauchbaren Jagdhundes zur Nachsuche das Betreten ihrer Jagdbezirke unter Führung der Schusswaffe unverzüglich zu gestatten. Können die Jagdausübungsberechtigten nicht erreicht werden, so sind die Führer von Nachsuchenhunden der von der unteren Jagdbehörde anerkannten Schweißhundstationen berechtigt, die Nachsuche fortzuführen, das kranke oder verletzte Wild zu erlegen und zu versorgen. Gleiches gilt für Führerinnen oder Führer von brauchbaren Jagdhunden nach § 30, wenn anderes Wild als Schalenwild krankgeschossen in einen benachbarten Jagdbezirk wechselt. Das Fortschaffen von Schalenwild ist nicht zulässig, anderes Wild als Schalenwild ist fortzuschaffen und abzuliefern.",
+          "summary": "Außerhalb der Sichtweite werden Anschuss und Grenzübertritt möglichst markiert und der Nachbar oder sein Vertreter unverzüglich informiert. Betroffene Jagdausübungsberechtigte müssen nach Benachrichtigung dem Führer eines brauchbaren Schweiß- oder anderen Jagdhundes die bewaffnete Nachsuche unverzüglich gestatten. Ist der Nachbar nicht erreichbar, können Führer von Nachsuchenhunden behördlich anerkannter Schweißhundstationen fortfahren. Bei krankgeschossenem anderem Wild als Schalenwild gilt die besondere Auffangregel auch für Führer brauchbarer Jagdhunde nach § 30. Daraus folgt keine pauschale Befugnis jedes beliebigen Hundeführers zur grenzüberschreitenden Schalenwildnachsuche. Schalenwild nicht fortschaffen, anderes Wild fortschaffen und abliefern; die unverzügliche Anzeige des Erlegens nach Satz 6 bleibt erforderlich.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://essen.ljv-nrw.de/wp-content/uploads/sites/32/2025/01/wildfolge.pdf",
+              "publisher": "Kreisjägerschaft Essen e. V.",
+              "title": "Wildfolge und Wildfolgevereinbarung: eigenes Unterrichtsschema zu § 29 LJG-NRW",
+              "kind": "context"
+            },
+            {
+              "url": "https://schweisshundstation-dortmund.de/",
+              "publisher": "Schweißhundstation Dortmund",
+              "title": "Behördlich anerkannte Station: Nachsuche über Reviergrenzen bei nicht erreichbaren Nachbarn",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-wildfolge-nicht-sichtig-q1",
+              "prompt": "Dein krankgeschossenes Stück verschwindet in NRW im Nachbarrevier außerhalb der Sichtweite. Welche ersten Orts- und Meldepflichten nennt das Gesetz?",
+              "choices": [
+                "Nur den Parkplatz markieren und die Meldung bis zum Monatsende aufschieben.",
+                "Die Fährte verwischen, bevor jemand anderes nachsucht.",
+                "Anschuss und Überwechselstelle möglichst markieren und das Überwechseln dem Nachbarn oder dessen Vertreter unverzüglich anzeigen."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 29 Abs. 3 Satz 1 verbindet die Markierung beider wichtigen Stellen mit der unverzüglichen Benachrichtigung."
+            },
+            {
+              "id": "de-nw-wildfolge-nicht-sichtig-q2",
+              "prompt": "Ein NRW-Jagdnachbar ist benachrichtigt: Sein Revier wird voraussichtlich von einer Nachsuche berührt. Was verlangt § 29 Abs. 3 Satz 2 gegenüber dem Führer eines brauchbaren Jagdhundes?",
+              "choices": [
+                "Das Betreten zur Nachsuche unter Führung der Schusswaffe unverzüglich gestatten.",
+                "Die Gestattung ausnahmslos bis zum nächsten Tag zurückstellen.",
+                "Das Betreten nur gestatten, wenn die Person ohne brauchbaren Hund kommt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm nennt sowohl brauchbare Schweißhunde als auch andere brauchbare Jagdhunde und die unverzügliche Gestattung nach Benachrichtigung."
+            },
+            {
+              "id": "de-nw-wildfolge-nicht-sichtig-q3",
+              "prompt": "Bei der NRW-Nachsuche nach Schalenwild außerhalb der Sichtweite ist der betroffene Jagdausübungsberechtigte nicht erreichbar. Wem räumt § 29 Abs. 3 Satz 3 die besondere Fortsetzungsbefugnis ein?",
+              "choices": [
+                "Jeder Person, die irgendeinen Hund mitführt.",
+                "Führern von Nachsuchenhunden der von der unteren Jagdbehörde anerkannten Schweißhundstationen.",
+                "Nur einer Person, die zuvor eine Jagderlaubnis für ein beliebiges anderes Revier gekauft hat."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die gesetzliche Auffangregel nennt die behördlich anerkannten Schweißhundstationen. Ein beliebiger Hund oder eine fremde Jagderlaubnis ersetzt das nicht."
+            },
+            {
+              "id": "de-nw-wildfolge-nicht-sichtig-q4",
+              "prompt": "Ein krankgeschossener Fuchs wechselt in NRW außerhalb der Sichtweite über die Reviergrenze; der Nachbar ist nicht erreichbar. Welche Ergänzung zu den anerkannten Schweißhundstationen nennt § 29 Abs. 3 Satz 4 für solches Nicht-Schalenwild?",
+              "choices": [
+                "Nur der Schütze darf stets ohne Hund das gesamte Nachbarrevier bejagen.",
+                "Die gesetzliche Regel gilt ausschließlich für Rotwild und niemals für Füchse.",
+                "Auch Führer brauchbarer Jagdhunde nach § 30 können nach dieser besonderen Regel fortfahren."
+              ],
+              "correctIndex": 2,
+              "explanation": "Satz 4 erweitert den in Satz 3 beschriebenen Fall ausdrücklich auf Führer brauchbarer Jagdhunde, wenn anderes Wild als Schalenwild krankgeschossen überwechselt."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-wildfolge-wildbret-trophaeen",
+          "topic": "jagdausuebung",
+          "title": "Wildbret und Trophäen bei der Wildfolge unterscheiden",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 29 Abs. 4 Sätze 1 und 2",
+          "officialText": "(4) Unbeschadet einer anderweitigen Vereinbarung gehören in den Fällen der Absätze 2 bis 3 Geweihe oder Gehörne beim Schalenwild und Eckzähne beim Schwarzwild der Erlegerin oder dem Erleger, das Wildbret der oder dem Jagdausübungsberechtigten, in dessen Jagdbezirk das Wild zur Strecke kommt. Nimmt derjenige, der das Wild so angeschweißt hat, daß es auf der Nachsuche zur Strecke kommt (Erleger), nicht an der Nachsuche teil oder gibt er die Nachsuche auf, so hat er kein Anrecht auf Geweih oder Gehörn beim Schalenwild und Eckzähne beim Schwarzwild.",
+          "summary": "Für die Wildfolgefälle nach § 29 Abs. 2 und 3 trennt NRW ohne anderweitige Vereinbarung die Zuordnung: Wildbret steht dem Jagdausübungsberechtigten des Streckenreviers zu; Geweihe, Gehörne und die Eckzähne des Schwarzwildes grundsätzlich dem Erleger. Das ist kein Recht, Schalenwild entgegen den vorherigen Absätzen eigenmächtig fortzuschaffen. Wer das Stück so angeschweißt hat, dass es auf der Nachsuche zur Strecke kommt, aber nicht an der Nachsuche teilnimmt oder sie aufgibt, hat das genannte Trophäenanrecht nicht.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://essen.ljv-nrw.de/wp-content/uploads/sites/32/2025/01/wildfolge.pdf",
+              "publisher": "Kreisjägerschaft Essen e. V.",
+              "title": "Wildfolge und Wildfolgevereinbarung: eigenes Unterrichtsschema zu § 29 LJG-NRW",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-wildfolge-wildbret-trophaeen-q1",
+              "prompt": "Ein Stück Schalenwild kommt nach einer Wildfolge in NRW im Nachbarrevier zur Strecke. Welche gesetzliche Grundzuordnung gilt nach § 29 Abs. 4, wenn nichts anderes vereinbart ist?",
+              "choices": [
+                "Wildbret an den Jagdausübungsberechtigten des Streckenreviers; Geweih oder Gehörn grundsätzlich an den Erleger.",
+                "Wildbret immer an die Jagdbehörde, Geweih immer an den ersten Finder.",
+                "Wildbret und Trophäe werden allein nach dem Aufbruchgewicht verteilt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Das Gesetz trennt die Zuordnung von Wildbret und den genannten Trophäen. Beteiligung an der Nachsuche und das Fortschaffungsverbot sind zusätzlich zu beachten."
+            },
+            {
+              "id": "de-nw-wildfolge-wildbret-trophaeen-q2",
+              "prompt": "Der ursprüngliche Erleger nimmt in NRW nicht an der Nachsuche teil oder gibt sie auf. Was bedeutet das nach § 29 Abs. 4 Satz 2 für sein gesetzliches Anrecht auf die dort genannten Trophäen?",
+              "choices": [
+                "Sein Trophäenanrecht wird automatisch verdoppelt.",
+                "Er hat dieses gesetzliche Trophäenanrecht nicht.",
+                "Er darf als Ausgleich das Wildbret aus jedem Nachbarrevier mitnehmen."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 29 Abs. 4 Satz 2 knüpft den Verlust des gesetzlichen Trophäenanrechts an Nichtteilnahme oder Aufgabe der Nachsuche. Die Aufgabe ist von einer nur vorübergehenden Unterbrechung zu unterscheiden."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-jagdhunde-einsatz",
+          "topic": "wildschutz",
+          "title": "Brauchbare Jagdhunde für die jeweilige Jagd",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 30 Abs. 1",
+          "officialText": "(1) Bei der Such- und Bewegungsjagd, bei der Jagd auf Schnepfen und Wasserwild sowie bei jeder Nachsuche sind brauchbare Jagdhunde zu verwenden.",
+          "summary": "In NRW fordert § 30 Abs. 1 brauchbare Jagdhunde bei Such- und Bewegungsjagden, bei der Jagd auf Schnepfen und Wasserwild sowie bei jeder Nachsuche. Die Nachsuchepflicht ist im aktuellen Wortlaut nicht auf Schalenwild beschränkt. Rassename oder bloße Anwesenheit eines Hundes ersetzen keine Eignung für die konkrete Aufgabe; die Brauchbarkeitsnachweise beziehen sich auf unterschiedliche Arbeitsgebiete.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-nrw.de/jagdhundewesen/brauchbarkeitspruefung/",
+              "publisher": "Landesjagdverband Nordrhein-Westfalen e. V.",
+              "title": "Brauchbarkeitsprüfung: Einsatz geeigneter Hunde und Nachweise, Richtlinien 2026",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-jagdhunde-einsatz-q1",
+              "prompt": "Welche NRW-Jagd ist in § 30 Abs. 1 neben Such-/Bewegungsjagd, Wasserwildjagd und jeder Nachsuche ausdrücklich beim Einsatz brauchbarer Jagdhunde genannt?",
+              "choices": [
+                "Nur die Fotografie von Rehen ohne Jagdausübung.",
+                "Ausschließlich das Sammeln leerer Patronenhülsen auf dem Schießstand.",
+                "Die Jagd auf Schnepfen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der aktuelle Normwortlaut nennt Schnepfen ausdrücklich. Die Anforderung brauchbarer Hunde gilt außerdem bei jeder Nachsuche."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-nw-jagdhunde-ueberjagen",
+          "topic": "jagdausuebung",
+          "title": "Überjagende Hunde: drei Voraussetzungen zusammen beachten",
+          "lawTitle": "Landesjagdgesetz Nordrhein-Westfalen (LJG-NRW)",
+          "citation": "§ 30 Abs. 2",
+          "officialText": "(2) Werden Jagdhunde im Rahmen von Bewegungsjagden eingesetzt und überjagen sie die Reviergrenze (überjagende Hunde), stellt dies keine Störung der Jagdausübung dar, wenn die betroffenen Jagdbezirksinhaberinnen oder Jagdbezirksinhaber vor der Bewegungsjagd unterrichtet worden sind, zumutbare Maßnahmen gegen ein Überjagen getroffen wurden und in dem betreffenden Revier, in dem die Bewegungsjagd stattfindet, nicht mehr als drei Bewegungsjagden im Jagdjahr durchgeführt werden.",
+          "summary": "NRW behandelt das Überjagen bei Bewegungsjagden unter drei gemeinsam erforderlichen Voraussetzungen nicht als Störung: betroffene Jagdbezirksinhaber vorher unterrichten, zumutbare Gegenmaßnahmen treffen und im Ausgangsrevier höchstens drei Bewegungsjagden im Jagdjahr durchführen. Eine Mitteilung nach Ende der Jagd genügt dieser Vorschrift nicht. Die Jahresgrenze betrifft die Bewegungsjagden im Revier, nicht die Anzahl einzelner überjagender Hunde. Das ist keine Erlaubnis, Hunde gezielt in das Nachbarrevier zu schicken.",
+          "sources": [
+            {
+              "url": "https://recht.nrw.de/lrgv/gesetz/01042025-landesjagdgesetz-nordrhein-westfalen/",
+              "publisher": "Land Nordrhein-Westfalen",
+              "title": "LJG-NRW, aktuelle Gesamtausgabe gültig ab 1. April 2025",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.wildhueter-st-hubertus.de/alles-was-recht-ist",
+              "publisher": "Wildhüter St. Hubertus e. V.",
+              "title": "Heimo van Elsbergen: Alles was Recht ist, Abschnitt überjagende Hunde und Planung des Hundeeinsatzes",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-nw-jagdhunde-ueberjagen-q1",
+              "prompt": "Wann müssen betroffene NRW-Jagdbezirksinhaber unterrichtet sein, damit die besondere Regel für überjagende Hunde nach § 30 Abs. 2 greifen kann?",
+              "choices": [
+                "Erst nach der letzten Bewegungsjagd des nächsten Jagdjahres.",
+                "Vor der Bewegungsjagd; die übrigen Voraussetzungen müssen ebenfalls vorliegen.",
+                "Eine Unterrichtung ist nach dieser Regel stets entbehrlich."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die vorherige Unterrichtung ist eine von drei kumulativen Voraussetzungen. Sie ersetzt weder Gegenmaßnahmen noch die Jahresgrenze."
+            },
+            {
+              "id": "de-nw-jagdhunde-ueberjagen-q2",
+              "prompt": "Die NRW-Jagdnachbarn wurden rechtzeitig informiert. Darf die Jagdleitung deshalb auf zumutbare Maßnahmen gegen ein Überjagen verzichten und sich trotzdem auf § 30 Abs. 2 berufen?",
+              "choices": [
+                "Ja. Die Information ersetzt jede Gegenmaßnahme.",
+                "Ja. Gegenmaßnahmen sind ausdrücklich nur bei der fünften Bewegungsjagd nötig.",
+                "Nein. Zumutbare Maßnahmen gegen ein Überjagen sind zusätzlich erforderlich."
+              ],
+              "correctIndex": 2,
+              "explanation": "Das Gesetz verknüpft vorherige Unterrichtung, zumutbare Maßnahmen und die Grenze von drei Bewegungsjagden mit und."
+            },
+            {
+              "id": "de-nw-jagdhunde-ueberjagen-q3",
+              "prompt": "Worauf bezieht sich die Zahl drei in der NRW-Sonderregel für überjagende Hunde?",
+              "choices": [
+                "Auf höchstens drei Bewegungsjagden im betreffenden Ausgangsrevier je Jagdjahr.",
+                "Auf höchstens drei Hunde im gesamten Bundesland.",
+                "Auf drei beliebige Jagdtage während der Lebenszeit des Hundeführers."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 30 Abs. 2 zählt die Bewegungsjagden im Revier, in dem die Jagd stattfindet, innerhalb eines Jagdjahres."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
-      "notes": "Ältere Erläuterungen enthalten teils überholte Schießleistungszahlen. Sie wurden ausschließlich für den sachlich übereinstimmenden Nachweiszweck und Jahreszeitraum herangezogen; keine alten Trefferzahlen wurden übernommen.",
+      "notes": "Ältere Erläuterungen enthalten teils überholte Schießleistungszahlen. Sie wurden ausschließlich für den sachlich übereinstimmenden Nachweiszweck und Jahreszeitraum herangezogen; keine alten Trefferzahlen wurden übernommen. Ergänzung vom 24. Oktober 2026: Wildfolge und Hundeeinsatz nach §§ 29/30 im geltenden LJG-NRW mit eigenständigen Erläuterungen abgeglichen. 20 eigene Landesfragen, mit Bundesbasis 100; keine vollständige Rechts- oder Prüfungsabdeckung.",
       "examResources": [
         {
           "title": "Amtlicher NRW-Katalog der Prüfungsfragen",
