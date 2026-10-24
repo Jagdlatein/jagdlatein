@@ -17,8 +17,9 @@ function load(relative, overrides = {}) {
   function resolve(id) {
     if(Object.hasOwn(overrides,id)) return overrides[id];
     if(id==='next/router') return {useRouter:()=>({isReady:false,query:{},pathname:'',replace:async()=>true})};
-    if(id==='next/link') return ({href,children,...props})=>React.createElement('a',{href,...props},children);
+    if(id==='next/link') return ({href,children,prefetch,shallow,scroll,...props})=>React.createElement('a',{href,...props},children);
     if(id==='next/head') return ({children})=>React.createElement(React.Fragment,null,children);
+    if(id==='./PageMenu') return {__esModule:true,default:({children})=>React.createElement('aside',{'data-page-menu':true},children),openPageMenu:()=>{},closePageMenu:()=>{}};
     if(id==='next/image') return ({priority,loading,sizes,...props})=>React.createElement('img',props);
     if(id.endsWith('.module.css')) return {__esModule:true,default:css};
     if(id.startsWith('.')) return load(path.relative(root,path.resolve(path.dirname(filename),path.extname(id)?id:id+'.js')),overrides);
@@ -97,8 +98,8 @@ test('Answer and next guards reject double clicks, old rendered answers and rest
 test('Result review and targeted practice include only incorrect entries',()=>{
   const s=setup('components/NatureQuestionRound.js',{entries:fixture});s.click('Erste richtig');s.click('Nächste Frage');s.click('Zweite falsch');s.click('Auswertung ansehen');assert.match(text(s.tree),/1 von 2 Fragen richtig/);assert.match(text(s.tree),/Erklärung zwei/);s.click('Fehler gezielt wiederholen (1)');assert.match(text(s.tree),/Frage 1 von 1/);assert.match(text(s.tree),/Welche zweite Antwort/);assert.doesNotMatch(text(s.tree),/Erklärung zwei/);
 });
-test('All three tools use one layout, render one main region and usable form labels',()=>{
-  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.match(html,/href="\/lernen#lernen-suche"/);assert.match(html,/Lernbereich/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
+test('All three tools use one layout, render one main region and usable form labels without the retired upper navigation',()=>{
+  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.doesNotMatch(html,/href="\/lernen#lernen-suche"/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
 });
 
 test('The plant learning selector opens photo development directly and returns to the searchable atlas',()=>{
@@ -112,12 +113,12 @@ test('The plant learning selector opens photo development directly and returns t
 test('Valid direct entry parameters open the intended profiles; unknown values are ignored',()=>{
   const previous=global.window;try{
     global.window={location:{search:'?eintrag=waldkiefer'}};const p=setup('components/PlantAtlas.js');p.e.runEffects();p.redraw();assert.match(text(p.tree),/Waldkiefer \/ Waldföhre/);
-    global.window={location:{search:'?eintrag=biber-nagespur'}};const t=setup('components/TracksWorkshop.js');t.e.runEffects();t.redraw();assert.equal(find(t.tree,item=>item.props?.id==='tracks-title').props.children,'Nagespur des Bibers');
-    global.window={location:{search:'?eintrag=nonexistent'}};const unknown=setup('components/TracksWorkshop.js');unknown.e.runEffects();unknown.redraw();assert.equal(find(unknown.tree,item=>item.props?.id==='tracks-title').props.children,'Rehfährte im Schnee');
+    const t=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{eintrag:'biber-nagespur'}});t.e.runEffects();t.redraw();assert.equal(find(t.tree,item=>item.props?.id==='tracks-title').props.children,'Nagespur des Bibers');
+    const unknown=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{eintrag:'nonexistent'}});unknown.e.runEffects();unknown.redraw();assert.equal(find(unknown.tree,item=>item.props?.id==='tracks-title'),null);assert.match(text(unknown.tree),/Diese Spur ist nicht verfügbar/);
   }finally{if(previous===undefined)delete global.window;else global.window=previous;}
 });
 test('Documentation checklist is reversible and counts only selected current-session items',()=>{
-  const s=setup('components/TracksWorkshop.js');s.click('Fund dokumentieren');const checkbox=find(s.tree,item=>item.type==='input'&&item.props.type==='checkbox');checkbox.props.onChange();s.redraw();assert.match(text(s.tree),/1 von 6/);s.click('Checkliste leeren');assert.match(text(s.tree),/0 von 6/);assert.match(text(s.tree),/nicht als amtlicher Nachweis/);
+  const s=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{ansicht:'checkliste'}});const checkbox=find(s.tree,item=>item.type==='input'&&item.props.type==='checkbox');checkbox.props.onChange();s.redraw();assert.match(text(s.tree),/1 von 6/);s.click('Checkliste leeren');assert.match(text(s.tree),/0 von 6/);assert.match(text(s.tree),/nicht als amtlicher Nachweis/);
 });
 test('Choosing a plant preserves its URL, focuses its details, and reduces seasonal controls to one select',()=>{
   const updates=[]; let focused=0;

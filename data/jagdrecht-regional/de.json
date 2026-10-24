@@ -3475,7 +3475,7 @@
     {
       "code": "HE",
       "name": "Hessen",
-      "lawTitle": "Hessische Jagdverordnung (HJagdV)",
+      "lawTitle": "Hessisches Jagdgesetz (HJagdG) und Hessische Jagdverordnung (HJagdV)",
       "officialUrl": "https://www.rv.hessenrecht.hessen.de/bshe/document/jlr-NNLHE0000508E",
       "articles": [
         {
@@ -3649,16 +3649,22 @@
         {
           "id": "de-he-zulassung-versicherung",
           "topic": "pruefung",
-          "title": "Versicherung vom ersten Übungsschießen bis zum Prüfungsende",
+          "title": "Versicherungsnachweis im Antrag und Gültigkeit bis Prüfungsende",
           "lawTitle": "Hessische Jagdverordnung (HJagdV)",
-          "citation": "§ 7 Nr. 2",
-          "officialText": "2. sie über eine seit Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung geltende Jagdhaftpflichtversicherung verfügt,",
-          "summary": "Für die hessische Prüfungszulassung muss die Jagdhaftpflichtversicherung seit Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung gelten. Eine Police, die erst am Prüfungstag beginnt oder vor dem Ende ausläuft, deckt diese vorgeschriebene Zeitspanne nicht ab. Die Bestätigung mit Geltungsdauer gehört nach § 8 Abs. 2 Nr. 4 zu den Antragsunterlagen.",
+          "citation": "§ 8 Abs. 2 Eingangssatz und Nr. 4; § 7 Nr. 2 (Auszüge)",
+          "officialText": "§ 8 Abs. 2:\nDem Antrag sind beizufügen:\n[…]\n4. eine Bestätigung über die Jagdhaftpflichtversicherung einschließlich deren Geltungsdauer nach § 7 Nr. 2,\n\n§ 7 Nr. 2:\n2. sie über eine seit Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung geltende Jagdhaftpflichtversicherung verfügt,",
+          "summary": "Dem Antrag auf Zulassung zur hessischen Jägerprüfung ist die Versicherungsbestätigung beizufügen. Die Versicherung muss mindestens bis zum Ende der Prüfung gelten. Der vollständige gesetzliche Zeitraum steht im Originalauszug aus § 7 Nr. 2. Die hier ergänzend verwendete Verwaltungsinformation bestätigt den Nachweis und das Prüfungsende; sie erläutert den Versicherungsbeginn nicht gesondert.",
           "sources": [
             {
               "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdV_HE_!_7",
               "publisher": "Land Hessen",
               "title": "HJagdV § 7, aktuelle Norm; ergänzend mit veröffentlichtem Juris-Normausdruck und Änderungen 2026 abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdV_HE_!_8",
+              "publisher": "Land Hessen",
+              "title": "HJagdV § 8 Abs. 2 Nr. 4: Versicherungsbestätigung im Zulassungsantrag",
               "kind": "law"
             },
             {
@@ -3676,21 +3682,21 @@
             {
               "url": "https://www.ladadi.de/buergerservice-views/leistungen/HES:entry:1714975-VLR/zulassung-zur-jaegerpruefung/",
               "publisher": "Landkreis Darmstadt-Dieburg",
-              "title": "Zulassung zur Jägerprüfung: eigenes Verwaltungsverfahren, Unterlagen und Fristen",
+              "title": "Zulassung zur Jägerprüfung: Versicherungsbestätigung bei Erst- und Wiederholungsanmeldung, Gültigkeit bis zum Prüfungsende; kein eigenständiger Nachweis zum Versicherungsbeginn",
               "kind": "context"
             }
           ],
           "questions": [
             {
               "id": "de-he-zulassung-versicherung-q1",
-              "prompt": "Welchen Zeitraum muss die Jagdhaftpflichtversicherung für die hessische Jägerprüfungszulassung nach § 7 Nr. 2 mindestens umfassen?",
+              "prompt": "Welche Versicherungsunterlage gehört zum Antrag auf Zulassung zur hessischen Jägerprüfung?",
               "choices": [
-                "Nur die Stunde der schriftlichen Prüfung.",
-                "Vom Beginn des Übungsschießens bis mindestens zum Ende der Jägerprüfung.",
-                "Erst das Jagdjahr nach der bestandenen Prüfung."
+                "Eine bloße Absichtserklärung, erst nach der Prüfung eine Versicherung abzuschließen.",
+                "Eine Bestätigung über die Jagdhaftpflichtversicherung mit Geltungsdauer; der Schutz muss mindestens bis zum Prüfungsende gelten.",
+                "Nur ein Kaufbeleg für die Prüfungsmunition."
               ],
               "correctIndex": 1,
-              "explanation": "Die Zulassungsvoraussetzung erfasst Übungsphase und Prüfung, nicht nur den Prüfungstag."
+              "explanation": "§ 8 Abs. 2 Nr. 4 verlangt die Versicherungsbestätigung einschließlich ihrer Geltungsdauer. Der Landkreis erläutert ausdrücklich den Schutz bis zum Ende der Prüfung; der vollständige gesetzliche Zeitraum ist im Auszug aus § 7 Nr. 2 nachzulesen."
             }
           ],
           "reviewedOn": "2026-10-24",
@@ -3831,9 +3837,409 @@
           "reviewedOn": "2026-10-24",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-he-jagderlaubnis-form-zustimmung",
+          "topic": "jagdausuebung",
+          "title": "Jagderlaubnis: Schriftform und Zustimmung der Mitberechtigten",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 12 Abs. 1",
+          "officialText": "(1) Jagdausübungsberechtigte können Dritten (Jagdgästen) Jagderlaubnisse erteilen. Die Erteilung der Jagderlaubnis bedarf der Schriftform. Sind mehrere Jagdausübungsberechtigte vorhanden, bedarf die Erteilung oder der Widerruf der Jagderlaubnis der Zustimmung aller Jagdausübungsberechtigten; dies gilt auch, wenn die Jagdausübungsberechtigten den Jagdbezirk nach Flächen unter sich aufgeteilt haben.",
+          "summary": "In Hessen wird eine Jagderlaubnis schriftlich erteilt. Das gilt auch für unentgeltliche Erlaubnisse. Sind mehrere Jagdausübungsberechtigte vorhanden, müssen alle der Erteilung beziehungsweise dem Widerruf zustimmen. Eine bloße interne Aufteilung in Pirschbezirke beseitigt dieses Zustimmungserfordernis nicht.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_12",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 12: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.kreisgg.de/ordnung/ordnung/jagdbehoerde/jagderlaubnisse",
+              "publisher": "Kreis Groß-Gerau",
+              "title": "Eigene Verwaltungserläuterung: schriftliche Erteilung, Zustimmung, Genehmigung und Anzeige von Jagderlaubnissen",
+              "kind": "context"
+            },
+            {
+              "url": "https://ordentliche-gerichtsbarkeit.hessen.de/presse/keine-haftung-des-jagdpaechters-bei-sturz-eines-dritten-von-einem-hochsitz",
+              "publisher": "Oberlandesgericht Frankfurt am Main",
+              "title": "Beschluss vom 9. Februar 2026, 11 U 9/25: eigene gerichtliche Erläuterung der schriftlichen Jagderlaubnis; Mitteilung vom 23. Februar 2026",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-jagderlaubnis-form-zustimmung-q1",
+              "prompt": "Ein Jagdgast erhält in Hessen eine unentgeltliche Jagderlaubnis. Welche Form verlangt § 12 Abs. 1 HJagdG für deren Erteilung?",
+              "choices": [
+                "Nur entgeltliche Erlaubnisse schriftlich, unentgeltliche stets mündlich.",
+                "Schriftform.",
+                "Eine mündliche Einladung reicht auch ohne schriftliche Erteilung immer aus."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 12 Abs. 1 verlangt Schriftform, ohne dies auf entgeltliche Erlaubnisse zu beschränken."
+            },
+            {
+              "id": "de-he-jagderlaubnis-form-zustimmung-q2",
+              "prompt": "Zwei hessische Jagdpächter haben das Revier intern nach Flächen aufgeteilt. Ohne Vertretungsvollmacht will einer gegen den erklärten Willen des anderen eine Jagderlaubnis erteilen. Was gilt?",
+              "choices": [
+                "Die Flächenaufteilung ersetzt automatisch jede Zustimmung.",
+                "Die Zustimmung eines Pächters genügt, sobald er die größere Fläche nutzt.",
+                "Die Zustimmung aller Jagdausübungsberechtigten bleibt erforderlich."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 12 Abs. 1 Satz 3 erfasst ausdrücklich auch eine interne Aufteilung nach Flächen. Eine solche Aufteilung allein ist keine Zustimmung oder Vollmacht."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-jagderlaubnis-laenger-zwoelf-monate",
+          "topic": "jagdausuebung",
+          "title": "Jagderlaubnis über zwölf Monate: Genehmigung oder Anzeige",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 12 Abs. 3 Satz 1 und Abs. 4 Satz 1 (Auszüge)",
+          "officialText": "(3) Entgeltliche Jagderlaubnisse nach Abs. 2 Satz 1 mit einer Gültigkeit von länger als zwölf Monaten bedürfen der Genehmigung der Jagdbehörde.\n[…]\n(4) Eine Jagderlaubnis nach Abs. 2 Satz 1, die unentgeltlich mit einer Gültigkeit von länger als zwölf Monaten erteilt wird, ist der Jagdbehörde anzuzeigen.",
+          "summary": "Bei mehr als zwölf Monaten Laufzeit unterscheidet Hessen: Eine entgeltliche Jagderlaubnis benötigt die Genehmigung der Jagdbehörde. Eine unentgeltliche Jagderlaubnis ist der Jagdbehörde anzuzeigen. Die Genehmigungspflicht und die Anzeigepflicht sind unterschiedliche Verfahrensanforderungen; weitere gesetzliche Voraussetzungen bleiben bestehen.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_12",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 12: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.kreisgg.de/ordnung/ordnung/jagdbehoerde/jagderlaubnisse",
+              "publisher": "Kreis Groß-Gerau",
+              "title": "Eigene Verwaltungserläuterung: schriftliche Erteilung, Zustimmung, Genehmigung und Anzeige von Jagderlaubnissen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-jagderlaubnis-laenger-zwoelf-monate-q1",
+              "prompt": "Eine entgeltliche Jagderlaubnis in Hessen soll 18 Monate gelten. Welches Verfahren verlangt § 12 Abs. 3 Satz 1?",
+              "choices": [
+                "Die Genehmigung der Jagdbehörde.",
+                "Eine bloße Anzeige bei der Jagdbehörde reicht in jedem Fall.",
+                "Keine Beteiligung der Jagdbehörde, weil die Laufzeit unter drei Jahren liegt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Für die entgeltliche Erlaubnis mit einer Gültigkeit von länger als zwölf Monaten ist eine behördliche Genehmigung erforderlich."
+            },
+            {
+              "id": "de-he-jagderlaubnis-laenger-zwoelf-monate-q2",
+              "prompt": "Eine unentgeltliche Jagderlaubnis in Hessen soll 18 Monate gelten. Welche Pflicht nennt § 12 Abs. 4 Satz 1?",
+              "choices": [
+                "Sie benötigt ausnahmslos dasselbe Genehmigungsverfahren wie die entgeltliche Erlaubnis über 18 Monate.",
+                "Sie ist der Jagdbehörde anzuzeigen.",
+                "Mangels Entgelt ist auch bei dieser Laufzeit keine Anzeige erforderlich."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die unentgeltliche Erlaubnis mit mehr als zwölf Monaten Gültigkeit löst eine Anzeigepflicht aus. Die Genehmigungsregel des Abs. 3 betrifft dagegen entgeltliche Erlaubnisse."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-jagdhunde-einsatz",
+          "topic": "jagdausuebung",
+          "title": "Brauchbare Jagdhunde für die gesetzlich genannten Einsätze",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 28 Abs. 1",
+          "officialText": "(1) Bei der Such-, Drück- und Treibjagd, bei jeder Jagdart auf Wasserwild sowie bei jeder Nachsuche sind jeweils brauchbare Jagdhunde zu verwenden.",
+          "summary": "Hessen verlangt bei Such-, Drück- und Treibjagden, jeder Jagdart auf Wasserwild und jeder Nachsuche jeweils brauchbare Jagdhunde. Die Nachsuchepflicht mit Hund ist hier nicht auf Schalenwild beschränkt. Die Brauchbarkeitsprüfung stellt die Eignung für die jeweilige praktische Arbeit fest.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_28",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 28: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jgv-rhoenvogelsberg.de/der-jaeger-und-sein-hund/",
+              "publisher": "Helmut Odenwald, Landeshundeobmann LJV Hessen; veröffentlicht bei JGV Rhön-Vogelsberg e. V.",
+              "title": "Der Jäger und sein Hund: eigene kynologische Erläuterung zu § 28 Abs. 1 und 3; Text aus 2021, nur weiterhin unveränderte Aussagen verwendet",
+              "kind": "context"
+            },
+            {
+              "url": "https://ljv-hessen.de/jagd-in-hessen/jagdgebrauchshunde/brauchbarkeitspruefung/",
+              "publisher": "Landesjagdverband Hessen e. V.",
+              "title": "Brauchbarkeitsprüfung, 14. Dezember 2025: Eignung für den praktischen Jagdbetrieb und getrennte Arbeitsbereiche",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-jagdhunde-einsatz-q1",
+              "prompt": "Gilt das hessische Gebot, bei einer Nachsuche einen jeweils brauchbaren Jagdhund zu verwenden, auch bei Niederwild außer Schalenwild?",
+              "choices": [
+                "Nein, § 28 Abs. 1 nennt ausschließlich Rotwild.",
+                "Nein, Hunde sind nur bei der Wasserwildjagd vorgeschrieben.",
+                "Ja. § 28 Abs. 1 erfasst jede Nachsuche."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Norm sagt ausdrücklich „bei jeder Nachsuche“. Die benötigte Brauchbarkeit richtet sich nach dem jeweiligen Einsatz."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-jagdhunde-ausbildung-erlaubnis",
+          "topic": "jagdausuebung",
+          "title": "Jagdhundeausbildung und Prüfungen im fremden Revier",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 28 Abs. 3",
+          "officialText": "(3) Außerhalb befriedeter Bezirke gilt die Ausbildung von Jagdhunden durch Jagdscheininhaber im Hinblick auf Gebrauchs-, Brauchbarkeits- und Zuchtprüfungen sowie die Ablegung der Prüfung als Jagdausübung; sie bedürfen der Erlaubnis des Jagdausübungsberechtigten.",
+          "summary": "Ausbildung und Prüfungsablegung in dem ausdrücklich genannten Rahmen gelten außerhalb befriedeter Bezirke als Jagdausübung. Der eigene Jagdschein ersetzt deshalb nicht die Erlaubnis des Jagdausübungsberechtigten des Reviers. Erfasst sind Gebrauchs-, Brauchbarkeits- und Zuchtprüfungen sowie die darauf bezogene Ausbildung.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_28",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 28: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jgv-rhoenvogelsberg.de/der-jaeger-und-sein-hund/",
+              "publisher": "Helmut Odenwald, Landeshundeobmann LJV Hessen; veröffentlicht bei JGV Rhön-Vogelsberg e. V.",
+              "title": "Der Jäger und sein Hund: eigene Erläuterung der jagdrechtlichen Erlaubnis für Ausbildung und Prüfungen außerhalb befriedeter Bezirke",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-jagdhunde-ausbildung-erlaubnis-q1",
+              "prompt": "Du besitzt einen Jagdschein und möchtest deinen Jagdhund außerhalb befriedeter Bezirke in einem hessischen fremden Revier für die Brauchbarkeitsprüfung ausbilden. Reicht dein Jagdschein allein?",
+              "choices": [
+                "Nein. Dafür ist auch die Erlaubnis des Jagdausübungsberechtigten erforderlich.",
+                "Ja. Hundeausbildung ist in diesem Fall ausdrücklich von jeder Erlaubnis befreit.",
+                "Ja. Die spätere Prüfungsanmeldung ersetzt die Reviererlaubnis."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 28 Abs. 3 behandelt diese Ausbildung als Jagdausübung und verlangt die Erlaubnis des Jagdausübungsberechtigten."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-nachsuche-verletztes-wild",
+          "topic": "wildschutz",
+          "title": "Nachsuche auch nach Verkehrsunfällen",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 27 Abs. 1",
+          "officialText": "(1) Krankgeschossenes, durch Verkehrsunfall oder andere Weise verletztes Wild ist unverzüglich nachzusuchen und zu erlegen.",
+          "summary": "Die hessische Nachsuchepflicht erfasst nicht nur Schussverletzungen. Auch durch einen Verkehrsunfall oder auf andere Weise verletztes Wild ist unverzüglich nachzusuchen und zu erlegen. Die Pflicht erlaubt keine eigenmächtige Missachtung fremder Jagdausübungsrechte. Die Arbeit muss fachgerecht organisiert werden. Spezialisierte Nachsuchengespanne unterstützen insbesondere bei schwierigen Suchen; eine rasche Kontaktaufnahme ermöglicht ihre Einsatzplanung.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_27",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 27: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.nachsuchenring-bergstrasse-odenwald.de/die-nachsuche/",
+              "publisher": "Nachsuchenring Bergstraße-Odenwald",
+              "title": "Eigene fachpraktische Erläuterung: unverzügliche Nachsuche nach Jagdverletzungen und Verkehrsunfällen",
+              "kind": "context"
+            },
+            {
+              "url": "https://www.nachsuchenring-bergstrasse-odenwald.de/aufgaben/",
+              "publisher": "Nachsuchenring Bergstraße-Odenwald",
+              "title": "Eigene Einsatzregeln: rasche Kontaktaufnahme und Durchführung erschwerter Nachsuchen bei Tageslicht",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-nachsuche-verletztes-wild-q1",
+              "prompt": "Ein Stück Wild wurde in Hessen bei einem Verkehrsunfall verletzt und flüchtet. Entfällt die gesetzliche Nachsuchepflicht, weil keine Jagd stattgefunden hat?",
+              "choices": [
+                "Ja. § 27 Abs. 1 gilt nur für Schussverletzungen.",
+                "Nein. Die Norm nennt durch Verkehrsunfall verletztes Wild ausdrücklich.",
+                "Ja. Erst die nächste reguläre Jagdzeit löst eine Pflicht aus."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 27 Abs. 1 verlangt auch bei durch Verkehrsunfall oder auf andere Weise verletztem Wild unverzügliche Nachsuche. Die Befugnisse im jeweiligen Revier sind dabei zu beachten."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-he-nachsuche-anerkennung-behoerde",
+          "topic": "zustandigkeit",
+          "title": "Anerkennung für revier- und hegegemeinschaftsübergreifende Nachsuchen",
+          "lawTitle": "Hessisches Jagdgesetz (HJagdG)",
+          "citation": "§ 27 Abs. 6 Satz 2 und § 38 Abs. 2 (Auszüge)",
+          "officialText": "§ 27 Abs. 6 Satz 2:\nDarüber hinaus dürfen Schweißhundegespanne, die den Anforderungen nach Abs. 7 genügen und von der oberen Jagdbehörde anerkannt sind, einschließlich einer Begleitperson unter Mitführung der Schusswaffen unabhängig von Jagdbezirks- und Hegegemeinschaftsgrenzen, krankes Schalenwild nachsuchen.\n\n§ 38 Abs. 2:\n(2) Obere Jagdbehörde ist das Regierungspräsidium Kassel.",
+          "summary": "Die Anerkennung nach § 27 Abs. 6 Satz 2 für jagdbezirks- und hegegemeinschaftsübergreifende Nachsuchen auf krankes Schalenwild erfolgt durch die obere Jagdbehörde, das Regierungspräsidium Kassel. Der Antrag auf diese Anerkennung ist dorthin zu richten. Eine bestandene Hundeprüfung allein ist noch keine behördliche Anerkennung des Gespanns. Das ist von der gesonderten Bestimmung innerhalb einer Hegegemeinschaft nach Satz 1 zu unterscheiden.",
+          "sources": [
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_27",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 27: amtlicher Einstieg; Wortlaut über Juris-Ausdruck und spätere amtliche Änderungen abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://ljv-hessen.de/download/hessisches-jagdgesetz-hjagdg/",
+              "publisher": "Land Hessen (Normtext im veröffentlichten Juris-Ausdruck)",
+              "title": "HJagdG-Normausdruck, Änderungsstand 10. Oktober 2024: ausschließlich später unveränderte §§ 12, 27, 28 und 38 verwendet",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-darmstadt.hessen.de/sites/rp-darmstadt.hessen.de/files/2026-02/erstes_buerokratieabbaug.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2025 Nr. 110 vom 22. Dezember 2025, Art. 35: Änderungen betreffen nur § 23 Abs. 5 Satz 2 und § 30 Abs. 5 Satz 2 HJagdG",
+              "kind": "law"
+            },
+            {
+              "url": "https://verkuendung.hessen.de/sites/verkuendung.hessen.de/files/veroeffentlichungsplattform_plugin/published/1416/GVBl_2026_Nr_32_Regelungstext.pdf",
+              "publisher": "Land Hessen",
+              "title": "GVBl. 2026 Nr. 32 vom 27. Mai 2026, Art. 2: §§ 12, 27, 28 und 38 unverändert; Geltungsdauer bis Ende 2027 verlängert",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.rv.hessenrecht.hessen.de/perma?j=JagdG_HE_!_38",
+              "publisher": "Land Hessen",
+              "title": "HJagdG § 38 Abs. 2: Regierungspräsidium Kassel als obere Jagdbehörde; unverändert durch spätere Änderungsgesetze",
+              "kind": "law"
+            },
+            {
+              "url": "https://rp-kassel.hessen.de/forsten-und-landwirtschaft/jagd/nachsuchenwesen/",
+              "publisher": "Regierungspräsidium Kassel",
+              "title": "Das Nachsuchenwesen in Hessen: eigenes Anerkennungsverfahren und aktuelle Bestimmungen 2025",
+              "kind": "context"
+            },
+            {
+              "url": "https://ljv-hessen.de/bestimmungen-ueber-das-nachsuchewesen-in-hessen-gemaess-%C2%A7-27-abs-7-des-hessischen-jagdgesetzes/",
+              "publisher": "Landesjagdverband Hessen e. V.",
+              "title": "Eigene Mitteilung vom 31. Juli 2025: Anträge auf Anerkennung unmittelbar an die obere Jagdbehörde beim RP Kassel",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-he-nachsuche-anerkennung-behoerde-q1",
+              "prompt": "Wohin richtest du in Hessen den Antrag auf Anerkennung eines Gespanns für jagdbezirks- und hegegemeinschaftsübergreifende Nachsuchen nach § 27 Abs. 6 Satz 2?",
+              "choices": [
+                "An die untere Jagdbehörde am Wohnort; die übergreifende Reichweite spielt für die Zuständigkeit keine Rolle.",
+                "Nur an die Hegegemeinschaft, deren Zustimmung allein für eine landesweite Anerkennung genügt.",
+                "An die obere Jagdbehörde beim Regierungspräsidium Kassel."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 27 Abs. 6 Satz 2 verlangt die Anerkennung durch die obere Jagdbehörde. § 38 Abs. 2 benennt dafür das Regierungspräsidium Kassel; der LJV erläutert den unmittelbaren Antragsweg."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "effectiveUntil": "2028-01-01",
+          "verified": true,
+          "originalVerified": true
         }
       ],
-      "notes": "Aktuelle Gesamtausgabe ab 28. Mai 2026 gelesen. Die zum 1. April 2026 veränderte schriftliche Bewertungsregel wird nicht aus alten Merkblättern übernommen. Ergänzung vom 24. Oktober 2026: ausgewählte Zulassungsregeln §§ 7/8. Die über den LJV zugängliche Juris-Gesamtausgabe vom 1. April 2026 wurde nur für diese durch Art. 3 des Gesetzes vom 20. Mai 2026 unberührten Vorschriften verwendet, nicht als insgesamt aktuelle Fassung. 12 eigene Landesfragen, mit Bundesbasis 92; weitere landesspezifische Themen bleiben offen.",
+      "notes": "Die bisherige Prüfung der HJagdV bleibt auf die angegebenen Vorschriften begrenzt. Ergänzung vom 24. Oktober 2026: ausgewählte Zulassungsregeln §§ 7/8 HJagdV sowie Jagderlaubnisse, Hundeeinsatz, Hundeausbildung, Nachsuchepflicht und Anerkennungszuständigkeit nach §§ 12, 27, 28 und 38 HJagdG. Die über den LJV zugänglichen Juris-Ausdrucke wurden nur für später unveränderte Vorschriften verwendet und mit den amtlichen Änderungsgesetzen abgeglichen, nicht als insgesamt aktuelle Fassungen ausgegeben. Die Versicherungsfrage prüft den Nachweis und die Gültigkeit bis Prüfungsende; der Beginn ist im Originalnormtext dokumentiert, aber nicht unabhängig erläutert. 20 eigene Landesfragen, mit Bundesbasis 100. Keine vollständige Abdeckung des hessischen Prüfungsstoffs; weitere landesspezifische Themen bleiben offen.",
       "examResources": [
         {
           "title": "Amtlicher hessischer Fragenkatalog: Sachgebiet 4 Recht",

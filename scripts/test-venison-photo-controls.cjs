@@ -2,124 +2,65 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { createRequire } = require('node:module');
-const root = path.resolve(__dirname, '..'), pr = createRequire(path.join(root, 'package.json'));
-const React = pr('react'), swc = pr('next/dist/build/swc');
-function nodes(node, predicate) {
-  if (Array.isArray(node)) return node.flatMap(item => nodes(item, predicate));
-  if (!node || typeof node !== 'object') return [];
-  return [...(predicate(node) ? [node] : []), ...nodes(node.props?.children, predicate)];
-}
-function text(node) {
-  if (node == null || typeof node === 'boolean') return '';
-  if (Array.isArray(node)) return node.map(text).join('');
-  return typeof node === 'object' ? text(node.props?.children) : String(node);
-}
-function setup(search = '') {
-  const slots = [], cache = new Map();
-  let cursor = 0, effects = [], changed = false, tree;
-  const hooks = { ...React,
-    useState(initial) {
-      const i = cursor++; if (!slots[i]) slots[i] = { value: initial };
-      return [slots[i].value, input => { const next = typeof input === 'function' ? input(slots[i].value) : input; changed = changed || !Object.is(next, slots[i].value); slots[i].value = next; }];
-    },
-    useEffect(callback) { const i = cursor++; if (!slots[i]) { slots[i] = {}; effects.push(callback); } },
-  };
-  function load(relative) {
-    const file = path.join(root, relative);
-    if (cache.has(file)) return cache.get(file);
-    const { code } = swc.transformSync(fs.readFileSync(file, 'utf8'), { filename: file, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
-    const mod = { exports: {} };
-    new Function('require', 'module', 'exports', 'window', code)(id => {
-      if (id === 'react') return hooks;
-      if (id === './LearningToolLayout') return () => null;
-      if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
-      if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(file), path.extname(id) ? id : `${id}.js`)));
-      return pr(id);
-    }, mod, mod.exports, { location: { search } });
-    cache.set(file, mod.exports); return mod.exports;
-  }
-  const Page = load('components/VenisonCutGuide.js').default;
-  function render() {
-    for (let pass = 0; pass < 5; pass++) {
-      cursor = 0; changed = false; tree = Page();
-      const pending = effects; effects = []; pending.forEach(effect => effect());
-      if (!changed) return tree;
-    }
-    throw new Error('Venison controls did not settle');
-  }
-  render();
-  return {
-    get tree() { return tree; },
-    cuts: load('lib/venison-cut-guide.js').venisonCuts,
-    photo: load('lib/venison-cut-guide.js').venisonCutPhoto,
-    rail: () => nodes(tree, node => node.props?.className === 'cutRail')[0],
-    locator: () => nodes(tree, node => node.props?.className === 'cutLocator')[0],
-    buttons: () => nodes(tree, node => node.type === 'button'),
-    select(id) { const button = this.buttons().find(node => node.props['aria-controls'] === `wildbret-${id}`); assert.ok(button); button.props.onClick(); render(); },
-    query(value) { nodes(tree, node => node.type === 'input')[0].props.onChange({ target: { value } }); render(); },
-    failImage() { nodes(tree, node => node.type === 'img' && node.props.src === this.photo.src)[0].props.onError(); render(); },
-  };
+const { root } = require('./helpers/project-module.cjs');
+const { setup, nodes, text } = require('./helpers/field-reader-fixture.cjs');
+function fixture(query = { eintrag: 'schulter' }) {
+  const h = setup('components/VenisonCutGuide.js', query);
+  h.cuts = h.load('lib/venison-cut-guide.js').venisonCuts;
+  h.photo = h.load('lib/venison-cut-guide.js').venisonCutPhoto;
+  h.rail = () => h.nodes(node => node.props?.className === 'cutRail')[0];
+  h.locator = () => h.nodes(node => node.props?.className === 'cutLocator')[0];
+  h.buttons = () => nodes(h.rail(), node => node.type === 'button');
+  h.select = id => { h.buttons().find(node => node.props['data-cut-id'] === id).props.onClick(); h.render(); };
+  return h;
 }
 function assertSelected(h, cut) {
-  const locator = h.locator(); assert.ok(locator);
-  assert.equal(locator.props['aria-hidden'], 'true');
+  const locator = h.locator(); assert.ok(locator); assert.equal(locator.props['aria-hidden'], 'true');
   const line = nodes(locator, node => node.type === 'line'); assert.equal(line.length, 1);
   assert.deepEqual([line[0].props.x1, line[0].props.y1, line[0].props.x2, line[0].props.y2], [cut.marker.x, cut.marker.y, cut.marker.x, '100']);
   const ring = nodes(locator, node => node.type === 'span')[0];
-  assert.deepEqual(ring.props.style, { left: `${cut.marker.x}%`, top: `${cut.marker.y}%` });
-  assert.equal(text(locator), '');
-  const pressed = h.buttons().filter(node => node.props['aria-pressed']); assert.equal(pressed.length, 1);
-  assert.equal(pressed[0].props['aria-controls'], `wildbret-${cut.id}`);
-  const selected = nodes(h.tree, node => node.type === 'article' && node.props.className.includes('cutCardSelected'));
-  assert.equal(selected.length, 1); assert.equal(selected[0].props.id, `wildbret-${cut.id}`);
+  assert.deepEqual(ring.props.style, { left: `${cut.marker.x}%`, top: `${cut.marker.y}%` }); assert.equal(text(locator), '');
+  const pressed = h.buttons().filter(node => node.props['aria-pressed']); assert.equal(pressed.length, 1); assert.equal(pressed[0].props['data-cut-id'], cut.id);
+  const selected = h.nodes(node => node.type === 'article'); assert.equal(selected.length, 1); assert.equal(selected[0].props.id, `wildbret-${cut.id}`);
 }
 
-test('Numbers and named controls sit below the full-aspect photo; only one hollow locator uses original coordinates', () => {
-  const h = setup();
-  assert.equal(h.locator(), undefined);
-  assert.equal(h.buttons().filter(node => node.props['aria-pressed']).length, 0);
-  const map = nodes(h.tree, node => node.props?.className === 'photoMap')[0];
+test('Numbers and named controls stay below the optional full-aspect photo; one hollow locator uses original coordinates', () => {
+  const h = fixture(); assert.equal(h.locator(), undefined);
+  const map = h.nodes(node => node.props?.className === 'photoMap')[0];
   assert.equal(nodes(map, node => node.type === 'button').length, 0);
   assert.equal(nodes(map, node => node.type === 'span' && text(node)).length, 0);
-  const image = nodes(map, node => node.type === 'img')[0];
-  assert.equal(image.props.src, h.photo.src); assert.equal(image.props.width, '1920'); assert.equal(image.props.height, '1080');
-  const figure = nodes(h.tree, node => node.type === 'figure' && node.props.className === 'overview')[0];
+  const image = nodes(map, node => node.type === 'img')[0]; assert.equal(image.props.src, h.photo.src); assert.equal(image.props.width, '1920'); assert.equal(image.props.height, '1080');
+  const figure = h.nodes(node => node.type === 'figure' && node.props.className === 'overview')[0];
   assert.ok(figure.props.children.indexOf(map) < figure.props.children.indexOf(h.rail()));
+  const photoDetails = h.nodes(node => node.type === 'details')[0]; assert.equal(photoDetails.props.open, undefined);
   assert.equal(h.rail().props.role, 'group'); assert.equal(h.buttons().length, 5);
   for (const cut of h.cuts) {
-    h.select(cut.id); assertSelected(h, cut);
-    assert.equal(h.buttons().length, 5);
-    const button = h.buttons().find(node => node.props['aria-controls'] === `wildbret-${cut.id}`);
-    assert.equal(button.props.type, 'button'); assert.match(text(button), new RegExp(cut.title.replace('/', '\\/')));
-    h.select(cut.id);
-    assert.equal(h.locator(), undefined);
-    assert.equal(h.buttons().filter(node => node.props['aria-pressed']).length, 0);
+    h.select(cut.id); assertSelected(h, cut); assert.equal(h.buttons().length, 5);
+    assert.equal(h.buttons().find(node => node.props['data-cut-id'] === cut.id).props['aria-controls'], 'wildbret-detail');
+    h.select(cut.id); assert.equal(h.locator(), undefined); assert.equal(h.buttons().filter(node => node.props['aria-pressed']).length, 0);
   }
+  h.dispose();
 });
 
-test('Multi-match filters keep one selected cut and an empty filter hides all locators and controls', () => {
-  const h = setup(); h.query('Gulasch');
-  assert.deepEqual(h.buttons().map(node => node.props['aria-controls']), ['wildbret-schulter', 'wildbret-hals']);
-  assert.equal(h.locator(), undefined); h.select('schulter'); assertSelected(h, h.cuts[0]); h.select('hals'); assertSelected(h, h.cuts[4]);
-  assert.equal(nodes(h.tree, node => node.type === 'article').length, 2);
-  h.query('Rücken'); assert.equal(h.locator(), undefined); h.select('ruecken'); assertSelected(h, h.cuts[3]);
-  h.query('Banane'); assert.equal(h.locator(), undefined); assert.equal(h.rail(), undefined); assert.equal(h.buttons().length, 0);
+test('Filtering choices never silently replaces the chosen knowledge text or disconnects photo controls from it', () => {
+  const h = fixture(); h.select('schulter'); assertSelected(h, h.cuts[0]); h.input('Gulasch'); assertSelected(h, h.cuts[0]);
+  h.select('hals'); assertSelected(h, h.cuts[4]); assert.equal(h.nodes(node => node.type === 'article').length, 1);
+  h.input('Banane'); assertSelected(h, h.cuts[4]);
   assert.match(text(h.tree), /Kein passendes Stück gefunden/);
-  h.query(''); assert.equal(h.buttons().length, 5); assert.equal(h.locator(), undefined);
+  assert.equal(h.buttons().length, 5, 'The full-photo legend remains complete; filtering belongs to the menu');
+  h.dispose();
 });
 
-test('Existing entry links select their cut and photo failure retains readable names, selection and details', () => {
-  const h = setup('?eintrag=ruecken'); assert.equal(h.locator(), undefined); assert.equal(h.buttons().length, 1);
-  assert.equal(h.buttons()[0].props['aria-pressed'], false);
-  assert.equal(nodes(h.tree, node => node.type === 'input')[0].props.value, h.cuts[3].title);
+test('Entry links select exactly one cut; image failure preserves its readable text and Back clears obsolete annotations', () => {
+  const h = fixture({ eintrag: 'ruecken' }); assert.equal(h.locator(), undefined); assert.equal(h.buttons().length, 5);
   h.select('ruecken'); assertSelected(h, h.cuts[3]);
-  h.failImage(); assert.equal(h.locator(), undefined); assert.equal(h.buttons().length, 1);
-  assert.equal(h.buttons()[0].props['aria-pressed'], false);
-  assert.match(text(h.tree), /Aufnahme ist gerade nicht verfügbar/);
-  assert.match(text(h.tree), /Ausgewählt: 4 · Rücken/);
-  assert.ok(nodes(h.tree, node => node.type === 'article' && node.props.id === 'wildbret-ruecken').length);
-  assert.equal(setup('?eintrag=unknown').buttons().length, 5);
+  h.navigate({ eintrag: 'hals' }); assert.equal(h.locator(), undefined); assert.equal(h.nodes(node => node.type === 'article')[0].props.id, 'wildbret-hals');
+  h.select('hals'); assertSelected(h, h.cuts[4]);
+  h.nodes(node => node.type === 'img' && node.props.src === h.photo.src)[0].props.onError(); h.render();
+  assert.equal(h.locator(), undefined); assert.equal(h.buttons().length, 5); assert.match(text(h.tree), /Aufnahme ist gerade nicht verfügbar/);
+  assert.match(text(h.tree), /Ausgewählt: 5 · Hals/); assert.equal(h.nodes(node => node.type === 'article').length, 1);
+  h.dispose();
+  const missing = fixture({ eintrag: 'unknown' }); assert.equal(missing.nodes(node => node.type === 'article').length, 0); assert.match(text(missing.tree), /Dieses Teilstück ist nicht verfügbar/); missing.dispose();
 });
 
 test('Controls meet touch sizing, keep focus styles and leave the photo uncropped with a transparent locator', () => {

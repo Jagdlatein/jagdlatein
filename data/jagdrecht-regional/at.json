@@ -890,9 +890,203 @@
           "contentValidated": true,
           "verificationNote": "Die Verbandserklärung bestätigt Personenkreis und gesonderte Schriftform. Nur Zustimmung wird abgefragt. Der RIS-Erfassungsstichtag 01.01.2015 ist kein belegtes ursprüngliches Inkrafttreten.",
           "originalVerified": true
+        },
+        {
+          "id": "at-noe-revierhund-herkunft",
+          "topic": "wildschutz",
+          "title": "Revierhund: Herkunft und Leistung getrennt nachweisen",
+          "lawTitle": "NÖ Jagdverordnung",
+          "citation": "§ 23a; § 23b Abs. 1; § 23c Abs. 2",
+          "summary": "Für die nach § 23d vorgeschriebenen NÖ Revierhunde sind Herkunft und Gebrauchsfähigkeit getrennt zu belegen. Reinrassigkeit braucht einen Herkunftsnachweis mit den gesetzlichen Angaben; Aussehen allein genügt nicht. Für die Gebrauchsfähigkeit ist ein entsprechender Prüfungs- und Leistungsnachweis einer anerkannten Organisation nötig. Eine Ahnentafel ersetzt diesen Leistungsnachweis nicht. Diese Regeln betreffen den gesetzlich vorgeschriebenen Revierhund, nicht pauschal jeden mitgeführten Hund.",
+          "sources": [
+            {
+              "title": "NÖ Jagdverordnung § 23a – Geltungsbereich für die vorgeschriebenen Revierhunde",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23a/LNO40012195",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdverordnung § 23b Abs. 1 – Herkunftsnachweis",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23b/LNO40012196",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdverordnung § 23c Abs. 2 – Prüfungs- und Leistungsnachweis",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23c/LNO40017594",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Merkblatt Revierhund, Stand 27.09.2022: Herkunft, Gebrauchsfähigkeit und Berechnung",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Merkblatt-zum-Revierhund_2022.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-revierhund-herkunft-q1",
+              "prompt": "Für einen vorgeschriebenen NÖ Revierhund wird nur ein Foto vorgelegt. Ersetzt erkennbar rassetypisches Aussehen den Herkunftsnachweis?",
+              "choices": [
+                "Ja, wenn eine erfahrene Jägerin die Rasse bestätigt.",
+                "Nein, der gesetzlich geforderte Herkunftsnachweis bleibt nötig.",
+                "Ja, wenn der Hund bereits im Revier mitläuft."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 23b verlangt den dokumentierten Herkunftsnachweis. Ein Foto ist kein Ersatz."
+            },
+            {
+              "id": "at-noe-revierhund-herkunft-q2",
+              "prompt": "Ein vorgeschriebener NÖ Revierhund besitzt einen passenden Herkunftsnachweis, aber noch keinen geforderten Prüfungs- und Leistungsnachweis. Reicht die Ahnentafel allein?",
+              "choices": [
+                "Nein, die Gebrauchsfähigkeit ist zusätzlich nach § 23c nachzuweisen.",
+                "Ja, Herkunft und Gebrauchsfähigkeit sind derselbe Nachweis.",
+                "Ja, ein Leistungsnachweis wird erst nach dem zwölften Geburtstag benötigt."
+              ],
+              "correctIndex": 0,
+              "explanation": "Herkunft und nachgewiesene Gebrauchsfähigkeit sind unterschiedliche Anforderungen."
+            }
+          ],
+          "officialText": "Jagdhunde müssen reinrassig sein. Die Reinrassigkeit ist durch einen Herkunftsnachweis zu belegen, der mindestens folgenden Inhalt aufweisen muß:\n1. Angaben über den Jagdhund (Zuchtbuchnummer, Chip-Nummer, Name, Rasse, Geschlecht, Wurfdatum, Farbe, Abzeichen, Haarart),\n2. Angaben über die Abstammung des Jagdhundes (Zuchtbuchnummer, Name, Rasse, Geschlecht, Farbe, Abzeichen, Haarart und Prüfungs- und Leistungsnachweise von mindestens drei Vorfahrengenerationen),\n3. Angaben über den Züchter (Name, Adresse),\n4. Unterschrift des Züchters,\n5. Unterschrift der zuchtbuchführenden Organisation,\n6. Angaben über das Zuchtbuch (z. B. Logo eines nationalen Dachverbandes),\n7. Angaben über die internationale Anerkennung (z. B. Logo eines internationalen Dachverbandes),\n8. Angaben über den Besitzer (Name, Adresse).",
+          "officialTextCitation": "§ 23b Abs. 1 vollständig, Nummerierung als 1.–8. wiedergegeben",
+          "contentValidated": true,
+          "verificationNote": "RIS §§ 23a–23c mit Fassung zum 24.10.2026 vollständig gelesen; Herkunfts- und Leistungsanforderung mit der eigenständigen Verbandserklärung auf S. 1 des Merkblatts abgeglichen. Der gesetzliche Geltungsbereich wird ausdrücklich begrenzt. Der RIS-Erfassungsstichtag 01.01.2015 wird nicht als nachgewiesenes ursprüngliches Inkrafttreten behauptet.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-revierhund-gebrauch",
+          "topic": "wildschutz",
+          "title": "Gebrauchsfähigkeit: Leistung und Altersgrenze",
+          "lawTitle": "NÖ Jagdverordnung",
+          "citation": "§ 23a; § 23c Abs. 1 und 2",
+          "summary": "Ein vorgeschriebener NÖ Revierhund muss für die Kultur- und Wildstandsverhältnisse geeignet sein, Führerbefehle befolgen und Wild zuverlässig finden können. Die Gebrauchsfähigkeit endet beim Verlust der erforderlichen Leistungsfähigkeit, spätestens mit Vollendung des zwölften Lebensjahres. Der einmal erbrachte Prüfungsnachweis ist deshalb keine Zusicherung bis zum zwölften Geburtstag. Ein noch leistungsfähiger zwölfjähriger Hund kann ebenfalls nicht mehr als dieser vorgeschriebene Revierhund angerechnet werden.",
+          "sources": [
+            {
+              "title": "NÖ Jagdverordnung § 23a – Geltungsbereich für die vorgeschriebenen Revierhunde",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23a/LNO40012195",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdverordnung § 23c – Gebrauchsfähigkeit und Nachweis",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23c/LNO40017594",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Merkblatt Revierhund, Stand 27.09.2022: Herkunft, Gebrauchsfähigkeit und Berechnung",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Merkblatt-zum-Revierhund_2022.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-revierhund-gebrauch-q1",
+              "prompt": "Ein zehnjähriger vorgeschriebener NÖ Revierhund verliert die erforderliche Leistungsfähigkeit. Gilt er wegen einer früher bestandenen Prüfung automatisch noch bis zwölf als gebrauchsfähig?",
+              "choices": [
+                "Ja, die Prüfung garantiert die Anrechnung bis zwölf.",
+                "Ja, solange der Hund weiterhin geimpft wird.",
+                "Nein, die erforderliche Leistungsfähigkeit muss weiterhin vorliegen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Altersgrenze ist nur die späteste Grenze; der Verlust der erforderlichen Leistungsfähigkeit kann früher eintreten."
+            },
+            {
+              "id": "at-noe-revierhund-gebrauch-q2",
+              "prompt": "Ein NÖ Revierhund hat sein zwölftes Lebensjahr vollendet und arbeitet weiterhin gut. Kann er nach § 23c noch als vorgeschriebener gebrauchsfähiger Revierhund angerechnet werden?",
+              "choices": [
+                "Ja, ohne zeitliche Grenze bei guten Leistungen.",
+                "Nein, die gesetzliche Höchstgrenze ist erreicht.",
+                "Ja, wenn seine erste Prüfung erst fünf Jahre zurückliegt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Gebrauchsfähigkeit im Sinn dieser Vorschrift reicht höchstens bis zur Vollendung des zwölften Lebensjahres."
+            }
+          ],
+          "officialText": "Jagdhunde müssen jene Eigenschaften besitzen, die erforderlich sind, um einen ordnungsgemäßen Jagdbetrieb entsprechend den im Jagdgebiet herrschenden Kultur- und Wildstandsverhältnissen, sicherzustellen. Sie müssen fähig sein, in Befolgung der Befehle ihres Führers das Wild sicher aufzuspüren und das kranke, angeschossene oder erlegte Wild rasch zu finden (Gebrauchsfähigkeit). Die Gebrauchsfähigkeit ist bis zum Verlust der erforderlichen Leistungsfähigkeit höchstens bis zur Vollendung des 12. Lebensjahres gegeben.\n\nDie Gebrauchsfähigkeit ist einmalig durch einen Prüfungs- und Leistungsnachweis nachzuweisen, der mindestens den Anforderungen des Abschnittes 26 entspricht und von einer vom NÖ Landesjagdverband gemäß § 91 Abs. 3 NÖ JG anerkannten Organisation ausgestellt wurde.",
+          "officialTextCitation": "§ 23c Abs. 1 und 2 vollständig",
+          "contentValidated": true,
+          "verificationNote": "Aktueller § 23c und Merkblatt S. 1 sowie S. 3 zur Altersgrenze abgeglichen. Die Anwendung der ausdrücklich gesetzlich bedingten Leistungsfähigkeit wird als eigenes Lernbeispiel erklärt; es wird kein Verbot jeglicher weiterer Beschäftigung älterer Hunde behauptet.",
+          "originalVerified": true
+        },
+        {
+          "id": "at-noe-revierhund-anzahl",
+          "topic": "wildschutz",
+          "title": "Schalenwild: Revierhunde berechnen und bereithalten",
+          "lawTitle": "NÖ Jagdverordnung",
+          "citation": "§ 23a; § 23d Abs. 1, 4 und 5",
+          "summary": "Für den Bedarf an vorgeschriebenen NÖ Revierhunden zählt der Durchschnitt der letzten fünf abgelaufenen Jagdjahre laut Abschussliste. Bei Schalenwild decken die ersten drei Hunde jeweils bis zu 300 Stück ab; ab dem vierten kommen je 500 Stück hinzu. Eigene Rechenbeispiele: 406 Stück erfordern mindestens zwei, 1.000 Stück mindestens vier entsprechend nachgewiesene Hunde. Steht ein Hund nicht im Besitz und unter Führung von Jagdausübungsberechtigten oder Jagdaufsehern, muss ihn ein Jäger mit gültiger NÖ Jagdkarte höchstens 25 km Luftlinie von der betreffenden Jagdgebietsgrenze für den Einsatz bereithalten. Die gesonderten Niederwildregeln werden hier nicht berechnet.",
+          "sources": [
+            {
+              "title": "NÖ Jagdverordnung § 23a – Geltungsbereich für die vorgeschriebenen Revierhunde",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23a/LNO40012195",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "NÖ Jagdverordnung § 23d – Mindestanzahl und Verfügbarkeit",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/1/P23d/LNO40012198",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Merkblatt Revierhund, Stand 27.09.2022: Herkunft, Gebrauchsfähigkeit und Berechnung",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Merkblatt-zum-Revierhund_2022.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-noe-revierhund-anzahl-q1",
+              "prompt": "Welche Grundlage ist für die NÖ Revierhundeberechnung nach § 23d maßgeblich?",
+              "choices": [
+                "Nur die geplante Strecke des nächsten Jagdjahres.",
+                "Der höchste Einzelwert der letzten zehn Jahre.",
+                "Der Durchschnitt der letzten fünf abgelaufenen Jagdjahre laut Abschussliste."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Vorschrift verwendet den Fünfjahresdurchschnitt, nicht eine frei gewählte Zukunftsprognose."
+            },
+            {
+              "id": "at-noe-revierhund-anzahl-q2",
+              "prompt": "Eigenes Rechenbeispiel: Der maßgebliche jährliche Schalenwildabschuss eines NÖ Reviers beträgt 1.000 Stück. Wie viele vorgeschriebene Hunde sind mindestens nötig?",
+              "choices": [
+                "Vier entsprechend nachgewiesene Hunde.",
+                "Drei, weil stets abgerundet wird.",
+                "Zwei, weil für jeden Hund von Anfang an 500 Stück gelten."
+              ],
+              "correctIndex": 0,
+              "explanation": "Drei Hunde decken 900 Stück ab. Der vierte erweitert die abgedeckte Zahl auf 1.400; für 1.000 sind daher vier erforderlich."
+            },
+            {
+              "id": "at-noe-revierhund-anzahl-q3",
+              "prompt": "Ein vorgeschriebener NÖ Revierhund steht nicht im Besitz und unter Führung von Jagdausübungsberechtigten oder Jagdaufsehern. Welcher Bereitstellungsort entspricht § 23d Abs. 5?",
+              "choices": [
+                "Jeder Ort in Österreich, unabhängig von Entfernung und Jagdkarte.",
+                "Bei einem Jäger mit gültiger NÖ Jagdkarte innerhalb von 25 km Luftlinie ab der betreffenden Jagdgebietsgrenze.",
+                "Innerhalb von 25 km Fahrstrecke vom Wohnhaus des Pächters."
+              ],
+              "correctIndex": 1,
+              "explanation": "Maßgeblich sind gültige NÖ Jagdkarte und die Luftlinie von der Jagdgebietsgrenze."
+            }
+          ],
+          "officialText": "Für den vierten und jeden folgenden zur Verfügung stehenden Hund erhöht sich die jährliche Schalenwildabschußzahl auf 500 Stück pro Jagdhund.\n\nFür die Berechnung des jährlichen Wildabschusses nach Abs. 1, 2 und 3 ist der Durchschnitt der letzten fünf abgelaufenen Jagdjahre laut Abschußliste heranzuziehen.",
+          "officialTextCitation": "§ 23d Abs. 1 Satz 2 und Abs. 4",
+          "contentValidated": true,
+          "verificationNote": "§ 23d Fassung 24.10.2026 und eigenständiges Merkblatt S. 1–2 sowie Tabelle S. 5 abgeglichen. Die Zahlenbeispiele sind selbst formuliert und nachgerechnet. Keine Verallgemeinerung auf Niederwild oder andere Bundesländer. Eine frühere Fachquelle von 2011 nennt Fallwild anders; dazu wird ohne zusätzlichen aktuellen Normabgleich keine neue Frage freigegeben.",
+          "originalVerified": true
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Der Ausbau umfasst nur die benannten Karten-, Pacht-, Weiterbildungs-, Melde- und Zustimmungsfragen, nicht das gesamte NÖ Jagdrecht. Die zusätzliche Lektion zum Waffenverbot bleibt wegen des fehlenden unabhängigen Zweitnachweises gesperrt.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Der Ausbau umfasst nur die benannten Karten-, Pacht-, Weiterbildungs-, Melde- und Zustimmungsfragen sowie ausgewählte Revierhundevorschriften, nicht das gesamte NÖ Jagdrecht. Die zusätzliche Lektion zum Waffenverbot bleibt wegen des fehlenden unabhängigen Zweitnachweises gesperrt.",
       "examResources": [
         {
           "title": "NÖ Jagdgesetz 1974 § 60 – Jagdprüfung",
@@ -1362,12 +1556,18 @@
           "topic": "jagdausuebung",
           "title": "Ohne gültige Jagdkarte keine Jagdausübung",
           "lawTitle": "Steiermärkisches Jagdgesetz 1986",
-          "citation": "§ 36; § 37 Abs. 3",
+          "citation": "§ 36; § 37 Abs. 6",
           "summary": "Wer in der Steiermark jagt, braucht die gesetzlich erforderliche gültige Jagdkarte. Die Anmeldung zu einem Kurs oder eine Kursbestätigung ersetzt sie nicht. Kartengültigkeit und Erlaubnis des Jagdausübungsberechtigten sind gesondert erforderlich; die persönliche Karte ist keine allgemeine Revierfreigabe.",
           "sources": [
             {
-              "title": "Steiermärkisches Jagdgesetz 1986: § 36; § 37 Abs. 3",
-              "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000850",
+              "title": "Steiermärkisches Jagdgesetz 1986: § 36; § 37 Abs. 6",
+              "url": "https://ris.bka.gv.at/NormDokument.wxe?Abfrage=LrStmk&Anlage=&Artikel=&FassungVom=2026-10-24&Gesetzesnummer=20000850&Paragraf=36&Uebergangsrecht=",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986 § 37 Abs. 6 – Revierzustimmung",
+              "url": "https://ris.bka.gv.at/eli/lgbl/ST/1986/23/P37/LST40036278",
               "publisher": "Land Steiermark / RIS",
               "kind": "law"
             },
@@ -1384,7 +1584,7 @@
               "kind": "context"
             }
           ],
-          "reviewedOn": "2026-10-23",
+          "reviewedOn": "2026-10-24",
           "verified": true,
           "questions": [
             {
@@ -1413,7 +1613,7 @@
           "officialText": "Ohne eine von der zuständigen Behörde im Geltungsgebiete dieses Gesetzes ausgestellte, mit Lichtbild versehene Jagdkarte darf niemand die Jagd ausüben.",
           "officialTextCitation": "§ 36",
           "contentValidated": true,
-          "verificationNote": "Kartenpflicht und zusätzliche Reviererlaubnis wurden mit der bundesweiten Behördeninformation abgeglichen. Einzelheiten der Versicherung werden hier nicht allein aus dieser allgemeinen Zweitquelle zum freigegebenen Lehrinhalt abgeleitet.",
+          "verificationNote": "§§ 36 und 37 mit Stand 24.10.2026 erneut im RIS gelesen und die zusätzliche Revierzustimmung mit der bundesweiten Behördeninformation abgeglichen. Ihre bisherige Fundstelle § 37 Abs. 3 wurde auf Abs. 6 berichtigt; Abs. 3 betrifft Jagdhaftpflicht. Die Lernantwort selbst blieb richtig. Einzelheiten der Versicherung werden hier nicht aus dieser allgemeinen Zweitquelle zum freigegebenen Lehrinhalt abgeleitet.",
           "originalVerified": true
         },
         {
@@ -1525,9 +1725,227 @@
           "officialTextCitation": "§ 40 Abs. 1 Satz 3",
           "contentValidated": true,
           "originalVerified": true
+        },
+        {
+          "id": "at-st-pruefungszeugnis-anderes-land",
+          "topic": "zulassung",
+          "title": "Positives Prüfungszeugnis eines anderen Bundeslandes",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 37 Abs. 4 Satz 2",
+          "summary": "Ein positives Jagdprüfungszeugnis eines anderen österreichischen Bundeslandes kann seit der Novelle vom 7. Juli 2026 als Befreiungsnachweis von der steirischen Jägerprüfung vorgelegt werden. Das ersetzt die erneute Prüfung, nicht den Antrag und die übrigen Voraussetzungen der steirischen Jagdkarte. Es ist auch keine allgemeine Erlaubnis, ohne Revierzustimmung zu jagen. Für Zeugnisse oder Karten anderer Staaten enthält der vollständige Satz eigene Bedingungen; eine pauschale internationale Anerkennung wird hier nicht gelehrt.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986 § 37, seit 07.07.2026 geltende Fassung",
+              "url": "https://ris.bka.gv.at/eli/lgbl/ST/1986/23/P37/LST40036278",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdgesetznovelle mit 7. Juli 2026 in Kraft getreten – Jägerprüfung und Abschussmeldung",
+              "url": "https://www.jagd-stmk.at/news/sonderwochennews-jagdgesetz/",
+              "publisher": "Steirische Landesjägerschaft",
+              "kind": "context"
+            },
+            {
+              "title": "Jagdkarte – persönliche Karte und erforderliche Revierzustimmung",
+              "url": "https://www.oesterreich.gv.at/de/lexicon/J/Seite.991741",
+              "publisher": "Republik Österreich – oesterreich.gv.at",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-pruefungszeugnis-anderes-land-q1",
+              "prompt": "Ein Bewerber hat die Jagdprüfung in einem anderen österreichischen Bundesland bestanden. Muss er allein deshalb dieselbe Prüfung in der Steiermark nochmals ablegen?",
+              "choices": [
+                "Nein, das positive Prüfungszeugnis kann nach § 37 Abs. 4 als Befreiungsnachweis vorgelegt werden.",
+                "Ja, Zeugnisse anderer österreichischer Bundesländer sind grundsätzlich ausgeschlossen.",
+                "Ja, sofern er noch keine fünfjährige Revierpacht vorweisen kann."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die aktuelle Regelung lässt das positive Jagdprüfungszeugnis eines anderen österreichischen Bundeslandes als Befreiungsnachweis zu."
+            },
+            {
+              "id": "at-st-pruefungszeugnis-anderes-land-q2",
+              "prompt": "Ein positives Prüfungszeugnis aus einem anderen österreichischen Bundesland wird für die steirische Jagdkarte anerkannt. Was folgt daraus?",
+              "choices": [
+                "Damit ist ohne weiteren Kartenantrag in allen steirischen Revieren Jagd erlaubt.",
+                "Das Zeugnis ersetzt auch jede erforderliche Revierzustimmung.",
+                "Die Prüfungsbefreiung ersetzt weder die übrigen Kartenvoraussetzungen noch die erforderliche Revierzustimmung."
+              ],
+              "correctIndex": 2,
+              "explanation": "Prüfungsbefreiung, Kartenausstellung und Erlaubnis im konkreten Revier sind getrennt."
+            }
+          ],
+          "officialText": "Von der Ablegung der Prüfung sind Personen befreit, die ein positives Jagdprüfungszeugnis eines anderen Bundeslandes […] nachweisen, […]",
+          "officialTextCitation": "§ 37 Abs. 4 Satz 2, Auszug nur zum positiven Zeugnis eines anderen österreichischen Bundeslandes; weitere Anerkennungsfälle und Staatenbedingungen ausgelassen",
+          "contentValidated": true,
+          "verificationNote": "Geänderten § 37 Abs. 4 mit RIS-Fassung seit 07.07.2026 und der eigenständigen Novellenerklärung der Jägerschaft abgeglichen. Nur der klar belegte Fall eines anderen österreichischen Bundeslandes wird abgefragt. Keine pauschale Übernahme der verkürzten Aussage zu Staaten.",
+          "originalVerified": true,
+          "effectiveFrom": "2026-07-07"
+        },
+        {
+          "id": "at-st-wildfolge-grenze",
+          "topic": "wildschutz",
+          "title": "Wildfolge: schriftlich vereinbaren und sofort melden",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 58 Abs. 4",
+          "summary": "Wechselt angeschossenes oder anders verwundetes Wild in ein fremdes steirisches Jagdgebiet, darf es ohne schriftliches Wildfolgeübereinkommen dort nicht verfolgt werden. Der Jagdausübungsberechtigte des Ausgangsreviers muss den Nachbarn ungesäumt verständigen und Übertrittsstelle beziehungsweise Anschuss bezeichnen. Der verständigte Nachbar muss die Nachsuche vornehmen. Das betrifft auch verletztes Niederwild, nicht nur Schalenwild. Ein vorhandener Vertrag ist nach seinen konkreten Rechten und Grenzen anzuwenden.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986 § 58, seit 07.07.2026 geltende Fassung",
+              "url": "https://ris.bka.gv.at/eli/lgbl/ST/1986/23/P58/LST40036281",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "RA Dr. Gerolf Haßlinger: Wildfolge, Weidblick Dezember 2023, S. 11",
+              "url": "https://www.jagd-dl.at/images/weidblick/2023/Dezember_23.pdf",
+              "publisher": "Dr. Gerolf Haßlinger / Steirischer Jagdschutzverein Deutschlandsberg",
+              "kind": "context"
+            },
+            {
+              "title": "Muster eines schriftlichen Wildfolgeübereinkommens – ausdrücklich zu vereinbarende Rechte",
+              "url": "https://www.jagd-stmk.at/wp-content/uploads/2018/06/Wildfolge%C3%BCbereinkommen.pdf",
+              "publisher": "Steirische Landesjägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-wildfolge-grenze-q1",
+              "prompt": "Verwundetes Wild wechselt in der Steiermark ins Nachbarrevier. Es besteht kein schriftliches Wildfolgeübereinkommen. Was ist das richtige Vorgehen?",
+              "choices": [
+                "Im Nachbarrevier ohne Abstimmung weiterverfolgen.",
+                "Die erforderliche sofortige Verständigung und Kennzeichnung veranlassen; die Nachsuche obliegt dort dem Nachbarn.",
+                "Bis zum nächsten Jagdjahr mit einer Meldung warten."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 58 Abs. 4 verlangt ungesäumte Verständigung und Bezeichnung von Übertrittsstelle beziehungsweise Anschuss. Die Grenze erlaubt keine eigenmächtige Weiterverfolgung."
+            },
+            {
+              "id": "at-st-wildfolge-grenze-q2",
+              "prompt": "Ein angeschossener Fasan streicht in ein steirisches Nachbarrevier ab. Gilt die Verständigungspflicht nur für Schalenwild?",
+              "choices": [
+                "Ja, Federwild darf grundsätzlich ohne jede Meldung zurückgeholt werden.",
+                "Ja, sofern die Jagd eine Treibjagd war.",
+                "Nein, auch verletztes Niederwild ist von der Wildfolgeregel erfasst."
+              ],
+              "correctIndex": 2,
+              "explanation": "Der gesetzliche Begriff umfasst verwundetes Wild; der fachliche Beitrag erläutert den Fasan ausdrücklich als Fallbeispiel."
+            }
+          ],
+          "officialText": "Ein angeschossenes oder in anderer Art verwundetes Wild, das in ein fremdes Jagdgebiet übersetzt, darf dorthin, sofern nicht mit der /dem Jagdausübungsberechtigten dieses Jagdgebietes ein schriftliches Wildfolgeübereinkommen besteht, nicht verfolgt werden. […] Die/Der Jagdausübungsberechtigte, in dessen Revier das Wild angeschossen oder sonst verwundet wurde, hat die/den Jagdausübungsberechtigten des benachbarten Jagdgebietes, in das das verletzte Wild übersetzt hat, hiervon ungesäumt in Kenntnis zu setzen und die Stelle des Übersetzens bzw. des Anschusses zu bezeichnen. Diese/Dieser ist verpflichtet, die Nachsuche vorzunehmen.",
+          "officialTextCitation": "§ 58 Abs. 4 Sätze 1, 3 und 4; Satz 2 ausgelassen",
+          "contentValidated": true,
+          "verificationNote": "§ 58 Abs. 4 Fassung 24.10.2026 direkt gelesen. Die eigenständige anwaltliche Erläuterung von 2023 wurde nur für die unverändert bestätigten Regeln zu Grenze, Schriftform und Niederwild herangezogen. Das Verbandsmuster ist eine zusätzliche vertragliche Orientierung, kein automatisch für jedes Revier geltender Vertrag.",
+          "originalVerified": true,
+          "effectiveFrom": "2026-07-07"
+        },
+        {
+          "id": "at-st-wildfolge-aneignung",
+          "topic": "jagdausuebung",
+          "title": "Wildfolge: Wildbret und Abschussplan zuordnen",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 58 Abs. 6",
+          "summary": "Ohne abweichende Wildfolgevereinbarung stehen Trophäen und Wildbret des übergewechselten Wildes dem Jagdausübungsberechtigten am Fundort zu. Besteht für dieses Wild ein Abschussplan, muss er es auf seinen Plan anrechnen. Bei Schalenwild gilt eine wichtige abweichende Zuordnung: Bleibt das Wildbret aufgrund der Vereinbarung dem Jagdausübungsberechtigten des Anschussreviers, wird das Stück auf dessen Plan angerechnet. Der Anschussort allein begründet deshalb keine allgemeine Anrechnung in jedem Fall.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986 § 58, seit 07.07.2026 geltende Fassung",
+              "url": "https://ris.bka.gv.at/eli/lgbl/ST/1986/23/P58/LST40036281",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "RA Dr. Gerolf Haßlinger: Wildfolge, Weidblick Dezember 2023, S. 11",
+              "url": "https://www.jagd-dl.at/images/weidblick/2023/Dezember_23.pdf",
+              "publisher": "Dr. Gerolf Haßlinger / Steirischer Jagdschutzverein Deutschlandsberg",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-wildfolge-aneignung-q1",
+              "prompt": "Ein übergewechseltes Stück planpflichtigen Wildes wird im steirischen Nachbarrevier gefunden. Es gibt keine abweichende Wildfolgevereinbarung. Wem werden Wildbret und Plananrechnung zugeordnet?",
+              "choices": [
+                "Dem Jagdausübungsberechtigten am Fundort.",
+                "Stets dem Schützen persönlich.",
+                "Stets dem Anschussrevier, unabhängig von Vereinbarungen."
+              ],
+              "correctIndex": 0,
+              "explanation": "§ 58 Abs. 6 verbindet die Grundregel am Fundort mit der dortigen Plananrechnung."
+            },
+            {
+              "id": "at-st-wildfolge-aneignung-q2",
+              "prompt": "Eine steirische Wildfolgevereinbarung belässt das Wildbret eines übergewechselten Stücks Schalenwild dem Jagdausübungsberechtigten des Anschussreviers. Auf wessen Abschussplan wird es angerechnet?",
+              "choices": [
+                "Immer auf beide Pläne zugleich.",
+                "Auf den Plan des Jagdausübungsberechtigten des Anschussreviers.",
+                "Eine Plananrechnung entfällt wegen der Vereinbarung vollständig."
+              ],
+              "correctIndex": 1,
+              "explanation": "Für diesen vereinbarten Schalenwildfall bestimmt § 58 Abs. 6 die Anrechnung beim Anschussrevier."
+            }
+          ],
+          "officialText": "Die Trophäen (Kopfschmuck, Bart, Grandeln) und das Wildbret des übergewechselten Wildes gehören, falls nicht durch eine Wildfolgevereinbarung etwas anderes bestimmt wird, der/dem am Fundort Jagdausübungsberechtigten. Diese/Dieser muss sich Wild, für das ein Abschussplan besteht, auf ihren/seinen Abschussplan anrechnen lassen. Wenn jedoch bei Schalenwild auf Grund einer Wildfolgevereinbarung das Wildbret der/dem Jagdausübungsberechtigten des Gebietes, in dem das Wild angeschossen wurde, zur Verfügung bleibt, so ist das Stück auf dessen Abschussplan anzurechnen.",
+          "officialTextCitation": "§ 58 Abs. 6 vollständig",
+          "contentValidated": true,
+          "verificationNote": "Alle drei Sätze des aktuellen Abs. 6 mit der eigenständigen Erklärung von RA Haßlinger, S. 11, abgeglichen. Aufgaben unterscheiden gesetzliche Grundregel und ausdrücklich bezeichneten vertraglichen Schalenwildfall.",
+          "originalVerified": true,
+          "effectiveFrom": "2026-07-07"
+        },
+        {
+          "id": "at-st-abschussmeldung-werktage",
+          "topic": "jagdausuebung",
+          "title": "Abschussmeldung: sieben Werktage",
+          "lawTitle": "Steiermärkisches Jagdgesetz 1986",
+          "citation": "§ 56 Abs. 4 Sätze 1 und 2",
+          "summary": "Für die Abschussmeldung nach § 56 Abs. 4 gilt seit der Novelle vom 7. Juli 2026 die Frist von sieben Werktagen. Werktage sind nicht gleichbedeutend mit einer frei angenommenen Kalenderwoche. Der unten wiedergegebene Originaltext benennt die erfassten Erlegungen und Fallwildfunde. Hier wird nur die unabhängig bestätigte allgemeine Anzeigefrist geübt; Sonderauflagen und abweichende Artenschutzbescheide sind gesondert zu beachten.",
+          "sources": [
+            {
+              "title": "Steiermärkisches Jagdgesetz 1986 § 56 Abs. 4 – Fassung 07.07.2026 bis 31.03.2027",
+              "url": "https://ris.bka.gv.at/eli/lgbl/ST/1986/23/P56/LST40036280",
+              "publisher": "Land Steiermark / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Jagdgesetznovelle mit 7. Juli 2026 in Kraft getreten – Jägerprüfung und Abschussmeldung",
+              "url": "https://www.jagd-stmk.at/news/sonderwochennews-jagdgesetz/",
+              "publisher": "Steirische Landesjägerschaft",
+              "kind": "context"
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "questions": [
+            {
+              "id": "at-st-abschussmeldung-werktage-q1",
+              "prompt": "Innerhalb welcher allgemeinen Frist ist die Erlegung eines Stücks Schalenwild in der Steiermark nach § 56 Abs. 4 anzuzeigen?",
+              "choices": [
+                "Einmal gesammelt am Ende des Jagdjahres.",
+                "Nur auf ausdrückliche Aufforderung.",
+                "Binnen sieben Werktagen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Anzeige erfolgt binnen sieben Werktagen elektronisch oder mittels Abschussmeldekarte."
+            }
+          ],
+          "officialText": "Jeder Abschuss und jedes aufgefundene Stück Fallwild ist in eine Abschussliste einzutragen, die der Bezirksjägermeisterin/dem Bezirksjägermeister auf Verlangen vorzulegen ist. Die Erlegung jedes Stückes Schalen-, Auer- und Birkwild sowie jedes Murmeltieres und die Auffindung von Fallwild dieser Wildarten ist binnen sieben Werktagen elektronisch oder mittels Abschussmeldekarte der Bezirksjägermeisterin/dem Bezirksjägermeister anzuzeigen.",
+          "officialTextCitation": "§ 56 Abs. 4 Sätze 1 und 2",
+          "contentValidated": true,
+          "verificationNote": "RIS-Fassung zum 24.10.2026 mit dokumentiertem Ende 31.03.2027 und eigenständige Novellenerklärung zum Sieben-Werktage-Intervall gelesen. Die einzige freigegebene Frage prüft diese unabhängig bestätigte Frist. Einzelheiten zu Fallwild und Übermittlungswegen werden als amtlicher Originaltext gezeigt, aber ohne zusätzlichen konkreten Zweitnachweis hier nicht eigens abgefragt. Kein Kalender-Fristrechenbeispiel. Abschussplanänderungen in Abs. 3b werden wegen einer abweichend verkürzten Verbandserklärung nicht übernommen.",
+          "originalVerified": true,
+          "effectiveFrom": "2026-07-07",
+          "effectiveUntil": "2027-04-01"
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Die amtliche Fassung und ergänzende Verordnungen bleiben maßgeblich. Die Erweiterung vom 24.10.2026 behandelt nur ausgewählte Nachweis-, Wildfolge- und Meldepflichten; sie ist keine vollständige Darstellung des steirischen Jagdrechts. Die hier verwendete Fassung des § 56 endet am 31.03.2027 und wird danach bis zur erneuten Prüfung zurückgehalten.",
       "examResources": [
         {
           "title": "Steiermärkische Jägerprüfungsverordnung",

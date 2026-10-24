@@ -1,0 +1,8 @@
+.choices { display: grid; gap: 10px; margin: 12px 0 18px; }
+.choices button { width: 100%; min-width: 0; min-height: 52px; display: flex; flex-direction: column; gap: 5px; padding: 14px; border: 1px solid #cdbb91; border-radius: 12px; background: #fffdf7; color: #48391e; text-align: left; font: inherit; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
+.choices button[aria-current="page"] { border-color: #927024; background: #f6eac7; }
+.choices small { font-size: 14px; }
+.choices button:focus-visible { outline: 3px solid #927024; outline-offset: 3px; }
+.detail { width: 100%; min-width: 0; line-height: 1.8; }
+.detail h2 { scroll-margin-top: 20px; }
+.detail h2:focus { outline: 2px solid #927024; outline-offset: 5px; }
