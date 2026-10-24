@@ -10,12 +10,12 @@ const { getWildlifeLearningGuide: guide } = load('lib/wildlife-learning-guide.js
 const { getWildlifeStudyContent } = load('lib/wildlife-study-content.js');
 const courseId = 'wissen-biber-schneidezaehne-2026';
 
-test('One short separately dated Biber lesson has two original questions and exact independent evidence without changing older dates', () => {
+test('The original short Biber lesson retains its two questions and evidence beside one narrow followup lesson', () => {
   assert.equal(added.length, 1);
   const course = added[0];
   assert.equal(course.id, courseId);
-  assert.equal(course.lessons.length, 1);
-  assert.equal(course.questions.length, 2);
+  assert.equal(course.lessons.length, 2);
+  assert.equal(course.questions.length, 3);
   assert.equal(course.reviewedOn, '2026-10-24');
   assert.equal(course.sourceReview.reviewedOn, '2026-10-24');
   assert.ok(historical.every(item => item.reviewedOn === '2026-10-18'));
@@ -24,7 +24,7 @@ test('One short separately dated Biber lesson has two original questions and exa
   const teaching = [...course.lessons[0].paragraphs, ...course.questions.flatMap(q => [q.q, ...q.options, q.explain])].join(' ');
   assert.doesNotMatch(teaching, /\d|\b(?:Eisen|Ferrihydrit|Nanometer|Mikrometer|Millimeter|Härtewert|Wachstumsrate|Verschleißrate|Farbursache)\b/i);
   assert.ok(course.sourceReview.limitations.some(limit => /keine.*Abriebversuchs/.test(limit)));
-  assert.equal(course.sources.length, 2);
+  assert.equal(course.sources.length, 4);
   assert.ok(course.sources.some(source => source.url.startsWith('https://www.lfu.bayern.de/')));
   assert.ok(course.sources.some(source => source.url.startsWith('https://fvo.si/') && source.supports.includes('Originalvolltext')));
   for (const claim of course.lessons[0].evidence) {
@@ -38,7 +38,7 @@ test('Only Biber gains its own third target and retains the two existing foundat
   const targets = guide('biber');
   assert.deepEqual(targets.map(target => target.moduleId), [courseId, 'wissen-ausbau-wildtiergenetik-2026', 'wissen-ausbau-anwendung-biologische-ebenen-2026']);
   assert.equal(targets[0].scope, 'species');
-  assert.equal(targets[0].flashcardCount, 2);
+  assert.equal(targets[0].flashcardCount, 3);
   assert.equal(targets[0].title, added[0].title);
   assert.equal(targets[0].description, added[0].description);
   for (const item of species.filter(item => item.slug !== 'biber')) {
@@ -107,7 +107,7 @@ test('The existing portrait reader exposes all paragraphs and scope under its lo
   assert.equal(selected.props.target.moduleId, courseId);
 });
 
-test('The same course is discoverable in Wildkunde, search, the shared quiz and two sourced learning cards', () => {
+test('The same course is discoverable in Wildkunde, search and the shared quiz; its original two cards remain beside the new card', () => {
   const { getLearningTopicLocation, validateLearningTopicTree } = load('lib/learning-topic-tree.js');
   const { getLearningOverviewData } = load('lib/learning-overview-server.js');
   const { searchLearning } = load('lib/learning-search.js');
@@ -123,7 +123,7 @@ test('The same course is discoverable in Wildkunde, search, the shared quiz and 
   const otherStems = new Set(learningModules.filter(module => module.id !== courseId).flatMap(module => module.questions.map(question => question.q.trim().toLocaleLowerCase('de'))));
   const pool = new Set(quizLearningPool(QUESTIONS, { topic: 'Wildkunde' }).map(question => question.id));
   const positions = new Set();
-  for (const question of added[0].questions) {
+  for (const question of added[0].questions.slice(0, 2)) {
     assert.ok(!otherStems.has(question.q.trim().toLocaleLowerCase('de')));
     const actual = prepared.questions.find(item => item.id === `${courseId}-${question.id}`);
     assert.ok(pool.has(actual.id));
@@ -132,7 +132,7 @@ test('The same course is discoverable in Wildkunde, search, the shared quiz and 
   }
   assert.equal(positions.size, 2);
   const cards = getFlashcards().filter(card => card.moduleId === courseId);
-  assert.equal(cards.length, 2);
+  assert.equal(cards.length, 3);
   for (const card of cards) {
     assert.ok(card.answer && card.explanation && card.sources.length === 2);
     assert.equal(card.sourceScope, 'lesson');

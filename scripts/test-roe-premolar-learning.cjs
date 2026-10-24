@@ -41,7 +41,7 @@ test('One separately dated Rehwild form lesson adds one question without age num
   assert.equal(existing.questions.length, 16);
 });
 
-test('Only Rehwild adds a fourth target; its three old complete entries and all 113 other guide objects remain exact', () => {
+test('Only Rehwild adds a fourth target; its old entries and historical other guides remain exact except the explicit later Biber card count', () => {
   const species = load('lib/european-wildlife-discovery.js').europeanWildlife;
   const targets = guide('rehwild');
   assert.equal(targets.length, 4);
@@ -57,9 +57,12 @@ test('Only Rehwild adds a fourth target; its three old complete entries and all 
   assert.equal(targets[3].description, added[0].description);
   const unaffected = species.filter(item => item.slug !== 'rehwild').map(item => ({ slug: item.slug, targets: guide(item.slug) }));
   assert.equal(unaffected.length, 113);
+  assert.equal(unaffected.find(item => item.slug === 'biber').targets.find(target => target.moduleId === 'wissen-biber-schneidezaehne-2026').flashcardCount, 3);
+  const historical = unaffected.map(item => item.slug === 'biber' ? { ...item, targets: item.targets.map(target => target.moduleId === 'wissen-biber-schneidezaehne-2026' ? { ...target, flashcardCount: 2 } : target) } : item);
   // Before this addition, all fields and their ordering were captured from HEAD
-  // 1577eda. This guards complete unrelated objects, not just their target counts.
-  assert.equal(createHash('sha256').update(JSON.stringify(unaffected)).digest('hex'), 'eb86cb3dfd5c857edaccd36a045f0eb6ee0689e8ea944d8495342c0e5be72b49');
+  // 1577eda. Normalize only the later authorized Biber card-count increase;
+  // preserve every other field, order and the original complete-object hash.
+  assert.equal(createHash('sha256').update(JSON.stringify(historical)).digest('hex'), 'eb86cb3dfd5c857edaccd36a045f0eb6ee0689e8ea944d8495342c0e5be72b49');
   for (const item of unaffected) {
     assert.ok(!item.targets.some(target => target.moduleId === courseId), item.slug);
     assert.equal(getWildlifeStudyContent(item.slug, courseId), null, item.slug);

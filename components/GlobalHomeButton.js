@@ -80,6 +80,7 @@ const toolSelectionFields = {
   "/lernen/wissen-fuers-revier": ["thema"],
   "/lernen/wildjahr": ["art", "monat"],
   "/lernen/wildtier-videofaelle": ["eintrag"],
+  "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
 };
 function tracksToolSelection(path) {
   return toolSelectionFields[path.split(/[?#]/)[0]];

@@ -364,7 +364,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the twelve focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif and season in the thirteen focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -379,12 +379,27 @@ test('Dock Back preserves each committed topic, case, motif and season in the tw
     ['/lernen/wildjahr', '?art=rehwild&monat=7', '?art=rotwild&monat=7'],
     ['/lernen/wildjahr', '?art=rotwild&monat=7', '?art=rotwild&monat=9'],
     ['/lernen/wildtier-videofaelle', '?eintrag=fuchs', '?eintrag=rotwild'],
+    ['/lernen/pruefungsgespraech', '?eintrag=baumwinter', '?eintrag=kitzfund'],
+    ['/lernen/pruefungsgespraech', '?kategorie=wildkunde&eintrag=kitzfund', '?kategorie=hundewesen&eintrag=hundelernen'],
   ];
   for (const [base, first, second] of tools) {
     const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
     s.render().props.children[0].props.onClick();
     assert.equal(s.destination, base + first, base); s.unmount();
   }
+});
+
+test('Oral exam Back tracks only its category and question while context edits retain the chosen question', () => {
+  const base = '/lernen/pruefungsgespraech';
+  const first = base + '?kategorie=wildkunde&eintrag=kitzfund#exam-question-title';
+  const second = base + '?kategorie=wildkunde&eintrag=rotte#exam-question-title';
+  const s = setup(base, ['/lernen']); s.route(first); s.route(second);
+  s.route(base + '?q=Rotte&ref=suche&eintrag=rotte&kategorie=wildkunde#exam-question-title');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, first);
+  const native = setup(base, ['/lernen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(base, ['/lernen']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
 });
 
 test('Tool search/context edits stay in the chosen topic; native Back and immediate dock Back retain the correct prior step', () => {

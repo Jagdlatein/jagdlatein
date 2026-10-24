@@ -1,7 +1,7 @@
 {
   "reviewedOn": "2026-10-24",
   "contentAddedOn": "2026-10-24",
-  "scope": "Eine kurze Lektion zum Schmelz-Dentin-Aufbau und zur Selbstschärfung der Schneidezähne des Europäischen Bibers. Keine vollständige Neuprüfung des Biberwissens und keine Behandlungsempfehlung.",
+  "scope": "Die bestehende Lektion zum Schmelz-Dentin-Aufbau und zur Selbstschärfung der Schneidezähne des Europäischen Bibers sowie eine eng ergänzte zweite Lektion zur verschließbaren Mundhautfalte beim Unterwassernagen. Keine vollständige Neuprüfung des Biberwissens und keine Behandlungsempfehlung.",
   "modules": [
     {
       "id": "wissen-biber-schneidezaehne-2026",
@@ -30,6 +30,20 @@
           "url": "https://fvo.si/wp-content/uploads/2024/08/srot-et-al-2024-ingenious-architecture-and-coloration-generation-in-enamel-of-rodent-teeth-1.pdf",
           "organization": "Max-Planck-Institut für Festkörperforschung und beteiligte Forschungseinrichtungen; ACS Nano 18, 11270–11283, DOI 10.1021/acsnano.4c00578; Original-PDF am Autorinstitut FVO, CC BY 4.0",
           "supports": "Relevanter Originalvolltext gelesen: Results and Discussion, PDF-S. C, beschreibt harten Schmelz nur auf der labialen Seite des weicheren Dentinkörpers als Selbstschärfungsapparat; Methods / Incisor Samples, PDF-S. J, bezieht Castor fiber aus Deutschland ein. Die Arbeit untersucht Zahnstruktur und Material, keine populationsweite Abriebrate oder individuelle Gesundheitsdiagnose. Der allgemeine Selbstschärfungsaufbau wird dort fachlich eingeordnet, nicht als neuer eigener Verschleißversuch behauptet."
+        },
+        {
+          "label": "info fauna, Biberfachstelle: Biologie, Abschnitt Gebiss",
+          "url": "https://www.infofauna.ch/de/beratungsstellen/biberfachstelle/der-biber/biologie",
+          "organization": "info fauna / Schweizerische Biberfachstelle; eigenständige fachliche Erläuterung, Veröffentlichungsdatum auf der eingesehenen Seite nicht ausgewiesen",
+          "checkedOn": "2026-10-24",
+          "supports": "Abschnitt Gebiss erneut gelesen: Eine Hautfalte ermöglicht den Verschluss gegen Wasser beim Unterwassernagen. Nur diese enge Funktionsaussage wird übernommen; keine genaue anatomische Lage, kein Schlucken, keine Zahnchemie oder Tauchleistungswerte. Fachliche Darstellung, keine neue eigene Anatomie- oder Tauchmessung."
+        },
+        {
+          "label": "OÖ-Umweltanwaltschaft: Mit dem Biber leben!, 2019, Kapitel 2.2, S. 11",
+          "url": "https://www.ooe-umweltanwaltschaft.at/Mediendateien/Biberhandbuch_web2.pdf",
+          "organization": "Oberösterreichische Umweltanwaltschaft; Kapitel zur Biologie: Gerald Hölzler, Institut für angewandte Biologie und Umweltbildung; Handbuch Hölzler, Habenicht und Baschinger, November 2019",
+          "checkedOn": "2026-10-24",
+          "supports": "Kapitel 2.2, gedruckte S. 11 / physische PDF-Seite 21, Text und Bildunterschrift 2.4 erneut gelesen: verschließbare Mundhautfalte als Anpassung zum Unterwassernagen. Unabhängig redigierter Fachtext gegenüber der Schweizer Biberfachstelle, keine unabhängige experimentelle Replikation. Keine Abbildung und keine danebenstehenden Farbchemie-, Zahlen- oder sonstigen Begleitbehauptungen übernommen."
         }
       ],
       "lessons": [
@@ -43,6 +57,18 @@
           ],
           "takeaway": "Harter Schmelz vorne und schneller abgetragenes Dentin dahinter tragen zur Selbstschärfung der Biber-Schneidezähne bei.",
           "exercise": "Beschrifte auf Papier einen vereinfachten Zahnquerschnitt mit Lippenseite, Schmelz und Dentin. Erkläre den unterschiedlichen Abrieb in einem Satz; verwende dafür kein Tier oder Präparat."
+        },
+        {
+          "id": "mundhautfalte-unterwassernagen",
+          "title": "Eine Mundhautfalte ermöglicht das Nagen unter Wasser",
+          "reviewedOn": "2026-10-24",
+          "paragraphs": [
+            "Der Europäische Biber kann unter Wasser nagen. Dabei hilft ihm eine verschließbare Hautfalte im Maul. Sie bildet einen Verschluss gegen eindringendes Wasser. Die Schweizer Biberfachstelle von info fauna und das oberösterreichische Fachhandbuch beschreiben diese Anpassung übereinstimmend.",
+            "Für das Verständnis werden die Strukturen nach ihrer Aufgabe getrennt: Die Nagezähne bearbeiten das Material; die Mundhautfalte bildet den Verschluss beim Unterwassernagen. Ein Schneidwerkzeug und ein verschließbarer Teil des Mauls erfüllen unterschiedliche Funktionen. Die Erklärung der Selbstschärfung aus der ersten Lektion beantwortet deshalb eine andere Frage als die nach diesem Verschluss.",
+            "Eigene Denkübung: Verbinde „Material bearbeiten“ mit den Nagezähnen und „Verschluss bilden“ mit der Hautfalte. Das ist eine Funktionszuordnung, keine Untersuchung am Tier. Sie beschreibt weder einen Schluckvorgang noch eine individuelle Tauchleistung. Für diese Lernaufgabe genügt die gemeinsam belegte Funktion; eine genaue anatomische Lagezeichnung wird daraus nicht abgeleitet."
+          ],
+          "takeaway": "Eine verschließbare Mundhautfalte ermöglicht dem Biber das Unterwassernagen; Mundverschluss und Schneidwerkzeug haben verschiedene Aufgaben.",
+          "exercise": "Ordne die Tätigkeiten „Material bearbeiten“ und „Verschluss bilden“ den entsprechenden Strukturen zu. Nutze dafür nur die gelesene Beschreibung."
         }
       ],
       "questions": [
@@ -61,11 +87,19 @@
           "options": ["Dentin und Schmelz werden überall gleich schnell abgetragen.", "Der vordere Schmelz verschwindet schneller als das rückseitige Dentin.", "Abrieb findet ausschließlich am hinteren Mahlgebiss statt.", "Das weichere Dentin dahinter nutzt sich schneller ab als der harte Schmelz vorne."],
           "answer": 3,
           "explain": "Die unterschiedliche Abnutzung trägt dazu bei, dass die harte vordere Schmelzkante als Schneide erhalten bleibt. Selbstschärfung beschreibt dieses Funktionsprinzip und keine Diagnose der Zähne eines einzelnen Tieres."
+        },
+        {
+          "id": "mundverschluss-unterwasser",
+          "lessonId": "mundhautfalte-unterwassernagen",
+          "q": "Welche Struktur ermöglicht dem Europäischen Biber den Mundverschluss beim Nagen unter Wasser?",
+          "options": ["Die feste Schmelzkante an der Zahnvorderseite.", "Eine verschließbare Hautfalte im Maul.", "Die breite Schwanzkelle.", "Die Muskulatur der Hinterpfoten."],
+          "answer": 1,
+          "explain": "Die verschließbare Mundhautfalte ermöglicht das Unterwassernagen. Infofauna und das oberösterreichische Fachhandbuch erklären diese Funktion. Daraus werden hier weder ein bestimmter Schluckvorgang noch eine individuelle Tauchleistung abgeleitet."
         }
       ],
       "sourceReview": {
         "reviewedOn": "2026-10-24",
-        "scope": "Begrenzter Abgleich dieser neuen Biber-Lektion und zweier eigener Funktionsfragen anhand einer unabhängigen Behördenbroschüre und der relevanten Originalvolltextabschnitte einer Zahnstrukturarbeit. Keine vollständige Prüfung des Biberporträts.",
+        "scope": "Die bestehende erste Biber-Lektion und ihre beiden Funktionsfragen bleiben mit ihrer ursprünglichen Behördenbroschüre und den relevanten Originalvolltextabschnitten einer Zahnstrukturarbeit belegt. Die zweite Lektion zur Mundhautfalte und ihre einzelne eigene Frage wurden am 24. Oktober 2026 ausschließlich mit dem Abschnitt Gebiss der Schweizer Biberfachstelle und Kapitel 2.2 des oberösterreichischen Fachhandbuchs abgeglichen. Diese Fachtexte sind keine unabhängigen neuen anatomischen Experimente. Keine vollständige Neuprüfung des Biberporträts.",
         "limitations": ["Srot et al. ordnen den Schmelz-Dentin-Aufbau als Selbstschärfungsprinzip ein; dies ist keine unabhängige Wiederholung eines eigenen Abriebversuchs.", "Die Originalarbeit schließt Castor fiber ein. Aus ihren untersuchten Tieren werden keine Artstatistiken oder allgemeinen Materialwerte abgeleitet.", "Keine Farb- oder Eisenchemie, keine Härtewerte, Wachstums- oder Verschleißraten, keine Diagnose oder Behandlung."]
       }
     }
@@ -82,6 +116,16 @@
         {
           "claim": "Der schnellere Abrieb des weicheren rückseitigen Dentins gegenüber dem vorderen harten Schmelz trägt zur scharfen Schneide bei. LfU erklärt den unterschiedlichen Abrieb ausdrücklich; Srot et al. ordnen den entsprechenden Gewebeaufbau als Selbstschärfungsapparat ein, ohne hier als eigener Abriebversuch ausgegeben zu werden.",
           "sourceUrls": ["https://www.lfu.bayern.de/publikationen/get_pdf.htm?art_nr=lfu_nat_00147", "https://fvo.si/wp-content/uploads/2024/08/srot-et-al-2024-ingenious-architecture-and-coloration-generation-in-enamel-of-rodent-teeth-1.pdf"]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-biber-schneidezaehne-2026",
+      "lessonId": "mundhautfalte-unterwassernagen",
+      "claims": [
+        {
+          "claim": "Eine verschließbare Hautfalte im Maul ermöglicht dem Europäischen Biber das Nagen unter Wasser. Die Schweizer Biberfachstelle und das oberösterreichische Fachhandbuch erläutern diese Funktion unabhängig; sie werden nicht als neue eigene Anatomieversuche oder als Beleg für genaue Lage, Schlucken und individuelle Tauchleistung ausgegeben.",
+          "sourceUrls": ["https://www.infofauna.ch/de/beratungsstellen/biberfachstelle/der-biber/biologie", "https://www.ooe-umweltanwaltschaft.at/Mediendateien/Biberhandbuch_web2.pdf"]
         }
       ]
     }
