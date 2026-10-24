@@ -62,7 +62,7 @@ function fixture(t, { query = {}, hash = '', isReady = true } = {}) {
   const Component = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
     'next/link': props => React.createElement('a', props, props.children),
     './LearningToolLayout': props => React.createElement('main', {}, props.children),
-    './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closed++; } },
+    './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closed++; }, openPageMenu() {} },
   })('components/HuntingDogVideos.js').default;
   function render() {
     let iterations = 0;
@@ -110,18 +110,22 @@ test('Choosing a scene creates a valid deep link; reload, Back and Forward retai
   fresh.cleanup();
 });
 
-test('All authored direct links are recognized; missing, unknown or repeated selection parameters safely use the first scene', t => {
+test('All authored direct links and the bare first entry are recognized; explicit invalid or repeated values show a picker', t => {
   const f = fixture(t);
   for (const lesson of lessons) { f.restore({ eintrag: lesson.id }, 'hundevideo-film'); assert.equal(f.article().key, lesson.id); }
-  for (const query of [{}, { eintrag: '../other' }, { eintrag: [lessons[1].id, lessons[2].id] }]) {
-    f.restore(query); assert.equal(f.article().key, lessons[0].id);
+  f.restore({}); assert.equal(f.article().key, lessons[0].id);
+  for (const query of [{ eintrag: '' }, { eintrag: '../other' }, { eintrag: [lessons[1].id] }, { eintrag: [lessons[1].id, lessons[2].id] }]) {
+    f.restore(query); assert.equal(f.article(), undefined);
+    assert.equal(f.find(node => node.type === 'select').props.value, '');
+    assert.ok(f.find(node => node.type === 'p' && String(node.props.children).includes('Diese Szene ist nicht verfügbar')));
   }
   assert.equal(f.pushes.length, 0, 'Restoring a URL must never write another history entry');
 });
 
 test('Selection waits for router readiness and rejects an arbitrary scene without changing content or history', async t => {
   const f = fixture(t, { query: { eintrag: lessons[1].id }, isReady: false });
-  assert.equal(f.article().key, lessons[0].id);
+  assert.equal(f.article(), undefined);
+  assert.equal(f.find(node => node.type === 'select').props.disabled, true);
   await f.choose(lessons[2].id); assert.equal(f.pushes.length, 0);
   f.router.isReady = true; f.render(); assert.equal(f.article().key, lessons[1].id);
   await f.choose('https://other.example/video'); assert.equal(f.pushes.length, 0); assert.equal(f.article().key, lessons[1].id);

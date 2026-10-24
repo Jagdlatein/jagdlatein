@@ -85,18 +85,61 @@ test('Scoped API remains paid-only and private, rejects malformed selection and 
 test('Scoped learning and print UI show the chosen lesson, preserve its round trip and hide the unrelated category chooser', () => {
   const props = load('lib/flashcard-page-data.js').getFlashcardPageData(scope);
   const cards = unpackFlashcards(props.deck);
-  const Cards = createLoader(uiOverrides)('components/LearningFlashcards.js').default;
-  const Print = createLoader(uiOverrides)('pages/lernen/lernkarten-drucken.js').default;
+  const contributions = [];
+  const Cards = createLoader({ ...uiOverrides, './PageMenu': {
+    __esModule: true,
+    default: menuProps => { contributions.push(menuProps); return null; },
+    closePageMenu() {},
+  } })('components/LearningFlashcards.js').default;
+  const printContributions = [];
+  const printMenu = { __esModule: true, default: menuProps => { printContributions.push(menuProps); return null; }, closePageMenu() {} };
+  const Print = createLoader({ ...uiOverrides, './PageMenu': printMenu, '../../components/PageMenu': printMenu })('pages/lernen/lernkarten-drucken.js').default;
   const html = renderToStaticMarkup(React.createElement(Cards, cards));
   assert.match(html, /Gewählte Lernkartenauswahl/);
   assert.match(html, /Liegen ist noch keine Schlafstadienmessung/);
-  assert.match(html, /Zur Lektion/);
-  assert.match(html, /kurs=wissen-ausbau-hund-ruhe-schlaf-2026&amp;lektion=messung/);
+  assert.doesNotMatch(html, /Zur Lektion|aria-label="Diese Auswahl drucken"/, 'Selection and export links belong to the shared lower menu, outside the reader SSR');
   assert.doesNotMatch(html, /<select|Welche Wildart zeigt dieses Foto/);
+  // Render each real PageMenu contribution in its mounted-outlet state. Use
+  // the actual portal implementation, without adding controls to reader SSR.
+  const outlet = { nodeType: 1, id: 'jl-page-menu' };
+  const PageMenu = createLoader({ react: { ...React,
+    useState: () => [outlet, () => {}],
+    useRef: initial => ({ current: initial }),
+    useEffect() {},
+  } })('components/PageMenu.js').default;
+  const renderLowerMenus = contributions => new Map(contributions.map(contribution => {
+    const portal = PageMenu(contribution);
+    assert.equal(portal.$$typeof, Symbol.for('react.portal'));
+    assert.equal(portal.containerInfo, outlet);
+    return [contribution.title, renderToStaticMarkup(portal.children)];
+  }));
+  const lowerMenus = renderLowerMenus(contributions);
+  assert.equal(lowerMenus.size, 3);
+  assert.match(lowerMenus.get('Lernkartenauswahl'), /Zur Lektion/);
+  assert.ok(lowerMenus.get('Lernkartenauswahl').includes(`href="/kurse/${courseId}#lesson-messung"`));
+  const exportMenu = lowerMenus.get('Lernkarten drucken und speichern');
+  assert.match(exportMenu, /aria-label="Diese Auswahl drucken"/);
+  const printAnchor = exportMenu.match(/<a\b[^>]*aria-label="Diese Auswahl drucken"[^>]*>/)?.[0];
+  assert.ok(printAnchor);
+  const printTarget = new URL(printAnchor.match(/href="([^"]+)"/)[1].replaceAll('&amp;', '&'), 'https://jagdlatein.test');
+  assert.equal(printTarget.pathname, '/lernen/lernkarten-drucken');
+  assert.equal(printTarget.searchParams.get('kurs'), courseId);
+  assert.equal(printTarget.searchParams.get('lektion'), scope.lessonId);
+  assert.doesNotMatch(lowerMenus.get('Lernkarten auswählen'), /<select/);
   const printed = renderToStaticMarkup(React.createElement(Print, props));
   assert.doesNotMatch(printed, /<select|Druckauswahl wird geladen|Welche Wildart zeigt dieses Foto/);
-  assert.match(printed, /Digital wiederholen/);
-  assert.match(printed, /kurs=wissen-ausbau-hund-ruhe-schlaf-2026&amp;lektion=messung/);
+  assert.doesNotMatch(printed, /Digital wiederholen/, 'The print-to-digital return link also belongs to the lower menu');
+  const printMenus = renderLowerMenus(printContributions);
+  assert.equal(printMenus.size, 3);
+  const digitalMenu = printMenus.get('Weitere Lernkarten');
+  assert.match(digitalMenu, /Digital wiederholen/);
+  const digitalHref = digitalMenu.match(/<a\b[^>]*href="([^"]+)"[^>]*>[\s\S]*?Digital wiederholen<\/a>/)?.[1];
+  assert.ok(digitalHref);
+  const digitalTarget = new URL(digitalHref.replaceAll('&amp;', '&'), 'https://jagdlatein.test');
+  assert.equal(digitalTarget.pathname, '/lernen/lernkarten');
+  assert.equal(digitalTarget.searchParams.get('kurs'), courseId);
+  assert.equal(digitalTarget.searchParams.get('lektion'), scope.lessonId);
+  assert.doesNotMatch(printMenus.get('Druckauswahl ändern'), /<select/);
   assert.equal((printed.match(/<article/g) || []).length, actual.cards.length);
 });
 

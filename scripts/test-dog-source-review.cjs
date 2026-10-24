@@ -17,11 +17,12 @@ function load(relative) {
 const { dogDepthModules } = load("lib/learning-dog-depth.js");
 const { dogDepthIndependentSources, dogDepthSourceReview } = load("lib/dog-depth-independent-sources.js");
 const sourcesAddedOctober13 = new Set(["handlerBelief", "handlerKnowledge", "markerDogsTrust", "markerBlueCross", "recallDogsTrust", "recallRspca", "heatVetmed", "heatPdsa", "pantingPdsa", "firstAidZurich"]);
+const sourcesAddedOctober24 = new Set(["sniffAirflowCraven", "sniffAirflowJendrny"]);
 const expectedReviewedLessons = {
   "wissen-vertiefung-hunde-vorstehrassen": ["deutsche-vielfalt", "varietaeten", "spanielnamen", "italienische-arbeitsweise", "setter"],
   "wissen-vertiefung-hunde-bracken-nordische": ["oesterreich", "dachsbracken", "schweiz", "nordische", "herkunft-kontext"],
   "wissen-vertiefung-hunde-retriever-spaniels": ["sechs-retriever", "flat-curly", "wasser-tolling", "spanielprofile", "auftrag-uebergabe"],
-  "wissen-vertiefung-hunde-nase-spur-laut": ["fundkontrolle"],
+  "wissen-vertiefung-hunde-nase-spur-laut": ["fundkontrolle", "ausatemrichtung"],
   "wissen-vertiefung-hunde-klare-lernsignale": ["markerzeitpunkt", "rueckruf-gesichert", "belastung-pausen"],
 };
 
@@ -29,7 +30,7 @@ test("Supplemental claims have a responsible organization and a bounded source s
   for (const [id, source] of Object.entries(dogDepthIndependentSources)) {
     assert.ok(source.organization && source.label);
     assert.ok(source.scope.length > 45, source.label);
-    assert.equal(source.checkedOn, sourcesAddedOctober13.has(id) ? "2026-10-13" : "2026-10-12", id);
+    assert.equal(source.checkedOn, sourcesAddedOctober24.has(id) ? "2026-10-24" : sourcesAddedOctober13.has(id) ? "2026-10-13" : "2026-10-12", id);
     assert.equal(new URL(source.url).protocol, "https:");
     assert.notEqual(new URL(source.url).hostname, "www.fci.be");
   }
@@ -52,7 +53,7 @@ test("Every source-review entry refers to its actual course and lesson and prese
       assert.ok(lesson, item.lesson);
       assert.deepEqual(lesson.sourceReview, item);
       assert.ok(item.confirmedClaims.length);
-      if (["wissen-vertiefung-hunde-nase-spur-laut", "wissen-vertiefung-hunde-klare-lernsignale"].includes(courseId)) assert.equal(item.checkedOn, "2026-10-13");
+      if (["wissen-vertiefung-hunde-nase-spur-laut", "wissen-vertiefung-hunde-klare-lernsignale"].includes(courseId)) assert.equal(item.checkedOn, item.lesson === "ausatemrichtung" ? "2026-10-24" : "2026-10-13");
       for (const id of item.sourceIds) {
         const source = dogDepthIndependentSources[id];
         assert.ok(source, id);

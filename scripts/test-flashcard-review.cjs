@@ -46,6 +46,7 @@ test('The growing deck preserves all starter IDs and reuses documented questions
 });
 
 test('Question, stable correct answer, explanation, editorial date and source links are inherited without rewriting', () => {
+  const { getLessonReviewDate } = load('lib/learning-review-date.js');
   const { learningModules } = load('lib/learning-curriculum.js');
   const { lessonHash } = load('lib/learning-lesson-navigation.js');
   for (const card of load('lib/learning-flashcards.js').getFlashcards().filter(card => card.kind !== 'photo')) {
@@ -57,7 +58,7 @@ test('Question, stable correct answer, explanation, editorial date and source li
     assert.equal(card.explanation, question.explain);
     assert.equal(card.context, module.title);
     assert.equal(card.lessonTitle, lesson.title);
-    assert.equal(card.reviewedOn, module.reviewedOn);
+    assert.equal(card.reviewedOn, getLessonReviewDate(lesson, module.reviewedOn));
     assert.equal(question.countries.length, 3);
     assert.notEqual(question.topic, 'Recht');
     assert.equal(card.courseHref, `/kurse/${module.id}${lessonHash(lesson.id)}`);

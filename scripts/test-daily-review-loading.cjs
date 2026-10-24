@@ -147,7 +147,18 @@ test('Client selection sends only IDs, leaves history local and never shows an e
     assert.match(words(orientation), new RegExp(`${categoryTitle}.*Frage 1 von 3`));
     assert.doesNotMatch(s.html(), /<img|<figure/, 'A text question has no arbitrary category photograph');
     const selectedIds = params.get('ids').split(','); assert.match(words(s.tree), new RegExp(`Frage ${selectedIds[0]}`));
-    assert.equal(s.records.length, 0); assert.equal((s.html().match(/href="\/lernen#lernen-suche"/g) || []).length, 1);
+    assert.equal(s.records.length, 0);
+    assert.doesNotMatch(s.html(), /href="\/lernen#lernen-suche"/, 'The reader must not restore a second search link above the question');
+    const Dock = load('components/GlobalHomeButton.js', {
+      'next/navigation': { usePathname: () => '/lernen/fuenf-minuten' },
+      'next/compat/router': { useRouter: () => null },
+      'next/link': ({ href, children, prefetch, ...props }) => React.createElement('a', { ...props, href }, children),
+    }).default;
+    const lowerNavigation = renderToStaticMarkup(React.createElement(Dock));
+    assert.match(lowerNavigation, /aria-label="Seitennavigation"/);
+    assert.equal((lowerNavigation.match(/href="\/lernen#lernen-suche"/g) || []).length, 1);
+    assert.match(lowerNavigation, /aria-label="Alle Lernangebote suchen"/);
+    assert.match(lowerNavigation, /id="jl-page-menu"/);
   } finally { network.restore(); }
 });
 test('Packed metadata keeps local due selection, category changes and stale-response protection identical', async () => {

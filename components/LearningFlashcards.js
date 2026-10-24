@@ -7,6 +7,7 @@ import PageMenu, { closePageMenu } from "./PageMenu";
 import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards } from "../lib/flashcard-review";
 import { flashcardSelectionQuery, matchesFlashcardSelection } from "../lib/flashcard-selection";
 import { createFlashcardURLSync, flashcardNavigationURL, flashcardRouterURL, readFlashcardNavigation, sameFlashcardNavigation } from "../lib/flashcard-navigation";
+import { isLearningReviewDate } from "../lib/learning-review-date";
 import styles from "../styles/LearningFlashcards.module.css";
 
 const EMPTY_REVIEW = { version: 1, cards: {} };
@@ -24,7 +25,7 @@ export function FlashcardSelectionNotice({ selection, onNavigate }) {
   </aside>;
 }
 export function formatFlashcardDate(value) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return null;
+  if (!isLearningReviewDate(value)) return null;
   const date = new Date(`${value}T12:00:00Z`);
   return Number.isNaN(date.getTime()) ? null : date.toLocaleDateString("de-CH", { timeZone: "UTC" });
 }
@@ -248,7 +249,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
       <summary>{current.sourceScope === "photo" ? "Bildnachweis und Artenporträt" : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion und Prüfstand" : "Quellen des Ausgangskurses und Prüfstand"}</summary>
       <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>
       {current.image && <p>Foto: <a href={current.image.creditUrl} target="_blank" rel="noopener noreferrer">{current.image.author}</a> · <a href={current.image.licenseUrl} target="_blank" rel="noopener noreferrer">{current.image.license}</a></p>}
-      {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Stand des Ausgangskurses"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
+      {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Übernommener Prüfstand"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
     </details>}
   </LearningToolLayout>;
 }
