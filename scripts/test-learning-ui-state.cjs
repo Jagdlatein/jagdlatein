@@ -40,10 +40,20 @@ function engine() {
 function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(''); return typeof node === 'object' ? words(node.props?.children) : String(node); }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const result = find(child, predicate); if (result) return result; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
 function setup(relative, props = {}, exportName = 'default', expose = '', overrides = {}) {
+  const videoCase = relative === 'components/WildlifeVideoCases.js';
+  if (videoCase) {
+    const query = Object.fromEntries(new URLSearchParams(global.window?.location?.search || ''));
+    const router = { isReady: true, query, asPath: '/lernen/wildtier-videofaelle' + (global.window?.location?.search || ''), push: async href => { router.query = href.query; router.asPath = href.pathname + '#' + href.hash; return true; } };
+    overrides = { ...overrides, 'next/router': { useRouter: () => router },
+      './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('aside', null, children), openPageMenu() {}, closePageMenu() {} },
+      './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) },
+    };
+  }
   const e = engine(), Component = load(relative, { react: e.hooks, ...overrides }, expose)[exportName];
   let currentProps = props, tree;
   function render() { tree = e.render(() => Component(currentProps)); }
   render();
+  if (videoCase) e.flush();
   return { get tree() { return tree; }, redraw: render, commit() { if (e.needsRender()) render(); }, flush() { e.flush(); render(); }, flushCommitted() { e.flush(); if (e.needsRender()) render(); }, unmount() { e.unmount(); }, setProps(next) { currentProps = next; render(); },
     button(label) { const button = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(button, `Missing button: ${label}`); return button; },
     click(label) { const button = this.button(label); assert.ok(!button.props.disabled, `Disabled button: ${label}`); button.props.onClick(); render(); },
@@ -54,12 +64,14 @@ function setup(relative, props = {}, exportName = 'default', expose = '', overri
 test('Habitat templates remain accurate after manual editing, quiz mode and loading another template', () => {
   const data = load('lib/habitat-workshop.js');
   const s = setup('components/HabitatWorkshop.js');
+  s.field('Lernangebot').props.onChange({ target: { value: 'gestalten' } }); s.redraw();
   assert.equal(s.field('Lernlandschaft laden').props.value, data.habitatPresets[1].id);
   const checkbox = find(s.tree, node => node.type === 'input' && node.props.type === 'checkbox');
   checkbox.props.onChange(); s.redraw();
   assert.equal(s.field('Lernlandschaft laden').props.value, 'custom');
   assert.match(words(s.tree), /Eigene Zusammenstellung/);
-  s.click('Zusammenhänge prüfen'); s.click('Landschaft gestalten');
+  s.field('Lernangebot').props.onChange({ target: { value: 'quiz' } }); s.redraw();
+  s.field('Lernangebot').props.onChange({ target: { value: 'gestalten' } }); s.redraw();
   assert.equal(s.field('Lernlandschaft laden').props.value, 'custom');
   s.field('Lernlandschaft laden').props.onChange({ target: { value: data.habitatPresets[0].id } }); s.redraw();
   assert.equal(s.field('Lernlandschaft laden').props.value, data.habitatPresets[0].id);

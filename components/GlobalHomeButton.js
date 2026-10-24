@@ -79,6 +79,7 @@ const toolSelectionFields = {
   "/lernen/jagdhund-videos": ["eintrag"],
   "/lernen/wissen-fuers-revier": ["thema"],
   "/lernen/wildjahr": ["art", "monat"],
+  "/lernen/wildtier-videofaelle": ["eintrag"],
 };
 function tracksToolSelection(path) {
   return toolSelectionFields[path.split(/[?#]/)[0]];

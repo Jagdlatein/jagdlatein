@@ -364,7 +364,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the eleven focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif and season in the twelve focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -378,6 +378,7 @@ test('Dock Back preserves each committed topic, case, motif and season in the el
     ['/lernen/wissen-fuers-revier', '?thema=rehwild-fruehling', '?thema=wildkameras'],
     ['/lernen/wildjahr', '?art=rehwild&monat=7', '?art=rotwild&monat=7'],
     ['/lernen/wildjahr', '?art=rotwild&monat=7', '?art=rotwild&monat=9'],
+    ['/lernen/wildtier-videofaelle', '?eintrag=fuchs', '?eintrag=rotwild'],
   ];
   for (const [base, first, second] of tools) {
     const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
@@ -415,5 +416,18 @@ test('Wildyear keeps species and month as separate Back steps while context edit
   s.render().props.children[0].props.onClick(); assert.equal(s.destination, redJuly);
   const immediate = setup(base, ['/lernen/wildkunde']); immediate.route(roeJuly); immediate.navigateBeforeEffects(redJuly);
   immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, roeJuly);
+  s.unmount(); immediate.unmount();
+});
+
+test('Wildlife video Back returns to the prior committed scene while search context stays with its current scene', () => {
+  const base = '/lernen/wildtier-videofaelle';
+  const first = `${base}?eintrag=fuchs#video-fall`;
+  const second = `${base}?eintrag=rotwild#video-textfassung`;
+  const s = setup(base, ['/lernen/videos']);
+  s.route(first); s.route(second); s.route(`${base}?ref=suche&eintrag=rotwild&q=Brunft#video-textfassung`);
+  assert.equal(s.history.length, 4);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, first);
+  const immediate = setup(base, ['/lernen/videos']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
   s.unmount(); immediate.unmount();
 });

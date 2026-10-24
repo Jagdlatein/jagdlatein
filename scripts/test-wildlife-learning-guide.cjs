@@ -33,11 +33,11 @@ const inventory = load('lib/european-wildlife-discovery.js').europeanWildlife;
 const curriculum = load('lib/learning-curriculum.js').learningModules;
 const byId = Object.fromEntries(curriculum.map(course => [course.id, course]));
 
-test('Portraits retain at most three unique targets, with one exact fourth Rotwild topic and copied course metadata', () => {
+test('Portraits retain at most three unique targets, with exact fourth Rehwild and Rotwild topics and copied course metadata', () => {
   assert.equal(inventory.length, 114);
   for (const species of inventory) {
     const links = guide(species.slug);
-    assert.ok(links.length >= 1 && links.length <= (species.slug === 'rotwild' ? 4 : 3), species.slug);
+    assert.ok(links.length >= 1 && links.length <= (['rotwild', 'rehwild'].includes(species.slug) ? 4 : 3), species.slug);
     assert.equal(new Set(links.map(link => link.href)).size, links.length, species.slug);
     for (const link of links) {
       const course = byId[link.moduleId]; assert.ok(course, `${species.slug}: ${link.moduleId}`);
@@ -52,6 +52,7 @@ test('Portraits retain at most three unique targets, with one exact fourth Rotwi
     }
   }
   assert.equal(guide('rotwild').length, 4);
+  assert.equal(guide('rehwild').length, 4);
   for (const slug of [undefined, '', 'nicht-vorhanden', '__proto__', 'constructor']) assert.deepEqual(guide(slug), []);
 });
 
@@ -90,7 +91,8 @@ test('Guide renders knowledge previews as quiet links with scope labels and a st
   assert.match(html, /id="art-weiterlernen"/);
   assert.match(html, /Rehwild: weiterlernen/);
   assert.match(html, /Vertiefung zur Art/); assert.match(html, /Biologische Grundlagen/);
-  assert.equal((html.match(/<a /g) || []).length, 5);
+  assert.equal((html.match(/<a /g) || []).length, 6);
+  assert.ok(html.includes('href="#art-lerntext-wissen-rehwild-milchpraemolar-2026"'));
   assert.doesNotMatch(html, /<button|<details|<img|<video/);
   assert.ok(html.includes(targets.roe.description));
   assert.equal(renderToStaticMarkup(React.createElement(Component, { slug: 'erfunden', name: 'Erfunden' })), '');

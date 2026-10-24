@@ -44,7 +44,7 @@ test('Only Biber gains its own third target and retains the two existing foundat
   for (const item of species.filter(item => item.slug !== 'biber')) {
     assert.ok(!guide(item.slug).some(target => target.moduleId === courseId), item.slug);
     assert.equal(getWildlifeStudyContent(item.slug, courseId), null, item.slug);
-    assert.ok(guide(item.slug).length <= (item.slug === 'rotwild' ? 4 : 3), item.slug);
+    assert.ok(guide(item.slug).length <= (['rotwild', 'rehwild'].includes(item.slug) ? 4 : 3), item.slug);
   }
   assert.ok(!JSON.stringify(targets[0]).includes('questions'));
 });

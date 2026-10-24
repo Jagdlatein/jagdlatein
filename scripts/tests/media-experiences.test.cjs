@@ -47,9 +47,9 @@ function text(node) {
   return typeof node === 'object' ? text(node.props?.children) : String(node);
 }
 function setup(relative) {
-  if (relative === 'components/ObservationWorkshop.js') {
+  if (['components/ObservationWorkshop.js', 'components/WildlifeVideoCases.js'].includes(relative)) {
     const params = new URLSearchParams(global.window?.location?.search || '');
-    const app = setupReader(relative, Object.fromEntries(params));
+    const app = setupReader(relative, Object.fromEntries(params), { props: {} });
     const button = label => { const found = app.nodes(node => node.type === 'button' && text(node) === label)[0]; assert.ok(found, `Missing button ${label}`); return found; };
     return { redraw: app.render, button, get tree() { return app.tree; },
       click(label) { const found = button(label); assert.equal(!!found.props.disabled, false, `Disabled button ${label}`); found.props.onClick(); app.render(); },
@@ -173,7 +173,7 @@ test('Direct search links select valid content and unknown observation IDs never
   const previousWindow = global.window;
   try {
     for (const [component, id, expected] of [['ObservationWorkshop', 'hund', 'Der Hund hechelt stark'], ['WildlifeVideoCases', 'stockente', 'Stockente bei der Nahrungssuche'], ['AnatomyExplorer', 'unterkiefer', 'Der Unterkiefer ist als eigener Scan verfügbar.']]) {
-      global.window = { location: { search: `?eintrag=${id}` } }; const app = setup(`components/${component}.js`); if (component !== 'ObservationWorkshop') app.hooks.effects[0](); app.redraw(); assert.ok(app.content().includes(expected)); app.dispose?.();
+      global.window = { location: { search: `?eintrag=${id}` } }; const app = setup(`components/${component}.js`); if (component === 'AnatomyExplorer') app.hooks.effects[0](); app.redraw(); assert.ok(app.content().includes(expected)); app.dispose?.();
     }
     global.window = { location: { search: '?eintrag=not-valid' } }; const app = setup('components/ObservationWorkshop.js'); assert.match(app.content(), /Dieser Lernfall ist nicht verfügbar/); assert.ok(!app.content().includes(observation.observationCases[0].stages[0].evidence)); app.dispose();
   } finally { global.window = previousWindow; }

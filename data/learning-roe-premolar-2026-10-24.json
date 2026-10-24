@@ -1,0 +1,81 @@
+{
+  "reviewedOn": "2026-10-24",
+  "contentAddedOn": "2026-10-24",
+  "scope": "Eine kurze Rehwild-Lektion zur Form des hintersten der drei vorhandenen unteren Milchprämolaren und seines bleibenden Ersatzes. Keine vollständige Neuprüfung des Rehwildwissens und kein Zahnwechselkalender.",
+  "modules": [
+    {
+      "id": "wissen-rehwild-milchpraemolar-2026",
+      "title": "Rehwild: Milchprämolar und bleibenden Ersatz unterscheiden",
+      "category": "Wildkunde",
+      "topic": "Wildkunde",
+      "description": "Die dreiteilige Milchzahnform und den zweiteiligen bleibenden Ersatz an der richtigen Unterkieferposition zuordnen.",
+      "minutes": 3,
+      "objectives": ["Den hintersten der drei vorhandenen unteren Prämolaren räumlich zuordnen", "Dreiteilige Milchzahnform und zweiteiligen bleibenden Ersatz unterscheiden"],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Diese Formunterscheidung gilt hier ausschließlich für Rehwild. Keine Monats- oder Jahresgrenze und keine genaue Alterszahl aus dem Einzelmerkmal; keine Übertragung auf andere Arten. Die älteren Fachanleitungen belegen den Formwechsel, keine neue Wechselzeit-Messreihe.",
+        "AT": "Diese Formunterscheidung gilt hier ausschließlich für Rehwild. Keine Monats- oder Jahresgrenze und keine genaue Alterszahl aus dem Einzelmerkmal; keine Übertragung auf andere Arten. Die älteren Fachanleitungen belegen den Formwechsel, keine neue Wechselzeit-Messreihe.",
+        "CH": "Diese Formunterscheidung gilt hier ausschließlich für Rehwild. Keine Monats- oder Jahresgrenze und keine genaue Alterszahl aus dem Einzelmerkmal; keine Übertragung auf andere Arten. Die älteren Fachanleitungen belegen den Formwechsel, keine neue Wechselzeit-Messreihe."
+      },
+      "level": "Vertiefung",
+      "sources": [
+        {
+          "label": "AJF Graubünden, 2017: Altersbestimmung Paarhufer, Rehwild S. 6",
+          "url": "https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/jagd/JagdDokumente/Merkbl%C3%A4tter%2C%20Publikationen%2C%20Projekte/6500-199.171_Altersbestimmung_Paarhufer.pdf",
+          "organization": "Amt für Jagd und Fischerei Graubünden; WH Hans Gartmann, Juli 2017",
+          "supports": "Originalanleitung direkt gelesen: Rehwild, gedruckte und physische PDF-Seite 6; dreiteilige Milchzahnform und zweiteilige Dauerzahnform an der dritten vorhandenen unteren Prämolarenposition. Allgemeine Grenzen auf S. 2 gelesen. Institutionelle Fachzusammenfassung, keine neue Originalmessreihe. Altersangaben und die Kurznummerierung der Vorlage werden hier nicht übernommen."
+        },
+        {
+          "label": "Ratcliffe und Mayle, 1992: Roe Deer Biology and Management, Appendix S. 26",
+          "url": "https://cdn.forestresearch.gov.uk/1992/03/fcbu105.pdf",
+          "organization": "Forestry Commission, Wildlife & Conservation Research Branch; Bulletin 105, Erstveröffentlichung 1992",
+          "supports": "Original-PDF direkt gelesen: Appendix „Age Determination of Roe Deer“, gedruckte S. 26 / physische PDF-Seite 38. Beschreibt drei Milchprämolaren je Kieferseite, deren Ersatz und ausdrücklich die dreiteilige Milchzahnkrone gegenüber dem zweiteiligen bleibenden Ersatz an der hintersten Prämolarenposition. Eigenständige institutionelle Facherklärung gegenüber AJF, keine neue unabhängige Wechselzeitmessung. Altersmonate und Aussagen zur Genauigkeit der Zementzählung werden nicht übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "milchzahn-und-ersatz",
+          "title": "Hinterster unterer Milchprämolar: dreiteilig, bleibender Ersatz: zweiteilig",
+          "paragraphs": [
+            "Beim Rehwild besitzt der hinterste der drei Milchprämolaren auf einer Unterkieferseite eine dreiteilige Krone. Sein bleibender Ersatz hat eine zweiteilige Krone. Prämolaren sind die Vormahlzähne. Die Lagebeschreibung meint hier die hinterste Position innerhalb dieser Gruppe und keine frei gewählte Zahnnummer.",
+            "Bei diesem Wechsel wird der Milchzahn durch einen bleibenden Zahn ersetzt. Die zweiteilige Dauerzahnform entsteht also nicht einfach dadurch, dass ein Teil des dreiteiligen Milchzahns abgeschliffen wird. Die Unterscheidung bezeichnet einen konkreten Zahnwechselbefund und liefert hier keine genaue Alterszahl.",
+            "Eigenes Lernbeispiel: Beschrifte zwei gedachte Vergleichskarten mit „dreiteilige Milchzahnform“ und „zweiteiliger bleibender Ersatz“. Notiere auf beiden „Rehwild, hinterster unterer Prämolar“. Die Karten sind ein Begriffsvergleich ohne Foto, Monatsangabe oder Untersuchung eines Tieres."
+          ],
+          "takeaway": "Beim Rehwild ist die hinterste untere Milchprämolarenkrone dreiteilig; der bleibende Ersatz ist zweiteilig.",
+          "exercise": "Ordne auf Papier die beiden Formen dem Milchzahn und seinem bleibenden Ersatz zu. Beschreibe ihre Position innerhalb der Prämolarenreihe, ohne eine Zahnnummer oder Alterszahl zu ergänzen."
+        }
+      ],
+      "questions": [
+        {
+          "id": "milchform-dauerform",
+          "lessonId": "milchzahn-und-ersatz",
+          "q": "Wie unterscheiden sich beim Rehwild die Krone des hintersten unteren Milchprämolaren und die seines bleibenden Ersatzes?",
+          "options": ["Beide besitzen dieselbe zweiteilige Kronenform.", "Die Milchzahnkrone ist zweiteilig, der bleibende Ersatz dreiteilig.", "Die Milchzahnkrone ist dreiteilig, der bleibende Ersatz zweiteilig.", "Der Milchzahn wird nur abgeschliffen und nicht durch einen bleibenden Zahn ersetzt."],
+          "answer": 2,
+          "explain": "Gemeint ist die hinterste der drei vorhandenen Prämolarenpositionen einer Unterkieferseite. Beim Rehwild wird dort die dreiteilige Milchzahnform durch den zweiteiligen bleibenden Zahn ersetzt. Diese Formzuordnung ist keine genaue Alterszahl."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-24",
+        "scope": "Enger Abgleich dieser neuen Rehwild-Formunterscheidung und einer eigenen Lernfrage mit zwei unabhängig verantworteten institutionellen Originalanleitungen. Keine erneute Gesamtprüfung des Rehwildporträts oder der vorhandenen allgemeinen Zahnalterlektionen.",
+        "limitations": ["Die Fachanleitungen stammen aus 2017 und 1992; ihre erneute Lektüre ist keine neue Datenerhebung.", "Keine Zahnnummer wird aus einer Vorlage in eine andere Nummerierungsweise übertragen. Die Position wird räumlich beschrieben.", "Keine Altersmonate, festen Jahresgrenzen, exakten Alterszahlen oder Übertragung auf andere Arten; keine fremden Bilder oder Präparatuntersuchung."]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-rehwild-milchpraemolar-2026",
+      "lessonId": "milchzahn-und-ersatz",
+      "claims": [
+        {
+          "claim": "Beim Rehwild besitzt der hinterste der drei vorhandenen Milchprämolaren einer Unterkieferseite eine dreiteilige Krone; sein bleibender Ersatz ist zweiteilig. Beschrieben wird der Ersatz eines Milchzahns, nicht das Abschleifen einer Kronenabteilung. Die Position wird ohne Umnummerierung räumlich zugeordnet.",
+          "sourceUrls": ["https://www.gr.ch/DE/institutionen/verwaltung/diem/ajf/jagd/JagdDokumente/Merkbl%C3%A4tter%2C%20Publikationen%2C%20Projekte/6500-199.171_Altersbestimmung_Paarhufer.pdf", "https://cdn.forestresearch.gov.uk/1992/03/fcbu105.pdf"]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {"topic": "P3-/P4-Nummerierungsvergleich und zeitlicher Zahnwechselkalender", "reason": "Die räumliche Position genügt für diesen Inhalt. Aus unterschiedlich benannten Vorlagen werden keine Nummern oder Monatsgrenzen zusammengefügt."},
+    {"topic": "Exaktes Lebensalter, Abriebraten, Zementzählung und andere Hirscharten", "reason": "Die Ergänzung vermittelt nur die mehrfach belegte Rehwild-Formunterscheidung. Die bestehende allgemeine Unsicherheitslektion wird nicht dupliziert."}
+  ]
+}

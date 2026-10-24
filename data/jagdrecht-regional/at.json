@@ -568,8 +568,8 @@
           "topic": "zulassung",
           "title": "Weitere Voraussetzungen trotz bestandener Jagdprüfung",
           "lawTitle": "NÖ Jagdgesetz 1974",
-          "citation": "§ 61 Abs. 1 Z 1",
-          "summary": "Eine bestandene Jagdprüfung ersetzt nicht die übrigen Voraussetzungen der Kartenausstellung. Auch das Fehlen einer in § 58 geforderten Voraussetzung führt zur Verweigerung. Die vollständigen Anforderungen und ihre Einzelheiten sind im geltenden Gesetz zu prüfen.",
+          "citation": "§ 58 Abs. 5 Satz 1 und Abs. 8 Satz 1; § 61 Abs. 1 Z 1",
+          "summary": "Die NÖ Jagdprüfung dient dem Nachweis der jagdlichen Eignung. Der Prüfungserfolg allein ist noch keine ausgestellte Jagdkarte: Für die Kartenausstellung folgt ein eigener Antrag, bei dem auch die übrigen Voraussetzungen und Verweigerungsgründe zu prüfen sind. Der Lernfall behandelt diese Trennung, nicht die einzelnen weiteren Ausschlussgründe oder Fristen.",
           "sources": [
             {
               "title": "NÖ Jagdgesetz 1974: § 61 Abs. 1 Z 1, geltender Wortlaut seit 25.08.2018",
@@ -582,10 +582,22 @@
               "url": "https://niederoesterreich.gv.at/noe/Jagd-Fischerei/NOe_Jagdkarten.html",
               "publisher": "Land Niederösterreich – Bürgerinformation",
               "kind": "context"
+            },
+            {
+              "title": "NÖ Jagdgesetz 1974: § 58 Abs. 5 Satz 1 und Abs. 8 Satz 1, geltender Wortlaut seit 03.02.2026",
+              "url": "https://ris.bka.gv.at/eli/lgbl/NI/6500/P58/LNO40085768",
+              "publisher": "Land Niederösterreich / RIS",
+              "kind": "law"
+            },
+            {
+              "title": "Servicemappe 2026, Seiten 1–2: Eignungsnachweis und gesonderter Antrag auf die erste NÖ Jagdkarte",
+              "url": "https://www.noejagdverband.at/wp-content/uploads/Servicemappe-2026.pdf",
+              "publisher": "NÖ Landesjagdverband",
+              "kind": "context"
             }
           ],
           "reviewedOn": "2026-10-24",
-          "verified": false,
+          "verified": true,
           "questions": [
             {
               "id": "at-noe-verweigerung-q2",
@@ -599,10 +611,10 @@
               "explanation": "Der Prüfungserfolg ersetzt die übrigen Voraussetzungen der Jagdkarte nicht."
             }
           ],
-          "officialText": "Die Ausstellung der Jagdkarte ist Personen zu verweigern: […] denen eine der im § 58 geforderten Voraussetzungen fehlt,",
-          "officialTextCitation": "§ 61 Abs. 1 Einleitung und Z 1",
+          "officialText": "Die Ausstellung der Jagdkarte ist Personen zu verweigern: […] denen eine der im § 58 geforderten Voraussetzungen fehlt,\n\nBei erstmaliger Bewerbung um eine Jagdkarte hat der Bewerber den Nachweis der jagdlichen Eignung durch die erfolgreiche Ablegung einer Prüfung […] zu erbringen (Jagdprüfung).\n\nBei Vorliegen der Voraussetzungen hat die Bezirksverwaltungsbehörde die Jagdkarte auszufertigen.",
+          "officialTextCitation": "§ 61 Abs. 1 Einleitung und Z 1; § 58 Abs. 5 Satz 1 mit gekennzeichneter Auslassung und Abs. 8 Satz 1",
           "contentValidated": true,
-          "verificationNote": "§ 61 Abs. 1 Z 1 wurde in der Fassung vom 24.10.2026 erneut im Original gelesen. Dieser breitere Rest und seine bestehende eigene Frage wurden vom eng belegten Waffenverbotsfall unter dessen bisheriger ID at-noe-verweigerung getrennt. Das LVwG-Erkenntnis bestätigt nicht sämtliche übrigen Voraussetzungen des § 58; die breitere verbleibende Frage bleibt deshalb außerhalb des freigegebenen Übungsstoffs. Norm und bisherige Bürgerinformation stammen weiterhin vom selben Land.",
+          "verificationNote": "§§ 58 und 61 wurden am 24.10.2026 mit festgelegtem FassungVom=2026-10-24 direkt im aktuellen RIS-Original gelesen (je HTTP 200). Die eigenständig verfasste Servicemappe 2026 des NÖ Landesjagdverbandes trennt auf S. 1–2 den Eignungsnachweis durch ein Prüfungszeugnis vom anschließenden Antrag auf Kartenausstellung mit weiteren Nachweisen. Freigegeben wird ausschließlich diese Trennung für die unveränderte eigene Frage q2. Einzelne weitere Verweigerungsgründe, Fristen, Gebühren, Versicherungsumfang und örtliche Zuständigkeiten werden nicht neu gelehrt. Die bisherige Bürgerinformation stammt wie die Norm vom Land und zählt nicht als unabhängiger Zweitbeleg; der gesonderte Waffenverbotsfall und seine bisherige Artikel-ID bleiben unverändert.",
           "originalVerified": true
         },
         {
@@ -1118,7 +1130,7 @@
           "originalVerified": true
         }
       ],
-      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Der Ausbau umfasst nur die benannten Karten-, Pacht-, Weiterbildungs-, Melde- und Zustimmungsfragen sowie ausgewählte Revierhundevorschriften, nicht das gesamte NÖ Jagdrecht. Die zusätzliche Lektion zum Waffenverbot bleibt wegen des fehlenden unabhängigen Zweitnachweises gesperrt.",
+      "notes": "Eigene Übungsfragen zu den angegebenen Normen, kein amtlicher oder vollständiger Prüfungsfragenkatalog. Prüfungsregion und Jagdort bewusst auswählen; der Wohnort allein ersetzt keine Zulassungsentscheidung. Der Ausbau umfasst nur die benannten Karten-, Pacht-, Weiterbildungs-, Melde- und Zustimmungsfragen sowie ausgewählte Revierhundevorschriften, nicht das gesamte NÖ Jagdrecht. Zusätzlich eng abgeglichen sind der vorausgesetzte Waffenverbotsfall und die Trennung von Prüfung beziehungsweise Eignungsnachweis und gesondertem Antrag auf Kartenausstellung; daraus folgt keine Freigabe sämtlicher übriger Kartenvoraussetzungen.",
       "examResources": [
         {
           "title": "NÖ Jagdgesetz 1974 § 60 – Jagdprüfung",
