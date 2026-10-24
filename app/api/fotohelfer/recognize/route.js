@@ -36,6 +36,8 @@ function fail(error) {
     photo_recognition_timeout: [504, "Die Bildanalyse hat zu lange gedauert. Bitte versuche es später erneut."],
     photo_recognition_cancelled: [408, "Die Foto-Anfrage wurde abgebrochen."],
     photo_recognition_rate_limited: [503, "Die Bildanalyse ist gerade ausgelastet. Bitte versuche es später erneut."],
+    photo_recognition_provider_capacity: [503, "Ein Dienstlimit blockiert die Bilderkennung. Ein anderes Foto oder erneutes Starten behebt das nicht. Dein Jagdlatein-Zugang bleibt davon unberührt."],
+    photo_recognition_provider_configuration: [503, "Die Anbindung der Bilderkennung ist gerade nicht einsatzbereit. Es liegt nicht an deinem Foto."],
     photo_recognition_invalid_response: [502, "Die Bildanalyse konnte keine lesbare Antwort liefern. Bitte versuche es erneut."],
     invalid_photo: [400, "Das vorbereitete Foto konnte nicht analysiert werden. Bitte wähle es erneut aus."],
   };

@@ -1,19 +1,26 @@
 # Foto-Erkennung: Betrieb und Freischaltung
 
-Stand: 23.10.2026. Diese Anleitung beschreibt den implementierten Ablauf; sie bestätigt weder eine ausgeführte Datenbankmigration noch einen Produktivstart, eine Store-Freigabe oder erfolgreiche echte Bilderkennung.
+Stand: 24.10.2026. Diese Anleitung beschreibt den implementierten Ablauf; sie bestätigt weder eine ausgeführte Datenbankmigration noch einen Produktivstart, eine Store-Freigabe oder erfolgreiche echte Bilderkennung.
 
 ## Anbieter, Abrechnung und Datenweg
 
 - Anbieter: OpenAI, festes Modell `gpt-6-astra`, Responses API `https://api.openai.com/v1/responses`. Die offizielle Modellseite führt derzeit keinen datierten Snapshot auf. Modelländerungen erfordern eine neue Prüfung.
-- Bilddetail `high`, Reasoning `medium`, maximal 4.096 Ausgabetokens einschließlich Reasoning, 45 Sekunden Anbieter-Zeitlimit. Kein automatischer Wiederholungsversuch oder Ersatzanbieter.
+- Bilddetail `high`, Reasoning `high`, maximal 4.096 Ausgabetokens einschließlich Reasoning, 45 Sekunden Anbieter-Zeitlimit. Die höchstens 1.600 × 1.600 Pixel große vorbereitete Kopie liegt innerhalb des dokumentierten 2.500-Patch-Budgets; es wird kein kleiner zusätzlicher Vorschaubildausschnitt versendet. Kein automatischer Wiederholungsversuch oder Ersatzanbieter. Mehr Reasoning ist keine gemessene Genauigkeitsgarantie.
 - Service-Tier fest `default` (Standard-Verarbeitung); die Projektvoreinstellung `auto` wird nicht übernommen.
 - Der Betreiber benötigt ein eigenes API-Projekt mit freigeschalteter Abrechnung und Modellzugang. Ein ChatGPT-Pro-Abonnement bezahlt diese API-Aufrufe nicht. Schlüssel niemals im Chat, Quelltext, Browsercode oder unter `NEXT_PUBLIC_*` speichern.
 - Nach ausdrücklicher Zustimmung pro Foto: vorbereitete sRGB-JPEG-Kopie → authentifizierter Jagdlatein-Server → OpenAI. Die Servergrenze beträgt 3 MiB und höchstens 1.600 Pixel je Kante; andere Formate, EXIF, Kommentare und unbekannte Zusatzsegmente werden zurückgewiesen. Vollständige ICC-Farbprofilblöcke einer Browserausgabe werden vor der Übermittlung entfernt. Dateiname, Journalnotiz, E-Mail, Kontokennung und Standortdaten werden nicht absichtlich an OpenAI gesendet. Sichtbare persönliche Informationen im Bild bleiben dennoch Bildinhalt.
 - Jagdlatein speichert über diesen Ablauf weder Foto, Prompt noch Analyseergebnis in der Datenbank. Das ausdrücklich gespeicherte Fototagebuch bleibt getrennt auf dem Gerät. Die Antwort ist ein fehleranfälliger Modellvorschlag; Lerntexte und Links stammen aus dem vorhandenen erlaubten Katalog.
 - Bei fehlgeschlagenen Anbieteraufrufen enthalten Serverprotokolle ausschließlich feste technische Stufen-/Fehlercodes und erlaubte HTTP-Statuswerte; keine Schlüssel, Header, Kontodaten, Bilder, Prompts, Antworten oder Fehlermeldungstexte. Erfolgreiche Aufrufe erzeugen keinen solchen Diagnoseeintrag.
+- Anbieter-Guthaben-/Ausgaben-/Nutzungslimits werden anhand der begrenzten erlaubten Fehlercodes (oder des Rückfalltyps `insufficient_quota`) von einer vorübergehenden HTTP-429-Auslastung unterschieden. Authentifizierungs-, Modell- und bekannte Konfigurationsfehler bekommen einen anderen festen Dienstfehlercode. Sie sind keine persönliche Tageslimitmeldung und lösen keine automatischen kostenpflichtigen Wiederholungen aus. Die Verfügbarkeit kann ausdrücklich per bildfreiem GET erneut geprüft werden; dieser prüft weiterhin Konfiguration und Kontingente, nicht die erfolgreiche Ausführung einer Anbieteranalyse.
 - `store:false` vermeidet die normale Speicherung als Responses-Anwendungszustand, bedeutet aber keine vollständige sofortige Löschung bei OpenAI: Sicherheitsprotokolle können standardmäßig bis zu 30 Tage aufbewahrt werden, unter bestimmten Umständen länger; Promptcache kann bis zu 24 Stunden bestehen. Bild-Sicherheitsprüfungen haben zusätzliche Aufbewahrungsausnahmen. API-Inhalte werden standardmäßig nicht zum Training verwendet, sofern nicht ausdrücklich zugestimmt wurde. Keine ausschließliche Verarbeitung in CH/EU versprechen.
 
 Primärquellen: [Modell und Preise](https://developers.openai.com/api/docs/models/gpt-6-astra), [Bildeingaben](https://developers.openai.com/api/docs/guides/images-vision), [strukturierte Antworten](https://developers.openai.com/api/docs/guides/structured-outputs), [OpenAI-Datenkontrollen](https://developers.openai.com/api/docs/guides/your-data).
+
+## Motivzuordnung und Lernlinks
+
+Der erlaubte Katalog enthält neben Wildarten, neutralen Abdruckgruppen und allgemeinen Hund-/Pflanzen-/Optikmotiven nun auch `meat` als allgemeines Motiv Fleisch / Wildbret. Erkennbares, auch verpacktes Fleisch kann dadurch zum bestehenden Lernbereich Wildbret & Gesundheit führen. Das behauptet weder eine Herkunft von Wildtieren noch eine Tierart, ein genaues Teilstück oder Genusstauglichkeit. Die Anweisung verlangt die Prüfung der gesamten Bildfläche vor der engeren Einordnung. Motivkatalog, Antwortschema und Kategorien werden gemeinsam übermittelt; kompakte Katalogzeilen bewahren alle fünf benannten Felder.
+
+Die Wildbretantwort verlinkt ausschließlich die vorhandenen Seiten für Teilstücke und Hygienefälle. Das Modell erzeugt weder diese URLs noch neues Fachwissen. Auch unsichere Kandidaten behalten ihre gemeinsame eindeutige Lernkategorie, wenn alle erlaubten Einträge derselben Kategorie angehören. Gemischte Kategorien bleiben ohne abgeleitete Kategorie; ein ausdrückliches `unknown` wird nicht hochgestuft. Neue oder alte Fotos werden erst nach dem ausdrücklichen aktuellen Klick „Foto mit OpenAI erkennen“ übertragen. Veraltete Klicks nach Fotowechsel, neuer Anfragerunde oder Unmount sind gesperrt; die Überprüfung nach Limit-/Dienstfehlern sendet zunächst nur GET.
 
 ## Konfiguration und Datenbank
 

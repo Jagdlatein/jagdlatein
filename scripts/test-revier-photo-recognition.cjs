@@ -44,6 +44,9 @@ test("Only the eight already reviewed species expose existing authored facts", (
     if (guide) {
       assert.equal(result.answer, guide.facts.map(item => item.text).join(" "));
       assert.equal(result.comparison, guide);
+    } else if (candidate.id === "meat") {
+      assert.equal(result.comparison, null);
+      assert.match(result.answer, /Tierart, genaues Teilstück und Genusstauglichkeit sind damit nicht bestimmt/);
     } else {
       assert.equal(result.comparison, null);
       assert.match(result.answer, /vorhandenen Lerninhalte/);

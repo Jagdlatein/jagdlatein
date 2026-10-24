@@ -97,7 +97,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 32);
+  assert.equal(links.length, 31, 'Regional law is reached through the existing Jagdrecht category rather than a duplicate main-menu link');
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -148,7 +148,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/jagdrecht', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
@@ -162,6 +162,17 @@ test('Menu exposes one expandable category branch and highlights the specific cu
     assert.equal(videoLinks.filter(link => link.props['aria-current']).length, 1);
     assert.equal(videoLinks.find(link => link.props['aria-current']).props.href, '/lernen/videos');
   }
+});
+
+test('Regional law belongs to its existing category without a second top-level menu destination', () => {
+  for (const route of ['/lernen/jagdrecht', '/jagdrecht', '/jagdrecht/ch', '/jagdrecht/de', '/jagdrecht/at']) {
+    const links = collectLinks(setup(route).tree.props.children[3].props.children[1]);
+    assert.deepEqual(links.filter(link => link.props['aria-current']).map(link => link.props.href), ['/lernen/jagdrecht'], route);
+    assert.equal(links.filter(link => link.props.href === '/jagdrecht').length, 0, 'The regional entry lives inside the Jagdrecht category');
+    assert.equal(links.filter(link => link.props.href === '/lernen/jagdrecht').length, 1);
+  }
+  const prefix = collectLinks(setup('/jagdrecht-other').tree.props.children[3].props.children[1]);
+  assert.equal(prefix.filter(link => link.props.href === '/lernen/jagdrecht' && link.props['aria-current']).length, 0);
 });
 
 test('Menu closes after a normal choice, Escape restores summary focus, and outside clicks or a new route dismiss it', () => {

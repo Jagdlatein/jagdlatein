@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import { getLearningNavigationLabel } from "../lib/learning-navigation-labels";
+import { legalCountries } from "../lib/regional-law-core";
 import styles from "../styles/KnowledgeTree.module.css";
 
 export default function LearningTopicTree({ category, groups = [], modules = [] }) {
@@ -33,10 +34,20 @@ export default function LearningTopicTree({ category, groups = [], modules = [] 
         <summary ref={course?.id === module.id ? courseHeading : undefined}>{getLearningNavigationLabel(module)}</summary>
         <ul className={styles.lessonLinks}>{module.topics.map(topic => <li key={topic.href}><Link href={topic.href} prefetch={false}>{topic.title}<AppIcon name="arrow-right" size={17} /></Link></li>)}</ul>
       </details>
-    </li>)}</ul> : <ul className={styles.branches}>{groups.map(item => {
+    </li>)}</ul> : <>
+      {category.slug === "jagdrecht" && <>
+        <h3 className={styles.subheading}><Link href="/jagdrecht" prefetch={false} scroll={false}>Land &amp; Region</Link></h3>
+        <ul className={styles.branches} aria-label="Jagdrecht nach Land und Region">{legalCountries.map(country => <li key={country.code}>
+          <Link href={`/jagdrecht/${country.slug}`} prefetch={false} scroll={false} aria-label={`Jagdrecht ${country.name}`}>
+            <span><strong>{country.name}</strong></span><AppIcon name="arrow-right" size={20} />
+          </Link>
+        </li>)}</ul>
+        <h3 className={styles.subheading}>Grundlagen</h3>
+      </>}
+      <ul className={styles.branches}>{groups.map(item => {
       return <li key={item.id}><Link href={`${base}?bereich=${encodeURIComponent(item.id)}#learning-modules`} prefetch={false} scroll={false}>
         <span><strong>{item.title}</strong></span><AppIcon name="arrow-right" size={20} />
       </Link></li>;
-    })}</ul>}
+    })}</ul></>}
   </section>;
 }

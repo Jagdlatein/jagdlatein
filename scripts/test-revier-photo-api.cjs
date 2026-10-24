@@ -373,6 +373,7 @@ test("daily reset metadata handles UTC month/year boundaries and the European cl
 
 test("provider/normalization failures do not expose raw content or release a reservation", async () => {
   for (const [code, status] of [["photo_recognition_timeout", 504], ["photo_recognition_rate_limited", 503],
+    ["photo_recognition_provider_capacity", 503], ["photo_recognition_provider_configuration", 503],
     ["photo_recognition_invalid_response", 502], ["unexpected_secret", 503], ["toString", 503], ["__proto__", 503]]) {
     const ctx = harness({ providerError: Object.assign(new Error("private photo prompt credential upstream content"), { code }) });
     const response = await result(await ctx.route.POST(ctx.request()));

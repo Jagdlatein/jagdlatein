@@ -178,7 +178,7 @@ export default function RevierPhotoHelper() {
         <input ref={cameraInput} className={styles.fileInput} type="file" accept="image/*" capture="environment" disabled={!environmentReady || preparing || saving} aria-label="Revierfoto mit der Kamera aufnehmen" onChange={selectPhoto} />
         <input ref={photoInput} className={styles.fileInput} type="file" accept="image/jpeg,image/png,image/webp" disabled={!environmentReady || preparing || saving} aria-label="Revierfoto aus deinen Dateien auswählen" onChange={selectPhoto} />
         <div className={styles.photoActions}><button type="button" className={styles.primary} disabled={!environmentReady || preparing || saving} onClick={() => cameraInput.current?.click()}><AppIcon name="camera" size={21} />Foto aufnehmen</button><button type="button" className={styles.secondary} disabled={!environmentReady || preparing || saving} onClick={() => photoInput.current?.click()}>Foto auswählen</button></div>
-        <p className={styles.small}>JPG, PNG oder WebP, bis 50 MB und 50 Megapixel. Dein Foto wird zuerst nur auf diesem Gerät vorbereitet; dein Original bleibt unverändert. Erst mit „Mit OpenAI erkennen“ wird die verkleinerte Kopie zur Bilderkennung übertragen.</p>
+        <p className={styles.small}>JPG, PNG oder WebP, bis 50 MB und 50 Megapixel. Dein Foto wird zuerst nur auf diesem Gerät vorbereitet; dein Original bleibt unverändert. Erst mit „Foto mit OpenAI erkennen“ wird die verkleinerte Kopie zur Bilderkennung übertragen.</p>
       </>}
       {preparing && <p role="status">Foto wird auf deinem Gerät vorbereitet …</p>}
       {photoError && <p role="alert" className={styles.error}>{photoError}</p>}

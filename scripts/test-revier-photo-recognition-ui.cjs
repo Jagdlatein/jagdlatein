@@ -94,7 +94,7 @@ function setup(options = {}) {
     get text() { return text(expand(tree)); },
     get storageReads() { return storageReads; },
     nodes(predicate) { return findAll(expand(tree), predicate); },
-    button(label = "Mit OpenAI erkennen") {
+    button(label = "Foto mit OpenAI erkennen") {
       const button = this.nodes(node => node.type === "button" && text(node).trim() === label)[0];
       assert.ok(button, `Expected button: ${label}`); return button;
     },
@@ -213,7 +213,7 @@ test("GET auth, quota and unconfigured/unavailable responses explain the gate wi
     try {
       await h.ready(); assert.match(h.text, message);
       assert.equal(h.requests("POST").length, 0);
-      assert.equal(h.nodes(node => node.type === "button" && text(node) === "Mit OpenAI erkennen").length, 0);
+      assert.equal(h.nodes(node => node.type === "button" && text(node) === "Foto mit OpenAI erkennen").length, 0);
       if (href) assert.ok(h.nodes(node => node.type === "a" && node.props.href === href).length);
       assert.doesNotMatch(h.text, /secret diagnostics/);
     } finally { h.cleanup(); }
@@ -258,7 +258,7 @@ test("POST auth changes and exhausted quota remain visible and do not replay a p
       else assert.doesNotMatch(h.text, /deine Ortszeit/);
       if (metadata.code === "photo_daily_limit") assert.match(h.text, /Auch ein gestarteter Versuch ohne Ergebnis zählt mit/);
       assert.equal(h.requests("POST").length, 1);
-      assert.equal(h.nodes(node => node.type === "button" && text(node) === "Mit OpenAI erkennen").length, 0);
+      assert.equal(h.nodes(node => node.type === "button" && text(node) === "Foto mit OpenAI erkennen").length, 0);
       assert.equal(h.timers.size, 0, "A reset timestamp must not schedule an automatic recognition");
     } finally { h.cleanup(); }
   }

@@ -23,7 +23,6 @@ export const mainMenuItems = [
   { href: "/quiz-app/leaderboard", title: "Rangliste", icon: "trophy" },
   { href: "/jagdpraxis", title: "Praxisübungen", icon: "practice" },
   { href: "/glossar", title: "Jägersprache A–Z", icon: "book" },
-  { href: "/jagdrecht", title: "Jagdrecht nach Region", icon: "law" },
   { href: "/community", title: "Community", icon: "community", ariaLabel: "Zur Community" },
   { href: "/news", title: "Jagd-News", icon: "calendar" },
   { href: "/lernen/videos", title: "Jagdvideos", icon: "video" },
@@ -299,7 +298,7 @@ export default function GlobalHomeButton() {
           {mainMenuItems.map(item => item.href === "/lernen" ? <details key={item.href} className={styles.categoryTree}>
             <summary><AppIcon name="book" size={21} />Kategorien<span aria-hidden="true">›</span></summary>
             <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>
-            {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} scroll={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` ? "page" : undefined}>{category.title}</Link>)}</div>
+            {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} scroll={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` || category.slug === "jagdrecht" && inSection(pathname, "/jagdrecht") ? "page" : undefined}>{category.title}</Link>)}</div>
           </details> : <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
           <AppUpdateStatus offline={pathname === "/lernen/offline-rucksack"} />
         </div>

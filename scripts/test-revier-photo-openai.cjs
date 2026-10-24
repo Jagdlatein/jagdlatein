@@ -40,7 +40,7 @@ test("One explicit request uses the fixed quality model, high-detail JPEG, stric
   const body = JSON.parse(init.body);
   assert.equal(body.model, "gpt-6-astra");
   assert.equal(body.service_tier, "default");
-  assert.deepEqual(body.reasoning, { effort: "medium" });
+  assert.deepEqual(body.reasoning, { effort: "high" });
   assert.equal(body.max_output_tokens, 4096);
   assert.equal(body.store, false); assert.equal(body.stream, false); assert.equal(body.background, false);
   assert.equal(body.tool_choice, "none"); assert.deepEqual(body.tools, []);
@@ -92,7 +92,8 @@ test("Non-JSON HTTP errors are discarded without body disclosure or automatic re
   for (const status of [400, 401, 403, 404, 429, 500, 503]) {
     let calls = 0, pulled = false, cancelled = false;
     const upstream = new Response(new ReadableStream({ pull() { pulled = true; }, cancel() { cancelled = true; } }), { status });
-    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => { calls++; return upstream; })), status === 429 ? "photo_recognition_rate_limited" : "photo_recognition_unavailable");
+    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => { calls++; return upstream; })), status === 429 ? "photo_recognition_rate_limited"
+      : [401, 403, 404].includes(status) ? "photo_recognition_provider_configuration" : "photo_recognition_unavailable");
     assert.equal(calls, 1); assert.equal(cancelled, true);
     // A stream may pre-pull before fetch returns; its data still never gets read.
     assert.equal(upstream.bodyUsed, true); assert.equal(typeof pulled, "boolean");
@@ -111,9 +112,11 @@ test("HTTP diagnostics expose exact allowlisted code/type/param only, never keys
       message: `sensitive-upstream ${apiKey} data:image/jpeg;base64,/9j/2Q== private-image-sentinel`,
       request: { headers: { authorization: apiKey } }, reasoning: "private-reasoning-sentinel" } },
     { status: 400, headers: { "content-type": "application/json", "x-private": apiKey } });
-    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), "photo_recognition_unavailable");
+    const expected = ["invalid_api_key", "model_not_found", "invalid_json_schema", "unsupported_parameter"].includes(code)
+      ? "photo_recognition_provider_configuration" : "photo_recognition_unavailable";
+    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), expected);
     assert.deepEqual(diagnostics.at(-1), ["jagdlatein_photo_provider_failure", { stage: "http", httpStatus: 400,
-      providerCode: code, providerType: "invalid_request_error", providerParam: "text.format.schema", failureCode: "photo_recognition_unavailable" }]);
+      providerCode: code, providerType: "invalid_request_error", providerParam: "text.format.schema", failureCode: expected }]);
   }
   const untrusted = response({ error: { code: apiKey, type: "sensitive-upstream", param: "private-image-sentinel", message: "private-reasoning-sentinel" } }, { status: 418 });
   await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => untrusted)), "photo_recognition_unavailable");
@@ -129,7 +132,7 @@ test("Diagnostic JSON inspection is bounded and malformed, oversized or stalled 
     new Response("sensitive-upstream-invalid-json", { status: 400, headers: { "content-type": "application/json" } }),
   ];
   for (const upstream of cases) {
-    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), "photo_recognition_unavailable");
+    await rejectsCode(requestPhotoRecognition({ imageBytes }, options(async () => upstream)), upstream.status === 401 ? "photo_recognition_provider_configuration" : "photo_recognition_unavailable");
     assert.equal(diagnostics.at(-1)[1].providerCode, "other");
   }
   let cancelled = false;
