@@ -41,7 +41,7 @@ test('Both breed-specific courses appear in the existing Hundewesen branch, cate
   const category = getLearningOverviewData('hundewesen');
   for (const course of added) {
     assert.deepEqual(getLearningTopicLocation(course.id), {
-      categorySlug: 'hundewesen', groupId: 'koerper-sinne', groupTitle: 'Biologie & Körperfunktionen',
+      categorySlug: 'hundewesen', groupId: 'koerper-sinne', groupTitle: 'Körperbau & Gesundheit',
     });
     assert.ok(category.modules.some(item => item.id === course.id && item.coverIndex === null));
     assert.ok(learningPaths.find(path => path.id === 'vertiefung-hundewesen').moduleIds.includes(course.id));

@@ -37,8 +37,8 @@ export default function LearningOverview({ data }) {
   const recent = categoryInfo ? [] : getRecentLearningModules(modules);
 
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
-    {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
     {!categoryInfo && <LearningSearch category="all" />}
+    {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
     {recent.length > 0 && <section className={styles.section} aria-labelledby="learning-recent-heading">
       <h2 id="learning-recent-heading">Zuletzt ergänzt</h2>
       <ul className={styles.recentList}>{recent.map(module => <li key={module.id}>
@@ -51,7 +51,6 @@ export default function LearningOverview({ data }) {
     {!categoryInfo && <QuizLeagueEntry />}
     {categoryInfo ? <>
       <LearningTopicTree category={categoryInfo} groups={data.topicGroups} modules={modules} />
-      <LearningSearch category={categoryInfo.slug} />
       {resources.length > 0 && <details className={styles.directory}>
       <summary>Videos, Stimmen und Übungen in dieser Kategorie</summary>
       <FeaturedLearning tools={featuredResources} media={featuredMedia} />

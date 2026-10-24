@@ -31,6 +31,8 @@
 .summary p { margin: 10px 0 0; }
 .start { display: inline-flex; align-items: center; justify-content: center; gap: 12px; box-sizing: border-box; min-height: 56px; padding: 14px 24px; border-radius: 12px; background: #4d6536; color: #fff; font-size: 18px; font-weight: 750; text-decoration: none; text-align: center; }
 .start:hover { background: #3c5029; }
+.scopeReset { border: 0; padding: 8px 4px; min-height: 44px; background: transparent; color: #57431d; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.scopeReset:focus-visible { outline: 3px solid #caa53b; outline-offset: 3px; }
 .header h1 svg { flex-shrink: 0; }
 .country:focus-visible, .select:focus-visible, .start:focus-visible { outline: 3px solid #caa53b; outline-offset: 3px; }
 

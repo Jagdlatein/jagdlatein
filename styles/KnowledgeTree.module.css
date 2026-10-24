@@ -24,4 +24,14 @@
 .topics ul li + li a { border-top: 1px solid #eee4cd; }
 .branches a:hover strong, .topics a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .section a:focus-visible, .breadcrumb a:focus-visible { outline: 3px solid #796021; outline-offset: 4px; border-radius: 4px; }
+.courseList, .lessonLinks { list-style: none; padding: 0; margin: 0; }
+.courseList { display: grid; gap: 12px; }
+.course { min-width: 0; border: 1px solid #dfcda0; border-radius: 14px; background: #fffdf7; }
+.course summary { min-height: 56px; padding: 18px 20px; color: #3e321b; font-size: 20px; font-weight: 750; line-height: 1.45; overflow-wrap: anywhere; cursor: pointer; }
+.course summary:focus-visible { outline: 3px solid #796021; outline-offset: 3px; border-radius: 10px; }
+.lessonLinks { padding: 0 20px 14px; }
+.lessonLinks a { display: flex; justify-content: space-between; align-items: center; gap: 14px; min-height: 50px; padding: 12px 0; color: #57431d; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+.lessonLinks li + li { border-top: 1px solid #eee4cd; }
+.lessonLinks svg { flex-shrink: 0; }
+.lessonLinks a:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 620px) { .branches { grid-template-columns: minmax(0, 1fr); } .topics > li { padding: 18px 14px; } .topics h3 { font-size: 20px; } }

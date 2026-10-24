@@ -12,7 +12,7 @@ export default function LearningCategoryMenu({ counts }) {
           {learningCategoryDetails.map(category => {
             const count = counts?.[category.title];
             return <li key={category.slug} className={styles.card}>
-              <Link href={`/lernen/${category.slug}`} className={styles.cardLink}>
+              <Link href={`/lernen/${category.slug}`} scroll={false} className={styles.cardLink}>
                 <span className={styles.icon}><AppIcon name={category.slug} size={26} /></span>
                 <span className={styles.content}>
                   <strong>{category.title}</strong>

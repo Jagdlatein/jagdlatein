@@ -4,16 +4,24 @@ import Link from "next/link";
 import { useState } from "react";
 import AppIcon from "./AppIcon";
 import { isCountryQuizTopic, quizLearningUrl } from "../lib/quiz-learning-scope";
+import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/QuizSetup.module.css";
 
-export default function QuizSetup({ commonOptions, countryOptions, initialCountry, initialTopic }) {
+export default function QuizSetup({ commonOptions, countryOptions, initialCountry, initialTopic, legacyTopic = null }) {
   const [country, setCountry] = useState(initialCountry);
   const [topic, setTopic] = useState(initialTopic);
   const selectedCountry = countryOptions.find(option => option.code === country) || countryOptions[0];
   const selectedTopic = commonOptions.topics.find(option => option.name === topic);
-  const activeTopic = isCountryQuizTopic(topic) || selectedTopic ? topic : "Alle";
+  const legacyActive = legacyTopic?.name === topic;
+  const activeTopic = isCountryQuizTopic(topic) || selectedTopic || legacyActive ? topic : "Alle";
   const countryTopic = isCountryQuizTopic(activeTopic);
-  const available = countryTopic ? selectedCountry.count : selectedTopic ? selectedTopic.count : commonOptions.total;
+  const available = countryTopic ? selectedCountry.count : selectedTopic ? selectedTopic.count : legacyActive ? legacyTopic.count : commonOptions.total;
+  const categoryValue = countryTopic ? "Recht" : legacyActive ? legacyTopic.category : activeTopic;
+  const menuTopics = learningCategoryDetails.flatMap(category => {
+    if (category.slug === "jagdrecht") return [{ name: "Recht", title: category.title, count: selectedCountry.count }];
+    const option = commonOptions.topics.find(item => item.name === category.title);
+    return option ? [{ ...option, title: category.title }] : [];
+  });
   const questionsInRound = Math.min(10, available);
   const startUrl = quizLearningUrl("/quiz-app/run", selectedCountry.code, activeTopic);
 
@@ -33,14 +41,14 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
         </header>
         <section className={styles.card} aria-labelledby="quiz-setup-title">
           <h2 id="quiz-setup-title">Deine Quizrunde</h2>
-          <label htmlFor="quiz-topic" className={styles.label}>Welches Thema möchtest du üben?</label>
-          <select id="quiz-topic" value={activeTopic} onChange={event => setTopic(event.target.value)} className={styles.select}>
-            <option value="Alle">Alle Lernbereiche ({commonOptions.total} Fragen)</option>
-            {commonOptions.topics.map(option => <option key={option.name} value={option.name}>{option.name} ({option.count} Fragen)</option>)}
-            <option value="Recht">Jagdrecht · Land wählen</option>
+          <label htmlFor="quiz-topic" className={styles.label}>Kategorie</label>
+          <select id="quiz-topic" value={categoryValue} onChange={event => setTopic(event.target.value)} className={styles.select}>
+            <option value="Alle">Alle Kategorien ({commonOptions.total} Fragen)</option>
+            {menuTopics.map(option => <option key={option.name} value={option.name}>{option.title} ({option.count} Fragen)</option>)}
           </select>
+          {legacyActive && <p className={styles.hint}>Teilthema: {legacyTopic.name} · <button type="button" className={styles.scopeReset} onClick={() => setTopic(legacyTopic.category)}>Ganze Kategorie</button></p>}
           {countryTopic ? <fieldset className={styles.fieldset}>
-            <legend>Für welches Land möchtest du Recht üben?</legend>
+            <legend>Land</legend>
             <div className={styles.countries}>
               {countryOptions.map(option => (
                 <button type="button" key={option.code} aria-pressed={country === option.code} className={styles.country} onClick={() => chooseCountry(option.code)}>
@@ -49,9 +57,9 @@ export default function QuizSetup({ commonOptions, countryOptions, initialCountr
                 </button>
               ))}
             </div>
-          </fieldset> : <p className={styles.hint}>Gemeinsames Lernwissen für Deutschland, Österreich und die Schweiz. Rechtsfragen findest du im Thema Recht mit eigener Länderwahl.</p>}
+          </fieldset> : <p className={styles.hint}>Gemeinsames Lernwissen für Deutschland, Österreich und die Schweiz. Jagdrecht hat eine eigene Länderwahl.</p>}
           <div className={styles.summary}>
-            <strong><AppIcon name={countryTopic ? "law" : "quiz"} size={22} />{countryTopic ? `${selectedCountry.name} · Recht` : activeTopic === "Alle" ? "Alle Lernbereiche" : activeTopic}</strong>
+            <strong><AppIcon name={countryTopic ? "law" : "quiz"} size={22} />{countryTopic ? `${selectedCountry.name} · Jagdrecht` : activeTopic === "Alle" ? "Alle Kategorien" : activeTopic}</strong>
             <p>{questionsInRound} zufällig ausgewählte Fragen aus {available} verfügbaren Fragen.</p>
             <p>Du hast 30 Sekunden pro Frage. Nach jeder Antwort siehst du die Erklärung und kannst selbst weitergehen.</p>
             <p>Deine beste vollständig abgeschlossene Runde zählt für die Gesamtrangliste. Beim ersten Start wählst du einmalig deinen öffentlichen Quiznamen.</p>

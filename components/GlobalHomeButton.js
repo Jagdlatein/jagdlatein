@@ -8,6 +8,7 @@ import AppIcon from "./AppIcon";
 import { PAGE_MENU_OUTLET_ID, PAGE_MENU_ROUTE_ATTRIBUTE } from "./PageMenu";
 import AppUpdateStatus from "./AppUpdateStatus";
 import { learningCategoryDetails } from "../lib/learning-categories";
+import { getCategoryNavigationKey } from "../lib/category-navigation";
 import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
@@ -115,6 +116,8 @@ export default function GlobalHomeButton() {
   const menuRef = useRef(null);
   const navigationRef = useRef(null);
   const menuRoute = useRef(pathname);
+  const categoryLocation = useRef(undefined);
+  const categoryScroll = useRef(null);
 
   useEffect(() => {
     const samePage = menuRoute.current === pathname;
@@ -133,6 +136,33 @@ export default function GlobalHomeButton() {
     // Publish readiness only after closing and after both router views agree
     // with the current URL. A new page can then open its committed controls.
     outlet?.setAttribute(PAGE_MENU_ROUTE_ATTRIBUTE, routeReady ? currentPath : "");
+  }, [pathname, router?.asPath, router?.isReady]);
+
+  useEffect(() => {
+    const path = window.location.pathname + window.location.search;
+    if (pathname !== window.location.pathname || (router && (!router.isReady || router.asPath?.split("#")[0] !== path))) return;
+    const key = getCategoryNavigationKey(path);
+    if (categoryLocation.current === key) return;
+    categoryLocation.current = key;
+    if (key === null) return;
+    const ticket = { completed: false };
+    categoryScroll.current = ticket;
+    const reset = () => {
+      if (categoryScroll.current !== ticket || window.location.pathname + window.location.search !== path) return;
+      window.scrollTo?.({ left: 0, top: 0, behavior: "instant" });
+      ticket.completed = true;
+    };
+    const animationFrame = typeof window.requestAnimationFrame === "function";
+    const handle = animationFrame ? window.requestAnimationFrame(reset) : window.setTimeout(reset, 0);
+    return () => {
+      if (categoryScroll.current === ticket) {
+        categoryScroll.current = null;
+        // A canceled frame is still an unfulfilled category entry. Requeue it
+        // after a same-category query commit or an effect setup replay.
+        if (!ticket.completed) categoryLocation.current = undefined;
+      }
+      if (animationFrame) window.cancelAnimationFrame?.(handle); else window.clearTimeout(handle);
+    };
   }, [pathname, router?.asPath, router?.isReady]);
 
   useEffect(() => {
@@ -267,9 +297,9 @@ export default function GlobalHomeButton() {
         <div className={styles.moreLinks}>
           <div id={PAGE_MENU_OUTLET_ID} className={styles.pageMenu} />
           {mainMenuItems.map(item => item.href === "/lernen" ? <details key={item.href} className={styles.categoryTree}>
-            <summary><AppIcon name="book" size={21} />Lernbereiche<span aria-hidden="true">›</span></summary>
+            <summary><AppIcon name="book" size={21} />Kategorien<span aria-hidden="true">›</span></summary>
             <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>
-            {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` ? "page" : undefined}>{category.title}</Link>)}</div>
+            {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} scroll={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` ? "page" : undefined}>{category.title}</Link>)}</div>
           </details> : <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
           <AppUpdateStatus offline={pathname === "/lernen/offline-rucksack"} />
         </div>

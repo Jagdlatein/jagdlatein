@@ -26,7 +26,7 @@ function load(relative, cache = new Map()) {
   const {code} = swc.transformSync(fs.readFileSync(filename, 'utf8'), {filename, disableNextSsg: true, jsc: {parser: {syntax: 'ecmascript', jsx: true}, target: 'es2022', transform: {react: {runtime: 'automatic'}}}, module: {type: 'commonjs'}});
   const resolve = id => {
     if (id.endsWith('/PageMenu')) return { __esModule: true, default: ({ children }) => { pageMenuByCache.set(cache, children); return null; } };
-    if (id === 'next/link') return ({href, children, prefetch, ...props}) => React.createElement('a', {href, ...props}, children);
+    if (id === 'next/link') return ({href, children, prefetch, scroll, ...props}) => React.createElement('a', {href, ...props}, children);
     if (id === 'next/head') return ({children}) => children;
     if (id === 'next/image') return ({priority, fill, ...props}) => React.createElement('img', props);
     if (id === 'next/router') return {useRouter: () => routerStateByCache.get(cache) || ({isReady: true, query: {}, asPath: '/lernen', replace: async () => true})};
@@ -46,7 +46,7 @@ test('The learning overview exposes one search, twelve direct categories, and co
   assert.equal((html.match(/href="\/lernen\/[a-z-]+" class="cardLink"/g) || []).length, 12);
   const paths = load('lib/learning-curriculum.js').learningPaths.filter(item => !item.advanced);
   for (const path of paths) { assert.ok(html.includes(path.title)); for (const id of path.moduleIds) assert.ok(html.includes(`/kurse/${id}`)); }
-  assert.ok(html.indexOf('Kategorien') < html.indexOf('all-search-title'));
+  assert.ok(html.indexOf('all-search-title') < html.indexOf('id="learning-categories-heading"'));
   assert.doesNotMatch(html, /aria-label="(?:Lernmenü|Deine Kurse)"/);
 });
 
@@ -60,8 +60,7 @@ test('All twelve category roots expose their real topic branches before optional
     routerStateByCache.set(cache, {isReady: true, query: {}, asPath: `/lernen/${category}`});
     const html = renderToStaticMarkup(React.createElement(Component, {data}));
     const tree = knowledgeSection(html);
-    assert.ok(html.indexOf('id="learning-modules"') < html.indexOf('id="lernen-suche"'), 'Category navigation precedes the optional search route');
-    assert.equal((html.match(/type="search"/g) || []).length, 1);
+    assert.doesNotMatch(html, /id="lernen-suche"|type="search"/, 'Categories do not repeat the central entry search');
     if (data.resources.some(tool => !tool.featured)) assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-resources-heading"'));
     if (data.resources.some(tool => tool.featured)) {
       assert.ok(html.indexOf('id="learning-modules-heading"') < html.indexOf('id="learning-featured-heading"'));
@@ -77,9 +76,7 @@ test('All twelve category roots expose their real topic branches before optional
     const byId = new Map(data.modules.map(module => [module.id, module]));
     for (const group of data.topicGroups) {
       assert.ok(tree.includes(htmlValue(group.title)), group.id);
-      const courses = group.moduleIds.map(id => byId.get(id));
-      const lessonCount = courses.reduce((sum, module) => sum + module.lessonCount, 0);
-      assert.ok(tree.includes(`${courses.length} ${courses.length === 1 ? 'Themenbereich' : 'Themenbereiche'} · ${lessonCount} ${lessonCount === 1 ? 'Wissenstext' : 'Wissenstexte'}`), `${category}/${group.id}: actual branch counts`);
+      assert.doesNotMatch(tree, /Themenbereiche? ·|Wissenstexte?/, `${category}/${group.id}: compact keyword choices omit explanatory count lines`);
     }
     const resourceHtml = html.split('id="learning-resources-heading"')[1]?.split('</ul>')[0] || '';
     const targets = new Set(load('lib/learning-experiences.js').learningExperiences.map(item => item.href));
@@ -125,12 +122,13 @@ test('Shared layouts keep headings and study content without duplicate page-navi
   assert.match(portraitMenu, /Lebensweise und Unterscheidung/);
 });
 
-test('Every branch exposes only its course choices, then each selected course exposes exactly its own lesson links', () => {
+test('Every branch exposes its short course accordions and exact lesson links without another course-choice page', () => {
   const cache = new Map();
   const { getLearningOverviewData } = load('lib/learning-overview-server.js', cache);
   const Component = load('components/LearningOverview.js', cache).default;
   const { getLearningModule } = load('lib/learning-curriculum.js', cache);
   const { lessonHash } = load('lib/learning-lesson-navigation.js', cache);
+  const { getLearningNavigationLabel } = load('lib/learning-navigation-labels.js', cache);
   for (const category of load('lib/learning-categories.js', cache).learningCategoryDetails) {
     const data = getLearningOverviewData(category.slug);
     const byId = new Map(data.modules.map(module => [module.id, module]));
@@ -139,27 +137,34 @@ test('Every branch exposes only its course choices, then each selected course ex
       const tree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
       assert.ok(tree.includes(`id="learning-modules-heading" tabindex="-1">${htmlValue(group.title)}</h2>`), `${category.slug}/${group.id}: selected branch heading`);
       assert.doesNotMatch(tree, /aria-label="Wissenspfad"|class="breadcrumb"/, 'The shared bottom menu owns parent navigation');
-      assert.doesNotMatch(tree, /href="\/kurse\//, 'An intermediate branch shows choices instead of every lesson');
-      const choices = [...tree.matchAll(/href="([^\"]*&amp;kurs=[^\"]+)"/g)].map(match => match[1]);
-      assert.deepEqual(choices, group.moduleIds.map(id => htmlValue(`/lernen/${category.slug}?bereich=${group.id}&kurs=${id}#learning-modules`)));
-      for (const id of group.moduleIds) {
+      assert.doesNotMatch(tree, /&amp;kurs=/, 'Opening a course uses the existing native accordion, not another URL step');
+      const choices = [...tree.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
+      assert.equal(choices.length, group.moduleIds.length);
+      assert.ok(choices.every(choice => !choice[0].split('>')[0].includes('open=')), 'Bare branch starts with compact closed topics');
+      const branchLessons = group.moduleIds.flatMap(id => getLearningModule(id).lessons.map(lesson => htmlValue(`/kurse/${id}${lessonHash(lesson.id)}`)));
+      assert.deepEqual([...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]), branchLessons);
+      for (const [courseIndex, id] of group.moduleIds.entries()) {
         const module = byId.get(id);
         const original = getLearningModule(id);
         assert.equal(module.topics.length, original.lessons.length, id);
-        assert.ok(tree.includes(htmlValue(module.title)), id);
+        assert.ok(choices[courseIndex][1].includes(htmlValue(getLearningNavigationLabel(module))), id);
         routerStateByCache.set(cache, {isReady: true, query: {bereich: group.id, kurs: id}, asPath: `/lernen/${category.slug}?bereich=${group.id}&kurs=${id}#learning-modules`});
         const courseTree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
         assert.doesNotMatch(courseTree, /aria-label="Wissenspfad"|class="breadcrumb"/);
-        assert.ok(courseTree.includes(`id="learning-modules-heading" tabindex="-1">${htmlValue(module.title)}</h2>`));
+        assert.ok(courseTree.includes(`id="learning-modules-heading" tabindex="-1">${htmlValue(group.title)}</h2>`));
+        const courseChoices = [...courseTree.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
+        assert.equal(courseChoices.length, group.moduleIds.length);
+        assert.deepEqual(courseChoices.map((choice, index) => choice[0].split('>')[0].includes('open=') ? index : null).filter(index => index !== null), [courseIndex], 'The exact old course link opens only its authored topic');
+        const coursePanel = courseChoices[courseIndex][1];
         const expected = original.lessons.map((lesson, index) => {
           const href = `/kurse/${id}${lessonHash(lesson.id)}`;
           assert.deepEqual(module.topics[index], {title: lesson.title, href});
-          assert.ok(courseTree.includes(htmlValue(lesson.title)), `${id}/${lesson.id}`);
+          assert.ok(coursePanel.includes(htmlValue(lesson.title)), `${id}/${lesson.id}`);
           return htmlValue(href);
         });
-        const actual = [...courseTree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]);
+        const actual = [...coursePanel.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]);
         assert.deepEqual(actual, expected, `${category.slug}/${group.id}/${id}: no duplicated or foreign lessons`);
-        assert.doesNotMatch(courseTree, /<details|<button|<img/);
+        assert.doesNotMatch(courseTree, /<button|<img/);
       }
     }
   }
@@ -176,8 +181,12 @@ test('A foreign, missing or array-valued course cannot escape the selected branc
     routerStateByCache.set(cache, {isReady: true, query: {bereich: group.id, kurs}, asPath: '/lernen/wildkunde'});
     const tree = knowledgeSection(renderToStaticMarkup(React.createElement(Component, {data})));
     assert.ok(tree.includes('Dieser Themenbereich gehört nicht zum gewählten Pfad'));
-    assert.doesNotMatch(tree, /href="\/kurse\/|<script/);
-    assert.equal((tree.match(/&amp;kurs=/g) || []).length, group.moduleIds.length);
+    assert.doesNotMatch(tree, /<script|&amp;kurs=/);
+    const panels = [...tree.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
+    assert.equal(panels.length, group.moduleIds.length);
+    assert.ok(panels.every(panel => !panel[0].split('>')[0].includes('open=')), 'Invalid course values never expand another course');
+    const expected = group.moduleIds.flatMap(id => data.modules.find(module => module.id === id).topics.map(topic => htmlValue(topic.href)));
+    assert.deepEqual([...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]), expected);
   }
 });
 

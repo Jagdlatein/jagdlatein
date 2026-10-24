@@ -13,6 +13,9 @@ const React = local('react');
 async function fixture(options = {}) {
   const dom = new JSDOM('<!doctype html><html><body><div id="test-root"></div></body></html>', { url: 'https://jagdlatein.test/jagdrecht' });
   const { window } = dom;
+  // jsdom has no visual viewport scrolling; category scrolling has its own
+  // frame/lifecycle regression suite. Keep this real portal/effect test quiet.
+  window.scrollTo = () => {};
   const saved = new Map();
   const activeObservers = new Set(), openings = [];
   const NativeObserver = window.MutationObserver;

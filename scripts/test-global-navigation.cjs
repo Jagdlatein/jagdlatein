@@ -61,6 +61,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
+    if (id === '../lib/category-navigation') return load('lib/category-navigation.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);
   const render = () => { refCursor = 0; return mod.exports.default(); };

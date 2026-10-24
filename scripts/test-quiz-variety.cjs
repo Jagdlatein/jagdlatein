@@ -72,12 +72,14 @@ test('Actual quiz entry pages retain each legacy topic, its exact pool and the r
   for (const topic of ['Federwild', 'Rehwild', 'Hege/Naturschutz', 'Waffen & Schuss', 'Prüfungsvorbereitung']) {
     const page = await Page({ searchParams: Promise.resolve({ country: 'CH', topic }) });
     assert.equal(page.props.initialTopic, topic);
-    const option = page.props.commonOptions.topics.find(item => item.name === topic);
-    assert.deepEqual(option, { name: topic, count: quizLearningPool(QUESTIONS, { topic }).length });
-    assert.equal(page.props.commonOptions.topics.length, 12);
+    const option = page.props.legacyTopic;
+    assert.equal(option.name, topic);
+    assert.equal(option.count, quizLearningPool(QUESTIONS, { topic }).length);
+    assert.equal(page.props.commonOptions.topics.length, 11);
     const html = renderToStaticMarkup(page);
     assert.ok(html.includes(`href="/quiz-app/run?topic=${encodeURIComponent(topic)}"`), topic);
-    assert.ok(html.includes(`value="${topic.replace(/&/g, '&amp;')}" selected=""`), topic);
+    assert.ok(html.includes(`value="${option.category.replace(/&/g, '&amp;')}" selected=""`), topic);
+    assert.ok(html.includes('Teilthema:'), topic);
     assert.ok(html.includes(`aus ${option.count} verfügbaren Fragen`), topic);
     assert.ok(!html.includes('Für welches Land möchtest du Recht üben?'));
   }
