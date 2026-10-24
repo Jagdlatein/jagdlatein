@@ -64,9 +64,16 @@ test('One 150-word fifth lesson has its actual date and three precise independen
 });
 
 test('All 197 other courses, 1711 historical card objects and 116 starter objects keep their exact content and order', () => {
-  assert.equal(hash(learningModules.filter(item => item.id !== courseId)), 'f77a7604fd1b23f662246da092f7c060784e709ac92ebdc5f351cacd37f4c0f2');
+  const birdCourseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
+  const birdCourse = getLearningModule(birdCourseId);
+  assert.equal(birdCourse.lessons.length, 5);
+  assert.equal(birdCourse.questions.length, 33);
+  assert.equal(birdCourse.sources.length, 10);
+  const historicalCourses = learningModules.filter(item => item.id !== courseId).map(item => item.id === birdCourseId
+    ? { ...item, sources: item.sources.slice(0, 7), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) } : item);
+  assert.equal(hash(historicalCourses), 'f77a7604fd1b23f662246da092f7c060784e709ac92ebdc5f351cacd37f4c0f2');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  const historical = cards.filter(card => card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche');
+  const historical = cards.filter(card => card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung');
   assert.equal(historical.length, 1711);
   assert.equal(hash(historical), '949d098b9e3bdc6211da3c665cfc9221f1c074660b32a91d04208b6b7324eb32');
   assert.equal(hash([...historical].sort((a, b) => a.id.localeCompare(b.id))), '471a574e4f2e610bc3c673c6351e11348fe00c1b9547a7f7194844651a1ae9a5');
@@ -74,8 +81,8 @@ test('All 197 other courses, 1711 historical card objects and 116 starter object
   assert.equal(oldCourseCards.length, 31);
   assert.equal(hash(oldCourseCards), 'ad49ad2886db253b985de702148c39e25f5915f1e854202752c25616690d6646');
   assert.ok(oldCourseCards.every(card => card.reviewedOn === '2026-10-16' && !card.sources.some(source => urls.includes(source.url))));
-  assert.deepEqual(learningCounts, { modules: 198, lessons: 848, questions: 2704 });
-  assert.equal(cards.length, 1712);
+  assert.deepEqual(learningCounts, { modules: 198, lessons: 849, questions: 2705 });
+  assert.equal(cards.length, 1713);
 });
 
 test('The single original new question and card share answer, date, four scoped sources and the existing lesson link', () => {

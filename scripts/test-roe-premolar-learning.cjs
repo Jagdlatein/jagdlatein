@@ -58,9 +58,14 @@ test('Only Rehwild adds a fourth target; its old entries and historical other gu
   const unaffected = species.filter(item => item.slug !== 'rehwild').map(item => ({ slug: item.slug, targets: guide(item.slug) }));
   assert.equal(unaffected.length, 113);
   assert.equal(unaffected.find(item => item.slug === 'biber').targets.find(target => target.moduleId === 'wissen-biber-schneidezaehne-2026').flashcardCount, 3);
-  const historical = unaffected.map(item => item.slug === 'biber' ? { ...item, targets: item.targets.map(target => target.moduleId === 'wissen-biber-schneidezaehne-2026' ? { ...target, flashcardCount: 2 } : target) } : item);
+  const historical = unaffected.map(item => ({ ...item, targets: item.targets.map(target => {
+    if (item.slug === 'biber' && target.moduleId === 'wissen-biber-schneidezaehne-2026') return { ...target, flashcardCount: 2 };
+    if (target.moduleId !== 'wissen-ausbau-biologie-vogelkoerper-2026') return target;
+    assert.equal(target.flashcardCount, 32);
+    return { ...target, flashcardCount: 31 };
+  }) }));
   // Before this addition, all fields and their ordering were captured from HEAD
-  // 1577eda. Normalize only the later authorized Biber card-count increase;
+  // 1577eda. Normalize only the later authorized Biber and bird-body card counts;
   // preserve every other field, order and the original complete-object hash.
   assert.equal(createHash('sha256').update(JSON.stringify(historical)).digest('hex'), 'eb86cb3dfd5c857edaccd36a045f0eb6ee0689e8ea944d8495342c0e5be72b49');
   for (const item of unaffected) {

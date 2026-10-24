@@ -1,0 +1,15 @@
+# Jagdrecht-Einstieg im unteren Menü
+
+Der Nutzer meldete am 24. Oktober 2026 einen fast leeren Jagdrecht-Einstieg mit geschlossenem unteren Menü. Zwei technische Lifecycle-Lücken wurden unabhängig mit echten React-Effekten und Portalen in einem isolierten DOM reproduziert. Das beweist die reproduzierten Abläufe; die genaue Ereignisfolge auf dem abgebildeten Gerät wurde nicht beobachtet.
+
+Wenn die gemeinsame Navigation ihren Outlet erst nach der Seite montiert, fand die bisherige einmalige Suche ihn nie wieder. Eine begrenzte Mutation-Beobachtung erkennt nun den später eintreffenden vorhandenen Outlet und beendet sich danach. Beim Unmount wird sie getrennt. Es entsteht kein zweites Menü, und die Seite übernimmt nicht den DOM-Besitz der gemeinsamen Navigation.
+
+Ein zweiter Fall öffnete die initiale Auswahl vor einer verzögerten Routingaktualisierung, deren Schließen sie anschließend wieder verbarg. Die gemeinsame Navigation veröffentlicht jetzt erst nach ihrem Schließschritt eine Bereitschaftsadresse. Im Pages Router müssen isReady, asPath ohne Fragment, usePathname und tatsächliche Browseradresse zusammenpassen; im App Router muss der verfügbare Pfad passen. Die Seite wartet auf dieses Signal und ihren committed Portalinhalt, bevor sie ihren einmaligen Öffnungswunsch verbraucht. Bereitschaft wird nicht allein aus der vorzeitig geänderten Browseradresse abgeleitet.
+
+Beim Jagdrecht-Einstieg wird die erste vorhandene Länderwahl im geöffneten unteren Menü fokussiert und sichtbar gemacht. Die drei bestehenden Länderziele, gespeicherte Regionsauswahl und weiteren Rechtsgrundlagen bleiben unverändert. Oben kommt keine Navigation hinzu. Nutzerseitiges Schließen, Inhalts-, Query-, Readiness- und Fragmentänderungen öffnen eine bereits verbrauchte initiale Auswahl nicht wieder. Die fokussierte Suchbearbeitung im unteren Menü bleibt beim Schreiben offen.
+
+Zwölf neue echte React-/DOM-Regressionen prüfen beide Geschwisterreihenfolgen, verspäteten Outlet, beide Routingreihenfolgen, Routerbereitschaft, App Router, Fokus, Nutzer-Schließen, Strict-Mode-Replay und getrennten Unmount. Zusätzlich bestehen sechs bisherige Portal-/Hilfsfunktionsprüfungen und die gemeinsamen unteren Navigationstests. Der DOM-Test benötigt jsdom über JAGDLATEIN_TEST_DOM oder eine bereits installierte Testumgebung und schlägt bei Fehlen ausdrücklich fehl; er wird nicht still übersprungen. Für diesen Lauf wurde jsdom nur außerhalb des Repositorys im TEMP-Verzeichnis bereitgestellt, ohne Paket- oder Lockdateiänderung.
+
+Keine realen Browserprofile, Geräte, Konten oder personenbezogenen Daten wurden benutzt. Eine visuelle Prüfung auf dem Nutzergerät wird nicht behauptet. Rechtsinhalte, Fragen und fachliche Prüfdaten bleiben unverändert.
+
+Gemeinsamer finaler Lauf: **472 Tests bestanden, keine übersprungen**, Produktionsbuild **509 statische Seiten**. Die getrennten Test-/Build-/Auslieferungsprotokolle liegen außerhalb des Repositorys unter `work/regional-law-qa/`, jeweils mit dem Namen `oct24-twelfth`.

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/compat/router";
 import Link from "next/link";
 import AppIcon from "./AppIcon";
-import { PAGE_MENU_OUTLET_ID } from "./PageMenu";
+import { PAGE_MENU_OUTLET_ID, PAGE_MENU_ROUTE_ATTRIBUTE } from "./PageMenu";
 import AppUpdateStatus from "./AppUpdateStatus";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import styles from "../styles/GlobalNavigation.module.css";
@@ -82,6 +82,7 @@ const toolSelectionFields = {
   "/lernen/wildtier-videofaelle": ["eintrag"],
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
+  "/lernen/anatomie": ["bereich", "thema", "eintrag"],
 };
 function tracksToolSelection(path) {
   return toolSelectionFields[path.split(/[?#]/)[0]];
@@ -119,13 +120,20 @@ export default function GlobalHomeButton() {
     const samePage = menuRoute.current === pathname;
     menuRoute.current = pathname;
     const menu = menuRef.current;
+    const outlet = menu?.querySelector(`#${PAGE_MENU_OUTLET_ID}`);
+    const currentPath = window.location.pathname + window.location.search;
+    const routeReady = pathname === window.location.pathname &&
+      (!router || (router.isReady && router.asPath?.split("#")[0] === currentPath));
     const field = document.activeElement;
     // Updating a search query in the address bar must not dismiss the field
     // while the learner is still typing inside the lower page menu.
     const typing = field?.tagName === "TEXTAREA" || (field?.tagName === "INPUT" && ["search", "text"].includes(field.type));
-    if (samePage && menu?.open && typing && menu.contains(field) && field.closest?.(`#${PAGE_MENU_OUTLET_ID}`)) return;
-    if (menu) menu.open = false;
-  }, [pathname, router?.asPath]);
+    const keepTyping = samePage && menu?.open && typing && menu.contains(field) && field.closest?.(`#${PAGE_MENU_OUTLET_ID}`);
+    if (menu && !keepTyping) menu.open = false;
+    // Publish readiness only after closing and after both router views agree
+    // with the current URL. A new page can then open its committed controls.
+    outlet?.setAttribute(PAGE_MENU_ROUTE_ATTRIBUTE, routeReady ? currentPath : "");
+  }, [pathname, router?.asPath, router?.isReady]);
 
   useEffect(() => {
     const closeOutside = event => {

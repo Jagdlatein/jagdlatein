@@ -58,7 +58,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : router };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
-    if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu' };
+    if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     return requireProject(id);
@@ -364,7 +364,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the fourteen focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif and season in the fifteen focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -382,6 +382,8 @@ test('Dock Back preserves each committed topic, case, motif and season in the fo
     ['/lernen/pruefungsgespraech', '?eintrag=baumwinter', '?eintrag=kitzfund'],
     ['/lernen/pruefungsgespraech', '?kategorie=wildkunde&eintrag=kitzfund', '?kategorie=hundewesen&eintrag=hundelernen'],
     ['/lernen/hundetraining-tagebuch', '?eintrag=pflege', '?eintrag=rueckruf'],
+    ['/lernen/anatomie', '?eintrag=schaedel', '?eintrag=unterkiefer'],
+    ['/lernen/anatomie', '?eintrag=unterkiefer', '?bereich=verdauung&thema=wiederkaeuer-verdauung'],
   ];
   for (const [base, first, second] of tools) {
     const s = setup(base, ['/lernen']); s.route(base + first); s.route(base + second);
@@ -413,6 +415,21 @@ test('Dog journal Back follows exercise reading while search context, native Bac
   const native = setup(base, ['/lernen/hundewesen']); native.route(first); native.route(second); native.route(first);
   native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
   const immediate = setup(base, ['/lernen/hundewesen']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  s.unmount(); native.unmount(); immediate.unmount();
+});
+
+test('Anatomy Back follows each museum or digestion choice while query context stays with its current lesson', () => {
+  const base = '/lernen/anatomie';
+  const first = base + '?eintrag=schaedel#anatomie-modell';
+  const second = base + '?eintrag=unterkiefer#anatomie-fragen';
+  const digestive = base + '?bereich=verdauung&thema=schwarzwild-verdauung#anatomie-verdauung';
+  const s = setup(base, ['/lernen/wildkunde']); s.route(first); s.route(second); s.route(digestive);
+  s.route(base + '?q=Magen&ref=suche&thema=schwarzwild-verdauung&bereich=verdauung#anatomie-verdauung');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, second);
+  const native = setup(base, ['/lernen/wildkunde']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(base, ['/lernen/wildkunde']); immediate.route(first); immediate.navigateBeforeEffects(second);
   immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
   s.unmount(); native.unmount(); immediate.unmount();
 });

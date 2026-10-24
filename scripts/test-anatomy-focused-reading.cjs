@@ -13,24 +13,17 @@ function words(node) {
   return typeof node === 'object' ? words(node.props?.children) : String(node);
 }
 function setup() {
-  const slots = []; let cursor = 0;
-  const hooks = { ...React,
-    useState(initial) { const index = cursor++; slots[index] ||= { value: typeof initial === 'function' ? initial() : initial }; return [slots[index].value, value => { slots[index].value = typeof value === 'function' ? value(slots[index].value) : value; }]; },
-    useRef(initial) { const index = cursor++; slots[index] ||= { value: { current: initial } }; return slots[index].value; },
-    useEffect() {},
-  };
-  const load = createLoader({ react: hooks, 'next/router': { useRouter: () => ({ isReady: false, query: {} }) } });
-  const Component = load('components/AnatomyExplorer.js').default;
-  const data = load('lib/anatomy-explorer.js'); let tree;
-  function redraw() { cursor = 0; tree = Component(); }
-  redraw();
-  return { data, get tree() { return tree; }, redraw, text: () => words(tree),
-    selector() { return find(tree, node => node.type === 'select'); },
-    choose(id) { this.selector().props.onChange({ target: { value: id } }); redraw(); },
-    quiz() { return find(tree, node => node.type === 'details' && words(node.props.children[0]).startsWith('Wissen zum Modell')); },
-    toggle(open) { this.quiz().props.onToggle({ currentTarget: { open } }); redraw(); },
-    button(text) { const button = find(tree, node => node.type === 'button' && words(node) === text); assert.ok(button, text); return button; },
-    click(text) { const button = this.button(text); assert.ok(!button.props.disabled); button.props.onClick(); redraw(); },
+  const { setup: setupReader } = require('./helpers/field-reader-fixture.cjs');
+  const app = setupReader('components/AnatomyExplorer.js', {}, { router: { pathname: '/lernen/anatomie', asPath: '/lernen/anatomie' } });
+  const data = app.load('lib/anatomy-explorer.js');
+  return { data, get tree() { return app.tree; }, redraw: app.render, text: () => words(app.tree),
+    selector() { return find(app.tree, node => node.type === 'select'); },
+    choose(id) { this.selector().props.onChange({ target: { value: id } }); app.render(); },
+    quiz() { return find(app.tree, node => node.type === 'details' && words(node.props.children[0]).startsWith('Wissen zum Modell')); },
+    toggle(open) { this.quiz().props.onToggle({ currentTarget: { open } }); app.render(); },
+    button(text) { const button = find(app.tree, node => node.type === 'button' && words(node) === text); assert.ok(button, text); return button; },
+    click(text) { const button = this.button(text); assert.ok(!button.props.disabled); button.props.onClick(); app.render(); },
+    dispose: app.dispose,
   };
 }
 

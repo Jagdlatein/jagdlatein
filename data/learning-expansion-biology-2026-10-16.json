@@ -1156,6 +1156,30 @@
           "url": "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
           "organization": "Cornell Lab of Ornithology",
           "supports": "Gegenprüfung der anatomischen Begriffe Luftsack, Parabronchien und Lautapparat; Begriffswerk, keine Messreihe."
+        },
+        {
+          "label": "Midtgård (1980): Blood Vessels in the Hind Limb of the Mallard – Originalabstract",
+          "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1463-6395.1980.tb01289.x",
+          "organization": "Uffe Midtgård, Institute of Comparative Anatomy, University of Copenhagen / Acta Zoologica",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gegenstrom"],
+          "supports": "Tatsächlich gelesener Originalabstract der Arbeit von März 1980: anatomischer Befund eines arterio-venösen Wärmeaustauschsystems im Hinterbein der Stockente. Keine Volltextlektüre behauptet; keine Zahlen, Shuntsteuerung, Innervationsdetails oder Versuchsbehandlungen übernommen."
+        },
+        {
+          "label": "Cornell Lab (2017): How Do Gulls Deal With Cold Feet? – Entenbeispiel und Gegenstrom",
+          "url": "https://www.allaboutbirds.org/news/how-do-gulls-deal-with-cold-feet/",
+          "organization": "Cornell Lab of Ornithology / Living Bird",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gegenstrom"],
+          "supports": "Fachtext vom 9. Januar 2017 nach dem Handbook of Bird Biology: gegenläufige benachbarte Blutwege und Wärmeübertragung vom wärmeren arteriellen zum kühleren venösen Blut bei Enten und Möwen. Eigenständige Erklärung, keine neue experimentelle Wiederholung. Keine Temperaturzahlen, Gewebeanteile oder allgemeine Frostschutzgarantie übernommen."
+        },
+        {
+          "label": "Ehrlich/Dobkin/Wheye (1988): Temperature Regulation and Behavior – Wärmeaustausch im Bein",
+          "url": "https://web.stanford.edu/group/stanfordbirds/text/essays/Temperature_Regulation.html",
+          "organization": "Paul R. Ehrlich, David S. Dobkin und Darryl Wheye / Stanford Birds",
+          "checkedOn": "2026-10-24",
+          "lessonIds": ["gegenstrom"],
+          "supports": "Unabhängig verfasste zoologische Facherklärung von 1988, Absätze zum Kontakt arterieller und venöser Gefäße sowie zur Wärmerichtung und Rückgewinnung. Keine neue Originalmessung oder Replikation; keine Zahlen, Verhaltensempfehlungen oder Verallgemeinerung auf sämtliche Vogelarten übernommen."
         }
       ],
       "lessons": [
@@ -1198,6 +1222,19 @@
           ],
           "takeaway": "Syrinxstimme nutzt Atemluft und schwingendes Gewebe; mechanische Laute haben andere Quellen.",
           "exercise": "Ordne einen Entenruf und Spechttrommeln nach ihrer Lautquelle."
+        },
+        {
+          "id": "gegenstrom",
+          "title": "Wärme zurückgewinnen: Gegenstrom im Entenbein",
+          "reviewedOn": "2026-10-24",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Am Entenbein lässt sich ein Gegenstrom-Wärmeaustausch erklären: Arterielles Blut fließt vom warmen Körper zu den Füßen. Kühleres venöses Blut fließt von dort zum Körper zurück. Wo die Gefäße eng benachbart verlaufen, liegen diese entgegengesetzten Blutwege nahe beieinander. Gegenstrom bezeichnet zunächst diese räumliche Anordnung und Fließrichtung.",
+            "Wärme wird vom wärmeren arteriellen Blut auf das kühlere venöse Blut übertragen. Dadurch wird das zufließende Blut abgekühlt und das zurückströmende erwärmt. Ein Teil der Wärme gelangt so zurück in Richtung Körper, statt bis zur Fußoberfläche transportiert zu werden. Das hilft, Wärme im Körper zurückzuhalten. Blutbewegung und Wärmeübertragung müssen dafür in der Erklärung getrennt verfolgt werden.",
+            "Die Füße werden dabei weiterhin mit Blut versorgt; ihre Temperatur ist nicht mit der Körperkerntemperatur gleichzusetzen. Beschrieben ist das Funktionsprinzip am Entenbeispiel, keine identische Gefäßanordnung sämtlicher Vogelarten. Daraus folgen weder eine bestimmte Fußtemperatur noch eine unbegrenzte Frostschutzgarantie. Eine individuelle Zustandsbeurteilung eines beobachteten Vogels wird damit nicht ersetzt."
+          ],
+          "takeaway": "Gegenläufige Blutwege erlauben Wärmeübertragung vom wärmeren arteriellen zum kühleren venösen Blut und helfen, Wärme im Körper zurückzuhalten.",
+          "exercise": "Zeichne zwei benachbarte Blutwege mit entgegengesetzten Pfeilen. Ergänze getrennt einen Wärmepfeil vom wärmeren arteriellen zum kühleren venösen Blut."
         }
       ],
       "questions": [
@@ -1616,6 +1653,19 @@
           ],
           "answer": 1,
           "explain": "Die Schallquelle liegt hier an bewegten Federn und nicht an schwingendem Syrinxgewebe."
+        },
+        {
+          "id": "gegenstrom-waermerichtung",
+          "lessonId": "gegenstrom",
+          "q": "In welche Richtung wird im beschriebenen Gegenstromsystem des Entenbeins Wärme übertragen?",
+          "options": [
+            "Vom kühleren venösen Blut zum wärmeren arteriellen Blut.",
+            "Vom wärmeren arteriellen Blut zum kühleren zurückströmenden venösen Blut.",
+            "Aus dem kalten Wasser unmittelbar in den wärmeren Körperkern.",
+            "Ausschließlich entlang der Arterie bis zur Fußoberfläche, ohne Austausch mit Venen."
+          ],
+          "answer": 1,
+          "explain": "Das wärmere arterielle Blut gibt Wärme an das kühlere venöse Blut ab. Dabei wird der Zufluss zu den Füßen abgekühlt und der Rückfluss erwärmt. Die Blutwege verlaufen entgegengesetzt; das hilft, Wärme im Körper zurückzuhalten, ohne eine unbegrenzte Frostschutzgarantie zu bedeuten."
         }
       ]
     },
@@ -3534,6 +3584,27 @@
           "sourceUrls": [
             "https://rubegalab.uconn.edu/eeb-4260-visual-and-vocal-communication/",
             "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "gegenstrom",
+      "claims": [
+        {
+          "claim": "Beim Entenbeispiel verlaufen arterieller Zufluss zu den Füßen und kühlerer venöser Rückfluss zum Körper eng benachbart in entgegengesetzten Richtungen. Ein anatomischer Originalabstract beschreibt ein arterio-venöses Wärmeaustauschsystem im Hinterbein der Stockente; daraus wird keine identische Gefäßanordnung aller Vogelarten abgeleitet.",
+          "sourceUrls": [
+            "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1463-6395.1980.tb01289.x",
+            "https://www.allaboutbirds.org/news/how-do-gulls-deal-with-cold-feet/",
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Temperature_Regulation.html"
+          ]
+        },
+        {
+          "claim": "Wärme gelangt vom wärmeren arteriellen zum kühleren venösen Blut. Der Zufluss wird abgekühlt, der Rückfluss erwärmt; das hilft, Wärme im Körper zurückzuhalten. Die Füße bleiben durchblutet und ihre Temperatur ist nicht mit der Kerntemperatur gleichzusetzen. Keine bestimmte Temperatur oder unbegrenzte Frostschutzgarantie wird behauptet.",
+          "sourceUrls": [
+            "https://www.allaboutbirds.org/news/how-do-gulls-deal-with-cold-feet/",
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Temperature_Regulation.html"
           ]
         }
       ]

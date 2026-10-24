@@ -15,11 +15,11 @@ function text(node) {
 }
 function setup(file, query = {}) {
   const previousWindow = global.window;
-  const slots = [], effects = [], replacements = [], focus = [], scroll = [];
+  const slots = [], effects = [], replacements = [], methods = [], focus = [], scroll = [];
   let cursor = 0, dirty = false, tree, closeCount = 0;
   const router = { isReady: true, pathname: file.includes('Anatomy') ? '/lernen/anatomie' : '/lernen/wildtier-details', query,
-    replace(...args) { replacements.push(args); router.query = args[0].query; return Promise.resolve(true); },
-    push(...args) { replacements.push(args); router.query = args[0].query; return Promise.resolve(true); } };
+    replace(...args) { methods.push('replace'); replacements.push(args); router.query = args[0].query; return Promise.resolve(true); },
+    push(...args) { methods.push('push'); replacements.push(args); router.query = args[0].query; return Promise.resolve(true); } };
   const hooks = { ...React,
     useState(initial) {
       const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial };
@@ -52,16 +52,16 @@ function setup(file, query = {}) {
     assert.ok(passes < 15, 'The navigation settles without an effect loop');
   }
   flush();
-  return { load, focus, scroll, replacements, get tree() { return tree; }, get closeCount() { return closeCount; },
+  return { load, focus, scroll, replacements, methods, get tree() { return tree; }, get closeCount() { return closeCount; },
     menu() { return nodes(tree, node => node.type === PageMenu)[0]; },
     bodyText() { return text(React.Children.toArray(tree.props.children).filter(node => node?.type !== PageMenu)); },
-    choose(id, redraw = true) { nodes(this.menu(), node => node.type === 'select')[0].props.onChange({ target: { value: id } }); if (redraw) flush(); },
+    choose(id, redraw = true) { const result = nodes(this.menu(), node => node.type === 'select')[0].props.onChange({ target: { value: id } }); if (redraw) flush(); return result; },
     route(query) { router.query = query; flush(); }, flush,
     close() { for (const slot of slots) slot?.cleanup?.(); global.window = previousWindow; },
   };
 }
 
-test('Anatomy keeps both existing groups only in the lower menu, preserves the model lesson and closes onto the chosen content', () => {
+test('Anatomy keeps both existing groups only in the lower menu, preserves the model lesson and closes onto the chosen content', async () => {
   const s = setup('components/AnatomyExplorer.js');
   try {
     const { anatomyModels, anatomySources } = s.load('lib/anatomy-explorer.js');
@@ -70,16 +70,17 @@ test('Anatomy keeps both existing groups only in the lower menu, preserves the m
     assert.deepEqual(nodes(s.menu(), node => node.type === 'optgroup').map(node => node.props.label), ['Verdauung verstehen', 'Museumsscans drehen']);
     assert.match(s.bodyText(), /Weißwedelhirsches.*kein Reh oder Rotwild/);
     for (const source of anatomySources) assert.ok(s.bodyText().includes(source.title));
-    s.choose(anatomyModels[1].id);
+    await s.choose(anatomyModels[1].id); s.flush();
     assert.equal(s.closeCount, 1);
     assert.ok(s.bodyText().includes(anatomyModels[1].description));
     assert.equal(s.focus.at(-1).label, anatomyModels[1].title);
     assert.deepEqual(s.focus.at(-1).options, { preventScroll: true });
     assert.equal(s.scroll.at(-1).options.block, 'start');
     assert.equal(s.replacements.at(-1)[0].query.eintrag, anatomyModels[1].id);
-    s.choose(anatomyModels[1].id);
+    await s.choose(anatomyModels[1].id); s.flush();
     assert.equal(s.focus.length, 2, 'Reselecting the visible model also returns focus from the lower menu');
-    s.choose('not-an-entry'); assert.equal(s.closeCount, 2); assert.equal(s.replacements.length, 2);
+    await s.choose('not-an-entry'); assert.equal(s.closeCount, 2); assert.equal(s.replacements.length, 1);
+    assert.deepEqual(s.methods, ['push'], 'One committed model change adds a real history step; a current reselect adds none');
   } finally { s.close(); }
 });
 
@@ -89,9 +90,11 @@ test('Anatomy keeps exact digestion and museum deep links, clears incompatible s
     const digestive = () => nodes(s.tree, node => node.type?.name === 'DigestiveLearning')[0];
     assert.equal(digestive().props.selectedId, 'schwarzwild-verdauung');
     assert.equal(digestive().props.hideSelector, true);
+    const initialFocus = s.focus.length;
     s.choose('unterkiefer', false); s.choose('wiederkaeuer-verdauung', false); s.flush();
     assert.equal(digestive().props.selectedId, 'wiederkaeuer-verdauung');
-    assert.equal(s.focus.length, 1);
+    assert.equal(s.focus.length, initialFocus + 1);
+    assert.deepEqual(s.methods, ['push', 'push']);
     assert.deepEqual(s.replacements.at(-1)[0].query, { suche: 'test', bereich: 'verdauung', thema: 'wiederkaeuer-verdauung' });
     s.route({ eintrag: 'vorderlauf' });
     assert.equal(digestive(), undefined);

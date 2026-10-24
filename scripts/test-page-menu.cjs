@@ -24,17 +24,19 @@ function fixture() {
   const input = { focus: options => focusCalls.push(options), scrollIntoView: options => scrollCalls.push(options) };
   const outside = { focus() { throw new Error('Must not focus content outside the shared menu'); } };
   const menu = { get open() { return opened; }, set open(value) { opened = value; openCalls++; }, contains: target => target === input };
-  const outlet = { nodeType: 1, closest: selector => selector === 'details' ? menu : null, remove() { throw new Error('The page must not remove the shared outlet'); } };
+  const outlet = { nodeType: 1, getAttribute: name => name === 'data-page-menu-route' ? '/jagdrecht' : null, closest: selector => selector === 'details' ? menu : null, remove() { throw new Error('The page must not remove the shared outlet'); } };
   const elements = new Map([['jl-page-menu', outlet], ['region-input', input], ['outside', outside]]);
   return { outlet, menu, input, focusCalls, scrollCalls, elements, document: { getElementById: id => elements.get(id) || null }, get openCalls() { return openCalls; } };
 }
 
 function withDocument(value, callback) {
   const previous = Object.getOwnPropertyDescriptor(global, 'document');
+  const previousWindow = Object.getOwnPropertyDescriptor(global, 'window');
   if (value === undefined) delete global.document;
   else Object.defineProperty(global, 'document', { configurable: true, value, writable: true });
+  if (value !== undefined) Object.defineProperty(global, 'window', { configurable: true, writable: true, value: { location: { pathname: '/jagdrecht', search: '' } } });
   try { return callback(); }
-  finally { if (previous) Object.defineProperty(global, 'document', previous); else delete global.document; }
+  finally { if (previous) Object.defineProperty(global, 'document', previous); else delete global.document; if (previousWindow) Object.defineProperty(global, 'window', previousWindow); else delete global.window; }
 }
 
 test('SSR contributes no second menu, portal or document access', () => withDocument(undefined, () => {

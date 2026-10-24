@@ -90,7 +90,7 @@ test('All published starter objects and their order stay exact; only true pre-ex
   const affected = cards.filter(card => card.reviewedOn === '2026-10-13' && [courseId, 'wissen-vertiefung-hunde-klare-lernsignale'].includes(card.moduleId));
   assert.equal(affected.length, 7);
   assert.equal(affected.filter(card => card.lessonId.endsWith('-fundkontrolle')).length, 2);
-  const oldCards = cards.filter(card => card.lessonId !== lessonId && !(card.moduleId === 'wissen-biber-schneidezaehne-2026' && card.lessonId === 'mundhautfalte-unterwassernagen') && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche').map(card => affected.includes(card) ? { ...card, reviewedOn: '2026-10-12' } : card).sort((a, b) => a.id.localeCompare(b.id));
+  const oldCards = cards.filter(card => card.lessonId !== lessonId && !(card.moduleId === 'wissen-biber-schneidezaehne-2026' && card.lessonId === 'mundhautfalte-unterwassernagen') && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung').map(card => affected.includes(card) ? { ...card, reviewedOn: '2026-10-12' } : card).sort((a, b) => a.id.localeCompare(b.id));
   assert.equal(hash(oldCards), 'e60d8dc9182448c95248fea11b09e2a90d497906901fa7ebe70841e65d2d3c43', 'All 1709 historical card objects stay exact except seven corrected date fields');
   for (const card of cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId)) {
     assert.ok(!card.sources.some(source => source.url.includes('s12879-021-06523-8')), 'new lesson source must not be attached to old course cards');

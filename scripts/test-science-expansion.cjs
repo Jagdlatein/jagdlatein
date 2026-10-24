@@ -10,18 +10,21 @@ const { QUESTIONS } = load('data/questions-full.js');
 const normalize = value => value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 const woodCourseId = 'wissen-ausbau-oekologie-holzaufbau-2026';
 const woodLessonId = 'gefaessverteilung';
+const birdCourseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
+const birdLessonId = 'gegenstrom';
+const scopedLesson = (moduleId, lessonId) => moduleId === woodCourseId && lessonId === woodLessonId || moduleId === birdCourseId && lessonId === birdLessonId;
 
-test('The eighteen historical science courses retain 576 questions and add one narrowly dated wood-pattern question', () => {
+test('The eighteen historical science courses retain 576 questions and add two precisely scoped dated questions', () => {
   assert.equal(datasets.length, 3);
   assert.equal(added.length, 18);
-  assert.equal(added.reduce((count, module) => count + module.questions.length, 0), 577);
+  assert.equal(added.reduce((count, module) => count + module.questions.length, 0), 578);
   assert.deepEqual([...new Set(added.map(module => module.category))].sort(), [...learningCategories].sort());
   const stems = new Set();
   const oldStems = new Set(learningModules.filter(module => !added.some(x => x.id === module.id)).flatMap(module => module.questions.map(question => normalize(question.q))));
   for (const module of added) {
     assert.ok(learningModules.some(item => item.id === module.id), module.id);
-    assert.equal(module.lessons.length, module.id === woodCourseId ? 5 : 4, module.id);
-    assert.equal(module.questions.length, module.id === woodCourseId ? 33 : 32, module.id);
+    assert.equal(module.lessons.length, module.id === woodCourseId || module.id === birdCourseId ? 5 : 4, module.id);
+    assert.equal(module.questions.length, module.id === woodCourseId || module.id === birdCourseId ? 33 : 32, module.id);
     assert.equal(module.reviewedOn, '2026-10-16');
     assert.equal(module.flashcardExpansion, true);
     assert.ok(new Set(module.sources.map(source => source.organization)).size >= 2, module.id);
@@ -29,9 +32,9 @@ test('The eighteen historical science courses retain 576 questions and add one n
     for (const lesson of module.lessons) {
       assert.ok(lesson.paragraphs.length >= 2 && lesson.paragraphs.join(' ').length > 500, module.id + '/' + lesson.id);
       assert.ok(lesson.takeaway && lesson.exercise);
-      const newWoodLesson = module.id === woodCourseId && lesson.id === woodLessonId;
-      assert.equal(module.questions.filter(question => question.lessonId === lesson.id).length, newWoodLesson ? 1 : 8, module.id + '/' + lesson.id);
-      if (newWoodLesson) assert.equal(lesson.reviewedOn, '2026-10-24');
+      const newScopedLesson = scopedLesson(module.id, lesson.id);
+      assert.equal(module.questions.filter(question => question.lessonId === lesson.id).length, newScopedLesson ? 1 : 8, module.id + '/' + lesson.id);
+      if (newScopedLesson) assert.equal(lesson.reviewedOn, '2026-10-24');
       assert.ok(lesson.evidence.length);
       for (const claim of lesson.evidence) {
         assert.ok(claim.claim.length > 30);
@@ -50,6 +53,9 @@ test('The eighteen historical science courses retain 576 questions and add one n
       if (module.id === woodCourseId && question.lessonId === woodLessonId) {
         assert.equal(question.id, 'gefaessverteilung-ringporige-eiche');
         assert.equal(question.answer, 2);
+      } else if (module.id === birdCourseId && question.lessonId === birdLessonId) {
+        assert.equal(question.id, 'gegenstrom-waermerichtung');
+        assert.equal(question.answer, 1);
       } else counts[question.answer]++;
       const prepared = learningQuestions.find(item => item.id === `${module.id}-${question.id}`);
       assert.ok(prepared && QUESTIONS.some(item => item.id === prepared.id), question.id);
@@ -76,7 +82,7 @@ test('New knowledge is discoverable and eligible lesson cards retain exact lesso
       const lesson = module.lessons.find(item => item.id === card.lessonId);
       assert.ok(lesson && summary.lessons[lesson.id] > 0);
       assert.equal(card.sourceScope, 'lesson');
-      assert.equal(card.reviewedOn, module.id === woodCourseId && lesson.id === woodLessonId ? '2026-10-24' : '2026-10-16');
+      assert.equal(card.reviewedOn, scopedLesson(module.id, lesson.id) ? '2026-10-24' : '2026-10-16');
       assert.ok(card.sources.length >= 2);
       assert.ok(card.sources.every(source => lesson.evidence.some(claim => claim.sources.some(item => item.url === source.url))));
       assert.equal(getFlashcardExport({ courseId: module.id, lessonId: lesson.id }).selection.returnHref, `/kurse/${module.id}#lesson-${lesson.id}`);

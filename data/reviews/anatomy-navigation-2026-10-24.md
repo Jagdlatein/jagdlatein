@@ -1,0 +1,25 @@
+# Verbindliche Anatomieauswahl und zuverlässige 3D-Wiederholung
+
+Technische Prüfung am 24. Oktober 2026. Alle drei lokalen CC0-Museumsscans des Weißwedelhirsches, neun Strukturtexte und sechs ausdrücklich modellgebundene Fragen bleiben erhalten. Die beiden Verdauungsthemen samt echten Fotos, Fragen, Quellen, Lizenzen und Prüfdaten wurden nicht geändert. Die Grenzen zu Art, Maßstab, Weichteilen, Diagnose und Altersbestimmung bleiben sichtbar; das fachliche Datum 4. Oktober wird nicht neu gesetzt.
+
+## Adresse und Übung
+
+Der bereite Router bestimmt Museum oder Verdauung und das konkrete Thema. Ohne Auswahl bleibt der erste Museumseinstieg erhalten. `bereich=museum` ist ebenfalls gültig; `bereich=verdauung` ohne Thema bewahrt den ersten Verdauungseinstieg. Ausdrücklich leere, unbekannte, mehrfache oder widersprüchliche Werte zeigen eine Auswahlhilfe. Ein isoliertes Verdauungsthema ohne passenden Bereich ersetzt keinen anderen Inhalt. Vor Routerbereitschaft erscheint kein fremdes Modell.
+
+Die vorhandene Auswahl bleibt ausschließlich im unteren Menü. Eine Auswahl schreibt einen echten push-Schritt, entfernt nur die drei unvereinbaren Auswahlfelder und erhält fremden Suchkontext. Der Lehrtext folgt erst dem tatsächlichen URL-Commit. Alte Modell- und Verdauungslinks sowie anatomie-modell, anatomie-fragen und anatomie-verdauung/verdauung-title bleiben gültig. Der direkte Fragenanker öffnet die tatsächliche Modellrunde und fokussiert deren Überschrift.
+
+Fehler, Abbruch, verweigerte oder überholte Aufträge zeigen keinen optimistisch gewechselten Inhalt. Eine aktuelle Wiederwahl und bloße Hash-/Kontextänderungen erhalten Antworten, Frageindex und lokale Strukturansicht. Nur ein tatsächlich übernommener Modell-/Bereichswechsel setzt die Modellrunde zurück. Eigene Übungssteuerung wie Drehen, Strukturwahl, Fragenweiter und Wiederholung bleibt beim Inhalt. Der untere Zurück-Pfeil wurde nur für diese zusätzliche Route und ihre drei konkreten Auswahlfelder ergänzt.
+
+## Viewer und Script
+
+Mounted-, vollständige Origin-, Modell-, Versuch-, Runden- und Framing-Tickets sperren frühere Aktionen, auch bei A–B–A, vor passivem Cleanup und nach Unmount. Ein alter Viewer wird über sein tatsächlich erfasstes Element bereinigt. Beide Framing-Await-Fortsetzungen prüfen ihre Identität. Verspätetes Laden überschreibt keine inzwischen gewählte Strukturkamera; ein älterer Fehler oder Retry kann einen später erfolgreichen Viewer nicht deaktivieren. Nur der neueste Framing-Auftrag darf abschließen.
+
+Eine zusätzliche unabhängige Prüfung verwendete den wirklich installierten Next-Scriptloader mit einem inerten Dokument: Next kann nach einem Scriptfehler dessen abgefangenes Promise wiederverwenden und einem späteren Callback scheinbar Erfolg melden. Deshalb gilt das Modul erst als bereit, wenn der Browser tatsächlich model-viewer registriert hat. Ein bewusst wiederholter fehlgeschlagener Modulversuch erhält eine über Mounts eindeutige URL. Ausstehende Originwechsel verwenden dieselbe noch ausstehende Anfrage; die Registryprüfung unterscheidet echten Erfolg von einem gecachten Fehler. Ein bereits registriertes Modul wird beim erneuten Öffnen übernommen und nicht nochmals ausgewertet: Die lokale Datei registriert ihren Elementnamen ohne zweite Definition zu erlauben. Viewerfehler führen nicht zum erneuten Laden eines bereits funktionierenden Moduls.
+
+## Regressionen
+
+Elf unabhängig erstellte Navigationstests prüfen alte Links, Readiness, alle ungültigen Feldarten, konkrete ausgehende Pushes, Commit/History/Fokus, Fehlversuche, aktuelle Wiederwahl und erhaltene echte Quizantworten. 22 unabhängige Lifecycletests prüfen Viewer-Promises, Kamera, alte Controls, Script-/Retry-Aktionen, alle sechs Modellfragen und Unmount. Deren synthetische Modulbereitschaft registriert ausdrücklich ein inertes Element; Fehler nach bereits geladenem Modul werden als native Viewerfehler simuliert. Fünf weitere unabhängige Prüfungen verwenden den tatsächlichen lokalen Next-Loader für Fehlercache, Wiederholung, Remount, Originwechsel und Wiederverwendung einer erfolgreichen Registrierung.
+
+Die bisherigen Atlas-/Focused-Reading-/Medienprüfungen wurden eng an echte bereite Routercommits und Effect-Cleanups angepasst. Sämtliche sechs Antworterklärungen, falsche Antworten, Doppelklickschutz, Wiederholung und Schließen bleiben geprüft. Es werden keine zusätzliche Antwortübertragung und keine Geräteprüfung behauptet. Die Tests laden keine Modelle und verwenden keine echten Nutzerdateien oder Konten.
+
+Der gemeinsame Abschlusslauf bestand mit **472 unterschiedlichen Tests ohne übersprungene Fälle**; der vollständige lokale Produktionsbuild erzeugte erfolgreich **509 statische Seiten**. Protokolle liegen außerhalb des Repositorys unter `work/regional-law-qa/tests-oct24-twelfth.txt` und `build-oct24-twelfth.txt`. Der tatsächliche öffentliche Release wird getrennt in `release-oct24-twelfth.json` geprüft. Geschützte URLs führen ohne Anmeldung zur Preisseite; deren Status beweist keine angemeldete Lehrtextanzeige.

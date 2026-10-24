@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import styles from "../styles/PageMenu.module.css";
 
 export const PAGE_MENU_OUTLET_ID = "jl-page-menu";
+export const PAGE_MENU_ROUTE_ATTRIBUTE = "data-page-menu-route";
 
 // The page contributes controls to the existing lower menu. It never creates
 // another navigation bar or moves the outlet owned by the shared app shell.
@@ -37,14 +38,47 @@ export default function PageMenu({ title = "Auf dieser Seite", children, openIni
   const initiallyOpened = useRef(false);
 
   useEffect(() => {
-    setOutlet(document.getElementById(PAGE_MENU_OUTLET_ID));
+    const current = document.getElementById(PAGE_MENU_OUTLET_ID);
+    if (current) {
+      setOutlet(current);
+      return;
+    }
+    // The shared shell can mount after this page (for example while its
+    // pathname becomes ready). Observe only until its existing outlet arrives.
+    if (typeof MutationObserver === "undefined") return;
+    let active = true;
+    const observer = new MutationObserver(() => {
+      if (!active) return;
+      const target = document.getElementById(PAGE_MENU_OUTLET_ID);
+      if (!target) return;
+      observer.disconnect();
+      setOutlet(target);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => { active = false; observer.disconnect(); };
   }, []);
 
-  // This effect runs after the portal commit: its controls are present when
-  // the native details menu opens. Updating controls must not reopen it.
+  // Wait for both the committed portal and the shell's route-close effect.
+  // The readiness marker avoids opening before a delayed router update closes
+  // the menu again. Once consumed, later updates cannot override user closing.
   useEffect(() => {
     if (!outlet || !openInitially || initiallyOpened.current) return;
-    if (openPageMenu(initialFocusId)) initiallyOpened.current = true;
+    const openWhenReady = () => {
+      if (initiallyOpened.current) return;
+      const currentPath = window.location.pathname + window.location.search;
+      if (outlet.getAttribute(PAGE_MENU_ROUTE_ATTRIBUTE) !== currentPath) return;
+      if (openPageMenu(initialFocusId)) initiallyOpened.current = true;
+    };
+    openWhenReady();
+    if (initiallyOpened.current || typeof MutationObserver === "undefined") return;
+    let active = true;
+    const observer = new MutationObserver(() => {
+      if (!active) return;
+      openWhenReady();
+      if (initiallyOpened.current) observer.disconnect();
+    });
+    observer.observe(outlet, { attributes: true, attributeFilter: [PAGE_MENU_ROUTE_ATTRIBUTE] });
+    return () => { active = false; observer.disconnect(); };
   }, [outlet, openInitially, initialFocusId]);
 
   if (!outlet) return null;

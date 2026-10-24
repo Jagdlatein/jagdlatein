@@ -26,10 +26,10 @@ export default function JagdrechtHome({ discoveryModules, regionCountries = [] }
         <h1>Jagdrecht</h1>
         <p className={styles.intro}>Wähle Land, Prüfungsregion und Thema im unteren Menü.</p>
       </header>
-      <PageMenu title="Jagdrecht – Land wählen" openInitially>
+      <PageMenu title="Jagdrecht – Land wählen" openInitially initialFocusId="jagdrecht-land-de">
       <RegionalLawResume countries={regionCountries} />
           {countries.map((country) => (
-            <Link key={country.id} href={`/jagdrecht/${country.slug}`} prefetch={false}>
+            <Link key={country.id} id={`jagdrecht-land-${country.slug}`} href={`/jagdrecht/${country.slug}`} prefetch={false}>
               <AppIcon name={`flag-${country.id}`} size={21} />{country.title}
             </Link>
           ))}
