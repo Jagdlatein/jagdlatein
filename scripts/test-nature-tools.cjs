@@ -33,7 +33,7 @@ function engine() {
   const hooks={
     useState(initial){const i=cursor++; if(!slots[i])slots[i]={value:typeof initial==='function'?initial():initial}; return[slots[i].value,value=>{slots[i].value=typeof value==='function'?value(slots[i].value):value}];},
     useRef(initial){const i=cursor++; if(!slots[i])slots[i]={value:{current:initial}}; return slots[i].value;},
-    useEffect(fn){cursor++;effects.push(fn);}
+    useEffect(fn,deps){const i=cursor++;if(!slots[i]||!deps||deps.some((value,j)=>!Object.is(value,slots[i].deps[j]))){slots[i]={deps};effects.push(fn);}}
   };
   return {hooks,render(fn){cursor=0;return fn();},runEffects(){for(const effect of effects.splice(0))effect();}};
 }
@@ -103,7 +103,8 @@ test('All three tools use one layout, render one main region and usable form lab
 });
 
 test('The plant learning selector opens photo development directly and returns to the searchable atlas',()=>{
-  const s=setup('components/PlantAtlas.js');
+  const router={isReady:true,query:{},push:async update=>{router.query=update.query;}};
+  const s=setup('components/PlantAtlas.js',{},router);
   const select=()=>find(s.tree,node=>node.type==='label'&&text(node).startsWith('Lernangebot'));
   const choose=value=>{const control=find(select(),node=>node.type==='select');assert.ok(control);control.props.onChange({target:{value}});s.redraw();};
   choose('entwicklung');assert.ok(find(s.tree,node=>node.type?.name==='DevelopmentPhotoSeries'));
@@ -112,7 +113,7 @@ test('The plant learning selector opens photo development directly and returns t
 });
 test('Valid direct entry parameters open the intended profiles; unknown values are ignored',()=>{
   const previous=global.window;try{
-    global.window={location:{search:'?eintrag=waldkiefer'}};const p=setup('components/PlantAtlas.js');p.e.runEffects();p.redraw();assert.match(text(p.tree),/Waldkiefer \/ Waldföhre/);
+    const p=setup('components/PlantAtlas.js',{}, {isReady:true,query:{eintrag:'waldkiefer'}});p.e.runEffects();p.redraw();assert.equal(find(p.tree,item=>item.props?.id==='plant-title').props.children,'Waldkiefer / Waldföhre');
     const t=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{eintrag:'biber-nagespur'}});t.e.runEffects();t.redraw();assert.equal(find(t.tree,item=>item.props?.id==='tracks-title').props.children,'Nagespur des Bibers');
     const unknown=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{eintrag:'nonexistent'}});unknown.e.runEffects();unknown.redraw();assert.equal(find(unknown.tree,item=>item.props?.id==='tracks-title'),null);assert.match(text(unknown.tree),/Diese Spur ist nicht verfügbar/);
   }finally{if(previous===undefined)delete global.window;else global.window=previous;}
@@ -122,17 +123,17 @@ test('Documentation checklist is reversible and counts only selected current-ses
 });
 test('Choosing a plant preserves its URL, focuses its details, and reduces seasonal controls to one select',()=>{
   const updates=[]; let focused=0;
-  const router={isReady:true,pathname:'/lernen/pflanzenatlas',query:{eintrag:'rotbuche',retained:'yes'},replace:async update=>{updates.push(update);router.query=update.query;}};
+  const router={isReady:true,pathname:'/lernen/pflanzenatlas',query:{eintrag:'rotbuche',retained:'yes'},push:async update=>{updates.push(update);router.query=update.query;}};
   const p=setup('components/PlantAtlas.js',{},router);p.e.runEffects();p.redraw();
-  find(p.tree,n=>n.props?.id==='plant-title').props.ref.current={focus:()=>{focused++;}};
+  find(p.tree,n=>n.type==='div'&&n.props.ref).props.ref.current={querySelector:()=>({focus:()=>{focused++;},scrollIntoView:()=>{}})};
   find(p.tree,n=>n.type==='button'&&text(n).startsWith('Waldkiefer / Waldföhre')).props.onClick();p.redraw();p.e.runEffects();p.redraw();
   assert.equal(focused,1);assert.equal(updates[0].query.eintrag,'waldkiefer');assert.equal(updates[0].query.retained,'yes');assert.equal(updates[0].hash,'plant-detail');
-  const season=find(p.tree,n=>n.type==='select'&&n.props['aria-controls']==='plant-season');assert.ok(season);
+  const season=find(p.tree,n=>n.type==='select'&&n.props.id==='plant-season-choice');assert.ok(season);
   season.props.onChange({target:{value:'winter'}});p.redraw();p.e.runEffects();p.redraw();
   assert.equal(updates.at(-1).query.jahreszeit,'winter');assert.equal(updates.at(-1).query.eintrag,'waldkiefer');
   assert.match(text(find(p.tree,n=>n.props?.id==='plant-season')),/^Winter/);
   assert.equal(find(p.tree,n=>n.type==='button'&&n.props['aria-controls']==='plant-season'),null);
   router.query={eintrag:'unknown',jahreszeit:'unknown'};p.e.runEffects();p.redraw();p.e.runEffects();p.redraw();
-  assert.equal(find(p.tree,n=>n.props?.id==='plant-title').props.children,plants.plantAtlasEntries[0].name);
-  assert.equal(find(p.tree,n=>n.type==='select'&&n.props['aria-controls']==='plant-season').props.value,'sommer');
+  assert.equal(find(p.tree,n=>n.props?.id==='plant-title'),null);
+  assert.match(text(p.tree),/Dieses Pflanzenthema ist nicht verfügbar/);
 });

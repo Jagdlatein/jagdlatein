@@ -4490,9 +4490,747 @@
           "reviewedOn": "2026-10-23",
           "verified": true,
           "originalVerified": true
+        },
+        {
+          "id": "de-ni-jagdhund-verfuegbarkeit",
+          "topic": "jagdausuebung",
+          "title": "Ein als brauchbar geprüfter Jagdhund muss verfügbar sein",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 4 Abs. 1",
+          "officialText": "(1) Die Jagdausübungsberechtigten stellen sicher, dass ihnen ein für den Jagdbezirk als brauchbar geprüfter Jagdhund zur Verfügung steht.",
+          "summary": "Die Jagdausübungsberechtigten müssen sicherstellen, dass ein für den Jagdbezirk als brauchbar geprüfter Jagdhund zur Verfügung steht. Entscheidend ist die geprüfte Brauchbarkeit für den Einsatzbereich. Eine bestimmte Rasse, lange Haltung oder die bloße Einschätzung, der Hund könne die Aufgabe bewältigen, ersetzt diese Prüfung nicht. Davon zu unterscheiden ist die zusätzliche Pflicht zum tatsächlichen Einsatz bei den in Absatz 2 genannten Jagden.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdhundewesen-nds.de/wissenswertes/news/aenderung_des_niedersaechsischen_jagdgesetzes_das_ist_fuer_jagdhundefuehrer_wichtig",
+              "publisher": "Landesjägerschaft Niedersachsen e. V., Jagdhundewesen",
+              "title": "Eigene fachliche Erläuterung vom 12. August 2026: geprüfte Brauchbarkeit, tatsächlicher Einsatz, Ausbildungshunde, Naturbaujagd, bestätigte Nachsuchenführer und Jagdschutz",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-jagdhund-verfuegbarkeit-q1",
+              "prompt": "Ein niedersächsischer Revierinhaber hält einen erfahrenen Jagdhund, dessen Brauchbarkeit nie geprüft wurde. Erfüllt die bloße Erfahrung des Hundes § 4 Abs. 1?",
+              "choices": [
+                "Ja, sobald der Hund einer anerkannten Jagdhunderasse angehört.",
+                "Nein. Ein für den Jagdbezirk als brauchbar geprüfter Jagdhund muss zur Verfügung stehen.",
+                "Ja, wenn der Halter die Brauchbarkeit selbst schriftlich erklärt."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Vorschrift verlangt geprüfte Brauchbarkeit. Ausbildung und praktische Erfahrung allein ersetzen den Prüfungsnachweis nicht."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-jagdhunde-einsatz-ausbildung",
+          "topic": "jagdausuebung",
+          "title": "Hundeeinsatz: ausreichend geprüfte Hunde und Grenzen für Ausbildungshunde",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 4 Abs. 2",
+          "officialText": "(2) Bei jeder Nachsuche, jeder Bewegungsjagd sowie jeder Jagd auf Federwild sind ausschließlich hierfür als brauchbar geprüfte Jagdhunde in ausreichender Zahl einzusetzen. Bewegungsjagd ist eine Jagd, bei der Wild gezielt beunruhigt wird. Hunde in Ausbildung dürfen, außer bei der Nachsuche, zusätzlich eingesetzt werden, soweit dies für deren Ausbildung zum brauchbaren Jagdhund erforderlich ist. Wild, das offensichtlich schwerkrank ist und sofort zur Strecke gebracht werden kann, darf ohne Hund verfolgt werden.",
+          "summary": "Bei Nachsuchen, Bewegungsjagden und Federwildjagden müssen ausreichend viele für die jeweilige Aufgabe als brauchbar geprüfte Hunde tatsächlich eingesetzt werden. Bloßes Bereithalten am Jagdort genügt dieser Einsatzpflicht nicht. Ausbildungshunde dürfen außerhalb von Nachsuchen zusätzlich eingesetzt werden, soweit das für ihre Ausbildung erforderlich ist. Sie ersetzen nicht die vorgeschriebenen geprüften Hunde. Die eng begrenzte Ausnahme in Satz 4 betrifft offensichtlich schwerkrankes Wild, das sofort zur Strecke gebracht werden kann; sie ist keine allgemeine Befreiung vom Hundeeinsatz.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdhundewesen-nds.de/wissenswertes/news/aenderung_des_niedersaechsischen_jagdgesetzes_das_ist_fuer_jagdhundefuehrer_wichtig",
+              "publisher": "Landesjägerschaft Niedersachsen e. V., Jagdhundewesen",
+              "title": "Eigene fachliche Erläuterung vom 12. August 2026: geprüfte Brauchbarkeit, tatsächlicher Einsatz, Ausbildungshunde, Naturbaujagd, bestätigte Nachsuchenführer und Jagdschutz",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-jagdhunde-einsatz-ausbildung-q1",
+              "prompt": "Bei einer niedersächsischen Bewegungsjagd werden die erforderlichen brauchbar geprüften Hunde lediglich am Treffpunkt bereitgehalten und nicht eingesetzt. Entspricht das § 4 Abs. 2 Satz 1?",
+              "choices": [
+                "Ja, das bloße Mitführen reicht nach dem aktuellen Wortlaut immer aus.",
+                "Ja, sobald zusätzlich ein ungeprüfter Hund mitläuft.",
+                "Nein. Die hierfür brauchbar geprüften Hunde sind in ausreichender Zahl einzusetzen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Seit der Neufassung verlangt die Norm den Einsatz, nicht nur das Mitführen. Die Brauchbarkeit muss zur konkreten Arbeit passen."
+            },
+            {
+              "id": "de-ni-jagdhunde-einsatz-ausbildung-q2",
+              "prompt": "Darf bei einer Nachsuche in Niedersachsen ein noch in Ausbildung befindlicher, ungeprüfter Hund nach § 4 Abs. 2 Satz 3 zusätzlich als Ausbildungshund eingesetzt werden?",
+              "choices": [
+                "Nein. Die Zusatzregel für Ausbildungshunde nimmt Nachsuchen ausdrücklich aus.",
+                "Ja, eine erfahrene Hundeführung hebt diese Ausnahme automatisch auf.",
+                "Ja, wenn daneben ein geprüfter Hund vorhanden ist, gilt die Ausnahme nicht mehr."
+              ],
+              "correctIndex": 0,
+              "explanation": "Ausbildungshunde sind nach Satz 3 nur außerhalb der Nachsuche zusätzlich zulässig, soweit dies für ihre Ausbildung erforderlich ist."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-baujagd-naturerdbau",
+          "topic": "jagdausuebung",
+          "title": "Keine Raubwildjagd mit Hunden im Naturerdbau",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 24 Abs. 1 Satz 1 Nr. 3 (Auszug)",
+          "officialText": "Über § 19 des Bundesjagdgesetzes hinaus verboten ist die Jagd\n[…]\n3. auf Raubwild im Naturerdbau mit Hunden,\n[…]",
+          "summary": "In Niedersachsen ist die Jagd auf Raubwild im Naturerdbau mit Hunden verboten. Das ist eine konkrete Kombination aus Wildgruppe, natürlichem Erdbau und Hundeeinsatz. Der spezielle Verbotstatbestand erfasst Kunstbaue nicht. Daraus folgt jedoch keine pauschale Erlaubnis jeder anderen Baujagd: Die weiteren Regeln zur zulässigen Jagd, zum Hundeeinsatz und zum Tierschutz bleiben maßgeblich. Für die Lernfrage ist die Unterscheidung zwischen Naturerdbau und Kunstbau entscheidend.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdhundewesen-nds.de/wissenswertes/news/aenderung_des_niedersaechsischen_jagdgesetzes_das_ist_fuer_jagdhundefuehrer_wichtig",
+              "publisher": "Landesjägerschaft Niedersachsen e. V., Jagdhundewesen",
+              "title": "Eigene fachliche Erläuterung vom 12. August 2026: geprüfte Brauchbarkeit, tatsächlicher Einsatz, Ausbildungshunde, Naturbaujagd, bestätigte Nachsuchenführer und Jagdschutz",
+              "kind": "context"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-baujagd-naturerdbau-q1",
+              "prompt": "Welche Handlung wird vom neuen niedersächsischen Verbot des § 24 Abs. 1 Satz 1 Nr. 3 unmittelbar erfasst?",
+              "choices": [
+                "Die Jagd auf Raubwild im Naturerdbau mit Hunden.",
+                "Ausschließlich die Arbeit von Hunden in künstlich angelegten Bauen.",
+                "Jede Jagdhundeausbildung im offenen Feld."
+              ],
+              "correctIndex": 0,
+              "explanation": "Der Wortlaut nennt ausdrücklich Raubwild, Naturerdbau und Hunde. Er ist kein allgemeines Verbot sämtlicher Hundeausbildung oder jeder Kunstbauarbeit."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-totfang-verbot-ausnahme",
+          "topic": "jagdausuebung",
+          "title": "Totfanggeräte: Verbot und begrenzte Steinmarderausnahme",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 24 Abs. 1 Satz 1 Nr. 4 (Auszug)",
+          "officialText": "Über § 19 des Bundesjagdgesetzes hinaus verboten ist die Jagd\n[…]\n4. mit Totfanggeräten, ausgenommen der Fang von Steinmardern in befriedeten Bezirken nach § 9 Abs. 1 unter Verwendung zugelassener Fanggeräte.",
+          "summary": "Die Jagd mit Totfanggeräten ist in Niedersachsen grundsätzlich verboten. Die gesetzliche Ausnahme betrifft Steinmarder in befriedeten Bezirken nach § 9 Abs. 1 und verlangt zugelassene Fanggeräte. Sie ist keine allgemeine Ausnahme für sämtliche Marder, für Fangplätze im freien Revier oder für beliebige Geräte. Welche Geräte konkret zugelassen sind und welche weiteren Voraussetzungen für die Fangjagd gelten, ist davon getrennt zu prüfen; der Ausnahmesatz ersetzt diese Anforderungen nicht.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-totfang-verbot-ausnahme-q1",
+              "prompt": "Welche Ausnahme nennt § 24 Abs. 1 Satz 1 Nr. 4 NJagdG vom grundsätzlichen Totfanggeräteverbot?",
+              "choices": [
+                "Jeden Fuchsfang, sofern die Falle täglich kontrolliert wird.",
+                "Den Fang von Steinmardern in befriedeten Bezirken nach § 9 Abs. 1 mit zugelassenen Fanggeräten.",
+                "Jeden Marderfang im freien Revier mit einem selbst gebauten Gerät."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Ausnahme ist an Steinmarder, den gesetzlich bezeichneten befriedeten Bezirk und zugelassene Geräte gebunden. Sie ist keine allgemeine Fangjagdfreigabe."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-rehwild-ohne-abschussplan",
+          "topic": "jagdausuebung",
+          "title": "Rehwild: kein Abschussplan und Ende der alten Pläne",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 25 Abs. 1 Satz 3 und § 42 Abs. 2 (Auszüge)",
+          "officialText": "§ 25 Abs. 1 Satz 3:\nAbweichend von § 21 Abs. 2 Satz 1 des Bundesjagdgesetzes ist für Rehwild kein Abschussplan aufzustellen.\n\n§ 42 Abs. 2:\n(2) Am 25. Juni 2026 bestehende Abschusspläne für Rehwild verlieren am 26. Juni 2026 ihre Gültigkeit.",
+          "summary": "Für Rehwild wird in Niedersachsen nach der seit 26. Juni 2026 geltenden Regel kein Abschussplan mehr aufgestellt. Bereits am 25. Juni bestehende Rehwildpläne verloren am folgenden Tag ihre Gültigkeit. Die Abschaffung betrifft die Planung, nicht die Dokumentation: Die Streckenliste bleibt erforderlich. Ebenso bleiben die übrigen rechtlichen Grenzen der Rehwildbejagung bestehen. Aus dem Wegfall des Plans lässt sich keine zeitlich oder sachlich unbeschränkte Jagderlaubnis ableiten.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-rehwild-ohne-abschussplan-q1",
+              "prompt": "Ein niedersächsischer Revierinhaber will für die kommende Rehwildbejagung einen neuen behördlichen Abschussplan aufstellen. Welche Regel gilt seit 26. Juni 2026?",
+              "choices": [
+                "Ein jährlicher Rehwildplan ist ausnahmslos weiterhin vorgeschrieben.",
+                "Ein Rehwildplan wird automatisch durch einen privaten Dreijahresplan ersetzt.",
+                "Für Rehwild ist kein Abschussplan aufzustellen; die Streckenliste bleibt dennoch Pflicht."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 25 Abs. 1 Satz 3 nimmt Rehwild von der Abschussplanung aus. § 42 Abs. 2 beendet auch die Gültigkeit der alten Pläne; die Dokumentationspflicht entfällt dadurch nicht."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-streckenliste-inhalt-frist",
+          "topic": "jagdausuebung",
+          "title": "Streckenliste: alle Wildarten, Fallwild und jährliche Meldung",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 25 Abs. 5 Sätze 4 und 5 (Auszug)",
+          "officialText": "Die Jagdausübungsberechtigten haben für ihren Jagdbezirk unter Verwendung eines von der obersten Jagdbehörde bestimmten elektronischen Formulars für alle Wildarten eine fortlaufend zu ergänzende Streckenliste zu führen, in die das erlegte Wild und das Fallwild aufzunehmen sind und die der Jagdbehörde spätestens am 15. Februar eines jeden Jahres zu übermitteln ist. Die Jagdbehörde kann die Übermittlung der Streckenliste auch zu früheren Terminen anordnen.",
+          "summary": "Die Streckenliste wird für den Jagdbezirk im vorgegebenen elektronischen Formular fortlaufend ergänzt. Sie erfasst alle Wildarten und sowohl erlegtes Wild als auch Fallwild. Eine Liste nur für planpflichtiges Schalenwild wäre deshalb unvollständig. Der reguläre jährliche Übermittlungstermin ist spätestens der 15. Februar. Hat die Behörde einen früheren Termin angeordnet, ist dieser zu beachten. Der Wegfall des Rehwildabschussplans hebt diese eigenständige Dokumentations- und Meldepflicht nicht auf.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://jaegerschaft-verden.de/wp-content/uploads/2026/02/Abschussplanung-und-Steckenliste-2026.pdf",
+              "publisher": "Landkreis Verden, Fachdienst Ordnung und Verkehr",
+              "title": "Eigenes Rundschreiben vom 20. Januar 2026: fortlaufende elektronische Liste aller Wildarten einschließlich Fallwild, Jahresmeldung 15. Februar; alter Satzverweis an Novelle abgeglichen",
+              "kind": "context"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-streckenliste-inhalt-frist-q1",
+              "prompt": "Welche Tiere sind nach § 25 Abs. 5 Satz 4 NJagdG in der Streckenliste zu berücksichtigen?",
+              "choices": [
+                "Erlegtes Wild und Fallwild aller Wildarten.",
+                "Nur Arten mit einem behördlichen Abschussplan, niemals Rehwild.",
+                "Nur erlegtes Hochwild; Verkehrsfallwild gehört grundsätzlich nicht hinein."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm nennt alle Wildarten sowie erlegtes Wild und Fallwild. Abschussplan und Streckenliste sind verschiedene Instrumente."
+            },
+            {
+              "id": "de-ni-streckenliste-inhalt-frist-q2",
+              "prompt": "Für die niedersächsische Streckenliste wurde kein früherer behördlicher Übermittlungstermin angeordnet. Welcher reguläre jährliche späteste Termin gilt?",
+              "choices": [
+                "Der 31. Dezember des vorherigen Kalenderjahres.",
+                "Der 15. Februar eines jeden Jahres.",
+                "Der 15. April; der Februar betrifft in Niedersachsen nie die Streckenliste."
+              ],
+              "correctIndex": 1,
+              "explanation": "§ 25 Abs. 5 Satz 4 nennt den 15. Februar. Satz 5 lässt frühere behördliche Termine zu; diese Besonderheit ist im Beispiel ausgeschlossen."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-wildfolge-nachbar-fortsetzung",
+          "topic": "wildschutz",
+          "title": "Wildfolge: informieren und die Nachsuche übergeben",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 27 Abs. 1",
+          "officialText": "(1) Wechselt krankgeschossenes Wild in einen Nachbarjagdbezirk, so hat die zur Jagd befugte Person, die geschossen hat (Schützin oder Schütze), oder in deren Auftrag eine zur Jagd befugte Begleitperson die Stelle, an der das Wild über die Grenze gewechselt ist, kenntlich zu machen und eine im Nachbarjagdbezirk zur Jagd befugte Person (Jagdnachbarin oder Jagdnachbar) unverzüglich zu benachrichtigen. Die Jagdnachbarin oder der Jagdnachbar hat die Nachsuche unverzüglich selbst oder durch eine beauftragte Person fortzusetzen. Die Schützin oder der Schütze oder die Begleitperson (Satz 1) soll sich an der Nachsuche beteiligen.",
+          "summary": "Beim Überwechseln krankgeschossenen Wildes muss die Schützin oder der Schütze beziehungsweise die beauftragte jagdbefugte Begleitperson die Grenzstelle kennzeichnen und den Jagdnachbarn unverzüglich benachrichtigen. Dieser muss die Nachsuche unverzüglich selbst oder durch eine beauftragte Person fortsetzen. Die Schützenseite soll sich beteiligen. Das Beispiel behandelt die gesetzliche Grundregel ohne abweichende Wildfolgevereinbarung und ohne Niedergehen in Sichtweite. Besondere Wildfolge- und Bestätigungsbefugnisse sind gesondert geregelt; die Jagdgrenze darf nicht einfach ignoriert werden.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://jaegerschaft-uelzen.net/2023/01/wildfolgevereinbarung/",
+              "publisher": "Jägerschaft des Landkreises Uelzen e. V.",
+              "title": "Eigene Erläuterung und Empfehlung zur Wildfolgevereinbarung vom 2. Januar 2023; nur weiterhin unveränderte Absätze 1 und 7 verwendet, kein alter Abtransport- oder Wolfsregeltext",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-wildfolge-nachbar-fortsetzung-q1",
+              "prompt": "Krankgeschossenes Wild wechselt in Niedersachsen ins Nachbarrevier und bleibt außer Sicht. Eine abweichende Wildfolgevereinbarung besteht nicht. Wer muss nach unverzüglicher Benachrichtigung die Nachsuche fortsetzen?",
+              "choices": [
+                "Die Schützin darf die Reviergrenze stets ohne Rücksprache bewaffnet überschreiten.",
+                "Es muss bis zum nächsten Jagdtag gewartet werden.",
+                "Die Jagdnachbarin oder der Jagdnachbar selbst oder eine beauftragte Person."
+              ],
+              "correctIndex": 2,
+              "explanation": "§ 27 Abs. 1 ordnet die unverzügliche Fortsetzung dem Jagdnachbarn zu. Die Schützenseite soll sich an der Nachsuche beteiligen; die besonderen Sichtweitenregeln sind hier nicht einschlägig."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-wildfolge-vereinbarung",
+          "topic": "wildschutz",
+          "title": "Wildfolgevereinbarung: schriftlich und ohne weniger Tierschutz",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 27 Abs. 7",
+          "officialText": "(7) Abweichende Wildfolgevereinbarungen sind zulässig, soweit sie den Tierschutz nicht einschränken. Sie bedürfen der Schriftform.",
+          "summary": "Benachbarte Reviere können die Wildfolge durch eine schriftliche Vereinbarung abweichend regeln. Die Vereinbarung soll klare Abläufe ermöglichen und Verzögerungen vermeiden. Sie darf den gesetzlichen Tierschutz nicht einschränken. Eine bloße mündliche Absprache erfüllt die vorgeschriebene Schriftform nicht. Ebenso wenig rechtfertigt ein schriftlicher Vertrag, die notwendige Nachsuche aus Bequemlichkeit zu verschieben. Der vorliegende Baustein behandelt Form und Tierschutzgrenze, keine pauschale Übertragung sämtlicher Jagdrechte.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://jaegerschaft-uelzen.net/2023/01/wildfolgevereinbarung/",
+              "publisher": "Jägerschaft des Landkreises Uelzen e. V.",
+              "title": "Eigene Erläuterung und Empfehlung zur Wildfolgevereinbarung vom 2. Januar 2023; nur weiterhin unveränderte Absätze 1 und 7 verwendet, kein alter Abtransport- oder Wolfsregeltext",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-wildfolge-vereinbarung-q1",
+              "prompt": "Zwei niedersächsische Reviere wollen die Wildfolge abweichend vereinbaren. Welche Kombination entspricht § 27 Abs. 7?",
+              "choices": [
+                "Schriftform und keine Einschränkung des Tierschutzes.",
+                "Jede mündliche Absprache ist ausreichend, selbst wenn sich Nachsuchen vermeidbar verzögern.",
+                "Nur eine telefonische Mitteilung an einen Jagdverein; ein Vertrag ist gesetzlich ausgeschlossen."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Norm erlaubt Abweichungen ausdrücklich, verlangt aber Schriftform und schützt den Tierschutz als Grenze der Vereinbarung."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-bestaetigte-schweisshundfuehrung",
+          "topic": "wildschutz",
+          "title": "Bestätigte Schweißhundführung: Auftrag und Grenzen im Sperrgebiet",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 28",
+          "officialText": "Von der Jagdbehörde oder in einem anderen Bundesland bestätigte Schweißhundführerinnen oder Schweißhundführer dürfen auch mit Begleitung eine Nachsuche auf krankgeschossenes oder schwerkrankes Schalenwild und auf krankgeschossene oder schwerkranke Wölfe ohne Rücksicht auf Jagdbezirksgrenzen durchführen. Ihr oder ihm muss hierzu ein Auftrag von einer zur Jagd befugten Person erteilt worden sein. § 27 Abs. 2 Sätze 2 und 4 bis 6 und Abs. 5 und 8 Sätze 1 und 2 gilt entsprechend. Eine Nachsuche findet bei einem Wechsel in einen militärischen oder aus anderen wichtigen Sicherheitsgründen gesperrten Nachbarjagdbezirk nur mit Genehmigung der dort verantwortlichen Personen statt. Die Schweißhundführerin oder der Schweißhundführer soll die Jagdausübungsberechtigten, deren Jagdbezirke bei der Nachsuche betreten worden sind, unverzüglich benachrichtigen.",
+          "summary": "Die besondere revierübergreifende Nachsuchebefugnis setzt die Bestätigung als Schweißhundführerin oder Schweißhundführer voraus; eine Bestätigung aus einem anderen Bundesland wird im Gesetz ausdrücklich einbezogen. Außerdem ist ein Auftrag einer zur Jagd befugten Person erforderlich. Die Regel erfasst krankgeschossenes oder schwerkrankes Schalenwild und entsprechende Wölfe. Für militärische oder aus anderen wichtigen Sicherheitsgründen gesperrte Nachbarreviere genügt der Auftrag allein nicht: Die dort verantwortlichen Personen müssen die Genehmigung erteilen. Die anschließende Benachrichtigung der betroffenen Revierinhaber ist als Sollpflicht geregelt. Die im Original genannten Verweisungen gelten daneben.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdhundewesen-nds.de/wissenswertes/news/aenderung_des_niedersaechsischen_jagdgesetzes_das_ist_fuer_jagdhundefuehrer_wichtig",
+              "publisher": "Landesjägerschaft Niedersachsen e. V., Jagdhundewesen",
+              "title": "Eigene fachliche Erläuterung vom 12. August 2026: geprüfte Brauchbarkeit, tatsächlicher Einsatz, Ausbildungshunde, Naturbaujagd, bestätigte Nachsuchenführer und Jagdschutz",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-bestaetigte-schweisshundfuehrung-q1",
+              "prompt": "Eine bestätigte Schweißhundführerin soll in Niedersachsen revierübergreifend krankgeschossenes Schalenwild nachsuchen. Welche zusätzliche Voraussetzung nennt § 28 Satz 2?",
+              "choices": [
+                "Eine private Suchankündigung ohne Auftrag genügt in jedem Fall.",
+                "Ein Auftrag von einer zur Jagd befugten Person.",
+                "Die Zustimmung aller Grundstückseigentümer ersetzt den Auftrag automatisch."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Bestätigung und der konkrete Auftrag sind getrennte Voraussetzungen. Die Vorschrift gilt auch für in einem anderen Bundesland bestätigte Schweißhundführer."
+            },
+            {
+              "id": "de-ni-bestaetigte-schweisshundfuehrung-q2",
+              "prompt": "Eine beauftragte bestätigte Schweißhundführerin verfolgt in Niedersachsen eine Fährte zu einem militärisch gesperrten Nachbarrevier. Was gilt nach § 28 Satz 4?",
+              "choices": [
+                "Die Bestätigung hebt die Sperrung automatisch auf.",
+                "Eine spätere Benachrichtigung ersetzt jede vorherige Genehmigung.",
+                "Die Nachsuche dort ist nur mit Genehmigung der dort verantwortlichen Personen zulässig."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die besondere Nachsuchebefugnis beseitigt Sicherheitsgründe nicht. Die aktuelle Regel ermöglicht die Nachsuche im Sperrgebiet, verlangt dafür aber dessen verantwortliche Genehmigung."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-wildunfall-melden",
+          "topic": "wildschutz",
+          "title": "Wildunfall: unverzüglich am richtigen Ort melden",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 28 a Abs. 1 Satz 1",
+          "officialText": "Wildunfälle mit Schalenwild oder mit Wölfen sind von den Unfallbeteiligten unverzüglich einer am Unfallort zur Jagd befugten Person oder der Polizei anzuzeigen.",
+          "summary": "Unfallbeteiligte müssen einen Wildunfall mit Schalenwild oder Wolf unverzüglich melden. Das Gesetz nennt zwei mögliche Empfänger: eine am Unfallort zur Jagd befugte Person oder die Polizei. Eine verspätete Meldung erst zur späteren Schadenabwicklung genügt der Unverzüglichkeit nicht. Auch wenn ein angefahrenes Reh flüchtet, entfällt die Meldung nicht. Für unbeteiligte Tierbeobachtungen oder andere Wildarten wird mit diesem Satz keine zusätzliche, gleichlautende gesetzliche Meldepflicht behauptet.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://m.ljn.de/jaegerschaften/osnabrueckstadt/ueber-uns/aktuelles/news-artikel/news/wildunfaelle-2",
+              "publisher": "Jägerschaft Osnabrück-Stadt e. V., M. Aschmann",
+              "title": "Eigener Wildunfallratgeber vom 28. Juli 2025: unverzügliche Meldung an Polizei oder Jagdpächter; konkret auf Schalenwild verwendet",
+              "kind": "context"
+            },
+            {
+              "url": "https://pudwell-gutachten.de/ratgeber/wildunfall/",
+              "publisher": "KFZ-Sachverständigenbüro Florian Pudwell, Rosengarten",
+              "title": "Eigene Erläuterung, Stand 24. September 2026: Meldepflicht in Niedersachsen, Schalenwild/Wolf und geflüchtete Unfalltiere",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-wildunfall-melden-q1",
+              "prompt": "Nach einem Zusammenstoß in Niedersachsen flüchtet ein verletztes Reh. Wie erfüllen die Unfallbeteiligten die Meldepflicht des § 28 a Abs. 1 Satz 1?",
+              "choices": [
+                "Es reicht, den eigenen Versicherer irgendwann zu informieren.",
+                "Nur wenn das Reh tot am Unfallort liegt, entsteht eine Meldungspflicht.",
+                "Den Unfall unverzüglich einer am Unfallort zur Jagd befugten Person oder der Polizei anzeigen."
+              ],
+              "correctIndex": 2,
+              "explanation": "Die Pflicht knüpft an den Wildunfall mit Schalenwild an und entfällt nicht durch die Flucht des Tieres. Die gesetzlich genannten Empfänger sind Jagdbefugte am Unfallort oder die Polizei."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-fangschuss-schrot-strassenraum",
+          "topic": "jagdausuebung",
+          "title": "Begrenzte Schrotregel für den Fangschuss im Straßenraum",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 28 a Abs. 2; Wortlaut des verkündeten Änderungsgesetzes",
+          "officialText": "(2) Abweichend von § 19 Abs. 1 Nr. 1 des Bundesjagdgesetzes ist der Fangschuss auf verunfalltes, schwerkrankes oder krankgeschossenes Schalenwild im Straßenraum aus kurzer Distanz unter der Verwendung von Schrotmunition erlaubt.",
+          "summary": "Die niedersächsische Ausnahme betrifft einen Fangschuss auf verunfalltes, schwerkrankes oder krankgeschossenes Schalenwild im Straßenraum aus kurzer Distanz. Sie erlaubt nicht allgemein den Schrotschuss bei jeder regulären Schalenwildjagd. Alle genannten räumlichen und sachlichen Grenzen gehören zur Ausnahme. Die Vorschrift beschreibt eine jagdrechtliche Munitionsausnahme; sie ersetzt keine anderweitig erforderliche Befugnis und keine Prüfung einer sicheren Schussabgabe.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-fangschuss-schrot-strassenraum-q1",
+              "prompt": "Welcher Fall entspricht der eng begrenzten niedersächsischen Ausnahme für Schrotmunition nach § 28 a Abs. 2?",
+              "choices": [
+                "Ein Fangschuss aus kurzer Distanz auf verunfalltes Schalenwild im Straßenraum.",
+                "Jeder planmäßige Schuss auf gesundes Rotwild im Wald.",
+                "Jede Schalenwildjagd, sobald die Büchse nicht verfügbar ist."
+              ],
+              "correctIndex": 0,
+              "explanation": "Die Ausnahme nennt Fangschuss, den besonderen Zustand des Schalenwildes, Straßenraum und kurze Distanz. Sie ist keine allgemeine Zulassung von Schrot für die Schalenwildjagd."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-wildernde-hunde-jagdschutz",
+          "topic": "wildschutz",
+          "title": "Wildernde Hunde: Einfangen statt jagdschutzrechtlicher Tötungsbefugnis",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG)",
+          "citation": "§ 29 Abs. 1 Eingangssatz und Nr. 2 (Auszug)",
+          "officialText": "(1) Die Jagdschutzberechtigten sind in ihrem Jagdbezirk befugt,\n[…]\n2. wildernde Hunde, die sich nicht innerhalb der Einwirkung einer für sie verantwortlichen Person befinden und die nicht als Jagd-, Rettungs-, Hirten-, Blinden-, Polizei- oder sonstige Diensthunde erkennbar sind, einzufangen oder einfangen zu lassen und\n[…]",
+          "summary": "Der Jagdschutz nach dieser Vorschrift erlaubt das Einfangen beziehungsweise Einfangenlassen wildernder Hunde im eigenen Jagdbezirk. Der Hund muss sich außerhalb der Einwirkung einer verantwortlichen Person befinden und darf nicht als einer der gesetzlich ausgenommenen Arbeits- oder Diensthunde erkennbar sein. Die frühere jagdschutzrechtliche Tötungsbefugnis wurde gestrichen. Das bloße Wildern begründet nach dieser Vorschrift deshalb keine Erlaubnis zum Erschießen. Andere Rechtsgrundlagen sind damit nicht pauschal entschieden.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.jagdhundewesen-nds.de/wissenswertes/news/aenderung_des_niedersaechsischen_jagdgesetzes_das_ist_fuer_jagdhundefuehrer_wichtig",
+              "publisher": "Landesjägerschaft Niedersachsen e. V., Jagdhundewesen",
+              "title": "Eigene fachliche Erläuterung vom 12. August 2026: geprüfte Brauchbarkeit, tatsächlicher Einsatz, Ausbildungshunde, Naturbaujagd, bestätigte Nachsuchenführer und Jagdschutz",
+              "kind": "context"
+            },
+            {
+              "url": "https://vjnds.de/aenderung-des-niedersaechsischen-jagdgesetzes/",
+              "publisher": "Verband der Jagdaufseher Niedersachsen e. V.",
+              "title": "Eigene Übersicht zur NJagdG-Novelle 2026: ausgewählte Aussagen am Original geprüft; falsche Datumszeile und andere Verkürzungen nicht übernommen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-wildernde-hunde-jagdschutz-q1",
+              "prompt": "Ein wildernder Hund befindet sich in Niedersachsen außerhalb der Einwirkung einer verantwortlichen Person und ist nicht als gesetzlich ausgenommener Arbeits- oder Diensthund erkennbar. Welche Befugnis gibt § 29 Abs. 1 Nr. 2 den Jagdschutzberechtigten im eigenen Revier?",
+              "choices": [
+                "Das Erschießen allein wegen des Wilderns nach vorheriger privater Ankündigung.",
+                "Das Einfangen oder Einfangenlassen; aus dieser Vorschrift folgt keine Tötungsbefugnis.",
+                "Eine automatische Tötungspflicht bei wiederholtem Auftreten."
+              ],
+              "correctIndex": 1,
+              "explanation": "Die Neufassung nennt Einfangen oder Einfangenlassen. Die frühere Tötungsbefugnis ist entfallen; die Frage betrifft ausdrücklich diese Jagdschutzvorschrift."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
+        },
+        {
+          "id": "de-ni-schiessuebungsnachweis",
+          "topic": "jagdausuebung",
+          "title": "Gesellschaftsjagd: aktuellen Schießübungsnachweis mitführen",
+          "lawTitle": "Niedersächsisches Jagdgesetz (NJagdG) und Niedersächsische Verordnung über den Schießübungsnachweis (NSchießÜVO)",
+          "citation": "§ 24 Abs. 5 Sätze 1 und 2, § 22 Abs. 1 Satz 2 NJagdG; §§ 1 und 2 NSchießÜVO (Auszüge)",
+          "officialText": "§ 24 Abs. 5 Sätze 1 und 2:\nBei einer Gesellschaftsjagd im Sinne des § 22 Abs. 1 Satz 2 hat jede Teilnehmerin oder jeder Teilnehmer, die oder der die Jagd ausüben will, einen Schießübungsnachweis, der den Anforderungen der Verordnung nach Satz 3 entspricht, oder einen gleichwertigen Nachweis mit sich zu führen und der Jagdleiterin oder dem Jagdleiter auf Verlangen vorzuzeigen. Der jeweilige Nachweis darf nicht älter als ein Jahr sein.\n\n§ 22 Abs. 1 Satz 2:\nGesellschaftsjagd im Sinne des § 16 des Bundesjagdgesetzes ist eine Jagd, an der mehr als drei zusammenwirkende Schützinnen oder Schützen teilnehmen.\n\n§ 1 NSchießÜVO:\nAls Schießübung zum Erwerb des Schießübungsnachweises nach § 24 Abs. 5 Satz 1 des Niedersächsischen Jagdgesetzes sind\n1. für die Teilnahme an Gesellschaftsjagden, bei denen Schalenwild erlegt werden soll, mit einer Büchse mit einem Kaliber von .222 oder stärker mindestens 10 Schuss mit Patronenmunition im Sinne der Anlage 1 Abschnitt 1 Unterabschnitt 3 Nr. 1.1 des Waffengesetzes (WaffG) abzugeben, davon mindestens 5 Schuss auf ein sich bewegendes Ziel, das Schalenwild darstellt, und\n2. für die Teilnahme an anderen Gesellschaftsjagden mit einer Flinte in jagdlichem Kaliber 15 Wurfscheiben mit Schrot\nzu beschießen. Die Schießübung hat auf einer Schießstätte im Sinne des § 27 Abs. 1 Satz 1 WaffG stattzufinden.\n\n§ 2 NSchießÜVO:\nDie verantwortliche Aufsichtsperson (§ 11 Abs. 1 der Allgemeinen Waffengesetz-Verordnung) stellt nach Durchführung der Schießübung einen Schießübungsnachweis aus und unterschreibt diesen. In dem Nachweis sind anzugeben:\n1. der Name und der Vorname der Jägerin oder des Jägers, wobei bei mehreren Vornamen nur der Rufname anzugeben ist,\n2. die Bezeichnung des Schießstandes,\n3. die Art der durchgeführten Schießübung und\n4. der Tag, an dem die Schießübung durchgeführt wurde.",
+          "summary": "Wer bei einer Gesellschaftsjagd in Niedersachsen die Jagd ausüben will, muss einen regelgerechten oder gleichwertigen Schießübungsnachweis mitführen und auf Verlangen der Jagdleitung vorzeigen. Er darf nicht älter als ein Jahr sein. Eine Gesellschaftsjagd setzt hier mehr als drei zusammenwirkende Schützen voraus. Für Gesellschaftsjagden auf Schalenwild verlangt die Verordnung auf einer Schießstätte mindestens zehn Büchsenschüsse im Kaliber .222 oder stärker, davon mindestens fünf auf ein bewegliches Schalenwildziel. Für andere Gesellschaftsjagden sind mit der Flinte in jagdlichem Kaliber 15 Wurfscheiben mit Schrot zu beschießen. Die verantwortliche Aufsicht stellt den Nachweis aus und unterschreibt ihn. Die Pflichtangaben sind im Originaltext vollständig aufgeführt. Ein bloßer beliebiger Schießstandbesuch ohne entsprechende Übung und Bescheinigung genügt nicht.",
+          "sources": [
+            {
+              "url": "https://www.ml.niedersachsen.de/download/137418/Konsolidierte_Fassung_des_Niedersaechsischen_Jagdgesetzes_ab_26._Juni_2026_.pdf",
+              "publisher": "Land Niedersachsen, Ministerium für Ernährung, Landwirtschaft und Verbraucherschutz",
+              "title": "NJagdG: amtlich bereitgestellte konsolidierte Abschrift ab 26. Juni 2026; konkrete Vorschriften mit dem verkündeten Änderungsgesetz abgeglichen",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/229795/nds-gvbl-2026-44_Gesetz_zur_Aenderung_des_Niedersaechsischen_Jagdgesetzes.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Nds. GVBl. 2026 Nr. 44 vom 25. Juni 2026: Gesetz vom 23. Juni 2026; Inkrafttreten am 26. Juni 2026",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2026/60/0/nds-gvbl-2026-60.pdf",
+              "publisher": "Niedersächsische Staatskanzlei",
+              "title": "Berichtigung vom 13. Juli 2026, Nds. GVBl. Nr. 60: § 41 Abs. 1 Nr. 21 verweist auf § 25 Abs. 5 Satz 4",
+              "kind": "law"
+            },
+            {
+              "url": "https://www.ml.niedersachsen.de/download/212421/NSchiessUeVO_vom_13._November_2024.pdf",
+              "publisher": "Land Niedersachsen",
+              "title": "NSchießÜVO vom 13. November 2024, in Kraft seit 1. Februar 2025: Anforderungen an Übung und Nachweis",
+              "kind": "law"
+            },
+            {
+              "url": "https://m.ljn.de/jaegerschaften/wolfenbuettel/wild-und-jagd/jagdliches-schiessen",
+              "publisher": "Jägerschaft Wolfenbüttel e. V.",
+              "title": "Eigene Ausbildungsinformation zum jagdlichen Schießen und zum Mitführen des höchstens ein Jahr alten Schießübungsnachweises",
+              "kind": "context"
+            },
+            {
+              "url": "https://m.ljn.de/fileadmin/dateien/ljn.de/hegeringe/Edewecht/241119_Durchfuehrungsverordnung_Schiessen.pdf",
+              "publisher": "Jägerschaft Ammerland e. V., Hegering Edewecht",
+              "title": "Eigene Praxiserläuterung zur Umsetzung der Schießübungsverordnung ab Februar 2025: Übungsumfang und Unterschied zum Leistungsnachweis",
+              "kind": "context"
+            },
+            {
+              "url": "https://jagdschule-vonfuerstenberg.de/jugendjagdschein",
+              "publisher": "Jagdschule von Fürstenberg",
+              "title": "Eigene Ausbildungsinformation zum Jugendjagdschein: niedersächsische Gesellschaftsjagd mit mehr als drei zusammenwirkenden Schützen",
+              "kind": "context"
+            }
+          ],
+          "questions": [
+            {
+              "id": "de-ni-schiessuebungsnachweis-q1",
+              "prompt": "Du willst als Schütze an einer niedersächsischen Gesellschaftsjagd teilnehmen. Dein sonst ordnungsgemäßer Schießübungsnachweis ist 14 Monate alt. Genügt er § 24 Abs. 5?",
+              "choices": [
+                "Ja, alle Schießübungsnachweise gelten drei Jagdjahre.",
+                "Ja, wenn er auf Verlangen der Jagdleitung vorgezeigt wird.",
+                "Nein. Der Nachweis darf nicht älter als ein Jahr sein."
+              ],
+              "correctIndex": 2,
+              "explanation": "Mitführen und Vorzeigen allein heilen die überschrittene Altersgrenze nicht. Der Nachweis muss auch den geltenden Anforderungen entsprechen oder gleichwertig sein."
+            }
+          ],
+          "reviewedOn": "2026-10-24",
+          "verified": true,
+          "originalVerified": true
         }
       ],
-      "notes": "Aktuelle amtlich bereitgestellte konsolidierte Fassung vom 26. Juni 2026 verwendet. Sie ist als unverbindliche Abschrift gekennzeichnet; das jeweilige Gesetz- und Verordnungsblatt bleibt Verkündungsquelle. Eine vollständige Aufarbeitung aller Änderungen 2026 ist damit nicht behauptet.",
+      "notes": "Gezielter Ausbau vom 24. Oktober 2026: Hundeeinsatz, Naturbaujagd, Totfanggrenze, Rehwildplanung, Streckenliste, Wildfolge, bestätigte Schweißhundführung, Wildunfallmeldung, Fangschuss, Jagdschutz und Schießübungsnachweis. Amtlich bereitgestellte konsolidierte Fassung ab 26. Juni 2026 und verkündetes Änderungsgesetz Nr. 44 gelesen; Berichtigung vom 13. Juli 2026 Nr. 60 berücksichtigt. Wo die unverbindliche Abschrift vom Verkündungstext abweicht, gilt der genaue Verkündungstext; insbesondere § 28 a Abs. 2 verweist auf § 19 Abs. 1 Nr. 1 BJagdG. 20 eigene Landesfragen plus 80 Bundesfragen ergeben eine Auswahl von 100, keine vollständige Abdeckung des niedersächsischen Jagdrechts. Alte Kataloge und Gesetzeskopien wurden nicht als unabhängige Erläuterung oder als automatisch aktueller Rechtsstand gezählt.",
       "examResources": [
         {
           "title": "Amtlicher Fragenkatalog Recht mit gekennzeichneten Antworten",

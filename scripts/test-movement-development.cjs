@@ -99,6 +99,25 @@ test('Biological/methodical claims carry scoped independent references without t
   assert.match(development.developmentPhotoSeries[0].identityEvidence, /keine wissenschaftliche Wiederholung/);
   assert.equal(development.developmentPhotoSeries[0].question.answer, 1);
 });
+
+test('Photo learning keeps all knowledge and its limits visible, with scientific references grouped at the end', () => {
+  const Component = load('components/DevelopmentPhotoSeries.js').default;
+  const series = development.developmentPhotoSeries[0];
+  const html = renderToStaticMarkup(React.createElement(Component, { selectedId: series.id }));
+  const sourceStart = html.indexOf('<summary>Ergänzende Fachquellen und Bildnachweise</summary>');
+  assert.ok(sourceStart > 0);
+  const sourceText = html.slice(sourceStart);
+  for (const fact of series.facts) {
+    assert.ok(html.slice(0, sourceStart).includes(fact.text));
+    for (const id of fact.sourceIds) assert.ok(sourceText.includes(development.developmentSources[id].url));
+  }
+  const visibleScope = html.match(/<section aria-labelledby="development-scope-heading">([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(visibleScope); assert.ok(visibleScope.includes(series.scope));
+  for (const boundary of series.boundaries) assert.ok(visibleScope.includes(boundary));
+  assert.doesNotMatch(visibleScope, /<details/);
+  assert.ok(sourceText.includes(series.identityEvidence));
+  assert.match(sourceText, /13\. Oktober 2026/);
+});
 function hooksEngine() {
   let cursor = 0; const slots = [];
   const hooks = { ...React, useId: () => 'test-movement', useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = initial; return [slots[i], value => { slots[i] = typeof value === 'function' ? value(slots[i]) : value; }]; } };

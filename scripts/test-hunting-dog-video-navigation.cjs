@@ -200,3 +200,17 @@ test('Re-selecting the current scene supersedes an in-flight different scene; an
   await f.choose(lessons[1].id);
   assert.equal(f.pushes.length, 3, 'A settled current scene needs no redundant history step');
 });
+
+test('A late navigation error cannot overwrite an externally restored scene, including History away and back to the original scene', async t => {
+  const f = fixture(t, { query: { eintrag: lessons[0].id } });
+  for (const visits of [[lessons[2].id], [lessons[2].id, lessons[0].id]]) {
+    f.restore({ eintrag: lessons[0].id });
+    let reject;
+    f.deferNext(new Promise((resolve, fail) => { reject = fail; }));
+    const pending = f.choose(lessons[1].id);
+    for (const id of visits) f.restore({ eintrag: id });
+    reject(new Error('late failure')); await pending;
+    assert.equal(f.article().key, visits.at(-1));
+    assert.equal(f.find(node => node.props.role === 'alert'), undefined);
+  }
+});

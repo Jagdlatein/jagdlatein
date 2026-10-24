@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
+import PageMenu, { closePageMenu } from "./PageMenu";
 import NatureQuestionRound from "./NatureQuestionRound";
 import { habitatFeatures, habitatSpecies, habitatPresets, habitatSources, habitatQuestions, evaluateHabitat } from "../lib/habitat-workshop";
 import styles from "../styles/LearningExperience.module.css";
@@ -24,6 +25,21 @@ export function habitatReadingHash(feature, focus) {
   return `${readingPrefix}${params.toString()}`;
 }
 
+export function resolveHabitatView(hash) {
+  const reading = resolveHabitatReading(hash);
+  const params = typeof hash === "string" && hash.length <= 300 && hash.startsWith(readingPrefix)
+    ? new URLSearchParams(hash.slice(readingPrefix.length)) : new URLSearchParams();
+  const modes = params.getAll("ansicht"), topics = params.getAll("wissen");
+  const mode = modes.length === 1 && ["lesen", "gestalten", "quiz"].includes(modes[0]) ? modes[0] : "lesen";
+  const requestedTopic = topics.length === 1 && ["baustein", "art"].includes(topics[0]) ? topics[0] : null;
+  return { ...reading, mode, topic: reading.focus !== "alle" && requestedTopic !== "baustein" ? "art" : "baustein" };
+}
+
+export function habitatViewHash(view) {
+  const params = new URLSearchParams({ baustein: view.feature, art: view.focus, ansicht: view.mode, wissen: view.topic });
+  return `${readingPrefix}${params.toString()}`;
+}
+
 function HabitatMap({ selected }) {
   const has = id => selected.includes(id);
   return <figure className={styles.figure}><svg className={nature.landscape} viewBox="0 0 640 300" role="img" aria-label={`Schematische Landschaft. Gewählte Bausteine: ${habitatFeatures.filter(feature => has(feature.id)).map(feature => feature.name).join(", ") || "keine"}.`}>
@@ -42,20 +58,29 @@ function HabitatMap({ selected }) {
 export default function HabitatWorkshop() {
   const [selected, setSelected] = useState(habitatPresets[1].ids);
   const [preset, setPreset] = useState(habitatPresets[1].id);
-  const [focus, setFocus] = useState("alle");
-  const [mode, setMode] = useState("gestalten");
-  const [featureId, setFeatureId] = useState(initialFeature);
-  const reading = useRef({ feature: featureId, focus });
-  reading.current = { feature: featureId, focus };
-  const feature = habitatFeatures.find(item => item.id === featureId);
+  const [view, setView] = useState(() => resolveHabitatView(""));
+  const reading = useRef(view);
+  const content = useRef(null);
+  const pendingFocus = useRef(false);
+  const restoredHash = useRef(null);
+  reading.current = view;
+  const feature = habitatFeatures.find(item => item.id === view.feature);
   const results = evaluateHabitat(selected);
-  const targetSpecies = results.find(species => species.id === focus);
+  const targetSpecies = results.find(species => species.id === view.focus);
+  const activeSource = view.topic === "art" && targetSpecies ? targetSpecies.source : feature.source;
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-    function restore() {
-      const next = resolveHabitatReading(window.location.hash);
+    function restore(event) {
+      const hash = window.location.hash;
+      if (restoredHash.current === hash && event?.type !== "pageshow") return;
+      restoredHash.current = hash;
+      const next = resolveHabitatView(hash);
       reading.current = next;
-      setFeatureId(next.feature); setFocus(next.focus);
+      // The legacy fragment includes parameters, so it has no matching DOM id.
+      // Focus the rendered content after React has restored this selection.
+      pendingFocus.current = typeof hash === "string" && hash.startsWith(readingPrefix);
+      setView(next);
     }
     restore();
     window.addEventListener("hashchange", restore);
@@ -67,37 +92,72 @@ export default function HabitatWorkshop() {
       window.removeEventListener("pageshow", restore);
     };
   }, []);
-  function chooseReading(change) {
+  useEffect(() => {
+    if (!pendingFocus.current || reading.current !== view || !content.current) return;
+    pendingFocus.current = false;
+    closePageMenu();
+    content.current.focus?.({ preventScroll: true });
+    content.current.scrollIntoView?.({ block: "start", behavior: "auto" });
+  }, [view]);
+
+  function chooseView(change) {
     const requested = { ...reading.current, ...change };
-    const hash = habitatReadingHash(requested.feature, requested.focus);
-    const next = resolveHabitatReading(hash);
-    if (next.feature !== requested.feature || next.focus !== requested.focus) return;
-    reading.current = next;
-    setFeatureId(next.feature); setFocus(next.focus);
-    // Native fragments preserve normal Back/Forward without touching the model.
-    if (typeof window !== "undefined" && window.location.hash !== hash) window.location.hash = hash;
+    if (!habitatFeatures.some(item => item.id === requested.feature) ||
+      !(requested.focus === "alle" || habitatSpecies.some(item => item.id === requested.focus)) ||
+      !["lesen", "gestalten", "quiz"].includes(requested.mode) ||
+      !["baustein", "art"].includes(requested.topic) || requested.topic === "art" && requested.focus === "alle") return;
+    reading.current = requested;
+    pendingFocus.current = true;
+    closePageMenu();
+    setView(requested);
+    // Native fragments add ordinary Back/Forward entries. Model edits stay local.
+    if (typeof window !== "undefined") {
+      const hash = habitatViewHash(requested);
+      restoredHash.current = hash;
+      if (window.location.hash !== hash) window.location.hash = hash;
+    }
   }
-  function toggle(id) { setPreset("custom"); setSelected(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]); chooseReading({ feature: id }); }
+  function chooseTopic(value) {
+    const [topic, id, extra] = String(value).split(":");
+    if (extra || !id) return;
+    if (topic === "baustein") chooseView({ feature: id, topic, mode: "lesen" });
+    if (topic === "art") chooseView({ focus: id, topic, mode: "lesen" });
+  }
+  function toggle(id) {
+    if (!habitatFeatures.some(item => item.id === id)) return;
+    setPreset("custom");
+    setSelected(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]);
+  }
   function loadPreset(id) {
     const next = habitatPresets.find(item => item.id === id);
     if (!next) return;
     setPreset(id); setSelected([...next.ids]);
+    chooseView({ mode: "gestalten" });
   }
-  return <LearningToolLayout title="Lebensraum-Werkstatt" description="Gestalte eine Lernlandschaft und entdecke, wie Nahrung, Deckung, Brutplätze und Verbindungen zusammenwirken." icon="leaf" category="natur-revier" stats={[{value:8,label:"Bausteine"},{value:8,label:"Tierarten"},{value:3,label:"Wissensfälle"}]}>
-    <div className={styles.modeButtons} role="group" aria-label="Lernweise"><button type="button" aria-pressed={mode === "gestalten"} onClick={() => setMode("gestalten")}>Landschaft gestalten</button><button type="button" aria-pressed={mode === "quiz"} onClick={() => setMode("quiz")}>Zusammenhänge prüfen</button></div>
-    {mode === "quiz" ? <NatureQuestionRound entries={habitatQuestions} sources={habitatSources} label="Lebensraumfälle" /> : <>
-      <section className={styles.panel}><h2>Welche Funktionen bietet deine Landschaft?</h2><p className={styles.note}>Dieses qualitative Lernmodell zeigt Zusammenhänge. Die Anzeige zählt angebotene Funktionen und berechnet weder Tierzahlen noch eine Ansiedlungswahrscheinlichkeit.</p>
-        <div className={styles.toolbar}><label className={styles.field}>Lernlandschaft laden<select value={preset} onChange={event => loadPreset(event.target.value)}>{preset === "custom" && <option value="custom">Eigene Zusammenstellung</option>}{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label></div>
-        <HabitatMap selected={selected}/>
-        <fieldset className={workshop.featureChoices}><legend>Bausteine deiner Lernlandschaft</legend><div>{habitatFeatures.map(item => <label key={item.id}><input type="checkbox" checked={selected.includes(item.id)} onChange={() => toggle(item.id)}/><AppIcon name={item.icon} size={22}/><span><strong>{item.name}</strong><small>{item.function}</small></span></label>)}</div></fieldset>
-        <label className={styles.field}>Baustein verstehen<select value={featureId} onChange={event => chooseReading({ feature: event.target.value })} aria-controls="habitat-feature-reading">{habitatFeatures.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
-        <article id="habitat-feature-reading" className={workshop.detail} aria-labelledby="habitat-feature-heading"><h3 id="habitat-feature-heading">{feature.name}</h3><p><strong>{feature.function}</strong></p><p>{feature.text}</p><a href={habitatSources[feature.source].url} target="_blank" rel="noreferrer">Fachliche Grundlage</a></article>
-      </section>
-      <section className={styles.panel} aria-labelledby="habitat-results-heading"><h2 id="habitat-results-heading">Was passt zu welcher Art?</h2><p>„Baustein vorhanden“ bedeutet nur, dass eine passende Funktion ausgewählt ist. Ob ihre Qualität vor Ort reicht, bleibt offen.</p>
-        <label className={styles.field}>Tierart hervorheben<select value={focus} onChange={event => chooseReading({ focus: event.target.value })} aria-controls="habitat-species-reading"><option value="alle">Alle Tierarten – Übersicht</option>{habitatSpecies.map(species => <option key={species.id} value={species.id}>{species.name}</option>)}</select></label>
-        <div id="habitat-species-reading">{targetSpecies ? <article className={nature.species}><h3><AppIcon name={targetSpecies.icon} size={24}/>{targetSpecies.name}</h3><p>{targetSpecies.text}</p><ul>{targetSpecies.resources.map(resource => <li key={resource.label}><strong>{resource.label}:</strong> {resource.covered ? `Baustein vorhanden (${resource.present.map(id => habitatFeatures.find(item => item.id === id).name).join(" oder ")})` : `Im Modell noch offen (${resource.ids.map(id => habitatFeatures.find(item => item.id === id).name).join(" oder ")})`}</li>)}</ul><a href={habitatSources[targetSpecies.source].url} target="_blank" rel="noreferrer">Art und Lebensraum nachlesen</a></article> : <ul className={workshop.speciesOverview}>{results.map(species => <li key={species.id}><a href={habitatReadingHash(featureId, species.id)}><strong>{species.name}</strong><span>{species.resources.filter(resource => resource.covered).length} von {species.resources.length} Funktionen im Modell vorhanden</span><AppIcon name="arrow-right" size={18}/></a></li>)}</ul>}</div>
-      </section>
-      <section className={styles.panel}><h2>Von der Lernlandschaft zur Beobachtung</h2><ol><li>Vorhandene Arten und Strukturen dokumentieren, ohne Brut- oder Ruheplätze zu stören.</li><li>Eine Zielart und ihre Bedürfnisse fachlich abgleichen; passende Maßnahmen unterscheiden sich zwischen Arten.</li><li>Eigentum, Schutzvorgaben und zuständige Fachstellen klären, bevor du draußen etwas veränderst.</li><li>Wirkung über wiederholte Beobachtungen prüfen. Die Auswahl in dieser Werkstatt ist kein Feldnachweis.</li></ol></section>
-    </>}
+  const topicValue = view.topic === "art" ? `art:${view.focus}` : `baustein:${view.feature}`;
+  const readingSource = <details className={styles.sources}><summary>Ergänzende Fachquelle</summary><a href={habitatSources[activeSource].url} target="_blank" rel="noreferrer">{habitatSources[activeSource].title}</a></details>;
+  return <LearningToolLayout title="Lebensraum-Werkstatt" description="Gestalte eine Lernlandschaft und entdecke, wie Nahrung, Deckung, Brutplätze und Verbindungen zusammenwirken." icon="leaf" category="natur-revier" headingOnly>
+    <PageMenu title="Lebensraum – Thema wählen">
+      <label className={styles.field}>Lernangebot<select value={view.mode} onChange={event => chooseView({ mode: event.target.value })} aria-controls="habitat-content"><option value="lesen">Wissen lesen</option><option value="gestalten">Landschaft gestalten</option><option value="quiz">Zusammenhänge prüfen</option></select></label>
+      <label className={styles.field}>Wissen auswählen<select value={topicValue} onChange={event => chooseTopic(event.target.value)} aria-controls={view.mode !== "lesen" ? "habitat-content" : view.topic === "art" ? "habitat-species-reading" : "habitat-feature-reading"}><optgroup label="Lebensraum-Bausteine">{habitatFeatures.map(item => <option key={item.id} value={`baustein:${item.id}`}>{item.name}</option>)}</optgroup><optgroup label="Tierarten">{habitatSpecies.map(species => <option key={species.id} value={`art:${species.id}`}>{species.name}</option>)}</optgroup></select></label>
+      {view.mode === "gestalten" && <label className={styles.field}>Lernlandschaft laden<select value={preset} onChange={event => loadPreset(event.target.value)}>{preset === "custom" && <option value="custom">Eigene Zusammenstellung</option>}{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+    </PageMenu>
+    <div id="habitat-content">
+      {view.mode === "quiz" ? <section id="habitat-quiz-reading" ref={content} tabIndex={-1} aria-label="Zusammenhänge prüfen" className={workshop.focusTarget}><NatureQuestionRound entries={habitatQuestions} sources={habitatSources} label="Lebensraumfälle" /></section> : view.mode === "gestalten" ? <>
+        <section className={`${styles.panel} ${workshop.focusTarget}`} id="habitat-landscape" ref={content} tabIndex={-1} aria-labelledby="habitat-landscape-heading"><h2 id="habitat-landscape-heading">Welche Funktionen bietet deine Landschaft?</h2><p className={styles.note}>Dieses qualitative Lernmodell zeigt Zusammenhänge. Die Anzeige zählt angebotene Funktionen und berechnet weder Tierzahlen noch eine Ansiedlungswahrscheinlichkeit.</p>
+          <HabitatMap selected={selected}/>
+          <fieldset className={workshop.featureChoices}><legend>Bausteine deiner Lernlandschaft</legend><div>{habitatFeatures.map(item => <label key={item.id}><input type="checkbox" checked={selected.includes(item.id)} onChange={() => toggle(item.id)}/><AppIcon name={item.icon} size={22}/><span><strong>{item.name}</strong><small>{item.function}</small></span></label>)}</div></fieldset>
+          <h3>Was passt zu welcher Art?</h3><p>„Baustein vorhanden“ bedeutet nur, dass eine passende Funktion ausgewählt ist. Ob ihre Qualität vor Ort reicht, bleibt offen.</p>
+          <ul className={workshop.speciesOverview}>{results.map(species => <li key={species.id}><a href={habitatViewHash({ ...view, mode: "lesen", topic: "art", focus: species.id })}><strong>{species.name}</strong><span>{species.resources.filter(resource => resource.covered).length} von {species.resources.length} Funktionen im Modell vorhanden</span><AppIcon name="arrow-right" size={18}/></a></li>)}</ul>
+        </section>
+        <section className={styles.panel}><h2>Von der Lernlandschaft zur Beobachtung</h2><ol><li>Vorhandene Arten und Strukturen dokumentieren, ohne Brut- oder Ruheplätze zu stören.</li><li>Eine Zielart und ihre Bedürfnisse fachlich abgleichen; passende Maßnahmen unterscheiden sich zwischen Arten.</li><li>Eigentum, Schutzvorgaben und zuständige Fachstellen klären, bevor du draußen etwas veränderst.</li><li>Wirkung über wiederholte Beobachtungen prüfen. Die Auswahl in dieser Werkstatt ist kein Feldnachweis.</li></ol></section>
+      </> : view.topic === "art" && targetSpecies ? <>
+        <article id="habitat-species-reading" ref={content} tabIndex={-1} className={`${styles.panel} ${workshop.focusTarget}`} aria-labelledby="habitat-species-heading"><h2 id="habitat-species-heading"><AppIcon name={targetSpecies.icon} size={24}/>{targetSpecies.name}</h2><p>{targetSpecies.text}</p><h3>Funktionen im gewählten Landschaftsmodell</h3><p className={styles.note}>Die folgende Auswahl zeigt angebotene Modellfunktionen. Ob ihre Qualität vor Ort reicht, bleibt offen; sie ist kein Feldnachweis und keine Ansiedlungsprognose.</p><ul>{targetSpecies.resources.map(resource => <li key={resource.label}><strong>{resource.label}:</strong> {resource.covered ? `Baustein vorhanden (${resource.present.map(id => habitatFeatures.find(item => item.id === id).name).join(" oder ")})` : `Im Modell noch offen (${resource.ids.map(id => habitatFeatures.find(item => item.id === id).name).join(" oder ")})`}</li>)}</ul></article>
+        {readingSource}
+      </> : <>
+        <article id="habitat-feature-reading" ref={content} tabIndex={-1} className={`${styles.panel} ${workshop.focusTarget}`} aria-labelledby="habitat-feature-heading"><h2 id="habitat-feature-heading">{feature.name}</h2><p><strong>{feature.function}</strong></p><p>{feature.text}</p></article>
+        {readingSource}
+      </>}
+    </div>
   </LearningToolLayout>;
 }

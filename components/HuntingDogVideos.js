@@ -33,6 +33,9 @@ export default function HuntingDogVideos() {
   // The committed URL is the selection, including reload and Back/Forward.
   // Arrays and unknown identifiers never select another or arbitrary resource.
   const lesson = huntingDogVideoLessons.find(item => typeof requested === "string" && item.id === requested) || huntingDogVideoLessons[0];
+  const viewKey = JSON.stringify([router.isReady, lesson.id]);
+  const committedView = useRef({ key: viewKey });
+  if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const activeLesson = useRef({ id: lesson.id });
   if (activeLesson.current.id !== lesson.id) activeLesson.current = { id: lesson.id };
   const renderedLesson = activeLesson.current;
@@ -55,13 +58,14 @@ export default function HuntingDogVideos() {
     setNavigationError("");
     if (id === lesson.id && pendingRequest.current === null) { closePageMenu(); focusContent(); return; }
     const request = ++selectionRequest.current;
+    const origin = committedView.current;
     pendingRequest.current = request;
     try {
       // Push preserves one history step per chosen scene. A rejected/cancelled
       // route never displays content that disagrees with the address bar.
       await router.push({ pathname: router.pathname, query: { ...router.query, eintrag: id }, hash: "hundevideo-film" }, undefined, { shallow: true, scroll: false });
     } catch (error) {
-      if (!error?.cancelled && request === selectionRequest.current) setNavigationError("Die Szene konnte nicht geöffnet werden. Bitte wähle sie erneut.");
+      if (!error?.cancelled && request === selectionRequest.current && committedView.current === origin) setNavigationError("Die Szene konnte nicht geöffnet werden. Bitte wähle sie erneut.");
     } finally {
       // Re-selecting the committed scene must still supersede another pending
       // push. An older completion cannot release the newer navigation's guard.

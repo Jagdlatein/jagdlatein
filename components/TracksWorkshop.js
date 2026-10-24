@@ -23,6 +23,9 @@ export default function TracksWorkshop() {
   const navigation = useRef(0);
   const pending = useRef(false);
   const mounted = useRef(true);
+  const selectionKey = `${router.isReady}:${mode}:${entry?.id || ""}`;
+  const committedView = useRef({ key: selectionKey });
+  if (committedView.current.key !== selectionKey) committedView.current = { key: selectionKey };
   const results = filterTracks(query, group);
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; navigation.current++; }; }, []);
@@ -42,6 +45,7 @@ export default function TracksWorkshop() {
 
   function choose(change) {
     const request = ++navigation.current;
+    const origin = committedView.current;
     const next = { ...router.query, ...change };
     if (next.ansicht === "entdecken") delete next.ansicht;
     closePageMenu();
@@ -52,7 +56,7 @@ export default function TracksWorkshop() {
     }
     pending.current = true;
     router.push({ pathname: "/lernen/spurenwerkstatt", query: next, hash: "tracks-detail" }, undefined, { shallow: true, scroll: false }).catch(error => {
-      if (error?.cancelled || !mounted.current || request !== navigation.current) return;
+      if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
       openPageMenu("tracks-choices");
     }).finally(() => { if (request === navigation.current) pending.current = false; });
   }

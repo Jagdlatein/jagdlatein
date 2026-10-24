@@ -10,6 +10,8 @@
 .detail { min-width: 0; border-top: 1px solid #e4d7b6; padding-top: 10px; line-height: 1.7; overflow-wrap: anywhere; }
 .detail h3 { margin-top: 8px; }
 .detail a { color: #7c6025; text-decoration: underline; text-underline-offset: 3px; }
+.focusTarget { min-width: 0; scroll-margin-top: 24px; overflow-wrap: anywhere; }
+.focusTarget:focus-visible { outline: 3px solid #99752a; outline-offset: 5px; }
 .speciesOverview { list-style: none; padding: 0; margin: 0; }
 .speciesOverview li + li { border-top: 1px solid #e4d7b6; }
 .speciesOverview a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; min-height: 48px; padding: 14px 0; color: #48391e; text-decoration: none; }

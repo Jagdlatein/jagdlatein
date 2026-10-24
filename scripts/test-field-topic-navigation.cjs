@@ -111,3 +111,15 @@ test('Choosing the current topic while another selection is pending cancels that
     await Promise.resolve(); h.dispose();
   }
 });
+
+test('History navigation to a committed different topic invalidates a delayed failure from the previous view', async () => {
+  for (const [file, start, target, later] of [['components/TracksWorkshop.js', entries[0].id, 'biber-nagespur', entries[2].id], ['components/VenisonCutGuide.js', 'hals', 'schulter', 'ruecken']]) {
+    const h = setup(file, { eintrag: start }); let reject;
+    h.router.push = () => new Promise((resolve, fail) => { reject = fail; });
+    const records = file.includes('Tracks') ? entries : h.load('lib/venison-cut-guide.js').venisonCuts;
+    const menu = h.nodes(node => node.type?.name === 'PageMenu')[0];
+    nodes(menu, node => node.type === 'button' && text(node).startsWith(records.find(item => item.id === target).title))[0].props.onClick();
+    h.navigate({ eintrag: later }); reject(new Error('late failure')); await Promise.resolve();
+    assert.equal(h.menu.opened, 0); h.dispose();
+  }
+});

@@ -19,6 +19,9 @@ export default function VenisonCutGuide() {
   const navigation = useRef(0);
   const pending = useRef(false);
   const mounted = useRef(true);
+  const selectionKey = `${router.isReady}:${cooking}:${selectedCut?.id || ""}`;
+  const committedView = useRef({ key: selectionKey });
+  if (committedView.current.key !== selectionKey) committedView.current = { key: selectionKey };
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; navigation.current++; }; }, []);
 
@@ -36,6 +39,7 @@ export default function VenisonCutGuide() {
 
   function choose(id) {
     const request = ++navigation.current;
+    const origin = committedView.current;
     const next = { ...router.query };
     if (id === "garmethoden") next.ansicht = id;
     else { next.eintrag = id; delete next.ansicht; }
@@ -47,7 +51,7 @@ export default function VenisonCutGuide() {
     }
     pending.current = true;
     router.push({ pathname: "/lernen/wildbret-stuecke", query: next, hash: "wildbret-detail" }, undefined, { shallow: true, scroll: false }).catch(error => {
-      if (error?.cancelled || !mounted.current || request !== navigation.current) return;
+      if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
       openPageMenu("venison-choices");
     }).finally(() => { if (request === navigation.current) pending.current = false; });
   }
