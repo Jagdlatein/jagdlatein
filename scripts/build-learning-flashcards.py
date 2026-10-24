@@ -93,7 +93,7 @@ def back(c,card,x,y,w,h,num,source_ids):
     suffix=f"Quellen: {', '.join(str(v) for v in ids)}. Vollständige Links im Quellenverzeichnis."
     top=para(c,suffix,left,top,right,8,color=MUTED,max_height=45)-3*mm
     if card.get('reviewedOn'):
-        date_label='Bildnachweis geprüft: ' if card.get('sourceScope')=='photo' else 'Stand des Ausgangsinhalts: '
+        date_label='Bildnachweis geprüft: ' if card.get('sourceScope')=='photo' else 'Übernommener Prüfstand: '
         top=para(c,date_label+card['reviewedOn'],left,top,right,7.5,color=MUTED,max_height=35)-2*mm
     para(c,'Eigene Einschätzung:  [ ] Noch einmal   [ ] Gewusst',left,y+13*mm,right,8,color=MUTED,max_height=30)
     c.setFont('JL',7);c.drawRightString(x+w-pad,y+3.5*mm,f'{num:02} | JAGDLATEIN')

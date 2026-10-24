@@ -157,3 +157,24 @@ test('The card display also rejects impossible ISO calendar days with the shared
   assert.equal(formatFlashcardDate('2026-10-24'), '24.10.2026');
   assert.equal(formatFlashcardDate('2024-02-29'), '29.2.2024');
 });
+
+test('The actual print renderer labels an old course-source fundkontrolle card with its true inherited lesson date', () => {
+  const card = load('lib/learning-flashcards.js').getFlashcards().find(item => item.moduleId === courseId && item.lessonId.endsWith('-fundkontrolle'));
+  assert.ok(card);
+  assert.equal(card.sourceScope, 'course');
+  assert.equal(card.reviewedOn, '2026-10-13');
+  const Print = createLoader({
+    'next/router': { useRouter: () => ({ query: {}, isReady: true }) },
+    '../../components/LearningToolLayout': { __esModule: true, default: ({ children }) => children },
+    '../../components/PageMenu': { __esModule: true, default: () => null, closePageMenu() {} },
+    '../../components/useFlashcardDeck': { __esModule: true, default: props => ({ ...props, incomplete: false, loading: false }) },
+  })('pages/lernen/lernkarten-drucken.js').default;
+  const html = renderToStaticMarkup(React.createElement(Print, { cards: [card], categories: [{ id: 'hundewesen', title: 'Hundewesen', count: 1 }] }));
+  assert.ok(html.includes(card.question));
+  assert.ok(html.includes(card.answer));
+  assert.match(html, /Übernommener Prüfstand: 13\.10\.2026/);
+  assert.doesNotMatch(html, /Stand des Ausgangskurses|12\.10\.2026|24\.10\.2026/);
+  assert.match(html, /Quellen des Ausgangskurses/);
+  assert.match(html, /Quellenverzeichnis/);
+  assert.ok(card.sources.every(source => html.includes(source.url)));
+});
