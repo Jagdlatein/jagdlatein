@@ -139,6 +139,21 @@ test('Food-web photograph selection immediately changes explanation without an o
   for (const node of foodweb.foodwebNodes) assert.ok(find(s.tree, n => n.props?.src === node.photo.src));
 });
 
+test('A controlled food-web motif waits for its parent commit and retains the learning answer across motif changes', () => {
+  const requested = [], props = { selectedId: 'spinne', onSelect: id => requested.push(id) };
+  const s = setup('components/FoodwebLearning.js', props);
+  find(s.tree, n => n.type === 'input' && n.props.name === 'nahrungsnetz-lernfrage').props.onChange(); s.render();
+  const feedback = text(find(s.tree, n => n.props?.role === 'status'));
+  find(s.tree, n => n.type === 'input' && n.props.value === 'grasfrosch').props.onChange(); s.render();
+  assert.deepEqual(requested, ['grasfrosch']);
+  assert.equal(find(s.tree, n => n.type === 'input' && n.props.value === 'spinne').props.checked, true);
+  assert.match(text(find(s.tree, n => n.props?.id === 'nahrungsnetz-beziehungen')), /^Spinnen:/);
+  props.selectedId = 'grasfrosch'; s.render();
+  assert.equal(find(s.tree, n => n.type === 'input' && n.props.value === 'grasfrosch').props.checked, true);
+  assert.equal(text(find(s.tree, n => n.props?.role === 'status')), feedback);
+  assert.match(text(find(s.tree, n => n.props?.id === 'nahrungsnetz-beziehungen')), /^Erwachsener Grasfrosch:/);
+});
+
 test('Food-web explanations stay direct while each relation, context and quiz reference and every photo licence is preserved in the final closed block', () => {
   for (const node of foodweb.foodwebNodes) {
     const s = setup('components/FoodwebLearning.js', { selectedId: node.id });
@@ -161,6 +176,7 @@ test('Food-web explanations stay direct while each relation, context and quiz re
 });
 test('Existing selector supports food-web deep links, keeps URL state and returns to normal profiles on back navigation', () => {
   const changes = []; const router = { query: { thema: 'nahrungsnetz', preserved: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+  router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
   assert.equal(find(s.tree, n => n.type === 'select').props.value, 'nahrungsnetz');
   assert.ok(find(s.tree, n => n.type?.name === 'FoodwebLearning'));
@@ -173,6 +189,7 @@ test('Existing selector supports food-web deep links, keeps URL state and return
 });
 test('Food-web motif survives a saved URL and external navigation, and stale motif is removed from other profiles', () => {
   const changes = []; const router = { query: { thema: 'nahrungsnetz', motiv: 'spinne', retained: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+  router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
   const network = () => find(s.tree, n => n.type?.name === 'FoodwebLearning');
   assert.equal(network().props.selectedId, 'spinne');
@@ -181,7 +198,7 @@ test('Food-web motif survives a saved URL and external navigation, and stale mot
   assert.equal(changes[0][0].query.motiv, 'grasfrosch'); assert.equal(changes[0][0].query.retained, 'yes');
   assert.equal(changes[0][0].hash, 'revierleben-inhalt'); assert.equal(changes[0][2].scroll, false);
   router.query.motiv = 'laub'; s.render(); s.e.effects(); s.render(); assert.equal(network().props.selectedId, 'laub');
-  router.query.motiv = ['spinne', 'laub']; s.render(); s.e.effects(); s.render(); assert.equal(network().props.selectedId, 'regenwurm');
+  router.query.motiv = ['spinne', 'laub']; s.render(); s.e.effects(); s.render(); assert.equal(network(), null); assert.match(s.html(), /Dieses Thema oder Nahrungsnetzmotiv ist nicht verfügbar/);
   find(s.tree, n => n.type === 'select').props.onChange({ target: { value: 'wildbienen' } });
   assert.equal(changes.at(-1)[0].query.motiv, undefined);
 });

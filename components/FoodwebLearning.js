@@ -10,7 +10,7 @@ export default function FoodwebLearning({ selectedId, onSelect } = {}) {
   const [localSelected, setLocalSelected] = useState("regenwurm");
   const [answer, setAnswer] = useState(null);
   const view = getFoodwebSelection(selectedId ?? localSelected);
-  function select(id) { setLocalSelected(id); onSelect?.(id); }
+  function select(id) { if (!foodwebNodes.some(node => node.id === id)) return; if (selectedId === undefined) setLocalSelected(id); return onSelect?.(id); }
   const sourceIds = [...new Set([...foodwebRelationships.flatMap(item => item.sourceIds), ...foodwebContext.sourceIds, ...foodwebQuestion.sourceIds])];
   const reviewed = new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${foodwebReviewedOn}T00:00:00Z`));
   return <article className={shared.panel} id="revierleben-inhalt" aria-labelledby="nahrungsnetz-title">

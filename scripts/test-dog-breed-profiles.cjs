@@ -30,7 +30,8 @@ test('Every one of the 59 existing breeds has a unique static detail route with 
   assert.deepEqual(paths.paths, dogBreeds.map(profile => ({ params: { rasse: profile.id } })));
   for (const profile of dogBreeds) {
     const { props } = await route.getStaticProps({ params: { rasse: profile.id } });
-    assert.deepEqual(Object.keys(props).sort(), ['contextSources', 'profile', 'tasks']);
+    assert.deepEqual(Object.keys(props).sort(), ['labrador', 'weimaraner'].includes(profile.id)
+      ? ['contextSources', 'healthKnowledge', 'profile', 'tasks'] : ['contextSources', 'profile', 'tasks']);
     assert.deepEqual(props.profile, profile);
     assert.deepEqual(props.tasks, dogWorkTasks.filter(task => profile.tasks.includes(task.id)));
     assert.deepEqual(props.contextSources, dogCompassSources);

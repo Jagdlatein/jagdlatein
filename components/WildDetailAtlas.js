@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
-import PageMenu, { closePageMenu } from "./PageMenu";
+import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import { LearningPhotoCredit } from "./LearningPhoto";
-import { getWildDetailTopic, wildDetailPhotos, wildDetailSources, wildDetailTopics } from "../lib/wild-detail-atlas";
+import { wildDetailPhotos, wildDetailSources, wildDetailTopics } from "../lib/wild-detail-atlas";
 import styles from "../styles/WildDetailAtlas.module.css";
 import shared from "../styles/LearningExperience.module.css";
 
@@ -25,35 +25,63 @@ export function DetailPhoto({ panel, photograph, priority, prefix, showCredit = 
 
 export default function WildDetailAtlas() {
   const router = useRouter();
-  const [topicId, setTopicId] = useState(wildDetailTopics[0].id);
-  const [selectionRevision, setSelectionRevision] = useState(0);
+  const ready = router.isReady === true;
+  const requested = router.query.thema;
+  const topic = ready ? requested === undefined ? wildDetailTopics[0] : wildDetailTopics.find(item => typeof requested === "string" && item.id === requested) || null : null;
+  const viewKey = JSON.stringify([ready, topic?.id]);
+  const committedView = useRef({ key: viewKey });
+  if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
+  const [navigationError, setNavigationError] = useState("");
   const contentHeading = useRef(null);
-  const focusedRevision = useRef(0);
+  const navigation = useRef(0);
+  const pendingRequest = useRef(null);
+  const mounted = useRef(false);
+
+  function focusContent() {
+    contentHeading.current?.focus?.({ preventScroll: true });
+    contentHeading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+  }
   useEffect(() => {
-    if (!router.isReady) return;
-    setTopicId(wildDetailTopics.find(item => item.id === router.query.thema)?.id || wildDetailTopics[0].id);
-  }, [router.isReady, router.query.thema]);
+    mounted.current = true;
+    return () => { mounted.current = false; navigation.current++; pendingRequest.current = null; };
+  }, []);
   useEffect(() => {
-    if (selectionRevision === focusedRevision.current || !contentHeading.current) return;
-    focusedRevision.current = selectionRevision;
-    contentHeading.current.focus({ preventScroll: true });
-    contentHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
-  }, [selectionRevision, topicId]);
-  function selectTopic(id) {
-    if (!wildDetailTopics.some(item => item.id === id)) return;
-    setTopicId(id);
+    if (!ready) return;
+    setNavigationError("");
+    if (!topic) {
+      const timer = setTimeout(() => openPageMenu("wilddetails-choices"), 0);
+      return () => clearTimeout(timer);
+    }
     closePageMenu();
-    setSelectionRevision(value => value + 1);
-    if (router.isReady) {
-      router.replace({ pathname: router.pathname, query: { ...router.query, thema: id } }, undefined, { shallow: true, scroll: false }).catch(() => {});
+    focusContent();
+  }, [ready, topic?.id]);
+
+  async function selectTopic(id) {
+    if (!ready || !mounted.current || !wildDetailTopics.some(item => item.id === id)) return;
+    setNavigationError("");
+    closePageMenu();
+    if (topic?.id === id && pendingRequest.current === null) { focusContent(); return; }
+    const request = ++navigation.current;
+    const origin = committedView.current;
+    pendingRequest.current = request;
+    try {
+      await router.push({ pathname: "/lernen/wildtier-details", query: { ...router.query, thema: id }, hash: "wilddetails-title" }, undefined, { shallow: true, scroll: false });
+    } catch (error) {
+      if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
+      setNavigationError("Das Thema konnte nicht geöffnet werden. Bitte wähle es erneut.");
+      openPageMenu("wilddetails-choices");
+    } finally {
+      if (pendingRequest.current === request) pendingRequest.current = null;
     }
   }
-  const topic = getWildDetailTopic(topicId);
-  return <LearningToolLayout title="Wildtier-Detailatlas" description="Gebiss, Schädel, Hörner, Geweih und Federn an echten Aufnahmen vergleichen. Das Thema wählst du im unteren Menü." icon="wildkunde" category="wildkunde" compact hideCommunity>
-    <PageMenu title="Detailatlas – Thema wählen">
-      <label className={styles.selector}>Thema ansehen<select value={topicId} onChange={event => selectTopic(event.target.value)}>{wildDetailTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+  return <LearningToolLayout title="Wildtier-Detailatlas" description="Gebiss, Schädel, Hörner, Geweih und Federn an echten Aufnahmen vergleichen. Das Thema wählst du im unteren Menü." icon="wildkunde" category="wildkunde" headingOnly hideCommunity>
+    <PageMenu title="Detailatlas – Thema wählen" openInitially={ready && !topic} initialFocusId="wilddetails-choices">
+      <div id="wilddetails-choices" tabIndex={-1}>
+        <label className={styles.selector}>Thema ansehen<select id="wilddetails-topic" value={topic?.id || ""} disabled={!ready} aria-controls="wilddetails-content" onChange={event => selectTopic(event.target.value)}><option value="" disabled>Thema wählen</option>{wildDetailTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+        {navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}
+      </div>
     </PageMenu>
-    <section aria-labelledby="wilddetails-title"><h2 id="wilddetails-title" className={styles.title} ref={contentHeading} tabIndex={-1}>{topic.title}</h2><p className={styles.subtitle}>{topic.subtitle}</p>
+    {topic ? <><section id="wilddetails-content" aria-labelledby="wilddetails-title"><h2 id="wilddetails-title" className={styles.title} ref={contentHeading} tabIndex={-1}>{topic.title}</h2><p className={styles.subtitle}>{topic.subtitle}</p>
       <div className={styles.photos}>{topic.panels.map((panel, panelIndex) => {
         const photograph = wildDetailPhotos[panel.photoId];
         return <DetailPhoto key={`${topic.id}-${panel.photoId}`} panel={panel} photograph={photograph} priority={panelIndex === 0} prefix={`${topic.id}-${panelIndex}`} showCredit={false} />;
@@ -64,6 +92,6 @@ export default function WildDetailAtlas() {
     <details className={shared.sources}><summary>Fachquellen, Bildnachweise und Prüfstand</summary>
       {topic.claims.map(fact => <section key={fact.id}><h3>{fact.title}</h3><ul>{fact.sourceIds.map(id => <li key={id}><a href={wildDetailSources[id].url} target="_blank" rel="noreferrer">{wildDetailSources[id].label}</a></li>)}</ul><p>Inhaltlich gegengeprüft: {fact.reviewedOn}</p></section>)}
       <h3>Originalaufnahmen</h3>{[...new Set(topic.panels.map(panel => panel.photoId))].map(id => <section key={id}><h4>{wildDetailPhotos[id].name}</h4><LearningPhotoCredit media={wildDetailPhotos[id]} /></section>)}
-    </details>
+    </details></> : <p className={shared.note}>{ready ? "Dieses Thema ist nicht verfügbar. Wähle ein Thema unten im Menü." : "Das gewählte Thema wird geladen."}</p>}
   </LearningToolLayout>;
 }

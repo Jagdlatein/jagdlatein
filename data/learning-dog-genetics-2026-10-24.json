@@ -1,0 +1,224 @@
+{
+  "reviewedOn": "2026-10-24",
+  "contentAddedOn": "2026-10-24",
+  "scope": "Zwei eng begrenzte Hundewesen-Lerneinheiten zu DNM1-assoziiertem Belastungskollaps beim Labrador und SLC2A9-assoziierter Hyperurikosurie beim Weimaraner. Genetischer Befund, beobachtete Beschwerden und klinische Diagnose werden getrennt. Keine vollständige Gesundheitsübersicht, Diagnose, Behandlung oder Einsatzfreigabe.",
+  "modules": [
+    {
+      "id": "wissen-labrador-dnm1-eic-testgrenzen-2026",
+      "title": "Labrador Retriever: DNM1, EIC und die Grenzen eines Gentests",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Die erbliche DNM1-assoziierte Form des Belastungskollapses von anderen Kollapsursachen unterscheiden.",
+      "minutes": 8,
+      "objectives": [
+        "DNM1 der genetisch beschriebenen EIC-Form zuordnen",
+        "Einen Variantenbefund von einer vollständigen Gesundheitsbeurteilung unterscheiden",
+        "Die Grenze einer Studie mit bereits betroffenen Hunden erkennen"
+      ],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches Lernwissen. Ursache, Gesundheit und Belastbarkeit eines einzelnen Hundes werden tierärztlich beurteilt; kein jagdlicher Eignungsnachweis.",
+        "AT": "Gemeinsames biologisches Lernwissen. Ursache, Gesundheit und Belastbarkeit eines einzelnen Hundes werden tierärztlich beurteilt; kein jagdlicher Eignungsnachweis.",
+        "CH": "Gemeinsames biologisches Lernwissen. Ursache, Gesundheit und Belastbarkeit eines einzelnen Hundes werden tierärztlich beurteilt; kein jagdlicher Eignungsnachweis."
+      },
+      "level": "Vertiefung",
+      "sources": [
+        {
+          "label": "Furrow und andere, 2013: DNM1-Status und wiederkehrender Belastungskollaps beim Labrador",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23445289/",
+          "organization": "University of Minnesota und beteiligte Forschungspartner",
+          "supports": "Originalzusammenfassung vollständig gelesen. Retrospektiver Vergleich bereits wegen wiederkehrenden Belastungskollapses ausgewählter Labradore: DNM1-assoziierte Form gegenüber Kollaps bei heterozygoten oder variantenfreien Hunden. Keine zufällige Rassestichprobe und kein Prävalenznachweis."
+        },
+        {
+          "label": "MSD Veterinary Manual: Belastungsintoleranz und Belastungskollaps, Fachprüfung Februar 2026",
+          "url": "https://www.msdvetmanual.com/musculoskeletal-system/myopathies-in-dogs-and-cats/exercise-intolerance-and-exercise-induced-collapse-in-dogs",
+          "organization": "MSD Veterinary Manual; Baye Williamson, unabhängig fachlich gegengeprüft durch Joyce Carnevale, Iowa State University",
+          "supports": "Vollständigen kurzen Fachartikel gelesen. Autosomal-rezessive DNM1-assoziierte Erkrankung bei Labradoren; Kollaps kann auch bei heterozygoten oder variantenfreien Hunden auftreten. Keine allgemeinen Zeit-, Alters- oder Belastungsgrenzen übernommen."
+        },
+        {
+          "label": "UC Davis Veterinary Genetics Laboratory: EIC-Test und Interpretation des DNM1-Befunds",
+          "url": "https://vgl.vetmed.ucdavis.edu/test/exercise-induced-collapse",
+          "organization": "University of California, Davis / Veterinary Genetics Laboratory",
+          "supports": "Testbeschreibung, Ergebnisinterpretation und Additional Details gelesen. DNM1, autosomal-rezessive Vererbung und Bezug des DNA-Tests auf diese Variante. Die Kurzform „kein EIC“ wird ausdrücklich nicht zum Ausschluss sämtlicher Kollapsursachen erweitert."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "dnm1-befund-und-beobachtung",
+          "title": "Labrador: Variantenbefund und Belastungskollaps auseinanderhalten",
+          "paragraphs": [
+            "EIC steht für exercise-induced collapse, also Belastungskollaps. Beim Labrador ist eine erbliche, mit einer Variante im Gen DNM1 verbundene Form beschrieben. Fachtexte unterscheiden dafür auch DNM1-assoziierten EIC. Diese Form wird autosomal-rezessiv vererbt: Der zugehörige genetische Befund betrifft zwei Kopien der Variante. Der Name eines beobachteten Geschehens und seine genaue Ursache sind trotzdem verschiedene Informationen.",
+            "Ein DNA-Test auf diese DNM1-Variante beantwortet eine gezielte genetische Frage. Er ist kein allgemeiner Test auf jede mögliche Ursache von Schwäche oder Kollaps. Furrow und andere verglichen Labradore mit wiederkehrendem Belastungskollaps und verschiedenen DNM1-Befunden. Auch bei Hunden ohne zwei Variantenkopien waren Kollapsereignisse beschrieben; deren Erscheinungsbilder passten nicht zu einer einzigen Erkrankung. Die unabhängige MSD-Fachübersicht bestätigt diese wichtige Grenze. „Die getestete Variante wurde nicht gefunden“ bedeutet deshalb keine vollständige Entwarnung für jedes Belastungsproblem.",
+            "Die Originalstudie untersuchte bereits wegen wiederkehrender Kollapsereignisse ausgewählte Hunde. Daraus lässt sich kein Anteil erkrankter Hunde an der gesamten Labradorpopulation ablesen. Eigenes Lernbeispiel: Die Notiz „DNM1-Test variantenfrei“ und die Notiz „nach Belastung zusammengebrochen“ widersprechen sich nicht automatisch; sie beschreiben unterschiedliche Ebenen. Die Ursache eines Kollapses und die individuelle Belastbarkeit gehören in die tierärztliche Beurteilung. Diese Lerneinheit liefert weder eine Diagnose noch einen Belastungstest oder eine jagdliche Einsatzfreigabe."
+          ],
+          "takeaway": "Ein DNM1-Befund beschreibt die getestete genetische Variante; andere Ursachen eines Belastungskollapses bleiben eine eigene tierärztliche Frage.",
+          "exercise": "Ordne auf Papier drei Angaben getrennt zu: „DNM1-Variante“, „beobachteter Kollaps“ und „tierärztlich geklärte Ursache“. Beschreibe, welche Aussage jede Angabe tatsächlich trägt. Kein Versuch am Hund."
+        }
+      ],
+      "questions": [
+        {
+          "id": "gen-zuordnen",
+          "lessonId": "dnm1-befund-und-beobachtung",
+          "q": "Welches Gen gehört zu der hier beschriebenen erblichen EIC-Form beim Labrador Retriever?",
+          "options": ["SLC2A9, die hier behandelte HUU-Variante.", "DNM1, das Gen für Dynamin 1.", "Der Name des beobachteten Bewegungsmusters ersetzt die Genbezeichnung.", "Die Fellfarbe ist der maßgebliche genetische EIC-Befund."],
+          "answer": 1,
+          "explain": "Die beschriebene erbliche Form ist DNM1-assoziiert. Ein gezielter Variantenbefund beantwortet eine genetische Frage und ersetzt keine vollständige Beurteilung des einzelnen Hundes."
+        },
+        {
+          "id": "negativer-test-und-kollaps",
+          "lessonId": "dnm1-befund-und-beobachtung",
+          "q": "Ein Labrador ist im Test auf die beschriebene DNM1-Variante variantenfrei; dennoch wird ein Kollaps nach Belastung berichtet. Wie passen die beiden Angaben zusammen?",
+          "options": ["Der Bericht über den Kollaps ist durch den Gentest widerlegt.", "Der Gentest bestimmt damit bereits die andere Kollapsursache.", "Der Befund belegt zugleich die jagdliche Belastbarkeit.", "Der Gentest betrifft die Variante; die Ursache des beobachteten Kollapses bleibt gesondert zu klären."],
+          "answer": 3,
+          "explain": "Die Originalstudie und die MSD-Fachübersicht beschreiben Kollaps auch außerhalb der DNM1-assoziierten Form. Ein variantenfreier Befund ist daher keine vollständige Gesundheits- oder Belastbarkeitsbescheinigung."
+        },
+        {
+          "id": "auswahl-der-studienhunde",
+          "lessonId": "dnm1-befund-und-beobachtung",
+          "q": "Warum liefert die beschriebene Vergleichsstudie von Furrow und anderen allein keinen Erkrankungsanteil für die gesamte Labradorpopulation?",
+          "options": ["Die untersuchten Hunde waren bereits wegen wiederkehrender Kollapsereignisse ausgewählt.", "Die Untersuchung verglich ausschließlich Fellfarben gesunder Hunde.", "Die Genbefunde waren in der Untersuchung ohne Bedeutung.", "Eine Untersuchung betroffener Hunde enthält automatisch alle gesunden Labradore."],
+          "answer": 0,
+          "explain": "Die Originalzusammenfassung benennt eine ausgewählte Gruppe mit wiederkehrendem Belastungskollaps. Eine solche Auswahl beschreibt die untersuchten Fälle; sie ist keine zufällige Stichprobe der gesamten Rasse."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-24",
+        "scope": "Nur diese neue Labrador-Lektion und ihre drei eigenen Lernfragen wurden am 24.10.2026 abgeglichen. Die Originalzusammenfassung wird durch eine unabhängige tiermedizinische Fachübersicht eingeordnet; keine unabhängige Wiederholung der Studie behauptet.",
+        "limitations": ["Originalstudie als vollständige Zusammenfassung gelesen; Volltextzugriff beim Verlag fehlgeschlagen.", "Keine Rasseprävalenz, Diagnose, Behandlung, Belastungsminute oder individuelle Einsatzfreigabe.", "Die Kurzbezeichnung EIC wird auf die DNM1-assoziierte Form eingegrenzt, wenn es um den DNA-Test geht."]
+      }
+    },
+    {
+      "id": "wissen-weimaraner-slc2a9-huu-testgrenzen-2026",
+      "title": "Weimaraner: SLC2A9, HUU und Uratsteine unterscheiden",
+      "category": "Hundewesen",
+      "topic": "Hundewesen",
+      "description": "Genetische Veranlagung, erhöhte Harnsäureausscheidung und tatsächlich vorhandene Harnsteine getrennt verstehen.",
+      "minutes": 8,
+      "objectives": ["HUU als Hyperurikosurie erklären", "Trägerstatus und zwei Variantenkopien unterscheiden", "Genetische Veranlagung von nachgewiesenen Harnsteinen trennen"],
+      "countries": ["DE", "AT", "CH"],
+      "countryNotes": {
+        "DE": "Gemeinsames biologisches Lernwissen. Genbefunde und mögliche Erkrankungen des einzelnen Hundes werden tierärztlich eingeordnet; keine Diagnose oder Behandlungsvorgabe.",
+        "AT": "Gemeinsames biologisches Lernwissen. Genbefunde und mögliche Erkrankungen des einzelnen Hundes werden tierärztlich eingeordnet; keine Diagnose oder Behandlungsvorgabe.",
+        "CH": "Gemeinsames biologisches Lernwissen. Genbefunde und mögliche Erkrankungen des einzelnen Hundes werden tierärztlich eingeordnet; keine Diagnose oder Behandlungsvorgabe."
+      },
+      "level": "Vertiefung",
+      "sources": [
+        {
+          "label": "Westropp und andere, 2014: dokumentierter Weimaraner mit Uratsteinen und SLC2A9-Befund",
+          "url": "https://weimaranerclubofamerica.org/pdfs/huu_case_file.pdf",
+          "organization": "University of California, Davis; Originalartikel aus Veterinary Record Case Reports, bereitgestellt vom Weimaraner Club of America",
+          "supports": "Originalfallbericht: Zusammenfassung, Fallbeschreibung und Diskussion gelesen. Klinischer Fall eines Weimaraners mit Uratsteinen und zwei Variantenkopien. Der Club ist nur Bereitsteller derselben Arbeit und keine unabhängige zweite Studie; keine Häufigkeit aus dem Einzelfall abgeleitet."
+        },
+        {
+          "label": "UC Davis Veterinary Genetics Laboratory: HUU und SLC2A9-Testinterpretation",
+          "url": "https://vgl.vetmed.ucdavis.edu/test/hyperuricosuria",
+          "organization": "University of California, Davis / Veterinary Genetics Laboratory",
+          "supports": "Quick Summary, Ergebnisinterpretation und Additional Details gelesen. Harnsäure im Urin, autosomal-rezessive SLC2A9-Variante, N/HU-Träger und HU/HU-Veranlagung zu Steinen. Weimaraner ausdrücklich unter den geeigneten Rassen genannt. DNA-Status ist kein Nachweis bereits vorhandener Steine; andere Ursachen bleiben möglich."
+        },
+        {
+          "label": "University of Minnesota Urolith Center: Uratanteile, Ursachenabklärung und Weimaraner",
+          "url": "https://vetmed.umn.edu/urolith-center/advice-and-facts/what-significance-urate-canine-struvite-stones",
+          "organization": "University of Minnesota / Minnesota Urolith Center",
+          "supports": "Eigene klinische Fachinformation vom August 2022 vollständig gelesen. Unterscheidet genetische Harnsäuretransportstörung von leberbedingten Ursachen und nennt Weimaraner ausdrücklich. Aussagen zum Management zusammengesetzter Steine werden weder als allgemeine Diagnose noch als Behandlungsanweisung übernommen."
+        },
+        {
+          "label": "Cornell Riney Canine Health Center: HUU, Genetik und klinischer Steinnachweis",
+          "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/hyperuricosuria-and-hyperuricemia-or-urolithiasis-huu",
+          "organization": "Cornell University / Riney Canine Health Center in Zusammenarbeit mit Embark Veterinary",
+          "supports": "Abschnitte Overview, Diagnosis und Genetics gelesen. Allgemeine unabhängige Einordnung: erhöhte Harnsäure im Urin kann zu Steinen führen; zwei SLC2A9-Variantenkopien erhöhen das Risiko, eine Kopie bezeichnet Trägerstatus. Kein zusätzlicher Weimaraner-Fallbericht; keine Stoffwechsel-, Diät- oder Häufigkeitsangaben übernommen."
+        }
+      ],
+      "lessons": [
+        {
+          "id": "huu-veranlagung-und-steinbefund",
+          "title": "Weimaraner: Genetische Veranlagung ist kein Steinnachweis",
+          "paragraphs": [
+            "Hyperurikosurie, kurz HUU, bezeichnet eine erhöhte Ausscheidung von Harnsäure im Urin. Eine beschriebene erbliche Form ist mit einer Variante im Gen SLC2A9 verbunden. Diese kann die Entstehung von Uratsteinen in den Harnwegen begünstigen. Erhöhte Harnsäureausscheidung, genetischer Befund und tatsächlich vorhandener Stein sind deshalb getrennte Begriffe.",
+            "Die untersuchte SLC2A9-Variante wird autosomal-rezessiv vererbt. In der Testnotation von UC Davis bedeutet N/HU eine normale Kopie und eine Variantenkopie: Der Hund ist Träger dieser Variante. HU/HU bedeutet zwei Variantenkopien und damit die genetische Grundlage dieser HUU-Form mit einer Veranlagung zur Steinbildung. Der Befund sagt für sich allein nicht, dass zum Untersuchungszeitpunkt bereits ein Uratstein vorhanden ist. Cornell unterscheidet ebenfalls den genetischen Risikobefund von der klinischen Untersuchung auf Steine.",
+            "Westropp und andere dokumentierten einen Weimaraner mit nachgewiesenen Uratsteinen und zwei Kopien der SLC2A9-Variante. Das belegt einen konkreten klinischen Fall, keinen Erkrankungsanteil aller Weimaraner. Das unabhängige Minnesota Urolith Center nennt die Rasse ebenfalls im Zusammenhang mit genetischer Hyperurikosurie und trennt diese von leberbedingten Ursachen. Die Möglichkeit betrifft somit auch diese Rasse, ist aber keine Aussage, dass jeder Weimaraner erkrankt.",
+            "Eigenes Lernbeispiel: Auf einem Befund steht HU/HU, über eine Untersuchung der Harnwege ist nichts angegeben. Zulässig ist die Aussage zur getesteten genetischen Veranlagung; „Uratsteine bereits nachgewiesen“ wäre ein zusätzlicher, bisher fehlender Befund. Umgekehrt können Uratsteine auch andere Ursachen haben. Die Einordnung eines einzelnen Hundes und die Klärung möglicher Erkrankungen sind tierärztliche Aufgaben. Diese Lektion enthält keine Diagnose, Diät, Medikamenten- oder Zuchtempfehlung."
+          ],
+          "takeaway": "HUU-Genotyp, erhöhte Harnsäureausscheidung und nachgewiesene Uratsteine sind unterschiedliche Befunde; keiner wird pauschal aus dem Rassenamen abgeleitet.",
+          "exercise": "Schreibe für ein rein fiktives HU/HU-Testblatt je einen Satz unter „genetischer Befund“ und „noch offener klinischer Befund“. Ergänze keine Beschwerden, Steine oder Behandlungen, die auf dem Blatt gar nicht dokumentiert sind."
+        }
+      ],
+      "questions": [
+        {
+          "id": "huu-begriff",
+          "lessonId": "huu-veranlagung-und-steinbefund",
+          "q": "Was bedeutet Hyperurikosurie, kurz HUU, beim Hund?",
+          "options": ["Ein allein anhand der Fellfarbe bestimmbarer Harnstein.", "Der Name für jede Lebererkrankung eines Jagdhundes.", "Eine erhöhte Ausscheidung von Harnsäure im Urin.", "Eine im DNA-Test unmittelbar sichtbare Größe eines Blasensteins."],
+          "answer": 2,
+          "explain": "HUU bezeichnet die erhöhte Harnsäureausscheidung im Urin. Eine genetisch bedingte Form kann zu Uratsteinen prädisponieren; die Begriffe Genbefund und vorhandener Stein bleiben getrennt."
+        },
+        {
+          "id": "hu-hu-ohne-steinbefund",
+          "lessonId": "huu-veranlagung-und-steinbefund",
+          "q": "Ein Weimaraner hat im SLC2A9-Test den Befund HU/HU; ein Steinnachweis liegt nicht vor. Was sagt das Testblatt über vorhandene Uratsteine aus?",
+          "options": ["Es beschreibt eine genetische Veranlagung zur Steinbildung; ein bereits vorhandener Stein ist damit allein nicht nachgewiesen.", "Es dokumentiert bereits die Lage und Größe eines Uratsteins.", "Es beweist bei jedem Weimaraner dieselbe klinische Erkrankung.", "Es legt ohne weitere Untersuchung die Ursache jedes Harnproblems fest."],
+          "answer": 0,
+          "explain": "HU/HU steht für zwei Kopien der untersuchten Variante. Der genetische Status begründet eine Veranlagung; ob tatsächlich Steine vorhanden sind und wodurch Beschwerden entstehen, ist eine weitere klinische Frage."
+        },
+        {
+          "id": "n-hu-traegerstatus",
+          "lessonId": "huu-veranlagung-und-steinbefund",
+          "q": "Was bezeichnet N/HU in der hier verwendeten SLC2A9-Testnotation von UC Davis?",
+          "options": ["Zwei Kopien der getesteten HUU-Variante.", "Den bildgebenden Nachweis eines Uratsteins.", "Den Ausschluss sämtlicher Erkrankungen der Harnwege.", "Eine normale Kopie und eine Variantenkopie: Trägerstatus für die getestete HUU-Variante."],
+          "answer": 3,
+          "explain": "N/HU bezeichnet einen Träger mit einer Variantenkopie. Das ist weder der HU/HU-Befund mit zwei Variantenkopien noch eine allgemeine Bescheinigung gesunder Harnwege."
+        }
+      ],
+      "sourceReview": {
+        "reviewedOn": "2026-10-24",
+        "scope": "Nur diese neue Weimaraner-Lektion und ihre drei eigenen Lernfragen wurden am 24.10.2026 abgeglichen. UC-Davis-Fallbericht und UC-Davis-Testseite zählen organisatorisch zusammen; Minnesota und Cornell liefern die unabhängige fachliche Einordnung.",
+        "limitations": ["Der Originalfallbericht belegt einen klinischen Fall, keine Rasseprävalenz oder zwangsläufige Erkrankung.", "Die unabhängigen Fachinformationen sind keine Wiederholung dieses einzelnen Fallberichts.", "Keine Diagnose-, Behandlungs-, Diät-, Medikamenten-, Zucht- oder Einsatzempfehlungen.", "Keine Übernahme des verkürzten Cornell-Stoffwechselsatzes; gelehrt werden nur belegte Befundbegriffe und Testgrenzen."]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "moduleId": "wissen-labrador-dnm1-eic-testgrenzen-2026",
+      "lessonId": "dnm1-befund-und-beobachtung",
+      "claims": [
+        {
+          "claim": "Beim Labrador ist eine autosomal-rezessive DNM1-assoziierte EIC-Form beschrieben. Die untersuchte Variante und zwei Variantenkopien beziehen sich auf diese genetische Form, nicht auf jede Kollapsursache.",
+          "sourceUrls": ["https://pubmed.ncbi.nlm.nih.gov/23445289/", "https://www.msdvetmanual.com/musculoskeletal-system/myopathies-in-dogs-and-cats/exercise-intolerance-and-exercise-induced-collapse-in-dogs", "https://vgl.vetmed.ucdavis.edu/test/exercise-induced-collapse"]
+        },
+        {
+          "claim": "Kollapsereignisse wurden auch bei Labradoren ohne zwei Kopien der DNM1-Variante beschrieben; ein variantenfreier Befund schließt andere Ursachen von Belastungskollaps nicht aus. Der DNA-Test ist kein allgemeiner Gesundheits- oder Belastbarkeitsnachweis.",
+          "sourceUrls": ["https://pubmed.ncbi.nlm.nih.gov/23445289/", "https://www.msdvetmanual.com/musculoskeletal-system/myopathies-in-dogs-and-cats/exercise-intolerance-and-exercise-induced-collapse-in-dogs"]
+        },
+        {
+          "claim": "Die Originalstudie vergleicht bereits wegen wiederkehrender Kollapsereignisse ausgewählte Hunde. Die daraus erklärte Grenze einer Rasseprävalenz ist eine methodische Einordnung dieser Auswahl; die MSD-Fachübersicht bestätigt die Unterscheidung genetisch unterschiedlicher Kollapsfälle, nicht eine unabhängige Wiederholung der Studie. Notizvergleich und Übung sind eigene Lernbeispiele.",
+          "sourceUrls": ["https://pubmed.ncbi.nlm.nih.gov/23445289/", "https://www.msdvetmanual.com/musculoskeletal-system/myopathies-in-dogs-and-cats/exercise-intolerance-and-exercise-induced-collapse-in-dogs"]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-weimaraner-slc2a9-huu-testgrenzen-2026",
+      "lessonId": "huu-veranlagung-und-steinbefund",
+      "claims": [
+        {
+          "claim": "Hyperurikosurie bedeutet erhöhte Harnsäureausscheidung im Urin. Die SLC2A9-assoziierte Form kann Uratsteine begünstigen; genetischer Status und klinisch vorhandene Steine sind unterschiedliche Befunde.",
+          "sourceUrls": ["https://vgl.vetmed.ucdavis.edu/test/hyperuricosuria", "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/hyperuricosuria-and-hyperuricemia-or-urolithiasis-huu"]
+        },
+        {
+          "claim": "Die untersuchte SLC2A9-Variante wird autosomal-rezessiv vererbt. N/HU bezeichnet eine Variantenkopie und Trägerstatus, HU/HU zwei Variantenkopien und die genetisch bedingte HUU-Veranlagung zur Steinbildung; daraus allein folgt kein bereits vorhandener Uratstein.",
+          "sourceUrls": ["https://vgl.vetmed.ucdavis.edu/test/hyperuricosuria", "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/hyperuricosuria-and-hyperuricemia-or-urolithiasis-huu"]
+        },
+        {
+          "claim": "Der Originalfallbericht dokumentiert einen Weimaraner mit Uratsteinen und zwei Variantenkopien. Minnesota nennt Weimaraner unabhängig als relevante Rasse für genetische Hyperurikosurie; das ist keine unabhängige Wiederholung des klinischen Einzelfalls und kein Erkrankungsanteil aller Weimaraner.",
+          "sourceUrls": ["https://weimaranerclubofamerica.org/pdfs/huu_case_file.pdf", "https://vetmed.umn.edu/urolith-center/advice-and-facts/what-significance-urate-canine-struvite-stones"]
+        },
+        {
+          "claim": "Uratsteine können neben der genetischen HUU-Form weitere Ursachen haben, darunter leberbedingte Ursachen. Die Beurteilung des einzelnen Hundes bleibt klinisch; aus dem eigenen HU/HU-Lernbeispiel werden keine Diagnose oder Behandlung abgeleitet.",
+          "sourceUrls": ["https://vgl.vetmed.ucdavis.edu/test/hyperuricosuria", "https://vetmed.umn.edu/urolith-center/advice-and-facts/what-significance-urate-canine-struvite-stones", "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/hyperuricosuria-and-hyperuricemia-or-urolithiasis-huu"]
+        }
+      ]
+    }
+  ],
+  "withheldTopics": [
+    {"topic": "Rassehäufigkeiten, feste Belastungsgrenzen und Vorhersage der Erkrankung eines einzelnen Hundes", "reason": "Die ausgewählte Kollapsstudie und der Weimaraner-Einzelfall tragen keine pauschalen Prävalenz- oder Individualprognosen."},
+    {"topic": "Diagnose, Therapie, Diät, Medikamente, Zuchtentscheidung und Provokation eines Kollapses", "reason": "Diese Lerneinheiten vermitteln Befundbegriffe und Testgrenzen. Sie ersetzen keine tierärztliche Beurteilung oder individuelle Beratung."}
+  ]
+}

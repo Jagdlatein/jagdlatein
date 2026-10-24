@@ -16,9 +16,27 @@ function BreedSources({ profile, contextSources, includePhoto = false }) {
   </details>;
 }
 
-export function createDogBreedTopics(profile, tasks = [], contextSources = []) {
+function HealthSources({ knowledge, lesson }) {
+  return <details className={styles.sources}>
+    <summary>Quellen und Prüfung dieser Genetik-Lektion</summary>
+    <p>Prüfstand dieser Erweiterung: {knowledge.reviewedOn}. Das übrige Rassenprofil behält seinen bisherigen Dokumentationsstand.</p>
+    <ul>{knowledge.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a><br />{source.organization}</li>)}</ul>
+    <h3>Zuordnung der belegten Aussagen</h3>
+    <ul>{lesson.evidence.map(item => <li key={item.claim}>
+      <p>{item.claim}</p>
+      <ul>{item.sourceUrls.map(url => {
+        const source = knowledge.sources.find(source => source.url === url);
+        return source ? <li key={url}><a href={url} target="_blank" rel="noopener noreferrer">{source.label}</a></li> : null;
+      })}</ul>
+    </li>)}</ul>
+    <h3>Grenzen dieser Prüfung</h3>
+    <ul>{knowledge.limitations.map(limit => <li key={limit}>{limit}</li>)}</ul>
+  </details>;
+}
+
+export function createDogBreedTopics(profile, tasks = [], contextSources = [], healthKnowledge = null) {
   const sources = options => <BreedSources profile={profile} contextSources={contextSources} {...options} />;
-  return [{ id: "rassenprofil", title: profile.name, topics: [
+  const groups = [{ id: "rassenprofil", title: profile.name, topics: [
     { id: "rasse-erkennen", aliases: [`dog-${profile.id}`], title: "Rasse erkennen", render: () => <section className={styles.knowledge}>
       <h2>{profile.name}: Rasse erkennen</h2><p className={styles.lead}>{profile.summary}</p>
       <p><strong>Rassegruppe:</strong> {profile.group}</p>
@@ -43,11 +61,24 @@ export function createDogBreedTopics(profile, tasks = [], contextSources = []) {
       <p>Der einzelne Hund, seine Ausbildung und die örtlichen Voraussetzungen entscheiden über die praktische Eignung.</p>{sources()}
     </section> },
   ] }];
+  if (healthKnowledge?.breedId === profile.id) groups.push({ id: "gesundheit-genetik", title: "Gesundheit & Genetik", topics:
+    healthKnowledge.lessons.map(lesson => ({ id: `gesundheit-${lesson.id}`, title: lesson.title, render: () => <section className={styles.knowledge}>
+      <h2>{lesson.title}</h2>
+      {lesson.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+      <p><strong>Merke:</strong> {lesson.takeaway}</p>
+      <p className={styles.boundary}>{healthKnowledge.scope}</p>
+      <HealthSources knowledge={healthKnowledge} lesson={lesson} />
+    </section> })) });
+  return groups;
 }
 
-export default function DogBreedProfile({ profile, tasks = [], contextSources = [] }) {
+export default function DogBreedProfile({ profile, tasks = [], contextSources = [], healthKnowledge = null }) {
+  const matchingKnowledge = healthKnowledge?.breedId === profile.id ? healthKnowledge : null;
   return <LearningToolLayout title={profile.name} description={profile.summary} icon="paw" category="hundewesen" headingOnly hideCommunity className={styles.page}>
-    <TopicSectionReader key={profile.id} id="jagdhund-themen" title={`${profile.name} – Themen`} groups={createDogBreedTopics(profile, tasks, contextSources)}
-      menuFooter={<Link href="/lernen/jagdhunde" prefetch={false}>Alle Jagdhunderassen</Link>} />
+    <TopicSectionReader key={profile.id} id="jagdhund-themen" title={`${profile.name} – Themen`} groups={createDogBreedTopics(profile, tasks, contextSources, matchingKnowledge)}
+      menuFooter={matchingKnowledge ? <>
+        <p><Link href={`/kurse/${matchingKnowledge.courseId}#wissenscheck`} prefetch={false}>Diese Genetik-Lektion üben</Link></p>
+        <p><Link href="/lernen/jagdhunde" prefetch={false}>Alle Jagdhunderassen</Link></p>
+      </> : <Link href="/lernen/jagdhunde" prefetch={false}>Alle Jagdhunderassen</Link>} />
   </LearningToolLayout>;
 }

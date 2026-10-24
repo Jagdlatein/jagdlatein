@@ -143,7 +143,7 @@ test('Search entries resolve every profile and dataset and exclude private quiz 
 });
 test('Tools keep complete learning content visible while their subject selectors occur only in the lower PageMenu', () => {
   for (const file of ['components/SmallRevierLife.js', 'components/ResearchUnderstanding.js']) {
-    const s = file.endsWith('ResearchUnderstanding.js') ? setup(file, {}, '', { isReady: true, query: { datensatz: 'temperatur' } }) : setup(file); const html = s.html();
+    const s = setup(file, {}, '', { isReady: true, query: file.endsWith('ResearchUnderstanding.js') ? { datensatz: 'temperatur' } : { thema: 'holzpilze' } }); const html = s.html();
     assert.equal((html.match(/<main/g) || []).length, 1);
     assert.doesNotMatch(html, /id="(?:revierleben-thema|forschung-datensatz)"|Lebewesen oder Zusammenhang|Forschungsbeispiel/);
     assert.match(s.menuHtml(), /<label[^>]*>[^<]+<select/);
@@ -193,6 +193,7 @@ test('The lower research menu switches between data series and movement maps wit
 });
 test('Ecology deep links, back navigation and selectors consistently show the addressed topic', () => {
   const changes = []; const router = { query: { thema: 'holzpilze', preserved: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
+  router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
   assert.equal(find(s.tree, item => item.props?.topic)?.props.topic.id, 'holzpilze');
   find(s.tree, item => item.type === 'select').props.onChange({ target: { value: 'regenwuermer' } }); s.render();
@@ -200,7 +201,7 @@ test('Ecology deep links, back navigation and selectors consistently show the ad
   assert.equal(changes[0][0].query.preserved, 'yes'); assert.equal(changes[0][0].query.thema, 'regenwuermer');
   assert.deepEqual(changes[0][2], { shallow: true, scroll: false });
   router.query.thema = 'wildbienen'; s.render(); s.e.effects(); s.render(); assert.equal(find(s.tree, item => item.props?.topic)?.props.topic.id, 'wildbienen');
-  router.query.thema = 'unknown'; s.render(); s.e.effects(); s.render(); assert.equal(find(s.tree, item => item.props?.topic)?.props.topic.id, 'wildbienen');
+  router.query.thema = 'unknown'; s.render(); s.e.effects(); s.render(); assert.equal(find(s.tree, item => item.props?.topic), null); assert.match(s.html(), /Dieses Thema oder Nahrungsnetzmotiv ist nicht verfügbar/);
 });
 test('Research direct selection is stable and unrelated URL state survives without extra steps', () => {
   const changes = []; const router = { query: { datensatz: 'brutvoegel', preserved: 'yes' }, isReady: true, pathname: '/lernen/forschung-verstehen', replace: (...args) => { changes.push(args); return Promise.resolve(); } };

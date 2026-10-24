@@ -17,8 +17,9 @@ function setup(file, query = {}) {
   const previousWindow = global.window;
   const slots = [], effects = [], replacements = [], focus = [], scroll = [];
   let cursor = 0, dirty = false, tree, closeCount = 0;
-  const router = { isReady: true, pathname: file.includes('Anatomy') ? '/lernen/anatomie' : '/lernen/wildtier-detailatlas', query,
-    replace(...args) { replacements.push(args); router.query = args[0].query; return Promise.resolve(true); } };
+  const router = { isReady: true, pathname: file.includes('Anatomy') ? '/lernen/anatomie' : '/lernen/wildtier-details', query,
+    replace(...args) { replacements.push(args); router.query = args[0].query; return Promise.resolve(true); },
+    push(...args) { replacements.push(args); router.query = args[0].query; return Promise.resolve(true); } };
   const hooks = { ...React,
     useState(initial) {
       const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial };
@@ -35,7 +36,7 @@ function setup(file, query = {}) {
   };
   const PageMenu = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
-    './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closeCount++; } } });
+    './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closeCount++; }, openPageMenu() {} } });
   const Component = load(file).default;
   global.window = { location: { search: `?${new URLSearchParams(query)}` } };
   function flush() {
@@ -120,6 +121,6 @@ test('The detail atlas selector lives only in the lower menu and every selected 
     const previous = s.closeCount; s.choose('unknown'); assert.equal(s.closeCount, previous);
     s.route({ thema: wildDetailTopics[1].id }); assert.ok(s.bodyText().includes(wildDetailTopics[1].title));
     s.route({}); assert.ok(s.bodyText().includes(wildDetailTopics[0].title), 'A URL without a topic returns to its actual default instead of retaining the previous URL selection');
-    s.route({ thema: ['ambiguous', wildDetailTopics[1].id] }); assert.ok(s.bodyText().includes(wildDetailTopics[0].title));
+    s.route({ thema: ['ambiguous', wildDetailTopics[1].id] }); assert.match(s.bodyText(), /Dieses Thema ist nicht verfügbar/); assert.equal(nodes(s.tree, node => node.type?.name === 'DetailPhoto').length, 0);
   } finally { s.close(); }
 });
