@@ -17,7 +17,7 @@ test("iOS-Projekt hat eine native Scene und löst seine tatsächlichen Ressource
   assert.ok(!resourceNames.includes("public"));
   assert.ok(!resourceNames.includes("capacitor.config.json"));
   const products = Object.values(objects.XCSwiftPackageProductDependency).filter(value => typeof value === "object");
-  assert.deepEqual(products.map(value => value.productName.replaceAll('"', "")), ["JagdlateinCore"]);
+  assert.deepEqual(products.map(value => value.productName.replaceAll('"', "")).sort(), ["FirebaseCore", "FirebaseMessaging", "JagdlateinCore"]);
 });
 
 test("Lokale Merkliste hat Datenschutz-API-Grund; Browser-Schutzausnahmen fehlen", async () => {

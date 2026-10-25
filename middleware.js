@@ -39,6 +39,8 @@ const PUBLIC_PATHS = [
   "/impressum",
   "/datenschutz",
   "/datenschutzerklaerung.html",
+  "/firebase-messaging-sw.js",
+  "/manifest.webmanifest",
   "/hilfe",
   // New local-only observation tool; existing premium knowledge routes retain
   // their own access checks. No photo upload or account data is exposed here.

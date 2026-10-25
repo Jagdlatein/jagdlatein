@@ -74,6 +74,9 @@ async function fixture(overrides = {}) {
         ilike(name, value) { this.filters.push([name, value.replace(/\\([\\%_])/g, '$1')]); return this; },
         insert(value) { this.value = value; return this; },
         async execute(single = false) {
+          // This provider-only fixture omits the optional courtesy-access
+          // migration. Match its real missing-table response, not a mock error.
+          if (table === 'account_access_grants') return { data: null, error: { code: '42P01' } };
           assert.ok(['userprofile', 'paypal_subscriptions'].includes(table));
           if (this.n === 0) return { data: [], error: null };
           if (this.value) {

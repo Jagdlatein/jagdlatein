@@ -2,6 +2,10 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import AccountLayout, { AccountError, ProgressError } from "../components/AccountLayout";
 import useAccountOverview from "../hooks/useAccountOverview";
+import WebPushPreferences from "../components/WebPushPreferences";
+import NativePushPreferences from "../components/NativePushPreferences";
+import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
+import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
 import { getAccountPageProps } from "../lib/account-page";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
@@ -21,7 +25,7 @@ function accessDate(value) {
   return new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Berlin", timeZoneName: "short" }).format(new Date(value));
 }
 
-function AccountDeletion({ onDeleted }) {
+function AccountDeletion({ onDeleted, isCurrent = () => true }) {
   const [available, setAvailable] = useState(false);
   const [reauthentication, setReauthentication] = useState(true);
   const [reviewReauthentication, setReviewReauthentication] = useState(false);
@@ -32,6 +36,10 @@ function AccountDeletion({ onDeleted }) {
   const [message, setMessage] = useState("");
   const [deleted, setDeleted] = useState(false);
   const busy = useRef(false);
+  const mounted = useRef(false);
+  const active = () => mounted.current && isCurrent();
+
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -49,7 +57,7 @@ function AccountDeletion({ onDeleted }) {
 
   async function submitDeletion(event) {
     event.preventDefault();
-    if (busy.current || confirmation !== "KONTO LÖSCHEN" || !acknowledged) return;
+    if (!active() || busy.current || confirmation !== "KONTO LÖSCHEN" || !acknowledged) return;
     busy.current = true;
     setPending(true);
     setMessage("");
@@ -59,7 +67,9 @@ function AccountDeletion({ onDeleted }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ confirmation, acknowledgeSubscriptions: acknowledged }),
       });
+      if (!active()) return;
       const result = await response.json();
+      if (!active()) return;
       if (!response.ok || result.deleted !== true) {
         if (result.code === "DELETION_REAUTH_REQUIRED") setReauthentication(true);
         setMessage(result.message || "Dein Konto konnte nicht gelöscht werden. Bitte erneut versuchen.");
@@ -67,15 +77,19 @@ function AccountDeletion({ onDeleted }) {
       }
       setDeleted(true);
       onDeleted();
+      const pushCleanup = await Promise.all([cleanupWebPushForAccountChange({localOnly:true,isCurrent:active}), cleanupNativePushForAccountChange({localOnly:true,isCurrent:active})]);
+      if (!active()) return;
+      if(pushCleanup.some(success=>!success)) setMessage("Dein Konto ist gelöscht. Schalte Benachrichtigungen auf diesem Gerät bei Bedarf zusätzlich in den Systemeinstellungen aus.");
       if (!clearReviewHistory()) setMessage("Dein Konto ist gelöscht. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
       try { await clearOfflineLearning(); }
-      catch { setMessage("Dein Konto ist gelöscht. Der lokale Lernrucksack auf diesem Gerät konnte nicht vollständig geleert werden. Entferne ihn bitte in den Browser-Einstellungen."); }
+      catch { if(active()) setMessage("Dein Konto ist gelöscht. Der lokale Lernrucksack auf diesem Gerät konnte nicht vollständig geleert werden. Entferne ihn bitte in den Browser-Einstellungen."); }
+      if (!active()) return;
       window.dispatchEvent(new Event("jagdlatein-account-deleted"));
     } catch {
-      setMessage("Die Bestätigung ist nicht angekommen. Bitte lade dein Konto neu, bevor du es erneut versuchst.");
+      if(active()) setMessage("Die Bestätigung ist nicht angekommen. Bitte lade dein Konto neu, bevor du es erneut versuchst.");
     } finally {
       busy.current = false;
-      setPending(false);
+      if(active()) setPending(false);
     }
   }
 
@@ -119,7 +133,11 @@ function AccountDeletion({ onDeleted }) {
 
 export default function AccountPage({ courses = [] } = {}) {
   const { account, progress, accountError, progressError, loading, progressLoading, reload } = useAccountOverview();
-  const [accountDeleted, setAccountDeleted] = useState(false);
+  const [deletedAccount, setDeletedAccount] = useState(null);
+  const accountDeleted = deletedAccount === account;
+  const deletionIdentity = useRef({ value: account, version: 0 });
+  if(deletionIdentity.current.value !== account) deletionIdentity.current = { value: account, version: deletionIdentity.current.version + 1 };
+  const currentDeletionIdentity = deletionIdentity.current;
   const known = progress.filter((entry) => courses.some((course) => course.id === entry.course_id));
   const completed = known.filter((entry) => entry.status === "completed").length;
   const started = known.filter((entry) => entry.status === "in_progress").length;
@@ -220,6 +238,8 @@ export default function AccountPage({ courses = [] } = {}) {
             <p className={styles.muted}>Deine Quizrunden und Ansitzdurchläufe mit Trefferquote, Bestwert und Verlauf.</p>
             <Link href="/auswertungen" className={styles.button}>Auswertungen ansehen</Link>
           </section>
+          <WebPushPreferences account={account} />
+          <NativePushPreferences account={account} />
           <section className={styles.card} aria-labelledby="account-privacy">
             <h2 id="account-privacy">Datenschutz und Kontohilfe</h2>
             <p className={styles.muted}>Fragen zu deinen gespeicherten Daten oder eine Anfrage zu Auskunft, Berichtigung oder Löschung kannst du per E-Mail stellen. Eine Datenanfrage kündigt dein Apple- oder PayPal-Abo nicht automatisch.</p>
@@ -229,7 +249,7 @@ export default function AccountPage({ courses = [] } = {}) {
             </div>
           </section>
           </>}
-          <AccountDeletion onDeleted={() => setAccountDeleted(true)} />
+          <AccountDeletion key={currentDeletionIdentity.version} isCurrent={() => deletionIdentity.current === currentDeletionIdentity} onDeleted={() => setDeletedAccount(account)} />
         </>
       )}
     </AccountLayout>

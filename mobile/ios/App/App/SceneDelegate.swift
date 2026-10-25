@@ -42,6 +42,11 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .default()
         configuration.allowsInlineMediaPlayback = true
+        let pushBridge = NativePushBridge()
+        configuration.userContentController.addScriptMessageHandler(pushBridge, contentWorld: .page, name: "jagdlateinNativePush")
+        configuration.userContentController.addUserScript(WKUserScript(
+            source: NativePushBridge.script, injectionTime: .atDocumentStart, forMainFrameOnly: true
+        ))
         // iOS supplies the file-input picker. Its camera/library usage strings
         // are declared in Info.plist; no camera or Photos request runs at launch.
         // Only this updated native binary may enable photo inputs in the website.
@@ -64,7 +69,9 @@ private final class WebsiteViewController: UIViewController, WKNavigationDelegat
                 source: photoCaptureSource, injectionTime: .atDocumentStart, forMainFrameOnly: true
             ))
         }
-        return WKWebView(frame: .zero, configuration: configuration)
+        let view = WKWebView(frame: .zero, configuration: configuration)
+        pushBridge.attach(to: view)
+        return view
     }()
     private let toolbar = UIToolbar()
     private let heading = UILabel()
