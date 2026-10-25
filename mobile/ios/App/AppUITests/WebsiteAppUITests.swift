@@ -32,11 +32,11 @@ final class WebsiteAppUITests: XCTestCase {
         let location = app.staticTexts["jagdlatein.website.location"]
         assertHomepageLoaded(website: website, location: location)
         let heading = website.staticTexts["Jagdlatein"].firstMatch
-        let learning = website.links.matching(NSPredicate(format: "label CONTAINS %@", "Lernbereich öffnen")).firstMatch
+        let subscribe = website.links["Jetzt freischalten"].firstMatch
         XCTAssertTrue(waitUntil(heading, timeout: 15) { $0.exists && $0.isHittable },
                       "The actual website heading must be visible in the capture.")
-        XCTAssertTrue(waitUntil(learning, timeout: 15) { $0.exists && $0.isHittable },
-                      "The public learning-area tile must be loaded and visible.")
+        XCTAssertTrue(waitUntil(subscribe, timeout: 15) { $0.exists && $0.isHittable },
+                      "The actual public subscription link must be loaded and visible.")
         XCTAssertTrue(website.links["Login"].firstMatch.exists,
                       "Preparatory captures must use the public signed-out homepage.")
         XCTAssertFalse(website.buttons["Logout"].exists)
@@ -68,13 +68,13 @@ final class WebsiteAppUITests: XCTestCase {
         // Require two genuinely rendered frames before capture OR interaction;
         // keep the existing shared deadline, with no reload, injection or retry.
         let heading = website.staticTexts["Jagdlatein"].firstMatch
-        let learning = website.links.matching(NSPredicate(format: "label CONTAINS %@", "Lernbereich öffnen")).firstMatch
+        let subscribe = website.links["Jetzt freischalten"].firstMatch
         var renderedImage: CGImage?
         var consecutiveRenderedFrames = 0
         let renderedHomepage = NSPredicate { _, _ in
             let retry = app.buttons["Erneut versuchen"]
             guard heading.exists && heading.isHittable,
-                  learning.exists && learning.isHittable,
+                  subscribe.exists && subscribe.isHittable,
                   website.links["Login"].firstMatch.exists,
                   !website.buttons["Logout"].exists,
                   app.alerts.count == 0,

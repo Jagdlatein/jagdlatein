@@ -213,8 +213,23 @@ Im folgenden UI-Lauf war der öffentliche WebView laut originalem Video zum
 einmaligen Freischalten-Tap noch ohne gerenderte Webpixel, obwohl Accessibility
 den Link bereits als hittable meldete. Erst später erschien der sichtbare Inhalt.
 Der Fehllauf belegt damit keine echte sichtbare Linkinteraktion. Der vorhandene
-Zwei-Frame-Pixelguard des Store-Capturetests wird jetzt unverändert auch vor
-diesem einen Baseline-Tap verwendet. Sämtliche anschließenden Abo-, Kaufsperr-
-und Merkliste-Assertions, Pixelgrenzen und gemeinsamen Zeitbudgets bleiben
-erhalten. Produkt-Routing und Appfunktionen wurden dadurch nicht geändert;
-die erneute tatsächliche Mac-UI-Bestätigung steht für diesen Testfix noch aus.
+Zwei-Frame-Pixelguard des Store-Capturetests wurde deshalb gemeinsam auch vor
+diesen einen Baseline-Tap gesetzt. Der anschließende Main-Lauf `40199289998`
+für `6e3af0d33eb3818fbe8b94fd58f2c20fe6b7686a` bestand Backend, beide
+unsignierten Gerätearchive und alle 40 Swift-Tests. Der öffentliche UI-Test
+stoppte bereits vor dem Tap: Der aus dem älteren Capturetest übernommene Marker
+„Lernbereich öffnen“ existiert auf der aktuellen Homepage nicht mehr. Das
+tatsächlich gelesene Live-HTML (HTTP 200) und der vorhandene Seitenquelltext
+bestätigen stattdessen den sichtbaren Link „Jetzt freischalten“ zu `/preise`.
+Das XCTest-Log blieb bei jeder Guard-Runde an der Suche nach dem alten Link
+stehen; der Lauf prüfte daher weder den anschließenden Tap noch Storebilder.
+
+Ausschließlich dieser veraltete Inhaltsmarker wird nun im Capturetest und in
+der gemeinsamen Readiness-Prüfung auf den tatsächlich vorhandenen
+Jetzt-freischalten-Link umgestellt. Der Guard verlangt weiter zwei echte,
+aufeinanderfolgende gerenderte Frames mit unveränderter Pixelgeometrie und
+Schwelle. Sämtliche anschließenden Abo-, Kaufsperr- und Merkliste-Assertions,
+der einzelne Tap sowie die gemeinsamen Zeitbudgets bleiben erhalten.
+Produkt-Routing und Appfunktionen wurden nicht geändert. Lokaler
+Sourcevergleich und 29 mobile Node-Prüfungen bestätigen diese enge Änderung;
+die tatsächliche Mac-UI-Bestätigung für die korrigierte Markerauswahl steht aus.
