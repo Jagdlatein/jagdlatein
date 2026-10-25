@@ -60,6 +60,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === './AppIcon') return { __esModule: true, default: () => null };
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
+    if (id === './WebCoursePlatformEntry') return load('components/WebCoursePlatformEntry.js');
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     if (id === '../lib/category-navigation') return load('lib/category-navigation.js');
     if (id === '../lib/single-view-navigation') return load('lib/single-view-navigation.js');
@@ -404,6 +405,26 @@ test('Dock Back preserves each committed topic, case, motif and season in the fi
     s.render().props.children[0].props.onClick();
     assert.equal(s.destination, base + first, base); s.unmount();
   }
+});
+
+test('Online course Back retains view, category, offer and live-session selections while unrelated context edits stay within one stop', () => {
+  const base = '/online-kurse';
+  const stages = [base, `${base}?ansicht=selbstlernen`, `${base}?ansicht=selbstlernen&kategorie=wildkunde`,
+    `${base}?ansicht=angebote&angebot=11111111-1111-4111-8111-111111111111`,
+    `${base}?ansicht=live&termin=22222222-2222-4222-8222-222222222222`];
+  const s = setup(base, ['/lernen']);
+  for (const route of stages.slice(1)) s.route(route);
+  assert.deepEqual(s.history, ['/lernen', ...stages]);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, stages[3]);
+  assert.match(s.html(), /aria-label="Zum Lernbereich" aria-current="true"/);
+  const context = setup(stages[2], ['/lernen']);
+  context.route(`${stages[2]}&quelle=menue`); context.route(`${stages[2]}&quelle=start`);
+  assert.equal(context.history.length, 2);
+  context.render().props.children[0].props.onClick(); assert.equal(context.destination, '/lernen');
+  const nativeHistory = setup(base, ['/lernen']);
+  nativeHistory.route(stages[1]); nativeHistory.route(stages[2]); nativeHistory.route(stages[1]);
+  nativeHistory.render().props.children[0].props.onClick(); assert.equal(nativeHistory.destination, base);
+  s.unmount(); context.unmount(); nativeHistory.unmount();
 });
 
 test('Oral exam Back tracks only its category and question while context edits retain the chosen question', () => {

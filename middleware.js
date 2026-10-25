@@ -21,6 +21,7 @@ const SERVER_GUARDED_PAGES = new Set([
   "/lernen/lernkarten", "/lernen/lernkarten-drucken",
   "/admin", "/admin/glossar", "/admin/glossar-import", "/admin/import",
   "/admin/push", "/admin/quiz", "/admin/testabos",
+  "/online-kurse",
 ]);
 
 function hasServerPageGuard(pathname) {

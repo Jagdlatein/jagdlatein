@@ -71,6 +71,7 @@ function shell(initial = '/', { appRouter = false, animationFrames = true, ready
     if (id === 'next/compat/router') return { useRouter: () => appRouter ? null : control.router };
     if (id === 'next/link') return { __esModule: true, default: () => null };
     if (id === './AppIcon' || id === './AppUpdateStatus') return { __esModule: true, default: () => null };
+    if (id === './WebCoursePlatformEntry') return load('components/WebCoursePlatformEntry.js');
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     if (id === '../lib/category-navigation') return load('lib/category-navigation.js');

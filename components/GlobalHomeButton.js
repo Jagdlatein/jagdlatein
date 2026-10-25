@@ -7,6 +7,7 @@ import Link from "next/link";
 import AppIcon from "./AppIcon";
 import { PAGE_MENU_OUTLET_ID, PAGE_MENU_ROUTE_ATTRIBUTE } from "./PageMenu";
 import AppUpdateStatus from "./AppUpdateStatus";
+import WebCoursePlatformEntry from "./WebCoursePlatformEntry";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { getCategoryNavigationKey } from "../lib/category-navigation";
 import { installSingleViewNavigation, setSingleMenuOpen } from "../lib/single-view-navigation";
@@ -84,6 +85,7 @@ const toolSelectionFields = {
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
+  "/online-kurse": ["ansicht", "kategorie", "angebot", "termin"],
 };
 function tracksToolSelection(path) {
   return toolSelectionFields[path.split(/[?#]/)[0]];
@@ -254,7 +256,7 @@ export default function GlobalHomeButton() {
     window.location.assign(target);
   }
 
-  const learningCurrent = ["/lernen", "/wildkunde", "/kurse", "/fotohelfer", "/jagdrecht"].some(section => inSection(pathname, section));
+  const learningCurrent = ["/lernen", "/wildkunde", "/kurse", "/fotohelfer", "/jagdrecht", "/online-kurse"].some(section => inSection(pathname, section));
   const accountCurrent = ["/konto", "/meine-kurse", "/auswertungen", "/login", "/registrieren", "/preise"]
     .some(section => inSection(pathname, section));
   const videoCurrent = ["/lernen/videos", "/lernen/wildtier-videofaelle", "/lernen/jagdhund-videos"]
@@ -306,6 +308,7 @@ export default function GlobalHomeButton() {
             <div><Link href="/lernen" prefetch={false} onClick={closeMenu}>Alle Kategorien</Link>
             {learningCategoryDetails.map(category => <Link key={category.slug} href={`/lernen/${category.slug}`} prefetch={false} scroll={false} onClick={closeMenu} aria-current={pathname === `/lernen/${category.slug}` || category.slug === "jagdrecht" && inSection(pathname, "/jagdrecht") ? "page" : undefined}>{category.title}</Link>)}</div>
           </details> : <Link key={item.href} href={item.href} prefetch={false} onClick={closeMenu} aria-label={item.ariaLabel} aria-current={menuCurrent(item) ? "page" : undefined}><AppIcon name={item.icon} size={21} />{item.title}</Link>)}
+          <WebCoursePlatformEntry onClick={closeMenu} current={pathname === "/online-kurse"} />
           <AppUpdateStatus offline={pathname === "/lernen/offline-rucksack"} />
         </div>
       </details>
