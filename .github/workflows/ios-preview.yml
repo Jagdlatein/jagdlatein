@@ -73,6 +73,15 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
+      - name: Native Paketauflösung nachvollziehbar protokollieren
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+        run: |
+          xcodebuild -resolvePackageDependencies -project mobile/ios/App/App.xcodeproj -scheme App
+          if ($LASTEXITCODE -ne 0) { throw 'Native Pakete konnten nicht aufgelöst werden.' }
+          git status --short
+          $nativeResolved = 'mobile/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved'
+          if (Test-Path -LiteralPath $nativeResolved) { Get-Content -LiteralPath $nativeResolved }
       - name: Swift testen und Simulator-App kompilieren
         env:
           DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
