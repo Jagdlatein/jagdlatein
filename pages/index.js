@@ -14,7 +14,9 @@ import { CommunityInvite } from "../components/Community";
 import { getInitialJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
-import { useEffect } from "react";
+import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
+import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
+import { useEffect, useRef } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 
@@ -29,9 +31,14 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Home({ loggedIn = false, initialNews, revierMoment }) {
+  const mounted = useRef(false), loggingOut = useRef(false), homeIdentity = useRef({loggedIn});
+  if(homeIdentity.current.loggedIn !== loggedIn) homeIdentity.current = {loggedIn};
+  const currentHomeIdentity = homeIdentity.current;
+  const canLogOut = () => mounted.current && loggedIn && homeIdentity.current === currentHomeIdentity;
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
 
   useEffect(() => {
-    if (!Capacitor.isNativePlatform()) return;
+    if (!Capacitor.isNativePlatform() || Capacitor.getPlatform?.() !== "android") return;
 
     let registrationListener;
     let registrationErrorListener;
@@ -101,13 +108,24 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
   }, []);
 
   async function logout() {
-    await fetch("/api/auth/session", {
+    if(!canLogOut() || loggingOut.current) return;
+    loggingOut.current = true;
+    try {
+    const pushCleanup = await Promise.all([cleanupWebPushForAccountChange({isCurrent:canLogOut}), cleanupNativePushForAccountChange({isCurrent:canLogOut})]);
+    if(!canLogOut()) return;
+    const response = await fetch("/api/auth/session", {
       method: "DELETE",
     });
+    if(!canLogOut()) return;
+    if (!response.ok) throw new Error("Die Abmeldung konnte nicht bestätigt werden.");
+    if (pushCleanup.some(success => !success)) window.alert("Abgemeldet. Die Benachrichtigungen konnten auf diesem Gerät noch nicht vollständig deaktiviert werden. Schalte sie bei Bedarf in den Systemeinstellungen aus.");
     if (!clearReviewHistory()) window.alert("Abgemeldet. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
     try { await clearOfflineLearning(); } catch { window.alert("Abgemeldet. Die lokalen Downloads konnten nicht vollständig entfernt werden. Bitte im Lernrucksack entfernen oder die Browserdaten dieser App löschen."); }
-
+    if(!canLogOut()) return;
     window.location.href = "/";
+    } catch {
+      if (canLogOut()) window.alert("Die Abmeldung konnte nicht bestätigt werden. Bitte erneut versuchen. Dein lokaler Lernverlauf und deine Downloads bleiben erhalten.");
+    } finally { loggingOut.current = false; }
   }
 
   return (

@@ -5,6 +5,7 @@ import "../styles/AppBase.css";
 export const metadata = {
   title: "Jagdlatein",
   description: "Jagdquiz und Lernplattform für Jägerinnen und Jäger.",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon_32.png?v=book", sizes: "32x32", type: "image/png" },

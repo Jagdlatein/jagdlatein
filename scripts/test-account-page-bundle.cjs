@@ -9,6 +9,7 @@ const pr = createRequire(path.join(root, 'package.json'));
 const swc = pr('next/dist/build/swc');
 const React = pr('react');
 const { renderToStaticMarkup } = pr('react-dom/server');
+const loadPushModule = require('./helpers/project-module.cjs').createLoader();
 const pageFile = path.join(root, 'pages/konto.js');
 const styles = { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
 
@@ -60,6 +61,10 @@ function pageFixture({ signedIn = true, courses = [], overview = {} } = {}) {
     if (id === '../styles/Account.module.css') return styles;
     if (id === '../lib/offline-learning') return { clearOfflineLearning() {} };
     if (id === '../lib/daily-review') return { clearReviewHistory() { return true; } };
+    if (id === '../components/WebPushPreferences') return loadPushModule('components/WebPushPreferences.js');
+    if (id === '../components/NativePushPreferences') return loadPushModule('components/NativePushPreferences.js');
+    if (id === '../lib/firebase-web-push') return loadPushModule('lib/firebase-web-push.js');
+    if (id === '../lib/native-push-preferences') return loadPushModule('lib/native-push-preferences.js');
     throw Error(`Unexpected page dependency: ${id}`);
   }, mod, mod.exports);
   const headers = {};

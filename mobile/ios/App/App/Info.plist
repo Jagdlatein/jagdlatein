@@ -8,6 +8,16 @@
         <string>$(JL_APP_DISPLAY_NAME)</string>
 	<key>JagdlateinWebsiteEnvironment</key>
 	<string>$(IOS_WEBSITE_ENVIRONMENT)</string>
+	<key>JagdlateinNativePushEnabled</key>
+	<string>$(JL_NATIVE_PUSH_ENABLED)</string>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<false/>
+	<key>FirebaseMessagingInstallationIdEnabled</key>
+	<true/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<false/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

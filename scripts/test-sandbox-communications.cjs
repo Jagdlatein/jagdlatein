@@ -525,7 +525,7 @@ for (const route of ['register', 'send']) {
     assert.deepEqual(ctx.calls, []); assert.match((await response.json()).error, /deaktiviert/);
   });
 
-  test(`Unset test mode preserves the existing authorized push/${route} behavior`, async () => {
+  test(route === 'send' ? 'Unset test mode still requires a current signed administrator before push delivery' : 'Unset test mode preserves authenticated Android push registration', async () => {
     const ctx = fixture({ JL_TEST_ENVIRONMENT: undefined });
     const response = await ctx.load(`app/api/push/${route}/route.js`).POST(new Request(
       `https://jagdlatein-test.vercel.app/api/push/${route}`, {
@@ -534,8 +534,9 @@ for (const route of ['register', 'send']) {
         body: JSON.stringify(route === 'register' ? { token: 'isolated-fake-token' } : { title: 'Test', body: 'Test body' }),
       }
     ));
-    assert.equal(response.status, 200); assert.ok(ctx.calls.some(call => call.type === 'database-client'));
-    assert.equal(ctx.calls.filter(call => call.type === 'firebase-send').length, route === 'send' ? 1 : 0);
+    assert.equal(response.status, route === 'send' ? 401 : 200);
+    assert.equal(ctx.calls.some(call => call.type === 'database-client'), route === 'register');
+    assert.equal(ctx.calls.filter(call => call.type === 'firebase-send').length, 0);
   });
 }
 
