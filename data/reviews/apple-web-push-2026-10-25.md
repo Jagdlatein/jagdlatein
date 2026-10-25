@@ -29,15 +29,23 @@ ausgegeben.
   wurde aktiviert und anschließend aus einer frischen App-ID-Ansicht positiv
   gegengeprüft. Apple weist darauf hin, dass dazugehörige Profile für zukünftige
   Signierung neu erzeugt werden müssen. Es wurde kein Signierungsprofil umgangen.
-- APNs-Schlüssel `Jagdlatein Push Production`, ID `PYTT575C8R`, wurde mit
-  `Topic Specific`, Umgebung `Production` und ausschließlich `de.jagdlatein.app`
-  erstellt. Die danach gespeicherte Detailansicht bestätigt `Topic specific
-  [Production]`, die Liste genau ein Topic. Kein teamweiter oder zusätzlicher
-  Sandbox-Schlüssel wurde erzeugt. Apple markiert den privaten Schlüssel
-  inzwischen als bereits heruntergeladen und sperrt einen zweiten Download.
-  Im vereinbarten Ziel, im tatsächlichen Windows-Downloadordner und auf dem
-  Desktop wurde keine passende Datei gefunden; ihr Speicherort ist beim
-  Betreiber angefragt. Firebase hat diesen Schlüssel noch nicht erhalten.
+- Der zuerst erzeugte APNs-Schlüssel `PYTT575C8R` war von Apple als bereits
+  heruntergeladen markiert, seine Datei aber nicht auffindbar. Der Betreiber
+  erstellte und lud den ausdrücklich freigegebenen Ersatz `G22TT6GJ3C` über Chrome
+  herunter. Er ist ausschließlich `Topic Specific`, `Production` und
+  `de.jagdlatein.app` zugeordnet. Der Hauptagent prüfte den privaten P-256-Schlüssel
+  lokal ohne Inhaltsausgabe und sicherte die unveränderte Datei außerhalb des
+  Repositorys im geschützten lokalen Push-Schlüsselordner.
+- Der Hauptagent hinterlegte `G22TT6GJ3C` für Team `82C698N8WB` in Firebase als
+  Apple-Production-APNs-Schlüssel. Eine frische UI-Ansicht nach Reload bestätigte
+  die gespeicherte Zuordnung. Der Nachweis liegt außerhalb des Repositorys als
+  `firebase-apns-production-saved-2026-10-25.jpg`. Anschließend genehmigte der
+  Betreiber ausdrücklich den Widerruf des alten `PYTT575C8R`; der Hauptagent
+  führte Revoke und Confirm aus. Die frische Apple-Liste zeigt nur noch den
+  Ersatz mit einem Production-Topic. Externer Nachweis:
+  `apple-old-push-key-revoked-2026-10-25.jpg`. Kein teamweiter oder zusätzlicher
+  Sandbox-Schlüssel wurde erzeugt. Diese UI-Schritte wurden im Hauptagenten
+  ausgeführt, nicht durch die isolierten technischen Tests.
 - Migration `20261025130000_push_platforms.sql` wurde im angemeldeten
   Supabase-SQL-Editor erfolgreich ausgeführt. Sie ergänzt die vorhandene private
   Tabelle um die Art der Registrierung, ohne Empfänger, Eigentümer oder Opt-ins
@@ -97,20 +105,69 @@ wird nicht eingebunden. Preview,
 Simulator, Debug und Sandbox sind für diese produktive Registrierung gesperrt.
 
 `JL_NATIVE_PUSH_ENABLED` bleibt standardmäßig **NO**. Für eine aktivierte
-Geräteversion fehlen zum Stand dieses Berichts noch der positiv abgeschlossene
-Apple-Developer-Schlüssel-/Signierungsweg und die tatsächliche heruntergeladene
-`GoogleService-Info.plist`. Der Downloadknopf im Firebase-Browser erzeugte keine
-für diese Sitzung zugängliche Datei; es wurde keine Konfiguration nachgebaut.
+Geräteversion fehlen zum Stand dieses Berichts noch das nach der Pushfreigabe
+regenerierte, erneut geprüfte Signierungsprofil und die tatsächlich lokal
+nachgewiesene `GoogleService-Info.plist`. Die Firebase-APNs-Hinterlegung des
+Ersatzschlüssels ist dagegen bestätigt. Der Betreiber wurde zum Originaldownload
+über Chrome geführt; die echte Konfigurationsdatei ist weiterhin nicht
+zugänglich nachgewiesen. Es wurde keine Konfiguration nachgebaut.
 Der Build darf ohne Datei nur mit ausgeschaltetem Merkmal bestehen. Bei vorhandenem
 Original prüft er exakt Paket, Projekt, Sender und Apple-App-ID. Private APNs-
 Schlüssel und Signierungsdateien gehören nicht ins Repository oder in den Chat.
-Die zunächst abgelaufene Apple-Developer-Sitzung wurde vom Betreiber erneut
-angemeldet. Der eng gebundene APNs-Schlüssel ist erstellt; seine bereits einmal
-heruntergeladene Datei muss noch gefunden werden. Die öffentliche Original-
-Konfigurationsdatei wurde erneut angefordert, aber der Browser lieferte weiterhin
-keinen zugänglichen Dateipfad. Ohne die Originaldateien ist die freigegebene
-Firebase-Hinterlegung nicht abgeschlossen. Es wurde kein Ersatzschlüssel ohne
-Klärung dieses Schritts erzeugt.
+Der Hauptagent las genau ein bestehendes App-Store-Profil `Jagdlatein App Store`,
+Apple-ID `6427U7AZCK`, App-ID `82C698N8WB.de.jagdlatein.app`, Ablauf 6. Oktober 2027.
+Nach der Fähigkeitsänderung zeigte es `Invalid`. Die Editansicht behielt das
+ursprüngliche Distribution-Zertifikat `3423A965X7` ausgewählt; dafür wird kein
+neues Zertifikat benötigt. Der Abschluss der Regeneration ist hier noch nicht
+als ausgeführt bestätigt. Ein neues Profil muss weiterhin gegen Team, Bundle,
+Distribution-Zertifikat und `aps-environment=production` geprüft werden.
+
+## Original-Konfigurationsdatei im Builddienst
+
+Die reine Quellenprüfung wurde unter Node 22 direkt gegengeprüft: ohne Datei
+besteht sie mit Flag NO, mit Flag YES scheitert sie am tatsächlichen
+`GoogleService-Info.plist`-Verweis. Zwei frische Workflow-Checkouts benötigten
+deshalb denselben ausdrücklich begrenzten Transfer. Die öffentliche Original-
+Clientdatei wird nur bei `native_push=true` aus dem benannten Repository-Actions-
+Secret `IOS_FIREBASE_PLIST_BASE64` wiederhergestellt: einmal vor der bestehenden
+Quellenprüfung und erneut im separaten geschützten Signierungsjob vor Export.
+Die bisherige Environment-Freigabe `ios-testflight` und alle Team-, Bundle-,
+Versions-, Production-APS-, Archiv- und IPA-Grenzen bleiben erhalten.
+
+Obwohl die Clientkonfiguration öffentliche App-/Projektmetadaten enthält,
+verwendet der Ablauf ein Repository-Secret zur automatischen Logmaskierung.
+Eine gewöhnliche Actions-Variable könnte schon im Step-Environment-Logkopf als
+vollständiges Base64 erscheinen. Ein nur im Environment gespeichertes Secret
+wäre für den früheren checks-Job nicht verfügbar. Dieses zusätzliche Repository-
+Secret enthält ausschließlich die öffentliche Original-Clientdatei; bestehende
+private APNs-/Signierungszugänge bleiben außerhalb davon und hinter ihrem
+unveränderten geschützten Freigabeschritt.
+
+`mobile/scripts/prepare-firebase-ios-config.mjs` prüft kanonisches Base64,
+höchstens 16 KiB dekodierte Daten, UTF-8, striktes XML und die vorhandene feste
+Firebase-Identitätsprüfung einschließlich API-Key-Format. Private-Key- und
+Servicekonto-Inhalte sind keine erlaubte Clientdatei. Die geprüften Originalbytes
+werden nicht neu formatiert. Das einzige Ziel ist die ausdrücklich ignorierte
+`mobile/ios/App/App/GoogleService-Info.plist`; Verknüpfungen, Ausbruchpfade und
+das Überschreiben einer anderen Datei werden abgewiesen. Ohne ausdrückliche
+Aktivierung liest der Helper keinen Konfigurationswert und schreibt keine Datei.
+Plist-, API-Key- oder private Signierungsinhalte werden nicht protokolliert.
+
+Das Repository-Secret wurde durch diese technische Vorbereitung noch nicht mit einem
+Original befüllt. Ein Test mit synthetischen, klar getrennten Testdaten ist kein
+Nachweis des echten Downloads oder einer gültigen Apple-Auslieferung. Die
+öffentliche Firebase-Clientkonfiguration ist keine APNs-/Servicekonto- oder
+Signierungsdatei; solche privaten Daten gehören weder in dieses Clientdatei-Secret noch
+ins Repository.
+
+Die gesamte mobile Node-Suite unter Node 22.23.3 bestand mit 42 Tests ohne
+übersprungene Fälle, darunter 13 neue Transfer-/XML-/Base64-/Dateipfad-/CLI- und
+Workflowprüfungen. Zusätzlich bestand der vorhandene echte PowerShell-
+Buildfunktionen-/Plist-CLI-Test mit isolierten Metadaten. Alle positiven
+Transferproben verwendeten ausdrücklich synthetische Testdaten in eigenen
+temporären Verzeichnissen; weder Originaldatei noch App-Ziel wurden damit
+ersetzt. Kein echtes Profil, Schlüssel, Konto, Build-Upload oder Gerät wurde
+für diese Prüfungen verwendet.
 
 Eine veröffentlichte Website ist kein Nachweis einer neuen signierten Apple-App.
 Noch keine echte Browser-/Apple-Registrierung, Systemerlaubnis, Pushnachricht oder
@@ -144,12 +201,18 @@ Datenschutzerklärung benennen die Apple-SDK-Diagnostik bereits ausdrücklich.
   und [Web-Empfang](https://firebase.google.com/docs/cloud-messaging/js/receive).
 - Firebase [Apple-Client einrichten](https://firebase.google.com/docs/cloud-messaging/ios/client)
   und [Datenschutz](https://firebase.google.com/support/privacy).
+- Firebase [Client-API-Keys und ihre Sicherheitsgrenzen](https://firebase.google.com/docs/projects/api-keys):
+  öffentliche Projekt-/App-Identifikation, getrennt von privaten Server-, APNs-
+  und Signierungszugängen. API-Beschränkungen und Zugriffsregeln bleiben nötig.
 - Tatsächlich gelesene [Apple-Datenhinweise](https://firebase.google.com/docs/ios/app-store-data-collection),
   [Messaging-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseMessaging/Sources/Resources/PrivacyInfo.xcprivacy)
   und [Installations-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseInstallations/Source/Library/Resources/PrivacyInfo.xcprivacy).
 - Apple [umgebungs- und themengebundene APNs-Schlüssel](https://developer.apple.com/news/?id=wy4tb0uo),
   [Token-Verbindung](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)
   und [private Schlüssel erstellen](https://developer.apple.com/help/account/keys/create-a-private-key/).
+- Apple [Profile nach geänderten Fähigkeiten regenerieren](https://developer.apple.com/help/account/provisioning-profiles/edit-download-or-delete-profiles/):
+  Profilwahl und Regeneration sind vom weiterhin fehlenden Original-Clientdownload
+  sowie der späteren Signierungsprüfung getrennte Schritte.
 
 Automatisierte Struktur-, Lebenszyklus- und Buildprüfungen sind keine
 Zustellbestätigung. Die externen Test-/Buildprotokolle liegen im Chat-Workspace
@@ -232,4 +295,13 @@ Schwelle. Sämtliche anschließenden Abo-, Kaufsperr- und Merkliste-Assertions,
 der einzelne Tap sowie die gemeinsamen Zeitbudgets bleiben erhalten.
 Produkt-Routing und Appfunktionen wurden nicht geändert. Lokaler
 Sourcevergleich und 29 mobile Node-Prüfungen bestätigen diese enge Änderung;
-die tatsächliche Mac-UI-Bestätigung für die korrigierte Markerauswahl steht aus.
+die tatsächliche Mac-UI-Bestätigung für die korrigierte Markerauswahl stand beim
+Abschluss dieses Testfixes noch aus.
+
+Der anschließende Lauf `40201562301` für
+`4ebc2d854c4b8b38762ad05cf615c50cb0caddbc` bestätigte danach die tatsächliche
+öffentliche Baseline-Bedienprüfung einschließlich Abo-Kaufsperre und dauerhaftem
+Lesezeichen. Backend und beide unsignierten Gerätearchive bestanden ebenfalls.
+Der nachgelagerte Export vorbereitender Storebilder ist zum Stand dieser
+Ergänzung noch offen. Die Baseline ist keine signierte Push-Aktivierung und
+kein Nachweis einer Benachrichtigungszustellung.

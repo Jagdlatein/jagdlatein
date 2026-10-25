@@ -1,7 +1,8 @@
 name: Jagdlatein iOS – TestFlight vorbereiten
 
-# No push/PR trigger. Credentials are available only in the named environment
-# and only to the explicitly selected signing/upload steps.
+# No push/PR trigger. Private signing credentials are available only in the
+# named environment and explicitly selected signing/upload steps. The public
+# Firebase client file uses a separate repository secret only for log masking.
 on:
   workflow_dispatch:
     inputs:
@@ -72,11 +73,15 @@ jobs:
         working-directory: mobile
         env:
           JL_NATIVE_PUSH_ENABLED: ${{ inputs.native_push && 'YES' || 'NO' }}
+          IOS_NATIVE_PUSH: ${{ inputs.native_push }}
+          IOS_FIREBASE_PLIST_BASE64: ${{ secrets.IOS_FIREBASE_PLIST_BASE64 }}
         run: |
           npm ci --no-fund
           if ($LASTEXITCODE -ne 0) { throw 'Entwicklungswerkzeuge fehlen.' }
           npm run ios:assets
           if ($LASTEXITCODE -ne 0) { throw 'App-Symbol konnte nicht vorbereitet werden.' }
+          node scripts/prepare-firebase-ios-config.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original-Firebase-Konfiguration konnte nicht bereitgestellt werden.' }
           & ../scripts/build-ios-testflight.ps1 -Step Check
       - name: Push-Freigabeschranken ohne Signierung prüfen
         run: ./scripts/tests/ios-testflight-push.test.ps1
@@ -144,7 +149,11 @@ jobs:
           IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
           IOS_PROFILE_BASE64: ${{ secrets.IOS_PROFILE_BASE64 }}
           IOS_NATIVE_PUSH: ${{ inputs.native_push }}
-        run: ./scripts/build-ios-testflight.ps1 -Step Export -NativePush:([bool]::Parse($env:IOS_NATIVE_PUSH))
+          IOS_FIREBASE_PLIST_BASE64: ${{ secrets.IOS_FIREBASE_PLIST_BASE64 }}
+        run: |
+          node mobile/scripts/prepare-firebase-ios-config.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original-Firebase-Konfiguration konnte nicht bereitgestellt werden.' }
+          ./scripts/build-ios-testflight.ps1 -Step Export -NativePush:([bool]::Parse($env:IOS_NATIVE_PUSH))
       - name: IPA prüfen und ausdrücklich an Apple hochladen
         if: inputs.mode == 'Upload'
         env:
