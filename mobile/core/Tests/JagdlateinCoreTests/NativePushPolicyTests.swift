@@ -63,8 +63,8 @@ final class NativePushPolicyTests: XCTestCase {
     }
 
     func testOnlyBoundedInstallationIDsAreReturnedNeverAPNsOrLegacyFCMTokens() {
-        XCTAssertTrue(NativePushPolicy.isInstallationID("c1234567890123456789012"))
-        for value in ["", String(repeating: "a", count: 64), "legacy:registration-token", "c1234567890123456789012\n", String(repeating: "x", count: 23)] {
+        XCTAssertTrue(NativePushPolicy.isInstallationID("c123456789012345678901"))
+        for value in ["", String(repeating: "x", count: 21), String(repeating: "a", count: 64), "legacy:registration-token", "c123456789012345678901\n", String(repeating: "x", count: 23)] {
             XCTAssertFalse(NativePushPolicy.isInstallationID(value), value)
         }
     }

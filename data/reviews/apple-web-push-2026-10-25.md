@@ -116,8 +116,14 @@ Lokaler Abschlussstand: 323 unterschiedliche Web-/API-/Konto-/Kursprüfungen und
 25 mobile Node-Prüfungen bestanden, ohne übersprungene Fälle. Die mobile
 Projektprüfung und der Produktionsbuild der Website (509 statische Seiten)
 bestanden. Zehn neue Swift-Tests für Herkunft, Konfiguration und Operationsrennen
-sind angelegt; ihre tatsächliche Mac-Ausführung steht zu diesem Zeitpunkt noch
-aus. Unabhängige Gegenprüfung fand und reproduzierte zusätzlich Fehler bei
+sind angelegt. Der erste Mac-Lauf führte sie tatsächlich aus: neun bestanden,
+ein positives Fixture war versehentlich 23 statt 22 Zeichen lang. Ausschließlich
+dieses Testbeispiel wurde korrigiert; die Produktgrenzen blieben erhalten.
+Der erste Ubuntu-Lauf zeigte einen fehlenden, von bereits gesperrten Abhängigkeiten
+verlangten `@opentelemetry/api`-Eintrag. Die Sperrdatei wurde mit derselben
+npm-10.9.9-Linie ergänzt und eine trockene `npm ci`-Validierung bestand, ohne
+Anwendungsversionen oder die Node-22-Vorgabe zu ändern. Erneuter Mac-/Ubuntu-Lauf
+steht noch aus. Unabhängige Gegenprüfung fand und reproduzierte zusätzlich Fehler bei
 verspäteter nativer Deaktivierung, gesperrtem Webspeicher, fehlender SDK-Unterstützung
 und fehlgeschlagener Cookie-Abmeldung. Sie wurden behoben und durch echte
 Regressionen abgesichert.
