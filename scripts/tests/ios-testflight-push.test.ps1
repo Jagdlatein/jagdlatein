@@ -98,3 +98,6 @@ try {
     if($parent.TrimEnd([IO.Path]::DirectorySeparatorChar)-ne[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd([IO.Path]::DirectorySeparatorChar)-or[IO.Path]::GetFileName($resolved)-notmatch'^jagdlatein-push-build-test-[a-f0-9]{32}$'){throw 'Unsicheres synthetisches Test-Löschziel.'}
     Remove-Item -LiteralPath $resolved -Recurse -Force
 }
+# Expected negative CLI cases above return nonzero. Clear that external status
+# only after every assertion AND fixture cleanup succeeded; CI forwards it.
+$global:LASTEXITCODE=0

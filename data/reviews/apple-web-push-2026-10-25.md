@@ -74,7 +74,7 @@ Die automatisierten Prüfungen verwenden isolierte Doubles statt echter Konten.
 ## Web
 
 Firebase-JavaScript-SDK 13.1.0 wird erst durch Aktivierung/Deaktivierung von der
-offiziellen Google-CDN geladen, ohne Analytics. Die tatsächlich gelieferten
+offiziellen Google-CDN geladen, ohne Firebase-Analytics-SDK. Die tatsächlich gelieferten
 SDK-Exports `register`, `onRegistered`, `unregister`, `onMessage`, `isSupported`
 wurden geprüft. Der Worker `/firebase-messaging-sw.js` hat ausschließlich den
 Bereich `/push/`, keine Fetch-/Cache-Behandlung und ersetzt nicht den vorhandenen
@@ -90,7 +90,8 @@ FirebaseCore/Messaging 13.1.1 wird als exakte Swift-Package-Abhängigkeit eingeb
 Der eigene WebKit-Bridge akzeptiert nur die eigene Produktionsseite im Hauptframe;
 Status/Aktivierung außerdem nur die Kontoansicht mit vorhandener sicherer
 HttpOnly-Kontositzung. Die tatsächliche Kontobindung bleibt Aufgabe des Servers.
-Firebase-Auto-Initialisierung und Analytics sind nicht aktiviert. Preview,
+Firebase-Auto-Initialisierung ist ausgeschaltet; das Firebase-Analytics-Produkt
+wird nicht eingebunden. Preview,
 Simulator, Debug und Sandbox sind für diese produktive Registrierung gesperrt.
 
 `JL_NATIVE_PUSH_ENABLED` bleibt standardmäßig **NO**. Für eine aktivierte
@@ -121,12 +122,26 @@ Die bestehende persönliche `ios-testflight`-Freigabe bleibt erhalten. Der neue
 isolierte PowerShell-Test führt echte Buildfunktionen und den Plist-Datei-CLI mit
 synthetischen Signierwerkzeugen aus; er behauptet keine echte Signierung.
 
+Vor einer aktivierten Apple-Auslieferung müssen der tatsächliche Archiv-Privacy-
+Report und die bisherigen App-Store-Connect-Antworten abgeglichen werden. Die
+selbst gelesenen Originalmanifeste von Messaging 13.1.1 deklarieren Device ID für
+App Functionality, Other Data Types für Analytics und Other Diagnostic Data für
+App Functionality; Installations ergänzt Other Diagnostic Data für Analytics.
+Kein Analytics-SDK bedeutet deshalb keine Zusage fehlender Diagnosedaten. Die
+eigene FID-Kontoverknüpfung ist gesondert als verknüpfte Gerätekennung zu beurteilen;
+generisches SDK-`linked=false` ersetzt diese App-Bewertung nicht. Das App-Manifest
+wird nicht blind mit SDK-Einträgen überschrieben. Der Kontohinweis und die
+Datenschutzerklärung benennen die Apple-SDK-Diagnostik bereits ausdrücklich.
+
 ## Technische Quellen
 
 - Firebase [Web-Client einrichten](https://firebase.google.com/docs/cloud-messaging/js/client)
   und [Web-Empfang](https://firebase.google.com/docs/cloud-messaging/js/receive).
 - Firebase [Apple-Client einrichten](https://firebase.google.com/docs/cloud-messaging/ios/client)
   und [Datenschutz](https://firebase.google.com/support/privacy).
+- Tatsächlich gelesene [Apple-Datenhinweise](https://firebase.google.com/docs/ios/app-store-data-collection),
+  [Messaging-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseMessaging/Sources/Resources/PrivacyInfo.xcprivacy)
+  und [Installations-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseInstallations/Source/Library/Resources/PrivacyInfo.xcprivacy).
 - Apple [umgebungs- und themengebundene APNs-Schlüssel](https://developer.apple.com/news/?id=wy4tb0uo),
   [Token-Verbindung](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)
   und [private Schlüssel erstellen](https://developer.apple.com/help/account/keys/create-a-private-key/).
@@ -151,7 +166,7 @@ Anwendungsversionen oder die Node-22-Vorgabe zu ändern. Der zweite Mac-Lauf
 bestand alle 40 Swift-Tests einschließlich der zehn neuen Tests und kompilierte
 die native Anbindung tatsächlich in beiden Release-Gerätearchiven (Production
 und Sandbox, jeweils unsigned/Flag NO) sowie im generischen Debug-Simulatorbuild
-(arm64 und x86_64). Die anschließende Simulator-Bedienungsprüfung ist noch offen.
+(arm64 und x86_64). Auch die anschließende öffentliche Simulator-Bedienung bestand.
 Der zweite Ubuntu-Lauf fand ein bereits im Vor-Push-Stand 235bfad reproduziertes
 veraltetes PayPal-Testdouble für die optionale Zugriffstabelle. Nur dessen
 korrekte 42P01-Missing-Table-Antwort wurde ergänzt; Produkt- und parallele
@@ -166,3 +181,21 @@ Unabhängige Gegenprüfung fand und reproduzierte zusätzlich Fehler bei
 verspäteter nativer Deaktivierung, gesperrtem Webspeicher, fehlender SDK-Unterstützung
 und fehlgeschlagener Cookie-Abmeldung. Sie wurden behoben und durch echte
 Regressionen abgesichert.
+
+Erst der danach ausgeführte Store-Bildexport stoppte an der bestehenden Prüfung
+auf saubere Quellen. Der nächste Lauf bewies den konkreten zusätzlichen Pfad
+`mobile/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/`.
+Die tatsächlich von Xcode erzeugte `Package.resolved` wurde aus dessen normalem
+Prüflog übernommen (Version 3, 13 Originalpins, Firebase 13.1.1 bei
+`dc6dfd442b1f3ec215ed62b8beb2623ffab010d6`). Quelle und übernommene Datei haben
+denselben SHA-256 `0366471edfc1c1c2190781bd85ff8db4443d0902fc89a4f2834c4681eae8250b`.
+Es wurde kein Pin erfunden und keine Dirty-Prüfung abgeschwächt. Die in der
+Paketauflösung ebenfalls sichtbaren Analytics-Repositories sind keine zusätzliche
+Verknüpfung des Analytics-Produkts in die App.
+
+Der neue PowerShell-Funktionstest bestand seine Assertions auch im Mac-Lauf;
+der CI-Wrapper übernahm jedoch noch den Exitcode eines absichtlich abgewiesenen
+negativen CLI-Falls. Nur nach erfolgreichem Durchlaufen aller Assertions und
+der sicheren Bereinigung wird dieser externe Exitcode jetzt auf 0 gesetzt.
+Fehlschläge werden nicht in `finally` maskiert. Der entsprechende tatsächliche
+CI-Wrapper-Aufruf wurde unabhängig lokal erfolgreich gegengeprüft.
