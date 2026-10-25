@@ -12,6 +12,7 @@ function fixture(options={}){
   const session={email:EMAIL,accountGeneration:GEN};
   const database={from(table){assert.equal(table,'push_tokens');const q={kind:'read',filters:[],fields:null,patch:null,start:0,end:Infinity,
     select(fields){this.fields=fields;return this;},eq(key,value){this.filters.push(row=>row[key]===value);return this;},in(key,value){this.filters.push(row=>value.includes(row[key]));return this;},is(key,value){this.filters.push(row=>row[key]===value);return this;},
+    or(expression){assert.equal(expression,'platform.eq.android,platform.is.null');this.filters.push(row=>row.platform==='android'||row.platform===null);return this;},
     order(key){this.orderKey=key;return this;},range(start,end){this.start=start;this.end=end;return this;},
     upsert(patch,settings){this.kind='upsert';this.patch=patch;this.settings=settings;return this;},update(patch){this.kind='update';this.patch=patch;return this;},
     async execute(single=false){calls.push({type:'database',kind:this.kind,fields:this.fields,start:this.start,end:this.end});
@@ -48,6 +49,17 @@ function fixture(options={}){
   return{rows,calls,logs,writes,load,request,checks:()=>({actorChecks,adminChecks}),post:(route,body,headers)=>load(`app/api/push/${route}/route.js`).POST(request(route,body,headers))};
 }
 const message={title:'Jagdlatein',body:'Isolierte Nachricht'};
+
+test('Legacy tokens without a platform remain deliverable Android recipients and retain snapshot-bound cleanup',async()=>{
+  for(const platform of ['all','android']){
+    const h=fixture({rows:[record('legacy-without-platform',null,'token'),record('current-android','android','token'),record('raw-apns-must-stay-out','ios','token')],onSend(payload){const ids=payload.tokens;return{successCount:ids.length-1,failureCount:1,responses:ids.map(id=>id==='legacy-without-platform'?{success:false,error:{code:'messaging/registration-token-not-registered'}}:{success:true})};}});
+    const response=await h.post('send',{...message,platform});assert.equal(response.status,200);
+    const result=await response.json();assert.equal(result.total,2);assert.equal(result.sent,1);assert.equal(result.disabled,1);
+    assert.deepEqual(h.calls.filter(call=>call.type==='send').flatMap(call=>call.payload.tokens).sort(),['current-android','legacy-without-platform']);
+    assert.equal(h.rows.find(row=>row.token==='legacy-without-platform').enabled,false);
+    assert.equal(h.rows.find(row=>row.token==='raw-apns-must-stay-out').enabled,true);
+  }
+});
 
 test('New web/iOS FIDs and legacy Android tokens remain distinct, with no raw APNs token route',()=>{
   const api=fixture().load('lib/push-registration.js');

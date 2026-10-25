@@ -4,7 +4,21 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { parse } from "plist";
 
-export function validateSigningProfile(profile, team, bundle, now = new Date()) {
+const pushBundle = "de.jagdlatein.app";
+export function validateFirebasePushConfiguration(config) {
+  if (config?.BUNDLE_ID !== pushBundle || config?.PROJECT_ID !== "jagdlatein-a17b1" ||
+      config?.GCM_SENDER_ID !== "1084120782155" || config?.GOOGLE_APP_ID !== "1:1084120782155:ios:1704651867d85968da44ce" ||
+      typeof config?.API_KEY !== "string" || !/^AIza[A-Za-z0-9_-]{35}$/.test(config.API_KEY)) {
+    throw new Error("Firebase-Konfiguration gehört nicht vollständig zur freigegebenen Apple-App.");
+  }
+  return { bundle: config.BUNDLE_ID, project: config.PROJECT_ID, app: config.GOOGLE_APP_ID };
+}
+function pushRequest(expected) {
+  const enabled = expected.nativePush === true;
+  if (enabled && (expected.bundle !== pushBundle || (expected.websiteEnvironment ?? "Production") !== "Production")) throw new Error("Apple-Push ist nur für die signierte Production-App de.jagdlatein.app vorgesehen.");
+  return enabled;
+}
+export function validateSigningProfile(profile, team, bundle, now = new Date(), options = {}) {
   const reject = message => { throw new Error(message); };
   if (!/^[A-Z0-9]{10}$/.test(team)) reject("Ungültige Apple-Team-ID.");
   if (!/^[A-Za-z0-9]+(?:[.-][A-Za-z0-9]+)+$/.test(bundle) || bundle.includes("*")) reject("Ungültige feste Bundle-ID.");
@@ -20,13 +34,15 @@ export function validateSigningProfile(profile, team, bundle, now = new Date()) 
   if (typeof profile.Name !== "string" || profile.Name.length < 1 || profile.Name.length > 256 || /[\x00-\x1f\x7f]/.test(profile.Name)) reject("Profil hat keinen gültigen Namen.");
   // plist5 decodes <data> as Uint8Array; fixture/binary callers may use Buffer.
   if (!Array.isArray(profile.DeveloperCertificates) || profile.DeveloperCertificates.length !== 1 || !(profile.DeveloperCertificates[0] instanceof Uint8Array) || profile.DeveloperCertificates[0].length < 1) reject("Profil muss genau ein Apple-Verteilungszertifikat enthalten.");
+  if (pushRequest({ ...options, bundle }) && entitlements["aps-environment"] !== "production") reject("Das tatsächliche Apple-Profil erlaubt keine Production-Push-Mitteilungen.");
   return {
     uuid: profile.UUID,
     team,
     bundle,
     applicationIdentifier: entitlements["application-identifier"],
     certificateSha1: createHash("sha1").update(profile.DeveloperCertificates[0]).digest("hex").toUpperCase(),
-    expires: profile.ExpirationDate.toISOString()
+    expires: profile.ExpirationDate.toISOString(),
+    nativePushAllowed: entitlements["aps-environment"] === "production"
   };
 }
 
@@ -39,13 +55,21 @@ export function validateDeviceApp(info, expected) {
   if (info.CFBundleIdentifier !== expected.bundle || info.CFBundleVersion !== expected.build || info.CFBundleShortVersionString !== expected.version) throw new Error("Archiv-Metadaten stimmen nicht mit der angeforderten App überein.");
   if (info.CFBundleSupportedPlatforms?.length !== 1 || info.CFBundleSupportedPlatforms[0] !== "iPhoneOS" || info.DTPlatformName !== "iphoneos") throw new Error("Archiv wurde nicht für ein echtes iPhone/iPad gebaut.");
   if (!info.UIDeviceFamily?.includes(1) || !info.UIDeviceFamily.includes(2)) throw new Error("Archiv muss iPhone und iPad unterstützen.");
+  const nativePush = pushRequest(expected);
+  const flag = info.JagdlateinNativePushEnabled;
+  const actualPush = flag === true || flag === "YES";
+  if (flag !== undefined && ![true, false, "YES", "NO"].includes(flag) || actualPush !== nativePush) throw new Error("Die tatsächliche Apple-Push-Buildfreigabe stimmt nicht mit der Anforderung überein.");
   return { bundle: info.CFBundleIdentifier, build: info.CFBundleVersion, version: info.CFBundleShortVersionString,
-    deviceFamilies: info.UIDeviceFamily, websiteEnvironment, displayName };
+    deviceFamilies: info.UIDeviceFamily, websiteEnvironment, displayName, nativePush };
 }
 
-export function validateSignedApp(info, entitlements, expected, profile) {
+export function validateSignedApp(info, entitlements, expected, profile, firebaseConfiguration) {
   const result = validateDeviceApp(info, expected);
   if (entitlements["application-identifier"] !== profile.applicationIdentifier || entitlements["com.apple.developer.team-identifier"] !== profile.team || entitlements["get-task-allow"] !== false) throw new Error("Signierte App gehört nicht zum geprüften TestFlight-Profil oder erlaubt Debugging.");
+  if (result.nativePush) {
+    if (profile.nativePushAllowed !== true || entitlements["aps-environment"] !== "production") throw new Error("Signierte App und eingebettetes Apple-Profil brauchen aps-environment=production.");
+    validateFirebasePushConfiguration(firebaseConfiguration);
+  }
   return { ...result, signed: true };
 }
 
@@ -53,18 +77,29 @@ export function validateSignedApp(info, entitlements, expected, profile) {
 // It never reads a keychain, private key, environment secret, or Apple account.
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const [mode, file, team, bundle, build, version, entitlementsFile, profileFile, websiteEnvironment = "Production"] = process.argv.slice(2);
+    const [mode, file, team, bundle, ...args] = process.argv.slice(2);
     const load = filename => parse(fs.readFileSync(filename, "utf8"));
+    const enabled = flag => {
+      if (!["YES", "NO"].includes(flag)) throw new Error("Apple-Push muss ausdrücklich YES oder NO sein.");
+      return flag === "YES";
+    };
     if (mode === "profile") {
-      console.log(JSON.stringify(validateSigningProfile(load(file), team, bundle)));
+      const [nativePush = "NO", websiteEnvironment = "Production"] = args;
+      console.log(JSON.stringify(validateSigningProfile(load(file), team, bundle, new Date(), { nativePush: enabled(nativePush), websiteEnvironment })));
+    } else if (mode === "firebase") {
+      console.log(JSON.stringify(validateFirebasePushConfiguration(load(file))));
     } else if (mode === "device") {
-      console.log(JSON.stringify(validateDeviceApp(load(file), { bundle, build, version, websiteEnvironment })));
+      const [build, version, , , websiteEnvironment = "Production", nativePush = "NO"] = args;
+      if (enabled(nativePush)) throw new Error("Ein unsigniertes Gerätearchiv darf Apple-Push nicht aktivieren.");
+      console.log(JSON.stringify(validateDeviceApp(load(file), { bundle, build, version, websiteEnvironment, nativePush: false })));
     } else if (mode === "signed") {
+      const [build, version, entitlementsFile, profileFile, websiteEnvironment = "Production", nativePush = "NO", firebaseFile] = args;
       const info = load(file);
-      const profile = validateSigningProfile(load(profileFile), team, bundle);
+      const options = { nativePush: enabled(nativePush), websiteEnvironment };
+      const profile = validateSigningProfile(load(profileFile), team, bundle, new Date(), options);
       // Upload validates the actual IPA's build/version when not supplied.
       console.log(JSON.stringify(validateSignedApp(info, load(entitlementsFile), { bundle, build: build || info.CFBundleVersion,
-        version: version || info.CFBundleShortVersionString, websiteEnvironment }, profile)));
+        version: version || info.CFBundleShortVersionString, ...options }, profile, options.nativePush && firebaseFile ? load(firebaseFile) : null)));
     } else {
       throw new Error("Unbekannte TestFlight-Prüfung.");
     }

@@ -25,6 +25,17 @@ ausgegeben.
   freigegeben. Der öffentliche Web-VAPID-Schlüssel wurde danach tatsächlich in
   der Firebase-Konsole erzeugt und in die öffentliche Konfiguration übernommen.
   Der private VAPID-Schlüssel bleibt bei Firebase.
+- Apples Push-Funktion für die vorhandene explizite App-ID `de.jagdlatein.app`
+  wurde aktiviert und anschließend aus einer frischen App-ID-Ansicht positiv
+  gegengeprüft. Apple weist darauf hin, dass dazugehörige Profile für zukünftige
+  Signierung neu erzeugt werden müssen. Es wurde kein Signierungsprofil umgangen.
+- APNs-Schlüssel `Jagdlatein Push Production`, ID `PYTT575C8R`, wurde mit
+  `Topic Specific`, Umgebung `Production` und ausschließlich `de.jagdlatein.app`
+  erstellt. Die danach gespeicherte Detailansicht bestätigt `Topic specific
+  [Production]`, die Liste genau ein Topic. Kein teamweiter oder zusätzlicher
+  Sandbox-Schlüssel wurde erzeugt. Der einmalige private Download bleibt zur
+  sicheren lokalen Speicherung durch den Betreiber offen; Firebase hat diesen
+  Schlüssel noch nicht erhalten.
 - Migration `20261025130000_push_platforms.sql` wurde im angemeldeten
   Supabase-SQL-Editor erfolgreich ausgeführt. Sie ergänzt die vorhandene private
   Tabelle um die Art der Registrierung, ohne Empfänger, Eigentümer oder Opt-ins
@@ -91,11 +102,24 @@ Der Build darf ohne Datei nur mit ausgeschaltetem Merkmal bestehen. Bei vorhande
 Original prüft er exakt Paket, Projekt, Sender und Apple-App-ID. Private APNs-
 Schlüssel und Signierungsdateien gehören nicht ins Repository oder in den Chat.
 Die zunächst abgelaufene Apple-Developer-Sitzung wurde vom Betreiber erneut
-angemeldet; die Einrichtung des eng gebundenen APNs-Schlüssels läuft noch.
+angemeldet. Der eng gebundene APNs-Schlüssel ist erstellt; sein privater Download
+und die öffentliche Original-Konfigurationsdatei müssen noch lokal gespeichert
+werden, bevor die freigegebene Firebase-Hinterlegung abgeschlossen werden kann.
 
 Eine veröffentlichte Website ist kein Nachweis einer neuen signierten Apple-App.
 Noch keine echte Browser-/Apple-Registrierung, Systemerlaubnis, Pushnachricht oder
 Zustellung an ein physisches Gerät wurde durch diese Arbeit ausgelöst.
+
+Der reguläre TestFlight-Weg bietet einen ausdrücklich optionalen Schalter
+`native_push=false`. Aktivierung ist ausschließlich für signierten Production-
+Export/Upload mit dem genauen Paket zulässig. Die Quellenkonfiguration wird vor
+privaten Signierungsschritten geprüft. Danach müssen sowohl Archiv als auch IPA
+das tatsächliche Info-Flag, Production-APS in CodeSign und eingebettetem Profil
+sowie die passende eingebettete Firebase-Datei bestätigen. Übernommene
+Umgebungsvariablen, unsigned Archive, andere Pakete und Sandbox aktivieren nichts.
+Die bestehende persönliche `ios-testflight`-Freigabe bleibt erhalten. Der neue
+isolierte PowerShell-Test führt echte Buildfunktionen und den Plist-Datei-CLI mit
+synthetischen Signierwerkzeugen aus; er behauptet keine echte Signierung.
 
 ## Technische Quellen
 
@@ -112,8 +136,9 @@ Zustellbestätigung. Die externen Test-/Buildprotokolle liegen im Chat-Workspace
 unter `work/regional-law-qa/` und werden nicht als Nutzerdaten ins Repository
 übernommen.
 
-Lokaler Abschlussstand: 323 unterschiedliche Web-/API-/Konto-/Kursprüfungen und
-25 mobile Node-Prüfungen bestanden, ohne übersprungene Fälle. Die mobile
+Lokaler Abschlussstand unter Node 22.23.3: 458 unterschiedliche Web-/API-/Konto-/Kurs-
+und Zahlungsregressionen sowie 29 mobile Node-Prüfungen bestanden, ohne
+übersprungene Fälle. Die mobile
 Projektprüfung und der Produktionsbuild der Website (509 statische Seiten)
 bestanden. Zehn neue Swift-Tests für Herkunft, Konfiguration und Operationsrennen
 sind angelegt. Der erste Mac-Lauf führte sie tatsächlich aus: neun bestanden,
@@ -122,8 +147,22 @@ dieses Testbeispiel wurde korrigiert; die Produktgrenzen blieben erhalten.
 Der erste Ubuntu-Lauf zeigte einen fehlenden, von bereits gesperrten Abhängigkeiten
 verlangten `@opentelemetry/api`-Eintrag. Die Sperrdatei wurde mit derselben
 npm-10.9.9-Linie ergänzt und eine trockene `npm ci`-Validierung bestand, ohne
-Anwendungsversionen oder die Node-22-Vorgabe zu ändern. Erneuter Mac-/Ubuntu-Lauf
-steht noch aus. Unabhängige Gegenprüfung fand und reproduzierte zusätzlich Fehler bei
+Anwendungsversionen oder die Node-22-Vorgabe zu ändern. Der zweite Mac-Lauf
+bestand alle 40 Swift-Tests einschließlich der zehn neuen Tests und kompilierte
+die native Anbindung tatsächlich in beiden Release-Gerätearchiven (Production
+und Sandbox, jeweils unsigned/Flag NO) sowie im generischen Debug-Simulatorbuild
+(arm64 und x86_64). Die anschließende Simulator-Bedienungsprüfung ist noch offen.
+Der zweite Ubuntu-Lauf fand ein bereits im Vor-Push-Stand 235bfad reproduziertes
+veraltetes PayPal-Testdouble für die optionale Zugriffstabelle. Nur dessen
+korrekte 42P01-Missing-Table-Antwort wurde ergänzt; Produkt- und parallele
+Reservierungsbehauptungen blieben unverändert. Die gesamten 147 passenden
+Zahlungs-/Checkoutprüfungen bestanden danach auch unter Node 22.
+Ein zusätzlicher realer Send-Repro zeigte, dass ältere gültige Tokens ohne
+gesetzte Plattform im neuen Nachprüfschritt ausgelassen wurden. Für all/android
+bleiben sie jetzt berechtigt; rohe iOS/APNs-Zeilen bleiben ausgeschlossen,
+geänderte Eigentümer/Plattform/Zeitstempel werden weiterhin nicht gesendet oder
+deaktiviert. Die Regression und eine unabhängige Gegenprüfung bestätigen das.
+Unabhängige Gegenprüfung fand und reproduzierte zusätzlich Fehler bei
 verspäteter nativer Deaktivierung, gesperrtem Webspeicher, fehlender SDK-Unterstützung
 und fehlgeschlagener Cookie-Abmeldung. Sie wurden behoben und durch echte
 Regressionen abgesichert.

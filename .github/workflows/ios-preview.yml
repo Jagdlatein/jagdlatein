@@ -165,3 +165,6 @@ jobs:
         run: ./scripts/build-ios-testflight.ps1 -Step DeviceArchive
       - name: Gerätearchiv-Ergebnis anzeigen
         run: Get-Content -LiteralPath mobile/ios-testflight-result.json
+      - name: Push-Freigabeschranken ohne Signierung prüfen
+        if: matrix.website_environment == 'Production'
+        run: ./scripts/tests/ios-testflight-push.test.ps1

@@ -2,7 +2,8 @@
 param(
     [ValidateSet('Check', 'DeviceArchive', 'Export', 'Upload')]
     [string]$Step = 'Check',
-    [string]$IpaPath
+    [string]$IpaPath,
+    [switch]$NativePush
 )
 
 # Four distinct operations: Check reads source only; DeviceArchive is unsigned;
@@ -18,6 +19,7 @@ $iosDeviceArchive = Join-Path $iosMobileRoot 'DerivedData/TestFlightDevice.xcarc
 $iosSignedArchive = Join-Path $iosMobileRoot 'DerivedData/TestFlightSigned.xcarchive'
 $iosExportDirectory = Join-Path $iosMobileRoot 'DerivedData/TestFlightExport'
 $iosNpmProgram = if (Get-Command npm.cmd -ErrorAction SilentlyContinue) { 'npm.cmd' } else { 'npm' }
+if ($NativePush -and $Step -notin @('Export', 'Upload')) { throw 'Apple-Push kann nur für einen ausdrücklich signierten Production-Export oder Upload angefordert werden.' }
 
 function Invoke-IOSPublicProgram {
     param([string]$Program, [string[]]$ProgramArguments)
@@ -75,7 +77,13 @@ function Get-IOSMetadata {
     if ($RequireApple -and $iosBundle -eq 'de.jagdlatein.preview') { throw 'Für TestFlight zuerst eine endgültige Bundle-ID bei Apple registrieren.' }
     if ((-not $ForUpload -or $iosBuild) -and $iosBuild -notmatch '^[1-9][0-9]{0,3}(?:\.[0-9]{1,2}){0,2}$') { throw 'IOS_BUILD_NUMBER muss eine neue positive Apple-Build-Nummer wie 2 oder 2.1 enthalten (maximal 4/2/2 Ziffern).' }
     if ((-not $ForUpload -or $iosVersion) -and $iosVersion -notmatch '^[0-9]{1,4}\.[0-9]{1,2}\.[0-9]{1,2}$') { throw 'IOS_MARKETING_VERSION muss eine Version wie 0.1.0 enthalten.' }
-    return @{ team = $iosTeam; bundle = $iosBundle; build = $iosBuild; version = $iosVersion; websiteEnvironment = $iosWebsiteEnvironment; displayName = $iosDisplayName }
+    if ($NativePush) {
+        if ($iosWebsiteEnvironment -cne 'Production' -or $iosBundle -cne 'de.jagdlatein.app') { throw 'Apple-Push ist nur für die Production-App de.jagdlatein.app freigegeben.' }
+        $iosFirebaseSource = Join-Path $iosMobileRoot 'ios/App/App/GoogleService-Info.plist'
+        if (-not (Test-Path -LiteralPath $iosFirebaseSource -PathType Leaf)) { throw 'Für Apple-Push fehlt die echte GoogleService-Info.plist. Keine Signierung oder Aktivierung ausgeführt.' }
+        Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'firebase', $iosFirebaseSource) -Capture | Out-Null
+    }
+    return @{ team = $iosTeam; bundle = $iosBundle; build = $iosBuild; version = $iosVersion; websiteEnvironment = $iosWebsiteEnvironment; displayName = $iosDisplayName; nativePush = [bool]$NativePush }
 }
 
 function New-IOSPrivateDirectory {
@@ -107,7 +115,8 @@ function Write-IOSProfileXML {
 
 function Get-IOSProfile {
     param([string]$ProfileXML, [hashtable]$Metadata)
-    $iosProfileJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'profile', $ProfileXML, $Metadata.team, $Metadata.bundle) -Capture
+    $iosPushFlag = if ($Metadata.ContainsKey('nativePush') -and $Metadata.nativePush) { 'YES' } else { 'NO' }
+    $iosProfileJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'profile', $ProfileXML, $Metadata.team, $Metadata.bundle, $iosPushFlag, $Metadata.websiteEnvironment) -Capture
     return $iosProfileJSON | ConvertFrom-Json
 }
 
@@ -115,6 +124,7 @@ function Assert-IOSApp {
     param([string]$App, [hashtable]$Metadata, [string]$TemporaryDirectory, [switch]$Signed, [object]$ExpectedProfile)
     if (-not (Test-Path -LiteralPath (Join-Path $App 'Info.plist') -PathType Leaf)) { throw 'Gerätearchiv enthält keine App mit Info.plist.' }
     $iosInfoXML = Join-Path $TemporaryDirectory 'app-info.plist'
+    $iosPushFlag = if ($Metadata.ContainsKey('nativePush') -and $Metadata.nativePush) { 'YES' } else { 'NO' }
     Invoke-IOSPrivateProgram -Program 'plutil' -ProgramArguments @('-convert', 'xml1', '-o', $iosInfoXML, (Join-Path $App 'Info.plist'))
     if ($Signed) {
         Invoke-IOSPrivateProgram -Program 'codesign' -ProgramArguments @('--verify', '--deep', '--strict', $App) -Operation Signaturpruefung
@@ -137,9 +147,16 @@ function Assert-IOSApp {
         $iosCertBytes = [IO.File]::ReadAllBytes($iosSigningCertificate)
         $iosCertHash = [Convert]::ToHexString([Security.Cryptography.SHA1]::HashData($iosCertBytes))
         if ($iosCertHash -ne $iosEmbedded.certificateSha1) { throw 'App wurde nicht mit dem Zertifikat ihres Apple-Profils signiert.' }
-        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'signed', $iosInfoXML, $Metadata.team, $Metadata.bundle, $Metadata.build, $Metadata.version, $iosEntitlementsXML, $iosEmbeddedXML, $Metadata.websiteEnvironment) -Capture
+        $iosFirebaseXML = ''
+        if ($iosPushFlag -eq 'YES') {
+            $iosFirebaseApp = Join-Path $App 'GoogleService-Info.plist'
+            if (-not (Test-Path -LiteralPath $iosFirebaseApp -PathType Leaf)) { throw 'Die signierte App enthält keine geprüfte Firebase-Konfiguration.' }
+            $iosFirebaseXML = Join-Path $TemporaryDirectory 'app-firebase.plist'
+            Invoke-IOSPrivateProgram -Program 'plutil' -ProgramArguments @('-convert', 'xml1', '-o', $iosFirebaseXML, $iosFirebaseApp)
+        }
+        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'signed', $iosInfoXML, $Metadata.team, $Metadata.bundle, $Metadata.build, $Metadata.version, $iosEntitlementsXML, $iosEmbeddedXML, $Metadata.websiteEnvironment, $iosPushFlag, $iosFirebaseXML) -Capture
     } else {
-        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'device', $iosInfoXML, '', $Metadata.bundle, $Metadata.build, $Metadata.version, '', '', $Metadata.websiteEnvironment) -Capture
+        $iosAppJSON = Invoke-IOSPrivateProgram -Program 'node' -ProgramArguments @($iosProfileHelper, 'device', $iosInfoXML, '', $Metadata.bundle, $Metadata.build, $Metadata.version, '', '', $Metadata.websiteEnvironment, $iosPushFlag) -Capture
     }
     return $iosAppJSON | ConvertFrom-Json
 }
@@ -164,12 +181,17 @@ function Expand-IOSCheckedIPA {
 function Invoke-IOSArchive {
     param([hashtable]$Metadata, [string]$Archive, [switch]$Signed, [object]$Profile)
     if (Test-Path -LiteralPath $Archive) { throw 'Zielarchiv existiert bereits. Für einen neuen Lauf einen frischen Builddienst verwenden.' }
+    $iosPushEnabled = $Metadata.ContainsKey('nativePush') -and $Metadata.nativePush
+    if ($iosPushEnabled -and (-not $Signed -or $Metadata.bundle -cne 'de.jagdlatein.app' -or $Metadata.websiteEnvironment -cne 'Production')) { throw 'Apple-Push benötigt einen signierten Production-Gerätebuild.' }
+    $iosPushFlag = if ($iosPushEnabled) { 'YES' } else { 'NO' }
+    $iosSigningEntitlements = if ($iosPushEnabled) { 'App/App.entitlements' } else { '' }
     $iosArchiveArguments = @(
         '-project', $iosProject, '-scheme', 'App', '-configuration', 'Release',
         '-sdk', 'iphoneos', '-destination', 'generic/platform=iOS',
         '-archivePath', $Archive, '-derivedDataPath', (Join-Path $iosMobileRoot ('DerivedData/TestFlightBuild-' + [Guid]::NewGuid().ToString('N'))),
         ('PRODUCT_BUNDLE_IDENTIFIER=' + $Metadata.bundle), ('CURRENT_PROJECT_VERSION=' + $Metadata.build), ('MARKETING_VERSION=' + $Metadata.version),
-        ('IOS_WEBSITE_ENVIRONMENT=' + $Metadata.websiteEnvironment), ('JL_APP_DISPLAY_NAME=' + $Metadata.displayName)
+        ('IOS_WEBSITE_ENVIRONMENT=' + $Metadata.websiteEnvironment), ('JL_APP_DISPLAY_NAME=' + $Metadata.displayName),
+        ('JL_NATIVE_PUSH_ENABLED=' + $iosPushFlag), ('CODE_SIGN_ENTITLEMENTS=' + $iosSigningEntitlements)
     )
     if ($Signed) {
         $iosArchiveArguments += @('CODE_SIGN_STYLE=Manual', ('DEVELOPMENT_TEAM=' + $Metadata.team), ('CODE_SIGN_IDENTITY=' + $Profile.certificateSha1), ('PROVISIONING_PROFILE_SPECIFIER=' + $Profile.uuid))
@@ -201,7 +223,7 @@ try {
         try {
             $iosApp = Invoke-IOSArchive -Metadata $iosMetadata -Archive $iosDeviceArchive
             $iosResult = Assert-IOSApp -App $iosApp -Metadata $iosMetadata -TemporaryDirectory $iosTemporary
-            [ordered]@{ deviceArchiveCompiled = $true; signed = $false; uploaded = $false; bundle = $iosResult.bundle; build = $iosResult.build; websiteEnvironment = $iosResult.websiteEnvironment; displayName = $iosResult.displayName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+            [ordered]@{ deviceArchiveCompiled = $true; signed = $false; uploaded = $false; bundle = $iosResult.bundle; build = $iosResult.build; websiteEnvironment = $iosResult.websiteEnvironment; displayName = $iosResult.displayName; nativePush = $iosResult.nativePush } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
         } finally { Remove-IOSPrivateDirectory -Directory $iosTemporary }
         Write-Host 'Gerätearchiv erfolgreich kompiliert. Es ist unsigniert und noch nicht auf dem iPad installierbar.'
         return
@@ -279,7 +301,7 @@ try {
             $iosExpanded = Join-Path $iosTemporary 'exported-ipa'
             $iosExportedApp = Expand-IOSCheckedIPA -Source $iosIPAs[0].FullName -Destination $iosExpanded
             Assert-IOSApp -App $iosExportedApp -Metadata $iosMetadata -TemporaryDirectory $iosTemporary -Signed -ExpectedProfile $iosProfile | Out-Null
-            [ordered]@{ deviceArchiveCompiled = $true; signed = $true; uploaded = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName; ipa = $iosIPAs[0].FullName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+            [ordered]@{ deviceArchiveCompiled = $true; signed = $true; uploaded = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName; nativePush = $iosMetadata.nativePush; ipa = $iosIPAs[0].FullName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
             Write-Host 'Signierte IPA geprüft und exportiert. Keine Übertragung zu Apple; Upload ist ein eigener ausdrücklicher Schritt.'
         } finally {
             if ($iosKeychainChanged) {
@@ -327,7 +349,7 @@ try {
         [Environment]::SetEnvironmentVariable('API_PRIVATE_KEYS_DIR', $iosTemporary)
         Invoke-IOSPrivateProgram -Program 'xcrun' -ProgramArguments @('altool', '--validate-app', '-f', $IpaPath, '-t', 'ios', '--apiKey', $env:ASC_KEY_ID, '--apiIssuer', $env:ASC_ISSUER_ID)
         Invoke-IOSPrivateProgram -Program 'xcrun' -ProgramArguments @('altool', '--upload-app', '-f', $IpaPath, '-t', 'ios', '--apiKey', $env:ASC_KEY_ID, '--apiIssuer', $env:ASC_ISSUER_ID)
-        [ordered]@{ signed = $true; uploaded = $true; appleProcessed = $false; testerAccessGranted = $false; appStoreSubmitted = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
+        [ordered]@{ signed = $true; uploaded = $true; appleProcessed = $false; testerAccessGranted = $false; appStoreSubmitted = $false; bundle = $iosMetadata.bundle; build = $iosMetadata.build; websiteEnvironment = $iosMetadata.websiteEnvironment; displayName = $iosMetadata.displayName; nativePush = $iosActualApp.nativePush } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $iosMobileRoot 'ios-testflight-result.json') -Encoding utf8
         Write-Host 'Upload von Apple angenommen. Verarbeitung, Exportangaben und interne TestFlight-Zuordnung bleiben in App Store Connect zu prüfen.'
     } finally {
         [Environment]::SetEnvironmentVariable('API_PRIVATE_KEYS_DIR', $iosPreviousKeyDirectory)

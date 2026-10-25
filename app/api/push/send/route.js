@@ -30,7 +30,10 @@ async function readRecipients(database, platform) {
   const result = [];
   for (let offset = 0; offset <= MAX_RECIPIENTS; offset += PAGE_SIZE) {
     let query = database.from("push_tokens").select(COLUMNS).eq("enabled", true);
-    if (platform !== "all") query = query.eq("platform", platform);
+    // Preserve previous eligibility for nullable legacy platform records
+    // without accepting raw APNs token rows.
+    if (platform === "android") query = query.or("platform.eq.android,platform.is.null");
+    else if (platform !== "all") query = query.eq("platform", platform);
     const response = await query.order("token", { ascending: true }).range(offset, offset + PAGE_SIZE - 1);
     if (response.error) throw Object.assign(new Error(isPushSchemaError(response.error) ? "Die Push-Plattformen werden noch eingerichtet." : "Push-Empfänger konnten nicht geladen werden."), { status: isPushSchemaError(response.error) ? 503 : 500 });
     if (!Array.isArray(response.data) || response.data.length > PAGE_SIZE || result.length + response.data.length > MAX_RECIPIENTS) throw Object.assign(new Error("Die Empfängerauswahl ist zu groß. Bitte nach Plattform eingrenzen."), { status: 503 });
@@ -41,12 +44,13 @@ async function readRecipients(database, platform) {
 }
 function sameSnapshot(left, right) { return left.token === right.token && left.registration_kind === right.registration_kind && left.platform === right.platform && left.account_email === right.account_email && left.updated_at === right.updated_at; }
 async function liveBatch(database, group, batch) {
-  const result = await database.from("push_tokens").select(COLUMNS).in("token", batch.map(row => row.token)).eq("enabled", true).eq("registration_kind", group.kind).eq("platform", group.platform);
+  const result = await database.from("push_tokens").select(COLUMNS).in("token", batch.map(row => row.token)).eq("enabled", true).eq("registration_kind", group.kind);
   if (result.error || !Array.isArray(result.data)) throw new Error("Push recipients unavailable");
   return batch.filter(row => result.data.some(current => sameSnapshot(row, current)));
 }
 async function disableInvalid(database, group, row) {
-  let query = database.from("push_tokens").update({ enabled: false, updated_at: new Date().toISOString() }).eq("token", row.token).eq("registration_kind", group.kind).eq("platform", group.platform);
+  let query = database.from("push_tokens").update({ enabled: false, updated_at: new Date().toISOString() }).eq("token", row.token).eq("registration_kind", group.kind);
+  query = row.platform === null ? query.is("platform", null) : query.eq("platform", row.platform);
   query = row.account_email === null ? query.is("account_email", null) : query.eq("account_email", row.account_email);
   query = row.updated_at === null ? query.is("updated_at", null) : query.eq("updated_at", row.updated_at);
   const result = await query.select("token");

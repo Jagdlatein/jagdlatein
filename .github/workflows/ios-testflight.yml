@@ -27,6 +27,11 @@ on:
         options: [Production, Sandbox]
         default: Production
         required: true
+      native_push:
+        description: 'Apple-Mitteilungen ausdrücklich aktivieren: nur signierte Production-App mit Firebase-Datei und Production-Push-Profil'
+        type: boolean
+        default: false
+        required: false
 
 permissions:
   contents: read
@@ -57,16 +62,24 @@ jobs:
       - name: Gewünschte App-Version prüfen
         env:
           IOS_MARKETING_VERSION: ${{ inputs.marketing_version }}
+          IOS_NATIVE_PUSH: ${{ inputs.native_push }}
+          IOS_REQUEST_MODE: ${{ inputs.mode }}
+          IOS_WEBSITE_ENVIRONMENT: ${{ inputs.website_environment }}
         run: |
           if ($env:IOS_MARKETING_VERSION -notmatch '\A[0-9]{1,4}\.[0-9]{1,2}\.[0-9]{1,2}\z') { throw 'App-Version muss eine Version wie 0.1.0 oder 1.0.0 enthalten.' }
+          if ([bool]::Parse($env:IOS_NATIVE_PUSH) -and ($env:IOS_REQUEST_MODE -cnotin @('Export','Upload') -or $env:IOS_WEBSITE_ENVIRONMENT -cne 'Production')) { throw 'Apple-Mitteilungen benötigen einen ausdrücklich signierten Production-Export oder Upload.' }
       - name: Quellen und TestFlight-Vorbereitung prüfen
         working-directory: mobile
+        env:
+          JL_NATIVE_PUSH_ENABLED: ${{ inputs.native_push && 'YES' || 'NO' }}
         run: |
           npm ci --no-fund
           if ($LASTEXITCODE -ne 0) { throw 'Entwicklungswerkzeuge fehlen.' }
           npm run ios:assets
           if ($LASTEXITCODE -ne 0) { throw 'App-Symbol konnte nicht vorbereitet werden.' }
           & ../scripts/build-ios-testflight.ps1 -Step Check
+      - name: Push-Freigabeschranken ohne Signierung prüfen
+        run: ./scripts/tests/ios-testflight-push.test.ps1
 
   device_archive:
     needs: checks
@@ -130,7 +143,8 @@ jobs:
           IOS_CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}
           IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
           IOS_PROFILE_BASE64: ${{ secrets.IOS_PROFILE_BASE64 }}
-        run: ./scripts/build-ios-testflight.ps1 -Step Export
+          IOS_NATIVE_PUSH: ${{ inputs.native_push }}
+        run: ./scripts/build-ios-testflight.ps1 -Step Export -NativePush:([bool]::Parse($env:IOS_NATIVE_PUSH))
       - name: IPA prüfen und ausdrücklich an Apple hochladen
         if: inputs.mode == 'Upload'
         env:
@@ -142,4 +156,5 @@ jobs:
           ASC_KEY_ID: ${{ vars.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ vars.ASC_ISSUER_ID }}
           ASC_PRIVATE_KEY_BASE64: ${{ secrets.ASC_PRIVATE_KEY_BASE64 }}
-        run: ./scripts/build-ios-testflight.ps1 -Step Upload
+          IOS_NATIVE_PUSH: ${{ inputs.native_push }}
+        run: ./scripts/build-ios-testflight.ps1 -Step Upload -NativePush:([bool]::Parse($env:IOS_NATIVE_PUSH))
