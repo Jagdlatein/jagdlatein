@@ -62,6 +62,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     if (id === '../lib/category-navigation') return load('lib/category-navigation.js');
+    if (id === '../lib/single-view-navigation') return load('lib/single-view-navigation.js');
     return requireProject(id);
   }, mod, mod.exports, window, document, sessionStorage);
   const render = () => { refCursor = 0; return mod.exports.default(); };
@@ -208,10 +209,11 @@ test('A shallow search update keeps a focused lower-menu field open, while actua
   s.unmount();
 });
 
-test('Small-screen menu stays inside a 320px viewport, scrolls vertically and keeps readable large touch targets', () => {
+test('The shared menu fills the page above the dock, scrolls vertically and keeps readable large touch targets', () => {
   const css = fs.readFileSync(path.join(root, 'styles/GlobalNavigation.module.css'), 'utf8');
-  assert.match(css, /width:\s*min\(340px,\s*calc\(100vw - 32px\)\)/);
-  assert.match(css, /max-height:\s*min\(70dvh,\s*560px,\s*var\(--navigation-menu-height,\s*560px\)\)/); assert.match(css, /overflow-y:\s*auto/);
+  assert.match(css, /\.moreLinks\s*\{[^}]*position:\s*fixed[^}]*left:\s*0[^}]*right:\s*0[^}]*bottom:\s*var\(--navigation-panel-bottom/s);
+  assert.match(css, /max-height:\s*var\(--navigation-menu-height,\s*none\)/); assert.match(css, /overflow-y:\s*auto/);
+  assert.doesNotMatch(css, /min\(340px|70dvh/);
   assert.match(css, /\.moreLinks a\s*\{[^}]*min-height:\s*52px[^}]*font-size:\s*18px/s);
   assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*\.button\s*\{[^}]*font-size:\s*17px[^}]*min-height:\s*64px/s);
 });

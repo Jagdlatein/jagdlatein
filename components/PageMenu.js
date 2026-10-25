@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { setSingleMenuOpen } from "../lib/single-view-navigation";
 import styles from "../styles/PageMenu.module.css";
 
 export const PAGE_MENU_OUTLET_ID = "jl-page-menu";
@@ -14,7 +15,7 @@ export function openPageMenu(focusId) {
   const outlet = document.getElementById(PAGE_MENU_OUTLET_ID);
   const menu = outlet?.closest("details");
   if (!menu) return false;
-  menu.open = true;
+  setSingleMenuOpen(menu, true);
   const target = typeof focusId === "string" && focusId
     ? document.getElementById(focusId)
     : null;
@@ -29,7 +30,7 @@ export function closePageMenu() {
   if (typeof document === "undefined") return false;
   const menu = document.getElementById(PAGE_MENU_OUTLET_ID)?.closest("details");
   if (!menu) return false;
-  menu.open = false;
+  setSingleMenuOpen(menu, false);
   return true;
 }
 

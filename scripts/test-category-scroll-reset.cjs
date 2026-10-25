@@ -74,6 +74,7 @@ function shell(initial = '/', { appRouter = false, animationFrames = true, ready
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     if (id === '../lib/category-navigation') return load('lib/category-navigation.js');
+    if (id === '../lib/single-view-navigation') return load('lib/single-view-navigation.js');
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     return local(id);
   }, module, module.exports, window, document, sessionStorage);

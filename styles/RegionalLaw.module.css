@@ -6,6 +6,14 @@
 .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 17px; font-weight: 650; }
 .field select, .field input { width: 100%; min-width: 0; min-height: 52px; padding: 12px; border: 1px solid #bca571; border-radius: 12px; background: white; color: inherit; font: inherit; font-weight: 400; }
 .menuFields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 16px 0; }
+.menuStage { min-width: 0; }
+.menuStage h3 { margin: 12px 0; line-height: 1.45; }
+.choiceList { list-style: none; display: grid; gap: 10px; margin: 16px 0; padding: 0; }
+.choiceList button, .selectionButton { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 14px; min-height: 52px; border: 1px solid var(--jl-border); border-radius: 10px; background: var(--jl-surface); color: var(--jl-ink); text-align: left; font: inherit; line-height: 1.5; cursor: pointer; }
+.choiceList button[aria-pressed="true"], .choiceList button:hover, .selectionButton:hover { background: var(--jl-soft); border-color: var(--jl-accent); }
+.choiceList button:disabled { opacity: .65; cursor: wait; }
+.stageBack { padding: 10px 0; min-height: 44px; border: 0; background: transparent; color: var(--jl-accent); font: inherit; font-weight: 650; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.menuStage button:focus-visible, .menuStage [tabindex="-1"]:focus-visible { outline: 3px solid #aa812b; outline-offset: 3px; }
 .menuList { list-style: none; margin: 12px 0 0; padding: 0; }
 .menuList a { flex-direction: column; align-items: flex-start; gap: 5px; }
 .menuList a strong { font-size: 17px; }

@@ -30,7 +30,7 @@ function harness(query = {}, saved = null) {
   const PageMenu = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, 'next/link': { __esModule: true, default: Link },
     './Seo': { __esModule: true, default: () => null },
-    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id) },
+    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id), closePageMenu: () => {} },
     './ResearchQuestionRound': { __esModule: true, default: ({ questions }) => React.createElement('div', { 'data-practice': questions.map(q => q.id).join(',') }, 'Practice') },
   });
   const Component = load('components/RegionalLawLearning.js').default;
@@ -104,7 +104,7 @@ test('Topic selection lives in the lower menu while the page shows only the chos
     assert.ok(s.menuOpenCalls.includes('regional-law-topics'));
     assert.equal(s.focusCount, 0); assert.equal(s.scrollCount, 0);
     assert.doesNotMatch(s.html(), /<select|type="search"|aria-label="Rechtsthemen"|aria-label="Gesetzesstellen"/);
-    assert.match(s.menuHtml(), /Prüfungsregion auswählen/); assert.match(s.menuHtml(), /<select/);
+    assert.match(s.menuHtml(), /Aktuelle Auswahl/); assert.doesNotMatch(s.menuHtml(), /<select/);
     s.route({ region: 'SG', thema: 'pruefung', artikel: norm.id });
     assert.match(s.html(), /Art\. 2 Abs\. 1/); assert.match(s.html(), /Synthetic reviewed explanation/);
     assert.equal((s.html().match(/<article/g) || []).length, 1); assert.equal(s.requests.length, 1, 'Topic and reading form changes reuse the selected region response.');

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Seo from "./Seo";
 import ResearchQuestionRound from "./ResearchQuestionRound";
-import PageMenu, { openPageMenu } from "./PageMenu";
+import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import { legalCountries, legalTopics, legalSelection, legalSelectionHref, readLegalRegionPreference,
   saveLegalRegionPreference } from "../lib/regional-law-core";
 import styles from "../styles/RegionalLaw.module.css";
@@ -78,11 +78,30 @@ function OriginalExamResources({ region, headingRef }) {
 
 export default function RegionalLawLearning({ country, name, regionLabel, regions = [] }) {
   const router = useRouter();
+  const countryPath = `/jagdrecht/${country.toLowerCase()}`;
+  const routePath = typeof router.asPath === "string" ? router.asPath.split(/[?#]/)[0] : countryPath;
+  const ready = router.isReady === true && routePath === countryPath;
   const selection = legalSelection(router.query, regions);
   const requestKey = `${country}:${selection.region}:${selection.includeFederal ? 1 : 0}`;
   const [response, setResponse] = useState({ key: "", bundle: null, error: "", status: 0 });
   const [retry, setRetry] = useState(0);
   const [search, setSearch] = useState("");
+  const [menuChoice, setMenuChoice] = useState(null);
+  const [navigationError, setNavigationError] = useState(null);
+  const [pendingView, setPendingView] = useState(null);
+  const originKey = JSON.stringify([country, ready, router.asPath || "", Object.keys(router.query || {}).sort().map(key => [key, router.query[key]])]);
+  const currentOrigin = useRef({ key: originKey });
+  if (currentOrigin.current.key !== originKey) currentOrigin.current = { key: originKey };
+  const origin = currentOrigin.current;
+  const menuStage = !ready ? "loading" : menuChoice?.origin === origin ? menuChoice.stage : selection.region ? "main" : "region";
+  const stageIdentity = useRef({ origin, stage: menuStage });
+  if (stageIdentity.current.origin !== origin || stageIdentity.current.stage !== menuStage) stageIdentity.current = { origin, stage: menuStage };
+  const stage = stageIdentity.current;
+  const mounted = useRef(false), navigation = useRef(0), pending = useRef(null);
+  const dataScopeKey = JSON.stringify([ready, requestKey, retry]);
+  const dataScope = useRef({ key: dataScopeKey });
+  if (dataScope.current.key !== dataScopeKey) dataScope.current = { key: dataScopeKey };
+  const fetchScope = dataScope.current;
   const restored = useRef(false);
   const heading = useRef(null);
   const articleHeading = useRef(null);
@@ -92,22 +111,41 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
   const selectedRegion = regions.find(region => region.code === selection.region);
 
   useEffect(() => {
-    if (!router.isReady || restored.current) return;
+    mounted.current = true;
+    return () => { mounted.current = false; navigation.current++; pending.current = null; };
+  }, []);
+
+  useEffect(() => {
+    const job = pending.current;
+    if (!job || job.origin === origin) return;
+    pending.current = null;
+    setPendingView(null);
+    if (job.href === legalSelectionHref(country, selection)) {
+      moved.current = true;
+      if (job.clearSearch) setSearch("");
+      setMenuChoice(null);
+    }
+  }, [origin]);
+
+  useEffect(() => {
+    if (!ready || restored.current) return;
     restored.current = true;
     if (router.query.region !== undefined) return;
     let saved;
     try { saved = readLegalRegionPreference(window.localStorage); } catch { return; }
-    if (saved?.country === country && regions.some(region => region.code === saved.region))
-      router.replace(legalSelectionHref(country, { ...selection, region: saved.region }), undefined, { shallow: true, scroll: false });
-  }, [router.isReady, country, regions]);
+    if (saved?.country === country && regions.some(region => region.code === saved.region)) {
+      try { Promise.resolve(router.replace(legalSelectionHref(country, { ...selection, region: saved.region }), undefined, { shallow: true, scroll: false })).catch(() => {}); }
+      catch { /* A remembered choice is optional; the region list stays usable. */ }
+    }
+  }, [ready, country, regions]);
 
   useEffect(() => {
-    if (!router.isReady || !selection.region) return;
+    if (!ready || !selection.region) return;
     try { saveLegalRegionPreference(window.localStorage, country, selection.region, regions); } catch { /* Optional on-device preference. */ }
-  }, [router.isReady, country, selection.region, regions]);
+  }, [ready, country, selection.region, regions]);
 
   useEffect(() => {
-    if (!router.isReady || !selection.region) return;
+    if (!ready || !selection.region) return;
     const controller = new AbortController();
     let timedOut = false;
     const deadline = setTimeout(() => { timedOut = true; controller.abort(); }, 18000);
@@ -119,17 +157,17 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
         if (!result.ok) throw Object.assign(new Error(data.message || "Die Rechtsinhalte konnten nicht geladen werden."), { status: result.status });
         if (data.country !== country || data.region?.code !== selection.region || !Array.isArray(data.articles) ||
           !Array.isArray(data.questions) || !Array.isArray(data.sources)) throw new Error("Die Antwort gehört nicht zur gewählten Lernregion.");
-        if (!controller.signal.aborted) setResponse({ key: requestKey, bundle: data, error: "", status: 200 });
+        if (mounted.current && dataScope.current === fetchScope && !controller.signal.aborted) setResponse({ key: requestKey, bundle: data, error: "", status: 200 });
       })
       .catch(error => {
-        if (!controller.signal.aborted || timedOut) setResponse({ key: requestKey, bundle: null,
+        if (mounted.current && dataScope.current === fetchScope && (!controller.signal.aborted || timedOut)) setResponse({ key: requestKey, bundle: null,
           error: timedOut ? "Das Laden dauert zu lange. Bitte erneut versuchen." : ["TypeError", "SyntaxError"].includes(error.name)
             ? "Die Rechtsinhalte sind gerade nicht erreichbar. Prüfe deine Verbindung und lade erneut." : error.message, status: error.status || 503 });
       }).finally(() => clearTimeout(deadline));
     return () => { controller.abort(); clearTimeout(deadline); };
-  }, [router.isReady, requestKey, retry]);
+  }, [ready, requestKey, retry]);
 
-  const active = response.key === requestKey ? response : { bundle: null, error: "", status: 0 };
+  const active = ready && response.key === requestKey ? response : { bundle: null, error: "", status: 0 };
   const bundle = active.bundle;
   const localArticles = bundle?.articles.filter(article => article.regionCode === selection.region) || [];
   const localQuestions = bundle?.questions.filter(question => question.regionCode === selection.region) || [];
@@ -143,85 +181,183 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
     (!query || `${question.prompt} ${question.explanation} ${question.context}`.toLocaleLowerCase("de").includes(query))) || [];
 
   useEffect(() => {
-    if (!bundle) return;
+    if (!ready || !bundle) return;
     if (selection.view === "wissen" && !article) {
       firstContent.current = false;
       moved.current = false;
-      const timer = setTimeout(() => openPageMenu("regional-law-topics"), 0);
+      const timer = setTimeout(() => { if (mounted.current && currentOrigin.current === origin) openPageMenu("regional-law-topics"); }, 0);
       return () => clearTimeout(timer);
     }
     if (moved.current || (firstContent.current && article)) {
       moved.current = false;
+      closePageMenu();
       const target = article ? articleHeading.current : contentHeading.current || heading.current;
       target?.focus({ preventScroll: true }); target?.scrollIntoView({ block: "start", behavior: "auto" });
     }
     firstContent.current = false;
-  }, [bundle, selection.topic, selection.article, selection.view]);
+  }, [ready, bundle, selection.topic, selection.article, selection.view]);
 
+  function live() {
+    return mounted.current && ready && currentOrigin.current === origin && stageIdentity.current === stage;
+  }
+  function cancelOutstandingNavigation() {
+    const previous = pending.current;
+    const id = ++navigation.current;
+    pending.current = null;
+    setPendingView(null);
+    if (!previous || previous.href === legalSelectionHref(country, selection)) return;
+    // Clearing a ref does not cancel Next's actual navigation. A fresh request
+    // for the exact current address supersedes the unfinished other destination
+    // without adding an internal selection step or changing its search context.
+    const currentHref = typeof router.asPath === "string" ? router.asPath : legalSelectionHref(country, selection);
+    try {
+      Promise.resolve(router.push(currentHref, undefined, { shallow: true, scroll: false })).catch(error => {
+        if (mounted.current && currentOrigin.current === origin && navigation.current === id && !error?.cancelled)
+          setNavigationError({ origin, message: "Die laufende Auswahl konnte nicht abgebrochen werden. Bitte wähle deine Region erneut." });
+      });
+    } catch {
+      if (mounted.current && currentOrigin.current === origin && navigation.current === id)
+        setNavigationError({ origin, message: "Die laufende Auswahl konnte nicht abgebrochen werden. Bitte wähle deine Region erneut." });
+    }
+  }
+  function showStage(next) {
+    if (!live()) return;
+    setNavigationError(null); cancelOutstandingNavigation();
+    stageIdentity.current = { origin, stage: next };
+    setMenuChoice({ origin, stage: next, focus: true });
+  }
+  async function navigate(href, clearSearch = true) {
+    if (!live()) return;
+    if (href === legalSelectionHref(country, selection)) {
+      setNavigationError(null); cancelOutstandingNavigation();
+      if (selection.region && (selection.view !== "wissen" || article)) {
+        stageIdentity.current = { origin, stage: "main" };
+        setMenuChoice({ origin, stage: "main", focus: false });
+        closePageMenu();
+        const target = article ? articleHeading.current : contentHeading.current || heading.current;
+        target?.focus({ preventScroll: true }); target?.scrollIntoView({ block: "start", behavior: "auto" });
+      } else showStage(selection.region ? "main" : "region");
+      return;
+    }
+    const job = { origin, href, clearSearch, id: ++navigation.current };
+    pending.current = job;
+    setPendingView(job); setNavigationError(null);
+    function fail(message) {
+      if (!mounted.current || currentOrigin.current !== origin || pending.current !== job || navigation.current !== job.id) return;
+      pending.current = null; setPendingView(null);
+      if (message) setNavigationError({ origin, message });
+    }
+    try {
+      const accepted = await router.push(href, undefined, { shallow: href.startsWith(`/jagdrecht/${country.toLowerCase()}?`), scroll: false });
+      if (accepted === false) fail("Die Auswahl konnte nicht geöffnet werden. Bitte wähle sie erneut.");
+      // A successful promise alone is not a URL commit. Keep this list and its
+      // current facts until the actual router selection changes.
+    } catch (error) { fail(error?.cancelled ? "" : "Die Auswahl konnte nicht geöffnet werden. Bitte wähle sie erneut."); }
+  }
   function choose(change) {
-    moved.current = true;
-    setSearch("");
-    router.push(legalSelectionHref(country, { ...selection, ...change }), undefined, { shallow: true, scroll: false });
+    if (!live()) return;
+    navigate(legalSelectionHref(country, { ...selection, ...change }));
   }
-  function prepareContentMove(event) {
-    if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey)
-      moved.current = true;
+  function prepareContentMove(event, href) {
+    if (!live()) { event.preventDefault?.(); return; }
+    if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+      event.preventDefault?.(); navigate(href);
+    }
   }
-  function changeCountry(value) { router.push(legalSelectionHref(value)).catch(() => {}); }
+  function changeCountry(value) {
+    if (!live() || !legalCountries.some(item => item.code === value)) return;
+    if (value === country) { showStage("region"); return; }
+    navigate(legalSelectionHref(value));
+  }
+  function changeSearch(value) { if (live()) setSearch(value); }
+  function selectRegion(value) {
+    if (!live() || !regions.some(item => item.code === value)) return;
+    if (value === selection.region) { showStage("main"); return; }
+    choose({ region: value, topic: "all", article: "" });
+  }
+  function selectForm(value) {
+    if (!live()) return;
+    if (value === selection.view) { showStage("main"); return; }
+    choose({ view: value, article: "" });
+  }
+  function selectTopic(value) {
+    if (!live()) return;
+    if (value === selection.topic) { showStage("main"); return; }
+    choose({ topic: value, article: "" });
+  }
   const hasFederal = regions.some(region => region.code === "BUND") && selection.region !== "BUND";
+  const forms = [{ id: "wissen", title: "Wissen & Gesetzestexte" }, { id: "originale", title: "Originale & Prüfungsunterlagen" },
+    { id: "uebung", title: "Rechtsfragen üben" }, { id: "fragen", title: "Fragen & Lösungen" }];
+  const formTitle = forms.find(item => item.id === selection.view)?.title;
+  const pendingChoice = pendingView?.origin === origin && pending.current === pendingView;
+  useEffect(() => {
+    if (!mounted.current || currentOrigin.current !== origin || menuChoice?.origin !== origin || menuChoice.focus === false) return;
+    const target = { country: "regional-law-country", region: "regional-law-region", form: "regional-law-form", topic: "regional-law-topic", main: "regional-law-topics" }[menuStage];
+    openPageMenu(target);
+  }, [menuChoice, menuStage, origin]);
   return <main className={styles.main}>
     <Seo title={`Jagdrecht ${name} – nach ${regionLabel} lernen`} description={`Jagdrecht und eigene Rechtsfragen für deine Prüfungsregion in ${name}. Mit amtlichen Originalauszügen und genauen Fundstellen.`} />
-    <header className={styles.header}><h1 ref={heading} tabIndex={-1}>{selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
-    <PageMenu key={country} title="Jagdrecht – Auswahl" openInitially={!selection.region} initialFocusId="regional-law-region">
-    <div className={styles.menuFields} aria-label="Prüfungsregion auswählen">
-      <label className={styles.field}>Land<select value={country} onChange={event => changeCountry(event.target.value)}>
-        {legalCountries.map(item => <option key={item.code} value={item.code}>{item.name}</option>)}
-      </select></label>
-      <label className={styles.field}>Wohn- oder Prüfungs{regionLabel === "Kanton" ? "kanton" : "bundesland"}<select id="regional-law-region" value={selection.region}
-        onChange={event => choose({ region: event.target.value, topic: "all", article: "" })}>
-        <option value="">Bitte {regionLabel} wählen …</option>
-        {regions.map(region => <option key={region.code} value={region.code}>{region.name}{region.code === "BUND" ? " (Bundesrecht)" : ` (${region.code})`}</option>)}
-      </select></label>
-      <p className={styles.regionHint}>Für die Vorbereitung wählst du den Ort deiner Prüfung. Deine Auswahl wird auf diesem Gerät gemerkt; du kannst sie jederzeit ändern.</p>
-    </div>
-    {selection.region && <>
-      <div className={styles.menuFields}>
-        <label className={styles.field}>Lernform<select value={selection.view} onChange={event => choose({ view: event.target.value, article: "" })}>
-          <option value="wissen">Wissen und Gesetzestexte</option><option value="originale">Originalkataloge und Prüfungsunterlagen</option>
-          <option value="uebung">Eigene Rechtsfragen üben</option><option value="fragen">Eigener Fragenkatalog mit Lösungen</option>
-        </select></label>
+    <header className={styles.header}><h1 ref={heading} tabIndex={-1}>{!ready ? "Jagdrecht" : selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
+    <PageMenu key={country} title="Jagdrecht – Auswahl" openInitially={ready && !selection.region} initialFocusId="regional-law-region">
+    <div className={styles.menuStage} aria-busy={pendingChoice}>
+    {menuStage === "loading" && <p role="status">Die Rechtsauswahl wird vorbereitet …</p>}
+    {ready && menuStage !== "main" && <button type="button" className={styles.stageBack} onClick={() => showStage(selection.region ? "main" : menuStage === "country" ? "region" : "country")}>{selection.region ? "Zur Auswahl" : menuStage === "country" ? `${regionLabel} wählen` : "Land wählen"}</button>}
+    {menuStage === "country" && <section aria-labelledby="regional-law-country">
+      <h3 id="regional-law-country" tabIndex={-1}>Land</h3>
+      <ul className={styles.choiceList}>{legalCountries.map(item => <li key={item.code}><button type="button" disabled={!ready} aria-pressed={country === item.code} onClick={() => changeCountry(item.code)}>{item.name}</button></li>)}</ul>
+    </section>}
+    {menuStage === "region" && <section aria-labelledby="regional-law-region">
+      <h3 id="regional-law-region" tabIndex={-1}>{name} · {regionLabel}</h3>
+      <p className={styles.regionHint}>Wähle den Ort deiner Prüfung. Deine Auswahl wird auf diesem Gerät gemerkt.</p>
+      <ul className={styles.choiceList} aria-label="Prüfungsregion auswählen">{regions.map(region => <li key={region.code}><button type="button" disabled={!ready} aria-pressed={selection.region === region.code}
+        onClick={() => selectRegion(region.code)}>{region.name}{region.code === "BUND" ? " (Bundesrecht)" : ` (${region.code})`}</button></li>)}</ul>
+    </section>}
+    {menuStage === "form" && <section aria-labelledby="regional-law-form">
+      <h3 id="regional-law-form" tabIndex={-1}>Lernform</h3>
+      <ul className={styles.choiceList}>{forms.map(item => <li key={item.id}><button type="button" disabled={!ready} aria-pressed={selection.view === item.id} onClick={() => selectForm(item.id)}>{item.title}</button></li>)}</ul>
+    </section>}
+    {menuStage === "topic" && <section aria-labelledby="regional-law-topic">
+      <h3 id="regional-law-topic" tabIndex={-1}>Prüfungsthema</h3>
+      <ul className={styles.choiceList}>{[{ id: "all", title: "Alle Rechtsthemen" }, ...legalTopics.filter(topic => bundle?.questions.some(question => question.topic === topic.id))].map(item => <li key={item.id}><button type="button" disabled={!ready} aria-pressed={selection.topic === item.id} onClick={() => selectTopic(item.id)}>{item.title}</button></li>)}</ul>
+    </section>}
+    {menuStage === "main" && selection.region && <div id="regional-law-topics" tabIndex={-1}>
+      <div className={styles.menuFields} aria-label="Aktuelle Auswahl">
+        <button type="button" className={styles.selectionButton} onClick={() => showStage("country")}>Land <strong>{name}</strong></button>
+        <button type="button" className={styles.selectionButton} onClick={() => showStage("region")}>{regionLabel} <strong>{selectedRegion?.name}</strong></button>
+        <button type="button" className={styles.selectionButton} onClick={() => showStage("form")}>Lernform <strong>{formTitle}</strong></button>
         {hasFederal && selection.view !== "originale" && <label className={styles.check}><input type="checkbox" checked={selection.includeFederal} onChange={event => choose({ includeFederal: event.target.checked, article: "" })} />Bundesrecht ergänzend mitlernen</label>}
       </div>
       {bundle && selection.view !== "originale" && <div className={styles.menuFields}>
-        <label className={styles.field}>In dieser Auswahl suchen<input type="search" value={search} maxLength={160} onChange={event => setSearch(event.target.value)} placeholder="Thema, Artikel, Paragraph oder Begriff" /></label>
-        {selection.view !== "wissen" && <label className={styles.field}>Prüfungsthema<select value={selection.topic} onChange={event => choose({ topic: event.target.value, article: "" })}>
-          <option value="all">Alle freigegebenen Rechtsthemen dieser Auswahl</option>
-          {legalTopics.filter(topic => bundle.questions.some(question => question.topic === topic.id)).map(topic => <option key={topic.id} value={topic.id}>{topic.title}</option>)}
-        </select></label>}
-        {selection.view === "wissen" && <div id="regional-law-topics" tabIndex={-1}>
+        <label className={styles.field}>In dieser Auswahl suchen<input type="search" value={search} maxLength={160} onChange={event => changeSearch(event.target.value)} placeholder="Thema, Artikel, Paragraph oder Begriff" /></label>
+        {selection.view !== "wissen" && <button type="button" className={styles.selectionButton} onClick={() => showStage("topic")}>Prüfungsthema <strong>{currentTopic?.title || "Alle Rechtsthemen"}</strong></button>}
+        {selection.view === "wissen" && <div>
           <h3>{currentTopic ? currentTopic.title : query ? "Gefundene Gesetzesstellen" : "Thema wählen"}</h3>
           {!currentTopic && !query ? <ul className={styles.menuList} aria-label="Rechtsthemen">{legalTopics.map(topic => {
             const count = bundle.articles.filter(article => article.topic === topic.id).length;
-            return count ? <li key={topic.id}><Link prefetch={false} shallow scroll={false} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: topic.id, article: "" })}>
+            return count ? <li key={topic.id}><Link prefetch={false} shallow scroll={false} onClick={event => prepareContentMove(event, legalSelectionHref(country, { ...selection, topic: topic.id, article: "" }))} href={legalSelectionHref(country, { ...selection, topic: topic.id, article: "" })}>
               <strong>{topic.title}</strong><span>{count} {count === 1 ? "Gesetzesstelle" : "Gesetzesstellen"}</span></Link></li> : null;
-          })}</ul> : <ul className={styles.menuList} aria-label="Gesetzesstellen">{topicArticles.map(item => <li key={item.id}><Link prefetch={false} shallow scroll={false} aria-current={article?.id === item.id ? "page" : undefined} onClick={prepareContentMove} href={legalSelectionHref(country, { ...selection, topic: item.topic, article: item.id })}>
+          })}</ul> : <ul className={styles.menuList} aria-label="Gesetzesstellen">{topicArticles.map(item => <li key={item.id}><Link prefetch={false} shallow scroll={false} aria-current={article?.id === item.id ? "page" : undefined} onClick={event => prepareContentMove(event, legalSelectionHref(country, { ...selection, topic: item.topic, article: item.id }))} href={legalSelectionHref(country, { ...selection, topic: item.topic, article: item.id })}>
             <strong>{item.title}</strong><span>{item.regionName} · {item.citation}</span></Link></li>)}</ul>}
           {!topicArticles.length && <p role="status">{query ? "Kein Treffer. Ändere deinen Suchbegriff." : "Für diese Auswahl sind noch keine belegten Abschnitte freigegeben."}</p>}
         </div>}
         {selection.view !== "wissen" && <p className={styles.scope}>{questionPool.length} eigene Fragen in dieser Auswahl</p>}
       </div>}
-      <Link shallow prefetch={false} onClick={event => { prepareContentMove(event); setSearch(""); }} href={legalSelectionHref(country, { ...selection, topic: "all", article: "" })}>Alle Rechtsthemen dieser Region</Link>
-    </>}
+      <Link shallow prefetch={false} onClick={event => prepareContentMove(event, legalSelectionHref(country, { ...selection, topic: "all", article: "" }))} href={legalSelectionHref(country, { ...selection, topic: "all", article: "" })}>Alle Rechtsthemen dieser Region</Link>
+    </div>}
+    {pendingChoice && <p role="status">Auswahl wird geöffnet …</p>}
+    {navigationError?.origin === origin && <p role="alert" className={styles.error}>{navigationError.message}</p>}
     <Link prefetch={false} href="/jagdrecht">Länderübersicht</Link>
+    </div>
     </PageMenu>
-    {selection.invalidRegion && <p role="status" className={styles.notice}>Diese Region ist nicht verfügbar. Wähle deine Lernregion unten im Menü.</p>}
-    {!selection.region && <p className={styles.hint}>Wähle dein Land und deine Prüfungsregion im unteren Menü.</p>}
-    {selection.region && <>
+    {!ready && <p role="status">Die Rechtsauswahl wird vorbereitet …</p>}
+    {ready && selection.invalidRegion && <p role="status" className={styles.notice}>Diese Region ist nicht verfügbar. Wähle deine Lernregion unten im Menü.</p>}
+    {ready && !selection.region && <p className={styles.hint}>Wähle dein Land und deine Prüfungsregion im unteren Menü.</p>}
+    {ready && selection.region && <>
       {!bundle && !active.error && <p role="status">Rechtsinhalte für diese Auswahl werden geladen …</p>}
       {active.error && <div className={styles.error} role="alert"><p>{active.error}</p>
         {active.status === 401 ? <Link className={styles.button} href={`/login?next=${encodeURIComponent(legalSelectionHref(country, selection))}`}>Erneut anmelden</Link>
           : active.status === 403 ? <Link className={styles.button} href="/konto">Zugang im Konto prüfen</Link>
-            : <button type="button" className={styles.button} onClick={() => setRetry(value => value + 1)}>Erneut laden</button>}
+            : <button type="button" className={styles.button} onClick={() => { if (live()) setRetry(value => value + 1); }}>Erneut laden</button>}
       </div>}
       {bundle && <>
         {selection.view === "originale" ? <OriginalExamResources region={bundle.region} headingRef={contentHeading} /> : <>

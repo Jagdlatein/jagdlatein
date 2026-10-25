@@ -9,6 +9,7 @@ import { PAGE_MENU_OUTLET_ID, PAGE_MENU_ROUTE_ATTRIBUTE } from "./PageMenu";
 import AppUpdateStatus from "./AppUpdateStatus";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { getCategoryNavigationKey } from "../lib/category-navigation";
+import { installSingleViewNavigation, setSingleMenuOpen } from "../lib/single-view-navigation";
 import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
@@ -111,7 +112,7 @@ function rememberCurrentPath(history, current) {
 export default function GlobalHomeButton() {
   const pathname = usePathname();
   const router = useRouter();
-  const [viewportSpace, setViewportSpace] = useState({ bottom: 0, menuHeight: null });
+  const [viewportSpace, setViewportSpace] = useState({ bottom: 0, menuHeight: null, panelBottom: 120, panelTop: 0 });
   const menuRef = useRef(null);
   const navigationRef = useRef(null);
   const menuRoute = useRef(pathname);
@@ -131,7 +132,7 @@ export default function GlobalHomeButton() {
     // while the learner is still typing inside the lower page menu.
     const typing = field?.tagName === "TEXTAREA" || (field?.tagName === "INPUT" && ["search", "text"].includes(field.type));
     const keepTyping = samePage && menu?.open && typing && menu.contains(field) && field.closest?.(`#${PAGE_MENU_OUTLET_ID}`);
-    if (menu && !keepTyping) menu.open = false;
+    if (menu && !keepTyping) setSingleMenuOpen(menu, false);
     // Publish readiness only after closing and after both router views agree
     // with the current URL. A new page can then open its committed controls.
     outlet?.setAttribute(PAGE_MENU_ROUTE_ATTRIBUTE, routeReady ? currentPath : "");
@@ -167,11 +168,13 @@ export default function GlobalHomeButton() {
   useEffect(() => {
     const closeOutside = event => {
       const menu = menuRef.current;
-      if (menu?.open && !menu.contains(event.target)) menu.open = false;
+      if (menu?.open && !menu.contains(event.target)) setSingleMenuOpen(menu, false);
     };
     document.addEventListener("pointerdown", closeOutside);
     return () => document.removeEventListener("pointerdown", closeOutside);
   }, []);
+
+  useEffect(() => installSingleViewNavigation(navigationRef.current, menuRef.current), [pathname]);
 
   useEffect(() => {
     if (!pathname) return;
@@ -209,8 +212,10 @@ export default function GlobalHomeButton() {
       // Include the actual dock height and resolved safe-area gap. Very short
       // landscape viewports must not be forced to show an oversized menu.
       const menuHeight = bottom ? Math.max(0, Math.floor(height - dockHeight - edgeGap - 14 - 8)) : null;
-      setViewportSpace(previous => previous.bottom === bottom && previous.menuHeight === menuHeight
-        ? previous : { bottom, menuHeight });
+      const panelBottom = Math.max(0, Math.round(bottom + dockHeight + edgeGap + 8));
+      const panelTop = valid && !scaled ? Math.round(offset) : 0;
+      setViewportSpace(previous => previous.bottom === bottom && previous.menuHeight === menuHeight && previous.panelBottom === panelBottom && previous.panelTop === panelTop
+        ? previous : { bottom, menuHeight, panelBottom, panelTop });
     };
     syncViewport();
     window.addEventListener("resize", syncViewport);
@@ -263,7 +268,7 @@ export default function GlobalHomeButton() {
     return inSection(pathname, item.href);
   }
   function closeMenu(event) {
-    if (!event.defaultPrevented && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (!event.button || event.button === 0) && menuRef.current) menuRef.current.open = false;
+    if (!event.defaultPrevented && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (!event.button || event.button === 0) && menuRef.current) setSingleMenuOpen(menuRef.current, false);
   }
 
   return (
@@ -272,6 +277,7 @@ export default function GlobalHomeButton() {
       aria-label="Seitennavigation"
       className={styles.nav}
       style={{ "--navigation-bottom-inset": `${viewportSpace.bottom}px`,
+        "--navigation-panel-bottom": `${viewportSpace.panelBottom}px`, "--navigation-panel-top": `${viewportSpace.panelTop}px`,
         ...(viewportSpace.menuHeight !== null ? { "--navigation-menu-height": `${viewportSpace.menuHeight}px` } : {}) }}
     >
       <button
@@ -288,12 +294,12 @@ export default function GlobalHomeButton() {
       <Link href="/lernen#lernen-suche" prefetch={false} className={styles.button} aria-label="Alle Lernangebote suchen"><AppIcon name="search" size={18} /> Suche</Link>
       <details className={styles.more} ref={menuRef} onKeyDown={event => {
         if (event.key === "Escape" && menuRef.current?.open) {
-          event.preventDefault(); menuRef.current.open = false;
+          event.preventDefault(); setSingleMenuOpen(menuRef.current, false);
           menuRef.current.querySelector("summary")?.focus();
         }
       }}>
-        <summary className={styles.button}><AppIcon name="menu" size={18} />Menü</summary>
-        <div className={styles.moreLinks}>
+        <summary className={styles.button} aria-label="Menü öffnen"><AppIcon name="menu" size={18} />Menü</summary>
+        <div className={styles.moreLinks} data-navigation-view role="region" aria-label="Navigation und Auswahl">
           <div id={PAGE_MENU_OUTLET_ID} className={styles.pageMenu} />
           {mainMenuItems.map(item => item.href === "/lernen" ? <details key={item.href} className={styles.categoryTree}>
             <summary><AppIcon name="book" size={21} />Kategorien<span aria-hidden="true">›</span></summary>

@@ -17,7 +17,7 @@
 .categoryTree[open] > summary > span { transform:rotate(90deg); }
 .categoryTree > div { margin:0 10px 10px 22px; padding-left:12px; border-left:2px solid #d8c697; }
 .categoryTree > summary:focus-visible { outline:3px solid #aa812b; outline-offset:2px; }
-.moreLinks { position: absolute; right: 0; bottom: calc(100% + 14px); width: min(340px, calc(100vw - 32px)); max-height: 70vh; max-height: min(70dvh, 560px, var(--navigation-menu-height, 560px)); overflow-y: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid #e0d2af; border-radius: 16px; background: #fffdf7; box-shadow: 0 5px 20px #3e321b26; }
+.moreLinks { position: fixed; top: var(--navigation-panel-top, 0px); left: 0; right: 0; bottom: var(--navigation-panel-bottom, 120px); width: auto; max-height: var(--navigation-menu-height, none); box-sizing: border-box; overflow-y: auto; overscroll-behavior: contain; padding: max(20px, env(safe-area-inset-top, 0px)) max(18px, calc((100vw - 960px) / 2), env(safe-area-inset-left, 0px)) 24px; border: 0; border-radius: 0; background: #fffdf7; box-shadow: none; }
 .moreLinks a { display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 52px; padding: 12px; border-radius: 10px; color: #73571a; text-decoration: none; font-size: 18px; line-height: 1.5; font-weight: 600; }
 .moreLinks svg { flex-shrink: 0; }
 .moreLinks a:hover, .moreLinks a[aria-current] { background: #f3e5bd; }
