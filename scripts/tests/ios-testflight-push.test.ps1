@@ -14,6 +14,31 @@ $iosSavedEnvironment=@{}
 foreach($name in @('IOS_TEAM_ID','IOS_BUNDLE_ID','IOS_BUILD_NUMBER','IOS_MARKETING_VERSION','IOS_WEBSITE_ENVIRONMENT','JL_NATIVE_PUSH_ENABLED')){$iosSavedEnvironment[$name]=[Environment]::GetEnvironmentVariable($name)}
 function Assert-Fixture([bool]$Condition,[string]$Message){if(-not$Condition){throw $Message}}
 function Assert-Rejected([scriptblock]$Action,[string]$Message){$rejected=$false;try{&$Action|Out-Null}catch{$rejected=$true};Assert-Fixture $rejected $Message}
+function Assert-AppScopedArchiveArguments {
+    param([string[]]$Arguments,[string]$Entitlements,[hashtable]$Metadata,[hashtable]$Profile,[switch]$Signed)
+    $standardFields=@('CODE_SIGN_ENTITLEMENTS','CODE_SIGN_STYLE','DEVELOPMENT_TEAM','CODE_SIGN_IDENTITY','PROVISIONING_PROFILE_SPECIFIER')
+    foreach($field in $standardFields){
+        Assert-Fixture (@($Arguments|Where-Object{$_-match('^'+$field+'=')}).Count-eq0) ('Globales Signierungsfeld trifft fremde SPM-Targets: '+$field)
+    }
+    Assert-Fixture (@($Arguments|Where-Object{$_-cmatch'^JL_APP_CODE_SIGN_ENTITLEMENTS='}).Count-eq1) 'App-Entitlements müssen genau einmal übergeben werden.'
+    Assert-Fixture ($Arguments-contains('JL_APP_CODE_SIGN_ENTITLEMENTS='+$Entitlements)) 'App-spezifische APS-Rechte stimmen nicht mit dem Auftrag überein.'
+    if($Signed){
+        foreach($expected in @('JL_APP_CODE_SIGN_STYLE=Manual',('JL_APP_DEVELOPMENT_TEAM='+$Metadata.team),('JL_APP_CODE_SIGN_IDENTITY='+$Profile.certificateSha1),('JL_APP_PROVISIONING_PROFILE_SPECIFIER='+$Profile.uuid))){
+            $prefix=$expected.Split('=')[0]+'='
+            Assert-Fixture (@($Arguments|Where-Object{$_.StartsWith($prefix,[StringComparison]::Ordinal)}).Count-eq1) ('App-Signierungsfeld muss genau einmal übergeben werden: '+$prefix)
+            Assert-Fixture ($Arguments-contains$expected) ('App-spezifische manuelle Signierung fehlt: '+$expected.Split('=')[0])
+        }
+        Assert-Fixture (-not($Arguments-contains'CODE_SIGNING_ALLOWED=NO')-and-not($Arguments-contains'CODE_SIGNING_REQUIRED=NO')) 'Signierter Auftrag wurde als unsigniert weitergegeben.'
+    }else{
+        Assert-Fixture ($Arguments-contains'CODE_SIGNING_ALLOWED=NO') 'Unsigniertes Archiv erlaubt Signierung.'
+        Assert-Fixture ($Arguments-contains'CODE_SIGNING_REQUIRED=NO') 'Unsigniertes Archiv verlangt Signierung.'
+        foreach($field in @('JL_APP_CODE_SIGN_STYLE','JL_APP_DEVELOPMENT_TEAM','JL_APP_CODE_SIGN_IDENTITY','JL_APP_PROVISIONING_PROFILE_SPECIFIER')){
+            Assert-Fixture (@($Arguments|Where-Object{$_-match('^'+$field+'=')}).Count-eq0) ('Unsigniertes Archiv übernimmt manuelle Signierungswerte: '+$field)
+        }
+    }
+    Assert-Fixture ($Arguments-contains'archive') 'Kein tatsächlicher Archivauftrag erzeugt.'
+    Assert-Fixture ($Arguments-contains'generic/platform=iOS') 'Gerätearchivziel wurde verändert.'
+}
 try {
     $parseTokens=$null;$parseErrors=$null
     $ast=[Management.Automation.Language.Parser]::ParseFile($iosBuilder,[ref]$parseTokens,[ref]$parseErrors)
@@ -54,7 +79,17 @@ try {
     Invoke-IOSArchive -Metadata $metadata -Archive (Join-Path $iosFixtureRoot 'off.xcarchive') -Signed -Profile $profile|Out-Null
     $arguments=$iosCalls[$iosCalls.Count-1].arguments
     Assert-Fixture ($arguments-contains'JL_NATIVE_PUSH_ENABLED=NO') 'Default-Archiv fordert Push an.'
-    Assert-Fixture ($arguments-contains'CODE_SIGN_ENTITLEMENTS=') 'Default-Archiv fordert ungewollte APS-Rechte an.'
+    Assert-AppScopedArchiveArguments -Arguments $arguments -Entitlements '' -Metadata $metadata -Profile $profile -Signed
+    Invoke-IOSArchive -Metadata $metadata -Archive (Join-Path $iosFixtureRoot 'off-unsigned.xcarchive')|Out-Null
+    Assert-AppScopedArchiveArguments -Arguments $iosCalls[$iosCalls.Count-1].arguments -Entitlements '' -Metadata $metadata
+    Assert-Fixture ($iosCalls[$iosCalls.Count-1].arguments-contains'JL_NATIVE_PUSH_ENABLED=NO') 'Unsignierter Auftrag aktiviert Push.'
+    $sandboxMetadata=@{}+$metadata;$sandboxMetadata.websiteEnvironment='Sandbox';$sandboxMetadata.displayName='Jagdlatein Test'
+    Invoke-IOSArchive -Metadata $sandboxMetadata -Archive (Join-Path $iosFixtureRoot 'sandbox-off.xcarchive') -Signed -Profile $profile|Out-Null
+    Assert-AppScopedArchiveArguments -Arguments $iosCalls[$iosCalls.Count-1].arguments -Entitlements '' -Metadata $sandboxMetadata -Profile $profile -Signed
+    Assert-Fixture ($iosCalls[$iosCalls.Count-1].arguments-contains'IOS_WEBSITE_ENVIRONMENT=Sandbox') 'Sandbox-Signierung verliert die getrennte Umgebung.'
+    Invoke-IOSArchive -Metadata $sandboxMetadata -Archive (Join-Path $iosFixtureRoot 'sandbox-off-unsigned.xcarchive')|Out-Null
+    Assert-AppScopedArchiveArguments -Arguments $iosCalls[$iosCalls.Count-1].arguments -Entitlements '' -Metadata $sandboxMetadata
+    Assert-Fixture ($iosCalls[$iosCalls.Count-1].arguments-contains'IOS_WEBSITE_ENVIRONMENT=Sandbox') 'Unsigniertes Sandbox-Archiv verliert die getrennte Umgebung.'
     $NativePush=$true
     Assert-Rejected {Get-IOSMetadata -RequireApple} 'Fehlende Firebase-Datei wurde akzeptiert.'
     $iosConfiguration=Join-Path $iosMobileRoot 'ios/App/App/GoogleService-Info.plist'
@@ -68,12 +103,19 @@ try {
     $env:IOS_BUNDLE_ID='de.jagdlatein.app'
     $metadata=Get-IOSMetadata -RequireApple
     Assert-Fixture $metadata.nativePush 'Bewusster gültiger Push-Auftrag ging verloren.'
+    $callsBeforeReject=$iosCalls.Count
     Assert-Rejected {Invoke-IOSArchive -Metadata $metadata -Archive (Join-Path $iosFixtureRoot 'unsigned.xcarchive')} 'Unsigniertes Push-Archiv wurde angefordert.'
+    Assert-Fixture ($iosCalls.Count-eq$callsBeforeReject) 'Unsigniertes Push-Archiv hat vor der Ablehnung ein Werkzeug aufgerufen.'
+    $invalidPushMetadata=@{}+$metadata;$invalidPushMetadata.websiteEnvironment='Sandbox'
+    Assert-Rejected {Invoke-IOSArchive -Metadata $invalidPushMetadata -Archive (Join-Path $iosFixtureRoot 'sandbox-push.xcarchive') -Signed -Profile $profile} 'Direkter Sandbox-Push-Archivauftrag wurde akzeptiert.'
+    Assert-Fixture ($iosCalls.Count-eq$callsBeforeReject) 'Sandbox-Push hat vor der Ablehnung ein Werkzeug aufgerufen.'
+    $invalidPushMetadata=@{}+$metadata;$invalidPushMetadata.bundle='de.jagdlatein.other'
+    Assert-Rejected {Invoke-IOSArchive -Metadata $invalidPushMetadata -Archive (Join-Path $iosFixtureRoot 'other-push.xcarchive') -Signed -Profile $profile} 'Direkter Push-Archivauftrag für eine fremde App wurde akzeptiert.'
+    Assert-Fixture ($iosCalls.Count-eq$callsBeforeReject) 'Fremder Push-Auftrag hat vor der Ablehnung ein Werkzeug aufgerufen.'
     Invoke-IOSArchive -Metadata $metadata -Archive (Join-Path $iosFixtureRoot 'on.xcarchive') -Signed -Profile $profile|Out-Null
     $arguments=$iosCalls[$iosCalls.Count-1].arguments
     Assert-Fixture ($arguments-contains'JL_NATIVE_PUSH_ENABLED=YES') 'Push-Schalter fehlt beim tatsächlichen Archivaufruf.'
-    Assert-Fixture ($arguments-contains'CODE_SIGN_ENTITLEMENTS=App/App.entitlements') 'Produktions-Entitlements fehlen beim Archivaufruf.'
-    Assert-Fixture ($arguments-contains'CODE_SIGN_STYLE=Manual') 'Manuelle Signierung wurde geändert.'
+    Assert-AppScopedArchiveArguments -Arguments $arguments -Entitlements 'App/App.entitlements' -Metadata $metadata -Profile $profile -Signed
     $iosApp=Join-Path $iosFixtureRoot 'actual-app/App.app';$iosCheck=Join-Path $iosFixtureRoot 'assertion'
     [void][IO.Directory]::CreateDirectory($iosApp);[void][IO.Directory]::CreateDirectory($iosCheck)
     $iosInfo="<?xml version='1.0'?><plist version='1.0'><dict><key>CFBundleIdentifier</key><string>de.jagdlatein.app</string><key>CFBundleVersion</key><string>23</string><key>CFBundleShortVersionString</key><string>1.0.3</string><key>CFBundleSupportedPlatforms</key><array><string>iPhoneOS</string></array><key>DTPlatformName</key><string>iphoneos</string><key>UIDeviceFamily</key><array><integer>1</integer><integer>2</integer></array><key>CFBundleDisplayName</key><string>Jagdlatein</string><key>JagdlateinWebsiteEnvironment</key><string>Production</string><key>JagdlateinNativePushEnabled</key><string>YES</string></dict></plist>"

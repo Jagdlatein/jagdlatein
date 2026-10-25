@@ -191,10 +191,12 @@ function Invoke-IOSArchive {
         '-archivePath', $Archive, '-derivedDataPath', (Join-Path $iosMobileRoot ('DerivedData/TestFlightBuild-' + [Guid]::NewGuid().ToString('N'))),
         ('PRODUCT_BUNDLE_IDENTIFIER=' + $Metadata.bundle), ('CURRENT_PROJECT_VERSION=' + $Metadata.build), ('MARKETING_VERSION=' + $Metadata.version),
         ('IOS_WEBSITE_ENVIRONMENT=' + $Metadata.websiteEnvironment), ('JL_APP_DISPLAY_NAME=' + $Metadata.displayName),
-        ('JL_NATIVE_PUSH_ENABLED=' + $iosPushFlag), ('CODE_SIGN_ENTITLEMENTS=' + $iosSigningEntitlements)
+        # Only the App target maps these custom settings to Apple's signing
+        # settings. Global CODE_SIGN_* overrides also reach SwiftPM resources.
+        ('JL_NATIVE_PUSH_ENABLED=' + $iosPushFlag), ('JL_APP_CODE_SIGN_ENTITLEMENTS=' + $iosSigningEntitlements)
     )
     if ($Signed) {
-        $iosArchiveArguments += @('CODE_SIGN_STYLE=Manual', ('DEVELOPMENT_TEAM=' + $Metadata.team), ('CODE_SIGN_IDENTITY=' + $Profile.certificateSha1), ('PROVISIONING_PROFILE_SPECIFIER=' + $Profile.uuid))
+        $iosArchiveArguments += @('JL_APP_CODE_SIGN_STYLE=Manual', ('JL_APP_DEVELOPMENT_TEAM=' + $Metadata.team), ('JL_APP_CODE_SIGN_IDENTITY=' + $Profile.certificateSha1), ('JL_APP_PROVISIONING_PROFILE_SPECIFIER=' + $Profile.uuid))
     } else { $iosArchiveArguments += @('CODE_SIGNING_ALLOWED=NO', 'CODE_SIGNING_REQUIRED=NO') }
     $iosArchiveArguments += 'archive'
     Invoke-IOSPublicProgram -Program 'xcodebuild' -ProgramArguments $iosArchiveArguments

@@ -54,7 +54,8 @@ test('Push is default-off, FID-only, manually mapped and does not initialise Fir
   assert.equal(info.JagdlateinNativePushEnabled, '$(JL_NATIVE_PUSH_ENABLED)');
   for (const config of Object.values(objects.XCBuildConfiguration).filter(value=>value?.buildSettings?.JL_NATIVE_PUSH_ENABLED !== undefined)) {
     assert.equal(config.buildSettings.JL_NATIVE_PUSH_ENABLED, 'NO');
-    assert.equal(config.buildSettings.CODE_SIGN_ENTITLEMENTS, 'App/App.entitlements');
+    assert.equal(config.buildSettings.CODE_SIGN_ENTITLEMENTS, '"$(JL_APP_CODE_SIGN_ENTITLEMENTS)"');
+    assert.equal(config.buildSettings.JL_APP_CODE_SIGN_ENTITLEMENTS, 'App/App.entitlements');
   }
   assert.ok(!resourceNames.includes('GoogleService-Info.plist'), 'An absent optional config is not a mandatory Xcode resource');
   const copyPhase=Object.values(objects.PBXShellScriptBuildPhase).find(value=>value?.name==='"Optional Firebase configuration"');

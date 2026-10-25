@@ -127,13 +127,50 @@ Das verwendete Distribution-Zertifikat hat den öffentlichen SHA-1-Fingerabdruck
 CMS-Signaturen und verglich altes und neues Profil: DeveloperCertificate-DER,
 Zertifikatsfingerabdruck und Ablauf blieben gleich; der einzige abweichende
 Entitlement-Schlüssel ist das hinzugekommene `aps-environment=production`.
-Die Erneuerung erweitert damit nur diese Push-Berechtigung. Die Übernahme des Profils in den
-geschützten Builddienst ist noch nicht bestätigt: Die Aktualisierung von
-`IOS_PROFILE_BASE64` wartet an GitHubs erneuter Zugangsbestätigung auf den Betreiber.
-Vor dieser bestätigten Profilübernahme wird kein aktivierter Export/Upload
-ausgelöst. Ein erfolgreicher signierter aktivierter Export wird hier noch nicht
-behauptet. Das Originalprofil mit 12239 Bytes und eine bytegleiche private
-Sicherung sind vom Hauptagent bestätigt; diese Prüfung liest sie nicht.
+Die Erneuerung erweitert damit nur diese Push-Berechtigung. Der Betreiber schloss
+danach GitHubs erneute Zugangsbestätigung ab. Der Hauptagent speicherte genau dieses
+Profil im bestehenden Environment-Secret `IOS_PROFILE_BASE64` und bestätigte die
+Aktualisierung nach einem Reload. Persönliche Reviewer-Regel und erlaubte Zweige
+blieben unverändert. Das Originalprofil mit 12239 Bytes und eine bytegleiche
+private Sicherung sind vom Hauptagent bestätigt; diese Prüfung liest sie nicht.
+
+Der ausdrücklich ausgelöste Uploadlauf `40209879132` verwendet den Quellstand
+`7319a41dd53a432c9a3c6e984cc3e2fb8050d842`, Version 1.0.4, Build 13, Production und
+`native_push=true`. Seine 48 mobilen Prüfungen sowie der tatsächliche
+Original-Konfigurationstransfer auf dem Mac bestanden. Der Betreiber gab danach
+`ios-testflight` persönlich frei; dies ist im GitHub-Review-Ereignis bestätigt.
+Der Signierungsjob scheiterte jedoch am 25. Oktober um 17:28:54 UTC bereits vor
+einem fertigen Archiv: Das globale Argument
+`CODE_SIGN_ENTITLEMENTS=App/App.entitlements` wurde auch an Swift-Package-
+Bibliotheksziele vererbt. Xcode suchte die App-Berechtigungsdatei deshalb in den
+jeweiligen fremden Package-Verzeichnissen. Der Uploadschritt blieb übersprungen.
+Es wurde weder eine IPA exportiert noch Build 13 von Apple angenommen.
+Dieser Fehler ist kein Nachweis eines ungültigen Profils oder Schlüssels; er
+verlangt eine auf das App-Target begrenzte Zuordnung der Signierungseinstellungen.
+Externe Originalbelege: `apple-push-upload-40209879132-failure.json` und
+`apple-push-upload-40209879132-original-errors.txt` im QA-Arbeitsordner.
+
+Die Korrektur begrenzt die fünf Felder Entitlements, Signierungsstil, Team,
+Zertifikatsidentität und Profil auf das tatsächliche App-Target. Nur dessen
+Debug-/Release-Konfigurationen lösen die neuen `JL_APP_*`-Variablen in Apples
+Standardfelder auf. Der Archivaufruf übergibt keine globalen Standardfeld-
+Overrides mehr an die Swift-Package-Ziele. Direkte Xcode-Defaults entsprechen
+weiter den zuvor wirksamen Werten: Automatic, App/App.entitlements, vom Projekt
+geerbte Identität iPhone Developer sowie kein fest gewähltes Team oder Profil.
+Die absichtlichen globalen Signierungsverbote für unsignierte Archive bleiben.
+Alle tatsächlichen Archiv-/IPA-, Profil-, Zertifikats-, APS-, Versions- und
+Firebase-Prüfer sowie die persönliche Environment-Freigabe bleiben unverändert.
+
+Implementierer und Hauptagent führten die gesamte mobile Node-22-Suite mit
+51 bestandenen Tests ohne übersprungene Fälle aus. Drei neue Regressionen prüfen
+die tatsächlichen PBX-Target-/Konfigurationslisten und die Defaultwerte. Der
+erweiterte PowerShell-Funktionstest ruft die echte Archivfunktion für aktivierte
+und deaktivierte signierte Production-, deaktivierte Sandbox- sowie unsignierte
+Aufträge auf und prüft deren tatsächliche Argumente. Er bestätigt außerdem die
+frühe Abweisung unzulässiger Push-Aufträge vor einem Werkzeugaufruf. Der
+Quellencheck mit Flag YES und der echten Originalkonfiguration bestand ebenfalls.
+Diese Prüfungen erzeugen unter Windows kein signiertes Archiv; die tatsächliche
+Bestätigung auf dem Mac erfordert einen neuen freigegebenen Lauf.
 
 ## Original-Konfigurationsdatei im Builddienst
 
