@@ -105,12 +105,12 @@ wird nicht eingebunden. Preview,
 Simulator, Debug und Sandbox sind für diese produktive Registrierung gesperrt.
 
 `JL_NATIVE_PUSH_ENABLED` bleibt standardmäßig **NO**. Für eine aktivierte
-Geräteversion fehlen zum Stand dieses Berichts noch das nach der Pushfreigabe
-regenerierte, erneut geprüfte Signierungsprofil und die tatsächlich lokal
-nachgewiesene `GoogleService-Info.plist`. Die Firebase-APNs-Hinterlegung des
-Ersatzschlüssels ist dagegen bestätigt. Der Betreiber wurde zum Originaldownload
-über Chrome geführt; die echte Konfigurationsdatei ist weiterhin nicht
-zugänglich nachgewiesen. Es wurde keine Konfiguration nachgebaut.
+Geräteversion hat der Hauptagent inzwischen die echte heruntergeladene
+`GoogleService-Info.plist` mit 883 Originalbytes validiert und unverändert an den
+ignorierten Quellpfad übernommen; der Quellencheck mit Flag YES bestand.
+Auch die Firebase-APNs-Hinterlegung des Ersatzschlüssels ist bestätigt.
+Es wurde keine Konfiguration nachgebaut. Diese Prüfung las keine privaten
+Signierungsdateien und ersetzt keinen signierten Geräteexport.
 Der Build darf ohne Datei nur mit ausgeschaltetem Merkmal bestehen. Bei vorhandenem
 Original prüft er exakt Paket, Projekt, Sender und Apple-App-ID. Private APNs-
 Schlüssel und Signierungsdateien gehören nicht ins Repository oder in den Chat.
@@ -118,9 +118,22 @@ Der Hauptagent las genau ein bestehendes App-Store-Profil `Jagdlatein App Store`
 Apple-ID `6427U7AZCK`, App-ID `82C698N8WB.de.jagdlatein.app`, Ablauf 6. Oktober 2027.
 Nach der Fähigkeitsänderung zeigte es `Invalid`. Die Editansicht behielt das
 ursprüngliche Distribution-Zertifikat `3423A965X7` ausgewählt; dafür wird kein
-neues Zertifikat benötigt. Der Abschluss der Regeneration ist hier noch nicht
-als ausgeführt bestätigt. Ein neues Profil muss weiterhin gegen Team, Bundle,
-Distribution-Zertifikat und `aps-environment=production` geprüft werden.
+neues Zertifikat benötigt. Der Hauptagent bestätigte danach das regenerierte
+Profil `64e1da80-ac30-40e8-a1f4-d8f00df5533b` vom 25. Oktober 2026 um 15:43:16 UTC:
+Die kryptographische Signaturprüfung und `validateSigningProfile` mit Flag YES
+und Production bestanden einschließlich Team, Bundle und Production-APS.
+Das verwendete Distribution-Zertifikat hat den öffentlichen SHA-1-Fingerabdruck
+`1E04AC6109CD9641DD4070A820449EEA0A6BC132`. Der Hauptagent prüfte beide
+CMS-Signaturen und verglich altes und neues Profil: DeveloperCertificate-DER,
+Zertifikatsfingerabdruck und Ablauf blieben gleich; der einzige abweichende
+Entitlement-Schlüssel ist das hinzugekommene `aps-environment=production`.
+Die Erneuerung erweitert damit nur diese Push-Berechtigung. Die Übernahme des Profils in den
+geschützten Builddienst ist noch nicht bestätigt: Die Aktualisierung von
+`IOS_PROFILE_BASE64` wartet an GitHubs erneuter Zugangsbestätigung auf den Betreiber.
+Vor dieser bestätigten Profilübernahme wird kein aktivierter Export/Upload
+ausgelöst. Ein erfolgreicher signierter aktivierter Export wird hier noch nicht
+behauptet. Das Originalprofil mit 12239 Bytes und eine bytegleiche private
+Sicherung sind vom Hauptagent bestätigt; diese Prüfung liest sie nicht.
 
 ## Original-Konfigurationsdatei im Builddienst
 
@@ -153,9 +166,10 @@ das Überschreiben einer anderen Datei werden abgewiesen. Ohne ausdrückliche
 Aktivierung liest der Helper keinen Konfigurationswert und schreibt keine Datei.
 Plist-, API-Key- oder private Signierungsinhalte werden nicht protokolliert.
 
-Das Repository-Secret wurde durch diese technische Vorbereitung noch nicht mit einem
-Original befüllt. Ein Test mit synthetischen, klar getrennten Testdaten ist kein
-Nachweis des echten Downloads oder einer gültigen Apple-Auslieferung. Die
+Das Repository-Secret `IOS_FIREBASE_PLIST_BASE64` wurde inzwischen vom Hauptagent
+mit der tatsächlich validierten öffentlichen Originaldatei befüllt. Die unabhängigen
+Helpertests verwendeten weiterhin nur synthetische, klar getrennte Testdaten und
+sind kein Nachweis einer gültigen Apple-Auslieferung. Die
 öffentliche Firebase-Clientkonfiguration ist keine APNs-/Servicekonto- oder
 Signierungsdatei; solche privaten Daten gehören weder in dieses Clientdatei-Secret noch
 ins Repository.
@@ -195,6 +209,41 @@ generisches SDK-`linked=false` ersetzt diese App-Bewertung nicht. Das App-Manife
 wird nicht blind mit SDK-Einträgen überschrieben. Der Kontohinweis und die
 Datenschutzerklärung benennen die Apple-SDK-Diagnostik bereits ausdrücklich.
 
+## Eigener Manifestbeitrag für die Kontoverknüpfung
+
+Der erneut gelesene native Sender übermittelt nach ausdrücklicher Aktivierung
+die Installationskennung als `registration`, `kind=fid`, `platform=ios` an den
+eigenen Registrierungsendpunkt. Dieser speichert sie zusammen mit der aus der
+bestätigten Sitzung ermittelten `account_email`. Dafür enthält das App-Manifest
+jetzt genau einen eigenen Sammlungseintrag: Device ID, App Functionality,
+`linked=true`, `tracking=false`. Die bestehende UserDefaults-Begründung `CA92.1`
+bleibt erhalten. Es wurden keine Vendor-Diagnostik-/Analytics-Einträge in das
+App-Manifest kopiert und keine allgemeinen Tracking-Domains ergänzt.
+
+Die Apple-Originaldefinition verlangt für den eigenen Beitrag Datentyp, Zwecke,
+Linked- und Tracking-Angaben; die SDKs liefern ihre eigenen Manifeste. Diese enge
+Ergänzung erklärt nur die tatsächlich geprüfte Push-Kontobindung. Sie vervollständigt
+nicht die elf bisherigen App-Store-Datentypen und ist keine Gesamtzertifizierung
+des App-Manifests oder der App-Store-Connect-Antworten.
+
+`check-ios.mjs` liest die echte XML-Plist und verlangt genau eine eigene
+Device-ID-Deklaration mit echten Booleanwerten, dem einen belegten Zweck und dem
+vorhandenen UserDefaults-Grund. Isolierte Regressionen prüfen das Original-XML
+sowie fehlende, doppelte und verfälschte Deklarationen. Unter Node 22.23.3
+bestanden alle 42 bisherigen mobilen Tests sowie sechs neue unabhängige
+Manifestprüfungen, jeweils ohne übersprungene Fälle. Die neue echte
+Projektintegration kopiert ausschließlich erlaubte öffentliche Ressourcen in
+ein temporäres Projekt ohne Original-Firebase-Datei; die Projektprüfung akzeptiert
+das Original-XML, lehnt falsche Kontobindung und einen ausgetauschten API-Grund ab
+und akzeptiert anschließend die wiederhergestellte Originaldatei. Zusätzlich
+bestanden 61 passende Datenschutz-/native Push-/Web-Push-Regressionen. Die
+Quellenprüfung des echten Projekts bestand erneut mit Flag YES; sie kompiliert
+oder signiert keine App. Ein zweiter Reviewer las Apple-Definition, nativen Sender
+und Serverbindung selbst und bestätigte den engen Umfang. Die Protokolle liegen
+extern unter `work/regional-law-qa/tests-oct25-own-push-*`.
+Der tatsächliche aggregierte Privacy Report aus dem zur Veröffentlichung
+bestimmten aktivierten Archiv bleibt ein eigener noch offener Nachweis.
+
 ## Technische Quellen
 
 - Firebase [Web-Client einrichten](https://firebase.google.com/docs/cloud-messaging/js/client)
@@ -207,12 +256,16 @@ Datenschutzerklärung benennen die Apple-SDK-Diagnostik bereits ausdrücklich.
 - Tatsächlich gelesene [Apple-Datenhinweise](https://firebase.google.com/docs/ios/app-store-data-collection),
   [Messaging-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseMessaging/Sources/Resources/PrivacyInfo.xcprivacy)
   und [Installations-Originalmanifest 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseInstallations/Source/Library/Resources/PrivacyInfo.xcprivacy).
+- Apple [eigene und SDK-Datensammlung im Manifest](https://developer.apple.com/documentation/bundleresources/describing-data-use-in-privacy-manifests),
+  dessen verlinkte Original-Markdownfassung tatsächlich gelesen wurde, sowie die
+  [Definition von Kontoverknüpfung und Datennutzung](https://developer.apple.com/app-store/app-privacy-details/):
+  Grundlage des eigenen Device-ID-Beitrags; kein Ersatz für den Archivbericht.
 - Apple [umgebungs- und themengebundene APNs-Schlüssel](https://developer.apple.com/news/?id=wy4tb0uo),
   [Token-Verbindung](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)
   und [private Schlüssel erstellen](https://developer.apple.com/help/account/keys/create-a-private-key/).
 - Apple [Profile nach geänderten Fähigkeiten regenerieren](https://developer.apple.com/help/account/provisioning-profiles/edit-download-or-delete-profiles/):
-  Profilwahl und Regeneration sind vom weiterhin fehlenden Original-Clientdownload
-  sowie der späteren Signierungsprüfung getrennte Schritte.
+  Profilwahl und Regeneration, Original-Clientdownload und signierter Export sind
+  getrennte Schritte mit jeweils eigenem Nachweis.
 
 Automatisierte Struktur-, Lebenszyklus- und Buildprüfungen sind keine
 Zustellbestätigung. Die externen Test-/Buildprotokolle liegen im Chat-Workspace
@@ -302,6 +355,7 @@ Der anschließende Lauf `40201562301` für
 `4ebc2d854c4b8b38762ad05cf615c50cb0caddbc` bestätigte danach die tatsächliche
 öffentliche Baseline-Bedienprüfung einschließlich Abo-Kaufsperre und dauerhaftem
 Lesezeichen. Backend und beide unsignierten Gerätearchive bestanden ebenfalls.
-Der nachgelagerte Export vorbereitender Storebilder ist zum Stand dieser
-Ergänzung noch offen. Die Baseline ist keine signierte Push-Aktivierung und
+Der Hauptagent bestätigte inzwischen den vollständigen Erfolg dieses Laufs
+einschließlich aller drei vorbereitenden Store-Captures und sauberem Quellenstand
+(`SourceDirty=false`). Die Baseline ist keine signierte Push-Aktivierung und
 kein Nachweis einer Benachrichtigungszustellung.

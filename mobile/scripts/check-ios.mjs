@@ -7,6 +7,28 @@ import sharp from "sharp";
 
 export const mobileRoot = fileURLToPath(new URL("../", import.meta.url));
 
+// This is the app's own account-bound push registration, not a replacement for
+// the vendor manifests or the final archive's aggregated privacy report.
+export function validateAppPrivacyManifest(privacy) {
+  const collected = privacy?.NSPrivacyCollectedDataTypes;
+  const devices = Array.isArray(collected) ? collected.filter(entry => entry?.NSPrivacyCollectedDataType === "NSPrivacyCollectedDataTypeDeviceID") : [];
+  if (devices.length !== 1) throw new Error("App-Datenschutzmanifest braucht genau eine eigene Gerätekennungs-Angabe.");
+  const device = devices[0];
+  if (device.NSPrivacyCollectedDataTypeLinked !== true || device.NSPrivacyCollectedDataTypeTracking !== false) {
+    throw new Error("Die eigene Gerätekennung ist kontogebunden und wird nicht für Tracking verwendet.");
+  }
+  if (!Array.isArray(device.NSPrivacyCollectedDataTypePurposes) || device.NSPrivacyCollectedDataTypePurposes.length !== 1 ||
+      device.NSPrivacyCollectedDataTypePurposes[0] !== "NSPrivacyCollectedDataTypePurposeAppFunctionality") {
+    throw new Error("Die eigene Gerätekennung braucht ausschließlich den Zweck App Functionality.");
+  }
+  const apis = privacy?.NSPrivacyAccessedAPITypes;
+  if (!Array.isArray(apis) || !apis.some(api => api?.NSPrivacyAccessedAPIType === "NSPrivacyAccessedAPICategoryUserDefaults" &&
+      Array.isArray(api.NSPrivacyAccessedAPITypeReasons) && api.NSPrivacyAccessedAPITypeReasons.includes("CA92.1"))) {
+    throw new Error("Der bestehende Datenschutz-API-Grund für UserDefaults fehlt.");
+  }
+  return privacy;
+}
+
 export async function inspectProject(root = mobileRoot) {
   const app = path.join(root, "ios/App/App");
   const pbx = path.join(root, "ios/App/App.xcodeproj/project.pbxproj");
@@ -47,6 +69,7 @@ export async function inspectProject(root = mobileRoot) {
   const resourceNames = resources.map(id => objects.PBXBuildFile[id].fileRef_comment);
   const info = parse(fs.readFileSync(path.join(app, "Info.plist"), "utf8"));
   const privacy = parse(fs.readFileSync(path.join(app, "PrivacyInfo.xcprivacy"), "utf8"));
+  validateAppPrivacyManifest(privacy);
   const icon = await sharp(path.join(app, "Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png")).metadata();
   const localPackages = Object.values(objects.XCLocalSwiftPackageReference).filter(value => typeof value === "object");
   for (const reference of localPackages) {
