@@ -188,7 +188,11 @@ auf saubere Quellen. Der nächste Lauf bewies den konkreten zusätzlichen Pfad
 Die tatsächlich von Xcode erzeugte `Package.resolved` wurde aus dessen normalem
 Prüflog übernommen (Version 3, 13 Originalpins, Firebase 13.1.1 bei
 `dc6dfd442b1f3ec215ed62b8beb2623ffab010d6`). Quelle und übernommene Datei haben
-denselben SHA-256 `0366471edfc1c1c2190781bd85ff8db4443d0902fc89a4f2834c4681eae8250b`.
+denselben SHA-256 `1222f0b4b8952d3b4441fa3f4d8de96306beb4e3f89645ef952a3633fe1c0266`.
+Ein zusätzlicher abschließender Zeilenumbruch der ersten externen Exportkopie
+wurde gegen den tatsächlich gespeicherten Original-Logtext korrigiert; die
+übernommene Datei entspricht jetzt exakt dessen 3772 UTF-8-Bytes mit einem
+abschließenden Zeilenumbruch. Alle 13 Pins blieben unverändert.
 Es wurde kein Pin erfunden und keine Dirty-Prüfung abgeschwächt. Die in der
 Paketauflösung ebenfalls sichtbaren Analytics-Repositories sind keine zusätzliche
 Verknüpfung des Analytics-Produkts in die App.
