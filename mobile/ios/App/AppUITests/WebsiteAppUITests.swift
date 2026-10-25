@@ -46,11 +46,29 @@ final class WebsiteAppUITests: XCTestCase {
         XCTAssertFalse(app.navigationBars["Jagdlatein-Abo"].exists)
         XCTAssertEqual(location.value as? String, "https://jagdlatein.de/")
 
-        // Accessibility can be ready before WebKit's pixels reach the screen:
-        // the original iPhone 16 Pro capture in run 37821705006 had tappable
-        // homepage elements but only native chrome in its actual framebuffer.
-        // Poll real frames within the existing deadline; never reload, inject,
-        // manufacture content, or attach a blank frame as a fallback.
+        let image = try XCTUnwrap(renderedHomepageFrame(app: app, website: website, location: location,
+                                                       expectedWidth: expectedWidth, expectedHeight: expectedHeight))
+        XCTAssertEqual(image.width, expectedWidth)
+        XCTAssertEqual(image.height, expectedHeight)
+        // Encode this last accepted, original full-screen frame. Pixel analysis
+        // above does not change it; no resize, crop, composition or substitution.
+        let jpeg = try XCTUnwrap(UIImage(cgImage: image, scale: 1, orientation: .up).jpegData(compressionQuality: 1))
+        let attachment = XCTAttachment(data: jpeg, uniformTypeIdentifier: "public.jpeg")
+        attachment.name = "Jagdlatein.Preparatory.PublicHomepage.jpeg"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    @MainActor
+    private func renderedHomepageFrame(app: XCUIApplication, website: XCUIElement, location: XCUIElement,
+                                       expectedWidth: Int? = nil, expectedHeight: Int? = nil) -> CGImage? {
+        // Accessibility can precede WebKit's visible pixels. Both the original
+        // capture in run 37821705006 and the sole subscription tap in run
+        // 40197606482 observed tappable AX elements above a blank framebuffer.
+        // Require two genuinely rendered frames before capture OR interaction;
+        // keep the existing shared deadline, with no reload, injection or retry.
+        let heading = website.staticTexts["Jagdlatein"].firstMatch
+        let learning = website.links.matching(NSPredicate(format: "label CONTAINS %@", "Lernbereich öffnen")).firstMatch
         var renderedImage: CGImage?
         var consecutiveRenderedFrames = 0
         let renderedHomepage = NSPredicate { _, _ in
@@ -64,7 +82,8 @@ final class WebsiteAppUITests: XCTestCase {
                   !app.navigationBars["Jagdlatein-Abo"].exists,
                   (location.value as? String) == "https://jagdlatein.de/",
                   let frame = XCUIScreen.main.screenshot().image.cgImage,
-                  frame.width == expectedWidth, frame.height == expectedHeight,
+                  (expectedWidth.map { frame.width == $0 } ?? true),
+                  (expectedHeight.map { frame.height == $0 } ?? true),
                   self.captureInteriorIsWithinWebsite(app: app, website: website),
                   let darkFraction = self.homepageInteriorDarkPixelFraction(frame),
                   darkFraction >= 0.005 else {
@@ -79,16 +98,7 @@ final class WebsiteAppUITests: XCTestCase {
         let renderedExpectation = XCTNSPredicateExpectation(predicate: renderedHomepage, object: app)
         let rendered = XCTWaiter.wait(for: [renderedExpectation], timeout: remainingTimeout(20)) == .completed
         XCTAssertTrue(rendered, "Two consecutive real frames must show homepage pixels inside the WebView; native logo/toolbar are insufficient.")
-        let image = try XCTUnwrap(rendered ? renderedImage : nil)
-        XCTAssertEqual(image.width, expectedWidth)
-        XCTAssertEqual(image.height, expectedHeight)
-        // Encode this last accepted, original full-screen frame. Pixel analysis
-        // above does not change it; no resize, crop, composition or substitution.
-        let jpeg = try XCTUnwrap(UIImage(cgImage: image, scale: 1, orientation: .up).jpegData(compressionQuality: 1))
-        let attachment = XCTAttachment(data: jpeg, uniformTypeIdentifier: "public.jpeg")
-        attachment.name = "Jagdlatein.Preparatory.PublicHomepage.jpeg"
-        attachment.lifetime = .keepAlways
-        add(attachment)
+        return rendered ? renderedImage : nil
     }
 
     private func captureInteriorIsWithinWebsite(app: XCUIApplication, website: XCUIElement) -> Bool {
@@ -143,13 +153,13 @@ final class WebsiteAppUITests: XCTestCase {
         let location = app.staticTexts["jagdlatein.website.location"]
 
         assertHomepageLoaded(website: website, location: location)
-        attachScreenshot(app, name: "Public homepage loaded")
-
         // Tap the actual Next.js Link: pushState navigation must be protected
         // as well as traditional WKNavigationDelegate navigation.
         let subscribe = website.links["Jetzt freischalten"].firstMatch
         XCTAssertTrue(waitUntil(subscribe, timeout: 15) { $0.exists && $0.isHittable },
                       "The public homepage's real subscription link must be tappable.")
+        _ = try XCTUnwrap(renderedHomepageFrame(app: app, website: website, location: location))
+        attachScreenshot(app, name: "Public homepage loaded")
         subscribe.tap()
 
         let subscriptions = app.navigationBars["Jagdlatein-Abo"]

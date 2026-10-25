@@ -33,9 +33,11 @@ ausgegeben.
   `Topic Specific`, Umgebung `Production` und ausschließlich `de.jagdlatein.app`
   erstellt. Die danach gespeicherte Detailansicht bestätigt `Topic specific
   [Production]`, die Liste genau ein Topic. Kein teamweiter oder zusätzlicher
-  Sandbox-Schlüssel wurde erzeugt. Der einmalige private Download bleibt zur
-  sicheren lokalen Speicherung durch den Betreiber offen; Firebase hat diesen
-  Schlüssel noch nicht erhalten.
+  Sandbox-Schlüssel wurde erzeugt. Apple markiert den privaten Schlüssel
+  inzwischen als bereits heruntergeladen und sperrt einen zweiten Download.
+  Im vereinbarten Ziel, im tatsächlichen Windows-Downloadordner und auf dem
+  Desktop wurde keine passende Datei gefunden; ihr Speicherort ist beim
+  Betreiber angefragt. Firebase hat diesen Schlüssel noch nicht erhalten.
 - Migration `20261025130000_push_platforms.sql` wurde im angemeldeten
   Supabase-SQL-Editor erfolgreich ausgeführt. Sie ergänzt die vorhandene private
   Tabelle um die Art der Registrierung, ohne Empfänger, Eigentümer oder Opt-ins
@@ -103,9 +105,12 @@ Der Build darf ohne Datei nur mit ausgeschaltetem Merkmal bestehen. Bei vorhande
 Original prüft er exakt Paket, Projekt, Sender und Apple-App-ID. Private APNs-
 Schlüssel und Signierungsdateien gehören nicht ins Repository oder in den Chat.
 Die zunächst abgelaufene Apple-Developer-Sitzung wurde vom Betreiber erneut
-angemeldet. Der eng gebundene APNs-Schlüssel ist erstellt; sein privater Download
-und die öffentliche Original-Konfigurationsdatei müssen noch lokal gespeichert
-werden, bevor die freigegebene Firebase-Hinterlegung abgeschlossen werden kann.
+angemeldet. Der eng gebundene APNs-Schlüssel ist erstellt; seine bereits einmal
+heruntergeladene Datei muss noch gefunden werden. Die öffentliche Original-
+Konfigurationsdatei wurde erneut angefordert, aber der Browser lieferte weiterhin
+keinen zugänglichen Dateipfad. Ohne die Originaldateien ist die freigegebene
+Firebase-Hinterlegung nicht abgeschlossen. Es wurde kein Ersatzschlüssel ohne
+Klärung dieses Schritts erzeugt.
 
 Eine veröffentlichte Website ist kein Nachweis einer neuen signierten Apple-App.
 Noch keine echte Browser-/Apple-Registrierung, Systemerlaubnis, Pushnachricht oder
@@ -203,3 +208,13 @@ negativen CLI-Falls. Nur nach erfolgreichem Durchlaufen aller Assertions und
 der sicheren Bereinigung wird dieser externe Exitcode jetzt auf 0 gesetzt.
 Fehlschläge werden nicht in `finally` maskiert. Der entsprechende tatsächliche
 CI-Wrapper-Aufruf wurde unabhängig lokal erfolgreich gegengeprüft.
+
+Im folgenden UI-Lauf war der öffentliche WebView laut originalem Video zum
+einmaligen Freischalten-Tap noch ohne gerenderte Webpixel, obwohl Accessibility
+den Link bereits als hittable meldete. Erst später erschien der sichtbare Inhalt.
+Der Fehllauf belegt damit keine echte sichtbare Linkinteraktion. Der vorhandene
+Zwei-Frame-Pixelguard des Store-Capturetests wird jetzt unverändert auch vor
+diesem einen Baseline-Tap verwendet. Sämtliche anschließenden Abo-, Kaufsperr-
+und Merkliste-Assertions, Pixelgrenzen und gemeinsamen Zeitbudgets bleiben
+erhalten. Produkt-Routing und Appfunktionen wurden dadurch nicht geändert;
+die erneute tatsächliche Mac-UI-Bestätigung steht für diesen Testfix noch aus.
