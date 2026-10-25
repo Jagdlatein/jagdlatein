@@ -379,7 +379,7 @@ test('Law navigation returns through statute, topic and region without mixing an
   browserBack.render().props.children[0].props.onClick(); assert.equal(browserBack.destination, canton);
 });
 
-test('Dock Back preserves each committed topic, case, motif and season in the fifteen focused learning tools', () => {
+test('Dock Back preserves each committed topic, case, motif, season and review selection in focused learning tools', () => {
   const tools = [
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
@@ -397,6 +397,8 @@ test('Dock Back preserves each committed topic, case, motif and season in the fi
     ['/lernen/pruefungsgespraech', '?eintrag=baumwinter', '?eintrag=kitzfund'],
     ['/lernen/pruefungsgespraech', '?kategorie=wildkunde&eintrag=kitzfund', '?kategorie=hundewesen&eintrag=hundelernen'],
     ['/lernen/hundetraining-tagebuch', '?eintrag=pflege', '?eintrag=rueckruf'],
+    ['/lernen/fuenf-minuten', '?modus=gemischt', '?modus=fehler'],
+    ['/lernen/fuenf-minuten', '?modus=faellig&kategorie=wildkunde', '?modus=faellig&kategorie=hundewesen'],
     ['/lernen/anatomie', '?eintrag=schaedel', '?eintrag=unterkiefer'],
     ['/lernen/anatomie', '?eintrag=unterkiefer', '?bereich=verdauung&thema=wiederkaeuer-verdauung'],
   ];
@@ -405,6 +407,26 @@ test('Dock Back preserves each committed topic, case, motif and season in the fi
     s.render().props.children[0].props.onClick();
     assert.equal(s.destination, base + first, base); s.unmount();
   }
+});
+
+test('Daily review Back follows only committed mode and category steps while context, native history and immediate Back keep their stop', () => {
+  const base='/lernen/fuenf-minuten';
+  const errors=`${base}?modus=fehler#review-question-title`;
+  const wildlifeErrors=`${base}?modus=fehler&kategorie=wildkunde#review-question-title`;
+  const wildlifeDue=`${base}?modus=faellig&kategorie=wildkunde#review-question-title`;
+  const s=setup(base,['/lernen/pruefung-sprache']);
+  s.route(errors);s.route(wildlifeErrors);s.route(wildlifeDue);
+  s.route(`${base}?q=Wild&ref=suche&kategorie=wildkunde&modus=faellig#review-question-title`);
+  assert.equal(s.history.length,5,'Search context edits do not invent additional learning selections');
+  s.render().props.children[0].props.onClick();assert.equal(s.destination,wildlifeErrors);
+  assert.match(s.html(),/aria-label="Zum Lernbereich" aria-current="true"/);
+  const native=setup(base,['/lernen/pruefung-sprache']);
+  native.route(errors);native.route(wildlifeErrors);native.route(wildlifeDue);native.route(wildlifeErrors);
+  native.render().props.children[0].props.onClick();assert.equal(native.destination,errors);
+  const immediate=setup(base,['/lernen/pruefung-sprache']);
+  immediate.route(wildlifeErrors);immediate.navigateBeforeEffects(wildlifeDue);
+  immediate.render().props.children[0].props.onClick();assert.equal(immediate.destination,wildlifeErrors);
+  s.unmount();native.unmount();immediate.unmount();
 });
 
 test('Online course Back retains view, category, offer and live-session selections while unrelated context edits stay within one stop', () => {

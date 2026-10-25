@@ -85,6 +85,7 @@ const toolSelectionFields = {
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
+  "/lernen/fuenf-minuten": ["kategorie", "modus"],
   "/online-kurse": ["ansicht", "kategorie", "angebot", "termin"],
 };
 function tracksToolSelection(path) {

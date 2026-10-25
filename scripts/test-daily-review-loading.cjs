@@ -38,10 +38,29 @@ function engine() {
 function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(''); return typeof node === 'object' ? words(node.props?.children) : String(node); }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
 function setup(pool, history = { version: 1, entries: {} }, props = {}) {
-  const e = engine(), records = [], review = load('lib/daily-review.js');
-  const Component = load('components/DailyReview.js', { react: e.hooks, '../lib/daily-review': { ...review, readReviewHistory: () => history, recordReviewAnswer: (...args) => { records.push(args); return true; }, clearReviewHistory: () => true } }).default;
-  let tree; const render = () => tree = e.render(() => Component({ pool, ...props })); render();
-  return { e, records, render, get tree() { return tree; }, start() { e.flush(); render(); }, category(value) { find(tree, node => node.type === 'select').props.onChange({ target: { value } }); render(); }, button(label) { const found = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(found, label); return found; }, html() { return renderToStaticMarkup(tree); } };
+  const parent = engine(), records = [], review = load('lib/daily-review.js'), children = [];
+  let activeEngine = parent, child = null, started = false;
+  const router = { isReady: true, query: {}, asPath: '/lernen/fuenf-minuten', async push(href) {
+    this.query = href.query; this.asPath = `${href.pathname}?${new URLSearchParams(href.query)}#${href.hash}`; return true;
+  } };
+  const hooks = { ...React };
+  for (const name of ['useState','useRef','useMemo','useEffect']) hooks[name] = (...args) => activeEngine.hooks[name](...args);
+  const Component = load('components/DailyReview.js', { react: hooks, 'next/router': { useRouter: () => router }, './PageMenu': { __esModule: true, default: function PageMenu() { return null; }, closePageMenu() {}, openPageMenu() {} }, '../lib/daily-review': { ...review, readReviewHistory: () => history, recordReviewAnswer: (...args) => { records.push(args); return true; }, clearReviewHistory: () => true } }).default;
+  function expand(node) {
+    if (Array.isArray(node)) return node.map(expand);
+    if (!node || typeof node !== 'object') return node;
+    if (node.type?.name === 'DailyReviewRound') {
+      if (child?.key !== node.key) { child?.engine.unmount(); child = { key: node.key, engine: engine() }; children.push(child.engine); }
+      activeEngine = child.engine;
+      return expand(child.engine.render(() => node.type(node.props)));
+    }
+    return { ...node, props: { ...node.props, children: expand(node.props?.children) } };
+  }
+  let tree;
+  const draw = () => { activeEngine = parent; tree = expand(parent.render(() => Component({ pool, ...props }))); return tree; };
+  const e = { get writes() { return parent.writes + children.reduce((sum,item) => sum + item.writes, 0); }, flush() { child?.engine.flush(); parent.flush(); }, unmount() { child?.engine.unmount(); parent.unmount(); } };
+  const render = () => { draw(); if (started) { e.flush(); draw(); } return tree; }; render();
+  return { e, records, router, render, get tree() { return tree; }, start() { started = true; e.flush(); render(); }, category(value) { find(tree, node => node.props?.id === 'review-category').props.onChange({ target: { value } }); render(); }, button(label) { const found = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(found, label); return found; }, html() { return renderToStaticMarkup(tree); } };
 }
 const maintained = load('lib/daily-review-pool.js');
 const compact = load('lib/daily-review-catalog.js');

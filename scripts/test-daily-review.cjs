@@ -71,6 +71,71 @@ test('A round prioritizes due mistakes and due repetitions, excludes other categ
   const round = api.selectDailyReview(pool, history, {now, category:'wildkunde'});
   assert.deepEqual(round.map(item => item.id), ['wissen-a', 'wissen-b', 'wissen-c']);
   assert.deepEqual(round.map(item => item.reason), ['Fehler wiederholen', 'Fällige Wiederholung', 'Neu entdecken']);
+  assert.deepEqual(api.selectDailyReview(pool, history, {now, category:'wildkunde', mode:'gemischt'}), round);
+});
+
+test('Due-only rounds include the exact due boundary and never pad sparse categories with new or future questions', () => {
+  const pool = [
+    {id:'wissen-due-error',category:'wildkunde'}, {id:'wissen-due-right',category:'hundewesen'},
+    {id:'wissen-future-right',category:'hundewesen'}, {id:'wissen-future-error',category:'wildkunde'},
+    {id:'wissen-unseen',category:'wildkunde'},
+  ];
+  let history=api.updateReviewHistory(empty,'wissen-due-error',false,now-600001,'due-error');
+  history=api.updateReviewHistory(history,'wissen-due-right',true,now-DAY,'due-right');
+  history=api.updateReviewHistory(history,'wissen-future-right',true,now-DAY+1,'future-right');
+  history=api.updateReviewHistory(history,'wissen-future-error',false,now-599999,'future-error');
+  history=api.updateReviewHistory(history,'wissen-outside-catalog',false,now-DAY,'outside');
+  const round=api.selectDailyReview(pool,history,{now,mode:'faellig',count:20});
+  assert.deepEqual(round.map(item=>[item.id,item.reason]),[
+    ['wissen-due-error','Fehler wiederholen'],['wissen-due-right','Fällige Wiederholung'],
+  ]);
+  assert.deepEqual(api.selectDailyReview(pool,history,{now:now-1,mode:'faellig'}).map(item=>item.id),['wissen-due-error']);
+  assert.deepEqual(api.selectDailyReview(pool,history,{now,mode:'faellig',category:'hundewesen'}).map(item=>item.id),['wissen-due-right']);
+  assert.deepEqual(api.selectDailyReview(pool,history,{now,mode:'faellig',category:'natur-revier'}),[]);
+  assert.deepEqual(api.selectDailyReview(pool,empty,{now,mode:'faellig'}),[]);
+});
+
+test('Error-only rounds use current open errors, include optional early practice and exclude subsequently corrected mistakes', () => {
+  const pool=[
+    {id:'wissen-open-due',category:'wildkunde'}, {id:'wissen-open-future',category:'wildkunde'},
+    {id:'wissen-resolved-error',category:'wildkunde'}, {id:'wissen-new-question',category:'wildkunde'},
+    {id:'wissen-open-dog',category:'hundewesen'},
+  ];
+  let history=api.updateReviewHistory(empty,'wissen-open-due',false,now-DAY,'open-due');
+  history=api.updateReviewHistory(history,'wissen-open-future',false,now,'open-future');
+  history=api.updateReviewHistory(history,'wissen-resolved-error',false,now-2*DAY,'resolved-wrong');
+  history=api.updateReviewHistory(history,'wissen-resolved-error',true,now-DAY,'resolved-right');
+  history=api.updateReviewHistory(history,'wissen-open-dog',false,now-DAY,'open-dog');
+  history=api.updateReviewHistory(history,'wissen-not-in-catalog',false,now-DAY,'outside');
+  assert.equal(history.entries['wissen-resolved-error'].mistakes,1);
+  assert.equal(history.entries['wissen-resolved-error'].streak,1);
+  assert.ok(history.entries['wissen-open-future'].due>now);
+  const round=api.selectDailyReview(pool,history,{now,mode:'fehler',category:'wildkunde',count:8});
+  assert.deepEqual(round.map(item=>[item.id,item.reason]),[
+    ['wissen-open-due','Fehler wiederholen'],['wissen-open-future','Fehler wiederholen'],
+  ]);
+  assert.deepEqual(api.selectDailyReview(pool,history,{now,mode:'fehler',category:'hundewesen'}).map(item=>item.id),['wissen-open-dog']);
+  assert.deepEqual(api.selectDailyReview(pool,history,{now,mode:'fehler',category:'natur-revier'}),[]);
+  assert.deepEqual(api.selectDailyReview(pool,empty,{now,mode:'fehler'}),[]);
+});
+
+test('Strict modes retain unique catalog IDs and input data while limiting only the existing eligible pool', () => {
+  const questions=Array.from({length:5},(_,index)=>Object.freeze({id:`wissen-strict-${index}`,category:'wildkunde'}));
+  const pool=Object.freeze([questions[0],...questions,questions[4]]);
+  let history=empty;
+  for(const [index,question]of questions.entries())history=api.updateReviewHistory(history,question.id,false,now-DAY+index*1000,`strict-${index}`);
+  for(const entry of Object.values(history.entries))Object.freeze(entry);
+  Object.freeze(history.entries);Object.freeze(history);
+  const before=JSON.stringify({pool,history});
+  for(const mode of ['faellig','fehler']){
+    const full=api.selectDailyReview(pool,history,{now,mode,count:20});
+    assert.equal(full.length,questions.length);assert.equal(new Set(full.map(item=>item.id)).size,questions.length);
+    assert.deepEqual(full.map(item=>item.id),questions.map(item=>item.id));
+    assert.ok(full.every(item=>item.reason==='Fehler wiederholen'));
+    assert.deepEqual(api.selectDailyReview(pool,history,{now,mode,count:2}),full.slice(0,2));
+    assert.ok(full.every(item=>Object.keys(item).sort().join(',')==='category,id,reason'));
+  }
+  assert.equal(JSON.stringify({pool,history}),before);
 });
 
 test('Fresh mixed rounds spread categories before seconds and remain reproducible without changing the input', () => {
