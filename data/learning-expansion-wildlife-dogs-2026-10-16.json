@@ -1,6 +1,6 @@
 {
   "reviewedOn": "2026-10-16",
-  "scope": "Sechs eigenständige Vertiefungskurse in Wildkunde und Hundewesen, 24 Lektionen und 96 Fragen. Geprüft sind die ausdrücklich dokumentierten Aussageblöcke. Eigene Skizzen-, Planungs- und Rechenfälle sind als solche bezeichnet. Die Erweiterung ist keine Neuprüfung aller App-Inhalte, keine individuelle tiermedizinische Verordnung und keine Jagdfreigabe.",
+  "scope": "Sechs eigenständige Vertiefungskurse in Wildkunde und Hundewesen, 25 Lektionen und 98 Fragen. Geprüft sind die ausdrücklich dokumentierten Aussageblöcke. Eigene Skizzen-, Planungs- und Rechenfälle sind als solche bezeichnet. Die Erweiterung ist keine Neuprüfung aller App-Inhalte, keine individuelle tiermedizinische Verordnung und keine Jagdfreigabe.",
   "modules": [
     {
       "id": "wissen-ausbau-wildtiergenetik-2026",
@@ -375,6 +375,22 @@
           "url": "https://profiles.si.edu/display/sro_145223",
           "organization": "Smithsonian Institution; Forschungsarbeit von McCoy, Feo, Harvey und Prum",
           "supports": "Originalarbeit an Paradiesvögeln belegt optische Wirkung der Federfeinstruktur. Wird als Mechanismusbeleg und ausdrücklich nicht als Untersuchung heimischer Jagdvögel verwendet."
+        },
+        {
+          "label": "Giraudeau und andere 2010: Bürzeldrüsenzugang und Stockentengefieder – Originalabstract",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20437221/",
+          "organization": "Université de Toulouse; Giraudeau, Duval, Guillon, Bretagnolle, Gutierrez und Heeb",
+          "supports": "Originalabstract zu Versuchen an gehaltenen Stockenten: länger blockierter Drüsenzugang, Gefiederzustand und Wasseraufnahme. Kein gelesener Volltext, keine Übertragung auf alle Vogelarten oder exakte Wirkungsdauer.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": ["wasserschutz"]
+        },
+        {
+          "label": "Muzio und Rubega 2024: Wasserabweisung von Federn – Forschungsüberblick",
+          "url": "https://doi.org/10.1111/jav.03259",
+          "organization": "University of Connecticut; Frank M. S. Muzio und Margaret A. Rubega",
+          "supports": "Volltextabschnitte zu Benetzbarkeit, Einflussfaktoren und Synthese: Feinstruktur, Pflegebeitrag des Sekrets und offene Mechanismen. Unabhängige Einordnung, keine experimentelle Wiederholung des Stockentenversuchs.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": ["wasserschutz"]
         }
       ],
       "lessons": [
@@ -417,6 +433,18 @@
           ],
           "takeaway": "Gefiederpflege ordnet vorhandene Federn; Mauser erneuert sie.",
           "exercise": "Erstelle drei Karten für Pflegehandlung, Abnutzungszustand und Federersatz."
+        },
+        {
+          "id": "wasserschutz",
+          "title": "Wasserschutz",
+          "reviewedOn": "2026-10-26",
+          "paragraphs": [
+            "Wasserabweisendes Gefieder lässt sich nicht allein durch eine Ölschicht erklären. Überlappende Körperfedern und ihre geordnete Feinstruktur bilden gemeinsam eine schützende Oberfläche. Beim Putzen werden vorhandene Federn geordnet. Das Sekret der Bürzeldrüse trägt zum Erhalt des Gefiederzustands bei; es ist keine alleinige Garantie dafür, dass ein Vogel unter allen Bedingungen trocken bleibt.",
+            "Eine Originalstudie an gehaltenen Stockenten verglich Tiere mit zugänglicher Bürzeldrüse und Tiere, deren Zugang vorübergehend blockiert war. Bei länger blockiertem Zugang verschlechterte sich der Gefiederzustand; zugleich wurde mehr Wasser im Gefieder festgehalten. Der kürzere Versuch zeigte keine entsprechende signifikante Veränderung. Hier wurde nur der Originalabstract geprüft. Ein unabhängiger Forschungsüberblick ordnet den Befund ein, wiederholt aber diesen Versuch nicht.",
+            "Wasserabweisend heißt, dass Benetzung erschwert wird; es bedeutet keine unbegrenzte Undurchlässigkeit. Der Überblick betont außerdem, dass die genauen Zusammenhänge zwischen Federstruktur und Wasserabweisung noch nicht vollständig geklärt sind. Eigene Denkübung: Erkläre das Zusammenspiel von Struktur und Pflege. Ein Foto einer trockenen Ente wäre kein Nachweis für die alleinige Wirkung des Sekrets."
+          ],
+          "takeaway": "Geordnete Federstrukturen und Pflege unterstützen die Wasserabweisung; Bürzeldrüsensekret allein ist keine universelle Abdichtung.",
+          "exercise": "Erkläre Wasserabweisung mit Federstruktur, Pflege und Sekret. Unterscheide dabei die Beobachtung aus dem Stockentenversuch von einer unbegrenzten Wasserdichtheitsgarantie."
         }
       ],
       "questions": [
@@ -627,6 +655,32 @@
           ],
           "answer": 2,
           "explain": "Ein Verlust an der ausgebildeten Feder wird nicht durch einfaches Ordnen wiederhergestellt."
+        },
+        {
+          "id": "wasserschutz-struktur-pflege",
+          "lessonId": "wasserschutz",
+          "q": "Wodurch wird die Wasserabweisung von Stockentengefieder unterstützt?",
+          "options": [
+            "Allein durch eine unter allen Bedingungen dichte Ölschicht.",
+            "Durch geordnete Federstrukturen und Pflege; das Sekret unterstützt den Gefiederzustand.",
+            "Durch Auflösung der Federstrahlen zu einer geschlossenen Sekrethaut.",
+            "Durch dauerhafte Wasseraufnahme anstelle einer geordneten Federstruktur."
+          ],
+          "answer": 1,
+          "explain": "Federstruktur und Pflege wirken zusammen. Das Bürzeldrüsensekret trägt zum Erhalt des Gefiederzustands bei, ist aber keine alleinige universelle Abdichtung."
+        },
+        {
+          "id": "wasserschutz-benetzung",
+          "lessonId": "wasserschutz",
+          "q": "Was bedeutet wasserabweisend bei einer Federoberfläche?",
+          "options": [
+            "Die Oberfläche wird schwer benetzt, ohne unter allen Bedingungen undurchlässig zu sein.",
+            "Wasser kann unter keinem Druck in die Federstruktur eindringen.",
+            "Die Feder muss vollständig Wasser aufnehmen, um ihre Oberfläche zu schützen.",
+            "Die Oberfläche bleibt ausschließlich bei vollständig ausbleibender Pflege trocken."
+          ],
+          "answer": 0,
+          "explain": "Wasserabweisung erschwert die Benetzung. Sie ist von einer unbegrenzten Undurchlässigkeit zu unterscheiden; die Feinstruktur und ihr Zustand bleiben wesentlich."
         }
       ]
     },
@@ -1991,6 +2045,34 @@
             "https://academy.allaboutbirds.org/feathers-article/",
             "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "wasserschutz",
+      "claims": [
+        {
+          "claim": "Geordnete Feinstrukturen, überlappende Körperfedern und Pflege tragen zur Wasserabweisung bei. Erschwerte Benetzung ist keine unbegrenzte Undurchlässigkeit; die Wirkung lässt sich nicht allein mit einer Ölschicht erklären.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://doi.org/10.1111/jav.03259"
+          ],
+          "sourceRoles": {
+            "https://academy.allaboutbirds.org/feathers-article/": "Federstruktur und Weatherproofing: Überlappung, Verhakung und Pflege.",
+            "https://doi.org/10.1111/jav.03259": "Benetzbarkeit, Strukturbedeutung und Grenzen einer vollständigen mechanistischen Erklärung."
+          }
+        },
+        {
+          "claim": "Das Sekret unterstützt den Gefiederzustand. Im Originalversuch an gehaltenen Stockenten ging länger blockierter Drüsenzugang mit schlechterem Zustand und höherer Wasseraufnahme einher; der Kurzversuch zeigte keine entsprechende signifikante Änderung. Der Forschungsüberblick ist keine Replikation.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/20437221/",
+            "https://doi.org/10.1111/jav.03259"
+          ],
+          "sourceRoles": {
+            "https://pubmed.ncbi.nlm.nih.gov/20437221/": "Nur der Originalabstract der Stockentenversuche wurde gelesen.",
+            "https://doi.org/10.1111/jav.03259": "Unabhängige Literaturauswertung zum Pflegebeitrag des Sekrets, keine neue Versuchswiederholung."
+          }
         }
       ]
     },

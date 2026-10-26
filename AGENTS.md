@@ -11,5 +11,6 @@ Diese Regeln gelten für das gesamte veröffentlichte Jagdlatein-Wissen und alle
 - Ausschließlich echte, lizenzierte Fotos und Videos verwenden. Quelle, Urheber, Lizenz, tatsächliches Motiv und Änderungen dokumentieren. Bilder visuell prüfen; ein Foto nicht als bestimmtes Alter, Fleischteilstück, Monat oder Verhalten ausgeben, wenn dies nicht belegt ist. Das bestehende ausdrücklich freigegebene illustrierte Logo ist kein Lehrfoto.
 - Wissenschaft, Jagd und Natur aus DACH; keine politischen Beiträge. Biologische Inhalte nicht künstlich nach Land trennen. Länderwahl nur bei örtlich unterschiedlichen Rechtsfragen.
 - Bestehende Kategorien und einheitliche Darstellung nutzen. Inhalte sofort sichtbar, zusätzliche Details bei Bedarf aufklappen, möglichst wenige Schaltflächen.
+- Vollständige Lerntexte, Erklärungen und Übungen stehen vor den Quellen. Quellen und vertiefende externe Links werden gesammelt ganz am Ende angeboten, standardmäßig geschlossen; ein direkter Quellenlink darf sie gezielt öffnen. Wesentliche Geltungsgrenzen und Unsicherheiten bleiben unmittelbar beim betroffenen Lerninhalt sichtbar. Quellen ersetzen keine fehlende Erklärung in Jagdlatein.
 
 Details des Quellenverfahrens: `KNOWLEDGE_POLICY.md`.

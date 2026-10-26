@@ -29,6 +29,7 @@ export default function WildartenRecht() {
   }, [router.isReady, router.query.art, router.query.land]);
   const matches = useMemo(() => selectedArt ? dachWildlife.filter(species => species.slug === selectedArt && (group === "all" || species.group === group) && (status === "all" || species.legal[country].status === status)) : filterDachWildlife({query,group,country,status}), [selectedArt,query,group,country,status]);
   const safePage = Math.min(page, Math.max(0,Math.ceil(matches.length / pageSize) - 1));
+  const visibleSpecies = matches.slice(safePage * pageSize,(safePage + 1) * pageSize);
   const countryName = dachCountries.find(value => value.id === country).name;
   function reset() {setSelectedArt(null);setQuery("");setGroup("all");setStatus("all");setPage(0);}
   return <LearningToolLayout title="Wildarten und Jagdstatus in DACH" description="Jagdzeit, Schutz und regionale Regelungen mit amtlichen Quellen einordnen." icon="jagdrecht" category="jagdrecht" stats={[{value:dachWildlife.length,label:"Arten und Vergleichsformen"},{value:3,label:"Länder"},{value:"4.10.2026",label:"Quellenprüfung"}]}>
@@ -39,15 +40,18 @@ export default function WildartenRecht() {
       <div className={styles.toolbar}><label className={styles.field}>Artengruppe<select value={group} onChange={event => {setGroup(event.target.value);setPage(0);}}><option value="all">Alle Gruppen</option>{dachWildlifeGroups.map(value => <option key={value}>{value}</option>)}</select></label><label className={styles.field}>Rechtliche Einordnung<select value={status} onChange={event => {setStatus(event.target.value);setPage(0);}}><option value="all">Alle Einordnungen</option>{Object.entries(legalStatusLabels).map(([key,label]) => <option key={key} value={key}>{label}</option>)}</select></label><button className={styles.secondary} onClick={reset}>Alle Wildarten anzeigen</button></div>
       <p className={styles.muted} role="status">{matches.length} Treffer für {countryName} · Quellenprüfung {new Date(`${wildlifeResearchDate}T12:00:00`).toLocaleDateString("de-CH")} · {selectedArt ? "Gezielt verlinkte Art" : "Gefilterte Artenübersicht"}</p>
     </section>
-    <div className={styles.grid}>{matches.slice(safePage * pageSize,(safePage + 1) * pageSize).map(species => {const law = species.legal[country]; return <article key={species.slug} className={styles.card}>
+    <div className={styles.grid}>{visibleSpecies.map(species => {const law = species.legal[country]; return <article key={species.slug} className={styles.card}>
       <p className={styles.eyebrow}>{species.group}</p><h2>{species.name}</h2><p className={styles.muted}><i>{species.scientificName}</i></p><strong>{legalStatusLabels[law.status]}</strong><p>{law.note}</p>
-      <details className={styles.sources}><summary>Amtliche Quellen für diese Einordnung</summary><ul>{law.sources.map(key => <li key={key}><a href={legalSources[key].url} target="_blank" rel="noopener noreferrer">{legalSources[key].title}</a></li>)}</ul></details>
       <Link className={styles.secondary} href={`/wildkunde/${species.slug}`}>Merkmale und Lebensraum kennenlernen</Link>
     </article>;})}</div>
     {matches.length === 0 && <p className={styles.empty}>Keine Art passt zu dieser Kombination. Land oder Einordnung ändern oder alle Wildarten anzeigen.</p>}
     {matches.length > pageSize && <nav className={styles.actions} aria-label="Rechtsübersicht Seiten"><button className={styles.secondary} disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Zurück</button><span>Seite {safePage + 1} von {Math.ceil(matches.length / pageSize)}</span><button className={styles.primary} disabled={(safePage + 1) * pageSize >= matches.length} onClick={() => setPage(safePage + 1)}>Weitere Wildarten</button></nav>}
     <section className={styles.panel}><h2>So liest du die Übersicht</h2><p><strong>Jagdzeit vorgesehen</strong> bedeutet, dass eine geprüfte Rechtsquelle eine reguläre Jagdmöglichkeit enthält. Es bedeutet nicht, dass heute an deinem Ort eine Freigabe besteht. <strong>Regionale Regelung</strong> verweist auf Unterschiede zwischen Ländern oder Kantonen. <strong>Sonderregelung</strong> betrifft etwa genehmigte Bestandsregulierung oder angeordnete Konfliktmaßnahmen.</p><p>Der Lernatlas umfasst regulär bejagte Wildarten, regionale und seltene Rechtsfälle sowie wichtige geschützte Vergleichsarten. Die geprüften Beispiele ersetzen keine vollständige aktuelle Tabelle sämtlicher Bundesländer und Kantone. Vor der Jagd gehören geltende Artenschutzregeln, Jagdzeit, Revierfreigabe, Abschussplan und gegebenenfalls behördliche Verfügung zusammen.</p>
-      <details className={styles.sources}><summary>Alle geprüften Rechtsquellen</summary><ul>{Object.entries(legalSources).map(([key,source]) => <li key={key}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul></details>
     </section>
+    <details id="wildarten-quellen" className={styles.sources}><summary>Alle geprüften Rechtsquellen</summary>
+      <h2>Einordnung der angezeigten Arten · {countryName}</h2>
+      {visibleSpecies.map(species => <section key={species.slug} aria-labelledby={`wildarten-quelle-${species.slug}`}><h3 id={`wildarten-quelle-${species.slug}`}>{species.name}</h3><ul>{species.legal[country].sources.map(key => <li key={key}><a href={legalSources[key].url} target="_blank" rel="noopener noreferrer">{legalSources[key].title}</a></li>)}</ul></section>)}
+      <h2>Alle geprüften Rechtsquellen</h2><ul>{Object.entries(legalSources).map(([key,source]) => <li key={key}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul>
+    </details>
   </LearningToolLayout>;
 }

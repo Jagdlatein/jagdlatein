@@ -120,9 +120,9 @@ test('All eight additions are reachable through existing tools and exact media p
     assert.ok(entries.some(entry => entry.id.startsWith(prefix)), prefix);
   }
   const experiences = load('lib/learning-experiences.js').learningExperiences;
-  // The later research release adds Wissen fürs Revier; preserve
-  // the 24-entry baseline checked by this October 13 regression suite.
-  assert.equal(experiences.filter(item => item.href !== '/lernen/wissen-fuers-revier').length, 24);
+  // On October 26, the published HEAD already has 26 entries including the
+  // later video library; excluding Wissen fürs Revier preserves 25 entries.
+  assert.equal(experiences.filter(item => item.href !== '/lernen/wissen-fuers-revier').length, 25);
 });
 test('Confirmed Schwarzwild anatomy contradiction is corrected in both existing pursuit cases', () => {
   const text = fs.readFileSync(path.join(root, 'pages/jagdpraxis/nachsuche.js'), 'utf8');

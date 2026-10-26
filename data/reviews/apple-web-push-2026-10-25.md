@@ -396,3 +396,47 @@ Der Hauptagent bestätigte inzwischen den vollständigen Erfolg dieses Laufs
 einschließlich aller drei vorbereitenden Store-Captures und sauberem Quellenstand
 (`SourceDirty=false`). Die Baseline ist keine signierte Push-Aktivierung und
 kein Nachweis einer Benachrichtigungszustellung.
+
+## Tatsächlicher Apple-Abschlussstand am 26. Oktober 2026
+
+Der persönlich freigegebene Lauf `40217116900` für genau
+`e8a23102c0221526fcaf3d6bbc8c76104b8edf20` bestand signierte Archivierung,
+IPA-Export sowie Apples Validierungs- und Uploadschritt. Die unabhängige
+Nachprüfung der abgeschlossenen Originalprotokolle bestätigt Version 1.0.4,
+Build 13, Production und Flag YES. Das tatsächliche App-Archiv enthält
+`aps-environment=production`, die richtige App-/Team-Kennung, ausgeschaltetes
+Debugging und das erneuerte Profil `64e1da80-ac30-40e8-a1f4-d8f00df5533b`.
+Die tatsächlichen Archiv-/IPA-Prüfer liefen vor dem Exporterfolg und erneut vor
+Apples Upload. Apple nahm den Upload am 25. Oktober um 19:45:12 UTC an.
+Externer unabhängiger Beleg:
+`apple-push-upload-40217116900-success-independent-2026-10-26.json`.
+
+Der Hauptagent bestätigte nach erneuter Anmeldung am 26. Oktober die tatsächliche
+ASC-Verarbeitung: Build 13 war vorhanden, zunächst mit fehlender
+Verschlüsselungsangabe. Die technische Prüfung von App-Quellen, tatsächlichem
+Buildgraph und Netzwerkquellen der eingebundenen SDK-Produkte fand
+betriebssystemgestützte HTTPS-Verbindungen über WebKit/URLSession, keine eigene
+Verschlüsselungsimplementierung und keine gelinkten OpenSSL-/BoringSSL-/gRPC-
+Produkte. Ein Package-Pin wurde nicht mit einem gelinkten Produkt gleichgesetzt.
+Nach Abgleich mit Apples gelesener Dokumentation und einer unabhängigen
+technischen Quellenprüfung wurde im konkreten Vier-Auswahl-Dialog „Keinen der
+oben genannten Algorithmen“ gespeichert; die anderen Optionen betrafen
+proprietäre bzw. zusätzlich zum Apple-Betriebssystem implementierte Verfahren.
+Das behauptet nicht, dass HTTPS unverschlüsselt sei. Die Buildliste zeigte
+danach „Bereit zur Übermittlung“. Externer Screenshot:
+`apple-build13-compliance-complete-2026-10-26.jpg`.
+
+Upload, Verarbeitung und diese Metadatenangabe sind damit bestätigt. Es wurden
+keine Testergruppen neu zugeordnet und keine Nachricht versendet. Physische
+Push-Zustellung, ein aggregierter Privacy Report des aktivierten Archivs und eine
+spätere öffentliche Storefreigabe sind eigene noch nicht bestätigte Schritte.
+Die veröffentlichten Datenschutzantworten wurden dabei nicht geändert.
+
+Gelesene technische Grundlagen:
+
+- Apple: [Verschlüsselung deklarieren](https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations),
+  einschließlich der offiziellen Markdownfassung.
+- Apple: [Verschlüsselungsangaben für Beta-Builds](https://developer.apple.com/help/app-store-connect/test-a-beta-version/provide-export-compliance-information-for-beta-builds).
+- SDK-Originalquellen:
+  [Firebase Installations 13.1.1](https://raw.githubusercontent.com/firebase/firebase-ios-sdk/13.1.1/FirebaseInstallations/Source/Library/InstallationsAPI/FIRInstallationsAPIService.m)
+  und [GoogleUtilities 8.1.5](https://raw.githubusercontent.com/google/GoogleUtilities/8.1.5/GoogleUtilities/Network/GULNetworkURLSession.m).

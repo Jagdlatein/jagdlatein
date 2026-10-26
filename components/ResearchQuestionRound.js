@@ -3,7 +3,7 @@ import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { canGradeResearchQuestion, createResearchRound, currentResearchQuestion, researchRoundReducer } from "../lib/research-question-round";
 import styles from "../styles/ResearchForPractice.module.css";
 
-export default function ResearchQuestionRound({ questions, sources, daily = false, title, sectionId, notice }) {
+export default function ResearchQuestionRound({ questions, sources, daily = false, title, sectionId, notice, showSources = true }) {
   const [state, dispatch] = useReducer(researchRoundReducer, questions, createResearchRound);
   const question = currentResearchQuestion(state);
   const heading = useRef(null);
@@ -44,6 +44,6 @@ export default function ResearchQuestionRound({ questions, sources, daily = fals
       {(!daily || !result) && <div className={styles.quizActions}>{result ? <button type="button" className={styles.primaryAction} onClick={next}>{state.index + 1 === state.ids.length ? "Runde auswerten" : "Nächste Frage"}</button> : <>{question.format !== "single" && <button type="button" className={styles.primaryAction} disabled={!canGradeResearchQuestion(question, state.selection)} onClick={() => send("answer")}>Antwort prüfen</button>}<button type="button" className={styles.textAction} onClick={() => send("skip")}>Weiß ich noch nicht</button></>}</div>}
     </>}
     <p className={styles.localNotice}>{notice || (daily ? "Ein Lernfall, keine Ranglistenpunkte. Deine Antwort wird nicht dauerhaft gespeichert. Beim Neuladen beginnt der heutige Fall erneut." : "Lernübung auf diesem Gerät. Keine Prüfung und keine Prognose für dein Revier. Beim Verlassen der Seite beginnt die Runde neu.")}</p>
-    {citedQuestions.length > 0 && <details className={styles.reviewQuestion}><summary>Quellen zur {state.finished ? "Übungsrunde" : "aktuellen Frage"}</summary>{citedQuestions.map(item => <div key={item.id}><h3>{item.prompt}</h3><p className={styles.quizSources}>{item.sourceIds.map(id => sourceById.get(id)).filter(Boolean).map(source => <a key={source.id} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>)}</p></div>)}</details>}
+    {showSources && citedQuestions.length > 0 && <details className={styles.reviewQuestion}><summary>Quellen zur {state.finished ? "Übungsrunde" : "aktuellen Frage"}</summary>{citedQuestions.map(item => <div key={item.id}><h3>{item.prompt}</h3><p className={styles.quizSources}>{item.sourceIds.map(id => sourceById.get(id)).filter(Boolean).map(source => <a key={source.id} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>)}</p></div>)}</details>}
   </section>;
 }

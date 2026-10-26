@@ -200,6 +200,26 @@ test("Generic motif, uncertain alternatives and unknown outcomes retain their di
   }
 });
 
+test("A photo report keeps its complete explanation and visible limits before the final closed reference panel", () => {
+  const { RecognitionReport } = createLoader({
+    "next/link": ({ children, ...props }) => React.createElement("a", props, children),
+  })("components/RevierPhotoRecognition.js");
+  const value = result();
+  const report = expand(RecognitionReport({ result: value }));
+  const children = report.props.children.filter(Boolean);
+  const references = children.at(-1);
+  assert.equal(references.type, "details");
+  assert.equal(references.props.open, undefined, "References start closed");
+  assert.match(text(references), /Fachquellen zum Lernwissen/);
+  assert.ok(children.some(node => node.type === "p" && text(node) === value.notice));
+  const html = renderToStaticMarkup(React.createElement(RecognitionReport, { result: value }));
+  assert.ok(html.indexOf(value.answer) < html.indexOf("Fachquellen zum Lernwissen"));
+  assert.ok(html.indexOf(value.notice) < html.indexOf("Fachquellen zum Lernwissen"));
+  assert.ok(html.indexOf("Ein Bildvorschlag wird nicht automatisch") < html.indexOf("Fachquellen zum Lernwissen"));
+  assert.ok(value.comparison.sources.every(source => html.includes(source.url)));
+  assert.match(html, /KI-Bestimmung des Fotos ist damit nicht bestätigt/);
+});
+
 test("GET auth, quota and unconfigured/unavailable responses explain the gate without posting the photo", async () => {
   const cases = [
     [401, {}, /Für die Bilderkennung anmelden/, "/login?next=%2Ffotohelfer"],

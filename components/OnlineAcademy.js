@@ -8,7 +8,7 @@ import useAccountOverview from '../hooks/useAccountOverview';
 import { AccountError, ProgressError } from './AccountLayout';
 import { learningCategoryDetails } from '../lib/learning-categories';
 import { getMyCoursesView } from '../lib/my-courses';
-import { academyViews, readAcademySelection, academyQuery, academyDate, makeAcademyCalendar } from '../lib/online-academy-view';
+import { academyViews, academyLearningStates, readAcademySelection, academyQuery, academyDate, makeAcademyCalendar } from '../lib/online-academy-view';
 import { getSessionPhase } from '../lib/online-academy';
 import LiveCourseRoom from './LiveCourseRoom';
 import OnlineAcademyAdmin from './OnlineAcademyAdmin';
@@ -28,9 +28,15 @@ function AcademyWorkspace({catalog}) {
   const [resources,setResources]=useState(null), [resourceError,setResourceError]=useState(''), [resourceLoading,setResourceLoading]=useState(true), [revision,setRevision]=useState(0);
   const [navigationError,setNavigationError]=useState(''), [limit,setLimit]=useState(12), [now,setNow]=useState(null);
   const mounted=useRef(false), request=useRef(0), pending=useRef(null), heading=useRef(null);
-  const key=JSON.stringify([router.isReady,router.asPath,router.query]);
+  const readViewKey=()=>JSON.stringify([router.isReady,router.asPath,router.query]);
+  const key=readViewKey();
   const currentView=useRef({key}); if(currentView.current.key!==key) currentView.current={key}; const origin=currentView.current;
-  const isCurrent=()=>mounted.current && currentView.current===origin && router.isReady===true;
+  const isCurrent=()=>{
+    if(!mounted.current || currentView.current!==origin)return false;
+    const liveKey=readViewKey();
+    if(liveKey!==key){currentView.current={key:liveKey};return false;}
+    return router.isReady===true;
+  };
   const focus=()=>{closePageMenu(); heading.current?.focus?.({preventScroll:true}); heading.current?.scrollIntoView?.({block:'start',behavior:'auto'});};
   useEffect(()=>{mounted.current=true;setNow(Date.now());const timer=setInterval(()=>setNow(Date.now()),30000);return()=>{mounted.current=false;request.current++;pending.current=null;clearInterval(timer);};},[]);
   useEffect(()=>{
@@ -75,7 +81,9 @@ function AcademyWorkspace({catalog}) {
   if(!account)return <p>Bitte melde dich für den Kursbereich an.</p>;
   const currentResources=resources?.identity===account.email&&resources.manage===(selection?.view==='verwaltung')?resources:null;
   const data=currentResources||{schools:[],offers:[],sessions:[],canManage:account.admin===true};
-  const courses=getMyCoursesView(catalog,progress,{category:selection?.category||'all'});
+  const courses=getMyCoursesView(catalog,progress,{category:selection?.category||'all',status:selection?.learningStatus||'all'});
+  const listSelection=selection&&!selection.invalid&&selection.view==='kurse'&&!selection.offerId;
+  const learningState=listSelection?academyLearningStates.find(item=>item.status===selection.learningStatus):null;
   const approvedSchools=new Set(data.schools.filter(item=>item.status==='approved').map(item=>item.id));
   const offers=data.offers.filter(item=>item.status==='published'&&approvedSchools.has(item.school_id)&&(!selection||selection.category==='all'||item.category_slug===selection.category));
   const visibleOffers=new Set(offers.map(item=>item.id));
@@ -88,7 +96,8 @@ function AcademyWorkspace({catalog}) {
   return <>
     <PageMenu title="Onlinekurse – Auswahl" openInitially={selection?.invalid===true} initialFocusId="academy-views">
       <div id="academy-views" className={academy.choices} tabIndex={-1}>{academyViews.filter(item=>item.id!=='verwaltung'||data.canManage).map(item=><button type="button" className={academy.choice} key={item.id} aria-pressed={selection?.view===item.id} onClick={()=>navigate({ansicht:item.id})}>{item.title}</button>)}</div>
-      {selection&&!selection.invalid&&selection.view!=='verwaltung'&&<><h3>Kategorie</h3><div className={academy.choices}><button type="button" className={academy.choice} aria-pressed={selection.category==='all'} onClick={()=>navigate({ansicht:selection.view})}>Alle Kategorien</button>{learningCategoryDetails.map(item=><button type="button" className={academy.choice} key={item.slug} aria-pressed={selection.category===item.slug} onClick={()=>navigate({ansicht:selection.view,kategorie:item.slug})}>{item.title}</button>)}</div></>}
+      {selection&&!selection.invalid&&selection.view!=='verwaltung'&&<><h3>Kategorie</h3><div className={academy.choices}><button type="button" className={academy.choice} aria-pressed={selection.category==='all'} onClick={()=>navigate({ansicht:selection.view,lernstand:learningState?.value})}>Alle Kategorien</button>{learningCategoryDetails.map(item=><button type="button" className={academy.choice} key={item.slug} aria-pressed={selection.category===item.slug} onClick={()=>navigate({ansicht:selection.view,kategorie:item.slug,lernstand:learningState?.value})}>{item.title}</button>)}</div></>}
+      {listSelection&&<section aria-labelledby="academy-learning-status-title"><h3 id="academy-learning-status-title">Lernstand</h3><div className={academy.choices} role="group" aria-label="Kurse nach Lernstand" aria-controls="academy-self-learning">{academyLearningStates.map(item=><button type="button" className={academy.choice} key={item.status} aria-pressed={selection.learningStatus===item.status} onClick={()=>navigate({ansicht:'kurse',kategorie:selection.category,lernstand:item.value})}>{item.title}</button>)}</div></section>}
       {navigationError&&<p className={styles.note} role="alert">{navigationError}</p>}
       <button type="button" className={styles.secondary} onClick={()=>{if(isCurrent()){setRevision(value=>value+1);focus();}}}>Angebote aktualisieren</button>
     </PageMenu>
@@ -98,7 +107,15 @@ function AcademyWorkspace({catalog}) {
         {selection.offerId ? resourceLoading?<p role="status">Das Kursangebot wird geladen …</p>:selectedOffer?<section className={styles.panel}><p className={academy.meta}>{schoolFor(selectedOffer)?.name}</p><h3>{selectedOffer.title}</h3><p>{selectedOffer.description}</p><h3>Vorbereitung</h3>{selectedOffer.module_ids.length?<ol>{selectedOffer.module_ids.map(id=>catalog.find(item=>item.id===id)).filter(Boolean).map(item=><li key={item.id}><Link href={item.href}>{item.title}</Link></li>)}</ol>:<p>Für dieses Angebot sind noch keine Selbstlernmodule zugeordnet.</p>}<h3>Live-Termine</h3>{sessions.filter(item=>item.offer_id===selectedOffer.id).length?sessions.filter(item=>item.offer_id===selectedOffer.id).map(item=><p key={item.id}><button type="button" className={styles.secondary} onClick={()=>navigate({ansicht:'live',termin:item.id})}>{item.title} · {academyDate(item.starts_at)}</button></p>):<p>Für dieses Angebot ist noch kein Live-Termin veröffentlicht.</p>}</section>:<p className={styles.note}>Dieses Kursangebot ist nicht veröffentlicht oder passt nicht zur gewählten Kategorie.</p>:<>
           <p>Die vorhandenen Jagdlatein-Lernkurse und veröffentlichte Angebote von Jagdschulen an einem Ort. Kategorie und Lernform wählst du unten im Menü.</p>
           {offers.length>0&&<section aria-label="Kursangebote der Jagdschulen" className={academy.list}>{offers.map(item=><article className={academy.row} key={item.id}><p className={academy.meta}>{schoolFor(item)?.name}</p><h3>{item.title}</h3><p>{item.description}</p><button className={styles.secondary} type="button" onClick={()=>navigate({ansicht:'kurse',kategorie:selection.category,angebot:item.id})}>Kursangebot öffnen</button></article>)}</section>}
-          <section aria-label="Jagdlatein-Selbstlernkurse"><h3>Jagdlatein-Lernkurse</h3><p className={styles.muted}>{courses.rows.length} Kurse in deiner Auswahl. Der gespeicherte Fortschritt zählt beantwortete Quizfragen, keine gelesenen Lektionen und keine Prüfungsqualifikation.</p>{progressError?<ProgressError error={progressError} onRetry={reload}/>:progressLoading?<p role="status">Gespeicherter Fortschritt wird geladen …</p>:null}<div className={academy.list}>{courses.rows.slice(0,limit).map(row=><article className={academy.row} key={row.course.id}><p className={academy.meta}>{row.course.categoryTitle}</p><h3>{row.course.title}</h3><p>{row.course.description}</p>{!progressLoading&&!progressError&&<p className={academy.meta}>{row.status==='completed'?'Wissenscheck abgeschlossen':row.status==='in_progress'?'Begonnen':'Noch offen'}{row.answered!==null&&row.total!==null?` · ${row.answered}/${row.total} Fragen beantwortet`:''}{row.bestPercent!==null?` · bestes Ergebnis ${row.bestPercent} % richtig`:''}</p>}<Link className={styles.secondary} href={row.course.href}>{row.status==='in_progress'?'Kurs weiterlernen':'Kurs öffnen'}</Link></article>)}</div>{limit<courses.rows.length&&<button type="button" className={styles.secondary} onClick={()=>{if(isCurrent())setLimit(value=>value+12);}}>Weitere Kurse</button>}</section>
+          <section id="academy-self-learning" aria-label="Jagdlatein-Selbstlernkurse">
+            <h3>Jagdlatein-Lernkurse</h3>
+            <p className={styles.muted}>Der gespeicherte Fortschritt zählt beantwortete Quizfragen, keine gelesenen Lektionen und keine Prüfungsqualifikation.</p>
+            {progressError?<ProgressError error={progressError} onRetry={reload}/>:progressLoading?<p role="status">Gespeicherter Fortschritt wird geladen …</p>:<>
+              <p role="status" aria-live="polite">{courses.rows.length} {courses.rows.length===1?'Kurs':'Kurse'} in deiner Auswahl · {learningState?.title}</p>
+              {courses.rows.length?<div className={academy.list}>{courses.rows.slice(0,limit).map(row=><article className={academy.row} key={row.course.id}><p className={academy.meta}>{row.course.categoryTitle}</p><h3>{row.course.title}</h3><p>{row.course.description}</p><p className={academy.meta}>{row.status==='completed'?'Wissenscheck abgeschlossen':row.status==='in_progress'?'Begonnen':'Noch offen'}{row.answered!==null&&row.total!==null?` · ${row.answered}/${row.total} Fragen beantwortet`:''}{row.bestPercent!==null?` · bestes Ergebnis ${row.bestPercent} % richtig`:''}</p><Link className={styles.secondary} href={row.course.href}>{row.status==='in_progress'?'Kurs weiterlernen':'Kurs öffnen'}</Link></article>)}</div>:<p>Für diese Auswahl sind keine Jagdlatein-Lernkurse mit diesem Lernstand vorhanden.</p>}
+              {limit<courses.rows.length&&<button type="button" className={styles.secondary} onClick={()=>{if(isCurrent())setLimit(value=>value+12);}}>Weitere Kurse</button>}
+            </>}
+          </section>
         </>}
       </>}
       {selection.view==='live'&&(resourceLoading?<p role="status">Live-Termine werden geladen …</p>:selection.sessionId?selectedSession?<LiveCourseRoom key={`${key}:${selectedSession.id}`} session={selectedSession} offer={offerFor(selectedSession)} canAct={isCurrent}/>:<p className={styles.note}>Dieser Termin ist nicht mehr veröffentlicht oder passt nicht zur gewählten Kategorie.</p>:<><p>Unterricht mit einer Lehrperson direkt im Browser. Alle angezeigten Uhrzeiten gelten für Europe/Zurich.</p>{sessions.length?<div className={academy.list}>{sessions.map(item=>{const phase=now===null?'upcoming':getSessionPhase(item,now);return <article className={academy.row} key={item.id}><p className={academy.meta}>{schoolFor(offerFor(item))?.name} · {offerFor(item)?.title}</p><h3>{item.title}</h3><p>{academyDate(item.starts_at)} – {academyDate(item.ends_at)}</p><p className={academy.status}>{phase==='ended'?'Beendet':['opening','live'].includes(phase)?'Raumzeit läuft':'Geplant'}</p><div className={styles.actions}><button type="button" className={styles.secondary} onClick={()=>navigate({ansicht:'live',kategorie:selection.category,termin:item.id})}>Termin öffnen</button><button type="button" className={styles.secondary} onClick={()=>downloadCalendar(item,offerFor(item))}>Kalendereintrag</button></div></article>;})}</div>:<p className={styles.note}>Noch keine Live-Termine veröffentlicht. Hier erscheinen bestätigte Termine, sobald eine Jagdschule ein freigegebenes Angebot mit Unterrichtstermin hat.</p>}</>)}

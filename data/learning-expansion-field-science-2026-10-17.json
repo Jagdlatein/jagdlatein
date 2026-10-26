@@ -516,6 +516,66 @@
           "url": "https://single-market-economy.ec.europa.eu/single-market/goods/ce-marking_en",
           "organization": "Europäische Kommission",
           "supports": "CE betrifft Konformität nach jeweils einschlägigem Produktharmonisierungsrecht; ist kein Ersatzbegriff für den amtlichen Waffenbeschuss."
+        },
+        {
+          "label": "fedpol · Technische Komponentenbegriffe",
+          "url": "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf",
+          "organization": "Bundesamt für Polizei fedpol, Zentralstelle Waffen",
+          "supports": "Ausgabe 14.07.2026: Seite 43/Frage 306 Bauteile; Seite 38/Frage 271 Gasabdichtung. Waffenhandelsprüfung, kein Jagdoriginalkatalog.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
+        },
+        {
+          "label": "H&N Sport · Komponenten einer Patrone",
+          "url": "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
+          "organization": "Haendler & Natermann Sport GmbH",
+          "supports": "Bauteile, Hülsenfunktion, Zündaufgabe und Treibladung als Treibmittel; begrenzt auf die konventionelle Zentralfeuer-Kugelpatrone.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
+        },
+        {
+          "label": "SAAMI · Cartridge",
+          "url": "https://saami.org/glossary/cartridge/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Gesamteinheit und Komponenten; keine Übertragung auf sämtliche Patronenarten.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
+        },
+        {
+          "label": "SAAMI · Cartridge Case",
+          "url": "https://saami.org/glossary/cartridge-case/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Hülsenkörper und Gasabdichtung.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
+        },
+        {
+          "label": "SAAMI · Primer",
+          "url": "https://saami.org/glossary/primer/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Zündaufgabe des Zündelements.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
+        },
+        {
+          "label": "SAAMI · Propellant",
+          "url": "https://saami.org/glossary/propellant/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Grundbegriff des Antriebsstoffs; keine Stoffzusammensetzung oder Leistungsdaten übernommen.",
+          "checkedOn": "2026-10-26",
+          "lessonIds": [
+            "patrone-geschoss-bauteile"
+          ]
         }
       ],
       "lessons": [
@@ -558,6 +618,19 @@
           ],
           "takeaway": "Gegenseitige technische Anerkennung und persönliche Berechtigung bleiben getrennt.",
           "exercise": "Sortiere Beschussinformation, Besitzfrage und aktuelle Zustandsfrage in drei getrennte Felder."
+        },
+        {
+          "id": "patrone-geschoss-bauteile",
+          "title": "Patronenaufbau",
+          "reviewedOn": "2026-10-26",
+          "paragraphs": [
+            "Wir betrachten eine konventionelle Zentralfeuer-Kugelpatrone. Ihre vier Hauptbauteile sind Hülse, Zündhütchen beziehungsweise Zündelement, Treibladung und Geschoss. „Patrone“ meint die gesamte Einheit; das „Geschoss“ ist ein Bestandteil davon.",
+            "Die Hülse beherbergt die anderen Bauteile und dient beim Schuss der Gasabdichtung. Das Zündhütchen übernimmt die Zündaufgabe. Es ist eine andere Baugruppe als die Treibladung. Die Treibladung ist der Antriebsstoff; das Geschoss ist das Projektil.",
+            "Eigenes Lernbeispiel: Auf einem rein gedanklichen Lernblatt ist die vollständige Einheit fälschlich mit „Geschoss“ beschriftet. Ändere die Beschriftung zu „Patrone“. Setze die vier Bauteilnamen in eigene Felder und ziehe eine gedachte Klammer um die Gesamteinheit. So erklärst du den Unterschied zwischen Teil und Ganzem, statt nur eine Wortliste auswendig zu wiederholen.",
+            "Zur Selbstkontrolle ordnest du Hülse, Zündhütchen, Treibladung und Geschoss jeweils den beschriebenen Begriffen oder Aufgaben zu. Die beiden Wörter Patrone und Geschoss dürfen dabei nicht verwechselt werden. Diese Begriffsübung wird ausschließlich anhand des Lerntextes gelöst; Munition wird dafür weder geöffnet noch bearbeitet. Der beschriebene Aufbau wird nicht auf sämtliche Munitionsarten übertragen und sagt nichts über die Eignung für eine bestimmte Waffe aus."
+          ],
+          "takeaway": "Die konventionelle Zentralfeuer-Kugelpatrone umfasst Hülse, Zündhütchen, Treibladung und Geschoss. Das Geschoss ist ein Bestandteil der Gesamtpatrone.",
+          "exercise": "Beschrifte ein rein gedankliches Lernblatt mit Gesamtpatrone und vier Bauteilen. Erkläre den Unterschied zwischen Teil und Ganzem ausschließlich anhand des Lerntextes."
         }
       ],
       "questions": [
@@ -894,6 +967,32 @@
           ],
           "answer": 3,
           "explain": "Historische Zeichen und besondere Prüfarten brauchen die passende Quelle. Die Frage verlangt keine Deutung eines ungesehenen Bildes."
+        },
+        {
+          "id": "patrone-gesamtteil",
+          "lessonId": "patrone-geschoss-bauteile",
+          "q": "Auf einem gedachten Lernblatt ist die gesamte konventionelle Zentralfeuer-Kugelpatrone als „Geschoss“ beschriftet. Welche Korrektur passt?",
+          "options": [
+            "Die Gesamteinheit heißt Hülse; das Geschoss besteht aus allen vier Bauteilen.",
+            "Die Gesamteinheit heißt Patrone; das Geschoss ist einer ihrer Bestandteile.",
+            "Patrone und Geschoss sind gleichbedeutende Wörter für die gesamte Einheit.",
+            "Die Gesamteinheit heißt Treibladung; Patrone bezeichnet nur das Zündhütchen."
+          ],
+          "answer": 1,
+          "explain": "Das Geschoss ist Teil der Gesamtpatrone. Für dieses Lernbeispiel werden vier Hauptbauteile unterschieden."
+        },
+        {
+          "id": "patrone-bauteilaufgaben",
+          "lessonId": "patrone-geschoss-bauteile",
+          "q": "Welche Aufgaben haben Hülse und Zündhütchen einer konventionellen Zentralfeuer-Kugelpatrone?",
+          "options": [
+            "Hülse: Zündaufgabe; Zündhütchen: Gasabdichtung.",
+            "Hülse: Projektil; Zündhütchen: gesamte Patrone.",
+            "Hülse: Gesamtpatrone; Zündhütchen: Geschoss.",
+            "Hülse: Gasabdichtung; Zündhütchen: Zündaufgabe."
+          ],
+          "answer": 3,
+          "explain": "Die Hülse dient beim Schuss der Gasabdichtung. Die Zündaufgabe gehört zum Zündhütchen."
         }
       ]
     },
@@ -3098,6 +3197,42 @@
           "sourceUrls": [
             "https://www.ptb.de/cms/fileadmin/internet/presse_aktuelles/broschueren/intern_einheitensystem/Die_gesetzlichen_Einheiten.pdf",
             "https://www.bev.gv.at/Themen/Mess-und-Eichwesen/Messtechnische-Fachbereiche/Druck-Kraft-Haerte/Druck.html"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "patrone-geschoss-bauteile",
+      "claims": [
+        {
+          "claim": "Vier Hauptbauteile der konventionellen Zentralfeuer-Kugelpatrone; Geschoss als Teil der Gesamtpatrone.",
+          "sourceUrls": [
+            "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf",
+            "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
+            "https://saami.org/glossary/cartridge/"
+          ]
+        },
+        {
+          "claim": "Die Hülse beherbergt weitere Bauteile und dient der Gasabdichtung.",
+          "sourceUrls": [
+            "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
+            "https://saami.org/glossary/cartridge-case/",
+            "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf"
+          ]
+        },
+        {
+          "claim": "Das Zündhütchen ist ein Zündelement mit Zündaufgabe, getrennt von der Treibladung.",
+          "sourceUrls": [
+            "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
+            "https://saami.org/glossary/primer/"
+          ]
+        },
+        {
+          "claim": "Die Treibladung ist der Antriebsstoff.",
+          "sourceUrls": [
+            "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
+            "https://saami.org/glossary/propellant/"
           ]
         }
       ]

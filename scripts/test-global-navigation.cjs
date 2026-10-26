@@ -449,6 +449,29 @@ test('Online course Back retains view, category, offer and live-session selectio
   s.unmount(); context.unmount(); nativeHistory.unmount();
 });
 
+test('Online course Back retains committed learning-status filters without turning context edits into new steps', () => {
+  const base = '/online-kurse';
+  const all = `${base}?ansicht=kurse`;
+  const started = `${all}&lernstand=begonnen`;
+  const wildlife = `${started}&kategorie=wildkunde`;
+  const completed = `${base}?ansicht=kurse&kategorie=wildkunde&lernstand=abgeschlossen`;
+  const s = setup(all, ['/lernen']);
+  s.route(started); s.route(wildlife); s.route(completed);
+  s.route(`${completed}&ref=menue`); s.route(`${completed}&ref=start`);
+  assert.equal(s.history.length, 5, 'Only actual view/category/status selections add a dock stop');
+  s.render().props.children[0].props.onClick();
+  assert.equal(s.destination, wildlife, 'Dock Back returns to the previously displayed learning-status selection');
+  const native = setup(all, ['/lernen']);
+  native.route(started); native.route(wildlife); native.route(started);
+  native.render().props.children[0].props.onClick();
+  assert.equal(native.destination, all, 'A real browser Back does not append the returned filter twice');
+  const immediate = setup(all, ['/lernen']);
+  immediate.route(started); immediate.navigateBeforeEffects(completed);
+  immediate.render().props.children[0].props.onClick();
+  assert.equal(immediate.destination, started, 'Immediate dock Back accounts for the newly committed URL');
+  s.unmount(); native.unmount(); immediate.unmount();
+});
+
 test('Oral exam Back tracks only its category and question while context edits retain the chosen question', () => {
   const base = '/lernen/pruefungsgespraech';
   const first = base + '?kategorie=wildkunde&eintrag=kitzfund#exam-question-title';

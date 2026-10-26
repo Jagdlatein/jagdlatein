@@ -7,23 +7,26 @@ const load = createLoader();
 const { knowledgeGrowthModules: added } = load('lib/learning-knowledge-growth.js');
 const { learningModules, learningQuestions } = load('lib/learning-curriculum.js');
 const { learningCategories } = load('lib/learning-categories.js');
+const featherCourseId = 'wissen-ausbau-federaufbau-funktion-2026';
+const isWaterLesson = (module, lesson) => module.id === featherCourseId && lesson.id === 'wasserschutz';
 
-test('Eighteen substantive additions cover all twelve existing categories with 72 lessons and 288 explained questions', () => {
+test('Eighteen original additions retain their 72 lessons and 288 questions, with one scoped feather lesson and two new questions', () => {
   assert.equal(added.length, 18);
   assert.deepEqual([...new Set(added.map(x => x.category))].sort(), [...learningCategories].sort());
   assert.equal(new Set(learningModules.map(x => x.id)).size, learningModules.length);
   assert.equal(new Set(learningQuestions.map(x => x.id)).size, learningQuestions.length);
   const stems = [];
   for (const module of added) {
-    assert.equal(module.lessons.length, 4, module.id);
-    assert.equal(module.questions.length, 16, module.id);
+    assert.equal(module.lessons.length, module.id === featherCourseId ? 5 : 4, module.id);
+    assert.equal(module.questions.length, module.id === featherCourseId ? 18 : 16, module.id);
     assert.equal(module.reviewedOn, '2026-10-16');
     assert.ok(new Set(module.sources.map(x => x.organization)).size >= 2);
     const counts = [0, 0, 0, 0];
     for (const lesson of module.lessons) {
       assert.ok(lesson.paragraphs.length >= 2 && lesson.paragraphs.join(' ').length > 500, `${module.id}/${lesson.id}`);
       assert.ok(lesson.takeaway && lesson.exercise);
-      assert.equal(module.questions.filter(x => x.lessonId === lesson.id).length, 4);
+      assert.equal(module.questions.filter(x => x.lessonId === lesson.id).length, isWaterLesson(module, lesson) ? 2 : 4);
+      if (isWaterLesson(module, lesson)) assert.equal(lesson.reviewedOn, '2026-10-26');
       for (const claim of lesson.evidence) {
         assert.ok(claim.claim.length > 30);
         assert.ok(new Set(claim.sources.map(x => x.url)).size >= 2);
@@ -35,7 +38,7 @@ test('Eighteen substantive additions cover all twelve existing categories with 7
       assert.equal(new Set(q.options).size, 4, `${module.id}/${q.id}`);
       assert.ok(Number.isInteger(q.answer) && q.answer >= 0 && q.answer < 4);
       assert.ok(q.explain.length > 30);
-      counts[q.answer]++;
+      if (!(module.id === featherCourseId && q.lessonId === 'wasserschutz')) counts[q.answer]++;
       stems.push(q.q.trim().toLowerCase());
     }
     assert.deepEqual(counts, [4, 4, 4, 4], module.id);

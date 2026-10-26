@@ -27,3 +27,9 @@ Quellenwidersprüche werden aufgelöst oder sichtbar benannt. Nicht hinreichend 
 Bei jeder Erweiterung werden das betroffene bestehende Artenwissen, Lektionen, Fragen und richtige Antworten, Glossar, Bildtexte und Suchauszüge mit betrachtet. Bestätigte Fehler werden in allen betroffenen Darstellungen berichtigt. Eine neue Prüfung einzelner Abschnitte darf nicht als vollständige Neuprüfung der gesamten App ausgegeben werden.
 
 Quelleninventare und Prüfberichte halten auch unvollständige Nachweise fest. Das Ziel sind richtige und nachvollziehbare Inhalte; weder weltweite Vollständigkeit noch absolute Fehlerfreiheit werden behauptet.
+
+## Darstellung des Lernwissens
+
+Der vollständige jeweilige Lerntext steht mit seinen Erklärungen und Übungen zuerst. Ergänzende Quellen, Nachweise und externe Vertiefungen stehen gesammelt ganz am Schluss der Lernansicht, zunächst geschlossen. Direkte Quellenziele dürfen diesen Bereich öffnen. Der Lernende soll die Erklärung in Jagdlatein verstehen können, ohne eine externe Quelle öffnen zu müssen. Ein Originalrechtstext, der selbst Lerngegenstand ist, bleibt beim betreffenden Rechtsinhalt; ein Nachweislink ersetzt ihn nicht.
+
+Wichtige Geltungsgrenzen, verbleibende Unsicherheiten und praktische Voraussetzungen stehen weiterhin direkt bei der betroffenen Aussage. Sie werden nicht zusammen mit den ergänzenden Nachweisen versteckt. Die Vorgabe für die Quellenposition rechtfertigt weder das Weglassen dieser Grenzen noch eine unbelegte Behauptung vollständiger Prüfungsabdeckung.

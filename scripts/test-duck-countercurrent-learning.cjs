@@ -3,6 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
+const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const raw = require('../data/learning-expansion-biology-2026-10-16.json');
 const load = createLoader();
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
@@ -70,17 +71,17 @@ test('One 148-word fifth lesson has the correct directions, bounded teaching and
 });
 
 test('All 197 other courses, 1712 old cards in order and 116 starter objects stay exact without new sources on old cards', () => {
-  assert.equal(hash(learningModules.filter(item => item.id !== courseId)), '69600efafa7642aeb4bc5d425f7e1535167047a2a1e021e94d92ad73bbfb866c');
+  assert.equal(hash(learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions)), '69600efafa7642aeb4bc5d425f7e1535167047a2a1e021e94d92ad73bbfb866c');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  const old = cards.filter(card => card.id !== cardId);
+  const old = cards.filter(card => !isOctober26Card(card) && card.id !== cardId);
   assert.equal(old.length, 1712);
   assert.equal(hash(old), '1dd032b32aaf020b73ee52f969d27a920698220b912592a9ae667010a3b40014');
   const oldCourseCards = cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId);
   assert.equal(oldCourseCards.length, 31);
   assert.equal(hash(oldCourseCards), 'a9c91ae59261949272f96d9ae277c8161c81b589fa7a9a67e96f103d3081f281');
   assert.ok(oldCourseCards.every(card => card.reviewedOn === '2026-10-16' && !card.sources.some(source => urls.includes(source.url))));
-  assert.deepEqual(learningCounts, { modules: 198, lessons: 849, questions: 2705 });
-  assert.equal(cards.length, 1713);
+  assert.deepEqual(learningCounts, { modules: 198, lessons: 851, questions: 2709 });
+  assert.equal(cards.length, 1717);
 });
 
 test('All 114 full guide objects keep targets, order, labels and paths; only the 73 existing bird-course card counts increase', () => {

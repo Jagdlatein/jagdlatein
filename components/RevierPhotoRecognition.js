@@ -26,9 +26,9 @@ export function RecognitionReport({ result }) {
     {Array.isArray(result.readingLinks) && result.readingLinks.length > 0 && <div>{result.readingLinks.map(item => <p key={item.id}><Link className={styles.learningLink} href={item.href}>{item.title} →</Link></p>)}</div>}
     {result.alternatives?.length > 0 && <p>Zum Vergleichen: {result.alternatives.map((item, index) => <span key={item.id}>{index > 0 ? " · " : ""}<Link href={item.href}>{item.title}</Link></span>)}</p>}
     {result.observations?.length > 0 && <details className={styles.sources}><summary>Woran das Bildmodell den Vorschlag festmacht</summary><p>{result.observationsLabel}</p><ul>{result.observations.map(text => <li key={text}>{text}</li>)}</ul></details>}
-    {result.comparison?.sources?.length > 0 && <details className={styles.sources}><summary>Fachquellen zum Lernwissen</summary><p>Die Quellen belegen den Wissenstext zum Vorschlag. Die KI-Bestimmung des Fotos ist damit nicht bestätigt.</p><ul>{result.comparison.sources.map(item => <li key={item.id}><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></li>)}</ul></details>}
     <p className={styles.limit}>{result.notice}</p>
     <p className={styles.small}>Ein Bildvorschlag wird nicht automatisch als eigene Einordnung im Tagebuch gespeichert.</p>
+    {result.comparison?.sources?.length > 0 && <details className={styles.sources}><summary>Fachquellen zum Lernwissen</summary><p>Die Quellen belegen den Wissenstext zum Vorschlag. Die KI-Bestimmung des Fotos ist damit nicht bestätigt.</p><ul>{result.comparison.sources.map(item => <li key={item.id}><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></li>)}</ul></details>}
   </article>;
 }
 

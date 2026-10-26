@@ -15,6 +15,17 @@ const session = { id:SID, offer_id:OID, title:'Fiktiver Testtermin', status:'sch
 const offer = { id:OID,school_id:SCHOOL,title:'Fiktiver Testkurs',description:'Isoliertes Testangebot',category_slug:'wildkunde',module_ids:['wissen-test'],status:'published' };
 const school = {id:SCHOOL,name:'Fiktive Testschule',description:'Kein echtes Anbieterprofil',website:'https://example.test/',status:'approved'};
 const catalog = [{id:'wissen-test',title:'Vorhandener Testkurs',description:'Unverändertes Testwissen',href:'/kurse/wissen-test',categorySlug:'wildkunde',categoryTitle:'Wildkunde',totalQuestions:2}];
+const statusCatalog = [
+  {id:'test-offen',title:'Offener Testkurs',description:'Isolierte Kursmetadaten',href:'/kurse/test-offen',categorySlug:'wildkunde',categoryTitle:'Wildkunde',totalQuestions:2},
+  {id:'test-begonnen',title:'Begonnener Testkurs',description:'Isolierte Kursmetadaten',href:'/kurse/test-begonnen',categorySlug:'wildkunde',categoryTitle:'Wildkunde',totalQuestions:2},
+  {id:'test-abgeschlossen',title:'Abgeschlossener Testkurs',description:'Isolierte Kursmetadaten',href:'/kurse/test-abgeschlossen',categorySlug:'wildkunde',categoryTitle:'Wildkunde',totalQuestions:2},
+  {id:'test-hund',title:'Begonnener Hundekurs',description:'Isolierte Kursmetadaten',href:'/kurse/test-hund',categorySlug:'hundewesen',categoryTitle:'Hundewesen',totalQuestions:3},
+];
+const statusProgress = [
+  {course_id:'test-begonnen',status:'in_progress',total_questions:2,answered_questions:1,updated_at:'2026-10-25T12:00:00Z'},
+  {course_id:'test-abgeschlossen',status:'completed',total_questions:2,answered_questions:2,best_score:1,updated_at:'2026-10-24T12:00:00Z'},
+  {course_id:'test-hund',status:'in_progress',total_questions:3,answered_questions:1,updated_at:'2026-10-23T12:00:00Z'},
+];
 const details = (extra={}) => ({schools:[school],offers:[offer],sessions:[session],canManage:false,...extra});
 const room = (extra={}) => ({host:'meet.jit.si',sessionId:SID,roomName:`jagdlatein-${SID}`,endsAt:session.ends_at,...extra});
 const flush = async () => { await Promise.resolve(); await Promise.resolve(); };
@@ -56,9 +67,24 @@ async function fixture(file, initialProps={}, options={}) {
 
 test('Academy selection rejects arrays, explicit empty values and conflicting fields; query changes preserve only unrelated context',()=>{
   assert.equal(view.readAcademySelection({isReady:false,query:{}}),null);
-  assert.deepEqual(view.readAcademySelection({isReady:true,query:{}}),{view:'kurse',category:'all',offerId:null,sessionId:null});
+  assert.deepEqual(view.readAcademySelection({isReady:true,query:{}}),{view:'kurse',category:'all',offerId:null,sessionId:null,learningStatus:'all'});
   for(const query of [{ansicht:[]},{ansicht:''},{ansicht:'unknown'},{kategorie:['wildkunde']},{kategorie:''},{angebot:[OID]},{termin:''},{ansicht:'kurse',termin:SID},{ansicht:'live',angebot:OID},{ansicht:'live',termin:SID,angebot:OID}])assert.deepEqual(view.readAcademySelection({isReady:true,query}),{invalid:true});
   assert.deepEqual(view.academyQuery({ansicht:'live',termin:SID,kategorie:'wildkunde',q:'context'}, {ansicht:'schulen'}),{q:'context',ansicht:'schulen'});
+});
+
+test('Learning-state links validate exact values, reject incompatible views and clear only owned selection fields',()=>{
+  for(const [value,status]of [['offen','open'],['begonnen','in_progress'],['abgeschlossen','completed']]) {
+    assert.deepEqual(view.readAcademySelection({isReady:true,query:{kategorie:'wildkunde',lernstand:value}}),{view:'kurse',category:'wildkunde',offerId:null,sessionId:null,learningStatus:status});
+  }
+  for(const query of [{lernstand:''},{lernstand:[]},{lernstand:['begonnen','offen']},{lernstand:null},{lernstand:'all'},{lernstand:'unknown'},{ansicht:'live',lernstand:'begonnen'},{ansicht:'schulen',lernstand:'offen'},{ansicht:'verwaltung',lernstand:'abgeschlossen'},{angebot:OID,lernstand:'begonnen'}]) {
+    assert.deepEqual(view.readAcademySelection({isReady:true,query}),{invalid:true});
+  }
+  const original={ansicht:'kurse',kategorie:'wildkunde',lernstand:'begonnen',kontext:'behalten'};
+  assert.deepEqual(view.academyQuery(original,{ansicht:'kurse',kategorie:'hundewesen',lernstand:'begonnen'}),{kontext:'behalten',ansicht:'kurse',kategorie:'hundewesen',lernstand:'begonnen'});
+  assert.deepEqual(view.academyQuery(original,{ansicht:'kurse',kategorie:'wildkunde',lernstand:''}),{kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde'});
+  for(const ansicht of ['live','schulen','verwaltung'])assert.deepEqual(view.academyQuery(original,{ansicht}),{kontext:'behalten',ansicht});
+  assert.deepEqual(view.academyQuery(original,{ansicht:'kurse',angebot:OID}),{kontext:'behalten',ansicht:'kurse',angebot:OID});
+  assert.equal(original.lernstand,'begonnen','Building another URL must not mutate the committed selection');
 });
 
 test('Calendar escapes event injection, uses UTC instants and folds complete UTF-8 characters within 75 octets',()=>{
@@ -103,6 +129,99 @@ test('Unready and malformed Academy URLs do not show fallback self-learning; stu
   const f=await fixture('components/OnlineAcademy.js',{catalog},{router:{isReady:false,query:{ansicht:'live'},asPath:'/online-kurse?ansicht=live'}});
   try{assert.doesNotMatch(f.text,/Vorhandener Testkurs|Kursangebote verwalten/);assert.match(f.text,/Kursauswahl wird geladen/);await f.answer(0,details());f.router.isReady=true;await f.route({ansicht:['live','kurse']});assert.match(f.text,/Diese Auswahl ist nicht verfügbar/);assert.doesNotMatch(f.text,/Vorhandener Testkurs/);assert.equal([...f.document.querySelectorAll('button')].some(node=>node.textContent==='Verwaltung'),false);
     await f.route({ansicht:'verwaltung'});await f.answer(1,details());assert.match(f.text,/Betreiber vorbehalten/);assert.equal(f.document.querySelector('form'),null);
+  }finally{await f.dispose();}
+});
+
+test('Committed learning states filter actual saved quiz progress while school offers stay visible',async()=>{
+  const f=await fixture('components/OnlineAcademy.js',{catalog:statusCatalog},{account:{progress:statusProgress},router:{query:{lernstand:'begonnen'},asPath:'/online-kurse?lernstand=begonnen'}});
+  const titles=()=>[...f.document.querySelectorAll('#academy-self-learning article h3')].map(node=>node.textContent);
+  try{
+    await f.answer(0,details());
+    assert.deepEqual(titles(),['Begonnener Testkurs','Begonnener Hundekurs']);
+    assert.equal(f.button('Begonnen').getAttribute('aria-pressed'),'true');
+    assert.match(f.document.querySelector('#academy-self-learning').textContent,/2 Kurse in deiner Auswahl/);
+    assert.match(f.text,/Fiktiver Testkurs/,'Published school offers do not inherit the personal progress filter');
+    assert.ok(f.document.querySelector('[data-menu] [aria-label="Kurse nach Lernstand"]'));
+    assert.equal(f.document.querySelectorAll('[aria-label="Kurse nach Lernstand"]').length,1);
+    await f.route({lernstand:'offen'});assert.deepEqual(titles(),['Offener Testkurs']);assert.match(f.text,/Fiktiver Testkurs/);
+    await f.route({lernstand:'abgeschlossen'});assert.deepEqual(titles(),['Abgeschlossener Testkurs']);
+    assert.match(f.document.querySelector('#academy-self-learning').textContent,/2\/2 Fragen beantwortet.*bestes Ergebnis 50 % richtig/);
+    await f.route({});assert.deepEqual(titles(),['Begonnener Testkurs','Abgeschlossener Testkurs','Begonnener Hundekurs','Offener Testkurs']);
+    assert.equal(f.button('Alle').getAttribute('aria-pressed'),'true');assert.equal(f.requests.length,1,'Filtering reads existing account data instead of requesting or writing progress');
+  }finally{await f.dispose();}
+});
+
+test('Learning-state navigation waits for URL commit, combines category selection and follows history with focus',async()=>{
+  const context={kontext:'behalten',kategorie:'wildkunde'};
+  const f=await fixture('components/OnlineAcademy.js',{catalog:statusCatalog},{account:{progress:statusProgress},router:{query:context,asPath:'/online-kurse?kontext=behalten&kategorie=wildkunde'}});
+  const titles=()=>[...f.document.querySelectorAll('#academy-self-learning article h3')].map(node=>node.textContent);
+  try{
+    await f.answer(0,details());const all=titles(),initialCloses=f.closes;
+    await f.click(f.button('Begonnen'));
+    assert.deepEqual(f.pushes[0].args,[{pathname:'/online-kurse',query:{kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde',lernstand:'begonnen'}},undefined,{shallow:true,scroll:false}]);
+    assert.deepEqual(titles(),all);assert.equal(f.closes,initialCloses,'A pending filter may not close the menu as if committed');
+    await f.invoke(f.pushes[0].resolve,true);assert.deepEqual(titles(),all,'Accepted push alone is not the new URL');
+    await f.route({kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde',lernstand:'begonnen'});
+    assert.deepEqual(titles(),['Begonnener Testkurs']);assert.equal(f.document.activeElement.id,'academy-content-title');assert.ok(f.closes>initialCloses);
+    await f.click(f.button('Hundewesen'));
+    assert.deepEqual(f.pushes[1].args[0].query,{kontext:'behalten',ansicht:'kurse',kategorie:'hundewesen',lernstand:'begonnen'});
+    assert.deepEqual(titles(),['Begonnener Testkurs']);
+    await f.route(f.pushes[1].args[0].query);await f.invoke(f.pushes[1].resolve,true);assert.deepEqual(titles(),['Begonnener Hundekurs']);
+    await f.click(f.button('Alle Kategorien'));
+    assert.deepEqual(f.pushes[2].args[0].query,{kontext:'behalten',ansicht:'kurse',lernstand:'begonnen'});
+    await f.route(f.pushes[2].args[0].query);await f.invoke(f.pushes[2].resolve,true);assert.deepEqual(titles(),['Begonnener Testkurs','Begonnener Hundekurs']);
+    await f.route(context);assert.deepEqual(titles(),all);
+    await f.route({kontext:'behalten',kategorie:'wildkunde',lernstand:'begonnen'});assert.deepEqual(titles(),['Begonnener Testkurs']);
+    assert.equal(f.requests.length,1,'Category and learning-state history do not make another academy or room request');
+  }finally{await f.dispose();}
+});
+
+test('Learning-state filters leave concrete offers and other Academy views without a hidden personal filter',async()=>{
+  const query={kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde',lernstand:'begonnen'};
+  const f=await fixture('components/OnlineAcademy.js',{catalog:statusCatalog},{account:{progress:statusProgress},router:{query,asPath:'/online-kurse?kontext=behalten&ansicht=kurse&kategorie=wildkunde&lernstand=begonnen'}});
+  try{
+    await f.answer(0,details());await f.click(f.button('Kursangebot öffnen'));
+    assert.deepEqual(f.pushes[0].args[0].query,{kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde',angebot:OID});
+    await f.route(f.pushes[0].args[0].query);await f.invoke(f.pushes[0].resolve,true);
+    assert.equal(f.document.querySelector('[aria-label="Kurse nach Lernstand"]'),null);assert.match(f.text,/Vorbereitung/);
+    await f.click(f.button('Wildkunde'));assert.deepEqual(f.pushes[1].args[0].query,{kontext:'behalten',ansicht:'kurse',kategorie:'wildkunde'});
+    await f.route(query);await f.click(f.button('Live-Unterricht'));
+    assert.deepEqual(f.pushes[2].args[0].query,{kontext:'behalten',ansicht:'live'});
+    await f.route(f.pushes[2].args[0].query);await f.invoke(f.pushes[2].resolve,true);assert.equal(f.document.querySelector('[aria-label="Kurse nach Lernstand"]'),null);
+    assert.match(f.text,/Fiktiver Testtermin/);assert.equal(f.document.querySelector('iframe'),null);
+    await f.route({ansicht:'schulen'});assert.equal(f.document.querySelector('[aria-label="Kurse nach Lernstand"]'),null);assert.match(f.text,/Fiktive Testschule/);
+  }finally{await f.dispose();}
+});
+
+test('Unconfirmed or failed progress never looks like open courses or an empty learning-state result',async()=>{
+  const f=await fixture('components/OnlineAcademy.js',{catalog:statusCatalog},{account:{progressLoading:true},router:{query:{lernstand:'begonnen'},asPath:'/online-kurse?lernstand=begonnen'}});
+  const section=()=>f.document.querySelector('#academy-self-learning');
+  try{
+    await f.answer(0,details());assert.match(section().textContent,/Fortschritt wird geladen/);
+    assert.equal(section().querySelectorAll('article,a').length,0);assert.doesNotMatch(section().textContent,/\d+ Kurse? in deiner Auswahl|Noch offen|keine Jagdlatein-Lernkurse/);
+    assert.match(f.text,/Fiktiver Testkurs/,'Independent published offers remain available while personal progress loads');
+    f.account.progressLoading=false;f.account.progressError={status:503};await f.render();
+    assert.match(section().textContent,/Kursfortschritt ist gerade nicht erreichbar/);assert.ok(section().querySelector('[role="alert"]'));
+    assert.equal(section().querySelectorAll('article,a').length,0);assert.doesNotMatch(section().textContent,/\d+ Kurse? in deiner Auswahl|Noch offen|keine Jagdlatein-Lernkurse/);
+    f.account.progressError=null;f.account.progress=statusProgress;await f.render();
+    assert.deepEqual([...section().querySelectorAll('article h3')].map(node=>node.textContent),['Begonnener Testkurs','Begonnener Hundekurs']);
+    f.account.progressLoading=true;await f.route({lernstand:'offen'});assert.equal(section().querySelectorAll('article').length,0);assert.doesNotMatch(section().textContent,/Offener Testkurs|keine Jagdlatein-Lernkurse/);
+    assert.equal(f.requests.length,1);
+  }finally{await f.dispose();}
+});
+
+test('Failed and cancelled learning-state pushes retain the committed list; old handlers cannot navigate before render or after unmount',async()=>{
+  const f=await fixture('components/OnlineAcademy.js',{catalog:statusCatalog},{account:{progress:statusProgress},router:{query:{lernstand:'begonnen',kategorie:'wildkunde'},asPath:'/online-kurse?lernstand=begonnen&kategorie=wildkunde'}});
+  const titles=()=>[...f.document.querySelectorAll('#academy-self-learning article h3')].map(node=>node.textContent);
+  try{
+    await f.answer(0,details());let complete=props(f.button('Abgeschlossen')).onClick;
+    await f.invoke(complete);await f.invoke(f.pushes[0].resolve,false);assert.deepEqual(titles(),['Begonnener Testkurs']);assert.match(f.text,/nicht übernommen/);
+    await f.invoke(complete);await f.invoke(f.pushes[1].reject,new Error('isolated navigation failure'));assert.deepEqual(titles(),['Begonnener Testkurs']);assert.match(f.text,/nicht geöffnet/);
+    await f.invoke(complete);await f.invoke(f.pushes[2].reject,Object.assign(new Error('cancelled'),{cancelled:true}));assert.deepEqual(titles(),['Begonnener Testkurs']);assert.doesNotMatch(f.text,/nicht übernommen|nicht geöffnet/);
+    const before=f.pushes.length;f.router.asPath+='#anderer-kontext';await f.invoke(complete);assert.equal(f.pushes.length,before,'A raw origin change blocks the retained action before the next render');
+    await f.route({lernstand:'begonnen',kategorie:'wildkunde'});await f.invoke(complete);assert.equal(f.pushes.length,before,'An old render does not become current when the same semantic selection returns');
+    complete=props(f.button('Abgeschlossen')).onClick;await f.invoke(complete);const late=f.pushes[f.pushes.length-1];await f.unmount();
+    await f.invoke(late.reject,new Error('late failure'));await f.invoke(complete);assert.equal(f.pushes.length,before+1);
   }finally{await f.dispose();}
 });
 

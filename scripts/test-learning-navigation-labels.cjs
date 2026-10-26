@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader } = require('./helpers/project-module.cjs');
+const { stripOctober26Additions } = require('./helpers/learning-additions-oct26.cjs');
 const load = createLoader();
 const { learningModules } = load('lib/learning-curriculum.js');
 const { learningTopicTree } = load('lib/learning-topic-tree.js');
@@ -44,13 +45,15 @@ test('Navigation choices remain distinct inside every existing topic branch and 
 
 test('The complete authored course data remains exact and label lookup never edits course objects or original titles', () => {
   const historical = '60199a84027bb1c5bac1ce381526fb6175d424897a5e92fc6a24155b3fadf9bb';
-  assert.equal(hash(learningModules), historical);
+  assert.equal(hash(learningModules.map(stripOctober26Additions)), historical);
+  const complete = hash(learningModules);
   for (const course of learningModules) {
     const original = JSON.stringify(course);
     getLearningNavigationLabel(Object.freeze({ ...course }));
     assert.equal(JSON.stringify(course), original, course.id);
   }
-  assert.equal(hash(learningModules), historical);
+  assert.equal(hash(learningModules), complete);
+  assert.equal(hash(learningModules.map(stripOctober26Additions)), historical);
 });
 
 test('Unknown courses keep their complete original title instead of an invented or mechanically shortened label', () => {
