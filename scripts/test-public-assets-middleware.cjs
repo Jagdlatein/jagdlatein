@@ -72,6 +72,33 @@ test('Every published learning image path is exact, unique and backed by a real 
   assert.ok(learningImagePaths.every(pathname => fs.existsSync(path.join(root, 'public', pathname))));
 });
 
+test('Only the two exact new media attribution documents are public; neighboring files and learning access remain guarded', async () => {
+  const { mediaExperienceDocumentationPaths } = load('lib/media-experience-asset-paths.js');
+  assert.deepEqual(Array.from(mediaExperienceDocumentationPaths), [
+    '/lernen/videos-2026-10-26/mediennachweise.json',
+    '/lernen/videos-2026-10-26/MEDIEN-LIZENZEN.md',
+  ]);
+  for (const pathname of mediaExperienceDocumentationPaths) {
+    assert.ok(fs.existsSync(path.join(root, 'public', pathname)));
+    const response = await middleware(request(pathname));
+    assert.equal(response.headers.get('x-middleware-next'), '1');
+    assert.equal(response.headers.get('location'), null);
+  }
+  for (const pathname of [
+    '/lernen/videos-2026-10-26/private.json',
+    '/lernen/videos-2026-10-26/mediennachweise.json.bak',
+    '/lernen/videos-2026-10-26/mediennachweise.json/private',
+    '/lernen/videos-2026-10-26/MEDIEN-LIZENZEN.md.bak',
+    '/lernen/videos-2026-10-26/loesungen.json',
+    '/lernen/videos-2026-10-26', '/lernen/wildtier-videofaelle', '/lernen/wildjahr',
+    '/kurse/wissen-rehwild-jahreslauf', '/konto',
+  ]) {
+    const response = await middleware(request(pathname));
+    assert.equal(response.headers.get('x-middleware-next'), null, pathname);
+    assert.equal(new URL(response.headers.get('location')).pathname, pathname === '/konto' ? '/login' : '/preise', pathname);
+  }
+});
+
 for (const pathname of ['/impressum', '/datenschutz', '/datenschutzerklaerung.html', '/robots.txt', '/sitemap.xml']) test(`${pathname} is available to a guest`, async () => {
   const response = await middleware(request(pathname)); assert.equal(response.headers.get('x-middleware-next'), '1');
 });

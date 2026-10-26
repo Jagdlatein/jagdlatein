@@ -3,12 +3,12 @@ import { JL_ACCOUNT_COOKIE, readAccountSessionEdge } from "./lib/account-session
 import { learningImagePaths } from "./lib/learning-image-paths";
 import { learningAudioPaths } from "./lib/learning-audio-paths";
 import { natureAssetPaths } from "./lib/nature-asset-paths";
-import { mediaExperienceAssetPaths } from "./lib/media-experience-asset-paths";
+import { mediaExperienceAssetPaths, mediaExperienceDocumentationPaths } from "./lib/media-experience-asset-paths";
 import { knowledgeExpansionAssetPaths } from "./lib/knowledge-expansion-assets";
 
 const LEARNING_IMAGES = new Set(learningImagePaths);
 const LEARNING_AUDIO = new Set(learningAudioPaths);
-const EXPERIENCE_ASSETS = new Set([...natureAssetPaths, ...mediaExperienceAssetPaths, ...knowledgeExpansionAssetPaths, "/lernen/offline-sw.js"]);
+const EXPERIENCE_ASSETS = new Set([...natureAssetPaths, ...mediaExperienceAssetPaths, ...mediaExperienceDocumentationPaths, ...knowledgeExpansionAssetPaths, "/lernen/offline-sw.js"]);
 const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png"]);
 
 // These exact Pages Router routes run getPaidPageProps before rendering any
