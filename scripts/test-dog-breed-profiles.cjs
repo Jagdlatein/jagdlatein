@@ -44,16 +44,16 @@ test('Every one of the 59 existing breeds has a unique static detail route with 
     assert.deepEqual(await route.getStaticProps({ params: { rasse } }), { notFound: true });
 });
 
-test('Each breed exposes exactly five own topics with unchanged teaching text, closed final sources and existing photo provenance', () => {
+test('Each breed preserves its five original topics, with exact Labrador/Golden video links and unchanged text, sources and photos', () => {
   const expected = ['rasse-erkennen', 'arbeitsprofil', 'ausbildung', 'alltag-pflege', 'grenzen'];
   let photoCount = 0;
   for (const profile of dogBreeds) {
     const tasks = dogWorkTasks.filter(task => profile.tasks.includes(task.id));
     const groups = createDogBreedTopics(profile, tasks, dogCompassSources);
     assert.equal(groups.length, 1); assert.equal(groups[0].title, profile.name);
-    assert.deepEqual(groups[0].topics.map(topic => topic.id), expected);
+    assert.deepEqual(groups[0].topics.map(topic => topic.id), [...expected, ...(['labrador', 'golden'].includes(profile.id) ? ['videos'] : [])]);
     assert.equal(resolveTopicSection(groups, `#dog-${profile.id}`).topic.id, 'rasse-erkennen', 'Existing portrait hash remains an alias');
-    for (const topic of groups[0].topics) {
+    for (const topic of groups[0].topics.filter(topic => topic.id !== 'videos')) {
       assert.equal(resolveTopicSection(groups, `#${topic.id}`).topic, topic);
       const tree = topic.render(), children = React.Children.toArray(tree.props.children);
       assert.equal(children.at(-1).type.name, 'BreedSources', `${profile.id}/${topic.id}: source block is last`);

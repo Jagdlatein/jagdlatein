@@ -72,8 +72,8 @@ function openAnatomyQuiz(app) {
   assert.ok(details && !details.props.open); details.props.onToggle({ currentTarget: { open: true } }); app.redraw();
 }
 
-test('All 45 questions have valid answers, substantial feedback and stable IDs', () => {
-  assert.equal(videos.wildlifeVideoQuestionCount, 15);
+test('All 63 questions have valid answers, substantial feedback and stable IDs', () => {
+  assert.equal(videos.wildlifeVideoQuestionCount, 33);
   assert.equal(anatomy.anatomyQuestions.length, 6);
   assert.equal(observation.observationQuestionCount, 24);
   const collections = [videos.wildlifeVideoCases.flatMap(item => item.questions), anatomy.anatomyQuestions, observation.observationCases.flatMap(item => item.stages)];
@@ -86,21 +86,22 @@ test('All 45 questions have valid answers, substantial feedback and stable IDs',
 
 test('Real local WebM/JPEG/GLB assets have correct file signatures and documented licenses', () => {
   const { mediaExperienceAssetPaths } = load('lib/media-experience-asset-paths.js');
-  assert.equal(mediaExperienceAssetPaths.length, 16); assert.equal(new Set(mediaExperienceAssetPaths).size, 16);
+  assert.equal(mediaExperienceAssetPaths.length, 28); assert.equal(new Set(mediaExperienceAssetPaths).size, 28);
   for (const asset of mediaExperienceAssetPaths) {
     const full = path.join(root, 'public', asset); assert.ok(fs.existsSync(full), asset); const data = fs.readFileSync(full);
+    if (asset.endsWith('.mp4')) assert.equal(data.subarray(4, 8).toString(), 'ftyp');
     if (asset.endsWith('.webm')) assert.equal(data.subarray(0, 4).toString('hex'), '1a45dfa3');
     if (asset.endsWith('.jpg')) assert.equal(data.subarray(0, 2).toString('hex'), 'ffd8');
     if (asset.endsWith('.glb')) { assert.equal(data.subarray(0, 4).toString(), 'glTF'); assert.equal(data.readUInt32LE(4), 2); assert.equal(data.readUInt32LE(8), data.length); const gltf = JSON.parse(data.subarray(20, 20 + data.readUInt32LE(12)).toString()); assert.ok(gltf.meshes.length); assert.equal(gltf.extensionsUsed?.includes('KHR_draco_mesh_compression') || false, false); }
   }
-  for (const folder of ['videos', 'anatomie']) {
+  for (const folder of ['videos', 'anatomie', 'videos-2026-10-26']) {
     const entries = JSON.parse(fs.readFileSync(path.join(root, 'public/lernen', folder, 'mediennachweise.json'), 'utf8').replace(/^\uFEFF/, ''));
     for (const item of entries) { assert.equal(item.aiGenerated, false); assert.match(item.source, /^https:\/\//); assert.match(item.license, /^CC/); assert.match(item.sha256, /^[a-f0-9]{64}$/); }
   }
 });
 
-test('All sixteen catalog entries deep-link to a valid content ID without answer keys', () => {
-  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 16);
+test('All twenty-two catalog entries deep-link to a valid content ID without answer keys', () => {
+  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 22);
   for (const entry of mediaSearchEntries) {
     assert.equal(Object.hasOwn(entry, 'answer'), false); assert.ok(entry.categories.length); assert.ok(entry.text.length > 50);
     const url = new URL(entry.href, 'https://example.test'); const id = url.searchParams.get('eintrag');
@@ -121,8 +122,8 @@ test('Every video question explains a wrong answer; text alternative and duplica
       if (index < item.questions.length - 1) { const next = app.button('Nächste Frage').props.onClick; next(); next(); app.redraw(); assert.ok(app.content().includes(item.questions[index + 1].question)); staleAnswer(); app.redraw(); }
     }
   }
-  assert.match(app.content(), /15 von 15 Fragen beantwortet · 0 richtig/);
-  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 15 Fragen beantwortet/);
+  assert.match(app.content(), /33 von 33 Fragen beantwortet · 0 richtig/);
+  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 33 Fragen beantwortet/);
 });
 
 test('Observation reveals exactly one stage, rejects stale events and explains all wrong choices', () => {
@@ -179,7 +180,7 @@ test('Direct search links select valid content and unknown observation IDs never
   } finally { global.window = previousWindow; }
 });
 
-test('All forty-five correct choices receive explanations and correct completion scores', () => {
+test('All sixty-three correct choices receive explanations and correct completion scores', () => {
   const videoApp = setup('components/WildlifeVideoCases.js');
   for (const item of videos.wildlifeVideoCases) {
     videoApp.click(item.title); videoApp.click('Textfassung gelesen – Fragen öffnen');
@@ -188,7 +189,7 @@ test('All forty-five correct choices receive explanations and correct completion
       if (index < item.questions.length - 1) videoApp.click('Nächste Frage');
     }
   }
-  assert.match(videoApp.content(), /15 von 15 Fragen beantwortet · 15 richtig/);
+  assert.match(videoApp.content(), /33 von 33 Fragen beantwortet · 33 richtig/);
   const observationApp = setup('components/ObservationWorkshop.js');
   for (const item of observation.observationCases) {
     observationApp.choose(item.id);

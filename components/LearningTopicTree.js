@@ -6,7 +6,7 @@ import { getLearningNavigationLabel } from "../lib/learning-navigation-labels";
 import { legalCountries } from "../lib/regional-law-core";
 import styles from "../styles/KnowledgeTree.module.css";
 
-export default function LearningTopicTree({ category, groups = [], modules = [] }) {
+export default function LearningTopicTree({ category, groups = [], modules = [], entries = [] }) {
   const router = useRouter();
   const requested = typeof router.query?.bereich === "string" ? router.query.bereich : "";
   const group = groups.find(item => item.id === requested);
@@ -44,7 +44,9 @@ export default function LearningTopicTree({ category, groups = [], modules = [] 
         </li>)}</ul>
         <h3 className={styles.subheading}>Grundlagen</h3>
       </>}
-      <ul className={styles.branches}>{groups.map(item => {
+      <ul className={styles.branches}>{entries.map(item => <li key={item.href}><Link href={item.href} prefetch={false} scroll>
+        <span><strong>{item.title}</strong></span><AppIcon name="arrow-right" size={20} />
+      </Link></li>)}{groups.map(item => {
       return <li key={item.id}><Link href={`${base}?bereich=${encodeURIComponent(item.id)}#learning-modules`} prefetch={false} scroll={false}>
         <span><strong>{item.title}</strong></span><AppIcon name="arrow-right" size={20} />
       </Link></li>;

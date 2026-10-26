@@ -50,7 +50,7 @@ export default function LearningOverview({ data }) {
     </section>}
     {!categoryInfo && <QuizLeagueEntry />}
     {categoryInfo ? <>
-      <LearningTopicTree category={categoryInfo} groups={data.topicGroups} modules={modules} />
+      <LearningTopicTree category={categoryInfo} groups={data.topicGroups} modules={modules} entries={data.subcategoryTools} />
       {resources.length > 0 && <details className={styles.directory}>
       <summary>Videos, Stimmen und Übungen in dieser Kategorie</summary>
       <FeaturedLearning tools={featuredResources} media={featuredMedia} />

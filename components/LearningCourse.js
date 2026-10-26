@@ -15,6 +15,7 @@ import LessonEvidence from "./LessonEvidence";
 import PageMenu, { closePageMenu } from "./PageMenu";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
+import { getCourseVideoLinks } from "../lib/learning-video-links";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -30,6 +31,7 @@ function LearningContent({ module, flashcards }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
+  const videos = getCourseVideoLinks(module.id);
   const countrySelection = category?.slug === "jagdrecht";
   const { common: commonNote, regional: regionalNotes } = getCourseCountryNotes(module);
   const [country, setCountry] = useState(module.countries[0]);
@@ -151,6 +153,7 @@ function LearningContent({ module, flashcards }) {
                 </select>
               </div>
             </nav>
+            {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
           </PageMenu>
           <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">

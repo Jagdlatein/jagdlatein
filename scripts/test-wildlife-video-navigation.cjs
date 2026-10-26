@@ -65,20 +65,20 @@ function answer(h, item, index = questionNumber(h) - 1) {
 
 // These checks preserve authored content and event behavior; they do not assert
 // a new factual review or physical device playback.
-test('All five direct scenes retain exact media, transcripts, observations, licenses and fifteen explanations with one lower picker', t => {
+test('All eleven direct scenes retain exact media, transcripts, observations, licenses and thirty-three explanations with one lower picker', t => {
   const h = fixture(t);
   for (const item of cases) {
     history(h, { eintrag: item.id });
     assert.equal(text(heading(h)), item.title);
     assert.equal(video(h).props.poster, item.poster); assert.equal(source(h).props.src, item.src);
-    assert.equal(source(h).props.type, 'video/webm'); assert.equal(video(h).props.preload, 'none');
+    assert.equal(source(h).props.type, item.mimeType || 'video/webm'); assert.equal(video(h).props.preload, 'none');
     assert.equal(video(h).props.controls, true); assert.equal(video(h).props.playsInline, true);
     assert.equal(video(h).props.autoPlay, undefined); assert.equal(video(h).props['aria-label'], item.title);
     assert.ok(text(transcript(h)).includes(item.transcript));
     const body = h.nodes(node => node.type === 'section' && node.props['aria-labelledby'] === 'video-fall')[0];
     for (const fact of [item.species, item.location, ...item.observations]) assert.ok(text(body).includes(fact));
     const footer = nodes(body, node => node.type === 'details' && node.props.id !== 'video-textfassung')[0];
-    assert.ok(footer && !footer.props.open); assert.match(text(footer), /Geprüft am 4\. Oktober 2026/);
+    assert.ok(footer && !footer.props.open); assert.match(text(footer), item.reviewedOn ? /abgeglichen am 26\. Oktober 2026/ : /Geprüft am 4\. Oktober 2026/);
     assert.ok(text(footer).includes(item.author));
     for (const href of [item.source, item.licenseUrl, ...(item.authorUrl ? [item.authorUrl] : [])]) assert.ok(nodes(footer, node => node.props?.href === href).length);
     assert.ok(nodes(body, node => node.type === 'p' && text(node).includes('Unsichtbare Nahrung, exakte Altersjahre')).length);
@@ -95,7 +95,7 @@ test('All five direct scenes retain exact media, transcripts, observations, lice
       if (index < item.questions.length - 1) { const next = button(h, 'Nächste Frage').props.onClick; next(); next(); h.render(); }
     }
   }
-  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /15 von 15 Fragen beantwortet · 0 richtig/);
+  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /33 von 33 Fragen beantwortet · 0 richtig/);
   assert.equal(h.calls.length, 0, 'Existing URLs and local quiz steps add no synthetic navigation');
 });
 

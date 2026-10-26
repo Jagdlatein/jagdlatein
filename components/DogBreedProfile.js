@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import TopicSectionReader from "./TopicSectionReader";
+import { getDogBreedVideoLinks } from "../lib/learning-video-links";
 import styles from "../styles/DogBreedProfile.module.css";
 
 function BreedSources({ profile, contextSources, includePhoto = false }) {
@@ -36,6 +37,7 @@ function HealthSources({ knowledge, lesson }) {
 
 export function createDogBreedTopics(profile, tasks = [], contextSources = [], healthKnowledge = null) {
   const sources = options => <BreedSources profile={profile} contextSources={contextSources} {...options} />;
+  const videos = getDogBreedVideoLinks(profile.id);
   const groups = [{ id: "rassenprofil", title: profile.name, topics: [
     { id: "rasse-erkennen", aliases: [`dog-${profile.id}`], title: "Rasse erkennen", render: () => <section className={styles.knowledge}>
       <h2>{profile.name}: Rasse erkennen</h2><p className={styles.lead}>{profile.summary}</p>
@@ -60,6 +62,10 @@ export function createDogBreedTopics(profile, tasks = [], contextSources = [], h
       <h2>{profile.name}: Grenzen und wichtige Unterschiede</h2><p>{profile.boundary}</p>
       <p>Der einzelne Hund, seine Ausbildung und die örtlichen Voraussetzungen entscheiden über die praktische Eignung.</p>{sources()}
     </section> },
+    ...(videos.length ? [{ id: "videos", title: "Videos", render: () => <section className={styles.knowledge}>
+      <h2>{profile.name}: Videos</h2><p>Originalaufnahmen mit Beobachtungsfragen und Erklärungen.</p>
+      <ul>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul>
+    </section> }] : []),
   ] }];
   if (healthKnowledge?.breedId === profile.id) groups.push({ id: "gesundheit-genetik", title: "Gesundheit & Genetik", topics:
     healthKnowledge.lessons.map(lesson => ({ id: `gesundheit-${lesson.id}`, title: lesson.title, render: () => <section className={styles.knowledge}>

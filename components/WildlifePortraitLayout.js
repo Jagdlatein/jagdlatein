@@ -15,6 +15,7 @@ import WildlifeJawModel from "./WildlifeJawModel";
 import { jawModelsBySlug } from "../lib/wildlife-jaw-models";
 import { wildlifeKnowledgeDiscovery } from "../lib/wildlife-knowledge-discovery";
 import { wildlifeDepthBySlug } from "../lib/wildlife-depth";
+import { getWildlifeVideoLinks } from "../lib/learning-video-links";
 import TopicSectionReader from "./TopicSectionReader";
 import styles from "../styles/LearningExperience.module.css";
 import portrait from "../styles/WildlifePortrait.module.css";
@@ -81,6 +82,7 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
   const sounds = animalSounds.filter(sound => sound.speciesSlug === slug);
   const name = species?.name || title;
   const depth = wildlifeDepthBySlug[slug];
+  const videos = getWildlifeVideoLinks(slug);
   const authored = splitPortraitSources(children);
   const baseTopics = portraitSections || createPortraitTopics(authored.content);
   const groups = [
@@ -102,6 +104,7 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
       { id: "portrait-sounds", title: "Die Stimme dieser Art", render: () => <section className={styles.panel} aria-labelledby="portrait-sounds"><h2 id="portrait-sounds">Die Stimme dieser Art</h2>{sounds.length ? sounds.map(sound => <article key={sound.id}><h3>{sound.name}: {sound.call}</h3><SoundPlayer sound={sound} label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>{sound.confusion}</p></article>) : <p>Für diese Art ist noch keine geprüfte Originalaufnahme in der Stimmenbibliothek verfügbar. Ihre Bestimmung erfolgt zusätzlich über sichtbare Merkmale, Verhalten und Lebensraum.</p>}</section> },
       { id: "art-weiterlernen", title: "Passendes Wissen weiterlernen", render: () => <WildlifeLearningGuide slug={slug} name={name} /> },
       { id: "portrait-jagdstatus", title: "Artenkenntnis und Jagdstatus", render: () => <aside className={styles.note}><h2>Artenkenntnis und Jagdstatus</h2><p>Biologische Merkmale gelten unabhängig von Landesgrenzen. Ob eine Art bejagt werden darf, hängt dagegen von den geltenden örtlichen Bestimmungen ab. Die Rechtsübersicht von Jagdlatein behandelt Deutschland, Österreich und die Schweiz.</p><Link href={species?.europeanOnly ? "/jagdrecht/wildarten" : `/jagdrecht/wildarten?art=${slug}`}>{species?.europeanOnly ? "Zur Rechtsübersicht für DACH" : "Rechtsübersicht für diese Art →"}</Link></aside> },
+      ...(videos.length ? [{ id: "portrait-videos", title: "Videos", render: () => <section className={styles.panel}><h2>{name}: Videos</h2><p>Originalaufnahmen mit Beobachtungsfragen und Erklärungen.</p><ul>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></section> }] : []),
     ] },
   ];
   return <LearningToolLayout title={title || `${species?.name} (${species?.scientificName})`} description={subtitle || species?.identification || "Merkmale, Lebensweise und sichere Unterscheidung kennenlernen."} icon="deer" category="wildkunde" className={portrait.page} headingOnly>

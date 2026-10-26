@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
@@ -7,6 +8,7 @@ import { LearningPhotoCredit } from "./LearningPhoto";
 import { wildlifePhotographs } from "../lib/wildlife-photographs";
 import { getWildYearProfile, wildYearMonths, wildYearSources, wildYearSpecies } from "../lib/wild-year";
 import { readWildYearSelection, validWildYearMonth } from "../lib/wild-year-selection";
+import { getWildlifeVideoLinks } from "../lib/learning-video-links";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/WildYear.module.css";
 
@@ -20,6 +22,7 @@ export default function WildYear({ currentMonth = 1, initialSelection = null }) 
   const slug = wildYearSpecies.some(item => item.slug === selection?.slug) ? selection.slug : null;
   const month = validWildYearMonth(selection?.month) ? selection.month : null;
   const view = slug && month ? getWildYearProfile(slug, month) : null;
+  const videos = view ? getWildlifeVideoLinks(slug) : [];
   const photograph = view ? wildlifePhotographs[slug] : null;
   const viewKey = JSON.stringify([ready, router.asPath, router.query, slug, month]);
   const committedView = useRef({ key: viewKey });
@@ -100,6 +103,7 @@ export default function WildYear({ currentMonth = 1, initialSelection = null }) 
       <label className={styles.species}>Wildart<select id="wildjahr-species" value={slug || ""} disabled={!ready} aria-controls="wildjahr-current" onChange={event => select(event.target.value, month || fallbackMonth, "species")}><option value="" disabled>Wildart wählen</option>{wildYearSpecies.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</select></label>
       {!view && <label className={styles.species}>Monat<select id="wildjahr-repair-month" value={month || ""} disabled={!ready || !slug} onChange={event => select(slug, Number(event.target.value), "species")}><option value="" disabled>Monat wählen</option>{wildYearMonths.map((name, index) => <option key={name} value={index + 1}>{name}</option>)}</select></label>}
       {navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}
+      {view && <nav aria-label="Wildjahr vertiefen"><h3>Weiterlernen</h3><p><Link href={`/wildkunde/${slug}`}>Artenwissen</Link></p>{videos.length > 0 && <><h4>Videos</h4><p className={shared.muted}>Die Aufnahmen zeigen eigene Beobachtungszeitpunkte, nicht automatisch den gewählten Monat.</p><ul>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></>}</nav>}
     </section></PageMenu>
     {view ? <>
     <section className={styles.controls} aria-label="Monat im Jahresmodell">

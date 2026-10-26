@@ -222,7 +222,7 @@ test('Overview photo summaries preserve exact delivered media and attribution wi
   }
   for (const category of ['hundewesen', 'wildkunde', 'natur-revier']) {
     const data = getData(category);
-    const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category) && summaries[tool.href]?.purpose).map(tool => tool.href).sort();
+    const expected = load('lib/learning-experiences.js').learningExperiences.filter(tool => tool.featured && tool.categories.includes(category) && tool.subcategoryOf !== category && summaries[tool.href]?.purpose).map(tool => tool.href).sort();
     assert.deepEqual(Object.keys(data.featuredMedia).sort(), expected);
     assert.ok(data.modules.every(module => !module.lessons && !module.questions));
     for (const module of data.modules) {
@@ -257,7 +257,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
       .map(path => ({ ...path, moduleIds: path.moduleIds.filter(id => selectedIds.has(id)) })).filter(path => path.moduleIds.length);
     assert.deepEqual(data.paths, expectedPaths);
     const expectedResources = slug ? [...practiceHighlights, ...learningExperiences, ...learningTools, ...(slug === 'jagdrecht' ? legalLearningHubs : [])]
-      .filter(tool => tool.categories.includes(slug)).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
+      .filter(tool => tool.categories.includes(slug) && tool.subcategoryOf !== slug).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
       .map(({ href, icon, title, description, featured }) => ({ href, icon, title, description, ...(featured ? { featured: true } : {}) })) : [];
     assert.deepEqual(data.resources, expectedResources);
     assert.ok(data.covers.every(cover => !cover.pictures && !cover.diagram && !cover.caption && !cover.originalWidth && !cover.verification));
