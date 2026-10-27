@@ -44,7 +44,10 @@ test('Overview navigation omits decorative photos and their payload while preser
   assert.deepEqual(data.categoryCovers, {});
   assert.ok(data.covers.every(photo => photo.coursePhotoUse), 'Only actual course teaching photographs remain in the overview payload');
   const html = renderToStaticMarkup(React.createElement(Overview, { data }));
-  assert.equal((html.match(/class="photoLink"/g) || []).length, Object.keys(coursePhotoUses).length);
+  for (const category of load('lib/learning-categories.js').learningCategoryDetails) {
+    assert.ok(html.includes(`href="/lernen/${category.slug}"`), `${category.slug}: actual category navigation rendered`);
+  }
+  assert.equal((html.match(/class="photoLink"/g) || []).length, 0, 'The main category navigation uses text; real course photographs remain in their audited lessons');
   assert.equal((html.match(/class="photo"/g) || []).length, 0);
   assert.ok(data.covers.every(photo => !photo.pictures && !photo.diagram && !photo.lessons && !photo.questions));
 });
@@ -110,6 +113,9 @@ test('Featured previews require a concrete teaching-medium purpose; research and
   assert.equal(Object.keys(previews).length, 5);
   for (const href of ['/lernen/wissen-fuers-revier', '/lernen/forschung-verstehen', '/lernen/fuenf-minuten']) assert.equal(previews[href], undefined);
   for (const photo of Object.values(previews)) assert.ok(photo.purpose && photo.src && photo.creditUrl);
+  assert.match(previews['/lernen/wildjahr'].purpose, /Gams-Artporträt als Beispiel/);
+  assert.match(previews['/lernen/wildjahr'].purpose, /wählst du die Wildart selbst/);
+  assert.doesNotMatch(previews['/lernen/wildjahr'].purpose, /Startauswahl/);
   const data = load('lib/learning-overview-server.js').getLearningOverviewData('natur-revier');
   const Overview = load('components/LearningOverview.js').default;
   const html = renderToStaticMarkup(React.createElement(Overview, { data }));
