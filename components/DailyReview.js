@@ -105,7 +105,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
     // Selection and reasons are computed locally. Only the selected IDs leave the device.
     const selectedQuestions = selectDailyReview(pool, readReviewHistory(), { category, mode, count: 8 });
     if (!selectedQuestions.length) {
-      const next = { questions: [], index: 0, selected: null, score: 0, finished: false };
+      const next = { questions: [], index: 0, selected: null, selections: [], score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
       return;
     }
@@ -133,7 +133,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
         const question = details.get(item.id);
         return { ...question, answers: answerOrder(question.answers, question.id, answerSeed).map(index => question.answers[index]), reason: item.reason };
       });
-      const next = { questions, index: 0, selected: null, score: 0, finished: false };
+      const next = { questions, index: 0, selected: null, selections: [], score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
     } catch (failure) {
       if (version === request.current && !abort.signal.aborted && mounted.current) {
@@ -154,7 +154,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
     const question = round.questions[round.index];
     if (!question.answers.some(answer => answer.id === id)) return;
     const correct = question.correct.includes(id);
-    const next = { ...round, selected: id, score: round.score + (correct ? 1 : 0) };
+    const next = { ...round, selected: id, selections: [...round.selections, id], score: round.score + (correct ? 1 : 0) };
     current.current = next; setRound(next);
     if (!recordReviewAnswer(question.id, correct)) setNotice("Du kannst weiterüben. Dieser Browser speichert die Wiederholungen gerade nicht.");
   }
@@ -165,13 +165,29 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
   }
   const question = round?.questions[round.index];
   const questionCategory = learningCategoryDetails.find(item => item.slug === question?.category)?.title;
+  const mistakes = round?.finished ? round.questions.filter((item, index) => !item.correct.includes(round.selections[index])) : [];
+  const sourceQuestions = round?.finished ? mistakes : question && round.selected !== null ? [question] : [];
   return <>
     <section className={styles.panel}>
       <p>Eine kurze Runde mit bis zu acht Fragen aus den ausführlichen Kursen. Du bestimmst das Tempo; fünf Minuten sind eine Orientierung.</p>
       <p className={styles.muted}>Auf diesem Gerät: fällige Fehler und Wiederholungen kommen zuerst. „Gemischt“ ergänzt neue Fragen aus wechselnden Bereichen. Antworten aus ausführlichen Kursen und deren Quizfragen fließen ab jetzt ein. Frühere Antworten werden nicht nachträglich übernommen.</p>
     </section>
     {load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
-      <h2 id="review-question-title" tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig. Lies die Erklärungen und wiederhole zu einem späteren Zeitpunkt.</p>
+      <h2 id="review-question-title" tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig.</p>
+      {mistakes.length > 0 ? <section aria-labelledby="review-mistakes-title"><h3 id="review-mistakes-title">Fehler nachlesen</h3>
+        {mistakes.map(item => {
+          const chosen = round.selections[round.questions.indexOf(item)];
+          const correctAnswers = item.answers.filter(answer => item.correct.includes(answer.id));
+          return <article key={item.id} className={styles.reviewReading}>
+            <h4>{item.q}</h4>
+            <p><strong>Deine Antwort:</strong> {item.answers.find(answer => answer.id === chosen)?.text}</p>
+            <p><strong>{correctAnswers.length === 1 ? "Richtige Antwort:" : "Richtige Antworten:"}</strong> {correctAnswers.map(answer => answer.text).join(" · ")}</p>
+            <p>{item.explain}</p>
+            {item.reading && <section aria-labelledby={`finished-reading-${item.id}`}><h4 id={`finished-reading-${item.id}`}>Wissen dazu</h4><p><strong>{item.reading.title}</strong></p><p>{item.reading.paragraph}</p></section>}
+            <Link href={item.href}>In „{item.courseTitle}“ weiterlesen</Link>
+          </article>;
+        })}
+      </section> : <p>Alle Antworten dieser Runde sind richtig.</p>}
       <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Neue kurze Runde</button>
     </section> : question ? <section className={styles.panel}>
       <p className={`${styles.eyebrow} ${styles.reviewContext}`}>{question.reason}{!category && questionCategory ? ` · ${questionCategory}` : ""} · Frage {round.index + 1} von {round.questions.length}</p>
@@ -179,7 +195,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
       <div className={styles.choices}>{question.answers.map(answer => <button type="button" key={answer.id} className={`${styles.choice} ${round.selected !== null && question.correct.includes(answer.id) ? styles.correct : round.selected === answer.id ? styles.wrong : ""}`} disabled={disabled || round.selected !== null} aria-pressed={round.selected === answer.id} onClick={() => choose(answer.id)}>{answer.text}</button>)}</div>
       {round.selected !== null && <div className={styles.feedback}><div role="status"><h3>{question.correct.includes(round.selected) ? "Richtig" : "Noch einmal nachlesen"}</h3><p>{question.explain}</p></div>
         {question.reading && <section className={styles.reviewReading} aria-labelledby={`reading-${question.id}`}><h3 id={`reading-${question.id}`}>Wissen dazu</h3><p><strong>{question.reading.title}</strong></p><p>{question.reading.paragraph}</p></section>}
-        <Link href={question.href}>In „{question.courseTitle}“ weiterlesen</Link><details><summary>{question.sourceScope === "lesson" ? "Quellen zur passenden Lektion" : "Quellen der Lerneinheit"}</summary><ul>{question.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></details></div>}
+        <Link href={question.href}>In „{question.courseTitle}“ weiterlesen</Link></div>}
       {round.selected !== null && <button type="button" className={styles.primary} disabled={disabled} onClick={advance}>{round.index + 1 === round.questions.length ? "Runde abschließen" : "Nächste Frage"}</button>}
     </section> : <p>{mode === "faellig" ? "Auf diesem Gerät sind für dieses Thema gerade keine Fragen fällig." : mode === "fehler" ? "Auf diesem Gerät gibt es für dieses Thema gerade keine offenen Fehler." : "Für dieses Thema sind noch keine Fragen in der kurzen Runde verfügbar."}</p>}
     {notice && <p role="status">{notice}</p>}
@@ -190,5 +206,8 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
       <ul>{reviewMethodSources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a><p>{source.supports}</p></li>)}</ul>
       <button type="button" className={styles.secondary} disabled={disabled} onClick={() => { if (!canAct()) return; if (clearReviewHistory()) { setNotice("Lokalen Wiederholungsverlauf entfernt."); start(); } else setNotice("Der lokale Verlauf konnte nicht entfernt werden. Bitte die Browserdaten dieser App löschen."); }}>Wiederholungsverlauf entfernen</button>
     </details>
+    {sourceQuestions.length > 0 && <details key={round.finished ? "finished-sources" : `question-sources-${question.id}`} className={styles.panel}><summary>{round.finished ? "Quellen zu den nachgelesenen Fragen" : "Quellen zur beantworteten Frage"}</summary>
+      {sourceQuestions.map(item => <section key={item.id}><h3>{item.q}</h3><p>{item.sourceScope === "lesson" ? "Quellen zur passenden Lektion" : "Quellen der Lerneinheit"}</p><ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></section>)}
+    </details>}
   </>;
 }
