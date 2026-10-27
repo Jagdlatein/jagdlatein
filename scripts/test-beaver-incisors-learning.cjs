@@ -1,6 +1,7 @@
 // Structural integration and scope checks; these do not certify biological accuracy.
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const raw = require('../data/learning-beaver-incisors-2026-10-24.json');
 const load = createLoader();
@@ -44,7 +45,7 @@ test('Only Biber gains its own third target and retains the two existing foundat
   for (const item of species.filter(item => item.slug !== 'biber')) {
     assert.ok(!guide(item.slug).some(target => target.moduleId === courseId), item.slug);
     assert.equal(getWildlifeStudyContent(item.slug, courseId), null, item.slug);
-    assert.ok(guide(item.slug).length <= (['rotwild', 'rehwild'].includes(item.slug) ? 4 : 3), item.slug);
+    assert.ok(stripOctober27GuideTargets(item.slug, guide(item.slug)).length <= (['rotwild', 'rehwild'].includes(item.slug) ? 4 : 3), item.slug);
   }
   assert.ok(!JSON.stringify(targets[0]).includes('questions'));
 });

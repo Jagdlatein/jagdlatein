@@ -1344,6 +1344,18 @@
           "url": "https://elte.hu/en/how-age-and-sex-are-reflected-in-the-sleeping-dogs-brain",
           "organization": "Eötvös Loránd University",
           "supports": "Eigene Forschungsdarstellung von Schlaf-EEG und Alters-/Geschlechtszusammenhängen; erklärt Messverfahren, keine Diagnose aus Liegehaltung."
+        },
+        {
+          "label": "Kis und andere 2017: Schlaf und Lernen beim Hund – Originalstudie",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/",
+          "organization": "Ungarische Akademie der Wissenschaften; Semmelweis University; Eötvös Loránd University und Partner",
+          "supports": "Originalarbeit, Introduction und Methods zum Verknüpfen neuer gesprochener Signale mit bekannten Handlungen; Results and Discussion zum Zusammenhang von Schlaf-EEG und späterer Leistung. Im zweiten Versuch keine nachweisbare unmittelbare Verbesserung der Schlafgruppe; keine optimale Schlafdauer abgeleitet."
+        },
+        {
+          "label": "Hall und andere 2021: Working Dog Training for the Twenty-First Century – Fachübersicht",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full",
+          "organization": "Texas Tech University; Boston College; University of Arizona; University of Pennsylvania; Oregon State University und Partner",
+          "supports": "Eigenständig verfasste narrative Fachübersicht, Non-social Cognition und Translation of Research; ordnet Schlaf und Aktivitäten nach dem Lernen als Faktoren späteren Behaltens ein. Referenz 203 ist Kis 2017; diese Einordnung ist keine unabhängige Wiederholung des Experiments."
         }
       ],
       "lessons": [
@@ -1386,6 +1398,19 @@
           ],
           "takeaway": "Veränderter Schlaf im Alter ist ein Anlass zur Abklärung, keine fertige Diagnose.",
           "exercise": "Erstelle eine sachliche Notiz über eine neue nächtliche Veränderung mit Beginn und Begleitbeobachtungen."
+        },
+        {
+          "id": "lernen-behalten",
+          "title": "Lernen und späteres Behalten unterscheiden",
+          "paragraphs": [
+            "Ein Hund kann während einer Übung auf ein neues Signal reagieren. Ob die gelernte Verknüpfung später noch abrufbar ist, ist eine andere Frage. Forschung zur Gedächtniskonsolidierung untersucht, wie erworbene Informationen nach dem Lernen erhalten und weiterverarbeitet werden. Schlaf ist dabei ein untersuchter Einflussfaktor.",
+            "Kis und Kollegen verknüpften unbekannte gesprochene Signale mit bereits bekannten Handlungen und zeichneten anschließend Schlaf nichtinvasiv auf. Veränderungen der elektrischen Hirnaktivität standen mit späterer Leistung in Beziehung. In einem weiteren Versuch zeigte die Schlafgruppe unmittelbar nach der Pause keine nachweisbare Verbesserung gegenüber ihrem Ausgangstest. Die Ergebnisse erlauben deshalb keine Regel, dass jede Schlafpause die Leistung eines Hundes steigert.",
+            "Die unabhängige Fachübersicht von Hall und Kollegen ordnet solche Befunde für Arbeitshunde ein. Sie ist eine fachliche Interpretation, keine unabhängige Wiederholung des Experiments. Eine optimale Schlafdauer oder ein fester Trainingsplan für jeden Jagdhund folgt daraus nicht. Im Lernprotokoll werden erste Übungsleistung, späterer Abruf und die dazwischenliegenden Aktivitäten getrennt notiert."
+          ],
+          "takeaway": "Erste Übungsleistung und späteren Abruf unterscheiden; Schlafbefunde sind keine Leistungs- oder Zeitgarantie.",
+          "exercise": "Ordne auf Papier drei Protokollspalten zu: Leistung beim Lernen, spätere Überprüfung, Aktivitäten dazwischen. Keine Schlafverkürzung oder eigenen Versuche am Hund planen.",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true
         }
       ],
       "questions": [
@@ -1596,6 +1621,19 @@
           ],
           "answer": 2,
           "explain": "Eine Verbesserung der Umgebung ersetzt bei neuer Auffälligkeit keine Untersuchung."
+        },
+        {
+          "id": "lernen-behalten-q1",
+          "lessonId": "lernen-behalten",
+          "q": "Was wird beim späteren Behalten eines neu gelernten Signals geprüft?",
+          "options": [
+            "Ob die gelernte Verknüpfung nach einem zeitlichen Abstand noch abrufbar ist.",
+            "Nur ob der Hund während der ersten Übung unmittelbar reagiert hat.",
+            "Ob eine sichtbare Liegephase bereits ein bestimmtes Schlafstadium beweist.",
+            "Wie lange jeder Hund schlafen muss, um anschließend fehlerfrei zu arbeiten."
+          ],
+          "answer": 0,
+          "explain": "Reaktion im Training und späteres Behalten sind verschiedene Messzeitpunkte. Die Originalstudie verbindet Nachtests und Schlafmessungen, ohne eine optimale Schlafdauer oder individuelle Verbesserung zu garantieren. Die unabhängige Übersicht ordnet diese Befunde ein; sie wiederholt das Experiment nicht."
         }
       ]
     },
@@ -2316,6 +2354,34 @@
             "https://www.aaha.org/resources/2021-aaha-nutrition-and-weight-management-guidelines/feeding-plans-for-healthy-appropriate-weight-cats-and-dogs/",
             "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/puppies-dogs/your-dogs-diet"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026",
+      "lessonId": "lernen-behalten",
+      "claims": [
+        {
+          "claim": "Leistung während der Aneignung und späterer Abruf werden unterschieden; die Schlaf-/Lernforschung untersucht Gedächtniskonsolidierung beim Hund.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full"
+          ],
+          "sourceRoles": {
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/": "Originaldesign: neue gesprochene Signale für bekannte Handlungen, Ausgangstest, Schlafmessung und spätere Wiederholungstests.",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full": "Unabhängig verfasste Einordnung des Behaltens gelernter Aufgaben und möglicher Einflüsse nach dem Lernen; Non-social Cognition, Referenz 203."
+          }
+        },
+        {
+          "claim": "In der Originalstudie hingen Schlaf-EEG-Merkmale und spätere Leistung zusammen; im zweiten Versuch war der unmittelbare Wiederholungstest der Schlafgruppe nicht nachweisbar besser als ihr Ausgangstest. Eine feste Schlafdauer oder allgemeine Erfolgsgarantie wird nicht abgeleitet.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full"
+          ],
+          "sourceRoles": {
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/": "Results and Discussion: Zusammenhang von EEG und Leistungsänderung; zweiter Versuch ohne signifikante unmittelbare Verbesserung der Schlafgruppe. Methoden und spätere Messzeitpunkte begrenzen die Übertragung; optimale Schlafmenge bleibt offene Frage.",
+            "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full": "Interpretation für Arbeitshundeforschung, keine zweite Datenerhebung oder unabhängige Replikation des konkreten Nullbefunds. Zukunftsvorschläge werden nicht als bewiesener individueller Trainingsplan übernommen."
+          }
         }
       ]
     }

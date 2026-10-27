@@ -625,6 +625,46 @@
           "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/digestive-system",
           "organization": "PoultryHub Australia, University of New England",
           "supports": "Huhn als Referenztier für Drüsen-/Muskelmagen, Kropf, Duodenum und Kloake."
+        },
+        {
+          "label": "Gillespie und andere 2011: Histology of the lactating pigeon crop",
+          "url": "https://link.springer.com/article/10.1186/1471-2164-12-452",
+          "organization": "CSIRO Livestock Industries; Deakin University; BMC Genomics",
+          "supports": "Originalarbeit an gehaltenen King-Haustauben (Columba livia), Background und histologische Results: Kropfmilch, fetthaltige Zellen der Kropfauskleidung und Abgrenzung von Säugetierlaktation. Keine Untersuchung frei lebender Ringeltauben; keine Messwerte oder Genmechanismen übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "kropfmilch"
+          ]
+        },
+        {
+          "label": "FUNAAB: Avian Digestive System, Abschnitt Esophagus, PDF-Seite 2",
+          "url": "https://funaab.edu.ng/funaab-ocw/LectureByWeek/LectureByWeek/VBA%20301/Lecture%201.pdf",
+          "organization": "Federal University of Agriculture, Abeokuta, Open Courseware",
+          "supports": "Eigenes institutionelles Anatomielehrmaterial: männliche und weibliche Tauben bilden Kropfmilch aus abgeschilferten fetthaltigen Zellen; Hochwürgen und Verfüttern an Nestlinge. Undatiertes Lehrblatt, keine unabhängige Wiederholung der Histologiestudie.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "kropfmilch"
+          ]
+        },
+        {
+          "label": "Landesforsten Rheinland-Pfalz: Ringeltaube und Kropfmilch",
+          "url": "https://www.wald.rlp.de/wald/voegel/ringeltaube",
+          "organization": "Landesforsten Rheinland-Pfalz",
+          "supports": "Artenbezogene fachliche Einordnung: Ringeltauben füttern ihre Jungen auch mit im Kropf gebildeter Kropfmilch; keine echte Säugetiermilch. Kein histologischer Originalversuch an Ringeltauben.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "kropfmilch"
+          ]
+        },
+        {
+          "label": "DJV: Ringeltaube, Fortpflanzung",
+          "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/ringeltaube-columba-palumbus",
+          "organization": "Deutscher Jagdverband",
+          "supports": "Unabhängig verfasste Artendarstellung: beide Eltern kümmern sich um die Brut; Jungenfütterung mit Kropfmilch. Keine Einzelwerte, Zeitspannen oder Jagdzeiten übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "kropfmilch"
+          ]
         }
       ],
       "lessons": [
@@ -667,6 +707,19 @@
           ],
           "takeaway": "Drüsenmagen und Muskelmagen erfüllen unterschiedliche, aufeinanderfolgende Aufgaben.",
           "exercise": "Ordne Speiseröhre/Kropf, Drüsenmagen, Muskelmagen, Dünndarm und Kloake."
+        },
+        {
+          "id": "kropfmilch",
+          "title": "Kropfmilch: Beide Taubeneltern bilden Jungennahrung",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei Haustauben (Columba livia) hat der Kropf während der Jungenaufzucht eine besondere Funktion: Männchen und Weibchen können Kropfmilch bilden und an ihre Jungen weitergeben. Das Material ist nicht einfach ein Vorrat verschluckter Körner. Es enthält abgeschilferte, fetthaltige Zellen aus der Kropfauskleidung. Diese besondere Nahrung wird aus dem Kropf hochgewürgt und an die Jungtauben verfüttert.",
+            "Die hier herangezogene histologische Originalarbeit untersuchte gehaltene King-Haustauben, also Columba livia. Sie beschreibt einen anderen Bildungsweg als die Milchbildung in den Milchdrüsen von Säugetieren. Der Name „Milch“ bezeichnet eine vergleichbare Ernährungsfunktion, aber keine identische Organstruktur. Kropfspeicher, Kropfauskleidung und Milchdrüse sind deshalb begrifflich auseinanderzuhalten.",
+            "Auch für die heimische Ringeltaube ist die Fütterung der Jungen mit Kropfmilch fachlich beschrieben. Das verknüpft das anatomische Beispiel mit einer Wildart; es bedeutet nicht, dass die Haustaubenstudie Ringeltauben untersucht hätte. Aus diesem Beispiel folgen weder dieselbe Kropffunktion bei sämtlichen Vogelarten noch eine Anleitung zur Handaufzucht."
+          ],
+          "takeaway": "Kropfmilch enthält Zellen der Kropfauskleidung; bei Haustauben können beide Eltern diese Jungennahrung bilden.",
+          "exercise": "Trenne in einer eigenen Erklärung Bildungsort, beteiligte Elternvögel und Weitergabe an die Jungen. Erkläre, warum der Name Milch keine Säugetier-Milchdrüse voraussetzt."
         }
       ],
       "questions": [
@@ -1085,6 +1138,32 @@
           ],
           "answer": 1,
           "explain": "Der Grundbauplan enthält Variationen; das Huhn ist kein identisches Modell für jeden Wildvogel."
+        },
+        {
+          "id": "kropfmilch-zellherkunft",
+          "lessonId": "kropfmilch",
+          "q": "Welche Zellen tragen zur Bildung der Kropfmilch bei Haustauben (Columba livia) bei?",
+          "options": [
+            "Unverändert verschluckte Pflanzenzellen allein.",
+            "Milchdrüsenzellen an der Brust.",
+            "Abgeschilferte, fetthaltige Zellen der Kropfauskleidung.",
+            "Ausschließlich Muskelzellen des Muskelmagens."
+          ],
+          "answer": 2,
+          "explain": "Kropfmilch enthält abgeschilferte, fetthaltige Zellen aus der Kropfauskleidung. Die histologische Originalarbeit untersuchte gehaltene King-Haustauben; sie ist kein Versuch an frei lebenden Ringeltauben."
+        },
+        {
+          "id": "kropfmilch-beide-eltern",
+          "lessonId": "kropfmilch",
+          "q": "Welche Elternvögel können bei Haustauben (Columba livia) Kropfmilch bilden?",
+          "options": [
+            "Männchen und Weibchen.",
+            "Nur das Weibchen.",
+            "Nur das Männchen.",
+            "Keines der beiden Elterntiere."
+          ],
+          "answer": 0,
+          "explain": "Bei Haustauben können Männchen und Weibchen Kropfmilch für ihre Jungen bilden. Der Begriff Milch bezeichnet hier Jungennahrung aus dem Kropf und setzt keine Säugetier-Milchdrüse voraus."
         }
       ]
     },
@@ -1162,7 +1241,9 @@
           "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1463-6395.1980.tb01289.x",
           "organization": "Uffe Midtgård, Institute of Comparative Anatomy, University of Copenhagen / Acta Zoologica",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gegenstrom"],
+          "lessonIds": [
+            "gegenstrom"
+          ],
           "supports": "Tatsächlich gelesener Originalabstract der Arbeit von März 1980: anatomischer Befund eines arterio-venösen Wärmeaustauschsystems im Hinterbein der Stockente. Keine Volltextlektüre behauptet; keine Zahlen, Shuntsteuerung, Innervationsdetails oder Versuchsbehandlungen übernommen."
         },
         {
@@ -1170,7 +1251,9 @@
           "url": "https://www.allaboutbirds.org/news/how-do-gulls-deal-with-cold-feet/",
           "organization": "Cornell Lab of Ornithology / Living Bird",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gegenstrom"],
+          "lessonIds": [
+            "gegenstrom"
+          ],
           "supports": "Fachtext vom 9. Januar 2017 nach dem Handbook of Bird Biology: gegenläufige benachbarte Blutwege und Wärmeübertragung vom wärmeren arteriellen zum kühleren venösen Blut bei Enten und Möwen. Eigenständige Erklärung, keine neue experimentelle Wiederholung. Keine Temperaturzahlen, Gewebeanteile oder allgemeine Frostschutzgarantie übernommen."
         },
         {
@@ -1178,7 +1261,9 @@
           "url": "https://web.stanford.edu/group/stanfordbirds/text/essays/Temperature_Regulation.html",
           "organization": "Paul R. Ehrlich, David S. Dobkin und Darryl Wheye / Stanford Birds",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gegenstrom"],
+          "lessonIds": [
+            "gegenstrom"
+          ],
           "supports": "Unabhängig verfasste zoologische Facherklärung von 1988, Absätze zum Kontakt arterieller und venöser Gefäße sowie zur Wärmerichtung und Rückgewinnung. Keine neue Originalmessung oder Replikation; keine Zahlen, Verhaltensempfehlungen oder Verallgemeinerung auf sämtliche Vogelarten übernommen."
         }
       ],
@@ -3862,6 +3947,45 @@
             "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0355554",
             "https://pmc.ncbi.nlm.nih.gov/articles/PMC11914073/"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "kropfmilch",
+      "claims": [
+        {
+          "claim": "Bei Haustauben (Columba livia) können beide Eltern Kropfmilch bilden. Sie enthält abgeschilferte fetthaltige Zellen der Kropfauskleidung und wird hochgewürgt an die Jungen verfüttert; sie ist nicht bloß gespeicherte Körnernahrung.",
+          "sourceUrls": [
+            "https://link.springer.com/article/10.1186/1471-2164-12-452",
+            "https://funaab.edu.ng/funaab-ocw/LectureByWeek/LectureByWeek/VBA%20301/Lecture%201.pdf"
+          ],
+          "sourceRoles": {
+            "https://link.springer.com/article/10.1186/1471-2164-12-452": "Background 83–87 und histologische Results 101–115 tatsächlich gelesen; Methods 162–166 benennen gehaltene King-Haustauben. Zellen im Originalmaterial histologisch untersucht; die Angabe beider Geschlechter steht im Background, nicht als eigener Geschlechtervergleich dieser Studie.",
+            "https://funaab.edu.ng/funaab-ocw/LectureByWeek/LectureByWeek/VBA%20301/Lecture%201.pdf": "PDF-Seite 2, Esophagus: ausdrücklich männliche und weibliche Tauben, desquamated lipid-laden cells und regurgitated/fed to nestlings. Unabhängige institutionelle Erklärung, keine zweite experimentelle Replikation."
+          }
+        },
+        {
+          "claim": "Kropfmilch erfüllt eine Jungenernährungsfunktion, entsteht aber auf anderem Weg als Säugetiermilch. Die benannte histologische Arbeit untersuchte gehaltene King-Haustauben, nicht Ringeltauben; keine identische Kropffunktion aller Vogelarten wird behauptet.",
+          "sourceUrls": [
+            "https://link.springer.com/article/10.1186/1471-2164-12-452",
+            "https://www.wald.rlp.de/wald/voegel/ringeltaube"
+          ],
+          "sourceRoles": {
+            "https://link.springer.com/article/10.1186/1471-2164-12-452": "Conclusions/Background und Methods unterscheiden Bildungsmechanismus und benannte Referenztiere; keine Aussage über sämtliche Wildvögel.",
+            "https://www.wald.rlp.de/wald/voegel/ringeltaube": "Abschnitt Fortpflanzung erklärt Kropfmilch ausdrücklich als keine echte Milch, sondern im Kropf speziell zur Jungenaufzucht gebildetes Material. Die Artendarstellung ist keine eigene Histologie."
+          }
+        },
+        {
+          "claim": "Die Fütterung der Jungen mit Kropfmilch ist auch für die Ringeltaube fachlich beschrieben. Dieser Wildartenbezug wird getrennt von der histologischen Haustaubenstudie vermittelt; keine Handaufzuchtanleitung oder feste Fütterungsdauer.",
+          "sourceUrls": [
+            "https://www.wald.rlp.de/wald/voegel/ringeltaube",
+            "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/ringeltaube-columba-palumbus"
+          ],
+          "sourceRoles": {
+            "https://www.wald.rlp.de/wald/voegel/ringeltaube": "Fortpflanzungsabschnitt: junge Ringeltauben erhalten Nahrung der Eltern und Kropfmilch. Keine dortigen Alters-/Zeitangaben übernommen.",
+            "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/ringeltaube-columba-palumbus": "Fortpflanzung: beide Eltern kümmern sich um die Brut und füttern Kropfmilch. Die Darstellungen sind zwei unabhängig redigierte fachliche Einordnungen, keine zwei neuen Experimente."
+          }
         }
       ]
     }

@@ -10,10 +10,10 @@ export async function GET(req) {
   try {
     await requirePaidAccount(req);
     const params = new URL(req.url).searchParams;
-    const slug = params.get("art"), moduleId = params.get("kurs");
+    const slug = params.get("art"), moduleId = params.get("kurs"), lessonId = params.has("lektion") ? params.get("lektion") : undefined;
     if (params.getAll("art").length !== 1 || params.getAll("kurs").length !== 1 || !slug || !moduleId ||
-        slug.length > 80 || moduleId.length > 140) return json({ message: "Bitte wähle eine Wildart und ein zugehöriges Thema." }, 400);
-    const content = getWildlifeStudyContent(slug, moduleId);
+        slug.length > 80 || moduleId.length > 140 || lessonId !== undefined && (params.getAll("lektion").length !== 1 || !lessonId.trim() || lessonId.length > 140)) return json({ message: "Bitte wähle eine Wildart und ein zugehöriges Thema." }, 400);
+    const content = getWildlifeStudyContent(slug, moduleId, lessonId);
     return content ? json(content) : json({ message: "Dieses Thema gehört nicht zu dieser Wildart." }, 404);
   } catch (error) {
     const status = [401, 403].includes(error?.status) ? error.status : 503;

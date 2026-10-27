@@ -1,6 +1,7 @@
 // These checks protect integration and documented scope, not scientific correctness.
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const raw = require('../data/learning-red-deer-voice-2026-10-24.json');
 const load = createLoader();
@@ -43,7 +44,7 @@ test('Rotwild alone gains an exact fourth target while its three existing topics
   assert.equal(targets[3].description, added[0].description);
   assert.equal(targets[3].flashcardCount, 2);
   for (const item of species.filter(item => item.slug !== 'rotwild')) {
-    assert.ok(guide(item.slug).length <= (item.slug === 'rehwild' ? 4 : 3), item.slug);
+    assert.ok(stripOctober27GuideTargets(item.slug, guide(item.slug)).length <= (item.slug === 'rehwild' ? 4 : 3), item.slug);
     assert.ok(!guide(item.slug).some(target => target.moduleId === courseId), item.slug);
     assert.equal(getWildlifeStudyContent(item.slug, courseId), null, item.slug);
   }

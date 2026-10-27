@@ -12,7 +12,7 @@ const species = load('lib/european-wildlife-discovery.js').europeanWildlifeBySlu
 test('Every species learning branch delivers the exact complete authored lessons without a second text copy or unrelated course', () => {
   let checked = 0;
   for (const slug of Object.keys(species)) for (const target of getWildlifeLearningGuide(slug)) {
-    const value = getWildlifeStudyContent(slug, target.moduleId), module = getLearningModule(target.moduleId);
+    const value = getWildlifeStudyContent(slug, target.moduleId, target.topicId ? target.lessonId : undefined), module = getLearningModule(target.moduleId);
     assert.ok(value, `${slug}/${target.moduleId}`);
     const expected = module.lessons.filter(lesson => !target.lessonId || lesson.id === target.lessonId);
     assert.ok(expected.length, `${slug}: lesson IDs must match the real curriculum`);

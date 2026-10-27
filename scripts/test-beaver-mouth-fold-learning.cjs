@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
+const { stripOctober27Additions, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const raw = require('../data/learning-beaver-incisors-2026-10-24.json');
 const load = createLoader();
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
@@ -63,12 +64,12 @@ test('All other courses and all historical 1710 card objects including starter o
   assert.equal(birdCourse.lessons.length, 5);
   assert.equal(birdCourse.questions.length, 33);
   assert.equal(birdCourse.sources.length, 10);
-  const historicalCourses = learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions).map(item => item.id === woodCourseId
+  const historicalCourses = learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions).map(stripOctober27Additions).map(item => item.id === woodCourseId
     ? { ...item, sources: item.sources.slice(0, 5), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) }
     : item.id === birdCourseId ? { ...item, sources: item.sources.slice(0, 7), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) } : item);
   assert.equal(hash(historicalCourses), '19d22b94329be46dfa9c6a998932008a1234ec19e95afc7c3e3151c4aea805fa');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  const historical = cards.filter(card => !isOctober26Card(card) && !(card.moduleId === courseId && card.lessonId === lessonId) && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung').sort((a, b) => a.id.localeCompare(b.id));
+  const historical = cards.filter(card => !isOctober26Card(card) && !isOctober27Card(card) && !(card.moduleId === courseId && card.lessonId === lessonId) && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung').sort((a, b) => a.id.localeCompare(b.id));
   assert.equal(historical.length, 1710);
   assert.equal(hash(historical), '9e6f8fde716b30bdb13238c0751522d35b88dcadc2b0d98cc578ce0affaf7a9f');
 });
@@ -77,7 +78,7 @@ test('Biber keeps its same three targets, anchors and full objects except the re
   const species = load('lib/european-wildlife-discovery.js').europeanWildlife;
   const others = species.filter(item => item.slug !== 'biber');
   assert.equal(others.length, 113);
-  const historicalGuides = others.map(item => [item.slug, guide(item.slug).map(target => {
+  const historicalGuides = others.map(item => [item.slug, stripOctober27GuideTargets(item.slug, guide(item.slug)).map(target => {
     if (target.moduleId !== 'wissen-ausbau-biologie-vogelkoerper-2026') return target;
     assert.equal(target.flashcardCount, 32);
     return { ...target, flashcardCount: 31 };

@@ -1,0 +1,22 @@
+# Hund: Lernen und späteres Behalten
+
+Inhaltlich geprüft am 27. Oktober 2026. Enger Anhang `lernen-behalten` im bestehenden Kurs `wissen-ausbau-hund-ruhe-schlaf-2026`; keine Neuprüfung des gesamten Kurses. Eine eigene Verständnisfrage und eine daraus abgeleitete Karte, kein zweiter Kurs.
+
+## Tatsächlich gelesene Quellen und genaue Rollen
+
+- **Kis et al. 2017, The interrelated effect of sleep and learning in dogs (Canis familiaris); Scientific Reports 7, 41873.** [Volltext bei PubMed Central](https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/), DOI 10.1038/srep41873. Originalarbeit von Forschenden der Ungarischen Akademie der Wissenschaften, Semmelweis University, Eötvös Loránd University und Partnern. Introduction, Results and Discussion sowie Methods tatsächlich gelesen. Die neuen gesprochenen Signale waren mit schon bekannten Handlungen verknüpft; Ausgangs- und Nachtests sind getrennte Messzeitpunkte. Die Ergebnisse verbinden Schlaf-EEG und Leistungsänderung. Im zweiten Versuch wurde unmittelbar nach dem Schlaf keine signifikante Verbesserung gegenüber dem Ausgangstest nachgewiesen; die optimale Schlafmenge bleibt offen. Keine Zahlen, Schlafstadienwerte oder Versuchsunterbringung übernommen.
+- **Hall et al. 2021, Working Dog Training for the Twenty-First Century; Frontiers in Veterinary Science 8, 646022.** [Volltext](https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full), DOI 10.3389/fvets.2021.646022. Eigenständig verfasste narrative Fachübersicht von Texas Tech University, Boston College, University of Arizona, University of Pennsylvania, Oregon State University und Partnern. Abschnitte **Non-social Cognition** und **Translation of Research**, einschließlich Referenz 203 (Kis 2017), tatsächlich gelesen. Sie ordnen Aktivitäten nach dem Lernen und späteres Behalten für Arbeitshunde ein. Diese unabhängige Interpretation liefert keine zweite Datenerhebung und keine unabhängige Replikation des konkreten Nullbefunds; künftige Trainingsvorschläge werden nicht als bewiesene Anleitung übernommen.
+
+## Aussagen, Grenzen und Bestand
+
+Die Lektion trennt die erste Reaktion auf ein Signal vom späteren Abruf. Ein Zusammenhang von Schlafmessung und Leistung ist keine Garantie für jeden Hund, keine optimale Zeitdauer und keine individuelle Trainingsvorschrift. Die Originalstudie und die unabhängige Einordnung sind unmittelbar im Lerntext als verschiedene Evidenzrollen erkennbar. Die Papierübung ordnet Protokollspalten; sie verlangt keine Schlafveränderung oder Versuche am Hund.
+
+Der vorhandene Schlafkurs behandelt Ruheplatz, Messung gegenüber bloßem Liegen, Tagesablauf und Veränderungen im Alter. Hundesinne, Körpersprache, Signalaufbau und die vorhandenen Nasenarbeitslektionen enthalten keine gleichartige Gedächtniskonsolidierungslektion. Passende bestehende Texte/Fragen wurden auf widersprechende Behauptungen betrachtet; kein bestätigter Altfehler festgestellt.
+
+Die vier alten Lektionen, 16 Fragen, fünf Quellenobjekte und das Kursdatum 16. Oktober 2026 bleiben unverändert. Nur die neue Lektion erhält den tatsächlich geprüften 27. Oktober. Claim-Evidenz ist auf sie begrenzt; die Quellen bleiben in den bestehenden geschlossenen Schlussbereichen von Kurs, Offline-Reader und Druck. Keine Fotos, Behandlungsratschläge oder behauptete vollständige fachliche Zertifizierung.
+
+## Technischer Nachweis
+
+`scripts/test-dog-learning-retention.cjs` vergleicht den Rohdatensatz und vorbereitete Altobjekte positiv mit Commit `6860695`; die bereits fremd geänderte Afternoon-Datei wird nur lesend und mit festem SHA256 als identische Baseline-Eingabe benutzt. Parallel ergänzte Kropfmilch-Inhalte werden ausdrücklich isoliert. Suche, eigene Frage/Karte, Quellenzuordnung, Online-/Offline-Anzeige, gespeichertes Offlinepaket und Lektionsdatum werden mit den tatsächlichen Modulen geprüft. Ein bestandener Test ersetzt keine fachliche Quellenprüfung.
+
+Ergebnis: neun eigene Regressionen bestanden, gemeinsam mit den vier vorhandenen `test-final-learning-sources.cjs`-Regressionen 13 von 13 ohne übersprungene Fälle. Eine unabhängige fachliche Gegenprüfung las die Originalpassagen einschließlich des unmittelbaren Nullbefunds im zweiten Versuch und die konkrete Hall-Einordnung samt Referenz 203 erneut. Sie bestätigte den engen Aussageumfang, die sichtbaren Grenzen und die fehlende Redundanz zu den vier alten Lektionen. Die technisch geprüfte Quellenanzeige ist kein Nachweis einer Geräte-Sichtprüfung.

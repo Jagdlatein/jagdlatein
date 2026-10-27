@@ -97,8 +97,8 @@ export default function WildlifePortraitLayout({ slug, title, subtitle, children
       ...(depth.learningQuestions?.length ? [{ id: "wildlife-depth-questions", title: "Kurze Wissensfragen", render: () => <WildlifeDepth slug={slug} name={name} section="questions" /> }] : []),
     ] : [] },
     { id: "portrait-lerntexte", title: "Zusammenhänge vertiefen", topics: getWildlifeLearningGuide(slug).map(target => ({
-      id: `art-lerntext-${target.moduleId}`, title: target.title,
-      render: () => <WildlifeStudyContent key={`${slug}:${target.moduleId}`} slug={slug} target={target} />,
+      id: target.topicId || `art-lerntext-${target.moduleId}`, title: target.title,
+      render: () => <WildlifeStudyContent key={`${slug}:${target.topicId || target.moduleId}`} slug={slug} target={target} />,
     })) },
     { id: "portrait-stimmen-lernen", title: "Stimme und Weiterlernen", topics: [
       { id: "portrait-sounds", title: "Die Stimme dieser Art", render: () => <section className={styles.panel} aria-labelledby="portrait-sounds"><h2 id="portrait-sounds">Die Stimme dieser Art</h2>{sounds.length ? sounds.map(sound => <article key={sound.id}><h3>{sound.name}: {sound.call}</h3><SoundPlayer sound={sound} label={`Originalaufnahme ${sound.name}`} /><p>{sound.explanation}</p><p className={styles.muted}>{sound.confusion}</p></article>) : <p>Für diese Art ist noch keine geprüfte Originalaufnahme in der Stimmenbibliothek verfügbar. Ihre Bestimmung erfolgt zusätzlich über sichtbare Merkmale, Verhalten und Lebensraum.</p>}</section> },

@@ -10,7 +10,7 @@ export default function WildlifeLearningGuide({ slug, name }) {
     <h2 id="art-weiterlernen-heading">{name}: weiterlernen</h2>
     <nav className={styles.studyLinks} aria-label={`${name}: direkt üben und vergleichen`}><Link href={`/lernen/wildjahr?art=${encodeURIComponent(slug)}`} prefetch={false} scroll>Wildjahr</Link>{getWildlifeStudyLinks(slug).map(link => <Link key={link.kind} href={link.kind === "model" ? "#kiefer-3d" : link.href} title={link.context} aria-label={`${name}: ${link.title} – ${link.context}`}>{link.title}</Link>)}</nav>
     <ul className={styles.list}>{links.map(link => <li key={link.href}>
-      <a href={`#art-lerntext-${link.moduleId}`} className={styles.link}>
+      <a href={`#${link.topicId || `art-lerntext-${link.moduleId}`}`} className={styles.link}>
         <span className={styles.label}>{link.label}</span>
         <strong>{link.title}<AppIcon name="arrow-right" size={19} /></strong>
         <span className={styles.description}>{link.description}</span>

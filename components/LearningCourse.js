@@ -18,18 +18,20 @@ import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
+import CourseWildlifeLinks from "./CourseWildlifeLinks";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
-function makeRun(questions, mode = "full", answerSeed = 0) {
-  return { questions, mode, answerSeed, index: 0, answers: {}, score: 0, started: false, complete: false, showResult: false };
+function makeRun(questions, mode = "full", answerSeed = 0, lessonPractice = null) {
+  return { questions, mode, answerSeed, index: 0, answers: {}, score: 0, started: false, complete: false, showResult: false,
+    ...(lessonPractice ? { lessonPractice } : {}) };
 }
 
-export default function LearningCourse({ module, flashcards }) {
-  return <LearningContent key={module.id} module={module} flashcards={flashcards} />;
+export default function LearningCourse({ module, flashcards, wildlifeLinks = [] }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} />;
 }
 
-function LearningContent({ module, flashcards }) {
+function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
@@ -40,6 +42,7 @@ function LearningContent({ module, flashcards }) {
   const [lessonIndex, setLessonIndex] = useState(0);
   const [quizOpen, setQuizOpen] = useState(false);
   const [sourcesOpen, setSourcesOpen] = useState(false);
+  const [panelRevision, setPanelRevision] = useState(0);
   const panelTarget = useRef(null);
   const lessonHeading = useRef(null);
   const revealLesson = useRef(null);
@@ -74,7 +77,7 @@ function LearningContent({ module, flashcards }) {
     panelTarget.current = null;
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: "start", behavior: "auto" });
-  }, [quizOpen, sourcesOpen, router.asPath]);
+  }, [quizOpen, sourcesOpen, router.asPath, panelRevision]);
   useEffect(() => {
     if (revealLesson.current !== lessonIndex || !lessonHeading.current) return;
     revealLesson.current = null;
@@ -126,26 +129,45 @@ function LearningContent({ module, flashcards }) {
   });
   const courseProgress = useCourseProgress(module.id, fullProgress);
   const lesson = module.lessons[lessonIndex];
+  const currentLesson = useRef(lesson);
+  currentLesson.current = lesson;
+  const lessonQuestions = module.questions.filter(item => item.lessonId === lesson.id);
   const question = run.questions[run.index];
   const selected = question ? run.answers[question.id] : undefined;
   const answered = Object.keys(run.answers).length;
   const wrongQuestions = run.questions.filter((item) => run.answers[item.id] !== undefined && !item.correct.includes(run.answers[item.id]));
-  const practice = run.mode === "practice";
+  const practice = run.mode !== "full";
+  const lessonPractice = run.lessonPractice;
 
   function updateRun(next) {
     currentRun.current = next;
     setRun(next);
   }
 
-  function startRun(questions, mode) {
-    if (currentRun.current !== run) return;
+  function startRun(questions, mode, lessonContext = null) {
+    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current) return false;
     cancelSelectionFocus();
-    updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed)), started: true });
+    updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed), lessonContext), started: true });
+    return true;
+  }
+
+  function practiceCurrentLesson() {
+    if (typeof window === "undefined" || !lessonMounted.current || router.isReady === false
+      || currentLessonRoute.current !== lessonRoute || currentLesson.current !== lesson || !lessonQuestions.length) return;
+    // A just-committed lesson address can precede its reading effect. Do not
+    // start the previous lesson's pool in that intermediate render.
+    if (window.location.hash.startsWith("#lesson-") && lessonIndexFromHash(module.lessons, window.location.hash) !== lessonIndex) return;
+    const lessonContext = { id: lesson.id, title: lesson.title, questions: lessonQuestions };
+    if (!startRun(lessonQuestions, "lesson", lessonContext)) return;
+    closePageMenu();
+    panelTarget.current = "quiz-heading";
+    setSourcesOpen(false); setQuizOpen(true);
+    setPanelRevision(value => value + 1);
   }
 
   function answerQuestion(answerId) {
     // A stale button cannot answer twice or answer the next question before it renders.
-    if (currentRun.current !== run || !run.started || run.complete || selected !== undefined) return;
+    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || !run.started || run.complete || selected !== undefined) return;
     if (!question.answers.some((answer) => answer.id === answerId)) return;
     const answers = { ...run.answers, [question.id]: answerId };
     const score = run.score + (question.correct.includes(answerId) ? 1 : 0);
@@ -165,7 +187,7 @@ function LearningContent({ module, flashcards }) {
   }
 
   function nextQuestion() {
-    if (currentRun.current !== run || selected === undefined) return;
+    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || selected === undefined) return;
     cancelSelectionFocus();
     updateRun(run.complete ? { ...run, showResult: true } : { ...run, index: run.index + 1 });
   }
@@ -190,7 +212,9 @@ function LearningContent({ module, flashcards }) {
               </div>
             </nav>
             {lessonError && <p role="alert">{lessonError}</p>}
+            {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
+            <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
           </PageMenu>
           <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">
@@ -237,18 +261,19 @@ function LearningContent({ module, flashcards }) {
               </>
             ) : run.showResult ? (
               <div className={styles.result}>
-                <h3>{practice ? "Übungsrunde beendet" : "Lerneinheit abgeschlossen"}</h3>
+                <h3>{lessonPractice ? "Lektionsrunde abgeschlossen" : practice ? "Übungsrunde beendet" : "Lerneinheit abgeschlossen"}</h3>
                 <p className={styles.resultScore}>{run.score} von {run.questions.length} richtig <span>({Math.round(run.score / run.questions.length * 100)} %)</span></p>
                 <p>{practice ? "Diese Übungsrunde verändert deinen gespeicherten Kursabschluss nicht." : "Dein Abschluss und dein bestes Ergebnis erscheinen in „Meine Kurse“. Wenn das Speichern fehlschlägt, kannst du es unten erneut versuchen."}</p>
                 <div className={styles.actions}>
-                  {wrongQuestions.length > 0 && <button type="button" className={styles.button} onClick={() => startRun(wrongQuestions, "practice")}>Nur Fehler üben ({wrongQuestions.length})</button>}
-                  <button type="button" className={styles.secondaryButton} onClick={() => startRun(module.questions, "full")}>Alle Fragen wiederholen</button>
+                  {wrongQuestions.length > 0 && <button type="button" className={styles.button} onClick={() => startRun(wrongQuestions, "practice", lessonPractice)}>Nur Fehler üben ({wrongQuestions.length})</button>}
+                  <button type="button" className={styles.secondaryButton} onClick={() => lessonPractice ? startRun(lessonPractice.questions, "lesson", lessonPractice) : startRun(module.questions, "full")}>{lessonPractice ? "Lektion wiederholen" : "Alle Fragen wiederholen"}</button>
                   <Link href="/meine-kurse" className={styles.secondaryButton}>Meine Kurse ansehen</Link>
                 </div>
               </div>
             ) : (
               <>
-                {practice && <p className={styles.trainingNotice}><strong>Fehlertraining:</strong> Du übst nur die zuvor falsch beantworteten Fragen. Dein gespeicherter Kursabschluss bleibt erhalten.</p>}
+                {run.mode === "lesson" ? <p className={styles.trainingNotice}><strong>Lektionsübung: {lessonPractice.title}</strong> Du übst nur die Fragen dieser Lektion. Dein gespeicherter Kursabschluss bleibt erhalten.</p>
+                  : practice && <p className={styles.trainingNotice}><strong>Fehlertraining{lessonPractice ? `: ${lessonPractice.title}` : ""}:</strong> Du übst nur die zuvor falsch beantworteten Fragen. Dein gespeicherter Kursabschluss bleibt erhalten.</p>}
                 <p className={styles.eyebrow}>Frage {run.index + 1} von {run.questions.length} · {answered} beantwortet</p>
                 <progress className={styles.progress} value={answered} max={run.questions.length} aria-label={`${answered} von ${run.questions.length} Fragen beantwortet`} />
                 {(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.countryNote}><strong>Geltungsbereich dieser Frage:</strong> {question.countries.map(item => countryNames[item] || item).join(" · ")}</p>}

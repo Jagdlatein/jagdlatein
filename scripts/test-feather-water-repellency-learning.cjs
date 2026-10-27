@@ -6,6 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
+const { stripOctober27Additions, isOctober27Evidence, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const load = createLoader();
 const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
 const courseId = 'wissen-ausbau-federaufbau-funktion-2026';
@@ -27,20 +28,20 @@ const { renderToStaticMarkup } = local('react-dom/server');
 test('The full historical dataset, original course fields and all other courses remain exact', () => {
   const historicalRawModule = { ...original, sources: original.sources.slice(0, 5), lessons: original.lessons.slice(0, 4), questions: original.questions.slice(0, 16) };
   assert.equal(hash(historicalRawModule), '9ff29ff15b57c500668ee9205f26f434a9dc7389fd1ed6f28d2ac2270d4517cb');
-  assert.equal(hash(raw.modules.filter(item => item.id !== courseId)), 'cd1ec92eff8f748f0ce4ad5c788a9ac84537973f3ce1bce1f37b0e054625b1fd');
+  assert.equal(hash(raw.modules.filter(item => item.id !== courseId).map(stripOctober27Additions)), 'cd1ec92eff8f748f0ce4ad5c788a9ac84537973f3ce1bce1f37b0e054625b1fd');
   assert.equal(hash(raw.evidence.filter(item => item.moduleId === courseId && item.lessonId !== lessonId)), 'df4f6c5641e1e5150b6fd400f1ac0f806185cee911a6a3fb98513c29ff10612f');
   const historicalDataset = {
     ...raw,
     scope: raw.scope.replace('25 Lektionen und 98 Fragen', '24 Lektionen und 96 Fragen'),
-    modules: raw.modules.map(item => item.id === courseId ? historicalRawModule : item),
-    evidence: raw.evidence.filter(item => !(item.moduleId === courseId && item.lessonId === lessonId)),
+    modules: raw.modules.map(item => item.id === courseId ? historicalRawModule : stripOctober27Additions(item)),
+    evidence: raw.evidence.filter(item => !(item.moduleId === courseId && item.lessonId === lessonId) && !isOctober27Evidence(item)),
   };
   assert.equal(hash(historicalDataset), '70d2ee28f3f6d01d36d1848baa37c2055965c1603e0027242b35b56724475ff2');
   const historicalCourse = { ...course, sources: course.sources.slice(0, 5), lessons: course.lessons.slice(0, 4), questions: course.questions.slice(0, 16) };
   assert.equal(hash(historicalCourse), 'a772842ece4e285cbcdf50a01eb7f54bf4edc782ea67e592ba287e1c1508354e');
-  // The separately reviewed ammunition addition is removed by the exact
-  // October-26 module/lesson whitelist; no historical field is ignored.
-  assert.equal(hash(learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions)), '96f520fd1e8b3c43c8b0e7c07279ff4b3af376cedf784b01e43c2b4fe95cda50');
+  // Exact reviewed October-26/27 additions are projected out; every historical
+  // field, source object, question and their order retains the original golden.
+  assert.equal(hash(learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions).map(stripOctober27Additions)), '96f520fd1e8b3c43c8b0e7c07279ff4b3af376cedf784b01e43c2b4fe95cda50');
   assert.equal(raw.reviewedOn, '2026-10-16');
   assert.equal(course.reviewedOn, '2026-10-16');
 });
@@ -75,7 +76,7 @@ test('One appended self-contained lesson has a narrow review date and two precis
 });
 
 test('All published cards including starter order stay exact; two own questions become correctly dated cards', () => {
-  const historical = cards.filter(card => !isOctober26Card(card));
+  const historical = cards.filter(card => !isOctober26Card(card) && !isOctober27Card(card));
   assert.equal(historical.length, 1713);
   assert.equal(hash(historical), 'cdc940d3c490db17651079605f4ac647c4ddc7a95d4b79de7ac706ac69c6fa2b');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');

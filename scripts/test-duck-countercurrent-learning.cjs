@@ -4,12 +4,13 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
+const { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const raw = require('../data/learning-expansion-biology-2026-10-16.json');
 const load = createLoader();
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'gegenstrom';
 const cardId = `flash-${courseId}-gegenstrom-waermerichtung`;
-const { learningModules, getLearningModule, learningCounts } = load('lib/learning-curriculum.js');
+const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const course = getLearningModule(courseId);
 const original = raw.modules.find(item => item.id === courseId);
 const lesson = course.lessons.at(-1);
@@ -35,8 +36,8 @@ test('The historical full dataset, four lessons, 32 questions with all options, 
   assert.equal(hash(historical), 'a1a3cfa11b2302fcc0a0bc2391951fb6014f7eecf15ed01936e9672081a51609');
   const historicalDataset = {
     ...raw,
-    modules: raw.modules.map(item => item.id === courseId ? { ...item, sources: item.sources.slice(0, 7), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) } : item),
-    evidence: raw.evidence.filter(item => !(item.moduleId === courseId && item.lessonId === lessonId)),
+    modules: raw.modules.map(item => item.id === courseId ? { ...item, sources: item.sources.slice(0, 7), lessons: item.lessons.slice(0, 4), questions: item.questions.slice(0, 32) } : stripOctober27Additions(item)),
+    evidence: raw.evidence.filter(item => !(item.moduleId === courseId && item.lessonId === lessonId) && !isOctober27Evidence(item)),
   };
   assert.equal(hash(historicalDataset), 'ca506d20b3ffa227a7ecc0e79e0f5e120c5f5f736a08bb0cc1552fe228d394b7');
 });
@@ -71,23 +72,24 @@ test('One 148-word fifth lesson has the correct directions, bounded teaching and
 });
 
 test('All 197 other courses, 1712 old cards in order and 116 starter objects stay exact without new sources on old cards', () => {
-  assert.equal(hash(learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions)), '69600efafa7642aeb4bc5d425f7e1535167047a2a1e021e94d92ad73bbfb866c');
+  assert.equal(hash(learningModules.filter(item => item.id !== courseId).map(stripOctober26Additions).map(stripOctober27Additions)), '69600efafa7642aeb4bc5d425f7e1535167047a2a1e021e94d92ad73bbfb866c');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  const old = cards.filter(card => !isOctober26Card(card) && card.id !== cardId);
+  const old = cards.filter(card => !isOctober26Card(card) && !isOctober27Card(card) && card.id !== cardId);
   assert.equal(old.length, 1712);
   assert.equal(hash(old), '1dd032b32aaf020b73ee52f969d27a920698220b912592a9ae667010a3b40014');
   const oldCourseCards = cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId);
   assert.equal(oldCourseCards.length, 31);
   assert.equal(hash(oldCourseCards), 'a9c91ae59261949272f96d9ae277c8161c81b589fa7a9a67e96f103d3081f281');
   assert.ok(oldCourseCards.every(card => card.reviewedOn === '2026-10-16' && !card.sources.some(source => urls.includes(source.url))));
-  assert.deepEqual(learningCounts, { modules: 198, lessons: 851, questions: 2709 });
-  assert.equal(cards.length, 1717);
+  const beforeOctober27 = learningModules.map(stripOctober27Additions);
+  assert.deepEqual({ modules: beforeOctober27.length, lessons: beforeOctober27.reduce((sum, item) => sum + item.lessons.length, 0), questions: beforeOctober27.reduce((sum, item) => sum + item.questions.length, 0) }, { modules: 198, lessons: 851, questions: 2709 });
+  assert.equal(cards.filter(card => !isOctober27Card(card)).length, 1717);
 });
 
 test('All 114 full guide objects keep targets, order, labels and paths; only the 73 existing bird-course card counts increase', () => {
   const species = load('lib/european-wildlife-discovery.js').europeanWildlife;
   let updated = 0;
-  const historical = species.map(item => ({ slug: item.slug, targets: guide(item.slug).map(target => {
+  const historical = species.map(item => ({ slug: item.slug, targets: stripOctober27GuideTargets(item.slug, guide(item.slug)).map(target => {
     if (target.moduleId !== courseId) return target;
     updated++;
     assert.equal(target.flashcardCount, 32);

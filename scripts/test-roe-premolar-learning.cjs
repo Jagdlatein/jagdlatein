@@ -1,6 +1,7 @@
 // These checks protect scope and integration, not biological correctness.
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const raw = require('../data/learning-roe-premolar-2026-10-24.json');
@@ -55,7 +56,7 @@ test('Only Rehwild adds a fourth target; its old entries and historical other gu
   assert.equal(targets[3].flashcardCount, 1);
   assert.equal(targets[3].title, added[0].title);
   assert.equal(targets[3].description, added[0].description);
-  const unaffected = species.filter(item => item.slug !== 'rehwild').map(item => ({ slug: item.slug, targets: guide(item.slug) }));
+  const unaffected = species.filter(item => item.slug !== 'rehwild').map(item => ({ slug: item.slug, targets: stripOctober27GuideTargets(item.slug, guide(item.slug)) }));
   assert.equal(unaffected.length, 113);
   assert.equal(unaffected.find(item => item.slug === 'biber').targets.find(target => target.moduleId === 'wissen-biber-schneidezaehne-2026').flashcardCount, 3);
   const historical = unaffected.map(item => ({ ...item, targets: item.targets.map(target => {
