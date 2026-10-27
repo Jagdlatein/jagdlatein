@@ -10,7 +10,7 @@ import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import { getLearningMedia } from "../lib/learning-media";
 import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
 import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
-import { recordReviewAnswer } from "../lib/daily-review";
+import { REVIEW_STORAGE_KEY, recordReviewAnswer } from "../lib/daily-review";
 import LessonEvidence from "./LessonEvidence";
 import PageMenu, { closePageMenu } from "./PageMenu";
 import MenuChoice from "./MenuChoice";
@@ -125,10 +125,35 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
   }
   const [run, setRun] = useState(() => makeRun(module.questions));
   const currentRun = useRef(run);
+  const quizContext = useRef({ courseId: module.id, paused: false });
+  const [quizPaused, setQuizPaused] = useState(false);
   const [fullProgress, setFullProgress] = useState({
     started: false, answeredQuestions: 0, totalQuestions: module.questions.length, score: 0, completed: false,
   });
   const courseProgress = useCourseProgress(module.id, fullProgress);
+  useEffect(() => {
+    const browser = typeof window === "undefined" ? null : window;
+    function pauseQuiz(event) {
+      if (!lessonMounted.current || quizContext.current.courseId !== module.id) return;
+      if (event.type === "storage") {
+        if (event.newValue !== null || event.key !== null && event.key !== REVIEW_STORAGE_KEY) return;
+        try { if (event.storageArea && event.storageArea !== browser.localStorage) return; }
+        catch { return; }
+      }
+      // Invalidate old actions before paint. Reading and saved server progress
+      // stay intact; only a real page opening starts another quiz context.
+      quizContext.current.paused = true;
+      currentRun.current = null;
+      setQuizPaused(true);
+      setRun(makeRun(module.questions));
+    }
+    browser?.addEventListener?.("storage", pauseQuiz);
+    browser?.addEventListener?.("jagdlatein-account-deleted", pauseQuiz);
+    return () => {
+      browser?.removeEventListener?.("storage", pauseQuiz);
+      browser?.removeEventListener?.("jagdlatein-account-deleted", pauseQuiz);
+    };
+  }, [module.id, module.questions]);
   const lesson = module.lessons[lessonIndex];
   const currentLesson = useRef(lesson);
   currentLesson.current = lesson;
@@ -146,14 +171,14 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
   }
 
   function startRun(questions, mode, lessonContext = null) {
-    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current) return false;
+    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current) return false;
     cancelSelectionFocus();
     updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed), lessonContext), started: true });
     return true;
   }
 
   function practiceCurrentLesson() {
-    if (typeof window === "undefined" || !lessonMounted.current || router.isReady === false
+    if (quizContext.current.paused || typeof window === "undefined" || !lessonMounted.current || router.isReady === false
       || currentLessonRoute.current !== lessonRoute || currentLesson.current !== lesson || !lessonQuestions.length) return;
     // A just-committed lesson address can precede its reading effect. Do not
     // start the previous lesson's pool in that intermediate render.
@@ -168,7 +193,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
 
   function answerQuestion(answerId) {
     // A stale button cannot answer twice or answer the next question before it renders.
-    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || !run.started || run.complete || selected !== undefined) return;
+    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || !run.started || run.complete || selected !== undefined) return;
     if (!question.answers.some((answer) => answer.id === answerId)) return;
     const answers = { ...run.answers, [question.id]: answerId };
     const score = run.score + (question.correct.includes(answerId) ? 1 : 0);
@@ -188,7 +213,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
   }
 
   function nextQuestion() {
-    if (currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || selected === undefined) return;
+    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || selected === undefined) return;
     cancelSelectionFocus();
     updateRun(run.complete ? { ...run, showResult: true } : { ...run, index: run.index + 1 });
   }
@@ -213,7 +238,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
               </div>
             </nav>
             {lessonError && <p role="alert">{lessonError}</p>}
-            {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
+            {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={quizPaused || router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
             <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
@@ -255,7 +280,10 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
             <summary>Wissen zu diesem Thema prüfen</summary>
           <section aria-labelledby="quiz-heading">
             <h2 id="quiz-heading" tabIndex={-1}>Wissenscheck</h2>
-            {!run.started ? (
+            {quizPaused ? <div role="status">
+              <p>Die Übungsrunde wurde geschlossen, weil der Wiederholungsverlauf oder dein Konto an anderer Stelle geändert wurde. Du kannst die Lektion weiterlesen.</p>
+              <a className={styles.button} href={`/kurse/${encodeURIComponent(module.id)}${lessonHash(lesson.id)}`}>Kurs erneut öffnen</a>
+            </div> : !run.started ? (
               <>
                 <p className={styles.muted}>Beantworte {module.questions.length} Fragen zu dieser Lerneinheit. Du bekommst nach jeder Antwort eine Erklärung und bestimmst selbst, wann es weitergeht.</p>
                 <p className={styles.muted}>Dein Kurs ist abgeschlossen, sobald du alle Fragen beantwortet hast. Dein Ergebnis wird separat in „Meine Kurse“ gespeichert.</p>

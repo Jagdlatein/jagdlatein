@@ -251,7 +251,10 @@ test('Every mini course has compact static metadata, real existing photos and va
     assert.ok(JSON.stringify(details).length < 4500, `${course.id}: compact static props`);
     for (const module of details.modules) { assert.deepEqual(Object.keys(module).sort(), ['id', 'title']); assert.ok(module.title && module.id.startsWith('wissen-')); }
     const html = renderToStaticMarkup(pages.get(course.id).element);
-    assert.ok(html.includes(`/lernen/${details.category.slug}`)); assert.ok(html.includes('Passende Vertiefung'));
+    const category = load('lib/learning-categories.js', {}, cache).getLearningCategory(details.category.slug);
+    assert.deepEqual(details.category, { slug: category.slug, title: category.title });
+    const rendered = setup(course.id); assert.deepEqual(rendered.tree.props.category, details.category); rendered.unmount();
+    assert.ok(html.includes('Passende Vertiefung'));
     for (const module of details.modules) assert.ok(html.includes(`/kurse/${module.id}`));
     assert.ok(html.includes('Nächste Frage')); assert.ok(!html.includes('country-select'));
   }

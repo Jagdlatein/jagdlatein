@@ -28,7 +28,12 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   const mounted = useRef(false), navigation = useRef(0), pending = useRef(null), content = useRef(null);
   const [working, setWorking] = useState(false), [navigationError, setNavigationError] = useState("");
   const currentSelection = useRef(selectionKey); currentSelection.current = selectionKey;
-  const isCurrent = () => view.current === origin && valid && pending.current === null;
+  const isCurrent = () => {
+    if (view.current !== origin || !valid || pending.current !== null) return false;
+    const liveKey = JSON.stringify([router.isReady === true, router.asPath, router.query]);
+    if (liveKey !== viewKey) { view.current = { key: liveKey }; return false; }
+    return true;
+  };
   function focusContent() {
     const target = content.current?.querySelector?.("#review-question-title") || content.current;
     focusSelection(target);
@@ -80,36 +85,50 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
       </section>
     </PageMenu>
     <div id="review-content" ref={content} tabIndex={-1} aria-busy={working}>
-      {valid ? <DailyReviewRound key={selectionKey} pool={pool} category={category} mode={mode} isCurrent={isCurrent} disabled={working} /> : <p role={ready ? undefined : "status"}>{ready ? "Diese Auswahl ist nicht verfügbar. Wähle Runde und Thema unten im Menü." : "Deine Auswahl wird geladen …"}</p>}
+      {valid ? <DailyReviewRound key={selectionKey} pool={pool} category={category} mode={mode} origin={origin} isCurrent={isCurrent} disabled={working} /> : <p role={ready ? undefined : "status"}>{ready ? "Diese Auswahl ist nicht verfügbar. Wähle Runde und Thema unten im Menü." : "Deine Auswahl wird geladen …"}</p>}
     </div>
   </LearningToolLayout>;
 }
 
-function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
+function DailyReviewRound({ pool, category, mode, origin, isCurrent, disabled }) {
   const [round, setRound] = useState(null);
   const [load, setLoad] = useState({ phase: "loading", message: "", status: 0 });
   const current = useRef(null);
   const request = useRef(0);
   const controller = useRef(null);
+  const pendingLoad = useRef(null), invalidatedLoad = useRef(null), scope = useRef(origin), answerSeed = useRef(0);
+  if (scope.current !== origin) {
+    scope.current = origin;
+    if (pendingLoad.current) {
+      // The same category can survive raw-URL/history changes. Invalidate before cleanup.
+      ++request.current; invalidatedLoad.current = pendingLoad.current; pendingLoad.current = null;
+      if (controller.current === invalidatedLoad.current.abort) controller.current = null;
+    }
+  }
   const mounted = useRef(false);
   const heading = useRef(null);
   const [notice, setNotice] = useState("");
   const renderedRequest = request.current;
   const canAct = () => mounted.current && isCurrent() && request.current === renderedRequest;
-  async function start(initial = false) {
+  async function start(initial = false, explicitQuestions = null, replacePending = false) {
     if (!mounted.current || !initial && !canAct()) return;
+    if (pendingLoad.current && !initial && !replacePending) return;
     const version = ++request.current;
-    controller.current?.abort();
-    current.current = null; setRound(null);
-    setLoad({ phase: "loading", message: "", status: 0 });
+    controller.current?.abort(); controller.current = null; pendingLoad.current = null;
+    const preserveCompletion = explicitQuestions !== null;
+    if (!preserveCompletion) { current.current = null; setRound(null); }
+    setLoad({ phase: preserveCompletion ? "repeating" : "loading", message: "", status: 0 });
     // Selection and reasons are computed locally. Only the selected IDs leave the device.
-    const selectedQuestions = selectDailyReview(pool, readReviewHistory(), { category, mode, count: 8 });
+    const selectedQuestions = explicitQuestions || selectDailyReview(pool, readReviewHistory(), { category, mode, count: 8 });
     if (!selectedQuestions.length) {
       const next = { questions: [], index: 0, selected: null, selections: [], score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
       return;
     }
     const abort = new AbortController(); controller.current = abort;
+    const operation = { version, origin, abort }; pendingLoad.current = operation;
+    const ownsRequest = () => mounted.current && request.current === version && pendingLoad.current === operation;
+    const canCommit = () => ownsRequest() && scope.current === origin && isCurrent() && !abort.signal.aborted;
     let responseStatus = 0;
     try {
       const params = new URLSearchParams({ ids: selectedQuestions.map(question => question.id).join(",") });
@@ -127,23 +146,40 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
           question.reading != null && (typeof question.reading.title !== "string" || !question.reading.title.trim() || typeof question.reading.paragraph !== "string" || !question.reading.paragraph.trim()) ||
           typeof question.href !== "string" || !question.href.startsWith("/kurse/");
       })) throw new Error("Die Fragenauswahl konnte nicht vollständig geladen werden. Bitte erneut versuchen.");
-      if (version !== request.current || abort.signal.aborted || !mounted.current) return;
-      const answerSeed = newAnswerSeed();
+      if (!canCommit()) return;
+      const seed = newAnswerSeed(answerSeed.current); answerSeed.current = seed;
       const questions = selectedQuestions.map(item => {
         const question = details.get(item.id);
-        return { ...question, answers: answerOrder(question.answers, question.id, answerSeed).map(index => question.answers[index]), reason: item.reason };
+        return { ...question, answers: answerOrder(question.answers, question.id, seed).map(index => question.answers[index]), reason: item.reason };
       });
       const next = { questions, index: 0, selected: null, selections: [], score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
     } catch (failure) {
-      if (version === request.current && !abort.signal.aborted && mounted.current) {
-        current.current = null; setRound(null);
-        setLoad({ phase: "error", message: failure.message || "Deine Fragen konnten nicht geladen werden.", status: responseStatus });
+      if (canCommit()) {
+        if (!preserveCompletion) { current.current = null; setRound(null); }
+        setLoad({ phase: preserveCompletion ? "repeat-error" : "error", message: failure.message || "Deine Fragen konnten nicht geladen werden.", status: responseStatus });
       }
     } finally {
       if (controller.current === abort) controller.current = null;
+      if (ownsRequest()) {
+        pendingLoad.current = null;
+        if (scope.current !== origin || !isCurrent() || abort.signal.aborted) setLoad({ phase: preserveCompletion ? "ready" : "error", message: preserveCompletion ? "" : "Die Auswahl hat sich geändert. Bitte die Fragen erneut laden.", status: 0 });
+      }
     }
   }
+  function repeatMistakes() {
+    if (!canAct() || pendingLoad.current || !round?.finished || current.current !== round) return;
+    const available = new Map(pool.filter(item => !category || item.category === category).map(item => [item.id, item]));
+    const selected = round.questions.filter((item, index) => !item.correct.includes(round.selections[index]));
+    if (!selected.length || selected.length > 8 || new Set(selected.map(item => item.id)).size !== selected.length || selected.some(item => available.get(item.id)?.category !== item.category)) return;
+    void start(false, selected.map(item => ({ id: item.id, category: item.category, reason: "Fehler dieser Runde" })));
+  }
+  useEffect(() => {
+    const old = invalidatedLoad.current; invalidatedLoad.current = null;
+    if (!old) return;
+    old.abort.abort();
+    if (!pendingLoad.current) setLoad({ phase: current.current?.finished ? "ready" : "error", message: current.current?.finished ? "" : "Die Auswahl hat sich geändert. Bitte die Fragen erneut laden.", status: 0 });
+  }, [origin]);
   useEffect(() => {
     mounted.current = true; start(true);
     function historyRemoved(event) {
@@ -154,7 +190,8 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
         catch { return; }
       }
       // Invalidate old handlers and pending responses before React repaints.
-      ++request.current; controller.current?.abort(); controller.current = null;
+      ++request.current; controller.current?.abort(); controller.current = null; pendingLoad.current = null;
+      invalidatedLoad.current?.abort.abort(); invalidatedLoad.current = null;
       current.current = null; setRound(null); setNotice("");
       setLoad({ phase: "cleared", message: "", status: 0 });
     }
@@ -162,7 +199,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
     browser?.addEventListener?.("storage", historyRemoved);
     browser?.addEventListener?.("jagdlatein-account-deleted", historyRemoved);
     return () => {
-      mounted.current = false; ++request.current; controller.current?.abort(); current.current = null;
+      mounted.current = false; ++request.current; controller.current?.abort(); pendingLoad.current = null; invalidatedLoad.current?.abort.abort(); current.current = null;
       browser?.removeEventListener?.("storage", historyRemoved);
       browser?.removeEventListener?.("jagdlatein-account-deleted", historyRemoved);
     };
@@ -194,8 +231,8 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
     {load.phase === "cleared" ? <section className={styles.panel}>
       <h2 id="review-question-title" tabIndex={-1} ref={heading}>Die vorherige Runde wurde geschlossen</h2>
       <p>Der Wiederholungsverlauf oder dein Konto wurde an anderer Stelle geändert. Starte bei Bedarf eine neue Runde.</p>
-      <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Neue kurze Runde</button>
-    </section> : load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
+      <button type="button" className={styles.primary} disabled={disabled} onClick={() => { if (!pendingLoad.current) void start(); }}>Neue kurze Runde</button>
+    </section> : load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => { if (!pendingLoad.current) void start(); }}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
       <h2 id="review-question-title" tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig.</p>
       {mistakes.length > 0 ? <section aria-labelledby="review-mistakes-title"><h3 id="review-mistakes-title">Fehler nachlesen</h3>
         {mistakes.map(item => {
@@ -211,7 +248,10 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
           </article>;
         })}
       </section> : <p>Alle Antworten dieser Runde sind richtig.</p>}
-      <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Neue kurze Runde</button>
+      {load.phase === "repeating" && <p role="status">Die Fehler dieser Runde werden erneut geladen …</p>}
+      {load.phase === "repeat-error" && <div role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : null}</div>}
+      {mistakes.length > 0 && <button type="button" className={styles.primary} disabled={disabled || load.phase === "repeating"} onClick={repeatMistakes}>Diese Fehler üben</button>}
+      <button type="button" className={styles.primary} disabled={disabled || load.phase === "repeating"} onClick={() => { if (!pendingLoad.current && current.current === round && round.finished) void start(); }}>Neue kurze Runde</button>
     </section> : question ? <section className={styles.panel}>
       <p className={`${styles.eyebrow} ${styles.reviewContext}`}>{question.reason}{!category && questionCategory ? ` · ${questionCategory}` : ""} · Frage {round.index + 1} von {round.questions.length}</p>
       <h2 id="review-question-title" ref={heading} tabIndex={-1}>{question.q}</h2>
@@ -227,7 +267,7 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
       <p>Gespeichert werden nur Fragenkennungen, Antwortzählungen, Fehlerzahl, Zeitpunkt und nächste Wiederholung auf diesem Gerät. Kein gewählter Antworttext und keine E-Mail-Adresse. Der Verlauf wird nicht ins Konto übertragen und beim Logout oder der Kontolöschung auf diesem Gerät entfernt.</p>
       <p>Zum Laden der Runde werden nur die Kennungen der bis zu acht ausgewählten Fragen übermittelt. Dein Verlauf und deine gewählten Antworten bleiben auf dem Gerät.</p>
       <ul>{reviewMethodSources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a><p>{source.supports}</p></li>)}</ul>
-      <button type="button" className={styles.secondary} disabled={disabled} onClick={() => { if (!canAct()) return; if (clearReviewHistory()) { setNotice("Lokalen Wiederholungsverlauf entfernt."); start(); } else setNotice("Der lokale Verlauf konnte nicht entfernt werden. Bitte die Browserdaten dieser App löschen."); }}>Wiederholungsverlauf entfernen</button>
+      <button type="button" className={styles.secondary} disabled={disabled} onClick={() => { if (!canAct()) return; if (clearReviewHistory()) { setNotice("Lokalen Wiederholungsverlauf entfernt."); start(false, null, true); } else setNotice("Der lokale Verlauf konnte nicht entfernt werden. Bitte die Browserdaten dieser App löschen."); }}>Wiederholungsverlauf entfernen</button>
     </details>
     {sourceQuestions.length > 0 && <details key={round.finished ? "finished-sources" : `question-sources-${question.id}`} className={styles.panel}><summary>{round.finished ? "Quellen zu den nachgelesenen Fragen" : "Quellen zur beantworteten Frage"}</summary>
       {sourceQuestions.map(item => <section key={item.id}><h3>{item.q}</h3><p>{item.sourceScope === "lesson" ? "Quellen zur passenden Lektion" : "Quellen der Lerneinheit"}</p><ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></section>)}

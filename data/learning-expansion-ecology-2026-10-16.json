@@ -2839,6 +2839,26 @@
           "url": "https://www.infofauna.ch/de/nationale-koordinationsstellen/amphibien-karch/die-amphibien/arten/salamandre-noire",
           "organization": "info fauna / karch; Kurt Grossenbacher",
           "supports": "Vollständige Entwicklung im Mutterleib und Geburt bereits umgewandelter Jungtiere; Ausnahme vom freien aquatischen Larvenstadium. Keine Übernahme von Zahlen zu Dauer, Größe oder Bestand."
+        },
+        {
+          "label": "Structure and Function – Fish: Lateral line",
+          "url": "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish",
+          "organization": "University of Hawaiʻi at Mānoa / Exploring Our Fluid Earth",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "seitenliniensinn"
+          ],
+          "supports": "Abschnitt Lateral line selbst gelesen: Haarzellreaktion auf Wasserbewegung und Beute-/Räuber-/Schwarmkontext. Nur dieses allgemeine Funktionsprinzip, keine benachbarten Aussagen zu Augen oder Chemosinn."
+        },
+        {
+          "label": "Fish Sense (24. April 2011)",
+          "url": "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/",
+          "organization": "University of Texas at Austin, Marine Science Institute; Damond Benningfield",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "seitenliniensinn"
+          ],
+          "supports": "Absätze zum Seitenliniensystem selbst gelesen: kleine Bewegungsreize und Sinneshaare; Orientierung bei Beute, Räubern und Schwarmfischen. Keine Reflexwellen-, Haiherz- oder Elektrosinn-Aussagen übernommen."
         }
       ],
       "lessons": [
@@ -2885,6 +2905,19 @@
           ],
           "takeaway": "Fische brauchen längsgerichtete und seitliche Verbindungen; Aufstieg und sicherer Abstieg sind verschiedene Funktionen.",
           "exercise": "Kennzeichne auf einer Gewässerskizze drei unterschiedliche Lebensraumfunktionen und deren Verbindungen."
+        },
+        {
+          "id": "seitenliniensinn",
+          "title": "Wasserbewegung wahrnehmen: der Seitenliniensinn",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Viele Fische besitzen einen Seitenliniensinn. Spezialisierte Sinneshaarzellen reagieren dabei auf Bewegungen des Wassers in ihrer Umgebung. Der Reiz ist mechanisch: Bewegtes Wasser beeinflusst die Sinneszellen. Es geht hier um eine Sinnesfunktion des Tieres, nicht um eine bestimmte Form seines Lebensraums.",
+            "Solche Wasserbewegungen können etwa von naher Beute, Räubern oder anderen Fischen ausgehen. Der Seitenliniensinn kann dadurch Beutesuche, das Ausweichen vor Räubern und Bewegungen im Schwarm unterstützen. Die allgemeinen Hochschulerklärungen beschreiben ein Funktionsprinzip; sie liefern keine Leistungswerte für jede heimische Fischart.",
+            "Vergleiche mit der vorherigen Lektion: Die dort erklärte laterale Gewässervernetzung betrifft räumliche Verbindungen. Der Seitenliniensinn ist dagegen eine Körperfunktion. Eigenes Lernbeispiel: Beschrifte auf zwei getrennten Skizzen einmal diese Sinnesfunktion und einmal einen Auenanschluss. Aus dem Sinnesprinzip allein folgt keine Aussage, ob ein bestimmtes Querbauwerk passierbar ist."
+          ],
+          "takeaway": "Der Seitenliniensinn reagiert auf Wasserbewegung; laterale Gewässervernetzung beschreibt dagegen räumliche Verbindungen.",
+          "exercise": "Trenne auf deinen Skizzen die Wasserbewegung als Sinnesreiz von der Verbindung zwischen Gewässerlebensräumen."
         }
       ],
       "questions": [
@@ -3303,6 +3336,19 @@
           ],
           "answer": 1,
           "explain": "Viele Fische bewegen sich im Wasser oder bodennah und brauchen geeignete passierbare Wege."
+        },
+        {
+          "id": "seitenliniensinn-wasserbewegung",
+          "lessonId": "seitenliniensinn",
+          "q": "Welche Information nimmt das hier beschriebene Seitenliniensystem der Fische unmittelbar auf?",
+          "options": [
+            "Bewegungen des Wassers in der Umgebung",
+            "Farbunterschiede eines vorbeischwimmenden Tieres",
+            "Die Geruchsstoffe einer nahen Nahrungsquelle",
+            "Die räumliche Verbindung zwischen Fluss und Aue"
+          ],
+          "answer": 0,
+          "explain": "Spezialisierte Sinneshaarzellen reagieren auf Wasserbewegung. Die allgemeine Körperfunktion ist von der räumlichen Vernetzung eines Gewässers zu unterscheiden."
         }
       ]
     }
@@ -3671,6 +3717,34 @@
             "https://www.bafu.admin.ch/de/fischwanderung",
             "https://www.lfu.bayern.de/wasser/baeche_und_fluesse/index.htm"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-tierbewegungen-2026",
+      "lessonId": "seitenliniensinn",
+      "claims": [
+        {
+          "claim": "Der Seitenliniensinn vieler Fische beruht auf der Reaktion spezialisierter Sinneshaarzellen auf Wasserbewegung.",
+          "sourceUrls": [
+            "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish",
+            "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/"
+          ],
+          "sourceRoles": {
+            "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish": "Abschnitt Lateral line, Haarzellabsatz bei Abbildung 4.32; nur Reaktion auf Bewegung.",
+            "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/": "Absätze zum Seitenliniensystem und den Sinneshaaren; allgemeine Hochschulerklärung, keine eigene Messreihe."
+          }
+        },
+        {
+          "claim": "Wasserbewegungen von Beute, Räubern und anderen Fischen können Beutesuche, Ausweichen und Schwarmbewegung unterstützen. Keine universelle artspezifische Leistungszusage.",
+          "sourceUrls": [
+            "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish",
+            "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/"
+          ],
+          "sourceRoles": {
+            "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish": "Abschnitt Lateral line: Reizquellen und Funktionskontext; keine Abbildungen oder umliegenden Sonderbehauptungen übernommen.",
+            "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/": "Absatz zur Beute-/Räuber-/Schwarmfunktion; keine Reflexwellen- oder Elektrorezeptionsdarstellung übernommen."
+          }
         }
       ]
     }

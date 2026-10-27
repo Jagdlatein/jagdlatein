@@ -1,11 +1,12 @@
 // Navigation projection and unchanged corpus checks, not a new genetics review.
+const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs'), path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader();
+const load = createLoader(fishLateralLineBaselineFixture());
 const { getCourseBreedLink, getDogBreedKnowledgeAssignment } = load('lib/dog-breed-routing.js');
 const { learningModules } = load('lib/learning-curriculum.js');
 const { dogBreeds } = load('lib/dog-compass.js');

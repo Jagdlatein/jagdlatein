@@ -14,20 +14,22 @@ const birdCourseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const birdLessonId = 'gegenstrom';
 const cropCourseId = 'wissen-ausbau-biologie-verdauungsvergleich-2026';
 const cropLessonId = 'kropfmilch';
-const scopedLesson = (moduleId, lessonId) => moduleId === woodCourseId && lessonId === woodLessonId || moduleId === birdCourseId && lessonId === birdLessonId || moduleId === cropCourseId && lessonId === cropLessonId;
-const scopedDate = moduleId => moduleId === cropCourseId ? '2026-10-27' : '2026-10-24';
+const fishCourseId = 'wissen-ausbau-oekologie-tierbewegungen-2026';
+const fishLessonId = 'seitenliniensinn';
+const scopedLesson = (moduleId, lessonId) => moduleId === woodCourseId && lessonId === woodLessonId || moduleId === birdCourseId && lessonId === birdLessonId || moduleId === cropCourseId && lessonId === cropLessonId || moduleId === fishCourseId && lessonId === fishLessonId;
+const scopedDate = moduleId => [cropCourseId, fishCourseId].includes(moduleId) ? '2026-10-27' : '2026-10-24';
 
-test('The eighteen historical science courses retain 576 questions and add four precisely scoped dated questions', () => {
+test('The eighteen historical science courses retain 576 questions and add five precisely scoped dated questions', () => {
   assert.equal(datasets.length, 3);
   assert.equal(added.length, 18);
-  assert.equal(added.reduce((count, module) => count + module.questions.length, 0), 580);
+  assert.equal(added.reduce((count, module) => count + module.questions.length, 0), 581);
   assert.deepEqual([...new Set(added.map(module => module.category))].sort(), [...learningCategories].sort());
   const stems = new Set();
   const oldStems = new Set(learningModules.filter(module => !added.some(x => x.id === module.id)).flatMap(module => module.questions.map(question => normalize(question.q))));
   for (const module of added) {
     assert.ok(learningModules.some(item => item.id === module.id), module.id);
-    assert.equal(module.lessons.length, [woodCourseId, birdCourseId, cropCourseId].includes(module.id) ? 5 : 4, module.id);
-    assert.equal(module.questions.length, module.id === cropCourseId ? 34 : module.id === woodCourseId || module.id === birdCourseId ? 33 : 32, module.id);
+    assert.equal(module.lessons.length, [woodCourseId, birdCourseId, cropCourseId, fishCourseId].includes(module.id) ? 5 : 4, module.id);
+    assert.equal(module.questions.length, module.id === cropCourseId ? 34 : [woodCourseId, birdCourseId, fishCourseId].includes(module.id) ? 33 : 32, module.id);
     assert.equal(module.reviewedOn, '2026-10-16');
     assert.equal(module.flashcardExpansion, true);
     assert.ok(new Set(module.sources.map(source => source.organization)).size >= 2, module.id);
@@ -62,6 +64,9 @@ test('The eighteen historical science courses retain 576 questions and add four 
       } else if (module.id === cropCourseId && question.lessonId === cropLessonId) {
         assert.ok(['kropfmilch-zellherkunft', 'kropfmilch-beide-eltern'].includes(question.id));
         assert.equal(question.answer, question.id === 'kropfmilch-zellherkunft' ? 2 : 0);
+      } else if (module.id === fishCourseId && question.lessonId === fishLessonId) {
+        assert.equal(question.id, 'seitenliniensinn-wasserbewegung');
+        assert.equal(question.answer, 0);
       } else counts[question.answer]++;
       const prepared = learningQuestions.find(item => item.id === `${module.id}-${question.id}`);
       assert.ok(prepared && QUESTIONS.some(item => item.id === prepared.id), question.id);

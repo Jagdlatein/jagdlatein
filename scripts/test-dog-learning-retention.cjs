@@ -1,3 +1,4 @@
+const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,7 +10,7 @@ const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
-const load = createLoader();
+const load = createLoader(fishLateralLineBaselineFixture());
 const revision = '6860695';
 const datasetPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';
 const courseId = 'wissen-ausbau-hund-ruhe-schlaf-2026';
