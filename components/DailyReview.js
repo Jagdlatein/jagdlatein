@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
 import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
@@ -22,14 +24,14 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   const view = useRef({ key: viewKey });
   if (view.current.key !== viewKey) view.current = { key: viewKey };
   const origin = view.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const mounted = useRef(false), navigation = useRef(0), pending = useRef(null), content = useRef(null);
   const [working, setWorking] = useState(false), [navigationError, setNavigationError] = useState("");
   const currentSelection = useRef(selectionKey); currentSelection.current = selectionKey;
   const isCurrent = () => view.current === origin && valid && pending.current === null;
   function focusContent() {
     const target = content.current?.querySelector?.("#review-question-title") || content.current;
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target);
   }
   useEffect(() => {
     mounted.current = true;
@@ -44,6 +46,7 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   }, [viewKey]);
   async function select(nextMode, nextCategory) {
     if (!ready || !mounted.current || view.current !== origin || !["gemischt", "faellig", "fehler"].includes(nextMode) || typeof nextCategory !== "string" || nextCategory && !available.some(item => item.slug === nextCategory)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     const target = JSON.stringify([nextMode, nextCategory]);
     if (selectionKey === target && pending.current === null) { closePageMenu(); focusContent(); return; }
@@ -66,12 +69,12 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   return <LearningToolLayout title="Deine fünf Minuten Wissen" icon="book" category="pruefung-sprache" headingOnly>
     <PageMenu title="Kurze Runde" openInitially={ready && !valid} initialFocusId="review-selection">
       <section id="review-selection" tabIndex={-1}>
-        <label className={styles.field}>Runde<select id="review-mode" value={mode || ""} disabled={!ready} aria-controls="review-content" onChange={event => select(event.target.value, category || "")}>
+        <MenuChoice label="Runde" id="review-mode" value={mode || ""} disabled={!ready} aria-controls="review-content" onChange={event => select(event.target.value, category || "")}>
           {!mode && <option value="" disabled>Runde wählen</option>}<option value="gemischt">Gemischt</option><option value="faellig">Fällig</option><option value="fehler">Fehler</option>
-        </select></label>
-        <label className={styles.field}>Thema<select id="review-category" value={category ?? "invalid"} disabled={!ready} aria-controls="review-content" onChange={event => select(mode || "gemischt", event.target.value)}>
+        </MenuChoice>
+        <MenuChoice label="Thema" id="review-category" value={category ?? "invalid"} disabled={!ready} aria-controls="review-content" onChange={event => select(mode || "gemischt", event.target.value)}>
           {category === null && <option value="invalid" disabled>Thema wählen</option>}<option value="">Alle</option>{available.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}
-        </select></label>
+        </MenuChoice>
         <p className={styles.muted}>Gemischt ergänzt neue Fragen. Fällig enthält nur Wiederholungen, deren Zeitpunkt erreicht ist. Fehler übt zuletzt falsche Antworten auch vor ihrer Fälligkeit.</p>
         {navigationError && <p role="alert">{navigationError}</p>}
       </section>

@@ -9,7 +9,7 @@ const file = 'components/SmallRevierLife.js';
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const topic = h => h.nodes(node => node.props?.topic)[0]?.props.topic.id;
 const network = h => h.nodes(node => node.type?.name === 'FoodwebLearning')[0];
-const choose = (h, id, control = 'revierleben-thema') => h.nodes(node => node.type === 'select' && node.props.id === control)[0].props.onChange({ target: { value: id } });
+const choose = (h, id, control = 'revierleben-thema') => h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === control)[0].props.onChange({ target: { value: id } });
 function fixture(t, query, options) { const h = setup(file, query, options); t.after(() => h.dispose()); return h; }
 
 test('Missing, invalid and repeated topic/motif selections never show an unrelated organism', async t => {
@@ -128,8 +128,8 @@ test('Re-selecting the current motif supersedes a pending selection and old comp
 
 test('Topic and motif navigation occurs only in the shared lower PageMenu', t => {
   const h = fixture(t, { thema: 'nahrungsnetz', motiv: 'laub' });
-  const controls = nodes(menu(h), node => node.type === 'select'); assert.equal(controls.length, 2);
+  const controls = nodes(menu(h), node => node.type?.name === 'MenuChoice'); assert.equal(controls.length, 2);
   const content = h.nodes(node => node.type === 'div' && node.props.ref)[0];
-  assert.equal(nodes(content, node => node.type === 'select').length, 0);
+  assert.equal(nodes(content, node => node.type?.name === 'MenuChoice').length, 0);
   assert.equal(h.tree.props.headingOnly, true);
 });

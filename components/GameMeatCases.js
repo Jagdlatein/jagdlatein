@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ParasiteLearning from "./ParasiteLearning";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { parasiteTopics } from "../lib/parasite-learning";
 import LearningToolLayout from "./LearningToolLayout";
 import { gameMeatCases, getGameMeatSummary } from "../lib/game-meat-cases";
@@ -41,6 +43,8 @@ export default function GameMeatCases() {
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
+  const focusedOrigin = useRef(null);
   const round = useRef({ answered: new Set(), advanced: new Set() });
   const currentRound = round.current;
   const cases = ids.map(id => gameMeatCases.find(item => item.id === id));
@@ -52,11 +56,10 @@ export default function GameMeatCases() {
   const summary = getGameMeatSummary(cases, answers);
   const validView = mode === "practice" || !!entry || !!parasite;
 
-  function focusContent() {
+  function focusContent(anchor = false) {
     const target = content.current?.querySelector?.("h2") || content.current;
     target?.setAttribute?.("tabindex", "-1");
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor });
   }
   useEffect(() => {
     mounted.current = true;
@@ -70,11 +73,14 @@ export default function GameMeatCases() {
       return () => clearTimeout(timer);
     }
     closePageMenu();
-    focusContent();
+    const localExerciseChange = focusedOrigin.current === origin;
+    focusedOrigin.current = origin;
+    focusContent(localExerciseChange);
   }, [ready, mode, entry?.id, parasite?.id, item?.id, finished, roundRevision]);
 
   async function navigate(query, hash, sameSelection) {
-    if (!ready) return;
+    if (!ready || !mounted.current || committedView.current !== origin) return;
+    cancelSelectionFocus();
     setNavigationError("");
     closePageMenu();
     if (sameSelection && pendingRequest.current === null) { focusContent(); return; }
@@ -132,12 +138,12 @@ export default function GameMeatCases() {
   return <LearningToolLayout title="Wildbret-Fallwerkstatt" description="Hygienefälle lösen und Parasitenkreisläufe mit Wirten, Übertragungswegen und echten Lehrfotos verstehen." icon="health" category="wildbret-gesundheit" headingOnly>
     <PageMenu title="Wildbret – Thema wählen" openInitially={ready && !validView} initialFocusId="game-meat-choices">
       <div id="game-meat-choices" tabIndex={-1}>
-        <label className={styles.field}>Lernangebot<select id="game-meat-mode" value={mode} onChange={event => chooseMode(event.target.value)}>
+        <MenuChoice label="Lernangebot" id="game-meat-mode" value={mode} disabled={!ready} onChange={event => chooseMode(event.target.value)}>
           {!mode && <option value="">Lernangebot wählen</option>}
           <option value="practice">Hygienefälle lösen</option><option value="discover">Hygienefälle nachschlagen</option><option value="parasiten">Parasitenkreisläufe verstehen</option>
-        </select></label>
-        {mode === "discover" && <label className={styles.field}>Fall wählen<select id="game-meat-case" value={entry?.id || ""} onChange={event => chooseCase(event.target.value)}><option value="" disabled>Fall wählen</option>{gameMeatCases.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>}
-        {mode === "parasiten" && <label className={styles.field}>Parasit<select id="game-meat-parasite" value={parasite?.id || ""} onChange={event => selectParasite(event.target.value)}><option value="" disabled>Parasit wählen</option>{parasiteTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>}
+        </MenuChoice>
+        {mode === "discover" && <MenuChoice label="Fall wählen" id="game-meat-case" value={entry?.id || ""} disabled={!ready} onChange={event => chooseCase(event.target.value)}><option value="" disabled>Fall wählen</option>{gameMeatCases.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</MenuChoice>}
+        {mode === "parasiten" && <MenuChoice label="Parasit" id="game-meat-parasite" value={parasite?.id || ""} disabled={!ready} onChange={event => selectParasite(event.target.value)}><option value="" disabled>Parasit wählen</option>{parasiteTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</MenuChoice>}
         {mode === "practice" && <button type="button" className={styles.secondary} onClick={() => start()}>Neue Fallrunde beginnen</button>}
         {navigationError && <p className={styles.wrong} role="alert">{navigationError}</p>}
         {item && <Link href={`/kurse/${item.course}`} prefetch={false}>Im Hygienekurs vertiefen</Link>}

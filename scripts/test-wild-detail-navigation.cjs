@@ -8,7 +8,7 @@ const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const title = h => h.nodes(node => node.props?.id === 'wilddetails-title')[0]?.props.children;
 const body = h => h.nodes(node => node.props?.id === 'wilddetails-content')[0];
 function choose(h, id) {
-  return h.nodes(node => node.type === 'select' && node.props.id === 'wilddetails-topic')[0].props.onChange({ target: { value: id } });
+  return h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'wilddetails-topic')[0].props.onChange({ target: { value: id } });
 }
 function fixture(t, query = {}, options) { const h = setup(file, query, options); t.after(() => h.dispose()); return h; }
 
@@ -38,8 +38,8 @@ test('Every existing topic link keeps exactly its photographs, annotations, clai
       for (const id of claim.sourceIds) assert.ok(nodes(footer, node => node.props?.href === sources[id].url).length);
     }
     assert.deepEqual(nodes(footer, node => node.type?.name === 'LearningPhotoCredit').map(node => node.props.media), [...new Set(topic.panels.map(panel => panel.photoId))].map(id => photos[id]));
-    assert.equal(nodes(body(h), node => node.type === 'select' || node.type === 'input').length, 0);
-    assert.equal(h.nodes(node => node.type === 'select').length, nodes(menu(h), node => node.type === 'select').length);
+    assert.equal(nodes(body(h), node => node.type?.name === 'MenuChoice' || node.type === 'input').length, 0);
+    assert.equal(h.nodes(node => node.type?.name === 'MenuChoice').length, nodes(menu(h), node => node.type?.name === 'MenuChoice').length);
   }
   assert.equal(h.calls.length, 0, 'Opening an existing link must not create another history step');
 });
@@ -51,7 +51,7 @@ test('Unknown, empty and repeated explicit topics show a picker instead of an un
     assert.equal(menu(h).props.openInitially, true);
     assert.match(text(h.tree), /Dieses Thema ist nicht verfügbar/);
     assert.equal(h.nodes(node => node.type?.name === 'DetailPhoto').length, 0);
-    assert.equal(h.nodes(node => node.type === 'select')[0].props.value, '');
+    assert.equal(h.nodes(node => node.type?.name === 'MenuChoice')[0].props.value, '');
   }
 });
 
@@ -64,7 +64,7 @@ test('Selection waits for the committed URL, adds a real history entry and focus
   assert.equal(title(h), topics[0].title); assert.equal(focused, 0);
   assert.deepEqual(h.calls[0], { href: { pathname: '/lernen/wildtier-details', query: { thema: topics[1].id, retained: 'yes' }, hash: 'wilddetails-title' }, options: { shallow: true, scroll: false } });
   h.navigate(h.calls[0].href.query); complete(true); await pending; h.render();
-  assert.equal(title(h), topics[1].title); assert.equal(focused, 1); assert.equal(scrolled, 1);
+  assert.equal(title(h), topics[1].title); assert.equal(focused, 1); assert.equal(scrolled, 0, 'The category uses the shared page-start helper, not its lower result anchor');
   h.navigate({ thema: topics[0].id }); assert.equal(title(h), topics[0].title);
   h.navigate(h.calls[0].href.query); assert.equal(title(h), topics[1].title);
   const reload = fixture(t, h.router.query); assert.equal(title(reload), topics[1].title);

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import LearningToolLayout from "../../components/LearningToolLayout";
@@ -6,6 +6,8 @@ import WildlifeJawModel from "../../components/WildlifeJawModel";
 import WildlifeDentition from "../../components/WildlifeDentition";
 import WildlifeJawComparison from "../../components/WildlifeJawComparison";
 import PageMenu, { closePageMenu } from "../../components/PageMenu";
+import MenuChoice from "../../components/MenuChoice";
+import useSelectionPageStart from "../../hooks/useSelectionPageStart";
 import { europeanWildlife } from "../../lib/european-wildlife-discovery";
 import { jawModelsBySlug, jawModelSpecies } from "../../lib/wildlife-jaw-models";
 import styles from "../../styles/WildlifeJawModel.module.css";
@@ -18,6 +20,14 @@ export default function JawAtlas() {
   const comparisonSlug = typeof router.query?.vergleich === "string" ? router.query.vergleich : "";
   const comparison = jawAtlasSpecies.find(item => item.slug === comparisonSlug && item.slug !== species.slug) || null;
   const queryKey = JSON.stringify(router.query || {});
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(queryKey, router.isReady === true);
+  const selectedHeading = useRef(null);
+  const lastSelection = useRef(queryKey);
+  useEffect(() => {
+    if (router.isReady !== true || lastSelection.current === queryKey) return;
+    lastSelection.current = queryKey;
+    closePageMenu(); focusSelection(selectedHeading.current);
+  }, [queryKey, router.isReady]);
   const currentQuery = useRef(queryKey);
   currentQuery.current = queryKey;
   const request = useRef(0);
@@ -34,6 +44,7 @@ export default function JawAtlas() {
     if (changing || !["art", "vergleich"].includes(field)) return;
     if ((slug || field === "art") && !jawAtlasSpecies.some(item => item.slug === slug)) return;
     if (field === "vergleich" && slug === species.slug) return;
+    cancelSelectionFocus();
     const attempt = ++request.current;
     const origin = queryKey;
     setPendingRoute(origin); setError("");
@@ -54,13 +65,13 @@ export default function JawAtlas() {
 
   return <LearningToolLayout title="Kiefer & Schädel in 3D" description="Artspezifische Sammlungspräparate von Wildarten untersuchen und Zahnformeln nachlesen." icon="cube" category="wildkunde" headingOnly>
     <PageMenu title="Kiefer & Schädel – Wildart wählen">
-    <div className={styles.selectionGrid}><label className={styles.field} id="kiefer-artauswahl">Wildart auswählen<select value={species.slug} disabled={changing} onChange={event => choose(event.target.value)}>
+    <div className={styles.selectionGrid}><MenuChoice label="Wildart" id="kiefer-artauswahl" value={species.slug} disabled={changing} onChange={event => choose(event.target.value)}>
       <optgroup label="Mit geprüftem 3D-Modell">{available.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</optgroup>
       <optgroup label="3D-Modell noch offen">{missing.map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</optgroup>
-    </select></label><label className={styles.field}>Vergleichen mit (optional)<select value={comparison?.slug || ""} disabled={changing} onChange={event => choose(event.target.value, "vergleich")}><option value="">Kein Vergleich</option>{jawAtlasSpecies.filter(item => item.slug !== species.slug).map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</select></label></div>
+    </MenuChoice><MenuChoice label="Vergleich" value={comparison?.slug || ""} disabled={changing} onChange={event => choose(event.target.value, "vergleich")}><option value="">Kein Vergleich</option>{jawAtlasSpecies.filter(item => item.slug !== species.slug).map(item => <option key={item.slug} value={item.slug}>{item.name}</option>)}</MenuChoice></div>
     <p>{jawModelSpecies.length} von {jawAtlasSpecies.length} Arten und Vergleichsformen haben hier ein geprüftes Kiefer- oder Schädelmodell; {mandibleCount} davon mit isoliertem Unterkiefer oder einer Kieferhälfte. Die übrigen Einträge bleiben ausdrücklich als offen erkennbar.</p>
     </PageMenu>
-    <p className={styles.object}><strong>{species.name}</strong>{comparison && <> im Vergleich mit <strong>{comparison.name}</strong></>}</p>
+    <p className={styles.object} ref={selectedHeading} tabIndex={-1}><strong>{species.name}</strong>{comparison && <> im Vergleich mit <strong>{comparison.name}</strong></>}</p>
     {error && errorQuery.current === queryKey && <p role="status">{error}</p>}
     {comparison && <WildlifeJawComparison left={species.slug} right={comparison.slug} />}
     {comparison && <p>Zum Wechseln zwischen den Präparaten lade die gewünschte 3D-Ansicht. Es bleibt jeweils eine Ansicht geöffnet. Die Modelle werden unabhängig an ihren Bildschirm angepasst und haben keinen gemeinsamen Maßstab.</p>}

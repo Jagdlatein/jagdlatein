@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { getLearningCategory } from "../lib/learning-categories";
 import { observationCases, observationCaseMatches, observationQuestionCount } from "../lib/observation-workshop";
 import styles from "../styles/LearningExperience.module.css";
@@ -22,6 +24,7 @@ export default function ObservationWorkshop() {
   const committedView = useRef({ key: selectionKey });
   if (committedView.current.key !== selectionKey) committedView.current = { key: selectionKey };
   const view = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(view, ready);
   const [progress, setProgress] = useState({ view, stageIndex: 0 });
   const stageIndex = progress.view === view ? progress.stageIndex : 0;
   const [query, setQuery] = useState("");
@@ -47,8 +50,7 @@ export default function ObservationWorkshop() {
   const caseFinished = Boolean(item && item.stages.every((_, index) => answers[`${caseId}:${index}`] !== undefined));
 
   function focusContent() {
-    content.current?.focus?.({ preventScroll: true });
-    content.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(content.current);
   }
   useEffect(() => {
     mounted.current = true;
@@ -65,7 +67,8 @@ export default function ObservationWorkshop() {
   }, [view]);
 
   async function selectCase(id) {
-    if (!ready || !observationCases.some(entry => entry.id === id)) return;
+    if (!ready || !mounted.current || committedView.current !== view || !observationCases.some(entry => entry.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError(""); closePageMenu();
     if (caseId === id && pendingRequest.current === null) { focusContent(); return; }
     const request = ++navigation.current;
@@ -107,10 +110,10 @@ export default function ObservationWorkshop() {
       <div id="beobachtung-auswahl" tabIndex={-1}>
         <label className={styles.field}>Fälle durchsuchen<input type="search" maxLength={160} value={query} onChange={event => setQuery(event.target.value)} placeholder="Zum Beispiel Kitz, Kühlkette oder Wärmebild" /></label>
         <p role="status">{matches.length} {matches.length === 1 ? "Lernfall gefunden" : "Lernfälle gefunden"}</p>
-        <label className={styles.field}>Lernangebot<select id="beobachtung-case" value={caseId || ""} disabled={!ready} aria-controls="beobachtung-inhalt" onChange={event => selectCase(event.target.value)}><option value="" disabled>Fall auswählen</option>{item && !matches.some(entry => entry.id === caseId) && <optgroup label="Aktueller Fall"><option value={item.id}>{item.title}</option></optgroup>}{caseGroups.map(category => {
+        <MenuChoice label="Lernangebot" id="beobachtung-case" value={caseId || ""} disabled={!ready} aria-controls="beobachtung-inhalt" onChange={event => selectCase(event.target.value)}><option value="" disabled>Fall auswählen</option>{item && !matches.some(entry => entry.id === caseId) && <optgroup label="Aktueller Fall"><option value={item.id}>{item.title}</option></optgroup>}{caseGroups.map(category => {
           const entries = matches.filter(entry => entry.category === category);
           return entries.length > 0 && <optgroup key={category} label={getLearningCategory(category)?.title || "Beobachtungsfälle"}>{entries.map(entry => <option key={entry.id} value={entry.id}>{entry.title}{entry.stages.every((_, index) => answers[`${entry.id}:${index}`] !== undefined) ? " · abgeschlossen" : ""}</option>)}</optgroup>;
-        })}</select></label>
+        })}</MenuChoice>
         {matches.length === 0 && <p>Kein passender Fall. Versuche einen anderen Begriff oder <button className={styles.secondary} type="button" onClick={() => setQuery("")}>Suche zurücksetzen</button></p>}
         {navigationError && <p className={styles.wrong} role="alert">{navigationError}</p>}
         <p>{answeredCount} von {observationQuestionCount} Entscheidungen beantwortet · {correct} richtig</p><progress className={styles.progress} value={answeredCount} max={observationQuestionCount} aria-label="Beantwortete Entscheidungen" />

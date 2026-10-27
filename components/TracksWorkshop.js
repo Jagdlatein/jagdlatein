@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import NatureQuestionRound from "./NatureQuestionRound";
 import { NaturePhoto, TrackSchema } from "./NatureMedia";
 import { tracksWorkshopEntries, tracksSources, tracksChecklist, filterTracks } from "../lib/tracks-workshop";
@@ -26,6 +28,8 @@ export default function TracksWorkshop() {
   const selectionKey = `${router.isReady}:${mode}:${entry?.id || ""}`;
   const committedView = useRef({ key: selectionKey });
   if (committedView.current.key !== selectionKey) committedView.current = { key: selectionKey };
+  const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, router.isReady === true);
   const results = filterTracks(query, group);
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; navigation.current++; }; }, []);
@@ -38,20 +42,19 @@ export default function TracksWorkshop() {
     }
     if (mode !== "entdecken" || entry) {
       closePageMenu();
-      detail.current?.focus({ preventScroll: true });
-      detail.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+      focusSelection(detail.current);
     }
   }, [router.isReady, mode, entry?.id]);
 
   function choose(change) {
+    if (router.isReady !== true || !mounted.current || committedView.current !== origin) return;
+    cancelSelectionFocus();
     const request = ++navigation.current;
-    const origin = committedView.current;
     const next = { ...router.query, ...change };
     if (next.ansicht === "entdecken") delete next.ansicht;
     closePageMenu();
     if (!pending.current && (next.ansicht || "entdecken") === mode && next.eintrag === router.query.eintrag) {
-      detail.current?.focus({ preventScroll: true });
-      detail.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+      focusSelection(detail.current);
       return;
     }
     pending.current = true;
@@ -65,10 +68,10 @@ export default function TracksWorkshop() {
   return <LearningToolLayout title="Spurenwerkstatt" description="Trittsiegel, Spurverläufe und andere Feldzeichen verstehen." icon="paw" category="wildkunde" headingOnly>
     <PageMenu title="Spurenwerkstatt – Thema wählen" openInitially={router.isReady !== false && mode === "entdecken" && !entry} initialFocusId="tracks-choices">
       <div id="tracks-choices" tabIndex={-1}>
-        <label className={styles.field}>Lernweise<select value={mode} onChange={event => choose({ ansicht: event.target.value })}><option value="entdecken">Spuren entdecken</option><option value="quiz">Spurenwissen prüfen</option><option value="checkliste">Fund dokumentieren</option></select></label>
+        <MenuChoice label="Lernweise" value={mode} disabled={router.isReady !== true} onChange={event => choose({ ansicht: event.target.value })}><option value="entdecken">Spuren entdecken</option><option value="quiz">Spurenwissen prüfen</option><option value="checkliste">Fund dokumentieren</option></MenuChoice>
         {mode === "entdecken" && <>
           <label className={styles.field}>Spur suchen<input type="search" maxLength={160} value={query} onChange={event => setQuery(event.target.value)} placeholder="Zum Beispiel Biber, Schnee oder Schalen"/></label>
-          <label className={styles.field}>Feldzeichen<select value={group} onChange={event => setGroup(event.target.value)}><option value="alle">Alle Feldzeichen</option>{[...new Set(tracksWorkshopEntries.map(item => item.group))].map(value => <option key={value} value={value}>{value}</option>)}</select></label>
+          <MenuChoice label="Feldzeichen" value={group} onChange={event => setGroup(event.target.value)}><option value="alle">Alle Feldzeichen</option>{[...new Set(tracksWorkshopEntries.map(item => item.group))].map(value => <option key={value} value={value}>{value}</option>)}</MenuChoice>
           <p role="status">{results.length} Spurenfälle gefunden</p>
           <div className={reader.choices}>{results.map(item => <button type="button" key={item.id} aria-current={entry?.id === item.id ? "page" : undefined} onClick={() => choose({ eintrag: item.id, ansicht: "entdecken" })}><strong>{item.title}</strong><small>{item.group} · {item.photo ? "echte Fotografie" : "eigene schematische Zeichnung"}</small></button>)}</div>
           {results.length === 0 && <p role="status">Keine passende Spur. Versuche ein anderes Wort oder „Alle Feldzeichen“.</p>}

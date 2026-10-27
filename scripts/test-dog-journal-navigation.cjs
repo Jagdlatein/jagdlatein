@@ -14,6 +14,8 @@ const heading = h => h.nodes(node => node.props?.id === 'exercise-title')[0];
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const alerts = h => h.nodes(node => node.props?.role === 'alert');
 function field(h, label) {
+  const choice = h.nodes(node => node.type?.name === 'MenuChoice' && node.props.label === label)[0];
+  if (choice) return choice;
   const holder = h.nodes(node => node.type === 'label' && text(node).startsWith(label))[0];
   assert.ok(holder, `Missing field ${label}`);
   const result = nodes(holder, node => ['input', 'select', 'textarea'].includes(node.type))[0];
@@ -142,7 +144,7 @@ test('A deferred push preserves the displayed exercise and all local data until 
   assert.equal(text(heading(h)), exercises[0].title); assert.equal(focus.focus, 0);
   assert.equal(field(h, 'Geübte Aufgabe').props.value, snapshot.draft.exerciseId);
   await commit(h, requests[0], action);
-  assert.equal(field(h, 'Übung entdecken').props.value, 'pflege'); assert.deepEqual(focus, { focus: 1, scroll: 1 });
+  assert.equal(field(h, 'Übung entdecken').props.value, 'pflege'); assert.deepEqual(focus, { focus: 1, scroll: 0 });
   assert.deepEqual(env.snapshot(), snapshot); assert.equal(env.writes.length, writes);
   history(h, initial); assert.equal(field(h, 'Übung entdecken').props.value, 'orientierung');
   history(h, requests[0].href.query); assert.equal(field(h, 'Übung entdecken').props.value, 'pflege');

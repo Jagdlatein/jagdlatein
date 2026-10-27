@@ -4,6 +4,8 @@ import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import FoodwebLearning from "./FoodwebLearning";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { foodwebTopic, foodwebNodes } from "../lib/foodweb-learning";
 import { getRevierLifeTopic, revierLifeGroups, revierLifeSources, revierLifeTopics } from "../lib/small-revier-life";
 import shared from "../styles/LearningExperience.module.css";
@@ -40,50 +42,64 @@ export default function SmallRevierLife() {
   const mounted = useRef(false);
   const navigation = useRef(0);
   const pendingRequest = useRef(null);
+  const selectionFocus = useRef(null);
   const lastFoodwebNode = useRef("regenwurm");
-  const focusedView = useRef(null);
   const ready = router.isReady === true;
   const selected = ready && typeof router.query.thema === "string" && (router.query.thema === foodwebTopic.id || revierLifeTopics.some(item => item.id === router.query.thema)) ? router.query.thema : null;
   const foodwebNode = selected === foodwebTopic.id ? router.query.motiv === undefined ? "regenwurm" : foodwebNodes.find(item => typeof router.query.motiv === "string" && item.id === router.query.motiv)?.id || null : null;
   if (foodwebNode) lastFoodwebNode.current = foodwebNode;
-  const viewKey = JSON.stringify([ready, selected, foodwebNode]);
+  const requestedSection = (router.asPath || "").split("#")[1];
+  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const origin = committedView.current;
+  if (selectionFocus.current && selectionFocus.current.origin !== origin && (selectionFocus.current.thema !== selected || selectionFocus.current.motiv !== foodwebNode)) selectionFocus.current = null;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const validView = Boolean(selected && (selected !== foodwebTopic.id || foodwebNode));
   const topic = selected && selected !== foodwebTopic.id ? getRevierLifeTopic(selected) : null;
   useEffect(() => {
     mounted.current = true;
     return () => { mounted.current = false; navigation.current++; pendingRequest.current = null; };
   }, []);
-  function focusContent(relationships = false) {
+  function focusContent(relationships = requestedSection === "nahrungsnetz-beziehungen", category = false) {
+    if (!category && !relationships && requestedSection && !["revierleben-inhalt", "revierleben-title", "nahrungsnetz", "nahrungsnetz-title"].includes(requestedSection)) {
+      const target = Array.from(content.current?.querySelectorAll?.("[id]") || []).find(element => element.id === requestedSection);
+      if (!target) return;
+      target.setAttribute?.("tabindex", "-1");
+      focusSelection(target, { anchor: true });
+      return;
+    }
     const target = content.current?.querySelector?.(relationships ? "#nahrungsnetz-beziehungen" : "h2") || content.current;
     target?.setAttribute?.("tabindex", "-1");
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor: relationships });
   }
   useEffect(() => {
     if (!ready) return;
     setNavigationError("");
     if (!validView) {
-      focusedView.current = null;
       const timer = setTimeout(() => openPageMenu("revierleben-choices"), 0);
       return () => clearTimeout(timer);
     }
-    const relationships = selected === foodwebTopic.id && focusedView.current?.selected === selected && focusedView.current.foodwebNode !== foodwebNode;
-    focusedView.current = { selected, foodwebNode };
+    const requestedFocus = selectionFocus.current;
+    selectionFocus.current = null;
+    const relationships = requestedSection === "nahrungsnetz-beziehungen" || Boolean(requestedFocus?.relationships && requestedFocus.thema === selected && requestedFocus.motiv === foodwebNode);
     closePageMenu();
     focusContent(relationships);
-  }, [ready, selected, foodwebNode]);
+  }, [ready, selected, foodwebNode, requestedSection]);
   async function navigate(query, sameSelection, relationships = false) {
     if (!ready || !mounted.current || committedView.current !== origin) return;
+    cancelSelectionFocus();
     setNavigationError(""); closePageMenu();
-    if (sameSelection && pendingRequest.current === null) { focusContent(relationships); return; }
+    if (sameSelection && pendingRequest.current === null) { focusContent(relationships, true); return; }
     const request = ++navigation.current;
     pendingRequest.current = request;
+    const focusIntent = { origin, thema: query.thema, motiv: query.motiv, relationships };
+    selectionFocus.current = focusIntent;
     try {
-      await router.push({ pathname: "/lernen/kleines-revierleben", query, hash: "revierleben-inhalt" }, undefined, { shallow: true, scroll: false });
+      const accepted = await router.push({ pathname: "/lernen/kleines-revierleben", query, hash: "revierleben-inhalt" }, undefined, { shallow: true, scroll: false });
+      if (accepted === false && selectionFocus.current === focusIntent) selectionFocus.current = null;
     } catch (error) {
+      if (selectionFocus.current === focusIntent) selectionFocus.current = null;
       if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
       setNavigationError("Das Thema konnte nicht geöffnet werden. Bitte wähle es erneut.");
       openPageMenu("revierleben-choices");
@@ -97,12 +113,12 @@ export default function SmallRevierLife() {
     const nextNode = id === foodwebTopic.id ? lastFoodwebNode.current : null;
     return navigate({ ...query, thema: id, ...(nextNode ? { motiv: nextNode } : {}) }, selected === id && (id !== foodwebTopic.id || foodwebNode === nextNode));
   }
-  function selectFoodwebNode(id) {
+  function selectFoodwebNode(id, relationships = true) {
     if (selected !== foodwebTopic.id || !foodwebNodes.some(node => node.id === id)) return;
-    return navigate({ ...router.query, thema: foodwebTopic.id, motiv: id }, foodwebNode === id, true);
+    return navigate({ ...router.query, thema: foodwebTopic.id, motiv: id }, foodwebNode === id, relationships);
   }
   return <LearningToolLayout title="Das kleine Leben im Revier" description="Kleine Tiere, Pilze und Bodenleben mit echten Fotos entdecken und ihre ökologischen Beziehungen verstehen." category="natur-revier" icon="nature" headingOnly>
-    <PageMenu title="Kleines Revierleben – Thema wählen" openInitially={ready && !validView} initialFocusId="revierleben-choices"><div id="revierleben-choices" tabIndex={-1}><label className={shared.field}>Lebewesen oder Zusammenhang<select id="revierleben-thema" value={selected || ""} onChange={event => select(event.target.value)}><option value="" disabled>Thema wählen</option>{revierLifeGroups.map(group => <optgroup key={group.id} label={group.title}>{revierLifeTopics.filter(item => item.group === group.id).map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup>)}<optgroup label="Zusammenhänge"><option value={foodwebTopic.id}>{foodwebTopic.title}</option></optgroup></select></label>{selected === foodwebTopic.id && <label className={shared.field}>Motiv im Nahrungsnetz<select id="revierleben-motiv" value={foodwebNode || ""} onChange={event => selectFoodwebNode(event.target.value)} aria-controls="nahrungsnetz-beziehungen"><option value="" disabled>Motiv wählen</option>{foodwebNodes.map(node => <option key={node.id} value={node.id}>{node.label}</option>)}</select></label>}{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</div></PageMenu>
+    <PageMenu title="Kleines Revierleben – Thema wählen" openInitially={ready && !validView} initialFocusId="revierleben-choices"><div id="revierleben-choices" tabIndex={-1}><MenuChoice label="Thema" id="revierleben-thema" value={selected || ""} disabled={!ready} onChange={event => select(event.target.value)}><option value="" disabled>Thema wählen</option>{revierLifeGroups.map(group => <optgroup key={group.id} label={group.title}>{revierLifeTopics.filter(item => item.group === group.id).map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup>)}<optgroup label="Zusammenhänge"><option value={foodwebTopic.id}>{foodwebTopic.title}</option></optgroup></MenuChoice>{selected === foodwebTopic.id && <MenuChoice label="Motiv" id="revierleben-motiv" value={foodwebNode || ""} disabled={!ready} onChange={event => selectFoodwebNode(event.target.value, false)} aria-controls="nahrungsnetz-beziehungen"><option value="" disabled>Motiv wählen</option>{foodwebNodes.map(node => <option key={node.id} value={node.id}>{node.label}</option>)}</MenuChoice>}{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</div></PageMenu>
     <div ref={content} tabIndex={-1}>{validView ? selected === foodwebTopic.id ? <FoodwebLearning selectedId={foodwebNode} onSelect={selectFoodwebNode} /> : <TopicContent key={topic.id} topic={topic} /> : <p className={shared.note}>{ready && (router.query.thema !== undefined || router.query.motiv !== undefined) ? "Dieses Thema oder Nahrungsnetzmotiv ist nicht verfügbar. " : ""}Wähle unten im Menü ein Thema. Hier erscheint nur sein Wissenstext.</p>}</div>
   </LearningToolLayout>;
 }

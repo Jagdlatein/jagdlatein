@@ -46,7 +46,7 @@ function atlas(query = { art: 'rehwild' }) {
   const render = () => { tree = e.render(() => loaded.default()); e.flush(); };
   render();
   return { get tree() { return tree; }, calls, menuCalls, router, render, Jaw, PageMenu,
-    field() { return all(tree, n => n.type === 'select')[0]; },
+    field() { return all(tree, n => n.props?.id === 'kiefer-artauswahl')[0]; },
     choose(slug) { this.field().props.onChange({ target: { value: slug } }); render(); },
     async reject(error) { calls.at(-1).task.reject(error); await tick(); render(); },
     async acknowledge(index = 0) { router.query = calls[index].href.query; calls[index].task.resolve(true); await tick(); render(); },
@@ -132,7 +132,8 @@ test('Atlas contributes species navigation only to the lower PageMenu and keeps 
   const ui = atlas();
   const menu = all(ui.tree, node => node.type === ui.PageMenu);
   assert.equal(menu.length, 1);
-  assert.equal(all(menu[0], node => node.type === 'select').length, 2);
+  assert.equal(all(menu[0], node => node.type?.name === 'MenuChoice').length, 2);
+  assert.equal(all(menu[0], node => node.type === 'select').length, 0);
   const content = renderToStaticMarkup(ui.tree);
   assert.doesNotMatch(content, /<select|Wildart auswählen|Vergleichen mit \(optional\)/);
   assert.match(content, /<strong>Rehwild<\/strong>/);
@@ -144,11 +145,12 @@ test('Successful atlas leaf selection closes the lower menu; failure or an aband
   ui.choose('damwild'); await ui.reject(new Error('offline'));
   assert.deepEqual(ui.menuCalls, []);
   ui.choose('damwild'); await ui.acknowledge(1);
-  assert.deepEqual(ui.menuCalls, ['close']);
+  assert.deepEqual(ui.menuCalls, ['close', 'close'], 'The accepted transition and actual committed-selection effect both close the same existing menu');
   const abandoned = atlas(); abandoned.choose('damwild');
   abandoned.router.query = { art: 'gamswild' }; abandoned.render();
+  assert.deepEqual(abandoned.menuCalls, ['close'], 'The actual external selection closes the menu independently of an older pending destination');
   abandoned.calls[0].task.resolve(true); await tick(); abandoned.render();
-  assert.deepEqual(abandoned.menuCalls, []);
+  assert.deepEqual(abandoned.menuCalls, ['close'], 'The abandoned promise adds no extra close after the external commit');
 });
 
 test('Atlas navigation preserves unrelated query fields and recovers after ordinary/cancelled errors', async () => {

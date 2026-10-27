@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { DOG_JOURNAL_KEY, DOG_JOURNAL_LIMIT, DOG_JOURNAL_MAX_BYTES, dogTrainingExercises, dogTrainingSources, createDogJournalDraft, parseDogJournalBackup, makeDogJournalRecord } from "../lib/dog-training-journal";
 import styles from "../styles/LearningExperience.module.css";
 
@@ -44,10 +46,10 @@ export default function DogTrainingJournal() {
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, routerReady);
   function canEdit() { return mounted.current && ready && draftSession.current === formSession; }
   function focusExercise() {
-    heading.current?.focus?.({ preventScroll: true });
-    heading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(heading.current);
   }
   useEffect(() => {
     mounted.current = true;
@@ -74,6 +76,7 @@ export default function DogTrainingJournal() {
   }, [routerReady, origin]);
   async function selectExercise(id) {
     if (!mounted.current || !routerReady || committedView.current !== origin || !dogTrainingExercises.some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     if (exercise?.id === id && pendingSelection.current === null) { closePageMenu(); focusExercise(); return; }
     const request = ++selectionRequest.current;
@@ -136,7 +139,7 @@ export default function DogTrainingJournal() {
   return <LearningToolLayout title="Hundetraining-Tagebuch" description="Kleine, faire Lernschritte planen und Beobachtungen im eigenen Hundeteam festhalten." icon="paw" category="hundewesen" headingOnly>
     <PageMenu title="Hundetraining – Übung wählen" openInitially={routerReady && !exercise} initialFocusId="journal-exercise-select">
       <p>{dogTrainingExercises.length} Alltagsübungen · {records.length} eigene Einträge · lokal auf diesem Gerät</p>
-      <label className={styles.field}>Übung entdecken<select id="journal-exercise-select" value={exercise?.id || ""} disabled={!routerReady} aria-controls="exercise-title" onChange={event => selectExercise(event.target.value)}><option value="" disabled>Übung wählen</option>{dogTrainingExercises.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+      <MenuChoice label="Übung entdecken" id="journal-exercise-select" value={exercise?.id || ""} disabled={!routerReady} aria-controls="exercise-title" onChange={event => selectExercise(event.target.value)}><option value="" disabled>Übung wählen</option>{dogTrainingExercises.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</MenuChoice>
       {navigationError && <p className={styles.note} role="alert">{navigationError}</p>}
     </PageMenu>
     <p className={styles.note}>Dein Tagebuch wird nur im Browser auf diesem Gerät gespeichert, ohne Übertragung an Jagdlatein und ohne Abgleich mit anderen Geräten. Auf gemeinsam genutzten Geräten ist es für andere Personen mit demselben Browser zugänglich. Sichere wichtige Einträge als Datei.</p>

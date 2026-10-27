@@ -34,6 +34,20 @@ export function closePageMenu() {
   return true;
 }
 
+// A subgroup is still the same full-page menu. Reset its own scroll panel,
+// rather than moving the inert learning page behind it.
+export function resetPageMenuPosition(focusId) {
+  if (typeof document === "undefined") return false;
+  const outlet = document.getElementById(PAGE_MENU_OUTLET_ID);
+  const menu = outlet?.closest("details");
+  if (!menu?.open) return false;
+  const panel = menu.querySelector?.("[data-navigation-view]");
+  if (panel) panel.scrollTop = 0;
+  const target = typeof focusId === "string" ? document.getElementById(focusId) : null;
+  if (target && menu.contains(target)) target.focus?.({ preventScroll: true });
+  return true;
+}
+
 export default function PageMenu({ title = "Auf dieser Seite", children, openInitially = false, initialFocusId, className = "" }) {
   const [outlet, setOutlet] = useState(null);
   const initiallyOpened = useRef(false);

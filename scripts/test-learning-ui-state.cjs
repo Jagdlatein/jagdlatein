@@ -39,6 +39,16 @@ function engine() {
 }
 function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(''); return typeof node === 'object' ? words(node.props?.children) : String(node); }
 function find(node, predicate) { if (Array.isArray(node)) { for (const child of node) { const result = find(child, predicate); if (result) return result; } return null; } if (!node || typeof node !== 'object') return null; return predicate(node) ? node : find(node.props?.children, predicate); }
+function choiceField(choice) {
+  assert.ok(choice, 'A menu choice is rendered');
+  return { ...choice, props: { ...choice.props, onChange(event) {
+    const rendered = choice.type(choice.props);
+    const button = find(rendered, node => node.type === 'button' && node.props['data-menu-choice'] === String(event.target.value));
+    // Valid choices exercise the real renderer and native button; hostile
+    // values still reach the original owner's deliberate validation probe.
+    if (button) button.props.onClick(); else choice.props.onChange(event);
+  } } };
+}
 function setup(relative, props = {}, exportName = 'default', expose = '', overrides = {}) {
   const videoCase = relative === 'components/WildlifeVideoCases.js';
   if (videoCase) {
@@ -54,10 +64,11 @@ function setup(relative, props = {}, exportName = 'default', expose = '', overri
   function render() { tree = e.render(() => Component(currentProps)); }
   render();
   if (videoCase) e.flush();
+  if (relative === 'components/HabitatWorkshop.js') { e.flush(); render(); e.flush(); render(); }
   return { get tree() { return tree; }, redraw: render, commit() { if (e.needsRender()) render(); }, flush() { e.flush(); render(); }, flushCommitted() { e.flush(); if (e.needsRender()) render(); }, unmount() { e.unmount(); }, setProps(next) { currentProps = next; render(); },
     button(label) { const button = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(button, `Missing button: ${label}`); return button; },
     click(label) { const button = this.button(label); assert.ok(!button.props.disabled, `Disabled button: ${label}`); button.props.onClick(); render(); },
-    field(label) { const holder = find(tree, node => node.type === 'label' && words(node).startsWith(label)); assert.ok(holder, label); return find(holder, node => ['input', 'select', 'textarea'].includes(node.type)); },
+    field(label) { const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.label === label); if (choice) return choiceField(choice); const holder = find(tree, node => node.type === 'label' && words(node).startsWith(label)); assert.ok(holder, label); return find(holder, node => ['input', 'select', 'textarea'].includes(node.type)); },
   };
 }
 
@@ -238,7 +249,7 @@ test('Specific reading diagrams follow the actual selected lesson and disappear 
     const s = setup('components/LearningCourse.js', { module }, 'LearningContent', '\nexports.LearningContent = LearningContent;', { '../hooks/useCourseProgress': () => ({}) });
     const diagram = () => find(s.tree, node => node.type?.name === 'LessonDiagram');
     assert.ok(renderToStaticMarkup(diagram()).includes(title));
-    const select = () => find(s.tree, node => node.type === 'select' && node.props.id === 'lesson-selection');
+    const select = () => choiceField(find(s.tree, node => node.type?.name === 'MenuChoice' && node.props.id === 'lesson-selection'));
     select().props.onChange({ target: { value: '1' } }); s.redraw();
     assert.equal(renderToStaticMarkup(diagram()), '', 'no stale first-lesson diagram');
     select().props.onChange({ target: { value: '0' } }); s.redraw();

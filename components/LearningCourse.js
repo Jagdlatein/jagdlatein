@@ -13,6 +13,8 @@ import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigati
 import { recordReviewAnswer } from "../lib/daily-review";
 import LessonEvidence from "./LessonEvidence";
 import PageMenu, { closePageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
@@ -41,11 +43,21 @@ function LearningContent({ module, flashcards }) {
   const panelTarget = useRef(null);
   const lessonHeading = useRef(null);
   const revealLesson = useRef(null);
+  const menuLesson = useRef(null);
+  const lessonMounted = useRef(false), lessonRequest = useRef(0);
+  const [lessonError, setLessonError] = useState("");
+  const lessonRoute = `${module.id}:${router.asPath || ""}`;
+  const currentLessonRoute = useRef(lessonRoute);
+  currentLessonRoute.current = lessonRoute;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(`${module.id}:${lessonIndex}`, router.isReady !== false);
+  useEffect(() => { lessonMounted.current = true; return () => { lessonMounted.current = false; lessonRequest.current++; }; }, []);
   useEffect(() => {
     if (typeof window === "undefined") return;
     function readLesson() {
-      if (window.location.hash === "#wissenscheck") { panelTarget.current = "quiz-heading"; setQuizOpen(true); }
-      if (["#quellen", "#learning-sources"].includes(window.location.hash)) { panelTarget.current = "learning-sources"; setSourcesOpen(true); }
+      const href = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      if (menuLesson.current?.href && menuLesson.current.href !== href) menuLesson.current = null;
+      if (window.location.hash === "#wissenscheck") { cancelSelectionFocus(); panelTarget.current = "quiz-heading"; setQuizOpen(true); }
+      if (["#quellen", "#learning-sources"].includes(window.location.hash)) { cancelSelectionFocus(); panelTarget.current = "learning-sources"; setSourcesOpen(true); }
       const index = lessonIndexFromHash(module.lessons, window.location.hash);
       if (index >= 0) { revealLesson.current = index; setLessonIndex(index); }
     }
@@ -66,21 +78,44 @@ function LearningContent({ module, flashcards }) {
   useEffect(() => {
     if (revealLesson.current !== lessonIndex || !lessonHeading.current) return;
     revealLesson.current = null;
-    lessonHeading.current.focus({ preventScroll: true });
-    lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
+    const fromMenu = menuLesson.current?.index === lessonIndex;
+    menuLesson.current = null;
+    closePageMenu(); setLessonError("");
+    focusSelection(lessonHeading.current, { anchor: !fromMenu });
   }, [lessonIndex, router.asPath]);
-  function selectLesson(index) {
+  async function selectLesson(index) {
     if (!Number.isInteger(index) || !module.lessons[index]) return;
-    closePageMenu();
-    revealLesson.current = index;
+    if (typeof window !== "undefined" && (!lessonMounted.current || currentLessonRoute.current !== lessonRoute || router.isReady === false)) return;
+    cancelSelectionFocus();
+    menuLesson.current = { index, href: null };
+    setLessonError("");
     if (typeof window !== "undefined" && typeof router.replace === "function") {
       const href = `${window.location.pathname}${window.location.search}${lessonHash(module.lessons[index].id)}`;
-      router.replace(href, undefined, { shallow: true, scroll: false }).catch(error => { if (!error.cancelled) console.error("Lektion konnte nicht im Seitenverlauf aktualisiert werden."); });
+      menuLesson.current.href = href;
+      if (index === lessonIndex && window.location.hash === lessonHash(module.lessons[index].id)) {
+        menuLesson.current = null; closePageMenu(); focusSelection(lessonHeading.current); return;
+      }
+      const ticket = ++lessonRequest.current;
+      try {
+        const accepted = await router.replace(href, undefined, { shallow: true, scroll: false });
+        if (accepted === false && lessonMounted.current && lessonRequest.current === ticket && currentLessonRoute.current === lessonRoute) {
+          menuLesson.current = null; setLessonError("Die Lektion konnte nicht geöffnet werden. Bitte wähle sie erneut.");
+        }
+      } catch (error) {
+        if (lessonMounted.current && lessonRequest.current === ticket && currentLessonRoute.current === lessonRoute) {
+          menuLesson.current = null;
+          if (!error?.cancelled) setLessonError("Die Lektion konnte nicht geöffnet werden. Bitte wähle sie erneut.");
+        }
+      }
+      // Only readLesson adopts the lesson when the actual URL is committed.
+      return;
     }
+    // Static isolated readers have no browser/router navigation.
+    closePageMenu(); revealLesson.current = index;
     if (index === lessonIndex && lessonHeading.current) {
       revealLesson.current = null;
-      lessonHeading.current.focus({ preventScroll: true });
-      lessonHeading.current.scrollIntoView({ block: "start", behavior: "auto" });
+      menuLesson.current = null;
+      focusSelection(lessonHeading.current);
     }
     setLessonIndex(index);
   }
@@ -104,6 +139,7 @@ function LearningContent({ module, flashcards }) {
 
   function startRun(questions, mode) {
     if (currentRun.current !== run) return;
+    cancelSelectionFocus();
     updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed)), started: true });
   }
 
@@ -130,6 +166,7 @@ function LearningContent({ module, flashcards }) {
 
   function nextQuestion() {
     if (currentRun.current !== run || selected === undefined) return;
+    cancelSelectionFocus();
     updateRun(run.complete ? { ...run, showResult: true } : { ...run, index: run.index + 1 });
   }
 
@@ -147,12 +184,12 @@ function LearningContent({ module, flashcards }) {
             </fieldset>}
             <nav className={styles.lessonNav} aria-label="Lektionen">
               <div className={styles.mobileLessonChoice}>
-                <label htmlFor="lesson-selection">Lektion auswählen</label>
-                <select id="lesson-selection" value={lessonIndex} onChange={event => selectLesson(Number(event.target.value))}>
+                <MenuChoice label="Lektion" id="lesson-selection" value={lessonIndex} onChange={event => selectLesson(Number(event.target.value))}>
                   {module.lessons.map((item, index) => <option value={index} key={item.id}>{index + 1}. {item.title}</option>)}
-                </select>
+                </MenuChoice>
               </div>
             </nav>
+            {lessonError && <p role="alert">{lessonError}</p>}
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
           </PageMenu>
           <div className={styles.lessonGrid}>

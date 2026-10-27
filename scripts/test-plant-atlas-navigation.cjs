@@ -13,7 +13,7 @@ function plantButton(h, id) {
   return nodes(menu(h), node => node.type === 'button' && text(node).startsWith(entry.name))[0];
 }
 function select(h, id, value) {
-  const control = h.nodes(node => node.type === 'select' && node.props.id === id)[0];
+  const control = h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === id)[0];
   assert.ok(control, id);
   return control.props.onChange({ target: { value } });
 }
@@ -63,7 +63,7 @@ test('Search/group filtering creates no history; choosing a result and season cr
   await plantButton(h, 'waldkiefer').props.onClick(); h.render();
   assert.equal(title(h), 'Waldkiefer / Waldföhre');
   assert.deepEqual(h.calls[0], { href: { pathname: '/lernen/pflanzenatlas', query: { eintrag: 'waldkiefer', jahreszeit: 'winter', retained: 'yes' }, hash: 'plant-detail' }, options: { shallow: true, scroll: false } });
-  assert.equal(focused, 1); assert.equal(scrolled, 1);
+  assert.equal(focused, 1); assert.equal(scrolled, 0, 'A committed selection starts at the page top instead of scrolling below earlier content');
   await select(h, 'plant-season-choice', 'fruehling'); h.render();
   assert.equal(h.calls.length, 2);
   assert.equal(h.calls[1].href.query.jahreszeit, 'fruehling');

@@ -55,7 +55,7 @@ function setup(file, query = {}) {
   return { load, focus, scroll, replacements, methods, get tree() { return tree; }, get closeCount() { return closeCount; },
     menu() { return nodes(tree, node => node.type === PageMenu)[0]; },
     bodyText() { return text(React.Children.toArray(tree.props.children).filter(node => node?.type !== PageMenu)); },
-    choose(id, redraw = true) { const result = nodes(this.menu(), node => node.type === 'select')[0].props.onChange({ target: { value: id } }); if (redraw) flush(); return result; },
+    choose(id, redraw = true) { const result = nodes(this.menu(), node => node.type?.name === 'MenuChoice')[0].props.onChange({ target: { value: id } }); if (redraw) flush(); return result; },
     route(query) { router.query = query; flush(); }, flush,
     close() { for (const slot of slots) slot?.cleanup?.(); global.window = previousWindow; },
   };
@@ -75,7 +75,7 @@ test('Anatomy keeps both existing groups only in the lower menu, preserves the m
     assert.ok(s.bodyText().includes(anatomyModels[1].description));
     assert.equal(s.focus.at(-1).label, anatomyModels[1].title);
     assert.deepEqual(s.focus.at(-1).options, { preventScroll: true });
-    assert.equal(s.scroll.at(-1).options.block, 'start');
+    assert.equal(s.scroll.length, 0, 'Ordinary model selection delegates absolute page-top scrolling to the shared helper');
     assert.equal(s.replacements.at(-1)[0].query.eintrag, anatomyModels[1].id);
     await s.choose(anatomyModels[1].id); s.flush();
     assert.equal(s.focus.length, 2, 'Reselecting the visible model also returns focus from the lower menu');

@@ -7,7 +7,7 @@ const file = 'components/HuntingDogVideos.js', base = '/lernen/jagdhund-videos';
 const article = h => h.nodes(node => node.type === 'article' && node.props.id === 'hundevideo-film')[0];
 const video = h => h.nodes(node => node.type === 'video')[0];
 const source = h => h.nodes(node => node.type === 'source')[0];
-const selector = h => h.nodes(node => node.type === 'select' && node.props.id === 'hundevideo-auswahl')[0];
+const selector = h => h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'hundevideo-auswahl')[0];
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const alerts = h => h.nodes(node => node.props?.role === 'alert');
 const questions = h => h.nodes(node => node.type?.name === 'ObservationQuestion');
@@ -84,8 +84,8 @@ test('All four URL-owned scenes preserve exact MP4/poster/captions, authored tex
     assert.deepEqual(children.map(node => node.props.question), lesson.questions);
     assert.deepEqual(children.map(node => node.key), lesson.questions.map(question => `${lesson.id}-${question.id}`));
     assert.ok(children.every(node => node.props.scope === children[0].props.scope && node.props.canInteract()));
-    assert.equal(nodes(panel, node => node.type === 'select').length, 0);
-    assert.equal(nodes(menu(h), node => node.type === 'select').length, 1);
+    assert.equal(nodes(panel, node => node.type?.name === 'MenuChoice').length, 0);
+    assert.equal(nodes(menu(h), node => node.type?.name === 'MenuChoice').length, 1);
     assert.deepEqual(nodes(menu(h), node => node.props?.href).map(node => node.props.href), ['/lernen/videos', '/lernen/jagdhunde']);
   }
   assert.equal(h.calls.length, 0);
@@ -182,9 +182,9 @@ test('Focusing follows the router film/transcript target even if window has a co
   await choose(h, lessons[0].id); assert.equal(focus.film, 1); assert.equal(focus.transcript, 0);
   global.window.location.hash = '#hundevideo-film';
   history(h, { eintrag: lessons[0].id }, 'hundevideo-handlung'); assert.equal(focus.transcript, 1);
-  await choose(h, lessons[0].id); assert.equal(focus.transcript, 2); assert.equal(requests.length, 0);
+  await choose(h, lessons[0].id); assert.equal(focus.transcript, 1); assert.equal(focus.film, 2, 'A menu choice starts the scene at page top; a direct transcript link retains its anchor'); assert.equal(requests.length, 0);
   const action = choose(h, lessons[1].id); assert.equal(requests[0].href.hash, 'hundevideo-film');
-  await commit(h, requests[0], action); assert.equal(focus.film, 2);
+  await commit(h, requests[0], action); assert.equal(focus.film, 3);
   history(h, { eintrag: lessons[1].id }, 'hundevideo-auswahl');
   const opened = h.menu.opened; await new Promise(resolve => setTimeout(resolve, 1)); assert.equal(h.menu.opened, opened + 1);
 });

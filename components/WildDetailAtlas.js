@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { LearningPhotoCredit } from "./LearningPhoto";
 import { wildDetailPhotos, wildDetailSources, wildDetailTopics } from "../lib/wild-detail-atlas";
 import styles from "../styles/WildDetailAtlas.module.css";
@@ -27,19 +29,29 @@ export default function WildDetailAtlas() {
   const router = useRouter();
   const ready = router.isReady === true;
   const requested = router.query.thema;
+  const requestedSection = (router.asPath || "").split("#")[1];
   const topic = ready ? requested === undefined ? wildDetailTopics[0] : wildDetailTopics.find(item => typeof requested === "string" && item.id === requested) || null : null;
-  const viewKey = JSON.stringify([ready, topic?.id]);
+  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
+  const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const [navigationError, setNavigationError] = useState("");
   const contentHeading = useRef(null);
   const navigation = useRef(0);
   const pendingRequest = useRef(null);
   const mounted = useRef(false);
 
-  function focusContent() {
-    contentHeading.current?.focus?.({ preventScroll: true });
-    contentHeading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+  function focusContent(category = false) {
+    if (!category && requestedSection && !["wilddetails-title", "wilddetails-content"].includes(requestedSection)) {
+      const container = contentHeading.current?.closest?.("#wilddetails-content");
+      const target = Array.from(container?.querySelectorAll?.("[id]") || []).find(element => element.id === requestedSection);
+      if (!target) return;
+      target.setAttribute?.("tabindex", "-1");
+      focusSelection(target, { anchor: true });
+      return;
+    }
+    focusSelection(contentHeading.current);
   }
   useEffect(() => {
     mounted.current = true;
@@ -54,15 +66,15 @@ export default function WildDetailAtlas() {
     }
     closePageMenu();
     focusContent();
-  }, [ready, topic?.id]);
+  }, [ready, topic?.id, requestedSection]);
 
   async function selectTopic(id) {
-    if (!ready || !mounted.current || !wildDetailTopics.some(item => item.id === id)) return;
+    if (!ready || !mounted.current || committedView.current !== origin || !wildDetailTopics.some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     closePageMenu();
-    if (topic?.id === id && pendingRequest.current === null) { focusContent(); return; }
+    if (topic?.id === id && pendingRequest.current === null) { focusContent(true); return; }
     const request = ++navigation.current;
-    const origin = committedView.current;
     pendingRequest.current = request;
     try {
       await router.push({ pathname: "/lernen/wildtier-details", query: { ...router.query, thema: id }, hash: "wilddetails-title" }, undefined, { shallow: true, scroll: false });
@@ -77,7 +89,7 @@ export default function WildDetailAtlas() {
   return <LearningToolLayout title="Wildtier-Detailatlas" description="Gebiss, Schädel, Hörner, Geweih und Federn an echten Aufnahmen vergleichen. Das Thema wählst du im unteren Menü." icon="wildkunde" category="wildkunde" headingOnly hideCommunity>
     <PageMenu title="Detailatlas – Thema wählen" openInitially={ready && !topic} initialFocusId="wilddetails-choices">
       <div id="wilddetails-choices" tabIndex={-1}>
-        <label className={styles.selector}>Thema ansehen<select id="wilddetails-topic" value={topic?.id || ""} disabled={!ready} aria-controls="wilddetails-content" onChange={event => selectTopic(event.target.value)}><option value="" disabled>Thema wählen</option>{wildDetailTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+        <MenuChoice label="Thema" id="wilddetails-topic" value={topic?.id || ""} disabled={!ready} aria-controls="wilddetails-content" onChange={event => selectTopic(event.target.value)}><option value="" disabled>Thema wählen</option>{wildDetailTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</MenuChoice>
         {navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}
       </div>
     </PageMenu>

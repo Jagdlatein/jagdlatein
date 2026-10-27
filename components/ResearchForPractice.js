@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import Image from "next/image";
 import LearningToolLayout from "./LearningToolLayout";
 import { LearningPhotoCredit } from "./LearningPhoto";
@@ -50,18 +52,21 @@ export default function ResearchForPractice({ topics, photos, questions = [] }) 
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const [navigationError, setNavigationError] = useState("");
   const content = useRef(null);
   const mounted = useRef(false);
   const navigation = useRef(0);
   const pendingRequest = useRef(null);
+  const selectionFocus = useRef(null);
+  if (selectionFocus.current && selectionFocus.current.origin !== origin && selectionFocus.current.id !== topic?.id) selectionFocus.current = null;
   const selectedQuestions = topic ? questions.filter(question => question.topicId === topic.id) : [];
-  function focusContent() {
-    const selector = section === "revierwissen-fragen" || section === "revierwissen-praxischeck" ? "#revierwissen-quiz-title" : section === "revierwissen-inhalt" ? "#revierwissen-title" : `#${section}`;
+  function focusContent(category = false) {
+    if (!category && requestedSection && !sectionIds.includes(requestedSection)) return;
+    const selector = category ? "#revierwissen-title" : section === "revierwissen-fragen" || section === "revierwissen-praxischeck" ? "#revierwissen-quiz-title" : section === "revierwissen-inhalt" ? "#revierwissen-title" : `#${section}`;
     const target = content.current?.querySelector?.(selector) || content.current;
     target?.setAttribute?.("tabindex", "-1");
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor: !category && section !== "revierwissen-inhalt" && section !== "revierwissen-title" });
   }
   useEffect(() => {
     mounted.current = true;
@@ -74,18 +79,25 @@ export default function ResearchForPractice({ topics, photos, questions = [] }) 
       const timer = setTimeout(() => openPageMenu("revierwissen-choices"), 0);
       return () => clearTimeout(timer);
     }
+    const category = selectionFocus.current?.id === topic.id;
+    selectionFocus.current = null;
     closePageMenu();
-    focusContent();
-  }, [ready, topic?.id, section]);
+    focusContent(category);
+  }, [ready, topic?.id, section, requestedSection]);
   async function select(id) {
     if (!ready || !mounted.current || committedView.current !== origin || !topics.some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
-    if (topic?.id === id && pendingRequest.current === null) { closePageMenu(); focusContent(); return; }
+    if (topic?.id === id && pendingRequest.current === null) { closePageMenu(); focusContent(true); return; }
     const request = ++navigation.current;
     pendingRequest.current = request;
+    const focusIntent = { origin, id };
+    selectionFocus.current = focusIntent;
     try {
-      await router.push({ pathname: "/lernen/wissen-fuers-revier", query: { ...router.query, thema: id }, hash: section }, undefined, { shallow: true, scroll: false });
+      const accepted = await router.push({ pathname: "/lernen/wissen-fuers-revier", query: { ...router.query, thema: id }, hash: section }, undefined, { shallow: true, scroll: false });
+      if (accepted === false && selectionFocus.current === focusIntent) selectionFocus.current = null;
     } catch (error) {
+      if (selectionFocus.current === focusIntent) selectionFocus.current = null;
       if (error?.cancelled || !mounted.current || request !== navigation.current || committedView.current !== origin) return;
       setNavigationError("Das Thema konnte nicht geöffnet werden. Bitte wähle es erneut.");
       openPageMenu("revierwissen-choices");
@@ -94,7 +106,7 @@ export default function ResearchForPractice({ topics, photos, questions = [] }) 
     }
   }
   return <LearningToolLayout title="Wissen fürs Revier" description="Forschung verstehen und mit abwechslungsreichen Praxisfragen anwenden – auch nach der Jägerprüfung." category="jagdpraxis" eyebrow="Weiterdenken nach der Jägerprüfung" icon="binoculars" headingOnly className={styles.page}>
-    <PageMenu title="Wissen fürs Revier – Thema wählen" openInitially={ready && !topic} initialFocusId="revierwissen-choices"><section id="revierwissen-choices" tabIndex={-1} className={styles.selector} aria-label="Praxisthema auswählen"><div className={styles.overviewLine}><span>{topics.length} Themen für dein Revier</span><span>{questions.length} Fragen mit Erklärungen</span></div><label className={shared.field}>Dein Thema<select id="revierwissen-topic" value={topic?.id || ""} disabled={!ready} aria-controls="revierwissen-inhalt" onChange={event => select(event.target.value)}><option value="" disabled>Thema wählen</option>{topics.map(item => <option key={item.id} value={item.id}>{item.id === "wildkameras" ? "Wildkameras richtig auswerten" : item.id === "wild-und-stoerung" ? "Wild, Störungen und Tageszeit" : "Rehwild, Frühling und Setzzeit"}</option>)}</select></label>{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</section></PageMenu>
+    <PageMenu title="Wissen fürs Revier – Thema wählen" openInitially={ready && !topic} initialFocusId="revierwissen-choices"><section id="revierwissen-choices" tabIndex={-1} className={styles.selector} aria-label="Praxisthema auswählen"><div className={styles.overviewLine}><span>{topics.length} Themen für dein Revier</span><span>{questions.length} Fragen mit Erklärungen</span></div><MenuChoice label="Thema" id="revierwissen-topic" value={topic?.id || ""} disabled={!ready} aria-controls="revierwissen-inhalt" onChange={event => select(event.target.value)}><option value="" disabled>Thema wählen</option>{topics.map(item => <option key={item.id} value={item.id}>{item.id === "wildkameras" ? "Wildkameras" : item.id === "wild-und-stoerung" ? "Wild und Störung" : "Rehwild im Frühling"}</option>)}</MenuChoice>{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</section></PageMenu>
     <div ref={content} tabIndex={-1}>{topic ? <>
     <ResearchDossier key={topic.id} topic={topic} photo={photos[topic.photoKey]} />
     <div id="revierwissen-fragen"><QuizLeagueEntry practice /><ResearchQuestionRound key={`questions-${topic.id}`} questions={selectedQuestions} sources={topic.sources} /></div>

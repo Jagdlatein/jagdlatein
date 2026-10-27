@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { openPageMenu, closePageMenu } from "./PageMenu";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { findVenisonCuts, venisonCuts, venisonCutPhoto, venisonCutSources, venisonCookingMethods, venisonKitchenSafety } from "../lib/venison-cut-guide";
 import styles from "../styles/DogCutLearning.module.css";
 import reader from "../styles/FieldTopicReader.module.css";
@@ -22,6 +23,8 @@ export default function VenisonCutGuide() {
   const selectionKey = `${router.isReady}:${cooking}:${selectedCut?.id || ""}`;
   const committedView = useRef({ key: selectionKey });
   if (committedView.current.key !== selectionKey) committedView.current = { key: selectionKey };
+  const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, router.isReady === true);
 
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; navigation.current++; }; }, []);
 
@@ -33,20 +36,19 @@ export default function VenisonCutGuide() {
       return () => clearTimeout(timer);
     }
     closePageMenu();
-    heading.current?.focus({ preventScroll: true });
-    heading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(heading.current);
   }, [router.isReady, selectedCut?.id, cooking]);
 
   function choose(id) {
+    if (router.isReady !== true || !mounted.current || committedView.current !== origin || id !== "garmethoden" && !venisonCuts.some(cut => cut.id === id)) return;
+    cancelSelectionFocus();
     const request = ++navigation.current;
-    const origin = committedView.current;
     const next = { ...router.query };
     if (id === "garmethoden") next.ansicht = id;
     else { next.eintrag = id; delete next.ansicht; }
     closePageMenu();
     if (!pending.current && (id === selectedCut?.id && !cooking || id === "garmethoden" && cooking)) {
-      heading.current?.focus({ preventScroll: true });
-      heading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+      focusSelection(heading.current);
       return;
     }
     pending.current = true;

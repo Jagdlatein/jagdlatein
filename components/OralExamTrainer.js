@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import JagdakademiePromotion from "./JagdakademiePromotion";
 import { oralExamQuestions, getOralExamSummary } from "../lib/oral-exam-trainer";
 import { getLearningCategory } from "../lib/learning-categories";
@@ -44,6 +46,7 @@ export default function OralExamTrainer() {
   const speechGeneration = useRef(0);
   const [speechToken, setSpeechToken] = useState(0);
   const pending = useRef(null);
+  const focusIntent = useRef(null);
   const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) {
@@ -54,12 +57,16 @@ export default function OralExamTrainer() {
       // A deferred round reset belongs to exactly one accepted URL commit.
       // Moving elsewhere, even back to the same question, retires that action.
       const hash = (router.asPath || "").split("#")[1];
-      if (!operation.invalidated && !operation.commitOrigin && operation.origin === previousOrigin && ready && queryKey(router.query) === operation.target && hash === "exam-question-title") operation.commitOrigin = nextOrigin;
+      if (!operation.invalidated && !operation.commitOrigin && operation.origin === previousOrigin && ready && queryKey(router.query) === operation.target && hash === "exam-question-title") {
+        operation.commitOrigin = nextOrigin;
+        focusIntent.current = { origin: nextOrigin, anchor: operation.anchor };
+      }
       else { operation.invalidated = true; pending.current = null; }
     }
     committedView.current = nextOrigin;
   }
   const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const finished = activePractice.finishedOrigin === origin;
   function currentView() { return mounted.current && ready && !!item && committedView.current === origin && roundRef.current === round; }
   function canAnswer() {
@@ -75,12 +82,13 @@ export default function OralExamTrainer() {
     speechGeneration.current++;
     try { if (typeof window !== "undefined") window.speechSynthesis?.cancel(); } catch { /* Text remains available. */ }
   }
-  function focusContent() {
+  function focusContent(anchor = finished || (focusIntent.current?.origin === origin ? focusIntent.current.anchor : (router.asPath || "").split("#")[1] === "exam-question-title")) {
     const target = finished ? roundHeading.current : heading.current;
-    target?.focus?.({ preventScroll: true }); target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor });
   }
   function applyRound(action) {
     roundRef.current = {};
+    focusIntent.current = { origin: committedView.current, anchor: true };
     cancelSpeech(); setSpeechNotice("");
     if (action.type === "reset") writeResponses({});
     else {
@@ -119,18 +127,19 @@ export default function OralExamTrainer() {
     closePageMenu(); focusContent();
   }, [origin, round, finished]);
 
-  async function navigate(id, nextCategory = category, action = null) {
+  async function navigate(id, nextCategory = category, action = null, anchor = !!action) {
     if (!mounted.current || !ready || committedView.current !== origin || roundRef.current !== round || !(nextCategory === "all" || categories.includes(nextCategory))) return;
     const targetItem = oralExamQuestions.find(entry => entry.id === id && (nextCategory === "all" || entry.categorySlug === nextCategory));
     if (!targetItem) return;
+    cancelSelectionFocus();
     setNavigationError("");
     if (item?.id === id && category === nextCategory && !pending.current) {
-      if (action) applyRound(action); else { closePageMenu(); focusContent(); }
+      if (action) applyRound(action); else { closePageMenu(); focusContent(anchor); }
       return;
     }
     const query = { ...router.query, eintrag: id };
     if (nextCategory === "all") delete query.kategorie; else query.kategorie = nextCategory;
-    const operation = { origin, target: queryKey(query), action, accepted: false, commitOrigin: null, invalidated: false };
+    const operation = { origin, target: queryKey(query), action, anchor, accepted: false, commitOrigin: null, invalidated: false };
     pending.current = operation;
     cancelSpeech(); setSpeechNotice("");
     try {
@@ -140,7 +149,7 @@ export default function OralExamTrainer() {
       operation.accepted = true;
       if (!operation.commitOrigin && committedView.current === origin && item?.id === id && queryKey(router.query) === operation.target && (router.asPath || "").split("#")[1] === "exam-question-title") operation.commitOrigin = origin;
       completeNavigation(operation);
-      if (!action && operation.commitOrigin === origin && committedView.current === origin) { closePageMenu(); focusContent(); }
+      if (!action && operation.commitOrigin === origin && committedView.current === origin) { closePageMenu(); focusContent(anchor); }
     } catch (error) {
       if (!mounted.current || pending.current !== operation || operation.invalidated) return;
       pending.current = null;
@@ -165,7 +174,7 @@ export default function OralExamTrainer() {
   }
   function next() {
     if (!canAnswer() || pending.current || !currentResponse().rating || !currentResponse().revealed || !ownAnswer(currentResponse())) return;
-    if (index + 1 < questions.length) { navigate(questions[index + 1].id); return; }
+    if (index + 1 < questions.length) { navigate(questions[index + 1].id, category, null, true); return; }
     roundRef.current = {}; cancelSpeech(); setSpeechNotice("");
     writePractice({ ...practiceRef.current, finishedOrigin: origin });
   }
@@ -201,8 +210,8 @@ export default function OralExamTrainer() {
     <PageMenu title="Prüfungsgespräch – Themen und Fragen" openInitially={ready && !item} initialFocusId="exam-question-select">
       <p>{oralExamQuestions.length} eigene offene Fragen · {categories.length} Themenbereiche · 4 Kriterien pro Antwort</p>
       {item && <p>{finished ? "Runde abgeschlossen" : "Frage " + (index + 1) + " von " + questions.length + (activePractice.repeating ? " · Wiederholung" : "")}</p>}
-      <label className={styles.field}>Themenbereich<select disabled={!ready} value={category || ""} onChange={event => { const selected = event.target.value; const first = oralExamQuestions.find(entry => selected === "all" || entry.categorySlug === selected); if (first) navigate(first.id, selected); }}><option value="" disabled>Themenbereich wählen</option><option value="all">Alle Themen</option>{categories.map(slug => <option key={slug} value={slug}>{getLearningCategory(slug).title}</option>)}</select></label>
-      <label className={styles.field}>Frage wählen<select id="exam-question-select" disabled={!ready} value={item?.id || ""} aria-controls="exam-question-title" onChange={event => navigate(event.target.value)}><option value="" disabled>Frage wählen</option>{questions.map(entry => <option key={entry.id} value={entry.id}>{entry.title}</option>)}</select></label>
+      <MenuChoice label="Themenbereich" disabled={!ready} value={category || ""} onChange={event => { const selected = event.target.value; const first = oralExamQuestions.find(entry => selected === "all" || entry.categorySlug === selected); if (first) navigate(first.id, selected); }}><option value="" disabled>Themenbereich wählen</option><option value="all">Alle Themen</option>{categories.map(slug => <option key={slug} value={slug}>{getLearningCategory(slug).title}</option>)}</MenuChoice>
+      <MenuChoice label="Frage wählen" id="exam-question-select" disabled={!ready} value={item?.id || ""} aria-controls="exam-question-title" onChange={event => navigate(event.target.value)}><option value="" disabled>Frage wählen</option>{questions.map(entry => <option key={entry.id} value={entry.id}>{entry.title}</option>)}</MenuChoice>
       {navigationError && <p role="alert" className={styles.note}>{navigationError}</p>}
     </PageMenu>
     <p className={styles.note}>Eigene Übungsfragen mit Selbsteinschätzung, kein amtlicher Fragenkatalog. Deine Antworttexte bleiben nur in dieser geöffneten Seite und werden nicht hochgeladen. Vorlesen nutzt, soweit verfügbar, eine lokale Gerätestimme; es ist keine menschliche Originalaufnahme.</p>

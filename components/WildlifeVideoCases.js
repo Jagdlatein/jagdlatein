@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { wildlifeVideoCases, wildlifeVideoQuestionCount, videoCaseMatches } from "../lib/wildlife-video-cases";
 import { learningVideoLinks } from "../lib/learning-video-links";
 import styles from "../styles/LearningExperience.module.css";
@@ -22,6 +23,7 @@ export default function WildlifeVideoCases() {
   const committed = useRef({ key: viewKey });
   if (committed.current.key !== viewKey) committed.current = { key: viewKey };
   const origin = committed.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const mounted = useRef(false);
   const navigation = useRef(0);
   const pendingRequest = useRef(null);
@@ -64,8 +66,7 @@ export default function WildlifeVideoCases() {
   function focusContent(targetSection = section) {
     const target = targetSection === "video-textfassung" ? transcript.current : heading.current;
     if (targetSection === "video-textfassung" && transcript.current) transcript.current.open = true;
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor: targetSection === "video-textfassung" });
   }
   useEffect(() => {
     mounted.current = true;
@@ -90,6 +91,7 @@ export default function WildlifeVideoCases() {
 
   async function selectCase(id) {
     if (!ready || !mounted.current || committed.current !== origin || round.current !== renderedRound || !wildlifeVideoCases.some(entry => entry.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     const destination = section === "video-textfassung" ? "video-textfassung" : "video-fall";
     if (id === caseId && pendingRequest.current === null) { closePageMenu(); focusContent(destination); return; }

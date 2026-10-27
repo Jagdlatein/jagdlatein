@@ -16,26 +16,27 @@ const framework = {
 function all(node, predicate) { if (Array.isArray(node)) return node.flatMap(child => all(child, predicate)); if (!node || typeof node !== 'object') return []; return [...(predicate(node) ? [node] : []), ...all(node.props?.children, predicate)]; }
 function words(node) { if (node == null || typeof node === 'boolean') return ''; if (Array.isArray(node)) return node.map(words).join(' '); return typeof node === 'object' ? words(node.props?.children) : String(node); }
 function engine() {
-  const slots = []; let cursor = 0;
+  const slots = []; let cursor = 0, effects = [];
   return { hooks: { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; }]; },
     useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
-  }, render(fn) { cursor = 0; return fn(); } };
+    useEffect(callback, deps) { const i = cursor++, previous = slots[i]; if (!previous || !deps || deps.some((value, j) => !Object.is(value, previous.deps[j]))) { slots[i] = { deps, cleanup: previous?.cleanup }; effects.push(() => { slots[i].cleanup?.(); slots[i].cleanup = callback(); }); } },
+  }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects; effects = []; pending.forEach(callback => callback()); } };
 }
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const tick = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function atlas(query = {}) {
   const e = engine(), calls = []; let tree;
-  const router = { query, replace(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
+  const router = { query, isReady: true, replace(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
   const Jaw = () => null, Comparison = () => null, Teeth = () => null;
   const Component = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router },
     '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)),
     '../../components/WildlifeJawModel': moduleValue(Jaw), '../../components/WildlifeJawComparison': moduleValue(Comparison), '../../components/WildlifeDentition': moduleValue(Teeth),
   })('pages/lernen/kiefer-3d.js').default;
-  const render = () => { tree = e.render(() => Component()); };
+  const render = () => { tree = e.render(() => Component()); e.flush(); };
   render();
   return { get tree() { return tree; }, router, calls, render, Jaw, Comparison, Teeth,
-    fields() { return all(tree, node => node.type === 'select'); },
+    fields() { return all(tree, node => node.type?.name === 'MenuChoice'); },
     choose(index, slug) { this.fields()[index].props.onChange({ target: { value: slug } }); render(); },
     async acknowledge() { const last = calls.at(-1); router.query = last.href.query; last.task.resolve(true); await tick(); render(); },
   };

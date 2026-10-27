@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Seo from "./Seo";
 import ResearchQuestionRound from "./ResearchQuestionRound";
-import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import PageMenu, { closePageMenu, openPageMenu, resetPageMenuPosition } from "./PageMenu";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { legalCountries, legalTopics, legalSelection, legalSelectionHref, readLegalRegionPreference,
   saveLegalRegionPreference } from "../lib/regional-law-core";
 import styles from "../styles/RegionalLaw.module.css";
@@ -93,6 +94,7 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
   const currentOrigin = useRef({ key: originKey });
   if (currentOrigin.current.key !== originKey) currentOrigin.current = { key: originKey };
   const origin = currentOrigin.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const menuStage = !ready ? "loading" : menuChoice?.origin === origin ? menuChoice.stage : selection.region ? "main" : "region";
   const stageIdentity = useRef({ origin, stage: menuStage });
   if (stageIdentity.current.origin !== origin || stageIdentity.current.stage !== menuStage) stageIdentity.current = { origin, stage: menuStage };
@@ -192,7 +194,7 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
       moved.current = false;
       closePageMenu();
       const target = article ? articleHeading.current : contentHeading.current || heading.current;
-      target?.focus({ preventScroll: true }); target?.scrollIntoView({ block: "start", behavior: "auto" });
+      focusSelection(target, { anchor: Boolean(typeof window !== "undefined" && window.location.hash) });
     }
     firstContent.current = false;
   }, [ready, bundle, selection.topic, selection.article, selection.view]);
@@ -222,12 +224,14 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
   }
   function showStage(next) {
     if (!live()) return;
+    cancelSelectionFocus();
     setNavigationError(null); cancelOutstandingNavigation();
     stageIdentity.current = { origin, stage: next };
     setMenuChoice({ origin, stage: next, focus: true });
   }
   async function navigate(href, clearSearch = true) {
     if (!live()) return;
+    cancelSelectionFocus();
     if (href === legalSelectionHref(country, selection)) {
       setNavigationError(null); cancelOutstandingNavigation();
       if (selection.region && (selection.view !== "wissen" || article)) {
@@ -235,7 +239,7 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
         setMenuChoice({ origin, stage: "main", focus: false });
         closePageMenu();
         const target = article ? articleHeading.current : contentHeading.current || heading.current;
-        target?.focus({ preventScroll: true }); target?.scrollIntoView({ block: "start", behavior: "auto" });
+        focusSelection(target);
       } else showStage(selection.region ? "main" : "region");
       return;
     }
@@ -294,10 +298,11 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
     if (!mounted.current || currentOrigin.current !== origin || menuChoice?.origin !== origin || menuChoice.focus === false) return;
     const target = { country: "regional-law-country", region: "regional-law-region", form: "regional-law-form", topic: "regional-law-topic", main: "regional-law-topics" }[menuStage];
     openPageMenu(target);
+    resetPageMenuPosition(target);
   }, [menuChoice, menuStage, origin]);
   return <main className={styles.main}>
     <Seo title={`Jagdrecht ${name} – nach ${regionLabel} lernen`} description={`Jagdrecht und eigene Rechtsfragen für deine Prüfungsregion in ${name}. Mit amtlichen Originalauszügen und genauen Fundstellen.`} />
-    <header className={styles.header}><h1 ref={heading} tabIndex={-1}>{!ready ? "Jagdrecht" : selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
+    <header className={styles.header}><h1 ref={heading} tabIndex={-1} data-learning-page-start>{!ready ? "Jagdrecht" : selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
     <PageMenu key={country} title="Jagdrecht – Auswahl" openInitially={ready && !selection.region} initialFocusId="regional-law-region">
     <div className={styles.menuStage} aria-busy={pendingChoice}>
     {menuStage === "loading" && <p role="status">Die Rechtsauswahl wird vorbereitet …</p>}

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import NatureQuestionRound from "./NatureQuestionRound";
 import { habitatFeatures, habitatSpecies, habitatPresets, habitatSources, habitatQuestions, evaluateHabitat } from "../lib/habitat-workshop";
 import styles from "../styles/LearningExperience.module.css";
@@ -60,15 +62,20 @@ export default function HabitatWorkshop() {
   const [preset, setPreset] = useState(habitatPresets[1].id);
   const [view, setView] = useState(() => resolveHabitatView(""));
   const reading = useRef(view);
+  const committedView = useRef(view);
   const content = useRef(null);
   const pendingFocus = useRef(false);
   const restoredHash = useRef(null);
+  const mounted = useRef(false);
   reading.current = view;
+  committedView.current = view;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(view);
   const feature = habitatFeatures.find(item => item.id === view.feature);
   const results = evaluateHabitat(selected);
   const targetSpecies = results.find(species => species.id === view.focus);
   const activeSource = view.topic === "art" && targetSpecies ? targetSpecies.source : feature.source;
 
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   useEffect(() => {
     if (typeof window === "undefined") return;
     function restore(event) {
@@ -77,6 +84,7 @@ export default function HabitatWorkshop() {
       restoredHash.current = hash;
       const next = resolveHabitatView(hash);
       reading.current = next;
+      committedView.current = next;
       // The legacy fragment includes parameters, so it has no matching DOM id.
       // Focus the rendered content after React has restored this selection.
       pendingFocus.current = typeof hash === "string" && hash.startsWith(readingPrefix);
@@ -94,20 +102,22 @@ export default function HabitatWorkshop() {
   }, []);
   useEffect(() => {
     if (!pendingFocus.current || reading.current !== view || !content.current) return;
+    const modelChange = pendingFocus.current === "model";
     pendingFocus.current = false;
     closePageMenu();
-    content.current.focus?.({ preventScroll: true });
-    content.current.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(content.current, { anchor: modelChange });
   }, [view]);
 
-  function chooseView(change) {
+  function chooseView(change, modelChange = false) {
+    if (!mounted.current || committedView.current !== view) return;
     const requested = { ...reading.current, ...change };
     if (!habitatFeatures.some(item => item.id === requested.feature) ||
       !(requested.focus === "alle" || habitatSpecies.some(item => item.id === requested.focus)) ||
       !["lesen", "gestalten", "quiz"].includes(requested.mode) ||
       !["baustein", "art"].includes(requested.topic) || requested.topic === "art" && requested.focus === "alle") return;
+    cancelSelectionFocus();
     reading.current = requested;
-    pendingFocus.current = true;
+    pendingFocus.current = modelChange ? "model" : true;
     closePageMenu();
     setView(requested);
     // Native fragments add ordinary Back/Forward entries. Model edits stay local.
@@ -124,23 +134,23 @@ export default function HabitatWorkshop() {
     if (topic === "art") chooseView({ focus: id, topic, mode: "lesen" });
   }
   function toggle(id) {
-    if (!habitatFeatures.some(item => item.id === id)) return;
+    if (!mounted.current || committedView.current !== view || !habitatFeatures.some(item => item.id === id)) return;
     setPreset("custom");
     setSelected(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]);
   }
   function loadPreset(id) {
     const next = habitatPresets.find(item => item.id === id);
-    if (!next) return;
+    if (!mounted.current || committedView.current !== view || !next) return;
     setPreset(id); setSelected([...next.ids]);
-    chooseView({ mode: "gestalten" });
+    chooseView({ mode: "gestalten" }, true);
   }
   const topicValue = view.topic === "art" ? `art:${view.focus}` : `baustein:${view.feature}`;
   const readingSource = <details className={styles.sources}><summary>Ergänzende Fachquelle</summary><a href={habitatSources[activeSource].url} target="_blank" rel="noreferrer">{habitatSources[activeSource].title}</a></details>;
   return <LearningToolLayout title="Lebensraum-Werkstatt" description="Gestalte eine Lernlandschaft und entdecke, wie Nahrung, Deckung, Brutplätze und Verbindungen zusammenwirken." icon="leaf" category="natur-revier" headingOnly>
     <PageMenu title="Lebensraum – Thema wählen">
-      <label className={styles.field}>Lernangebot<select value={view.mode} onChange={event => chooseView({ mode: event.target.value })} aria-controls="habitat-content"><option value="lesen">Wissen lesen</option><option value="gestalten">Landschaft gestalten</option><option value="quiz">Zusammenhänge prüfen</option></select></label>
-      <label className={styles.field}>Wissen auswählen<select value={topicValue} onChange={event => chooseTopic(event.target.value)} aria-controls={view.mode !== "lesen" ? "habitat-content" : view.topic === "art" ? "habitat-species-reading" : "habitat-feature-reading"}><optgroup label="Lebensraum-Bausteine">{habitatFeatures.map(item => <option key={item.id} value={`baustein:${item.id}`}>{item.name}</option>)}</optgroup><optgroup label="Tierarten">{habitatSpecies.map(species => <option key={species.id} value={`art:${species.id}`}>{species.name}</option>)}</optgroup></select></label>
-      {view.mode === "gestalten" && <label className={styles.field}>Lernlandschaft laden<select value={preset} onChange={event => loadPreset(event.target.value)}>{preset === "custom" && <option value="custom">Eigene Zusammenstellung</option>}{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+      <MenuChoice label="Lernangebot" value={view.mode} onChange={event => chooseView({ mode: event.target.value })} aria-controls="habitat-content"><option value="lesen">Wissen lesen</option><option value="gestalten">Landschaft gestalten</option><option value="quiz">Zusammenhänge prüfen</option></MenuChoice>
+      <MenuChoice label="Wissen auswählen" value={topicValue} onChange={event => chooseTopic(event.target.value)} aria-controls={view.mode !== "lesen" ? "habitat-content" : view.topic === "art" ? "habitat-species-reading" : "habitat-feature-reading"}><optgroup label="Lebensraum-Bausteine">{habitatFeatures.map(item => <option key={item.id} value={`baustein:${item.id}`}>{item.name}</option>)}</optgroup><optgroup label="Tierarten">{habitatSpecies.map(species => <option key={species.id} value={`art:${species.id}`}>{species.name}</option>)}</optgroup></MenuChoice>
+      {view.mode === "gestalten" && <MenuChoice label="Lernlandschaft laden" value={preset} onChange={event => loadPreset(event.target.value)}>{preset === "custom" && <option value="custom">Eigene Zusammenstellung</option>}{habitatPresets.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</MenuChoice>}
     </PageMenu>
     <div id="habitat-content">
       {view.mode === "quiz" ? <section id="habitat-quiz-reading" ref={content} tabIndex={-1} aria-label="Zusammenhänge prüfen" className={workshop.focusTarget}><NatureQuestionRound entries={habitatQuestions} sources={habitatSources} label="Lebensraumfälle" /></section> : view.mode === "gestalten" ? <>

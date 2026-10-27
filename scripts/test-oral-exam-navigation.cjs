@@ -8,7 +8,7 @@ const file = 'components/OralExamTrainer.js', base = '/lernen/pruefungsgespraech
 const heading = h => h.nodes(node => node.props?.id === 'exam-question-title')[0];
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const questionSelect = h => h.nodes(node => node.props?.id === 'exam-question-select')[0];
-const categorySelect = h => nodes(menu(h), node => node.type === 'select')[0];
+const categorySelect = h => nodes(menu(h), node => node.type?.name === 'MenuChoice' && node.props.label === 'Themenbereich')[0];
 const answer = h => h.nodes(node => node.type === 'textarea')[0]?.props.value;
 const alerts = h => h.nodes(node => node.props?.role === 'alert');
 const choose = (h, id) => questionSelect(h).props.onChange({ target: { value: id } });

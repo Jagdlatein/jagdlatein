@@ -17,7 +17,7 @@ function setup() {
   const app = setupReader('components/AnatomyExplorer.js', {}, { router: { pathname: '/lernen/anatomie', asPath: '/lernen/anatomie' } });
   const data = app.load('lib/anatomy-explorer.js');
   return { data, get tree() { return app.tree; }, redraw: app.render, text: () => words(app.tree),
-    selector() { return find(app.tree, node => node.type === 'select'); },
+    selector() { return find(app.tree, node => node.props?.id === 'anatomy-entry-select'); },
     choose(id) { this.selector().props.onChange({ target: { value: id } }); app.render(); },
     quiz() { return find(app.tree, node => node.type === 'details' && words(node.props.children[0]).startsWith('Wissen zum Modell')); },
     toggle(open) { this.quiz().props.onToggle({ currentTarget: { open } }); app.render(); },

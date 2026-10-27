@@ -79,7 +79,7 @@ function fixture(t, { query = {}, hash = '', isReady = true } = {}) {
   }
   function find(predicate) { return nodes(tree).find(({ node, ancestors }) => predicate(node, ancestors))?.node; }
   function article() { return find(node => node.type === 'article' && node.props.id === 'hundevideo-film'); }
-  async function choose(id) { await find(node => node.type === 'select').props.onChange({ target: { value: id } }); render(); }
+  async function choose(id) { await find(node => node.type?.name === 'MenuChoice').props.onChange({ target: { value: id } }); render(); }
   function dispose() { if (disposed) return; for (const cleanup of cleanups.values()) cleanup(); disposed = true; }
   let cleaned = false;
   function cleanup() { if (cleaned) return; cleaned = true; dispose(); global.window = oldWindow; }
@@ -116,7 +116,7 @@ test('All authored direct links and the bare first entry are recognized; explici
   f.restore({}); assert.equal(f.article().key, lessons[0].id);
   for (const query of [{ eintrag: '' }, { eintrag: '../other' }, { eintrag: [lessons[1].id] }, { eintrag: [lessons[1].id, lessons[2].id] }]) {
     f.restore(query); assert.equal(f.article(), undefined);
-    assert.equal(f.find(node => node.type === 'select').props.value, '');
+    assert.equal(f.find(node => node.type?.name === 'MenuChoice').props.value, '');
     assert.ok(f.find(node => node.type === 'p' && String(node.props.children).includes('Diese Szene ist nicht verfügbar')));
   }
   assert.equal(f.pushes.length, 0, 'Restoring a URL must never write another history entry');
@@ -125,7 +125,7 @@ test('All authored direct links and the bare first entry are recognized; explici
 test('Selection waits for router readiness and rejects an arbitrary scene without changing content or history', async t => {
   const f = fixture(t, { query: { eintrag: lessons[1].id }, isReady: false });
   assert.equal(f.article(), undefined);
-  assert.equal(f.find(node => node.type === 'select').props.disabled, true);
+  assert.equal(f.find(node => node.type?.name === 'MenuChoice').props.disabled, true);
   await f.choose(lessons[2].id); assert.equal(f.pushes.length, 0);
   f.router.isReady = true; f.render(); assert.equal(f.article().key, lessons[1].id);
   await f.choose('https://other.example/video'); assert.equal(f.pushes.length, 0); assert.equal(f.article().key, lessons[1].id);
@@ -135,8 +135,8 @@ test('Controls and directory links live only in the lower page menu; transcript 
   const f = fixture(t, { query: { eintrag: lessons[1].id }, hash: 'hundevideo-handlung' });
   const menu = f.find(node => node.type === f.PageMenu);
   assert.ok(menu);
-  assert.ok(nodes(menu).some(({ node }) => node.type === 'select' && node.props.id === 'hundevideo-auswahl'));
-  assert.ok(!nodes(f.article()).some(({ node }) => node.type === 'select'));
+  assert.ok(nodes(menu).some(({ node }) => node.type?.name === 'MenuChoice' && node.props.id === 'hundevideo-auswahl'));
+  assert.ok(!nodes(f.article()).some(({ node }) => node.type?.name === 'MenuChoice'));
   assert.deepEqual(nodes(menu).filter(({ node }) => node.props.href).map(({ node }) => node.props.href), ['/lernen/videos', '/lernen/jagdhunde']);
   const transcript = f.find(node => node.props.id === 'hundevideo-handlung');
   assert.equal(transcript.type, 'section');

@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import CommunityWeeklyCase from "./CommunityWeeklyCase";
 import { communityWeeklyCases } from "../lib/community-weekly-case";
 import { communityCategories, communityRules } from "../lib/community-catalog";
@@ -59,7 +61,7 @@ function CommunitySearch({ query, category, type, unanswered, search, total, loa
   const filtered = Boolean(search || category !== "all" || type !== "all" || unanswered);
   return <section className={`${learning.panel} ${styles.searchPanel}`} aria-labelledby="community-search-heading">
     <h2 id="community-search-heading">Deine Wissenskanäle</h2>
-    <label className={learning.field}>Kanal auswählen<select value={category} onChange={event => onCategory(event.target.value)}><option value="all">Alle Wissenskanäle</option>{communityCategories.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}</select></label>
+    <MenuChoice label="Wissenskanal" value={category} onChange={event => onCategory(event.target.value)}><option value="all">Alle Wissenskanäle</option>{communityCategories.map(item => <option key={item.slug} value={item.slug}>{item.title}</option>)}</MenuChoice>
     <form onSubmit={event => { event.preventDefault(); onSearch(); }} className={styles.searchRow}>
       <label className={learning.field}>Community durchsuchen<input type="search" maxLength={160} value={query} onChange={event => onQuery(event.target.value)} placeholder="Zum Beispiel Gams oder Jagdhunde" enterKeyHint="search" /></label>
       <button className={learning.secondary} type="submit"><AppIcon name="search" size={18} />Treffer anzeigen</button>
@@ -67,7 +69,7 @@ function CommunitySearch({ query, category, type, unanswered, search, total, loa
     <details className={styles.filtersDetails} open={type !== "all" || unanswered}>
       <summary>Weitere Filter{type !== "all" || unanswered ? " · Filter aktiv" : ""}</summary>
       <div className={styles.formRow}>
-        <label className={learning.field}>Beitragsart<select value={type} onChange={event => onType(event.target.value)}><option value="all">Fragen und Austausch</option><option value="question">Fragen</option><option value="discussion">Austausch</option></select></label>
+        <MenuChoice label="Beitragsart" value={type} onChange={event => onType(event.target.value)}><option value="all">Fragen und Austausch</option><option value="question">Fragen</option><option value="discussion">Austausch</option></MenuChoice>
       </div>
       <label className={styles.checkbox}><input type="checkbox" checked={unanswered} onChange={event => onUnanswered(event.target.checked)} />Nur Fragen ohne Antwort</label>
     </details>
@@ -153,6 +155,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   const [report, setReportState] = useState(null); const [reportReason, setReportReason] = useState(""); const [removal, setRemovalState] = useState(null);
   const [block, setBlockState] = useState(null);
   const [focusTarget, setFocusTarget] = useState(null);
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(JSON.stringify([threadId, category, type, view, page, search, query, compose]));
   const resultFocusRequested = useRef(false);
   useEffect(() => {
     const target = mutationError ? "community-error" : notice ? "community-notice" : report ? "community-report" : removal ? "community-removal" : block ? "community-block-confirmation" : null;
@@ -162,7 +165,10 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   const canPost = Boolean(viewer && !viewer.profileRequired && viewer.displayName); const admin = viewer?.canModerate === true;
   const sessionNeedsRenewal = ["SESSION_RENEWAL_REQUIRED", "AUTH_REQUIRED"].includes(error?.code);
   useEffect(() => {
-    if (focusTarget && !loading && focusSection(focusTarget)) setFocusTarget(null);
+    if (focusTarget && !loading) {
+      if (focusTarget === "community-view") { focusSelection(document.getElementById(focusTarget)); setFocusTarget(null); }
+      else if (focusSection(focusTarget)) setFocusTarget(null);
+    }
   }, [focusTarget, loading, data, compose, viewer]);
   useEffect(() => {
     if (compose && viewer && !loading) focusSection("community-compose");
@@ -174,7 +180,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   useEffect(() => {
     if (resultFocusRequested.current && !loading && data) {
       resultFocusRequested.current = false;
-      focusSection("community-results");
+      focusSelection(document.getElementById("community-results"));
     }
   }, [loading, data]);
   useEffect(() => { if (error) setFocusTarget("community-load-error"); }, [error]);
@@ -199,7 +205,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     finally { clearTimeout(timeout); setBusy(false); }
   }
   function changeQuery(value) { resultFocusRequested.current = false; if (focusTarget === "community-results") setFocusTarget(null); setQuery(value); }
-  function changeFilter(setter, value) { resultFocusRequested.current = false; setter(value); setPage(1); }
+  function changeFilter(setter, value) { cancelSelectionFocus(); resultFocusRequested.current = false; setter(value); setPage(1); }
   function setReport(value) { setReportState(value); if (value) { setNotice(""); setMutationError(null); setRemovalState(null); setBlockState(null); if (value !== report) setReportReason(""); } }
   function setRemoval(value) { setRemovalState(value); if (value) { setNotice(""); setMutationError(null); setReportState(null); setBlockState(null); } }
   function setBlock(value) { setBlockState(value); if (value) { setNotice(""); setMutationError(null); setReportState(null); setRemovalState(null); } }
@@ -211,7 +217,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
     resultFocusRequested.current = true;
     if (value === search && page === 1 && !loading && data) {
       resultFocusRequested.current = false;
-      focusSection("community-results");
+      focusSelection(document.getElementById("community-results"));
     }
   }
   function changeView(value) {

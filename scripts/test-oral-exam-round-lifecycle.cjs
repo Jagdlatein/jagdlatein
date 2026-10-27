@@ -132,6 +132,8 @@ function fixture(t, { query = {}, hash = '', voices = [{ lang: 'de-CH', localSer
     return node;
   }
   function input(label) {
+    const choice = find(node => node.type?.name === 'MenuChoice' && node.props.label === label);
+    if (choice) return choice;
     const holder = find(node => node.type === 'label' && text(node).startsWith(label));
     assert.ok(holder, `Missing field: ${label}`);
     const node = nodes(holder, node => ['input', 'select', 'textarea'].includes(node.type))[0];

@@ -5,6 +5,8 @@ import DigestiveLearning from "./DigestiveLearning";
 import { digestiveTopics } from "../lib/digestive-learning";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { anatomyModels, anatomyQuestions, anatomySources } from "../lib/anatomy-explorer";
 import styles from "../styles/LearningExperience.module.css";
 import mediaStyles from "../styles/LearningMediaExperiences.module.css";
@@ -49,6 +51,7 @@ export default function AnatomyExplorer() {
   const currentOrigin = useRef({ key: viewKey });
   if (currentOrigin.current.key !== viewKey) currentOrigin.current = { key: viewKey };
   const origin = currentOrigin.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const modelScope = useRef({ key: selectionKey });
   const viewer = useRef(null);
   const attemptRef = useRef({});
@@ -93,9 +96,8 @@ export default function AnatomyExplorer() {
   }
   function updateStatus(value) { if (canUseAttempt()) { statusRef.current = value; changeView({ status: value }); } }
   function focusContent() {
-    const target = (router.asPath || "").split("#")[1] === "anatomie-fragen" && model ? quizTarget.current : contentTarget.current;
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    const anchor = (router.asPath || "").split("#")[1] === "anatomie-fragen" && !!model;
+    focusSelection(anchor ? quizTarget.current : contentTarget.current, { anchor });
   }
   useEffect(() => {
     mounted.current = true;
@@ -120,6 +122,7 @@ export default function AnatomyExplorer() {
     if (!mounted.current || !ready || currentOrigin.current !== origin) return;
     const digestive = digestiveTopics.some(item => item.id === id);
     if (!digestive && !anatomyModels.some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     if (selection?.id === id && pending.current === null) { closePageMenu(); focusContent(); return; }
     const ticket = ++request.current;
@@ -225,7 +228,7 @@ export default function AnatomyExplorer() {
 
   return <LearningToolLayout title="Wildkörper verstehen" description="Körperbau und Verdauung an echten Präparatfotos und Museumsscans vergleichen." icon="cube" category="wildkunde" headingOnly>
     <PageMenu title="Körperbau – Thema wählen" openInitially={ready && !selection} initialFocusId="anatomy-entry-select">
-      <label className={styles.field}>Körperbau erkunden<select id="anatomy-entry-select" value={selection?.id || ""} disabled={!ready} aria-controls={section === "verdauung" ? "anatomie-verdauung" : "anatomie-modell"} onChange={event => selectEntry(event.target.value)}><option value="" disabled>Thema wählen</option><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label>
+      <MenuChoice label="Körperbau erkunden" id="anatomy-entry-select" value={selection?.id || ""} disabled={!ready} aria-controls={section === "verdauung" ? "anatomie-verdauung" : "anatomie-modell"} onChange={event => selectEntry(event.target.value)}><option value="" disabled>Thema wählen</option><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></MenuChoice>
       {navigationError && <p className={styles.note} role="alert">{navigationError}</p>}
     </PageMenu>
     {!selection ? <p className={styles.note}>{ready ? "Dieses Thema ist nicht verfügbar. Wähle unten im Menü ein Thema." : "Das gewählte Thema wird geladen."}</p> : <div ref={contentTarget} tabIndex={-1} aria-label={section === "verdauung" ? digestiveTopics.find(item => item.id === digestiveId)?.title : model.title}>

@@ -41,6 +41,7 @@ async function fixture(file, initialProps={}, options={}) {
     saved.set(key,Object.getOwnPropertyDescriptor(global,key));Object.defineProperty(global,key,{configurable:true,writable:true,value});
   }
   dom.window.HTMLElement.prototype.scrollIntoView=function(){};
+  dom.window.scrollTo=function(){};
   const loader=createLoader({
     'next/router':{useRouter:()=>router},
     'next/link':({href,children,prefetch,scroll,...rest})=>React.createElement('a',{...rest,href:typeof href==='string'?href:href.pathname},children),

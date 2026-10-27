@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards } from "../lib/flashcard-review";
 import { flashcardSelectionQuery, matchesFlashcardSelection } from "../lib/flashcard-selection";
 import { createFlashcardURLSync, flashcardNavigationURL, flashcardRouterURL, readFlashcardNavigation, sameFlashcardNavigation } from "../lib/flashcard-navigation";
@@ -66,6 +68,8 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const leaving = useRef(false);
   const scope = `${selection?.courseId || ""}/${selection?.lessonId || ""}/${Boolean(selection?.invalid)}`;
   const scopeRef = useRef(scope);
+  const selectionFocusRequested = useRef(false);
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(JSON.stringify([scope, category, query, mode]), router.isReady !== false);
   const categoryIds = categories.map(item => item.id).join("|");
   routerRef.current = router;
   contextRef.current = { categories, selection };
@@ -133,6 +137,11 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const waitingForCard = incomplete && currentId && !cards.some(card => card.id === currentId);
   const current = waitingForCard ? null : available.find(card => card.id === currentId) || available[0] || null;
+  useEffect(() => {
+    if (!selectionFocusRequested.current || waitingForCard) return;
+    selectionFocusRequested.current = false;
+    focusSelection(headingRef.current);
+  }, [navigation, waitingForCard]);
   const token = generation.current;
   active.current = current?.id || null;
   const printQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(mode === "all" ? { modus: "alle" } : {}), ...(current?.id ? { karte: current.id } : {}) };
@@ -144,6 +153,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     syncRef.current.schedule(delay);
   }
   function changeFilter(key, value) {
+    selectionFocusRequested.current = false; cancelSelectionFocus();
     generation.current++;
     active.current = null;
     setMessage("");
@@ -187,10 +197,13 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   }
   function showSelection() {
     closePageMenu();
-    showCurrentQuestion();
+    cancelSelectionFocus();
+    if (sameFlashcardNavigation(navigationRef.current, navigation)) focusSelection(headingRef.current);
+    else selectionFocusRequested.current = true;
   }
   function nextWithoutRating() {
     if (!current || available.length < 2 || generation.current !== token || active.current !== current.id) return;
+    selectionFocusRequested.current = false; cancelSelectionFocus();
     generation.current++;
     active.current = null;
     const index = available.findIndex(card => card.id === current.id);
@@ -200,6 +213,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   }
   function rate(rating) {
     if (!loaded || !current || generation.current !== token || active.current !== current.id) return;
+    selectionFocusRequested.current = false; cancelSelectionFocus();
     generation.current++;
     active.current = null;
     const time = Date.now();
@@ -222,7 +236,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   return <LearningToolLayout title="Lernkarten" description="Wildwissen mit Frage und Antwort wiederholen, auf diesem Gerät vormerken oder als Lernkarten ausdrucken." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-suche" hideCommunity className={styles.page}>
     <FlashcardSelectionNotice selection={selection} onNavigate={rememberBeforeLeaving} />
     <PageMenu title="Lernkarten auswählen"><form className={`${styles.filters} ${selection ? styles.scopedFilters : ""}`} id="lernkarten-suche" onSubmit={event => { event.preventDefault(); showSelection(); }}>
-      {!selection && <label className={styles.field}>Kategorie<select value={category} onChange={event => { changeFilter("category", event.target.value); showSelection(); }}><option value="all">Alle Kategorien</option>{categories.map(item => <option key={item.id} value={item.id}>{item.title} ({item.count})</option>)}</select></label>}
+      {!selection && <MenuChoice label="Kategorie" value={category} onChange={event => { changeFilter("category", event.target.value); showSelection(); }}><option value="all">Alle Kategorien</option>{categories.map(item => <option key={item.id} value={item.id}>{item.title} ({item.count})</option>)}</MenuChoice>}
       <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={query} onChange={event => changeFilter("query", event.target.value.slice(0, 160))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" enterKeyHint="search" /></div></label>
       <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} onChange={event => { changeFilter("mode", event.target.checked ? "pending" : "all"); showSelection(); }} />Nur offene und fällige Karten</label>
       <button type="submit" className={styles.textButton}>Karten anzeigen</button>

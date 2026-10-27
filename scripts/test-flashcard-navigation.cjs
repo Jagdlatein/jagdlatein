@@ -120,7 +120,7 @@ test('Current card/category survive new category array instances, then reload fr
     await s.settle(); const baseline = s.writes;
     assert.match(text(s.tree), /Antwort Gams/);
     s.setProps({ categories: categories.map(item => ({ ...item })) }); await s.settle();
-    assert.match(text(s.tree), /Antwort Gams/); assert.equal(s.find(node => node.type === 'select').props.value, 'wildkunde');
+    assert.match(text(s.tree), /Antwort Gams/); assert.equal(s.find(node => node.type?.name === 'MenuChoice').props.value, 'wildkunde');
     s.click('Weiter ohne Bewertung'); await s.settle(); await s.complete(0);
     assert.equal(new URL(s.router.asPath, 'https://jagdlatein.de').searchParams.get('karte'), 'flash-reh');
     assert.equal(s.writes, baseline); assert.deepEqual(JSON.parse(s.saved).cards, {});

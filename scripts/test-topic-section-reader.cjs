@@ -25,12 +25,18 @@ function engine() {
 }
 
 function setup(hash) {
-  const e = engine(), listeners = new Map(), routerListeners = new Map(), calls = [], focus = [];
+  const e = engine(), listeners = new Map(), routerListeners = new Map(), calls = [], focus = [], menu = [], scroll = [], frames = new Map();
+  let frameId = 0;
   const on = (map, event, fn) => { if (!map.has(event)) map.set(event, new Set()); map.get(event).add(fn); };
   const off = (map, event, fn) => map.get(event)?.delete(fn);
   const previousWindow = global.window;
-  global.window = { location: { hash }, addEventListener: (event, fn) => on(listeners, event, fn), removeEventListener: (event, fn) => off(listeners, event, fn) };
-  const load = createLoader({ react: e.hooks, 'next/router': { events: { on: (event, fn) => on(routerListeners, event, fn), off: (event, fn) => off(routerListeners, event, fn) } } });
+  global.window = { location: { hash }, scrollTo(options) { scroll.push(options); },
+    requestAnimationFrame(fn) { frames.set(++frameId, fn); return frameId; }, cancelAnimationFrame(id) { frames.delete(id); },
+    addEventListener: (event, fn) => on(listeners, event, fn), removeEventListener: (event, fn) => off(listeners, event, fn) };
+  const load = createLoader({ react: e.hooks,
+    './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('aside', null, children),
+      openPageMenu(id) { menu.push({ action: 'open', id }); }, closePageMenu() { menu.push({ action: 'close' }); }, resetPageMenuPosition(id) { menu.push({ action: 'top', id }); } },
+    'next/router': { events: { on: (event, fn) => on(routerListeners, event, fn), off: (event, fn) => off(routerListeners, event, fn) } } });
   const Reader = load('components/TopicSectionReader.js').default;
   const groups = [{ id: 'biology', title: 'Biologie', topics: ['first', 'second'].map(id => ({ id, title: id, aliases: id === 'first' ? ['legacy'] : [], render: () => { calls.push(id); return React.createElement('p', null, `TEXT-${id}`); } })) }];
   let tree;
@@ -40,9 +46,10 @@ function setup(hash) {
     if (target) target.props.ref.current = { focus() { focus.push(target.type); }, scrollIntoView() {} };
   }
   render();
-  return { get tree() { return tree; }, groups, calls, focus,
+  return { get tree() { return tree; }, groups, calls, focus, menu, scroll, frames,
     settle() { for (let i = 0; i < 4; i++) { e.flush(); if (!e.changed()) break; render(); } },
     navigate(next, event = 'hashchange', router = false) { global.window.location.hash = next; for (const fn of (router ? routerListeners : listeners).get(event) || []) fn(); if (e.changed()) render(); this.settle(); },
+    flushFrames() { const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn()); },
     cleanup() { e.unmount(); assert.equal([...listeners.values()].reduce((n, set) => n + set.size, 0), 0); assert.equal([...routerListeners.values()].reduce((n, set) => n + set.size, 0), 0); if (previousWindow === undefined) delete global.window; else global.window = previousWindow; },
   };
 }
@@ -70,6 +77,28 @@ test('Native aliases, Next fragment completion and malformed/unknown fragments k
     for (const hash of ['#foreign', '#%E0%A4%A']) { s.navigate(hash); assert.equal(find(s.tree, node => node.type === 'article'), null); assert.equal(global.window.location.hash, hash); }
     s.navigate('#first', 'pageshow'); assert.equal(s.calls.at(-1), 'first');
   } finally { s.cleanup(); }
+});
+
+test('Recognized leaves start at page top, branches reset only the existing menu panel, and foreign anchors cannot schedule top scrolling', async () => {
+  const s = setup('#biology');
+  try {
+    s.settle(); await new Promise(resolve => setTimeout(resolve, 5));
+    assert.deepEqual(s.menu.slice(-2), [{ action: 'open', id: 'tree-choices' }, { action: 'top', id: 'tree-choices' }]);
+    assert.equal(s.scroll.length, 0, 'A menu branch never scrolls the learning page behind it');
+    s.navigate('#first'); assert.equal(s.scroll.length, 1); assert.equal(s.frames.size, 1);
+    s.flushFrames(); assert.equal(s.scroll.length, 2); assert.deepEqual(s.scroll.at(-1), { left: 0, top: 0, behavior: 'instant' });
+    s.navigate('#second'); assert.equal(s.frames.size, 1);
+    const before = s.scroll.length, menuTops = s.menu.filter(item => item.action === 'top').length;
+    s.navigate('#foreign-source-target'); assert.equal(s.frames.size, 0); s.flushFrames();
+    await new Promise(resolve => setTimeout(resolve, 5));
+    assert.equal(s.scroll.length, before); assert.equal(s.menu.filter(item => item.action === 'top').length, menuTops);
+    assert.equal(global.window.location.hash, '#foreign-source-target');
+    s.navigate('#legacy', 'popstate'); assert.equal(s.calls.at(-1), 'first'); assert.equal(s.frames.size, 1);
+    s.navigate('#tree', 'popstate'); assert.equal(s.frames.size, 0);
+    await new Promise(resolve => setTimeout(resolve, 5));
+    assert.deepEqual(s.menu.at(-1), { action: 'top', id: 'tree-choices' });
+  } finally { s.cleanup(); }
+  assert.equal(s.frames.size, 0);
 });
 
 test('Legacy React sections remain separate, retain authored sources, and never invoke custom components while discovering topics', () => {

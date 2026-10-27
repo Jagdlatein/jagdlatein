@@ -144,14 +144,14 @@ export default function GlobalHomeButton() {
   useEffect(() => {
     const path = window.location.pathname + window.location.search;
     if (pathname !== window.location.pathname || (router && (!router.isReady || router.asPath?.split("#")[0] !== path))) return;
-    const key = getCategoryNavigationKey(path);
+    const key = getCategoryNavigationKey(path + (window.location.hash || ""));
     if (categoryLocation.current === key) return;
     categoryLocation.current = key;
     if (key === null) return;
     const ticket = { completed: false };
     categoryScroll.current = ticket;
     const reset = () => {
-      if (categoryScroll.current !== ticket || window.location.pathname + window.location.search !== path) return;
+      if (categoryScroll.current !== ticket || window.location.pathname + window.location.search !== path || getCategoryNavigationKey(path + (window.location.hash || "")) !== key) return;
       window.scrollTo?.({ left: 0, top: 0, behavior: "instant" });
       ticket.completed = true;
     };

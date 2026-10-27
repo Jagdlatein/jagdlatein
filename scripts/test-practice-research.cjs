@@ -72,7 +72,7 @@ test('Dossiers keep teaching text and practice directly accessible while evidenc
     const menu = find(h.tree, node => node.props?.title === 'Wissen fürs Revier – Thema wählen');
     assert.ok(menu);
     const menuHTML = renderToStaticMarkup(menu.props.children);
-    assert.ok(menuHTML.includes('Dein Thema'));
+    assert.ok(menuHTML.includes('<legend>Thema</legend>'));
     assert.doesNotMatch(html, /<select|Praxisthema auswählen/);
     assert.doesNotMatch(html, /aria-label="In diesem Thema"/);
     assert.ok(menuHTML.includes('60 Fragen mit Erklärungen'));
@@ -98,7 +98,7 @@ test('Shared URL selection validates values, preserves other context and follows
   t.after(() => h.dispose());
   const router = h.router;
   router.push = (...args) => { calls.push(args); return Promise.resolve(true); };
-  const selection = () => find(h.render(), node => node.type === 'select');
+  const selection = () => find(h.render(), node => node.type?.name === 'MenuChoice');
   assert.equal(selection().props.value, data.topics[0].id);
   selection().props.onChange({ target: { value: 'javascript:alert(1)' } });
   assert.equal(calls.length, 0);

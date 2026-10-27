@@ -10,7 +10,7 @@ const body = h => h.nodes(node => node.props?.id === 'game-meat-content')[0];
 const title = h => h.nodes(node => node.props?.id === 'game-meat-title')[0]?.props.children;
 const parasite = h => h.nodes(node => node.type?.name === 'ParasiteLearning')[0];
 function select(h, id, value) {
-  const control = h.nodes(node => node.type === 'select' && node.props.id === id)[0];
+  const control = h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === id)[0];
   assert.ok(control, id);
   return control.props.onChange({ target: { value } });
 }
@@ -101,7 +101,7 @@ test('Hydration waits for the incoming URL and focuses only committed content', 
     h.router.isReady = true; h.render();
     await new Promise(resolve => setTimeout(resolve, 1));
     assert.equal(menu(h).props.openInitially, false); assert.equal(h.menu.opened, 0);
-    assert.equal(focused, 1); assert.equal(scrolled, 1);
+    assert.equal(focused, 1); assert.equal(scrolled, 0, 'A category commit starts at the page top instead of a lower result heading');
     if (query.eintrag) assert.equal(title(h), cases[3].title); else assert.equal(parasite(h).props.selectedId, parasiteTopics[1].id);
   }
 });

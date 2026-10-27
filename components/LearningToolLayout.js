@@ -12,7 +12,7 @@ export default function LearningToolLayout({ title, description, icon = "book", 
       <header className={`${styles.header}${headingOnly ? ` ${styles.titleHeader}` : compact ? ` ${styles.compactHeader}` : ""}`}>
         {!headingOnly && <span className={styles.heroIcon}><AppIcon name={icon} size={38} /></span>}
         {!headingOnly && <p className={styles.eyebrow}>{eyebrow}</p>}
-        <h1>{title}</h1>
+        <h1 tabIndex={-1} data-learning-page-start>{title}</h1>
         {!headingOnly && <p>{description}</p>}
         {!headingOnly && stats.length > 0 && <dl className={styles.stats}>{stats.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>}
       </header>

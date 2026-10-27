@@ -11,7 +11,7 @@ const { anatomyModels: models, anatomyQuestions: questions, anatomySources: sour
 const { digestiveTopics } = load('lib/digestive-learning.js');
 const file = 'components/AnatomyExplorer.js', base = '/lernen/anatomie';
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
-const selector = h => nodes(menu(h), node => node.type === 'select')[0];
+const selector = h => nodes(menu(h), node => node.props?.id === 'anatomy-entry-select')[0];
 const digestive = h => h.nodes(node => node.type?.name === 'DigestiveLearning')[0];
 const modelPanel = h => h.nodes(node => node.props?.['aria-labelledby'] === 'anatomie-modell')[0];
 const alerts = h => h.nodes(node => node.props?.role === 'alert');
@@ -155,7 +155,7 @@ test('Bare, explicit museum and every original digestion link retain their docum
     assert.equal(bare.focus.at(-1).label, topic.title);
   }
   assert.deepEqual(nodes(menu(bare), node => node.type === 'optgroup').map(node => node.props.label), ['Verdauung verstehen', 'Museumsscans drehen']);
-  assert.equal(nodes(bare.tree, node => node.type === 'select').length, 1);
+  assert.equal(nodes(bare.tree, node => node.type === 'select').length, 0);
   assert.equal(bare.calls.length, 0);
 });
 

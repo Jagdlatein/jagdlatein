@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Router from "next/router";
-import PageMenu, { openPageMenu, closePageMenu } from "./PageMenu";
+import PageMenu, { openPageMenu, closePageMenu, resetPageMenuPosition } from "./PageMenu";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import styles from "../styles/TopicSectionReader.module.css";
 
 export function resolveTopicSection(groups, hash, rootId = "themenbaum") {
@@ -29,12 +30,14 @@ export default function TopicSectionReader({ id = "themenbaum", title = "Themen 
   currentGroups.current = groups;
   const available = groups.filter(group => group.topics.length > 0);
   const view = resolveTopicSection(available, hash, id);
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(`${id}:${hash}`, true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     function readHash() {
       const next = window.location.hash || "";
       if (next === previousHash.current) return;
+      cancelSelectionFocus();
       const initialized = previousHash.current !== null;
       previousHash.current = next;
       const target = resolveTopicSection(currentGroups.current, next, id);
@@ -58,14 +61,18 @@ export default function TopicSectionReader({ id = "themenbaum", title = "Themen 
 
   useEffect(() => {
     if (view.kind !== "topic") {
-      const timer = setTimeout(() => openPageMenu(`${id}-choices`), 0);
+      const timer = setTimeout(() => {
+        openPageMenu(`${id}-choices`);
+        // Changing a branch keeps the existing single menu, but starts its
+        // own choices at the top rather than moving the inert page behind it.
+        if (!hash || hash === hashLink(id) || view.kind === "group") resetPageMenuPosition(`${id}-choices`);
+      }, 0);
       return () => clearTimeout(timer);
     }
     closePageMenu();
     if (focusAfterNavigation.current !== hash || !focusTarget.current) return;
     focusAfterNavigation.current = null;
-    focusTarget.current.focus({ preventScroll: true });
-    focusTarget.current.scrollIntoView({ block: "start", behavior: "auto" });
+    focusSelection(focusTarget.current);
   }, [hash, id]);
 
   return <section id={id} className={styles.reader} aria-label={title}>

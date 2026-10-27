@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import WildMovementMap from "./WildMovementMap";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { wildMovementDatasets, getWildMovementDataset } from "../lib/wild-movement";
 import { formatResearchValue, getResearchDataset, researchDatasets, researchSources, selectResearchPoints } from "../lib/research-understanding";
 import shared from "../styles/LearningExperience.module.css";
@@ -53,21 +55,31 @@ export default function ResearchUnderstanding() {
   const navigation = useRef(0);
   const pendingRequest = useRef(null);
   const ready = router.isReady === true;
+  const requestedSection = (router.asPath || "").split("#")[1];
   const selected = ready && typeof router.query.datensatz === "string" && [...researchDatasets, ...wildMovementDatasets].some(item => item.id === router.query.datensatz) ? router.query.datensatz : null;
-  const viewKey = JSON.stringify([ready, selected]);
+  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
+  const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const movement = selected && wildMovementDatasets.some(item => item.id === selected) ? getWildMovementDataset(selected) : null;
   const dataset = selected && !movement ? getResearchDataset(selected) : null;
   useEffect(() => {
     mounted.current = true;
     return () => { mounted.current = false; navigation.current += 1; pendingRequest.current = null; };
   }, []);
-  function focusContent() {
+  function focusContent(category = false) {
+    const explicitAnchor = !category && requestedSection && !["forschung-inhalt", "forschung-title", "wildbewegung", "wildbewegung-heading"].includes(requestedSection);
+    if (explicitAnchor) {
+      const target = Array.from(content.current?.querySelectorAll?.("[id]") || []).find(element => element.id === requestedSection);
+      if (!target) return;
+      target.setAttribute?.("tabindex", "-1");
+      focusSelection(target, { anchor: true });
+      return;
+    }
     const target = content.current?.querySelector?.("h2") || content.current;
     target?.setAttribute?.("tabindex", "-1");
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target);
   }
   useEffect(() => {
     if (!ready) return;
@@ -78,14 +90,14 @@ export default function ResearchUnderstanding() {
     }
     closePageMenu();
     focusContent();
-  }, [ready, selected]);
+  }, [ready, selected, requestedSection]);
   async function select(id) {
-    if (!ready || ![...researchDatasets, ...wildMovementDatasets].some(item => item.id === id)) return;
+    if (!ready || !mounted.current || committedView.current !== origin || ![...researchDatasets, ...wildMovementDatasets].some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
     closePageMenu();
-    if (id === selected && pendingRequest.current === null) { focusContent(); return; }
+    if (id === selected && pendingRequest.current === null) { focusContent(true); return; }
     const request = ++navigation.current;
-    const origin = committedView.current;
     pendingRequest.current = request;
     const hash = wildMovementDatasets.some(item => item.id === id) ? "wildbewegung" : "forschung-inhalt";
     try {
@@ -99,7 +111,7 @@ export default function ResearchUnderstanding() {
     }
   }
   return <LearningToolLayout title="Forschung verstehen" description="Originaldaten aus DACH erkunden: genau lesen, passende Schlüsse ziehen und Grenzen erkennen." category="natur-revier" icon="stats" headingOnly>
-    <PageMenu title="Forschung – Beispiel wählen" openInitially={ready && !selected} initialFocusId="research-choices"><div id="research-choices" tabIndex={-1}><label className={shared.field}>Forschungsbeispiel<select id="forschung-datensatz" value={selected || ""} onChange={event => select(event.target.value)} aria-controls={movement ? "wildbewegung" : "forschung-inhalt"}><option value="" disabled>Beispiel wählen</option><optgroup label="Messreihen und Diagramme">{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</optgroup><optgroup label="Wildbewegungen auf Karten">{wildMovementDatasets.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></select></label>{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</div></PageMenu>
+    <PageMenu title="Forschung – Beispiel wählen" openInitially={ready && !selected} initialFocusId="research-choices"><div id="research-choices" tabIndex={-1}><MenuChoice label="Beispiel" id="forschung-datensatz" value={selected || ""} disabled={!ready} onChange={event => select(event.target.value)} aria-controls={movement ? "wildbewegung" : "forschung-inhalt"}><option value="" disabled>Beispiel wählen</option><optgroup label="Messreihen und Diagramme">{researchDatasets.map(item => <option key={item.id} value={item.id}>{item.title} · {item.region}</option>)}</optgroup><optgroup label="Wildbewegungen auf Karten">{wildMovementDatasets.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></MenuChoice>{navigationError && <p className={shared.wrong} role="alert">{navigationError}</p>}</div></PageMenu>
     <div ref={content} tabIndex={-1}>{movement ? <WildMovementMap key={movement.id} selectedId={movement.id} hideSelector /> : dataset ? <DatasetView key={dataset.id} dataset={dataset} /> : <p className={shared.note}>{ready && router.query.datensatz !== undefined ? "Dieses Forschungsbeispiel ist nicht verfügbar. " : ""}Wähle ein Beispiel unten im Menü. Hier erscheint nur die ausgewählte Messreihe oder Bewegungskarte.</p>}</div>
   </LearningToolLayout>;
 }

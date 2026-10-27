@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import NatureQuestionRound from "./NatureQuestionRound";
 import DevelopmentPhotoSeries from "./DevelopmentPhotoSeries";
 import { developmentPhotoSeries } from "../lib/development-photo-series";
@@ -28,20 +30,22 @@ export default function PlantAtlas() {
   const viewKey = JSON.stringify([ready, mode, entry?.id, season, series?.id]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
+  const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const results = filterPlants(query, group);
 
   function focusContent() {
     const target = content.current?.querySelector?.("h2") || content.current;
     target?.setAttribute?.("tabindex", "-1");
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target);
   }
   useEffect(() => {
     mounted.current = true;
     return () => { mounted.current = false; navigation.current += 1; pendingRequest.current = null; };
   }, []);
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || !mounted.current || committedView.current !== origin) return;
+    cancelSelectionFocus();
     setNavigationError("");
     if (mode === "atlas" && !entry) {
       const timer = setTimeout(() => openPageMenu("plant-choices"), 0);
@@ -52,12 +56,12 @@ export default function PlantAtlas() {
   }, [ready, mode, entry?.id, season, series?.id]);
 
   async function navigate(next, hash, sameSelection) {
-    if (!ready) return;
+    if (!ready || !mounted.current || committedView.current !== origin) return;
+    cancelSelectionFocus();
     setNavigationError("");
     closePageMenu();
     if (sameSelection && pendingRequest.current === null) { focusContent(); return; }
     const request = ++navigation.current;
-    const origin = committedView.current;
     pendingRequest.current = request;
     try {
       await router.push({ pathname: "/lernen/pflanzenatlas", query: next, hash }, undefined, { shallow: true, scroll: false });
@@ -90,14 +94,14 @@ export default function PlantAtlas() {
   return <LearningToolLayout title="Pflanzenatlas im Jahreslauf" description="Pflanzenmerkmale vergleichen und die Entwicklung einer Stieleiche an einer dokumentierten Folge echter Fotos verfolgen." icon="tree" category="wald-pflanzen" headingOnly>
     <PageMenu title="Pflanzenatlas – Thema wählen" openInitially={ready && mode === "atlas" && !entry} initialFocusId="plant-choices">
       <div id="plant-choices" tabIndex={-1}>
-        <label className={styles.field}>Lernangebot<select id="plant-mode" value={mode} onChange={event => chooseMode(event.target.value)}><option value="atlas">Pflanzen nachschlagen</option><option value="quiz">Merkmale prüfen</option><option value="entwicklung">Entwicklung in echten Fotos</option></select></label>
+        <MenuChoice label="Lernangebot" id="plant-mode" value={mode} disabled={!ready} onChange={event => chooseMode(event.target.value)}><option value="atlas">Pflanzen nachschlagen</option><option value="quiz">Merkmale prüfen</option><option value="entwicklung">Entwicklung in echten Fotos</option></MenuChoice>
         {mode === "atlas" && <>
           <label className={styles.field}>Name oder Merkmal suchen<input type="search" maxLength={160} value={query} onChange={event => setQuery(event.target.value)} placeholder="Zum Beispiel Nadel, Eiche oder Fagus" /></label>
-          <label className={styles.field}>Pflanzengruppe<select id="plant-group" value={group} onChange={event => setGroup(event.target.value)}>{plantGroups.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+          <MenuChoice label="Pflanzengruppe" id="plant-group" value={group} onChange={event => setGroup(event.target.value)}>{plantGroups.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</MenuChoice>
           <p role="status">{results.length} Pflanzen gefunden</p>
           <div className={nature.catalog}>{results.map(item => <button type="button" key={item.id} aria-current={entry?.id === item.id ? "page" : undefined} aria-controls="plant-detail" onClick={() => chooseEntry(item.id)}><strong>{item.name}</strong><small>{item.latin} · {item.group}</small></button>)}</div>
           {results.length === 0 && <p role="status">Keine Pflanze für diese Auswahl. Versuche einen anderen Namen oder ein einzelnes Merkmal.</p>}
-          {entry && <label className={styles.field}>Jahreszeit<select id="plant-season-choice" value={season} aria-controls="plant-season" onChange={event => chooseSeason(event.target.value)}>{plantSeasons.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+          {entry && <MenuChoice label="Jahreszeit" id="plant-season-choice" value={season} disabled={!ready} aria-controls="plant-season" onChange={event => chooseSeason(event.target.value)}>{plantSeasons.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</MenuChoice>}
         </>}
         {navigationError && <p className={styles.wrong} role="alert">{navigationError}</p>}
         <Link href="/lernen/wald-pflanzen" prefetch={false}>Wald- und Pflanzenkurse</Link>

@@ -35,6 +35,7 @@ function setup() {
     if (target) target.props.ref.current = { focus: options => focus.push({id: target.props.id, options}), scrollIntoView: options => scroll.push({id: target.props.id, options}) };
   }
   redraw();
+  for (let i = 0; i < 5 && effects.length; i++) { const pending = effects; effects = []; pending.forEach(run => run()); redraw(); }
   return {
     get tree() { return tree; }, get focus() { return focus; }, get scroll() { return scroll; }, get closed() { return closed; }, redraw,
     flush() { const pending = effects; effects = []; pending.forEach(run => run()); redraw(); },
@@ -42,7 +43,7 @@ function setup() {
     unmount() { slots.forEach(slot => slot?.cleanup?.()); },
     main() { return find(tree, node => node.props?.id === 'habitat-content'); },
     menu() { return find(tree, node => node.type === Menu); },
-    field(label) { const holder = find(tree, node => node.type === 'label' && text(node).startsWith(label)); assert.ok(holder, label); return find(holder, node => node.type === 'select'); },
+    field(label) { const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.label === label); assert.ok(choice, label); return choice; },
     select(label, value) { this.field(label).props.onChange({target: {value}}); redraw(); },
     mapSelection() { const map = find(tree, node => node.type?.name === 'HabitatMap'); assert.ok(map, 'Modell ist ausdrücklich gewählt'); return [...map.props.selected]; },
   };
@@ -73,7 +74,8 @@ test('Default reader shows one original text; all mode/topic navigation lives in
   assert.equal(find(s.main(), node => node.type?.name === 'HabitatMap'), null);
   assert.equal(find(s.main(), node => node.type === 'button'), null);
   assert.equal(s.field('Lernangebot').props.value, 'lesen');
-  assert.ok(find(s.menu(), node => node.type === 'select'));
+  assert.ok(find(s.menu(), node => node.type?.name === 'MenuChoice'));
+  assert.equal(find(s.menu(), node => node.type === 'select'), null);
   assert.equal(s.field('Wissen auswählen').props['aria-controls'], 'habitat-feature-reading');
   const html = renderToStaticMarkup(React.createElement(createLoader({'next/head': () => null, 'next/router': {useRouter: () => ({query: {}})}})('components/HabitatWorkshop.js').default));
   assert.equal((html.match(/<main/g) || []).length, 1);
@@ -157,14 +159,13 @@ test('Legacy fragments remain valid and unknown, duplicate, oversized and hostil
   assert.equal(s.field('Lernangebot').props.value, 'lesen');
 });
 
-test('Legacy deep entry and explicit selection focus/scroll the actual rendered target after the update, including same topic', () => {
+test('Legacy deep entry and explicit selection focus the committed text without scrolling below the page start, including same topic', () => {
   withBrowser(browser(habitatReadingHash('wasser', 'erdkroete')), () => {
     const s = setup(); s.settle();
     assertOnlyReading(s.main(), null, 'erdkroete');
     assert.equal(s.focus.at(-1).id, 'habitat-species-reading');
     assert.deepEqual(s.focus.at(-1).options, {preventScroll: true});
-    assert.equal(s.scroll.at(-1).id, 'habitat-species-reading');
-    assert.deepEqual(s.scroll.at(-1).options, {block: 'start', behavior: 'auto'});
+    assert.equal(s.scroll.length, 0, 'A reading selection no longer scrolls down to its article');
     s.select('Wissen auswählen', 'baustein:altholz'); s.settle();
     assertOnlyReading(s.main(), 'altholz', null);
     assert.equal(s.focus.at(-1).id, 'habitat-feature-reading');

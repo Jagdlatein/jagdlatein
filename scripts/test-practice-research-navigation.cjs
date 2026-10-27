@@ -8,7 +8,7 @@ const file = 'components/ResearchForPractice.js';
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const dossier = h => h.nodes(node => node.type?.name === 'ResearchDossier')[0];
 const round = h => h.nodes(node => node.type?.name === 'ResearchQuestionRound')[0];
-const select = h => h.nodes(node => node.type === 'select' && node.props.id === 'revierwissen-topic')[0];
+const select = h => h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'revierwissen-topic')[0];
 const choose = (h, id) => select(h).props.onChange({ target: { value: id } });
 function fixture(t, query, options = {}) {
   const h = setup(file, query, { ...options, props: data });
@@ -69,7 +69,7 @@ test('Menu changes wait for URL commit, keep context and the settled quiz, then 
   assert.deepEqual(h.calls[0], { href: { pathname: '/lernen/wissen-fuers-revier', query: { thema: 'wild-und-stoerung', ref: 'lernen', context: ['a', 'b'] }, hash: 'revierwissen-findings' }, options: { shallow: true, scroll: false } });
   h.navigate(h.calls[0].href.query); complete(true); await request;
   assert.equal(dossier(h).props.topic.id, 'wild-und-stoerung'); assert.notEqual(round(h).key, firstRound.key);
-  assert.deepEqual(focus.map(call => call.selector), ['#revierwissen-findings']); assert.equal(h.menu.closed, initialClosed + 1);
+  assert.deepEqual(focus.map(call => call.selector), ['#revierwissen-title'], 'Choosing a category starts at the top while direct section links retain anchors'); assert.equal(h.menu.closed, initialClosed + 1);
 });
 
 test('Direct question and legacy section targets focus their own content; hash-only movement never resets the question key', t => {
@@ -130,8 +130,8 @@ test('Re-selecting current content supersedes pending navigation without its old
 test('Only the existing lower menu selects a dossier; data, source dates, local quiz and heading-only layout stay unchanged', t => {
   const h = fixture(t, { thema: 'rehwild-fruehling' });
   const content = h.nodes(node => node.type === 'div' && node.props.ref)[0];
-  assert.equal(nodes(content, node => node.type === 'select').length, 0);
-  assert.equal(nodes(menu(h), node => node.type === 'select').length, 1);
+  assert.equal(nodes(content, node => node.type?.name === 'MenuChoice').length, 0);
+  assert.equal(nodes(menu(h), node => node.type?.name === 'MenuChoice').length, 1);
   assert.equal(h.tree.props.headingOnly, true);
   assert.equal(dossier(h).props.topic.reviewedOn, '2026-10-15');
   assert.ok(round(h).props.questions.every(item => item.reviewedOn === '2026-10-16'));

@@ -242,14 +242,26 @@ test('Returning to a previous category before an intervening reset still resets 
   s.unmount();
 });
 
-test('An unfinished category reset survives a same-category search or hash commit exactly once', () => {
+test('An unfinished category reset survives query typing, while an explicit search target cancels its top reset', () => {
   for (const route of ['/lernen/wildkunde?q=Reh', '/lernen/wildkunde#lernen-suche']) {
     const s = shell('/'); s.render(); s.commit();
     s.update('/lernen/wildkunde'); const original = [...s.frames.keys()][0];
     s.update(route); s.fireStale(original); s.flushFrames();
-    assert.equal(s.scrolls.length, 1, `${route}: the pending category entry still requires its one top reset`);
-    s.render(); s.commit(); s.flushFrames(); assert.equal(s.scrolls.length, 1); s.unmount();
+    const expected = route.includes('#') ? 0 : 1;
+    assert.equal(s.scrolls.length, expected, `${route}: explicit search focus takes precedence over a pending category reset`);
+    s.render(); s.commit(); s.flushFrames(); assert.equal(s.scrolls.length, expected); s.unmount();
   }
+});
+
+test('Direct source/search fragments and late explicit anchors are never overridden by a category frame', () => {
+  for (const route of ['/lernen/wildkunde#quellen', '/lernen/hundewesen#lernen-suche', '/jagdrecht/ch?region=zh#quellen']) {
+    const s = shell(route); s.render(); s.commit(); s.flushFrames(); assert.equal(s.scrolls.length, 0, route); s.unmount();
+  }
+  const s = shell('/'); s.render(); s.commit();
+  s.update('/lernen/wildkunde'); const frame = [...s.frames.keys()][0];
+  s.browserURL('/lernen/wildkunde#lernen-suche');
+  s.fireStale(frame); assert.equal(s.scrolls.length, 0, 'A real hash change before the next render invalidates the queued reset');
+  s.unmount();
 });
 
 test('Effect cleanup/setup replay cannot discard the initial category reset', () => {

@@ -30,7 +30,7 @@ function load(relative, overrides = {}) {
 }
 function engine() {
   const slots = []; let cursor = 0; const effects = [];
-  return { effects, hooks: {
+  return { effects, hooks: { ...React,
     useState(initial) { const index = cursor++; if (!slots[index]) slots[index] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[index].value, value => { slots[index].value = typeof value === 'function' ? value(slots[index].value) : value; }]; },
     useRef(initial) { const index = cursor++; if (!slots[index]) slots[index] = { value: { current: initial } }; return slots[index].value; },
     useEffect(callback) { if (!effects.includes(callback)) effects.push(callback); },
@@ -46,6 +46,15 @@ function text(node) {
   if (Array.isArray(node)) return node.map(text).join('');
   return typeof node === 'object' ? text(node.props?.children) : String(node);
 }
+function chooseMenu(tree, id, value) {
+  const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.id === id);
+  assert.ok(choice, `Missing menu choice ${id}`);
+  const rendered = choice.type(choice.props);
+  const button = find(rendered, node => node.type === 'button' && node.props['data-menu-choice'] === String(value));
+  assert.ok(button, `${id}: ${value}`);
+  assert.equal(!!button.props.disabled, false);
+  button.props.onClick();
+}
 function setup(relative) {
   if (['components/ObservationWorkshop.js', 'components/WildlifeVideoCases.js', 'components/AnatomyExplorer.js'].includes(relative)) {
     const params = new URLSearchParams(global.window?.location?.search || '');
@@ -53,7 +62,7 @@ function setup(relative) {
     const button = label => { const found = app.nodes(node => node.type === 'button' && text(node) === label)[0]; assert.ok(found, `Missing button ${label}`); return found; };
     return { redraw: app.render, button, get tree() { return app.tree; },
       click(label) { const found = button(label); assert.equal(!!found.props.disabled, false, `Disabled button ${label}`); found.props.onClick(); app.render(); },
-      choose(id) { app.nodes(node => node.type === 'select' && node.props.id === 'beobachtung-case')[0].props.onChange({ target: { value: id } }); app.render(); },
+      choose(id) { chooseMenu(app.tree, 'beobachtung-case', id); app.render(); },
       content() { return text(app.tree); }, dispose: app.dispose };
   }
   const hooks = engine(); const component = load(relative, { react: hooks.hooks }).default;
@@ -65,7 +74,7 @@ const videos = load('lib/wildlife-video-cases.js');
 const anatomy = load('lib/anatomy-explorer.js');
 const observation = load('lib/observation-workshop.js');
 function selectAnatomyModel(app, id) {
-  find(app.tree, node => node.type === 'select').props.onChange({ target: { value: id } }); app.redraw();
+  chooseMenu(app.tree, 'anatomy-entry-select', id); app.redraw();
 }
 function openAnatomyQuiz(app) {
   const details = find(app.tree, node => node.type === 'details' && text(node.props.children[0]).startsWith('Wissen zum Modell'));
@@ -158,12 +167,12 @@ test('Each optional model-specific anatomy round explains mistakes and rapid adv
 
 test('The anatomy selector opens real-photo digestion content directly and retains museum questions', () => {
   const app = setup('components/AnatomyExplorer.js');
-  const select = () => find(app.tree, node => node.type === 'select' && node.props.children?.some?.(child => child?.type === 'optgroup'));
+  const select = () => find(app.tree, node => node.type?.name === 'MenuChoice' && node.props.id === 'anatomy-entry-select');
   assert.ok(select());
-  select().props.onChange({target: {value: 'schwarzwild-verdauung'}}); app.redraw();
+  chooseMenu(app.tree, 'anatomy-entry-select', 'schwarzwild-verdauung'); app.redraw();
   const panel = find(app.tree, node => node.type?.name === 'DigestiveLearning');
   assert.ok(panel); assert.equal(panel.props.selectedId, 'schwarzwild-verdauung'); assert.equal(panel.props.hideSelector, true);
-  select().props.onChange({target: {value: anatomy.anatomyModels[0].id}}); app.redraw();
+  chooseMenu(app.tree, 'anatomy-entry-select', anatomy.anatomyModels[0].id); app.redraw();
   assert.equal(find(app.tree, node => node.type?.name === 'DigestiveLearning'), null);
   assert.ok(!app.content().includes(anatomy.anatomyQuestions[0].question));
   openAnatomyQuiz(app);

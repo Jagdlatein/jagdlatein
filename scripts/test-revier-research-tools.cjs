@@ -49,7 +49,7 @@ function setup(file, props = {}, exposed = '', router = { query: {}, isReady: fa
     tree = e.render(() => Component(props));
     const container = find(tree, node => node.props?.ref);
     if (container) {
-      const id = find(tree, node => node.type === 'select' && ['revierleben-thema', 'forschung-datensatz'].includes(node.props.id))?.props.value;
+      const id = find(tree, node => (node.type === 'select' || node.type?.name === 'MenuChoice') && ['revierleben-thema', 'forschung-datensatz'].includes(node.props.id))?.props.value;
       const heading = { setAttribute(name, value) { assert.equal(name, 'tabindex'); assert.equal(value, '-1'); }, focus(options) { focused.push({ id, options }); }, scrollIntoView(options) { scrolled.push({ id, options }); } };
       container.props.ref.current = { querySelector(selector) { assert.equal(selector, 'h2'); return heading; } };
     }
@@ -146,7 +146,8 @@ test('Tools keep complete learning content visible while their subject selectors
     const s = setup(file, {}, '', { isReady: true, query: file.endsWith('ResearchUnderstanding.js') ? { datensatz: 'temperatur' } : { thema: 'holzpilze' } }); const html = s.html();
     assert.equal((html.match(/<main/g) || []).length, 1);
     assert.doesNotMatch(html, /id="(?:revierleben-thema|forschung-datensatz)"|Lebewesen oder Zusammenhang|Forschungsbeispiel/);
-    assert.match(s.menuHtml(), /<label[^>]*>[^<]+<select/);
+    assert.match(s.menuHtml(), /<fieldset[^>]*><legend>(?:Thema|Beispiel)<\/legend>/);
+    assert.doesNotMatch(s.menuHtml(), /<select/);
     assert.ok(find(s.menu(), node => node.type === 'optgroup'), 'All thematic groups remain available in the shared menu');
     assert.doesNotMatch(html, /<button|undefined/); assert.match(html, /<fieldset/);
     assert.match(html, /revierleben-inhalt|forschung-inhalt/);
@@ -163,18 +164,18 @@ test('Valid menu selection closes the menu and focuses the newly committed learn
     router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
     const s = setup(file, {}, '', router); s.flush();
     const closes = s.closes, focused = s.focused.length;
-    find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: 'invalid' } }); s.flush();
+    find(s.menu(), node => (node.type === 'select' || node.type?.name === 'MenuChoice')).props.onChange({ target: { value: 'invalid' } }); s.flush();
     assert.equal(changes.length, 0); assert.equal(s.closes, closes); assert.equal(s.focused.length, focused);
-    find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: next } }); s.flush();
+    find(s.menu(), node => (node.type === 'select' || node.type?.name === 'MenuChoice')).props.onChange({ target: { value: next } }); s.flush();
     assert.ok(s.closes > closes); assert.equal(changes.length, 1);
     assert.equal(changes[0][0].query[parameter], next); assert.equal(changes[0][0].query.retained, 'yes');
     assert.deepEqual(changes[0][2], { shallow: true, scroll: false });
     assert.deepEqual(s.focused.at(-1), { id: next, options: { preventScroll: true } });
-    assert.deepEqual(s.scrolled.at(-1), { id: next, options: { block: 'start', behavior: 'auto' } });
+    assert.equal(s.scrolled.length, 0, 'Category focus belongs at page start; direct anchors are tested separately');
     assert.doesNotMatch(s.html(), /id="(?:revierleben-thema|forschung-datensatz)"/);
     router.query[parameter] = next; s.render(); s.flush();
     router.query[parameter] = initial; s.render(); s.flush();
-    assert.equal(find(s.menu(), node => node.type === 'select').props.value, initial);
+    assert.equal(find(s.menu(), node => (node.type === 'select' || node.type?.name === 'MenuChoice')).props.value, initial);
     assert.equal(s.focused.at(-1).id, initial, 'Back/direct URL navigation focuses its own restored content');
   }
 });
@@ -186,7 +187,7 @@ test('The lower research menu switches between data series and movement maps wit
   assert.equal(find(s.tree, node => node.type?.name === 'WildMovementMap').props.selectedId, 'weissstorch-olea-2014');
   assert.equal(find(s.tree, node => node.props?.dataset), null);
   assert.match(s.html(), /id="wildbewegung"/); assert.doesNotMatch(s.html(), /id="forschung-inhalt"/);
-  find(s.menu(), node => node.type === 'select').props.onChange({ target: { value: 'brutvoegel' } }); s.flush();
+  find(s.menu(), node => (node.type === 'select' || node.type?.name === 'MenuChoice')).props.onChange({ target: { value: 'brutvoegel' } }); s.flush();
   assert.equal(find(s.tree, node => node.props?.dataset).props.dataset.id, 'brutvoegel');
   assert.equal(find(s.tree, node => node.type?.name === 'WildMovementMap'), null);
   assert.equal(s.focused.at(-1).id, 'brutvoegel');
@@ -196,7 +197,7 @@ test('Ecology deep links, back navigation and selectors consistently show the ad
   router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
   assert.equal(find(s.tree, item => item.props?.topic)?.props.topic.id, 'holzpilze');
-  find(s.tree, item => item.type === 'select').props.onChange({ target: { value: 'regenwuermer' } }); s.render();
+  find(s.tree, item => (item.type === 'select' || item.type?.name === 'MenuChoice')).props.onChange({ target: { value: 'regenwuermer' } }); s.render();
   assert.equal(find(s.tree, item => item.props?.topic)?.props.topic.id, 'regenwuermer');
   assert.equal(changes[0][0].query.preserved, 'yes'); assert.equal(changes[0][0].query.thema, 'regenwuermer');
   assert.deepEqual(changes[0][2], { shallow: true, scroll: false });
@@ -208,7 +209,7 @@ test('Research direct selection is stable and unrelated URL state survives witho
   router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/ResearchUnderstanding.js', {}, '', router); s.e.effects(); s.render();
   assert.equal(find(s.tree, item => item.props?.dataset)?.props.dataset.id, 'brutvoegel');
-  const select = find(s.tree, item => item.type === 'select'); select.props.onChange({ target: { value: 'waldbrand' } }); s.render();
+  const select = find(s.tree, item => (item.type === 'select' || item.type?.name === 'MenuChoice')); select.props.onChange({ target: { value: 'waldbrand' } }); s.render();
   assert.equal(find(s.tree, item => item.props?.dataset)?.props.dataset.id, 'waldbrand'); assert.equal(changes[0][0].query.preserved, 'yes');
   assert.equal(find(s.tree, item => item.props?.dataset)?.key, 'waldbrand');
   select.props.onChange({ target: { value: 'invalid' } }); s.render(); assert.equal(changes.length, 1);
@@ -268,13 +269,13 @@ test('Research values and per-year dates remain readable before sources, and eve
 });
 test('Displayed chart and accessible table change together, including isolated Swiss groups', () => {
   const dataset = research.getResearchDataset('temperatur'); const s = setup('components/ResearchUnderstanding.js', { dataset }, 'DatasetView');
-  find(s.tree, item => item.type === 'select').props.onChange({ target: { value: 'recent' } }); s.render();
+  find(s.tree, item => (item.type === 'select' || item.type?.name === 'MenuChoice')).props.onChange({ target: { value: 'recent' } }); s.render();
   const chart = find(s.tree, item => item.type?.name === 'ResearchChart'); assert.equal(chart.props.points.length, 6);
   const table = find(s.tree, item => item.type === 'table'); assert.doesNotMatch(text(table), /2015/); assert.match(text(table), /2025.*10,03/);
   const svg = renderToStaticMarkup(React.createElement(load('components/ResearchUnderstanding.js').ResearchChart, chart.props));
   assert.match(svg, /role="img".*aria-labelledby=/); assert.match(svg, /2025: 10,03 °C/); assert.doesNotMatch(svg, /2015|<path/);
   const birds = setup('components/ResearchUnderstanding.js', { dataset: research.getResearchDataset('brutvoegel') }, 'DatasetView');
-  find(birds.tree, item => item.type === 'select').props.onChange({ target: { value: 'wald' } }); birds.render();
+  find(birds.tree, item => (item.type === 'select' || item.type?.name === 'MenuChoice')).props.onChange({ target: { value: 'wald' } }); birds.render();
   assert.equal(find(birds.tree, item => item.type?.name === 'ResearchChart').props.points.length, 1);
   assert.match(text(find(birds.tree, item => item.type === 'table')), /Waldvögel.*56 Arten.*31,88/);
 });
@@ -296,7 +297,7 @@ test('Each new ecology deep link directly selects its group, photograph and imme
     const topic = find(view.tree, item => item.props?.topic)?.props.topic;
     assert.equal(topic.id, id);
     assert.ok(ecology.revierLifeGroups.some(group => group.id === topic.group));
-    assert.equal(find(view.tree, item => item.type === 'select').props.value, id);
+    assert.equal(find(view.tree, item => (item.type === 'select' || item.type?.name === 'MenuChoice')).props.value, id);
     const content = setup('components/SmallRevierLife.js', { topic }, 'TopicContent');
     assert.match(content.html(), /13\. Oktober 2026/);
     const photograph = find(content.tree, item => item.props?.src === topic.photo.src);

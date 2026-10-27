@@ -127,6 +127,8 @@ function fixture(t, { saved = null, readDenied = false } = {}) {
     assert.ok(node, `Missing button: ${label}`); return node;
   }
   function input(label) {
+    const choice = find(node => node.type?.name === 'MenuChoice' && node.props.label === label);
+    if (choice) return choice;
     const holder = find(node => node.type === 'label' && text(node).startsWith(label));
     const node = holder && nodes(holder, node => ['input', 'textarea', 'select'].includes(node.type))[0];
     assert.ok(node, `Missing input: ${label}`); return node;

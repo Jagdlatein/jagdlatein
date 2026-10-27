@@ -9,7 +9,7 @@ const entries = [...researchDatasets, ...wildMovementDatasets];
 const file = 'components/ResearchUnderstanding.js';
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const selected = h => h.nodes(node => node.props?.dataset)[0]?.props.dataset.id || h.nodes(node => node.props?.selectedId)[0]?.props.selectedId;
-const choose = (h, id) => h.nodes(node => node.type === 'select' && node.props.id === 'forschung-datensatz')[0].props.onChange({ target: { value: id } });
+const choose = (h, id) => h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'forschung-datensatz')[0].props.onChange({ target: { value: id } });
 function fixture(t, query, options) { const h = setup(file, query, options); t.after(() => h.dispose()); return h; }
 
 test('Missing, unknown and repeated research IDs ask for a real choice instead of showing an unrelated dataset', t => {
@@ -18,7 +18,7 @@ test('Missing, unknown and repeated research IDs ask for a real choice instead o
     assert.equal(selected(h), undefined);
     assert.equal(menu(h).props.openInitially, true);
     assert.match(text(h.tree), /Wähle ein Beispiel unten im Menü/);
-    assert.equal(h.nodes(node => node.type === 'select')[0].props.value, '');
+    assert.equal(h.nodes(node => node.type?.name === 'MenuChoice')[0].props.value, '');
   }
 });
 
@@ -27,13 +27,13 @@ test('Every authored research and movement deep link opens exactly its own conte
   for (const entry of entries) {
     h.navigate({ datensatz: entry.id });
     assert.equal(selected(h), entry.id);
-    assert.equal(h.nodes(node => node.type === 'select')[0].props.value, entry.id);
+    assert.equal(h.nodes(node => node.type?.name === 'MenuChoice')[0].props.value, entry.id);
     const movement = h.nodes(node => node.type?.name === 'WildMovementMap')[0];
     assert.equal(!!movement, wildMovementDatasets.includes(entry));
     if (movement) assert.equal(movement.props.hideSelector, true);
     assert.equal(h.nodes(node => node.props?.dataset).length, movement ? 0 : 1);
     const content = h.nodes(node => node.type === 'div' && node.props.ref)[0];
-    assert.equal(nodes(content, node => node.type === 'select').length, 0);
+    assert.equal(nodes(content, node => node.type?.name === 'MenuChoice').length, 0);
     assert.equal(menu(h).props.openInitially, false);
   }
   assert.equal(h.calls.length, 0, 'Restoring a URL must not create history');
@@ -48,7 +48,7 @@ test('A requested dataset waits for its URL commit; ordinary history restores th
   assert.equal(selected(h), 'temperatur'); assert.equal(focused, 0);
   assert.deepEqual(h.calls[0], { href: { pathname: '/lernen/forschung-verstehen', query: { datensatz: 'waldbrand', retained: 'yes' }, hash: 'forschung-inhalt' }, options: { shallow: true, scroll: false } });
   h.navigate(h.calls[0].href.query); complete(true); await request; h.render();
-  assert.equal(selected(h), 'waldbrand'); assert.equal(focused, 1); assert.equal(scrolled, 1);
+  assert.equal(selected(h), 'waldbrand'); assert.equal(focused, 1); assert.equal(scrolled, 0, 'A category starts at page top instead of scrolling its lower result anchor');
   h.navigate({ datensatz: 'temperatur' }); assert.equal(selected(h), 'temperatur');
   h.navigate({ datensatz: 'waldbrand' }); assert.equal(selected(h), 'waldbrand');
   const reloaded = fixture(t, { datensatz: 'waldbrand' }); assert.equal(selected(reloaded), 'waldbrand');

@@ -13,6 +13,7 @@ import { getSessionPhase } from '../lib/online-academy';
 import LiveCourseRoom from './LiveCourseRoom';
 import OnlineAcademyAdmin from './OnlineAcademyAdmin';
 import styles from '../styles/LearningExperience.module.css';
+import useSelectionPageStart from '../hooks/useSelectionPageStart';
 import academy from '../styles/OnlineAcademy.module.css';
 
 export default function OnlineAcademy({ catalog = [] }) {
@@ -31,13 +32,14 @@ function AcademyWorkspace({catalog}) {
   const readViewKey=()=>JSON.stringify([router.isReady,router.asPath,router.query]);
   const key=readViewKey();
   const currentView=useRef({key}); if(currentView.current.key!==key) currentView.current={key}; const origin=currentView.current;
+  const {focusSelection,cancelSelectionFocus}=useSelectionPageStart(origin,router.isReady===true);
   const isCurrent=()=>{
     if(!mounted.current || currentView.current!==origin)return false;
     const liveKey=readViewKey();
     if(liveKey!==key){currentView.current={key:liveKey};return false;}
     return router.isReady===true;
   };
-  const focus=()=>{closePageMenu(); heading.current?.focus?.({preventScroll:true}); heading.current?.scrollIntoView?.({block:'start',behavior:'auto'});};
+  const focus=()=>{closePageMenu(); focusSelection(heading.current);};
   useEffect(()=>{mounted.current=true;setNow(Date.now());const timer=setInterval(()=>setNow(Date.now()),30000);return()=>{mounted.current=false;request.current++;pending.current=null;clearInterval(timer);};},[]);
   useEffect(()=>{
     if(!router.isReady) return;
@@ -64,6 +66,7 @@ function AcademyWorkspace({catalog}) {
   },[account?.email,account?.admin,accountError,selection?.view==='verwaltung',revision]);
   async function navigate(changes){
     if(!isCurrent())return;
+    cancelSelectionFocus();
     const query=academyQuery(router.query,changes);const target=JSON.stringify(query);
     if(target===JSON.stringify(router.query)&&pending.current===null){focus();return;}
     const ticket=++request.current;pending.current=ticket;setNavigationError('');

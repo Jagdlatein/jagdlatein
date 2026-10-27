@@ -167,7 +167,7 @@ function fixture(t, { query = {} } = {}) {
     render, dispose, find, button, viewer, script, quiz, fireLoad, allViewers, focuses,
     body: () => text(tree),
     click(label) { const value = button(label); assert.ok(!value.props.disabled); value.props.onClick(); render(); },
-    async select(id) { await find(node => node.type === 'select').props.onChange({ target: { value: id } }); render(); },
+    async select(id) { await find(node => node.props?.id === 'anatomy-entry-select').props.onChange({ target: { value: id } }); render(); },
     route(nextQuery, options) { commit(nextQuery); render(options); },
     async enable() { this.click('3D-Ansicht öffnen'); registered = true; script().props.onReady(); render(); },
     failViewer() { for (const callback of viewer().listeners.get('error') || []) callback(); render(); },

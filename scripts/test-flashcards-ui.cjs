@@ -191,7 +191,7 @@ test('Filter changes reject previous-card handlers and keep search/category on t
   const s = setup();
   try {
     s.flush(); const stale = s.button('Gewusst'); const staleNext = s.button('Weiter ohne Bewertung');
-    const select = find(s.tree, node => node.type === 'select');
+    const select = find(s.tree, node => node.type?.name === 'MenuChoice');
     select.props.onChange({ target: { value: 'hundewesen' } }); s.render();
     stale.props.onClick(); s.render();
     staleNext.props.onClick(); s.render();
@@ -279,12 +279,12 @@ test('Packed print props retain a changed category and search across repeated re
   const settle = () => { render(); e.flush(); render(); e.flush(); render(); };
   try {
     settle();
-    find(tree, node => node.type === 'select').props.onChange({ target: { value: 'hundewesen' } });
+    find(tree, node => node.type?.name === 'MenuChoice').props.onChange({ target: { value: 'hundewesen' } });
     settle();
-    assert.equal(find(tree, node => node.type === 'select').props.value, 'hundewesen');
+    assert.equal(find(tree, node => node.type?.name === 'MenuChoice').props.value, 'hundewesen');
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'nächste' } });
     settle();
-    assert.equal(find(tree, node => node.type === 'select').props.value, 'hundewesen');
+    assert.equal(find(tree, node => node.type?.name === 'MenuChoice').props.value, 'hundewesen');
     assert.equal(find(tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'nächste');
     assert.match(words(tree), /1\s+Karte\s+drucken/);
     assert.match(words(tree), /Wie wird die nächste Frage/);

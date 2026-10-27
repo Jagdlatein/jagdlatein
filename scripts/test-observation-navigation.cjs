@@ -7,7 +7,7 @@ const file = 'components/ObservationWorkshop.js';
 const menu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const title = h => h.nodes(node => node.props?.id === 'beobachtung-fall')[0]?.props.children;
 const body = h => h.nodes(node => node.props?.id === 'beobachtung-inhalt')[0];
-const choose = (h, id) => h.nodes(node => node.type === 'select' && node.props.id === 'beobachtung-case')[0].props.onChange({ target: { value: id } });
+const choose = (h, id) => h.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'beobachtung-case')[0].props.onChange({ target: { value: id } });
 const button = (h, label) => { const node = h.nodes(node => node.type === 'button' && text(node) === label)[0]; assert.ok(node, label); return node; };
 function fixture(t, query, options) { const h = setup(file, query, options); t.after(() => h.dispose()); return h; }
 
@@ -19,7 +19,7 @@ test('A bare workshop starts the first case, while explicit invalid IDs never su
     assert.equal(title(h), undefined); assert.equal(menu(h).props.openInitially, true);
     assert.match(text(body(h)), /nicht verfügbar/);
     assert.ok(!text(body(h)).includes(cases[0].stages[0].evidence));
-    assert.equal(h.nodes(node => node.type === 'select')[0].props.value, '');
+    assert.equal(h.nodes(node => node.type?.name === 'MenuChoice')[0].props.value, '');
   }
 });
 
@@ -50,7 +50,7 @@ test('Search keeps the current case selected; a choice waits for a committed URL
   h.nodes(node => node.props?.id === 'beobachtung-fall')[0].props.ref.current = { focus() { focused++; }, scrollIntoView() { scrolled++; } };
   h.input('zz-no-result');
   assert.equal(h.calls.length, 0); assert.equal(title(h), cases[0].title);
-  assert.equal(h.nodes(node => node.type === 'select')[0].props.value, cases[0].id);
+  assert.equal(h.nodes(node => node.type?.name === 'MenuChoice')[0].props.value, cases[0].id);
   assert.ok(h.nodes(node => node.type === 'option' && node.props.value === cases[0].id).length);
   h.click('Suche zurücksetzen');
   h.router.push = (href, as, options) => { h.calls.push({ href, options }); return new Promise(resolve => { complete = resolve; }); };
@@ -58,7 +58,7 @@ test('Search keeps the current case selected; a choice waits for a committed URL
   assert.equal(title(h), cases[0].title); assert.equal(focused, 0);
   assert.deepEqual(h.calls[0], { href: { pathname: '/lernen/beobachtungswerkstatt', query: { eintrag: cases[1].id, retained: 'yes' }, hash: 'beobachtung-fall' }, options: { shallow: true, scroll: false } });
   h.navigate(h.calls[0].href.query); complete(true); await pending; h.render();
-  assert.equal(title(h), cases[1].title); assert.equal(focused, 1); assert.equal(scrolled, 1);
+  assert.equal(title(h), cases[1].title); assert.equal(focused, 1); assert.equal(scrolled, 0, 'Selection starts at the page top; it does not scroll down to the case');
   h.navigate({ eintrag: cases[0].id }); assert.equal(title(h), cases[0].title);
   h.navigate(h.calls[0].href.query); assert.equal(title(h), cases[1].title);
   const reload = fixture(t, h.calls[0].href.query); assert.equal(title(reload), cases[1].title);

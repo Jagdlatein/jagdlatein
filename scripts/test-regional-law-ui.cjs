@@ -13,7 +13,7 @@ function harness(query = {}, saved = null) {
   const originalWindow = global.window, originalFetch = global.fetch;
   const slots = [], effects = [], requests = [], pushes = [], replacements = [], menuOpenCalls = [];
   let cursor = 0, dirty = false, tree, focusCount = 0, scrollCount = 0;
-  const window = { localStorage: { getItem: () => saved && JSON.stringify(saved), setItem(_key, value) { saved = JSON.parse(value); } } };
+  const window = { location: { hash: '' }, localStorage: { getItem: () => saved && JSON.stringify(saved), setItem(_key, value) { saved = JSON.parse(value); } } };
   const router = { isReady: true, query, push(href) { pushes.push(href); return Promise.resolve(true); }, replace(href) { replacements.push(href); } };
   const hooks = { ...React,
     useState(initial) { const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; dirty = true; }]; },
@@ -30,7 +30,7 @@ function harness(query = {}, saved = null) {
   const PageMenu = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, 'next/link': { __esModule: true, default: Link },
     './Seo': { __esModule: true, default: () => null },
-    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id), closePageMenu: () => {} },
+    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id), closePageMenu: () => {}, resetPageMenuPosition: () => {} },
     './ResearchQuestionRound': { __esModule: true, default: ({ questions }) => React.createElement('div', { 'data-practice': questions.map(q => q.id).join(',') }, 'Practice') },
   });
   const Component = load('components/RegionalLawLearning.js').default;

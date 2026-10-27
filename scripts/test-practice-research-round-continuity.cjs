@@ -93,7 +93,7 @@ function fixture(t, options = {}) {
     return active.round;
   }
   function sync() { parent.render(); return reconcile(); }
-  function choose(id) { return parent.nodes(node => node.type === 'select' && node.props.id === 'revierwissen-topic')[0].props.onChange({ target: { value: id } }); }
+  function choose(id) { return parent.nodes(node => node.type?.name === 'MenuChoice' && node.props.id === 'revierwissen-topic')[0].props.onChange({ target: { value: id } }); }
   function route(id, hash = 'revierwissen-fragen') {
     parent.router.asPath = `${pathname}?thema=${encodeURIComponent(id)}#${hash}`;
     parent.router.query = { thema: id }; return sync();

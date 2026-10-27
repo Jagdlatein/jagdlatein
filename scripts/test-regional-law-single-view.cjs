@@ -32,11 +32,12 @@ function fixture(initial = '/jagdrecht/ch') {
   function route(href) {
     router.asPath = href;
     const url = new URL(href, 'https://jagdlatein.test');
+    window.location = url;
     router.query = Object.fromEntries([...new Set(url.searchParams.keys())].map(key => { const all = url.searchParams.getAll(key); return [key, all.length === 1 ? all[0] : all]; }));
   }
-  route(initial);
-  const window = { localStorage: { getItem: () => null, setItem: (key, value) => storageWrites.push([key, value]) } };
+  const window = { location: new URL(initial, 'https://jagdlatein.test'), localStorage: { getItem: () => null, setItem: (key, value) => storageWrites.push([key, value]) } };
   global.window = window;
+  route(initial);
   global.fetch = (url, options) => new Promise(resolve => requests.push({ url, signal: options.signal, resolve }));
   const hooks = { ...React,
     useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = { value: typeof initial === 'function' ? initial() : initial };
@@ -50,7 +51,7 @@ function fixture(initial = '/jagdrecht/ch') {
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
     'next/link': ({ href, children, prefetch, shallow, scroll, ...props }) => React.createElement('a', { href, ...props }, children),
     './Seo': { __esModule: true, default: () => null },
-    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpen.push(id), closePageMenu: () => {} },
+    './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpen.push(id), closePageMenu: () => {}, resetPageMenuPosition: () => {} },
     './ResearchQuestionRound': { __esModule: true, default: Round },
   });
   const Component = load('components/RegionalLawLearning.js').default;
@@ -252,6 +253,7 @@ test('The real mounted question round keeps an answered question while internal 
     Object.defineProperty(global, key, { configurable: true, writable: true, value });
   }
   dom.window.HTMLElement.prototype.scrollIntoView = () => {};
+  dom.window.scrollTo = () => {};
   const oldFetch = global.fetch;
   global.fetch = async () => ({ ok: true, json: async () => bundle() });
   const pushes = [];

@@ -25,7 +25,7 @@ test('Track filters affect menu choices only; selecting a result opens exactly i
   assert.equal(h.nodes(node => node.props?.id === 'tracks-title')[0].props.children, 'Nagespur des Bibers');
   assert.equal(h.calls[0].href.query.eintrag, 'biber-nagespur'); assert.equal(h.calls[0].href.query.retained, 'yes');
   assert.equal(h.calls[0].href.hash, 'tracks-detail'); assert.equal(h.calls[0].options.shallow, true);
-  assert.ok(h.menu.closed >= 2); assert.equal(focused, 1); assert.equal(scrolled, 1);
+  assert.ok(h.menu.closed >= 2); assert.equal(focused, 1); assert.equal(scrolled, 0, 'Selection focuses meaningfully without scrolling below earlier page content');
   const detail = h.nodes(node => node.props?.id === 'tracks-detail')[0]; assert.doesNotMatch(text(detail), /Rehfährte im Schnee/);
   h.input('no-such-track'); assert.match(text(h.tree), /Keine passende Spur/);
   assert.equal(h.nodes(node => node.props?.id === 'tracks-title')[0].props.children, 'Nagespur des Bibers');

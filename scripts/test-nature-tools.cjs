@@ -30,7 +30,7 @@ function load(relative, overrides = {}) {
 }
 function engine() {
   const slots=[]; let cursor=0; const effects=[];
-  const hooks={
+  const hooks={...React,
     useState(initial){const i=cursor++; if(!slots[i])slots[i]={value:typeof initial==='function'?initial():initial}; return[slots[i].value,value=>{slots[i].value=typeof value==='function'?value(slots[i].value):value}];},
     useRef(initial){const i=cursor++; if(!slots[i])slots[i]={value:{current:initial}}; return slots[i].value;},
     useEffect(fn,deps){const i=cursor++;if(!slots[i]||!deps||deps.some((value,j)=>!Object.is(value,slots[i].deps[j]))){slots[i]={deps};effects.push(fn);}}
@@ -99,14 +99,15 @@ test('Result review and targeted practice include only incorrect entries',()=>{
   const s=setup('components/NatureQuestionRound.js',{entries:fixture});s.click('Erste richtig');s.click('Nächste Frage');s.click('Zweite falsch');s.click('Auswertung ansehen');assert.match(text(s.tree),/1 von 2 Fragen richtig/);assert.match(text(s.tree),/Erklärung zwei/);s.click('Fehler gezielt wiederholen (1)');assert.match(text(s.tree),/Frage 1 von 1/);assert.match(text(s.tree),/Welche zweite Antwort/);assert.doesNotMatch(text(s.tree),/Erklärung zwei/);
 });
 test('All three tools use one layout, render one main region and usable form labels without the retired upper navigation',()=>{
-  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.doesNotMatch(html,/href="\/lernen#lernen-suche"/);assert.match(html,/<label/);assert.doesNotMatch(html,/undefined|null/);}
+  for(const [file,title]of[['components/PlantAtlas.js','Pflanzenatlas im Jahreslauf'],['components/TracksWorkshop.js','Spurenwerkstatt'],['components/HabitatWorkshop.js','Lebensraum-Werkstatt']]){const s=setup(file);const html=s.html();assert.equal((html.match(/<main/g)||[]).length,1);assert.match(html,new RegExp(title));assert.doesNotMatch(html,/href="\/lernen#lernen-suche"/);assert.match(html,/<(?:label|legend)\b/);assert.doesNotMatch(html,/undefined|null/);}
 });
 
 test('The plant learning selector opens photo development directly and returns to the searchable atlas',()=>{
   const router={isReady:true,query:{},push:async update=>{router.query=update.query;}};
   const s=setup('components/PlantAtlas.js',{},router);
-  const select=()=>find(s.tree,node=>node.type==='label'&&text(node).startsWith('Lernangebot'));
-  const choose=value=>{const control=find(select(),node=>node.type==='select');assert.ok(control);control.props.onChange({target:{value}});s.redraw();};
+  s.e.runEffects();s.redraw();
+  const select=()=>find(s.tree,node=>node.type?.name==='MenuChoice'&&node.props.label==='Lernangebot');
+  const choose=value=>{const control=select();assert.ok(control);control.props.onChange({target:{value}});s.redraw();};
   choose('entwicklung');assert.ok(find(s.tree,node=>node.type?.name==='DevelopmentPhotoSeries'));
   choose('atlas');assert.equal(find(s.tree,node=>node.type?.name==='DevelopmentPhotoSeries'),null);assert.ok(find(s.tree,node=>node.type==='input'&&node.props.type==='search'));
   choose('quiz');assert.ok(find(s.tree,node=>node.type?.name==='NatureQuestionRound'));
@@ -121,14 +122,14 @@ test('Valid direct entry parameters open the intended profiles; unknown values a
 test('Documentation checklist is reversible and counts only selected current-session items',()=>{
   const s=setup('components/TracksWorkshop.js',{}, {isReady:true,query:{ansicht:'checkliste'}});const checkbox=find(s.tree,item=>item.type==='input'&&item.props.type==='checkbox');checkbox.props.onChange();s.redraw();assert.match(text(s.tree),/1 von 6/);s.click('Checkliste leeren');assert.match(text(s.tree),/0 von 6/);assert.match(text(s.tree),/nicht als amtlicher Nachweis/);
 });
-test('Choosing a plant preserves its URL, focuses its details, and reduces seasonal controls to one select',()=>{
+test('Choosing a plant preserves its URL, focuses its content and keeps one button-based seasonal choice',()=>{
   const updates=[]; let focused=0;
   const router={isReady:true,pathname:'/lernen/pflanzenatlas',query:{eintrag:'rotbuche',retained:'yes'},push:async update=>{updates.push(update);router.query=update.query;}};
   const p=setup('components/PlantAtlas.js',{},router);p.e.runEffects();p.redraw();
   find(p.tree,n=>n.type==='div'&&n.props.ref).props.ref.current={querySelector:()=>({focus:()=>{focused++;},scrollIntoView:()=>{}})};
   find(p.tree,n=>n.type==='button'&&text(n).startsWith('Waldkiefer / Waldföhre')).props.onClick();p.redraw();p.e.runEffects();p.redraw();
   assert.equal(focused,1);assert.equal(updates[0].query.eintrag,'waldkiefer');assert.equal(updates[0].query.retained,'yes');assert.equal(updates[0].hash,'plant-detail');
-  const season=find(p.tree,n=>n.type==='select'&&n.props.id==='plant-season-choice');assert.ok(season);
+  const season=find(p.tree,n=>n.type?.name==='MenuChoice'&&n.props.id==='plant-season-choice');assert.ok(season);
   season.props.onChange({target:{value:'winter'}});p.redraw();p.e.runEffects();p.redraw();
   assert.equal(updates.at(-1).query.jahreszeit,'winter');assert.equal(updates.at(-1).query.eintrag,'waldkiefer');
   assert.match(text(find(p.tree,n=>n.props?.id==='plant-season')),/^Winter/);

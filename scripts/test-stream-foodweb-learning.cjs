@@ -178,9 +178,9 @@ test('Existing selector supports food-web deep links, keeps URL state and return
   const changes = []; const router = { query: { thema: 'nahrungsnetz', preserved: 'yes' }, isReady: true, pathname: '/lernen/kleines-revierleben', replace: (...args) => { changes.push(args); return Promise.resolve(); } };
   router.push = (...args) => { changes.push(args); router.query = args[0].query; return Promise.resolve(true); };
   const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
-  assert.equal(find(s.tree, n => n.type === 'select').props.value, 'nahrungsnetz');
+  assert.equal(find(s.tree, n => n.type?.name === 'MenuChoice').props.value, 'nahrungsnetz');
   assert.ok(find(s.tree, n => n.type?.name === 'FoodwebLearning'));
-  find(s.tree, n => n.type === 'select').props.onChange({ target: { value: 'eintagsfliegenlarven' } }); s.render();
+  find(s.tree, n => n.type?.name === 'MenuChoice').props.onChange({ target: { value: 'eintagsfliegenlarven' } }); s.render();
   assert.equal(find(s.tree, n => n.props?.topic)?.props.topic.id, 'eintagsfliegenlarven');
   assert.equal(changes[0][0].query.preserved, 'yes'); assert.equal(changes[0][0].query.thema, 'eintagsfliegenlarven');
   router.query.thema = changes[0][0].query.thema; s.render(); s.e.effects(); s.render();
@@ -199,7 +199,7 @@ test('Food-web motif survives a saved URL and external navigation, and stale mot
   assert.equal(changes[0][0].hash, 'revierleben-inhalt'); assert.equal(changes[0][2].scroll, false);
   router.query.motiv = 'laub'; s.render(); s.e.effects(); s.render(); assert.equal(network().props.selectedId, 'laub');
   router.query.motiv = ['spinne', 'laub']; s.render(); s.e.effects(); s.render(); assert.equal(network(), null); assert.match(s.html(), /Dieses Thema oder Nahrungsnetzmotiv ist nicht verfügbar/);
-  find(s.tree, n => n.type === 'select').props.onChange({ target: { value: 'wildbienen' } });
+  find(s.tree, n => n.type?.name === 'MenuChoice').props.onChange({ target: { value: 'wildbienen' } });
   assert.equal(changes.at(-1)[0].query.motiv, undefined);
 });
 test('The inline food-web knowledge check explains an incorrect answer without another action', () => {
@@ -219,7 +219,7 @@ test('The four added soil and waterside profiles are reachable through the exist
     const topic = ecology.revierLifeTopics.find(item => item.id === id); assert.ok(topic);
     const router = { query: { thema: id }, isReady: true, pathname: '/lernen/kleines-revierleben' };
     const s = setup('components/SmallRevierLife.js', {}, '', router); s.e.effects(); s.render();
-    assert.equal(find(s.tree, n => n.type === 'select').props.value, id);
+    assert.equal(find(s.tree, n => n.type?.name === 'MenuChoice').props.value, id);
     assert.equal(find(s.tree, n => n.props?.topic)?.props.topic.id, id);
     assert.ok(ecology.revierLifeGroups.some(group => group.id === topic.group));
     assert.equal(search.find(entry => entry.id === `revierleben:${id}`).href, `/lernen/kleines-revierleben?thema=${id}#revierleben-inhalt`);

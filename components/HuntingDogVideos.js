@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MenuChoice from "./MenuChoice";
+import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { dogVideoSources, huntingDogVideoLessons } from "../lib/hunting-dog-video-lessons";
 import styles from "../styles/DogCutLearning.module.css";
 
@@ -51,17 +53,19 @@ export default function HuntingDogVideos() {
   const mounted = useRef(false);
   const selectionRequest = useRef(0);
   const pendingRequest = useRef(null);
+  const focusedSelection = useRef(null);
   // Missing fields keep the first entry. Explicit invalid fields do not
   // substitute another film, and unready router data never chooses a film.
   const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) committedView.current = { key: viewKey };
   const origin = committedView.current;
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   function currentView() { return mounted.current && ready && !!lesson && committedView.current === origin; }
-  function focusContent(targetSection = section) {
+  function focusContent(targetSection = section, category = false) {
+    if (!category && requestedSection && !["hundevideo-film", "hundevideo-handlung", "hundevideo-auswahl"].includes(requestedSection)) return;
     const target = targetSection === "hundevideo-handlung" ? transcriptHeading.current : heading.current;
-    target?.focus?.({ preventScroll: true });
-    target?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    focusSelection(target, { anchor: targetSection === "hundevideo-handlung" });
   }
   useEffect(() => {
     mounted.current = true;
@@ -75,18 +79,25 @@ export default function HuntingDogVideos() {
     if (!ready) return;
     setNavigationError("");
     if (!lesson || section === "hundevideo-auswahl") {
+      focusedSelection.current = null;
       const timer = setTimeout(() => {
         if (mounted.current && committedView.current === origin) openPageMenu("hundevideo-auswahl");
       }, 0);
       return () => clearTimeout(timer);
     }
-    closePageMenu(); focusContent();
+    closePageMenu();
+    const selectionKey = JSON.stringify([lesson.id, section, requestedSection]);
+    if (focusedSelection.current !== selectionKey) {
+      focusedSelection.current = selectionKey;
+      focusContent();
+    }
   }, [ready, origin, lesson?.id, section]);
   function mediaFailed() { if (currentView()) setMediaFailure(origin); }
   async function changeLesson(id) {
     if (!ready || !mounted.current || committedView.current !== origin || !huntingDogVideoLessons.some(item => item.id === id)) return;
+    cancelSelectionFocus();
     setNavigationError("");
-    if (id === lesson?.id && pendingRequest.current === null) { closePageMenu(); focusContent(section === "hundevideo-handlung" ? section : "hundevideo-film"); return; }
+    if (id === lesson?.id && pendingRequest.current === null) { closePageMenu(); focusContent("hundevideo-film", true); return; }
     const request = ++selectionRequest.current;
     pendingRequest.current = request;
     try {
@@ -94,7 +105,7 @@ export default function HuntingDogVideos() {
       // route never displays content that disagrees with the address bar.
       const accepted = await router.push({ pathname: "/lernen/jagdhund-videos", query: { ...router.query, eintrag: id }, hash: "hundevideo-film" }, undefined, { shallow: true, scroll: false });
       if (accepted !== false && mounted.current && request === selectionRequest.current && committedView.current === origin && id === lesson?.id) {
-        closePageMenu(); focusContent("hundevideo-film");
+        closePageMenu(); focusContent("hundevideo-film", true);
       }
     } catch (error) {
       if (error?.cancelled || !mounted.current || request !== selectionRequest.current || committedView.current !== origin) return;
@@ -109,8 +120,7 @@ export default function HuntingDogVideos() {
   return <LearningToolLayout title="Jagdhunde im Video" description="Echte Aufnahmen: Arbeitsschritte beobachten, Körpersprache vorsichtig einordnen und hilfreiche Lernprinzipien verstehen." icon="hundewesen" category="hundewesen" headingOnly hideCommunity>
     <PageMenu title="Jagdhundvideos – Szene wählen" openInitially={ready && !lesson} initialFocusId="hundevideo-auswahl">
       <section className={styles.selector} aria-label="Video auswählen">
-        <label htmlFor="hundevideo-auswahl">Welche Szene möchtest du ansehen?</label>
-        <select id="hundevideo-auswahl" value={lesson?.id || ""} disabled={!ready} aria-controls="hundevideo-film" onChange={event => changeLesson(event.target.value)}><option value="" disabled>Szene wählen</option>{huntingDogVideoLessons.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select>
+        <MenuChoice label="Szene" id="hundevideo-auswahl" value={lesson?.id || ""} disabled={!ready} aria-controls="hundevideo-film" onChange={event => changeLesson(event.target.value)}><option value="" disabled>Szene wählen</option>{huntingDogVideoLessons.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</MenuChoice>
         {navigationError && <p className={styles.feedback} role="alert">{navigationError}</p>}
       </section>
       <Link href="/lernen/videos">Alle Lernvideos</Link>
