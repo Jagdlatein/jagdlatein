@@ -5,14 +5,19 @@ const load = createLoader(), { miniCourses } = load('lib/course-catalog.js');
 const { miniCourseLessonTargets, getMiniCourseDetails } = load('lib/mini-course-details.js');
 const { getLearningModule } = load('lib/learning-curriculum.js');
 const expected = {
-  greifvoegel: [{ moduleId: 'wissen-ausbau-biologie-verdauungsvergleich-2026', lessonId: 'gewoelle' }],
-  federwild: [{ moduleId: 'wissen-ausbau-biologie-verdauungsvergleich-2026', lessonId: 'gewoelle' }],
-  waffen: [{ moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'zuendungsarten' }],
-  ballistik: [{ moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'zuendungsarten' }],
+  greifvoegel: [{ moduleId: 'wissen-ausbau-biologie-verdauungsvergleich-2026', lessonId: 'gewoelle' },
+    { moduleId: 'wissen-ausbau-federaufbau-funktion-2026', lessonId: 'schwingen' }, { moduleId: 'wissen-ausbau-federaufbau-funktion-2026', lessonId: 'steuerfedern' }],
+  federwild: [{ moduleId: 'wissen-ausbau-biologie-verdauungsvergleich-2026', lessonId: 'gewoelle' },
+    { moduleId: 'wissen-ausbau-federaufbau-funktion-2026', lessonId: 'schwingen' }, { moduleId: 'wissen-ausbau-federaufbau-funktion-2026', lessonId: 'steuerfedern' }],
+  waffen: [{ moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'zuendungsarten' },
+    { moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'laufprofil' }, { moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'flintenpatronen' }],
+  ballistik: [{ moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'zuendungsarten' },
+    { moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'laufprofil' }, { moduleId: 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026', lessonId: 'flintenpatronen' }],
 };
 
-test('Only four explicitly authored lesson links complement all 34 otherwise exact a0a6563 metadata objects', () => {
+test('Twelve explicit lesson links in four mini courses preserve the four previous targets and all 34 otherwise exact a0a6563 metadata objects', () => {
   assert.deepEqual(miniCourseLessonTargets, expected);
+  for (const id of Object.keys(expected)) assert.equal(getMiniCourseDetails(id).lessonLinks[0].lessonId, ['federwild', 'greifvoegel'].includes(id) ? 'gewoelle' : 'zuendungsarten');
   const preserved = miniCourses.map(course => { const { lessonLinks, ...old } = getMiniCourseDetails(course.id); return old; });
   assert.equal(preserved.length, 34);
   assert.equal(createHash('sha256').update(JSON.stringify(preserved)).digest('hex'), '91c932491fbd1e9fcb4fa6937167507691825b4170f085120e48f77102833439');

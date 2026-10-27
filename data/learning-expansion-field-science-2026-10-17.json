@@ -616,6 +616,87 @@
           "lessonIds": [
             "zuendungsarten"
           ]
+        },
+        {
+          "label": "SAAMI · Rifling",
+          "url": "https://saami.org/glossary/rifling/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Eigentlicher Definitionsabsatz: inneres Spiralprofil überträgt stabilisierende Rotation; verschiedene Profilformen werden ausdrücklich unterschieden. Keine Fertigungs- oder Leistungsangaben übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "laufprofil"
+          ]
+        },
+        {
+          "label": "Hunter Ed · Rifling in the Rifle or Handgun Bore",
+          "url": "https://www.hunter-ed.com/california/studyGuide/Rifling-in-the-Rifle-or-Handgun-Bore/20100501_66876/",
+          "organization": "Kalkomey Enterprises · Hunter Ed",
+          "supports": "Einleitender Sachabsatz und Glossar grooves/lands: Spiralnuten und erhöhte Bereiche dazwischen, Rotationsübertragung. Die pauschale Aussage zu sämtlichen Flintenläufen und die Präzisionsbehauptung werden nicht übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "laufprofil"
+          ]
+        },
+        {
+          "label": "NIJ · Technisches Glossar: Land, Rifling und Wad",
+          "url": "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary",
+          "organization": "National Institute of Justice · Firearms Examiner Training",
+          "supports": "Archivierter Ausbildungslehrtext, konkrete Einträge Land/Rifling sowie Wad/Wad cup: erhöhte Bereiche zwischen Spiralnuten, Drehbewegung und trennender Bauteil. Keine Fertigungsverfahren oder forensischen Identitätsbehauptungen übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "laufprofil",
+            "flintenpatronen"
+          ]
+        },
+        {
+          "label": "Hunter Ed · Shotshells",
+          "url": "https://www.hunter-ed.com/california/studyGuide/Shotshells/20100501_66838/",
+          "organization": "Kalkomey Enterprises · Hunter Ed",
+          "supports": "Erste Sachabsätze: Flintenpatronen mit Schrot oder einem Einzelgeschoss. Keine Material-, Jagdverwendungs-, Abmessungs- oder Ladeangaben übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "flintenpatronen"
+          ]
+        },
+        {
+          "label": "SAAMI · Shot",
+          "url": "https://saami.org/glossary/shot/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Eigentliche Definition: Schrote als Kugeln. Keine Material- oder Herstellungsangaben übernommen. Gemeinsam mit den anderen SAAMI-Seiten eine Quellenorganisation.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "flintenpatronen"
+          ]
+        },
+        {
+          "label": "SAAMI · Slug",
+          "url": "https://saami.org/glossary/slug/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Erster Definitionssatz: einzelnes Geschoss aus einer Flinte. Der zusätzliche umgangssprachliche Gebrauch wird nicht gelehrt.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "flintenpatronen"
+          ]
+        },
+        {
+          "label": "VIMS · Shotgun Wads",
+          "url": "https://www.vims.edu/ccrm/research/marine_debris/problems/plastics/shotgun_wads/",
+          "organization": "Virginia Institute of Marine Science · William & Mary",
+          "supports": "Absatz zur Begriffsdefinition von wad: Trennung von Schrot und Pulver. Keine Aussagen zu Entfernungen, Gasdruck, Material oder örtlichen Vorschriften übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "flintenpatronen"
+          ]
+        },
+        {
+          "label": "fedpol · Technische Begriffe der Schrotpatrone, Seite 48",
+          "url": "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf#page=48",
+          "organization": "Bundesamt für Polizei fedpol, Zentralstelle Waffen",
+          "supports": "Ausgabe 14.07.2026, Seite 48, Nummer 350: Zwischenmittel zwischen Pulver- und Schrotladung. Nur technische Definition, keine Originalfrage übernommen; Waffenhandelsprüfung ist kein Jagdoriginalkatalog.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "flintenpatronen"
+          ]
         }
       ],
       "lessons": [
@@ -684,6 +765,32 @@
           ],
           "takeaway": "Zentralfeuer und Randfeuer unterscheiden die Lage der Zündkomponente: zentral im Hülsenboden beziehungsweise im Hülsenrand.",
           "exercise": "Ordne Zentralfeuer und Randfeuer den beiden im Lerntext beschriebenen Positionen zu. Löse die Begriffsübung ausschließlich auf einem gedanklichen Blatt."
+        },
+        {
+          "id": "laufprofil",
+          "title": "Züge und Felder",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei einem klassischen Zug-Feld-Profil besitzt die Laufinnenseite spiralig verlaufende Vertiefungen und dazwischen erhöhte Bereiche. Die Vertiefungen heißen Züge; die erhöhten Bereiche heißen Felder. Beide Begriffe beschreiben also Teile desselben inneren Laufprofils. „Feld“ bezeichnet hier weder eine freie Landschaftsfläche noch einen Bestandteil der Patronenhülse.",
+            "Das spiralige Profil überträgt eine Drehbewegung auf das Geschoss. Es dreht sich dabei um seine eigene Längsachse; diese Rotation dient der Stabilisierung. Unterscheide deshalb die Form im Lauf von der Bewegung des Geschosses. Die Unterscheidung benennt Profil und Rotation, ohne daraus den Verlauf der Flugbahn abzuleiten. Die Erklärung enthält keine Angaben zu Dralllänge, Drehrichtung oder einer bestimmten Treffleistung.",
+            "Eigenes Lernbeispiel: Ordne auf einem gedanklichen Blatt die Wörter „vertiefte Spiralbereiche“, „erhöhte Zwischenbereiche“ und „Drehbewegung des Geschosses“ jeweils Zügen, Feldern und Rotation zu. Begründe jede Zuordnung mit Form oder Bewegung. Beschrieben ist das klassische Zug-Feld-Profil, nicht jede mögliche Innenkontur. Die Begriffsübung verlangt weder das Untersuchen noch das Bearbeiten einer Waffe und gibt keine Empfehlung zur Munitionswahl."
+          ],
+          "takeaway": "Züge sind die vertieften Spiralbereiche, Felder die erhöhten Bereiche dazwischen. Das Profil überträgt die stabilisierende Geschossdrehung.",
+          "exercise": "Ordne im gedanklichen Lernbeispiel Laufprofil und Geschossbewegung zu. Erkläre Züge und Felder mit ihrer relativen Lage."
+        },
+        {
+          "id": "flintenpatronen",
+          "title": "Schrot und Einzelgeschoss",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Flintenmunition umfasst unter anderem Schrotpatronen und Patronen mit einem Flintenlaufgeschoss. Bei einer Schrotladung bilden mehrere kleine Schrotkugeln die Geschossladung. Ein Flintenlaufgeschoss ist dagegen ein Einzelgeschoss für eine Flinte; die englische Bezeichnung lautet in diesem Zusammenhang „slug“. Die gesamte Patrone und ihre Geschossladung sind verschiedene Betrachtungsebenen. Aus dem Oberbegriff Flintenpatrone folgt deshalb nicht, dass sie stets viele Schrotkugeln enthält.",
+            "Zum begrifflichen Aufbau einer Schrotpatrone gehört außerdem das Zwischenmittel. Es liegt zwischen Treibladung und Schrotladung und trennt diese voneinander. In englischen Fachtexten begegnet dafür „wad“. Zwischenmittel, Treibladung und Schrotladung sind keine austauschbaren Wörter: Der trennende Bauteil ist weder der Antriebsstoff noch die Gruppe der Schrotkugeln. Hier wird nur diese Anordnung erklärt, keine bestimmte Ausführung vorgeschrieben.",
+            "Eigenes Lernbeispiel: Zwei rein gedankliche Beschriftungen nennen einmal mehrere Schrotkugeln und einmal ein Einzelgeschoss. Ordne Schrotpatrone und Patrone mit Flintenlaufgeschoss zu. Ergänze beim beschriebenen Schrotaufbau das Zwischenmittel zwischen den beiden Ladungsbestandteilen. Diese Papierübung wird ohne Öffnen oder Bearbeiten von Munition gelöst. Sie ist keine Freigabe für eine konkrete Waffe oder jagdliche Verwendung und enthält keine Aussage zu Reichweite oder Wirkung."
+          ],
+          "takeaway": "Schrotladung und Flintenlaufgeschoss unterscheiden viele Geschosse von einem Einzelgeschoss. Das Zwischenmittel trennt bei der beschriebenen Schrotpatrone Treibladung und Schrotladung.",
+          "exercise": "Ordne die beiden gedanklichen Geschossladungen zu und benenne beim Schrotaufbau den trennenden Bauteil."
         }
       ],
       "questions": [
@@ -1059,6 +1166,58 @@
           ],
           "answer": 0,
           "explain": "Bei Zentralfeuer liegt das Zündelement zentral im Hülsenboden; bei Randfeuer befindet sich der Zündsatz im Hohlraum des Hülsenrands. Die Einteilung beschreibt die Zündungsart."
+        },
+        {
+          "id": "laufprofil-zug-feld",
+          "lessonId": "laufprofil",
+          "q": "Eine gedankliche Schnittbeschreibung nennt vertiefte Spiralbereiche und erhöhte Bereiche dazwischen. Welche Zuordnung stimmt beim klassischen Laufprofil?",
+          "options": [
+            "Vertiefungen: Felder; erhöhte Bereiche: Züge.",
+            "Vertiefungen: Züge; erhöhte Bereiche: Felder.",
+            "Beide Begriffe bezeichnen Bauteile der Patronenhülse.",
+            "Beide Begriffe bezeichnen die Schrotladung."
+          ],
+          "answer": 1,
+          "explain": "Beim klassischen Zug-Feld-Profil sind die Züge die spiralig verlaufenden Vertiefungen. Die erhöhten Bereiche dazwischen heißen Felder; beide gehören zum Laufprofil."
+        },
+        {
+          "id": "laufprofil-drehung",
+          "lessonId": "laufprofil",
+          "q": "Wie hängen das innere Spiralprofil eines klassisch gezogenen Laufes und die Bewegung des Geschosses zusammen?",
+          "options": [
+            "Die Hülse besitzt Züge und Felder; der Lauf dreht die Gesamtpatrone.",
+            "Felder sind eine Geschossform; Züge sind die Fertigungsserie.",
+            "Das Profil liegt im Lauf; das Geschoss erhält eine Drehung um seine eigene Längsachse.",
+            "Das Geschoss muss wegen des Spiralprofils auf einer schraubenförmigen Flugbahn fliegen."
+          ],
+          "answer": 2,
+          "explain": "Züge und Felder beschreiben das innere Laufprofil. Dieses überträgt eine stabilisierende Rotation auf das Geschoss um dessen eigene Längsachse. Daraus werden hier weder ein Verlauf der Flugbahn noch eine bestimmte Treffleistung abgeleitet."
+        },
+        {
+          "id": "flintenpatronen-geschossladung",
+          "lessonId": "flintenpatronen",
+          "q": "Zwei gedankliche Flintenpatronen enthalten A: mehrere Schrotkugeln, B: ein Flintenlaufgeschoss. Welche Aussage unterscheidet ihre Geschossladungen richtig?",
+          "options": [
+            "A enthält viele Schrote; B enthält ein Einzelgeschoss.",
+            "A und B müssen beide viele Schrotkugeln enthalten.",
+            "Nur A ist eine ganze Patrone; B bezeichnet stets die Patronenhülse.",
+            "B beschreibt die Lage des Zündelements, nicht die Geschossladung."
+          ],
+          "answer": 0,
+          "explain": "Die Schrotpatrone enthält mehrere Schrotkugeln als Geschossladung. Bei der Patrone mit Flintenlaufgeschoss handelt es sich um ein Einzelgeschoss. Aus dieser Begriffszuordnung folgt keine konkrete Verwendungsfreigabe."
+        },
+        {
+          "id": "flintenpatronen-zwischenmittel",
+          "lessonId": "flintenpatronen",
+          "q": "Auf einem rein gedanklichen Lernblatt bleiben Treibladung und Schrotladung getrennt. Welcher zusätzliche Bauteil gehört zwischen die beiden?",
+          "options": [
+            "Die Fertigungsserie als selbstständiger Bauteil.",
+            "Das Feld des Laufprofils.",
+            "Die Seriennummer der Waffe.",
+            "Das Zwischenmittel."
+          ],
+          "answer": 3,
+          "explain": "Beim beschriebenen Schrotaufbau liegt das Zwischenmittel zwischen Treibladung und Schrotladung und trennt sie. Diese begriffliche Zuordnung ist keine Anleitung zum Öffnen, Bearbeiten oder Laden von Munition."
         }
       ]
     },
@@ -3329,6 +3488,68 @@
             "https://saami.org/glossary/rimfire-cartridge/": "Definition Rimfire Cartridge, eigentlicher Definitionsabsatz zum Hohlraum des Rands.",
             "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/": "Zweiter einleitender Sachabsatz: primer contained in the rim; keine Druck- oder Wiederladeaussagen übernommen.",
             "https://www.nist.gov/glossary-term/40306": "Lexikoneintrag Rimfire cartridge mit eigener Kennzeichnung als Wiedergabe aus ANSI/ASTM E1732; kein Zugriff auf den Vollstandard behauptet."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "laufprofil",
+      "claims": [
+        {
+          "claim": "Beim klassischen Zug-Feld-Profil sind Züge die spiraligen Vertiefungen und Felder die erhöhten Bereiche dazwischen.",
+          "sourceUrls": [
+            "https://www.hunter-ed.com/california/studyGuide/Rifling-in-the-Rifle-or-Handgun-Bore/20100501_66876/",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary"
+          ],
+          "sourceRoles": {
+            "https://www.hunter-ed.com/california/studyGuide/Rifling-in-the-Rifle-or-Handgun-Bore/20100501_66876/": "Glossar grooves und lands unter dem einleitenden Absatz; relative Lage des klassischen Profils.",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary": "Einträge Land und Rifling (groove): erhöhte Zwischenbereiche und spiralige Nuten."
+          }
+        },
+        {
+          "claim": "Das innere Spiralprofil überträgt eine Drehbewegung auf das Geschoss zur Stabilisierung; dies ist von der Form des Laufprofils zu unterscheiden.",
+          "sourceUrls": [
+            "https://saami.org/glossary/rifling/",
+            "https://www.hunter-ed.com/california/studyGuide/Rifling-in-the-Rifle-or-Handgun-Bore/20100501_66876/",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary"
+          ],
+          "sourceRoles": {
+            "https://saami.org/glossary/rifling/": "Eigentlicher Definitionsabsatz: inneres Spiralmerkmal überträgt stabilisierenden spin.",
+            "https://www.hunter-ed.com/california/studyGuide/Rifling-in-the-Rifle-or-Handgun-Bore/20100501_66876/": "Erster Sachabsatz: spiral spin des Geschosses; keine Präzisionsaussage übernommen.",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary": "Eintrag Rifling (groove): rotary motion to a projectile."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "flintenpatronen",
+      "claims": [
+        {
+          "claim": "Flintenpatronen können eine Schrotladung mit mehreren Kugeln oder ein einzelnes Flintenlaufgeschoss (slug) enthalten.",
+          "sourceUrls": [
+            "https://www.hunter-ed.com/california/studyGuide/Shotshells/20100501_66838/",
+            "https://saami.org/glossary/shot/",
+            "https://saami.org/glossary/slug/"
+          ],
+          "sourceRoles": {
+            "https://www.hunter-ed.com/california/studyGuide/Shotshells/20100501_66838/": "Einleitung und erste Unterpunkte: slug oder shot, single gegenüber multiple pellets.",
+            "https://saami.org/glossary/shot/": "Eigentlicher Definitionsabsatz Shot: Kugeln als Schrote.",
+            "https://saami.org/glossary/slug/": "Erster Definitionssatz Slug: single projectile aus einer Flinte."
+          }
+        },
+        {
+          "claim": "Das Zwischenmittel (wad) liegt beim beschriebenen Schrotaufbau zwischen Treibladung und Schrotladung und trennt sie.",
+          "sourceUrls": [
+            "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf#page=48",
+            "https://www.vims.edu/ccrm/research/marine_debris/problems/plastics/shotgun_wads/",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary"
+          ],
+          "sourceRoles": {
+            "https://www.fedpol.admin.ch/dam/de/sd-web/pQ5Q3W4g13Sk/pruefung-schusswaffenhandel.pdf#page=48": "Seite 48, technische Definition bei Nummer 350; keine Originalfrage übernommen.",
+            "https://www.vims.edu/ccrm/research/marine_debris/problems/plastics/shotgun_wads/": "Absatz The term wad refers: Trennung von shot und powder.",
+            "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary": "Einträge Wad und Wad, cup: Komponenten trennen beziehungsweise powder and shot separator."
           }
         }
       ]

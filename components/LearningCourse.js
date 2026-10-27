@@ -20,6 +20,7 @@ import { getCourseCountryNotes } from "../lib/learning-country-notes";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
 import CourseWildlifeLinks from "./CourseWildlifeLinks";
 import CourseBreedLinks from "./CourseBreedLinks";
+import CourseMiniLinks from "./CourseMiniLinks";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -28,11 +29,11 @@ function makeRun(questions, mode = "full", answerSeed = 0, lessonPractice = null
     ...(lessonPractice ? { lessonPractice } : {}) };
 }
 
-export default function LearningCourse({ module, flashcards, wildlifeLinks = [] }) {
-  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} />;
+export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [] }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} />;
 }
 
-function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
+function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [] }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
@@ -242,6 +243,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
             <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
+            <CourseMiniLinks links={miniCourseLinks} lessonId={module.lessons[lessonIndex].id} />
           </PageMenu>
           <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">

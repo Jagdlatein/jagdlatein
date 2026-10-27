@@ -1,3 +1,5 @@
+const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Narrow data, integration and preservation checks; not scientific certification.
 const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture, withoutFishLateralLineDataset } = require('./helpers/fish-lateral-line-addition.cjs');
@@ -8,7 +10,7 @@ const { createLoader, local } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const raw = withoutFishLateralLineDataset(require('../data/learning-expansion-ecology-2026-10-16.json'));
-const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
+const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))));
 const courseId = 'wissen-ausbau-oekologie-holzaufbau-2026';
 const lessonId = 'gefaessverteilung';
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');

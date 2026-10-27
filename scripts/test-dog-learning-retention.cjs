@@ -1,3 +1,5 @@
+const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 const { digestiveIgnitionBaselineFixture, stripGewoelleDataset } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
@@ -11,7 +13,7 @@ const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
-const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
+const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))));
 const revision = '6860695';
 const datasetPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';
 const courseId = 'wissen-ausbau-hund-ruhe-schlaf-2026';
@@ -45,7 +47,7 @@ function baselineLoader() {
   };
 }
 const before = baselineLoader();
-const raw = readJson(datasetPath);
+const raw = stripFlightFeatherDataset(readJson(datasetPath));
 const originalRaw = JSON.parse(gitRead(datasetPath));
 const rawCourse = raw.modules.find(item => item.id === courseId);
 const originalCourse = originalRaw.modules.find(item => item.id === courseId);

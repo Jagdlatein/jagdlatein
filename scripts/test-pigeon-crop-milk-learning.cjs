@@ -1,3 +1,5 @@
+const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Exact preservation, source scope and real reader/export checks; not a scientific certification.
 const { digestiveIgnitionBaselineFixture, stripGewoelleDataset } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const test = require('node:test');
@@ -7,7 +9,7 @@ const { createLoader, local } = require('./helpers/project-module.cjs');
 const raw = stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json'));
 const courseId = 'wissen-ausbau-biologie-verdauungsvergleich-2026';
 const lessonId = 'kropfmilch';
-const load = createLoader(digestiveIgnitionBaselineFixture());
+const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture())));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const course = getLearningModule(courseId);
 const original = raw.modules.find(item => item.id === courseId);
@@ -31,7 +33,7 @@ const referenceRaw = {
 };
 // A baseline projection of this single JSON addition keeps unrelated concurrently
 // authored additions visible in BOTH loaders. No unrelated field is stripped.
-const referenceLoad = createLoader(digestiveIgnitionBaselineFixture({ '../data/learning-expansion-biology-2026-10-16.json': referenceRaw }));
+const referenceLoad = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture({ '../data/learning-expansion-biology-2026-10-16.json': referenceRaw }))));
 
 test('All four old lessons, 32 questions, 11 sources, dates and five other biology courses remain exact', () => {
   assert.equal(hash(stripAddition(original)), 'fa1f649044b5b002b50e2997dd9a91425335cb1c12a69a58038dafc8b3306a00');

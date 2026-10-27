@@ -1,11 +1,13 @@
+const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Narrow editorial and integration checks; source reading is documented separately.
 const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
-const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
-const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())), courseId = 'wissen-ausbau-federaufbau-funktion-2026', lessonId = 'federwachstum';
+const raw = stripFlightFeatherDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
+const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())))), courseId = 'wissen-ausbau-federaufbau-funktion-2026', lessonId = 'federwachstum';
 const questionId = 'federwachstum-blutversorgung', cardId = `flash-${courseId}-${questionId}`;
 const bto = 'https://www.bto.org/sites/default/files/moult-in-birds-web.pdf';
 const fsu = 'https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html';

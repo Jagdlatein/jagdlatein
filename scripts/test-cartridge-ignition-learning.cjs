@@ -2,7 +2,9 @@
 const test=require('node:test'),assert=require('node:assert/strict'),{createHash}=require('node:crypto');
 const{createLoader,local}=require('./helpers/project-module.cjs');
 const{courseId,lessonId,questionId,sourceURLs,withoutCartridgeIgnitionModule:narrow,withoutCartridgeIgnitionDataset}=require('./helpers/cartridge-ignition-addition.cjs');
-const raw=require('../data/learning-expansion-field-science-2026-10-17.json'),load=createLoader(),modules=load('lib/learning-curriculum.js').learningModules,course=modules.find(item=>item.id===courseId),lesson=course.lessons.at(-1),cards=load('lib/learning-flashcards.js').getFlashcards();
+const{stripFirearmTermsDataset,firearmTermsBaselineFixture}=require('./helpers/firearm-terms-additions-oct27.cjs');
+const{flightFeatherBaselineFixture}=require('./helpers/flight-feather-additions-oct27.cjs');
+const raw=stripFirearmTermsDataset(require('../data/learning-expansion-field-science-2026-10-17.json')),load=createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture())),modules=load('lib/learning-curriculum.js').learningModules,course=modules.find(item=>item.id===courseId),lesson=course.lessons.at(-1),cards=load('lib/learning-flashcards.js').getFlashcards();
 const cardId=`flash-${courseId}-${questionId}`,hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 // The one other authorized parallel appendix is compared independently by its owner.
 const pelletCourse='wissen-ausbau-biologie-verdauungsvergleich-2026',pelletQuestionIds=['gewoelle-muskelmagen','gewoelle-rueckweg'];

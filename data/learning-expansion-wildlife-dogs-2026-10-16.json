@@ -405,6 +405,28 @@
           "lessonIds": [
             "federwachstum"
           ]
+        },
+        {
+          "label": "Feather Atlas: Schwung- und Steuerfedern",
+          "url": "https://www.fws.gov/lab/featheratlas/glossary.html",
+          "organization": "U.S. Fish and Wildlife Service; Forensics Laboratory",
+          "supports": "Glossary, Primary, Secondary und Rectrices: Ansatz der Handschwingen am Handskelett, der Armschwingen an der Elle und Zuordnung der Steuerfedern zum Schwanz. Nur anatomische Begriffe; keine Federzahlen, Alters- oder Artbestimmung und keine Übernahme der Tertial-Abgrenzung.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "schwingen",
+            "steuerfedern"
+          ]
+        },
+        {
+          "label": "Feathers and flight: Beiträge der Flugfedern",
+          "url": "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight",
+          "organization": "University of Waikato; Science Learning Hub",
+          "supports": "Abschnitte Primary feathers, Secondary feathers und Rectrices: qualitative Beiträge zu Vortrieb, Auftrieb und Richtungssteuerung. Institutionelle Erklärung, keine experimentelle Replikation. Keine Federzahlen, Aussagen zu Federverlust und Flugunfähigkeit oder Anleitungen zum Eingriff übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "schwingen",
+            "steuerfedern"
+          ]
         }
       ],
       "lessons": [
@@ -470,6 +492,32 @@
           ],
           "takeaway": "Die wachsende Feder wird im Inneren mit Blut versorgt; beim Ausreifen endet diese Versorgung.",
           "exercise": "Vergleiche auf Papier eine wachsende und eine ausgereifte Feder. Kennzeichne Hautfollikel und innere Versorgung, ohne daraus einen Behandlungsschritt abzuleiten.",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true
+        },
+        {
+          "id": "schwingen",
+          "title": "Hand- und Armschwingen",
+          "paragraphs": [
+            "Handschwingen und Armschwingen gehören zu den Schwungfedern des Flügels. Ihre Namen beschreiben den anatomischen Ansatz: Handschwingen sitzen am äußeren Flügelabschnitt, dessen Skelett der Hand entspricht. Armschwingen sitzen weiter innen an der Elle, einem Knochen des Unterarms. Der Begriff Arm meint hier also nicht einfach jede Feder zwischen Rumpf und Flügelspitze.",
+            "Beim Fliegen wirken beide Federgruppen zusammen. Handschwingen tragen wesentlich zum Vortrieb bei. Die überlappenden Armschwingen bilden einen Teil der Tragfläche und tragen wesentlich zum Auftrieb bei. Das ist eine qualitative Unterscheidung ihrer Beiträge, keine ausschließliche Aufgabenverteilung. Beide Gruppen arbeiten am selben Flügel.",
+            "Eigene Denkübung: Zeichne einen Flügel vom Rumpf zur Spitze und beschrifte Unterarm und Hand. Ordne anschließend Armschwingen und Handschwingen zu. Begründe die Einordnung mit dem Ansatzort, nicht mit der Farbe einer Feder. Dieses Schema vermittelt Bau und Funktion; es legt weder eine gemeinsame Federzahl aller Arten noch eine sichere Artbestimmung aus einer einzelnen Feder fest."
+          ],
+          "takeaway": "Handschwingen setzen am Handabschnitt, Armschwingen an der Elle an; beide tragen gemeinsam zum Flug bei.",
+          "exercise": "Ordne Hand- und Armschwingen in einer eigenen Flügelskizze nach ihrem Ansatzort zu und erläutere ihre Beiträge zum Flug.",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true
+        },
+        {
+          "id": "steuerfedern",
+          "title": "Steuerfedern",
+          "paragraphs": [
+            "Steuerfedern sind die Flugfedern des Schwanzes; fachsprachlich heißen sie Rectrices. Sie gehören damit zu einer anderen Körperregion als die Schwungfedern des Flügels, die Remiges. Beide Bezeichnungen helfen, im Lerntext den Ort einer Federgruppe von ihrer Beteiligung am Flug zu unterscheiden. Eine Schwanzfeder wird durch ihre Flugfunktion nicht zur Handschwinge.",
+            "Beim Fliegen unterstützen die Steuerfedern Richtungsänderungen. Der Schwanz kann dabei wie ein Ruder wirken. Diese knappe Funktionsbeschreibung erklärt einen Beitrag zur Flugsteuerung und ist keine Behauptung, dass nur der Schwanz einen Vogel lenkt. Die Bezeichnung Steuerfeder bedeutet ebenso wenig, dass sich aus einer einzelnen losen Feder die gesamte Flugweise einer Art sicher ablesen lässt.",
+            "Eigene Denkübung: Beschrifte in einer einfachen Vogelskizze Flügel und Schwanz. Erkläre dann den Unterschied zwischen Schwungfedern und Steuerfedern anhand von Lage und Funktion. Die Skizze ist ein selbst erstelltes Lernmodell, kein Nachweis für die genaue Federzahl, das Alter oder das Flugvermögen eines bestimmten Vogels."
+          ],
+          "takeaway": "Steuerfedern sitzen am Schwanz und unterstützen Richtungsänderungen; Schwungfedern gehören zum Flügel.",
+          "exercise": "Vergleiche in einer eigenen Vogelskizze die Lage von Schwungfedern und Steuerfedern und erläutere den Beitrag des Schwanzes zur Richtungssteuerung.",
           "reviewedOn": "2026-10-27",
           "flashcardExpansion": true
         }
@@ -721,6 +769,45 @@
           ],
           "answer": 2,
           "explain": "Das Wachstum ist mit versorgendem Gewebe und Blutgefäßen verbunden. Bei der Ausreifung zieht sich die Federpulpa zurück und die Blutversorgung des wachsenden Federinneren endet. Diese Unterscheidung macht keine Aussage, dass die umgebende Haut blutlos sei."
+        },
+        {
+          "id": "schwingen-ansatz",
+          "lessonId": "schwingen",
+          "q": "An welchen Skelettabschnitten setzen Handschwingen und Armschwingen an?",
+          "options": [
+            "Handschwingen am Handskelett, Armschwingen an der Elle des Unterarms.",
+            "Handschwingen am Schwanz, Armschwingen am Handskelett.",
+            "Handschwingen an den Zehen, Armschwingen am Schwanz.",
+            "Beide Gruppen ausschließlich am Schultergürtel."
+          ],
+          "answer": 0,
+          "explain": "Die anatomische Zuordnung folgt dem Ansatzort: Handschwingen gehören zum äußeren Handabschnitt des Flügels, Armschwingen zur Elle im Unterarm."
+        },
+        {
+          "id": "schwingen-flugrollen",
+          "lessonId": "schwingen",
+          "q": "Wie tragen Hand- und Armschwingen gemeinsam zum Flug bei?",
+          "options": [
+            "Beide Gruppen bilden ausschließlich ein Wärmepolster.",
+            "Handschwingen lenken nur den Schwanz; Armschwingen bilden keine Tragfläche.",
+            "Handschwingen tragen wesentlich zum Vortrieb bei; überlappende Armschwingen wesentlich zum Auftrieb.",
+            "Nur Armschwingen gehören zu den Flugfedern; Handschwingen ersetzen den Schwanz."
+          ],
+          "answer": 2,
+          "explain": "Die Beiträge greifen zusammen: Handschwingen unterstützen den Vortrieb, die überlappenden Armschwingen bilden eine Auftrieb erzeugende Tragfläche. Das bedeutet keine ausschließliche Aufgabenteilung."
+        },
+        {
+          "id": "steuerfedern-ort-funktion",
+          "lessonId": "steuerfedern",
+          "q": "Wo liegen Steuerfedern und welchen Beitrag leisten sie beim Fliegen?",
+          "options": [
+            "Am Unterarm; sie ersetzen dort die Armschwingen.",
+            "Am Handabschnitt; sie sind ein anderer Name für Handschwingen.",
+            "An den Zehen; sie bilden die Tragfläche.",
+            "Am Schwanz; sie unterstützen die Richtungssteuerung."
+          ],
+          "answer": 3,
+          "explain": "Steuerfedern heißen auch Rectrices und gehören zum Schwanz. Sie unterstützen Richtungsänderungen; der Schwanz wird damit nicht als einziges Steuerorgan beschrieben."
         }
       ]
     },
@@ -2449,6 +2536,62 @@
           "sourceRoles": {
             "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Gedruckte Seite 25, Feather growth (physische PDF-Seite 26): Rückzug der Pulpa aus dem Calamus und Verhornung der Federbasis tatsächlich gelesen. Keine Wachstumsraten, Zeitspannen oder Beringungsschritte übernommen.",
             "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html": "Down Feathers, Folgesatz: Ende der Blutversorgung bei voller Größe tatsächlich gelesen. Keine umgebende Aussage zu Hormonauslösung, Evolution oder einem ausnahmslos hohlen Gesamtschaft übernommen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "schwingen",
+      "claims": [
+        {
+          "claim": "Handschwingen gehören zum äußeren Handabschnitt des Flügels; Armschwingen setzen an der Elle im Unterarm an. Die Einteilung folgt dem anatomischen Ansatzort.",
+          "sourceUrls": [
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+            "https://www.fws.gov/lab/featheratlas/glossary.html"
+          ],
+          "sourceRoles": {
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Ginn und Melville 1983, Reprint 1995, Primaries und Secondaries, gedruckte Seiten 11–12: äußerer Handabschnitt und Ansatz an der Ulna tatsächlich gelesen. Keine Zahlen, Nummerierung oder Tertial-Abgrenzung übernommen.",
+            "https://www.fws.gov/lab/featheratlas/glossary.html": "Feather Atlas Glossary, Einträge Primary und Secondary: Handskelett beziehungsweise Ulna/Unterarm tatsächlich gelesen. Anatomische Definitionen der zuständigen forensischen Fachinstitution; keine Art- oder Altersbestimmung."
+          }
+        },
+        {
+          "claim": "Handschwingen tragen wesentlich zum Vortrieb bei; die überlappenden Armschwingen tragen als Tragfläche wesentlich zum Auftrieb bei. Dies beschreibt zusammenwirkende Beiträge, keine exklusiven Aufgaben.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight"
+          ],
+          "sourceRoles": {
+            "https://academy.allaboutbirds.org/feathers-article/": "All About Feathers, Flight: Absätze zu Primaries und Secondaries tatsächlich gelesen; qualitative Vortriebs-/Auftriebsbeiträge und Überlappung.",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight": "Feathers and flight, Primary feathers und Secondary feathers tatsächlich gelesen: Vortrieb und Auftrieb. Unabhängige institutionelle Erläuterung, keine experimentelle Wiederholung; Verlust-/Entfernungsbehauptungen nicht übernommen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "steuerfedern",
+      "claims": [
+        {
+          "claim": "Rectrices sind die Flugfedern des Schwanzes; von den Remiges als Schwungfedern des Flügels wird begrifflich unterschieden.",
+          "sourceUrls": [
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+            "https://www.fws.gov/lab/featheratlas/glossary.html"
+          ],
+          "sourceRoles": {
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Moult in Birds, Remiges sowie Rectrices, gedruckte Seiten 11–13 tatsächlich gelesen: Flügel- und Schwanzfedern. Keine Federzahlen oder sichere Artzuordnung aus Einzelfedern übernommen.",
+            "https://www.fws.gov/lab/featheratlas/glossary.html": "Feather Atlas Glossary, Remiges und Rectrices tatsächlich gelesen: Flügel- gegenüber Schwanzflugfedern. Keine Detailabgrenzung der Tertials übernommen."
+          }
+        },
+        {
+          "claim": "Steuerfedern unterstützen Richtungsänderungen im Flug; das Schwanzruder wird als Beitrag zur Steuerung und nicht als einziges Steuerorgan dargestellt.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight"
+          ],
+          "sourceRoles": {
+            "https://academy.allaboutbirds.org/feathers-article/": "All About Feathers, Tail feathers sowie Flight: Steuerbeitrag der Schwanzfedern tatsächlich gelesen. Keine Zahlen oder Befestigungsdetails übernommen.",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight": "Feathers and flight, Rectrices: Ruderfunktion und Richtungsänderungen tatsächlich gelesen. Keine allein daraus übernommene Brems- oder artspezifische Flugleistungsbehauptung."
           }
         }
       ]

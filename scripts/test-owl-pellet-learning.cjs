@@ -1,9 +1,11 @@
+const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Narrow editorial/integration checks; actual source reading is documented separately.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const{createHash}=require('node:crypto');
 const{createLoader,local}=require('./helpers/project-module.cjs');
 const{stripGewoelleAddition,stripDigestiveIgnitionAdditions,isScopedCard,isGewoelleEvidence}=require('./helpers/digestive-ignition-additions-oct27.cjs');
-const raw=require('../data/learning-expansion-biology-2026-10-16.json'),load=createLoader();
+const raw=require('../data/learning-expansion-biology-2026-10-16.json'),load=createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture()));
 const courseId='wissen-ausbau-biologie-verdauungsvergleich-2026',lessonId='gewoelle',questionIds=['gewoelle-muskelmagen','gewoelle-rueckweg'];
 const urls=['https://www.birds.cornell.edu/k12/pellet-teaching-tips/','https://lucec.loyno.edu/natural-history-writings/owl-pellets','https://www.nhm.ac.uk/discover/do-birds-pee.html'];
 const{learningModules,getLearningModule}=load('lib/learning-curriculum.js'),course=getLearningModule(courseId),original=raw.modules.find(item=>item.id===courseId),lesson=course.lessons.at(-1),cards=load('lib/learning-flashcards.js').getFlashcards();
