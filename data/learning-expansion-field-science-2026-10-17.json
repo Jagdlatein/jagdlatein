@@ -576,6 +576,46 @@
           "lessonIds": [
             "patrone-geschoss-bauteile"
           ]
+        },
+        {
+          "label": "SAAMI · Centerfire Primer",
+          "url": "https://saami.org/glossary/centerfire-primer/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Originaldefinition: zentrale Lage des Zündelements im Hülsenboden. Nur Begriffsgrundlage; keine Handhabungs- oder Leistungsangaben.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zuendungsarten"
+          ]
+        },
+        {
+          "label": "SAAMI · Rimfire Cartridge",
+          "url": "https://saami.org/glossary/rimfire-cartridge/",
+          "organization": "Sporting Arms and Ammunition Manufacturers' Institute",
+          "supports": "Originaldefinition: Zündsatz im Hohlraum des Hülsenrands. Die beiden SAAMI-Seiten bilden eine gemeinsame Quellenorganisation.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zuendungsarten"
+          ]
+        },
+        {
+          "label": "Hunter Ed · Centerfire and Rimfire Ammunition",
+          "url": "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/",
+          "organization": "Kalkomey Enterprises · Hunter Ed",
+          "supports": "Die zwei einleitenden Sachabsätze beschreiben zentrale Lage gegenüber Lage im Hülsenrand. Technische Begriffe ohne Übernahme amerikanischer Rechts-, Leistungs- oder Wiederladeaussagen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zuendungsarten"
+          ]
+        },
+        {
+          "label": "NIST OSAC Lexicon · Rimfire cartridge",
+          "url": "https://www.nist.gov/glossary-term/40306",
+          "organization": "National Institute of Standards and Technology · Wiedergabe ANSI/ASTM E1732",
+          "supports": "Zusätzliche enge Randfeuerdefinition: Zündsatz im Hohlraum des Hülsenrands. Die öffentlich lesbare Lexikondefinition wurde geprüft, nicht der vollständige ASTM-Standard.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zuendungsarten"
+          ]
         }
       ],
       "lessons": [
@@ -631,6 +671,19 @@
           ],
           "takeaway": "Die konventionelle Zentralfeuer-Kugelpatrone umfasst Hülse, Zündhütchen, Treibladung und Geschoss. Das Geschoss ist ein Bestandteil der Gesamtpatrone.",
           "exercise": "Beschrifte ein rein gedankliches Lernblatt mit Gesamtpatrone und vier Bauteilen. Erkläre den Unterschied zwischen Teil und Ganzem ausschließlich anhand des Lerntextes."
+        },
+        {
+          "id": "zuendungsarten",
+          "title": "Zündungsarten",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Die Begriffe Zentralfeuer und Randfeuer unterscheiden, wo die Zündkomponente der Patrone liegt. Bei einer Zentralfeuerpatrone befindet sich das Zündelement zentral im Hülsenboden. Bei einer Randfeuerpatrone liegt der Zündsatz im Hohlraum des Hülsenrands. Die Wörter beschreiben hier also eine Zündungsart und keine Geschossform.",
+            "Die vorige Lektion erklärt bewusst den Aufbau einer konventionellen Zentralfeuer-Kugelpatrone. Dieser begrenzte Ausgangsfall bleibt bestehen; er wird nicht pauschal auf sämtliche Patronenbauformen übertragen. Die hier verwendeten technischen Begriffsquellen ersetzen keine örtlichen Rechtsvorschriften oder Herstellerangaben.",
+            "Eigenes Lernbeispiel: Schreibe „Zündelement zentral im Hülsenboden“ und „Zündsatz im Hülsenrand“ in zwei Felder. Ordne die beiden Zündungsarten zu und begründe die Zuordnung mit der Lage. Dafür wird Munition weder geöffnet noch bearbeitet. Aus dieser Begriffsübung folgt keine Freigabe einer konkreten Patrone für eine bestimmte Waffe oder jagdliche Verwendung."
+          ],
+          "takeaway": "Zentralfeuer und Randfeuer unterscheiden die Lage der Zündkomponente: zentral im Hülsenboden beziehungsweise im Hülsenrand.",
+          "exercise": "Ordne Zentralfeuer und Randfeuer den beiden im Lerntext beschriebenen Positionen zu. Löse die Begriffsübung ausschließlich auf einem gedanklichen Blatt."
         }
       ],
       "questions": [
@@ -993,6 +1046,19 @@
           ],
           "answer": 3,
           "explain": "Die Hülse dient beim Schuss der Gasabdichtung. Die Zündaufgabe gehört zum Zündhütchen."
+        },
+        {
+          "id": "zuendungsart-position",
+          "lessonId": "zuendungsarten",
+          "q": "Welches Merkmal unterscheidet Zentralfeuer- und Randfeuerpatronen im hier beschriebenen Vergleich?",
+          "options": [
+            "Die Lage des Zündelements beziehungsweise Zündsatzes am Hülsenboden",
+            "Die Fertigungsserie auf der Munitionspackung",
+            "Die Bezeichnung des Herstellers",
+            "Die individuelle Seriennummer der Waffe"
+          ],
+          "answer": 0,
+          "explain": "Bei Zentralfeuer liegt das Zündelement zentral im Hülsenboden; bei Randfeuer befindet sich der Zündsatz im Hohlraum des Hülsenrands. Die Einteilung beschreibt die Zündungsart."
         }
       ]
     },
@@ -3234,6 +3300,36 @@
             "https://www.hn-sport.de/de/wiki/die-komponenten-einer-patrone",
             "https://saami.org/glossary/propellant/"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+      "lessonId": "zuendungsarten",
+      "claims": [
+        {
+          "claim": "Zentralfeuer: Das Zündelement befindet sich zentral im Hülsenboden.",
+          "sourceUrls": [
+            "https://saami.org/glossary/centerfire-primer/",
+            "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/"
+          ],
+          "sourceRoles": {
+            "https://saami.org/glossary/centerfire-primer/": "Definition Centerfire Primer, eigentlicher Definitionsabsatz zur zentralen Lage; keine Mechanismusschrittfolge übernommen.",
+            "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/": "Erster einleitender Sachabsatz: primer in the center of the casing base; nur Lage übernommen."
+          }
+        },
+        {
+          "claim": "Randfeuer: Der Zündsatz liegt im Hohlraum des Hülsenrands.",
+          "sourceUrls": [
+            "https://saami.org/glossary/rimfire-cartridge/",
+            "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/",
+            "https://www.nist.gov/glossary-term/40306"
+          ],
+          "sourceRoles": {
+            "https://saami.org/glossary/rimfire-cartridge/": "Definition Rimfire Cartridge, eigentlicher Definitionsabsatz zum Hohlraum des Rands.",
+            "https://www.hunter-ed.com/california/studyGuide/Centerfire-and-Rimfire-Ammunition/20100501_66837/": "Zweiter einleitender Sachabsatz: primer contained in the rim; keine Druck- oder Wiederladeaussagen übernommen.",
+            "https://www.nist.gov/glossary-term/40306": "Lexikoneintrag Rimfire cartridge mit eigener Kennzeichnung als Wiedergabe aus ANSI/ASTM E1732; kein Zugriff auf den Vollstandard behauptet."
+          }
         }
       ]
     }

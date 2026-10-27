@@ -37,7 +37,8 @@ export async function POST(req) {
     const initialStatus = await getOperatorTrialNotificationStatus(database);
     if (!initialStatus.configured)
       throw new TrialOverviewError("TRIAL_NOTIFICATIONS_NOT_CONFIGURED", 503, "Der E-Mail-Versand ist noch nicht vollständig eingerichtet.");
-    const delivery = await drainOperatorTrialNotifications({ database, limit: 2 });
+    const delivery = await drainOperatorTrialNotifications({ database, limit: 2,
+      authorizeSend: () => requireCurrentTrialAdmin(req, { database }) });
     await requireCurrentTrialAdmin(req, { database });
     const notifications = await getOperatorTrialNotificationStatus(database);
     return trialOverviewJson({ notifications, delivery });

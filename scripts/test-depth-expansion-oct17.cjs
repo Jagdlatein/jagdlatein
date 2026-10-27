@@ -14,19 +14,20 @@ const normalized = value => value.normalize('NFKD').replace(/\p{M}/gu, '').toLow
 const addedIds = new Set(added.map(module => module.id));
 const cartridgeCourseId = 'wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026';
 const isCartridgeLesson = (module, lesson) => module.id === cartridgeCourseId && lesson.id === 'patrone-geschoss-bauteile';
+const isIgnitionLesson = (module, lesson) => module.id === cartridgeCourseId && lesson.id === 'zuendungsarten';
 
-test('The third expansion keeps its original 18 courses, 72 lessons and 528 questions and adds one scoped cartridge lesson with two questions', () => {
+test('The third expansion keeps its original 18 courses, 72 lessons and 528 questions and adds two exact cartridge lessons with three questions', () => {
   assert.deepEqual(datasets.map(data => data.modules.length), [6, 6, 6]);
-  assert.deepEqual(datasets.map(data => data.modules.reduce((sum, module) => sum + module.questions.length, 0)), [192, 192, 146]);
+  assert.deepEqual(datasets.map(data => data.modules.reduce((sum, module) => sum + module.questions.length, 0)), [192, 192, 147]);
   assert.equal(added.length, 18);
-  assert.equal(added.reduce((sum, module) => sum + module.lessons.length, 0), 73);
+  assert.equal(added.reduce((sum, module) => sum + module.lessons.length, 0), 74);
   const stems = new Set();
   const oldStems = new Set(QUESTIONS.filter(question => !added.some(module => question.learningHref === `/kurse/${module.id}`)).map(question => normalized(question.q)));
   for (const dataset of datasets) for (const module of dataset.modules) {
     assert.ok(learningCategories.includes(module.category));
-    assert.equal(module.lessons.length, module.id === cartridgeCourseId ? 5 : 4);
+    assert.equal(module.lessons.length, module.id === cartridgeCourseId ? 6 : 4);
     const expectedPerLesson = dataset === datasets[2] ? 6 : 8;
-    assert.equal(module.questions.length, expectedPerLesson * 4 + (module.id === cartridgeCourseId ? 2 : 0));
+    assert.equal(module.questions.length, expectedPerLesson * 4 + (module.id === cartridgeCourseId ? 3 : 0));
     const positions = [0, 0, 0, 0];
     const preparedModule = learningModules.find(item => item.id === module.id);
     assert.ok(preparedModule);
@@ -36,8 +37,9 @@ test('The third expansion keeps its original 18 courses, 72 lessons and 528 ques
     for (const lesson of preparedModule.lessons) {
       assert.ok(lesson.paragraphs.length >= 2 && lesson.paragraphs.every(text => text.trim()));
       assert.ok(lesson.takeaway.trim() && lesson.exercise.trim());
-      assert.equal(module.questions.filter(question => question.lessonId === lesson.id).length, isCartridgeLesson(module, lesson) ? 2 : expectedPerLesson);
+      assert.equal(module.questions.filter(question => question.lessonId === lesson.id).length, isCartridgeLesson(module, lesson) ? 2 : isIgnitionLesson(module, lesson) ? 1 : expectedPerLesson);
       if (isCartridgeLesson(module, lesson)) assert.equal(lesson.reviewedOn, '2026-10-26');
+      if (isIgnitionLesson(module, lesson)) assert.equal(lesson.reviewedOn, '2026-10-27');
       assert.ok(lesson.evidence.length > 0);
       for (const claim of lesson.evidence) {
         assert.ok(claim.claim.trim());
@@ -52,7 +54,7 @@ test('The third expansion keeps its original 18 courses, 72 lessons and 528 ques
       const stem = normalized(question.q);
       assert.ok(!stems.has(stem) && !oldStems.has(stem), 'Repeated stem: ' + question.q);
       stems.add(stem);
-      if (!(module.id === cartridgeCourseId && question.lessonId === 'patrone-geschoss-bauteile')) positions[question.answer]++;
+      if (!isCartridgeLesson(module, { id: question.lessonId }) && !isIgnitionLesson(module, { id: question.lessonId })) positions[question.answer]++;
       const id = `${module.id}-${question.id}`;
       assert.ok(id.length <= 160);
       const prepared = learningQuestions.find(item => item.id === id);
@@ -68,7 +70,7 @@ test('The third expansion keeps its original 18 courses, 72 lessons and 528 ques
     }
     assert.deepEqual(positions, Array(4).fill(expectedPerLesson));
   }
-  assert.equal(stems.size, 530);
+  assert.equal(stems.size, 531);
   // The later published curriculum already contains 180 courses outside this
   // original October-17 expansion; neither October-26 addition adds a course.
   assert.equal(learningModules.filter(module => !addedIds.has(module.id)).length, 180, 'existing detailed courses remain');
@@ -94,7 +96,7 @@ test('New courses and exact lesson cards use existing discovery, source evidence
     assert.equal(getFlashcardLessonSummary(module.id).total, cards.length);
     for (const card of cards) {
       const lesson = module.lessons.find(item => item.id === card.lessonId);
-      assert.equal(card.reviewedOn, isCartridgeLesson(module, lesson) ? '2026-10-26' : '2026-10-17');
+      assert.equal(card.reviewedOn, isCartridgeLesson(module, lesson) ? '2026-10-26' : isIgnitionLesson(module, lesson) ? '2026-10-27' : '2026-10-17');
       assert.equal(card.sourceScope, 'lesson');
       assert.ok(card.sources.length >= 2 && card.sources.every(source => lesson.evidence.some(claim => claim.sources.some(item => item.url === source.url))));
       assert.equal(card.learningHref, `/kurse/${module.id}#lesson-${encodeURIComponent(lesson.id)}`);

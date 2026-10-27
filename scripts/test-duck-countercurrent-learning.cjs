@@ -1,4 +1,5 @@
 // Exact integration and editorial-boundary checks; not scientific certification.
+const { digestiveIgnitionBaselineFixture, stripGewoelleDataset } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -6,8 +7,8 @@ const { createHash } = require('node:crypto');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
-const raw = require('../data/learning-expansion-biology-2026-10-16.json');
-const load = createLoader(fishLateralLineBaselineFixture());
+const raw = stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json'));
+const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'gegenstrom';
 const cardId = `flash-${courseId}-gegenstrom-waermerichtung`;

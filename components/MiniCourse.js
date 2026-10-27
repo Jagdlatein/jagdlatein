@@ -59,7 +59,11 @@ export default function MiniCourse({ courseId, questions, details, children }) {
   const question = questions[run.index];
   const correct = question.antworten.find(answer => answer.richtig);
   const answered = run.selected !== null;
-  const related = <div className={miniStyles.related}>{details.modules.map(module => <Link className={styles.button} href={`/kurse/${module.id}`} key={module.id}>{module.title}</Link>)}</div>;
+  const sourceQuestions = run.finished ? questions.filter(item => item.source) : answered && question.source ? [question] : [];
+  const related = <div className={miniStyles.related}>
+    {details.modules.map(module => <Link className={styles.button} href={`/kurse/${module.id}`} key={module.id}>{module.title}</Link>)}
+    {(details.lessonLinks || []).map(link => <Link className={styles.button} href={link.href} prefetch={false} key={`${link.moduleId}:${link.lessonId}`}>{link.title}</Link>)}
+  </div>;
   const photo = details.photo;
 
   return <LearningToolLayout title={details.title} description={details.description} icon={details.category.slug} category={details.category} stats={[
@@ -83,7 +87,6 @@ export default function MiniCourse({ courseId, questions, details, children }) {
         <h3>{question.antworten[run.selected].richtig ? "Richtig beantwortet" : "Noch einmal nachlesen"}</h3>
         <p>Richtige Lösung: <strong>{correct.text}</strong></p>
         <p>In der passenden Vertiefung kannst du das Themengebiet ausführlicher lernen.</p>
-        {question.source && <p><a className={styles.button} href={question.source} target="_blank" rel="noopener noreferrer">Quelle zu dieser Frage öffnen</a></p>}
       </div>}
       <div className={styles.actions}><button type="button" className={styles.primary} disabled={!answered} onClick={advance}>{run.index + 1 === questions.length ? "Ergebnis ansehen" : "Nächste Frage"}</button></div>
       <CourseProgressNotice courseId={courseId} {...courseProgress} />
@@ -95,12 +98,17 @@ export default function MiniCourse({ courseId, questions, details, children }) {
         <h3>{index + 1}. {item.frage}</h3>
         <p>Deine Antwort: {item.antworten[run.answers[index]].text}</p>
         <p>Richtige Lösung: <strong>{item.antworten.find(answer => answer.richtig).text}</strong></p>
-        {item.source && <p><a href={item.source} target="_blank" rel="noopener noreferrer">Quelle zu dieser Frage</a></p>}
       </article>)}</details>
       <div className={styles.actions}><button type="button" className={styles.primary} onClick={restart}>Mini-Kurs wiederholen</button><Link className={styles.secondary} href="/meine-kurse">Meine Kurse</Link></div>
       <CourseProgressNotice courseId={courseId} {...courseProgress} />
     </section>}
 
     <section className={styles.panel} aria-labelledby="mini-related-title"><h2 id="mini-related-title">Passende Vertiefung</h2><p>Ausführliche Lerneinheiten mit Hintergründen, Quellen und erklärten Übungsfragen.</p>{related}</section>
+    {sourceQuestions.length > 0 && <details key={run.finished ? "finished-sources" : `question-sources-${run.index}`} className={styles.panel} data-mini-question-sources>
+      <summary>{run.finished ? "Quellen zu den Fragen" : "Quelle zur beantworteten Frage"}</summary>
+      <ul className={styles.sources}>{sourceQuestions.map((item, index) => <li key={index}>
+        <p>{item.frage}</p><a href={item.source} target="_blank" rel="noopener noreferrer">Nachweis öffnen</a>
+      </li>)}</ul>
+    </details>}
   </LearningToolLayout>;
 }

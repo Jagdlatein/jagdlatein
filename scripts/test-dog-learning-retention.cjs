@@ -1,3 +1,4 @@
+const { digestiveIgnitionBaselineFixture, stripGewoelleDataset } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -10,7 +11,7 @@ const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
-const load = createLoader(fishLateralLineBaselineFixture());
+const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
 const revision = '6860695';
 const datasetPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';
 const courseId = 'wissen-ausbau-hund-ruhe-schlaf-2026';
@@ -25,7 +26,7 @@ const gitRead = relative => execFileSync('git', ['show', `${revision}:${relative
 // unrelated foreign afternoon file is never edited and is pinned by its hash.
 const fixtures = new Map([
   ['data/learning-expansion-afternoon-2026-10-16.json', readJson('data/learning-expansion-afternoon-2026-10-16.json')],
-  ['data/learning-expansion-biology-2026-10-16.json', readJson('data/learning-expansion-biology-2026-10-16.json')],
+  ['data/learning-expansion-biology-2026-10-16.json', stripGewoelleDataset(readJson('data/learning-expansion-biology-2026-10-16.json'))],
 ]);
 function baselineLoader() {
   const cache = new Map();

@@ -1,4 +1,5 @@
 // Structural/content-preservation checks, not a new whole-species certification.
+const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -7,7 +8,7 @@ const { createLoader, local } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const raw = require('../data/learning-beaver-incisors-2026-10-24.json');
-const load = createLoader(fishLateralLineBaselineFixture());
+const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const { getWildlifeLearningGuide: guide } = load('lib/wildlife-learning-guide.js');
 const { getWildlifeStudyContent } = load('lib/wildlife-study-content.js');

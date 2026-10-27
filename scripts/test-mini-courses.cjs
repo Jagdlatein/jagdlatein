@@ -267,7 +267,10 @@ test('Wrong answers disclose the correct solution and source while the learner c
   const wrong = question.antworten.findIndex(answer => !answer.richtig);
   s.click(question.antworten[wrong].text);
   assert.match(s.html(), /Noch einmal nachlesen/); assert.ok(s.html().includes(question.antworten.find(answer => answer.richtig).text));
-  assert.ok(s.html().includes(question.source)); assert.ok(s.html().includes('Quelle zu dieser Frage öffnen'));
+  assert.ok(s.html().includes(question.source)); assert.ok(s.html().includes('Quelle zur beantworteten Frage'));
+  const evidence = walk(s.tree, node => node.type === 'details' && node.props['data-mini-question-sources'] === true);
+  assert.ok(evidence); assert.equal(evidence.props.open, undefined);
+  assert.ok(s.html().indexOf('data-mini-question-sources') > s.html().indexOf('mini-related-title'));
   assert.match(s.html(), /Frage 1 von 2/); assert.match(s.html(), /In der passenden Vertiefung/);
   assert.ok(!s.html().includes('Warum diese Antwort'));
   s.click('Nächste Frage'); assert.match(s.html(), /Frage 2 von 2/);

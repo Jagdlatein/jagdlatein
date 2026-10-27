@@ -1,4 +1,5 @@
 // Concrete data-preservation and reader/export integration checks, not scientific certification.
+const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -8,7 +9,7 @@ const path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
-const load = createLoader(fishLateralLineBaselineFixture());
+const load = createLoader(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()));
 const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
 const courseId = 'wissen-ausbau-federaufbau-funktion-2026';
 const lessonId = 'wasserschutz';

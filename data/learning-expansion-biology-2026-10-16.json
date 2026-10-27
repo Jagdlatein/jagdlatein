@@ -665,6 +665,36 @@
           "lessonIds": [
             "kropfmilch"
           ]
+        },
+        {
+          "label": "Owl Pellet Teaching Tips: Grundabsatz zu Gewöllen",
+          "url": "https://www.birds.cornell.edu/k12/pellet-teaching-tips/",
+          "organization": "Cornell Lab of Ornithology / Cornell University, K-12 Education",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "gewoelle"
+          ],
+          "supports": "Original-Grundabsatz nach dem Barn-Owl-Bild gelesen. Bildung und Rückgabe; keine Zeit-, Mengen-, Sammel-, Berührungs- oder Präparationsangaben übernommen."
+        },
+        {
+          "label": "Owl Pellets (7. April 2008)",
+          "url": "https://lucec.loyno.edu/natural-history-writings/owl-pellets",
+          "organization": "Loyola University New Orleans, Center for Environmental Communication; Bob Thomas",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "gewoelle"
+          ],
+          "supports": "Ersten und letzten Sachabsatz gelesen. Nur enger Bildungsweg und weitere Vogelgruppen; keine Allknochen-, Zeit-, Mengen- oder Bestimmungsgarantie."
+        },
+        {
+          "label": "Do birds pee? – What is an owl pellet?",
+          "url": "https://www.nhm.ac.uk/discover/do-birds-pee.html",
+          "organization": "Natural History Museum, London; Emily Osterloff",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "gewoelle"
+          ],
+          "supports": "Originalabschnitt What is an owl pellet? gelesen. Nur Speiballen, Materialbeispiele und andere Vogelgruppen; keine umliegenden Ausscheidungs-Sonderbehauptungen oder Bestimmungsregel übernommen."
         }
       ],
       "lessons": [
@@ -720,6 +750,19 @@
           ],
           "takeaway": "Kropfmilch enthält Zellen der Kropfauskleidung; bei Haustauben können beide Eltern diese Jungennahrung bilden.",
           "exercise": "Trenne in einer eigenen Erklärung Bildungsort, beteiligte Elternvögel und Weitergabe an die Jungen. Erkläre, warum der Name Milch keine Säugetier-Milchdrüse voraussetzt."
+        },
+        {
+          "id": "gewoelle",
+          "title": "Gewölle: ein Speiballen ist kein Kot",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei Eulen können unverdaute Nahrungsreste, etwa Haare und Knochen der Beute, im Muskelmagen zu einem Ballen zusammengepackt werden. Diesen Speiballen nennt man Gewölle. Er wird wieder hochgewürgt und durch den Schnabel abgegeben. Das ergänzt die bekannte Magenarbeit um einen anderen Weg für zurückbleibende Nahrungsreste.",
+            "Ein Gewölle ist deshalb kein Kot. Entscheidend ist hier der beschriebene Rückweg, nicht eine bloße Ähnlichkeit der äußeren Form eines Fundes. Auch andere Vögel können Gewölle bilden; das Eulenbeispiel ist keine Regel, dass sämtliche Vogelarten denselben Ballen erzeugen.",
+            "Die Quellen erklären den Bildungsweg und nennen Beispiele für enthaltenes Material. Ein Fundbild allein liefert hier keinen sicheren Artbeweis. Eigenes Lernmodell: Zeichne beim Eulenbeispiel Nahrung hinein und Gewölle hinaus als getrennte Pfeile. Ordne dem Speiballen den Muskelmagen zu und trenne ihn begrifflich von einer Darmausscheidung."
+          ],
+          "takeaway": "Gewölle werden hochgewürgt. Beim beschriebenen Eulenbeispiel formt der Muskelmagen den Ballen aus unverdauten Nahrungsresten.",
+          "exercise": "Erkläre Bildungsort und Abgabeweg eines Gewölles, ohne einen unbekannten Fund anhand seiner Form einer Art zuzuweisen."
         }
       ],
       "questions": [
@@ -1164,6 +1207,32 @@
           ],
           "answer": 0,
           "explain": "Bei Haustauben können Männchen und Weibchen Kropfmilch für ihre Jungen bilden. Der Begriff Milch bezeichnet hier Jungennahrung aus dem Kropf und setzt keine Säugetier-Milchdrüse voraus."
+        },
+        {
+          "id": "gewoelle-muskelmagen",
+          "lessonId": "gewoelle",
+          "q": "Welcher Magenabschnitt formt im hier beschriebenen Eulenbeispiel den Gewölleballen?",
+          "options": [
+            "Der Drüsenmagen.",
+            "Der Muskelmagen.",
+            "Der Kropf.",
+            "Der Dünndarm."
+          ],
+          "answer": 1,
+          "explain": "Im Muskelmagen werden unverdaute Nahrungsreste zu einem Ballen zusammengepackt."
+        },
+        {
+          "id": "gewoelle-rueckweg",
+          "lessonId": "gewoelle",
+          "q": "Wie verlässt ein Gewölle im beschriebenen Eulenbeispiel den Körper?",
+          "options": [
+            "Es passiert als Kot den Darm und die Kloake.",
+            "Es wird als Nahrung aus der Kropfwand an Junge verfüttert.",
+            "Es wird über die Harnwege ausgeschieden.",
+            "Es wird hochgewürgt und durch den Schnabel abgegeben."
+          ],
+          "answer": 3,
+          "explain": "Ein Gewölle ist ein hochgewürgter Speiballen aus unverdauten Nahrungsresten und kein Kot."
         }
       ]
     },
@@ -3985,6 +4054,45 @@
           "sourceRoles": {
             "https://www.wald.rlp.de/wald/voegel/ringeltaube": "Fortpflanzungsabschnitt: junge Ringeltauben erhalten Nahrung der Eltern und Kropfmilch. Keine dortigen Alters-/Zeitangaben übernommen.",
             "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/ringeltaube-columba-palumbus": "Fortpflanzung: beide Eltern kümmern sich um die Brut und füttern Kropfmilch. Die Darstellungen sind zwei unabhängig redigierte fachliche Einordnungen, keine zwei neuen Experimente."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "gewoelle",
+      "claims": [
+        {
+          "claim": "Beim beschriebenen Eulenbeispiel werden unverdaute Reste wie Haare und Knochen im Muskelmagen zusammengepackt und wieder hochgewürgt.",
+          "sourceUrls": [
+            "https://www.birds.cornell.edu/k12/pellet-teaching-tips/",
+            "https://lucec.loyno.edu/natural-history-writings/owl-pellets"
+          ],
+          "sourceRoles": {
+            "https://www.birds.cornell.edu/k12/pellet-teaching-tips/": "Grundabsatz direkt nach dem Barn-Owl-Bild; ausschließlich enger Bildungsweg.",
+            "https://lucec.loyno.edu/natural-history-writings/owl-pellets": "Erster Sachabsatz; keine Zeit- oder Allknochenbehauptung übernommen."
+          }
+        },
+        {
+          "claim": "Ein Gewölle ist ein Speiballen und kein Kot.",
+          "sourceUrls": [
+            "https://www.birds.cornell.edu/k12/pellet-teaching-tips/",
+            "https://www.nhm.ac.uk/discover/do-birds-pee.html"
+          ],
+          "sourceRoles": {
+            "https://www.birds.cornell.edu/k12/pellet-teaching-tips/": "Derselbe Grundabsatz grenzt ausdrücklich vom Kot ab.",
+            "https://www.nhm.ac.uk/discover/do-birds-pee.html": "Abschnitt What is an owl pellet?; Rückgabe unverdauter Anteile."
+          }
+        },
+        {
+          "claim": "Auch andere Vogelgruppen können Gewölle bilden; keine universelle oder sichere Fundbild-Artzuordnung.",
+          "sourceUrls": [
+            "https://lucec.loyno.edu/natural-history-writings/owl-pellets",
+            "https://www.nhm.ac.uk/discover/do-birds-pee.html"
+          ],
+          "sourceRoles": {
+            "https://lucec.loyno.edu/natural-history-writings/owl-pellets": "Letzter Sachabsatz über weitere Vogelgruppen.",
+            "https://www.nhm.ac.uk/discover/do-birds-pee.html": "Derselbe Gewölleabschnitt nennt mehrere Vogelgruppen. Sichtbare Bestimmungsgrenze ist der eigene Wissensumfang, keine pauschale Negation fachlicher Bestimmung."
           }
         }
       ]
