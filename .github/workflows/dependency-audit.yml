@@ -1,0 +1,44 @@
+name: Produktionsabhängigkeiten prüfen
+
+# Only the web project's production npm tree. No schedule, private secrets,
+# lifecycle scripts, automatic fixes, deployment or native signing.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dependency-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  production-dependencies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Projekt lesen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Node.js 22
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Gesperrte Paketversionen ohne Installationsskripte laden
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Bekannte hohe und kritische Produktionslücken prüfen
+        run: npm audit --omit=dev --audit-level=high
