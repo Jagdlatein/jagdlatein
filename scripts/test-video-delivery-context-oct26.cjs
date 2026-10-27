@@ -97,7 +97,8 @@ test('Failed and pending species changes retain the displayed video links until 
   const destinations = () => nodes(h.tree, node => node.props?.['aria-label'] === 'Wildjahr vertiefen').flatMap(nav => nodes(nav, node => node.props?.href).map(node => node.props.href));
   const before = destinations(); let reject;
   h.router.push = () => new Promise((_, no) => { reject = no; });
-  const action = h.nodes(node => node.props?.id === 'wildjahr-species')[0].props.onChange({ target: { value: 'dachs' } });
+  const picker = h.nodes(node => node.type?.name === 'WildYearSpeciesPicker')[0];
+  const action = nodes(picker.type(picker.props), node => node.props?.['data-wildjahr-species'] === 'dachs')[0].props.onClick();
   h.render(); assert.deepEqual(destinations(), before);
   reject(new Error('isolated navigation failure')); await action; h.render(); assert.deepEqual(destinations(), before);
   h.navigate({ art: 'dachs', monat: '2' });

@@ -15,6 +15,9 @@ const { getWildYearOverviewRows, default: Overview } = load('components/WildYear
 const page = load('pages/lernen/wildjahr.js');
 const base = '/lernen/wildjahr';
 const heading = h => h.nodes(node => node.props?.id === 'wildjahr-current')[0];
+const picker = h => h.nodes(node => node.type?.name === 'WildYearSpeciesPicker')[0];
+const pickerTree = h => picker(h).type(picker(h).props);
+const speciesButton = (h, slug) => nodes(pickerTree(h), node => node.props?.['data-wildjahr-species'] === slug)[0];
 const yearChild = h => h.nodes(node => node.type?.name === 'WildYearOverview')[0];
 // The real overview child is stateless. Render that actual function rather
 // than treating an unexecuted React element as proof of twelve visible rows.
@@ -48,9 +51,9 @@ function history(h, query, hash = 'wildjahr-current') {
 }
 function focusProbe(h) {
   const calls = { focus: 0, scroll: 0 };
-  heading(h).props.ref.current = {
+  h.nodes(node => node.props?.id === 'wildjahr-top')[0].props.ref.current = {
     focus(options) { assert.deepEqual(options, { preventScroll: true }); calls.focus++; },
-    scrollIntoView(options) { assert.deepEqual(options, { block: 'start', behavior: 'auto' }); calls.scroll++; },
+    scrollIntoView() { calls.scroll++; }, // Top focus must not use a content-anchor scroll.
   };
   return calls;
 }
@@ -107,17 +110,17 @@ test('A year button writes the real contextual art/monat URL, keeps committed fa
   const query = { art: 'rehwild', monat: '6', ref: 'suche', q: 'Reh' }, h = fixture(t, query), focus = focusProbe(h);
   const before = text(heading(h)), action = clickMonth(h, 7); h.render();
   assert.equal(h.requests.length, 1);
-  assert.deepEqual(h.requests[0].href, { pathname: base, query: { ...query, monat: '7' }, hash: 'wildjahr-current' });
+  assert.deepEqual(h.requests[0].href, { pathname: base, query: { ...query, monat: '7' }, hash: 'wildjahr-top' });
   assert.deepEqual(h.requests[0].options, { shallow: true, scroll: false });
   assert.equal(h.requests[0].as, undefined); assert.deepEqual(h.router.query, query);
   assert.equal(text(heading(h)), before); assert.equal(button(h, 6).props['aria-pressed'], true);
   assert.equal(button(h, 7).props['aria-pressed'], false); assert.deepEqual(focus, { focus: 0, scroll: 0 });
   await commit(h, h.requests[0], action);
   assert.equal(text(heading(h)), 'Reh im Juli'); assert.equal(button(h, 7).props['aria-pressed'], true);
-  assert.deepEqual(focus, { focus: 1, scroll: 1 });
+  assert.deepEqual(focus, { focus: 1, scroll: 0 });
   await clickMonth(h, 7); h.render();
   assert.equal(h.requests.length, 1, 'Reselecting the current settled month adds no history stop');
-  assert.deepEqual(focus, { focus: 2, scroll: 2 });
+  assert.deepEqual(focus, { focus: 2, scroll: 0 });
 });
 
 test('Failed, refused and cancelled year selections preserve the displayed month; newer selections supersede older failures', async t => {
@@ -133,7 +136,7 @@ test('Failed, refused and cancelled year selections preserve the displayed month
   await commit(h, h.requests[4], newer);
   h.requests[3].reject(new Error('old request')); await older; h.render();
   assert.equal(text(heading(h)), 'Reh im August'); assert.equal(alerts(h).length, 0);
-  assert.deepEqual(focus, { focus: 1, scroll: 1 });
+  assert.deepEqual(focus, { focus: 1, scroll: 0 });
 });
 
 test('History, raw context changes and away-and-back navigation reject departed year handlers and pending errors', async t => {
@@ -185,7 +188,7 @@ test('All four field catalogs have every annual phase evidenced exactly once in 
       assert.deepEqual(nodes(group, node => node.type === 'a').map(node => ({ href: node.props.href, label: text(node) })),
         phase.sourceIds.map(id => ({ href: wildYearSources[id].url, label: wildYearSources[id].label })), `${species.slug}:${phase.id}`);
     }
-    const siblings = fragmentChildren(h.tree.props.children);
+    const siblings = fragmentChildren(h.nodes(node => node.props?.id === 'wildjahr-top')[0].props.children);
     assert.equal(siblings.at(-1), footer, 'Supplemental sources remain the final reading element');
     assert.ok(siblings.indexOf(yearChild(h)) < siblings.indexOf(footer));
     assert.equal(h.calls.length, 0, 'Inspecting source coverage does not navigate');
@@ -221,17 +224,17 @@ test('A bare server entry never selects Gams; readiness opens the complete speci
   assert.equal(props.initialSelection.month, props.currentMonth);
   const h = fixture(t, {}, { ready: false, props });
   assert.equal(heading(h), undefined); assert.equal(yearChild(h), undefined);
-  assert.equal(h.nodes(node => node.props?.id === 'wildjahr-species')[0].props.value, '');
+  assert.equal(picker(h).props.selectedSlug, null);
   assert.ok(!text(h.tree).includes(getWildYearProfile('gamswild', props.currentMonth).sections[0].claim.text));
-  const selectSpecies = h.nodes(node => node.props?.id === 'wildjahr-species')[0];
+  const selectSpecies = picker(h);
   assert.equal(selectSpecies.props.disabled, true);
-  await selectSpecies.props.onChange({ target: { value: 'gamswild' } }); h.render();
+  await speciesButton(h, 'gamswild').props.onClick(); h.render();
   await new Promise(resolve => setTimeout(resolve, 2));
   assert.equal(h.requests.length, 0); assert.equal(h.menu.opened, 0);
   h.router.isReady = true; h.render();
   assert.equal(heading(h), undefined); assert.match(text(h.tree), /Wähle zuerst eine Wildart/);
-  const chooser = h.nodes(node => node.props?.id === 'wildjahr-species')[0];
-  assert.equal(nodes(chooser, node => node.type === 'option' && node.props.value).length, 114);
+  const chooser = pickerTree(h);
+  assert.equal(nodes(chooser, node => node.type === 'button' && node.props['data-wildjahr-species']).length, 114);
   await new Promise(resolve => setTimeout(resolve, 2)); assert.equal(h.menu.opened, 1);
   h.render(); await new Promise(resolve => setTimeout(resolve, 2));
   assert.equal(h.menu.opened, 1); assert.equal(h.requests.length, 0); assert.deepEqual(h.router.query, {});
@@ -242,7 +245,7 @@ test('Month-only entry preserves its month without inventing an animal; stale ch
   assert.deepEqual(props.initialSelection, { slug: null, month: 7 }); assert.equal(props.annualOverview, null);
   const h = fixture(t, query, { props });
   assert.equal(heading(h), undefined); assert.equal(yearChild(h), undefined);
-  const action = h.nodes(node => node.props?.id === 'wildjahr-species')[0].props.onChange({ target: { value: 'rehwild' } });
+  const action = speciesButton(h, 'rehwild').props.onClick();
   assert.deepEqual(h.requests[0].href.query, { ...query, art: 'rehwild' });
   assert.deepEqual(h.requests[0].options, { shallow: false, scroll: false });
   await commit(h, h.requests[0], action);

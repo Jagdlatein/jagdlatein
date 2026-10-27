@@ -90,7 +90,7 @@ test('The shared learning search uses the same Wildjahr title, direct route and 
   }
 });
 
-test('The direct category entry requests normal top scrolling and the unchanged Wildjahr target focuses only its ready committed result', t => {
+test('The direct category entry requests normal top scrolling and Wildjahr keeps its ready species view above the month slider', t => {
   const data = getLearningOverviewData('wildkunde');
   const direct = createLoader({
     react: { ...React, useRef: initial => ({ current: initial }), useEffect() {} },
@@ -107,15 +107,20 @@ test('The direct category entry requests normal top scrolling and the unchanged 
   const h = setup('components/WildYear.js', { art: 'gamswild' }, { ready: false, router: { asPath: `${tool.href}?art=gamswild` }, props: { currentMonth: 10, initialSelection: { slug: 'gamswild', month: 10 } } });
   t.after(() => h.dispose());
   const calls = [];
-  h.nodes(node => node.props?.id === 'wildjahr-current')[0].props.ref.current = {
+  const oldWindow = global.window;
+  global.window = { scrollTo(options) { calls.push(['scroll', options]); } };
+  t.after(() => { if (oldWindow === undefined) delete global.window; else global.window = oldWindow; });
+  h.nodes(node => node.props?.id === 'wildjahr-top')[0].props.ref.current = {
     focus(options) { calls.push(['focus', options]); },
-    scrollIntoView(options) { calls.push(['scroll', options]); },
+    scrollIntoView() { throw new Error('Species selection must not scroll past the slider'); },
   };
   h.render();
   assert.deepEqual(calls, [], 'The unready router does not jump to a provisional selection');
   h.router.isReady = true;
   h.render();
-  assert.deepEqual(calls, [['focus', { preventScroll: true }], ['scroll', { block: 'start', behavior: 'auto' }]]);
+  assert.deepEqual(calls, [['focus', { preventScroll: true }], ['scroll', { left: 0, top: 0, behavior: 'instant' }]]);
+  const controlOrder = h.nodes(node => ['wildjahr-top', 'wildjahr-month', 'wildjahr-current'].includes(node.props?.id)).map(node => node.props.id);
+  assert.deepEqual(controlOrder, ['wildjahr-top', 'wildjahr-month', 'wildjahr-current']);
   assert.match(text(h.nodes(node => node.props?.id === 'wildjahr-current')[0]), /Oktober/);
   assert.equal(h.calls.length, 0, 'Opening the direct entry does not rewrite valid art/month links');
 });

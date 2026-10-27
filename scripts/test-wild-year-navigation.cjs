@@ -10,11 +10,13 @@ const file = 'components/WildYear.js';
 const base = '/lernen/wildjahr';
 const heading = h => h.nodes(node => node.props?.id === 'wildjahr-current')[0];
 const range = h => h.nodes(node => node.type === 'input' && node.props.id === 'wildjahr-month')[0];
-const species = h => h.nodes(node => node.type === 'select' && node.props.id === 'wildjahr-species')[0];
+const species = h => h.nodes(node => node.type?.name === 'WildYearSpeciesPicker')[0];
+const speciesTree = h => species(h).type(species(h).props);
+const speciesButton = (h, slug) => nodes(speciesTree(h), node => node.props?.['data-wildjahr-species'] === slug)[0];
 const pageMenu = h => h.nodes(node => node.type?.name === 'PageMenu')[0];
 const alerts = h => h.nodes(node => node.props?.role === 'alert');
 const chooseMonth = (h, month) => range(h).props.onChange({ target: { value: String(month) } });
-const chooseSpecies = (h, slug) => species(h).props.onChange({ target: { value: slug } });
+const chooseSpecies = (h, slug) => speciesButton(h, slug).props.onClick();
 function address(query, hash = 'wildjahr-current') {
   const params = new URLSearchParams();
   for (const [key, value] of Object.entries(query)) {
@@ -53,9 +55,9 @@ async function commit(h, request, action) {
 }
 function focusProbe(h) {
   const calls = { focus: 0, scroll: 0 };
-  heading(h).props.ref.current = {
+  h.nodes(node => node.props?.id === 'wildjahr-top')[0].props.ref.current = {
     focus(options) { assert.deepEqual(options, { preventScroll: true }); calls.focus++; },
-    scrollIntoView(options) { assert.deepEqual(options, { block: 'start', behavior: 'auto' }); calls.scroll++; },
+    scrollIntoView() { calls.scroll++; }, // Must stay unused; window scrolling has its own real-DOM regression.
   };
   return calls;
 }
@@ -83,7 +85,7 @@ test('All 360 detailed views retain exact visible claims, immediate limits, avai
     const picture = wildlifePhotographs[animal.slug];
     assert.equal(text(heading(h)), `${animal.name} im ${expected.monthName}`);
     assert.equal(range(h).props.value, month);
-    assert.equal(species(h).props.value, animal.slug);
+    assert.equal(species(h).props.selectedSlug, animal.slug);
     const cards = h.nodes(node => node.type === 'article');
     assert.equal(cards.length, 4);
     for (const [index, section] of expected.sections.entries()) {
@@ -118,7 +120,8 @@ test('All 360 detailed views retain exact visible claims, immediate limits, avai
       'Typische Phasen in Mitteleuropa. Wetter, Höhenlage, Alter und Individuum verschieben die Übergänge. Die Monatsbänder sind eine Orientierung.',
       ...(picture ? ['Artporträt zur Orientierung. Dieses Foto belegt weder den gewählten Monat noch eine Fortpflanzungsphase.'] : []),
       'Ein Tier zeigt nicht immer alle Merkmale der typischen Jahresphase. Beobachtungen am besten mit Datum, Ort und erkennbaren Merkmalen festhalten.']) assert.ok(beforeSources.includes(limitation));
-    assert.equal(h.nodes(node => node.type === 'select').length, nodes(pageMenu(h), node => node.type === 'select').length);
+    assert.equal(h.nodes(node => node.type === 'select').length, 0);
+    assert.equal(nodes(pageMenu(h), node => node.type?.name === 'WildYearSpeciesPicker').length, 1);
     assert.equal(nodes(pageMenu(h), node => node.type === 'input' && node.props.type === 'range').length, 0);
     checked++;
   }
@@ -131,7 +134,7 @@ test('A real month push preserves committed text/photo until commit, carries con
   const path = mountPath(h.tree, 'wildjahr-month');
   const photo = h.nodes(node => node.props?.src === wildlifePhotographs.rehwild.src)[0].props.src;
   const action = chooseMonth(h, 7); h.render();
-  assert.deepEqual(requests[0].href, { pathname: base, query: { ...initial, monat: '7' }, hash: 'wildjahr-current' });
+  assert.deepEqual(requests[0].href, { pathname: base, query: { ...initial, monat: '7' }, hash: 'wildjahr-top' });
   assert.deepEqual(requests[0].options, { shallow: true, scroll: false }); assert.equal(requests[0].as, undefined);
   assert.equal(range(h).props.value, 6); assert.equal(text(heading(h)), 'Reh im Juni');
   assert.deepEqual(h.router.query, initial); assert.equal(focus.focus, 0);
@@ -142,7 +145,7 @@ test('A real month push preserves committed text/photo until commit, carries con
   assert.deepEqual(focus, { focus: 0, scroll: 0 });
 });
 
-test('Species commits and external History focus only their committed heading; reselecting a settled pair writes no extra stop', async t => {
+test('Species commits and external History focus only their committed page start; reselecting a settled pair writes no extra stop', async t => {
   const h = fixture(t, { art: 'rehwild', monat: '6' }), requests = pendingRouter(h), focus = focusProbe(h);
   const action = chooseSpecies(h, 'rotwild'); h.render();
   assert.equal(text(heading(h)), 'Reh im Juni'); assert.equal(focus.focus, 0);
@@ -164,11 +167,11 @@ test('Overlapping month/species actions combine with the displayed other field, 
     const second = order === 'month-first' ? chooseSpecies(h, 'rehwild') : chooseMonth(h, 7);
     h.render();
     assert.deepEqual(requests[1].href.query, order === 'month-first' ? { art: 'rehwild', monat: '6' } : { art: 'gamswild', monat: '7' });
-    assert.equal(species(h).props.value, 'gamswild'); assert.equal(range(h).props.value, 6);
+    assert.equal(species(h).props.selectedSlug, 'gamswild'); assert.equal(range(h).props.value, 6);
     await commit(h, requests[1], second);
     requests[0].reject(new Error('older request failed')); await first; h.render();
     assert.equal(alerts(h).length, 0); assert.equal(h.menu.opened, 0);
-    assert.equal(species(h).props.value, order === 'month-first' ? 'rehwild' : 'gamswild');
+    assert.equal(species(h).props.selectedSlug, order === 'month-first' ? 'rehwild' : 'gamswild');
     assert.equal(range(h).props.value, order === 'month-first' ? 6 : 7);
     assert.equal(focus.focus, order === 'month-first' ? 1 : 0);
   }
@@ -208,7 +211,7 @@ test('External History, hash/context changes and an away-and-back visit invalida
     [{ ...initial, ref: 'anderer-einstieg' }],
   ]) {
     const h = fixture(t, initial), requests = pendingRouter(h), focus = focusProbe(h);
-    const stale = species(h).props.onChange;
+    const stale = speciesButton(h, 'rotwild').props.onClick;
     const action = chooseMonth(h, 7);
     for (const query of visits) history(h, query);
     const focused = focus.focus;
@@ -226,7 +229,7 @@ test('External History, hash/context changes and an away-and-back visit invalida
 
 test('Unmount rejects stale range/species handlers and late errors without focus, menu or URL work', async t => {
   const h = fixture(t), requests = pendingRouter(h), focus = focusProbe(h);
-  const staleRange = range(h).props.onChange, staleSpecies = species(h).props.onChange;
+  const staleRange = range(h).props.onChange, staleSpecies = speciesButton(h, 'rehwild').props.onClick;
   const action = chooseMonth(h, 7); h.dispose(); requests[0].reject(new Error('late after unmount')); await action; h.render();
   await staleRange({ target: { value: '8' } }); await staleSpecies({ target: { value: 'rehwild' } }); h.render();
   assert.equal(requests.length, 1); assert.equal(alerts(h).length, 0); assert.equal(h.menu.opened, 0); assert.equal(focus.focus, 0);
@@ -242,9 +245,10 @@ test('Invalid-link picker timers cannot outlive a valid commit or unmount; repai
   const disposed = fixture(t, { art: 'missing', monat: '7' }); disposed.dispose();
   await new Promise(resolve => setTimeout(resolve, 1)); assert.equal(disposed.menu.opened, 0);
   const month = fixture(t, { art: 'rotwild', monat: ['6', '7'] }), monthRequests = pendingRouter(month);
-  const monthRepair = month.nodes(node => node.props?.id === 'wildjahr-repair-month')[0].props.onChange({ target: { value: '9' } });
-  assert.deepEqual(monthRequests[0].href.query, { art: 'rotwild', monat: '9' });
-  await commit(month, monthRequests[0], monthRepair); assert.equal(text(heading(month)), 'Rothirsch im September');
+  assert.equal(month.nodes(node => node.type === 'select').length, 0, 'No month selector remains in the menu');
+  const monthRepair = chooseSpecies(month, 'rotwild');
+  assert.deepEqual(monthRequests[0].href.query, { art: 'rotwild', monat: '10' });
+  await commit(month, monthRequests[0], monthRepair); assert.equal(text(heading(month)), 'Rothirsch im Oktober');
 });
 
 test('The server-selected view stays unchanged while unready and controls cannot navigate before authoritative readiness', async t => {
@@ -255,6 +259,6 @@ test('The server-selected view stays unchanged while unready and controls cannot
   assert.equal(pageMenu(h).props.openInitially, false);
   h.router.isReady = true; h.render(); assert.equal(text(heading(h)), 'Reh im April');
   history(h, { art: 'rotwild', monat: '11' }); assert.equal(text(heading(h)), 'Rothirsch im November');
-  history(h, {}); assert.equal(range(h), undefined); assert.equal(species(h).props.value, '');
+  history(h, {}); assert.equal(range(h), undefined); assert.equal(species(h).props.selectedSlug, null);
   assert.match(text(h.tree), /Wähle zuerst eine Wildart/);
 });

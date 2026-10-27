@@ -18,7 +18,9 @@ const { readWildYearSelection } = load('lib/wild-year-selection.js');
 const base = '/lernen/wildjahr';
 const propsFor = query => page.getServerSideProps({ query }).props;
 const heading = h => nodes(h.tree, node => node.props?.id === 'wildjahr-current')[0];
-const select = h => nodes(h.tree, node => node.type === 'select' && node.props.id === 'wildjahr-species')[0];
+const select = h => nodes(h.tree, node => node.type?.name === 'WildYearSpeciesPicker')[0];
+const pickerTree = h => select(h).type(select(h).props);
+const speciesButton = (h, slug) => nodes(pickerTree(h), node => node.props?.['data-wildjahr-species'] === slug)[0];
 const range = h => nodes(h.tree, node => node.type === 'input' && node.props.id === 'wildjahr-month')[0];
 const alerts = h => nodes(h.tree, node => node.props?.role === 'alert');
 function address(query, hash = 'wildjahr-current') {
@@ -26,7 +28,7 @@ function address(query, hash = 'wildjahr-current') {
   for (const [key, value] of Object.entries(query)) for (const part of Array.isArray(value) ? value : [value]) params.append(key, part);
   return `${base}${params.size ? `?${params}` : ''}${hash ? `#${hash}` : ''}`;
 }
-const choose = (h, slug) => select(h).props.onChange({ target: { value: slug } });
+const choose = (h, slug) => speciesButton(h, slug).props.onClick();
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
 
 // Compile once, but give every component mount its own actual effect/cleanup,
@@ -62,7 +64,7 @@ let currentMenu;
 const Component = componentLoad('components/WildYear.js').default;
 function fixture(t, query, { ready = true, props = propsFor(query) } = {}) {
   const h = { props, slots: [], cleanups: [], effects: [], calls: [], requests: [], menu: { opened: 0, closed: 0 }, focus: 0, scroll: 0 };
-  h.target = { focus(options) { assert.deepEqual(options, { preventScroll: true }); h.focus++; }, scrollIntoView(options) { assert.deepEqual(options, { block: 'start', behavior: 'auto' }); h.scroll++; } };
+  h.target = { focus(options) { assert.deepEqual(options, { preventScroll: true }); h.focus++; }, scrollIntoView() { h.scroll++; } };
   h.router = { isReady: ready, query: { ...query }, asPath: address(query), push(href, as, options) {
     const request = { href, as, options }; h.calls.push(request); h.requests.push(request);
     return new Promise((resolve, reject) => Object.assign(request, { resolve, reject }));
@@ -73,7 +75,7 @@ function fixture(t, query, { ready = true, props = propsFor(query) } = {}) {
       active = h; h.cursor = 0; h.changed = false; h.tree = Component(h.props); active = null;
       // Simulate the object-ref commit before effects, including removal of a
       // temporarily absent heading while the selected server props are pending.
-      const target = heading(h);
+      const target = nodes(h.tree, node => node.props?.id === 'wildjahr-top')[0];
       if (target?.props.ref) { target.props.ref.current = h.target; h.lastRef = target.props.ref; }
       else if (h.lastRef) h.lastRef.current = null;
       const effects = h.effects; h.effects = []; effects.forEach(effect => effect());
@@ -142,18 +144,19 @@ test('All 114 actual server selections render the exact selected knowledge in SS
 test('The lower selector retains all canonical groups and entries, while an invalid selection never leaks old server knowledge', t => {
   const query = { art: 'wolf', monat: '6' }, h = fixture(t, query);
   const menu = nodes(h.tree, node => node.type === PageMenu)[0];
-  const grouped = nodes(select(h), node => node.type === 'optgroup');
-  assert.deepEqual(grouped.map(node => node.props.label), [...new Set(wildYearCatalog.map(item => item.group))]);
-  assert.deepEqual(grouped.flatMap(node => nodes(node, child => child.type === 'option').map(child => child.props.value)),
+  const grouped = nodes(pickerTree(h), node => node.type === 'section');
+  assert.deepEqual(grouped.map(node => text(nodes(node, child => child.type === 'h3')[0])), [...new Set(wildYearCatalog.map(item => item.group))]);
+  assert.deepEqual(grouped.flatMap(node => nodes(node, child => child.type === 'button').map(child => child.props['data-wildjahr-species'])),
     [...new Set(wildYearCatalog.map(item => item.group))].flatMap(group => wildYearCatalog.filter(item => item.group === group).map(item => item.slug)));
-  assert.equal(nodes(menu, node => node.props?.id === 'wildjahr-species').length, 1);
+  assert.equal(nodes(menu, node => node.type?.name === 'WildYearSpeciesPicker').length, 1);
   for (const query of [
     { art: ['wolf'], monat: '6' }, { art: ['wolf', 'kolbenente'], monat: '6' },
     { art: 'wolf', monat: ['6'] }, { art: 'wolf', monat: ['6', '7'] },
     { art: '', monat: '6' }, { art: 'constructor', monat: '6' }, { art: 'wolf', monat: '13' },
   ]) {
     h.navigate(query); assert.equal(heading(h), undefined);
-    assert.match(text(h.tree), /gültige Wildart und einen Monat/);
+    assert.match(text(h.tree), /Wähle eine Wildart unten im Menü/);
+    assert.equal(nodes(h.tree, node => node.type === 'select').length, 0, 'Invalid inputs do not reintroduce a menu month selector');
     assert.ok(!text(h.tree).includes(getWildYearOverview('wolf').sections[0].paragraphs[0]));
     const props = propsFor(query); assert.equal(props.annualOverview, null);
   }
@@ -166,7 +169,7 @@ test('Monthly and overview navigation uses real push operations, preserves commi
     const before = text(heading(h)), focus = h.focus;
     const action = h.act(() => choose(h, to)); h.render();
     const request = h.requests[0];
-    assert.deepEqual(request.href, { pathname: base, query: { ...query, art: to }, hash: 'wildjahr-current' });
+    assert.deepEqual(request.href, { pathname: base, query: { ...query, art: to }, hash: 'wildjahr-top' });
     assert.deepEqual(request.options, { shallow: false, scroll: false });
     assert.equal(request.as, undefined); assert.equal(text(heading(h)), before); assert.equal(h.focus, focus);
     request.reject(new Error('offline')); await action; h.render();
@@ -174,8 +177,8 @@ test('Monthly and overview navigation uses real push operations, preserves commi
     assert.equal(alerts(h).length, 1); assert.equal(h.focus, focus);
     const retry = h.act(() => choose(h, to)); h.render(); const next = h.requests[1];
     h.navigate(next.href.query, { props: propsFor(next.href.query) }); next.resolve(true); await retry; h.render();
-    assert.notEqual(text(heading(h)), before); assert.equal(select(h).props.value, to);
-    assert.equal(h.focus, focus + 1); assert.equal(h.scroll, h.focus);
+    assert.notEqual(text(heading(h)), before); assert.equal(select(h).props.selectedSlug, to);
+    assert.equal(h.focus, focus + 1); assert.equal(h.scroll, 0, 'No content-anchor scrollIntoView remains');
     assert.equal(alerts(h).length, 0);
   }
 });
@@ -189,7 +192,7 @@ test('A committed overview address waits for matching props, then focuses the ne
   assert.equal(h.menu.opened, 0, 'A valid address awaiting its selected server props is not an invalid-link chooser');
   request.resolve(true); await action; h.render(); assert.equal(h.focus, focus);
   h.props = propsFor(request.href.query); h.render();
-  assert.equal(select(h).props.value, 'wolf'); assert.equal(h.focus, focus + 1); assert.equal(h.menu.closed, closed + 1);
+  assert.equal(select(h).props.selectedSlug, 'wolf'); assert.equal(h.focus, focus + 1); assert.equal(h.menu.closed, closed + 1);
   h.render(); assert.equal(h.focus, focus + 1);
   h.navigate({ art: 'kolbenente', monat: '6' });
   assert.equal(heading(h), undefined); assert.ok(!text(h.tree).includes(getWildYearOverview('wolf').sections[0].paragraphs[0]));
@@ -198,7 +201,7 @@ test('A committed overview address waits for matching props, then focuses the ne
 
 test('History across overview and model restores the corresponding authored view and invalidates stale pending failures and selectors', async t => {
   const initial = { art: 'wolf', monat: '6' }, h = fixture(t, initial);
-  const oldSelector = select(h).props.onChange;
+  const oldSelector = speciesButton(h, 'rehwild').props.onClick;
   const action = h.act(() => choose(h, 'kolbenente'));
   const visits = [{ art: 'rehwild', monat: '4' }, { art: 'wolf', monat: '6' }];
   for (const query of visits) h.navigate(query, { props: propsFor(query) });
@@ -208,14 +211,14 @@ test('History across overview and model restores the corresponding authored view
   await h.act(() => oldSelector({ target: { value: 'rehwild' } }));
   assert.equal(h.requests.length, 1); assert.match(text(heading(h)), /Wolf/);
   assert.equal(range(h), undefined);
-  const currentSelector = select(h).props.onChange;
+  const currentSelector = speciesButton(h, 'rehwild').props.onClick;
   h.navigate({ ...initial, ref: 'anderer-einstieg' }, { props: propsFor(initial), hash: 'anderer-anker' });
   await h.act(() => currentSelector({ target: { value: 'rehwild' } }));
   assert.equal(h.requests.length, 1);
 });
 
 test('Unmount blocks late overview transitions and saved handlers before URL, focus or menu work', async t => {
-  const initial = { art: 'wolf', monat: '6' }, h = fixture(t, initial), handler = select(h).props.onChange;
+  const initial = { art: 'wolf', monat: '6' }, h = fixture(t, initial), handler = speciesButton(h, 'kolbenente').props.onClick;
   const action = h.act(() => choose(h, 'rehwild')), focus = h.focus, opened = h.menu.opened;
   h.dispose(); h.requests[0].reject(new Error('after unmount')); await action;
   await h.act(() => handler({ target: { value: 'kolbenente' } }));
