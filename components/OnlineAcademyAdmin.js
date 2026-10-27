@@ -27,7 +27,7 @@ export default function OnlineAcademyAdmin({ data, catalog, onSaved, canAct = ()
   // Async completion and retained form handlers must not write into its successor.
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; session.current = {}; controller.current?.abort(); }; }, []);
   function valid() { return mounted.current && canAct() && session.current === current && !saving.current; }
-  function change(key,value) { if (valid()) { const next={...draftRef.current,[key]:value}; draftRef.current=next; setDraft(next); } }
+  function change(key,value) { if (valid()) { const next={...draftRef.current,[key]:typeof value==='function'?value(draftRef.current[key]):value}; draftRef.current=next; setDraft(next); } }
   function select(next,record) {
     if (!valid()) return;
     session.current = {}; setAction(next); setDraft(record ? fields(next,record) : blanks[next]()); setMessage('');
@@ -70,7 +70,7 @@ export default function OnlineAcademyAdmin({ data, catalog, onSaved, canAct = ()
         {action==='offer' && <>
           <label className={styles.field}>Kategorie<select value={draft.category_slug} onChange={event=>change('category_slug',event.target.value)}>{learningCategoryDetails.map(item=><option key={item.slug} value={item.slug}>{item.title}</option>)}</select></label>
           <p>Vorhandene Lerneinheiten als Vorbereitung zuordnen. Die vollständigen Inhalte und fachlichen Quellen bleiben in ihren Kursen.</p>
-          <div className={academy.moduleChoices}>{catalog.filter(item=>item.categorySlug===draft.category_slug || draft.module_ids.includes(item.id)).map(item=><label key={item.id}><input type="checkbox" checked={draft.module_ids.includes(item.id)} onChange={event=>change('module_ids',event.target.checked?[...draft.module_ids,item.id]:draft.module_ids.filter(id=>id!==item.id))} />{item.title}</label>)}</div>
+          <div className={academy.moduleChoices}>{catalog.filter(item=>item.categorySlug===draft.category_slug || draft.module_ids.includes(item.id)).map(item=><label key={item.id}><input type="checkbox" checked={draft.module_ids.includes(item.id)} onChange={event=>{const checked=event.target.checked;change('module_ids',ids=>checked?(ids.includes(item.id)?ids:[...ids,item.id]):ids.filter(id=>id!==item.id));}} />{item.title}</label>)}</div>
         </>}
         {action==='session' && <>
           <p>Beginn und Ende in <strong>UTC</strong> eintragen. Im Kurs werden die Termine in Schweizer Zeit angezeigt. Nach der Sommerzeit entspricht 18:00 Uhr Schweiz 17:00 Uhr UTC; während der Sommerzeit 16:00 Uhr UTC.</p>

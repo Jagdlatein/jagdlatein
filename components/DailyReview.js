@@ -7,7 +7,7 @@ import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { learningCategoryDetails } from "../lib/learning-categories";
-import { readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
+import { REVIEW_STORAGE_KEY, readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
 import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
 import styles from "../styles/LearningExperience.module.css";
 
@@ -146,7 +146,26 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
   }
   useEffect(() => {
     mounted.current = true; start(true);
-    return () => { mounted.current = false; ++request.current; controller.current?.abort(); current.current = null; };
+    function historyRemoved(event) {
+      if (!mounted.current) return;
+      if (event.type === "storage") {
+        if (event.newValue !== null || event.key !== null && event.key !== REVIEW_STORAGE_KEY) return;
+        try { if (event.storageArea && event.storageArea !== window.localStorage) return; }
+        catch { return; }
+      }
+      // Invalidate old handlers and pending responses before React repaints.
+      ++request.current; controller.current?.abort(); controller.current = null;
+      current.current = null; setRound(null); setNotice("");
+      setLoad({ phase: "cleared", message: "", status: 0 });
+    }
+    const browser = typeof window === "undefined" ? null : window;
+    browser?.addEventListener?.("storage", historyRemoved);
+    browser?.addEventListener?.("jagdlatein-account-deleted", historyRemoved);
+    return () => {
+      mounted.current = false; ++request.current; controller.current?.abort(); current.current = null;
+      browser?.removeEventListener?.("storage", historyRemoved);
+      browser?.removeEventListener?.("jagdlatein-account-deleted", historyRemoved);
+    };
   }, []);
   useEffect(() => { if (round) { heading.current?.focus({ preventScroll: true }); heading.current?.scrollIntoView?.({ block: "start", behavior: "auto" }); } }, [round?.index, round?.finished]);
   function choose(id) {
@@ -172,7 +191,11 @@ function DailyReviewRound({ pool, category, mode, isCurrent, disabled }) {
       <p>Eine kurze Runde mit bis zu acht Fragen aus den ausführlichen Kursen. Du bestimmst das Tempo; fünf Minuten sind eine Orientierung.</p>
       <p className={styles.muted}>Auf diesem Gerät: fällige Fehler und Wiederholungen kommen zuerst. „Gemischt“ ergänzt neue Fragen aus wechselnden Bereichen. Antworten aus ausführlichen Kursen und deren Quizfragen fließen ab jetzt ein. Frühere Antworten werden nicht nachträglich übernommen.</p>
     </section>
-    {load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
+    {load.phase === "cleared" ? <section className={styles.panel}>
+      <h2 id="review-question-title" tabIndex={-1} ref={heading}>Die vorherige Runde wurde geschlossen</h2>
+      <p>Der Wiederholungsverlauf oder dein Konto wurde an anderer Stelle geändert. Starte bei Bedarf eine neue Runde.</p>
+      <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Neue kurze Runde</button>
+    </section> : load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => start()}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
       <h2 id="review-question-title" tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig.</p>
       {mistakes.length > 0 ? <section aria-labelledby="review-mistakes-title"><h3 id="review-mistakes-title">Fehler nachlesen</h3>
         {mistakes.map(item => {
