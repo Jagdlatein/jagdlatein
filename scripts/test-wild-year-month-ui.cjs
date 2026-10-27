@@ -22,12 +22,12 @@ test('The server calendar follows Zurich month boundaries, including summer time
   assert.deepEqual(Object.keys(result.props), ['currentMonth', 'initialSelection', 'annualOverview']);
   assert.equal(result.props.annualOverview, null);
   assert.ok(result.props.currentMonth >= 1 && result.props.currentMonth <= 12);
-  assert.deepEqual(result.props.initialSelection, { slug: 'gamswild', month: result.props.currentMonth });
+  assert.deepEqual(result.props.initialSelection, { slug: null, month: result.props.currentMonth });
   assert.deepEqual(page.getServerSideProps({ query: { art: 'rehwild', monat: '4' } }).props.initialSelection, { slug: 'rehwild', month: 4 });
 });
 
 test('Server HTML and first hydration retain the same request selection before router readiness', () => {
-  for (const query of [{}, { art: 'rehwild', monat: '4' }, { art: 'rotwild', monat: '11' }]) {
+  for (const query of [{ art: 'gamswild' }, { art: 'rehwild', monat: '4' }, { art: 'rotwild', monat: '11' }]) {
     const requestProps = page.getServerSideProps({ query }).props;
     const h = setup('components/WildYear.js', {}, { ready: false, props: requestProps });
     assert.equal(input(h).props.value, requestProps.initialSelection.month);
@@ -63,7 +63,7 @@ test('Explicit malformed, repeated or out-of-range month/species links show a ch
     const h = setup('components/WildYear.js', { art, monat: '7' }, { props: props({ art, monat: '7' }) });
     assert.equal(heading(h), undefined); h.dispose();
   }
-  assert.deepEqual(readWildYearSelection({ monat: ' 04 ' }, 10), { slug: 'gamswild', month: 4 });
+  assert.deepEqual(readWildYearSelection({ monat: ' 04 ' }, 10), { slug: null, month: 4 });
 });
 
 test('A ready router and History are authoritative, including removal back to the server calendar month', async () => {
@@ -73,8 +73,10 @@ test('A ready router and History are authoritative, including removal back to th
   assert.equal(h.calls[0].href.query.ref, 'suche'); assert.equal(input(h).props.value, 7);
   h.navigate({ art: 'rotwild', monat: '11' }); assert.equal(input(h).props.value, 11); assert.match(text(heading(h)), /Rothirsch/);
   h.navigate({ art: 'rehwild', monat: '4' }); assert.equal(input(h).props.value, 4); assert.match(text(heading(h)), /Reh/);
-  h.navigate({}); assert.equal(input(h).props.value, 10); assert.match(text(heading(h)), /Gams/);
-  h.navigate({ monat: '11' }); assert.equal(input(h).props.value, 11);
+  h.navigate({}); assert.equal(input(h), undefined); assert.equal(heading(h), undefined);
+  assert.match(text(h.tree), /Wähle zuerst eine Wildart/);
+  h.navigate({ art: 'gamswild' }); assert.equal(input(h).props.value, 10); assert.match(text(heading(h)), /Gams/);
+  h.navigate({ art: 'gamswild', monat: '11' }); assert.equal(input(h).props.value, 11);
   h.navigate({ monat: 'invalid' }); assert.equal(heading(h), undefined);
   h.dispose();
 });

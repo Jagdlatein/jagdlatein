@@ -33,9 +33,9 @@ function checkSources(claim, sources) {
   assert.ok(organizations.size >= 2, `${claim.id}: two independent organizations required, not two pages of one publisher`);
 }
 
-test('All 312 detailed species-month views contain exactly one phase per biological section', () => {
-  assert.equal(year.wildYearSpecies.length, 26);
-  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 26);
+test('All 360 detailed species-month views contain exactly one phase per biological section', () => {
+  assert.equal(year.wildYearSpecies.length, 30);
+  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 30);
   const { dachWildlifeBySlug } = load('lib/dach-wildlife.js');
   const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
   for (const item of year.wildYearSpecies) {

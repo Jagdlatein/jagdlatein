@@ -74,7 +74,7 @@ function mountPath(node, id, path = []) {
   return node.props?.id === id ? next : mountPath(node.props?.children, id, next);
 }
 
-test('All 312 detailed views retain exact visible claims, immediate limits, available photos and separately mapped closed final sources', t => {
+test('All 360 detailed views retain exact visible claims, immediate limits, available photos and separately mapped closed final sources', t => {
   const h = fixture(t);
   let checked = 0;
   for (const animal of wildYearSpecies) for (let month = 1; month <= 12; month++) {
@@ -122,7 +122,7 @@ test('All 312 detailed views retain exact visible claims, immediate limits, avai
     assert.equal(nodes(pageMenu(h), node => node.type === 'input' && node.props.type === 'range').length, 0);
     checked++;
   }
-  assert.equal(checked, 312); assert.equal(h.calls.length, 0);
+  assert.equal(checked, 360); assert.equal(h.calls.length, 0);
 });
 
 test('A real month push preserves committed text/photo until commit, carries context and keeps the same range without heading focus', async t => {
@@ -255,5 +255,6 @@ test('The server-selected view stays unchanged while unready and controls cannot
   assert.equal(pageMenu(h).props.openInitially, false);
   h.router.isReady = true; h.render(); assert.equal(text(heading(h)), 'Reh im April');
   history(h, { art: 'rotwild', monat: '11' }); assert.equal(text(heading(h)), 'Rothirsch im November');
-  history(h, {}); assert.equal(range(h).props.value, 10); assert.equal(species(h).props.value, 'gamswild');
+  history(h, {}); assert.equal(range(h), undefined); assert.equal(species(h).props.value, '');
+  assert.match(text(h.tree), /Wähle zuerst eine Wildart/);
 });

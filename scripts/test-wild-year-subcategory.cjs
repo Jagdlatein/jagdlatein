@@ -104,7 +104,7 @@ test('The direct category entry requests normal top scrolling and the unchanged 
   assert.equal(link.props.shallow, undefined);
   assert.equal(link.props.target, undefined);
   assert.equal(link.props.onClick, undefined, 'No custom selection handler or extra intermediate view');
-  const h = setup('components/WildYear.js', {}, { ready: false, router: { asPath: tool.href }, props: { currentMonth: 10, initialSelection: { slug: 'gamswild', month: 10 } } });
+  const h = setup('components/WildYear.js', { art: 'gamswild' }, { ready: false, router: { asPath: `${tool.href}?art=gamswild` }, props: { currentMonth: 10, initialSelection: { slug: 'gamswild', month: 10 } } });
   t.after(() => h.dispose());
   const calls = [];
   h.nodes(node => node.props?.id === 'wildjahr-current')[0].props.ref.current = {
