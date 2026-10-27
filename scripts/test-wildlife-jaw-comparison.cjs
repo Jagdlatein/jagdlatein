@@ -27,7 +27,7 @@ const deferred = () => { let resolve, reject; const promise = new Promise((yes, 
 const tick = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function atlas(query = {}) {
   const e = engine(), calls = []; let tree;
-  const router = { query, isReady: true, replace(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
+  const router = { query, isReady: true, push(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
   const Jaw = () => null, Comparison = () => null, Teeth = () => null;
   const Component = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router },
     '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)),
@@ -74,7 +74,7 @@ test('Bird and open records never become substitute zero formulas; ordinary comp
   for (const pair of [{ left: 'rehwild', right: 'rehwild' }, { left: 'absent', right: 'rehwild' }]) assert.equal(renderToStaticMarkup(React.createElement(Component, pair)), '');
 });
 
-test('Atlas restores both valid URL selections and ignores identical, unknown or repeated comparison parameters safely', () => {
+test('Atlas restores both valid URL selections and shows help for identical, unknown or repeated comparison parameters', () => {
   const valid = atlas({ art: 'rehwild', vergleich: 'rotwild' });
   assert.deepEqual(valid.fields().map(field => field.props.value), ['rehwild', 'rotwild']);
   assert.equal(all(valid.fields()[0], node => node.type === 'option').length, inventory.length);
@@ -83,11 +83,11 @@ test('Atlas restores both valid URL selections and ignores identical, unknown or
   assert.equal(all(valid.tree, node => node.type === valid.Teeth).length, 0);
   for (const vergleich of ['rehwild', 'unknown', '__proto__', ['rotwild'], ['rotwild', 'damwild']]) {
     const ui = atlas({ art: 'rehwild', vergleich });
-    assert.equal(ui.fields()[1].props.value, ''); assert.equal(all(ui.tree, node => node.type === ui.Comparison).length, 0);
-    assert.equal(all(ui.tree, node => node.type === ui.Teeth).length, 1);
+    assert.equal(ui.fields()[1].props.value, null); assert.equal(all(ui.tree, node => node.type === ui.Comparison).length, 0);
+    assert.equal(all(ui.tree, node => node.type === ui.Teeth).length, 0);
   }
   const invalidMain = atlas({ art: ['rotwild', 'damwild'], vergleich: 'rehwild' });
-  assert.deepEqual(invalidMain.fields().map(field => field.props.value), ['rehwild', '']);
+  assert.deepEqual(invalidMain.fields().map(field => field.props.value), ['']);
 });
 
 test('Changing or clearing comparison updates only its URL selection, preserves unrelated values and removes a duplicate after a primary species change', async () => {

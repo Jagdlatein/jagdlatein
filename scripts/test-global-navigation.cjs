@@ -514,6 +514,18 @@ test('Anatomy Back follows each museum or digestion choice while query context s
   s.unmount(); native.unmount(); immediate.unmount();
 });
 
+test('Jaw atlas Back retains explicit primary and comparison choices while search context is one stop', () => {
+  const base = '/lernen/kiefer-3d', first = base + '?art=rehwild', compared = base + '?art=rehwild&vergleich=rotwild', changed = base + '?art=damwild&vergleich=rotwild';
+  const s = setup(base, ['/lernen/wildkunde']); s.route(first); s.route(compared); s.route(changed);
+  s.route(base + '?q=Gebiss&ref=suche&vergleich=rotwild&art=damwild');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, compared);
+  const native = setup(base, ['/lernen/wildkunde']); native.route(first); native.route(compared); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(base, ['/lernen/wildkunde']); immediate.route(first); immediate.navigateBeforeEffects(compared);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  s.unmount(); native.unmount(); immediate.unmount();
+});
+
 test('Tool search/context edits stay in the chosen topic; native Back and immediate dock Back retain the correct prior step', () => {
   const base = '/lernen/wissen-fuers-revier', first = `${base}?thema=rehwild-fruehling#revierwissen-inhalt`;
   const second = `${base}?thema=wildkameras#revierwissen-fragen`;

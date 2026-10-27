@@ -76,7 +76,7 @@ function mountPath(node, id, path = []) {
   return node.props?.id === id ? next : mountPath(node.props?.children, id, next);
 }
 
-test('All 360 detailed views retain exact visible claims, immediate limits, available photos and separately mapped closed final sources', t => {
+test('All 384 detailed views retain exact visible claims, immediate limits, available photos and separately mapped closed final sources', t => {
   const h = fixture(t);
   let checked = 0;
   for (const animal of wildYearSpecies) for (let month = 1; month <= 12; month++) {
@@ -125,7 +125,7 @@ test('All 360 detailed views retain exact visible claims, immediate limits, avai
     assert.equal(nodes(pageMenu(h), node => node.type === 'input' && node.props.type === 'range').length, 0);
     checked++;
   }
-  assert.equal(checked, 360); assert.equal(h.calls.length, 0);
+  assert.equal(checked, 384); assert.equal(h.calls.length, 0);
 });
 
 test('A real month push preserves committed text/photo until commit, carries context and keeps the same range without heading focus', async t => {

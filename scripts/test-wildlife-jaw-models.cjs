@@ -40,16 +40,16 @@ const deferred = () => { let resolve, reject; const promise = new Promise((yes, 
 const tick = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function atlas(query = { art: 'rehwild' }) {
   const e = engine(), calls = [], menuCalls = []; let tree;
-  const router = { query, isReady: true, asPath: '/lernen/kiefer-3d', replace(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
+  const router = { query, isReady: true, asPath: '/lernen/kiefer-3d', push(href, unused, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
   const Jaw = () => null, PageMenu = () => null;
-  const loaded = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)), '../../components/PageMenu': { ...moduleValue(PageMenu), closePageMenu: () => { menuCalls.push('close'); } }, '../../components/WildlifeJawModel': moduleValue(Jaw), '../../components/WildlifeDentition': moduleValue(() => null), '../../lib/wildlife-jaw-models': fixture })('pages/lernen/kiefer-3d.js');
+  const loaded = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../../components/LearningToolLayout': moduleValue(({ children }) => React.createElement('main', null, children)), '../../components/PageMenu': { ...moduleValue(PageMenu), closePageMenu: () => { menuCalls.push('close'); }, openPageMenu() {} }, '../../components/WildlifeJawModel': moduleValue(Jaw), '../../components/WildlifeDentition': moduleValue(() => null), '../../lib/wildlife-jaw-models': fixture })('pages/lernen/kiefer-3d.js');
   const render = () => { tree = e.render(() => loaded.default()); e.flush(); };
-  render();
+  render(); menuCalls.length = 0;
   return { get tree() { return tree; }, calls, menuCalls, router, render, Jaw, PageMenu,
     field() { return all(tree, n => n.props?.id === 'kiefer-artauswahl')[0]; },
     choose(slug) { this.field().props.onChange({ target: { value: slug } }); render(); },
     async reject(error) { calls.at(-1).task.reject(error); await tick(); render(); },
-    async acknowledge(index = 0) { router.query = calls[index].href.query; calls[index].task.resolve(true); await tick(); render(); },
+    async acknowledge(index = calls.length - 1) { router.query = calls[index].href.query; calls[index].task.resolve(true); await tick(); render(); },
   };
 }
 
@@ -123,8 +123,8 @@ test('Atlas lists every current wildlife entry once; supported and missing speci
   assert.ok(all(ui.tree, n => n.props?.href === `/wildkunde/${missing.slug}#gebiss`).length);
 });
 
-test('Invalid or repeated art parameters fall back safely; every valid art stays exact', () => {
-  for (const art of ['../fremd', 'https://evil.example', ['rehwild', 'damwild']]) assert.equal(atlas({ art }).field().props.value, 'rehwild');
+test('Invalid or repeated art parameters show selection help without a substitute model; every valid art stays exact', () => {
+  for (const art of ['../fremd', 'https://evil.example', ['rehwild', 'damwild']]) { const ui = atlas({ art }); assert.equal(ui.field().props.value, ''); assert.equal(all(ui.tree, node => node.type === ui.Jaw).length, 0); }
   for (const species of inventory) { const ui = atlas({ art: species.slug }); assert.equal(ui.field().props.value, species.slug); }
 });
 
@@ -145,7 +145,7 @@ test('Successful atlas leaf selection closes the lower menu; failure or an aband
   ui.choose('damwild'); await ui.reject(new Error('offline'));
   assert.deepEqual(ui.menuCalls, []);
   ui.choose('damwild'); await ui.acknowledge(1);
-  assert.deepEqual(ui.menuCalls, ['close', 'close'], 'The accepted transition and actual committed-selection effect both close the same existing menu');
+  assert.deepEqual(ui.menuCalls, ['close'], 'Only the actual committed selection closes the menu');
   const abandoned = atlas(); abandoned.choose('damwild');
   abandoned.router.query = { art: 'gamswild' }; abandoned.render();
   assert.deepEqual(abandoned.menuCalls, ['close'], 'The actual external selection closes the menu independently of an older pending destination');

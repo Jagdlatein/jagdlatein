@@ -76,7 +76,7 @@ test('Actual old and new scene pages use the right MIME, complete transcript, ho
   }
 });
 
-test('All 360 detailed Wildjahr selections link only their displayed species and never pretend that a film proves the selected month', t => {
+test('All detailed Wildjahr selections link only their displayed species and never pretend that a film proves the selected month', t => {
   const h = setup('components/WildYear.js', { art: 'rehwild', monat: '1' }, { props: { currentMonth: 10 } });
   t.after(() => h.dispose());
   for (const species of wildYearSpecies) for (let month = 1; month <= 12; month++) {

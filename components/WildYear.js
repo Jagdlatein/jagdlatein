@@ -13,6 +13,7 @@ import { getWildlifeVideoLinks } from "../lib/learning-video-links";
 import WildYearOverview from "./WildYearOverview";
 import WildYearPractice from "./WildYearPractice";
 import WildYearSpeciesPicker from "./WildYearSpeciesPicker";
+import WildYearNextMonth from "./WildYearNextMonth";
 import shared from "../styles/LearningExperience.module.css";
 import styles from "../styles/WildYear.module.css";
 
@@ -169,6 +170,7 @@ export default function WildYear({ currentMonth = 1, initialSelection = null, an
       {photograph && <figure className={styles.portrait}><Image src={photograph.src} alt={`${photograph.name}: dokumentarisches Artporträt, unabhängig vom ausgewählten Monat`} width={photograph.width} height={photograph.height} sizes="(max-width: 850px) 90vw, 350px" priority /><figcaption><strong>{photograph.name}</strong><p>Artporträt zur Orientierung. Dieses Foto belegt weder den gewählten Monat noch eine Fortpflanzungsphase.</p></figcaption></figure>}
     </section>
     <aside className={styles.note}><strong>Genau hinschauen</strong>{monthlyView && <p>{view.species.uncertainty}</p>}<p>Ein Tier zeigt nicht immer alle Merkmale der typischen Jahresphase. Beobachtungen am besten mit Datum, Ort und erkennbaren Merkmalen festhalten.</p><p>Biologischer Jahreslauf und Jagdzeiten sind verschieden. Ob, wann und unter welchen Bedingungen eine Art bejagt werden darf, richtet sich nach dem geltenden regionalen Recht.</p></aside>
+    {monthlyView && <WildYearNextMonth speciesSlug={slug} month={month} />}
     {monthlyView && <WildYearOverview species={view.species} month={month} disabled={!ready} onSelect={nextMonth => select(slug, nextMonth, "year")} />}
     {monthlyView && <WildYearPractice key={viewKey} speciesSlug={slug} scope={origin} isCurrent={() => mounted.current && committedView.current === origin && ready} disabled={!ready} />}
     <details className={shared.sources}><summary>Quellen und Bildnachweis</summary>{monthlyView ? <>
@@ -177,7 +179,7 @@ export default function WildYear({ currentMonth = 1, initialSelection = null, an
         <h3>{section.label}: {section.claim.title}</h3>
         <ul>{section.claim.sourceIds.map(id => <li key={id}><a href={wildYearSources[id].url} target="_blank" rel="noopener noreferrer">{wildYearSources[id].label}</a></li>)}</ul>
       </section>)}
-      {remainingClaims.length > 0 && <div id="wildjahr-year-evidence"><h3>Weitere Phasen des Jahres</h3><p>Nachweise zu den übrigen Phasen in der Jahresübersicht und der Kalenderübung.</p>
+      {remainingClaims.length > 0 && <div id="wildjahr-year-evidence"><h3>Weitere Phasen des Jahres</h3><p>Nachweise zu den übrigen Phasen in Monatsvorschau, Jahresübersicht und Kalenderübung.</p>
         {remainingClaims.map(({ label, claim }) => <div key={claim.id} data-wild-year-claim={claim.id}><h4>{label}: {claim.title}</h4><ul>{claim.sourceIds.map(id => <li key={id}><a href={wildYearSources[id].url} target="_blank" rel="noopener noreferrer">{wildYearSources[id].label}</a></li>)}</ul></div>)}
       </div>}
     </> : <><p>Unveränderte Lerntexte aus dem bestehenden Artenwissen. Übernommene Prüfstände beziehen sich auf die jeweils genannten Abschnitte und sind keine neue Gesamtprüfung.</p>{overview.sections.map(section => <section key={section.id}><h3>{section.title}</h3>{section.reviewedOn && <p>Übernommener Prüfstand: {section.reviewedOn}</p>}<ul>{section.sources.map((source, index) => <li key={`${source.url}:${index}`}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section>)}</>}{photograph && <><h3>Bildnachweis</h3><LearningPhotoCredit media={photograph} /></>}</details>

@@ -85,6 +85,7 @@ const toolSelectionFields = {
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
+  "/lernen/kiefer-3d": ["art", "vergleich"],
   "/lernen/fuenf-minuten": ["kategorie", "modus"],
   "/online-kurse": ["ansicht", "kategorie", "angebot", "termin", "lernstand"],
 };
