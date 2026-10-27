@@ -33,17 +33,19 @@ function checkSources(claim, sources) {
   assert.ok(organizations.size >= 2, `${claim.id}: two independent organizations required, not two pages of one publisher`);
 }
 
-test('All 120 species-month views contain exactly one phase per biological section', () => {
-  assert.equal(year.wildYearSpecies.length, 10);
-  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 10);
+test('All 312 detailed species-month views contain exactly one phase per biological section', () => {
+  assert.equal(year.wildYearSpecies.length, 26);
+  assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 26);
   const { dachWildlifeBySlug } = load('lib/dach-wildlife.js');
   const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
   for (const item of year.wildYearSpecies) {
     assert.ok(dachWildlifeBySlug[item.slug], item.slug);
     assert.ok(item.uncertainty.length > 60, `${item.slug}: transitions need context`);
     const photo = wildlifePhotographs[item.slug];
-    assert.equal(photo.aiGenerated, false);
-    assert.ok(fs.existsSync(path.join(root, 'public', photo.src)), photo.src);
+    if (photo) {
+      assert.equal(photo.aiGenerated, false);
+      assert.ok(fs.existsSync(path.join(root, 'public', photo.src)), photo.src);
+    } else assert.ok(['murmeltier', 'waldschnepfe'].includes(item.slug), 'No other selected profile may lose its existing photograph');
     for (const key of ['coat', 'crown', 'reproduction', 'behavior']) {
       for (const claim of item[key]) checkSources(claim, year.wildYearSources);
       for (let month = 1; month <= 12; month++) {
@@ -115,7 +117,7 @@ test('Search results link to selectable topics and species rather than an extra 
   for (const item of year.wildYearSearchEntries) {
     const url = new URL(item.href, 'https://jagdlatein.de');
     assert.equal(url.pathname, '/lernen/wildjahr');
-    assert.ok(year.wildYearSpecies.some(species => species.slug === url.searchParams.get('art')));
+    assert.ok(load('lib/wild-year-catalog.js').wildYearCatalog.some(species => species.slug === url.searchParams.get('art')));
   }
   for (const item of atlas.wildDetailSearchEntries) {
     const url = new URL(item.href, 'https://jagdlatein.de');
@@ -173,7 +175,7 @@ test('Targeted badger correction does not recertify old profiles or ungulate sea
   assert.match(wildlifeDepthBySlug.dachs.seasonalLife[1], /Spätwinter oder frühen Frühjahr/);
   assert.equal(wildlifeDepthBySlug.dachs.reviewedOn, '2026-10-12');
   assert.equal(wildlifeDepthEvidenceChecks.dachs[0].reviewedOn, '2026-10-13');
-  for (const species of year.wildYearSpecies.filter(item => !['feldhase','dachs'].includes(item.slug))) assert.equal(species.reviewedOn, '2026-10-12');
+  for (const species of year.wildYearSpecies.slice(0, 10).filter(item => !['feldhase','dachs'].includes(item.slug))) assert.equal(species.reviewedOn, '2026-10-12');
 });
 
 test('New biological blocks and the editorial audit keep the same exact source scope', () => {

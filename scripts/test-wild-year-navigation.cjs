@@ -74,7 +74,7 @@ function mountPath(node, id, path = []) {
   return node.props?.id === id ? next : mountPath(node.props?.children, id, next);
 }
 
-test('All 120 views retain exact visible claims, immediate limits, photos and separately mapped closed final sources', t => {
+test('All 312 detailed views retain exact visible claims, immediate limits, available photos and separately mapped closed final sources', t => {
   const h = fixture(t);
   let checked = 0;
   for (const animal of wildYearSpecies) for (let month = 1; month <= 12; month++) {
@@ -104,20 +104,25 @@ test('All 120 views retain exact visible claims, immediate limits, photos and se
         section.claim.sourceIds.map(id => ({ href: wildYearSources[id].url, label: wildYearSources[id].label })));
     }
     const credit = nodes(footer, node => node.type?.name === 'LearningPhotoCredit');
-    assert.equal(credit.length, 1); assert.deepEqual(credit[0].props.media, picture);
-    const image = h.nodes(node => node.props?.src === picture.src)[0];
-    assert.ok(image); assert.equal(image.props.width, picture.width); assert.equal(image.props.height, picture.height);
-    assert.equal(image.props.alt, `${picture.name}: dokumentarisches Artporträt, unabhängig vom ausgewählten Monat`);
+    if (picture) {
+      assert.equal(credit.length, 1); assert.deepEqual(credit[0].props.media, picture);
+      const image = h.nodes(node => node.props?.src === picture.src)[0];
+      assert.ok(image); assert.equal(image.props.width, picture.width); assert.equal(image.props.height, picture.height);
+      assert.equal(image.props.alt, `${picture.name}: dokumentarisches Artporträt, unabhängig vom ausgewählten Monat`);
+    } else {
+      assert.ok(['murmeltier', 'waldschnepfe'].includes(animal.slug)); assert.equal(credit.length, 0);
+      assert.equal(h.nodes(node => node.type === 'figure').length, 0);
+    }
     const shown = text(h.tree), beforeSources = shown.slice(0, shown.indexOf('Quellen und Bildnachweis'));
     for (const limitation of [animal.uncertainty,
       'Typische Phasen in Mitteleuropa. Wetter, Höhenlage, Alter und Individuum verschieben die Übergänge. Die Monatsbänder sind eine Orientierung.',
-      'Artporträt zur Orientierung. Dieses Foto belegt weder den gewählten Monat noch eine Fortpflanzungsphase.',
+      ...(picture ? ['Artporträt zur Orientierung. Dieses Foto belegt weder den gewählten Monat noch eine Fortpflanzungsphase.'] : []),
       'Ein Tier zeigt nicht immer alle Merkmale der typischen Jahresphase. Beobachtungen am besten mit Datum, Ort und erkennbaren Merkmalen festhalten.']) assert.ok(beforeSources.includes(limitation));
     assert.equal(h.nodes(node => node.type === 'select').length, nodes(pageMenu(h), node => node.type === 'select').length);
     assert.equal(nodes(pageMenu(h), node => node.type === 'input' && node.props.type === 'range').length, 0);
     checked++;
   }
-  assert.equal(checked, 120); assert.equal(h.calls.length, 0);
+  assert.equal(checked, 312); assert.equal(h.calls.length, 0);
 });
 
 test('A real month push preserves committed text/photo until commit, carries context and keeps the same range without heading focus', async t => {

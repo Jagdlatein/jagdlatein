@@ -19,7 +19,7 @@ function load(relative, cache = new Map()) {
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' },
   });
   const resolve = id => {
-    if (id === 'next/link') return { __esModule: true, default: ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children) };
+    if (id === 'next/link') return { __esModule: true, default: ({ href, children, prefetch, scroll, ...props }) => React.createElement('a', { href, ...props }, children) };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => key }) };
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), cache);
     return projectRequire(id);
@@ -91,7 +91,8 @@ test('Guide renders knowledge previews as quiet links with scope labels and a st
   assert.match(html, /id="art-weiterlernen"/);
   assert.match(html, /Rehwild: weiterlernen/);
   assert.match(html, /Vertiefung zur Art/); assert.match(html, /Biologische Grundlagen/);
-  assert.equal((html.match(/<a /g) || []).length, 6);
+  assert.equal((html.match(/<a /g) || []).length, 7);
+  assert.ok(html.includes('href="/lernen/wildjahr?art=rehwild"'));
   assert.ok(html.includes('href="#art-lerntext-wissen-rehwild-milchpraemolar-2026"'));
   assert.doesNotMatch(html, /<button|<details|<img|<video/);
   assert.ok(html.includes(targets.roe.description));

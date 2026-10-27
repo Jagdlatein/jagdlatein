@@ -19,7 +19,8 @@ test('The server calendar follows Zurich month boundaries, including summer time
     ['2026-10-31T22:59:59Z', 10], ['2026-10-31T23:00:00Z', 11],
   ]) assert.equal(page.currentWildYearMonth(new Date(iso)), expected, iso);
   const result = page.getServerSideProps();
-  assert.deepEqual(Object.keys(result.props), ['currentMonth', 'initialSelection']);
+  assert.deepEqual(Object.keys(result.props), ['currentMonth', 'initialSelection', 'annualOverview']);
+  assert.equal(result.props.annualOverview, null);
   assert.ok(result.props.currentMonth >= 1 && result.props.currentMonth <= 12);
   assert.deepEqual(result.props.initialSelection, { slug: 'gamswild', month: result.props.currentMonth });
   assert.deepEqual(page.getServerSideProps({ query: { art: 'rehwild', monat: '4' } }).props.initialSelection, { slug: 'rehwild', month: 4 });

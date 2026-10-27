@@ -76,14 +76,14 @@ test('Actual old and new scene pages use the right MIME, complete transcript, ho
   }
 });
 
-test('All 120 Wildjahr selections link only their displayed species and never pretend that a film proves the selected month', t => {
+test('All 312 detailed Wildjahr selections link only their displayed species and never pretend that a film proves the selected month', t => {
   const h = setup('components/WildYear.js', { art: 'rehwild', monat: '1' }, { props: { currentMonth: 10 } });
   t.after(() => h.dispose());
   for (const species of wildYearSpecies) for (let month = 1; month <= 12; month++) {
     h.navigate({ art: species.slug, monat: String(month) });
     const nav = h.nodes(node => node.type === 'nav' && node.props['aria-label'] === 'Wildjahr vertiefen')[0];
     const destinations = nodes(nav, node => node.props?.href).map(node => node.props.href);
-    assert.deepEqual(destinations, [`/wildkunde/${species.slug}`, ...getWildlifeVideoLinks(species.slug).map(item => item.href)]);
+    assert.deepEqual(destinations, [`/wildkunde/${species.slug}`, `/jagdrecht/wildarten?art=${species.slug}`, ...getWildlifeVideoLinks(species.slug).map(item => item.href)]);
     if (getWildlifeVideoLinks(species.slug).length) assert.match(text(nav), /nicht automatisch den gewählten Monat/);
     assert.equal(h.calls.length, 0);
   }
