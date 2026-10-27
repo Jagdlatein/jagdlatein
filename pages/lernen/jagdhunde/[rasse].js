@@ -1,4 +1,5 @@
 import DogBreedProfile from "../../../components/DogBreedProfile";
+import { getDogBreedKnowledgeAssignment } from "../../../lib/dog-breed-routing";
 
 export async function getStaticPaths() {
   const { dogBreeds } = await import("../../../lib/dog-compass");
@@ -11,12 +12,11 @@ export async function getStaticProps({ params }) {
   if (!profile) return { notFound: true };
   const props = { profile, tasks: dogWorkTasks.filter(task => profile.tasks.includes(task.id)), contextSources: dogCompassSources };
   // Exact editorial assignments, independent of a fuzzy breed-name match.
-  const healthModuleId = profile.id === "labrador" ? "wissen-labrador-dnm1-eic-testgrenzen-2026"
-    : profile.id === "weimaraner" ? "wissen-weimaraner-slc2a9-huu-testgrenzen-2026" : null;
-  if (healthModuleId) {
+  const assignment = getDogBreedKnowledgeAssignment(profile.id);
+  if (assignment) {
     const { default: dataset } = await import("../../../data/learning-dog-genetics-2026-10-24.json");
-    const module = dataset.modules.find(item => item.id === healthModuleId);
-    if (!module) throw new Error(`Fehlende Genetik-Lektion für ${profile.id}`);
+    const module = dataset.modules.find(item => item.id === assignment.courseId);
+    if (!module?.lessons.some(lesson => lesson.id === assignment.lessonId)) throw new Error(`Fehlende Genetik-Lektion für ${profile.id}`);
     props.healthKnowledge = {
       breedId: profile.id,
       courseId: module.id,

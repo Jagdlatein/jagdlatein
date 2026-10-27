@@ -19,6 +19,7 @@ import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
 import CourseWildlifeLinks from "./CourseWildlifeLinks";
+import CourseBreedLinks from "./CourseBreedLinks";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -215,6 +216,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [] }) {
             {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
+            <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
           </PageMenu>
           <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">

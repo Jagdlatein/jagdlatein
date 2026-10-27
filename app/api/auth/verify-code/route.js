@@ -97,11 +97,8 @@ export async function POST(req) {
     }
 
     if ((loginCode.attempts || 0) >= 5) {
-      await supabase
-        .from("login_codes")
-        .delete()
-        .eq("email", email).eq("code_hash", loginCode.code_hash);
-
+      // Keep requested_at: exhausting a code must not remove the resend cooldown.
+      // The request route replaces this row atomically after that cooldown.
       return NextResponse.json(
         {
           success: false,

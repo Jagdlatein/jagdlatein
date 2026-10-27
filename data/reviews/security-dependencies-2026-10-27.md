@@ -1,0 +1,23 @@
+# Bekannte Paketlücken schließen
+
+27. Oktober 2026, Ausgangsstand `c42efa5`. Begrenzte Prüfung von Paketbaum und betroffenen Funktionen; kein Penetrationstest und keine Zusicherung vollständiger Sicherheit. Keine echten Konten, Bilder, E-Mails, Benachrichtigungen oder Zahlungen verwendet.
+
+## Befund und Auswahl
+
+Die anfängliche produktive Abhängigkeitsprüfung mit `npm audit --omit=dev --json` meldete sechs bekannte Befunde: einen kritischen, vier hohen und einen mittleren. Das ist die Zahl des Paketberichts, keine Zahl nachgewiesener Angriffe gegen Jagdlatein. Der vollständige spätere Paketbericht meldet nach der Änderung in allen Schweregraden null bekannte Befunde. Beide Berichte liegen als getrennte Arbeitsnachweise außerhalb des Repositories; neue Meldungen können dieses Ergebnis später ändern.
+
+- Next.js wird von exakt `15.5.24` auf `15.5.28` angehoben. Die tatsächlich gelesene [Herstellermeldung GHSA-2464-fhr4-w9xw](https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw) benennt unter anderem die Bildverarbeitung auf Linux mit glibc und die behobene Version. Auch die übrigen im Paketbericht betroffenen Next-Meldungen sind von dieser Version abgedeckt. Das auf Windows ausgeführte Bildtestprogramm reproduziert keinen Linux-Angriff; es bestätigt die tatsächlich durch Next aufgelöste Sharp-Version `0.35.5` und die weiterhin funktionierende lokale Bildverarbeitung.
+- Nodemailer wird von `10.0.14` auf exakt `10.1.4` angehoben. Die gelesene [Herstellermeldung GHSA-8c8m-p3m8-cjg8](https://github.com/nodemailer/nodemailer/security/advisories/GHSA-8c8m-p3m8-cjg8) betrifft die Empfängerinterpretation bei verschachtelten Kommentaren. Der echte Parser wird mit ausschließlich synthetischen `.invalid`-Adressen geprüft; es wird keine Nachricht versandt.
+- Die direkt deklarierte, im Anwendungscode unbenutzte Zod-3-Abhängigkeit entfällt. Die weiterhin benötigte transitive Zod-4-Abhängigkeit von `@vercel/cli-config` wird gezielt auf `4.6.7` gesetzt. Die gelesene [Meldung GHSA-mrhx-c7xc-m3w5](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5) und die [Änderung des Herstellers, PR 6652](https://github.com/colinhacks/zod/pull/6652), beschreiben die Größenprüfung begrenzter Arrays vor dem Durchlauf ihrer Elemente. Ein isolierter Test führt diese Prüfung mit dem echten Parser aus.
+
+`@vercel/functions` bleibt auf `3.10.1`: Die vorhandene verzögerte Benachrichtigungsstrecke benötigt dessen `getDeadline`- und `waitUntil`-Schnittstellen. Eine vom automatischen Audit vorgeschlagene Rückstufung wird deshalb nicht blind übernommen. React und React DOM bleiben unverändert auf `19.3.0`. Manifest und Sperrdatei stimmen mit den installierten Versionen überein; es werden keine neuen Dienste oder Berechtigungen eingerichtet.
+
+## Technische Gegenprüfung
+
+`scripts/test-security-dependencies.cjs` prüft die exakten Manifest-/Sperr-/Installationsversionen, eine ausschließlich im Speicher erzeugte winzige technische PNG-Datei mit dem echten nativen Sharp, die begrenzte Arrayvalidierung und ein gültiges Schema im tatsächlich transitiv verwendeten Zod, normale und speziell gequotete Empfänger im echten Nodemailer-Parser sowie die weiterhin vorhandenen Vercel-Funktionen. Diese Datei führt keine ausgehenden Versandaktionen aus.
+
+Zusätzlich werden die betroffenen vorhandenen Anmelde-, Zugriffs-, Verwaltungs-, Zahlungs-, Push-, Foto-, Community- und Nachrichtenprüfungen mit ihren isolierten Doubles ausgeführt. Die eng begrenzte Korrektur des Login-Code-Cooldowns und die vier Browser-Sicherheitsheader haben eigene Berichte und Regressionen; ihr Nachweis wird nicht aus dem Paket-Audit abgeleitet. Ein unabhängiger Reviewer las die Herstellerhinweise, prüfte Sperrdatei und reale Exporte und wiederholte die Paketprüfung ohne bekannte Befunde.
+
+25 passende Testdateien bestehen gemeinsam mit **460 Fällen, null übersprungen**; die fünf Paketfälle wurden nach unabhängiger Verschärfung der beiden Mailparser-Fixtures nochmals erfolgreich ausgeführt. Der vollständige Produktionsbuild erzeugt **509 Seiten**. Eine bereits am Ausgangsstand fehlschlagende H1-Zählung im Login-Test wurde anhand identisch gerenderter HEAD- und Arbeitsbaum-Ausgabe nachgewiesen und ausschließlich auf die bestehende Überschrift mit Attributen angepasst; Titel, Fokusmarker und Datenschutzassertionen werden weiter geprüft. Es entstand keine Produktänderung für diesen Test.
+
+Die anschließende öffentliche Auslieferungsprüfung wird separat protokolliert. Ein erfolgreicher Build oder Paketbericht beweist weder die Sicherheit jeder Anwendungskomponente noch einen echten Test auf Apple-/Android-Geräten.

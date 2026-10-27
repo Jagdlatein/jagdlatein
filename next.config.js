@@ -27,6 +27,19 @@ const nextConfig = {
     ],
   },
 
+  async headers() {
+    return [{
+      source: "/:path*",
+      headers: [
+        // Controls who may embed Jagdlatein, not the video/PDF frames it loads.
+        { key: "Content-Security-Policy", value: "frame-ancestors 'self';" },
+        { key: "X-Frame-Options", value: "SAMEORIGIN" },
+        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        { key: "X-Content-Type-Options", value: "nosniff" },
+      ],
+    }];
+  },
+
   async redirects() {
     return [
       {
