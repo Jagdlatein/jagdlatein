@@ -56,11 +56,43 @@ test('All detailed questions link to existing lessons, courses and country notes
     ...load('lib/learning-round6-oct18.js').round6ExpansionModules];
   const addedIds = new Set(added.map(module => module.id));
   const existing = learningModules.filter(module => !addedIds.has(module.id));
-  assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(existing.length, 84);
-  assert.equal(existing.reduce((sum, module) => sum + module.lessons.length, 0), 431);
-  assert.equal(existing.reduce((sum, module) => sum + module.questions.length, 0), 850);
-  assert.equal(learningCounts.lessons, 431 + added.reduce((sum, module) => sum + module.lessons.length, 0));
-  assert.equal(learningQuestions.length, 850 + added.reduce((sum, module) => sum + module.questions.length, 0));
+  // Count the complete named groups against fixed editorial inventories, rather
+  // than deriving a desired total from the same actual array being checked.
+  // Since the original84-course snapshot: five reviewed standalone courses and
+  // one appended dog-airflow lesson add exactly5 courses,7 lessons and13 questions.
+  const existingGroups = [
+    ['lib/learning-wildlife.js', 'wildlifeModules', 8, 24, 64],
+    ['lib/learning-practice.js', 'practiceModules', 16, 48, 128],
+    ['lib/learning-expansion-nature.js', 'natureExpansionModules', 12, 72, 144],
+    ['lib/learning-expansion-practice.js', 'practiceExpansionModules', 12, 72, 144],
+    ['lib/learning-expansion-care.js', 'careExpansionModules', 12, 72, 144],
+    ['lib/learning-deepening-nature.js', 'natureDeepeningModules', 4, 24, 32],
+    ['lib/learning-deepening-practice.js', 'practiceDeepeningModules', 5, 36, 44],
+    ['lib/learning-deepening-care.js', 'careDeepeningModules', 4, 24, 32],
+    ['lib/learning-dog-depth.js', 'dogDepthModules', 5, 30, 59],
+    ['lib/learning-wildlife-depth.js', 'wildlifeDepthModules', 6, 30, 60],
+    ['lib/learning-growth-oct18.js', 'dogGeneticsModules', 2, 2, 6],
+    ['lib/learning-growth-oct18.js', 'redDeerVoiceModules', 1, 1, 2],
+    ['lib/learning-growth-oct18.js', 'beaverIncisorModules', 1, 2, 3],
+    ['lib/learning-growth-oct18.js', 'roePremolarModules', 1, 1, 1],
+  ];
+  const groupedIds = [], expectedExisting = { modules: 0, lessons: 0, questions: 0 };
+  for (const [file, exportName, modules, lessons, questions] of existingGroups) {
+    const group = load(file)[exportName];
+    assert.equal(group.length, modules, exportName);
+    assert.equal(group.reduce((sum, module) => sum + module.lessons.length, 0), lessons, exportName);
+    assert.equal(group.reduce((sum, module) => sum + module.questions.length, 0), questions, exportName);
+    groupedIds.push(...group.map(module => module.id));
+    expectedExisting.modules += modules; expectedExisting.lessons += lessons; expectedExisting.questions += questions;
+  }
+  assert.deepEqual(expectedExisting, { modules: 89, lessons: 438, questions: 863 });
+  assert.equal(new Set(groupedIds).size, expectedExisting.modules);
+  assert.deepEqual(existing.map(module => module.id), groupedIds);
+  assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(existing.length, expectedExisting.modules);
+  assert.equal(existing.reduce((sum, module) => sum + module.lessons.length, 0), expectedExisting.lessons);
+  assert.equal(existing.reduce((sum, module) => sum + module.questions.length, 0), expectedExisting.questions);
+  assert.equal(learningCounts.lessons, expectedExisting.lessons + added.reduce((sum, module) => sum + module.lessons.length, 0));
+  assert.equal(learningQuestions.length, expectedExisting.questions + added.reduce((sum, module) => sum + module.questions.length, 0));
   assert.equal(new Set(courses.map(course => course.id)).size, courses.length);
   for (const module of learningModules) {
     const lessons = new Set(module.lessons.map(lesson => lesson.id));

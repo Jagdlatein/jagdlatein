@@ -1,4 +1,4 @@
-// Only these two independently reviewed October-27 additions are projected out
+// Only these independently reviewed October-27 additions are projected out
 // of older preservation snapshots. Unknown lessons, questions, sources and
 // other course fields remain visible and therefore still fail the old goldens.
 const additions = new Map([
@@ -20,10 +20,14 @@ const additions = new Map([
       'https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full',
     ],
   }],
+  ['wissen-ausbau-federaufbau-funktion-2026', {
+    lessonId: 'federwachstum',
+    questionIds: ['federwachstum-blutversorgung'],
+    sourceUrls: ['https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html'],
+  }],
 ]);
 
-function stripOctober27Additions(course) {
-  const addition = additions.get(course.id);
+function stripExactAddition(course, addition) {
   if (!addition) return course;
   const questionIds = new Set(addition.questionIds.flatMap(id => [id, `${course.id}-${id}`]));
   return {
@@ -32,6 +36,23 @@ function stripOctober27Additions(course) {
     lessons: course.lessons.filter(lesson => lesson.id !== addition.lessonId),
     questions: course.questions.filter(question => !questionIds.has(question.id)),
   };
+}
+
+function stripOctober27Additions(course) {
+  return stripExactAddition(course, additions.get(course.id));
+}
+
+function stripFeatherGrowthAddition(course) {
+  return course.id === 'wissen-ausbau-federaufbau-funktion-2026'
+    ? stripExactAddition(course, additions.get(course.id)) : course;
+}
+
+function isFeatherGrowthEvidence(record) {
+  return record.moduleId === 'wissen-ausbau-federaufbau-funktion-2026' && record.lessonId === 'federwachstum';
+}
+
+function isFeatherGrowthCard(card) {
+  return card.id === 'flash-wissen-ausbau-federaufbau-funktion-2026-federwachstum-blutversorgung';
 }
 
 function isOctober27Evidence(record) {
@@ -52,4 +73,5 @@ function stripOctober27GuideTargets(slug, targets) {
     && target.topicId === 'art-lerntext-wissen-ausbau-biologie-verdauungsvergleich-2026-kropfmilch'));
 }
 
-module.exports = { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets };
+module.exports = { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets,
+  stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard };

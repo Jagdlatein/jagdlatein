@@ -29,7 +29,7 @@ test('The full historical dataset, original course fields and all other courses 
   const historicalRawModule = { ...original, sources: original.sources.slice(0, 5), lessons: original.lessons.slice(0, 4), questions: original.questions.slice(0, 16) };
   assert.equal(hash(historicalRawModule), '9ff29ff15b57c500668ee9205f26f434a9dc7389fd1ed6f28d2ac2270d4517cb');
   assert.equal(hash(raw.modules.filter(item => item.id !== courseId).map(stripOctober27Additions)), 'cd1ec92eff8f748f0ce4ad5c788a9ac84537973f3ce1bce1f37b0e054625b1fd');
-  assert.equal(hash(raw.evidence.filter(item => item.moduleId === courseId && item.lessonId !== lessonId)), 'df4f6c5641e1e5150b6fd400f1ac0f806185cee911a6a3fb98513c29ff10612f');
+  assert.equal(hash(raw.evidence.filter(item => item.moduleId === courseId && item.lessonId !== lessonId && !isOctober27Evidence(item))), 'df4f6c5641e1e5150b6fd400f1ac0f806185cee911a6a3fb98513c29ff10612f');
   const historicalDataset = {
     ...raw,
     scope: raw.scope.replace('25 Lektionen und 98 Fragen', '24 Lektionen und 96 Fragen'),
@@ -48,9 +48,9 @@ test('The full historical dataset, original course fields and all other courses 
 
 test('One appended self-contained lesson has a narrow review date and two precise source mappings', () => {
   assert.equal(learningModules.filter(item => item.id === courseId).length, 1);
-  assert.equal(course.lessons.length, 5);
-  assert.equal(course.questions.length, 18);
-  assert.equal(course.lessons.at(-1).id, lessonId);
+  assert.equal(course.lessons.length, 6);
+  assert.equal(course.questions.length, 19);
+  assert.equal(course.lessons[4].id, lessonId);
   assert.equal(lesson.reviewedOn, '2026-10-26');
   const text = lesson.paragraphs.join(' ');
   const words = text.split(/\s+/).length;
@@ -66,9 +66,10 @@ test('One appended self-contained lesson has a narrow review date and two precis
   assert.doesNotMatch(text, /\d|Kormoran|alle Vogelarten|Kontaktwinkel|Prozent|Meter|Wachsester|Fettsäure/);
   assert.equal(lesson.image, undefined);
   assert.equal(lesson.diagram, undefined);
-  assert.equal(course.sources.length, 7);
-  assert.deepEqual(course.sources.slice(5).map(source => source.url), [originalStudy, review]);
-  assert.ok(course.sources.slice(5).every(source => source.checkedOn === '2026-10-26' && JSON.stringify(source.lessonIds) === JSON.stringify([lessonId])));
+  assert.equal(course.sources.length, 8);
+  const waterSources = course.sources.filter(source => source.lessonIds?.includes(lessonId));
+  assert.deepEqual(waterSources.map(source => source.url), [originalStudy, review]);
+  assert.ok(waterSources.every(source => source.checkedOn === '2026-10-26' && JSON.stringify(source.lessonIds) === JSON.stringify([lessonId])));
   assert.deepEqual(lesson.evidence.map(item => item.sources.map(source => source.url)), [[cornell, review], [originalStudy, review]]);
   const record = raw.evidence.find(item => item.moduleId === courseId && item.lessonId === lessonId);
   assert.match(record.claims[1].sourceRoles[originalStudy], /Nur der Originalabstract/);
@@ -80,7 +81,7 @@ test('All published cards including starter order stay exact; two own questions 
   assert.equal(historical.length, 1713);
   assert.equal(hash(historical), 'cdc940d3c490db17651079605f4ac647c4ddc7a95d4b79de7ac706ac69c6fa2b');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  assert.equal(hash(cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId)), '37e764c2cfe0b658882558851339be1e8f3469371ee272e995e8dc2efa63612e');
+  assert.equal(hash(cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId && !isOctober27Card(card))), '37e764c2cfe0b658882558851339be1e8f3469371ee272e995e8dc2efa63612e');
   assert.equal(newCards.length, 2);
   const questions = course.questions.filter(item => item.lessonId === lessonId);
   assert.equal(questions.length, 2);
@@ -111,7 +112,7 @@ test('The existing category branch, search and course props expose the exact new
   assert.equal(found.href, `/kurse/${courseId}#lesson-${lessonId}`);
   assert.equal(found.lessonTitle, lesson.title);
   const props = load('pages/kurse/[slug].js').getStaticProps({ params: { slug: courseId } }).props;
-  assert.deepEqual(props.module.lessons.at(-1), lesson);
+  assert.deepEqual(props.module.lessons.find(item => item.id === lessonId), lesson);
   assert.equal(props.flashcards.lessons[lessonId], 2);
 });
 
@@ -136,7 +137,7 @@ test('The real course reader places complete learning content before the closed 
   assert.match(html.slice(sourceStart), /26\. Oktober 2026/);
   assert.doesNotMatch(html.slice(sourceStart), /16\. Oktober 2026/);
   assert.ok(!html.slice(sourceStart).split('>')[0].includes('open'));
-  assert.match(html, /Lektion 5 von 5/);
+  assert.match(html, /Lektion 5 von 6/);
   const Evidence = load('components/LessonEvidence.js').default;
   const oldHtml = renderToStaticMarkup(React.createElement(Evidence, { lesson: course.lessons[0], reviewedOn: course.reviewedOn }));
   assert.match(oldHtml, /16\. Oktober 2026/);
@@ -174,8 +175,8 @@ test('Fresh offline packs retain all new and historical dates, sources and quest
     assert.equal(pack.courses[0].reviewedOn, '2026-10-16');
     assert.deepEqual(pack.courses[0].lessons, course.lessons);
     assert.deepEqual(pack.courses[0].questions, course.questions);
-    assert.equal(pack.courses[0].lessons.at(-1).reviewedOn, '2026-10-26');
-    assert.deepEqual(pack.courses[0].lessons.at(-1).evidence, lesson.evidence);
+    assert.equal(pack.courses[0].lessons.find(item => item.id === lessonId).reviewedOn, '2026-10-26');
+    assert.deepEqual(pack.courses[0].lessons.find(item => item.id === lessonId).evidence, lesson.evidence);
     assert.equal(validate(pack, pack.expiresAt), false);
   } finally {
     if (previous === undefined) delete process.env.JL_SESSION_SECRET; else process.env.JL_SESSION_SECRET = previous;

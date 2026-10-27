@@ -3,6 +3,7 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs'), path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader();
 const { getCourseBreedLink, getDogBreedKnowledgeAssignment } = load('lib/dog-breed-routing.js');
@@ -108,9 +109,9 @@ test('The real course page shows one short same-window breed link only in its ex
 });
 
 test('The complete curriculum, all cards and existing course SSG payload shape remain unchanged', () => {
-  assert.equal(hash(learningModules), '2db74f0237e7983eacefd03a86abe19c071e73ebabb83b8da0fd59785b732cd8');
+  assert.equal(hash(learningModules.map(stripFeatherGrowthAddition)), '2db74f0237e7983eacefd03a86abe19c071e73ebabb83b8da0fd59785b732cd8');
   const cards = load('lib/learning-flashcards.js').getFlashcards();
-  assert.equal(hash(cards), 'e01e7e45482cc7eac2d3ab980cd40a0188eabae531e90d712276ccab5bdd44c6');
+  assert.equal(hash(cards.filter(card => !isFeatherGrowthCard(card))), 'e01e7e45482cc7eac2d3ab980cd40a0188eabae531e90d712276ccab5bdd44c6');
   const page = load('pages/kurse/[slug].js');
   for (const module of learningModules) assert.deepEqual(Object.keys(page.getStaticProps({ params: { slug: module.id } }).props).sort(), ['module', 'flashcards', 'wildlifeLinks'].sort());
   const geneticsCards = cards.filter(card => expected.some(item => item.courseId === card.moduleId));

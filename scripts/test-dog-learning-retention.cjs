@@ -5,6 +5,7 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
@@ -62,7 +63,10 @@ test('Only one appended sleep lesson, question, evidence record and two sources 
   assert.deepEqual(rawCourse.sources.slice(0, 5), originalCourse.sources);
   assert.equal(rawCourse.lessons.at(-1).id, lessonId);
   assert.deepEqual(rawCourse.sources.slice(5).map(item => item.url), [primary, review]);
-  const restored = structuredClone(raw), target = restored.modules.find(item => item.id === courseId);
+  const restored = structuredClone(raw);
+  restored.modules = restored.modules.map(stripFeatherGrowthAddition);
+  restored.evidence = restored.evidence.filter(item => !isFeatherGrowthEvidence(item));
+  const target = restored.modules.find(item => item.id === courseId);
   target.lessons.pop(); target.questions.pop(); target.sources.splice(-2);
   assert.equal(restored.evidence.at(-1).moduleId, courseId); assert.equal(restored.evidence.pop().lessonId, lessonId);
   assert.deepEqual(restored, originalRaw);
@@ -86,14 +90,14 @@ test('The foreign afternoon content stays untouched; the exact independently own
 test('All previous prepared course objects and every previous card remain exact and in order', () => {
   const oldModules = before('lib/learning-curriculum.js').learningModules;
   assert.equal(curriculum.learningModules.length, oldModules.length);
-  const restored = curriculum.learningModules.map(item => {
+  const restored = curriculum.learningModules.map(stripFeatherGrowthAddition).map(item => {
     if (item.id !== courseId) return item;
     return { ...item, lessons: item.lessons.slice(0, -1), questions: item.questions.slice(0, -1), sources: item.sources.slice(0, -2) };
   });
   assert.deepEqual(restored, oldModules);
   const oldCards = before('lib/learning-flashcards.js').getFlashcards();
-  assert.equal(cards.length, oldCards.length + 1);
-  assert.deepEqual(cards.filter(item => item.id !== cardId), oldCards);
+  assert.equal(cards.filter(item => !isFeatherGrowthCard(item)).length, oldCards.length + 1);
+  assert.deepEqual(cards.filter(item => item.id !== cardId && !isFeatherGrowthCard(item)), oldCards);
   assert.deepEqual(cards.slice(0, 116), oldCards.slice(0, 116));
 });
 
@@ -107,7 +111,7 @@ test('The complete new lesson teaches acquisition versus later retrieval with it
   assert.equal(course.reviewedOn, '2026-10-16'); assert.equal(lesson.reviewedOn, '2026-10-27');
   assert.equal(lesson.evidence.length, 2);
   for (const claim of lesson.evidence) assert.deepEqual(claim.sources.map(item => item.url), [primary, review]);
-  const record = raw.evidence.at(-1);
+  const record = raw.evidence.find(item => item.moduleId === courseId && item.lessonId === lessonId);
   assert.match(record.claims[1].sourceRoles[review], /keine zweite Datenerhebung.*Replikation/);
   for (const old of course.lessons.slice(0, -1)) assert.ok(old.evidence.every(claim => claim.sources.every(source => ![primary, review].includes(source.url))));
 });

@@ -382,7 +382,9 @@
           "organization": "Université de Toulouse; Giraudeau, Duval, Guillon, Bretagnolle, Gutierrez und Heeb",
           "supports": "Originalabstract zu Versuchen an gehaltenen Stockenten: länger blockierter Drüsenzugang, Gefiederzustand und Wasseraufnahme. Kein gelesener Volltext, keine Übertragung auf alle Vogelarten oder exakte Wirkungsdauer.",
           "checkedOn": "2026-10-26",
-          "lessonIds": ["wasserschutz"]
+          "lessonIds": [
+            "wasserschutz"
+          ]
         },
         {
           "label": "Muzio und Rubega 2024: Wasserabweisung von Federn – Forschungsüberblick",
@@ -390,7 +392,19 @@
           "organization": "University of Connecticut; Frank M. S. Muzio und Margaret A. Rubega",
           "supports": "Volltextabschnitte zu Benetzbarkeit, Einflussfaktoren und Synthese: Feinstruktur, Pflegebeitrag des Sekrets und offene Mechanismen. Unabhängige Einordnung, keine experimentelle Wiederholung des Stockentenversuchs.",
           "checkedOn": "2026-10-26",
-          "lessonIds": ["wasserschutz"]
+          "lessonIds": [
+            "wasserschutz"
+          ]
+        },
+        {
+          "label": "Florida State University: Federentwicklung und Blutversorgung",
+          "url": "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html",
+          "organization": "Florida State University; Michael W. Davidson; National High Magnetic Field Laboratory",
+          "supports": "Molecular Expressions, Down Feathers: Papille im Hautfollikel, Versorgung der wachsenden Feder durch Blutgefäße und Ende dieser Versorgung bei voller Entwicklung. Nur diese anatomischen Aussagen; keine Übernahme der umgebenden Hormon-, Evolutions- oder gesamten Schafthohlheitsbehauptungen. Institutionelle Erklärung, keine neue experimentelle Wiederholung.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "federwachstum"
+          ]
         }
       ],
       "lessons": [
@@ -445,6 +459,19 @@
           ],
           "takeaway": "Geordnete Federstrukturen und Pflege unterstützen die Wasserabweisung; Bürzeldrüsensekret allein ist keine universelle Abdichtung.",
           "exercise": "Erkläre Wasserabweisung mit Federstruktur, Pflege und Sekret. Unterscheide dabei die Beobachtung aus dem Stockentenversuch von einer unbegrenzten Wasserdichtheitsgarantie."
+        },
+        {
+          "id": "federwachstum",
+          "title": "Federwachstum: Versorgung und Ausreifung",
+          "paragraphs": [
+            "Eine Feder entsteht in einem Federfollikel, einer kleinen Vertiefung der Haut. Dort liegt die Papille, aus der sich die Feder entwickelt. Während des Wachstums wird die entstehende Feder über Blutgefäße versorgt. Der Bildungsort in der Haut und das bereits nach außen gewachsene Federmaterial sind deshalb nicht gleichzusetzen.",
+            "Beim Ausreifen zieht sich die Federpulpa, das versorgende Gewebe im Federkiel, zurück. Die Blutversorgung des wachsenden Federinneren endet. Eine ausgewachsene Feder hat somit nicht mehr denselben Versorgungszustand wie eine noch wachsende. Das bezieht sich auf das Federinnere; die umgebende Haut wird dadurch nicht als blutlos beschrieben.",
+            "Eigene Denkübung: Zeichne nebeneinander Wachstum und Ausreifung und kennzeichne Follikel und innere Versorgung. Das Schema erklärt ein Entwicklungsprinzip, keinen gemeinsamen Mausertag aller Arten. Aus einem einzelnen Federfoto folgen weder eine sichere Beurteilung der Blutversorgung noch eine Anleitung zum Eingriff am Vogel."
+          ],
+          "takeaway": "Die wachsende Feder wird im Inneren mit Blut versorgt; beim Ausreifen endet diese Versorgung.",
+          "exercise": "Vergleiche auf Papier eine wachsende und eine ausgereifte Feder. Kennzeichne Hautfollikel und innere Versorgung, ohne daraus einen Behandlungsschritt abzuleiten.",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true
         }
       ],
       "questions": [
@@ -681,6 +708,19 @@
           ],
           "answer": 0,
           "explain": "Wasserabweisung erschwert die Benetzung. Sie ist von einer unbegrenzten Undurchlässigkeit zu unterscheiden; die Feinstruktur und ihr Zustand bleiben wesentlich."
+        },
+        {
+          "id": "federwachstum-blutversorgung",
+          "lessonId": "federwachstum",
+          "q": "Wie verändert sich die Blutversorgung einer Feder zwischen Wachstum und Ausreifung?",
+          "options": [
+            "Sie beginnt erst, wenn die Feder vollständig ausgewachsen ist.",
+            "Die Versorgung des Federinneren bleibt während und nach dem Wachstum unverändert.",
+            "Das wachsende Federinnere wird versorgt; bei der Ausreifung endet diese Blutversorgung.",
+            "Nur die äußere Fahne wird nach dem Wachstum mit neuen Blutgefäßen durchzogen."
+          ],
+          "answer": 2,
+          "explain": "Das Wachstum ist mit versorgendem Gewebe und Blutgefäßen verbunden. Bei der Ausreifung zieht sich die Federpulpa zurück und die Blutversorgung des wachsenden Federinneren endet. Diese Unterscheidung macht keine Aussage, dass die umgebende Haut blutlos sei."
         }
       ]
     },
@@ -2381,6 +2421,34 @@
           "sourceRoles": {
             "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292958/": "Results and Discussion: Zusammenhang von EEG und Leistungsänderung; zweiter Versuch ohne signifikante unmittelbare Verbesserung der Schlafgruppe. Methoden und spätere Messzeitpunkte begrenzen die Übertragung; optimale Schlafmenge bleibt offene Frage.",
             "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2021.646022/full": "Interpretation für Arbeitshundeforschung, keine zweite Datenerhebung oder unabhängige Replikation des konkreten Nullbefunds. Zukunftsvorschläge werden nicht als bewiesener individueller Trainingsplan übernommen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "federwachstum",
+      "claims": [
+        {
+          "claim": "Eine Feder entwickelt sich aus einer Papille in einem Hautfollikel; während des Wachstums wird die entstehende Feder durch Blutgefäße versorgt. Haut, Bildungsort und nach außen gewachsenes Federmaterial werden begrifflich getrennt.",
+          "sourceUrls": [
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+            "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html"
+          ],
+          "sourceRoles": {
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Ginn und Melville 1983, Reprint 1995, gedruckte Seite 10, The development of the feather (physische PDF-Seite 11): Papille, Blutversorgung und Hautfollikel tatsächlich gelesen. Historische Fachzusammenfassung, kein neuer Wachstumsversuch.",
+            "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html": "Down Feathers, erster Sachabsatz: Papillen in Follikeln und Versorgung aus dermalen Blutgefäßen tatsächlich gelesen. Unabhängige institutionelle Erklärung; kein Beleg für identische Mauserzeiten oder klinische Eingriffe."
+          }
+        },
+        {
+          "claim": "Bei der Ausreifung zieht sich die Federpulpa aus dem Federkiel zurück und die Blutversorgung des wachsenden Federinneren endet. Gemeint ist dieser Entwicklungszustand, nicht eine blutlose umgebende Haut, ein vollständiger Mauserkalender oder eine Diagnose aus einem Federfoto.",
+          "sourceUrls": [
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+            "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html"
+          ],
+          "sourceRoles": {
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Gedruckte Seite 25, Feather growth (physische PDF-Seite 26): Rückzug der Pulpa aus dem Calamus und Verhornung der Federbasis tatsächlich gelesen. Keine Wachstumsraten, Zeitspannen oder Beringungsschritte übernommen.",
+            "https://micro.magnet.fsu.edu/primer/techniques/fluorescence/gallery/downfeathers.html": "Down Feathers, Folgesatz: Ende der Blutversorgung bei voller Größe tatsächlich gelesen. Keine umgebende Aussage zu Hormonauslösung, Evolution oder einem ausnahmslos hohlen Gesamtschaft übernommen."
           }
         }
       ]

@@ -40,21 +40,43 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const [loading, setLoading] = useState(false);
   const [resendSeconds, setResendSeconds] = useState(0);
   const busy = useRef(false);
-  const mounted = useRef(true);
+  const mounted = useRef(false);
   const request = useRef(null);
   const requestTimer = useRef(null);
   const redirectTimer = useRef(null);
   const resendTimer = useRef(null);
   const resendDeadlines = useRef(new Map());
-  const authMode = useRef(flowKey);
+  const flowIdentity = useRef({ key: flowKey });
+  if (flowIdentity.current.key !== flowKey) flowIdentity.current = { key: flowKey };
+  const flow = flowIdentity.current;
+  const authMode = useRef(flow);
+  const formIdentity = useRef({ flow, step });
+  if (formIdentity.current.flow !== flow || formIdentity.current.step !== step) formIdentity.current = { flow, step };
+  const form = formIdentity.current;
+  const resendRevision = useRef(0);
+  const draft = useRef({ email, code, revision: 0 });
+  if (draft.current.email !== email || draft.current.code !== code) draft.current = { email, code, revision: draft.current.revision + 1 };
+  const draftRevision = draft.current.revision;
+  const isCurrentFlow = () => mounted.current && flowIdentity.current === flow && authMode.current === flow;
+  const isCurrentForm = () => isCurrentFlow() && formIdentity.current === form;
+
+  function updateDraft(values) {
+    if (Object.keys(values).some(key => draft.current[key] !== values[key])) draft.current = { ...draft.current, ...values, revision: draft.current.revision + 1 };
+  }
+
+  function changeStep(next) {
+    // Invalidate the former step before React paints the replacement form.
+    if (formIdentity.current.step !== next) formIdentity.current = { flow, step: next };
+    setStep(next);
+  }
 
   useEffect(() => {
     mounted.current = true;
     // Both routes export this component, so Next can retain it when switching.
     // A code belongs to one endpoint; only the address survives the switch.
-    if (authMode.current !== flowKey) {
-      authMode.current = flowKey;
-      setStep("email");
+    if (authMode.current !== flow) {
+      authMode.current = flow;
+      changeStep("email");
       setCode("");
       setMsg("");
       setLoading(false);
@@ -68,8 +90,9 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       clearTimeout(requestTimer.current);
       clearTimeout(redirectTimer.current);
       clearTimeout(resendTimer.current);
+      resendRevision.current++;
     };
-  }, [flowKey]);
+  }, [flow]);
 
   function resendKey(cleanEmail) {
     return `${registrationMode ? "register" : "login"}:${cleanEmail}`;
@@ -80,6 +103,8 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   }
 
   function updateResendWait(value) {
+    if (!isCurrentFlow()) return;
+    const revision = ++resendRevision.current;
     clearTimeout(resendTimer.current);
     const cleanEmail = value.toLowerCase().trim();
     const remaining = remainingWait(cleanEmail);
@@ -87,13 +112,13 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     // Use the original deadline rather than decrementing a counter. Timers
     // paused by a mobile browser then catch up when the page becomes active.
     if (remaining > 0) resendTimer.current = setTimeout(() => {
-      if (mounted.current) updateResendWait(cleanEmail);
+      if (isCurrentFlow() && resendRevision.current === revision) updateResendWait(cleanEmail);
     }, 1000);
   }
 
   async function submitCode(event, verify) {
     event.preventDefault();
-    if (busy.current) return;
+    if (!isCurrentForm() || draft.current.revision !== draftRevision || busy.current) return;
     const cleanEmail = email.toLowerCase().trim();
     setMsg("");
     if (verify ? !/^\d{6}$/.test(code) : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
@@ -102,7 +127,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     }
     if (!verify && remainingWait(cleanEmail) > 0) {
       updateResendWait(cleanEmail);
-      setStep("code");
+      changeStep("code");
       setMsg("Nutze den zuletzt angeforderten Code. Einen neuen kannst du nach Ablauf der Wartezeit anfordern.");
       return;
     }
@@ -110,9 +135,9 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     setLoading(true);
     const controller = new AbortController();
     request.current = controller;
-    const timeout = setTimeout(() => controller.abort(), 18000);
+    const isCurrentRequest = () => isCurrentFlow() && request.current === controller;
+    const timeout = setTimeout(() => { if (isCurrentRequest()) controller.abort(); }, 18000);
     requestTimer.current = timeout;
-    const isCurrentRequest = () => mounted.current && authMode.current === flowKey && request.current === controller;
     let redirecting = false;
     try {
       const endpoint = registrationMode
@@ -143,7 +168,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
         updateResendWait(cleanEmail);
         setEmail(cleanEmail);
         setCode("");
-        setStep("code");
+        changeStep("code");
         setMsg(typeof data.message === "string" && data.message.trim() ? data.message : (registrationMode
           ? "Falls die Adresse erreichbar ist, wurde ein Bestätigungscode versendet."
           : "Falls diese E-Mail registriert ist, wurde ein Login-Code versendet."));
@@ -182,16 +207,16 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       </p>}
       <form className={authStyles.form} onSubmit={event => submitCode(event, step === "code")} aria-busy={loading}>
         {step === "email" ? <label>E-Mail-Adresse
-          <input key="email" type="email" inputMode="email" enterKeyHint="next" autoComplete="email" autoCapitalize="none" spellCheck={false} autoFocus placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => { setEmail(event.target.value); updateResendWait(event.target.value); }} aria-describedby="login-help" required />
+          <input key="email" type="email" inputMode="email" enterKeyHint="next" autoComplete="email" autoCapitalize="none" spellCheck={false} autoFocus placeholder="name@beispiel.de" value={email} disabled={loading} onChange={event => { if (!isCurrentForm() || busy.current) return; updateDraft({ email: event.target.value }); setEmail(event.target.value); updateResendWait(event.target.value); }} aria-describedby="login-help" required />
         </label> : <label>{registrationMode ? "6-stelliger Bestätigungscode" : "6-stelliger Login-Code"}
-          <input key="code" type="text" inputMode="numeric" enterKeyHint="go" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} className={authStyles.code} aria-describedby="login-help" required />
+          <input key="code" type="text" inputMode="numeric" enterKeyHint="go" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => { if (!isCurrentForm() || busy.current) return; const value = event.target.value.replace(/\D/g, "").slice(0, 6); updateDraft({ code: value }); setCode(value); }} className={authStyles.code} aria-describedby="login-help" required />
         </label>}
         <p id="login-help" className={authStyles.help}>{step === "email" ? "Kein Passwort nötig: Du bestätigst deine E-Mail mit einem einmaligen Code." : isTestMail && testMailMode === "sink" ? "Der Code steht im getrennten Testpostfach. Gib den neuesten Code ein; er ist 10 Minuten gültig." : "Öffne dein E-Mail-Postfach und gib den neuesten Code ein; er ist 10 Minuten gültig. Prüfe auch den Spamordner."}</p>
         <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registrationMode ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und zum Abo" : "Einloggen"))}</button>
       </form>
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
       {step === "code" && <div className={authStyles.codeActions}>
-        <button type="button" className={styles.secondary} disabled={loading} onClick={() => { setStep("email"); setCode(""); setMsg(""); }}>E-Mail ändern</button>
+        <button type="button" className={styles.secondary} disabled={loading} onClick={() => { if (!isCurrentForm() || busy.current) return; changeStep("email"); setCode(""); setMsg(""); }}>E-Mail ändern</button>
         <button type="button" className={styles.secondary} disabled={loading || resendSeconds > 0} aria-describedby="resend-help" onClick={event => submitCode(event, false)}>Neuen Code senden</button>
         <p id="resend-help">{resendSeconds > 0 ? <><span aria-hidden="true">Neuer Code in {resendSeconds} {resendSeconds === 1 ? "Sekunde" : "Sekunden"}.</span><span className={authStyles.srOnly}>Bitte warte kurz, bevor du einen neuen Code anforderst.</span></> : "Kein Code angekommen? Prüfe zuerst den Spamordner und fordere dann einen neuen Code an."}</p>
       </div>}
