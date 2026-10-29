@@ -280,7 +280,7 @@ test('Installable web metadata uses only existing correctly sized local icons an
   assert.equal(manifest.name,'Jagdlatein');assert.equal(manifest.short_name,'Jagdlatein');
   assert.deepEqual(manifest.icons.map(item=>item.sizes),['192x192','512x512']);
   for(const icon of manifest.icons){
-    assert.match(icon.src,/^\/android_(192|512)\.png$/);assert.equal(icon.type,'image/png');
+    assert.match(icon.src,/^\/branding\/app-(192|512)-2026-10-29\.png$/);assert.equal(icon.type,'image/png');
     const bytes=fs.readFileSync(path.join(root,'public',icon.src.slice(1)));assert.equal(bytes.toString('hex',0,8),'89504e470d0a1a0a');
     assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);
   }

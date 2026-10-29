@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-29",
+  "role": "operator-approved brand illustration, not a teaching photograph",
+  "originalFilename": "IMG_20250715_104310_496-1.webp",
+  "editMethod": "Built-in Imagegen: remove the three lower foreground beer mugs; preserve the two raised mugs, characters and lettering",
+  "rights": "Operator-supplied illustration, explicitly approved for Jagdlatein branding. No new public license assigned.",
+  "source": "mobile/branding/jagdlatein-logo.png",
+  "sourceSha256": "96480878aea7652bd43497a103854e0ba93a3e0d932b96c3583d6be23ea880ca",
+  "width": 1254,
+  "height": 1254,
+  "publicOriginal": "/branding/jagdlatein-2026-10-29.png",
+  "processing": "Only deterministic resizing, opaque PNG encoding and letterboxing; source pixels retained in public original",
+  "derivatives": [
+    {
+      "path": "/branding/favicon-32-2026-10-29.png",
+      "width": 32,
+      "height": 32,
+      "sha256": "9ff8d20036325328150cf266b810272ca2758f75c020875c91798e87493e1de8"
+    },
+    {
+      "path": "/branding/favicon-48-2026-10-29.png",
+      "width": 48,
+      "height": 48,
+      "sha256": "aaae427808dba6b8db018e6f26653dbc98fe158a4ce9e885c1bac5e805e7b232"
+    },
+    {
+      "path": "/branding/favicon-96-2026-10-29.png",
+      "width": 96,
+      "height": 96,
+      "sha256": "8d4d79fb4cbff7e2c253395f61992a3d345eb42852a9037ca2ad2976ff078e21"
+    },
+    {
+      "path": "/branding/apple-touch-2026-10-29.png",
+      "width": 180,
+      "height": 180,
+      "sha256": "07ebc8eb87f5bbc9493401ea5cc4487f92f837c47d36660297a5ce65e1583bdc"
+    },
+    {
+      "path": "/branding/app-192-2026-10-29.png",
+      "width": 192,
+      "height": 192,
+      "sha256": "258c8f443af5e8b0d4bfd8032f1d2937701dc4318f0930133da721d0d8f150cc"
+    },
+    {
+      "path": "/branding/app-512-2026-10-29.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "b79db1c0a9141ff4d3e9be0103e37f7f81bdafb196a9a7622ef2704ac9c94d88"
+    },
+    {
+      "path": "/branding/og-2026-10-29.png",
+      "width": 1200,
+      "height": 630,
+      "sha256": "c9a3b458df5b34a149696743bf9d73014bbbfe0426cfda98a512e3bbd7aeecce"
+    }
+  ]
+}

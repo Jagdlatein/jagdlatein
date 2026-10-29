@@ -23,4 +23,4 @@ Die Wildarten-Porträts und die zugehörigen Lerneinheiten verwenden 47 dokument
 
 Die Schaubilder sind eigene, barrierefrei beschriftete Darstellungen in HTML/CSS und SVG-Symbolen.
 
-Die App-Symbole sind aus dem vorhandenen Buchsymbol als SVG und PNG abgeleitet. Ihre bearbeitbare Quelle ist `/app-icon.svg`; es handelt sich um eine Vektorgrafik.
+Die Markensymbole verwenden seit dem 29. Oktober 2026 die ausdrücklich vom Betreiber gewählte Jagdlatein-Illustration mit Jäger und Hirsch. Die drei unteren Bierkrüge wurden auf seinen Wunsch mit Imagegen entfernt; die beiden angehobenen Krüge bleiben erhalten. Dies ist eine bearbeitete Markenillustration, kein Lehrfoto. Die PNG-Quelle liegt unter `/branding/jagdlatein-2026-10-29.png`; die Größenvarianten werden daraus berechnet. `/app-icon.svg` ist nur ein selbstständiger Kompatibilitätsrahmen mit eingebetteter PNG-Grafik. Es wird keine neue öffentliche Nutzungslizenz vergeben.

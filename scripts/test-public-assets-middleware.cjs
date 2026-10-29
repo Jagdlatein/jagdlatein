@@ -34,6 +34,25 @@ const { learningImagePaths } = load('lib/learning-image-paths.js');
 const { middleware } = load('middleware.js');
 const request = pathname => new NextRequest(`https://jagdlatein.test${pathname}`);
 
+test('Only the eight exact public branding images and legacy social image bypass account checks', async () => {
+  const { brandingAssetPaths } = load('lib/brand-config.js');
+  assert.equal(brandingAssetPaths.length, 8);
+  assert.equal(new Set(brandingAssetPaths).size, 8);
+  for (const pathname of [...brandingAssetPaths, '/og.png']) {
+    const bytes = fs.readFileSync(path.join(root, 'public', pathname));
+    assert.equal((await sharp(bytes).metadata()).format, 'png');
+    const response = await middleware(request(pathname));
+    assert.equal(response.headers.get('x-middleware-next'), '1', pathname);
+    assert.equal(response.headers.get('location'), null, pathname);
+  }
+  for (const pathname of ['/branding', '/branding/private.png', '/branding/private.json', '/branding/jagdlatein-2026-10-29.png.bak',
+    '/branding/jagdlatein-2026-10-29.png/private', '/branding/JAGDLATEIN-2026-10-29.png', '/branding/og-2026-10-29.png/answers', '/og.png.bak']) {
+    const response = await middleware(request(pathname));
+    assert.equal(response.headers.get('x-middleware-next'), null, pathname);
+    assert.equal(new URL(response.headers.get('location')).pathname, '/preise', pathname);
+  }
+});
+
 const reviewedPhotos = JSON.parse(fs.readFileSync(path.join(root, 'data/reviews/wildlife-photo-provenance-2026-10-04.json'), 'utf8')).assets;
 for (const pathname of [...reviewedPhotos.map(photo => `/wildkunde/${path.posix.basename(photo.src)}`), '/marderhund.jpg']) test(`Retired photograph ${pathname} is absent and has no public middleware exception`, async () => {
   assert.equal(learningImagePaths.includes(pathname), false);

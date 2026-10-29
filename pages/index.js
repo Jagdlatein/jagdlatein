@@ -1,6 +1,8 @@
 // pages/index.js
 
 import Head from "next/head";
+import Seo from "../components/Seo";
+import { siteBranding, siteOrganization } from "../lib/brand-config";
 import { readRequestAccountSession } from "../lib/account-access";
 import Link from "next/link";
 import AppIcon from "../components/AppIcon";
@@ -130,12 +132,18 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
 
   return (
     <>
-      <Head>
-        <title>Jagdlatein – Lernplattform für Jäger</title>
-      </Head>
+      <Seo title="Jagdlatein – Lernplattform für Jäger"
+        description="Jagdwissen und Übungen für Jagdschein und Praxis in Deutschland, Österreich und der Schweiz."
+        url={`${siteBranding.site}/`} />
+      <Head><script key="jagdlatein-organization" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteOrganization).replace(/</g, "\\u003c") }} /></Head>
 
       <main className={home.main}>
         <div className={home.wrap}>
+          <img className={home.brandImage} src={siteBranding.icon192}
+            srcSet={`${siteBranding.icon192} 192w, ${siteBranding.icon512} 512w`}
+            sizes="(max-width: 620px) 112px, 144px" width="144" height="144"
+            alt={siteBranding.imageAlt} fetchPriority="high" />
           <p className={home.eyebrow}>Wissen für Revier und Prüfung</p>
           <h1 className={home.title}>
             Jagdlatein
