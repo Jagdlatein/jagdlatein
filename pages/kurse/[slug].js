@@ -5,6 +5,7 @@ import { getCourseWildlifeLinks } from "../../lib/course-wildlife-links-server";
 import { getCourseMiniLinks } from "../../lib/course-mini-links-server";
 import { getCourseGlossaryLinks } from "../../lib/glossary-course-links-server";
 import { getCourseOralExamLinks } from "../../lib/course-oral-exam-links-server";
+import { getCoursePracticeLinks } from "../../lib/course-practice-links-server";
 
 export function getStaticPaths() {
   return { paths: learningModules.map(module => ({ params: { slug: module.id } })), fallback: false };
@@ -12,9 +13,9 @@ export function getStaticPaths() {
 
 export function getStaticProps({ params }) {
   const module = getLearningModule(params.slug);
-  return module ? { props: { module, flashcards: getFlashcardLessonSummary(module.id), wildlifeLinks: getCourseWildlifeLinks(module), miniCourseLinks: getCourseMiniLinks(module), glossaryLinks: getCourseGlossaryLinks(module), oralExamLinks: getCourseOralExamLinks(module) } } : { notFound: true };
+  return module ? { props: { module, flashcards: getFlashcardLessonSummary(module.id), wildlifeLinks: getCourseWildlifeLinks(module), miniCourseLinks: getCourseMiniLinks(module), glossaryLinks: getCourseGlossaryLinks(module), oralExamLinks: getCourseOralExamLinks(module), practiceLinks: getCoursePracticeLinks(module) } } : { notFound: true };
 }
 
-export default function LearningCoursePage({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [] }) {
-  return <LearningCourse module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} oralExamLinks={oralExamLinks} />;
+export default function LearningCoursePage({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [], practiceLinks = [] }) {
+  return <LearningCourse module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} oralExamLinks={oralExamLinks} practiceLinks={practiceLinks} />;
 }

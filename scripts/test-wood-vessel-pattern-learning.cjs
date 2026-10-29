@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { plantEnergyBaselineFixture, stripPlantEnergyDataset } = require('./helpers/plant-energy-additions-oct27.cjs');
@@ -11,7 +12,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader: createLinkedProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
+const createLoader = overrides => createLinkedProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const raw = stripPlantEnergyDataset(withoutFishLateralLineDataset(require('../data/learning-expansion-ecology-2026-10-16.json')));

@@ -1,9 +1,11 @@
+const { practiceKnowledgeBaselineFixture, beforeRoeAntlerCastingGuide } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 // Current package checks. The complete historical 198-course/1747-card object
 // preservation comparison is carried by test-avian-urinary-learning.cjs.
 // This file reads only small historical guide/category/oral projections.
 const test = require('node:test'), assert = require('node:assert/strict');
 const path = require('node:path'), { execFileSync } = require('node:child_process');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createPracticeProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(overrides));
 const urinary = require('./helpers/avian-urinary-addition-oct29.cjs');
 const mast = require('./helpers/seed-mast-addition-oct29.cjs');
 const swc = local('next/dist/build/swc');
@@ -66,7 +68,7 @@ test('All114 guide records retain exact fields and targets against HEAD25807fe, 
       assert.equal(target.scope, 'foundation'); assert.equal(target.flashcardCount, 34); changes++;
       return { ...target, flashcardCount: 36 };
     });
-    assert.equal(JSON.stringify(after.getWildlifeLearningGuide(slug)), JSON.stringify(expected), slug);
+    assert.equal(JSON.stringify(beforeRoeAntlerCastingGuide(after.getWildlifeLearningGuide(slug))), JSON.stringify(expected), slug);
   }
   assert.ok(changes > 0);
   assert.equal(load('lib/learning-flashcards.js').getFlashcardLessonSummary(urinary.courseId).total, 36);

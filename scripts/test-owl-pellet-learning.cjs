@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { stripAvianUrinaryDataset } = require('./helpers/avian-urinary-addition-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture, stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
@@ -10,7 +11,7 @@ const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additio
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const{createHash}=require('node:crypto');
 const{createLoader:createProjectLoader,local}=require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))));
 const{stripGewoelleAddition,stripDigestiveIgnitionAdditions,isScopedCard,isGewoelleEvidence}=require('./helpers/digestive-ignition-additions-oct27.cjs');
 const raw=stripAvianUrinaryDataset(stripSensesDataset(require('../data/learning-expansion-biology-2026-10-16.json'))),load=createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture()))));
 const courseId='wissen-ausbau-biologie-verdauungsvergleich-2026',lessonId='gewoelle',questionIds=['gewoelle-muskelmagen','gewoelle-rueckweg'];

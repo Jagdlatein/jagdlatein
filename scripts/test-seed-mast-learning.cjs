@@ -1,10 +1,12 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createPracticeProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(overrides));
 const { courseId, lessonId, questionIds, sourceURLs, stripSeedMastAddition,
   isSeedMastCard, seedMastBaselineFixture } = require('./helpers/seed-mast-addition-oct29.cjs');
 const React = local('react');

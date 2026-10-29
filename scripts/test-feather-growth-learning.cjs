@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
@@ -11,7 +12,7 @@ const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-
 const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))));
 const raw = stripFlightFeatherDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())))))), courseId = 'wissen-ausbau-federaufbau-funktion-2026', lessonId = 'federwachstum';
 const questionId = 'federwachstum-blutversorgung', cardId = `flash-${courseId}-${questionId}`;

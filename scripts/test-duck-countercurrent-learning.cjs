@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture, beforeRoeAntlerCastingGuide } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { stripAvianUrinaryDataset } = require('./helpers/avian-urinary-addition-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture, stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
@@ -13,7 +14,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const raw = stripAvianUrinaryDataset(stripSensesDataset(stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json'))));
@@ -29,7 +30,7 @@ const cards = load('lib/learning-flashcards.js').getFlashcards();
 const liveGuide = load('lib/wildlife-learning-guide.js').getWildlifeLearningGuide;
 // Project only the two named urinary cards, then the two face-disc cards.
 // Both real increments have independent live positive regression checks.
-const guide = slug => liveGuide(slug).map(target => {
+const guide = slug => beforeRoeAntlerCastingGuide(liveGuide(slug)).map(target => {
   if (target.moduleId !== courseId) return target;
   assert.equal(target.flashcardCount, 36);
   const beforeUrinary = { ...target, flashcardCount: target.flashcardCount - 2 };

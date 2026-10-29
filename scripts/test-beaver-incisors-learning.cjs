@@ -1,13 +1,16 @@
+const { practiceKnowledgeBaselineFixture, beforeRoeAntlerCastingGuide } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 // Structural integration and scope checks; these do not certify biological accuracy.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createPracticeProjectLoader, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(overrides));
 const raw = require('../data/learning-beaver-incisors-2026-10-24.json');
 const load = createLoader();
 const { beaverIncisorModules: added, october18GrowthModules: historical } = load('lib/learning-growth-oct18.js');
 const { learningModules, learningPaths } = load('lib/learning-curriculum.js');
-const { getWildlifeLearningGuide: guide } = load('lib/wildlife-learning-guide.js');
+const { getWildlifeLearningGuide: currentGuide } = load('lib/wildlife-learning-guide.js');
+const guide = slug => beforeRoeAntlerCastingGuide(currentGuide(slug));
 const { getWildlifeStudyContent } = load('lib/wildlife-study-content.js');
 const courseId = 'wissen-biber-schneidezaehne-2026';
 

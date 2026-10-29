@@ -1,9 +1,11 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 // Narrow preservation/integration checks; not scientific certification.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createPracticeProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(overrides));
 const { courseId, lessonId, questionIds, sourceURLs, stripAvianUrinaryAddition,
   stripAvianUrinaryDataset, isAvianUrinaryCard, avianUrinaryBaselineFixture } = require('./helpers/avian-urinary-addition-oct29.cjs');
 // The concurrently authorized mast appendix has its own exact positive tests.

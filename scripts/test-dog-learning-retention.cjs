@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
@@ -15,7 +16,7 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(examKnowledgeBaselineFixture(overrides)));
+const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(examKnowledgeBaselineFixture(overrides))));
 const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');

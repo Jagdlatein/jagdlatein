@@ -1,3 +1,4 @@
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
@@ -10,7 +11,7 @@ const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-igniti
 const test=require('node:test'),assert=require('node:assert/strict');
 const{createHash}=require('node:crypto');
 const{createLoader:createProjectLoader,local}=require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))));
 const raw=stripPlantEnergyDataset(require('../data/learning-expansion-ecology-2026-10-16.json'));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture()))))),courseId='wissen-ausbau-oekologie-tierbewegungen-2026',lessonId='seitenliniensinn',questionId='seitenliniensinn-wasserbewegung';
 const sourceURLs=['https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish','https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/'];
