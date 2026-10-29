@@ -43,7 +43,7 @@ test('Quiz setup keeps its start action and legal-country controls without a dup
   const { QUESTIONS } = load('data/questions-full.js');
   const options = load('lib/quiz-learning-scope.js').quizLearningOptions(QUESTIONS);
   const slots = []; let cursor = 0;
-  const Setup = load('components/QuizSetup.js', { react: { ...React, useState(initial) { const index = cursor++; slots[index] ??= initial; return [slots[index], value => { slots[index] = value; }]; } } }).default;
+  const Setup = load('components/QuizSetup.js', { '../lib/use-exam-profile': { useExamProfile: () => ({ profile: null, ready: true }) }, './ExamProfileSummary': { __esModule: true, default: () => null }, react: { ...React, useState(initial) { const index = cursor++; slots[index] ??= initial; return [slots[index], value => { slots[index] = value; }]; } } }).default;
   const render = () => { cursor = 0; return Setup({ ...options, initialCountry: 'DE', initialTopic: 'Alle' }); };
   let tree = render();
   assert.doesNotMatch(renderToStaticMarkup(tree), /aria-label="Quizmenü"/);

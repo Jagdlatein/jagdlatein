@@ -49,6 +49,8 @@ function fixture(initial = '/jagdrecht/ch') {
   const PageMenu = () => null;
   const Round = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
+    '../lib/use-exam-profile': { useExamProfile: () => ({ profile: null, ready: true }) },
+    './ExamProfileSummary': { __esModule: true, default: () => null },
     'next/link': ({ href, children, prefetch, shallow, scroll, ...props }) => React.createElement('a', { href, ...props }, children),
     './Seo': { __esModule: true, default: () => null },
     './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpen.push(id), closePageMenu: () => {}, resetPageMenuPosition: () => {} },

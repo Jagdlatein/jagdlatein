@@ -9,7 +9,7 @@ function nodes(node, predicate) {
   if (!node || typeof node !== 'object') return [];
   return [...(predicate(node) ? [node] : []), ...nodes(node.props?.children, predicate)];
 }
-function harness(query = {}, saved = null) {
+function harness(query = {}, saved = null, exam = { profile: null, ready: true }) {
   const originalWindow = global.window, originalFetch = global.fetch;
   const slots = [], effects = [], requests = [], pushes = [], replacements = [], menuOpenCalls = [];
   let cursor = 0, dirty = false, tree, focusCount = 0, scrollCount = 0;
@@ -29,6 +29,8 @@ function harness(query = {}, saved = null) {
   const Link = ({ href, children, shallow, scroll, prefetch, ...props }) => React.createElement('a', { href, ...props }, children);
   const PageMenu = () => null;
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, 'next/link': { __esModule: true, default: Link },
+    '../lib/use-exam-profile': { useExamProfile: () => exam },
+    './ExamProfileSummary': { __esModule: true, default: () => null },
     './Seo': { __esModule: true, default: () => null },
     './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: id => menuOpenCalls.push(id), closePageMenu: () => {}, resetPageMenuPosition: () => {} },
     './ResearchQuestionRound': { __esModule: true, default: ({ questions }) => React.createElement('div', { 'data-practice': questions.map(q => q.id).join(',') }, 'Practice') },
@@ -49,6 +51,7 @@ function harness(query = {}, saved = null) {
     html: () => renderToStaticMarkup(tree),
     menuHtml: () => renderToStaticMarkup(nodes(tree, node => node.type === PageMenu)[0].props.children),
     route(value) { router.query = value; flush(); },
+    profile(value) { Object.assign(exam, value); flush(); },
     async respond(index, data, status = 200) { requests[index].resolve({ ok: status === 200, status, json: async () => data }); for (let i = 0; i < 6; i++) await Promise.resolve(); flush(); },
     close() { for (const slot of slots) slot?.cleanup?.(); global.window = originalWindow; global.fetch = originalFetch; },
     select(label) { const field = nodes(tree, node => node.type === 'label' && node.props.children?.[0] === label)[0]; return nodes(field, node => node.type === 'select')[0]; },
@@ -60,6 +63,46 @@ const norm = { id: 'sg-one', topic: 'pruefung', title: 'Synthetic norm', lawTitl
   regionCode: 'SG', regionName: 'St. Gallen', sources: [{ title: 'Synthetic source', kind: 'law', publisher: 'Synthetic publisher', url: 'https://example.invalid/law' }] };
 function bundle(code = 'SG') { return { country: 'CH', region: { code, name: code === 'SG' ? 'St. Gallen' : 'Zürich', officialUrl: 'https://example.invalid', lawTitle: 'Synthetic law' },
   articles: [{ ...norm, regionCode: code, regionName: code }], questions: [{ id: `${code}-q`, topic: 'pruefung', articleId: norm.id, regionCode: code }], sources: [] }; }
+
+test('The personal exam target restores a bare country page before a different last-viewed region', () => {
+  const exam = { ready: true, profile: { country: 'CH', region: 'ZH' } };
+  const s = harness({}, { country: 'CH', region: 'SG' }, exam);
+  try {
+    assert.deepEqual(s.replacements, ['/jagdrecht/ch?region=ZH']);
+    assert.equal(s.requests.length, 0, 'No law text changes before the actual URL commit');
+    assert.deepEqual(exam.profile, { country: 'CH', region: 'ZH' });
+    s.route({ region: 'SG' });
+    assert.deepEqual(exam.profile, { country: 'CH', region: 'ZH' }, 'Browsing another canton cannot change the exam target');
+    assert.equal(s.replacements.length, 1);
+  } finally { s.close(); }
+});
+
+test('Explicit law selections, including invalid selections, always outrank a saved exam target', () => {
+  for (const region of ['SG', '', 'XX', ['SG', 'ZH']]) {
+    const s = harness({ region }, null, { ready: true, profile: { country: 'CH', region: 'ZH' } });
+    try { assert.equal(s.replacements.length, 0); assert.equal(s.requests.length, region === 'SG' ? 1 : 0); }
+    finally { s.close(); }
+  }
+});
+
+test('Profile hydration is separate from route readiness and never replaces an explicit other-country route', () => {
+  const s = harness({}, { country: 'CH', region: 'SG' }, { ready: false, profile: null });
+  try {
+    assert.equal(s.replacements.length, 0);
+    s.profile({ ready: true, profile: { country: 'DE', region: 'BY' } });
+    assert.equal(s.replacements.length, 0, 'An explicit Swiss route must not become Bavaria or the legacy Swiss choice');
+    assert.equal(s.requests.length, 0);
+  } finally { s.close(); }
+});
+
+test('A saved exam target is read only for the initial missing selection, not reapplied after history or profile changes', () => {
+  const s = harness({ region: 'SG' }, null, { ready: true, profile: { country: 'CH', region: 'ZH' } });
+  try {
+    s.route({});
+    s.profile({ profile: { country: 'CH', region: 'SG' } });
+    assert.equal(s.replacements.length, 0);
+  } finally { s.close(); }
+});
 
 test('A late response from another canton is hidden and cannot replace the current learning region', async () => {
   const s = harness({ region: 'SG' });

@@ -8,6 +8,7 @@ import LearningTopicTree from "./LearningTopicTree";
 import LearningSearch from "./LearningSearch";
 import QuizLeagueEntry from "./QuizLeagueEntry";
 import JagdakademiePromotion from "./JagdakademiePromotion";
+import ExamProfileSummary from "./ExamProfileSummary";
 import styles from "../styles/LearningOverview.module.css";
 
 function FeaturedLearning({ tools, media }) {
@@ -38,6 +39,7 @@ export default function LearningOverview({ data }) {
 
   return <LearningToolLayout title={categoryInfo?.title || "Dein Lernbereich"} description={categoryInfo?.description || "Wissen nach Kategorien entdecken oder direkt nach einem Thema suchen."} icon={categoryInfo?.slug || "book"} category={categoryInfo?.slug} headingOnly stats={[]}>
     {!categoryInfo && <LearningSearch category="all" />}
+    {(!categoryInfo || ["jagdrecht", "pruefung-sprache"].includes(categoryInfo.slug)) && <ExamProfileSummary />}
     {!categoryInfo && <LearningCategoryMenu counts={categoryCounts} covers={covers} categoryCovers={categoryCovers} />}
     {recent.length > 0 && <section className={styles.section} aria-labelledby="learning-recent-heading">
       <h2 id="learning-recent-heading">Zuletzt ergänzt</h2>

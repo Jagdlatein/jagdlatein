@@ -3,10 +3,31 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions } = require('./helpers/learning-additions-oct26.cjs');
+const { stripOctober27Additions } = require('./helpers/learning-additions-oct27.cjs');
+const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
+const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
+const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
+const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
+const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const load = createLoader();
 const { learningModules } = load('lib/learning-curriculum.js');
 const { learningTopicTree } = load('lib/learning-topic-tree.js');
 const { learningNavigationLabels, getLearningNavigationLabel } = load('lib/learning-navigation-labels.js');
+// Preserve the original full-object golden. Only the independently tested,
+// explicitly named later appendices are removed by the existing fixtures.
+// Baseline reproduction: work/regional-law-qa/navigation-labels-head74dfb34-independent.json
+// in the chat workspace outside this repository.
+const historicalFixture = [
+  digestiveIgnitionBaselineFixture, firearmTermsBaselineFixture,
+  flightFeatherBaselineFixture, adiposeBaselineFixture, plantEnergyBaselineFixture,
+  examKnowledgeBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture,
+].reduce((overrides, fixture) => fixture(overrides), fishLateralLineBaselineFixture());
+const historicalModules = createLoader(historicalFixture)('lib/learning-curriculum.js').learningModules
+  .map(stripOctober27Additions).map(stripOctober26Additions);
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const normalize = value => value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 
@@ -45,7 +66,7 @@ test('Navigation choices remain distinct inside every existing topic branch and 
 
 test('The complete authored course data remains exact and label lookup never edits course objects or original titles', () => {
   const historical = '60199a84027bb1c5bac1ce381526fb6175d424897a5e92fc6a24155b3fadf9bb';
-  assert.equal(hash(learningModules.map(stripOctober26Additions)), historical);
+  assert.equal(hash(historicalModules), historical);
   const complete = hash(learningModules);
   for (const course of learningModules) {
     const original = JSON.stringify(course);
@@ -53,7 +74,7 @@ test('The complete authored course data remains exact and label lookup never edi
     assert.equal(JSON.stringify(course), original, course.id);
   }
   assert.equal(hash(learningModules), complete);
-  assert.equal(hash(learningModules.map(stripOctober26Additions)), historical);
+  assert.equal(hash(historicalModules), historical);
 });
 
 test('Unknown courses keep their complete original title instead of an invented or mechanically shortened label', () => {

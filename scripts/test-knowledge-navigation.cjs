@@ -289,7 +289,10 @@ test('Practice and law discovery cards retain their original three courses and c
     assert.deepEqual(props.discoveryModules, original.map(module => ({ id: module.id, title: module.title, lessonCount: module.lessons.length, questionCount: module.questions.length })));
     assert.ok(props.discoveryModules.every(module => Object.keys(module).sort().join(',') === 'id,lessonCount,questionCount,title'));
     const pageHtml = renderToStaticMarkup(React.createElement(Page.default, props));
-    if (category === 'Jagdrecht') assert.doesNotMatch(pageHtml, /href=|<select|<nav/, 'Law country and course navigation belongs to the lower menu.');
+    if (category === 'Jagdrecht') {
+      assert.deepEqual([...pageHtml.matchAll(/href="([^"]+)"/g)].map(match => match[1]), ['/lernen/pruefungsplan'], 'Only the personal exam-plan entry appears above the lower law menu.');
+      assert.doesNotMatch(pageHtml, /<select|<nav/, 'Law country and course navigation belongs to the lower menu.');
+    }
     const html = pageHtml + (category === 'Jagdrecht' ? renderToStaticMarkup(pageMenuByCache.get(cache)) : '');
     assert.ok(html.includes(title));
     assert.doesNotMatch(html, /aria-label="Lernmenü"/);

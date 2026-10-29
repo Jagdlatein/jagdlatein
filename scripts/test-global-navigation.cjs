@@ -99,7 +99,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 31, 'Regional law is reached through the existing Jagdrecht category rather than a duplicate main-menu link');
+  assert.equal(links.length, 32, 'The personal exam plan is an explicit menu destination; regional law stays in its existing category');
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -150,7 +150,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/lernen/pruefungsplan', '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');

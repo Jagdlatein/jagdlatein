@@ -2,6 +2,7 @@ import Link from "next/link";
 import AppIcon from "../../components/AppIcon";
 import LearningDiscovery from "../../components/LearningDiscovery";
 import RegionalLawResume from "../../components/RegionalLawResume";
+import ExamProfileSummary from "../../components/ExamProfileSummary";
 import PageMenu from "../../components/PageMenu";
 import { learningModules } from "../../lib/learning-curriculum";
 import styles from "../../styles/SectionMenu.module.css";
@@ -26,6 +27,7 @@ export default function JagdrechtHome({ discoveryModules, regionCountries = [] }
         <h1>Jagdrecht</h1>
         <p className={styles.intro}>Wähle Land, Prüfungsregion und Thema im unteren Menü.</p>
       </header>
+      <ExamProfileSummary />
       <PageMenu title="Jagdrecht – Land wählen" openInitially initialFocusId="jagdrecht-land-de">
       <RegionalLawResume countries={regionCountries} />
           {countries.map((country) => (

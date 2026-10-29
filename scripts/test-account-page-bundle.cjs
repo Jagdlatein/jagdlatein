@@ -63,6 +63,7 @@ function pageFixture({ signedIn = true, courses = [], overview = {} } = {}) {
     if (id === '../lib/daily-review') return { clearReviewHistory() { return true; } };
     if (id === '../components/WebPushPreferences') return loadPushModule('components/WebPushPreferences.js');
     if (id === '../components/NativePushPreferences') return loadPushModule('components/NativePushPreferences.js');
+    if (id === '../components/ExamProfileSummary') return { __esModule: true, default: () => null };
     if (id === '../lib/firebase-web-push') return loadPushModule('lib/firebase-web-push.js');
     if (id === '../lib/native-push-preferences') return loadPushModule('lib/native-push-preferences.js');
     throw Error(`Unexpected page dependency: ${id}`);

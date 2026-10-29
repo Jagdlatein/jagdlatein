@@ -4,6 +4,7 @@ import AccountLayout, { AccountError, ProgressError } from "../components/Accoun
 import useAccountOverview from "../hooks/useAccountOverview";
 import WebPushPreferences from "../components/WebPushPreferences";
 import NativePushPreferences from "../components/NativePushPreferences";
+import ExamProfileSummary from "../components/ExamProfileSummary";
 import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
 import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
 import { getAccountPageProps } from "../lib/account-page";
@@ -183,6 +184,7 @@ export default function AccountPage({ courses = [] } = {}) {
               <a href="#kontodaten" className={styles.secondaryButton}>{account.admin ? "Kontodaten ansehen" : courtesy ? "Zugang und Laufzeit ansehen" : "Abo und Laufzeit ansehen"}</a>
             </div>
           </section>}
+          <ExamProfileSummary />
           <section id="kontodaten" className={styles.card} aria-labelledby="account-details">
             <h2 id="account-details">Kontodaten</h2>
             <dl className={styles.details}>

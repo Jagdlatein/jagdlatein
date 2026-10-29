@@ -23,5 +23,5 @@ export default async function Page({ searchParams = {} }) {
   }
   const initialTopic = requestedTopic === "Recht" || legacyTopic || commonOptions.topics.some(topic => topic.name === requestedTopic) ? requestedTopic : "Alle";
 
-  return <QuizSetup commonOptions={commonOptions} countryOptions={countryOptions} initialCountry={initialCountry} initialTopic={initialTopic} legacyTopic={legacyTopic} />;
+  return <QuizSetup key={JSON.stringify([searchParams.country ?? null, searchParams.topic ?? null])} commonOptions={commonOptions} countryOptions={countryOptions} initialCountry={initialCountry} initialTopic={initialTopic} legacyTopic={legacyTopic} countryExplicit={Object.prototype.hasOwnProperty.call(searchParams, "country")} />;
 }

@@ -5,6 +5,8 @@ import Seo from "./Seo";
 import ResearchQuestionRound from "./ResearchQuestionRound";
 import PageMenu, { closePageMenu, openPageMenu, resetPageMenuPosition } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
+import { useExamProfile } from "../lib/use-exam-profile";
+import ExamProfileSummary from "./ExamProfileSummary";
 import { legalCountries, legalTopics, legalSelection, legalSelectionHref, readLegalRegionPreference,
   saveLegalRegionPreference } from "../lib/regional-law-core";
 import styles from "../styles/RegionalLaw.module.css";
@@ -79,6 +81,7 @@ function OriginalExamResources({ region, headingRef }) {
 
 export default function RegionalLawLearning({ country, name, regionLabel, regions = [] }) {
   const router = useRouter();
+  const examProfile = useExamProfile();
   const countryPath = `/jagdrecht/${country.toLowerCase()}`;
   const routePath = typeof router.asPath === "string" ? router.asPath.split(/[?#]/)[0] : countryPath;
   const ready = router.isReady === true && routePath === countryPath;
@@ -130,16 +133,25 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
   }, [origin]);
 
   useEffect(() => {
-    if (!ready || restored.current) return;
+    if (!ready || !examProfile.ready || restored.current) return;
     restored.current = true;
     if (router.query.region !== undefined) return;
+    // A personal target is distinct from the last law page viewed. A country
+    // path remains explicit; a profile from another country never redirects it.
+    if (examProfile.profile) {
+      if (examProfile.profile.country === country && regions.some(region => region.code === examProfile.profile.region)) {
+        try { Promise.resolve(router.replace(legalSelectionHref(country, { ...selection, region: examProfile.profile.region }), undefined, { shallow: true, scroll: false })).catch(() => {}); }
+        catch { /* The explicit region picker remains available. */ }
+      }
+      return;
+    }
     let saved;
     try { saved = readLegalRegionPreference(window.localStorage); } catch { return; }
     if (saved?.country === country && regions.some(region => region.code === saved.region)) {
       try { Promise.resolve(router.replace(legalSelectionHref(country, { ...selection, region: saved.region }), undefined, { shallow: true, scroll: false })).catch(() => {}); }
       catch { /* A remembered choice is optional; the region list stays usable. */ }
     }
-  }, [ready, country, regions]);
+  }, [ready, country, regions, examProfile.ready, examProfile.profile]);
 
   useEffect(() => {
     if (!ready || !selection.region) return;
@@ -304,6 +316,7 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
     <Seo title={`Jagdrecht ${name} – nach ${regionLabel} lernen`} description={`Jagdrecht und eigene Rechtsfragen für deine Prüfungsregion in ${name}. Mit amtlichen Originalauszügen und genauen Fundstellen.`} />
     <header className={styles.header}><h1 ref={heading} tabIndex={-1} data-learning-page-start>{!ready ? "Jagdrecht" : selectedRegion ? `Jagdrecht · ${selectedRegion.name}` : `Jagdrecht ${name}`}</h1></header>
     <PageMenu key={country} title="Jagdrecht – Auswahl" openInitially={ready && !selection.region} initialFocusId="regional-law-region">
+      <ExamProfileSummary />
     <div className={styles.menuStage} aria-busy={pendingChoice}>
     {menuStage === "loading" && <p role="status">Die Rechtsauswahl wird vorbereitet …</p>}
     {ready && menuStage !== "main" && <button type="button" className={styles.stageBack} onClick={() => showStage(selection.region ? "main" : menuStage === "country" ? "region" : "country")}>{selection.region ? "Zur Auswahl" : menuStage === "country" ? `${regionLabel} wählen` : "Land wählen"}</button>}
@@ -313,7 +326,7 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
     </section>}
     {menuStage === "region" && <section aria-labelledby="regional-law-region">
       <h3 id="regional-law-region" tabIndex={-1}>{name} · {regionLabel}</h3>
-      <p className={styles.regionHint}>Wähle den Ort deiner Prüfung. Deine Auswahl wird auf diesem Gerät gemerkt.</p>
+      <p className={styles.regionHint}>Wähle eine Leseregion. Dein persönliches Prüfungsprofil bleibt dabei erhalten.</p>
       <ul className={styles.choiceList} aria-label="Prüfungsregion auswählen">{regions.map(region => <li key={region.code}><button type="button" disabled={!ready} aria-pressed={selection.region === region.code}
         onClick={() => selectRegion(region.code)}>{region.name}{region.code === "BUND" ? " (Bundesrecht)" : ` (${region.code})`}</button></li>)}</ul>
     </section>}

@@ -19,6 +19,7 @@ function load(relative, overrides, context) {
     module: { type: 'commonjs' } });
   const mod = { exports: {} };
   const requireLocal = id => {
+    if (id === '../components/ExamProfileSummary') return { __esModule: true, default: () => null };
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), `${id}.js`)), overrides, context);
     return pr(id);

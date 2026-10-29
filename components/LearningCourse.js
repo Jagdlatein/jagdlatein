@@ -17,6 +17,8 @@ import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
+import ExamProfileSummary from "./ExamProfileSummary";
+import { CourseCountryNote, CourseCountryMenu } from "./CourseCountryScope";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
 import CourseWildlifeLinks from "./CourseWildlifeLinks";
 import CourseBreedLinks from "./CourseBreedLinks";
@@ -43,7 +45,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
   const videos = getCourseVideoLinks(module.id);
   const countrySelection = category?.slug === "jagdrecht";
   const { common: commonNote, regional: regionalNotes } = getCourseCountryNotes(module);
-  const [country, setCountry] = useState(module.countries[0]);
+  const [country, setCountry] = useState(null);
   const [lessonIndex, setLessonIndex] = useState(0);
   const [quizOpen, setQuizOpen] = useState(false);
   const [sourcesOpen, setSourcesOpen] = useState(false);
@@ -224,16 +226,10 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
 
   return (
     <LearningToolLayout title={module.title} description={module.description} icon={category?.slug || "book"} category={category?.slug} className={styles.course} headingOnly searchHref="/lernen#lernen-suche">
-          {countrySelection && module.countryNotes?.[country] && <p className={styles.countryNote}><strong>{countryNames[country] || country}:</strong> {module.countryNotes[country]}</p>}
+          {countrySelection && <CourseCountryNote module={module} country={country} />}
           <PageMenu title="Lektion wählen">
-            {countrySelection && module.countries.length > 1 && <fieldset className={styles.countryChoice}>
-              <legend>Länderschwerpunkt</legend>
-              <div className={styles.countryButtons}>
-                {module.countries.map((item) => (
-                  <button type="button" key={item} aria-pressed={country === item} onClick={() => setCountry(item)}>{countryNames[item] || item}</button>
-                ))}
-              </div>
-            </fieldset>}
+            <ExamProfileSummary />
+            {countrySelection && <CourseCountryMenu module={module} country={country} onChoose={setCountry} />}
             <nav className={styles.lessonNav} aria-label="Lektionen">
               <div className={styles.mobileLessonChoice}>
                 <MenuChoice label="Lektion" id="lesson-selection" value={lessonIndex} onChange={event => selectLesson(Number(event.target.value))}>

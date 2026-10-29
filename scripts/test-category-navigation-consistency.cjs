@@ -63,7 +63,7 @@ test('Expanding an old narrow quiz topic changes the real start link and questio
   assert.equal(page.props.legacyTopic.category, 'Waffen & Sicherheit');
   const state = [];
   let cursor = 0;
-  const ui = createLoader({ ...overrides, react: { ...React, useState(initial) {
+  const ui = createLoader({ ...overrides, '../lib/use-exam-profile': { useExamProfile: () => ({ profile: null, ready: true }) }, './ExamProfileSummary': { __esModule: true, default: () => null }, react: { ...React, useState(initial) {
     const index = cursor++;
     if (!(index in state)) state[index] = initial;
     return [state[index], next => { state[index] = typeof next === 'function' ? next(state[index]) : next; }];

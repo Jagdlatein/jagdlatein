@@ -17,6 +17,7 @@ const HISTORY_KEY = "jl_page_history";
 export const mainMenuItems = [
   { href: "/", title: "Startseite", icon: "home" },
   { href: "/lernen", title: "Lernbereich", icon: "book" },
+  { href: "/lernen/pruefungsplan", title: "Meine Prüfung", icon: "progress" },
   { href: "/wildkunde", title: "Wildarten", icon: "deer" },
   { href: "/fotohelfer", title: "Fotohelfer", icon: "camera" },
   { href: "/lernen/lernkarten", title: "Lernkarten", icon: "book" },

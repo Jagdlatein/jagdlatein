@@ -259,7 +259,8 @@ test('All established learning shortcuts and legal country hubs are discoverable
   const { searchLearning } = load('lib/learning-search.js');
   const { learningTools, legalLearningHubs, learningToolCatalog } = load('lib/learning-tool-catalog.js');
   const validCategories = new Set(load('lib/learning-categories.js').learningCategoryDetails.map(item => item.slug));
-  assert.equal(learningTools.length, 12); assert.equal(legalLearningHubs.length, 3);
+  assert.equal(learningTools.length, 13); assert.equal(legalLearningHubs.length, 3);
+  assert.ok(searchLearning({ query: 'Prüfungsprofil', type: 'tool' }).results.some(item => item.href === '/lernen/pruefungsplan'));
   assert.equal(new Set(learningToolCatalog.map(item => item.href)).size, learningToolCatalog.length);
   for (const tool of learningToolCatalog) {
     const base = tool.href.split('?')[0];
