@@ -1,3 +1,4 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
@@ -8,7 +9,7 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)));
+const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
 const { courseId, lessonIds, questionIds, sourceURLs, stripFlightFeatherAddition,
   stripFlightFeatherDataset, isFlightFeatherCard } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { stripFirearmTermsAddition, isFirearmTermsCard } = require('./helpers/firearm-terms-additions-oct27.cjs');

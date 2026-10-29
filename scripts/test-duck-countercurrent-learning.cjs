@@ -1,3 +1,5 @@
+const { stripAvianUrinaryDataset } = require('./helpers/avian-urinary-addition-oct29.cjs');
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { sensesBaselineFixture, stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
@@ -11,10 +13,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)));
+const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides))));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
-const raw = stripSensesDataset(stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json')));
+const raw = stripAvianUrinaryDataset(stripSensesDataset(stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json'))));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'gegenstrom';
@@ -25,12 +27,14 @@ const original = raw.modules.find(item => item.id === courseId);
 const lesson = course.lessons.at(-1);
 const cards = load('lib/learning-flashcards.js').getFlashcards();
 const liveGuide = load('lib/wildlife-learning-guide.js').getWildlifeLearningGuide;
-// The two named face-disc cards are checked in their own positive regression.
-// Assert the real count before projecting only their exact increment away.
+// Project only the two named urinary cards, then the two face-disc cards.
+// Both real increments have independent live positive regression checks.
 const guide = slug => liveGuide(slug).map(target => {
   if (target.moduleId !== courseId) return target;
-  assert.equal(target.flashcardCount, 34);
-  return { ...target, flashcardCount: target.flashcardCount - 2 };
+  assert.equal(target.flashcardCount, 36);
+  const beforeUrinary = { ...target, flashcardCount: target.flashcardCount - 2 };
+  assert.equal(beforeUrinary.flashcardCount, 34);
+  return { ...beforeUrinary, flashcardCount: beforeUrinary.flashcardCount - 2 };
 });
 const study = load('lib/wildlife-study-content.js').getWildlifeStudyContent;
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');

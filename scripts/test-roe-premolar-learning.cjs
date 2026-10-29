@@ -62,8 +62,8 @@ test('Only Rehwild adds a fourth target; its old entries and historical other gu
   const historical = unaffected.map(item => ({ ...item, targets: item.targets.map(target => {
     if (item.slug === 'biber' && target.moduleId === 'wissen-biber-schneidezaehne-2026') return { ...target, flashcardCount: 2 };
     if (target.moduleId !== 'wissen-ausbau-biologie-vogelkoerper-2026') return target;
-    // Include the two later facial-ruff cards before the historical projection.
-    assert.equal(target.flashcardCount, 34);
+    // Include the later facial-ruff and urinary cards before the historical projection.
+    assert.equal(target.flashcardCount, 36);
     return { ...target, flashcardCount: 31 };
   }) }));
   // Before this addition, all fields and their ordering were captured from HEAD

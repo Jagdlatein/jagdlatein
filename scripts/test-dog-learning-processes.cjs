@@ -1,10 +1,12 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createLinkedProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const { courseId, lessonIds, sourceURLs, stripDogLearningProcessesAddition,
   isDogLearningProcessesCard, dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const React = local('react');

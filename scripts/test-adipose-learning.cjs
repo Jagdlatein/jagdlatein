@@ -1,7 +1,9 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 // Technical scope/preservation checks; the actual scientific reading is separate.
 const test=require('node:test'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
-const{createLoader,local,root}=require('./helpers/project-module.cjs');
+const{createLoader: createLinkedProjectLoader,local,root}=require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const{courseId,lessonIds,questionIds,sourceURLs,stripAdiposeAddition:strip,stripAdiposeDataset:stripDataset,isAdiposeCard,adiposeBaselineFixture}=require('./helpers/adipose-learning-additions-oct27.cjs');
 const{stripPlantEnergyAddition,isPlantEnergyCard}=require('./helpers/plant-energy-additions-oct27.cjs');
 const baseline='647e2df',rawPath='data/learning-expansion-applied-2026-10-16.json',plantPath='data/learning-expansion-ecology-2026-10-16.json';

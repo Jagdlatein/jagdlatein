@@ -1,10 +1,12 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 // Current package integration and preservation, not a scientific re-review of
 // every course or species. The baseline reads actual repository files from Git.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createLinkedProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const { additions, stripSensesAddition, isSensesCard } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { courseId: dogCourseId, lessonIds: dogLessonIds, stripDogLearningProcessesAddition, isDogLearningProcessesCard } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
@@ -96,7 +98,12 @@ test('All 114 portrait guide projections retain every target and field; only the
       assert.equal(target.scope, 'foundation'); assert.equal(target.flashcardCount, 32); changed++;
       return { ...target, flashcardCount: 34 };
     });
-    assert.equal(JSON.stringify(after.getWildlifeLearningGuide(slug)), JSON.stringify(expected), slug);
+    const projected = after.getWildlifeLearningGuide(slug).map(target => {
+      if (target.moduleId !== 'wissen-ausbau-biologie-vogelkoerper-2026') return target;
+      assert.equal(target.flashcardCount, 36);
+      return { ...target, flashcardCount: target.flashcardCount - 2 };
+    });
+    assert.equal(JSON.stringify(projected), JSON.stringify(expected), slug);
   }
   assert.ok(changed > 0);
   assert.equal(current('lib/learning-flashcards.js').getFlashcardLessonSummary('wissen-ausbau-biologie-vogelkoerper-2026').total, 34);

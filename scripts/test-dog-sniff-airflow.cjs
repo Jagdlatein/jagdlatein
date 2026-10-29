@@ -1,3 +1,4 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { stripDogLearningProcessesAddition } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { isPlantEnergyCard } = require('./helpers/plant-energy-additions-oct27.cjs');
@@ -10,7 +11,8 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const { isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');

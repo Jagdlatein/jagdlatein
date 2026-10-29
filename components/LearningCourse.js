@@ -22,6 +22,7 @@ import CourseWildlifeLinks from "./CourseWildlifeLinks";
 import CourseBreedLinks from "./CourseBreedLinks";
 import CourseMiniLinks from "./CourseMiniLinks";
 import CourseGlossaryLinks from "./CourseGlossaryLinks";
+import CourseOralExamLinks from "./CourseOralExamLinks";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -30,11 +31,11 @@ function makeRun(questions, mode = "full", answerSeed = 0, lessonPractice = null
     ...(lessonPractice ? { lessonPractice } : {}) };
 }
 
-export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [] }) {
-  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} />;
+export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [] }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} oralExamLinks={oralExamLinks} />;
 }
 
-function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [] }) {
+function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [] }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
@@ -245,6 +246,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
             <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
             <CourseMiniLinks links={miniCourseLinks} lessonId={module.lessons[lessonIndex].id} />
+            <CourseOralExamLinks links={oralExamLinks} />
             <CourseGlossaryLinks links={glossaryLinks} lessonId={module.lessons[lessonIndex].id} />
           </PageMenu>
           <div className={styles.lessonGrid}>

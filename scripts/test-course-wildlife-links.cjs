@@ -75,7 +75,7 @@ test('Actual198-course SSG props project only minimal links and retain the exact
   assert.deepEqual(page.getStaticPaths().paths.map(item => item.params.slug), learningModules.map(module => module.id));
   for (const module of learningModules) {
     const result = page.getStaticProps({ params: { slug: module.id } });
-    assert.deepEqual(Object.keys(result.props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks'].sort());
+    assert.deepEqual(Object.keys(result.props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks'].sort());
     assert.equal(result.props.module, module); assert.deepEqual(result.props.flashcards, flashcards.getFlashcardLessonSummary(module.id)); assert.deepEqual(result.props.wildlifeLinks, project(module));
     assert.deepEqual(page.default(result.props).props.wildlifeLinks, result.props.wildlifeLinks);
   }

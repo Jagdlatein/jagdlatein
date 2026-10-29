@@ -1,12 +1,15 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
+const { stripAvianUrinaryDataset } = require('./helpers/avian-urinary-addition-oct29.cjs');
 // Editorial scope and integration regressions, not scientific certification.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createProjectLoader(linkedExamBaselineFixture(overrides));
 const { additions, stripSensesAddition, stripSensesDataset, isSensesCard, sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
-const raw = require('../data/learning-expansion-biology-2026-10-16.json');
+const raw = stripAvianUrinaryDataset(require('../data/learning-expansion-biology-2026-10-16.json'));
 const load = createLoader(), baselineLoad = createLoader(sensesBaselineFixture());
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const cards = load('lib/learning-flashcards.js').getFlashcards();

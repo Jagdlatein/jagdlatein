@@ -1,3 +1,4 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
@@ -9,7 +10,8 @@ const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createLinkedProjectLoader, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
 const raw = require('../data/learning-beaver-incisors-2026-10-24.json');
@@ -87,8 +89,8 @@ test('Biber keeps its same three targets, anchors and full objects except the re
   assert.equal(others.length, 113);
   const historicalGuides = others.map(item => [item.slug, stripOctober27GuideTargets(item.slug, guide(item.slug)).map(target => {
     if (target.moduleId !== 'wissen-ausbau-biologie-vogelkoerper-2026') return target;
-    // Two facial-ruff cards followed the single historical countercurrent card.
-    assert.equal(target.flashcardCount, 34);
+    // Facial-ruff and urinary appendices followed the historical countercurrent card.
+    assert.equal(target.flashcardCount, 36);
     return { ...target, flashcardCount: 31 };
   })]);
   assert.equal(hash(historicalGuides), 'd7bce2678395f5ebf109a2c4a44a464a78c00dbda55718be23a642cc7f9b6c6e');

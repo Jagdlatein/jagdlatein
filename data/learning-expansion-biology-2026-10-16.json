@@ -1364,6 +1364,46 @@
             "gesichtsschleier"
           ],
           "supports": "Einleitung und Besonderheiten tatsächlich gelesen: Die Federohren des Uhus dienen nicht dem Hören. Zweite unabhängige Bestätigung der engen Abgrenzung von Federbüscheln und eigentlichen Ohröffnungen; keine dortigen Zahlen oder Verhaltensdeutung übernommen."
+        },
+        {
+          "label": "PoultryHub: Excretory system – Harnwege am Huhn",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+          "organization": "Poultry Hub Australia / University of New England",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "harnwege"
+          ],
+          "supports": "The Excretory System und The Kidneys direkt gelesen, Urine im vollständigen offiziellen Suchauszug gelesen; spätere Direktabrufe liefen in einen Timeout. Huhn: Nieren, jeweils Harnleiter und Kloake; keine Harnblase auf diesem Weg. Keine Harnsäurechemie, Urinanteile, Zahlen oder klinischen Passagen übernommen."
+        },
+        {
+          "label": "University of Wisconsin–Milwaukee: Birds – Urinary System und Digestive System",
+          "url": "https://uwm.edu/safety-assurances/programs/research-compliance/animal-care-program/training-education/training-manual/birds/",
+          "organization": "University of Wisconsin–Milwaukee / Animal Care Program",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "harnwege"
+          ],
+          "supports": "Abschnitte Urinary System und Digestive System tatsächlich gelesen: Harnleiter führen von den Nieren zur Kloake statt in eine Harnblase; Kloake als gemeinsamer Ausmündungsbereich von Harn-, Darm- und Fortpflanzungstrakt. Eigenständig verfasster institutioneller Lehrtext, keine experimentelle Wiederholung. Keine Haltung, Entnahme oder Behandlung übernommen."
+        },
+        {
+          "label": "Jacquie Jacob: Avian Digestive System – Cloaca",
+          "url": "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/",
+          "organization": "University of Kentucky / Cooperative Extension",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "harnwege"
+          ],
+          "supports": "Sachtext und Autorenangabe tatsächlich gelesen, insbesondere Abschnitt Cloaca: Darm- und Harnausscheidung sowie Fortpflanzungstrakt teilen den Endbereich. Eigenständige fachliche Textdarstellung; das dort teilweise von PoultryHub übernommene Bild ist kein unabhängiger Bildnachweis und wird nicht übernommen. Keine chemischen, diagnostischen oder Haltungsangaben übernommen."
+        },
+        {
+          "label": "Universidade Federal Fluminense: Urinary System of Birds – Huhn",
+          "url": "https://www.atlashistovet.uff.br/IngSist.Urinario.Aves.htm",
+          "organization": "Universidade Federal Fluminense / Department of Morphology, Veterinary Histology Atlas",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "harnwege"
+          ],
+          "supports": "Erster Sachabsatz tatsächlich gelesen: Huhn, paarige Nieren, ableitende Harnleiter zur Kloake und ausdrücklich keine Harnblase. Unabhängige veterinäranatomische Erklärung zur präzisen Blasenabsenz am benannten Modell; keine Nephrontypen, Histologie, Maße oder Bilder übernommen. Die pauschale Formulierung über Vögel wird nicht unterschiedslos auf sämtliche Wildarten übertragen."
         }
       ],
       "lessons": [
@@ -1433,6 +1473,20 @@
           ],
           "takeaway": "Der Gesichtsschleier lenkt Schall zu verborgenen Ohröffnungen; die Federohren des Uhus sind davon getrennte Federbüschel.",
           "exercise": "Skizziere Gesichtsschleier und verborgene Ohröffnung mit einem Schallpfeil. Beschrifte Federohren als getrennte Gefiederstruktur, ohne daraus eine Hörleistung abzuleiten."
+        },
+        {
+          "id": "harnwege",
+          "title": "Harnwege",
+          "reviewedOn": "2026-10-29",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Am Huhn lässt sich der Harnweg als eigene Organkette verfolgen. Die Nieren bilden Harn. Von jeder Niere führt ein Harnleiter, auch Ureter genannt, zur Kloake. Eine Harnblase liegt auf diesem Weg beim Huhn nicht dazwischen. Harnleiter und Darm sind verschiedene Leitungswege: Der Harn gelangt nicht zuerst durch den Magen.",
+            "Die Kloake ist ein gemeinsamer Ausmündungsbereich. In sie münden der Darm, die Harnleiter und der Fortpflanzungstrakt. Dass Ausscheidungen denselben Endbereich erreichen, macht aus den beteiligten Organen kein einziges System. In einer anatomischen Erklärung wird deshalb der Weg aus der Niere vom Weg des Darminhalts getrennt verfolgt.",
+            "Hier dient das Huhn ausdrücklich als anatomisches Lehrmodell. Die Darstellung behauptet keine in jedem Detail gleiche Organisation sämtlicher Wildvögel. Sie erklärt weder die chemische Zusammensetzung eines Ausscheidungsflecks noch den Gesundheitszustand eines beobachteten Tieres.",
+            "Eigene Denkübung: Zeichne getrennte Pfeilketten für Niere, Harnleiter und Kloake sowie für Darm und Kloake. Beschrifte daneben den Fortpflanzungstrakt als weiteren Zugang. Prüfe, warum der gemeinsame Endbereich die unterschiedliche Herkunft der Wege nicht aufhebt."
+          ],
+          "takeaway": "Beim Huhn führen Harnleiter von den Nieren zur Kloake; dort treffen getrennte Harn-, Darm- und Fortpflanzungswege auf einen gemeinsamen Endbereich.",
+          "exercise": "Beschrifte auf dem Papier getrennt Niere → Harnleiter → Kloake und Darm → Kloake. Markiere den Fortpflanzungstrakt als weiteren Zugang; die Übung erfordert keinen Tierkontakt."
         }
       ],
       "questions": [
@@ -1890,6 +1944,32 @@
           ],
           "answer": 2,
           "explain": "Federohren sind Gefiederstrukturen. Sie sind von den eigentlichen Ohröffnungen zu unterscheiden und dienen beim Uhu nicht dem Hören."
+        },
+        {
+          "id": "harnwege-verlauf",
+          "lessonId": "harnwege",
+          "q": "Welchen Weg nimmt der in den Nieren gebildete Harn beim hier beschriebenen Huhn?",
+          "options": [
+            "Niere → Harnleiter → Kloake.",
+            "Niere → Speiseröhre → Muskelmagen.",
+            "Niere → Harnblase → Pansen.",
+            "Niere → Luftröhre → Schnabel."
+          ],
+          "answer": 0,
+          "explain": "Die Harnleiter verbinden beim Huhn die Nieren mit der Kloake. Auf diesem Weg liegt keine Harnblase; der Harnweg wird vom Darmweg getrennt betrachtet."
+        },
+        {
+          "id": "harnwege-kloake",
+          "lessonId": "harnwege",
+          "q": "Welche Organsysteme teilen beim Huhn die Kloake als gemeinsamen Ausmündungsbereich?",
+          "options": [
+            "Ausschließlich Atmungs- und Kreislaufsystem.",
+            "Ausschließlich Harnleiter und Luftröhre.",
+            "Darm-, Harn- und Fortpflanzungstrakt.",
+            "Sehnerv, Hörorgan und Gleichgewichtsapparat."
+          ],
+          "answer": 2,
+          "explain": "Darm, Harnleiter und Fortpflanzungstrakt münden in den gemeinsamen Kloakenbereich. Die gemeinsame Endstelle hebt ihre unterschiedliche Herkunft und Funktion nicht auf."
         }
       ]
     },
@@ -4290,6 +4370,34 @@
           "sourceRoles": {
             "https://link.springer.com/article/10.1186/1751-0147-53-13": "Abstract, Background, Discussion und Limitations: normale Variation und fehlendes Tapetum in Untersuchungsunterlagen; ausdrücklich keine visuelle Funktionsmessung. Keine Prävalenzübertragung aus der ausgewählten Untersuchungsgruppe.",
             "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night": "Der Fachtext nennt ebenfalls Hunde ohne Tapetum. Er erklärt Reflexion unabhängig, ist aber keine experimentelle Wiederholung und wird nicht als individuelle Sehdiagnose verwendet."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "harnwege",
+      "claims": [
+        {
+          "claim": "Beim ausdrücklich benannten Huhn bilden die Nieren Harn; von jeder Niere führt ein Harnleiter zur Kloake. Auf diesem Weg liegt keine Harnblase.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system",
+            "https://www.atlashistovet.uff.br/IngSist.Urinario.Aves.htm"
+          ],
+          "sourceRoles": {
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/excretory-system": "The Excretory System und The Kidneys: Nieren, je ein Ureter und Kloake; Urine im gelesenen offiziellen Suchvollauszug: beim Huhn keine Harnblase. Spätere Direktabrufe Timeout, keine zusätzliche Volltextlektüre behauptet.",
+            "https://www.atlashistovet.uff.br/IngSist.Urinario.Aves.htm": "Erster Sachabsatz: ausdrücklich chickens, paired kidneys, drain each kidney to cloaca und no bladder. Unabhängige veterinäruniversitäre Bestätigung; die hier gelehrte Reichweite bleibt das Huhn, nicht eine pauschale Allvögel-Regel."
+          }
+        },
+        {
+          "claim": "Die Kloake ist am Huhn ein gemeinsamer Ausmündungsbereich von Harn-, Darm- und Fortpflanzungstrakt. Gemeinsamer Endbereich und getrennte vorgeschaltete Wege werden unterschieden.",
+          "sourceUrls": [
+            "https://uwm.edu/safety-assurances/programs/research-compliance/animal-care-program/training-education/training-manual/birds/",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/"
+          ],
+          "sourceRoles": {
+            "https://uwm.edu/safety-assurances/programs/research-compliance/animal-care-program/training-education/training-manual/birds/": "Digestive System: Darm mündet in Kloake, gemeinsamer passageway der drei Trakte.",
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/": "Abschnitt Cloaca: Harnausscheidung und Darmmaterial erreichen denselben Endbereich, durch den auch der Fortpflanzungstrakt ausmündet. Eigenständige Erklärung der Fachautorin; weder das fremde Bild noch chemische Nebenformulierungen übernommen."
           }
         }
       ]

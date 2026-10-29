@@ -1,3 +1,4 @@
+const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
@@ -5,7 +6,8 @@ const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions
 // separately recorded in data/reviews/; these checks are not scientific review.
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { createLoader } = require('./helpers/project-module.cjs');
+const { createLoader: createLinkedProjectLoader } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createLinkedProjectLoader(linkedExamBaselineFixture(overrides));
 const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture())));
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');
 const { learningCategories, learningModules, learningQuestions } = load('lib/learning-curriculum.js');
