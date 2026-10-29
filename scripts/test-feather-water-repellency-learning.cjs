@@ -1,3 +1,5 @@
+const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
+const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
@@ -10,7 +12,8 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createProjectLoader(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));

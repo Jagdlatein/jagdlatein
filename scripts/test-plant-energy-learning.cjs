@@ -1,3 +1,4 @@
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 // Full-object preservation and reader/export integration; scientific reading is
 // documented separately rather than inferred from these structural checks.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
@@ -5,7 +6,7 @@ const{createHash}=require('node:crypto');
 const{createLoader,local}=require('./helpers/project-module.cjs');
 const{courseId,lessonIds,questionIds,sourceURLs,stripPlantEnergyAddition,stripPlantEnergyDataset,isPlantEnergyCard,plantEnergyBaselineFixture}=require('./helpers/plant-energy-additions-oct27.cjs');
 const{stripAdiposeAddition,isAdiposeCard,adiposeBaselineFixture}=require('./helpers/adipose-learning-additions-oct27.cjs');
-const raw=require('../data/learning-expansion-ecology-2026-10-16.json'),load=createLoader();
+const raw=require('../data/learning-expansion-ecology-2026-10-16.json'),load=createLoader(examKnowledgeBaselineFixture());
 const{learningModules,getLearningModule}=load('lib/learning-curriculum.js'),course=getLearningModule(courseId),original=raw.modules.find(item=>item.id===courseId),lessons=course.lessons.slice(-2),cards=load('lib/learning-flashcards.js').getFlashcards();
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 

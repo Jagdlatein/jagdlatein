@@ -1,3 +1,4 @@
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 // Technical scope/preservation checks; the actual scientific reading is separate.
 const test=require('node:test'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const{createLoader,local,root}=require('./helpers/project-module.cjs');
@@ -5,7 +6,7 @@ const{courseId,lessonIds,questionIds,sourceURLs,stripAdiposeAddition:strip,strip
 const{stripPlantEnergyAddition,isPlantEnergyCard}=require('./helpers/plant-energy-additions-oct27.cjs');
 const baseline='647e2df',rawPath='data/learning-expansion-applied-2026-10-16.json',plantPath='data/learning-expansion-ecology-2026-10-16.json';
 const atBaseline=file=>JSON.parse(execFileSync('git',['show',`${baseline}:${file}`],{cwd:root,encoding:'utf8'}));
-const raw=require(`../${rawPath}`),oldRaw=atBaseline(rawPath),load=createLoader(),oldLoad=createLoader({[`../${rawPath}`]:oldRaw,[`../${plantPath}`]:atBaseline(plantPath)});
+const raw=require(`../${rawPath}`),oldRaw=atBaseline(rawPath),load=createLoader(examKnowledgeBaselineFixture()),oldLoad=createLoader(examKnowledgeBaselineFixture({[`../${rawPath}`]:oldRaw,[`../${plantPath}`]:atBaseline(plantPath)}));
 const modules=load('lib/learning-curriculum.js').learningModules,oldModules=oldLoad('lib/learning-curriculum.js').learningModules,course=modules.find(item=>item.id===courseId),lessons=course.lessons.slice(-2);
 const cards=load('lib/learning-flashcards.js').getFlashcards(),oldCards=oldLoad('lib/learning-flashcards.js').getFlashcards(),newCards=cards.filter(isAdiposeCard);
 

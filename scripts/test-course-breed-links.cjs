@@ -1,3 +1,4 @@
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
@@ -11,7 +12,7 @@ const fs = require('node:fs'), path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
+const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())))))));
 const { getCourseBreedLink, getDogBreedKnowledgeAssignment } = load('lib/dog-breed-routing.js');
 const { learningModules } = load('lib/learning-curriculum.js');
 const { dogBreeds } = load('lib/dog-compass.js');

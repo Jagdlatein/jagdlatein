@@ -1334,6 +1334,36 @@
             "gegenstrom"
           ],
           "supports": "Unabhängig verfasste zoologische Facherklärung von 1988, Absätze zum Kontakt arterieller und venöser Gefäße sowie zur Wärmerichtung und Rückgewinnung. Keine neue Originalmessung oder Replikation; keine Zahlen, Verhaltensempfehlungen oder Verallgemeinerung auf sämtliche Vogelarten übernommen."
+        },
+        {
+          "label": "Hausmann et al. (2009): Facial Ruff and Sound Localization in the Barn Owl",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007721",
+          "organization": "RWTH Aachen University / PLOS ONE",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "gesichtsschleier"
+          ],
+          "supports": "Originalarbeit: Introduction, Results, Conclusions und Methods tatsächlich gelesen. Virtuelle Hörbedingungen mit und ohne Schleierwirkung an gehaltenen amerikanischen Schleiereulen, nach damaliger Bezeichnung Tyto alba pratincola. Bei den Verhaltenstesttieren wurde der Schleier nicht entfernt. Keine Freilandquote, Artleistungsrangliste oder Übertragung auf sämtliche Eulen."
+        },
+        {
+          "label": "Cornell Lab (2024): The Wonderful World of Owls – Amazing Ears",
+          "url": "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf",
+          "organization": "Cornell Lab of Ornithology / Bird Academy",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "gesichtsschleier"
+          ],
+          "supports": "Erste PDF-Seite, Amazing Ears: steifere äußere Gesichtsschleierfedern leiten Schall zu im Gefieder verborgenen Ohröffnungen; Federohren sind keine Hörorgane. Unabhängig verfasste anatomische Erklärung, keine experimentelle Wiederholung der Originalarbeit. Keine Bildübernahme, Entfernungen oder pauschale Ohrenasymmetrie."
+        },
+        {
+          "label": "Naturland NÖ: Uhu – Federohren",
+          "url": "https://www.naturland-noe.at/uhu",
+          "organization": "Energie- und Umweltagentur des Landes Niederösterreich",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "gesichtsschleier"
+          ],
+          "supports": "Einleitung und Besonderheiten tatsächlich gelesen: Die Federohren des Uhus dienen nicht dem Hören. Zweite unabhängige Bestätigung der engen Abgrenzung von Federbüscheln und eigentlichen Ohröffnungen; keine dortigen Zahlen oder Verhaltensdeutung übernommen."
         }
       ],
       "lessons": [
@@ -1389,6 +1419,20 @@
           ],
           "takeaway": "Gegenläufige Blutwege erlauben Wärmeübertragung vom wärmeren arteriellen zum kühleren venösen Blut und helfen, Wärme im Körper zurückzuhalten.",
           "exercise": "Zeichne zwei benachbarte Blutwege mit entgegengesetzten Pfeilen. Ergänze getrennt einen Wärmepfeil vom wärmeren arteriellen zum kühleren venösen Blut."
+        },
+        {
+          "id": "gesichtsschleier",
+          "title": "Gesichtsschleier",
+          "reviewedOn": "2026-10-29",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei der Schleiereule rahmt ein Gesichtsschleier aus spezialisierten Federn das Gesicht. Seine äußeren, steiferen Federn lenken eintreffenden Schall zu den Ohröffnungen, die im Gefieder verborgen liegen. Die Federanordnung beeinflusst damit bereits den Schall, bevor er die eigentlichen Hörorgane erreicht. Gesichtsschleier, Ohröffnung und Hörorgan haben unterschiedliche Aufgaben im Weg der Schallinformation.",
+            "Die beim Uhu auffälligen Federohren sind dagegen aufgerichtete Federbüschel am Kopf, keine Ohröffnungen. Ein sichtbarer Federbüschel ist deshalb keine vergrößerte Ohrmuschel. Auch die Begriffe Gesichtsschleier und Federohren bezeichnen verschiedene Gefiederstrukturen und sollten beim Beschriften getrennt bleiben.",
+            "Ein Originalversuch prüfte den Beitrag des Schleiers zur räumlichen Schallortung an gehaltenen amerikanischen Schleiereulen. Die Tiere hörten über Kopfhörer Signale, welche die Schallbedingungen mit und ohne Schleierwirkung nachbildeten. Ihre Orientierungsreaktionen unterschieden sich. Bei diesen Verhaltenstesttieren wurde der Schleier nicht entfernt. Der Versuch stützt die Funktion unter den untersuchten Laborbedingungen; er liefert keine allgemeine Trefferquote für alle Eulen oder Jagden im Freiland. Die unabhängige anatomische Erklärung ist keine Wiederholung dieses Experiments.",
+            "Eigene Denkübung: Zeichne den Weg eines Schalls zur verborgenen Ohröffnung. Beschrifte einen Federbüschel daneben getrennt. Das äußere Kopfbild beweist keine individuelle Hörleistung. Eine gleiche Ohrenstellung sämtlicher Eulen wird hier nicht vorausgesetzt."
+          ],
+          "takeaway": "Der Gesichtsschleier lenkt Schall zu verborgenen Ohröffnungen; die Federohren des Uhus sind davon getrennte Federbüschel.",
+          "exercise": "Skizziere Gesichtsschleier und verborgene Ohröffnung mit einem Schallpfeil. Beschrifte Federohren als getrennte Gefiederstruktur, ohne daraus eine Hörleistung abzuleiten."
         }
       ],
       "questions": [
@@ -1820,6 +1864,32 @@
           ],
           "answer": 1,
           "explain": "Das wärmere arterielle Blut gibt Wärme an das kühlere venöse Blut ab. Dabei wird der Zufluss zu den Füßen abgekühlt und der Rückfluss erwärmt. Die Blutwege verlaufen entgegengesetzt; das hilft, Wärme im Körper zurückzuhalten, ohne eine unbegrenzte Frostschutzgarantie zu bedeuten."
+        },
+        {
+          "id": "gesichtsschleier-schallweg",
+          "lessonId": "gesichtsschleier",
+          "q": "Welche Aufgabe erfüllen die äußeren, steiferen Federn des Gesichtsschleiers der Schleiereule für eintreffenden Schall?",
+          "options": [
+            "Sie erzeugen den Schallreiz selbst und ersetzen die Hörorgane.",
+            "Sie lenken Schall zu den im Gefieder verborgenen Ohröffnungen.",
+            "Sie bilden den Sehnerv zwischen Auge und Gehirn.",
+            "Sie verschließen grundsätzlich beide Ohröffnungen während der Jagd."
+          ],
+          "answer": 1,
+          "explain": "Die Federanordnung lenkt den eintreffenden Schall zu den verborgenen Ohröffnungen. Die beschriebene Funktion ersetzt weder Hörorgane noch eine Untersuchung der individuellen Hörleistung."
+        },
+        {
+          "id": "gesichtsschleier-federohren",
+          "lessonId": "gesichtsschleier",
+          "q": "Was sind die auffälligen Federohren am Kopf eines Uhus anatomisch?",
+          "options": [
+            "Freiliegende Öffnungen des Mittelohrs.",
+            "Vergrößerte knöcherne Ohrmuscheln.",
+            "Aufgerichtete Federbüschel, von den eigentlichen Ohröffnungen getrennt.",
+            "Die inneren Hörorgane auf der Kopfoberfläche."
+          ],
+          "answer": 2,
+          "explain": "Federohren sind Gefiederstrukturen. Sie sind von den eigentlichen Ohröffnungen zu unterscheiden und dienen beim Uhu nicht dem Hören."
         }
       ]
     },
@@ -3019,6 +3089,26 @@
           "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0355554",
           "organization": "LMU München mit Vetmeduni Wien und Tierärztlicher Hochschule Hannover; PLOS ONE",
           "supports": "Originalhistologie mit Follikeln verschiedener Gesichtsregionen, Bluträumen und Mechanorezeptoren. Überlappt Autorengruppe mit 2025; nicht als unabhängige Replikation gezählt."
+        },
+        {
+          "label": "Granar et al. (2011): Normal color variations of the canine ocular fundus",
+          "url": "https://link.springer.com/article/10.1186/1751-0147-53-13",
+          "organization": "Schwedische tierärztliche Originalarbeit / Acta Veterinaria Scandinavica",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "tapetum"
+          ],
+          "supports": "Background, Discussion (The tapetal area) und Limitations tatsächlich gelesen: Tapetum reflektiert Licht zurück zur Netzhaut; normales Erscheinungsbild variiert, bei manchen untersuchten Hunden fehlte es. Retrospektive Untersuchungsunterlagen, keine Messung der Sehfunktion oder repräsentative Häufigkeit für sämtliche Hunde. Keine Rassenquoten, Alterswerte oder Diagnosen übernommen."
+        },
+        {
+          "label": "ACVO (2020): Why Do My Dog’s Eyes Shine at Night?",
+          "url": "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night",
+          "organization": "American College of Veterinary Ophthalmologists",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "tapetum"
+          ],
+          "supports": "Vollständiger kurzer Sachtext vom 9. Dezember 2020 tatsächlich gelesen: reflektierende Schicht hinter der Netzhaut, erneuter Lichtweg zur Netzhaut und Hunde ohne Tapetum. Unabhängige fachliche Erklärung, keine Wiederholung der schwedischen Untersuchung. Keine präzise histologische Schichtgrenze, Farb-Altersregel oder Behandlung übernommen."
         }
       ],
       "lessons": [
@@ -3061,6 +3151,20 @@
           ],
           "takeaway": "Tastinformation entsteht im innervierten Haut- und Follikelapparat, nicht durch Nerven im frei sichtbaren Haarschaft.",
           "exercise": "Trenne an einer Skizze sichtbaren Haarschaft, Follikelgewebe und Nervenleitung."
+        },
+        {
+          "id": "tapetum",
+          "title": "Tapetum",
+          "reviewedOn": "2026-10-29",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Das Tapetum lucidum ist eine reflektierende Schicht hinter der Netzhaut des Hundeauges. Ein Teil des einfallenden Lichts passiert zunächst die Netzhaut und wird am Tapetum zurückgeworfen. Dadurch erhält die Netzhaut eine weitere Gelegenheit, auf dieses Licht zu reagieren. Die reflektierende Schicht und die lichtempfindlichen Zellen der Netzhaut erfüllen verschiedene Aufgaben: Licht zurückwerfen und einen Lichtreiz aufnehmen sind unterschiedliche Schritte.",
+            "Diese Rückreflexion unterstützt das Sehen bei geringer Helligkeit und erklärt den Lichtschein, der an Hundeaugen sichtbar werden kann. Das Auge erzeugt dafür kein eigenes Licht. Auch mit Tapetum bleibt ein äußerer Lichtreiz notwendig; in vollständiger Dunkelheit steht kein einfallendes Licht zum Zurückwerfen zur Verfügung. Eine feste Verstärkung oder bestimmte Sichtweite lässt sich aus dem Grundprinzip nicht berechnen.",
+            "Das Erscheinungsbild des Tapetums ist individuell verschieden; bei manchen Hunden fehlt es. Eine Originalauswertung tierärztlicher Untersuchungsunterlagen dokumentiert solche Unterschiede, maß aber keine Sehfunktion. Die Befunde liefern daher keine Leistungsrangliste von Rassen und keine feste Sehbewertung eines einzelnen Hundes. Ein Augenfoto allein ersetzt diese fehlende Messung nicht.",
+            "Eigene Denkübung: Zeichne einen einfallenden und einen zurückgeworfenen Lichtpfeil. Markiere getrennt die Netzhaut als lichtempfindliches Gewebe und das Tapetum als reflektierende Schicht. Prüfe anschließend, welcher Pfeil ohne äußeres Licht überhaupt fehlen würde."
+          ],
+          "takeaway": "Das Tapetum wirft einfallendes Licht zurück zur Netzhaut; es erzeugt kein Licht und beweist keine individuelle Sehfähigkeit.",
+          "exercise": "Zeichne den einfallenden und den reflektierten Lichtweg an einer vereinfachten Augenskizze. Trenne Reflexion und Reizaufnahme; verwende dafür keine Lichtversuche am Tier."
         }
       ],
       "questions": [
@@ -3479,6 +3583,32 @@
           ],
           "answer": 1,
           "explain": "Anatomie zeigt Strukturen; Verhalten untersucht deren Nutzung unter bestimmten Bedingungen."
+        },
+        {
+          "id": "tapetum-lichtweg",
+          "lessonId": "tapetum",
+          "q": "Wie unterstützt das Tapetum lucidum im Hundeauge die Nutzung einfallenden Lichts?",
+          "options": [
+            "Es erzeugt Licht hinter der Netzhaut ohne äußere Lichtquelle.",
+            "Es ersetzt sämtliche lichtempfindlichen Netzhautzellen.",
+            "Es lenkt Licht ausschließlich am Auge vorbei.",
+            "Es reflektiert Licht zurück zur Netzhaut und ermöglicht dort eine weitere Reizaufnahme."
+          ],
+          "answer": 3,
+          "explain": "Das Tapetum ist eine reflektierende Schicht hinter der Netzhaut. Zurückgeworfenes Licht kann erneut auf die lichtempfindliche Netzhaut treffen; daraus folgt keine feste individuelle Sichtweite."
+        },
+        {
+          "id": "tapetum-lichtreiz",
+          "lessonId": "tapetum",
+          "q": "Welche Voraussetzung braucht die Lichtreflexion am Tapetum lucidum des Hundeauges auch bei geringer Helligkeit?",
+          "options": [
+            "Einen äußeren Lichtreiz, der ins Auge gelangt.",
+            "Eine eigene Lichtproduktion im Auge.",
+            "Eine bestimmte Fellfarbe als alleinige Energiequelle.",
+            "Eine vollständig lichtlose Umgebung als Lichtquelle."
+          ],
+          "answer": 0,
+          "explain": "Reflexion setzt einfallendes Licht voraus. In vollständiger Dunkelheit gibt es keinen äußeren Lichtreiz, den das Tapetum zur Netzhaut zurückwerfen könnte."
         }
       ]
     }
@@ -4093,6 +4223,73 @@
           "sourceRoles": {
             "https://lucec.loyno.edu/natural-history-writings/owl-pellets": "Letzter Sachabsatz über weitere Vogelgruppen.",
             "https://www.nhm.ac.uk/discover/do-birds-pee.html": "Derselbe Gewölleabschnitt nennt mehrere Vogelgruppen. Sichtbare Bestimmungsgrenze ist der eigene Wissensumfang, keine pauschale Negation fachlicher Bestimmung."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "gesichtsschleier",
+      "claims": [
+        {
+          "claim": "Der Gesichtsschleier der Schleiereule beeinflusst eintreffenden Schall und lenkt ihn zu den im Gefieder verborgenen Ohröffnungen.",
+          "sourceUrls": [
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007721",
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf"
+          ],
+          "sourceRoles": {
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007721": "Introduction und Conclusions: richtungsabhängige Filterwirkung der Federanordnung und Beitrag zur räumlichen Schallortung; Originaluntersuchung mit ausdrücklich begrenzten virtuellen Laborbedingungen.",
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf": "Erste PDF-Seite, Amazing Ears: steife äußere Federn und verborgene Ohröffnungen. Eigenständige Fachvermittlung, keine experimentelle Replikation."
+          }
+        },
+        {
+          "claim": "Beim Uhu sind Federohren Federbüschel und keine eigentlichen Ohröffnungen; sie werden vom Gesichtsschleier unterschieden.",
+          "sourceUrls": [
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf",
+            "https://www.naturland-noe.at/uhu"
+          ],
+          "sourceRoles": {
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf": "Amazing Ears grenzt ear tufts ausdrücklich von Hörfunktion und verborgenen Ohröffnungen ab.",
+            "https://www.naturland-noe.at/uhu": "Einleitung und Besonderheiten: Federohren des Uhus sind nicht zum Hören bestimmt. Keine Funktionsdeutung ihrer Stellung übernommen."
+          }
+        },
+        {
+          "claim": "Der benannte Originalversuch untersuchte gehaltene amerikanische Schleiereulen unter virtuellen Schallbedingungen. Die Schleier wurden bei den Verhaltenstesttieren nicht entfernt; daraus wird keine universelle Freilandleistung abgeleitet.",
+          "sourceUrls": [
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007721",
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf"
+          ],
+          "sourceRoles": {
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007721": "Methods, insbesondere Experimental animals und Virtual ruff removal, sowie Conclusions: Tyto alba pratincola nach damaliger Bezeichnung; virtuelle Bedingungen aus Referenz-HRTFs. Das ist der konkrete Originalbefund, keine Aussage über europäische Freilandjagden.",
+            "https://dl.allaboutbirds.org/hubfs/Bird%20Academy/WonderfulWorldOwlsPoster_July%202024.pdf": "Unabhängige anatomische Einordnung des Schallwegs; bestätigt die Funktion, untersucht jedoch diese Versuchsanordnung nicht erneut. Die sichtbare Übertragungsgrenze trennt beide Quellenrollen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-hundesinne-2026",
+      "lessonId": "tapetum",
+      "claims": [
+        {
+          "claim": "Das Tapetum lucidum liegt hinter der Netzhaut und reflektiert einfallendes Licht zu ihr zurück. Es erzeugt kein Licht; der Bedarf an äußerem Licht auch bei geringer Helligkeit folgt aus diesem Reflexionsprinzip.",
+          "sourceUrls": [
+            "https://link.springer.com/article/10.1186/1751-0147-53-13",
+            "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night"
+          ],
+          "sourceRoles": {
+            "https://link.springer.com/article/10.1186/1751-0147-53-13": "Background und Discussion/The tapetal area: reflektierender Aufbau und Rückgabe des Lichts zur Netzhaut. Die Arbeit misst keine Sehfunktion; keine Photonenzahlen oder feste Verstärkung übernommen.",
+            "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night": "Vollständiger Sachtext: Rückreflexion und erneuter Netzhautkontakt; unabhängige ophthalmologische Erklärung. Die vollständige-Dunkelheit-Grenze ist eine unmittelbare physikalische Ableitung der Reflexion, kein neuer Tierversuch."
+          }
+        },
+        {
+          "claim": "Das Tapetum zeigt individuelle Unterschiede und kann bei manchen Hunden fehlen. Die retrospektive schwedische Originalarbeit untersuchte das Erscheinungsbild, nicht die Sehfunktion; keine individuelle Leistungs- oder Diagnoseaussage aus einem Foto.",
+          "sourceUrls": [
+            "https://link.springer.com/article/10.1186/1751-0147-53-13",
+            "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night"
+          ],
+          "sourceRoles": {
+            "https://link.springer.com/article/10.1186/1751-0147-53-13": "Abstract, Background, Discussion und Limitations: normale Variation und fehlendes Tapetum in Untersuchungsunterlagen; ausdrücklich keine visuelle Funktionsmessung. Keine Prävalenzübertragung aus der ausgewählten Untersuchungsgruppe.",
+            "https://www.acvo.org/tips-treatments-tricks/why-do-my-dogs-eyes-shine-at-night": "Der Fachtext nennt ebenfalls Hunde ohne Tapetum. Er erklärt Reflexion unabhängig, ist aber keine experimentelle Wiederholung und wird nicht als individuelle Sehdiagnose verwendet."
           }
         }
       ]

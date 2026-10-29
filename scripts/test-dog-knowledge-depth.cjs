@@ -6,6 +6,7 @@ const { createRequire } = require('node:module');
 const root = path.resolve(__dirname, '..');
 const pr = createRequire(path.join(root, 'package.json'));
 const swc = pr('next/dist/build/swc');
+const { stripDogLearningProcessesAddition } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 function load(relative, cache = new Map()) {
   const filename = path.join(root, relative);
   if (cache.has(filename)) return cache.get(filename);
@@ -17,7 +18,9 @@ function load(relative, cache = new Map()) {
   return mod.exports;
 }
 const expanded = load('lib/dog-breed-expansion.js').dogBreedExpansion;
-const modules = load('lib/learning-dog-depth.js').dogDepthModules;
+// Keep the original five-course structural assertions exact. The two named
+// October-29 appendices have their own live positive preservation checks.
+const modules = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogLearningProcessesAddition);
 
 test('Expanded dog directory covers additional working groups without duplicating existing standards', () => {
   assert.equal(expanded.length, 45);

@@ -1,3 +1,5 @@
+const { sensesBaselineFixture, stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
+const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
@@ -8,10 +10,11 @@ const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createProjectLoader(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)));
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card, stripOctober27GuideTargets } = require('./helpers/learning-additions-oct27.cjs');
-const raw = stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json'));
+const raw = stripSensesDataset(stripGewoelleDataset(require('../data/learning-expansion-biology-2026-10-16.json')));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'gegenstrom';
@@ -21,7 +24,14 @@ const course = getLearningModule(courseId);
 const original = raw.modules.find(item => item.id === courseId);
 const lesson = course.lessons.at(-1);
 const cards = load('lib/learning-flashcards.js').getFlashcards();
-const guide = load('lib/wildlife-learning-guide.js').getWildlifeLearningGuide;
+const liveGuide = load('lib/wildlife-learning-guide.js').getWildlifeLearningGuide;
+// The two named face-disc cards are checked in their own positive regression.
+// Assert the real count before projecting only their exact increment away.
+const guide = slug => liveGuide(slug).map(target => {
+  if (target.moduleId !== courseId) return target;
+  assert.equal(target.flashcardCount, 34);
+  return { ...target, flashcardCount: target.flashcardCount - 2 };
+});
 const study = load('lib/wildlife-study-content.js').getWildlifeStudyContent;
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const urls = [

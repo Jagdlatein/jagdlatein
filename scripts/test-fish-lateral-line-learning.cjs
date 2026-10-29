@@ -1,3 +1,5 @@
+const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-oct29.cjs');
+const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture, stripPlantEnergyDataset } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
@@ -6,7 +8,8 @@ const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additio
 const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const test=require('node:test'),assert=require('node:assert/strict');
 const{createHash}=require('node:crypto');
-const{createLoader,local}=require('./helpers/project-module.cjs');
+const{createLoader:createProjectLoader,local}=require('./helpers/project-module.cjs');
+const createLoader = overrides => createProjectLoader(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)));
 const raw=stripPlantEnergyDataset(require('../data/learning-expansion-ecology-2026-10-16.json'));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture()))))),courseId='wissen-ausbau-oekologie-tierbewegungen-2026',lessonId='seitenliniensinn',questionId='seitenliniensinn-wasserbewegung';
 const sourceURLs=['https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish','https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/'];

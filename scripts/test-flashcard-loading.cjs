@@ -69,6 +69,20 @@ function find(node, predicate) {
   if (!node || typeof node !== 'object') return null;
   return predicate(node) ? node : find(node.props?.children, predicate);
 }
+function categoryChoice(tree) {
+  const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.label === 'Kategorie');
+  assert.ok(choice, 'category selection is contributed by the actual lower-menu MenuChoice');
+  return choice;
+}
+function chooseCategory(tree, value) {
+  const choice = categoryChoice(tree);
+  // Render the actual presentation component and click its real choice button;
+  // the owner still performs the existing filter change and menu/focus work.
+  const button = find(choice.type(choice.props), node => node.type === 'button' && node.props['data-menu-choice'] === value);
+  assert.ok(button, `category choice ${value} exists`);
+  assert.notEqual(button.props.disabled, true);
+  button.props.onClick();
+}
 
 function engine() {
   const slots = []; let cursor = 0; let effects = []; let mounted = true; let updatesAfterUnmount = 0;
@@ -353,12 +367,12 @@ test('Expanded cards preserve the active category, typed search and immediately 
   const settle = () => { render(); e.flush(); render(); e.flush(); render(); };
   try {
     h.flush(); settle();
-    find(tree, node => node.type === 'select').props.onChange({ target: { value: 'hundewesen' } }); settle();
+    chooseCategory(tree, 'hundewesen'); settle();
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); settle();
     assert.equal(find(tree, node => node.type === 'button' && /Antwort zeigen/.test(words(node))), null);
     assert.match(words(tree), /In den Tagesplan/);
     pending.resolve(response()); await h.settle(); settle();
-    assert.equal(find(tree, node => node.type === 'select').props.value, 'hundewesen');
+    assert.equal(categoryChoice(tree).props.value, 'hundewesen');
     assert.equal(find(tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'Belohnung');
     assert.match(words(tree), /In den Tagesplan/);
     assert.match(words(tree), /2 Karten offen oder fällig/);
@@ -384,10 +398,10 @@ test('Print page withholds every printable card until the bank is complete, then
     assert.equal(p.printButton.props.disabled, true);
     assert.equal(find(p.tree, node => node.type === 'article'), null);
     assert.match(words(p.tree), /vollständige Auswahl/);
-    find(p.tree, node => node.type === 'select').props.onChange({ target: { value: 'hundewesen' } }); p.settleRender();
+    chooseCategory(p.tree, 'hundewesen'); p.settleRender();
     find(p.tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); p.settleRender();
     pending.resolve(response()); await p.settle();
-    assert.equal(find(p.tree, node => node.type === 'select').props.value, 'hundewesen');
+    assert.equal(categoryChoice(p.tree).props.value, 'hundewesen');
     assert.equal(find(p.tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'Belohnung');
     assert.equal(p.printButton.props.disabled, false);
     assert.ok(find(p.tree, node => node.type === 'article'));

@@ -21,9 +21,14 @@ const expected = [
   ['fegen', 'wissen-vertiefung-geweih-horn-gewebe-2026', 'erneuerung'],
   ['federwild', 'wissen-ausbau-federaufbau-funktion-2026', null],
   ['windkante', 'wissen-wetter-wind', 'gelände'],
+  ['aesung', 'wissen-rehwild-jahreslauf', 'reh-nahrung'],
+  ['blattzeit', 'wissen-rehwild-jahreslauf', 'reh-nachwuchs'],
+  ['rudel', 'wissen-rotwild-sozialverhalten', 'rot-familien'],
+  ['brunft', 'wissen-rotwild-sozialverhalten', 'rot-brunft'],
+  ['pirsch', 'wissen-ausbau-pirschbeobachtung', null],
 ];
 
-test('Twelve editorial connections point to their exact real course or lesson and have an exact reverse', () => {
+test('Seventeen editorial connections point to their exact real course or lesson and have an exact reverse', () => {
   const before = JSON.stringify([TERMS, learningModules]);
   for (const [slug, moduleId, lessonId] of expected) {
     const module = getLearningModule(moduleId), entry = TERMS.find(term => term.slug === slug);
@@ -34,7 +39,7 @@ test('Twelve editorial connections point to their exact real course or lesson an
   }
   assert.equal(TERMS.filter(entry => forward(entry.slug).length).length, expected.length);
   assert.equal(learningModules.flatMap(reverse).length, expected.length);
-  assert.equal(new Set(learningModules.filter(module => reverse(module).length).map(module => module.id)).size, 6);
+  assert.equal(new Set(learningModules.filter(module => reverse(module).length).map(module => module.id)).size, 9);
   assert.equal(JSON.stringify([TERMS, learningModules]), before);
 });
 

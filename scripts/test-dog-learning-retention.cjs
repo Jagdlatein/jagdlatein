@@ -1,3 +1,5 @@
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
+const { stripSensesDataset } = require('./helpers/senses-learning-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
@@ -10,7 +12,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createProjectLoader(examKnowledgeBaselineFixture(overrides));
 const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
@@ -30,7 +33,7 @@ const gitRead = relative => execFileSync('git', ['show', `${revision}:${relative
 // unrelated foreign afternoon file is never edited and is pinned by its hash.
 const fixtures = new Map([
   ['data/learning-expansion-afternoon-2026-10-16.json', readJson('data/learning-expansion-afternoon-2026-10-16.json')],
-  ['data/learning-expansion-biology-2026-10-16.json', stripGewoelleDataset(readJson('data/learning-expansion-biology-2026-10-16.json'))],
+  ['data/learning-expansion-biology-2026-10-16.json', stripSensesDataset(stripGewoelleDataset(readJson('data/learning-expansion-biology-2026-10-16.json')))],
 ]);
 function baselineLoader() {
   const cache = new Map();

@@ -1,3 +1,10 @@
+const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
+const { stripDogLearningProcessesAddition } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
+const { isPlantEnergyCard } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { isAdiposeCard } = require('./helpers/adipose-learning-additions-oct27.cjs');
+const { isFlightFeatherCard } = require('./helpers/flight-feather-additions-oct27.cjs');
+const { isFirearmTermsCard } = require('./helpers/firearm-terms-additions-oct27.cjs');
+const { isScopedCard: isDigestiveIgnitionCard } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
@@ -8,10 +15,10 @@ const { isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader();
+const load = createLoader(examKnowledgeBaselineFixture());
 const courseId = 'wissen-vertiefung-hunde-nase-spur-laut';
 const lessonId = `${courseId}-ausatemrichtung`;
-const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules;
+const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogLearningProcessesAddition);
 const raw = rawCourses.find(course => course.id === courseId);
 const course = load('lib/learning-curriculum.js').getLearningModule(courseId);
 const lesson = course.lessons.find(item => item.id === lessonId);
@@ -92,7 +99,13 @@ test('All published starter objects and their order stay exact; only true pre-ex
   const affected = cards.filter(card => card.reviewedOn === '2026-10-13' && [courseId, 'wissen-vertiefung-hunde-klare-lernsignale'].includes(card.moduleId));
   assert.equal(affected.length, 7);
   assert.equal(affected.filter(card => card.lessonId.endsWith('-fundkontrolle')).length, 2);
-  const oldCards = cards.filter(card => !isOctober26Card(card) && !isOctober27Card(card) && card.lessonId !== lessonId && !(card.moduleId === 'wissen-biber-schneidezaehne-2026' && card.lessonId === 'mundhautfalte-unterwassernagen') && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung').map(card => affected.includes(card) ? { ...card, reviewedOn: '2026-10-12' } : card).sort((a, b) => a.id.localeCompare(b.id));
+  // Later independently tested appendices were not part of the 1,709-card
+  // snapshot. Remove only their exact IDs; retain the original full hash.
+  const isLaterAppendixCard = card => isPlantEnergyCard(card) || isAdiposeCard(card)
+    || isFlightFeatherCard(card) || isFirearmTermsCard(card) || isDigestiveIgnitionCard(card)
+    || card.id === 'flash-wissen-ausbau-oekologie-tierbewegungen-2026-seitenliniensinn-wasserbewegung';
+  const oldCards = cards.filter(card => !isOctober26Card(card) && !isOctober27Card(card) && !isLaterAppendixCard(card) && card.lessonId !== lessonId && !(card.moduleId === 'wissen-biber-schneidezaehne-2026' && card.lessonId === 'mundhautfalte-unterwassernagen') && card.id !== 'flash-wissen-ausbau-oekologie-holzaufbau-2026-gefaessverteilung-ringporige-eiche' && card.id !== 'flash-wissen-ausbau-biologie-vogelkoerper-2026-gegenstrom-waermerichtung').map(card => affected.includes(card) ? { ...card, reviewedOn: '2026-10-12' } : card).sort((a, b) => a.id.localeCompare(b.id));
+  assert.equal(oldCards.length, 1709);
   assert.equal(hash(oldCards), 'e60d8dc9182448c95248fea11b09e2a90d497906901fa7ebe70841e65d2d3c43', 'All 1709 historical card objects stay exact except seven corrected date fields');
   for (const card of cards.filter(card => card.moduleId === courseId && card.lessonId !== lessonId)) {
     assert.ok(!card.sources.some(source => source.url.includes('s12879-021-06523-8')), 'new lesson source must not be attached to old course cards');

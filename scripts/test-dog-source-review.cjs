@@ -18,19 +18,21 @@ const { dogDepthModules } = load("lib/learning-dog-depth.js");
 const { dogDepthIndependentSources, dogDepthSourceReview } = load("lib/dog-depth-independent-sources.js");
 const sourcesAddedOctober13 = new Set(["handlerBelief", "handlerKnowledge", "markerDogsTrust", "markerBlueCross", "recallDogsTrust", "recallRspca", "heatVetmed", "heatPdsa", "pantingPdsa", "firstAidZurich"]);
 const sourcesAddedOctober24 = new Set(["sniffAirflowCraven", "sniffAirflowJendrny"]);
+const sourcesAddedOctober29 = new Set(["learningProcessesMsd", "habituationAvsab", "learningOverviewOpenstax", "operantOpenstax"]);
+const lessonsAddedOctober29 = new Set(["gewoehnung", "lernverknuepfungen"]);
 const expectedReviewedLessons = {
   "wissen-vertiefung-hunde-vorstehrassen": ["deutsche-vielfalt", "varietaeten", "spanielnamen", "italienische-arbeitsweise", "setter"],
   "wissen-vertiefung-hunde-bracken-nordische": ["oesterreich", "dachsbracken", "schweiz", "nordische", "herkunft-kontext"],
   "wissen-vertiefung-hunde-retriever-spaniels": ["sechs-retriever", "flat-curly", "wasser-tolling", "spanielprofile", "auftrag-uebergabe"],
   "wissen-vertiefung-hunde-nase-spur-laut": ["fundkontrolle", "ausatemrichtung"],
-  "wissen-vertiefung-hunde-klare-lernsignale": ["markerzeitpunkt", "rueckruf-gesichert", "belastung-pausen"],
+  "wissen-vertiefung-hunde-klare-lernsignale": ["markerzeitpunkt", "rueckruf-gesichert", "belastung-pausen", "gewoehnung", "lernverknuepfungen"],
 };
 
 test("Supplemental claims have a responsible organization and a bounded source scope", () => {
   for (const [id, source] of Object.entries(dogDepthIndependentSources)) {
     assert.ok(source.organization && source.label);
     assert.ok(source.scope.length > 45, source.label);
-    assert.equal(source.checkedOn, sourcesAddedOctober24.has(id) ? "2026-10-24" : sourcesAddedOctober13.has(id) ? "2026-10-13" : "2026-10-12", id);
+    assert.equal(source.checkedOn, sourcesAddedOctober29.has(id) ? "2026-10-29" : sourcesAddedOctober24.has(id) ? "2026-10-24" : sourcesAddedOctober13.has(id) ? "2026-10-13" : "2026-10-12", id);
     assert.equal(new URL(source.url).protocol, "https:");
     assert.notEqual(new URL(source.url).hostname, "www.fci.be");
   }
@@ -53,7 +55,7 @@ test("Every source-review entry refers to its actual course and lesson and prese
       assert.ok(lesson, item.lesson);
       assert.deepEqual(lesson.sourceReview, item);
       assert.ok(item.confirmedClaims.length);
-      if (["wissen-vertiefung-hunde-nase-spur-laut", "wissen-vertiefung-hunde-klare-lernsignale"].includes(courseId)) assert.equal(item.checkedOn, item.lesson === "ausatemrichtung" ? "2026-10-24" : "2026-10-13");
+      if (["wissen-vertiefung-hunde-nase-spur-laut", "wissen-vertiefung-hunde-klare-lernsignale"].includes(courseId)) assert.equal(item.checkedOn, lessonsAddedOctober29.has(item.lesson) ? "2026-10-29" : item.lesson === "ausatemrichtung" ? "2026-10-24" : "2026-10-13");
       for (const id of item.sourceIds) {
         const source = dogDepthIndependentSources[id];
         assert.ok(source, id);
@@ -72,4 +74,35 @@ test("Every source-review entry refers to its actual course and lesson and prese
   const unreviewed = dogDepthModules.flatMap(course => course.lessons).filter(lesson => lesson.sourceReview === null);
   assert.equal(unreviewed.length, 10, "The ten older non-breed lessons have not acquired a new per-lesson review");
   assert.equal(dogDepthSourceReview["wissen-vertiefung-hunde-bracken-nordische"].lessons.filter(item => item.standardOnly.length > 0).length, 5);
+});
+
+test("Only the two named October-29 lessons acquire the four precise sources and the new bounded review date", () => {
+  const courseId = "wissen-vertiefung-hunde-klare-lernsignale";
+  const course = dogDepthModules.find(item => item.id === courseId);
+  const expectedSourceLessons = {
+    learningProcessesMsd: ["gewoehnung", "lernverknuepfungen"],
+    habituationAvsab: ["gewoehnung"],
+    learningOverviewOpenstax: ["lernverknuepfungen"],
+    operantOpenstax: ["lernverknuepfungen"],
+  };
+  assert.equal(course.reviewedOn, "2026-10-12");
+  assert.deepEqual(course.lessons.filter(lesson => lesson.reviewedOn === "2026-10-29").map(lesson => lesson.id),
+    [...lessonsAddedOctober29].map(id => `${courseId}-${id}`));
+  for (const id of sourcesAddedOctober29) {
+    const source = dogDepthIndependentSources[id];
+    assert.ok(source, id);
+    assert.deepEqual(source.lessonIds, expectedSourceLessons[id].map(lesson => `${courseId}-${lesson}`));
+    assert.equal(source.checkedOn, "2026-10-29");
+  }
+  const records = dogDepthSourceReview[courseId].lessons.filter(item => lessonsAddedOctober29.has(item.lesson));
+  assert.deepEqual(records.map(record => record.sourceIds), [
+    ["learningProcessesMsd", "habituationAvsab"],
+    ["learningProcessesMsd", "learningOverviewOpenstax", "operantOpenstax"],
+  ]);
+  assert.match(dogDepthIndependentSources.learningProcessesMsd.scope, /Classical Conditioning, Habituation und Operant Conditioning/);
+  assert.match(dogDepthIndependentSources.habituationAvsab.scope, /keine experimentelle Replikation/);
+  assert.match(dogDepthIndependentSources.learningOverviewOpenstax.scope, /keine Aufgabe, Abbildung oder Textpassage kopiert/);
+  assert.match(dogDepthIndependentSources.operantOpenstax.scope, /Dieselbe Organisation.*keine zusätzliche unabhängige Quelle/);
+  assert.ok(records.every(record => record.standardOnly.some(limit => /keine|Kein/.test(limit))));
+  assert.match(dogDepthSourceReview[courseId].scope, /historischen Kurs- und übrigen Lektionsdaten bleiben erhalten/);
 });
