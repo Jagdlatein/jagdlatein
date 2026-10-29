@@ -4,7 +4,16 @@ const SHELL = "/lernen/offline-rucksack";
 const MEDIA = new Set([
   "/lernen/waldwiese.jpg", "/lernen/sicherheit.jpg", "/lernen/jagdpraxis.jpg", "/lernen/ausruestung.jpg", "/lernen/jagdrecht.jpg", "/lernen/lernmaterial.jpg", "/lernen/feldlandschaft.jpg", "/lernen/hygiene.jpg",
   "/lernen/deutsch-drahthaar.jpg", "/lernen/kleiner-muensterlaender.jpg", "/lernen/wachtelhund.jpg", "/lernen/bayerischer-gebirgsschweisshund.jpg",
+  // Actual course/breed photographs already included by the offline exporter.
+  "/lernen/hunde-2026/labrador.jpg", "/lernen/hunde-2026/kurzhaar.jpg", "/lernen/hunde-2026/weimaraner.jpg",
+  // Additional existing JPGs explicitly assigned to the current lesson text.
+  "/lernen/pflanzen/fichte.jpg", "/lernen/pflanzen/rotbuche.jpg", "/lernen/pflanzen/haengebirke.jpg",
+  "/lernen/kategorien-2026/natur-revier.jpg", "/lernen/kategorien-2026/wald-pflanzen.jpg",
   "/wildkunde/nachweise-2026/rehwild.jpg", "/wildkunde/nachweise-2026/hirsch.jpg", "/wildkunde/nachweise-2026/schwarzwild.jpg", "/wildkunde/nachweise-2026/gamswild.jpg", "/wildkunde/nachweise-2026/steinwild.jpg", "/wildkunde/nachweise-2026/stockente.jpg", "/wildkunde/nachweise-2026/fasan.jpg", "/wildkunde/nachweise-2026/feldhase.jpg", "/wildkunde/nachweise-2026/wildkaninchen.jpg", "/wildkunde/nachweise-2026/fuchs.jpg", "/wildkunde/nachweise-2026/dachs.jpg", "/wildkunde/nachweise-2026/baummarder.jpg",
+  "/wildkunde/nachweise-2026/schneehase.jpg", "/wildkunde/nachweise-2026/schneehuhn.jpg", "/wildkunde/nachweise-2026/damwild.jpg", "/wildkunde/nachweise-2026/sikawild.jpg",
+  "/wildkunde/nachweise-2026/steinmarder.jpg", "/wildkunde/nachweise-2026/hermelin.jpg", "/wildkunde/nachweise-2026/mauswiesel.jpg",
+  "/wildkunde/nachweise-2026/rebhuhn.jpg", "/wildkunde/nachweise-2026/auerhuhn.jpg", "/wildkunde/nachweise-2026/birkhuhn.jpg",
+  "/wildkunde/nachweise-2026/krickente.jpg", "/wildkunde/nachweise-2026/reiherente.jpg", "/wildkunde/nachweise-2026/graugans.jpg",
   ...Array.from({ length: 8 }, (_, index) => `/lernen/stimmen/aufnahme-0${index + 1}.mp3`),
   ...Array.from({ length: 22 }, (_, index) => `/lernen/stimmen/vogel-${String(index + 1).padStart(2, "0")}.mp3`),
   ...Array.from({ length: 6 }, (_, index) => `/lernen/stimmen/saeuger-${String(index + 1).padStart(2, "0")}.mp3`),

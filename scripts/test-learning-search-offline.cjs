@@ -316,6 +316,7 @@ test('Retired photo migration pairs replacement bytes and source records while p
   const current = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: true }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
   const untouched = normalizeOfflinePackPhotos(current); assert.equal(untouched.pack, current); assert.deepEqual(untouched.retiredPhotoPaths, []);
   const legacy = { ...current, photos: [{ ...current.photos[0], src: '/wildkunde/gamswild.jpg', credit: 'Old photograph attribution', creditUrl: 'https://old.example.invalid/source', licenseUrl: 'https://old.example.invalid/license' }, current.photos[1]] };
+  delete legacy.lessonPhotos; // Historical packs predate paragraph-bound explanation pictures.
   const original = JSON.stringify(legacy); assert.equal(validateOfflinePack(legacy), true);
   const result = normalizeOfflinePackPhotos(legacy);
   assert.equal(JSON.stringify(legacy), original, 'Migration must not mutate or persist the old pack');
@@ -336,6 +337,7 @@ test('Reading an old saved pack normalizes photos without downloads, cache write
   const { readOfflinePack } = load('lib/offline-learning.js');
   const current = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: false }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
   const saved = { ...current, photos: [{ ...current.photos[0], src: '/wildkunde/gamswild.jpg', credit: 'Old attribution' }] };
+  delete saved.lessonPhotos; // Preserve the actual old schema instead of a mismatched new picture map.
   const original = JSON.stringify(saved); const modes = [];
   const descriptors = Object.fromEntries(['indexedDB', 'fetch', 'caches'].map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   let closes = 0;

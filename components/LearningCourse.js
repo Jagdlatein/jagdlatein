@@ -8,7 +8,7 @@ import useCourseProgress from "../hooks/useCourseProgress";
 import styles from "../styles/Learning.module.css";
 import { getLearningCategoryByTitle } from "../lib/learning-categories";
 import { getLearningMedia } from "../lib/learning-media";
-import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery } from "./LearningMedia";
+import { LearningCover, LearningDiagram, BreedGallery, WildlifeGallery, CoursePhotoSources } from "./LearningMedia";
 import { lessonHash, lessonIndexFromHash } from "../lib/learning-lesson-navigation";
 import { REVIEW_STORAGE_KEY, recordReviewAnswer } from "../lib/daily-review";
 import LessonEvidence from "./LessonEvidence";
@@ -19,6 +19,7 @@ import LessonDiagram from "./LessonDiagram";
 import { getCourseCountryNotes } from "../lib/learning-country-notes";
 import ExamProfileSummary from "./ExamProfileSummary";
 import { CourseCountryNote, CourseCountryMenu } from "./CourseCountryScope";
+import { LessonPhotos, LessonPhotoSources } from "./LessonPhotos";
 import { getCourseVideoLinks } from "../lib/learning-video-links";
 import CourseWildlifeLinks from "./CourseWildlifeLinks";
 import CourseBreedLinks from "./CourseBreedLinks";
@@ -34,14 +35,15 @@ function makeRun(questions, mode = "full", answerSeed = 0, lessonPractice = null
     ...(lessonPractice ? { lessonPractice } : {}) };
 }
 
-export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [], practiceLinks = [] }) {
-  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} oralExamLinks={oralExamLinks} practiceLinks={practiceLinks} />;
+export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [], practiceLinks = [], lessonPhotos = {} }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} oralExamLinks={oralExamLinks} practiceLinks={practiceLinks} lessonPhotos={lessonPhotos} />;
 }
 
-function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [], practiceLinks = [] }) {
+function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [], oralExamLinks = [], practiceLinks = [], lessonPhotos = {} }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
+  const inlinePhotoSources = Object.values(lessonPhotos).flat().map(photo => photo.src);
   const videos = getCourseVideoLinks(module.id);
   const countrySelection = category?.slug === "jagdrecht";
   const { common: commonNote, regional: regionalNotes } = getCourseCountryNotes(module);
@@ -251,8 +253,8 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">
               <p className={styles.eyebrow}>Lektion {lessonIndex + 1} von {module.lessons.length}</p>
               <h2 id="current-lesson-heading" tabIndex={-1} ref={lessonHeading}>{lesson.title}</h2>
-              <div className={styles.lessonText}>{lesson.paragraphs.map((paragraph, index) => <p key={`${lesson.id}:${index}`}>{paragraph}</p>)}</div>
-              {media?.coursePhotoUse?.lessonId === lesson.id && (!media.pictures || media.pictures.length < 2) && <LearningCover media={media} />}
+              <div className={styles.lessonText}>{lesson.paragraphs.map((paragraph, index) => <div key={`${lesson.id}:${index}`}><p>{paragraph}</p><LessonPhotos photos={(lessonPhotos[lesson.id] || []).filter(photo => photo.afterParagraph === index)} context="lesson" /></div>)}</div>
+              {!lessonPhotos[lesson.id]?.length && media?.coursePhotoUse?.lessonId === lesson.id && (!media.pictures || media.pictures.length < 2) && <LearningCover media={media} deferCredits />}
               <LessonDiagram diagram={lesson.diagram} />
               <aside className={styles.takeaway}><h3>Merke dir</h3><p>{lesson.takeaway}</p></aside>
               <aside className={styles.exercise}><h3>Zum Nachdenken</h3><p>{lesson.exercise}</p></aside>
@@ -277,8 +279,8 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
           {(module.showCategoryDiagram !== false && media?.diagram || media?.pictures?.length > 1 || module.id === "wissen-vertiefung-jagdhunderassen") && <details className={`${styles.card} ${styles.supplement}`}>
           <summary>Weitere Abbildungen zu diesem Thema</summary>
           {module.showCategoryDiagram !== false && <LearningDiagram media={media} />}
-          {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery />}
-          <WildlifeGallery pictures={media?.pictures} />
+          {module.id === "wissen-vertiefung-jagdhunderassen" && <BreedGallery deferCredits excludeSources={inlinePhotoSources} />}
+          <WildlifeGallery pictures={media?.pictures} deferCredits excludeSources={inlinePhotoSources} />
           </details>}
           <details id="wissenscheck" className={`${styles.card} ${styles.supplement}`} open={quizOpen} onToggle={event => setQuizOpen(event.currentTarget.open)}>
             <summary>Wissen zu diesem Thema prüfen</summary>
@@ -330,6 +332,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
                     <h4>{question.correct.includes(selected) ? "Richtig beantwortet." : "Das ist noch nicht richtig."}</h4>
                     {!question.correct.includes(selected) && <p><strong>Richtig ist:</strong> {question.answers.filter((answer) => question.correct.includes(answer.id)).map((answer) => answer.text).join(", ")}</p>}
                     <p>{question.explain}</p>
+                    <LessonPhotos photos={lessonPhotos[question.lessonId] || []} context="feedback" />
                     {question.lessonId && <a href={lessonHash(question.lessonId)} className={styles.textButton} onClick={event => {
                       event.preventDefault();
                       const index = module.lessons.findIndex((item) => item.id === question.lessonId);
@@ -350,6 +353,8 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
             <LessonEvidence lesson={lesson} reviewedOn={module.reviewedOn} embedded />
             <p className={styles.muted}>Eigene Lerntexte und Übungsfragen zur Vertiefung deiner Ausbildung. Die verlinkten Quellen dienen zum Nachschlagen; verbindliche örtliche Vorgaben prüfst du vor der praktischen Anwendung.</p>
             <ul className={styles.sources}>{module.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className={styles.externalLabel}> (öffnet einen neuen Tab)</span></a>{source.scope && <p>{source.scope}</p>}</li>)}</ul>
+            <LessonPhotoSources photoMap={lessonPhotos} />
+            <CoursePhotoSources media={media} breeds={module.id === "wissen-vertiefung-jagdhunderassen"} excludeSources={inlinePhotoSources} />
             {module.sourceReview && <details><summary>Welche Aussagen wurden gegengeprüft?</summary><p>{module.sourceReview.scope}</p>{module.sourceReview.lessons.map(review => <div key={review.lesson}><h3>{module.lessons.find(lesson => lesson.id.endsWith(`-${review.lesson}`))?.title || review.lesson}</h3><ul>{review.confirmedClaims.map(claim => <li key={claim}>{claim}</li>)}</ul>{review.standardOnly.length > 0 && <p>Beleggrenze: {review.standardOnly.join(" ")}</p>}</div>)}</details>}
             <p className={styles.muted}><Link href="/hilfe#wissensquellen">Wie wir Wissen und Quellen prüfen</Link></p>
           </section>
