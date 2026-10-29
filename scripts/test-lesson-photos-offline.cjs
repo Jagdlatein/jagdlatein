@@ -61,9 +61,9 @@ function offlineCourse(overrides = {}) {
 }
 
 test('Each illustrated course exports only its exact own lesson pictures without changing course, questions or review dates', () => {
-  assert.equal(illustrated.length, 9);
-  assert.equal(illustrated.reduce((sum, course) => sum + Object.keys(getCourseLessonPhotos(course)).length, 0), 10);
-  assert.equal(new Set(illustrated.flatMap(course => Object.values(getCourseLessonPhotos(course)).flat().map(photo => photo.src))).size, 12);
+  assert.equal(illustrated.length, 15);
+  assert.equal(illustrated.reduce((sum, course) => sum + Object.keys(getCourseLessonPhotos(course)).length, 0), 19);
+  assert.equal(new Set(illustrated.flatMap(course => Object.values(getCourseLessonPhotos(course)).flat().map(photo => photo.src))).size, 24);
   for (const course of illustrated) {
     const before = clone(course), saved = pack([course.id]);
     assert.equal(validateOfflinePack(saved, now), true, course.id);
@@ -127,10 +127,10 @@ const eightCourseIds = [
   'wissen-vertiefung-wild-huehner-nachwuchs', 'wissen-vertiefung-wild-wasservoegel-jahreslauf',
   'wissen-ausbau-hasenartige', 'wissen-vertiefung-laubblatt-merkmale-round4-2026',
 ];
-test('The bounded increase to 64 photos is required by an actual eight-course choice containing 33 distinct photographs', () => {
+test('The bounded 64-photo allowance supports an actual eight-course choice containing 34 distinct photographs', () => {
   const saved = pack(eightCourseIds);
-  assert.equal(saved.courses.length, 8); assert.equal(saved.photos.length, 33);
-  assert.equal(new Set(saved.photos.map(photo => photo.src)).size, 33);
+  assert.equal(saved.courses.length, 8); assert.equal(saved.photos.length, 34);
+  assert.equal(new Set(saved.photos.map(photo => photo.src)).size, 34);
   assert.equal(OFFLINE_MAX_PHOTOS, 64); assert.equal(validateOfflinePack(saved, now), true);
   saved.photos = Array.from({ length: 65 }, () => saved.photos[0]);
   assert.equal(validateOfflinePack(saved, now), false);
@@ -140,7 +140,7 @@ test('The bounded increase to 64 photos is required by an actual eight-course ch
 test('Every actually exported legacy and new photo decodes, has its public exact allowlist and is accepted by worker PREPARE', async () => {
   const paths = new Set();
   for (const course of learningModules) for (const photo of pack([course.id]).photos) paths.add(photo.src);
-  assert.equal(paths.size, 37);
+  assert.equal(paths.size, 42);
   const sharp = local('sharp');
   for (const src of paths) {
     assert.ok(learningImagePaths.includes(src), src);

@@ -695,6 +695,26 @@
             "gewoelle"
           ],
           "supports": "Originalabschnitt What is an owl pellet? gelesen. Nur Speiballen, Materialbeispiele und andere Vogelgruppen; keine umliegenden Ausscheidungs-Sonderbehauptungen oder Bestimmungsregel übernommen."
+        },
+        {
+          "label": "Avian Digestive System – Ceca und Gizzard",
+          "url": "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/",
+          "organization": "University of Kentucky; Dr. Jacquie Jacob, national Cooperative Extension resource",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "vogelblinddaerme"
+          ],
+          "supports": "Originalabschnitte Parts of a Chicken Digestive Tract, Ceca, Gizzard und Intestinal Microflora tatsächlich gelesen. Huhn als Referenztier, paarige blind endende Darmtaschen am Dünn-/Dickdarmübergang und Gärung von Nahrungsresten gegenüber mechanischer Magenarbeit. Keine Wasser-, Vitamin-, Nährstoffanteils-, Fütterungs- oder Behandlungsaussagen übernommen; keine Abbildung oder fremde Aufgabe verwendet."
+        },
+        {
+          "label": "Salgado-Flores und andere 2019: Cecum microbiome of rock ptarmigans",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503",
+          "organization": "UiT The Arctic University of Norway und unabhängige Mitautoren; PLOS ONE",
+          "checkedOn": "2026-10-29",
+          "lessonIds": [
+            "vogelblinddaerme"
+          ],
+          "supports": "Originalarbeit vom 11. März 2019 direkt gelesen: Abstract, Einleitung zum paarigen Blinddarm am ileokolischen Übergang sowie Discussion Hemicellulose and starch-hydrolyzing GHs und Conclusions. Unabhängige Einordnung mikrobieller Pflanzenverarbeitung; untersucht wurden Mikroben und genetisches Funktionspotenzial arktischer Alpenschneehühner. Kein direkt gemessener Energieanteil, keine Übertragung auf DACH-Populationen und keine experimentelle Wiederholung des Hühnerbeispiels behauptet."
         }
       ],
       "lessons": [
@@ -763,6 +783,19 @@
           ],
           "takeaway": "Gewölle werden hochgewürgt. Beim beschriebenen Eulenbeispiel formt der Muskelmagen den Ballen aus unverdauten Nahrungsresten.",
           "exercise": "Erkläre Bildungsort und Abgabeweg eines Gewölles, ohne einen unbekannten Fund anhand seiner Form einer Art zuzuweisen."
+        },
+        {
+          "id": "vogelblinddaerme",
+          "title": "Blinddärme",
+          "reviewedOn": "2026-10-29",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Beim Huhn liegen am Übergang zwischen Dünn- und Dickdarm zwei Blinddärme, auch Cäca genannt. Das sind seitlich abzweigende Darmtaschen mit jeweils einem blind geschlossenen Ende. Sie sind weder zusätzliche Magenkammern noch die Fortsetzung der Speiseröhre. Die Lage hinter dem Dünndarm unterscheidet sie vom davorliegenden Muskelmagen. Ein Organname allein erklärt deshalb noch nicht, welche Arbeit ein Verdauungsabschnitt übernimmt.",
+            "In den Blinddärmen können Mikroorganismen verbliebene pflanzliche Nahrungsbestandteile durch Gärung umsetzen. Diese mikrobielle Verarbeitung ist etwas anderes als das mechanische Zerkleinern und Durchmischen im Muskelmagen. Auch Alpenschneehühner besitzen paarige Blinddärme mit einer daran beteiligten Mikrobenwelt. Der Vergleich verbindet ein bekanntes anatomisches Referenztier mit einer Wildvogelart, ohne beide Verdauungssysteme in allen Einzelheiten gleichzusetzen.",
+            "Die herangezogene Alpenschneehuhn-Arbeit untersucht Mikroben und deren genetisches Funktionspotenzial. Ein vorhandenes Gen ist noch keine Messung der tatsächlich abgebauten Nahrungsmenge. Daraus werden hier weder Energieanteile noch Aussagen über DACH-Populationen abgeleitet. Das Hühnerbeispiel liefert auch keine einheitliche Blinddarmgröße oder Gärleistung sämtlicher Vogelarten. Eine äußere Vogelaufnahme zeigt diese inneren Vorgänge nicht."
+          ],
+          "takeaway": "Beim Huhn unterscheiden sich Muskelmagen und paarige Blinddärme funktionell: mechanische Bearbeitung steht mikrobieller Gärung gegenüber.",
+          "exercise": "Eigene Papierübung: Zeichne für das Huhn Dünndarm, den Übergang zum Dickdarm und zwei seitliche, blind endende Taschen. Ergänze den Muskelmagen davor und beschrifte mechanische Bearbeitung und mikrobielle Gärung getrennt."
         }
       ],
       "questions": [
@@ -1233,6 +1266,19 @@
           ],
           "answer": 3,
           "explain": "Ein Gewölle ist ein hochgewürgter Speiballen aus unverdauten Nahrungsresten und kein Kot."
+        },
+        {
+          "id": "vogelblinddaerme-funktion",
+          "lessonId": "vogelblinddaerme",
+          "q": "Wie unterscheiden sich beim Huhn Muskelmagen und Blinddärme in der Nahrungsverarbeitung?",
+          "options": [
+            "Der Muskelmagen bearbeitet Nahrung mechanisch; in den Blinddärmen setzen Mikroorganismen verbliebene Nahrungsbestandteile durch Gärung um.",
+            "Der Muskelmagen ist der mikrobielle Gärraum; die Blinddärme zerkleinern Nahrung mit kräftiger Muskelarbeit.",
+            "Beide Abschnitte speichern Nahrung lediglich vorübergehend, ohne sie weiterzuverarbeiten.",
+            "Die Blinddärme ersetzen den säurebildenden Drüsenmagen; der Muskelmagen leitet Nahrung nur weiter."
+          ],
+          "answer": 0,
+          "explain": "Beim Huhn bearbeitet der Muskelmagen die Nahrung mechanisch. Die paarigen Blinddärme liegen am Dünn-/Dickdarmübergang; dort können Mikroorganismen verbliebene Nahrungsbestandteile vergären. Das sind unterschiedliche Funktionen und Orte."
         }
       ]
     },
@@ -4398,6 +4444,34 @@
           "sourceRoles": {
             "https://uwm.edu/safety-assurances/programs/research-compliance/animal-care-program/training-education/training-manual/birds/": "Digestive System: Darm mündet in Kloake, gemeinsamer passageway der drei Trakte.",
             "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/": "Abschnitt Cloaca: Harnausscheidung und Darmmaterial erreichen denselben Endbereich, durch den auch der Fortpflanzungstrakt ausmündet. Eigenständige Erklärung der Fachautorin; weder das fremde Bild noch chemische Nebenformulierungen übernommen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "vogelblinddaerme",
+      "claims": [
+        {
+          "claim": "Beim ausdrücklich benannten Huhn liegen zwei blind endende Darmtaschen am Übergang von Dünn- zu Dickdarm. Die unabhängige Alpenschneehuhn-Arbeit beschreibt ebenfalls paarige Cäca an diesem Übergang; daraus wird keine einheitliche Anatomie sämtlicher Vogelarten abgeleitet.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503"
+          ],
+          "sourceRoles": {
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/": "Parts of a Chicken Digestive Tract und Ceca: zwei blind endende Darmtaschen am Dünn-/Dickdarmübergang, ausdrücklich am Huhn beschrieben.",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503": "Einleitung, Absatz beginnend Like other herbivores: paarige Cäca am ileokolischen Übergang beim Alpenschneehuhn. Eigenständige Forschungsarbeit an arktischen Populationen, keine Untersuchung deutscher, österreichischer oder schweizerischer Tiere."
+          }
+        },
+        {
+          "claim": "Mikroorganismen in den Blinddärmen können verbliebenes pflanzliches Material umsetzen. Mikrobielle Gärung wird von der im Hühnerbeispiel mechanischen Muskelmagenarbeit getrennt; aus dem untersuchten mikrobiellen Genpotenzial folgt keine direkt gemessene Gärleistung oder Energiequote.",
+          "sourceUrls": [
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503"
+          ],
+          "sourceRoles": {
+            "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/": "Ceca und Intestinal Microflora erklären Gärung und mikrobiellen Verdauungsbeitrag; Gizzard erklärt getrennt mechanisches Zerkleinern und Mischen. Keine benachbarten Wasser-, Vitamin- oder Nährstoffanteilsbehauptungen übernommen.",
+            "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503": "Einleitung zur mikrobiellen Pflanzenverarbeitung sowie Abstract und Discussion Hemicellulose and starch-hydrolyzing GHs: Mikroben und genetisches Abbaupotenzial. Der letzte Absatz dieser Discussion verlangt weitere Untersuchungen zur Genexpression; Genbefunde werden deshalb nicht als direkte Mengen- oder Energiemessung ausgegeben. Keine experimentelle Replikation des Hühnerbeispiels behauptet."
           }
         }
       ]

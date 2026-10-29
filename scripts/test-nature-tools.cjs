@@ -72,9 +72,15 @@ test('All delivered images exist, have accurate dimensions and commercially comp
   for(const item of delivered){assert.equal(item.aiGenerated,false);assert.ok(item.author&&item.alt&&item.sourceUrl&&item.licenseUrl);assert.match(item.license,/^(CC BY|CC0|Public domain)/);assert.match(item.sourceUrl,/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);assert.ok(natureAssetPaths.includes(item.src));const meta=await sharp(path.join(root,'public',item.src)).metadata();assert.equal(meta.width,item.width);assert.equal(meta.height,item.height);}
   const manifests=['pflanzen','spuren'].flatMap(folder=>JSON.parse(fs.readFileSync(path.join(root,'public','lernen',folder,'bildnachweise.json'),'utf8').replace(/^\uFEFF/,'')));assert.equal(manifests.length,20);assert.deepEqual(manifests.map(item=>item.src).sort(),natureAssetPaths.slice().sort());
 });
-test('The oak image explicitly distinguishes galls from acorns',()=>{
-  assert.match(media.plantPhotos.stieleiche.alt,/Blattgallen.*keine Eicheln/);assert.match(media.plantPhotos.stieleiche.displayCaption,/keine Eicheln/);
-  const {NaturePhoto}=load('components/NatureMedia.js');const html=renderToStaticMarkup(React.createElement(NaturePhoto,{photo:media.plantPhotos.stieleiche}));assert.match(html,/Blattgallen, keine Eicheln/);assert.match(html,/Original und Nachweis/);
+test('The actual oak image shows two green acorns with cupules on a shared stalk and identical public caption metadata',()=>{
+  const photo=media.plantPhotos.stieleiche;
+  assert.match(photo.alt,/zwei grünen Eicheln.*Fruchtbechern.*gemeinsamen Stiel/);assert.match(photo.displayCaption,/grünen Eicheln.*schuppigen Fruchtbechern.*gemeinsamen Stiel/);
+  assert.match(photo.displayCaption,/Blattstiel, Blattgrund und gelappte Spreite/);assert.match(photo.displayCaption,/keine vollständige Bestimmung/);
+  const manifest=load('public/lernen/pflanzen/bildnachweise.json').find(item=>item.id==='stieleiche');
+  assert.ok(manifest);assert.equal(manifest.alt,photo.alt);assert.equal(manifest.displayCaption,photo.displayCaption);
+  for(const key of ['id','src','author','license','sourceUrl','originalUrl','caption','aiGenerated','modifications','width','height'])assert.deepEqual(manifest[key],photo[key],key);
+  assert.equal(new URL(manifest.licenseUrl).hostname,new URL(photo.licenseUrl).hostname);assert.equal(new URL(manifest.licenseUrl).pathname,new URL(photo.licenseUrl).pathname);
+  const {NaturePhoto}=load('components/NatureMedia.js');const html=renderToStaticMarkup(React.createElement(NaturePhoto,{photo}));assert.match(html,/grünen Eicheln.*schuppigen Fruchtbechern.*gemeinsamen Stiel/);assert.doesNotMatch(html,/Blattgallen|keine Eicheln/);assert.match(html,/Original und Nachweis/);
 });
 test('Habitat model evaluates functional resources without accepting unknown features or duplicate inflation',()=>{
   const empty=habitat.evaluateHabitat([]);assert.equal(empty.length,8);assert.ok(empty.every(item=>item.resources.every(resource=>!resource.covered)));

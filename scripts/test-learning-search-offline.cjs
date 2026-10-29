@@ -229,7 +229,9 @@ test('Missing download support preserves saved courses, expiry checks and explic
 
 test('Offline legal questions follow the selected country; expired and double answers cannot change scores', () => {
   const React = requireProject('react'); let cursor = 0; const slots = [];
-  const hooks = { ...React, useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = typeof initial === 'function' ? initial() : initial; return [slots[i], value => slots[i] = typeof value === 'function' ? value(slots[i]) : value]; }, useRef(initial) { const i = cursor++; if (!(i in slots)) slots[i] = { current: initial }; return slots[i]; } };
+  // This legacy fixture exercises answer/filter state; the new navigation
+  // effects and their real cleanups are covered by test-offline-feedback-lesson.
+  const hooks = { ...React, useEffect() {}, useState(initial) { const i = cursor++; if (!(i in slots)) slots[i] = typeof initial === 'function' ? initial() : initial; return [slots[i], value => slots[i] = typeof value === 'function' ? value(slots[i]) : value]; }, useRef(initial) { const i = cursor++; if (!(i in slots)) slots[i] = { current: initial }; return slots[i]; } };
   const { OfflineCourse } = load('components/OfflineLearning.js', { react: hooks, './LearningToolLayout': { default: () => null } }, new Map(), '\nexports.OfflineCourse = OfflineCourse;');
   const { learningModules } = load('lib/learning-curriculum.js'); const course = learningModules.find(item => item.category === 'Jagdrecht' && item.countries.length === 3);
   assert.ok(course, 'Known legal course fixture'); let expired = 0; let expiry = Date.now() + 60000;
@@ -311,8 +313,15 @@ test('Retired photo migration pairs replacement bytes and source records while p
   assert.deepEqual(Object.keys(retiredOfflinePhotoReplacements).sort(), expectedPaths.sort());
   for (const photo of reviewed) {
     const replacement = retiredOfflinePhotoReplacements[`/wildkunde/${path.posix.basename(photo.src)}`];
-    for (const key of ['src', 'credit', 'creditUrl', 'licenseUrl', 'author', 'license', 'sourcePage', 'sha256']) assert.equal(replacement[key], key === 'licenseUrl' ? photo[key].replace(/^http:/, 'https:') : photo[key], `${photo.slug}:${key}`);
+    for (const key of ['src', 'credit', 'creditUrl', 'licenseUrl', 'author', 'license', 'sourcePage', 'sha256']) {
+      const corrected = key === 'credit' && ['fasan','steinmarder','stockente'].includes(photo.slug) || key === 'author' && photo.slug === 'stockente';
+      const expected = corrected ? load('lib/wildlife-photographs.js').wildlifePhotographs[photo.slug][key] : key === 'licenseUrl' ? photo[key].replace(/^http:/, 'https:') : photo[key];
+      assert.equal(replacement[key], expected, `${photo.slug}:${key}`);
+    }
   }
+  assert.match(retiredOfflinePhotoReplacements['/wildkunde/stockente.jpg'].credit,/www\.avi-fauna\.info/);
+  assert.match(retiredOfflinePhotoReplacements['/wildkunde/fasan.jpg'].credit,/gespiegelt.*aufgehellt/);
+  assert.match(retiredOfflinePhotoReplacements['/wildkunde/steinmarder.jpg'].credit,/Focus-Stacking/);
   const current = createOfflinePack({ courseIds: ['wissen-gams-steinbock'], sounds: true }, { email: 'test@example.invalid', paidUntil: new Date(Date.now() + 3600000).toISOString() });
   const untouched = normalizeOfflinePackPhotos(current); assert.equal(untouched.pack, current); assert.deepEqual(untouched.retiredPhotoPaths, []);
   const legacy = { ...current, photos: [{ ...current.photos[0], src: '/wildkunde/gamswild.jpg', credit: 'Old photograph attribution', creditUrl: 'https://old.example.invalid/source', licenseUrl: 'https://old.example.invalid/license' }, current.photos[1]] };

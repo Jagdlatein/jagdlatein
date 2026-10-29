@@ -7,7 +7,9 @@ const MEDIA = new Set([
   // Actual course/breed photographs already included by the offline exporter.
   "/lernen/hunde-2026/labrador.jpg", "/lernen/hunde-2026/kurzhaar.jpg", "/lernen/hunde-2026/weimaraner.jpg",
   // Additional existing JPGs explicitly assigned to the current lesson text.
+  "/lernen/wilddetails-2026/stockente-feder.jpg", "/lernen/wilddetails-2026/reh-schaedel.jpg",
   "/lernen/pflanzen/fichte.jpg", "/lernen/pflanzen/rotbuche.jpg", "/lernen/pflanzen/haengebirke.jpg",
+  "/lernen/pflanzen/stieleiche.jpg", "/lernen/pflanzen/eberesche.jpg", "/lernen/pflanzen/waldkiefer.jpg",
   "/lernen/kategorien-2026/natur-revier.jpg", "/lernen/kategorien-2026/wald-pflanzen.jpg",
   "/wildkunde/nachweise-2026/rehwild.jpg", "/wildkunde/nachweise-2026/hirsch.jpg", "/wildkunde/nachweise-2026/schwarzwild.jpg", "/wildkunde/nachweise-2026/gamswild.jpg", "/wildkunde/nachweise-2026/steinwild.jpg", "/wildkunde/nachweise-2026/stockente.jpg", "/wildkunde/nachweise-2026/fasan.jpg", "/wildkunde/nachweise-2026/feldhase.jpg", "/wildkunde/nachweise-2026/wildkaninchen.jpg", "/wildkunde/nachweise-2026/fuchs.jpg", "/wildkunde/nachweise-2026/dachs.jpg", "/wildkunde/nachweise-2026/baummarder.jpg",
   "/wildkunde/nachweise-2026/schneehase.jpg", "/wildkunde/nachweise-2026/schneehuhn.jpg", "/wildkunde/nachweise-2026/damwild.jpg", "/wildkunde/nachweise-2026/sikawild.jpg",

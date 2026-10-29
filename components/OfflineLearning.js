@@ -66,22 +66,51 @@ function OfflineCourse({ course, expiresAt, onExpired, photoMap = {} }) {
   const [lesson, setLesson] = useState(0);
   const [run, setRun] = useState({ index: 0, answers: {}, score: 0, answerSeed: 0 });
   const active = useRef(run);
+  const mounted = useRef(false), reader = useRef(null), lessonHeading = useRef(null), readingRequest = useRef(null);
+  const [readingRevision, setReadingRevision] = useState(0);
   const questions = legal ? course.questions.filter(question => question.countries.includes(country)) : course.questions;
   const question = questions[run.index]; const answer = question ? run.answers[question.id] : undefined;
+  reader.current = { course, run, question, expiresAt };
+  const questionLessonIndex = typeof question?.lessonId === "string" ? course.lessons.findIndex(item => item.id === question.lessonId) : -1;
   function allowed() { if (Date.now() < expiresAt) return true; onExpired(); return false; }
   function update(next) { active.current = next; setRun(next); }
   function choose(id) { if (!allowed() || active.current !== run || !question || answer !== undefined || !question.answers.some(item => item.id === id)) return; update({ ...run, answers: { ...run.answers, [question.id]: id }, score: run.score + Number(question.correct.includes(id)) }); }
+  function currentFeedback() {
+    const latest = reader.current;
+    return mounted.current && lessonHeading.current?.isConnected && latest?.course === course
+      && latest.run === run && active.current === run && latest.question === question && latest.expiresAt === expiresAt
+      && answer !== undefined && questionLessonIndex >= 0;
+  }
+  function readQuestionLesson() {
+    if (!currentFeedback() || !allowed()) return;
+    readingRequest.current = { course, run, question, expiresAt, index: questionLessonIndex };
+    setLesson(questionLessonIndex);
+    setReadingRevision(value => value + 1);
+  }
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; readingRequest.current = null; };
+  }, []);
+  useEffect(() => {
+    const request = readingRequest.current;
+    if (!request) return;
+    readingRequest.current = null;
+    if (request.index !== lesson || request.course !== course || request.run !== run || request.question !== question || request.expiresAt !== expiresAt
+      || !currentFeedback() || !allowed()) return;
+    lessonHeading.current?.focus({ preventScroll: true });
+    window.scrollTo?.({ left: 0, top: 0, behavior: "instant" });
+  }, [readingRevision, lesson, course, run, question, expiresAt]);
   const current = course.lessons[lesson];
   return <>
     <section className={styles.panel}><h2>{course.title}</h2><p>{course.description}</p><h3>Das lernst du</h3><ul>{course.objectives.map(item => <li key={item}>{item}</li>)}</ul>
       {legal ? <><label className={styles.field}>Land<select value={country} onChange={event => { if (!allowed()) return; setCountry(event.target.value); update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>{course.countries.map(id => <option key={id} value={id}>{countryNames[id]}</option>)}</select></label><p className={styles.note}><strong>{countryNames[country]}:</strong> {course.countryNotes[country]}</p></> : notes.common ? <p className={styles.note}>{notes.common}</p> : notes.regional.length > 0 && <details><summary>Regionale Hinweise</summary>{notes.regional.map(id => <p key={id}><strong>{countryNames[id]}:</strong> {course.countryNotes[id]}</p>)}</details>}
-      <label className={styles.field}>Lektion<select value={lesson} onChange={event => { if (allowed()) setLesson(Number(event.target.value)); }}>{course.lessons.map((item, index) => <option key={item.id} value={index}>{index + 1}. {item.title}</option>)}</select></label>
-      <h3>{current.title}</h3>{current.paragraphs.map((paragraph, index) => <div key={index}><p>{paragraph}</p><LessonPhotos photos={(photoMap[current.id] || []).filter(photo => photo.afterParagraph === index)} context={`offline:${course.id}:${current.id}:paragraph:${index}`} /></div>)}<aside className={styles.note}><strong>Merke dir</strong><p>{current.takeaway}</p><strong>Zum Nachdenken</strong><p>{current.exercise}</p></aside>
+      <label className={styles.field}>Lektion<select value={lesson} onChange={event => { if (allowed()) { readingRequest.current = null; setLesson(Number(event.target.value)); } }}>{course.lessons.map((item, index) => <option key={item.id} value={index}>{index + 1}. {item.title}</option>)}</select></label>
+      <h3 ref={lessonHeading} tabIndex={-1} data-offline-lesson-heading>{current.title}</h3>{current.paragraphs.map((paragraph, index) => <div key={index}><p>{paragraph}</p><LessonPhotos photos={(photoMap[current.id] || []).filter(photo => photo.afterParagraph === index)} context={`offline:${course.id}:${current.id}:paragraph:${index}`} /></div>)}<aside className={styles.note}><strong>Merke dir</strong><p>{current.takeaway}</p><strong>Zum Nachdenken</strong><p>{current.exercise}</p></aside>
       <LessonDiagram diagram={current.diagram} />
     </section>
     {question && <details className={styles.panel}><summary>Offline-Wissenscheck zum Kurs</summary><p className={styles.muted}>Ergebnisse gelten für diese Übungsrunde. Ein Kursabschluss wird hier nicht im Konto gespeichert.</p><p>Frage {run.index + 1} von {questions.length} · {run.score} richtig</p>{(question.topic === "Recht" || question.countries.length < 3) && <p className={styles.note}>Geltungsbereich dieser Frage: {question.countries.map(id => countryNames[id]).join(" · ")}</p>}<h3>{question.q}</h3>
       <div className={styles.choices}>{answerOrder(question.answers, question.id, run.answerSeed).map(answerIndex => { const item = question.answers[answerIndex]; return <button className={`${styles.choice} ${answer !== undefined && question.correct.includes(item.id) ? styles.correct : answer === item.id ? styles.wrong : ""}`} key={item.id} disabled={answer !== undefined} onClick={() => choose(item.id)}>{item.text}{answer !== undefined && question.correct.includes(item.id) && " ✓"}</button>; })}</div>
-      {answer !== undefined && <div className={styles.feedback} role="status"><strong>{question.correct.includes(answer) ? "Richtig." : "Diese Antwort passt nicht."}</strong><p>{question.explain}</p><LessonPhotos photos={photoMap[question.lessonId] || []} context={`offline-feedback:${course.id}:${question.id}`} />{run.index + 1 < questions.length ? <button className={styles.primary} onClick={() => { if (allowed() && active.current === run) update({ ...run, index: run.index + 1 }); }}>Nächste Frage</button> : <><p>{run.score} von {questions.length} richtig.</p><button className={styles.secondary} onClick={() => { if (allowed() && active.current === run) update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>Noch einmal üben</button></>}</div>}
+      {answer !== undefined && <div className={styles.feedback} role="status"><strong>{question.correct.includes(answer) ? "Richtig." : "Diese Antwort passt nicht."}</strong><p>{question.explain}</p><LessonPhotos photos={photoMap[question.lessonId] || []} context={`offline-feedback:${course.id}:${question.id}`} />{questionLessonIndex >= 0 && <button type="button" className={styles.secondary} data-offline-feedback-lesson={question.lessonId} onClick={readQuestionLesson}>Passende Lektion lesen</button>}{run.index + 1 < questions.length ? <button className={styles.primary} onClick={() => { if (allowed() && active.current === run) update({ ...run, index: run.index + 1 }); }}>Nächste Frage</button> : <><p>{run.score} von {questions.length} richtig.</p><button className={styles.secondary} onClick={() => { if (allowed() && active.current === run) update({ index: 0, answers: {}, score: 0, answerSeed: newAnswerSeed(run.answerSeed) }); }}>Noch einmal üben</button></>}</div>}
     </details>}
     <details className={styles.panel}><summary>Quellen und Prüfstand</summary><LessonEvidence lesson={current} reviewedOn={course.reviewedOn} embedded /><p>Zum Öffnen der Originalquellen brauchst du eine Internetverbindung.</p><ul className={styles.sources}>{course.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul><LessonPhotoSources photoMap={photoMap} /></details>
   </>;
