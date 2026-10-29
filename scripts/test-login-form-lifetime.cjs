@@ -169,7 +169,7 @@ test('Current failed codes remain correctable and successful checkout navigation
   h.edit('654321'); await h.send(); assert.equal(h.calls[2][0], '/api/auth/register-verify');
   assert.deepEqual(JSON.parse(h.calls[2][1].body), { email: 'member@example.invalid', code: '654321' });
   assert.equal(h.snapshot().loading, true); [...h.timers.values()].find(timer => timer.delay === 500).callback();
-  assert.equal(h.window.location.href, '/preise?next=%2Flernen#paypal-subscribe-preise'); h.unmount();
+  assert.equal(h.render().props.destination, '/preise?next=%2Flernen#paypal-subscribe-preise'); h.unmount();
 });
 
 test('A current stalled request still aborts at its existing deadline and offers another attempt', async () => {

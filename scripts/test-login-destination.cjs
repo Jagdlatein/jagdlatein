@@ -24,8 +24,33 @@ function load(relative, overrides = {}, globals = {}) {
   }, mod, mod.exports, globals.fetch, globals.window, globals.setTimeout || setTimeout, globals.clearTimeout || clearTimeout, globals.process || process, globals.Date || Date);
   return mod.exports;
 }
-const { getNextUrl, getLoginDestination } = load('lib/login-destination.js');
+const { getNextUrl, getLoginDestination, getLoginContinuation } = load('lib/login-destination.js');
 const unpaid = { paid: false, admin: false };
+
+test('Welcome preserves the exact computed safe checkout, including an explicitly configured HTTPS payment URL', () => {
+  for (const payment of ['/preise#paypal-subscribe-preise', 'https://checkout.example.invalid/pay', 'https://checkout.example.invalid/pay?offer=1#confirm']) {
+    for (const next of ['/lernen', '/kurse/wissen-jagdrecht-ch?lektion=2#quellen']) {
+      const computed = getLoginDestination(next, unpaid, payment);
+      assert.equal(getLoginContinuation(computed, payment), computed);
+    }
+  }
+  for (const next of ['/konto', '/community?thema=Wild#frage', '/preise?next=%2Flernen#paypal-subscribe-preise']) {
+    assert.equal(getLoginContinuation(next, 'https://checkout.example.invalid/pay'), next);
+  }
+});
+
+test('Welcome never promotes arbitrary external next, payment lookalikes, credentials or extra redirect fields', () => {
+  const payment = 'https://checkout.example.invalid/pay?offer=1#confirm';
+  for (const value of ['https://evil.invalid/', '//evil.invalid/', 'https://checkout.example.invalid.evil.invalid/pay?offer=1&next=%2Flernen#confirm',
+    'https://checkout.example.invalid/pay?offer=1&next=https%3A%2F%2Fevil.invalid%2F#confirm',
+    'https://checkout.example.invalid/pay?offer=1&next=%2Flernen&extra=1#confirm',
+    'https://checkout.example.invalid/pay?offer=1&next=%2Flernen#other', '/login', '/registrieren', ['https://evil.invalid/'], null]) {
+    assert.equal(getLoginContinuation(value, payment), '/', String(value));
+  }
+  for (const configured of ['http://checkout.example.invalid/pay', 'https://user:secret@checkout.example.invalid/pay']) {
+    assert.equal(getLoginContinuation(getLoginDestination('/lernen', unpaid, configured), configured), '/');
+  }
+});
 test('An unpaid learner returns to the free community with category, topic and thread context preserved', () => {
   for (const route of ['/community', '/community/?category=hundewesen&thema=R%C3%BCckruf#frage', '/community/11111111-1111-4111-8111-111111111111']) {
     assert.equal(getLoginDestination(route, unpaid), route);
@@ -106,7 +131,7 @@ test('Registration confirms through the free-account endpoint and preserves a fr
   assert.deepEqual(JSON.parse(h.calls[0][1].body), { email: 'member@example.invalid', code: '123456' });
   const navigation = [...h.timers.values()].find(item => item.delay === 500);
   navigation.fn();
-  assert.equal(h.window.location.href, '/community?category=hundewesen');
+  assert.equal(h.render().props.destination, '/community?category=hundewesen');
 });
 
 test('Requesting a code preserves the neutral server message without claiming the account exists or mail arrived', async () => {
@@ -144,11 +169,11 @@ test('Both payment entry routes use the same email flow and preserve checkout co
     assert.equal(links.length, 0);
     for (const link of links) assert.equal(link.searchParams.get('next'), next);
     h.states[2] = 'code'; h.states[1] = '123456';
-    assert.match(renderToStaticMarkup(h.render()), /Bestätigen und zum Abo/);
+    assert.match(renderToStaticMarkup(h.render()), /Bestätigen und weiter/);
     await h.submit(h.render());
     assert.equal(h.calls[0][0], '/api/auth/register-verify');
     [...h.timers.values()].find(item => item.delay === 500).fn();
-    assert.equal(h.window.location.href, next);
+    assert.equal(h.render().props.destination, next);
     h.unmount();
   }
 });
@@ -173,7 +198,7 @@ test('Native account entry and web checkout request and verify the same OTP for 
       assert.equal(h.calls[1][0], '/api/auth/register-verify');
       assert.deepEqual(JSON.parse(h.calls[1][1].body), { email, code: '123456' });
       [...h.timers.values()].find(timer => timer.delay === 500).fn();
-      assert.equal(h.window.location.href, next);
+      assert.equal(h.render().props.destination, next);
       h.unmount();
     }
   }
@@ -198,7 +223,7 @@ test('Disabling registration cancels the prior unified request and starts an ind
   h.states[1] = '123456'; await h.submit(h.render());
   assert.equal(h.calls[2][0], '/api/auth/verify-code');
   [...h.timers.values()].find(timer => timer.delay === 500).fn();
-  assert.equal(h.window.location.href, '/konto');
+  assert.equal(h.render().props.destination, '/konto');
   h.unmount(); assert.equal(h.timers.size, 0);
 });
 
@@ -272,7 +297,7 @@ test('Unified sign-in keeps a free community destination without another account
   await h.submit(h.render());
   assert.equal(h.calls[0][0], '/api/auth/register-verify');
   [...h.timers.values()].find(timer => timer.delay === 500).fn();
-  assert.equal(h.window.location.href, next); h.unmount();
+  assert.equal(h.render().props.destination, next); h.unmount();
   assert.ok(!html.includes('Schritte zum Abo'));
 });
 
@@ -574,7 +599,7 @@ test('Duplicate code confirmation and changing email stay blocked through the su
   const updated = h.render(); assert.equal(find(updated, node => node.type === 'button' && node.props.type === 'submit').props.disabled, true);
   assert.equal(find(updated, node => node.type === 'button' && node.props.type === 'button').props.disabled, true);
   const navigation = [...h.timers.values()].find(timer => timer.delay === 500); assert.ok(navigation); navigation.fn();
-  assert.equal(h.window.location.href, '/community?category=hundewesen'); h.unmount();
+  assert.equal(h.render().props.destination, '/community?category=hundewesen'); h.unmount();
 });
 test('A failed code can be corrected and submitted again without leaving the learner stuck', async () => {
   const h = harness(() => Promise.resolve(response({ success: false, message: 'Code abgelaufen' }, 400)));

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import LearningToolLayout from "../components/LearningToolLayout";
+import ExamProfileWelcome from "../components/ExamProfileWelcome";
 import { JL_ACCOUNT_COOKIE, readAccountSession } from "../lib/account-session";
 import { getNextUrl, getLoginDestination } from "../lib/login-destination";
 import { getTestLoginMailMode } from "../lib/test-environment";
@@ -30,7 +31,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   // The registration OTP also signs existing members in without replacing
   // their account. This covers native /konto entry as well as web checkout.
   const registrationMode = registration || allowRegistration;
-  const flowKey = `${registration ? "registration-route" : "login-route"}:${registrationMode ? "register" : "login"}`;
+  const flowKey = JSON.stringify([registration ? "registration-route" : "login-route", registrationMode ? "register" : "login", nextUrl]);
   const reviewNextUrl = nextUrl === "/" || nextPath === "/review-login" ? "/konto" : nextUrl;
   const paymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL || "/preise#paypal-subscribe-preise";
   const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [resendSeconds, setResendSeconds] = useState(0);
+  const [welcome, setWelcome] = useState(null);
   const busy = useRef(false);
   const mounted = useRef(false);
   const request = useRef(null);
@@ -50,6 +52,9 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   if (flowIdentity.current.key !== flowKey) flowIdentity.current = { key: flowKey };
   const flow = flowIdentity.current;
   const authMode = useRef(flow);
+  const welcomeGuard = useRef(null);
+  if (welcomeGuard.current?.flow !== flow) welcomeGuard.current = { flow,
+    isCurrent: () => mounted.current && flowIdentity.current === flow && authMode.current === flow };
   const formIdentity = useRef({ flow, step });
   if (formIdentity.current.flow !== flow || formIdentity.current.step !== step) formIdentity.current = { flow, step };
   const form = formIdentity.current;
@@ -80,6 +85,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       setCode("");
       setMsg("");
       setLoading(false);
+      setWelcome(null);
       updateResendWait(email);
     }
     return () => {
@@ -157,9 +163,15 @@ export default function LoginPage({ registration = false, allowRegistration = fa
       }
       if (verify) {
         redirecting = true;
-        setMsg("Erfolgreich eingeloggt – Weiterleitung …");
+        const destination = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
+        setMsg("Erfolgreich eingeloggt – Prüfungsziel vorbereiten …");
         redirectTimer.current = setTimeout(() => {
-          if (isCurrentRequest()) window.location.href = getLoginDestination(registration && nextUrl === "/" ? "/konto" : nextUrl, data, paymentUrl);
+          if (!isCurrentRequest()) return;
+          request.current = null;
+          clearTimeout(resendTimer.current);
+          resendTimer.current = null;
+          resendRevision.current++;
+          setWelcome({ flow, destination });
         }, 500);
       } else {
         // Apply the same visible wait to every neutral success response. It
@@ -186,6 +198,8 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     }
   }
 
+  if (welcome?.flow === flow) return <ExamProfileWelcome key={flow.key} destination={welcome.destination} isCurrent={welcomeGuard.current.isCurrent} />;
+
   const title = forSubscription ? "Dein Konto für das Abo" : registrationMode ? "Dein Lernkonto" : "Willkommen zurück";
   const description = forSubscription
     ? "Mit deinem Jagdlatein-Konto bleibt dein Abo dir zugeordnet. Erst danach bestätigst du dein Angebot und die Zahlung."
@@ -194,7 +208,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
   return <LearningToolLayout title={title} description={description} icon="account" eyebrow="Dein Zugang zu Jagdlatein" robots="noindex, nofollow" hideCommunity compact>
     <section className={`${styles.panel} ${authStyles.formPanel}`} aria-labelledby="login-heading">
       {forSubscription && <ol className={authStyles.progress} aria-label="Schritte zum Abo">
-        {["E-Mail", "Code bestätigen", "Abo wählen"].map((label, index) => <li key={label} aria-current={(step === "email" ? 0 : 1) === index ? "step" : undefined}><span aria-hidden="true">{index + 1}</span>{label}</li>)}
+        {["E-Mail", "Code bestätigen", "Prüfungsziel", "Abo wählen"].map((label, index) => <li key={label} aria-current={(step === "email" ? 0 : 1) === index ? "step" : undefined}><span aria-hidden="true">{index + 1}</span>{label}</li>)}
       </ol>}
       <h2 id="login-heading">{step === "email" ? (registrationMode ? "Anmelden oder Konto erstellen" : "Mit E-Mail anmelden") : (registrationMode ? "E-Mail bestätigen" : "Login-Code bestätigen")}</h2>
       <p>{step === "email" ? (registrationMode ? "Mit deiner E-Mail anmelden oder ein kostenloses Konto erstellen. Dein bestehendes Konto bleibt erhalten. Ein neues Konto entsteht erst nach der Codebestätigung. Dieser Schritt löst keine Zahlung aus." : "Gib die E-Mail-Adresse deines Jagdlatein-Kontos ein.") : <>Code für <strong className={authStyles.emailAddress}>{email}</strong></>}</p>
@@ -212,7 +226,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
           <input key="code" type="text" inputMode="numeric" enterKeyHint="go" autoComplete="one-time-code" autoFocus placeholder="123456" value={code} maxLength={6} pattern="[0-9]{6}" disabled={loading} onChange={event => { if (!isCurrentForm() || busy.current) return; const value = event.target.value.replace(/\D/g, "").slice(0, 6); updateDraft({ code: value }); setCode(value); }} className={authStyles.code} aria-describedby="login-help" required />
         </label>}
         <p id="login-help" className={authStyles.help}>{step === "email" ? "Kein Passwort nötig: Du bestätigst deine E-Mail mit einem einmaligen Code." : isTestMail && testMailMode === "sink" ? "Der Code steht im getrennten Testpostfach. Gib den neuesten Code ein; er ist 10 Minuten gültig." : "Öffne dein E-Mail-Postfach und gib den neuesten Code ein; er ist 10 Minuten gültig. Prüfe auch den Spamordner."}</p>
-        <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registrationMode ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und zum Abo" : "Einloggen"))}</button>
+        <button type="submit" className={styles.primary} disabled={loading}>{loading ? (step === "email" ? "Wird gesendet …" : "Wird geprüft …") : (step === "email" ? (registrationMode ? "Bestätigungscode senden" : "Login-Code senden") : (forSubscription ? "Bestätigen und weiter" : "Einloggen"))}</button>
       </form>
       {msg && <p className={`${styles.note} ${authStyles.message}`} role="status" aria-live="polite">{msg}</p>}
       {step === "code" && <div className={authStyles.codeActions}>
