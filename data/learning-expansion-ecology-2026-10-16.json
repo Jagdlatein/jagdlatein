@@ -655,6 +655,76 @@
           "url": "https://www.ds.mpg.de/2695205/2014_11_2",
           "organization": "Max-Planck-Institut für Dynamik und Selbstorganisation",
           "supports": "Chlorophyllabbau und Rückgewinnung wertvoller Bestandteile sowie winterliche Wasserbegrenzung. Nicht übernommen: pauschale Rückgewinnung aller Mineralstoffe, permanente Verfügbarkeit beliebiger CO2-Mengen und immer vorhandene Anthocyane."
+        },
+        {
+          "label": "Sauerstoff in Pflanzen · Forschungsbericht 2011",
+          "url": "https://www.mpg.de/4982054/pflanzen-sauerstoff",
+          "organization": "Max-Planck-Institut für molekulare Pflanzenphysiologie; Joost T. van Dongen",
+          "supports": "Zusammenfassung und Abschnitte zur Energieversorgung: Pflanzen benötigen Sauerstoff für die aerobe Zellatmung. Institutioneller Forschungsüberblick, keine neue Messung der Atmungsrate; keine Hypoxie-, Gärungs- oder Behandlungsanleitung übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zellatmung"
+          ]
+        },
+        {
+          "label": "Plant Biology Basics · aerobe Pflanzenatmung",
+          "url": "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf",
+          "organization": "University of Minnesota; Pesticide Safety and Environmental Education",
+          "supports": "Folie 58 (physische PDF-Seite58), Aerobic Respiration: Nutzung gespeicherter Zucker/Stärke zur Energieversorgung und Sauerstoffbedarf; Atmung als fortlaufende Pflanzenfunktion. Nur dieser Grundlagenblock, keine umgebenden Arten-, Keimungs-, Dünge- oder Pflanzenschutzbehauptungen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zellatmung"
+          ]
+        },
+        {
+          "label": "Regulation des Primärstoffwechsels · Sink-Source Interaktion",
+          "url": "https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/",
+          "organization": "Universität Stuttgart; Institut für Biomaterialien und biomolekulare Systeme; Abteilung Pflanzen-Biotechnologie",
+          "supports": "Absätze zum Tag-Nacht-Wechsel und Kohlenhydratbedarf: Wurzelatmung über beide Phasen, Eigenverbrauch im Licht und gespeicherte Kohlenhydrate für die Nacht. Eigene Forschungsdarstellung; keine abgebildeten Arabidopsis-Messwerte oder universellen Tagesbilanzen übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "zellatmung"
+          ]
+        },
+        {
+          "label": "Biology 2e · 46.2 · Energiefluss durch Ökosysteme",
+          "url": "https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems",
+          "organization": "OpenStax; Rice University",
+          "supports": "Einleitung, How Organisms Acquire Energy, Productivity und Ecological Efficiency: photosynthetischer Energieeintrag, Weitergabe im Nahrungsnetz, Eigenverbrauch und Wärmeabgabe. Keine Prozentwerte, festen Kettenlängen oder örtlichen Biomassedaten übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "energie-stoffe"
+          ]
+        },
+        {
+          "label": "Carbon TIME · Ecosystems, Lesson 3 Teacher Guide",
+          "url": "https://carbontime.create4stem.msu.edu/sites/default/files/ecosystems/teacher_guides/tg_lesson3.pdf",
+          "organization": "Michigan State University; CREATE for STEM; Carbon TIME",
+          "supports": "Seiten 4–5, 7 und 17: getrenntes Nachverfolgen von Kohlenstoff und Energie; Lichtenergie, chemische Energie und Wärme, ohne Erzeugung oder Vernichtung von Energie. Eigenes institutionelles Unterrichtsmaterial; keine Spiele, Originalaufgaben, Abbildungen oder universellen Produzenten-/Kettenregeln übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "energie-stoffe"
+          ]
+        },
+        {
+          "label": "Carbon cycle · Speicherung und Austausch",
+          "url": "https://www.noaa.gov/education/resource-collections/climate/carbon-cycle",
+          "organization": "National Oceanic and Atmospheric Administration; U.S. Department of Commerce",
+          "supports": "Carbon storage and exchange, erste Absätze: Kohlenstoffaufnahme durch Photosynthese, Weitergabe mit Nahrung und Rückwege durch Atmung, Ausscheidung und Zersetzung. Nur diese Prozessgrundlage; keine Klima-, Mengen- oder Zeitreihenzahlen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "energie-stoffe"
+          ]
+        },
+        {
+          "label": "Biogeochemical Cycles · Kohlenstoffpfade",
+          "url": "https://scied.ucar.edu/learning-zone/earth-system/biogeochemical-cycles",
+          "organization": "University Corporation for Atmospheric Research; Center for Science Education",
+          "supports": "Einleitung und The Carbon Cycle, erste vier Prozesspunkte: dieselben Atome zwischen belebter und unbelebter Umwelt, Pflanze, Nahrung, Boden und atmosphärischem Kohlendioxid. Keine alten Klimazahlen, Verweilzeiten oder übrigen Stickstoffdetailaussagen übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "energie-stoffe"
+          ]
         }
       ],
       "lessons": [
@@ -701,6 +771,33 @@
           ],
           "takeaway": "Kontrollierte Seneszenz kann Nährstoffe zurückführen; Blattverbrennung ist kein gleichwertiger Vorgang.",
           "exercise": "Erkläre den Unterschied zwischen kontrollierter Blattalterung und einem frühzeitig verbrannten Blatt."
+        },
+        {
+          "id": "zellatmung",
+          "title": "Pflanzenatmung",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Auch eine grüne Pflanze benötigt Energie für ihre Lebensvorgänge. Die Photosynthese baut mithilfe von Licht energiereiche organische Stoffe auf; damit ist der Eigenbedarf der Pflanze aber noch nicht erklärt. Bei der aeroben Zellatmung werden Zucker und daraus gespeicherte Reserven zur Energieversorgung genutzt. Aerob bedeutet hier, dass Sauerstoff benötigt wird. Sauerstoff ist somit für die Pflanze nicht nur ein Ergebnis der Photosynthese.",
+            "Zellatmung ist kein Vorgang ausschließlich der Nacht. Pflanzen nutzen sie auch während der Lichtphase. Die Wurzelatmung kann über den gesamten Tag-Nacht-Wechsel stattfinden. Zugleich können beleuchtete grüne Pflanzenteile Photosynthese betreiben. Beide Stoffwechselaufgaben dürfen deshalb nicht als Schalter beschrieben werden, der tagsüber nur Aufbau und nachts nur Verbrauch zulässt.",
+            "Ein Teil der tagsüber gebildeten Kohlenhydrate kann gespeichert und später verbraucht werden. Solche Vorräte verbinden die Versorgung in Licht und Dunkelheit. Das ist keine Aussage über eine gleiche Atmungsrate aller Pflanzen oder eine feste tägliche Zuckerbilanz.",
+            "Eigene Denkübung: Beschrifte zwei Wortkarten mit Stoffaufbau durch Licht und Energieversorgung durch Zuckerabbau. Ordne die Sauerstoffnutzung der aeroben Zellatmung zu. Erkläre anschließend, weshalb eine lebende Wurzel auch am Tag Energie aus organischen Stoffen benötigt. Die Karten stellen Aufgaben dar, keine Messung eines bestimmten Baums."
+          ],
+          "takeaway": "Auch grüne Pflanzen nutzen Sauerstoff zur aeroben Zellatmung; diese Energieversorgung findet nicht nur nachts statt.",
+          "exercise": "Trenne den lichtabhängigen Stoffaufbau von der Sauerstoff nutzenden Energieversorgung. Erkläre beide Aufgaben an einer eigenen Wortkartenskizze ohne erfundene Tagesbilanz."
+        },
+        {
+          "id": "energie-stoffe",
+          "title": "Energie und Stoffe",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Im hier betrachteten photosynthetisch gestützten Waldsystem nehmen grüne Pflanzen Lichtenergie auf und binden sie in organischen Stoffen. Mit Nahrung werden Stoffe und chemische Energie an andere Organismen weitergegeben. Pflanzen, Tiere und Zersetzer nutzen Energie für ihren eigenen Stoffwechsel. Dabei wird auch Wärme an die Umgebung abgegeben. Wärme bleibt Energie; sie ist aber kein Nährstoff, der wie ein Kohlenstoffatom erneut in einen Zuckerbaustein eingebaut wird.",
+            "Für den Kohlenstoff lässt sich ein anderer Weg verfolgen: Ein Atom kann aus dem Kohlendioxid der Luft in eine Pflanze gelangen und mit Nahrung weitergegeben werden. Atmung und Abbau können Kohlenstoff wieder als Kohlendioxid freisetzen; abgestorbenes Material führt außerdem Kohlenstoff in den Boden. So kann derselbe Stoffbaustein erneut in biologische Zusammenhänge eintreten. Das bedeutet weder, dass jeder Teil sofort zurückkehrt, noch dass ein Revier einen geschlossenen Kreislauf bildet.",
+            "Eigene Denkübung: Zeichne zwei verschieden beschriftete Pfeilfolgen. Verfolge einmal einen Kohlenstoffbaustein zwischen Luft, Pflanze, Nahrung und Umgebung, ein zweites Mal Lichtenergie, chemische Nahrungsenergie und Wärme. Kennzeichne die Zeichnung als vereinfachtes Waldmodell ohne Mengenangaben. Die Zersetzer führen Wärme dabei nicht als neue Lichtenergie in die Photosynthese zurück. Energiefluss und Stoffkreislauf sind verschiedene Beschreibungen desselben Systems."
+          ],
+          "takeaway": "Kohlenstoffatome können im Stoffkreislauf wiederverwendet werden; Energie wird weitergegeben und unter anderem als Wärme abgegeben.",
+          "exercise": "Zeichne im eigenen Waldmodell getrennte Wege für einen Kohlenstoffbaustein und für Energie. Kennzeichne Wärmeabgabe sowie die offene Grenze zur Umgebung."
         }
       ],
       "questions": [
@@ -1119,6 +1216,58 @@
           ],
           "answer": 1,
           "explain": "Ähnliche Farben können durch unterschiedliche physiologische Abläufe entstehen."
+        },
+        {
+          "id": "zellatmung-pflanze-sauerstoff",
+          "lessonId": "zellatmung",
+          "q": "Wofür benötigt auch eine grüne Pflanze Sauerstoff bei ihrer aeroben Zellatmung?",
+          "options": [
+            "Um Zucker und Reserven zur eigenen Energieversorgung zu nutzen.",
+            "Um Sonnenlicht als Bodenmineral zu speichern.",
+            "Um das Kohlendioxid für die Photosynthese vollständig zu ersetzen.",
+            "Um organische Stoffe ohne Energiebedarf aus Sauerstoff allein aufzubauen."
+          ],
+          "answer": 0,
+          "explain": "Aerobe Zellatmung nutzt Sauerstoff und organische Energieträger für die Energieversorgung der Pflanze. Die Photosynthese hebt diesen eigenen Energiebedarf nicht auf."
+        },
+        {
+          "id": "zellatmung-tag-nacht",
+          "lessonId": "zellatmung",
+          "q": "Wann kann eine lebende Pflanzenwurzel Zellatmung zur Energieversorgung nutzen?",
+          "options": [
+            "Ausschließlich nachts, weil bei Licht jede Zellatmung endet.",
+            "Nur während des vollständigen Laubfalls.",
+            "Während der Lichtphase und auch in der Dunkelphase.",
+            "Nur wenn die ganze Pflanze aufgehört hat, organische Stoffe aufzubauen."
+          ],
+          "answer": 2,
+          "explain": "Wurzelatmung ist nicht auf die Nacht begrenzt. Photosynthetischer Stoffaufbau und Zellatmung können innerhalb einer Pflanze gleichzeitig stattfinden; daraus folgt keine identische Atmungsrate in beiden Phasen."
+        },
+        {
+          "id": "energie-stoffe-waerme",
+          "lessonId": "energie-stoffe",
+          "q": "In welcher Form geben Organismen im Waldmodell bei Stoffwechselprozessen einen Teil der Energie an ihre Umgebung ab?",
+          "options": [
+            "Als neue Kohlenstoffatome.",
+            "Als Wärme.",
+            "Als neu geschaffenes Sonnenlicht.",
+            "Als verschwundene Energie ohne weitere Form."
+          ],
+          "answer": 1,
+          "explain": "Bei Stoffwechselprozessen wird ein Teil der Energie als Wärme abgegeben. Energie wird dabei umgewandelt, nicht vernichtet; Wärme ist kein stofflicher Nährstoffkreislauf."
+        },
+        {
+          "id": "energie-stoffe-kohlenstoff",
+          "lessonId": "energie-stoffe",
+          "q": "Welchen Weg kann ein Kohlenstoffatom aus dem Kohlendioxid der Luft im vereinfachten Waldmodell nehmen?",
+          "options": [
+            "Es wird bei der Photosynthese vollständig in Sonnenlicht umgewandelt.",
+            "Es verschwindet, sobald ein Organismus Wärme abgibt.",
+            "Es muss innerhalb eines einzigen Reviers ohne Austausch bleiben.",
+            "Es kann in eine Pflanze gelangen, mit Nahrung weitergegeben und später wieder als Kohlendioxid freigesetzt werden."
+          ],
+          "answer": 3,
+          "explain": "Kohlenstoffatome werden zwischen Luft, Organismen und Boden weitergegeben und können erneut genutzt werden. Dieser Stoffkreislauf ist vom Energiefluss mit Wärmeabgabe zu unterscheiden; das Waldmodell ist kein geschlossenes Revier."
         }
       ]
     },
@@ -3744,6 +3893,73 @@
           "sourceRoles": {
             "https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish": "Abschnitt Lateral line: Reizquellen und Funktionskontext; keine Abbildungen oder umliegenden Sonderbehauptungen übernommen.",
             "https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/": "Absatz zur Beute-/Räuber-/Schwarmfunktion; keine Reflexwellen- oder Elektrorezeptionsdarstellung übernommen."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-blattfunktion-2026",
+      "lessonId": "zellatmung",
+      "claims": [
+        {
+          "claim": "Auch grüne Pflanzen nutzen Sauerstoff bei der aeroben Zellatmung zur Energieversorgung aus organischen Reserven; Sauerstoff ist nicht ausschließlich ein Produkt ihres photosynthetischen Stoffaufbaus.",
+          "sourceUrls": [
+            "https://www.mpg.de/4982054/pflanzen-sauerstoff",
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf"
+          ],
+          "sourceRoles": {
+            "https://www.mpg.de/4982054/pflanzen-sauerstoff": "Forschungsbericht 2011, Zusammenfassung sowie Niedrige Sauerstoffkonzentration und Regulation der Energiestoffwechselwege tatsächlich gelesen: pflanzlicher Sauerstoffbedarf zur Energieversorgung. Keine Hypoxieanleitung oder ATP-Detailaussage gelehrt.",
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf": "Plant Biology Basics, Folie 58 (physische PDF-Seite58), Aerobic Respiration tatsächlich gelesen: gespeicherte Zucker/Stärke, Energieversorgung und Sauerstoffbedarf. Die umgebenden Keimungs-, Dünge- und Pflanzenschutzabschnitte werden nicht übernommen."
+          }
+        },
+        {
+          "claim": "Pflanzenatmung ist nicht ausschließlich auf die Nacht begrenzt. Wurzelatmung kann über den Tag-Nacht-Wechsel stattfinden; in der Lichtphase können gleichzeitig photosynthetischer Aufbau und eigener Kohlenhydratverbrauch erfolgen.",
+          "sourceUrls": [
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf",
+            "https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/"
+          ],
+          "sourceRoles": {
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf": "Folie 58: Plants constantly undergo aerobic respiration tatsächlich gelesen. Keine identischen oder unbegrenzten Raten daraus abgeleitet.",
+            "https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/": "Sink-Source Interaktion, Absätze zum Tag-Nacht-Wechsel und Eigenbedarf (142–147 im gelesenen Webtext): Wurzelatmung über beide Phasen sowie Kohlenhydratverbrauch während der Lichtphase. Keine Arabidopsis-Zahlen oder artspezifischen Tagesbilanzen übernommen."
+          }
+        },
+        {
+          "claim": "Gespeicherte Kohlenhydrate können die spätere Energieversorgung in Dunkelheit unterstützen; Aufbau, Speicherung und Verbrauch sind zu unterscheiden.",
+          "sourceUrls": [
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf",
+            "https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/"
+          ],
+          "sourceRoles": {
+            "https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf": "Aerobic Respiration, Folie 58: Energie aus gespeicherten Zuckern und Stärke tatsächlich gelesen.",
+            "https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/": "Absätze während der Lichtphase und Speicherung für die Nacht tatsächlich gelesen. Eigene Forschungsdarstellung, keine universelle Speichermenge oder Zeitrate."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-blattfunktion-2026",
+      "lessonId": "energie-stoffe",
+      "claims": [
+        {
+          "claim": "Im ausdrücklich photosynthetisch gestützten Waldmodell fließt Energie von Licht über organische Nahrung zu Organismen; bei Stoffwechselprozessen wird Wärme abgegeben. Wärme bleibt Energie und wird nicht als Nährstoff oder neu erzeugtes Licht zur Photosynthese zurückgeführt.",
+          "sourceUrls": [
+            "https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems",
+            "https://carbontime.create4stem.msu.edu/sites/default/files/ecosystems/teacher_guides/tg_lesson3.pdf"
+          ],
+          "sourceRoles": {
+            "https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems": "Biology 2e · 46.2, Einleitung, How Organisms Acquire Energy sowie Productivity und Ecological Efficiency (30–38 und47–50) tatsächlich gelesen: gerichtete Nahrungsenergie, Eigenverbrauch und Wärme. Keine Wirkungsgrade, Kettenlängen oder Zahlen der örtlichen Beispiele.",
+            "https://carbontime.create4stem.msu.edu/sites/default/files/ecosystems/teacher_guides/tg_lesson3.pdf": "Teacher Guide Lesson 3, Seiten 4–5, 7 und 17 tatsächlich gelesen: Kohlenstoffpfade getrennt von Licht/chemischer Energie/Wärme; biologische Prozesse erzeugen oder vernichten Energie nicht. Nur dieser Kern, nicht die vereinfachte Universalbehauptung für alle Ökosysteme oder ein kopiertes Spiel."
+          }
+        },
+        {
+          "claim": "Kohlenstoffatome können zwischen atmosphärischem Kohlendioxid, Pflanzen, Nahrung, Organismen und Boden weitergegeben werden. Atmung und Zersetzung ermöglichen Rückwege; dies ist kein abgeschlossener oder überall gleich schneller Revierkreislauf.",
+          "sourceUrls": [
+            "https://www.noaa.gov/education/resource-collections/climate/carbon-cycle",
+            "https://scied.ucar.edu/learning-zone/earth-system/biogeochemical-cycles"
+          ],
+          "sourceRoles": {
+            "https://www.noaa.gov/education/resource-collections/climate/carbon-cycle": "Carbon storage and exchange, erste zwei Absätze (159–160) tatsächlich gelesen: Photosynthese, Nahrungsweg, Atmung/Ausscheidung/Zersetzung. Keine Mengen, Verweilzeiten oder aktuelle Klimawerte übernommen.",
+            "https://scied.ucar.edu/learning-zone/earth-system/biogeochemical-cycles": "Biogeochemical Cycles, Einleitung3–6 und The Carbon Cycle, erste vier Punkte14–17 tatsächlich gelesen: wiederverwendete Atome und Wege zwischen Luft, Pflanze, Tier und Boden. Die übrigen alten Klima- und Stickstoffzahlen werden nicht übernommen."
           }
         }
       ]

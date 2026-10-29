@@ -569,6 +569,46 @@
           "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation",
           "organization": "Rice University / OpenStax",
           "supports": "ATP-Bindung löst den Aktin-Myosin-Querbrückenkontakt; Abgleich des biologischen Mechanismus, keine Übernahme von Figuren oder Übungen."
+        },
+        {
+          "label": "University of Leeds · Adipocytes",
+          "url": "https://histology.leeds.ac.uk/home/tissue_types/connective/connective_adipocyte/",
+          "organization": "University of Leeds · Histology Guide",
+          "supports": "Eigentliche Abschnitte White Fat Cells und histologische Präparation: ein großer Lipidtropfen, randständiger Kern und scheinbar leere Zellen nach Lipidextraktion. Keine Größen-, Alters- oder Verteilungspauschalen übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "fettzellen"
+          ]
+        },
+        {
+          "label": "Universität Genua · Specialized connective tissues",
+          "url": "https://istologia.unige.it/en/connective_specialized",
+          "organization": "Università degli Studi di Genova · Atlas of Histology",
+          "supports": "Adipose tissue/White adipose tissue und Erläuterung Figure C44: weißer Adipozyt mit großem Lipidtropfen und peripherem Kern; gelöste Lipide hinterlassen einen farblosen Bereich im Präparat. Keine Human-Normalwerte oder Präparationsanleitung übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "fettzellen"
+          ]
+        },
+        {
+          "label": "Agroscope · Fett aus Fleisch und Fleischerzeugnissen, 2007",
+          "url": "https://ira.agroscope.ch/fr-CH/Ajax/Einzelpublikation/Download?einzelpublikationId=17385",
+          "organization": "Forschungsanstalt Agroscope Liebefeld-Posieux ALP · Alexandra Schmid",
+          "supports": "ALP science 2007, Nr. 511, gedruckte Seite 4: zwischen Muskeln eingelagertes Fett versus Marmorierung im Muskel. Tatsächlich heruntergeladenes Original-PDF; nur anatomische Begriffe, keine historischen Ernährungs-, Gehalts- oder Gesundheitsangaben übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "fettlagen"
+          ]
+        },
+        {
+          "label": "Iowa State · Marbling and Pork Tenderness",
+          "url": "https://www.porkgateway.iastate.edu/resource/marbling-and-pork-tenderness",
+          "organization": "Iowa State University Extension and Outreach · Pork Information Gateway",
+          "supports": "Glossary Intramuscular fat/Marbling und Absatz What is marbling and how is it measured: im Muskel gelegene, zwischen Bündeln eingelagerte Fettanteile und sichtbare Marmorierung. Keine Prozent-, Zucht-, Zartheits-, Präparations- oder Qualitätsvorgaben übernommen.",
+          "checkedOn": "2026-10-27",
+          "lessonIds": [
+            "fettlagen"
+          ]
         }
       ],
       "lessons": [
@@ -611,6 +651,32 @@
           ],
           "takeaway": "Saftverlust und Zartheit sind Qualitätsmerkmale, keine alleinigen Gesundheitsfreigaben.",
           "exercise": "Erkläre, warum „trocken“ bei DFD nicht einfach einen geringen Gesamtwassergehalt bedeutet."
+        },
+        {
+          "id": "fettzellen",
+          "title": "Fettzellen",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Wir betrachten hier weißes Fettgewebe als histologisches Grundmodell. Es ist eine spezialisierte Form des Bindegewebes. Seine charakteristischen Fettzellen heißen Adipozyten. Ein weißer Adipozyt enthält einen großen Lipidtropfen, der den Zellkern an den Rand drängt. Um den Tropfen bleibt ein schmaler Saum von Zellplasma. „Unilokulär“ benennt diesen einen großen Tropfen; die Beschreibung gilt nicht unterschiedslos für alle Fettzelltypen.",
+            "Der Lipidtropfen ist ein Inhalt der Zelle und nicht die ganze Zelle. Zellkern, Zellplasma und gespeichertes Lipid sind deshalb verschiedene Bestandteile desselben Modells. Fettgewebe wird damit nicht als zellloser Fettklumpen verstanden. Diese Unterscheidung ergänzt den schon erklärten Muskelaufbau, ohne Muskelfaser und Fettzelle gleichzusetzen.",
+            "Bei üblichen histologischen Präparationen können Lipide aus dem Gewebe herausgelöst werden. Der entsprechende Bereich erscheint dann im Schnitt leer oder farblos. Das bedeutet nicht, dass die lebende Fettzelle dort einen leeren Hohlraum besaß. Eigenes Lernbeispiel: Beschrifte in einer gedanklichen Zellskizze den großen Tropfen, den randständigen Kern und den schmalen Zellplasmasaum. Trenne den Bau der Zelle von einer durch Präparation veränderten Darstellung."
+          ],
+          "takeaway": "Beim weißen Adipozyten füllt ein großer Lipidtropfen viel Zellraum; Kern und Zellplasma bleiben erhalten. Ein scheinbar leerer Präparatraum kann durch herausgelöste Lipide entstehen.",
+          "exercise": "Beschrifte das eigene gedankliche Modell eines weißen Adipozyten und erkläre, weshalb ein Präparat keinen leeren Lebenszustand beweist."
+        },
+        {
+          "id": "fettlagen",
+          "title": "Fettlagen",
+          "reviewedOn": "2026-10-27",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "In der Fleischkunde unterscheiden intramuskulär und intermuskulär die Lage von Fett relativ zum Muskel. Intramuskuläres Fett liegt innerhalb eines Muskels, unter anderem im Bindegewebe zwischen seinen Faserbündeln. Intermuskuläres Fett liegt dagegen zwischen ganzen Muskeln. Die Grenze des betrachteten Muskels ist also entscheidend: „im Muskel“ und „zwischen Muskeln“ sind unterschiedliche räumliche Aussagen.",
+            "Der Ausdruck intramuskulär bedeutet in diesem Vergleich nicht, dass der sichtbare Fettanteil zum Inneren einer einzelnen Muskelfaser gehört. Ein Muskel enthält neben seinen kontraktilen Zellen auch andere Gewebeanteile. Die sichtbare Einlagerung von Fett im Muskelfleisch wird als Marmorierung bezeichnet. Die Benennung einer Fettlage liefert jedoch noch keinen Fettgehalt in Prozent. Dieser Grundvergleich legt keine einheitliche Ausprägung bei allen Wildarten oder Teilstücken fest.",
+            "Eigenes Lernbeispiel: Zeichne zwei getrennte Muskelumrisse und innerhalb eines Umrisses mehrere Faserbündel. Ordne gedachte Fettpunkte innerhalb dieses Muskels und zwischen den beiden ganzen Muskeln den passenden Begriffen zu. Das Schema veranschaulicht Lagebeziehungen und ist kein Foto-Nachweis eines bestimmten Fleischstücks. Weder die Lagebezeichnung noch sichtbare Marmorierung sind eine Hygiene-, Sicherheits- oder Qualitätsfreigabe; dieser Text gibt keine Verzehr- oder Zubereitungsanweisung."
+          ],
+          "takeaway": "Intramuskulär heißt innerhalb eines Muskels, intermuskulär zwischen Muskeln. Sichtbare Fetteinlagerung im Muskelfleisch heißt Marmorierung; eine bloße Lagezuordnung ist keine Freigabe.",
+          "exercise": "Ordne im eigenen Zweimuskel-Schema Fettpunkte innerhalb und zwischen den Muskeln zu; halte Muskel und einzelne Muskelfaser auseinander."
         }
       ],
       "questions": [
@@ -1029,6 +1095,45 @@
           ],
           "answer": 0,
           "explain": "Zartheit betrifft eine sensorische bzw. strukturelle Eigenschaft. Sicherheit erfordert andere Informationen und Prüfungen."
+        },
+        {
+          "id": "fettzellen-aufbau",
+          "lessonId": "fettzellen",
+          "q": "Wie sind großer Lipidtropfen, Zellkern und Zellplasma im hier beschriebenen weißen Adipozyten angeordnet?",
+          "options": [
+            "Der große Tropfen drängt den Kern an den Rand; ein schmaler Zellplasmasaum bleibt.",
+            "Ein leerer Hohlraum ersetzt Tropfen, Kern und Zellplasma bereits in der lebenden Zelle.",
+            "Viele vollständige Muskelfasern bilden das Innere jeder weißen Fettzelle.",
+            "Der Zellkern ist der große Lipidtropfen; Zellplasma fehlt grundsätzlich."
+          ],
+          "answer": 0,
+          "explain": "Im Modell des weißen Adipozyten nimmt ein großer Lipidtropfen viel Raum ein. Der Kern liegt randständig, das Zellplasma bildet einen schmalen Saum. Diese Beschreibung wird nicht unterschiedslos auf alle Fettzelltypen übertragen."
+        },
+        {
+          "id": "fettzellen-praeparat",
+          "lessonId": "fettzellen",
+          "q": "Warum kann der Bereich des großen Lipidtropfens eines weißen Adipozyten in einem üblichen histologischen Präparat scheinbar leer aussehen?",
+          "options": [
+            "Weil der Lipidtropfen mit dem Zellkern identisch ist.",
+            "Weil weißes Fettgewebe im lebenden Tier ausschließlich aus Luftblasen besteht.",
+            "Weil Lipide bei der Präparation herausgelöst werden können.",
+            "Weil aus jeder Fettzelle dabei regelhaft eine Muskelfaser wird."
+          ],
+          "answer": 2,
+          "explain": "Bei der Präparation können Lipide aus dem Gewebe gelöst werden. Der entsprechende farblose oder leer wirkende Bereich ist deshalb keine Bestätigung eines leeren Hohlraums in der zuvor lebenden Zelle."
+        },
+        {
+          "id": "fettlagen-ort",
+          "lessonId": "fettlagen",
+          "q": "Wie heißen im hier verwendeten fleischkundlichen Vergleich Fettlager innerhalb eines Muskels und Fettlager zwischen ganzen Muskeln?",
+          "options": [
+            "Innerhalb: intermuskulär; zwischen ganzen Muskeln: intramuskulär.",
+            "Innerhalb: intramuskulär; zwischen ganzen Muskeln: intermuskulär.",
+            "Beide Lagen sind notwendigerweise das Innere derselben einzelnen Muskelfaser.",
+            "Beide Lagen bezeichnen ausschließlich den Zellkern eines Adipozyten."
+          ],
+          "answer": 1,
+          "explain": "Intramuskulär bezeichnet Fett innerhalb eines Muskels, unter anderem zwischen seinen Faserbündeln. Intermuskulär bezeichnet Fett zwischen ganzen Muskeln. Die sichtbare Einlagerung im Muskelfleisch heißt Marmorierung; daraus folgt keine Hygiene-, Sicherheits- oder Qualitätsfreigabe."
         }
       ]
     },
@@ -3625,6 +3730,64 @@
             "https://www.edoeb.admin.ch/de/fotofallen-und-wildtierkameras",
             "https://www.bj.admin.ch/de/neues-datenschutzrecht"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "fettzellen",
+      "claims": [
+        {
+          "claim": "Das Modell des weißen Adipozyten beschreibt eine Fettzelle im Bindegewebe mit einem großen Lipidtropfen, randständigem Kern und schmalem Zellplasmasaum.",
+          "sourceUrls": [
+            "https://histology.leeds.ac.uk/home/tissue_types/connective/connective_adipocyte/",
+            "https://istologia.unige.it/en/connective_specialized"
+          ],
+          "sourceRoles": {
+            "https://histology.leeds.ac.uk/home/tissue_types/connective/connective_adipocyte/": "Adipocytes: White Fat Cells und Absatz zur Zusammenlagerung der Lipidtropfen; ein großer Tropfen, Kern zum Rand, schmaler Zellplasmasaum.",
+            "https://istologia.unige.it/en/connective_specialized": "Specialized connective tissues, Adipose tissue/White adipose tissue und Figure C44: spezialisierte Gewebeform und entsprechender Zellaufbau."
+          }
+        },
+        {
+          "claim": "Die Extraktion von Lipiden während üblicher histologischer Präparation kann den Bereich des Lipidtropfens leer beziehungsweise farblos erscheinen lassen.",
+          "sourceUrls": [
+            "https://histology.leeds.ac.uk/home/tissue_types/connective/connective_adipocyte/",
+            "https://istologia.unige.it/en/connective_specialized"
+          ],
+          "sourceRoles": {
+            "https://histology.leeds.ac.uk/home/tissue_types/connective/connective_adipocyte/": "Letzter Sachabsatz: Lipidtropfen wird bei histologischer Präparation extrahiert, zurückbleibende Zellen wirken leer.",
+            "https://istologia.unige.it/en/connective_specialized": "Erläuterung Figure C44: gelöste Lipide hinterlassen im Präparat einen farblosen Bereich. Keine Anleitung oder pauschale Aussage zu allen Präparationsverfahren."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-anwendung-muskelbiologie-2026",
+      "lessonId": "fettlagen",
+      "claims": [
+        {
+          "claim": "Im hier verwendeten fleischkundlichen Vergleich liegt intramuskuläres Fett innerhalb eines Muskels, unter anderem zwischen Faserbündeln, während intermuskuläres Fett zwischen ganzen Muskeln liegt.",
+          "sourceUrls": [
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/structure-and-composition-of-muscle/",
+            "https://ira.agroscope.ch/fr-CH/Ajax/Einzelpublikation/Download?einzelpublikationId=17385",
+            "https://www.porkgateway.iastate.edu/resource/marbling-and-pork-tenderness"
+          ],
+          "sourceRoles": {
+            "https://meat.tamu.edu/meat-science/teaching/ansc-307-meats/structure-and-composition-of-muscle/": "Muscle organization and construction: Einträge Intramuscular fat und Intermuscular fat, perimysiales Netz innerhalb gegenüber Fett zwischen Muskeln.",
+            "https://ira.agroscope.ch/fr-CH/Ajax/Einzelpublikation/Download?einzelpublikationId=17385": "ALP science 2007, Nr. 511, gedruckte Seite 4, erster Absatz Gesamtfettgehalt: zwischen Muskeln beziehungsweise im Muskel.",
+            "https://www.porkgateway.iastate.edu/resource/marbling-and-pork-tenderness": "Glossary Intramuscular fat und erster Satz What is marbling and how is it measured: innerhalb eines Muskels, um oder zwischen Bündeln."
+          }
+        },
+        {
+          "claim": "Sichtbare Fetteinlagerungen im Muskelfleisch werden in diesem begrenzten Vergleich Marmorierung genannt.",
+          "sourceUrls": [
+            "https://ira.agroscope.ch/fr-CH/Ajax/Einzelpublikation/Download?einzelpublikationId=17385",
+            "https://www.porkgateway.iastate.edu/resource/marbling-and-pork-tenderness"
+          ],
+          "sourceRoles": {
+            "https://ira.agroscope.ch/fr-CH/Ajax/Einzelpublikation/Download?einzelpublikationId=17385": "Gedruckte Seite 4, erster Absatz Gesamtfettgehalt: Marmorierung im Muskel. Keine historischen Gehalts-, Ernährungs- oder Gesundheitsangaben übernommen.",
+            "https://www.porkgateway.iastate.edu/resource/marbling-and-pork-tenderness": "Glossary Marbling und Definitionsabsatz unter What is marbling and how is it measured; keine Mess-, Zucht- oder Qualitätsvorgaben übernommen."
+          }
         }
       ]
     }

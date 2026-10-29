@@ -1,9 +1,11 @@
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 // Structure, integration and concrete editorial regressions. Source reading is
 // separately recorded in data/reviews/; these checks are not scientific review.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createLoader } = require('./helpers/project-module.cjs');
-const load = createLoader();
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture()));
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');
 const { learningCategories, learningModules, learningQuestions } = load('lib/learning-curriculum.js');
 const { QUESTIONS } = load('data/questions-full.js');

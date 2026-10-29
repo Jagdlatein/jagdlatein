@@ -1,5 +1,7 @@
 import { TERMS } from "../../data/glossary-terms";
 import { getPaidPageProps } from "../../lib/account-access";
+import { getGlossaryCourseLinks } from "../../lib/glossary-course-links-server";
+import Link from "next/link";
 import Seo from "../../components/Seo";
 import PageMenu from "../../components/PageMenu";
 import styles from "./glossar.module.css";
@@ -11,10 +13,11 @@ export async function getServerSideProps(context) {
   if (!access.props) return access;
   const slug = context.params.slug === ".windkante" ? "windkante" : context.params.slug;
   if (!TERMS.some(entry => entry.slug === slug)) return { notFound: true };
-  return { props: { slug } };
+  const studyLinks = getGlossaryCourseLinks(slug);
+  return { props: { slug, ...(studyLinks.length ? { studyLinks } : {}) } };
 }
 
-export default function GlossarSlugPage({ slug }) {
+export default function GlossarSlugPage({ slug, studyLinks = [] }) {
   const entryIndex = TERMS.findIndex((t) => t.slug === slug);
   const entry = TERMS[entryIndex];
 
@@ -43,7 +46,7 @@ export default function GlossarSlugPage({ slug }) {
   const prev = TERMS[entryIndex - 1] || null;
   const next = TERMS[entryIndex + 1] || null;
 
-  // Verwandte Begriffe (selber Anfangsbuchstabe)
+  // Alphabetical neighbors are not automatically related subject matter.
   const related = TERMS.filter(
     (t) => t.term[0].toLowerCase() === entry.term[0].toLowerCase() && t.slug !== entry.slug
   ).slice(0, 6);
@@ -73,6 +76,12 @@ export default function GlossarSlugPage({ slug }) {
             <p className={styles.defBig}>{entry.def}</p>
 
             <PageMenu title="Glossarbegriffe">
+            {studyLinks.length > 0 && <nav aria-labelledby="glossary-course-links-title" data-glossary-course-links>
+              <h3 id="glossary-course-links-title" className={styles.relatedTitle}>Weiterlernen</h3>
+              <ul className={styles.relatedList}>{studyLinks.map(link => <li key={link.href}>
+                <Link href={link.href} prefetch={false} className={styles.relatedLink}>{link.title}</Link>
+              </li>)}</ul>
+            </nav>}
             <div className={styles.navRow}>
               {prev && (
                 <a href={`/glossar/${prev.slug}`} className={styles.navLink}>
@@ -93,7 +102,7 @@ export default function GlossarSlugPage({ slug }) {
             {/* Verwandte Begriffe */}
             {related.length > 0 && (
               <div className={styles.relatedBox}>
-                <h3 className={styles.relatedTitle}>Verwandte Begriffe</h3>
+                <h3 className={styles.relatedTitle}>Weitere Begriffe mit {entry.term[0].toUpperCase()}</h3>
                 <ul className={styles.relatedList}>
                   {related.map((r) => (
                     <li key={r.slug}>

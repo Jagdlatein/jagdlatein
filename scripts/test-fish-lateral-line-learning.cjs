@@ -1,3 +1,5 @@
+const { plantEnergyBaselineFixture, stripPlantEnergyDataset } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Exact preservation and integration checks; source reading is recorded separately.
@@ -5,8 +7,8 @@ const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-igniti
 const test=require('node:test'),assert=require('node:assert/strict');
 const{createHash}=require('node:crypto');
 const{createLoader,local}=require('./helpers/project-module.cjs');
-const raw=require('../data/learning-expansion-ecology-2026-10-16.json');
-const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture()))),courseId='wissen-ausbau-oekologie-tierbewegungen-2026',lessonId='seitenliniensinn',questionId='seitenliniensinn-wasserbewegung';
+const raw=stripPlantEnergyDataset(require('../data/learning-expansion-ecology-2026-10-16.json'));
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture()))))),courseId='wissen-ausbau-oekologie-tierbewegungen-2026',lessonId='seitenliniensinn',questionId='seitenliniensinn-wasserbewegung';
 const sourceURLs=['https://www.manoa.hawaii.edu/exploringourfluidearth/biological/fish/structure-and-function-fish','https://utmsi.utexas.edu/science-and-the-sea/radio-program/fish-sense/'];
 const{learningModules,getLearningModule}=load('lib/learning-curriculum.js'),course=getLearningModule(courseId),original=raw.modules.find(item=>item.id===courseId),lesson=course.lessons.at(-1);
 const cards=load('lib/learning-flashcards.js').getFlashcards(),cardId=`flash-${courseId}-${questionId}`;

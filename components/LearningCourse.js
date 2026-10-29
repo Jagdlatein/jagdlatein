@@ -21,6 +21,7 @@ import { getCourseVideoLinks } from "../lib/learning-video-links";
 import CourseWildlifeLinks from "./CourseWildlifeLinks";
 import CourseBreedLinks from "./CourseBreedLinks";
 import CourseMiniLinks from "./CourseMiniLinks";
+import CourseGlossaryLinks from "./CourseGlossaryLinks";
 
 const countryNames = { DE: "Deutschland", AT: "Österreich", CH: "Schweiz" };
 
@@ -29,11 +30,11 @@ function makeRun(questions, mode = "full", answerSeed = 0, lessonPractice = null
     ...(lessonPractice ? { lessonPractice } : {}) };
 }
 
-export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [] }) {
-  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} />;
+export default function LearningCourse({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [] }) {
+  return <LearningContent key={module.id} module={module} flashcards={flashcards} wildlifeLinks={wildlifeLinks} miniCourseLinks={miniCourseLinks} glossaryLinks={glossaryLinks} />;
 }
 
-function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [] }) {
+function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLinks = [], glossaryLinks = [] }) {
   const router = useRouter();
   const category = getLearningCategoryByTitle(module.category);
   const media = getLearningMedia(module);
@@ -244,6 +245,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
             <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
             <CourseMiniLinks links={miniCourseLinks} lessonId={module.lessons[lessonIndex].id} />
+            <CourseGlossaryLinks links={glossaryLinks} lessonId={module.lessons[lessonIndex].id} />
           </PageMenu>
           <div className={styles.lessonGrid}>
             <article id={`lesson-${lesson.id}`} className={styles.card} aria-labelledby="current-lesson-heading">

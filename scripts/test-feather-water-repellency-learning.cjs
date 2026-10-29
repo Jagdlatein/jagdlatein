@@ -1,3 +1,5 @@
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Concrete data-preservation and reader/export integration checks, not scientific certification.
@@ -11,7 +13,7 @@ const path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripOctober26Additions, isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { stripOctober27Additions, isOctober27Evidence, isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
-const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))));
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
 const raw = stripFlightFeatherDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
 const courseId = 'wissen-ausbau-federaufbau-funktion-2026';
 const lessonId = 'wasserschutz';

@@ -1,3 +1,5 @@
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 // Editorial preservation and real reader/export integration. Source reading is
 // documented separately; these checks do not certify scientific correctness.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -8,7 +10,7 @@ const { courseId, lessonIds, questionIds, sourceURLs, stripFlightFeatherAddition
   stripFlightFeatherDataset, isFlightFeatherCard } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { stripFirearmTermsAddition, isFirearmTermsCard } = require('./helpers/firearm-terms-additions-oct27.cjs');
 const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
-const load = createLoader(), { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture())), { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const course = getLearningModule(courseId), original = raw.modules.find(item => item.id === courseId);
 const lessons = course.lessons.slice(-2), cards = load('lib/learning-flashcards.js').getFlashcards();
 const bto = 'https://www.bto.org/sites/default/files/moult-in-birds-web.pdf';

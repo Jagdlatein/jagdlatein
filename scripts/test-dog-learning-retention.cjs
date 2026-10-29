@@ -1,3 +1,5 @@
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture, stripFlightFeatherDataset } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 const { digestiveIgnitionBaselineFixture, stripGewoelleDataset } = require('./helpers/digestive-ignition-additions-oct27.cjs');
@@ -13,7 +15,7 @@ const { stripFeatherGrowthAddition, isFeatherGrowthEvidence, isFeatherGrowthCard
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
-const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))));
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
 const revision = '6860695';
 const datasetPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';
 const courseId = 'wissen-ausbau-hund-ruhe-schlaf-2026';

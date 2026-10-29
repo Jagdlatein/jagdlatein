@@ -1,3 +1,5 @@
+const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
+const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { flightFeatherBaselineFixture } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additions-oct27.cjs');
 // Navigation projection and unchanged corpus checks, not a new genetics review.
@@ -9,7 +11,7 @@ const fs = require('node:fs'), path = require('node:path');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))));
+const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture()))))));
 const { getCourseBreedLink, getDogBreedKnowledgeAssignment } = load('lib/dog-breed-routing.js');
 const { learningModules } = load('lib/learning-curriculum.js');
 const { dogBreeds } = load('lib/dog-compass.js');
@@ -117,7 +119,7 @@ test('The complete curriculum, all cards and existing course SSG payload shape r
   const cards = load('lib/learning-flashcards.js').getFlashcards();
   assert.equal(hash(cards.filter(card => !isFeatherGrowthCard(card))), 'e01e7e45482cc7eac2d3ab980cd40a0188eabae531e90d712276ccab5bdd44c6');
   const page = load('pages/kurse/[slug].js');
-  for (const module of learningModules) assert.deepEqual(Object.keys(page.getStaticProps({ params: { slug: module.id } }).props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks'].sort());
+  for (const module of learningModules) assert.deepEqual(Object.keys(page.getStaticProps({ params: { slug: module.id } }).props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks'].sort());
   const geneticsCards = cards.filter(card => expected.some(item => item.courseId === card.moduleId));
   assert.equal(geneticsCards.length, 5);
   for (const card of geneticsCards) {

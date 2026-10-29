@@ -1,0 +1,36 @@
+# Pflanzenatmung, Energie und Stoffe · 27. Oktober 2026
+
+## Lücke und Reichweite
+
+Der Abgleich aller 198 Kurse einschließlich ihrer Fragen, des Glossars und der vorhandenen Pflanzen-, Revierleben- und Nahrungsnetztexte zeigt: Photosynthese, Blattbau und Nahrungsbeziehungen sind bereits erklärt. Neu ist der zusammenhängende Vergleich mit eigener Pflanzenatmung sowie die Trennung von Energiefluss und wiederverwendeten Kohlenstoffatomen. Vorhandene Photosynthese-, Gewässer-, Pilz-, Samen- und Stickstofflektionen werden nicht ersetzt oder als neue Erkenntnis ausgegeben.
+
+Im vorhandenen Kurs `wissen-ausbau-oekologie-blattfunktion-2026` in der Ecology-Datei stehen hinten `zellatmung` (188 Wörter) und `energie-stoffe` (186 Wörter), zusammen 374 Wörter. Vier eigene Fragen ergeben vier Karten. Die Wortkarten- und Pfeilübung ist ein eigenes schematisches Lernmodell. Die Reichweite bleibt sichtbar: photosynthetisch gestütztes Waldsystem, keine gleiche Atmungsrate, feste Tagesbilanz oder abgeschlossener Revierkreislauf. Kein ATP-Lehrblock, keine Zahlen, Wirkungsgrade, neuen Artenkontakte, Messdaten, Medien oder Maßnahmenanleitung.
+
+## Tatsächlich gelesene Quellen
+
+| Aussageblock | Tatsächlich gelesene konkrete Stellen |
+| --- | --- |
+| Aerobe Energieversorgung der Pflanze | [MPI-Pflanzenphysiologie, Joost van Dongen 2011](https://www.mpg.de/4982054/pflanzen-sauerstoff), Zusammenfassung und Abschnitte Energieversorgung/Regulation; [University of Minnesota](https://pesticidecert.cfans.umn.edu/sites/pesticidecert.cfans.umn.edu/files/files/media/e3_plant_biology_basics_mar24final.pdf), Plant Biology Basics, Folie 58: Aerobic Respiration. |
+| Licht-/Dunkelphase und Vorräte | Dieselbe UMN-Folie; [Universität Stuttgart](https://www.bio.uni-stuttgart.de/pflanzen-biotechnologie/forschung/regulation-des-primaerstoffwechsels/), Sink-Source Interaktion, Absätze zum Tag-Nacht-Wechsel, Eigenverbrauch und Speichern (142–147 im gelesenen Webtext). |
+| Energieformen und Wärmeabgabe | [OpenStax/Rice University 46.2](https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems), Einleitung, Energieerwerb, Productivity/Ecological Efficiency; [Michigan State University, Carbon TIME](https://carbontime.create4stem.msu.edu/sites/default/files/ecosystems/teacher_guides/tg_lesson3.pdf), Teacher Guide Lesson 3, S. 4–5, 7 und 17. |
+| Kohlenstoffwege | [NOAA](https://www.noaa.gov/education/resource-collections/climate/carbon-cycle), Carbon storage and exchange, erste zwei Absätze159–160; [UCAR](https://scied.ucar.edu/learning-zone/earth-system/biogeochemical-cycles), Einleitung3–6 und The Carbon Cycle, erste vier Prozesspunkte14–17. |
+
+Die fünf konkreten Claim-Paare und Quellenrollen stehen auch im Datensatz. Quellenorganisationen werden getrennt gezählt; Lehrdarstellungen und institutionelle Forschungseinordnungen sind keine neuen unabhängigen Wiederholungen eines Experiments. Keine umgebenden Hypoxie-/Pflanzenschutzanleitungen, Klimazahlen oder pauschalen Aussagen über jedes Ökosystem übernommen. Keine fremde Aufgabe, Abbildung oder Messreihe kopiert. Alle sieben URLs sind für diesen Kurs neu und auf die jeweils betroffene neue Lektion begrenzt.
+
+## Erhalt und Prüfung
+
+Vollständiger positiver Vergleich gegen `647e2df`: gesamte Ecology-Datei außerhalb exakt dieser Addition, alle 198 alten Kursobjekte und 1732 alten Karten samt 116 Starterkarten und Reihenfolge bleiben identisch. Die separat autorisierte Adipose-Ergänzung ist dabei ausschließlich mit ihrem eigenen exakten Helper isoliert. Vier alte Blattlektionen, 32 Fragen, acht Quellenobjekte, alle alten Evidence-Objekte und sämtliche übrigen Felder bleiben erhalten. Kurs-/Datensatzdatum bleibt 16. Oktober; nur die zwei neuen Lektionen und ihre Quellen/Karten tragen 27. Oktober. Die bestehende Scope-Zusammenfassung des ursprünglichen Oktoberpakets wird nicht als aktueller Gesamtkatalog ausgegeben.
+
+`scripts/test-plant-energy-learning.cjs`: 8/8 Fälle bestanden,0 übersprungen. Abgedeckt sind volle Altobjekte, exakte neue Fragen/Karten/Quellenscopes, DACH-Pools, Such-Lektionsziele, vorhandener Themenzweig, statische Kursdaten, vollständige synthetische Offlinepakete mit echter Ablaufgrenze und beide tatsächlichen Kursansichten. Vollständiger Lerntext steht vor dem geschlossenen finalen Quellenbereich. Die Claim-Belege sind auf die aktuelle Lektion begrenzt; die ergänzende bestehende Kursquellenliste bleibt gesammelt darunter.
+
+Rohnachweise außerhalb des Repos: `work/regional-law-qa/plant-energy-baseline-647e2df.json` und `plant-energy-tests-final.txt`. Fremde Afternoon-Datei unverändert: SHA256 `23e6e8fc8fd6c3e1b5ad115b92036b901d0dc3613332d4edd0deb0c283a607c9`. Kein Build, Staging oder Commit; technische Tests sind keine vollständige fachliche Zertifizierung. Die unabhängige fachliche Gegenprüfung folgt im nächsten Abschnitt.
+
+## Unabhängige Gegenprüfung und historische Tests
+
+Ein zweiter Reviewer las die aktuellen Texte, vier Fragen und alle sieben angegebenen Quellenstellen selbst. Pflanzenatmung, zeitliche Überlappung, Reserven, Wärmeumwandlung und Kohlenstoffwege wurden fachlich bestätigt. Eine zusätzliche eigene Vergleichsfunktion ohne den hier verfassten Striphelper bestätigte beide Rohdatensätze außerhalb der vier exakten Anhänge sowie alle 198 alten Kursobjekte und 1732 alten Karten samt 116 Startern und Reihenfolge. Nachweis außerhalb des Repos: `work/regional-law-qa/plant-energy-independent-oct27.json`. Die Fettzell-/Fettlagen-Ergänzung wurde umgekehrt anhand ihrer fünf konkreten Originalquellen geprüft: `adipose-independent-oct27-birds.json`.
+
+Vor der Testanpassung wurden 47 historische Dateien mit 487 Fällen ausgeführt: 471 bestanden, 16 scheiterten an den neuen Bestandsobjekten. Betroffen waren genau zwölf freigegebene Dateien: `test-beaver-mouth-fold-learning`, `test-cartridge-ignition-learning`, `test-course-breed-links`, `test-dog-learning-retention`, `test-duck-countercurrent-learning`, `test-feather-growth-learning`, `test-feather-water-repellency-learning`, `test-fish-lateral-line-learning`, `test-flight-feather-learning`, `test-owl-pellet-learning`, `test-science-expansion` und `test-wood-vessel-pattern-learning` (jeweils `.cjs` unter `scripts/`).
+
+Diese historischen Fixtures komponieren nun ausdrücklich `plantEnergyBaselineFixture` und `adiposeBaselineFixture` mit ihren älteren Projektionen. Nur in den beiden direkt gelesenen Ecology-Rohfixtures wird zusätzlich dieselbe exakte Pflanzenprojektion verwendet. Entfernt werden nur die vier konkreten neuen Lektionen, sieben Fragen, elf neuen Quellenobjekte und deren Evidence/Karten; keine ganzen Kurse, unbekannten Felder oder allgemeinen Datumsbereiche. Alle 94 alten Hash-Golden-Vorkommen bleiben exakt. Die neue `glossaryLinks`-Propsprüfung des Root-Agenten bleibt erhalten.
+
+Die 87 Fälle der zwölf historischen Dateien bestanden anschließend vollständig; zusammen mit den 18 neuen Fachfällen 105/105, ohne übersprungene Fälle. Rohlogs und Golden-Vergleich: `plant-adipose-historical-initial.txt`, `plant-adipose-historical-final.txt` und `plant-adipose-historical-goldens.json` im genannten externen Arbeitsordner. Für diese Fixtureanpassung wurden keine Produktdaten verändert; Build und tatsächliche Auslieferung liegen getrennt beim Root-Agenten.
